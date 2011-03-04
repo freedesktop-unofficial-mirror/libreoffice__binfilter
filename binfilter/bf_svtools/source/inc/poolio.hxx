@@ -130,7 +130,7 @@ struct SfxItemPool_Impl
         rStream >> nFileTag; \
         if ( nTag != nFileTag ) \
         { \
-            DBG_ERROR( #nTag ); /*! s.u. */ \
+            OSL_FAIL( #nTag ); /*! s.u. */ \
             /*! error-code setzen und auswerten! */ \
             (rStream).SetError(SVSTREAM_FILEFORMAT_ERROR); \
             pImp->bStreaming = FALSE; \
@@ -143,7 +143,7 @@ struct SfxItemPool_Impl
        rStream >> nFileTag; \
        if ( nTag != nFileTag ) \
         { \
-            DBG_ERROR( #nTag ); /*! s.u. */ \
+            OSL_FAIL( #nTag ); /*! s.u. */ \
            /*! error-code setzen und auswerten! */ \
            (rStream).SetError(SVSTREAM_FILEFORMAT_ERROR); \
            pImp->bStreaming = FALSE; \
@@ -157,7 +157,7 @@ struct SfxItemPool_Impl
         rStream >> nFileTag; \
         if ( nTag1 != nFileTag && nTag2 != nFileTag ) \
         { \
-            DBG_ERROR( #nTag1 ); /*! s.u. */ \
+            OSL_FAIL( #nTag1 ); /*! s.u. */ \
             /*! error-code setzen und auswerten! */ \
             (rStream).SetError(SVSTREAM_FILEFORMAT_ERROR); \
             pImp->bStreaming = FALSE; \
