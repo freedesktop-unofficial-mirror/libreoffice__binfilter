@@ -259,7 +259,7 @@ using namespace comphelper;
 /*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*?*/       DBG_ERROR1( "Exception caught during Export of : %s", aBStr.GetBuffer());
+/*?*/       OSL_TRACE( "Exception caught during Export of : %s", aBStr.GetBuffer());
 /*N*/ #endif
 /*N*/   }
 /*N*/

@@ -465,7 +465,7 @@ using namespace ::com::sun::star;
 /*N*/                       nError = rPoolStream->GetError();
 /*N*/                       if( nError )
 /*N*/                       {
-/*?*/                           DBG_ERROR1( "Errorcode 0x%x loading Pool", nError );
+/*?*/                           OSL_TRACE( "Errorcode 0x%x loading Pool", nError );
 /*?*/                           rPoolStream->ResetError();
 /*?*/                           SetError( ERRCODE_WARNING_MASK | nError );
 /*N*/                       }
@@ -473,7 +473,7 @@ using namespace ::com::sun::star;
 /*N*/                       nError = rPoolStream->GetError();
 /*N*/                       if( nError )
 /*N*/                       {
-/*?*/                           DBG_ERROR1( "Errorcode 0x%x loading StyleSheet-Pool", nError );
+/*?*/                           OSL_TRACE( "Errorcode 0x%x loading StyleSheet-Pool", nError );
 /*?*/                           rPoolStream->ResetError();
 /*?*/                           SetError( ERRCODE_WARNING_MASK | nError );
 /*N*/                       }

@@ -127,7 +127,7 @@ ChXChartDocument::~ChXChartDocument()
             }
             catch( uno::RuntimeException & aEx )
             {
-                DBG_ERROR1( "Exception caught in DTOR: %s",
+                OSL_TRACE( "Exception caught in DTOR: %s",
                             ::rtl::OUStringToOString( aEx.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
             }
         }

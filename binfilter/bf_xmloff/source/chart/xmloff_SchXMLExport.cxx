@@ -933,7 +933,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
 #ifdef DBG_UTIL
         String aStr( aEx.Message );
         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR1( "chart:exportPlotAreaException caught: %s", aBStr.GetBuffer());
+        OSL_TRACE( "chart:exportPlotAreaException caught: %s", aBStr.GetBuffer());
 #endif
             }
         }
@@ -1013,7 +1013,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             {
                 String aStr( aEx.Message );
                 ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                DBG_ERROR1( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
             }
         }
         else if( 0 == xDiagram->getDiagramType().reverseCompareToAsciiL(
@@ -1029,7 +1029,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             {
                 String aStr( aEx.Message );
                 ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                DBG_ERROR1( "Exception caught for property Volume: %s", aBStr.GetBuffer());
+                OSL_TRACE( "Exception caught for property Volume: %s", aBStr.GetBuffer());
             }
         }
     }
@@ -1371,7 +1371,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                     }
                     catch( uno::Exception aEx )
                     {
-                        DBG_ERROR1( "Exception caught during Export of data point: %s",
+                        OSL_TRACE( "Exception caught during Export of data point: %s",
                                     OUStringToOString( aEx.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
                     }
                     if( xPropSet.is())
@@ -1463,7 +1463,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                     }
                     catch( uno::Exception aEx )
                     {
-                        DBG_ERROR1( "Exception caught during Export of data point: %s",
+                        OSL_TRACE( "Exception caught during Export of data point: %s",
                                     OUStringToOString( aEx.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
                     }
                     if( xPropSet.is())

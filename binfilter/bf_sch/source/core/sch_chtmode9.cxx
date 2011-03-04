@@ -969,7 +969,7 @@ namespace binfilter {
 /*N*/   case CHART_AXIS_SECONDARY_X:
 /*N*/       return pChartAAxis;
 /*N*/   }
-/*N*/   DBG_ERROR1( "ChartAxis not found: id=%ld", nUId );
+/*N*/   OSL_TRACE( "ChartAxis not found: id=%ld", nUId );
 /*N*/   return pChartYAxis;
 /*N*/ }
 /*N*/ #define SchDataCol(a) SchDataRow(a)     //erst mal testen..... (wird eh ne geklonte Klasse)

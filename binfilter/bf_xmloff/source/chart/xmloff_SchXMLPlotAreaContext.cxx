@@ -369,7 +369,7 @@ void SchXMLPlotAreaContext::EndElement()
             {
                 String aStr( aEx.Message );
                 ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                DBG_ERROR1( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
             }
         }
 
@@ -386,7 +386,7 @@ void SchXMLPlotAreaContext::EndElement()
             {
                 String aStr( aEx.Message );
                 ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                DBG_ERROR1( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
+                OSL_TRACE( "Exception caught for property NumberOfLines: %s", aBStr.GetBuffer());
             }
         }
     }
@@ -480,7 +480,7 @@ void SchXMLPlotAreaContext::EndElement()
 #ifdef DBG_UTIL
                         String aStr( aEx.Message );
                         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                        DBG_ERROR1( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
+                        OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
 #endif
                     }
                 }
@@ -517,7 +517,7 @@ void SchXMLPlotAreaContext::EndElement()
 #ifdef DBG_UTIL
                         String aStr( aEx.Message );
                         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-                        DBG_ERROR1( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
+                        OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
 #endif
                     }
                 }

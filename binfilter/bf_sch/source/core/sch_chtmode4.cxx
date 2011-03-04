@@ -1407,7 +1407,7 @@ private:
 /*?*/                           // convert ::rtl::OUString => tools String => ByteString
 /*?*/                           String aStr( aEx.Message );
 /*?*/                           ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*?*/                           DBG_ERROR1( "AddIn threw exception during refresh(): %s", aBStr.GetBuffer());
+/*?*/                           OSL_TRACE( "AddIn threw exception during refresh(): %s", aBStr.GetBuffer());
 /*?*/ #endif
 /*?*/                       }
 /*?*/                       ResetChartStatusFlag( CHS_NO_ADDIN_REFRESH );

@@ -343,7 +343,7 @@ using namespace ::com::sun::star;
 /*N*/         // convert ::rtl::OUString => tools String => ByteString
 /*N*/         String aStr( aEx.Message );
 /*N*/         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*N*/         DBG_ERROR1( "LinguProperties threw exception: %s", aBStr.GetBuffer());
+/*N*/         OSL_TRACE( "LinguProperties threw exception: %s", aBStr.GetBuffer());
 /*N*/ #endif
 /*N*/   }
 /*N*/

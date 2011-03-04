@@ -800,7 +800,7 @@ using namespace ::com::sun::star;
 /*N*/  #ifdef DBG_UTIL
 /*N*/          String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
 /*N*/          ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*N*/          DBG_ERROR1( "Invalid Cell Address <%s> found in XML file", aBstr.GetBuffer());
+/*N*/          OSL_TRACE( "Invalid Cell Address <%s> found in XML file", aBstr.GetBuffer());
 /*N*/  #endif
 /*N*/          return false;
 /*N*/      }
@@ -878,7 +878,7 @@ using namespace ::com::sun::star;
 /*N*/  #if OSL_DEBUG_LEVEL > 0
 /*N*/          String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
 /*N*/          ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*N*/          DBG_ERROR1( "Invalid Cell Range <%s> found in XML file", aBstr.GetBuffer());
+/*N*/          OSL_TRACE( "Invalid Cell Range <%s> found in XML file", aBstr.GetBuffer());
 /*N*/  #endif
 /*N*/          return false;
 /*N*/      }

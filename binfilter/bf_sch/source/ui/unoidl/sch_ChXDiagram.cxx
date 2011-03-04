@@ -1757,7 +1757,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
                         //  to first process as many properties as possible.
                         //  All unknown properties following the first one
                         //  are ignored.
-                        DBG_ERROR1 ("nWID %d not in property set", nWID);
+                        OSL_TRACE("nWID %d not in property set", nWID);
                         if (sErrorMessage.getLength() == 0)
                         {
                             sErrorMessage = OUString (
