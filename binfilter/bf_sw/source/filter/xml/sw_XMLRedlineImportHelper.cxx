@@ -350,7 +350,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
                 // (i.e. end without start, or start without
                 // end). This may well be a problem in the file,
                 // rather than the code.
-                DBG_ERROR("incomplete redline (maybe file was corrupt); "
+                OSL_FAIL("incomplete redline (maybe file was corrupt); "
                           "now deleted");
             }
         }
