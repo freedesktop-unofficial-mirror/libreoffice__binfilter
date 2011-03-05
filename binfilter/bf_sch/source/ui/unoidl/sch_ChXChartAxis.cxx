@@ -370,7 +370,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
 #ifdef DBG_UTIL
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
@@ -608,7 +608,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             {
                 String aTmpString (*pPropertyName);
                 ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                DBG_ERROR2( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
             }
 #endif
         }

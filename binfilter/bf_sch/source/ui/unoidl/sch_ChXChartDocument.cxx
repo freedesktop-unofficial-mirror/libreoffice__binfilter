@@ -663,7 +663,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
 #ifdef DBG_UTIL
                                 String aTmpString( aPropertyName );
                                 ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                                DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                             }
                         }
@@ -842,7 +842,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
 #ifdef DBG_UTIL
                                 String aTmpString( aPropertyName );
                                 ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                                DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                             }
                         }

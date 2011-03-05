@@ -365,7 +365,7 @@ SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartM
     // ------------
 
     if( nPropertyId >= CHMAP_END )
-        DBG_ERROR2( "Invalid Id %d (>=%d)", nPropertyId, CHMAP_END );
+        OSL_TRACE( "Invalid Id %d (>=%d)", nPropertyId, CHMAP_END );
 
     if( ! pMapArr[ nPropertyId ] )
     {

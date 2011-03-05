@@ -1179,7 +1179,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   // there is no DBG_ASSERT2
 /*N*/   if( !pObj )
-/*N*/       DBG_ERROR2( "GetObjWithId: Object not found (id=%ld => %s)", nId, GetCHOBJIDName( nId ) );
+/*N*/       OSL_TRACE( "GetObjWithId: Object not found (id=%ld => %s)", nId, GetCHOBJIDName( nId ) );
 /*N*/ #endif
 /*N*/   return pObj;
 /*N*/ }

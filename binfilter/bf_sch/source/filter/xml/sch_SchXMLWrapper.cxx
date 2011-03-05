@@ -142,7 +142,7 @@ using namespace comphelper;
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
-/*?*/       DBG_ERROR2( "Exception caught during Export of \"%s\" stream(): %s",
+/*?*/       OSL_TRACE( "Exception caught during Export of \"%s\" stream(): %s",
 /*?*/                   aBStrStreamName.GetBuffer(),
 /*?*/                   aBStr.GetBuffer());
 /*N*/ #endif
