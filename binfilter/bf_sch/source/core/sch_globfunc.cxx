@@ -1346,7 +1346,7 @@ namespace binfilter {
 /*N*/
 /*N*/   long r=COLORDATA_RED(nColor),g=COLORDATA_GREEN(nColor),b=COLORDATA_BLUE(nColor);
 /*N*/
-/*N*/   DBG_TRACE4( "SCH:ItemDBG - Info: this=%lx, #=%ld, WID-able=%ld, invalid=%ld", (long)pModel, nCnt, nCnv, nInv );
+/*N*/   OSL_TRACE( "SCH:ItemDBG - Info: this=%lx, #=%ld, WID-able=%ld, invalid=%ld", (long)pModel, nCnt, nCnv, nInv );
 /*N*/   DBG_TRACE5( "... Chart=%ld, RGB=(%d, %d, %d), Mat=%ld", nCns, r, g, b, nMat );
 /*N*/ }
 } //namespace binfilter
