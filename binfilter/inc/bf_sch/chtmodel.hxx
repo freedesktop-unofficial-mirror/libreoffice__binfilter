@@ -141,11 +141,11 @@ typedef ::std::vector< E3dLabelObj* > DescrList;
 #define CHART_AXIS_SECONDARY_Y  4
 #define CHART_AXIS_SECONDARY_X  5
 
-#define CHART_TRACE(  w )           DBG_TRACE1( "SCH(%lx):" #w, (long)this )
-#define CHART_TRACE1( w,a )         DBG_TRACE2( "SCH(%lx):" #w, (long)this, a )
-#define CHART_TRACE2( w,a,b )       DBG_TRACE3( "SCH(%lx):" #w, (long)this, a,b )
-#define CHART_TRACE3( w,a,b,c )     DBG_TRACE4( "SCH(%lx):" #w, (long)this, a,b,c )
-#define CHART_TRACE4( w,a,b,c,d )   DBG_TRACE5( "SCH(%lx):" #w, (long)this, a,b,c,d )
+#define CHART_TRACE(  w )           OSL_TRACE( "SCH(%lx):" #w, (long)this )
+#define CHART_TRACE1( w,a )         OSL_TRACE( "SCH(%lx):" #w, (long)this, a )
+#define CHART_TRACE2( w,a,b )       OSL_TRACE( "SCH(%lx):" #w, (long)this, a,b )
+#define CHART_TRACE3( w,a,b,c )     OSL_TRACE( "SCH(%lx):" #w, (long)this, a,b,c )
+#define CHART_TRACE4( w,a,b,c,d )   OSL_TRACE( "SCH(%lx):" #w, (long)this, a,b,c,d )
 
 class ChartModel : public SdrModel
 {
