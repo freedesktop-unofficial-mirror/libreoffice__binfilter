@@ -182,7 +182,7 @@ RmAppletStub::RmAppletStub( )    :
 
 void RmAppletStub::Create(RmAppletContext* pContext, const INetURLObject& rURL1, const SvCommandList & rList,const INetURLObject& rURL2 , BOOL bMayScript  )
 {
-    DBG_TRACE1( "Rm: AppletStub::Create() - Befor createObject() - %s", pClassName );
+    OSL_TRACE( "Rm: AppletStub::Create() - Befor createObject() - %s", pClassName );
 
     char * aBuf
         = new char[ strlen( RMAPPLET_PACKAGE ) + strlen( pClassName ) + 1 ];
@@ -228,7 +228,7 @@ RmAppletContext::RmAppletContext( ) :
 
 void RmAppletContext::Create( )
 {
-    DBG_TRACE1( "Rm: AppletContext::Create() - Befor createObject() - %s", pClassName );
+    OSL_TRACE( "Rm: AppletContext::Create() - Befor createObject() - %s", pClassName );
 
     char * aBuf
         = new char[ strlen( RMAPPLET_PACKAGE ) + strlen( pClassName ) + 1 ];
@@ -251,7 +251,7 @@ RmAppletObject::RmAppletObject( )    :
 
 void RmAppletObject::Create(const String& sClassName, const String& sName, const RmAppletStub& stub, const Window& parent )
 {
-    DBG_TRACE1( "Rm: AppletObject::Create() - Befor createObject() - %s", pClassName );
+    OSL_TRACE( "Rm: AppletObject::Create() - Befor createObject() - %s", pClassName );
 
     char * aBuf
         = new char[ strlen( RMAPPLET_PACKAGE ) + strlen( pClassName ) + 1 ];
@@ -397,7 +397,7 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
 
 
         default:
-            DBG_TRACE1( "Rm: Unknown dispatchMessage (%d)", nType );
+            OSL_TRACE( "Rm: Unknown dispatchMessage (%d)", nType );
             //OObj::dispatchMessage( rMsg );
             break;
     }

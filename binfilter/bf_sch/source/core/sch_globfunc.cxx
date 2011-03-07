@@ -1290,7 +1290,7 @@ namespace binfilter {
 /*N*/       strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/   }
 /*N*/
-/*N*/   DBG_TRACE1( "SCH:ItemDBG - Ranges: %s", pBuf );
+/*N*/   OSL_TRACE( "SCH:ItemDBG - Ranges: %s", pBuf );
 /*N*/
 /*N*/   pBuf[ 0 ] = '\0';
 /*N*/
@@ -1326,7 +1326,7 @@ namespace binfilter {
 /*N*/       pItem = aIterator.NextItem();
 /*N*/   }
 /*N*/
-/*N*/   DBG_TRACE1( "SCH:ItemDBG - List: %s", pBuf );
+/*N*/   OSL_TRACE( "SCH:ItemDBG - List: %s", pBuf );
 /*N*/
 /*N*/   long nColor = -1;
 /*N*/   long nMat = -1;
