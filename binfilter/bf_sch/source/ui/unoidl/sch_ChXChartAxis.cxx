@@ -367,7 +367,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 }
                 else if( nWID != SID_ATTR_NUMBERFORMAT_SOURCE )
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
                     OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
@@ -603,7 +603,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             //  Get default from the model's item pool.
             if (mpModel->GetItemPool().IsWhich (nWID))
                 aAttributes.Put (mpModel->GetItemPool().GetDefaultItem(nWID));
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
             else if (nWID != SID_ATTR_NUMBERFORMAT_SOURCE)
             {
                 String aTmpString (*pPropertyName);

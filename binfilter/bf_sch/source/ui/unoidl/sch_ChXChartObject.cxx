@@ -527,7 +527,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( PropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
                     OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
@@ -1361,7 +1361,7 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                     }
                     else
                     {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                         OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)",
                             rProperty.pName, nWID );
 #endif

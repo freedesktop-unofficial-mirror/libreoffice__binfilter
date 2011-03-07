@@ -477,7 +477,7 @@ void SchXMLPlotAreaContext::EndElement()
                     }
                     catch( uno::Exception aEx )
                     {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                         String aStr( aEx.Message );
                         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
                         OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());
@@ -514,7 +514,7 @@ void SchXMLPlotAreaContext::EndElement()
                     }
                     catch( uno::Exception aEx )
                     {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                         String aStr( aEx.Message );
                         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
                         OSL_TRACE( "PlotAreaContext:EndElement(): Exception caught: %s", aBStr.GetBuffer());

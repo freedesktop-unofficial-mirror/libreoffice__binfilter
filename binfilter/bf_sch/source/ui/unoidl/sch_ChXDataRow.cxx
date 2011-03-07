@@ -224,7 +224,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
                     OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
@@ -467,7 +467,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( PropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
                     OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );

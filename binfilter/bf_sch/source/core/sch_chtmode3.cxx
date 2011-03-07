@@ -1176,7 +1176,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   //ToDo: Das hier könnte man auch schöner machen (kein DEEP!)
 /*N*/   SdrObject* pObj=(GetObjWithId ((USHORT)nId,*GetPage(0),0,IM_DEEPWITHGROUPS));
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   // there is no DBG_ASSERT2
 /*N*/   if( !pObj )
 /*N*/       OSL_TRACE( "GetObjWithId: Object not found (id=%ld => %s)", nId, GetCHOBJIDName( nId ) );

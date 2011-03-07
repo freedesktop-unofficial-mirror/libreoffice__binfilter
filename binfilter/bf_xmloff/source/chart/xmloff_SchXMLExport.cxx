@@ -930,7 +930,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             }
             catch( uno::Exception aEx )
             {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
         String aStr( aEx.Message );
         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
         OSL_TRACE( "chart:exportPlotAreaException caught: %s", aBStr.GetBuffer());

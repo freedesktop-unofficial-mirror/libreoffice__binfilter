@@ -930,7 +930,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
                     OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
@@ -1228,7 +1228,7 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( PropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
                     OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
@@ -1465,7 +1465,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     sMessage += OUString (
                         RTL_CONSTASCII_USTRINGPARAM (" is not known in :ChXDiagram::getPropertyValues"));
                 }
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                 ByteString sName = ByteString(String(*pPropertyName), RTL_TEXTENCODING_ASCII_US);
                 OSL_TRACE("Diagram: Property %s has an invalid ID (%d)",
                     sName.GetBuffer(), nWID);

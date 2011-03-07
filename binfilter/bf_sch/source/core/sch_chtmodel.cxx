@@ -339,7 +339,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/         // convert ::rtl::OUString => tools String => ByteString
 /*N*/         String aStr( aEx.Message );
 /*N*/         ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );

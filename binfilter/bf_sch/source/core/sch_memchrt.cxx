@@ -797,7 +797,7 @@ using namespace ::com::sun::star;
 /*N*/      if( nDelimiterPos == -1 ||
 /*N*/          nDelimiterPos >= nEndPos )
 /*N*/      {
-/*N*/  #ifdef DBG_UTIL
+/*N*/  #if OSL_DEBUG_LEVEL > 1
 /*N*/          String aStr( rXMLString.copy( nStartPos, nEndPos - nStartPos + 1 ));
 /*N*/          ByteString aBstr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*N*/          OSL_TRACE( "Invalid Cell Address <%s> found in XML file", aBstr.GetBuffer());

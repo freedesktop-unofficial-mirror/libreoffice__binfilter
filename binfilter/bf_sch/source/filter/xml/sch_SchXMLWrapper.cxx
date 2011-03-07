@@ -137,7 +137,7 @@ using namespace comphelper;
 /*N*/   }
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
@@ -255,7 +255,7 @@ using namespace comphelper;
 /*N*/   }
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
