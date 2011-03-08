@@ -62,10 +62,10 @@ using ::rtl::OUString;
 /*N*/   aAddrText      (rItem.aAddrText),
 /*N*/   bSend          (rItem.bSend),
 /*N*/   aSendText      (rItem.aSendText),
-/*N*/   lSendFromLeft  (rItem.lSendFromLeft),
-/*N*/   lSendFromTop   (rItem.lSendFromTop),
 /*N*/   lAddrFromLeft  (rItem.lAddrFromLeft),
 /*N*/   lAddrFromTop   (rItem.lAddrFromTop),
+/*N*/   lSendFromLeft  (rItem.lSendFromLeft),
+/*N*/   lSendFromTop   (rItem.lSendFromTop),
 /*N*/   lWidth         (rItem.lWidth),
 /*N*/   lHeight        (rItem.lHeight),
 /*N*/   eAlign         (rItem.eAlign),
@@ -76,7 +76,7 @@ using ::rtl::OUString;
 /*N*/ }
 
 // --------------------------------------------------------------------------
-/*N*/ int SwEnvItem::operator ==(const SfxPoolItem& rItem) const
+/*N*/ int SwEnvItem::operator ==(const SfxPoolItem&) const
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
