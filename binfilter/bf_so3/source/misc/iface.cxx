@@ -85,13 +85,13 @@ void SvObject::TestMemberInvariant( BOOL /*bPrint*/ )
     {
         ByteString aTest( "\t\tpClient == " );
         aTest += ByteString::CreateFromInt32( (ULONG)pClient );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( aTest.GetBuffer() );
     }
     if( Owner() && pService )
     {
         ByteString aTest( "\t\tpService == " );
         aTest += ByteString::CreateFromInt32( (ULONG)pService );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( aTest.GetBuffer() );
     }
 #endif
 }

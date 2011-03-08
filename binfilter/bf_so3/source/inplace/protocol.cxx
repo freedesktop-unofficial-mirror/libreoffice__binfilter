@@ -47,7 +47,7 @@ namespace binfilter {
     aTS += "( ";                                \
     aTS += bVal ? "TRUE" : "FALSE";             \
     aTS += " )";                                \
-    DBG_TRACE( aTS.GetBuffer() );               \
+    OSL_TRACE( aTS.GetBuffer() );               \
 }
 
 #define DBG_PROTREC(FuncName)                   \
