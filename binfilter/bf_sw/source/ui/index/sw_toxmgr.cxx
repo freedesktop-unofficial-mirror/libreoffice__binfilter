@@ -46,6 +46,7 @@ namespace binfilter {
 /*N*/   ShellResource* pShellRes = ViewShell::GetShellRes();
 /*N*/   switch(eType)
 /*N*/   {
+/*N*/       default:
 /*N*/       case  TOX_CONTENT      :    pRet = &pShellRes->aTOXContentName;       break;
 /*N*/       case  TOX_INDEX        :    pRet = &pShellRes->aTOXIndexName;         break;
 /*?*/       case  TOX_USER         :    pRet = &pShellRes->aTOXUserName;          break;
