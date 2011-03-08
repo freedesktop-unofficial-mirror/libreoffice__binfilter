@@ -51,7 +51,7 @@ namespace binfilter {
 }
 
 #define DBG_PROTREC(FuncName)                   \
-    DBG_TRACE( FuncName )
+    OSL_TRACE( FuncName )
 
 
 /************** struct ImplSvEditObjectProtocol ***************************/
