@@ -268,7 +268,7 @@ namespace binfilter {
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
-/*?*/                       DBG_TRACE("Chart:: Object has no parent (Scene)");
+/*?*/                       OSL_TRACE("Chart:: Object has no parent (Scene)");
 /*N*/                   }
 /*N*/               }
 /*N*/               else

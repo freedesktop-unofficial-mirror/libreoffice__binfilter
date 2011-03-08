@@ -155,7 +155,7 @@ BasicManager* SfxApplication::GetBasicManager()
 /*N*/ {
 /*N*/   if ( 1 == ++pAppData_Impl->nBasicCallLevel )
 /*N*/   {
-/*N*/       DBG_TRACE( "SfxShellObject: BASIC-on-demand" );
+/*N*/       OSL_TRACE( "SfxShellObject: BASIC-on-demand" );
 /*N*/
 /*N*/       // zuerst das BASIC laden
 /*N*/       GetBasic();

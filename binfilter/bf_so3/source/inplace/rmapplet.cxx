@@ -191,7 +191,7 @@ void RmAppletStub::Create(RmAppletContext* pContext, const INetURLObject& rURL1,
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
     delete[] aBuf;
 
-    DBG_TRACE( "Rm: Window::Create() - After createObject()" );
+    OSL_TRACE( "Rm: Window::Create() - After createObject()" );
 
     DCA_NAMESPACE(OCallMethodMsg, dca) aMsg(this, MSG_APPLET_CREATE);
     DCA_NAMESPACE(OObjStream , dca)& s = aMsg.getData();
@@ -237,7 +237,7 @@ void RmAppletContext::Create( )
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
     delete[] aBuf;
 
-    DBG_TRACE( "Rm: Window::Create() - After createObject()" );
+    OSL_TRACE( "Rm: Window::Create() - After createObject()" );
 
 }
 
@@ -260,7 +260,7 @@ void RmAppletObject::Create(const String& sClassName, const String& sName, const
     createObject( DCA_NAMESPACE(OObjectBroker, dca)::getBroker("dcabroker"), aBuf );
     delete[] aBuf;
 
-    DBG_TRACE( "Rm: Window::Create() - After createObject()" );
+    OSL_TRACE( "Rm: Window::Create() - After createObject()" );
     DCA_NAMESPACE(OCallMethodMsg, dca) aMsg( this, MSG_APPLET_CREATE );
     DCA_NAMESPACE(OObjStream , dca)& s = aMsg.getData();
 
@@ -326,7 +326,7 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
     {
         case MSG_SHOWSTATUS:
             {
-                DBG_TRACE( "Rm: ShowStatus" );
+                OSL_TRACE( "Rm: ShowStatus" );
                 DCA_NAMESPACE(OObjStream , dca)& s = pMsg->getData();
                 String statusText;
                 s >> statusText;
@@ -335,7 +335,7 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
             break;
         case MSG_GETAPPLET  :
             {
-                DBG_TRACE( "Rm: GetApplet" );
+                OSL_TRACE( "Rm: GetApplet" );
                 DCA_NAMESPACE(OObjStream , dca)& s = pMsg->getData();
                 String sName;
                 s >> sName;
@@ -347,7 +347,7 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
             break;
         case MSG_GETAPPLETS :
             {
-                DBG_TRACE( "Rm: GetApplets" );
+                OSL_TRACE( "Rm: GetApplets" );
                 DCA_NAMESPACE(OObjStream , dca)& s = pMsg->getData();
                 List rList;
                 ((RmAppletContext *) this) -> fillApplets(rList );
@@ -360,7 +360,7 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
             break;
         case MSG_SHOWDOCUMENT :
             {
-                DBG_TRACE( "Rm: ShowDocument" );
+                OSL_TRACE( "Rm: ShowDocument" );
                 DCA_NAMESPACE(OObjStream , dca)& s = pMsg->getData();
                 String sURL;
                 String sDest;
@@ -373,7 +373,7 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
             break;
         case MSG_APPLETRESIZE :
             {
-                DBG_TRACE( "Rm: AppletResize" );
+                OSL_TRACE( "Rm: AppletResize" );
                 long width;
                 long height;
                 DCA_NAMESPACE(OObjStream , dca)& s = pMsg->getData();
@@ -384,13 +384,13 @@ IMPL_LINK( RmBasisObject, executeMessage, DCA_NAMESPACE(OCallMethodMsg , dca) *,
             break;
         case MSG_APPLETSTARTED:
             {
-                DBG_TRACE( "Rm: AppletStarted" );
+                OSL_TRACE( "Rm: AppletStarted" );
                 ((RmAppletStub *) this) -> appletStarted();
             }
             break;
         case MSG_APPLETABORT:
             {
-                DBG_TRACE( "Rm: AppletAbort" );
+                OSL_TRACE( "Rm: AppletAbort" );
                 ((RmAppletStub *) this) -> onAppletAbort();
             }
             break;

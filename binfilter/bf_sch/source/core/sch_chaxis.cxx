@@ -1423,7 +1423,7 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if(maArea!=maRefArea)
-/*N*/       DBG_TRACE("ChartAxis:: maArea!=maRefArea!!!");
+/*N*/       OSL_TRACE("ChartAxis:: maArea!=maRefArea!!!");
 /*N*/ #endif
 /*N*/   return bRet;
 /*N*/ }

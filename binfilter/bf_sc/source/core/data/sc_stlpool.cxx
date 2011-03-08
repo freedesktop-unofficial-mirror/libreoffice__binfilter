@@ -470,7 +470,7 @@ namespace binfilter {
 /*N*/
 /*N*/               if ( aNewName.Len() && aNewName != aOldName && !Find( aNewName, eFam ) )
 /*N*/               {
-/*N*/                   DBG_TRACE( "Renaming style..." );
+/*N*/                   OSL_TRACE( "Renaming style..." );
 /*N*/
 /*N*/                   pStyle->SetName( aNewName );    // setzt auch Parents um
 /*N*/

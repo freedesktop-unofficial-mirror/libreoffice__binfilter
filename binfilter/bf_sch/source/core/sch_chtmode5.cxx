@@ -120,7 +120,7 @@ namespace binfilter {
 /*?*/       if(pDataRow)
 /*?*/           pObj = GetObjWithColRow(nCol, nRow, *pDataRow->GetSubList());
 /*?*/       else
-/*?*/           DBG_TRACE("ChartModel::GetDataPointObj:Datenreihen-Objekt nicht gefunden!");
+/*?*/           OSL_TRACE("ChartModel::GetDataPointObj:Datenreihen-Objekt nicht gefunden!");
 /*?*/   }
 /*?*/
 /*?*/   return pObj;

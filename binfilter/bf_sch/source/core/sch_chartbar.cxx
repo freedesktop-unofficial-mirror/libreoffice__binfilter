@@ -88,7 +88,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(!nColCnt||!nRowCnt)
 /*N*/   {
-/*?*/       DBG_TRACE("Chart :: Keine Daten!");
+/*?*/       OSL_TRACE("Chart :: Keine Daten!");
 /*?*/       return;
 /*N*/   }
 /*N*/

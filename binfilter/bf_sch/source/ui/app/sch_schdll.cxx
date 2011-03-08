@@ -101,7 +101,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if( !pData )
-/*N*/           DBG_TRACE( "SchUpdate was called without MemChart" );
+/*N*/           OSL_TRACE( "SchUpdate was called without MemChart" );
 /*N*/ #endif
 /*N*/       ChartModel& rDoc = aSchChartDocShellRef->GetDoc();
 /*N*/

@@ -1604,7 +1604,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/                       if ( !pStylePool->Find( aPageStyle, SFX_STYLE_FAMILY_PAGE ) )
 /*N*/                       {
-/*N*/                           DBG_TRACE( "PageStyle not found. Using Standard." );
+/*N*/                           OSL_TRACE( "PageStyle not found. Using Standard." );
 /*N*/                           aPageStyle = ScGlobal::GetRscString(STR_STYLENAME_STANDARD);
 /*N*/                       }
 /*N*/                   }

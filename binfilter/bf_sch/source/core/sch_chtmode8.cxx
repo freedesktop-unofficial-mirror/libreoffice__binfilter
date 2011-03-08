@@ -106,7 +106,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/
 /*N*/
 /*N*/       case CHSTYLE_2D_XY :
-/*N*/           DBG_TRACE("ChartModel::HasSymbols:Achtung, neuer Typ, ungetestet");
+/*N*/           OSL_TRACE("ChartModel::HasSymbols:Achtung, neuer Typ, ungetestet");
 /*N*/
 /*N*/       case CHSTYLE_2D_LINESYMBOLS:
 /*N*/       case CHSTYLE_2D_STACKEDLINESYM:
