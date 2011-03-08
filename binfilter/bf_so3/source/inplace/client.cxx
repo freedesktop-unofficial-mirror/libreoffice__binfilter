@@ -462,7 +462,7 @@ void SvEmbeddedClient::Embedded( BOOL bEmbed )
     String aTest( "Client---Embedded---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bEmbed ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest );
+    DBG_TRACE( aTest.GetBuffer() );
 #endif
 
     if( Owner() )
@@ -487,7 +487,7 @@ void SvEmbeddedClient::PlugIn( BOOL bPlugIn )
     String aTest( "Client---PlugIn---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bPlugIn ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    DBG_TRACE( aTest.GetBuffer() )
 #else
     (void)bPlugIn;
 #endif
@@ -585,7 +585,7 @@ void SvEmbeddedClient::Connected( BOOL bConnect )
     String aTest( "Client---Connected---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bConnect ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    DBG_TRACE( aTest.GetBuffer() )
 #endif
     if( !bConnect && HasViewData() )
         FreeViewData( pData );
@@ -612,7 +612,7 @@ void SvEmbeddedClient::Opened( BOOL bOpen )
     String aTest( "Client---Opened---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bOpen ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    DBG_TRACE( aTest.GetBuffer() )
 #else
     (void)bOpen;
 #endif
