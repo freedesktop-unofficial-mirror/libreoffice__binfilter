@@ -50,11 +50,11 @@ namespace binfilter {
 /*N*/           const USHORT* pWhichRanges, SwFmt *pDrvdFrm, USHORT nFmtWhich )
 /*N*/   : SwModify( pDrvdFrm ),
 /*N*/   aSet( rPool, pWhichRanges ),
+/*N*/   nWhichId( nFmtWhich ),
+/*N*/   nFmtId( 0 ),
 /*N*/   nPoolFmtId( USHRT_MAX ),
 /*N*/   nPoolHelpId( USHRT_MAX ),
-/*N*/   nPoolHlpFileId( UCHAR_MAX ),
-/*N*/   nFmtId( 0 ),
-/*N*/   nWhichId( nFmtWhich )
+/*N*/   nPoolHlpFileId( UCHAR_MAX )
 /*N*/ {
 /*N*/   aFmtName.AssignAscii( pFmtNm );
 /*N*/   bWritten = bFmtInDTOR = bAutoUpdateFmt = bLayerFmt = FALSE; // LAYER_IMPL
@@ -70,11 +70,11 @@ namespace binfilter {
 /*N*/   : SwModify( pDrvdFrm ),
 /*N*/   aFmtName( rFmtNm ),
 /*N*/   aSet( rPool, pWhichRanges ),
+/*N*/   nWhichId( nFmtWhich ),
+/*N*/   nFmtId( 0 ),
 /*N*/   nPoolFmtId( USHRT_MAX ),
 /*N*/   nPoolHelpId( USHRT_MAX ),
-/*N*/   nPoolHlpFileId( UCHAR_MAX ),
-/*N*/   nFmtId( 0 ),
-/*N*/   nWhichId( nFmtWhich )
+/*N*/   nPoolHlpFileId( UCHAR_MAX )
 /*N*/ {
 /*N*/   bWritten = bFmtInDTOR = bAutoUpdateFmt = bLayerFmt = FALSE; // LAYER_IMPL
 /*N*/   bAutoFmt = TRUE;
@@ -89,11 +89,11 @@ namespace binfilter {
 /*?*/   : SwModify( pDrvdFrm ),
 /*?*/   aFmtName( rFmtNm ),
 /*?*/   aSet( rPool, nWhich1, nWhich2 ),
+/*?*/   nWhichId( nFmtWhich ),
+/*?*/   nFmtId( 0 ),
 /*?*/   nPoolFmtId( USHRT_MAX ),
 /*?*/   nPoolHelpId( USHRT_MAX ),
-/*?*/   nPoolHlpFileId( UCHAR_MAX ),
-/*?*/   nFmtId( 0 ),
-/*?*/   nWhichId( nFmtWhich )
+/*?*/   nPoolHlpFileId( UCHAR_MAX )
 /*?*/ {
 /*?*/   bWritten = bFmtInDTOR = bAutoUpdateFmt = bLayerFmt = FALSE; // LAYER_IMPL
 /*?*/   bAutoFmt = TRUE;
@@ -106,11 +106,11 @@ namespace binfilter {
 /*N*/   : SwModify( rFmt.DerivedFrom() ),
 /*N*/   aFmtName( rFmt.aFmtName ),
 /*N*/   aSet( rFmt.aSet ),
+/*N*/   nWhichId( rFmt.nWhichId ),
+/*N*/   nFmtId( 0 ),
 /*N*/   nPoolFmtId( rFmt.GetPoolFmtId() ),
 /*N*/   nPoolHelpId( rFmt.GetPoolHelpId() ),
-/*N*/   nPoolHlpFileId( rFmt.GetPoolHlpFileId() ),
-/*N*/   nFmtId( 0 ),
-/*N*/   nWhichId( rFmt.nWhichId )
+/*N*/   nPoolHlpFileId( rFmt.GetPoolHlpFileId() )
 /*N*/ {
 /*N*/   bWritten = bFmtInDTOR = bLayerFmt = FALSE; // LAYER_IMPL
 /*N*/   bAutoFmt = rFmt.bAutoFmt;

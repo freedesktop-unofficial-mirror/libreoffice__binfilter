@@ -91,18 +91,20 @@ namespace binfilter {
 
 
 
-/*N*/ SwDocPosUpdate::SwDocPosUpdate( const SwTwips nDocPos )
-/*N*/   : SwMsgPoolItem( RES_DOCPOS_UPDATE ),
-/*N*/   nDocPos(nDocPos)
+/*N*/ SwDocPosUpdate::SwDocPosUpdate( const SwTwips nInDocPos )
+/*N*/   : SwMsgPoolItem( RES_DOCPOS_UPDATE )
+/*N*/   , nDocPos(nInDocPos)
 /*N*/ {}
 
 
 
 // SwTableFmlUpdate wird verschickt, wenn sich die Tabelle neu berechnen soll
 /*N*/ SwTableFmlUpdate::SwTableFmlUpdate( const SwTable* pNewTbl )
-/*N*/   : SwMsgPoolItem( RES_TABLEFML_UPDATE ),
-/*N*/   pTbl( pNewTbl ), pHistory( 0 ), eFlags( TBL_CALC ),
-/*N*/   nSplitLine( USHRT_MAX )
+/*N*/   : SwMsgPoolItem( RES_TABLEFML_UPDATE )
+/*N*/   , pTbl( pNewTbl )
+/*N*/   , pHistory( 0 )
+/*N*/   , nSplitLine( USHRT_MAX )
+/*N*/   , eFlags( TBL_CALC )
 /*N*/ {
 /*N*/   DATA.pDelTbl = 0;
 /*N*/   bModified = bBehindSplitLine = FALSE;
@@ -111,23 +113,24 @@ namespace binfilter {
 
 
 /*N*/ SwAutoFmtGetDocNode::SwAutoFmtGetDocNode( const SwNodes* pNds )
-/*N*/   : SwMsgPoolItem( RES_AUTOFMT_DOCNODE ),
-/*N*/   pCntntNode( 0 ), pNodes( pNds )
+/*N*/   : SwMsgPoolItem( RES_AUTOFMT_DOCNODE )
+/*N*/   , pCntntNode( 0 )
+/*N*/   , pNodes( pNds )
 /*N*/ {}
 
 
 /*N*/ SwAttrSetChg::SwAttrSetChg( const SwAttrSet& rTheSet, SwAttrSet& rSet )
-/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG ),
-/*N*/   pTheChgdSet( &rTheSet ),
-/*N*/   pChgSet( &rSet ),
-/*N*/   bDelSet( FALSE )
+/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG )
+/*N*/   , bDelSet( FALSE )
+/*N*/   , pChgSet( &rSet )
+/*N*/   , pTheChgdSet( &rTheSet )
 /*N*/ {}
 
 
 /*N*/ SwAttrSetChg::SwAttrSetChg( const SwAttrSetChg& rChgSet )
-/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG ),
-/*N*/   pTheChgdSet( rChgSet.pTheChgdSet ),
-/*N*/   bDelSet( TRUE )
+/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG )
+/*N*/   , bDelSet( TRUE )
+/*N*/   , pTheChgdSet( rChgSet.pTheChgdSet )
 /*N*/ {
 /*N*/   pChgSet = new SwAttrSet( *rChgSet.pChgSet );
 /*N*/ }
