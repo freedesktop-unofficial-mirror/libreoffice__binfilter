@@ -474,7 +474,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 // are exported using the SvXMLGraphicObjectHelper class.
 
 
-/*N*/ BOOL SwGrfNode::StoreGraphics( SvStorage* pRoot )
+/*N*/ BOOL SwGrfNode::StoreGraphics( SvStorage* pInRoot )
 /*N*/ {
 /*N*/   if( !refLink.Is() )
 /*N*/   {
@@ -485,19 +485,19 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/       if( HasStreamName() )
 /*N*/           bGraphic = GetStreamStorageNames( aSrcStrmName, aSrcPicStgName );
 /*N*/       SvStorage* pDocStg = GetDoc()->GetDocStorage();
-/*N*/       if( !pRoot )
-/*N*/           pRoot = pDocStg;
-/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_60 > pRoot->GetVersion(),
+/*N*/       if( !pInRoot )
+/*N*/           pInRoot = pDocStg;
+/*N*/       OSL_ENSURE( SOFFICE_FILEFORMAT_60 > pInRoot->GetVersion(),
 /*N*/               "SwGrfNode::StoreGraphic called for 6.0+ file format" );
 /*N*/
 /*N*/       String aDstPicStgName(
 /*N*/               RTL_CONSTASCII_USTRINGPARAM( "EmbeddedPictures" ) );
 /*N*/       String aDstStrmName( aSrcStrmName );
-/*N*/       if( pRoot != pDocStg || !bGraphic )
+/*N*/       if( pInRoot != pDocStg || !bGraphic )
 /*N*/       {
 /*N*/           // If the stream does not contain a streamed graphic object,
 /*N*/           // the graphic has to be stored again.
-/*N*/           OSL_ENSURE( pRoot != pDocStg || aSrcStrmName.Len(),
+/*N*/           OSL_ENSURE( pInRoot != pDocStg || aSrcStrmName.Len(),
 /*N*/                   "raw image data stream but no stream name" );
 /*N*/           // Neuer Storage. Wenn die Grafik im DocStg drin ist,
 /*N*/           // kann sie bequem per CopyTo() kopiert werden.
@@ -510,10 +510,10 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/
 /*N*/               SvStorageStreamRef refStrm;
 /*N*/
-/*N*/               BOOL bWriteNew = pDocStg->GetVersion() != pRoot->GetVersion() ||
+/*N*/               BOOL bWriteNew = pDocStg->GetVersion() != pInRoot->GetVersion() ||
 /*N*/                                !bGraphic;
 /*N*/               if( !bWriteNew &&
-/*N*/                   SOFFICE_FILEFORMAT_40 <= pRoot->GetVersion() )
+/*N*/                   SOFFICE_FILEFORMAT_40 <= pInRoot->GetVersion() )
 /*N*/               {
 /*N*/                   refStrm = refSrcPics->OpenStream( aSrcStrmName,
 /*N*/                                   STREAM_READ | STREAM_SHARE_DENYWRITE );
@@ -527,7 +527,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                       if( GRAPHIC_BITMAP == aGrfObj.GetType() &&
 /*N*/                           GetDoc()->GetInfo()->IsSaveGraphicsCompressed() )
 /*N*/                           nNewCmprsMode |= COMPRESSMODE_ZBITMAP;
-/*N*/                       if( SOFFICE_FILEFORMAT_40 < pRoot->GetVersion() &&
+/*N*/                       if( SOFFICE_FILEFORMAT_40 < pInRoot->GetVersion() &&
 /*N*/                           GetDoc()->GetInfo()->IsSaveOriginalGraphics() )
 /*N*/                           nNewCmprsMode |= COMPRESSMODE_NATIVE;
 /*N*/
@@ -560,7 +560,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                   }
 /*N*/                   // If the graphic is restored within the same storage,
 /*N*/                   // its storage has to be removed.
-/*N*/                   if( pRoot == pDocStg )
+/*N*/                   if( pInRoot == pDocStg )
 /*N*/                   {
                             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
@@ -569,7 +569,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/               else
 /*N*/               {
 /*N*/                   SvStorageRef refDstPics =
-/*N*/                       pRoot->OpenStorage( aDstPicStgName,
+/*N*/                       pInRoot->OpenStorage( aDstPicStgName,
 /*N*/                           STREAM_READWRITE | STREAM_SHARE_DENYALL );
 /*N*/                   if( refDstPics->IsContained( aDstStrmName ) )
 /*N*/                       // nur neu erzeugen, wenn Name schon vorhanden ist!
@@ -587,11 +587,11 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/
 /*N*/       if( !aDstStrmName.Len() )
 /*N*/       {
-/*N*/           OSL_ENSURE( pRoot, "Kein Storage gegeben" );
-/*N*/           if( pRoot )
+/*N*/           OSL_ENSURE( pInRoot, "Kein Storage gegeben" );
+/*N*/           if( pInRoot )
 /*N*/           {
 /*N*/               SvStorageRef refPics =
-/*N*/                   pRoot->OpenStorage( aDstPicStgName,
+/*N*/                   pInRoot->OpenStorage( aDstPicStgName,
 /*N*/                       STREAM_READWRITE | STREAM_SHARE_DENYALL );
 /*N*/               if( SVSTREAM_OK == refPics->GetError() )
 /*N*/               {
@@ -608,7 +608,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                       if( bIsSwapOut && !aGrfObj.SwapIn() )
 /*N*/                           return FALSE;
 /*N*/
-/*N*/                       refStrm->SetVersion( pRoot->GetVersion() );
+/*N*/                       refStrm->SetVersion( pInRoot->GetVersion() );
 /*N*/
 /*N*/                       //JP 04.05.98: laut ChangesMail vom KA und Bug 49617
 /*N*/                       //JP 21.06.98: laut ChangesMail vom KA, natives Save
@@ -629,11 +629,11 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                       refStrm->SetCompressMode( nComprMode );
 /*N*/
 /*N*/                       BOOL bRes = FALSE;
-/*N*/                       if( pRoot == pDocStg )
+/*N*/                       if( pInRoot == pDocStg )
 /*N*/                       {
 /*?*/                           if( aGrfObj.SwapOut( refStrm ) &&
 /*?*/                               ( refStrm->Commit() | refPics->Commit()
-/*?*/                                 /*| pRoot->Commit()*/ ))
+/*?*/                                 /*| pInRoot->Commit()*/ ))
 /*?*/                           {
 /*?*/                               SetStreamName( aDstStrmName );
 /*?*/                               bRes = TRUE;
@@ -642,7 +642,7 @@ short SwGrfNode::SwapIn( BOOL bWaitForData )
 /*N*/                       else if( ((Graphic&)aGrfObj.GetGraphic()).
 /*N*/                                               WriteEmbedded( *refStrm )
 /*N*/                               && ( refStrm->Commit() | refPics->Commit()
-/*N*/                                 /*| pRoot->Commit()*/ ))
+/*N*/                                 /*| pInRoot->Commit()*/ ))
 /*N*/                       {
 /*N*/                           if( bIsSwapOut )
 /*?*/                               aGrfObj.SwapOut();
