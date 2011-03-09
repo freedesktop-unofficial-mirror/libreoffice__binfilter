@@ -83,8 +83,11 @@
 #include "formcellbinding.hxx"
 #endif
 
+#include <com/sun/star/form/binding/XValueBinding.hpp>
+
 #ifndef _DRAFTS_COM_SUN_STAR_FORM_XLISTENTRYSINK_HPP_
-#include <drafts/com/sun/star/form/XListEntrySink.hpp>
+//#include <drafts/com/sun/star/form/XListEntrySink.hpp>
+#include <com/sun/star/form/binding/XListEntrySink.hpp>
 #endif
 
 #include <algorithm>
@@ -106,7 +109,7 @@ namespace xmloff
     using namespace ::com::sun::star::script;
     using namespace ::com::sun::star::io;
     using namespace ::com::sun::star::table;
-    using namespace ::drafts::com::sun::star::form;
+    using namespace ::com::sun::star::form::binding;
 
     //=====================================================================
     //= OElementExport
