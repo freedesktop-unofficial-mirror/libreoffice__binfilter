@@ -28,6 +28,8 @@
 #ifndef _ROOTFRM_HXX
 #define _ROOTFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "layfrm.hxx"
 class OutputDevice;
 namespace binfilter {

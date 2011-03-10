@@ -29,6 +29,8 @@
 #ifndef SC_SCMOD_HXX
 #define SC_SCMOD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "scdll.hxx"
 
 #include <vcl/timer.hxx>

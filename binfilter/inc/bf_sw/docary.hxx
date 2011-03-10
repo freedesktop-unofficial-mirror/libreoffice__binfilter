@@ -28,7 +28,8 @@
 #ifndef _DOCARY_HXX
 #define _DOCARY_HXX
 
-namespace binfilter {
+#include <bf_svtools/bf_solar.h>
+
 class SwFieldType;
 class SwFrmFmt;
 class SwCharFmt;

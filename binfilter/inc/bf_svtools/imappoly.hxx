@@ -29,6 +29,8 @@
 #ifndef _GOODIES_IMAPPOLY_HXX
 #define _GOODIES_IMAPPOLY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/imapobj.hxx>

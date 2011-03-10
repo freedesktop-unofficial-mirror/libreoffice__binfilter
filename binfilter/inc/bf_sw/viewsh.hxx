@@ -28,6 +28,8 @@
 #ifndef _VIEWSH_HXX
 #define _VIEWSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 #include <ring.hxx>

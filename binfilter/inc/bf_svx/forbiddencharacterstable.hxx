@@ -29,6 +29,8 @@
 #ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #define _FORBIDDENCHARACTERSTABLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/table.hxx>
 
 #include <salhelper/simplereferenceobject.hxx>

@@ -28,6 +28,8 @@
 #ifndef _SFX_SFXTYPES_HXX
 #define _SFX_SFXTYPES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rcid.h>
 #include <vcl/wrkwin.hxx>
 
@@ -48,11 +50,6 @@ namespace binfilter {
 
 class SfxShell;
 
-#if !defined(_SFX_APPCTOR_CXX) && defined(WNT)
-#ifndef _DLL_
-#error _DLL_ mal wieder nicht defined => GetpApp() == 0
-#endif
-#endif
 
 //------------------------------------------------------------------------
 

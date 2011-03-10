@@ -29,6 +29,8 @@
 #ifndef _DDEMLIMP_HXX
 #define _DDEMLIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <string.h>
 #include <ctype.h>

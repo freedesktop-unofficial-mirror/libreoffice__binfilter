@@ -28,6 +28,8 @@
 #ifndef _FRMATR_HXX
 #define _FRMATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <format.hxx>       //fuer Implementierung der inlines
 namespace binfilter {
 

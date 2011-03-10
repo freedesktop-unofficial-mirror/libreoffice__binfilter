@@ -29,6 +29,8 @@
 #ifndef SC_DOCUNO_HXX
 #define SC_DOCUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"           // ScRange, ScAddress
 
 #include <bf_sfx2/sfxbasemodel.hxx>

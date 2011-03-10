@@ -28,6 +28,8 @@
 #ifndef _CNTWALL_HXX
 #define _CNTWALL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/shl.hxx>
 #include <tools/rtti.hxx>
 #include <tools/color.hxx>

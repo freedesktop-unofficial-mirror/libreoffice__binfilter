@@ -28,6 +28,8 @@
 #ifndef _SXCECITM_HXX
 #define _SXCECITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 
 #include <bf_svx/svddef.hxx>

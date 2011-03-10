@@ -29,6 +29,8 @@
 #ifndef SC_CHGTRACK_HXX
 #define SC_CHGTRACK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/datetime.hxx>
 #include <tools/table.hxx>

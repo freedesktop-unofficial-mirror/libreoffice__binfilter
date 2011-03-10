@@ -28,6 +28,8 @@
 #ifndef _GOODIES_IMAPRECT_HXX
 #define _GOODIES_IMAPRECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/imapobj.hxx>

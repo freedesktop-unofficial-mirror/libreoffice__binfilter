@@ -92,8 +92,6 @@ public:
     IMPLEMENT_INFO_SERVICE()
 
 protected:
-    virtual void _reset();
-
     DECLARE_XCLONEABLE();
 };
 

@@ -29,6 +29,8 @@
 #ifndef _SECTION_HXX
 #define _SECTION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <com/sun/star/uno/Sequence.h>
 #include <bf_so3/lnkbase.hxx>

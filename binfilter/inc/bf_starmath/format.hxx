@@ -28,6 +28,8 @@
 #ifndef FORMAT_HXX
 #define FORMAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/smplhint.hxx>
 #include <bf_svtools/brdcst.hxx>

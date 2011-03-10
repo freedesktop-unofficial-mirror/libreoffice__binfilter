@@ -49,7 +49,7 @@
 #ifndef _CALBCK_HXX
 #define _CALBCK_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/rtti.hxx>
 class SvStream;

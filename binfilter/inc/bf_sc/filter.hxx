@@ -29,6 +29,8 @@
 #ifndef SC_FILTER_HXX
 #define SC_FILTER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <rtl/textenc.h>
 class SvStream;

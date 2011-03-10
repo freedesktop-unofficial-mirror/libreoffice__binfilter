@@ -28,8 +28,7 @@
 #ifndef _FORMAT_HXX
 #define _FORMAT_HXX
 
-
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <swatrset.hxx>     // fuer SfxItemPool/-Set, Attr forward decl.
 #include <calbck.hxx>       // fuer SwModify

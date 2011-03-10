@@ -28,7 +28,7 @@
 #ifndef _SFX_OBJFAC_HXX
 #define _SFX_OBJFAC_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/rtti.hxx>
 #include <bf_so3/factory.hxx>

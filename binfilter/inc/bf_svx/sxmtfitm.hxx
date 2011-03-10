@@ -28,6 +28,8 @@
 #ifndef _SXMTFITM_HXX
 #define _SXMTFITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svddef.hxx>
 
 #include <bf_svx/sdynitm.hxx>

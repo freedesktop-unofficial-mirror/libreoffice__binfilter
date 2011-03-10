@@ -29,6 +29,8 @@
 #ifndef _ZFORFIND_HXX
 #define _ZFORFIND_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 class Date;

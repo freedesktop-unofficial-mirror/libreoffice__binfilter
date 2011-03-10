@@ -30,6 +30,8 @@
 #ifndef __GLOBFUNC_HXX
 #define __GLOBFUNC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/label3d.hxx>
 
 #include "schgroup.hxx"

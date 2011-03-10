@@ -28,6 +28,8 @@
 #ifndef _DOCFUNC_HXX
 #define _DOCFUNC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 // Diese Klasse wird von der Editshell benutz um fuer belibige
 // Doc-Aktionen ueber eine definierte Schnittstelle alle Cursor/

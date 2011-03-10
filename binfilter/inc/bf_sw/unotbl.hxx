@@ -28,6 +28,8 @@
 #ifndef _UNOTBL_HXX
 #define _UNOTBL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unoobj.hxx>
 #include <com/sun/star/chart/XChartData.hpp>
 #include <com/sun/star/chart/XChartDataArray.hpp>

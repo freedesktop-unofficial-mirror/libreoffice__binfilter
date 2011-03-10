@@ -28,6 +28,8 @@
 #ifndef _SVX_NUMITEM_HXX
 #define _SVX_NUMITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <tools/link.hxx>

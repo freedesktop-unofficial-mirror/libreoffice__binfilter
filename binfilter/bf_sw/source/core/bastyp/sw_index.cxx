@@ -33,7 +33,7 @@
 
 #include <stdlib.h>             // fuer qsort
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <osl/diagnose.h>
 #include "index.hxx"

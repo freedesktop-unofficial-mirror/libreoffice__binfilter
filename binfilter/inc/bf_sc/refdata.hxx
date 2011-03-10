@@ -29,6 +29,8 @@
 #ifndef SC_REFDATA_HXX
 #define SC_REFDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 namespace binfilter {
 

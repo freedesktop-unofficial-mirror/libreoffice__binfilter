@@ -28,6 +28,8 @@
 #ifndef _SVX_ADJITEM_HXX
 #define _SVX_ADJITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <bf_svtools/eitem.hxx>

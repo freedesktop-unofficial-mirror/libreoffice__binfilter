@@ -29,6 +29,8 @@
 #ifndef _SFXENUMITEM_HXX
 #define _SFXENUMITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/cenumitm.hxx>

@@ -29,7 +29,7 @@
 #ifndef _TOXHLP_HXX
 #define _TOXHLP_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <com/sun/star/lang/Locale.hpp>
 #include <com/sun/star/uno/Reference.hxx>
 

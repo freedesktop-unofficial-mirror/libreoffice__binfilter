@@ -28,6 +28,8 @@
 #ifndef _CRSTATE_HXX
 #define _CRSTATE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <swtypes.hxx>
 #include <swrect.hxx>

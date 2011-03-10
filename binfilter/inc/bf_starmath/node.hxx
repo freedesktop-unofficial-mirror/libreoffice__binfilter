@@ -30,6 +30,8 @@
 #ifndef NODE_HXX
 #define NODE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/dynary.hxx>
 

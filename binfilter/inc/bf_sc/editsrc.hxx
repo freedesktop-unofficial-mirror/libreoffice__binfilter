@@ -29,6 +29,8 @@
 #ifndef SC_EDITSRC_HXX
 #define SC_EDITSRC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"           // ScRange, ScAddress
 
 #include <bf_svx/unoedsrc.hxx>

@@ -28,6 +28,8 @@
 #ifndef _SFX_MISCCFG_HXX
 #define _SFX_MISCCFG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unotools/configitem.hxx>
 namespace binfilter {
 

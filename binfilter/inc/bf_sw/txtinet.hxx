@@ -28,6 +28,8 @@
 #ifndef _TXTINET_HXX
 #define _TXTINET_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <txatbase.hxx>
 #include <calbck.hxx>
 class Color;

@@ -28,6 +28,8 @@
 #ifndef _SVX_UDLNITEM_HXX
 #define _SVX_UDLNITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <bf_svtools/eitem.hxx>

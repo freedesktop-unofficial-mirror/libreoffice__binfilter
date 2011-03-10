@@ -29,6 +29,8 @@
 #ifndef _NUMFMUNO_HXX
 #define _NUMFMUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/util/XNumberFormatter.hpp>
 #include <com/sun/star/util/XNumberFormatPreviewer.hpp>
 #include <com/sun/star/util/XNumberFormats.hpp>

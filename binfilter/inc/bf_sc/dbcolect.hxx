@@ -29,6 +29,8 @@
 #ifndef SC_DBCOLECT_HXX
 #define SC_DBCOLECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "collect.hxx"
 
 #include "global.hxx"       // MAXQUERY

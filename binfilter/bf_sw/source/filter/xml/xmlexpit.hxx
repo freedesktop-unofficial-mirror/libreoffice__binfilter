@@ -29,7 +29,7 @@
 #ifndef _XMLITMPR_HXX
 #define _XMLITMPR_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/ref.hxx>
 
 #include "xmlitmap.hxx"

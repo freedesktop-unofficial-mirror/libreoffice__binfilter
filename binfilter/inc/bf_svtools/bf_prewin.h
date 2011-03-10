@@ -25,26 +25,59 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SFX_EACOPIER_HXX
-#define _SFX_EACOPIER_HXX
 
-#include <tools/eacopier.hxx>
-namespace binfilter {
-class SvFileStream;
+/* nicht geschuetzt, darf nur einmal includet werden */
 
-// class SfxEA_Copier ----------------------------------------------------
+#if defined WNT
 
-class SfxEA_Copier : public EA_Copier
-{
-public:
-    SfxEA_Copier()  { Register( this ); }
-    ~SfxEA_Copier() { Register( NULL ); }
+#define BOOL         WIN_BOOL
+#define BYTE         WIN_BYTE
+#ifndef VCL_NEED_BASETSD
+#define INT64        WIN_INT64
+#define UINT64       WIN_UINT64
+#define INT32        WIN_INT32
+#define UINT32       WIN_UINT32
+#endif
 
-    virtual BOOL    Copy( const SvFileStream& rFrom, const SvFileStream& rTo ) const;
-};
+#define Rectangle    BLA_Rectangle
+#define Polygon      BLA_Polygon
+#define PolyPolygon  BLA_PolyPolygon
+#define Region       WIN_Region
+#define Folder       WIN_Folder
+#define GradientStyle_RECT  WIN_GradientStyle_RECT
 
-}//end of namespace binfilter
-#endif // #ifndef _SFX_EACOPIER_HXX
+#ifdef __cplusplus
+extern "C" {
+#endif
 
+#define STRICT
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#endif
+#include <windows.h>
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+#include <shellapi.h>
+#include <commdlg.h>
+#include <dlgs.h>
+#ifdef USE_TOOLHELP
+#include <tlhelp32.h>
+#endif
+#ifdef USE_IMAGEHLP
+#include <imagehlp.h>
+#endif
+#ifdef INCLUDE_MMSYSTEM
+#include <mmsystem.h>
+#endif
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#endif
+#include <commctrl.h>
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+
+#endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

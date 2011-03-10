@@ -28,6 +28,8 @@
 #ifndef _FMTORNT_HXX
 #define _FMTORNT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <swtypes.hxx>
 #include <format.hxx>
 #include <horiornt.hxx>

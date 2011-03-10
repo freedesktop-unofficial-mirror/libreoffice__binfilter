@@ -28,6 +28,8 @@
 #ifndef _FMTHDFT_HXX
 #define _FMTHDFT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <format.hxx>
 class IntlWrapper;
 namespace binfilter {

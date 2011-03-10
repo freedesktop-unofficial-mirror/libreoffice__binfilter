@@ -30,7 +30,7 @@
 #define SC_SORTPARAM_HXX
 
 #include <tools/string.hxx>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <com/sun/star/lang/Locale.hpp>
 namespace binfilter {
 

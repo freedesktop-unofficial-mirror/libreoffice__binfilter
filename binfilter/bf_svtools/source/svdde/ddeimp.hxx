@@ -29,6 +29,8 @@
 #ifndef _DDEIMP_HXX
 #define _DDEIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifdef OS2
 
 #include "ddemlos2.h"
@@ -42,9 +44,9 @@
 
 #else
 
-#include <prewin.h>
+#include <bf_svtools/bf_prewin.h>
 #include <ddeml.h>
-#include <postwin.h>
+#include <bf_svtools/bf_postwin.h>
 #include "ddewrap.hxx"
 
 #endif

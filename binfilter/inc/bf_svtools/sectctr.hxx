@@ -29,6 +29,8 @@
 #ifndef _SV_SECTCTR_HXX
 #define _SV_SECTCTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/sv.h>
 #include <vcl/ctrl.hxx>
 

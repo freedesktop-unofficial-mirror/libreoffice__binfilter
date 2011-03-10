@@ -28,7 +28,7 @@
 #ifndef _SPLARGS_HXX
 #define _SPLARGS_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/gen.hxx>
 #include <limits.h>       // USHRT_MAX
 #include <tools/string.hxx>

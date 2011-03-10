@@ -29,6 +29,8 @@
 #ifndef SC_DPTABDAT_HXX
 #define SC_DPTABDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 namespace binfilter {
 

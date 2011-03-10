@@ -29,6 +29,8 @@
 #ifndef _SWCONT_HXX
 #define _SWCONT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 namespace binfilter {
 

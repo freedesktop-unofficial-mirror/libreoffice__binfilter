@@ -28,6 +28,8 @@
 #ifndef SVTOOLS_DOCUMENTINFOPREVIEW_HXX
 #define SVTOOLS_DOCUMENTINFOPREVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <vcl/window.hxx>

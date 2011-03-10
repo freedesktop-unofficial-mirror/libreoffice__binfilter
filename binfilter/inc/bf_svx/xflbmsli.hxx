@@ -29,6 +29,8 @@
 #ifndef _SVX_XFLBMSLI_HXX
 #define _SVX_XFLBMSLI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 namespace binfilter {
 

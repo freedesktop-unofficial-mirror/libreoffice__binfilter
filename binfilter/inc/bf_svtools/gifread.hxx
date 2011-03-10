@@ -29,6 +29,8 @@
 #ifndef _GIFREAD_HXX
 #define _GIFREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <vcl/bmpacc.hxx>
 

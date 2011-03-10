@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <Solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #if defined (MAC)
 #include <mac_start.h>
@@ -990,7 +990,7 @@ XPolyPolygon XOutGetCharOutlineQD(USHORT nChar, OutputDevice& rOut,
     gxPaths* pPathData = OutlineToPaths( &out );
 
     // Im Outline steht jetzt wieviele contouren wir haben
-    // so gro§ muuss alos unser Ergebnis sein
+    // so groï¿½ muuss alos unser Ergebnis sein
     XPolyPolygon aXPolyPoly( out.contourCount );    // Unser XPolyPolygon
 
     long* pCurPath = ((long*)pPathData) + 1;    // pCurPath zeigt jetzt auf das erste
@@ -1187,7 +1187,7 @@ XPolyPolygon XOutGetCharOutline(USHORT nChar, OutputDevice& rOut,
 |*
 |*    pDXArray: wenn vorhanden, enthaelt dieses Array die horizontalen
 |*              Positionen der einzelnen Zeichen, beginnend beim ersten
-|*              und endend hinter dem letzten Zeichen; es muß also
+|*              und endend hinter dem letzten Zeichen; es muï¿½ also
 |*              rText.Len()-1 long-Werte enthalten
 |*
 |*

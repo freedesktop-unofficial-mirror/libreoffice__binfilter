@@ -29,6 +29,8 @@
 #ifndef _SVDTXHDL_HXX
 #define _SVDTXHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/virdev.hxx>
 
 

@@ -29,6 +29,8 @@
 #ifndef _CAMERA3D_HXX
 #define _CAMERA3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/viewpt3d.hxx>
 namespace binfilter {
 

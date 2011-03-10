@@ -28,6 +28,8 @@
 #ifndef _UNOFIELD_HXX
 #define _UNOFIELD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/text/XDependentTextField.hpp>
 #include <com/sun/star/util/XRefreshable.hpp>
 #include <com/sun/star/util/XUpdatable.hpp>

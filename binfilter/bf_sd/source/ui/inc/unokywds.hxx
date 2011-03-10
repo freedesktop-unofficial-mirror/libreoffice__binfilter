@@ -30,7 +30,7 @@
 #define _SD_UNOKYWDS_HXX_
 
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 #ifndef SD_DEFINE_KEYWORDS

@@ -29,6 +29,8 @@
 #ifndef SC_DPTABSRC_HXX
 #define SC_DPTABSRC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #include "global.hxx"       // enum ScSubTotalFunc

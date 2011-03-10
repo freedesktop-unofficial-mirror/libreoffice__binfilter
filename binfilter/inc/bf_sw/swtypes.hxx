@@ -28,7 +28,7 @@
 #ifndef _SWTYPES_HXX
 #define _SWTYPES_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <i18npool/lang.h>
 #include <limits.h>     //fuer LONG_MAX
 

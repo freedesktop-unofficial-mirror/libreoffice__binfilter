@@ -29,6 +29,9 @@
 #ifndef _B2D_MATRIX3D_HXX
 #define _B2D_MATRIX3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "point3d.hxx"
 
 /*************************************************************************

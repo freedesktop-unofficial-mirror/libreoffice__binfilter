@@ -28,6 +28,8 @@
 #ifndef _NDTXT_HXX
 #define _NDTXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <node.hxx>
 #include <hintids.hxx>
 #include <ndhints.hxx>

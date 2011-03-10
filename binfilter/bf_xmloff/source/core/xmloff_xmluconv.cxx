@@ -46,7 +46,7 @@
 
 #endif
 
-#include <vcl/fldunit.hxx>
+#include <tools/fldunit.hxx>
 
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
 #include <com/sun/star/style/NumberingType.hpp>

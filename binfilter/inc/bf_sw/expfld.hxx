@@ -28,6 +28,8 @@
 #ifndef _EXPFLD_HXX
 #define _EXPFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include <fldbas.hxx>

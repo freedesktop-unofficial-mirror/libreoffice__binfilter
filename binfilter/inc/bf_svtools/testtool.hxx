@@ -28,7 +28,7 @@
 #ifndef SVTOOLS_TESTTOOL_HXX
 #define SVTOOLS_TESTTOOL_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/link.hxx>
 #include <tools/string.hxx>
 

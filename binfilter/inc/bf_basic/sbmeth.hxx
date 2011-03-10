@@ -29,6 +29,8 @@
 #ifndef _SB_SBMETH_HXX
 #define _SB_SBMETH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/errcode.hxx>
 #include "sbxmeth.hxx"
 #include "sbdef.hxx"

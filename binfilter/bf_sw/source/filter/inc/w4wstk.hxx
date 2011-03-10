@@ -28,6 +28,8 @@
 #ifndef _W4WSTK_HXX
 #define _W4WSTK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include <bf_svtools/poolitem.hxx>

@@ -29,6 +29,8 @@
 #ifndef _LOGINERR_HXX
 #define _LOGINERR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <tools/errcode.hxx>
 

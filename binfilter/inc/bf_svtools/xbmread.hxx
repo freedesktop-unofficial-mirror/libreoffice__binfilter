@@ -29,6 +29,8 @@
 #ifndef _XBMREAD_HXX
 #define _XBMREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <vcl/bmpacc.hxx>
 

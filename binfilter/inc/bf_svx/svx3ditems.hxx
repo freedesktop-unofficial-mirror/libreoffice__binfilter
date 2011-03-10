@@ -28,6 +28,8 @@
 #ifndef _SVX3DITEMS_HXX
 #define _SVX3DITEMS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/intitem.hxx>
 
 #include <bf_svtools/eitem.hxx>

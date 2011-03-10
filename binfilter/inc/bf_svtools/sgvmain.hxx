@@ -29,6 +29,8 @@
 #ifndef _SGVMAIN_HXX
 #define _SGVMAIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/font.hxx>
 #include <vcl/outdev.hxx>
 #include <vcl/virdev.hxx>

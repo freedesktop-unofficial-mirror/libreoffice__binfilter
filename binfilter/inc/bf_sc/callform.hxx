@@ -29,6 +29,8 @@
 #ifndef SC_CALLFORM_HXX
 #define SC_CALLFORM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "collect.hxx"
 namespace binfilter {
 

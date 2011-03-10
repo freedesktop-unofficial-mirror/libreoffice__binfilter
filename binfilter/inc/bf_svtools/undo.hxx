@@ -28,6 +28,8 @@
 #ifndef _UNDO_HXX
 #define _UNDO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <tools/rtti.hxx>

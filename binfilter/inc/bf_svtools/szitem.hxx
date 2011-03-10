@@ -28,6 +28,8 @@
 #ifndef _SFXSZITEM_HXX
 #define _SFXSZITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 
 #include <bf_svtools/poolitem.hxx>

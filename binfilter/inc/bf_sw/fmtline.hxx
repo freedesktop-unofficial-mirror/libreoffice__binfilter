@@ -28,6 +28,8 @@
 #ifndef SW_FMTLINE_HXX
 #define SW_FMTLINE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <format.hxx>
 
 class IntlWrapper;

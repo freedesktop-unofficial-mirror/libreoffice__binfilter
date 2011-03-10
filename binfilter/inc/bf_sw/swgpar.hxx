@@ -28,7 +28,8 @@
 #ifndef _SWGPAR_HXX
 #define _SWGPAR_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 class UniString;
 class SvStream;
 namespace binfilter {

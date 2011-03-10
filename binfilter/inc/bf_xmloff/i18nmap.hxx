@@ -29,7 +29,7 @@
 #ifndef _XMLOFF_I18NMAP_HXX
 #define _XMLOFF_I18NMAP_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 namespace rtl
 {

@@ -29,6 +29,8 @@
 #ifndef _SVDOSMBR_HXX
 #define _SVDOSMBR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/brwbox.hxx>
 #include <vcl/timer.hxx>
 #include <vcl/floatwin.hxx>

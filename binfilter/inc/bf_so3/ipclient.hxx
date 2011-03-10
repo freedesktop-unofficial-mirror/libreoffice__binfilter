@@ -29,6 +29,8 @@
 #ifndef _IPCLIENT_HXX
 #define _IPCLIENT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/client.hxx>
 
 #include "bf_so3/so3dllapi.h"

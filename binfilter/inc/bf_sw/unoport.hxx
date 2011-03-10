@@ -28,6 +28,8 @@
 #ifndef _UNOPORT_HXX
 #define _UNOPORT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unoevtlstnr.hxx>
 #include <calbck.hxx>
 #include <com/sun/star/beans/XPropertySet.hpp>

@@ -29,6 +29,8 @@
 #ifndef SC_HINTS_HXX
 #define SC_HINTS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 
 #include <bf_svtools/hint.hxx>

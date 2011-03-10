@@ -37,7 +37,7 @@
 #include "shellid.hxx"
 #include <tools/string.hxx>
 #include <com/sun/star/linguistic2/XLinguServiceEventListener.hpp>
-#include <vcl/fldunit.hxx>
+#include <tools/fldunit.hxx>
 namespace com{ namespace sun{ namespace star{ namespace scanner{
     class XScannerManager;
 }}}}

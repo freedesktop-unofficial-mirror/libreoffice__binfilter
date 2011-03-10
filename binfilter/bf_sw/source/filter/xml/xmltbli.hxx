@@ -29,6 +29,8 @@
 #ifndef _XMLTBLI_HXX
 #define _XMLTBLI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_xmloff/XMLTextTableContext.hxx>
 
 #include <boost/unordered_map.hpp>

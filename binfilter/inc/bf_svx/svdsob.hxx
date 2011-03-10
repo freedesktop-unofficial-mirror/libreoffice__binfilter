@@ -29,6 +29,8 @@
 #ifndef _SVDSOB_HXX
 #define _SVDSOB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/uno/Any.hxx>
 
 #include <tools/stream.hxx>

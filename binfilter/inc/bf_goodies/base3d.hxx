@@ -29,6 +29,9 @@
 #ifndef _B3D_BASE3D_HXX
 #define _B3D_BASE3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "hmatrix.hxx"
 
 #ifndef _INC_FLOAT

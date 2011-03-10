@@ -28,6 +28,8 @@
 #ifndef _SFXDOCFILE_HXX
 #define _SFXDOCFILE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/io/XOutputStream.hpp>
 #include <com/sun/star/io/XInputStream.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
@@ -50,7 +52,6 @@
 class Timer;
 class DateTime;
 class SvStringsDtor;
-class SvEaMgr;
 class INetURLObject;
 
 namespace binfilter {

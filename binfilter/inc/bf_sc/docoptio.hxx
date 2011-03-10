@@ -29,6 +29,8 @@
 #ifndef SC_DOCOPTIO_HXX
 #define SC_DOCOPTIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #include <bf_svtools/poolitem.hxx>

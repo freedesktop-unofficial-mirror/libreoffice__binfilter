@@ -29,6 +29,8 @@
 #ifndef _SVICNVW_HXX
 #define _SVICNVW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/image.hxx>
 
 #include <bf_svtools/svlbox.hxx>

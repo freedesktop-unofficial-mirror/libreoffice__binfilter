@@ -28,6 +28,8 @@
 #ifndef _UNOSTYLE_HXX
 #define _UNOSTYLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/style.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <unocoll.hxx>

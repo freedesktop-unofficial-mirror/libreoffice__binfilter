@@ -29,6 +29,8 @@
 #ifndef _OUTPLACE_HXX
 #define _OUTPLACE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/lang/XComponent.hpp>
 
 #include <com/sun/star/datatransfer/XTransferable.hpp>

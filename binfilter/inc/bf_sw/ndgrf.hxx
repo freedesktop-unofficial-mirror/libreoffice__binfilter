@@ -28,6 +28,8 @@
 #ifndef _NDGRF_HXX
 #define _NDGRF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_so3/lnkbase.hxx>
 #include <bf_goodies/graphicobject.hxx>

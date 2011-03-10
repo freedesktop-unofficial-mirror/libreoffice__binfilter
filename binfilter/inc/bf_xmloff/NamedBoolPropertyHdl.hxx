@@ -29,6 +29,8 @@
 #ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #define _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_xmloff/xmlprhdl.hxx>
 #include <bf_xmloff/xmltoken.hxx>
 

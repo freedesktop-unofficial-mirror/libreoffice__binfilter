@@ -28,6 +28,8 @@
 #ifndef _UNDOBJ_HXX
 #define _UNDOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/mempool.hxx>
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS

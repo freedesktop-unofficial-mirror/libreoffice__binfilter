@@ -28,6 +28,8 @@
 #ifndef _SVX_GRFCROP_HXX
 #define _SVX_GRFCROP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/poolitem.hxx>
 namespace binfilter {
 

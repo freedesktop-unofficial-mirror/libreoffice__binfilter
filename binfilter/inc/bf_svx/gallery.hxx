@@ -29,7 +29,7 @@
 #ifndef _GALLERY_HXX_
 #define _GALLERY_HXX_
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 class List;
 class Graphic;
 class Bitmap;

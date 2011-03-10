@@ -29,6 +29,8 @@
 #ifndef _SVX_XLNDSIT_HXX
 #define _SVX_XLNDSIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xit.hxx>
 
 #include <bf_svx/xdash.hxx>

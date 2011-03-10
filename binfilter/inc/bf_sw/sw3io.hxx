@@ -28,7 +28,8 @@
 #ifndef _SW3IO_HXX
 #define _SW3IO_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 class UniString;
 
 namespace binfilter {

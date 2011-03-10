@@ -28,6 +28,8 @@
 #ifndef _EXLPAR_HXX
 #define _EXLPAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "fltbase.hxx"
 
 #include "exccrts.hxx"

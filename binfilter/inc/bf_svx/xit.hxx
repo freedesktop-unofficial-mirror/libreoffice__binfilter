@@ -29,6 +29,8 @@
 #ifndef _SVX_XIT_HXX
 #define _SVX_XIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/stritem.hxx>
 namespace binfilter {
 

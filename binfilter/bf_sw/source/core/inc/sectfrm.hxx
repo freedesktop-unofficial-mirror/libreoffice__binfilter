@@ -28,6 +28,8 @@
 #ifndef _SECTFRM_HXX
 #define _SECTFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/mempool.hxx>
 
 #include "layfrm.hxx"

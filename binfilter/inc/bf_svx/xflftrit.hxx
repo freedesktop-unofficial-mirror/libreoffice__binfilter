@@ -29,6 +29,8 @@
 #ifndef _SVX_XFLFTRIT_HXX
 #define _SVX_XFLFTRIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xflgrit.hxx>
 namespace binfilter {
 

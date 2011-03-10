@@ -28,6 +28,8 @@
 #ifndef _FMTEIRO_HXX
 #define _FMTEIRO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/eitem.hxx>
 #include <format.hxx>

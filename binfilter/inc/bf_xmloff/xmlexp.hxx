@@ -39,7 +39,7 @@
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 
 #include <rtl/ustring.hxx>
-#include <vcl/mapunit.hxx>
+#include <tools/mapunit.hxx>
 
 #include <bf_xmloff/txtparae.hxx>
 #include <bf_xmloff/formlayerexport.hxx>

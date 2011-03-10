@@ -29,6 +29,8 @@
 #ifndef _DBTOKEN_HXX
 #define _DBTOKEN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "compiler.hxx"
 namespace binfilter {
 

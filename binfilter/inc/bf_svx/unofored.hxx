@@ -29,6 +29,8 @@
 #ifndef _SVX_UNOFORED_HXX
 #define _SVX_UNOFORED_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/editeng.hxx>
 #include <bf_svx/unoedsrc.hxx>
 namespace binfilter {

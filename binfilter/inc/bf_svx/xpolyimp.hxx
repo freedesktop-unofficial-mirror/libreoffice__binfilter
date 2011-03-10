@@ -29,6 +29,8 @@
 #ifndef _XPOLYIMP_HXX
 #define _XPOLYIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 #include <bf_svx/xpoly.hxx>
 #include <vector>

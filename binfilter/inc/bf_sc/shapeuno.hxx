@@ -29,6 +29,8 @@
 #ifndef SC_SHAPEUNO_HXX
 #define SC_SHAPEUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/beans/XPropertyState.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/text/XTextContent.hpp>

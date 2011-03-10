@@ -28,6 +28,8 @@
 #ifndef _SCROLL_HXX
 #define _SCROLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/scrbar.hxx>
 namespace binfilter {
 

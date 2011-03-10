@@ -29,6 +29,8 @@
 #ifndef _DRAWDOC_HXX
 #define _DRAWDOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/frame/XModel.hdl>
 #include <vcl/print.hxx>
 #include <bf_svx/fmmodel.hxx>

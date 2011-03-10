@@ -28,6 +28,8 @@
 #ifndef _LAYACT_HXX
 #define _LAYACT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "swtypes.hxx"
 #include "swrect.hxx"
 namespace binfilter {

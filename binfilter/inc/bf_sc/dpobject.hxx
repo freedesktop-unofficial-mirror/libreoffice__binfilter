@@ -29,6 +29,8 @@
 #ifndef SC_DPOBJECT_HXX
 #define SC_DPOBJECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 
 #include "collect.hxx"

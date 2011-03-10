@@ -28,6 +28,8 @@
 #ifndef _SFXEVENT_HXX
 #define _SFXEVENT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <bf_svtools/hint.hxx>
 

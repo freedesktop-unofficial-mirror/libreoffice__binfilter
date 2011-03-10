@@ -28,6 +28,8 @@
 #ifndef _FMTCOL_HXX
 #define _FMTCOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <format.hxx>
 #include <swtypes.hxx>      // fuer MAXLEVEL

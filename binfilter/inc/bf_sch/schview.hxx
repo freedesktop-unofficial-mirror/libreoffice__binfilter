@@ -29,6 +29,8 @@
 #ifndef _SCH_SCHVIEW_HXX
 #define _SCH_SCHVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdedxv.hxx>
 #include <bf_svx/view3d.hxx>
 #include <bf_svx/svdpage.hxx>

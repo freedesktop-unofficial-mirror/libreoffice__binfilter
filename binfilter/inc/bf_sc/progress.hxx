@@ -29,6 +29,8 @@
 #ifndef SC_PROGRESS_HXX
 #define SC_PROGRESS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/progress.hxx>
 namespace binfilter {
 

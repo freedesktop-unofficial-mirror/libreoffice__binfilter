@@ -31,7 +31,7 @@
 
 #include <connectivity/virtualdbtools.hxx>
 #include <osl/module.h>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 //........................................................................
 namespace svxform

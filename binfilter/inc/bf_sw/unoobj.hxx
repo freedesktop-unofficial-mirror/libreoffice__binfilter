@@ -28,6 +28,8 @@
 #ifndef _UNOOBJ_HXX
 #define _UNOOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unoevtlstnr.hxx>
 #include <unobaseclass.hxx>
 #include <bf_svtools/itemprop.hxx>

@@ -28,6 +28,8 @@
 #ifndef _AUTHFLD_HXX
 #define _AUTHFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <fldbas.hxx>
 #include <toxe.hxx>
 

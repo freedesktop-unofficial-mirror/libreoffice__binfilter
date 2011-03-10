@@ -28,6 +28,8 @@
 #ifndef _TXTATR_HXX
 #define _TXTATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <txatbase.hxx>     // SwTxtAttr/SwTxtAttrEnd
 #include <calbck.hxx>
 namespace binfilter {

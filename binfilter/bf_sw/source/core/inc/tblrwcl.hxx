@@ -28,6 +28,8 @@
 #ifndef _TBLRWCL_HXX
 #define _TBLRWCL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>

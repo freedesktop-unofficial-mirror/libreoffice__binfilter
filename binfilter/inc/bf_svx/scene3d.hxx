@@ -29,6 +29,8 @@
 #ifndef _E3D_SCENE3D_HXX
 #define _E3D_SCENE3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/camera3d.hxx>
 
 #include <bf_svx/light3d.hxx>

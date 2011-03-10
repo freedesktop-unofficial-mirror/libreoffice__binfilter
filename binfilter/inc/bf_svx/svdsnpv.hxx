@@ -29,6 +29,8 @@
 #ifndef _SVDSNPV_HXX
 #define _SVDSNPV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdpntv.hxx>
 
 #include <bf_svx/svdhlpln.hxx>

@@ -28,9 +28,10 @@
 #ifndef _GLOBALNAMEITEM_HXX
 #define _GLOBALNAMEITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
-#include <tools/solar.h>
 #include <tools/rtti.hxx>
 #include <tools/globname.hxx>
 

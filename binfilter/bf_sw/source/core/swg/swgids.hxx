@@ -29,7 +29,7 @@
 #ifndef _SWGIDS_HXX
 #define _SWGIDS_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 struct FileHeader {

@@ -29,6 +29,8 @@
 #ifndef _SD_FRMVIEW_HXX
 #define _SD_FRMVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/beans/PropertyValue.hpp>
 
 #include <bf_svx/svdview.hxx>

@@ -29,6 +29,8 @@
 #ifndef _SVIMBASE_HXX
 #define _SVIMBASE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/bitmap.hxx>
 #include <vcl/salbtype.hxx>
 namespace binfilter {

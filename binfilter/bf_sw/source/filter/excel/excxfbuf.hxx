@@ -28,6 +28,8 @@
 #ifndef _EXCXFBUF_HXX
 #define _EXCXFBUF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/debug.hxx>
 namespace binfilter {
 class SfxItemSet;

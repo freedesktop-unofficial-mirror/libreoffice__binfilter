@@ -28,6 +28,8 @@
 #ifndef _DOCUFLD_HXX
 #define _DOCUFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/date.hxx>
 
 #include "fldbas.hxx"

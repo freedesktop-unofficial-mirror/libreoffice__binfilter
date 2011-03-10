@@ -28,6 +28,8 @@
 #ifndef _SW3IMP_HXX
 #define _SW3IMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 #ifndef _SVSTDARR_BYTES_DECL

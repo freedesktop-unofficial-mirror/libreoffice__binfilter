@@ -28,6 +28,8 @@
 #ifndef _VISCRS_HXX
 #define _VISCRS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/cursor.hxx>
 #include "swcrsr.hxx"
 #include "swrect.hxx"

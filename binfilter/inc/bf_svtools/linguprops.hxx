@@ -31,7 +31,6 @@
 
 
 // UNO property names for general options
-#define UPN_IS_GERMAN_PRE_REFORM            "IsGermanPreReform"
 #define UPN_IS_USE_DICTIONARY_LIST          "IsUseDictionaryList"
 #define UPN_IS_IGNORE_CONTROL_CHARACTERS    "IsIgnoreControlCharacters"
 #define UPN_ACTIVE_DICTIONARIES             "ActiveDictionaries"
@@ -56,8 +55,6 @@
 #define UPN_IS_HYPH_AUTO                    "IsHyphAuto"
 #define UPN_IS_HYPH_SPECIAL                 "IsHyphSpecial"
 #define UPN_IS_SPELL_AUTO                   "IsSpellAuto"
-#define UPN_IS_SPELL_HIDE                   "IsSpellHide"
-#define UPN_IS_SPELL_IN_ALL_LANGUAGES       "IsSpellInAllLanguages"
 #define UPN_IS_SPELL_SPECIAL                "IsSpellSpecial"
 #define UPN_IS_WRAP_REVERSE                 "IsWrapReverse"
 #define UPN_DATA_FILES_CHANGED_CHECK_VALUE  "DataFilesChangedCheckValue"
@@ -74,7 +71,6 @@
 #define UPN_IS_REVERSE_MAPPING  "IsReverseMapping"
 
 // uno property handles
-#define UPH_IS_GERMAN_PRE_REFORM             0
 #define UPH_IS_USE_DICTIONARY_LIST           1
 #define UPH_IS_IGNORE_CONTROL_CHARACTERS     2
 #define UPH_IS_SPELL_UPPER_CASE              3
@@ -85,8 +81,6 @@
 #define UPH_HYPH_MIN_WORD_LENGTH             8
 #define UPH_DEFAULT_LOCALE                   9
 #define UPH_IS_SPELL_AUTO                   10
-#define UPH_IS_SPELL_HIDE                   11
-#define UPH_IS_SPELL_IN_ALL_LANGUAGES       12
 #define UPH_IS_SPELL_SPECIAL                13
 #define UPH_IS_HYPH_AUTO                    14
 #define UPH_IS_HYPH_SPECIAL                 15

@@ -28,6 +28,8 @@
 #ifndef _FMTFTNTX_HXX
 #define _FMTFTNTX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 #include <hintids.hxx>
 #include <format.hxx>

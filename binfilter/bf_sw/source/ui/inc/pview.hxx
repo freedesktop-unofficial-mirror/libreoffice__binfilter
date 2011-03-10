@@ -28,6 +28,8 @@
 #ifndef _SWPVIEW_HXX
 #define _SWPVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/viewfrm.hxx>
 #include <bf_sfx2/viewfac.hxx>
 #include <tools/link.hxx>
@@ -143,7 +145,7 @@ class SwPagePreView: public SfxViewShell
     SwScrollbar             *pVScrollbar;
      ImageButton             *pPageUpBtn,
                             *pPageDownBtn;
-     // Dummy-Window zum FÅllen der rechten unteren Ecke, wenn beide Scrollbars
+     // Dummy-Window zum FÔøΩllen der rechten unteren Ecke, wenn beide Scrollbars
     // aktiv sind
      Window                 *pScrollFill;
 

@@ -29,6 +29,8 @@
 #ifndef SC_OPTUTIL_HXX
 #define SC_OPTUTIL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unotools/configitem.hxx>
 
 #include <tools/link.hxx>

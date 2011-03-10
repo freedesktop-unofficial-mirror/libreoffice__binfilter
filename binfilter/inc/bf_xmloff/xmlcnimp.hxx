@@ -29,6 +29,8 @@
 #ifndef _XMLOFF_XMLCNIMP_HXX
 #define _XMLOFF_XMLCNIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/container/XNameAccess.hpp>
 
 #include <bf_svtools/svarray.hxx>

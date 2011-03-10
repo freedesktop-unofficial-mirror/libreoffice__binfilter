@@ -29,7 +29,7 @@
 #ifndef _SVT_SEARCHOPT_HXX_
 #define _SVT_SEARCHOPT_HXX_
 
-#include "tools/solar.h"
+#include <bf_svtools/bf_solar.h>
 
 namespace binfilter
 {

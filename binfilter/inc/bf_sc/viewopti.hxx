@@ -29,6 +29,8 @@
 #ifndef SC_VIEWOPTI_HXX
 #define SC_VIEWOPTI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/optgrid.hxx>
 
 #include <bf_svx/svxids.hrc>

@@ -29,7 +29,7 @@
 #ifndef SC_DOCITER_HXX
 #define SC_DOCITER_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include "global.hxx"
 namespace binfilter {

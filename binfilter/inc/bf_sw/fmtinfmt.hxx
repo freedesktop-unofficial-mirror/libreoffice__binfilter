@@ -28,6 +28,8 @@
 #ifndef _FMTINFMT_HXX
 #define _FMTINFMT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/poolitem.hxx>
 

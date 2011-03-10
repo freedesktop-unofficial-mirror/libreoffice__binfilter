@@ -29,6 +29,8 @@
 #ifndef SC_COLUMN_HXX
 #define SC_COLUMN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "markarr.hxx"
 
 #include "global.hxx"

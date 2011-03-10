@@ -28,6 +28,8 @@
 #ifndef _SFX_PRINTER_HXX
 #define _SFX_PRINTER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/print.hxx>
 namespace binfilter {
 class SfxItemSet;

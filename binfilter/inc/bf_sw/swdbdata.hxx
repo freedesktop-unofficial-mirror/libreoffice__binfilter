@@ -28,6 +28,8 @@
 #ifndef _SWDBDATA_HXX
 #define _SWDBDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "rtl/ustring.hxx"
 namespace binfilter {
 

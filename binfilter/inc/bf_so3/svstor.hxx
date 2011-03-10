@@ -29,6 +29,8 @@
 #ifndef _SVSTOR_HXX
 #define _SVSTOR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/iface.hxx>
 #include <sot/storage.hxx>
 
@@ -223,10 +225,6 @@ inline SvStorageRef::SvStorageRef( const SotObjectRef & r )
 inline SvStorageRef::SvStorageRef( SotObject * pObjP )
 {
     pObj = (SvStorage *)SvStorage::ClassFactory()->CastAndAddRef( pObjP );
-}
-inline SvStorageRef::SvStorageRef( SotObject * pObjP, SvCastEnum )
-{
-    pObj = (SvStorage *)SvStorage::ClassFactory()->AggCastAndAddRef( pObjP );
 }
 
 }

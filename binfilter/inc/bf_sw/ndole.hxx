@@ -28,6 +28,8 @@
 #ifndef _NDOLE_HXX
 #define _NDOLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <ndnotxt.hxx>
 
 namespace binfilter {

@@ -29,7 +29,7 @@
 #ifndef SC_RANGESEQ_HXX
 #define SC_RANGESEQ_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <com/sun/star/uno/Any.h>
 namespace binfilter {

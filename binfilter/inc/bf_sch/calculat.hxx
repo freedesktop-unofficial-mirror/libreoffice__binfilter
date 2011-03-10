@@ -27,7 +27,7 @@
  ************************************************************************/
 
 // header for BOOL
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <vector>
 #include <utility>

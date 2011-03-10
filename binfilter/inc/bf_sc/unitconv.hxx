@@ -29,6 +29,8 @@
 #ifndef SC_UNITCONV_HXX
 #define SC_UNITCONV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "collect.hxx"
 namespace binfilter {
 

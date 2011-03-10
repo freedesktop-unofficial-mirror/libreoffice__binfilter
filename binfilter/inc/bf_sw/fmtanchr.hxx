@@ -28,6 +28,8 @@
 #ifndef _FMTANCHR_HXX
 #define _FMTANCHR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <swtypes.hxx>
 #include <format.hxx>
 

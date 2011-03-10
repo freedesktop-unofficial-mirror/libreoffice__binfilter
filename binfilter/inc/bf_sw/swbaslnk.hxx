@@ -28,6 +28,8 @@
 #ifndef _SWBASLNK_HXX
 #define _SWBASLNK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_so3/lnkbase.hxx>
 namespace binfilter {

@@ -54,8 +54,9 @@ typedef int(**CHand)( void*, void*, void*, void*, void* );
 // -------------------------------------------------------------------
 #if defined( WIN ) || defined( WNT )
 
-// Typen fuer die Funktion der W4W-DLL
-#include <tools/svwin.h>
+#include <bf_svtools/bf_prewin.h>
+#include <bf_svtools/bf_postwin.h>
+
 typedef int ( FAR PASCAL *FNDisplay)( int );
 
 #ifdef WIN

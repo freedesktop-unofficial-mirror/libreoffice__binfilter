@@ -49,14 +49,10 @@ class OPatternModel
     static sal_Int32    nTextHandle;
 
 protected:
-    virtual void _onValueChanged();
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type> _getTypes();
 
 public:
     DECLARE_DEFAULT_LEAF_XTOR( OPatternModel );
-
-    // starform::XBoundComponent
-    virtual sal_Bool _commit();
 
     // ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo> SAL_CALL getPropertySetInfo() throw(::com::sun::star::uno::RuntimeException);
@@ -68,9 +64,6 @@ public:
 
     // ::com::sun::star::io::XPersistObject
     virtual ::rtl::OUString SAL_CALL getServiceName() throw ( ::com::sun::star::uno::RuntimeException);
-
-    // starform::XReset
-    virtual void _reset();
 
     // OAggregationArrayUsageHelper
     virtual void fillProperties(

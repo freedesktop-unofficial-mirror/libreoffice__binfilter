@@ -30,6 +30,8 @@
 #define _PARALIST_HXX
 
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/list.hxx>
 
 #include <tools/link.hxx>

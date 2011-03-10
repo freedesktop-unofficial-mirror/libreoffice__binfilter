@@ -28,6 +28,8 @@
 #ifndef _NDHINTS_HXX
 #define _NDHINTS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/svarray.hxx>
 

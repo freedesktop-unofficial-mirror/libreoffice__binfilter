@@ -28,7 +28,7 @@
 #ifndef _SWATRSET_HXX
 #define _SWATRSET_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/mempool.hxx>
 #include <bf_svtools/itemset.hxx>

@@ -29,6 +29,8 @@
 #ifndef SC_SCPATATR_HXX
 #define SC_SCPATATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/itemset.hxx>
 

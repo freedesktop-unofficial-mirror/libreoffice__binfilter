@@ -29,6 +29,8 @@
 #ifndef _SVDPOOL_HXX
 #define _SVDPOOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xpool.hxx>
 
 #include <bf_svx/svddef.hxx>

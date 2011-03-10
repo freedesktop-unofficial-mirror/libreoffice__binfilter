@@ -29,6 +29,8 @@
 #ifndef SC_SCGLOB_HXX
 #define SC_SCGLOB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <i18npool/lang.h>
 #include <tools/stream.hxx>
 #include <osl/endian.h>

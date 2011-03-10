@@ -28,6 +28,8 @@
 #ifndef _SVX_ZOOMITEM_HXX
 #define _SVX_ZOOMITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/intitem.hxx>
 #include <bf_svx/svxids.hrc>
 namespace binfilter {

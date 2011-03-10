@@ -29,6 +29,8 @@
 #ifndef _JPEG_HXX
 #define _JPEG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <bf_svtools/fltcall.hxx>
 #include <com/sun/star/uno/Sequence.h>

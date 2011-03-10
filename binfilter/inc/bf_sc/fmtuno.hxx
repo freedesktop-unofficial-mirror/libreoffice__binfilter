@@ -29,6 +29,8 @@
 #ifndef SC_FMTUNO_HXX
 #define SC_FMTUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"           // ScRange, ScAddress
 
 

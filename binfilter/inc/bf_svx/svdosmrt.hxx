@@ -29,6 +29,8 @@
 #ifndef _SVDSMRT_HXX
 #define _SVDSMRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdosmev.hxx>
 class SvStream;
 namespace binfilter {

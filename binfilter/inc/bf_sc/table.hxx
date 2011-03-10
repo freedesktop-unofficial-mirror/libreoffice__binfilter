@@ -29,6 +29,8 @@
 #ifndef SC_TABLE_HXX
 #define SC_TABLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 #include <tools/color.hxx>
 #include <com/sun/star/uno/Sequence.hxx>

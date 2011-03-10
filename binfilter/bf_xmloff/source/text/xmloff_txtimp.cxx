@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #ifndef _SVSTDARR_STRINGSDTOR_DECL
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>

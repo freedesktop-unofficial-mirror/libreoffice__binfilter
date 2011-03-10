@@ -31,6 +31,7 @@
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/menuoptions.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>

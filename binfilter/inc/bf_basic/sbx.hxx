@@ -29,6 +29,8 @@
 #ifndef _SBXCLASS_HXX
 #define _SBXCLASS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "tools/ref.hxx"
 
 #include "bf_svtools/svarray.hxx"

@@ -29,6 +29,8 @@
 #ifndef _SVDOSMEV_HXX
 #define _SVDOSMEV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/bigint.hxx>
 
 #include <vcl/field.hxx>
@@ -80,7 +82,7 @@ enum SdrExprErrKind {
     SDREXPRERR_BASEMUSTBEPOS,   // Nur positive Basen erlaubt
     SDREXPRERR_DUPLICATEBASE,   // Nur eine Basis je Wert erlaubt
     SDREXPRERR_BASECLEXPECTED,  // ] erwartet wegen Zahlenbasis
-    SDREXPRERR_INVALIDFUNCARG,  // Ungültiges Funktionsargument
+    SDREXPRERR_INVALIDFUNCARG,  // Ungï¿½ltiges Funktionsargument
     SDREXPRERR_INVALIDDIGIT,    // Unerlaubte Ziffer
     SDREXPRERR_COMPLEXVALUE,    // x^y: negative Basis, gebrochener Exponent oder Wurzel(-val)
     SDREXPRERR_DOUBLEDECPOINT   // Zu viele Dezimalpunkte

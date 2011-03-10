@@ -28,7 +28,7 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 extern "C"
 {

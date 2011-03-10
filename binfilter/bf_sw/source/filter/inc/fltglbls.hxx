@@ -28,6 +28,8 @@
 #ifndef _FLTGLBS_HXX
 #define _FLTGLBS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <i18npool/lang.h>
 #include <bf_svtools/svarray.hxx>

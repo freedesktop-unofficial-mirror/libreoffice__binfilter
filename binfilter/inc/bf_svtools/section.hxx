@@ -29,6 +29,8 @@
 #ifndef _SV_SECTION_HXX
 #define _SV_SECTION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/sv.h>
 #include <vcl/ctrl.hxx>
 #include <vcl/dockwin.hxx>

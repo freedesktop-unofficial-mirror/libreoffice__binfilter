@@ -29,6 +29,8 @@
 #ifndef _SVDMRKV_HXX
 #define _SVDMRKV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdmark.hxx>
 
 #include <bf_svx/svdhdl.hxx>

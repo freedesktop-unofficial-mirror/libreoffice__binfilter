@@ -28,6 +28,8 @@
 #ifndef _TOX_HXX
 #define _TOX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #include <bf_svtools/poolitem.hxx>

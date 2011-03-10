@@ -28,6 +28,8 @@
 #ifndef _SVTOOLS_CTYPEITM_HXX
 #define _SVTOOLS_CTYPEITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/inettype.hxx>
 #include <bf_svtools/custritm.hxx>
 

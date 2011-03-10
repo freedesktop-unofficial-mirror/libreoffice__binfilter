@@ -29,12 +29,12 @@
 #ifndef _SFXITEMPOOL_HXX
 #define _SFXITEMPOOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef INCLUDED_LIMITS_H
 #include <limits.h>
 #define INCLUDED_LIMITS_H
 #endif
-
-#include <tools/solar.h>
 
 #include <tools/string.hxx>
 

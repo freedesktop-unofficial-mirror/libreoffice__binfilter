@@ -30,7 +30,7 @@
 
 #include "bf_svtools/svtdllapi.h"
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/rtti.hxx>
 #include <bf_svtools/poolitem.hxx>
 

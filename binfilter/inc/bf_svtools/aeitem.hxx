@@ -28,6 +28,8 @@
 #ifndef _AEITEM_HXX
 #define _AEITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <bf_svtools/poolitem.hxx>

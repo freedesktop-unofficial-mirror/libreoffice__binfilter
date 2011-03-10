@@ -28,6 +28,8 @@
 #ifndef _SHELLIO_HXX
 #define _SHELLIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/datetime.hxx>
 #include <tools/ref.hxx>
 #include <sot/formats.hxx>
@@ -322,7 +324,7 @@ public:
 
 extern void _InitFilter();
 extern void _FinitFilter();
-extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML, ReadXML;
+extern SwRead ReadRtf, ReadAscii, ReadSwg, ReadSw3, ReadHTML;
 
 extern BOOL SetHTMLTemplate( SwDoc &rDoc ); //Fuer Vorlagen aus HTML.vor laden shellio.cxx
 

@@ -29,6 +29,8 @@
 #ifndef _XEXPTRANSFORM_HXX
 #define _XEXPTRANSFORM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "rtl/ustring.hxx"
 
 #include <bf_goodies/matrix3d.hxx>

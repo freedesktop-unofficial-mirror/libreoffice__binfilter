@@ -29,6 +29,8 @@
 #ifndef _SVDETC_HXX
 #define _SVDETC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 #include <tools/contnr.hxx>

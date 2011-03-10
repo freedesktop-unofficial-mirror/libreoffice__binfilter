@@ -29,6 +29,8 @@
 #ifndef _SB_SBSTAR_HXX
 #define _SB_SBSTAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "sbx.hxx"
 #include <bf_basic/sbxobj.hxx>
 #include <rtl/ustring.hxx>

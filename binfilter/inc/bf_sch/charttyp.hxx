@@ -25,6 +25,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #include <bf_svtools/itemset.hxx>
 
 #include <bf_svx/chrtitem.hxx>
@@ -49,13 +50,13 @@ class ChartType
 
     BOOL bHasVolume;
     BOOL bHasUpDown;
-    //Dies ist (noch) ein Booltyp, 0=keins, 1= default.später kann einmal mit Typ=2,3,...
+    //Dies ist (noch) ein Booltyp, 0=keins, 1= default.spï¿½ter kann einmal mit Typ=2,3,...
     //ein bestimmtes Symbol an einer Datenreihe gesetzt werden
     INT32 nSymbolType;
     INT32 nShapeType;
 
     long nSplineType;
-    long nSpecialType; //nur fuer Kompatiblität! diese Typen sind derzeit inkonsistent
+    long nSpecialType; //nur fuer Kompatiblitï¿½t! diese Typen sind derzeit inkonsistent
     long nBaseType;
 
     void Init();

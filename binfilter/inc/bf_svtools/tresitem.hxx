@@ -29,6 +29,8 @@
 #ifndef SVTOOLS_TRESITEM_HXX
 #define SVTOOLS_TRESITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/ucb/TransferResult.hpp>
 
 #include <bf_svtools/poolitem.hxx>

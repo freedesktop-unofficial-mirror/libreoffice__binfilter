@@ -72,7 +72,7 @@ namespace binfilter {
 /*N*/   rCjkLang = aOptions.nDefaultLanguage_CJK;
 /*N*/   rCtlLang = aOptions.nDefaultLanguage_CTL;
 /*N*/   rAutoSpell = aOptions.bIsSpellAuto;
-/*N*/   rHideAuto = aOptions.bIsSpellHideMarkings;
+/*N*/   rHideAuto = FALSE;
 /*N*/ }
 
 // static

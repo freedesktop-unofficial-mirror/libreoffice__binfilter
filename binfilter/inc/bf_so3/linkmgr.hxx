@@ -28,6 +28,8 @@
 #ifndef _LINKMGR_HXX
 #define _LINKMGR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/linksrc.hxx>
 #include <tools/string.hxx>
 #include <bf_svtools/svarray.hxx>

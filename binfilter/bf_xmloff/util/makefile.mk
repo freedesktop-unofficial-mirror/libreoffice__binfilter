@@ -105,3 +105,10 @@ DEF1EXPORTFILE=	exports.dxp
 $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     $(TYPE) bf_xo.flt > $@
 
+ALLTAR : $(MISC)/bf_xo.component
+
+$(MISC)/bf_xo.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_xo.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_xo.component

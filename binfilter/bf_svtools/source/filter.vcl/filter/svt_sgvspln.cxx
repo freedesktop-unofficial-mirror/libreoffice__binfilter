@@ -31,6 +31,7 @@
 
 #include <math.h>
 
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/poly.hxx>
 

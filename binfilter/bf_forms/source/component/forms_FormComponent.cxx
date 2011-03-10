@@ -26,9 +26,9 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
+
 #include "FormComponent.hxx"
-
-
 
 #include <com/sun/star/awt/XTextComponent.hpp>
 #include <com/sun/star/awt/XWindow.hpp>
@@ -1262,8 +1262,8 @@ void SAL_CALL OBoundControlModel::propertyChange( const PropertyChangeEvent& evt
     if (evt.PropertyName.equals(PROPERTY_VALUE))
     {
         osl::MutexGuard aGuard(m_aMutex);
-        if (m_bForwardValueChanges && m_xColumn.is())
-            _onValueChanged();
+//      if (m_bForwardValueChanges && m_xColumn.is())
+//          _onValueChanged();
     }
 }
 
@@ -1300,14 +1300,14 @@ sal_Bool SAL_CALL OBoundControlModel::commit() throw(RuntimeException)
     if (bSucceed)
     {
         osl::MutexGuard aGuard(m_aMutex);
-        try
-        {
-            bSucceed = _commit();
-        }
-        catch(Exception&)
-        {
-            bSucceed = sal_False;
-        }
+//      try
+//      {
+//          bSucceed = _commit();
+//      }
+//      catch(Exception&)
+//      {
+//          bSucceed = sal_False;
+//      }
     }
 
     if (bSucceed)
@@ -1400,34 +1400,7 @@ sal_Bool OBoundControlModel::_approve(sal_Int32 _nColumnType)
 //------------------------------------------------------------------------------
 void SAL_CALL OBoundControlModel::loaded(const com::sun::star::lang::EventObject& _rEvent) throw(RuntimeException)
 {
-    osl::MutexGuard aGuard(m_aMutex);
-    Reference<XRowSet> xForm(_rEvent.Source, UNO_QUERY);
-    Reference<XPropertySet> xOldField = m_xField;
-    connectToField(xForm);
-
-    m_bLoaded = sal_True;
-    _loaded(_rEvent);
-
-    if (m_xField.is())
-    {
-        // initially call _onValueChanged
-        // but only if the rowset if posisitioned on a valid record
-        Reference< XRowSet > xRowset( _rEvent.Source, UNO_QUERY );
-        OSL_ENSURE( xRowset.is(), "OBoundControlModel::loaded: invalid event source (no rowset)!" );
-        if ( xRowset.is() )
-        {
-            if ( !xRowset->isBeforeFirst() && !xRowset->isAfterLast() )
-                _onValueChanged();
-        }
-    }
-
-    if ( xOldField != m_xField )
-    {
-        Any aNewValue; aNewValue <<= m_xField;
-        Any aOldValue; aOldValue <<= xOldField;
-        sal_Int32 nHandle = PROPERTY_ID_BOUNDFIELD;
-        OPropertySetHelper::fire(&nHandle, &aNewValue, &aOldValue, 1, sal_False);
-    }
+    OSL_ENSURE( false, "OBoundControlModel::loaded: dead code!?" );
 }
 
 
@@ -1447,7 +1420,6 @@ void SAL_CALL OBoundControlModel::reloading( const com::sun::star::lang::EventOb
 void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
-    _unloaded();
 
     if (m_xField.is())
     {
@@ -1461,45 +1433,7 @@ void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObj
 //------------------------------------------------------------------------------
 void SAL_CALL OBoundControlModel::reloaded(const com::sun::star::lang::EventObject& aEvent) throw(RuntimeException)
 {
-    osl::MutexGuard aGuard(m_aMutex);
-    Reference<XPropertySet> xOldField = m_xField;
-    // did we lost the connection to the field because there was a new created?
-    if (!m_xField.is())
-    {
-        Reference<XRowSet> xForm(aEvent.Source, UNO_QUERY);
-        connectToField(xForm);
-    }
-
-    m_bForwardValueChanges = sal_True;
-    _loaded(aEvent);
-
-    // do we have a field, than get the new value
-    if (m_xField.is())
-        _onValueChanged();
-
-    if ( xOldField != m_xField )
-    {
-        Any aNewValue; aNewValue <<= m_xField;
-        Any aOldValue; aOldValue <<= xOldField;
-        sal_Int32 nHandle = PROPERTY_ID_BOUNDFIELD;
-        OPropertySetHelper::fire(&nHandle, &aNewValue, &aOldValue, 1, sal_False);
-    }
-}
-
-//------------------------------------------------------------------------------
-void OBoundControlModel::_loaded(const com::sun::star::lang::EventObject& )
-{
-}
-
-//------------------------------------------------------------------------------
-void OBoundControlModel::_unloaded()
-{
-}
-
-// XReset
-//-----------------------------------------------------------------------------
-void OBoundControlModel::_reset()
-{
+    OSL_ENSURE( false, "OBoundControlModel::reloaded: dead code!?" );
 }
 
 //-----------------------------------------------------------------------------
@@ -1517,72 +1451,7 @@ void OBoundControlModel::removeResetListener(const Reference<XResetListener>& l)
 //-----------------------------------------------------------------------------
 void OBoundControlModel::reset() throw (RuntimeException)
 {
-    cppu::OInterfaceIteratorHelper aIter(m_aResetListeners);
-        com::sun::star::lang::EventObject aResetEvent(static_cast<XWeak*>(this));
-    sal_Bool bContinue = sal_True;
-    while (aIter.hasMoreElements() && bContinue)
-        bContinue = reinterpret_cast<XResetListener*>(aIter.next())->approveReset(aResetEvent);
-
-    if (!bContinue)
-        return;
-
-    osl::ClearableMutexGuard aGuard(m_aMutex);
-    m_bResetting = sal_True;
-
-    sal_Bool bSimpleReset = !m_xField.is()                      // no connection to a database field
-                        ||  (   m_xCursor.is()                  // OR   we have an improperly positioned cursor
-                            &&  (   m_xCursor->isAfterLast()
-                                ||  m_xCursor->isBeforeFirst()
-                                )
-                            );
-
-    if ( !bSimpleReset )
-    {
-        // The default values will be set if and only if the current value of the field which we're bound
-        // to is NULL.
-        // Else, the current field value should be refreshed
-        // This behaviour is not completely ... "matured": What should happen if the field as well as the
-        // control have a default value?
-
-        sal_Bool bIsNull = sal_True;
-        // we have to access the field content at least once to get a reliable result by XColumn::wasNull
-        try
-        {
-            m_xColumn->getString();
-            bIsNull = m_xColumn->wasNull();
-        }
-        catch(Exception&)
-        {
-            OSL_FAIL("OBoundControlModel::reset : XColumn::getString and wasNull are expected to always succeed !");
-        }
-
-        if (bIsNull)
-        {
-            sal_Bool bIsNewRecord = sal_False;
-            Reference<XPropertySet> xSet(m_xCursor, UNO_QUERY);
-            if (xSet.is())
-                xSet->getPropertyValue(PROPERTY_ISNEW) >>= bIsNewRecord;
-            if (bIsNewRecord)
-            {
-                _reset();   // setzen der Werte,
-                _commit();  // uebertragen der Werte ins Feld
-                            // fuer das zuruecksetzen des modifyflags ist das Formular zustaendig
-            }
-            else
-                _onValueChanged();
-        }
-        else
-            _onValueChanged();
-    }
-    else
-        _reset();
-
-    m_bResetting = sal_False;
-    aGuard.clear();
-
-    cppu::OInterfaceIteratorHelper aIterDone(m_aResetListeners);
-    while (aIterDone.hasMoreElements())
-        reinterpret_cast<XResetListener*>(aIterDone.next())->resetted(aResetEvent);
+    OSL_ENSURE( false, "OBoundControlModel::reset: dead code!?" );
 }
 // -----------------------------------------------------------------------------
 void OBoundControlModel::setField( const Reference< XPropertySet>& _rxField,sal_Bool _bFire)

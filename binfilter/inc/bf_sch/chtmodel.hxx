@@ -29,6 +29,8 @@
 #ifndef _CHTMODEL_HXX
 #define _CHTMODEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 //------------------------------------------------------------------
 //
 // dieses Define dient nur zum Testen und darf auf keinen Fall aktiv bleiben

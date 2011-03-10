@@ -28,6 +28,8 @@
 #ifndef _SWCRSR_HXX
 #define _SWCRSR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <pam.hxx>
 #include <tblsel.hxx>
 #include <cshtyp.hxx>

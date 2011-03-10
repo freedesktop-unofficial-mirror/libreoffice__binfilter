@@ -29,6 +29,8 @@
 #ifndef SC_CHARTUNO_HXX
 #define SC_CHARTUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/lstner.hxx>
 #include <tools/string.hxx>
 

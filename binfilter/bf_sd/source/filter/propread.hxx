@@ -29,7 +29,7 @@
 #ifndef _PROPREAD_HXX_
 #define _PROPREAD_HXX_
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <bf_so3/svstor.hxx>
 
 namespace binfilter {

@@ -141,3 +141,10 @@ $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     $(TYPE) bf_svx.flt >$@
     $(TYPE) bf_sfxwin.flt > $@
 
+ALLTAR : $(MISC)/bf_svx.component
+
+$(MISC)/bf_svx.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_svx.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_svx.component

@@ -29,6 +29,8 @@
 #ifndef _SVDOGRAF_HXX
 #define _SVDOGRAF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <bf_svx/svdorect.hxx>
 #include <bf_goodies/graphicobject.hxx>

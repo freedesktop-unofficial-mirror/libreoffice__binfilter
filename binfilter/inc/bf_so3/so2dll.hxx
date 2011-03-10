@@ -29,6 +29,8 @@
 #ifndef _SO2DLL_HXX
 #define _SO2DLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/pstm.hxx>
 #include <tools/link.hxx>
 #include <tools/globname.hxx>

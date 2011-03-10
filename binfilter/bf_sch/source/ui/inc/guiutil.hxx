@@ -29,7 +29,7 @@
 #ifndef _SCH_GUI_UTIL_HXX
 #define _SCH_GUI_UTIL_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 class ChartModel;
 

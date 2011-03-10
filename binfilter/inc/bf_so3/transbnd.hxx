@@ -29,7 +29,7 @@
 #ifndef _TRANSBND_HXX
 #define _TRANSBND_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/datetime.hxx>
 #include <tools/errcode.hxx>
 #include <tools/link.hxx>

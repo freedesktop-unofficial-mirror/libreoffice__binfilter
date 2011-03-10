@@ -28,6 +28,8 @@
 #ifndef _PAGEDESC_HXX
 #define _PAGEDESC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/fract.hxx>
 
 #include <tools/color.hxx>

@@ -28,6 +28,8 @@
 #ifndef _DPAGE_HXX
 #define _DPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/fmpage.hxx>
 
 #include <bf_svx/svdobj.hxx>

@@ -29,6 +29,8 @@
 #ifndef _E3D_PLIGHT3D_HXX
 #define _E3D_PLIGHT3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "light3d.hxx"
 namespace binfilter {
 

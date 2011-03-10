@@ -29,6 +29,8 @@
 #ifndef _SD_GRDOCSH_HXX
 #define _SD_GRDOCSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/docfac.hxx>
 #include <bf_sfx2/interno.hxx>
 #include <bf_sfx2/objsh.hxx>

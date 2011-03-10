@@ -28,6 +28,8 @@
 #ifndef SW_LINEINFO_HXX
 #define SW_LINEINFO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include "calbck.hxx"
 #include "numrule.hxx"

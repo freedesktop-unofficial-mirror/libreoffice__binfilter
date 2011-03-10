@@ -155,29 +155,11 @@ namespace binfilter {
 // neu geoeffnet werden.
 
 
-/*N*/ BOOL Sw3Io::SaveCompleted( SvStorage* pNew )
-/*N*/ {
-/*N*/   BOOL bClearNm = !pNew || pNew == pImp->pRoot;
-/*N*/
-/*N*/   if( pNew )
-/*N*/       pImp->pRoot = pNew;
-/*N*/   else
-/*?*/       pImp->pRoot = pImp->pDoc->GetDocStorage();
-/*N*/
-/*N*/   // Hier muss noch ueber die Grafiknodes iteriert werden, um
-/*N*/   // ihnen zu sagen, wie ihr neuer Streamname lautet!
-/*N*/   // Da Grafiken Flys sind, liegen die Nodes im Autotext-Bereich
-/*N*/   SwNodes& rNds = pImp->pDoc->GetNodes();
-/*N*/   ULONG nEnd = rNds.GetEndOfAutotext().GetIndex();
-/*N*/   for( ULONG nIdx = rNds.GetEndOfInserts().GetIndex() + 1; nIdx < nEnd; ++nIdx)
-/*N*/   {
-/*N*/       SwGrfNode* pNd = rNds[ nIdx ]->GetGrfNode();
-/*N*/       if( pNd )
-/*N*/           pNd->SaveCompleted( bClearNm );
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
+ BOOL Sw3Io::SaveCompleted( SvStorage* pNew )
+ {
+    OSL_ASSERT("method removed");
+  return TRUE;
+ }
 
 
 /*N*/  SvStorage* Sw3Io::GetStorage()
@@ -194,40 +176,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  ULONG Sw3Io::SaveStyles()
-/*N*/  {
-/*N*/   BOOL bGood = pImp->OpenStreams( TRUE, FALSE );
-/*N*/   OSL_ENSURE( bGood, "Es fehlen leider ein paar Streams!" );
-/*N*/   if( !bGood )
-/*N*/       return pImp->nRes = ERR_SWG_WRITE_ERROR;
-/*N*/
-/*N*/   pImp->bOrganizer = TRUE;
-/*N*/
-/*N*/   // Nur Bookmarks aus Seiten-Vorlagen sammeln
-/*N*/   pImp->CollectMarks( NULL, TRUE );
-/*N*/   if( !pImp->IsSw31Or40Export() )
-/*N*/       pImp->CollectRedlines( NULL, TRUE );
-/*N*/   else
-/*N*/       pImp->CollectTblLineBoxFmts40();
-/*N*/
-/*N*/   // Stringpool fuellen, Namen im Doc erweitern
-/*N*/   pImp->aStringPool.Setup( *pImp->pDoc, pImp->pRoot->GetVersion(),
-/*N*/                            pImp->pExportInfo );
-/*N*/   pImp->SaveStyleSheets( FALSE );
-/*N*/   // Temporaere Namenserweiterungen entfernen
-/*N*/   pImp->aStringPool.RemoveExtensions( *pImp->pDoc );
-/*N*/   pImp->SaveNumRules( FALSE );
-/*N*/   pImp->SavePageStyles();
-/*N*/   pImp->CloseStreams();
-/*N*/
-/*N*/   pImp->bOrganizer = FALSE;
-/*N*/
-/*N*/   if( pImp->nRes )
-/*N*/       pImp->nRes |= ERRCODE_CLASS_WRITE;
-/*N*/   else if( pImp->nWarn )
-/*N*/       pImp->nRes = pImp->nWarn | ERRCODE_CLASS_WRITE;
-/*N*/   return pImp->nRes;
-/*N*/  }
+  ULONG Sw3Io::SaveStyles()
+  {
+    OSL_ASSERT("method removed");
+    return 0;
+  }
 
 // Erzeugen eines eindeutigen Stream-Namens in einem Storage
 

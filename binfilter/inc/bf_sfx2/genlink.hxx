@@ -28,6 +28,8 @@
 #ifndef _SFXGENLINK_HXX
 #define _SFXGENLINK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/link.hxx>
 namespace binfilter {
 typedef long (*CFuncPtr)(void*);

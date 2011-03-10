@@ -28,6 +28,9 @@
 
 #ifndef _SGFFILT_HXX
 #define _SGFFILT_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/urlobj.hxx>
 
 namespace binfilter
@@ -38,7 +41,7 @@ BOOL SgfBMapFilter(SvStream& rInp, SvStream& rOut);
 BOOL SgfVectFilter(SvStream& rInp, GDIMetaFile& rMtf);
 BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath );
 
-// Konstanten fÅr CheckSgfTyp()
+// Konstanten fÔøΩr CheckSgfTyp()
 #define SGF_BITIMAGE   1     /* Bitmap                      */
 #define SGF_SIMPVECT   2     /* Einfaches Vectorformat      */
 #define SGF_POSTSCRP   3     /* Postscript file             */
@@ -46,7 +49,7 @@ BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath );
 #define SGF_DONTKNOW 255     /* Unbekannt oder kein SGF/SGV */
 
 #define SGV_VERSION    3     /* SGV mit anderer Version wird abgewiesen */
-                             /* 3 entspricht StarDraw 2.00/2.01 MÑrz'93 */
+                             /* 3 entspricht StarDraw 2.00/2.01 MÔøΩrz'93 */
 }
 
 #endif  //_SGFFILT_HXX

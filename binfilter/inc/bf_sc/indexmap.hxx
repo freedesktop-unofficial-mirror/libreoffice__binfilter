@@ -30,7 +30,7 @@
 #define _SC_INDEXMAP_HXX
 
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 

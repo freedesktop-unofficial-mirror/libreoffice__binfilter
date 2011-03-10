@@ -165,28 +165,7 @@ void SAL_CALL OCheckBoxModel::disposing()
 //------------------------------------------------------------------------------
 void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& _rEvent) throw(RuntimeException)
 {
-    // as we aren't commitable we have to take care of the field we are bound to ourself
-    osl::MutexGuard aGuard(m_aMutex);
-    if (getField().is() && !m_bInReset)
-    {
-
-        sal_uInt16 nState(0);
-        _rEvent.NewValue >>= nState;
-        switch (nState)
-        {
-            case CB_DONTKNOW:
-                m_xColumnUpdate->updateNull();
-                break;
-            case CB_CHECK:
-                m_xColumnUpdate->updateBoolean(sal_True);
-                break;
-            case CB_NOCHECK:
-                m_xColumnUpdate->updateBoolean(sal_False);
-                break;
-            default:
-                OSL_FAIL("OCheckBoxModel::_commit : invalid value !");
-        }
-    }
+    OSL_ENSURE( false, "OCheckBoxModel::_propertyChanged: dead code!?" );
 }
 
 
@@ -228,7 +207,7 @@ void OCheckBoxModel::setFastPropertyValue_NoBroadcast(sal_Int32 _nHandle, const 
         case PROPERTY_ID_DEFAULTCHECKED :
             DBG_ASSERT(_rValue.getValueType().getTypeClass() == TypeClass_SHORT, "OCheckBoxModel::setFastPropertyValue_NoBroadcast : invalid type !" );
             _rValue >>= m_nDefaultChecked;
-            _reset();
+            //_reset();
             break;
 
         default:
@@ -345,101 +324,16 @@ void SAL_CALL OCheckBoxModel::read(const Reference<stario::XObjectInputStream>& 
             break;
     }
 
-    // Nach dem Lesen die Defaultwerte anzeigen
-    if (m_aControlSource.getLength())
-        // (not if we don't have a control source - the "State" property acts like it is persistent, then
-        _reset();
-}
-
-//------------------------------------------------------------------------------
-void OCheckBoxModel::_loaded(const EventObject& rEvent)
-{
-    OBoundControlModel::_loaded(rEvent);
-}
-
-//------------------------------------------------------------------------------
-void OCheckBoxModel::_onValueChanged()
-{
-    //////////////////////////////////////////////////////////////////
-    // Wert an ControlModel setzen
-    if (m_xAggregateSet.is())
-    {
-        Any aValue;
-        sal_Bool bValue = m_xColumn->getBoolean();
-        if (m_xColumn->wasNull())
-        {
-            sal_Bool bTriState(sal_False);
-            m_xAggregateSet->getPropertyValue(PROPERTY_TRISTATE) >>= bTriState;
-            aValue <<= (bTriState ? (sal_Int16)CB_DONTKNOW : m_nDefaultChecked);
-        }
-        else
-            aValue <<= ( bValue ? (sal_Int16)CB_CHECK : (sal_Int16)CB_NOCHECK );
-        m_bInReset = sal_True;
-        {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-            // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-            // our own mutex locked
-            MutexRelease aRelease(m_aMutex);
-            m_xAggregateSet->setPropertyValue(PROPERTY_STATE, aValue);
-        }
-        m_bInReset = sal_False;
-    }
+//  // Nach dem Lesen die Defaultwerte anzeigen
+//  if (m_aControlSource.getLength())
+//      // (not if we don't have a control source - the "State" property acts like it is persistent, then
+//      _reset();
 }
 
 //------------------------------------------------------------------------------
 Any OCheckBoxModel::_getControlValue() const
 {
     return m_xAggregateSet->getPropertyValue(PROPERTY_STATE);
-}
-
-//------------------------------------------------------------------------------
-void OCheckBoxModel::_reset( void )
-{
-    Any aValue;
-    aValue <<= (sal_Int16)m_nDefaultChecked;
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateSet->setPropertyValue(PROPERTY_STATE, aValue);
-    }
-}
-
-//-----------------------------------------------------------------------------
-sal_Bool OCheckBoxModel::_commit()
-{
-    if (!m_bInReset)
-        // normally we don't have a commit as we forward all state changes immediately to our field we're bound to
-        return sal_True;
-
-    // we're in reset, so this commit means "put the value into the field you're bound to"
-    DBG_ASSERT(getField().is(), "OCheckBoxModel::_commit : committing while resetting, but not bound ?");
-    if (getField().is())
-    {
-        try
-        {
-            sal_Int16 nValue(0);
-            m_xAggregateSet->getPropertyValue(PROPERTY_STATE) >>= nValue;
-            switch (nValue)
-            {
-                case CB_DONTKNOW:
-                    m_xColumnUpdate->updateNull();
-                    break;
-                case CB_CHECK:
-                    m_xColumnUpdate->updateBoolean(sal_True);
-                    break;
-                case CB_NOCHECK:
-                    m_xColumnUpdate->updateBoolean(sal_False);
-                    break;
-                default:
-                    OSL_FAIL("OCheckBoxModel::_commit : invalid value !");
-            }
-        }
-        catch(Exception&)
-        {
-            OSL_FAIL("OCheckBoxModel::_commit : could not commit !");
-        }
-    }
-    return sal_True;
 }
 
 //-----------------------------------------------------------------------------

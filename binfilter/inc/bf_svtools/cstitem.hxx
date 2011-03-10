@@ -29,6 +29,8 @@
 #ifndef _CSTITEM_HXX
 #define _CSTITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 #include <bf_svtools/poolitem.hxx>

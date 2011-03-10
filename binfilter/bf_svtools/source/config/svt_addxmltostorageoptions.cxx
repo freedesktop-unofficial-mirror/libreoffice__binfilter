@@ -32,6 +32,7 @@
 //  includes
 //_________________________________________________________________________________________________________________
 
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/addxmltostorageoptions.hxx>
 
 #include <unotools/configmgr.hxx>

@@ -28,6 +28,8 @@
 #ifndef _NEWHDL_HXX
 #define _NEWHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/link.hxx>
 
 namespace binfilter {

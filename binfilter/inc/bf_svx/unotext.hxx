@@ -29,6 +29,8 @@
 #ifndef _SVX_UNOTEXT_HXX
 #define _SVX_UNOTEXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/link.hxx>
 
 #include <com/sun/star/container/XNameContainer.hpp>

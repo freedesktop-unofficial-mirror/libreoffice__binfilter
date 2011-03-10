@@ -28,6 +28,8 @@
 #ifndef _FTNINFO_HXX
 #define _FTNINFO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 #include "numrule.hxx"

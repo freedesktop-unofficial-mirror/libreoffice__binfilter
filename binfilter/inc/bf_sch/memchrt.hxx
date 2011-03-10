@@ -29,6 +29,8 @@
 #ifndef _SCH_MEMCHRT_HXX
 #define _SCH_MEMCHRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/sfxdefs.hxx>
 #include <bf_sfx2/module.hxx>
 #include <tools/color.hxx>
@@ -91,7 +93,7 @@ struct ChartSelectionInfo
 #define CHART_SEL_POINT         16  // den Datenpunkt selektieren
 #define CHART_SEL_SETCURSOR     32  // Cursor an die Stelle (nCol,nRow) setzen
 #define CHART_SEL_CHANGEVALUE   64  // Wert in der Tabelle aendern (auf fValue)
-#define CHART_SEL_COLOR         128 // Farbinformation für farbigen Rahmen um den Selektionsbereich herum ist gesetzt
+#define CHART_SEL_COLOR         128 // Farbinformation fï¿½r farbigen Rahmen um den Selektionsbereich herum ist gesetzt
 #define CHART_SEL_QUERYSUPPORT  256
 #define CHART_SEL_QUERYPOSSIBLE 512
 

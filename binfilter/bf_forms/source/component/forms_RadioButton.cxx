@@ -26,6 +26,8 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
+
 #include <comphelper/proparrhlp.hxx>
 #include "RadioButton.hxx"
 #include "property.hrc"
@@ -233,7 +235,7 @@ void ORadioButtonModel::setFastPropertyValue_NoBroadcast(sal_Int32 nHandle, cons
         case PROPERTY_ID_DEFAULTCHECKED :
             DBG_ASSERT(rValue.getValueType().getTypeClass() == TypeClass_SHORT, "ORadioButtonModel::setFastPropertyValue_NoBroadcast : invalid type !" );
             rValue >>= m_nDefaultChecked;
-            _reset();
+            //_reset();
             break;
 
         default:
@@ -417,10 +419,10 @@ void SAL_CALL ORadioButtonModel::read(const Reference<XObjectInputStream>& _rxIn
             defaultCommonProperties();
             break;
     }
-    // Nach dem Lesen die Defaultwerte anzeigen
-    if (m_aControlSource.getLength())
-        // (not if we don't have a control source - the "State" property acts like it is persistent, then
-        _reset();
+//  // Nach dem Lesen die Defaultwerte anzeigen
+//  if (m_aControlSource.getLength())
+//      // (not if we don't have a control source - the "State" property acts like it is persistent, then
+//      _reset();
 }
 
 //------------------------------------------------------------------------------
@@ -449,64 +451,9 @@ void ORadioButtonModel::_propertyChanged(const PropertyChangeEvent& _rEvent) thr
 }
 
 //------------------------------------------------------------------------------
-void ORadioButtonModel::_onValueChanged()
-{
-    Any aValue;
-    aValue <<= (sal_Int16)((m_xColumn->getString() == m_sReferenceValue) ? RB_CHECK : RB_NOCHECK);
-    m_bInReset = sal_True;
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateSet->setPropertyValue(PROPERTY_STATE, aValue);
-    }
-    m_bInReset = sal_False;
-}
-
-//------------------------------------------------------------------------------
 Any ORadioButtonModel::_getControlValue() const
 {
     return m_xAggregateSet->getPropertyValue(PROPERTY_STATE);
-}
-
-//------------------------------------------------------------------------------
-void ORadioButtonModel::_reset( void )
-{
-    Any aValue;
-    aValue <<= (sal_Int16)m_nDefaultChecked;
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateSet->setPropertyValue(PROPERTY_STATE, aValue);
-    }
-}
-
-//-----------------------------------------------------------------------------
-sal_Bool ORadioButtonModel::_commit()
-{
-    if (!m_bInReset)
-        // normally we don't have a commit as we forward all state changes immediately to our field we're bound to
-        return sal_True;
-
-    // we're in reset, so this commit means "put the value into the field you're bound to"
-    Reference<XPropertySet> xField = getField();
-    DBG_ASSERT(xField.is(), "ORadioButtonModel::_commit : committing while resetting, but not bound ?");
-    if (xField.is())
-    {
-        try
-        {
-            sal_Int16 nValue(0);
-            m_xAggregateSet->getPropertyValue(PROPERTY_STATE) >>= nValue;
-            if (nValue == 1)
-                xField->setPropertyValue(PROPERTY_VALUE, makeAny(m_sReferenceValue));
-        }
-        catch(Exception&)
-        {
-            OSL_FAIL("ORadioButtonModel::_commit : could not commit !");
-        }
-    }
-    return sal_True;
 }
 
 //-----------------------------------------------------------------------------

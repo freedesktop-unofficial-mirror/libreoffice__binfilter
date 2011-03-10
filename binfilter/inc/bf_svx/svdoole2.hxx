@@ -29,6 +29,8 @@
 #ifndef _SVDOOLE2_HXX
 #define _SVDOOLE2_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/frame/XModel.hpp>
 
 #include <bf_svx/svdorect.hxx>

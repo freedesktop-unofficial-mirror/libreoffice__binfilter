@@ -29,6 +29,8 @@
 #ifndef _EDITOBJ_HXX
 #define _EDITOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/stream.hxx>
 #include <tools/debug.hxx>
 #include <rsc/rscsfx.hxx>

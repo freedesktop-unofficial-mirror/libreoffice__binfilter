@@ -28,6 +28,8 @@
 #ifndef SW_TGRDITEM_HXX
 #define SW_TGRDITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/poolitem.hxx>
 #include <hintids.hxx>
 #include <format.hxx>

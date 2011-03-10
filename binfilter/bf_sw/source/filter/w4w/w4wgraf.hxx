@@ -26,6 +26,8 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 class Graphic;
 class SvStream;
@@ -77,7 +79,7 @@ class SwW4WGraf
     short ReadW4WGrafVect( long nTyp, long nWidth, long nHeight );
     short ReadGrafFile( long nTyp, long nWidth, long nHeight );
 
-    BOOL  CheckW4WVector();       // enth„lt die W4W-Grafik Vektordaten ? (Joe)
+    BOOL  CheckW4WVector();       // enthï¿½lt die W4W-Grafik Vektordaten ? (Joe)
 
     sal_Char ReadChar()     { sal_Char c = 0; rInp.Read( &c, 1 ); return c; }
 

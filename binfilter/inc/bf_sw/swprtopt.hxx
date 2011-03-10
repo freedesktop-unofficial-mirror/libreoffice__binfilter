@@ -29,6 +29,8 @@
 #ifndef _SWPRTOPT_HXX
 #define _SWPRTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/multisel.hxx>
 #include <printdata.hxx>
 namespace binfilter {

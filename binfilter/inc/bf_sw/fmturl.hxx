@@ -28,6 +28,8 @@
 #ifndef _FMTURL_HXX
 #define _FMTURL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <format.hxx>
 class IntlWrapper;

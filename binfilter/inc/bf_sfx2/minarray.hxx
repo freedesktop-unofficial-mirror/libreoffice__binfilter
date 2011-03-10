@@ -28,10 +28,10 @@
 #ifndef _SFXVARARR_HXX
 #define _SFXVARARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <limits.h>
 #include <string.h>
-
-#include <tools/solar.h>
 
 #include <tools/debug.hxx>
 

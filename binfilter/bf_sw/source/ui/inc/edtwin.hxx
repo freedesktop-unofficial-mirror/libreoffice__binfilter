@@ -28,6 +28,8 @@
 #ifndef _EDTWIN_HXX
 #define _EDTWIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/link.hxx>
 #include <vcl/timer.hxx>
 #include <vcl/window.hxx>

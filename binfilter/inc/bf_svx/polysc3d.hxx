@@ -29,6 +29,8 @@
 #ifndef _E3D_POLYSC3D_HXX
 #define _E3D_POLYSC3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdpage.hxx>
 
 #include <bf_svx/scene3d.hxx>

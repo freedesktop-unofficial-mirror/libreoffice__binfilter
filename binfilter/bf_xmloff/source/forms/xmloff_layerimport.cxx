@@ -42,7 +42,7 @@
 #include <com/sun/star/form/TabulatorCycle.hpp>
 #include <com/sun/star/form/FormButtonType.hpp>
 #include <com/sun/star/form/ListSourceType.hpp>
-#include <vcl/wintypes.hxx>     // for check states
+#include <tools/wintypes.hxx>       // for check states
 
 #include <com/sun/star/form/XFormsSupplier.hpp>
 #include "controlpropertyhdl.hxx"

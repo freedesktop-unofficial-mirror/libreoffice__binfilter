@@ -29,6 +29,8 @@
 #ifndef _SVDOEDGE_HXX
 #define _SVDOEDGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdotext.hxx>
 #include <bf_svx/svdglue.hxx>
 

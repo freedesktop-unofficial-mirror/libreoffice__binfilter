@@ -28,6 +28,8 @@
 #ifndef _WRTSH_HXX
 #define _WRTSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <fesh.hxx>
 #include <sortopt.hxx>
 #include <tools/debug.hxx>

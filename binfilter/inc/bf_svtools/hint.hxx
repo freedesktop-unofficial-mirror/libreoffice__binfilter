@@ -28,6 +28,8 @@
 #ifndef _SFXHINT_HXX
 #define _SFXHINT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 namespace binfilter

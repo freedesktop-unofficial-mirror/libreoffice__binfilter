@@ -29,6 +29,8 @@
 #ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #define INCLUDED_SVTOOLS_NFKEYTAB_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 namespace binfilter

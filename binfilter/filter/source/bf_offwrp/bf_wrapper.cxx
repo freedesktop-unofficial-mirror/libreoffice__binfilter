@@ -197,23 +197,6 @@ void SAL_CALL component_getImplementationEnvironment(
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
-sal_Bool SAL_CALL component_writeInfo( void* pServiceManager , void* pRegistryKey )
-{
-    Reference< XMultiServiceFactory >  xMan( reinterpret_cast< XMultiServiceFactory* >( pServiceManager ) ) ;
-    Reference< XRegistryKey > xKey( reinterpret_cast< XRegistryKey* >( pRegistryKey ) ) ;
-
-    // Eigentliche Implementierung und ihre Services registrieren
-    ::rtl::OUString aTempStr;
-
-    ::rtl::OUString aImpl( RTL_CONSTASCII_USTRINGPARAM("/") );
-    aImpl += bf_OfficeWrapper::impl_getStaticImplementationName();
-    aImpl += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
-    Reference< XRegistryKey > xNewKey = xKey->createKey( aImpl );
-    xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.office.OfficeWrapper" )) );
-
-    return sal_True;
-}
-
 void* SAL_CALL component_getFactory(
     const sal_Char* pImplementationName,
     void* pServiceManager,

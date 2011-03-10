@@ -28,7 +28,7 @@
 #ifndef _CALLNK_HXX
 #define _CALLNK_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 class SwCrsrShell;

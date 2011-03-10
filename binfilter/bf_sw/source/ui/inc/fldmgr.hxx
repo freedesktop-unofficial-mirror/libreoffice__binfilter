@@ -28,6 +28,8 @@
 #ifndef _FLDMGR_HXX
 #define _FLDMGR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>

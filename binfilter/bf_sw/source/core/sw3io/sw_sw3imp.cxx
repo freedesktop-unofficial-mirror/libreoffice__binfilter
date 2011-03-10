@@ -1383,101 +1383,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   pDrawing->SetBufferSize( 0 );
 /*N*/ }
 
-/*N*/ void Sw3IoImp::SaveDrawingLayer()
-/*N*/ {
-/*N*/   // Wenn kein Stream da ist, gibt es im Layer nix zu saven.
-/*N*/   if( !pDrawing.Is() )
-/*N*/       return;
-/*N*/
-/*N*/   if( HasRecSizes() ) // sicher ist sicher
-/*?*/       FlushRecSizes();
-/*N*/
-/*N*/   pDrawing->SetSize( 0L );
-/*N*/   pDrawing->SetBufferSize( SW3_BSW_DRAWING );
-/*N*/
-/*N*/   // Den Pool nicht vergessen...
-/*N*/   SdrModel* pModel = pDoc->GetDrawModel();
-/*N*/   OSL_ENSURE( pModel, "SaveDrawingLayer without DrawModel" );
-/*N*/   //Auf die Korrektheit der OrdNums sind wir schon angewiesen.
-/*N*/   pModel->GetPage( 0 )->RecalcObjOrdNums();
-/*N*/
-/*N*/   pModel->PreSave();
-/*N*/
-/*N*/   SfxItemPool *pDrawIPool = pModel->GetItemPool().GetSecondaryPool();
-/*N*/   OSL_ENSURE( pDrawIPool, "DrawPool not found" );
-/*N*/
-/*N*/   // Die FF-Version muss an einem Master-Pool stehen
-/*N*/   long nFFVersion = pDrawing->GetVersion();
-/*N*/   long nOldFFVersion = pModel->GetItemPool().GetFileFormatVersion();
-/*N*/   OSL_ENSURE( IsSw31Export() ? nFFVersion==SOFFICE_FILEFORMAT_31
-/*N*/                          : (nFFVersion==SOFFICE_FILEFORMAT_40 ||
-/*N*/                             nFFVersion==SOFFICE_FILEFORMAT_50),
-/*N*/           "FF-Version am Drawing-Layer-Stream stimmt nicht" );
-/*N*/   pModel->GetItemPool().SetFileFormatVersion( (sal_uInt16)nFFVersion );
-/*N*/
-/*N*/   pDrawIPool->Store( *pDrawing );
-/*N*/   *pDrawing << *pModel;
-/*N*/
-/*N*/   pModel->GetItemPool().SetFileFormatVersion( nOldFFVersion );
-/*N*/
-/*N*/
-/*N*/   // Nun noch die Liste der frame::Frame-Z-IDs
-/*N*/   sal_uInt16 nFrmIds = 0;
-/*N*/   sal_uInt32 nIdPos = 0;
-/*N*/   SdrPage* pPage = pModel->GetPage( 0 );
-/*N*/   for ( sal_uInt32 i = 0; i < pPage->GetObjCount(); i++ )
-/*N*/   {
-/*N*/       SdrObject *pObj = pPage->GetObj( i );
-/*N*/       // fix #45256#: Auch die Indizes von Master-Objekten muessen
-/*N*/       // exportiert werden, weil sonst die Indizes der anderen Objekte
-/*N*/       // beim Laden nicht mehr stimmen.
-/*N*/       if ( pObj->IsWriterFlyFrame() || pObj->ISA(SwFlyDrawObj) )
-/*N*/       {
-/*N*/           if( !nFrmIds )
-/*N*/           {
-/*N*/               *pDrawing << (sal_uInt16) SIGN_FRMIDS;
-/*N*/               nIdPos = pDrawing->Tell();
-/*N*/               *pDrawing << (sal_uInt16) nFrmIds;
-/*N*/           }
-/*N*/           *pDrawing << (sal_uInt32) i;
-/*N*/           nFrmIds++;
-/*N*/       }
-/*N*/   }
-/*N*/ #ifdef DBG_UTIL
-/*N*/   {
-/*N*/       size_t nArrSz = pPage->GetObjCount() / 8;
-/*N*/       if( (pPage->GetObjCount() % 8) > 0 )
-/*N*/           nArrSz++;
-/*N*/       pRefSdrObjects = new sal_uInt8[nArrSz];
-/*N*/       while( nArrSz )
-/*N*/           pRefSdrObjects[--nArrSz] = 0;
-/*N*/   }
-/*N*/ #endif
-/*N*/
-/*N*/   if( nFrmIds )
-/*N*/   {
-/*N*/       sal_uInt32 nPos = pDrawing->Tell();
-/*N*/       pDrawing->Seek( nIdPos );
-/*N*/       *pDrawing << (sal_uInt16) nFrmIds;
-/*N*/       pDrawing->Seek( nPos );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       *pDrawing << (sal_uInt16)0 << (sal_uInt16)0;
-/*N*/   }
-/*N*/   if( !IsSw31Or40Export() )
-/*N*/   {
-/*N*/       *pDrawing << 0; // was nHiddenDrawObjs!!!
-/*N*/   }
-/*N*/
-/*N*/   OSL_ENSURE( !pModel->GetStyleSheetPool(), "SdrModel hat StyleSheet-Pool" );
-/*N*/   pDrawing->Commit();
-/*N*/   CheckIoError( pDrawing );
-/*N*/   pDrawing->SetBufferSize( 0 );
-/*N*/
-/*N*/   pModel->PostSave();
-/*N*/ }
-
 /*************************************************************************
 *
 *       Seitenvorlagen
@@ -1496,33 +1401,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   CheckIoError( pPageStyles );
 /*N*/   pPageStyles->SetBufferSize( 0 );
 /*N*/ }
-
-/*N*/ void Sw3IoImp::SavePageStyles( sal_Bool bUsed )
-/*N*/ {
-/*N*/   // Falls der Stream existiert, muessen die dazugehoerigen Grafiken
-/*N*/   // geloescht werden.
-/*N*/   SvStream* pOld = pStrm;
-/*N*/   pStrm = pPageStyles;
-/*N*/   pPageStyles->SetSize( 0L );
-/*N*/   pPageStyles->SetBufferSize( SW3_BSW_PAGESTYLES );
-/*N*/   OutPageDescs( bUsed );
-/*N*/
-/*N*/   sal_uInt32 nRecSzPos = 0;
-/*N*/   if( !nRes && HasRecSizes() && !IsSw31Or40Export() )
-/*?*/       nRecSzPos = OutRecSizes();
-/*N*/
-/*N*/   OpenRec( SWG_EOF );
-/*N*/   CloseRec( SWG_EOF );
-/*N*/
-/*N*/   if( nRecSzPos )
-/*?*/       OutRecordSizesPos( nRecSzPos );
-/*N*/
-/*N*/   pStrm = pOld;
-/*N*/   pPageStyles->Commit();
-/*N*/   CheckIoError( pPageStyles );
-/*N*/   pPageStyles->SetBufferSize( 0 );
-/*N*/ }
-
 /*************************************************************************
 *
 *       Numerierungs-Regeln
@@ -1544,34 +1422,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   CheckIoError( pNumRules );
 /*N*/   pNumRules->SetBufferSize( 0 );
 /*N*/ }
-
-/*N*/ void Sw3IoImp::SaveNumRules( sal_Bool bUsed )
-/*N*/ {
-/*N*/   if( !pNumRules.Is() )
-/*N*/       return;
-/*N*/
-/*N*/   SvStream* pOld = pStrm;
-/*N*/   pStrm = pNumRules;
-/*N*/   pNumRules->SetSize( 0L );
-/*N*/   pNumRules->SetBufferSize( SW3_BSW_NUMRULES );
-/*N*/   OutNumRules( bUsed );
-/*N*/
-/*N*/   sal_uInt32 nRecSzPos = 0;
-/*N*/   if( !nRes && HasRecSizes() && !IsSw31Or40Export() )
-/*?*/       nRecSzPos = OutRecSizes();
-/*N*/
-/*N*/   OpenRec( SWG_EOF );
-/*N*/   CloseRec( SWG_EOF );
-/*N*/
-/*N*/   if( nRecSzPos )
-/*?*/       OutRecordSizesPos( nRecSzPos );
-/*N*/
-/*N*/   pStrm = pOld;
-/*N*/   pNumRules->Commit();
-/*N*/   CheckIoError( pNumRules );
-/*N*/   pNumRules->SetBufferSize( 0 );
-/*N*/ }
-
 /*************************************************************************
 *
 *       Inhaltlicher Teil
@@ -1585,18 +1435,6 @@ ULONG Sw3IoImp::OutRecSizes()
 /*N*/   pStrm = pContents;
 /*N*/   LoadDocContents( pPaM );
 /*N*/   pStrm = NULL;
-/*N*/   CheckIoError( pContents );
-/*N*/   pContents->SetBufferSize( 0 );
-/*N*/ }
-
-/*N*/ void Sw3IoImp::SaveContents( SwPaM& rPaM, const String* pBlkName )
-/*N*/ {
-/*N*/   pStrm = pContents;
-/*N*/   pContents->SetSize( 0L );
-/*N*/   pContents->SetBufferSize( SW3_BSW_CONTENTS );
-/*N*/   SaveDocContents( rPaM, pBlkName );
-/*N*/   pStrm = NULL;
-/*N*/   pContents->Commit();
 /*N*/   CheckIoError( pContents );
 /*N*/   pContents->SetBufferSize( 0 );
 /*N*/ }

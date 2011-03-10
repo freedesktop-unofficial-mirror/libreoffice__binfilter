@@ -28,6 +28,8 @@
 #ifndef _FMTRUBY_HXX
 #define _FMTRUBY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/poolitem.hxx>
 namespace binfilter {

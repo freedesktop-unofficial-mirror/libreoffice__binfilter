@@ -102,7 +102,6 @@ SvtLinguOptions::SvtLinguOptions()
     nDefaultLanguage_CTL = LANGUAGE_NONE;
 
     // general options
-    bIsGermanPreReform      = FALSE;
     bIsUseDictionaryList    =
     bIsIgnoreControlCharacters  = TRUE;
 
@@ -110,8 +109,6 @@ SvtLinguOptions::SvtLinguOptions()
     bIsSpellCapitalization  =
     bIsSpellSpecial         = TRUE;
     bIsSpellAuto            =
-    bIsSpellInAllLanguages  =
-    bIsSpellHideMarkings    =
     bIsSpellReverse         =
     bIsSpellWithDigits      =
     bIsSpellUpperCase       = FALSE;
@@ -218,36 +215,33 @@ static struct NamesToHdl
 {/*  1 */    "General/DictionaryList/ActiveDictionaries",     UPN_ACTIVE_DICTIONARIES,               UPH_ACTIVE_DICTIONARIES},
 {/*  2 */    "General/DictionaryList/IsUseDictionaryList",    UPN_IS_USE_DICTIONARY_LIST,            UPH_IS_USE_DICTIONARY_LIST},
 {/*  3 */    "General/IsIgnoreControlCharacters",             UPN_IS_IGNORE_CONTROL_CHARACTERS,      UPH_IS_IGNORE_CONTROL_CHARACTERS},
-{/*  4 */    "General/IsGermanPreReform",                     UPN_IS_GERMAN_PRE_REFORM,              UPH_IS_GERMAN_PRE_REFORM},
-{/*  5 */    "General/DefaultLocale_CJK",                     UPN_DEFAULT_LOCALE_CJK,                UPH_DEFAULT_LOCALE_CJK},
-{/*  6 */    "General/DefaultLocale_CTL",                     UPN_DEFAULT_LOCALE_CTL,                UPH_DEFAULT_LOCALE_CTL},
+{/*  4 */    "General/DefaultLocale_CJK",                     UPN_DEFAULT_LOCALE_CJK,                UPH_DEFAULT_LOCALE_CJK},
+{/*  5 */    "General/DefaultLocale_CTL",                     UPN_DEFAULT_LOCALE_CTL,                UPH_DEFAULT_LOCALE_CTL},
 
-{/*  7 */    "SpellChecking/IsSpellUpperCase",                UPN_IS_SPELL_UPPER_CASE,               UPH_IS_SPELL_UPPER_CASE},
-{/*  8 */    "SpellChecking/IsSpellWithDigits",               UPN_IS_SPELL_WITH_DIGITS,              UPH_IS_SPELL_WITH_DIGITS},
-{/*  9 */    "SpellChecking/IsSpellCapitalization",           UPN_IS_SPELL_CAPITALIZATION,           UPH_IS_SPELL_CAPITALIZATION},
-{/* 10 */    "SpellChecking/IsSpellAuto",                     UPN_IS_SPELL_AUTO,                     UPH_IS_SPELL_AUTO},
-{/* 11 */    "SpellChecking/IsSpellSpecial",                  UPN_IS_SPELL_SPECIAL,                  UPH_IS_SPELL_SPECIAL},
-{/* 12 */    "SpellChecking/IsSpellInAllLocales",             UPN_IS_SPELL_IN_ALL_LANGUAGES,         UPH_IS_SPELL_IN_ALL_LANGUAGES},
-{/* 13 */    "SpellChecking/IsHideMarkings",                  UPN_IS_SPELL_HIDE,                     UPH_IS_SPELL_HIDE},
-{/* 14 */    "SpellChecking/IsReverseDirection",              UPN_IS_WRAP_REVERSE,                   UPH_IS_WRAP_REVERSE},
+{/*  6 */    "SpellChecking/IsSpellUpperCase",                UPN_IS_SPELL_UPPER_CASE,               UPH_IS_SPELL_UPPER_CASE},
+{/*  7 */    "SpellChecking/IsSpellWithDigits",               UPN_IS_SPELL_WITH_DIGITS,              UPH_IS_SPELL_WITH_DIGITS},
+{/*  8 */    "SpellChecking/IsSpellCapitalization",           UPN_IS_SPELL_CAPITALIZATION,           UPH_IS_SPELL_CAPITALIZATION},
+{/*  9 */    "SpellChecking/IsSpellAuto",                     UPN_IS_SPELL_AUTO,                     UPH_IS_SPELL_AUTO},
+{/* 10 */    "SpellChecking/IsSpellSpecial",                  UPN_IS_SPELL_SPECIAL,                  UPH_IS_SPELL_SPECIAL},
+{/* 11 */    "SpellChecking/IsReverseDirection",              UPN_IS_WRAP_REVERSE,                   UPH_IS_WRAP_REVERSE},
 
-{/* 15 */    "Hyphenation/MinLeading",                        UPN_HYPH_MIN_LEADING,                  UPH_HYPH_MIN_LEADING},
-{/* 16 */    "Hyphenation/MinTrailing",                       UPN_HYPH_MIN_TRAILING,                 UPH_HYPH_MIN_TRAILING},
-{/* 17 */    "Hyphenation/MinWordLength",                     UPN_HYPH_MIN_WORD_LENGTH,              UPH_HYPH_MIN_WORD_LENGTH},
-{/* 18 */    "Hyphenation/IsHyphSpecial",                     UPN_IS_HYPH_SPECIAL,                   UPH_IS_HYPH_SPECIAL},
-{/* 19 */    "Hyphenation/IsHyphAuto",                        UPN_IS_HYPH_AUTO,                      UPH_IS_HYPH_AUTO},
+{/* 12 */    "Hyphenation/MinLeading",                        UPN_HYPH_MIN_LEADING,                  UPH_HYPH_MIN_LEADING},
+{/* 13 */    "Hyphenation/MinTrailing",                       UPN_HYPH_MIN_TRAILING,                 UPH_HYPH_MIN_TRAILING},
+{/* 14 */    "Hyphenation/MinWordLength",                     UPN_HYPH_MIN_WORD_LENGTH,              UPH_HYPH_MIN_WORD_LENGTH},
+{/* 15 */    "Hyphenation/IsHyphSpecial",                     UPN_IS_HYPH_SPECIAL,                   UPH_IS_HYPH_SPECIAL},
+{/* 16 */    "Hyphenation/IsHyphAuto",                        UPN_IS_HYPH_AUTO,                      UPH_IS_HYPH_AUTO},
 
-{/* 20 */    "TextConversion/ActiveConversionDictionaries",   UPN_ACTIVE_CONVERSION_DICTIONARIES,        UPH_ACTIVE_CONVERSION_DICTIONARIES},
-{/* 21 */    "TextConversion/IsIgnorePostPositionalWord",     UPN_IS_IGNORE_POST_POSITIONAL_WORD,        UPH_IS_IGNORE_POST_POSITIONAL_WORD},
-{/* 22 */    "TextConversion/IsAutoCloseDialog",              UPN_IS_AUTO_CLOSE_DIALOG,                  UPH_IS_AUTO_CLOSE_DIALOG},
-{/* 23 */    "TextConversion/IsShowEntriesRecentlyUsedFirst", UPN_IS_SHOW_ENTRIES_RECENTLY_USED_FIRST,   UPH_IS_SHOW_ENTRIES_RECENTLY_USED_FIRST},
-{/* 24 */    "TextConversion/IsAutoReplaceUniqueEntries",     UPN_IS_AUTO_REPLACE_UNIQUE_ENTRIES,        UPH_IS_AUTO_REPLACE_UNIQUE_ENTRIES},
-{/* 25 */    "TextConversion/IsDirectionToSimplified",        UPN_IS_DIRECTION_TO_SIMPLIFIED,            UPH_IS_DIRECTION_TO_SIMPLIFIED},
-{/* 26 */    "TextConversion/IsUseCharacterVariants",         UPN_IS_USE_CHARACTER_VARIANTS,             UPH_IS_USE_CHARACTER_VARIANTS},
-{/* 27 */    "TextConversion/IsTranslateCommonTerms",         UPN_IS_TRANSLATE_COMMON_TERMS,             UPH_IS_TRANSLATE_COMMON_TERMS},
-{/* 28 */    "TextConversion/IsReverseMapping",               UPN_IS_REVERSE_MAPPING,                    UPH_IS_REVERSE_MAPPING},
+{/* 17 */    "TextConversion/ActiveConversionDictionaries",   UPN_ACTIVE_CONVERSION_DICTIONARIES,        UPH_ACTIVE_CONVERSION_DICTIONARIES},
+{/* 18 */    "TextConversion/IsIgnorePostPositionalWord",     UPN_IS_IGNORE_POST_POSITIONAL_WORD,        UPH_IS_IGNORE_POST_POSITIONAL_WORD},
+{/* 19 */    "TextConversion/IsAutoCloseDialog",              UPN_IS_AUTO_CLOSE_DIALOG,                  UPH_IS_AUTO_CLOSE_DIALOG},
+{/* 20 */    "TextConversion/IsShowEntriesRecentlyUsedFirst", UPN_IS_SHOW_ENTRIES_RECENTLY_USED_FIRST,   UPH_IS_SHOW_ENTRIES_RECENTLY_USED_FIRST},
+{/* 21 */    "TextConversion/IsAutoReplaceUniqueEntries",     UPN_IS_AUTO_REPLACE_UNIQUE_ENTRIES,        UPH_IS_AUTO_REPLACE_UNIQUE_ENTRIES},
+{/* 22 */    "TextConversion/IsDirectionToSimplified",        UPN_IS_DIRECTION_TO_SIMPLIFIED,            UPH_IS_DIRECTION_TO_SIMPLIFIED},
+{/* 23 */    "TextConversion/IsUseCharacterVariants",         UPN_IS_USE_CHARACTER_VARIANTS,             UPH_IS_USE_CHARACTER_VARIANTS},
+{/* 24 */    "TextConversion/IsTranslateCommonTerms",         UPN_IS_TRANSLATE_COMMON_TERMS,             UPH_IS_TRANSLATE_COMMON_TERMS},
+{/* 25 */    "TextConversion/IsReverseMapping",               UPN_IS_REVERSE_MAPPING,                    UPH_IS_REVERSE_MAPPING},
 
-{/* 29 */    "ServiceManager/DataFilesChangedCheckValue",     UPN_DATA_FILES_CHANGED_CHECK_VALUE,        UPH_DATA_FILES_CHANGED_CHECK_VALUE},
+{/* 26 */    "ServiceManager/DataFilesChangedCheckValue",     UPN_DATA_FILES_CHANGED_CHECK_VALUE,        UPH_DATA_FILES_CHANGED_CHECK_VALUE},
 
             /* similar to entry 0 (thus no own configuration entry) but with different property name and type */
 {            NULL,                                           UPN_DEFAULT_LANGUAGE,                      UPH_DEFAULT_LANGUAGE},
@@ -357,8 +351,6 @@ BOOL SvtLinguConfigItem::LoadOptions( const Sequence< OUString > &rProperyNames 
                     { rOpt.bROIsUseDictionaryList = pROStates[i]; rVal >>= rOpt.bIsUseDictionaryList;  } break;
                 case UPH_IS_IGNORE_CONTROL_CHARACTERS :
                     { rOpt.bROIsIgnoreControlCharacters = pROStates[i]; rVal >>= rOpt.bIsIgnoreControlCharacters;    } break;
-                case UPH_IS_GERMAN_PRE_REFORM :
-                    { rOpt.bROIsGermanPreReform = pROStates[i]; rVal >>= rOpt.bIsGermanPreReform;    } break;
                 case UPH_DEFAULT_LOCALE_CJK :
                     { rOpt.bRODefaultLanguage_CJK = pROStates[i]; lcl_CfgAnyToLanguage( rVal, rOpt.nDefaultLanguage_CJK );    } break;
                 case UPH_DEFAULT_LOCALE_CTL :
@@ -374,10 +366,6 @@ BOOL SvtLinguConfigItem::LoadOptions( const Sequence< OUString > &rProperyNames 
                     { rOpt.bROIsSpellAuto = pROStates[i]; rVal >>= rOpt.bIsSpellAuto;  } break;
                 case UPH_IS_SPELL_SPECIAL :
                     { rOpt.bROIsSpellSpecial = pROStates[i]; rVal >>= rOpt.bIsSpellSpecial;   } break;
-                case UPH_IS_SPELL_IN_ALL_LANGUAGES :
-                    { rOpt.bROIsSpellInAllLanguages = pROStates[i]; rVal >>= rOpt.bIsSpellInAllLanguages;    } break;
-                case UPH_IS_SPELL_HIDE :
-                    { rOpt.bROIsSpellHideMarkings = pROStates[i]; rVal >>= rOpt.bIsSpellHideMarkings;  } break;
                 case UPH_IS_WRAP_REVERSE :
                     { rOpt.bROIsSpellReverse = pROStates[i]; rVal >>= rOpt.bIsSpellReverse;   } break;
 
@@ -463,44 +451,41 @@ BOOL SvtLinguConfigItem::SaveOptions( const Sequence< OUString > &rProperyNames 
         const SvtLinguOptions &rOpt = aOpt;
 
         OUString aTmp( lcl_LanguageToCfgLocaleStr( rOpt.nDefaultLanguage ) );
-        *pValue++ = makeAny( aTmp );                                    //   0
-        *pValue++ = makeAny( rOpt.aActiveDics );                        //   1
-        pValue++->setValue( &rOpt.bIsUseDictionaryList, rBOOL );        //   2
-        pValue++->setValue( &rOpt.bIsIgnoreControlCharacters, rBOOL );  //   3
-        pValue++->setValue( &rOpt.bIsGermanPreReform, rBOOL );          //   4
+        *pValue++ = makeAny( aTmp );                                        //   0
+        *pValue++ = makeAny( rOpt.aActiveDics );                            //   1
+        pValue++->setValue( &rOpt.bIsUseDictionaryList, rBOOL );            //   2
+        pValue++->setValue( &rOpt.bIsIgnoreControlCharacters, rBOOL );      //   3
         aTmp = lcl_LanguageToCfgLocaleStr( rOpt.nDefaultLanguage_CJK );
-        *pValue++ = makeAny( aTmp );                                    //   5
+        *pValue++ = makeAny( aTmp );                                        //   4
         aTmp = lcl_LanguageToCfgLocaleStr( rOpt.nDefaultLanguage_CTL );
-        *pValue++ = makeAny( aTmp );                                    //   6
+        *pValue++ = makeAny( aTmp );                                        //   5
 
-        pValue++->setValue( &rOpt.bIsSpellUpperCase, rBOOL );          //   7
-        pValue++->setValue( &rOpt.bIsSpellWithDigits, rBOOL );         //   8
-        pValue++->setValue( &rOpt.bIsSpellCapitalization, rBOOL );     //   9
-        pValue++->setValue( &rOpt.bIsSpellAuto, rBOOL );               //  10
-        pValue++->setValue( &rOpt.bIsSpellSpecial, rBOOL );                //  11
-        pValue++->setValue( &rOpt.bIsSpellInAllLanguages, rBOOL );     //  12
-        pValue++->setValue( &rOpt.bIsSpellHideMarkings, rBOOL );       //  13
-        pValue++->setValue( &rOpt.bIsSpellReverse, rBOOL );                //  14
+        pValue++->setValue( &rOpt.bIsSpellUpperCase, rBOOL );               //   6
+        pValue++->setValue( &rOpt.bIsSpellWithDigits, rBOOL );              //   7
+        pValue++->setValue( &rOpt.bIsSpellCapitalization, rBOOL );          //   8
+        pValue++->setValue( &rOpt.bIsSpellAuto, rBOOL );                    //   9
+        pValue++->setValue( &rOpt.bIsSpellSpecial, rBOOL );                 //  10
+        pValue++->setValue( &rOpt.bIsSpellReverse, rBOOL );                 //  11
 
-        pValue++->setValue( &rOpt.nHyphMinLeading, rINT16 );           //  15
-        pValue++->setValue( &rOpt.nHyphMinTrailing, rINT16 );          //  16
-        pValue++->setValue( &rOpt.nHyphMinWordLength, rINT16 );            //  17
-        pValue++->setValue( &rOpt.bIsHyphSpecial, rBOOL );             //  18
-        pValue++->setValue( &rOpt.bIsHyphAuto, rBOOL );                    //  19
+        pValue++->setValue( &rOpt.nHyphMinLeading, rINT16 );                //  12
+        pValue++->setValue( &rOpt.nHyphMinTrailing, rINT16 );               //  13
+        pValue++->setValue( &rOpt.nHyphMinWordLength, rINT16 );             //  14
+        pValue++->setValue( &rOpt.bIsHyphSpecial, rBOOL );                  //  15
+        pValue++->setValue( &rOpt.bIsHyphAuto, rBOOL );                     //  16
 
-        *pValue++ = makeAny( rOpt.aActiveConvDics );                    //   20
+        *pValue++ = makeAny( rOpt.aActiveConvDics );                        //  17
 
-        pValue++->setValue( &rOpt.bIsIgnorePostPositionalWord, rBOOL ); //  21
-        pValue++->setValue( &rOpt.bIsAutoCloseDialog, rBOOL );          //  22
-        pValue++->setValue( &rOpt.bIsShowEntriesRecentlyUsedFirst, rBOOL ); //  23
-        pValue++->setValue( &rOpt.bIsAutoReplaceUniqueEntries, rBOOL ); //  24
+        pValue++->setValue( &rOpt.bIsIgnorePostPositionalWord, rBOOL );     //  18
+        pValue++->setValue( &rOpt.bIsAutoCloseDialog, rBOOL );              //  19
+        pValue++->setValue( &rOpt.bIsShowEntriesRecentlyUsedFirst, rBOOL ); //  20
+        pValue++->setValue( &rOpt.bIsAutoReplaceUniqueEntries, rBOOL );     //  21
 
-        pValue++->setValue( &rOpt.bIsDirectionToSimplified, rBOOL ); //  25
-        pValue++->setValue( &rOpt.bIsUseCharacterVariants, rBOOL ); //  26
-        pValue++->setValue( &rOpt.bIsTranslateCommonTerms, rBOOL ); //  27
-        pValue++->setValue( &rOpt.bIsReverseMapping, rBOOL ); //  28
+        pValue++->setValue( &rOpt.bIsDirectionToSimplified, rBOOL );        //  22
+        pValue++->setValue( &rOpt.bIsUseCharacterVariants, rBOOL );         //  23
+        pValue++->setValue( &rOpt.bIsTranslateCommonTerms, rBOOL );         //  24
+        pValue++->setValue( &rOpt.bIsReverseMapping, rBOOL );               //  25
 
-        pValue++->setValue( &rOpt.nDataFilesChangedCheckValue, rINT32 ); //  29
+        pValue++->setValue( &rOpt.nDataFilesChangedCheckValue, rINT32 );    //  26
 
         bRet |= PutProperties( rProperyNames, aValues );
     }

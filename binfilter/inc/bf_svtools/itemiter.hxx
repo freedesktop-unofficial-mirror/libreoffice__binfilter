@@ -28,7 +28,7 @@
 #ifndef _SFXITEMITER_HXX
 #define _SFXITEMITER_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <bf_svtools/itemset.hxx>
 

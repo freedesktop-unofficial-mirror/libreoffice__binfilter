@@ -28,6 +28,8 @@
 #ifndef _FLDWRAP_HXX
 #define _FLDWRAP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "chldwrap.hxx"
 namespace binfilter {
 

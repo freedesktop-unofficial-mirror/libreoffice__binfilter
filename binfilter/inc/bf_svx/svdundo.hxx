@@ -29,7 +29,7 @@
 #ifndef _SVDUNDO_HXX
 #define _SVDUNDO_HXX
 
-#include <bf_svtools/solar.hrc>
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/undo.hxx>
 #include <tools/contnr.hxx>
 #include <tools/gen.hxx>

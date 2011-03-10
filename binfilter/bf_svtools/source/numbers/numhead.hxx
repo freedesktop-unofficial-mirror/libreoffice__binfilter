@@ -29,6 +29,8 @@
 #ifndef NF_NUMHEAD_HXX
 #define NF_NUMHEAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/stream.hxx>
 
 namespace binfilter

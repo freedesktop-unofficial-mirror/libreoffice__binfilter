@@ -26,6 +26,8 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
+
 #include <comphelper/proparrhlp.hxx>
 #include "Hidden.hxx"
 #include "property.hrc"

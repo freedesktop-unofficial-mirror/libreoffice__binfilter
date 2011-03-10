@@ -31,7 +31,7 @@
 
 #include <bf_xmloff/xmlictxt.hxx>
 
-#include <vcl/mapunit.hxx>
+#include <tools/mapunit.hxx>
 class Rectangle;
 namespace com { namespace sun { namespace star { namespace awt {
     struct Rectangle;

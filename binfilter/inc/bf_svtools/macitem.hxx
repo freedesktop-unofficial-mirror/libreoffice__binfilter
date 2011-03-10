@@ -28,6 +28,8 @@
 #ifndef _SFXMACITEM_HXX
 #define _SFXMACITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // class SvxMacroItem ----------------------------------------------------
 
 #include "bf_svtools/svtdllapi.h"

@@ -29,7 +29,7 @@
 #ifndef SC_DBDOCFUN_HXX
 #define SC_DBDOCFUN_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <com/sun/star/uno/Sequence.hxx>
 

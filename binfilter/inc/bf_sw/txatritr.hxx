@@ -28,7 +28,7 @@
 #ifndef _TXATRITR_HXX
 #define _TXATRITR_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <sal/types.h>
 #include <tools/debug.hxx>
 class String;

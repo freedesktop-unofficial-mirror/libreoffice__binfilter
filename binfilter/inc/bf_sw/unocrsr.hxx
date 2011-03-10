@@ -28,6 +28,8 @@
 #ifndef _UNOCRSR_HXX
 #define _UNOCRSR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <swcrsr.hxx>
 #include <calbck.hxx>
 namespace binfilter {

@@ -29,6 +29,8 @@
 #ifndef _SVDOCIRC_HXX
 #define _SVDOCIRC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdorect.hxx>
 namespace binfilter {
 

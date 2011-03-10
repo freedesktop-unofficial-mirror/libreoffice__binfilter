@@ -28,6 +28,8 @@
 #ifndef _UNOTXDOC_HXX
 #define _UNOTXDOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 #include <bf_sfx2/sfxbasemodel.hxx>
 #include <com/sun/star/beans/PropertyValues.hpp>

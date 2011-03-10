@@ -29,6 +29,8 @@
 #ifndef SC_PRINTOPT_HXX
 #define SC_PRINTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/poolitem.hxx>
 
 #include <unotools/configitem.hxx>

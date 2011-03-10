@@ -28,11 +28,13 @@
 #ifndef _WORKCTRL_HXX
 #define _WORKCTRL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/tbxctrl.hxx>
 
 #include <vcl/toolbox.hxx>
 #include <bf_svtools/stdctrl.hxx>
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 class PopupMenu;
 namespace binfilter {
 

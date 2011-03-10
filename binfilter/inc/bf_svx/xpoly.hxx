@@ -28,9 +28,8 @@
 #ifndef _XPOLY_HXX
 #define _XPOLY_HXX
 
-// include ---------------------------------------------------------------
+#include <bf_svtools/bf_solar.h>
 
-#include <tools/solar.h>
 
 class Point;
 class Rectangle;

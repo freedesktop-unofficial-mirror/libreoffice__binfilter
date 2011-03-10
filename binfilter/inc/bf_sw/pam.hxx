@@ -28,6 +28,8 @@
 #ifndef _PAM_HXX
 #define _PAM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <stddef.h>         // fuer MemPool
 #include <tools/gen.hxx>
 #include <tools/mempool.hxx>

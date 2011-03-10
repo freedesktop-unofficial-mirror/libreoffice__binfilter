@@ -29,6 +29,8 @@
 #ifndef SC_COLLECT_HXX
 #define SC_COLLECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 #include <limits.h>

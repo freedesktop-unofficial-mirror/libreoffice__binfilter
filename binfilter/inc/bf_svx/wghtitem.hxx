@@ -28,6 +28,8 @@
 #ifndef _SVX_WGHTITEM_HXX
 #define _SVX_WGHTITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <vcl/vclenum.hxx>

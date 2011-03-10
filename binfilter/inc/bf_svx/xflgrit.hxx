@@ -29,6 +29,8 @@
 #ifndef _SVX_XFLGRIT_HXX
 #define _SVX_XFLGRIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xit.hxx>
 
 #include <bf_svx/xgrad.hxx>

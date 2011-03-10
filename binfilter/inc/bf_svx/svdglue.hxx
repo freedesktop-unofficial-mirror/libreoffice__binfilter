@@ -28,6 +28,9 @@
 
 #ifndef _SVDGLUE_HXX
 #define _SVDGLUE_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 class Window;
 class OutputDevice;
 class SvStream;

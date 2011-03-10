@@ -29,6 +29,8 @@
 #ifndef _IMAP_HXX
 #define _IMAP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <tools/string.hxx>

@@ -29,6 +29,8 @@
 #ifndef _SVDOUNO_HXX
 #define _SVDOUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/awt/XControlModel.hpp>
 #include <com/sun/star/awt/XControl.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>

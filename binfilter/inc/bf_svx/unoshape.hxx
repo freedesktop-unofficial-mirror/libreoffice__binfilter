@@ -28,6 +28,8 @@
 #ifndef _SVX_UNOSHAPE_HXX
 #define _SVX_UNOSHAPE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/document/XActionLockable.hpp>
 #include <com/sun/star/drawing/XGluePointsSupplier.hpp>
 #include <com/sun/star/drawing/XShape.hpp>

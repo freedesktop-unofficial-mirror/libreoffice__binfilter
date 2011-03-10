@@ -29,6 +29,9 @@
 #ifndef _B3D_B3DCOMPO_HXX
 #define _B3D_B3DCOMPO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "b3dentty.hxx"
 
 namespace binfilter {

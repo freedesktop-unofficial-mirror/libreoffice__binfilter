@@ -28,7 +28,8 @@
 #ifndef _TXATBASE_HXX
 #define _TXATBASE_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/poolitem.hxx>
 #include <hintids.hxx>
 #include <osl/diagnose.h>

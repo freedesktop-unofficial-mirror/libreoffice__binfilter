@@ -30,6 +30,8 @@
 #ifndef _MyEDITDATA_HXX
 #define _MyEDITDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 #include <bf_svtools/svarray.hxx>

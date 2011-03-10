@@ -29,6 +29,8 @@
 #ifndef _SBXRES_HXX
 #define _SBXRES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 // Zur Zeit sind Ressources im SVTOOLS-Projekt nicht vorgesehen.
