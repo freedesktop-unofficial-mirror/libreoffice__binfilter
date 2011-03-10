@@ -43,7 +43,6 @@ void SwLotusParser::Parse( void )
 {
     USHORT nOpcode, nLen;
     enum { SearchBof, SearchDim, InWKS, InWK1, Ende } eAkt;
-    BOOL bInTab = TRUE;
 
     eAkt = SearchBof;
     while( eAkt != Ende )
