@@ -53,13 +53,15 @@ class SwApplet_Impl
     SfxItemSet        aItemSet;
 
 public:
-    static USHORT GetOptionType( const String& rName, BOOL bApplet ){DBG_BF_ASSERT(0, "STRIP"); return 0;}
+    static USHORT GetOptionType( const String& /*rName*/, BOOL /*bApplet*/ )
+        {DBG_BF_ASSERT(0, "STRIP"); return 0;}
     SwApplet_Impl( SfxItemSet& rSet ): aItemSet ( rSet) {}
     ~SwApplet_Impl(){DBG_BF_ASSERT(0, "STRIP");};
 
-    void CreateApplet( const String& rCode, const String& rName,
-        BOOL bMayScript, const String& rCodeBase ){DBG_BF_ASSERT(0, "STRIP");};
-        sal_Bool CreateApplet();
+    void CreateApplet( const String& /*rCode*/, const String& /*rName*/,
+        BOOL /*bMayScript*/, const String& /*rCodeBase*/ )
+        {DBG_BF_ASSERT(0, "STRIP");};
+    sal_Bool CreateApplet();
     SvAppletObject* GetApplet() { return &xApplet; }
     SfxItemSet& GetItemSet() { return aItemSet; }
 };

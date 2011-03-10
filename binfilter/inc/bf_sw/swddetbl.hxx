@@ -39,8 +39,8 @@ public:
     TYPEINFO();
     // Constructor movet alle Lines/Boxen aus der SwTable zu sich.
     // Die SwTable ist danach Leer und muss geloescht werden.
-    SwDDETable( SwTable& rTable, SwDDEFieldType* pDDEType,
-        BOOL bUpdate = TRUE ):SwTable( rTable ){DBG_BF_ASSERT(0, "STRIP");}
+    SwDDETable( SwTable& rTable, SwDDEFieldType*,
+        BOOL =TRUE ):SwTable( rTable ){DBG_BF_ASSERT(0, "STRIP");}
     SwDDEFieldType* GetDDEFldType();
     inline const SwDDEFieldType* GetDDEFldType() const;
 };
