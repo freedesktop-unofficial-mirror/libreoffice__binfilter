@@ -54,9 +54,7 @@ void SAL_CALL component_getImplementationEnvironment(const sal_Char** ppEnvTypeN
 }
 
 //==================================================================================================
-#endif
-            legacysmgr_component_writeInfo
-                ( reinterpret_cast<XMultiServiceFactory*>( pServiceManager), reinterpret_cast<XRegistryKey*> (pRegistryKey) );
+
 void* SAL_CALL component_getFactory(const sal_Char* pImplName, void* pServiceManager, void* pRegistryKey)
 {
     void* pRet = 0;

@@ -30,6 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
+namespace binfilter {
 class SwFieldType;
 class SwFrmFmt;
 class SwCharFmt;

@@ -31,6 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
+#include <unotools/textsearch.hxx>
 #include <pam.hxx>
 #include <node.hxx>
 #include <tools/string.hxx>
