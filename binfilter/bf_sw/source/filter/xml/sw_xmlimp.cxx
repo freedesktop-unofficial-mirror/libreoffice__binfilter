@@ -142,20 +142,20 @@ class SwXMLDocContext_Impl : public SvXMLImportContext
 
 public:
 
-    SwXMLDocContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
+    SwXMLDocContext_Impl( SwXMLImport& rInImport, sal_uInt16 nPrfx,
                 const OUString& rLName,
                 const Reference< xml::sax::XAttributeList > & xAttrList );
     virtual ~SwXMLDocContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
                 const OUString& rLocalName,
                 const Reference< xml::sax::XAttributeList > & xAttrList );
 };
 
-SwXMLDocContext_Impl::SwXMLDocContext_Impl( SwXMLImport& rImport,
+SwXMLDocContext_Impl::SwXMLDocContext_Impl( SwXMLImport& rInImport,
                 sal_uInt16 nPrfx, const OUString& rLName,
                 const Reference< xml::sax::XAttributeList > & xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     // process document class
     // global-text is handled via document shell;
@@ -164,11 +164,11 @@ SwXMLDocContext_Impl::SwXMLDocContext_Impl( SwXMLImport& rImport,
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+        if ( (XML_NAMESPACE_OFFICE == nLclPrefix) &&
              IsXMLToken( sLocalName, XML_CLASS ) )
         {
             if ( IsXMLToken( xAttrList->getValueByIndex(nAttr), XML_LABEL ) )
@@ -198,14 +198,14 @@ SwXMLDocContext_Impl::~SwXMLDocContext_Impl()
 }
 
 SvXMLImportContext *SwXMLDocContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetSwImport().GetDocElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_DOC_FONTDECLS:
         pContext = GetSwImport().CreateFontDeclsContext( rLocalName,
@@ -243,12 +243,12 @@ SvXMLImportContext *SwXMLDocContext_Impl::CreateChildContext(
         pContext = GetSwImport().CreateBodyContext( rLocalName );
         break;
     case XML_TOK_DOC_SETTINGS:
-        pContext = new XMLDocumentSettingsContext ( GetImport(), nPrefix, rLocalName, xAttrList );
+        pContext = new XMLDocumentSettingsContext ( GetImport(), nInPrefix, rLocalName, xAttrList );
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
 
     return pContext;
@@ -265,22 +265,22 @@ const SvXMLTokenMap& SwXMLImport::GetDocElemTokenMap()
 }
 
 SvXMLImportContext *SwXMLImport::CreateContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_OFFICE==nPrefix &&
+    if( XML_NAMESPACE_OFFICE==nInPrefix &&
         ( IsXMLToken( rLocalName, XML_DOCUMENT ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_META ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_SETTINGS ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_STYLES ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_CONTENT ) ))
-        pContext = new SwXMLDocContext_Impl( *this, nPrefix, rLocalName,
+        pContext = new SwXMLDocContext_Impl( *this, nInPrefix, rLocalName,
                                              xAttrList );
     else
-        pContext = SvXMLImport::CreateContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImport::CreateContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -290,20 +290,20 @@ SwXMLImport::SwXMLImport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
     sal_uInt16 nImportFlags)
 :   SvXMLImport( xServiceFactory, nImportFlags ),
-    bLoadDoc( sal_True ),
-    bInsert( sal_False ),
-    bBlock( sal_False ),
-    bOrganizerMode( sal_False ),
-    nStyleFamilyMask( SFX_STYLE_FAMILY_ALL ),
+    pSttNdIdx( 0 ),
+    pTableItemMapper( 0 ),
     pDocElemTokenMap( 0 ),
     pTableElemTokenMap( 0 ),
     pTableCellAttrTokenMap( 0 ),
-    pTableItemMapper( 0 ),
-    pSttNdIdx( 0 ),
-    bShowProgress( sal_True ),
-    bPreserveRedlineMode( sal_True ),
     pGraphicResolver( 0 ),
-    pEmbeddedResolver( 0 )
+    pEmbeddedResolver( 0 ),
+    nStyleFamilyMask( SFX_STYLE_FAMILY_ALL ),
+    bLoadDoc( sal_True ),
+    bInsert( sal_False ),
+    bBlock( sal_False ),
+    bShowProgress( sal_True ),
+    bOrganizerMode( sal_False ),
+    bPreserveRedlineMode( sal_True )
 {
     _InitItemImport();
 
@@ -516,8 +516,8 @@ void SwXMLImport::startDocument( void )
     if( !GetGraphicResolver().is() )
     {
         pGraphicResolver = SvXMLGraphicHelper::Create( GRAPHICHELPER_MODE_READ );
-        Reference< document::XGraphicObjectResolver > xGraphicResolver( pGraphicResolver );
-        SetGraphicResolver( xGraphicResolver );
+        Reference< document::XGraphicObjectResolver > xLclGraphicResolver( pGraphicResolver );
+        SetGraphicResolver( xLclGraphicResolver );
     }
 
     if( !GetEmbeddedResolver().is() )
@@ -528,8 +528,8 @@ void SwXMLImport::startDocument( void )
             pEmbeddedResolver = SvXMLEmbeddedObjectHelper::Create(
                                             *pPersist,
                                             EMBEDDEDOBJECTHELPER_MODE_READ );
-            Reference< document::XEmbeddedObjectResolver > xEmbeddedResolver( pEmbeddedResolver );
-            SetEmbeddedResolver( xEmbeddedResolver );
+            Reference< document::XEmbeddedObjectResolver > xLclEmbeddedResolver( pEmbeddedResolver );
+            SetEmbeddedResolver( xLclEmbeddedResolver );
         }
     }
 }
@@ -815,7 +815,7 @@ void SwXMLImport::SetViewSettings(const Sequence < PropertyValue > & aViewProps)
     sal_Int32 nCount = aViewProps.getLength();
     const PropertyValue *pValue = aViewProps.getConstArray();
 
-    long nTmp;
+    long nTmp(0);
     sal_Bool bShowRedlineChanges = sal_False, bBrowseMode = sal_False,
              bShowFooter = sal_False, bShowHeader = sal_False;
     sal_Bool bChangeShowRedline = sal_False, bChangeBrowseMode = sal_False,

@@ -560,7 +560,7 @@ void SwXMLExport::ExportTableColumnStyle( const SwXMLTableColumn_Impl& rCol )
         }
 
         {
-            SvXMLElementExport aElem( *this, XML_NAMESPACE_STYLE,
+            SvXMLElementExport aLclElem( *this, XML_NAMESPACE_STYLE,
                                       XML_PROPERTIES, sal_True, sal_True );
         }
     }
@@ -686,10 +686,10 @@ void SwXMLExport::ExportTableLinesAutoStyles(
             const SwStartNode *pBoxSttNd = pBox->GetSttNd();
             if( pBoxSttNd )
             {
-                SwFrmFmt *pFrmFmt = pBox->GetFrmFmt();
-                if( rExpCells.AddCell( *pFrmFmt, rNamePrefix, nOldCol, nLine,
+                SwFrmFmt *pLclFrmFmt = pBox->GetFrmFmt();
+                if( rExpCells.AddCell( *pLclFrmFmt, rNamePrefix, nOldCol, nLine,
                                        bTop) )
-                    ExportFmt( *pFrmFmt, XML_TABLE_CELL );
+                    ExportFmt( *pLclFrmFmt, XML_TABLE_CELL );
 
                 Reference < XCell > xCell = SwXCell::CreateXCell(
                                                 (SwFrmFmt *)rTblInfo.GetTblFmt(),
@@ -897,7 +897,7 @@ void SwXMLExport::ExportTableBox( const SwTableBox& rBox, sal_uInt16 nColSpan,
             SvXMLElementExport aElem( *this, XML_NAMESPACE_TABLE,
                                       XML_TABLE_CELL, sal_True, sal_True );
             {
-                SvXMLElementExport aElem( *this, XML_NAMESPACE_TABLE,
+                SvXMLElementExport aLclElem( *this, XML_NAMESPACE_TABLE,
                                           XML_SUB_TABLE, sal_True, sal_True );
                 ExportTableLines( rBox.GetTabLines(), rTblInfo );
             }
@@ -945,7 +945,7 @@ void SwXMLExport::ExportTableLine( const SwTableLine& rLine,
             ExportTableBox( *pBox, nColSpan, rTblInfo );
             for( sal_uInt16 i=nOldCol; i<nCol; i++ )
             {
-                SvXMLElementExport aElem( *this, XML_NAMESPACE_TABLE,
+                SvXMLElementExport aLclElem( *this, XML_NAMESPACE_TABLE,
                                           XML_COVERED_TABLE_CELL, sal_True,
                                           sal_False );
             }
@@ -1134,10 +1134,10 @@ void SwXMLExport::ExportTable( const SwTableNode& rTblNd )
 
 void SwXMLTextParagraphExport::exportTable(
         const Reference < XTextContent > & rTextContent,
-        sal_Bool bAutoStyles, sal_Bool bProgress )
+        sal_Bool bAutoStyles, sal_Bool bInProgress )
 {
     sal_Bool bOldShowProgress = ((SwXMLExport&)GetExport()).IsShowProgress();
-    ((SwXMLExport&)GetExport()).SetShowProgress( bProgress );
+    ((SwXMLExport&)GetExport()).SetShowProgress( bInProgress );
 
     Reference < XTextTable > xTxtTbl( rTextContent, UNO_QUERY );
     DBG_ASSERT( xTxtTbl.is(), "text table missing" );

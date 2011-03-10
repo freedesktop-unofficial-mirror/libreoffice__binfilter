@@ -171,6 +171,7 @@ void XTextRangeOrNodeIndexPosition::SetAsNodeIndex(
     SwUnoInternalPaM aPaM(*pDoc);
     sal_Bool bSuccess = SwXTextRange::XTextRangeToSwPaM( aPaM, rRange);
     DBG_ASSERT(bSuccess, "illegal range");
+    (void)bSuccess;
 
     // PaM -> Index
     Set(aPaM.GetPoint()->nNode);
@@ -186,6 +187,7 @@ void XTextRangeOrNodeIndexPosition::CopyPositionInto(SwPosition& rPos)
         SwUnoInternalPaM aUnoPaM(*GetDoc());
         sal_Bool bSuccess = SwXTextRange::XTextRangeToSwPaM(aUnoPaM, xRange);
         DBG_ASSERT(bSuccess, "illegal range");
+        (void)bSuccess;
 
         rPos = *aUnoPaM.GetPoint();
     }
@@ -252,12 +254,12 @@ RedlineInfo::RedlineInfo() :
     sAuthor(),
     sComment(),
     aDateTime(),
+    bMergeLastParagraph( sal_False ),
     aAnchorStart(),
     aAnchorEnd(),
     pContentIndex(NULL),
     pNextRedline(NULL),
-    bNeedsAdjustment( sal_False ),
-    bMergeLastParagraph( sal_False )
+    bNeedsAdjustment( sal_False )
 {
 }
 

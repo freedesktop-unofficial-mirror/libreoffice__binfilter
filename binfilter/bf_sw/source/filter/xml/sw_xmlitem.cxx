@@ -57,21 +57,21 @@ SvXMLItemSetContext::~SvXMLItemSetContext()
 {
 }
 
-SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nInPrefix,
                                             const OUString& rLocalName,
                                             const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
     SvXMLItemMapEntriesRef xMapEntries = rIMapper.getMapEntries();
-    SvXMLItemMapEntry* pEntry = xMapEntries->getByName( nPrefix, rLocalName );
+    SvXMLItemMapEntry* pEntry = xMapEntries->getByName( nInPrefix, rLocalName );
 
     if( pEntry && 0 != (pEntry->nMemberId & MID_FLAG_ELEMENT_ITEM_IMPORT) )
     {
-        return CreateChildContext( nPrefix, rLocalName, xAttrList,
+        return CreateChildContext( nInPrefix, rLocalName, xAttrList,
                                    rItemSet, *pEntry, rUnitConv );
     }
     else
     {
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 }
 
@@ -79,14 +79,14 @@ SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nPrefix,
     CreateChildContext if the element matches an entry in the
     SvXMLImportItemMapper with the mid flag MID_FLAG_ELEMENT
 */
-SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SvXMLItemSetContext::CreateChildContext( USHORT nInPrefix,
                                    const ::rtl::OUString& rLocalName,
                                    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/,
                                     SfxItemSet&  /*rItemSet*/,
                                    const SvXMLItemMapEntry& /*rEntry*/,
                                    const SvXMLUnitConverter& /*rUnitConv*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 

@@ -229,7 +229,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
 
     SwDoc *pDoc = pText->GetDoc();
 
-    sal_Bool bExtended = sal_False;
+    sal_Bool bLclExtended = sal_False;
     if( (getExportFlags() & (EXPORT_FONTDECLS|EXPORT_STYLES|
                              EXPORT_MASTERSTYLES|EXPORT_CONTENT)) != 0 )
     {
@@ -267,7 +267,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
                                                 XML_NAMESPACE_UNKNOWN );
                             nIdx = pUnknown->GetNextNamespaceIndex( nIdx );
                         }
-                        bExtended = sal_True;
+                        bLclExtended = sal_True;
                     }
                 }
             }
@@ -282,7 +282,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
         pTwipUnitConv->setXMLMeasureUnit( eUnit );
     }
 
-    SetExtended( bExtended );
+    SetExtended( bLclExtended );
 
     SwDocStat aDocStat( pDoc->GetDocStat() );
     if( (getExportFlags() & EXPORT_META) != 0 )
@@ -356,8 +356,8 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
     if( !GetGraphicResolver().is() )
     {
         pGraphicResolver = SvXMLGraphicHelper::Create( GRAPHICHELPER_MODE_WRITE );
-        Reference< XGraphicObjectResolver > xGraphicResolver( pGraphicResolver );
-        SetGraphicResolver( xGraphicResolver );
+        Reference< XGraphicObjectResolver > xLclGraphicResolver( pGraphicResolver );
+        SetGraphicResolver( xLclGraphicResolver );
     }
 
     SvXMLEmbeddedObjectHelper *pEmbeddedResolver = 0;
@@ -369,8 +369,8 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
             pEmbeddedResolver = SvXMLEmbeddedObjectHelper::Create(
                                             *pPersist,
                                             EMBEDDEDOBJECTHELPER_MODE_WRITE );
-            Reference< XEmbeddedObjectResolver > xEmbeddedResolver( pEmbeddedResolver );
-            SetEmbeddedResolver( xEmbeddedResolver );
+            Reference< XEmbeddedObjectResolver > xLclEmbeddedResolver( pEmbeddedResolver );
+            SetEmbeddedResolver( xLclEmbeddedResolver );
         }
     }
 

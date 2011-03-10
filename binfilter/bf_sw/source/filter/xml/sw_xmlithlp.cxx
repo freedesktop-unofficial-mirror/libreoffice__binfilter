@@ -351,6 +351,9 @@ void lcl_frmitems_MergeXMLHoriPos( SvxGraphicPosition& ePos,
     case GPOS_RB:
         ePos = GPOS_LM==eHori ? GPOS_LB : (GPOS_MM==eHori ? GPOS_MB : GPOS_RB);
         break;
+
+    default:
+        break;
     }
 }
 
@@ -379,6 +382,9 @@ void lcl_frmitems_MergeXMLVertPos( SvxGraphicPosition& ePos,
     case GPOS_RM:
     case GPOS_RB:
         ePos = GPOS_MT==eVert ? GPOS_RT : (GPOS_MM==eVert ? GPOS_RM : GPOS_RB);
+        break;
+
+    default:
         break;
     }
 }

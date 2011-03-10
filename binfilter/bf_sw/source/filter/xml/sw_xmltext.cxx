@@ -49,21 +49,21 @@ class SwXMLBodyContext_Impl : public SvXMLImportContext
 
 public:
 
-    SwXMLBodyContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
+    SwXMLBodyContext_Impl( SwXMLImport& rInImport, sal_uInt16 nPrfx,
                              const OUString& rLName );
     virtual ~SwXMLBodyContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext(
-            sal_uInt16 nPrefix, const OUString& rLocalName,
+            sal_uInt16 nInPrefix, const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
     virtual void EndElement();
 };
 
-SwXMLBodyContext_Impl::SwXMLBodyContext_Impl( SwXMLImport& rImport,
+SwXMLBodyContext_Impl::SwXMLBodyContext_Impl( SwXMLImport& rInImport,
                                               sal_uInt16 nPrfx,
                                                    const OUString& rLName ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
 }
 
@@ -72,16 +72,16 @@ SwXMLBodyContext_Impl::~SwXMLBodyContext_Impl()
 }
 
 SvXMLImportContext *SwXMLBodyContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
     pContext = GetSwImport().GetTextImport()->CreateTextChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList,
+            GetImport(), nInPrefix, rLocalName, xAttrList,
                XML_TEXT_TYPE_BODY );
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

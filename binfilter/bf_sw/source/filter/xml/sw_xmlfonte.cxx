@@ -60,18 +60,18 @@ class SwXMLFontAutoStylePool_Impl: public XMLFontAutoStylePool
 {
     public:
 
-    SwXMLFontAutoStylePool_Impl( SwXMLExport& rExport );
+    SwXMLFontAutoStylePool_Impl( SwXMLExport& rInExport );
 
 };
 
 SwXMLFontAutoStylePool_Impl::SwXMLFontAutoStylePool_Impl(
-    SwXMLExport& rExport ) :
-    XMLFontAutoStylePool( rExport )
+    SwXMLExport& rInExport ) :
+    XMLFontAutoStylePool( rInExport )
 {
     sal_uInt16 aWhichIds[3] = { RES_CHRATR_FONT, RES_CHRATR_CJK_FONT,
                                 RES_CHRATR_CTL_FONT };
 
-    Reference < XTextDocument > xTextDoc( rExport.GetModel(), UNO_QUERY );
+    Reference < XTextDocument > xTextDoc( rInExport.GetModel(), UNO_QUERY );
     Reference < XText > xText = xTextDoc->getText();
     Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
     OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );

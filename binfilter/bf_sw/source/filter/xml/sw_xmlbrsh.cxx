@@ -95,13 +95,13 @@ void SwXMLBrushItemImportContext::ProcessAttrs(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_BGIMG_HREF:
             SvXMLImportItemMapper::PutXMLValue(
@@ -130,7 +130,7 @@ void SwXMLBrushItemImportContext::ProcessAttrs(
 }
 
 SvXMLImportContext *SwXMLBrushItemImportContext::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
@@ -141,14 +141,14 @@ SvXMLImportContext *SwXMLBrushItemImportContext::CreateChildContext(
         {
             xBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( xBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     xBase64Stream );
         }
     }
     if( !pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -170,12 +170,12 @@ void SwXMLBrushItemImportContext::EndElement()
 }
 
 SwXMLBrushItemImportContext::SwXMLBrushItemImportContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList >& xAttrList,
         const SvXMLUnitConverter& rUnitConv,
         const SvxBrushItem& rItem ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     pItem( new SvxBrushItem( rItem ) )
 {
     // delete any grephic that is existing
@@ -185,12 +185,12 @@ SwXMLBrushItemImportContext::SwXMLBrushItemImportContext(
 }
 
 SwXMLBrushItemImportContext::SwXMLBrushItemImportContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         const SvXMLUnitConverter& rUnitConv,
         sal_uInt16 nWhich ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     pItem( new SvxBrushItem( nWhich ) )
 {
     ProcessAttrs( xAttrList, rUnitConv );

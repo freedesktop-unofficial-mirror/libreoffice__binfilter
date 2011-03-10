@@ -106,7 +106,7 @@ const XMLServiceMapEntry_Impl aServiceMap[] =
     SERVICE_MAP_ENTRY( IMPRESS, SIMPRESS ),
     SERVICE_MAP_ENTRY( CHART, SCH ),
     SERVICE_MAP_ENTRY( MATH, SM ),
-    { 0, 0, 0, 0 }
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 static void lcl_putHeightAndWidth ( SfxItemSet &rItemSet,
         sal_Int32 nHeight, sal_Int32 nWidth,
@@ -136,10 +136,10 @@ SwXMLTextImportHelper::SwXMLTextImportHelper(
         const Reference < XModel>& rModel,
         SvXMLImport& rImport,
         const Reference<XPropertySet> & rInfoSet,
-        sal_Bool bInsertM, sal_Bool bStylesOnlyM, sal_Bool bProgress,
+        sal_Bool bInsertM, sal_Bool bStylesOnlyM, sal_Bool bInProgress,
         sal_Bool bBlockM, sal_Bool bOrganizerM,
         sal_Bool /*bPreserveRedlineMode*/ ) :
-    XMLTextImportHelper( rModel, rImport, bInsertM, bStylesOnlyM, bProgress,
+    XMLTextImportHelper( rModel, rImport, bInsertM, bStylesOnlyM, bInProgress,
                          bBlockM, bOrganizerM ),
     pRedlineHelper( NULL )
 {
@@ -305,8 +305,8 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
     {
         const SwFmtCntnt& rCntnt = pFrmFmt->GetCntnt();
         const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();
-        SwOLENode *pOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
-        OSL_ENSURE( pOLENd, "Where is the OLE node" );
+        SwOLENode *pLclOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
+        OSL_ENSURE( pLclOLENd, "Where is the OLE node" );
 
         OUStringBuffer aBuffer( rTblName.getLength() );
         sal_Bool bQuoted = sal_False;
@@ -373,7 +373,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
         if( !bError )
         {
             OUString sTblName( aBuffer.makeStringAndClear() );
-            pOLENd->SetChartTblName( GetRenameMap().Get( XML_TEXT_RENAME_TYPE_TABLE, sTblName ) );
+            pLclOLENd->SetChartTblName( GetRenameMap().Get( XML_TEXT_RENAME_TYPE_TABLE, sTblName ) );
         }
     }
 
