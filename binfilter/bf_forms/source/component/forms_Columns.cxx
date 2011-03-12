@@ -413,7 +413,7 @@ sal_Bool OGridColumn::convertFastPropertyValue( Any& rConvertedValue, Any& rOldV
             }
             catch(starlang::IllegalArgumentException&)
             {
-                OSL_ENSURE(0,"OGridColumn::convertFastPropertyValue: TextAlign must be casted to sal_Int16!");
+                OSL_FAIL("OGridColumn::convertFastPropertyValue: TextAlign must be casted to sal_Int16!");
                 throw;
             }
             break;

@@ -244,14 +244,14 @@ namespace SfxContainer_Impl
 /*N*/   mxMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   if( !mxMSF.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't get ProcessServiceFactory\n" );
+/*N*/       OSL_FAIL( "### couln't get ProcessServiceFactory\n" );
 /*N*/   }
 /*N*/
 /*N*/   mxSFI = Reference< XSimpleFileAccess >( mxMSF->createInstance
 /*N*/       ( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.ucb.SimpleFileAccess" )) ), UNO_QUERY );
 /*N*/   if( !mxSFI.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create SimpleFileAccess component\n" );
+/*N*/       OSL_FAIL( "### couln't create SimpleFileAccess component\n" );
 /*N*/   }
     mxStringSubstitution = Reference< XStringSubstitution >( mxMSF->createInstance
         ( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.PathSubstitution" )) ), UNO_QUERY );
@@ -354,7 +354,7 @@ namespace SfxContainer_Impl
 /*N*/       OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
 /*N*/   if( !xParser.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax parser component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax parser component\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -481,12 +481,12 @@ namespace SfxContainer_Impl
 /*N*/             }
 /*N*/             catch ( xml::sax::SAXException& e )
 /*N*/             {
-/*N*/                 OSL_ENSURE( 0, OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
+/*N*/                 OSL_FAIL( OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
 /*N*/                 return sal_False;
 /*N*/             }
 /*N*/             catch ( io::IOException& e )
 /*N*/             {
-/*N*/                 OSL_ENSURE( 0, OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
+/*N*/                 OSL_FAIL( OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
 /*N*/                 return sal_False;
 /*N*/             }
 /*N*/
@@ -563,7 +563,7 @@ namespace SfxContainer_Impl
 /*?*/                       xLibraryStor = xLibrariesStor->OpenSotStorage( rLib.aName, STREAM_READ | STREAM_NOCREATE );
 /*?*/                       if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
 /*?*/                       {
-/*?*/                           OSL_ENSURE( 0, "### couln't open sub storage for library\n" );
+/*?*/                           OSL_FAIL( "### couln't open sub storage for library\n" );
 /*?*/                           xLibraryStor = NULL;
 /*N*/                       }
 /*N*/                   }
@@ -575,7 +575,7 @@ namespace SfxContainer_Impl
 /*N*/                       sal_Bool bLoaded = implLoadLibraryIndexFile( pImplLib, rLib, xLibraryStor, aIndexFileName );
 /*N*/                       if( bLoaded && aLibName != rLib.aName )
 /*N*/                       {
-/*N*/                           OSL_ENSURE( 0, "Different library names in library"
+/*N*/                           OSL_FAIL( "Different library names in library"
 /*N*/                               " container and library info files!\n" );
 /*N*/                       }
 /*N*/                   }
@@ -872,7 +872,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
             OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
     if( !xHandler.is() )
     {
-        OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
+        OSL_FAIL( "### couln't create sax-writer component\n" );
         return;
     }
 
@@ -928,7 +928,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
     }
     if( !xOut.is() )
     {
-        OSL_ENSURE( 0, "### couln't open output stream\n" );
+        OSL_FAIL( "### couln't open output stream\n" );
         return;
     }
 
@@ -949,7 +949,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/       OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
 /*N*/   if( !xParser.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax parser component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax parser component\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -1000,7 +1000,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   }
 /*N*/   if( !xInput.is() )
 /*N*/   {
-/*N*/       // OSL_ENSURE( 0, "### couln't open input stream\n" );
+/*N*/       // OSL_FAIL( "### couln't open input stream\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -1016,7 +1016,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   }
 /*N*/   catch( Exception& e )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "Parsing error\n" );
+/*N*/       OSL_FAIL( "Parsing error\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -1108,7 +1108,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*?*/       xLibrariesStor = xStorage->OpenUCBStorage( maLibrariesDir, STREAM_WRITE );
 /*?*/       if( !xLibrariesStor.Is() || xLibrariesStor->GetError() != ERRCODE_NONE )
 /*?*/       {
-/*?*/           OSL_ENSURE( 0, "### couln't create libraries sub storage\n" );
+/*?*/           OSL_FAIL( "### couln't create libraries sub storage\n" );
 /*?*/           return;
 /*?*/       }
 /*?*/
@@ -1150,7 +1150,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
                     xLibraryStor = xLibrariesStor->OpenUCBStorage( rLib.aName, STREAM_WRITE );
                     if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
                     {
-                        OSL_ENSURE( 0, "### couln't create sub storage for library\n" );
+                        OSL_FAIL( "### couln't create sub storage for library\n" );
                         return;
                     }
                 }
@@ -1192,7 +1192,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/           OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
 /*N*/   if( !xHandler.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax-writer component\n" );
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -1248,7 +1248,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   }
 /*N*/   if( !xOut.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't open output stream\n" );
+/*N*/       OSL_FAIL( "### couln't open output stream\n" );
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -1395,7 +1395,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*?*/           }
 /*?*/           if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
 /*?*/           {
-/*?*/               OSL_ENSURE( 0, "### couln't open sub storage for library\n" );
+/*?*/               OSL_FAIL( "### couln't open sub storage for library\n" );
 /*?*/               return;
 /*?*/           }
 /*N*/       }
@@ -1425,7 +1425,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*?*/
 /*?*/               if( !xElementStream.Is() || xElementStream->GetError() != ERRCODE_NONE )
 /*?*/               {
-/*?*/                   OSL_ENSURE( 0, "### couln't open library element stream\n" );
+/*?*/                   OSL_FAIL( "### couln't open library element stream\n" );
 /*?*/                   return;
 /*N*/               }
 /*N*/           }

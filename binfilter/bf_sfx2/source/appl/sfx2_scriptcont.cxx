@@ -186,7 +186,7 @@ void SfxScriptLibraryContainer::setLibraryPassword(
                 OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
         if( !xHandler.is() )
         {
-            OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
+            OSL_FAIL( "### couln't create sax-writer component\n" );
             return;
         }
 
@@ -210,7 +210,7 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 /*N*/       OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
 /*N*/   if( !xParser.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax parser component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax parser component\n" );
 /*N*/       return aRetAny;
 /*N*/   }
 /*N*/

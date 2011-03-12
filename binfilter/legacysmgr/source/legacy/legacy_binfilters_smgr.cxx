@@ -1099,7 +1099,7 @@ void OServiceManager::initialize( Sequence< Any > const & )
     throw (Exception)
 {
     check_undisposed();
-    OSL_ENSURE( 0, "not impl!" );
+    OSL_FAIL( "not impl!" );
 }
 
 // XServiceInfo
@@ -1756,12 +1756,12 @@ public:
     }
     virtual sal_Bool SAL_CALL supportsService(const OUString& ServiceName) throw (RuntimeException)
     {
-        OSL_ENSURE( 0, "### unexpected call LegacyServiceManager::supportsService()!" );
+        OSL_FAIL( "### unexpected call LegacyServiceManager::supportsService()!" );
         return m_xOfficeMgr_si->supportsService( ServiceName );
     }
     virtual Sequence< OUString > SAL_CALL getSupportedServiceNames() throw (RuntimeException)
     {
-        OSL_ENSURE( 0, "### unexpected call LegacyServiceManager::getSupportedServiceNames()!" );
+        OSL_FAIL( "### unexpected call LegacyServiceManager::getSupportedServiceNames()!" );
         return m_xOfficeMgr_si->getSupportedServiceNames();
     }
 
@@ -2081,7 +2081,7 @@ void * SAL_CALL legacysmgr_component_getFactory(
         OString cstr(
             OUStringToOString(
                 buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
-        OSL_ENSURE( 0, cstr.getStr() );
+        OSL_FAIL( cstr.getStr() );
 #endif
     }
     return 0;

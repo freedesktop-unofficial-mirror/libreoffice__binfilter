@@ -211,13 +211,13 @@ void SwField::SetPar2(const String& /*rStr*/)
 
 /*N*/ USHORT SwField::GetSubType() const
 /*N*/ {
-/*N*/ //    OSL_ENSURE(0, "Sorry Not implemented");
+/*N*/ //    OSL_FAIL("Sorry Not implemented");
 /*N*/   return 0;
 /*N*/ }
 
 void SwField::SetSubType(USHORT /*nType*/)
 {
-//  OSL_ENSURE(0, "Sorry Not implemented");
+//  OSL_FAIL("Sorry Not implemented");
 }
 
 /*N*/ BOOL  SwField::QueryValue( uno::Any& rVal, BYTE nMId ) const
