@@ -104,7 +104,7 @@ void SvInPlaceClient::TestMemberObjRef( BOOL bFree )
     {
         ByteString aTest = "\t\tGetIPObj() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetIPObj() ) );
-        OSL_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }

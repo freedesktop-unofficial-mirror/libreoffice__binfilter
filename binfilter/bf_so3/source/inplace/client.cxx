@@ -271,7 +271,7 @@ void SvEmbeddedClient::TestMemberObjRef( BOOL bFree )
     {
         ByteString aTest = "\t\tGetEmbedObj() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetEmbedObj() ) );
-        OSL_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -286,7 +286,7 @@ void SvEmbeddedClient::TestMemberInvariant( BOOL bPrint )
         {
             ByteString aTest( "\t\tSvClientData == " );
             aTest.Append( ByteString::CreateFromInt32(  (ULONG)GetClientData() ) );
-            OSL_TRACE( aTest.GetBuffer() );
+            OSL_TRACE( "%s", aTest.GetBuffer() );
         }
     }
 #else
@@ -462,7 +462,7 @@ void SvEmbeddedClient::Embedded( BOOL bEmbed )
     String aTest( "Client---Embedded---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bEmbed ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() );
+    OSL_TRACE( "%s", aTest.GetBuffer() );
 #endif
 
     if( Owner() )
@@ -487,7 +487,7 @@ void SvEmbeddedClient::PlugIn( BOOL bPlugIn )
     String aTest( "Client---PlugIn---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bPlugIn ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #else
     (void)bPlugIn;
 #endif
@@ -585,7 +585,7 @@ void SvEmbeddedClient::Connected( BOOL bConnect )
     String aTest( "Client---Connected---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bConnect ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
     if( !bConnect && HasViewData() )
         FreeViewData( pData );
@@ -612,7 +612,7 @@ void SvEmbeddedClient::Opened( BOOL bOpen )
     String aTest( "Client---Opened---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bOpen ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #else
     (void)bOpen;
 #endif

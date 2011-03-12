@@ -362,7 +362,7 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
                 aTest += ByteString::CreateFromInt32( i );
                 aTest += " ] == ";
                 aTest += ByteString::CreateFromInt32( (ULONG)pEle->GetObj() );
-                OSL_TRACE( aTest.GetBuffer() );
+                OSL_TRACE( "%s", aTest.GetBuffer() );
             }
         }
     }
@@ -370,7 +370,7 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
     {
         ByteString aTest( "\t\taStorage == " );
         aTest += ByteString::CreateFromInt32( (ULONG)&aStorage );
-        OSL_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 }
 

@@ -65,7 +65,7 @@ void SvInPlaceObject::TestMemberObjRef( BOOL bFree )
     {
         ByteString aTest = "\t\tGetIPClient() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetIPClient() ) );
-        OSL_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -80,7 +80,7 @@ void SvInPlaceObject::TestMemberInvariant( BOOL bPrint )
         {
             ByteString aTest( "\t\tSvInPlaceEnvironment == " );
             aTest.Append( ByteString::CreateFromInt32( (ULONG)pIPEnv ) );
-            OSL_TRACE( aTest.GetBuffer() );
+            OSL_TRACE( "%s", aTest.GetBuffer() );
         }
     }
 #else

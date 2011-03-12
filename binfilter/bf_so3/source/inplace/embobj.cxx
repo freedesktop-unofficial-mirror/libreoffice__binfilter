@@ -212,7 +212,7 @@ void SvEmbeddedObject::TestMemberObjRef( BOOL /*bFree*/ )
     {
         ByteString aTest = "\t\tGetClient() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetClient() ) );
-        OSL_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -547,7 +547,7 @@ void SvEmbeddedObject::Embed( BOOL )
     String aTest( "Object---Embed---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bEmbed ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
 }
 
@@ -595,7 +595,7 @@ void SvEmbeddedObject::PlugIn( BOOL )
     String aTest( "Object---PlugIn---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bPlugIn ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
 }
 
@@ -712,7 +712,7 @@ void SvEmbeddedObject::Open( BOOL bOpen )
     String aTest( "Object---Open---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bOpen ? "TRUE" : "FALSE";
-    OSL_TRACE( aTest.GetBuffer() )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
 
     SendViewChanged();
