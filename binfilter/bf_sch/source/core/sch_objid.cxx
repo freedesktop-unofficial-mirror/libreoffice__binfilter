@@ -154,7 +154,7 @@ namespace binfilter {
 /*N*/   rIn >> nObjId;
 /*N*/ }
 
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 0
 
 // this function is for debugging only
 // therefore it is ok to use char* instead of UniString
@@ -221,7 +221,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ #endif    // DBG_UTIL
+/*N*/ #endif    // OSL_DEBUG_LEVEL
 
 
 

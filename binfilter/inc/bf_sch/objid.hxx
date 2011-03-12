@@ -71,7 +71,7 @@ extern SdrObject* GetObjWithId(UINT16 nObjId, const SdrObjList& rObjList,
                                                            SdrIterMode eMode = IM_FLAT);
 
 //Die hier folgenden Funktionen dienen AUSSCHLIESSLICH zu DEBUG-Zwecken
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 0
 extern char *GetCHOBJIDName(const long id);
 #endif
 
