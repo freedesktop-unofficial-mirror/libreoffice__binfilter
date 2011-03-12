@@ -136,7 +136,7 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 // assert, if no anchor frame found at 'virtual' drawing object
 /*N*/                 // and return anchor frame of 'master' drawing object.
-/*N*/                 OSL_ENSURE( false, "<lcl_TheAnchor(..)> - virtual drawing object with no anchor frame!" );
+/*N*/                 OSL_FAIL( "<lcl_TheAnchor(..)> - virtual drawing object with no anchor frame!" );
 /*N*/                 pRet = pDrawContact->GetAnchor();
 /*N*/             }
 /*N*/         }

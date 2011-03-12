@@ -1612,8 +1612,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
     {
         case FLY_AUTO_CNTNT:
             {
-                OSL_ENSURE( false,
-                        "<SwFrm::AppendVirtDrawObj(..)> - at character anchored drawing objects aren't supported." );
+                OSL_FAIL( "<SwFrm::AppendVirtDrawObj(..)> - at character anchored drawing objects aren't supported." );
             }
             break;
         case FLY_PAGE:
@@ -1635,7 +1634,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
             /*nothing to do*/;
         }
         break;
-        default:    OSL_ENSURE( false, "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
+        default:    OSL_FAIL( "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
     }
 
     //Bei der Seite anmelden; kann sein, dass noch keine da ist - die

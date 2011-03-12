@@ -510,7 +510,7 @@ namespace frm
     //---------------------------------------------------------------------
     sal_Bool SAL_CALL OFilterControl::commit() throw(RuntimeException)
     {
-            OSL_ENSURE( false, "OFilterControl::commit: dead code!" );
+            OSL_FAIL( "OFilterControl::commit: dead code!" );
             return sal_False;
     }
 

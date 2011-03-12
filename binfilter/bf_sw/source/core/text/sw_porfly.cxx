@@ -353,7 +353,7 @@ namespace binfilter {
 /*N*/         pSdrObj = GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm );
 /*N*/         if ( !pSdrObj )
 /*N*/         {
-/*N*/             OSL_ENSURE( false, "SwFlyCntPortion::SetBase(..) - No drawing object found by <GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm )>" );
+/*N*/             OSL_FAIL( "SwFlyCntPortion::SetBase(..) - No drawing object found by <GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm )>" );
 /*N*/             pSdrObj = GetDrawContact()->GetMaster();
 /*N*/         }
 /*N*/       aBoundRect = pSdrObj->GetBoundRect();

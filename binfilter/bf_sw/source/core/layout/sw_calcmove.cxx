@@ -1571,7 +1571,7 @@ namespace binfilter {
 /*?*/                 // doesn't makes sense. Thus, return TRUE.
 /*?*/                 if ( IsAnFollow( pFrm ) && !pFrm->IsValid() )
 /*?*/                 {
-/*?*/                     OSL_ENSURE( false, "Only a warning for task 108824:/n<SwCntntFrm::_WouldFit(..) - follow not valid!" );
+/*?*/                     OSL_FAIL( "Only a warning for task 108824:/n<SwCntntFrm::_WouldFit(..) - follow not valid!" );
 /*?*/                     return TRUE;
 /*?*/                 }
 /*N*/             }

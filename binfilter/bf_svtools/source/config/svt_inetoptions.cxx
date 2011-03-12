@@ -270,8 +270,7 @@ SvtInetOptions::Impl::Impl():
     for (sal_Int32 i = 0; i < ENTRY_COUNT; ++i)
         aKeys[i] = m_aEntries[i].m_aName;
     if (!EnableNotification(aKeys))
-        OSL_ENSURE(false,
-                   "SvtInetOptions::Impl::Impl(): Bad EnableNotifications()");
+        OSL_FAIL("SvtInetOptions::Impl::Impl(): Bad EnableNotifications()");
 }
 
 //============================================================================

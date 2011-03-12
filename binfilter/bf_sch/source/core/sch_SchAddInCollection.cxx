@@ -93,8 +93,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/     catch( const uno::Exception& aEx )
 /*N*/     {
-/*N*/         OSL_ENSURE( false,
-/*N*/                     ::rtl::OUStringToOString(
+/*N*/         OSL_FAIL( ::rtl::OUStringToOString(
 /*N*/                         ::rtl::OUString(
 /*N*/                             RTL_CONSTASCII_USTRINGPARAM(
 /*N*/                                 "Couldn't initialize add-in collection: " )) +

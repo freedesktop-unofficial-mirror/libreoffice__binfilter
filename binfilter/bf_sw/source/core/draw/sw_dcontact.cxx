@@ -917,7 +917,7 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                             if ( !GetMaster()->IsInserted() )
                             {
                                 // debug assert
-                                OSL_ENSURE( false, "<SwDrawContact::ConnectToLayout(..)> - master drawing object not inserted!?" );
+                                OSL_FAIL( "<SwDrawContact::ConnectToLayout(..)> - master drawing object not inserted!?" );
 
                                 pDrawFrmFmt->GetDoc()->GetDrawModel()->GetPage(0)->
                                     InsertObject( GetMaster(), GetMaster()->GetOrdNumDirect() );
