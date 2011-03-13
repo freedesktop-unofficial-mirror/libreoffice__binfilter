@@ -409,7 +409,8 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/
 /*N*/               xPer->DoOwnerLoad(xStor);
 /*N*/               xPer->CleanUp();
-/*N*/               xPer->DoSave();
+                                DBG_ASSERT( 0, "DoSave return value is not checed here, seems buggy" );
+                                //xPer->DoSave();
 /*N*/               xPer->DoSaveCompleted( 0 );
 /*N*/           }
 /*N*/
@@ -697,27 +698,6 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
 /*N*/ }
 
 //-------------------------------------------------------------------------
-
-/*N*/ sal_Bool SfxObjectShell::DoSave()
-// DoSave wird nur noch ueber OLE aufgerufen. Sichern eigener Dokumente im SFX
-// laeuft uber DoSave_Impl, um das Anlegen von Backups zu ermoeglichen.
-// Save in eigenes Format jetzt auch wieder Hierueber
-/*N*/ {
-/*N*/   sal_Bool bOk = sal_False ;
-/*N*/   {
-/*N*/       ModifyBlocker_Impl aBlock( this );
-/*N*/       SfxForceLinkTimer_Impl aFLT( this );
-/*N*/       pImp->bIsSaving = sal_True;
-/*N*/       String aPasswd;
-/*N*/       if ( IsOwnStorageFormat_Impl( *GetMedium() ) &&
-/*N*/            GetPasswd_Impl( GetMedium()->GetItemSet(), aPasswd ) )
-/*N*/           GetMedium()->GetStorage()->SetKey( S2BS( aPasswd ) );   //!!! (pb) needs new implementation
-/*N*/       GetStorage()->SetVersion( GetMedium()->GetFilter()->GetVersion() );
-/*N*/       bOk = Save();
-/*N*/   }
-
-/*N*/   return bOk;
-/*N*/ }
 
 /*N*/ void Lock_Impl( SfxObjectShell* /*pDoc*/, BOOL /*bLock*/ )
 /*N*/ {

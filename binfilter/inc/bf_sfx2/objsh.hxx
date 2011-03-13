@@ -239,7 +239,6 @@ public:
                                         StorageMode nStorageMode );
 
     virtual sal_Bool            DoLoad( SfxMedium * pMedium );
-    virtual sal_Bool            DoSave();
     virtual sal_Bool            DoSaveAs( SvStorage * pNewStor );
     virtual sal_Bool            DoSaveCompleted( SvStorage * pNewStor = NULL );
     virtual sal_Bool            DoSaveCompleted( SfxMedium * pNewStor);

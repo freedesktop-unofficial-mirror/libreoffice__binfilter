@@ -737,8 +737,9 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/           SvPersist* pO = *ppObjRef;
 /*N*/           if( pO->IsModified() )
 /*N*/           {
-/*?*/               pO->DoSave();
-/*?*/               pO->DoSaveCompleted();
+                            DBG_BF_ASSERT(0, "return value of DoSave() is not checked here");
+                            //pO->DoSave();
+/*?*/                       pO->DoSaveCompleted();
 /*N*/           }
 /*N*/           ppObjRef->Clear();
 /*N*/           if (pPersist->Unload(pO))

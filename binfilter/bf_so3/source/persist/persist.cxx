@@ -1270,14 +1270,6 @@ BOOL SvPersist::DoLoad
     return DoLoad( xStg );
 }
 
-BOOL SvPersist::DoSave()
-{
-    EnableSetModified( FALSE );
-    bSaveFailed = !Save();
-    EnableSetModified( TRUE );
-    return !bSaveFailed;
-}
-
 BOOL SvPersist::DoSaveAs( SvStorage * pStor )
 {
     EnableSetModified( FALSE );
@@ -1663,7 +1655,7 @@ BOOL SvPersist::SaveChilds()
                     // save it into my storage
                     bRet = SaveElement( GetStorage(), pEle );
                 }
-                else if( pEle->GetPersist()->DoSave() )
+                else if( false)
                 {
                     // always commit child objects
                     if( !pEle->GetPersist()->GetStorage()->Commit() )

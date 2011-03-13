@@ -486,19 +486,11 @@ SO2_DECL_REF(SvInPlaceObject)
 /*N*/     #endif
 /*N*/                                             if ( bForceSave )
 /*N*/                                             {
-/*N*/                                                 //  #96148# after adjusting the data that wasn't in the MemChart
-/*N*/                                                 //  in a binary file (ChartRange etc.), the chart object has to be
-/*N*/                                                 //  saved (within the open document, in transacted mode, so the
-/*N*/                                                 //  original file isn't changed yet), so the changes are still
-/*N*/                                                 //  there after the chart is swapped out and loaded again.
-/*N*/                                                 //  The chart can't get the modified flag set, because then it
-/*N*/                                                 //  wouldn't be swapped out at all. So it has to be saved manually
-/*N*/                                                 //  here (which is unnecessary if the chart is modified before it
-/*N*/                                                 //  it swapped out). At this point, we don't have to care about
-/*N*/                                                 //  contents being lost when saving in old binary format, because
-/*N*/                                                 //  the chart was just loaded from that format.
-/*N*/
-/*N*/                                                 aIPObj->DoSave();
+                                                      // the return value of DoSave() was not checked, this is not a good style...
+                                                      // due to the suppression of the function DoSave() this stay here just for
+                                                      // pro memoria, waiting that all the if is cleaned out
+                                                      DBG_BF_ASSERT(0, "return value of DoSave() was not checked here!");
+                                                      //aIPObj->DoSave();
 /*N*/                                                 aIPObj->DoSaveCompleted();
 /*N*/                                             }
 /*N*/                                         }

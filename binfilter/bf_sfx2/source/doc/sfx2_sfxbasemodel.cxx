@@ -1099,7 +1099,7 @@ extern sal_Bool supportsMetaFileHandle_Impl();
 /*N*/     {
 /*N*/       if ( m_pData->m_pObjectShell->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
-/*N*/           if ( m_pData->m_pObjectShell->DoSave() )
+/*N*/           if ( false)
 /*N*/               m_pData->m_pObjectShell->DoSaveCompleted();
 /*N*/       }
 /*N*/       else

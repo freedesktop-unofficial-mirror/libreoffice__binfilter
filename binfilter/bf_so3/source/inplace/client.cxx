@@ -526,7 +526,7 @@ BOOL SvEmbeddedClient::SaveObject()
         SvEmbeddedObject * pE = GetEmbedObj();
         if( pE )
         {
-            bRet = pE->DoSave();
+            bRet = false;
             pE->DoSaveCompleted();
         }
     }

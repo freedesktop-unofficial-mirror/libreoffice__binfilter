@@ -230,7 +230,6 @@ public:
                             short nStorMode );
     virtual BOOL    DoLoad( SvStorage * );
     BOOL            DoOwnerLoad( SvStorage * );
-    virtual BOOL    DoSave();
     virtual BOOL    DoSaveAs( SvStorage * pNewStg );
     virtual void    DoHandsOff();
     virtual BOOL    DoSaveCompleted( SvStorage * = NULL );
