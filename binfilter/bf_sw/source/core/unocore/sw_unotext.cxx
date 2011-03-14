@@ -1092,7 +1092,7 @@ sal_Int16 SwXText::compareRegionEnds(
     return ComparePositions(xEnd1, xEnd2);
 }
 
-/*-- 15.03.2002 12:30:40---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 uno::Reference< beans::XPropertySetInfo > SwXText::getPropertySetInfo(  )
@@ -1102,7 +1102,7 @@ uno::Reference< beans::XPropertySetInfo > SwXText::getPropertySetInfo(  )
         new SfxItemPropertySetInfo(_pMap);
     return xInfo;
 }
-/*-- 15.03.2002 12:30:42---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXText::setPropertyValue( const ::rtl::OUString& /*aPropertyName*/, const uno::Any& /*aValue*/ )
@@ -1112,7 +1112,7 @@ void SwXText::setPropertyValue( const ::rtl::OUString& /*aPropertyName*/, const 
 {
     throw lang::IllegalArgumentException();
 }
-/*-- 15.03.2002 12:30:42---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 uno::Any SwXText::getPropertyValue(
@@ -1167,7 +1167,7 @@ uno::Any SwXText::getPropertyValue(
     return aRet;
 
 }
-/*-- 15.03.2002 12:30:42---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXText::addPropertyChangeListener(
@@ -1178,7 +1178,7 @@ void SwXText::addPropertyChangeListener(
 {
     throw uno::RuntimeException();
 }
-/*-- 15.03.2002 12:30:43---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXText::removePropertyChangeListener(
@@ -1189,7 +1189,7 @@ void SwXText::removePropertyChangeListener(
 {
     throw uno::RuntimeException();
 }
-/*-- 15.03.2002 12:30:43---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXText::addVetoableChangeListener(
@@ -1200,7 +1200,7 @@ void SwXText::addVetoableChangeListener(
 {
     throw uno::RuntimeException();
 }
-/*-- 15.03.2002 12:30:43---------------------------------------------------
+/*-------------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXText::removeVetoableChangeListener(
