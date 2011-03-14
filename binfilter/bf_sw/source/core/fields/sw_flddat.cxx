@@ -220,7 +220,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/     return (Time)aDT;
 /*N*/ }
 
-/*-----------------04.03.98 11:05-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDateTimeField::QueryValue( uno::Any& rVal, BYTE nMId ) const
@@ -266,7 +266,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/     }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------04.03.98 11:05-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDateTimeField::PutValue( const uno::Any& rVal, BYTE nMId )

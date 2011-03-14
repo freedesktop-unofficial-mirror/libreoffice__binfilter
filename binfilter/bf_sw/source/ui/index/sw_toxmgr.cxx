@@ -37,7 +37,7 @@
 
 namespace binfilter {
 
-/*-----------------23.01.98 07:41-------------------
+/*--------------------------------------------------
     Standard - Verzeichnisnamen herausreichen
 --------------------------------------------------*/
 /*N*/ const String& SwTOXBase::GetTOXName(TOXTypes eType)

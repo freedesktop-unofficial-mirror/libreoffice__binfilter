@@ -26,7 +26,7 @@
  *
  ************************************************************************/
 
-/* -----------------08.01.99 14:55-------------------
+/* --------------------------------------------------
  * Und hier die Beschreibung:
  *
  * Durch die PROTOCOL-Makros wird es ermoeglicht, Ereignisse im Frame-Methoden zu protokollieren.
@@ -139,7 +139,7 @@ namespace binfilter {
     SwImplProtocol(){DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ };
 
-/* -----------------11.01.99 10:43-------------------
+/* --------------------------------------------------
  * Durch das PROTOCOL_ENTER-Makro wird ein SwEnterLeave-Objekt erzeugt,
  * wenn die aktuelle Funktion aufgezeichnet werden soll, wird ein
  * SwImplEnterLeave-Objekt angelegt. Der Witz dabei ist, das der Ctor

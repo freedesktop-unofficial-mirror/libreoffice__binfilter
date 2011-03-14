@@ -128,7 +128,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   nSubType = nSub & 0xff00;
 /*N*/ }
 
-/*-----------------09.03.98 08:04-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwUserField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -156,7 +156,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------09.03.98 08:04-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ sal_Bool SwUserField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -303,7 +303,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/ }
 
-/*-----------------04.03.98 17:05-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwUserFieldType::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -328,7 +328,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------04.03.98 17:05-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwUserFieldType::PutValue( const uno::Any& rAny, BYTE nMId )

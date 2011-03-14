@@ -471,7 +471,7 @@ String SwGetRefField::GetPar2() const
     return Expand();
 }
 
-/*-----------------06.03.98 13:34-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwGetRefField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -541,7 +541,7 @@ String SwGetRefField::GetPar2() const
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------06.03.98 13:34-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwGetRefField::PutValue( const uno::Any& rAny, BYTE nMId )

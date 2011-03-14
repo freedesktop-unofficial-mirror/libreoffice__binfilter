@@ -120,7 +120,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/   }
 /*N*/ }
 
-/* -----------------24.02.99 14:51-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 /*N*/ BOOL SwDBFieldType::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
@@ -145,7 +145,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/* -----------------24.02.99 14:51-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 /*N*/ BOOL SwDBFieldType::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
@@ -349,7 +349,7 @@ const String& SwDBField::GetPar1() const
 /*N*/   nSubType = nType;
 /*N*/ }
 
-/*-----------------06.03.98 16:15-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
@@ -381,7 +381,7 @@ const String& SwDBField::GetPar1() const
 /*N*/   return TRUE;
 /*N*/
 /*N*/ }
-/*-----------------06.03.98 16:15-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
@@ -466,7 +466,7 @@ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, U
 
 //------------------------------------------------------------------------------
 
-/*-----------------06.03.98 16:55-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBNameInfField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
@@ -494,7 +494,7 @@ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, U
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------06.03.98 16:55-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
@@ -616,7 +616,7 @@ void SwDBNextSetField::SetPar1(const String& rStr)
 {
     aCond = rStr;
 }
-/*-----------------06.03.98 16:16-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBNextSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -633,7 +633,7 @@ void SwDBNextSetField::SetPar1(const String& rStr)
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*-----------------06.03.98 16:16-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
@@ -739,7 +739,7 @@ void SwDBNumSetField::SetPar2(const String& rStr)
 {
     aPar2 = rStr;
 }
-/*-----------------06.03.98 16:16-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBNumSetField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
@@ -759,7 +759,7 @@ void SwDBNumSetField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*-----------------06.03.98 16:16-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
@@ -843,14 +843,14 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 /*N*/   return pTmp;
 /*N*/ }
 
-/*-----------------06.03.98 16:16-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBNameField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   return SwDBNameInfField::QueryValue(rAny, nMId );
 /*N*/ }
-/*-----------------06.03.98 16:16-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
@@ -921,7 +921,7 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*N*/     pTmp->SetSubType(GetSubType());
 /*N*/   return pTmp;
 /*N*/ }
-/*-----------------06.03.98 16:15-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDBSetNumberField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
@@ -941,7 +941,7 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*-----------------06.03.98 16:15-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )

@@ -133,7 +133,7 @@ struct SwTextSectionProperties_Impl
         delete pLRSpaceItem; // #109700#
     }
 };
-/* -----------------------------11.07.00 12:10--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 SwXTextSection* SwXTextSection::GetImplementation(Reference< XInterface> xRef )
@@ -144,7 +144,7 @@ SwXTextSection* SwXTextSection::GetImplementation(Reference< XInterface> xRef )
     return 0;
 }
 
-/* -----------------------------13.03.00 12:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextSection::getUnoTunnelId()
@@ -152,7 +152,7 @@ const uno::Sequence< sal_Int8 > & SwXTextSection::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextSection::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -241,7 +241,7 @@ uno::Sequence< uno::Reference< text::XTextSection >  > SwXTextSection::getChildS
     return aSeq;
 
 }
-/* -----------------18.02.99 13:31-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextSection::attachToRange(const uno::Reference< text::XTextRange > & xTextRange)
@@ -447,7 +447,7 @@ uno::Reference< beans::XPropertySetInfo >  SwXTextSection::getPropertySetInfo(vo
     static uno::Reference< beans::XPropertySetInfo >  aRef = aPropSet.getPropertySetInfo();
     return aRef;
 }
-/* -----------------------------12.02.01 10:29--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 struct SwSectItemSet_Impl
@@ -459,7 +459,7 @@ struct SwSectItemSet_Impl
     ~SwSectItemSet_Impl()
         {delete pItemSet;}
 };
-/* -----------------------------12.02.01 10:45--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextSection::setPropertyValues(
@@ -772,7 +772,7 @@ void SwXTextSection::setPropertyValue(
     aValues.getArray()[0] = aValue;
     setPropertyValues(aPropertyNames, aValues);
 }
-/* -----------------------------12.02.01 10:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< Any > SwXTextSection::getPropertyValues(
@@ -1029,7 +1029,7 @@ uno::Any SwXTextSection::getPropertyValue(const OUString& rPropertyName)
     aPropertyNames.getArray()[0] = rPropertyName;
     return getPropertyValues(aPropertyNames).getConstArray()[0];
 }
-/* -----------------------------12.02.01 10:30--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextSection::addPropertiesChangeListener(
@@ -1038,7 +1038,7 @@ void SwXTextSection::addPropertiesChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/* -----------------------------12.02.01 10:30--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextSection::removePropertiesChangeListener(
@@ -1047,7 +1047,7 @@ void SwXTextSection::removePropertiesChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/* -----------------------------12.02.01 10:30--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextSection::firePropertiesChangeEvent(
@@ -1386,14 +1386,14 @@ void SwXTextSection::setName(const OUString& rName) throw( uno::RuntimeException
     else
         throw uno::RuntimeException();
 }
-/* -----------------02.11.99 11:30-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 OUString SwXTextSection::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SwXTextSection");
 }
-/* -----------------02.11.99 11:30-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 sal_Bool SwXTextSection::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
@@ -1402,7 +1402,7 @@ sal_Bool SwXTextSection::supportsService(const OUString& rServiceName) throw( un
                 !rServiceName.compareToAscii("com.sun.star.document.LinkTarget") ||
                     !rServiceName.compareToAscii("com.sun.star.text.TextContent");
 }
-/* -----------------02.11.99 11:30-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 uno::Sequence< OUString > SwXTextSection::getSupportedServiceNames(void) throw( uno::RuntimeException )

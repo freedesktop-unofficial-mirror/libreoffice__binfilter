@@ -195,7 +195,7 @@ void SwTblField::SetPar2(const String& rStr)
 }
 
 
-/*-----------------04.03.98 10:33-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwTblField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -230,7 +230,7 @@ void SwTblField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/     return bRet;
 /*N*/ }
-/*-----------------04.03.98 10:33-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )

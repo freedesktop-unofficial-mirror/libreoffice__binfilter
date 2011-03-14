@@ -740,7 +740,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/   SetPaintOfst(0);
 /*N*/ }
 
-/*-----------------16.10.00 11:39-------------------
+/*--------------------------------------------------
  * There are a few differences between a copy constructor
  * and the following constructor for multi-line formatting.
  * The root is the first line inside the multi-portion,

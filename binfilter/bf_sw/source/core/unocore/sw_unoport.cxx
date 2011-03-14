@@ -126,7 +126,7 @@ SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr,
 //  else if(ePortionType == PORTION_FRAME)
 //      ...;
 }
-/* -----------------24.03.99 16:30-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr, uno::Reference< XText > & rParent,
@@ -446,7 +446,7 @@ uno::Any SwXTextPortion::getPropertyValue(
     GetPropertyValues( &rPropertyName, &aAny, 1 );
     return aAny;
 }
-/* -----------------------------02.04.01 11:44--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::setPropertyValues(
@@ -477,7 +477,7 @@ void SwXTextPortion::setPropertyValues(
     else
         throw uno::RuntimeException();
 }
-/* -----------------------------02.04.01 11:44--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< Any > SwXTextPortion::getPropertyValues(
@@ -492,7 +492,7 @@ Sequence< Any > SwXTextPortion::getPropertyValues(
                        rPropertyNames.getLength() );
     return aValues;
 }
-/* -----------------------------02.04.01 11:44--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::addPropertiesChangeListener(
@@ -500,14 +500,14 @@ void SwXTextPortion::addPropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* -----------------------------02.04.01 11:44--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::removePropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* -----------------------------02.04.01 11:44--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextPortion::firePropertiesChangeEvent(
@@ -705,7 +705,7 @@ void SwXTextPortion::removeEventListener(const uno::Reference< lang::XEventListe
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/* -----------------24.03.99 13:30-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 uno::Reference< container::XEnumeration >  SwXTextPortion::createContentEnumeration(const OUString& /*aServiceName*/)
@@ -719,7 +719,7 @@ uno::Reference< container::XEnumeration >  SwXTextPortion::createContentEnumerat
     return xRet;
 
 }
-/* -----------------------------04.07.01 08:52--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextPortion::getUnoTunnelId()
@@ -727,7 +727,7 @@ const uno::Sequence< sal_Int8 > & SwXTextPortion::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------04.07.01 08:52--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SwXTextPortion::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -741,7 +741,7 @@ sal_Int64 SwXTextPortion::getSomething( const uno::Sequence< sal_Int8 >& rId )
     }
     return 0;
 }
-/* -----------------24.03.99 13:30-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 uno::Sequence< OUString > SwXTextPortion::getAvailableServiceNames(void) throw( uno::RuntimeException )
@@ -752,14 +752,14 @@ uno::Sequence< OUString > SwXTextPortion::getAvailableServiceNames(void) throw( 
     pArray[0] = C2U("com.sun.star.text.TextContent");
     return aRet;
 }
-/* -----------------25.03.99 10:30-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 OUString SwXTextPortion::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SwXTextPortion");
 }
-/* -----------------25.03.99 10:30-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 sal_Bool SwXTextPortion::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
@@ -871,7 +871,7 @@ void SwXTextPortion::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
     if(!aFrameDepend.GetRegisteredIn())
         pFrameFmt = 0;
 }
-/* -----------------------------19.02.01 10:52--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 SwXRubyPortion::SwXRubyPortion(const SwUnoCrsr* pPortionCrsr,
@@ -893,7 +893,7 @@ SwXRubyPortion::SwXRubyPortion(const SwUnoCrsr* pPortionCrsr,
         rItem.QueryValue(*pRubyIsAbove, MID_RUBY_ABOVE);
     }
 }
-/* -----------------------------19.02.01 10:52--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 SwXRubyPortion::~SwXRubyPortion()

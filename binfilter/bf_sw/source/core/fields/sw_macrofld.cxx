@@ -149,7 +149,7 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/   return aText;
 /*N*/ }
 
-/*-----------------05.03.98 13:38-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwMacroField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -171,7 +171,7 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------05.03.98 13:38-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )

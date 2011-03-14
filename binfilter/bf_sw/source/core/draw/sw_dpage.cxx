@@ -120,7 +120,7 @@ Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
                     aRect.Right()  = aPt.X();
                     aRect.Bottom() = aPt.Y();
 */
-/* -----------------------------27.11.00 07:35--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 /*N*/ Reference< XInterface > SwDPage::createUnoPage()

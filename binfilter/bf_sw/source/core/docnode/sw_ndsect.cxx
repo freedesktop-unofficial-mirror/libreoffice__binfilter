@@ -525,7 +525,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/* -----------------19.02.99 09:31-------------------
+/* --------------------------------------------------
  * LockFrms wurde im InsertSection genutzt, um zu verhindern, dass
  * SectionFrms durch das DelFrms zerstoert werden. Dies ist durch
  * den Destroy-Listen-Mechanismus ueberfluessig geworden.

@@ -64,7 +64,7 @@ using rtl::OUString;
 /******************************************************************
  *
  ******************************************************************/
-/* -----------------------------13.03.00 12:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXFootnote::getUnoTunnelId()
@@ -72,7 +72,7 @@ const uno::Sequence< sal_Int8 > & SwXFootnote::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXFootnote::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -86,14 +86,14 @@ sal_Int64 SAL_CALL SwXFootnote::getSomething( const uno::Sequence< sal_Int8 >& r
     }
     return SwXText::getSomething( rId );
 }
-/* -----------------------------06.04.00 16:36--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXFootnote::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFootnote");
 }
-/* -----------------------------06.04.00 16:36--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXFootnote::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -104,7 +104,7 @@ BOOL SwXFootnote::supportsService(const OUString& rServiceName) throw( RuntimeEx
             (m_bIsEndnote && !rServiceName.compareToAscii("com.sun.star.text.Endnote"));
 ;
 }
-/* -----------------------------06.04.00 16:36--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFootnote::getSupportedServiceNames(void) throw( RuntimeException )
@@ -151,7 +151,7 @@ SwXFootnote::~SwXFootnote()
 {
 
 }
-/* -----------------------------21.03.00 15:39--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL SwXFootnote::getTypes(  ) throw(uno::RuntimeException)
@@ -170,7 +170,7 @@ uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL SwXFootnote::getTypes(  ) 
     return aFtnTypes;
 }
 
-/* -----------------------------21.03.00 15:39--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 uno::Sequence< sal_Int8 > SAL_CALL SwXFootnote::getImplementationId(  ) throw(uno::RuntimeException)
@@ -185,7 +185,7 @@ uno::Sequence< sal_Int8 > SAL_CALL SwXFootnote::getImplementationId(  ) throw(un
     }
     return aId;
 }
-/* -----------------------------21.03.00 15:46--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 uno::Any SAL_CALL SwXFootnote::queryInterface( const uno::Type& aType ) throw(uno::RuntimeException)
@@ -234,7 +234,7 @@ void SwXFootnote::setLabel(const OUString& aLabel) throw( uno::RuntimeException 
         throw uno::RuntimeException();
 
 }
-/* -----------------18.02.99 13:32-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xTextRange)
@@ -354,7 +354,7 @@ void SwXFootnote::removeEventListener(const uno::Reference< lang::XEventListener
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/* -----------------06.05.99 15:31-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 const SwStartNode *SwXFootnote::GetStartNode() const
@@ -455,7 +455,7 @@ sal_Bool SwXFootnote::hasElements(  ) throw(RuntimeException)
 {
     return sal_True;
 }
-/* -----------------------------07.01.00 12:39--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXFootnote::Invalidate()
@@ -468,7 +468,7 @@ void SwXFootnote::Invalidate()
         SetDoc(0);
     }
 }
-/* -----------------18.01.99 09:12-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXFootnote::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)

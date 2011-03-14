@@ -381,7 +381,7 @@ void SwGetExpField::SetPar2(const String& rStr)
 /*N*/       SwValueField::SetLanguage(nLng);
 /*N*/ }
 
-/*-----------------07.03.98 16:08-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwGetExpField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -421,7 +421,7 @@ void SwGetExpField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------07.03.98 16:08-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -550,7 +550,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 
 
 
-/* -----------------24.03.99 09:44-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 /*N*/ BOOL SwSetExpFieldType::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -738,7 +738,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/   sExpand = ((SwValueFieldType*)GetTyp())->ExpandValue( rAny, GetFormat(),
 /*N*/                                                           GetLanguage());
 /*N*/ }
-/* -----------------14.07.99 12:21-------------------
+/* --------------------------------------------------
     Description: Find the index of the reference text
     following the current field
  --------------------------------------------------*/
@@ -889,7 +889,7 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/   return sRet;
 /*N*/ }
 
-/*-----------------06.03.98 11:12-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwInputField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -908,7 +908,7 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------06.03.98 11:12-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -964,7 +964,7 @@ void SwInputField::SetSubType(USHORT nSub)
 {
     nSubType = nSub;
 }
-/*-----------------05.03.98 17:22-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwSetExpField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -1032,7 +1032,7 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------05.03.98 17:22-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwSetExpField::PutValue( const uno::Any& rAny, BYTE nMId )

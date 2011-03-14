@@ -182,7 +182,7 @@ void lcl_ConvertTOUNameToUserName(OUString& rTmp)
 /******************************************************************
  * SwXDocumentIndex
  ******************************************************************/
-/* -----------------20.06.98 11:06-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 class SwDocIdxProperties_Impl
@@ -197,7 +197,7 @@ public:
     const OUString& GetTypeName()const {return sUserTOXTypeName;}
     void            SetTypeName(const OUString& rSet) {sUserTOXTypeName = rSet;}
 };
-/* -----------------20.06.98 11:41-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwDocIdxProperties_Impl::SwDocIdxProperties_Impl(const SwTOXType* pType)
@@ -209,7 +209,7 @@ SwDocIdxProperties_Impl::SwDocIdxProperties_Impl(const SwTOXType* pType)
         pTOXBase->SetLevel(MAXLEVEL);
     sUserTOXTypeName = pType->GetTypeName();
 }
-/* -----------------------------10.03.00 18:02--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXDocumentIndex::getUnoTunnelId()
@@ -217,7 +217,7 @@ const uno::Sequence< sal_Int8 > & SwXDocumentIndex::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXDocumentIndex::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -231,14 +231,14 @@ sal_Int64 SAL_CALL SwXDocumentIndex::getSomething( const uno::Sequence< sal_Int8
     }
     return 0;
 }
-/* -----------------------------06.04.00 15:01--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXDocumentIndex::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXDocumentIndex");
 }
-/* -----------------------------06.04.00 15:01--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXDocumentIndex::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -252,7 +252,7 @@ BOOL SwXDocumentIndex::supportsService(const OUString& rServiceName) throw( Runt
                 ( TOX_OBJECTS == eTOXType && C2U("com.sun.star.text.ObjectIndex") == rServiceName) ||
                 ( TOX_AUTHORITIES == eTOXType && C2U("com.sun.star.text.Bibliography") == rServiceName);
 }
-/* -----------------------------06.04.00 15:01--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXDocumentIndex::getSupportedServiceNames(void) throw( RuntimeException )
@@ -309,7 +309,7 @@ SwXDocumentIndex::SwXDocumentIndex(const SwTOXBaseSection* pB, SwDoc* pDc) :
         _pMap = aSwMapProvider.GetPropertyMap(PropertyId);
     }
 }
-/* -----------------15.01.99 14:59-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwXDocumentIndex::SwXDocumentIndex(TOXTypes eType, SwDoc& rDoc) :
@@ -1045,7 +1045,7 @@ void SwXDocumentIndex::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         aLstnrCntnr.Disposing();
     }
 }
-/* -----------------18.02.99 13:39-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXDocumentIndex::attachToRange(const Reference< text::XTextRange > & xTextRange)
@@ -1186,7 +1186,7 @@ void SwXDocumentIndex::removeEventListener(const Reference< XEventListener > & a
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw RuntimeException();
 }
-/* -----------------30.07.99 11:28-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 OUString SwXDocumentIndex::getName(void) throw( RuntimeException )
@@ -1205,7 +1205,7 @@ OUString SwXDocumentIndex::getName(void) throw( RuntimeException )
         throw RuntimeException();
     return uRet;
 }
-/* -----------------30.07.99 11:28-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void SwXDocumentIndex::setName(const OUString& rName) throw( RuntimeException )
@@ -1231,7 +1231,7 @@ void SwXDocumentIndex::setName(const OUString& rName) throw( RuntimeException )
 /******************************************************************
  * SwXDocumentIndexMark
  ******************************************************************/
-/* -----------------------------10.03.00 18:02--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXDocumentIndexMark::getUnoTunnelId()
@@ -1239,7 +1239,7 @@ const uno::Sequence< sal_Int8 > & SwXDocumentIndexMark::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXDocumentIndexMark::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -1261,14 +1261,14 @@ const sal_Char cIdxMark[]       = "com.sun.star.text.DocumentIndexMark";
 const sal_Char cIdxMarkAsian[]  = "com.sun.star.text.DocumentIndexMarkAsian";
 const sal_Char cUserMark[]      = "com.sun.star.text.UserIndexMark";
 const sal_Char cTextContent[]   = "com.sun.star.text.TextContent";
-/* -----------------------------06.04.00 15:07--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXDocumentIndexMark::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXDocumentIndexMark");
 }
-/* -----------------------------06.04.00 15:07--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXDocumentIndexMark::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -1280,7 +1280,7 @@ BOOL SwXDocumentIndexMark::supportsService(const OUString& rServiceName) throw( 
         (eType == TOX_INDEX && !rServiceName.compareToAscii(cIdxMark)) ||
         (eType == TOX_INDEX && !rServiceName.compareToAscii(cIdxMarkAsian));
 }
-/* -----------------------------06.04.00 15:07--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXDocumentIndexMark::getSupportedServiceNames(void) throw( RuntimeException )
@@ -1347,7 +1347,7 @@ SwXDocumentIndexMark::~SwXDocumentIndexMark()
 {
 
 }
-/* -----------------21.04.99 09:36-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXDocumentIndexMark::InitMap(TOXTypes eToxType)
@@ -1440,7 +1440,7 @@ void SwXDocumentIndexMark::setMarkEntry(const OUString& rIndexEntry) throw( Runt
     else
         throw RuntimeException();
 }
-/* -----------------18.02.99 13:40-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXDocumentIndexMark::attachToRange(const Reference< text::XTextRange > & xTextRange)
@@ -1979,7 +1979,7 @@ void SwXDocumentIndexMark::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         break;
     }
 }
-/* -----------------------------16.10.00 11:24--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXDocumentIndexMark::Invalidate()
@@ -1994,21 +1994,21 @@ void SwXDocumentIndexMark::Invalidate()
         m_pDoc = 0;
     }
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXDocumentIndexes::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXDocumentIndexes");
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXDocumentIndexes::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.DocumentIndexes") == rServiceName;
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXDocumentIndexes::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2201,21 +2201,21 @@ SwXDocumentIndex* SwXDocumentIndexes::GetObject(const SwTOXBaseSection* pTOX)
         return new SwXDocumentIndex(pTOX, pFmt->GetDoc());
 }
 
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXIndexStyleAccess_Impl::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXIndexStyleAccess_Impl");
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXIndexStyleAccess_Impl::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.DocumentIndexParagraphStyles") == rServiceName;
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXIndexStyleAccess_Impl::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2334,24 +2334,24 @@ sal_Bool SwXIndexStyleAccess_Impl::hasElements(void) throw( RuntimeException )
     return sal_True;
 }
 
-/* -----------------13.09.99 16:51-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXIndexTokenAccess_Impl::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXIndexTokenAccess_Impl");
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXIndexTokenAccess_Impl::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.DocumentIndexLevelFormat") == rServiceName;
 }
-/* -----------------------------06.04.00 15:08--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXIndexTokenAccess_Impl::getSupportedServiceNames(void) throw( RuntimeException )

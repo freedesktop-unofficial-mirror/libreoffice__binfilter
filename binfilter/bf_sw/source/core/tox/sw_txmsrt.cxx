@@ -419,7 +419,7 @@ void SwTOXAuthority::_GetText( String& rTxt, String& /*rTxtReading*/ )
     rTxt = m_rField.GetFld()->Expand();
 }
 
-/* -----------------21.09.99 12:50-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void    SwTOXAuthority::FillText( SwTxtNode& rNd,
@@ -448,7 +448,7 @@ void    SwTOXAuthority::FillText( SwTxtNode& rNd,
         sText = (pField->GetFieldText((ToxAuthorityField) nAuthField));
     rNd.Insert( sText, rInsPos );
 }
-/* -----------------14.10.99 09:35-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 BOOL    SwTOXAuthority::operator==( const SwTOXSortTabBase& rCmp)
@@ -457,7 +457,7 @@ BOOL    SwTOXAuthority::operator==( const SwTOXSortTabBase& rCmp)
             ((SwAuthorityField*)m_rField.GetFld())->GetHandle() ==
                 ((SwAuthorityField*)((SwTOXAuthority&)rCmp).m_rField.GetFld())->GetHandle();
 }
-/* -----------------21.10.99 09:52-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 BOOL    SwTOXAuthority::operator<( const SwTOXSortTabBase& rBase)

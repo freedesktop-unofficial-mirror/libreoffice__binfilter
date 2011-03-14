@@ -62,7 +62,7 @@ using namespace ::comphelper;
 
 SwUnoPropertyMapProvider aSwMapProvider;
 
-/* -----------------24.06.98 18:12-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwUnoPropertyMapProvider::SwUnoPropertyMapProvider()
@@ -72,7 +72,7 @@ SwUnoPropertyMapProvider::SwUnoPropertyMapProvider()
         aMapArr[i] = 0;
     }
 }
-/* -----------------19.02.99 08:31-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwUnoPropertyMapProvider::~SwUnoPropertyMapProvider()
@@ -83,7 +83,7 @@ SwUnoPropertyMapProvider::~SwUnoPropertyMapProvider()
     delete pPageStyleMap;
     delete pNumStyleMap;
 }
-/* -----------------19.02.99 08:31-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SfxItemPropertySet& SwUnoPropertyMapProvider::GetPropertySet(sal_Int8 nPropSetId)
@@ -125,7 +125,7 @@ SfxItemPropertySet& SwUnoPropertyMapProvider::GetPropertySet(sal_Int8 nPropSetId
         pRet = 0;
     return *pRet;
 }
-/* -----------------25.06.98 07:19-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 EXTERN_C
@@ -141,7 +141,7 @@ lcl_CompareMap(const void* pSmaller, const void* pBigger )
     return nDiff;
 
 }
-/* -----------------24.06.98 18:12-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwUnoPropertyMapProvider::Sort( sal_uInt16 nId )
@@ -212,7 +212,7 @@ void SwUnoPropertyMapProvider::Sort( sal_uInt16 nId )
     {SW_PROP_NMID(UNO_NAME_REDLINE_TEXT), 0, CPPU_E2T(CPPUTYPE_REFTEXT),                    PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY,   0},\
     {SW_PROP_NMID(UNO_NAME_MERGE_LAST_PARA), 0, CPPU_E2T(CPPUTYPE_BOOLEAN),                             PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY, 0},
 
-/* -----------------24.06.98 18:12-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 #define COMMON_CRSR_PARA_PROPERTIES_FN_ONLY \

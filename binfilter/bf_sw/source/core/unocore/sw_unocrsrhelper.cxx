@@ -99,7 +99,7 @@ using rtl::OUString;
 
 namespace SwUnoCursorHelper
 {
-/* -----------------16.09.98 12:27-------------------
+/* --------------------------------------------------
  *  Lesen spezieller Properties am Cursor
  * --------------------------------------------------*/
 sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
@@ -453,7 +453,7 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
         eState = eNewState;
     return bDone;
 };
-/* -----------------30.06.98 10:30-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 sal_Int16 IsNodeNumStart(SwPaM& rPam, PropertyState& eState)
@@ -469,7 +469,7 @@ sal_Int16 IsNodeNumStart(SwPaM& rPam, PropertyState& eState)
     return -1;
 }
 
-/* -----------------25.05.98 11:41-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void setNumberingProperty(const Any& rValue, SwPaM& rPam)
@@ -583,7 +583,7 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
 }
 
 
-/* -----------------25.05.98 11:40-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void  getNumberingProperty(SwPaM& rPam, PropertyState& eState, Any * pAny )
@@ -599,7 +599,7 @@ void  getNumberingProperty(SwPaM& rPam, PropertyState& eState, Any * pAny )
     else
         eState = PropertyState_DEFAULT_VALUE;
 }
-/* -----------------04.07.98 15:15-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void GetCurPageStyle(SwPaM& rPaM, String &rString)
@@ -608,7 +608,7 @@ void GetCurPageStyle(SwPaM& rPaM, String &rString)
     if(pPage)
         SwStyleNameMapper::FillProgName( pPage->GetPageDesc()->GetName(), rString, GET_POOLID_PAGEDESC, sal_True );
 }
-/* -----------------30.03.99 10:52-------------------
+/* --------------------------------------------------
  * spezielle Properties am Cursor zuruecksetzen
  * --------------------------------------------------*/
 void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
@@ -651,7 +651,7 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
         break;
     }
 }
-/* -----------------21.07.98 11:36-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void InsertFile(SwUnoCrsr* pUnoCrsr,

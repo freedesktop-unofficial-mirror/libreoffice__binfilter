@@ -80,7 +80,7 @@ SV_DECL_PTRARR_DEL( SortKeyArr, TOXSortKeyPtr, 5, 5 )
 SV_IMPL_PTRARR( SortKeyArr, TOXSortKeyPtr )
 
 
-/* -----------------16.09.99 11:53-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
  SwAuthEntry::SwAuthEntry(const SwAuthEntry& rCopy)
@@ -131,7 +131,7 @@ BOOL    SwAuthEntry::GetNextAuthorField(USHORT& nPos, String& rToFill)const
 
 // --------------------------------------------------------
 
-/* -----------------14.09.99 16:15-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwAuthorityFieldType::SwAuthorityFieldType(SwDoc* pDoc)
@@ -164,7 +164,7 @@ SwAuthorityFieldType::SwAuthorityFieldType( const SwAuthorityFieldType& rFType)
         m_pSortKeyArr->Insert((*rFType.m_pSortKeyArr)[i], i);
 }
 
-/* -----------------17.09.99 13:52-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwAuthorityFieldType::~SwAuthorityFieldType()
@@ -182,7 +182,7 @@ SwFieldType*    SwAuthorityFieldType::Copy()  const
 {
     return new SwAuthorityFieldType(m_pDoc);
 }
-/* -----------------17.09.99 13:43-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void    SwAuthorityFieldType::RemoveField(long nHandle)
@@ -213,7 +213,7 @@ void    SwAuthorityFieldType::RemoveField(long nHandle)
     DBG_ASSERT(bRemoved, "Field unknown" );
 #endif
 }
-/* -----------------17.09.99 13:43-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 long    SwAuthorityFieldType::AddField(const String& rFieldContents)
@@ -245,7 +245,7 @@ long    SwAuthorityFieldType::AddField(const String& rFieldContents)
     }
     return nRet;
 }
-/* -----------------17.09.99 14:18-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 BOOL SwAuthorityFieldType::AddField(long nHandle)
@@ -267,7 +267,7 @@ BOOL SwAuthorityFieldType::AddField(long nHandle)
     DBG_ASSERT(bRet, "::AddField(long) failed");
     return bRet;
 }
-/* -----------------17.09.99 14:52-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 const SwAuthEntry*  SwAuthorityFieldType::GetEntryByHandle(long nHandle) const
@@ -323,7 +323,7 @@ long    SwAuthorityFieldType::GetHandle(USHORT nPos)
     }
     return nRet;
 }
-/* -----------------20.10.99 13:38-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 USHORT  SwAuthorityFieldType::GetPosition(long nHandle)
@@ -360,7 +360,7 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
     OSL_FAIL("wrong index");
     return 0;
 }
-/* -----------------19.10.99 13:46-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
@@ -450,7 +450,7 @@ USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
     }
     return nRet;
 }
-/* -----------------------------15.11.00 17:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL    SwAuthorityFieldType::QueryValue( Any& rVal, BYTE nMId ) const
@@ -508,7 +508,7 @@ BOOL    SwAuthorityFieldType::QueryValue( Any& rVal, BYTE nMId ) const
     }
     return TRUE;
 }
-/* -----------------------------15.11.00 17:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL    SwAuthorityFieldType::PutValue( const Any& rAny, BYTE nMId )
@@ -584,7 +584,7 @@ BOOL    SwAuthorityFieldType::PutValue( const Any& rAny, BYTE nMId )
     }
     return bRet;
 }
-/* -----------------19.10.99 13:25-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void SwAuthorityFieldType::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
@@ -593,14 +593,14 @@ void SwAuthorityFieldType::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
     DelSequenceArray();
     SwModify::Modify( pOld, pNew );
 }
-/* -----------------20.10.99 13:38-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 USHORT SwAuthorityFieldType::GetSortKeyCount() const
 {
     return m_pSortKeyArr->Count();
 }
-/* -----------------20.10.99 13:38-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 const SwTOXSortKey*  SwAuthorityFieldType::GetSortKey(USHORT nIdx) const
@@ -611,7 +611,7 @@ const SwTOXSortKey*  SwAuthorityFieldType::GetSortKey(USHORT nIdx) const
     DBG_ASSERT(pRet, "Sort key not found");
     return pRet;
 }
-/* -----------------20.10.99 13:38-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void SwAuthorityFieldType::SetSortKeys(USHORT nKeyCount, SwTOXSortKey aKeys[])
@@ -623,7 +623,7 @@ void SwAuthorityFieldType::SetSortKeys(USHORT nKeyCount, SwTOXSortKey aKeys[])
             m_pSortKeyArr->Insert(new SwTOXSortKey(aKeys[i]), nArrIdx++);
 }
 
-/* -----------------14.09.99 16:15-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
@@ -632,7 +632,7 @@ SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
 {
     nHandle = pType->AddField( rFieldContents );
 }
-/* -----------------17.09.99 14:24-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
@@ -642,7 +642,7 @@ SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
 {
     pType->AddField( nHandle );
 }
-/* -----------------15.09.99 15:00-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwAuthorityField::~SwAuthorityField()
@@ -682,7 +682,7 @@ SwField* SwAuthorityField::Copy() const
     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
     return new SwAuthorityField(pAuthType, nHandle);
 }
-/* -----------------21.09.99 12:55-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 const String&   SwAuthorityField::GetFieldText(ToxAuthorityField eField) const
@@ -691,7 +691,7 @@ const String&   SwAuthorityField::GetFieldText(ToxAuthorityField eField) const
     const SwAuthEntry* pEntry = pAuthType->GetEntryByHandle( nHandle );
     return pEntry->GetAuthorField( eField );
 }
-/* -----------------21.09.99 14:57-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void    SwAuthorityField::SetPar1(const String& rStr)
@@ -700,7 +700,7 @@ void    SwAuthorityField::SetPar1(const String& rStr)
     pType->RemoveField(nHandle);
     nHandle = pType->AddField(rStr);
 }
-/* -----------------11.10.99 09:43-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 USHORT  SwAuthorityField::GetHandlePosition() const
@@ -709,7 +709,7 @@ USHORT  SwAuthorityField::GetHandlePosition() const
     DBG_ASSERT(pAuthType, "no field type");
     return pAuthType->GetPosition(nHandle);
 }
-/* -----------------------------15.11.00 17:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const char* aFieldNames[] =
@@ -746,7 +746,7 @@ const char* aFieldNames[] =
     "Custom5",
     "ISBN"
 };
-/* -----------------------------16.11.00 12:27--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL    SwAuthorityField::QueryValue( Any& rAny, BYTE nMId ) const
@@ -771,7 +771,7 @@ BOOL    SwAuthorityField::QueryValue( Any& rAny, BYTE nMId ) const
     rAny <<= aRet;
     return FALSE;
 }
-/* -----------------------------15.11.00 17:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int16 lcl_Find(const OUString& rFieldName)
@@ -818,7 +818,7 @@ BOOL    SwAuthorityField::PutValue( const Any& rAny, BYTE nMId )
 
     return FALSE;
 }
-/* -----------------11.10.99 09:43-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwFieldType* SwAuthorityField::ChgTyp( SwFieldType* pFldTyp )

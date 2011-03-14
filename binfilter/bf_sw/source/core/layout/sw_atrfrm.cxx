@@ -112,7 +112,7 @@ TYPEINIT2(SwFmtFooter,  SfxPoolItem, SwClient );
 TYPEINIT2(SwFmtPageDesc,  SfxPoolItem, SwClient );
 TYPEINIT1_AUTOFACTORY(SwFmtLineNumber, SfxPoolItem);
 
-/* -----------------19.05.98 09:26-------------------
+/* --------------------------------------------------
  *  Umwandlung fuer QueryValue
  * --------------------------------------------------*/
 sal_Int16 lcl_RelToINT(SwRelationOrient eRelation)
@@ -258,7 +258,7 @@ SfxPoolItem*  SwFmtFrmSize::Clone( SfxItemPool* ) const
 }
 
 
-/* -----------------24.04.98 11:36-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 bool SwFmtFrmSize::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
@@ -316,7 +316,7 @@ bool SwFmtFrmSize::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
     return true;
 }
 
-/* -----------------24.04.98 11:36-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
@@ -1502,7 +1502,7 @@ SfxPoolItem*  SwFmtAnchor::Clone( SfxItemPool* ) const
     return new SwFmtAnchor( *this );
 }
 
-/*-----------------16.02.98 15:21-------------------
+/*--------------------------------------------------
 
   --------------------------------------------------*/
 bool SwFmtAnchor::QueryValue( uno::Any& rVal, BYTE nMemberId ) const

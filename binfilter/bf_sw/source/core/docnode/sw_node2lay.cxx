@@ -46,7 +46,7 @@
 namespace binfilter {
 
 
-/* -----------------25.02.99 10:31-------------------
+/* --------------------------------------------------
  * Die SwNode2LayImpl-Klasse erledigt die eigentliche Arbeit,
  * die SwNode2Layout-Klasse ist nur die der Oefffentlichkeit bekannte Schnittstelle
  * --------------------------------------------------*/
@@ -68,7 +68,7 @@ namespace binfilter {
 /*N*/
 /*N*/ };
 
-/* -----------------25.02.99 10:38-------------------
+/* --------------------------------------------------
  * Hauptaufgabe des Ctor: Das richtige SwModify zu ermitteln,
  * ueber das iteriert wird.
  * Uebergibt man bSearch == TRUE, so wird der naechste Cntnt- oder TableNode
@@ -119,7 +119,7 @@ namespace binfilter {
 /*N*/       pIter = NULL;
 /*N*/ }
 
-/* -----------------25.02.99 10:41-------------------
+/* --------------------------------------------------
  * SwNode2LayImpl::NextFrm() liefert den naechsten "sinnvollen" Frame,
  * beim ersten Aufruf wird am eigentlichen Iterator ein First gerufen,
  * danach die Next-Methode. Das Ergebnis wird auf Brauchbarkeit untersucht,

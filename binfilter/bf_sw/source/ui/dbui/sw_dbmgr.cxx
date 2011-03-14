@@ -240,7 +240,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/   }
 /*?*/   return xConnection;
 /*?*/ }
-/* -----------------------------06.07.00 14:28--------------------------------
+/* ---------------------------------------------------------------------------
     checks if a desired data source table or query is open
  ---------------------------------------------------------------------------*/
 /*N*/ BOOL    SwNewDBMgr::IsDataSourceOpen(const String& rDataSource,
@@ -467,7 +467,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   return nRet;
 /*N*/ }
 
-/* -----------------------------17.07.00 14:18--------------------------------
+/* ---------------------------------------------------------------------------
     close all data sources - after fields were updated
  ---------------------------------------------------------------------------*/
 /*N*/ void  SwNewDBMgr::CloseAll(BOOL bIncludingMerge)
@@ -565,7 +565,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   return pFound;
 /*N*/ }
 
-/* -----------------------------17.07.00 14:31--------------------------------
+/* ---------------------------------------------------------------------------
     rDBName: <Source> + DB_DELIM + <Table>; + <Statement>
  ---------------------------------------------------------------------------*/
 /*M*/ void    SwNewDBMgr::AddDSData(const SwDBData& rData, long nSelStart, long nSelEnd)

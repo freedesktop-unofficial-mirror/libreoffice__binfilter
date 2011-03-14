@@ -691,7 +691,7 @@ namespace binfilter {
 /*N*/   return pPage ? pPage->GetPhyPageNum() : 0;
 /*N*/ }
 
-/*-----------------26.02.01 11:25-------------------
+/*--------------------------------------------------
  * SwFrm::WannaRightPage()
  * decides if the page want to be a rightpage or not.
  * If the first content of the page has a page descriptor,

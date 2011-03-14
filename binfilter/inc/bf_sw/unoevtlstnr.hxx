@@ -39,7 +39,7 @@ namespace com{namespace sun{namespace star{
 }}}
 namespace binfilter {
 
-/* -----------------22.04.99 11:18-------------------
+/* --------------------------------------------------
  *  Verwaltung der EventListener
  * --------------------------------------------------*/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > *  XEventListenerPtr;

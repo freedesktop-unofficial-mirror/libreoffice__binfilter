@@ -235,7 +235,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/       }
 /*N*/   }
 /*N*/
-    /*-----------------14.12.94 09:45-------------------
+    /*--------------------------------------------------
      * 9849: Schnellschuss
      * --------------------------------------------------*/
 /*N*/   if ( pPor==rInf.GetLast() )

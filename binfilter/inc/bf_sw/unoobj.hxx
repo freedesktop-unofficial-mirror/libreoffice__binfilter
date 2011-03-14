@@ -153,7 +153,7 @@ public:
     SwUnoInternalPaM&   operator=(const SwPaM& rPaM);
 };
 
-/*-----------------04.03.98 11:54-------------------
+/*--------------------------------------------------
     Start/EndAction oder Start/EndAllAction
 --------------------------------------------------*/
 class UnoActionContext
@@ -165,7 +165,7 @@ class UnoActionContext
 
         void InvalidateDocument() {pDoc = 0;}
 };
-/* -----------------07.07.98 12:03-------------------
+/* --------------------------------------------------
  *  Actions kurzfristig unterbrechen
  * --------------------------------------------------*/
 class UnoActionRemoveContext

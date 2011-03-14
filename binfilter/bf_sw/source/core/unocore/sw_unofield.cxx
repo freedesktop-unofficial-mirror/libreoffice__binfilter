@@ -420,7 +420,7 @@ USHORT lcl_GetPropertyMapOfService( USHORT nServiceId )
  * SwXFieldMaster
  ******************************************************************/
 TYPEINIT1(SwXFieldMaster, SwClient);
-/* -----------------------------13.03.00 12:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const ::com::sun::star::uno::Sequence< sal_Int8 > & SwXFieldMaster::getUnoTunnelId()
@@ -428,7 +428,7 @@ const ::com::sun::star::uno::Sequence< sal_Int8 > & SwXFieldMaster::getUnoTunnel
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXFieldMaster::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -442,14 +442,14 @@ sal_Int64 SAL_CALL SwXFieldMaster::getSomething( const uno::Sequence< sal_Int8 >
     }
     return 0;
 }
-/* -----------------------------06.04.00 13:22--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXFieldMaster::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFieldMaster");
 }
-/* -----------------------------06.04.00 13:22--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXFieldMaster::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -480,7 +480,7 @@ BOOL SwXFieldMaster::supportsService(const OUString& rServiceName) throw( Runtim
     }
     return bRet;
 }
-/* -----------------------------06.04.00 13:22--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFieldMaster::getSupportedServiceNames(void) throw( RuntimeException )
@@ -725,7 +725,7 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
         }
     }
 }
-/* -----------------------------30.03.01 14:40--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 SwFieldType* SwXFieldMaster::GetFldType(sal_Bool bDontCreate) const
@@ -988,7 +988,7 @@ void SwXFieldMaster::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         m_pDoc = 0;
     }
 }
-/* -----------------------------06.11.00 09:44--------------------------------
+/* ---------------------------------------------------------------------------
 
 const Programmatic2UIName_Impl* lcl_GetFieldNameTable()
 {
@@ -1010,7 +1010,7 @@ const Programmatic2UIName_Impl* lcl_GetFieldNameTable()
     return &aFieldNames[0];
 }
  ---------------------------------------------------------------------------*/
-/* -----------------------------06.11.00 10:26--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXFieldMaster::GetProgrammaticName(const SwFieldType& rType, SwDoc& rDoc)
@@ -1030,7 +1030,7 @@ OUString SwXFieldMaster::GetProgrammaticName(const SwFieldType& rType, SwDoc& rD
     }
     return sRet;
 }
-/* -----------------------------06.11.00 14:12--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXFieldMaster::LocalizeFormula(
@@ -1101,7 +1101,7 @@ struct SwFieldProperties_Impl
 };
 
 TYPEINIT1(SwXTextField, SwClient);
-/* -----------------------------13.03.00 12:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const ::com::sun::star::uno::Sequence< sal_Int8 > & SwXTextField::getUnoTunnelId()
@@ -1109,7 +1109,7 @@ const ::com::sun::star::uno::Sequence< sal_Int8 > & SwXTextField::getUnoTunnelId
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextField::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -1221,7 +1221,7 @@ OUString SwXTextField::getPresentation(sal_Bool bShowCommand) throw( uno::Runtim
         throw uno::RuntimeException();
     return sRet;
 }
-/* -----------------18.02.99 13:39-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextField::attachToRange(
@@ -2099,7 +2099,7 @@ void SwXTextField::removeVetoableChangeListener(const OUString& /*PropertyName*/
 {
     DBG_WARNING("not implemented");
 }
-/* -----------------------------23.03.01 13:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXTextField::update(  ) throw (RuntimeException)
@@ -2153,14 +2153,14 @@ void SwXTextField::update(  ) throw (RuntimeException)
     else
         m_bCallUpdate = sal_True;
 }
-/* -----------------19.03.99 14:11-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 OUString SwXTextField::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SwXTextField");
 }
-/* -----------------19.03.99 14:11-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 sal_Bool SwXTextField::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
@@ -2170,7 +2170,7 @@ sal_Bool SwXTextField::supportsService(const OUString& rServiceName) throw( uno:
         rServiceName.equalsAsciiL(
                 RTL_CONSTASCII_STRINGPARAM("com.sun.star.text.TextContent"));
 }
-/* -----------------19.03.99 14:11-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 uno::Sequence< OUString > SwXTextField::getSupportedServiceNames(void) throw( uno::RuntimeException )
@@ -2194,7 +2194,7 @@ void SwXTextField::Invalidate()
     }
 }
 
-/* -----------------14.12.98 12:00-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextField::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
@@ -2234,14 +2234,14 @@ const SwField*  SwXTextField::GetField() const
 /******************************************************************
  * SwXTextFieldMasters
  ******************************************************************/
-/* -----------------------------06.04.00 13:22--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXTextFieldMasters::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextFieldMasters");
 }
-/* -----------------------------06.04.00 13:22--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXTextFieldMasters::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -2249,7 +2249,7 @@ BOOL SwXTextFieldMasters::supportsService(const OUString& rServiceName) throw( R
     return rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(
                             "com.sun.star.text.TextFieldMasters" ));
 }
-/* -----------------------------06.04.00 13:22--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextFieldMasters::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2480,14 +2480,14 @@ sal_Bool SwXTextFieldMasters::hasElements(void) throw( uno::RuntimeException )
 /******************************************************************
  *
  ******************************************************************/
-/* -----------------------------06.04.00 13:24--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXTextFieldTypes::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextFieldTypes");
 }
-/* -----------------------------06.04.00 13:24--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXTextFieldTypes::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -2495,7 +2495,7 @@ BOOL SwXTextFieldTypes::supportsService(const OUString& rServiceName) throw( Run
     return rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(
                             "com.sun.star.text.TextFields" ));
 }
-/* -----------------------------06.04.00 13:24--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextFieldTypes::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2557,7 +2557,7 @@ sal_Bool SwXTextFieldTypes::hasElements(void) throw( uno::RuntimeException )
     //es gibt sie immer
     return sal_True;
 }
-/* -----------------24.02.99 16:19-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextFieldTypes::refresh(void)  throw( uno::RuntimeException )
@@ -2573,7 +2573,7 @@ void SwXTextFieldTypes::refresh(void)  throw( uno::RuntimeException )
     // call refresh listeners
     aRefreshCont.Refreshed();
 }
-/* -----------------24.02.99 16:19-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextFieldTypes::addRefreshListener(const uno::Reference< util::XRefreshListener > & l)
@@ -2584,7 +2584,7 @@ void SwXTextFieldTypes::addRefreshListener(const uno::Reference< util::XRefreshL
         throw RuntimeException();
     aRefreshCont.AddListener ( reinterpret_cast < const Reference < lang::XEventListener > &> ( l ));
 }
-/* -----------------24.02.99 16:19-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextFieldTypes::removeRefreshListener(const uno::Reference< util::XRefreshListener > & l)
@@ -2597,14 +2597,14 @@ void SwXTextFieldTypes::removeRefreshListener(const uno::Reference< util::XRefre
 /******************************************************************
  * SwXFieldEnumeration
  ******************************************************************/
-/* -----------------------------06.04.00 13:25--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXFieldEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFieldEnumeration");
 }
-/* -----------------------------06.04.00 13:25--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXFieldEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -2612,7 +2612,7 @@ BOOL SwXFieldEnumeration::supportsService(const OUString& rServiceName) throw( R
     return rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(
                             "com.sun.star.text.FieldEnumeration" ));
 }
-/* -----------------------------06.04.00 13:25--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFieldEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2622,7 +2622,7 @@ Sequence< OUString > SwXFieldEnumeration::getSupportedServiceNames(void) throw( 
     pArray[0] = C2U("com.sun.star.text.FieldEnumeration");
     return aRet;
 }
-/* -----------------21.12.98 14:57-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwXFieldEnumeration::SwXFieldEnumeration(SwDoc* pDc) :
@@ -2702,7 +2702,7 @@ uno::Any SwXFieldEnumeration::nextElement(void)
     rxFld = 0;  // free memory for item that is not longer used
     return aRet;
 }
-/* -----------------21.12.98 15:08-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXFieldEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)

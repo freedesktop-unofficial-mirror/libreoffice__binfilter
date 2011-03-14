@@ -188,7 +188,7 @@ using ::rtl::OUString;
 /*M*/   return bSame;
 /*M*/ }
 
-/* -----------------11.01.99 13:16-------------------
+/* --------------------------------------------------
  * Standards auslesen
  * --------------------------------------------------*/
 /*N*/ String  SwStdFontConfig::GetDefaultFor(USHORT nFontType, LanguageType eLang)

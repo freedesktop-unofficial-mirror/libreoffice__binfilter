@@ -56,7 +56,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
                        const SwScriptInfo* pSI );
 
-/*-----------------10.10.00 15:23-------------------
+/*--------------------------------------------------
  *  class SwMultiPortion
  *
  * A SwMultiPortion is not a simple portion,
@@ -67,7 +67,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------13.10.00 16:21-------------------
+/*--------------------------------------------------
  * Summarize the internal lines to calculate the (external) size.
  * The internal line has to calculate first.
  * --------------------------------------------------*/
@@ -82,19 +82,19 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *************************************************************************/
 
 
-/*-----------------01.11.00 14:21-------------------
+/*--------------------------------------------------
  * SwMultiPortion::ActualizeTabulator()
  * sets the tabulator-flag, if there's any tabulator-portion inside.
  * --------------------------------------------------*/
 
 
-/*-----------------16.02.01 12:07-------------------
+/*--------------------------------------------------
  * SwRotatedPortion::SwRotatedPortion(..)
  * --------------------------------------------------*/
 
 
 
-/*-----------------01.11.00 14:22-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::SwDoubleLinePortion(..)
  * This constructor is for the continuation of a doubleline portion
  * in the next line.
@@ -103,7 +103,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------01.11.00 14:22-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::SwDoubleLinePortion(..)
  * This constructor uses the textattribut to get the right brackets.
  * The textattribut could be a 2-line-attribute or a character- or
@@ -112,7 +112,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------25.10.00 09:51-------------------
+/*--------------------------------------------------
  * SwMultiPortion::PaintBracket paints the wished bracket,
  * if the multiportion has surrounding brackets.
  * The X-position of the SwTxtPaintInfo will be modified:
@@ -121,13 +121,13 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------25.10.00 16:26-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::SetBrackets creates the bracket-structur
  * and fills it, if not both characters are 0x00.
  * --------------------------------------------------*/
 
 
-/*-----------------25.10.00 16:29-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::FormatBrackets
  * calculates the size of the brackets => pBracket,
  * reduces the nMaxWidth-parameter ( minus bracket-width )
@@ -135,7 +135,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------26.10.00 10:36-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::CalcBlanks
  * calculates the number of blanks in each line and
  * the difference of the width of the two lines.
@@ -144,7 +144,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------01.11.00 14:29-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::ChangeSpaceAdd(..)
  * merges the spaces for text adjustment from the inner and outer part.
  * Inside the doubleline portion the wider line has no spaceadd-array, the
@@ -154,14 +154,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * space arrays.
  * --------------------------------------------------*/
 
-/*-----------------01.11.00 14:29-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::ResetSpaceAdd(..)
  * cancels the manipulation from SwDoubleLinePortion::ChangeSpaceAdd(..)
  * --------------------------------------------------*/
 
 
 #ifdef BIDI
-/*-----------------13.11.00 14:50-------------------
+/*--------------------------------------------------
  * SwRubyPortion::SwRubyPortion(..)
  * constructs a ruby portion, i.e. an additional text is displayed
  * beside the main text, e.g. phonetic characters.
@@ -170,14 +170,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 #endif
 
-/*-----------------13.11.00 14:50-------------------
+/*--------------------------------------------------
  * SwRubyPortion::SwRubyPortion(..)
  * constructs a ruby portion, i.e. an additional text is displayed
  * beside the main text, e.g. phonetic characters.
  * --------------------------------------------------*/
 
 
-/*-----------------13.11.00 14:56-------------------
+/*--------------------------------------------------
  * SwRubyPortion::_Adjust(..)
  * In ruby portion there are different alignments for
  * the ruby text and the main text.
@@ -191,7 +191,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------08.11.00 14:14-------------------
+/*--------------------------------------------------
  * CalcRubyOffset()
  * has to change the nRubyOffset, if there's a fieldportion
  * in the phonetic line.
@@ -200,7 +200,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------13.10.00 16:22-------------------
+/*--------------------------------------------------
  * SwTxtSizeInfo::GetMultiCreator(..)
  * If we (e.g. the position rPos) are inside a two-line-attribute or
  * a ruby-attribute, the attribute will be returned in a SwMultiCreator-struct,
@@ -213,7 +213,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * with different brackets interrupts another 2-line-attribute.
  * --------------------------------------------------*/
 
-/*-----------------13.11.00 15:38-------------------
+/*--------------------------------------------------
  * lcl_Has2Lines(..)
  * is a little help function for GetMultiCreator(..)
  * It extracts the 2-line-format from a 2-line-attribute or a character style.
@@ -261,7 +261,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   return sal_False;
 /*N*/ }
 
-/*-----------------16.02.01 16:39-------------------
+/*--------------------------------------------------
  * lcl_HasRotation(..)
  * is a little help function for GetMultiCreator(..)
  * It extracts the charrotation from a charrotate-attribute or a character style.
@@ -702,7 +702,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   return NULL;
 /*N*/ }
 
-/*-----------------01.11.00 14:52-------------------
+/*--------------------------------------------------
  * SwSpaceManipulator
  * is a little helper class to manage the spaceadd-arrays of the text adjustment
  * during a PaintMultiPortion.
@@ -716,7 +716,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------13.10.00 16:24-------------------
+/*--------------------------------------------------
  * SwTxtPainter::PaintMultiPortion manages the paint for a SwMultiPortion.
  * External, for the calling function, it seems to be a normal Paint-function,
  * internal it is like a SwTxtFrm::Paint with multiple DrawTextLines
@@ -740,7 +740,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *---------------------------------------------------------------------------*/
 
 
-/*-----------------08.11.00 09:29-------------------
+/*--------------------------------------------------
  * SwTxtFormatter::MakeRestPortion(..)
  * When a fieldportion at the end of line breaks and needs a following
  * fieldportion in the next line, then the "restportion" of the formatinfo
@@ -829,7 +829,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------23.10.00 10:47-------------------
+/*--------------------------------------------------
  * SwTxtCursorSave notes the start and current line of a SwTxtCursor,
  * sets them to the values for GetCrsrOfst inside a multiportion
  * and restores them in the destructor.

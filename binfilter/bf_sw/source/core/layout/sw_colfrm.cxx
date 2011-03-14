@@ -199,7 +199,7 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-/*-----------------21.09.99 15:42-------------------
+/*--------------------------------------------------
  * ChgColumns() adds or removes columns from a layoutframe.
  * Normally, a layoutframe with a column attribut of 1 or 0 columns contains
  * no columnframe. However, a sectionframe with "footnotes at the end" needs

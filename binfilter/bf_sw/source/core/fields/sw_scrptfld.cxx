@@ -102,7 +102,7 @@ String SwScriptField::GetPar2() const
 {
     return sCode;
 }
-/*-----------------05.03.98 15:00-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -124,7 +124,7 @@ BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
     }
     return TRUE;
 }
-/*-----------------05.03.98 15:00-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )

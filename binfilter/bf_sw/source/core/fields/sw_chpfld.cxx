@@ -179,7 +179,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/   }
 /*N*/ }
 
-/*-----------------05.03.98 16:19-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwChapterField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
@@ -216,7 +216,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 16:19-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwChapterField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )

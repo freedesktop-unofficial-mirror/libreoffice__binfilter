@@ -209,7 +209,7 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*N*/   return nSubType;
 /*N*/ }
 
-/*-----------------05.03.98 10:25-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwPageNumberField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -243,7 +243,7 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 10:25-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwPageNumberField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -344,7 +344,7 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*N*/   return pTmp;
 /*N*/ }
 
-/*-----------------05.03.98 11:15-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwAuthorField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -372,7 +372,7 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 11:15-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -492,7 +492,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   return pTmp;
 /*N*/ }
 
-/*-----------------05.03.98 08:59-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwFileNameField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -659,7 +659,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   return pTmp;
 /*N*/ }
 
-/*-----------------05.03.98 08:59-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwTemplNameField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -814,7 +814,7 @@ void SwDocStatField::SetSubType(sal_uInt16 nSub)
 /*?*/               pFrm->FindPageFrm()->GetPageDesc()->GetNumType().GetNumberingType() );
 /*N*/ }
 
-/*-----------------05.03.98 11:38-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwDocStatField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -830,7 +830,7 @@ void SwDocStatField::SetSubType(sal_uInt16 nSub)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 11:38-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -1491,7 +1491,7 @@ BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/
 /*N*/   return pFld;
 /*N*/ }
-/*-----------------05.03.98 13:25-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwHiddenParaField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -1514,7 +1514,7 @@ BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 13:25-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwHiddenParaField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -1620,7 +1620,7 @@ String SwPostItField::GetPar2() const
     return sTxt;
 }
 
-/*-----------------05.03.98 13:42-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwPostItField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -1648,7 +1648,7 @@ BOOL SwPostItField::QueryValue( uno::Any& rAny, BYTE nMId ) const
     }
     return sal_True;
 }
-/*-----------------05.03.98 13:42-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwPostItField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -1767,7 +1767,7 @@ void SwExtUserField::SetSubType(sal_uInt16 nSub)
     nType = nSub;
 }
 
-/*-----------------05.03.98 14:14-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwExtUserField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -1796,7 +1796,7 @@ void SwExtUserField::SetSubType(sal_uInt16 nSub)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------05.03.98 14:14-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwExtUserField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -1886,7 +1886,7 @@ void SwRefPageSetField::SetPar2(const String& rStr)
     SetOffset( (short) rStr.ToInt32() );
 }
 
-/*-----------------05.03.98 14:52-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwRefPageSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -1905,7 +1905,7 @@ BOOL SwRefPageSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
     }
     return sal_True;
 }
-/*-----------------05.03.98 14:52-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwRefPageSetField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -1995,7 +1995,7 @@ SwField* SwRefPageGetField::Copy() const
 /* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
-/*-----------------05.03.98 14:52-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwRefPageGetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
@@ -2014,7 +2014,7 @@ BOOL SwRefPageGetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
     }
     return sal_True;
 }
-/*-----------------05.03.98 14:52-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 BOOL SwRefPageGetField::PutValue( const uno::Any& rAny, BYTE nMId )
@@ -2132,7 +2132,7 @@ void SwJumpEditField::SetPar2(const String& rStr)
     sHelp = rStr;
 }
 
-/*-----------------05.03.98 15:00-------------------
+/*--------------------------------------------------
 
 --------------------------------------------------*/
 /*N*/ BOOL SwJumpEditField::QueryValue( uno::Any& rAny, BYTE nMId ) const

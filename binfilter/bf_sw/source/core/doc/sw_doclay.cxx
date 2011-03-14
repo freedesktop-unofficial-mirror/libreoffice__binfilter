@@ -742,7 +742,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
     return bOk;
 }
 */
-/* -----------------------------04.04.00 10:55--------------------------------
+/* ---------------------------------------------------------------------------
     paragraph frames - o.k. if the PaM includes the paragraph from the beginning
                        to the beginning of the next paragraph at least
     frames at character - o.k. if the pam start at least at the same position

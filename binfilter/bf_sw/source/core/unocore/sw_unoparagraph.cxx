@@ -71,7 +71,7 @@ using rtl::OUString;
 /******************************************************************
  * SwXParagraph
  ******************************************************************/
-/* -----------------------------11.07.00 12:10--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 SwXParagraph* SwXParagraph::GetImplementation(Reference< XInterface> xRef )
@@ -81,7 +81,7 @@ SwXParagraph* SwXParagraph::GetImplementation(Reference< XInterface> xRef )
         return (SwXParagraph*)xParaTunnel->getSomething(SwXParagraph::getUnoTunnelId());
     return 0;
 }
-/* -----------------------------13.03.00 12:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXParagraph::getUnoTunnelId()
@@ -89,7 +89,7 @@ const uno::Sequence< sal_Int8 > & SwXParagraph::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXParagraph::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -103,14 +103,14 @@ sal_Int64 SAL_CALL SwXParagraph::getSomething( const uno::Sequence< sal_Int8 >& 
     }
     return 0;
 }
-/* -----------------------------06.04.00 16:37--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXParagraph::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXParagraph");
 }
-/* -----------------------------06.04.00 16:37--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXParagraph::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -125,7 +125,7 @@ BOOL SwXParagraph::supportsService(const OUString& rServiceName) throw( RuntimeE
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesAsian") ||
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesComplex");
 }
-/* -----------------------------06.04.00 16:37--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXParagraph::getSupportedServiceNames(void) throw( RuntimeException )
@@ -177,7 +177,7 @@ SwXParagraph::~SwXParagraph()
     if(pUnoCrsr)
         delete pUnoCrsr;
 }
-/* -----------------------------11.07.00 14:48--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::attachToText(SwXText* pParent, SwUnoCrsr* pCrsr)
@@ -231,7 +231,7 @@ uno::Any SwXParagraph::getPropertyValue(const OUString& rPropertyName)
     Sequence< Any > aRet = getPropertyValues(aPropertyNames );
     return aRet.getConstArray()[0];
 }
-/* -----------------------------02.04.01 11:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::setPropertyValues(
@@ -268,7 +268,7 @@ void SwXParagraph::setPropertyValues(
     else
         throw uno::RuntimeException();
 }
-/* -----------------------------02.04.01 11:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< Any > SwXParagraph::getPropertyValues(
@@ -310,7 +310,7 @@ Sequence< Any > SwXParagraph::getPropertyValues(
         throw RuntimeException();
     return aValues;
 }
-/* -----------------------------02.04.01 11:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::addPropertiesChangeListener(
@@ -318,14 +318,14 @@ void SwXParagraph::addPropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* -----------------------------02.04.01 11:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::removePropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* -----------------------------02.04.01 11:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 void SwXParagraph::firePropertiesChangeEvent(
@@ -333,7 +333,7 @@ void SwXParagraph::firePropertiesChangeEvent(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* -----------------------------12.09.00 11:09--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXParagraph::getDefaultTextContentValue(Any& rAny, const OUString& rPropertyName, USHORT nWID)
@@ -804,7 +804,7 @@ void SwXParagraph::setString(const OUString& aString) throw( uno::RuntimeExcepti
         throw uno::RuntimeException();
 
 }
-/* -----------------23.03.99 12:49-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 uno::Reference< container::XEnumeration >  SwXParagraph::createContentEnumeration(const OUString& rServiceName)
@@ -817,7 +817,7 @@ uno::Reference< container::XEnumeration >  SwXParagraph::createContentEnumeratio
     uno::Reference< container::XEnumeration >  xRet = new SwXParaFrameEnumeration(*pUnoCrsr, PARAFRAME_PORTION_PARAGRAPH);
     return xRet;
 }
-/* -----------------23.03.99 12:49-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 uno::Sequence< OUString > SwXParagraph::getAvailableServiceNames(void) throw( uno::RuntimeException )

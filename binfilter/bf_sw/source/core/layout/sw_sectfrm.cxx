@@ -1907,7 +1907,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*-----------------09.06.99 14:58-------------------
+/*--------------------------------------------------
  * SwSectionFrm::ToMaximize(..): A follow or a ftncontainer at the end of the
  * page causes a maximal Size of the sectionframe.
  * --------------------------------------------------*/
@@ -1937,7 +1937,7 @@ namespace binfilter {
 /*?*/   return bRet;
 /*N*/ }
 
-/*-----------------09.06.99 15:07-------------------
+/*--------------------------------------------------
  * BOOL SwSectionFrm::ContainsFtnCont()
  * checks every Column for FtnContFrms.
  * --------------------------------------------------*/
@@ -1982,7 +1982,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*-----------------18.03.99 10:37-------------------
+/*--------------------------------------------------
  * SwSectionFrm::Undersize() liefert den Betrag, um den der Bereich gern
  * groesser waere, wenn in ihm Undersized TxtFrms liegen, ansonsten Null.
  * Das Undersized-Flag wird ggf. korrigiert.

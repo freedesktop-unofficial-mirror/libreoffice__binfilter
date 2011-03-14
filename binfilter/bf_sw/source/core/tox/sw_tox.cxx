@@ -71,7 +71,7 @@ namespace binfilter {
 
 /*N*/ TYPEINIT2( SwTOXMark, SfxPoolItem, SwClient );    // fuers rtti
 
-/* -----------------23.09.99 14:09-------------------
+/* --------------------------------------------------
     includes plain text at a given position into
      the appropriate token
  --------------------------------------------------*/
@@ -89,7 +89,7 @@ USHORT lcl_ConvertTextIntoPattern( String& rPattern,
     return 8;
 }
 
-/* -----------------23.09.99 13:59-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 struct PatternIni
@@ -134,7 +134,7 @@ const PatternIni aPatternIni[] =
     {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM5,
     {USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX}
 };
-/* -----------------23.09.99 13:58-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 String lcl_GetAuthPattern(USHORT nTypeId)
@@ -400,7 +400,7 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
-/* -----------------15.06.99 13:39-------------------
+/* --------------------------------------------------
     ::com::patibilty methods: Version 5.0 and 5.1 need
     a value for the first tab stop
  --------------------------------------------------*/
@@ -510,7 +510,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
         }
     }
 }
-/* -----------------------------28.02.00 09:48--------------------------------
+/* ---------------------------------------------------------------------------
     if the templates contain settings of the tab positions (<5.1) then
     they must be imported into the pattern
  ---------------------------------------------------------------------------*/
@@ -621,7 +621,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   //rturn true if the first level contains two ore more tabstops
 /*N*/   return 2 <= lcl_GetPatternCount(aPattern[ 1 ], SwForm::aFormTab);
 /*N*/ }
-/* -----------------29.07.99 14:37-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 /*N*/ String    SwForm::ConvertPatternTo51(const String& rSource)
@@ -668,7 +668,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   }
 /*N*/   return sRet;
 /*N*/ }
-/* -----------------29.07.99 14:37-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 /*N*/ String    SwForm::ConvertPatternFrom51(const String& rSource, TOXTypes eType)
@@ -820,7 +820,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   return *this;
 /*N*/ }
 
-/* -----------------30.06.99 14:46-------------------
+/* --------------------------------------------------
     Check if any style names are set in the array
  --------------------------------------------------*/
 
@@ -834,7 +834,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/ //        delete aData.pTemplateName;
 /*N*/ }
 
-/* -----------------16.07.99 16:02-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 /*N*/ SwFormTokenEnumerator::SwFormTokenEnumerator( const String& rPattern )
@@ -862,7 +862,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/ #endif
 /*N*/ }
 
-/* -----------------29.06.99 11:55-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 /*N*/ SwFormToken SwFormTokenEnumerator::GetNextToken()

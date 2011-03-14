@@ -1570,7 +1570,7 @@ SwXReferenceMark* SwXReferenceMarks::GetObject( SwDoc* pDoc, const SwFmtRefMark*
     return pxMark;
 }
 
-/*-----------------11.03.98 11:18-------------------
+/*--------------------------------------------------
     Gueltigkeitspruefung
 --------------------------------------------------*/
 void SwUnoCollection::Invalidate()

@@ -309,7 +309,7 @@ void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
     else
         throw uno::RuntimeException();
 }
-/* -----------------------------15.12.00 14:01--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(sal_Bool bFromTable)
@@ -385,7 +385,7 @@ uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(void) 
     SolarMutexGuard aGuard;
     return SwXTextCursor::createSortDescriptor(sal_False);
 }
-/* -----------------------------15.12.00 14:06--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::convertSortProperties(
@@ -650,7 +650,7 @@ void ClientModify(SwClient* pClient, SfxPoolItem *pOld, SfxPoolItem *pNew)
     }
 }
 
-/* -----------------------------03.04.00 09:11--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SAL_CALL SwXTextCursor::createContentEnumeration(const OUString& rServiceName) throw( RuntimeException )
@@ -662,7 +662,7 @@ Reference< XEnumeration >  SAL_CALL SwXTextCursor::createContentEnumeration(cons
     Reference< XEnumeration > xRet = new SwXParaFrameEnumeration(*pUnoCrsr, PARAFRAME_PORTION_TEXTRANGE);
     return xRet;
 }
-/* -----------------------------07.03.01 14:53--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXTextCursor::createEnumeration(void) throw( RuntimeException )
@@ -689,21 +689,21 @@ Reference< XEnumeration >  SwXTextCursor::createEnumeration(void) throw( Runtime
 
     return xRet;
 }
-/* -----------------------------07.03.01 15:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 uno::Type  SwXTextCursor::getElementType(void) throw( RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* -----------------------------07.03.01 15:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::hasElements(void) throw( RuntimeException )
 {
     return sal_True;
 }
-/* -----------------------------03.04.00 09:11--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SAL_CALL SwXTextCursor::getAvailableServiceNames(void) throw( RuntimeException )
@@ -774,7 +774,7 @@ const SwDoc* SwXTextCursor::GetDoc()const
 {
     return   GetCrsr() ? GetCrsr()->GetDoc() : 0;
 }
-/* -----------------22.07.99 13:52-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwDoc* SwXTextCursor::GetDoc()
@@ -881,21 +881,21 @@ void SwXTextCursor::GetCrsrAttr(SwPaM& rPam, SfxItemSet& rSet, BOOL bCurrentAttr
 /******************************************************************
  * SwXParagraphEnumeration
  ******************************************************************/
-/* -----------------------------06.04.00 16:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXParagraphEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXParagraphEnumeration");
 }
-/* -----------------------------06.04.00 16:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXParagraphEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.ParagraphEnumeration") == rServiceName;
 }
-/* -----------------------------06.04.00 16:33--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXParagraphEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
@@ -1071,7 +1071,7 @@ void SwXParagraphEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
  ******************************************************************/
 TYPEINIT1(SwXTextRange, SwClient);
 
-/* -----------------------------10.03.00 18:02--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextRange::getUnoTunnelId()
@@ -1079,7 +1079,7 @@ const uno::Sequence< sal_Int8 > & SwXTextRange::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:02--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
     //XUnoTunnel
@@ -1095,14 +1095,14 @@ sal_Int64 SAL_CALL SwXTextRange::getSomething(
         }
     return 0;
 }
-/* -----------------------------06.04.00 16:34--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXTextRange::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextRange");
 }
-/* -----------------------------06.04.00 16:34--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXTextRange::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -1116,7 +1116,7 @@ BOOL SwXTextRange::supportsService(const OUString& rServiceName) throw( RuntimeE
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesAsian") ||
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesComplex");
 }
-/* -----------------------------06.04.00 16:34--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextRange::getSupportedServiceNames(void) throw( RuntimeException )
@@ -1176,7 +1176,7 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, SwTableBox& rTblBox, SwPaM& rPam) 
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
 }
-/* -----------------------------09.08.00 16:07--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, const SwStartNode& rStartNode, SwPaM& rPam) :
@@ -1190,7 +1190,7 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, const SwStartNode& rStartNode, SwP
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
 }
-/* -----------------19.02.99 11:39-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt) :
@@ -1546,7 +1546,7 @@ sal_Bool        SwXTextRange::XTextRangeToSwPaM( SwUnoInternalPaM& rToFill,
     }
     return bRet;
 }
-/* -----------------24.02.99 14:18-------------------
+/* --------------------------------------------------
  * Der StartNode muss in einem existierenden Header/Footen liegen
  * --------------------------------------------------*/
 sal_Bool lcl_IsStartNodeInFormat(sal_Bool bHeader, SwStartNode* pSttNode,
@@ -1573,7 +1573,7 @@ sal_Bool lcl_IsStartNodeInFormat(sal_Bool bHeader, SwStartNode* pSttNode,
     }
     return bRet;
 }
-/* -----------------03.11.98 15:58-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* pDoc,
@@ -1686,7 +1686,7 @@ uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* p
     return aRet;
 }
 
-/* -----------------------------03.04.00 09:11--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SAL_CALL SwXTextRange::createContentEnumeration(
@@ -1709,7 +1709,7 @@ Reference< XEnumeration >  SAL_CALL SwXTextRange::createContentEnumeration(
     delete pNewCrsr;
     return xRet;
 }
-/* -----------------------------07.03.01 14:55--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXTextRange::createEnumeration(void) throw( RuntimeException )
@@ -1736,21 +1736,21 @@ Reference< XEnumeration >  SwXTextRange::createEnumeration(void) throw( RuntimeE
     Reference< XEnumeration > xRet = new SwXParagraphEnumeration(pParentText, *pNewCrsr, eSetType);
     return xRet;
 }
-/* -----------------------------07.03.01 15:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 uno::Type  SwXTextRange::getElementType(void) throw( RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* -----------------------------07.03.01 15:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Bool SwXTextRange::hasElements(void) throw( RuntimeException )
 {
     return sal_True;
 }
-/* -----------------------------03.04.00 09:11--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SAL_CALL SwXTextRange::getAvailableServiceNames(void) throw( RuntimeException )
@@ -1890,7 +1890,7 @@ Any SAL_CALL SwXTextRange::getPropertyDefault( const OUString& rPropertyName )
 /******************************************************************
  * SwXTextRanges
  ******************************************************************/
-/* -----------------------------13.03.00 12:15--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextRanges::getUnoTunnelId()
@@ -1898,7 +1898,7 @@ const uno::Sequence< sal_Int8 > & SwXTextRanges::getUnoTunnelId()
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextRanges::getSomething( const uno::Sequence< sal_Int8 >& rId )
@@ -1919,21 +1919,21 @@ sal_Int64 SAL_CALL SwXTextRanges::getSomething( const uno::Sequence< sal_Int8 >&
  *
 ****************************************************************************/
 SV_IMPL_PTRARR(XTextRangeArr, XTextRangeRefPtr);
-/* -----------------------------06.04.00 16:36--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXTextRanges::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextRanges");
 }
-/* -----------------------------06.04.00 16:36--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXTextRanges::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.TextRanges") == rServiceName;
 }
-/* -----------------------------06.04.00 16:36--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextRanges::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2045,7 +2045,7 @@ sal_Bool SwXTextRanges::hasElements(void) throw( uno::RuntimeException )
     SolarMutexGuard aGuard;
     return getCount() > 0;
 }
-/* -----------------10.12.98 14:25-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 XTextRangeArr*  SwXTextRanges::GetRangesArray()
@@ -2075,7 +2075,7 @@ void    SwXTextRanges::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
     ClientModify(this, pOld, pNew);
 }
 
-/* -----------------11.12.98 10:07-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
@@ -2102,21 +2102,21 @@ void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
  * SwXParaFrameEnumeration
  ******************************************************************/
 SV_IMPL_PTRARR(SwDependArr, SwDepend*);
-/* -----------------------------06.04.00 16:39--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXParaFrameEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXParaFrameEnumeration");
 }
-/* -----------------------------06.04.00 16:39--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXParaFrameEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.util.ContentEnumeration") == rServiceName;
 }
-/* -----------------------------06.04.00 16:39--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXParaFrameEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
@@ -2192,7 +2192,7 @@ SwXParaFrameEnumeration::~SwXParaFrameEnumeration()
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     delete pUnoCrsr;
 }
-/* -----------------------------03.04.00 10:15--------------------------------
+/* ---------------------------------------------------------------------------
     Description: Search for a FLYCNT text attribute at the cursor point
                 and fill the frame into the array
  ---------------------------------------------------------------------------*/
@@ -2239,7 +2239,7 @@ uno::Any SwXParaFrameEnumeration::nextElement(void)
     xNextObject = 0;
     return aRet;
 }
-/* -----------------23.03.99 13:38-------------------
+/* --------------------------------------------------
  *
  * --------------------------------------------------*/
 sal_Bool SwXParaFrameEnumeration::CreateNextObject()

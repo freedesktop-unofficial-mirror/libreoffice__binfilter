@@ -59,7 +59,7 @@ using rtl::OUString;
  *
  ******************************************************************************/
 
-/* -----------------23.06.99 12:19-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 class SwSearchProperties_Impl
@@ -77,7 +77,7 @@ public:
     void    FillItemSet(SfxItemSet& rSet, sal_Bool bIsValueSearch) const;
     sal_Bool    HasAttributes() const;
 };
-/* -----------------23.06.99 13:08-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwSearchProperties_Impl::SwSearchProperties_Impl() :
@@ -95,7 +95,7 @@ SwSearchProperties_Impl::SwSearchProperties_Impl() :
     for(sal_uInt16 i = 0; i < nArrLen; i++)
         pValueArr[i] = 0;
 }
-/* -----------------23.06.99 13:08-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 SwSearchProperties_Impl::~SwSearchProperties_Impl()
@@ -104,7 +104,7 @@ SwSearchProperties_Impl::~SwSearchProperties_Impl()
         delete pValueArr[i];
     delete[] pValueArr;
 }
-/* -----------------23.06.99 13:09-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void    SwSearchProperties_Impl::SetProperties(const Sequence< PropertyValue >& aSearchAttribs)
@@ -136,7 +136,7 @@ void    SwSearchProperties_Impl::SetProperties(const Sequence< PropertyValue >& 
         pValueArr[nIndex] = new PropertyValue(pProps[i]);
     }
 }
-/* -----------------23.06.99 13:08-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 const Sequence< PropertyValue > SwSearchProperties_Impl::GetProperties() const
@@ -160,7 +160,7 @@ const Sequence< PropertyValue > SwSearchProperties_Impl::GetProperties() const
     }
     return aRet;
 }
-/* -----------------23.06.99 13:06-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void SwSearchProperties_Impl::FillItemSet(SfxItemSet& rSet, sal_Bool bIsValueSearch) const
@@ -430,7 +430,7 @@ void SwSearchProperties_Impl::FillItemSet(SfxItemSet& rSet, sal_Bool bIsValueSea
     delete pCasemapItem  ;
     delete pBrushItem  ;
 }
-/* -----------------23.06.99 14:18-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 sal_Bool    SwSearchProperties_Impl::HasAttributes() const
@@ -470,7 +470,7 @@ SwXTextSearch::~SwXTextSearch()
     delete pSearchProperties;
     delete pReplaceProperties;
 }
-/* -----------------------------10.03.00 18:02--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 const Sequence< sal_Int8 > & SwXTextSearch::getUnoTunnelId()
@@ -478,7 +478,7 @@ const Sequence< sal_Int8 > & SwXTextSearch::getUnoTunnelId()
     static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextSearch::getSomething( const Sequence< sal_Int8 >& rId )
@@ -693,42 +693,42 @@ void SwXTextSearch::setReplaceAttributes(const Sequence< PropertyValue >& rRepla
 {
     pReplaceProperties->SetProperties(rReplaceAttribs);
 }
-/* -----------------23.06.99 14:13-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void    SwXTextSearch::FillSearchItemSet(SfxItemSet& rSet) const
 {
     pSearchProperties->FillItemSet(rSet, bIsValueSearch);
 }
-/* -----------------23.06.99 14:14-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 void    SwXTextSearch::FillReplaceItemSet(SfxItemSet& rSet) const
 {
     pReplaceProperties->FillItemSet(rSet, bIsValueSearch);
 }
-/* -----------------23.06.99 14:17-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 sal_Bool    SwXTextSearch::HasSearchAttributes() const
 {
     return pSearchProperties->HasAttributes();
 }
-/* -----------------23.06.99 14:17-------------------
+/* --------------------------------------------------
 
  --------------------------------------------------*/
 sal_Bool    SwXTextSearch::HasReplaceAttributes() const
 {
     return pReplaceProperties->HasAttributes();
 }
-/* -----------------------------19.04.00 14:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 OUString SwXTextSearch::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextSearch");
 }
-/* -----------------------------19.04.00 14:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 BOOL SwXTextSearch::supportsService(const OUString& rServiceName) throw( RuntimeException )
@@ -736,7 +736,7 @@ BOOL SwXTextSearch::supportsService(const OUString& rServiceName) throw( Runtime
     return C2U("com.sun.star.util.SearchDescriptor") == rServiceName ||
             C2U("com.sun.star.util.ReplaceDescriptor") == rServiceName;
 }
-/* -----------------------------19.04.00 14:43--------------------------------
+/* ---------------------------------------------------------------------------
 
  ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextSearch::getSupportedServiceNames(void) throw( RuntimeException )
