@@ -71,9 +71,7 @@ using rtl::OUString;
 /******************************************************************
  * SwXParagraph
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXParagraph* SwXParagraph::GetImplementation(Reference< XInterface> xRef )
 {
     uno::Reference<lang::XUnoTunnel> xParaTunnel( xRef, uno::UNO_QUERY);
@@ -81,17 +79,13 @@ SwXParagraph* SwXParagraph::GetImplementation(Reference< XInterface> xRef )
         return (SwXParagraph*)xParaTunnel->getSomething(SwXParagraph::getUnoTunnelId());
     return 0;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXParagraph::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXParagraph::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -103,16 +97,12 @@ sal_Int64 SAL_CALL SwXParagraph::getSomething( const uno::Sequence< sal_Int8 >& 
     }
     return 0;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXParagraph::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXParagraph");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXParagraph::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     String sServiceName(rServiceName);
@@ -125,9 +115,7 @@ BOOL SwXParagraph::supportsService(const OUString& rServiceName) throw( RuntimeE
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesAsian") ||
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesComplex");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXParagraph::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(8);
@@ -142,9 +130,7 @@ Sequence< OUString > SwXParagraph::getSupportedServiceNames(void) throw( Runtime
     pArray[7] = C2U("com.sun.star.text.TextContent");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParagraph::SwXParagraph() :
     aLstnrCntnr( (XTextRange*)this),
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_PARAGRAPH)),
@@ -155,9 +141,7 @@ SwXParagraph::SwXParagraph() :
 {
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParagraph::SwXParagraph(SwXText* pParent, SwUnoCrsr* pCrsr, sal_Int32 nSelStart, sal_Int32 nSelEnd) :
     SwClient(pCrsr),
     aLstnrCntnr( (XTextRange*)this),
@@ -168,18 +152,14 @@ SwXParagraph::SwXParagraph(SwXText* pParent, SwUnoCrsr* pCrsr, sal_Int32 nSelSta
     nSelectionEndPos(nSelEnd)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParagraph::~SwXParagraph()
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     if(pUnoCrsr)
         delete pUnoCrsr;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXParagraph::attachToText(SwXText* pParent, SwUnoCrsr* pCrsr)
 {
     DBG_ASSERT(m_bIsDescriptor, "Paragraph is not a descriptor");
@@ -196,18 +176,14 @@ void SwXParagraph::attachToText(SwXText* pParent, SwUnoCrsr* pCrsr)
         }
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo >  SwXParagraph::getPropertySetInfo(void)
                                             throw( RuntimeException )
 {
     static Reference< XPropertySetInfo >  xRef = aPropSet.getPropertySetInfo();
     return xRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::setPropertyValue(const OUString& rPropertyName, const Any& aValue)
     throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
         WrappedTargetException, RuntimeException )
@@ -219,9 +195,7 @@ void SwXParagraph::setPropertyValue(const OUString& rPropertyName, const Any& aV
     aValues.getArray()[0] = aValue;
     setPropertyValues(aPropertyNames, aValues);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXParagraph::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
@@ -231,9 +205,7 @@ uno::Any SwXParagraph::getPropertyValue(const OUString& rPropertyName)
     Sequence< Any > aRet = getPropertyValues(aPropertyNames );
     return aRet.getConstArray()[0];
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXParagraph::setPropertyValues(
     const Sequence< OUString >& rPropertyNames,
     const Sequence< Any >& aValues )
@@ -268,9 +240,7 @@ void SwXParagraph::setPropertyValues(
     else
         throw uno::RuntimeException();
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< Any > SwXParagraph::getPropertyValues(
     const Sequence< OUString >& rPropertyNames )
         throw(RuntimeException)
@@ -310,32 +280,24 @@ Sequence< Any > SwXParagraph::getPropertyValues(
         throw RuntimeException();
     return aValues;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXParagraph::addPropertiesChangeListener(
     const Sequence< OUString >& /*aPropertyNames*/,
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXParagraph::removePropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXParagraph::firePropertiesChangeEvent(
     const Sequence< OUString >& /*aPropertyNames*/,
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {}
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXParagraph::getDefaultTextContentValue(Any& rAny, const OUString& rPropertyName, USHORT nWID)
 {
     if(!nWID)
@@ -366,9 +328,7 @@ BOOL SwXParagraph::getDefaultTextContentValue(Any& rAny, const OUString& rProper
     }
     return TRUE;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::addPropertyChangeListener(
     const OUString& /*PropertyName*/,
     const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
@@ -376,27 +336,21 @@ void SwXParagraph::addPropertyChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::removePropertyChangeListener(
         const OUString& /*PropertyName*/, const uno::Reference< beans::XPropertyChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::addVetoableChangeListener(const OUString& /*PropertyName*/,
         const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::removeVetoableChangeListener(
         const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener > & /*aListener*/)
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
@@ -461,9 +415,7 @@ beans::PropertyState lcl_SwXParagraph_getPropertyState(
     return eRet;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 beans::PropertyState SwXParagraph::getPropertyState(const OUString& rPropertyName)
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
@@ -485,9 +437,7 @@ beans::PropertyState SwXParagraph::getPropertyState(const OUString& rPropertyNam
         throw uno::RuntimeException();
     return eRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 uno::Sequence< beans::PropertyState > SwXParagraph::getPropertyStates(
         const uno::Sequence< OUString >& PropertyNames)
@@ -522,9 +472,7 @@ uno::Sequence< beans::PropertyState > SwXParagraph::getPropertyStates(
 
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::setPropertyToDefault(const OUString& rPropertyName)
         throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
@@ -585,9 +533,7 @@ void SwXParagraph::setPropertyToDefault(const OUString& rPropertyName)
     else
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXParagraph::getPropertyDefault(const OUString& rPropertyName)
         throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -618,9 +564,7 @@ uno::Any SwXParagraph::getPropertyDefault(const OUString& rPropertyName)
 
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::attach(const uno::Reference< XTextRange > & /*xTextRange*/)
                     throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
@@ -630,9 +574,7 @@ void SwXParagraph::attach(const uno::Reference< XTextRange > & /*xTextRange*/)
     // they cannot be attached
     throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXParagraph::getAnchor(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -648,9 +590,7 @@ uno::Reference< XTextRange >  SwXParagraph::getAnchor(void) throw( uno::RuntimeE
         throw uno::RuntimeException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::dispose(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -668,26 +608,20 @@ void SwXParagraph::dispose(void) throw( uno::RuntimeException )
     else
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::addEventListener(const uno::Reference< lang::XEventListener > & aListener) throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn())
         throw uno::RuntimeException();
     aLstnrCntnr.AddListener(aListener);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::removeEventListener(const uno::Reference< lang::XEventListener > & aListener) throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< container::XEnumeration >  SwXParagraph::createEnumeration(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -700,16 +634,12 @@ uno::Reference< container::XEnumeration >  SwXParagraph::createEnumeration(void)
     return aRef;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Type SwXParagraph::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXParagraph::hasElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -718,16 +648,12 @@ sal_Bool SwXParagraph::hasElements(void) throw( uno::RuntimeException )
     else
         return sal_False;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XText >  SwXParagraph::getText(void) throw( uno::RuntimeException )
 {
     return xParentText;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXParagraph::getStart(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -743,9 +669,7 @@ uno::Reference< XTextRange >  SwXParagraph::getStart(void) throw( uno::RuntimeEx
         throw uno::RuntimeException();
     return xRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXParagraph::getEnd(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -761,9 +685,7 @@ uno::Reference< XTextRange >  SwXParagraph::getEnd(void) throw( uno::RuntimeExce
         throw uno::RuntimeException();
     return xRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXParagraph::getString(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -780,9 +702,7 @@ OUString SwXParagraph::getString(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::setString(const OUString& aString) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -823,9 +743,7 @@ uno::Sequence< OUString > SwXParagraph::getAvailableServiceNames(void) throw( un
     pArray[0] = C2U("com.sun.star.text.TextContent");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXParagraph::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);

@@ -89,9 +89,7 @@ USHORT lcl_ConvertTextIntoPattern( String& rPattern,
     return 8;
 }
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 struct PatternIni
 {
     USHORT n1;
@@ -134,9 +132,7 @@ const PatternIni aPatternIni[] =
     {AUTH_FIELD_AUTHOR, AUTH_FIELD_TITLE, AUTH_FIELD_YEAR, USHRT_MAX, USHRT_MAX},     //AUTH_FIELD_CUSTOM5,
     {USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX, USHRT_MAX}
 };
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 String lcl_GetAuthPattern(USHORT nTypeId)
 {
     String sAuth; sAuth.AssignAscii( SwForm::aFormAuth );
@@ -621,9 +617,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   //rturn true if the first level contains two ore more tabstops
 /*N*/   return 2 <= lcl_GetPatternCount(aPattern[ 1 ], SwForm::aFormTab);
 /*N*/ }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 /*N*/ String    SwForm::ConvertPatternTo51(const String& rSource)
 /*N*/ {
 /*N*/   SwFormTokenEnumerator aEnum(rSource);
@@ -668,9 +662,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   }
 /*N*/   return sRet;
 /*N*/ }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 /*N*/ String    SwForm::ConvertPatternFrom51(const String& rSource, TOXTypes eType)
 /*N*/ {
 /*N*/   String sRet( rSource );
@@ -834,9 +826,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/ //        delete aData.pTemplateName;
 /*N*/ }
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 /*N*/ SwFormTokenEnumerator::SwFormTokenEnumerator( const String& rPattern )
 /*N*/   : sPattern( rPattern ), nCurPatternPos( 0  ), nCurPatternLen( 0 )
 /*N*/ {
@@ -862,9 +852,7 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/ #endif
 /*N*/ }
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 /*N*/ SwFormToken SwFormTokenEnumerator::GetNextToken()
 /*N*/ {
 /*N*/   xub_StrLen nTokenLen, nEnd;

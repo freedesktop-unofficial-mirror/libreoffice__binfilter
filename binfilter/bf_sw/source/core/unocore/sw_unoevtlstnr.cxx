@@ -46,17 +46,13 @@ using namespace ::com::sun::star::uno;
 
 SV_IMPL_PTRARR(SwEvtLstnrArray, XEventListenerPtr);
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxInParent) :
     pListenerArr(0),
     pxParent(pxInParent)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwEventListenerContainer::~SwEventListenerContainer()
 {
     if(pListenerArr && pListenerArr->Count())
@@ -65,9 +61,7 @@ SwEventListenerContainer::~SwEventListenerContainer()
     }
     delete pListenerArr;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwEventListenerContainer::AddListener(const uno::Reference< lang::XEventListener > & rxListener)
 {
     if(!pListenerArr)
@@ -76,9 +70,7 @@ void    SwEventListenerContainer::AddListener(const uno::Reference< lang::XEvent
     *pInsert = rxListener;
     pListenerArr->Insert(pInsert, pListenerArr->Count());
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool    SwEventListenerContainer::RemoveListener(const uno::Reference< lang::XEventListener > & rxListener)
 {
     if(!pListenerArr)
@@ -100,9 +92,7 @@ sal_Bool    SwEventListenerContainer::RemoveListener(const uno::Reference< lang:
     }
     return sal_False;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwEventListenerContainer::Disposing()
 {
     if(!pListenerArr)

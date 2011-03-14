@@ -374,9 +374,7 @@ public:
     inline void SetPDFExport(BOOL b)
         { (b != 0) ? (nCore2Options |= VIEWOPT_CORE2_PDF_EXPORT) : (nCore2Options &= ~VIEWOPT_CORE2_PDF_EXPORT);}
 
-/*---------------------------------------------------------------------------
 
-----------------------------------------------------------------------------*/
 
 
     inline short GetDivisionX() const   { return nDivisionX; }

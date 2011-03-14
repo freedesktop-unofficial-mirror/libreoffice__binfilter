@@ -179,9 +179,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/   }
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwChapterField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -216,9 +214,7 @@ SwFieldType* SwChapterFieldType::Copy() const
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwChapterField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     BOOL bRet = TRUE;

@@ -239,9 +239,7 @@ void CollectFrameAtNode( SwClient& rClnt, const SwNodeIndex& rIdx,
 }
 
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
     const uno::Sequence< beans::PropertyValue >& aOptions)
     throw( lang::IllegalArgumentException, io::IOException, uno::RuntimeException )
@@ -309,9 +307,7 @@ void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
     else
         throw uno::RuntimeException();
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(sal_Bool bFromTable)
 {
     uno::Sequence< beans::PropertyValue > aRet(5);
@@ -377,17 +373,13 @@ uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(sal_Bo
     return aRet;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Sequence< beans::PropertyValue > SwXTextCursor::createSortDescriptor(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     return SwXTextCursor::createSortDescriptor(sal_False);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::convertSortProperties(
     const uno::Sequence< beans::PropertyValue >& rDescriptor, SwSortOptions& rSortOpt)
 {
@@ -583,9 +575,7 @@ sal_Bool SwXTextCursor::convertSortProperties(
 
     return bRet && rSortOpt.aKeys.Count() > 0;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::sort(const uno::Sequence< beans::PropertyValue >& rDescriptor)
         throw( uno::RuntimeException )
 {
@@ -628,9 +618,7 @@ void SwXTextCursor::sort(const uno::Sequence< beans::PropertyValue >& rDescripto
     else
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void ClientModify(SwClient* pClient, SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     switch( pOld ? pOld->Which() : 0 )
@@ -650,9 +638,7 @@ void ClientModify(SwClient* pClient, SfxPoolItem *pOld, SfxPoolItem *pNew)
     }
 }
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SAL_CALL SwXTextCursor::createContentEnumeration(const OUString& rServiceName) throw( RuntimeException )
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -662,9 +648,7 @@ Reference< XEnumeration >  SAL_CALL SwXTextCursor::createContentEnumeration(cons
     Reference< XEnumeration > xRet = new SwXParaFrameEnumeration(*pUnoCrsr, PARAFRAME_PORTION_TEXTRANGE);
     return xRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXTextCursor::createEnumeration(void) throw( RuntimeException )
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -689,23 +673,17 @@ Reference< XEnumeration >  SwXTextCursor::createEnumeration(void) throw( Runtime
 
     return xRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Type  SwXTextCursor::getElementType(void) throw( RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXTextCursor::hasElements(void) throw( RuntimeException )
 {
     return sal_True;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SAL_CALL SwXTextCursor::getAvailableServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -713,9 +691,7 @@ Sequence< OUString > SAL_CALL SwXTextCursor::getAvailableServiceNames(void) thro
     pArray[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextContent" ));
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 IMPL_STATIC_LINK( SwXTextCursor, RemoveCursor_Impl,
                   Reference<XInterface>*, pArg )
@@ -754,9 +730,7 @@ void    SwXTextCursor::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         aLstnrCntnr.Disposing();
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 const SwPaM*    SwXTextCursor::GetPaM() const
 {
     return GetCrsr() ? GetCrsr() : 0;
@@ -767,24 +741,18 @@ SwPaM*  SwXTextCursor::GetPaM()
     return GetCrsr() ? GetCrsr() : 0;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 const SwDoc* SwXTextCursor::GetDoc()const
 {
     return   GetCrsr() ? GetCrsr()->GetDoc() : 0;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwDoc* SwXTextCursor::GetDoc()
 {
     return   GetCrsr() ? GetCrsr()->GetDoc() : 0;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::SetCrsrAttr(SwPaM& rPam, const SfxItemSet& rSet, USHORT nAttrMode)
 {
     sal_uInt16 nFlags = SETATTR_APICALL;
@@ -812,9 +780,7 @@ void SwXTextCursor::SetCrsrAttr(SwPaM& rPam, const SfxItemSet& rSet, USHORT nAtt
         pDoc->Insert( *pCrsr, rSet, nFlags );
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextCursor::GetCrsrAttr(SwPaM& rPam, SfxItemSet& rSet, BOOL bCurrentAttrOnly)
 {
     static const sal_uInt16 nMaxLookup = 1000;
@@ -881,23 +847,17 @@ void SwXTextCursor::GetCrsrAttr(SwPaM& rPam, SfxItemSet& rSet, BOOL bCurrentAttr
 /******************************************************************
  * SwXParagraphEnumeration
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXParagraphEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXParagraphEnumeration");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXParagraphEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.ParagraphEnumeration") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXParagraphEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -905,9 +865,7 @@ Sequence< OUString > SwXParagraphEnumeration::getSupportedServiceNames(void) thr
     pArray[0] = C2U("com.sun.star.text.ParagraphEnumeration");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParagraphEnumeration::SwXParagraphEnumeration(SwXText* pParent,
                                                     SwPosition& rPos,
                                                     CursorType eType) :
@@ -922,9 +880,7 @@ SwXParagraphEnumeration::SwXParagraphEnumeration(SwXText* pParent,
     pUnoCrsr->Add(this);
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParagraphEnumeration::SwXParagraphEnumeration(SwXText* pParent,
                                                 SwUnoCrsr*  pCrsr,
                                                 CursorType eType) :
@@ -946,9 +902,7 @@ SwXParagraphEnumeration::SwXParagraphEnumeration(SwXText* pParent,
             pCrsr->DeleteMark();
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParagraphEnumeration::~SwXParagraphEnumeration()
 {
     SwUnoCrsr* pUnoCrsr = GetCrsr();
@@ -956,9 +910,7 @@ SwXParagraphEnumeration::~SwXParagraphEnumeration()
         delete pUnoCrsr;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXParagraphEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -993,9 +945,7 @@ sal_Bool SwXParagraphEnumeration::hasMoreElements(void) throw( uno::RuntimeExcep
     }
     return bRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXParagraphEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -1071,17 +1021,13 @@ void SwXParagraphEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
  ******************************************************************/
 TYPEINIT1(SwXTextRange, SwClient);
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextRange::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
     //XUnoTunnel
 sal_Int64 SAL_CALL SwXTextRange::getSomething(
     const uno::Sequence< sal_Int8 >& rId )
@@ -1095,16 +1041,12 @@ sal_Int64 SAL_CALL SwXTextRange::getSomething(
         }
     return 0;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextRange::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextRange");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextRange::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     String sServiceName(rServiceName);
@@ -1116,9 +1058,7 @@ BOOL SwXTextRange::supportsService(const OUString& rServiceName) throw( RuntimeE
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesAsian") ||
         sServiceName.EqualsAscii("com.sun.star.style.ParagraphPropertiesComplex");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextRange::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(7);
@@ -1133,9 +1073,7 @@ Sequence< OUString > SwXTextRange::getSupportedServiceNames(void) throw( Runtime
     return aRet;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwPaM& rPam, const uno::Reference< XText > & rxParent) :
     eRangePosition(RANGE_IN_TEXT),
     pDoc(rPam.GetDoc()),
@@ -1148,9 +1086,7 @@ SwXTextRange::SwXTextRange(SwPaM& rPam, const uno::Reference< XText > & rxParent
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rFmt, SwPaM& rPam) :
     eRangePosition(RANGE_IN_FRAME),
     pDoc(rPam.GetDoc()),
@@ -1162,9 +1098,7 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rFmt, SwPaM& rPam) :
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, SwTableBox& rTblBox, SwPaM& rPam) :
     eRangePosition(RANGE_IN_CELL),
     pDoc(rPam.GetDoc()),
@@ -1176,9 +1110,7 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, SwTableBox& rTblBox, SwPaM& rPam) 
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, const SwStartNode& rStartNode, SwPaM& rPam) :
     eRangePosition(RANGE_IN_CELL),
     pDoc(rPam.GetDoc()),
@@ -1201,17 +1133,13 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt) :
 {
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRange::~SwXTextRange()
 {
     if(GetBookmark())
         pDoc->DelBookmark( GetBookmark()->GetName() );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXTextRange::_CreateNewBookmark(SwPaM& rPam)
 {
     static sal_Int32 nBookmark = 0;
@@ -1255,9 +1183,7 @@ void    SwXTextRange::_CreateNewBookmark(SwPaM& rPam)
                 sBookmarkName, sShortName, UNO_BOOKMARK);
     pMark->Add(this);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeException )
 {
     SwBookmark* pBkm = GetBookmark();
@@ -1291,9 +1217,7 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
 
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XText >  SwXTextRange::getText(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1346,9 +1270,7 @@ uno::Reference< XText >  SwXTextRange::getText(void) throw( uno::RuntimeExceptio
     }
     return xParentText;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextRange::getStart(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1370,9 +1292,7 @@ uno::Reference< XTextRange >  SwXTextRange::getStart(void) throw( uno::RuntimeEx
         throw uno::RuntimeException();
     return xRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextRange::getEnd(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1394,9 +1314,7 @@ uno::Reference< XTextRange >  SwXTextRange::getEnd(void) throw( uno::RuntimeExce
         throw uno::RuntimeException();
     return xRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXTextRange::getString(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1427,9 +1345,7 @@ OUString SwXTextRange::getString(void) throw( uno::RuntimeException )
     }
     return sRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextRange::setString(const OUString& aString)
     throw( uno::RuntimeException )
 {
@@ -1442,9 +1358,7 @@ void SwXTextRange::setString(const OUString& aString)
     else
         DeleteAndInsert(aString);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextRange::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     sal_Bool bAlreadyRegisterred = 0 != GetRegisteredIn();
@@ -1462,9 +1376,7 @@ void SwXTextRange::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
             ((SwModify*)aObjectDepend.GetRegisteredIn())->Remove(&aObjectDepend);
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool    SwXTextRange::GetPositions(SwPaM& rToFill) const
 {
     sal_Bool bRet = sal_False;
@@ -1483,9 +1395,7 @@ sal_Bool    SwXTextRange::GetPositions(SwPaM& rToFill) const
     }
     return bRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool        SwXTextRange::XTextRangeToSwPaM( SwUnoInternalPaM& rToFill,
                             const uno::Reference< XTextRange > & xTextRange)
 {
@@ -1682,9 +1592,7 @@ uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* p
     return aRet;
 }
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SAL_CALL SwXTextRange::createContentEnumeration(
         const OUString& rServiceName)
                 throw( RuntimeException )
@@ -1705,9 +1613,7 @@ Reference< XEnumeration >  SAL_CALL SwXTextRange::createContentEnumeration(
     delete pNewCrsr;
     return xRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXTextRange::createEnumeration(void) throw( RuntimeException )
 {
     SwBookmark* pBkm = GetBookmark();
@@ -1732,23 +1638,17 @@ Reference< XEnumeration >  SwXTextRange::createEnumeration(void) throw( RuntimeE
     Reference< XEnumeration > xRet = new SwXParagraphEnumeration(pParentText, *pNewCrsr, eSetType);
     return xRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Type  SwXTextRange::getElementType(void) throw( RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool SwXTextRange::hasElements(void) throw( RuntimeException )
 {
     return sal_True;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SAL_CALL SwXTextRange::getAvailableServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -1756,9 +1656,7 @@ Sequence< OUString > SAL_CALL SwXTextRange::getAvailableServiceNames(void) throw
     pArray[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextContent" ));
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SAL_CALL SwXTextRange::getPropertySetInfo(  ) throw(RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -1766,9 +1664,7 @@ Reference< XPropertySetInfo > SAL_CALL SwXTextRange::getPropertySetInfo(  ) thro
         aPropSet.getPropertySetInfo();
     return xRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::setPropertyValue(
     const OUString& rPropertyName, const Any& rValue )
     throw(UnknownPropertyException, PropertyVetoException,
@@ -1781,9 +1677,7 @@ void SAL_CALL SwXTextRange::setPropertyValue(
     SwXTextRange::GetPositions(aPaM);
     SwXTextCursor::SetPropertyValue(aPaM, aPropSet, rPropertyName, rValue);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SAL_CALL SwXTextRange::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -1794,45 +1688,35 @@ Any SAL_CALL SwXTextRange::getPropertyValue( const OUString& rPropertyName )
     SwXTextRange::GetPositions(aPaM);
     return SwXTextCursor::GetPropertyValue(aPaM, aPropSet, rPropertyName);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::addPropertyChangeListener(
     const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*xListener*/ )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::removePropertyChangeListener(
     const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::addVetoableChangeListener(
     const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::removeVetoableChangeListener(
     const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 PropertyState SAL_CALL SwXTextRange::getPropertyState( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
@@ -1843,9 +1727,7 @@ PropertyState SAL_CALL SwXTextRange::getPropertyState( const OUString& rProperty
     SwXTextRange::GetPositions(aPaM);
     return SwXTextCursor::GetPropertyState(aPaM, aPropSet, rPropertyName);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< PropertyState > SAL_CALL SwXTextRange::getPropertyStates(
     const Sequence< OUString >& rPropertyName ) throw(UnknownPropertyException, RuntimeException)
 {
@@ -1856,9 +1738,7 @@ Sequence< PropertyState > SAL_CALL SwXTextRange::getPropertyStates(
     SwXTextRange::GetPositions(aPaM);
     return SwXTextCursor::GetPropertyStates(aPaM, aPropSet, rPropertyName);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SAL_CALL SwXTextRange::setPropertyToDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
@@ -1869,9 +1749,7 @@ void SAL_CALL SwXTextRange::setPropertyToDefault( const OUString& rPropertyName 
     SwXTextRange::GetPositions(aPaM);
     SwXTextCursor::SetPropertyToDefault(aPaM, aPropSet, rPropertyName);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SAL_CALL SwXTextRange::getPropertyDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -1886,17 +1764,13 @@ Any SAL_CALL SwXTextRange::getPropertyDefault( const OUString& rPropertyName )
 /******************************************************************
  * SwXTextRanges
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextRanges::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextRanges::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -1915,23 +1789,17 @@ sal_Int64 SAL_CALL SwXTextRanges::getSomething( const uno::Sequence< sal_Int8 >&
  *
 ****************************************************************************/
 SV_IMPL_PTRARR(XTextRangeArr, XTextRangeRefPtr);
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextRanges::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextRanges");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextRanges::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.TextRanges") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextRanges::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -1939,17 +1807,13 @@ Sequence< OUString > SwXTextRanges::getSupportedServiceNames(void) throw( Runtim
     pArray[0] = C2U("com.sun.star.text.TextRanges");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRanges::SwXTextRanges() :
     pRangeArr(0)
 {
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRanges::SwXTextRanges(SwPaM* pCrsr) :
     pRangeArr(0)
 {
@@ -1976,9 +1840,7 @@ SwXTextRanges::SwXTextRanges(SwPaM* pCrsr) :
 
     pUnoCrsr->Add(this);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextRanges::~SwXTextRanges()
 {
     SwUnoCrsr* pCrsr = GetCrsr();
@@ -1989,9 +1851,7 @@ SwXTextRanges::~SwXTextRanges()
         delete pRangeArr;
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXTextRanges::getCount(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2007,9 +1867,7 @@ sal_Int32 SwXTextRanges::getCount(void) throw( uno::RuntimeException )
         nRet = pRangeArr->Count();
     return nRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXTextRanges::getByIndex(sal_Int32 nIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -2026,16 +1884,12 @@ uno::Any SwXTextRanges::getByIndex(sal_Int32 nIndex)
     uno::Any aRet(&aRef, ::getCppuType((uno::Reference<XTextRange>*)0));
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Type  SwXTextRanges::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextRanges::hasElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2061,9 +1915,7 @@ XTextRangeArr*  SwXTextRanges::GetRangesArray()
     }
     return pRangeArr;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXTextRanges::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
@@ -2094,23 +1946,17 @@ void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
  * SwXParaFrameEnumeration
  ******************************************************************/
 SV_IMPL_PTRARR(SwDependArr, SwDepend*);
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXParaFrameEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXParaFrameEnumeration");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXParaFrameEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.util.ContentEnumeration") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXParaFrameEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -2118,9 +1964,7 @@ Sequence< OUString > SwXParaFrameEnumeration::getSupportedServiceNames(void) thr
     pArray[0] = C2U("com.sun.star.util.ContentEnumeration");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParaFrameEnumeration::SwXParaFrameEnumeration(const SwUnoCrsr& rUnoCrsr,
                                                 sal_uInt8 nParaFrameMode,
                                                 SwFrmFmt* pFmt)
@@ -2175,9 +2019,7 @@ SwXParaFrameEnumeration::SwXParaFrameEnumeration(const SwUnoCrsr& rUnoCrsr,
         FillFrame(*pUnoCrsr);
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXParaFrameEnumeration::~SwXParaFrameEnumeration()
 {
     aFrameArr.DeleteAndDestroy(0, aFrameArr.Count());
@@ -2202,9 +2044,7 @@ void SwXParaFrameEnumeration::FillFrame(SwUnoCrsr& rUnoCrsr)
         aFrameArr.C40_INSERT(SwDepend, pNewDepend, aFrameArr.Count());
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXParaFrameEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2212,9 +2052,7 @@ sal_Bool SwXParaFrameEnumeration::hasMoreElements(void) throw( uno::RuntimeExcep
         throw uno::RuntimeException();
     return xNextObject.is() ? sal_True : CreateNextObject();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXParaFrameEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -2275,9 +2113,7 @@ sal_Bool SwXParaFrameEnumeration::CreateNextObject()
     return xNextObject.is();
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXParaFrameEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     switch( pOld ? pOld->Which() : 0 )

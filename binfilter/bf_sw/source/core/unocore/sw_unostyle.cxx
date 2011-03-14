@@ -192,23 +192,17 @@ SwGetPoolIdFromName lcl_GetSwEnumFromSfxEnum ( SfxStyleFamily eFamily )
 /******************************************************************
  * SwXStyleFamilies
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXStyleFamilies::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXStyleFamilies");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXStyleFamilies::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.style.StyleFamilies") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamilies::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -216,9 +210,7 @@ Sequence< OUString > SwXStyleFamilies::getSupportedServiceNames(void) throw( Run
     pArray[0] = C2U("com.sun.star.style.StyleFamilies");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyleFamilies::SwXStyleFamilies(SwDocShell& rDocShell) :
     SwUnoCollection(rDocShell.GetDoc()),
     pDocShell(&rDocShell),
@@ -230,9 +222,7 @@ SwXStyleFamilies::SwXStyleFamilies(SwDocShell& rDocShell) :
 {
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyleFamilies::~SwXStyleFamilies()
 {
     delete pxCharStyles;
@@ -241,9 +231,7 @@ SwXStyleFamilies::~SwXStyleFamilies()
     delete pxPageStyles;
     delete pxNumberingStyles;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SAL_CALL SwXStyleFamilies::getByName(const OUString& Name)
     throw(
         container::NoSuchElementException,
@@ -269,9 +257,7 @@ Any SAL_CALL SwXStyleFamilies::getByName(const OUString& Name)
         throw container::NoSuchElementException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamilies::getElementNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aNames(STYLE_FAMILY_COUNT);
@@ -283,9 +269,7 @@ Sequence< OUString > SwXStyleFamilies::getElementNames(void) throw( RuntimeExcep
     pNames[4] = C2U("NumberingStyles");
     return aNames;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamilies::hasByName(const OUString& Name) throw( RuntimeException )
 {
     if( Name.compareToAscii("CharacterStyles") == 0 ||
@@ -297,16 +281,12 @@ sal_Bool SwXStyleFamilies::hasByName(const OUString& Name) throw( RuntimeExcepti
     else
         return sal_False;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXStyleFamilies::getCount(void) throw( RuntimeException )
 {
     return STYLE_FAMILY_COUNT;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXStyleFamilies::getByIndex(sal_Int32 nIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, RuntimeException )
 {
@@ -377,25 +357,19 @@ Any SwXStyleFamilies::getByIndex(sal_Int32 nIndex)
         throw RuntimeException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Type SwXStyleFamilies::getElementType(void)
     throw( RuntimeException )
 {
     return ::getCppuType((const Reference<container::XNameContainer>*)0);
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamilies::hasElements(void) throw( RuntimeException )
 {
     return sal_True;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
     const Sequence< PropertyValue >& aOptions)
     throw( io::IOException, RuntimeException )
@@ -443,9 +417,7 @@ void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
     else
         throw RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXStyleFamilies::getStyleLoaderOptions(void)
         throw( RuntimeException )
 {
@@ -470,23 +442,17 @@ Sequence< PropertyValue > SwXStyleFamilies::getStyleLoaderOptions(void)
 /******************************************************************
  * SwXStyleFamily
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXStyleFamily::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXStyleFamily");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXStyleFamily::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.style.StyleFamily") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamily::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -494,9 +460,7 @@ Sequence< OUString > SwXStyleFamily::getSupportedServiceNames(void) throw( Runti
     pArray[0] = C2U("com.sun.star.style.StyleFamily");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyleFamily::SwXStyleFamily(SwDocShell* pDocSh, sal_uInt16 nFamily) :
         eFamily((SfxStyleFamily)nFamily),
         pBasePool(pDocSh->GetStyleSheetPool()),
@@ -522,9 +486,7 @@ SwXStyleFamily::SwXStyleFamily(SwDocShell* pDocSh, sal_uInt16 nFamily) :
     }*/
     StartListening(*pBasePool);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyleFamily::~SwXStyleFamily()
 {
 
@@ -666,17 +628,13 @@ sal_Int32 lcl_GetCountOrName ( const SwDoc &rDoc, SfxStyleFamily eFamily, String
     }
     return nCount;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXStyleFamily::getCount(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     return lcl_GetCountOrName ( *pDocShell->GetDoc(), eFamily, NULL );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, RuntimeException )
 {
@@ -812,9 +770,7 @@ Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
 
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXStyleFamily::getByName(const OUString& rName)
     throw( container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
 {
@@ -847,9 +803,7 @@ Any SwXStyleFamily::getByName(const OUString& rName)
     return aRet;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamily::getElementNames(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -872,9 +826,7 @@ Sequence< OUString > SwXStyleFamily::getElementNames(void) throw( RuntimeExcepti
         throw RuntimeException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamily::hasByName(const OUString& rName) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -892,26 +844,20 @@ sal_Bool SwXStyleFamily::hasByName(const OUString& rName) throw( RuntimeExceptio
     return bRet;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Type SwXStyleFamily::getElementType(void) throw( RuntimeException )
 {
     return ::getCppuType((const Reference<style::XStyle>*)0);
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamily::hasElements(void) throw( RuntimeException )
 {
     if(!pBasePool)
         throw RuntimeException();
     return sal_True;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
         throw( lang::IllegalArgumentException, container::ElementExistException, lang::WrappedTargetException, RuntimeException )
 {
@@ -975,9 +921,7 @@ void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
     else
         throw RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyleFamily::replaceByName(const OUString& rName, const Any& rElement)
     throw( lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
 {
@@ -1010,9 +954,7 @@ void SwXStyleFamily::replaceByName(const OUString& rName, const Any& rElement)
     else
         throw RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyleFamily::removeByName(const OUString& rName) throw( container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1031,9 +973,7 @@ void SwXStyleFamily::removeByName(const OUString& rName) throw( container::NoSuc
     else
         throw RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 {
     SfxSimpleHint *pHint = PTR_CAST( SfxSimpleHint, &rHint );
@@ -1044,9 +984,7 @@ void SwXStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         EndListening(rBC);
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyle*   SwXStyleFamily::_FindStyle(const String& rStyleName)const
 {
     sal_uInt16  nLCount = pBasePool->GetListenerCount();
@@ -1178,17 +1116,13 @@ void SwStyleProperties_Impl::GetProperty( const OUString &rPropertyName, const R
 /******************************************************************
  *
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const Sequence< sal_Int8 > & SwXStyle::getUnoTunnelId()
 {
     static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXStyle::getSomething( const Sequence< sal_Int8 >& rId )
     throw(RuntimeException)
 {
@@ -1202,16 +1136,12 @@ sal_Int64 SAL_CALL SwXStyle::getSomething( const Sequence< sal_Int8 >& rId )
 }
 
 TYPEINIT1(SwXStyle, SfxListener);
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXStyle::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXStyle");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXStyle::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     BOOL bRet = C2U("com.sun.star.style.Style") == rServiceName;
@@ -1229,9 +1159,7 @@ BOOL SwXStyle::supportsService(const OUString& rServiceName) throw( RuntimeExcep
 
     return  bRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXStyle::getSupportedServiceNames(void) throw( RuntimeException )
 {
     long nCount = 1;
@@ -1271,9 +1199,7 @@ Sequence< OUString > SwXStyle::getSupportedServiceNames(void) throw( RuntimeExce
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyle::SwXStyle( SwDoc *pDoc, SfxStyleFamily eFam, BOOL bConditional) :
     m_pDoc( pDoc ),
     pBasePool(0),
@@ -1363,18 +1289,14 @@ SwXStyle::SwXStyle(SfxStyleSheetBasePool& rPool, SfxStyleFamily eFam,
         }
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXStyle::~SwXStyle()
 {
     if(pBasePool)
         EndListening(*pBasePool);
     delete pPropImpl;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
@@ -1402,9 +1324,7 @@ OUString SwXStyle::getName(void) throw( RuntimeException )
         aString = sStyleName;
     return OUString (aString);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::setName(const OUString& rName) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1427,9 +1347,7 @@ void SwXStyle::setName(const OUString& rName) throw( RuntimeException )
     else
         sStyleName = String(rName);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXStyle::isUserDefined(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1446,9 +1364,7 @@ sal_Bool SwXStyle::isUserDefined(void) throw( RuntimeException )
         throw RuntimeException();
     return bRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXStyle::isInUse(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1464,9 +1380,7 @@ sal_Bool SwXStyle::isInUse(void) throw( RuntimeException )
         throw RuntimeException();
     return bRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXStyle::getParentStyle(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1485,9 +1399,7 @@ OUString SwXStyle::getParentStyle(void) throw( RuntimeException )
     SwStyleNameMapper::FillProgName(aString, aString, lcl_GetSwEnumFromSfxEnum ( eFamily ), sal_True );
     return OUString ( aString );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::setParentStyle(const OUString& rParentStyle)
             throw( container::NoSuchElementException, RuntimeException )
 {
@@ -1533,9 +1445,7 @@ void SwXStyle::setParentStyle(const OUString& rParentStyle)
     else
         throw RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo >  SwXStyle::getPropertySetInfo(void)
     throw( RuntimeException )
 {
@@ -1627,9 +1537,7 @@ void    SwXStyle::ApplyDescriptorProperties()
     }
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 struct SwStyleBase_Impl
 {
     SwDoc&              rDoc;
@@ -1663,9 +1571,7 @@ struct SwStyleBase_Impl
 
         const SwPageDesc& GetOldPageDesc();
 };
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const SwPageDesc& SwStyleBase_Impl::GetOldPageDesc()
 {
     if(!pOldPageDesc)
@@ -1707,9 +1613,7 @@ const SwPageDesc& SwStyleBase_Impl::GetOldPageDesc()
     return *pOldPageDesc;
 }
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
                         SfxItemPropertySet& rPropSet,
                         const Any& rValue,
@@ -2031,9 +1935,7 @@ put_itemset:
         }
     }
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXStyle::setPropertyValues(
     const Sequence< OUString >& rPropertyNames,
     const Sequence< Any >& rValues )
@@ -2248,9 +2150,7 @@ query_itemset:
         throw RuntimeException();
     return aRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< Any > SwXStyle::getPropertyValues(
     const Sequence< OUString >& rPropertyNames ) throw(RuntimeException)
 {
@@ -2341,34 +2241,27 @@ Sequence< Any > SwXStyle::getPropertyValues(
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
-  -----------------------------------------------------------------------*/
+
 void SwXStyle::addPropertiesChangeListener(
     const Sequence< OUString >& /*aPropertyNames*/,
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::removePropertiesChangeListener(
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::firePropertiesChangeEvent(
     const Sequence< OUString >& /*aPropertyNames*/,
     const Reference< XPropertiesChangeListener >& /*xListener*/ )
         throw(RuntimeException)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::setPropertyValue(const OUString& rPropertyName, const Any& rValue)
     throw( UnknownPropertyException,
         PropertyVetoException,
@@ -2380,9 +2273,7 @@ void SwXStyle::setPropertyValue(const OUString& rPropertyName, const Any& rValue
     const Sequence<Any> aValues(&rValue, 1);
     setPropertyValues(aProperties, aValues);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXStyle::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
@@ -2390,36 +2281,28 @@ Any SwXStyle::getPropertyValue(const OUString& rPropertyName)
     return getPropertyValues(aProperties).getConstArray()[0];
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::addPropertyChangeListener(const OUString& /*PropertyName*/,
     const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::removePropertyChangeListener(const OUString& /*PropertyName*/,
     const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::addVetoableChangeListener(const OUString& /*PropertyName*/,
     const Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::removeVetoableChangeListener(const OUString& /*PropertyName*/,
     const Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
@@ -2427,9 +2310,7 @@ void SwXStyle::removeVetoableChangeListener(const OUString& /*PropertyName*/,
     DBG_WARNING("not implemented");
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 PropertyState SwXStyle::getPropertyState(const OUString& rPropertyName)
         throw( UnknownPropertyException, RuntimeException )
 {
@@ -2441,9 +2322,7 @@ PropertyState SwXStyle::getPropertyState(const OUString& rPropertyName)
     Sequence< PropertyState > aStates = getPropertyStates(aNames);
     return aStates.getConstArray()[0];
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< PropertyState > SwXStyle::getPropertyStates(
     const Sequence< OUString >& rPropertyNames)
         throw( UnknownPropertyException, RuntimeException )
@@ -2537,9 +2416,7 @@ Sequence< PropertyState > SwXStyle::getPropertyStates(
         throw RuntimeException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXStyle::setPropertyToDefault(const OUString& rPropertyName)
         throw( UnknownPropertyException, RuntimeException )
 {
@@ -2775,9 +2652,7 @@ Sequence< Any > SAL_CALL SwXStyle::getPropertyDefaults( const Sequence< OUString
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXStyle::getPropertyDefault(const OUString& rPropertyName)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
@@ -2807,9 +2682,7 @@ void SwXStyle::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         }
     }
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXStyle::Invalidate()
 {
     sStyleName.Erase();
@@ -2823,9 +2696,7 @@ void SwXStyle::Invalidate()
 /******************************************************************
  * SwXPageStyle
  ******************************************************************/
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXPageStyle::SwXPageStyle(SfxStyleSheetBasePool& rPool,
         SwDocShell* pDocSh, SfxStyleFamily eFam,
         const String& rStyleName)://, const SfxItemPropertyMap* _pMap) :
@@ -2834,25 +2705,19 @@ SwXPageStyle::SwXPageStyle(SfxStyleSheetBasePool& rPool,
 {
 
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwXPageStyle::SwXPageStyle(SwDocShell* pDocSh) :
     SwXStyle(pDocSh->GetDoc(), SFX_STYLE_FAMILY_PAGE),
     pDocShell(pDocSh)
 {
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXPageStyle::~SwXPageStyle()
 {
 
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXPageStyle::setPropertyValues(
     const Sequence< OUString >& rPropertyNames,
     const Sequence< Any >& rValues )
@@ -3060,9 +2925,7 @@ void SwXPageStyle::setPropertyValues(
     if(aBaseImpl.HasItemSet())
         aBaseImpl.pNewBase->SetItemSet(aBaseImpl.GetItemSet());
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< Any > SwXPageStyle::getPropertyValues(
     const Sequence< OUString >& rPropertyNames )
         throw(RuntimeException)
@@ -3274,18 +3137,14 @@ MakeObject:
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXPageStyle::getPropertyValue(const OUString& rPropertyName) throw(
     UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     const Sequence<OUString> aProperties(&rPropertyName, 1);
     return getPropertyValues(aProperties).getConstArray()[0];
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXPageStyle::setPropertyValue(const OUString& rPropertyName, const Any& rValue)
     throw( UnknownPropertyException,
         PropertyVetoException,
@@ -3302,15 +3161,11 @@ SwXFrameStyle::SwXFrameStyle ( SwDoc *pDoc )
 : SwXStyle ( pDoc, SFX_STYLE_FAMILY_FRAME, FALSE)
 {
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXFrameStyle::~SwXFrameStyle()
 {
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< uno::Type > SwXFrameStyle::getTypes(  ) throw(RuntimeException)
 {
     Sequence< uno::Type > aTypes = SwXStyle::getTypes();
@@ -3319,9 +3174,7 @@ Sequence< uno::Type > SwXFrameStyle::getTypes(  ) throw(RuntimeException)
     aTypes.getArray()[nLen] = ::getCppuType((Reference<XEventsSupplier>*)0);
     return aTypes;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXFrameStyle::queryInterface( const uno::Type& rType ) throw(RuntimeException)
 {
     Any aRet;
@@ -3331,9 +3184,7 @@ Any SwXFrameStyle::queryInterface( const uno::Type& rType ) throw(RuntimeExcepti
         aRet = SwXStyle::queryInterface(rType);
     return aRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Reference< XNameReplace > SwXFrameStyle::getEvents(  ) throw(RuntimeException)
 {
     return new SwFrameStyleEventDescriptor( *this );

@@ -149,9 +149,7 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/   return aText;
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwMacroField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -171,9 +169,7 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     String sTmp;

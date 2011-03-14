@@ -128,9 +128,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   nSubType = nSub & 0xff00;
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwUserField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -156,9 +154,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ sal_Bool SwUserField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -303,9 +299,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwUserFieldType::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -328,9 +322,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwUserFieldType::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;

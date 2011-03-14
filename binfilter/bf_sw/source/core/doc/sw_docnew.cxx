@@ -663,9 +663,7 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/       DELETEZ( pPgPViewPrtData );
 /*N*/   SetModified();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwModify* SwDoc::GetUnoCallBack() const
 /*N*/ {
 /*N*/   return pUnoCallBack;

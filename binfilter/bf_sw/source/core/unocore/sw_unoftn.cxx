@@ -64,17 +64,13 @@ using rtl::OUString;
 /******************************************************************
  *
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXFootnote::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXFootnote::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -86,16 +82,12 @@ sal_Int64 SAL_CALL SwXFootnote::getSomething( const uno::Sequence< sal_Int8 >& r
     }
     return SwXText::getSomething( rId );
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXFootnote::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFootnote");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXFootnote::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return  !rServiceName.compareToAscii("com.sun.star.text.Footnote") ||
@@ -104,9 +96,7 @@ BOOL SwXFootnote::supportsService(const OUString& rServiceName) throw( RuntimeEx
             (m_bIsEndnote && !rServiceName.compareToAscii("com.sun.star.text.Endnote"));
 ;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFootnote::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(m_bIsEndnote ? 4 : 3);
@@ -118,9 +108,7 @@ Sequence< OUString > SwXFootnote::getSupportedServiceNames(void) throw( RuntimeE
         pArray[3] = C2U("com.sun.star.text.Endnote");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 TYPEINIT1(SwXFootnote, SwClient);
 
 SwXFootnote::SwXFootnote(sal_Bool bEndnote) :
@@ -132,9 +120,7 @@ SwXFootnote::SwXFootnote(sal_Bool bEndnote) :
 {
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFootnote::SwXFootnote(SwDoc* pInDoc, const SwFmtFtn& rFmt) :
     SwXText(pInDoc, CURSOR_FOOTNOTE),
     aLstnrCntnr( (text::XTextContent*)this),
@@ -144,16 +130,12 @@ SwXFootnote::SwXFootnote(SwDoc* pInDoc, const SwFmtFtn& rFmt) :
 {
     GetDoc()->GetUnoCallBack()->Add(this);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFootnote::~SwXFootnote()
 {
 
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL SwXFootnote::getTypes(  ) throw(uno::RuntimeException)
 {
     uno::Sequence< uno::Type > aFtnTypes = SwXFootnoteBaseClass::getTypes();
@@ -170,9 +152,7 @@ uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL SwXFootnote::getTypes(  ) 
     return aFtnTypes;
 }
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Sequence< sal_Int8 > SAL_CALL SwXFootnote::getImplementationId(  ) throw(uno::RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -185,9 +165,7 @@ uno::Sequence< sal_Int8 > SAL_CALL SwXFootnote::getImplementationId(  ) throw(un
     }
     return aId;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 uno::Any SAL_CALL SwXFootnote::queryInterface( const uno::Type& aType ) throw(uno::RuntimeException)
 {
     uno::Any aRet = SwXFootnoteBaseClass::queryInterface(aType);
@@ -196,9 +174,7 @@ uno::Any SAL_CALL SwXFootnote::queryInterface( const uno::Type& aType ) throw(un
     return aRet;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXFootnote::getLabel(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -212,9 +188,7 @@ OUString SwXFootnote::getLabel(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return sRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::setLabel(const OUString& aLabel) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -288,18 +262,14 @@ void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xText
     else
         throw lang::IllegalArgumentException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::attach(const uno::Reference< text::XTextRange > & xTextRange)
             throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXFootnote::getAnchor(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -315,9 +285,7 @@ uno::Reference< text::XTextRange >  SwXFootnote::getAnchor(void) throw( uno::Run
         throw uno::RuntimeException();
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::dispose(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -335,18 +303,14 @@ void SwXFootnote::dispose(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::addEventListener(const uno::Reference< lang::XEventListener > & aListener) throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn())
         throw uno::RuntimeException();
     aLstnrCntnr.AddListener(aListener);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::removeEventListener(const uno::Reference< lang::XEventListener > & aListener) throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
@@ -370,9 +334,7 @@ uno::Reference< text::XTextCursor >   SwXFootnote::createCursor() throw ( ::com:
 {
     return createTextCursor();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursor(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -391,9 +353,7 @@ uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursor(void) throw( 
         throw uno::RuntimeException();
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursorByRange(
     const uno::Reference< text::XTextRange > & aTextPosition)
             throw( uno::RuntimeException )
@@ -418,9 +378,7 @@ uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursorByRange(
         throw uno::RuntimeException();
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXFootnote::createEnumeration() throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -437,23 +395,17 @@ Reference< XEnumeration >  SwXFootnote::createEnumeration() throw( RuntimeExcept
     }
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Type SwXFootnote::getElementType(  ) throw(RuntimeException)
 {
     return ::getCppuType((Reference<XTextRange>*)0);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXFootnote::hasElements(  ) throw(RuntimeException)
 {
     return sal_True;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXFootnote::Invalidate()
 {
     if(GetRegisteredIn())
@@ -486,9 +438,7 @@ void SwXFootnote::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         break;
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SwXFootnote::getPropertySetInfo(  )
     throw(RuntimeException)
 {
@@ -496,9 +446,7 @@ Reference< XPropertySetInfo > SwXFootnote::getPropertySetInfo(  )
         new SfxItemPropertySetInfo(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_FOOTNOTE));
     return xRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::setPropertyValue( const ::rtl::OUString&,
     const Any& )
         throw(UnknownPropertyException, PropertyVetoException,
@@ -507,9 +455,7 @@ void SwXFootnote::setPropertyValue( const ::rtl::OUString&,
     //no values to be set
     throw IllegalArgumentException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
@@ -543,33 +489,25 @@ Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::addPropertyChangeListener( const OUString& /*aPropertyName*/,
     const Reference< XPropertyChangeListener >& /*xListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::removePropertyChangeListener( const OUString& /*aPropertyName*/,
     const Reference< XPropertyChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::addVetoableChangeListener( const OUString& /*PropertyName*/,
     const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFootnote::removeVetoableChangeListener( const OUString& /*PropertyName*/,
     const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)

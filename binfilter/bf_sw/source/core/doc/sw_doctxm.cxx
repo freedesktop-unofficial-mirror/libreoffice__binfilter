@@ -217,9 +217,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 /*N*/ const SwAttrSet& SwDoc::GetTOXBaseAttrSet(const SwTOXBase& rTOXBase) const
 /*N*/ {
 /*N*/   OSL_ENSURE( rTOXBase.ISA( SwTOXBaseSection ), "no TOXBaseSection!" );
@@ -228,12 +226,8 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   OSL_ENSURE( pFmt, "invalid TOXBaseSection!" );
 /*N*/   return pFmt->GetAttrSet();
 /*N*/ }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 
 /*--------------------------------------------------------------------
      Beschreibung: Verzeichnis loeschen
@@ -258,9 +252,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           ++nCnt;
 /*N*/   return nCnt;
 /*N*/ }
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ const SwTOXType* SwDoc::GetTOXType( TOXTypes eTyp, USHORT nId ) const
 /*N*/ {
 /*N*/   const SwTOXTypePtr * ppTTypes = pTOXTypes->GetData();
@@ -277,18 +269,14 @@ DBG_BF_ASSERT(0, "STRIP");
 
 #endif
 
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ const SwTOXType* SwDoc::InsertTOXType( const SwTOXType& rTyp )
 /*N*/ {
 /*N*/   SwTOXType * pNew = new SwTOXType( rTyp );
 /*N*/   pTOXTypes->Insert( pNew, pTOXTypes->Count() );
 /*N*/   return pNew;
 /*N*/ }
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ String SwDoc::GetUniqueTOXBaseName( const SwTOXType& rType,
 /*N*/                                   const String* pChkStr ) const
 /*N*/ {
@@ -340,9 +328,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return aName += String::CreateFromInt32( ++nNum );
 /*N*/ }
 
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ BOOL SwDoc::SetTOXBaseName(const SwTOXBase& rTOXBase, const String& rName)
 /*N*/ {
 /*N*/   OSL_ENSURE( rTOXBase.ISA( SwTOXBaseSection ),
@@ -359,9 +345,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 
 
 /*  */
@@ -427,9 +411,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /* --------------------------------------------------
     Description: generate content from sequence fields
  --------------------------------------------------*/
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 
 /*--------------------------------------------------------------------
      Beschreibung:  Verzeichnisinhalt aus Inhaltsformen generieren

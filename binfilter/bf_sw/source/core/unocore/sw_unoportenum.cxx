@@ -66,17 +66,13 @@ using rtl::OUString;
 /******************************************************************
  *  SwXTextPortionEnumeration
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextPortionEnumeration::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextPortionEnumeration::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -88,23 +84,17 @@ sal_Int64 SAL_CALL SwXTextPortionEnumeration::getSomething( const uno::Sequence<
     }
     return 0;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextPortionEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextPortionEnumeration");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextPortionEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.TextPortionEnumeration") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextPortionEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -112,9 +102,7 @@ Sequence< OUString > SwXTextPortionEnumeration::getSupportedServiceNames(void) t
     pArray[0] = C2U("com.sun.star.text.TextPortionEnumeration");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextPortionEnumeration::SwXTextPortionEnumeration(
     SwPaM& rParaCrsr,
     uno::Reference< XText >  xParentText,
@@ -139,9 +127,7 @@ SwXTextPortionEnumeration::SwXTextPortionEnumeration(
                             aFrameArr, TRUE );
     CreatePortions();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
 {
     for(sal_uInt16 nFrame = aFrameArr.Count(); nFrame; )
@@ -154,17 +140,13 @@ SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     delete pUnoCrsr;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextPortionEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     return aPortionArr.Count() > 0;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXTextPortionEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
@@ -177,9 +159,7 @@ uno::Any SwXTextPortionEnumeration::nextElement(void)
     delete pPortion;
     return aRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_InsertRefMarkPortion(
     XTextRangeArr& rArr, SwUnoCrsr* pUnoCrsr, Reference<XText>& rParent, SwTxtAttr* pAttr, BOOL bEnd)
 {
@@ -312,9 +292,7 @@ void lcl_ExportBookmark(
         delete pPtr;
     }
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 //-----------------------------------------------------------------------------
 #define REDLINE_PORTION_START_REMOVE 0//removed redlines are visible
 #define REDLINE_PORTION_END_REMOVE   1//removed redlines are visible
@@ -642,9 +620,7 @@ void lcl_FillRedlineArray(SwDoc& rDoc,SwUnoCrsr& rUnoCrsr, SwXRedlinePortionArr&
         }
     }
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_ExportRedline(
     SwXRedlinePortionArr& rRedlineArr, ULONG nIndex,
     SwUnoCrsr* pUnoCrsr, Reference<XText> & rParent, XTextRangeArr& rPortionArr)
@@ -664,9 +640,7 @@ void lcl_ExportRedline(
         delete pPtr;
     }
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_ExportBkmAndRedline(
     SwXBookmarkPortionArr& rBkmArr,
     SwXRedlinePortionArr& rRedlineArr, ULONG nIndex,
@@ -909,9 +883,7 @@ void SwXTextPortionEnumeration::CreatePortions()
         }
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXTextPortionEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);

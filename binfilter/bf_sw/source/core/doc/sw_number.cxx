@@ -75,18 +75,14 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/       (~NO_NUMLEVEL & rNd.GetNum()->GetLevel() ) == nLevel )
 /*N*/       rNd.NumRuleChgd();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt::SwNumFmt() :
 /*N*/   SwClient( 0 ),
 /*N*/   SvxNumberFormat(SVX_NUM_ARABIC),
 /*N*/     pVertOrient(new SwFmtVertOrient( 0, VERT_NONE))
 /*N*/ {
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt::SwNumFmt( const SwNumFmt& rFmt) :
 /*N*/   SwClient( rFmt.pRegisteredIn ),
 /*N*/   SvxNumberFormat(rFmt),
@@ -96,9 +92,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   SetGraphicBrush( rFmt.GetBrush(), &rFmt.GetGraphicSize(),
 /*N*/                                               &eVertOrient);
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt::SwNumFmt(const SvxNumberFormat& rNumFmt, SwDoc* pDoc) :
 /*N*/   SvxNumberFormat(rNumFmt),
 /*N*/     pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rNumFmt.GetVertOrient()))
@@ -124,22 +118,16 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*?*/       pRegisteredIn->Remove( this );
 
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt::~SwNumFmt()
 /*N*/ {
 /*N*/   delete pVertOrient;
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::NotifyGraphicArrived()
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt& SwNumFmt::operator=( const SwNumFmt& rNumFmt)
 /*N*/ {
 /*N*/   SvxNumberFormat::operator=(rNumFmt);
@@ -149,9 +137,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*?*/       pRegisteredIn->Remove( this );
 /*N*/   return *this;
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ BOOL SwNumFmt::operator==( const SwNumFmt& rNumFmt) const
 /*N*/ {
 /*N*/   BOOL bRet = SvxNumberFormat::operator==(rNumFmt) &&
@@ -159,15 +145,11 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/     return bRet;
 /*N*/ }
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ const Graphic* SwNumFmt::GetGraphic() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::SetCharFmt( SwCharFmt* pChFmt)
 /*N*/ {
 /*N*/   if( pChFmt )
@@ -175,9 +157,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   else if( GetRegisteredIn() )
 /*?*/       pRegisteredIn->Remove( this );
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   // dann suche mal in dem Doc nach dem NumRules-Object, in dem dieses
@@ -196,23 +176,17 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   else
 /*N*/       SwClient::Modify( pOld, pNew );
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::SetCharFmtName(const String& rSet)
 /*N*/ {
 /*N*/   SvxNumberFormat::SetCharFmtName(rSet);
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ const String& SwNumFmt::GetCharFmtName() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       return aEmptyStr;
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void  SwNumFmt::SetGraphicBrush( const SvxBrushItem* pBrushItem, const Size* pSize,
 /*N*/   const SvxFrameVertOrient* pOrient)
 /*N*/ {
@@ -220,22 +194,16 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/         pVertOrient->SetVertOrient( (SwVertOrient)*pOrient );
 /*N*/   SvxNumberFormat::SetGraphicBrush( pBrushItem, pSize, pOrient);
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient /*eSet*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SvxFrameVertOrient    SwNumFmt::GetVertOrient() const
 /*N*/ {
 /*N*/     return SvxNumberFormat::GetVertOrient();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::UpdateNumNodes( SwDoc* pDoc )
 /*N*/ {
 /*N*/   BOOL bDocIsModified = pDoc->IsModified();
@@ -305,9 +273,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   if( bFnd && !bDocIsModified )
 /*?*/       pDoc->ResetModified();
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ const SwFmtVertOrient*      SwNumFmt::GetGraphicOrientation() const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }

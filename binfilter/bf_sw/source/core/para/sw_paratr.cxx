@@ -270,9 +270,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return new SwNumRuleItem( *this );
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ bool SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   ::rtl::OUString sRet = SwStyleNameMapper::GetProgName(GetValue(), GET_POOLID_NUMRULE );

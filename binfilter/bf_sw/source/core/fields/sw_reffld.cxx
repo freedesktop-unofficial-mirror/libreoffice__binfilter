@@ -471,9 +471,7 @@ String SwGetRefField::GetPar2() const
     return Expand();
 }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwGetRefField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -541,9 +539,7 @@ String SwGetRefField::GetPar2() const
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwGetRefField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/   String sTmp;

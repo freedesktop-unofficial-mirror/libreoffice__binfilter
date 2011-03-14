@@ -420,17 +420,13 @@ USHORT lcl_GetPropertyMapOfService( USHORT nServiceId )
  * SwXFieldMaster
  ******************************************************************/
 TYPEINIT1(SwXFieldMaster, SwClient);
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const ::com::sun::star::uno::Sequence< sal_Int8 > & SwXFieldMaster::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXFieldMaster::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -442,16 +438,12 @@ sal_Int64 SAL_CALL SwXFieldMaster::getSomething( const uno::Sequence< sal_Int8 >
     }
     return 0;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXFieldMaster::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFieldMaster");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXFieldMaster::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     sal_Bool bRet = sal_False;
@@ -480,9 +472,7 @@ BOOL SwXFieldMaster::supportsService(const OUString& rServiceName) throw( Runtim
     }
     return bRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFieldMaster::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(2);
@@ -507,9 +497,7 @@ Sequence< OUString > SwXFieldMaster::getSupportedServiceNames(void) throw( Runti
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFieldMaster::SwXFieldMaster(SwDoc* pDoc, sal_uInt16 nResId) :
     aLstnrCntnr( (XPropertySet*)this),
     nResTypeId(nResId),
@@ -522,9 +510,7 @@ SwXFieldMaster::SwXFieldMaster(SwDoc* pDoc, sal_uInt16 nResId) :
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFieldMaster::SwXFieldMaster(SwFieldType& rType, SwDoc* pDoc) :
     SwClient(&rType),
     aLstnrCntnr( (XPropertySet*)this),
@@ -537,16 +523,12 @@ SwXFieldMaster::SwXFieldMaster(SwFieldType& rType, SwDoc* pDoc) :
 {
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFieldMaster::~SwXFieldMaster()
 {
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XPropertySetInfo >  SwXFieldMaster::getPropertySetInfo(void)
                                             throw( uno::RuntimeException )
 {
@@ -556,9 +538,7 @@ uno::Reference< XPropertySetInfo >  SwXFieldMaster::getPropertySetInfo(void)
                                 lcl_GetPropMapIdForFieldType( nResTypeId ) ));
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
                                     const uno::Any& rValue)
     throw( UnknownPropertyException, PropertyVetoException,
@@ -725,9 +705,7 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
         }
     }
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 SwFieldType* SwXFieldMaster::GetFldType(sal_Bool bDontCreate) const
 {
     if(!bDontCreate && RES_DBFLD == nResTypeId && m_bIsDescriptor && m_pDoc)
@@ -748,9 +726,7 @@ SwFieldType* SwXFieldMaster::GetFldType(sal_Bool bDontCreate) const
         return (SwFieldType*)GetRegisteredIn();
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 typedef SwFmtFld* SwFmtFldPtr;
 SV_DECL_PTRARR(SwDependentFields, SwFmtFldPtr, 5, 5)
 SV_IMPL_PTRARR(SwDependentFields, SwFmtFldPtr)
@@ -883,42 +859,32 @@ uno::Any SwXFieldMaster::getPropertyValue(const OUString& rPropertyName)
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::addPropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::removePropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::addVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::removeVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::dispose(void)          throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -956,9 +922,7 @@ void SwXFieldMaster::dispose(void)          throw( uno::RuntimeException )
     else
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::addEventListener(const uno::Reference< XEventListener > & aListener)
                                             throw( uno::RuntimeException )
 {
@@ -966,9 +930,7 @@ void SwXFieldMaster::addEventListener(const uno::Reference< XEventListener > & a
         throw uno::RuntimeException();
     aLstnrCntnr.AddListener(aListener);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::removeEventListener(const uno::Reference< XEventListener > & aListener)
                                                     throw( uno::RuntimeException )
 {
@@ -976,9 +938,7 @@ void SwXFieldMaster::removeEventListener(const uno::Reference< XEventListener > 
         throw uno::RuntimeException();
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXFieldMaster::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
@@ -1010,9 +970,7 @@ const Programmatic2UIName_Impl* lcl_GetFieldNameTable()
     return &aFieldNames[0];
 }
  ---------------------------------------------------------------------------*/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXFieldMaster::GetProgrammaticName(const SwFieldType& rType, SwDoc& rDoc)
 {
     OUString sRet(rType.GetName());
@@ -1030,9 +988,7 @@ OUString SwXFieldMaster::GetProgrammaticName(const SwFieldType& rType, SwDoc& rD
     }
     return sRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXFieldMaster::LocalizeFormula(
     const SwSetExpField& rFld,
     const OUString& rFormula,
@@ -1101,17 +1057,13 @@ struct SwFieldProperties_Impl
 };
 
 TYPEINIT1(SwXTextField, SwClient);
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const ::com::sun::star::uno::Sequence< sal_Int8 > & SwXTextField::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextField::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -1123,9 +1075,7 @@ sal_Int64 SAL_CALL SwXTextField::getSomething( const uno::Sequence< sal_Int8 >& 
     }
     return 0;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 SwXTextField::SwXTextField(sal_uInt16 nServiceId) :
     aLstnrCntnr( (XTextContent*)this),
@@ -1146,9 +1096,7 @@ SwXTextField::SwXTextField(sal_uInt16 nServiceId) :
         m_pProps->bBool1 = sal_True;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextField::SwXTextField(const SwFmtFld& rFmt, SwDoc* pDc) :
     aLstnrCntnr( (XTextContent*)this),
     pFmtFld(&rFmt),
@@ -1160,16 +1108,12 @@ SwXTextField::SwXTextField(const SwFmtFld& rFmt, SwDoc* pDc) :
 {
     pDc->GetUnoCallBack()->Add(this);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextField::~SwXTextField()
 {
     delete m_pProps;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::attachTextFieldMaster(const uno::Reference< XPropertySet > & xFieldMaster)
                     throw( IllegalArgumentException, uno::RuntimeException )
 {
@@ -1191,9 +1135,7 @@ void SwXTextField::attachTextFieldMaster(const uno::Reference< XPropertySet > & 
         throw IllegalArgumentException();
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XPropertySet >  SwXTextField::getTextFieldMaster(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1207,9 +1149,7 @@ uno::Reference< XPropertySet >  SwXTextField::getTextFieldMaster(void) throw( un
 
     return pMaster;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXTextField::getPresentation(sal_Bool bShowCommand) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1737,18 +1677,14 @@ void SwXTextField::attachToRange(
     else
         throw IllegalArgumentException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::attach(const uno::Reference< XTextRange > & xTextRange)
     throw( IllegalArgumentException, uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XTextRange >  SwXTextField::getAnchor(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1769,9 +1705,7 @@ uno::Reference< XTextRange >  SwXTextField::getAnchor(void) throw( uno::RuntimeE
     return aRef;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::dispose(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1787,26 +1721,20 @@ void SwXTextField::dispose(void) throw( uno::RuntimeException )
         GetDoc()->DeleteAndJoin(aPam);
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::addEventListener(const uno::Reference< XEventListener > & aListener) throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn())
         throw uno::RuntimeException();
     aLstnrCntnr.AddListener(aListener);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::removeEventListener(const uno::Reference< XEventListener > & aListener) throw( uno::RuntimeException )
 {
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XPropertySetInfo >  SwXTextField::getPropertySetInfo(void)
         throw( uno::RuntimeException )
 {
@@ -1828,9 +1756,7 @@ uno::Reference< XPropertySetInfo >  SwXTextField::getPropertySetInfo(void)
         throw uno::RuntimeException();
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::setPropertyValue(const OUString& rPropertyName, const uno::Any& rValue)
     throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException,
         WrappedTargetException, uno::RuntimeException )
@@ -1956,9 +1882,7 @@ void SwXTextField::setPropertyValue(const OUString& rPropertyName, const uno::An
     else
         throw uno::RuntimeException();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXTextField::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
@@ -2065,41 +1989,31 @@ uno::Any SwXTextField::getPropertyValue(const OUString& rPropertyName)
     }
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::addPropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::removePropertyChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::addVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextField::removeVetoableChangeListener(const OUString& /*PropertyName*/, const uno::Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXTextField::update(  ) throw (RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -2209,9 +2123,7 @@ void SwXTextField::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         break;
     }
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 const SwField*  SwXTextField::GetField() const
 {
     if(GetRegisteredIn() && pFmtFld)
@@ -2224,24 +2136,18 @@ const SwField*  SwXTextField::GetField() const
 /******************************************************************
  * SwXTextFieldMasters
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextFieldMasters::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextFieldMasters");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextFieldMasters::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(
                             "com.sun.star.text.TextFieldMasters" ));
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextFieldMasters::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -2249,16 +2155,12 @@ Sequence< OUString > SwXTextFieldMasters::getSupportedServiceNames(void) throw( 
     pArray[0] = C2U("com.sun.star.text.TextFieldMasters");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextFieldMasters::SwXTextFieldMasters(SwDoc* pInDoc) :
     SwUnoCollection(pInDoc)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextFieldMasters::~SwXTextFieldMasters()
 {
 
@@ -2390,9 +2292,7 @@ sal_Bool SwXTextFieldMasters::getInstanceName(
 }
 
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Sequence< OUString > SwXTextFieldMasters::getElementNames(void)
     throw( uno::RuntimeException )
 {
@@ -2429,9 +2329,7 @@ uno::Sequence< OUString > SwXTextFieldMasters::getElementNames(void)
     return aSeq;
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextFieldMasters::hasByName(const OUString& rName) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2448,17 +2346,13 @@ sal_Bool SwXTextFieldMasters::hasByName(const OUString& rName) throw( RuntimeExc
     }
     return bRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Type  SwXTextFieldMasters::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((const uno::Reference<XPropertySet>*)0);
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextFieldMasters::hasElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2470,24 +2364,18 @@ sal_Bool SwXTextFieldMasters::hasElements(void) throw( uno::RuntimeException )
 /******************************************************************
  *
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextFieldTypes::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextFieldTypes");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextFieldTypes::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(
                             "com.sun.star.text.TextFields" ));
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextFieldTypes::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -2495,31 +2383,23 @@ Sequence< OUString > SwXTextFieldTypes::getSupportedServiceNames(void) throw( Ru
     pArray[0] = C2U("com.sun.star.text.TextFields");
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextFieldTypes::SwXTextFieldTypes(SwDoc* pInDoc) :
     SwUnoCollection (pInDoc),
     aRefreshCont    ( static_cast< XEnumerationAccess * >(this) )
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextFieldTypes::~SwXTextFieldTypes()
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextFieldTypes::Invalidate()
 {
     SwUnoCollection::Invalidate();
     aRefreshCont.Disposing();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XEnumeration >  SwXTextFieldTypes::createEnumeration(void)
     throw( uno::RuntimeException )
 {
@@ -2529,16 +2409,12 @@ uno::Reference< XEnumeration >  SwXTextFieldTypes::createEnumeration(void)
     return new SwXFieldEnumeration(GetDoc());
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Type  SwXTextFieldTypes::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((const uno::Reference<XDependentTextField>*)0);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextFieldTypes::hasElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2581,24 +2457,18 @@ void SwXTextFieldTypes::removeRefreshListener(const uno::Reference< util::XRefre
 /******************************************************************
  * SwXFieldEnumeration
  ******************************************************************/
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXFieldEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXFieldEnumeration");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXFieldEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return rServiceName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(
                             "com.sun.star.text.FieldEnumeration" ));
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXFieldEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -2649,25 +2519,19 @@ SwXFieldEnumeration::SwXFieldEnumeration(SwDoc* pDc) :
     // resize sequence to actual used size
     aItems.realloc( nFillPos );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXFieldEnumeration::~SwXFieldEnumeration()
 {
 
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXFieldEnumeration::hasMoreElements(void)
     throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
     return nNextIndex < aItems.getLength();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXFieldEnumeration::nextElement(void)
     throw( NoSuchElementException, WrappedTargetException, uno::RuntimeException )
 {

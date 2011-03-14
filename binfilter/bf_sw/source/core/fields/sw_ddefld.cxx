@@ -154,9 +154,7 @@ using ::rtl::OUString;
 /*?*/       pDoc->GetLinkManager().Remove( refLink );
 /*N*/   }
 /*N*/ }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const
 {
     BYTE nPart = 0;
@@ -206,9 +204,7 @@ BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId
     }
     return TRUE;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwDDEField::SwDDEField( SwDDEFieldType* _pType )
 /*N*/   : SwField(_pType)
 /*N*/ {

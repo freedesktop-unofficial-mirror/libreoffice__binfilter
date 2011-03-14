@@ -102,9 +102,7 @@ String SwScriptField::GetPar2() const
 {
     return sCode;
 }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 {
     nMId &= ~CONVERT_TWIPS;
@@ -124,9 +122,7 @@ BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
     }
     return TRUE;
 }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;

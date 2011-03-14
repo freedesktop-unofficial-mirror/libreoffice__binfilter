@@ -195,9 +195,7 @@ void SwTblField::SetPar2(const String& rStr)
 }
 
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwTblField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -230,9 +228,7 @@ void SwTblField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/     return bRet;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;

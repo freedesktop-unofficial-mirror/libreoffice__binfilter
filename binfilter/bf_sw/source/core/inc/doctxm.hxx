@@ -86,9 +86,7 @@ public:
     TYPEINFO();                         // fuers rtti
 
 };
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 struct SwDefTOXBase_Impl
 {
     SwTOXBase* pContBase;

@@ -80,9 +80,7 @@ SV_DECL_PTRARR_DEL( SortKeyArr, TOXSortKeyPtr, 5, 5 )
 SV_IMPL_PTRARR( SortKeyArr, TOXSortKeyPtr )
 
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
  SwAuthEntry::SwAuthEntry(const SwAuthEntry& rCopy)
     : nRefCount(0)
  {
@@ -131,9 +129,7 @@ BOOL    SwAuthEntry::GetNextAuthorField(USHORT& nPos, String& rToFill)const
 
 // --------------------------------------------------------
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwAuthorityFieldType::SwAuthorityFieldType(SwDoc* pDoc)
     : SwFieldType( RES_AUTHORITY ),
     m_pDoc(pDoc),
@@ -164,9 +160,7 @@ SwAuthorityFieldType::SwAuthorityFieldType( const SwAuthorityFieldType& rFType)
         m_pSortKeyArr->Insert((*rFType.m_pSortKeyArr)[i], i);
 }
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwAuthorityFieldType::~SwAuthorityFieldType()
 {
 //  DBG_ASSERT(!m_pDataArr->Count(), "Array is not empty");
@@ -175,16 +169,12 @@ SwAuthorityFieldType::~SwAuthorityFieldType()
     delete m_pSequArr;
     delete m_pDataArr;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwFieldType*    SwAuthorityFieldType::Copy()  const
 {
     return new SwAuthorityFieldType(m_pDoc);
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void    SwAuthorityFieldType::RemoveField(long nHandle)
 {
 #ifdef DBG_UTIL
@@ -213,9 +203,7 @@ void    SwAuthorityFieldType::RemoveField(long nHandle)
     DBG_ASSERT(bRemoved, "Field unknown" );
 #endif
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 long    SwAuthorityFieldType::AddField(const String& rFieldContents)
 {
     long nRet = 0;
@@ -245,9 +233,7 @@ long    SwAuthorityFieldType::AddField(const String& rFieldContents)
     }
     return nRet;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 BOOL SwAuthorityFieldType::AddField(long nHandle)
 {
     BOOL bRet = FALSE;
@@ -267,9 +253,7 @@ BOOL SwAuthorityFieldType::AddField(long nHandle)
     DBG_ASSERT(bRet, "::AddField(long) failed");
     return bRet;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 const SwAuthEntry*  SwAuthorityFieldType::GetEntryByHandle(long nHandle) const
 {
     const SwAuthEntry* pRet = 0;
@@ -310,9 +294,7 @@ USHORT  SwAuthorityFieldType::AppendField( const SwAuthEntry& rInsert )
     return nRet;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 long    SwAuthorityFieldType::GetHandle(USHORT nPos)
 {
     long nRet = 0;
@@ -323,9 +305,7 @@ long    SwAuthorityFieldType::GetHandle(USHORT nPos)
     }
     return nRet;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 USHORT  SwAuthorityFieldType::GetPosition(long nHandle)
 {
     USHORT j = 0;
@@ -343,16 +323,12 @@ USHORT  SwAuthorityFieldType::GetPosition(long nHandle)
     return j;
 }
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 USHORT  SwAuthorityFieldType::GetEntryCount() const
 {
     return m_pDataArr->Count();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
 {
     if(nPos < m_pDataArr->Count())
@@ -360,9 +336,7 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
     OSL_FAIL("wrong index");
     return 0;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
 {
     //find the field in a sorted array of handles,
@@ -450,9 +424,7 @@ USHORT  SwAuthorityFieldType::GetSequencePos(long nHandle)
     }
     return nRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL    SwAuthorityFieldType::QueryValue( Any& rVal, BYTE nMId ) const
 {
     nMId &= ~CONVERT_TWIPS;
@@ -508,9 +480,7 @@ BOOL    SwAuthorityFieldType::QueryValue( Any& rVal, BYTE nMId ) const
     }
     return TRUE;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL    SwAuthorityFieldType::PutValue( const Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -584,25 +554,19 @@ BOOL    SwAuthorityFieldType::PutValue( const Any& rAny, BYTE nMId )
     }
     return bRet;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void SwAuthorityFieldType::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
 {
     //re-generate positions of the fields
     DelSequenceArray();
     SwModify::Modify( pOld, pNew );
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 USHORT SwAuthorityFieldType::GetSortKeyCount() const
 {
     return m_pSortKeyArr->Count();
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 const SwTOXSortKey*  SwAuthorityFieldType::GetSortKey(USHORT nIdx) const
 {
     SwTOXSortKey* pRet = 0;
@@ -611,9 +575,7 @@ const SwTOXSortKey*  SwAuthorityFieldType::GetSortKey(USHORT nIdx) const
     DBG_ASSERT(pRet, "Sort key not found");
     return pRet;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void SwAuthorityFieldType::SetSortKeys(USHORT nKeyCount, SwTOXSortKey aKeys[])
 {
     m_pSortKeyArr->DeleteAndDestroy(0, m_pSortKeyArr->Count());
@@ -623,18 +585,14 @@ void SwAuthorityFieldType::SetSortKeys(USHORT nKeyCount, SwTOXSortKey aKeys[])
             m_pSortKeyArr->Insert(new SwTOXSortKey(aKeys[i]), nArrIdx++);
 }
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
                                     const String& rFieldContents )
     : SwField(pType)
 {
     nHandle = pType->AddField( rFieldContents );
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
                                                 long nSetHandle )
     : SwField( pType ),
@@ -642,16 +600,12 @@ SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
 {
     pType->AddField( nHandle );
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwAuthorityField::~SwAuthorityField()
 {
     ((SwAuthorityFieldType* )GetTyp())->RemoveField(nHandle);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 String  SwAuthorityField::Expand() const
 {
      SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
@@ -674,44 +628,34 @@ String  SwAuthorityField::Expand() const
          sRet += pAuthType->GetSuffix();
      return sRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwField* SwAuthorityField::Copy() const
 {
     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
     return new SwAuthorityField(pAuthType, nHandle);
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 const String&   SwAuthorityField::GetFieldText(ToxAuthorityField eField) const
 {
     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
     const SwAuthEntry* pEntry = pAuthType->GetEntryByHandle( nHandle );
     return pEntry->GetAuthorField( eField );
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void    SwAuthorityField::SetPar1(const String& rStr)
 {
     SwAuthorityFieldType* pType = (SwAuthorityFieldType* )GetTyp();
     pType->RemoveField(nHandle);
     nHandle = pType->AddField(rStr);
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 USHORT  SwAuthorityField::GetHandlePosition() const
 {
     SwAuthorityFieldType* pAuthType = (SwAuthorityFieldType*)GetTyp();
     DBG_ASSERT(pAuthType, "no field type");
     return pAuthType->GetPosition(nHandle);
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const char* aFieldNames[] =
 {
     "Identifier",
@@ -746,9 +690,7 @@ const char* aFieldNames[] =
     "Custom5",
     "ISBN"
 };
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL    SwAuthorityField::QueryValue( Any& rAny, BYTE nMId ) const
 {
     nMId &= ~CONVERT_TWIPS;
@@ -771,9 +713,7 @@ BOOL    SwAuthorityField::QueryValue( Any& rAny, BYTE nMId ) const
     rAny <<= aRet;
     return FALSE;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int16 lcl_Find(const OUString& rFieldName)
 {
     for(sal_Int16 i = 0; i < AUTH_FIELD_END; i++)
@@ -818,9 +758,7 @@ BOOL    SwAuthorityField::PutValue( const Any& rAny, BYTE nMId )
 
     return FALSE;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwFieldType* SwAuthorityField::ChgTyp( SwFieldType* pFldTyp )
 {
     SwAuthorityFieldType* pSrcTyp = (SwAuthorityFieldType*)GetTyp(),

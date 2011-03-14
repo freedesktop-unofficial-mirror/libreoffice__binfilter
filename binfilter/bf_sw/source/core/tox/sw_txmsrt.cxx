@@ -383,9 +383,7 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
 
 
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 SwTOXAuthority::SwTOXAuthority( const SwCntntNode& rNd,
                 SwFmtFld& rField, const SwTOXInternational& rIntl ) :
@@ -410,18 +408,14 @@ USHORT SwTOXAuthority::GetLevel() const
         nRet = 0;
     return nRet;
  }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwTOXAuthority::_GetText( String& rTxt, String& /*rTxtReading*/ )
 {
     //
     rTxt = m_rField.GetFld()->Expand();
 }
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void    SwTOXAuthority::FillText( SwTxtNode& rNd,
                         const SwIndex& rInsPos, USHORT nAuthField ) const
 {
@@ -448,18 +442,14 @@ void    SwTOXAuthority::FillText( SwTxtNode& rNd,
         sText = (pField->GetFieldText((ToxAuthorityField) nAuthField));
     rNd.Insert( sText, rInsPos );
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 BOOL    SwTOXAuthority::operator==( const SwTOXSortTabBase& rCmp)
 {
     return nType == rCmp.nType &&
             ((SwAuthorityField*)m_rField.GetFld())->GetHandle() ==
                 ((SwAuthorityField*)((SwTOXAuthority&)rCmp).m_rField.GetFld())->GetHandle();
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 BOOL    SwTOXAuthority::operator<( const SwTOXSortTabBase& rBase)
 {
     BOOL bRet = FALSE;

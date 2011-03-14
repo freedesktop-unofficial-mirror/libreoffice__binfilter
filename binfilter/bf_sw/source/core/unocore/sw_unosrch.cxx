@@ -59,9 +59,7 @@ using rtl::OUString;
  *
  ******************************************************************************/
 
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 class SwSearchProperties_Impl
 {
     PropertyValue**             pValueArr; //
@@ -77,9 +75,7 @@ public:
     void    FillItemSet(SfxItemSet& rSet, sal_Bool bIsValueSearch) const;
     sal_Bool    HasAttributes() const;
 };
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwSearchProperties_Impl::SwSearchProperties_Impl() :
     nArrLen(0)
 {
@@ -95,18 +91,14 @@ SwSearchProperties_Impl::SwSearchProperties_Impl() :
     for(sal_uInt16 i = 0; i < nArrLen; i++)
         pValueArr[i] = 0;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 SwSearchProperties_Impl::~SwSearchProperties_Impl()
 {
     for(sal_uInt16 i = 0; i < nArrLen; i++)
         delete pValueArr[i];
     delete[] pValueArr;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void    SwSearchProperties_Impl::SetProperties(const Sequence< PropertyValue >& aSearchAttribs)
                 throw( UnknownPropertyException, lang::IllegalArgumentException, RuntimeException )
 {
@@ -136,9 +128,7 @@ void    SwSearchProperties_Impl::SetProperties(const Sequence< PropertyValue >& 
         pValueArr[nIndex] = new PropertyValue(pProps[i]);
     }
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 const Sequence< PropertyValue > SwSearchProperties_Impl::GetProperties() const
 {
     sal_uInt16 nPropCount = 0;
@@ -160,9 +150,7 @@ const Sequence< PropertyValue > SwSearchProperties_Impl::GetProperties() const
     }
     return aRet;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void SwSearchProperties_Impl::FillItemSet(SfxItemSet& rSet, sal_Bool bIsValueSearch) const
 {
     const SfxItemPropertyMap* pMap = aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR);
@@ -430,9 +418,7 @@ void SwSearchProperties_Impl::FillItemSet(SfxItemSet& rSet, sal_Bool bIsValueSea
     delete pCasemapItem  ;
     delete pBrushItem  ;
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 sal_Bool    SwSearchProperties_Impl::HasAttributes() const
 {
     for(sal_uInt16 i = 0; i < nArrLen; i++)
@@ -470,17 +456,13 @@ SwXTextSearch::~SwXTextSearch()
     delete pSearchProperties;
     delete pReplaceProperties;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 const Sequence< sal_Int8 > & SwXTextSearch::getUnoTunnelId()
 {
     static Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextSearch::getSomething( const Sequence< sal_Int8 >& rId )
     throw(RuntimeException)
 {
@@ -492,50 +474,38 @@ sal_Int64 SAL_CALL SwXTextSearch::getSomething( const Sequence< sal_Int8 >& rId 
     }
     return 0;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXTextSearch::getSearchString(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     return sSearchText;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::setSearchString(const OUString& rString)
                                         throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     sSearchText = String(rString);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXTextSearch::getReplaceString(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     return sReplaceText;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::setReplaceString(const OUString& rReplaceString) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     sReplaceText = String(rReplaceString);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo >  SwXTextSearch::getPropertySetInfo(void) throw( RuntimeException )
 {
     static Reference< XPropertySetInfo >  aRef = new SfxItemPropertySetInfo(_pMap);
     return aRef;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::setPropertyValue(const OUString& rPropertyName, const Any& aValue)
     throw( UnknownPropertyException, PropertyVetoException,
         lang::IllegalArgumentException, lang::WrappedTargetException, RuntimeException )
@@ -570,9 +540,7 @@ void SwXTextSearch::setPropertyValue(const OUString& rPropertyName, const Any& a
     else
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXTextSearch::getPropertyValue(const OUString& rPropertyName) throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -610,135 +578,101 @@ SET_UINT16:
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::addPropertyChangeListener(
         const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::removePropertyChangeListener(
         const OUString& /*PropertyName*/, const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::addVetoableChangeListener(
         const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::removeVetoableChangeListener(
         const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextSearch::getValueSearch(void) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     return bIsValueSearch;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::setValueSearch(sal_Bool ValueSearch_) throw( RuntimeException )
 {
     SolarMutexGuard aGuard;
     bIsValueSearch = ValueSearch_;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXTextSearch::getSearchAttributes(void) throw( RuntimeException )
 {
     return  pSearchProperties->GetProperties();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::setSearchAttributes(const Sequence< PropertyValue >& rSearchAttribs)
     throw( UnknownPropertyException, lang::IllegalArgumentException, RuntimeException )
 {
     pSearchProperties->SetProperties(rSearchAttribs);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXTextSearch::getReplaceAttributes(void)
     throw( RuntimeException )
 {
     return pReplaceProperties->GetProperties();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXTextSearch::setReplaceAttributes(const Sequence< PropertyValue >& rReplaceAttribs)
     throw( UnknownPropertyException, lang::IllegalArgumentException, RuntimeException )
 {
     pReplaceProperties->SetProperties(rReplaceAttribs);
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void    SwXTextSearch::FillSearchItemSet(SfxItemSet& rSet) const
 {
     pSearchProperties->FillItemSet(rSet, bIsValueSearch);
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void    SwXTextSearch::FillReplaceItemSet(SfxItemSet& rSet) const
 {
     pReplaceProperties->FillItemSet(rSet, bIsValueSearch);
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 sal_Bool    SwXTextSearch::HasSearchAttributes() const
 {
     return pSearchProperties->HasAttributes();
 }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 sal_Bool    SwXTextSearch::HasReplaceAttributes() const
 {
     return pReplaceProperties->HasAttributes();
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextSearch::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextSearch");
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextSearch::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.util.SearchDescriptor") == rServiceName ||
             C2U("com.sun.star.util.ReplaceDescriptor") == rServiceName;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextSearch::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(2);

@@ -62,22 +62,16 @@ using namespace ::com::sun::star::beans;
 
 using rtl::OUString;
 
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXRedlines::SwXRedlines(SwDoc* pInDoc) :
     SwUnoCollection(pInDoc)
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXRedlines::~SwXRedlines()
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXRedlines::getCount(  ) throw(RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -86,9 +80,7 @@ sal_Int32 SwXRedlines::getCount(  ) throw(RuntimeException)
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
     return rRedTbl.Count();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXRedlines::getByIndex(sal_Int32 nIndex)
     throw( IndexOutOfBoundsException, WrappedTargetException, RuntimeException )
 {
@@ -106,9 +98,7 @@ Any SwXRedlines::getByIndex(sal_Int32 nIndex)
         throw IndexOutOfBoundsException();
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXRedlines::createEnumeration(void)
     throw( RuntimeException )
 {
@@ -117,16 +107,12 @@ Reference< XEnumeration >  SwXRedlines::createEnumeration(void)
         throw uno::RuntimeException();
     return Reference< XEnumeration >(new SwXRedlineEnumeration(*GetDoc()));
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Type SwXRedlines::getElementType(  ) throw(RuntimeException)
 {
     return ::getCppuType((Reference<XPropertySet>*)0);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXRedlines::hasElements(  ) throw(RuntimeException)
 {
     SolarMutexGuard aGuard;
@@ -135,34 +121,26 @@ sal_Bool SwXRedlines::hasElements(  ) throw(RuntimeException)
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
     return rRedTbl.Count() > 0;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 OUString SwXRedlines::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXRedlines");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 BOOL SwXRedlines::supportsService(const ::rtl::OUString& /*ServiceName*/)
     throw( RuntimeException )
 {
     OSL_FAIL("not implemented");
     return FALSE;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< OUString > SwXRedlines::getSupportedServiceNames(void)
     throw( RuntimeException )
 {
     OSL_FAIL("not implemented");
     return Sequence< OUString >();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 XPropertySet*   SwXRedlines::GetObject( SwRedline& rRedline, SwDoc& rDoc )
 {
     SwPageDesc* pStdDesc = rDoc.GetPageDescFromPool(RES_POOLPAGE_STANDARD);
@@ -178,33 +156,25 @@ XPropertySet*   SwXRedlines::GetObject( SwRedline& rRedline, SwDoc& rDoc )
         pxRedline = new SwXRedline(rRedline, rDoc);
     return pxRedline;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXRedlineEnumeration::SwXRedlineEnumeration(SwDoc& rDoc) :
     pDoc(&rDoc),
     nCurrentIndex(0)
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXRedlineEnumeration::~SwXRedlineEnumeration()
 {
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 BOOL SwXRedlineEnumeration::hasMoreElements(void) throw( RuntimeException )
 {
     if(!pDoc)
         throw RuntimeException();
     return pDoc->GetRedlineTbl().Count() > nCurrentIndex;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXRedlineEnumeration::nextElement(void)
     throw( NoSuchElementException, WrappedTargetException, RuntimeException )
 {
@@ -218,30 +188,22 @@ Any SwXRedlineEnumeration::nextElement(void)
     aRet <<= xRet;
     return aRet;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 rtl::OUString SwXRedlineEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXRedlineEnumeration");
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 BOOL SwXRedlineEnumeration::supportsService(const ::rtl::OUString& /*ServiceName*/) throw( RuntimeException )
 {
     return FALSE;
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Sequence< OUString > SwXRedlineEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     return Sequence< OUString >();
 }
-/*-----------------------------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXRedlineEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);

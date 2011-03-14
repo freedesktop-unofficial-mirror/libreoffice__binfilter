@@ -1498,9 +1498,7 @@ SfxPoolItem*  SwFmtAnchor::Clone( SfxItemPool* ) const
     return new SwFmtAnchor( *this );
 }
 
-/*--------------------------------------------------
 
-  --------------------------------------------------*/
 bool SwFmtAnchor::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 {
     // hier wird immer konvertiert!

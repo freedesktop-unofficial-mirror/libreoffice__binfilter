@@ -381,9 +381,7 @@ void SwGetExpField::SetPar2(const String& rStr)
 /*N*/       SwValueField::SetLanguage(nLng);
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwGetExpField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -421,9 +419,7 @@ void SwGetExpField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -887,9 +883,7 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/   return sRet;
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwInputField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -906,9 +900,7 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -962,9 +954,7 @@ void SwInputField::SetSubType(USHORT nSub)
 {
     nSubType = nSub;
 }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwSetExpField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -1030,9 +1020,7 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwSetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;

@@ -345,9 +345,7 @@ const String& SwDBField::GetPar1() const
 /*N*/   nSubType = nType;
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -377,9 +375,7 @@ const String& SwDBField::GetPar1() const
 /*N*/   return TRUE;
 /*N*/
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -462,9 +458,7 @@ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, U
 
 //------------------------------------------------------------------------------
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNameInfField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -490,9 +484,7 @@ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, U
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -612,9 +604,7 @@ void SwDBNextSetField::SetPar1(const String& rStr)
 {
     aCond = rStr;
 }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNextSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -629,9 +619,7 @@ void SwDBNextSetField::SetPar1(const String& rStr)
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -735,9 +723,7 @@ void SwDBNumSetField::SetPar2(const String& rStr)
 {
     aPar2 = rStr;
 }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNumSetField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -755,9 +741,7 @@ void SwDBNumSetField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -839,16 +823,12 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 /*N*/   return pTmp;
 /*N*/ }
 
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNameField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   return SwDBNameInfField::QueryValue(rAny, nMId );
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     return SwDBNameInfField::PutValue(rAny, nMId );
@@ -917,9 +897,7 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*N*/     pTmp->SetSubType(GetSubType());
 /*N*/   return pTmp;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBSetNumberField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
@@ -937,9 +915,7 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*--------------------------------------------------
 
---------------------------------------------------*/
 BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     BOOL bRet = TRUE;
