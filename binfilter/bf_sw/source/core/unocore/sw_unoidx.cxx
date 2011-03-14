@@ -279,15 +279,15 @@ Sequence< OUString > SwXDocumentIndex::getSupportedServiceNames(void) throw( Run
   -----------------------------------------------------------------------*/
 TYPEINIT1(SwXDocumentIndex, SwClient)
 SwXDocumentIndex::SwXDocumentIndex(const SwTOXBaseSection* pB, SwDoc* pDc) :
-    m_pDoc(pDc),
     aLstnrCntnr( (text::XTextContent*)this),
-    pBase(pB),
-    pProps(0),
     _pMap(0),
-    pStyleAccess(0),
-    pTokenAccess(0),
+    m_pDoc(pDc),
+    pBase(pB),
+    eTOXType(TOX_USER),
     bIsDescriptor(sal_False),
-    eTOXType(TOX_USER)
+    pProps(0),
+    pStyleAccess(0),
+    pTokenAccess(0)
 {
     if(pBase && m_pDoc)
     {
@@ -313,14 +313,14 @@ SwXDocumentIndex::SwXDocumentIndex(const SwTOXBaseSection* pB, SwDoc* pDc) :
  *
  * --------------------------------------------------*/
 SwXDocumentIndex::SwXDocumentIndex(TOXTypes eType, SwDoc& rDoc) :
-    m_pDoc(0),
     aLstnrCntnr( (text::XTextContent*)this),
+    m_pDoc(0),
     pBase(0),
+    eTOXType(eType),
+    bIsDescriptor(sal_True),
     pProps(new SwDocIdxProperties_Impl(rDoc.GetTOXType(eType, 0))),
     pStyleAccess(0),
-    pTokenAccess(0),
-    bIsDescriptor(sal_True),
-    eTOXType(eType)
+    pTokenAccess(0)
 {
     sal_uInt16 PropertyId;
     switch(eType)
@@ -353,13 +353,13 @@ OUString SwXDocumentIndex::getServiceName(void) throw( RuntimeException )
     USHORT nObjectType = SW_SERVICE_TYPE_INDEX;
     switch(eTOXType)
     {
-//      case TOX_INDEX:             break;
         case TOX_USER:              nObjectType = SW_SERVICE_USER_INDEX;break;
         case TOX_CONTENT:           nObjectType = SW_SERVICE_CONTENT_INDEX;break;
         case TOX_ILLUSTRATIONS:     nObjectType = SW_SERVICE_INDEX_ILLUSTRATIONS;break;
         case TOX_OBJECTS:           nObjectType = SW_SERVICE_INDEX_OBJECTS;break;
         case TOX_TABLES:            nObjectType = SW_SERVICE_INDEX_TABLES;break;
         case TOX_AUTHORITIES:       nObjectType = SW_SERVICE_INDEX_BIBLIOGRAPHY;break;
+        default: break;
     }
     return SwXServiceProvider::GetProviderName(nObjectType);
 }
@@ -400,7 +400,7 @@ void SwXDocumentIndex::setPropertyValue(const OUString& rPropertyName,
     if ( pMap->nFlags & PropertyAttribute::READONLY)
         throw PropertyVetoException ( OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Property is read-only: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
 
-    SwTOXBase* pTOXBase;
+    SwTOXBase* pTOXBase(0);
     if(GetFmt())
         pTOXBase = (SwTOXBaseSection*)GetFmt()->GetSection();
     else if(bIsDescriptor)
@@ -687,7 +687,7 @@ uno::Any SwXDocumentIndex::getPropertyValue(const OUString& rPropertyName)
                                                     _pMap, rPropertyName);
     if (!pMap)
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
-    SwTOXBase* pTOXBase;
+    SwTOXBase* pTOXBase(0);
     if(GetFmt())
         pTOXBase = (SwTOXBaseSection*)GetFmt()->GetSection();
     else if(bIsDescriptor)
@@ -963,8 +963,8 @@ uno::Any SwXDocumentIndex::getPropertyValue(const OUString& rPropertyName)
                 Reference<XDocumentIndexMark>* pxMarks = aXMarks.getArray();
                 for(USHORT i = 0; i < aMarks.Count(); i++)
                 {
-                    SwTOXMark* pMark = aMarks.GetObject(i);
-                    pxMarks[i] = SwXDocumentIndexMark::GetObject((SwTOXType*)pType, pMark, m_pDoc);
+                    SwTOXMark* pLclMark = aMarks.GetObject(i);
+                    pxMarks[i] = SwXDocumentIndexMark::GetObject((SwTOXType*)pType, pLclMark, m_pDoc);
                 }
                 aRet.setValue(&aXMarks, ::getCppuType((Sequence< Reference< XDocumentIndexMark > >*)0));
                 bBOOL = sal_False;
@@ -1302,6 +1302,8 @@ Sequence< OUString > SwXDocumentIndexMark::getSupportedServiceNames(void) throw(
             pArray[2] = C2U(cIdxMark);
             pArray[3] = C2U(cIdxMarkAsian);
         break;
+        default:
+        break;
     }
     return aRet;
 }
@@ -1309,14 +1311,14 @@ Sequence< OUString > SwXDocumentIndexMark::getSupportedServiceNames(void) throw(
 
   -----------------------------------------------------------------------*/
 SwXDocumentIndexMark::SwXDocumentIndexMark(TOXTypes eToxType) :
+    aLstnrCntnr( (text::XTextContent*)this),
     aTypeDepend(this, 0),
     m_pDoc(0),
-    aLstnrCntnr( (text::XTextContent*)this),
     m_pTOXMark(0),
-    nLevel(0),
-    eType(eToxType),
+    bIsDescriptor(sal_True),
     bMainEntry(sal_False),
-    bIsDescriptor(sal_True)
+    eType(eToxType),
+    nLevel(0)
 {
     InitMap(eToxType);
 }
@@ -1326,14 +1328,14 @@ SwXDocumentIndexMark::SwXDocumentIndexMark(TOXTypes eToxType) :
 SwXDocumentIndexMark::SwXDocumentIndexMark(const SwTOXType* pType,
                                     const SwTOXMark* pMark,
                                     SwDoc* pDc) :
-    aTypeDepend(this, (SwTOXType*)pType),
     aLstnrCntnr( (text::XTextContent*)this),
+    aTypeDepend(this, (SwTOXType*)pType),
     m_pDoc(pDc),
     m_pTOXMark(pMark),
-    nLevel(0),
-    eType(pType->GetType()),
     bIsDescriptor(sal_False),
-    bMainEntry(sal_False)
+    bMainEntry(sal_False),
+    eType(pType->GetType()),
+    nLevel(0)
 {
     m_pDoc->GetUnoCallBack()->Add(this);
     InitMap(eType);
@@ -1359,7 +1361,8 @@ void SwXDocumentIndexMark::InitMap(TOXTypes eToxType)
         case TOX_CONTENT:
             nMapId = PROPERTY_MAP_CNTIDX_MARK;
         break;
-        //case TOX_USER:
+        default:
+        break;
     }
     _pMap = aSwMapProvider.GetPropertyMap(nMapId);
 }
@@ -1493,6 +1496,8 @@ void SwXDocumentIndexMark::attachToRange(const Reference< text::XTextRange > & x
                 }
             }
             break;
+            default:
+            break;
         }
         if(!pTOXType)
             throw IllegalArgumentException();
@@ -1524,6 +1529,8 @@ void SwXDocumentIndexMark::attachToRange(const Reference< text::XTextRange > & x
             case TOX_CONTENT:
                 if(USHRT_MAX != nLevel)
                     aMark.SetLevel(nLevel);
+            break;
+            default:
             break;
         }
         UnoActionContext aAction(pDoc);
@@ -1641,6 +1648,7 @@ Reference< XPropertySetInfo >  SwXDocumentIndexMark::getPropertySetInfo(void)
         case TOX_INDEX: nPos = 0; break;
         case TOX_CONTENT: nPos = 1; break;
         case TOX_USER:  nPos = 2; break;
+        default: break;
     }
     if(!xInfos[nPos].is())
     {
@@ -1757,7 +1765,7 @@ void SwXDocumentIndexMark::setPropertyValue(const OUString& rPropertyName,
             break;
             case WID_LEVEL:
             {
-                sal_uInt16 nVal = lcl_AnyToInt16(aValue);
+                const sal_Int16 nVal = lcl_AnyToInt16(aValue);
                 if(nVal >= 0 && nVal < MAXLEVEL)
                     nLevel = nVal;
                 else
@@ -2013,8 +2021,8 @@ Sequence< OUString > SwXDocumentIndexes::getSupportedServiceNames(void) throw( R
 /*-- 05.05.99 13:14:59---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-SwXDocumentIndexes::SwXDocumentIndexes(SwDoc* pDoc) :
-    SwUnoCollection(pDoc)
+SwXDocumentIndexes::SwXDocumentIndexes(SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc)
 {
 }
 /*-- 05.05.99 13:15:00---------------------------------------------------
@@ -2054,7 +2062,7 @@ uno::Any SwXDocumentIndexes::getByIndex(sal_Int32 nIndex)
         throw RuntimeException();
 
     uno::Any aRet;
-    sal_uInt32 nIdx = 0;
+    sal_Int32 nIdx = 0;
 
     const SwSectionFmts& rFmts = GetDoc()->GetSections();
     for( sal_uInt16 n = 0; n < rFmts.Count(); ++n )
@@ -2449,7 +2457,7 @@ void SwXIndexTokenAccess_Impl::replaceByIndex(sal_Int32 nIndex, const uno::Any& 
             }
             else if( pProperties[j].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("TabStopPosition"  )))
             {
-                sal_Int32 nPosition;
+                sal_Int32 nPosition(0);
                 if(pProperties[j].Value.getValueType() != ::getCppuType((sal_Int32*)0))
                     throw IllegalArgumentException();
                 pProperties[j].Value >>= nPosition;
@@ -2495,7 +2503,7 @@ void SwXIndexTokenAccess_Impl::replaceByIndex(sal_Int32 nIndex, const uno::Any& 
             }
             else if( pProperties[j].Name.equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("BibliographyDataField")))
             {
-                sal_Int16 nType; pProperties[j].Value >>= nType;
+                sal_Int16 nType(0); pProperties[j].Value >>= nType;
                 if(nType < 0 || nType > BibliographyDataField::ISBN)
                 {
                     IllegalArgumentException aExcept;
@@ -2701,6 +2709,7 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
             }
             break;
             case TOKEN_AUTHORITY :
+            {
                 rCurTokenSeq.realloc( 3 );
                 PropertyValue* pArr = rCurTokenSeq.getArray();
 
@@ -2712,6 +2721,9 @@ uno::Any SwXIndexTokenAccess_Impl::getByIndex(sal_Int32 nIndex)
 
                 pArr[2].Name = C2U("BibliographyDataField");
                 pArr[2].Value <<= sal_Int16(aToken.nAuthorityField);
+            }
+            break;
+            default:
             break;
         }
     }

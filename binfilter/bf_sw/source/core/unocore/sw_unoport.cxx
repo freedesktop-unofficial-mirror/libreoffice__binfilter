@@ -96,22 +96,22 @@ SwFmtFld*   SwXTextPortion::GetFldFmt(sal_Bool bInit)
 SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr,
         uno::Reference< XText > & rParent,
         SwTextPortionType eType) :
+    aLstnrCntnr( (XTextRange*)this),
     aPropSet(aSwMapProvider.GetPropertyMap(
                 (PORTION_REDLINE_START == eType ||
                  PORTION_REDLINE_END   == eType) ?
                     PROPERTY_MAP_REDLINE_PORTION : PROPERTY_MAP_TEXTPORTION_EXTENSIONS)),
-    aLstnrCntnr( (XTextRange*)this),
-    pFmtFld(0),
     xParentText(rParent),
-    ePortionType(eType),
-    pFrameFmt(0),
-    aFrameDepend(this, 0),
-    bIsCollapsed(FALSE),
-    nControlChar(0),
     pRubyText(0),
     pRubyStyle(0),
     pRubyAdjust(0),
-    pRubyIsAbove(0)
+    pRubyIsAbove(0),
+    pFmtFld(0),
+    aFrameDepend(this, 0),
+    pFrameFmt(0),
+    ePortionType(eType),
+    nControlChar(0),
+    bIsCollapsed(FALSE)
 {
     SwUnoCrsr* pUnoCrsr = pPortionCrsr->GetDoc()->CreateUnoCrsr(*pPortionCrsr->GetPoint());
     if(pPortionCrsr->HasMark())
@@ -131,19 +131,19 @@ SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr,
  * --------------------------------------------------*/
 SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr, uno::Reference< XText > & rParent,
                         SwFrmFmt& rFmt ) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXTPORTION_EXTENSIONS)),
     aLstnrCntnr( (XTextRange*)this),
-    pFrameFmt(&rFmt),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXTPORTION_EXTENSIONS)),
     xParentText(rParent),
-    ePortionType(PORTION_FRAME),
-    pFmtFld(0),
-    aFrameDepend(this, &rFmt),
-    bIsCollapsed(FALSE),
-    nControlChar(0),
     pRubyText(0),
     pRubyStyle(0),
     pRubyAdjust(0),
-    pRubyIsAbove(0)
+    pRubyIsAbove(0),
+    pFmtFld(0),
+    aFrameDepend(this, &rFmt),
+    pFrameFmt(&rFmt),
+    ePortionType(PORTION_FRAME),
+    nControlChar(0),
+    bIsCollapsed(FALSE)
 {
     SwUnoCrsr* pUnoCrsr = pPortionCrsr->GetDoc()->CreateUnoCrsr(*pPortionCrsr->GetPoint());
     if(pPortionCrsr->HasMark())
@@ -348,7 +348,6 @@ void SwXTextPortion::GetPropertyValues( const OUString *pPropertyNames,
                     break;
                     case FN_UNO_IS_COLLAPSED:
                     {
-                        BOOL bPut = TRUE;
                         switch (ePortionType)
                         {
                             case PORTION_REFMARK_START:
@@ -364,7 +363,7 @@ void SwXTextPortion::GetPropertyValues( const OUString *pPropertyNames,
                                 pValues[nProp].setValue(&bIsCollapsed, ::getBooleanCppuType());
                             break;
                             default:
-                                bPut = FALSE;
+                            break;
                         }
                     }
                     break;

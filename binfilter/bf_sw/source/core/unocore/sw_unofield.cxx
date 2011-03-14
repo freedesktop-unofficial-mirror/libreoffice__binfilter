@@ -511,13 +511,13 @@ Sequence< OUString > SwXFieldMaster::getSupportedServiceNames(void) throw( Runti
 
   -----------------------------------------------------------------------*/
 SwXFieldMaster::SwXFieldMaster(SwDoc* pDoc, sal_uInt16 nResId) :
-    m_pDoc(pDoc),
     aLstnrCntnr( (XPropertySet*)this),
     nResTypeId(nResId),
+    m_pDoc(pDoc),
     m_bIsDescriptor(sal_True),
     fParam1(0.),
-    bParam1(FALSE),
     nParam1(-1),
+    bParam1(FALSE),
     nParam2(0)
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
@@ -528,8 +528,8 @@ SwXFieldMaster::SwXFieldMaster(SwDoc* pDoc, sal_uInt16 nResId) :
 SwXFieldMaster::SwXFieldMaster(SwFieldType& rType, SwDoc* pDoc) :
     SwClient(&rType),
     aLstnrCntnr( (XPropertySet*)this),
-    m_pDoc(pDoc),
     nResTypeId(rType.Which()),
+    m_pDoc(pDoc),
     m_bIsDescriptor(sal_False),
     fParam1(0.),
     nParam1(-1),
@@ -605,14 +605,14 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
         OUString uTmp;
         rValue >>= uTmp;
         String sTypeName(uTmp);
-        SwFieldType* pType = m_pDoc->GetFldType(nResTypeId, sTypeName);
+        SwFieldType* pLclType = m_pDoc->GetFldType(nResTypeId, sTypeName);
 
         String sTable(SW_RES(STR_POOLCOLL_LABEL_TABLE));
         String sDrawing(SW_RES(STR_POOLCOLL_LABEL_DRAWING));
         String sFrame(SW_RES(STR_POOLCOLL_LABEL_FRAME));
         String sIllustration(SW_RES(STR_POOLCOLL_LABEL_ABB));
 
-        if(pType ||
+        if(pLclType ||
             (RES_SETEXPFLD == nResTypeId &&
             ( sTypeName == sTable || sTypeName == sDrawing ||
               sTypeName == sFrame || sTypeName == sIllustration )))
@@ -626,17 +626,17 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
                 case RES_USERFLD :
                 {
                     SwUserFieldType aType(m_pDoc, sTypeName);
-                    pType = m_pDoc->InsertFldType(aType);
-                    ((SwUserFieldType*)pType)->SetContent(sParam1);
-                    ((SwUserFieldType*)pType)->SetValue(fParam1);
-                    ((SwUserFieldType*)pType)->SetType(bParam1 ? GSE_EXPR : GSE_STRING);
+                    pLclType = m_pDoc->InsertFldType(aType);
+                    ((SwUserFieldType*)pLclType)->SetContent(sParam1);
+                    ((SwUserFieldType*)pLclType)->SetValue(fParam1);
+                    ((SwUserFieldType*)pLclType)->SetType(bParam1 ? GSE_EXPR : GSE_STRING);
                 }
                 break;
                 case RES_DDEFLD :
                 {
                     SwDDEFieldType aType(sTypeName, sParam1,
                         bParam1 ? ::binfilter::LINKUPDATE_ALWAYS : ::binfilter::LINKUPDATE_ONCALL);
-                    pType = m_pDoc->InsertFldType(aType);
+                    pLclType = m_pDoc->InsertFldType(aType);
                 }
                 break;
                 case RES_SETEXPFLD :
@@ -646,20 +646,20 @@ void SwXFieldMaster::setPropertyValue( const OUString& rPropertyName,
                         aType.SetDelimiter( sParam1.GetChar(0));
                     if(nParam1 > -1 && nParam1 < MAXLEVEL)
                         aType.SetOutlineLvl(nParam1);
-                    pType = m_pDoc->InsertFldType(aType);
+                    pLclType = m_pDoc->InsertFldType(aType);
                 }
                 break;
             }
-            if(pType)
+            if(pLclType)
             {
-                pType->Add(this);
+                pLclType->Add(this);
                 m_bIsDescriptor = sal_False;
             }
             else
                 throw uno::RuntimeException();
         }
 
-        DBG_ASSERT(pType, "kein FieldType gefunden!" );
+        DBG_ASSERT(pLclType, "kein FieldType gefunden!" );
     }
     else
     {
@@ -1081,19 +1081,19 @@ struct SwFieldProperties_Impl
     sal_Bool        bBool4;
 
     SwFieldProperties_Impl():
+        fDouble(0.),
+        pDateTime(0),
         nSubType(0),
         nFormat(0),
         nUSHORT1(0),
         nUSHORT2(0),
         nSHORT1(0),
         nByte1(0),
-        fDouble(0.),
+        bFormatIsDefault(sal_True),
         bBool1(sal_False),
         bBool2(sal_False),
         bBool3(sal_False),
-        bBool4(sal_True), //Automatic language
-        bFormatIsDefault(sal_True),
-        pDateTime(0)
+        bBool4(sal_True) //Automatic language
         {}
     ~SwFieldProperties_Impl()
         {delete pDateTime;}
@@ -1128,13 +1128,13 @@ sal_Int64 SAL_CALL SwXTextField::getSomething( const uno::Sequence< sal_Int8 >& 
   -----------------------------------------------------------------------*/
 
 SwXTextField::SwXTextField(sal_uInt16 nServiceId) :
-    pFmtFld(0),
     aLstnrCntnr( (XTextContent*)this),
+    pFmtFld(0),
     m_pDoc(0),
-    m_nServiceId(nServiceId),
     m_bIsDescriptor(nServiceId != USHRT_MAX),
-    m_pProps(new SwFieldProperties_Impl),
-    m_bCallUpdate(sal_False)
+    m_bCallUpdate(sal_False),
+    m_nServiceId(nServiceId),
+    m_pProps(new SwFieldProperties_Impl)
 {
     //Set visible as default!
     if(SW_SERVICE_FIELDTYPE_SET_EXP == nServiceId ||
@@ -1150,13 +1150,13 @@ SwXTextField::SwXTextField(sal_uInt16 nServiceId) :
 
   -----------------------------------------------------------------------*/
 SwXTextField::SwXTextField(const SwFmtFld& rFmt, SwDoc* pDc) :
-    pFmtFld(&rFmt),
     aLstnrCntnr( (XTextContent*)this),
+    pFmtFld(&rFmt),
     m_pDoc(pDc),
-    m_nServiceId( lcl_GetServiceForField( *pFmtFld->GetFld() ) ),
     m_bIsDescriptor(sal_False),
-    m_pProps(0),
-    m_bCallUpdate(sal_False)
+    m_bCallUpdate(sal_False),
+    m_nServiceId( lcl_GetServiceForField( *pFmtFld->GetFld() ) ),
+    m_pProps(0)
 {
     pDc->GetUnoCallBack()->Add(this);
 }
@@ -1916,7 +1916,7 @@ void SwXTextField::setPropertyValue(const OUString& rPropertyName, const uno::An
         case FIELD_PROP_USHORT1:
         case FIELD_PROP_USHORT2:
             {
-                 sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 rValue >>= nVal;
                 if( FIELD_PROP_USHORT1 == pMap->nWID)
                     m_pProps->nUSHORT1 = nVal;
@@ -2262,8 +2262,8 @@ Sequence< OUString > SwXTextFieldMasters::getSupportedServiceNames(void) throw( 
 /*-- 21.12.98 10:37:14---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-SwXTextFieldMasters::SwXTextFieldMasters(SwDoc* pDoc) :
-    SwUnoCollection(pDoc)
+SwXTextFieldMasters::SwXTextFieldMasters(SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc)
 {
 }
 /*-- 21.12.98 10:37:32---------------------------------------------------
@@ -2508,8 +2508,8 @@ Sequence< OUString > SwXTextFieldTypes::getSupportedServiceNames(void) throw( Ru
 /*-- 21.12.98 10:35:15---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-SwXTextFieldTypes::SwXTextFieldTypes(SwDoc* pDoc) :
-    SwUnoCollection (pDoc),
+SwXTextFieldTypes::SwXTextFieldTypes(SwDoc* pInDoc) :
+    SwUnoCollection (pInDoc),
     aRefreshCont    ( static_cast< XEnumerationAccess * >(this) )
 {
 }
@@ -2626,8 +2626,8 @@ Sequence< OUString > SwXFieldEnumeration::getSupportedServiceNames(void) throw( 
  *
  * --------------------------------------------------*/
 SwXFieldEnumeration::SwXFieldEnumeration(SwDoc* pDc) :
-    pDoc(pDc),
-    nNextIndex(0)
+    nNextIndex(0),
+    pDoc(pDc)
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
 

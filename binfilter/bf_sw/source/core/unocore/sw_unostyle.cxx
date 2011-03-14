@@ -221,12 +221,12 @@ Sequence< OUString > SwXStyleFamilies::getSupportedServiceNames(void) throw( Run
   -----------------------------------------------------------------------*/
 SwXStyleFamilies::SwXStyleFamilies(SwDocShell& rDocShell) :
     SwUnoCollection(rDocShell.GetDoc()),
+    pDocShell(&rDocShell),
     pxCharStyles(0),
     pxParaStyles(0),
     pxFrameStyles(0),
     pxPageStyles(0),
-    pxNumberingStyles(0),
-    pDocShell(&rDocShell)
+    pxNumberingStyles(0)
 {
 
 }
@@ -498,9 +498,9 @@ Sequence< OUString > SwXStyleFamily::getSupportedServiceNames(void) throw( Runti
 
   -----------------------------------------------------------------------*/
 SwXStyleFamily::SwXStyleFamily(SwDocShell* pDocSh, sal_uInt16 nFamily) :
+        eFamily((SfxStyleFamily)nFamily),
         pBasePool(pDocSh->GetStyleSheetPool()),
-        pDocShell(pDocSh),
-        eFamily((SfxStyleFamily)nFamily)
+        pDocShell(pDocSh)
 {
 /*  switch( nFamily )
     {
@@ -661,6 +661,8 @@ sal_Int32 lcl_GetCountOrName ( const SwDoc &rDoc, SfxStyleFamily eFamily, String
             nCount += nBaseCount;
         }
         break;
+        default:
+        break;
     }
     return nCount;
 }
@@ -773,6 +775,8 @@ Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
                         SwStyleNameMapper::FillUIName ( RES_POOLNUMRULE_BEGIN + nIndex, sStyleName );
                     }
                 }
+                break;
+                default:
                 break;
             }
             if ( !sStyleName.Len() )
@@ -1262,6 +1266,8 @@ Sequence< OUString > SwXStyle::getSupportedServiceNames(void) throw( RuntimeExce
         if(bIsConditional)
             pArray[5] = C2U("com.sun.star.style.ConditionalParagraphStyle");
         break;
+        default:
+        break;
     }
     return aRet;
 }
@@ -1270,10 +1276,10 @@ Sequence< OUString > SwXStyle::getSupportedServiceNames(void) throw( RuntimeExce
   -----------------------------------------------------------------------*/
 SwXStyle::SwXStyle( SwDoc *pDoc, SfxStyleFamily eFam, BOOL bConditional) :
     m_pDoc( pDoc ),
-    bIsDescriptor(sal_True),
-    bIsConditional(bConditional),
+    pBasePool(0),
     eFamily(eFam),
-    pBasePool(0)
+    bIsDescriptor(sal_True),
+    bIsConditional(bConditional)
 {
     // Register ourselves as a listener to the document (via the page descriptor)
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
@@ -1324,6 +1330,8 @@ SwXStyle::SwXStyle( SwDoc *pDoc, SfxStyleFamily eFam, BOOL bConditional) :
             nMapId = PROPERTY_MAP_NUM_STYLE;
         }
         break;
+        default:
+        break;
     }
     pPropImpl = new SwStyleProperties_Impl(aSwMapProvider.GetPropertyMap(nMapId));
 }
@@ -1331,10 +1339,10 @@ SwXStyle::SwXStyle( SwDoc *pDoc, SfxStyleFamily eFam, BOOL bConditional) :
 
 SwXStyle::SwXStyle(SfxStyleSheetBasePool& rPool, SfxStyleFamily eFam,
         SwDoc*  pDoc,   const String& rStyleName) :
+    m_pDoc(pDoc),
     sStyleName(rStyleName),
     pBasePool(&rPool),
     eFamily(eFam),
-    m_pDoc(pDoc),
     bIsDescriptor(sal_False),
     bIsConditional(sal_False),
     pPropImpl(0)
@@ -1594,6 +1602,8 @@ Reference< XPropertySetInfo >  SwXStyle::getPropertySetInfo(void)
             xRet = xNumRef;
         }
         break;
+        default:
+        break;
     }
     return xRet;
 }
@@ -1636,10 +1646,10 @@ struct SwStyleBase_Impl
 
     SwStyleBase_Impl(SwDoc& rSwDoc, const String& rName) :
         rDoc(rSwDoc),
-        rStyleName(rName),
+        pOldPageDesc(0),
         pNewBase(0),
         pItemSet(0),
-        pOldPageDesc(0),
+        rStyleName(rName),
         nPDescPos(0xffff)
         {}
     ~SwStyleBase_Impl(){delete pNewBase; delete pItemSet; }
@@ -1781,8 +1791,8 @@ void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
                             if(
                                 pCharStyleNames[i] != SwXNumberingRules::GetInvalidStyle() &&
                                 ((pCharStyleNames[i].Len() && !pFmt->GetCharFmt()) ||
-                                pCharStyleNames[i].Len() &&
-                                            pFmt->GetCharFmt()->GetName() != pCharStyleNames[i] ))
+                                (pCharStyleNames[i].Len() &&
+                                            pFmt->GetCharFmt()->GetName() != pCharStyleNames[i]) ))
                             {
 
                                 SwCharFmt* pCharFmt = 0;
@@ -1814,8 +1824,8 @@ void lcl_SetStyleProperty(const SfxItemPropertyMap* pMap,
                             //jetzt nochmal fuer Fonts
                             if(pBulletFontNames[i] != SwXNumberingRules::GetInvalidStyle() &&
                                 ((pBulletFontNames[i].Len() && !pFmt->GetBulletFont()) ||
-                                pBulletFontNames[i].Len() &&
-                                        pFmt->GetBulletFont()->GetName() != pBulletFontNames[i] ))
+                                (pBulletFontNames[i].Len() &&
+                                        pFmt->GetBulletFont()->GetName() != pBulletFontNames[i]) ))
                             {
                                 const SvxFontListItem* pFontListItem =
                                         (const SvxFontListItem* )pDoc->GetDocShell()
@@ -2042,6 +2052,7 @@ void SwXStyle::setPropertyValues(
         case SFX_STYLE_FAMILY_FRAME: nPropSetId = PROPERTY_SET_FRAME_STYLE ;break;
         case SFX_STYLE_FAMILY_PAGE: nPropSetId = PROPERTY_SET_PAGE_STYLE  ;break;
         case SFX_STYLE_FAMILY_PSEUDO: nPropSetId = PROPERTY_SET_NUM_STYLE   ;break;
+        default: break;
     }
     SfxItemPropertySet& aPropSet = aSwMapProvider.GetPropertySet(nPropSetId);
 
@@ -2255,6 +2266,7 @@ Sequence< Any > SwXStyle::getPropertyValues(
         case SFX_STYLE_FAMILY_FRAME: nPropSetId = PROPERTY_SET_FRAME_STYLE ;break;
         case SFX_STYLE_FAMILY_PAGE: nPropSetId = PROPERTY_SET_PAGE_STYLE  ;break;
         case SFX_STYLE_FAMILY_PSEUDO: nPropSetId = PROPERTY_SET_NUM_STYLE   ;break;
+        default: break;
     }
     SfxItemPropertySet& aPropSet = aSwMapProvider.GetPropertySet(nPropSetId);
     const OUString* pNames = rPropertyNames.getConstArray();
@@ -2312,6 +2324,8 @@ Sequence< Any > SwXStyle::getPropertyValues(
                         else
                             bExcept = sal_True;
                     }
+                    break;
+                    default:
                     break;
                 }
                 if (bExcept )
@@ -2456,6 +2470,7 @@ Sequence< PropertyState > SwXStyle::getPropertyStates(
                 case SFX_STYLE_FAMILY_FRAME: nPropSetId = PROPERTY_SET_FRAME_STYLE ;break;
                 case SFX_STYLE_FAMILY_PAGE: nPropSetId = PROPERTY_SET_PAGE_STYLE;   break;
                 case SFX_STYLE_FAMILY_PSEUDO: nPropSetId = PROPERTY_SET_NUM_STYLE   ;break;
+                default: break;
             }
 
             SfxItemSet aSet = aStyle.GetItemSet();
@@ -2564,6 +2579,8 @@ void SAL_CALL SwXStyle::setPropertiesToDefault( const Sequence< OUString >& aPro
                     break;
                 case SFX_STYLE_FAMILY_PSEUDO:
                     break;
+                default:
+                    break;
             }
         }
     }
@@ -2574,6 +2591,7 @@ void SAL_CALL SwXStyle::setPropertiesToDefault( const Sequence< OUString >& aPro
         case SFX_STYLE_FAMILY_FRAME: nPropSetId = PROPERTY_SET_FRAME_STYLE ;break;
         case SFX_STYLE_FAMILY_PAGE: nPropSetId = PROPERTY_SET_PAGE_STYLE  ;break;
         case SFX_STYLE_FAMILY_PSEUDO: nPropSetId = PROPERTY_SET_NUM_STYLE   ;break;
+        default: break;
     }
 
     const SfxItemPropertyMap* pMap = aSwMapProvider.GetPropertyMap(nPropSetId);
@@ -2903,7 +2921,6 @@ void SwXPageStyle::setPropertyValues(
                 case FN_UNO_FOOTER_HEIGHT:
                 case FN_UNO_FOOTER_EAT_SPACING:
                 {
-                    sal_Bool bSetItem = sal_False;
                     sal_Bool bFooter = sal_False;
                     sal_uInt16 nItemType = TYPE_BOOL;
                     sal_uInt16 nRes = 0;
@@ -2979,7 +2996,7 @@ void SwXPageStyle::setPropertyValues(
                                 case TYPE_BOX: pNewItem = new SvxBoxItem(nRes);         break;
                             }
                         }
-                        bSetItem = pNewItem->PutValue(pValues[nProp], pMap->nMemberId);
+                        pNewItem->PutValue(pValues[nProp], pMap->nMemberId);
                         rSetSet.Put(*pNewItem);
                         aBaseImpl.GetItemSet().Put(*pNewSetItem);
                         delete pNewItem;
@@ -3083,7 +3100,7 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
                 GetBasePool()->SetSearchMask(GetFamily(), nSaveMask );
             }
             sal_uInt16 nRes;
-            sal_Bool bHeader = sal_False, bAll = sal_False, bLeft = sal_False, bRight = sal_False;
+            sal_Bool bHeader = sal_False, bLeft = sal_False;
             switch(pMap->nWID)
             {
                 case FN_UNO_HEADER_ON:
@@ -3108,15 +3125,15 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
                 case FN_UNO_FOOTER_HEIGHT:
                 case FN_UNO_FOOTER_EAT_SPACING:
                 {
-                    SfxStyleSheetBasePool* pBasePool = ((SwXPageStyle*)this)->GetBasePool();
-                    pBasePool->SetSearchMask(GetFamily());
-                    SfxStyleSheetBase* pBase = pBasePool->Find(GetStyleName());
-                    if(pBase)
+                    SfxStyleSheetBasePool* pLclBasePool = ((SwXPageStyle*)this)->GetBasePool();
+                    pLclBasePool->SetSearchMask(GetFamily());
+                    SfxStyleSheetBase* pLclBase = pLclBasePool->Find(GetStyleName());
+                    if(pLclBase)
                     {
-                        SwDocStyleSheet aStyle( *(SwDocStyleSheet*)pBase );
+                        SwDocStyleSheet aStyle( *(SwDocStyleSheet*)pLclBase );
                         const SfxItemSet& rSet = aStyle.GetItemSet();
                         sal_Bool bFooter = sal_False;
-                        sal_uInt16 nRes = 0;
+                        sal_uInt16 nLclRes = 0;
                         switch(pMap->nWID)
                         {
                             case FN_UNO_FOOTER_ON:
@@ -3127,44 +3144,44 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
                                 //falls das SetItem nicht da ist, dann ist der Wert sal_False
                                 BOOL bRet = sal_False;
                                 pRet[nProp].setValue(&bRet, ::getCppuBooleanType());
-                                nRes = SID_ATTR_PAGE_ON;
+                                nLclRes = SID_ATTR_PAGE_ON;
                             }
                             break;
                             case FN_UNO_FOOTER_BACKGROUND:      bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_BACKGROUND:      nRes = RES_BACKGROUND;
+                            case FN_UNO_HEADER_BACKGROUND:      nLclRes = RES_BACKGROUND;
                             break;
                             case FN_UNO_FOOTER_BOX:             bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_BOX:             nRes = RES_BOX;
+                            case FN_UNO_HEADER_BOX:             nLclRes = RES_BOX;
                             break;
                             case FN_UNO_FOOTER_LR_SPACE:        bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_LR_SPACE:        nRes = RES_LR_SPACE;
+                            case FN_UNO_HEADER_LR_SPACE:        nLclRes = RES_LR_SPACE;
                             break;
                             case FN_UNO_FOOTER_SHADOW:          bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_SHADOW:          nRes = RES_SHADOW;
+                            case FN_UNO_HEADER_SHADOW:          nLclRes = RES_SHADOW;
                             break;
                             case FN_UNO_FOOTER_BODY_DISTANCE:   bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_BODY_DISTANCE:   nRes = RES_UL_SPACE;
+                            case FN_UNO_HEADER_BODY_DISTANCE:   nLclRes = RES_UL_SPACE;
                             break;
                             case FN_UNO_FOOTER_IS_DYNAMIC_DISTANCE: bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_IS_DYNAMIC_DISTANCE: nRes = SID_ATTR_PAGE_DYNAMIC;
+                            case FN_UNO_HEADER_IS_DYNAMIC_DISTANCE: nLclRes = SID_ATTR_PAGE_DYNAMIC;
                             break;
                             case FN_UNO_FOOTER_SHARE_CONTENT:   bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_SHARE_CONTENT:   nRes = SID_ATTR_PAGE_SHARED;
+                            case FN_UNO_HEADER_SHARE_CONTENT:   nLclRes = SID_ATTR_PAGE_SHARED;
                             break;
                             case FN_UNO_FOOTER_HEIGHT:          bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_HEIGHT:          nRes = SID_ATTR_PAGE_SIZE;
+                            case FN_UNO_HEADER_HEIGHT:          nLclRes = SID_ATTR_PAGE_SIZE;
                             break;
                             case FN_UNO_FOOTER_EAT_SPACING: bFooter = sal_True;
                             // kein break;
-                            case FN_UNO_HEADER_EAT_SPACING: nRes = RES_HEADER_FOOTER_EAT_SPACING;
+                            case FN_UNO_HEADER_EAT_SPACING: nLclRes = RES_HEADER_FOOTER_EAT_SPACING;
                             break;
                         }
                         const SvxSetItem* pSetItem;
@@ -3172,11 +3189,11 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
                                 bFooter ? SID_ATTR_PAGE_FOOTERSET : SID_ATTR_PAGE_HEADERSET,
                                 sal_False, (const SfxPoolItem**)&pSetItem))
                         {
-                            const SfxItemSet& rSet = pSetItem->GetItemSet();
+                            const SfxItemSet& rLclSet = pSetItem->GetItemSet();
                             const SfxPoolItem* pItem = 0;
-                            rSet.GetItemState(nRes, sal_True, &pItem);
-                            if(!pItem && nRes != rSet.GetPool()->GetSlotId(nRes))
-                                pItem = &rSet.GetPool()->GetDefaultItem(nRes);
+                            rLclSet.GetItemState(nLclRes, sal_True, &pItem);
+                            if(!pItem && nLclRes != rLclSet.GetPool()->GetSlotId(nLclRes))
+                                pItem = &rLclSet.GetPool()->GetDefaultItem(nLclRes);
                             if(pItem)
                                 pItem->QueryValue(pRet[nProp], pMap->nMemberId);
                         }
@@ -3184,28 +3201,27 @@ Sequence< Any > SwXPageStyle::getPropertyValues(
                 }
                 break;
                 case  FN_UNO_HEADER       :
-                    bAll = sal_True; goto Header;
+                    goto Header;
                 case  FN_UNO_HEADER_LEFT  :
                     bLeft = sal_True; goto Header;
                 case  FN_UNO_HEADER_RIGHT :
-                    bRight = sal_True; goto Header;
+                    goto Header;
 Header:
                     bHeader = sal_True;
                     nRes = RES_HEADER; goto MakeObject;
                 case  FN_UNO_FOOTER       :
-                    bAll = sal_True; goto Footer;
+                    goto Footer;
                 case  FN_UNO_FOOTER_LEFT  :
                     bLeft = sal_True; goto Footer;
                 case  FN_UNO_FOOTER_RIGHT :
-                    bRight = sal_True;
 Footer:
                     nRes = RES_FOOTER;
 MakeObject:
                 {
                     const SwPageDesc& rDesc = aBase.GetOldPageDesc();
                     const SwFrmFmt* pFrmFmt = 0;
-                    sal_Bool bShare = bHeader && rDesc.IsHeaderShared()||
-                                    !bHeader && rDesc.IsFooterShared();
+                    sal_Bool bShare = (bHeader && rDesc.IsHeaderShared()) ||
+                                    (!bHeader && rDesc.IsFooterShared());
                     // TextLeft returns the left content if there is one,
                     // Text and TextRight return the master content.
                     // TextRight does the same as Text and is for

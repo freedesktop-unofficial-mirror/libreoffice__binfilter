@@ -65,8 +65,8 @@ void lcl_setPageDesc(SwDoc*, const uno::Any&, SfxItemSet& ); // from unoobj.cxx
 
 
 SwXTextDefaults::SwXTextDefaults ( SwDoc * pNewDoc )
-: pDoc (pNewDoc)
-, aPropSet (aSwMapProvider.GetPropertyMap ( PROPERTY_MAP_TEXT_DEFAULT ) )
+    : aPropSet (aSwMapProvider.GetPropertyMap ( PROPERTY_MAP_TEXT_DEFAULT ) )
+    , pDoc(pNewDoc)
 {
 }
 

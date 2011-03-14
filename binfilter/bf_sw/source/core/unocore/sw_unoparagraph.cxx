@@ -147,8 +147,8 @@ Sequence< OUString > SwXParagraph::getSupportedServiceNames(void) throw( Runtime
   -----------------------------------------------------------------------*/
 SwXParagraph::SwXParagraph() :
     aLstnrCntnr( (XTextRange*)this),
-    xParentText(0),
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_PARAGRAPH)),
+    xParentText(0),
     m_bIsDescriptor(TRUE),
     nSelectionStartPos(-1),
     nSelectionEndPos(-1)
@@ -160,9 +160,9 @@ SwXParagraph::SwXParagraph() :
   -----------------------------------------------------------------------*/
 SwXParagraph::SwXParagraph(SwXText* pParent, SwUnoCrsr* pCrsr, sal_Int32 nSelStart, sal_Int32 nSelEnd) :
     SwClient(pCrsr),
-    xParentText(pParent),
     aLstnrCntnr( (XTextRange*)this),
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_PARAGRAPH)),
+    xParentText(pParent),
     m_bIsDescriptor(FALSE),
     nSelectionStartPos(nSelStart),
     nSelectionEndPos(nSelEnd)

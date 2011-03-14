@@ -78,9 +78,9 @@ sal_Int64 SAL_CALL SwXBookmark::getSomething( const uno::Sequence< sal_Int8 >& r
 }
 
 SwXBookmark::SwXBookmark(SwBookmark* pBkm, SwDoc* pDc) :
+        aLstnrCntnr( (text::XTextContent*)this),
         pDoc(pDc),
-        bIsDescriptor(0 == pBkm),
-        aLstnrCntnr( (text::XTextContent*)this)
+        bIsDescriptor(0 == pBkm)
 {
     if(pBkm)
         pBkm->Add(this);

@@ -68,8 +68,8 @@ using namespace ::com::sun::star::beans;
 using rtl::OUString;
 using rtl::OUStringBuffer;
 
-SwXRedlineText::SwXRedlineText(SwDoc* pDoc, SwNodeIndex aIndex) :
-    SwXText(pDoc, CURSOR_REDLINE),
+SwXRedlineText::SwXRedlineText(SwDoc* pInDoc, SwNodeIndex aIndex) :
+    SwXText(pInDoc, CURSOR_REDLINE),
     aNodeIndex(aIndex)
 {
 }
@@ -417,8 +417,8 @@ Sequence< PropertyValue > SwXRedlinePortion::CreateRedlineProperties(
 
 TYPEINIT1(SwXRedline, SwClient);
 SwXRedline::SwXRedline(SwRedline& rRedline, SwDoc& rDoc) :
-    pDoc(&rDoc),
     SwXText(&rDoc, CURSOR_REDLINE),
+    pDoc(&rDoc),
     pRedline(&rRedline)
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);

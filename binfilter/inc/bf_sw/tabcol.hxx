@@ -51,11 +51,9 @@ class SwTabCols : public SvLongs
                         //trenner nicht in der aktuellen Zeile; er muss
                         //mit gepflegt werden, darf aber nicht angezeigt
                         //werden.
-
 public:
-        SwTabCols( USHORT nSize = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;
-        SwTabCols( const SwTabCols& ){DBG_BF_ASSERT(0, "STRIP");} ;
-
+    SwTabCols( USHORT /*nSize*/ = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;
+    SwTabCols( const SwTabCols& ) : SvLongs() {DBG_BF_ASSERT(0, "STRIP");} ;
     BOOL IsHidden( USHORT nPos ) const         { return aHidden[nPos]; }
     void SetHidden( USHORT nPos, BOOL bValue ) { aHidden[nPos] = bValue; }
     inline void InsertHidden( USHORT nPos, BOOL bValue );

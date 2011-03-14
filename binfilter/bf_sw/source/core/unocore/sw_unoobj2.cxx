@@ -269,9 +269,9 @@ void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
             {
                 if ( rProp.Value.getValueType() == ::getCppuType((const OUString*)0))
                 {
-                    OUString uFilterName;
-                    rProp.Value >>= uFilterName;
-                    sFilterName = String(uFilterName);
+                    OUString uLclFilterName;
+                    rProp.Value >>= uLclFilterName;
+                    sFilterName = String(uLclFilterName);
                 }
                 else if ( rProp.Value.getValueType() != ::getVoidCppuType() )
                     bIllegalArgument = sal_True;
@@ -280,9 +280,9 @@ void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
             {
                 if ( rProp.Value.getValueType() == ::getCppuType((const OUString*)0))
                 {
-                    OUString uFilterOption;
-                    rProp.Value >>= uFilterOption;
-                    sFilterOption = String(uFilterOption) ;
+                    OUString uLclFilterOption;
+                    rProp.Value >>= uLclFilterOption;
+                    sFilterOption = String(uLclFilterOption) ;
                 }
                 else if ( rProp.Value.getValueType() != ::getVoidCppuType() )
 
@@ -292,9 +292,9 @@ void SwXTextCursor::insertDocumentFromURL(const OUString& rURL,
             {
                 if ( rProp.Value.getValueType() == ::getCppuType((const OUString*)0))
                 {
-                    OUString uPassword;
-                    rProp.Value >>= uPassword;
-                    sPassword = String(uPassword );
+                    OUString uLclPassword;
+                    rProp.Value >>= uLclPassword;
+                    sPassword = String(uLclPassword );
                 }
                 else if ( rProp.Value.getValueType() != ::getVoidCppuType() )
                     bIllegalArgument = sal_True;
@@ -1137,13 +1137,13 @@ Sequence< OUString > SwXTextRange::getSupportedServiceNames(void) throw( Runtime
 
   -----------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwPaM& rPam, const uno::Reference< XText > & rxParent) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
-    xParentText(rxParent),
-    aObjectDepend(this, 0),
+    eRangePosition(RANGE_IN_TEXT),
     pDoc(rPam.GetDoc()),
     pBox(0),
     pBoxStartNode(0),
-    eRangePosition(RANGE_IN_TEXT)
+    aObjectDepend(this, 0),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
+    xParentText(rxParent)
 {
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
@@ -1152,12 +1152,12 @@ SwXTextRange::SwXTextRange(SwPaM& rPam, const uno::Reference< XText > & rxParent
 
   -----------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rFmt, SwPaM& rPam) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
-    aObjectDepend(this, &rFmt),
+    eRangePosition(RANGE_IN_FRAME),
     pDoc(rPam.GetDoc()),
     pBox(0),
     pBoxStartNode(0),
-    eRangePosition(RANGE_IN_FRAME)
+    aObjectDepend(this, &rFmt),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR))
 {
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
@@ -1166,12 +1166,12 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rFmt, SwPaM& rPam) :
 
   -----------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, SwTableBox& rTblBox, SwPaM& rPam) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
+    eRangePosition(RANGE_IN_CELL),
     pDoc(rPam.GetDoc()),
-    aObjectDepend(this, &rTblFmt),
     pBox(&rTblBox),
     pBoxStartNode(0),
-    eRangePosition(RANGE_IN_CELL)
+    aObjectDepend(this, &rTblFmt),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR))
 {
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
@@ -1180,12 +1180,12 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, SwTableBox& rTblBox, SwPaM& rPam) 
 
  ---------------------------------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, const SwStartNode& rStartNode, SwPaM& rPam) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
+    eRangePosition(RANGE_IN_CELL),
     pDoc(rPam.GetDoc()),
-    aObjectDepend(this, &rTblFmt),
     pBox(0),
     pBoxStartNode(&rStartNode),
-    eRangePosition(RANGE_IN_CELL)
+    aObjectDepend(this, &rTblFmt),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR))
 {
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
@@ -1194,12 +1194,12 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, const SwStartNode& rStartNode, SwP
  *
  * --------------------------------------------------*/
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt) :
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR)),
-    aObjectDepend(this, &rTblFmt),
+    eRangePosition(RANGE_IS_TABLE),
     pDoc(rTblFmt.GetDoc()),
     pBox(0),
     pBoxStartNode(0),
-    eRangePosition(RANGE_IS_TABLE)
+    aObjectDepend(this, &rTblFmt),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_CURSOR))
 {
 }
 
@@ -1268,7 +1268,7 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
         const SwPosition& rPoint = pBkm->GetPos();
         const SwPosition* pMark = pBkm->GetOtherPos();
         SwCursor aNewCrsr( rPoint);
-        SwDoc* pDoc = aNewCrsr.GetDoc();
+        SwDoc* pLclDoc = aNewCrsr.GetDoc();
         if(pMark)
         {
             aNewCrsr.SetMark();
@@ -1277,11 +1277,11 @@ void    SwXTextRange::DeleteAndInsert(const String& rText) throw( uno::RuntimeEx
 
         UnoActionContext aAction(aNewCrsr.GetDoc());
         if(aNewCrsr.HasMark())
-            pDoc->DeleteAndJoin(aNewCrsr);
+            pLclDoc->DeleteAndJoin(aNewCrsr);
 
         if(rText.Len())
         {
-            if( !pDoc->Insert(aNewCrsr, rText) )
+            if( !pLclDoc->Insert(aNewCrsr, rText) )
             {
                 OSL_ENSURE( sal_False, "Doc->Insert(Str) failed." );
             }
@@ -1331,11 +1331,11 @@ uno::Reference< XText >  SwXTextRange::getText(void) throw( uno::RuntimeExceptio
             aObjectDepend.GetRegisteredIn() )
         {
             SwFrmFmt* pTblFmt = (SwFrmFmt*)aObjectDepend.GetRegisteredIn();
-            SwDoc* pDoc = pTblFmt->GetDoc();
+            SwDoc* pLclDoc = pTblFmt->GetDoc();
             SwTable* pTable = SwTable::FindTable( pTblFmt );
             SwTableNode* pTblNode = pTable->GetTableNode();
             SwPosition aPosition( *pTblNode );
-            Reference< XTextRange >  xRange = SwXTextRange::CreateTextRangeFromPosition(pDoc,
+            Reference< XTextRange >  xRange = SwXTextRange::CreateTextRangeFromPosition(pLclDoc,
                         aPosition, 0);
             xParentText = xRange->getText();
         }
@@ -1648,13 +1648,12 @@ uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* p
         case SwFootnoteStartNode:
         {
             sal_uInt16 n, nFtnCnt = pDoc->GetFtnIdxs().Count();
-            SwTxtFtn* pTxtFtn;
             uno::Reference< XFootnote >  xRef;
             for( n = 0; n < nFtnCnt; ++n )
             {
-                pTxtFtn = pDoc->GetFtnIdxs()[ n ];
+                const SwTxtFtn* pTxtFtn = pDoc->GetFtnIdxs()[ n ];
                 const SwFmtFtn& rFtn = pTxtFtn->GetFtn();
-                const SwTxtFtn* pTxtFtn = rFtn.GetTxtFtn();
+                pTxtFtn = rFtn.GetTxtFtn();
 #if OSL_DEBUG_LEVEL > 1
                 const SwStartNode* pTmpSttNode = pTxtFtn->GetStartNode()->GetNode().
                                 FindSttNodeByType(SwFootnoteStartNode);

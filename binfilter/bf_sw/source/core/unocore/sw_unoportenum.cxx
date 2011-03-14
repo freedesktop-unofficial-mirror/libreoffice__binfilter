@@ -526,8 +526,8 @@ Reference<XTextRange> lcl_ExportHints(SwpHints* pHints,
             nCurrentIndex >= (nNextStart = (*pHints->GetStart(nStartIndex)->GetStart())))
             nStartIndex++;
 
-        sal_uInt16 nEndIndex = 0;
-        sal_uInt16 nNextEnd = 0;
+        nEndIndex = 0;
+        nNextEnd = 0;
         while(nEndIndex < pHints->GetEndCount() &&
             nCurrentIndex >= (nNextEnd = (*pHints->GetEnd(nEndIndex)->GetAnyEnd())))
             nEndIndex++;

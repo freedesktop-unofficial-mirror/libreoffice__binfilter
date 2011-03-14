@@ -679,8 +679,8 @@ Sequence< OUString > SwXFrames::getSupportedServiceNames(void) throw( RuntimeExc
     return aRet;
 }
 
-SwXFrames::SwXFrames(SwDoc* pDoc, FlyCntType eSet) :
-    SwUnoCollection(pDoc),
+SwXFrames::SwXFrames(SwDoc* pInDoc, FlyCntType eSet) :
+    SwUnoCollection(pInDoc),
     eType(eSet)
 {
 }
@@ -731,6 +731,8 @@ uno::Any SwXFrames::getByIndex(sal_Int32 nIndex)
                     Reference< XEmbeddedObjectSupplier >  xRef = (SwXTextEmbeddedObject*)pFrm;
                     aRet.setValue(&xRef, ::getCppuType((Reference<XEmbeddedObjectSupplier>*)0));
                 }
+                break;
+                default:
                 break;
             }
         }
@@ -786,6 +788,8 @@ uno::Any SwXFrames::getByName(const OUString& rName)
             aRet.setValue(&xRef, ::getCppuType((Reference<XEmbeddedObjectSupplier>*)0));
         }
         break;
+        default:
+        break;
     }
     return aRet;
 }
@@ -820,6 +824,7 @@ sal_Bool SwXFrames::hasByName(const OUString& rName) throw( uno::RuntimeExceptio
     {
         case FLYCNTTYPE_GRF:    nNodeType = ND_GRFNODE; break;
         case FLYCNTTYPE_OLE:    nNodeType = ND_OLENODE; break;
+        default: break;
     }
 
     return 0 != GetDoc()->FindFlyByName( rName, nNodeType );
@@ -841,6 +846,8 @@ uno::Type SAL_CALL SwXFrames::getElementType() throw(uno::RuntimeException)
         break;
         case FLYCNTTYPE_OLE:
             aRet = ::getCppuType((uno::Reference<XEmbeddedObjectSupplier>*)0);
+        break;
+        default:
         break;
     }
     return aRet;
@@ -874,6 +881,8 @@ SwXFrame*   SwXFrames::GetObject( SwFrmFmt& rFmt, FlyCntType eType )
             case FLYCNTTYPE_OLE:
                 pFrm = new SwXTextEmbeddedObject(rFmt);
             break;
+            default:
+            break;
         }
     }
     return pFrm;
@@ -900,8 +909,8 @@ Sequence< OUString > SwXTextFrames::getSupportedServiceNames(void) throw( Runtim
     return aRet;
 }
 
-SwXTextFrames::SwXTextFrames(SwDoc* pDoc) :
-    SwXFrames(pDoc, FLYCNTTYPE_FRM)
+SwXTextFrames::SwXTextFrames(SwDoc* pInDoc) :
+    SwXFrames(pInDoc, FLYCNTTYPE_FRM)
 {
 }
 
@@ -930,8 +939,8 @@ Sequence< OUString > SwXTextGraphicObjects::getSupportedServiceNames(void) throw
     return aRet;
 }
 
-SwXTextGraphicObjects::SwXTextGraphicObjects(SwDoc* pDoc) :
-    SwXFrames(pDoc, FLYCNTTYPE_GRF)
+SwXTextGraphicObjects::SwXTextGraphicObjects(SwDoc* pInDoc) :
+    SwXFrames(pInDoc, FLYCNTTYPE_GRF)
 {
 }
 
@@ -960,8 +969,8 @@ Sequence< OUString > SwXTextEmbeddedObjects::getSupportedServiceNames(void) thro
     return aRet;
 }
 
-SwXTextEmbeddedObjects::SwXTextEmbeddedObjects(SwDoc* pDoc) :
-        SwXFrames(pDoc, FLYCNTTYPE_OLE)
+SwXTextEmbeddedObjects::SwXTextEmbeddedObjects(SwDoc* pInDoc) :
+        SwXFrames(pInDoc, FLYCNTTYPE_OLE)
 {
 }
 
@@ -992,8 +1001,8 @@ Sequence< OUString > SwXTextSections::getSupportedServiceNames(void) throw( Runt
     return aRet;
 }
 
-SwXTextSections::SwXTextSections(SwDoc* pDoc) :
-    SwUnoCollection(pDoc)
+SwXTextSections::SwXTextSections(SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc)
 {
 }
 
@@ -1188,8 +1197,8 @@ Sequence< OUString > SwXBookmarks::getSupportedServiceNames(void) throw( Runtime
     return aRet;
 }
 
-SwXBookmarks::SwXBookmarks(SwDoc*   pDoc) :
-    SwUnoCollection(pDoc)
+SwXBookmarks::SwXBookmarks(SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc)
 {
 }
 
@@ -1339,8 +1348,8 @@ Sequence< OUString > SwXFootnotes::getSupportedServiceNames(void) throw( Runtime
     return aRet;
 }
 
-SwXFootnotes::SwXFootnotes(sal_Bool bEnd, SwDoc* pDoc) :
-    SwUnoCollection(pDoc),
+SwXFootnotes::SwXFootnotes(sal_Bool bEnd, SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc),
     bEndnote(bEnd)
 {
 }
@@ -1373,7 +1382,7 @@ uno::Any SwXFootnotes::getByIndex(sal_Int32 nIndex)
 {
     SolarMutexGuard aGuard;
     uno::Any aRet;
-    sal_uInt32 nCount = 0;
+    sal_Int32 nCount = 0;
     if(IsValid())
     {
         sal_uInt16 n, nFtnCnt = GetDoc()->GetFtnIdxs().Count();
@@ -1446,8 +1455,8 @@ Sequence< OUString > SwXReferenceMarks::getSupportedServiceNames(void) throw( Ru
     return aRet;
 }
 
-SwXReferenceMarks::SwXReferenceMarks(SwDoc* pDoc) :
-    SwUnoCollection(pDoc)
+SwXReferenceMarks::SwXReferenceMarks(SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc)
 {
 }
 

@@ -65,8 +65,8 @@ using rtl::OUString;
 /*-- 11.01.01 15:28:54---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-SwXRedlines::SwXRedlines(SwDoc* pDoc) :
-    SwUnoCollection(pDoc)
+SwXRedlines::SwXRedlines(SwDoc* pInDoc) :
+    SwUnoCollection(pInDoc)
 {
 }
 /*-- 11.01.01 15:28:55---------------------------------------------------

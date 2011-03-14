@@ -124,8 +124,8 @@ Sequence< OUString > SwXFootnote::getSupportedServiceNames(void) throw( RuntimeE
 TYPEINIT1(SwXFootnote, SwClient);
 
 SwXFootnote::SwXFootnote(sal_Bool bEndnote) :
-    aLstnrCntnr( (text::XTextContent*)this),
     SwXText(0, CURSOR_FOOTNOTE),
+    aLstnrCntnr( (text::XTextContent*)this),
     pFmtFtn(0),
     m_bIsDescriptor(sal_True),
     m_bIsEndnote(bEndnote)
@@ -135,8 +135,8 @@ SwXFootnote::SwXFootnote(sal_Bool bEndnote) :
 /*-- 10.12.98 15:31:45---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-SwXFootnote::SwXFootnote(SwDoc* pDoc, const SwFmtFtn& rFmt) :
-    SwXText(pDoc, CURSOR_FOOTNOTE),
+SwXFootnote::SwXFootnote(SwDoc* pInDoc, const SwFmtFtn& rFmt) :
+    SwXText(pInDoc, CURSOR_FOOTNOTE),
     aLstnrCntnr( (text::XTextContent*)this),
     pFmtFtn(&rFmt),
     m_bIsDescriptor(sal_False),
@@ -252,21 +252,21 @@ void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xText
         pCursor = (OTextCursorHelper*)xRangeTunnel->getSomething(
                                 OTextCursorHelper::getUnoTunnelId());
     }
-    SwDoc* pDoc = pRange ? (SwDoc*)pRange->GetDoc() : pCursor ? (SwDoc*)pCursor->GetDoc() : 0;
-    if(pDoc)
+    SwDoc* pLclDoc = pRange ? (SwDoc*)pRange->GetDoc() : pCursor ? (SwDoc*)pCursor->GetDoc() : 0;
+    if(pLclDoc)
     {
-        SwUnoInternalPaM aPam(*pDoc);
+        SwUnoInternalPaM aPam(*pLclDoc);
         //das muss jetzt sal_True liefern
         SwXTextRange::XTextRangeToSwPaM(aPam, xTextRange);
 
-        UnoActionContext aCont(pDoc);
+        UnoActionContext aCont(pLclDoc);
         SwTxtAttr* pTxtAttr = 0;
-        pDoc->DeleteAndJoin(aPam);
+        pLclDoc->DeleteAndJoin(aPam);
         aPam.DeleteMark();
         SwFmtFtn aFootNote(m_bIsEndnote);
         if(m_sLabel.Len())
             aFootNote.SetNumStr(m_sLabel);
-        SfxItemSet  aSet(pDoc->GetAttrPool(), RES_TXTATR_FTN, RES_TXTATR_FTN, 0L);
+        SfxItemSet  aSet(pLclDoc->GetAttrPool(), RES_TXTATR_FTN, RES_TXTATR_FTN, 0L);
         aSet.Put(aFootNote);
         SwXTextCursor::SetCrsrAttr(aPam, aSet, 0);
 
@@ -277,15 +277,15 @@ void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xText
         {
             const SwFmtFtn& rFtn = pTxtAttr->GetFtn();
             pFmtFtn = &rFtn;
-            pDoc->GetUnoCallBack()->Add(this);
+            pLclDoc->GetUnoCallBack()->Add(this);
             //force creation of sequence id - is used for references
-            if(pDoc->IsInReading())
-                ((SwTxtFtn*)pTxtAttr)->SetSeqNo(pDoc->GetFtnIdxs().Count());
+            if(pLclDoc->IsInReading())
+                ((SwTxtFtn*)pTxtAttr)->SetSeqNo(pLclDoc->GetFtnIdxs().Count());
             else
                 ((SwTxtFtn*)pTxtAttr)->SetSeqRefNo();
         }
         m_bIsDescriptor = sal_False;
-        SetDoc(pDoc);
+        SetDoc(pLclDoc);
     }
     else
         throw lang::IllegalArgumentException();

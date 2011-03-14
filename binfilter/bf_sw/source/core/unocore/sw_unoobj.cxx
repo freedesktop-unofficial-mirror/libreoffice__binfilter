@@ -274,7 +274,7 @@ void SwXTextCursor::SelectPam(SwPaM& rCrsr, sal_Bool bExpand)
 
 }
 
-void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString& rBuffer)
+void SwXTextCursor::getTextFromPam(SwPaM& aCrsr, OUString&)
 {
     if(!aCrsr.HasMark())
         return;

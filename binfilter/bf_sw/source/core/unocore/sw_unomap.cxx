@@ -450,7 +450,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aCharAndParaMap_Impl[] =
                 {
                     COMPLETE_TEXT_CURSOR_MAP
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aCharAndParaMap_Impl;
             }
@@ -462,7 +462,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     COMMON_CRSR_PARA_PROPERTIES_2
                     TABSTOPS_MAP_ENTRY
                     COMMON_TEXT_CONTENT_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aParagraphMap_Impl;
             }
@@ -504,7 +504,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_CHAR_ROTATION_IS_FIT_TO_LINE), RES_CHRATR_ROTATE,       CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE,        MID_FITTOLINE  },
                     { SW_PROP_NMID(UNO_NAME_CHAR_SCALE_WIDTH), RES_CHRATR_SCALEW,       CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE,         0 },
                     { SW_PROP_NMID(UNO_NAME_CHAR_RELIEF), RES_CHRATR_RELIEF,      CPPU_E2T(CPPUTYPE_INT16),    PROPERTY_NONE,      MID_RELIEF },
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aCharStyleMap;
             }
@@ -605,7 +605,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_CATEGORY), FN_UNO_CATEGORY, CPPU_E2T(CPPUTYPE_INT16),           PROPERTY_NONE , 0 },
                     { SW_PROP_NMID(UNO_NAME_WRITING_MODE), RES_FRAMEDIR, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE, 0 },
                     { SW_PROP_NMID(UNO_NAME_PARA_IS_CONNECT_BORDER), RES_PARATR_CONNECT_BORDER, CPPU_E2T(CPPUTYPE_BOOLEAN), PropertyAttribute::MAYBEVOID, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aParaStyleMap;
             }
@@ -678,7 +678,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_IS_PHYSICAL), FN_UNO_IS_PHYSICAL,     CPPU_E2T(CPPUTYPE_BOOLEAN), PropertyAttribute::READONLY, 0},
                     { SW_PROP_NMID(UNO_NAME_IS_AUTO_UPDATE), FN_UNO_IS_AUTO_UPDATE, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_DISPLAY_NAME), FN_UNO_DISPLAY_NAME, CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aFrameStyleMap;
             }
@@ -797,7 +797,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_GRID_PRINT), RES_TEXTGRID, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, MID_GRID_PRINT},
                     { SW_PROP_NMID(UNO_NAME_GRID_DISPLAY), RES_TEXTGRID, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, MID_GRID_DISPLAY},
 
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aPageStyleMap;
             }
@@ -809,7 +809,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_NUMBERING_RULES), FN_UNO_NUM_RULES, CPPU_E2T(CPPUTYPE_REFIDXREPL), PROPERTY_NONE, CONVERT_TWIPS},
                     { SW_PROP_NMID(UNO_NAME_IS_PHYSICAL), FN_UNO_IS_PHYSICAL,     CPPU_E2T(CPPUTYPE_BOOLEAN), PropertyAttribute::READONLY, 0},
                     { SW_PROP_NMID(UNO_NAME_DISPLAY_NAME), FN_UNO_DISPLAY_NAME, CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aNumStyleMap;
             }
@@ -849,7 +849,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_TEXT_SECTION), FN_UNO_TEXT_SECTION, CPPU_E2T(CPPUTYPE_REFTEXTSECTION),  PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY ,0 },
                     { SW_PROP_NMID(UNO_NAME_WRITING_MODE), RES_FRAMEDIR, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE, 0 },
                     _REDLINE_NODE_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
 
                 aMapArr[nPropertyId] = aTablePropertyMap_Impl;
@@ -880,7 +880,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_CELL_NAME), FN_UNO_CELL_NAME,            CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY,0},
                     { SW_PROP_NMID(UNO_NAME_VERT_ORIENT), RES_VERT_ORIENT,      CPPU_E2T(CPPUTYPE_INT16),           PROPERTY_NONE ,MID_VERTORIENT_ORIENT    },
                     _REDLINE_NODE_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aCellMap_Impl;
             }
@@ -982,7 +982,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_WRITING_MODE), RES_FRAMEDIR, CPPU_E2T(CPPUTYPE_INT16), PropertyAttribute::MAYBEVOID, 0 },
                     { SW_PROP_NMID(UNO_NAME_NUMBERING_RULES), FN_UNO_NUM_RULES,     CPPU_E2T(CPPUTYPE_REFIDXREPL),  PropertyAttribute::MAYBEVOID, CONVERT_TWIPS},                        \
 
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aRangePropertyMap_Impl;
             }
@@ -1034,7 +1034,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_SECT_LEFT_MARGIN), RES_LR_SPACE,            CPPU_E2T(CPPUTYPE_INT32),           PropertyAttribute::MAYBEVOID, MID_L_MARGIN|CONVERT_TWIPS},                                   \
                     { SW_PROP_NMID(UNO_NAME_SECT_RIGHT_MARGIN), RES_LR_SPACE,           CPPU_E2T(CPPUTYPE_INT32),           PropertyAttribute::MAYBEVOID, MID_R_MARGIN|CONVERT_TWIPS},                                  \
                     /* <- #1097001# */
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aSectionPropertyMap_Impl;
             }
@@ -1055,7 +1055,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_SEARCH_SIMILARITY_REMOVE), WID_SIMILARITY_REMOVE,   CPPU_E2T(CPPUTYPE_INT16)  ,     PROPERTY_NONE,     0},
                     { SW_PROP_NMID(UNO_NAME_SEARCH_STYLES), WID_STYLES,             CPPU_E2T(CPPUTYPE_BOOLEAN)  ,       PROPERTY_NONE,     0},
                     { SW_PROP_NMID(UNO_NAME_SEARCH_WORDS), WID_WORDS,               CPPU_E2T(CPPUTYPE_BOOLEAN)  ,       PROPERTY_NONE,     0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aSearchPropertyMap_Impl;
             }
@@ -1080,7 +1080,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_FRAME_WIDTH_PERCENT),               RES_FRM_SIZE,           CPPU_E2T(CPPUTYPE_INT8),        PROPERTY_NONE, MID_FRMSIZE_REL_WIDTH    },
                     { SW_PROP_NMID(UNO_NAME_SIZE_TYPE), RES_FRM_SIZE,           CPPU_E2T(CPPUTYPE_INT16)  ,         PROPERTY_NONE,   MID_FRMSIZE_SIZE_TYPE  },
                     { SW_PROP_NMID(UNO_NAME_WRITING_MODE), RES_FRAMEDIR, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE, 0 },
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aFramePropertyMap_Impl;
             }
@@ -1113,7 +1113,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_GRAPHIC_IS_INVERTED), RES_GRFATR_INVERT,         CPPU_E2T(CPPUTYPE_BOOLEAN),    0,   0},
                     { SW_PROP_NMID(UNO_NAME_TRANSPARENCY), RES_GRFATR_TRANSPARENCY, CPPU_E2T(CPPUTYPE_INT16),   0,   0},
                     { SW_PROP_NMID(UNO_NAME_GRAPHIC_COLOR_MODE), RES_GRFATR_DRAWMODE,    CPPU_E2T(CPPUTYPE_COLORMODE),      0,   0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aGraphicPropertyMap_Impl;
             }
@@ -1131,7 +1131,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_CLSID),                FN_UNO_CLSID, CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0 },
                     { SW_PROP_NMID(UNO_NAME_MODEL), FN_UNO_MODEL, CPPU_E2T(CPPUTYPE_REFMODEL), PropertyAttribute::READONLY|PropertyAttribute::MAYBEVOID, 0},
                     { SW_PROP_NMID(UNO_NAME_COMPONENT),FN_UNO_COMPONENT, CPPU_E2T(CPPUTYPE_REFCOMPONENT), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aEmbeddedPropertyMap_Impl;
             }
@@ -1161,7 +1161,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_TEXT_RANGE), FN_TEXT_RANGE,         CPPU_E2T(CPPUTYPE_REFTXTRANGE),         PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_OPAQUE), RES_OPAQUE,             CPPU_E2T(CPPUTYPE_BOOLEAN),            PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_ANCHOR_POSITION), FN_ANCHOR_POSITION,    CPPU_E2T(CPPUTYPE_AWTPOINT),    PropertyAttribute::READONLY, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aShapeMap_Impl;
             }
@@ -1178,7 +1178,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_SECONDARY_KEY_READING), WID_SECONDARY_KEY_READING, CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE,     0},
                     { SW_PROP_NMID(UNO_NAME_IS_MAIN_ENTRY), WID_MAIN_ENTRY,     CPPU_E2T(CPPUTYPE_BOOLEAN)  ,       PROPERTY_NONE,     0},
                     COMMON_TEXT_CONTENT_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aIdxMarkMap_Impl;
             }
@@ -1190,7 +1190,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_ALTERNATIVE_TEXT), WID_ALT_TEXT,        CPPU_E2T(CPPUTYPE_OUSTRING)  ,      PROPERTY_NONE,     0},
                     { SW_PROP_NMID(UNO_NAME_LEVEL), WID_LEVEL        ,  CPPU_E2T(CPPUTYPE_INT16)  ,         PROPERTY_NONE,     0},
                     COMMON_TEXT_CONTENT_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aCntntMarkMap_Impl;
             }
@@ -1203,7 +1203,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_LEVEL        ),   WID_LEVEL        ,    CPPU_E2T(CPPUTYPE_INT16)  ,         PROPERTY_NONE,     0},
                     { SW_PROP_NMID(UNO_NAME_USER_INDEX_NAME), WID_USER_IDX_NAME,    CPPU_E2T(CPPUTYPE_OUSTRING)  ,      PROPERTY_NONE,     0},
                     COMMON_TEXT_CONTENT_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aUserMarkMap_Impl;
             }
@@ -1241,7 +1241,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_IS_RELATIVE_TABSTOPS), WID_IS_RELATIVE_TABSTOPS, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_LOCALE),            WID_IDX_LOCALE,         CPPU_E2T(CPPUTYPE_LOCALE), PROPERTY_NONE,     0},\
                     { SW_PROP_NMID(UNO_NAME_SORT_ALGORITHM),    WID_IDX_SORT_ALGORITHM,  CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE,     0},\
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTOXIndexMap_Impl;
             }
@@ -1281,7 +1281,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLELEVEL10),     WID_PARA_LEV10,     CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_IS_RELATIVE_TABSTOPS), WID_IS_RELATIVE_TABSTOPS, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_DOCUMENT_INDEX_MARKS), WID_INDEX_MARKS, CPPU_E2T(CPPUTYPE_DOCIDXMRK),           PropertyAttribute::READONLY ,0       },
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTOXContentMap_Impl;
             }
@@ -1323,7 +1323,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_DOCUMENT_INDEX_MARKS), WID_INDEX_MARKS, CPPU_E2T(CPPUTYPE_DOCIDXMRK),           PropertyAttribute::READONLY ,0       },
                     { SW_PROP_NMID(UNO_NAME_IS_RELATIVE_TABSTOPS), WID_IS_RELATIVE_TABSTOPS, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_USER_INDEX_NAME), WID_USER_IDX_NAME,    CPPU_E2T(CPPUTYPE_OUSTRING)  ,      PROPERTY_NONE,     0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTOXUserMap_Impl;
             }
@@ -1348,7 +1348,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLEHEADING),     WID_PARA_HEAD,  CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLELEVEL1),  WID_PARA_LEV1,  CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_IS_RELATIVE_TABSTOPS), WID_IS_RELATIVE_TABSTOPS, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTOXTablesMap_Impl;
             }
@@ -1376,7 +1376,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLEHEADING),     WID_PARA_HEAD,  CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLELEVEL1),  WID_PARA_LEV1,  CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_IS_RELATIVE_TABSTOPS), WID_IS_RELATIVE_TABSTOPS, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTOXObjectsMap_Impl;
             }
@@ -1402,7 +1402,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLEHEADING),     WID_PARA_HEAD,  CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_PARA_STYLELEVEL1),  WID_PARA_LEV1,  CPPU_E2T(CPPUTYPE_OUSTRING)  , 0,     0},
                     { SW_PROP_NMID(UNO_NAME_IS_RELATIVE_TABSTOPS), WID_IS_RELATIVE_TABSTOPS, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTOXIllustrationsMap_Impl;
             }
@@ -1422,7 +1422,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_SIZE_TYPE), RES_FRM_SIZE,           CPPU_E2T(CPPUTYPE_INT16)  ,         PROPERTY_NONE,   MID_FRMSIZE_SIZE_TYPE  },
                 //  { SW_PROP_NMID(UNO_NAME_HEIGHT), RES_FRM_SIZE,          CPPU_E2T(CPPUTYPE_INT32)  ,         PROPERTY_NONE, MID_FRMSIZE_HEIGHT|CONVERT_TWIPS         },
                 //  { SW_PROP_NMID(UNO_NAME_SHADOW_FORMAT), RES_SHADOW,             CPPU_E2T(CPPUTYPE_SHADOWFMT),   PROPERTY_NONE, CONVERT_TWIPS},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
 
                 aMapArr[nPropertyId] = (SfxItemPropertyMap*)aTableRowPropertyMap_Impl;
@@ -1494,7 +1494,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_CHAR_COMBINE_SUFFIX), RES_CHRATR_TWO_LINES,             CPPU_E2T(CPPUTYPE_OUSTRING),    PropertyAttribute::MAYBEVOID, MID_END_BRACKET},
                     { SW_PROP_NMID(UNO_NAME_CHAR_EMPHASIS), RES_CHRATR_EMPHASIS_MARK,           CPPU_E2T(CPPUTYPE_INT16),   PropertyAttribute::MAYBEVOID, MID_EMPHASIS},
                     { SW_PROP_NMID(UNO_NAME_CHAR_RELIEF), RES_CHRATR_RELIEF,      CPPU_E2T(CPPUTYPE_INT16),    PropertyAttribute::MAYBEVOID,      MID_RELIEF },
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTableCursorPropertyMap_Impl;
             }
@@ -1505,7 +1505,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     { SW_PROP_NMID(UNO_LINK_DISPLAY_NAME), FN_PARAM_LINK_DISPLAY_NAME,  CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0xff},
                     COMMON_TEXT_CONTENT_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aBookmarkPropertyMap_Impl;
             }
@@ -1515,7 +1515,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aParagraphExtensionsMap_Impl[] =
                 {
                     COMMON_TEXT_CONTENT_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
 
                 aMapArr[nPropertyId] = aParagraphExtensionsMap_Impl;
@@ -1538,7 +1538,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_LEVEL_FORMAT), WID_LEVEL_FORMAT                        ,  CPPU_E2T(CPPUTYPE_REFIDXREPL)  , PROPERTY_NONE,0},
                     { SW_PROP_NMID(UNO_NAME_LOCALE),            WID_IDX_LOCALE,         CPPU_E2T(CPPUTYPE_LOCALE), PROPERTY_NONE,     0},\
                     { SW_PROP_NMID(UNO_NAME_SORT_ALGORITHM),    WID_IDX_SORT_ALGORITHM,  CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE,     0},\
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aBibliographyMap_Impl;
             }
@@ -1577,7 +1577,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_TWO_DIGIT_YEAR), WID_DOC_TWO_DIGIT_YEAR,    CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE,   0},
                     { SW_PROP_NMID(UNO_NAME_AUTOMATIC_CONTROL_FOCUS),       WID_DOC_AUTOMATIC_CONTROL_FOCUS,    CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,   0},
                     { SW_PROP_NMID(UNO_NAME_APPLY_FORM_DESIGN_MODE),        WID_DOC_APPLY_FORM_DESIGN_MODE,     CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,   0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocMap_Impl;
             }
@@ -1588,7 +1588,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     { SW_PROP_NMID(UNO_LINK_DISPLAY_BITMAP), 0,     CPPU_E2T(CPPUTYPE_REFBITMAP), PropertyAttribute::READONLY, 0xff},
                     { SW_PROP_NMID(UNO_LINK_DISPLAY_NAME), 0,   CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0xff},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aLinkTargetMap_Impl;
             }
@@ -1599,7 +1599,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     { SW_PROP_NMID(UNO_NAME_FILE_PATH), WID_GROUP_PATH,     CPPU_E2T(CPPUTYPE_OUSTRING),    PROPERTY_NONE,   PropertyAttribute::READONLY},
                     { SW_PROP_NMID(UNO_NAME_TITLE), WID_GROUP_TITLE, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE,   0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aAutoTextGroupMap_Impl;
             }
@@ -1615,7 +1615,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_START), FN_UNO_IS_START, CPPU_E2T(CPPUTYPE_BOOLEAN),                             PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY, 0 },
                     //_REDLINE_PROPERTIES
                     {SW_PROP_NMID(UNO_NAME_TEXT_PORTION_TYPE), FN_UNO_TEXT_PORTION_TYPE, CPPU_E2T(CPPUTYPE_OUSTRING),                        PropertyAttribute::READONLY, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTextPortionExtensionMap_Impl;
             }
@@ -1627,7 +1627,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_REFERENCE_ID), 0, CPPU_E2T(CPPUTYPE_INT16),PropertyAttribute::READONLY|PropertyAttribute::MAYBEVOID, 0},
                     COMMON_TEXT_CONTENT_PROPERTIES
                     _REDLINE_NODE_PROPERTIES
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aFootnoteMap_Impl;
             }
@@ -1643,7 +1643,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_SEPARATOR_LINE_RELATIVE_HEIGHT), WID_TXTCOL_LINE_REL_HGT, CPPU_E2T(CPPUTYPE_INT32),PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_SEPARATOR_LINE_VERTIVAL_ALIGNMENT), WID_TXTCOL_LINE_ALIGN, CPPU_E2T(CPPUTYPE_VERTALIGN),PROPERTY_NONE,   0},
                     {SW_PROP_NMID(UNO_NAME_SEPARATOR_LINE_IS_ON), WID_TXTCOL_LINE_IS_ON, CPPU_E2T(CPPUTYPE_BOOLEAN),PROPERTY_NONE,  0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTextColumns_Impl;
             }
@@ -1656,7 +1656,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     _REDLINE_NODE_PROPERTIES
                     {SW_PROP_NMID(UNO_NAME_REDLINE_START), 0, CPPU_E2T(CPPUTYPE_REFINTERFACE),  PropertyAttribute::READONLY,    0},
                     {SW_PROP_NMID(UNO_NAME_REDLINE_END), 0, CPPU_E2T(CPPUTYPE_REFINTERFACE),    PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY,   0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aRedlineMap_Impl;
             }
@@ -1669,7 +1669,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     COMMON_CRSR_PARA_PROPERTIES_WITHOUT_FN
                     COMMON_HYPERLINK_PROPERTIES
                     { SW_PROP_NMID(UNO_NAME_CHAR_STYLE_NAME), RES_TXTATR_CHARFMT,     CPPU_E2T(CPPUTYPE_OUSTRING),  PropertyAttribute::MAYBEVOID,     0},    \
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTextDefaultMap_Impl;
                 for( SfxItemPropertyMap * pMap = aTextDefaultMap_Impl;
@@ -1692,7 +1692,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_START), FN_UNO_IS_START, CPPU_E2T(CPPUTYPE_BOOLEAN),                             PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY, 0 },
                     _REDLINE_PROPERTIES
                     {SW_PROP_NMID(UNO_NAME_TEXT_PORTION_TYPE), FN_UNO_TEXT_PORTION_TYPE, CPPU_E2T(CPPUTYPE_OUSTRING),                        PropertyAttribute::READONLY, 0},
-                    {0,0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aRedlinePortionMap_Impl;
             }
@@ -1707,7 +1707,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_DATE),    FIELD_PROP_BOOL2,   CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,0},
                     {SW_PROP_NMID(UNO_NAME_NUMBER_FORMAT), FIELD_PROP_FORMAT,   CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED_LANGUAGE), FIELD_PROP_BOOL4, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDateTimeFieldPropMap;
             }
@@ -1720,7 +1720,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_VISIBLE),     FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_NUMBER_FORMAT),  FIELD_PROP_FORMAT,  CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED_LANGUAGE), FIELD_PROP_BOOL4, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
 
                 aMapArr[nPropertyId] = aUserFieldPropMap;
@@ -1744,7 +1744,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_VALUE),          FIELD_PROP_DOUBLE,  CPPU_E2T(CPPUTYPE_DOUBLE),  PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_VARIABLE_NAME),  FIELD_PROP_PAR1,    CPPU_E2T(CPPUTYPE_OUSTRING),   PropertyAttribute::READONLY, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED_LANGUAGE), FIELD_PROP_BOOL4, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aSetExpFieldPropMap;
             }
@@ -1761,7 +1761,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_VALUE),          FIELD_PROP_DOUBLE,  CPPU_E2T(CPPUTYPE_DOUBLE), PropertyAttribute::READONLY, 0},
                     {SW_PROP_NMID(UNO_NAME_VARIABLE_SUBTYPE),   FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED_LANGUAGE), FIELD_PROP_BOOL4, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aGetExpFieldPropMap;
             }
@@ -1773,7 +1773,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR3, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_FILE_FORMAT), FIELD_PROP_FORMAT, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),   FIELD_PROP_BOOL2, CPPU_E2T(CPPUTYPE_BOOLEAN),       PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aFileNameFieldPropMap;
             }
@@ -1786,7 +1786,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_OFFSET),             FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16),  PROPERTY_NONE,   0},
                     {SW_PROP_NMID(UNO_NAME_SUB_TYPE),           FIELD_PROP_SUBTYPE, CPPU_E2T(CPPUTYPE_PAGENUMTYPE), PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_USERTEXT),           FIELD_PROP_PAR1,    CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aPageNumFieldPropMap;
             }
@@ -1799,7 +1799,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),   FIELD_PROP_BOOL2, CPPU_E2T(CPPUTYPE_BOOLEAN),       PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_FULL_NAME),FIELD_PROP_BOOL1, CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aAuthorFieldPropMap;
             }
@@ -1810,7 +1810,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     {SW_PROP_NMID(UNO_NAME_CHAPTER_FORMAT),FIELD_PROP_USHORT1,  CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_LEVEL        ),FIELD_PROP_BYTE1,         CPPU_E2T(CPPUTYPE_INT8),    PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aChapterFieldPropMap;
             }
@@ -1824,7 +1824,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_REFERENCE_FIELD_SOURCE),FIELD_PROP_USHORT2, CPPU_E2T(CPPUTYPE_INT16),    PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_SEQUENCE_NUMBER),    FIELD_PROP_SHORT1,  CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_SOURCE_NAME),        FIELD_PROP_PAR1,    CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aGetRefFieldPropMap;
             }
@@ -1837,7 +1837,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_FALSE_CONTENT),  FIELD_PROP_PAR3, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_CONDITION_TRUE) ,  FIELD_PROP_BOOL1, CPPU_E2T(CPPUTYPE_BOOLEAN),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_TRUE_CONTENT) ,  FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aConditionedTxtFieldPropMap;
             }
@@ -1849,7 +1849,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CONDITION),      FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_CONTENT) ,       FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_HIDDEN) ,     FIELD_PROP_BOOL1, CPPU_E2T(CPPUTYPE_BOOLEAN),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aHiddenTxtFieldPropMap;
             }
@@ -1861,7 +1861,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_AUTHOR), FIELD_PROP_PAR1,    CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_CONTENT),    FIELD_PROP_PAR2,    CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_DATE),   FIELD_PROP_DATE,    CPPU_E2T(CPPUTYPE_DATE),    PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aAnnotationFieldPropMap;
             }
@@ -1872,7 +1872,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     {SW_PROP_NMID(UNO_NAME_CONTENT),    FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_HINT),       FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aInputFieldPropMap;
             }
@@ -1884,7 +1884,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_HINT), FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_MACRO_NAME),FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_MACRO_LIBRARY),FIELD_PROP_PAR3, CPPU_E2T(CPPUTYPE_OUSTRING),PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aMacroFieldPropMap;
             }
@@ -1893,7 +1893,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
             {
                 static SfxItemPropertyMap aDDEFieldPropMap          [] =
                 {
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDDEFieldPropMap;
             }
@@ -1905,7 +1905,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_ITEMS), FIELD_PROP_STRINGS, CPPU_E2T(CPPUTYPE_OUSTRINGS), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_SELITEM), FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_NAME), FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDropDownMap;
             }
@@ -1916,7 +1916,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     {SW_PROP_NMID(UNO_NAME_CONDITION),FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_HIDDEN) ,  FIELD_PROP_BOOL1, CPPU_E2T(CPPUTYPE_BOOLEAN),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aHiddenParaFieldPropMap;
             }
@@ -1928,7 +1928,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),       FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_INFO_FORMAT),    FIELD_PROP_USHORT2, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_INFO_TYPE),  FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocInfoFieldPropMap;
             }
@@ -1938,7 +1938,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aTmplNameFieldPropMap [] =
                 {
                     {SW_PROP_NMID(UNO_NAME_FILE_FORMAT), FIELD_PROP_FORMAT, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTmplNameFieldPropMap;
             }
@@ -1951,7 +1951,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),           FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_USER_DATA_TYPE), FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId]= aUsrExtFieldPropMap;
             }
@@ -1962,7 +1962,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     {SW_PROP_NMID(UNO_NAME_OFFSET),     FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_ON),     FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aRefPgSetFieldPropMap;
             }
@@ -1973,7 +1973,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 {
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_NUMBERING_TYPE),     FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aRefPgGetFieldPropMap;
             }
@@ -1985,7 +1985,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_HINT),               FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_PLACEHOLDER),        FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_PLACEHOLDER_TYPE), FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16),     PROPERTY_NONE,  0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aJumpEdtFieldPropMap;
             }
@@ -1997,7 +1997,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CONTENT),        FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_SCRIPT_TYPE),    FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_URL_CONTENT),    FIELD_PROP_BOOL1, CPPU_E2T(CPPUTYPE_BOOLEAN),       PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aScriptFieldPropMap;
             }
@@ -2010,7 +2010,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_DATA_BASE_NAME ) , FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_DATA_COMMAND_TYPE), FIELD_PROP_SHORT1, CPPU_E2T(CPPUTYPE_INT32),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_DATA_TABLE_NAME) , FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDBNextSetFieldPropMap;
             }
@@ -2024,7 +2024,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_DATA_COMMAND_TYPE), FIELD_PROP_SHORT1, CPPU_E2T(CPPUTYPE_INT32),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_DATA_TABLE_NAME  ), FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_SET_NUMBER       ), FIELD_PROP_FORMAT, CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE,  0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDBNumSetFieldPropMap;
             }
@@ -2039,7 +2039,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_NUMBERING_TYPE),       FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_SET_NUMBER       ), FIELD_PROP_FORMAT, CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE,  0},
                     {SW_PROP_NMID(UNO_NAME_IS_VISIBLE),       FIELD_PROP_BOOL2,   CPPU_E2T(CPPUTYPE_BOOLEAN),    PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDBSetNumFieldPropMap;
             }
@@ -2053,7 +2053,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_DATA_BASE_FORMAT),FIELD_PROP_BOOL1, CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,0},
                     {SW_PROP_NMID(UNO_NAME_NUMBER_FORMAT),      FIELD_PROP_FORMAT, CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_VISIBLE),       FIELD_PROP_BOOL2,   CPPU_E2T(CPPUTYPE_BOOLEAN),    PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDBFieldPropMap;
             }
@@ -2066,7 +2066,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_DATA_COMMAND_TYPE), FIELD_PROP_SHORT1, CPPU_E2T(CPPUTYPE_INT32),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_DATA_TABLE_NAME) , FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_VISIBLE),       FIELD_PROP_BOOL2,   CPPU_E2T(CPPUTYPE_BOOLEAN),    PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDBNameFieldPropMap;
             }
@@ -2076,8 +2076,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aDocstatFieldPropMap      [] =
                 {
                     {SW_PROP_NMID(UNO_NAME_NUMBERING_TYPE),     FIELD_PROP_USHORT2, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
-                //  {UNO_NAME_STATISTIC_TYPE_ID,FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16),   PROPERTY_NONE,  0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocstatFieldPropMap;
             }
@@ -2089,7 +2088,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_AUTHOR), FIELD_PROP_PAR1,    CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR3, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),   FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocInfoAuthorPropMap;
             }
@@ -2104,7 +2103,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_NUMBER_FORMAT),FIELD_PROP_FORMAT,    CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),       FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED_LANGUAGE), FIELD_PROP_BOOL4, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocInfoDateTimePropMap;
             }
@@ -2118,7 +2117,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_NUMBER_FORMAT),FIELD_PROP_FORMAT,    CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),       FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED_LANGUAGE), FIELD_PROP_BOOL4, CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocInfoEditTimePropMap;
             }
@@ -2130,7 +2129,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CONTENT),    FIELD_PROP_PAR1,    CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR3, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),   FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocInfoStringContentPropMap;
             }
@@ -2142,7 +2141,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CURRENT_PRESENTATION), FIELD_PROP_PAR3, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_REVISION),   FIELD_PROP_USHORT1, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_IS_FIXED),   FIELD_PROP_BOOL1,   CPPU_E2T(CPPUTYPE_BOOLEAN)  , PROPERTY_NONE,0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDocInfoRevisionPropMap;
             }
@@ -2152,7 +2151,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aCombinedCharactersPropMap[] =
                 {
                     {SW_PROP_NMID(UNO_NAME_CONTENT), FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aCombinedCharactersPropMap;
             }
@@ -2165,7 +2164,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_CONTENT), FIELD_PROP_PAR2, CPPU_E2T(CPPUTYPE_OUSTRING),  PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_IS_SHOW_FORMULA), FIELD_PROP_BOOL1,  CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_NUMBER_FORMAT), FIELD_PROP_FORMAT,   CPPU_E2T(CPPUTYPE_INT32), PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTableFormulaPropMap;
             }
@@ -2174,7 +2173,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
             {
                 static SfxItemPropertyMap aEmptyPropMap         [] =
                 {
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aEmptyPropMap;
             }
@@ -2189,7 +2188,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_VALUE),          FIELD_PROP_DOUBLE,  CPPU_E2T(CPPUTYPE_DOUBLE), PROPERTY_NONE,   0},
                     {SW_PROP_NMID(UNO_NAME_CONTENT),            FIELD_PROP_PAR2,    CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_INSTANCE_NAME),      FIELD_PROP_PAR3,    CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aUserFieldTypePropMap;
             }
@@ -2205,7 +2204,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_IS_AUTOMATIC_UPDATE), FIELD_PROP_BOOL1,  CPPU_E2T(CPPUTYPE_BOOLEAN), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_NAME),               FIELD_PROP_PAR1,  CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_INSTANCE_NAME),      FIELD_PROP_PAR3,    CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDDEFieldTypePropMap;
             }
@@ -2220,7 +2219,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_NUMBERING_SEPARATOR), FIELD_PROP_PAR2,   CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_SUB_TYPE),           FIELD_PROP_SUBTYPE, CPPU_E2T(CPPUTYPE_INT16), PROPERTY_NONE,    0},
                     {SW_PROP_NMID(UNO_NAME_INSTANCE_NAME),      FIELD_PROP_PAR3,    CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aSetExpFieldTypePropMap;
             }
@@ -2235,7 +2234,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_DATA_COLUMN_NAME ), FIELD_PROP_PAR1, CPPU_E2T(CPPUTYPE_OUSTRING),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_DEPENDENT_TEXT_FIELDS),  FIELD_PROP_PROP_SEQ,    CPPU_E2T(CPPUTYPE_SEQDEPTXTFLD), PropertyAttribute::READONLY, 0},
                     {SW_PROP_NMID(UNO_NAME_INSTANCE_NAME),      FIELD_PROP_PAR3,    CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aDBFieldTypePropMap;
             }
@@ -2247,7 +2246,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_DEPENDENT_TEXT_FIELDS),  0,  CPPU_E2T(CPPUTYPE_SEQDEPTXTFLD), PropertyAttribute::READONLY, 0},
                     {SW_PROP_NMID(UNO_NAME_NAME),               0,  CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_INSTANCE_NAME),      0,  CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aStandardFieldMasterMap;
             }
@@ -2257,7 +2256,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aBibliographyFieldMap[] =
                 {
                     {SW_PROP_NMID(UNO_NAME_FIELDS  )    , FIELD_PROP_PROP_SEQ, CPPU_E2T(CPPUTYPE_PROPERTYVALUE),PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aBibliographyFieldMap;
             }
@@ -2274,7 +2273,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     {SW_PROP_NMID(UNO_NAME_SORT_ALGORITHM),    FIELD_PROP_PAR3,  CPPU_E2T(CPPUTYPE_OUSTRING), PROPERTY_NONE,     0},
                     {SW_PROP_NMID(UNO_NAME_SORT_KEYS          ) , FIELD_PROP_PROP_SEQ, CPPU_E2T(CPPUTYPE_PROPERTYVALUES),   PROPERTY_NONE, 0},
                     {SW_PROP_NMID(UNO_NAME_INSTANCE_NAME),      FIELD_PROP_PAR4,    CPPU_E2T(CPPUTYPE_OUSTRING), PropertyAttribute::READONLY, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aBibliographyFieldMasterMap;
             }
@@ -2284,7 +2283,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                 static SfxItemPropertyMap aTextMap[] =
                 {
                     _REDLINE_NODE_PROPERTIES
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aTextMap;
             }
@@ -2308,7 +2307,7 @@ const SfxItemPropertyMap* SwUnoPropertyMapProvider::GetPropertyMap(sal_uInt16 nP
                     { SW_PROP_NMID(UNO_NAME_SINGLE_PRINT_JOBS),     WID_SINGLE_PRINT_JOBS,      CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_FILE_NAME_FROM_COLUMN), WID_FILE_NAME_FROM_COLUMN,  CPPU_E2T(CPPUTYPE_BOOLEAN),     PROPERTY_NONE, 0},
                     { SW_PROP_NMID(UNO_NAME_FILE_NAME_PREFIX),      WID_FILE_NAME_PREFIX,       CPPU_E2T(CPPUTYPE_OUSTRING),    PROPERTY_NONE, 0},
-                    {0,0,0,0}
+                    {0,0,0,0,0,0}
                 };
                 aMapArr[nPropertyId] = aMailMergeMap;
             }

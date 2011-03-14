@@ -51,9 +51,9 @@ SV_IMPL_PTRARR(SwEvtLstnrArray, XEventListenerPtr);
 /*-- 22.04.99 11:24:59---------------------------------------------------
 
   -----------------------------------------------------------------------*/
-SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxParent) :
+SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxInParent) :
     pListenerArr(0),
-    pxParent(pxParent)
+    pxParent(pxInParent)
 {
 }
 /*-- 22.04.99 11:24:59---------------------------------------------------

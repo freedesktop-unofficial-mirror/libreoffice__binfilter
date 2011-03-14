@@ -445,10 +445,9 @@ sal_Bool    SwSearchProperties_Impl::HasAttributes() const
 
   -----------------------------------------------------------------------*/
 SwXTextSearch::SwXTextSearch() :
-    _pMap(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_SEARCH)),
     pSearchProperties( new SwSearchProperties_Impl),
     pReplaceProperties( new SwSearchProperties_Impl),
-    bIsValueSearch(sal_True),
+    _pMap(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_SEARCH)),
     bAll(sal_False),
     bWord(sal_False),
     bBack(sal_False),
@@ -459,7 +458,8 @@ SwXTextSearch::SwXTextSearch() :
     bLevRelax(sal_False),
     nLevExchange(2),
     nLevAdd(2),
-    nLevRemove(2)
+    nLevRemove(2),
+    bIsValueSearch(sal_True)
 {
 }
 /*-- 14.12.98 13:07:12    ---------------------------------------------------

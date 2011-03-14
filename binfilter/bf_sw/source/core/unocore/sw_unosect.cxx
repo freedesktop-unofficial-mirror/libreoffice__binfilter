@@ -107,10 +107,6 @@ struct SwTextSectionProperties_Impl
     sal_Bool    bUpdateType;
 
     SwTextSectionProperties_Impl() :
-        bDDE(0),
-        bHidden(0),
-        bProtect(0),
-        bCondHidden(0),
         pColItem(0),
         pBrushItem(0),
         pFtnItem(0),
@@ -119,6 +115,10 @@ struct SwTextSectionProperties_Impl
         pNoBalanceItem(0),
         pFrameDirItem(0),
         pLRSpaceItem(0), // #109700#
+        bDDE(0),
+        bHidden(0),
+        bCondHidden(0),
+        bProtect(0),
         bUpdateType(sal_True){}
 
     ~SwTextSectionProperties_Impl()
@@ -483,7 +483,7 @@ void SwXTextSection::setPropertyValues(
         SwSectItemSet_Impl aItemSet;
 
         sal_Bool bLinkModeChanged = sal_False;
-        sal_Bool bLinkMode;
+        sal_Bool bLinkMode = sal_False;
         for(sal_Int16 nProperty = 0; nProperty < rPropertyNames.getLength(); nProperty++)
         {
             const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
@@ -735,15 +735,15 @@ void SwXTextSection::setPropertyValues(
                         UnoActionRemoveContext aRemoveContext( pDoc );
                     }
 
-                    SwSection* pSect = pFmt->GetSection();
-                    if( bLinkModeChanged && pSect->GetType() == DDE_LINK_SECTION)
+                    SwSection* pLclSect = pFmt->GetSection();
+                    if( bLinkModeChanged && pLclSect->GetType() == DDE_LINK_SECTION)
                     {
                         // set update type; needs an established link
-                        if(!pSect->IsConnected())
+                        if(!pLclSect->IsConnected())
                         {
-                            pSect->CreateLink(CREATE_CONNECT);
+                            pLclSect->CreateLink(CREATE_CONNECT);
                         }
-                        pSect->SetUpdateType(bLinkMode ? ::binfilter::LINKUPDATE_ALWAYS
+                        pLclSect->SetUpdateType(bLinkMode ? ::binfilter::LINKUPDATE_ALWAYS
                                                 : ::binfilter::LINKUPDATE_ONCALL);
                     }
                     // section found and processed: break from loop

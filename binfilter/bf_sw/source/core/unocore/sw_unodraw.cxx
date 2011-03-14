@@ -181,8 +181,8 @@ public:
 /****************************************************************************
     class SwFmDrawPage
 ****************************************************************************/
-SwFmDrawPage::SwFmDrawPage( SdrPage* pPage ) :
-    SvxFmDrawPage( pPage ), pPageView(0)
+SwFmDrawPage::SwFmDrawPage( SdrPage* pInPage ) :
+    SvxFmDrawPage( pInPage ), pPageView(0)
 {
 }
 
@@ -250,7 +250,7 @@ uno::Reference< drawing::XShape >  SwFmDrawPage::_CreateShape( SdrObject *pObj )
         SwFlyDrawContact* pFlyContact = (SwFlyDrawContact*)pObj->GetUserCall();
         if(pFlyContact)
         {
-            FlyCntType eType;
+            FlyCntType eType(FLYCNTTYPE_ALL);
             SwFrmFmt* pFlyFmt = pFlyContact->GetFmt();
             SwDoc* pDoc = pFlyFmt->GetDoc();
             const SwNodeIndex* pIdx;
@@ -685,8 +685,8 @@ sal_Int64 SAL_CALL SwXShape::getSomething( const uno::Sequence< sal_Int8 >& rId 
 SwXShape::SwXShape(uno::Reference< uno::XInterface > & xShape) :
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_SHAPE)),
     _pMap(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_SHAPE)),
-    pImpl(new SwShapeDescriptor_Impl),
     pImplementationId(0),
+    pImpl(new SwShapeDescriptor_Impl),
     m_bDescriptor(sal_True)
 {
     if(xShape.is())  // default Ctor
@@ -857,15 +857,15 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                             pFrame->GetFrmFmt()->GetDoc() == pDoc)
                         {
                             UnoActionContext aCtx(pDoc);
-                            SfxItemSet aSet( pDoc->GetAttrPool(),
+                            SfxItemSet aLclSet( pDoc->GetAttrPool(),
                                         RES_FRMATR_BEGIN, RES_FRMATR_END - 1 );
-                            aSet.SetParent(&pFmt->GetAttrSet());
-                            SwFmtAnchor aAnchor = (const SwFmtAnchor&)aSet.Get(pMap->nWID);
+                            aLclSet.SetParent(&pFmt->GetAttrSet());
+                            SwFmtAnchor aAnchor = (const SwFmtAnchor&)aLclSet.Get(pMap->nWID);
                             SwPosition aPos(*pFrame->GetFrmFmt()->GetCntnt().GetCntntIdx());
                             aAnchor.SetAnchor(&aPos);
                             aAnchor.SetType(FLY_AT_FLY);
-                            aSet.Put(aAnchor);
-                            pFmt->SetAttr(aSet);
+                            aLclSet.Put(aAnchor);
+                            pFmt->SetAttr(aLclSet);
                             bDone = sal_True;
                         }
                     }
@@ -904,7 +904,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                         SdrMarkList aList;
                         SdrMark aMark(pObj);
                         aList.InsertEntry(aMark);
-                        sal_Int32 nAnchor;
+                        sal_Int32 nAnchor(0);
                         cppu::enum2int( nAnchor, aValue );
                         pDoc->ChgAnchor( aList, nAnchor,
                                                 sal_False, sal_True );
@@ -1581,9 +1581,9 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
             }
             pSwShape->m_bDescriptor = sal_False;
             //add the group member to the format of the group
-            SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pSvxShape->GetSdrObject() );
-            if(pFmt)
-                pFmt->Add(pSwShape);
+            SwFrmFmt* pLclFmt = ::binfilter::FindFrmFmt( pSvxShape->GetSdrObject() );
+            if(pLclFmt)
+                pLclFmt->Add(pSwShape);
         }
     }
     else

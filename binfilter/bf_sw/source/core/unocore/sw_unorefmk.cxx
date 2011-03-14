@@ -116,12 +116,12 @@ SwXReferenceMark::~SwXReferenceMark()
 {
 }
 
-void SwXReferenceMark::InsertRefMark(SwPaM& rPam, SwDoc* pDoc)
+void SwXReferenceMark::InsertRefMark(SwPaM& rPam, SwDoc* pInDoc)
 {
-    UnoActionContext aCont(pDoc);
+    UnoActionContext aCont(pInDoc);
     SwTxtAttr* pTxtAttr = 0;
     SwFmtRefMark aRefMark(sMarkName);
-    SfxItemSet  aSet(pDoc->GetAttrPool(), RES_TXTATR_REFMARK, RES_TXTATR_REFMARK, 0L);
+    SfxItemSet  aSet(pInDoc->GetAttrPool(), RES_TXTATR_REFMARK, RES_TXTATR_REFMARK, 0L);
     aSet.Put(aRefMark);
     sal_Bool bMark = *rPam.GetPoint() != *rPam.GetMark();
     SwXTextCursor::SetCrsrAttr(rPam, aSet, 0);
@@ -139,7 +139,7 @@ void SwXReferenceMark::InsertRefMark(SwPaM& rPam, SwDoc* pDoc)
     if(pTxtAttr)
         pMark = &pTxtAttr->GetRefMark();
 
-    pDoc->GetUnoCallBack()->Add(this);
+    pInDoc->GetUnoCallBack()->Add(this);
 }
 
 void SwXReferenceMark::attachToRange(const uno::Reference< text::XTextRange > & xTextRange)

@@ -509,10 +509,10 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
                             // CharStyle besorgen und an der chaos::Rule setzen
                             sal_uInt16 nChCount = pDoc->GetCharFmts()->Count();
                             SwCharFmt* pCharFmt = 0;
-                            for(sal_uInt16 i = 0; i< nChCount; i++)
+                            for(sal_uInt16 nCharFmt = 0; nCharFmt < nChCount; nCharFmt++)
                             {
-                                SwCharFmt& rChFmt = *((*(pDoc->GetCharFmts()))[i]);;
-                                if(rChFmt.GetName() == pNewCharStyles[i])
+                                SwCharFmt& rChFmt = *((*(pDoc->GetCharFmts()))[nCharFmt]);;
+                                if(rChFmt.GetName() == pNewCharStyles[nCharFmt])
                                 {
                                     pCharFmt = &rChFmt;
                                     break;
@@ -536,8 +536,8 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
                     //jetzt nochmal fuer Fonts
                     if(pBulletFontNames[i] != SwXNumberingRules::GetInvalidStyle() &&
                         ((pBulletFontNames[i].Len() && !aFmt.GetBulletFont()) ||
-                        pBulletFontNames[i].Len() &&
-                                aFmt.GetBulletFont()->GetName() != pBulletFontNames[i] ))
+                        (pBulletFontNames[i].Len() &&
+                                aFmt.GetBulletFont()->GetName() != pBulletFontNames[i]) ))
                     {
                         const SvxFontListItem* pFontListItem =
                                 (const SvxFontListItem* )pDoc->GetDocShell()

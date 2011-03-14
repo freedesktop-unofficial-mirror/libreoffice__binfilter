@@ -261,7 +261,7 @@ class SwXTextColumns : public cppu::WeakAggImplHelper4
     ::com::sun::star::lang::XServiceInfo
 >
 {
-    sal_uInt32                  nReference;
+    sal_Int32                   nReference;
     ::com::sun::star::uno::Sequence< ::com::sun::star::text::TextColumn>    aTextColumns;
     sal_Bool                    bIsAutomaticWidth;
     sal_Int32                   nAutoDistance;
