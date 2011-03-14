@@ -98,9 +98,7 @@ uno::Reference< XTextCursor >   SwXText::createCursor() throw ( ::com::sun::star
     }
     return xRet;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
 SwXText::SwXText(SwDoc* pDc, CursorType eType) :
     pDoc(pDc),
     bObjectValid(0 != pDc),

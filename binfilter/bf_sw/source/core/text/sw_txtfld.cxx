@@ -424,9 +424,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pRet;
 /*N*/ }
-/* --------------------------------------------------
 
- --------------------------------------------------*/
 void SwTxtFld::NotifyContentChange(SwFmtFld& rFmtFld)
 {
     //if not in undo section notify the change
