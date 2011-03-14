@@ -40,7 +40,7 @@ public:
     SFX_DECL_CHILDWINDOW(SwFldDlgWrapper);
 
 };
-/* -----------------04.02.2003 14:14-----------------
+/* --------------------------------------------------
  * field dialog only showing database page to support
  * mail merge
  * --------------------------------------------------*/
