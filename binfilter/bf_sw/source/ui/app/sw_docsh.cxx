@@ -192,7 +192,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         }
         // Fuer's Dokument-Einfuegen noch die FF-Version, wenn's der
         // eigene Filter ist.
-        OSL_ENSURE pRead != ReadSw3 || /*pRead != ReadXML ||*/ pFlt->GetVersion(),
+        DBG_ASSERT(pRead != ReadSw3 || /*pRead != ReadXML ||*/ pFlt->GetVersion(),
                 "Am Filter ist keine FF-Version gesetzt" );
         if( (pRead == ReadSw3 /*|| pRead == ReadXML*/) && pFlt->GetVersion() )
             aStor->SetVersion( (long)pFlt->GetVersion() );
