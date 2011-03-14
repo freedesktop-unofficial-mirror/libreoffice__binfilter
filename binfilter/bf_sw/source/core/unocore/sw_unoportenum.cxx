@@ -112,7 +112,7 @@ Sequence< OUString > SwXTextPortionEnumeration::getSupportedServiceNames(void) t
     pArray[0] = C2U("com.sun.star.text.TextPortionEnumeration");
     return aRet;
 }
-/*-- 27.01.99 10:44:43---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXTextPortionEnumeration::SwXTextPortionEnumeration(
@@ -139,7 +139,7 @@ SwXTextPortionEnumeration::SwXTextPortionEnumeration(
                             aFrameArr, TRUE );
     CreatePortions();
 }
-/*-- 27.01.99 10:44:44---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
@@ -154,7 +154,7 @@ SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     delete pUnoCrsr;
 }
-/*-- 27.01.99 10:44:44---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextPortionEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
@@ -162,7 +162,7 @@ sal_Bool SwXTextPortionEnumeration::hasMoreElements(void) throw( uno::RuntimeExc
     SolarMutexGuard aGuard;
     return aPortionArr.Count() > 0;
 }
-/*-- 27.01.99 10:44:45---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 uno::Any SwXTextPortionEnumeration::nextElement(void)
@@ -909,7 +909,7 @@ void SwXTextPortionEnumeration::CreatePortions()
         }
     }
 }
-/*-- 27.01.99 10:44:45---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void    SwXTextPortionEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)

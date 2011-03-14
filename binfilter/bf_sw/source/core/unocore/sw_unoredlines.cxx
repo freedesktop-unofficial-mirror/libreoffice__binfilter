@@ -62,20 +62,20 @@ using namespace ::com::sun::star::beans;
 
 using rtl::OUString;
 
-/*-- 11.01.01 15:28:54---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXRedlines::SwXRedlines(SwDoc* pInDoc) :
     SwUnoCollection(pInDoc)
 {
 }
-/*-- 11.01.01 15:28:55---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXRedlines::~SwXRedlines()
 {
 }
-/*-- 11.01.01 15:28:55---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Int32 SwXRedlines::getCount(  ) throw(RuntimeException)
@@ -86,7 +86,7 @@ sal_Int32 SwXRedlines::getCount(  ) throw(RuntimeException)
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
     return rRedTbl.Count();
 }
-/*-- 11.01.01 15:28:55---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXRedlines::getByIndex(sal_Int32 nIndex)
@@ -106,7 +106,7 @@ Any SwXRedlines::getByIndex(sal_Int32 nIndex)
         throw IndexOutOfBoundsException();
     return aRet;
 }
-/*-- 11.01.01 15:28:55---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXRedlines::createEnumeration(void)
@@ -117,14 +117,14 @@ Reference< XEnumeration >  SwXRedlines::createEnumeration(void)
         throw uno::RuntimeException();
     return Reference< XEnumeration >(new SwXRedlineEnumeration(*GetDoc()));
 }
-/*-- 11.01.01 15:28:55---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Type SwXRedlines::getElementType(  ) throw(RuntimeException)
 {
     return ::getCppuType((Reference<XPropertySet>*)0);
 }
-/*-- 11.01.01 15:28:56---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXRedlines::hasElements(  ) throw(RuntimeException)
@@ -135,14 +135,14 @@ sal_Bool SwXRedlines::hasElements(  ) throw(RuntimeException)
     const SwRedlineTbl& rRedTbl = GetDoc()->GetRedlineTbl();
     return rRedTbl.Count() > 0;
 }
-/*-- 11.01.01 15:28:56---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 OUString SwXRedlines::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXRedlines");
 }
-/*-- 11.01.01 15:28:56---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 BOOL SwXRedlines::supportsService(const ::rtl::OUString& /*ServiceName*/)
@@ -151,7 +151,7 @@ BOOL SwXRedlines::supportsService(const ::rtl::OUString& /*ServiceName*/)
     OSL_FAIL("not implemented");
     return FALSE;
 }
-/*-- 11.01.01 15:28:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< OUString > SwXRedlines::getSupportedServiceNames(void)
@@ -160,7 +160,7 @@ Sequence< OUString > SwXRedlines::getSupportedServiceNames(void)
     OSL_FAIL("not implemented");
     return Sequence< OUString >();
 }
-/*-- 11.01.01 15:28:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 XPropertySet*   SwXRedlines::GetObject( SwRedline& rRedline, SwDoc& rDoc )
@@ -178,7 +178,7 @@ XPropertySet*   SwXRedlines::GetObject( SwRedline& rRedline, SwDoc& rDoc )
         pxRedline = new SwXRedline(rRedline, rDoc);
     return pxRedline;
 }
-/*-- 12.01.01 15:06:10---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXRedlineEnumeration::SwXRedlineEnumeration(SwDoc& rDoc) :
@@ -187,13 +187,13 @@ SwXRedlineEnumeration::SwXRedlineEnumeration(SwDoc& rDoc) :
 {
     pDoc->GetPageDescFromPool(RES_POOLPAGE_STANDARD)->Add(this);
 }
-/*-- 12.01.01 15:06:10---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXRedlineEnumeration::~SwXRedlineEnumeration()
 {
 }
-/*-- 12.01.01 15:06:10---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 BOOL SwXRedlineEnumeration::hasMoreElements(void) throw( RuntimeException )
@@ -202,7 +202,7 @@ BOOL SwXRedlineEnumeration::hasMoreElements(void) throw( RuntimeException )
         throw RuntimeException();
     return pDoc->GetRedlineTbl().Count() > nCurrentIndex;
 }
-/*-- 12.01.01 15:06:10---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXRedlineEnumeration::nextElement(void)
@@ -218,28 +218,28 @@ Any SwXRedlineEnumeration::nextElement(void)
     aRet <<= xRet;
     return aRet;
 }
-/*-- 12.01.01 15:06:10---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 rtl::OUString SwXRedlineEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXRedlineEnumeration");
 }
-/*-- 12.01.01 15:06:10---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 BOOL SwXRedlineEnumeration::supportsService(const ::rtl::OUString& /*ServiceName*/) throw( RuntimeException )
 {
     return FALSE;
 }
-/*-- 12.01.01 15:06:11---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< OUString > SwXRedlineEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     return Sequence< OUString >();
 }
-/*-- 12.01.01 15:06:11---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXRedlineEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)

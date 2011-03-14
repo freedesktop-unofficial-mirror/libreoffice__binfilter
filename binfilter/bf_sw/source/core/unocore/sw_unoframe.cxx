@@ -751,7 +751,7 @@ Sequence< OUString > SwXFrame::getSupportedServiceNames(void) throw( RuntimeExce
     pArray[2] = C2U("com.sun.star.document.LinkTarget");
     return aRet;
 }
-/*-- 14.01.99 11:31:52---------------------------------------------------
+/*-----------------------------------------------------------------------
     Dieser CTor legt den Frame als Descriptor an
   -----------------------------------------------------------------------*/
 SwXFrame::SwXFrame(FlyCntType eSet, const SfxItemPropertyMap* pMap, SwDoc *pDoc ) :

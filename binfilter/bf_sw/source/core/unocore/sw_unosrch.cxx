@@ -492,7 +492,7 @@ sal_Int64 SAL_CALL SwXTextSearch::getSomething( const Sequence< sal_Int8 >& rId 
     }
     return 0;
 }
-/*-- 14.12.98 13:07:12---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 OUString SwXTextSearch::getSearchString(void) throw( RuntimeException )
@@ -500,7 +500,7 @@ OUString SwXTextSearch::getSearchString(void) throw( RuntimeException )
     SolarMutexGuard aGuard;
     return sSearchText;
 }
-/*-- 14.12.98 13:07:12---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setSearchString(const OUString& rString)
@@ -509,7 +509,7 @@ void SwXTextSearch::setSearchString(const OUString& rString)
     SolarMutexGuard aGuard;
     sSearchText = String(rString);
 }
-/*-- 14.12.98 13:07:12---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 OUString SwXTextSearch::getReplaceString(void) throw( RuntimeException )
@@ -517,7 +517,7 @@ OUString SwXTextSearch::getReplaceString(void) throw( RuntimeException )
     SolarMutexGuard aGuard;
     return sReplaceText;
 }
-/*-- 14.12.98 13:07:12---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setReplaceString(const OUString& rReplaceString) throw( RuntimeException )
@@ -525,7 +525,7 @@ void SwXTextSearch::setReplaceString(const OUString& rReplaceString) throw( Runt
     SolarMutexGuard aGuard;
     sReplaceText = String(rReplaceString);
 }
-/*-- 14.12.98 13:07:13---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo >  SwXTextSearch::getPropertySetInfo(void) throw( RuntimeException )
@@ -533,7 +533,7 @@ Reference< XPropertySetInfo >  SwXTextSearch::getPropertySetInfo(void) throw( Ru
     static Reference< XPropertySetInfo >  aRef = new SfxItemPropertySetInfo(_pMap);
     return aRef;
 }
-/*-- 14.12.98 13:07:13---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setPropertyValue(const OUString& rPropertyName, const Any& aValue)
@@ -570,7 +570,7 @@ void SwXTextSearch::setPropertyValue(const OUString& rPropertyName, const Any& a
     else
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
 }
-/*-- 14.12.98 13:07:13---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXTextSearch::getPropertyValue(const OUString& rPropertyName) throw( UnknownPropertyException, lang::WrappedTargetException, RuntimeException )
@@ -610,7 +610,7 @@ SET_UINT16:
         throw UnknownPropertyException(OUString ( RTL_CONSTASCII_USTRINGPARAM ( "Unknown property: " ) ) + rPropertyName, static_cast < cppu::OWeakObject * > ( this ) );
     return aRet;
 }
-/*-- 14.12.98 13:07:13---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::addPropertyChangeListener(
@@ -619,7 +619,7 @@ void SwXTextSearch::addPropertyChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 13:07:13---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::removePropertyChangeListener(
@@ -628,7 +628,7 @@ void SwXTextSearch::removePropertyChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 13:07:14---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::addVetoableChangeListener(
@@ -637,7 +637,7 @@ void SwXTextSearch::addVetoableChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 13:07:14---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::removeVetoableChangeListener(
@@ -646,7 +646,7 @@ void SwXTextSearch::removeVetoableChangeListener(
 {
     DBG_WARNING("not implemented");
 }
-/*-- 14.12.98 13:07:14---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXTextSearch::getValueSearch(void) throw( RuntimeException )
@@ -654,7 +654,7 @@ sal_Bool SwXTextSearch::getValueSearch(void) throw( RuntimeException )
     SolarMutexGuard aGuard;
     return bIsValueSearch;
 }
-/*-- 14.12.98 13:07:15---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setValueSearch(sal_Bool ValueSearch_) throw( RuntimeException )
@@ -662,14 +662,14 @@ void SwXTextSearch::setValueSearch(sal_Bool ValueSearch_) throw( RuntimeExceptio
     SolarMutexGuard aGuard;
     bIsValueSearch = ValueSearch_;
 }
-/*-- 14.12.98 13:07:15---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXTextSearch::getSearchAttributes(void) throw( RuntimeException )
 {
     return  pSearchProperties->GetProperties();
 }
-/*-- 14.12.98 13:07:16---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setSearchAttributes(const Sequence< PropertyValue >& rSearchAttribs)
@@ -677,7 +677,7 @@ void SwXTextSearch::setSearchAttributes(const Sequence< PropertyValue >& rSearch
 {
     pSearchProperties->SetProperties(rSearchAttribs);
 }
-/*-- 14.12.98 13:07:16---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXTextSearch::getReplaceAttributes(void)
@@ -685,7 +685,7 @@ Sequence< PropertyValue > SwXTextSearch::getReplaceAttributes(void)
 {
     return pReplaceProperties->GetProperties();
 }
-/*-- 14.12.98 13:07:17---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXTextSearch::setReplaceAttributes(const Sequence< PropertyValue >& rReplaceAttribs)

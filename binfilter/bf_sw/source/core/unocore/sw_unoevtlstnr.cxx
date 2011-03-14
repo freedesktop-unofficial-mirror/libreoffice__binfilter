@@ -46,7 +46,7 @@ using namespace ::com::sun::star::uno;
 
 SV_IMPL_PTRARR(SwEvtLstnrArray, XEventListenerPtr);
 
-/*-- 22.04.99 11:24:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxInParent) :
@@ -54,7 +54,7 @@ SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxInParent)
     pxParent(pxInParent)
 {
 }
-/*-- 22.04.99 11:24:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwEventListenerContainer::~SwEventListenerContainer()
@@ -65,7 +65,7 @@ SwEventListenerContainer::~SwEventListenerContainer()
     }
     delete pListenerArr;
 }
-/*-- 22.04.99 11:24:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void    SwEventListenerContainer::AddListener(const uno::Reference< lang::XEventListener > & rxListener)
@@ -76,7 +76,7 @@ void    SwEventListenerContainer::AddListener(const uno::Reference< lang::XEvent
     *pInsert = rxListener;
     pListenerArr->Insert(pInsert, pListenerArr->Count());
 }
-/*-- 22.04.99 11:25:00---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool    SwEventListenerContainer::RemoveListener(const uno::Reference< lang::XEventListener > & rxListener)
@@ -100,7 +100,7 @@ sal_Bool    SwEventListenerContainer::RemoveListener(const uno::Reference< lang:
     }
     return sal_False;
 }
-/*-- 22.04.99 11:25:00---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void    SwEventListenerContainer::Disposing()

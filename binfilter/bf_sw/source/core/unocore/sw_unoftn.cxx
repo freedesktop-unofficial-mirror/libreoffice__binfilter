@@ -118,7 +118,7 @@ Sequence< OUString > SwXFootnote::getSupportedServiceNames(void) throw( RuntimeE
         pArray[3] = C2U("com.sun.star.text.Endnote");
     return aRet;
 }
-/*-- 10.12.98 15:31:44---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 TYPEINIT1(SwXFootnote, SwClient);
@@ -132,7 +132,7 @@ SwXFootnote::SwXFootnote(sal_Bool bEndnote) :
 {
 
 }
-/*-- 10.12.98 15:31:45---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXFootnote::SwXFootnote(SwDoc* pInDoc, const SwFmtFtn& rFmt) :
@@ -144,7 +144,7 @@ SwXFootnote::SwXFootnote(SwDoc* pInDoc, const SwFmtFtn& rFmt) :
 {
     GetDoc()->GetUnoCallBack()->Add(this);
 }
-/*-- 10.12.98 15:31:45---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXFootnote::~SwXFootnote()
@@ -196,7 +196,7 @@ uno::Any SAL_CALL SwXFootnote::queryInterface( const uno::Type& aType ) throw(un
     return aRet;
 }
 
-/*-- 10.12.98 15:31:47---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 OUString SwXFootnote::getLabel(void) throw( uno::RuntimeException )
@@ -212,7 +212,7 @@ OUString SwXFootnote::getLabel(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
     return sRet;
 }
-/*-- 10.12.98 15:31:48---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::setLabel(const OUString& aLabel) throw( uno::RuntimeException )
@@ -288,7 +288,7 @@ void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xText
     else
         throw lang::IllegalArgumentException();
 }
-/*-- 10.12.98 15:31:48---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::attach(const uno::Reference< text::XTextRange > & xTextRange)
@@ -297,7 +297,7 @@ void SwXFootnote::attach(const uno::Reference< text::XTextRange > & xTextRange)
     SolarMutexGuard aGuard;
     attachToRange( xTextRange );
 }
-/*-- 10.12.98 15:31:48---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextRange >  SwXFootnote::getAnchor(void) throw( uno::RuntimeException )
@@ -315,7 +315,7 @@ uno::Reference< text::XTextRange >  SwXFootnote::getAnchor(void) throw( uno::Run
         throw uno::RuntimeException();
     return aRef;
 }
-/*-- 10.12.98 15:31:49---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::dispose(void) throw( uno::RuntimeException )
@@ -335,7 +335,7 @@ void SwXFootnote::dispose(void) throw( uno::RuntimeException )
         throw uno::RuntimeException();
 
 }
-/*-- 10.12.98 15:31:49---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::addEventListener(const uno::Reference< lang::XEventListener > & aListener) throw( uno::RuntimeException )
@@ -344,7 +344,7 @@ void SwXFootnote::addEventListener(const uno::Reference< lang::XEventListener > 
         throw uno::RuntimeException();
     aLstnrCntnr.AddListener(aListener);
 }
-/*-- 10.12.98 15:31:50---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::removeEventListener(const uno::Reference< lang::XEventListener > & aListener) throw( uno::RuntimeException )
@@ -370,7 +370,7 @@ uno::Reference< text::XTextCursor >   SwXFootnote::createCursor() throw ( ::com:
 {
     return createTextCursor();
 }
-/*-- 10.12.98 15:31:50---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursor(void) throw( uno::RuntimeException )
@@ -391,7 +391,7 @@ uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursor(void) throw( 
         throw uno::RuntimeException();
     return aRef;
 }
-/*-- 10.12.98 15:31:51---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursorByRange(
@@ -418,7 +418,7 @@ uno::Reference< text::XTextCursor >  SwXFootnote::createTextCursorByRange(
         throw uno::RuntimeException();
     return aRef;
 }
-/*-- 13.06.00 14:28:23---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Reference< XEnumeration >  SwXFootnote::createEnumeration() throw( RuntimeException )
@@ -437,14 +437,14 @@ Reference< XEnumeration >  SwXFootnote::createEnumeration() throw( RuntimeExcept
     }
     return aRef;
 }
-/*-- 13.06.00 14:28:24---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Type SwXFootnote::getElementType(  ) throw(RuntimeException)
 {
     return ::getCppuType((Reference<XTextRange>*)0);
 }
-/*-- 13.06.00 14:28:24---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXFootnote::hasElements(  ) throw(RuntimeException)
@@ -486,7 +486,7 @@ void SwXFootnote::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         break;
     }
 }
-/*-- 11.09.00 13:12:03---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo > SwXFootnote::getPropertySetInfo(  )
@@ -496,7 +496,7 @@ Reference< XPropertySetInfo > SwXFootnote::getPropertySetInfo(  )
         new SfxItemPropertySetInfo(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_FOOTNOTE));
     return xRef;
 }
-/*-- 11.09.00 13:12:04---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::setPropertyValue( const ::rtl::OUString&,
@@ -507,7 +507,7 @@ void SwXFootnote::setPropertyValue( const ::rtl::OUString&,
     //no values to be set
     throw IllegalArgumentException();
 }
-/*-- 11.09.00 13:12:04---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
@@ -543,7 +543,7 @@ Any SwXFootnote::getPropertyValue( const OUString& rPropertyName )
     }
     return aRet;
 }
-/*-- 11.09.00 13:12:04---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::addPropertyChangeListener( const OUString& /*aPropertyName*/,
@@ -551,7 +551,7 @@ void SwXFootnote::addPropertyChangeListener( const OUString& /*aPropertyName*/,
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.09.00 13:12:04---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::removePropertyChangeListener( const OUString& /*aPropertyName*/,
@@ -559,7 +559,7 @@ void SwXFootnote::removePropertyChangeListener( const OUString& /*aPropertyName*
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.09.00 13:12:04---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::addVetoableChangeListener( const OUString& /*PropertyName*/,
@@ -567,7 +567,7 @@ void SwXFootnote::addVetoableChangeListener( const OUString& /*PropertyName*/,
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
-/*-- 11.09.00 13:12:05---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXFootnote::removeVetoableChangeListener( const OUString& /*PropertyName*/,

@@ -175,7 +175,7 @@ SwAuthorityFieldType::~SwAuthorityFieldType()
     delete m_pSequArr;
     delete m_pDataArr;
 }
-/*-- 14.09.99 16:22:09---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwFieldType*    SwAuthorityFieldType::Copy()  const
@@ -286,7 +286,7 @@ const SwAuthEntry*  SwAuthorityFieldType::GetEntryByHandle(long nHandle) const
     OSL_ENSURE( pRet, "invalid Handle" );
     return pRet;
 }
-/*-- 11.10.99 08:49:22---------------------------------------------------
+/*-----------------------------------------------------------------------
     Description:    appends a new entry (if new) and returns the array position
 
   -----------------------------------------------------------------------*/
@@ -310,7 +310,7 @@ USHORT  SwAuthorityFieldType::AppendField( const SwAuthEntry& rInsert )
     return nRet;
 }
 
-/*-- 11.10.99 08:49:24---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 long    SwAuthorityFieldType::GetHandle(USHORT nPos)
@@ -343,14 +343,14 @@ USHORT  SwAuthorityFieldType::GetPosition(long nHandle)
     return j;
 }
 
-/*-- 11.10.99 08:51:03---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 USHORT  SwAuthorityFieldType::GetEntryCount() const
 {
     return m_pDataArr->Count();
 }
-/*-- 11.10.99 08:51:03---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 const SwAuthEntry*  SwAuthorityFieldType::GetEntryByPosition(USHORT nPos) const
@@ -649,7 +649,7 @@ SwAuthorityField::~SwAuthorityField()
 {
     ((SwAuthorityFieldType* )GetTyp())->RemoveField(nHandle);
 }
-/*-- 14.09.99 16:20:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 String  SwAuthorityField::Expand() const
@@ -674,7 +674,7 @@ String  SwAuthorityField::Expand() const
          sRet += pAuthType->GetSuffix();
      return sRet;
 }
-/*-- 14.09.99 16:21:00---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwField* SwAuthorityField::Copy() const

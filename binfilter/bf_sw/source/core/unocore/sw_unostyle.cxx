@@ -216,7 +216,7 @@ Sequence< OUString > SwXStyleFamilies::getSupportedServiceNames(void) throw( Run
     pArray[0] = C2U("com.sun.star.style.StyleFamilies");
     return aRet;
 }
-/*-- 16.12.98 15:13:26---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyleFamilies::SwXStyleFamilies(SwDocShell& rDocShell) :
@@ -230,7 +230,7 @@ SwXStyleFamilies::SwXStyleFamilies(SwDocShell& rDocShell) :
 {
 
 }
-/*-- 16.12.98 15:13:26---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyleFamilies::~SwXStyleFamilies()
@@ -241,7 +241,7 @@ SwXStyleFamilies::~SwXStyleFamilies()
     delete pxPageStyles;
     delete pxNumberingStyles;
 }
-/*-- 21.12.98 12:05:22---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SAL_CALL SwXStyleFamilies::getByName(const OUString& Name)
@@ -269,7 +269,7 @@ Any SAL_CALL SwXStyleFamilies::getByName(const OUString& Name)
         throw container::NoSuchElementException();
     return aRet;
 }
-/*-- 21.12.98 12:05:22---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamilies::getElementNames(void) throw( RuntimeException )
@@ -283,7 +283,7 @@ Sequence< OUString > SwXStyleFamilies::getElementNames(void) throw( RuntimeExcep
     pNames[4] = C2U("NumberingStyles");
     return aNames;
 }
-/*-- 21.12.98 12:05:22---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamilies::hasByName(const OUString& Name) throw( RuntimeException )
@@ -297,14 +297,14 @@ sal_Bool SwXStyleFamilies::hasByName(const OUString& Name) throw( RuntimeExcepti
     else
         return sal_False;
 }
-/*-- 16.12.98 15:13:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Int32 SwXStyleFamilies::getCount(void) throw( RuntimeException )
 {
     return STYLE_FAMILY_COUNT;
 }
-/*-- 16.12.98 15:13:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXStyleFamilies::getByIndex(sal_Int32 nIndex)
@@ -377,7 +377,7 @@ Any SwXStyleFamilies::getByIndex(sal_Int32 nIndex)
         throw RuntimeException();
     return aRet;
 }
-/*-- 16.12.98 15:13:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Type SwXStyleFamilies::getElementType(void)
@@ -386,14 +386,14 @@ Type SwXStyleFamilies::getElementType(void)
     return ::getCppuType((const Reference<container::XNameContainer>*)0);
 
 }
-/*-- 16.12.98 15:13:28---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamilies::hasElements(void) throw( RuntimeException )
 {
     return sal_True;
 }
-/*-- 16.12.98 15:13:28---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
@@ -443,7 +443,7 @@ void SwXStyleFamilies::loadStylesFromURL(const OUString& rURL,
     else
         throw RuntimeException();
 }
-/*-- 16.12.98 15:13:28---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< PropertyValue > SwXStyleFamilies::getStyleLoaderOptions(void)
@@ -494,7 +494,7 @@ Sequence< OUString > SwXStyleFamily::getSupportedServiceNames(void) throw( Runti
     pArray[0] = C2U("com.sun.star.style.StyleFamily");
     return aRet;
 }
-/*-- 16.12.98 16:03:56---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyleFamily::SwXStyleFamily(SwDocShell* pDocSh, sal_uInt16 nFamily) :
@@ -522,7 +522,7 @@ SwXStyleFamily::SwXStyleFamily(SwDocShell* pDocSh, sal_uInt16 nFamily) :
     }*/
     StartListening(*pBasePool);
 }
-/*-- 16.12.98 16:03:56---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyleFamily::~SwXStyleFamily()
@@ -666,7 +666,7 @@ sal_Int32 lcl_GetCountOrName ( const SwDoc &rDoc, SfxStyleFamily eFamily, String
     }
     return nCount;
 }
-/*-- 16.12.98 16:03:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Int32 SwXStyleFamily::getCount(void) throw( RuntimeException )
@@ -674,7 +674,7 @@ sal_Int32 SwXStyleFamily::getCount(void) throw( RuntimeException )
     SolarMutexGuard aGuard;
     return lcl_GetCountOrName ( *pDocShell->GetDoc(), eFamily, NULL );
 }
-/*-- 16.12.98 16:03:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
@@ -812,7 +812,7 @@ Any SwXStyleFamily::getByIndex(sal_Int32 nTempIndex)
 
     return aRet;
 }
-/*-- 16.12.98 16:03:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXStyleFamily::getByName(const OUString& rName)
@@ -847,7 +847,7 @@ Any SwXStyleFamily::getByName(const OUString& rName)
     return aRet;
 
 }
-/*-- 16.12.98 16:03:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< OUString > SwXStyleFamily::getElementNames(void) throw( RuntimeException )
@@ -872,7 +872,7 @@ Sequence< OUString > SwXStyleFamily::getElementNames(void) throw( RuntimeExcepti
         throw RuntimeException();
     return aRet;
 }
-/*-- 16.12.98 16:03:57---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamily::hasByName(const OUString& rName) throw( RuntimeException )
@@ -892,7 +892,7 @@ sal_Bool SwXStyleFamily::hasByName(const OUString& rName) throw( RuntimeExceptio
     return bRet;
 
 }
-/*-- 16.12.98 16:03:58---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Type SwXStyleFamily::getElementType(void) throw( RuntimeException )
@@ -900,7 +900,7 @@ Type SwXStyleFamily::getElementType(void) throw( RuntimeException )
     return ::getCppuType((const Reference<style::XStyle>*)0);
 
 }
-/*-- 16.12.98 16:03:58---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyleFamily::hasElements(void) throw( RuntimeException )
@@ -909,7 +909,7 @@ sal_Bool SwXStyleFamily::hasElements(void) throw( RuntimeException )
         throw RuntimeException();
     return sal_True;
 }
-/*-- 16.12.98 16:03:58---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
@@ -975,7 +975,7 @@ void SwXStyleFamily::insertByName(const OUString& rName, const Any& rElement)
     else
         throw RuntimeException();
 }
-/*-- 16.12.98 16:03:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyleFamily::replaceByName(const OUString& rName, const Any& rElement)
@@ -1010,7 +1010,7 @@ void SwXStyleFamily::replaceByName(const OUString& rName, const Any& rElement)
     else
         throw RuntimeException();
 }
-/*-- 16.12.98 16:03:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyleFamily::removeByName(const OUString& rName) throw( container::NoSuchElementException, lang::WrappedTargetException, RuntimeException )
@@ -1031,7 +1031,7 @@ void SwXStyleFamily::removeByName(const OUString& rName) throw( container::NoSuc
     else
         throw RuntimeException();
 }
-/*-- 16.12.98 16:03:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
@@ -1044,7 +1044,7 @@ void SwXStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         EndListening(rBC);
     }
 }
-/*-- 16.12.98 16:03:59---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyle*   SwXStyleFamily::_FindStyle(const String& rStyleName)const
@@ -1271,7 +1271,7 @@ Sequence< OUString > SwXStyle::getSupportedServiceNames(void) throw( RuntimeExce
     }
     return aRet;
 }
-/*-- 17.12.98 08:26:49---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyle::SwXStyle( SwDoc *pDoc, SfxStyleFamily eFam, BOOL bConditional) :
@@ -1363,7 +1363,7 @@ SwXStyle::SwXStyle(SfxStyleSheetBasePool& rPool, SfxStyleFamily eFam,
         }
     }
 }
-/*-- 17.12.98 08:26:50---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXStyle::~SwXStyle()
@@ -1372,7 +1372,7 @@ SwXStyle::~SwXStyle()
         EndListening(*pBasePool);
     delete pPropImpl;
 }
-/*-- 17.12.98 08:26:51---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
@@ -1402,7 +1402,7 @@ OUString SwXStyle::getName(void) throw( RuntimeException )
         aString = sStyleName;
     return OUString (aString);
 }
-/*-- 17.12.98 08:26:51---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::setName(const OUString& rName) throw( RuntimeException )
@@ -1427,7 +1427,7 @@ void SwXStyle::setName(const OUString& rName) throw( RuntimeException )
     else
         sStyleName = String(rName);
 }
-/*-- 17.12.98 08:26:51---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyle::isUserDefined(void) throw( RuntimeException )
@@ -1446,7 +1446,7 @@ sal_Bool SwXStyle::isUserDefined(void) throw( RuntimeException )
         throw RuntimeException();
     return bRet;
 }
-/*-- 17.12.98 08:26:51---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 sal_Bool SwXStyle::isInUse(void) throw( RuntimeException )
@@ -1464,7 +1464,7 @@ sal_Bool SwXStyle::isInUse(void) throw( RuntimeException )
         throw RuntimeException();
     return bRet;
 }
-/*-- 17.12.98 08:26:52---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 OUString SwXStyle::getParentStyle(void) throw( RuntimeException )
@@ -1485,7 +1485,7 @@ OUString SwXStyle::getParentStyle(void) throw( RuntimeException )
     SwStyleNameMapper::FillProgName(aString, aString, lcl_GetSwEnumFromSfxEnum ( eFamily ), sal_True );
     return OUString ( aString );
 }
-/*-- 17.12.98 08:26:52---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::setParentStyle(const OUString& rParentStyle)
@@ -1533,7 +1533,7 @@ void SwXStyle::setParentStyle(const OUString& rParentStyle)
     else
         throw RuntimeException();
 }
-/*-- 17.12.98 08:26:52---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Reference< XPropertySetInfo >  SwXStyle::getPropertySetInfo(void)
@@ -1627,7 +1627,7 @@ void    SwXStyle::ApplyDescriptorProperties()
     }
 }
 
-/*-- 18.04.01 13:07:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 struct SwStyleBase_Impl
@@ -2341,7 +2341,7 @@ Sequence< Any > SwXStyle::getPropertyValues(
     }
     return aRet;
 }
-/*-- 18.04.01 13:07:29---------------------------------------------------
+/*-----------------------------------------------------------------------
   -----------------------------------------------------------------------*/
 void SwXStyle::addPropertiesChangeListener(
     const Sequence< OUString >& /*aPropertyNames*/,
@@ -2349,7 +2349,7 @@ void SwXStyle::addPropertiesChangeListener(
         throw(RuntimeException)
 {
 }
-/*-- 18.04.01 13:07:30---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::removePropertiesChangeListener(
@@ -2357,7 +2357,7 @@ void SwXStyle::removePropertiesChangeListener(
         throw(RuntimeException)
 {
 }
-/*-- 18.04.01 13:07:30---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::firePropertiesChangeEvent(
@@ -2366,7 +2366,7 @@ void SwXStyle::firePropertiesChangeEvent(
         throw(RuntimeException)
 {
 }
-/*-- 17.12.98 08:26:53---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::setPropertyValue(const OUString& rPropertyName, const Any& rValue)
@@ -2380,7 +2380,7 @@ void SwXStyle::setPropertyValue(const OUString& rPropertyName, const Any& rValue
     const Sequence<Any> aValues(&rValue, 1);
     setPropertyValues(aProperties, aValues);
 }
-/*-- 17.12.98 08:26:53---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXStyle::getPropertyValue(const OUString& rPropertyName)
@@ -2390,7 +2390,7 @@ Any SwXStyle::getPropertyValue(const OUString& rPropertyName)
     return getPropertyValues(aProperties).getConstArray()[0];
 
 }
-/*-- 17.12.98 08:26:53---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::addPropertyChangeListener(const OUString& /*PropertyName*/,
@@ -2399,7 +2399,7 @@ void SwXStyle::addPropertyChangeListener(const OUString& /*PropertyName*/,
 {
     DBG_WARNING("not implemented");
 }
-/*-- 17.12.98 08:26:54---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::removePropertyChangeListener(const OUString& /*PropertyName*/,
@@ -2408,7 +2408,7 @@ void SwXStyle::removePropertyChangeListener(const OUString& /*PropertyName*/,
 {
     DBG_WARNING("not implemented");
 }
-/*-- 17.12.98 08:26:54---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::addVetoableChangeListener(const OUString& /*PropertyName*/,
@@ -2417,7 +2417,7 @@ void SwXStyle::addVetoableChangeListener(const OUString& /*PropertyName*/,
 {
     DBG_WARNING("not implemented");
 }
-/*-- 17.12.98 08:26:54---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::removeVetoableChangeListener(const OUString& /*PropertyName*/,
@@ -2427,7 +2427,7 @@ void SwXStyle::removeVetoableChangeListener(const OUString& /*PropertyName*/,
     DBG_WARNING("not implemented");
 }
 
-/*-- 08.03.99 10:50:26---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 PropertyState SwXStyle::getPropertyState(const OUString& rPropertyName)
@@ -2441,7 +2441,7 @@ PropertyState SwXStyle::getPropertyState(const OUString& rPropertyName)
     Sequence< PropertyState > aStates = getPropertyStates(aNames);
     return aStates.getConstArray()[0];
 }
-/*-- 08.03.99 10:50:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Sequence< PropertyState > SwXStyle::getPropertyStates(
@@ -2537,7 +2537,7 @@ Sequence< PropertyState > SwXStyle::getPropertyStates(
         throw RuntimeException();
     return aRet;
 }
-/*-- 08.03.99 10:50:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXStyle::setPropertyToDefault(const OUString& rPropertyName)
@@ -2775,7 +2775,7 @@ Sequence< Any > SAL_CALL SwXStyle::getPropertyDefaults( const Sequence< OUString
     }
     return aRet;
 }
-/*-- 08.03.99 10:50:27---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXStyle::getPropertyDefault(const OUString& rPropertyName)
@@ -2823,7 +2823,7 @@ void SwXStyle::Invalidate()
 /******************************************************************
  * SwXPageStyle
  ******************************************************************/
-/*-- 17.12.98 08:43:35---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXPageStyle::SwXPageStyle(SfxStyleSheetBasePool& rPool,
@@ -2843,7 +2843,7 @@ SwXPageStyle::SwXPageStyle(SwDocShell* pDocSh) :
 {
 }
 
-/*-- 17.12.98 08:43:35---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 SwXPageStyle::~SwXPageStyle()
@@ -3274,7 +3274,7 @@ MakeObject:
     }
     return aRet;
 }
-/*-- 17.12.98 08:43:36---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 Any SwXPageStyle::getPropertyValue(const OUString& rPropertyName) throw(
@@ -3283,7 +3283,7 @@ Any SwXPageStyle::getPropertyValue(const OUString& rPropertyName) throw(
     const Sequence<OUString> aProperties(&rPropertyName, 1);
     return getPropertyValues(aProperties).getConstArray()[0];
 }
-/*-- 17.12.98 08:43:36---------------------------------------------------
+/*-----------------------------------------------------------------------
 
   -----------------------------------------------------------------------*/
 void SwXPageStyle::setPropertyValue(const OUString& rPropertyName, const Any& rValue)
