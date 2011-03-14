@@ -1607,9 +1607,7 @@ Reference< XPropertySetInfo >  SwXStyle::getPropertySetInfo(void)
     }
     return xRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void    SwXStyle::ApplyDescriptorProperties()
 {
     bIsDescriptor = sal_False;
@@ -2786,9 +2784,7 @@ Any SwXStyle::getPropertyDefault(const OUString& rPropertyName)
     const Sequence < OUString > aSequence ( &rPropertyName, 1 );
     return getPropertyDefaults ( aSequence ).getConstArray()[0];
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXStyle::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 {
     SfxSimpleHint *pHint = PTR_CAST( SfxSimpleHint, &rHint );

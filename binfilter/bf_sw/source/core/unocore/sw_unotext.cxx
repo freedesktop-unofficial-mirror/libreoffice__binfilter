@@ -1493,16 +1493,12 @@ uno::Reference< container::XEnumeration >  SwXBodyText::createEnumeration(void)
     return aRef;
 
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Type SwXBodyText::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXBodyText::hasElements(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -1706,9 +1702,7 @@ uno::Reference< XTextCursor >  SwXHeadFootText::createTextCursorByRange(
     }
     return xRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Reference< container::XEnumeration >  SwXHeadFootText::createEnumeration(void)
     throw( RuntimeException )
 {
@@ -1734,16 +1728,12 @@ uno::Reference< container::XEnumeration >  SwXHeadFootText::createEnumeration(vo
 
     return aRef;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Type SwXHeadFootText::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((uno::Reference<XTextRange>*)0);
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXHeadFootText::hasElements(void) throw( uno::RuntimeException )
 {
     return sal_True;

@@ -258,9 +258,7 @@ SfxPoolItem*  SwFmtFrmSize::Clone( SfxItemPool* ) const
 }
 
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 bool SwFmtFrmSize::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 {
     // hier wird immer konvertiert!
@@ -316,9 +314,7 @@ bool SwFmtFrmSize::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
     return true;
 }
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 bool SwFmtFrmSize::PutValue( const uno::Any& rVal, BYTE nMemberId )
 {
     sal_Bool bConvert = 0 != (nMemberId&CONVERT_TWIPS);

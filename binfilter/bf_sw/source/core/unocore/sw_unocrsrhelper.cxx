@@ -453,9 +453,7 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
         eState = eNewState;
     return bDone;
 };
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 sal_Int16 IsNodeNumStart(SwPaM& rPam, PropertyState& eState)
 {
     const SwTxtNode* pTxtNd = rPam.GetNode()->GetTxtNode();
@@ -469,9 +467,7 @@ sal_Int16 IsNodeNumStart(SwPaM& rPam, PropertyState& eState)
     return -1;
 }
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void setNumberingProperty(const Any& rValue, SwPaM& rPam)
 {
     Reference<XIndexReplace> xIndexReplace;
@@ -583,9 +579,7 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
 }
 
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void  getNumberingProperty(SwPaM& rPam, PropertyState& eState, Any * pAny )
 {
     const SwNumRule* pNumRule = rPam.GetDoc()->GetCurrNumRule( *rPam.GetPoint() );
@@ -599,9 +593,7 @@ void  getNumberingProperty(SwPaM& rPam, PropertyState& eState, Any * pAny )
     else
         eState = PropertyState_DEFAULT_VALUE;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void GetCurPageStyle(SwPaM& rPaM, String &rString)
 {
     const SwPageFrm* pPage = rPaM.GetCntntNode()->GetFrm()->FindPageFrm();
@@ -651,9 +643,7 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
         break;
     }
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void InsertFile(SwUnoCrsr* pUnoCrsr,
     const String& rFileName,
     const String& rFilterName,

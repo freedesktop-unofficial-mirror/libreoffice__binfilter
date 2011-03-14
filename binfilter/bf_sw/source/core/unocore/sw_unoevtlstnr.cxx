@@ -43,9 +43,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SV_IMPL_PTRARR(SwEvtLstnrArray, XEventListenerPtr);
 
 /*-- 22.04.99 11:24:59---------------------------------------------------

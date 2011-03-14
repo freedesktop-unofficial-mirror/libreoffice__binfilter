@@ -1190,9 +1190,7 @@ SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt, const SwStartNode& rStartNode, SwP
     //Bookmark an der anlegen
     _CreateNewBookmark(rPam);
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwXTextRange::SwXTextRange(SwFrmFmt& rTblFmt) :
     eRangePosition(RANGE_IS_TABLE),
     pDoc(rTblFmt.GetDoc()),
@@ -1573,9 +1571,7 @@ sal_Bool lcl_IsStartNodeInFormat(sal_Bool bHeader, SwStartNode* pSttNode,
     }
     return bRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Reference< XTextRange >  SwXTextRange::CreateTextRangeFromPosition(SwDoc* pDoc,
                         const SwPosition& rPos, const SwPosition* pMark)
 {
@@ -2045,9 +2041,7 @@ sal_Bool SwXTextRanges::hasElements(void) throw( uno::RuntimeException )
     SolarMutexGuard aGuard;
     return getCount() > 0;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 XTextRangeArr*  SwXTextRanges::GetRangesArray()
 {
     SwUnoCrsr* pCrsr = GetCrsr();
@@ -2075,9 +2069,7 @@ void    SwXTextRanges::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
     ClientModify(this, pOld, pNew);
 }
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextCursor::SetString(SwCursor& rCrsr, const OUString& rString)
 {
     // Start/EndAction
@@ -2239,9 +2231,7 @@ uno::Any SwXParaFrameEnumeration::nextElement(void)
     xNextObject = 0;
     return aRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXParaFrameEnumeration::CreateNextObject()
 {
     if(!aFrameArr.Count())

@@ -182,9 +182,7 @@ void lcl_ConvertTOUNameToUserName(OUString& rTmp)
 /******************************************************************
  * SwXDocumentIndex
  ******************************************************************/
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 class SwDocIdxProperties_Impl
 {
     SwTOXBase*      pTOXBase;
@@ -197,9 +195,7 @@ public:
     const OUString& GetTypeName()const {return sUserTOXTypeName;}
     void            SetTypeName(const OUString& rSet) {sUserTOXTypeName = rSet;}
 };
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwDocIdxProperties_Impl::SwDocIdxProperties_Impl(const SwTOXType* pType)
 {
     SwForm aForm(pType->GetType());
@@ -309,9 +305,7 @@ SwXDocumentIndex::SwXDocumentIndex(const SwTOXBaseSection* pB, SwDoc* pDc) :
         _pMap = aSwMapProvider.GetPropertyMap(PropertyId);
     }
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwXDocumentIndex::SwXDocumentIndex(TOXTypes eType, SwDoc& rDoc) :
     aLstnrCntnr( (text::XTextContent*)this),
     m_pDoc(0),
@@ -1045,9 +1039,7 @@ void SwXDocumentIndex::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
         aLstnrCntnr.Disposing();
     }
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXDocumentIndex::attachToRange(const Reference< text::XTextRange > & xTextRange)
     throw( IllegalArgumentException, RuntimeException )
 {
@@ -1347,9 +1339,7 @@ SwXDocumentIndexMark::~SwXDocumentIndexMark()
 {
 
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXDocumentIndexMark::InitMap(TOXTypes eToxType)
 {
     sal_uInt16 nMapId = PROPERTY_MAP_USER_MARK; //case TOX_USER:
@@ -1440,9 +1430,7 @@ void SwXDocumentIndexMark::setMarkEntry(const OUString& rIndexEntry) throw( Runt
     else
         throw RuntimeException();
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXDocumentIndexMark::attachToRange(const Reference< text::XTextRange > & xTextRange)
                 throw( IllegalArgumentException, RuntimeException )
 {

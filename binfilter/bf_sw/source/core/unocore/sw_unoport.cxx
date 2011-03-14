@@ -126,9 +126,7 @@ SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr,
 //  else if(ePortionType == PORTION_FRAME)
 //      ...;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwXTextPortion::SwXTextPortion(const SwUnoCrsr* pPortionCrsr, uno::Reference< XText > & rParent,
                         SwFrmFmt& rFmt ) :
     aLstnrCntnr( (XTextRange*)this),
@@ -705,9 +703,7 @@ void SwXTextPortion::removeEventListener(const uno::Reference< lang::XEventListe
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Reference< container::XEnumeration >  SwXTextPortion::createContentEnumeration(const OUString& /*aServiceName*/)
         throw( uno::RuntimeException )
 {
@@ -741,9 +737,7 @@ sal_Int64 SwXTextPortion::getSomething( const uno::Sequence< sal_Int8 >& rId )
     }
     return 0;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Sequence< OUString > SwXTextPortion::getAvailableServiceNames(void) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -752,16 +746,12 @@ uno::Sequence< OUString > SwXTextPortion::getAvailableServiceNames(void) throw( 
     pArray[0] = C2U("com.sun.star.text.TextContent");
     return aRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 OUString SwXTextPortion::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SwXTextPortion");
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXTextPortion::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;

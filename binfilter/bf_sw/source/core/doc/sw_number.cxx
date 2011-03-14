@@ -576,9 +576,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
     // richtigen CharFormaten eines Dokumentes haengen !!
     // (Kopiert die NumFormate und returnt sich selbst)
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ void SwNumRule::SetSvxRule(const SvxNumRule& rNumRule, SwDoc* pDoc)
 /*N*/ {
 /*N*/   for( USHORT n = 0; n < MAXLEVEL; ++n )
@@ -595,9 +593,7 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   bContinusNum = rNumRule.IsContinuousNumbering();
 //!!!   bAbsSpaces = rNumRule.IsAbsSpaces();
 /*N*/ }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ SvxNumRule SwNumRule::MakeSvxNumRule() const
 /*N*/ {
 /*N*/   SvxNumRule aRule(NUM_CONTINUOUS|NUM_CHAR_TEXT_DISTANCE|NUM_CHAR_STYLE|

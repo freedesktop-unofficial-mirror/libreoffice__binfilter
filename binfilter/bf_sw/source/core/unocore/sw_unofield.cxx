@@ -1221,9 +1221,7 @@ OUString SwXTextField::getPresentation(sal_Bool bShowCommand) throw( uno::Runtim
         throw uno::RuntimeException();
     return sRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextField::attachToRange(
         const uno::Reference< XTextRange > & xTextRange)
     throw( IllegalArgumentException, uno::RuntimeException )
@@ -2153,16 +2151,12 @@ void SwXTextField::update(  ) throw (RuntimeException)
     else
         m_bCallUpdate = sal_True;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 OUString SwXTextField::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SwXTextField");
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXTextField::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
 {
     OUString sServiceName = SwXServiceProvider::GetProviderName(m_nServiceId);
@@ -2170,9 +2164,7 @@ sal_Bool SwXTextField::supportsService(const OUString& rServiceName) throw( uno:
         rServiceName.equalsAsciiL(
                 RTL_CONSTASCII_STRINGPARAM("com.sun.star.text.TextContent"));
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Sequence< OUString > SwXTextField::getSupportedServiceNames(void) throw( uno::RuntimeException )
 {
     uno::Sequence< OUString > aRet(2);
@@ -2194,9 +2186,7 @@ void SwXTextField::Invalidate()
     }
 }
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextField::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     switch( pOld ? pOld->Which() : 0 )
@@ -2557,9 +2547,7 @@ sal_Bool SwXTextFieldTypes::hasElements(void) throw( uno::RuntimeException )
     //es gibt sie immer
     return sal_True;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextFieldTypes::refresh(void)  throw( uno::RuntimeException )
 {
     SolarMutexGuard aGuard;
@@ -2573,9 +2561,7 @@ void SwXTextFieldTypes::refresh(void)  throw( uno::RuntimeException )
     // call refresh listeners
     aRefreshCont.Refreshed();
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextFieldTypes::addRefreshListener(const uno::Reference< util::XRefreshListener > & l)
     throw( uno::RuntimeException )
 {
@@ -2584,9 +2570,7 @@ void SwXTextFieldTypes::addRefreshListener(const uno::Reference< util::XRefreshL
         throw RuntimeException();
     aRefreshCont.AddListener ( reinterpret_cast < const Reference < lang::XEventListener > &> ( l ));
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextFieldTypes::removeRefreshListener(const uno::Reference< util::XRefreshListener > & l)
      throw( uno::RuntimeException )
 {
@@ -2622,9 +2606,7 @@ Sequence< OUString > SwXFieldEnumeration::getSupportedServiceNames(void) throw( 
     pArray[0] = C2U("com.sun.star.text.FieldEnumeration");
     return aRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwXFieldEnumeration::SwXFieldEnumeration(SwDoc* pDc) :
     nNextIndex(0),
     pDoc(pDc)
@@ -2702,9 +2684,7 @@ uno::Any SwXFieldEnumeration::nextElement(void)
     rxFld = 0;  // free memory for item that is not longer used
     return aRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXFieldEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);

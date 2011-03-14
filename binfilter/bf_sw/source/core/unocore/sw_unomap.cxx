@@ -62,9 +62,7 @@ using namespace ::comphelper;
 
 SwUnoPropertyMapProvider aSwMapProvider;
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwUnoPropertyMapProvider::SwUnoPropertyMapProvider()
 {
     for( sal_uInt16 i = 0; i < PROPERTY_MAP_END; i++ )
@@ -72,9 +70,7 @@ SwUnoPropertyMapProvider::SwUnoPropertyMapProvider()
         aMapArr[i] = 0;
     }
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SwUnoPropertyMapProvider::~SwUnoPropertyMapProvider()
 {
     delete pCharStyleMap;
@@ -83,9 +79,7 @@ SwUnoPropertyMapProvider::~SwUnoPropertyMapProvider()
     delete pPageStyleMap;
     delete pNumStyleMap;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 SfxItemPropertySet& SwUnoPropertyMapProvider::GetPropertySet(sal_Int8 nPropSetId)
 {
     SfxItemPropertySet** ppMap = 0;
@@ -125,9 +119,7 @@ SfxItemPropertySet& SwUnoPropertyMapProvider::GetPropertySet(sal_Int8 nPropSetId
         pRet = 0;
     return *pRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 EXTERN_C
 #ifdef WNT
 int _cdecl
@@ -141,9 +133,7 @@ lcl_CompareMap(const void* pSmaller, const void* pBigger )
     return nDiff;
 
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwUnoPropertyMapProvider::Sort( sal_uInt16 nId )
 {
     SfxItemPropertyMap* p = aMapArr[nId];
@@ -212,9 +202,7 @@ void SwUnoPropertyMapProvider::Sort( sal_uInt16 nId )
     {SW_PROP_NMID(UNO_NAME_REDLINE_TEXT), 0, CPPU_E2T(CPPUTYPE_REFTEXT),                    PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY,   0},\
     {SW_PROP_NMID(UNO_NAME_MERGE_LAST_PARA), 0, CPPU_E2T(CPPUTYPE_BOOLEAN),                             PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY, 0},
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 #define COMMON_CRSR_PARA_PROPERTIES_FN_ONLY \
         { SW_PROP_NMID(UNO_NAME_PARA_STYLE_NAME), FN_UNO_PARA_STYLE,        CPPU_E2T(CPPUTYPE_OUSTRING),                PropertyAttribute::MAYBEVOID,     0},                                                       \
         { SW_PROP_NMID(UNO_NAME_PAGE_STYLE_NAME), FN_UNO_PAGE_STYLE,        CPPU_E2T(CPPUTYPE_OUSTRING),         PropertyAttribute::MAYBEVOID|PropertyAttribute::READONLY,   0},                       \

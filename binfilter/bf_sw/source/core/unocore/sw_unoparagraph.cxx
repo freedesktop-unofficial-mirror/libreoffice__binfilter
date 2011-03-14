@@ -804,9 +804,7 @@ void SwXParagraph::setString(const OUString& aString) throw( uno::RuntimeExcepti
         throw uno::RuntimeException();
 
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Reference< container::XEnumeration >  SwXParagraph::createContentEnumeration(const OUString& rServiceName)
     throw( uno::RuntimeException )
 {
@@ -817,9 +815,7 @@ uno::Reference< container::XEnumeration >  SwXParagraph::createContentEnumeratio
     uno::Reference< container::XEnumeration >  xRet = new SwXParaFrameEnumeration(*pUnoCrsr, PARAFRAME_PORTION_PARAGRAPH);
     return xRet;
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 uno::Sequence< OUString > SwXParagraph::getAvailableServiceNames(void) throw( uno::RuntimeException )
 {
     uno::Sequence< OUString > aRet(1);

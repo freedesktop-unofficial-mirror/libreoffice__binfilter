@@ -120,9 +120,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/   }
 /*N*/ }
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ BOOL SwDBFieldType::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   nMId &= ~CONVERT_TWIPS;
@@ -145,9 +143,7 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ BOOL SwDBFieldType::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;

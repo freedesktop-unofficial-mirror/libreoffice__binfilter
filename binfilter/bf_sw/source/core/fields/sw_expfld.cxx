@@ -550,9 +550,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 
 
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ BOOL SwSetExpFieldType::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;

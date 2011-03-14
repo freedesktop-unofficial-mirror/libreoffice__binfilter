@@ -241,9 +241,7 @@ uno::Sequence< uno::Reference< text::XTextSection >  > SwXTextSection::getChildS
     return aSeq;
 
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXTextSection::attachToRange(const uno::Reference< text::XTextRange > & xTextRange)
     throw( lang::IllegalArgumentException, uno::RuntimeException )
 {

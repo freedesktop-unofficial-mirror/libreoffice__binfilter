@@ -234,9 +234,7 @@ void SwXFootnote::setLabel(const OUString& aLabel) throw( uno::RuntimeException 
         throw uno::RuntimeException();
 
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXFootnote::attachToRange(const uno::Reference< text::XTextRange > & xTextRange)
             throw( lang::IllegalArgumentException, uno::RuntimeException )
 {
@@ -354,9 +352,7 @@ void SwXFootnote::removeEventListener(const uno::Reference< lang::XEventListener
     if(!GetRegisteredIn() || !aLstnrCntnr.RemoveListener(aListener))
         throw uno::RuntimeException();
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 const SwStartNode *SwXFootnote::GetStartNode() const
 {
     const SwStartNode *pSttNd = 0;
@@ -468,9 +464,7 @@ void SwXFootnote::Invalidate()
         SetDoc(0);
     }
 }
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
 void SwXFootnote::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     switch( pOld ? pOld->Which() : 0 )
