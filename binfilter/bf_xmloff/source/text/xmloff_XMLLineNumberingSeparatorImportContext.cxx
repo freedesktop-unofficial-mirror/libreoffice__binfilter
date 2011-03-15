@@ -52,11 +52,11 @@ using ::binfilter::xmloff::token::XML_INCREMENT;
 TYPEINIT1( XMLLineNumberingSeparatorImportContext, SvXMLImportContext );
 
 XMLLineNumberingSeparatorImportContext::XMLLineNumberingSeparatorImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     XMLLineNumberingImportContext& rLineNumbering) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rLineNumberingContext(rLineNumbering)
 {
 }
@@ -72,10 +72,10 @@ void XMLLineNumberingSeparatorImportContext::StartElement(
     for(sal_Int16 i=0; i<nLength; i++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
-        if ( (nPrefix == XML_NAMESPACE_TEXT) &&
+        if ( (nLclPrefix == XML_NAMESPACE_TEXT) &&
              IsXMLToken(sLocalName, XML_INCREMENT) )
         {
             sal_Int32 nTmp;

@@ -1723,8 +1723,8 @@ void XMLTextParagraphExport::exportTextRangeEnumeration(
 }
 
 void XMLTextParagraphExport::exportTable(
-        const Reference < XTextContent > & rTextContent,
-        sal_Bool bAutoStyles, sal_Bool bProgress )
+        const Reference < XTextContent > & /*rTextContent*/,
+        sal_Bool /*bAutoStyles*/, sal_Bool /*bProgress*/ )
 {
 }
 

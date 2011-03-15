@@ -58,11 +58,11 @@ using namespace ::binfilter::xmloff::token;
 TYPEINIT1(XMLSectionSourceImportContext, SvXMLImportContext);
 
 XMLSectionSourceImportContext::XMLSectionSourceImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rSectPropSet) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rSectionPropertySet(rSectPropSet)
 {
 }
@@ -100,11 +100,11 @@ void XMLSectionSourceImportContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        switch (aTokenMap.Get(nPrefix, sLocalName))
+        switch (aTokenMap.Get(nLclPrefix, sLocalName))
         {
             case XML_TOK_SECTION_XLINK_HREF:
                 sURL = xAttrList->getValueByIndex(nAttr);
@@ -152,12 +152,12 @@ void XMLSectionSourceImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLSectionSourceImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
-    const Reference<XAttributeList> & xAttrList )
+    const Reference<XAttributeList> & /*xAttrList*/ )
 {
     // ignore -> default context
-    return new SvXMLImportContext(GetImport(), nPrefix, rLocalName);
+    return new SvXMLImportContext(GetImport(), nInPrefix, rLocalName);
 }
 }//end of namespace binfilter
 

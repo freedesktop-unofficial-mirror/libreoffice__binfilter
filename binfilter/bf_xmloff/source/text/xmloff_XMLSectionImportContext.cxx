@@ -97,10 +97,10 @@ static SvXMLTokenMapEntry aSectionTokenMap[] =
 // between the ends of the inner and the enclosing section. To avoid
 // these problems, additional markers are first inserted and later deleted.
 XMLSectionImportContext::XMLSectionImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         xStartRange(),
         xEndRange(),
         xSectionPropertySet(),
@@ -112,18 +112,18 @@ XMLSectionImportContext::XMLSectionImportContext(
         sProtectionKey(RTL_CONSTASCII_USTRINGPARAM(sAPI_ProtectionKey)),
         sIsProtected(RTL_CONSTASCII_USTRINGPARAM(sAPI_IsProtected)),
         sIsCurrentlyVisible(RTL_CONSTASCII_USTRINGPARAM(sAPI_IsCurrentlyVisible)),
+        sEmpty(),
         sStyleName(),
         sName(),
         sCond(),
-        sEmpty(),
-        bValid(sal_False),
+        bProtect(sal_False),
         bCondOK(sal_False),
         bIsVisible(sal_True),
+        bValid(sal_False),
         bSequenceOK(sal_False),
-        bProtect(sal_False),
-        bHasContent(sal_False),
         bIsCurrentlyVisible(sal_True),
-        bIsCurrentlyVisibleOK(sal_False)
+        bIsCurrentlyVisibleOK(sal_False),
+        bHasContent(sal_False)
 {
 }
 
@@ -267,12 +267,12 @@ void XMLSectionImportContext::ProcessAttributes(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sAttr = xAttrList->getValueByIndex(nAttr);
 
-        switch (aTokenMap.Get(nPrefix, sLocalName))
+        switch (aTokenMap.Get(nLclPrefix, sLocalName))
         {
             case XML_TOK_SECTION_STYLE_NAME:
                 sStyleName = sAttr;
@@ -350,39 +350,39 @@ void XMLSectionImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLSectionImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
     // section-source (-dde) elements
-    if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+    if ( (XML_NAMESPACE_TEXT == nInPrefix) &&
          IsXMLToken(rLocalName, XML_SECTION_SOURCE) )
     {
         pContext = new XMLSectionSourceImportContext(GetImport(),
-                                                     nPrefix, rLocalName,
+                                                     nInPrefix, rLocalName,
                                                      xSectionPropertySet);
     }
-    else if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    else if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
               IsXMLToken(rLocalName, XML_DDE_SOURCE) )
     {
         pContext = new XMLSectionSourceDDEImportContext(GetImport(),
-                                                        nPrefix, rLocalName,
+                                                        nInPrefix, rLocalName,
                                                         xSectionPropertySet);
     }
     else
     {
         // otherwise: text context
         pContext = GetImport().GetTextImport()->CreateTextChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList,
+            GetImport(), nInPrefix, rLocalName, xAttrList,
             XML_TEXT_TYPE_SECTION );
 
         // if that fails, default context
         if (NULL == pContext)
         {
             pContext = new SvXMLImportContext( GetImport(),
-                                               nPrefix, rLocalName );
+                                               nInPrefix, rLocalName );
         }
         else
             bHasContent = sal_True;

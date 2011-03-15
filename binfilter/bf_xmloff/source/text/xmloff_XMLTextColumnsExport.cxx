@@ -105,7 +105,7 @@ void XMLTextColumnsExport::exportXML( const Any& rAny )
         {
             // style:width
             aAny = xPropSet->getPropertyValue( sSeparatorLineWidth );
-            sal_Int32 nWidth;
+            sal_Int32 nWidth(0);
             aAny >>= nWidth;
             GetExport().GetMM100UnitConverter().convertMeasure( sValue,
                                                                 nWidth );
@@ -114,7 +114,7 @@ void XMLTextColumnsExport::exportXML( const Any& rAny )
 
             // style:color
             aAny = xPropSet->getPropertyValue( sSeparatorLineColor );
-            sal_Int32 nColor;
+            sal_Int32 nColor(0);
             aAny >>= nColor;
             GetExport().GetMM100UnitConverter().convertColor( sValue,
                                                               nColor );
@@ -123,7 +123,7 @@ void XMLTextColumnsExport::exportXML( const Any& rAny )
 
             // style:height
             aAny = xPropSet->getPropertyValue( sSeparatorLineRelativeHeight );
-            sal_Int8 nHeight;
+            sal_Int8 nHeight(0);
             aAny >>= nHeight;
             GetExport().GetMM100UnitConverter().convertPercent( sValue,
                                                                 nHeight );
@@ -138,9 +138,9 @@ void XMLTextColumnsExport::exportXML( const Any& rAny )
             enum XMLTokenEnum eStr = XML_TOKEN_INVALID;
             switch( eVertAlign )
             {
-//          case VerticalAlignment_TOP: eStr = XML_TOP;
             case VerticalAlignment_MIDDLE: eStr = XML_MIDDLE; break;
             case VerticalAlignment_BOTTOM: eStr = XML_BOTTOM; break;
+            default: break;
             }
 
             if( eStr != XML_TOKEN_INVALID)
@@ -148,7 +148,7 @@ void XMLTextColumnsExport::exportXML( const Any& rAny )
                                           XML_VERTICAL_ALIGN, eStr );
 
             // style:column-sep
-            SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE,
+            SvXMLElementExport aLclElem( GetExport(), XML_NAMESPACE_STYLE,
                                       XML_COLUMN_SEP,
                                       sal_True, sal_True );
         }
@@ -176,7 +176,7 @@ void XMLTextColumnsExport::exportXML( const Any& rAny )
                                     sValue.makeStringAndClear() );
 
         // style:column
-        SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE, XML_COLUMN,
+        SvXMLElementExport aLclElem( GetExport(), XML_NAMESPACE_STYLE, XML_COLUMN,
                                   sal_True, sal_True );
         pColumns++;
     }

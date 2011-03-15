@@ -59,16 +59,16 @@ TYPEINIT1(XMLSectionFootnoteConfigImport, SvXMLImportContext);
 
 
 XMLSectionFootnoteConfigImport::XMLSectionFootnoteConfigImport(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     vector<XMLPropertyState> & rProps,
     const UniReference<XMLPropertySetMapper> & rMapperRef,
     sal_Int32 nIndex) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         rProperties(rProps),
-        nPropIndex(nIndex),
-        rMapper(rMapperRef)
+        rMapper(rMapperRef),
+        nPropIndex(nIndex)
 {
 }
 
@@ -93,12 +93,12 @@ void XMLSectionFootnoteConfigImport::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sAttrValue = xAttrList->getValueByIndex(nAttr);
 
-        if (XML_NAMESPACE_TEXT == nPrefix)
+        if (XML_NAMESPACE_TEXT == nLclPrefix)
         {
             if (IsXMLToken(sLocalName, XML_START_VALUE))
             {
@@ -110,7 +110,7 @@ void XMLSectionFootnoteConfigImport::StartElement(
                 }
             }
         }
-        else if (XML_NAMESPACE_STYLE == nPrefix)
+        else if (XML_NAMESPACE_STYLE == nLclPrefix)
         {
             if (IsXMLToken(sLocalName, XML_NUM_PREFIX))
             {

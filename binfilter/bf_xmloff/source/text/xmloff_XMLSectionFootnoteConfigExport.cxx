@@ -109,6 +109,7 @@ void XMLSectionFootnoteConfigExport::exportXML(
                     DBG_ASSERT( i == nIdx,
                                 "received wrong property state index" );
                     rState.maValue >>= bEnd;
+                    (void)nIdx;
                     break;
             }
         }

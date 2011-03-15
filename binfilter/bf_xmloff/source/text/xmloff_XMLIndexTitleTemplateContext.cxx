@@ -55,17 +55,17 @@ const sal_Char sAPI_ParaStyleHeading[] = "ParaStyleHeading";
 TYPEINIT1( XMLIndexTitleTemplateContext, SvXMLImportContext );
 
 XMLIndexTitleTemplateContext::XMLIndexTitleTemplateContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     Reference<XPropertySet> & rPropSet,
     sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
+        sTitle(RTL_CONSTASCII_USTRINGPARAM(sAPI_Title)),
+        sParaStyleHeading(RTL_CONSTASCII_USTRINGPARAM(sAPI_ParaStyleHeading)),
         sStyleName(),
         bStyleNameOK(sal_False),
         sContent(),
-        rTOCPropertySet(rPropSet),
-        sTitle(RTL_CONSTASCII_USTRINGPARAM(sAPI_Title)),
-        sParaStyleHeading(RTL_CONSTASCII_USTRINGPARAM(sAPI_ParaStyleHeading))
+        rTOCPropertySet(rPropSet)
 {
 }
 
@@ -82,10 +82,10 @@ void XMLIndexTitleTemplateContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              (IsXMLToken(sLocalName, XML_STYLE_NAME)) )
         {
             sStyleName = xAttrList->getValueByIndex(nAttr);
