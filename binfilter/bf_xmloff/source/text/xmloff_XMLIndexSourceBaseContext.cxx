@@ -152,18 +152,18 @@ static SvXMLTokenMapEntry aIndexSourceTokenMap[] =
 TYPEINIT1( XMLIndexSourceBaseContext, SvXMLImportContext );
 
 XMLIndexSourceBaseContext::XMLIndexSourceBaseContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropSet,
     sal_Bool bLevelFormats) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        rIndexPropertySet(rPropSet),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
+        sCreateFromChapter(RTL_CONSTASCII_USTRINGPARAM(sAPI_CreateFromChapter)),
+        sIsRelativeTabstops(RTL_CONSTASCII_USTRINGPARAM(sAPI_IsRelativeTabstops)),
+        bUseLevelFormats(bLevelFormats),
         bChapterIndex(sal_False),
         bRelativeTabs(sal_True),
-        bUseLevelFormats(bLevelFormats),
-       sCreateFromChapter(RTL_CONSTASCII_USTRINGPARAM(sAPI_CreateFromChapter)),
-      sIsRelativeTabstops(RTL_CONSTASCII_USTRINGPARAM(sAPI_IsRelativeTabstops))
+        rIndexPropertySet(rPropSet)
 {
 }
 
@@ -182,9 +182,9 @@ void XMLIndexSourceBaseContext::StartElement(
     {
         // map to IndexSourceParamEnum
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
-        sal_uInt16 nToken = aTokenMap.Get(nPrefix, sLocalName);
+        sal_uInt16 nToken = aTokenMap.Get(nLclPrefix, sLocalName);
 
         // process attribute
         ProcessAttribute((enum IndexSourceParamEnum)nToken,
@@ -233,26 +233,26 @@ void XMLIndexSourceBaseContext::EndElement()
 }
 
 SvXMLImportContext* XMLIndexSourceBaseContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if (XML_NAMESPACE_TEXT == nPrefix)
+    if (XML_NAMESPACE_TEXT == nInPrefix)
     {
         if ( IsXMLToken( rLocalName, XML_INDEX_TITLE_TEMPLATE ) )
         {
             pContext = new XMLIndexTitleTemplateContext(GetImport(),
                                                         rIndexPropertySet,
-                                                        nPrefix, rLocalName);
+                                                        nInPrefix, rLocalName);
         }
         else if ( bUseLevelFormats &&
                   IsXMLToken( rLocalName, XML_INDEX_SOURCE_STYLES ) )
         {
             pContext = new XMLIndexTOCStylesContext(GetImport(),
                                                     rIndexPropertySet,
-                                                    nPrefix, rLocalName);
+                                                    nInPrefix, rLocalName);
         }
         // else: unknown element in text namespace -> ignore
     }
@@ -261,7 +261,7 @@ SvXMLImportContext* XMLIndexSourceBaseContext::CreateChildContext(
     // use default context
     if (pContext == NULL)
     {
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                           xAttrList);
     }
 

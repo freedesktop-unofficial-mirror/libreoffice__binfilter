@@ -109,22 +109,22 @@ void XMLTextStyleContext::SetAttribute( sal_uInt16 nPrefixKey,
 
 TYPEINIT1( XMLTextStyleContext, XMLPropStyleContext );
 
-XMLTextStyleContext::XMLTextStyleContext( SvXMLImport& rImport,
+XMLTextStyleContext::XMLTextStyleContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
-        SvXMLStylesContext& rStyles, sal_uInt16 nFamily,
-        sal_Bool bDefaultStyle ) :
-    XMLPropStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles,
-                         nFamily, bDefaultStyle ),
-    bAutoUpdate( sal_False ),
-    bHasMasterPageName( sal_False ),
-    bHasCombinedCharactersLetter( sal_False ),
-    pEventContext( NULL ),
+        SvXMLStylesContext& rStyles, sal_uInt16 nInFamily,
+        sal_Bool bInDefaultStyle ) :
+    XMLPropStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles,
+                         nInFamily, bInDefaultStyle ),
     sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
     sCategory( RTL_CONSTASCII_USTRINGPARAM( "Category" ) ),
     sNumberingStyleName( RTL_CONSTASCII_USTRINGPARAM( "NumberingStyleName" ) ),
+    sDropCapCharStyleName( RTL_CONSTASCII_USTRINGPARAM( "DropCapCharStyleName" ) ),
     sPageDescName( RTL_CONSTASCII_USTRINGPARAM( "PageDescName" ) ),
-    sDropCapCharStyleName( RTL_CONSTASCII_USTRINGPARAM( "DropCapCharStyleName" ) )
+    bAutoUpdate( sal_False ),
+    bHasMasterPageName( sal_False ),
+    bHasCombinedCharactersLetter( sal_False ),
+    pEventContext( NULL )
 {
 }
 
@@ -133,37 +133,37 @@ XMLTextStyleContext::~XMLTextStyleContext()
 }
 
 SvXMLImportContext *XMLTextStyleContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
             GetStyles()->GetImportPropertyMapper( GetFamily() );
         if( xImpPrMap.is() )
-            pContext = new XMLTextPropertySetContext( GetImport(), nPrefix,
+            pContext = new XMLTextPropertySetContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     GetProperties(),
                                                     xImpPrMap,
                                                     sDropCapTextStyleName );
     }
-    else if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    else if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
               IsXMLToken( rLocalName, XML_EVENTS ) )
     {
         // create and remember events import context
         // (for delayed processing of events)
-        pEventContext = new XMLEventsImportContext( GetImport(), nPrefix,
+        pEventContext = new XMLEventsImportContext( GetImport(), nInPrefix,
                                                    rLocalName);
         pEventContext->AddRef();
         pContext = pEventContext;
     }
 
     if( !pContext )
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -172,11 +172,11 @@ SvXMLImportContext *XMLTextStyleContext::CreateChildContext(
 void XMLTextStyleContext::CreateAndInsert( sal_Bool bOverwrite )
 {
     XMLPropStyleContext::CreateAndInsert( bOverwrite );
-    Reference < XStyle > xStyle = GetStyle();
-    if( !xStyle.is() || !(bOverwrite || IsNew()) )
+    Reference < XStyle > xLclStyle = GetStyle();
+    if( !xLclStyle.is() || !(bOverwrite || IsNew()) )
         return;
 
-    Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
+    Reference < XPropertySet > xPropSet( xLclStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
     if( xPropSetInfo->hasPropertyByName( sIsAutoUpdate ) )
@@ -189,7 +189,7 @@ void XMLTextStyleContext::CreateAndInsert( sal_Bool bOverwrite )
 
     sal_uInt16 nCategory = ParagraphStyleCategory::TEXT;
     if(  XML_STYLE_FAMILY_TEXT_PARAGRAPH == GetFamily() &&
-         sCategoryVal.getLength() && xStyle->isUserDefined() &&
+         sCategoryVal.getLength() && xLclStyle->isUserDefined() &&
          xPropSetInfo->hasPropertyByName( sCategory ) &&
           SvXMLUnitConverter::convertEnum( nCategory, sCategoryVal, aCategoryMap ) )
     {
@@ -202,7 +202,7 @@ void XMLTextStyleContext::CreateAndInsert( sal_Bool bOverwrite )
     if (NULL != pEventContext)
     {
         // set event suppplier and release reference to context
-        Reference<document::XEventsSupplier> xEventsSupplier(xStyle,UNO_QUERY);
+        Reference<document::XEventsSupplier> xEventsSupplier(xLclStyle,UNO_QUERY);
         pEventContext->SetEvents(xEventsSupplier);
         pEventContext->ReleaseRef();
     }
@@ -228,13 +228,13 @@ void XMLTextStyleContext::Finish( sal_Bool bOverwrite )
 {
     XMLPropStyleContext::Finish( bOverwrite );
 
-    Reference < XStyle > xStyle = GetStyle();
+    Reference < XStyle > xLclStyle = GetStyle();
     if( !(sListStyleName.getLength() || sDropCapTextStyleName.getLength() ||
         bHasMasterPageName) ||
-        !xStyle.is() || !(bOverwrite || IsNew()) )
+        !xLclStyle.is() || !(bOverwrite || IsNew()) )
         return;
 
-    Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
+    Reference < XPropertySet > xPropSet( xLclStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
 

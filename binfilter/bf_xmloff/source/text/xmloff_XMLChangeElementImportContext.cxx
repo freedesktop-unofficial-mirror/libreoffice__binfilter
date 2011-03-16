@@ -52,28 +52,28 @@ using ::binfilter::xmloff::token::XML_CHANGE_INFO;
 TYPEINIT1( XMLChangeElementImportContext, SvXMLImportContext );
 
 XMLChangeElementImportContext::XMLChangeElementImportContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     sal_Bool bAccContent,
     XMLChangedRegionImportContext& rParent) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         bAcceptContent(bAccContent),
         rChangedRegion(rParent)
 {
 }
 
 SvXMLImportContext* XMLChangeElementImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList)
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
          IsXMLToken( rLocalName, XML_CHANGE_INFO) )
     {
-        pContext = new XMLChangeInfoContext(GetImport(), nPrefix, rLocalName,
+        pContext = new XMLChangeInfoContext(GetImport(), nInPrefix, rLocalName,
                                             rChangedRegion, GetLocalName());
     }
     else
@@ -82,14 +82,14 @@ SvXMLImportContext* XMLChangeElementImportContext::CreateChildContext(
         rChangedRegion.UseRedlineText();
 
         pContext = GetImport().GetTextImport()->CreateTextChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList,
+            GetImport(), nInPrefix, rLocalName, xAttrList,
             XML_TEXT_TYPE_CHANGED_REGION);
 
         if (NULL == pContext)
         {
             // no text element -> use default
             pContext = SvXMLImportContext::CreateChildContext(
-                nPrefix, rLocalName, xAttrList);
+                nInPrefix, rLocalName, xAttrList);
 
             // illegal element content! TODO: discard this redline!
         }
@@ -100,7 +100,7 @@ SvXMLImportContext* XMLChangeElementImportContext::CreateChildContext(
 }
 
 // #107848#
-void XMLChangeElementImportContext::StartElement( const Reference< XAttributeList >& xAttrList )
+void XMLChangeElementImportContext::StartElement( const Reference< XAttributeList >& /*xAttrList*/ )
 {
     if(bAcceptContent)
     {

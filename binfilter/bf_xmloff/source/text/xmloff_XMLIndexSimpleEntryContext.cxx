@@ -51,16 +51,16 @@ const sal_Char sAPI_CharacterStyleName[] = "CharacterStyleName";
 TYPEINIT1( XMLIndexSimpleEntryContext, SvXMLImportContext);
 
 XMLIndexSimpleEntryContext::XMLIndexSimpleEntryContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const OUString& rEntry,
     XMLIndexTemplateContext& rTemplate,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        rTemplateContext(rTemplate),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rEntryType(rEntry),
         sCharStyleName(),
         bCharStyleNameOK(sal_False),
+        rTemplateContext(rTemplate),
         nValues(1)
 {
 }
@@ -77,10 +77,10 @@ void XMLIndexSimpleEntryContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              IsXMLToken(sLocalName, XML_STYLE_NAME) )
         {
             sCharStyleName = xAttrList->getValueByIndex(nAttr);

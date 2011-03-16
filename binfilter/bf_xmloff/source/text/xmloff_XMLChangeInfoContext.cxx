@@ -54,14 +54,14 @@ using ::com::sun::star::xml::sax::XAttributeList;
 TYPEINIT1(XMLChangeInfoContext, SvXMLImportContext);
 
 XMLChangeInfoContext::XMLChangeInfoContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     XMLChangedRegionImportContext& rPParent,
     const OUString& rChangeType) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
-        rChangedRegion(rPParent),
-        rType(rChangeType)
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
+        rType(rChangeType),
+        rChangedRegion(rPParent)
 {
 }
 
@@ -77,11 +77,11 @@ void XMLChangeInfoContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sValue = xAttrList->getValueByIndex(nAttr);
-        if (XML_NAMESPACE_OFFICE == nPrefix)
+        if (XML_NAMESPACE_OFFICE == nLclPrefix)
         {
             if ( IsXMLToken( sLocalName, XML_CHG_AUTHOR ) )
             {
@@ -99,21 +99,21 @@ void XMLChangeInfoContext::StartElement(
 }
 
 SvXMLImportContext* XMLChangeInfoContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList >& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( ( XML_NAMESPACE_TEXT == nPrefix ) &&
+    if ( ( XML_NAMESPACE_TEXT == nInPrefix ) &&
          IsXMLToken( rLocalName, XML_P )       )
     {
-        pContext = new XMLStringBufferImportContext(GetImport(), nPrefix,
+        pContext = new XMLStringBufferImportContext(GetImport(), nInPrefix,
                                                    rLocalName, sCommentBuffer);
     }
     else
     {
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                           xAttrList);
     }
 

@@ -89,14 +89,14 @@ static SvXMLTokenMapEntry aFootnoteChildTokenMap[] =
 
 
 XMLFootnoteImportContext::XMLFootnoteImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
+        sPropertyReferenceId(RTL_CONSTASCII_USTRINGPARAM("ReferenceId")),
         rHelper(rHlp),
-        xFootnote(),
-        sPropertyReferenceId(RTL_CONSTASCII_USTRINGPARAM("ReferenceId"))
+        xFootnote()
 {
 }
 
@@ -124,17 +124,17 @@ void XMLFootnoteImportContext::StartElement(
         for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
         {
             OUString sLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
                 GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                                   &sLocalName );
 
-            if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+            if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
                  IsXMLToken( sLocalName, XML_ID )   )
             {
                 // get ID ...
                 Reference<XPropertySet> xPropertySet(xTextContent, UNO_QUERY);
                 Any aAny =xPropertySet->getPropertyValue(sPropertyReferenceId);
-                sal_Int16 nID;
+                sal_Int16 nID(0);
                 aAny >>= nID;
 
                 // ... and insert into map
@@ -164,7 +164,7 @@ void XMLFootnoteImportContext::StartElement(
 }
 
 void XMLFootnoteImportContext::Characters(
-    const OUString& rString)
+    const OUString& /*rString*/)
 {
     // ignore characters! Text must be contained in paragraphs!
     // rHelper.InsertString(rString);
@@ -185,7 +185,7 @@ void XMLFootnoteImportContext::EndElement()
 
 
 SvXMLImportContext *XMLFootnoteImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
@@ -193,7 +193,7 @@ SvXMLImportContext *XMLFootnoteImportContext::CreateChildContext(
 
     SvXMLTokenMap aTokenMap(aFootnoteChildTokenMap);
 
-    switch(aTokenMap.Get(nPrefix, rLocalName))
+    switch(aTokenMap.Get(nInPrefix, rLocalName))
     {
         case XML_TOK_FTN_FOOTNOTE_CITATION:
         case XML_TOK_FTN_ENDNOTE_CITATION:
@@ -205,11 +205,11 @@ SvXMLImportContext *XMLFootnoteImportContext::CreateChildContext(
             for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
             {
                 OUString sLocalName;
-                sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+                sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
                     GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                                       &sLocalName );
 
-                if ( (nPrefix == XML_NAMESPACE_TEXT) &&
+                if ( (nLclPrefix == XML_NAMESPACE_TEXT) &&
                      IsXMLToken( sLocalName, XML_LABEL ) )
                 {
                     xFootnote->setLabel(xAttrList->getValueByIndex(nAttr));
@@ -218,7 +218,7 @@ SvXMLImportContext *XMLFootnoteImportContext::CreateChildContext(
 
             // ignore content: return default context
             pContext = new SvXMLImportContext(GetImport(),
-                                              nPrefix, rLocalName);
+                                              nInPrefix, rLocalName);
             break;
         }
 
@@ -226,11 +226,11 @@ SvXMLImportContext *XMLFootnoteImportContext::CreateChildContext(
         case XML_TOK_FTN_ENDNOTE_BODY:
             // return footnote body
             pContext = new XMLFootnoteBodyImportContext(GetImport(),
-                                                        nPrefix, rLocalName);
+                                                        nInPrefix, rLocalName);
             break;
         default:
             // default:
-            pContext = SvXMLImportContext::CreateChildContext(nPrefix,
+            pContext = SvXMLImportContext::CreateChildContext(nInPrefix,
                                                               rLocalName,
                                                               xAttrList);
             break;

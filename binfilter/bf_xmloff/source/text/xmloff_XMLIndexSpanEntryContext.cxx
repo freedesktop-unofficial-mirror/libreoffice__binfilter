@@ -44,11 +44,11 @@ using ::com::sun::star::beans::PropertyValue;
 TYPEINIT1( XMLIndexSpanEntryContext, XMLIndexSimpleEntryContext);
 
 XMLIndexSpanEntryContext::XMLIndexSpanEntryContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLIndexTemplateContext& rTemplate,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        XMLIndexSimpleEntryContext(rImport, rTemplate.sTokenText,
+        XMLIndexSimpleEntryContext(rInImport, rTemplate.sTokenText,
                                    rTemplate, nPrfx, rLocalName)
 {
     nValues++;  // one more for the text string

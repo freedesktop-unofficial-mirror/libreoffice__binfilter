@@ -55,10 +55,10 @@ using ::binfilter::xmloff::token::XML_HREF;
 TYPEINIT1( XMLAutoMarkFileContext, SvXMLImportContext );
 
 XMLAutoMarkFileContext::XMLAutoMarkFileContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         sIndexAutoMarkFileURL(
             RTL_CONSTASCII_USTRINGPARAM("IndexAutoMarkFileURL"))
 {
@@ -79,10 +79,10 @@ void XMLAutoMarkFileContext::StartElement(
     for( sal_Int16 i = 0; i < nLength; i++ )
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
-        if ( ( XML_NAMESPACE_XLINK == nPrefix ) &&
+        if ( ( XML_NAMESPACE_XLINK == nLclPrefix ) &&
              IsXMLToken(sLocalName, XML_HREF) )
         {
             Any aAny;

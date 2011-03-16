@@ -57,8 +57,6 @@ using ::com::sun::star::uno::Any;
 XMLIndexMarkExport::XMLIndexMarkExport(
     SvXMLExport& rExp,
     XMLTextParagraphExport& rParaExp) :
-        rExport(rExp),
-        rParaExport(rParaExp),
         sLevel(RTL_CONSTASCII_USTRINGPARAM("Level")),
         sUserIndexName(RTL_CONSTASCII_USTRINGPARAM("UserIndexName")),
         sPrimaryKey(RTL_CONSTASCII_USTRINGPARAM("PrimaryKey")),
@@ -71,7 +69,9 @@ XMLIndexMarkExport::XMLIndexMarkExport(
         sPrimaryKeyReading(RTL_CONSTASCII_USTRINGPARAM("PrimaryKeyReading")),
         sSecondaryKeyReading(RTL_CONSTASCII_USTRINGPARAM
                              ("SecondaryKeyReading")),
-        sMainEntry(RTL_CONSTASCII_USTRINGPARAM("IsMainEntry"))
+        sMainEntry(RTL_CONSTASCII_USTRINGPARAM("IsMainEntry")),
+        rExport(rExp),
+        rParaExport(rParaExp)
 {
 }
 
@@ -189,7 +189,7 @@ void XMLIndexMarkExport::ExportTOCMarkAttributes(
     const Reference<XPropertySet> & rPropSet)
 {
     // outline level
-    sal_Int16 nLevel;
+    sal_Int16 nLevel(0);
     Any aAny = rPropSet->getPropertyValue(sLevel);
     aAny >>= nLevel;
     OUStringBuffer sBuf;

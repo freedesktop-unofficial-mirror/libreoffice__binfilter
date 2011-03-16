@@ -47,27 +47,27 @@ using ::com::sun::star::xml::sax::XAttributeList;
 TYPEINIT1( XMLFootnoteBodyImportContext, SvXMLImportContext );
 
 XMLFootnoteBodyImportContext::XMLFootnoteBodyImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName)
+        SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
 }
 
 SvXMLImportContext* XMLFootnoteBodyImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     // return text context
     SvXMLImportContext *pContext =
         GetImport().GetTextImport()->CreateTextChildContext(GetImport(),
-                                                       nPrefix,
+                                                       nInPrefix,
                                                        rLocalName,
                                                        xAttrList,
                                                        XML_TEXT_TYPE_FOOTNOTE);
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }

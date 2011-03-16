@@ -74,22 +74,12 @@ const sal_Char sAPI_Locale[] = "Locale";
 TYPEINIT1( XMLIndexAlphabeticalSourceContext, XMLIndexSourceBaseContext );
 
 XMLIndexAlphabeticalSourceContext::XMLIndexAlphabeticalSourceContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropSet) :
-        XMLIndexSourceBaseContext(rImport, nPrfx, rLocalName,
+        XMLIndexSourceBaseContext(rInImport, nPrfx, rLocalName,
                                   rPropSet, sal_False),
-        sMainEntryStyleName(),
-        bMainEntryStyleNameOK(sal_False),
-        bSeparators(sal_False),
-        bCombineEntries(sal_True),
-        bCaseSensitive(sal_True),
-        bEntry(sal_False),
-        bUpperCase(sal_False),
-        bCombineDash(sal_False),
-        bCombinePP(sal_True),
-        bCommaSeparated(sal_False),
         sMainEntryCharacterStyleName(RTL_CONSTASCII_USTRINGPARAM(
             sAPI_MainEntryCharacterStyleName)),
         sUseAlphabeticalSeparators(RTL_CONSTASCII_USTRINGPARAM(
@@ -101,9 +91,19 @@ XMLIndexAlphabeticalSourceContext::XMLIndexAlphabeticalSourceContext(
         sUseUpperCase(RTL_CONSTASCII_USTRINGPARAM(sAPI_UseUpperCase)),
         sUseDash(RTL_CONSTASCII_USTRINGPARAM(sAPI_UseDash)),
         sUsePP(RTL_CONSTASCII_USTRINGPARAM(sAPI_UsePP)),
+        sIsCommaSeparated(RTL_CONSTASCII_USTRINGPARAM("IsCommaSeparated")),
         sSortAlgorithm(RTL_CONSTASCII_USTRINGPARAM(sAPI_SortAlgorithm)),
         sLocale(RTL_CONSTASCII_USTRINGPARAM(sAPI_Locale)),
-        sIsCommaSeparated(RTL_CONSTASCII_USTRINGPARAM("IsCommaSeparated"))
+        sMainEntryStyleName(),
+        bMainEntryStyleNameOK(sal_False),
+        bSeparators(sal_False),
+        bCombineEntries(sal_True),
+        bCaseSensitive(sal_True),
+        bEntry(sal_False),
+        bUpperCase(sal_False),
+        bCombineDash(sal_False),
+        bCombinePP(sal_True),
+        bCommaSeparated(sal_False)
 {
 }
 
@@ -248,15 +248,15 @@ void XMLIndexAlphabeticalSourceContext::EndElement()
 }
 
 SvXMLImportContext* XMLIndexAlphabeticalSourceContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+    if ( (XML_NAMESPACE_TEXT == nInPrefix) &&
          IsXMLToken( rLocalName, XML_ALPHABETICAL_INDEX_ENTRY_TEMPLATE ) )
     {
         return new XMLIndexTemplateContext(GetImport(), rIndexPropertySet,
-                                           nPrefix, rLocalName,
+                                           nInPrefix, rLocalName,
                                            aLevelNameAlphaMap,
                                            XML_OUTLINE_LEVEL,
                                            aLevelStylePropNameAlphaMap,
@@ -264,7 +264,7 @@ SvXMLImportContext* XMLIndexAlphabeticalSourceContext::CreateChildContext(
     }
     else
     {
-        return XMLIndexSourceBaseContext::CreateChildContext(nPrefix,
+        return XMLIndexSourceBaseContext::CreateChildContext(nInPrefix,
                                                              rLocalName,
                                                              xAttrList);
     }

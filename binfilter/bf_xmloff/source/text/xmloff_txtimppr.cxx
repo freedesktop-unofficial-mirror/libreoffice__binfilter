@@ -136,9 +136,9 @@ sal_Bool XMLTextImportPropertyMapper::handleSpecialItem(
 
 XMLTextImportPropertyMapper::XMLTextImportPropertyMapper(
             const UniReference< XMLPropertySetMapper >& rMapper,
-            SvXMLImport& rImport,
+            SvXMLImport& rInImport,
             XMLFontStylesContext *pFontDecls ) :
-    SvXMLImportPropertyMapper( rMapper, rImport ),
+    SvXMLImportPropertyMapper( rMapper, rInImport ),
     nSizeTypeIndex( -2 ),
     xFontDecls( pFontDecls )
 {
@@ -260,7 +260,7 @@ void XMLTextImportPropertyMapper::FontDefaultsCheck(
 
 void XMLTextImportPropertyMapper::finished(
             ::std::vector< XMLPropertyState >& rProperties,
-            sal_Int32 nStartIndex, sal_Int32 nEndIndex ) const
+            sal_Int32 /*nStartIndex*/, sal_Int32 /*nEndIndex*/ ) const
 {
     sal_Bool bHasAnyHeight = sal_False;
     sal_Bool bHasAnyMinHeight = sal_False;
@@ -649,13 +649,13 @@ void XMLTextImportPropertyMapper::finished(
             const_cast < XMLTextImportPropertyMapper * > ( this )
                 ->nSizeTypeIndex  = -1;
             sal_Int32 nCount = getPropertySetMapper()->GetEntryCount();
-            for( sal_Int32 i=0; i < nCount; i++ )
+            for( sal_Int32 j=0; j < nCount; j++ )
             {
                 if( CTF_SIZETYPE == getPropertySetMapper()
-                        ->GetEntryContextId( i ) )
+                        ->GetEntryContextId( j ) )
                 {
                     const_cast < XMLTextImportPropertyMapper * > ( this )
-                        ->nSizeTypeIndex = i;
+                        ->nSizeTypeIndex = j;
                     break;
                 }
             }
