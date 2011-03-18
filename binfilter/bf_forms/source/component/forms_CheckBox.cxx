@@ -163,7 +163,7 @@ void SAL_CALL OCheckBoxModel::disposing()
 }
 
 //------------------------------------------------------------------------------
-void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& _rEvent) throw(RuntimeException)
+void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& /*rEvent*/) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OCheckBoxModel::_propertyChanged: dead code!?" );
 }

@@ -1398,7 +1398,7 @@ sal_Bool OBoundControlModel::_approve(sal_Int32 _nColumnType)
 
 // XLoadListener
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::loaded(const com::sun::star::lang::EventObject& _rEvent) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::loaded(const com::sun::star::lang::EventObject& /*rEvent*/) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OBoundControlModel::loaded: dead code!?" );
 }
@@ -1431,7 +1431,7 @@ void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObj
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::reloaded(const com::sun::star::lang::EventObject& aEvent) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::reloaded(const com::sun::star::lang::EventObject& /*rEvent*/) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OBoundControlModel::reloaded: dead code!?" );
 }

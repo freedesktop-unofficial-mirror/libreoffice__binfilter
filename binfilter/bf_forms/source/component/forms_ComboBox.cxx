@@ -435,7 +435,7 @@ void OComboBoxModel::loadData()
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OComboBoxModel::reloaded( const EventObject& aEvent ) throw(RuntimeException)
+void SAL_CALL OComboBoxModel::reloaded( const EventObject& /*rEvent*/ ) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OComboBoxModel::reloaded: dead code!?" );
 }
