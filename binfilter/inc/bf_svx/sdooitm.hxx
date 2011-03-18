@@ -28,6 +28,8 @@
 #ifndef _SDOOITM_HXX
 #define _SDOOITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 namespace binfilter {
 

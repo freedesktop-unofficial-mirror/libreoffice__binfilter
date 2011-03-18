@@ -29,6 +29,8 @@
 #ifndef _SVDXCGV_HXX
 #define _SVDXCGV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
 #include <bf_svx/svdhdl.hxx>

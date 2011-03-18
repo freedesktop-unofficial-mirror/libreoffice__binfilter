@@ -29,8 +29,8 @@
 #ifndef _PVPRTDAT_HXX
 #define _PVPRTDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
 
-#include <tools/solar.h>
 namespace binfilter {
 
 class SwPagePreViewPrtData

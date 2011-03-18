@@ -29,7 +29,8 @@
 #ifndef _SVDVITER_HXX
 #define _SVDVITER_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 class OutputDevice;
 class Window;
 namespace binfilter {

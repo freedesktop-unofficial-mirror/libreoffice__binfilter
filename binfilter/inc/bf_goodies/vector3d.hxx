@@ -29,7 +29,7 @@
 #ifndef _SVX_VECTOR3D_HXX
 #define _SVX_VECTOR3D_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #ifndef _INC_MATH
 #include <math.h>

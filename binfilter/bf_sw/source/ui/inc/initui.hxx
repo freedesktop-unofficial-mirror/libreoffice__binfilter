@@ -29,7 +29,7 @@
 #ifndef _INITUI_HXX
 #define _INITUI_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 class String;
 namespace binfilter {
 class SvStringsDtor;

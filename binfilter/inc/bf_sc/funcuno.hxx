@@ -29,6 +29,8 @@
 #ifndef SC_FUNCUNO_HXX
 #define SC_FUNCUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #include <com/sun/star/sheet/XFunctionAccess.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>

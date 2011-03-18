@@ -29,6 +29,8 @@
 #ifndef _SVDMODEL_HXX
 #define _SVDMODEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <cppuhelper/weakref.hxx>
 
 #include <bf_so3/svstor.hxx>
@@ -523,7 +525,7 @@ public:
     // - beim Laden eines Dokuments nicht sofort mitgeladen,
     //   sondern erst wenn sie gebraucht (z.B. angezeigt) werden.
     // - ggf. wieder aus dem Speicher geworfen, falls Sie gerade
-    //   nicht benötigt werden.
+    //   nicht benï¿½tigt werden.
     // Damit das funktioniert, muss die virtuelle Methode
     // GetDocumentStream() ueberladen werden.
     // Default=FALSE. Flag ist nicht persistent.
@@ -746,7 +748,7 @@ public:
           |   ...    |            |
      ?---?--??---?--? ?----?-------?
      |SdrPage | |SdrPage |  |SdrLayerAdmin |
-     ?--?---???-?-ÂÙ  ?--?------?-?
+     ?--?---???-?-ï¿½ï¿½  ?--?------?-?
          |        |  |  |       |       ?------------------?
     ?---?---?          ?----?----?            ?------?------?
     |   ...   |           |    ...    |             |      ...      |

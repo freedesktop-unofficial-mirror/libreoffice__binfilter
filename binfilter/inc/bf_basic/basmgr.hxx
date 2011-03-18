@@ -29,6 +29,8 @@
 #ifndef _BASMGR_HXX
 #define _BASMGR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <bf_svtools/brdcst.hxx>
 

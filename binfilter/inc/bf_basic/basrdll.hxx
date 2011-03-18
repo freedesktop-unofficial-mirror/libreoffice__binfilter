@@ -29,6 +29,8 @@
 #ifndef _BASRDLL_HXX
 #define _BASRDLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 class ResMgr;
 
 #include <vcl/accel.hxx>

@@ -29,6 +29,8 @@
 #ifndef _SVDTRANS_HXX
 #define _SVDTRANS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 

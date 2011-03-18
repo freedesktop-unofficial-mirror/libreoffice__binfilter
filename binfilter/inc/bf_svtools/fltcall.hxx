@@ -28,6 +28,8 @@
 
 #ifndef _FLTCALL_HXX
 #define _FLTCALL_HXX
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 #include <vcl/field.hxx>
 

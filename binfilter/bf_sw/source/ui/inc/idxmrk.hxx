@@ -42,7 +42,7 @@
 
 #include <vcl/button.hxx>
 
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #include <bf_sfx2/childwin.hxx>
 #include "toxe.hxx"
 #include <bf_svtools/stdctrl.hxx>

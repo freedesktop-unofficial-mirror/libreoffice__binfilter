@@ -29,6 +29,8 @@
 #ifndef _CTRLTOOL_HXX
 #define _CTRLTOOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <sal/types.h>
 #include <tools/list.hxx>
 #include <vcl/metric.hxx>

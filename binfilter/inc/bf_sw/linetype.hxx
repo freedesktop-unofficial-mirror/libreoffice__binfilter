@@ -28,7 +28,7 @@
 #ifndef _LINETYPE_HXX
 #define _LINETYPE_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 /*--------------------------------------------------------------------

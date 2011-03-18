@@ -28,9 +28,9 @@
 #ifndef _INDEX_HXX
 #define _INDEX_HXX
 
-#include <limits.h>
+#include <bf_svtools/bf_solar.h>
 
-#include <tools/solar.h>
+#include <limits.h>
 
 #include <tools/rtti.hxx>               // for RTTI of SwIndexReg
 /*N*/ #include <tools/debug.hxx> //for stripping

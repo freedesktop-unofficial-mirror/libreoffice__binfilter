@@ -29,7 +29,7 @@
 #ifndef _SVX_FMGLOB_HXX
 #define _SVX_FMGLOB_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <bf_svx/svdobj.hxx>
 

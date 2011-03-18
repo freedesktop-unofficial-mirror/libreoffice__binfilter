@@ -29,6 +29,8 @@
 #ifndef SC_USERDAT_HXX
 #define SC_USERDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdobj.hxx>
 
 #include <bf_svtools/imap.hxx>

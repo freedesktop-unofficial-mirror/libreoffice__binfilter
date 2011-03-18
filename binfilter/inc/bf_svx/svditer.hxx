@@ -29,6 +29,8 @@
 #ifndef _SVDITER_HXX
 #define _SVDITER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <sal/types.h>
 
 #include <tools/list.hxx>

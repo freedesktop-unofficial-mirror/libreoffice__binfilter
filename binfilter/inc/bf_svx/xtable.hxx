@@ -28,6 +28,8 @@
 #ifndef _XTABLE_HXX
 #define _XTABLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <bf_svx/xpoly.hxx>

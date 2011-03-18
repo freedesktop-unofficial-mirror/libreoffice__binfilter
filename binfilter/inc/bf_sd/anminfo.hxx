@@ -29,6 +29,8 @@
 #ifndef _SD_ANMINFO_HXX
 #define _SD_ANMINFO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/presentation/AnimationEffect.hpp>
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
 #include <com/sun/star/presentation/ClickAction.hpp>

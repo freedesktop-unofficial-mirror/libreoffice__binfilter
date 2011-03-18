@@ -29,6 +29,8 @@
 #ifndef _MSGWR_HXX
 #define _MSGWR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter
 {
 

@@ -29,7 +29,7 @@
 #ifndef _UITOOL_HXX
 #define _UITOOL_HXX
 
-#include <vcl/wintypes.hxx>
+#include <tools/wintypes.hxx>
 #include <vcl/field.hxx>
 
 /*N*/ #include <tools/debug.hxx> //for stripping

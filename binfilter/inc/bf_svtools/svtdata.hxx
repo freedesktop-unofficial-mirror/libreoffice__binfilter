@@ -29,6 +29,7 @@
 #ifndef _SVTOOLS_SVTDATA_HXX
 #define _SVTOOLS_SVTDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
 #include <com/sun/star/lang/Locale.hpp>
 #include <tools/resid.hxx>
 

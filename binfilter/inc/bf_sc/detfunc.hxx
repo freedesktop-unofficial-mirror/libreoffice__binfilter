@@ -29,6 +29,8 @@
 #ifndef SC_DETFUNC_HXX
 #define SC_DETFUNC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 
 #include <tools/color.hxx>

@@ -1,6 +1,7 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
+ *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * Copyright 2000, 2010 Oracle and/or its affiliates.
@@ -33,7 +34,7 @@
 #include <bf_svx/svdobj.hxx>
 
 #include "adjust.hxx"
-#include "tools/solar.h"
+#include <bf_svtools/bf_solar.h>
 #include <tools/gen.hxx>
 #include "schattr.hxx"
 #ifndef _SVX_CHRTITEM_HXX //autogen

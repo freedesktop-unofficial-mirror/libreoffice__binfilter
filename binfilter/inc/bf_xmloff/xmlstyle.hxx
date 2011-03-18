@@ -29,6 +29,8 @@
 #ifndef _XMLOFF_XMLSTYLE_HXX
 #define _XMLOFF_XMLSTYLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <rsc/rscsfx.hxx>
 
 #include <tools/rtti.hxx>

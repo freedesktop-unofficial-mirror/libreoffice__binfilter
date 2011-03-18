@@ -28,6 +28,8 @@
 #ifndef _PAGEFRM_HXX
 #define _PAGEFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #include <bf_svtools/svarray.hxx>

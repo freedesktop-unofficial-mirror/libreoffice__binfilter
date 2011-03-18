@@ -183,56 +183,6 @@ void OPatternModel::fillProperties(
     return FRM_COMPONENT_PATTERNFIELD;  // old (non-sun) name for compatibility !
 }
 
-// XBoundComponent
-//------------------------------------------------------------------------------
-sal_Bool OPatternModel::_commit()
-{
-    ::rtl::OUString aNewValue = getString(m_xAggregateFastSet->getFastPropertyValue( OPatternModel::nTextHandle ));
-    if (aNewValue != m_aSaveValue)
-    {
-        if (!aNewValue.getLength() && !m_bRequired && m_bEmptyIsNull)
-            m_xColumnUpdate->updateNull();
-        else
-        {
-            try
-            {
-                m_xColumnUpdate->updateString(aNewValue);
-            }
-            catch(Exception&)
-            {
-                return sal_False;
-            }
-        }
-        m_aSaveValue = aNewValue;
-    }
-    return sal_True;
-}
-
-// XPropertyChangeListener
-//------------------------------------------------------------------------------
-void OPatternModel::_onValueChanged()
-{
-    m_aSaveValue = m_xColumn->getString();
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateFastSet->setFastPropertyValue(OPatternModel::nTextHandle, makeAny(m_aSaveValue));
-    }
-}
-
-// XReset
-//------------------------------------------------------------------------------
-void OPatternModel::_reset( void )
-{
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateFastSet->setFastPropertyValue(OPatternModel::nTextHandle, makeAny(m_aDefaultText));
-    }
-}
-
 //.........................................................................
 }   // namespace frm
 //.........................................................................

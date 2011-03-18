@@ -28,6 +28,8 @@
 #ifndef SW_INPUTWIN_HXX
 #define SW_INPUTWIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <vcl/menu.hxx>
 #include <bf_sfx2/childwin.hxx>

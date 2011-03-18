@@ -33,8 +33,8 @@
 
 #include <cppuhelper/implbase1.hxx>
 #include <cppuhelper/typeprovider.hxx>
-#include <cppuhelper/extract.hxx>
 
+#include <comphelper/extract.hxx>
 #include <comphelper/processfactory.hxx>
 
 #include <rtl/ustrbuf.hxx>

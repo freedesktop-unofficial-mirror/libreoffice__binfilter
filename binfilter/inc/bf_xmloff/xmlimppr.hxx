@@ -28,7 +28,7 @@
 #ifndef _XMLOFF_XMLIMPPR_HXX
 #define _XMLOFF_XMLIMPPR_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 #include <com/sun/star/beans/XPropertySet.hpp>

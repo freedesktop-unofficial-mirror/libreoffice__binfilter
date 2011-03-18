@@ -231,61 +231,6 @@ void OCurrencyModel::fillProperties(
     return FRM_COMPONENT_CURRENCYFIELD; // old (non-sun) name for compatibility !
 }
 
-// XBoundComponent
-//------------------------------------------------------------------------------
-sal_Bool OCurrencyModel::_commit()
-{
-    Any aNewValue = m_xAggregateFastSet->getFastPropertyValue( OCurrencyModel::nValueHandle );
-    if (!compare(aNewValue, m_aSaveValue))
-    {
-        if (aNewValue.getValueType().getTypeClass() == TypeClass_VOID)
-            m_xColumnUpdate->updateNull();
-        else
-        {
-            try
-            {
-                m_xColumnUpdate->updateDouble(getDouble(aNewValue));
-            }
-            catch(Exception&)
-            {
-                return sal_False;
-            }
-        }
-        m_aSaveValue = aNewValue;
-    }
-    return sal_True;
-}
-
-//------------------------------------------------------------------------------
-void OCurrencyModel::_onValueChanged()
-{
-    m_aSaveValue <<= m_xColumn->getDouble();
-    if (m_xColumn->wasNull())
-        m_aSaveValue.clear();
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateFastSet->setFastPropertyValue(OCurrencyModel::nValueHandle, m_aSaveValue);
-    }
-}
-
-// XReset
-//------------------------------------------------------------------------------
-void OCurrencyModel::_reset( void )
-{
-    Any aValue;
-    if (m_aDefault.getValueType().getTypeClass() == TypeClass_DOUBLE)
-        aValue = m_aDefault;
-
-    {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
-        // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
-        // our own mutex locked
-        MutexRelease aRelease(m_aMutex);
-        m_xAggregateFastSet->setFastPropertyValue(OCurrencyModel::nValueHandle, aValue);
-    }
-}
-
 //.........................................................................
 }   // namespace frm
 //.........................................................................

@@ -29,6 +29,8 @@
 #ifndef _SVDOVIRT_HXX
 #define _SVDOVIRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdobj.hxx>
 namespace binfilter {
 

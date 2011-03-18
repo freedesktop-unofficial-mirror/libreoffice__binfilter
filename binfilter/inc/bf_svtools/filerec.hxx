@@ -29,6 +29,8 @@
 #ifndef _SFXFILEREC_HXX
 #define _SFXFILEREC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/debug.hxx>
 
 #include <tools/stream.hxx>

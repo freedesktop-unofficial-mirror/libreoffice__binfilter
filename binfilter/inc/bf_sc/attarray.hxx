@@ -29,6 +29,8 @@
 #ifndef SC_ATRARR_HXX
 #define SC_ATRARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include "attrib.hxx"
 class Rectangle;

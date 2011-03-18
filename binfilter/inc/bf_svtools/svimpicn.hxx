@@ -28,6 +28,8 @@
 #ifndef _SVIMPICN_HXX
 #define _SVIMPICN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/virdev.hxx>
 
 #include <vcl/scrbar.hxx>

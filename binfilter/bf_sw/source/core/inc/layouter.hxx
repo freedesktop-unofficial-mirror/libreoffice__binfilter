@@ -28,6 +28,8 @@
 #ifndef _LAYOUTER_HXX
 #define _LAYOUTER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "swtypes.hxx"
 namespace binfilter {
 

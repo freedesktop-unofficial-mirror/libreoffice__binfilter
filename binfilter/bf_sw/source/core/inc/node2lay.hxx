@@ -27,6 +27,9 @@
  ************************************************************************/
 #ifndef _NODE2LAY_HXX
 #define _NODE2LAY_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 
 /* --------------------------------------------------

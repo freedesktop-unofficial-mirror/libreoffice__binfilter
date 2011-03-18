@@ -28,6 +28,8 @@
 #ifndef _FMTCLBL_HXX
 #define _FMTCLBL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/eitem.hxx>
 #include <format.hxx>

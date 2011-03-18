@@ -28,6 +28,8 @@
 #ifndef _TXMSRT_HXX
 #define _TXMSRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <i18npool/lang.h>
 #include <tox.hxx>
 class CharClass;

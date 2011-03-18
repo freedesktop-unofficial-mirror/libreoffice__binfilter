@@ -29,6 +29,8 @@
 #ifndef _PNGREAD_HXX
 #define _PNGREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 #include <vcl/graph.h>
 

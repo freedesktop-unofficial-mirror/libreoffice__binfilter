@@ -29,6 +29,8 @@
 #ifndef _SCH_SCHOPT_HXX
 #define _SCH_SCHOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // header for TYPEINFO
 #include <tools/rtti.hxx>
 // header for ConfigItem

@@ -29,6 +29,8 @@
 #ifndef _WINMTF_HXX
 #define _WINMTF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifdef DBG_UTIL
 #define WIN_MTF_ASSERT
 #endif

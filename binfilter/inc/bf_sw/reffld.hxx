@@ -28,6 +28,8 @@
 #ifndef _REFFLD_HXX
 #define _REFFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <fldbas.hxx>
 namespace binfilter {
 

@@ -29,6 +29,8 @@
 #ifndef _TWAIN_HXX
 #define _TWAIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // please add new platforms if TWAIN is available
 #if defined WIN || defined WNT || defined UNX
 #define TWAIN_AVAILABLE 1

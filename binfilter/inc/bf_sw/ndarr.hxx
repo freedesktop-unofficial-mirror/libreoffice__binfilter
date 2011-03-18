@@ -29,6 +29,8 @@
 #ifndef _NDARR_HXX
 #define _NDARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include <bparr.hxx>

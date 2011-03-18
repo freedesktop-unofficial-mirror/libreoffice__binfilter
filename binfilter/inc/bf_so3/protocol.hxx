@@ -29,8 +29,9 @@
 #ifndef _PROTOCOL_HXX
 #define _PROTOCOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/errcode.hxx>
-#include <tools/solar.h>
 #include <tools/string.hxx>
 
 #include "bf_so3/so3dllapi.h"

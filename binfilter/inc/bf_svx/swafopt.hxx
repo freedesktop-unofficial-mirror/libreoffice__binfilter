@@ -28,6 +28,8 @@
 #ifndef _SVXSWAFOPT_HXX
 #define _SVXSWAFOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/font.hxx>
 class SvStringsISortDtor;
 namespace binfilter {

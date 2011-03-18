@@ -28,6 +28,8 @@
 #ifndef _LNKBASE_HXX
 #define _LNKBASE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <sot/exchange.hxx>
 #include <tools/ref.hxx>
 #include <bf_so3/linksrc.hxx>

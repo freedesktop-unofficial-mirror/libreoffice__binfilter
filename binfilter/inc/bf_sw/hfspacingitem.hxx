@@ -28,6 +28,8 @@
 #ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #define _SW_HF_EAT_SPACINGITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/eitem.hxx>
 #include <format.hxx>

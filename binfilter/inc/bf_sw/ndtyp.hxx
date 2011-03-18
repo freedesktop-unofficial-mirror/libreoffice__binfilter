@@ -29,7 +29,7 @@
 #ifndef _NDTYP_HXX
 #define _NDTYP_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 // Ids fuer die verschiedenden Nodes; in der Basisklasse steht der Member,

@@ -29,6 +29,8 @@
 #ifndef SC_CONDITIO_HXX
 #define SC_CONDITIO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 
 #include <bf_svtools/svarray.hxx>

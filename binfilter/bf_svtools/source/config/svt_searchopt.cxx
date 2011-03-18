@@ -31,7 +31,7 @@
 
 #include "searchopt.hxx"
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/debug.hxx>
 #include <unotools/configitem.hxx>
 #include <sal/macros.h>

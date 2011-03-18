@@ -29,6 +29,8 @@
 #ifndef SC_SUBTOTAL_HXX
 #define SC_SUBTOTAL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 
 #ifndef MSC

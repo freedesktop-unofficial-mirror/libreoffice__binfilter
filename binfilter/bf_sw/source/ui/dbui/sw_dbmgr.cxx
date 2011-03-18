@@ -609,10 +609,6 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/ }
 
 
-SwDbtoolsClient* SwNewDBMgr::pDbtoolsClient = NULL;
-
-
-
 /*N*/ SwConnectionDisposedListener_Impl::SwConnectionDisposedListener_Impl(SwNewDBMgr& rMgr) :
 /*N*/     rDBMgr(rMgr)
 /*N*/ {};

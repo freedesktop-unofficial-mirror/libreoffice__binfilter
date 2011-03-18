@@ -29,6 +29,7 @@
 #ifndef _SB_SBMOD_HXX
 #define _SB_SBMOD_HXX
 
+#include <bf_svtools/bf_solar.h>
 #include "sbdef.hxx"
 #include "sbxobj.hxx"
 #include "sbxdef.hxx"

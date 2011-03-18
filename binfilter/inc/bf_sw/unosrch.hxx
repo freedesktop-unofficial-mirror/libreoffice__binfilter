@@ -28,6 +28,8 @@
 #ifndef _UNOSRCH_HXX
 #define _UNOSRCH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/util/XPropertyReplace.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #include <com/sun/star/lang/XUnoTunnel.hpp>

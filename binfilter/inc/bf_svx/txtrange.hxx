@@ -29,6 +29,8 @@
 #ifndef _MyTXTRANGE_HXX
 #define _MyTXTRANGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef _TXTRANGE_HXX
 #define _SVSTDARR_BOOLS
 #define _SVSTDARR_LONGS

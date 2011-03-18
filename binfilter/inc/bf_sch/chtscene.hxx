@@ -29,6 +29,8 @@
 #ifndef _CHTSCENE_HXX
 #define _CHTSCENE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/polysc3d.hxx>
 #include <chtmodel.hxx>
 namespace binfilter {

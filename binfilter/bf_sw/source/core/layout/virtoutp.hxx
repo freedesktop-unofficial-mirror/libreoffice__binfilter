@@ -28,6 +28,8 @@
 #ifndef _VIRTOUTP_HXX
 #define _VIRTOUTP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/virdev.hxx>
 
 #include "swtypes.hxx"      // UCHAR

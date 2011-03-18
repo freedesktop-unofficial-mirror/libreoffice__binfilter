@@ -29,6 +29,8 @@
 #ifndef _PERSIST_HXX
 #define _PERSIST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/time.hxx>
 #include <bf_so3/so2ref.hxx>
 #include <bf_so3/iface.hxx>

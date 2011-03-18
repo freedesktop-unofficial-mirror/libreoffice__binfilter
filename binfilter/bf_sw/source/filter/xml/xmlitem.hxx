@@ -31,7 +31,7 @@
 
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <limits.h>
 
 #include <bf_xmloff/xmlictxt.hxx>

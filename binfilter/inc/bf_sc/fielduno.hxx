@@ -29,6 +29,8 @@
 #ifndef SC_FIELDUNO_HXX
 #define SC_FIELDUNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"           // ScRange, ScAddress
 #include "mutexhlp.hxx"
 

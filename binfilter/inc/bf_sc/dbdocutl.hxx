@@ -29,7 +29,7 @@
 #ifndef SC_DBDOCUTL_HXX
 #define SC_DBDOCUTL_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <com/sun/star/uno/Reference.hxx>
 namespace binfilter {

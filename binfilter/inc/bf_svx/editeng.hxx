@@ -30,6 +30,9 @@
 // MyEDITENG, wegen exportiertem EditEng
 #ifndef _MyEDITENG_HXX
 #define _MyEDITENG_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 class OutputDevice;
 class String;
 class MapMode;

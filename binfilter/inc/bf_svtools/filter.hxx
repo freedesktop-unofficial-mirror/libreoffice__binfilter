@@ -29,6 +29,8 @@
 #ifndef _FILTER_HXX
 #define _FILTER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/fltcall.hxx>
 
 #include "bf_svtools/svtdllapi.h"

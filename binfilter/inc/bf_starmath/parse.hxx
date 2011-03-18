@@ -28,6 +28,8 @@
 #ifndef PARSE_HXX
 #define PARSE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <vcl/svapp.hxx>
 #include <tools/stack.hxx>

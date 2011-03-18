@@ -28,6 +28,8 @@
 #ifndef _FRAME_HXX
 #define _FRAME_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 #include "swtypes.hxx"  // fuer SwTwips
 #include "swrect.hxx"

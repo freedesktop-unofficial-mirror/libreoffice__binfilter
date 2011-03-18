@@ -29,6 +29,8 @@
 #ifndef _SBXCORE_HXX
 #define _SBXCORE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 #include <tools/ref.hxx>
 

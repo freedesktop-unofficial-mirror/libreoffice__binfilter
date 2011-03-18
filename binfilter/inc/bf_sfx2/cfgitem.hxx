@@ -1,6 +1,7 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
+ *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * Copyright 2000, 2010 Oracle and/or its affiliates.
@@ -57,7 +58,7 @@ class SfxShell;
 #define SFX_ITEMTYPE_INTERFACE_START    20
 #define SFX_ITEMTYPE_INTERFACE_END     300
 }//end of namespace binfilter
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 class SfxConfigItem
 {

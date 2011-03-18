@@ -28,6 +28,8 @@
 #ifndef _SWSTBCTL_HXX
 #define _SWSTBCTL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <bf_sfx2/stbitem.hxx>

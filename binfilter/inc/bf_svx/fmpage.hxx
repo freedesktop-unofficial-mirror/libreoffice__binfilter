@@ -29,6 +29,8 @@
 #ifndef _SVX_FMPAGE_HXX
 #define _SVX_FMPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdpage.hxx>
 
 #include <comphelper/uno3.hxx>

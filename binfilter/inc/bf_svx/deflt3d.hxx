@@ -29,6 +29,8 @@
 #ifndef _E3D_DEFLT3D_HXX
 #define _E3D_DEFLT3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_goodies/base3d.hxx>
 
 namespace binfilter {

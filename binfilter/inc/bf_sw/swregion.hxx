@@ -28,6 +28,8 @@
 #ifndef _SWREGION_HXX
 #define _SWREGION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include "swrect.hxx"

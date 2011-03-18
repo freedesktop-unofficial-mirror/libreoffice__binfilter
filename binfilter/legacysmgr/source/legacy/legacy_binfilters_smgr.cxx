@@ -61,7 +61,7 @@
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
 #include <com/sun/star/uno/XUnloadingPreference.hpp>
 
-#include "tools/solar.h"
+#include <bf_svtools/bf_solar.h>
 
 #define OUSTR(x) ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM(x) )
 

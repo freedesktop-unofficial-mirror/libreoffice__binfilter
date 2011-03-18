@@ -26,6 +26,7 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/miscopt.hxx>
 #include <unotools/configmgr.hxx>
 #include <unotools/configitem.hxx>

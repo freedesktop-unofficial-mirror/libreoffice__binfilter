@@ -29,6 +29,8 @@
 #ifndef _SVDVMARK_HXX
 #define _SVDVMARK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/outdev.hxx>
 
 namespace binfilter {

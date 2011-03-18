@@ -29,6 +29,8 @@
 #ifndef _FRQITEM_HXX
 #define _FRQITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 #include <tools/time.hxx>

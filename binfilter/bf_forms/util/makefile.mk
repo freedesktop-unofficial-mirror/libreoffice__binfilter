@@ -139,4 +139,10 @@ $(MISC)$/$(SHL1TARGET).flt: makefile.mk
     @echo _TI2						>> $@
     @echo _real						>> $@
 
+ALLTAR : $(MISC)/bf_frm.component
 
+$(MISC)/bf_frm.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_frm.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_frm.component

@@ -28,7 +28,9 @@
 #ifndef _SWRECT_HXX
 #define _SWRECT_HXX
 
+#include <bf_svtools/bf_solar.h>
 #include <osl/diagnose.h>
+
 
 #include <tools/gen.hxx>
 class SvStream;

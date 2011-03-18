@@ -28,6 +28,8 @@
 #ifndef _NUMPARA_HXX
 #define _NUMPARA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <vcl/lstbox.hxx>
 #include <vcl/fixed.hxx>

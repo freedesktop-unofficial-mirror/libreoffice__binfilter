@@ -29,6 +29,9 @@
 #ifndef _B3D_VOLUM_HXX
 #define _B3D_VOLUM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "vector3d.hxx"
 
 #ifndef _INC_FLOAT

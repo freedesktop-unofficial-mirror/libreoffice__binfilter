@@ -29,6 +29,8 @@
 #ifndef SC_VALIDAT_HXX
 #define SC_VALIDAT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "conditio.hxx"
 namespace binfilter {
 

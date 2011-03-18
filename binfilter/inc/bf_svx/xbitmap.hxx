@@ -29,6 +29,8 @@
 #ifndef _SVX_XBITMAP_HXX
 #define _SVX_XBITMAP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/color.hxx>
 #include <vcl/bitmap.hxx>
 #include <bf_goodies/graphicobject.hxx>

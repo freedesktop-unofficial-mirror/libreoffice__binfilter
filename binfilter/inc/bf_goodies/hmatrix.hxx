@@ -29,6 +29,9 @@
 #ifndef _B3D_HMATRIX_HXX
 #define _B3D_HMATRIX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "point4d.hxx"
 
 namespace binfilter {

@@ -26,8 +26,9 @@
  *
  ************************************************************************/
 
-#if defined(WIN) || defined(WNT)
-#include <tools/svwin.h>
+#if defined WNT
+#include <bf_svtools/bf_prewin.h>
+#include <bf_svtools/bf_postwin.h>
 #endif
 
 #include "impldde.hxx"

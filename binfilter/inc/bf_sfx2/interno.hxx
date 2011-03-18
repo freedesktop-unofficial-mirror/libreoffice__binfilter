@@ -28,6 +28,8 @@
 #ifndef _SFX_INTERNO_HXX
 #define _SFX_INTERNO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/ipobj.hxx>
 #include "bf_sfx2/objsh.hxx"
 #include "bf_sfx2/sfx.hrc"

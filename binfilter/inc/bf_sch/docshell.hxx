@@ -29,6 +29,8 @@
 #ifndef _SCH_DOCSHELL_HXX
 #define _SCH_DOCSHELL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "schdll0.hxx"
 
 #include <bf_sfx2/docfac.hxx>
@@ -87,7 +89,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
     void Construct() throw();
 
      // #61907# bei deaktivierung des InPlaceEdit evtl. gebufferte neue Daten
-    // übernehmen
+    // ï¿½bernehmen
  protected:
 
  public:

@@ -29,6 +29,8 @@
 #ifndef _GLOSLST_HXX
 #define _GLOSLST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/datetime.hxx>
 #include <tools/string.hxx>

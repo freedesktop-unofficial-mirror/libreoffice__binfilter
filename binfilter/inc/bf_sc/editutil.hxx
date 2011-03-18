@@ -29,6 +29,8 @@
 #ifndef SC_EDITUTIL_HXX
 #define SC_EDITUTIL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svx/editeng.hxx>
 

@@ -29,6 +29,8 @@
 #ifndef SC_DETDATA_HXX
 #define SC_DETDATA_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include "global.hxx"

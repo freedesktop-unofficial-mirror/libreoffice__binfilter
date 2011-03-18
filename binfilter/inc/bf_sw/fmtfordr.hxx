@@ -28,6 +28,8 @@
 #ifndef _FMTFORDR_HXX
 #define _FMTFORDR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 #include <format.hxx>
 namespace binfilter {

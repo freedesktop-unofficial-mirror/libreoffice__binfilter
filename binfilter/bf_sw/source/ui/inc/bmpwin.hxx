@@ -29,6 +29,8 @@
 #ifndef _BMPWIN_HXX
 #define _BMPWIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <vcl/window.hxx>
 namespace binfilter {

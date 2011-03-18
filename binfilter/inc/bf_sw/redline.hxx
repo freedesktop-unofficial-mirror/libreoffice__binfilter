@@ -28,6 +28,8 @@
 #ifndef _REDLINE_HXX
 #define _REDLINE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/datetime.hxx>
 #include <tools/string.hxx>
 

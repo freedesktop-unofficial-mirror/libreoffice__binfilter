@@ -28,6 +28,8 @@
 #ifndef _SVXLINKMGR_HXX
 #define _SVXLINKMGR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/linkmgr.hxx>
 class Graphic;
 class Size;

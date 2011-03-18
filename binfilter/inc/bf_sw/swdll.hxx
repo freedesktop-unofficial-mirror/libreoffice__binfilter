@@ -29,6 +29,8 @@
 #ifndef SW_SWDLL_HXX
 #define SW_SWDLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 class ResMgr;
 class SvFactory;
 class SotFactory;

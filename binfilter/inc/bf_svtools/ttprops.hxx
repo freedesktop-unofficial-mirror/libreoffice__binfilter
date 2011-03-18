@@ -29,6 +29,8 @@
 #ifndef _SVTOOLS_TTPROPS_HXX
 #define _SVTOOLS_TTPROPS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <tools/rtti.hxx>
@@ -43,7 +45,7 @@ namespace binfilter
 
 class SfxPoolItem;
 
-// Defines zur Steuerung der Ausführung von Slots
+// Defines zur Steuerung der Ausfï¿½hrung von Slots
 #define EXECUTE_NO                  0
 #define EXECUTE_POSSIBLE            1
 #define EXECUTE_YES                 2
@@ -67,7 +69,7 @@ class SfxPoolItem;
 
 class  TTProperties : public ApplicationProperty
 {
-    USHORT nDonePRs;                    // Verwaltung für die Properties, die nur einmal gerufen werden mussen.
+    USHORT nDonePRs;                    // Verwaltung fï¿½r die Properties, die nur einmal gerufen werden mussen.
     BOOL RequestProperty( USHORT nRequest );
 
     BOOL HasSlots(){ return nPropertyVersion == TT_PROPERTIES_VERSION; }

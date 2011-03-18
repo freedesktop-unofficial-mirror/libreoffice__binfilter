@@ -44,7 +44,7 @@
 #include <com/sun/star/form/TabulatorCycle.hpp>
 #include <com/sun/star/form/FormButtonType.hpp>
 #include <com/sun/star/form/ListSourceType.hpp>
-#include <vcl/wintypes.hxx>     // for check states
+#include <tools/wintypes.hxx>       // for check states
 #include "XMLEventExport.hxx"
 #include <xmlnmspe.hxx>
 #ifndef XMLOFF_FORMS_FORMCELLBINDING
@@ -1523,7 +1523,7 @@ namespace xmloff
 
         // loop through all children
         Reference< XIndexAccess > xCollection(m_xProps, UNO_QUERY);
-        OSL_ENSURE(xCollection.is(), "OFormLayerXMLExport::implExportForm: a form which is not an index access? Suspicíous!");
+        OSL_ENSURE(xCollection.is(), "OFormLayerXMLExport::implExportForm: a form which is not an index access? Suspicï¿½ous!");
 
         if (xCollection.is())
             m_rContext.exportCollectionElements(xCollection);

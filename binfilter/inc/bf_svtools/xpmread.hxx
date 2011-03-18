@@ -29,6 +29,8 @@
 #ifndef _XPMREAD_HXX
 #define _XPMREAD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/bitmap.hxx>
 
 class BitmapWriteAccess;

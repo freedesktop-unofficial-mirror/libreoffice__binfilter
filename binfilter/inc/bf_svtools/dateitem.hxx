@@ -28,6 +28,8 @@
 #ifndef _DATETIMEITEM_HXX
 #define _DATETIMEITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 #include <tools/datetime.hxx>

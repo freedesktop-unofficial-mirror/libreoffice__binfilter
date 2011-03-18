@@ -29,6 +29,8 @@
 #ifndef _HDFTCTRL_HXX
 #define _HDFTCTRL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/mnuitem.hxx>
 #include <bf_sfx2/app.hxx>
 #define _SVSTDARR_STRINGSSORTDTOR

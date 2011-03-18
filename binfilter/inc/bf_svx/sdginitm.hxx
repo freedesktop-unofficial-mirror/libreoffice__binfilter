@@ -29,6 +29,8 @@
 #ifndef _SDGINITM_HXX
 #define _SDGINITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/sdooitm.hxx>
 #include <bf_svx/svddef.hxx>
 namespace binfilter {

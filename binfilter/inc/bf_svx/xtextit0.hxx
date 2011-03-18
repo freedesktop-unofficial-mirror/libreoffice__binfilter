@@ -29,6 +29,8 @@
 #ifndef _SVX_TEXTIT0_HXX
 #define _SVX_TEXTIT0_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xenum.hxx>
 #include <bf_svtools/eitem.hxx>
 namespace binfilter {

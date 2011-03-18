@@ -51,14 +51,10 @@ class ODateModel
     static sal_Int32    nDateHandle;
 
 protected:
-    virtual void _onValueChanged();
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type> _getTypes();
 
 public:
     DECLARE_DEFAULT_LEAF_XTOR( ODateModel );
-
-// starform::XBoundComponent
-    virtual sal_Bool _commit();
 
 // stario::XPersistObject
     virtual ::rtl::OUString SAL_CALL getServiceName() throw ( ::com::sun::star::uno::RuntimeException );
@@ -77,12 +73,6 @@ public:
 // ::com::sun::star::beans::XPropertySet
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo> SAL_CALL getPropertySetInfo() throw(::com::sun::star::uno::RuntimeException);
     virtual ::cppu::IPropertyArrayHelper& SAL_CALL getInfoHelper();
-
-// starform::XReset
-    virtual void _reset( void );
-
-// starform::XLoadListener
-    virtual void         _loaded(const ::com::sun::star::lang::EventObject& rEvent);
 
 // OAggregationArrayUsageHelper
     virtual void fillProperties(

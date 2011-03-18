@@ -29,6 +29,9 @@
 #ifndef _SBXVAR_HXX
 #define _SBXVAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include <rtl/ustring.hxx>
 
 #include <tools/string.hxx>
@@ -172,6 +175,7 @@ struct SbxUINT64
 
 #ifndef __SBX_SBXVALUES_HXX
 #define __SBX_SBXVALUES_HXX
+
 
 class SbxDecimal;
 
@@ -416,6 +420,7 @@ inline SbxValue& SbxValue::operator^=( const SbxValue& r )
 
 #ifndef __SBX_SBXVARIABLE_HXX
 #define __SBX_SBXVARIABLE_HXX
+
 
 class SbxArray;
 class SbxInfo;

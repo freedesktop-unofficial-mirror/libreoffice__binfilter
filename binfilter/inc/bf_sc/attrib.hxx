@@ -29,6 +29,8 @@
 #ifndef SC_SCATTR_HXX
 #define SC_SCATTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/intitem.hxx>
 

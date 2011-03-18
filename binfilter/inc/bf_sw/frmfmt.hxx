@@ -28,6 +28,8 @@
 #ifndef _FRMFMT_HXX
 #define _FRMFMT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <format.hxx>
 class Graphic;
 class Point;

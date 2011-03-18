@@ -28,6 +28,8 @@
 #ifndef _TXTFTN_HXX
 #define _TXTFTN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <txatbase.hxx>
 namespace binfilter {
 

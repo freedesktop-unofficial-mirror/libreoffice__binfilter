@@ -29,6 +29,8 @@
 #ifndef SC_CHARTARR_HXX
 #define SC_CHARTARR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // -----------------------------------------------------------------------
 
 #include "collect.hxx"

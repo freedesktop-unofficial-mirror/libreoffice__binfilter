@@ -28,6 +28,8 @@
 #ifndef _FMTFTN_HXX
 #define _FMTFTN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/poolitem.hxx>
 namespace binfilter {

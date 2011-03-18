@@ -28,6 +28,8 @@
 #ifndef _UNOFRAME_HXX
 #define _UNOFRAME_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unoobj.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>

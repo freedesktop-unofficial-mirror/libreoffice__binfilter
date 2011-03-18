@@ -34,7 +34,7 @@
 #include <sal/types.h>
 #include <rtl/ustring.hxx>
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/link.hxx>
 #include <i18npool/lang.h>
 #include <tools/string.hxx>

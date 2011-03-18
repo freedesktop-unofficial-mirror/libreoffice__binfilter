@@ -28,6 +28,8 @@
 #ifndef _FONTCFG_HXX
 #define _FONTCFG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unotools/configitem.hxx>
 #include <tools/string.hxx>
 #include <i18npool/lang.h>

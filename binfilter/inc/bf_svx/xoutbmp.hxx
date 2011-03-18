@@ -29,6 +29,8 @@
 #ifndef _XOUTBMP_HXX
 #define _XOUTBMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <com/sun/star/uno/Sequence.h>
 #include <com/sun/star/beans/PropertyValue.hpp>

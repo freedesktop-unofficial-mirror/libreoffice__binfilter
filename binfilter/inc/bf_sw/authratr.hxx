@@ -29,7 +29,7 @@
 #ifndef _AUTHRATR_HXX
 #define _AUTHRATR_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 namespace binfilter {
 

@@ -28,6 +28,8 @@
 #ifndef _UNOREDLINE_HXX
 #define _UNOREDLINE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unoport.hxx>
 #include <unoobj.hxx>
 

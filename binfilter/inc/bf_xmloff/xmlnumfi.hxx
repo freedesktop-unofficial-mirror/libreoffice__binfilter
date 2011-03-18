@@ -29,6 +29,8 @@
 #ifndef _XMLOFF_XMLNUMFI_HXX
 #define _XMLOFF_XMLNUMFI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
 
 #include <com/sun/star/xml/sax/XAttributeList.hpp>

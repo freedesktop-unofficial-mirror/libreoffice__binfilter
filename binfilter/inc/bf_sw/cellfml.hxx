@@ -29,6 +29,8 @@
 #ifndef _CELLFML_HXX
 #define _CELLFML_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 namespace binfilter {
 

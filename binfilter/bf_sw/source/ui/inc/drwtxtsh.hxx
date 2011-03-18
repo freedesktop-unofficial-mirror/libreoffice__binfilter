@@ -28,6 +28,8 @@
 #ifndef _SWDRWTXTSH_HXX
 #define _SWDRWTXTSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_sfx2/shell.hxx>
 #include "shellid.hxx"

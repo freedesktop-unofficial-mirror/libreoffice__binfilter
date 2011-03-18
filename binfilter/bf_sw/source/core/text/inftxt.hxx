@@ -28,6 +28,8 @@
 #ifndef _INFTXT_HXX
 #define _INFTXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
 #include <com/sun/star/beans/PropertyValues.hpp>
 #include <tools/table.hxx>

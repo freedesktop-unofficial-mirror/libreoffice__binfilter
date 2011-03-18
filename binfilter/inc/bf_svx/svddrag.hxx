@@ -29,6 +29,8 @@
 #ifndef _SVDDRAG_HXX
 #define _SVDDRAG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/contnr.hxx>
 
 #include <tools/gen.hxx>

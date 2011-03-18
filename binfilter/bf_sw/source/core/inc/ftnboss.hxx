@@ -28,6 +28,8 @@
 #ifndef _FTNBOSS_HXX
 #define _FTNBOSS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "layfrm.hxx"
 namespace binfilter {
 

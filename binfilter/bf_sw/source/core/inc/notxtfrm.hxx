@@ -28,6 +28,8 @@
 #ifndef _NOTXTFRM_HXX
 #define _NOTXTFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <cntfrm.hxx>
 class OutputDevice;
 class Bitmap;

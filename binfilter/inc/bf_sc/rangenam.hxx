@@ -29,6 +29,8 @@
 #ifndef SC_RANGENAM_HXX
 #define SC_RANGENAM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx" // -> enum UpdateRefMode
 #include "collect.hxx"
 namespace rtl {

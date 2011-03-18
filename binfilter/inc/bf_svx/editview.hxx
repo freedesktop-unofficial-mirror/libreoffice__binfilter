@@ -30,6 +30,8 @@
 #ifndef _MyEDITVIEW_HXX
 #define _MyEDITVIEW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <rsc/rscsfx.hxx>
 
 #include <tools/color.hxx>

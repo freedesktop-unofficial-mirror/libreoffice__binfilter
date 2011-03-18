@@ -28,6 +28,8 @@
 #ifndef _FMTCLDS_HXX
 #define _FMTCLDS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/color.hxx>
 #include <format.hxx>
 namespace binfilter {

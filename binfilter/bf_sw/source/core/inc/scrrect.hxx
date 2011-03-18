@@ -28,6 +28,8 @@
 #ifndef _SCRRECT_HXX
 #define _SCRRECT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svtools/svarray.hxx>
 #include "swrect.hxx"

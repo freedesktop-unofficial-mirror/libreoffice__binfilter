@@ -29,6 +29,9 @@
 #ifndef _B3D_MATRIL3D_HXX
 #define _B3D_MATRIL3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "bucket.hxx"
 
 #include <tools/color.hxx>

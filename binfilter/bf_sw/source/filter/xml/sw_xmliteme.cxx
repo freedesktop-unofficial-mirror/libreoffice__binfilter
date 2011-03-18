@@ -48,7 +48,7 @@
 #include <bf_svx/brshitem.hxx>
 #include <bf_svx/unomid.hxx>
 
-#include <vcl/fldunit.hxx>
+#include <tools/fldunit.hxx>
 
 #include <swmodule.hxx>
 

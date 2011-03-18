@@ -28,6 +28,8 @@
 #ifndef _UNOSETT_HXX
 #define _UNOSETT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <swtypes.hxx>
 #include <calbck.hxx>
 #include <com/sun/star/text/XTextColumns.hpp>

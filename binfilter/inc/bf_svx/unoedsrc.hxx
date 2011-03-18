@@ -29,7 +29,8 @@
 #ifndef _SVX_UNOEDSRC_HXX
 #define _SVX_UNOEDSRC_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 #include <i18npool/lang.h>
 #include <vcl/mapmod.hxx>
 

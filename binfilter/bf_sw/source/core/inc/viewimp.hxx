@@ -28,6 +28,8 @@
 #ifndef _VIEWIMP_HXX
 #define _VIEWIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <vcl/timer.hxx>
 #include <tools/color.hxx>

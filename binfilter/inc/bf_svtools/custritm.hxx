@@ -29,6 +29,8 @@
 #ifndef _SVTOOLS_CUSTRITM_HXX
 #define _SVTOOLS_CUSTRITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/debug.hxx>
 
 #include <bf_svtools/poolitem.hxx>

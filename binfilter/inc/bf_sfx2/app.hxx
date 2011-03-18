@@ -28,11 +28,11 @@
 #ifndef _SFXAPP_HXX
 #define _SFXAPP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef TD_NEWDESKTOP
 #define TF_NEWDESKTOP 1
 #endif
-
-#include <tools/solar.h>
 
 #if _SOLAR__PRIVATE
 #include <tools/time.hxx>
@@ -180,7 +180,7 @@ class SfxApplication: public SfxShell
 /*  [Beschreibung]
 
     Die Klasse SfxApplication bietet eine erweiterte Funktionalit"at
-    der StarView-Klasse MDIApplication und mu?als Basisklasse fÅr
+    der StarView-Klasse MDIApplication und mu?als Basisklasse fÔøΩr
     Applikationen, die das StarFramework verwenden wollen,
     eingesetzt werden.
 

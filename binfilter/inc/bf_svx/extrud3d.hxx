@@ -29,6 +29,8 @@
 #ifndef _E3D_EXTRUD3D_HXX
 #define _E3D_EXTRUD3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/obj3d.hxx>
 
 #include <bf_svx/poly3d.hxx>

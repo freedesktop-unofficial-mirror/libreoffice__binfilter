@@ -29,6 +29,8 @@
 #ifndef SC_PAGEPAR_HXX
 #define SC_PAGEPAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 namespace binfilter {
 

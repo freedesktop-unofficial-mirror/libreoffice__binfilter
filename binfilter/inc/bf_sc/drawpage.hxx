@@ -29,6 +29,8 @@
 #ifndef SC_DRAWPAGE_HXX
 #define SC_DRAWPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/fmpage.hxx>
 namespace binfilter {
 

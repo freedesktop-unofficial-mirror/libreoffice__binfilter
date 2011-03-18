@@ -28,7 +28,7 @@
 #ifndef INCLUDED_SVTOOLS_DEFAULTOPTIONS_HXX
 #define INCLUDED_SVTOOLS_DEFAULTOPTIONS_HXX
 
-#include "tools/solar.h"
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/options.hxx>
 
 class String;

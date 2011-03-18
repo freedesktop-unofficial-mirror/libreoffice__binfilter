@@ -29,6 +29,8 @@
 #ifndef _XOUTX_HXX
 #define _XOUTX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/bitmap.hxx>
 
 #include <bf_svx/xhatch.hxx>

@@ -29,6 +29,7 @@
 #ifndef SVTOOLS_INSTRM_HXX
 #define SVTOOLS_INSTRM_HXX
 
+#include <bf_svtools/bf_solar.h>
 
 #include <com/sun/star/uno/Reference.h>
 #include <tools/stream.hxx>

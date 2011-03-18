@@ -30,6 +30,8 @@
 #ifndef __SBX_SBX_FACTORY_HXX
 #define __SBX_SBX_FACTORY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "sbxdef.hxx"
 
 class String;

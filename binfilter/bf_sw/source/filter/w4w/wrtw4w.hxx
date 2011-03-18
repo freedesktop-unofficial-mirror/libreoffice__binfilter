@@ -28,6 +28,8 @@
 #ifndef _WRTW4W_HXX
 #define _WRTW4W_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <swtypes.hxx>
 #include <shellio.hxx>
 #include <horiornt.hxx>

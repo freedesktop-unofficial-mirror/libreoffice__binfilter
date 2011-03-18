@@ -28,6 +28,8 @@
 
 #include "bindetect.hxx"
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/io/XInputStream.hpp>
 #include <com/sun/star/container/XNameAccess.hpp>
 #include <com/sun/star/container/XContainerQuery.hpp>
@@ -50,7 +52,9 @@
 #if defined( WNT )
 
 // Typen fuer die Funktion der W4W-DLL
-#include <tools/svwin.h>
+#include <bf_svtools/bf_prewin.h>
+#include <bf_svtools/bf_postwin.h>
+
 #endif
 
 #ifdef UNX
@@ -747,33 +751,6 @@ void SAL_CALL component_getImplementationEnvironment(   const   sal_Char**      
                                                                 uno_Environment**   /*ppEnvironment*/           )
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
-}
-
-sal_Bool SAL_CALL component_writeInfo(  void*   /*pServiceManager*/ ,
-                                        void*   pRegistryKey    )
-{
-    ::com::sun::star::uno::Reference< XRegistryKey >     xKey( reinterpret_cast< XRegistryKey* >( pRegistryKey ) )  ;
-
-    // Eigentliche Implementierung und ihre Services registrieren
-    ::rtl::OUString aImpl;
-    ::rtl::OUString aTempStr;
-    ::rtl::OUString aKeyStr;
-    REFERENCE< XRegistryKey > xNewKey;
-    REFERENCE< XRegistryKey > xLoaderKey;
-
-    // frame loader
-    aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
-    aImpl += ::binfilter::BinFilterDetect::impl_getStaticImplementationName();
-
-    aTempStr = aImpl;
-    aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
-    xNewKey = xKey->createKey( aTempStr );
-    Sequence < ::rtl::OUString > aServices = ::binfilter::BinFilterDetect::impl_getStaticSupportedServiceNames();
-    sal_Int32 nCount = aServices.getLength();
-    for ( sal_Int16 i=0; i<nCount; i++ )
-        xNewKey->createKey( aServices.getConstArray()[i] );
-
-    return sal_True;
 }
 
 void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName ,

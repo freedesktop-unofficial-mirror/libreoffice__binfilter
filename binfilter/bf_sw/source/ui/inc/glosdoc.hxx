@@ -28,6 +28,8 @@
 #ifndef _GLOSDOC_HXX
 #define _GLOSDOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/string.hxx>
 

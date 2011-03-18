@@ -28,6 +28,8 @@
 #ifndef _CHPFLD_HXX
 #define _CHPFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 class SwFrm;
 class SwTxtNode;

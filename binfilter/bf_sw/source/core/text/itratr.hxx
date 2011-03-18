@@ -29,7 +29,7 @@
 #define _ITRATR_HXX
 
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <atrhndl.hxx>
 
 #include "txttypes.hxx"

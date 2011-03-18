@@ -1,6 +1,7 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
+ *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * Copyright 2000, 2010 Oracle and/or its affiliates.
@@ -33,7 +34,7 @@
 #include <com/sun/star/uno/Sequence.hxx>
 #include <com/sun/star/uno/Any.h>
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <rtl/ustring.hxx>
 #include <unotools/configitem.hxx>
 #include <osl/mutex.hxx>
@@ -74,15 +75,11 @@ struct  SvtLinguOptions
 
     // spelling options (non-service specific)
     BOOL    bIsSpellSpecial;
-    BOOL    bIsSpellInAllLanguages;
     BOOL    bIsSpellAuto;
-    BOOL    bIsSpellHideMarkings;
     BOOL    bIsSpellReverse;
 
     BOOL    bROIsSpellSpecial;
-    BOOL    bROIsSpellInAllLanguages;
     BOOL    bROIsSpellAuto;
-    BOOL    bROIsSpellHideMarkings;
     BOOL    bROIsSpellReverse;
 
     // hyphenation options (non-service specific)
@@ -93,11 +90,9 @@ struct  SvtLinguOptions
     BOOL    bROIsHyphAuto;
 
     // common to SpellChecker, Hyphenator and Thesaurus service
-    BOOL    bIsGermanPreReform;
     BOOL    bIsUseDictionaryList;
     BOOL    bIsIgnoreControlCharacters;
 
-    BOOL    bROIsGermanPreReform;
     BOOL    bROIsUseDictionaryList;
     BOOL    bROIsIgnoreControlCharacters;
 

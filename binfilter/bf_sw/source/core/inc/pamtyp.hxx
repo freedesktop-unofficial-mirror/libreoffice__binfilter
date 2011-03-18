@@ -29,6 +29,8 @@
 #ifndef _PAMTYP_HXX
 #define _PAMTYP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unotools/textsearch.hxx>
 #include <pam.hxx>
 #include <node.hxx>

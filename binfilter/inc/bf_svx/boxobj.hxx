@@ -28,6 +28,8 @@
 #ifndef _SVX_BOXOBJ_HXX
 #define _SVX_BOXOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/shobj.hxx>
 namespace binfilter {
 class SvxBoxItem;

@@ -28,6 +28,8 @@
 #ifndef _FORMEDT_HXX
 #define _FORMEDT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/stddlg.hxx>
 
 #include <vcl/lstbox.hxx>

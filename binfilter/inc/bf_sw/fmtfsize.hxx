@@ -28,6 +28,8 @@
 #ifndef _FMTFSIZE_HXX
 #define _FMTFSIZE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 #include <swtypes.hxx>
 #include <format.hxx>

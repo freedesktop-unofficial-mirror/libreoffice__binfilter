@@ -29,6 +29,8 @@
 #ifndef _SVDHLPLN_HXX
 #define _SVDHLPLN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 
 

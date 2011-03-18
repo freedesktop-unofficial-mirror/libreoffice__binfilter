@@ -29,6 +29,8 @@
 #ifndef _E3D_OBJ3D_HXX
 #define _E3D_OBJ3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdoattr.hxx>
 #include <bf_svx/svdobj.hxx>
 #include <bf_svx/volume3d.hxx>

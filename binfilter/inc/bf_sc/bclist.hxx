@@ -29,6 +29,8 @@
 #ifndef SC_BCLIST_HXX
 #define SC_BCLIST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/brdcst.hxx>
 namespace binfilter {
 

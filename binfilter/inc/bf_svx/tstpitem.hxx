@@ -28,6 +28,8 @@
 #ifndef _SVX_TSPTITEM_HXX
 #define _SVX_TSPTITEM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 // include ---------------------------------------------------------------
 
 #include <bf_svtools/poolitem.hxx>

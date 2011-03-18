@@ -29,6 +29,8 @@
 #ifndef _SVDMARK_HXX
 #define _SVDMARK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/contnr.hxx>
 
 #include <tools/string.hxx>

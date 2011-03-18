@@ -29,7 +29,7 @@
 #ifndef SC_UNOWIDS_HXX
 #define SC_UNOWIDS_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include "scitems.hxx"
 namespace binfilter {

@@ -28,6 +28,8 @@
 #ifndef _DRAWDOC_HXX
 #define _DRAWDOC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/fmmodel.hxx>
 class Window;
 class SbxValue;

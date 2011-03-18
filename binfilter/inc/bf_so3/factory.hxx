@@ -29,6 +29,8 @@
 #ifndef _FACTORY_HXX
 #define _FACTORY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/so2ref.hxx>
 #include <bf_svtools/brdcst.hxx>
 #include <tools/globname.hxx>

@@ -28,6 +28,8 @@
 #ifndef _FLOWFRM_HXX
 #define _FLOWFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <frmtool.hxx>
 
 namespace binfilter {

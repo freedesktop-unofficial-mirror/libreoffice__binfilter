@@ -37,7 +37,6 @@
 
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#include <com/sun/star/registry/XRegistryKey.hpp>
 
 namespace css = com::sun::star;
 using css::uno::Reference;
@@ -66,30 +65,6 @@ SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment (
     const sal_Char ** ppEnvTypeName, uno_Environment ** /* ppEnv */)
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
-}
-
-SAL_DLLPUBLIC_EXPORT sal_Bool SAL_CALL component_writeInfo (
-    void * /* _pServiceManager */, void * _pRegistryKey)
-{
-    if (_pRegistryKey)
-    {
-        Reference< css::registry::XRegistryKey > xRegistryKey (
-            reinterpret_cast< css::registry::XRegistryKey* >(_pRegistryKey));
-        Reference< css::registry::XRegistryKey > xNewKey;
-
-        xNewKey = xRegistryKey->createKey (
-            OUString( RTL_CONSTASCII_USTRINGPARAM( "/com.sun.star.uno.util.numbers.SvNumberFormatsSupplierServiceObject/UNO/SERVICES" )) );
-        xNewKey->createKey (
-            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatsSupplier" )) );
-
-        xNewKey = xRegistryKey->createKey (
-            OUString( RTL_CONSTASCII_USTRINGPARAM( "/com.sun.star.uno.util.numbers.SvNumberFormatterServiceObject/UNO/SERVICES" )) );
-        xNewKey->createKey (
-            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatter" )) );
-
-        return sal_True;
-    }
-    return sal_False;
 }
 
 SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (

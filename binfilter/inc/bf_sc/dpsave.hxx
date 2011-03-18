@@ -29,6 +29,8 @@
 #ifndef SC_DPSAVE_HXX
 #define SC_DPSAVE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 
 #include <tools/list.hxx>

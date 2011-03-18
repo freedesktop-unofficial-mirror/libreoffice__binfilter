@@ -25,39 +25,59 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SWDBTOOLSCLIENT_HXX
-#define _SWDBTOOLSCLIENT_HXX
 
-#include <connectivity/virtualdbtools.hxx>
-#include <osl/mutex.hxx>
-#include <osl/module.h>
-namespace binfilter {
+/* nicht geschuetzt, darf nur einmal includet werden */
 
-/* ---------------------------------------------------------------------------
-    Client to use the dbtools library as load-on-call
- ---------------------------------------------------------------------------*/
-class SwDbtoolsClient
-{
-private:
-    ::rtl::Reference< ::connectivity::simple::IDataAccessTools >            m_xDataAccessTools;
-    ::rtl::Reference< ::connectivity::simple::IDataAccessTypeConversion >   m_xAccessTypeConversion;
-    ::rtl::Reference< ::connectivity::simple::IDataAccessToolsFactory >     m_xDataAccessFactory;
+#if defined WNT
 
+#define BOOL         WIN_BOOL
+#define BYTE         WIN_BYTE
+#ifndef VCL_NEED_BASETSD
+#define INT64        WIN_INT64
+#define UINT64       WIN_UINT64
+#define INT32        WIN_INT32
+#define UINT32       WIN_UINT32
+#endif
 
+#define Rectangle    BLA_Rectangle
+#define Polygon      BLA_Polygon
+#define PolyPolygon  BLA_PolyPolygon
+#define Region       WIN_Region
+#define Folder       WIN_Folder
+#define GradientStyle_RECT  WIN_GradientStyle_RECT
 
-public:
-    SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");}
-    ~SwDbtoolsClient(){DBG_BF_ASSERT(0, "STRIP");}
+#ifdef __cplusplus
+extern "C" {
+#endif
 
-    ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XDataSource > getDataSource(
-        const ::rtl::OUString& _rsRegisteredName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory>& _rxFactory
-            ){DBG_BF_ASSERT(0, "STRIP"); return NULL;}
+#define STRICT
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#endif
+#include <windows.h>
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
+#include <shellapi.h>
+#include <commdlg.h>
+#include <dlgs.h>
+#ifdef USE_TOOLHELP
+#include <tlhelp32.h>
+#endif
+#ifdef USE_IMAGEHLP
+#include <imagehlp.h>
+#endif
+#ifdef INCLUDE_MMSYSTEM
+#include <mmsystem.h>
+#endif
+#ifdef _MSC_VER
+#pragma warning(push, 1)
+#endif
+#include <commctrl.h>
+#ifdef _MSC_VER
+#pragma warning(pop)
+#endif
 
-
-};
-
-} //namespace binfilter
 #endif
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -483,55 +483,6 @@ void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvType
 }
 
 //---------------------------------------------------------------------------------------
-sal_Bool SAL_CALL component_writeInfo(void* _pServiceManager, starregistry::XRegistryKey* _pRegistryKey)
-{
-    if (_pRegistryKey)
-    {
-        try
-        {
-            // the real way - use the OModule
-            createRegistryInfo_FORMS();
-            if ( !::binfilter::frm::OFormsModule::writeComponentInfos(
-                    static_cast<XMultiServiceFactory*>( _pServiceManager ),
-                    static_cast<XRegistryKey*>( _pRegistryKey ) )
-                )
-                return sal_False;
-
-            // a lot of stuff which is implemented "manually" here in this file
-
-            // collect the class infos
-            ensureClassInfos();
-
-            // both our static sequences should have the same length ...
-            sal_Int32 nClasses = s_aClassImplementationNames.getLength();
-            OSL_ENSURE(s_aClassServiceNames.getLength() == nClasses,
-                "forms::component_writeInfo : invalid class infos !");
-
-            // loop through the sequences and register the service providers
-            const ::rtl::OUString* pClasses = s_aClassImplementationNames.getConstArray();
-            const Sequence< ::rtl::OUString >* pServices = s_aClassServiceNames.getConstArray();
-
-            for (sal_Int32 i=0; i<nClasses; ++i, ++pClasses, ++pServices)
-                registerServiceProvider(*pClasses, *pServices, _pRegistryKey);
-
-            s_aClassImplementationNames.realloc(0);
-            s_aClassServiceNames.realloc(0);
-            s_aFactories.realloc(0);
-
-            return sal_True;
-        }
-        catch (starregistry::InvalidRegistryException &)
-        {
-            OSL_ENSURE(sal_False, "forms::component_writeInfo : InvalidRegistryException !");
-        }
-    }
-    s_aClassImplementationNames.realloc(0);
-    s_aClassServiceNames.realloc(0);
-    s_aFactories.realloc(0);
-    return sal_False;
-}
-
-//---------------------------------------------------------------------------------------
 void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFactory* _pServiceManager, void* /*_pRegistryKey*/)
 {
     if (!_pServiceManager || !_pImplName)
@@ -547,7 +498,7 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
     sal_Int32 nClasses = s_aClassImplementationNames.getLength();
     OSL_ENSURE((s_aClassServiceNames.getLength() == nClasses) &&
         (s_aFactories.getLength() == nClasses),
-        "forms::component_writeInfo : invalid class infos !");
+        "forms::component_getFactory : invalid class infos !");
 
     // loop through the sequences and register the service providers
     const ::rtl::OUString* pClasses = s_aClassImplementationNames.getConstArray();

@@ -29,6 +29,8 @@
 #ifndef _SVX_UNOVIWOU_HXX
 #define _SVX_UNOVIWOU_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/unoedsrc.hxx>
 namespace binfilter {
 

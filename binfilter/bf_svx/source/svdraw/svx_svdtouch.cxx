@@ -26,6 +26,7 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/bigint.hxx>
 #include <tools/poly.hxx>

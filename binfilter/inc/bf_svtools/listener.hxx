@@ -28,6 +28,8 @@
 #ifndef _SVT_LISTENER_HXX
 #define _SVT_LISTENER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 namespace binfilter

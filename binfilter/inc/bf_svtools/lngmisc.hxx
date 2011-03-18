@@ -29,7 +29,7 @@
 #ifndef _SVTOOLS_LNGMISC_HXX_
 #define _SVTOOLS_LNGMISC_HXX_
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <sal/types.h>
 
 #include <rtl/ustring.hxx>

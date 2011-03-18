@@ -185,10 +185,10 @@ void OEditBaseModel::read(const Reference<XObjectInputStream>& _rxInStream) thro
     if (bHandleCommonProps)
         readCommonEditProperties(_rxInStream);
 
-    // Nach dem Lesen die Defaultwerte anzeigen
-    if (m_aControlSource.getLength())
-        // (not if we don't have a control source - the "State" property acts like it is persistent, then)
-        _reset();
+//  // Nach dem Lesen die Defaultwerte anzeigen
+//  if (m_aControlSource.getLength())
+//      // (not if we don't have a control source - the "State" property acts like it is persistent, then)
+//      _reset();
 };
 
 //------------------------------------------------------------------------------
@@ -316,13 +316,13 @@ void OEditBaseModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, const 
         case PROPERTY_ID_DEFAULT_TEXT:
             DBG_ASSERT(rValue.getValueType().getTypeClass() == TypeClass_STRING, "invalid type" );
             rValue >>= m_aDefaultText;
-            _reset();
+            //_reset();
             break;
         case PROPERTY_ID_DEFAULT_VALUE:
         case PROPERTY_ID_DEFAULT_DATE:
         case PROPERTY_ID_DEFAULT_TIME:
             m_aDefault = rValue;
-            _reset();
+            //_reset();
             break;
         default:
             OBoundControlModel::setFastPropertyValue_NoBroadcast(nHandle, rValue );

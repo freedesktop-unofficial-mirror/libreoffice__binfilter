@@ -29,6 +29,8 @@
 #ifndef _SCEXTOPT_HXX
 #define _SCEXTOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include "global.hxx"
 namespace binfilter {

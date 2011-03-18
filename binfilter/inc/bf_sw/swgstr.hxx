@@ -29,6 +29,8 @@
 #ifndef _SWGSTR_HXX
 #define _SWGSTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/stream.hxx>
 namespace binfilter {
 

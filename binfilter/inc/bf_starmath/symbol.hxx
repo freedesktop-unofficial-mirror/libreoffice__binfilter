@@ -28,7 +28,8 @@
 #ifndef SYMBOL_HXX
 #define SYMBOL_HXX
 
-#include <salhelper/simplereferenceobject.hxx>
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/font.hxx>
 #include <tools/debug.hxx>
 #include <tools/dynary.hxx>

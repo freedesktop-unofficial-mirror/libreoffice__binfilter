@@ -29,6 +29,8 @@
 #ifndef SC_DRWLAYER_HXX
 #define SC_DRWLAYER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/graph.hxx>
 #include <bf_svx/fmmodel.hxx>
 #include <bf_so3/svstor.hxx>

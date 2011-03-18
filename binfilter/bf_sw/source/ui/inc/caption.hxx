@@ -28,6 +28,8 @@
 #ifndef _CAPTION_HXX
 #define _CAPTION_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/globname.hxx>
 namespace binfilter {
 

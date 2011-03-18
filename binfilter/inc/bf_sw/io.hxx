@@ -31,6 +31,8 @@
 #ifndef _IO_HXX
 #define _IO_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifdef UNX
 #include <unistd.h>
 #else

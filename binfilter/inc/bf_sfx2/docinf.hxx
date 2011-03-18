@@ -28,6 +28,8 @@
 #ifndef _SFXDOCINF_HXX
 #define _SFXDOCINF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/hint.hxx>
 
 #include <bf_svtools/stritem.hxx>

@@ -29,6 +29,8 @@
 #ifndef SC_TABOPPARAMS_HXX
 #define SC_TABOPPARAMS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 #include <vector>
 namespace binfilter {

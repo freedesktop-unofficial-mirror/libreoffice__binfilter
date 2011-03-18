@@ -32,7 +32,7 @@
 
 #include <unotools/configitem.hxx>
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 class SvStream;
 

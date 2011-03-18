@@ -28,6 +28,8 @@
 #ifndef _LINKSRC_HXX
 #define _LINKSRC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/ref.hxx>
 #include <tools/rtti.hxx>
 

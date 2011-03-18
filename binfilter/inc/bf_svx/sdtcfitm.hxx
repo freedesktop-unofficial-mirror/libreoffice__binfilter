@@ -28,6 +28,8 @@
 #ifndef _SDTCFITM_HXX
 #define _SDTCFITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/sdooitm.hxx>
 
 #include <bf_svx/svddef.hxx>

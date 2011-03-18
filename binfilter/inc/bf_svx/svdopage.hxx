@@ -29,6 +29,8 @@
 #ifndef _SVDOPAGE_HXX
 #define _SVDOPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdobj.hxx>
 namespace binfilter {
 

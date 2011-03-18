@@ -29,6 +29,7 @@
 #ifndef _SDRESID_HXX
 #define _SDRESID_HXX
 
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/resid.hxx>
 namespace binfilter {

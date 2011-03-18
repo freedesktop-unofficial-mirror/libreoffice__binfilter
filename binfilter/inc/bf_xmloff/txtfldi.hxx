@@ -35,6 +35,8 @@
 #ifndef _XMLOFF_TXTFLDI_HXX
 #define _XMLOFF_TXTFLDI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/uno/Reference.h>
 
 #include <com/sun/star/text/PageNumberType.hpp>
@@ -141,7 +143,7 @@ class XMLTextFieldImportContext : public SvXMLImportContext
 protected:
 
     // data members for use in subclasses
-    sal_Bool bValid;                        /// ist dieses Feld gültig?
+    sal_Bool bValid;                        /// ist dieses Feld gï¿½ltig?
 
 public:
 

@@ -28,6 +28,8 @@
 #ifndef _BOOKMRK_HXX
 #define _BOOKMRK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
                             //die Attribut richtig angezogen werden.
 #include <bf_svtools/macitem.hxx>
 

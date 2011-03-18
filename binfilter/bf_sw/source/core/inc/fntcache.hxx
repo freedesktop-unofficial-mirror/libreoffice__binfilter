@@ -28,6 +28,8 @@
 #ifndef _FNTCACHE_HXX
 #define _FNTCACHE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <vcl/font.hxx>
 #include <tools/mempool.hxx>

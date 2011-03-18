@@ -37,7 +37,7 @@
 
 #include <vcl/lstbox.hxx>
 
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 
 #include <bf_svx/txencbox.hxx>
 

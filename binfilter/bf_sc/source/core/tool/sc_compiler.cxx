@@ -38,7 +38,7 @@
 #include "bf_basic/sbstar.hxx"
 #include <bf_svtools/zforlist.hxx>
 #include <tools/rcid.h>
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/urlobj.hxx>
 #include <rtl/math.hxx>
 #include <ctype.h>

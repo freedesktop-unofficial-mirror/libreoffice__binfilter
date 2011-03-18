@@ -29,6 +29,8 @@
 #ifndef _SCH_SCHGROUP_HXX
 #define _SCH_SCHGROUP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdogrp.hxx>
 
 #include "chtmodel.hxx"
@@ -67,13 +69,13 @@ public:
 
 
 
-    // FG: Damit soll ermöglicht werden dass man Objektgruppen im Chart resizen kann
+    // FG: Damit soll ermï¿½glicht werden dass man Objektgruppen im Chart resizen kann
     void    SetObjInfo(SdrObjTransformInfoRec aMyInfo);
 
     // FG: Um das Verhalten bei einem Resize zu aendern muessen beide Routinen
-    //     überladen werden.
+    //     ï¿½berladen werden.
 
-    // FG: 9.3.1997 Methode von Joe, die Überladen wird um zu Kennzeichnen
+    // FG: 9.3.1997 Methode von Joe, die ï¿½berladen wird um zu Kennzeichnen
     //              ob die Gruppe jemals verschoben worden ist.
     virtual void Move  (const Size& rSiz);
 

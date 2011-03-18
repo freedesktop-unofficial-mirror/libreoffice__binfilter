@@ -28,6 +28,8 @@
 #ifndef _CNTRSRT_HXX
 #define _CNTRSRT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/contnr.hxx>
 
 namespace binfilter {

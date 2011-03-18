@@ -29,6 +29,8 @@
 #ifndef _SVX_XBTMPIT_HXX
 #define _SVX_XBTMPIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xbitmap.hxx>
 namespace binfilter {
 

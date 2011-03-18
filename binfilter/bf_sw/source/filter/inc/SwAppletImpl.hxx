@@ -29,6 +29,8 @@
 #ifndef _SW_APPLET_IMPL_HXX
 #define _SW_APPLET_IMPL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #define SWHTML_OPTTYPE_IGNORE 0
 #define SWHTML_OPTTYPE_TAG 1
 #define SWHTML_OPTTYPE_PARAM 2

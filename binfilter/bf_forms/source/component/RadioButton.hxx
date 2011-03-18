@@ -53,7 +53,6 @@ class ORadioButtonModel     :public OBoundControlModel
     sal_Bool            m_bInReset : 1;
 
 protected:
-    virtual void            _onValueChanged();
     virtual ::com::sun::star::uno::Any  _getControlValue() const;
 
 public:
@@ -94,10 +93,6 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
     IMPLEMENT_INFO_SERVICE()
-
-protected:
-    virtual void        _reset();
-    virtual sal_Bool    _commit();
 
 protected:
     void SetSiblingPropsTo(const ::rtl::OUString& rPropName, const ::com::sun::star::uno::Any& rValue);

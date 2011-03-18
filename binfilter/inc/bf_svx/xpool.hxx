@@ -29,6 +29,8 @@
 #ifndef _XPOOL_HXX
 #define _XPOOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/itempool.hxx>
 #include <bf_svx/xdef.hxx>
 namespace binfilter {

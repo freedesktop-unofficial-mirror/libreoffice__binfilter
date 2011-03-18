@@ -29,7 +29,7 @@
 #ifndef _SVTOOLS_FSTATHELPER_HXX
 #define _SVTOOLS_FSTATHELPER_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 class UniString;
 class Date;

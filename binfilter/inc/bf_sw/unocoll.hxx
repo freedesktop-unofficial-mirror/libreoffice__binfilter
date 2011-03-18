@@ -28,7 +28,8 @@
 #ifndef _UNOCOLL_HXX
 #define _UNOCOLL_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 #include <flyenum.hxx>
 #include <com/sun/star/lang/XServiceInfo.hpp>
 #include <com/sun/star/container/XNameAccess.hpp>

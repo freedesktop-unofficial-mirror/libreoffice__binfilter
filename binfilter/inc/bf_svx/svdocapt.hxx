@@ -29,6 +29,8 @@
 #ifndef _SVDCAPT_HXX
 #define _SVDCAPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdorect.hxx>
 namespace binfilter {
 

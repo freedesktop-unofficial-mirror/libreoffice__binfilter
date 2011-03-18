@@ -28,6 +28,8 @@
 #ifndef _FMTTSPLT_HXX
 #define _FMTTSPLT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 #include <format.hxx>
 class IntlWrapper;

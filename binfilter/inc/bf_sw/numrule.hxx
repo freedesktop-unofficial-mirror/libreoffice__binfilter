@@ -28,6 +28,8 @@
 #ifndef _NUMRULE_HXX
 #define _NUMRULE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/link.hxx>
 #include <tools/gen.hxx>

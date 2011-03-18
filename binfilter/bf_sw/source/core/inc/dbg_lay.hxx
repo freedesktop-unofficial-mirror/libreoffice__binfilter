@@ -29,6 +29,8 @@
 #ifndef _DBG_LAY_HXX
 #define _DBG_LAY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #define PROT_FILE_INIT  0x00000000
 #define PROT_INIT       0x00000001

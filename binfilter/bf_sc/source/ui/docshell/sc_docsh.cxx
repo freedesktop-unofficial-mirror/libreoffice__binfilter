@@ -384,124 +384,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/ }
 
 
-/*N*/ BOOL ScDocShell::SaveCalc( SvStorage* pStor )         // Calc 3, 4 or 5 file
-/*N*/ {
-/*N*/   BOOL bRet = TRUE;
-/*N*/
-/*N*/   ScProgress* pProgress = NULL;
-/*N*/   SfxObjectCreateMode eShellMode = GetCreateMode();
-/*N*/   if ( eShellMode == SFX_CREATE_MODE_STANDARD )
-/*N*/   {
-/*N*/       ULONG nRange = aDocument.GetWeightedCount() + 1;
-/*N*/       pProgress = new ScProgress( this, ScGlobal::GetRscString(STR_SAVE_DOC), nRange );
-/*N*/   }
-/*N*/
-/*N*/   SvStorageStreamRef aPoolStm = pStor->OpenStream( String::CreateFromAscii(pStyleName) );
-/*N*/   if( !aPoolStm->GetError() )
-/*N*/   {
-/*N*/       aPoolStm->SetVersion(pStor->GetVersion());
-/*N*/       aPoolStm->SetSize(0);
-/*N*/       bRet = aDocument.SavePool( *aPoolStm );
-/*N*/       if ( aPoolStm->GetErrorCode() && !pStor->GetErrorCode() )
-/*?*/           pStor->SetError(aPoolStm->GetErrorCode());
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       OSL_FAIL( "Stream Error" );
-/*?*/       bRet = FALSE;
-/*N*/   }
-/*N*/
-/*N*/   if ( bRet && eShellMode != SFX_CREATE_MODE_ORGANIZER )
-/*N*/   {
-/*N*/       SvStorageStreamRef aDocStm  = pStor->OpenStream( String::CreateFromAscii(pStarCalcDoc) );
-/*N*/       if( !aDocStm->GetError() )
-/*N*/       {
-/*N*/           aDocStm->SetVersion(pStor->GetVersion());
-/*N*/           aDocStm->SetKey(pStor->GetKey());               // Passwort setzen
-/*N*/           aDocStm->SetSize(0);
-/*N*/           bRet = aDocument.Save( *aDocStm, pProgress );
-/*N*/           DBG_ASSERT( bRet, "Error while saving" );
-/*N*/
-/*N*/           if ( aDocument.HasLostData() )
-/*N*/           {
-/*?*/               //  Warnung, dass nicht alles gespeichert wurde
-/*?*/
-/*?*/               if (!pStor->GetError())
-/*?*/                   pStor->SetError(SCWARN_EXPORT_MAXROW);
-/*?*/           }
-/*N*/           else if ( aDocStm->GetErrorCode() && !pStor->GetErrorCode() )
-/*?*/               pStor->SetError(aDocStm->GetErrorCode());
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           OSL_FAIL( "Stream Error" );
-/*?*/           bRet = FALSE;
-/*N*/       }
-
-            // #116578# Manually create sfx window data from uno view data (no view is created).
-            // See SfxObjectShell::SaveWindows_Impl.
-            // Only data from the first view is used.
-
-            uno::Reference<document::XViewDataSupplier> xSupplier( GetModel(), uno::UNO_QUERY );
-            if ( xSupplier.is() && eShellMode == SFX_CREATE_MODE_STANDARD )
-            {
-                uno::Reference<container::XIndexAccess> xData = xSupplier->getViewData();
-                if ( xData.is() && xData->getCount() >= 1  )
-                {
-                    uno::Sequence<beans::PropertyValue> aSeq;
-                    uno::Any aAny = xData->getByIndex( 0 );
-                    if ( aAny >>= aSeq )
-                    {
-                        sal_Int32 nViewId = 0;
-
-                        sal_Int32 nCount = aSeq.getLength();
-                        for (sal_Int32 i = 0; i < nCount; i++)
-                            if ( aSeq[i].Name.compareToAscii(SC_VIEWID) == 0 )
-                            {
-                                ::rtl::OUString aId;
-                                aSeq[i].Value >>= aId;
-                                String aTmp( aId );
-                                aTmp.Erase( 0, 4 );  // format is like in "view3"
-                                nViewId = aTmp.ToInt32();
-                            }
-
-                        if ( nViewId == 1 )         // ScTabViewShell, ID from ScDLL::Init
-                        {
-                            String aUserStr;
-                            ScViewData aLocalViewData( this );
-                            aLocalViewData.ReadUserDataSequence( aSeq );
-                            aLocalViewData.WriteUserData( aUserStr );
-
-                            if ( aUserStr.Len() )
-                            {
-                                SvStorageStreamRef aWinStm  = pStor->OpenStream(
-                                        String::CreateFromAscii("SfxWindows"), STREAM_TRUNC | STREAM_STD_READWRITE );
-                                if ( aWinStm.Is() && aWinStm->GetError() == ERRCODE_NONE )
-                                {
-                                    aWinStm->SetBufferSize(1024);
-
-                                    char cToken = ',';
-                                    String aWinData = String::CreateFromInt32( nViewId );
-                                    aWinData += cToken;
-                                    aWinData += cToken;
-                                    aWinData += aUserStr;
-                                    aWinData += cToken;
-                                    aWinData += '1';        // active
-
-                                    aWinStm->WriteByteString( aWinData );
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-/*N*/   }
-/*N*/
-/*N*/   delete pProgress;
-/*N*/
-/*N*/   return bRet;
-/*N*/ }
-
 /*N*/ void ScDocShell::BeforeXMLLoading()
 /*N*/ {
 /*N*/   // prevent unnecessary broadcasts and updates
@@ -529,31 +411,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
             }
             else
                 OSL_FAIL("The Modificator should exist");
-/*N*/ }
-
-/*N*/ BOOL ScDocShell::LoadXML( SfxMedium* pInMedium, SvStorage* pStor )
-/*N*/ {
-/*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "sb99857", "ScDocShell::LoadXML" );
-/*N*/
-/*N*/   //  MacroCallMode is no longer needed, state is kept in SfxObjectShell now
-/*N*/
-/*N*/   // no Seek(0) here - always loading from storage, GetInStream must not be called
-/*N*/
-/*N*/     BeforeXMLLoading();
-/*N*/
-/*N*/   ScXMLImportWrapper aImport( aDocument, pInMedium, pStor );
-/*N*/
-/*N*/     sal_Bool bRet(sal_False);
-/*N*/   if (GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
-/*N*/       bRet = aImport.Import(sal_False);
-/*N*/   else
-/*N*/       bRet = aImport.Import(sal_True);
-/*N*/
-/*N*/     AfterXMLLoading(bRet);
-/*N*/
-/*N*/   //! row heights...
-/*N*/
-/*N*/   return bRet;
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::SaveXML( SfxMedium* pInMedium, SvStorage* pStor )
@@ -593,13 +450,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/
 /*N*/         if (bXML)
 /*N*/       {
-/*N*/           //  prepare a valid document for XML filter
-/*N*/           //  (for ConvertFrom, InitNew is called before)
-/*N*/           aDocument.MakeTable(0);
-/*N*/           aDocument.GetStyleSheetPool()->CreateStandardStyles();
-/*N*/           aDocument.UpdStlShtPtrsFrmNms();
-/*N*/
-/*N*/           bRet = LoadXML( GetMedium(), pStor );
+                OSL_ASSERT("XML import removed");
 /*N*/       }
 /*N*/       else
 /*N*/           bRet = LoadCalc( pStor );
@@ -939,7 +790,9 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       if (bXML)
 /*N*/           bRet = SaveXML( NULL, pStor );
 /*N*/       else
-/*N*/           bRet = SaveCalc( pStor );
+            {
+                OSL_ASSERT("SaveCalc removed");
+            }
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -975,7 +828,8 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       if (bXML)
 /*N*/           bRet = SaveXML( NULL, pStor );
 /*N*/       else
-/*N*/           bRet = SaveCalc( pStor );
+                OSL_ASSERT("SaveCalc removed");
+//            bRet = SaveCalc( pStor );
 /*N*/   }
 /*N*/
 /*N*/   return bRet;

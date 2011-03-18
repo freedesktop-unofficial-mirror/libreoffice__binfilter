@@ -29,6 +29,8 @@
 #ifndef _SVDOMEAS_HXX
 #define _SVDOMEAS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdotext.hxx>
 namespace binfilter {
 
@@ -148,11 +150,11 @@ public:
 //     ?--------------------->?--
 //     ?                      ?8mm
 //     ?                      ?
-//    Pt1ออออออออออออ?       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
-//     ?            ?        ณ___ <- Ueberstand der Masshilfslinie(n)
-//     ?            ศอออออออออ?
+//    Pt1๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ?       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
+//     ?            ?        ๏ฟฝ___ <- Ueberstand der Masshilfslinie(n)
+//     ?            ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ?
 //     ?Zu bemassendes Objekt ?
-//     ศอออออออออออออออออออออออ?
+//     ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ?
 //
 // Attribute:
 // ~~~~~~~~~~

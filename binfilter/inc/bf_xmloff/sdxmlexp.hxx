@@ -29,6 +29,8 @@
 #ifndef _SDXMLEXP_HXX
 #define _SDXMLEXP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/frame/XModel.hpp>
 
 #include <com/sun/star/container/XIndexContainer.hpp>

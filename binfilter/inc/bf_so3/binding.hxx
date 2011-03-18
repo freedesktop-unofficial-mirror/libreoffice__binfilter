@@ -30,7 +30,7 @@
 
 #ifndef __RSC
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 namespace binfilter {
 typedef ULONG SvBindStatus;

@@ -28,6 +28,8 @@
 #ifndef _UNODRAW_HXX
 #define _UNODRAW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/fmdpage.hxx>
 #include <calbck.hxx>
 #include <frmfmt.hxx>

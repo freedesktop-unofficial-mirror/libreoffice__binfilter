@@ -48,14 +48,10 @@ class ONumericModel
     static sal_Int32    nValueHandle;
 
 protected:
-    virtual void _onValueChanged();
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type> _getTypes();
 
 public:
     DECLARE_DEFAULT_LEAF_XTOR( ONumericModel );
-
-    // starform::XBoundComponent
-    virtual sal_Bool _commit();
 
     // ::com::sun::star::lang::XServiceInfo
     IMPLEMENTATION_NAME(ONumericModel);
@@ -67,9 +63,6 @@ public:
 
     // ::com::sun::star::io::XPersistObject
     virtual ::rtl::OUString SAL_CALL getServiceName() throw ( ::com::sun::star::uno::RuntimeException);
-
-    // starform::XReset
-    virtual void _reset();
 
     // OAggregationArrayUsageHelper
     virtual void fillProperties(

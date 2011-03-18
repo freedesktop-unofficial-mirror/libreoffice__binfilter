@@ -28,9 +28,11 @@
 #ifndef _MODOPT_HXX
 #define _MODOPT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/string.hxx>
-#include <vcl/wintypes.hxx>
+#include <tools/wintypes.hxx>
 #include <vcl/field.hxx>
 #include <bf_svtools/svarray.hxx>
 

@@ -28,6 +28,8 @@
 #ifndef _SWBLOCKS_HXX
 #define _SWBLOCKS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/persist.hxx>
 /*N*/#include <tools/debug.hxx> //addded for stripping
 class SvxMacroTableDtor;

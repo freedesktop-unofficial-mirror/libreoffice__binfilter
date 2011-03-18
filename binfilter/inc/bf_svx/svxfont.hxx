@@ -1,6 +1,7 @@
 /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
+ *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
  *
  * Copyright 2000, 2010 Oracle and/or its affiliates.
@@ -28,7 +29,10 @@
 #ifndef _SVX_SVXFONT_HXX
 #define _SVX_SVXFONT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <limits.h>     // USHRT_MAX
+
 #include <bf_svx/svxenum.hxx>
 
 #include <i18npool/lang.h>

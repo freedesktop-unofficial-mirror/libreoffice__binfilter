@@ -32,7 +32,7 @@
 
 #include <com/sun/star/util/MeasureUnit.hpp>
 
-#include <vcl/fldunit.hxx>
+#include <tools/fldunit.hxx>
 
 #include <tools/shl.hxx>
 

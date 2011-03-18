@@ -28,6 +28,8 @@
 #ifndef _EDITSH_HXX
 #define _EDITSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <bf_svtools/svarray.hxx>
 #include <vcl/font.hxx>

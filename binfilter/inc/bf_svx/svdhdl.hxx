@@ -29,13 +29,13 @@
 #ifndef _SVDHDL_HXX
 #define _SVDHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 
 #include <vcl/pointr.hxx>
 
 #include <tools/contnr.hxx>
-
-#include <bf_svtools/solar.hrc>
 
 #include <bf_svx/svdoedge.hxx>
 

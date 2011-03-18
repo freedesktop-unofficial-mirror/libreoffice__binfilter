@@ -28,6 +28,8 @@
 #ifndef _SWUNOHELPER_HXX
 #define _SWUNOHELPER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <sal/types.h>
 
 

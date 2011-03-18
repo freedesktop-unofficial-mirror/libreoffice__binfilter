@@ -28,6 +28,8 @@
 #ifndef UTILITY_HXX
 #define UTILITY_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/minarray.hxx>
 #include <vcl/font.hxx>
 #include <vcl/fixed.hxx>

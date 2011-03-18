@@ -29,6 +29,8 @@
 #ifndef _SDPAGE_HXX
 #define _SDPAGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/XInterface.hpp>
 #include <com/sun/star/presentation/FadeEffect.hpp>

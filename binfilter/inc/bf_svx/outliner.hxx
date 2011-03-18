@@ -29,6 +29,8 @@
 #ifndef _OUTLINER_HXX
 #define _OUTLINER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 #include <tools/string.hxx>
 #include <tools/debug.hxx>

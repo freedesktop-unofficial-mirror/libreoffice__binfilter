@@ -28,6 +28,8 @@
 #ifndef _FESH_HXX
 #define _FESH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <editsh.hxx>
 #include <orntenum.hxx>
 #include <flyenum.hxx>
@@ -249,7 +251,7 @@ public:
     //Mit BreakCreate wird der Vorgang abgebrochen, dann ist kein Objekt
     //mehr selektiert.
 
-    // Funktionen fÅr Rubberbox, um Draw-Objekte zu selektieren
+    // Funktionen fÔøΩr Rubberbox, um Draw-Objekte zu selektieren
 
     //Gruppe erzeugen, aufloesen, nix bei Rahmenselektion.
                                 //Es koennen noch immer Gruppen dabei sein.

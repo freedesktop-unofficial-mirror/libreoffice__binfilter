@@ -29,6 +29,8 @@
 #ifndef _DOCFLD_HXX
 #define _DOCFLD_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <calc.hxx>         // fuer SwHash
 #include <doc.hxx>
 namespace binfilter {

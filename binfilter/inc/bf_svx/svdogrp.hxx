@@ -29,6 +29,8 @@
 #ifndef _SVDOGRP_HXX
 #define _SVDOGRP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/datetime.hxx>
 
 #include <bf_svx/svdobj.hxx>

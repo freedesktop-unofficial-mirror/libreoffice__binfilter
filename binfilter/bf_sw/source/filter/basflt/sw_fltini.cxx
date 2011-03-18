@@ -68,7 +68,7 @@ using namespace ::com::sun::star::uno;
 using ::rtl::OUString;
 
 SwRead ReadRtf = 0, ReadAscii = 0, ReadSwg = 0, ReadSw3 = 0,
-        ReadHTML = 0, ReadXML = 0;
+        ReadHTML = 0;
 
 inline BOOL IsDocShellRegistered() { return SvtModuleOptions().IsWriter(); }
 

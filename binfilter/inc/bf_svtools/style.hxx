@@ -29,6 +29,8 @@
 #ifndef _SFXSTYLE_HXX
 #define _SFXSTYLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "bf_svtools/svtdllapi.h"
 
 #include <rsc/rscsfx.hxx>

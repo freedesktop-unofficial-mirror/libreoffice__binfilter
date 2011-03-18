@@ -30,7 +30,7 @@
 
 #include <limits.h>
 
-#include <sal/macros.h>
+#include <bf_svtools/bf_solar.h>
 #include "dialogs.hrc"
 #include "paperinf.hxx"
 namespace binfilter {

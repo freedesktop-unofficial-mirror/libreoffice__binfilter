@@ -28,6 +28,8 @@
 #ifndef _FLYFRM_HXX
 #define _FLYFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "layfrm.hxx"
 #include <orntenum.hxx>
 

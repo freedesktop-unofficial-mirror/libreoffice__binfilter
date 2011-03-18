@@ -28,6 +28,8 @@
 #ifndef _TXTFRM_HXX
 #define _TXTFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/mempool.hxx>
 #include <tools/string.hxx>
 #include "cntfrm.hxx"

@@ -33,7 +33,7 @@
 #include <bf_svtools/lstner.hxx>
 #include <bf_svtools/stdctrl.hxx>
 #include <vcl/lstbox.hxx>
-#include <vcl/imagebtn.hxx>
+#include <vcl/button.hxx>
 #include <vcl/combobox.hxx>
 #include "global.hxx"       // ScAddress
 

@@ -29,6 +29,8 @@
 #ifndef _SVDOATTR_HXX
 #define _SVDOATTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/xfillit0.hxx>
 
 #include <bf_svx/xflasit.hxx>

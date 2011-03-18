@@ -28,6 +28,9 @@
 
 #ifndef _EERDLL_HXX
 #define _EERDLL_HXX
+
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 class GlobalEditData;
 }//end of namespace binfilter

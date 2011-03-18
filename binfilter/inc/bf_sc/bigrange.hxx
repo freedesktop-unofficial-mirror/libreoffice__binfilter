@@ -29,6 +29,8 @@
 #ifndef SC_BIGRANGE_HXX
 #define SC_BIGRANGE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include "document.hxx"
 namespace binfilter {

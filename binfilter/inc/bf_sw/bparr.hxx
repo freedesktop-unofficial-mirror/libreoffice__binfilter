@@ -29,7 +29,8 @@
 #ifndef _BPARR_HXX
 #define _BPARR_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/debug.hxx>
 namespace binfilter {
 
@@ -53,7 +54,7 @@ typedef BigPtrEntry* ElementPtr;
 
 typedef BOOL (*FnForEach)( const ElementPtr&, void* pArgs );
 
-// 1000 Eintr„ge pro Block = etwas weniger als 4K
+// 1000 Eintrï¿½ge pro Block = etwas weniger als 4K
 #define MAXENTRY 1000
 
 

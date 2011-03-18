@@ -29,6 +29,8 @@
 #ifndef _IPWIN_HXX
 #define _IPWIN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/gen.hxx>
 
 #include <vcl/window.hxx>

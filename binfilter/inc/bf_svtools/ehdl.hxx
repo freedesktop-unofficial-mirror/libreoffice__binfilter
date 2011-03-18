@@ -29,6 +29,8 @@
 #ifndef _EHDL_HXX
 #define _EHDL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #ifndef __RSC
 
 #include "bf_svtools/svtdllapi.h"

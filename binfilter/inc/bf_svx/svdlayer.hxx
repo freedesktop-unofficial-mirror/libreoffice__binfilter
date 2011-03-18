@@ -29,6 +29,8 @@
 #ifndef _SVDLAYER_HXX
 #define _SVDLAYER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <tools/stream.hxx>
 #include <bf_svx/svdsob.hxx>
@@ -173,7 +175,7 @@ bInherited:
     TRUE: Wird der Layer/LayerSet nicht gefunden, so wird im Parent-LayerAdmin
           nachgesehen, ob es dort einen entsprechende Definition gibt.
     FALSE: Es wird nur dieser LayerAdmin durchsucht.
-    Jeder LayerAdmin einer Seite hat einen Parent-LayerAdmin, nämlich den des
+    Jeder LayerAdmin einer Seite hat einen Parent-LayerAdmin, nï¿½mlich den des
     Model. Das Model selbst hat keinen Parent.
 */
 

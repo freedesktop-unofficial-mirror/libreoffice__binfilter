@@ -25,6 +25,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/brdcst.hxx>
 
 

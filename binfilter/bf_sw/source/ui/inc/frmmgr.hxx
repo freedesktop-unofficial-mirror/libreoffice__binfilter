@@ -28,6 +28,8 @@
 #ifndef _FRMMGR_HXX
 #define _FRMMGR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "swtypes.hxx"
 #include "frmatr.hxx"
 

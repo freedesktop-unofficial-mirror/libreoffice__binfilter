@@ -29,6 +29,8 @@
 #ifndef SC_CELL_HXX
 #define SC_CELL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <stddef.h>
 
 #include <bf_svtools/lstner.hxx>

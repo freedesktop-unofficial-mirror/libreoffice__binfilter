@@ -29,6 +29,8 @@
 #ifndef _SVX_XFTOUIT_HXX
 #define _SVX_XFTOUIT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 /*************************************************************************
 |*
 |* FormText-OutlineItem

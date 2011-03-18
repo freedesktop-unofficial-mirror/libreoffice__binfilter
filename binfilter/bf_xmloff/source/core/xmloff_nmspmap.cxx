@@ -28,6 +28,7 @@
 
 #include <tools/debug.hxx>
 
+#include <bf_svtools/bf_solar.h>
 
 #include <rtl/ustrbuf.hxx>
 

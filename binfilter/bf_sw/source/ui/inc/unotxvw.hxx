@@ -28,6 +28,8 @@
 #ifndef _UNOTXVW_HXX
 #define _UNOTXVW_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_sfx2/sfxbasecontroller.hxx>
 #include <com/sun/star/text/XTextViewCursor.hpp>
 #include <com/sun/star/text/XTextViewCursorSupplier.hpp>

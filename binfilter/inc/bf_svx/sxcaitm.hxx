@@ -28,6 +28,8 @@
 #ifndef _SXCAITM_HXX
 #define _SXCAITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svddef.hxx>
 
 #include <bf_svx/sdangitm.hxx>

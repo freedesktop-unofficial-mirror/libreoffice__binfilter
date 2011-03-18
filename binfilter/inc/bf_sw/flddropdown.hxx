@@ -28,6 +28,8 @@
 #ifndef _FLDDROPDOWN_HXX
 #define _FLDDROPDOWN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/uno/Sequence.hxx>
 #include <fldbas.hxx>
 #include <vector>

@@ -74,7 +74,6 @@
 
 #include <bf_svtools/imgdef.hxx>
 
-#include "eacopier.hxx"
 #include "nochaos.hxx"
 #include "fcontnr.hxx"
 #include "helper.hxx"   // SfxContentHelper::Kill()

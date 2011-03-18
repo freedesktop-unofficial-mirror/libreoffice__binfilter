@@ -29,6 +29,8 @@
 #ifndef _NODE_HXX
 #define _NODE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <tools/mempool.hxx>
 #include <tools/gen.hxx>

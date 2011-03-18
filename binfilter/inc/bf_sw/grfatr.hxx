@@ -28,6 +28,8 @@
 #ifndef _GRFATR_HXX
 #define _GRFATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <hintids.hxx>      // fuer die WhichIds
 
 #include <tools/gen.hxx>

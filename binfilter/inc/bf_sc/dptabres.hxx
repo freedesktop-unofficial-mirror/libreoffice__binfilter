@@ -29,6 +29,8 @@
 #ifndef SC_DPTABRES_HXX
 #define SC_DPTABRES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include <tools/string.hxx>

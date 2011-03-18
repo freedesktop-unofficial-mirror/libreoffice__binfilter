@@ -563,52 +563,6 @@ inline sal_Bool operator==( const UNOURL& aURL1, const UNOURL& aURL2 )
     }
 
 //************************************************************************************************************************
-//  definition for "extern c component_writeInfo()"
-//************************************************************************************************************************
-#define COMPONENT_INFO(CLASS)                                                                                           \
-                                                                                                                        \
-    try                                                                                                                 \
-    {                                                                                                                   \
-        /* Set default result of follow operations !!! */                                                               \
-        bReturn = sal_False ;                                                                                           \
-                                                                                                                        \
-        /* Do the follow only, if given key is valid ! */                                                               \
-        if ( xKey.is () )                                                                                               \
-        {                                                                                                               \
-            /* Build new keyname */                                                                                     \
-            sKeyName     =  UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "/" ))            ;                                               \
-            sKeyName    +=  CLASS::impl_getStaticImplementationName()   ;                                               \
-            sKeyName    +=  UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" ));                                               \
-                                                                                                                        \
-            /* Create new key with new name. */                                                                         \
-             xNewKey = xKey->createKey( sKeyName );                                                                     \
-                                                                                                                        \
-            /* If this new key valid ... */                                                                             \
-            if ( xNewKey.is () )                                                                                        \
-            {                                                                                                           \
-                /* Get information about supported services. */                                                         \
-                seqServiceNames =   CLASS::impl_getStaticSupportedServiceNames()    ;                                   \
-                pArray          =   seqServiceNames.getArray()                      ;                                   \
-                nLength         =   seqServiceNames.getLength()                     ;                                   \
-                nCounter        =   0                                               ;                                   \
-                                                                                                                        \
-                /* Then set this information on this key. */                                                            \
-                for ( nCounter = 0; nCounter < nLength; ++nCounter )                                                    \
-                {                                                                                                       \
-                    xNewKey->createKey( pArray [nCounter] );                                                            \
-                }                                                                                                       \
-                                                                                                                        \
-                /* Result of this operations = OK. */                                                                   \
-                bReturn = sal_True ;                                                                                    \
-            }                                                                                                           \
-        }                                                                                                               \
-    }                                                                                                                   \
-    catch( UNOINVALIDREGISTRYEXCEPTION& )                                                                               \
-    {                                                                                                                   \
-        bReturn = sal_False ;                                                                                           \
-    }                                                                                                                   \
-
-//************************************************************************************************************************
 //  definition for "extern c component_getFactory()"
 //************************************************************************************************************************
 #define CREATEFACTORY(CLASS)                                                                                            \

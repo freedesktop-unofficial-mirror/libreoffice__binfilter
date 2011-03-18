@@ -28,6 +28,8 @@
 #ifndef _SFXMINSTACK_HXX
 #define _SFXMINSTACK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 
 #define DECL_OBJSTACK( ARR, T, nI, nG ) \

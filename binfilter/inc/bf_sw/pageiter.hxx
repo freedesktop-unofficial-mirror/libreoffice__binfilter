@@ -28,7 +28,8 @@
 #ifndef _PAGEITER_HXX
 #define _PAGEITER_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 namespace binfilter {
 
  class SwDoc;

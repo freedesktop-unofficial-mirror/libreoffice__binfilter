@@ -29,6 +29,8 @@
 #ifndef SC_HTMLIMP_HXX
 #define SC_HTMLIMP_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "eeimport.hxx"
 namespace binfilter {
 

@@ -28,7 +28,8 @@
 #ifndef _HINTIDS_HXX
 #define _HINTIDS_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 #include <sal/types.h>          // for sal_Unicode
 
 

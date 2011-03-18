@@ -28,6 +28,8 @@
 #ifndef _FLTINI_HXX
 #define _FLTINI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <shellio.hxx>
 #include <tools/color.hxx>
@@ -88,19 +90,6 @@ class LotusReader : public Reader
 public:
 };
 
-class XMLReader : public Reader
-{
-    virtual ULONG Read(SwDoc &,SwPaM &,const String &);
-public:
-    virtual int GetReaderType();
-
-    XMLReader();
-
-    // read the sections of the document, which is equal to the medium.
-    // returns the count of it
-    virtual USHORT GetSectionList( SfxMedium& rMedium,
-                                SvStrings& rStrings ) const;
-};
 
 // Umsetzen der LRSpaces im aktuell importierten Doc. Die Fremd-Filter
 // liefern immer absolute Werte fuer die Ebenen einer NumRule. Wir

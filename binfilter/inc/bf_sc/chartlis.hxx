@@ -29,6 +29,8 @@
 #ifndef SC_CHARTLIS_HXX
 #define SC_CHARTLIS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <vcl/timer.hxx>
 

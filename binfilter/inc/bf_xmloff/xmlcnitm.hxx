@@ -29,6 +29,8 @@
 #ifndef _XMLOFF_XMLCNITM_HXX
 #define _XMLOFF_XMLCNITM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/poolitem.hxx>
 namespace rtl { class OUString; }
 namespace binfilter {

@@ -28,6 +28,8 @@
 #ifndef _FMTPDSC_HXX
 #define _FMTPDSC_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <format.hxx>
 class IntlWrapper;

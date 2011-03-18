@@ -29,6 +29,8 @@
 #ifndef _XMLOFF_XMLTOKEN_HXX
 #define _XMLOFF_XMLTOKEN_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <sal/types.h>
 
 namespace rtl { class OUString; }

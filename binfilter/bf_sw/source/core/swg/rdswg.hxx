@@ -28,6 +28,8 @@
 #ifndef _RDSWG_HXX
 #define _RDSWG_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/prntypes.hxx>
 
 #include <bf_svtools/svarray.hxx>

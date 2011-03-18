@@ -28,9 +28,9 @@
 #ifndef _POOLFMT_HXX
 #define _POOLFMT_HXX
 
-#include <limits.h>
+#include <bf_svtools/bf_solar.h>
 
-#include <tools/solar.h>
+#include <limits.h>
 
 #include <bf_svx/frmdir.hxx>
 namespace binfilter {
@@ -57,7 +57,7 @@ namespace binfilter {
 //                                  3 - Absatzformate (?)
 //                                  4 - Grafikformate (?)
 
-// FÅr alle IDs gilt:
+// FÔøΩr alle IDs gilt:
 // Herkunft:                        0 -Pool
 //                                  1 -Benutzer
 // Offset:                          innerhalb der Gruppe

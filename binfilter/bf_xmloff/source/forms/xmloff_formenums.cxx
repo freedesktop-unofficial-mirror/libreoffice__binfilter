@@ -39,7 +39,7 @@
 #include <com/sun/star/awt/TextAlign.hpp>
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
 #include <com/sun/star/awt/FontRelief.hpp>
-#include <vcl/wintypes.hxx>     // for check states
+#include <tools/wintypes.hxx>       // for check states
 namespace binfilter {
 
 //.........................................................................

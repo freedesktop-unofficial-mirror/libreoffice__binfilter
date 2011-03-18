@@ -28,6 +28,8 @@
 #ifndef _UNOIDX_HXX
 #define _UNOIDX_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/text/XDocumentIndexMark.hpp>
 #include <com/sun/star/text/XDocumentIndex.hpp>
 #include <com/sun/star/container/XIndexReplace.hpp>

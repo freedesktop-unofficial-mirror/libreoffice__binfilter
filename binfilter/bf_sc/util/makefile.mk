@@ -155,7 +155,6 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     @echo   InitScDll @22                                          >>$@
     @echo   DeInitScDll @23                                        >>$@
     @echo   component_getImplementationEnvironment @24             >>$@
-    @echo   component_writeInfo @25                                >>$@
     @echo   component_getFactory @26                               >>$@
 .ENDIF
 .IF "$(OPTLINKS)" == "YES"
@@ -176,6 +175,13 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     @echo   _InitScDll                                              >>$@
     @echo   _DeInitScDll                                            >>$@
     @echo   _component_getImplementationEnvironment                 >>$@
-    @echo   _component_writeInfo                                    >>$@
     @echo   _component_getFactory                                   >>$@
 .ENDIF
+
+ALLTAR : $(MISC)/bf_sc.component
+
+$(MISC)/bf_sc.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_sc.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_sc.component

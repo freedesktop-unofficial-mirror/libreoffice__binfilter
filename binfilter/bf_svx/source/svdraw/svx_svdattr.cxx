@@ -52,7 +52,7 @@
 #include "svdattrx.hxx"
 #include "svdpool.hxx"
 
-#include <bf_svtools/solar.hrc>
+#include <bf_svtools/bf_solar.h>
 
 #include "xmlcnitm.hxx"
 

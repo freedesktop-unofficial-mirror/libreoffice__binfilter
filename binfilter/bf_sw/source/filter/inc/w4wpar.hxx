@@ -28,6 +28,8 @@
 #ifndef _W4WPAR_HXX
 #define _W4WPAR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <tools/table.hxx>
 #include <tools/stream.hxx>
@@ -386,7 +388,7 @@ class SwW4WParser
     long nRecNo;                // Befehlszaehler zum besseren Debuggen
     long nRSMLeft;              // Merke RSM-Werte bis zum naechsten Seitenwechsel
     long nRSMRight;
-    long nRSMwpwParaLeft;       // Merke RSM-Werte fÅr WPWin - Absatz-Raender
+    long nRSMwpwParaLeft;       // Merke RSM-Werte fÔøΩr WPWin - Absatz-Raender
     long nRSMwpwParaRight;
 
     // Hilfs-Varis zur Umrechnung

@@ -29,7 +29,7 @@
 #ifndef _BINTITEM_HXX
 #define _BINTITEM_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/rtti.hxx>
 #include <tools/bigint.hxx>
 #include <tools/debug.hxx>

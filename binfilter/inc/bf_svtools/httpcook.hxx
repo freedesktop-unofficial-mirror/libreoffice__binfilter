@@ -29,6 +29,8 @@
 #ifndef SVTOOLS_HTTPCOOK_HXX
 #define SVTOOLS_HTTPCOOK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/datetime.hxx>
 #include <tools/stream.hxx>
 #include <tools/string.hxx>

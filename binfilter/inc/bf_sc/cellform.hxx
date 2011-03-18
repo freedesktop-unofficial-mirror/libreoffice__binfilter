@@ -29,7 +29,7 @@
 #ifndef SC_CELLFORM_HXX
 #define SC_CELLFORM_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 class String;
 class Color;
 namespace binfilter {

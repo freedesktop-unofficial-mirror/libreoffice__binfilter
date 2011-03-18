@@ -28,7 +28,7 @@
 
 #define _BINDDATA_CXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <tools/shl.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/wldcrd.hxx>

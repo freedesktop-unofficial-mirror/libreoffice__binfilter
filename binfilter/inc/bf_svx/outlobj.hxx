@@ -29,7 +29,7 @@
 #ifndef _OUTLOBJ_HXX
 #define _OUTLOBJ_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/string.hxx>
 

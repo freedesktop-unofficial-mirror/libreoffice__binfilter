@@ -29,6 +29,8 @@
 #ifndef SC_CONSOLI_HXX
 #define SC_CONSOLI_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 namespace binfilter {
 

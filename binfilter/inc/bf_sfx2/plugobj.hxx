@@ -29,6 +29,8 @@
 #ifndef _PLUGOBJ_HXX
 #define _PLUGOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/plugin.hxx>
 #include "bf_sfx2/app.hxx"
 

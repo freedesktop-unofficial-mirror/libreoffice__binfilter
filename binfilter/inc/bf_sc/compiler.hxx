@@ -29,6 +29,8 @@
 #ifndef SC_COMPILER_HXX
 #define SC_COMPILER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <string.h>     // wg. memcpy() und bitte nicht memory.h (WKC)
 
 #include <tools/mempool.hxx>

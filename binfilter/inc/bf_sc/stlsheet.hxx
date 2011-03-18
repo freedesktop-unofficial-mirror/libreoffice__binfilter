@@ -29,6 +29,8 @@
 #ifndef SC_STLSHEET_HXX
 #define SC_STLSHEET_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/style.hxx>
 namespace binfilter {
 

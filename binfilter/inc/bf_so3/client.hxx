@@ -29,6 +29,8 @@
 #ifndef _CLIENT_HXX
 #define _CLIENT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/protocol.hxx>
 #include <bf_so3/iface.hxx>
 #include <tools/gen.hxx>

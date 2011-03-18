@@ -101,3 +101,10 @@ SHL1RES=	$(RCTARGET)
 
 .INCLUDE :  target.mk
 
+ALLTAR : $(MISC)/bf_sch.component
+
+$(MISC)/bf_sch.component .ERRREMOVE : $(SOLARENV)/bin/createcomponent.xslt \
+        bf_sch.component
+    $(XSLTPROC) --nonet --stringparam uri \
+        '$(COMPONENTPREFIX_BASIS_NATIVE)$(SHL1TARGETN:f)' -o $@ \
+        $(SOLARENV)/bin/createcomponent.xslt bf_sch.component

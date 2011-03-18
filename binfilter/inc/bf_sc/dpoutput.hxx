@@ -29,6 +29,8 @@
 #ifndef SC_DPOUTPUT_HXX
 #define SC_DPOUTPUT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
 
 #include <com/sun/star/sheet/DataResult.hpp>

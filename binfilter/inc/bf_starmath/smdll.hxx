@@ -28,6 +28,8 @@
 #ifndef SMDLL_HXX
 #define SMDLL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #define SMDLL   1
 
 #include <bf_starmath/smdll0.hxx>

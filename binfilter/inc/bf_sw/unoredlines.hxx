@@ -28,6 +28,8 @@
 #ifndef _UNOREDLINES_HXX
 #define _UNOREDLINES_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <unocoll.hxx>
 #include <unobaseclass.hxx>
 

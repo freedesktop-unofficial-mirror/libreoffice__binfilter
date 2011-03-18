@@ -28,13 +28,15 @@
 #ifndef _USRPREF_HXX
 #define _USRPREF_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 
 #include <unotools/configitem.hxx>
 #include <fldupde.hxx>
 #include "viewopt.hxx"
 
-#include <vcl/fldunit.hxx>
+#include <tools/fldunit.hxx>
 namespace binfilter {
 
 

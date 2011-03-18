@@ -29,6 +29,8 @@
 #ifndef SC_SCDOCPOL_HXX
 #define SC_SCDOCPOL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/itempool.hxx>
 namespace binfilter {
 

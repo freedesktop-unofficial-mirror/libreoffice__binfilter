@@ -29,7 +29,7 @@
 #ifndef SC_NAVICFG_HXX
 #define SC_NAVICFG_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 namespace binfilter {
 
 

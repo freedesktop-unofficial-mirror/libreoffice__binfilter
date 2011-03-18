@@ -314,7 +314,7 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
             }
             else if( bXML )
             {
-                pFilter = new SdXMLFilter( *GetMedium(), *this, sal_True );
+                OSL_ASSERT("XML import removed");
             }
 
             bRet = pFilter ? pFilter->Import() : FALSE;
@@ -402,17 +402,7 @@ BOOL SdDrawDocShell::SaveAs( SvStorage* pStore )
         }
         else
         {
-
-            SfxMedium aMedium( pStore );
-            pFilter = new SdBINFilter( aMedium, *this, sal_True );
-
-            UpdateDocInfoForSave();
-
-            const ULONG nOldSwapMode = pDoc->GetSwapGraphicsMode();
-            pDoc->SetSwapGraphicsMode( SDR_SWAPGRAPHICSMODE_TEMP );
-            if( !( bRet = pFilter->Export() ) )
-                pDoc->SetSwapGraphicsMode( nOldSwapMode );
-
+            OSL_ASSERT("binary export removed");
         }
 
         delete pFilter;

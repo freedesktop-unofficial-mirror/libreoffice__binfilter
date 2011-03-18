@@ -29,6 +29,8 @@
 #ifndef _IPOBJ_HXX
 #define _IPOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/embobj.hxx>
 #include <bf_so3/ipobj.hxx>
 

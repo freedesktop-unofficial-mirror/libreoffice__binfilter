@@ -29,7 +29,7 @@
 #ifndef _TRANSPRT_HXX
 #define _TRANSPRT_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 
 #include <tools/errcode.hxx>
 

@@ -28,6 +28,8 @@
 #ifndef _SFXCANCEL_HXX
 #define _SFXCANCEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 #include <tools/ref.hxx>
 #include <bf_svtools/brdcst.hxx>

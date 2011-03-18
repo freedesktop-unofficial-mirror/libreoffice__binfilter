@@ -29,6 +29,8 @@
 #ifndef _UNO_LINGU_HXX
 #define _UNO_LINGU_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <i18npool/lang.h>
 #include <tools/string.hxx>
 
@@ -163,7 +165,7 @@ LanguageType                        SvxLocaleToLanguage(
 ::com::sun::star::lang::Locale      SvxCreateLocale( LanguageType eLang );
 
 
-//TL:TODO: soll mal den rictigen Rückgabetyp bekommen!
+//TL:TODO: soll mal den rictigen Rï¿½ckgabetyp bekommen!
 
 
 }//end of namespace binfilter

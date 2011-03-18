@@ -26,6 +26,7 @@
  *
  ************************************************************************/
 
+#include <bf_svtools/bf_solar.h>
 #include "basrdll.hxx"
 
 namespace binfilter {

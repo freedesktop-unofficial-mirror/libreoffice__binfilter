@@ -29,6 +29,8 @@
 #ifndef SC_RANGEUTL_HXX
 #define SC_RANGEUTL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/string.hxx>
 class SvStream;
 namespace binfilter {

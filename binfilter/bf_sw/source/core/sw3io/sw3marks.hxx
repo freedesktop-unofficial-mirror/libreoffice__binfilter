@@ -28,7 +28,7 @@
 #ifndef _SW3MARKS_HXX
 #define _SW3MARKS_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <bf_svtools/cntnrsrt.hxx>
 namespace binfilter {
 

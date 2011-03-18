@@ -29,6 +29,8 @@
 #ifndef _SVDPAGV_HXX
 #define _SVDPAGV_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/debug.hxx>
 
 #include <com/sun/star/awt/XWindowListener.hpp>

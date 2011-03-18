@@ -28,6 +28,8 @@
 #ifndef _SWTABLE_HXX
 #define _SWTABLE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/mempool.hxx>
 #include <tools/ref.hxx>
 #include <bf_svtools/svarray.hxx>

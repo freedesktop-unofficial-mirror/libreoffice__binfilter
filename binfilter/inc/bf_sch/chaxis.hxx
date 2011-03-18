@@ -28,6 +28,8 @@
 #ifndef SCH_CHART_AXIS_HXX
 #define SCH_CHART_AXIS_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 
 #include <bf_svx/chrtitem.hxx>
 #include <tools/gen.hxx>
@@ -138,7 +140,7 @@ protected:
     BOOL mbFlippedXY; //TRUE: X vertikal, Y horizontal; (entspricht in etwa bSwitchColRow...)
     long mnPosition;  //links/rechts bzw. oben/unten
 
-    BOOL mbRadial;    //NetChart, evtl. einmal auch für PolarPlots
+    BOOL mbRadial;    //NetChart, evtl. einmal auch fï¿½r PolarPlots
     Rectangle maArea; //Dieser Bereich wird von den Achsen umschlossen
     Rectangle maRefArea;
 
@@ -190,7 +192,7 @@ public:
         mbColText    = bColText;
         mbCenterText = bCenterText;
     }
-    //Hilfsfunktion für X-Achse, nur in Create2DBackplane
+    //Hilfsfunktion fï¿½r X-Achse, nur in Create2DBackplane
     void InsertHelpTick(long nPos) {InsertMark(nPos,mnHelpTickLen,mnHelpTicks);}
     BOOL HasHelpTicks() {return mnHelpTicks!=0;}
 
@@ -219,8 +221,8 @@ public:
     BOOL IsNegative()                               { return (mfMax <= 0.0 && mfMin < 0.0 ); }
 
     // Stack stapelt den Wert an der entsprechenden Achse
-    // und gibt die Position (Start und Ende) relativ zum Koordinatensystem zurück
-    // Pair::A() für Top/Left, B() für Bottom/Right
+    // und gibt die Position (Start und Ende) relativ zum Koordinatensystem zurï¿½ck
+    // Pair::A() fï¿½r Top/Left, B() fï¿½r Bottom/Right
     Pair Stack(double fData,BOOL bConstrained=TRUE);//stacked Charts
     void InitStacking()                             { mfDataBottom=mfDataTop=0.0; }
     //void Create();
@@ -256,7 +258,7 @@ public:
     void SetMax(double f)           { mfMax = f; }
     void SetMin(double f)           { mfMin = f; }
     BOOL IsLogarithm() const        { return mbLogarithm; }
-    /* Freischalten, wenn benötigt:
+    /* Freischalten, wenn benï¿½tigt:
 
     BOOL IsAutoMin()   const {return mbAutoMin;}
     BOOL IsAutoMax()   const {return mbAutoMax;}
@@ -352,7 +354,7 @@ public:
 
     //nach Initialise und SetRefArea (ChartAxis) setzen!!!!!
     //nPos ist entweder eine echte Position (bei Y-Achse der X Wert u.U.)
-    //oder ein define für Standardposition (CHAXIS_POS_A) bzw. sekundäre
+    //oder ein define fï¿½r Standardposition (CHAXIS_POS_A) bzw. sekundï¿½re
     //(CHAXIS_POS_B) Achse (= oben bzw. Rechts)
     void SetPosition(long nPos);
     //nDir ist Flag, kann sein CHAXIS_MARK_INNER und CHAXIS_MARK_OUTER (oder beides)

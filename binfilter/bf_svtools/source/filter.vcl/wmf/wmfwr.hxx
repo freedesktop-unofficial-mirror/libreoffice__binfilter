@@ -29,6 +29,8 @@
 #ifndef _WMFWR_HXX
 #define _WMFWR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/bigint.hxx>
 #include <tools/debug.hxx>
 #include <vcl/metaact.hxx>

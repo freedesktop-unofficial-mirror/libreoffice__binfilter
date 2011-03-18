@@ -29,6 +29,8 @@
 #ifndef _SVX_FMMODEL_HXX
 #define _SVX_FMMODEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svx/svdmodel.hxx>
 class SbxObject;
 class SbxArray;

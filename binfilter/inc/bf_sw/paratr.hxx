@@ -28,6 +28,8 @@
 #ifndef _PARATR_HXX
 #define _PARATR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/eitem.hxx>
 #include <bf_svtools/stritem.hxx>
 #include <format.hxx>

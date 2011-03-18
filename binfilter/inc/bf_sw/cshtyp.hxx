@@ -28,7 +28,8 @@
 #ifndef _CSHTYP_HXX
 #define _CSHTYP_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
+
 class UniString;
 namespace binfilter {
 

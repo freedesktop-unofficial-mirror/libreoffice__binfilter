@@ -29,6 +29,9 @@
 #ifndef _B3D_B3DLIGHT_HXX
 #define _B3D_B3DLIGHT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
+
 #include "vector3d.hxx"
 
 #include "matril3d.hxx"

@@ -29,6 +29,8 @@
 #ifndef SC_AREALINK_HXX
 #define SC_AREALINK_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include "global.hxx"
 #include "refreshtimer.hxx"
 

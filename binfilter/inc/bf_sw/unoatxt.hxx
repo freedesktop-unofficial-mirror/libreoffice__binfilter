@@ -28,6 +28,8 @@
 #ifndef _UNOATXT_HXX
 #define _UNOATXT_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/text/XAutoTextContainer.hpp>
 #include <com/sun/star/lang/XUnoTunnel.hpp>
 #include <com/sun/star/container/XNamed.hpp>

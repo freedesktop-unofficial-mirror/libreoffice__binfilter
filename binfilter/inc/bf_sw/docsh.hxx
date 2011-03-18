@@ -28,6 +28,8 @@
 #ifndef _SWDOCSH_HXX
 #define _SWDOCSH_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/timer.hxx>
 #include <bf_sfx2/docfac.hxx>
 #include <bf_sfx2/interno.hxx>

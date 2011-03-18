@@ -29,6 +29,8 @@
 #ifndef _DECODE_HXX
 #define _DECODE_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/bmpacc.hxx>
 
 namespace binfilter

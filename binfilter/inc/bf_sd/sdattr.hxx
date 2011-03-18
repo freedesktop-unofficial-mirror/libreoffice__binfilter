@@ -29,6 +29,8 @@
 #ifndef _SDATTR_HXX
 #define _SDATTR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/presentation/FadeEffect.hpp>
 
 #include <bf_svtools/intitem.hxx>

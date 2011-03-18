@@ -29,6 +29,8 @@
 #ifndef _VIEWPT3D_HXX
 #define _VIEWPT3D_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_goodies/hmatrix.hxx>
 namespace binfilter {
 

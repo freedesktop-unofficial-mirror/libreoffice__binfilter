@@ -30,6 +30,7 @@
 #pragma hdrstop
 #endif
 
+#include <bf_svtools/bf_solar.h>
 #include <tools/debug.hxx>
 
 #include "miscuno.hxx"

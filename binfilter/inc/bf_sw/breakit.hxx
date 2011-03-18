@@ -29,7 +29,7 @@
 #ifndef _BREAKIT_HXX
 #define _BREAKIT_HXX
 
-#include <tools/solar.h>
+#include <bf_svtools/bf_solar.h>
 #include <i18npool/lang.h>
 
 /*************************************************************************

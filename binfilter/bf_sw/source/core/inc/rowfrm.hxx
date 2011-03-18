@@ -28,6 +28,8 @@
 #ifndef _ROWFRM_HXX
 #define _ROWFRM_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/mempool.hxx>
 
 #include "layfrm.hxx"

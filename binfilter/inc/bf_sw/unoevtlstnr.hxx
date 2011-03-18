@@ -28,6 +28,8 @@
 #ifndef _UNOEVTLSTNR_HXX
 #define _UNOEVTLSTNR_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_svtools/svarray.hxx>
 
 #include <com/sun/star/uno/Reference.h>

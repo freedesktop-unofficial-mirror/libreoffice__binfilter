@@ -29,6 +29,8 @@
 #ifndef SC_REFRESHTIMER_HXX
 #define SC_REFRESHTIMER_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <vcl/timer.hxx>
 #include <osl/mutex.hxx>
 namespace binfilter {

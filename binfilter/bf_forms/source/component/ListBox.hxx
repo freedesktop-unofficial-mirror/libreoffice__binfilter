@@ -85,10 +85,6 @@ class OListBoxModel :public OBoundControlModel
 
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type>   _getTypes();
 
-protected:
-    // UNO Anbindung
-    virtual void _onValueChanged();
-
 public:
     DECLARE_DEFAULT_LEAF_XTOR( OListBoxModel );
 
@@ -111,13 +107,6 @@ public:
                 ::com::sun::star::uno::Any& _rConvertedValue, ::com::sun::star::uno::Any& _rOldValue, sal_Int32 _nHandle, const ::com::sun::star::uno::Any& _rValue )
                 throw (::com::sun::star::lang::IllegalArgumentException);
 
-// XLoadListener
-    virtual void         _loaded(const ::com::sun::star::lang::EventObject& rEvent);
-    virtual void         _unloaded();
-
-// XBoundComponent
-    virtual sal_Bool _commit();
-
 // XPropertySet
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo> SAL_CALL getPropertySetInfo() throw(::com::sun::star::uno::RuntimeException);
     virtual cppu::IPropertyArrayHelper& SAL_CALL getInfoHelper();
@@ -128,9 +117,6 @@ public:
         write(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& _rxOutStream) throw(::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL
         read(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectInputStream>& _rxInStream) throw(::com::sun::star::io::IOException, ::com::sun::star::uno::RuntimeException);
-
-// XReset
-    virtual void _reset();
 
 // XRefreshable
     virtual void SAL_CALL refresh() throw(::com::sun::star::uno::RuntimeException);

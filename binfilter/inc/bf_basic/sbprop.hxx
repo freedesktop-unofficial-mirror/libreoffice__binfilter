@@ -29,6 +29,7 @@
 #ifndef _SB_SBPROPERTY_HXX
 #define _SB_SBPROPERTY_HXX
 
+#include <bf_svtools/bf_solar.h>
 
 #include "sbxprop.hxx"
 #include "sbdef.hxx"

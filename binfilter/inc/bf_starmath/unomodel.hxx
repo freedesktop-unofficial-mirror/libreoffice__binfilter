@@ -28,6 +28,8 @@
 #ifndef UNOMODEL_HXX
 #define UNOMODEL_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <com/sun/star/beans/XPropertySet.hpp>
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
 #include <com/sun/star/beans/XPropertyState.hpp>

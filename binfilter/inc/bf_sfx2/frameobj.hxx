@@ -29,6 +29,8 @@
 #ifndef _FRAMEOBJ_HXX
 #define _FRAMEOBJ_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <bf_so3/ipobj.hxx>
 namespace binfilter {
 

@@ -28,6 +28,8 @@
 #ifndef _SFXBRDCST_HXX
 #define _SFXBRDCST_HXX
 
+#include <bf_svtools/bf_solar.h>
+
 #include <tools/rtti.hxx>
 
 #include <bf_svtools/svarray.hxx>
