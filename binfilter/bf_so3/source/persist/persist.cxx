@@ -46,7 +46,6 @@
 namespace binfilter {
 
 /************** class SvInfoObject ***************************************/
-/*************************************************************************/
 SV_IMPL_PERSIST1(SvInfoObject,SvPersistBase)
 
 class SvInfoObject_Impl
@@ -62,12 +61,6 @@ public:
     }
 };
 
-/************************************************************************
-|*    SvInfoObject::SvInfoObject()
-|*    SvInfoObject::~SvInfoObject()
-|*
-|*    Beschreibung
-*************************************************************************/
 SvInfoObject::SvInfoObject()
     : pImp( new SvInfoObject_Impl )
     , bDeleted( FALSE )
@@ -97,19 +90,12 @@ SvInfoObject::~SvInfoObject()
     delete pImp;
 }
 
-/************************************************************************
-|*    SvInfoObject::CreateCopy()
-|*    SvInfoObject::MakeCopy()
-|*
-|*    Beschreibung
-*************************************************************************/
 SvInfoObjectRef SvInfoObject::CreateCopy() const
 {
     SvCreateInstancePersist pFunc = SOAPP->aInfoClassMgr.Get( GetClassId() );
     SvInfoObject* pI;
     SvPersistBase* pB;
     (*pFunc)(&pB);
-//    CreateInstance( &pB );
 
     pI = PTR_CAST(SvInfoObject,pB);
     DBG_ASSERT( pI, "cannot cast" );
@@ -126,12 +112,6 @@ void SvInfoObject::Assign( const SvInfoObject * pObj )
     aSvClassName = pObj->GetClassName();
 }
 
-/************************************************************************
-|*    SvInfoObject::Load()
-|*    SvInfoObject::Save()
-|*
-|*    Beschreibung
-*************************************************************************/
 #define INFO_OBJECT_VER_MIN     (BYTE)0
 #define INFO_OBJECT_VER_AKT     (BYTE)1
 
@@ -183,11 +163,6 @@ void SvInfoObject::Save( SvPersistStream & rStm )
     rStm << bDeleted;
 }
 
-/************************************************************************
-|*    SvInfoObject::SetObj()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvInfoObject::SetObj( SvPersist * pObj )
 {
     aObj = pObj;
@@ -195,12 +170,6 @@ void SvInfoObject::SetObj( SvPersist * pObj )
         aSvClassName = *pObj->GetSvFactory();
 }
 
-/************************************************************************
-|*    SvInfoObject::GetObjName()
-|*    SvInfoObject::GetStorageName()
-|*
-|*    Beschreibung
-*************************************************************************/
 String SvInfoObject::GetObjName() const
 {
     return aObjName;
@@ -272,9 +241,7 @@ void SvInfoObject::SetDeleted( BOOL bDel )
     }
 }
 
-//=========================================================================
 //==================class SvObjectContainer================================
-//=========================================================================
 SV_IMPL_FACTORY(SvObjectContainerFactory)
     {
     }
@@ -285,25 +252,21 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvObjectContainer,SvObjectContainerFactory,SvObject
                              0x96dee2a1, 0x62f6, 0x11cf,
                              0x89, 0xca, 0x0, 0x80, 0x29, 0xe4, 0xb0, 0xb1 )
 
-//=========================================================================
 ::IUnknown * SvObjectContainer::GetMemberInterface( const SvGlobalName & )
 {
     return NULL;
 }
 
-//=========================================================================
 #ifdef TEST_INVARIANT
 void SvObjectContainer::TestMemberObjRef( BOOL /*bFree*/ )
 {
 }
 
-//=========================================================================
 void SvObjectContainer::TestMemberInvariant( BOOL /*bPrint*/ )
 {
 }
 #endif
 
-//=========================================================================
 SvObjectContainer::SvObjectContainer()
 /*  [Beschreibung]
 
@@ -312,7 +275,6 @@ SvObjectContainer::SvObjectContainer()
 {
 }
 
-//=========================================================================
 SvObjectContainer::~SvObjectContainer()
 /*  [Beschreibung]
 
@@ -323,14 +285,7 @@ SvObjectContainer::~SvObjectContainer()
     // schon Removed sein
 }
 
-
-
-
-
-
-//=========================================================================
 //==============class SvPersist============================================
-//=========================================================================
 SV_IMPL_FACTORY(SvPersistFactory)
     {
     }
@@ -346,7 +301,6 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvPersist,SvPersistFactory,SvObjectContainer,
     return NULL;
 }
 
-//=========================================================================
 #ifdef TEST_INVARIANT
 void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
 {
@@ -374,7 +328,6 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
     }
 }
 
-//=========================================================================
 void SvPersist::TestMemberInvariant( BOOL /*bPrint*/ )
 {
 #ifdef DBG_UTIL
@@ -391,7 +344,6 @@ void SvPersist::TestMemberInvariant( BOOL /*bPrint*/ )
 }
 #endif
 
-//=========================================================================
 SvPersist::SvPersist()
     : bIsModified     ( FALSE )
     , bIsInit         ( FALSE )
@@ -409,7 +361,6 @@ SvPersist::SvPersist()
 {
 }
 
-//=========================================================================
 SvPersist::~SvPersist()
 {
     // Parent haelt immer Referenz, deswegen muss der das Objekt
@@ -418,18 +369,12 @@ SvPersist::~SvPersist()
 }
 
 #ifdef DBG_UTIL
-/*************************************************************************
-|*    SvPersist::AssertInit()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::AssertInit() const
 {
     DBG_ASSERT( bIsInit, "super class SvPersist: call InitNew or Load bevor other calls" );
 }
 #endif
 
-//=========================================================================
 void SvPersist::FillClass
 (
     SvGlobalName * pClassName,  /* Der Typ der Klasse */
@@ -478,11 +423,6 @@ void SvPersist::FillClass
         *pClassName = *GetSvFactory();
 }
 
-/*************************************************************************
-|*    SvPersist::SetupStorage()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::SetupStorage( SvStorage * pStor ) const
 {
     SvUniqueName    aName;
@@ -503,11 +443,6 @@ void SvPersist::SetupStorage( SvStorage * pStor ) const
     pStor->SetClass( aName, nClipFormat, aShortTypeName );
 }
 
-/*************************************************************************
-|*    SvPersist::GetInfoList()
-|*
-|*    Beschreibung
-*************************************************************************/
 SvInfoObjectMemberList * SvPersist::GetInfoList()
 {
     if( !pChildList )
@@ -515,11 +450,6 @@ SvInfoObjectMemberList * SvPersist::GetInfoList()
     return pChildList;
 }
 
-/*************************************************************************
-|*    SvPersist::SetModifiedFormat()
-|*
-|*    Beschreibung
-*************************************************************************/
 #ifdef _NO_MODIFY_ADVISE
 void SvPersist::SetModifiedFormat( ULONG nFormat )
 {
@@ -548,11 +478,6 @@ void SvPersist::SetModifiedFormat( ULONG nFormat )
 }
 #endif
 
-/*************************************************************************
-|*    SvPersist::Insert()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::Insert( SvInfoObject * pInfoObj )
 {
     ASSERT_INIT()
@@ -580,18 +505,12 @@ BOOL SvPersist::Insert( SvInfoObject * pInfoObj )
         pChild->pParent   = this;        // kein zusaetzlicher RefCount
     }
 
-    //pChild->SetModifiedFormat( SvEmbeddedObject::GetFormat() );
     pChildList->Append( pInfoObj );
     SetModified( TRUE );
 
     return TRUE;
 }
 
-/*************************************************************************
-|*    SvPersist::Move()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::Move( SvInfoObject * pInfoObj, const String & rStorName, BOOL bCopyStorage )
 {
     ASSERT_INIT()
@@ -642,11 +561,6 @@ BOOL SvPersist::Move( SvInfoObject * pInfoObj, const String & rStorName, BOOL bC
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::CopyObject()
-|*
-|*    Beschreibung
-*************************************************************************/
 SvPersistRef SvPersist::CopyObject( const String& rObjName, const String& rNewName, SvPersist * pSrc )
 {
     SvPersistRef    xNewObject;
@@ -733,7 +647,6 @@ BOOL SvPersist::Copy( const String & rNewObjName, const String & rNewStorName,
 
     return bRet;
 }
-
 
 BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMoving )
 {
@@ -832,11 +745,6 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::unload()
-|*
-|*    Beschreibung:
-*************************************************************************/
 BOOL SvPersist::Unload( SvInfoObject *pInfoObj)
 {
     if( bOpSaveAs || bOpHandsOff || bOpSave )
@@ -862,10 +770,6 @@ BOOL SvPersist::Unload( SvInfoObject *pInfoObj)
             pI->GetVisArea();
             pI->IsLink();
         }
-
-        //if ( pInfoObj->pImp->GetRealStorageName().Len() )
-            // can't unload at the moment
-            //return TRUE;
 
         SvPersistRef x;
         pInfoObj->SetObj( x );
@@ -901,11 +805,6 @@ BOOL SvPersist::Unload( SvPersist * pChild )
     return FALSE;
 }
 
-/*************************************************************************
-|*    SvPersist::Remove()
-|*
-|*    Beschreibung:
-*************************************************************************/
 void SvPersist::Remove( SvInfoObject *pInfoObj)
 {
     DBG_ASSERT(pInfoObj,"Kein InfoObj");
@@ -1000,16 +899,6 @@ SvInfoObject * SvPersist::Find( const SvPersist * pObj_ ) const
     return NULL;
 }
 
-
-
-
-/*************************************************************************
-|*    SvPersist::HasObject()
-|*    SvPersist::CanRunObject()
-|*    SvPersist::GetObject()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::HasObject( const String & rObjName )
 {
     if( Owner() )
@@ -1090,11 +979,6 @@ SvStorageRef SvPersist::GetObjectStorage( SvInfoObject* pEle )
     return xRet;
 }
 
-/*************************************************************************
-|*    SvPersist::SetModified()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::SetModified( BOOL bModifiedP )
 {
     ASSERT_INIT()
@@ -1115,11 +999,6 @@ void SvPersist::SetModified( BOOL bModifiedP )
     aModifiedTime = Time();
 }
 
-/*************************************************************************
-|*    SvPersist::CountModified()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::CountModified( BOOL bMod )
 {
     DBG_ASSERT( bMod || nModifyCount != 0, "modifiy count underflow" );
@@ -1139,11 +1018,6 @@ void SvPersist::CountModified( BOOL bMod )
         ModifyChanged();
 }
 
-/*************************************************************************
-|*    SvPersist::SetModifiedChanged()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::EnableSetModified( BOOL bEnable )
 {
     DBG_ASSERT( bEnable != bEnableSetModified,
@@ -1151,20 +1025,10 @@ void SvPersist::EnableSetModified( BOOL bEnable )
     bEnableSetModified = bEnable;
 }
 
-/*************************************************************************
-|*    SvPersist::ModifyChanged()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::ModifyChanged()
 {
 }
 
-/*************************************************************************
-|*    SvPersist::IsModified()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::IsModified()
 {
     ASSERT_INIT()
@@ -1187,11 +1051,6 @@ BOOL SvPersist::IsModified()
     return FALSE;
 }
 
-/*************************************************************************
-|*    SvPersist::Init()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::InitMembers( SvStorage * pStor )
 {
     bIsInit     = TRUE;
@@ -1201,11 +1060,6 @@ void SvPersist::InitMembers( SvStorage * pStor )
         bCreateTempStor = TRUE;
 }
 
-/*************************************************************************
-|*    SvPersist::DoInitNew()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::DoInitNew( SvStorage * pStor )
 {
     EnableSetModified( FALSE );
@@ -1214,11 +1068,6 @@ BOOL SvPersist::DoInitNew( SvStorage * pStor )
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::DoLoad()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::DoLoad( SvStorage * pStor )
 {
     EnableSetModified( FALSE );
@@ -1227,7 +1076,6 @@ BOOL SvPersist::DoLoad( SvStorage * pStor )
     return bRet;
 }
 
-//=========================================================================
 BOOL SvPersist::DoLoad
 (
     const String & rFileName,   /* Name der Datei, aus der das Objekt
@@ -1289,11 +1137,6 @@ BOOL SvPersist::DoSaveCompleted( SvStorage * pStor )
 }
 
 
-/*************************************************************************
-|*    SvPersist::GetStorage() const
-|*
-|*    Beschreibung
-*************************************************************************/
 SvStorage * SvPersist::GetStorage() const
 {
     ASSERT_INIT()
@@ -1310,11 +1153,6 @@ SvStorage * SvPersist::GetStorage() const
     return aStorage;
 }
 
-/*************************************************************************
-|*    SvPersist::InitNew()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::InitNew( SvStorage * pStor )
 {
     InitMembers( pStor );
@@ -1328,11 +1166,6 @@ BOOL SvPersist::InitNew( SvStorage * pStor )
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::Load()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::DoOwnerLoad( SvStorage * pStor )
 {
     InitMembers( pStor );
@@ -1340,11 +1173,6 @@ BOOL SvPersist::DoOwnerLoad( SvStorage * pStor )
     return DoLoadContent( pStor, TRUE );
 }
 
-/*************************************************************************
-|*    SvPersist::Load()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::Load( SvStorage * pStor )
 {
     dtorClear();
@@ -1357,14 +1185,8 @@ BOOL SvPersist::Load( SvStorage * pStor )
         return DoLoadContent( pStor, TRUE );
 
     return TRUE;
-    //return DoLoadContent( pStor, FALSE );
 }
 
-/*************************************************************************
-|*    SvPersist::Save()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::Save()
 {
     ASSERT_INIT()
@@ -1380,7 +1202,6 @@ BOOL SvPersist::Save()
         return TRUE;
 
     BOOL bRet = TRUE;
-//    GetStorage()->SetClassName( GetClassName() );
 
     SvStorage *pStor = GetStorage();
     if( SOFFICE_FILEFORMAT_60 > pStor->GetVersion() )
@@ -1388,11 +1209,6 @@ BOOL SvPersist::Save()
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::SaveAs()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::SaveAs( SvStorage * pStor )
 {
     ASSERT_INIT()
@@ -1421,11 +1237,6 @@ BOOL SvPersist::SaveAs( SvStorage * pStor )
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::HandsOff()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvPersist::HandsOff()
 {
     ASSERT_INIT()
@@ -1447,7 +1258,6 @@ void SvPersist::HandsOff()
                     continue;
                 // Im HandsOff darf nicht mehr auf Persist zugegriffen werden
                 // deswegen alten Namen sichern
-//??                pEle->aStorName = pEle->GetStorageName();
                 pEle->GetPersist()->DoHandsOff();
             }
             pEle = pChildList->Next();
@@ -1458,11 +1268,6 @@ void SvPersist::HandsOff()
     aStorage.Clear();
 }
 
-/*************************************************************************
-|*    SvPersist::SaveCompleted()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::SaveCompleted( SvStorage * pStor )
 {
     //DBG_ASSERT( bOpHandsOff | bOpSaveAs | bOpSave, aTest );
@@ -1514,11 +1319,6 @@ BOOL SvPersist::SaveCompleted( SvStorage * pStor )
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::LoadContent()
-|*
-|*    Beschreibung
-*************************************************************************/
 #define PERSIST_STREAM "persist elements"
 BOOL SvPersist::DoLoadContent( SvStorage * pStor, BOOL bOwner_ )
 {
@@ -1585,11 +1385,6 @@ void SvPersist::LoadContent( SvStream & rStm, BOOL bOwner_ )
     // nichts tun bei Fremd-Format
 }
 
-/*************************************************************************
-|*    SvPersist::SaveContent()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::DoSaveContent( SvStorage * pStor, BOOL bOwner_ )
 {
     // MAC MPW mag's sonst nicht ...
@@ -1634,11 +1429,6 @@ void SvPersist::SaveContent( SvStream & rStm, BOOL bOwner_ )
     // nichts tun bei Fremd-Format
 }
 
-/*************************************************************************
-|*    SvPersist::SaveChilds()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::SaveChilds()
 {
     BOOL bRet = TRUE;
@@ -1712,24 +1502,7 @@ BOOL SvPersist::SaveElement( SvStorage* pStor, SvInfoObject* pEle )
     }
 
     bLoad = (nObjVersion != pStor->GetVersion() );
-/*
-    if( pStor->GetVersion() <= SOFFICE_FILEFORMAT_50 )
-    {
-        // If we store into the old binary format, objects
-        // that have a newer file format version than the
-        // destination storage have to be saved.
-        bLoad = bIntern && nObjVersion > pStor->GetVersion();
-    }
-    else
-    {
-        // If we store into an XML format, all internal objects that
-        // aren't stored in the XML format or that are stored in
-        // a newer XML format have to be saved.
-        bLoad = bIntern &&
-                ( nObjVersion < SOFFICE_FILEFORMAT_60 ||
-                    nObjVersion > pStor->GetVersion() );
-    }
-*/
+
     // load object if neccessary
     if( bLoad && !pEle->GetPersist() )
         CreateObjectFromStorage( pEle, aSrcEleStor );
@@ -1783,11 +1556,6 @@ BOOL SvPersist::SaveElement( SvStorage* pStor, SvInfoObject* pEle )
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::SaveAsChilds()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::SaveAsChilds( SvStorage * pStor )
 {
     BOOL bRet = TRUE;
@@ -1853,11 +1621,6 @@ BOOL SvPersist::SaveAsChilds( SvStorage * pStor )
     return bRet;
 }
 
-/*************************************************************************
-|*    SvPersist::SaveCompletedChilds()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvPersist::SaveCompletedChilds( SvStorage * pStor )
 {
     BOOL bRet = TRUE;

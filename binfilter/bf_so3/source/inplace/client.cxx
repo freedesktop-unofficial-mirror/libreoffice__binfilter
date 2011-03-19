@@ -38,7 +38,6 @@
 #endif
 
 #include <vcl/salbtype.hxx>
-
 #include <vcl/window.hxx>
 #include <bf_so3/client.hxx>
 #include <tools/debug.hxx>
@@ -48,7 +47,6 @@
 
 namespace binfilter {
 
-//=========================================================================
 TYPEINIT0(SvClientData);
 
 SvClientData::SvClientData( SvEmbeddedClient * pCl, Window * pWin )
@@ -60,12 +58,10 @@ SvClientData::SvClientData( SvEmbeddedClient * pCl, Window * pWin )
 {
 }
 
-//=========================================================================
 SvClientData::~SvClientData()
 {
 }
 
-//=========================================================================
 void SvClientData::Invalidate()
 /*  [Beschreibung]
 
@@ -89,7 +85,6 @@ void SvClientData::Invalidate()
     }
 }
 
-//=========================================================================
 Window * SvClientData::GetEditWin() const
 /*  [Beschreibung]
 
@@ -107,7 +102,6 @@ Window * SvClientData::GetEditWin() const
     return pEditWin;
 }
 
-//=========================================================================
 void SvClientData::SetSizeScale
 (
     const Fraction & rScaleWidth,
@@ -125,7 +119,6 @@ void SvClientData::SetSizeScale
     aScaleHeight = rScaleHeight;
 }
 
-//=========================================================================
 BOOL SvClientData::SetObjArea
 (
     const Rectangle & rArea
@@ -152,7 +145,6 @@ BOOL SvClientData::SetObjArea
    return FALSE;  // Bereich hat sich geandert
 }
 
-//=========================================================================
 Rectangle SvClientData::GetObjArea() const
 /*  [Beschreibung]
 
@@ -170,7 +162,6 @@ Rectangle SvClientData::GetObjArea() const
     return aObjRect;
 }
 
-//=========================================================================
 Rectangle SvClientData::PixelObjAreaToLogic
 (
     const Rectangle & rPixRect
@@ -188,11 +179,6 @@ Rectangle SvClientData::PixelObjAreaToLogic
 
 */
 {
-/*  Zu frueh, da dies schon in DoVerb passiert! Fuer externe Fenster muss
-    der MapMode auf Default stehen
-    if( !pEditWin )
-        pEditWin = GetEditWin();
-*/
     Rectangle aR = rPixRect;
     if( pEditWin )
     {
@@ -205,7 +191,6 @@ Rectangle SvClientData::PixelObjAreaToLogic
     return aR;
 }
 
-//=========================================================================
 #include <math.h>
 
 Rectangle SvClientData::LogicObjAreaToPixel
@@ -226,11 +211,6 @@ Rectangle SvClientData::LogicObjAreaToPixel
 
 */
 {
-/*  Zu frueh, da dies schon in DoVerb passiert! Fuer externe Fenster muss
-    der MapMode auf Default stehen
-    if( !pEditWin )
-        ((SvClientData *)this)->pEditWin = ((SvClientData *)this)->GetEditWin();
-*/
     Rectangle aR( rRect );
     // *must* happen before LogicToPixel conversion, as:
     // scaling down to pixel is integer, which leads to
@@ -298,12 +278,8 @@ void SvEmbeddedClient::TestMemberInvariant( BOOL bPrint )
 
 /************************************************************************
 |*    SvEmbeddedClient::SvEmbeddedClient()
-|*
-|*    Beschreibung
 *************************************************************************/
-//=========================================================================
 //==============SvEmbeddedClient===========================================
-//=========================================================================
 #define INIT_CTOR                               \
       pParent           ( NULL )                \
     , nAspect           ( ASPECT_CONTENT )      \
@@ -317,14 +293,12 @@ SvEmbeddedClient::SvEmbeddedClient()
 {
 }
 
-//=========================================================================
 SvEmbeddedClient::~SvEmbeddedClient()
 {
     if( bDeleteData )
         delete pData;
 }
 
-//=========================================================================
 void SvEmbeddedClient::MakeViewData()
 /*  [Beschreibung]
 
@@ -363,7 +337,6 @@ void SvEmbeddedClient::MakeViewData()
     }
 }
 
-//=========================================================================
 void SvEmbeddedClient::FreeViewData
 (
     SvClientData * pDataP   /* View-Daten die zerst"ort werden k"onnen */
@@ -398,7 +371,6 @@ void SvEmbeddedClient::FreeViewData
     }
 }
 
-//=========================================================================
 SvClientData * SvEmbeddedClient::GetClientData()
 /*  [Beschreibung]
 
@@ -420,13 +392,11 @@ SvClientData * SvEmbeddedClient::GetClientData()
     return pData;
 }
 
-//=========================================================================
 BOOL SvEmbeddedClient::CanPlugIn()
 {
     return bCanPlugIn;
 }
 
-//=========================================================================
 ErrCode SvEmbeddedClient::GetContURL
 (
     INetURLObject & rURL    /* Hier wird der URL des Containers
@@ -452,11 +422,6 @@ ErrCode SvEmbeddedClient::GetContURL
     return nRet;
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::Embedded()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvEmbeddedClient::Embedded( BOOL bEmbed )
 {
 #ifdef DBG_UTIL_PROT
@@ -481,7 +446,6 @@ void SvEmbeddedClient::Embedded( BOOL bEmbed )
         FreeViewData( pData );
 }
 
-//=========================================================================
 void SvEmbeddedClient::PlugIn( BOOL bPlugIn )
 {
 #ifdef DBG_UTIL_PROT
@@ -495,11 +459,6 @@ void SvEmbeddedClient::PlugIn( BOOL bPlugIn )
 
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::ViewChanged()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvEmbeddedClient::ViewChanged( USHORT nAspectP )
 {
     if( Owner() )
@@ -513,11 +472,6 @@ void SvEmbeddedClient::ViewChanged( USHORT nAspectP )
     }
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::SaveObject()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvEmbeddedClient::SaveObject()
 {
     BOOL bRet = FALSE;
@@ -533,7 +487,6 @@ BOOL SvEmbeddedClient::SaveObject()
     return bRet;
 }
 
-//=========================================================================
 SvEmbeddedObjectRef SvEmbeddedClient::GetContainer()
 /*  [Beschreibung]
 
@@ -562,7 +515,6 @@ SvEmbeddedObjectRef SvEmbeddedClient::GetContainer()
     return xCont;
 }
 
-//=========================================================================
 void SvEmbeddedClient::MakeVisible()
 /*  [Beschreibung]
 
@@ -577,8 +529,6 @@ void SvEmbeddedClient::MakeVisible()
 
 /*************************************************************************
 |*    InPlace Protocoll
-|*
-|*    Beschreibung
 *************************************************************************/
 void SvEmbeddedClient::Connected( BOOL bConnect )
 { // Zu dieser Methode gibt es kein Ole2 aequivalent
@@ -592,11 +542,6 @@ void SvEmbeddedClient::Connected( BOOL bConnect )
         FreeViewData( pData );
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::Opened()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvEmbeddedClient::Closed()
 {
     // genau in diesem muss die InClose-Variable zurueckgesetzt werden

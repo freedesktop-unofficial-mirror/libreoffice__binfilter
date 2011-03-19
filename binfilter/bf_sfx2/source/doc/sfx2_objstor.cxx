@@ -115,602 +115,568 @@ using namespace ::com::sun::star::document;
 using namespace ::rtl;
 using namespace ::cppu;
 
-//=========================================================================
+sal_Bool ShallSetBaseURL_Impl( SfxMedium &rMed )
+{
+    SvtSaveOptions aOpt;
+    sal_Bool bIsRemote = rMed.IsRemote();
+    return  (aOpt.IsSaveRelINet() && bIsRemote) || (aOpt.IsSaveRelFSys() && !bIsRemote);
+}
 
-/*N*/ sal_Bool ShallSetBaseURL_Impl( SfxMedium &rMed )
-/*N*/ {
-/*N*/     SvtSaveOptions aOpt;
-/*N*/   sal_Bool bIsRemote = rMed.IsRemote();
-/*N*/     return  (aOpt.IsSaveRelINet() && bIsRemote) || (aOpt.IsSaveRelFSys() && !bIsRemote);
-/*N*/ }
+sal_Bool SfxObjectShell::Save()
+{
+    if( SOFFICE_FILEFORMAT_60 <= GetStorage()->GetVersion() )
+        return sal_True;
+    else
+        return SaveInfoAndConfig_Impl( GetMedium()->GetStorage() );
+}
 
-//=========================================================================
+sal_Bool SfxObjectShell::SaveAs( SvStorage* pNewStg )
+{
+    if( SOFFICE_FILEFORMAT_60 <= pNewStg->GetVersion() )
+        return sal_True;
+    else
+        return SaveInfoAndConfig_Impl( pNewStg );
+}
 
-/*N*/ sal_Bool SfxObjectShell::Save()
-/*N*/ {
-/*N*/     if( SOFFICE_FILEFORMAT_60 <= GetStorage()->GetVersion() )
-/*N*/         return sal_True;
-/*N*/     else
-/*N*/         return SaveInfoAndConfig_Impl( GetMedium()->GetStorage() );
-/*N*/ }
+sal_Bool GetPasswd_Impl( const SfxItemSet* pSet, String& rPasswd )
+{
+    const SfxPoolItem* pItem = NULL;
+    if ( pSet && SFX_ITEM_SET == pSet->GetItemState( SID_PASSWORD, sal_True, &pItem ) )
+    {
+        DBG_ASSERT( pItem->IsA( TYPE(SfxStringItem) ), "wrong item type" );
+        rPasswd = ( (const SfxStringItem*)pItem )->GetValue();
+        return sal_True;
+    }
+    return sal_False;
+}
 
-//--------------------------------------------------------------------------
-
-/*N*/ sal_Bool SfxObjectShell::SaveAs( SvStorage* pNewStg )
-/*N*/ {
-/*N*/     if( SOFFICE_FILEFORMAT_60 <= pNewStg->GetVersion() )
-/*N*/         return sal_True;
-/*N*/     else
-/*N*/         return SaveInfoAndConfig_Impl( pNewStg );
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ sal_Bool GetPasswd_Impl( const SfxItemSet* pSet, String& rPasswd )
-/*N*/ {
-/*N*/   const SfxPoolItem* pItem = NULL;
-/*N*/   if ( pSet && SFX_ITEM_SET == pSet->GetItemState( SID_PASSWORD, sal_True, &pItem ) )
-/*N*/   {
-/*?*/       DBG_ASSERT( pItem->IsA( TYPE(SfxStringItem) ), "wrong item type" );
-/*?*/       rPasswd = ( (const SfxStringItem*)pItem )->GetValue();
-/*?*/       return sal_True;
-/*N*/   }
-/*N*/   return sal_False;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ sal_Bool SfxObjectShell::DoInitNew( SvStorage * pStor )
-
+sal_Bool SfxObjectShell::DoInitNew( SvStorage * pStor )
 /*  [Beschreibung]
 
-    Diese von SvPersist geerbte virtuelle Methode wird gerufen, um
-    die SfxObjectShell-Instanz aus einem Storage (pStor != 0) bzw.
-    (pStor == 0) ganz neu zu initialisieren.
+Diese von SvPersist geerbte virtuelle Methode wird gerufen, um
+die SfxObjectShell-Instanz aus einem Storage (pStor != 0) bzw.
+(pStor == 0) ganz neu zu initialisieren.
 
-    Wie alle Do...-Methoden liegt hier eine Steuerung vor, die eigentliche
-    Implementierung erfolgt, indem die ebenfalls virtuellen Methode
-    InitNew(SvStorate*) von der SfxObjectShell-Subclass implementiert wird.
+Wie alle Do...-Methoden liegt hier eine Steuerung vor, die eigentliche
+Implementierung erfolgt, indem die ebenfalls virtuellen Methode
+InitNew(SvStorate*) von der SfxObjectShell-Subclass implementiert wird.
 
-    F"ur pStor == 0 wird ein die SfxObjectShell-Instanz mit einem leeren
-    SfxMedium verbunden, sonst mit einem SfxMedium, welches auf den
-    als Parameter "ubergeben SvStorage verweist.
+F"ur pStor == 0 wird ein die SfxObjectShell-Instanz mit einem leeren
+SfxMedium verbunden, sonst mit einem SfxMedium, welches auf den
+als Parameter "ubergeben SvStorage verweist.
 
-    Erst nach InitNew() oder Load() ist das Objekt korrekt initialisiert.
+Erst nach InitNew() oder Load() ist das Objekt korrekt initialisiert.
 
-    [R"uckgabewert]
-    sal_True            Das Objekt wurde initialisiert.
-    sal_False           Das Objekt konnte nicht initialisiert werden
+[R"uckgabewert]
+sal_True            Das Objekt wurde initialisiert.
+sal_False           Das Objekt konnte nicht initialisiert werden
 */
 
-/*N*/ {
-/*N*/   ModifyBlocker_Impl aBlock( this );
-/*N*/   if ( pStor )
-/*N*/       pMedium = new SfxMedium( pStor );
-/*N*/   else
-/*N*/   {
-/*N*/       bIsTmp = sal_True;
-/*N*/       pMedium = new SfxMedium;
-/*N*/   }
-/*N*/
-/*N*/   if ( InitNew( pStor ) )
-/*N*/   {
-/*N*/       // empty documents always get their macros from the user, so there is no reason to restrict access
-/*N*/       pImp->nMacroMode = MacroExecMode::ALWAYS_EXECUTE_NO_WARN;
-/*N*/
-/*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
-/*N*/       if ( xModel.is() )
-/*N*/       {
-/*N*/           SfxItemSet *pSet = GetMedium()->GetItemSet();
-/*N*/             pSet->Put( SfxStringItem( SID_FILTER_NAME, GetFactory().GetFilter(0)->GetFilterName() ) );
-/*N*/           ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
-/*N*/           TransformItems( SID_OPENDOC, *pSet, aArgs );
-/*N*/             sal_Int32 nLength = aArgs.getLength();
-/*N*/             aArgs.realloc( nLength + 1 );
-/*N*/             aArgs[nLength].Name = DEFINE_CONST_UNICODE("Title");
-/*N*/             aArgs[nLength].Value <<= ::rtl::OUString( GetTitle( SFX_TITLE_DETECT ) );
-/*N*/             xModel->attachResource( ::rtl::OUString(), aArgs );
-/*N*/       }
-/*N*/
-/*N*/         SetActivateEvent_Impl( SFX_EVENT_CREATEDOC );
-/*N*/       return sal_True;
-/*N*/   }
-/*N*/   return sal_False;
-/*N*/ }
+{
+    ModifyBlocker_Impl aBlock( this );
+    if ( pStor )
+        pMedium = new SfxMedium( pStor );
+    else
+    {
+        bIsTmp = sal_True;
+        pMedium = new SfxMedium;
+    }
 
-//-------------------------------------------------------------------------
+    if ( InitNew( pStor ) )
+    {
+        // empty documents always get their macros from the user, so there is no reason to restrict access
+        pImp->nMacroMode = MacroExecMode::ALWAYS_EXECUTE_NO_WARN;
+
+        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
+        if ( xModel.is() )
+        {
+            SfxItemSet *pSet = GetMedium()->GetItemSet();
+            pSet->Put( SfxStringItem( SID_FILTER_NAME, GetFactory().GetFilter(0)->GetFilterName() ) );
+            ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
+            TransformItems( SID_OPENDOC, *pSet, aArgs );
+            sal_Int32 nLength = aArgs.getLength();
+            aArgs.realloc( nLength + 1 );
+            aArgs[nLength].Name = DEFINE_CONST_UNICODE("Title");
+            aArgs[nLength].Value <<= ::rtl::OUString( GetTitle( SFX_TITLE_DETECT ) );
+            xModel->attachResource( ::rtl::OUString(), aArgs );
+        }
+
+        SetActivateEvent_Impl( SFX_EVENT_CREATEDOC );
+        return sal_True;
+    }
+    return sal_False;
+}
 
 void SfxObjectShell::DoHandsOffNoMediumClose()
-/*N*/ {
-/*N*/     const SfxFilter *pFilter = pMedium->GetFilter();
-/*N*/     if( !pFilter || pFilter->IsOwnFormat() || ( pFilter->GetFilterFlags() & SFX_FILTER_PACKED ) )
-/*N*/       HandsOff();
-/*N*/
-/*N*/   // Force document library containers to release storage
-/*N*/   SotStorageRef xDummyStorage;
-/*N*/   SfxDialogLibraryContainer* pDialogCont = pImp->pDialogLibContainer;
-/*N*/   if( pDialogCont )
-/*N*/       pDialogCont->setStorage( xDummyStorage );
-/*N*/
-/*N*/   SfxScriptLibraryContainer* pBasicCont = pImp->pBasicLibContainer;
-/*N*/   if( pBasicCont )
-/*N*/       pBasicCont->setStorage( xDummyStorage );
-/*N*/ }
+{
+    const SfxFilter *pFilter = pMedium->GetFilter();
+    if( !pFilter || pFilter->IsOwnFormat() || ( pFilter->GetFilterFlags() & SFX_FILTER_PACKED ) )
+        HandsOff();
 
-//-------------------------------------------------------------------------
+    // Force document library containers to release storage
+    SotStorageRef xDummyStorage;
+    SfxDialogLibraryContainer* pDialogCont = pImp->pDialogLibContainer;
+    if( pDialogCont )
+        pDialogCont->setStorage( xDummyStorage );
 
-/*N*/ void SfxObjectShell::DoHandsOff()
+    SfxScriptLibraryContainer* pBasicCont = pImp->pBasicLibContainer;
+    if( pBasicCont )
+        pBasicCont->setStorage( xDummyStorage );
+}
+
+void SfxObjectShell::DoHandsOff()
 
 /*  [Beschreibung]
 
-    Diese von SvPersist geerbte virtuelle Methode wird gerufen, um
-    das Objekt aufzufordern, den ihm zugeteilten SvStorage freizugeben,
-    insbesondere Substorages und Streams zu schlie"sen.
+Diese von SvPersist geerbte virtuelle Methode wird gerufen, um
+das Objekt aufzufordern, den ihm zugeteilten SvStorage freizugeben,
+insbesondere Substorages und Streams zu schlie"sen.
 
-    Als Do...-Methode liegt hier nur die Steuerung. Der Implementierer
-    von Subclasses kann die ebenfalls virtuelle Methode HandsOff()
-    implementieren, um seine Substorages und Streams zu schlie"sen.
+Als Do...-Methode liegt hier nur die Steuerung. Der Implementierer
+von Subclasses kann die ebenfalls virtuelle Methode HandsOff()
+implementieren, um seine Substorages und Streams zu schlie"sen.
 
-    Nach dem Aufruf dieser Methode, ist dem Objekt kein SfxMedium mehr
-    zugeordnet, bis SaveCompleted() durchlaufen ist.
+Nach dem Aufruf dieser Methode, ist dem Objekt kein SfxMedium mehr
+zugeordnet, bis SaveCompleted() durchlaufen ist.
 */
 
-/*N*/ {
-/*N*/   DoHandsOffNoMediumClose();
-/*N*/   pMedium->Close();
-/*N*/ }
+{
+    DoHandsOffNoMediumClose();
+    pMedium->Close();
+}
 
-//-------------------------------------------------------------------------
+sal_Bool SfxObjectShell::DoLoad(
+    const String& /*rFileName*/, StreamMode /*nStreamMode*/, StorageMode /*nStorageMode*/)
+{
+    DBG_BF_ASSERT(0, "STRIP");
+    return sal_False;
+}
 
-/*?*/ sal_Bool SfxObjectShell::DoLoad(
-/*?*/   const String& /*rFileName*/, StreamMode /*nStreamMode*/, StorageMode /*nStorageMode*/)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/   return sal_False;
-/*?*/ }
+sal_Bool SfxObjectShell::DoLoad( SvStorage * pStor )
+/*  [Beschreibung]
 
+Diese von SvPersist geerbte virtuelle Methode steuert das Laden
+des Objektes aus einem Storage. Dabei wird der SvStorage zun"achst
+in einem SfxMedium verpackt und SfxObjectShell::DoLoad(SfxMedium*)
+mit diesem gerufen.
 
-//-------------------------------------------------------------------------
+[R"uckgabewert]
+sal_True                Das Objekt wurde initialisiert.
+sal_False               Das Objekt konnte nicht initialisiert werden
+*/
 
-/*N*/ sal_Bool SfxObjectShell::DoLoad( SvStorage * pStor )
+{
+    pMedium = new SfxMedium( pStor );
+    if ( DoLoad(pMedium) )
+    {
+        if ( SFX_CREATE_MODE_EMBEDDED == eCreateMode )
+        {
+            ModifyBlocker_Impl aBlock( this );
+            SetTitle( pStor->GetName() );
+        }
+        return sal_True;
+    }
+
+    return sal_False;
+}
+
+sal_Bool SfxObjectShell::DoLoad( SfxMedium *pMed )
 
 /*  [Beschreibung]
 
-    Diese von SvPersist geerbte virtuelle Methode steuert das Laden
-    des Objektes aus einem Storage. Dabei wird der SvStorage zun"achst
-    in einem SfxMedium verpackt und SfxObjectShell::DoLoad(SfxMedium*)
-    mit diesem gerufen.
+Diese Methode steuert das Laden des Objektes aus dem von dem
+"ubergebenen SfxMedium beschriebenen Medium. Hinterher ist das Objekt
+mit diesem SfxMedium verbunden.
 
-    [R"uckgabewert]
-    sal_True                Das Objekt wurde initialisiert.
-    sal_False               Das Objekt konnte nicht initialisiert werden
+Handelt es sich bei dem SfxMedium um einen Storage im eigenen Format,
+wird die virtuelle Methode SvPersit::Load(SvStorage*) gerufen, welche
+die Implementierer von Subclasses "uberladen m"ussen, um das Objekt
+aus einem eigenen Storage zu laden (=> Swapping m"oeglich).
+
+Handelt es sich bei dem SfxMedium um einen Storage in einem fremden
+Format, oder um ein Flat-File, dann wird die virtuelle Methode
+<SfxObjectShell::ConvertFrom(SfxMedium*)> gerufen, welche die
+Implementierer von Subclasses "uberladen m"ussen, um das Objekt
+aus dem SfxMedium zu konvertieren. W"ahrend der Bearbeitung ist
+das Objekt dann mit einem tempor"aren SvStorage verbunden.
+
+Erst nach InitNew() oder Load() ist das Objekt korrekt
+initialisiert.
+
+[R"uckgabewert]
+sal_True                Das Objekt wurde geladen.
+sal_False           Das Objekt konnte nicht geladen werden
 */
 
-/*N*/ {
-/*N*/   pMedium = new SfxMedium( pStor );
-/*N*/   if ( DoLoad(pMedium) )
-/*N*/   {
-/*N*/       if ( SFX_CREATE_MODE_EMBEDDED == eCreateMode )
-/*N*/       {
-/*N*/           ModifyBlocker_Impl aBlock( this );
-/*N*/           SetTitle( pStor->GetName() );
-/*N*/       }
-/*N*/       return sal_True;
-/*N*/   }
-/*N*/
-/*N*/   return sal_False;
-/*N*/ }
+{
+    /*SfxApplication *pSfxApp =*/ SFX_APP();
+    ModifyBlocker_Impl aBlock( this );
 
-//-------------------------------------------------------------------------
+    pMedium = pMed;
+    sal_Bool bOk = sal_False;
+    const SfxFilter* pFilter = pMed->GetFilter();
+    SfxItemSet* pSet = pMedium->GetItemSet();
+    if( !pImp->nEventId )
+    {
+        SFX_ITEMSET_ARG(
+            pSet, pTemplateItem, SfxBoolItem,
+            SID_TEMPLATE, sal_False);
+        SetActivateEvent_Impl(
+            ( pTemplateItem && pTemplateItem->GetValue() )
+            ? SFX_EVENT_CREATEDOC : SFX_EVENT_OPENDOC );
+    }
 
-/*N*/ sal_Bool SfxObjectShell::DoLoad( SfxMedium *pMed )
 
-/*  [Beschreibung]
+    SFX_ITEMSET_ARG( pSet, pBaseItem, SfxStringItem,
+                    SID_BASEURL, sal_False);
+    String aBaseURL;
+    SFX_ITEMSET_ARG( pMedium->GetItemSet(), pSalvageItem, SfxStringItem, SID_DOC_SALVAGE, sal_False);
+    if( pBaseItem )
+        aBaseURL = pBaseItem->GetValue();
+    else
+    {
+        if( GetCreateMode() == SFX_CREATE_MODE_EMBEDDED )
+        {
+            aBaseURL = ::binfilter::StaticBaseUrl::GetBaseURL();
+            SetBaseURL( aBaseURL );
+        }
+        else if ( pSalvageItem )
+        {
+            String aLclName( pMed->GetPhysicalName() );
+            ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aLclName, aBaseURL );
+        }
+        else
+            aBaseURL = pMed->GetBaseURL();
+    }
 
-    Diese Methode steuert das Laden des Objektes aus dem von dem
-    "ubergebenen SfxMedium beschriebenen Medium. Hinterher ist das Objekt
-    mit diesem SfxMedium verbunden.
+    /*SfxApplication* pApp =*/ SFX_APP();
+    pImp->nLoadedFlags = 0;
+    sal_Bool bHasStorage = !pFilter || ( pFilter->IsOwnFormat() && pFilter->UsesStorage() );
+    if ( !bHasStorage && pFilter && ( pFilter->GetFilterFlags() & SFX_FILTER_PACKED ) )
+    {
+        bHasStorage = pMed->TryStorage();
+        if ( bHasStorage )
+        {
+            String aLclName( pMed->GetPhysicalName() );
+            ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aLclName, aBaseURL );
+        }
+    }
 
-    Handelt es sich bei dem SfxMedium um einen Storage im eigenen Format,
-    wird die virtuelle Methode SvPersit::Load(SvStorage*) gerufen, welche
-    die Implementierer von Subclasses "uberladen m"ussen, um das Objekt
-    aus einem eigenen Storage zu laden (=> Swapping m"oeglich).
+    if ( pMedium->GetFilter() )
+    {
+        sal_uInt32 nError = HandleFilter( pMedium, this );
+        if ( nError != ERRCODE_NONE )
+            SetError( nError );
+    }
 
-    Handelt es sich bei dem SfxMedium um einen Storage in einem fremden
-    Format, oder um ein Flat-File, dann wird die virtuelle Methode
-    <SfxObjectShell::ConvertFrom(SfxMedium*)> gerufen, welche die
-    Implementierer von Subclasses "uberladen m"ussen, um das Objekt
-    aus dem SfxMedium zu konvertieren. W"ahrend der Bearbeitung ist
-    das Objekt dann mit einem tempor"aren SvStorage verbunden.
+    if ( GetError() == ERRCODE_NONE && pMed->IsStorage() )
+    {
+        SvStorageRef xStor( pMed->GetStorage() );
+        if( pMed->GetLastStorageCreationState() == ERRCODE_NONE )
+        {
+            DBG_ASSERT( pFilter, "No filter for storage found!" );
+            if( xStor.Is() && !xStor->GetError() && pMed->GetFilter() && pMed->GetFilter()->GetVersion() < SOFFICE_FILEFORMAT_60 )
+            {
+                // Undoobjekte aufraeumen, muss vor dem eigentlichen Laden erfolgen
+                SvEmbeddedObjectRef xThis = this;
+                SvPersistRef xPer;
+                if ( xThis.Is() )
+                    xPer = new SvEmbeddedObject;
+                else
+                    xPer = new SvPersist;
 
-    Erst nach InitNew() oder Load() ist das Objekt korrekt
-    initialisiert.
+                xPer->DoOwnerLoad(xStor);
+                xPer->CleanUp();
+                        DBG_ASSERT( 0, "DoSave return value is not checed here, seems buggy" );
+                        //xPer->DoSave();
+                xPer->DoSaveCompleted( 0 );
+            }
 
-    [R"uckgabewert]
-    sal_True                Das Objekt wurde geladen.
-    sal_False           Das Objekt konnte nicht geladen werden
-*/
+            if ( xStor.Is() )
+            {
+                SvStorageInfoList aList;
+                xStor->FillInfoList( &aList );
+                if ( !aList.Count() && !xStor->IsOLEStorage() )
+                    SetError( ERRCODE_IO_BROKENPACKAGE );
+                else
+                {
+                    BOOL bHasMacros = FALSE;
+                    if ( xStor->IsOLEStorage() )
+                        bHasMacros = BasicManager::HasBasicWithModules(
+                        *xStor,
+                        ::binfilter::StaticBaseUrl::GetBaseURL(
+                            INetURLObject::NO_DECODE) );
+                    else
+                        bHasMacros = xStor->IsStorage( String::CreateFromAscii("Basic") );
 
-/*N*/ {
-/*N*/   /*SfxApplication *pSfxApp =*/ SFX_APP();
-/*N*/   ModifyBlocker_Impl aBlock( this );
-/*N*/
-/*N*/   pMedium = pMed;
-/*N*/   sal_Bool bOk = sal_False;
-/*N*/   const SfxFilter* pFilter = pMed->GetFilter();
-/*N*/   SfxItemSet* pSet = pMedium->GetItemSet();
-/*N*/   if( !pImp->nEventId )
-/*N*/   {
-/*N*/       SFX_ITEMSET_ARG(
-/*N*/           pSet, pTemplateItem, SfxBoolItem,
-/*N*/           SID_TEMPLATE, sal_False);
-/*N*/         SetActivateEvent_Impl(
-/*N*/           ( pTemplateItem && pTemplateItem->GetValue() )
-/*N*/             ? SFX_EVENT_CREATEDOC : SFX_EVENT_OPENDOC );
-/*N*/   }
-/*N*/
-/*N*/
-/*N*/   SFX_ITEMSET_ARG( pSet, pBaseItem, SfxStringItem,
-/*N*/                    SID_BASEURL, sal_False);
-/*N*/   String aBaseURL;
-/*N*/   SFX_ITEMSET_ARG( pMedium->GetItemSet(), pSalvageItem, SfxStringItem, SID_DOC_SALVAGE, sal_False);
-/*N*/   if( pBaseItem )
-/*N*/       aBaseURL = pBaseItem->GetValue();
-/*N*/   else
-/*N*/   {
-/*N*/       if( GetCreateMode() == SFX_CREATE_MODE_EMBEDDED )
-/*N*/       {
-/*N*/           aBaseURL = ::binfilter::StaticBaseUrl::GetBaseURL();
-/*N*/           SetBaseURL( aBaseURL );
-/*N*/       }
-/*N*/       else if ( pSalvageItem )
-/*N*/       {
-/*N*/             String aLclName( pMed->GetPhysicalName() );
-/*N*/             ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aLclName, aBaseURL );
-/*N*/       }
-/*N*/       else
-/*N*/           aBaseURL = pMed->GetBaseURL();
-/*N*/   }
-/*N*/
-/*N*/   /*SfxApplication* pApp =*/ SFX_APP();
-/*N*/   pImp->nLoadedFlags = 0;
-/*N*/     sal_Bool bHasStorage = !pFilter || ( pFilter->IsOwnFormat() && pFilter->UsesStorage() );
-/*N*/   if ( !bHasStorage && pFilter && ( pFilter->GetFilterFlags() & SFX_FILTER_PACKED ) )
-/*N*/   {
-/*N*/       bHasStorage = pMed->TryStorage();
-/*N*/       if ( bHasStorage )
-/*N*/       {
-/*N*/             String aLclName( pMed->GetPhysicalName() );
-/*N*/             ::utl::LocalFileHelper::ConvertPhysicalNameToURL( aLclName, aBaseURL );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if ( pMedium->GetFilter() )
-/*N*/   {
-/*N*/       sal_uInt32 nError = HandleFilter( pMedium, this );
-/*N*/       if ( nError != ERRCODE_NONE )
-/*N*/           SetError( nError );
-/*N*/   }
-/*N*/
-/*N*/     if ( GetError() == ERRCODE_NONE && pMed->IsStorage() ) // STRIP003 && bHasStorage && ( !pFilter || !( pFilter->GetFilterFlags() & SFX_FILTER_STARONEFILTER ) ) )
-/*N*/   {
-/*N*/       SvStorageRef xStor( pMed->GetStorage() );
-/*N*/       if( pMed->GetLastStorageCreationState() == ERRCODE_NONE )
-/*N*/       {
-/*N*/           DBG_ASSERT( pFilter, "No filter for storage found!" );
-/*N*/           if( xStor.Is() && !xStor->GetError() && pMed->GetFilter() && pMed->GetFilter()->GetVersion() < SOFFICE_FILEFORMAT_60 )
-/*N*/           {
-/*N*/               // Undoobjekte aufraeumen, muss vor dem eigentlichen Laden erfolgen
-/*N*/               SvEmbeddedObjectRef xThis = this;
-/*N*/               SvPersistRef xPer;
-/*N*/               if ( xThis.Is() )
-/*N*/                   xPer = new SvEmbeddedObject;
-/*N*/               else
-/*?*/                   xPer = new SvPersist;
-/*N*/
-/*N*/               xPer->DoOwnerLoad(xStor);
-/*N*/               xPer->CleanUp();
-                                DBG_ASSERT( 0, "DoSave return value is not checed here, seems buggy" );
-                                //xPer->DoSave();
-/*N*/               xPer->DoSaveCompleted( 0 );
-/*N*/           }
-/*N*/
-/*N*/           if ( xStor.Is() )
-/*N*/           {
-/*N*/               SvStorageInfoList aList;
-/*N*/               xStor->FillInfoList( &aList );
-/*N*/               if ( !aList.Count() && !xStor->IsOLEStorage() )
-/*?*/                   SetError( ERRCODE_IO_BROKENPACKAGE );
-/*N*/               else
-/*N*/               {
-/*N*/                   BOOL bHasMacros = FALSE;
-/*N*/                   if ( xStor->IsOLEStorage() )
-/*N*/                       bHasMacros = BasicManager::HasBasicWithModules(
-                                *xStor,
-                                ::binfilter::StaticBaseUrl::GetBaseURL(
-                                    INetURLObject::NO_DECODE) );
-/*N*/                   else
-/*?*/                       bHasMacros = xStor->IsStorage( String::CreateFromAscii("Basic") );
-/*N*/
-/*N*/                   if ( bHasMacros )
-/*N*/                       AdjustMacroMode( String() );
-/*N*/                   else
-/*N*/                   {
-/*N*/                       // if macros will be added by the user later, the security check is obsolete
-/*N*/                       pImp->nMacroMode = MacroExecMode::ALWAYS_EXECUTE_NO_WARN;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/
-/*N*/           // Load
-/*N*/           if ( !GetError() )
-/*N*/           {
-/*N*/               const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-/*N*/               if( aBaseURL.Len() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
-/*N*/               pImp->nLoadedFlags = 0;
-/*N*/               bOk = xStor.Is() && LoadOwnFormat( *pMed );
-/*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
-/*N*/               if ( bOk )
-/*N*/               {
-/*N*/                   GetDocInfo().Load(xStor);
-/*N*/                   bHasName = sal_True;
-/*N*/               }
-/*N*/               else
-/*?*/                   SetError( ERRCODE_ABORT );
-/*N*/           }
-/*N*/       }
-/*N*/      else
-/*?*/           SetError( pMed->GetLastStorageCreationState() );
-/*N*/    }
-         else if ( GetError() == ERRCODE_NONE && InitNew(0) )
-/*?*/    {
-/*?*/        // Name vor ConvertFrom setzen, damit GetSbxObject() schon funktioniert
-/*?*/        bHasName = sal_True;
-/*?*/
-/*?*/        // Importieren
-/*?*/        const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-/*?*/        if( aBaseURL.Len() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
-/*?*/         if( !pMedium->GetFilter()->UsesStorage() )
-/*?*/            pMedium->GetInStream();
-/*?*/         else
-/*?*/             pMedium->GetStorage();
-/*?*/
-/*?*/        pImp->nLoadedFlags = 0;
-/*?*/        bOk = ConvertFrom(*pMedium);
-/*?*/
-/*?*/        ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
-/*?*/
-/*?*/         if( bOk && pMedium->GetOpenMode() & STREAM_WRITE )
-/*?*/        //Medium offen halten um andere Zugriffe zu verhindern
-/*?*/        {
-/*?*/            if(pMedium->GetFilter() && pMedium->GetFilter()->UsesStorage())
-/*?*/            {
-/*?*/                pMedium->GetStorage();
-/*?*/                if( pMedium->GetLastStorageCreationState() != ERRCODE_NONE )
-/*?*/                    pMedium->SetError( pMedium->GetLastStorageCreationState() );
-/*?*/            }
-/*?*/            else
-/*?*/                pMedium->GetInStream();
-/*?*/            if(pMedium->GetError())
-/*?*/                bOk = sal_False;
-/*?*/        }
-/*?*/    }
-/*N*/
-/*N*/  if ( bOk )
-/*N*/  {
-/*N*/         try
-/*?*/ /*N*/         {
-/*?*/             ::ucbhelper::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
-/*?*/             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
-/*?*/             if ( xProps.is() )
-/*?*/             {
-/*?*/                 ::rtl::OUString aAuthor( RTL_CONSTASCII_USTRINGPARAM("Author") );
-/*?*/                 ::rtl::OUString aKeywords( RTL_CONSTASCII_USTRINGPARAM("Keywords") );
-/*?*/                 ::rtl::OUString aSubject( RTL_CONSTASCII_USTRINGPARAM("Subject") );
-/*?*/                 Any aAny;
-/*?*/                 ::rtl::OUString aValue;
-/*?*/                 SfxDocumentInfo& rInfo = GetDocInfo();
-/*?*/                 if ( xProps->hasPropertyByName( aAuthor ) )
-/*?*/                 {
-/*?*/                     aAny = aContent.getPropertyValue( aAuthor );
-/*?*/                     if ( ( aAny >>= aValue ) )
-/*?*/                         rInfo.SetCreated( SfxStamp( String( aValue ) ) );
-/*?*/                 }
-/*?*/                 if ( xProps->hasPropertyByName( aKeywords ) )
-/*?*/                 {
-/*?*/                     aAny = aContent.getPropertyValue( aKeywords );
-/*?*/                     if ( ( aAny >>= aValue ) )
-/*?*/                         rInfo.SetKeywords( aValue );
-/*?*/                 }
-/*?*/                 if ( xProps->hasPropertyByName( aSubject ) )
-/*?*/                 {
-/*?*/                     aAny = aContent.getPropertyValue( aSubject );
-/*?*/                     if ( ( aAny >>= aValue ) )
-/*?*/                         rInfo.SetTheme( aValue );
-/*?*/                 }
-/*?*/             }
-/*?*/         }
-/*N*/         catch( Exception& )
-/*N*/         {
-/*N*/         }
-/*N*/
-/*N*/         ::rtl::OUString aTitle = GetTitle( SFX_TITLE_DETECT );
-/*N*/
-/*N*/       // Falls nicht asynchron geladen wird selbst FinishedLoading aufrufen
-/*N*/       if ( !( pImp->nLoadedFlags & SFX_LOADED_MAINDOCUMENT ) &&
-/*N*/             ( !pMedium->GetFilter() ||
-/*N*/                pMedium->GetFilter()->UsesStorage() ||
-/*N*/                !( pMedium->GetFilter()->GetFilterFlags() & SFX_FILTER_ASYNC ) ) )
-/*N*/           FinishedLoading( SFX_LOADED_MAINDOCUMENT );
-/*N*/
-/*N*/       if ( pSalvageItem )
-/*N*/       {
-/*?*/             pImp->aTempName = pMedium->GetPhysicalName();
-/*?*/           pMedium->GetItemSet()->ClearItem( SID_DOC_SALVAGE );
-/*?*/           pMedium->GetItemSet()->ClearItem( SID_FILE_NAME );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           pMedium->GetItemSet()->ClearItem( SID_PROGRESS_STATUSBAR_CONTROL );
-/*N*/           pMedium->GetItemSet()->ClearItem( SID_DOCUMENT );
-/*N*/       }
-/*N*/
-/*N*/       pMedium->GetItemSet()->ClearItem( SID_REFERER );
-/*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
-/*N*/       if ( xModel.is() )
-/*N*/       {
-/*N*/           ::rtl::OUString aURL = GetMedium()->GetOrigURL();
-/*N*/           SfxItemSet *pLclSet = GetMedium()->GetItemSet();
-/*N*/             if ( !GetMedium()->IsReadOnly() )
-/*N*/                 pLclSet->ClearItem( SID_INPUTSTREAM );
-/*N*/           ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
-/*N*/           TransformItems( SID_OPENDOC, *pLclSet, aArgs );
-/*N*/           xModel->attachResource( aURL, aArgs );
-/*N*/       }
-/*N*/
-/*N*/         if( IsOwnStorageFormat_Impl(*pMed) && pMed->GetFilter() )
-/*N*/       {
-/*N*/       }
-/*N*/       Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
-/*N*/   }
-/*N*/
-/*N*/   if ( SFX_CREATE_MODE_EMBEDDED != eCreateMode )
-/*N*/   {
-/*N*/       GetpApp()->HideStatusText();
-/*N*/   }
-/*N*/
-/*N*/   return bOk;
-/*N*/ }
+                    if ( bHasMacros )
+                        AdjustMacroMode( String() );
+                    else
+                    {
+                        // if macros will be added by the user later, the security check is obsolete
+                        pImp->nMacroMode = MacroExecMode::ALWAYS_EXECUTE_NO_WARN;
+                    }
+                }
+            }
 
-/*N*/ sal_uInt32 SfxObjectShell::HandleFilter( SfxMedium* pMedium, SfxObjectShell* pDoc )
-/*N*/ {
-/*N*/   sal_uInt32 nError = ERRCODE_NONE;
-/*N*/   SfxItemSet* pSet = pMedium->GetItemSet();
-/*N*/   SFX_ITEMSET_ARG( pSet, pOptions_A, SfxStringItem, SID_FILE_FILTEROPTIONS, sal_False );
-/*N*/   SFX_ITEMSET_ARG( pSet, pData_A, SfxUsrAnyItem, SID_FILTER_DATA, sal_False );
-/*N*/   if ( !pData_A && !pOptions_A )
-/*N*/   {
-/*N*/       ::com::sun::star::uno::Reference< XMultiServiceFactory > xServiceManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/       ::com::sun::star::uno::Reference< XNameAccess > xFilterCFG;
-/*N*/       if( xServiceManager.is() )
-/*N*/       {
-/*N*/           xFilterCFG = ::com::sun::star::uno::Reference< XNameAccess >(
-/*N*/               xServiceManager->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.FilterFactory" )) ),
-/*N*/               UNO_QUERY );
-/*N*/       }
-/*N*/
-/*N*/       if( xFilterCFG.is() )
-/*N*/       {
-/*N*/           BOOL bAbort = FALSE;
-/*N*/           try {
-/*N*/               const SfxFilter* pFilter = pMedium->GetFilter();
-/*N*/               Sequence < PropertyValue > aProps;
-/*N*/               Any aAny = xFilterCFG->getByName( pFilter->GetName() );
-/*N*/               if ( aAny >>= aProps )
-/*N*/               {
-/*N*/                   sal_Int32 nPropertyCount = aProps.getLength();
-/*N*/                   for( sal_Int32 nProperty=0; nProperty < nPropertyCount; ++nProperty )
-/*N*/                       if( aProps[nProperty].Name.equals( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "UIComponent" ))) )
-/*N*/                       {
-/*N*/                           ::rtl::OUString aServiceName;
-/*N*/                           aProps[nProperty].Value >>= aServiceName;
-/*N*/                           if( aServiceName.getLength() )
-/*?*/                           {
-/*?*/                               ::com::sun::star::uno::Reference< XInteractionHandler > rHandler = pMedium->GetInteractionHandler();
-/*?*/                               if( rHandler.is() )
-/*?*/                               {
-/*?*/                                   // we need some properties in the media descriptor, so we have to make sure that they are in
-/*?*/                                   Any aLclAny;
-/*?*/                                   aLclAny <<= pMedium->GetInputStream();
-/*?*/                                   if ( pSet->GetItemState( SID_INPUTSTREAM ) < SFX_ITEM_SET )
-/*?*/                                   pSet->Put( SfxUsrAnyItem( SID_INPUTSTREAM, aLclAny ) );
-/*?*/                                   if ( pSet->GetItemState( SID_FILE_NAME ) < SFX_ITEM_SET )
-/*?*/                                       pSet->Put( SfxStringItem( SID_FILE_NAME, pMedium->GetName() ) );
-/*?*/                                   if ( pSet->GetItemState( SID_FILTER_NAME ) < SFX_ITEM_SET )
-/*?*/                                       pSet->Put( SfxStringItem( SID_FILTER_NAME, pFilter->GetName() ) );
-/*?*/
-/*?*/                                   Sequence< PropertyValue > rProperties;
-/*?*/                                   TransformItems( SID_OPENDOC, *pSet, rProperties );
-/*?*/                                   RequestFilterOptions* pFORequest = new RequestFilterOptions( pDoc->GetModel(), rProperties );
-/*?*/
-/*?*/                                   ::com::sun::star::uno::Reference< XInteractionRequest > rRequest( pFORequest );
-/*?*/                                   rHandler->handle( rRequest );
-/*?*/
-/*?*/                                   if ( !pFORequest->isAbort() )
-/*?*/                                   {
-/*?*/                                           SfxAllItemSet aNewParams( pDoc->GetPool() );
-/*?*/                                           TransformParameters( SID_OPENDOC,
-/*?*/                                                           pFORequest->getFilterOptions(),
-/*?*/                                                           aNewParams );
-/*?*/
-/*?*/                                           SFX_ITEMSET_ARG( &aNewParams,
-/*?*/                                                       pOptions,
-/*?*/                                                       SfxStringItem,
-/*?*/                                                       SID_FILE_FILTEROPTIONS,
-/*?*/                                                       sal_False );
-/*?*/                                           if ( pOptions )
-/*?*/                                               pSet->Put( *pOptions );
-/*?*/
-/*?*/                                           SFX_ITEMSET_ARG( &aNewParams,
-/*?*/                                                       pData,
-/*?*/                                                       SfxUsrAnyItem,
-/*?*/                                                       SID_FILTER_DATA,
-/*?*/                                                       sal_False );
-/*?*/                                           if ( pData )
-/*?*/                                               pSet->Put( *pData );
-/*?*/                                   }
-/*?*/                                   else
-/*?*/                                       bAbort = TRUE;
-/*?*/                               }
-/*?*/                           }
-/*N*/
-/*N*/                           break;
-/*N*/                       }
-/*N*/               }
-/*N*/
-/*N*/               if( bAbort )
-/*N*/               {
-/*N*/                   // filter options were not entered
-/*N*/                   nError = ERRCODE_ABORT;
-/*N*/               }
-/*N*/           }
-/*N*/           catch( NoSuchElementException& )
-/*N*/           {
-/*N*/               // the filter name is unknown
-/*N*/               nError = ERRCODE_IO_INVALIDPARAMETER;
-/*N*/           }
-/*N*/           catch( Exception& )
-/*N*/           {
-/*N*/               nError = ERRCODE_ABORT;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return nError;
-/*N*/ }
+            // Load
+            if ( !GetError() )
+            {
+                const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
+                if( aBaseURL.Len() ) ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
+                pImp->nLoadedFlags = 0;
+                bOk = xStor.Is() && LoadOwnFormat( *pMed );
+                ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
+                if ( bOk )
+                {
+                    GetDocInfo().Load(xStor);
+                    bHasName = sal_True;
+                }
+                else
+                    SetError( ERRCODE_ABORT );
+            }
+        }
+        else
+            SetError( pMed->GetLastStorageCreationState() );
+    }
+    else if ( GetError() == ERRCODE_NONE && InitNew(0) )
+    {
+        // Name vor ConvertFrom setzen, damit GetSbxObject() schon funktioniert
+        bHasName = sal_True;
+        // Importieren
+        const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
+        if( aBaseURL.Len() )
+            ::binfilter::StaticBaseUrl::SetBaseURL( aBaseURL );
+        if( !pMedium->GetFilter()->UsesStorage() )
+            pMedium->GetInStream();
+        else
+            pMedium->GetStorage();
 
-//-------------------------------------------------------------------------
+        pImp->nLoadedFlags = 0;
+        bOk = ConvertFrom(*pMedium);
+        ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
 
-/*N*/ sal_Bool SfxObjectShell::IsOwnStorageFormat_Impl(const SfxMedium &rMedium) const
-/*N*/ {
-/*N*/   return !rMedium.GetFilter() || // Embedded
-/*N*/          ( rMedium.GetFilter()->IsOwnFormat() &&
-/*N*/            rMedium.GetFilter()->UsesStorage() );
-/*N*/ }
+        if( bOk && pMedium->GetOpenMode() & STREAM_WRITE )
+        //Medium offen halten um andere Zugriffe zu verhindern
+        {
+            if(pMedium->GetFilter() && pMedium->GetFilter()->UsesStorage())
+            {
+                pMedium->GetStorage();
+                if( pMedium->GetLastStorageCreationState() != ERRCODE_NONE )
+                    pMedium->SetError( pMedium->GetLastStorageCreationState() );
+            }
+            else
+                pMedium->GetInStream();
+            if(pMedium->GetError())
+                bOk = sal_False;
+        }
+    }
 
-//-------------------------------------------------------------------------
+    if ( bOk )
+    {
+        try
+        {
+            ::ucbhelper::Content aContent( pMedium->GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+            ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
+            if ( xProps.is() )
+            {
+                ::rtl::OUString aAuthor( RTL_CONSTASCII_USTRINGPARAM("Author") );
+                ::rtl::OUString aKeywords( RTL_CONSTASCII_USTRINGPARAM("Keywords") );
+                ::rtl::OUString aSubject( RTL_CONSTASCII_USTRINGPARAM("Subject") );
+                Any aAny;
+                ::rtl::OUString aValue;
+                SfxDocumentInfo& rInfo = GetDocInfo();
+                if ( xProps->hasPropertyByName( aAuthor ) )
+                {
+                    aAny = aContent.getPropertyValue( aAuthor );
+                    if ( ( aAny >>= aValue ) )
+                        rInfo.SetCreated( SfxStamp( String( aValue ) ) );
+                }
+                if ( xProps->hasPropertyByName( aKeywords ) )
+                {
+                    aAny = aContent.getPropertyValue( aKeywords );
+                    if ( ( aAny >>= aValue ) )
+                        rInfo.SetKeywords( aValue );
+                }
+                if ( xProps->hasPropertyByName( aSubject ) )
+                {
+                    aAny = aContent.getPropertyValue( aSubject );
+                    if ( ( aAny >>= aValue ) )
+                        rInfo.SetTheme( aValue );
+                }
+            }
+        }
+        catch( Exception& )
+        {
+        }
 
-/*N*/ void Lock_Impl( SfxObjectShell* /*pDoc*/, BOOL /*bLock*/ )
-/*N*/ {
-/*N*/ }
+        ::rtl::OUString aTitle = GetTitle( SFX_TITLE_DETECT );
 
-//-------------------------------------------------------------------------
+        // Falls nicht asynchron geladen wird selbst FinishedLoading aufrufen
+        if ( !( pImp->nLoadedFlags & SFX_LOADED_MAINDOCUMENT ) &&
+            ( !pMedium->GetFilter() ||
+            pMedium->GetFilter()->UsesStorage() ||
+            !( pMedium->GetFilter()->GetFilterFlags() & SFX_FILTER_ASYNC ) ) )
+            FinishedLoading( SFX_LOADED_MAINDOCUMENT );
 
-/*N*/ sal_Bool SfxObjectShell::SaveTo_Impl
-/*N*/ (
-/*N*/    SfxMedium &rMedium, // Medium, in das gespeichert werden soll
-/*N*/      const SfxItemSet* pSet,
-/*N*/      BOOL bPrepareForDirectAccess
-/*N*/ )
+        if ( pSalvageItem )
+        {
+            pImp->aTempName = pMedium->GetPhysicalName();
+            pMedium->GetItemSet()->ClearItem( SID_DOC_SALVAGE );
+            pMedium->GetItemSet()->ClearItem( SID_FILE_NAME );
+        }
+        else
+        {
+            pMedium->GetItemSet()->ClearItem( SID_PROGRESS_STATUSBAR_CONTROL );
+            pMedium->GetItemSet()->ClearItem( SID_DOCUMENT );
+        }
+
+        pMedium->GetItemSet()->ClearItem( SID_REFERER );
+        ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  xModel ( GetModel(), ::com::sun::star::uno::UNO_QUERY );
+        if ( xModel.is() )
+        {
+            ::rtl::OUString aURL = GetMedium()->GetOrigURL();
+            SfxItemSet *pLclSet = GetMedium()->GetItemSet();
+            if ( !GetMedium()->IsReadOnly() )
+                pLclSet->ClearItem( SID_INPUTSTREAM );
+            ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > aArgs;
+            TransformItems( SID_OPENDOC, *pLclSet, aArgs );
+            xModel->attachResource( aURL, aArgs );
+        }
+
+        if( IsOwnStorageFormat_Impl(*pMed) && pMed->GetFilter() )
+        {
+        }
+        Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
+    }
+
+    if ( SFX_CREATE_MODE_EMBEDDED != eCreateMode )
+    {
+        GetpApp()->HideStatusText();
+    }
+
+    return bOk;
+}
+
+sal_uInt32 SfxObjectShell::HandleFilter( SfxMedium* pMedium, SfxObjectShell* pDoc )
+{
+    sal_uInt32 nError = ERRCODE_NONE;
+    SfxItemSet* pSet = pMedium->GetItemSet();
+    SFX_ITEMSET_ARG( pSet, pOptions_A, SfxStringItem, SID_FILE_FILTEROPTIONS, sal_False );
+    SFX_ITEMSET_ARG( pSet, pData_A, SfxUsrAnyItem, SID_FILTER_DATA, sal_False );
+    if ( !pData_A && !pOptions_A )
+    {
+        ::com::sun::star::uno::Reference< XMultiServiceFactory > xServiceManager = ::legacy_binfilters::getLegacyProcessServiceFactory();
+        ::com::sun::star::uno::Reference< XNameAccess > xFilterCFG;
+        if( xServiceManager.is() )
+        {
+            xFilterCFG = ::com::sun::star::uno::Reference< XNameAccess >(
+                xServiceManager->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.FilterFactory" )) ),
+                UNO_QUERY );
+        }
+
+        if( xFilterCFG.is() )
+        {
+            BOOL bAbort = FALSE;
+            try {
+                const SfxFilter* pFilter = pMedium->GetFilter();
+                Sequence < PropertyValue > aProps;
+                Any aAny = xFilterCFG->getByName( pFilter->GetName() );
+                if ( aAny >>= aProps )
+                {
+                    sal_Int32 nPropertyCount = aProps.getLength();
+                    for( sal_Int32 nProperty=0; nProperty < nPropertyCount; ++nProperty )
+                        if( aProps[nProperty].Name.equals( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "UIComponent" ))) )
+                        {
+                            ::rtl::OUString aServiceName;
+                            aProps[nProperty].Value >>= aServiceName;
+                            if( aServiceName.getLength() )
+                            {
+                                ::com::sun::star::uno::Reference< XInteractionHandler > rHandler = pMedium->GetInteractionHandler();
+                                if( rHandler.is() )
+                                {
+                                    // we need some properties in the media descriptor, so we have to make sure that they are in
+                                    Any aLclAny;
+                                    aLclAny <<= pMedium->GetInputStream();
+                                    if ( pSet->GetItemState( SID_INPUTSTREAM ) < SFX_ITEM_SET )
+                                    pSet->Put( SfxUsrAnyItem( SID_INPUTSTREAM, aLclAny ) );
+                                    if ( pSet->GetItemState( SID_FILE_NAME ) < SFX_ITEM_SET )
+                                        pSet->Put( SfxStringItem( SID_FILE_NAME, pMedium->GetName() ) );
+                                    if ( pSet->GetItemState( SID_FILTER_NAME ) < SFX_ITEM_SET )
+                                        pSet->Put( SfxStringItem( SID_FILTER_NAME, pFilter->GetName() ) );
+
+                                    Sequence< PropertyValue > rProperties;
+                                    TransformItems( SID_OPENDOC, *pSet, rProperties );
+                                    RequestFilterOptions* pFORequest = new RequestFilterOptions( pDoc->GetModel(), rProperties );
+                                    ::com::sun::star::uno::Reference< XInteractionRequest > rRequest( pFORequest );
+                                    rHandler->handle( rRequest );
+
+                                    if ( !pFORequest->isAbort() )
+                                    {
+                                        SfxAllItemSet aNewParams( pDoc->GetPool() );
+                                        TransformParameters( SID_OPENDOC,
+                                                            pFORequest->getFilterOptions(),
+                                                            aNewParams );
+                                        SFX_ITEMSET_ARG( &aNewParams,
+                                                        pOptions,
+                                                        SfxStringItem,
+                                                        SID_FILE_FILTEROPTIONS,
+                                                        sal_False );
+                                        if ( pOptions )
+                                            pSet->Put( *pOptions );
+
+                                        SFX_ITEMSET_ARG( &aNewParams,
+                                                        pData,
+                                                        SfxUsrAnyItem,
+                                                        SID_FILTER_DATA,
+                                                        sal_False );
+                                        if ( pData )
+                                            pSet->Put( *pData );
+                                    }
+                                    else
+                                        bAbort = TRUE;
+                                }
+                            }
+                            break;
+                        }
+                }
+                if( bAbort )
+                {
+                    // filter options were not entered
+                    nError = ERRCODE_ABORT;
+                }
+            }
+            catch( NoSuchElementException& )
+            {
+                // the filter name is unknown
+                nError = ERRCODE_IO_INVALIDPARAMETER;
+            }
+            catch( Exception& )
+            {
+                nError = ERRCODE_ABORT;
+            }
+        }
+    }
+    return nError;
+}
+
+sal_Bool SfxObjectShell::IsOwnStorageFormat_Impl(const SfxMedium &rMedium) const
+{
+    return !rMedium.GetFilter() || // Embedded
+        ( rMedium.GetFilter()->IsOwnFormat() &&
+            rMedium.GetFilter()->UsesStorage() );
+}
+
+void Lock_Impl( SfxObjectShell* /*pDoc*/, BOOL /*bLock*/ )
+{
+}
+
+sal_Bool SfxObjectShell::SaveTo_Impl
+(
+    SfxMedium &rMedium, // Medium, in das gespeichert werden soll
+    const SfxItemSet* pSet,
+    BOOL bPrepareForDirectAccess
+)
 
 /*  [Beschreibung]
 
@@ -722,466 +688,451 @@ void SfxObjectShell::DoHandsOffNoMediumClose()
     Verfuegung stellt oder selbst einen temporaeren Storage erzeugt hat.
 */
 
-/*N*/ {
-/*N*/   SfxForceLinkTimer_Impl aFLT( this );
-/*N*/     EnableSetModified( FALSE );
-/*N*/
-/*N*/   const SfxFilter *pFilter = rMedium.GetFilter();
-/*N*/   if ( !pFilter )
-/*N*/   {
-/*N*/         // if no filter was set, use the default filter
-/*N*/         // this should be changed in the feature, it should be an error!
-/*?*/       pFilter = GetFactory().GetFilter(0);
-/*?*/       rMedium.SetFilter(pFilter);
-/*N*/   }
-/*N*/
-/*N*/     if( pFilter->UsesStorage() )
-/*N*/         // create an output storage in the correct format
-/*N*/         rMedium.GetOutputStorage( SOFFICE_FILEFORMAT_60 <= pFilter->GetVersion() );
-/*N*/   else
-/*?*/       rMedium.GetOutStream();
-/*N*/
-/*N*/   if( rMedium.GetErrorCode() )
-/*N*/       return sal_False;
-/*N*/
-/*N*/   sal_Bool bOldStat = pImp->bForbidReload;
-/*N*/   pImp->bForbidReload = sal_True;
-/*N*/
-/*N*/     // lock user interface while saving the document
-/*N*/     Lock_Impl( this, sal_True );
-/*N*/
-/*N*/   sal_Bool bOk = sal_False;
-/*N*/   if( sal_True ) // STRIP003 IsOwnStorageFormat_Impl(rMedium) && !(pFilter->GetFilterFlags() & SFX_FILTER_STARONEFILTER))
-/*N*/   {
-/*N*/       SvStorageRef aMedRef = rMedium.GetStorage();
-/*N*/       if ( !aMedRef.Is() )
-/*N*/         {
-/*?*/             // no saving without storage, unlock UI and return
-/*?*/             Lock_Impl( this, sal_False );
-/*?*/           return sal_False;
-/*N*/         }
-/*N*/
-/*N*/         // transfer password from the parameters to the storage
-/*N*/         String aPasswd;
-/*N*/       if ( GetPasswd_Impl( rMedium.GetItemSet(), aPasswd ) )
-/*N*/           aMedRef->SetKey( S2BS( aPasswd ) ); //!!! (pb) needs new implementation
-/*N*/
-/*N*/       const SfxFilter* pLclFilter = rMedium.GetFilter();
-/*N*/       if(  ((SvStorage *)aMedRef) == ((SvStorage *)GetStorage() ) )
-/*N*/       {
-/*N*/             // target storage and object storage are identical, should never happen here
-/*?*/             OSL_FAIL( "Saving storage without copy!");
-/*?*/           aMedRef->SetVersion( pLclFilter->GetVersion() );
-/*?*/           bOk = Save();
-/*N*/       }
-/*N*/       else
-/*N*/             // save to target
-/*N*/           bOk = SaveAsOwnFormat( rMedium );
-/*N*/
-/*N*/         // look for a "version" parameter
-/*N*/       const SfxStringItem *pVersionItem = pSet ? (const SfxStringItem*)
-/*N*/             SfxRequest::GetItem( pSet, SID_DOCINFO_COMMENTS, sal_False, TYPE(SfxStringItem) ) : NULL;
-/*N*/
-/*N*/       if ( pVersionItem )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/       else if ( pImp->bIsSaving )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");
-/*N*/       }
-/*N*/   }
+{
+    SfxForceLinkTimer_Impl aFLT( this );
+    EnableSetModified( FALSE );
+
+    const SfxFilter *pFilter = rMedium.GetFilter();
+    if ( !pFilter )
+    {
+        // if no filter was set, use the default filter
+        // this should be changed in the feature, it should be an error!
+        pFilter = GetFactory().GetFilter(0);
+        rMedium.SetFilter(pFilter);
+    }
+
+    if( pFilter->UsesStorage() )
+        // create an output storage in the correct format
+        rMedium.GetOutputStorage( SOFFICE_FILEFORMAT_60 <= pFilter->GetVersion() );
+    else
+        rMedium.GetOutStream();
+
+    if( rMedium.GetErrorCode() )
+        return sal_False;
+
+    sal_Bool bOldStat = pImp->bForbidReload;
+    pImp->bForbidReload = sal_True;
+
+    // lock user interface while saving the document
+    Lock_Impl( this, sal_True );
+
+    sal_Bool bOk = sal_False;
+    if( sal_True )
+    {
+        SvStorageRef aMedRef = rMedium.GetStorage();
+        if ( !aMedRef.Is() )
+        {
+            // no saving without storage, unlock UI and return
+            Lock_Impl( this, sal_False );
+            return sal_False;
+        }
+
+        // transfer password from the parameters to the storage
+        String aPasswd;
+        if ( GetPasswd_Impl( rMedium.GetItemSet(), aPasswd ) )
+            aMedRef->SetKey( S2BS( aPasswd ) ); //!!! (pb) needs new implementation
+
+        const SfxFilter* pLclFilter = rMedium.GetFilter();
+        if(  ((SvStorage *)aMedRef) == ((SvStorage *)GetStorage() ) )
+        {
+            // target storage and object storage are identical, should never happen here
+            OSL_FAIL( "Saving storage without copy!");
+            aMedRef->SetVersion( pLclFilter->GetVersion() );
+            bOk = Save();
+        }
+        else
+            // save to target
+            bOk = SaveAsOwnFormat( rMedium );
+
+        // look for a "version" parameter
+        const SfxStringItem *pVersionItem = pSet ? (const SfxStringItem*)
+            SfxRequest::GetItem( pSet, SID_DOCINFO_COMMENTS, sal_False, TYPE(SfxStringItem) ) : NULL;
+
+        if ( pVersionItem )
+        {DBG_BF_ASSERT(0, "STRIP");
+        }
+        else if ( pImp->bIsSaving )
+        {DBG_BF_ASSERT(0, "STRIP");
+        }
+    }
     // SetModified must be enabled when SaveCompleted is called, otherwise the modified flag of child objects will not be cleared
-/*N*/     EnableSetModified( sal_True );
-/*N*/
-/*N*/     sal_Bool bCopyTo = sal_False;
-/*N*/     SfxItemSet *pMedSet = rMedium.GetItemSet();
-/*N*/     if( pMedSet )
-/*N*/     {
-/*N*/         SFX_ITEMSET_ARG( pMedSet, pSaveToItem, SfxBoolItem, SID_SAVETO, sal_False );
-/*N*/         bCopyTo =   GetCreateMode() == SFX_CREATE_MODE_EMBEDDED ||
-/*N*/                     (pSaveToItem && pSaveToItem->GetValue());
-/*N*/     }
-/*N*/
-/*N*/     if( bOk )
-/*N*/   {
-/*N*/         // remember new object storage, if it is a temporary one, because we will need it for a "SaveCompleted" later
-/*N*/         SvStorageRef xNewTempRef;
-/*N*/         if ( bOk && bPrepareForDirectAccess )
-/*N*/         {
-/*N*/             // if the target medium is an alien format and the "old" medium was an own format, the object storage
-/*N*/             // must be exchanged, because now we need a new temporary storage as object storage
-/*N*/             BOOL bNeedsStorage = !bCopyTo && IsOwnStorageFormat_Impl(*pMedium) && !IsOwnStorageFormat_Impl(rMedium);
-/*N*/             if ( bNeedsStorage )
-/*N*/             {
-/*?*/                 if( !pMedium->GetName().Len() )
-/*?*/                     // if the old object storage was a temporary one too, we can continue with it
-/*?*/                     xNewTempRef = GetStorage();
-/*?*/                 else
-/*?*/                 {
-/*?*/                     // copy storage of old medium to new temporary storage and take this over
-/*?*/                     if( ConnectTmpStorage_Impl( pMedium->GetStorage() ) )
-/*?*/                         xNewTempRef = GetStorage();
-/*?*/                     else
-/*?*/                         bOk = sal_False;
-/*?*/                 }
-/*N*/             }
-/*N*/
-/*N*/             // When the new medium ( rMedium ) has the same name as the current one,
-/*N*/             // we need to call DoHandsOff() so Commit() can overwrite the old version
-/*N*/             if ( bOk && pMedium && ( rMedium.GetName().EqualsIgnoreCaseAscii( pMedium->GetName() ) )
-/*N*/             && rMedium.GetName().CompareIgnoreCaseToAscii( "private:stream", 14 ) != COMPARE_EQUAL )
-/*?*/                 DoHandsOff();
-/*N*/         }
-/*N*/
-/*N*/         if ( bOk && pMedium && ( rMedium.GetName() == pMedium->GetName() ) )
-/*N*/         {
-/*N*/             // before we overwrite the original file, we will make a backup if there is a demand for that
-/*N*/             const sal_Bool bDoBackup = SvtSaveOptions().IsBackup();
-/*N*/             if ( bDoBackup )
-/*N*/           {{DBG_BF_ASSERT(0, "STRIP");}
-/*N*/           }
-/*N*/         }
-/*N*/
-/*N*/         if ( bOk )
-/*N*/         {
-/*N*/             // transfer data to its destinated location
-/*N*/             EnableSetModified( sal_False );
-/*N*/             RegisterTransfer( rMedium );
-/*N*/             bOk = rMedium.Commit();
-/*N*/             EnableSetModified( sal_True );
-/*N*/
-/*N*/           if ( bOk )
-/*N*/           {
-/*N*/               // watch: if the document was successfully saved into an own format, no "SaveCompleted" was called,
-/*N*/               // this must be done by the caller ( because they want to do different calls )
-/*N*/               if( xNewTempRef.Is() && xNewTempRef != GetStorage() )
-/*N*/                   // if the new object storage is a temporary one, because the target format is an alien format
-/*?*/                   SaveCompleted( xNewTempRef );
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*?*/               // if the storing process fails on medium commit step it means that
-/*?*/               // the new medium should contain successfully written temporary representation
-/*?*/               // of the document, so the docshell can just switch to new medium.
-/*?*/               // it is reasonable in case an open document suddenly became unavailable.
-/*?*/
-/*?*/               OUString aOrigName = pMedium ? OUString(pMedium->GetName()) : OUString();
-/*?*/               if ( aOrigName.getLength() && aOrigName.compareToAscii( "private:", 8 ) != COMPARE_EQUAL
-/*?*/                   && !::utl::UCBContentHelper::Exists( aOrigName ) )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");
-/*?*/               }
-/*N*/           }
-/*N*/         }
-/*N*/   }
-/*N*/
-/*N*/     // unlock user interface
-/*N*/     Lock_Impl( this, sal_False );
-/*N*/     pImp->bForbidReload = bOldStat;
-/*N*/
-/*N*/     if ( bOk )
-/*N*/     {
-/*N*/         DBG_ASSERT( pFilter, "No filter after successful save?!" );
-/*N*/         if( pFilter )
-/*N*/         {
-/*N*/             if( !bCopyTo && pFilter->IsAlienFormat() )
-/*N*/                 // set flag, that the user will be warned for possible data loss on closing this document
-/*N*/                 pImp->bDidDangerousSave=sal_True;
-/*N*/             else
-/*?*/                 pImp->bDidDangerousSave=sal_False;
-/*N*/         }
-/*N*/
-/*N*/
-/*N*/         try
-/*N*/         {
-/*?*/             ::ucbhelper::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
-/*?*/             ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
-/*?*/             if ( xProps.is() )
-/*?*/             {
-/*?*/                 ::rtl::OUString aAuthor( RTL_CONSTASCII_USTRINGPARAM("Author") );
-/*?*/                 ::rtl::OUString aKeywords( RTL_CONSTASCII_USTRINGPARAM("Keywords") );
-/*?*/                 ::rtl::OUString aSubject( RTL_CONSTASCII_USTRINGPARAM("Subject") );
-/*?*/                 Any aAny;
-/*?*/                 if ( xProps->hasPropertyByName( aAuthor ) )
-/*?*/                 {
-/*?*/                     aAny <<= ::rtl::OUString( GetDocInfo().GetCreated().GetName() );
-/*?*/                     aContent.setPropertyValue( aAuthor, aAny );
-/*?*/                 }
-/*?*/                 if ( xProps->hasPropertyByName( aKeywords ) )
-/*?*/                 {
-/*?*/                     aAny <<= ::rtl::OUString( GetDocInfo().GetKeywords() );
-/*?*/                     aContent.setPropertyValue( aKeywords, aAny );
-/*?*/                 }
-/*?*/                 if ( xProps->hasPropertyByName( aSubject ) )
-/*?*/                 {
-/*?*/                     aAny <<= ::rtl::OUString( GetDocInfo().GetTheme() );
-/*?*/                     aContent.setPropertyValue( aSubject, aAny );
-/*?*/                 }
-/*?*/             }
-/*N*/         }
-/*N*/         catch( Exception& )
-/*N*/         {
-/*N*/         }
-/*N*/     }
-/*N*/
-/*N*/   return bOk;
-/*N*/ }
+    EnableSetModified( sal_True );
 
-//------------------------------------------------------------------------
+    sal_Bool bCopyTo = sal_False;
+    SfxItemSet *pMedSet = rMedium.GetItemSet();
+    if( pMedSet )
+    {
+        SFX_ITEMSET_ARG( pMedSet, pSaveToItem, SfxBoolItem, SID_SAVETO, sal_False );
+        bCopyTo =   GetCreateMode() == SFX_CREATE_MODE_EMBEDDED ||
+                    (pSaveToItem && pSaveToItem->GetValue());
+    }
 
-/*?*/ sal_Bool SfxObjectShell::ConnectTmpStorage_Impl( SvStorage* pStg)
+    if( bOk )
+    {
+        // remember new object storage, if it is a temporary one, because we will need it for a "SaveCompleted" later
+        SvStorageRef xNewTempRef;
+        if ( bOk && bPrepareForDirectAccess )
+        {
+            // if the target medium is an alien format and the "old" medium was an own format, the object storage
+            // must be exchanged, because now we need a new temporary storage as object storage
+            BOOL bNeedsStorage = !bCopyTo && IsOwnStorageFormat_Impl(*pMedium) && !IsOwnStorageFormat_Impl(rMedium);
+            if ( bNeedsStorage )
+            {
+                if( !pMedium->GetName().Len() )
+                    // if the old object storage was a temporary one too, we can continue with it
+                    xNewTempRef = GetStorage();
+                else
+                {
+                    // copy storage of old medium to new temporary storage and take this over
+                    if( ConnectTmpStorage_Impl( pMedium->GetStorage() ) )
+                        xNewTempRef = GetStorage();
+                    else
+                        bOk = sal_False;
+                }
+            }
+
+            // When the new medium ( rMedium ) has the same name as the current one,
+            // we need to call DoHandsOff() so Commit() can overwrite the old version
+            if ( bOk && pMedium && ( rMedium.GetName().EqualsIgnoreCaseAscii( pMedium->GetName() ) )
+            && rMedium.GetName().CompareIgnoreCaseToAscii( "private:stream", 14 ) != COMPARE_EQUAL )
+                DoHandsOff();
+        }
+
+        if ( bOk && pMedium && ( rMedium.GetName() == pMedium->GetName() ) )
+        {
+            // before we overwrite the original file, we will make a backup if there is a demand for that
+            const sal_Bool bDoBackup = SvtSaveOptions().IsBackup();
+            if ( bDoBackup )
+            {{DBG_BF_ASSERT(0, "STRIP");}
+            }
+        }
+
+        if ( bOk )
+        {
+            // transfer data to its destinated location
+            EnableSetModified( sal_False );
+            RegisterTransfer( rMedium );
+            bOk = rMedium.Commit();
+            EnableSetModified( sal_True );
+
+            if ( bOk )
+            {
+                // watch: if the document was successfully saved into an own format, no "SaveCompleted" was called,
+                // this must be done by the caller ( because they want to do different calls )
+                if( xNewTempRef.Is() && xNewTempRef != GetStorage() )
+                    // if the new object storage is a temporary one, because the target format is an alien format
+                    SaveCompleted( xNewTempRef );
+            }
+            else
+            {
+                // if the storing process fails on medium commit step it means that
+                // the new medium should contain successfully written temporary representation
+                // of the document, so the docshell can just switch to new medium.
+                // it is reasonable in case an open document suddenly became unavailable.
+
+                OUString aOrigName = pMedium ? OUString(pMedium->GetName()) : OUString();
+                if ( aOrigName.getLength() && aOrigName.compareToAscii( "private:", 8 ) != COMPARE_EQUAL
+                    && !::utl::UCBContentHelper::Exists( aOrigName ) )
+                {DBG_BF_ASSERT(0, "STRIP");
+                }
+            }
+        }
+    }
+
+    // unlock user interface
+    Lock_Impl( this, sal_False );
+    pImp->bForbidReload = bOldStat;
+
+    if ( bOk )
+    {
+        DBG_ASSERT( pFilter, "No filter after successful save?!" );
+        if( pFilter )
+        {
+            if( !bCopyTo && pFilter->IsAlienFormat() )
+                // set flag, that the user will be warned for possible data loss on closing this document
+                pImp->bDidDangerousSave=sal_True;
+            else
+                pImp->bDidDangerousSave=sal_False;
+        }
+
+        try
+        {
+            ::ucbhelper::Content aContent( rMedium.GetName(), ::com::sun::star::uno::Reference < XCommandEnvironment >() );
+            ::com::sun::star::uno::Reference < XPropertySetInfo > xProps = aContent.getProperties();
+            if ( xProps.is() )
+            {
+                ::rtl::OUString aAuthor( RTL_CONSTASCII_USTRINGPARAM("Author") );
+                ::rtl::OUString aKeywords( RTL_CONSTASCII_USTRINGPARAM("Keywords") );
+                ::rtl::OUString aSubject( RTL_CONSTASCII_USTRINGPARAM("Subject") );
+                Any aAny;
+                if ( xProps->hasPropertyByName( aAuthor ) )
+                {
+                    aAny <<= ::rtl::OUString( GetDocInfo().GetCreated().GetName() );
+                    aContent.setPropertyValue( aAuthor, aAny );
+                }
+                if ( xProps->hasPropertyByName( aKeywords ) )
+                {
+                    aAny <<= ::rtl::OUString( GetDocInfo().GetKeywords() );
+                    aContent.setPropertyValue( aKeywords, aAny );
+                }
+                if ( xProps->hasPropertyByName( aSubject ) )
+                {
+                    aAny <<= ::rtl::OUString( GetDocInfo().GetTheme() );
+                    aContent.setPropertyValue( aSubject, aAny );
+                }
+            }
+        }
+        catch( Exception& )
+        {
+        }
+    }
+
+    return bOk;
+}
+
+sal_Bool SfxObjectShell::ConnectTmpStorage_Impl( SvStorage* pStg)
 
 /*   [Beschreibung]
 
-     Arbeitet die Applikation auf einem temporaeren Storage,
-     so darf der temporaere Storage nicht aus dem SaveCompleted
-     genommen werden. Daher wird in diesem Fall schon hier an
-     den neuen Storage connected. SaveCompleted tut dann nichts.
+Arbeitet die Applikation auf einem temporaeren Storage,
+so darf der temporaere Storage nicht aus dem SaveCompleted
+genommen werden. Daher wird in diesem Fall schon hier an
+den neuen Storage connected. SaveCompleted tut dann nichts.
 
-     */
+*/
 
-/*?*/ {
-/*?*/   // wenn es kein temp. Storage ist, einen anlegen
-/*?*/     SvStorageRef aTmpMed = new SvStorage( (pStg->GetVersion() >= SOFFICE_FILEFORMAT_60), String() );
-/*?*/
-/*?*/   // nach HandsOff muss der alte Storage wieder eingesetzt werden
-/*?*/   if ( !pStg->CopyTo(aTmpMed) )
-/*?*/   {
-/*?*/       SetError(aTmpMed->GetErrorCode());
-/*?*/       aTmpMed.Clear();
-/*?*/       return sal_False;
-/*?*/   }
-/*?*/
-/*?*/   SetError(GetMedium()->GetErrorCode());
-/*?*/   SaveCompleted(aTmpMed); // neuer temp. Storage; gibt alten frei
-/*?*/   return sal_True;
-/*?*/ }
+{
+    // wenn es kein temp. Storage ist, einen anlegen
+    SvStorageRef aTmpMed = new SvStorage( (pStg->GetVersion() >= SOFFICE_FILEFORMAT_60), String() );
 
-
-//-------------------------------------------------------------------------
-
-/*N*/ sal_Bool SfxObjectShell::DoSaveAs( SvStorage * pNewStor )
-/*N*/ {
-/*N*/ // DoSaveAs wird nur noch ueber OLE aufgerufen
-/*N*/   sal_Bool bOk;
-/*N*/   {
-/*N*/       SfxForceLinkTimer_Impl aFLT( this );
-/*N*/       ModifyBlocker_Impl aBlock( this );
-/*N*/       //Abwehr gegen feindlich gesinnte Applikationen.
-/*N*/       if ( !pNewStor->GetFormat() )
-/*N*/           SetupStorage( pNewStor );
-/*N*/
-/*N*/       pImp->bIsSaving = sal_False;
-/*N*/       SfxMedium* pNewMed = new SfxMedium( pNewStor );
-/*N*/       const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-/*N*/
-/*N*/       bOk = SaveAsOwnFormat( *pNewMed );
-/*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
-/*N*/       delete pNewMed;
-/*N*/   }
-/*N*/   return bOk;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ sal_Bool SfxObjectShell::DoSaveCompleted( SfxMedium * pNewMed )
-/*N*/ {
-    sal_Bool bOk = sal_True;
-    sal_Bool bMedChanged = pNewMed && pNewMed!=pMedium;
-/*N*/     DBG_ASSERT( !pNewMed || pNewMed->GetError() == ERRCODE_NONE, "DoSaveCompleted: Medium has error!" );
-/*N*/   if ( bMedChanged )
-/*N*/   {
-/*N*/       delete pMedium;
-/*N*/       pMedium = pNewMed;
-/*N*/   }
-/*N*/
-/*N*/   const SfxFilter *pFilter = pMedium ? pMedium->GetFilter() : 0;
-/*N*/   if ( pNewMed )
-/*N*/   {
-/*N*/       if( bMedChanged )
-/*N*/       {
-/*N*/           if( pNewMed->GetName().Len() )
-/*N*/               bHasName = sal_True;
-/*N*/           String aBase = GetBaseURL();
-/*N*/           if( Current() == this && aBase.Len() )
-/*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( aBase );
-/*N*/           Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
-/*N*/       }
-/*N*/
-/*N*/       SvStorage *pStorage=NULL;
-/*N*/       if ( !pFilter||sal_True  )
-/*N*/       {
-/*N*/           pStorage = pMedium->GetStorage();
-/*N*/           bOk = SaveCompleted( pStorage );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           pStorage = GetStorage();
-/*?*/           if( pFilter->UsesStorage() )
-/*?*/               pMedium->GetStorage();
-/*?*/           else if( pMedium->GetOpenMode() & STREAM_WRITE )
-/*?*/               pMedium->GetInStream();
-/*N*/       }
-/*N*/
-/*N*/       // Set storage in document library containers
-/*N*/       SfxDialogLibraryContainer* pDialogCont = pImp->pDialogLibContainer;
-/*N*/       if( pDialogCont )
-/*N*/           pDialogCont->setStorage( pStorage );
-/*N*/
-/*N*/       SfxScriptLibraryContainer* pBasicCont = pImp->pBasicLibContainer;
-/*N*/       if( pBasicCont )
-/*N*/           pBasicCont->setStorage( pStorage );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if( pMedium )
-/*N*/       {
-/*N*/           const SfxFilter* pLclFilter = pMedium->GetFilter();
-/*N*/           if( pLclFilter && !pLclFilter->IsOwnFormat() &&
-/*N*/               (pMedium->GetOpenMode() & STREAM_WRITE ))
-/*N*/                pMedium->ReOpen();
-/*N*/           else
-/*N*/               SaveCompleted( 0 );
-/*N*/       }
-/*N*/       // entweder Save oder ConvertTo
-/*N*/       else
-/*?*/           bOk = SaveCompleted( NULL );
-/*N*/   }
-/*N*/
-/*N*/   if ( bOk && pNewMed )
-/*N*/   {
-/*N*/       if( bMedChanged )
-/*N*/       {
-/*N*/           // Titel neu setzen
-/*N*/           if ( pNewMed->GetName().Len() &&
-/*N*/                SFX_CREATE_MODE_EMBEDDED != eCreateMode )
-/*N*/               InvalidateName();
-/*N*/           SetModified(sal_False); // nur bei gesetztem Medium zur"ucksetzen
-/*N*/             Broadcast( SfxSimpleHint(SFX_HINT_MODECHANGED) );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return bOk;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ sal_Bool SfxObjectShell::DoSaveCompleted( SvStorage * pNewStor )
-/*N*/ {
-/*N*/   return DoSaveCompleted(pNewStor? new SfxMedium( pNewStor ): 0);
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*?*/ sal_Bool SfxObjectShell::ConvertFrom
-/*?*/ (
-/*?*/   SfxMedium&  /*rMedium*/     /*  <SfxMedium>, welches die Quell-Datei beschreibt
-                                (z.B. Dateiname, <SfxFilter>, Open-Modi etc.) */
-/*?*/ )
-
-/*  [Beschreibung]
-
-    Diese Methode wird zum Laden von Dokumenten "uber alle Filter gerufen,
-    die nicht SFX_FILTER_OWN sind oder f"ur die kein Clipboard-Format
-    registriert wurde (also kein Storage-Format benutzen). Mit anderen Worten:
-    mit dieser Methode wird importiert.
-
-    Das hier zu "offende File sollte "uber 'rMedium' ge"offnet werden,
-    um die richtigen Open-Modi zu gew"ahrleisten. Insbesondere wenn das
-    Format beibehalten wird (nur m"oglich bei SFX_FILTER_SIMULATE oder
-    SFX_FILTER_ONW) mu\s die Datei STREAM_SHARE_DENYWRITE ge"offnet werden.
-
-
-    [R"uckgabewert]
-
-    sal_Bool                sal_True
-                        Das Dokument konnte geladen werden.
-
-                        sal_False
-                        Das Dokument konnte nicht geladen werden, ein
-                        Fehlercode ist mit <SvMedium::GetError()const> zu
-                        erhalten.
-
-
-    [Beispiel]
-
-    sal_Bool DocSh::ConvertFrom( SfxMedium &rMedium )
+    // nach HandsOff muss der alte Storage wieder eingesetzt werden
+    if ( !pStg->CopyTo(aTmpMed) )
     {
-        SvStreamRef xStream = rMedium.GetInStream();
-        if( xStream.is() )
-        {
-            xStream->SetBufferSize(4096);
-            *xStream >> ...;
-
-            // NICHT 'rMedium.CloseInStream()' rufen! File gelockt halten!
-            return SVSTREAM_OK == rMedium.GetError();
-        }
-
+        SetError(aTmpMed->GetErrorCode());
+        aTmpMed.Clear();
         return sal_False;
     }
 
+    SetError(GetMedium()->GetErrorCode());
+    SaveCompleted(aTmpMed); // neuer temp. Storage; gibt alten frei
+    return sal_True;
+}
 
-    [Querverweise]
+sal_Bool SfxObjectShell::DoSaveAs( SvStorage * pNewStor )
+{
+    // DoSaveAs wird nur noch ueber OLE aufgerufen
+    sal_Bool bOk;
+    {
+        SfxForceLinkTimer_Impl aFLT( this );
+        ModifyBlocker_Impl aBlock( this );
+        //Abwehr gegen feindlich gesinnte Applikationen.
+        if ( !pNewStor->GetFormat() )
+            SetupStorage( pNewStor );
 
-    <SfxObjectShell::ConvertTo(SfxMedium&)>
-    <SFX_FILTER_REGISTRATION>
-*/
-/*?*/ {
-/*?*/   return sal_False;
-/*?*/ }
+        pImp->bIsSaving = sal_False;
+        SfxMedium* pNewMed = new SfxMedium( pNewStor );
+        const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
 
-//-------------------------------------------------------------------------
+        bOk = SaveAsOwnFormat( *pNewMed );
+        ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
+        delete pNewMed;
+    }
+    return bOk;
+}
 
-/*?*/ sal_Bool SfxObjectShell::ConvertTo
-/*?*/ (
-/*?*/   SfxMedium&  /*rMedium*/     /*  <SfxMedium>, welches die Ziel-Datei beschreibt
-                                (z.B. Dateiname, <SfxFilter>, Open-Modi etc.) */
-/*?*/ )
+sal_Bool SfxObjectShell::DoSaveCompleted( SfxMedium * pNewMed )
+{
+    sal_Bool bOk = sal_True;
+    sal_Bool bMedChanged = pNewMed && pNewMed!=pMedium;
+    DBG_ASSERT( !pNewMed || pNewMed->GetError() == ERRCODE_NONE, "DoSaveCompleted: Medium has error!" );
+    if ( bMedChanged )
+    {
+        delete pMedium;
+        pMedium = pNewMed;
+    }
+
+    const SfxFilter *pFilter = pMedium ? pMedium->GetFilter() : 0;
+    if ( pNewMed )
+    {
+        if( bMedChanged )
+        {
+            if( pNewMed->GetName().Len() )
+                bHasName = sal_True;
+            String aBase = GetBaseURL();
+            if( Current() == this && aBase.Len() )
+                ::binfilter::StaticBaseUrl::SetBaseURL( aBase );
+            Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
+        }
+
+        SvStorage *pStorage=NULL;
+        if ( !pFilter||sal_True  )
+        {
+            pStorage = pMedium->GetStorage();
+            bOk = SaveCompleted( pStorage );
+        }
+        else
+        {
+            pStorage = GetStorage();
+            if( pFilter->UsesStorage() )
+                pMedium->GetStorage();
+            else if( pMedium->GetOpenMode() & STREAM_WRITE )
+                pMedium->GetInStream();
+        }
+
+        // Set storage in document library containers
+        SfxDialogLibraryContainer* pDialogCont = pImp->pDialogLibContainer;
+        if( pDialogCont )
+            pDialogCont->setStorage( pStorage );
+
+        SfxScriptLibraryContainer* pBasicCont = pImp->pBasicLibContainer;
+        if( pBasicCont )
+            pBasicCont->setStorage( pStorage );
+    }
+    else
+    {
+        if( pMedium )
+        {
+            const SfxFilter* pLclFilter = pMedium->GetFilter();
+            if( pLclFilter && !pLclFilter->IsOwnFormat() &&
+                (pMedium->GetOpenMode() & STREAM_WRITE ))
+                pMedium->ReOpen();
+            else
+                SaveCompleted( 0 );
+        }
+        // entweder Save oder ConvertTo
+        else
+            bOk = SaveCompleted( NULL );
+    }
+
+    if ( bOk && pNewMed )
+    {
+        if( bMedChanged )
+        {
+            // Titel neu setzen
+            if ( pNewMed->GetName().Len() &&
+                SFX_CREATE_MODE_EMBEDDED != eCreateMode )
+                InvalidateName();
+            SetModified(sal_False); // nur bei gesetztem Medium zur"ucksetzen
+            Broadcast( SfxSimpleHint(SFX_HINT_MODECHANGED) );
+        }
+    }
+
+    return bOk;
+}
+
+sal_Bool SfxObjectShell::DoSaveCompleted( SvStorage * pNewStor )
+{
+    return DoSaveCompleted(pNewStor? new SfxMedium( pNewStor ): 0);
+}
+
+sal_Bool SfxObjectShell::ConvertFrom
+(
+    SfxMedium&  /*rMedium*/     /*  <SfxMedium>, welches die Quell-Datei beschreibt
+                        (z.B. Dateiname, <SfxFilter>, Open-Modi etc.) */
+)
 
 /*  [Beschreibung]
 
-    Diese Methode wird zum Speichern von Dokumenten "uber alle Filter gerufen,
-    die nicht SFX_FILTER_OWN sind oder f"ur die kein Clipboard-Format
-    registriert wurde (also kein Storage-Format benutzen). Mit anderen Worten:
-    mit dieser Methode wird exportiert.
+Diese Methode wird zum Laden von Dokumenten "uber alle Filter gerufen,
+die nicht SFX_FILTER_OWN sind oder f"ur die kein Clipboard-Format
+registriert wurde (also kein Storage-Format benutzen). Mit anderen Worten:
+mit dieser Methode wird importiert.
 
-    Das hier zu "offende File sollte "uber 'rMedium' ge"offnet werden,
-    um die richtigen Open-Modi zu gew"ahrleisten. Insbesondere wenn das
-    Format beibehalten wird (nur m"oglich bei SFX_FILTER_SIMULATE oder
-    SFX_FILTER_ONW) mu\s die Datei auch nach dem Speichern im Modus
-    STREAM_SHARE_DENYWRITE ge"offnet bleiben.
-
-
-    [R"uckgabewert]
-
-    sal_Bool                sal_True
-                        Das Dokument konnte gespeichert werden.
-
-                        sal_False
-                        Das Dokument konnte nicht gespeichert werden, ein
-                        Fehlercode ist mit <SvMedium::GetError()const> zu
-                        erhalten.
+Das hier zu "offende File sollte "uber 'rMedium' ge"offnet werden,
+um die richtigen Open-Modi zu gew"ahrleisten. Insbesondere wenn das
+Format beibehalten wird (nur m"oglich bei SFX_FILTER_SIMULATE oder
+SFX_FILTER_ONW) mu\s die Datei STREAM_SHARE_DENYWRITE ge"offnet werden.
 
 
-    [Beispiel]
+[R"uckgabewert]
 
-    sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
+sal_Bool                sal_True
+                Das Dokument konnte geladen werden.
+
+                sal_False
+                Das Dokument konnte nicht geladen werden, ein
+                Fehlercode ist mit <SvMedium::GetError()const> zu
+                erhalten.
+
+
+[Beispiel]
+
+sal_Bool DocSh::ConvertFrom( SfxMedium &rMedium )
+{
+    SvStreamRef xStream = rMedium.GetInStream();
+    if( xStream.is() )
     {
-        SvStreamRef xStream = rMedium.GetOutStream();
-        if ( xStream.is() )
-        {
-            xStream->SetBufferSize(4096);
-            *xStream << ...;
+        xStream->SetBufferSize(4096);
+        *xStream >> ...;
 
-            rMedium.CloseOutStream(); // "offnet automatisch wieder den InStream
-            return SVSTREAM_OK == rMedium.GetError();
-        }
-        return sal_False ;
+        // NICHT 'rMedium.CloseInStream()' rufen! File gelockt halten!
+        return SVSTREAM_OK == rMedium.GetError();
     }
 
+    return sal_False;
+}
 
-    [Querverweise]
+[Querverweise]
 
-    <SfxObjectShell::ConvertFrom(SfxMedium&)>
-    <SFX_FILTER_REGISTRATION>
+<SfxObjectShell::ConvertTo(SfxMedium&)>
+<SFX_FILTER_REGISTRATION>
+*/
+{
+    return sal_False;
+}
+
+sal_Bool SfxObjectShell::ConvertTo
+(
+    SfxMedium&  /*rMedium*/     /*  <SfxMedium>, welches die Ziel-Datei beschreibt
+                        (z.B. Dateiname, <SfxFilter>, Open-Modi etc.) */
+)
+
+/*  [Beschreibung]
+
+Diese Methode wird zum Speichern von Dokumenten "uber alle Filter gerufen,
+die nicht SFX_FILTER_OWN sind oder f"ur die kein Clipboard-Format
+registriert wurde (also kein Storage-Format benutzen). Mit anderen Worten:
+mit dieser Methode wird exportiert.
+
+Das hier zu "offende File sollte "uber 'rMedium' ge"offnet werden,
+um die richtigen Open-Modi zu gew"ahrleisten. Insbesondere wenn das
+Format beibehalten wird (nur m"oglich bei SFX_FILTER_SIMULATE oder
+SFX_FILTER_ONW) mu\s die Datei auch nach dem Speichern im Modus
+STREAM_SHARE_DENYWRITE ge"offnet bleiben.
+
+
+[R"uckgabewert]
+
+sal_Bool                sal_True
+                Das Dokument konnte gespeichert werden.
+
+                sal_False
+                Das Dokument konnte nicht gespeichert werden, ein
+                Fehlercode ist mit <SvMedium::GetError()const> zu
+                erhalten.
+
+
+[Beispiel]
+
+sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
+{
+    SvStreamRef xStream = rMedium.GetOutStream();
+    if ( xStream.is() )
+    {
+        xStream->SetBufferSize(4096);
+        *xStream << ...;
+
+        rMedium.CloseOutStream(); // "offnet automatisch wieder den InStream
+        return SVSTREAM_OK == rMedium.GetError();
+    }
+    return sal_False ;
+}
+
+
+[Querverweise]
+
+<SfxObjectShell::ConvertFrom(SfxMedium&)>
+<SFX_FILTER_REGISTRATION>
 */
 
 /*?*/ {
