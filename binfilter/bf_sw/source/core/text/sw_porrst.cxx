@@ -357,7 +357,7 @@ namespace binfilter {
 /*?*/                                   nNettoHeight = rRegDiff;
 /*?*/                                   break;
 /*?*/                               }
-/*?*/                               default: OSL_ENSURE( sal_False, ": unknown InterLineSpaceRule" );
+/*?*/                               default: OSL_FAIL( ": unknown InterLineSpaceRule" );
 /*N*/                           }
 /*N*/                           pDesc->SetRegHeight( rRegDiff );
 /*N*/                           pDesc->SetRegAscent( rRegDiff - nNettoHeight +

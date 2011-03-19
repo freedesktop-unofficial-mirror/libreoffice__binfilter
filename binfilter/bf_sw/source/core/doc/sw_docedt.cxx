@@ -555,7 +555,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           rPam.Exchange();
 /*N*/           if( !rPam.Move( fnMoveBackward, fnGoNode ))
 /*N*/           {
-/*N*/               OSL_ENSURE( sal_False, "kein Node mehr vorhanden" );
+/*N*/               OSL_FAIL( "kein Node mehr vorhanden" );
 /*N*/               return sal_False;
 /*N*/           }
 /*N*/       }

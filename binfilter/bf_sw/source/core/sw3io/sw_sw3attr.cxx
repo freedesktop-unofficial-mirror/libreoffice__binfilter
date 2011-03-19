@@ -603,7 +603,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*M*/ SfxPoolItem* SwHeaderAndFooterEatSpacingItem::Create(SvStream &rStrm, USHORT) const
 /*M*/ {
-/*M*/     OSL_ENSURE( sal_False, "SwHeaderAndFooterEatSpacingItem::Create called for old fileformat" );
+/*M*/     OSL_FAIL( "SwHeaderAndFooterEatSpacingItem::Create called for old fileformat" );
 /*M*/   BYTE n;
 /*M*/   rStrm >> n;
 /*M*/     return new SwHeaderAndFooterEatSpacingItem( RES_HEADER_FOOTER_EAT_SPACING, BOOL(n) );
@@ -612,7 +612,7 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 
 /*M*/ SvStream& SwHeaderAndFooterEatSpacingItem::Store(SvStream &rStrm, USHORT ) const
 /*M*/ {
-/*M*/     OSL_ENSURE( sal_False, "SwHeaderAndFooterEatSpacingItem::Store called for old fileformat" );
+/*M*/     OSL_FAIL( "SwHeaderAndFooterEatSpacingItem::Store called for old fileformat" );
 /*M*/   rStrm << BYTE(GetValue());
 /*M*/   return rStrm;
 /*M*/ }

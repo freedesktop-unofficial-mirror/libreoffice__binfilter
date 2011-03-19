@@ -805,7 +805,7 @@ void SwXTextCursor::DeleteAndInsert(const String& rText)
                 //OPT: GetSystemCharSet
                 if( !pDoc->Insert(*_pStartCrsr, rText) )
                 {
-                    OSL_ENSURE( sal_False, "Doc->Insert(Str) failed." );
+                    OSL_FAIL( "Doc->Insert(Str) failed." );
                 }
                 SwXTextCursor::SelectPam(*pUnoCrsr, sal_True);
                 _pStartCrsr->Left(rText.Len(), CRSR_SKIP_CHARS);

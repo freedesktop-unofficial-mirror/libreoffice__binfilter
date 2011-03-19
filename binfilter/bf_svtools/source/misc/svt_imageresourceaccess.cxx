@@ -187,7 +187,7 @@ namespace binfilter
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "ImageResourceAccess::getImageStream: caught an exception!" );
+            OSL_FAIL( "ImageResourceAccess::getImageStream: caught an exception!" );
         }
 
         return pReturn;

@@ -211,7 +211,7 @@ namespace xmloff
             }
             catch(Exception&)
             {
-                OSL_ENSURE(sal_False, "OElementImport::EndElement: could not set the properties (using the XMultiPropertySet)!");
+                OSL_FAIL("OElementImport::EndElement: could not set the properties (using the XMultiPropertySet)!");
             }
         }
 
@@ -230,8 +230,7 @@ namespace xmloff
                 }
                 catch(Exception&)
                 {
-                    OSL_ENSURE(sal_False,
-                            ::rtl::OString("OElementImport::EndElement: could not set the property \"")
+                    OSL_FAIL(::rtl::OString("OElementImport::EndElement: could not set the property \"")
                         +=  ::rtl::OString(aPropValues->Name.getStr(), aPropValues->Name.getLength(), RTL_TEXTENCODING_ASCII_US)
                         +=  ::rtl::OString("\"!"));
                 }
@@ -252,7 +251,7 @@ namespace xmloff
         // insert the element into the parent container
         if (!m_sName.getLength())
         {
-            OSL_ENSURE(sal_False, "OElementImport::EndElement: did not find a name attribute!");
+            OSL_FAIL("OElementImport::EndElement: did not find a name attribute!");
             m_sName = implGetDefaultName();
         }
 
@@ -289,7 +288,7 @@ namespace xmloff
                 continue;
             return sReturn;
         }
-        OSL_ENSURE(sal_False, "OElementImport::implGetDefaultName: did not find a free name!");
+        OSL_FAIL("OElementImport::implGetDefaultName: did not find a free name!");
         return sUnnamedName;
     }
 
@@ -337,7 +336,7 @@ namespace xmloff
             xReturn = Reference< XPropertySet >(xPure, UNO_QUERY);
         }
         else
-            OSL_ENSURE(sal_False, "OElementImport::createElement: no service name to create an element!");
+            OSL_FAIL("OElementImport::createElement: no service name to create an element!");
 
         return xReturn;
     }
@@ -451,7 +450,7 @@ namespace xmloff
             Reference< XPropertySetInfo > xPropsInfo = m_xElement->getPropertySetInfo();
             if (!xPropsInfo.is())
             {
-                OSL_ENSURE(sal_False, "OControlImport::StartElement: no PropertySetInfo!");
+                OSL_FAIL("OControlImport::StartElement: no PropertySetInfo!");
                 return;
             }
 
@@ -595,7 +594,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OControlImport::EndElement: caught an exception while retrieving the class id!" );
+            OSL_FAIL( "OControlImport::EndElement: caught an exception while retrieving the class id!" );
         }
 
         const sal_Char* pValueProperty = NULL;
@@ -631,7 +630,7 @@ namespace xmloff
                 }
                 catch( const Exception& )
                 {
-                    OSL_ENSURE( sal_False, "OControlImport::EndElement: caught an exception while retrieving the current value property!" );
+                    OSL_FAIL( "OControlImport::EndElement: caught an exception while retrieving the current value property!" );
                 }
             }
         }
@@ -648,7 +647,7 @@ namespace xmloff
             }
             catch( const Exception& )
             {
-                OSL_ENSURE( sal_False, "OControlImport::EndElement: caught an exception while restoring the value property!" );
+                OSL_FAIL( "OControlImport::EndElement: caught an exception while restoring the value property!" );
             }
         }
 
@@ -1435,7 +1434,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False, "OFormImport::implTranslateStringListProperty: invalid value (empty)!");
+            OSL_FAIL("OFormImport::implTranslateStringListProperty: invalid value (empty)!");
         }
 
         aProp.Value <<= aList;

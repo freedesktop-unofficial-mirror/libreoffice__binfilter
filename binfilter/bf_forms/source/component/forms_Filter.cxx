@@ -107,13 +107,13 @@ namespace frm
     {
         if ( !m_xField.is() )
         {
-            OSL_ENSURE( sal_False, "OFilterControl::ensureInitialized: improperly initialized: no field!" );
+            OSL_FAIL( "OFilterControl::ensureInitialized: improperly initialized: no field!" );
             return sal_False;
         }
 
         if ( !m_xMetaData.is() )
         {
-            OSL_ENSURE( sal_False, "OFilterControl::ensureInitialized: improperly initialized: no database meta data!" );
+            OSL_FAIL( "OFilterControl::ensureInitialized: improperly initialized: no database meta data!" );
             return sal_False;
         }
 
@@ -133,7 +133,7 @@ namespace frm
         }
         if ( !m_xFormatter.is() )
         {
-            OSL_ENSURE( sal_False, "OFilterControl::ensureInitialized: no number formatter!" );
+            OSL_FAIL( "OFilterControl::ensureInitialized: no number formatter!" );
             // no fallback anymore
             return sal_False;
         }
@@ -545,7 +545,7 @@ namespace frm
                 Reference< XPropertySet > xControlModel;
                 if ( !(*pValue >>= xControlModel ) || !xControlModel.is() )
                 {
-                    OSL_ENSURE( sal_False, "OFilterControl::initialize: invalid control model argument!" );
+                    OSL_FAIL( "OFilterControl::initialize: invalid control model argument!" );
                     continue;
                 }
 

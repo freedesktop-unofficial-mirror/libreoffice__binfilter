@@ -249,12 +249,12 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             }
             catch(IOException& /*e*/)
             {
-                OSL_ENSURE(sal_False, "IO exception.");
+                OSL_FAIL("IO exception.");
                 bRetval = sal_False;
             }
             catch(IllegalArgumentException& /*e*/)
             {
-                OSL_ENSURE(sal_False, "uno url invalid");
+                OSL_FAIL("uno url invalid");
                 bRetval = sal_False;
             }
         }

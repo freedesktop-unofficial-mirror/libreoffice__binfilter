@@ -73,7 +73,7 @@ namespace xmloff
             case CCA_TITLE:             return "title";
             case CCA_VALUE:             return "value";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getCommonControlAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getCommonControlAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -117,7 +117,7 @@ namespace xmloff
             case faOrder:           return "order";
             case faTabbingCycle:    return "tab-cycle";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getFormAttributeName: invalid id!");
+                OSL_FAIL("OAttributeMetaData::getFormAttributeName: invalid id!");
         }
         return "";
     }
@@ -145,7 +145,7 @@ namespace xmloff
             case DA_LIST_SOURCE:        return "list-source";
             case DA_LIST_SOURCE_TYPE:   return "list-source-type";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getDatabaseAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getDatabaseAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -166,7 +166,7 @@ namespace xmloff
             case BA_LIST_LINKING_TYPE: return "list-linkage-type";
             case BA_LIST_CELL_RANGE:   return "source-cell-range";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getBindingAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getBindingAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -196,7 +196,7 @@ namespace xmloff
             case SCA_STATE:                 return "state";
             case SCA_COLUMN_STYLE_NAME:     return "column-style-name";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getSpecialAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getSpecialAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -216,7 +216,7 @@ namespace xmloff
             case ofaAutomaticFocus:     return "automatic-focus";
             case ofaApplyDesignMode:    return "apply-design-mode";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getOfficeFormsAttributeName: invalid id!");
+                OSL_FAIL("OAttributeMetaData::getOfficeFormsAttributeName: invalid id!");
         }
         return "";
     }

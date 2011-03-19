@@ -121,7 +121,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/             break;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/         default :
-/*N*/             OSL_ENSURE( sal_False, "Unsupported direction" );
+/*N*/             OSL_FAIL( "Unsupported direction" );
 /*N*/             break;
 /*N*/ #endif
 /*N*/         }
@@ -148,7 +148,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*?*/             break;
 /*?*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/         default :
-/*?*/             OSL_ENSURE( sal_False, "Unsupported direction" );
+/*?*/             OSL_FAIL( "Unsupported direction" );
 /*?*/             break;
 /*?*/ #endif
 /*?*/         }

@@ -153,7 +153,7 @@ namespace xmloff
         Reference< XPersistObject > xPersistence(m_xProps, UNO_QUERY);
         if (!xPersistence.is())
         {
-            OSL_ENSURE(sal_False, "OElementExport::exportServiceNameAttribute: no XPersistObject!");
+            OSL_FAIL("OElementExport::exportServiceNameAttribute: no XPersistObject!");
             return;
         }
 
@@ -1320,7 +1320,7 @@ namespace xmloff
                 break;
 
             default:
-                OSL_ENSURE(sal_False, "OControlExport::examineControl: unknown control type (class id)!");
+                OSL_FAIL("OControlExport::examineControl: unknown control type (class id)!");
                 break;
         }
 
@@ -1388,7 +1388,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OControlExport::exportCellBindingAttributes: caught an exception!" );
+            OSL_FAIL( "OControlExport::exportCellBindingAttributes: caught an exception!" );
         }
     }
 
@@ -1415,7 +1415,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OControlExport::exportCellListSourceRange: caught an exception!" );
+            OSL_FAIL( "OControlExport::exportCellListSourceRange: caught an exception!" );
         }
     }
 

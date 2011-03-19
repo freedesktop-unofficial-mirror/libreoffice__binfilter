@@ -74,8 +74,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False,
-                    ::rtl::OString("OPropertyImport::CreateChildContext: unknown sub element (only \"properties\" is recognized, but it is ")
+            OSL_FAIL(::rtl::OString("OPropertyImport::CreateChildContext: unknown sub element (only \"properties\" is recognized, but it is ")
                 +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
                 +=  ::rtl::OString(")!"));
             return SvXMLImportContext::CreateChildContext(_nPrefix, _rLocalName, _rxAttrList);
@@ -136,7 +135,7 @@ namespace xmloff
             implPushBackPropertyValue( aNewValue );
         }
         else
-            OSL_ENSURE( sal_False, "OPropertyImport::handleAttribute: can't handle attributes which do not describe properties!" );
+            OSL_FAIL( "OPropertyImport::handleAttribute: can't handle attributes which do not describe properties!" );
     }
 
     //---------------------------------------------------------------------
@@ -200,7 +199,7 @@ namespace xmloff
             break;
             case TypeClass_HYPER:
             {
-                OSL_ENSURE(sal_False, "OPropertyImport::convertString: 64-bit integers not implemented yet!");
+                OSL_FAIL("OPropertyImport::convertString: 64-bit integers not implemented yet!");
             }
             break;
             case TypeClass_DOUBLE:
@@ -279,11 +278,11 @@ namespace xmloff
                     }
                 }
                 else
-                    OSL_ENSURE(sal_False, "OPropertyImport::convertString: unsupported property type!");
+                    OSL_FAIL("OPropertyImport::convertString: unsupported property type!");
             }
             break;
             default:
-                OSL_ENSURE(sal_False, "OPropertyImport::convertString: invalid type class!");
+                OSL_FAIL("OPropertyImport::convertString: invalid type class!");
         }
 
         return aReturn;
@@ -338,8 +337,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False,
-                    ::rtl::OString("OPropertyElementsContext::CreateChildContext: unknown child element (\"")
+            OSL_FAIL(::rtl::OString("OPropertyElementsContext::CreateChildContext: unknown child element (\"")
                 +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
                 +=  ::rtl::OString("\")!"));
             return new SvXMLImportContext(GetImport(), _nPrefix, _rLocalName);
@@ -387,8 +385,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False,
-                    ::rtl::OString("OSinglePropertyContext::CreateChildContext: unknown child element (\"")
+            OSL_FAIL(::rtl::OString("OSinglePropertyContext::CreateChildContext: unknown child element (\"")
                 +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
                 +=  ::rtl::OString("\")!"));
             return new SvXMLImportContext(GetImport(), _nPrefix, _rLocalName);

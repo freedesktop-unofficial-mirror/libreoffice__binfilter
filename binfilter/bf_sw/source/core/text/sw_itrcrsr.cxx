@@ -138,7 +138,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*M*/                   case SVX_LINE_SPACE_FIX:
 /*M*/                       nFirstLineOfs = pSpace->GetLineHeight();
 /*M*/                   break;
-/*M*/                   default: OSL_ENSURE( sal_False, ": unknown LineSpaceRule" );
+/*M*/                   default: OSL_FAIL( ": unknown LineSpaceRule" );
 /*M*/               }
 /*M*/               switch( pSpace->GetInterLineSpaceRule() )
 /*M*/               {
@@ -164,7 +164,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*M*/                       nFirstLineOfs += pSpace->GetInterLineSpace();
 /*M*/                       break;
 /*M*/                   }
-/*M*/                   default: OSL_ENSURE( sal_False, ": unknown InterLineSpaceRule" );
+/*M*/                   default: OSL_FAIL( ": unknown InterLineSpaceRule" );
 /*M*/               }
 /*M*/           }
 /*M*/       }

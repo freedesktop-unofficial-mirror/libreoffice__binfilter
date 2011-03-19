@@ -1245,8 +1245,7 @@ bool ODatabaseForm::fillParameters(::osl::ResettableMutexGuard& _rClearForNotifi
                             }
                             catch( const Exception& )
                             {
-                                OSL_ENSURE( sal_False,
-                                        ::rtl::OString( "ODatabaseForm::fillParameters: master-detail parameter number " )
+                                OSL_FAIL( ::rtl::OString( "ODatabaseForm::fillParameters: master-detail parameter number " )
                                         +=  ::rtl::OString::valueOf( sal_Int32(aFind->second + 1) ));
                             }
                             ++aFind;
@@ -2018,7 +2017,7 @@ void ODatabaseForm::reset_impl(bool _bAproveByListeners)
                 }
                 catch(const Exception&)
                 {
-                    OSL_ENSURE(sal_False, "ODatabaseForm::reset_impl: could not initialize the master-detail-driven parameters!");
+                    OSL_FAIL("ODatabaseForm::reset_impl: could not initialize the master-detail-driven parameters!");
                 }
             }
         }
@@ -2476,7 +2475,7 @@ void SAL_CALL ODatabaseForm::setGroup( const Sequence<Reference<XControlModel> >
         {
             // can't throw an exception other than a RuntimeException (which would not be appropriate),
             // so we ignore (and only assert) this
-            OSL_ENSURE( sal_False, "ODatabaseForm::setGroup: invalid arguments!" );
+            OSL_FAIL( "ODatabaseForm::setGroup: invalid arguments!" );
             continue;
         }
 
@@ -2670,7 +2669,7 @@ void ODatabaseForm::stopSharingConnection( )
 //------------------------------------------------------------------------------
 sal_Bool ODatabaseForm::implEnsureConnection()
 {
-    OSL_ENSURE( sal_False, "ODatabaseForm::implEnsureConnection: this should be dead code, we're in binfilter here!" );
+    OSL_FAIL( "ODatabaseForm::implEnsureConnection: this should be dead code, we're in binfilter here!" );
     return sal_False;
 }
 

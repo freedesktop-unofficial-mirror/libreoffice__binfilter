@@ -218,7 +218,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "FormCellBindingHelper::getStringAddressFromCellBinding: caught an exception!" );
+            OSL_FAIL( "FormCellBindingHelper::getStringAddressFromCellBinding: caught an exception!" );
         }
 
         return sAddress;
@@ -247,7 +247,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "FormCellBindingHelper::getStringAddressFromCellListSource: caught an exception!" );
+            OSL_FAIL( "FormCellBindingHelper::getStringAddressFromCellListSource: caught an exception!" );
         }
 
         return sAddress;
@@ -283,7 +283,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "FormCellBindingHelper::isSpreadsheetDocumentWhichSupplies: caught an exception!" );
+            OSL_FAIL( "FormCellBindingHelper::isSpreadsheetDocumentWhichSupplies: caught an exception!" );
         }
 
         return bYesItIs;
@@ -438,7 +438,7 @@ namespace xmloff
             }
             catch ( const Exception& )
             {
-                OSL_ENSURE( sal_False, "FormCellBindingHelper::createDocumentDependentInstance: could not create the binding at the document!" );
+                OSL_FAIL( "FormCellBindingHelper::createDocumentDependentInstance: could not create the binding at the document!" );
             }
         }
         return xReturn;
@@ -469,7 +469,7 @@ namespace xmloff
             }
             catch( const Exception& )
             {
-                OSL_ENSURE( sal_False, "FormCellBindingHelper::doConvertAddressRepresentations: caught an exception!" );
+                OSL_FAIL( "FormCellBindingHelper::doConvertAddressRepresentations: caught an exception!" );
             }
         }
 

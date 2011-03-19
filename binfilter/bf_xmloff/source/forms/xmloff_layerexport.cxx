@@ -110,7 +110,7 @@ namespace xmloff
 
         if (!xSI->supportsService(SERVICE_FORMSCOLLECTION))
         {
-            OSL_ENSURE(sal_False, "OFormLayerXMLExport_Impl::implCheckPage: invalid collection (is no com.sun.star.form.Forms)!");
+            OSL_FAIL("OFormLayerXMLExport_Impl::implCheckPage: invalid collection (is no com.sun.star.form.Forms)!");
             // nothing to do
             return sal_False;
         }
@@ -220,7 +220,7 @@ namespace xmloff
             }
             catch(Exception&)
             {
-                OSL_ENSURE(sal_False, "OFormLayerXMLExport_Impl::exportCollectionElements: caught an exception ... skipping the current element!");
+                OSL_FAIL("OFormLayerXMLExport_Impl::exportCollectionElements: caught an exception ... skipping the current element!");
                 continue;
             }
         }
@@ -555,13 +555,13 @@ namespace xmloff
                         }
                     }
                     else
-                        OSL_ENSURE( sal_False, "OFormLayerXMLExport_Impl::collectGridAutoStyles: invalid grid column encountered!" );
+                        OSL_FAIL( "OFormLayerXMLExport_Impl::collectGridAutoStyles: invalid grid column encountered!" );
                 }
             }
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OFormLayerXMLExport_Impl::collectGridAutoStyles: error examining the grid colums!" );
+            OSL_FAIL( "OFormLayerXMLExport_Impl::collectGridAutoStyles: error examining the grid colums!" );
         }
     }
 

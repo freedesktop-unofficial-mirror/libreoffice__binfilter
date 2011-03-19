@@ -1565,7 +1565,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/                     pInf->GetParaPortion()->SetFixLineHeight();
 /*?*/                 }
 /*?*/                 break;
-/*?*/                 default: OSL_ENSURE( sal_False, ": unknown LineSpaceRule" );
+/*?*/                 default: OSL_FAIL( ": unknown LineSpaceRule" );
 /*N*/             }
 /*N*/             if( !IsParaLine() )
 /*N*/                 switch( pSpace->GetInterLineSpaceRule() )
@@ -1592,7 +1592,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/                         nLineHeight += pSpace->GetInterLineSpace();
 /*?*/                         break;
 /*N*/                     }
-/*N*/                     default: OSL_ENSURE( sal_False, ": unknown InterLineSpaceRule" );
+/*N*/                     default: OSL_FAIL( ": unknown InterLineSpaceRule" );
 /*N*/                 }
 /*N*/         }
 /*N*/ #if OSL_DEBUG_LEVEL > 1

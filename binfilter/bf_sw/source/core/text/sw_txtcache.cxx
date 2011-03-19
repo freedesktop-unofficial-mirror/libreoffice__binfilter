@@ -206,7 +206,7 @@ namespace binfilter {
 /*N*/           nCacheIdx = pTxtLine->GetCachePos();
 /*N*/       else
 /*N*/       {
-/*?*/           OSL_ENSURE( sal_False, "+SetPara: InsertCache failed." );
+/*?*/           OSL_FAIL( "+SetPara: InsertCache failed." );
 /*N*/       }
 /*N*/   }
 /*N*/ }

@@ -745,7 +745,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*?*/               nFmt = (sal_uInt32)nNumberingType;
 /*N*/           break;
 /*N*/       default:
-/*?*/           OSL_ENSURE( sal_False, "SwDocStatFieldType::Expand: unbekannter SubType" );
+/*?*/           OSL_FAIL( "SwDocStatFieldType::Expand: unbekannter SubType" );
 /*N*/   }
 /*N*/
 /*N*/   String sRet;

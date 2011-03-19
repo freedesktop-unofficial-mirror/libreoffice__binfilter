@@ -543,7 +543,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/           if( ((SwTxtFrm*)GetFollow())->IsLocked() )
 /*N*/           {
-/*?*/               OSL_ENSURE( sal_False, "+SwTxtFrm::JoinFrm: Follow ist locked." );
+/*?*/               OSL_FAIL( "+SwTxtFrm::JoinFrm: Follow ist locked." );
 /*?*/                 UNDO_SWAP( this )
 /*?*/                 return;
 /*N*/           }

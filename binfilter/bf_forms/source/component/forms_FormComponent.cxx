@@ -417,7 +417,7 @@ void OControlModel::readHelpTextCompatibly(const staruno::Reference< stario::XOb
     }
     catch(const Exception&)
     {
-        OSL_ENSURE(sal_False, "OControlModel::readHelpTextCompatibly: could not forward the property value to the aggregate!");
+        OSL_FAIL("OControlModel::readHelpTextCompatibly: could not forward the property value to the aggregate!");
     }
 }
 
@@ -432,7 +432,7 @@ void OControlModel::writeHelpTextCompatibly(const staruno::Reference< stario::XO
     }
     catch(const Exception&)
     {
-        OSL_ENSURE(sal_False, "OControlModel::writeHelpTextCompatibly: could not retrieve the property value from the aggregate!");
+        OSL_FAIL("OControlModel::writeHelpTextCompatibly: could not retrieve the property value from the aggregate!");
     }
     ::comphelper::operator<<( _rxOutStream, sHelpText);
 }
@@ -1374,7 +1374,7 @@ sal_Bool OBoundControlModel::connectToField(const Reference<XRowSet>& rForm)
             }
             else
             {
-                OSL_ENSURE(sal_False, "OBoundControlModel::connectToField: property NAME not supported!");
+                OSL_FAIL("OBoundControlModel::connectToField: property NAME not supported!");
                 setField(NULL,sal_False);
             }
         }
