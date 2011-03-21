@@ -163,7 +163,6 @@ public:
     virtual BOOL    SaveAs( SvStorage * pNewStor );
 
     virtual BOOL    SaveCompleted( SvStorage * pNewStor );      // SfxInPlaceObject
-    virtual BOOL    DoSaveCompleted( SfxMedium * pNewStor);     // SfxObjectShell
 
 
     virtual void    SetVisArea( const Rectangle & rVisArea );

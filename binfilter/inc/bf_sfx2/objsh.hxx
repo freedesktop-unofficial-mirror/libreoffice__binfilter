@@ -240,8 +240,6 @@ public:
 
     virtual sal_Bool            DoLoad( SfxMedium * pMedium );
     virtual sal_Bool            DoSaveAs( SvStorage * pNewStor );
-    virtual sal_Bool            DoSaveCompleted( SvStorage * pNewStor = NULL );
-    virtual sal_Bool            DoSaveCompleted( SfxMedium * pNewStor);
 
     virtual sal_Bool            ConvertFrom( SfxMedium &rMedium );
     virtual sal_Bool            ConvertTo( SfxMedium &rMedium );

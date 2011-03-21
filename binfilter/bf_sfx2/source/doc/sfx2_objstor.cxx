@@ -387,9 +387,9 @@ sal_False           Das Objekt konnte nicht geladen werden
 
                 xPer->DoOwnerLoad(xStor);
                 xPer->CleanUp();
-                        DBG_ASSERT( 0, "DoSave return value is not checed here, seems buggy" );
+                        DBG_ASSERT( 0, "DoSave() and DoSaveCompleted() return value is not checked here, seems buggy" );
                         //xPer->DoSave();
-                xPer->DoSaveCompleted( 0 );
+                        //xPer->DoSaveCompleted( 0 );
             }
 
             if ( xStor.Is() )
@@ -940,91 +940,6 @@ sal_Bool SfxObjectShell::DoSaveAs( SvStorage * pNewStor )
     return bOk;
 }
 
-sal_Bool SfxObjectShell::DoSaveCompleted( SfxMedium * pNewMed )
-{
-    sal_Bool bOk = sal_True;
-    sal_Bool bMedChanged = pNewMed && pNewMed!=pMedium;
-    DBG_ASSERT( !pNewMed || pNewMed->GetError() == ERRCODE_NONE, "DoSaveCompleted: Medium has error!" );
-    if ( bMedChanged )
-    {
-        delete pMedium;
-        pMedium = pNewMed;
-    }
-
-    const SfxFilter *pFilter = pMedium ? pMedium->GetFilter() : 0;
-    if ( pNewMed )
-    {
-        if( bMedChanged )
-        {
-            if( pNewMed->GetName().Len() )
-                bHasName = sal_True;
-            String aBase = GetBaseURL();
-            if( Current() == this && aBase.Len() )
-                ::binfilter::StaticBaseUrl::SetBaseURL( aBase );
-            Broadcast( SfxSimpleHint(SFX_HINT_NAMECHANGED) );
-        }
-
-        SvStorage *pStorage=NULL;
-        if ( !pFilter||sal_True  )
-        {
-            pStorage = pMedium->GetStorage();
-            bOk = SaveCompleted( pStorage );
-        }
-        else
-        {
-            pStorage = GetStorage();
-            if( pFilter->UsesStorage() )
-                pMedium->GetStorage();
-            else if( pMedium->GetOpenMode() & STREAM_WRITE )
-                pMedium->GetInStream();
-        }
-
-        // Set storage in document library containers
-        SfxDialogLibraryContainer* pDialogCont = pImp->pDialogLibContainer;
-        if( pDialogCont )
-            pDialogCont->setStorage( pStorage );
-
-        SfxScriptLibraryContainer* pBasicCont = pImp->pBasicLibContainer;
-        if( pBasicCont )
-            pBasicCont->setStorage( pStorage );
-    }
-    else
-    {
-        if( pMedium )
-        {
-            const SfxFilter* pLclFilter = pMedium->GetFilter();
-            if( pLclFilter && !pLclFilter->IsOwnFormat() &&
-                (pMedium->GetOpenMode() & STREAM_WRITE ))
-                pMedium->ReOpen();
-            else
-                SaveCompleted( 0 );
-        }
-        // entweder Save oder ConvertTo
-        else
-            bOk = SaveCompleted( NULL );
-    }
-
-    if ( bOk && pNewMed )
-    {
-        if( bMedChanged )
-        {
-            // Titel neu setzen
-            if ( pNewMed->GetName().Len() &&
-                SFX_CREATE_MODE_EMBEDDED != eCreateMode )
-                InvalidateName();
-            SetModified(sal_False); // nur bei gesetztem Medium zur"ucksetzen
-            Broadcast( SfxSimpleHint(SFX_HINT_MODECHANGED) );
-        }
-    }
-
-    return bOk;
-}
-
-sal_Bool SfxObjectShell::DoSaveCompleted( SvStorage * pNewStor )
-{
-    return DoSaveCompleted(pNewStor? new SfxMedium( pNewStor ): 0);
-}
-
 sal_Bool SfxObjectShell::ConvertFrom
 (
     SfxMedium&  /*rMedium*/     /*  <SfxMedium>, welches die Quell-Datei beschreibt
@@ -1378,7 +1293,7 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*N*/         if ( bCopyTo )
 /*N*/       {
 /*N*/           if ( IsHandsOff() )
-/*N*/               bOk = DoSaveCompleted( pMedium );
+/*N*/               bOk = false;
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1386,7 +1301,7 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*N*/           if ( bToOwnFormat )
 /*N*/               SetFileName( pNewFile->GetPhysicalName() );
 /*N*/
-/*N*/           bOk = DoSaveCompleted( pNewFile );
+/*N*/           bOk = false;
 /*N*/       }
 /*N*/
 /*N*/       if( bOk )
@@ -1402,7 +1317,7 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*N*/             if ( !bCopyTo )
 /*N*/             {
 /*N*/                 // reconnect to the old medium
-/*?*/                 BOOL bRet = DoSaveCompleted( pMedium );
+/*?*/                 BOOL bRet = false;
 /*?*/                 DBG_ASSERT( bRet, "Error in DoSaveCompleted, can't be handled!");
 /*?*/                 (void)bRet;
 /*N*/             }
@@ -1421,9 +1336,13 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*?*/
 /*?*/         // reconnect to the old storage
 /*?*/         if ( IsHandsOff() )
-/*?*/             DoSaveCompleted( pMedium );
+/*?*/             {
+                    // was DoSaveCompleted( pMedium ) but return value is not checked;
+                  }
 /*?*/         else
-/*?*/             DoSaveCompleted( (SvStorage*)0 );
+/*?*/             {
+                    // was DoSaveCompleted( (SvStorage*)0 ); but return value is not checked;
+                  }
 /*?*/
 /*?*/         DELETEZ( pNewFile );
 /*N*/   }

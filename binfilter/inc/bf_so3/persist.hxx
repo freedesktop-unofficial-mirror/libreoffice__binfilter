@@ -232,7 +232,6 @@ public:
     BOOL            DoOwnerLoad( SvStorage * );
     virtual BOOL    DoSaveAs( SvStorage * pNewStg );
     virtual void    DoHandsOff();
-    virtual BOOL    DoSaveCompleted( SvStorage * = NULL );
     void            CleanUp(BOOL bRecurse=FALSE); //Rekursiv
 
     const Time &    GetModifyTime() const { return aModifiedTime; }

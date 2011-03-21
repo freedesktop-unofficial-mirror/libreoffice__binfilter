@@ -855,19 +855,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ BOOL ScDocShell::DoSaveCompleted( SfxMedium * pNewStor )
-/*N*/ {
-/*N*/   BOOL bRet = SfxObjectShell::DoSaveCompleted( pNewStor );
-/*N*/
-/*N*/   //  SC_HINT_DOC_SAVED fuer Wechsel ReadOnly -> Read/Write
-/*N*/   Broadcast( SfxSimpleHint( SC_HINT_DOC_SAVED ) );
-/*N*/   return bRet;
-/*N*/ }
-
-
-
-
-
 /*N*/ String ScDocShell::GetOwnFilterName()         // static
 /*N*/ {
 /*N*/   return String::CreateFromAscii(pFilterSc50);

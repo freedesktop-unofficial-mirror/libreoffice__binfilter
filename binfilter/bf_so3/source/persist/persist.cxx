@@ -219,13 +219,15 @@ void SvInfoObject::SetDeleted( BOOL bDel )
                 if( bRet )
                 {
                     aObj->DoHandsOff();
-                    if( aObj->DoSaveCompleted( aNewStor ) )
+                    if(false)
                     {
                         pImp->SetRealStorageName( aNewStor->GetName() );
                         bKill = FALSE;
                     }
                     else
-                        aObj->DoSaveCompleted();
+                    {
+                        // was aObj->DoSaveCompleted(); but return value is not checked
+                    }
                 }
             }
 
@@ -539,9 +541,11 @@ BOOL SvPersist::Move( SvInfoObject * pInfoObj, const String & rStorName, BOOL bC
             SvStorageRef aNewStor( new SvStorage( FALSE, aRealName, STREAM_STD_READWRITE, 0 ) );
             if ( pChild->DoSaveAs( aNewStor ) )
             {
-                bRet = pChild->DoSaveCompleted( aNewStor );
+                bRet = false;
                 if ( !bRet )
-                    pChild->DoSaveCompleted();
+                {
+                    //was pChild->DoSaveCompleted() but return value is not checked;
+                }
             }
         }
         else
@@ -587,7 +591,7 @@ SvPersistRef SvPersist::CopyObject( const String& rObjName, const String& rNewNa
             SvStorageRef xNewStor( new SvStorage( FALSE, aRealName, STREAM_STD_READWRITE, 0 ) );
             if ( xOldObject->DoSaveAs( xNewStor ) )
             {
-                xOldObject->DoSaveCompleted();
+                // was xOldObject->DoSaveCompleted(); but return value is not checked
                 xNewInfo->SetObjName( rNewName );
                 xNewInfo->pImp->aRealStorageName = xNewStor->GetName();
                 GetInfoList()->Append( xNewInfo );
@@ -726,7 +730,9 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
             {
                 bRet = pSrc->DoSaveAs( aNewStor );
                 if ( bRet && !bMoving )
-                    pSrc->DoSaveCompleted();
+                {
+                    // was pSrc->DoSaveCompleted(); but return value is not checked
+                }
             }
             else
             {
@@ -734,11 +740,15 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
                 pSrc->DoHandsOff();
                 bRet = xEleStor->CopyTo( aNewStor );
                 if ( !bRet || !bMoving )
-                    pSrc->DoSaveCompleted( xEleStor );
+                {
+                     // was pSrc->DoSaveCompleted( xEleStor ); but return value is not checked
+                }
             }
 
             if ( bRet && bMoving )
-                pSrc->DoSaveCompleted( aNewStor );
+            {
+                // was pSrc->DoSaveCompleted( aNewStor ); but return value is not checked
+            }
         }
     }
 
@@ -1131,10 +1141,6 @@ void SvPersist::DoHandsOff()
     HandsOff();
 }
 
-BOOL SvPersist::DoSaveCompleted( SvStorage * pStor )
-{
-    return SaveCompleted( pStor );
-}
 
 
 SvStorage * SvPersist::GetStorage() const
@@ -1643,7 +1649,7 @@ BOOL SvPersist::SaveCompletedChilds( SvStorage * pStor )
                 {
                     SvStorageRef aEleStor;
                     aEleStor = pStor->OpenStorage( pEle->GetStorageName() );
-                    if( !aEleStor.Is() || !pEle->GetPersist()->DoSaveCompleted( aEleStor ) )
+                    if( !aEleStor.Is() || !false )
                         return FALSE;
 
                     // the object now is definitely part of the container
@@ -1652,7 +1658,7 @@ BOOL SvPersist::SaveCompletedChilds( SvStorage * pStor )
                 else
                 {
                     // set objects on their old storage again
-                    if( !pEle->GetPersist()->DoSaveCompleted() )
+                    if( !false)
                         return FALSE;
                 }
             }

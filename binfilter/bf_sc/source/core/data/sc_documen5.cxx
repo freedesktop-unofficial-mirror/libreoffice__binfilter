@@ -439,9 +439,10 @@ void ScDocument::UpdateChartListenerCollection()
                                                     // the return value of DoSave() was not checked, this is not a good style...
                                                     // due to the suppression of the function DoSave() this stay here just for
                                                     // pro memoria, waiting that all the if is cleaned out
-                                                    DBG_BF_ASSERT(0, "return value of DoSave() was not checked here!");
+                                                    // the same for DoSaveCompleted()
+                                                    DBG_BF_ASSERT(0, "return value of DoSave() and DoSaveComleted was not checked here!");
                                                     //aIPObj->DoSave();
-                                                aIPObj->DoSaveCompleted();
+                                                    //aIPObj->DoSaveCompleted();
                                             }
                                         }
                                     }

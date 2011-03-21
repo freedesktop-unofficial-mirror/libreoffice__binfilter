@@ -964,7 +964,9 @@ void SAL_CALL SfxBaseModel::removeCloseListener( const REFERENCE< XCLOSELISTENER
 /*N*/       if ( m_pData->m_pObjectShell->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
 /*N*/           if ( false)
-/*N*/               m_pData->m_pObjectShell->DoSaveCompleted();
+/*N*/           {
+                             // was m_pData->m_pObjectShell->DoSaveCompleted(); but return value not checked
+                        }
 /*N*/       }
 /*N*/       else
 /*N*/           m_pData->m_pObjectShell->Save_Impl();

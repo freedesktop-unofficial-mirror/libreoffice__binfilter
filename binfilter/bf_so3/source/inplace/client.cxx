@@ -481,7 +481,7 @@ BOOL SvEmbeddedClient::SaveObject()
         if( pE )
         {
             bRet = false;
-            pE->DoSaveCompleted();
+            // was pE->DoSaveCompleted(); but return value is not checked
         }
     }
     return bRet;
