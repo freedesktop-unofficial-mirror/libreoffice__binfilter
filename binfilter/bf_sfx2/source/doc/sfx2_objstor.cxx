@@ -918,28 +918,6 @@ den neuen Storage connected. SaveCompleted tut dann nichts.
     return sal_True;
 }
 
-sal_Bool SfxObjectShell::DoSaveAs( SvStorage * pNewStor )
-{
-    // DoSaveAs wird nur noch ueber OLE aufgerufen
-    sal_Bool bOk;
-    {
-        SfxForceLinkTimer_Impl aFLT( this );
-        ModifyBlocker_Impl aBlock( this );
-        //Abwehr gegen feindlich gesinnte Applikationen.
-        if ( !pNewStor->GetFormat() )
-            SetupStorage( pNewStor );
-
-        pImp->bIsSaving = sal_False;
-        SfxMedium* pNewMed = new SfxMedium( pNewStor );
-        const String aOldURL( ::binfilter::StaticBaseUrl::GetBaseURL() );
-
-        bOk = SaveAsOwnFormat( *pNewMed );
-        ::binfilter::StaticBaseUrl::SetBaseURL( aOldURL );
-        delete pNewMed;
-    }
-    return bOk;
-}
-
 sal_Bool SfxObjectShell::ConvertFrom
 (
     SfxMedium&  /*rMedium*/     /*  <SfxMedium>, welches die Quell-Datei beschreibt

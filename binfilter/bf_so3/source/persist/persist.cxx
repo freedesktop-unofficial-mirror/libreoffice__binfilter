@@ -209,7 +209,7 @@ void SvInfoObject::SetDeleted( BOOL bDel )
                 bool bRet;
                 if( aObj->IsModified() )
                 {
-                    bRet = aObj->DoSaveAs( aNewStor );
+                    bRet = false;
                 }
                 else
                 {
@@ -539,7 +539,7 @@ BOOL SvPersist::Move( SvInfoObject * pInfoObj, const String & rStorName, BOOL bC
             DBG_ASSERT( !bCopyStorage, "Impossible to copy storage!" );
             aRealName = ::utl::TempFile().GetURL();
             SvStorageRef aNewStor( new SvStorage( FALSE, aRealName, STREAM_STD_READWRITE, 0 ) );
-            if ( pChild->DoSaveAs( aNewStor ) )
+            if ( false)
             {
                 bRet = false;
                 if ( !bRet )
@@ -589,7 +589,7 @@ SvPersistRef SvPersist::CopyObject( const String& rObjName, const String& rNewNa
             // save in binary format - there is no other format !
             String aRealName = ::utl::TempFile().GetURL();
             SvStorageRef xNewStor( new SvStorage( FALSE, aRealName, STREAM_STD_READWRITE, 0 ) );
-            if ( xOldObject->DoSaveAs( xNewStor ) )
+            if ( false)
             {
                 // was xOldObject->DoSaveCompleted(); but return value is not checked
                 xNewInfo->SetObjName( rNewName );
@@ -728,7 +728,7 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
 
             if( bSave )
             {
-                bRet = pSrc->DoSaveAs( aNewStor );
+                bRet = false;
                 if ( bRet && !bMoving )
                 {
                     // was pSrc->DoSaveCompleted(); but return value is not checked
@@ -1126,14 +1126,6 @@ BOOL SvPersist::DoLoad
 
     SetFileName( rFileName );
     return DoLoad( xStg );
-}
-
-BOOL SvPersist::DoSaveAs( SvStorage * pStor )
-{
-    EnableSetModified( FALSE );
-    BOOL bRet = SaveAs( pStor );
-    EnableSetModified( TRUE );
-    return bRet;
 }
 
 void SvPersist::DoHandsOff()
@@ -1544,7 +1536,7 @@ BOOL SvPersist::SaveElement( SvStorage* pStor, SvInfoObject* pEle )
     if( bSave )
     {
         DBG_ASSERT( bOLESubStorage || ( xPO->GetMiscStatus() & SVOBJ_MISCSTATUS_SPECIALOBJECT ) == 0, "Trying to save special object" );
-        bRet = pEle->GetPersist()->DoSaveAs( aEleStor );
+        bRet = false;
     }
     else
     {

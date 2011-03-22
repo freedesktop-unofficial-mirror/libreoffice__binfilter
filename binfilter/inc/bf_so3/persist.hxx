@@ -230,7 +230,6 @@ public:
                             short nStorMode );
     virtual BOOL    DoLoad( SvStorage * );
     BOOL            DoOwnerLoad( SvStorage * );
-    virtual BOOL    DoSaveAs( SvStorage * pNewStg );
     virtual void    DoHandsOff();
     void            CleanUp(BOOL bRecurse=FALSE); //Rekursiv
 
