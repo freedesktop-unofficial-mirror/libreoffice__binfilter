@@ -280,12 +280,12 @@ XMLTextFieldImportContext::XMLTextFieldImportContext(
     const sal_Char* pService,
     sal_uInt16 nInPrefix,   const OUString& rElementName)
     : SvXMLImportContext( rInImport, nInPrefix, rElementName ),
+      sServicePrefix(RTL_CONSTASCII_USTRINGPARAM(
+          sAPI_textfield_prefix)),
+      sIsFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
       sContentBuffer(),
       rTextImportHelper(rHlp),
-      bValid(sal_False),
-      sIsFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
-      sServicePrefix(RTL_CONSTASCII_USTRINGPARAM(
-          sAPI_textfield_prefix))
+      bValid(sal_False)
 {
     DBG_ASSERT(NULL != pService, "Need service name!");
     sServiceName = OUString::createFromAscii(pService);
@@ -354,14 +354,14 @@ void XMLTextFieldImportContext::EndElement()
     rTextImportHelper.InsertString(GetContent());
 }
 
-void XMLTextFieldImportContext::Characters(const OUString& sContent)
+void XMLTextFieldImportContext::Characters(const OUString& rContent)
 {
-    sContentBuffer.append(sContent);
+    sContentBuffer.append(rContent);
 }
 
 sal_Bool XMLTextFieldImportContext::CreateField(
     Reference<XPropertySet> & xField,
-    const OUString& sServiceName)
+    const OUString& rServiceName)
 {
     // instantiate new XTextField:
     // ask import for model, model is factory, ask factory to create service
@@ -369,7 +369,7 @@ sal_Bool XMLTextFieldImportContext::CreateField(
     Reference<XMultiServiceFactory> xFactory(GetImport().GetModel(),UNO_QUERY);
     if( xFactory.is() )
     {
-        Reference<XInterface> xIfc = xFactory->createInstance(sServiceName);
+        Reference<XInterface> xIfc = xFactory->createInstance(rServiceName);
         if( xIfc.is() )
         {
             Reference<XPropertySet> xTmp( xIfc, UNO_QUERY );
@@ -696,12 +696,12 @@ XMLSenderFieldImportContext::XMLSenderFieldImportContext(
     sal_uInt16 nToken) :
     XMLTextFieldImportContext(rInImport, rHlp, sAPI_extended_user,
                               nPrfx, sLocalName),
-    bFixed(sal_True),
-    nElementToken(nToken),
     sEmpty(),
-    sPropertyFieldSubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_user_data_type)),
     sPropertyFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
-    sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content))
+    sPropertyFieldSubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_user_data_type)),
+    sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
+    bFixed(sal_True),
+    nElementToken(nToken)
 {
 }
 
@@ -825,10 +825,10 @@ XMLAuthorFieldImportContext::XMLAuthorFieldImportContext(
     sal_uInt16 nToken) :
         XMLSenderFieldImportContext(rInImport, rHlp, nPrfx, sLocalName, nToken),
         bAuthorFullName(sal_True),
+        sServiceAuthor(RTL_CONSTASCII_USTRINGPARAM(sAPI_author)),
         sPropertyAuthorFullName(RTL_CONSTASCII_USTRINGPARAM(sAPI_full_name)),
-        sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
         sPropertyFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
-        sServiceAuthor(RTL_CONSTASCII_USTRINGPARAM(sAPI_author))
+        sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content))
 {
     // overwrite service name from XMLSenderFieldImportContext
     SetServiceName(sServiceAuthor);
@@ -892,13 +892,13 @@ XMLPageContinuationImportContext::XMLPageContinuationImportContext(
     const OUString& sLocalName) :
         XMLTextFieldImportContext(rInImport, rHlp, sAPI_page_number,
                                   nPrfx, sLocalName),
-        sString(),
-        sStringOK(sal_False),
-        eSelectPage(PageNumberType_CURRENT),
         sPropertySubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_sub_type)),
         sPropertyUserText(RTL_CONSTASCII_USTRINGPARAM(sAPI_user_text)),
         sPropertyNumberingType(RTL_CONSTASCII_USTRINGPARAM(
-            sAPI_numbering_type))
+            sAPI_numbering_type)),
+        sString(),
+        eSelectPage(PageNumberType_CURRENT),
+        sStringOK(sal_False)
 {
     bValid = sal_True;
 }
@@ -1126,19 +1126,19 @@ void XMLPlaceholderFieldImportContext::PrepareField(
     xPropertySet->setPropertyValue(sPropertyHint, aAny);
 
     // remove <...> around content (if present)
-    OUString sContent = GetContent();
+    OUString sLclContent = GetContent();
     sal_Int32 nStart = 0;
-    sal_Int32 nLength = sContent.getLength();
-    if ((nLength > 0) && (sContent.getStr()[0] == '<'))
+    sal_Int32 nLength = sLclContent.getLength();
+    if ((nLength > 0) && (sLclContent.getStr()[0] == '<'))
     {
         --nLength;
         ++nStart;
     }
-    if ((nLength > 0) && (sContent.getStr()[sContent.getLength()-1] == '>'))
+    if ((nLength > 0) && (sLclContent.getStr()[sLclContent.getLength()-1] == '>'))
     {
         --nLength;
     }
-    aAny <<= sContent.copy(nStart, nLength);
+    aAny <<= sLclContent.copy(nStart, nLength);
     xPropertySet->setPropertyValue(sPropertyPlaceholder, aAny);
 
     aAny <<= nPlaceholderType;
@@ -1157,14 +1157,6 @@ XMLTimeFieldImportContext::XMLTimeFieldImportContext(
     sal_uInt16 nPrfx, const OUString& sLocalName) :
         XMLTextFieldImportContext(rInImport, rHlp, sAPI_date_time,
                                   nPrfx, sLocalName),
-        fTimeValue(0.0),
-        nAdjust(0),
-        bTimeOK(sal_False),
-        bFixed(sal_False),
-        nFormatKey(0),
-        bFormatOK(sal_False),
-        bIsDate(sal_False),
-        bIsDefaultLanguage( sal_True ),
         sPropertyNumberFormat(RTL_CONSTASCII_USTRINGPARAM(sAPI_number_format)),
         sPropertyFixed(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed)),
         sPropertyDateTimeValue(RTL_CONSTASCII_USTRINGPARAM(
@@ -1173,7 +1165,16 @@ XMLTimeFieldImportContext::XMLTimeFieldImportContext(
             sAPI_date_time)),
         sPropertyAdjust(RTL_CONSTASCII_USTRINGPARAM(sAPI_adjust)),
         sPropertyIsDate(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_date)),
-        sPropertyIsFixedLanguage(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed_language))
+        sPropertyIsFixedLanguage(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed_language)),
+        fTimeValue(0.0),
+        nAdjust(0),
+        nFormatKey(0),
+        bTimeOK(sal_False),
+        bFormatOK(sal_False),
+        bFixed(sal_False),
+        bIsDate(sal_False),
+        bIsDefaultLanguage( sal_True )
+
 {
     bValid = sal_True;  // always valid!
 }
@@ -1385,11 +1386,11 @@ XMLDatabaseFieldImportContext::XMLDatabaseFieldImportContext(
         sDatabaseName(),
         sTableName(),
         nCommandType( sdb::CommandType::TABLE ),
-        bDatabaseOK(sal_False),
         bCommandTypeOK(sal_False),
-        bDisplayOK( false ),
         bDisplay( sal_True ),
+        bDisplayOK( false ),
         bUseDisplay( bUseDisply ),
+        bDatabaseOK(sal_False),
         bTableOK(sal_False)
 {
 }

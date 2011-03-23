@@ -57,7 +57,7 @@ void XMLTextParagraphExport::exportStyleAttributes(
     if( xPropSetInfo->hasPropertyByName( sCategory ) )
     {
         aAny = xPropSet->getPropertyValue( sCategory );
-        sal_Int16 nCategory;
+        sal_Int16 nCategory(0);
         aAny >>= nCategory;
         enum XMLTokenEnum eValue = XML_TOKEN_INVALID;
         if( -1 != nCategory )

@@ -1587,9 +1587,8 @@ void XMLTextParagraphExport::exportParagraph(
 
     if( bAutoStyles )
     {
-        sal_Bool bLclPrevCharIsSpace = sal_True;
         if( bHasContentEnum )
-            bLclPrevCharIsSpace = !exportTextContentEnumeration(
+            exportTextContentEnumeration(
                                     xContentEnum, bAutoStyles, xSection,
                                     bInProgress );
         exportTextRangeEnumeration( xTextEnum, bAutoStyles, bInProgress );
