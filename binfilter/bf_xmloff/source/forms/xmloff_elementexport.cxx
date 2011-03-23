@@ -51,7 +51,10 @@
 #include "formcellbinding.hxx"
 #endif
 
-#include <drafts/com/sun/star/form/XListEntrySink.hpp>
+#include <com/sun/star/form/binding/XValueBinding.hpp>
+
+//#include <drafts/com/sun/star/form/XListEntrySink.hpp>
+#include <com/sun/star/form/binding/XListEntrySink.hpp>
 
 #include <algorithm>
 namespace binfilter {
@@ -72,7 +75,7 @@ namespace xmloff
     using namespace ::com::sun::star::script;
     using namespace ::com::sun::star::io;
     using namespace ::com::sun::star::table;
-    using namespace ::drafts::com::sun::star::form;
+    using namespace ::com::sun::star::form::binding;
 
     //=====================================================================
     //= OElementExport

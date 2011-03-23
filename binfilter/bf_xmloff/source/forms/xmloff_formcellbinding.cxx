@@ -30,8 +30,8 @@
 #include "formcellbinding.hxx"
 #endif
 
-#include <drafts/com/sun/star/form/XBindableValue.hpp>
-#include <drafts/com/sun/star/form/XListEntrySink.hpp>
+#include <com/sun/star/form/binding/XBindableValue.hpp>
+#include <com/sun/star/form/binding/XListEntrySink.hpp>
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
 #include <com/sun/star/form/XForm.hpp>
 #include <com/sun/star/lang/XServiceInfo.hpp>
@@ -59,7 +59,7 @@ namespace xmloff
     using namespace ::com::sun::star::table;
     using namespace ::com::sun::star::form;
     using namespace ::com::sun::star::lang;
-    using namespace ::drafts::com::sun::star::form;
+    using namespace ::com::sun::star::form::binding;
 
     namespace
     {
