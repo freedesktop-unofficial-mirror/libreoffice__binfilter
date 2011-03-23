@@ -449,37 +449,6 @@ SfxStyleSheetBasePool* SdDrawDocShell::GetStyleSheetPool()
 }
 
 
-BOOL SdDrawDocShell::SaveAsOwnFormat( SfxMedium& rMedium )
-{
-
-    const SfxFilter* pFilter = rMedium.GetFilter();
-
-    if (pFilter->IsOwnTemplateFormat())
-    {
-        String aLayoutName;
-
-        SfxStringItem* pLayoutItem;
-        if( rMedium.GetItemSet()->GetItemState(SID_TEMPLATE_NAME, FALSE, (const SfxPoolItem**) & pLayoutItem ) == SFX_ITEM_SET )
-        {
-            aLayoutName = pLayoutItem->GetValue();
-        }
-        else
-        {
-            INetURLObject aURL( rMedium.GetName() );
-            aURL.removeExtension();
-            aLayoutName = aURL.getName();
-        }
-
-        if( aLayoutName.Len() )
-        {
-            String aOldPageLayoutName = pDoc->GetSdPage(0, PK_STANDARD)->GetLayoutName();
-            pDoc->RenameLayoutTemplate(aOldPageLayoutName, aLayoutName);
-        }
-     }
-
-    return SfxObjectShell::SaveAsOwnFormat(rMedium);
-}
-
 void SdDrawDocShell::FillClass(SvGlobalName* pClassName,ULONG*  pFormat, String* pAppName, String* pFullTypeName, String* pShortTypeName, long    nFileFormat) const
 {
     SfxInPlaceObject::FillClass(pClassName, pFormat, pAppName, pFullTypeName,

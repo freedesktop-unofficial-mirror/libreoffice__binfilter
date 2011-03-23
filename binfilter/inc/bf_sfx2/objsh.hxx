@@ -227,7 +227,6 @@ public:
     void                        SetError(sal_uInt32 rErr);
 
     virtual sal_Bool            LoadOwnFormat( SfxMedium& pMedium );
-    virtual sal_Bool            SaveAsOwnFormat( SfxMedium& pMedium );
 
     virtual sal_Bool            DoInitNew( SvStorage * pStor );
     virtual void                DoHandsOff();

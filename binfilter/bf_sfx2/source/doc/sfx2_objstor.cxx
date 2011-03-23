@@ -742,7 +742,7 @@ sal_Bool SfxObjectShell::SaveTo_Impl
         }
         else
             // save to target
-            bOk = SaveAsOwnFormat( rMedium );
+            bOk = false;
 
         // look for a "version" parameter
         const SfxStringItem *pVersionItem = pSet ? (const SfxStringItem*)
@@ -1380,47 +1380,6 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*N*/   else
 /*N*/       return sal_False;
 /*N*/ }
-
-/*N*/ sal_Bool SfxObjectShell::SaveAsOwnFormat( SfxMedium& rMedium )
-/*N*/ {
-/*N*/   SvStorageRef xStor = rMedium.GetStorage();
-/*N*/   if( xStor.Is() )
-/*N*/   {
-/*N*/       ULONG nVersion = rMedium.GetFilter()->GetVersion();
-/*N*/       xStor->SetVersion( nVersion );
-/*N*/
-/*N*/       // Initialize Basic
-/*N*/       GetBasicManager();
-/*N*/
-/*N*/       // Save dialog container
-/*N*/       if( nVersion >= 6200 )
-/*N*/       {
-/*N*/           SfxDialogLibraryContainer* pDialogCont = pImp->pDialogLibContainer;
-/*N*/           if( pDialogCont )
-/*N*/               pDialogCont->storeLibrariesToStorage( (SotStorage*)(SvStorage*)xStor );
-/*N*/
-/*N*/           SfxScriptLibraryContainer* pBasicCont = pImp->pBasicLibContainer;
-/*N*/           if( pBasicCont )
-/*N*/               pBasicCont->storeLibrariesToStorage( (SotStorage*)(SvStorage*)xStor );
-/*N*/
-/*N*/           // Konfiguration schreiben
-/*N*/           if ( GetConfigManager() )
-/*N*/           {
-/*N*/               {
-/*N*/                   SotStorageRef xCfgStor = pImp->pCfgMgr->GetConfigurationStorage( xStor );
-/*N*/                     if ( pImp->pCfgMgr->StoreConfiguration( xCfgStor ) )
-/*N*/                       xCfgStor->Commit();
-/*N*/               }
-/*N*/           }
-/*N*/
-/*N*/       }
-/*N*/
-/*N*/       /*const SfxFilter* pFilter =*/ rMedium.GetFilter();
-/*N*/       return SaveAs( xStor );
-/*N*/   }
-/*N*/   else return sal_False;
-/*N*/ }
-
 
 /*N*/ void SfxObjectShell::AddXMLAsZipToTheStorage( SvStorage& rRoot )
 /*N*/ {

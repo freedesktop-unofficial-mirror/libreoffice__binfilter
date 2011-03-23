@@ -95,7 +95,6 @@ public:
     virtual void            HandsOff();
     virtual BOOL            Save();
     virtual BOOL            SaveAs( SvStorage * pNewStor );
-    virtual BOOL            SaveAsOwnFormat( SfxMedium& rMedium );
     virtual BOOL            SaveCompleted( SvStorage * pNewStor );
     virtual void            SetVisArea(const Rectangle& rRect);
     virtual Rectangle       GetVisArea(USHORT nAspect) const;
