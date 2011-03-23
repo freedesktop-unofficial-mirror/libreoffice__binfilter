@@ -95,7 +95,6 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
     virtual BOOL            LoadFrom(SvStorage* pStor);
     virtual BOOL            ConvertFrom( SfxMedium &rMedium );
     virtual void            HandsOff();
-    virtual BOOL            SaveAs(SvStorage * pNewStor );
     virtual BOOL            SaveCompleted(SvStorage * pNewStor );
 
     // DocInfo dem Doc melden

@@ -130,13 +130,6 @@ sal_Bool SfxObjectShell::Save()
         return SaveInfoAndConfig_Impl( GetMedium()->GetStorage() );
 }
 
-sal_Bool SfxObjectShell::SaveAs( SvStorage* pNewStg )
-{
-    if( SOFFICE_FILEFORMAT_60 <= pNewStg->GetVersion() )
-        return sal_True;
-    else
-        return SaveInfoAndConfig_Impl( pNewStg );
-}
 
 sal_Bool GetPasswd_Impl( const SfxItemSet* pSet, String& rPasswd )
 {

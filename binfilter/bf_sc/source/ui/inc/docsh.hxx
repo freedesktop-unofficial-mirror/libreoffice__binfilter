@@ -160,7 +160,6 @@ public:
     virtual BOOL    ConvertFrom( SfxMedium &rMedium );
     virtual void    HandsOff();
     virtual BOOL    Save();
-    virtual BOOL    SaveAs( SvStorage * pNewStor );
 
     virtual BOOL    SaveCompleted( SvStorage * pNewStor );      // SfxInPlaceObject
 

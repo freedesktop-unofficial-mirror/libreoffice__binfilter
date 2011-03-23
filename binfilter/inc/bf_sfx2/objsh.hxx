@@ -269,7 +269,6 @@ public:
     virtual sal_uInt16          PrepareClose( sal_Bool bUI = sal_True, sal_Bool bForBrowsing = sal_False );
     virtual sal_Bool            IsInformationLost();
     virtual sal_Bool            Save();
-    virtual sal_Bool            SaveAs( SvStorage * pNewStg );
     virtual Size                GetFirstPageSize();
     virtual sal_Bool            DoClose();
     virtual void                PrepareReload();

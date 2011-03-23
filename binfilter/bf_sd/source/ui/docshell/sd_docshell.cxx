@@ -379,40 +379,6 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
      return bRet;
  }
 
-BOOL SdDrawDocShell::SaveAs( SvStorage* pStore )
-{
-    if( GetCreateMode() == SFX_CREATE_MODE_STANDARD )
-        SvInPlaceObject::SetVisArea( Rectangle() );
-
-    UINT32  nVBWarning = ERRCODE_NONE;
-    BOOL    bRet = SfxInPlaceObject::SaveAs( pStore );
-
-    if( bRet )
-    {
-        SdFilter* pFilter = NULL;
-
-        if( pStore->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-        {
-            SfxMedium aMedium( pStore );
-            pFilter = new SdXMLFilter( aMedium, *this, sal_True );
-
-            UpdateDocInfoForSave();
-
-            bRet = pFilter->Export();
-        }
-        else
-        {
-            OSL_ASSERT("binary export removed");
-        }
-
-        delete pFilter;
-    }
-
-    if( GetError() == ERRCODE_NONE )
-        SetError( nVBWarning );
-
-    return bRet;
-}
 
 BOOL SdDrawDocShell::SaveCompleted( SvStorage * pStor )
 {

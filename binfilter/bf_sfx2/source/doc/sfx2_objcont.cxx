@@ -223,9 +223,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       //!! kein Aufruf der Basisklasse wegen doppeltem Aufruf in Persist
-/*N*/       //if(!SfxObjectShell::SaveAs(pNewStg))
-/*N*/       //  return FALSE;
 /*N*/       /*SfxApplication *pSfxApp =*/ SFX_APP();
 /*N*/       /*SfxMedium *pActMed =*/ GetMedium();
 /*N*/

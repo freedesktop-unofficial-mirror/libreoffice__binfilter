@@ -161,7 +161,6 @@ protected:
     virtual BOOL    InitNew( SvStorage * );         // Rekursiv
     virtual BOOL    Load( SvStorage * );            // Rekursiv
     virtual BOOL    Save();                         // Rekursiv
-    virtual BOOL    SaveAs( SvStorage * pNewStg );  // Rekursiv
     virtual void    HandsOff();                     // Rekursiv
     virtual BOOL    SaveCompleted( SvStorage * );   // Rekursiv
 

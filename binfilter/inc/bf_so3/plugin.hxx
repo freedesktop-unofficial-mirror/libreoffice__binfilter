@@ -99,7 +99,6 @@ protected:
     SO3_DLLPRIVATE virtual BOOL    InitNew( SvStorage * );
     SO3_DLLPRIVATE virtual BOOL    Load( SvStorage * );
     SO3_DLLPRIVATE virtual BOOL    Save();
-    SO3_DLLPRIVATE virtual BOOL    SaveAs( SvStorage * );
     SO3_DLLPRIVATE virtual void    HandsOff();
     SO3_DLLPRIVATE virtual BOOL    SaveCompleted( SvStorage * );
 

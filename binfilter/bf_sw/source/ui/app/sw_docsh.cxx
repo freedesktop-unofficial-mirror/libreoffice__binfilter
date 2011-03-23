@@ -294,13 +294,6 @@ BOOL SwDocShell::Save()
     return false;
 }
 
-BOOL SwDocShell::SaveAs(SvStorage*)
-{
-    //only here for virtual reason, will be deleted
-    //this is a virtual fonction from SfxObjectShell (in sfx)
-    return false;
-}
-
 /*--------------------------------------------------------------------
     Beschreibung: Sichern im Defaultformat
  --------------------------------------------------------------------*/

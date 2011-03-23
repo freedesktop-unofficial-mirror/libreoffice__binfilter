@@ -301,27 +301,6 @@ BOOL SvEmbeddedObject::Save()
     return SvPersist::Save();
 }
 
-BOOL SvEmbeddedObject::SaveAs( SvStorage * pNewStor )
-{
-    BOOL bRet = FALSE;
-    if( SvPersist::SaveAs( pNewStor ) )
-    {
-        bRet = TRUE;
-        if( bRet && Owner() && GetParent()
-          && SOFFICE_FILEFORMAT_31 == pNewStor->GetVersion() )
-        {
-            ULONG n = pNewStor->GetFormat();
-            if( n == SOT_FORMATSTR_ID_STARWRITER_30 || n == SOT_FORMATSTR_ID_STARDRAW
-              || n == SOT_FORMATSTR_ID_STARCALC )
-            {
-                // empty MTF for 3.1 formats
-                GDIMetaFile aMtf;
-                MakeContentStream( pNewStor, aMtf );
-            }
-        }
-    }
-    return bRet;
-}
 
 /*************************************************************************
 |*    SvEmbeddedObject::LoadContent()

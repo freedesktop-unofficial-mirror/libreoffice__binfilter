@@ -1207,34 +1207,6 @@ BOOL SvPersist::Save()
     return bRet;
 }
 
-BOOL SvPersist::SaveAs( SvStorage * pStor )
-{
-    ASSERT_INIT()
-
-    bOpSaveAs = TRUE;
-
-    BOOL bRet = TRUE;
-
-    SvGlobalName aNoName; // wegen MAC
-    if( pStor->GetClassName() == aNoName )
-        // kein Typ im Storage gesetzt
-        SetupStorage( pStor );
-
-    if( SOFFICE_FILEFORMAT_60 > pStor->GetVersion() )
-    {
-        if( SOFFICE_FILEFORMAT_31 == pStor->GetVersion() && GetParent() )
-        {
-            // Es ist ein Objekt
-            bRet = DoSaveContent( pStor,
-                SvFactory::IsIntern31( pStor->GetClassName() ) );
-        }
-        else
-            bRet = DoSaveContent( pStor, TRUE );
-    }
-
-    return bRet;
-}
-
 void SvPersist::HandsOff()
 {
     ASSERT_INIT()

@@ -172,34 +172,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-//=========================================================================
-/*N*/ BOOL SfxFrameObject::SaveAs
-/*N*/ (
-/*N*/   SvStorage * /*pStor*/   /* Storage, in den der Inhalt des Objekte
-                           geschrieben wird */
-/*N*/ )
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in pStor geschrieben.
-
-    [Anmerkung]
-
-    Der Storage wird nicht behalten.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::SaveAs>
-*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
 
 //=========================================================================
 /*  [Beschreibung]

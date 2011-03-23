@@ -89,7 +89,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
     void Construct() throw();
 
      // #61907# bei deaktivierung des InPlaceEdit evtl. gebufferte neue Daten
-    // �bernehmen
+    // ?bernehmen
  protected:
 
  public:
@@ -104,7 +104,6 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
     virtual BOOL InitNew(SvStorage*) throw();
     virtual BOOL Load(SvStorage*) throw();
     virtual BOOL Save() throw();
-    virtual BOOL SaveAs(SvStorage* pNewStor) throw();
     virtual BOOL SaveCompleted(SvStorage* pNewStor) throw();
 
     virtual Rectangle GetVisArea(USHORT nAspect) const throw();

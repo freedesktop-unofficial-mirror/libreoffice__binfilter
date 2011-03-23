@@ -88,7 +88,6 @@ protected:
                     ~SvEmbeddedObject();
     virtual BOOL    Load( SvStorage * );
     virtual BOOL    Save();
-    virtual BOOL    SaveAs( SvStorage * pNewStg );
     virtual void    LoadContent( SvStream & rStm, BOOL bOwner_ );
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner_ );
     virtual void    Connect( BOOL bConnect );

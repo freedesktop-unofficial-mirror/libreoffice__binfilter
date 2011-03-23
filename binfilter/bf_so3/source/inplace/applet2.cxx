@@ -677,51 +677,6 @@ BOOL SvAppletObject::Save()
 }
 
 //=========================================================================
-BOOL SvAppletObject::SaveAs
-(
-    SvStorage *pStor    /* Storage, in den der Inhalt des Objekte
-                           geschrieben wird */
-)
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in pStor geschrieben.
-
-    [Anmerkung]
-
-    Der Storage wird nicht behalten.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::SaveAs>
-*/
-{
-    if( SvInPlaceObject::SaveAs( pStor ) )
-    {
-        SvStorageStreamRef xStm;
-        xStm = pStor->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ), STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( pStor->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)APPLET_VERS;
-        *xStm << pImpl->aCmdList;
-        xStm->WriteByteString( pImpl->aClass, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aName, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aCodeBase, RTL_TEXTENCODING_ASCII_US );
-        *xStm << pImpl->bMayScript;
-
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
 void SvAppletObject::HandsOff()
 /*  [Beschreibung]
 

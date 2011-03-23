@@ -167,16 +167,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ BOOL SfxInPlaceObject::SaveAs( SvStorage * pNewStor )
-/*N*/ {
-/*N*/   if( !SaveAsChilds( pNewStor ) )
-/*N*/       return FALSE;
-/*N*/     if( SvInPlaceObject::SaveAs( pNewStor ) )
-/*N*/         return pObjShell->SfxObjectShell::SaveAs(pNewStor);
-/*N*/   return FALSE;
-/*N*/ }
-
-//--------------------------------------------------------------------
 
 /*N*/ void SfxInPlaceObject::HandsOff()
 /*N*/ {
