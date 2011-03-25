@@ -2299,7 +2299,7 @@ void SwXTextColumns::setPropertyValue( const OUString& rPropertyName, const Any&
             style::VerticalAlignment eAlign;
             if(!(aValue >>= eAlign) )
             {
-                sal_Int8 nTmp;
+                sal_Int8 nTmp(0);
                 if (! ( aValue >>= nTmp ) )
                     throw IllegalArgumentException();
                 else
