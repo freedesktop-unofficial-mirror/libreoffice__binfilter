@@ -808,32 +808,6 @@ void SvPlugInObject::HandsOff()
 }
 
 //=========================================================================
-BOOL SvPlugInObject::SaveCompleted
-(
-    SvStorage * pStor   /* Storage auf dem das Objekt arbeitet. Der kann
-                           auch NULL sein. Dies Bedeutet, es wird auf
-                           dem alten Storage weiter gearbeitet */
-)
-/*  [Beschreibung]
-
-    Nach dem Aufruf dieser Methode ist das Verhalten des Objektes
-    wieder definiert.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, es kann auf dem neuen Storage gearbeitet werden.
-                    FALSE, es kann nicht auf dem neuen Storage gearbeitet
-                    werden
-
-    [Querverweise]
-
-    <SvPersist::SaveCompleted>
-*/
-{
-    return SvInPlaceObject::SaveCompleted( pStor );
-}
-
-//=========================================================================
 ULONG SvPlugInObject::GetMiscStatus() const
 /*  [Beschreibung]
 

@@ -813,8 +813,10 @@ sal_Bool SfxObjectShell::SaveTo_Impl
                 // watch: if the document was successfully saved into an own format, no "SaveCompleted" was called,
                 // this must be done by the caller ( because they want to do different calls )
                 if( xNewTempRef.Is() && xNewTempRef != GetStorage() )
+                {
                     // if the new object storage is a temporary one, because the target format is an alien format
-                    SaveCompleted( xNewTempRef );
+                    //SaveCompleted( xNewTempRef );
+                }
             }
             else
             {
@@ -907,7 +909,7 @@ den neuen Storage connected. SaveCompleted tut dann nichts.
     }
 
     SetError(GetMedium()->GetErrorCode());
-    SaveCompleted(aTmpMed); // neuer temp. Storage; gibt alten frei
+    //SaveCompleted(aTmpMed); // neuer temp. Storage; gibt alten frei
     return sal_True;
 }
 

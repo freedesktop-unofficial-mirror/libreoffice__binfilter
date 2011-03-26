@@ -88,7 +88,6 @@ protected:
     SO3_DLLPRIVATE virtual BOOL    Load( SvStorage * );
     SO3_DLLPRIVATE virtual BOOL    Save();
     SO3_DLLPRIVATE virtual void    HandsOff();
-    SO3_DLLPRIVATE virtual BOOL    SaveCompleted( SvStorage * );
 
     SO3_DLLPRIVATE              ~SvAppletObject();
 public:

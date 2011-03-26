@@ -1238,57 +1238,6 @@ void SvPersist::HandsOff()
     aStorage.Clear();
 }
 
-BOOL SvPersist::SaveCompleted( SvStorage * pStor )
-{
-    //DBG_ASSERT( bOpHandsOff | bOpSaveAs | bOpSave, aTest );
-    ASSERT_INIT()
-
-    if( !pStor && aStorage.Is() )
-        // falls beim Save ein Fehler aufgetreten ist, muss er zurueckgesetzt
-        // werden
-        aStorage->ResetError();
-
-    BOOL bRet = TRUE;
-
-    if( pStor )
-    {
-        aStorage  = pStor;
-        SvGlobalName aNoName; // wegen MAC
-        if( pStor->GetClassName() == aNoName )
-            // kein Typ im Storage gesetzt
-            SetupStorage( pStor );
-        bCreateTempStor=FALSE;
-    }
-
-    if( Owner() )
-    {
-        if( !bSaveFailed  )
-        {
-            if( bOpSave )
-            {
-                if ( IsModified() && GetParent() )
-                    GetParent()->SetModified( TRUE );
-
-                SetModified( FALSE );
-                DBG_ASSERT( !nModifyCount, "IsModified() == TRUE after save" );
-            }
-            if( bOpSaveAs )
-            {
-                if( pStor )
-                {   // nur wenn SaveAs und danach der Storage umgesetzt wird,
-                    // sonst war es z.B. ein SaveAs fuers Clipboard
-                    if ( IsModified() && GetParent() )
-                        GetParent()->SetModified( TRUE );
-                    SetModified( FALSE );
-                    DBG_ASSERT( !IsModified(), "SvPersist::SaveCompleted: IsModified() == TRUE" );
-                }
-            }
-        }
-    }
-    bOpSaveAs = bOpSave = bOpHandsOff = bSaveFailed = FALSE;
-    return bRet;
-}
-
 #define PERSIST_STREAM "persist elements"
 BOOL SvPersist::DoLoadContent( SvStorage * pStor, BOOL bOwner_ )
 {
@@ -1585,49 +1534,6 @@ BOOL SvPersist::SaveAsChilds( SvStorage * pStor )
                     }
                 }
             }
-        }
-    }
-
-    return bRet;
-}
-
-BOOL SvPersist::SaveCompletedChilds( SvStorage * pStor )
-{
-    BOOL bRet = TRUE;
-    if( pChildList && pChildList->Count() )
-    {
-        for( ULONG i = 0; i < pChildList->Count(); i++ )
-        {
-            SvInfoObject * pEle = pChildList->GetObject( i );
-            if( pEle->GetPersist() && !pEle->IsDeleted() )
-            {
-                ULONG nVersion = pStor ? pStor->GetVersion() : GetStorage()->GetVersion();
-                SvEmbeddedObjectRef xEmb( pEle->GetPersist() );
-                if ( xEmb.Is() && nVersion >= SOFFICE_FILEFORMAT_60 && ( xEmb->GetMiscStatus() & SVOBJ_MISCSTATUS_SPECIALOBJECT ) )
-                {
-                    xEmb->SetModified( FALSE );
-                    continue;
-                }
-
-                if( pStor )
-                {
-                    SvStorageRef aEleStor;
-                    aEleStor = pStor->OpenStorage( pEle->GetStorageName() );
-                    if( !aEleStor.Is() || !false )
-                        return FALSE;
-
-                    // the object now is definitely part of the container
-                    pEle->pImp->SetRealStorageName( String() );
-                }
-                else
-                {
-                    // set objects on their old storage again
-                    if( !false)
-                        return FALSE;
-                }
-            }
-
-            pEle = pChildList->Next();
         }
     }
 

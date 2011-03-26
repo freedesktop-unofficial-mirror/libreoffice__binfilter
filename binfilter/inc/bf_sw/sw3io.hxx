@@ -64,7 +64,6 @@ public:
 
      SvStorage* GetStorage();
     void  HandsOff();
-    BOOL  SaveCompleted( SvStorage* );
 
      ULONG SaveStyles();
     // Erzeugen eines eindeutigen Streamnamens im gegebenen Storage

@@ -801,20 +801,6 @@ DBG_BF_ASSERT(0, "STRIP");
 // Xcl-like column width measured in characters of standard font.
 
 
-
-
-
-
-
-
-
-
-/*N*/ BOOL ScDocShell::SaveCompleted( SvStorage * pStor )
-/*N*/ {
-/*N*/   return SfxInPlaceObject::SaveCompleted( pStor );
-/*N*/ }
-
-
 /*N*/ String ScDocShell::GetOwnFilterName()         // static
 /*N*/ {
 /*N*/   return String::CreateFromAscii(pFilterSc50);

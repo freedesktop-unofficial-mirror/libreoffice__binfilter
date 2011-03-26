@@ -162,7 +162,6 @@ protected:
     virtual BOOL    Load( SvStorage * );            // Rekursiv
     virtual BOOL    Save();                         // Rekursiv
     virtual void    HandsOff();                     // Rekursiv
-    virtual BOOL    SaveCompleted( SvStorage * );   // Rekursiv
 
     SO3_DLLPRIVATE BOOL            DoLoadContent( SvStorage *, BOOL bOwner );
     virtual void    LoadContent( SvStream & rStm, BOOL bOwner );

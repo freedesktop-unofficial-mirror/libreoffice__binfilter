@@ -74,7 +74,6 @@ protected:
     virtual BOOL        Load( SvStorage * );            // Rekursiv
     virtual BOOL        Save();                         // Rekursiv
     virtual void        HandsOff();                     // Rekursiv
-    virtual BOOL        SaveCompleted( SvStorage * );   // Rekursiv
 
     virtual ErrCode     Verb( long nVerbPos,
                             SvEmbeddedClient *pCaller,

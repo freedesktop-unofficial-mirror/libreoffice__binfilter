@@ -1401,60 +1401,6 @@ void    SvOutPlaceObject::HandsOff()
     SvInPlaceObject::HandsOff();
 }
 
-//=========================================================================
-BOOL    SvOutPlaceObject::SaveCompleted( SvStorage * pStor )
-{
-    BOOL bResult = TRUE;
-
-    if( pStor )
-    {
-        if( !pImpl->xWorkingStg.Is() )
-        {
-            pImpl->xWorkingStg = pStor;
-            BOOL bNewVersion = pStor->IsStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ) );
-            if( bNewVersion )
-            {
-                SvStorageStreamRef xStm;
-                xStm = pImpl->xWorkingStg->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ), STREAM_STD_READ );
-                xStm->SetVersion( pImpl->xWorkingStg->GetVersion() );
-                xStm->SetBufferSize( 8192 );
-
-                // nicht vorhandener Stream ist kein Fehler
-                if( xStm->GetError() != SVSTREAM_FILE_NOT_FOUND )
-                {
-                    UINT16 nLen;
-                    *xStm >> nLen;
-                    *xStm >> pImpl->dwAspect;
-                    BOOL b;
-                    *xStm >> b;
-                    pImpl->bSetExtent = b;
-
-                    if( pStor->GetVersion() <= SOFFICE_FILEFORMAT_40  || pStor->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-                    {
-                        pImpl->xWorkingStg = new SvStorage( FALSE, String(), STREAM_STD_READWRITE, STORAGE_DELETEONRELEASE );
-                        pStor->CopyTo( pImpl->xWorkingStg );
-                    }
-
-                    bResult = ( xStm->GetError() == ERRCODE_NONE );
-                }
-            }
-            else
-                bResult = MakeWorkStorageWrap_Impl( pStor );
-        }
-        else if( !IsHandsOff() )
-         {
-            BOOL bNewVersion = pStor->IsStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ) );
-             if( bNewVersion )
-                // Full storage in 5.0 or newer format
-                pImpl->xWorkingStg = pStor;
-            else
-                bResult = MakeWorkStorageWrap_Impl( pStor );
-        }
-    }
-
-    return SvInPlaceObject::SaveCompleted( pStor ) && bResult;
-}
-
 BOOL    SvOutPlaceObject::MakeWorkStorageWrap_Impl( SvStorage * pStor )
 {
     BOOL bResult = FALSE;

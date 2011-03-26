@@ -175,19 +175,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ BOOL SfxInPlaceObject::SaveCompleted( SvStorage * pStor )
-/*N*/ {
-/*N*/   if( !SaveCompletedChilds( pStor ) )
-/*N*/       return FALSE;
-/*N*/   if( SvInPlaceObject::SaveCompleted( pStor ) )
-/*N*/   {
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
 /*N*/ void SfxInPlaceObject::SetVisArea( const Rectangle & rRect )
 /*N*/ {
 /*N*/   if( GetVisArea() != rRect )

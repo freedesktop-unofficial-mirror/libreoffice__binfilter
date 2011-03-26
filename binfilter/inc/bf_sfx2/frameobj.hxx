@@ -66,7 +66,6 @@ protected:
                             // Laden speichern
     virtual BOOL            Load( SvStorage * );
     virtual BOOL            Save();
-    virtual BOOL            SaveCompleted( SvStorage * );
 
                             ~SfxFrameObject();
 public:

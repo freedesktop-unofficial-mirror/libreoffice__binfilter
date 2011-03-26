@@ -728,31 +728,6 @@ using namespace ::com::sun::star;
 /*N*/   return bRet;
 /*N*/ }
 
-/************************************************************************/
-
-
-/*N*/ BOOL SchChartDocShell::SaveCompleted( SvStorage * pStor ) throw()
-/*N*/ {
-/*N*/   CHART_TRACE( "SchChartDocShell::SaveCompleted" );
-/*N*/
-/*N*/   BOOL bRet = SfxInPlaceObject::SaveCompleted( pStor );
-/*N*/
-/*N*/   if( bRet )
-/*N*/   {
-/*N*/       if( pStor && pChDoc )
-/*N*/         {
-/*N*/             // #99758# SetChanged was called here which called SetModified().  I
-/*N*/             // removed this, since it is not clear why this was introduced in
-/*N*/             // rev. 1.48 (loading of files with additional graphics does not set
-/*N*/             // the modified flag to true)
-/*N*/
-/*N*/             // throw away old graphics streams
-/*N*/           pChDoc->HandsOff();
-/*N*/         }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
 /*************************************************************************
 |*
 |* Tabellenzeiger auffrischen

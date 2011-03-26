@@ -380,22 +380,6 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
  }
 
 
-BOOL SdDrawDocShell::SaveCompleted( SvStorage * pStor )
-{
-    BOOL bRet = FALSE;
-
-    if( SfxInPlaceObject::SaveCompleted(pStor) )
-    {
-        pDoc->NbcSetChanged( FALSE );
-
-        bRet = TRUE;
-
-        if( pDoc )
-            pDoc->HandsOff();
-    }
-    return bRet;
-}
-
 void SdDrawDocShell::HandsOff()
 {
     SfxInPlaceObject::HandsOff();

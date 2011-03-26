@@ -94,7 +94,6 @@ public:
     virtual BOOL            Load( SvStorage * );
     virtual void            HandsOff();
     virtual BOOL            Save();
-    virtual BOOL            SaveCompleted( SvStorage * pNewStor );
     virtual void            SetVisArea(const Rectangle& rRect);
     virtual Rectangle       GetVisArea(USHORT nAspect) const;
     virtual Printer*        GetDocumentPrinter();

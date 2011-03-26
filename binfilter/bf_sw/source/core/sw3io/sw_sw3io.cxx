@@ -155,13 +155,6 @@ namespace binfilter {
 // neu geoeffnet werden.
 
 
- BOOL Sw3Io::SaveCompleted( SvStorage* pNew )
- {
-    OSL_ASSERT("method removed");
-  return TRUE;
- }
-
-
 /*N*/  SvStorage* Sw3Io::GetStorage()
 /*N*/  {
 /*N*/   if( !pImp->pRoot.Is() )

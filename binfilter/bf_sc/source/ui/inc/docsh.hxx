@@ -161,9 +161,6 @@ public:
     virtual void    HandsOff();
     virtual BOOL    Save();
 
-    virtual BOOL    SaveCompleted( SvStorage * pNewStor );      // SfxInPlaceObject
-
-
     virtual void    SetVisArea( const Rectangle & rVisArea );
     virtual Rectangle GetVisArea( USHORT nAspect ) const;
 

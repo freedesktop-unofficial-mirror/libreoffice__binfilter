@@ -96,7 +96,6 @@ using namespace ::com::sun::star::container;
 /*N*/                           String * pUserName,
 /*N*/                           long nFileFormat=SOFFICE_FILEFORMAT_CURRENT ) const;
 /*N*/   virtual BOOL Save();
-/*N*/   virtual BOOL SaveCompleted( SvStorage * );
 /*N*/ public:
 /*N*/   SwTmpPersist( SwDocShell& rDSh ) : pDShell( &rDSh ) {}
 /*N*/};
@@ -310,47 +309,6 @@ BOOL SwDocShell::Save()
 /*N*/   SfxInPlaceObject::HandsOff();
 /*N*/ }
 
-/*--------------------------------------------------------------------
-    Beschreibung: ??? noch nicht zu aktivieren, muss TRUE liefern
- --------------------------------------------------------------------*/
-
-
-/*N*/ BOOL SwDocShell::SaveCompleted( SvStorage * pStor )
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SaveCompleted" );
-/*N*/   BOOL bRet = SfxInPlaceObject::SaveCompleted( pStor );
-/*N*/   if( bRet )
-/*N*/   {
-/*N*/       // erst hier entscheiden, ob das Speichern geklappt hat oder nicht
-/*N*/       if( IsModified() )
-/*?*/           pDoc->SetModified();
-/*N*/       else
-/*N*/           pDoc->ResetModified();
-/*N*/
-/*N*/       bRet = pIo->SaveCompleted( pStor );
-/*N*/   }
-
-/*N*/   if( xOLEChildList.Is() )
-/*N*/   {
-/*N*/       BOOL bResetModified = IsEnableSetModified();
-/*N*/       if( bResetModified )
-/*N*/           EnableSetModified( FALSE );
-/*N*/
-/*N*/       SvPersist* pPersist = this;
-/*N*/       const SvInfoObjectMemberList* pInfList = xOLEChildList->GetObjectList();
-/*N*/
-/*N*/       for( ULONG n = pInfList->Count(); n; )
-/*N*/       {
-/*N*/           SvInfoObjectRef aRef( pInfList->GetObject( --n ));
-/*N*/           pPersist->Move( &aRef, aRef->GetStorageName() );
-/*N*/       }
-/*N*/
-/*N*/       xOLEChildList.Clear();
-/*N*/       if( bResetModified )
-/*N*/           EnableSetModified( TRUE );
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Draw()-Overload fuer OLE2 (Sfx)
@@ -669,15 +627,6 @@ BOOL SwDocShell::Save()
 /*N*/       return SvPersist::Save();
 /*N*/   return FALSE;
 /*N*/}
-
-/*N*/ BOOL SwTmpPersist::SaveCompleted( SvStorage * pStor )
-/*N*/{
-/*N*/   if( SaveCompletedChilds( pStor ) )
-/*N*/       return SvPersist::SaveCompleted( pStor );
-/*N*/   return FALSE;
-/*N*/}
-
-
 
 }
 

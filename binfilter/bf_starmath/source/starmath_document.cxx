@@ -559,19 +559,6 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-/*N*/ BOOL SmDocShell::SaveCompleted(SvStorage * pStor)
-/*N*/ {
-/*N*/   if( SfxInPlaceObject::SaveCompleted( pStor ))
-/*N*/   {
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-
-
-
-
 /*N*/ void SmDocShell::HandsOff()
 /*N*/ {
 /*N*/   SfxInPlaceObject::HandsOff();
