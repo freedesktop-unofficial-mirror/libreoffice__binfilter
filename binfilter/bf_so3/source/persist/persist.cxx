@@ -539,14 +539,6 @@ BOOL SvPersist::Move( SvInfoObject * pInfoObj, const String & rStorName, BOOL bC
             DBG_ASSERT( !bCopyStorage, "Impossible to copy storage!" );
             aRealName = ::utl::TempFile().GetURL();
             SvStorageRef aNewStor( new SvStorage( FALSE, aRealName, STREAM_STD_READWRITE, 0 ) );
-            if ( false)
-            {
-                bRet = false;
-                if ( !bRet )
-                {
-                    //was pChild->DoSaveCompleted() but return value is not checked;
-                }
-            }
         }
         else
         {
@@ -591,14 +583,6 @@ SvPersistRef SvPersist::CopyObject( const String& rObjName, const String& rNewNa
             SvStorageRef xNewStor( new SvStorage( FALSE, aRealName, STREAM_STD_READWRITE, 0 ) );
             if ( false)
             {
-                // was xOldObject->DoSaveCompleted(); but return value is not checked
-                xNewInfo->SetObjName( rNewName );
-                xNewInfo->pImp->aRealStorageName = xNewStor->GetName();
-                GetInfoList()->Append( xNewInfo );
-                SetModified( TRUE );
-
-                // create and load new object
-                xNewObject = CreateObjectFromStorage( xNewInfo, xNewStor );
             }
             else
                 ::utl::UCBContentHelper::Kill( aRealName );
@@ -729,10 +713,6 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
             if( bSave )
             {
                 bRet = false;
-                if ( bRet && !bMoving )
-                {
-                    // was pSrc->DoSaveCompleted(); but return value is not checked
-                }
             }
             else
             {
@@ -1363,12 +1343,6 @@ BOOL SvPersist::SaveChilds()
                     // element is currently stored in an external storage
                     // save it into my storage
                     bRet = SaveElement( GetStorage(), pEle );
-                }
-                else if( false)
-                {
-                    // always commit child objects
-                    if( !pEle->GetPersist()->GetStorage()->Commit() )
-                        bRet = FALSE;
                 }
                 else
                     bRet = FALSE;

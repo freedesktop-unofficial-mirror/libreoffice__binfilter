@@ -89,9 +89,7 @@ public:
 /*N*/   // the object should not be stored in 5.2 storage since the alien objects are stored in a wrapped way in this case
 /*N*/   aTempStor->SetVersion( SOFFICE_FILEFORMAT_31 );
 /*N*/   if( false )
-/*N*/   {
-/*N*/       aTempStor->Commit();
-/*N*/   }
+/*N*/   {}
 /*N*/   else
 /*N*/   {
 /*?*/       aTempStor.Clear();
