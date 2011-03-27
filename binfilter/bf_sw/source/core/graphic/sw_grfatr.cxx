@@ -211,7 +211,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
-/*N*/     sal_Int16 nValue;
+/*N*/   sal_Int16 nValue = 0;
 /*N*/   if (rVal >>= nValue)
 /*N*/   {
 /*N*/       // UINT16 argument needed
@@ -311,7 +311,7 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ {
 /*N*/   //temporary conversion until this is a SfxInt16Item!
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
-/*N*/   sal_Int16 nVal;
+/*N*/   sal_Int16 nVal = 0;
 /*N*/   if(!(rVal >>= nVal) || nVal < -100 || nVal > 100)
 /*N*/       return FALSE;
 /*N*/     if(nVal < 0)

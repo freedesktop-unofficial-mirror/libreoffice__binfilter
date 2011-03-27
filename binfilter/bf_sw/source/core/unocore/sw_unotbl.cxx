@@ -2419,7 +2419,7 @@ void SAL_CALL SwXTextTable::setDataArray(
                         lcl_setString( *pXCell, *(::rtl::OUString *) rAny.getValue() );
                     else
                     {
-                        double d;
+                        double d = 0.0;
                         if( !(rAny >>= d) )
                             throw uno::RuntimeException();
                         lcl_setValue( *pXCell, d );
@@ -3745,7 +3745,7 @@ void SAL_CALL SwXCellRange::setDataArray(
                         lcl_setString( *pXCell, *(::rtl::OUString *) rAny.getValue() );
                     else
                     {
-                        double d;
+                        double d = 0.0;
                         if( !(rAny >>= d) )
                             throw uno::RuntimeException();
                         lcl_setValue( *pXCell, d );

@@ -93,7 +93,7 @@ String lcl_AnyToString(uno::Any rVal) throw(IllegalArgumentException)
 //-----------------------------------------------------------------------------
 sal_Int16 lcl_AnyToInt16(uno::Any rVal) throw(IllegalArgumentException)
 {
-    sal_Int16 nRet;
+    sal_Int16 nRet = 0;
     if(!(rVal >>= nRet))
         throw IllegalArgumentException();
     return nRet;
@@ -101,7 +101,7 @@ sal_Int16 lcl_AnyToInt16(uno::Any rVal) throw(IllegalArgumentException)
 //-----------------------------------------------------------------------------
 sal_Bool lcl_AnyToBool(uno::Any rVal) throw(IllegalArgumentException)
 {
-    sal_Bool bRet;
+    sal_Bool bRet = sal_False;
     if(!(rVal >>= bRet))
         throw IllegalArgumentException();
     return bRet;

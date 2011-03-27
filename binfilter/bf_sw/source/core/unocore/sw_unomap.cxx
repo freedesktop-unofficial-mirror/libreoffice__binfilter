@@ -83,7 +83,7 @@ SwUnoPropertyMapProvider::~SwUnoPropertyMapProvider()
 SfxItemPropertySet& SwUnoPropertyMapProvider::GetPropertySet(sal_Int8 nPropSetId)
 {
     SfxItemPropertySet** ppMap = 0;
-    sal_uInt16 nPropertyId;
+    sal_uInt16 nPropertyId = 0;
     switch(nPropSetId)
     {
     case PROPERTY_SET_CHAR_STYLE:

@@ -417,7 +417,7 @@ void SwXMLTextParagraphExport::_exportTextEmbedded(
     }
 
     SvULongs aParams;
-    enum XMLTokenEnum eElementName;
+    enum XMLTokenEnum eElementName = XML_TOKEN_INVALID;
     SvXMLExport &rLclExport = GetExport();
 
     // First the stuff common to each of Applet/Plugin/Floating Frame
