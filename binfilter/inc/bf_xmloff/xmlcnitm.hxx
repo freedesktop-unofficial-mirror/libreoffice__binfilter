@@ -53,6 +53,7 @@ public:
     virtual ~SvXMLAttrContainerItem();
 
     virtual int operator==( const SfxPoolItem& ) const;
+    using SfxPoolItem::Compare;
     virtual int Compare( const SfxPoolItem &rWith ) const;
 
     virtual SfxItemPresentation GetPresentation(

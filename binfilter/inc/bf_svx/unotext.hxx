@@ -493,6 +493,8 @@ private:
     BOOL bDisposing;
 
 protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
     static ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > maTypeSequence;
 
 public:

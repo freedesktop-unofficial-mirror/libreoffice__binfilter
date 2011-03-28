@@ -419,6 +419,10 @@ namespace binfilter {
 ***********************************************************************/
 class SvxShapeControl : public ::com::sun::star::drawing::XControlShape, public SvxShapeText
 {
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 private:
 
     void convertPropertyName( const ::rtl::OUString& rApiName, ::rtl::OUString& rInternalName, sal_Bool& rNeedsConversion );
@@ -504,6 +508,10 @@ private:
     ::com::sun::star::drawing::PolygonKind ePolygonKind;
     XPolyPolygon aEmptyPoly;
 
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 public:
     SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
     virtual ~SvxShapePolyPolygon() throw();
@@ -531,6 +539,10 @@ private:
     ::com::sun::star::drawing::PolygonKind ePolygonKind;
     XPolyPolygon aEmptyPoly;
 
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 public:
     SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew ) throw();
     virtual ~SvxShapePolyPolygonBezier() throw();
@@ -553,6 +565,10 @@ public:
 ***********************************************************************/
 class SvxGraphicObject : public SvxShapeText
 {
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 public:
     SvxGraphicObject( SdrObject* pObj ) throw();
     virtual ~SvxGraphicObject() throw();
