@@ -1030,12 +1030,6 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 //-------------------------------------------------------------------------
 
 
-/*?*/ sal_Bool SfxObjectShell::DoSave_Impl( const SfxItemSet* /*pArgs*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ sal_Bool SfxObjectShell::CommonSaveAs_Impl
 /*N*/ (
 /*N*/   const INetURLObject&   aURL,
@@ -1091,7 +1085,7 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 /*?*/               pSet->ClearItem( SID_PASSWORD );
 /*?*/               pSet->Put( *aParams );
 /*?*/           }
-/*?*/           return DoSave_Impl();
+/*?*/           return sal_False;
 /*?*/       }
 /*N*/   }
 
