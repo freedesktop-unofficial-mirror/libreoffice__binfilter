@@ -962,9 +962,7 @@ void SAL_CALL SfxBaseModel::removeCloseListener( const REFERENCE< XCLOSELISTENER
 /*N*/   if ( m_pData->m_pObjectShell.Is() )
 /*N*/     {
 /*N*/       if ( ! ( m_pData->m_pObjectShell->GetCreateMode() == SFX_CREATE_MODE_EMBEDDED ) )
-/*N*/       {
-/*N*/               m_pData->m_pObjectShell->Save_Impl();
-                }
+/*N*/       {}
 /*N*/     }
 /*N*/ }
 

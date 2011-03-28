@@ -372,7 +372,6 @@ public:
     // Laden-speichern public internals
     void                        Reload_Impl();
     sal_Bool                    DoSave_Impl( const SfxItemSet* pSet=0 );
-    sal_Bool                    Save_Impl( const SfxItemSet* pSet=0 );
     void                        UpdatePickList_Impl();
     sal_Bool                    PreDoSaveAs_Impl(const String &rFileName, const String &rFiltName, SfxItemSet *);
     sal_Bool                    APISaveAs_Impl ( const String& aFileName, SfxItemSet* aParams );

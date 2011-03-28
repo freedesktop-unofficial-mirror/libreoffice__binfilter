@@ -1036,12 +1036,6 @@ sal_Bool DocSh::ConvertTo( SfxMedium &rMedium )
 
 //-------------------------------------------------------------------------
 
-/*?*/ sal_Bool SfxObjectShell::Save_Impl( const SfxItemSet* /*pSet*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
-/*?*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ sal_Bool SfxObjectShell::CommonSaveAs_Impl
 /*N*/ (
 /*N*/   const INetURLObject&   aURL,
