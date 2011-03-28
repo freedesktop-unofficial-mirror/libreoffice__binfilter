@@ -68,7 +68,7 @@ class InputStorageWrapper_Impl : public ::cppu::WeakImplHelper1<stario::XInputSt
     TempFile aTempFile;
 
 public:
-    InputStorageWrapper_Impl( SvPersist *pPersist );
+    InputStorageWrapper_Impl( SvPersist * );
     virtual ~InputStorageWrapper_Impl();
 
     virtual sal_Int32   SAL_CALL    readBytes(staruno::Sequence< sal_Int8 >& aData, sal_Int32 nBytesToRead) throw(stario::NotConnectedException, stario::BufferSizeExceededException, staruno::RuntimeException);
@@ -80,7 +80,7 @@ public:
 
 
 /*N*/ InputStorageWrapper_Impl::InputStorageWrapper_Impl(
-/*N*/       SvPersist *pPersist )
+/*N*/       SvPersist * )
 /*N*/ {
 /*N*/   SvStream *pStream = 0;
 /*N*/   aTempFile.EnableKillingFile();
