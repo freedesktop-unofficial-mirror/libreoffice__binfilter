@@ -146,6 +146,7 @@ public:
     // pnPgNum, etc. ist zum schnelleren wiederauffinden gedacht
 
     virtual UINT16 GetObjIdentifier() const;
+    using SdrObject::GetLayer;
     virtual SdrLayerID GetLayer() const;
     virtual void NbcSetLayer(SdrLayerID nLayer);
     virtual void SetObjList(SdrObjList* pNewObjList);

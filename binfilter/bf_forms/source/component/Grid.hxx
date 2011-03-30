@@ -181,6 +181,11 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
+
+    // prevent method hiding
+    using OControlModel::disposing;
+    using OControlModel::getFastPropertyValue;
+
     IMPLEMENT_INFO_SERVICE()
 
 protected:

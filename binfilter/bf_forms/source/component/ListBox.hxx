@@ -128,6 +128,10 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
+
+    using OBoundControlModel::disposing;
+    using OPropertySetHelper::getFastPropertyValue;
+
     IMPLEMENT_INFO_SERVICE()
 
 protected:

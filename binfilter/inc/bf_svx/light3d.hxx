@@ -67,6 +67,8 @@ class E3dLight : public E3dPointObj
              double fLightIntensity = 1.0);
     E3dLight();
 
+    using SdrAttrObj::operator=;
+
     virtual UINT16 GetObjIdentifier() const;
 
     virtual bool CalcLighting(Color& rNewColor,

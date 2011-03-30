@@ -88,6 +88,8 @@ public:
 // ::com::sun::star::container::XChild
     virtual ::comphelper::InterfaceRef SAL_CALL getParent() throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setParent(const ::comphelper::InterfaceRef& Parent) throw(::com::sun::star::lang::NoSupportException, ::com::sun::star::uno::RuntimeException);
+
+    using OInterfaceContainer::disposing;
 };
 
 //.........................................................................

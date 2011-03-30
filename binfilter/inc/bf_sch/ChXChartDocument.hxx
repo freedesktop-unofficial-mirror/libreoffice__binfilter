@@ -263,6 +263,9 @@ public:
         disposing
             (const ::com::sun::star::lang::EventObject & Source)
                 throw (::com::sun::star::uno::RuntimeException);
+
+    using SfxBaseModel::addEventListener;
+    using SfxBaseModel::removeEventListener;
 };
 
 } //namespace binfilter

@@ -63,6 +63,8 @@ public:
     virtual void    Redo();
     virtual void    Repeat();
 
+    using SfxUndoAction::Repeat;
+
     virtual BOOL    Merge( SfxUndoAction *pNextAction );
 };
 
@@ -87,11 +89,9 @@ public:
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
-};
 
-// -----------------------------------------------------------------------
-// EditUndoMoveParagraphs
-// ------------------------------------------------------------------------
+    using SfxUndoAction::Repeat;
+};
 
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
@@ -117,6 +117,8 @@ public:
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
+
+    using SfxUndoAction::Repeat;
 };
 
 // -----------------------------------------------------------------------
@@ -136,20 +138,9 @@ public:
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
+
+    using SfxUndoAction::Repeat;
 };
-
-// -----------------------------------------------------------------------
-// EditUndoSetAttribs
-// ------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
-// EditUndoTransliteration
-// ------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
-// EditUndoMarkSelection
-// ------------------------------------------------------------------------
-
 
 }//end of namespace binfilter
 #endif // _EDITUNDO_HXX

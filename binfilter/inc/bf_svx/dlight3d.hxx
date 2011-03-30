@@ -64,6 +64,8 @@ class E3dDistantLight : public E3dLight
 
     virtual ~E3dDistantLight();
 
+    using SdrAttrObj::operator=;
+
     virtual UINT16 GetObjIdentifier() const;
 
     virtual bool CalcLighting(Color& rNewColor,

@@ -42,6 +42,8 @@ public:
 
     SchAxisObj( ChartModel* = NULL );
 
+    using SdrObjGroup::operator=;
+
 };
 
 class Sch3dAxisObj : public SchE3dObject
@@ -50,6 +52,8 @@ public:
     TYPEINFO();
 
     Sch3dAxisObj();
+
+    using SdrAttrObj::operator=;
 
 };
 

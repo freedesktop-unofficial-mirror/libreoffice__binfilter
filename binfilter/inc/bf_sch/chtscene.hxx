@@ -55,6 +55,9 @@ class ChartScene : public E3dPolyScene
     TYPEINFO();
     ChartScene(ChartModel* pModel);
     virtual ~ChartScene();
+
+    using SdrAttrObj::operator=;
+
     void Initialize();
 
     virtual Volume3D FitInSnapRect();

@@ -67,6 +67,7 @@ public:
     void                ConvertFontsAfterLoad();     // old binary file format
 
 protected:
+    using SfxStyleSheetPool::Create;
     virtual SfxStyleSheetBase* Create( const String&    rName,
                                        SfxStyleFamily   eFamily,
                                        USHORT           nMask);

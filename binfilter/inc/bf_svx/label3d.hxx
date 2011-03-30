@@ -80,6 +80,8 @@ class E3dLabelObj : public E3dPointObj
 
     virtual ~E3dLabelObj();
 
+    using SdrAttrObj::operator=;
+
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pNewModel);
 

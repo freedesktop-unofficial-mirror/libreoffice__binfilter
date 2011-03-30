@@ -50,6 +50,7 @@ public:
     TYPEINFO();
     SdrPageObj(USHORT nNewPageNum=0);
     ~SdrPageObj();
+    using SdrObject::operator=;
 
     virtual void SetModel(SdrModel* pNewModel);
     USHORT GetPageNum() const { return nPageNum; }

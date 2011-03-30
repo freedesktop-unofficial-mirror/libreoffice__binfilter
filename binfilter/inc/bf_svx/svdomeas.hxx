@@ -86,6 +86,7 @@ public:
     SdrMeasureObj();
     SdrMeasureObj(const Point& rPt1, const Point& rPt2);
     virtual ~SdrMeasureObj();
+    using SdrTextObj::operator=;
 
     virtual UINT16 GetObjIdentifier() const;
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;

@@ -310,6 +310,7 @@ public:
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
     virtual void operator=(const SdrObject& rObj);
+    using SdrObject::TakeContour;
     virtual void TakeContour(XPolyPolygon& rPoly) const;
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);

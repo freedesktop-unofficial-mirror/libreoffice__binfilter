@@ -99,6 +99,8 @@ public:
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& _rSource) throw(::com::sun::star::uno::RuntimeException)
         { OControl::disposing(_rSource); }
 
+    using OImageControl::disposing;
+
 // ::com::sun::star::awt::XMouseListener
     virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }

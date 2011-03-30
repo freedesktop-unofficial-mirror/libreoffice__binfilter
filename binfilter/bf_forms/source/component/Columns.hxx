@@ -112,6 +112,8 @@ public:
                                         throw(::com::sun::star::lang::IllegalArgumentException);
     virtual void SAL_CALL setFastPropertyValue_NoBroadcast(sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue) throw (::com::sun::star::uno::Exception);
 
+    using OPropertySetAggregationHelper::getFastPropertyValue;
+
 // ::com::sun::star::beans::XPropertyState
     virtual ::com::sun::star::beans::PropertyState getPropertyStateByHandle(sal_Int32 nHandle);
     virtual void setPropertyToDefaultByHandle(sal_Int32 nHandle);

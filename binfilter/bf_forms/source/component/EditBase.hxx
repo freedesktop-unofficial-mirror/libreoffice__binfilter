@@ -98,6 +98,8 @@ protected:
     virtual sal_Int16 getPersistenceFlags() const;
         // derived classes may use this if they want this base class to write additinal version flags
         // (one of the PF_.... constants). After ::read they may ask for that flags with getLastReadVersion
+
+    using OPropertySetHelper::getFastPropertyValue;
 };
 
 //.........................................................................

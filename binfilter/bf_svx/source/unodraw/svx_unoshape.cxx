@@ -125,19 +125,6 @@ const SfxItemPropertyMap* ImplGetSvxTextPortionPropertyMap()
 sal_Bool ConvertGDIMetaFileToWMF( const GDIMetaFile & rMTF, SvStream & rTargetStream, FilterConfigItem* pConfigItem = NULL, sal_Bool bPlaceable = sal_True );
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance( SdrObject* pObject );
 
-#define GET_TEXT_INTERFACE( xint, xval ) \
-    Reference< xint > xval; \
-    if(!xTextAgg.is() ) { Reference< ::com::sun::star::text::XText > xText( (OWeakObject*)this, UNO_QUERY ); } \
-    if(xTextAgg.is() ) \
-    { \
-        uno::Any aAny( \
-            xTextAgg->queryAggregation( ::getCppuType((const Reference< xint >*)0))); \
-        aAny >>= xval; \
-    } \
-
-#define INTERFACE_TYPE( xint ) \
-    ::getCppuType((const Reference< xint >*)0)
-
 /***********************************************************************
 * class SvxShape                                                       *
 ***********************************************************************/
@@ -219,7 +206,7 @@ void SvxShape::setMaster( SvxShapeMaster* pMaster )
 }
 
 //----------------------------------------------------------------------
-sal_Bool SvxShape::queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& aAny )
+sal_Bool SvxShape::tryQueryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& aAny )
 {
     if( mpImpl->mpMaster )
     {
@@ -3650,7 +3637,7 @@ uno::Any SAL_CALL SvxShapeText::queryAggregation( const uno::Type & rType )
 {
     uno::Any aAny;
 
-    if( !SvxShape::queryAggregation( rType, aAny ) )
+    if( !SvxShape::tryQueryAggregation( rType, aAny ) )
         SvxUnoTextBase::queryAggregation( rType, aAny );
 
     return aAny;

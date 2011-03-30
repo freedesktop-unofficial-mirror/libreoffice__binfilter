@@ -62,6 +62,7 @@ public:
     TYPEINFO();
     SdrVirtObj(SdrObject& rNewObj);
     virtual ~SdrVirtObj();
+    using SdrObject::operator=;
     virtual SdrObject& ReferencedObj();
     virtual const SdrObject& GetReferencedObj() const;
     virtual void SetModel(SdrModel* pNewModel);

@@ -232,7 +232,7 @@ uno::Any SAL_CALL SdXShape::queryAggregation( const uno::Type & rType )
     throw(uno::RuntimeException)
 {
     uno::Any aAny;
-    mpShape->queryAggregation( rType, aAny );
+    mpShape->tryQueryAggregation( rType, aAny );
     return aAny;
 }
 

@@ -77,6 +77,7 @@ protected:
 
 public:
     virtual ~FmFormObj();
+    using SdrRectObj::operator=;
     virtual void SetPage(SdrPage* pNewPage);
 
     virtual sal_uInt32 GetObjInventor() const;

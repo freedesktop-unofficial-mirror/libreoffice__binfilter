@@ -73,6 +73,7 @@ public:
                                              bool bLight = TRUE);
     E3dPolyObj(const Vector3D& rP1, const Vector3D& rP2);
     E3dPolyObj();
+    using SdrAttrObj::operator=;
     virtual ~E3dPolyObj();
 
     virtual UINT16  GetObjIdentifier() const;
@@ -99,6 +100,7 @@ public:
     virtual void          RestGeoData(const SdrObjGeoData &rGeo);
     virtual void          SetPage(SdrPage *pNewPage);
     virtual void          SetModel(SdrModel *pNewModel);
+    using SdrObject::GetLayer;
     virtual SdrLayerID    GetLayer() const;
     virtual void          NbcSetLayer(SdrLayerID nLayer);
     virtual SfxStyleSheet *GetStyleSheet() const;

@@ -75,6 +75,7 @@ public:
     TYPEINFO();
     SdrCaptionObj();
     virtual ~SdrCaptionObj();
+    using SdrRectObj::operator=;
 
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();

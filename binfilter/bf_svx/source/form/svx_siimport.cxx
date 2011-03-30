@@ -75,6 +75,8 @@ class SiImportRect : public SdrRectObj
 public:
     SiImportRect();
 
+    using SdrRectObj::operator=;
+
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
 

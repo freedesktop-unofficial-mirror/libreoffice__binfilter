@@ -192,6 +192,7 @@ public:
 
     SdrEdgeObj();
     virtual ~SdrEdgeObj();
+    using SdrTextObj::operator=;
 
     SdrObjConnection& GetConnection(bool bTail1) { return *(bTail1 ? &aCon1 : &aCon2); }
     virtual UINT16 GetObjIdentifier() const;

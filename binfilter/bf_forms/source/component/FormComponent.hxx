@@ -292,6 +292,7 @@ public:
                 throw (::com::sun::star::lang::IllegalArgumentException);
     virtual void SAL_CALL setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue )
                 throw (::com::sun::star::uno::Exception);
+    using ::cppu::OPropertySetHelper::getFastPropertyValue;
 
 // ::com::sun::star::beans::XPropertyState
     virtual ::com::sun::star::beans::PropertyState getPropertyStateByHandle(sal_Int32 nHandle);
@@ -457,6 +458,7 @@ public:
                 throw (::com::sun::star::lang::IllegalArgumentException);
     virtual void SAL_CALL setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue )
                 throw (::com::sun::star::uno::Exception);
+    using ::cppu::OPropertySetHelper::getFastPropertyValue;
 
 // XEventListener
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& Source) throw (::com::sun::star::uno::RuntimeException);

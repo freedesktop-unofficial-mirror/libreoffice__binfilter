@@ -99,6 +99,8 @@ public:
 
 protected:
     virtual void SAL_CALL disposing();
+    using OBoundControlModel::disposing;
+    using OPropertySetHelper::getFastPropertyValue;
 
 protected:
     void implConstruct();

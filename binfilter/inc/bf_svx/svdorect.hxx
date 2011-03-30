@@ -110,6 +110,7 @@ public:
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
     virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
+    using SdrObject::TakeContour;
     virtual void TakeContour(XPolyPolygon& rPoly) const;
 
 

@@ -103,6 +103,7 @@ public:
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void TakeContour(XPolyPolygon& rPoly) const;
+    using SdrObject::TakeContour;
 
     virtual void NbcMove(const Size& aSize);
     virtual void NbcResize(const Point& rRefPnt, const Fraction& aXFact, const Fraction& aYFact);

@@ -137,6 +137,8 @@ public:
     E3dScene();
     virtual ~E3dScene();
 
+    using SdrAttrObj::operator=;
+
     // Perspective: enum ProjectionType { PR_PARALLEL, PR_PERSPECTIVE }
     ProjectionType GetPerspective() const
         { return (ProjectionType)((const Svx3DPerspectiveItem&)GetUnmergedItemSet().Get(SDRATTR_3DSCENE_PERSPECTIVE)).GetValue(); }

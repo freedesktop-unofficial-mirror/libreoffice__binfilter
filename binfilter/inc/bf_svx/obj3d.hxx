@@ -169,12 +169,14 @@ class E3dObject : public SdrAttrObj
     virtual void SetRectsDirty(bool bNotMyself=FALSE);
 
     virtual ~E3dObject();
+    using SdrAttrObj::operator=;
 
     virtual UINT32  GetObjInventor() const;
     virtual UINT16  GetObjIdentifier() const;
 
 
     virtual SdrLayerID  GetLayer() const;
+    using SdrObject::GetLayer;
     virtual void        NbcSetLayer(SdrLayerID nLayer);
 
     virtual void        SetObjList(SdrObjList* pNewObjList);
@@ -406,6 +408,8 @@ public :
     E3dCompoundObject();
     E3dCompoundObject(E3dDefaultAttributes& rDefault);
     virtual ~E3dCompoundObject();
+
+    using SdrAttrObj::operator=;
 
     // DoubleSided: TRUE/FALSE
     BOOL GetDoubleSided() const

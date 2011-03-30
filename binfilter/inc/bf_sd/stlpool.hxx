@@ -44,6 +44,7 @@ private:
     SdDrawDocument*    pDoc;
 
 protected:
+    using SfxStyleSheetPool::Create;
     virtual SfxStyleSheetBase* Create(const String& rName,
                                       SfxStyleFamily eFamily,
                                       USHORT nMask);

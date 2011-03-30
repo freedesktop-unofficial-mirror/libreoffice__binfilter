@@ -179,6 +179,7 @@ public:
 
     ScRangeName(const ScRangeName& rScRangeName, ScDocument* pDocument);
 
+    using Collection::Clone;
     virtual DataObject*     Clone(ScDocument* pDoc_) const
                              { return new ScRangeName(*this, pDoc_); }
     ScRangeData*            operator[]( const USHORT nIndex) const

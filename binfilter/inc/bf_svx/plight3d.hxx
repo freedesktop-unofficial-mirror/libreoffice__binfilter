@@ -58,6 +58,8 @@ class E3dPointLight : public E3dLight
 
     virtual ~E3dPointLight();
 
+    using SdrAttrObj::operator=;
+
 
     virtual bool CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,

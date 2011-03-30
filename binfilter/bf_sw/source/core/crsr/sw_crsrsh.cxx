@@ -606,7 +606,7 @@ using namespace ::com::sun::star::util;
 /*N*/ {
 /*N*/   USHORT nWhich = pOld ? pOld->Which()
 /*N*/                        : pNew ? pNew->Which()
-/*N*/                               : RES_MSG_BEGIN;
+/*N*/                               : sal::static_int_cast<USHORT>(RES_MSG_BEGIN);
 /*N*/   if( bCallChgLnk &&
 /*N*/       ( nWhich < RES_MSG_BEGIN || nWhich >= RES_MSG_END ||
 /*N*/           nWhich == RES_FMT_CHG || nWhich == RES_UPDATE_ATTR ||

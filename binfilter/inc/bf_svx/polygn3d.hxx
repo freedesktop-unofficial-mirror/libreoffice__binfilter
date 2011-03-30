@@ -65,6 +65,8 @@ public:
     E3dPolygonObj();
     virtual ~E3dPolygonObj();
 
+    using SdrAttrObj::operator=;
+
     const PolyPolygon3D& GetPolyPolygon3D() const { return aPolyPoly3D; }
     const PolyPolygon3D& GetPolyNormals3D() const { return aPolyNormals3D; }
     const PolyPolygon3D& GetPolyTexture3D() const { return aPolyTexture3D; }

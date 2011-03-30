@@ -95,7 +95,7 @@ uno::Any SAL_CALL Svx3DSceneObject::queryAggregation( const uno::Type & rType )
     else QUERYINT( container::XIndexAccess );
     else QUERYINT( container::XElementAccess );
     else
-        SvxShape::queryAggregation( rType, aAny );
+        SvxShape::tryQueryAggregation( rType, aAny );
 
     return aAny;
 }

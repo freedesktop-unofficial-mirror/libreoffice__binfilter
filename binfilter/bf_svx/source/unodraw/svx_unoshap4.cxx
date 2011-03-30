@@ -75,7 +75,7 @@ SvxOle2Shape::~SvxOle2Shape() throw()
 ::com::sun::star::uno::Any SAL_CALL SvxOle2Shape::queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException)
 {
     Any aAny;
-    SvxShape::queryAggregation( rType, aAny );
+    SvxShape::tryQueryAggregation( rType, aAny );
     return aAny;
 }
 

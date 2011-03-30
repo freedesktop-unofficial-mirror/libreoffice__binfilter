@@ -80,7 +80,7 @@ struct SvxShapeImpl;
 class SvxShapeMaster;
 
 // WARNING: if you update the supported interfaces, also update the
-//          SvxShape::queryAggregation helper method
+//          SvxShape::tryQueryAggregation helper method
 class SvxShape : public cppu::WeakAggImplHelper11<
                             ::com::sun::star::drawing::XShape,
                             ::com::sun::star::lang::XComponent,
@@ -132,7 +132,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
 
     ::com::sun::star::uno::Any GetAnyForItem( SfxItemSet& aSet, const SfxItemPropertyMap* pMap ) const;
 
-    sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
+    sal_Bool tryQueryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
 
     sal_Bool SAL_CALL SetFillAttribute( sal_Int32 nWID, const ::rtl::OUString& rName );
 

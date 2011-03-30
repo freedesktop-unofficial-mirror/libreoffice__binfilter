@@ -52,6 +52,8 @@ public:
 
     virtual UINT16 GetObjIdentifier() const;
 
+    using SdrAttrObj::operator=;
+
     // Zeichenmethode
     virtual bool Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
 

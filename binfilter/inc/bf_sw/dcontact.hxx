@@ -156,6 +156,7 @@ class SwDrawVirtObj : public SdrVirtObj
         // OD 30.06.2003 #108784# - virtual!!!
         virtual const Point GetOffset() const;
 
+        using SdrObject::Clone;
         virtual SdrObject* Clone() const;
         virtual void operator=( const SdrObject& rObj );
 
@@ -192,6 +193,7 @@ class SwDrawVirtObj : public SdrVirtObj
         virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
         virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
         virtual void TakeContour(XPolyPolygon& rPoly) const;
+        using SdrObject::TakeContour;
         virtual SdrHdl* GetHdl(USHORT nHdlNum) const;
         virtual SdrHdl* GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const;
         virtual void NbcMove(const Size& rSiz);
@@ -220,6 +222,7 @@ class SwDrawVirtObj : public SdrVirtObj
 
         // OD 17.06.2003 #108784# - overload 'layer' methods
         virtual SdrLayerID GetLayer() const;
+        using SdrObject::GetLayer;
         virtual void NbcSetLayer(SdrLayerID nLayer);
         virtual void SetLayer(SdrLayerID nLayer);
 };

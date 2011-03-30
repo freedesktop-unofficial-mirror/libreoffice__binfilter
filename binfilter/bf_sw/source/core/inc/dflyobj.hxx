@@ -56,6 +56,8 @@ public:
     SwFlyDrawObj();
     ~SwFlyDrawObj();
 
+    using SdrObject::operator=;
+
 
     // ItemSet access
 
@@ -79,6 +81,8 @@ public:
 
     SwVirtFlyDrawObj(SdrObject& rNew, SwFlyFrm* pFly);
     ~SwVirtFlyDrawObj();
+
+    using SdrObject::operator=;
 
     //Ueberladene Methoden der Basisklasse SdrVirtObj
 

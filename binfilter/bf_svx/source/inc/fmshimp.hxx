@@ -130,6 +130,7 @@ typedef ::cppu::WeakComponentImplHelper6<   ::com::sun::star::sdbc::XRowSetListe
 //========================================================================
 class FmXFormShell_Base_Disambiguation : public FmXFormShell_BD_BASE
 {
+    using ::com::sun::star::beans::XPropertyChangeListener::disposing;
 protected:
     FmXFormShell_Base_Disambiguation( ::osl::Mutex& _rMutex );
     virtual void SAL_CALL disposing();

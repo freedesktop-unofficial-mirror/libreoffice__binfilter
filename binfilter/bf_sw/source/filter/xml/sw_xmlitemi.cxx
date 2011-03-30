@@ -146,6 +146,7 @@ public:
                   const SvXMLUnitConverter& rInUnitConv );
     virtual ~SwXMLItemSetContext_Impl();
 
+    using SvXMLItemSetContext::CreateChildContext;
     virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
                    const OUString& rLocalName,
                    const Reference< xml::sax::XAttributeList > & xAttrList,

@@ -67,7 +67,7 @@ public:
     virtual UINT32 GetObjInventor() const;
     virtual UINT16 GetObjIdentifier() const;
 
-
+    using SdrObjGroup::operator=;
 
     // FG: Damit soll erm�glicht werden dass man Objektgruppen im Chart resizen kann
     void    SetObjInfo(SdrObjTransformInfoRec aMyInfo);
@@ -85,6 +85,7 @@ public:
     BOOL GetGroupIsChart() {return (eChartGroupType == DIAGRAM);}
 
 
+    using SdrObjGroup::SetModel;
     void SetModel (ChartModel *pChModel) {pChartmodel = pChModel; SdrObjGroup::SetModel( (SdrModel*) pChModel ); }
 
     void SetAskForLogicRect(BOOL value) {bAskForLogicRect = value;}

@@ -61,6 +61,7 @@ class SfxPluginObject : public SvPlugInObject
 #endif
 
 protected:
+    using SvPlugInObject::FillClass;
     virtual void            FillClass( SvGlobalName * pClassName,
                                ULONG * pFormat,
                                String * pAppName,

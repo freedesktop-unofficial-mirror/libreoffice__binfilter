@@ -55,6 +55,8 @@ class E3dPointObj : public E3dObject
     E3dPointObj(const Vector3D& rPos);
     E3dPointObj();
 
+    using SdrAttrObj::operator=;
+
 
     virtual void SetPosition(const Vector3D& rNewPos);
     const Vector3D& GetPosition() const { return aPosition; }

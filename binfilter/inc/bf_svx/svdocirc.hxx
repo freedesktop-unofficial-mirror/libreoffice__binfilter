@@ -101,6 +101,7 @@ public:
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void TakeXorPoly(XPolyPolygon& rXPoly, bool bDetail) const;
+    using SdrObject::TakeContour;
     virtual void TakeContour(XPolyPolygon& rXPoly) const;
 
 

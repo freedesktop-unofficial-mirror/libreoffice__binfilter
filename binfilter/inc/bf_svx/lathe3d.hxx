@@ -73,6 +73,8 @@ class E3dLatheObj : public E3dCompoundObject
     E3dLatheObj(E3dDefaultAttributes& rDefault, const PolyPolygon& rPoly);
     E3dLatheObj();
 
+    using SdrAttrObj::operator=;
+
     // HorizontalSegments:
     sal_Int32 GetHorizontalSegments() const
         { return ((const Svx3DHorizontalSegmentsItem&)GetUnmergedItemSet().Get(SDRATTR_3DOBJ_HORZ_SEGS)).GetValue(); }

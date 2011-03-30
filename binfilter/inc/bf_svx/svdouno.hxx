@@ -70,6 +70,7 @@ public:
 
     SdrUnoObj(const String& rModelName, BOOL bOwnsModel = TRUE);
     virtual ~SdrUnoObj();
+    using SdrRectObj::operator=;
 
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pModel);

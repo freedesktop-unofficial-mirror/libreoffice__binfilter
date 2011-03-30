@@ -83,6 +83,7 @@ public:
     SdrOle2Obj(bool bFrame_=FALSE);
     SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, bool bFrame_=FALSE);
     virtual ~SdrOle2Obj();
+    using SdrRectObj::operator=;
 
     // Ein OLE-Zeichenobjekt kann eine StarView-Grafik beinhalten.
     // Diese wird angezeigt, wenn das OLE-Objekt leer ist.

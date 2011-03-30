@@ -122,7 +122,7 @@ uno::Any SAL_CALL SvxShapeGroup::queryAggregation( const uno::Type & rType )
     else QUERYINT( container::XIndexAccess );
     else QUERYINT( container::XElementAccess );
     else
-        SvxShape::queryAggregation( rType, aAny );
+        SvxShape::tryQueryAggregation( rType, aAny );
 
     return aAny;
 }

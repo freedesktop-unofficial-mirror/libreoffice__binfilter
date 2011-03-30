@@ -111,6 +111,9 @@ public:
 // ::com::sun::star::lang::XEventListener
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& _rSource) throw(::com::sun::star::uno::RuntimeException)
         { OControl::disposing(_rSource); }
+
+    using OImageControl::disposing;
+
 private:
     DECL_LINK( OnClick, void* );
 };

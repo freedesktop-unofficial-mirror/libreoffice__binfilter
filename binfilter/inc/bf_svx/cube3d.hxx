@@ -71,6 +71,8 @@ public:
     TYPEINFO();
     E3dCubeObj();
 
+    using SdrAttrObj::operator=;
+
     virtual UINT16 GetObjIdentifier() const;
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 

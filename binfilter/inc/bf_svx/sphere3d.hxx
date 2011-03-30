@@ -52,6 +52,8 @@ protected:
 public:
     TYPEINFO();
 
+    using SdrAttrObj::operator=;
+
     // HorizontalSegments:
     sal_Int32 GetHorizontalSegments() const
         { return ((const Svx3DHorizontalSegmentsItem&)GetUnmergedItemSet().Get(SDRATTR_3DOBJ_HORZ_SEGS)).GetValue(); }
