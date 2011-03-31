@@ -201,127 +201,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void ScColumn::SaveData( SvStream& rStream ) const
-/*N*/ {
-/*N*/   CellType eCellType;
-/*N*/   ScBaseCell* pCell;
-/*N*/   USHORT i;
-/*N*/     ScFontToSubsFontConverter_AutoPtr xFontConverter;
-/*N*/     const ULONG nFontConverterFlags = FONTTOSUBSFONT_EXPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/
-/*N*/   //  Zeilen hinter MAXROW abziehen
-/*N*/   USHORT nSaveMaxRow = pDocument->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow != MAXROW )
-/*N*/   {
-/*N*/       if ( nSaveCount && pItems[nSaveCount-1].nRow > nSaveMaxRow )
-/*N*/       {
-/*?*/           pDocument->SetLostData();           // Warnung ausgeben
-/*?*/           do
-/*?*/               --nSaveCount;
-/*?*/           while ( nSaveCount && pItems[nSaveCount-1].nRow > nSaveMaxRow );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  Zellen abziehen, die wegen Import nicht gespeichert werden
-/*N*/   BOOL bRemoveAny = lcl_RemoveAny( pDocument, nCol, nTab );
-/*N*/   USHORT nEffCount = nSaveCount;
-/*N*/
-/*N*/   rStream << nEffCount;           // nEffCount: Zellen, die wirklich gespeichert werden
-/*N*/
-/*N*/   ScAttrIterator aIter( pAttrArray, 0, MAXROW );
-/*N*/   USHORT nStt(0), nEnd(0);
-/*N*/   const ScPatternAttr* pAttr;
-/*N*/   do
-/*N*/   {
-/*N*/       pAttr = aIter.Next( nStt, nEnd );
-/*N*/   }
-/*N*/     while( pAttr && !(
-/*N*/         (xFontConverter = pAttr->GetSubsFontConverter( nFontConverterFlags ))
-/*N*/         || pAttr->IsSymbolFont()) );
-/*N*/
-/*N*/   for (i=0; i<nSaveCount; i++)        // nSaveCount: Ende auf MAXROW angepasst
-/*N*/   {
-/*N*/       USHORT nRow = pItems[i].nRow;
-/*N*/
-/*N*/       if ( !bRemoveAny || true )
-/*N*/       {
-/*N*/           rStream << nRow;
-/*N*/
-/*N*/           pCell = pItems[i].pCell;
-/*N*/           eCellType = pCell->GetCellType();
-/*N*/
-/*N*/           switch( eCellType )
-/*N*/           {
-/*N*/               case CELLTYPE_VALUE:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScValueCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*N*/               case CELLTYPE_STRING:
-/*N*/                   if( pAttr )
-/*N*/                   {
-/*N*/                       if( nRow > nEnd )
-/*N*/                         {
-/*N*/                             do
-/*N*/                             {
-/*N*/                                 do
-/*N*/                                 {
-/*N*/                                     pAttr = aIter.Next( nStt, nEnd );
-/*N*/                                 }
-/*N*/                                 while ( pAttr && nRow > nEnd );     // #99139# skip all formats before this cell
-/*N*/                             }
-/*N*/                             while( pAttr && !(
-/*N*/                                 (xFontConverter = pAttr->GetSubsFontConverter( nFontConverterFlags ))
-/*N*/                                 || pAttr->IsSymbolFont()) );
-/*N*/                         }
-/*N*/                       if( pAttr && nRow >= nStt && nRow <= nEnd )
-/*N*/                           eCellType = CELLTYPE_SYMBOLS;
-/*N*/                   }
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   if ( eCellType == CELLTYPE_SYMBOLS )
-/*N*/                   {
-/*N*/                       //  cell string contains true symbol characters
-/*N*/                         CharSet eOld = rStream.GetStreamCharSet();
-/*N*/                         rStream.SetStreamCharSet( RTL_TEXTENCODING_SYMBOL );
-/*N*/                         ((ScStringCell*)pCell)->Save( rStream, xFontConverter );
-/*N*/                         rStream.SetStreamCharSet( eOld );
-/*N*/                   }
-/*N*/                   else
-/*N*/                       ((ScStringCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*N*/               case CELLTYPE_EDIT:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScEditCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*N*/               case CELLTYPE_FORMULA:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScFormulaCell*)pCell)->Save( rStream, aHdr );
-/*N*/                   break;
-/*N*/               case CELLTYPE_NOTE:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScNoteCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*?*/               default:
-/*?*/                   {
-/*?*/                       //  #53846# soll zwar nicht vorkommen, aber falls doch,
-/*?*/                       //  eine leere NoteCell speichern, damit das Dokument
-/*?*/                       //  ueberhaupt wieder geladen werden kann.
-/*?*/                       rStream << (BYTE) CELLTYPE_NOTE;
-/*?*/                       ScNoteCell aDummyCell;
-/*?*/                       aDummyCell.Save( rStream );
-/*?*/                       OSL_FAIL( "Falscher Zellentyp" );
-/*?*/                   }
-/*?*/                   break;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-// -----------------------------------------------------------------------------------------
-
 /*N*/ void ScColumn::LoadNotes( SvStream& rStream )
 /*N*/ {
 /*N*/   ScReadHeader aHdr(rStream);
@@ -546,7 +425,7 @@ namespace binfilter {
 /*N*/   if (!IsEmptyData())             //! Test, ob alles weggelassen wird?
 /*N*/   {
 /*N*/       rStream << (USHORT) SCID_COLDATA;
-/*N*/       SaveData( rStream );
+/*N*/       OSL_FAIL("SaveData( rStream ) has been removed here");
 /*N*/   }
 /*N*/   USHORT nNotes = NoteCount();    //! Test, ob alles weggelassen wird?
 /*N*/   if (nNotes)
@@ -1585,7 +1464,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       ScBroadcasterList* pBC = pCell->GetBroadcaster();
 /*N*/       if (pBC)
 /*N*/       {
-/*N*/ //            rLst.EndListening(*pBC);
 /*N*/           pBC->EndBroadcasting(rLst);
 /*N*/
 /*N*/           if (!pBC->HasListeners())
@@ -1596,11 +1474,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   pCell->SetBroadcaster(NULL);
 /*N*/           }
 /*N*/       }
-/*N*/ //        else
-/*N*/ //            OSL_FAIL("ScColumn::EndListening - kein Broadcaster");
 /*N*/   }
-/*N*/ //    else
-/*N*/ //        OSL_FAIL("ScColumn::EndListening - keine Zelle");
 /*N*/ }
 
 
