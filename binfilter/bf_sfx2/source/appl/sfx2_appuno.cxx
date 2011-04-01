@@ -887,57 +887,6 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 extern "C" {
 
 /*N*/
-/*N*/ sal_Bool SAL_CALL sfx2_component_writeInfo(   void*   /*pServiceManager*/ ,
-/*N*/                                       void*   pRegistryKey    )
-/*N*/ {
-/*N*/   ::com::sun::star::uno::Reference< ::com::sun::star::registry::XRegistryKey >        xKey( reinterpret_cast< ::com::sun::star::registry::XRegistryKey* >( pRegistryKey ) )   ;
-/*N*/
-/*N*/     // Eigentliche Implementierung und ihre Services registrieren
-/*N*/     ::rtl::OUString aImpl;
-/*N*/     ::rtl::OUString aTempStr;
-/*N*/     ::rtl::OUString aKeyStr;
-/*N*/     Reference< XRegistryKey > xNewKey;
-/*N*/     Reference< XRegistryKey > xLoaderKey;
-/*N*/
-/*N*/     // global app event broadcaster
-/*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
-/*N*/     aImpl += SfxGlobalEvents_Impl::impl_getStaticImplementationName();
-/*N*/
-/*N*/     aTempStr = aImpl;
-/*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
-/*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.GlobalEventBroadcaster" )) );
-/*N*/
-/*N*/     // standalone document info
-/*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
-/*N*/     aImpl += SfxStandaloneDocumentInfoObject::impl_getStaticImplementationName();
-/*N*/
-/*N*/     aTempStr = aImpl;
-/*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
-/*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.StandaloneDocumentInfo" )) );
-/*N*/
-/*N*/   // script library container service
-/*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
-/*N*/     aImpl += SfxScriptLibraryContainer::impl_getStaticImplementationName();
-/*N*/
-/*N*/     aTempStr = aImpl;
-/*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
-/*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.ScriptLibraryContainer" )) );
-/*N*/
-/*N*/   // dialog library container service
-/*N*/     aImpl = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/"));
-/*N*/     aImpl += SfxDialogLibraryContainer::impl_getStaticImplementationName();
-/*N*/
-/*N*/     aTempStr = aImpl;
-/*N*/     aTempStr += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("/UNO/SERVICES"));
-/*N*/     xNewKey = xKey->createKey( aTempStr );
-/*N*/     xNewKey->createKey( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.DialogLibraryContainer" )) );
-/*N*/
-/*N*/   return sal_True;
-/*N*/ }
-/*N*/
 /*N*/ void* SAL_CALL sfx2_component_getFactory( const   sal_Char*   pImplementationName ,
 /*N*/                                               void*       pServiceManager     ,
 /*N*/                                               void*       /*pRegistryKey*/        )

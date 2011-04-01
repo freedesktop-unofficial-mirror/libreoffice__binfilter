@@ -1985,12 +1985,6 @@ using namespace ::legacy_binfilters;
 
 extern "C"
 {
-sal_Bool SAL_CALL legacysmgr_component_writeInfo(
-    lang::XMultiServiceFactory * smgr, registry::XRegistryKey * key )
-{
-    // #i30331#
-    return component_writeInfoHelper( smgr, key, s_entries );
-}
 #if defined(SOLARIS) && defined(INTEL)
 #pragma optimize ( "", on )
 #endif
