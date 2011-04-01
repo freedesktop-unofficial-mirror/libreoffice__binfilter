@@ -34,8 +34,8 @@ extern "C"
     #define INT32 JPEG_INT32
     #include "stdio.h"
     #include "jpeg.h"
-    #include "jpeg/jpeglib.h"
-    #include "jpeg/jerror.h"
+    #include "jpeglib.h"
+    #include "jerror.h"
     #undef INT32
 }
 

@@ -28,8 +28,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "setjmp.h"
-#include "jpeg/jpeglib.h"
-#include "jpeg/jerror.h"
+#include "jpeglib.h"
+#include "jerror.h"
 #include "jpeg.h"
 
 #include "rtl/alloc.h"
@@ -275,4 +275,3 @@ Exit:
 
     return bRet;
 }
-
