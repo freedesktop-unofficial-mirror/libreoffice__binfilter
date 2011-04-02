@@ -76,7 +76,7 @@ public:
     BOOL Load( SvStream&, UINT32& nVer );       // Loads image from stream
                             // nVer is set to version
                             // of image
-    BOOL Save( SvStream&, UINT32 = B_CURVERSION );
+    BOOL Save( SvStream&, UINT32 = B_CURVERSION ) {return false; }
     BOOL IsError()                  { return bError;    }
 
     const char* GetCode() const     { return pCode;     }
