@@ -442,7 +442,7 @@ public:
     void        RemoveManualBreaks();
 
     BOOL        Load( SvStream& rStream, USHORT nVersion, ScProgress* pProgress );
-    BOOL        Save( SvStream& rStream, long& rSavedDocCells, ScProgress* pProgress ) const;
+    BOOL        Save( SvStream& rStream, long& rSavedDocCells, ScProgress* pProgress ) const {return false;}
 
     BOOL        ValidQuery(USHORT nRow, const ScQueryParam& rQueryParam,
                     BOOL* pSpecial = NULL, ScBaseCell* pCell = NULL,

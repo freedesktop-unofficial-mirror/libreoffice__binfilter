@@ -159,7 +159,7 @@ public:
     virtual BOOL    Load( SvStorage * );
     virtual BOOL    ConvertFrom( SfxMedium &rMedium );
     virtual void    HandsOff();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
 
     virtual void    SetVisArea( const Rectangle & rVisArea );
     virtual Rectangle GetVisArea( USHORT nAspect ) const;

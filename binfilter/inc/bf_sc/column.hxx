@@ -295,7 +295,7 @@ public:
     void        SaveNotes( SvStream& rStream ) const;
 
     BOOL        Load( SvStream& rStream, ScMultipleReadHeader& rHdr );
-    BOOL        Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    BOOL        Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const {return false; }
     BOOL        TestTabRefAbs(USHORT nTable);
 
 

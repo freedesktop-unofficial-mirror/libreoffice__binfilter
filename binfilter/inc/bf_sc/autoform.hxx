@@ -182,7 +182,7 @@ public:
      void    SetRotateMode( const SvxRotateModeItem& rRotateMode )   { aRotateMode.SetValue( rRotateMode.GetValue() ); }
 
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions, USHORT nVer );
-    BOOL                        Save( SvStream& rStream );
+    BOOL                        Save( SvStream& rStream ) {return false;}
 
 #ifdef READ_OLDVERS
     BOOL                        LoadOld( SvStream& rStream, const ScAfVersions& rVersions );
@@ -237,7 +237,7 @@ public:
     const SfxPoolItem*          GetItem( USHORT nIndex, USHORT nWhich ) const;
     void                        PutItem( USHORT nIndex, const SfxPoolItem& rItem );
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions );
-    BOOL                        Save( SvStream& rStream );
+    BOOL                        Save( SvStream& rStream ) {return false;}
 
 #ifdef READ_OLDVERS
     BOOL                        LoadOld( SvStream& rStream, const ScAfVersions& rVersions );
@@ -257,7 +257,7 @@ public:
                                 ScAutoFormatData*   operator[]( const USHORT nIndex ) const {return (ScAutoFormatData*)At( nIndex );}
     virtual short               Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     BOOL                        Load();
-    BOOL                        Save();
+    BOOL                        Save() {return false;}
     void                        SetSaveLater( BOOL bSet );
     BOOL                        IsSaveLater() const         { return bSaveLater; }
 };

@@ -759,45 +759,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ BOOL ScDocShell::Save()
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::Save" );
-/*N*/
-/*N*/   ScRefreshTimerProtector( aDocument.GetRefreshTimerControlAddress() );
-/*N*/
-/*N*/   SvStorage* pStor = GetStorage();
-/*N*/   DBG_ASSERT( pStor, "Save: no storage" );
-/*N*/   BOOL bXML = ( pStor->GetVersion() >= SOFFICE_FILEFORMAT_60 );
-/*N*/
-/*N*/   //  DoEnterHandler hier nicht (wegen AutoSave), ist im ExecuteSave
-/*N*/
-/*N*/   ScChartListenerCollection* pCharts = aDocument.GetChartListenerCollection();
-/*N*/   if (pCharts)
-/*N*/       pCharts->UpdateDirtyCharts();                   // Charts, die noch upgedated werden muessen
-/*N*/   if (pAutoStyleList)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/   if (GetCreateMode()== SFX_CREATE_MODE_STANDARD)
-/*N*/       SvInPlaceObject::SetVisArea( Rectangle() );     // normal bearbeitet -> keine VisArea
-/*N*/
-/*N*/   // #77577# save additionally XML in storage
-/*N*/   if ( GetCreateMode() != SFX_CREATE_MODE_EMBEDDED && !bXML )
-/*N*/       AddXMLAsZipToTheStorage( *pStor );
-/*N*/
-/*N*/   //  wait cursor is handled with progress bar
-/*N*/   BOOL bRet = SfxInPlaceObject::Save();
-/*N*/   if( bRet )
-/*N*/   {
-/*N*/       if (bXML)
-/*N*/           bRet = SaveXML( NULL, pStor );
-/*N*/       else
-            {
-                OSL_ASSERT("SaveCalc removed");
-            }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
-
 // Xcl-like column width measured in characters of standard font.
 
 

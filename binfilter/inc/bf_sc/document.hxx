@@ -1024,7 +1024,7 @@ public:
     BOOL            SavePool( SvStream& rStream ) const;
 
     BOOL            Load( SvStream& rStream, ScProgress* pProgress );
-    BOOL            Save( SvStream& rStream, ScProgress* pProgress ) const;
+    BOOL            Save( SvStream& rStream, ScProgress* pProgress ) const {return false;}
 
     void            UpdStlShtPtrsFrmNms();
 

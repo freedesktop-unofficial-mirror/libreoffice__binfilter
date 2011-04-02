@@ -418,33 +418,6 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScColumn::Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   if (!IsEmptyData())             //! Test, ob alles weggelassen wird?
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLDATA;
-/*N*/       OSL_FAIL("SaveData( rStream ) has been removed here");
-/*N*/   }
-/*N*/   USHORT nNotes = NoteCount();    //! Test, ob alles weggelassen wird?
-/*N*/   if (nNotes)
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLNOTES;
-/*N*/       SaveNotes( rStream );
-/*N*/   }
-/*N*/   if (!IsEmptyAttr())
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLATTRIB;
-/*N*/       pAttrArray->Save( rStream );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-// -----------------------------------------------------------------------------------------
 
                                     //  GetNeededSize: optimale Hoehe / Breite in Pixeln
 
