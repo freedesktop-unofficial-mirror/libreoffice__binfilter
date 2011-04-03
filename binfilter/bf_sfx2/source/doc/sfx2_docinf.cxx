@@ -589,28 +589,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 
 
 //-------------------------------------------------------------------------
-
-/*N*/ BOOL SfxDocUserKey::Save(SvStream &rStream) const
-/*N*/ {
-/*N*/   DBG_ASSERT( aTitle.Len() <= SFXDOCUSERKEY_LENMAX, "length of user key title overflow" );
-/*N*/   DBG_ASSERT( aWord.Len() <= SFXDOCUSERKEY_LENMAX, "length of user key value overflow" );
-/*N*/
-/*N*/   // save the title of the user key
-/*N*/   String aString = aTitle;
-/*N*/   aString.Erase( SFXDOCUSERKEY_LENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCUSERKEY_LENMAX - aString.Len());
-/*N*/
-/*N*/   // save the value of the user key
-/*N*/   aString = aWord;
-/*N*/   aString.Erase( SFXDOCUSERKEY_LENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCUSERKEY_LENMAX - aString.Len());
-/*N*/
-/*N*/   return rStream.GetError() == SVSTREAM_OK;
-/*N*/ }
-
-//-------------------------------------------------------------------------
 /*N*/ SfxDocUserKey::SfxDocUserKey( const String& rTitle, const String& rWord ) :
 /*N*/       aTitle( rTitle ), aWord( rWord )
 /*N*/ {
@@ -806,101 +784,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ }
 
 //-------------------------------------------------------------------------
-
-/*N*/ BOOL SfxDocumentInfo::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   FileHeader aHeader(pDocInfoHeader, VERSION, bPasswd? 1: 0);
-/*N*/   aHeader.Save(rStream);
-/*N*/   CharSet eNewFileCharSet = GetSOStoreTextEncoding( eFileCharSet );
-/*N*/   rStream << (USHORT)eNewFileCharSet;
-/*N*/   rStream.SetStreamCharSet(eNewFileCharSet);
-/*N*/   rStream << (bPortableGraphics? (BYTE)1: (BYTE)0)
-/*N*/           << (bQueryTemplate? (BYTE)1: (BYTE)0);
-/*N*/   aCreated.Save(rStream);
-/*N*/   aChanged.Save(rStream);
-/*N*/   aPrinted.Save(rStream);
-/*N*/
-/*N*/   DBG_ASSERT( aTitle.Len() <= SFXDOCINFO_TITLELENMAX , "length of title overflow" );
-/*N*/   DBG_ASSERT( aTheme.Len() <= SFXDOCINFO_THEMELENMAX , "length of theme overflow" );
-/*N*/   DBG_ASSERT( aComment.Len() <= SFXDOCINFO_COMMENTLENMAX , "length of description overflow" );
-/*N*/   DBG_ASSERT( aKeywords.Len() <= SFXDOCINFO_KEYWORDLENMAX , "length of keywords overflow" );
-/*N*/
-/*N*/   // save the title
-/*N*/   String aString = aTitle;
-/*N*/   aString.Erase( SFXDOCINFO_TITLELENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_TITLELENMAX - aString.Len());
-/*N*/   // save the theme
-/*N*/   aString = aTheme;
-/*N*/   aString.Erase( SFXDOCINFO_THEMELENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_THEMELENMAX - aString.Len());
-/*N*/   // save the description
-/*N*/   aString = aComment;
-/*N*/   aString.Erase( SFXDOCINFO_COMMENTLENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_COMMENTLENMAX - aString.Len());
-/*N*/   // save the keywords
-/*N*/   aString = aKeywords;
-/*N*/   aString.Erase( SFXDOCINFO_KEYWORDLENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_KEYWORDLENMAX - aString.Len());
-/*N*/
-/*N*/   for(USHORT i = 0; i < MAXDOCUSERKEYS; ++i)
-/*N*/       aUserKeys[i].Save(rStream);
-/*N*/     rStream.WriteByteString( aTemplateName );
-/*N*/     rStream.WriteByteString( aTemplateFileName );
-/*N*/     rStream << (long)aTemplateDate.GetDate()
-/*N*/           << (long)aTemplateDate.GetTime();
-/*N*/
-/*N*/   // wurde mal fuer MB in Panik eingebaut und dann doch nie benutzt :-)
-/*N*/   if ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 )
-/*N*/       rStream << (USHORT) 0;
-/*N*/
-/*N*/     rStream << GetTime() << GetDocumentNumber();
-/*N*/
-/*N*/   rStream << nUserDataSize;
-/*N*/   if(pUserData)
-/*N*/       rStream.Write(pUserData, nUserDataSize);
-/*N*/   rStream << (bTemplateConfig? (BYTE)1: (BYTE)0);
-/*N*/   if( aHeader.nVersion > 5 )
-/*N*/   {
-/*N*/       rStream << bReloadEnabled;
-/*N*/         rStream.WriteByteString( aReloadURL );
-/*N*/       rStream << nReloadSecs;
-/*N*/         rStream.WriteByteString( aDefaultTarget );
-/*N*/   }
-/*N*/   if ( aHeader.nVersion > 6 )
-/*N*/       rStream << (bSaveGraphicsCompressed? (BYTE)1: (BYTE)0);
-/*N*/   if ( aHeader.nVersion > 7 )
-/*N*/       rStream << (bSaveOriginalGraphics? (BYTE)1: (BYTE)0);
-/*N*/   if ( aHeader.nVersion > 8 )
-/*N*/   {
-/*N*/       rStream << (bSaveVersionOnClose? (BYTE)1: (BYTE)0);
-/*N*/         rStream.WriteByteString( pImp->aCopiesTo );
-/*N*/         rStream.WriteByteString( pImp->aOriginal );
-/*N*/         rStream.WriteByteString( pImp->aReferences );
-/*N*/         rStream.WriteByteString( pImp->aRecipient );
-/*N*/         rStream.WriteByteString( pImp->aReplyTo );
-/*N*/         rStream.WriteByteString( pImp->aBlindCopies );
-/*N*/         rStream.WriteByteString( pImp->aInReplyTo );
-/*N*/         rStream.WriteByteString( pImp->aNewsgroups );
-/*N*/         rStream << pImp->nPriority;
-/*N*/   }
-/*N*/   if ( aHeader.nVersion > 9 )
-/*N*/   {
-/*N*/         rStream.WriteByteString( pImp->aSpecialMimeType );
-/*N*/   }
-/*N*/   if ( aHeader.nVersion > 10 )
-/*N*/   {
-/*N*/       rStream << ( pImp->bUseUserData ? (BYTE)1: (BYTE)0 );
-/*N*/   }
-/*N*/
-/*N*/   return rStream.GetError() == SVSTREAM_OK;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ BOOL SfxDocumentInfo::Load(SvStorage* pStorage)
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
@@ -930,20 +813,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ BOOL SfxDocumentInfo::Save(SvStorage* pStorage) const
-/*N*/ {
-/*N*/   SvStorageStreamRef aStr = pStorage->OpenStream( String::CreateFromAscii( pDocInfoSlot ), STREAM_TRUNC | STREAM_STD_READWRITE);
-/*N*/   if(!aStr.Is())
-/*N*/       return FALSE;
-/*N*/   aStr->SetVersion( pStorage->GetVersion() );
-/*N*/   aStr->SetBufferSize(STREAM_BUFFER_SIZE);
-/*N*/   if(!Save(*aStr))
-/*N*/       return FALSE;
-/*N*/   return SavePropertySet( pStorage );
 /*N*/ }
 
 //-------------------------------------------------------------------------

@@ -248,53 +248,6 @@ BOOL TimeStamp::Load ( SvStream& rStream )
 
 /*******************************************************************************************************************
  *
- *  @short      Save a timestamp to stream.
- *  @return     TRUE on OK / FALSE on error
- *
- ******************************************************************************************************************/
-
-BOOL TimeStamp::Save ( SvStream& rStream ) const
-{
-    // Safe impossible cases
-    DBG_ASSERT ( impl_debug_checkParameter ( rStream ), "TimeStamp::Save()\nInvalid parameter detected!\n" ) ;
-
-    // DEFINE "TIMESTAMP_MAXLENGTH" is to short for this operation.
-    DBG_ASSERT ( !( m_sModifiedByName.Len () > TIMESTAMP_MAXLENGTH ), "TimeStamp::Save()\n\"TIMESTAMP_MAXLENGTH\" is to short! Please change this." ) ;
-
-    // Save name in stream.
-    CharSet eConvertCharSet = rStream.GetStreamCharSet();
-    DBG_ASSERT( !(eConvertCharSet == RTL_TEXTENCODING_DONTKNOW) , "TimeStamp::Save()\nCharSet of stream is unknown. Can't convert bytestring to UniCode!\n" );
-    DBG_ASSERT( !(eConvertCharSet == ((rtl_TextEncoding)9))     , "TimeStamp::Save()\nCharSet SYSTEM is obsolete. Can't convert bytestring to UniCode!\n"   );
-    rStream.WriteByteString( m_sModifiedByName, eConvertCharSet );
-
-    // Fill blanks in stream to get free place for follow date and time!
-    USHORT nBlanksCount = TIMESTAMP_MAXLENGTH - m_sModifiedByName.Len ()    ;
-    USHORT nCounter     = 0                                                 ;
-
-    for ( nCounter = 0; nCounter < nBlanksCount; ++nCounter )
-    {
-        rStream << ' ';
-    }
-
-    // Save date and time in stream.
-    rStream << (long) m_aModifiedDateTime.GetDate () ;
-    rStream << (long) m_aModifiedDateTime.GetTime () ;
-
-    // There was errors ...
-    if ( rStream.GetError () != SVSTREAM_OK )
-    {
-        // Do not reset object to default !!!
-        // Its not an error of member variables - is an error of streaming !
-        // But return with ERROR.
-        return FALSE ;
-    }
-
-    // OK.
-    return TRUE ;
-}
-
-/*******************************************************************************************************************
- *
  *  @short      Set name of timestamp.
  *
  ******************************************************************************************************************/

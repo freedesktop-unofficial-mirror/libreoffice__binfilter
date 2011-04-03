@@ -122,15 +122,6 @@ sal_Bool ShallSetBaseURL_Impl( SfxMedium &rMed )
     return  (aOpt.IsSaveRelINet() && bIsRemote) || (aOpt.IsSaveRelFSys() && !bIsRemote);
 }
 
-sal_Bool SfxObjectShell::Save()
-{
-    if( SOFFICE_FILEFORMAT_60 <= GetStorage()->GetVersion() )
-        return sal_True;
-    else
-        return SaveInfoAndConfig_Impl( GetMedium()->GetStorage() );
-}
-
-
 sal_Bool GetPasswd_Impl( const SfxItemSet* pSet, String& rPasswd )
 {
     const SfxPoolItem* pItem = NULL;

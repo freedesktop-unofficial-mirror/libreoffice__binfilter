@@ -72,7 +72,7 @@ protected:
 
     virtual BOOL        InitNew( SvStorage * );         // Rekursiv
     virtual BOOL        Load( SvStorage * );            // Rekursiv
-    virtual BOOL        Save();                         // Rekursiv
+    virtual BOOL        Save() {return false;}                         // Rekursiv
     virtual void        HandsOff();                     // Rekursiv
 
     virtual ErrCode     Verb( long nVerbPos,

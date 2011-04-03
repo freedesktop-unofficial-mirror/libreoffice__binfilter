@@ -71,7 +71,7 @@ public:
     const String&   GetWord() const { return aWord; }
 
     BOOL            Load( SvStream& rStrm );
-    BOOL            Save( SvStream& rStrm ) const;
+    BOOL            Save( SvStream& rStrm ) const {return false;}
 };
 
 const BYTE MAXDOCUSERKEYS  = 4;
@@ -131,7 +131,7 @@ private:
 
 protected:
     virtual BOOL Load( SvStream& );
-    virtual BOOL Save( SvStream& ) const;
+    virtual BOOL Save( SvStream& ) const {return false;}
 
 public:
     SfxDocumentInfo( const SfxDocumentInfo& );
@@ -142,7 +142,7 @@ public:
     int operator==( const SfxDocumentInfo& ) const;
 
     BOOL Load( SvStorage* );
-    BOOL Save( SvStorage* ) const;
+    BOOL Save( SvStorage* ) const {return false;}
     BOOL SavePropertySet( SvStorage* ) const;
 
     void SetReloadURL( const String& rString );

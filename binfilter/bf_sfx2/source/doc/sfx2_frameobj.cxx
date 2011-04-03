@@ -151,29 +151,6 @@ namespace binfilter {
 /*N*/ }
 
 //=========================================================================
-/*N*/ BOOL SfxFrameObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SfxFrameObject::InitNew>
-    oder <SfxFrameObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");
-/*N*/   return FALSE;
-/*N*/ }
-
-
-//=========================================================================
 /*  [Beschreibung]
 
     Ab diesen Zeitpunkt, bis zum <SfxFrameObject::SaveCompleted>,
