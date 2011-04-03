@@ -146,7 +146,6 @@ public:
 
     // globaler IO
     virtual BOOL            Save() {return false;}
-    inline BOOL                 SaveAsChilds( SvStorage *pStor );
     inline BOOL                 SaveCompletedChilds( SvStorage *pStor );
 
     // fuer VorlagenPI
@@ -209,11 +208,6 @@ public:
 
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
 };
-
-inline BOOL SwDocShell::SaveAsChilds( SvStorage *pStor )
-{
-    return SfxInPlaceObject::SaveAsChilds( pStor );
-}
 
 inline BOOL SwDocShell::SaveCompletedChilds( SvStorage *pStor )
 {
