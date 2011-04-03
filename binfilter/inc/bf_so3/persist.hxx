@@ -139,7 +139,6 @@ private:
     SO3_DLLPRIVATE SvInfoObjectMemberList *GetInfoList();
     SO3_DLLPRIVATE void            CountModified( BOOL bDirection );
     SO3_DLLPRIVATE void            dtorClear();
-    SO3_DLLPRIVATE BOOL            SaveElement( SvStorage*, SvInfoObject* );
     SO3_DLLPRIVATE SvPersistRef    CreateObjectFromStorage( SvInfoObject*, const SvStorageRef& );
     SO3_DLLPRIVATE BOOL            ImplCopy( SvPersist*, const String&, BOOL );
 
