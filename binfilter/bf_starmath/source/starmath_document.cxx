@@ -509,45 +509,6 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/           << '\0';
 /*N*/ }
 
-/*N*/ BOOL SmDocShell::Save()
-/*N*/ {
-/*N*/     //! apply latest changes if necessary
-/*N*/     UpdateText();
-/*N*/
-/*N*/     if ( SfxInPlaceObject::Save() )
-/*N*/   {
-/*N*/       if( !pTree )
-/*N*/           Parse();
-/*N*/       if( pTree && !IsFormulaArranged() )
-/*N*/           ArrangeFormula();
-/*N*/
-/*N*/       SvStorage *pStor = GetStorage();
-/*N*/       if(pStor->GetVersion() >= SOFFICE_FILEFORMAT_60)
-/*N*/       {
-/*N*/           // a math package as a storage
-/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-/*N*/           SmXMLWrapper aEquation(xModel);
-/*N*/           SfxMedium aMedium(pStor);
-/*N*/           aEquation.SetFlat(sal_False);
-/*N*/           return aEquation.Export(aMedium);
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           aDocStream = pStor->OpenStream(String::CreateFromAscii(pStarMathDoc));
-/*?*/           aDocStream->SetVersion (pStor->GetVersion ());
-/*?*/           GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion()));
-/*?*/
-/*?*/           aDocStream->Seek(0);
-/*?*/           ImplSave( aDocStream );
-/*?*/
-/*?*/           aDocStream.Clear();
-/*?*/           return TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-
 /*N*/ void SmDocShell::UpdateText()
 /*N*/ {
 /*N*/     if (pEditEngine && pEditEngine->IsModified())

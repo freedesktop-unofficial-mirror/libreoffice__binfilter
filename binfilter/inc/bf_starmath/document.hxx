@@ -148,7 +148,7 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
     virtual BOOL        InitNew(SvStorage *);
     virtual BOOL        Load(SvStorage *);
             void        ImplSave(  SvStorageStreamRef xStrm  );
-    virtual BOOL        Save();
+    virtual BOOL        Save() {return false;}
     virtual void        HandsOff();
 
     Printer             *GetPrt();
