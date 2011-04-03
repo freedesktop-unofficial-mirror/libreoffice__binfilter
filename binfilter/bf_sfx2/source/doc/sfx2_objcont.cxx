@@ -172,8 +172,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   if( pImp->bIsSaving )
 /*N*/   {
 /*N*/       //!! kein Aufruf der Basisklasse wegen doppeltem Aufruf in Persist
-/*N*/       //if(!SfxObjectShell::Save())
-/*N*/       //  return FALSE;
 /*N*/       SvStorageRef aRef = GetMedium()->GetStorage();
 /*N*/       if ( aRef.Is() )
 /*N*/       {
@@ -355,9 +353,6 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ void SfxObjectShell::SetConfigManager(SfxConfigManager *pMgr)
 /*N*/ {
-/*N*/ //    if ( pImp->pCfgMgr == SFX_CFGMANAGER() && pMgr)
-/*N*/ //        pMgr->Activate(pImp->pCfgMgr);
-/*N*/
 /*N*/     if ( pImp->pCfgMgr && pImp->pCfgMgr != pMgr )
 /*?*/       delete pImp->pCfgMgr;
 /*N*/
@@ -368,7 +363,6 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ BOOL SfxObjectShell::HasTemplateConfig() const
 /*N*/ {
-/*N*/ //!MBA    return pImp->bTemplateConfig;
 /*N*/     return FALSE;
 /*N*/ }
 

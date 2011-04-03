@@ -107,8 +107,6 @@ namespace binfilter {
 /*N*/   if (pDocShell && !pShell)
 /*N*/       pShell = pDocShell;
 /*N*/
-/*N*/ //    DBG_ASSERT(pShell,"InitDrawLayer ohne Shell");
-/*N*/
 /*N*/   if (!pDrawLayer)
 /*N*/   {
 /*N*/       String aName;
@@ -258,9 +256,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pDrawLayer)
 /*N*/   {
-/*N*/       //  SetSavePortable wird mit VCL nicht mehr gebraucht
-/*N*/       //BOOL bIndep = SFX_APP()->GetOptions().IsIndepGrfFmt();
-/*N*/       //pDrawLayer->SetSavePortable( bIndep );
 /*N*/
 /*N*/       pDrawLayer->SetSaveCompressed( FALSE );
 /*N*/       pDrawLayer->SetSaveNative( FALSE );

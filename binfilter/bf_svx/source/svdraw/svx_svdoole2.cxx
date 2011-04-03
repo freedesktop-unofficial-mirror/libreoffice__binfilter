@@ -640,8 +640,6 @@ BOOL SdrOle2Obj::Unload()
             if( pO->IsModified() )
             {
                         DBG_BF_ASSERT(0, "return value of DoSave() or DoSaveCompleted() is not checked here");
-                        //pO->DoSave();
-                        //pO->DoSaveCompleted();
             }
             ppObjRef->Clear();
             if (pPersist->Unload(pO))

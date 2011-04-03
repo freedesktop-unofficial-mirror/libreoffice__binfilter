@@ -372,8 +372,6 @@ sal_False           Das Objekt konnte nicht geladen werden
                 xPer->DoOwnerLoad(xStor);
                 xPer->CleanUp();
                         DBG_ASSERT( 0, "DoSave() and DoSaveCompleted() return value is not checked here, seems buggy" );
-                        //xPer->DoSave();
-                        //xPer->DoSaveCompleted( 0 );
             }
 
             if ( xStor.Is() )

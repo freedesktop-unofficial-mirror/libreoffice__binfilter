@@ -441,8 +441,6 @@ void ScDocument::UpdateChartListenerCollection()
                                                     // pro memoria, waiting that all the if is cleaned out
                                                     // the same for DoSaveCompleted()
                                                     DBG_BF_ASSERT(0, "return value of DoSave() and DoSaveComleted was not checked here!");
-                                                    //aIPObj->DoSave();
-                                                    //aIPObj->DoSaveCompleted();
                                             }
                                         }
                                     }
