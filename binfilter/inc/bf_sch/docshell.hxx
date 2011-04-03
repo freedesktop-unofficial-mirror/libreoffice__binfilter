@@ -103,7 +103,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
 
     virtual BOOL InitNew(SvStorage*) throw();
     virtual BOOL Load(SvStorage*) throw();
-    virtual BOOL Save() throw();
+    virtual BOOL Save() throw() {return false;}
 
     virtual Rectangle GetVisArea(USHORT nAspect) const throw();
     virtual void SetVisArea(const Rectangle& rRect) throw();
