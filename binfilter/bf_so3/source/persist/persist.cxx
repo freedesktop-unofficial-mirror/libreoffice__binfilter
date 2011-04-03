@@ -1306,32 +1306,6 @@ void SvPersist::SaveContent( SvStream & rStm, BOOL bOwner_ )
     // nichts tun bei Fremd-Format
 }
 
-BOOL SvPersist::SaveChilds()
-{
-    BOOL bRet = TRUE;
-    if( pChildList )
-    {
-        for( ULONG i = 0; i < pChildList->Count(); i++ )
-        {
-            SvInfoObject * pEle = pChildList->GetObject( i );
-            if( pEle->GetPersist() && !pEle->IsDeleted() )
-            {
-                if ( pEle->pImp->GetRealStorageName().Len() )
-                {
-                    // element is currently stored in an external storage
-                    // save it into my storage
-                    bRet = SaveElement( GetStorage(), pEle );
-                }
-                else
-                    bRet = FALSE;
-            }
-
-            pEle = pChildList->Next();
-        }
-    }
-    return bRet;
-}
-
 BOOL SvPersist::SaveElement( SvStorage* pStor, SvInfoObject* pEle )
 {
     BOOL bRet = TRUE;
