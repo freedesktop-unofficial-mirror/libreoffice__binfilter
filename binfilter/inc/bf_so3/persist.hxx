@@ -169,7 +169,6 @@ protected:
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner );
 
     BOOL            SaveChilds();                       // Rekursiv
-    BOOL            SaveCompletedChilds( SvStorage * ); // Rekursiv
     SO3_DLLPRIVATE BOOL         HasStorage() const { return aStorage.Is(); }
 public:
                     SvPersist();

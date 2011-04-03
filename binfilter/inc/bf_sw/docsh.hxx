@@ -146,7 +146,6 @@ public:
 
     // globaler IO
     virtual BOOL            Save() {return false;}
-    inline BOOL                 SaveCompletedChilds( SvStorage *pStor );
 
     // fuer VorlagenPI
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
@@ -209,10 +208,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
 };
 
-inline BOOL SwDocShell::SaveCompletedChilds( SvStorage *pStor )
-{
-    return SfxInPlaceObject::SaveCompletedChilds( pStor );
-}
 } //namespace binfilter
 #endif
 
