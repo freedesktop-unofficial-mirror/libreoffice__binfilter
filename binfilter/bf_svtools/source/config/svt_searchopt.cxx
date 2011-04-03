@@ -70,7 +70,7 @@ protected:
     using ConfigItem::SetModified;
     void            SetModified( BOOL bVal );
     BOOL            Load();
-    BOOL            Save();
+    BOOL            Save() {return false;}
 
     Sequence< OUString >    GetPropertyNames() const;
 
@@ -239,34 +239,6 @@ BOOL SvtSearchOptions_Impl::Load()
     return bSucc;
 }
 
-
-BOOL SvtSearchOptions_Impl::Save()
-{
-    BOOL bSucc = FALSE;
-
-    const Sequence< OUString > aNames = GetPropertyNames();
-    INT32 nProps = aNames.getLength();
-
-    Sequence< Any > aValues( nProps );
-    Any *pValue = aValues.getArray();
-
-    DBG_ASSERT( nProps == MAX_FLAGS_OFFSET + 1,
-            "unexpected size of index" );
-    if (nProps  &&  nProps == MAX_FLAGS_OFFSET + 1)
-    {
-        for (USHORT i = 0;  i < nProps;  ++i)
-            pValue[i] <<= (BOOL) GetFlag(i);
-        bSucc |= PutProperties( aNames, aValues );
-    }
-
-    if (bSucc)
-        SetModified( FALSE );
-
-    return bSucc;
-}
-
-
-//////////////////////////////////////////////////////////////////////
 
 SvtSearchOptions::SvtSearchOptions()
 {

@@ -782,43 +782,6 @@ BOOL SvNumberFormatter::Load( SvStream& rStream )
         return TRUE;
 }
 
-BOOL SvNumberFormatter::Save( SvStream& rStream ) const
-{
-    ImpSvNumMultipleWriteHeader aHdr( rStream );
-    // ab 364i wird gespeichert was SYSTEM wirklich war, vorher hart LANGUAGE_SYSTEM
-    rStream << (USHORT) SV_NUMBERFORMATTER_VERSION;
-    rStream << (USHORT) Application::GetSettings().GetLanguage() << (USHORT) IniLnge;
-    SvNumberFormatTable* pTable = (SvNumberFormatTable*) &aFTable;
-    SvNumberformat* pEntry = (SvNumberformat*) pTable->First();
-    while (pEntry)
-    {
-        // Gespeichert werden alle markierten, benutzerdefinierten Formate und
-        // jeweils das Standardformat zu allen angewaehlten CL-Kombinationen
-        // sowie NewStandardDefined
-        if ( pEntry->GetUsed() || (pEntry->GetType() & NUMBERFORMAT_DEFINED) ||
-                pEntry->GetNewStandardDefined() ||
-                (pTable->GetCurKey() % SV_COUNTRY_LANGUAGE_OFFSET == 0) )
-        {
-            rStream << static_cast<sal_uInt32>(pTable->GetCurKey())
-                    << (USHORT) LANGUAGE_SYSTEM
-                    << (USHORT) pEntry->GetLanguage();
-            pEntry->Save(rStream, aHdr);
-        }
-        pEntry = (SvNumberformat*) pTable->Next();
-    }
-    rStream << NUMBERFORMAT_ENTRY_NOT_FOUND;                // EndeKennung
-
-    // ab SV_NUMBERFORMATTER_VERSION_YEAR2000
-    aHdr.StartEntry();
-    rStream << (UINT16) GetYear2000();
-    aHdr.EndEntry();
-
-    if (rStream.GetError())
-        return FALSE;
-    else
-        return TRUE;
-}
-
 // static
 void SvNumberFormatter::SkipNumberFormatterInStream( SvStream& rStream )
 {

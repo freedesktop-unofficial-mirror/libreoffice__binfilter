@@ -452,7 +452,7 @@ public:
     /// Load all formats from a stream
     BOOL Load( SvStream& rStream );
     /// Save all formats to a stream
-    BOOL Save( SvStream& rStream ) const;
+    BOOL Save( SvStream& rStream ) const {return false;}
 
     /// Get additional info of a format index, e.g. for dialog box
     void GetFormatSpecialInfo(sal_uInt32 nFormat, BOOL& bThousand, BOOL& IsRed,
