@@ -97,13 +97,6 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XBitmapTable::Save()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XBitmapTable::Create()
 /*N*/ {
 /*N*/   return( FALSE );
@@ -235,30 +228,7 @@ static char const aChckXML[]     = { 'P', 'K', 0x03, 0x04 };        // = 6.0
 /*N*/   return( FALSE );
 /*N*/ }
 
-/************************************************************************/
 
-/*N*/ BOOL XBitmapList::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckBitmap1, 4 );
-    pStream->WriteByteString(String( pszChckBitmap1, 4 ));
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
-/*N*/ }
-
-/************************************************************************/
 // Umgestellt auf XBitmap
 
 /*N*/ BOOL XBitmapList::Create()

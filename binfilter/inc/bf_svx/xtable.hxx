@@ -311,7 +311,7 @@ public:
     XColorEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -335,7 +335,7 @@ public:
     XLineEndEntry*  Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -369,7 +369,7 @@ public:
     XLineEndEntry*  Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -393,7 +393,7 @@ public:
     XDashEntry*     Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -427,7 +427,7 @@ public:
     XDashEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -451,7 +451,7 @@ public:
     XHatchEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -484,7 +484,7 @@ public:
     XHatchEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -508,7 +508,7 @@ public:
     XGradientEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -541,7 +541,7 @@ public:
     XGradientEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -565,7 +565,7 @@ public:
     XBitmapEntry*   Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -594,7 +594,7 @@ public:
     XBitmapEntry*   Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
