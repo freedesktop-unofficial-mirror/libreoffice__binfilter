@@ -1165,28 +1165,6 @@ BOOL SvPersist::Load( SvStorage * pStor )
     return TRUE;
 }
 
-BOOL SvPersist::Save()
-{
-    ASSERT_INIT()
-
-    SvGlobalName aNoName; // wegen MAC
-    if( GetStorage()->GetClassName() == aNoName )
-        // kein Typ im Storage gesetzt
-        SetupStorage( GetStorage() );
-
-    bOpSave = TRUE;
-    if( !IsModified() )
-        // keine Aendeungen
-        return TRUE;
-
-    BOOL bRet = TRUE;
-
-    SvStorage *pStor = GetStorage();
-    if( SOFFICE_FILEFORMAT_60 > pStor->GetVersion() )
-        bRet = DoSaveContent( GetStorage(), TRUE );
-    return bRet;
-}
-
 void SvPersist::HandsOff()
 {
     ASSERT_INIT()

@@ -87,7 +87,7 @@ protected:
     SvEditObjectProtocol    aProt;           // Referenz auf das Protokoll
                     ~SvEmbeddedObject();
     virtual BOOL    Load( SvStorage * );
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual void    LoadContent( SvStream & rStm, BOOL bOwner_ );
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner_ );
     virtual void    Connect( BOOL bConnect );

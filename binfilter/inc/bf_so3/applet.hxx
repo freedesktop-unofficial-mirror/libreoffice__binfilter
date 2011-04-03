@@ -86,7 +86,7 @@ protected:
                     // Laden speichern
     SO3_DLLPRIVATE virtual BOOL    InitNew( SvStorage * );
     SO3_DLLPRIVATE virtual BOOL    Load( SvStorage * );
-    SO3_DLLPRIVATE virtual BOOL    Save();
+    SO3_DLLPRIVATE virtual BOOL    Save() {return false;}
     SO3_DLLPRIVATE virtual void    HandsOff();
 
     SO3_DLLPRIVATE              ~SvAppletObject();

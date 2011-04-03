@@ -747,52 +747,6 @@ BOOL SvPlugInObject::Load
 }
 
 //=========================================================================
-BOOL SvPlugInObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SvPlugInObject::InitNew>
-    oder <SvPlugInObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-{
-    if( SvInPlaceObject::Save() )
-    {
-        SvStorageStreamRef xStm;
-        xStm = GetStorage()->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                    STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( GetStorage()->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)PLUGIN_VERS;
-        *xStm << nPlugInMode;
-        *xStm << aCmdList;
-        if( pURL )
-        {
-            *xStm << (BYTE)TRUE;
-            String aURL = pURL->GetMainURL( INetURLObject::NO_DECODE );
-            if( aURL.Len() )
-                aURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL );
-            xStm->WriteByteString( aURL, RTL_TEXTENCODING_ASCII_US );
-        }
-        else
-            *xStm << (BYTE)FALSE;
-        xStm->WriteByteString( GetMimeType(), RTL_TEXTENCODING_ASCII_US );
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
 void SvPlugInObject::HandsOff()
 /*  [Beschreibung]
 

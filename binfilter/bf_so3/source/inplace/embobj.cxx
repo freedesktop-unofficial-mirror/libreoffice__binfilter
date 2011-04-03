@@ -292,17 +292,6 @@ BOOL SvEmbeddedObject::Load( SvStorage * pStor )
 }
 
 /*************************************************************************
-|*    SvEmbeddedObject::Save()
-|*
-|*    Beschreibung
-*************************************************************************/
-BOOL SvEmbeddedObject::Save()
-{
-    return SvPersist::Save();
-}
-
-
-/*************************************************************************
 |*    SvEmbeddedObject::LoadContent()
 |*
 |*    Beschreibung

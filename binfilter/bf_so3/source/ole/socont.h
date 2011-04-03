@@ -235,7 +235,7 @@ class CSO_Cont : public IUnknown
                         , LPSIZEL, SotStorage *, PPATRONOBJECT, DWORD);
 //      UINT        Create(TENANTTYPE, LPVOID, LPFORMATETC, PPOINTL
 //                      , LPSIZEL, LPSTORAGE, PPATRONOBJECT, DWORD);
-        WIN_BOOL    Save(SotStorage * );
+        WIN_BOOL    Save(SotStorage * ) {return false;}
         WIN_BOOL    Load(SotStorage *, DWORD dwAspect, WIN_BOOL fSetExtend, RECTL & rcl );
 //      WIN_BOOL    Load(LPSTORAGE, PTENANTINFO);
         void        GetInfo(DWORD& rAspect, WIN_BOOL & rSetExtend );

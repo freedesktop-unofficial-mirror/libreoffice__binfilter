@@ -639,44 +639,6 @@ BOOL SvAppletObject::Load
 }
 
 //=========================================================================
-BOOL SvAppletObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SvAppletObject::InitNew>
-    oder <SvAppletObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-{
-    if( SvInPlaceObject::Save() )
-    {
-        SvStorageStreamRef xStm;
-        xStm = GetStorage()->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                            STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( GetStorage()->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)APPLET_VERS;
-        *xStm << pImpl->aCmdList;
-        xStm->WriteByteString( pImpl->aClass, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aName, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aCodeBase, RTL_TEXTENCODING_ASCII_US );
-        *xStm << pImpl->bMayScript;
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
 void SvAppletObject::HandsOff()
 /*  [Beschreibung]
 
