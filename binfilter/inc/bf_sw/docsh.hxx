@@ -145,7 +145,7 @@ public:
     // DocumentInfo neu setzen
 
     // globaler IO
-    virtual BOOL            Save();
+    virtual BOOL            Save() {return false;}
     inline BOOL                 SaveAsChilds( SvStorage *pStor );
     inline BOOL                 SaveCompletedChilds( SvStorage *pStor );
 

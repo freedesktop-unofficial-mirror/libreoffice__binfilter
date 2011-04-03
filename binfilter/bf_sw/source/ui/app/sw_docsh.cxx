@@ -95,7 +95,7 @@ using namespace ::com::sun::star::container;
 /*N*/                           String * pLongUserName,
 /*N*/                           String * pUserName,
 /*N*/                           long nFileFormat=SOFFICE_FILEFORMAT_CURRENT ) const;
-/*N*/   virtual BOOL Save();
+/*N*/   virtual BOOL Save() {return false;}
 /*N*/ public:
 /*N*/   SwTmpPersist( SwDocShell& rDSh ) : pDShell( &rDSh ) {}
 /*N*/};
@@ -280,23 +280,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
     return bOk;
  }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Sichern des Default-Formats, Stg vorhanden
- --------------------------------------------------------------------*/
-
-
-BOOL SwDocShell::Save()
-{
-    //only here for virtual reason, will be deleted
-    //this is a virtual fonction from SfxObjectShell (in sfx)
-    return false;
-}
-
-/*--------------------------------------------------------------------
-    Beschreibung: Sichern im Defaultformat
- --------------------------------------------------------------------*/
-
 
 /*--------------------------------------------------------------------
     Beschreibung:   Haende weg
@@ -620,13 +603,6 @@ BOOL SwDocShell::Save()
 /*N*/   pDShell->SwDocShell::FillClass( pClassName, pClipFormat, pAppName,
 /*N*/                                   pLongUserName, pUserName, nFileFormat );
 /*N*/ }
-
-/*N*/ BOOL SwTmpPersist::Save()
-/*N*/{
-/*N*/   if( SaveChilds() )
-/*N*/       return SvPersist::Save();
-/*N*/   return FALSE;
-/*N*/}
 
 }
 
