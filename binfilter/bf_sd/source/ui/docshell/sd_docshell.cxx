@@ -352,34 +352,6 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
     return bRet;
 }
 
- BOOL SdDrawDocShell::Save()
- {
-     if( GetCreateMode() == SFX_CREATE_MODE_STANDARD )
-         SvInPlaceObject::SetVisArea( Rectangle() );
-
-     BOOL bRet = SfxInPlaceObject::Save();
-
-     if( bRet )
-     {
-         SvStorage* pStore = GetStorage();
-         SfxMedium  aMedium( pStore );
-         SdFilter*  pFilter = NULL;
-
-         if( pStore->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-             pFilter = new SdXMLFilter( aMedium, *this, sal_True );
-         else
-             pFilter = new SdBINFilter( aMedium, *this, sal_True );
-
-         UpdateDocInfoForSave();
-
-         bRet = pFilter ? pFilter->Export() : FALSE;
-         delete pFilter;
-     }
-
-     return bRet;
- }
-
-
 void SdDrawDocShell::HandsOff()
 {
     SfxInPlaceObject::HandsOff();
