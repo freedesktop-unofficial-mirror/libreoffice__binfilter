@@ -116,7 +116,7 @@ void SvXMLAutoStylePoolP_Impl::RegisterName( sal_Int32 nFamily, const OUString& 
 sal_Bool SvXMLAutoStylePoolP_Impl::Add(OUString& rName, sal_Int32 nFamily,
                 const OUString& rParent,
                 const ::std::vector< XMLPropertyState >& rProperties,
-                sal_Bool bCache)
+                sal_Bool /*bCache*/)
 {
     sal_Bool bRet(sal_False);
     ULONG nPos;
@@ -131,11 +131,11 @@ sal_Bool SvXMLAutoStylePoolP_Impl::Add(OUString& rName, sal_Int32 nFamily,
     DBG_ASSERT( pFamily, "SvXMLAutoStylePool_Impl::Add: unknown family" );
     if( pFamily )
     {
-        SvXMLAutoStylePoolParentP_Impl aTmp( rParent );
+        SvXMLAutoStylePoolParentP_Impl aLclTmp( rParent );
         SvXMLAutoStylePoolParentP_Impl *pParent = 0;
 
         SvXMLAutoStylePoolParentsP_Impl *pParents = pFamily->mpParentList;
-        if( pParents->Seek_Entry( &aTmp, &nPos ) )
+        if( pParents->Seek_Entry( &aLclTmp, &nPos ) )
         {
             pParent = pParents->GetObject( nPos );
         }
@@ -178,11 +178,11 @@ OUString SvXMLAutoStylePoolP_Impl::Find( sal_Int32 nFamily,
 
     if( pFamily )
     {
-        SvXMLAutoStylePoolParentP_Impl aTmp( rParent );
+        SvXMLAutoStylePoolParentP_Impl aLclTmp( rParent );
 
         const SvXMLAutoStylePoolParentsP_Impl* pParents =
             pFamily->mpParentList;
-        if( pParents->Seek_Entry( &aTmp, &nPos ) )
+        if( pParents->Seek_Entry( &aLclTmp, &nPos ) )
             sName = pParents->GetObject( nPos )->Find( pFamily, rProperties );
     }
 
@@ -196,9 +196,9 @@ OUString SvXMLAutoStylePoolP_Impl::Find( sal_Int32 nFamily,
 
 void SvXMLAutoStylePoolP_Impl::exportXML(
            sal_Int32 nFamily,
-        const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap,
+        const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & /*rHandler*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/,
         const SvXMLAutoStylePoolP *pAntiImpl) const
 {
     sal_uInt32 nCount = 0;
@@ -244,15 +244,15 @@ void SvXMLAutoStylePoolP_Impl::exportXML(
             {
                 const SvXMLAutoStylePoolPropertiesP_Impl *pProperties =
                     pParent->GetPropertiesList()[ j ];
-                sal_uInt32 nPos = pProperties->GetPos();
-                DBG_ASSERT( nPos < nCount,
+                sal_uInt32 nLclPos = pProperties->GetPos();
+                DBG_ASSERT( nLclPos < nCount,
                         "SvXMLAutoStylePool_Impl::exportXML: wrong position" );
-                if( nPos < nCount )
+                if( nLclPos < nCount )
                 {
-                    DBG_ASSERT( !aExpStyles[nPos].mpProperties,
+                    DBG_ASSERT( !aExpStyles[nLclPos].mpProperties,
                         "SvXMLAutoStylePool_Impl::exportXML: double position" );
-                    aExpStyles[nPos].mpProperties = pProperties;
-                    aExpStyles[nPos].mpParent = &pParent->GetParent();
+                    aExpStyles[nLclPos].mpProperties = pProperties;
+                    aExpStyles[nLclPos].mpParent = &pParent->GetParent();
                 }
             }
         }

@@ -49,30 +49,30 @@ using namespace xmloff::token;
 
 XMLNumberFormatAttributesExportHelper::XMLNumberFormatAttributesExportHelper(
             ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier >& xTempNumberFormatsSupplier)
-    : pExport(NULL),
-    xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ()),
-    aNumberFormats(),
-    sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT)),
-    sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    : xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ())
+    , pExport(NULL)
+    , sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT))
+    , sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    , aNumberFormats()
 {
 }
 
 XMLNumberFormatAttributesExportHelper::XMLNumberFormatAttributesExportHelper(
             ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier >& xTempNumberFormatsSupplier,
             SvXMLExport& rTempExport, sal_uInt16 nTempNamespace)
-      : pExport(&rTempExport),
-    xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ()),
-    aNumberFormats(),
-    nNamespace(nTempNamespace),
-    sAttrValueType(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE_TYPE))),
-    sAttrValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE))),
-    sAttrDateValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_DATE_VALUE))),
-    sAttrTimeValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_TIME_VALUE))),
-    sAttrBooleanValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_BOOLEAN_VALUE))),
-    sAttrStringValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_STRING_VALUE))),
-    sAttrCurrency(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_CURRENCY))),
-    sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT)),
-    sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    : xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ())
+    , pExport(&rTempExport)
+    , sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT))
+    , sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    , sAttrValueType(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE_TYPE)))
+    , sAttrValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE)))
+    , sAttrDateValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_DATE_VALUE)))
+    , sAttrTimeValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_TIME_VALUE)))
+    , sAttrBooleanValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_BOOLEAN_VALUE)))
+    , sAttrStringValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_STRING_VALUE)))
+    , sAttrCurrency(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_CURRENCY)))
+    , aNumberFormats()
+    , nNamespace(nTempNamespace)
 {
 }
 

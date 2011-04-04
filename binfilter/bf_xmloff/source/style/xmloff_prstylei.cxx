@@ -69,15 +69,15 @@ void XMLPropStyleContext::SetAttribute( sal_uInt16 nPrefixKey,
 
 TYPEINIT1( XMLPropStyleContext, SvXMLStyleContext );
 
-XMLPropStyleContext::XMLPropStyleContext( SvXMLImport& rImport,
+XMLPropStyleContext::XMLPropStyleContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
-        SvXMLStylesContext& rStyles, sal_uInt16 nFamily,
+        SvXMLStylesContext& rStyles, sal_uInt16 nInFamily,
         sal_Bool bDefault ) :
-    SvXMLStyleContext( rImport, nPrfx, rLName, xAttrList, nFamily, bDefault ),
-    xStyles( &rStyles ),
+    SvXMLStyleContext( rInImport, nPrfx, rLName, xAttrList, nInFamily, bDefault ),
     sIsPhysical( RTL_CONSTASCII_USTRINGPARAM( "IsPhysical" ) ),
-    sFollowStyle( RTL_CONSTASCII_USTRINGPARAM( "FollowStyle" ) )
+    sFollowStyle( RTL_CONSTASCII_USTRINGPARAM( "FollowStyle" ) ),
+    xStyles( &rStyles )
 {
 }
 
@@ -86,27 +86,27 @@ XMLPropStyleContext::~XMLPropStyleContext()
 }
 
 SvXMLImportContext *XMLPropStyleContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
             ((SvXMLStylesContext *)&xStyles)->GetImportPropertyMapper(
                                                         GetFamily() );
         if( xImpPrMap.is() )
-            pContext = new SvXMLPropertySetContext( GetImport(), nPrefix,
+            pContext = new SvXMLPropertySetContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     aProperties,
                                                     xImpPrMap );
     }
 
     if( !pContext )
-        pContext = SvXMLStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = SvXMLStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -162,7 +162,7 @@ void XMLPropStyleContext::CreateAndInsert( sal_Bool bOverwrite )
     if( !xFamilies.is() )
         return;
 
-    sal_Bool bNew = sal_False;
+    sal_Bool bLclNew = sal_False;
     if( xFamilies->hasByName( rName ) )
     {
         Any aAny = xFamilies->getByName( rName );
@@ -177,20 +177,20 @@ void XMLPropStyleContext::CreateAndInsert( sal_Bool bOverwrite )
         Any aAny;
         aAny <<= xStyle;
         xFamilies->insertByName( rName, aAny );
-        bNew = sal_True;
+        bLclNew = sal_True;
     }
 
     Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
-    if( !bNew && xPropSetInfo->hasPropertyByName( sIsPhysical ) )
+    if( !bLclNew && xPropSetInfo->hasPropertyByName( sIsPhysical ) )
     {
         Any aAny = xPropSet->getPropertyValue( sIsPhysical );
-        bNew = !*(sal_Bool *)aAny.getValue();
+        bLclNew = !*(sal_Bool *)aAny.getValue();
     }
-    SetNew( bNew );
+    SetNew( bLclNew );
 
-    if( bOverwrite || bNew )
+    if( bOverwrite || bLclNew )
     {
         Reference< XPropertyState > xPropState( xPropSet, uno::UNO_QUERY );
 
@@ -216,9 +216,9 @@ void XMLPropStyleContext::CreateAndInsert( sal_Bool bOverwrite )
                 sal_Int32 i;
                 for( i = 0; i < nCount; i++ )
                 {
-                    const OUString& rName = xPrMap->GetEntryAPIName( i );
-                    if( xPropSetInfo->hasPropertyByName( rName ) )
-                        aNameSet.insert( rName );
+                    const OUString& rInnerName = xPrMap->GetEntryAPIName( i );
+                    if( xPropSetInfo->hasPropertyByName( rInnerName ) )
+                        aNameSet.insert( rInnerName );
                 }
 
                 nCount = aNameSet.size();

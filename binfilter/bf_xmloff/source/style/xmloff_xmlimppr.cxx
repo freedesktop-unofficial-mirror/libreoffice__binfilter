@@ -72,9 +72,9 @@ using rtl::OUStringBuffer;
 
 SvXMLImportPropertyMapper::SvXMLImportPropertyMapper(
         const UniReference< XMLPropertySetMapper >& rMapper,
-        SvXMLImport& rImp ):
-    maPropMapper  ( rMapper ),
-    rImport(rImp)
+        SvXMLImport& rImp )
+    : rImport(rImp)
+    , maPropMapper(rMapper)
 {
 }
 

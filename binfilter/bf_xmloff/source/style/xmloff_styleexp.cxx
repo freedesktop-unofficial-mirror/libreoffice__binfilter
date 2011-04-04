@@ -61,9 +61,9 @@ XMLStyleExport::XMLStyleExport(
         SvXMLAutoStylePoolP *pAutoStyleP ) :
     rExport( rExp ),
     sIsPhysical( RTL_CONSTASCII_USTRINGPARAM( "IsPhysical" ) ),
+    sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
     sFollowStyle( RTL_CONSTASCII_USTRINGPARAM( "FollowStyle" ) ),
     sNumberingStyleName( RTL_CONSTASCII_USTRINGPARAM( "NumberingStyleName" ) ),
-    sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
     sPoolStyleName( rPoolStyleName ),
     pAutoStylePool( pAutoStyleP  )
 {
@@ -73,11 +73,11 @@ XMLStyleExport::~XMLStyleExport()
 {
 }
 
-void XMLStyleExport::exportStyleAttributes( const Reference< XStyle >& rStyle )
+void XMLStyleExport::exportStyleAttributes( const Reference< XStyle >& /*rStyle*/ )
 {
 }
 
-void XMLStyleExport::exportStyleContent( const Reference< XStyle >& rStyle )
+void XMLStyleExport::exportStyleContent( const Reference< XStyle >& /*rStyle*/ )
 {
 }
 

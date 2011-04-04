@@ -128,8 +128,8 @@ using namespace ::rtl;
 
 /*N*/ SwFmtINetFmt::SwFmtINetFmt()
 /*N*/   : SfxPoolItem( RES_TXTATR_INETFMT ),
-/*N*/   pTxtAttr( 0 ),
 /*N*/   pMacroTbl( 0 ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nINetId( 0 ),
 /*N*/   nVisitedId( 0 )
 /*N*/ {}
@@ -138,8 +138,8 @@ using namespace ::rtl;
 /*N*/   : SfxPoolItem( RES_TXTATR_INETFMT ),
 /*N*/   aURL( rURL ),
 /*N*/   aTargetFrame( rTarget ),
-/*N*/   pTxtAttr( 0 ),
 /*N*/   pMacroTbl( 0 ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nINetId( 0 ),
 /*N*/   nVisitedId( 0 )
 /*N*/ {
@@ -150,12 +150,12 @@ using namespace ::rtl;
 /*N*/ SwFmtINetFmt::SwFmtINetFmt( const SwFmtINetFmt& rAttr )
 /*N*/   : SfxPoolItem( RES_TXTATR_INETFMT ),
 /*N*/   aURL( rAttr.GetValue() ),
-/*N*/   aName( rAttr.aName ),
 /*N*/   aTargetFrame( rAttr.aTargetFrame ),
 /*N*/   aINetFmt( rAttr.aINetFmt ),
 /*N*/   aVisitedFmt( rAttr.aVisitedFmt ),
-/*N*/   pTxtAttr( 0 ),
+/*N*/   aName( rAttr.aName ),
 /*N*/   pMacroTbl( 0 ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nINetId( rAttr.nINetId ),
 /*N*/   nVisitedId( rAttr.nVisitedId )
 /*N*/ {
@@ -377,9 +377,10 @@ using namespace ::rtl;
 /*N*/ SwFmtRuby::SwFmtRuby( const String& rRubyTxt )
 /*N*/   : SfxPoolItem( RES_TXTATR_CJK_RUBY ),
 /*N*/   sRubyTxt( rRubyTxt ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nCharFmtId( 0 ),
-/*N*/   nPosition( 0 ), nAdjustment( 0 ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   nPosition( 0 ),
+/*N*/   nAdjustment( 0 )
 /*N*/ {
 /*N*/ }
 
@@ -387,9 +388,10 @@ using namespace ::rtl;
 /*?*/   : SfxPoolItem( RES_TXTATR_CJK_RUBY ),
 /*?*/   sRubyTxt( rAttr.sRubyTxt ),
 /*?*/   sCharFmtName( rAttr.sCharFmtName ),
+/*?*/   pTxtAttr( 0 ),
 /*?*/   nCharFmtId( rAttr.nCharFmtId),
-/*?*/   nPosition( rAttr.nPosition ), nAdjustment( rAttr.nAdjustment ),
-/*?*/   pTxtAttr( 0 )
+/*?*/   nPosition( rAttr.nPosition ),
+/*?*/   nAdjustment( rAttr.nAdjustment )
 /*?*/ {
 /*?*/ }
 
@@ -466,7 +468,7 @@ bool SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/       break;
 /*N*/       case MID_RUBY_ADJUST:
 /*N*/       {
-/*N*/           sal_Int16 nSet; rVal >>= nSet;
+/*N*/           sal_Int16 nSet(0); rVal >>= nSet;
 /*N*/           if(nSet >= 0 && nSet <= ::com::sun::star::text::RubyAdjust_INDENT_BLOCK)
 /*N*/               nAdjustment = nSet;
 /*N*/           else

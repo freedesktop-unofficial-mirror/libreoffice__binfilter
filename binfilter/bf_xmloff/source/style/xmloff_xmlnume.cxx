@@ -387,15 +387,15 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
                 else
                 {
                     Any aAny;
-                    OUString sTmp;
+                    OUString sInnerTmp;
 
                     const SvXMLUnitConverter& rUnitConv =
                         GetExport().GetMM100UnitConverter();
                     XMLFontFamilyNamePropHdl aFamilyNameHdl;
                     aAny <<= sBulletFontName;
-                    if( aFamilyNameHdl.exportXML( sTmp, aAny, rUnitConv ) )
+                    if( aFamilyNameHdl.exportXML( sInnerTmp, aAny, rUnitConv ) )
                         GetExport().AddAttribute( XML_NAMESPACE_FO,
-                                                  XML_FONT_FAMILY, sTmp );
+                                                  XML_FONT_FAMILY, sInnerTmp );
 
                     if( sBulletFontStyleName.getLength() )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
@@ -404,22 +404,22 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
 
                     XMLFontFamilyPropHdl aFamilyHdl;
                     aAny <<= (sal_Int16)eBulletFontFamily;
-                    if( aFamilyHdl.exportXML( sTmp, aAny, rUnitConv  ) )
+                    if( aFamilyHdl.exportXML( sInnerTmp, aAny, rUnitConv  ) )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
                                                   XML_FONT_FAMILY_GENERIC,
-                                                  sTmp );
+                                                  sInnerTmp );
 
                     XMLFontPitchPropHdl aPitchHdl;
                     aAny <<= (sal_Int16)eBulletFontPitch;
-                    if( aPitchHdl.exportXML( sTmp, aAny, rUnitConv  ) )
+                    if( aPitchHdl.exportXML( sInnerTmp, aAny, rUnitConv  ) )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
-                                                  XML_FONT_PITCH, sTmp );
+                                                  XML_FONT_PITCH, sInnerTmp );
 
                     XMLFontEncodingPropHdl aEncHdl;
                     aAny <<= (sal_Int16)eBulletFontEncoding;
-                    if( aEncHdl.exportXML( sTmp, aAny, rUnitConv  ) )
+                    if( aEncHdl.exportXML( sInnerTmp, aAny, rUnitConv  ) )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
-                                                  XML_FONT_CHARSET, sTmp );
+                                                  XML_FONT_CHARSET, sInnerTmp );
                 }
             }
         }
@@ -515,7 +515,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
 
         if( GetExport().GetAttrList().getLength() > 0 )
         {
-            SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE,
+            SvXMLElementExport aInnerElem( GetExport(), XML_NAMESPACE_STYLE,
                                       XML_PROPERTIES, sal_True, sal_True );
         }
         if( NumberingType::BITMAP == eType && sImageURL.getLength() )

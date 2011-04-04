@@ -392,10 +392,10 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       }
 /*?*/
 /*?*/       SwClientIter aIter( *this );
-/*?*/       SwClient* pLast = aIter.GoStart();
-/*?*/       if( pLast )
+/*?*/       SwClient* pLclLast = aIter.GoStart();
+/*?*/       if( pLclLast )
 /*?*/           do
-/*?*/           {   SwCntntFrm *pFrm = PTR_CAST( SwCntntFrm, pLast );
+/*?*/           {   SwCntntFrm *pFrm = PTR_CAST( SwCntntFrm, pLclLast );
 /*?*/               if ( pFrm )
 /*?*/               {
 /*?*/                   pNode->Add( pFrm );
@@ -403,7 +403,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/                       ((SwTxtFrm*)pFrm)->GetOfst() )
 /*?*/                       ((SwTxtFrm*)pFrm)->SetOfst( 0 );
 /*?*/               }
-/*?*/           } while( 0 != ( pLast = aIter++ ));
+/*?*/           } while( 0 != ( pLclLast = aIter++ ));
 /*?*/
 /*?*/       if ( IsInCache() )
 /*?*/       {
@@ -2138,7 +2138,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 
 /*N*/ long SwTxtNode::GetLeftMarginWithNum( BOOL bTxtLeft ) const
 /*N*/ {
-/*N*/   long nOffset;
+/*N*/   long nLclOffset;
 /*N*/   const SwNodeNum* pNum;
 /*N*/   const SwNumRule* pRule;
 /*N*/   if( (( 0 != ( pNum = GetNum() ) &&
@@ -2148,23 +2148,23 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/           pNum->GetLevel() < NO_NUM )
 /*N*/   {
 /*N*/       const SwNumFmt& rFmt = pRule->Get( GetRealLevel( pNum->GetLevel() ) );
-/*N*/       nOffset = rFmt.GetAbsLSpace();
+/*N*/       nLclOffset = rFmt.GetAbsLSpace();
 /*N*/
 /*N*/       if( !bTxtLeft )
 /*N*/       {
 /*N*/           if( 0 > rFmt.GetFirstLineOffset() &&
-/*N*/               nOffset > -rFmt.GetFirstLineOffset() )
-/*N*/               nOffset += rFmt.GetFirstLineOffset();
+/*N*/               nLclOffset > -rFmt.GetFirstLineOffset() )
+/*N*/               nLclOffset += rFmt.GetFirstLineOffset();
 /*N*/           else
-/*N*/               nOffset = 0;
+/*N*/               nLclOffset = 0;
 /*N*/       }
 /*N*/
 /*N*/       if( pRule->IsAbsSpaces() )
-/*N*/           nOffset -= GetSwAttrSet().GetLRSpace().GetLeft();
+/*N*/           nLclOffset -= GetSwAttrSet().GetLRSpace().GetLeft();
 /*N*/   }
 /*N*/   else
-/*N*/       nOffset = 0;
-/*N*/   return nOffset;
+/*N*/       nLclOffset = 0;
+/*N*/   return nLclOffset;
 /*N*/ }
 
 /*N*/ BOOL SwTxtNode::GetFirstLineOfsWithNum( short& rFLOffset ) const
