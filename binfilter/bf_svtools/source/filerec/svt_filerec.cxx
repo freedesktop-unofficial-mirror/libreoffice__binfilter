@@ -656,12 +656,13 @@ bool SfxMultiRecordReader::ReadHeader_Impl()
         else
             _pStream->Seek( _nContentSize );
         _pContentOfs = new UINT32[_nContentCount];
+        memset(_pContentOfs, 0, _nContentCount*sizeof(UINT32));
         //! darf man jetzt so einr"ucken
         #if defined(OSL_LITENDIAN)
-            _pStream->Read( _pContentOfs, sizeof(UINT32)*_nContentCount );
+        _pStream->Read( _pContentOfs, sizeof(UINT32)*_nContentCount );
         #else
-            for ( USHORT n = 0; n < _nContentCount; ++n )
-                *_pStream >> _pContentOfs[n];
+        for ( USHORT n = 0; n < _nContentCount; ++n )
+            *_pStream >> _pContentOfs[n];
         #endif
         _pStream->Seek( nContentPos );
     }
@@ -673,7 +674,10 @@ bool SfxMultiRecordReader::ReadHeader_Impl()
 //-------------------------------------------------------------------------
 
 SfxMultiRecordReader::SfxMultiRecordReader( SvStream *pStream, UINT16 nTag )
-:   _nContentNo(0)
+    : _pContentOfs(0)
+    , _nContentSize(0)
+    , _nContentCount(0)
+    , _nContentNo(0)
 {
     // Position im Stream merken, um im Fehlerfall zur"uck-seeken zu k"onnen
     _nStartPos = pStream->Tell();
