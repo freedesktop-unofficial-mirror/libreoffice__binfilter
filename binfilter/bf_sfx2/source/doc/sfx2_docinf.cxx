@@ -127,18 +127,9 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       SfxPSCodePageProperty_Impl( CharSet nCharSet ) : SfxPSProperty_Impl( 1, VT_I2 ), nEncoding( nCharSet ) {}
 /*N*/       virtual ~SfxPSCodePageProperty_Impl() {}
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream );
+/*N*/   virtual ULONG   Save( SvStream& rStream ) {return 1;}
 /*N*/   virtual ULONG   Len();
 /*N*/ };
-
-/*N*/ ULONG SfxPSCodePageProperty_Impl::Save( SvStream& rStream )
-/*N*/ {
-/*N*/     sal_uInt32 nCodePage = rtl_getWindowsCodePageFromTextEncoding(nEncoding);
-/*N*/     if (nCodePage == 0)
-/*N*/         nCodePage = 1252;
-/*N*/   rStream << (UINT16)nCodePage;
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 /*N*/ ULONG SfxPSCodePageProperty_Impl::Len()
 /*N*/ {
@@ -171,29 +162,12 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/
 /*N*/     void SetIsUniCode() { bIsUniCode = TRUE; }
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream );
+/*N*/   virtual ULONG   Save( SvStream& rStream ) {return 1;}
 /*N*/   virtual ULONG   Load( SvStream& rStream );
 /*N*/   virtual ULONG   Len();
 /*N*/
 /*N*/   const String&   GetString() { return aString; }
 /*N*/ };
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSStringProperty_Impl::Save( SvStream& rStream )
-/*N*/ {
-/*N*/   // Now we always write property strings with UTF8 encoding, so we
-/*N*/   // can ensure full unicode compatibility. The code page attribute is
-/*N*/   // written with UTF8 set!
-/*N*/   // Force nEncoding set to UTF8!
-/*N*/     ByteString aTemp( aString, RTL_TEXTENCODING_UTF8 );
-/*N*/   nEncoding = RTL_TEXTENCODING_UTF8;
-/*N*/   UINT32 nLen = aTemp.Len();
-/*N*/   rStream << (UINT32)( nLen + 1 );
-/*N*/   rStream.Write( aTemp.GetBuffer(), nLen );
-/*N*/   rStream << '\0';
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -286,17 +260,9 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       , aInt( aIntP )
 /*N*/       {}
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream );
+/*N*/   virtual ULONG   Save( SvStream& rStream ) {return 1;}
 /*N*/   virtual ULONG   Len();
 /*N*/ };
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSUINT32Property_Impl::Save( SvStream& rStream )
-/*N*/ {
-/*N*/   rStream << aInt;
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -320,39 +286,12 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP ) :
 /*N*/       SfxPSProperty_Impl( nIdP, VT_FILETIME ) {};
 /*N*/
-/*N*/   virtual ULONG Save( SvStream& rStream );
+/*N*/   virtual ULONG Save( SvStream& rStream ) {return 1;}
 /*N*/   virtual ULONG Load( SvStream& rStream );
 /*N*/   virtual ULONG Len();
 /*N*/
 /*N*/   const DateTime& GetDateTime() { return aDateTime; }
 /*N*/ };
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSDateTimeProperty_Impl::Save(SvStream &rStream)
-/*N*/ {
-/*N*/   // Nicht Valid ist das gleiche, wie bei MS, nur nicht konvertiert
-/*N*/   if( aDateTime.IsValid() )
-/*N*/       aDateTime.ConvertToUTC();
-/*N*/   BigInt a100nPerSecond(10000000L);
-/*N*/   BigInt a100nPerDay=a100nPerSecond*BigInt(60L*60*24);
-/*N*/   USHORT nYears=aDateTime.GetYear()-1601;
-/*N*/   long nDays=
-/*N*/       nYears*365+nYears/4-nYears/100+nYears/400+
-/*N*/           aDateTime.GetDayOfYear()-1;
-/*N*/   BigInt aTime=
-/*N*/       a100nPerDay*BigInt(nDays)+a100nPerSecond*
-/*N*/           BigInt((long)( aDateTime.GetSec() +
-/*N*/                  60* aDateTime.GetMin() +
-/*N*/                  60L*60* aDateTime.GetHour() ));
-/*N*/
-/*N*/   BigInt aUlongMax(SAL_MAX_UINT32);
-/*N*/   aUlongMax += 1;
-/*N*/
-/*N*/   rStream<<rStream<<static_cast<sal_uInt32>(static_cast<ULONG>(aTime % aUlongMax));
-/*N*/   rStream<<rStream<<static_cast<sal_uInt32>(static_cast<ULONG>(aTime / aUlongMax));
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -408,7 +347,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ {
 /*N*/   SvGlobalName aId;
 /*N*/   SfxPSPropertyArr_Impl aProperties;
-/*N*/   ULONG Save(SvStream &rStream);
+/*N*/   ULONG Save(SvStream &rStream) {return 1;}
 /*N*/ };
 
 //=========================================================================
@@ -423,7 +362,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   void   SetSectionName(const SvGlobalName& aIdP);
 /*N*/   void   AddProperty( SfxPSProperty_Impl* pProp);
 /*N*/
-/*N*/   ULONG Save(SvStream &rStream);
+/*N*/   ULONG Save(SvStream &rStream) {return 1;}
 /*N*/ };
 
 
@@ -457,69 +396,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ }
 
 
-/*N*/ ULONG SfxPS_Impl::Save(SvStream &rStream)
-/*N*/ {
-/*N*/   SvGlobalName aName;
-/*N*/   rStream << (UINT16) 0xfffe // ByteOrder
-/*N*/       << (UINT16) 0          // version
-/*N*/       << (UINT16) 1          // Os MinorVersion
-/*N*/       << (UINT16)            // Os Type
-/*N*/ #if defined(MAC)
-/*N*/       1
-/*N*/ #elif defined(WNT)
-/*N*/       2
-/*N*/ #else
-/*N*/       0
-/*N*/ #endif
-/*N*/       << aName
-/*N*/       << (UINT32)1; // Immer eine Section
-/*N*/   return aSection.Save(rStream);
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSSection_Impl::Save(SvStream &rStream)
-/*N*/ {
-/*N*/
-/*N*/ //Nur eine Section schreiben: ( Use of more than 1 section is discouraged
-/*N*/ //and will not be supported in future windows apis).
-/*N*/
-/*N*/   ULONG nPos = rStream.Tell();
-/*N*/   nPos += 20;
-/*N*/   rStream << aId << (UINT32)nPos; //Offset
-/*N*/
-/*N*/
-/*N*/   //SectionHeader Schreiben
-/*N*/   ULONG nLen=8;
-/*N*/   USHORT n;
-/*N*/   for(n=0;n<aProperties.Count();n++)
-/*N*/       nLen+=(((aProperties[n]->Len() + 3) >> 2) << 2)+12;
-/*N*/   rStream << (UINT32) nLen << (UINT32) aProperties.Count();
-/*N*/
-/*N*/   //PropertyId/Offsetpaare schreiben
-/*N*/
-/*N*/   nLen=8+aProperties.Count()*8;
-/*N*/   for(n=0;n<aProperties.Count();n++)
-/*N*/   {
-/*N*/       rStream << aProperties[n]->GetId() << (UINT32)nLen;
-/*N*/       nLen+=(((aProperties[n]->Len() + 3) >> 2) << 2) + 4;
-/*N*/   }
-/*N*/
-/*N*/   //Inhalte schreiben
-/*N*/   for(n=0;n<aProperties.Count();n++)
-/*N*/   {
-/*N*/       rStream << (UINT32) aProperties[n]->GetType();
-/*N*/       aProperties[n]->Save(rStream);
-/*N*/       nLen=aProperties[n]->Len();
-/*N*/       while(nLen++%4) //Auffuellen auf DWORD Grenze
-/*N*/           rStream << (UINT8) 0;
-/*N*/   }
-/*N*/
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
-
-//========================================================================
-
 /*N*/ SvStream& PaddWithBlanks_Impl(SvStream &rStream, USHORT nCount)
 /*N*/ {
 /*N*/   for ( USHORT n = nCount; n; --n )
@@ -547,7 +423,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       nVersion( nV ), bPasswd( bPass ) { aHeader = String::CreateFromAscii( pHeader ); }
 /*N*/   FileHeader( SvStream& rStream );
 /*N*/
-/*N*/   void    Save( SvStream& rStream ) const;
+/*N*/   void    Save( SvStream& rStream ) const ;
 /*N*/ };
 
 //-------------------------------------------------------------------------
@@ -562,18 +438,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   rStream >> nVersion >> b;
 /*N*/   rStream.SetVersion( nVer );
 /*N*/   bPasswd = (BOOL)b;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ void FileHeader::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   long nVer = rStream.GetVersion();
-/*N*/   rStream.SetVersion( SOFFICE_FILEFORMAT_40 );
-/*N*/     rStream.WriteByteString( aHeader );
-/*N*/   rStream.SetVersion( nVer );
-/*N*/   rStream << nVersion;
-/*N*/   rStream << (BYTE)bPasswd;
 /*N*/ }
 
 //-------------------------------------------------------------------------
