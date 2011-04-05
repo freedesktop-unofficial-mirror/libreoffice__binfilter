@@ -1537,49 +1537,7 @@ DBG_BF_ASSERT(0, "STRIP");
 
 
 
-//------------------------------------------------------------------------
-//
-//                          Laden / Speichern
-//
-
-
-/*N*/ void ScAttrArray::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream, 8 );
-/*N*/
-/*N*/   ScDocumentPool* pDocPool = pDocument->GetPool();
-/*N*/
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/   USHORT nSaveMaxRow = pDocument->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow != MAXROW )
-/*N*/   {
-/*?*/       if ( nSaveCount > 1 && pData[nSaveCount-2].nRow >= nSaveMaxRow )
-/*?*/       {
-/*?*/           pDocument->SetLostData();           // Warnung ausgeben
-/*?*/           do
-/*?*/               --nSaveCount;
-/*?*/           while ( nSaveCount > 1 && pData[nSaveCount-2].nRow >= nSaveMaxRow );
-/*?*/       }
-/*N*/   }
-/*N*/
-/*N*/   rStream << nSaveCount;
-/*N*/
-/*N*/   const SfxPoolItem* pItem;
-/*N*/   for (USHORT i=0; i<nSaveCount; i++)
-/*N*/   {
-/*N*/       rStream << Min( pData[i].nRow, nSaveMaxRow );
-/*N*/
-/*N*/       const ScPatternAttr* pPattern = pData[i].pPattern;
-/*N*/       pDocPool->StoreSurrogate( rStream, pPattern );
-/*N*/
-/*N*/       //  FALSE, weil ATTR_CONDITIONAL (noch) nicht in Vorlagen:
-/*N*/       if (pPattern->GetItemSet().GetItemState(ATTR_CONDITIONAL,FALSE,&pItem) == SFX_ITEM_SET)
-/*N*/           pDocument->SetConditionalUsed( ((const SfxUInt32Item*)pItem)->GetValue() );
-/*N*/
-/*N*/       if (pPattern->GetItemSet().GetItemState(ATTR_VALIDDATA,FALSE,&pItem) == SFX_ITEM_SET)
-/*N*/           pDocument->SetValidationUsed( ((const SfxUInt32Item*)pItem)->GetValue() );
-/*N*/   }
-/*N*/ }
+//                          Laden
 
 
 /*N*/ void ScAttrArray::Load( SvStream& rStream )

@@ -69,18 +69,6 @@ static const sal_Char pStandardName[] = "Standard";
 /*N*/         eSysLnge = Application::GetSettings().GetLanguage();
 /*N*/ }
 
-/*N*/ void ScNumFormatAbbrev::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream.WriteByteString( sFormatstring, rStream.GetStreamCharSet() );
-/*N*/   rStream << (USHORT) eSysLnge << (USHORT) eLnge;
-/*N*/ }
-
-
-
-
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

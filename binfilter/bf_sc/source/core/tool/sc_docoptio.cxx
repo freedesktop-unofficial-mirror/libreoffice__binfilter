@@ -103,39 +103,6 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
 //------------------------------------------------------------------------
 
-/*N*/ void ScDocOptions::Save(SvStream& rStream, BOOL bConfig) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream, 28 );
-/*N*/
-/*N*/   rStream << bIsIgnoreCase;
-/*N*/   rStream << bIsIter;
-/*N*/   rStream << nIterCount;
-/*N*/   rStream << fIterEps;
-/*N*/   rStream << nPrecStandardFormat;
-/*N*/   rStream << nDay;
-/*N*/   rStream << nMonth;
-/*N*/   rStream << nYear;
-/*N*/   rStream << nTabDistance;
-/*N*/   rStream << bCalcAsShown;
-/*N*/   rStream << bMatchWholeCell;
-/*N*/   rStream << bDoAutoSpell;
-/*N*/   rStream << bLookUpColRowNames;
-/*N*/
-/*N*/   if ( bConfig || rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )      // nicht bei 4.0 Export
-/*N*/   {
-/*N*/       if ( !bConfig && 1901 <= nYear2000 && nYear2000 <= 1999 )
-/*N*/       {   // fuer SO5 auf altes Format zweistellig abbilden
-/*N*/           rStream << (USHORT) (nYear2000 - 1901);
-/*N*/       }
-/*N*/       else
-/*N*/       {   // neues Format vierstellig, beliebiges Jahrhundert
-/*N*/           // erzeugt in SO5 vor src513e ein Warning beim Laden
-/*N*/           rStream << (USHORT) 29;     // Dummy, alter SO5 Default
-/*N*/           rStream << nYear2000;       // echter Wert
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ void ScDocOptions::Load(SvStream& rStream)
 /*N*/ {
 /*N*/   ScReadHeader aHdr( rStream );

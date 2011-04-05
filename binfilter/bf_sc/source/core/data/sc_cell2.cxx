@@ -150,24 +150,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/       rString.Erase();
 /*N*/ }
 
-/*N*/ void ScEditCell::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   DBG_ASSERT(pData,"StoreTextObject(NULL)");
-/*N*/   rStream << (BYTE) 0x00;
-/*N*/   if ( rStream.GetVersion() < SOFFICE_FILEFORMAT_50 )
-/*N*/   {   // jedem seinen eigenen Pool
-/*?*/       ScEditEngineDefaulter aEngine( EditEngine::CreatePool(), TRUE );
-/*?*/       // #52396# richtige Metric schreiben
-/*?*/       aEngine.SetRefMapMode( MAP_100TH_MM );
-/*?*/       aEngine.SetText( *pData );
-/*?*/       EditTextObject* pTmp = aEngine.CreateTextObject();
-/*?*/       pTmp->Store( rStream );
-/*?*/       delete pTmp;
-/*N*/   }
-/*N*/   else
-/*N*/       pData->Store( rStream );
-/*N*/ }
-
 /*N*/ void ScEditCell::SetTextObject( const EditTextObject* pObject,
 /*N*/           const SfxItemPool* pFromPool )
 /*N*/ {
@@ -817,11 +799,6 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/   rStream >> aValue;
 /*N*/ }
 
-/*N*/ void ScValueCell::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream << (BYTE) 0x00 << aValue;
-/*N*/ }
-
 /*N*/ ScStringCell::ScStringCell( SvStream& rStream, USHORT nVer ) :
 /*N*/   ScBaseCell( CELLTYPE_STRING )
 /*N*/ {
@@ -833,25 +810,6 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*?*/           rStream.SeekRel( cData & 0x0F );
 /*N*/   }
 /*N*/   rStream.ReadByteString( aString, rStream.GetStreamCharSet() );
-/*N*/ }
-
-/*N*/ void ScStringCell::Save( SvStream& rStream, FontToSubsFontConverter hConv ) const
-/*N*/ {
-/*N*/   rStream << (BYTE) 0x00;
-/*N*/     if ( !hConv )
-/*N*/         rStream.WriteByteString( aString, rStream.GetStreamCharSet() );
-/*N*/     else
-/*N*/     {
-/*N*/         String aTmp( aString );
-/*N*/         sal_Unicode* p = aTmp.GetBufferAccess();
-/*N*/         sal_Unicode const * const pStop = p + aTmp.Len();
-/*N*/         for ( ; p < pStop; ++p )
-/*N*/         {
-/*N*/             *p = ConvertFontToSubsFontChar( hConv, *p );
-/*N*/         }
-/*N*/         aTmp.ReleaseBufferAccess();
-/*N*/         rStream.WriteByteString( aTmp, rStream.GetStreamCharSet() );
-/*N*/     }
 /*N*/ }
 
 /*N*/ void ScStringCell::ConvertFont( FontToSubsFontConverter hConv )
@@ -879,14 +837,6 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*?*/           rStream.SeekRel( cData & 0x0F );
 /*N*/   }
 /*N*/ }
-
-/*N*/ void ScNoteCell::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream << (BYTE) 0x00;
-/*N*/ }
-
-
-
 
 
 }

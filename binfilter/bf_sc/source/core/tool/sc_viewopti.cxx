@@ -299,67 +299,6 @@ using ::rtl::OUString;
 /*N*/   return rStream;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ void ScViewOptions::Save(SvStream& rStream, BOOL bConfig) const
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/
-/*N*/   ScWriteHeader aHdr( rStream, 68 );
-/*N*/
-/*N*/   for ( i=0; i<=VOPT_GRID; i++ )          // kompatibel bleiben -> nur bis VOPT_GRID
-/*N*/       rStream << aOptArr[i];
-/*N*/
-/*N*/   for ( i=0; i<MAX_TYPE; i++ )
-/*N*/       rStream << (BYTE)aModeArr[i];
-/*N*/
-/*N*/   rStream << aGridCol;
-/*N*/   rStream.WriteByteString( aGridColName, rStream.GetStreamCharSet() );
-/*N*/   rStream << aOptArr[VOPT_HELPLINES];
-/*N*/   rStream << aGridOpt;
-/*N*/   rStream << bHideAutoSpell;
-/*N*/   rStream << aOptArr[VOPT_ANCHOR];
-/*N*/   rStream << aOptArr[VOPT_PAGEBREAKS];
-/*N*/   rStream << aOptArr[VOPT_SOLIDHANDLES];
-/*N*/
-/*N*/   if ( bConfig || rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )      // nicht bei 4.0 Export
-/*N*/   {
-/*N*/       rStream << aOptArr[VOPT_CLIPMARKS];
-/*N*/
-/*N*/       //  big handles are not saved in 5.0-documents to avoid warning messages
-/*N*/       //! save to files after 5.0 !!!
-/*N*/
-/*N*/       if ( bConfig )
-/*N*/           rStream << aOptArr[VOPT_BIGHANDLES];
-/*N*/   }
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//========================================================================
-//      ScTpViewItem - Daten fuer die ViewOptions-TabPage
-//========================================================================
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
 //==================================================================
 //  Config Item containing view options
 //==================================================================
