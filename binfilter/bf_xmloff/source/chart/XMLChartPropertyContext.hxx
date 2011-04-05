@@ -44,6 +44,7 @@ public:
                              const UniReference< SvXMLImportPropertyMapper >& rMapper );
     virtual ~XMLChartPropertyContext();
 
+    using SvXMLPropertySetContext::CreateChildContext;
     virtual SvXMLImportContext* CreateChildContext(
         sal_uInt16 nPrefix,
         const ::rtl::OUString& rLocalName,
