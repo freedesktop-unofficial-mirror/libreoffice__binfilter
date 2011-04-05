@@ -143,25 +143,7 @@ void SvInfoObject::Load( SvPersistStream & rStm )
     }
 }
 
-void SvInfoObject::Save( SvPersistStream & rStm )
-{
-    BYTE    nVer = BYTE(INFO_OBJECT_VER_AKT);
-    rStm << nVer;
-    String aStgName = GetStorageName();
-    DBG_ASSERT( aStgName.Len(), "kein Storage-Name" );
-    rStm.WriteByteString( aStgName, gsl_getSystemTextEncoding() );
-    String aStr( GetObjName() );
-    if( aStgName == aStr )
-        aStr = String(); // kleine Optimierung
-    rStm.WriteByteString( aStr, gsl_getSystemTextEncoding() );
-    SvGlobalName aSvClass = SvFactory::GetSvClass( rStm.GetVersion(), GetClassName() );
-    if( rStm.GetVersion() <= SOFFICE_FILEFORMAT_40
-      && aSvClass == *SvOutPlaceObject::ClassFactory() )
-      //old ole-wrapper
-      aSvClass = *SvInPlaceObject::ClassFactory();
-    rStm << aSvClass;
-    rStm << bDeleted;
-}
+void SvInfoObject::Save( SvPersistStream & rStm ) {}
 
 void SvInfoObject::SetObj( SvPersist * pObj )
 {

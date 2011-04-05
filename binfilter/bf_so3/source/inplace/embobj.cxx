@@ -129,14 +129,7 @@ void SvEmbeddedInfoObject::Load( SvPersistStream & rStm )
     }
 }
 
-void SvEmbeddedInfoObject::Save( SvPersistStream & rStm )
-{
-    SvInfoObject::Save( rStm );
-    rStm << (BYTE)INFO_VERSION;
-    BOOL bIsLink = FALSE;
-    rStm << bIsLink;
-    rStm << GetVisArea();
-}
+void SvEmbeddedInfoObject::Save( SvPersistStream & rStm ) {}
 
 /************************************************************************
 |*    SvEmbeddedInfoObject::SetObj()
