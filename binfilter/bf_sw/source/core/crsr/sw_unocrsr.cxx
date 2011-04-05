@@ -192,7 +192,7 @@ namespace binfilter {
 
 /*N*/ SwUnoCrsr* SwDoc::CreateUnoCrsr( const SwPosition& rPos, BOOL bTblCrsr )
 /*N*/ {
-/*N*/   SwUnoCrsr* pNew;
+/*N*/   SwUnoCrsr* pNew = NULL;
 /*N*/   if( bTblCrsr )
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   else

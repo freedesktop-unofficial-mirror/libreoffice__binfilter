@@ -159,7 +159,7 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
     style::GraphicLocation eLocation;
     if( !( rValue >>= eLocation ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( rValue >>= nValue )
             eLocation = (style::GraphicLocation)nValue;
         else
