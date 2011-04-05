@@ -306,35 +306,7 @@ namespace binfilter {
 /*N*/   if (pLineColorMerk !=NULL) delete pLineColorMerk;
 /*N*/ }
 
-/*N*/ void ImpSdrHdcMerk::Save(const OutputDevice& rOut)
-/*N*/ {
-/*N*/   if (pFarbMerk!=NULL)
-/*N*/   {
-/*N*/       delete pFarbMerk;
-/*N*/       pFarbMerk=NULL;
-/*N*/   }
-/*N*/   if (pClipMerk!=NULL)
-/*N*/   {
-/*N*/       delete pClipMerk;
-/*N*/       pClipMerk=NULL;
-/*N*/   }
-/*N*/   if (pLineColorMerk !=NULL)
-/*N*/   {
-/*N*/       delete pLineColorMerk ;
-/*N*/       pLineColorMerk =NULL;
-/*N*/   }
-/*N*/   if ((nMode & SDRHDC_SAVECLIPPING) ==SDRHDC_SAVECLIPPING)
-/*N*/       pClipMerk=new ImpClipMerk(rOut);
-/*N*/
-/*N*/   USHORT nCol=nMode & SDRHDC_SAVEPENANDBRUSHANDFONT;
-/*N*/
-/*N*/   if (nCol==SDRHDC_SAVEPEN)
-/*N*/       pLineColorMerk=new Color( rOut.GetLineColor() );
-/*N*/   else if (nCol==SDRHDC_SAVEPENANDBRUSHANDFONT)
-/*N*/       pFarbMerk=new ImpColorMerk(rOut);
-/*N*/   else if (nCol!=0)
-/*N*/       pFarbMerk=new ImpColorMerk(rOut,nCol);
-/*N*/ }
+/*N*/ void ImpSdrHdcMerk::Save(const OutputDevice& rOut) {}
 
 /*N*/ void ImpSdrHdcMerk::Restore(OutputDevice& rOut, USHORT nMask) const
 /*N*/ {

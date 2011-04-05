@@ -87,14 +87,7 @@ namespace binfilter {
 /*N*/   eMeasureFieldKind=(SdrMeasureFieldKind)nFieldKind;
 /*N*/ }
 
-/*N*/ void SdrMeasureField::Save(SvPersistStream& rOut)
-/*N*/ {
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrMeasureField");
-/*N*/ #endif
-/*N*/   rOut<<(UINT16)eMeasureFieldKind;
-/*N*/ }
+/*N*/ void SdrMeasureField::Save(SvPersistStream& rOut) {}
 
 /*?*/ void SdrMeasureField::TakeRepresentation(const SdrMeasureObj& rObj, XubString& rStr) const
 /*?*/ {

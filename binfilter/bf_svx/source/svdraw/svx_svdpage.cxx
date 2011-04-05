@@ -811,24 +811,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SdrObjList::Save(SvStream& rOut) const
-/*N*/ {
-/*N*/   bool bNotPersist=pPage!=NULL && pPage->IsObjectsNotPersistent();
-/*N*/   bool bNoOLE=pModel!=NULL && pModel->IsStreamingSdrModel();
-/*N*/   if (!bNotPersist) {
-/*N*/       SdrObjListIter aIter(*this,IM_FLAT);
-/*N*/       while (aIter.IsMore()) {
-/*N*/           SdrObject* pObj=aIter.Next();
-/*N*/           bool bThisObjNot=pObj->IsNotPersistent();
-/*N*/           if (!bThisObjNot && bNoOLE && pObj->ISA(SdrOle2Obj)) {
-/*N*/               bThisObjNot=TRUE;
-/*N*/           }
-/*N*/           if (!bThisObjNot) rOut<<*pObj;
-/*N*/           if (pModel!=NULL) pModel->IncProgress();
-/*N*/       }
-/*N*/   }
-/*N*/   SdrIOHeader(rOut,STREAM_WRITE,SdrIOEndeID); // Endemarke
-/*N*/ }
+/*N*/ void SdrObjList::Save(SvStream& rOut) const {}
 
 /*N*/ void SdrObjList::Load(SvStream& rIn, SdrPage& rPage)
 /*N*/ {

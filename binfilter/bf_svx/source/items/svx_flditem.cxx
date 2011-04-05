@@ -96,9 +96,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxFieldData::Save( SvPersistStream & /*rStm*/ )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxFieldData::Save( SvPersistStream & /*rStm*/ ) {}
 
 
 /*?*/ MetaAction* SvxFieldData::createBeginComment() const
@@ -264,12 +262,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxDateField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   rStm << nFixDate;
-/*N*/   rStm << (USHORT)eType;
-/*N*/   rStm << (USHORT)eFormat;
-/*N*/ }
+/*N*/ void SvxDateField::Save( SvPersistStream & rStm ) {}
 
 // -----------------------------------------------------------------------
 
@@ -364,29 +357,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxURLField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   // Relatives Speichern der URL
-/*N*/   String aTmpURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL );
-/*N*/
-/*N*/   rStm << (USHORT)eFormat;
-/*N*/
-/*N*/   // UNICODE: rStm << aTmpURL;
-/*N*/   rStm.WriteByteString(aTmpURL);
-/*N*/
-/*N*/   // UNICODE: rStm << aRepresentation;
-/*N*/   rStm.WriteByteString(aRepresentation);
-/*N*/
-/*N*/   rStm << FRAME_MARKER;
-/*N*/
-/*N*/   // UNICODE: rStm << aTargetFrame;
-/*N*/   rStm.WriteByteString(aTargetFrame);
-/*N*/
-/*N*/   rStm << CHARSET_MARKER;
-/*N*/
-/*N*/   // #90477# rStm << (USHORT)GetStoreCharSet(gsl_getSystemTextEncoding(), rStm.GetVersion());
-/*N*/   rStm << (USHORT)GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rStm.GetVersion());
-/*N*/ }
+/*N*/ void SvxURLField::Save( SvPersistStream & rStm ) {}
 
 
 // =================================================================
@@ -409,9 +380,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SvxPageField::Save( SvPersistStream & /*rStm*/ )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxPageField::Save( SvPersistStream & /*rStm*/ ) {}
 
 
 
@@ -431,9 +400,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SvxPagesField::Save( SvPersistStream & /*rStm*/ )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxPagesField::Save( SvPersistStream & /*rStm*/ ) {}
 
 /*N*/ SV_IMPL_PERSIST1( SvxTimeField, SvxFieldData );
 
@@ -451,9 +418,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SvxTimeField::Save( SvPersistStream & /*rStm*/ )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxTimeField::Save( SvPersistStream & /*rStm*/ ) {}
 
 
 /*N*/ SV_IMPL_PERSIST1( SvxFileField, SvxFieldData );
@@ -472,9 +437,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SvxFileField::Save( SvPersistStream & /*rStm*/ )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxFileField::Save( SvPersistStream & /*rStm*/ ) {}
 
 /*N*/ SV_IMPL_PERSIST1( SvxTableField, SvxFieldData );
 
@@ -492,9 +455,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SvxTableField::Save( SvPersistStream & /*rStm*/ )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxTableField::Save( SvPersistStream & /*rStm*/ ) {}
 
 //----------------------------------------------------------------------------
 //      SvxExtTimeField
@@ -556,12 +517,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxExtTimeField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   rStm << nFixTime;
-/*N*/   rStm << (USHORT) eType;
-/*N*/   rStm << (USHORT) eFormat;
-/*N*/ }
+/*N*/ void SvxExtTimeField::Save( SvPersistStream & rStm ) {}
 
 //----------------------------------------------------------------------------
 
@@ -626,14 +582,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxExtFileField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   // UNICODE: rStm << aFile;
-/*N*/   rStm.WriteByteString(aFile);
-/*N*/
-/*N*/   rStm << (USHORT) eType;
-/*N*/   rStm << (USHORT) eFormat;
-/*N*/ }
+/*N*/ void SvxExtFileField::Save( SvPersistStream & rStm ) {}
 
 //----------------------------------------------------------------------------
 
@@ -709,20 +658,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxAuthorField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   // UNICODE: rStm << aName;
-/*N*/   rStm.WriteByteString(aName);
-/*N*/
-/*N*/   // UNICODE: rStm << aFirstName;
-/*N*/   rStm.WriteByteString(aFirstName);
-/*N*/
-/*N*/   // UNICODE: rStm << aShortName;
-/*N*/   rStm.WriteByteString(aShortName);
-/*N*/
-/*N*/   rStm << (USHORT) eType;
-/*N*/   rStm << (USHORT) eFormat;
-/*N*/ }
+/*N*/ void SvxAuthorField::Save( SvPersistStream & rStm ) {}
 
 //----------------------------------------------------------------------------
 
