@@ -127,7 +127,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       SfxPSCodePageProperty_Impl( CharSet nCharSet ) : SfxPSProperty_Impl( 1, VT_I2 ), nEncoding( nCharSet ) {}
 /*N*/       virtual ~SfxPSCodePageProperty_Impl() {}
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream ) {return 1;}
+/*N*/   virtual ULONG   Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG   Len();
 /*N*/ };
 
@@ -162,7 +162,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/
 /*N*/     void SetIsUniCode() { bIsUniCode = TRUE; }
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream ) {return 1;}
+/*N*/   virtual ULONG   Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG   Load( SvStream& rStream );
 /*N*/   virtual ULONG   Len();
 /*N*/
@@ -260,7 +260,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       , aInt( aIntP )
 /*N*/       {}
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream ) {return 1;}
+/*N*/   virtual ULONG   Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG   Len();
 /*N*/ };
 
@@ -286,7 +286,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP ) :
 /*N*/       SfxPSProperty_Impl( nIdP, VT_FILETIME ) {};
 /*N*/
-/*N*/   virtual ULONG Save( SvStream& rStream ) {return 1;}
+/*N*/   virtual ULONG Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG Load( SvStream& rStream );
 /*N*/   virtual ULONG Len();
 /*N*/
@@ -347,7 +347,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ {
 /*N*/   SvGlobalName aId;
 /*N*/   SfxPSPropertyArr_Impl aProperties;
-/*N*/   ULONG Save(SvStream &rStream) {return 1;}
+/*N*/   ULONG Save(SvStream &) {return 1;}
 /*N*/ };
 
 //=========================================================================
@@ -362,7 +362,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   void   SetSectionName(const SvGlobalName& aIdP);
 /*N*/   void   AddProperty( SfxPSProperty_Impl* pProp);
 /*N*/
-/*N*/   ULONG Save(SvStream &rStream) {return 1;}
+/*N*/   ULONG Save(SvStream &) {return 1;}
 /*N*/ };
 
 

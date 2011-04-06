@@ -262,7 +262,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxDateField::Save( SvPersistStream & rStm ) {}
+/*N*/ void SvxDateField::Save( SvPersistStream & ) {}
 
 // -----------------------------------------------------------------------
 
@@ -357,7 +357,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxURLField::Save( SvPersistStream & rStm ) {}
+/*N*/ void SvxURLField::Save( SvPersistStream & ) {}
 
 
 // =================================================================
@@ -517,7 +517,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxExtTimeField::Save( SvPersistStream & rStm ) {}
+/*N*/ void SvxExtTimeField::Save( SvPersistStream & ) {}
 
 //----------------------------------------------------------------------------
 
@@ -582,7 +582,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxExtFileField::Save( SvPersistStream & rStm ) {}
+/*N*/ void SvxExtFileField::Save( SvPersistStream & ) {}
 
 //----------------------------------------------------------------------------
 
@@ -658,7 +658,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxAuthorField::Save( SvPersistStream & rStm ) {}
+/*N*/ void SvxAuthorField::Save( SvPersistStream & ) {}
 
 //----------------------------------------------------------------------------
 

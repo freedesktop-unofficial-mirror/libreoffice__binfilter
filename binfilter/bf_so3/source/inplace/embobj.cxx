@@ -129,7 +129,7 @@ void SvEmbeddedInfoObject::Load( SvPersistStream & rStm )
     }
 }
 
-void SvEmbeddedInfoObject::Save( SvPersistStream & rStm ) {}
+void SvEmbeddedInfoObject::Save( SvPersistStream & ) {}
 
 /************************************************************************
 |*    SvEmbeddedInfoObject::SetObj()

@@ -146,7 +146,7 @@ public:
     void            SetValue( const double& rValue );
     double          GetValue() const;
 
-    void            Save( SvStream& rStream ) const {}
+    void            Save( SvStream& ) const {}
 };
 
 
@@ -173,7 +173,7 @@ public:
     void            SetString( const String& rString );
     void            GetString( String& rString ) const;
 
-    void            Save( SvStream& rStream, FontToSubsFontConverter hConv = 0 ) const {}
+    void            Save( SvStream& , FontToSubsFontConverter = 0 ) const {}
                     // convert symbol font after loading binary format
     void            ConvertFont( FontToSubsFontConverter hConv );
 };
@@ -213,7 +213,7 @@ public:
 
     const EditTextObject* GetData() const   { return pData; }
 
-    void            Save( SvStream& rStream ) const {}
+    void            Save( SvStream& ) const {}
 };
 
 enum ScMatrixMode {
@@ -285,7 +285,7 @@ public:
     void            GetEnglishFormula( String& rFormula, BOOL bCompileXML = FALSE ) const;
     void            GetEnglishFormula( ::rtl::OUStringBuffer& rBuffer, BOOL bCompileXML = FALSE ) const;
 
-    void            Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const {}
+    void            Save( SvStream&, ScMultipleWriteHeader& ) const {}
 
     void            SetDirty();
     inline void     SetDirtyVar() { bDirty = TRUE; }
@@ -396,7 +396,7 @@ public:
                     ScNoteCell( SvStream& rStream, USHORT nVer );
     ScBaseCell*     Clone() const;
 
-    void            Save( SvStream& rStream ) const {}
+    void            Save( SvStream& ) const {}
 };
 
 

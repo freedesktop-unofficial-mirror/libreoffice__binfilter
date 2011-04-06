@@ -182,7 +182,7 @@ public:
      void    SetRotateMode( const SvxRotateModeItem& rRotateMode )   { aRotateMode.SetValue( rRotateMode.GetValue() ); }
 
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions, USHORT nVer );
-    BOOL                        Save( SvStream& rStream ) {return false;}
+    BOOL                        Save( SvStream& ) {return false;}
 
 #ifdef READ_OLDVERS
     BOOL                        LoadOld( SvStream& rStream, const ScAfVersions& rVersions );
@@ -237,7 +237,7 @@ public:
     const SfxPoolItem*          GetItem( USHORT nIndex, USHORT nWhich ) const;
     void                        PutItem( USHORT nIndex, const SfxPoolItem& rItem );
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions );
-    BOOL                        Save( SvStream& rStream ) {return false;}
+    BOOL                        Save( SvStream& ) {return false;}
 
 #ifdef READ_OLDVERS
     BOOL                        LoadOld( SvStream& rStream, const ScAfVersions& rVersions );

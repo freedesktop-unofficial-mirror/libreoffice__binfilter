@@ -306,7 +306,7 @@ namespace binfilter {
 /*N*/   if (pLineColorMerk !=NULL) delete pLineColorMerk;
 /*N*/ }
 
-/*N*/ void ImpSdrHdcMerk::Save(const OutputDevice& rOut) {}
+/*N*/ void ImpSdrHdcMerk::Save(const OutputDevice&) {}
 
 /*N*/ void ImpSdrHdcMerk::Restore(OutputDevice& rOut, USHORT nMask) const
 /*N*/ {

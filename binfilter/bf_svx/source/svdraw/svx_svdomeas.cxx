@@ -87,7 +87,7 @@ namespace binfilter {
 /*N*/   eMeasureFieldKind=(SdrMeasureFieldKind)nFieldKind;
 /*N*/ }
 
-/*N*/ void SdrMeasureField::Save(SvPersistStream& rOut) {}
+/*N*/ void SdrMeasureField::Save(SvPersistStream&) {}
 
 /*?*/ void SdrMeasureField::TakeRepresentation(const SdrMeasureObj& rObj, XubString& rStr) const
 /*?*/ {

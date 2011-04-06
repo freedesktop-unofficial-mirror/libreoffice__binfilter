@@ -88,7 +88,7 @@ public:
     void        ResetDocOptions();
     inline void     CopyTo(ScDocOptions& rOpt);
     void        Load(SvStream& rStream);
-    void        Save(SvStream& rStream, BOOL bConfig = FALSE) const {}
+    void        Save(SvStream&, BOOL = FALSE) const {}
 
     inline const ScDocOptions&  operator=( const ScDocOptions& rOpt );
     inline int                  operator==( const ScDocOptions& rOpt ) const;

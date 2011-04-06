@@ -811,7 +811,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SdrObjList::Save(SvStream& rOut) const {}
+/*N*/ void SdrObjList::Save(SvStream&) const {}
 
 /*N*/ void SdrObjList::Load(SvStream& rIn, SdrPage& rPage)
 /*N*/ {

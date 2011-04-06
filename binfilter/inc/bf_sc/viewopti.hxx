@@ -129,7 +129,7 @@ public:
 
     friend SvStream&        operator>> ( SvStream& rStream, ScViewOptions& rOpt );
 
-    void                    Save(SvStream& rStream, BOOL bConfig = FALSE) const {}
+    void                    Save(SvStream&, BOOL = FALSE) const {}
 
 private:
     BOOL            aOptArr     [MAX_OPT];

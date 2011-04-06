@@ -1986,8 +1986,8 @@ void SwBorderAttrs::_GetBottomLine( const SwFrm *pFrm )
 |*
 |*************************************************************************/
 
-/*N*/ SwBorderAttrAccess::SwBorderAttrAccess( SwCache &rCache, const SwFrm *pFrm ) :
-/*N*/   SwCacheAccess( rCache, (pFrm->IsCntntFrm() ?
+/*N*/ SwBorderAttrAccess::SwBorderAttrAccess( SwCache &rInCache, const SwFrm *pFrm ) :
+/*N*/   SwCacheAccess( rInCache, (pFrm->IsCntntFrm() ?
 /*N*/                               (void*)((SwCntntFrm*)pFrm)->GetNode() :
 /*N*/                               (void*)((SwLayoutFrm*)pFrm)->GetFmt()),
 /*N*/                          (BOOL)(pFrm->IsCntntFrm() ?

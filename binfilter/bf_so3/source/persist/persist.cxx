@@ -143,7 +143,7 @@ void SvInfoObject::Load( SvPersistStream & rStm )
     }
 }
 
-void SvInfoObject::Save( SvPersistStream & rStm ) {}
+void SvInfoObject::Save( SvPersistStream & ) {}
 
 void SvInfoObject::SetObj( SvPersist * pObj )
 {

@@ -65,7 +65,6 @@ using namespace ::com::sun::star::datatransfer;
 
 namespace binfilter {
 
-static UINT32 nUniqueId = 1;
 #ifdef WNT
 static BOOL bOleInited = FALSE;
 inline void InitOle()

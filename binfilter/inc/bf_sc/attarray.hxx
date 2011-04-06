@@ -152,7 +152,7 @@ public:
 
     void    DeleteHardAttr( USHORT nStartRow, USHORT nEndRow );
 
-    void    Save( SvStream& rStream ) const {}
+    void    Save( SvStream& ) const {}
     void    Load( SvStream& rStream );
     void    ConvertFontsAfterLoad();     // old binary file format
 };
