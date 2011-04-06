@@ -57,6 +57,8 @@ public:
 
     virtual ~XMLTextShapePropertySetContext_Impl();
 
+    using SvXMLPropertySetContext::CreateChildContext;
+
     virtual SvXMLImportContext *CreateChildContext( USHORT nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList >& xAttrList,
