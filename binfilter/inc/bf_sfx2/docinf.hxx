@@ -71,7 +71,7 @@ public:
     const String&   GetWord() const { return aWord; }
 
     BOOL            Load( SvStream& rStrm );
-    BOOL            Save( SvStream& rStrm ) const {return false;}
+    BOOL            Save( SvStream& ) const {return false;}
 };
 
 const BYTE MAXDOCUSERKEYS  = 4;

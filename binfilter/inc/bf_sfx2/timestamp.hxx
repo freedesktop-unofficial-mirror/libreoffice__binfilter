@@ -79,7 +79,7 @@ class TimeStamp
         BOOL                IsValid (                           ) const ;
         void                SetInvalid();
         BOOL                Load    ( SvStream& rStream         )       ;
-        BOOL                Save    ( SvStream& rStream         ) const {return false;}
+        BOOL                Save    ( SvStream& ) const {return false;}
         void                SetName ( const String& rName       )       ;
         void                SetTime ( const DateTime& rDateTime )       ;
         const String&       GetName (                           ) const ;
