@@ -44,8 +44,12 @@
 namespace binfilter {
 
 SwWriteTableCol::SwWriteTableCol( USHORT nPosition )
-    : nPos(nPosition), bLeftBorder(TRUE), bRightBorder(TRUE),
-      nWidthOpt( 0 ), bRelWidthOpt( FALSE ), bOutWidth( TRUE )
+    : nPos(nPosition)
+    , nWidthOpt( 0 )
+    , bRelWidthOpt( FALSE )
+    , bOutWidth( TRUE )
+    , bLeftBorder(TRUE)
+    , bRightBorder(TRUE)
 {
 }
 
