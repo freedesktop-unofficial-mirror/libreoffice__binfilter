@@ -219,7 +219,7 @@ void XMLTextExportPropertySetMapper::ContextFontFilter(
     if( pFontStyleNameState && (pFontStyleNameState->maValue >>= sTmp ) )
         sStyleName = sTmp;
 
-    sal_Int16 nTmp;
+    sal_Int16 nTmp(0);
     if( pFontFamilyState && (pFontFamilyState->maValue >>= nTmp ) )
         nFamily = nTmp;
     if( pFontPitchState && (pFontPitchState->maValue >>= nTmp ) )
