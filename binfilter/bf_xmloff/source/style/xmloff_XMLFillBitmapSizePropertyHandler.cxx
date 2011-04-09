@@ -78,7 +78,7 @@ sal_Bool XMLFillBitmapSizePropertyHandler::exportXML(
 {
     OUStringBuffer aOut;
 
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if( rValue >>= nValue )
     {
         if( nValue < 0 )

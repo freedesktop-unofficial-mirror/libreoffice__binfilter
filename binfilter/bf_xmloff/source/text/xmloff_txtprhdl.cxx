@@ -937,7 +937,7 @@ sal_Bool XMLTextEmphasizePropHdl_Impl::exportXML(
 {
     OUStringBuffer aOut( 15 );
     sal_Bool bRet = sal_True;
-    sal_Int16 nType;
+    sal_Int16 nType(0);
     if( rValue >>= nType )
     {
         sal_Bool bBelow = sal_False;
@@ -1052,7 +1052,7 @@ sal_Bool XMLTextRelWidthHeightPropHdl_Impl::exportXML(
         const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     if( (rValue >>= nValue) && nValue > 0 )
     {
         OUStringBuffer aOut;
@@ -1169,7 +1169,7 @@ sal_Bool XMLTextRotationAnglePropHdl_Impl::exportXML(
         const Any& rValue,
         const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Int16 nAngle;
+    sal_Int16 nAngle(0);
     sal_Bool bRet = ( rValue >>= nAngle );
     if( bRet )
     {

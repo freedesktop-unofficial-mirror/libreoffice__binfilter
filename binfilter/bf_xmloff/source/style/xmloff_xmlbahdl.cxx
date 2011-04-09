@@ -258,7 +258,7 @@ sal_Bool XMLBoolPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, c
 {
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {
@@ -296,7 +296,7 @@ sal_Bool XMLNBoolPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, 
 {
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {
@@ -410,7 +410,7 @@ sal_Bool XMLColorPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, 
 {
     sal_Bool bRet = sal_False;
     Color aColor;
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
 
     if( rValue >>= nColor )
     {
@@ -478,7 +478,7 @@ sal_Bool XMLDoublePropHdl::exportXML( OUString& rStrExpValue, const Any& rValue,
 {
     sal_Bool bRet = sal_False;
 
-    double fValue;
+    double fValue = 0.0;
 
     if( rValue >>= fValue )
     {
@@ -526,7 +526,7 @@ sal_Bool XMLColorTransparentPropHdl::importXML( const OUString& rStrImpValue, An
 sal_Bool XMLColorTransparentPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
 
     if( rStrExpValue == sTransparent )
         bRet = sal_False;
@@ -610,7 +610,7 @@ sal_Bool XMLColorAutoPropHdl::importXML( const OUString& rStrImpValue, Any& rVal
 
     // This is a multi property: the value might be set to AUTO_COLOR
     // already by the XMLIsAutoColorPropHdl!
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
     if( !(rValue >>= nColor) || -1 != nColor )
     {
         Color aColor;
@@ -626,7 +626,7 @@ sal_Bool XMLColorAutoPropHdl::exportXML( OUString& rStrExpValue, const Any& rVal
 {
     sal_Bool bRet = sal_False;
 
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
     if( (rValue >>= nColor) && -1 != nColor )
     {
         Color aColor( nColor );
@@ -669,7 +669,7 @@ sal_Bool XMLIsAutoColorPropHdl::importXML( const OUString& rStrImpValue, Any& rV
 sal_Bool XMLIsAutoColorPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
 
     if( (rValue >>= nColor) && -1 == nColor )
     {

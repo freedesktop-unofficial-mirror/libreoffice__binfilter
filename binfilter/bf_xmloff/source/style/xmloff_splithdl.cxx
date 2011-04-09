@@ -60,7 +60,7 @@ sal_Bool XMLFmtSplitPropHdl::importXML( const OUString& rStrImpValue, Any& rValu
 sal_Bool XMLFmtSplitPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {

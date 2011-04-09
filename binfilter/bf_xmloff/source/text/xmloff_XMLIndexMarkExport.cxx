@@ -224,7 +224,7 @@ void lcl_ExportPropertyBool( SvXMLExport& rExport,
 {
     rAny = rPropSet->getPropertyValue( sProperty );
 
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
     if( rAny >>= bValue )
     {
         if( bValue )

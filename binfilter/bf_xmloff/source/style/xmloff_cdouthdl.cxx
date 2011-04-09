@@ -76,7 +76,7 @@ sal_Bool XMLCrossedOutPropHdl::importXML( const OUString& rStrImpValue, uno::Any
 sal_Bool XMLCrossedOutPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )

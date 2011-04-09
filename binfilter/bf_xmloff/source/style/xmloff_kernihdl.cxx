@@ -69,7 +69,7 @@ sal_Bool XMLKerningPropHdl::importXML( const OUString& rStrImpValue, Any& rValue
 sal_Bool XMLKerningPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
 
     if( rValue >>= nValue )
     {

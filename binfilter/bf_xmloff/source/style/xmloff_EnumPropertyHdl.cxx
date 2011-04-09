@@ -96,7 +96,7 @@ sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValu
 
 sal_Bool XMLEnumPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if(!(rValue >>= nValue ))
         if(!::cppu::enum2int(nValue, rValue) )
             return sal_False;

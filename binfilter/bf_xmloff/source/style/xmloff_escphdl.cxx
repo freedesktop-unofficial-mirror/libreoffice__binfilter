@@ -89,7 +89,7 @@ sal_Bool XMLEscapementPropHdl::importXML( const OUString& rStrImpValue, uno::Any
 
 sal_Bool XMLEscapementPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )
@@ -154,7 +154,7 @@ sal_Bool XMLEscapementHeightPropHdl::exportXML( OUString& rStrExpValue, const un
 {
     OUStringBuffer aOut( rStrExpValue );
 
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if( rValue >>= nValue )
     {
         if( rStrExpValue.getLength() )

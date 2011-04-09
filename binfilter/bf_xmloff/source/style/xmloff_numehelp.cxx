@@ -290,7 +290,7 @@ sal_Int16 XMLNumberFormatAttributesExportHelper::GetCellType(const sal_Int32 nNu
                 uno::Any aIsStandardFormat = xNumberPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT)));
                 aIsStandardFormat >>= bIsStandard;
                 uno::Any aNumberType = xNumberPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE)));
-                sal_Int16 nNumberType;
+                sal_Int16 nNumberType(0);
                 if ( aNumberType >>= nNumberType )
                 {
                     return nNumberType;
@@ -375,7 +375,7 @@ sal_Int16 XMLNumberFormatAttributesExportHelper::GetCellType(const sal_Int32 nNu
             uno::Any aIsStandardFormat = xNumberPropertySet->getPropertyValue(sStandardFormat);
             aIsStandardFormat >>= bIsStandard;
             uno::Any aNumberType = xNumberPropertySet->getPropertyValue(sType);
-            sal_Int16 nNumberType;
+            sal_Int16 nNumberType(0);
             if ( aNumberType >>= nNumberType )
             {
                 return nNumberType;

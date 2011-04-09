@@ -89,7 +89,7 @@ sal_Bool XMLBitmapRepeatOffsetPropertyHandler::exportXML(
 {
     OUStringBuffer aOut;
 
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if( rValue >>= nValue )
     {
         SvXMLUnitConverter::convertPercent( aOut, nValue );

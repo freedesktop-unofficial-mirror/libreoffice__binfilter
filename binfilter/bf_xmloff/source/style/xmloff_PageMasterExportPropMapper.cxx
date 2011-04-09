@@ -67,7 +67,7 @@ inline void lcl_RemoveState( XMLPropertyState* pState )
 
 void lcl_RemoveStateIfZero16( XMLPropertyState* pState )
 {
-    sal_Int16   nValue;
+    sal_Int16   nValue(0);
     if( (pState->maValue >>= nValue) && !nValue )
         lcl_RemoveState( pState );
 }

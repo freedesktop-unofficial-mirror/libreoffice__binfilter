@@ -76,7 +76,7 @@ sal_Bool XMLCaseMapPropHdl::importXML( const OUString& rStrImpValue, uno::Any& r
 sal_Bool XMLCaseMapPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_uInt16 nValue;
+    sal_uInt16 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )
@@ -118,7 +118,7 @@ sal_Bool XMLCaseMapVariantHdl::importXML( const OUString& rStrImpValue, uno::Any
 
 sal_Bool XMLCaseMapVariantHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_uInt16 nValue;
+    sal_uInt16 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )

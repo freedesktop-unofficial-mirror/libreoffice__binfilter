@@ -137,7 +137,7 @@ sal_Bool XMLFontWeightPropHdl::exportXML( OUString& rStrExpValue, const Any& rVa
     float fValue = float();
     if( !( rValue >>= fValue ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( rValue >>= nValue )
         {
             fValue = (float)nValue;

@@ -75,7 +75,7 @@ sal_Bool XMLConstantsPropertyHandler::exportXML(
 
     sal_Bool bRet = false;
 
-    sal_Int32 nEnum;
+    sal_Int32 nEnum(0);
 
     if( rValue.hasValue() && (rValue.getValueTypeClass() == TypeClass_ENUM))
     {

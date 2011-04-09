@@ -65,7 +65,7 @@ sal_Bool XMLOpaquePropHdl::importXML( const OUString& rStrImpValue, Any& rValue,
 sal_Bool XMLOpaquePropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {

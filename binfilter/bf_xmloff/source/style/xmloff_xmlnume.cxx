@@ -160,7 +160,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
         }
         else if( rProp.Name.equalsAsciiL( XML_UNO_NAME_NRULE_ADJUST, sizeof(XML_UNO_NAME_NRULE_ADJUST)-1 ) )
         {
-            sal_Int16 nValue;
+            sal_Int16 nValue(0);
             rProp.Value >>= nValue;
             eAdjust = nValue;
         }
@@ -226,7 +226,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
         }
         else if( rProp.Name.equalsAsciiL( XML_UNO_NAME_NRULE_VERT_ORIENT, sizeof(XML_UNO_NAME_NRULE_VERT_ORIENT)-1 ) )
         {
-            sal_Int16 nValue;
+            sal_Int16 nValue(0);
             rProp.Value >>= nValue;
             eImageVertOrient = nValue;
         }

@@ -748,7 +748,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pHeightMinAbsState )
     {
-        sal_Int16 nRel;
+        sal_Int16 nRel(0);
         if( (SizeType::MIN != nSizeType) ||
             ( pHeightMinRelState &&
               ( !(pHeightMinRelState->maValue >>= nRel) || nRel > 0 ) ) )

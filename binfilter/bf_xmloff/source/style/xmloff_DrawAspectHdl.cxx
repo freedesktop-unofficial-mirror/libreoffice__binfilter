@@ -83,7 +83,7 @@ sal_Bool DrawAspectHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValu
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;
 
-    sal_Int32 nAspect;
+    sal_Int32 nAspect(0);
     if( rValue >>= nAspect )
     {
         if( (nAspect & 1) != 0 )

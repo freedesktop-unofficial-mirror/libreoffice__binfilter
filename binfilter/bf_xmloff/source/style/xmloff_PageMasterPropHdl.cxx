@@ -132,7 +132,7 @@ sal_Bool XMLPMPropHdl_NumFormat::importXML(
         Any& rValue,
         const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Int16 nSync;
+    sal_Int16 nSync(0);
     sal_Int16 nNumType = NumberingType::NUMBER_NONE;
     rUnitConverter.convertNumFormat( nNumType, rStrImpValue, OUString(),
                                      sal_True );
@@ -166,7 +166,7 @@ sal_Bool XMLPMPropHdl_NumFormat::exportXML(
         const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool    bRet = sal_False;
-    sal_Int16   nNumType;
+    sal_Int16   nNumType(0);
 
     if( rValue >>= nNumType )
     {
@@ -222,7 +222,7 @@ sal_Bool XMLPMPropHdl_NumLetterSync::exportXML(
         const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool    bRet = sal_False;
-    sal_Int16   nNumType;
+    sal_Int16   nNumType(0);
 
     if( rValue >>= nNumType )
     {
@@ -273,7 +273,7 @@ sal_Bool XMLPMPropHdl_PaperTrayNumber::exportXML(
         const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
-    sal_Int32   nPaperTray;
+    sal_Int32   nPaperTray(0);
 
     if( rValue >>= nPaperTray )
     {

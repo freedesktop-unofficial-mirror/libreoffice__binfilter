@@ -1440,7 +1440,7 @@ SvXMLImportContext *XMLTextImportHelper::CreateTextChildContext(
             TextContentAnchorType eAnchorType =
                 XML_TEXT_TYPE_TEXTBOX == eType ? TextContentAnchorType_AT_FRAME
                                                : TextContentAnchorType_AT_PAGE;
-            sal_uInt16 nType;
+            sal_uInt16 nType(0);
             switch( nToken )
             {
             case XML_TOK_TEXT_APPLET_PAGE:

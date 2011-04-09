@@ -85,7 +85,7 @@ sal_Bool XMLFmtBreakBeforePropHdl::exportXML( OUString& rStrExpValue, const uno:
 
     if( !( rValue >>= eBreak ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( !( rValue >>= nValue ) )
             return sal_False;
 
@@ -148,7 +148,7 @@ sal_Bool XMLFmtBreakAfterPropHdl::exportXML( OUString& rStrExpValue, const uno::
 
     if( !( rValue >>= eBreak ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( !( rValue >>= nValue ) )
             return sal_False;
 

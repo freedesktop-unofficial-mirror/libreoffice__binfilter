@@ -63,7 +63,7 @@ sal_Bool XMLDurationMS16PropHdl_Impl::exportXML(
         const Any& rValue,
         const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Int16 nMS;
+    sal_Int16 nMS(0);
 
     if(rValue >>= nMS)
     {

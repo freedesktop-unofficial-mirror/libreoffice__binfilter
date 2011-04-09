@@ -119,7 +119,7 @@ sal_Bool XMLCharHeightPropHdl::exportXML( OUString& rStrExpValue, const uno::Any
 {
     OUStringBuffer aOut( rStrExpValue );
 
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     if( rValue >>= nValue )
     {
         rUnitConverter.convertPercent( aOut, nValue );

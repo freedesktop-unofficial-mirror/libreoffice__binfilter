@@ -64,7 +64,7 @@ sal_Bool XMLShadowedPropHdl::importXML( const OUString& rStrImpValue, Any& rValu
 sal_Bool XMLShadowedPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {

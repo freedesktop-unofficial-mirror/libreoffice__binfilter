@@ -150,7 +150,7 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
 
         if( pTransparency )
         {
-            sal_Int8 nTransparency;
+            sal_Int8 nTransparency(0);
             if( (*pTransparency) >>= nTransparency )
             {
                 OUStringBuffer aLclOut;

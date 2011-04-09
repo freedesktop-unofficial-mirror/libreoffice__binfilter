@@ -225,7 +225,7 @@ sal_Bool XMLFontFamilyPropHdl::exportXML( OUString& rStrExpValue, const uno::Any
     sal_Bool bRet = sal_False;
     OUStringBuffer aOut;
 
-    sal_Int16 nFamily;
+    sal_Int16 nFamily(0);
     if( rValue >>= nFamily )
     {
         FontFamily eFamily = (FontFamily)nFamily;
@@ -262,7 +262,7 @@ sal_Bool XMLFontEncodingPropHdl::exportXML( OUString& rStrExpValue, const uno::A
 {
     sal_Bool bRet = sal_False;
     OUStringBuffer aOut;
-    sal_Int16 nSet;
+    sal_Int16 nSet(0);
 
     if( rValue >>= nSet )
     {
@@ -301,7 +301,7 @@ sal_Bool XMLFontPitchPropHdl::importXML( const OUString& rStrImpValue, uno::Any&
 sal_Bool XMLFontPitchPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nPitch;
+    sal_Int16 nPitch(0);
     OUStringBuffer aOut;
 
     FontPitch ePitch = PITCH_DONTKNOW;

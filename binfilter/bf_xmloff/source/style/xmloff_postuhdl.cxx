@@ -81,7 +81,7 @@ sal_Bool XMLPosturePropHdl::exportXML( OUString& rStrExpValue, const uno::Any& r
 
     if( !( rValue >>= eSlant ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
 
         if( !( rValue >>= nValue ) )
             return sal_False;
