@@ -306,8 +306,6 @@ namespace binfilter {
 /*N*/   if (pLineColorMerk !=NULL) delete pLineColorMerk;
 /*N*/ }
 
-/*N*/ void ImpSdrHdcMerk::Save(const OutputDevice&) {}
-
 /*N*/ void ImpSdrHdcMerk::Restore(OutputDevice& rOut, USHORT nMask) const
 /*N*/ {
 /*N*/   nMask&=nMode; // nur restaurieren, was auch gesichert wurde

@@ -423,7 +423,7 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       nVersion( nV ), bPasswd( bPass ) { aHeader = String::CreateFromAscii( pHeader ); }
 /*N*/   FileHeader( SvStream& rStream );
 /*N*/
-/*N*/   void    Save( SvStream& rStream ) const ;
+/*N*/   void Save( SvStream& rStream ) const {};
 /*N*/ };
 
 //-------------------------------------------------------------------------

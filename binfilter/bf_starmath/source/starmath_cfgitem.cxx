@@ -455,15 +455,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ void SmMathConfig::Save()
-/*N*/ {
-/*N*/     SaveOther();
-/*N*/     SaveFormat();
-/*N*/     SaveFontFormatList();
-/*N*/ }
-
-
 /*N*/ USHORT SmMathConfig::GetSymbolCount() const
 /*N*/ {
 /*N*/   if (!pSymbols)

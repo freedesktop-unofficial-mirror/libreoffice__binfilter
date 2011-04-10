@@ -40,7 +40,6 @@ namespace binfilter {
     ULONG BfGraphicObject::GetReleaseFromCache() const { return GraphicObject::GetReleaseFromCache(); }
     SvStream* BfGraphicObject::GetSwapStream() const { return GraphicObject::GetSwapStream(); }
     void BfGraphicObject::Load( SvStream& rSt ) { GraphicObject::Load(rSt); }
-    void BfGraphicObject::Save( SvStream& rSt ) { GraphicObject::Save(rSt); }
     void BfGraphicObject::Assign( const SvDataCopyStream& rSt ) { GraphicObject::Assign(rSt); }
     BfGraphicObject::BfGraphicObject( const GraphicManager* pMgr ) : GraphicObject(pMgr) {}
     BfGraphicObject::BfGraphicObject( const Graphic& rGraphic, const GraphicManager* pMgr ) : GraphicObject(rGraphic, pMgr) {}

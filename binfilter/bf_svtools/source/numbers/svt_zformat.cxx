@@ -144,33 +144,6 @@ void ImpSvNumberformatInfo::Copy( const ImpSvNumberformatInfo& rNumFor, USHORT n
     nCntExp      = rNumFor.nCntExp;
 }
 
-void ImpSvNumberformatInfo::Save(SvStream& rStream, USHORT nAnz) const
-{
-    for (USHORT i = 0; i < nAnz; i++)
-    {
-        rStream.WriteByteString( sStrArray[i], rStream.GetStreamCharSet() );
-        short nType = nTypeArray[i];
-        switch ( nType )
-        {   // der Krampf fuer Versionen vor SV_NUMBERFORMATTER_VERSION_NEW_CURR
-            case NF_SYMBOLTYPE_CURRENCY :
-                rStream << short( NF_SYMBOLTYPE_STRING );
-            break;
-            case NF_SYMBOLTYPE_CURRDEL :
-            case NF_SYMBOLTYPE_CURREXT :
-                rStream << short(0);        // werden ignoriert (hoffentlich..)
-            break;
-            default:
-                if ( nType > NF_KEY_LASTKEYWORD_SO5 )
-                    rStream << short( NF_SYMBOLTYPE_STRING );  // all new keywords are string
-                else
-                    rStream << nType;
-        }
-
-    }
-    rStream << eScannedType << bThousand << nThousand
-            << nCntPre << nCntPost << nCntExp;
-}
-
 void ImpSvNumberformatInfo::Load(SvStream& rStream, USHORT nAnz)
 {
     for (USHORT i = 0; i < nAnz; i++)
@@ -296,13 +269,6 @@ void ImpSvNumFor::Copy( const ImpSvNumFor& rNumFor, ImpSvNumberformatScan* pSc )
     aNatNum = rNumFor.aNatNum;
 }
 
-void ImpSvNumFor::Save(SvStream& rStream) const
-{
-    rStream << nAnzStrings;
-    aI.Save(rStream, nAnzStrings);
-    rStream.WriteByteString( sColorName, rStream.GetStreamCharSet() );
-}
-
 void ImpSvNumFor::Load(SvStream& rStream, ImpSvNumberformatScan& rSc,
         String& rLoadedColorName )
 {
@@ -344,36 +310,6 @@ BOOL ImpSvNumFor::GetNewCurrencySymbol( String& rSymbol,
     }
     //! kein Erase an rSymbol, rExtension
     return FALSE;
-}
-
-
-void ImpSvNumFor::SaveNewCurrencyMap( SvStream& rStream ) const
-{
-    USHORT j;
-    USHORT nCnt = 0;
-    for ( j=0; j<nAnzStrings; j++ )
-    {
-        switch ( aI.nTypeArray[j] )
-        {
-            case NF_SYMBOLTYPE_CURRENCY :
-            case NF_SYMBOLTYPE_CURRDEL :
-            case NF_SYMBOLTYPE_CURREXT :
-                nCnt++;
-            break;
-        }
-    }
-    rStream << nCnt;
-    for ( j=0; j<nAnzStrings; j++ )
-    {
-        switch ( aI.nTypeArray[j] )
-        {
-            case NF_SYMBOLTYPE_CURRENCY :
-            case NF_SYMBOLTYPE_CURRDEL :
-            case NF_SYMBOLTYPE_CURREXT :
-                rStream << j << aI.nTypeArray[j];
-            break;
-        }
-    }
 }
 
 
@@ -1540,77 +1476,6 @@ void SvNumberformat::LoadString( SvStream& rStream, String& rStr )
         }
         *pUni = 0;
     }
-}
-
-
-void SvNumberformat::Save( SvStream& rStream, ImpSvNumMultipleWriteHeader& rHdr ) const
-{
-    String aFormatstring( sFormatstring );
-    String aComment( sComment );
-#if NF_COMMENT_IN_FORMATSTRING
-    // der Kommentar im Formatstring wird nicht gespeichert, um in alten Versionen
-    // nicht ins schleudern zu kommen und spaeter getrennte Verarbeitung
-    // (z.B. im Dialog) zu ermoeglichen
-    SetComment( "", aFormatstring, aComment );
-#endif
-
-    BOOL bNewCurrency = HasNewCurrency();
-    if ( bNewCurrency )
-    {   // SV_NUMBERFORMATTER_VERSION_NEW_CURR im Kommentar speichern
-        aComment.Insert( cNewCurrencyMagic, 0 );
-        aComment.Insert( cNewCurrencyMagic, 0 );
-        aComment.Insert( aFormatstring, 1 );
-        Build50Formatstring( aFormatstring );       // alten Formatstring generieren
-    }
-
-    // old SO5 versions do behave strange (no output) if standard flag is set
-    // on formats not prepared for it (not having the following exact types)
-    BOOL bOldStandard = bStandard;
-    if ( bOldStandard )
-    {
-        switch ( eType )
-        {
-            case NUMBERFORMAT_NUMBER :
-            case NUMBERFORMAT_DATE :
-            case NUMBERFORMAT_TIME :
-            case NUMBERFORMAT_DATETIME :
-            case NUMBERFORMAT_PERCENT :
-            case NUMBERFORMAT_SCIENTIFIC :
-                // ok to save
-            break;
-            default:
-                bOldStandard = FALSE;
-        }
-    }
-
-    rHdr.StartEntry();
-    rStream.WriteByteString( aFormatstring, rStream.GetStreamCharSet() );
-    rStream << eType << fLimit1 << fLimit2 << (USHORT) eOp1 << (USHORT) eOp2
-            << bOldStandard << bIsUsed;
-    for (USHORT i = 0; i < 4; i++)
-        NumFor[i].Save(rStream);
-    // ab SV_NUMBERFORMATTER_VERSION_NEWSTANDARD
-    rStream.WriteByteString( aComment, rStream.GetStreamCharSet() );
-    rStream << nNewStandardDefined;
-    // ab SV_NUMBERFORMATTER_VERSION_NEW_CURR
-    rStream << nNewCurrencyVersionId;
-    rStream << bNewCurrency;
-    if ( bNewCurrency )
-    {
-        for ( USHORT j=0; j<4; j++ )
-        {
-            NumFor[j].SaveNewCurrencyMap( rStream );
-        }
-    }
-
-    // the real standard flag to load with versions >638 if different
-    if ( bStandard != bOldStandard )
-    {
-        rStream << nNewStandardFlagVersionId;
-        rStream << bStandard;
-    }
-
-    rHdr.EndEntry();
 }
 
 

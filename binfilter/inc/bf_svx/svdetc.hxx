@@ -189,7 +189,7 @@ class ImpSdrHdcMerk
 public:
     ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode=SDRHDC_SAVEALL, bool bAutoMerk=TRUE);
     ~ImpSdrHdcMerk();
-    void Save(const OutputDevice& rOut);
+    void Save(const OutputDevice& rOut) {}
     void Restore(OutputDevice& rOut, USHORT nMask=SDRHDC_SAVEALL) const;
 };
 #endif // __PRIVATE

@@ -54,7 +54,7 @@ namespace binfilter {
         virtual ULONG GetReleaseFromCache() const;
         virtual SvStream* GetSwapStream() const;
         virtual void Load( SvStream& );
-        virtual void Save( SvStream& );
+        virtual void Save( SvStream& ) {};
         virtual void Assign( const SvDataCopyStream& );
 
     public:

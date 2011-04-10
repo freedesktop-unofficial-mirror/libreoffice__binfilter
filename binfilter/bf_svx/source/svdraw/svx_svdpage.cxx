@@ -809,10 +809,6 @@ using namespace ::com::sun::star;
 /*N*/   return nCnt;
 /*N*/ }
 
-
-
-/*N*/ void SdrObjList::Save(SvStream&) const {}
-
 /*N*/ void SdrObjList::Load(SvStream& rIn, SdrPage& rPage)
 /*N*/ {
 /*N*/   Clear();

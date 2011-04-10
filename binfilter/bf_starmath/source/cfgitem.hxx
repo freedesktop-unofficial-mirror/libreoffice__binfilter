@@ -199,7 +199,7 @@ class SmMathConfig
 
 
 
-    void    Save();
+    void    Save() {};
 
     SmSym           ReadSymbol( SmMathConfigItem &rCfg,
                         const ::rtl::OUString &rSymbolName,
