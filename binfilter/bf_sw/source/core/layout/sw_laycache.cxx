@@ -63,7 +63,7 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwPageFlyCache, SwFlyCachePtr )
 
-/*-----------------28.5.2001 10:06------------------
+/*
  *  Reading and writing of the layout cache.
  *  The layout cache is not necessary, but it improves
  *  the performance and reduces the text flow during
@@ -72,7 +72,7 @@ namespace binfilter {
  *  at the top of every page, so it's possible to create
  *  the right count of pages and to distribute the document content
  *  to this pages before the formatting starts.
- *--------------------------------------------------*/
+ */
 
 /*N*/ void SwLayoutCache::Read( SvStream &rStream )
 /*N*/ {
@@ -163,7 +163,7 @@ namespace binfilter {
 /*N*/   return !aIo.HasError();
 /*N*/ }
 
-/*-----------------28.5.2001 10:19------------------
+/*
  * SwLayoutCache::Write(..)
  * writes the index (more precise: the difference between
  * the index and the first index of the document content)
@@ -173,7 +173,7 @@ namespace binfilter {
  * number is stored, too.
  * The position, size and page number of the text frames
  * are stored, too
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwLayoutCache::Write( SvStream &rStream, const SwDoc& rDoc )
 /*N*/ {
@@ -351,11 +351,11 @@ namespace binfilter {
 /*N*/     delete pImpl;
 /*N*/ }
 
-/*-----------------28.5.2001 10:47------------------
+/*
  * SwActualSection,
  *  a help class to create not nested section frames
  *  for nested sections.
- * --------------------------------------------------*/
+ */
 
 /*N*/ SwActualSection::SwActualSection( SwActualSection *pUp,
 /*N*/                                 SwSectionFrm    *pSect,
@@ -372,14 +372,14 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*-----------------28.5.2001 11:09------------------
+/*
  * SwLayHelper
  *  is the helper class, which utilizes the layout cache information
  *  to distribute the document content to the rigth pages.
  * It's used by the _InsertCnt(..)-function.
  * If there's no layout cache, the distibution to the pages is more
  * a guess, but a guess with statistical background.
- * --------------------------------------------------*/
+ */
 
 /*N*/ SwLayHelper::SwLayHelper( SwDoc *pD, SwFrm* &rpF, SwFrm* &rpP, SwPageFrm* &rpPg,
 /*N*/             SwLayoutFrm* &rpL, SwActualSection* &rpA, BOOL &rB,
@@ -421,11 +421,11 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-/*-----------------23.5.2001 16:40------------------
+/*
  * SwLayHelper::CalcPageCount() does not really calculate the page count,
  * it returns the page count value from the layout cache, if available,
  * otherwise it estimates the page count.
- * --------------------------------------------------*/
+ */
 
 /*N*/ ULONG SwLayHelper::CalcPageCount()
 /*N*/ {
@@ -485,7 +485,7 @@ namespace binfilter {
 /*N*/     return nPgCount;
 /*N*/ }
 
-/*-----------------23.5.2001 16:44------------------
+/*
  * SwLayHelper::CheckInsertPage()
  * inserts a page and return TRUE, if
  * - the break after flag is set
@@ -494,7 +494,7 @@ namespace binfilter {
  *
  * The break after flag is set, if the actual content
  * wants a break after.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwLayHelper::CheckInsertPage()
 /*N*/ {
@@ -555,7 +555,7 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*-----------------28.5.2001 11:31------------------
+/*
  * SwLayHelper::CheckInsert
  *  is the entry point for the _InsertCnt-function.
  *  The document content index is checked either it is
@@ -563,7 +563,7 @@ namespace binfilter {
  *  cause the maximal estimation of content per page is reached.
  *  A really big table or long paragraph may contains more than
  *  one page, in this case the needed count of pages will inserted.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwLayHelper::CheckInsert( ULONG nNodeIndex )
 /*N*/ {
@@ -792,12 +792,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/ };
 
- /*-----------------28.6.2001 14:40------------------
+ /*
   * SwLayHelper::_CheckFlyCache(..)
   * If a new page is inserted, the last page is analysed.
   * If there are text frames with default position, the fly cache
   * is checked, if these frames are stored in the cache.
-  * --------------------------------------------------*/
+  */
 
 /*N*/ void SwLayHelper::_CheckFlyCache( SwPageFrm* pPage )
 /*N*/ {
@@ -937,14 +937,14 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-/*-----------------28.6.2001 14:48------------------
+/*
  * SwLayHelper::CheckPageFlyCache(..)
  * looks for the given text frame in the fly cache and sets
  * the position and size, if possible.
  * The fly cache is sorted by pages and we start searching with the given page.
  * If we found the page number in the fly cache, we set
  * the rpPage parameter to the right page, if possible.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwLayHelper::CheckPageFlyCache( SwPageFrm* &rpPage, SwFlyFrm* pFly )
 /*N*/ {

@@ -212,11 +212,11 @@ namespace binfilter {
 /*N*/     Prt().Width( Frm().Width() - nLeft - nRight );
 /*N*/ }
 
-/*-----------------11.9.2001 11:11------------------
+/*
  * SwFrm::CheckDirChange(..)
  * checks the layout direction and
  * invalidates the lower frames rekursivly, if necessary.
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwFrm::CheckDirChange()
 /*N*/ {
@@ -231,10 +231,10 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-/*-----------------13.9.2002 11:11------------------
+/*
  * SwFrm::GetAnchorPos(..)
  * returns the position for anchors based on frame direction
- * --------------------------------------------------*/
+ */
 
 /*N*/ Point SwFrm::GetFrmAnchorPos( sal_Bool bIgnoreFlysAnchoredAtThisFrame ) const
 /*N*/ {

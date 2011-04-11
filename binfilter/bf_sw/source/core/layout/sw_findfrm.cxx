@@ -1047,12 +1047,12 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   } while ( pFrm && !pFrm->IsPageFrm() ); //Oberhalb der Seite kommt nix
 /*N*/ }
 
-/*-----------------22.8.2001 14:30------------------
+/*
  * SwFrm::SetDirFlags( BOOL )
  * actualizes the vertical or the righttoleft-flags.
  * If the property is derived, it's from the upper or (for fly frames) from
  * the anchor. Otherwise we've to call a virtual method to check the property.
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwFrm::SetDirFlags( BOOL bVert )
 /*N*/ {

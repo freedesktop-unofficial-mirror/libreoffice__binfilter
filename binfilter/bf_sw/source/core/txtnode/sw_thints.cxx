@@ -1092,12 +1092,13 @@ using namespace ::com::sun::star::i18n;
  * gleichartiges Attribut endet oder beginnt, welches einen von der beiden
  * Kandidaten umfasst, auch Zeichenvorlage duerfen nicht ueberlappt werden.
  */
-/*-----------------5.9.2001 09:26-------------------
+
+/*
  * And here a smarter version of good old Merge(..)
  * If a SwTxtAttr is given, only the merging between this attribute and the
  * neighbours are checked. This saves time, if no attribute is given (in more
  * complex situations), the whole attribute array is checked as before.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwpHints::Merge( SwTxtNode &rNode, SwTxtAttr* pAttr )
 /*N*/ {

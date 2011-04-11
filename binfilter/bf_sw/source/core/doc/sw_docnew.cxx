@@ -717,10 +717,10 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   }
 /*N*/ }
 
-/*-----------------28.5.2001 10:06------------------
+/*
  * SwDoc:
  *  Reading and writing of the layout cache.
- *--------------------------------------------------*/
+ */
 
 /*N*/ void SwDoc::ReadLayoutCache( SvStream& rStream )
 /*N*/ {

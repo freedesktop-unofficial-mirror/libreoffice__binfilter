@@ -517,24 +517,16 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
     }
     return TRUE;
 }
-/* -----------------4/10/2003 15:03------------------
 
- --------------------------------------------------*/
 /*N*/ USHORT SwDBNameInfField::GetSubType() const
 /*N*/ {
 /*N*/     return nSubType;
 /*N*/ }
-/* -----------------4/10/2003 15:03------------------
 
- --------------------------------------------------*/
 /*N*/ void SwDBNameInfField::SetSubType(USHORT nType)
 /*N*/ {
 /*N*/     nSubType = nType;
 /*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung: NaechsterDatensatz
- --------------------------------------------------------------------*/
 
 SwDBNextSetFieldType::SwDBNextSetFieldType()
     : SwFieldType( RES_DBNEXTSETFLD )
@@ -548,9 +540,6 @@ SwDBNextSetFieldType::SwDBNextSetFieldType()
             SwDBNextSetFieldType* pTmp = new SwDBNextSetFieldType();
             return pTmp;
 /*N*/ }
-/*--------------------------------------------------------------------
-    Beschreibung: SwDBSetField
- --------------------------------------------------------------------*/
 
 SwDBNextSetField::SwDBNextSetField(
     SwDBNextSetFieldType* pTyp,

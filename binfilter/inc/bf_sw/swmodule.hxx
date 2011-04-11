@@ -201,10 +201,6 @@ inline void SwModule::SetLngSvcEvtListener(
 }
 
 
-/*-----------------08.07.97 10.33-------------------
-    Zugriff auf das SwModule, die ::com::sun::star::sdbcx::View und die Shell
---------------------------------------------------*/
-
 #define SW_MOD() ( *(SwModule**) GetAppData(BF_SHL_WRITER))
 SwView*     GetActiveView();
 
