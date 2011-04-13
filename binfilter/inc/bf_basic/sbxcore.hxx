@@ -124,7 +124,7 @@ public:
 
     static SbxBase* Load( SvStream& );
     static void Skip( SvStream& );
-    BOOL Store( SvStream& );
+    BOOL Store( SvStream& ) {return FALSE;}
     virtual BOOL LoadCompleted();
     virtual BOOL StoreCompleted();
 

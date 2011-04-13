@@ -189,7 +189,7 @@ SbxBase* SbxBase::Create( UINT16 nSbxId, UINT32 nCreator )
         case SBXID_METHOD:      return new SbxMethod( aEmptyStr, SbxEMPTY );
         case SBXID_PROPERTY:    return new SbxProperty( aEmptyStr, SbxEMPTY );
     }
-    // Unbekanter Typ: Åber die Factories gehen!
+    // Unbekanter Typ: ?ber die Factories gehen!
     SbxAppData* p = GetSbxData_Impl();
     SbxBase* pNew = NULL;
     for( USHORT i = 0; i < p->aFacs.Count(); i++ )
@@ -294,32 +294,6 @@ void SbxBase::Skip( SvStream& rStrm )
     rStrm >> nSize;
 
     rStrm.Seek( nStartPos + nSize );
-}
-
-BOOL SbxBase::Store( SvStream& rStrm )
-{
-    DBG_CHKTHIS( SbxBase, 0 );
-    if( !( nFlags & SBX_DONTSTORE ) )
-    {
-        rStrm << (UINT32) GetCreator()
-              << (UINT16) GetSbxId()
-              << (UINT16) GetFlags()
-              << (UINT16) GetVersion();
-        ULONG nOldPos = rStrm.Tell();
-        rStrm << (UINT32) 0L;
-        BOOL bRes = StoreData( rStrm );
-        ULONG nNewPos = rStrm.Tell();
-        rStrm.Seek( nOldPos );
-        rStrm << (UINT32) ( nNewPos - nOldPos );
-        rStrm.Seek( nNewPos );
-        if( rStrm.GetError() != SVSTREAM_OK )
-            bRes = FALSE;
-        if( bRes )
-            bRes = StoreCompleted();
-        return bRes;
-    }
-    else
-        return TRUE;
 }
 
 BOOL SbxBase::LoadData( SvStream&, USHORT )
