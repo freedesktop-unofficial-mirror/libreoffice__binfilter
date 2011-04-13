@@ -105,7 +105,7 @@ struct SwIoDetect
 #endif
 
 
-const USHORT MAXFILTER = 14;
+const USHORT MAXFILTER = 13;
 
 #define FORAMTNAME_SW4      "StarWriter 4.0"
 #define FORAMTNAME_SW3      "StarWriter 3.0"
@@ -161,8 +161,7 @@ SwIoDetect aReaderWriter[ MAXFILTER ] = {                      \
     {/* 9*/ SwIoEntry(sExcel,         4,            FALSE)},   \
     {/*10*/ SwIoEntry(sLotusD,        5,            TRUE)},    \
     {/*11*/ SwIoEntry(sSwg1,          4,            FALSE)},   \
-    {/*12*/ SwIoEntry(FILTER_XML,     4,            TRUE)},    \
-    {/*13*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
+    {/*12*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
 };
 
 // Filter erkennung

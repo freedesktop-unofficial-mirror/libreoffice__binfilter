@@ -89,10 +89,23 @@ inline void _SetFltPtr( USHORT& rPos, SwRead pReader, const sal_Char* pNm )
 
 void _InitFilter()
 {
+    SwRead pRd;
+
     USHORT nCnt = 0;
     _SetFltPtr( nCnt, (ReadSw3 = new Sw3Reader), FILTER_SW5 );
     _SetFltPtr( nCnt, ReadSw3, FILTER_SW4 );
     _SetFltPtr( nCnt, ReadSw3, FILTER_SW3 );
+    _SetFltPtr( nCnt, (ReadSwg = new SwgReader), FILTER_SWG );
+    _SetFltPtr( nCnt, ReadSwg, FILTER_SWGV );
+    _SetFltPtr( nCnt, new Sw6Reader, sSwDos );
+    _SetFltPtr( nCnt, (ReadAscii = new AsciiReader), FILTER_BAS );
+    _SetFltPtr( nCnt, new W4WReader, FILTER_W4W );
+    _SetFltPtr( nCnt, ( pRd = new ExcelReader ), sCExcel );
+    _SetFltPtr( nCnt, pRd, sExcel );
+    _SetFltPtr( nCnt, new LotusReader, sLotusD );
+    _SetFltPtr( nCnt, ReadSwg, sSwg1 );
+
+    _SetFltPtr( nCnt, ReadAscii, FILTER_TEXT );
 
     OSL_ENSURE( MAXFILTER == nCnt, "Anzahl Filter ungleich der Definierten" );
 }
