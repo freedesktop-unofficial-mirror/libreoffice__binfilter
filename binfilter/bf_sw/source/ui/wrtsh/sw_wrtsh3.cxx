@@ -55,7 +55,7 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
  --------------------------------------------------------------------*/
 
 
-/*N*/ void SwWrtShell::DrawSelChanged(SdrView* pView)
+/*N*/ void SwWrtShell::DrawSelChanged(SdrView*)
 /*N*/ {
 /*N*/ }
 

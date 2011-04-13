@@ -33,9 +33,6 @@
 
 #include <limits.h>
 
-
-
-
 #include <cmdid.h>
 
 #include <horiornt.hxx>
@@ -44,21 +41,7 @@
 
 namespace binfilter {
 
-namespace com { namespace sun { namespace star { namespace util {
-    struct SearchOptions;
-} } } }
-
-using namespace ::com::sun::star::util;
-
-
-static long nStartDragX = 0, nStartDragY = 0;
-static BOOL  bStartDrag = FALSE;
-
-/*------------------------------------------------------------------------
- Beschreibung:  Rahmengebundenes Macro ausfuehren
-------------------------------------------------------------------------*/
-
-/*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, pFlyFmt )
+/*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, EMPTYARG )
 /*N*/ {
 DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;

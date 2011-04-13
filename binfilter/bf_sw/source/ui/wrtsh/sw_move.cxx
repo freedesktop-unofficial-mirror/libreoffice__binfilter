@@ -58,7 +58,7 @@ const long nReadOnlyScrollOfst = 10;
 ------------------------------------------------------------------------*/
 
 
-/*N*/ BOOL SwWrtShell::PopCrsr(BOOL bUpdate, BOOL bSelect)
+/*N*/ BOOL SwWrtShell::PopCrsr(BOOL bUpdate, BOOL)
 /*N*/ {
 /*N*/   if( 0 == pCrsrStack)
 /*N*/       return FALSE;
