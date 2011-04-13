@@ -60,12 +60,12 @@ using namespace ::com::sun::star;
 /*N*/ SwFmtDrop::SwFmtDrop()
 /*N*/   : SfxPoolItem( RES_PARATR_DROP ),
 /*N*/   SwClient( 0 ),
+/*N*/   pDefinedIn( 0 ),
+/*N*/   nDistance( 0 ),
+/*N*/   nReadFmt( USHRT_MAX ),
 /*N*/   nLines( 0 ),
 /*N*/   nChars( 0 ),
-/*N*/   nDistance( 0 ),
-/*N*/   pDefinedIn( 0 ),
-/*N*/   bWholeWord( sal_False ),
-/*N*/   nReadFmt( USHRT_MAX )
+/*N*/   bWholeWord( sal_False )
 /*N*/ {
 /*N*/ }
 
@@ -74,12 +74,12 @@ using namespace ::com::sun::star;
 /*N*/ SwFmtDrop::SwFmtDrop( const SwFmtDrop &rCpy )
 /*N*/   : SfxPoolItem( RES_PARATR_DROP ),
 /*N*/   SwClient( rCpy.pRegisteredIn ),
+/*N*/   pDefinedIn( 0 ),
+/*N*/   nDistance( rCpy.GetDistance() ),
+/*N*/   nReadFmt( rCpy.nReadFmt ),
 /*N*/   nLines( rCpy.GetLines() ),
 /*N*/   nChars( rCpy.GetChars() ),
-/*N*/   nDistance( rCpy.GetDistance() ),
-/*N*/   bWholeWord( rCpy.GetWholeWord() ),
-/*N*/   pDefinedIn( 0 ),
-/*N*/   nReadFmt( rCpy.nReadFmt )
+/*N*/   bWholeWord( rCpy.GetWholeWord() )
 /*N*/ {
 /*N*/ }
 
@@ -178,13 +178,13 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/         case MID_DROPCAP_LINES : rVal <<= (sal_Int16)nLines; break;
 /*N*/         case MID_DROPCAP_COUNT : rVal <<= (sal_Int16)nChars; break;
-/*N*/         case MID_DROPCAP_DISTANCE : rVal <<= (sal_Int16) TWIP_TO_MM100(nDistance); break;
+/*N*/         case MID_DROPCAP_DISTANCE : rVal <<= (sal_Int16)TWIP_TO_MM100_UNSIGNED(nDistance); break;
 /*N*/         case MID_DROPCAP_FORMAT:
 /*N*/       {
 /*N*/           style::DropCapFormat aDrop;
 /*N*/           aDrop.Lines = nLines   ;
 /*N*/           aDrop.Count = nChars   ;
-/*N*/           aDrop.Distance  = TWIP_TO_MM100(nDistance);
+/*N*/           aDrop.Distance  = TWIP_TO_MM100_UNSIGNED(nDistance);
 /*N*/           rVal.setValue(&aDrop, ::getCppuType((const style::DropCapFormat*)0));
 /*N*/       }
 /*N*/       break;
