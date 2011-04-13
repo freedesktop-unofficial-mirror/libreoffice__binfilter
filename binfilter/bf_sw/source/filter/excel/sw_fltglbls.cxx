@@ -41,8 +41,8 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 FilterGlobals::FilterGlobals( SwDoc& rDoc, const SwPaM& rPam )
-    : aStandard( String::CreateFromAscii("General") ),
-    aTblFmts( 0, 10 )
+    : aTblFmts( 0, 10 )
+    , aStandard( String::CreateFromAscii("General") )
 {
     pD = &rDoc;         // "globaler" Dokument-Pointer
     pPam = new SwPaM( *rPam.GetPoint() );

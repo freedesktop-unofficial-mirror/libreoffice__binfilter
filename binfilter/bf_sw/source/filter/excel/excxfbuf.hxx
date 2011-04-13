@@ -192,9 +192,6 @@ class XF_Buffer
 
         inline void         NewXF( XF_Data *pD );
 
-        inline void     GetItemSets( USHORT nIndex, const SfxItemSet *pTxtAttr,
-                            const SfxItemSet *pBoxAttr );
-
         sal_uInt32      GetNumFormat( USHORT nIndex );
         void            SetItemSets( USHORT nCol, USHORT nSR, USHORT nER,
                             USHORT nXF );
@@ -212,29 +209,6 @@ inline void XF_Buffer::NewXF( XF_Data *pD )
     if( nCount < nMax )
         ppData[ nCount++ ] = pD;
     }
-
-inline void XF_Buffer::GetItemSets( USHORT nIndex, const SfxItemSet *pTxtAttr,
-                    const SfxItemSet *pBoxAttr )
-    {
-    DBG_ASSERT( nIndex < nCount ,
-        "+XF_Buffer::GetItemSets(): das ist zuviel des Guten!" );
-    if( nIndex >= nCount )
-        {
-        pTxtAttr = pDefTxtAttr;         // nicht im Puffer
-        pBoxAttr = pDefBoxAttr;
-        }
-    else
-        {
-        if( ppTxtAttr[ nIndex ] == NULL )
-            CreateItemSets( nIndex );       // erste Nutzung
-
-        pTxtAttr = ppTxtAttr[ nIndex ];
-        pBoxAttr = ppBoxAttr[ nIndex ];
-        }
-    }
-
-
-
 } //namespace binfilter
 #endif
 
