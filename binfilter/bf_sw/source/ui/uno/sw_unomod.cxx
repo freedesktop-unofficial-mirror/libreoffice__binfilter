@@ -537,10 +537,10 @@ Sequence< OUString > SwXPrintSettings::getSupportedServiceNames(void) throw( Run
 SwXViewSettings::SwXViewSettings(sal_Bool bWebView, SwView* pVw)
 : ChainableHelperNoState( lcl_createViewSettingsInfo (), &Application::GetSolarMutex() )
 , pView(pVw)
-, bWeb(bWebView)
-, bObjectValid(sal_True)
 , mpViewOption ( NULL )
 , mpConstViewOption ( NULL )
+, bObjectValid(sal_True)
+, bWeb(bWebView)
 {
     // This property only exists if we have a view (ie, not at the module )
     if ( !pView )

@@ -391,9 +391,9 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_APPLY_USER_DATA:
         {
-            SfxDocumentInfo& rInfo = mpDocSh->GetDocInfo();
+            SfxDocumentInfo& rLclInfo = mpDocSh->GetDocInfo();
             sal_Bool bUseUserData = *(sal_Bool*)rValue.getValue();
-            rInfo.SetUseUserData(bUseUserData);
+            rLclInfo.SetUseUserData(bUseUserData);
         }
         break;
         case HANDLE_SAVE_GLOBAL_DOCUMENT_LINKS:
@@ -425,9 +425,9 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_SAVE_VERSION_ON_CLOSE:
         {
-            SfxDocumentInfo& rInfo = mpDocSh->GetDocInfo();
+            SfxDocumentInfo& rLclInfo = mpDocSh->GetDocInfo();
             sal_Bool bSaveVersion = *(sal_Bool*)rValue.getValue();
-            rInfo.SetSaveVersionOnClose ( bSaveVersion );
+            rLclInfo.SetSaveVersionOnClose ( bSaveVersion );
         }
         break;
         case HANDLE_UPDATE_FROM_TEMPLATE:
@@ -566,8 +566,8 @@ void SwXDocumentSettings::_getSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_APPLY_USER_DATA:
         {
-            SfxDocumentInfo &rInfo = mpDocSh->GetDocInfo();
-            sal_Bool bUseUserInfo = rInfo.IsUseUserData();
+            SfxDocumentInfo &rLclInfo = mpDocSh->GetDocInfo();
+            sal_Bool bUseUserInfo = rLclInfo.IsUseUserData();
             rValue.setValue(&bUseUserInfo, ::getBooleanCppuType());
         }
         break;
@@ -602,8 +602,8 @@ void SwXDocumentSettings::_getSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_SAVE_VERSION_ON_CLOSE:
         {
-            SfxDocumentInfo& rInfo = mpDocSh->GetDocInfo();
-            sal_Bool bSaveVersion = rInfo.IsSaveVersionOnClose();
+            SfxDocumentInfo& rLclInfo = mpDocSh->GetDocInfo();
+            sal_Bool bSaveVersion = rLclInfo.IsSaveVersionOnClose();
             rValue.setValue(&bSaveVersion, ::getBooleanCppuType());
         }
         break;

@@ -41,8 +41,8 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::util;
 
-SwRefreshListenerContainer::SwRefreshListenerContainer( uno::XInterface* pxParent)
-: SwEventListenerContainer ( pxParent )
+SwRefreshListenerContainer::SwRefreshListenerContainer( uno::XInterface* pParent)
+    : SwEventListenerContainer ( pParent )
 {
 }
 

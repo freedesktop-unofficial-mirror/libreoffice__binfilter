@@ -277,42 +277,42 @@ void SwXPrintPreviewSettings::_getSingleValue( const comphelper::PropertyInfo & 
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetLeftSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetLeftSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_RIGHT_MARGIN:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetRightSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetRightSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_TOP_MARGIN:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetTopSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetTopSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_BOTTOM_MARGIN:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetBottomSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetBottomSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_HORIZONTAL_SPACING:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetHorzSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetHorzSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_VERTICAL_SPACING:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetVertSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetVertSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_NUM_ROWS:

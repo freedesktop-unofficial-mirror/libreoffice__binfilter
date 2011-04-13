@@ -97,9 +97,7 @@
 #include <swtypes.hxx>
 #include <swmodule.hxx>
 #include <docstat.hxx>
-#ifndef _MODOPT_HXX //
 #include <modcfg.hxx>
- #endif
 #include <ndtxt.hxx>
 #include <utlui.hrc>
 #include <swcont.hxx>
@@ -254,29 +252,29 @@ Sequence< uno::Type > SAL_CALL SwXTextDocument::getTypes() throw(RuntimeExceptio
 
 SwXTextDocument::SwXTextDocument(SwDocShell* pShell) :
     SfxBaseModel(pShell),
-    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_DOCUMENT)),
     aRefreshCont ( static_cast < XTextDocument* > ( this ) ),
+    aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_DOCUMENT)),
     pDocShell(pShell),
     bObjectValid(pShell != 0),
+    pDrawPage(0),
+    pxXDrawPage(0),
+    pxXFootnotes(0),
+    pxXFootnoteSettings(0),
+    pxXEndnotes(0),
+    pxXEndnoteSettings(0),
+    pxXReferenceMarks(0),
+    pxXTextFieldTypes(0),
+    pxXTextFieldMasters(0),
+    pxXTextSections(0),
+    pxXBookmarks(0),
     pxXTextTables(0),
     pxXTextFrames(0),
     pxXGraphicObjects(0),
     pxXEmbeddedObjects(0),
-    pxXTextSections(0),
-    pxXBookmarks(0),
-    pxXTextFieldTypes(0),
-    pxXTextFieldMasters(0),
-    pxXFootnotes(0),
-    pxXEndnotes(0),
-    pxXFootnoteSettings(0),
-    pxXEndnoteSettings(0),
-    pxXDocumentIndexes(0),
     pxXStyleFamilies(0),
     pxXChapterNumbering(0),
+    pxXDocumentIndexes(0),
     pxXLineNumberingProperties(0),
-    pDrawPage(0),
-    pxXDrawPage(0),
-    pxXReferenceMarks(0),
     pxLinkTargetSupplier(0),
     pxXRedlines(0)
 {
@@ -850,17 +848,17 @@ Sequence< beans::PropertyValue > SwXTextDocument::getPagePrintSettings(void)
         pArray[0] = beans::PropertyValue(C2U("PageRows"), -1, aVal, PropertyState_DIRECT_VALUE);
         aVal <<= (sal_Int16)aData.GetCol();
         pArray[1] = beans::PropertyValue(C2U("PageColumns"), -1, aVal, PropertyState_DIRECT_VALUE);
-        aVal <<= (sal_Int32)TWIP_TO_MM100(aData.GetLeftSpace());
+        aVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(aData.GetLeftSpace());
         pArray[2] = beans::PropertyValue(C2U("LeftMargin"), -1, aVal, PropertyState_DIRECT_VALUE);
-        aVal <<= (sal_Int32)TWIP_TO_MM100(aData.GetRightSpace());
+        aVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(aData.GetRightSpace());
         pArray[3] = beans::PropertyValue(C2U("RightMargin"), -1, aVal, PropertyState_DIRECT_VALUE);
-        aVal <<= (sal_Int32)TWIP_TO_MM100(aData.GetTopSpace());
+        aVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(aData.GetTopSpace());
         pArray[4] = beans::PropertyValue(C2U("TopMargin"), -1, aVal, PropertyState_DIRECT_VALUE);
-        aVal <<= (sal_Int32)TWIP_TO_MM100(aData.GetBottomSpace());
+        aVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(aData.GetBottomSpace());
         pArray[5] = beans::PropertyValue(C2U("BottomMargin"), -1, aVal, PropertyState_DIRECT_VALUE);
-        aVal <<= (sal_Int32)TWIP_TO_MM100(aData.GetHorzSpace());
+        aVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(aData.GetHorzSpace());
         pArray[6] = beans::PropertyValue(C2U("HoriMargin"), -1, aVal, PropertyState_DIRECT_VALUE);
-        aVal <<= (sal_Int32)TWIP_TO_MM100(aData.GetVertSpace());
+        aVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(aData.GetVertSpace());
         pArray[7] = beans::PropertyValue(C2U("VertMargin"), -1, aVal, PropertyState_DIRECT_VALUE);
         BOOL bTemp = aData.GetLandscape();
         aVal.setValue(&bTemp, ::getCppuBooleanType());
@@ -944,27 +942,27 @@ void SwXTextDocument::setPagePrintSettings(const Sequence< beans::PropertyValue 
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("LeftMargin"))
             {
-                aData.SetLeftSpace(MM100_TO_TWIP(nVal));
+                aData.SetLeftSpace(MM100_TO_TWIP_UNSIGNED(nVal));
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("RightMargin"))
             {
-                aData.SetRightSpace(MM100_TO_TWIP(nVal));
+                aData.SetRightSpace(MM100_TO_TWIP_UNSIGNED(nVal));
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("TopMargin"))
             {
-                aData.SetTopSpace(MM100_TO_TWIP(nVal));
+                aData.SetTopSpace(MM100_TO_TWIP_UNSIGNED(nVal));
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("BottomMargin"))
             {
-                aData.SetBottomSpace(MM100_TO_TWIP(nVal));
+                aData.SetBottomSpace(MM100_TO_TWIP_UNSIGNED(nVal));
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("HoriMargin"))
             {
-                aData.SetHorzSpace(MM100_TO_TWIP(nVal));
+                aData.SetHorzSpace(MM100_TO_TWIP_UNSIGNED(nVal));
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("VertMargin"))
             {
-                aData.SetVertSpace(MM100_TO_TWIP(nVal));
+                aData.SetVertSpace(MM100_TO_TWIP_UNSIGNED(nVal));
             }
             else if(COMPARE_EQUAL == sName.CompareToAscii("IsLandscape"))
             {

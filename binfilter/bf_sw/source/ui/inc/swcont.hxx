@@ -94,7 +94,7 @@ public:
 
     const SwContentType*    GetParent() const {return pParent;}
     const String&           GetName()   const {return sContentName;}
-    int                     operator==(const SwContent& rCont) const
+    int                     operator==(const SwContent&) const
                                 {
                                     //gleich sind sie nie, sonst fallen sie aus dem Array
                                     return FALSE;

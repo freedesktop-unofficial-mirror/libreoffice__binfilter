@@ -46,10 +46,15 @@ class SwPrtOptions : public SwPrintData
     String sJobName;
 
 public:
-    SwPrtOptions( const String& rJobName ) : aOffset( Point(0,0) ),
-        nMergeCnt( 0 ), nMergeAct( 0 ), sJobName( rJobName ),
-        nJobNo( 1 ),  bCollate(FALSE), bPrintSelection (FALSE),
-        bJobStartet(FALSE)
+    SwPrtOptions( const String& rJobName )
+        : nJobNo( 1 )
+        , sJobName( rJobName )
+        , aOffset( Point(0,0) )
+        , nMergeCnt( 0 )
+        , nMergeAct( 0 )
+        , bCollate(FALSE)
+        , bPrintSelection (FALSE)
+        , bJobStartet(FALSE)
     {}
 
     const String& GetJobName() const    { return sJobName; }
