@@ -41,10 +41,12 @@ namespace binfilter {
 class SwIndex;
 class SwIndexReg;
 
+#ifndef INLINE
 #ifndef DBG_UTIL
 #define INLINE inline
 #else
 #define INLINE
+#endif
 #endif
 
 class SwIndex

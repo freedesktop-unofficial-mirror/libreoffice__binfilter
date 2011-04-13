@@ -1579,7 +1579,7 @@ void SwW4WParser::Read_HardNewLine()            // (HNL)
 
     BYTE c = ReadChar();
 
-    if ( (0 == c) || (EOF == c) )
+    if ( (0 == c) || (static_cast<BYTE>(EOF) == c) )
     {
         nError = ERR_CHAR;  // falsches Zeichen oder EOF
         return;

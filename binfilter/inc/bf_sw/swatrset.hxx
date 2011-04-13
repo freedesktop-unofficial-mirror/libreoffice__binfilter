@@ -140,10 +140,12 @@ class SwTblBoxNumFormat;
 class SwTblBoxFormula;
 class SwTblBoxValue;
 
+#ifndef INLINE
 #if defined(MACOSX) && ( __GNUC__ < 3 )
 #define INLINE /* GrP revisit with gcc3 */
 #else
 #define INLINE inline
+#endif
 #endif
 
 class SwAttrPool : public SfxItemPool
