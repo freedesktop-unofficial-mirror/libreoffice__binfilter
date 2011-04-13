@@ -567,10 +567,9 @@ BOOL SbModule::StoreData( SvStream& rStrm ) const
         // It should be noted that it probably isn't necessary
         // It would be better not to store the image ( more flexible with
         // formats )
-        bool bRes = pImage->Save( rStrm, B_LEGACYVERSION );
         if ( bFixup )
             fixUpMethodStart( false ); // restore method starts
-        return bRes;
+        return FALSE;
 
     }
     else
@@ -580,7 +579,7 @@ BOOL SbModule::StoreData( SvStream& rStrm ) const
         aImg.aComment = aComment;
         aImg.aName = GetName();
         rStrm << (BYTE) 1;
-        return aImg.Save( rStrm );
+        return FALSE;
     }
 }
 
