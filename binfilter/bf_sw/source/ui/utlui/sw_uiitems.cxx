@@ -94,7 +94,7 @@ static const USHORT nFtnLines[] = {
 /*N*/     switch(nMemberId & ~CONVERT_TWIPS)
 /*N*/     {
 /*N*/         case MID_FTN_HEIGHT        :     rVal <<= (sal_Int32)TWIP_TO_MM100(aFtnInfo.GetHeight());break;
-/*N*/         case MID_LINE_WEIGHT       :     rVal <<= (sal_Int16)TWIP_TO_MM100(aFtnInfo.GetLineWidth());break;
+/*N*/         case MID_LINE_WEIGHT       :     rVal <<= (sal_Int16)TWIP_TO_MM100_UNSIGNED(aFtnInfo.GetLineWidth());break;
 /*N*/         case MID_LINE_COLOR        :     rVal <<= (sal_Int32)aFtnInfo.GetLineColor().GetColor();break;
 /*N*/         case MID_LINE_RELWIDTH     :
 /*N*/         {

@@ -170,7 +170,7 @@ public:
 
     BOOL            IsDrawAction()                  { return (bInsDraw); }
     void            SetDrawAction(BOOL bFlag)       { bInsDraw = bFlag; }
-    inline UINT16   GetDrawMode(BOOL bBuf = FALSE) const { return eDrawMode; }
+    inline UINT16   GetDrawMode(BOOL /*bBuf*/ = FALSE) const { return eDrawMode; }
     inline void     SetDrawMode(UINT16 eDrwMode)    { eDrawMode = eDrwMode; }
     BOOL            IsFrmAction()                   { return (bInsFrm); }
     inline UINT16   GetBezierMode()                 { return eBezierMode; }

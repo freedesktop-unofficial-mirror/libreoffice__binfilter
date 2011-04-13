@@ -64,8 +64,8 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 
 /*N*/ ShellResource::ShellResource()
 /*N*/   : Resource( SW_RES(RID_SW_SHELLRES) ),
-/*N*/   aPostItPage( SW_RES( STR_POSTIT_PAGE ) ),
 /*N*/   aPostItAuthor( SW_RES( STR_POSTIT_AUTHOR ) ),
+/*N*/   aPostItPage( SW_RES( STR_POSTIT_PAGE ) ),
 /*N*/   aPostItLine( SW_RES( STR_POSTIT_LINE ) ),
 /*N*/   aCalc_Syntax( SW_RES( STR_CALC_SYNTAX ) ),
 /*N*/   aCalc_ZeroDiv( SW_RES( STR_CALC_ZERODIV ) ),
@@ -88,10 +88,10 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /*N*/   aTOXObjectsName(        SW_RES(STR_TOX_OBJ)),
 /*N*/   aTOXTablesName(         SW_RES(STR_TOX_TBL)),
 /*N*/   aTOXAuthoritiesName(    SW_RES(STR_TOX_AUTH)),
+/*N*/   pAutoFmtNameLst( 0 ),
 /*N*/   sPageDescFirstName(     SW_RES(STR_PAGEDESC_FIRSTNAME)),
 /*N*/   sPageDescFollowName(    SW_RES(STR_PAGEDESC_FOLLOWNAME)),
-/*N*/   sPageDescName(          SW_RES(STR_PAGEDESC_NAME)),
-/*N*/   pAutoFmtNameLst( 0 )
+/*N*/   sPageDescName(          SW_RES(STR_PAGEDESC_NAME))
 /*N*/ {
 /*N*/   const USHORT nCount = FLD_DOCINFO_END - FLD_DOCINFO_BEGIN;
 /*N*/
