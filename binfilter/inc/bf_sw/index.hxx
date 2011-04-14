@@ -41,14 +41,6 @@ namespace binfilter {
 class SwIndex;
 class SwIndexReg;
 
-#ifndef INLINE
-#ifndef DBG_UTIL
-#define INLINE inline
-#else
-#define INLINE
-#endif
-#endif
-
 class SwIndex
 {
     friend class SwIndexReg;
@@ -70,19 +62,17 @@ public:
     SwIndex( const SwIndex & );
     ~SwIndex() { Remove(); }
 
-    INLINE xub_StrLen operator++();
-#ifndef CFRONT
-    INLINE xub_StrLen operator++(int);
-    INLINE xub_StrLen operator--(int);
-#endif
+    inline xub_StrLen operator++();
+    inline xub_StrLen operator++(int);
+    inline xub_StrLen operator--(int);
 
-    INLINE xub_StrLen operator+=( xub_StrLen );
-    INLINE xub_StrLen operator+=( const SwIndex& );
+    inline xub_StrLen operator+=( xub_StrLen );
+    inline xub_StrLen operator+=( const SwIndex& );
 
-    INLINE BOOL operator<( const SwIndex& ) const;
-    INLINE BOOL operator<=( const SwIndex& ) const;
-    INLINE BOOL operator>( const SwIndex& ) const;
-    INLINE BOOL operator>=( const SwIndex& ) const;
+    inline BOOL operator<( const SwIndex& ) const;
+    inline BOOL operator<=( const SwIndex& ) const;
+    inline BOOL operator>( const SwIndex& ) const;
+    inline BOOL operator>=( const SwIndex& ) const;
     BOOL operator==( const SwIndex& rSwIndex ) const
     { return (nIndex == rSwIndex.nIndex) &&  (pArray == rSwIndex.pArray); }
 
@@ -96,7 +86,7 @@ public:
     BOOL operator==( xub_StrLen nWert ) const   { return nIndex == nWert; }
     BOOL operator!=( xub_StrLen nWert ) const   { return nIndex != nWert; }
 
-    INLINE SwIndex& operator=( xub_StrLen );
+    inline SwIndex& operator=( xub_StrLen );
     SwIndex& operator=( const SwIndex & );
 
     // gebe den Wert vom Index als xub_StrLen zurueck
@@ -111,7 +101,7 @@ public:
     const SwIndexReg* GetIdxReg() const { return pArray; }
 };
 
-#undef INLINE
+#undef inline
 
 class SwIndexReg
 {
@@ -149,10 +139,7 @@ public:
 };
 
 
-#ifndef DBG_UTIL
-
 inline xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
-#ifndef CFRONT
 inline xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;}
  inline xub_StrLen SwIndex::operator--(int)
  {
@@ -160,7 +147,6 @@ inline xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;
      ChgValue( *this, nIndex-1 );
      return nOldIndex;
  }
-#endif
 
 inline xub_StrLen SwIndex::operator+=( xub_StrLen nWert )
 {
@@ -171,32 +157,28 @@ inline xub_StrLen SwIndex::operator+=( const  SwIndex& rIndex )
     return ChgValue( *this, nIndex + rIndex.nIndex ).nIndex;
 }
 
-  inline BOOL SwIndex::operator<( const SwIndex& rIndex ) const
-  {
-      return nIndex < rIndex.nIndex;
-  }
-  inline BOOL SwIndex::operator<=( const SwIndex& rIndex ) const
-  {
-      return nIndex <= rIndex.nIndex;
-  }
-  inline BOOL SwIndex::operator>( const SwIndex& rIndex ) const
-  {
-      return nIndex > rIndex.nIndex;
-  }
-  inline BOOL SwIndex::operator>=( const SwIndex& rIndex ) const
-  {
-      return nIndex >= rIndex.nIndex;
-  }
- inline SwIndex& SwIndex::operator=( xub_StrLen nWert )
- {
-     if( nIndex != nWert )
-         ChgValue( *this, nWert );
-     return *this;
- }
-
-// PRODUCT
-#endif
-
+inline BOOL SwIndex::operator<( const SwIndex& rIndex ) const
+{
+    return nIndex < rIndex.nIndex;
+}
+inline BOOL SwIndex::operator<=( const SwIndex& rIndex ) const
+{
+    return nIndex <= rIndex.nIndex;
+}
+inline BOOL SwIndex::operator>( const SwIndex& rIndex ) const
+{
+    return nIndex > rIndex.nIndex;
+}
+inline BOOL SwIndex::operator>=( const SwIndex& rIndex ) const
+{
+    return nIndex >= rIndex.nIndex;
+}
+inline SwIndex& SwIndex::operator=( xub_StrLen nWert )
+{
+   if( nIndex != nWert )
+       ChgValue( *this, nWert );
+   return *this;
+}
 
 } //namespace binfilter
 #endif

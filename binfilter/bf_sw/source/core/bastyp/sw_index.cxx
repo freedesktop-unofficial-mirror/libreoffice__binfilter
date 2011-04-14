@@ -67,7 +67,7 @@ int SwIndex::nSerial = 0;
 
 
 /*N*/ SwIndex::SwIndex( SwIndexReg* pArr, xub_StrLen nIdx )
-/*N*/   : pArray( pArr ), nIndex( nIdx ), pNext( 0 ), pPrev( 0 )
+/*N*/   : nIndex( nIdx ), pArray( pArr ), pNext( 0 ), pPrev( 0 )
 /*N*/ {
 /*N*/   if( !pArray )
 /*N*/   {
@@ -106,7 +106,7 @@ int SwIndex::nSerial = 0;
 
 
 /*N*/ SwIndex::SwIndex( const SwIndex& rIdx )
-/*N*/   : pArray( rIdx.pArray ), nIndex( rIdx.nIndex ), pNext( 0 ), pPrev( 0 )
+/*N*/   : nIndex( rIdx.nIndex ), pArray( rIdx.pArray ), pNext( 0 ), pPrev( 0 )
 /*N*/ {
 /*N*/   ChgValue( rIdx, rIdx.nIndex );
 /*N*/ #ifdef DBG_UTIL
@@ -362,164 +362,6 @@ int SwIndex::nSerial = 0;
 /*N*/ ARR_CHK_ARRAY
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|*    SwIndex::operator++()
-|*
-*************************************************************************/
-
-#ifdef DBG_UTIL
-
-#ifndef CFRONT
-
-
-xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;}
-
-#endif
-
-
-xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;}
-
-/*************************************************************************
-|*
-|*    SwIndex::operator--()
-|*
-*************************************************************************/
-
-#ifndef CFRONT
-
-
-/*N*/ xub_StrLen SwIndex::operator--(int)
-/*N*/ {
-/*N*/   OSL_ASSERT( nIndex );
-/*N*/
-/*N*/   xub_StrLen nOldIndex = nIndex;
-/*N*/   ChgValue( *this, nIndex-1 );
-/*N*/   return nOldIndex;
-/*N*/ }
-
-#endif
-
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator+=( xub_StrLen )
-|*
-*************************************************************************/
-
-
-/*N*/ xub_StrLen SwIndex::operator+=( xub_StrLen nWert )
-/*N*/ {
-/*N*/   OSL_ASSERT( nIndex < INVALID_INDEX - nWert );
-/*N*/   return ChgValue( *this, nIndex + nWert ).nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator-=( xub_StrLen )
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator+=( const SwIndex & )
-|*
-*************************************************************************/
-
-
-/*N*/ xub_StrLen SwIndex::operator+=( const SwIndex & rIndex )
-/*N*/ {
-/*N*/   OSL_ASSERT( nIndex < INVALID_INDEX - rIndex.nIndex );
-/*N*/   return ChgValue( *this, nIndex + rIndex.nIndex ).nIndex;
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator-=( const SwIndex & )
-|*
-*************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator<( const SwIndex & )
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator<( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex < rIndex.nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator<=( const SwIndex & )
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator<=( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex <= rIndex.nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator>( const SwIndex & )
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator>( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex > rIndex.nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator>=( const SwIndex & )
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator>=( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   OSL_ENSURE( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex >= rIndex.nIndex;
-/*N*/ }
-
-#endif
-
-/*************************************************************************
-|*
-|*    SwIndex & SwIndex::operator=( xub_StrLen )
-|*
-*************************************************************************/
-
-#ifdef DBG_UTIL
-
-
-/*N*/ SwIndex& SwIndex::operator=( xub_StrLen nWert )
-/*N*/ {
-/*N*/   // Werte kopieren und im neuen Array anmelden
-/*N*/   if( nIndex != nWert )
-/*N*/       ChgValue( *this, nWert );
-/*N*/
-/*N*/   return *this;
-/*N*/ }
-
-#endif
 
 
 
