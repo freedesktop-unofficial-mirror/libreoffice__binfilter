@@ -84,9 +84,6 @@ namespace binfilter {
 
 /*N*/ String GetDefaultFontName( LanguageType nLang, USHORT nIdent )
 /*N*/ {
-/*N*/     DBG_ASSERT( FNT_BEGIN <= nIdent  &&  nIdent <= FNT_END,
-/*N*/             "index out opd range" );
-/*N*/
 /*N*/     if (FNT_MATH == nIdent)
 /*?*/         return String::CreateFromAscii( FNTNAME_MATH );
 /*N*/     else

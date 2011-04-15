@@ -62,10 +62,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ DBG_NAME( EditEngine )
 /*N*/ DBG_NAMEEX( EditView )
 
-#if (OSL_DEBUG_LEVEL > 1) || defined ( DBG_UTIL )
-/*N*/ static sal_Bool bDebugPaint = sal_False;
-#endif
-
 SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 
 

@@ -1276,7 +1276,7 @@ namespace binfilter {
 #include <cstdio>       // for snprintf
 #include <cstring>      // for strncat
 namespace binfilter {
-/*N*/ void Dbg_DebugItems( SfxItemSet& rSet, ChartModel* pModel, long num )
+/*N*/ void Dbg_DebugItems( SfxItemSet& rSet, ChartModel* pModel )
 /*N*/ {
 /*N*/   SfxItemPool *pItemPool=&( pModel->GetItemPool() );
 /*N*/
@@ -1284,9 +1284,9 @@ namespace binfilter {
 /*N*/   char pSmallBuf[ 128 ] = "";
 /*N*/
 /*N*/   const USHORT* pRanges = rSet.GetRanges();
-/*N*/   for( long n = 0; pRanges[ n ] && n<32; n++ )
+/*N*/   for( long n = 0; pRanges[ n ] && n<32; n+=2 )
 /*N*/   {
-/*N*/       snprintf( pSmallBuf, sizeof(pSmallBuf), "[%ld; %ld] ", pRanges[ n ], pRanges[ ++n ] );
+/*N*/       snprintf( pSmallBuf, sizeof(pSmallBuf), "[%"SAL_PRIdINT32"; %"SAL_PRIdINT32"] ", pRanges[ n ], pRanges[ n+1 ] );
 /*N*/       strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/   }
 /*N*/
@@ -1312,7 +1312,7 @@ namespace binfilter {
 /*N*/               nCns++;
 /*N*/           if( nCnt < 100 )
 /*N*/           {
-/*N*/               snprintf( pSmallBuf, sizeof(pSmallBuf), "%ld, ", nWhich );
+/*N*/               snprintf( pSmallBuf, sizeof(pSmallBuf), "%"SAL_PRIdINT32", ", nWhich );
 /*N*/               strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/           }
 /*N*/

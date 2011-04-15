@@ -3017,7 +3017,11 @@ void ScInterpreter::ScTTT()
 /*N*/   case ocIsValue : \
 /*N*/   case ocN : \
 /*N*/   case ocType : \
-/*N*/       statement;
+/*N*/       statement; \
+/*N*/           break; \
+/*N*/   default : \
+/*N*/       break;
+
 /*N*/
 /*N*/       switch ( eOp )
 /*N*/       {

@@ -162,10 +162,10 @@ OGroup::OGroup( const ::rtl::OUString& rGroupName )
 #ifdef DBG_UTIL
 //------------------------------------------------------------------
 OGroup::OGroup( const OGroup& _rSource )
-    :m_aGroupName(_rSource.m_aGroupName)
-    ,m_nInsertPos(_rSource.m_nInsertPos)
-    ,m_aCompArray(_rSource.m_aCompArray)
+    :m_aCompArray(_rSource.m_aCompArray)
     ,m_aCompAccArray(_rSource.m_aCompAccArray)
+    ,m_aGroupName(_rSource.m_aGroupName)
+    ,m_nInsertPos(_rSource.m_nInsertPos)
 {
     DBG_CTOR(OGroup,NULL);
 }
@@ -386,7 +386,7 @@ sal_Int32 OGroupManager::getGroupCount()
 //------------------------------------------------------------------
 void OGroupManager::getGroup(sal_Int32 nGroup, Sequence< Reference<XControlModel> >& _rGroup, ::rtl::OUString& _rName)
 {
-    OSL_ENSURE(nGroup >= 0 && nGroup < m_aActiveGroupMap.size(),"OGroupManager::getGroup: Invalid group index!");
+    OSL_ENSURE(nGroup >= 0 && nGroup < static_cast<sal_Int32>(m_aActiveGroupMap.size()),"OGroupManager::getGroup: Invalid group index!");
     OGroupArr::iterator aGroupPos   = m_aActiveGroupMap[nGroup];
     _rName                          = aGroupPos->second.GetGroupName();
     _rGroup                         = aGroupPos->second.GetControlModels();

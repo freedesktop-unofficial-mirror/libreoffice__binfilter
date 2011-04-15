@@ -50,12 +50,10 @@ namespace binfilter {
 //Item-Debugging
 #ifdef DBG_UTIL
     class ChartModel;
-    extern void Dbg_DebugItems(SfxItemSet& rSet,ChartModel* pModel,long num = 32);
+    extern void Dbg_DebugItems(SfxItemSet& rSet,ChartModel* pModel);
     #define DBG_ITEMS(a,b) Dbg_DebugItems(a,b)
-    #define DBG_ITEMSX(a,b,c) Dbg_DebugItems(a,b,c)
 #else
     #define DBG_ITEMS(a,b)
-    #define DBG_ITEMSX(a,b,c)
 #endif
 
 //hunderstel Grad (centi-degrees)in Rad

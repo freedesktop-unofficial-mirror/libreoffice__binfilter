@@ -423,7 +423,7 @@ void SvEmbeddedObject::SetModified( BOOL bModifiedP )
 
             // Fuer diesen Fall muss der gesammte Ablauf noch
             // einmal geprueft werden
-            DBG_ASSERT( xPar.Is() && pP || !pP && !xPar.Is(),
+            DBG_ASSERT( (xPar.Is() && pP) || (!pP && !xPar.Is()),
                         "Persist-Parent ist kein EmbeddedObject" );
         }
     }

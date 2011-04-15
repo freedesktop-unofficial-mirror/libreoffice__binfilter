@@ -2060,6 +2060,8 @@ namespace binfilter {
 /*?*/                                   bCorrected = TRUE;
 /*?*/                               }
 /*?*/                           break;
+/*?*/                           default:
+/*?*/                           break;
 /*?*/                       }
 /*?*/                   }
 /*?*/               }
@@ -2212,6 +2214,8 @@ namespace binfilter {
 /*N*/               case ocGetActTime:
 /*N*/                   pArr->SetRecalcModeAlways();
 /*N*/               break;
+/*N*/               default:
+/*N*/               break;
 /*N*/           }
 /*N*/           pFacToken = pToken;
 /*N*/           eOp = NextToken();
@@ -2238,6 +2242,8 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 case ocFormula:
 /*?*/                     pArr->SetRecalcModeAlways();
+/*N*/                 break;
+/*N*/                 default:
 /*N*/                 break;
 /*N*/             }
 /*N*/           pFacToken = pToken;
@@ -2369,6 +2375,8 @@ namespace binfilter {
 /*?*/               case ocRow :
 /*?*/                 case ocCell :   // CELL needs recalc on move for some possible type values
 /*?*/                   pArr->SetRecalcModeOnRefMove();
+/*?*/               break;
+/*?*/               default:
 /*?*/               break;
 /*N*/           }
 /*N*/       }
@@ -3127,6 +3135,8 @@ namespace binfilter {
 /*N*/  /*?*/                    if (pDBData)
 /*N*/  /*?*/                        aBuffer.append(pDBData->GetName());
 /*?*/               }
+/*?*/               break;
+/*?*/               default:
 /*?*/               break;
 /*?*/           }
 /*N*/           if ( aBuffer.getLength() )
