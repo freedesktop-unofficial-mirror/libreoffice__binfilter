@@ -284,7 +284,7 @@ public:
 
     void   LoadOld( SvStream& );
     void   Load( SvStream&, USHORT nVersion );
-    void   Store( SvStream& );
+    void   Store( SvStream& ) {}
 
     static USHORT ConvertFromOldPoolId( USHORT nId, USHORT nVersion );
     static USHORT ConvertToOldPoolId( USHORT nId, sal_uInt32 nFFVersion );

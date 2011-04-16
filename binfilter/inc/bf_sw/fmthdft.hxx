@@ -58,7 +58,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
 
     const SwFrmFmt *GetHeaderFmt() const { return (SwFrmFmt*)pRegisteredIn; }
           SwFrmFmt *GetHeaderFmt()       { return (SwFrmFmt*)pRegisteredIn; }
@@ -87,7 +87,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
 
     const SwFrmFmt *GetFooterFmt() const { return (SwFrmFmt*)pRegisteredIn; }
           SwFrmFmt *GetFooterFmt()       { return (SwFrmFmt*)pRegisteredIn; }

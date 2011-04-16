@@ -69,21 +69,13 @@ protected:
 public:
     virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     virtual int             operator==( const SfxPoolItem& ) const;
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
-
-// will be used at time??
-//  void                    FillVariable( SbxVariable &rVar,
-//                                        SfxMapUnit eCoreMetric,
-//                                        SfxMapUnit eUserMetric ) const;
-//  virtual SfxArgumentError SetVariable( const SbxVariable &rVal,
-//                                        SfxMapUnit eCoreMetric,
-//                                        SfxMapUnit eUserMetric );
 
     inline BOOL IsAtEnd() const { return FTNEND_ATPGORDOCEND != GetValue(); }
 

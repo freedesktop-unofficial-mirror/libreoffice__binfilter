@@ -2166,27 +2166,6 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   bFixed = sal_True;
 /*N*/ }
 
-/*N*/ void Sw3StringPool::Store( SvStream& r )
-/*N*/ {
-/*N*/   OSL_ENSURE( nExpFFVersion==r.GetVersion(),
-/*N*/           "Sw3StringPool::Store: FF-Version am Stream stimmt nicht" );
-/*N*/   rtl_TextEncoding eSrcEnc = r.GetStreamCharSet();
-/*N*/   sal_uInt16 n = aPool.Count();
-/*N*/   r << (sal_uInt8) eSrcEnc
-/*N*/     << (sal_uInt16) n;
-/*N*/   for( sal_uInt16 i = 0; i < n; i++ )
-/*N*/   {
-/*N*/       Sw3String* p = aPool.GetObject( i );
-/*N*/       sal_uInt16 nId = (sal_uInt16) p->GetPoolId();
-/*N*/       r << nId;
-/*N*/       if( nId == IDX_NOCONV_FF )
-/*N*/           r.WriteByteString( Sw3IoImp::ConvertStringNoDbDelim(
-/*N*/                                       (const String&)*p, eSrcEnc ) );
-/*N*/       else
-/*N*/           r.WriteByteString( (const String&)*p, eSrcEnc );
-/*N*/   }
-/*N*/ }
-
 /*N*/ void Sw3StringPool::Clear()
 /*N*/ {
 /*N*/   aPool.DeleteAndDestroy( 0, aPool.Count() );

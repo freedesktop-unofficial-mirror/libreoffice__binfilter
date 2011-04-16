@@ -99,32 +99,6 @@ namespace binfilter {
 /*N*/   return pRet;
 /*N*/ }
 
-
-/*N*/ SvStream& SwFmtSurround::Store( SvStream& rStrm, USHORT nIVer ) const
-/*N*/ {
-/*N*/   if ( nIVer < 5 )
-/*N*/   {
-/*N*/       SwSurround eType = GetSurround();
-/*N*/       BYTE bGold = 0;
-/*N*/       if( SURROUND_IDEAL == eType )
-/*N*/       {
-/*N*/           eType = SURROUND_PARALLEL;
-/*N*/           bGold = 1;
-/*N*/       }
-/*N*/       rStrm << (BYTE) eType
-/*N*/             << (BYTE) bGold;
-/*N*/   }
-/*N*/   else
-/*N*/       rStrm << (BYTE) GetSurround();
-/*N*/   if( nIVer > 1 )
-/*N*/         rStrm << (BYTE) IsAnchorOnly();
-/*N*/   if( nIVer > 2 )
-/*N*/         rStrm << (BYTE) IsContour();
-/*N*/   if( nIVer > 3 )
-/*N*/         rStrm << (BYTE) IsOutside();
-/*N*/   return rStrm;
-/*N*/ }
-
 /*N*/ USHORT SwFmtVertOrient::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -148,32 +122,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return new SwFmtVertOrient( (SwTwips) nPos, (SwVertOrient) nOrient,
 /*N*/                               (SwRelationOrient) nRelation );
-/*N*/ }
-
-
-/*N*/ SvStream& SwFmtVertOrient::Store( SvStream& rStrm, USHORT ) const
-/*N*/ {
-/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/
-/*N*/   SwTwips nPos = GetPos();
-/*N*/
-/*N*/   if( pIo && pIo->IsSw31Export() && pIo->pExportInfo &&
-/*N*/       pIo->pExportInfo->bFlyFrmFmt )
-/*N*/   {
-/*N*/       const SfxItemSet *pItemSet = pIo->pExportInfo->pItemSet;
-/*N*/       if( pItemSet )
-/*N*/       {
-/*N*/           const SvxULSpaceItem& rULSpace =
-/*N*/               (const SvxULSpaceItem&)pItemSet->Get( RES_UL_SPACE );
-/*N*/
-/*N*/           nPos = GetPosConvertedToSw31( &rULSpace );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   rStrm << (long) nPos
-/*N*/         << (BYTE) GetVertOrient()
-/*N*/         << (BYTE) GetRelationOrient();
-/*N*/   return rStrm;
 /*N*/ }
 
 /*N*/ USHORT SwFmtHoriOrient::GetVersion( USHORT nFFVer ) const
@@ -205,61 +153,6 @@ namespace binfilter {
 /*N*/         BOOL( bToggle ) );
 /*N*/ }
 
-
-/*N*/ SvStream& SwFmtHoriOrient::Store( SvStream& rStrm, USHORT nVersion ) const
-/*N*/ {
-/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/
-/*N*/   SwTwips nPos = GetPos();
-/*N*/
-/*N*/   if( pIo && pIo->IsSw31Export() && pIo->pExportInfo &&
-/*N*/       pIo->pExportInfo->bFlyFrmFmt )
-/*N*/   {
-/*N*/       const SfxItemSet *pItemSet = pIo->pExportInfo->pItemSet;
-/*N*/       if( pItemSet )
-/*N*/       {
-/*N*/           const SvxLRSpaceItem& rLRSpace =
-/*N*/               (const SvxLRSpaceItem&)pItemSet->Get( RES_LR_SPACE );
-/*N*/
-/*N*/           nPos = GetPosConvertedToSw31( &rLRSpace );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if( nVersion >= IVER_HORIORIENT_TOGGLE )
-/*N*/   {
-/*N*/       rStrm   << (long) nPos
-/*N*/               << (BYTE) GetHoriOrient()
-/*N*/               << (BYTE) GetRelationOrient()
-/*N*/               << (BYTE) IsPosToggle();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       SwHoriOrient eHori = GetHoriOrient();
-/*N*/       SwRelationOrient eRel = GetRelationOrient();
-/*N*/       if( eRel > PRTAREA )
-/*N*/       {
-/*?*/           if( !(pIo && pIo->pExportInfo && pIo->pExportInfo->pFlyFrm &&
-/*?*/               pIo->pExportInfo->pFlyFrm->ConvertHoriTo40( eHori, eRel, nPos ) ) )
-/*?*/           {
-/*?*/               switch ( eRel )
-/*?*/               {
-/*?*/                   case REL_PG_LEFT: eRel = FRAME; eHori = HORI_LEFT; break;
-/*?*/                   case REL_PG_RIGHT: eRel = FRAME; break;
-/*?*/                   case REL_FRM_LEFT: eRel = PRTAREA; break;
-/*?*/                   case REL_FRM_RIGHT: eRel = PRTAREA; break;
-/*?*/                   case REL_PG_PRTAREA: eRel = PRTAREA; break;
-/*?*/                   default: eRel = FRAME; break;
-/*?*/               }
-/*?*/           }
-/*N*/       }
-/*N*/       rStrm << (long) nPos
-/*N*/             << (BYTE) eHori;
-/*N*/       rStrm << (BYTE) eRel;
-/*N*/   }
-/*N*/   return rStrm;
-/*N*/ }
-
-
 /*N*/ USHORT SwFmtFrmSize::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -285,40 +178,6 @@ namespace binfilter {
 /*N*/   return pRet;
 /*N*/ }
 
-
-/*N*/ SvStream& SwFmtFrmSize::Store( SvStream& rStrm, USHORT nIVer ) const
-/*N*/ {
-/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/
-/*N*/   Size aSz( GetSize() );
-/*N*/   if( pIo && pIo->IsSw31Export() && pIo->pExportInfo &&
-/*N*/       pIo->pExportInfo->bFlyFrmFmt )
-/*N*/   {
-/*N*/       const SfxItemSet *pItemSet = pIo->pExportInfo->pItemSet;
-/*N*/       if( pItemSet )
-/*N*/       {
-/*N*/           const SvxLRSpaceItem& rLRSpace =
-/*N*/               (const SvxLRSpaceItem&)pItemSet->Get( RES_LR_SPACE );
-/*N*/           const SvxULSpaceItem& rULSpace =
-/*N*/               (const SvxULSpaceItem&)pItemSet->Get( RES_UL_SPACE );
-/*N*/
-/*N*/           aSz = GetSizeConvertedToSw31( &rLRSpace, &rULSpace );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   rStrm << (BYTE)  GetSizeType()
-/*N*/         << (INT32) aSz.Width()
-/*N*/         << (INT32) aSz.Height();
-/*N*/
-/*N*/   if( nIVer > 1 )
-/*N*/   {
-/*N*/       rStrm << (BYTE)  GetWidthPercent()
-/*N*/             << (BYTE)  GetHeightPercent();
-/*N*/   }
-/*N*/   return rStrm;
-/*N*/ }
-
-
 /*N*/ SfxPoolItem* SwFmtFillOrder::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   BYTE nFillOrder;
@@ -327,12 +186,6 @@ namespace binfilter {
 /*N*/ }
 /*N*/
 /*N*/
-/*N*/ SvStream& SwFmtFillOrder::Store( SvStream& rStrm, USHORT ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE) GetFillOrder();
-/*N*/   return rStrm;
-/*N*/ }
-
 
 /*N*/ SfxPoolItem* SwFmtCol::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
@@ -389,36 +242,6 @@ namespace binfilter {
 /*N*/   return p;
 /*N*/ }
 
-
-/*N*/ SvStream& SwFmtCol::Store( SvStream& rStrm, USHORT ) const
-/*N*/ {
-/*N*/
-/*N*/   rStrm << (BYTE)  GetLineAdj()
-/*N*/         << (BYTE)  IsOrtho()
-/*N*/         << (BYTE)  GetLineHeight()
-/*N*/         << (INT16) GetGutterWidth()
-/*N*/         << (UINT16)GetWishWidth()
-/*N*/         << (BYTE)  0 // rPen.GetStyle() - not available anymore
-/*N*/         << (INT16) GetLineWidth()
-/*N*/         << (UINT16)(GetLineColor().GetRed() << 8 )
-/*N*/         << (UINT16)(GetLineColor().GetGreen() << 8 )
-/*N*/         << (UINT16)(GetLineColor().GetBlue() << 8 )
-/*N*/           ;
-/*N*/   INT16 nCol = GetNumCols();
-/*N*/   rStrm << (INT16) nCol;
-/*N*/   for( short i = 0; i < nCol; i++ )
-/*N*/   {
-/*N*/       const SwColumn* pCol = GetColumns()[ i ];
-/*N*/       rStrm << (UINT16)pCol->GetWishWidth()
-/*N*/             << (INT16) pCol->GetLeft()
-/*N*/             << (INT16) pCol->GetUpper()
-/*N*/             << (INT16) pCol->GetRight()
-/*N*/             << (INT16) pCol->GetLower();
-/*N*/   }
-/*N*/   return rStrm;
-/*N*/ }
-
-
 /*N*/ SfxPoolItem * SwFmtURL::Create(SvStream &rStrm, USHORT nIVer) const
 /*N*/ {
 /*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
@@ -443,24 +266,6 @@ namespace binfilter {
 /*N*/   return pNew;
 /*N*/ }
 
-
-/*N*/ SvStream & SwFmtURL::Store( SvStream &rStrm, USHORT nIVer ) const
-/*N*/ {
-/*N*/   OSL_ENSURE( nIVer != USHRT_MAX,
-/*N*/           "SwFmtURL: Wer faengt da Version USHRT_MAX nicht ab?" );
-/*N*/
-/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/   OSL_ENSURE( pIo, "Reader/Writer not found" );
-/*N*/
-/*N*/   if( pIo )
-/*N*/       pIo->OutImageMap( sURL, sTargetFrameName, pMap, bIsServerMap );
-/*N*/   if( nIVer >= 1 )
-/*N*/       rStrm.WriteByteString( GetName(), rStrm.GetStreamCharSet() );
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-
 /*N*/ USHORT SwFmtURL::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -477,14 +282,6 @@ SfxPoolItem* SwFmtEditInReadonly::Create(SvStream &rStrm, USHORT) const
     rStrm >> n;
     return new SwFmtEditInReadonly( RES_EDIT_IN_READONLY, BOOL(n) );
 }
-
-
-SvStream& SwFmtEditInReadonly::Store(SvStream &rStrm, USHORT ) const
-{
-    rStrm << BYTE(GetValue());
-    return rStrm;
-}
-
 
 /*N*/ USHORT SwFmtEditInReadonly::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -503,14 +300,6 @@ SfxPoolItem* SwFmtLayoutSplit::Create(SvStream &rStrm, USHORT) const
     return new SwFmtLayoutSplit( BOOL(n) );
 }
 
-
-SvStream& SwFmtLayoutSplit::Store(SvStream &rStrm, USHORT ) const
-{
-    rStrm << BYTE(GetValue());
-    return rStrm;
-}
-
-
 /*N*/ USHORT SwFmtLayoutSplit::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -520,25 +309,6 @@ SvStream& SwFmtLayoutSplit::Store(SvStream &rStrm, USHORT ) const
 /*N*/   return SOFFICE_FILEFORMAT_31==nFFVer ||
 /*N*/          SOFFICE_FILEFORMAT_40==nFFVer ? USHRT_MAX : 0;
 /*N*/ }
-
-SvStream& SwFmtFtnEndAtTxtEnd::Store( SvStream & rStrm, USHORT nIVer ) const
-{
-// alt: nur ein BOOL, jetzt 2 enums, 2 Strings, 1 uint16
-    if( 0 == nIVer )        // old - only a boolitem
-    {
-        rStrm << (BYTE)( FTNEND_ATPGORDOCEND == GetValue() ? 0 : 1 );
-    }
-    else
-    {
-        rStrm << (BYTE)GetValue()
-              << (UINT16)nOffset
-              << (UINT16)aFmt.GetNumberingType();
-        rStrm.WriteByteString( sPrefix, rStrm.GetStreamCharSet() );
-        rStrm.WriteByteString( sSuffix, rStrm.GetStreamCharSet() );
-    }
-
-    return rStrm;
-}
 
 SfxPoolItem* SwFmtFtnEndAtTxtEnd::Create( SvStream &rStrm, USHORT nVer ) const
 {
@@ -582,14 +352,6 @@ SfxPoolItem* SwFmtNoBalancedColumns::Create(SvStream &rStrm, USHORT) const
     return new SwFmtNoBalancedColumns( BOOL(n) );
 }
 
-
-SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
-{
-    rStrm << BYTE(GetValue());
-    return rStrm;
-}
-
-
 /*N*/ USHORT SwFmtNoBalancedColumns::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -608,15 +370,6 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 /*M*/   rStrm >> n;
 /*M*/     return new SwHeaderAndFooterEatSpacingItem( RES_HEADER_FOOTER_EAT_SPACING, BOOL(n) );
 /*M*/ }
-
-
-/*M*/ SvStream& SwHeaderAndFooterEatSpacingItem::Store(SvStream &rStrm, USHORT ) const
-/*M*/ {
-/*M*/     OSL_FAIL( "SwHeaderAndFooterEatSpacingItem::Store called for old fileformat" );
-/*M*/   rStrm << BYTE(GetValue());
-/*M*/   return rStrm;
-/*M*/ }
-
 
 /*M*/ USHORT SwHeaderAndFooterEatSpacingItem::GetVersion( USHORT nFFVer ) const
 /*M*/ {
@@ -645,18 +398,6 @@ SvStream& SwFmtNoBalancedColumns::Store(SvStream &rStrm, USHORT ) const
 /*N*/   pRet->SetGrfToggle((BOOL)nToggle);
 /*N*/   return pRet;
 /*N*/ }
-
-
-/*N*/ SvStream& SwMirrorGrf::Store( SvStream& rStrm, USHORT nIVer) const
-/*N*/ {
-/*N*/   rStrm << (BYTE)GetValue();
-/*N*/
-/*N*/   if (nIVer > 0)
-/*N*/       rStrm << (BYTE)bGrfToggle;
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
 
 /*N*/ USHORT SwMirrorGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
@@ -696,13 +437,6 @@ SfxPoolItem* SwRotationGrf::Create( SvStream & rStrm, USHORT nVer ) const
     rStrm >> aSz;
     pRet->SetUnrotatedSize( aSz );
     return pRet;
-}
-
-SvStream& SwRotationGrf::Store( SvStream & rStrm, USHORT nIVer) const
-{
-    SfxUInt16Item::Store( rStrm, nIVer );
-    rStrm << GetUnrotatedSize();
-    return rStrm;
 }
 
 /*N*/ USHORT SwLuminanceGrf::GetVersion( USHORT nFFVer ) const
@@ -753,12 +487,6 @@ SfxPoolItem* SwGammaGrf::Create(SvStream & rStrm, USHORT ) const
     return pRet;
 }
 
-SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
-{
-    rStrm << GetValue();
-    return rStrm;
-}
-
 /*N*/ USHORT SwInvertGrf::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -803,22 +531,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/   return new SwFmtHardBlank( c, FALSE );
 /*N*/ }
 
-
-/*N*/ SvStream& SwFmtHardBlank::Store( SvStream& rStrm, USHORT nIVer ) const
-/*N*/ {
-/*N*/   if( nIVer )
-/*N*/   {
-/*N*/       sal_Char c = ByteString::ConvertFromUnicode( GetChar(),
-/*N*/                                                   rStrm.GetStreamCharSet(),
-/*N*/                                                   FALSE );
-/*N*/       if( !c )
-/*N*/           c = ' ';    // TODO: unicode: is this sensible?
-/*N*/       rStrm << c;
-/*N*/   }
-/*N*/   return rStrm;
-/*N*/ }
-
-
 /*N*/ USHORT SwFmtHardBlank::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -832,12 +544,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/ SfxPoolItem* SwFmtSoftHyph::Create( SvStream& /*rStrm*/, USHORT ) const
 /*N*/ {
 /*N*/   return new SwFmtSoftHyph;
-/*N*/ }
-
-
-/*N*/ SvStream& SwFmtSoftHyph::Store( SvStream& rStrm, USHORT ) const
-/*N*/ {
-/*N*/   return rStrm;
 /*N*/ }
 
 /////////////////////////////// Absatz-Attribute ///////////////////////////
@@ -886,40 +592,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/   return pAttr;
 /*N*/ }
 
-
-/*N*/ SvStream& SwFmtDrop::Store( SvStream& rStrm, USHORT nVer ) const
-/*N*/ {
-/*N*/   USHORT nFmt = IDX_NO_VALUE;
-/*N*/   USHORT nChars1 = GetWholeWord() ? 1 : GetChars();
-/*N*/   const SwFmt* pFmt = GetCharFmt();
-/*N*/   if( pFmt )
-/*N*/   {
-/*N*/       Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/       if( pIo )
-/*N*/           nFmt = pIo->aStringPool.Find( pFmt->GetName(),
-/*N*/                                         pFmt->GetPoolFmtId() );
-/*N*/   }
-/*N*/   rStrm << (UINT16) nFmt
-/*N*/         << (UINT16) GetLines()
-/*N*/         << (UINT16) nChars1
-/*N*/         << (UINT16) GetDistance();
-/*N*/   if( nVer >= DROP_WHOLEWORD )
-/*N*/       rStrm << (BYTE) GetWholeWord();
-/*N*/   else
-/*N*/       rStrm << (UINT16) 0 << (UINT16) 0;
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SwRegisterItem::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SwRegisterItem::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   BYTE bIsRegister;
@@ -939,16 +611,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/   // im 3.1 FF nicht speichern
 /*N*/   return SOFFICE_FILEFORMAT_31==nFFVer ? USHRT_MAX : 0;
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SwFmtLineNumber::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
-/*N*/ {
-/*N*/   rStrm << static_cast<sal_uInt32>(nStartValue) << IsCount();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SwFmtLineNumber::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
@@ -971,29 +633,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/   // vor 5.0 nicht speichern
 /*N*/   return SOFFICE_FILEFORMAT_40 <= nFFVer ? 0 : USHRT_MAX;
 /*N*/ }
-
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SwNumRuleItem::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
-/*N*/ {
-/*N*/   // Damit wir Pool-NumRules umbenennen koennen, muessen wir die
-/*N*/   // PoolId der NumRule rausfinden und mit speichern.
-/*N*/   UINT16 nPoolId = USHRT_MAX;
-/*N*/   Sw3IoImp* pIo = Sw3IoImp::GetCurrentIo();
-/*N*/   if( pIo )
-/*N*/   {
-/*N*/       const SwNumRule *pNumRule = pIo->pDoc->FindNumRulePtr( GetValue() );
-/*N*/       if( pNumRule )
-/*N*/           nPoolId = pNumRule->GetPoolFmtId();
-/*N*/   }
-/*N*/
-/*N*/   rStrm.WriteByteString( GetValue(), rStrm.GetStreamCharSet() ) << nPoolId;
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SwNumRuleItem::Create( SvStream& rStrm,
 /*N*/                                            USHORT nIVer ) const
@@ -1050,13 +689,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/ }
 
 
-/*N*/ SvStream& SwTblBoxNumFormat::Store( SvStream& rStrm, USHORT /*nIVer*/ ) const
-/*N*/ {
-/*N*/   rStrm << GetValue() << (BYTE)bAuto;
-/*N*/   return rStrm;
-/*N*/ }
-
-
 /*N*/ USHORT SwTblBoxNumFormat::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -1084,21 +716,6 @@ SvStream& SwGammaGrf::Store(SvStream & rStrm, USHORT ) const
 /*N*/
 /*N*/   return new SwTblBoxValue( dVal );
 /*N*/ }
-
-
-/*N*/ SvStream& SwTblBoxValue::Store( SvStream& rStrm, USHORT nIVer ) const
-/*N*/ {
-/*N*/   if( 0 == nIVer )
-/*N*/   {
-/*?*/         ByteString sValue(ByteString::CreateFromDouble(nValue));
-/*?*/       rStrm.WriteByteString( sValue );
-/*N*/   }
-/*N*/   else
-/*N*/       rStrm << nValue;
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
 
 /*N*/ USHORT SwTblBoxValue::GetVersion( USHORT nFFVer ) const
 /*N*/ {

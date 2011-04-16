@@ -134,7 +134,7 @@ public:
     void ConnectParent( const String& );
     void ConnectFollow( const String& );
     virtual void Load( SvStream&, USHORT );
-    virtual void Store( SvStream& );
+    virtual void Store( SvStream& ) {}
     virtual USHORT GetVersion() const;
 
     // fuers Rename - Vorlagen muessen noch nicht im Pool umbenannt sein,
@@ -160,7 +160,7 @@ public:
     SwStyleSheetPool( SwDoc&, SfxItemPool&, long nFFVersion, Sw3Fmts *pConvFmts );
     virtual ~SwStyleSheetPool();
     BOOL Load( SvStream&, BOOL, USHORT eMask );
-    BOOL Store( SvStream&, BOOL );
+    BOOL Store( SvStream&, BOOL ) {return FALSE;}
 };
 
 
@@ -318,76 +318,6 @@ public:
 /*N*/       nId = Sw3StringPool::ConvertFromOldPoolId( nId, SWG_LONGIDX );
 /*N*/ }
 
-/*N*/ void SwStyleSheet::Store( SvStream& r )
-/*N*/ {
-/*N*/   OSL_ENSURE( nVersion == r.GetVersion(),
-/*N*/           "SwStyleSheet::Store: FF-Version != Stream-FF-Version" );
-/*N*/
-/*N*/   r << nId;
-/*N*/   if( r.GetVersion() <= SOFFICE_FILEFORMAT_40 &&
-/*N*/       nLevel != NO_NUMBERING && nLevel >= OLD_MAXLEVEL )
-/*N*/   {
-/*N*/       nLevel = NO_NUMBERING;
-/*N*/   }
-/*N*/   r << nLevel;
-/*N*/
-/*N*/   if( nVersion > SOFFICE_FILEFORMAT_31 )
-/*N*/   {
-/*N*/ //FEATURE::CONDCOLL
-/*N*/       UINT16 nType = RES_CONDTXTFMTCOLL == pFmt->Which() ? 1 : 0;
-/*N*/       r << nType;
-/*N*/       if( nType )
-/*N*/       {
-/*N*/           // Tabelle der ConditionTypes und der Vorlagen ausgeben:
-/*N*/           const SwFmtCollConditions& rCColls = ((SwConditionTxtFmtColl*)pFmt)->
-/*N*/                                                   GetCondColls();
-/*N*/           r << (UINT16)rCColls.Count();
-/*N*/           for( USHORT n = 0; n < rCColls.Count(); ++n )
-/*N*/           {
-/*?*/               const SwCollCondition& rCColl = *rCColls[ n ];
-/*?*/               r.WriteByteString( rCColl.GetTxtFmtColl()->GetName(),
-/*?*/                                  r.GetStreamCharSet() );
-/*?*/               r << (UINT32) rCColl.GetCondition();
-/*?*/
-/*?*/               if( USRFLD_EXPRESSION & rCColl.GetCondition() )
-/*?*/               {
-/*?*/                   String s( *rCColl.GetFldExpression() );
-/*?*/                   r.WriteByteString( s, r.GetStreamCharSet() );
-/*?*/               }
-/*?*/               else
-/*?*/                   r << (UINT32) rCColl.GetSubCondition();
-/*N*/           }
-/*N*/       }
-/*N*/ //FEATURE::CONDCOLL
-/*N*/
-/*N*/       // zusaetzliches Flag-Byte speichern
-/*N*/       r << cFlags;
-/*N*/
-/*N*/ #ifdef NUM_RELSPACE
-/*N*/       if( nVersion > SOFFICE_FILEFORMAT_40 && (cFlags & 0x02) != 0 )
-/*N*/       {
-/*N*/           r << (UINT32)0;
-/*N*/           if( pNumLRSpace )
-/*N*/           {
-/*?*/               USHORT nIVer = pNumLRSpace->GetVersion( (USHORT)nVersion );
-/*?*/               if( nIVer != USHRT_MAX )
-/*?*/               {
-/*?*/                   ULONG nPos = r.Tell();
-/*?*/                   r << (UINT16)nIVer;
-/*?*/                   pNumLRSpace->Store( r, nIVer );
-/*?*/
-/*?*/                   ULONG nNewPos = r.Tell();
-/*?*/                   r.Seek( nPos-4UL );
-/*?*/                   r << (UINT32)(nNewPos - nPos);
-/*?*/                   r.Seek( nNewPos );
-/*?*/               }
-/*?*/           }
-/*N*/       }
-/*N*/ #endif
-/*N*/   }
-/*N*/ }
-
-//FEATURE::CONDCOLL
 /*N*/ USHORT SwStyleSheet::GetVersion() const
 /*N*/ {
 /*N*/   OSL_ENSURE( nVersion,
@@ -504,25 +434,6 @@ public:
 
 const int RES_POOLCOLL_HTML_LISTING_40_USER = 0x3002 | USER_FMT;
 const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
-
-/*N*/ BOOL SwStyleSheetPool::Store( SvStream& s, BOOL bUsed )
-/*N*/ {
-/*N*/   OSL_ENSURE( nExpFFVersion == s.GetVersion(),
-/*N*/           "SwStyleSheetPool::Store: FF-Version != Stream-FF-Version" );
-/*N*/
-/*N*/   CopyFromDoc( bUsed );
-/*N*/   SetSearchMask( SFX_STYLE_FAMILY_ALL );
-/*N*/
-/*N*/   rPool.SetFileFormatVersion( (USHORT)nExpFFVersion );
-/*N*/
-/*N*/   //JP 11.06.97: laut ChangesMail muss das vorm Speichern gesetzt werden.
-/*N*/   if( SOFFICE_FILEFORMAT_31 == nExpFFVersion )
-/*N*/       rPool.SetStoringRange( 1, 60 );
-/*N*/
-/*N*/   rPool.Store( s );
-/*N*/
-/*N*/   return SfxStyleSheetBasePool::Store( s, bUsed );
-/*N*/ }
 
 // Auffuellen eines Pools mit allen am Doc definierten Vorlagen
 

@@ -47,13 +47,8 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
-/*  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-                                    SfxMapUnit eCoreMetric,
-                                    SfxMapUnit ePresMetric,
-                                    String &rText,
-                                    const ::IntlWrapper*    pIntl = 0 ) const;
-*/  virtual USHORT           GetVersion( USHORT nFFVer ) const;
+    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const {}
+    virtual USHORT    GetVersion( USHORT nFFVer ) const;
 };
 
 

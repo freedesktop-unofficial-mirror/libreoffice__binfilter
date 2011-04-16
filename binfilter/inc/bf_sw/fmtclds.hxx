@@ -78,7 +78,6 @@ enum SwColLineAdj
 
 class SwFmtCol : public SfxPoolItem
 {
-//  Pen      aPen;          //Pen fuer die Linine zwischen den Spalten
     ULONG   nLineWidth;     //width of the separator line
     Color   aLineColor;     //color of the separator line
 
@@ -111,7 +110,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
@@ -119,7 +118,6 @@ public:
     const SwColumns &GetColumns() const { return aColumns; }
           SwColumns &GetColumns()       { return aColumns; }
     USHORT           GetNumCols() const { return aColumns.Count(); }
-//  const Pen&       GetLinePen() const { return aPen; }
     ULONG           GetLineWidth() const  { return nLineWidth;}
     const Color&    GetLineColor() const { return aLineColor;}
 
@@ -133,7 +131,6 @@ public:
     //Return die kleinste Breite wenn bMin True ist.
     USHORT GetGutterWidth( BOOL bMin = FALSE ) const;
 
-//  void SetLinePen( const Pen& rNew )  { aPen = rNew; }
     void SetLineWidth(ULONG nWidth_)        { nLineWidth = nWidth_;}
     void SetLineColor(const Color& rCol )   { aLineColor = rCol;}
     void SetLineHeight( BYTE nNew )     { nLineHeight = nNew; }

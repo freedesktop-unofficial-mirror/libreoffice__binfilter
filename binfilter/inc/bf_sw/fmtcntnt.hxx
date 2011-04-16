@@ -54,7 +54,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
 
     const SwNodeIndex *GetCntntIdx() const { return pStartNode; }
     void SetNewCntntIdx( const SwNodeIndex *pIdx );

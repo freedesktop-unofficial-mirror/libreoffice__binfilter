@@ -50,7 +50,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
 
     inline SwFrmFmt *GetFrmFmt() const { return pFmt; }
     // fuer Undo: loesche "logisch" das FlyFrmFormat, wird sich im
@@ -60,7 +60,6 @@ public:
     const SwTxtFlyCnt *GetTxtFlyCnt() const { return pTxtAttr; }
           SwTxtFlyCnt *GetTxtFlyCnt()       { return pTxtAttr; }
 
-    // OD 27.06.2003 #108784#
     bool Sw3ioExportAllowed() const;
 };
 
