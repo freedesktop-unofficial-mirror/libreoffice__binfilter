@@ -128,15 +128,6 @@ SfxPoolItem* SfxRectangleItem::Create(SvStream &rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxRectangleItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxRectangleItem, 0);
-    rStream << aVal;
-    return rStream;
-}
-
-
-// -----------------------------------------------------------------------
 bool SfxRectangleItem::QueryValue( ::com::sun::star::uno::Any& rVal,
                                    BYTE nMemberId) const
 {

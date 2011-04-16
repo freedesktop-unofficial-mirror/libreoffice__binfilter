@@ -66,7 +66,7 @@ public:
     virtual int Compare(const SfxPoolItem &rWith) const;
     virtual SfxPoolItem* Clone(SfxItemPool *pPool = 0) const;
     virtual SfxPoolItem* Create(SvStream &, USHORT nVersion) const;
-    virtual SvStream& Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream& Store(SvStream &, USHORT nItemVersion) const {}
 
     virtual bool PutValue  ( const com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 );

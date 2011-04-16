@@ -117,15 +117,6 @@ SfxPoolItem * SfxVisibilityItem::Create(SvStream & rStream, USHORT) const
 
 //============================================================================
 // virtual
-SvStream & SfxVisibilityItem::Store(SvStream & rStream, USHORT) const
-{
-    DBG_CHKTHIS(SfxVisibilityItem, 0);
-    rStream << m_nValue.bVisible;
-    return rStream;
-}
-
-//============================================================================
-// virtual
 SfxPoolItem * SfxVisibilityItem::Clone(SfxItemPool *) const
 {
     DBG_CHKTHIS(SfxVisibilityItem, 0);

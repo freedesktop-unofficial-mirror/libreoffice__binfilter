@@ -213,13 +213,6 @@ USHORT SfxPoolItem::GetVersion( USHORT ) const
     return 0;
 }
 
-// -----------------------------------------------------------------------
-SvStream& SfxPoolItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxPoolItem, 0);
-    return rStream;
-}
-
 //============================================================================
 // static
 bool SfxPoolItem::readByteString(SvStream & rStream, UniString & rString)

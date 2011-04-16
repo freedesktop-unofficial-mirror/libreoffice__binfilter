@@ -118,17 +118,6 @@ SfxPoolItem* SfxXRangeItem::Create(SvStream &rStream, USHORT) const
     return new SfxXRangeItem( Which(), nVon, nBis );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxXRangeItem::Store(SvStream &rStream, USHORT) const
-{
-    rStream << nFrom;
-    rStream << nTo;
-    return rStream;
-}
-
-//=========================================================================
-
 SfxXRangesItem::SfxXRangesItem()
 :   _pRanges(0)
 {
@@ -206,17 +195,6 @@ SfxPoolItem* SfxXRangesItem::Clone( SfxItemPool * ) const
 SfxPoolItem* SfxXRangesItem::Create( SvStream &rStream, USHORT ) const
 {
     return new SfxXRangesItem( Which(), rStream );
-}
-
-//-------------------------------------------------------------------------
-
-SvStream& SfxXRangesItem::Store( SvStream &rStream, USHORT ) const
-{
-    NUMTYPE nCount = Count_Impl( _pRanges );
-    rStream >> nCount;
-    for ( NUMTYPE n = 0; _pRanges[n]; ++n )
-        rStream >> _pRanges[n];
-    return rStream;
 }
 
 

@@ -125,14 +125,6 @@ SfxPoolItem* SfxBigIntItem::Create(SvStream &rStream, USHORT) const
 }
 
 //============================================================================
-SvStream& SfxBigIntItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxBigIntItem, 0);
-    rStream.WriteByteString( aVal.GetByteString() );
-    return rStream;
-}
-
-//============================================================================
 SfxFieldUnit SfxBigIntItem::GetUnit() const
 {
     DBG_CHKTHIS(SfxBigIntItem, 0);

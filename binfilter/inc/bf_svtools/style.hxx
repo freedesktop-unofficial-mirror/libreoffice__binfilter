@@ -59,10 +59,10 @@ class SfxStyleSheetBasePool;
 /*=========================================================================
 
 Jeder, der an Intanzen der Klassen SfxStyleSheetBasePool oder am
-SfxStyleSheetBase strukturelle �nderungen vornimmt, mu� diese �ber
-<SfxStyleSheetBasePool::GetBroadcaster()> broadcasten. Daf�r Gibt es die
+SfxStyleSheetBase strukturelle ?nderungen vornimmt, mu? diese ?ber
+<SfxStyleSheetBasePool::GetBroadcaster()> broadcasten. Daf?r Gibt es die
 Klasse <SfxStyleSheetHint>, die eine Action-Id und einen Pointer auf einen
-<SfxStyleSheetBase> erh�lt. Die Actions sind:
+<SfxStyleSheetBase> erh?lt. Die Actions sind:
 
 #define SFX_STYLESHEET_CREATED      // neu
 #define SFX_STYLESHEET_MODIFIED     // ver"andert
@@ -116,7 +116,7 @@ protected:
     SfxStyleSheetBase( const SfxStyleSheetBase& );
     virtual ~SfxStyleSheetBase();
     virtual void Load( SvStream&, USHORT );
-    virtual void Store( SvStream& );
+    virtual void Store( SvStream& ) {}
 
 public:
     TYPEINFO();
@@ -271,7 +271,7 @@ public:
     SfxStyleFamily              GetSearchFamily() const  { return nSearchFamily; }
 
     BOOL                        Load( SvStream& );
-    BOOL                        Store( SvStream&, BOOL bUsed = TRUE );
+    BOOL Store( SvStream&, BOOL bUsed = TRUE ) {return FALSE;}
 };
 
 //=========================================================================

@@ -189,15 +189,6 @@ SfxPoolItem * SfxInt16Item::Create(SvStream & rStream, USHORT) const
 }
 
 //============================================================================
-// virtual
-SvStream & SfxInt16Item::Store(SvStream & rStream, USHORT) const
-{
-    DBG_CHKTHIS(SfxInt16Item, 0);
-    rStream << short(m_nValue);
-    return rStream;
-}
-
-//============================================================================
 SfxPoolItem * SfxInt16Item::Clone(SfxItemPool *) const
 {
     DBG_CHKTHIS(SfxInt16Item, 0);

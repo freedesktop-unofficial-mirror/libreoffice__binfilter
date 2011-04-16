@@ -92,10 +92,10 @@ class  SfxItemPool
     Die von dieser Klasse abgeleiteten Klassen dienen der Bereitstellung von
     Defaults von SfxPoolItems und halten konkrete (konstante) Instanzen, die
     dann von mehreren Stellen (i.d.R. eines Dokuments) referenziert werden
-    k�nnen.
+    k?nnen.
 
     Dadurch ist jeder Wert nur einmalig gespeichert, was zu wenig Konstruktor
-    und Destruktor-Aufrufen f�hrt, Vergleiche zwischen Items eines Dokuments
+    und Destruktor-Aufrufen f?hrt, Vergleiche zwischen Items eines Dokuments
     beschleunigt und ein einfaches Laden und Speichern von Attributen
     bereitstellt.
 */
@@ -188,7 +188,7 @@ public:
     const SfxPoolItem*              LoadItem( SvStream &rStream,
                                               bool bDirect = FALSE,
                                               const SfxItemPool *pRefPool = 0 );
-    bool                        StoreItem( SvStream &rStream,
+    bool                                       StoreItem( SvStream &rStream,
                                                const SfxPoolItem &rItem,
                                                bool bDirect = FALSE ) const;
 
@@ -202,7 +202,7 @@ public:
                                             const SfxPoolItem *pItem ) const;
 
     virtual SvStream &              Load(SvStream &);
-    virtual SvStream &              Store(SvStream &) const;
+    virtual SvStream & Store(SvStream &) const {}
     int                             HasPersistentRefCounts() const {
                                         return bPersistentRefCounts; }
     void                            LoadCompleted();

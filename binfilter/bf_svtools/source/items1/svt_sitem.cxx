@@ -104,12 +104,6 @@ SfxItemPresentation SfxSetItem::GetPresentation
 
 // --------------------------------------------------------------------------
 
-SvStream& SfxSetItem::Store(SvStream& rStream, USHORT) const
-{
-    GetItemSet().Store(rStream);
-    return rStream;
-}
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

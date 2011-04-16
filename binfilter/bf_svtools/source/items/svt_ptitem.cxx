@@ -129,15 +129,6 @@ SfxPoolItem* SfxPointItem::Create(SvStream &rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxPointItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxPointItem, 0);
-    rStream << aVal;
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 bool SfxPointItem::QueryValue( uno::Any& rVal,
                                BYTE nMemberId ) const
 {

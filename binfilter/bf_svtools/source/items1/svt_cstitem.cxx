@@ -107,18 +107,6 @@ SfxPoolItem* SfxCrawlStatusItem::Create( SvStream& rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxCrawlStatusItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxCrawlStatusItem, 0 );
-
-    USHORT nStatus = (USHORT)eStatus;
-    rStream << (USHORT) nStatus;
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxCrawlStatusItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxCrawlStatusItem, 0 );

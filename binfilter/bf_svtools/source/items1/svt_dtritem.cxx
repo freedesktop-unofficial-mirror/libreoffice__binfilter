@@ -127,23 +127,6 @@ SfxPoolItem* SfxDateTimeRangeItem::Create( SvStream& rStream, USHORT ) const
     return new SfxDateTimeRangeItem( Which(), aStartDT, aEndDT );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxDateTimeRangeItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxDateTimeRangeItem, 0 );
-
-    rStream << aStartDateTime.GetDate();
-    rStream << aStartDateTime.GetTime();
-
-    rStream << aEndDateTime.GetDate();
-    rStream << aEndDateTime.GetTime();
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxDateTimeRangeItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxDateTimeRangeItem, 0 );

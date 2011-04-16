@@ -125,14 +125,6 @@ SfxPoolItem* SfxSizeItem::Create(SvStream &rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxSizeItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxSizeItem, 0);
-    rStream << aVal;
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
 bool  SfxSizeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
                                BYTE nMemberId ) const
 {

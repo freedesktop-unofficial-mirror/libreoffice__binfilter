@@ -222,7 +222,7 @@ public:
     virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual SfxPoolItem*     Create( SvStream &, USHORT nItemVersion ) const;
-    virtual SvStream&        Store( SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream&       Store( SvStream &, USHORT nItemVersion ) const {}
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const = 0;
 
     ULONG                    GetRefCount() const { return m_nRefCount; }
@@ -390,7 +390,7 @@ public:
     // von sich selbst eine Kopie erzeugen
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const = 0;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVersion) const = 0;
-    virtual SvStream&       Store(SvStream &, USHORT nVer) const;
+    virtual SvStream&      Store(SvStream &, USHORT nVer) const {}
 
     const SfxItemSet&       GetItemSet() const
                             { return *pSet; }

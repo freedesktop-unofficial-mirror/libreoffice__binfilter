@@ -63,14 +63,6 @@ SfxPoolItem * SfxStringItem::Create(SvStream & rStream, USHORT) const
 
 //============================================================================
 // virtual
-SvStream & SfxStringItem::Store(SvStream & rStream, USHORT) const
-{
-    writeByteString(rStream, GetValue());
-    return rStream;
-}
-
-//============================================================================
-// virtual
 SfxPoolItem * SfxStringItem::Clone(SfxItemPool *) const
 {
     return new SfxStringItem(*this);

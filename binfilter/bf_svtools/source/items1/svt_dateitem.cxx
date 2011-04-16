@@ -122,18 +122,6 @@ SfxPoolItem* SfxDateTimeItem::Create( SvStream& rStream, USHORT ) const
     return new SfxDateTimeItem( Which(), aDT );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxDateTimeItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxDateTimeItem, 0);
-    rStream << aDateTime.GetDate();
-    rStream << aDateTime.GetTime();
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxDateTimeItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS(SfxDateTimeItem, 0);

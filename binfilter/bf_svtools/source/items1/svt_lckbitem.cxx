@@ -120,21 +120,6 @@ SfxPoolItem* SfxLockBytesItem::Create( SvStream &rStream, USHORT ) const
     return new SfxLockBytesItem( Which(), aNewStream );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxLockBytesItem::Store(SvStream &rStream, USHORT ) const
-{
-    SvStream aLockBytesStream( _xVal );
-    sal_uInt32 nSize = aLockBytesStream.Seek( STREAM_SEEK_TO_END );
-    aLockBytesStream.Seek( 0L );
-
-    rStream << nSize;
-    rStream << aLockBytesStream;
-
-    return rStream;
-}
-
-//----------------------------------------------------------------------------
 // virtual
 bool SfxLockBytesItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
 {

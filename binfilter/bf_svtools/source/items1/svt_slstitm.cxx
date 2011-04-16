@@ -181,34 +181,6 @@ SfxPoolItem* SfxStringListItem::Create( SvStream & rStream, USHORT ) const
     return new SfxStringListItem( Which(), rStream );
 }
 
-//------------------------------------------------------------------------
-
-SvStream& SfxStringListItem::Store( SvStream & rStream, USHORT ) const
-{
-    if( !pImp )
-    {
-        rStream << 0L;
-        return rStream;
-    }
-
-    DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid");
-
-    long nCount = pImp->aList.Count();
-    rStream << nCount;
-
-    long i;
-    String* pStr;
-    for( i=0; i < nCount; i++ )
-    {
-        pStr = (String*)(pImp->aList.GetObject( i ));
-        writeByteString(rStream, *pStr);
-    }
-
-    return rStream;
-}
-
-//------------------------------------------------------------------------
-
 void SfxStringListItem::SetString( const XubString& rStr )
 {
     DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0");

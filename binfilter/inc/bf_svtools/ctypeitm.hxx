@@ -52,7 +52,7 @@ public:
 
     virtual SfxPoolItem* Create( SvStream& rStream,
                                  USHORT nItemVersion ) const;
-    virtual SvStream & Store(SvStream & rStream, USHORT) const;
+    virtual SvStream & Store(SvStream & rStream, USHORT) const {}
 
     virtual int          operator==( const SfxPoolItem& rOrig ) const;
 

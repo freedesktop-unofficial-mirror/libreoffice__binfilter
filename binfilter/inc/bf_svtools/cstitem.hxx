@@ -50,7 +50,7 @@ enum CrawlStatus
     CSTAT_ERR_NOTEXISTS     = 6,        /* Server existiert nicht                       */
     CSTAT_ERR_NOTREACHED    = 7,        /* Server nicht ereicht                         */
     CSTAT_UPD_IMMEDIATELY   = 8,        /* es wird gleich ueberprueftt                  */
-    CSTAT_ERR_OFFLINE       = 9         /* Ueberpruefung nicht m�glich, da Offline        */
+    CSTAT_ERR_OFFLINE       = 9         /* Ueberpruefung nicht m?glich, da Offline      */
 };
 
 DBG_NAMEEX(SfxCrawlStatusItem)
@@ -72,7 +72,7 @@ public:
     using SfxPoolItem::Compare;
     virtual int             Compare( const SfxPoolItem &rWith )         const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT nItemVersion )    const;
-    virtual SvStream&       Store( SvStream&, USHORT nItemVersion )     const;
+    virtual SvStream& Store( SvStream&, USHORT nItemVersion ) const {}
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 )             const;
 
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,

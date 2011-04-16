@@ -157,31 +157,6 @@ SfxPoolItem* SfxFrequencyItem::Create( SvStream& rStream, USHORT ) const
         _nTInterval1, Time(_nTime1), Time(_nTime2) );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxFrequencyItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxFrequencyItem, 0 );
-
-    USHORT nEMode = (USHORT)eFrqMode;
-    USHORT nETimeMode = (USHORT)eFrqTimeMode;
-
-    rStream << (USHORT) nEMode;
-    rStream << (USHORT) nETimeMode;
-
-    rStream << nDInterval1;
-    rStream << nDInterval2;
-    rStream << nDInterval3;
-
-    rStream << nTInterval1;
-    rStream << aTime1.GetTime();
-    rStream << aTime2.GetTime();
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxFrequencyItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxFrequencyItem, 0 );

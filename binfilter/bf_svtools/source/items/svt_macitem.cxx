@@ -234,13 +234,6 @@ SfxItemPresentation SvxMacroItem::GetPresentation
 
 // -----------------------------------------------------------------------
 
-SvStream& SvxMacroItem::Store( SvStream& rStrm , USHORT ) const
-{
-    return aMacroTable.Write( rStrm );
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SvxMacroItem::Create( SvStream& rStrm, USHORT nVersion ) const
 {
     SvxMacroItem* pAttr = new SvxMacroItem( Which() );

@@ -168,14 +168,6 @@ TYPEINIT1(CntEnumItem, SfxEnumItemInterface)
 
 //============================================================================
 // virtual
-SvStream & CntEnumItem::Store(SvStream & rStream, USHORT) const
-{
-    rStream << m_nValue;
-    return rStream;
-}
-
-//============================================================================
-// virtual
 USHORT CntEnumItem::GetEnumValue() const
 {
     return GetValue();
@@ -263,14 +255,6 @@ bool CntBoolItem::PutValue(const com::sun::star::uno::Any& rVal, BYTE)
 SfxPoolItem * CntBoolItem::Create(SvStream & rStream, USHORT) const
 {
     return new CntBoolItem(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntBoolItem::Store(SvStream & rStream, USHORT) const
-{
-    rStream << m_bValue;
-    return rStream;
 }
 
 //============================================================================

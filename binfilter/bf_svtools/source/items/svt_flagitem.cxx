@@ -75,15 +75,6 @@ SfxFlagItem::SfxFlagItem( const SfxFlagItem& rItem ) :
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxFlagItem::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(SfxFlagItem, 0);
-    rStream << nVal;
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxItemPresentation SfxFlagItem::GetPresentation
 (
     SfxItemPresentation     /*ePresentation*/,

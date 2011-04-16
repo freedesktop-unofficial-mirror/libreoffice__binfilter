@@ -109,17 +109,6 @@ SfxPoolItem* CntContentTypeItem::Create( SvStream& rStream,
 
 //----------------------------------------------------------------------------
 // virtual
-SvStream & CntContentTypeItem::Store(SvStream & rStream, USHORT) const
-{
-    // CntContentTypeItem used to be derived from CntStringItem, so take that
-    // into account:
-    writeUnicodeString(rStream, GetValue());
-    rStream << CNTSTRINGITEM_STREAM_MAGIC << BOOL(FALSE);
-    return rStream;
-}
-
-//----------------------------------------------------------------------------
-// virtual
 int CntContentTypeItem::operator==( const SfxPoolItem& rOrig ) const
 {
     const CntContentTypeItem& rOther = (const CntContentTypeItem&)rOrig;

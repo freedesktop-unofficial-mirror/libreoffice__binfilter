@@ -107,20 +107,6 @@ SfxPoolItem* SfxTargetFrameItem::Create( SvStream& rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxTargetFrameItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxTargetFrameItem, 0 );
-    USHORT nCount = (USHORT)(SfxOpenModeLast+1);
-    rStream << nCount;
-    for( USHORT nCur = 0; nCur <= (USHORT)SfxOpenModeLast; nCur++ )
-    {
-        writeByteString(rStream, _aFrames[ nCur ]);
-    }
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxTargetFrameItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxTargetFrameItem, 0 );

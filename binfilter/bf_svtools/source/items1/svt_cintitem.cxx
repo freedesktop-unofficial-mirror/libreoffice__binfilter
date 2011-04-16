@@ -120,15 +120,6 @@ SfxPoolItem * CntByteItem::Create(SvStream & rStream, USHORT) const
 
 //============================================================================
 // virtual
-SvStream & CntByteItem::Store(SvStream & rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntByteItem, 0);
-    rStream << short(m_nValue);
-    return rStream;
-}
-
-//============================================================================
-// virtual
 SfxPoolItem * CntByteItem::Clone(SfxItemPool *) const
 {
     DBG_CHKTHIS(CntByteItem, 0);
@@ -250,15 +241,6 @@ SfxPoolItem * CntUInt16Item::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(CntUInt16Item, 0);
     return new CntUInt16Item(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntUInt16Item::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntUInt16Item, 0);
-    rStream << USHORT(m_nValue);
-    return rStream;
 }
 
 //============================================================================
@@ -385,15 +367,6 @@ SfxPoolItem * CntInt32Item::Create(SvStream & rStream, USHORT) const
 
 //============================================================================
 // virtual
-SvStream & CntInt32Item::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntInt32Item, 0);
-    rStream << long(m_nValue);
-    return rStream;
-}
-
-//============================================================================
-// virtual
 SfxPoolItem * CntInt32Item::Clone(SfxItemPool *) const
 {
     DBG_CHKTHIS(CntInt32Item, 0);
@@ -516,15 +489,6 @@ SfxPoolItem * CntUInt32Item::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(CntUInt32Item, 0);
     return new CntUInt32Item(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntUInt32Item::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntUInt32Item, 0);
-    rStream << static_cast<sal_uInt32>(m_nValue);
-    return rStream;
 }
 
 //============================================================================
