@@ -88,7 +88,7 @@ public:
                                 ScDocument* pDocument );
             ~ScValidationData();
 
-    void            Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const;
+    void Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const {}
 
     ScValidationData* Clone() const     // echte Kopie
                     { return new ScValidationData( GetDocument(), *this ); }
@@ -151,7 +151,7 @@ public:
     ScValidationData* GetData( sal_uInt32 nKey );
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
-    void    Store( SvStream& rStream ) const;
+    void Store( SvStream& rStream ) const {}
     void    ResetUsed();
 
     void    CompileXML();

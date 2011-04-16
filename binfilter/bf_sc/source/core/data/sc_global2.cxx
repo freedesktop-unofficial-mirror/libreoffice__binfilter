@@ -215,17 +215,6 @@ namespace binfilter {
 /*N*/   eConnect = (ScQueryConnect) cConnect;
 /*N*/ }
 /*N*/
-/*N*/ void ScQueryEntry::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream << bDoQuery
-/*N*/           << bQueryByString
-/*N*/           << (BYTE) eOp
-/*N*/           << (BYTE) eConnect
-/*N*/           << nField
-/*N*/           << nVal;
-/*N*/   rStream.WriteByteString( *pStr, rStream.GetStreamCharSet() );
-/*N*/ }
-
 /*N*/ ::utl::TextSearch* ScQueryEntry::GetSearchTextPtr( BOOL bCaseSens )
 /*N*/ {
 /*N*/   if ( !pSearchParam )
@@ -436,43 +425,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
 /*N*/       pEntries[i].Load(rStream);
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ void ScQueryParam::Store( SvStream& rStream ) const       // z.B. fuer Pivot-Tabelle
-/*N*/ {
-/*N*/   // bDestPers wird nicht geladen/gespeichert
-/*N*/
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   DBG_ASSERT( nEntryCount <= MAXQUERY || !pEntries[MAXQUERY].bDoQuery,
-/*N*/                   "zuviele Eintraege bei ScQueryParam::Store" );
-/*N*/
-/*N*/
-/*N*/   if ( nEntryCount < MAXQUERY )
-/*N*/   {
-/*N*/       OSL_FAIL("ScQueryParam::Store - zuwenig Eintraege");
-/*N*/       ((ScQueryParam*)this)->Resize( MAXQUERY );
-/*N*/   }
-/*N*/
-/*N*/   rStream << nCol1
-/*N*/           << nRow1
-/*N*/           << nCol2
-/*N*/           << nRow2
-/*N*/           << nDestTab
-/*N*/           << nDestCol
-/*N*/           << nDestRow
-/*N*/           << bHasHeader
-/*N*/           << bInplace
-/*N*/           << bCaseSens
-/*N*/           << bRegExp
-/*N*/           << bDuplicate
-/*N*/           << bByRow;
-/*N*/
-/*N*/   for (USHORT i=0; i<MAXQUERY; i++)
-/*N*/       pEntries[i].Store(rStream);
-/*N*/ }
-
-//------------------------------------------------------------------------
 // struct ScSubTotalParam:
 
 /*N*/ ScSubTotalParam::ScSubTotalParam()
@@ -723,19 +675,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
 /*N#116571#*/   }
 /*N*/ }
 
-/*N*/ void ScConsolidateParam::Store( SvStream& rStream ) const
-/*N*/ {
-/*N#116571#*/   ScWriteHeader aHdr( rStream, 12+10*nDataAreaCount );
-/*N#116571#*/
-/*N#116571#*/   rStream << nCol << nRow << nTab
-/*N#116571#*/           << bByCol << bByRow << bReferenceData << (BYTE) eFunction;
-/*N#116571#*/
-/*N#116571#*/   rStream << nDataAreaCount;
-/*N#116571#*/   for (USHORT i=0; i<nDataAreaCount; i++)
-/*N#116571#*/       rStream << *ppDataAreas[i];
-/*N*/ }
-
-//------------------------------------------------------------------------
 // struct ScPivotParam:
 
 /*N*/ ScPivotParam::ScPivotParam()

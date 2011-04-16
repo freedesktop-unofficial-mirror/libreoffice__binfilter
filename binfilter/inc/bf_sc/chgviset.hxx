@@ -127,7 +127,7 @@ public:
 
 
 /*N*/   void                Load( SvStream& rStream, USHORT nVer );
-/*N*/   void                Store( SvStream& rStream ) const;
+/*N*/   void  Store( SvStream& rStream ) const {}
 
     // #i49161# this is needed to save documents with change tracking
     ScChangeViewSettings&   operator=   ( const ScChangeViewSettings& r );

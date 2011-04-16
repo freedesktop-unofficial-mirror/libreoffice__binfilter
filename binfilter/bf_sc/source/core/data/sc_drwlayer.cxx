@@ -332,27 +332,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   GetItemPool().LoadCompleted();
 /*N*/ }
 
-/*N*/ void ScDrawLayer::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   const_cast<ScDrawLayer*>(this)->PreSave();      // non-const
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_DRAWPOOL;
-/*N*/       ScWriteHeader aPoolHdr( rStream );
-/*N*/       GetItemPool().Store( rStream );             //! in Pool-Stream ?
-/*N*/   }
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_DRAWMODEL;
-/*N*/       ScWriteHeader aDrawHdr( rStream );
-/*N*/       rStream << *this;
-/*N*/   }
-/*N*/
-/*N*/   const_cast<ScDrawLayer*>(this)->PostSave();     // non-const
-/*N*/ }
-
 /*N*/ BOOL ScDrawLayer::GetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( pDoc, "ScDrawLayer::GetPrintArea without document" );

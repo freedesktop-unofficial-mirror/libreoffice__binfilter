@@ -88,14 +88,6 @@ namespace binfilter {
 /*N*/   InitTokens();
 /*N*/ }
 
-/*N*/ BOOL ScUserListData::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream.WriteByteString( aStr, rStream.GetStreamCharSet() );
-/*N*/   return TRUE;
-/*N*/ }
-
-
-
 /*N*/ BOOL ScUserListData::GetSubIndex(const String& rSubStr, USHORT& rIndex) const
 /*N*/ {
 /*N*/   USHORT i;
@@ -192,18 +184,6 @@ namespace binfilter {
 /*N*/
 /*N*/   for ( USHORT i=0; i<nNewCount && bSuccess; i++ )
 /*N*/       Insert( new ScUserListData( rStream ) );
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ BOOL ScUserList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   rStream << nCount;
-/*N*/
-/*N*/   for ( USHORT i=0; i<nCount && bSuccess; i++ )
-/*N*/       bSuccess = ((const ScUserListData*)At(i))->Store( rStream );
 /*N*/
 /*N*/   return bSuccess;
 /*N*/ }

@@ -1336,7 +1336,7 @@ struct ScQueryEntry
     BOOL            operator==( const ScQueryEntry& r ) const;
 
     void            Load(SvStream& rStream);
-    void            Store(SvStream& rStream) const;
+    void Store(SvStream& rStream) const {}
 };
 
 struct ScQueryParam
@@ -1377,7 +1377,7 @@ public:
      void           FillInExcelSyntax(String& aCellStr, USHORT nIndex);
 
     void            Load(SvStream& rStream);
-    void            Store(SvStream& rStream) const;
+    void Store(SvStream& rStream) const {}
 };
 
 // -----------------------------------------------------------------------
@@ -1435,7 +1435,7 @@ struct ScConsolidateParam
     void                SetAreas        ( ScArea* const* ppAreas, USHORT nCount );
 
     void            Load( SvStream& rStream );
-    void            Store( SvStream& rStream ) const;
+    void Store( SvStream& rStream ) const {}
 };
 
 // -----------------------------------------------------------------------

@@ -75,7 +75,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream& rStream, USHORT nVersion) const;
-    virtual SvStream&       Store(SvStream& rStream, USHORT nItemVersion) const;
+    virtual SvStream&     Store(SvStream& rStream, USHORT nItemVersion) const {}
 
     virtual int             operator==(const SfxPoolItem& rCmp) const;
 

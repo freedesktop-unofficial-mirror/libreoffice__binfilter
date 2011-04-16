@@ -63,7 +63,7 @@ public:
             ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr );
     virtual ~ScDdeLink();
 
-    void            Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    void Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const {}
 
                                             // von SvBaseLink ueberladen:
     virtual void    DataChanged( const String& rMimeType,

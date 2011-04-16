@@ -100,29 +100,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void ScDdeLink::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rtl_TextEncoding eCharSet = rStream.GetStreamCharSet();
-/*N*/   rStream.WriteByteString( aAppl, eCharSet );
-/*N*/   rStream.WriteByteString( aTopic, eCharSet );
-/*N*/   rStream.WriteByteString( aItem, eCharSet );
-/*N*/
-/*N*/   BOOL bHasValue = ( pResult != NULL );
-/*N*/   rStream << bHasValue;
-/*N*/   if (bHasValue)
-/*N*/       pResult->Store( rStream );
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )      // nicht bei 4.0 Export
-/*N*/       rStream << nMode;                                   // seit 388b
-/*N*/
-/*N*/   //  Links mit Mode != SC_DDE_DEFAULT werden bei 4.0 Export komplett weggelassen
-/*N*/   //  (aus ScDocument::SaveDdeLinks)
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
 /*N*/ void ScDdeLink::DataChanged( const String& /*rMimeType*/,
 /*N*/                               const ::com::sun::star::uno::Any & /*rValue*/ )
 /*N*/ {

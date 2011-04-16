@@ -157,22 +157,6 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/  }
 
 
-/*N*/ BOOL ScChangeAction::Store( SvStream& rStrm, ScMultipleWriteHeader& /*rHdr*/ ) const
-/*N*/ {
-/*N*/   // ScChangeTrack speichert aUser als Index auf Collection und eType selber
-/*N*/   rStrm << aBigRange;
-/*N*/   rStrm << (UINT32) aDateTime.GetDate();
-/*N*/   rStrm << (UINT32) aDateTime.GetTime();
-/*N*/   rStrm << (UINT32) nAction;
-/*N*/   rStrm << (UINT32) nRejectAction;
-/*N*/   rStrm << (UINT16) eState;
-/*N*/   rStrm.WriteByteString( aComment, rStrm.GetStreamCharSet() );
-/*N*/   // LinkEntries in zweiter Runde
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-
 /*N*/ BOOL ScChangeAction::StoreLinks( SvStream& rStrm ) const
 /*N*/ {
 /*N*/   BOOL bOk = ScChangeAction::StoreLinkChain( pLinkDeleted, rStrm );
@@ -726,13 +710,6 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/  }
 
 
-/*N*/ BOOL ScChangeActionIns::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::Store( rStrm, rHdr );
-/*N*/   return bOk;
-/*N*/ }
-
-
 /*N*/ void ScChangeActionIns::GetDescription( String& rStr, ScDocument* pDoc,
 /*N*/       BOOL /*bSplitRange*/ ) const
 /*N*/ {
@@ -868,17 +845,6 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/   DeleteCellEntries();
 /*N*/   while ( pLinkMove )
 /*N*/       delete pLinkMove;
-/*N*/ }
-
-
-/*N*/ BOOL ScChangeActionDel::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::Store( rStrm, rHdr );
-/*N*/   rStrm << (UINT32) ( pCutOff ? pCutOff->GetActionNumber() : 0 );
-/*N*/   rStrm << (INT16) nCutOff;
-/*N*/   rStrm << (INT16) nDx;
-/*N*/   rStrm << (INT16) nDy;
-/*N*/   return bOk;
 /*N*/ }
 
 
@@ -1259,14 +1225,6 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/ }
 
 
-/*N*/ BOOL ScChangeActionMove::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::Store( rStrm, rHdr );
-/*N*/   rStrm << aFromRange;
-/*N*/   return bOk;
-/*N*/ }
-
-
 /*N*/ BOOL ScChangeActionMove::StoreLinks( SvStream& rStrm ) const
 /*N*/ {
 /*N*/   BOOL bOk = ScChangeAction::StoreLinks( rStrm );
@@ -1490,24 +1448,6 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/       pPrevContent->pNextContent = pNextContent;
 /*N*/   if ( pNextContent )
 /*N*/       pNextContent->pPrevContent = pPrevContent;
-/*N*/ }
-
-
-/*N*/ BOOL ScChangeActionContent::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   BOOL bOk = ScChangeAction::Store( rStrm, rHdr );
-/*N*/   rStrm.WriteByteString( aOldValue, rStrm.GetStreamCharSet() );
-/*N*/   rStrm.WriteByteString( aNewValue, rStrm.GetStreamCharSet() );
-/*N*/   rStrm << (UINT32) ( pNextContent ? pNextContent->GetActionNumber() : 0 );
-/*N*/   rStrm << (UINT32) ( pPrevContent ? pPrevContent->GetActionNumber() : 0 );
-/*N*/
-/*N*/   {
-/*N*/       ScMultipleWriteHeader aDataHdr( rStrm );
-/*N*/       ScChangeAction::StoreCell( pOldCell, rStrm, aDataHdr );
-/*N*/       ScChangeAction::StoreCell( pNewCell, rStrm, aDataHdr );
-/*N*/   }
-/*N*/
-/*N*/   return bOk;
 /*N*/ }
 
 
@@ -2097,13 +2037,6 @@ const USHORT nMemPoolChangeActionContent = (0x8000 - 64) / sizeof(ScChangeAction
 /*N*/ {
 /*N*/ }
 
-/*N*/ BOOL ScChangeActionReject::Store( SvStream& rStrm, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   ScChangeAction::Store( rStrm, rHdr );
-/*N*/   return TRUE;
-/*N*/ }
-
-
 // --- ScChangeTrack -------------------------------------------------------
 
 /*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScChangeTrackMsgInfo, 16, 16 )
@@ -2532,96 +2465,6 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       rStrm.SetError( SCWARN_IMPORT_INFOLOST );
 /*N*/   }
 /*N*/
-/*N*/   return bOk;
-/*N*/ }
-
-
-/*N*/ BOOL ScChangeTrack::Store( SvStream& rStrm )
-/*N*/ {
-/*N*/   BOOL bOk = TRUE;
-/*N*/   SetLoadSave( TRUE );
-/*N*/
-/*N*/   ScWriteHeader aGlobalHdr( rStrm );
-/*N*/
-/*N*/   rStrm << (UINT16) SC_CHGTRACK_FILEFORMAT;
-/*N*/
-/*N*/   aUserCollection.Store( rStrm );
-/*N*/
-/*N*/   ULONG nCount = aTable.Count();
-/*N*/   ULONG nLastAction = ( pLast ? pLast->GetActionNumber() : 0 );
-/*N*/   ULONG nGeneratedCount = aGeneratedTable.Count();
-/*N*/   rStrm << (UINT32) nCount << (UINT32) nActionMax << (UINT32) nLastAction;
-/*N*/   rStrm << (UINT32) nGeneratedCount;
-/*N*/
-/*N*/   // GeneratedDelContents speichern
-/*N*/   ULONG nSave = 0;
-/*N*/   {
-/*N*/       ScMultipleWriteHeader aHdr( rStrm );
-/*N*/       ULONG nNewGeneratedMin = SC_CHGTRACK_GENERATED_START;
-/*N*/       for ( ScChangeAction* p = pFirstGeneratedDelContent; p && bOk;
-/*N*/               p = p->GetNext() )
-/*N*/       {
-/*N*/           ++nSave;
-/*N*/           aHdr.StartEntry();
-/*N*/           rStrm << (BYTE) p->GetType();
-/*N*/           bOk = p->Store( rStrm, aHdr );
-/*N*/           aHdr.EndEntry();
-/*N*/           ULONG nAct = p->GetActionNumber();
-/*N*/           if ( nNewGeneratedMin > nAct )
-/*N*/               nNewGeneratedMin = nAct;
-/*N*/       }
-/*N*/       nGeneratedMin = nNewGeneratedMin;   // evtl. unbenutzten Bereich freigeben
-/*N*/       rStrm << (UINT32) nGeneratedMin;
-/*N*/   }
-/*N*/
-/*N*/   if ( bOk )
-/*N*/       bOk = ( nGeneratedCount == nSave );
-/*N*/   DBG_ASSERT( bOk, "ScChangeTrack::Store: failed" );
-/*N*/
-/*N*/   // erste Runde: Actions speichern
-/*N*/   nSave = 0;
-/*N*/   {
-/*N*/       ScMultipleWriteHeader aHdr( rStrm );
-/*N*/       StrData* pUserSearch = new StrData( aUser );
-/*N*/       USHORT nUserIndex;
-/*N*/       for ( ScChangeAction* p = GetFirst(); p && bOk; p = p->GetNext() )
-/*N*/       {
-/*N*/           ++nSave;
-/*N*/           aHdr.StartEntry();
-/*N*/
-/*N*/           pUserSearch->SetString( p->GetUser() );
-/*N*/           if ( aUserCollection.Search( pUserSearch, nUserIndex ) )
-/*N*/               rStrm << (UINT16) nUserIndex;
-/*N*/           else
-/*N*/               rStrm << (UINT16) 0xffff;
-/*N*/           rStrm << (BYTE) p->GetType();
-/*N*/
-/*N*/           bOk = p->Store( rStrm, aHdr );
-/*N*/
-/*N*/           aHdr.EndEntry();
-/*N*/       }
-/*N*/       delete pUserSearch;
-/*N*/   }
-/*N*/
-/*N*/   if ( pLast )
-/*N*/       nMarkLastSaved = pLast->GetActionNumber();
-/*N*/
-/*N*/   if ( bOk )
-/*N*/       bOk = ( nCount == nSave );
-/*N*/   DBG_ASSERT( bOk, "ScChangeTrack::Store: failed" );
-/*N*/
-/*N*/   // zweite Runde: Links speichern
-/*N*/   {
-/*N*/       ScMultipleWriteHeader aHdr( rStrm );
-/*N*/       for ( ScChangeAction* p = GetFirst(); p && bOk; p = p->GetNext() )
-/*N*/       {
-/*N*/           aHdr.StartEntry();
-/*N*/           bOk = p->StoreLinks( rStrm );
-/*N*/           aHdr.EndEntry();
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   SetLoadSave( FALSE );
 /*N*/   return bOk;
 /*N*/ }
 

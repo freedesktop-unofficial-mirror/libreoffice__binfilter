@@ -201,26 +201,6 @@ namespace binfilter {
 /*N*/       Append( r );
 /*N*/ }
 
-
-
-
-/*N*/ BOOL ScRangeList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bOk = TRUE;
-/*N*/   ULONG nLclCount = Count();
-/*N*/   ULONG nBytes = sizeof(UINT32) + nLclCount * sizeof(ScRange);
-/*N*/   ScWriteHeader aHdr( rStream, nBytes );
-/*N*/   rStream << (UINT32) nLclCount;
-/*N*/   for ( ULONG j = 0; j < nLclCount && bOk; j++ )
-/*N*/   {
-/*N*/       rStream << *GetObject( j );
-/*N*/       if( rStream.GetError() != SVSTREAM_OK )
-/*N*/           bOk = FALSE;
-/*N*/   }
-/*N*/   return bOk;
-/*N*/ }
-
-
 /*N*/ BOOL ScRangeList::Load( SvStream& rStream, USHORT /*nVer*/ )
 /*N*/ {
 /*N*/   BOOL bOk = TRUE;
@@ -420,26 +400,6 @@ namespace binfilter {
 /*N*/   else if ( !bJoinedInput )
 /*N*/       Append( r );
 /*N*/ }
-
-
-
-
-/*N*/ BOOL ScRangePairList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bOk = TRUE;
-/*N*/   ULONG nLclCount = Count();
-/*N*/   ULONG nBytes = sizeof(UINT32) + nLclCount * sizeof(ScRangePair);
-/*N*/   ScWriteHeader aHdr( rStream, nBytes );
-/*N*/   rStream << (UINT32) nLclCount;
-/*N*/   for ( ULONG j = 0; j < nLclCount && bOk; j++ )
-/*N*/   {
-/*N*/       rStream << *GetObject( j );
-/*N*/       if( rStream.GetError() != SVSTREAM_OK )
-/*N*/           bOk = FALSE;
-/*N*/   }
-/*N*/   return bOk;
-/*N*/ }
-
 
 /*N*/ BOOL ScRangePairList::Load( SvStream& rStream, USHORT nVer )
 /*N*/ {

@@ -395,54 +395,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScPivot::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << bHasHeader
-/*N*/
-/*N*/           << nSrcCol1
-/*N*/           << nSrcRow1
-/*N*/           << nSrcCol2
-/*N*/           << nSrcRow2
-/*N*/           << nSrcTab
-/*N*/
-/*N*/           << nDestCol1
-/*N*/           << nDestRow1
-/*N*/           << nDestCol2
-/*N*/           << nDestRow2
-/*N*/           << nDestTab
-/*N*/
-/*N*/           << nColCount;
-/*N*/   lcl_SaveFieldArr( rStream, aColArr, nColCount );
-/*N*/   rStream << nRowCount;
-/*N*/   lcl_SaveFieldArr( rStream, aRowArr, nRowCount );
-/*N*/   rStream << nDataCount;
-/*N*/   lcl_SaveFieldArr( rStream, aDataArr, nDataCount );
-/*N*/
-/*N*/   aQuery.Store( rStream );
-/*N*/
-/*N*/   rStream << bIgnoreEmpty;
-/*N*/   rStream << bDetectCat;
-/*N*/
-/*N*/   rStream << bMakeTotalCol;       // ab 355i
-/*N*/   rStream << bMakeTotalRow;
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )  // Name/Tag/Spalten ab 5.0
-/*N*/   {
-/*N*/       rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aTag,  rStream.GetStreamCharSet() );
-/*N*/
-/*N*/       if (!pColNames) ((ScPivot*)this)->nColNameCount = 0;        // soll nicht sein
-/*N*/       rStream << nColNameCount;
-/*N*/       for (USHORT nCol=0; nCol<nColNameCount; nCol++)
-/*N*/           rStream.WriteByteString( pColNames[nCol], rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
 /*N*/ void ScPivot::SetQuery(const ScQueryParam& rQuery)
 /*N*/ {
 /*N*/   aQuery = rQuery;

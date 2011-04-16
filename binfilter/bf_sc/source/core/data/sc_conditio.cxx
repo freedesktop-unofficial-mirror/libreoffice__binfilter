@@ -922,18 +922,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void ScCondFormatEntry::Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   //  im Datei-Header sind getrennte Eintraege fuer ScConditionEntry und ScCondFormatEntry
-/*N*/
-/*N*/   StoreCondition( rStream, rHdr );
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/   rStream.WriteByteString( aStyleName, rStream.GetStreamCharSet() );
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
-
 /*N*/ int ScCondFormatEntry::operator== ( const ScCondFormatEntry& r ) const
 /*N*/ {
 /*N*/   return ScConditionEntry::operator==( r ) &&
@@ -1033,24 +1021,6 @@ namespace binfilter {
 /*N*/           ppEntries[i]->SetParent(this);
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ void ScConditionalFormat::Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   //  ein Eintrag im Header fuer die ScConditionalFormat-Daten,
-/*N*/   //  je zwei Eintraege fuer jede Bedingung (ScConditionEntry und ScCondFormatEntry)
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << nKey;
-/*N*/   rStream << nEntryCount;
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/
-/*N*/       //  Eintraege speichern
-/*N*/
-/*N*/   for (USHORT i=0; i<nEntryCount; i++)
-/*N*/       ppEntries[i]->Store(rStream, rHdr);
 /*N*/ }
 
 /*N*/ BOOL ScConditionalFormat::EqualEntries( const ScConditionalFormat& r ) const
@@ -1296,27 +1266,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       ScConditionalFormat* pNew = new ScConditionalFormat( rStream, aHdr, pDocument );
 /*N*/       InsertNew( pNew );
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ScConditionalFormatList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nCount = Count();
-/*N*/   USHORT nUsed = 0;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ((*this)[i]->IsUsed())
-/*N*/           ++nUsed;
-/*N*/
-/*N*/   rStream << nUsed;       // Anzahl der gespeicherten
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScConditionalFormat* pForm = (*this)[i];
-/*N*/       if (pForm->IsUsed())
-/*N*/           pForm->Store( rStream, aHdr );
 /*N*/   }
 /*N*/ }
 

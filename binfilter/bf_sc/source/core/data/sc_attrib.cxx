@@ -140,15 +140,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-/*N*/ SvStream& ScMergeAttr::Store( SvStream& rStream, USHORT /*nVer*/ ) const
-/*N*/ {
-/*N*/   rStream << nColMerge;
-/*N*/   rStream << nRowMerge;
-/*N*/   return rStream;
-/*N*/ }
-
-//------------------------------------------------------------------------
 // MergeFlag
 //------------------------------------------------------------------------
 
@@ -320,38 +311,9 @@ using namespace ::com::sun::star;
 /*N*/   return new ScProtectionAttr(bProtect,bHFormula,bHCell,bHPrint);
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ SvStream& ScProtectionAttr::Store( SvStream& rStream, USHORT /*nVer*/ ) const
-/*N*/ {
-/*N*/   rStream << bProtection;
-/*N*/   rStream << bHideFormula;
-/*N*/   rStream << bHideCell;
-/*N*/   rStream << bHidePrint;
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 //      ScRangeItem - Tabellenbereich
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 // -----------------------------------------------------------------------
 
 /*N*/ int ScRangeItem::operator==( const SfxPoolItem& rAttr ) const
@@ -378,17 +340,6 @@ using namespace ::com::sun::star;
 /*N*/   return 2;
 /*N*/ }
 
-//-----------------------------------------------------------------------
-
-/*N*/ SvStream& ScRangeItem::Store( SvStream& rStrm, USHORT /*nVer*/ ) const
-/*N*/ {
-/*N*/   rStrm << aRange;
-/*N*/   rStrm << nFlags;
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-//-----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* ScRangeItem::Create( SvStream& rStream, USHORT nVersion ) const
 /*N*/ {
@@ -518,24 +469,6 @@ using namespace ::com::sun::star;
 /*N*/   return new ScTableListItem( *this );
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------
-
-/*N*/ SvStream& ScTableListItem::Store( SvStream& rStrm, USHORT /*nVer*/ ) const
-/*N*/ {
-/*N*/   rStrm << nCount;
-/*N*/
-/*N*/   if ( nCount>0 && pTabArr )
-/*N*/       for ( USHORT i=0; i<nCount; i++ )
-/*N*/               rStrm << pTabArr[i];
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-//-----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* ScTableListItem::Create( SvStream& rStrm, USHORT ) const
 /*N*/ {
 /*N*/   ScTableListItem* pNewItem;
@@ -588,7 +521,7 @@ using namespace ::com::sun::star;
 
 
 // -----------------------------------------------------------------------
-//      ScPageHFItem - Daten der Kopf-/Fußzeilen
+//      ScPageHFItem - Daten der Kopf-/Fu?eilen
 // -----------------------------------------------------------------------
 
 /*N*/ ScPageHFItem::ScPageHFItem( USHORT nWhich )
@@ -939,66 +872,6 @@ using namespace ::com::sun::star;
 /*N*/       pArea->Store( rStream );
 /*N*/ }
 
-/*N*/ SvStream& ScPageHFItem::Store( SvStream& rStream, USHORT /*nVer*/ ) const
-/*N*/ {
-/*N*/   if ( pLeftArea && pCenterArea && pRightArea )
-/*N*/   {
-/*N*/       if ( rStream.GetVersion() < SOFFICE_FILEFORMAT_50 )
-/*N*/       {
-/*N*/           ScFieldChangerEditEngine aEngine( EditEngine::CreatePool(), TRUE );
-/*N*/           lcl_StoreOldFields( aEngine, pLeftArea, rStream );
-/*N*/           lcl_StoreOldFields( aEngine, pCenterArea, rStream );
-/*N*/           lcl_StoreOldFields( aEngine, pRightArea, rStream );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           pLeftArea->Store(rStream);
-/*N*/           pCenterArea->Store(rStream);
-/*N*/           pRightArea->Store(rStream);
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       //  soll eigentlich nicht sein, kommt aber vor, wenn das Default-Item
-/*?*/       //  fuer ein ItemSet kopiert wird (#61826#) ...
-/*?*/
-/*?*/       ScFieldChangerEditEngine aEngine( EditEngine::CreatePool(), TRUE );
-/*?*/       EditTextObject* pEmpytObj = aEngine.CreateTextObject();
-/*?*/
-/*?*/       DBG_ASSERT( pEmpytObj, "Error creating empty EditTextObject :-(" );
-/*?*/
-/*?*/       if ( rStream.GetVersion() < SOFFICE_FILEFORMAT_50 )
-/*?*/       {
-/*?*/           if ( pLeftArea )
-/*?*/               lcl_StoreOldFields( aEngine, pLeftArea, rStream );
-/*?*/           else
-/*?*/               pEmpytObj->Store( rStream );
-/*?*/
-/*?*/           if ( pCenterArea )
-/*?*/               lcl_StoreOldFields( aEngine, pCenterArea, rStream );
-/*?*/           else
-/*?*/               pEmpytObj->Store( rStream );
-/*?*/
-/*?*/           if ( pRightArea )
-/*?*/               lcl_StoreOldFields( aEngine, pRightArea, rStream );
-/*?*/           else
-/*?*/               pEmpytObj->Store( rStream );
-/*?*/       }
-/*?*/       else
-/*?*/       {
-/*?*/           (pLeftArea   ? pLeftArea   : pEmpytObj )->Store(rStream);
-/*?*/           (pCenterArea ? pCenterArea : pEmpytObj )->Store(rStream);
-/*?*/           (pRightArea  ? pRightArea  : pEmpytObj )->Store(rStream);
-/*?*/       }
-/*?*/
-/*?*/       delete pEmpytObj;
-/*N*/   }
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ void ScPageHFItem::SetLeftArea( const EditTextObject& rNew )
 /*N*/ {
 /*N*/   delete pLeftArea;
@@ -1153,15 +1026,6 @@ using namespace ::com::sun::star;
 /*N*/   ScDoubleItem* pItem = new ScDoubleItem( Which(), nTmp );
 /*N*/
 /*N*/   return pItem;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-/*N*/ SvStream& ScDoubleItem::Store( SvStream& rStream, USHORT /*nVer*/ ) const
-/*N*/ {
-/*N*/   rStream << nValue;
-/*N*/
-/*N*/   return rStream;
 /*N*/ }
 
 //------------------------------------------------------------------------

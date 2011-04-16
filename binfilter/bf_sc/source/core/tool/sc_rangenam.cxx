@@ -145,19 +145,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ BOOL ScRangeData::Store
-/*N*/   ( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/   rStream << (UINT32) aPos << eType << nIndex << (BYTE) 0x00;
-/*N*/   pCode->Store( rStream, aPos );
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
 /*N*/ BOOL ScRangeData::IsBeyond( USHORT nMaxRow ) const
 /*N*/ {
 /*N*/   if ( aPos.Row() > nMaxRow )
@@ -480,37 +467,6 @@ namespace binfilter {
 /*N*/       if( rStream.GetError() != SVSTREAM_OK )
 /*N*/           bSuccess = FALSE;
 /*N*/   }
-/*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ BOOL ScRangeName::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT i;
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/   USHORT nSaveMaxRow = pDoc->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow < MAXROW )
-/*N*/   {
-/*N*/       nSaveCount = 0;
-/*N*/       for (i=0; i<nCount; i++)
-/*N*/       if ( !((const ScRangeData*)At(i))->IsBeyond(nSaveMaxRow) )
-/*N*/               ++nSaveCount;
-/*N*/
-/*N*/       if ( nSaveCount < nCount )
-/*?*/           pDoc->SetLostData();            // Warnung ausgeben
-/*N*/   }
-/*N*/
-/*N*/   rStream << nSharedMaxIndex << nSaveCount;
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   for (i=0; i<nCount && bSuccess; i++)
-/*N*/   {
-/*N*/       const ScRangeData* pRangeData = (const ScRangeData*)At(i);
-/*N*/       if ( nSaveMaxRow == MAXROW || !pRangeData->IsBeyond(nSaveMaxRow) )
-/*N*/           bSuccess = pRangeData->Store( rStream, aHdr );
-/*N*/   }
-/*N*/
 /*N*/   return bSuccess;
 /*N*/ }
 

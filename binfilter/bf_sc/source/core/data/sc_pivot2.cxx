@@ -224,20 +224,6 @@ namespace binfilter {
 /*N*/   return bSuccess;
 /*N*/ }
 
-/*N*/ BOOL ScPivotCollection::Store(SvStream& rStream) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << nCount;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount && bSuccess; i++)
-/*?*/       bSuccess = ((const ScPivot*)At(i))->Store( rStream, aHdr );
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
 /*N*/ void ScPivotCollection::UpdateReference(UpdateRefMode eUpdateRefMode,
 /*N*/                               USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                               USHORT nCol2, USHORT nRow2, USHORT nTab2,

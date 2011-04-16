@@ -132,7 +132,7 @@ public:
 
             ScToken*            Clone() const;
 
-            void                Store( SvStream& ) const;
+    void Store( SvStream& ) const {}
 
     virtual BOOL                operator==( const ScToken& rToken ) const;
             BOOL                TextEqual( const ScToken& rToken ) const;

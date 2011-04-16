@@ -102,7 +102,7 @@ public:
 
     virtual DataObject* Clone() const;
 
-    BOOL            Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    BOOL Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const {return FALSE;}
 
 
     void            GetName( String& rName ) const  { rName = aName; }
@@ -187,7 +187,7 @@ public:
     virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const;
 
     BOOL                    Load( SvStream& rStream, USHORT nVer );
-    BOOL                    Store( SvStream& rStream ) const;
+    BOOL Store( SvStream& rStream ) const {return FALSE;}
     BOOL                    SearchName( const String& rName, USHORT& rPos ) const;
 /*N*/   void                    UpdateReference(UpdateRefMode eUpdateRefMode,
 /*N*/                               const ScRange& rRange,

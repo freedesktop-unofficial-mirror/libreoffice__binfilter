@@ -137,7 +137,7 @@ public:
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
 
 /*N*/           void        Load( SvStream& );
-/*N*/           void        Store( SvStream& ) const;
+/*N*/   void  Store( SvStream& ) const {}
 };
 
 //------------------------------------------------------------------------

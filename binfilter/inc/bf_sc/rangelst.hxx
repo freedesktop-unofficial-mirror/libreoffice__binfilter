@@ -61,7 +61,7 @@ public:
                                     const ScRange& rWhere,
                                     short nDx, short nDy, short nDz );
     BOOL            Load( SvStream&, USHORT nVer );
-    BOOL            Store( SvStream& ) const;
+    BOOL Store( SvStream& ) const {return FALSE;}
 
     size_t          Count() const { return maList.size(); }
     size_t          GetCurPos() const { return current; }
@@ -178,7 +178,7 @@ public:
                                     short nDx, short nDy, short nDz );
     ScRangePair*    Find( const ScRange& ) const;
     BOOL            Load( SvStream&, USHORT nVer );
-    BOOL            Store( SvStream& ) const;
+    BOOL Store( SvStream& ) const {return FALSE;}
 
     size_t          GetPos( ScRangePair* item )
                     {

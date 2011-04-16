@@ -316,18 +316,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void StrCollection::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/   BOOL bDups = IsDups();
-/*N*/   rStream << bDups << nCount << nLimit << nDelta;
-/*N*/   rtl_TextEncoding eSet = rStream.GetStreamCharSet();
-/*N*/   for ( USHORT i=0; i<nCount; i++ )
-/*N*/   {
-/*N*/       rStream.WriteByteString( ((StrData*)pItems[i])->GetString(), eSet );
-/*N*/   }
-/*N*/ }
-
 //------------------------------------------------------------------------
 // TypedStrCollection
 //------------------------------------------------------------------------

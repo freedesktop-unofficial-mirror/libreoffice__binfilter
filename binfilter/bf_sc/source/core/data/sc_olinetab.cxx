@@ -70,18 +70,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void ScOutlineEntry::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr )
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << nStart;
-/*N*/   rStream << nSize;
-/*N*/   rStream << bHidden;
-/*N*/   rStream << bVisible;
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
 /*N*/ DataObject* ScOutlineEntry::Clone() const
 /*N*/ {
 /*N*/   return new ScOutlineEntry( *this );
@@ -476,22 +464,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScOutlineArray::Store( SvStream& rStream )
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << nDepth;
-/*N*/   for (USHORT nLevel=0; nLevel<nDepth; nLevel++)
-/*N*/   {
-/*N*/       USHORT nCount = aCollections[nLevel].GetCount();
-/*N*/       rStream << nCount;
-/*N*/       for (USHORT nIndex=0; nIndex<nCount; nIndex++)
-/*N*/           ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->Store( rStream, aHdr );
-/*N*/   }
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ ScOutlineTable::ScOutlineTable()
 /*N*/ {
 /*N*/ }
@@ -539,14 +511,6 @@ namespace binfilter {
 /*N*/   aColOutline.Load( rStream );
 /*N*/   aRowOutline.Load( rStream );
 /*N*/ }
-
-/*N*/ void ScOutlineTable::Store( SvStream& rStream )
-/*N*/ {
-/*N*/   aColOutline.Store( rStream );
-/*N*/   aRowOutline.Store( rStream );
-/*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ ScSubOutlineIterator::ScSubOutlineIterator( ScOutlineArray* pOutlineArray ) :
 /*N*/       pArray( pOutlineArray ),

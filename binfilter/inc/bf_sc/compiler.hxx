@@ -360,7 +360,7 @@ public:
 
     void Load30( SvStream&, const ScAddress& );
     void Load( SvStream&, USHORT, const ScAddress& );
-    void Store( SvStream&, const ScAddress& ) const;
+    void Store( SvStream&, const ScAddress& ) const {}
 
     ScToken* AddToken( const ScRawToken& );
      ScToken* AddToken( const ScToken& );

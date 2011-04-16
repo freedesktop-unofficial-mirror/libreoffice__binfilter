@@ -70,7 +70,7 @@ public:
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::uno::XInterface>& xMember );
 
-    void                    Store( SvStream& rStream ) const;
+    void Store( SvStream& rStream ) const {}
 };
 
 
@@ -128,7 +128,7 @@ public:
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::uno::XInterface>& xDim );
 
-    void                    Store( SvStream& rStream ) const;
+    void Store( SvStream& rStream ) const {}
 };
 
 
@@ -172,7 +172,7 @@ public:
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::sheet::XDimensionsSupplier>& xSource );
 
-    void                    Store( SvStream& rStream ) const;
+    void Store( SvStream& rStream ) const {}
     void                    Load( SvStream& rStream );
 
 };

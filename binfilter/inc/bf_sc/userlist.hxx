@@ -53,7 +53,7 @@ public:
     virtual         ~ScUserListData();
 
     virtual DataObject*     Clone() const { return new ScUserListData(*this); }
-/*N*/           BOOL            Store( SvStream& rStream ) const;
+/*N*/  BOOL Store( SvStream& rStream ) const {return FALSE;}
     const   String&         GetString() const { return aStr; }
             BOOL            GetSubIndex(const String& rSubStr, USHORT& rIndex) const;
 };
@@ -69,7 +69,7 @@ public:
 
             ScUserListData* GetData( const String& rSubStr ) const;
 /*N*/           BOOL            Load( SvStream& rStream );
-/*N*/           BOOL            Store( SvStream& rStream ) const;
+/*N*/ BOOL Store( SvStream& rStream ) const {return FALSE;}
             /// If the list in rStr is already inserted
             BOOL            HasEntry( const String& rStr ) const;
 

@@ -168,25 +168,6 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   return pPattern;
 /*N*/ }
 
-/*N*/ SvStream& ScPatternAttr::Store(SvStream& rStream, USHORT /*nItemVersion*/) const
-/*N*/ {
-/*N*/   rStream << (BOOL)TRUE;
-/*N*/
-/*N*/   if ( pStyle )
-/*N*/       rStream.WriteByteString( pStyle->GetName(), rStream.GetStreamCharSet() );
-/*N*/   else if ( pName )                   // wenn Style geloescht ist/war
-/*?*/       rStream.WriteByteString( *pName, rStream.GetStreamCharSet() );
-/*N*/   else
-/*N*/       rStream.WriteByteString( ScGlobal::GetRscString(STR_STYLENAME_STANDARD),
-/*N*/                                   rStream.GetStreamCharSet() );
-/*N*/
-/*N*/   rStream << (short)SFX_STYLE_FAMILY_PARA;  // wg. altem Dateiformat
-/*N*/
-/*N*/   GetItemSet().Store( rStream );
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
 /*N*/ void ScPatternAttr::GetFont(
 /*N*/         Font& rFont, const SfxItemSet& rItemSet, ScAutoFontColorMode eAutoMode,
 /*N*/         OutputDevice* pOutDev, const Fraction* pScale,

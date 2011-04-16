@@ -117,15 +117,6 @@ using namespace ::com::sun::star;
 /*N*/   lcl_SkipExtra( rStream );       // reads at least 1 USHORT
 /*N*/ }
 /*N*/
-/*N*/ void ScDPSaveMember::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/   rStream << nVisibleMode;
-/*N*/   rStream << nShowDetailsMode;
-/*N*/
-/*N*/   rStream << (USHORT) 0;  // nExtra
-/*N*/ }
-/*N*/
 /*N*/ ScDPSaveMember::~ScDPSaveMember()
 /*N*/ {
 /*N*/ }
@@ -256,39 +247,6 @@ using namespace ::com::sun::star;
 /*N*/       aMemberList.Insert( pNew, LIST_APPEND );
 /*N*/   }
 /*N*/   pLayoutName = NULL;
-/*N*/ }
-/*N*/
-/*N*/ void ScDPSaveDimension::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   long i;
-/*N*/
-/*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/   rStream << bIsDataLayout;
-/*N*/
-/*N*/   rStream << bDupFlag;
-/*N*/
-/*N*/   rStream << nOrientation;
-/*N*/   rStream << nFunction;           // enum GeneralFunction
-/*N*/   rStream << nUsedHierarchy;
-/*N*/
-/*N*/   rStream << nShowEmptyMode;      //! at level
-/*N*/
-/*N*/   //! subtotals at level
-/*N*/   rStream << bSubTotalDefault;
-/*N*/   long nSubCnt = pSubTotalFuncs ? nSubTotalCount : 0;
-/*N*/   rStream << nSubCnt;
-/*N*/   for (i=0; i<nSubCnt; i++)
-/*N*/       rStream << pSubTotalFuncs[i];
-/*N*/
-/*N*/   rStream << (USHORT) 0;  // nExtra
-/*N*/
-/*N*/   long nCount = aMemberList.Count();
-/*N*/   rStream << nCount;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScDPSaveMember* pMember = (const ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/       pMember->Store( rStream );
-/*N*/   }
 /*N*/ }
 /*N*/
 /*N*/ ScDPSaveDimension::~ScDPSaveDimension()
@@ -796,26 +754,6 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       OSL_FAIL("exception in WriteToSource");
 /*N*/   }
-/*N*/ }
-/*N*/
-/*N*/ void ScDPSaveData::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   //! multi-header for individual entries
-/*N*/
-/*N*/   long nCount = aDimList.Count();
-/*N*/   rStream << nCount;
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScDPSaveDimension* pDim = (const ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/       pDim->Store( rStream );
-/*N*/   }
-/*N*/
-/*N*/   rStream << nColumnGrandMode;
-/*N*/   rStream << nRowGrandMode;
-/*N*/   rStream << nIgnoreEmptyMode;
-/*N*/   rStream << nRepeatEmptyMode;
-/*N*/
-/*N*/   rStream << (USHORT) 0;  // nExtra
 /*N*/ }
 /*N*/
 /*N*/ void ScDPSaveData::Load( SvStream& rStream )

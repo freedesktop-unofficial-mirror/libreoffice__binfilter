@@ -114,29 +114,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDetOpList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nCount = Count();
-/*N*/   rStream << nCount;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       //  1) Position (ScAddress)
-/*N*/       //  2) Operation (USHORT)
-/*N*/
-/*N*/       aHdr.StartEntry();
-/*N*/
-/*N*/       ScDetOpData* pLclData = (*this)[i];
-/*N*/       rStream << pLclData->GetPos();
-/*N*/       rStream << (USHORT) pLclData->GetOperation();
-/*N*/
-/*N*/       aHdr.EndEntry();
-/*N*/   }
-/*N*/ }
-
-
 
 }
 

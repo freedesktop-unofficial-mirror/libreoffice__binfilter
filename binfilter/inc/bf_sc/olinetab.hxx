@@ -56,7 +56,7 @@ public:
                             ScOutlineEntry( const ScOutlineEntry& rEntry );
                             ScOutlineEntry( SvStream& rStream, ScMultipleReadHeader& rHdr );
 
-    void                    Store( SvStream& rStream, ScMultipleWriteHeader& rHdr );
+    void   Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) {}
     virtual DataObject*     Clone() const;
     USHORT                  GetStart() const    { return nStart; }
 /*N*/   USHORT                  GetSize() const     { return nSize; }
@@ -114,7 +114,7 @@ public:
     BOOL                    ManualAction( USHORT nStartPos, USHORT nEndPos,
                                             BOOL bShow, BYTE* pHiddenFlags );
      void                   Load( SvStream& rStream );
-    void                    Store( SvStream& rStream );
+    void Store( SvStream& rStream ) {}
 };
 
 
@@ -140,7 +140,7 @@ public:
 /*N*/   void                    InsertRow( USHORT nStartRow, USHORT nSize );
 /*N*/   BOOL                    DeleteRow( USHORT nStartRow, USHORT nSize );
     void                    Load( SvStream& rStream );
-     void                   Store( SvStream& rStream );
+     void Store( SvStream& rStream ) {}
 };
 
 

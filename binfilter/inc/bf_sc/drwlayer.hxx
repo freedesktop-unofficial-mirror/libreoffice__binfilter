@@ -110,7 +110,7 @@ public:
     void            UpdateBasic();              // DocShell-Basic in DrawPages setzen
 
     void            Load( SvStream& rStream );
-    void            Store( SvStream& rStream ) const;
+    void Store( SvStream& rStream ) const {}
 
     BOOL            GetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const;
 
