@@ -103,18 +103,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxVector3DItem::Store(SvStream &rStream, USHORT /*nItemVersion*/) const
-/*N*/ {
-/*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
-/*N*/
-/*N*/   // ## if (nItemVersion)
-/*N*/   rStream << aVal;
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;

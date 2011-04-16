@@ -277,70 +277,6 @@ sal_Int32 SvxNumberType::nRefCount = 0;
 /*N*/ }
 
 
-/*N*/ SvStream&   SvxNumberFormat::Store(SvStream &rStream, FontToSubsFontConverter pConverter)
-/*N*/ {
-/*N*/     if(pConverter && pBulletFont)
-/*N*/     {
-/*N*/         cBullet = ConvertFontToSubsFontChar(pConverter, cBullet);
-/*N*/         String sFontName = GetFontToSubsFontName(pConverter);
-/*N*/         pBulletFont->SetName(sFontName);
-/*N*/     }
-/*N*/
-/*N*/     rStream << (USHORT)NUMITEM_VERSION_03;
-/*N*/
-/*N*/   rStream << (USHORT)GetNumberingType();
-/*N*/   rStream << (USHORT)eNumAdjust;
-/*N*/   rStream << (USHORT)nInclUpperLevels;
-/*N*/   rStream << nStart;
-/*N*/   rStream << (USHORT)cBullet;
-/*N*/
-/*N*/   rStream << nFirstLineOffset;
-/*N*/   rStream << nAbsLSpace;
-/*N*/   rStream << nLSpace;
-/*N*/
-/*N*/   rStream << nCharTextDistance;
-/*N*/   rtl_TextEncoding eEnc = gsl_getSystemTextEncoding();
-/*N*/   rStream.WriteByteString(sPrefix, eEnc);
-/*N*/   rStream.WriteByteString(sSuffix, eEnc);
-/*N*/   rStream.WriteByteString(sCharStyleName, eEnc);
-/*N*/   if(pGraphicBrush)
-/*N*/   {
-/*?*/       rStream << (USHORT)1;
-/*?*/
-/*?*/       // #75113# in SD or SI force bullet itself to be stored,
-/*?*/       // for that purpose throw away link when link and graphic
-/*?*/       // are present, so Brush save is forced
-/*?*/       if(pGraphicBrush->GetGraphicLink() && pGraphicBrush->GetGraphic())
-/*?*/       {
-/*?*/           String aEmpty;
-/*?*/           pGraphicBrush->SetGraphicLink(aEmpty);
-/*?*/       }
-/*?*/
-/*?*/       pGraphicBrush->Store(rStream, BRUSH_GRAPHIC_VERSION);
-/*N*/   }
-/*N*/   else
-/*N*/       rStream << (USHORT)0;
-/*N*/
-/*N*/   rStream << (USHORT)eVertOrient;
-/*N*/   if(pBulletFont)
-/*N*/   {
-/*N*/       rStream << (USHORT)1;
-/*N*/       rStream << *pBulletFont;
-/*N*/   }
-/*N*/   else
-/*N*/       rStream << (USHORT)0;
-/*N*/   rStream << aGraphicSize;
-/*N*/
-/*N*/     Color nTempColor = nBulletColor;
-/*N*/     if(COL_AUTO == nBulletColor.GetColor())
-/*N*/         nTempColor = COL_BLACK;
-/*N*/     rStream << nTempColor;
-/*N*/   rStream << nBulletRelSize;
-/*N*/   rStream << (USHORT)IsShowSymbol();
-/*N*/   return rStream;
-/*N*/ }
-
-
 /*N*/ SvxNumberFormat& SvxNumberFormat::operator=( const SvxNumberFormat& rFormat )
 /*N*/ {
 /*N*/   SetNumberingType(rFormat.GetNumberingType());
@@ -635,44 +571,6 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 
 
 
-/*N*/ SvStream& SvxNumRule::Store(SvStream &rStream)
-/*N*/ {
-/*N*/   rStream<<(USHORT)NUMITEM_VERSION_03;
-/*N*/   rStream<<nLevelCount;
-/*N*/   //first save of nFeatureFlags for old versions
-/*N*/   rStream<<(USHORT)nFeatureFlags;
-/*N*/   rStream<<(USHORT)bContinuousNumbering;
-/*N*/   rStream<<(USHORT)eNumberingType;
-/*N*/
-/*N*/     FontToSubsFontConverter pConverter = 0;
-/*N*/     BOOL bConvertBulletFont = rStream.GetVersion() <= SOFFICE_FILEFORMAT_50;
-/*N*/     for(USHORT i = 0; i < SVX_MAX_NUM; i++)
-/*N*/   {
-/*N*/       if(aFmts[i])
-/*N*/       {
-/*N*/           rStream << USHORT(1);
-/*N*/             if(bConvertBulletFont && aFmts[i]->GetBulletFont())
-/*N*/             {
-/*N*/                 if(!pConverter)
-/*N*/                     pConverter =
-/*N*/                         CreateFontToSubsFontConverter(aFmts[i]->GetBulletFont()->GetName(),
-/*N*/                                     FONTTOSUBSFONT_EXPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS);
-/*N*/             }
-/*N*/             aFmts[i]->Store(rStream, pConverter);
-/*N*/       }
-/*N*/       else
-/*N*/           rStream << USHORT(0);
-/*N*/   }
-/*N*/   //second save of nFeatureFlags for new versions
-/*N*/   rStream<<(USHORT)nFeatureFlags;
-/*N*/     if(pConverter)
-/*N*/         DestroyFontToSubsFontConverter(pConverter);
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
-
-
 /*N*/ SvxNumRule::~SvxNumRule()
 /*N*/ {
 /*N*/   for(USHORT i = 0; i < SVX_MAX_NUM; i++)
@@ -817,13 +715,6 @@ static SvxNumberFormat* pStdOutlineNumFmt = 0;
 /*N*/ {
 /*N*/   SvxNumRule aRule(rStream);
 /*N*/   return new SvxNumBulletItem(aRule, Which() );
-/*N*/ }
-
-
-/*N*/ SvStream& SvxNumBulletItem::Store(SvStream &rStream, USHORT /*nItemVersion*/ )const
-/*N*/ {
-/*N*/   pNumRule->Store(rStream);
-/*N*/   return rStream;
 /*N*/ }
 
 

@@ -478,13 +478,6 @@ int SdrFractionItem::operator==(const SfxPoolItem& rCmp) const
 
 
 
-SvStream& SdrFractionItem::Store(SvStream& rOut, USHORT /*nItemVers*/) const
-{
-    rOut<<INT32(nValue.GetNumerator());
-    rOut<<INT32(nValue.GetDenominator());
-    return rOut;
-}
-
 SfxPoolItem* SdrFractionItem::Clone(SfxItemPool * /*pPool*/) const
 {
     return new SdrFractionItem(Which(),GetValue());
@@ -972,18 +965,6 @@ int SdrAutoShapeAdjustmentItem::operator==( const SfxPoolItem& rCmp ) const
 SfxPoolItem* SdrAutoShapeAdjustmentItem::Create( SvStream& rIn, sal_uInt16 nItemVersion ) const
 {
     return new SdrAutoShapeAdjustmentItem( rIn, nItemVersion );
-}
-
-SvStream& SdrAutoShapeAdjustmentItem::Store( SvStream& rOut, sal_uInt16 nItemVersion ) const
-{
-    if ( nItemVersion )
-    {
-        sal_uInt32 i, nCount = GetCount();
-        rOut << nCount;
-        for ( i = 0; i < nCount; i++ )
-        {DBG_BF_ASSERT(0, "STRIP"); }
-    }
-    return rOut;
 }
 
 SfxPoolItem* SdrAutoShapeAdjustmentItem::Clone( SfxItemPool * /*pPool*/ ) const

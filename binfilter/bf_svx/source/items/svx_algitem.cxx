@@ -434,18 +434,6 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& SvxMarginItem::Store( SvStream &rStream, USHORT /*nItemVersion*/) const
-/*N*/ {
-/*N*/   rStream << nLeftMargin;
-/*N*/   rStream << nTopMargin;
-/*N*/   rStream << nRightMargin;
-/*N*/   rStream << nBottomMargin;
-/*N*/   return rStream;
-/*N*/ }
-
-
-//------------------------------------------------------------------------
-
 /*N*/ bool SvxMarginItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);

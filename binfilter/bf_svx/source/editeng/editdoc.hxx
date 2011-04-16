@@ -709,7 +709,7 @@ public:
                         EditEngineItemPool( BOOL bPersistenRefCounts );
                         ~EditEngineItemPool();
 
-    virtual SvStream&   Store( SvStream& rStream ) const;
+    virtual SvStream& Store( SvStream& rStream ) const {}
 };
 
 }//end of namespace binfilter

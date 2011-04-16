@@ -73,7 +73,7 @@ public:
     const EditTextObject&       GetTextObject() const           { return *pText; }
     void                        ClearPortionInfo();
     BOOL                        IsEditDoc() const               { return bIsEditDoc; }
-    void                        Store( SvStream& ) const;
+    void                        Store( SvStream& ) const {}
     static OutlinerParaObject*  Create( SvStream&, SfxItemPool* pTextObjectPool = 0 );
 
     BOOL                        ChangeStyleSheets(  const XubString& rOldName, SfxStyleFamily eOldFamily,

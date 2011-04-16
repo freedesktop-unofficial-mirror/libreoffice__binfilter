@@ -148,7 +148,7 @@ public:
     SvxNumberFormat(SvStream &rStream);
     ~SvxNumberFormat();
 
-    SvStream&       Store(SvStream &rStream, FontToSubsFontConverter pConverter);
+    SvStream&   Store(SvStream &rStream, FontToSubsFontConverter pConverter) {}
 
     SvxNumberFormat& operator=( const SvxNumberFormat&  );
     BOOL            operator==( const SvxNumberFormat&  ) const;
@@ -226,7 +226,7 @@ public:
     int                     operator!=( const SvxNumRule& rRule ) const {return !(*this == rRule);}
 
 
-    SvStream&               Store(SvStream &rStream);
+    SvStream& Store(SvStream &rStream) {}
 
     const SvxNumberFormat*  Get(USHORT nLevel)const;
     const SvxNumberFormat&  GetLevel(USHORT nLevel)const;
@@ -262,7 +262,7 @@ public:
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &, USHORT nItemVersion ) const {}
     virtual USHORT           GetVersion( USHORT nFileVersion ) const;
     virtual int              operator==( const SfxPoolItem& ) const;
 

@@ -97,7 +97,7 @@ public:
     virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual SfxPoolItem*     Create( SvStream&, USHORT ) const;
-    virtual SvStream&        Store( SvStream& , USHORT nItemVersion ) const;
+    virtual SvStream&        Store( SvStream& , USHORT nItemVersion ) const {}
 
     // Ausrichtung
     USHORT          GetPageUsage() const                { return eUse;       }
@@ -137,7 +137,7 @@ public:
 
 
     virtual SfxPoolItem*    Create( SvStream&, USHORT nVersion ) const;
-    virtual SvStream&       Store( SvStream&, USHORT nItemVersion ) const;
+    virtual SvStream&       Store( SvStream&, USHORT nItemVersion ) const {}
 };
 #endif
 

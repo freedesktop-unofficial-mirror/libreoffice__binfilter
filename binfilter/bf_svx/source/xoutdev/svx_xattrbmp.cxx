@@ -498,53 +498,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    SfxPoolItem* XFillBitmapItem::Store(SvStream& rOut) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XFillBitmapItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       rOut << (INT16) aXOBitmap.GetBitmapStyle();
-/*N*/       if( !aXOBitmap.GetBitmap() )
-/*N*/           rOut << (INT16) XBITMAP_NONE;
-/*N*/       else
-/*N*/       {
-/*N*/           rOut << (INT16) aXOBitmap.GetBitmapType();
-/*N*/           if( aXOBitmap.GetBitmapType() == XBITMAP_IMPORT )
-/*N*/           {
-/*N*/               const USHORT    nOldComprMode = rOut.GetCompressMode();
-/*N*/               USHORT          nNewComprMode = nOldComprMode;
-/*N*/
-/*N*/               if( rOut.GetVersion() >= SOFFICE_FILEFORMAT_50 )
-/*N*/                   nNewComprMode |= COMPRESSMODE_ZBITMAP;
-/*N*/               else
-/*N*/                   nNewComprMode &= ~COMPRESSMODE_ZBITMAP;
-/*N*/
-/*N*/               rOut.SetCompressMode( nNewComprMode );
-/*N*/               rOut << aXOBitmap.GetBitmap();
-/*N*/               rOut.SetCompressMode( nOldComprMode );
-/*N*/           }
-/*N*/           else if( aXOBitmap.GetBitmapType() == XBITMAP_8X8 )
-/*N*/           {
-/*N*/               USHORT* pArray = aXOBitmap.GetPixelArray();
-/*N*/               for( USHORT i = 0; i < 64; i++ )
-/*N*/                   rOut << (USHORT) *( pArray + i );
-/*N*/
-/*N*/               rOut << aXOBitmap.GetPixelColor();
-/*N*/               rOut << aXOBitmap.GetBackgroundColor();
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*    const Bitmap& XFillBitmapItem::GetValue(const XBitmapTable* pTable) const
 |*
 *************************************************************************/

@@ -99,18 +99,6 @@ namespace binfilter {
 /*N*/   return pText->ChangeStyleSheets( rOldName, eOldFamily, rNewName, eNewFamily );
 /*N*/ }
 
-/*N*/ void OutlinerParaObject::Store(SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream << nCount;
-/*N*/   rStream << (sal_uInt32) 0x42345678;
-/*N*/   pText->Store( rStream );
-/*N*/
-/*N*/   for( USHORT nPos=0; nPos < nCount; nPos++ )
-/*N*/       rStream << pDepthArr[ nPos ];
-/*N*/
-/*N*/   rStream << bIsEditDoc;
-/*N*/ }
-
 /*N*/ OutlinerParaObject* OutlinerParaObject::Create( SvStream& rStream, SfxItemPool* pTextObjectPool )
 /*N*/ {
 /*N*/   OutlinerParaObject* pPObj = NULL;

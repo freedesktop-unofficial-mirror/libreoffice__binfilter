@@ -1280,7 +1280,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       ContentNode* pNode = GetObject( nNode );
 /*N*/       nLen += pNode->Len();
-/*N*/       // Felder k”nnen laenger sein als der Platzhalter im Node.
+/*N*/       // Felder k?nnen laenger sein als der Platzhalter im Node.
 /*N*/       const CharAttribArray& rAttrs = pNode->GetCharAttribs().GetAttribs();
 /*N*/       for ( USHORT nAttr = rAttrs.Count(); nAttr; )
 /*N*/       {
@@ -1965,26 +1965,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/ }
 
-/*N*/ SvStream& EditEngineItemPool::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   // Bei einem 3.1-Export muess ein Hack eingebaut werden, da BUG im
-/*N*/   // SfxItemSet::Load, aber nicht nachtraeglich in 3.1 fixbar.
-/*N*/
-/*N*/   // Der eingestellte Range muss nach Store erhalten bleiben, weil dann
-/*N*/   // erst die ItemSets gespeichert werden...
-/*N*/
-/*N*/   long nVersion = rStream.GetVersion();
-/*N*/   BOOL b31Format = ( nVersion && ( nVersion <= SOFFICE_FILEFORMAT_31 ) )
-/*N*/                       ? TRUE : FALSE;
-/*N*/
-/*N*/   EditEngineItemPool* pThis = (EditEngineItemPool*)this;
-/*N*/   if ( b31Format )
-/*N*/       pThis->SetStoringRange( 3997, 4022 );
-/*N*/   else
-/*N*/       pThis->SetStoringRange( EE_ITEMS_START, EE_ITEMS_END );
-/*N*/
-/*N*/   return SfxItemPool::Store( rStream );
-/*N*/ }
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

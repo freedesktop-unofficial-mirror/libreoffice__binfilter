@@ -166,27 +166,6 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxFieldItem::Store( SvStream& rStrm, USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( pField, "SvxFieldItem::Store: Feld?!" );
-/*N*/   SvPersistStream aPStrm( GetClassManager(), &rStrm );
-/*N*/   // Das ResetError in der obigen Create-Methode gab es in 3.1 noch nicht,
-/*N*/   // deshalb duerfen beim 3.x-Export neuere Items nicht gespeichert werden!
-/*N*/   if ( ( rStrm.GetVersion() <= SOFFICE_FILEFORMAT_31 ) && pField &&
-/*N*/           pField->GetClassId() == 50 /* SdrMeasureField */ )
-/*N*/   {
-/*N*/       // SvxFieldData reicht nicht, weil auch nicht am ClassMgr angemeldet
-/*?*/       SvxURLField aDummyData;
-/*?*/       aPStrm << &aDummyData;
-/*N*/   }
-/*N*/   else
-/*N*/       aPStrm << pField;
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ int SvxFieldItem::operator==( const SfxPoolItem& rItem ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal which or type" );

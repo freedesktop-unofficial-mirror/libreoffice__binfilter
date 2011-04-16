@@ -74,7 +74,7 @@ public:
            ~NameOrIndex() {};
 
     virtual int          operator==(const SfxPoolItem& rItem) const;
-    virtual SvStream&    Store(SvStream& rOut, USHORT nItemVersion ) const;
+    virtual SvStream&    Store(SvStream& rOut, USHORT nItemVersion ) const {}
 
             String       GetName() const              { return GetValue();   }
             void         SetName(const String& rName) { SetValue(rName);     }

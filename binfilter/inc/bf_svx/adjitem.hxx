@@ -83,7 +83,7 @@ public:
     virtual void             SetEnumValue( USHORT nNewVal );
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &, USHORT nItemVersion ) const {}
     virtual USHORT           GetVersion( USHORT nFileVersion ) const;
 
     inline void SetOneWord( const SvxAdjust eType )

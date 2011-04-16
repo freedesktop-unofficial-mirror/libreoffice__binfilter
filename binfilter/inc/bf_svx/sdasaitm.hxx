@@ -59,7 +59,7 @@ class SdrAutoShapeAdjustmentItem : public SfxPoolItem
 
             virtual int                 operator==( const SfxPoolItem& ) const;
             virtual SfxPoolItem*        Create( SvStream&, sal_uInt16 nItem ) const;
-            virtual SvStream&           Store( SvStream&, sal_uInt16 nVersion ) const;
+            virtual SvStream&           Store( SvStream&, sal_uInt16 nVersion ) const {}
             virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
             virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
 

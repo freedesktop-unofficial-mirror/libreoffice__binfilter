@@ -78,7 +78,7 @@ public:
 
     virtual EditTextObject* Clone() const = 0;
 
-    BOOL                    Store( SvStream& rOStream ) const;
+    BOOL Store( SvStream& rOStream ) const {return FALSE;}
     static EditTextObject*  Create( SvStream& rIStream,
                                 SfxItemPool* pGlobalTextObjectPool = 0 );
 

@@ -280,13 +280,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxDoubleItem::Store(SvStream& rOut, USHORT /*nItemVersion*/) const
-/*N*/ {
-/*N*/   rOut << fVal;
-/*N*/   return rOut;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 /*N*/ bool SvxDoubleItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= fVal;

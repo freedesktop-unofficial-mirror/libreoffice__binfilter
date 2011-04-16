@@ -301,66 +301,6 @@ namespace binfilter {
 /*N*/   return 1;
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxBulletItem::Store( SvStream& rStrm, USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   // Korrektur bei leerer Bitmap
-/*N*/   if( ( nStyle == BS_BMP ) &&
-/*N*/         ( !pGraphicObject || ( GRAPHIC_NONE == pGraphicObject->GetType() ) || ( GRAPHIC_DEFAULT == pGraphicObject->GetType() ) ) )
-/*N*/   {
-/*?*/         if( pGraphicObject )
-/*?*/         {
-/*?*/             delete( const_cast< SvxBulletItem* >( this )->pGraphicObject );
-/*?*/             const_cast< SvxBulletItem* >( this )->pGraphicObject = NULL;
-/*?*/         }
-/*?*/
-/*?*/         const_cast< SvxBulletItem* >( this )->nStyle = BS_NONE;
-/*N*/   }
-/*N*/
-/*N*/   rStrm << nStyle;
-/*N*/
-/*N*/   if( nStyle != BS_BMP )
-/*N*/       StoreFont( rStrm, aFont );
-/*N*/   else
-/*N*/   {
-/*?*/       ULONG _nStart = rStrm.Tell();
-/*?*/
-/*?*/       // Kleine Vorab-Schaetzung der Groesse...
-/*?*/       USHORT nFac = ( rStrm.GetCompressMode() != COMPRESSMODE_NONE ) ? 3 : 1;
-/*?*/       const Bitmap aBmp( pGraphicObject->GetGraphic().GetBitmap() );
-/*?*/       ULONG nBytes = aBmp.GetSizeBytes();
-/*?*/       if ( nBytes < ULONG(0xFF00*nFac) )
-/*?*/           rStrm << aBmp;
-/*?*/
-/*?*/       ULONG nEnd = rStrm.Tell();
-/*?*/       // #67581# Item darf mit Overhead nicht mehr als 64K schreiben,
-/*?*/       // sonst platzt der SfxMultiRecord
-/*?*/       // Dann lieber auf die Bitmap verzichten, ist nur fuer Outliner
-/*?*/       // und auch nur fuer <= 5.0 wichtig.
-/*?*/       // Beim Einlesen merkt der Stream-Operator der Bitmap, dass dort keine steht.
-/*?*/       // Hiermit funktioniert jetzt der Fall das die grosse Bitmap aus einem anderen
-/*?*/       // Fileformat entstanden ist, welches keine 64K belegt, aber wenn eine
-/*?*/       // Bitmap > 64K verwendet wird, hat das SvxNumBulletItem beim Laden ein Problem,
-/*?*/       // stuerzt aber nicht ab.
-/*?*/
-/*?*/       if ( (nEnd-_nStart) > 0xFF00 )
-/*?*/           rStrm.Seek( _nStart );
-/*N*/   }
-/*N*/   rStrm << nWidth;
-/*N*/   rStrm << nStart;
-/*N*/   rStrm << nJustify;
-/*N*/   rStrm << (char)ByteString::ConvertFromUnicode( cSymbol, aFont.GetCharSet() );
-/*N*/   rStrm << nScale;
-/*N*/
-/*N*/   // UNICODE: rStrm << aPrevText;
-/*N*/   rStrm.WriteByteString(aPrevText);
-/*N*/
-/*N*/   // UNICODE: rStrm << aFollowText;
-/*N*/   rStrm.WriteByteString(aFollowText);
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
 
 }
 

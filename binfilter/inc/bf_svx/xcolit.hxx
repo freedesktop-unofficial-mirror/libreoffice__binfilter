@@ -56,7 +56,7 @@ public:
     virtual int             operator==(const SfxPoolItem& rItem) const;
     virtual SfxPoolItem*    Clone(SfxItemPool* pPool = 0) const;
     virtual SfxPoolItem*    Create(SvStream& rIn, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream& rOut, USHORT nItemVersion ) const;
+    virtual SvStream&       Store(SvStream& rOut, USHORT nItemVersion ) const {}
 
     const Color&    GetValue(const XColorTable* pTable = 0) const;
     void            SetValue(const Color& rNew) { aColor = rNew; Detach(); }

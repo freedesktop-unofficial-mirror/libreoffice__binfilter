@@ -168,7 +168,7 @@ public:
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &, USHORT nItemVersion ) const {}
     virtual USHORT           GetVersion( USHORT nFileVersion ) const;
 
 
@@ -244,14 +244,14 @@ class SvxBoxInfoItem : public SfxPoolItem
     BOOL    bMinDist   :1;  // TRUE, Abstand darf nicht unterschritten werden.
 
     BYTE    nValidFlags;    // 0000 0000
-                            // ³³³³ ³³³À?VALID_TOP
-                            // ³³³³ ³³ÀÄ?VALID_BOTTOM
-                            // ³³³³ ³ÀÄÄ?VALID_LEFT
-                            // ³³³³ ÀÄÄÄ?VALID_RIGHT
-                            // ³³³ÀÄÄÄÄÄÄ VALID_HORI
-                            // ³³ÀÄÄÄÄÄÄÄ VALID_VERT
-                            // ³ÀÄÄÄÄÄÄÄÄ VALID_DIST
-                            // ÀÄÄÄÄÄÄÄÄÄ VALID_DISABLE
+                            // ???? ?????VALID_TOP
+                            // ???? ????VALID_BOTTOM
+                            // ???? ????VALID_LEFT
+                            // ???? ???VALID_RIGHT
+                            // ??????? VALID_HORI
+                            // ???????VALID_VERT
+                            // ?????? VALID_DIST
+                            // ??????VALID_DISABLE
 
     USHORT  nDefDist;       // Der Default- bzw. Minimalabstand.
 
@@ -267,7 +267,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &, USHORT nItemVersion ) const {}
 
     const SvxBorderLine*    GetHori() const { return pHori; }
     const SvxBorderLine*    GetVert() const { return pVert; }

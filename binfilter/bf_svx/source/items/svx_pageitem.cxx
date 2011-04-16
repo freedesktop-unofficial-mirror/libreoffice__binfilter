@@ -220,17 +220,6 @@ using namespace ::com::sun::star;
 /*N*/   return pPage;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ SvStream& SvxPageItem::Store( SvStream &rStrm, USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   // UNICODE: rStrm << aDescName;
-/*N*/   rStrm.WriteByteString(aDescName);
-/*N*/
-/*N*/   rStrm << (BYTE)eNumType << bLandscape << eUse;
-/*N*/   return rStrm;
-/*N*/ }
-
 /*--------------------------------------------------------------------
     Beschreibung:   HeaderFooterSet
  --------------------------------------------------------------------*/
@@ -264,13 +253,6 @@ using namespace ::com::sun::star;
 /*N*/   _pSet->Load( rStrm );
 /*N*/
 /*N*/   return new SvxSetItem( Which(), *_pSet );
-/*N*/ }
-
-/*N*/ SvStream& SvxSetItem::Store(SvStream &rStrm, USHORT nItemVersion) const
-/*N*/ {
-/*N*/   GetItemSet().Store( rStrm, nItemVersion );
-/*N*/
-/*N*/   return rStrm;
 /*N*/ }
 
 

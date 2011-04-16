@@ -331,38 +331,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxFontItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   BOOL bToBats =
-/*N*/       GetFamilyName().EqualsAscii( "StarSymbol", 0, sizeof("StarSymbol")-1 ) ||
-/*N*/       GetFamilyName().EqualsAscii( "OpenSymbol", 0, sizeof("OpenSymbol")-1 );
-/*N*/
-/*N*/   // #90477# rStrm << (BYTE) GetFamily()
-/*N*/   //    << (BYTE) GetPitch()
-/*N*/   //    << (BYTE)(bToBats ? RTL_TEXTENCODING_SYMBOL : GetStoreCharSet( GetCharSet(), (USHORT)rStrm.GetVersion() ) );
-/*N*/   rStrm << (BYTE) GetFamily() << (BYTE) GetPitch()
-/*N*/         << (BYTE)(bToBats ? RTL_TEXTENCODING_SYMBOL : GetSOStoreTextEncoding(GetCharSet(), (sal_uInt16)rStrm.GetVersion()));
-/*N*/
-/*N*/     String aStoreFamilyName( GetFamilyName() );
-/*N*/     if( bToBats )
-/*N*/       aStoreFamilyName = String( "StarBats", sizeof("StarBats")-1, RTL_TEXTENCODING_ASCII_US );
-/*N*/     rStrm.WriteByteString(aStoreFamilyName);
-/*N*/   rStrm.WriteByteString(GetStyleName());
-/*N*/
-/*N*/     // #96441# Kach for EditEngine, only set while creating clipboard stream.
-/*N*/     if ( bEnableStoreUnicodeNames )
-/*N*/     {
-/*N*/         sal_uInt32 nMagic = STORE_UNICODE_MAGIC_MARKER;
-/*N*/         rStrm << nMagic;
-/*N*/         rStrm.WriteByteString( aStoreFamilyName, RTL_TEXTENCODING_UNICODE );
-/*N*/       rStrm.WriteByteString( GetStyleName(), RTL_TEXTENCODING_UNICODE );
-/*N*/     }
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxFontItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE _eFamily, eFontPitch, eFontTextEncoding;
@@ -427,14 +395,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxPostureItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
 
 // -----------------------------------------------------------------------
 
@@ -555,14 +515,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxWeightItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxWeightItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE nWeight;
@@ -638,26 +590,6 @@ BOOL SvxFontItem::bEnableStoreUnicodeNames = FALSE;
 /*N*/ SfxPoolItem* SvxFontHeightItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxFontHeightItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxFontHeightItem::Store( SvStream& rStrm , USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   rStrm << (USHORT)GetHeight();
-/*N*/
-/*N*/   if( FONTHEIGHT_UNIT_VERSION <= nItemVersion )
-/*N*/       rStrm << GetProp() << (USHORT)GetPropUnit();
-/*N*/   else
-/*N*/   {
-/*N*/       // beim Export in alte Versionen geht die relative
-/*N*/       // Angabe verloren, wenn es keine Prozentuale ist
-/*N*/       USHORT _nProp = GetProp();
-/*N*/       if( SFX_MAPUNIT_RELATIVE != GetPropUnit() )
-/*N*/           _nProp = 100;
-/*N*/       rStrm << _nProp;
-/*N*/   }
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -936,14 +868,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxUnderlineItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxUnderlineItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE nState;
@@ -1063,14 +987,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxCrossedOutItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxCrossedOutItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE eCross;
@@ -1139,14 +1055,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxShadowedItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE) GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxShadowedItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE nState;
@@ -1169,14 +1077,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/ SfxPoolItem* SvxAutoKernItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxAutoKernItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxAutoKernItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE) GetValue();
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1208,14 +1108,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxWordLineModeItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Bool) GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxWordLineModeItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   sal_Bool bValue;
@@ -1242,13 +1134,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxContourItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Bool) GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxContourItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
@@ -1377,18 +1262,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxColorItem::Store( SvStream& rStrm , USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   if( VERSION_USEAUTOCOLOR == nItemVersion &&
-/*N*/       COL_AUTO == mColor.GetColor() )
-/*N*/       rStrm << Color( COL_BLACK );
-/*N*/   else
-/*N*/       rStrm << mColor;
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxColorItem::Create(SvStream& rStrm, USHORT /*nVer*/ ) const
 /*N*/ {
 /*N*/   return new SvxColorItem( rStrm, Which() );
@@ -1434,17 +1307,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxCharSetColorItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   // #90477# rStrm << (BYTE) GetStoreCharSet( GetCharSet(), (USHORT)rStrm.GetVersion() )
-/*N*/   //    << GetValue();
-/*N*/   rStrm << (BYTE)GetSOStoreTextEncoding(GetCharSet(), (sal_uInt16)rStrm.GetVersion())
-/*N*/         << GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxCharSetColorItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE cSet;
@@ -1469,20 +1331,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/ {
 /*N*/   return new SvxKerningItem( *this );
 /*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxKerningItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (short) GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -1536,14 +1384,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/ SfxPoolItem* SvxCaseMapItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxCaseMapItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxCaseMapItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE) GetValue();
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1636,23 +1476,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/ SfxPoolItem* SvxEscapementItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxEscapementItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxEscapementItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   short _nEsc = GetEsc();
-/*N*/   if( SOFFICE_FILEFORMAT_31 == rStrm.GetVersion() )
-/*N*/   {
-/*N*/       if( DFLT_ESC_AUTO_SUPER == _nEsc )
-/*N*/           _nEsc = DFLT_ESC_SUPER;
-/*N*/       else if( DFLT_ESC_AUTO_SUB == _nEsc )
-/*N*/           _nEsc = DFLT_ESC_SUB;
-/*N*/   }
-/*N*/   rStrm << (BYTE) GetProp()
-/*N*/         << (short) _nEsc;
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1778,14 +1601,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/ SfxPoolItem* SvxLanguageItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxLanguageItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxLanguageItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (USHORT) GetValue();
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1930,14 +1745,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxBlinkItem::Store( SvStream& rStrm , USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (BYTE) GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxBlinkItem::Create(SvStream& rStrm, USHORT) const
 /*N*/ {
 /*N*/   BYTE nState;
@@ -1961,15 +1768,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/ SfxPoolItem* SvxEmphasisMarkItem::Clone( SfxItemPool * ) const
 /*N*/ {
 /*N*/   return new SvxEmphasisMarkItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxEmphasisMarkItem::Store( SvStream& rStrm,
-/*N*/                                    USHORT /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_uInt16)GetValue();
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -2195,12 +1993,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*NBFF*/    return new SvxTwoLinesItem( _bOn, cStart, cEnd, Which() );
 /*NBFF*/ }
 
-/*NBFF*/ SvStream& SvxTwoLinesItem::Store(SvStream & rStrm, USHORT /*nIVer*/) const
-/*NBFF*/ {
-/*NBFF*/    rStrm << GetValue() << GetStartBracket() << GetEndBracket();
-/*NBFF*/    return rStrm;
-/*NBFF*/ }
-
 /*N*/ USHORT SvxTwoLinesItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -2234,13 +2026,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*NBFF*/    sal_Bool b;
 /*NBFF*/    rStrm >> nVal >> b;
 /*NBFF*/    return new SvxCharRotateItem( nVal, b, Which() );
-/*NBFF*/ }
-
-/*NBFF*/ SvStream& SvxCharRotateItem::Store( SvStream & rStrm, USHORT ) const
-/*NBFF*/ {
-/*NBFF*/    sal_Bool bFlag = IsFitToLine();
-/*NBFF*/    rStrm << GetValue() << bFlag;
-/*NBFF*/    return rStrm;
 /*NBFF*/ }
 
 /*N*/ USHORT SvxCharRotateItem::GetVersion( USHORT nFFVer ) const
@@ -2373,22 +2158,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/     return pItem;
 /*N*/ }
 
-/*N*/ SvStream& SvxCharScaleWidthItem::Store( SvStream& rStream, USHORT nVer ) const
-/*N*/ {
-/*N*/     SvStream& rRet = SfxUInt16Item::Store( rStream, nVer );
-/*N*/     if ( Which() == EE_CHAR_FONTWIDTH )
-/*N*/     {
-/*N*/         // see comment in Create()....
-/*N*/         rRet.SeekRel( -1*(long)sizeof(USHORT) );
-/*N*/         rRet << (USHORT)0;
-/*N*/         rRet << GetValue();
-/*N*/         // Really ugly, but not a problem for reading the doc in 5.2
-/*N*/         rRet << (USHORT)0x1234;
-/*N*/     }
-/*N*/     return rRet;
-/*N*/ }
-
-
 /*N*/ USHORT SvxCharScaleWidthItem::GetVersion( USHORT nFFVer ) const
 /*N*/ {
 /*N*/   return SOFFICE_FILEFORMAT_50 > nFFVer ? USHRT_MAX : 0;
@@ -2438,13 +2207,6 @@ nHeight = nNewHeight + ::binfilter::ItemToControl( (short)nNewProp, eUnit,
 /*N*/   sal_uInt16 nVal;
 /*N*/   rStrm >> nVal;
 /*N*/   return new SvxCharReliefItem( (FontRelief)nVal, Which() );
-/*N*/ }
-
-/*N*/ SvStream& SvxCharReliefItem::Store(SvStream & rStrm, USHORT /*nIVer*/) const
-/*N*/ {
-/*N*/   sal_uInt16 nVal = GetValue();
-/*N*/   rStrm << nVal;
-/*N*/   return rStrm;
 /*N*/ }
 
 /*N*/ USHORT SvxCharReliefItem::GetVersion( USHORT nFFVer ) const

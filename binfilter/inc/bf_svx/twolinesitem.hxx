@@ -55,7 +55,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
 /*NBFF*/    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-/*NBFF*/    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+/*NBFF*/    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
 /*NBFF*/    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 /*NBFF*/                                    SfxMapUnit eCoreMetric,
 /*NBFF*/                                    SfxMapUnit ePresMetric,

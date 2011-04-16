@@ -327,33 +327,6 @@ void EditTextObject::SetVertical( BOOL /*bVertical*/ )
 
 
 
-BOOL EditTextObject::Store( SvStream& rOStream ) const
-{
-    if ( rOStream.GetError() )
-        return FALSE;
-
-    // Vorspann:
-    ULONG nStartPos = rOStream.Tell();
-
-    USHORT nLclWhich = Which();
-    rOStream << nLclWhich;
-
-    sal_uInt32 nStructSz = 0;
-    rOStream << nStructSz;
-
-    // Eigene Daten:
-    StoreData( rOStream );
-
-    // Nachspann:
-    ULONG nEndPos = rOStream.Tell();
-    nStructSz = nEndPos - nStartPos - sizeof( nLclWhich ) - sizeof( nStructSz );
-    rOStream.Seek( nStartPos + sizeof( nLclWhich ) );
-    rOStream << nStructSz;
-    rOStream.Seek( nEndPos );
-
-    return rOStream.GetError() ? FALSE : TRUE;
-}
-
 EditTextObject*    EditTextObject::Create( SvStream& rIStream, SfxItemPool* pGlobalTextObjectPool )
 {
     ULONG nStartPos = rIStream.Tell();

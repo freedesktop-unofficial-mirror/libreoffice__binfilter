@@ -136,19 +136,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/           ((const NameOrIndex&) rItem).nPalIndex == nPalIndex );
 /*N*/ }
 
-/*************************************************************************
-|*
-|*    SvStream* NameOrIndex::Store(SvStream& rIn) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& NameOrIndex::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   SfxStringItem::Store( rOut, nItemVersion );
-/*N*/   rOut << (INT32)nPalIndex;
-/*N*/   return rOut;
-/*N*/ }
-
 /** this static checks if the given NameOrIndex item has a unique name for its value.
     The returned String is a unique name for an item with this value in both given pools.
     Argument pPool2 can be null.
@@ -356,23 +343,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   return new XColorItem(Which(), rIn);
 /*N*/ }
 
-/*************************************************************************
-|*
-|*    SfxPoolItem* XColorItem::Store(SvStream& rOut) const
-|*
-\************************************************************************/
-
-/*N*/ SvStream& XColorItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if ( !IsIndex() )
-/*N*/   {
-/*N*/       rOut << aColor;
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
 
 /*************************************************************************
 |*
@@ -622,29 +592,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/ SfxPoolItem* XLineDashItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineDashItem(rIn);
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SfxPoolItem* XLineDashItem::Store(SvStream& rOut) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XLineDashItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       rOut << (INT32) aDash.GetDashStyle();
-/*N*/       rOut << aDash.GetDots();
-/*N*/       rOut << (UINT32) aDash.GetDotLen();
-/*N*/       rOut << aDash.GetDashes();
-/*N*/       rOut << (UINT32) aDash.GetDashLen();
-/*N*/       rOut << (UINT32) aDash.GetDistance();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
 /*N*/ }
 
 /*************************************************************************
@@ -1117,31 +1064,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    SfxPoolItem* XLineStartItem::Store(SvStream& rOut) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XLineStartItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       UINT32 nPoints = (UINT32)aXPolygon.GetPointCount();
-/*N*/       rOut << nPoints;
-/*N*/       for (USHORT nIndex = 0; nIndex < (USHORT)nPoints; nIndex++)
-/*N*/       {
-/*N*/           rOut << aXPolygon[nIndex].X();
-/*N*/           rOut << aXPolygon[nIndex].Y();
-/*N*/           rOut << (INT32)aXPolygon.GetFlags(nIndex);
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*    const XPolygon& XLineStartItem::GetValue(const XLineEndTable* pTable)
 |*                                             const
 |*
@@ -1528,31 +1450,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/ SfxPoolItem* XLineEndItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XLineEndItem(rIn);
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SfxPoolItem* XLineEndItem::Store(SvStream& rOut) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XLineEndItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       UINT32 nPoints = (UINT32)aXPolygon.GetPointCount();
-/*N*/       rOut << nPoints;
-/*N*/       for (USHORT nIndex = 0; nIndex < (USHORT)nPoints; nIndex++)
-/*N*/       {
-/*N*/           rOut << aXPolygon[nIndex].X();
-/*N*/           rOut << aXPolygon[nIndex].Y();
-/*N*/           rOut << (INT32)aXPolygon.GetFlags(nIndex);
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
 /*N*/ }
 
 /*************************************************************************
@@ -2470,41 +2367,6 @@ XubString aNameOrIndexEmptyString;
 
 /*************************************************************************
 |*
-|*    SfxPoolItem* XFillGradientItem::Store(SvStream& rOut) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XFillGradientItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       rOut << (INT16)aGradient.GetGradientStyle();
-/*N*/
-/*N*/       USHORT nTmp;
-/*N*/
-/*N*/       nTmp = VCLTOSVCOL( aGradient.GetStartColor().GetRed() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aGradient.GetStartColor().GetGreen() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aGradient.GetStartColor().GetBlue() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aGradient.GetEndColor().GetRed() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aGradient.GetEndColor().GetGreen() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aGradient.GetEndColor().GetBlue() ); rOut << nTmp;
-/*N*/
-/*N*/       rOut << (INT32) aGradient.GetAngle();
-/*N*/       rOut << aGradient.GetBorder();
-/*N*/       rOut << aGradient.GetXOffset();
-/*N*/       rOut << aGradient.GetYOffset();
-/*N*/       rOut << aGradient.GetStartIntens();
-/*N*/       rOut << aGradient.GetEndIntens();
-/*N*/       rOut << aGradient.GetSteps();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*    const XGradient& XFillGradientItem::GetValue(const XGradientTable* pTable)
 |*                                                                 const
 |*
@@ -2788,15 +2650,6 @@ XubString aNameOrIndexEmptyString;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& XFillFloatTransparenceItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   XFillGradientItem::Store( rOut, nItemVersion );
-/*N*/   rOut << bEnabled;
-/*N*/   return rOut;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ USHORT XFillFloatTransparenceItem::GetVersion( USHORT nFileFormatVersion ) const
 /*N*/ {
 /*N*/   // !!! if version number of this object must be increased, please   !!!
@@ -2988,32 +2841,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/ SfxPoolItem* XFillHatchItem::Create(SvStream& rIn, USHORT /*nVer*/) const
 /*N*/ {
 /*N*/   return new XFillHatchItem(rIn);
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SfxPoolItem* XFillHatchItem::Store(SvStream& rOut) const
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XFillHatchItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       rOut << (INT16)aHatch.GetHatchStyle();
-/*N*/
-/*N*/       USHORT nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aHatch.GetColor().GetRed() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aHatch.GetColor().GetGreen() ); rOut << nTmp;
-/*N*/       nTmp = VCLTOSVCOL( aHatch.GetColor().GetBlue() ); rOut << nTmp;
-/*N*/
-/*N*/       rOut << (INT32) aHatch.GetDistance();
-/*N*/       rOut << (INT32) aHatch.GetAngle();
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
 /*N*/ }
 
 /*************************************************************************
@@ -3997,17 +3824,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   return new XLineAttrSetItem( _pSet );
 /*N*/ }
 
-/*************************************************************************
-|*
-|* SetItem in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ SvStream& XLineAttrSetItem::Store( SvStream& rStream, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   return SfxSetItem::Store( rStream, nItemVersion );
-/*N*/ }
-
 
 /*N*/ TYPEINIT1(XFillAttrSetItem, SfxSetItem);
 
@@ -4070,18 +3886,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/   return new XFillAttrSetItem( _pSet );
 /*N*/ }
 
-/*************************************************************************
-|*
-|* SetItem in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ SvStream& XFillAttrSetItem::Store( SvStream& rStream, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   return SfxSetItem::Store( rStream, nItemVersion );
-/*N*/ }
-
-
 /*N*/ TYPEINIT1(XTextAttrSetItem, SfxSetItem);
 
 /*************************************************************************
@@ -4141,17 +3945,6 @@ XubString aNameOrIndexEmptyString;
 /*N*/                                   XATTR_TEXT_FIRST, XATTR_TEXT_LAST);
 /*N*/   _pSet->Load( rStream );
 /*N*/   return new XTextAttrSetItem( _pSet );
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SetItem in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ SvStream& XTextAttrSetItem::Store( SvStream& rStream, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   return SfxSetItem::Store( rStream, nItemVersion );
 /*N*/ }
 
 }

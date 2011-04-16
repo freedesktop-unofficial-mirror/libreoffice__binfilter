@@ -87,7 +87,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT nVer ) const;
-    virtual SvStream&       Store( SvStream& , USHORT nItemVersion ) const;
+    virtual SvStream& Store( SvStream& , USHORT nItemVersion ) const {}
 
     const SvxFieldData*     GetField() const    { return pField; }
     static SvClassManager&  GetClassManager()   { return ITEMDATA()->GetClassManager(); }
@@ -290,7 +290,7 @@ public:
 
 enum SvxFileType { SVXFILETYPE_FIX, SVXFILETYPE_VAR };
 enum SvxFileFormat {    SVXFILEFORMAT_NAME_EXT, // Dateiname mit Extension
-                        SVXFILEFORMAT_FULLPATH, // vollst„ndiger Pfad
+                        SVXFILEFORMAT_FULLPATH, // vollst?ndiger Pfad
                         SVXFILEFORMAT_PATH,     // nur Pfad
                         SVXFILEFORMAT_NAME      // nur Dateiname
                    };
@@ -323,7 +323,7 @@ public:
 };
 
 enum SvxAuthorType { SVXAUTHORTYPE_FIX, SVXAUTHORTYPE_VAR };
-enum SvxAuthorFormat {  SVXAUTHORFORMAT_FULLNAME,   // vollst„ndiger Name
+enum SvxAuthorFormat {  SVXAUTHORFORMAT_FULLNAME,   // vollst?ndiger Name
                         SVXAUTHORFORMAT_NAME,       // nur Nachname
                         SVXAUTHORFORMAT_FIRSTNAME,  // nur Vorname
                         SVXAUTHORFORMAT_SHORTNAME   // Initialen

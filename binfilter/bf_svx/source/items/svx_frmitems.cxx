@@ -181,14 +181,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxPaperBinItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxPaperBinItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
 /*N*/   sal_Int8 nBin;
@@ -307,16 +299,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxSizeItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << aSize.Width();
-/*N*/   rStrm << aSize.Height();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 /*N*/ SfxPoolItem* SvxSizeItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
@@ -514,60 +496,6 @@ using namespace ::com::sun::star;
 
 #define BULLETLR_MARKER 0x599401FE
 
-/*N*/ SvStream& SvxLRSpaceItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
-/*N*/ {
-/*N*/   short nSaveFI = nFirstLineOfst;
-/*N*/   if ( IsBulletFI() )
-/*N*/       ((SvxLRSpaceItem*)this)->SetTxtFirstLineOfst( 0 );  // nLeftMargin wird mitmanipuliert, siehe Create()
-/*N*/
-/*N*/   sal_uInt16 nMargin = 0;
-/*N*/   if( nLeftMargin > 0 )
-/*N*/       nMargin = sal_uInt16( nLeftMargin );
-/*N*/   rStrm << nMargin;
-/*N*/   rStrm << nPropLeftMargin;
-/*N*/   if( nRightMargin > 0 )
-/*N*/       nMargin = sal_uInt16( nRightMargin );
-/*N*/   else
-/*N*/       nMargin = 0;
-/*N*/   rStrm << nMargin;
-/*N*/   rStrm << nPropRightMargin;
-/*N*/   rStrm << nFirstLineOfst;
-/*N*/   rStrm << nPropFirstLineOfst;
-/*N*/   if( nTxtLeft > 0 )
-/*N*/       nMargin = sal_uInt16( nTxtLeft );
-/*N*/   else
-/*N*/       nMargin = 0;
-/*N*/   rStrm << nMargin;
-/*N*/   if( nItemVersion >= LRSPACE_AUTOFIRST_VERSION )
-/*N*/   {
-/*N*/       sal_Int8 nAutoFirst = bAutoFirst ? 1 : 0;
-/*N*/       if( nItemVersion >= LRSPACE_NEGATIVE_VERSION &&
-/*N*/           ( nLeftMargin < 0 || nRightMargin < 0 || nTxtLeft < 0 ) )
-/*N*/           nAutoFirst |= 0x80;
-/*N*/       rStrm << nAutoFirst;
-/*N*/
-/*N*/       if ( IsBulletFI() )
-/*N*/       {
-/*N*/           // Ab 6.0 keine Magicnumber schreiben...
-/*N*/           DBG_ASSERT( rStrm.GetVersion() <= SOFFICE_FILEFORMAT_50, "MT: Fileformat SvxLRSpaceItem aendern!" );
-/*N*/           rStrm << (sal_uInt32) BULLETLR_MARKER;
-/*N*/           rStrm << nSaveFI;
-/*N*/       }
-/*N*/       if( 0x80 & nAutoFirst )
-/*N*/       {
-/*N*/           rStrm << nLeftMargin;
-/*N*/           rStrm << nRightMargin;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   if ( IsBulletFI() )
-/*N*/       ((SvxLRSpaceItem*)this)->SetTxtFirstLineOfst( nSaveFI );
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxLRSpaceItem::Create( SvStream& rStrm, sal_uInt16 nVersion ) const
 /*N*/ {
 /*N*/   sal_uInt16 left, prpleft, right, prpright, prpfirstline, txtleft;
@@ -751,17 +679,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxULSpaceItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << GetUpper()
-/*N*/         << GetPropUpper()
-/*N*/         << GetLower()
-/*N*/         << GetPropLower();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxULSpaceItem::Create( SvStream& rStrm, sal_uInt16 nVersion ) const
 /*N*/ {
 /*N*/   sal_uInt16 upper, lower, nPL = 0, nPU = 0;
@@ -802,14 +719,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxPrintItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ SfxPoolItem* SvxPrintItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
 /*N*/   sal_Int8 bIsPrint;
@@ -829,13 +738,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxOpaqueItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxOpaqueItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
@@ -906,17 +808,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxProtectItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   sal_Int8 cProt = 0;
-/*N*/   if( IsPosProtected() )   cProt |= 0x01;
-/*N*/   if( IsSizeProtected() )  cProt |= 0x02;
-/*N*/   if( IsCntntProtected() ) cProt |= 0x04;
-/*N*/   rStrm << (sal_Int8) cProt;
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxProtectItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
@@ -1081,19 +972,6 @@ using namespace ::com::sun::star;
 /*N*/           OSL_FAIL( "wrong shadow" );
 /*N*/   }
 /*N*/   return nSpace;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxShadowItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8) GetLocation()
-/*N*/         << (sal_uInt16) GetWidth()
-/*N*/         << (sal_Bool)(aShadowColor.GetTransparency() > 0)
-/*N*/         << GetColor()
-/*N*/         << GetColor()
-/*N*/         << (sal_Int8)(aShadowColor.GetTransparency() > 0 ? 0 : 1); //BRUSH_NULL : BRUSH_SOLID
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -1432,51 +1310,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxBoxItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
-/*N*/ {
-/*N*/   rStrm << (sal_uInt16) GetDistance();
-/*N*/   const SvxBorderLine* pLine[ 4 ];    // top, left, right, bottom
-/*N*/   pLine[ 0 ] = GetTop();
-/*N*/   pLine[ 1 ] = GetLeft();
-/*N*/   pLine[ 2 ] = GetRight();
-/*N*/   pLine[ 3 ] = GetBottom();
-/*N*/
-/*N*/   for( int i = 0; i < 4; i++ )
-/*N*/   {
-/*N*/       const SvxBorderLine* l = pLine[ i ];
-/*N*/       if( l )
-/*N*/       {
-/*N*/           rStrm << (sal_Int8) i
-/*N*/                 << l->GetColor()
-/*N*/                 << (sal_uInt16) l->GetOutWidth()
-/*N*/                 << (sal_uInt16) l->GetInWidth()
-/*N*/                 << (sal_uInt16) l->GetDistance();
-/*N*/       }
-/*N*/   }
-/*N*/   sal_Int8 cLine = 4;
-/*N*/   if( nItemVersion >= BOX_4DISTS_VERSION &&
-/*N*/       !(nTopDist == nLeftDist &&
-/*N*/         nTopDist == nRightDist &&
-/*N*/         nTopDist == nBottomDist) )
-/*N*/   {
-/*?*/       cLine |= 0x10;
-/*N*/   }
-/*N*/
-/*N*/   rStrm << cLine;
-/*N*/
-/*N*/   if( nItemVersion >= BOX_4DISTS_VERSION && (cLine & 0x10) != 0 )
-/*N*/   {
-/*N*/       rStrm << (sal_uInt16)nTopDist
-/*N*/             << (sal_uInt16)nLeftDist
-/*N*/             << (sal_uInt16)nRightDist
-/*?*/             << (sal_uInt16)nBottomDist;
-/*N*/   }
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_uInt16 SvxBoxItem::GetVersion( sal_uInt16 nFFVer ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -1756,39 +1589,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxBoxInfoItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   sal_Int8 cFlags = 0;
-/*N*/
-/*N*/   if ( IsTable() )
-/*N*/       cFlags |= 0x01;
-/*N*/   if ( IsDist() )
-/*N*/       cFlags |= 0x02;
-/*N*/   if ( IsMinDist() )
-/*N*/       cFlags |= 0x04;
-/*N*/   rStrm << (sal_Int8)   cFlags
-/*N*/         << (sal_uInt16) GetDefDist();
-/*N*/   const SvxBorderLine* pLine[ 2 ];
-/*N*/   pLine[ 0 ] = GetHori();
-/*N*/   pLine[ 1 ] = GetVert();
-/*N*/
-/*N*/   for( int i = 0; i < 2; i++ )
-/*N*/   {
-/*N*/       const SvxBorderLine* l = pLine[ i ];
-/*N*/       if( l )
-/*N*/       {
-/*N*/           rStrm << (char) i
-/*N*/                 << l->GetColor()
-/*N*/                 << (short) l->GetOutWidth()
-/*N*/                 << (short) l->GetInWidth()
-/*?*/                 << (short) l->GetDistance();
-/*N*/       }
-/*N*/   }
-/*N*/   rStrm << (char) 2;
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 
 /*N*/ SfxPoolItem* SvxBoxInfoItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
@@ -1903,16 +1703,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxFmtBreakItem::Store( SvStream& rStrm , sal_uInt16 nItemVersion ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8)GetValue();
-/*N*/   if( FMTBREAK_NOAUTO > nItemVersion )
-/*N*/       rStrm << (sal_Int8)0x01;
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ sal_uInt16 SvxFmtBreakItem::GetVersion( sal_uInt16 nFFVer ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( SOFFICE_FILEFORMAT_31==nFFVer ||
@@ -1946,14 +1736,6 @@ using namespace ::com::sun::star;
 /*N*/ SfxPoolItem* SvxFmtKeepItem::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new SvxFmtKeepItem( *this );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxFmtKeepItem::Store( SvStream& rStrm , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8)GetValue();
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -2567,41 +2349,6 @@ class SvxBrushItemLink_Impl : public SfxBrushItemLink
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxBrushItem::Store( SvStream& rStream , sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStream << (sal_Bool)sal_False;
-/*N*/   rStream << aColor;
-/*N*/   rStream << aColor;
-/*N*/   rStream << (sal_Int8)(aColor.GetTransparency() > 0 ? 0 : 1); //BRUSH_NULL : BRUSH_SOLID
-/*N*/
-/*N*/   sal_uInt16 nDoLoad = 0;
-/*N*/
-/*N*/   if ( pImpl->pGraphicObject && !pStrLink )
-/*N*/       nDoLoad |= LOAD_GRAPHIC;
-/*N*/   if ( pStrLink )
-/*N*/       nDoLoad |= LOAD_LINK;
-/*N*/   if ( pStrFilter )
-/*N*/       nDoLoad |= LOAD_FILTER;
-/*N*/   rStream << nDoLoad;
-/*N*/
-/*N*/   if ( pImpl->pGraphicObject && !pStrLink )
-/*N*/       rStream << pImpl->pGraphicObject->GetGraphic();
-/*N*/   if ( pStrLink )
-/*N*/   {
-/*N*/       String aRel = ::binfilter::StaticBaseUrl::AbsToRel( *pStrLink );
-/*N*/       // UNICODE: rStream << aRel;
-/*N*/       rStream.WriteByteString(aRel);
-/*N*/   }
-/*N*/   if ( pStrFilter )
-/*N*/   {
-/*N*/       // UNICODE: rStream << *pStrFilter;
-/*?*/       rStream.WriteByteString(*pStrFilter);
-/*N*/   }
-/*N*/   rStream << (sal_Int8)eGraphicPos;
-/*N*/   return rStream;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 // const wegcasten, da const als logisches const zu verstehen ist
 // wenn GetGraphic() gerufen wird, soll sich das Item darum kuemmern,
 // eine gelinkte Grafik zu holen.
@@ -2784,13 +2531,6 @@ SfxPoolItem* SvxFrameDirectionItem::Create( SvStream & rStrm, USHORT /*nVer*/ ) 
     rStrm >> nValue;
     return new SvxFrameDirectionItem( (SvxFrameDirection)nValue, Which() );
 }
-
-/*N*/ SvStream& SvxFrameDirectionItem::Store( SvStream & rStrm, USHORT /*nIVer*/ ) const
-/*N*/ {
-/*N*/   sal_uInt16 nValue = GetValue();
-/*N*/   rStrm << nValue;
-/*N*/   return rStrm;
-/*N*/ }
 
 /*N*/ USHORT SvxFrameDirectionItem::GetVersion( USHORT nFVer ) const
 /*N*/ {

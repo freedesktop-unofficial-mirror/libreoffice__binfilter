@@ -106,20 +106,6 @@ USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
 /*N*/ }
 
 
-/*N*/ SvStream& SvxGrfCrop::Store( SvStream& rStrm, USHORT nVersion ) const
-/*N*/ {
-/*N*/   INT32 left = GetLeft(), right = GetRight(),
-/*N*/           top = GetTop(), bottom = GetBottom();
-/*N*/   if( GRFCROP_VERSION_SWDEFAULT == nVersion )
-/*N*/       top = -top, bottom = -bottom, left = -left, right = -right;
-/*N*/
-/*N*/   rStrm << top << left << right << bottom;
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-
-
 /*N*/ bool SvxGrfCrop::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);

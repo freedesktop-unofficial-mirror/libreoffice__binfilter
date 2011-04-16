@@ -305,18 +305,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxLineSpacingItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8)  GetPropLineSpace()
-/*N*/         << (short)  GetInterLineSpace()
-/*N*/         << (sal_uInt16) GetLineHeight()
-/*N*/         << (sal_Int8)   GetLineSpaceRule()
-/*N*/         << (sal_Int8)   GetInterLineSpaceRule();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*?*/ sal_uInt16 SvxLineSpacingItem::GetValueCount() const
 /*?*/ {
 /*?*/       DBG_BF_ASSERT(0, "STRIP"); return SVX_LINESPACE_END;
@@ -485,23 +473,6 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxAdjustItem::Store( SvStream& rStrm, sal_uInt16 nItemVersion ) const
-/*N*/ {
-/*N*/   rStrm << (char)GetAdjust();
-/*N*/   if ( nItemVersion >= ADJUST_LASTBLOCK_VERSION )
-/*N*/   {
-/*N*/       sal_Int8 nFlags = 0;
-/*N*/       if ( bOneBlock )
-/*N*/           nFlags |= 0x0001;
-/*N*/       if ( bLastCenter )
-/*N*/           nFlags |= 0x0002;
-/*N*/       if ( bLastBlock )
-/*N*/           nFlags |= 0x0004;
-/*N*/       rStrm << (sal_Int8) nFlags;
-/*N*/   }
-/*N*/   return rStrm;
-/*N*/ }
-
 // class SvxWidowsItem ---------------------------------------------------
 
 /*N*/ SvxWidowsItem::SvxWidowsItem(const BYTE nL, const USHORT nId ) :
@@ -662,16 +633,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxHyphenZoneItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8) IsHyphen()
-/*N*/         << (sal_Int8) IsPageEnd()
-/*N*/         << (sal_Int8) GetMinLead()
-/*N*/         << (sal_Int8) GetMinTrail()
-/*N*/         << (sal_Int8) GetMaxHyphens();
-/*N*/   return rStrm;
-/*N*/ }
 
 // class SvxTabStop ------------------------------------------------------
 
@@ -960,63 +921,6 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxTabStopItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   //MA 05. Sep. 96: Default-Tabs werden nur noch fuer das default-Attr
-/*N*/   //expandiert. Fuer vollstaendige Rueckwaertskompatibilitaet (<=304)
-/*N*/   //muessten alle Tabs expandiert werden, dass blaeht aber das File u.U.
-/*N*/   //enorm auf.
-/*N*/   //Alles nur SWG!
-/*N*/
-/*N*/   const SfxItemPool *pPool = SfxItemPool::GetStoringPool();
-/*N*/   const bool bStoreDefTabs = pPool
-/*N*/       && pPool->GetName().EqualsAscii("SWG")
-/*N*/       && binfilter::IsDefaultItem( this );
-/*N*/
-/*N*/   const short nTabs = Count();
-/*N*/   sal_uInt16  nCount = 0, nDefDist = 0;
-/*N*/   long nNew = 0;
-/*N*/
-/*N*/   if( bStoreDefTabs )
-/*N*/   {
-/*N*/       const SvxTabStopItem& rDefTab = (const SvxTabStopItem &)
-/*N*/           pPool->GetDefaultItem( pPool->GetWhich( SID_ATTR_TABSTOP, sal_False ) );
-/*N*/       nDefDist = sal_uInt16( rDefTab.GetStart()->GetTabPos() );
-/*N*/       const long nPos = nTabs > 0 ? (*this)[nTabs-1].GetTabPos() : 0;
-/*N*/       nCount  = (sal_uInt16)(nPos / nDefDist);
-/*N*/       nNew    = (nCount + 1) * nDefDist;
-/*N*/
-/*N*/       if( nNew <= nPos + 50 )
-/*N*/           nNew += nDefDist;
-/*N*/
-/*N*/       nCount = nNew < lA3Width ? ( lA3Width - nNew ) / nDefDist + 1 : 0;
-/*N*/   }
-/*N*/
-/*N*/   rStrm << (sal_Int8) ( nTabs + nCount );
-/*N*/   for ( short i = 0; i < nTabs; i++ )
-/*N*/   {
-/*N*/       const SvxTabStop& rTab = (*this)[ i ];
-/*N*/       rStrm << (long) rTab.GetTabPos()
-/*N*/             << (sal_Int8) rTab.GetAdjustment()
-/*N*/             << (unsigned char) rTab.GetDecimal()
-/*N*/             << (unsigned char) rTab.GetFill();
-/*N*/   }
-/*N*/
-/*N*/   if ( bStoreDefTabs )
-/*N*/       for( ; nCount; --nCount )
-/*N*/       {
-/*N*/           SvxTabStop aSwTabStop(nNew, SVX_TAB_ADJUST_DEFAULT);
-/*N*/           rStrm << (long) aSwTabStop.GetTabPos()
-/*N*/                 << (sal_Int8) aSwTabStop.GetAdjustment()
-/*N*/                 << (unsigned char) aSwTabStop.GetDecimal()
-/*N*/                 << (unsigned char) aSwTabStop.GetFill();
-/*N*/           nNew += nDefDist;
-/*N*/       }
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
 /*N*/ sal_Bool SvxTabStopItem::Insert( const SvxTabStop& rTab )
 /*N*/ {
 /*N*/   sal_uInt16 nTabPos = GetPos(rTab);
@@ -1040,33 +944,12 @@ typedef sequence ::com::sun::star::style::TabStop> TabSTopSequence;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxFmtSplitItem::Store( SvStream& rStrm, sal_uInt16 /*nItemVersion*/ ) const
-/*N*/ {
-/*N*/   rStrm << (sal_Int8)GetValue();
-/*N*/   return rStrm;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-/*N*/
 /*N*/ SfxPoolItem* SvxFmtSplitItem::Create( SvStream& rStrm, sal_uInt16 ) const
 /*N*/ {
 /*N*/   sal_Int8 bIsSplit;
 /*N*/   rStrm >> bIsSplit;
 /*N*/   return new SvxFmtSplitItem( sal_Bool( bIsSplit != 0 ), Which() );
 /*N*/ }
-
-//------------------------------------------------------------------------
-
-
-// --------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-
-
-//------------------------------------------------------------------------
 
 /*N*/ SvxScriptSpaceItem::SvxScriptSpaceItem( sal_Bool bOn, const sal_uInt16 nId )
 /*N*/   : SfxBoolItem( nId, bOn )
