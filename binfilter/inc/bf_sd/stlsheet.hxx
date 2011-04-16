@@ -38,7 +38,7 @@ class SdStyleSheet : public SfxStyleSheet
 {
 protected:
     virtual void Load (SvStream& rIn, USHORT nVersion);
-    virtual void Store(SvStream& rOut);
+    virtual void Store(SvStream& rOut) {}
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
                             const SfxHint& rHint, const TypeId& rHintType);

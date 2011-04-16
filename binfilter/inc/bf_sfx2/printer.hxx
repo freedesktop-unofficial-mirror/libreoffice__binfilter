@@ -102,7 +102,7 @@ public:
 
 
     static SfxPrinter*      Create( SvStream &rStream, SfxItemSet *pOptions );
-    SvStream&               Store( SvStream &rStream ) const;
+    SvStream&               Store( SvStream &rStream ) const {}
 
 
     const SfxItemSet&       GetOptions() const { return *pOptions; }

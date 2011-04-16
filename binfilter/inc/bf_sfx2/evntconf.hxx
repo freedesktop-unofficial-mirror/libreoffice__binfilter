@@ -155,7 +155,7 @@ public:
 
     void                    Init( SfxConfigManager* );
     virtual int             Load(SotStorage&);
-    virtual BOOL            Store(SotStorage&);
+    virtual BOOL            Store(SotStorage&) {return FALSE;}
     virtual String          GetStreamName() const;
     virtual void            UseDefault();
     void                    ConfigureEvent( USHORT nPos, SvxMacro* );

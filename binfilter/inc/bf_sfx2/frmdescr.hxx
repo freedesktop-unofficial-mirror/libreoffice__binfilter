@@ -297,9 +297,6 @@ public:
                                             UniString &rText, const ::IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*                Clone( SfxItemPool *pPool = 0 ) const;
-    //virtual SfxPoolItem*              Create(SvStream &, USHORT) const;
-    //virtual SvStream&                 Store(SvStream &, USHORT nItemVersion ) const;
-    //virtual USHORT                        GetVersion( USHORT nFileFormatVersion ) const;
 
     const SfxFrameProperties&           GetProperties() const
                                         { return aProperties; }

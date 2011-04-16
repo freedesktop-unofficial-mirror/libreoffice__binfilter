@@ -78,7 +78,7 @@ private:
 
 protected:
     virtual int     Load(SvStream&);
-    virtual BOOL    Store(SvStream&);
+    virtual BOOL    Store(SvStream&) {}
     virtual void    UseDefault();
 
 public:

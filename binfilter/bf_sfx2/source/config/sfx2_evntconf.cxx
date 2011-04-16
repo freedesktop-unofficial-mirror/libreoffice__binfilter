@@ -232,11 +232,6 @@ void SfxEventConfiguration::RegisterEvent(USHORT nId, const String& rName)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
-/*?*/ BOOL SfxEventConfigItem_Impl::Store( SotStorage& /*rStorage*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
-/*?*/ }
-
-
 //==========================================================================
 
 /*N*/ SfxEventConfigItem_Impl::~SfxEventConfigItem_Impl()

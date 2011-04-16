@@ -89,7 +89,7 @@ public:
                     SfxMsgReceiverList_Impl(const SfxMsgReceiverList_Impl&);
 
     void            Load( SvStream& );
-    void            Store( SvStream& ) const;
+    void            Store( SvStream& ) const {}
     void            IncRef() { nRef++; }
     void            DecRef() { nRef--; if( !nRef ) delete this; }
     ULONG           GetRefCount() const { return nRef; }
@@ -124,7 +124,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream &, USHORT nVersion ) const;
-    virtual SvStream&       Store( SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream&       Store( SvStream &, USHORT nItemVersion ) const {}
 };
 
 
@@ -143,7 +143,7 @@ public:
     int             operator==( const SfxMsgAttachFileList_Impl& rRec ) const;
     SfxMsgAttachFile* GetReceiver(ULONG nPos) { return (SfxMsgAttachFile*)List::GetObject(nPos); }
     void            Load( SvStream& );
-    void            Store( SvStream& ) const;
+    void            Store( SvStream& ) const {}
     void            IncRef() { nRef++; }
     void            DecRef() { nRef--; if( !nRef ) delete this; }
     ULONG           GetRefCount() const { return nRef; }
@@ -177,7 +177,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream &, USHORT nVersion ) const;
-    virtual SvStream&       Store( SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream&       Store( SvStream &, USHORT nItemVersion ) const {}
 };
 
 
@@ -200,7 +200,7 @@ public:
 
     virtual SfxPoolItem*        Clone( SfxItemPool* pPool=0 ) const;
     virtual SfxPoolItem*        Create( SvStream&, USHORT ) const;
-    virtual SvStream&           Store( SvStream&, USHORT ) const;
+    virtual SvStream&           Store( SvStream&, USHORT ) const {}
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePresentation,
                                     SfxMapUnit eCoreMetric,
                                     SfxMapUnit ePresentationMetric,

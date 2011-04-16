@@ -95,19 +95,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ SvStream& SfxPrinter::Store( SvStream& rStream ) const
-
-/*  [Beschreibung]
-
-    Speichert das verwendete JobSetup des <SfxPrinter>s.
-*/
-
-/*N*/ {
-/*N*/   return ( rStream << GetJobSetup() );
-/*N*/ }
-
-//--------------------------------------------------------------------
-
 /*N*/ SfxPrinter::SfxPrinter( SfxItemSet* pTheOptions ) :
 
 /*  [Beschreibung]

@@ -41,7 +41,7 @@ class SchStyleSheet : public SfxStyleSheet
 {
 protected:
     virtual void Load (SvStream& rIn, USHORT nVersion);
-    virtual void Store(SvStream& rOut);
+    virtual void Store(SvStream& rOut) {}
 
 public:
     TYPEINFO();
