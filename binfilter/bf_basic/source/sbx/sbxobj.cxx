@@ -620,33 +620,6 @@ BOOL SbxObject::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbxObject::StoreData( SvStream& rStrm ) const
-{
-    if( !SbxVariable::StoreData( rStrm ) )
-        return FALSE;
-    XubString aDfltProp;
-    if( pDfltProp )
-        aDfltProp = pDfltProp->GetName();
-    rStrm.WriteByteString( aClassName, RTL_TEXTENCODING_ASCII_US );
-    rStrm.WriteByteString( aDfltProp, RTL_TEXTENCODING_ASCII_US );
-    ULONG nPos = rStrm.Tell();
-    rStrm << (UINT32) 0L;
-    if( !StorePrivateData( rStrm ) )
-        return FALSE;
-    ULONG nNew = rStrm.Tell();
-    rStrm.Seek( nPos );
-    rStrm << (UINT32) ( nNew - nPos );
-    rStrm.Seek( nNew );
-    if( !pMethods->Store( rStrm ) )
-        return FALSE;
-    if( !pProps->Store( rStrm ) )
-        return FALSE;
-    if( !pObjs->Store( rStrm ) )
-        return FALSE;
-    ((SbxObject*) this)->SetModified( FALSE );
-    return TRUE;
-}
-
 XubString SbxObject::GenerateSource( const XubString &rLinePrefix,
                                   const SbxObject* )
 {

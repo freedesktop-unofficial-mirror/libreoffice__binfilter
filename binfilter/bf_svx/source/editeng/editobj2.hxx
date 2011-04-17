@@ -192,7 +192,7 @@ private:
 
 protected:
     void                    DeleteContents();
-    virtual void            StoreData( SvStream& rOStream ) const;
+    virtual void StoreData( SvStream& rOStream ) const {}
     virtual void            CreateData( SvStream& rIStream );
     BOOL                    ImpChangeStyleSheets( const String& rOldName, SfxStyleFamily eOldFamily,
                                         const String& rNewName, SfxStyleFamily eNewFamily );

@@ -548,41 +548,6 @@ BOOL SbModule::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbModule::StoreData( SvStream& rStrm ) const
-{
-    BOOL bFixup = ( pImage && !pImage->ExceedsLegacyLimits() );
-    if ( bFixup )
-        fixUpMethodStart( true );
-    BOOL bRet = SbxObject::StoreData( rStrm );
-    if ( !bRet )
-        return FALSE;
-
-    if( pImage )
-    {
-        pImage->aOUSource = aOUSource;
-        pImage->aComment = aComment;
-        pImage->aName = GetName();
-        rStrm << (BYTE) 1;
-        // # PCode is saved only for legacy formats only
-        // It should be noted that it probably isn't necessary
-        // It would be better not to store the image ( more flexible with
-        // formats )
-        if ( bFixup )
-            fixUpMethodStart( false ); // restore method starts
-        return FALSE;
-
-    }
-    else
-    {
-        SbiImage aImg;
-        aImg.aOUSource = aOUSource;
-        aImg.aComment = aComment;
-        aImg.aName = GetName();
-        rStrm << (BYTE) 1;
-        return FALSE;
-    }
-}
-
 // Called for >= OO 1.0 passwd protected libraries only
 //
 
@@ -648,20 +613,6 @@ BOOL SbJScriptModule::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbJScriptModule::StoreData( SvStream& rStrm ) const
-{
-    if( !SbxObject::StoreData( rStrm ) )
-        return FALSE;
-
-    // Source-String schreiben
-    String aTmp = aOUSource;
-    rStrm.WriteByteString( aTmp, gsl_getSystemTextEncoding() );
-    return TRUE;
-}
-
-
-/////////////////////////////////////////////////////////////////////////
-
 SbMethod::SbMethod( const String& r, SbxDataType t, SbModule* p )
         : SbxMethod( r, t ), pMod( p )
 {
@@ -703,18 +654,6 @@ BOOL SbMethod::LoadData( SvStream& rStrm, USHORT nVer )
     // AB: 2.7.1996: HACK wegen 'Referenz kann nicht gesichert werden'
     SetFlag( SBX_NO_MODIFY );
     nStart = nTempStart;
-    return TRUE;
-}
-
-BOOL SbMethod::StoreData( SvStream& rStrm ) const
-{
-    if( !SbxMethod::StoreData( rStrm ) )
-        return FALSE;
-    rStrm << (INT16) nDebugFlags
-          << (INT16) nLine1
-          << (INT16) nLine2
-          << (INT16) nStart
-          << (BYTE)  bInvalid;
     return TRUE;
 }
 

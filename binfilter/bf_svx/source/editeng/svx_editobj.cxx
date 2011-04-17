@@ -366,11 +366,6 @@ EditTextObject*    EditTextObject::Create( SvStream& rIStream, SfxItemPool* pGlo
 }
 
 
-void EditTextObject::StoreData( SvStream& /*rOStream*/ ) const
-{
-    OSL_FAIL( "StoreData: Basisklasse!" );
-}
-
 void EditTextObject::CreateData( SvStream& /*rIStream*/ )
 {
     OSL_FAIL( "CreateData: Basisklasse!" );
@@ -704,187 +699,6 @@ void BinTextObject::ChangeStyleSheetName( SfxStyleFamily eFamily,
     ImpChangeStyleSheets( rOldName, eFamily, rNewName, eFamily );
 }
 
-void BinTextObject::StoreData( SvStream& rOStream ) const
-{
-    USHORT nVer = 602;
-    rOStream << nVer;
-
-    rOStream << bOwnerOfPool;
-
-    // Erst den Pool speichern, spaeter nur noch Surregate
-    if ( bOwnerOfPool )
-    {
-        GetPool()->SetFileFormatVersion( SOFFICE_FILEFORMAT_50 );
-        GetPool()->Store( rOStream );
-    }
-
-    // Aktuelle Zeichensatz speichern...
-    // #90477# GetSOStoreTextEncoding: Bug in 5.2, when default char set is multi byte text encoding
-    rtl_TextEncoding eEncoding = GetSOStoreTextEncoding( gsl_getSystemTextEncoding(), (USHORT) rOStream.GetVersion() );
-    rOStream << (USHORT) eEncoding;
-
-    // Die Anzahl der Absaetze...
-    USHORT nParagraphs = GetContents().Count();
-    rOStream << nParagraphs;
-
-    char cFeatureConverted = ByteString( CH_FEATURE, eEncoding ).GetChar(0);
-
-    // Die einzelnen Absaetze...
-    for ( USHORT nPara = 0; nPara < nParagraphs; nPara++ )
-    {
-        ContentInfo* pC = GetContents().GetObject( nPara );
-
-        // Text...
-        ByteString aText( pC->GetText(), eEncoding );
-
-        // Symbols?
-        BOOL bSymbolPara = FALSE;
-        if ( pC->GetLoadStoreTempInfos() && pC->GetLoadStoreTempInfos()->bSymbolParagraph_Store )
-        {
-            DBG_ASSERT( pC->GetParaAttribs().GetItemState( EE_CHAR_FONTINFO ) != SFX_ITEM_ON, "Why bSymbolParagraph_Store?" );
-            aText = ByteString( pC->GetText(), RTL_TEXTENCODING_SYMBOL );
-            bSymbolPara = TRUE;
-        }
-        else if ( pC->GetParaAttribs().GetItemState( EE_CHAR_FONTINFO ) == SFX_ITEM_ON )
-        {
-            const SvxFontItem& rFontItem = (const SvxFontItem&)pC->GetParaAttribs().Get( EE_CHAR_FONTINFO );
-            if ( rFontItem.GetCharSet() == RTL_TEXTENCODING_SYMBOL )
-            {
-                aText = ByteString( pC->GetText(), RTL_TEXTENCODING_SYMBOL );
-                bSymbolPara = TRUE;
-            }
-        }
-        for ( USHORT nA = 0; nA < pC->GetAttribs().Count(); nA++ )
-        {
-            XEditAttribute* pAttr = pC->GetAttribs().GetObject( nA );
-
-            if ( pAttr->GetItem()->Which() == EE_CHAR_FONTINFO )
-            {
-                const SvxFontItem& rFontItem = (const SvxFontItem&)*pAttr->GetItem();
-                if ( ( !bSymbolPara && ( rFontItem.GetCharSet() == RTL_TEXTENCODING_SYMBOL ) )
-                      || ( bSymbolPara && ( rFontItem.GetCharSet() != RTL_TEXTENCODING_SYMBOL ) ) )
-                {
-                    // Not correctly converted
-                    String aPart( pC->GetText(), pAttr->GetStart(), pAttr->GetEnd() - pAttr->GetStart() );
-                    ByteString aNew( aPart, rFontItem.GetCharSet() );
-                    aText.Erase( pAttr->GetStart(), pAttr->GetEnd() - pAttr->GetStart() );
-                    aText.Insert( aNew, pAttr->GetStart() );
-                }
-
-                // #88414# Convert StarSymbol back to StarBats
-                FontToSubsFontConverter hConv = CreateFontToSubsFontConverter( rFontItem.GetFamilyName(), FONTTOSUBSFONT_EXPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-                if ( hConv )
-                {
-                    // Don't create a new Attrib with StarBats font, MBR changed the
-                    // SvxFontItem::Store() to store StarBats instead of StarSymbol!
-                    for ( USHORT nChar = pAttr->GetStart(); nChar < pAttr->GetEnd(); nChar++ )
-                    {
-                        sal_Unicode cOld = pC->GetText().GetChar( nChar );
-                        char cConv = ByteString::ConvertFromUnicode( ConvertFontToSubsFontChar( hConv, cOld ), RTL_TEXTENCODING_SYMBOL );
-                        if ( cConv )
-                            aText.SetChar( nChar, cConv );
-                    }
-
-                    DestroyFontToSubsFontConverter( hConv );
-                }
-            }
-        }
-
-        // #88414# Convert StarSymbol back to StarBats
-        // StarSymbol as paragraph attribute or in StyleSheet?
-
-        FontToSubsFontConverter hConv = NULL;
-        if ( pC->GetParaAttribs().GetItemState( EE_CHAR_FONTINFO ) == SFX_ITEM_ON )
-        {
-            hConv = CreateFontToSubsFontConverter( ((const SvxFontItem&)pC->GetParaAttribs().Get( EE_CHAR_FONTINFO )).GetFamilyName(), FONTTOSUBSFONT_EXPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-        }
-        else if ( pC->GetStyle().Len() && pC->GetLoadStoreTempInfos() )
-        {
-            hConv = pC->GetLoadStoreTempInfos()->hOldSymbolConv_Store;
-        }
-
-        if ( hConv )
-        {
-            for ( USHORT nChar = 0; nChar < pC->GetText().Len(); nChar++ )
-            {
-                if ( !pC->GetAttribs().FindAttrib( EE_CHAR_FONTINFO, nChar ) )
-                {
-                    sal_Unicode cOld = pC->GetText().GetChar( nChar );
-                    char cConv = ByteString::ConvertFromUnicode( ConvertFontToSubsFontChar( hConv, cOld ), RTL_TEXTENCODING_SYMBOL );
-                    if ( cConv )
-                        aText.SetChar( nChar, cConv );
-                }
-            }
-
-            DestroyFontToSubsFontConverter( hConv );
-
-            if ( pC->GetLoadStoreTempInfos() )
-                pC->GetLoadStoreTempInfos()->hOldSymbolConv_Store = NULL;
-        }
-
-
-        // Convert CH_FEATURE to CH_FEATURE_OLD
-        aText.SearchAndReplaceAll( cFeatureConverted, CH_FEATURE_OLD );
-        rOStream.WriteByteString( aText );
-
-        // StyleName und Family...
-        rOStream.WriteByteString( ByteString( pC->GetStyle(), eEncoding ) );
-        rOStream << (USHORT)pC->GetFamily();
-
-        // Absatzattribute...
-        pC->GetParaAttribs().Store( rOStream );
-
-        // Die Anzahl der Attribute...
-        USHORT nAttribs = pC->GetAttribs().Count();
-        rOStream << nAttribs;
-
-        // Und die einzelnen Attribute
-        // Items als Surregate => immer 8 Byte pro Attrib
-        // Which = 2; Surregat = 2; Start = 2; End = 2;
-        for ( USHORT nAttr = 0; nAttr < nAttribs; nAttr++ )
-        {
-            XEditAttribute* pX = pC->GetAttribs().GetObject( nAttr );
-
-            rOStream << pX->GetItem()->Which();
-            GetPool()->StoreSurrogate( rOStream, pX->GetItem() );
-            rOStream << pX->GetStart();
-            rOStream << pX->GetEnd();
-        }
-    }
-
-    // Ab 400:
-    rOStream << nMetric;
-
-    // Ab 600
-    rOStream << nUserType;
-    rOStream << nObjSettings;
-
-    // Ab 601
-    rOStream << bVertical;
-
-    // Ab 602
-    rOStream << nScriptType;
-
-    rOStream << bStoreUnicodeStrings;
-    if ( bStoreUnicodeStrings )
-    {
-        for ( USHORT nPara = 0; nPara < nParagraphs; nPara++ )
-        {
-            ContentInfo* pC = GetContents().GetObject( nPara );
-            USHORT nL = pC->GetText().Len();
-            rOStream << nL;
-            rOStream.Write( pC->GetText().GetBuffer(), nL*sizeof(sal_Unicode) );
-
-            // #91575# StyleSheetName must be Unicode too!
-            // Copy/Paste from EA3 to BETA or from BETA to EA3 not possible, not needed...
-            // If needed, change nL back to ULONG and increase version...
-            nL = pC->GetStyle().Len();
-            rOStream << nL;
-            rOStream.Write( pC->GetStyle().GetBuffer(), nL*sizeof(sal_Unicode) );
-        }
-    }
-}
-
 void BinTextObject::CreateData( SvStream& rIStream )
 {
     rIStream >> nVersion;
@@ -1216,8 +1030,6 @@ void BinTextObject::PrepareStore( SfxStyleSheetPool* pStyleSheetPool )
         }
 
         // SymbolConvertion because of StyleSheet?
-        // Cannot be checked in StoreData, no StyleSheetPool, so do it here...
-
         pC->DestroyLoadStoreTempInfos();    // Maybe old infos, if somebody is not calling FinishLoad after CreateData, but PrepareStore...
 
         if ( ( pC->GetParaAttribs().GetItemState( EE_CHAR_FONTINFO ) != SFX_ITEM_ON ) && pC->aStyle.Len() && pStyleSheetPool )

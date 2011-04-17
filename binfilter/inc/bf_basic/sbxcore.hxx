@@ -90,7 +90,7 @@ class SbxBase : virtual public SvRefBase
     SbxBaseImpl* mpSbxBaseImpl; // Impl data
 
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 protected:
     USHORT nFlags;          // Flag-Bits
 

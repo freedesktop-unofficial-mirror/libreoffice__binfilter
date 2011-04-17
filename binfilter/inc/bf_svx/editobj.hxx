@@ -58,7 +58,7 @@ protected:
                         EditTextObject( USHORT nWhich );
                         EditTextObject( const EditTextObject& r );
 
-    virtual void        StoreData( SvStream& rOStream ) const;
+    virtual void        StoreData( SvStream& rOStream ) const {}
     virtual void        CreateData( SvStream& rIStream );
 
 public:

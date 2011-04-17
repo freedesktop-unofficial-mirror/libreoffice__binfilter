@@ -262,7 +262,7 @@ protected:
     virtual void Broadcast( ULONG );    // Broadcast-Call
     virtual ~SbxValue();
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_VALUE,1);
     TYPEINFO();
@@ -453,7 +453,7 @@ protected:
     SbxObject*  pParent;        // aktuell zugeordnetes Objekt
     virtual ~SbxVariable();
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_VARIABLE,2);
     TYPEINFO();

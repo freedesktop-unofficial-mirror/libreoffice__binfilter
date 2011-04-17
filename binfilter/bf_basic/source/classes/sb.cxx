@@ -1111,20 +1111,6 @@ BOOL StarBASIC::LoadData( SvStream& r, USHORT nVer )
     return TRUE;
 }
 
-BOOL StarBASIC::StoreData( SvStream& r ) const
-{
-    if( !SbxObject::StoreData( r ) )
-        return FALSE;
-    r << (UINT16) pModules->Count();
-    for( USHORT i = 0; i < pModules->Count(); i++ )
-    {
-        SbModule* p = (SbModule*) pModules->Get( i );
-        if( !p->Store( r ) )
-            return FALSE;
-    }
-    return TRUE;
-}
-
 //========================================================================
 // #118116 Implementation Collection object
 

@@ -414,47 +414,6 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbxVariable::StoreData( SvStream& rStrm ) const
-{
-    rStrm << (BYTE) 0xFF;       // Marker
-    BOOL bValStore;
-    if( this->IsA( TYPE(SbxMethod) ) )
-    {
-        // #50200 Verhindern, dass Objekte, die zur Laufzeit als Return-Wert
-        // in der Methode als Value gespeichert sind, mit gespeichert werden
-        SbxVariable* pThis = (SbxVariable*)this;
-        USHORT nSaveFlags = GetFlags();
-        pThis->SetFlag( SBX_WRITE );
-        pThis->SbxValue::Clear();
-        pThis->SetFlags( nSaveFlags );
-
-        // Damit die Methode in keinem Fall ausgefuehrt wird!
-        // CAST, um const zu umgehen!
-        pThis->SetFlag( SBX_NO_BROADCAST );
-        bValStore = SbxValue::StoreData( rStrm );
-        pThis->ResetFlag( SBX_NO_BROADCAST );
-    }
-    else
-        bValStore = SbxValue::StoreData( rStrm );
-    if( !bValStore )
-        return FALSE;
-    rStrm.WriteByteString( maName, RTL_TEXTENCODING_ASCII_US );
-    rStrm << nUserData;
-    if( pInfo.Is() )
-    {
-        rStrm << (BYTE) 2;      // Version 2: mit UserData!
-        pInfo->StoreData( rStrm );
-    }
-    else
-        rStrm << (BYTE) 0;
-    // Privatdaten nur speichern, wenn es eine SbxVariable ist
-    if( GetClass() == SbxCLASS_VARIABLE )
-        return StorePrivateData( rStrm );
-    else
-        return TRUE;
-}
-
-////////////////////////////// SbxInfo ///////////////////////////////////
 
 SbxInfo::SbxInfo() : aHelpFile(), nHelpId( 0 ), aParams()
 {}

@@ -500,33 +500,6 @@ BOOL SbxArray::LoadData( SvStream& rStrm, USHORT nVer )
     return bRes;
 }
 
-BOOL SbxArray::StoreData( SvStream& rStrm ) const
-{
-    UINT32 nElem = 0;
-    UINT32 n;
-    // Welche Elemente sind ueberhaupt definiert?
-    for( n = 0; n < pData->size(); n++ )
-    {
-        SbxVariableRef* pRef = (*pData)[n];
-        SbxVariable* p = *pRef;
-        if( p && !( p->GetFlags() & SBX_DONTSTORE ) )
-            nElem++;
-    }
-    rStrm << (UINT16) nElem;
-    for( n = 0; n < pData->size(); n++ )
-    {
-        SbxVariableRef* pRef = (*pData)[n];
-        SbxVariable* p = *pRef;
-        if( p && !( p->GetFlags() & SBX_DONTSTORE ) )
-        {
-            rStrm << (UINT16) n;
-            if( !p->Store( rStrm ) )
-                return FALSE;
-        }
-    }
-    return StorePrivateData( rStrm );
-}
-
 // #100883 Method to set method directly to parameter array
 void SbxArray::PutDirect( SbxVariable* pVar, UINT32 nIdx )
 {
@@ -766,17 +739,6 @@ BOOL SbxDimArray::LoadData( SvStream& rStrm, USHORT nVer )
     return SbxArray::LoadData( rStrm, nVer );
 }
 
-BOOL SbxDimArray::StoreData( SvStream& rStrm ) const
-{
-    rStrm << (INT16) nDim;
-    for( short i = 0; i < nDim; i++ )
-    {
-        short lb, ub;
-        GetDim( i, lb, ub );
-        rStrm << (INT16) lb << (INT16) ub;
-    }
-    return SbxArray::StoreData( rStrm );
-}
 
 }
 

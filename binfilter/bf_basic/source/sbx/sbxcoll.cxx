@@ -287,16 +287,6 @@ BOOL SbxStdCollection::LoadData( SvStream& rStrm, USHORT nVer )
     return bRes;
 }
 
-BOOL SbxStdCollection::StoreData( SvStream& rStrm ) const
-{
-    BOOL bRes = SbxCollection::StoreData( rStrm );
-    if( bRes )
-    {
-        rStrm.WriteByteString( aElemClass, RTL_TEXTENCODING_ASCII_US );
-        rStrm << bAddRemoveOk;
-    }
-    return bRes;
-}
 
 }
 

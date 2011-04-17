@@ -302,12 +302,6 @@ BOOL SbxBase::LoadData( SvStream&, USHORT )
     return FALSE;
 }
 
-BOOL SbxBase::StoreData( SvStream& ) const
-{
-    DBG_CHKTHIS( SbxBase, 0 );
-    return FALSE;
-}
-
 BOOL SbxBase::LoadPrivateData( SvStream&, USHORT )
 {
     DBG_CHKTHIS( SbxBase, 0 );
@@ -379,21 +373,6 @@ BOOL SbxInfo::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbxInfo::StoreData( SvStream& rStrm ) const
-{
-    rStrm.WriteByteString( aComment, RTL_TEXTENCODING_ASCII_US );
-    rStrm.WriteByteString( aHelpFile, RTL_TEXTENCODING_ASCII_US );
-    rStrm << nHelpId << aParams.Count();
-    for( USHORT i = 0; i < aParams.Count(); i++ )
-    {
-        SbxParamInfo* p = aParams.GetObject( i );
-        rStrm.WriteByteString( p->aName, RTL_TEXTENCODING_ASCII_US );
-        rStrm << (UINT16) p->eType
-              << (UINT16) p->nFlags
-              << (UINT32) p->nUserData;
-    }
-    return TRUE;
-}
 
 }
 

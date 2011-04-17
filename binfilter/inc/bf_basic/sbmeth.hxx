@@ -60,7 +60,7 @@ class SbMethod : public SbxMethod
     SbMethod( const String&, SbxDataType, SbModule* );
     SbMethod( const SbMethod& );
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual ~SbMethod();
 
 public:
