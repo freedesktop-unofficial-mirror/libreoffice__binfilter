@@ -2289,7 +2289,7 @@ void ScInterpreter::ScPercentile()
         {
             ULONG nIndex = (ULONG)::rtl::math::approxFloor(alpha*(nSize-1));
             double fDiff = alpha*(nSize-1) - ::rtl::math::approxFloor(alpha*(nSize-1));
-            DBG_ASSERT(nIndex >= 0 && nIndex < nSize, "ScPercentile: falscher Index (1)");
+            DBG_ASSERT(nIndex < nSize, "ScPercentile: falscher Index (1)");
             if (fDiff == 0.0)
                 PushDouble(pSArray[nIndex]);
             else
@@ -2342,7 +2342,7 @@ void ScInterpreter::ScQuartile()
             {
                 ULONG nIndex = (ULONG)::rtl::math::approxFloor(0.25*(nSize-1));
                 double fDiff = 0.25*(nSize-1) - ::rtl::math::approxFloor(0.25*(nSize-1));
-                DBG_ASSERT(nIndex >= 0 && nIndex < nSize, "ScQuartile: falscher Index (1)");
+                DBG_ASSERT(nIndex < nSize, "ScQuartile: falscher Index (1)");
                 if (fDiff == 0.0)
                     PushDouble(pSArray[nIndex]);
                 else
@@ -2363,7 +2363,7 @@ void ScInterpreter::ScQuartile()
             {
                 ULONG nIndex = (ULONG)::rtl::math::approxFloor(0.75*(nSize-1));
                 double fDiff = 0.75*(nSize-1) - ::rtl::math::approxFloor(0.75*(nSize-1));
-                DBG_ASSERT(nIndex >= 0 && nIndex < nSize, "ScQuartile: falscher Index (3)");
+                DBG_ASSERT(nIndex < nSize, "ScQuartile: falscher Index (3)");
                 if (fDiff == 0.0)
                     PushDouble(pSArray[nIndex]);
                 else
@@ -2610,7 +2610,7 @@ void ScInterpreter::ScTrimMean()
         if (nIndex % 2 != 0)
             nIndex--;
         nIndex /= 2;
-        DBG_ASSERT(nIndex >= 0 && nIndex < nSize, "ScTrimMean: falscher Index");
+        DBG_ASSERT(nIndex < nSize, "ScTrimMean: falscher Index");
         double fSum = 0.0;
         for (ULONG i = nIndex; i < nSize-nIndex; i++)
             fSum += pSArray[i];

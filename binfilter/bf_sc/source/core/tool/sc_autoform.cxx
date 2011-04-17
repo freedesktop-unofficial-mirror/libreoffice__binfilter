@@ -393,14 +393,14 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 
 /*N*/  ScAutoFormatDataField& ScAutoFormatData::GetField( USHORT nIndex )
 /*N*/  {
-/*N*/      DBG_ASSERT( (0 <= nIndex) && (nIndex < 16), "ScAutoFormatData::GetField - illegal index" );
+/*N*/      DBG_ASSERT( (nIndex < 16), "ScAutoFormatData::GetField - illegal index" );
 /*N*/      DBG_ASSERT( ppDataField && ppDataField[ nIndex ], "ScAutoFormatData::GetField - no data" );
 /*N*/      return *ppDataField[ nIndex ];
 /*N*/  }
 
 /*N*/ const ScAutoFormatDataField& ScAutoFormatData::GetField( USHORT nIndex ) const
 /*N*/ {
-/*N*/     DBG_ASSERT( (0 <= nIndex) && (nIndex < 16), "ScAutoFormatData::GetField - illegal index" );
+/*N*/     DBG_ASSERT( (nIndex < 16), "ScAutoFormatData::GetField - illegal index" );
 /*N*/     DBG_ASSERT( ppDataField && ppDataField[ nIndex ], "ScAutoFormatData::GetField - no data" );
 /*N*/     return *ppDataField[ nIndex ];
 /*N*/ }
