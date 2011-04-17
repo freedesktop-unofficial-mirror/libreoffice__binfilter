@@ -1021,7 +1021,6 @@ public:
     ScRange         GetRange( USHORT nTab, const Rectangle& rMMRect );
 
     BOOL            LoadPool( SvStream& rStream, BOOL bLoadRefCounts );
-    BOOL            SavePool( SvStream& rStream ) const;
 
     BOOL            Load( SvStream& rStream, ScProgress* pProgress );
     BOOL            Save( SvStream& , ScProgress* ) const {return false;}
@@ -1293,14 +1292,12 @@ private: // CLOOK-Impl-Methoden
     void    DeleteDrawLayer();
     void    DeleteColorTable();
     void    LoadDrawLayer(SvStream& rStream);
-    void    StoreDrawLayer(SvStream& rStream) const;
     BOOL    DrawGetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const;
 
     void    UpdateDrawPrinter();
     void    UpdateDrawLanguages();
 
     void    LoadDdeLinks(SvStream& rStream);
-    void    SaveDdeLinks(SvStream& rStream) const;
     void    LoadAreaLinks(SvStream& rStream);
     void    SaveAreaLinks(SvStream& rStream) const;
 

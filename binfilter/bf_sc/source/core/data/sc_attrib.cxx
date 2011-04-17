@@ -858,20 +858,6 @@ using namespace ::com::sun::star;
 /*N*/   return bConverted;
 /*N*/ }
 
-/*N*/ void lcl_StoreOldFields( ScFieldChangerEditEngine& rEngine,
-/*N*/           const EditTextObject* pArea, SvStream& rStream )
-/*N*/ {
-/*N*/   rEngine.SetText( *pArea );
-/*N*/   if ( rEngine.ConvertFields() )
-/*N*/   {
-/*N*/       EditTextObject* pObj = rEngine.CreateTextObject();
-/*N*/       pObj->Store( rStream );
-/*N*/       delete pObj;
-/*N*/   }
-/*N*/   else
-/*N*/       pArea->Store( rStream );
-/*N*/ }
-
 /*N*/ void ScPageHFItem::SetLeftArea( const EditTextObject& rNew )
 /*N*/ {
 /*N*/   delete pLeftArea;

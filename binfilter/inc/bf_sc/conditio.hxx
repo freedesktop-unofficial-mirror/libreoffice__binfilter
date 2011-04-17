@@ -106,8 +106,6 @@ class ScConditionEntry
 protected:
             ScConditionEntry( SvStream& rStream, ScMultipleReadHeader& rHdr,
                                 ScDocument* pDocument );
-    void    StoreCondition(SvStream& rStream, ScMultipleWriteHeader& rHdr) const;
-
 public:
             ScConditionEntry( ScConditionMode eOper,
                                 const String& rExpr1, const String& rExpr2,

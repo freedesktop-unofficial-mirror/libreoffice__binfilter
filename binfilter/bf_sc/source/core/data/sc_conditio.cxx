@@ -251,51 +251,6 @@ namespace binfilter {
 /*N*/   //  Formelzellen werden erst bei IsValid angelegt
 /*N*/ }
 
-/*N*/ void ScConditionEntry::StoreCondition(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   //  1) Byte fuer die Operation
-/*N*/   //  2) USHORT fuer Optionen
-/*N*/   //  3) Byte, ob Wert, String oder Formel folgt
-/*N*/   //  4) double, String oder TokenArray
-/*N*/   //  5) je nach Operation 3 und 4 nochmal
-/*N*/   //  vor jedem TokenArray noch die Position als ScAddress
-/*N*/
-/*N*/   rStream << (BYTE) eOp;
-/*N*/   rStream << nOptions;
-/*N*/
-/*N*/   ScConditionValType eType =
-/*N*/           pFormula1 ? SC_VAL_FORMULA : ( bIsStr1 ? SC_VAL_STRING : SC_VAL_VALUE );
-/*N*/   rStream << (BYTE) eType;
-/*N*/   if ( eType == SC_VAL_FORMULA )
-/*N*/   {
-/*N*/       rStream << aSrcPos;
-/*N*/       pFormula1->Store( rStream, aSrcPos );
-/*N*/   }
-/*N*/   else if ( eType == SC_VAL_VALUE )
-/*N*/       rStream << nVal1;
-/*N*/   else
-/*?*/       rStream.WriteByteString( aStrVal1, rStream.GetStreamCharSet() );
-/*N*/
-/*N*/   if ( eOp == SC_COND_BETWEEN || eOp == SC_COND_NOTBETWEEN )
-/*N*/   {
-/*?*/       eType = pFormula2 ? SC_VAL_FORMULA : ( bIsStr2 ? SC_VAL_STRING : SC_VAL_VALUE );
-/*?*/       rStream << (BYTE) eType;
-/*?*/       if ( eType == SC_VAL_FORMULA )
-/*?*/       {
-/*?*/           rStream << aSrcPos;
-/*?*/           pFormula2->Store( rStream, aSrcPos );
-/*?*/       }
-/*?*/       else if ( eType == SC_VAL_VALUE )
-/*?*/           rStream << nVal2;
-/*?*/       else
-/*?*/           rStream.WriteByteString( aStrVal2, rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
 /*N*/ void ScConditionEntry::Compile( const String& rExpr1, const String& rExpr2,
 /*N*/                               BOOL bEnglish, BOOL bCompileXML, BOOL bTextToReal )
 /*N*/ {

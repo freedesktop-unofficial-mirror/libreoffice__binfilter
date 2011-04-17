@@ -252,19 +252,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDocument::StoreDrawLayer(SvStream& rStream) const
-/*N*/ {
-/*N*/   if (pDrawLayer)
-/*N*/   {
-/*N*/
-/*N*/       pDrawLayer->SetSaveCompressed( FALSE );
-/*N*/       pDrawLayer->SetSaveNative( FALSE );
-/*N*/
-/*N*/       pDrawLayer->GetItemPool().SetFileFormatVersion( (USHORT)rStream.GetVersion() );
-/*N*/       pDrawLayer->Store(rStream);
-/*N*/   }
-/*N*/ }
-
 /*N*/ BOOL ScDocument::DrawGetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const
 /*N*/ {
 /*N*/   return pDrawLayer->GetPrintArea( rRange, bSetHor, bSetVer );

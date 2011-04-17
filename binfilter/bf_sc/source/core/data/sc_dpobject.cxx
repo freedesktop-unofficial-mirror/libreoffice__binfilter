@@ -540,55 +540,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDPObject::StoreNew( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   //  save all data
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   if ( pImpDesc )
-/*N*/   {
-/*N*/       rStream << (BYTE) SC_DP_SOURCE_DATABASE;
-/*N*/       rStream.WriteByteString( pImpDesc->aDBName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pImpDesc->aObject, rStream.GetStreamCharSet() );
-/*N*/       rStream << pImpDesc->nType;     // USHORT
-/*N*/       rStream << pImpDesc->bNative;
-/*N*/   }
-/*N*/   else if ( pServDesc )
-/*N*/   {
-/*N*/       rStream << (BYTE) SC_DP_SOURCE_SERVICE;
-/*N*/       rStream.WriteByteString( pServDesc->aServiceName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParSource,   rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParName,     rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParUser,     rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParPass,     rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if (!pSheetDesc)
-/*N*/       {
-/*N*/           OSL_FAIL("no source descriptor");
-/*N*/           ((ScDPObject*)this)->pSheetDesc = new ScSheetSourceDesc;        // dummy defaults
-/*N*/       }
-/*N*/
-/*N*/       rStream << (BYTE) SC_DP_SOURCE_SHEET;
-/*N*/       rStream << pSheetDesc->aSourceRange;
-/*N*/       pSheetDesc->aQueryParam.Store( rStream );
-/*N*/   }
-/*N*/
-/*N*/   rStream << aOutRange;
-/*N*/
-/*N*/   DBG_ASSERT(pSaveData, "ScDPObject::StoreNew no SaveData");
-/*N*/   pSaveData->Store( rStream );
-/*N*/
-/*N*/   //  additional data starting from 561b
-/*N*/   rStream.WriteByteString( aTableName, rStream.GetStreamCharSet() );
-/*N*/   rStream.WriteByteString( aTableTag,  rStream.GetStreamCharSet() );
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-/*N*/
 /*N*/ BOOL ScDPObject::LoadNew(SvStream& rStream, ScMultipleReadHeader& rHdr )
 /*N*/ {
 /*N*/   rHdr.StartEntry();
@@ -641,84 +592,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   {
 /*N*/       rStream.ReadByteString( aTableName, rStream.GetStreamCharSet() );
 /*N*/       rStream.ReadByteString( aTableTag,  rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ BOOL ScDPObject::StoreOld( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   //  write compatible data for office 5.1 and below
-/*N*/
-/*N*/   DBG_ASSERT( pSheetDesc, "StoreOld: !pSheetDesc" );
-/*N*/   ScRange aStoreRange;
-/*N*/   ScQueryParam aStoreQuery;
-/*N*/   if (pSheetDesc)
-/*N*/   {
-/*N*/       aStoreRange = pSheetDesc->aSourceRange;
-/*N*/       aStoreQuery = pSheetDesc->aQueryParam;
-/*N*/   }
-/*N*/
-/*N*/   ((ScDPObject*)this)->CreateObjects();       // xSource is needed for field numbers
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << (BOOL) TRUE;         // bHasHeader
-/*N*/
-/*N*/   rStream << aStoreRange.aStart.Col();
-/*N*/   rStream << aStoreRange.aStart.Row();
-/*N*/   rStream << aStoreRange.aEnd.Col();
-/*N*/   rStream << aStoreRange.aEnd.Row();
-/*N*/   rStream << aStoreRange.aStart.Tab();
-/*N*/
-/*N*/   //! make sure aOutRange is initialized
-/*N*/
-/*N*/   rStream << aOutRange.aStart.Col();
-/*N*/   rStream << aOutRange.aStart.Row();
-/*N*/   rStream << aOutRange.aEnd.Col();
-/*N*/   rStream << aOutRange.aEnd.Row();
-/*N*/   rStream << aOutRange.aStart.Tab();
-/*N*/
-/*N*/   BOOL bAddData = ( lcl_GetDataGetOrientation( xSource ) == sheet::DataPilotFieldOrientation_HIDDEN );
-/*N*/
-/*N*/   lcl_SaveOldFieldArr( rStream, xSource, sheet::DataPilotFieldOrientation_ROW,    aStoreRange.aStart.Col(), bAddData );
-/*N*/   lcl_SaveOldFieldArr( rStream, xSource, sheet::DataPilotFieldOrientation_COLUMN, aStoreRange.aStart.Col(), FALSE );
-/*N*/   lcl_SaveOldFieldArr( rStream, xSource, sheet::DataPilotFieldOrientation_DATA,   aStoreRange.aStart.Col(), FALSE );
-/*N*/
-/*N*/   aStoreQuery.Store( rStream );
-/*N*/
-/*N*/   BOOL bColumnGrand   = TRUE;
-/*N*/   BOOL bRowGrand      = TRUE;
-/*N*/   BOOL bIgnoreEmpty   = FALSE;
-/*N*/   BOOL bRepeatIfEmpty = FALSE;
-/*N*/
-/*N*/   uno::Reference<beans::XPropertySet> xProp( xSource, uno::UNO_QUERY );
-/*N*/   if (xProp.is())
-/*N*/   {
-/*N*/       bColumnGrand = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_COLUMNGRAND)), TRUE );
-/*N*/       bRowGrand = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ROWGRAND)), TRUE );
-/*N*/
-/*N*/       // following properties may be missing for external sources
-/*N*/       bIgnoreEmpty = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_IGNOREEMPTY)) );
-/*N*/       bRepeatIfEmpty = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_REPEATIFEMPTY)) );
-/*N*/   }
-/*N*/
-/*N*/   rStream << bIgnoreEmpty;        // bIgnoreEmpty
-/*N*/   rStream << bRepeatIfEmpty;      // bDetectCat
-/*N*/
-/*N*/   rStream << bColumnGrand;        // bMakeTotalCol
-/*N*/   rStream << bRowGrand;           // bMakeTotalRow
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )
-/*N*/   {
-/*N*/       rStream.WriteByteString( aTableName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aTableTag,  rStream.GetStreamCharSet() );
-/*N*/       rStream << (USHORT)0;       // nColNameCount
 /*N*/   }
 /*N*/
 /*N*/   rHdr.EndEntry();
@@ -952,45 +825,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
-/*N*/ BOOL ScDPCollection::StoreOld( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   USHORT nSheetCount = 0;
-/*N*/   USHORT i;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ( ((const ScDPObject*)At(i))->IsSheetData() )
-/*N*/           ++nSheetCount;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << nSheetCount;         // only tables from sheet data
-/*N*/
-/*N*/   for (i=0; i<nCount && bSuccess; i++)
-/*N*/   {
-/*N*/       const ScDPObject* pObj = (const ScDPObject*)At(i);
-/*N*/       if ( pObj->IsSheetData() )
-/*N*/           bSuccess = pObj->StoreOld( rStream, aHdr );
-/*N*/   }
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ BOOL ScDPCollection::StoreNew( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << (long)SC_DP_VERSION_CURRENT;
-/*N*/   rStream << (long)nCount;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount && bSuccess; i++)
-/*N*/       bSuccess = ((const ScDPObject*)At(i))->StoreNew( rStream, aHdr );
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-/*N*/
 /*N*/ BOOL ScDPCollection::LoadNew( SvStream& rStream )
 /*N*/ {
 /*N*/   BOOL bSuccess = TRUE;

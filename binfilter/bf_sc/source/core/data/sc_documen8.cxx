@@ -319,47 +319,6 @@ namespace binfilter {
 #define SPELL_MAXTEST_ALL   3
 #define SPELL_MAXCELLS      256
 
-//------------------------------------------------------------------------
-
-/*N*/ void ScDocument::SaveDdeLinks(SvStream& rStream) const
-/*N*/ {
-/*N*/   //  bei 4.0-Export alle mit Modus != DEFAULT weglassen
-/*N*/   BOOL bExport40 = ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 );
-/*N*/
-/*N*/   const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-/*N*/   USHORT nCount = rLinks.Count();
-/*N*/
-/*N*/   //  erstmal zaehlen...
-/*N*/
-/*N*/   USHORT nDdeCount = 0;
-/*N*/   USHORT i;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
-/*N*/       if (pBase->ISA(ScDdeLink))
-/*?*/           if ( !bExport40 || ((ScDdeLink*)pBase)->GetMode() == SC_DDE_DEFAULT )
-/*?*/               ++nDdeCount;
-/*N*/   }
-/*N*/
-/*N*/   //  Header
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/   rStream << nDdeCount;
-/*N*/
-/*N*/   //  Links speichern
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
-/*N*/       if (pBase->ISA(ScDdeLink))
-/*N*/       {
-/*?*/           ScDdeLink* pLink = (ScDdeLink*)pBase;
-/*?*/           if ( !bExport40 || pLink->GetMode() == SC_DDE_DEFAULT )
-/*?*/               pLink->Store( rStream, aHdr );
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ void ScDocument::LoadDdeLinks(SvStream& rStream)
 /*N*/ {
 /*N*/   ScMultipleReadHeader aHdr( rStream );
