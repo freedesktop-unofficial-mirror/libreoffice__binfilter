@@ -286,6 +286,8 @@ static const sal_Char msgDbgInfinity[] =
 /*M*/                               }
 /*M*/                           }
 /*M*/                       break;
+/*M*/                       default:
+/*M*/                       break;
 /*M*/                   }
 /*M*/               }
 /*M*/           }
@@ -389,6 +391,8 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/                                       rRef2.nTab ), pFormCell );
 /*N*/                               }
 /*N*/                           }
+/*N*/                       break;
+/*N*/                       default:
 /*N*/                       break;
 /*N*/                   }
 /*N*/               }
@@ -1238,6 +1242,8 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/                   bIsValue = FALSE;
 /*N*/                   aErgString = p->GetStringResult();
 /*N*/               }
+/*N*/           break;
+/*N*/           default:
 /*N*/           break;
 /*N*/       }
 /*N*/

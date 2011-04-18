@@ -693,6 +693,9 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/           case svSingleRef:
 /*N*/           case svDoubleRef:
 /*N*/               return t;
+/*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/   return NULL;
@@ -708,6 +711,9 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/           case svSingleRef:
 /*N*/           case svDoubleRef:
 /*N*/               return t;
+/*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/   return NULL;
@@ -723,6 +729,9 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/           case svDoubleRef:
 /*N*/           case svIndex:
 /*N*/               return t;
+/*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/   return NULL;
@@ -1290,6 +1299,8 @@ USHORT lcl_ScRawTokenOffset()
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
+/*N*/               break;
+/*N*/               default :
 /*N*/               break;
 /*N*/           }
 /*N*/           if ( eOp == ocPush || lcl_IsReference( eOp, t->GetType() )  )

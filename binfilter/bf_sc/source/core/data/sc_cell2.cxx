@@ -697,6 +697,9 @@ DBG_BF_ASSERT(0, "STRIP"); /*N*/    if( !pDocument->IsClipOrUndo() )
 /*N*/               case ocName:
 /*?*/                   if ( p->GetIndex() >= SC_START_INDEX_DB_COLL )
 /*?*/                       bRecompile = TRUE;  // DB-Bereich
+/*N*/               break;
+/*N*/               default:
+/*N*/               break;
 /*N*/           }
 /*N*/       }
 /*N*/       if ( bRecompile )
