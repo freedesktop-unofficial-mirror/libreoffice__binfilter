@@ -176,7 +176,7 @@ public:
 
 
     BOOL        Load(SvStream& rStream, ScMultipleReadHeader& rHdr );
-    BOOL Store(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const {return FALSE;}
+    BOOL Store(SvStream&, ScMultipleWriteHeader&) const {return FALSE;}
 
     void        SetQuery(const ScQueryParam& rQuery);
     void        GetQuery(ScQueryParam& rQuery) const;
@@ -253,7 +253,7 @@ public:
             ScPivot*    operator[]( const USHORT nIndex) const {return (ScPivot*)At(nIndex);}
 
     BOOL    Load( SvStream& rStream );
-    BOOL Store( SvStream& rStream ) const {return FALSE;}
+    BOOL Store( SvStream& ) const {return FALSE;}
 
     void    UpdateReference(UpdateRefMode eUpdateRefMode,
                                 USHORT nCol1, USHORT nRow1, USHORT nTab1,

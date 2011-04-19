@@ -1188,7 +1188,7 @@ public:
 /*N*/                                   ULONG nStartAction, ULONG nEndAction );
 /*N*/
 /*N*/           BOOL                Load( SvStream& rStrm, USHORT nVer );
-/*N*/    BOOL    Store( SvStream& rStrm ) {return FALSE;}
+/*N*/    BOOL    Store( SvStream& ) {return FALSE;}
 /*N*/           USHORT              GetLoadedFileFormatVersion() const
 /*N*/                                   { return nLoadedFileFormatVersion; }
 /*N*/

@@ -166,7 +166,7 @@ public:
 
     void            SetParent( ScConditionalFormat* pNew )  { pParent = pNew; }
 
-    void  Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const {}
+    void  Store(SvStream&, ScMultipleWriteHeader&) const {}
 
     int             operator== ( const ScCondFormatEntry& r ) const;
 
@@ -199,7 +199,7 @@ public:
     // echte Kopie der Formeln (fuer Ref-Undo / zwischen Dokumenten)
     ScConditionalFormat* Clone(ScDocument* pNewDoc = NULL) const;
 
-    void    Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const {}
+    void    Store(SvStream&, ScMultipleWriteHeader&) const {}
 
     void            AddEntry( const ScCondFormatEntry& rNew );
 
@@ -255,7 +255,7 @@ public:
     ScConditionalFormat* GetFormat( sal_uInt32 nKey );
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
-    void    Store( SvStream& rStream ) const {}
+    void    Store( SvStream& ) const {}
     void    ResetUsed();
 
     void    CompileXML();

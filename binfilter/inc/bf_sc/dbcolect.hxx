@@ -135,7 +135,7 @@ public:
             ScDBData&   operator= (const ScDBData& rData);
 
 
-            BOOL    Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const {return FALSE;}
+            BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 
             const String& GetName() const               { return aName; }
             void        GetName(String& rName) const    { rName = aName; }
@@ -223,7 +223,7 @@ public:
             ScDBData*   GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
 
     BOOL    Load( SvStream& rStream );
-    BOOL    Store( SvStream& rStream ) const {return FALSE;}
+    BOOL    Store( SvStream& ) const {return FALSE;}
 
     BOOL    SearchName( const String& rName, USHORT& rIndex ) const;
 

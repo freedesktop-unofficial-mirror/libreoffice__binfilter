@@ -172,7 +172,7 @@ public:
                                     const ::IntlWrapper * = 0 ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream& Store(SvStream &, USHORT nItemVersion ) const {}
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileFormatVersion ) const;
 
     inline const SvxMacroTableDtor& GetMacroTable() const { return aMacroTable;}

@@ -196,8 +196,8 @@ public:
     StarBASIC*      GetLib( const String& rName ) const;
     USHORT          GetLibId( const String& rName ) const;
 
-    void            Store( SotStorage& rStorage, const String& rBaseURL ) {}
-    void            Store( SotStorage& rStorage, const String& rBaseURL, BOOL bStoreLibs ){}
+    void            Store( SotStorage&, const String& ) {}
+    void            Store( SotStorage&, const String&, BOOL ){}
 
     String          GetLibName( USHORT nLib );
 

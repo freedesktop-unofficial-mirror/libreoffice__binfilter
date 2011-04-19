@@ -490,7 +490,7 @@ public:
     BOOL            IsFoundInPath() const               { return bFoundInPath; }
     void            SetFoundInPath( BOOL bInPath )      { bFoundInPath = bInPath; }
 
-    void                        Store( SotStorageStream& rSStream, const String& rBasMgrStorageName, BOOL bUseOldReloadInfo ) {}
+    void                        Store( SotStorageStream&, const String&, BOOL ) {}
     static BasicLibInfo*    Create( SotStorageStream& rSStream );
 
     Reference< XLibraryContainer > GetLibraryContainer( void )

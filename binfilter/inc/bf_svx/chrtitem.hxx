@@ -313,7 +313,7 @@ public:
     virtual int              operator == (const SfxPoolItem&) const;
     virtual SfxPoolItem* Clone(SfxItemPool *pPool = NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVersion) const;
-    virtual SvStream& Store(SvStream& rOut, USHORT nItemVersion ) const {}
+    virtual SvStream& Store(SvStream& rOut, USHORT) const { return rOut; }
 
     double GetValue() const { return fVal; }
     void SetValue(double fNewVal) { fVal = fNewVal; }

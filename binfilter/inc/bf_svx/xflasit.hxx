@@ -49,7 +49,7 @@ public:
                                              SfxItemPool* pItemPool);
     virtual SfxPoolItem*    Clone( SfxItemPool* pToPool ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVersion ) const;
-    virtual SvStream&       Store( SvStream& rStream, USHORT nItemVersion ) const {}
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
 };
 
 }//end of namespace binfilter

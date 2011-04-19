@@ -59,7 +59,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     const String &GetNumStr() const { return aNumber; }

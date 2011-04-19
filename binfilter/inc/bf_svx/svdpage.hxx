@@ -208,7 +208,7 @@ public:
     // Speicher laden.
 
 
-    void    Save(SvStream& rOut) const {}
+    void    Save(SvStream&) const {}
     void    Load(SvStream& rIn, SdrPage& rPage);
     // AfterRead wird gerufen, nachdem das gesamte Model eingestreamt
     // worden ist. Damit ist ein PostProcessing moeglich um beispielsweise

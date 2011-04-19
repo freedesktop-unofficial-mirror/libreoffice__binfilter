@@ -299,12 +299,12 @@ public:
     const OUString& GetParentHRef() { return sParentHRef; }
 };
 
-SvXMLStylesContext_Impl::SvXMLStylesContext_Impl() :
+SvXMLStylesContext_Impl::SvXMLStylesContext_Impl()
+    : aStyles()
+    , pIndices( 0 )
 #ifdef DBG_UTIL
-    nIndexCreated( 0 ),
+    , nIndexCreated( 0 )
 #endif
-    aStyles(),
-    pIndices( 0 )
 {}
 
 SvXMLStylesContext_Impl::~SvXMLStylesContext_Impl()

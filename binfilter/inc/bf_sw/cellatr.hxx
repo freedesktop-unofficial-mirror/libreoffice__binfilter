@@ -50,7 +50,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     inline SwTblBoxNumFormat& operator=( const SwTblBoxNumFormat& rAttr )
@@ -76,7 +76,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     // erfrage und setze den Modify-Pointer
@@ -103,7 +103,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     inline SwTblBoxValue& operator=( const SwTblBoxValue& rCmp )

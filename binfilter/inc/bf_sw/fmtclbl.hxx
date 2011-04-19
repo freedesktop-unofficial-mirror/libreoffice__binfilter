@@ -47,7 +47,7 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT    GetVersion( USHORT nFFVer ) const;
 };
 

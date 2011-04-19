@@ -202,7 +202,7 @@ public:
                                             const SfxPoolItem *pItem ) const;
 
     virtual SvStream &              Load(SvStream &);
-    virtual SvStream & Store(SvStream &) const {}
+    virtual SvStream & Store(SvStream &rStream) const { return rStream; }
     int                             HasPersistentRefCounts() const {
                                         return bPersistentRefCounts; }
     void                            LoadCompleted();

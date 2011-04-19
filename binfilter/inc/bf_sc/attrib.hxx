@@ -72,7 +72,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
-    virtual SvStream&       Store( SvStream& rStream, USHORT nVer ) const {}
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
 
             INT16           GetColMerge() const {return nColMerge; }
             INT16           GetRowMerge() const {return nRowMerge; }
@@ -127,7 +127,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
-    virtual SvStream&       Store( SvStream& rStream, USHORT nVer ) const {}
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
     virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
@@ -172,7 +172,7 @@ public:
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT              GetVersion( USHORT nFileVersion ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT) const;
-    virtual SvStream&           Store( SvStream& rStream, USHORT nVer ) const {}
+    virtual SvStream&           Store( SvStream& rStream, USHORT ) const { return rStream; }
 
     const ScRange&  GetRange() const                { return aRange;  }
     void            SetRange( const ScRange& rNew ) { aRange = rNew; }
@@ -225,7 +225,7 @@ public:
     virtual int                 operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT) const;
-    virtual SvStream&           Store( SvStream& rStream, USHORT nVer ) const {}
+    virtual SvStream&           Store( SvStream& rStream, USHORT ) const { return rStream; }
 
     void    SetTableList( const List& aList );
 
@@ -262,7 +262,7 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
-    virtual SvStream&       Store( SvStream& rStream, USHORT nVer ) const {}
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
 
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
@@ -316,7 +316,7 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVer ) const;
-    virtual SvStream&       Store( SvStream& rStream, USHORT nVer ) const {}
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
 
     double GetValue() const     { return nValue; }
 

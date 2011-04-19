@@ -168,7 +168,7 @@ public:
 
     virtual SvStream &          Load( SvStream &, bool bDirect = FALSE,
                                       const SfxItemPool *pRefPool = 0 );
-    virtual SvStream & Store( SvStream &, bool bDirect = FALSE ) const {}
+    virtual SvStream & Store( SvStream &rStream, bool /*bDirect*/ = FALSE ) const { return rStream; }
 
     virtual int                 operator==(const SfxItemSet &) const;
 };

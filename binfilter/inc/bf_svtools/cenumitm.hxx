@@ -113,7 +113,7 @@ protected:
 public:
     TYPEINFO();
 
-    virtual SvStream & Store(SvStream & rStream, USHORT) const {}
+    virtual SvStream & Store(SvStream & rStream, USHORT) const { return rStream; }
 
     virtual USHORT GetEnumValue() const;
 
@@ -165,7 +165,7 @@ public:
 
     virtual SfxPoolItem * Create(SvStream & rStream, USHORT) const;
 
-    virtual SvStream & Store(SvStream & rStream, USHORT) const {}
+    virtual SvStream & Store(SvStream & rStream, USHORT) const { return rStream; }
 
     virtual SfxPoolItem * Clone(SfxItemPool * = 0) const;
 

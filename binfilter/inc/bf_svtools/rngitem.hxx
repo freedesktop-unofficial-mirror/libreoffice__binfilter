@@ -86,7 +86,7 @@ public:
     inline NUMTYPE              To() const { return nTo; }
     inline BOOL                 HasRange() const { return nTo>nFrom; }
     virtual SfxPoolItem*        Create( SvStream &, USHORT nVersion ) const;
-    virtual SvStream& Store( SvStream &, USHORT nItemVersion ) const {}
+    virtual SvStream& Store( SvStream &rStream, USHORT ) const { return rStream; }
 };
 
 // -----------------------------------------------------------------------
@@ -111,7 +111,7 @@ public:
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     inline const NUMTYPE*       GetRanges() const { return _pRanges; }
     virtual SfxPoolItem*        Create( SvStream &, USHORT nVersion ) const;
-    virtual SvStream& Store( SvStream &, USHORT nItemVersion ) const {}
+    virtual SvStream& Store( SvStream &rStream, USHORT ) const { return rStream; }
 };
 
 }

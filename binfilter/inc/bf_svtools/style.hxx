@@ -271,7 +271,7 @@ public:
     SfxStyleFamily              GetSearchFamily() const  { return nSearchFamily; }
 
     BOOL                        Load( SvStream& );
-    BOOL Store( SvStream&, BOOL bUsed = TRUE ) {return FALSE;}
+    BOOL Store( SvStream&, BOOL /*bUsed*/ = TRUE ) {return FALSE;}
 };
 
 //=========================================================================

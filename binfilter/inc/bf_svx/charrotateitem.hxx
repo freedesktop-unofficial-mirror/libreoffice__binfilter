@@ -57,7 +57,7 @@ public:
 
 /*NBFF*/    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 /*NBFF*/    virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-/*NBFF*/    virtual SvStream&  Store(SvStream & rStrm, USHORT nIVer) const {}
+/*NBFF*/    virtual SvStream&  Store(SvStream & rStrm, USHORT) const { return rStrm; }
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
 /*NBFF*/    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,

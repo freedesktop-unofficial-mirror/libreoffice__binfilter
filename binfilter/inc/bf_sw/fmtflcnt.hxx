@@ -50,7 +50,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     inline SwFrmFmt *GetFrmFmt() const { return pFmt; }
     // fuer Undo: loesche "logisch" das FlyFrmFormat, wird sich im

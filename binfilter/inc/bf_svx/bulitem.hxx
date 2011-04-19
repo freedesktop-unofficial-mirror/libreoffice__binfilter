@@ -101,7 +101,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT nVersion ) const;
-    virtual SvStream&     Store( SvStream & , USHORT nItemVersion ) const {}
+    virtual SvStream&     Store( SvStream &rStream , USHORT ) const { return rStream; }
 
     sal_Unicode         GetSymbol() const { return cSymbol; }
     String              GetPrevText() const { return aPrevText; }

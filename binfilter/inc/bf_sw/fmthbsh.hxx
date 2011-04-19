@@ -46,7 +46,7 @@ public:
     virtual int operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;};
     virtual SfxPoolItem*    Clone( SfxItemPool* /*pPool = 0*/ ) const{DBG_BF_ASSERT(0, "STRIP");return NULL; };
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     inline SwFmtSoftHyph& operator=(const SwFmtSoftHyph& /*rSH*/) {
             return *this;
@@ -66,7 +66,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;};
     virtual SfxPoolItem*    Clone( SfxItemPool* /*pPool = 0*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 

@@ -75,7 +75,7 @@ public:
     virtual USHORT          GetValueCount() const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual int             operator==( const SfxPoolItem& ) const;
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
@@ -127,7 +127,7 @@ public:
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
@@ -221,7 +221,7 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const {}
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual int             operator==( const SfxPoolItem& ) const;
 
     virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,

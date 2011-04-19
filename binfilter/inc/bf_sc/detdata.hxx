@@ -101,7 +101,7 @@ public:
     void    Append( ScDetOpData* pData );
 
     void    Load( SvStream& rStream );
-    void  Store( SvStream& rStream ) const {}
+    void  Store( SvStream& ) const {}
     BOOL    HasAddError() const     { return bHasAddError; }
 };
 

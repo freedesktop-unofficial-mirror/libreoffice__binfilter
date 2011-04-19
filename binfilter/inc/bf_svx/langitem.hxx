@@ -59,7 +59,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream& Store(SvStream &, USHORT nItemVersion) const {}
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetValueCount() const;
 
     inline SvxLanguageItem& operator=(const SvxLanguageItem& rLang)

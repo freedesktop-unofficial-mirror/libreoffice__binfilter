@@ -58,7 +58,7 @@ protected:
                         EditTextObject( USHORT nWhich );
                         EditTextObject( const EditTextObject& r );
 
-    virtual void        StoreData( SvStream& rOStream ) const {}
+    virtual void        StoreData( SvStream& ) const {}
     virtual void        CreateData( SvStream& rIStream );
 
 public:
@@ -78,7 +78,7 @@ public:
 
     virtual EditTextObject* Clone() const = 0;
 
-    BOOL Store( SvStream& rOStream ) const {return FALSE;}
+    BOOL Store( SvStream& ) const {return FALSE;}
     static EditTextObject*  Create( SvStream& rIStream,
                                 SfxItemPool* pGlobalTextObjectPool = 0 );
 

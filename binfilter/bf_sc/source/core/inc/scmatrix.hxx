@@ -98,7 +98,7 @@ public:
     BOOL HasMat() const                         { return pMat != NULL; }
 
     ScMatrix(SvStream& rStream);
-    void Store(SvStream& rStream) const {}
+    void Store(SvStream&) const {}
 
     void GetDimensions(USHORT& rC, USHORT& rR) const { rC = nAnzCol; rR = nAnzRow; };
     ULONG GetElementCount() const       { return (ULONG) nAnzCol * nAnzRow; }

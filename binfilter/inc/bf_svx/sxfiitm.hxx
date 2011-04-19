@@ -45,7 +45,7 @@ public:
     SdrFractionItem(USHORT nId, const Fraction& rVal): SfxPoolItem(nId), nValue(rVal) {}
     SdrFractionItem(USHORT nId, SvStream& rIn);
     virtual int              operator==(const SfxPoolItem&) const;
-    virtual SvStream&        Store(SvStream&, USHORT nItemVers) const {}
+    virtual SvStream&        Store(SvStream& rStream, USHORT) const { return rStream; }
     virtual SfxPoolItem*     Clone(SfxItemPool *pPool=NULL) const;
             const Fraction&  GetValue() const { return nValue; }
             void             SetValue(const Fraction& rVal) { nValue = rVal; }

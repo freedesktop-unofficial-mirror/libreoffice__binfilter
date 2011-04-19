@@ -72,7 +72,7 @@ public:
     using SfxPoolItem::Compare;
     virtual int             Compare( const SfxPoolItem &rWith )         const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT nItemVersion )    const;
-    virtual SvStream& Store( SvStream&, USHORT nItemVersion ) const {}
+    virtual SvStream& Store( SvStream& rStream, USHORT ) const { return rStream; }
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 )             const;
 
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
