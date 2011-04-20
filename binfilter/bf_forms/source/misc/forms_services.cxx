@@ -477,13 +477,13 @@ void SAL_CALL createRegistryInfo_FORMS()
 }
 
 //---------------------------------------------------------------------------------------
-void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvTypeName, uno_Environment** /*_ppEnv*/)
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvTypeName, uno_Environment** /*_ppEnv*/)
 {
     *_ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
 //---------------------------------------------------------------------------------------
-void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFactory* _pServiceManager, void* /*_pRegistryKey*/)
+SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFactory* _pServiceManager, void* /*_pRegistryKey*/)
 {
     if (!_pServiceManager || !_pImplName)
         return NULL;

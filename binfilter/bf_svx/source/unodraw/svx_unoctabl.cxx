@@ -224,7 +224,7 @@ void* SAL_CALL sfx2_component_getFactory(   const   sal_Char*   pImplementationN
 extern "C"
 {
 
-void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** /*ppEnv*/ )
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** /*ppEnv*/ )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
@@ -239,7 +239,7 @@ void SAL_CALL writeInfo( registry::XRegistryKey * pRegistryKey, const OUString& 
         xNewKey->createKey( rServices.getConstArray()[i]);
 }
 
-void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
+SAL_DLLPUBLIC_EXPORT void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
 {
     void * pRet = 0;
     if( pServiceManager  )

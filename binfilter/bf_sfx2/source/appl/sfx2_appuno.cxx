@@ -887,7 +887,7 @@ static const String sUnpacked  = String::CreateFromAscii( "Unpacked" );
 extern "C" {
 
 /*N*/
-/*N*/ void* SAL_CALL sfx2_component_getFactory( const   sal_Char*   pImplementationName ,
+/*N*/ SAL_DLLPUBLIC_EXPORT void* SAL_CALL sfx2_component_getFactory(    const   sal_Char*   pImplementationName ,
 /*N*/                                               void*       pServiceManager     ,
 /*N*/                                               void*       /*pRegistryKey*/        )
 /*N*/ {
