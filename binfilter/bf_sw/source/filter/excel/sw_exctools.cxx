@@ -1089,7 +1089,7 @@ void XF_Buffer::SetItemSets( UINT16 nCol, UINT16 nStartRow, UINT16 nEndRow,
     SwTableBoxFmt* pBoxFmt = (SwTableBoxFmt*)pSttBox->ClaimFrmFmt();
     pBoxFmt->SetAttr( *pBoxAttr );
 
-    SwTableBox* pEndBox;
+    SwTableBox* pEndBox = NULL;
     if( nStartRow != nEndRow )
     {
         for( UINT16 nRow = nStartRow ; nRow <= nEndRow ; nRow++ )

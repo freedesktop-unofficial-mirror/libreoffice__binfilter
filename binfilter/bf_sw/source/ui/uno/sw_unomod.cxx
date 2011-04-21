@@ -396,7 +396,7 @@ void SwXPrintSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, 
         break;
         case HANDLE_PRINTSET_ANNOTATION_MODE:
         {
-            sal_Int16 nVal;
+            sal_Int16 nVal(0);
             rValue >>= nVal;
             if(nVal <= text::NotePrintMode_PAGE_END)
                 mpPrtOpt->SetPrintPostIts(nVal);
@@ -601,7 +601,7 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
         break;
         case  HANDLE_VIEWSET_ZOOM                   :
         {
-            sal_Int16 nZoom;
+            sal_Int16 nZoom(0);
             if(!(rValue >>= nZoom) || nZoom > 1000 || nZoom < 5)
                 throw lang::IllegalArgumentException();
             mpViewOption->SetZoom((sal_uInt16)nZoom);
@@ -610,7 +610,7 @@ void SwXViewSettings::_setSingleValue( const comphelper::PropertyInfo & rInfo, c
         break;
         case HANDLE_VIEWSET_ZOOM_TYPE:
         {
-            sal_Int16 nZoom;
+            sal_Int16 nZoom(0);
             if(!(rValue >>= nZoom))
                 throw IllegalArgumentException();
             SvxZoomType eZoom = (SvxZoomType)USHRT_MAX;

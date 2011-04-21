@@ -141,7 +141,7 @@ static const USHORT nFtnLines[] = {
 /*N*/         break;
 /*N*/         case MID_LINE_WEIGHT       :
 /*N*/         {
-/*N*/             sal_Int16 nSet; rVal >>= nSet;
+/*N*/             sal_Int16 nSet(0); rVal >>= nSet;
 /*N*/             if(nSet >= 0)
 /*N*/                 aFtnInfo.SetLineWidth(MM100_TO_TWIP(nSet));
 /*N*/             else
@@ -150,7 +150,7 @@ static const USHORT nFtnLines[] = {
 /*N*/         break;
 /*N*/         case MID_LINE_RELWIDTH     :
 /*N*/         {
-/*N*/             sal_Int8 nSet; rVal >>= nSet;
+/*N*/             sal_Int8 nSet(0); rVal >>= nSet;
 /*N*/             if(nSet < 0)
 /*N*/                 bRet = false;
 /*N*/             else
@@ -159,7 +159,7 @@ static const USHORT nFtnLines[] = {
 /*N*/         break;
 /*N*/         case MID_LINE_ADJUST       :
 /*N*/         {
-/*N*/             sal_Int16 nSet; rVal >>= nSet;
+/*N*/             sal_Int16 nSet(0); rVal >>= nSet;
 /*N*/             if(nSet >= 0 && nSet < 3) //com::sun::star::text::HorizontalAdjust
 /*N*/                 aFtnInfo.SetAdj((SwFtnAdj)nSet);
 /*N*/             else

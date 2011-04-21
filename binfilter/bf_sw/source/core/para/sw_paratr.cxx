@@ -210,7 +210,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       case MID_DROPCAP_LINES :
 /*N*/       {
-/*N*/           sal_Int8 nTemp;
+/*N*/           sal_Int8 nTemp(0);
 /*N*/           rVal >>= nTemp;
 /*N*/           if(nTemp >=1 && nTemp < 0x7f)
 /*N*/               nLines = (BYTE)nTemp;
@@ -218,7 +218,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       case MID_DROPCAP_COUNT :
 /*N*/       {
-/*N*/           sal_Int16 nTemp;
+/*N*/           sal_Int16 nTemp(0);
 /*N*/           rVal >>= nTemp;
 /*N*/           if(nTemp >=1 && nTemp < 0x7f)
 /*N*/               nChars = (BYTE)nTemp;
@@ -226,7 +226,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       case MID_DROPCAP_DISTANCE :
 /*N*/       {
-/*N*/           sal_Int16 nVal;
+/*N*/           sal_Int16 nVal(0);
 /*N*/           if ( rVal >>= nVal )
 /*N*/               nDistance = (sal_Int16) MM100_TO_TWIP((sal_Int32)nVal);
 /*N*/           else

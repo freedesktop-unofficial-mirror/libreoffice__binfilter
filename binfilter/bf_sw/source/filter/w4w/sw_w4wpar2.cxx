@@ -1560,7 +1560,7 @@ void SwW4WParser::Adjust_pTabDefs() // Aufrufe siehe .<CDS> und .<BRO>
     pTabDefs[nTabCols].nLeftTw = pTabDefs[0].nLeftTw + nTabWidthTw;
 
     long nWidthTw;      // Groesse der aktuellen Zelle
-    long nMittel;       // zur Erkennung, ob alle Zellen gleich gross
+    long nMittel=0;     // zur Erkennung, ob alle Zellen gleich gross
 
     for (i=0; i<(int)nTabCols; i++)
     {
@@ -2033,7 +2033,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
         {
             // Hilfsvaris zum uebersichtlicheren Zugriff auf Zeilen-Arrays
             USHORT* aThisRow  = (*pTabBorders)[ iR   ];
-            USHORT* aAboveRow;
+            USHORT* aAboveRow = 0;
             if( iR > 0 )
                 aAboveRow = (*pTabBorders)[ iR-1 ];
             USHORT* aBelowRow(NULL);
