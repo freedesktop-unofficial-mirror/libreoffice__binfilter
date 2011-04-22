@@ -554,7 +554,7 @@ void XMLTableStyleContext::FillPropertySet(
                     AddProperty(CTF_SC_NUMBERFORMAT, aNumberFormat);
                 }
             }
-            if (!bConditionalFormatCreated && (aMaps.size() > 0))
+            if (!bConditionalFormatCreated && (!aMaps.empty()))
             {
                 aConditionalFormat = rPropSet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_CONDITIONALFORMAT)));
                 std::vector<ScXMLMapContent>::iterator aItr = aMaps.begin();

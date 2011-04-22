@@ -199,7 +199,7 @@ void XMLTextParagraphExport::Add( sal_uInt16 nFamily,
         }
     }
 
-    if( xPropStates.size() > 0L )
+    if( !xPropStates.empty() )
     {
         Reference< XPropertySetInfo > xPropSetInfo =
             rPropSet->getPropertySetInfo();
@@ -324,7 +324,7 @@ void XMLTextParagraphExport::Add( sal_uInt16 nFamily,
         }
     }
 
-    if( xPropStates.size() > 0L )
+    if( !xPropStates.empty() )
     {
         OUString sParent, sCondParent;
         Any aAny;
@@ -379,7 +379,7 @@ void XMLTextParagraphExport::Add( sal_uInt16 nFamily,
             }
             break;
         }
-        if( xPropStates.size() > 0 )
+        if( !xPropStates.empty() )
         {
             GetAutoStylePool().Add( nFamily, sParent, xPropStates );
             if( sCondParent.getLength() && sParent != sCondParent )
@@ -425,7 +425,7 @@ OUString XMLTextParagraphExport::Find(
         }
     }
 
-    if( xPropStates.size() > 0L )
+    if( !xPropStates.empty() )
         sName = GetAutoStylePool().Find( nFamily, sName, xPropStates );
 
     return sName;

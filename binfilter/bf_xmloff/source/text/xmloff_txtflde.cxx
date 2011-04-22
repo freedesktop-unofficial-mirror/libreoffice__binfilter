@@ -1841,7 +1841,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // now process fields:
 
     // variable field masters:
-    if (aVarName.size() > 0)
+    if (!aVarName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -1900,7 +1900,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // else: no declarations element
 
     // sequence field masters:
-    if (aSeqName.size() > 0)
+    if (!aSeqName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -1942,7 +1942,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // else: no declarations element
 
     // user field field masters:
-    if (aUserName.size() > 0)
+    if (!aUserName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -1991,7 +1991,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // else: no declarations element
 
     // DDE field field masters:
-    if (aDdeName.size() > 0)
+    if (!aDdeName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,

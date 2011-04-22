@@ -1138,7 +1138,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
 
             // write style name
 //            AddAutoStyleAttribute( aPropertyStates );   // can't be used here because we need the name
-            if( aPropertyStates.size())
+            if( !aPropertyStates.empty())
             {
                 DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
                 if( maAutoStyleNameQueue.empty())
@@ -1273,7 +1273,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             {
                 aPropertyStates = mxExpPropMapper->Filter( xStatProp );
 
-                if( aPropertyStates.size() > 0 )
+                if( !aPropertyStates.empty() )
                 {
                     // write element
                     if( bExportContent )
@@ -1303,7 +1303,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
             {
                 aPropertyStates = mxExpPropMapper->Filter( xStatProp );
 
-                if( aPropertyStates.size() > 0 )
+                if( !aPropertyStates.empty() )
                 {
                     // write element
                     if( bExportContent )
@@ -1377,7 +1377,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                     if( xPropSet.is())
                     {
                         aPropertyStates = mxExpPropMapper->Filter( xPropSet );
-                        if( aPropertyStates.size() > 0 )
+                        if( !aPropertyStates.empty() )
                         {
                             // write data-point with style
                             DBG_ASSERT( ! maAutoStyleNameQueue.empty(), "Autostyle queue empty!" );
@@ -1469,7 +1469,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                     if( xPropSet.is())
                     {
                         aPropertyStates = mxExpPropMapper->Filter( xPropSet );
-                        if( aPropertyStates.size() > 0 )
+                        if( !aPropertyStates.empty() )
                             CollectAutoStyle( aPropertyStates );
                     }
                 }
@@ -1495,7 +1495,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 aPropertyStates.clear();
                 aPropertyStates = mxExpPropMapper->Filter( xStockPropSet );
 
-                if( aPropertyStates.size() > 0 )
+                if( !aPropertyStates.empty() )
                 {
                     if( bExportContent )
                     {
@@ -1517,7 +1517,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 aPropertyStates.clear();
                 aPropertyStates = mxExpPropMapper->Filter( xStockPropSet );
 
-                if( aPropertyStates.size() > 0 )
+                if( !aPropertyStates.empty() )
                 {
                     if( bExportContent )
                     {
@@ -1539,7 +1539,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
                 aPropertyStates.clear();
                 aPropertyStates = mxExpPropMapper->Filter( xStockPropSet );
 
-                if( aPropertyStates.size() > 0 )
+                if( !aPropertyStates.empty() )
                 {
                     if( bExportContent )
                     {
@@ -1571,7 +1571,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
         {
             aPropertyStates = mxExpPropMapper->Filter( xWallPropSet );
 
-            if( aPropertyStates.size() > 0 )
+            if( !aPropertyStates.size() )
             {
                 // write element
                 if( bExportContent )
@@ -1599,7 +1599,7 @@ void SchXMLExportHelper::exportPlotArea( uno::Reference< chart::XDiagram > xDiag
         {
             aPropertyStates = mxExpPropMapper->Filter( xFloorPropSet );
 
-            if( aPropertyStates.size() > 0 )
+            if( !aPropertyStates.size() )
             {
                 // write element
                 if( bExportContent )

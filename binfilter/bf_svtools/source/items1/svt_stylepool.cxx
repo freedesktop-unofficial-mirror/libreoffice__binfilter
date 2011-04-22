@@ -57,7 +57,7 @@ namespace binfilter
         Node( const SfxPoolItem& rItem, Node* pParent ) : // child node Ctor
             pItem( rItem.Clone() ), pUpper( pParent ){}
         ~Node();
-        bool hasItemSet() const { return 0 < aItemSet.size(); }
+        bool hasItemSet() const { return 0 < !aItemSet.empty(); }
         const StylePool::SfxItemSet_Pointer_t getItemSet() const { return aItemSet[aItemSet.size()-1]; }
         void setItemSet( const SfxItemSet& rSet ){ aItemSet.push_back( StylePool::SfxItemSet_Pointer_t( rSet.Clone() ) ); }
         Node* findChildNode( const SfxPoolItem& rItem );
