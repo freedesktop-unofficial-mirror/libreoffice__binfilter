@@ -696,7 +696,6 @@ void SwXTextSection::setPropertyValues(
                 {
                     // always prevent update of an existing link in the section
                     pDoc->ChgSection( i, aSection, aItemSet.pItemSet, sal_True );
-                    // <--
 
                     {
                         // temporarily remove actions to allow cursor update
@@ -1199,7 +1198,6 @@ void SwXTextSection::setPropertyToDefault( const OUString& rPropertyName )
                 {
                     // always prevent update of an existing link in the section
                     pDoc->ChgSection( i, aSection, pNewAttrSet, sal_True );
-                    // <--
 
                     {
                         // temporarily remove actions to allow cursor update

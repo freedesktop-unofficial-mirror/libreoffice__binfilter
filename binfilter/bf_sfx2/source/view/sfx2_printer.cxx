@@ -132,7 +132,6 @@ namespace binfilter {
         aJobSetup.SetValue( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StrictSO52Compatibility" ) ),
                             rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "true" ) ) );
         SetJobSetup( aJobSetup );
-        // <--
 /*N*/ }
 
 //--------------------------------------------------------------------
