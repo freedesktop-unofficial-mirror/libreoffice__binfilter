@@ -181,7 +181,7 @@ public:
                          const Rectangle& rOldBoundRect);
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
 #endif
     virtual void ReadData(const SdrIOHeader& rHead, SvStream& rIn);
 

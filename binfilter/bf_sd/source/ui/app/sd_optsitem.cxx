@@ -233,41 +233,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsLayout::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   pValues[ 0 ] <<= IsRulerVisible();
-/*N*/   pValues[ 1 ] <<= IsHandlesBezier();
-/*N*/   pValues[ 2 ] <<= IsMoveOutline();
-/*N*/   pValues[ 3 ] <<= IsDragStripes();
-/*N*/   pValues[ 4 ] <<= IsHelplines();
-/*N*/   pValues[ 5 ] <<= (sal_Int32) GetMetric();
-/*N*/   pValues[ 6 ] <<= (sal_Int32) GetDefTab();
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SdOptionsLayoutItem
-|*
-\************************************************************************/
-
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 /*************************************************************************
 |*
 |* SdOptionsContents
@@ -314,37 +279,6 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsContents::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   pValues[ 0 ] <<= IsExternGraphic();
-/*N*/   pValues[ 1 ] <<= IsOutlineMode();
-/*N*/   pValues[ 2 ] <<= IsHairlineMode();
-/*N*/   pValues[ 3 ] <<= IsNoText();
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SdOptionsContentsItem
-|*
-\************************************************************************/
-
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 /*************************************************************************
 |*
@@ -457,60 +391,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsMisc::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   pValues[ 0 ] <<= IsMarkedHitMovesAlways();
-/*N*/   pValues[ 1 ] <<= IsCrookNoContortion();
-/*N*/   pValues[ 2 ] <<= IsQuickEdit();
-/*N*/   pValues[ 3 ] <<= IsMasterPagePaintCaching();
-/*N*/   pValues[ 4 ] <<= IsDragWithCopy();
-/*N*/   pValues[ 5 ] <<= IsPickThrough();
-/*N*/   pValues[ 6 ] <<= IsBigHandles();
-/*N*/   pValues[ 7 ] <<= IsDoubleClickTextEdit();
-/*N*/   pValues[ 8 ] <<= IsClickChangeRotation();
-/*N*/   pValues[ 9 ] <<= (double) GetPreviewQuality();
-/*N*/   pValues[ 10 ] <<= IsSolidDragging();
-/*N*/   pValues[ 11 ] <<= IsSolidMarkHdl();
-/*N*/   // #97016#
-/*N*/   pValues[ 12 ] <<= GetDefaultObjectSizeWidth();
-/*N*/   pValues[ 13 ] <<= GetDefaultObjectSizeHeight();
-/*N*/   pValues[ 14 ] <<= GetPrinterIndependentLayout();
-/*N*/
-/*N*/   // just for Impress
-/*N*/   if( GetConfigId() == SDCFG_IMPRESS )
-/*N*/   {
-/*N*/       pValues[ 15 ] <<= IsStartWithTemplate();
-/*N*/       pValues[ 16 ] <<= IsStartWithActualPage();
-/*N*/       pValues[ 17 ] <<= IsSummationOfParagraphs();
-/*N*/       // #90356#
-/*N*/       pValues[ 18 ] <<= IsShowUndoDeleteWarning();
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SdOptionsMiscItem
-|*
-\************************************************************************/
-
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 /*************************************************************************
 |*
 |* SdOptionsSnap
@@ -576,44 +456,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsSnap::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   pValues[ 0 ] <<= IsSnapHelplines();
-/*N*/   pValues[ 1 ] <<= IsSnapBorder();
-/*N*/   pValues[ 2 ] <<= IsSnapFrame();
-/*N*/   pValues[ 3 ] <<= IsSnapPoints();
-/*N*/   pValues[ 4 ] <<= IsOrtho();
-/*N*/   pValues[ 5 ] <<= IsBigOrtho();
-/*N*/   pValues[ 6 ] <<= IsRotate();
-/*N*/   pValues[ 7 ] <<= (sal_Int32) GetSnapArea();
-/*N*/   pValues[ 8 ] <<= (sal_Int32) GetAngle();
-/*N*/   pValues[ 9 ] <<= (sal_Int32) GetEliminatePolyPointLimitAngle();
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SdOptionsSnapItem
-|*
-\************************************************************************/
-
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
-
 /*************************************************************************
 |*
 |* SdOptionsZoom
@@ -656,40 +498,6 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsZoom::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   INT32 nLclX, nLclY;
-/*N*/
-/*N*/   GetScale( nLclX, nLclY );
-/*N*/
-/*N*/   pValues[ 0 ] <<= (sal_Int32) nLclX;
-/*N*/   pValues[ 1 ] <<= (sal_Int32) nLclY;
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SdOptionsZoomItem
-|*
-\************************************************************************/
-
-
-// ----------------------------------------------------------------------
-
-
-// ----------------------------------------------------------------------
-
-
-
-// ----------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 /*************************************************************************
 |*
@@ -804,37 +612,6 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsGrid::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   pValues[ 0 ] <<= (sal_Int32) GetFldDrawX();
-/*N*/   pValues[ 1 ] <<= (sal_Int32) GetFldDrawY();
-/*N*/   pValues[ 2 ] <<= ( GetFldDivisionX() ? ( (double) GetFldDrawX() / GetFldDivisionX() - 1.0 ) : (double) 0 );
-/*N*/   pValues[ 3 ] <<= ( GetFldDivisionY() ? ( (double) GetFldDrawY() / GetFldDivisionY() - 1.0 ) : (double) 0 );
-/*N*/   pValues[ 4 ] <<= (sal_Int32) GetFldSnapX();
-/*N*/   pValues[ 5 ] <<= (sal_Int32) GetFldSnapY();
-/*N*/   pValues[ 6 ] <<= IsUseGridSnap();
-/*N*/   pValues[ 7 ] <<= IsSynchronize();
-/*N*/   pValues[ 8 ] <<= IsGridVisible();
-/*N*/   pValues[ 9 ] <<= IsEqualGrid();
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* SdOptionsGridItem
-|*
-\************************************************************************/
-
-
-// -----------------------------------------------------------------------------
-
-
-// -----------------------------------------------------------------------
-
 
 /*************************************************************************
 |*
@@ -976,34 +753,6 @@ using namespace ::com::sun::star::uno;
 /*N*/       if( pValues[12].hasValue() ) SetNotes( *(sal_Bool*) pValues[ 12 ].getValue() );
 /*N*/       if( pValues[13].hasValue() ) SetHandout( *(sal_Bool*) pValues[ 13 ].getValue() );
 /*N*/       if( pValues[14].hasValue() ) SetOutline( *(sal_Bool*) pValues[ 14 ].getValue() );
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-// -----------------------------------------------------------------------------
-
-/*N*/ BOOL SdOptionsPrint::WriteData( Any* pValues ) const
-/*N*/ {
-/*N*/   pValues[ 0 ] <<= IsDate();
-/*N*/   pValues[ 1 ] <<= IsTime();
-/*N*/   pValues[ 2 ] <<= IsPagename();
-/*N*/   pValues[ 3 ] <<= IsHiddenPages();
-/*N*/   pValues[ 4 ] <<= IsPagesize();
-/*N*/   pValues[ 5 ] <<= IsPagetile();
-/*N*/   pValues[ 6 ] <<= IsBooklet();
-/*N*/   pValues[ 7 ] <<= IsFrontPage();
-/*N*/   pValues[ 8 ] <<= IsBackPage();
-/*N*/   pValues[ 9 ] <<= IsPaperbin();
-/*N*/   pValues[ 10 ] <<= (sal_Int32) GetOutputQuality();
-/*N*/   pValues[ 11 ] <<= IsDraw();
-/*N*/
-/*N*/   // just for impress
-/*N*/   if( GetConfigId() == SDCFG_IMPRESS )
-/*N*/   {
-/*N*/       pValues[ 12 ] <<= IsNotes();
-/*N*/       pValues[ 13 ] <<= IsHandout();
-/*N*/       pValues[ 14 ] <<= IsOutline();
 /*N*/   }
 /*N*/
 /*N*/   return TRUE;

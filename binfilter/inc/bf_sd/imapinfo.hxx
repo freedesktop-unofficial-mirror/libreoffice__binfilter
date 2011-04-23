@@ -67,36 +67,13 @@ public:
 
     virtual SdrObjUserData* Clone( SdrObject* /*pObj*/ ) const { return new SdIMapInfo( *this ); }
 
-    virtual void WriteData( SvStream& rOStm );
+    virtual void WriteData( SvStream& ) {}
     virtual void ReadData( SvStream& rIStm );
 
     void            SetImageMap( const ImageMap& rIMap ) { aImageMap = rIMap; }
     const ImageMap& GetImageMap() const { return aImageMap; }
 };
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-inline void SdIMapInfo::WriteData( SvStream& rOStm )
-{
-    SdrObjUserData::WriteData( rOStm );
-
-    SdIOCompat aIO( rOStm, STREAM_WRITE, 1 );
-
-    aImageMap.Write(
-        rOStm, ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
-}
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 inline void SdIMapInfo::ReadData( SvStream& rIStm )
 {
