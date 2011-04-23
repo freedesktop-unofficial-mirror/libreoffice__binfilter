@@ -351,20 +351,6 @@ namespace binfilter {
 /*N*/   bValidStart = !BOOL( n & 0x0002 );  // Default (0) = bValidStart fuer alte Dokumente
 /*N*/ }
 /*N*/
-/*N*/ void ScDrawObjData::WriteData( SvStream& r )
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData( r );
-/*N*/
-/*N*/   USHORT n = 0x0000;
-/*N*/   if (bValidEnd)    n |= 0x0001;
-/*N*/   if (!bValidStart) n |= 0x0002;      // Default (0) = bValidStart fuer alte Dokumente
-/*N*/
-/*N*/   r << (UINT16) aStt.nCol << (UINT16) aStt.nRow << (UINT16) aStt.nTab
-/*N*/     << (UINT16) aEnd.nCol << (UINT16) aEnd.nRow << (UINT16) aEnd.nTab
-/*N*/     << n;
-/*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ ScIMapInfo::ScIMapInfo() :
 /*N*/   SdrObjUserData( SC_DRAWLAYER, SC_UD_IMAPDATA, 0 )
@@ -390,16 +376,6 @@ namespace binfilter {
 /*N*/ SdrObjUserData* ScIMapInfo::Clone( SdrObject* /*pObj*/ ) const
 /*N*/ {
 /*N*/   return new ScIMapInfo( *this );
-/*N*/ }
-/*N*/
-/*N*/ void ScIMapInfo::WriteData( SvStream& rOStm )
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData( rOStm );
-/*N*/
-/*N*/   ScWriteHeader aHdr( rOStm );
-/*N*/
-/*N*/   aImageMap.Write(
-            rOStm, ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
 /*N*/ }
 /*N*/
 /*N*/ void ScIMapInfo::ReadData( SvStream& rIStm )

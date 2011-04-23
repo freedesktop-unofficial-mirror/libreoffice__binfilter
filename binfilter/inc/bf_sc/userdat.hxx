@@ -62,7 +62,7 @@ public:
 class ScDrawObjData : public SdrObjUserData
 {
     virtual SdrObjUserData* Clone(SdrObject* pObj) const;
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 public:
     ScTripel aStt, aEnd;
@@ -86,7 +86,7 @@ public:
 
     virtual SdrObjUserData* Clone( SdrObject* pObj ) const;
 
-    virtual void WriteData( SvStream& rOStm );
+    virtual void WriteData( SvStream& ) {}
     virtual void ReadData( SvStream& rIStm );
 
     void    SetImageMap( const ImageMap& rIMap )    { aImageMap = rIMap; }
