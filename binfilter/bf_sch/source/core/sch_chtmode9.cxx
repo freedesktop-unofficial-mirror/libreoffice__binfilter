@@ -246,9 +246,9 @@ namespace binfilter {
 /*N*/   pChartAAxis->Initialise(rRect,bSwitchColRow,eStackMode,bPercent,FALSE);
 /*N*/
 /*N*/   //Position setzen (kann man eigentlich auch im ctor des Model machen?)
-/*N*/   pChartAAxis->SetPosition(CHAXIS_POS_B); //A,B sind sekundäre Achsen => oben und rechts
+/*N*/   pChartAAxis->SetPosition(CHAXIS_POS_B); //A,B sind sekund?e Achsen => oben und rechts
 /*N*/   pChartBAxis->SetPosition(CHAXIS_POS_B);
-/*N*/   pChartXAxis->SetPosition(CHAXIS_POS_A); //primäre Positionen=links, unten
+/*N*/   pChartXAxis->SetPosition(CHAXIS_POS_A); //prim?e Positionen=links, unten
 /*N*/   pChartYAxis->SetPosition(CHAXIS_POS_A);
 /*N*/
 /*N*/   pChartXAxis->CalcValueSteps();
@@ -266,38 +266,38 @@ namespace binfilter {
 /*N*/
 /*N*/ // ******* RECT_CHANGES **** Ab hier wird am rRect rumgeschraubt ******************
 /*N*/
-/*N*/   Create2DXYTitles(rRect,bSwitchColRow);  //abziehen der Achsen-Titel-Fläche
+/*N*/   Create2DXYTitles(rRect,bSwitchColRow);  //abziehen der Achsen-Titel-Fl?he
 /*N*/
 /*N*/   // FG: Ich merke mir vor jeglicher Aenderung des linken oder rechten Randes wo der Seitenrand
 /*N*/   //     gewesen ist. Das braucht man um nun zu entscheiden ob der linke Rand wegen eines
-/*N*/   //     überstehenden Textes nachgeregelt werden soll.
+/*N*/   //     ?erstehenden Textes nachgeregelt werden soll.
 /*N*/   const Rectangle aOldRect(rRect);
 /*N*/
 /*N*/   //Zusammenfassen ???
-/*N*/   pChartYAxis->CalcMaxTextSize();//#63904# 14%, aber Aufruf nur wenn nötig
+/*N*/   pChartYAxis->CalcMaxTextSize();//#63904# 14%, aber Aufruf nur wenn n?ig
 /*N*/   pChartYAxis->InitDescr();
-/*N*/   pChartYAxis->SubtractDescrSize(rRect);//Größe der Beschriftung vom Rechteck abziehen
+/*N*/   pChartYAxis->SubtractDescrSize(rRect);//Gr?e der Beschriftung vom Rechteck abziehen
 /*N*/   pChartBAxis->CalcMaxTextSize();//#63904# s.o. 0% wenn nicht benutzt!
 /*N*/   pChartBAxis->InitDescr();
 /*N*/   pChartBAxis->SubtractDescrSize(rRect);
 /*N*/
-/*N*/   pChartXAxis->SetArea(rRect); //Die X-Achsenlänge ist bereits bekannt! wichtig für nDescrWidth
-/*N*/   pChartAAxis->SetArea(rRect); //Die Y-Längen werden nachfolgend korrigiert
+/*N*/   pChartXAxis->SetArea(rRect); //Die X-Achsenl?ge ist bereits bekannt! wichtig f? nDescrWidth
+/*N*/   pChartAAxis->SetArea(rRect); //Die Y-L?gen werden nachfolgend korrigiert
 /*N*/
 /*N*/   pChartAAxis->SetColTextMode(!IsXYChart(),!bPartDescr);
 /*N*/   pChartXAxis->SetColTextMode(!IsXYChart(),!bPartDescr);
 /*N*/
-/*N*/   //für die X-Achse gibt es ein paar sonderregel, insbesondere wird
-/*N*/   //das Rect auch in der X-Breite geändert, wenn die Spaltenunterschriften sehr lang sind
+/*N*/   //f? die X-Achse gibt es ein paar sonderregel, insbesondere wird
+/*N*/   //das Rect auch in der X-Breite ge?dert, wenn die Spaltenunterschriften sehr lang sind
 /*N*/   //hinzu kommt noch Umbruch (an Y-Achse nicht vorgesehen), daher mu?hier eine
-/*N*/   //Sonderbehandlung erfolgen, auch das InitDescr erfolgt hier nachträglich!
+/*N*/   //Sonderbehandlung erfolgen, auch das InitDescr erfolgt hier nachtr?lich!
 /*N*/   pChartXAxis->SubtractDescrSize_X(rRect,aOldRect);
 /*N*/
 /*N*/   pChartAAxis->SetArea(rRect);
 /*N*/
 /*N*/   pChartAAxis->SubtractDescrSize_X(rRect,aOldRect); //noch falsch!
 /*N*/
-/*N*/   pChartXAxis->SetArea(rRect); //jetzt sind x und y länge bekannt
+/*N*/   pChartXAxis->SetArea(rRect); //jetzt sind x und y l?ge bekannt
 /*N*/   pChartYAxis->SetArea(rRect);
 /*N*/   pChartAAxis->SetArea(rRect);
 /*N*/   pChartBAxis->SetArea(rRect);
@@ -306,7 +306,7 @@ namespace binfilter {
 /*N*/
 /*N*/   rRect.Justify();
 /*N*/
-/*N*/   pChartXAxis->SetArea(rRect); //jetzt sind x und y länge bekannt
+/*N*/   pChartXAxis->SetArea(rRect); //jetzt sind x und y l?ge bekannt
 /*N*/   pChartYAxis->SetArea(rRect);
 /*N*/   pChartAAxis->SetArea(rRect);
 /*N*/   pChartBAxis->SetArea(rRect);
@@ -379,11 +379,11 @@ namespace binfilter {
 /*N*/   pChartBAxis->DrawGrids();//eigentlich kein Grid, nur die Ticks!
 /*N*/
 /*N*/   if(IsXYChart())
-/*N*/   {   //Achtung! Die X-Achse unterstützt Umbruch (nColumnTextWidth)!
+/*N*/   {   //Achtung! Die X-Achse unterst?zt Umbruch (nColumnTextWidth)!
 /*N*/       pChartXAxis->InitDescr();
 /*N*/       pChartAAxis->InitDescr();
 /*N*/   }
-/*N*/   else //Hier wird der ColText genutzt -> Beschränkung auf maMaxTextSize!
+/*N*/   else //Hier wird der ColText genutzt -> Beschr?kung auf maMaxTextSize!
 /*N*/   {
 /*N*/       pChartXAxis->InitDescr_X();
 /*N*/       pChartAAxis->InitDescr_X();
@@ -485,7 +485,7 @@ namespace binfilter {
 /*N*/   ULONG nAxisBPos=CONTAINER_APPEND;
 /*N*/   ULONG nAxisYPos=pList->GetObjCount()-1;
 /*N*/
-/*N*/   //VerbundChart, Symbol der Linie, dynamische Größe:
+/*N*/   //VerbundChart, Symbol der Linie, dynamische Gr?e:
 /*N*/   Size aLegendSize (((SvxFontWidthItem &) pLegendAttr->Get (EE_CHAR_FONTWIDTH)).GetWidth (),
 /*N*/                     ((SvxFontHeightItem &) pLegendAttr->Get (EE_CHAR_FONTHEIGHT)).GetHeight ());
 /*N*/     OutputDevice * pRefDev = GetRefDevice();
@@ -509,7 +509,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       nR1=nR2=1;
 /*N*/   }
-/*N*/   else //sonst Datenreihen mit Balken je Achse zählen: (Lines fallen weg)
+/*N*/   else //sonst Datenreihen mit Balken je Achse z?len: (Lines fallen weg)
 /*N*/   {
 /*N*/       for(nRow=0;nRow<nRowCnt;nRow++)
 /*N*/       {
@@ -524,7 +524,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   if(!nR1)    //Verbundcharts, Lines werden oben nicht berücksichtigt,
+/*N*/   if(!nR1)    //Verbundcharts, Lines werden oben nicht ber?ksichtigt,
 /*N*/       nR1=1;  //aber nRn=0 macht keinen Sinn -> Korrektur
 /*N*/   if(!nR2)
 /*N*/       nR2=1;
@@ -558,7 +558,7 @@ namespace binfilter {
 /*N*/           SfxItemSet aDataPointAttr(rDataRowAttr);
 /*N*/           MergeDataPointAttr(aDataPointAttr,nCol,nRow); //#63904#
 /*N*/
-/*N*/           //Achse und Bardescriptor wählen, Insertreihenfolge festlegen  ->
+/*N*/           //Achse und Bardescriptor w?len, Insertreihenfolge festlegen  ->
 /*N*/           long nAxisUID=((const SfxInt32Item&)rDataRowAttr.Get(SCHATTR_AXIS)).GetValue();
 /*N*/           pAxis=GetAxisByUID(nAxisUID);
 /*N*/           if(nAxisUID==CHART_AXIS_SECONDARY_Y)
@@ -576,7 +576,7 @@ namespace binfilter {
 /*N*/               nInsert=CONTAINER_APPEND;
 /*N*/
 /*N*/           nInsStat = (nInsert==CONTAINER_APPEND) ? nInsert : nInsert+1;//Statistik immer hinter den Reihenobjekten, sonst wird sie verdeckt
-/*N*/           //<- Achse und Bardescriptor wählen, Insertreihenfolge festlegen
+/*N*/           //<- Achse und Bardescriptor w?len, Insertreihenfolge festlegen
 /*N*/
 /*N*/           if(!nRow)
 /*N*/           {
@@ -739,7 +739,7 @@ namespace binfilter {
 /*N*/
 /*N*/                       if (bIsLine)//#50212#
 /*N*/                       {
-/*?*/                           pLine[nRow-nLineStart][1] = Point(pBar->Middle()//MIDPOS//zu umständlich: nPos + nPartWidth/2 - nGap
+/*?*/                           pLine[nRow-nLineStart][1] = Point(pBar->Middle()//MIDPOS//zu umst?dlich: nPos + nPartWidth/2 - nGap
 /*?*/                               ,pAxis->GetPos(fData));//#50212#
 /*?*/
 /*?*/                           if (nCol == 0)
@@ -906,7 +906,7 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Fl„chendiagramm erzeugen
+|* Fl?chendiagramm erzeugen
 |*      case CHSTYLE_2D_LINE:
 |*      case CHSTYLE_2D_STACKEDLINE:
 |*      case CHSTYLE_2D_PERCENTLINE:
@@ -990,7 +990,7 @@ namespace binfilter {
 /*N*/       SchObjGroup *pLineGroup,*pLossGroup=NULL,*pPlusGroup=NULL;
 /*N*/
 /*N*/
-/*N*/       ChartBarDescriptor* pBar;
+/*N*/       ChartBarDescriptor* pBar(0);
 /*N*/       aBarY2.Create(rRect,nColCnt,1);
 /*N*/       aBarY1.Create(rRect,nColCnt,1);
 /*N*/
@@ -1022,7 +1022,7 @@ namespace binfilter {
 /*N*/                   long nYPos = pAxis->GetPos(fData);
 /*N*/
 /*N*/                   aPolyStock[0].X()=aPolyStock[1].X()=(USHORT)pBar->Middle();
-/*N*/                   if(nRow==nStart)//geht auch schöner: bInitialise (ToDo:)
+/*N*/                   if(nRow==nStart)//geht auch sch?er: bInitialise (ToDo:)
 /*N*/                   {
 /*N*/                       aPolyStock[0].Y()=aPolyStock[1].Y()=(USHORT) nYPos;
 /*N*/                   }
@@ -1358,7 +1358,7 @@ namespace binfilter {
 /*?*/               if(eStackMode != CHSTACK_NONE)
 /*?*/                   fData = pAxis->StackColData(fData,nCol,nColCnt);
 /*?*/               long nYPos = pAxis->GetPos(0.0);
-/*?*/               //fehlende Werte werden hier als 0 interpretiert - weglassen des BlockInhalts wäre Interpolation!
+/*?*/               //fehlende Werte werden hier als 0 interpretiert - weglassen des BlockInhalts w?e Interpolation!
 /*?*/               aPolygon[nPoints].X() = nPos;
 /*?*/               aPolygon[nPoints].Y() = nYPos;
 /*?*/               nPoints++;
