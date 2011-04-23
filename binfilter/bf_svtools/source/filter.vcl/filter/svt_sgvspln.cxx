@@ -40,10 +40,6 @@
 #pragma optimize( "", off )
 #endif
 
-#if defined( PM2 ) && defined( __BORLANDC__ )
-#pragma option -Od
-#endif
-
 namespace binfilter
 {
 

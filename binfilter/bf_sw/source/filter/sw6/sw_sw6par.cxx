@@ -89,20 +89,12 @@
 #include <fltini.hxx>
 #include <poolfmt.hxx>
 
-#ifdef __BORLANDC__
-  #pragma warn -lvc
-#endif
-
 #include <sw6par.hxx>
 #include <tox.hxx>
 #include <SwStyleNameMapper.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 #include "linetype.hxx"
 namespace binfilter {
-
-#ifdef __BORLANDC__
-  #pragma warn +lvc
-#endif
 
 
 

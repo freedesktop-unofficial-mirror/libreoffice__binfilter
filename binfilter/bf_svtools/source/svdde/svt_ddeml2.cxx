@@ -37,10 +37,6 @@
 #define DDEDATAFILE
 #include "ddemldeb.hxx"
 
-#if defined (OS2) && defined (__BORLANDC__)
-#pragma option -w-par
-#endif
-
 namespace binfilter
 {
 
