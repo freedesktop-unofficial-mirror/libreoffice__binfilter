@@ -65,22 +65,11 @@ class ChartScene : public E3dPolyScene
     BOOL GetAskForLogicRect() {return bAskForLogicRect;}
     void SetAskForLogicRect(BOOL value) {bAskForLogicRect = value;}
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
 
     void InsertAllTitleText (DescrList         &rList,
                              E3dObject         *pGroup,
                              long              nAxisId);
-
-    // just call parent? overloading deprecated?
-    //  The following three methods call their respective equivalents of
-    //  E3dObject.  This is necessary because they are overloaded in E3dScene
-    //  with methods that do not what we want :-)
-//      virtual USHORT  GetHdlCount (void)  const
-//          {   return E3dObject::GetHdlCount();    }
-//      virtual void    AddToHdlList    (SdrHdlList& rHdlList)  const
-//          {   E3dObject::AddToHdlList (rHdlList); }
-//      virtual bool    HasSpecialDrag  (void)  const
-//          {   return E3dObject::HasSpecialDrag ();    }
 
     void ReduceDescrList(DescrList& aList);
 };

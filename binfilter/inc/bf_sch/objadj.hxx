@@ -54,7 +54,7 @@ public:
 
     virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     void SetAdjust(ChartAdjust eAdj) { eAdjust = eAdj; }
