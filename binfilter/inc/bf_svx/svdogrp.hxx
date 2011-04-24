@@ -192,7 +192,7 @@ public:
     virtual void ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem = 0);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
+    virtual void PreSave() {}
     virtual void PostSave() {};
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);

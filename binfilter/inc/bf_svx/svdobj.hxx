@@ -843,7 +843,7 @@ public:
     virtual void PostItemChange(const sal_uInt16 nWhich);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
+    virtual void PreSave() {}
     virtual void PostSave() {}
 
     // NotPersistAttr fuer Layer, ObjName, geometrische Transformationen, ...

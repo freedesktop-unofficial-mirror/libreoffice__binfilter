@@ -93,7 +93,7 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
+    virtual void PreSave() {}
     virtual void PostSave() {}
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);

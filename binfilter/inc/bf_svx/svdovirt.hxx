@@ -99,7 +99,7 @@ public:
     // private support routines for ItemSet access. NULL pointer means clear item.
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
+    virtual void PreSave() {}
     virtual void PostSave() {}
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);

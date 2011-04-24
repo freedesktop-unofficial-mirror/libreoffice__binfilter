@@ -695,7 +695,7 @@ public:
     void        SetModelStorage( SotStorage* pStor ) { pModelStorage = pStor; }
 
     // pre- and postprocessing for objects for saving
-    void PreSave();
+    void PreSave() {}
     void PostSave() {}
 
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > getUnoModel();

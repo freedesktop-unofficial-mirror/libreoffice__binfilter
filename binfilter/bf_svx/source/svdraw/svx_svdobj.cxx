@@ -2619,14 +2619,6 @@ class ImpSkeleton;
 /*N*/ {
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrObject::PreSave()
-/*N*/ {
-/*N*/ }
-
-
 /*N*/ void SdrObject::ApplyNotPersistAttr(const SfxItemSet& /*rAttr*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }

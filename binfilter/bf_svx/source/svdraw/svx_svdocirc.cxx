@@ -780,23 +780,6 @@ namespace binfilter {
 /*N*/   return pRet;
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrCircObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrCircSetItem aCircAttr(rSet.GetPool());
-/*N*/   aCircAttr.GetItemSet().Put(rSet);
-/*N*/   aCircAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aCircAttr);
-/*N*/ }
-
 /*N*/ void SdrCircObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if(rIn.GetError())

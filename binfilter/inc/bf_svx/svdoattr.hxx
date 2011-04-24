@@ -117,7 +117,7 @@ public:
     virtual void SetModel(SdrModel* pNewModel);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
+    virtual void PreSave() {}
     virtual void PostSave() {}
 
     // ItemSet access

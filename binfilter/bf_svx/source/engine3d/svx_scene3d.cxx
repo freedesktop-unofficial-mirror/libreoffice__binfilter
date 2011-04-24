@@ -1292,20 +1292,6 @@ namespace binfilter {
 /*N*/       pSub->GetObj(a)->ItemSetChanged( rSet );
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void E3dScene::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   E3dObject::PreSave();
-/*N*/
-/*N*/   // set at all contained objects
-/*N*/   sal_uInt32 nCount(pSub->GetObjCount());
-/*N*/   for(sal_uInt32 a(0); a < nCount; a++)
-/*N*/       pSub->GetObj(a)->PreSave();
-/*N*/ }
-
 /*************************************************************************
 |*
 |* ItemPool fuer dieses Objekt wechseln

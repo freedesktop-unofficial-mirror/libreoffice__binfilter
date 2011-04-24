@@ -957,22 +957,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrTextObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrAttrObj::PreSave();
-/*N*/
-/*N*/   // Prepare OutlinerParaObjects for storing
-/*N*/   OutlinerParaObject* pParaObj = GetOutlinerParaObject();
-/*N*/   if(pParaObj && GetModel())
-/*N*/       pParaObj->PrepareStore((SfxStyleSheetPool*)GetModel()->GetStyleSheetPool());
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ OutlinerParaObject* SdrTextObj::GetOutlinerParaObject() const
 /*N*/ {
 /*N*/   return pOutlinerParaObject;

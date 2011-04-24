@@ -391,7 +391,7 @@ public:
     void UpdateOutlinerFormatting( SdrOutliner& /*rOutl*/, Rectangle& /*rPaintRect*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
+    virtual void PreSave() {}
 
     void ForceOutlinerParaObject();
     BOOL IsVerticalWriting() const;

@@ -232,13 +232,6 @@ namespace binfilter {
 /*N*/   return rRefObj.CreateNewItemSet(rPool);
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrVirtObj::PreSave()
-/*N*/ {
-/*N*/ }
-
 /*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }

@@ -874,23 +874,6 @@ namespace binfilter {
 /*N*/   SetTextDirty();
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrMeasureObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrMeasureSetItem aMeasAttr(rSet.GetPool());
-/*N*/   aMeasAttr.GetItemSet().Put(rSet);
-/*N*/   aMeasAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aMeasAttr);
-/*N*/ }
-
 /*N*/ void SdrMeasureObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

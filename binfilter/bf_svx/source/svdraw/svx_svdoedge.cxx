@@ -1676,37 +1676,9 @@ je Objekt variiert von 0-3:
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
 /*N*/ void SdrEdgeObj::NbcSetPoint(const Point&, USHORT)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   // ToDo: Umconnekten fehlt noch
-/*N*/ }
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrEdgeObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrEdgeSetItem aEdgeAttr(rSet.GetPool());
-/*N*/   aEdgeAttr.GetItemSet().Put(rSet);
-/*N*/   aEdgeAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aEdgeAttr);
 /*N*/ }
 
 /*N*/ void SdrEdgeObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)

@@ -451,28 +451,6 @@ namespace binfilter {
 /*N*/   ImpRecalcTail();
 /*N*/ }
 
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*?*/ void SdrCaptionObj::PreSave()
-/*?*/ {
-/*?*/   // call parent
-/*?*/   SdrRectObj::PreSave();
-/*?*/
-/*?*/   // prepare SetItems for storage
-/*?*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*?*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*?*/   SdrCaptionSetItem aCaptAttr(rSet.GetPool());
-/*?*/   aCaptAttr.GetItemSet().Put(rSet);
-/*?*/   aCaptAttr.GetItemSet().SetParent(pParent);
-/*?*/   mpObjectItemSet->Put(aCaptAttr);
-/*?*/ }
-
 /*N*/ void SdrCaptionObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if(rIn.GetError())

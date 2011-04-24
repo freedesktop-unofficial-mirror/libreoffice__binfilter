@@ -270,49 +270,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrAttrObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/
-/*N*/   XLineAttrSetItem aLineAttr(rSet.GetPool());
-/*N*/   aLineAttr.GetItemSet().Put(rSet);
-/*N*/   aLineAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aLineAttr);
-/*N*/
-/*N*/   XFillAttrSetItem aFillAttr(rSet.GetPool());
-/*N*/   aFillAttr.GetItemSet().Put(rSet);
-/*N*/   aFillAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aFillAttr);
-/*N*/
-/*N*/   XTextAttrSetItem aTextAttr(rSet.GetPool());
-/*N*/   aTextAttr.GetItemSet().Put(rSet);
-/*N*/   aTextAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aTextAttr);
-/*N*/
-/*N*/   SdrShadowSetItem aShadAttr(rSet.GetPool());
-/*N*/   aShadAttr.GetItemSet().Put(rSet);
-/*N*/   aShadAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aShadAttr);
-/*N*/
-/*N*/   SdrOutlinerSetItem aOutlAttr(rSet.GetPool());
-/*N*/   aOutlAttr.GetItemSet().Put(rSet);
-/*N*/   aOutlAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aOutlAttr);
-/*N*/
-/*N*/   SdrMiscSetItem aMiscAttr(rSet.GetPool());
-/*N*/   aMiscAttr.GetItemSet().Put(rSet);
-/*N*/   aMiscAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aMiscAttr);
-/*N*/ }
-
 /*N*/ void SdrAttrObj::SetModel(SdrModel* pNewModel)
 /*N*/ {
 /*N*/   SdrModel* pOldModel = pModel;

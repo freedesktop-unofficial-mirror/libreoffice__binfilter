@@ -986,23 +986,6 @@ namespace binfilter {
 /*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrGrafObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrGrafSetItem aGrafAttr(rSet.GetPool());
-/*N*/   aGrafAttr.GetItemSet().Put(rSet);
-/*N*/   aGrafAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aGrafAttr);
-/*N*/ }
-
 /*N*/ void SdrGrafObj::ReadDataTilV10( const SdrObjIOHeader& rHead, SvStream& rIn )
 /*N*/ {
 /*N*/   Graphic aGraphic;
