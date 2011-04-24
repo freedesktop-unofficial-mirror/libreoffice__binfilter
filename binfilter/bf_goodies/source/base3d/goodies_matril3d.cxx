@@ -47,15 +47,6 @@ B3dMaterial::B3dMaterial()
 {
 }
 
-void B3dMaterial::WriteData(SvStream& rOut) const
-{
-    rOut << aAmbient;
-    rOut << aDiffuse;
-    rOut << aSpecular;
-    rOut << aEmission;
-    rOut << nExponent;
-}
-
 void B3dMaterial::ReadData(SvStream& rIn)
 {
     rIn >> aAmbient;

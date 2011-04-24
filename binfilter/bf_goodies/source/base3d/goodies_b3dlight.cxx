@@ -152,34 +152,6 @@ void B3dLight::Init()
     bIsAmbient = FALSE;
 }
 
-void B3dLight::WriteData(SvStream& rOut) const
-{
-    rOut << aAmbient;
-    rOut << aDiffuse;
-    rOut << aSpecular;
-
-    rOut << aPosition;
-    rOut << aPositionEye;
-    rOut << aSpotDirection;
-    rOut << aSpotDirectionEye;
-    rOut << nSpotExponent;
-
-    rOut << fSpotCutoff;
-    rOut << fCosSpotCutoff;
-    rOut << fConstantAttenuation;
-    rOut << fLinearAttenuation;
-    rOut << fQuadraticAttenuation;
-
-    rOut << (BOOL)bIsFirstLight;
-    rOut << (BOOL)bIsEnabled;
-    rOut << (BOOL)bIsDirectionalSource;
-    rOut << (BOOL)bIsSpot;
-    rOut << (BOOL)bIsAmbient;
-    rOut << (BOOL)bIsDiffuse;
-    rOut << (BOOL)bIsSpecular;
-    rOut << (BOOL)bLinearOrQuadratic;
-}
-
 void B3dLight::ReadData(SvStream& rIn)
 {
     BOOL bTmp;
@@ -465,21 +437,6 @@ B3dLight& B3dLightGroup::GetLightObject(Base3DLightNumber eNum)
 #endif
     }
     return aLight[eNum];
-}
-
-void B3dLightGroup::WriteData(SvStream& rOut) const
-{
-    for(UINT16 a=0;a<BASE3D_MAX_NUMBER_LIGHTS;a++)
-    {
-        B3dLight& rLight = ((B3dLightGroup*)(this))->GetLightObject((Base3DLightNumber)(Base3DLight0 + a));
-        rLight.WriteData(rOut);
-    }
-
-    rOut << aGlobalAmbientLight;
-
-    rOut << (BOOL)bLightingEnabled;
-    rOut << (BOOL)bLocalViewer;
-    rOut << (BOOL)bModelTwoSide;
 }
 
 void B3dLightGroup::ReadData(SvStream& rIn)

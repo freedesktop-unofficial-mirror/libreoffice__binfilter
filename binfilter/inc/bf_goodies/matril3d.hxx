@@ -86,7 +86,7 @@ public:
     B3dMaterial();
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
 
     // Vergleichsoperator
