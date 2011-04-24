@@ -57,7 +57,7 @@ class E3dPolyObj : public E3dObject
     // [FG]: Zwecks schreiben des Formates der 3.1 Version
     //       Diese Funktionen werden nur von ReadData31 und WriteData31
     //       aufgerufen.
-    void WriteData31(SvStream& rOut) const;
+    void WriteData31(SvStream& ) const {}
     void ReadData31(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 public:

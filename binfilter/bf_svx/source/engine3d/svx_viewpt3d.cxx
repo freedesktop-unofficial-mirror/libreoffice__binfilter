@@ -375,32 +375,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Stream-Out-Operator fuer Viewport3D (Version 3.1)
-|*
-\************************************************************************/
-
-/*N*/ void Viewport3D::WriteData31(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   rOut << aVRP;
-/*N*/   rOut << aVPN;
-/*N*/   rOut << aVUV;
-/*N*/   rOut << aPRP;
-/*N*/   rOut << fVPD;
-/*N*/   rOut << fNearClipDist;
-/*N*/   rOut << fFarClipDist;
-/*N*/   rOut << UINT16(eProjection);
-/*N*/   rOut << UINT16(eAspectMapping);
-/*N*/   rOut << aDeviceRect;
-/*N*/   rOut << aViewWin.X;
-/*N*/   rOut << aViewWin.Y;
-/*N*/   rOut << aViewWin.W;
-/*N*/   rOut << aViewWin.H;
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Stream-In-Operator fuer Viewport3D fuer die Version 3.1
 |*
 \************************************************************************/

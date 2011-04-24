@@ -246,33 +246,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* sichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dPolyObj::WriteData31(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   E3dObject::WriteData(rOut);
-/*N*/
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dPolyObj");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aPolyPoly3D;
-/*N*/   rOut << aNormal;
-/*N*/   rOut << BOOL(bDoubleSided);
-/*N*/   rOut << BOOL(bBackSideVisible);
-/*N*/   rOut << BOOL(bLighted);
-/*N*/
-/*N*/   rOut << (UINT32) bOwnAttrs;
-/*N*/   rOut << (UINT32) bOwnStyle;
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* laden
 |*
 \************************************************************************/

@@ -92,7 +92,7 @@ class Camera3D : public Viewport3D
     // Die Umstellung von Filerevision 12 auf 13 erfolgte zur 355
     // 5.2.1997 Franz Gotsis, ReadData31 kann also auch die
     // zur 4.0 gehoerigen Filrevisionen bis zu 12 lesen.
-    virtual void WriteData31(SvStream& rOut) const;
+    virtual void WriteData31(SvStream& ) const {}
     virtual void ReadData31(SvStream& rIn);
 
     virtual void WriteData(SvStream& ) const {}

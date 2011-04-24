@@ -133,7 +133,7 @@ class Viewport3D
 
     // Wird nur vom Stream-Operator gerufen
     virtual void ReadData31(SvStream& rIn);
-    virtual void WriteData31(SvStream& rOut) const;
+    virtual void WriteData31(SvStream& ) const {}
 };
 
 // FG: eigentlich sollten die Stream-Funktionen in der 3D-Engine nicht verwendet werden

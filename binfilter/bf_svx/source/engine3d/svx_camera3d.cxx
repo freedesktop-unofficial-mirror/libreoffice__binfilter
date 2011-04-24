@@ -239,29 +239,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Stream-Out-Operator fuer Camera3D   fuer die Filerevision 3.1
-|*
-\************************************************************************/
-
-/*N*/ void Camera3D::WriteData31(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   Viewport3D::WriteData(rOut);
-/*N*/
-/*N*/   rOut << aResetPos;
-/*N*/   rOut << aResetLookAt;
-/*N*/   rOut << fResetFocalLength;
-/*N*/   rOut << fResetBankAngle;
-/*N*/   rOut << aPosition;
-/*N*/   rOut << aLookAt;
-/*N*/   rOut << fFocalLength;
-/*N*/   rOut << fBankAngle;
-/*N*/   rOut << BOOL(bAutoAdjustProjection);
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Stream-In-Operator fuer Camera3D
 |*
 \************************************************************************/
