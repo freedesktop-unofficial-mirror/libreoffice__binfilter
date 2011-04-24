@@ -375,20 +375,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Abstand der vorderen Clippingebene setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Abstand der hinteren Clippingebene setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Stream-Out-Operator fuer Viewport3D (Version 3.1)
 |*
 \************************************************************************/
@@ -396,43 +382,6 @@ namespace binfilter {
 /*N*/ void Viewport3D::WriteData31(SvStream& rOut) const
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   rOut << aVRP;
-/*N*/   rOut << aVPN;
-/*N*/   rOut << aVUV;
-/*N*/   rOut << aPRP;
-/*N*/   rOut << fVPD;
-/*N*/   rOut << fNearClipDist;
-/*N*/   rOut << fFarClipDist;
-/*N*/   rOut << UINT16(eProjection);
-/*N*/   rOut << UINT16(eAspectMapping);
-/*N*/   rOut << aDeviceRect;
-/*N*/   rOut << aViewWin.X;
-/*N*/   rOut << aViewWin.Y;
-/*N*/   rOut << aViewWin.W;
-/*N*/   rOut << aViewWin.H;
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Stream-Out-Operator fuer Viewport3D ab File-Revision 13
-|* implementiert zum Hauptupdate 355 am 4.2.97 FG (freigegeben ab 356)
-|*
-\************************************************************************/
-
-/*N*/ void Viewport3D::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       Viewport3D::WriteData31(rOut);
-/*N*/       return;
-/*N*/   }
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("Viewport3D");
-/*N*/ #endif
-/*N*/
 /*N*/   rOut << aVRP;
 /*N*/   rOut << aVPN;
 /*N*/   rOut << aVUV;

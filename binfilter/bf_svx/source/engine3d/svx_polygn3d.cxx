@@ -330,57 +330,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Wandle das Objekt in ein Gruppenobjekt bestehend aus 6 Polygonen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Give out simple line geometry
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Geometrieerzeugung
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dPolygonObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // call parent
-/*N*/   E3dCompoundObject::WriteData(rOut);
-/*N*/
-/*N*/   E3dIOCompat aCompat(rOut, STREAM_WRITE, 1);
-/*N*/   rOut << BOOL(bLineOnly);
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/

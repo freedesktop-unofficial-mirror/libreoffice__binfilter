@@ -83,9 +83,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
 /*N*/ FmFormPage::~FmFormPage()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
@@ -93,43 +90,6 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
-//------------------------------------------------------------------
-/*N*/ void FmFormPage::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   {
-/*N*/       {
-/*N*/           SdrDownCompat aVCCompat1( rOut, STREAM_WRITE );
-/*N*/           sal_uInt16 n = 0;
-/*N*/           rOut << n;
-/*N*/       }
-/*N*/       SdrPage::WriteData( rOut );
-/*N*/       SdrDownCompat aVCCompat2( rOut, STREAM_WRITE );
-/*N*/
-/*N*/       rOut << ByteString(aPageName, gsl_getSystemTextEncoding());
-/*N*/       rOut << (sal_uInt32)0x11051967;
-/*N*/       rOut << (sal_uInt32)0x19670511;
-/*N*/       sal_uInt16 nVer = 1;
-/*N*/       rOut << nVer;
-/*N*/       {
-/*N*/           SdrDownCompat aVCCompat3( rOut, STREAM_WRITE);
-/*N*/           sal_uInt32 nFormCount = 0;
-/*N*/           rOut << nFormCount;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   // dont use the flag in that way: if (rOut.GetVersion() >= SOFFICE_FILEFORMAT_40)
-/*N*/   if (rOut.GetVersion() >= 3830)
-/*N*/   {
-/*N*/       SdrDownCompat aCompat(rOut, STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/       pImpl->WriteData(rOut);
-/*N*/   }
-/*N*/ #else
-/*N*/   OSL_FAIL( "FmFormPage::WriteData: not to be called in SVX_LIGHT version!" );
-/*N*/ #endif
-/*N*/ }
-
-//------------------------------------------------------------------
 /*N*/ void FmFormPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   {

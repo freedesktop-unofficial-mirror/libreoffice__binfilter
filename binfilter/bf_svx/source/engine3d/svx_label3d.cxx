@@ -86,30 +86,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* In Stream schreiben
-|*
-\************************************************************************/
-
-/*N*/ void E3dLabelObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   E3dPointObj::WriteData(rOut);
-/*N*/
-/*N*/ #ifdef E3D_STREAMING
-/*N*/
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dLabelObj");
-/*N*/ #endif
-/*N*/   DBG_ASSERT(p2DLabelObj, "p2DLabelObj muss vor dem Speichern definiert sein!");
-/*N*/
-/*N*/   rOut << *p2DLabelObj;
-/*N*/ #endif
-/*N*/ #endif    // #ifndef SVX_LIGHT
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Aus Stream laden
 |*
 \************************************************************************/

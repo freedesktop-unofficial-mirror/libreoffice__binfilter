@@ -494,59 +494,6 @@ const GDIMetaFile* SdrOle2Obj::GetGDIMetaFile() const
     return NULL;
 }
 
-void SdrOle2Obj::WriteData(SvStream& rOut) const
-{
-    SdrRectObj::WriteData(rOut);
-    SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-#ifdef DBG_UTIL
-    aCompat.SetID("SdrOle2Obj");
-#endif
-
-    // UNICODE: rOut<<mpImpl->aPersistName;
-    rOut.WriteByteString(mpImpl->aPersistName);
-
-    // UNICODE: rOut<<aProgName;
-    rOut.WriteByteString(aProgName);
-
-    GetObjRef();
-    BOOL bObjRefValid=ppObjRef->Is();
-    rOut<<bObjRefValid;
-    BOOL bPreview = FALSE;
-    if( !IsEmptyPresObj() && pModel && pModel->IsSaveOLEPreview() )
-        bPreview = TRUE;
-
-    if( bPreview )
-    {
-        DBG_BF_ASSERT(0, "STRIP");
-    }
-
-    BOOL bHasGraphic=pGraphic!=NULL;
-
-    // #i27418# If there actually is no graphic, do not write one. This will lead
-    // to loading an empty bitmap in older OOo versions which sets an error code at
-    // the stream -> load breaks.
-    if(bHasGraphic)
-    {
-        if(GRAPHIC_NONE == pGraphic->GetType())
-        {
-            bHasGraphic = false;
-        }
-    }
-
-    rOut<<bHasGraphic;
-    if (bHasGraphic)
-    {
-        SdrDownCompat aGrafCompat(rOut,STREAM_WRITE); // ab V11 eingepackt
-#ifdef DBG_UTIL
-        aGrafCompat.SetID("SdrOle2Obj(Graphic)");
-#endif
-        rOut<<*pGraphic;
-    }
-
-    if( bPreview )
-        ( (SdrOle2Obj*) this )->SetGraphic( NULL );        // remove preview graphic
-}
-
 void SdrOle2Obj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 {
     rIn.SetError( 0 );

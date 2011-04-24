@@ -128,7 +128,7 @@ class Viewport3D
     Vector3D    MapToDevice(const Vector3D&) const;
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // Wird nur vom Stream-Operator gerufen

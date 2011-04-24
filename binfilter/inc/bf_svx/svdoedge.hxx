@@ -239,7 +239,7 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 

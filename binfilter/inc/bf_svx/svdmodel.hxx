@@ -525,7 +525,7 @@ public:
     // - beim Laden eines Dokuments nicht sofort mitgeladen,
     //   sondern erst wenn sie gebraucht (z.B. angezeigt) werden.
     // - ggf. wieder aus dem Speicher geworfen, falls Sie gerade
-    //   nicht ben�tigt werden.
+    //   nicht ben?tigt werden.
     // Damit das funktioniert, muss die virtuelle Methode
     // GetDocumentStream() ueberladen werden.
     // Default=FALSE. Flag ist nicht persistent.
@@ -671,7 +671,7 @@ public:
     // Wichtig ist, dass die ueberladen Methoden der abgeleiteten Klasse
     // als erstes die Methode der Basisklasse rufen, da sonst der CharSet
     // am Stream nicht korrekt gesetzt wird, ...
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     // AfterRead wird gerufen, nachdem das gesamte Model eingestreamt
     // worden ist. Damit ist ein PostProcessing moeglich um beispielsweise
@@ -748,7 +748,7 @@ public:
           |   ...    |            |
      ?---?--??---?--? ?----?-------?
      |SdrPage | |SdrPage |  |SdrLayerAdmin |
-     ?--?---???-?-��  ?--?------?-?
+     ?--?---???-?-??  ?--?------?-?
          |        |  |  |       |       ?------------------?
     ?---?---?          ?----?----?            ?------?------?
     |   ...   |           |    ...    |             |      ...      |

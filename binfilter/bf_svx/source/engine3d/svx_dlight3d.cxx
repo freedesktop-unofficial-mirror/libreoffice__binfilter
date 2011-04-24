@@ -136,28 +136,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* sichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dDistantLight::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   E3dLight::WriteData(rOut);
-/*N*/
-/*N*/ #ifdef E3D_STREAMING
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dDistantLight");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aDirection;
-/*N*/ #endif
-/*N*/ #endif    // #ifndef SVX_LIGHT
-/*N*/ }
-
-/*************************************************************************
-|*
 |* laden
 |*
 \************************************************************************/

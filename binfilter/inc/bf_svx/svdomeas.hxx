@@ -131,7 +131,7 @@ public:
     virtual void PreSave();
     virtual void PostSave();
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
 
@@ -151,11 +151,11 @@ public:
 //     ?--------------------->?--
 //     ?                      ?8mm
 //     ?                      ?
-//    Pt1������������?       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
-//     ?            ?        �___ <- Ueberstand der Masshilfslinie(n)
-//     ?            ����������?
+//    Pt1?????????????       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
+//     ?            ?        ?___ <- Ueberstand der Masshilfslinie(n)
+//     ?            ???????????
 //     ?Zu bemassendes Objekt ?
-//     ������������������������?
+//     ?????????????????????????
 //
 // Attribute:
 // ~~~~~~~~~~

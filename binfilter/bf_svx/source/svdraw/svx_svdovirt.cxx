@@ -279,16 +279,6 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*?*/ void SdrVirtObj::WriteData(SvStream& rOut) const
-/*?*/ {
-/*?*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*?*/ #ifdef DBG_UTIL
-/*?*/   aCompat.SetID("SdrVirtObj");
-/*?*/ #endif
-/*?*/   // fehlende Implementation
-/*?*/   rOut<<aAnchor;
-/*?*/ }
-
 /*?*/ void SdrVirtObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*?*/ {
 /*?*/   if (rIn.GetError()!=0) return;

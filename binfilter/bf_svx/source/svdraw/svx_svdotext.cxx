@@ -1069,53 +1069,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 // I/O
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrTextObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrAttrObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrTextObj");
-/*N*/ #endif
-/*N*/   rOut<<BYTE(eTextKind);
-/*N*/   rOut<<aRect;
-/*N*/   rOut<<INT32(aGeo.nDrehWink);
-/*N*/   rOut<<INT32(aGeo.nShearWink);
-/*N*/
-/*N*/   // Wird gerade editiert, also das ParaObject aus dem aktiven Editor verwenden
-/*N*/   // Das war frueher. Jetzt wird beim Speichern sowas aehnliches wie EndTextEdit gemacht! #43095#
-/*N*/   if (pEdtOutl!=NULL) {
-/*?*/       // #43095#
-/*?*/       OutlinerParaObject* pPara=GetEditOutlinerParaObject();
-/*?*/       // casting auf nicht-const
-/*?*/       ((SdrTextObj*)this)->SetOutlinerParaObject(pPara);
-/*?*/
-/*?*/       // #91254# put text to object and set EmptyPresObj to FALSE
-/*?*/       if(pPara && IsEmptyPresObj())
-/*?*/           ((SdrTextObj*)this)->SetEmptyPresObj(FALSE);
-/*N*/   }
-/*N*/   OutlinerParaObject* pPara=pOutlinerParaObject;
-/*N*/
-/*N*/   BOOL bOutlinerParaObjectValid=pPara!=NULL;
-/*N*/   rOut<<bOutlinerParaObjectValid;
-/*N*/
-/*N*/   if (bOutlinerParaObjectValid)
-/*N*/   {
-/*N*/       SdrDownCompat aTextCompat(rOut,STREAM_WRITE); // Ab V11 eingepackt
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aTextCompat.SetID("SdrTextObj(OutlinerParaObject)");
-/*N*/ #endif
-/*N*/       pPara->Store(rOut); // neues Store am Outliner ab SV303
-/*N*/       pPara->FinishStore();
-/*N*/   }
-/*N*/
-/*N*/   // Ab FileVersion 10 wird das TextBoundRect gestreamt
-/*N*/   BOOL bFormTextBoundRectValid=pFormTextBoundRect!=NULL;
-/*N*/   rOut<<bFormTextBoundRectValid;
-/*N*/   if (bFormTextBoundRectValid) {
-/*N*/       rOut<<*pFormTextBoundRect;
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrTextObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

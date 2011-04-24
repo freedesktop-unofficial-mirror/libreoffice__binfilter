@@ -114,7 +114,7 @@ public:
 
 protected:
 public:
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     long GetStartWink() const { return nStartWink; }

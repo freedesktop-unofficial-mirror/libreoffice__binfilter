@@ -77,7 +77,7 @@ namespace binfilter {
 
 
 
-// Closed() wird gerufen, wenn die Verknüpfung geloesst wird.
+// Closed() wird gerufen, wenn die Verkn?fung geloesst wird.
 
 
 
@@ -141,46 +141,6 @@ namespace binfilter {
 /*N*/   pData->pLink=NULL;
 /*N*/   //pObj1->ImpLinkAnmeldung();
 /*N*/   return pData;
-/*N*/ }
-
-
-/*N*/ void ImpSdrObjGroupLinkUserData::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("ImpSdrObjGroupLinkUserData");
-/*N*/ #endif
-/*N*/
-/*N*/   String aRelFileName;
-/*N*/
-/*N*/   if( aFileName.Len() )
-/*N*/   {
-/*N*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
-/*N*/                                               INetURLObject::WAS_ENCODED,
-/*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/   }
-/*N*/
-/*N*/   rOut.WriteByteString( aRelFileName );
-/*N*/
-/*N*/   // UNICODE: rOut << aObjName;
-/*N*/   rOut.WriteByteString(aObjName);
-/*N*/
-/*N*/   rOut << UINT32(aFileDate0.GetDate());
-/*N*/   rOut << UINT32(aFileDate0.GetTime());
-/*N*/   rOut << aSnapRect0;
-/*N*/   rOut << nDrehWink0;
-/*N*/   rOut << nShearWink0;
-/*N*/   rOut << BOOL(bMasterPage);
-/*N*/   rOut << nPageNum;
-/*N*/   rOut << nObjNum;
-/*N*/   rOut << BOOL(bOrigPos);
-/*N*/   rOut << BOOL(bOrigSize);
-/*N*/   rOut << BOOL(bOrigRotate);
-/*N*/   rOut << BOOL(bOrigShear);
 /*N*/ }
 
 /*N*/ void ImpSdrObjGroupLinkUserData::ReadData(SvStream& rIn)
@@ -950,30 +910,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   pSub->RestartAllAnimations(pPageView);
 /*N*/ }
-
-
-
-
-/*N*/ void SdrObjGroup::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrObject::WriteData(rOut);
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrObjGroup");
-/*N*/ #endif
-/*N*/
-/*N*/   // UNICODE: rOut << aName;
-/*N*/   rOut.WriteByteString(aName);
-/*N*/
-/*N*/   UINT8 nTemp = bRefPoint; rOut << nTemp;
-/*N*/   rOut << aRefPoint;
-/*N*/   pSub->Save(rOut);
-/*N*/   rOut << INT32(nDrehWink);
-/*N*/   rOut << INT32(nShearWink);
-/*N*/ }
-
 
 /*N*/ void SdrObjGroup::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {

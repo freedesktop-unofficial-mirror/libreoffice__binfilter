@@ -65,7 +65,7 @@ public:
 
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     const Vector3D Center() const { return aCenter; }

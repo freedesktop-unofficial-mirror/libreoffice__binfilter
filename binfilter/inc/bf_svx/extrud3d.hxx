@@ -111,7 +111,7 @@ public:
     virtual void CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf = NULL,
         E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".

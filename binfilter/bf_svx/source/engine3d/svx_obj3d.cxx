@@ -821,45 +821,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dObject::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   SdrAttrObj::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dObject");
-/*N*/ #endif
-/*N*/
-/*N*/   pSub->Save(rOut);
-/*N*/
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       rOut << aLocalBoundVol;
-/*N*/
-/*N*/       Old_Matrix3D aMat3D;
-/*N*/       aMat3D = aTfMatrix;
-/*N*/       rOut << aMat3D;
-/*N*/
-/*N*/       rOut << nLogicalGroup;
-/*N*/       rOut << nObjTreeLevel;
-/*N*/       rOut << nPartOfParent;
-/*N*/       rOut << UINT16(eDragDetail);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       WriteOnlyOwnMembers(rOut);
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/
@@ -1216,79 +1177,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // call parent
 /*N*/   return E3dObject::GetBoundVolume();
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Rausschreiben der Datenmember eines E3dCompounds
-|*
-\************************************************************************/
-
-/*N*/ void E3dCompoundObject::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/ #ifdef E3D_STREAMING
-/*N*/
-/*N*/   if (!aLocalBoundVol.IsValid() && aBoundVol.IsValid())
-/*N*/   {
-/*N*/       // Das aLocalBoundVol wird gespeichert.
-/*N*/       // Ist dieses ungueltig, so wird das aBoundVol genommen
-/*N*/       // (sollten beim E3dCompoundObject sowieso gleich sein)
-/*N*/       ((E3dCompoundObject*) this)->aLocalBoundVol = aBoundVol;
-/*N*/   }
-/*N*/
-/*N*/   E3dObject::WriteData(rOut);
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       // In diesem Fall passiert nichts, da vor der Version 4.0
-/*N*/       // also im Falle der Revision 3.1
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aCompat.SetID("E3dCompoundObject");
-/*N*/ #endif
-/*N*/       rOut << BOOL(GetDoubleSided());
-/*N*/ #endif
-/*N*/
-/*N*/       // neue Parameter zur Geometrieerzeugung
-/*N*/       rOut << BOOL(bCreateNormals);
-/*N*/       rOut << BOOL(bCreateTexture);
-/*N*/
-/*N*/       sal_uInt16 nVal = GetNormalsKind();
-/*N*/       rOut << BOOL(nVal > 0);
-/*N*/       rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/       nVal = GetTextureProjectionX();
-/*N*/       rOut << BOOL(nVal > 0);
-/*N*/       rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/       nVal = GetTextureProjectionY();
-/*N*/       rOut << BOOL(nVal > 0);
-/*N*/       rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/       rOut << BOOL(GetShadow3D());
-/*N*/
-/*N*/       // neu al 384:
-/*N*/       rOut << GetMaterialAmbientColor();
-/*N*/       rOut << GetMaterialColor();
-/*N*/       rOut << GetMaterialSpecular();
-/*N*/       rOut << GetMaterialEmission();
-/*N*/       rOut << GetMaterialSpecularIntensity();
-/*N*/
-/*N*/       aBackMaterial.WriteData(rOut);
-/*N*/
-/*N*/       rOut << (UINT16)GetTextureKind();
-/*N*/
-/*N*/       rOut << (UINT16)GetTextureMode();
-/*N*/
-/*N*/       rOut << BOOL(GetNormalsInvert());
-/*N*/
-/*N*/       // neu ab 534: (hat noch gefehlt)
-/*N*/       rOut << BOOL(GetTextureFilter());
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************

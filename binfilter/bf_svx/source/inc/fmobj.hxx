@@ -91,7 +91,7 @@ public:
     sal_Int32   getType() const;
 
 protected:
-    virtual void     WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void     ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     DECL_LINK(OnCreate, void* );

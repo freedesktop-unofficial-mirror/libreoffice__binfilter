@@ -286,52 +286,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dExtrudeObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // call parent
-/*N*/   E3dCompoundObject::WriteData(rOut);
-/*N*/
-/*N*/   E3dIOCompat aCompat(rOut, STREAM_WRITE, 1);
-/*N*/   rOut << aExtrudePolygon;
-/*N*/   rOut << fExtrudeScale;
-/*N*/
-/*N*/   rOut << (double)GetExtrudeDepth();
-/*N*/
-/*N*/   rOut << (double)GetPercentBackScale() / 100.0;
-/*N*/
-/*N*/   rOut << (double)GetPercentDiagonal() / 200.0;
-/*N*/
-/*N*/   rOut << GetSmoothNormals(); // #107245# (BOOL)bExtrudeSmoothed;
-/*N*/   rOut << GetSmoothLids(); // #107245# (BOOL)bExtrudeSmoothFrontBack;
-/*N*/   rOut << GetCharacterMode(); // #107245# (BOOL)bExtrudeCharacterMode;
-/*N*/
-/*N*/   // Ab Version 513a (5.2.99): Parameter fuer das
-/*N*/   // Erzeugen der Vorder/Rueckwand
-/*N*/   rOut << GetCloseFront(); // #107245# (BOOL)bExtrudeCloseFront;
-/*N*/   rOut << GetCloseBack(); // #107245# (BOOL)bExtrudeCloseBack;
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/

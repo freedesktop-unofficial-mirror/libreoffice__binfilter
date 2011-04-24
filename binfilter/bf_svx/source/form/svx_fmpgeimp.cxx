@@ -123,63 +123,6 @@ using namespace ::binfilter::svxform;
 /*N*/     DBG_DTOR(FmFormPageImpl,NULL);
 /*N*/ }
 
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-
-
-
-//------------------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-/*N*/ void FmFormPageImpl::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/     // anlegen eines output streams fuer UNO
-/*N*/     Reference< ::com::sun::star::io::XActiveDataSource >  xSource(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.ObjectOutputStream" ))), UNO_QUERY);
-/*N*/     Reference< ::com::sun::star::io::XOutputStream >  xMarkOut(::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.MarkableOutputStream" ))), UNO_QUERY);
-/*N*/     Reference< ::com::sun::star::io::XActiveDataSource >  xMarkSource(xMarkOut, UNO_QUERY);
-/*N*/
-/*N*/     if (xSource.is())
-/*N*/     {
-/*N*/         xMarkSource->setOutputStream(new ::utl::OOutputStreamWrapper(rOut));
-/*N*/         xSource->setOutputStream(xMarkOut);
-/*N*/
-/*N*/         Reference< ::com::sun::star::io::XObjectOutputStream >  xOutStrm(xSource, UNO_QUERY);
-/*N*/         try
-/*N*/         {
-/*N*/             write(xOutStrm);
-/*N*/         }
-/*N*/         catch(Exception&)
-/*N*/         {
-/*?*/             rOut.SetError( ERRCODE_CLASS_WRITE | ERRCODE_SVX_FORMS_READWRITEFAILED | ERRCODE_WARNING_MASK );
-/*N*/         }
-/*N*/
-/*N*/         xOutStrm->closeOutput();
-/*N*/     }
-/*N*/     else
-/*N*/     {
-/*N*/         // let's do a hack : in former versions we didn't use UNO-stream but SvStreams, so there was
-/*N*/         // no possibility that we couldn't write because of the lack of stream objects. Now, with UNO, this may happen
-/*N*/         // (as it happended here). But the read-methods of the older versions don't expect that (there is no flag in
-/*N*/         // the fileformat as it never was neccessary). To allow the old versions the read of the documents, we fake the
-/*N*/         // write : the first token usually written by our impl is an sal_Int32 giving the number of forms within the forms
-/*N*/         // collection. If this number is 0, no further reading will occur.
-/*?*/         sal_Int32 nDummLength = 0; rOut << nDummLength;     // this means 'no forms'
-/*?*/         nDummLength = 0; rOut << nDummLength;           // this means 'no form controls"
-/*?*/         // To tell the user that something went wrong we set a warning on the stream.
-/*?*/         rOut.SetError( ERRCODE_CLASS_WRITE | ERRCODE_SVX_FORMS_NOIOSERVICES | ERRCODE_WARNING_MASK );
-/*N*/     }
-/*N*/ }
-
-//------------------------------------------------------------------------------
 /*N*/ void FmFormPageImpl::ReadData(const SdrIOHeader& /*rHead*/, SvStream& rIn)
 /*N*/ {
 /*N*/     // Abholen des InputStreams ueber uno

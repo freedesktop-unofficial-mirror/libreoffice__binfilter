@@ -92,7 +92,7 @@ class E3dLight : public E3dPointObj
     double GetGreen() const { return fGreen; }
     double GetBlue() const  { return fBlue; }
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);

@@ -536,15 +536,6 @@ namespace binfilter {
 /*?*/   SetXPolyDirty();
 /*?*/ }
 
-/*N*/ void SdrRectObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrRectObj");
-/*N*/ #endif
-/*N*/ }
-
 /*N*/ void SdrRectObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

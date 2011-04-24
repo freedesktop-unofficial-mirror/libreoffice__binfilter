@@ -900,36 +900,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_MEASURE);
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrMeasureObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   UndirtyText();
-/*N*/
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrMeasureObj");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aPt1;
-/*N*/   rOut << aPt2;
-/*N*/   rOut << BOOL(FALSE); // bTextOverwritten wg. Kompatibilitaet. Gibt's nicht mehr.
-/*N*/
-/*N*/   SfxItemPool* pPool=GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_MEASURE));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrMeasureObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

@@ -90,7 +90,7 @@ class E3dLabelObj : public E3dPointObj
 
     const SdrObject* Get2DLabelObj() const { return p2DLabelObj; }
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".

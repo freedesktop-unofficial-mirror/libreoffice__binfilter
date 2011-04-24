@@ -328,57 +328,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_MISC);
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrAttrObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrAttrObj");
-/*N*/ #endif
-/*N*/   SfxItemPool* pPool = GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(XATTRSET_LINE));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(XATTRSET_FILL));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(XATTRSET_TEXT));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_SHADOW));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_OUTLINER));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_MISC));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*N*/   }
-
-    // StyleSheet-Pointer als Name, Familie abspeichern
-    // wenn kein StyleSheet vorhanden: leeren String speichern
-/*N*/   if(GetStyleSheet())
-/*N*/   {
-/*N*/       // UNICODE: rOut << pStyleSheet->GetName();
-/*N*/       rOut.WriteByteString(GetStyleSheet()->GetName());
-/*N*/       rOut << (sal_uInt16)(int)(GetStyleSheet()->GetFamily());
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // UNICODE: rOut << String();
-/*N*/       rOut.WriteByteString(String());
-/*N*/   }
-/*N*/ }
-
-
 /*N*/ void SdrAttrObj::SetModel(SdrModel* pNewModel)
 /*N*/ {
 /*N*/   SdrModel* pOldModel = pModel;

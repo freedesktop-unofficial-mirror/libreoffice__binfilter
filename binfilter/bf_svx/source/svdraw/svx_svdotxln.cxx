@@ -161,37 +161,6 @@ namespace binfilter {
 /*N*/   return pData;
 /*N*/ }
 
-/*N*/ void ImpSdrObjTextLinkUserData::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("ImpSdrObjTextLinkUserData");
-/*N*/ #endif
-/*N*/
-/*N*/   String aRelFileName;
-/*N*/
-/*N*/   if( aFileName.Len() )
-/*N*/   {
-/*N*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
-/*N*/                                               INetURLObject::WAS_ENCODED,
-/*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/   }
-/*N*/
-/*N*/   rOut.WriteByteString( aRelFileName );
-/*N*/
-/*N*/   // UNICODE: rOut << aFilterName;
-/*N*/   rOut.WriteByteString(aFilterName);
-/*N*/
-/*N*/   // #90477# rOut << UINT16(GetStoreCharSet(eCharSet));
-/*N*/   rOut << UINT16(GetSOStoreTextEncoding(eCharSet, (sal_uInt16)rOut.GetVersion()));
-/*N*/
-/*N*/   rOut << UINT32(aFileDate0.GetDate());
-/*N*/   rOut << UINT32(aFileDate0.GetTime());
-/*N*/ }
-
 /*N*/ void ImpSdrObjTextLinkUserData::ReadData(SvStream& rIn)
 /*N*/ {
 /*N*/   SdrObjUserData::ReadData(rIn);

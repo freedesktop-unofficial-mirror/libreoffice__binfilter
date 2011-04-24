@@ -113,13 +113,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SdrObjUserData::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   rOut<<nInventor;
-/*N*/   rOut<<nIdentifier;
-/*N*/   rOut<<nVersion;
-/*N*/ }
-
 /*N*/ void SdrObjUserData::ReadData(SvStream& rIn)
 /*N*/ {
 /*N*/   //Inventor und Identifier wurden bereits von Aufrufer gelesen,
@@ -2890,7 +2883,7 @@ class ImpSkeleton;
 /*N*/               } else {
 /*N*/                   // Wenn UserDataFactory nicht gesetzt ist, kann auch keiner
 /*N*/                   // etwas mit diesen Daten anfangen; durch Compat werden sie
-/*N*/                   // eh ueberlesen, daher ist diese Assertion überflüssig (KA)
+/*N*/                   // eh ueberlesen, daher ist diese Assertion ?erfl?sig (KA)
 /*N*/                   // OSL_FAIL("SdrObject::ReadData(): ObjFactory kann UserData nicht erzeugen");
 /*N*/               }
 /*N*/               if (pUserDataCompat!=NULL) { // Aha, UserData war eingepackt. Record nun schliessen
@@ -2904,55 +2897,6 @@ class ImpSkeleton;
 /*N*/           pUserDataListCompat=NULL;
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObject::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrObject");
-/*N*/ #endif
-/*N*/   rOut<<GetBoundRect();
-/*N*/   rOut<<nLayerId;
-/*N*/   rOut<<aAnchor;
-/*N*/   BOOL bTemp;
-/*N*/   bTemp=bMovProt;       rOut<<bTemp;
-/*N*/   bTemp=bSizProt;       rOut<<bTemp;
-/*N*/   bTemp=bNoPrint;       rOut<<bTemp;
-/*N*/   bTemp=bMarkProt;      rOut<<bTemp;
-/*N*/   bTemp=bEmptyPresObj;  rOut<<bTemp;
-/*N*/   bTemp=bNotVisibleAsMaster; rOut<<bTemp;
-/*N*/
-/*N*/   // Konnektoren
-/*N*/   bTemp=pPlusData!=NULL && pPlusData->pGluePoints!=NULL && pPlusData->pGluePoints->GetCount()!=0;
-/*N*/   rOut<<bTemp; // Flag fuer GluePointList vorhanden
-/*N*/   if (bTemp) {
-/*?*/       SdrDownCompat aConnectorsCompat(rOut,STREAM_WRITE); // ab V11 Konnektoren einpacken
-/*N*/ #ifdef DBG_UTIL
-/*?*/       aConnectorsCompat.SetID("SdrObject(Klebepunkte)");
-/*N*/ #endif
-/*?*/       rOut<<*pPlusData->pGluePoints;
-/*N*/   }
-
-    // UserData
-/*N*/   USHORT nUserDataAnz=GetUserDataCount();
-/*N*/   bTemp=nUserDataAnz!=0;
-/*N*/   rOut<<bTemp;
-/*N*/   if (bTemp) {
-/*N*/       SdrDownCompat aUserDataListCompat(rOut,STREAM_WRITE); // Record fuer UserDataList oeffnen (seit V11)
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aUserDataListCompat.SetID("SdrObject(UserDataList)");
-/*N*/ #endif
-/*N*/       rOut<<nUserDataAnz;
-/*N*/       for (USHORT i=0; i<nUserDataAnz; i++) {
-/*N*/           SdrDownCompat aUserDataCompat(rOut,STREAM_WRITE); // Record fuer UserData oeffnen (seit V11)
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aUserDataCompat.SetID("SdrObject(UserData)");
-/*N*/ #endif
-/*N*/           pPlusData->pUserDataList->GetUserData(i)->WriteData(rOut);
-/*N*/       }
-/*N*/   }
-/*N*/
 /*N*/ }
 
 /*N*/ SvStream& operator>>(SvStream& rIn, SdrObject& rObj)

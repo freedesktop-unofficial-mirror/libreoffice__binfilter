@@ -221,20 +221,6 @@ namespace binfilter {
 /*N*/   SdrObject::NbcSetLogicRect(rRect);
 /*N*/ }
 
-
-
-
-
-/*N*/ void SdrPageObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrObject::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrPageObj");
-/*N*/ #endif
-/*N*/   rOut<<nPageNum;
-/*N*/ }
-
 /*N*/ void SdrPageObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;
@@ -245,8 +231,6 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   rIn>>nPageNum;
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }

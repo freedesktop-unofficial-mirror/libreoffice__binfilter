@@ -58,7 +58,7 @@ public:
     using SdrPage::NbcInsertObject;
     using SdrPage::ReplaceObject;
 
-    virtual void    WriteData(SvStream& rOut) const;
+    virtual void    WriteData(SvStream& ) const {}
     virtual void    ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     virtual void    SetModel(SdrModel* pNewModel);
 

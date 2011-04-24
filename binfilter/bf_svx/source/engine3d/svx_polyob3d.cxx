@@ -35,11 +35,6 @@
 #endif
 
 #include "svdopath.hxx"
-
-
-
-
-
 #include "svdio.hxx"
 
 
@@ -278,72 +273,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* sichern: zur 356 wurde das Fileformat freigegeben 11.2.1997 FG
-|*
-**************************************************************************/
-
-/*N*/ void E3dPolyObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (rOut.GetVersion() < 3560) // FG: Zu dieser Version erfolgte die Umstellung
-/*N*/   {
-/*N*/       WriteData31(rOut);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aCompat.SetID("E3dPolyObj");
-/*N*/ #endif
-/*N*/       {
-/*N*/           SdrDownCompat aInnerCompat (rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aInnerCompat.SetID("PolyPolygon3D");
-/*N*/ #endif
-/*N*/           rOut << aPolyPoly3D;
-/*N*/       }
-/*N*/       {
-/*N*/           SdrDownCompat aInnerCompat (rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aInnerCompat.SetID("PolyPolygon3D");
-/*N*/ #endif
-/*N*/           rOut << aNormal;
-/*N*/       }
-/*N*/       rOut << BOOL(bDoubleSided);
-/*N*/       rOut << BOOL(bBackSideVisible);
-/*N*/       rOut << BOOL(bLighted);
-/*N*/
-/*N*/       rOut << (UINT32) bOwnAttrs;
-/*N*/       rOut << (UINT32) bOwnStyle;
-/*N*/       rOut << (UINT32) nObjectnumber;
-/*N*/           // Falls das Objekt eigene Attribute hat, wird es rausgeschrieben
-/*N*/
-/*N*/       if (OwnAttrs() || OwnStyle())
-/*N*/       {
-/*N*/           E3dObject::WriteData(rOut);
-/*N*/       }
-/*N*/
-/*N*/       // Neue PolyPolygone schreiben fuer Normalen und Textur
-/*N*/       if(aPolyNormals3D.Count())
-/*N*/       {
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aCompat.SetID("PolyPolygon3D Normals");
-/*N*/ #endif
-/*N*/           rOut << aPolyNormals3D;
-/*N*/       }
-/*N*/       if(aPolyTexture3D.Count())
-/*N*/       {
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aCompat.SetID("PolyPolygon3D Texturkoordinaten");
-/*N*/ #endif
-/*N*/           rOut << aPolyTexture3D;
-/*N*/       }
-/*N*/   }
-/*N*/ #endif    // #ifndef SVX_LIGHT
-/*N*/ }
-
-/*************************************************************************
-|*
 |* laden
 |*
 \************************************************************************/
@@ -516,7 +445,7 @@ namespace binfilter {
 /*N*/ SdrObjGeoData *E3dPolyObj::NewGeoData() const
 /*N*/ {
 /*N*/   DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-/*N*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*N*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*N*/
 /*N*/   if (GetParentObj()->ISA (E3dObject))
 /*N*/       return GetParentObj()->E3dObject::NewGeoData ();
@@ -533,7 +462,7 @@ namespace binfilter {
 /*?*/ void E3dPolyObj::SaveGeoData(SdrObjGeoData& rGeo) const
 /*?*/ {
 /*?*/   DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-/*?*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*?*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*?*/
 /*?*/   if (GetParentObj()->ISA (E3dObject))
 /*?*/       GetParentObj()->E3dObject::SaveGeoData (rGeo);
@@ -550,7 +479,7 @@ namespace binfilter {
 /*?*/ void E3dPolyObj::RestGeoData(const SdrObjGeoData& rGeo)
 /*?*/ {
 /*?*/   DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-/*?*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*?*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*?*/
 /*?*/   if (GetParentObj()->ISA (E3dObject))
 /*?*/       GetParentObj()->E3dObject::RestGeoData (rGeo);
@@ -570,7 +499,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (GetParentObj())
 /*N*/   {
-/*N*/       DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*N*/       DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*N*/
 /*N*/       if (GetParentObj()->ISA (E3dObject))
 /*N*/           GetParentObj()->E3dObject::SetPage (pNewPage);
@@ -605,7 +534,7 @@ namespace binfilter {
 /*?*/ SdrLayerID E3dPolyObj::GetLayer() const
 /*?*/ {
 /*?*/   DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-/*?*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*?*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*?*/
 /*?*/   if (GetParentObj()->ISA (E3dObject))
 /*?*/       return GetParentObj()->E3dObject::GetLayer ();
@@ -622,7 +551,7 @@ namespace binfilter {
 /*N*/ void E3dPolyObj::NbcSetLayer(SdrLayerID nLayer)
 /*N*/ {
 /*N*/   DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-/*N*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*N*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*N*/
 /*N*/   if (GetParentObj()->ISA (E3dObject))
 /*N*/       GetParentObj()->SdrAttrObj::NbcSetLayer (nLayer);
@@ -638,7 +567,7 @@ namespace binfilter {
 /*N*/ SfxStyleSheet* E3dPolyObj::GetStyleSheet() const
 /*N*/ {
 /*N*/   DBG_ASSERT(GetParentObj(), "3D-Polygone ohne Parent ?");
-/*N*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ungültig");
+/*N*/   DBG_ASSERT(GetParentObj()->ISA(E3dScene) || GetParentObj()->ISA(E3dObject), "Parent eines 3D-Polygons ung?tig");
 /*N*/
 /*N*/   if (bOwnStyle)
 /*N*/       return SdrAttrObj::GetStyleSheet();

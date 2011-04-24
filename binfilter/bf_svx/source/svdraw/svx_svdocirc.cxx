@@ -806,35 +806,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_CIRC);
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrCircObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrRectObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrCircObj");
-/*N*/ #endif
-/*N*/
-/*N*/   if(eKind != OBJ_CIRC)
-/*N*/   {
-/*N*/       rOut << nStartWink;
-/*N*/       rOut << nEndWink;
-/*N*/   }
-/*N*/
-/*N*/   SfxItemPool* pPool=GetItemPool();
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_CIRC));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rOut << UINT16(SFX_ITEMS_NULL);
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrCircObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if(rIn.GetError())

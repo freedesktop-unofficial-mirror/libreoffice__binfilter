@@ -96,7 +96,7 @@ public:
 
 protected:
     // lesen und schreiben der Objecte
-    void WriteData(SvStream& rOut) const; //
+    void WriteData(SvStream& ) const {}
     void ReadData(const SdrIOHeader& rHead, SvStream& rIn); //
 
     void write(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& OutStream) const;

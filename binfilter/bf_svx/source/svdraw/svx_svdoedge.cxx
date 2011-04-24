@@ -1533,12 +1533,12 @@ Mit 2 Linien (Typ 'L'): -?
 Mit 3 Linien (Typ 'U'):  -? (Typ 'Z'):  ?
                          -?            -?
 Mit 4 Linien: 1 ist nicht plausibel, 3 ist=2 (90deg Drehung). Verbleibt 2,4
-     ?? ڿ  �  ڿ                               ڿ  ??
+     ?? ڿ  ?  ڿ                               ڿ  ??
     -?  -?  -? -?                             -?   -?
 Mit 5 Linien: nicht plausibel sind 1,2,4,5. 7 ist identisch mit 3 (Richtungsumkehr)
               Bleibt also 3,6 und 8.              '4'  'S'  'C'
        ?   ?            -?  ?  ??                 ?
-     ?? ?? ??  ??  �  � -????        ?? �  ??
+     ?? ?? ??  ??  ?  ? -????        ?? ?  ??
     -?  -?  -?? -??  -? -? --???       -?? -? ??
 Insgesamt sind also 9 Grundtypen zu unterscheiden die den 400 Konstellationen
 aus Objektposition und Austrittswinkeln zuzuordnen sind.
@@ -1716,43 +1716,6 @@ je Objekt variiert von 0-3:
 /*N*/
 /*N*/   // remove SetItems from local itemset
 /*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_EDGE);
-/*N*/ }
-/*N*/
-/*N*/ ////////////////////////////////////////////////////////////////////////////////////////////////////
-/*N*/
-/*N*/ void SdrEdgeObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrEdgeObj");
-/*N*/ #endif
-/*N*/
-/*N*/   {
-/*N*/       SdrDownCompat aTrackCompat(rOut,STREAM_WRITE); // ab V11 eingepackt
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aTrackCompat.SetID("SdrEdgeObj(EdgeTrack)");
-/*N*/ #endif
-/*N*/       rOut << *pEdgeTrack;
-/*N*/   }
-/*N*/
-/*N*/   aCon1.Write(rOut, this); // Die Connections haben
-/*N*/   aCon2.Write(rOut, this); // ihren eigenen Header
-/*N*/
-/*N*/   SfxItemPool* pPool = GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_EDGE));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rOut << UINT16(SFX_ITEMS_NULL);
-/*N*/   }
-/*N*/
-/*N*/   rOut << aEdgeInfo;
 /*N*/ }
 /*N*/
 /*N*/ void SdrEdgeObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)

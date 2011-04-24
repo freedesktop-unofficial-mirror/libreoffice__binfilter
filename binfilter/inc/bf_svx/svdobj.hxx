@@ -227,7 +227,7 @@ public:
     virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0; // #i71039# NULL -> 0
     UINT32  GetInventor() const { return nInventor; }
     UINT16  GetId() const { return nIdentifier; }
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     // z.B. fuer die Wiederherstellung von Surrogaten.
@@ -262,7 +262,7 @@ public:
 //************************************************************
 //   Hilfsklasse SdrObjGeoData
 //
-// Alle geometrischen Daten eines beliebigen Objektes zur Übergabe an's Undo/Redo
+// Alle geometrischen Daten eines beliebigen Objektes zur ?ergabe an's Undo/Redo
 //
 //************************************************************
 
@@ -961,7 +961,7 @@ public:
     //   WriteData() auf. Zum Schluss wird noch das vorerst auf 0 initiallisierte
     //   Feld nByteAnz des SdrObjIOHeader gefuellt. Die geerbte Methode WriteData
     //   ist in ueberlagerten Methoden stets am Anfang zu rufen.
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
 
     // Lesen aus einem Stream: Zunaest wird der SdrIOHeader von einem Reader am
     //   SdrModel gelesen (Read und SeekBack). Der Reader versucht dann eine

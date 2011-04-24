@@ -62,7 +62,7 @@ class E3dPointObj : public E3dObject
     const Vector3D& GetPosition() const { return aPosition; }
     const Vector3D& GetTransPosition();
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 };

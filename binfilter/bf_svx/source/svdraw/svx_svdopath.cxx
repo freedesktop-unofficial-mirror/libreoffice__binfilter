@@ -593,23 +593,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   rPGeo.eKind=eKind;
 /*N*/ }
 
-
-/*N*/ void SdrPathObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrPathObj");
-/*N*/ #endif
-/*N*/   {
-/*N*/       SdrDownCompat aPathCompat(rOut,STREAM_WRITE); // ab V11 eingepackt
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aPathCompat.SetID("SdrPathObj(PathPolygon)");
-/*N*/ #endif
-/*N*/       rOut<<aPathPolygon;
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrPathObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

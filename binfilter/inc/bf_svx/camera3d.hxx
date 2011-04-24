@@ -95,7 +95,7 @@ class Camera3D : public Viewport3D
     virtual void WriteData31(SvStream& rOut) const;
     virtual void ReadData31(SvStream& rIn);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
 

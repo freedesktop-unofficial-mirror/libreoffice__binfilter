@@ -1402,45 +1402,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrPage::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrPage");
-/*N*/ #endif
-/*N*/   rOut.Write(SdrIOJoeMagic,4); // damit ich meine eigenen SubRecords erkenne (ab V11)
-/*N*/   { // MiscellaneousData ab V11 eingepackt
-/*N*/       SdrDownCompat aPageMiscCompat(rOut,STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aPageMiscCompat.SetID("SdrPage(Miscellaneous)");
-/*N*/ #endif
-/*N*/       rOut<<nWdt;
-/*N*/       rOut<<nHgt;
-/*N*/       rOut<<nBordLft;
-/*N*/       rOut<<nBordUpp;
-/*N*/       rOut<<nBordRgt;
-/*N*/       rOut<<nBordLwr;
-/*N*/       USHORT n=0;
-/*N*/       rOut<<n; //rPg.aName;
-/*N*/   }
-/*N*/
-/*N*/   USHORT i; // Lokale Layerdefinitionen der Seite
-/*N*/   for (i=0; i<pLayerAdmin->GetLayerCount(); i++) {
-/*?*/       rOut<<*pLayerAdmin->GetLayer(i);
-/*N*/   }
-/*N*/   for (i=0; i<pLayerAdmin->GetLayerSetCount(); i++) {
-/*?*/       rOut<<*pLayerAdmin->GetLayerSet(i);
-/*N*/   }
-/*N*/
-/*N*/   rOut<<aMasters;
-/*N*/   SdrObjList::Save(rOut);
-/*N*/
-/*N*/   BOOL bBackgroundObj = pBackgroundObj ? TRUE : FALSE;
-/*N*/   rOut << bBackgroundObj;
-/*N*/   if( pBackgroundObj )
-/*N*/       rOut << *pBackgroundObj;
-/*N*/ }
-
 /*N*/ SvStream& operator>>(SvStream& rIn, SdrPage& rPg)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return rIn;

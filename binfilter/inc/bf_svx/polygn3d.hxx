@@ -73,7 +73,7 @@ public:
 
     virtual UINT16 GetObjIdentifier() const;
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // Geometrieerzeugung

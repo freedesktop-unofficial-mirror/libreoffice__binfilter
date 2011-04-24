@@ -482,31 +482,6 @@ namespace binfilter {
 /*?*/   mpObjectItemSet->ClearItem(SDRATTRSET_CAPTION);
 /*?*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*?*/ void SdrCaptionObj::WriteData(SvStream& rOut) const
-/*?*/ {
-/*?*/   SdrRectObj::WriteData(rOut);
-/*?*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*?*/ #ifdef DBG_UTIL
-/*?*/   aCompat.SetID("SdrCaptionObj");
-/*?*/ #endif
-/*?*/
-/*?*/   rOut << aTailPoly;
-/*?*/   SfxItemPool* pPool = GetItemPool();
-/*?*/
-/*?*/   if(pPool)
-/*?*/   {
-/*?*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*?*/
-/*?*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_CAPTION));
-/*?*/   }
-/*?*/   else
-/*?*/   {
-/*?*/       rOut << UINT16(SFX_ITEMS_NULL);
-/*?*/   }
-/*?*/ }
-
 /*N*/ void SdrCaptionObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if(rIn.GetError())

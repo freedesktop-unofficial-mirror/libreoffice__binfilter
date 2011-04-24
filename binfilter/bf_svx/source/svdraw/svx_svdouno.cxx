@@ -394,24 +394,6 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-
-
-/*N*/ void SdrUnoObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrRectObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrUnoObj");
-/*N*/ #endif
-/*N*/
-/*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch schreiben
-/*N*/   {
-/*?*/       // UNICODE: rOut << aUnoControlModelTypeName;
-/*?*/       rOut.WriteByteString(aUnoControlModelTypeName);
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrUnoObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError() != 0)
