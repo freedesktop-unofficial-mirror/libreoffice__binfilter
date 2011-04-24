@@ -313,21 +313,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->Put(aMiscAttr);
 /*N*/ }
 
-/*N*/ void SdrAttrObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   ((SdrAttrObj*)this)->ImpForceItemSet();
-/*N*/   mpObjectItemSet->ClearItem(XATTRSET_LINE);
-/*N*/   mpObjectItemSet->ClearItem(XATTRSET_FILL);
-/*N*/   mpObjectItemSet->ClearItem(XATTRSET_TEXT);
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_SHADOW);
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_OUTLINER);
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_MISC);
-/*N*/ }
-
 /*N*/ void SdrAttrObj::SetModel(SdrModel* pNewModel)
 /*N*/ {
 /*N*/   SdrModel* pOldModel = pModel;

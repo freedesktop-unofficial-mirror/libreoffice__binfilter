@@ -836,21 +836,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrObjGroup::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PostSave();
-/*N*/
-/*N*/   if(!IsLinkedGroup())
-/*N*/   {
-/*N*/       sal_uInt32 nCount(pSub->GetObjCount());
-/*N*/       for(sal_uInt32 a(0); a < nCount; a++)
-/*N*/           pSub->GetObj(a)->PostSave();
-/*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ SfxStyleSheet* SdrObjGroup::GetStyleSheet() const
 /*N*/ {
 /*N*/   // Hier mit 'nem Iterator. Es koennte sonst passieren dass ein

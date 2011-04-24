@@ -1709,15 +1709,6 @@ je Objekt variiert von 0-3:
 /*N*/   mpObjectItemSet->Put(aEdgeAttr);
 /*N*/ }
 
-/*N*/ void SdrEdgeObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_EDGE);
-/*N*/ }
-/*N*/
 /*N*/ void SdrEdgeObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

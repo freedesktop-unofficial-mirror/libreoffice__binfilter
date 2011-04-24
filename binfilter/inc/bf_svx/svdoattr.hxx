@@ -118,7 +118,7 @@ public:
 
     // pre- and postprocessing for objects for saving
     virtual void PreSave();
-    virtual void PostSave();
+    virtual void PostSave() {}
 
     // ItemSet access
     virtual const SfxItemSet& GetItemSet() const;

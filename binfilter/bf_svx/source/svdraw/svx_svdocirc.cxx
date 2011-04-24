@@ -797,15 +797,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->Put(aCircAttr);
 /*N*/ }
 
-/*N*/ void SdrCircObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_CIRC);
-/*N*/ }
-
 /*N*/ void SdrCircObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if(rIn.GetError())

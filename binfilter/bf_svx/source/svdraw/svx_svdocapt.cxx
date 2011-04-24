@@ -473,15 +473,6 @@ namespace binfilter {
 /*?*/   mpObjectItemSet->Put(aCaptAttr);
 /*?*/ }
 
-/*?*/ void SdrCaptionObj::PostSave()
-/*?*/ {
-/*?*/   // call parent
-/*?*/   SdrRectObj::PostSave();
-/*?*/
-/*?*/   // remove SetItems from local itemset
-/*?*/   mpObjectItemSet->ClearItem(SDRATTRSET_CAPTION);
-/*?*/ }
-
 /*N*/ void SdrCaptionObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if(rIn.GetError())

@@ -844,7 +844,7 @@ public:
 
     // pre- and postprocessing for objects for saving
     virtual void PreSave();
-    virtual void PostSave();
+    virtual void PostSave() {}
 
     // NotPersistAttr fuer Layer, ObjName, geometrische Transformationen, ...
     void TakeNotPersistAttr(SfxItemSet& rAttr, bool bMerge) const;

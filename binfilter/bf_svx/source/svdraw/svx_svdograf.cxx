@@ -1003,15 +1003,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->Put(aGrafAttr);
 /*N*/ }
 
-/*N*/ void SdrGrafObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_GRAF);
-/*N*/ }
-
 /*N*/ void SdrGrafObj::ReadDataTilV10( const SdrObjIOHeader& rHead, SvStream& rIn )
 /*N*/ {
 /*N*/   Graphic aGraphic;

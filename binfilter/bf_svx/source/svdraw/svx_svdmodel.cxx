@@ -1737,36 +1737,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrModel::PostSave()
-/*N*/ {
-/*N*/   sal_uInt16 nCnt(GetMasterPageCount());
-/*N*/
-/*N*/   sal_uInt16 a; for(a=0; a < nCnt; a++)
-/*N*/   {
-/*N*/       // MasterPages
-/*N*/       const SdrPage& rPage = *GetMasterPage(a);
-/*N*/       SdrObject* pObj = rPage.GetBackgroundObj();
-/*N*/       if( pObj )
-/*?*/           pObj->PostSave();
-/*N*/
-/*N*/       for(sal_uInt32 b(0); b < rPage.GetObjCount(); b++)
-/*N*/           rPage.GetObj(b)->PostSave();
-/*N*/   }
-/*N*/
-/*N*/   nCnt = GetPageCount();
-/*N*/   for(a = 0; a < nCnt; a++)
-/*N*/   {
-/*N*/       // Pages
-/*N*/       const SdrPage& rPage = *GetPage(a);
-/*N*/       SdrObject* pObj = rPage.GetBackgroundObj();
-/*N*/       if( pObj )
-/*N*/           pObj->PostSave();
-/*N*/
-/*N*/       for(sal_uInt32 b(0); b < rPage.GetObjCount(); b++)
-/*N*/           rPage.GetObj(b)->PostSave();
-/*N*/   }
-/*N*/ }
-
 /*N*/ uno::Reference< uno::XInterface > SdrModel::getUnoModel()
 /*N*/ {
 /*N*/   // try weak reference first

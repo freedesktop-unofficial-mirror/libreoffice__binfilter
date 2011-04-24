@@ -891,15 +891,6 @@ namespace binfilter {
 /*N*/   mpObjectItemSet->Put(aMeasAttr);
 /*N*/ }
 
-/*N*/ void SdrMeasureObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_MEASURE);
-/*N*/ }
-
 /*N*/ void SdrMeasureObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

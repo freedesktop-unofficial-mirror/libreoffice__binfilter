@@ -94,12 +94,9 @@ public:
 
     // pre- and postprocessing for objects for saving
     virtual void PreSave();
-    virtual void PostSave();
+    virtual void PostSave() {}
 
     virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
-
-
-
 
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);

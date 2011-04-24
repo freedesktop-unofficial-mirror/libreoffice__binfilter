@@ -2626,11 +2626,6 @@ class ImpSkeleton;
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SdrObject::PostSave()
-/*N*/ {
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrObject::ApplyNotPersistAttr(const SfxItemSet& /*rAttr*/)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
