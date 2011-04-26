@@ -276,9 +276,6 @@ namespace binfilter {
 /*N*/                    (SwFlowFrm::CastFlowFrm(pFrm))->IsAnFollow( pThis ) )
 /*?*/                   break;
 /*N*/
-/*N*/ //MA: 24. Mar. 94, Calc wuerde doch nur wieder in ein _Prepare laufen und so
-/*N*/ //die ganze Kette nocheinmal abhuenern.
-/*N*/ //                pFrm->Calc();
 /*N*/               pFrm->MakeAll();
 /*N*/               if( IsSctFrm() && !((SwSectionFrm*)this)->GetSection() )
 /*?*/                   break;
@@ -796,9 +793,9 @@ namespace binfilter {
 /*N*/                   SdrObject *pObj = (*GetDrawObjs())[i];
 /*N*/                   SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
 /*N*/                   const bool bFly = pObj->IsWriterFlyFrame();
-/*N*/                   if ( bFly &&
-/*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
-/*N*/                        pFmt->GetFrmSize().GetWidthPercent() )
+/*N*/                   if ( ( bFly &&
+/*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width() ) || (
+/*N*/                        pFmt->GetFrmSize().GetWidthPercent() ) )
 /*N*/                       continue;
 /*N*/
 /*N*/                   if ( FLY_IN_CNTNT == pFmt->GetAnchor().GetAnchorId() )

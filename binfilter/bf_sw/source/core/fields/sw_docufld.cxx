@@ -256,8 +256,7 @@ void SwPageNumberField::SetPar2(const String& rStr)
 /*?*/       if(nSet <= SVX_NUM_PAGEDESC )
 /*?*/           SetFormat(nSet);
 /*?*/       else
-/*?*/           //exception(wrong_value)
-/*?*/           ;
+/*?*/       {}  //exception(wrong_value)
 /*?*/       break;
 /*?*/   case FIELD_PROP_USHORT1:
 /*?*/       rAny >>= nSet;
@@ -914,10 +913,10 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/           aTmp = pInf->GetCreated();
 /*N*/           if( nSub == DI_CREATE )
 /*N*/               ;       // das wars schon!!
-/*N*/           else if( nSub == DI_CHANGE &&
-/*N*/                   (pInf->GetChanged().GetTime() != aTmp.GetTime() ||
-/*N*/                   (nExtSub & ~DI_SUB_FIXED) == DI_SUB_AUTHOR &&
-/*N*/                   pInf->GetDocumentNumber() > 1) )
+/*N*/           else if( ( nSub == DI_CHANGE &&
+/*N*/                   (pInf->GetChanged().GetTime() != aTmp.GetTime() ) ||
+/*N*/                   ( (nExtSub & ~DI_SUB_FIXED) == DI_SUB_AUTHOR &&
+/*N*/                   pInf->GetDocumentNumber() > 1) ) )
 /*N*/               aTmp = pInf->GetChanged();
 /*N*/           else if( nSub == DI_PRINT &&
 /*N*/                   pInf->GetPrinted().GetTime() != aTmp.GetTime() )
@@ -1897,8 +1896,7 @@ BOOL SwRefPageGetField::PutValue( const uno::Any& rAny, BYTE nMId )
             if(nSet <= SVX_NUM_PAGEDESC )
                 SetFormat(nSet);
             else
-                //exception(wrong_value)
-                ;
+            {}    //exception(wrong_value)
         }
         break;
         case FIELD_PROP_PAR1:

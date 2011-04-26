@@ -918,8 +918,7 @@ BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
             if(nSet < (INT16) SVX_NUMBER_NONE )
                 SetFormat(nSet);
             else
-                //exception(wrong_value)
-                ;
+               {} //exception(wrong_value)
         }
         break;
     case FIELD_PROP_FORMAT:

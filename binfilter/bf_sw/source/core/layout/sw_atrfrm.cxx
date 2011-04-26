@@ -1122,8 +1122,7 @@ bool SwFmtSurround::PutValue( const uno::Any& rVal, BYTE nMemberId )
         if( eVal >= 0 && eVal < (sal_Int16)SURROUND_END )
             SetValue( eVal );
         else
-            //exception
-            ;
+        {}    //exception
     }
     break;
 
@@ -2369,7 +2368,7 @@ SwRect SwFrmFmt::FindLayoutRect( const sal_Bool bPrtArea, const Point* pPoint,
             if( pFrm && pFrm->GetRegisteredIn() != this )
             {
                 // die Section hat keinen eigenen ::com::sun::star::frame::Frame, also falls
-                // jemand die tatsaechliche Groe�e braucht, so muss das
+                // jemand die tatsaechliche Groe?e braucht, so muss das
                 // noch implementier werden, in dem sich vom Ende noch
                 // der entsprechende ::com::sun::star::frame::Frame besorgt wird.
                 // PROBLEM: was passiert bei SectionFrames, die auf unter-

@@ -137,7 +137,6 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 {
     String sAuth; sAuth.AssignAscii( SwForm::aFormAuth );
     sAuth.Insert(' ', 2);
-    //
     PatternIni aIni = aPatternIni[nTypeId];
 
     //TODO: create pattern for authorities
@@ -260,7 +259,6 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 
 /*N*/ SwForm::SwForm( USHORT nTyp )
 /*N*/   : nType( nTyp ), nFormMaxLevel( SwForm::GetFormMaxLevel( nTyp )),
-/*N*/ //    nFirstTabPos( lNumIndent ),
 /*N*/   bCommaSeparated(FALSE)
 /*N*/ {
 /*N*/   //bHasFirstTabPos =
@@ -368,8 +366,6 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/ {
 /*N*/   nType = rForm.nType;
 /*N*/   nFormMaxLevel = rForm.nFormMaxLevel;
-/*N*/ //    nFirstTabPos = rForm.nFirstTabPos;
-/*N*/ //    bHasFirstTabPos = rForm.bHasFirstTabPos;
 /*N*/   bGenerateTabPos = rForm.bGenerateTabPos;
 /*N*/   bIsRelTabPos = rForm.bIsRelTabPos;
 /*N*/   bCommaSeparated = rForm.bCommaSeparated;
@@ -822,8 +818,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 
 /*N*/ SwTOXBase::~SwTOXBase()
 /*N*/ {
-/*N*/ //    if( GetTOXType()->GetType() == TOX_USER  )
-/*N*/ //        delete aData.pTemplateName;
 /*N*/ }
 
 
@@ -955,17 +949,17 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/       USHORT nOffset;
 /*N*/       FormTokenType eToken;
 /*N*/   } const aTokenArr[] = {
-/*N*/       SwForm::aFormTab,       SwForm::nFormEntryLen,      1, TOKEN_TAB_STOP,
-/*N*/       SwForm::aFormPageNums,  SwForm::nFormPageNumsLen,   1, TOKEN_PAGE_NUMS,
-/*N*/       SwForm::aFormLinkStt,   SwForm::nFormLinkSttLen,    1, TOKEN_LINK_START,
-/*N*/       SwForm::aFormLinkEnd,   SwForm::nFormLinkEndLen,    1, TOKEN_LINK_END,
-/*N*/       SwForm::aFormEntryNum,  SwForm::nFormEntryNumLen,   1, TOKEN_ENTRY_NO,
-/*N*/       SwForm::aFormEntryTxt,  SwForm::nFormEntryTxtLen,   1, TOKEN_ENTRY_TEXT,
-/*N*/       SwForm::aFormChapterMark,SwForm::nFormChapterMarkLen,1,TOKEN_CHAPTER_INFO,
-/*N*/       SwForm::aFormText,      SwForm::nFormTextLen,       1, TOKEN_TEXT,
-/*N*/       SwForm::aFormEntry,     SwForm::nFormEntryLen,      1, TOKEN_ENTRY,
-/*N*/       SwForm::aFormAuth,      SwForm::nFormAuthLen,       3, TOKEN_AUTHORITY,
-/*N*/       0,                      0,                          0, TOKEN_END
+/*N*/           { SwForm::aFormTab,         SwForm::nFormEntryLen,       1, TOKEN_TAB_STOP     },
+/*N*/           { SwForm::aFormPageNums,    SwForm::nFormPageNumsLen,    1, TOKEN_PAGE_NUMS    },
+/*N*/           { SwForm::aFormLinkStt,     SwForm::nFormLinkSttLen,     1, TOKEN_LINK_START   },
+/*N*/           { SwForm::aFormLinkEnd,     SwForm::nFormLinkEndLen,     1, TOKEN_LINK_END     },
+/*N*/           { SwForm::aFormEntryNum,    SwForm::nFormEntryNumLen,    1, TOKEN_ENTRY_NO     },
+/*N*/           { SwForm::aFormEntryTxt,    SwForm::nFormEntryTxtLen,    1, TOKEN_ENTRY_TEXT   },
+/*N*/           { SwForm::aFormChapterMark, SwForm::nFormChapterMarkLen, 1, TOKEN_CHAPTER_INFO },
+/*N*/           { SwForm::aFormText,        SwForm::nFormTextLen,        1, TOKEN_TEXT         },
+/*N*/           { SwForm::aFormEntry,       SwForm::nFormEntryLen,       1, TOKEN_ENTRY        },
+/*N*/           { SwForm::aFormAuth,        SwForm::nFormAuthLen,        3, TOKEN_AUTHORITY    },
+/*N*/           { 0,                        0,                           0, TOKEN_END          }
 /*N*/   };
 /*N*/
 /*N*/   FormTokenType eTokenType = TOKEN_TEXT;

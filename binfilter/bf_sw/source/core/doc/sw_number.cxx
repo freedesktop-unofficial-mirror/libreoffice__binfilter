@@ -50,9 +50,11 @@
 namespace binfilter {
 
 USHORT SwNumRule::nRefCount = 0;
-SwNumFmt* SwNumRule::aBaseFmts[ RULE_END ][ MAXLEVEL ] = {
-    0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0 };
+SwNumFmt* SwNumRule::aBaseFmts[ RULE_END ][ MAXLEVEL ] =
+{
+    { 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0 }
+};
 
 Font* SwNumRule::pDefBulletFont = 0;
 sal_Char* SwNumRule::pDefOutlineName = "Outline";

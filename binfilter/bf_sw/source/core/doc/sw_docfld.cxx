@@ -1574,9 +1574,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/           {
 /*N*/               SwDBData aDBData(((SwDBNumSetField*)pFld)->GetDBData(&rDoc));
 /*N*/
-/*N*/               if( bIsDBMgr &&
+/*N*/               if( ( bIsDBMgr &&
 /*N*/                   rDoc.GetNewDBMgr()->OpenDataSource( aDBData.sDataSource, aDBData.sCommand )&&
-/*N*/                   GETFLD_ALL == eGetMode ||
+/*N*/                   GETFLD_ALL == eGetMode ) ||
 /*N*/                   ( GETFLD_CALC & eGetMode &&
 /*N*/                       ((SwDBNumSetField*)pFld)->IsCondValid()))
 /*N*/                   pFormel = &pFld->GetPar1();
@@ -1586,9 +1586,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/           {
 /*N*/               SwDBData aDBData(((SwDBNextSetField*)pFld)->GetDBData(&rDoc));
 /*N*/
-/*N*/               if( bIsDBMgr &&
+/*N*/               if( ( bIsDBMgr &&
 /*N*/                   rDoc.GetNewDBMgr()->OpenDataSource( aDBData.sDataSource, aDBData.sCommand )&&
-/*N*/                   GETFLD_ALL == eGetMode ||
+/*N*/                   GETFLD_ALL == eGetMode ) ||
 /*N*/                   ( GETFLD_CALC & eGetMode &&
 /*N*/                       ((SwDBNextSetField*)pFld)->IsCondValid() ))
 /*N*/                   pFormel = &pFld->GetPar1();
