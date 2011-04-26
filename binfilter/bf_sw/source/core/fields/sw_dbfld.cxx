@@ -389,15 +389,15 @@ const String& SwDBField::GetPar1() const
 /*N*/       break;
 /*N*/     case FIELD_PROP_BOOL2:
 /*N*/     {
-/*N*/         USHORT nSubType = GetSubType();
+/*N*/         USHORT nSubType1 = GetSubType();
 /*N*/         sal_Bool bVisible(false);
 /*N*/         if(!(rAny >>= bVisible))
 /*N*/             return FALSE;
 /*N*/         if(bVisible)
-/*N*/             nSubType &= ~SUB_INVISIBLE;
+/*N*/             nSubType1 &= ~SUB_INVISIBLE;
 /*N*/         else
-/*N*/             nSubType |= SUB_INVISIBLE;
-/*N*/         SetSubType(nSubType);
+/*N*/             nSubType1 |= SUB_INVISIBLE;
+/*N*/         SetSubType(nSubType1);
 /*N*/         //invalidate text node
 /*N*/         if(GetTyp())
 /*N*/         {
@@ -501,15 +501,15 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
         break;
     case FIELD_PROP_BOOL2:
     {
-        USHORT nSubType = GetSubType();
+        USHORT nSubType2 = GetSubType();
         sal_Bool bVisible(sal_False);
         if(!(rAny >>= bVisible))
             return FALSE;
         if(bVisible)
-            nSubType &= ~SUB_INVISIBLE;
+            nSubType2 &= ~SUB_INVISIBLE;
         else
-            nSubType |= SUB_INVISIBLE;
-        SetSubType(nSubType);
+            nSubType2 |= SUB_INVISIBLE;
+        SetSubType(nSubType2);
     }
     break;
     default:

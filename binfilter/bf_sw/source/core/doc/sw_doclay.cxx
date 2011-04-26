@@ -518,10 +518,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   if( !pAnchor ||
 /*N*/       (FLY_PAGE != pAnchor->GetAnchorId() &&
 /*N*/         //Nur Page und nicht:
-/*N*/ //          FLY_AT_CNTNT == pAnchor->GetAnchorId() ||
-/*N*/ //          FLY_IN_CNTNT == pAnchor->GetAnchorId() ||
-/*N*/ //          FLY_AT_FLY == pAnchor->GetAnchorId() ||
-/*N*/ //          FLY_AUTO_CNTNT == pAnchor->GetAnchorId() ) &&
 /*N*/       !pAnchor->GetCntntAnchor() ))
 /*N*/   {
 /*N*/       // dann setze ihn, wird im Undo gebraucht
@@ -541,8 +537,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           eAnchorId = aAnch.GetAnchorId();
 /*N*/           if ( FLY_PAGE != eAnchorId )
 /*N*/           //Nur Page und nicht:
-/*N*/ //            if( FLY_AT_CNTNT == eAnchorId || FLY_IN_CNTNT == eAnchorId ||
-/*N*/ //                FLY_AT_FLY == eAnchorId || FLY_AUTO_CNTNT == eAnchorId )
 /*N*/               aAnch.SetAnchor( &rAnchPos );
 /*N*/       }
 /*N*/       pFmt->SetAttr( aAnch );
@@ -661,9 +655,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   // Anker noch nicht gesetzt ?
 /*N*/   // DrawObjecte duerfen niemals in Kopf-/Fusszeilen landen.
 /*N*/   sal_Bool bIsAtCntnt = FLY_PAGE != eAnchorId;
-/*N*/ //                      FLY_AT_CNTNT == eAnchorId || FLY_IN_CNTNT == eAnchorId ||
-/*N*/ //                      FLY_AT_FLY == eAnchorId || FLY_AUTO_CNTNT == eAnchorId;
-/*N*/
 /*N*/   const SwNodeIndex* pChkIdx = 0;
 /*N*/   if( !pAnchor )
 /*N*/     {
@@ -731,17 +722,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*
 |*************************************************************************/
 
-/*sal_Bool TstFlyRange( const SwPaM* pPam, sal_uInt32 nFlyPos )
-{
-    sal_Bool bOk = sal_False;
-    const SwPaM* pTmp = pPam;
-    do {
-        bOk = pTmp->Start()->nNode.GetIndex() < nFlyPos &&
-                pTmp->End()->nNode.GetIndex() > nFlyPos;
-    } while( !bOk && pPam != ( pTmp = (const SwPaM*)pTmp->GetNext() ));
-    return bOk;
-}
-*/
 /* ---------------------------------------------------------------------------
     paragraph frames - o.k. if the PaM includes the paragraph from the beginning
                        to the beginning of the next paragraph at least
@@ -773,16 +753,6 @@ DBG_BF_ASSERT(0, "STRIP");
 
    Otherwise the new set will not be changed.
 */
-
-
-
-
-/*************************************************************************
-|*
-|*  SwDoc::InsertDrawLabel()
-|*
-|*************************************************************************/
-
 
 /*************************************************************************
 |*

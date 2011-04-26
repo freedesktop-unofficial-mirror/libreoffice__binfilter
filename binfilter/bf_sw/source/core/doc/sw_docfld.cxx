@@ -845,9 +845,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       break;
 /*N*/       case RES_DBFLD:
 /*N*/       {
-/*N*/           SwDBData aDBData(((SwDBField*)pFld)->GetDBData());
+/*N*/           SwDBData aDBData1(((SwDBField*)pFld)->GetDBData());
 /*N*/
-/*N*/           if( pMgr->IsDataSourceOpen(aDBData.sDataSource, aDBData.sCommand, sal_False))
+/*N*/           if( pMgr->IsDataSourceOpen(aDBData1.sDataSource, aDBData1.sCommand, sal_False))
 /*?*/               { DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/           const String& rName = pFld->GetTyp()->GetName();
@@ -1012,9 +1012,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/       else
 /*?*/           ((SwDBNumSetField&)rDBFld).Evaluate(this);
 /*?*/
-/*?*/       SwDBData aDBData( rDBFld.GetDBData(this) );
+/*?*/       SwDBData aDBData2( rDBFld.GetDBData(this) );
 /*?*/
-/*?*/       if( pMgr->OpenDataSource( aDBData.sDataSource, aDBData.sCommand ))
+/*?*/       if( pMgr->OpenDataSource( aDBData2.sDataSource, aDBData2.sCommand ))
 /*?*/           rCalc.VarChange( lcl_GetDBVarName( *this, rDBFld),
 /*?*/                         pMgr->GetSelectedRecordId(aDBData.sDataSource, aDBData.sCommand, aDBData.nCommandType) );
 /*?*/   }

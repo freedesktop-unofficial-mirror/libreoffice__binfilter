@@ -443,8 +443,8 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
  --------------------------------------------------------------------*/
 
 /*N*/ SwValueField::SwValueField( SwValueFieldType* pFldType, sal_uInt32 nFmt,
-/*N*/                           USHORT nLang, const double fVal )
-/*N*/   : SwField(pFldType, nFmt, nLang),
+/*N*/                           USHORT nLang1, const double fVal )
+/*N*/   : SwField(pFldType, nFmt, nLang1),
 /*N*/   fValue(fVal)
 /*N*/ {
 /*N*/ }
@@ -568,9 +568,9 @@ SwFieldType* SwValueField::ChgTyp( SwFieldType* pNewType )
 /*N*/   if( nFmt && SAL_MAX_UINT32 != nFmt )
 /*N*/   {
 /*N*/       xub_StrLen nPos = 0;
-/*N*/       double fValue;
-/*N*/       if( SwCalc::Str2Double( rStr, nPos, fValue, GetDoc() ) )
-/*N*/           SwValueField::SetValue( fValue );
+/*N*/       double fValue1;
+/*N*/       if( SwCalc::Str2Double( rStr, nPos, fValue1, GetDoc() ) )
+/*N*/           SwValueField::SetValue( fValue1 );
 /*N*/   }
 /*N*/ }
 
@@ -584,16 +584,16 @@ void SwFormulaField::SetExpandedFormula( const String& rStr )
 
     if (nFmt && nFmt != SAL_MAX_UINT32 && ((SwValueFieldType *)GetTyp())->UseFormat())
     {
-        double fValue;
+        double fValue2;
 
         SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
 
-        if (pFormatter->IsNumberFormat(rStr, nFmt, fValue))
+        if (pFormatter->IsNumberFormat(rStr, nFmt, fValue2))
         {
-            SwValueField::SetValue(fValue);
+            SwValueField::SetValue(fValue2);
             sFormula.Erase();
 
-            ((SwValueFieldType *)GetTyp())->DoubleToString(sFormula, fValue, nFmt);
+            ((SwValueFieldType *)GetTyp())->DoubleToString(sFormula, fValue2, nFmt);
             return;
         }
     }

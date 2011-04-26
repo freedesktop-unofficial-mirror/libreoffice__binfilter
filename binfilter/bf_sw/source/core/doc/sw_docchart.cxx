@@ -84,10 +84,10 @@ namespace binfilter {
 /*?*/       sRowColInfo.AssignAscii( RTL_CONSTASCII_STRINGPARAM("11") );
 /*N*/   }
 /*N*/
-/*N*/   SwChartLines aLines;
-/*N*/   if( !IsTblComplexForChart( sSelection, &aLines ))
+/*N*/   SwChartLines aLines1;
+/*N*/   if( !IsTblComplexForChart( sSelection, &aLines1 ))
 /*N*/   {
-/*N*/       USHORT nLines = aLines.Count(), nBoxes = aLines[0]->Count();
+/*N*/       USHORT nLines = aLines1.Count(), nBoxes = aLines1[0]->Count();
 /*N*/
 /*N*/       if( !pData )
 /*N*/       {
@@ -130,7 +130,7 @@ namespace binfilter {
 /*N*/       if( nRowStt )
 /*?*/           for( n = nColStt; n < nBoxes; ++n )
 /*?*/           {
-/*?*/               const SwTableBox *pBox = (*aLines[ 0 ])[ n ];
+/*?*/               const SwTableBox *pBox = (*aLines1[ 0 ])[ n ];
 /*?*/               OSL_ENSURE( pBox->GetSttNd(), "Box without SttIdx" );
 /*?*/               SwNodeIndex aIdx( *pBox->GetSttNd(), 1 );
 /*?*/               const SwTxtNode* pTNd = aIdx.GetNode().GetTxtNode();
@@ -154,7 +154,7 @@ namespace binfilter {
 /*N*/       if( nColStt )
 /*N*/           for( n = nRowStt; n < nLines; ++n )
 /*N*/           {
-/*N*/               const SwTableBox *pBox = (*aLines[ n ])[ 0 ];
+/*N*/               const SwTableBox *pBox = (*aLines1[ n ])[ 0 ];
 /*N*/               OSL_ENSURE( pBox->GetSttNd(), "Box without SttIdx" );
 /*N*/               SwNodeIndex aIdx( *pBox->GetSttNd(), 1 );
 /*N*/               const SwTxtNode* pTNd = aIdx.GetNode().GetTxtNode();
@@ -184,7 +184,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           for( USHORT i = nColStt; i < nBoxes; ++i )
 /*N*/           {
-/*N*/               const SwTableBox* pBox = (*aLines[ n ])[ i ];
+/*N*/               const SwTableBox* pBox = (*aLines1[ n ])[ i ];
 /*N*/               OSL_ENSURE( pBox->GetSttNd(), "Box without SttIdx" );
 /*N*/               SwNodeIndex aIdx( *pBox->GetSttNd(), 1 );
 /*N*/               const SwTxtNode* pTNd = aIdx.GetNode().GetTxtNode();
