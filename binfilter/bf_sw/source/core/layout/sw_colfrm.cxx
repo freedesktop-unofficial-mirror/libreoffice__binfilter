@@ -176,9 +176,9 @@ namespace binfilter {
 /*N*/       }
 /*N*/       for ( USHORT i = 0; i < nCount; ++i )
 /*N*/       {
-/*N*/           SwColumnFrm *pTmp = new SwColumnFrm( pNeighbourCol->GetFmt() );
-/*N*/           pTmp->SetMaxFtnHeight( nMax );
-/*N*/           pTmp->InsertBefore( pCont, NULL );
+/*N*/           SwColumnFrm *pTmp1 = new SwColumnFrm( pNeighbourCol->GetFmt() );
+/*N*/           pTmp1->SetMaxFtnHeight( nMax );
+/*N*/           pTmp1->InsertBefore( pCont, NULL );
 /*N*/           pNeighbourCol = (SwLayoutFrm*)pNeighbourCol->GetNext();
 /*N*/       }
 /*N*/   }

@@ -627,8 +627,8 @@ static USHORT InSWG_SwDropCaps
     aAttr.GetWholeWord() = FALSE;
     if( nFmt != IDX_NO_VALUE )
     {
-        SwCharFmt* pSet = (SwCharFmt*) rPar.FindFmt( nFmt, SWG_CHARFMT );
-        aAttr.SetCharFmt( pSet );
+        SwCharFmt* pSet1 = (SwCharFmt*) rPar.FindFmt( nFmt, SWG_CHARFMT );
+        aAttr.SetCharFmt( pSet1 );
     }
     pSet->Put( aAttr );
     return aAttr.Which();
@@ -659,11 +659,11 @@ static USHORT InSWG_SwBox
         if( !bDone )
         {
             USHORT red, green, blue;
-            short nOutline, nInline, nDistance;
+            short nOutline, nInline, nDistance2;
             rPar.r >> red >> green >> blue;
-            rPar.r >> nOutline >> nInline >> nDistance;
+            rPar.r >> nOutline >> nInline >> nDistance2;
             Color aClr( red, green, blue );
-            SvxBorderLine aBorder( &aClr, nOutline, nInline, nDistance );
+            SvxBorderLine aBorder( &aClr, nOutline, nInline, nDistance2 );
             switch( ch )
             {
                 case SWG_TOP:    aAttr.SetLine( &aBorder, BOX_LINE_TOP ); break;
@@ -780,11 +780,11 @@ static USHORT InSWG_SwFmtCol
     {
         for( USHORT i = 0; i < nCol; i++ )
         {
-            long nWishWidth;
+            long nWishWidth3;
             USHORT nLeft, nUpper, nRight, nLower;
-            rPar.r >> nWishWidth >> nLeft >> nUpper >> nRight >> nLower;
+            rPar.r >> nWishWidth3 >> nLeft >> nUpper >> nRight >> nLower;
             SwColumn* pCol = new SwColumn;
-            pCol->SetWishWidth( (USHORT) ( nWishWidth / nFactor ) );
+            pCol->SetWishWidth( (USHORT) ( nWishWidth3 / nFactor ) );
             pCol->SetLeft( nLeft );
             pCol->SetUpper( nUpper );
             pCol->SetRight( nRight );

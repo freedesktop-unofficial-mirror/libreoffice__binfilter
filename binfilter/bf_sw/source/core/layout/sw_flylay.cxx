@@ -104,10 +104,10 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ void SwFlyFreeFrm::NotifyBackground( SwPageFrm *pPage,
+/*N*/ void SwFlyFreeFrm::NotifyBackground( SwPageFrm *pPage1,
 /*N*/                                    const SwRect& rRect, PrepareHint eHint )
 /*N*/ {
-/*N*/   ::binfilter::Notify_Background( GetVirtDrawObj(), pPage, rRect, eHint, TRUE );
+/*N*/   ::binfilter::Notify_Background( GetVirtDrawObj(), pPage1, rRect, eHint, TRUE );
 /*N*/ }
 
 /*************************************************************************
@@ -123,9 +123,9 @@ namespace binfilter {
 /*N*/     if( !GetPage() && GetAnchor() && GetAnchor()->IsInFly() )
 /*N*/     {
 /*?*/         SwFlyFrm* pFly = GetAnchor()->FindFlyFrm();
-/*?*/         SwPageFrm *pPage = pFly ? pFly->FindPageFrm() : NULL;
-/*?*/         if( pPage )
-/*?*/             pPage->SwPageFrm::AppendFly( this );
+/*?*/         SwPageFrm *pPage2 = pFly ? pFly->FindPageFrm() : NULL;
+/*?*/         if( pPage2 )
+/*?*/             pPage2->SwPageFrm::AppendFly( this );
 /*N*/     }
 /*N*/     if( !GetPage() )
 /*?*/         return;
@@ -351,10 +351,10 @@ namespace binfilter {
 /*N*/           if ( Lower() && Lower()->IsColumnFrm() )
 /*N*/           {
 /*?*/               ColLock();  //Grow/Shrink locken.
-/*?*/               const Size aOldSize( Prt().SSize() );
+/*?*/               const Size aOldSize1( Prt().SSize() );
 /*?*/               Prt().Height( Frm().Height() - nPrtHeightDiff );
 /*?*/               Prt().Width ( Frm().Width()  - nPrtWidthDiff );
-/*?*/               ChgLowersProp( aOldSize );
+/*?*/               ChgLowersProp( aOldSize1 );
 /*?*/               SwFrm *pLow = Lower();
 /*?*/               do
 /*?*/               {   pLow->Calc();
@@ -428,14 +428,14 @@ namespace binfilter {
 /*?*/       {
 /*?*/           USHORT nPgNum = pAnch->GetPageNum();
 /*?*/           SwRootFrm *pRoot = FindRootFrm();
-/*?*/           SwPageFrm *pPage = (SwPageFrm*)pRoot->Lower();
-/*?*/           for ( USHORT i = 1; (i <= nPgNum) && pPage; ++i,
-/*?*/                               pPage = (SwPageFrm*)pPage->GetNext() )
+/*?*/           SwPageFrm *pPage1 = (SwPageFrm*)pRoot->Lower();
+/*?*/           for ( USHORT i = 1; (i <= nPgNum) && pPage1; ++i,
+/*?*/                               pPage1 = (SwPageFrm*)pPage1->GetNext() )
 /*?*/           {
 /*?*/               if ( i == nPgNum )
-/*?*/                   pPage->PlaceFly( this, 0, pAnch );
+/*?*/                   pPage1->PlaceFly( this, 0, pAnch );
 /*?*/           }
-/*?*/           if( !pPage )
+/*?*/           if( !pPage1 )
 /*?*/           {
 /*?*/               pRoot->SetAssertFlyPages();
 /*?*/               pRoot->AssertFlyPages();
@@ -534,9 +534,9 @@ namespace binfilter {
 /*?*/             SdrObject *pO = rObjs[i];
 /*?*/             if( pO->IsWriterFlyFrame() )
 /*?*/             {
-/*?*/                 SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-/*?*/                 if( pFly->IsFlyFreeFrm() && !((SwFlyFreeFrm*)pFly)->GetPage() )
-/*?*/                     SwPageFrm::AppendFly( pFly );
+/*?*/                 SwFlyFrm* pFly1 = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
+/*?*/                 if( pFly1->IsFlyFreeFrm() && !((SwFlyFreeFrm*)pFly1)->GetPage() )
+/*?*/                     SwPageFrm::AppendFly( pFly1 );
 /*?*/             }
 /*?*/         }
 /*N*/     }

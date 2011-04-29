@@ -549,12 +549,12 @@ namespace binfilter {
 /*N*/       rThis.GetUpper()->Calc();
 /*N*/   else if( rThis.GetUpper()->IsSctFrm() )
 /*N*/   {
-/*N*/       SwSectionFrm* pSct = (SwSectionFrm*)rThis.GetUpper();
-/*N*/       BOOL bOld = pSct->IsCntntLocked();
-/*N*/       pSct->SetCntntLock( TRUE );
-/*N*/       pSct->Calc();
+/*N*/       SwSectionFrm* pSct1 = (SwSectionFrm*)rThis.GetUpper();
+/*N*/       BOOL bOld = pSct1->IsCntntLocked();
+/*N*/       pSct1->SetCntntLock( TRUE );
+/*N*/       pSct1->Calc();
 /*N*/       if( !bOld )
-/*N*/           pSct->SetCntntLock( FALSE );
+/*N*/           pSct1->SetCntntLock( FALSE );
 /*N*/   }
 /*N*/   SwPageFrm *pPage = rThis.FindPageFrm();
 /*N*/

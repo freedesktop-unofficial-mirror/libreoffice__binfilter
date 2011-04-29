@@ -204,11 +204,11 @@ namespace binfilter {
 /*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
-/*N*/   BOOL bPaint = FALSE;
+/*N*/   BOOL bPaint1 = FALSE;
 /*N*/   const SwRect *pData = aTmp.GetData();
 /*N*/   for ( i = 0; i < aTmp.Count(); ++pData, ++i )
-/*N*/       bPaint |= pImp->GetShell()->AddPaintRect( *pData );
-/*N*/   return bPaint;
+/*N*/       bPaint1 |= pImp->GetShell()->AddPaintRect( *pData );
+/*N*/   return bPaint1;
 /*N*/ }
 
 /*N*/ inline BOOL SwLayAction::_PaintCntnt( const SwCntntFrm *pCntnt,
@@ -2454,16 +2454,14 @@ namespace binfilter {
 /*?*/
 /*?*/               if ( bCrsrShell )
 /*?*/                   ((SwCrsrShell*)pSh)->SttCrsrMove();
-/*?*/ //                else
-/*?*/ //                    pSh->StartAction();
 /*?*/
 /*?*/               //Wenn Paints aufgelaufen sind, ist es am sinnvollsten schlicht das
 /*?*/               //gesamte Window zu invalidieren. Anderfalls gibt es Paintprobleme
 /*?*/               //deren Loesung unverhaeltnissmaessig aufwendig waere.
 /*?*/               //fix(18176):
-/*?*/               SwViewImp *pImp = pSh->Imp();
+/*?*/               SwViewImp *pImp1 = pSh->Imp();
 /*?*/               bool bUnlock = FALSE;
-/*?*/               if ( pImp->GetRegion() || pImp->GetScrollRects() )
+/*?*/               if ( pImp1->GetRegion() || pImp1->GetScrollRects() )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
@@ -2472,8 +2470,6 @@ namespace binfilter {
 /*?*/                   //Wenn der Crsr sichbar war wieder sichbar machen, sonst
 /*?*/                   //EndCrsrMove mit TRUE fuer IdleEnd.
 /*?*/                   ((SwCrsrShell*)pSh)->EndCrsrMove( TRUE^aBools[nBoolIdx] );
-/*?*/ //                else
-/*?*/ //                    pSh->EndAction();
 /*?*/               if( bUnlock )
 /*?*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP");

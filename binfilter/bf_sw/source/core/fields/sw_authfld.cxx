@@ -586,19 +586,19 @@ void SwAuthorityFieldType::SetSortKeys(USHORT nKeyCount, SwTOXSortKey aKeys[])
 }
 
 
-SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
+SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType1,
                                     const String& rFieldContents )
-    : SwField(pType)
+    : SwField(pType1)
 {
-    nHandle = pType->AddField( rFieldContents );
+    nHandle = pType1->AddField( rFieldContents );
 }
 
-SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType,
+SwAuthorityField::SwAuthorityField( SwAuthorityFieldType* pType2,
                                                 long nSetHandle )
-    : SwField( pType ),
+    : SwField( pType2 ),
     nHandle( nSetHandle )
 {
-    pType->AddField( nHandle );
+    pType2->AddField( nHandle );
 }
 
 SwAuthorityField::~SwAuthorityField()
@@ -644,9 +644,9 @@ const String&   SwAuthorityField::GetFieldText(ToxAuthorityField eField) const
 
 void    SwAuthorityField::SetPar1(const String& rStr)
 {
-    SwAuthorityFieldType* pType = (SwAuthorityFieldType* )GetTyp();
-    pType->RemoveField(nHandle);
-    nHandle = pType->AddField(rStr);
+    SwAuthorityFieldType* pType3 = (SwAuthorityFieldType* )GetTyp();
+    pType3->RemoveField(nHandle);
+    nHandle = pType3->AddField(rStr);
 }
 
 USHORT  SwAuthorityField::GetHandlePosition() const

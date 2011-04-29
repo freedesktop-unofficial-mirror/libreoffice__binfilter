@@ -977,8 +977,8 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ }
 
 
-/*N*/ SwDocInfoField::SwDocInfoField(SwDocInfoFieldType* pType, sal_uInt16 nSub, sal_uInt32 nFmt) :
-/*N*/   SwValueField(pType, nFmt), nSubType(nSub)
+/*N*/ SwDocInfoField::SwDocInfoField(SwDocInfoFieldType* pType1, sal_uInt16 nSub, sal_uInt32 nFmt) :
+/*N*/   SwValueField(pType1, nFmt), nSubType(nSub)
 /*N*/ {
 /*N*/   aContent = ((SwDocInfoFieldType*)GetTyp())->Expand(nSubType, nFmt, GetLanguage());
 /*N*/ }
@@ -1410,8 +1410,8 @@ BOOL SwHiddenTxtField::PutValue( const uno::Any& rAny, BYTE nMId )
     Beschreibung: Das Feld Zeilenhoehe 0
  --------------------------------------------------------------------*/
 
-/*N*/ SwHiddenParaField::SwHiddenParaField(SwHiddenParaFieldType* pType, const String& rStr)
-/*N*/   : SwField(pType), aCond(rStr)
+/*N*/ SwHiddenParaField::SwHiddenParaField(SwHiddenParaFieldType* pType2, const String& rStr)
+/*N*/   : SwField(pType2), aCond(rStr)
 /*N*/ {
 /*N*/   bIsHidden = sal_False;
 /*N*/ }
@@ -1499,9 +1499,9 @@ void SwHiddenParaField::SetPar1(const String& rStr)
     Beschreibung: SwPostItFieldType
  --------------------------------------------------------------------*/
 
-/*?*/ SwPostItField::SwPostItField( SwPostItFieldType* pType,
+/*?*/ SwPostItField::SwPostItField( SwPostItFieldType* pType3,
 /*?*/       const String& rAuthor, const String& rTxt, const Date& rDate )
-/*?*/   : SwField( pType ), sTxt( rTxt ), sAuthor( rAuthor ), aDate( rDate )
+/*?*/   : SwField( pType3 ), sTxt( rTxt ), sAuthor( rAuthor ), aDate( rDate )
 /*?*/ {
 /*?*/ }
 
@@ -1640,8 +1640,8 @@ BOOL SwPostItField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   return aRet;
 /*N*/ }
 
-/*N*/ SwExtUserField::SwExtUserField(SwExtUserFieldType* pType, sal_uInt16 nSubTyp, sal_uInt32 nFmt) :
-/*N*/   SwField(pType, nFmt), nType(nSubTyp)
+/*N*/ SwExtUserField::SwExtUserField(SwExtUserFieldType* pType4, sal_uInt16 nSubTyp, sal_uInt32 nFmt) :
+/*N*/   SwField(pType4, nFmt), nType(nSubTyp)
 /*N*/ {
 /*N*/   aContent = ((SwExtUserFieldType*)GetTyp())->Expand(nType, GetFormat());
 /*N*/ }
@@ -1749,9 +1749,9 @@ BOOL SwExtUserField::PutValue( const uno::Any& rAny, BYTE nMId )
     Beschreibung: Relative Seitennummerierung
  --------------------------------------------------------------------*/
 
-/*?*/ SwRefPageSetField::SwRefPageSetField( SwRefPageSetFieldType* pType,
+/*?*/ SwRefPageSetField::SwRefPageSetField( SwRefPageSetFieldType* pType5,
 /*?*/                   short nOff, sal_Bool bFlag )
-/*?*/   : SwField( pType ), nOffset( nOff ), bOn( bFlag )
+/*?*/   : SwField( pType5 ), nOffset( nOff ), bOn( bFlag )
 /*?*/ {
 /*?*/ }
 
@@ -1847,9 +1847,9 @@ SwRefPageGetFieldType::SwRefPageGetFieldType( SwDoc* pDc )
     Beschreibung: Relative Seitennummerierung Abfragen
  --------------------------------------------------------------------*/
 
-/*?*/ SwRefPageGetField::SwRefPageGetField( SwRefPageGetFieldType* pType,
+/*?*/ SwRefPageGetField::SwRefPageGetField( SwRefPageGetFieldType* pType6,
 /*?*/                                   sal_uInt32 nFmt )
-/*?*/   : SwField( pType, nFmt )
+/*?*/   : SwField( pType6, nFmt )
 /*?*/ {
 /*?*/ }
 
@@ -1937,9 +1937,9 @@ BOOL SwRefPageGetField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/   return pFmt;
 /*N*/ }
 
-/*N*/ SwJumpEditField::SwJumpEditField( SwJumpEditFieldType* pTyp, sal_uInt32 nFormat,
+/*N*/ SwJumpEditField::SwJumpEditField( SwJumpEditFieldType* pTyp, sal_uInt32 nFormat1,
 /*N*/                               const String& rTxt, const String& rHelp )
-/*N*/   : SwField( pTyp, nFormat ), sTxt( rTxt ), sHelp( rHelp )
+/*N*/   : SwField( pTyp, nFormat1 ), sTxt( rTxt ), sHelp( rHelp )
 /*N*/ {
 /*N*/ }
 

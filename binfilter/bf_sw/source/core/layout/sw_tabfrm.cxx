@@ -90,14 +90,14 @@ namespace binfilter {
 /*N*/
 /*N*/   //Gleich die Zeilen erzeugen und einfuegen.
 /*N*/   const SwTableLines &rLines = rTab.GetTabLines();
-/*N*/   SwFrm *pPrev = 0;
+/*N*/   SwFrm *pPrev1 = 0;
 /*N*/   for ( USHORT i = 0; i < rLines.Count(); ++i )
 /*N*/   {
 /*N*/       SwRowFrm *pNew = new SwRowFrm( *rLines[i] );
 /*N*/       if( pNew->Lower() )
 /*N*/       {
-/*N*/           pNew->InsertBehind( this, pPrev );
-/*N*/           pPrev = pNew;
+/*N*/           pNew->InsertBehind( this, pPrev1 );
+/*N*/           pPrev1 = pNew;
 /*N*/       }
 /*N*/       else
 /*?*/           delete pNew;
@@ -647,9 +647,9 @@ namespace binfilter {
 /*N*/                               MakePos();
 /*N*/                                 if( nOldTop != (Frm().*fnRect->fnGetTop)() )
 /*N*/                               {
-/*N*/                                   SwHTMLTableLayout *pLayout =
+/*N*/                                   SwHTMLTableLayout *pLayout1 =
 /*N*/                                       GetTable()->GetHTMLTableLayout();
-/*N*/                                   if( pLayout )
+/*N*/                                   if( pLayout1 )
 /*N*/                                   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                                   }
 /*N*/                               }
@@ -1952,12 +1952,12 @@ namespace binfilter {
 /*N*/
 /*N*/   //Gleich die Boxen erzeugen und einfuegen.
 /*N*/   const SwTableBoxes &rBoxes = rLine.GetTabBoxes();
-/*N*/   SwFrm *pPrev = 0;
+/*N*/   SwFrm *pPrev1 = 0;
 /*N*/   for ( USHORT i = 0; i < rBoxes.Count(); ++i )
 /*N*/   {
 /*N*/       SwCellFrm *pNew = new SwCellFrm( *rBoxes[i] );
-/*N*/       pNew->InsertBehind( this, pPrev );
-/*N*/       pPrev = pNew;
+/*N*/       pNew->InsertBehind( this, pPrev1 );
+/*N*/       pPrev1 = pNew;
 /*N*/   }
 /*N*/ }
 
@@ -2388,12 +2388,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {   const SwTableLines &rLines = rBox.GetTabLines();
-/*N*/       SwFrm *pPrev = 0;
+/*N*/       SwFrm *pPrev2 = 0;
 /*N*/       for ( USHORT i = 0; i < rLines.Count(); ++i )
 /*N*/       {
 /*N*/           SwRowFrm *pNew = new SwRowFrm( *rLines[i] );
-/*N*/           pNew->InsertBehind( this, pPrev );
-/*N*/           pPrev = pNew;
+/*N*/           pNew->InsertBehind( this, pPrev2 );
+/*N*/           pPrev2 = pNew;
 /*N*/       }
 /*N*/   }
 /*N*/ }

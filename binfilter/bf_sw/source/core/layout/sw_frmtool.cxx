@@ -555,12 +555,12 @@ namespace binfilter {
 /*N*/                     pLay->Prt().Width()  > aPrt.Width()) &&
 /*N*/                    (pLay->IsMoveable() || pLay->IsFlyFrm()) )
 /*N*/               {
-/*N*/                   SwFrm *pFrm = pLay->Lower();
-/*N*/                   if ( pFrm && pFrm->IsFlowFrm() )
+/*N*/                   SwFrm *pFrm1 = pLay->Lower();
+/*N*/                   if ( pFrm1 && pFrm1->IsFlowFrm() )
 /*N*/                   {
-/*N*/                       while ( pFrm->GetNext() )
-/*N*/                           pFrm = pFrm->GetNext();
-/*N*/                       pFrm->InvalidateNextPos();
+/*N*/                       while ( pFrm1->GetNext() )
+/*N*/                           pFrm1 = pFrm1->GetNext();
+/*N*/                       pFrm1->InvalidateNextPos();
 /*N*/                   }
 /*N*/               }
 /*N*/           }
@@ -1310,11 +1310,11 @@ bool lcl_InHeaderOrFooter( SwFrmFmt& _rFmt )
 /*N*/               //ist. Dann ist es jetzt an der Zeit ihn zu entfernen.
 /*N*/               if ( !pLay->ContainsCntnt() )
 /*N*/               {
-/*N*/                   SwFrm *pTmp = pLay;
-/*N*/                   pLay = pTmp->GetUpper();
-/*N*/                   pPrv = pTmp->GetPrev();
-/*N*/                   pTmp->Remove();
-/*N*/                   delete pTmp;
+/*N*/                   SwFrm *pTmp1 = pLay;
+/*N*/                   pLay = pTmp1->GetUpper();
+/*N*/                   pPrv = pTmp1->GetPrev();
+/*N*/                   pTmp1->Remove();
+/*N*/                   delete pTmp1;
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -1565,7 +1565,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                     // MoveFwd==TRUE bedeutet, dass wir auf der gleichen
                     // Seite geblieben sind, wir wollen aber die Seite wechseln,
                     // sofern dies moeglich ist
-                    BOOL bOldLock = pTmp->IsJoinLocked();
+                    BOOL bOldLock1 = pTmp->IsJoinLocked();
                     pTmp->LockJoin();
                     while( pTmp->MoveFwd( TRUE, FALSE, TRUE ) )
                     {
@@ -1573,7 +1573,7 @@ void MakeFrms( SwDoc *pDoc, const SwNodeIndex &rSttIdx,
                             break;
                         pOldUp = pTmp->GetFrm()->GetUpper();
                     }
-                    if( !bOldLock )
+                    if( !bOldLock1 )
                         pTmp->UnlockJoin();
                 }
                 ::binfilter::_InsertCnt( pUpper, pDoc, rSttIdx.GetIndex(),

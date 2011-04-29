@@ -1439,12 +1439,12 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ BOOL SwFlyFrm::IsLowerOf( const SwLayoutFrm *pUpper ) const
+/*N*/ BOOL SwFlyFrm::IsLowerOf( const SwLayoutFrm *pUpper1 ) const
 /*N*/ {
 /*N*/   OSL_ENSURE( GetAnchor(), "8-( Fly is lost in Space." );
 /*N*/   const SwFrm *pFrm = GetAnchor();
 /*N*/   do
-/*N*/   {   if ( pFrm == pUpper )
+/*N*/   {   if ( pFrm == pUpper1 )
 /*N*/           return TRUE;
 /*N*/       pFrm = pFrm->IsFlyFrm() ? ((const SwFlyFrm*)pFrm)->GetAnchor() :
 /*N*/                                 pFrm->GetUpper();

@@ -1617,10 +1617,10 @@ void SwRootFrm::RemoveSuperfluous()
 /*?*/
 /*?*/           if ( pPage )
 /*?*/           {
-/*?*/               SwPageDesc *pDesc = pPage->FindPageDesc();
+/*?*/               SwPageDesc *pDesc1 = pPage->FindPageDesc();
 /*?*/               bOdd = pPage->OnRightPage();
 /*?*/               if ( pPage->GetFmt() !=
-/*?*/                    (bOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt()) )
+/*?*/                    (bOdd ? pDesc1->GetRightFmt() : pDesc1->GetLeftFmt()) )
 /*?*/                   RemoveFtns( pPage, FALSE, TRUE );
 /*?*/           }
 /*N*/       }

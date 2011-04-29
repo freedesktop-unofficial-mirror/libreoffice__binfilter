@@ -118,9 +118,9 @@ struct _PercentHdl
 /*N*/ {
 /*N*/   while( pSavePos )
 /*N*/   {
-/*?*/       _SwCursor_SavePos* pNext = pSavePos->pNext;
+/*?*/       _SwCursor_SavePos* pNext1 = pSavePos->pNext;
 /*?*/       delete pSavePos;
-/*?*/       pSavePos = pNext;
+/*?*/       pSavePos = pNext1;
 /*N*/   }
 /*N*/ }
 

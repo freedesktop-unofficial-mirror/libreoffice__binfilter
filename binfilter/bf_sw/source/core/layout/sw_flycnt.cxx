@@ -298,9 +298,9 @@ namespace binfilter {
 /*M*/         if( !GetPage() && GetAnchor() && GetAnchor()->IsInFly() )
 /*M*/         {
 /*M*/             SwFlyFrm* pFly = GetAnchor()->FindFlyFrm();
-/*M*/             SwPageFrm *pPage = pFly ? pFly->FindPageFrm() : NULL;
-/*M*/             if( pPage )
-/*M*/                 pPage->SwPageFrm::AppendFly( this );
+/*M*/             SwPageFrm *pPage1 = pFly ? pFly->FindPageFrm() : NULL;
+/*M*/             if( pPage1 )
+/*M*/                 pPage1->SwPageFrm::AppendFly( this );
 /*M*/         }
 /*M*/         if( GetPage() )
 /*M*/         {
@@ -1746,14 +1746,14 @@ namespace binfilter {
 /*N*/
 /*N*/       // Achtung: pPage ist nicht unbedingt ein PageFrm, es kann auch ein
 /*N*/       // SwFlyFrm oder SwCellFrm dahinterstecken
-/*N*/       const SwFrm *pPage = pOrient;
-/*N*/       while( !pPage->IsPageFrm() && !pPage->IsFlyFrm() && !pPage->IsCellFrm() )
+/*N*/       const SwFrm *pPage2 = pOrient;
+/*N*/       while( !pPage2->IsPageFrm() && !pPage2->IsFlyFrm() && !pPage2->IsCellFrm() )
 /*N*/       {
-/*N*/           OSL_ENSURE( pPage->GetUpper(), "MakeFlyPos: No Page/FlyFrm Found" );
-/*N*/           pPage = pPage->GetUpper();
+/*N*/           OSL_ENSURE( pPage2->GetUpper(), "MakeFlyPos: No Page/FlyFrm Found" );
+/*N*/           pPage2 = pPage2->GetUpper();
 /*N*/       }
 /*N*/
-/*N*/       const BOOL bEven = !pPage->OnRightPage();
+/*N*/       const BOOL bEven = !pPage2->OnRightPage();
 /*N*/       const BOOL bToggle = aHori.IsPosToggle() && bEven;
 /*N*/       BOOL bTmpToggle = bToggle;
 /*N*/       BOOL bPageRel = FALSE;
@@ -1776,15 +1776,15 @@ namespace binfilter {
 /*N*/           {
 /*N*/               if ( bTmpToggle )    // linker Seitenrand
 /*N*/                 {
-/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage->Frm().*fnRect->fnGetLeft)(),
+/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage2->Frm().*fnRect->fnGetLeft)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
-/*N*/                     nWidth = (pPage->*fnRect->fnGetLeftMargin)();
+/*N*/                     nWidth = (pPage2->*fnRect->fnGetLeftMargin)();
 /*N*/                 }
 /*N*/               else            // rechter Seitenrand
 /*N*/               {
-/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage->*fnRect->fnGetPrtRight)(),
+/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage2->*fnRect->fnGetPrtRight)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
-/*N*/                     nWidth = (pPage->*fnRect->fnGetRightMargin)();
+/*N*/                     nWidth = (pPage2->*fnRect->fnGetRightMargin)();
 /*N*/               }
 /*N*/               bPageRel = TRUE;
 /*N*/               break;
@@ -1819,16 +1819,16 @@ namespace binfilter {
 /*N*/           }
 /*N*/           case REL_PG_PRTAREA:
 /*N*/           {
-/*N*/                 nWidth = (pPage->Prt().*fnRect->fnGetWidth)();
-/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage->*fnRect->fnGetPrtLeft)(),
+/*N*/                 nWidth = (pPage2->Prt().*fnRect->fnGetWidth)();
+/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage2->*fnRect->fnGetPrtLeft)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
 /*N*/               bPageRel = TRUE;
 /*N*/               break;
 /*N*/           }
 /*N*/           case REL_PG_FRAME:
 /*N*/           {
-/*N*/                 nWidth = (pPage->Frm().*fnRect->fnGetWidth)();
-/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage->Frm().*fnRect->fnGetLeft)(),
+/*N*/                 nWidth = (pPage2->Frm().*fnRect->fnGetWidth)();
+/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage2->Frm().*fnRect->fnGetLeft)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
 /*N*/               bPageRel = TRUE;
 /*N*/               break;
@@ -1893,20 +1893,20 @@ namespace binfilter {
 /*N*/             if( bVert )
 /*N*/             {
 /*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX + aFrm.Height() >
-/*N*/                     pPage->Frm().Bottom() )
-/*N*/                     nRelPosX = pPage->Frm().Bottom() - GetAnchor()->Frm().Top()
+/*N*/                     pPage2->Frm().Bottom() )
+/*N*/                     nRelPosX = pPage2->Frm().Bottom() - GetAnchor()->Frm().Top()
 /*N*/                                   - aFrm.Height();
-/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage->Frm().Top() )
-/*N*/                     nRelPosX = pPage->Frm().Top() - GetAnchor()->Frm().Top();
+/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage2->Frm().Top() )
+/*N*/                     nRelPosX = pPage2->Frm().Top() - GetAnchor()->Frm().Top();
 /*N*/             }
 /*N*/             else
 /*N*/             {
 /*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX + aFrm.Width() >
-/*N*/                     pPage->Frm().Right() )
-/*N*/                     nRelPosX = pPage->Frm().Right() -
+/*N*/                     pPage2->Frm().Right() )
+/*N*/                     nRelPosX = pPage2->Frm().Right() -
 /*N*/                                GetAnchor()->Frm().Left() - aFrm.Width();
-/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage->Frm().Left() )
-/*N*/                     nRelPosX = pPage->Frm().Left() - GetAnchor()->Frm().Left();
+/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage2->Frm().Left() )
+/*N*/                     nRelPosX = pPage2->Frm().Left() - GetAnchor()->Frm().Left();
 /*N*/             }
 /*N*/       }
 /*N*/       else
@@ -1943,11 +1943,11 @@ namespace binfilter {
 /*N*/                                 GetAnchor()->Frm().Top();
 /*N*/
 /*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX + aFrm.Height() >
-/*N*/                     pPage->Frm().Bottom() )
-/*N*/                     nRelPosX = pPage->Frm().Bottom() - GetAnchor()->Frm().Top()
+/*N*/                     pPage2->Frm().Bottom() )
+/*N*/                     nRelPosX = pPage2->Frm().Bottom() - GetAnchor()->Frm().Top()
 /*N*/                                 - aFrm.Height();
-/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage->Frm().Top() )
-/*N*/                     nRelPosX = pPage->Frm().Top() - GetAnchor()->Frm().Top();
+/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage2->Frm().Top() )
+/*N*/                     nRelPosX = pPage2->Frm().Top() - GetAnchor()->Frm().Top();
 /*N*/             }
 /*N*/             else
 /*N*/             {
@@ -1965,11 +1965,11 @@ namespace binfilter {
 /*N*/                     nRelPosX += pOrient->Frm().Left() -
 /*N*/                                 GetAnchor()->Frm().Left();
 /*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX + aFrm.Width() >
-/*N*/                     pPage->Frm().Right() )
-/*N*/                     nRelPosX = pPage->Frm().Right() - GetAnchor()->Frm().Left()
+/*N*/                     pPage2->Frm().Right() )
+/*N*/                     nRelPosX = pPage2->Frm().Right() - GetAnchor()->Frm().Left()
 /*N*/                                 - aFrm.Width();
-/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage->Frm().Left() )
-/*N*/                     nRelPosX = pPage->Frm().Left() - GetAnchor()->Frm().Left();
+/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage2->Frm().Left() )
+/*N*/                     nRelPosX = pPage2->Frm().Left() - GetAnchor()->Frm().Left();
 /*N*/             }
 /*N*/
 /*N*/           //Es muss allen Rahmen ausgewichen werden, die die selbe
@@ -1989,8 +1989,8 @@ namespace binfilter {
 /*N*/                 }
 /*N*/                 SwRect aTmpFrm( aTmpPos, Frm().SSize() );
 /*N*/               const UINT32 nMyOrd = GetVirtDrawObj()->GetOrdNum();
-/*N*/                 const SwPageFrm *pPage = FindPageFrm();
-/*N*/                 SwOrderIter aIter( pPage, TRUE );
+/*N*/                 const SwPageFrm *pPage3 = FindPageFrm();
+/*N*/                 SwOrderIter aIter( pPage3, TRUE );
 /*N*/               const SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)aIter.Bottom())->GetFlyFrm();
 /*N*/               const SwFrm *pKontext = ::binfilter::FindKontext( GetAnchor(), FRM_COLUMN );
 /*N*/                 ULONG nMyIndex = ((SwTxtFrm*)GetAnchor())->GetTxtNode()->GetIndex();
@@ -2050,8 +2050,8 @@ namespace binfilter {
 /*N*/                                                     nTmp + Frm().Height() +
 /*N*/                                                     GetAnchor()->Frm().Top() +
 /*N*/                                                     rUL.GetLower() <=
-/*N*/                                                     pPage->Frm().Height() +
-/*N*/                                                     pPage->Frm().Top() )
+/*N*/                                                     pPage3->Frm().Height() +
+/*N*/                                                     pPage3->Frm().Top() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2065,7 +2065,7 @@ namespace binfilter {
 /*N*/                                                 if( nTmp < nRelPosX &&
 /*N*/                                                     nTmp - rUL.GetUpper() +
 /*N*/                                                     GetAnchor()->Frm().Top()
-/*N*/                                                     >= pPage->Frm().Top() )
+/*N*/                                                     >= pPage3->Frm().Top() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2090,8 +2090,8 @@ namespace binfilter {
 /*N*/                                                     nTmp + Frm().Width() +
 /*N*/                                                     GetAnchor()->Frm().Left() +
 /*N*/                                                     rLR.GetRight() <=
-/*N*/                                                     pPage->Frm().Width() +
-/*N*/                                                     pPage->Frm().Left() )
+/*N*/                                                     pPage3->Frm().Width() +
+/*N*/                                                     pPage3->Frm().Left() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2105,7 +2105,7 @@ namespace binfilter {
 /*N*/                                                 if( nTmp < nRelPosX &&
 /*N*/                                                     nTmp - rLR.GetLeft() +
 /*N*/                                                     GetAnchor()->Frm().Left()
-/*N*/                                                     >= pPage->Frm().Left() )
+/*N*/                                                     >= pPage3->Frm().Left() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }

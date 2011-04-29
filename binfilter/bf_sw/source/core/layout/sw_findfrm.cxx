@@ -600,9 +600,9 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   }
 /*N*/     else if ( IsRowFrm() )
 /*N*/     {
-/*N*/         SwFrm* pUpper = GetUpper();
-/*N*/         if ( pUpper->IsTabFrm() && ((SwTabFrm*)pUpper)->GetFollow() )
-/*N*/             return ((SwTabFrm*)pUpper)->GetFollow()->GetLower();
+/*N*/         SwFrm* pUpper1 = GetUpper();
+/*N*/         if ( pUpper1->IsTabFrm() && ((SwTabFrm*)pUpper1)->GetFollow() )
+/*N*/             return ((SwTabFrm*)pUpper1)->GetFollow()->GetLower();
 /*N*/         else return NULL;
 /*N*/     }
 /*N*/   else

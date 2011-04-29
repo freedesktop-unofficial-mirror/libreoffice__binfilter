@@ -716,10 +716,7 @@ void SwSwgReader::InTxtFmtColls()
 
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
 // Einlesen der Default- und Autoformate
-
 
 void SwSwgReader::InDfltFmts()
 {
@@ -769,7 +766,7 @@ void SwSwgReader::InDfltFmts()
 // Die Optionen lassen eine gezielte Auswahl zu.
 
 
-void SwSwgReader::InNamedFmts( USHORT nOptions )
+void SwSwgReader::InNamedFmts( USHORT nOptions1 )
 {
     SvPtrarr aFmtArr;   //JP 29.09.95: sind die Parents noch nicht eingelesen
     SvUShorts aIdArr;   // dann am Ende alle Verbinden
@@ -793,7 +790,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
         switch( cType )
         {
             case SWG_CHARFMT:
-                if( nOptions & SWGRD_CHARFMTS )
+                if( nOptions1 & SWGRD_CHARFMTS )
                 {
                     pFmt = InFormat( NULL, &nParentId );
                     TestPoolFmt( *pFmt, GET_POOLID_CHRFMT );
@@ -802,7 +799,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
                     {
                         // Format bereits dem Namen nach drin
                         // Entweder ueberbuegeln oder vergessen
-                        if( nOptions & SWGRD_FORCE )
+                        if( nOptions1 & SWGRD_FORCE )
                             *pFmt2 = *pFmt;
 
                         // Registrierung umsetzen !!
@@ -826,7 +823,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
                 else r.skipnext();
                 break;
             case SWG_FRAMEFMT:
-                if( nOptions & SWGRD_FRAMEFMTS )
+                if( nOptions1 & SWGRD_FRAMEFMTS )
                 {
                     pFmt = InFormat( NULL, &nParentId );
                     TestPoolFmt( *pFmt, GET_POOLID_FRMFMT );
@@ -835,7 +832,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
                     {
                         // Format bereits dem Namen nach drin,
                         // Entweder ueberbuegeln oder vergessen
-                        if( nOptions & SWGRD_FORCE )
+                        if( nOptions1 & SWGRD_FORCE )
                             *pFmt2 = *pFmt;
 
                         // Registrierung umsetzen !!

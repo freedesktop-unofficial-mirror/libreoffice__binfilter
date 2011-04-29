@@ -1471,11 +1471,11 @@ namespace binfilter {
 /*N*/   BOOL bRet;
 /*N*/   BOOL bSplit = !pNewUpper->Lower();
 /*N*/   SwCntntFrm *pFrm = this;
-/*N*/   const SwFrm *pPrev = pNewUpper->Lower();
-/*N*/   if( pPrev && pPrev->IsFtnFrm() )
-/*N*/       pPrev = ((SwFtnFrm*)pPrev)->Lower();
-/*N*/   while ( pPrev && pPrev->GetNext() )
-/*N*/       pPrev = pPrev->GetNext();
+/*N*/   const SwFrm *pPrev1 = pNewUpper->Lower();
+/*N*/   if( pPrev1 && pPrev1->IsFtnFrm() )
+/*N*/       pPrev1 = ((SwFtnFrm*)pPrev1)->Lower();
+/*N*/   while ( pPrev1 && pPrev1->GetNext() )
+/*N*/       pPrev1 = pPrev1->GetNext();
 /*N*/   do
 /*N*/   {
 /*N*/       if ( bTstMove || IsInFly() || ( IsInSct() &&
@@ -1509,7 +1509,7 @@ namespace binfilter {
 /*N*/                )
 /*N*/           {
 /*N*/               bTstMove = TRUE;
-/*N*/               bRet = ((SwTxtFrm*)pFrm)->TestFormat( pPrev, nSpace, bSplit );
+/*N*/               bRet = ((SwTxtFrm*)pFrm)->TestFormat( pPrev1, nSpace, bSplit );
 /*N*/           }
 /*N*/           else
 /*?*/               bRet = pFrm->WouldFit( nSpace, bSplit );
@@ -1527,9 +1527,9 @@ namespace binfilter {
 /*N*/       if ( bRet && !bTstMove )
 /*N*/       {
 /*N*/           SwTwips nUpper;
-/*N*/           if ( pPrev )
+/*N*/           if ( pPrev1 )
 /*N*/           {
-/*N*/               nUpper = CalcUpperSpace( NULL, pPrev );
+/*N*/               nUpper = CalcUpperSpace( NULL, pPrev1 );
 /*N*/
 /*N*/                 // in balanced columned section frames we do not want the
 /*N*/                 // common border
@@ -1588,13 +1588,13 @@ namespace binfilter {
 /*N*/               //er den Absatzabstand bereits berechnet. Er braucht dann nicht
 /*N*/               //teuer kalkuliert werden.
 /*N*/               if( lcl_NotHiddenPrev( pNxt ) )
-/*N*/                   pPrev = 0;
+/*N*/                   pPrev1 = 0;
 /*N*/               else
 /*N*/               {
 /*?*/                   if( pFrm->IsTxtFrm() && ((SwTxtFrm*)pFrm)->IsHiddenNow() )
-/*?*/                       pPrev = lcl_NotHiddenPrev( pFrm );
+/*?*/                       pPrev1 = lcl_NotHiddenPrev( pFrm );
 /*?*/                   else
-/*?*/                       pPrev = pFrm;
+/*?*/                       pPrev1 = pFrm;
 /*N*/               }
 /*N*/               pFrm = (SwCntntFrm*)pNxt;
 /*N*/           }

@@ -390,13 +390,13 @@ namespace binfilter {
 /*N*/       //wiederfinden werden.
 /*?*/       for ( USHORT i = 0; i < Count(); ++i )
 /*?*/       {
-/*?*/           SwCacheObj *pObj = operator[](i);
-/*?*/           if ( !pObj )
+/*?*/           SwCacheObj *pObj1 = operator[](i);
+/*?*/           if ( !pObj1 )
 /*?*/           {   SwCacheObjArr::Remove( i, 1 );
 /*?*/               --i;
 /*?*/           }
 /*?*/           else
-/*?*/               pObj->SetCachePos( i );
+/*?*/               pObj1->SetCachePos( i );
 /*?*/       }
 /*?*/       aFreePositions.Remove( 0, aFreePositions.Count() );
 /*N*/   }

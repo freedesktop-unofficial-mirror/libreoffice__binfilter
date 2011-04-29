@@ -284,9 +284,9 @@ namespace binfilter {
 /*N*/                 SwTwips nPrtHeight = (Prt().*fnRect->fnGetHeight)();
 /*N*/                 if( nPrtHeight < 0 )
 /*N*/               {
-/*?*/                     const SwTwips nDiff = Max( (Prt().*fnRect->fnGetTop)(),
+/*?*/                     const SwTwips nDiff1 = Max( (Prt().*fnRect->fnGetTop)(),
 /*?*/                                                 -nPrtHeight );
-/*?*/                     (Prt().*fnRect->fnSubTop)( nDiff );
+/*?*/                     (Prt().*fnRect->fnSubTop)( nDiff1 );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1755,9 +1755,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/               pCnt = pCnt->FindNext();
 /*N*/               if ( pCnt )
 /*N*/               {
-/*N*/                   SwFtnFrm* pFtn = pCnt->FindFtnFrm();
-/*N*/                   if( pFtn->GetRef()->FindFtnBossFrm(
-/*N*/                       pFtn->GetAttr()->GetFtn().IsEndNote() ) != this )
+/*N*/                   SwFtnFrm* pFtn1 = pCnt->FindFtnFrm();
+/*N*/                   if( pFtn1->GetRef()->FindFtnBossFrm(
+/*N*/                       pFtn1->GetAttr()->GetFtn().IsEndNote() ) != this )
 /*N*/                       bMore = FALSE;
 /*N*/               }
 /*N*/               else
@@ -1823,13 +1823,13 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/                       pFtn = (SwFtnFrm*)pFtn->GetNext();
 /*?*/                   else
 /*?*/                   {
-/*?*/                       SwFtnBossFrm* pBoss = pFtn->FindFtnBossFrm( TRUE );
-/*?*/                       SwPageFrm* pPage = pBoss->FindPageFrm();
+/*?*/                       SwFtnBossFrm* pBoss1 = pFtn->FindFtnBossFrm( TRUE );
+/*?*/                       SwPageFrm* pPage = pBoss1->FindPageFrm();
 /*?*/                       pFtn = NULL;
-/*?*/                       lcl_NextFtnBoss( pBoss, pPage, FALSE );
-/*?*/                       if( pBoss )
+/*?*/                       lcl_NextFtnBoss( pBoss1, pPage, FALSE );
+/*?*/                       if( pBoss1 )
 /*?*/                       {
-/*?*/                           SwFtnContFrm *pCont = pBoss->FindNearestFtnCont();
+/*?*/                           SwFtnContFrm *pCont = pBoss1->FindNearestFtnCont();
 /*?*/                           if ( pCont )
 /*?*/                               pFtn = (SwFtnFrm*)pCont->Lower();
 /*?*/                       }

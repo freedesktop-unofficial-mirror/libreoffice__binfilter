@@ -810,60 +810,6 @@ namespace binfilter {
 /*N*/         SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
 /*N*/         USHORT nPgNum = pPage->GetPhyPageNum();
 
-/*
-
-        //
-        // NOTE: This code assumes that all objects have already been
-        // inserted into the drawing layout, so that the cached objects
-        // can be identified by their ordnum. Unfortunately this function
-        // is called with page n if page n+1 has been inserted. Thus
-        // not all the objects have been inserted and the ordnums cannot
-        // be used to identify the objects.
-        //
-
-        for ( USHORT i = 0; i < rObjs.Count(); ++i )  // check objects
-        {
-            SdrObject *pO = rObjs[i];
-            if ( pO->IsWriterFlyFrame() )  // a text frame?
-            {
-                SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-                if( pFly->Frm().Left() == WEIT_WECH && pFly->GetAnchor() &&
-                    !pFly->GetAnchor()->FindFooterOrHeader() )
-                {   // Only frame with default position and not in header/footer
-                    const SwContact *pC = (SwContact*)GetUserCall(pO);
-                    if( pC )
-                    {
-                        ULONG nOrdNum = pO->GetOrdNum(); // the Id
-                        SwFlyCache* pFlyC;
-                        while( nFlyIdx < nFlyCount && ( pFlyC = pImpl->
-                               GetFlyCache(nFlyIdx) )->nPageNum < nPgNum)
-                            ++nFlyIdx;
-                        if( nFlyIdx < nFlyCount &&
-                            pFlyC->nPageNum == nPgNum )
-                        {
-                            USHORT nIdx = nFlyIdx;
-                            while( nIdx < nFlyCount && ( pFlyC = pImpl->
-                                   GetFlyCache( nIdx ) )->nPageNum == nPgNum &&
-                                   pFlyC->nOrdNum != nOrdNum )
-                                ++nIdx;
-                            if( nIdx < nFlyCount && pFlyC->nPageNum == nPgNum &&
-                                pFlyC->nOrdNum == nOrdNum )
-                            {   // we get the stored information
-                                pFly->Frm().Pos().X() = pFlyC->Left() +
-                                                        pPage->Frm().Left();
-                                pFly->Frm().Pos().Y() = pFlyC->Top() +
-                                                        pPage->Frm().Top();
-                                pFly->Frm().Width( pFlyC->Width() );
-                                pFly->Frm().Height( pFlyC->Height() );
-                            }
-                        }
-                    }
-                }
-            }
-        }
- */
-
-        //
         // NOTE: Here we do not use the absolute ordnums but
         // relative ordnums for the objects on this page.
 
@@ -913,20 +859,20 @@ namespace binfilter {
 /*N*/
 /*N*/             while ( aFlyCacheSetIt != aFlyCacheSet.end() )
 /*N*/             {
-/*N*/                 const SwFlyCache* pFlyC = *aFlyCacheSetIt;
+/*N*/                 const SwFlyCache* pFlyC1 = *aFlyCacheSetIt;
 /*N*/                 SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)*aFlySetIt)->GetFlyFrm();
 /*N*/
 /*N*/                 if ( pFly->Frm().Left() == WEIT_WECH )
 /*N*/                 {
 /*N*/                     // we get the stored information
-/*N*/                     pFly->Frm().Pos().X() = pFlyC->Left() +
+/*N*/                     pFly->Frm().Pos().X() = pFlyC1->Left() +
 /*N*/                                             pPage->Frm().Left();
-/*N*/                     pFly->Frm().Pos().Y() = pFlyC->Top() +
+/*N*/                     pFly->Frm().Pos().Y() = pFlyC1->Top() +
 /*N*/                                             pPage->Frm().Top();
 /*N*/                     if ( pImpl->IsUseFlyCache() )
 /*N*/                     {
-/*N*/                         pFly->Frm().Width( pFlyC->Width() );
-/*N*/                         pFly->Frm().Height( pFlyC->Height() );
+/*N*/                         pFly->Frm().Width( pFlyC1->Width() );
+/*N*/                         pFly->Frm().Height( pFlyC1->Height() );
 /*N*/                     }
 /*N*/                 }
 /*N*/
@@ -993,8 +939,6 @@ namespace binfilter {
 /*N*/     }
 /*N*/     return bRet;
 /*N*/ }
-
-// -----------------------------------------------------------------------------
 
 /*N*/ SwLayCacheIoImpl::SwLayCacheIoImpl( SvStream& rStrm, BOOL bWrtMd ) :
 /*N*/   pStream( &rStrm ),

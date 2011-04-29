@@ -121,10 +121,10 @@ namespace binfilter {
 
  void SwSwgReader::InFlyFrames( const SwNodeIndex* pNdIdx )
  {
-    USHORT nFrm;
-    r >> nFrm;
+    USHORT nFrm1;
+    r >> nFrm1;
     r.next();
-    for( USHORT i = 0; i < nFrm && r.good(); i++)
+    for( USHORT i = 0; i < nFrm1 && r.good(); i++)
         InFlyFrame( pNdIdx );
 
  }
@@ -455,37 +455,37 @@ namespace binfilter {
 
  BOOL SwSwgReader::LoadDocInfo( SfxDocumentInfo& rInfo )
  {
-    FileHeader aFile;
+    FileHeader aFile1;
     long pos0 = r.tell();
 
-    memset( &aFile, 0, sizeof aFile );
-    r.get( &aFile, 4 );
+    memset( &aFile1, 0, sizeof aFile1 );
+    r.get( &aFile1, 4 );
     // Die Signatur sollte schon stimmen!!!
     // Aber bitte nur die ersten drei Zeichen, um nicht abwaertskompatible
     // Versionen erkennen zu koennen.
-    if( memcmp( ( const void*) &aFile.nSignature, SWG_SIGNATURE, 3 ) )
+    if( memcmp( ( const void*) &aFile1.nSignature, SWG_SIGNATURE, 3 ) )
         return FALSE;
     r.long4();
-    r >> aFile.nVersion
-      >> aFile.nFlags
-      >> aFile.nFree1
-      >> aFile.nDocInfo;
-    r.get( aFile.cPasswd, 16 );
+    r >> aFile1.nVersion
+      >> aFile1.nFlags
+      >> aFile1.nFree1
+      >> aFile1.nDocInfo;
+    r.get( aFile1.cPasswd, 16 );
     r.long3();
-    rInfo.SetPortableGraphics( BOOL( ( aFile.nFlags & SWGF_PORT_GRAF ) != 0 ) );
+    rInfo.SetPortableGraphics( BOOL( ( aFile1.nFlags & SWGF_PORT_GRAF ) != 0 ) );
 
     // Passwort in Stream eintragen
-    if( aFile.nFlags & SWGF_HAS_PASSWD )
-        r.copypasswd( aFile.cPasswd );
+    if( aFile1.nFlags & SWGF_HAS_PASSWD )
+        r.copypasswd( aFile1.cPasswd );
     // Die statische DocInfo lesen
     // Hot fix fuer Bug #4955 (Textbausteine mit geloeschten Bereichen)
-    if( !aFile.nDocInfo ) aFile.nDocInfo = 0x5B;
-    if( aFile.nVersion >= SWG_VER_FMTNAME )
+    if( !aFile1.nDocInfo ) aFile1.nDocInfo = 0x5B;
+    if( aFile1.nVersion >= SWG_VER_FMTNAME )
     {
-        r.seek( aFile.nDocInfo - 4 );
+        r.seek( aFile1.nDocInfo - 4 );
         InStaticDocInfo( rInfo );
     }
-    if( aFile.nVersion >= SWG_VER_DOCINFO )
+    if( aFile1.nVersion >= SWG_VER_DOCINFO )
     {
         r.seek( pos0 + 32 /* sizeof( FileHeader ) in Datei */ );
         InDynamicDocInfo( rInfo );

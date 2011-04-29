@@ -231,8 +231,8 @@ class SwFlyCache : public SwRect // position and size
 public:
     ULONG nOrdNum;      // Id to recognize text frames
     USHORT nPageNum;    // page number
-    SwFlyCache( USHORT nP, ULONG nO, long nX, long nY, long nW, long nH ) :
-        SwRect( nX, nY, nW, nH ), nOrdNum( nO ), nPageNum( nP ){}
+    SwFlyCache( USHORT nP, ULONG nO, long nX1, long nY1, long nW, long nH ) :
+        SwRect( nX1, nY1, nW, nH ), nOrdNum( nO ), nPageNum( nP ){}
 };
 
 } //namespace binfilter

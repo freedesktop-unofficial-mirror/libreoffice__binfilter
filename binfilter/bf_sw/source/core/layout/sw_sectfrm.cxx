@@ -1376,17 +1376,17 @@ namespace binfilter {
 /*N*/         {
 /*?*/             // In existent section columns we're looking for the last not empty
 /*?*/             // column.
-/*?*/             SwLayoutFrm *pTmp = pLayLeaf;
-/*?*/           while( pLayLeaf->GetUpper()->GetNext() )
+/*?*/             SwLayoutFrm *pTmp1 = pLayLeaf;
+/*?*/             while( pLayLeaf->GetUpper()->GetNext() )
 /*?*/             {
 /*?*/               pLayLeaf = (SwLayoutFrm*)((SwLayoutFrm*)pLayLeaf->GetUpper()->GetNext())->Lower();
 /*?*/                 if( pLayLeaf->Lower() )
-/*?*/                     pTmp = pLayLeaf;
+/*?*/                     pTmp1 = pLayLeaf;
 /*?*/             }
 /*?*/             // If we skipped an empty column, we've to set the jump-flag
-/*?*/             if( pLayLeaf != pTmp )
+/*?*/             if( pLayLeaf != pTmp1 )
 /*?*/             {
-/*?*/                 pLayLeaf = pTmp;
+/*?*/                 pLayLeaf = pTmp1;
 /*?*/                 SwFlowFrm::SetMoveBwdJump( TRUE );
 /*?*/             }
 /*N*/       }

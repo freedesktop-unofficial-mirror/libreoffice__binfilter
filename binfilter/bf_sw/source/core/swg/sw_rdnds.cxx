@@ -386,13 +386,13 @@ namespace binfilter {
 
     BYTE cFlags = 0, cNumLevel = NO_NUMBERING;
     USHORT nNumRule = IDX_NO_VALUE;
-    USHORT nColl     = 0,
+    USHORT nColl1     = 0,
            nAutoFrm  = IDX_NO_VALUE,
            nAutoChar = IDX_NO_VALUE,
            nAutoPara = IDX_NO_VALUE;
 
     r >> cFlags;
-    if( cFlags & 0x01 ) r >> nColl;
+    if( cFlags & 0x01 ) r >> nColl1;
     if( cFlags & 0x02 ) r >> nAutoFrm;
     if( cFlags & 0x04 ) r >> nAutoChar;
     if( cFlags & 0x08 ) r >> nAutoPara;
@@ -401,8 +401,8 @@ namespace binfilter {
     // Werden nur Seitenvorlagen eingelesen, muss die Collection
     // immer 0 sein, da andere Coll-Idxe immer falsch sind
     if( ( nOptions != SWGRD_NORMAL ) && !( nOptions & SWGRD_PARAFMTS ) )
-        nColl = 0;
-    SwTxtFmtColl* pColl = (SwTxtFmtColl*) FindFmt( nColl | IDX_COLLECTION, 0 );
+        nColl1 = 0;
+    SwTxtFmtColl* pColl = (SwTxtFmtColl*) FindFmt( nColl1 | IDX_COLLECTION, 0 );
     if( !pColl )
         pColl = (SwTxtFmtColl*) FindFmt( IDX_COLLECTION + 0, 0 );
 

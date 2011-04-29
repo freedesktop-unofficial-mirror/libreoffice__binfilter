@@ -836,9 +836,9 @@ void SwSetExpField::SetPar2(const String& rStr)
     Beschreibung: Eingabefeld
  --------------------------------------------------------------------*/
 
-/*N*/ SwInputField::SwInputField(SwInputFieldType* pType, const String& rContent,
+/*N*/ SwInputField::SwInputField(SwInputFieldType* pType1, const String& rContent,
 /*N*/                          const String& rPrompt, USHORT nSub, ULONG nFmt) :
-/*N*/   SwField(pType, nFmt), nSubType(nSub), aContent(rContent), aPText(rPrompt)
+/*N*/   SwField(pType1, nFmt), nSubType(nSub), aContent(rContent), aPText(rPrompt)
 /*N*/ {
 /*N*/ }
 
