@@ -581,10 +581,10 @@ inline const SwTxtFrm *SwTxtFrm::GetFrmAtPos( const SwPosition &rPos) const
 }
 
 inline void SwTxtFrm::AdjustFollow( SwTxtFormatter &rLine,
-    const xub_StrLen nOffset, const xub_StrLen nStrEnd, const sal_uInt8 nMode )
+    const xub_StrLen nOffset3, const xub_StrLen nStrEnd, const sal_uInt8 nMode )
 {
     if ( HasFollow() )
-        _AdjustFollow( rLine, nOffset, nStrEnd, nMode );
+        _AdjustFollow( rLine, nOffset3, nStrEnd, nMode );
 }
 
 inline void SwTxtFrm::SetOfst( const xub_StrLen nNewOfst )

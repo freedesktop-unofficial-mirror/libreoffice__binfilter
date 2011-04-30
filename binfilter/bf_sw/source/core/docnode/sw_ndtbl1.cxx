@@ -376,13 +376,13 @@ extern void ClearFEShellTabCols();
 /*N*/                   if( !bDistanceSet )     // bei 1. Durchlauf erstmal setzen
 /*N*/                   {
 /*N*/                       bDistanceSet = TRUE;
-/*N*/                       for( int i = 0; i < 4; ++i, ++pBrd )
+/*N*/                       for( int ii = 0; ii < 4; ++ii, ++pBrd )
 /*N*/                           aSetBox.SetDistance( rBox.GetDistance( *pBrd ),
 /*N*/                                               *pBrd );
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
-/*?*/                       for( int i = 0; i < 4; ++i, ++pBrd )
+/*?*/                       for( int ii = 0; ii < 4; ++ii, ++pBrd )
 /*?*/                           if( aSetBox.GetDistance( *pBrd ) !=
 /*?*/                               rBox.GetDistance( *pBrd ) )
 /*?*/                           {

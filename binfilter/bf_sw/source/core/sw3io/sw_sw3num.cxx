@@ -363,15 +363,15 @@ namespace binfilter {
 /*?*/
 /*?*/           if( rFmt.GetBrush() )
 /*?*/           {
-/*?*/               USHORT nVersion = rFmt.GetBrush()->GetVersion( (USHORT)pStrm->GetVersion() );
-/*?*/               *pStrm << nVersion;
-/*?*/               rFmt.GetBrush()->Store( *pStrm, nVersion );
+/*?*/               USHORT nVersion2 = rFmt.GetBrush()->GetVersion( (USHORT)pStrm->GetVersion() );
+/*?*/               *pStrm << nVersion2;
+/*?*/               rFmt.GetBrush()->Store( *pStrm, nVersion2 );
 /*?*/           }
 /*?*/           if( rFmt.GetGraphicOrientation() )
 /*?*/           {
-/*?*/               USHORT nVersion = rFmt.GetGraphicOrientation()->GetVersion( (USHORT)pStrm->GetVersion() );
-/*?*/               *pStrm << nVersion;
-/*?*/               rFmt.GetGraphicOrientation()->Store( *pStrm, nVersion );
+/*?*/               USHORT nVersion3 = rFmt.GetGraphicOrientation()->GetVersion( (USHORT)pStrm->GetVersion() );
+/*?*/               *pStrm << nVersion3;
+/*?*/               rFmt.GetGraphicOrientation()->Store( *pStrm, nVersion3 );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -506,9 +506,9 @@ namespace binfilter {
 /*N*/
 /*N*/       const SwTxtFmtColls *pColls = pDoc->GetTxtFmtColls();
 /*N*/       USHORT nArrLen = pColls->Count();
-/*N*/       for( USHORT i=0; i<nArrLen; i++ )
+/*N*/       for( USHORT ii=0; ii<nArrLen; ii++ )
 /*N*/       {
-/*N*/           SwTxtFmtColl* pColl = (*pColls)[i];
+/*N*/           SwTxtFmtColl* pColl = (*pColls)[ii];
 /*N*/           BYTE nLevel = pColl->GetOutlineLevel();
 /*N*/           if( NO_NUMBERING != nLevel )
 /*N*/           {

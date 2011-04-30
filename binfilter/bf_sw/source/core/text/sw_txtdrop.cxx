@@ -68,14 +68,14 @@ using namespace ::com::sun::star;
  *************************************************************************/
 
 /*N*/ SwDropPortion::SwDropPortion( const MSHORT nLineCnt,
-/*N*/                               const KSHORT nDropHeight,
-/*N*/                               const KSHORT nDropDescent,
-/*N*/                               const KSHORT nDistance )
+/*N*/                               const KSHORT nDropHeight1,
+/*N*/                               const KSHORT nDropDescent1,
+/*N*/                               const KSHORT nDistance1 )
 /*N*/   : pPart( 0 ),
 /*N*/     nLines( nLineCnt ),
-/*N*/   nDropHeight(nDropHeight),
-/*N*/   nDropDescent(nDropDescent),
-/*N*/   nDistance(nDistance),
+/*N*/   nDropHeight(nDropHeight1),
+/*N*/   nDropDescent(nDropDescent1),
+/*N*/   nDistance(nDistance1),
 /*N*/   nX(0),
 /*N*/   nFix(0)
 /*N*/ {
@@ -318,16 +318,16 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/         // find next attribute change / script change
-/*N*/         const xub_StrLen nIdx = nNextChg;
+/*N*/         const xub_StrLen nIdx2 = nNextChg;
 /*N*/         xub_StrLen nNextAttr = Min( GetNextAttr(), rInf.GetTxt().Len() );
-/*N*/         nNextChg = pScriptInfo->NextScriptChg( nIdx );
+/*N*/         nNextChg = pScriptInfo->NextScriptChg( nIdx2 );
 /*N*/         if( nNextChg > nNextAttr )
 /*N*/             nNextChg = nNextAttr;
 /*N*/         if ( nNextChg > nPorLen )
 /*N*/             nNextChg = nPorLen;
 /*N*/
 /*N*/         SwDropPortionPart* pPart =
-/*N*/                 new SwDropPortionPart( *pTmpFnt, nNextChg - nIdx );
+/*N*/                 new SwDropPortionPart( *pTmpFnt, nNextChg - nIdx2 );
 /*N*/
 /*N*/         if ( ! pCurrPart )
 /*N*/             pDropPor->SetPart( pPart );

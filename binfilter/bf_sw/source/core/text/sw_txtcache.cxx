@@ -92,8 +92,8 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwTxtLineAccess::SwTxtLineAccess( const SwTxtFrm *pOwner ) :
-/*N*/   SwCacheAccess( *SwTxtFrm::GetTxtCache(), pOwner, pOwner->GetCacheIdx() )
+/*N*/ SwTxtLineAccess::SwTxtLineAccess( const SwTxtFrm *pOwner1 ) :
+/*N*/   SwCacheAccess( *SwTxtFrm::GetTxtCache(), pOwner1, pOwner1->GetCacheIdx() )
 /*N*/ {
 /*N*/ }
 

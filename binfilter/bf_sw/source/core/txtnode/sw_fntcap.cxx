@@ -275,23 +275,13 @@ class SwDoDrawStretchCapital : public SwDoDrawCapital
     const USHORT nOrgWidth;
 public:
 
-    SwDoDrawStretchCapital( SwDrawTextInfo &rInfo, const USHORT nCapWidth )
+    SwDoDrawStretchCapital( SwDrawTextInfo &rInfo, const USHORT nCapWidth2 )
             : SwDoDrawCapital( rInfo ),
-              nCapWidth( nCapWidth ),
+              nCapWidth( nCapWidth2 ),
               nOrgWidth( rInfo.GetWidth() ),
               nStrLen( rInfo.GetLen() )
         { }
 };
-
-/*************************************************************************
- *                    SwDoDrawStretchCapital
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwSubFont::DrawStretchCapital()
- *************************************************************************/
-
 
 /*************************************************************************
  *                  SwSubFont::DoOnCapitals() const
@@ -344,7 +334,7 @@ public:
 /*N*/                           || aFont.GetStrikeout() != STRIKEOUT_NONE;
 /*N*/   const BOOL bWordWise = bUnderStriked && aFont.IsWordLineMode() &&
 /*N*/                          rDo.GetInf().GetDrawSpace();
-/*N*/   const short nKern = rDo.GetInf().GetKern();
+/*N*/   const short nKern2 = rDo.GetInf().GetKern();
 /*N*/
 /*N*/   if ( bUnderStriked )
 /*N*/   {
@@ -432,8 +422,8 @@ public:
 /*N*/           aPartSize = pSmallFont->GetTextSize( rDo.GetInf() );
 /*N*/           nKana += rDo.GetInf().GetKanaDiff();
 /*N*/           rDo.GetInf().SetOut( *pOldOut );
-/*N*/           if( nKern && nPos < nMaxPos )
-/*?*/               aPartSize.Width() += nKern;
+/*N*/           if( nKern2 && nPos < nMaxPos )
+/*?*/               aPartSize.Width() += nKern2;
 /*N*/           rDo.Do();
 /*N*/           nOldPos = nPos;
 /*N*/       }
@@ -499,8 +489,8 @@ public:
 /*?*/                       for( xub_StrLen nI = nOldPos; nI < nPos; ++nI )
 /*?*/                           if( CH_BLANK == rOldText.GetChar( nI ) )
 /*?*/                           aPartSize.Width() += rDo.GetInf().GetSpace();
-/*N*/                   if( nKern && nPos < nMaxPos )
-/*?*/                       aPartSize.Width() += nKern;
+/*N*/                   if( nKern2 && nPos < nMaxPos )
+/*?*/                       aPartSize.Width() += nKern2;
 /*N*/                   rDo.Do();
 /*N*/                   nOldPos = nTmp;
 /*N*/               }

@@ -133,14 +133,14 @@ namespace binfilter {
  * (Tabs und Flys). Dabei werden die Glues gezaehlt und ExpandBlock gerufen.
  *************************************************************************/
 
-/*N*/ void SwTxtAdjuster::CalcNewBlock( SwLineLayout *pCurr,
+/*N*/ void SwTxtAdjuster::CalcNewBlock( SwLineLayout *pCurr1,
 /*N*/                                 const SwLinePortion *pStopAt, SwTwips nReal )
 /*N*/ {
 /*N*/   OSL_ENSURE( GetInfo().IsMulti() || SVX_ADJUST_BLOCK == GetAdjust(),
 /*N*/           "CalcNewBlock: Why?" );
-/*N*/   OSL_ENSURE( pCurr->Height(), "SwTxtAdjuster::CalcBlockAdjust: missing CalcLine()" );
+/*N*/   OSL_ENSURE( pCurr1->Height(), "SwTxtAdjuster::CalcBlockAdjust: missing CalcLine()" );
 /*N*/
-/*N*/   pCurr->InitSpaceAdd();
+/*N*/   pCurr1->InitSpaceAdd();
 /*N*/   MSHORT nNull = 0;
 /*N*/   xub_StrLen nGluePortion = 0;
 /*N*/   xub_StrLen nCharCnt = 0;
@@ -148,15 +148,15 @@ namespace binfilter {
 /*N*/
 /*N*/   // Nicht vergessen:
 /*N*/   // CalcRightMargin() setzt pCurr->Width() auf die Zeilenbreite !
-/*N*/   CalcRightMargin( pCurr, nReal );
+/*N*/   CalcRightMargin( pCurr1, nReal );
 /*N*/
-/*N*/   SwLinePortion *pPos = pCurr->GetPortion();
+/*N*/   SwLinePortion *pPos = pCurr1->GetPortion();
 /*N*/
 /*N*/   while( pPos )
 /*N*/   {
 /*N*/       if ( pPos->IsBreakPortion() && !IsLastBlock() )
 /*N*/       {
-/*?*/           pCurr->FinishSpaceAdd();
+/*?*/           pCurr1->FinishSpaceAdd();
 /*?*/           break;
 /*N*/       }
 /*N*/       if ( pPos->InTxtGrp() )
@@ -168,17 +168,17 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( pPos->InFixMargGrp() )
 /*N*/           {
-/*N*/               if ( nSpaceIdx == pCurr->GetSpaceAdd().Count() )
-/*N*/                   pCurr->GetSpaceAdd().Insert( nNull, nSpaceIdx );
+/*N*/               if ( nSpaceIdx == pCurr1->GetSpaceAdd().Count() )
+/*N*/                   pCurr1->GetSpaceAdd().Insert( nNull, nSpaceIdx );
 /*N*/               if( nGluePortion )
 /*N*/               {
-/*N*/                   ( pCurr->GetSpaceAdd() )[nSpaceIdx] =
+/*N*/                   ( pCurr1->GetSpaceAdd() )[nSpaceIdx] =
 /*N*/                        ( (SwGluePortion*)pPos )->GetPrtGlue() / nGluePortion;
 /*N*/                   pPos->Width( ( (SwGluePortion*)pPos )->GetFixWidth() );
 /*N*/               }
 /*N*/               else if ( IsOneBlock() && nCharCnt > 1 )
 /*N*/               {
-/*?*/                   ( pCurr->GetSpaceAdd() )[nSpaceIdx] =
+/*?*/                   ( pCurr1->GetSpaceAdd() )[nSpaceIdx] =
 /*?*/                       - ( (SwGluePortion*)pPos )->GetPrtGlue() / (nCharCnt-1);
 /*?*/                   pPos->Width( ( (SwGluePortion*)pPos )->GetFixWidth() );
 /*N*/               }
@@ -192,10 +192,10 @@ namespace binfilter {
 /*N*/       GetInfo().SetIdx( GetInfo().GetIdx() + pPos->GetLen() );
 /*N*/       if ( pPos == pStopAt )
 /*N*/       {
-/*?*/           if ( nSpaceIdx == pCurr->GetSpaceAdd().Count() )
-/*?*/               pCurr->GetSpaceAdd().Insert( nNull, nSpaceIdx );
+/*?*/           if ( nSpaceIdx == pCurr1->GetSpaceAdd().Count() )
+/*?*/               pCurr1->GetSpaceAdd().Insert( nNull, nSpaceIdx );
 /*?*/           else
-/*?*/               pCurr->GetSpaceAdd()[nSpaceIdx] = 0;
+/*?*/               pCurr1->GetSpaceAdd()[nSpaceIdx] = 0;
 /*?*/           break;
 /*N*/       }
 /*N*/       pPos = pPos->GetPortion();
@@ -211,15 +211,15 @@ namespace binfilter {
  *                    SwTxtAdjuster::CalcRightMargin()
  *************************************************************************/
 
-/*N*/ SwMarginPortion *SwTxtAdjuster::CalcRightMargin( SwLineLayout *pCurr,
+/*N*/ SwMarginPortion *SwTxtAdjuster::CalcRightMargin( SwLineLayout *pCurr2,
 /*N*/   SwTwips nReal )
 /*N*/ {
 /*N*/   long nRealWidth;
 /*N*/     const USHORT nRealHeight = GetLineHeight();
-/*N*/     const USHORT nLineHeight = pCurr->Height();
+/*N*/     const USHORT nLineHeight = pCurr2->Height();
 /*N*/
-/*N*/   KSHORT nPrtWidth = pCurr->PrtWidth();
-/*N*/   SwLinePortion *pLast = pCurr->FindLastPortion();
+/*N*/   KSHORT nPrtWidth = pCurr2->PrtWidth();
+/*N*/   SwLinePortion *pLast = pCurr2->FindLastPortion();
 /*N*/
 /*N*/   if( GetInfo().IsMulti() )
 /*N*/       nRealWidth = nReal;
@@ -261,7 +261,7 @@ namespace binfilter {
 /*N*/   // IsBlocksatz() sind der Meinung, sie haetten eine mit Zeichen
 /*N*/   // gefuellte Zeile.
 /*N*/
-/*N*/   pCurr->PrtWidth( KSHORT( nRealWidth ) );
+/*N*/   pCurr2->PrtWidth( KSHORT( nRealWidth ) );
 /*N*/   return pRight;
 /*N*/ }
 
@@ -269,17 +269,17 @@ namespace binfilter {
  *                    SwTxtAdjuster::CalcFlyAdjust()
  *************************************************************************/
 
-/*N*/ void SwTxtAdjuster::CalcFlyAdjust( SwLineLayout *pCurr )
+/*N*/ void SwTxtAdjuster::CalcFlyAdjust( SwLineLayout *pCurr3 )
 /*N*/ {
 /*N*/   // 1) Es wird ein linker Rand eingefuegt:
-/*N*/   SwMarginPortion *pLeft = pCurr->CalcLeftMargin();
+/*N*/   SwMarginPortion *pLeft = pCurr3->CalcLeftMargin();
 /*N*/   SwGluePortion *pGlue = pLeft;       // die letzte GluePortion
 /*N*/
 /*N*/
 /*N*/   // 2) Es wird ein rechter Rand angehaengt:
 /*N*/   // CalcRightMargin berechnet auch eventuelle Ueberlappungen mit
 /*N*/   // FlyFrms.
-/*N*/   CalcRightMargin( pCurr );
+/*N*/   CalcRightMargin( pCurr3 );
 /*N*/
 /*N*/   SwLinePortion *pPos = pLeft->GetPortion();
 /*N*/   xub_StrLen nLen = 0;
@@ -321,7 +321,7 @@ namespace binfilter {
 /*N*/                         {
 /*N*/                             // Wenn es nur einen linken und rechten Rand gibt,
 /*N*/                             // dann teilen sich die Raender den Glue.
-/*N*/                             if( nLen + pPos->GetLen() >= pCurr->GetLen() )
+/*N*/                             if( nLen + pPos->GetLen() >= pCurr3->GetLen() )
 /*N*/                                 ((SwGluePortion*)pPos)->MoveHalfGlue( pGlue );
 /*N*/                             else
 /*?*/                                 ((SwGluePortion*)pPos)->MoveAllGlue( pGlue );
@@ -347,18 +347,18 @@ namespace binfilter {
 /*N*/
 /*N*/      if( ! bTabCompat && ! bMultiTab && SVX_ADJUST_RIGHT == GetAdjust() )
 /*N*/         // portions are moved to the right if possible
-/*N*/         pLeft->AdjustRight( pCurr );
+/*N*/         pLeft->AdjustRight( pCurr3 );
 /*N*/ }
 
 /*************************************************************************
  *                  SwTxtAdjuster::CalcAdjLine()
  *************************************************************************/
 
-/*N*/ void SwTxtAdjuster::CalcAdjLine( SwLineLayout *pCurr )
+/*N*/ void SwTxtAdjuster::CalcAdjLine( SwLineLayout *pCurr4 )
 /*N*/ {
-/*N*/   OSL_ENSURE( pCurr->IsFormatAdj(), "CalcAdjLine: Why?" );
+/*N*/   OSL_ENSURE( pCurr4->IsFormatAdj(), "CalcAdjLine: Why?" );
 /*N*/
-/*N*/   pCurr->SetFormatAdj(sal_False);
+/*N*/   pCurr4->SetFormatAdj(sal_False);
 /*N*/
 /*N*/     SwParaPortion* pPara = GetInfo().GetParaPortion();
 /*N*/
@@ -367,20 +367,20 @@ namespace binfilter {
 /*N*/       case SVX_ADJUST_RIGHT:
 /*N*/       case SVX_ADJUST_CENTER:
 /*N*/       {
-/*N*/           CalcFlyAdjust( pCurr );
+/*N*/           CalcFlyAdjust( pCurr4 );
 /*N*/             pPara->GetRepaint()->SetOfst( 0 );
 /*N*/           break;
 /*N*/       }
 /*N*/       case SVX_ADJUST_BLOCK:
 /*N*/       {
 /*N*/           // 8311: In Zeilen mit LineBreaks gibt es keinen Blocksatz!
-/*N*/           if( pCurr->GetLen() &&
-/*N*/               CH_BREAK == GetInfo().GetChar( nStart + pCurr->GetLen() - 1 ) &&
+/*N*/           if( pCurr4->GetLen() &&
+/*N*/               CH_BREAK == GetInfo().GetChar( nStart + pCurr4->GetLen() - 1 ) &&
 /*N*/               !IsLastBlock() )
 /*N*/           {
 /*N*/               if( IsLastCenter() )
 /*N*/               {
-/*?*/                   CalcFlyAdjust( pCurr );
+/*?*/                   CalcFlyAdjust( pCurr4 );
 /*?*/                     pPara->GetRepaint()->SetOfst( 0 );
 /*?*/                   break;
 /*N*/               }
@@ -391,21 +391,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       default : return;
 /*N*/   }
-/*N*/
-/*N*/ #if OSL_DEBUG_LEVEL > 1
- /*
-     if( OPTDBG( *pInf ) )
-     {
-         pCurr->DebugPortions( aDbstream, pInf->GetTxt(), nStart );
-         if( GetHints() )
-         {
-             const SwpHints &rHt = *GetHints();
-             aDbstream << rHt;
-             SwAttrIter::Dump( aDbstream );
-         }
-     }
-  */
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************

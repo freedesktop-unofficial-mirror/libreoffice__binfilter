@@ -757,20 +757,20 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 /*N*/ SwLinePortion* SwTxtFormatter::MakeRestPortion( const SwLineLayout* pLine,
-/*N*/   xub_StrLen nPos )
+/*N*/   xub_StrLen nPos1 )
 /*N*/ {
-/*N*/   if( !nPos )
+/*N*/   if( !nPos1 )
 /*N*/       return NULL;
-/*N*/   xub_StrLen nMultiPos = nPos - pLine->GetLen();
+/*N*/   xub_StrLen nMultiPos = nPos1 - pLine->GetLen();
 /*N*/   const SwMultiPortion *pTmpMulti = NULL;
-/*N*/   const SwMultiPortion *pMulti = NULL;
+/*N*/   const SwMultiPortion *pMulti1 = NULL;
 /*N*/   const SwLinePortion* pPor = pLine->GetFirstPortion();
 /*N*/   SwFldPortion *pFld = NULL;
 /*N*/   while( pPor )
 /*N*/   {
 /*N*/       if( pPor->GetLen() )
 /*N*/       {
-/*N*/           if( !pMulti )
+/*N*/           if( !pMulti1 )
 /*N*/           {
 /*N*/               nMultiPos += pPor->GetLen();
 /*N*/               pTmpMulti = NULL;
@@ -778,17 +778,17 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       }
 /*N*/       if( pPor->InFldGrp() )
 /*N*/       {
-/*?*/           if( !pMulti )
+/*?*/           if( !pMulti1 )
 /*?*/               pTmpMulti = NULL;
 /*?*/           pFld = (SwFldPortion*)pPor;
 /*N*/       }
 /*N*/       else if( pPor->IsMultiPortion() )
 /*N*/       {
 /*?*/ #ifdef BIDI
-/*?*/             OSL_ENSURE( !pMulti || pMulti->IsBidi(),
+/*?*/             OSL_ENSURE( !pMulti1 || pMulti1->IsBidi(),
 /*?*/                     "Nested multiportions are forbidden." );
 /*?*/ #else
-/*?*/           OSL_ENSURE( !pMulti, "Nested multiportions are forbidden." );
+/*?*/           OSL_ENSURE( !pMulti1, "Nested multiportions are forbidden." );
 /*?*/ #endif
 /*?*/
 /*?*/           pFld = NULL;
@@ -808,7 +808,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   SwLinePortion *pRest = NULL;
 /*N*/   if( pFld )
 /*N*/   {
-/*?*/       const SwTxtAttr *pHint = GetAttr( nPos - 1 );
+/*?*/       const SwTxtAttr *pHint = GetAttr( nPos1 - 1 );
 /*?*/       if( pHint && pHint->Which() == RES_TXTATR_FIELD )
 /*?*/       {
 /*?*/           pRest = NewFldPortion( GetInfo(), pHint );
@@ -821,7 +821,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/           }
 /*?*/       }
 /*N*/   }
-/*N*/   if( !pMulti )
+/*N*/   if( !pMulti1 )
 /*N*/       return pRest;
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/   return pRest;

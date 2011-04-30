@@ -1024,17 +1024,17 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/         if( nIdx < nLen )
 /*N*/       {
-/*N*/           xub_StrLen nChg;
+/*N*/           xub_StrLen nChg1;
 /*N*/           if( ++nCompIdx < nCompCount )
 /*N*/           {
-/*N*/                 nChg = GetCompStart( nCompIdx );
-/*N*/               if( nChg > nLen )
-/*N*/                   nChg = nLen;
+/*N*/                 nChg1 = GetCompStart( nCompIdx );
+/*N*/               if( nChg1 > nLen )
+/*N*/                   nChg1 = nLen;
 /*N*/                 nCompLen = GetCompLen( nCompIdx );
 /*N*/           }
 /*N*/           else
-/*N*/               nChg = nLen;
-/*N*/           while( nIdx < nChg )
+/*N*/               nChg1 = nLen;
+/*N*/           while( nIdx < nChg1 )
 /*N*/           {
 /*N*/               nLast = pKernArray[ nI ];
 /*N*/               pKernArray[ nI++ ] -= nSub;

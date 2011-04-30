@@ -64,8 +64,8 @@ public:
 class SwFtnNumPortion : public SwNumberPortion
 {
 public:
-    inline SwFtnNumPortion( const XubString &rExpand, SwFont *pFnt )
-         : SwNumberPortion( rExpand, pFnt, sal_True, sal_False, 0 )
+    inline SwFtnNumPortion( const XubString &rExpand, SwFont *pFnt1 )
+         : SwNumberPortion( rExpand, pFnt1, sal_True, sal_False, 0 )
          { SetWhichPor( POR_FTNNUM ); }
     sal_Bool DiffFont( SwFont* pFont );
     OUTPUT_OPERATOR

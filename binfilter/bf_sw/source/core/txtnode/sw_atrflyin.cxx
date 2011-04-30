@@ -64,8 +64,8 @@ int SwFmtFlyCnt::operator==( const SfxPoolItem& /*rAttr*/ ) const
 /*N*/   return new SwFmtFlyCnt( pFmt );
 /*N*/ }
 
-/*N*/ SwTxtFlyCnt::SwTxtFlyCnt( const SwFmtFlyCnt& rAttr, xub_StrLen nStart )
-/*N*/   : SwTxtAttr( rAttr, nStart )
+/*N*/ SwTxtFlyCnt::SwTxtFlyCnt( const SwFmtFlyCnt& rAttr, xub_StrLen nStart2 )
+/*N*/   : SwTxtAttr( rAttr, nStart2 )
 /*N*/ {
 /*N*/   ((SwFmtFlyCnt&)rAttr).pTxtAttr = this;
 /*N*/ }

@@ -97,8 +97,8 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 |*
 |*************************************************************************/
 
-/*N*/ SwFntObj::SwFntObj( const SwSubFont &rFont, const void *pOwner, ViewShell *pSh ) :
-/*N*/   SwCacheObj( (void*)pOwner ),
+/*N*/ SwFntObj::SwFntObj( const SwSubFont &rFont, const void *pOwner2, ViewShell *pSh ) :
+/*N*/   SwCacheObj( (void*)pOwner2 ),
 /*N*/   aFont( rFont ),
 /*N*/   pScrFont( NULL ),
 /*N*/   pPrtFont( &aFont ),
@@ -486,7 +486,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 |*************************************************************************/
 
 /*N*/ SwFntAccess::SwFntAccess( const void* &rMagic,
-/*N*/               USHORT &rIndex, const void *pOwner, ViewShell *pSh,
+/*N*/               USHORT &rIndex, const void *pOwner3, ViewShell *pSh,
 /*N*/               BOOL bCheck ) :
 /*N*/   SwCacheAccess( *pFntCache, rMagic, rIndex ),
 /*N*/   pShell( pSh )
@@ -525,7 +525,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/           if ( ( pFntObj->GetZoom( ) == nZoom ) &&
 /*N*/                ( pFntObj->pPrinter == pOut ) &&
 /*N*/                  pFntObj->GetPropWidth() ==
-/*N*/                       ((SwSubFont*)pOwner)->GetPropWidth() )
+/*N*/                       ((SwSubFont*)pOwner3)->GetPropWidth() )
 /*N*/               return; // Die Ueberpruefung ergab: Drucker+Zoom okay.
 /*N*/           pFntObj->Unlock( ); // Vergiss dies Objekt, es wurde leider
 /*N*/           pObj = NULL;        // eine Drucker/Zoomaenderung festgestellt.
@@ -534,10 +534,10 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/         // Search by font comparison, quite expensive!
 /*N*/         // Look for same font and same printer
 /*N*/         pFntObj = pFntCache->First();
-/*N*/       while ( pFntObj && !( pFntObj->aFont == *(Font *)pOwner &&
+/*N*/       while ( pFntObj && !( pFntObj->aFont == *(Font *)pOwner3 &&
 /*N*/                               pFntObj->GetZoom() == nZoom &&
 /*N*/                               pFntObj->GetPropWidth() ==
-/*N*/                               ((SwSubFont*)pOwner)->GetPropWidth() &&
+/*N*/                               ((SwSubFont*)pOwner3)->GetPropWidth() &&
 /*N*/                               ( !pFntObj->pPrinter || pFntObj->pPrinter == pOut ) ) )
 /*N*/           pFntObj = pFntCache->Next( pFntObj );
 /*N*/
@@ -546,10 +546,10 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/           // Wir haben zwar einen ohne Drucker gefunden, mal sehen, ob es
 /*N*/           // auch noch einen mit identischem Drucker gibt.
 /*N*/           SwFntObj *pTmpObj = pFntObj;
-/*N*/           while( pTmpObj && !( pTmpObj->aFont == *(Font *)pOwner &&
+/*N*/           while( pTmpObj && !( pTmpObj->aFont == *(Font *)pOwner3 &&
 /*N*/                  pTmpObj->GetZoom()==nZoom && pTmpObj->pPrinter==pOut &&
 /*N*/                  pTmpObj->GetPropWidth() ==
-/*N*/                       ((SwSubFont*)pOwner)->GetPropWidth() ) )
+/*N*/                       ((SwSubFont*)pOwner3)->GetPropWidth() ) )
 /*N*/               pTmpObj = pFntCache->Next( pTmpObj );
 /*N*/           if( pTmpObj )
 /*N*/               pFntObj = pTmpObj;
@@ -559,7 +559,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       {
 /*N*/           // Das Objekt muss neu angelegt werden, deshalb muss der Owner ein
 /*N*/           // SwFont sein, spaeter wird als Owner die "MagicNumber" gehalten.
-/*N*/           SwCacheAccess::pOwner = pOwner;
+/*N*/           SwCacheAccess::pOwner = pOwner3;
 /*N*/           pFntObj = Get(); // hier wird via NewObj() angelegt und gelockt.
 /*N*/           OSL_ENSURE(pFntObj, "No Font, no Fun.");
 /*N*/       }

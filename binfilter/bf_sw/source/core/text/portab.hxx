@@ -62,8 +62,8 @@ public:
 class SwTabLeftPortion : public SwTabPortion
 {
 public:
-    inline SwTabLeftPortion( const KSHORT nTabPos, const xub_Unicode cFill='\0' )
-         : SwTabPortion( nTabPos, cFill )
+    inline SwTabLeftPortion( const KSHORT nTabPos1, const xub_Unicode cFill1='\0' )
+         : SwTabPortion( nTabPos1, cFill1 )
     { SetWhichPor( POR_TABLEFT ); }
     OUTPUT_OPERATOR
 };
@@ -75,8 +75,8 @@ public:
 class SwTabRightPortion : public SwTabPortion
 {
 public:
-    inline SwTabRightPortion( const KSHORT nTabPos, const xub_Unicode cFill='\0' )
-         : SwTabPortion( nTabPos, cFill )
+    inline SwTabRightPortion( const KSHORT nTabPos2, const xub_Unicode cFill2='\0' )
+         : SwTabPortion( nTabPos2, cFill2 )
     { SetWhichPor( POR_TABRIGHT ); }
     OUTPUT_OPERATOR
 };
@@ -88,8 +88,8 @@ public:
 class SwTabCenterPortion : public SwTabPortion
 {
 public:
-    inline SwTabCenterPortion( const KSHORT nTabPos, const xub_Unicode cFill='\0' )
-         : SwTabPortion( nTabPos, cFill )
+    inline SwTabCenterPortion( const KSHORT nTabPos3, const xub_Unicode cFill3='\0' )
+         : SwTabPortion( nTabPos3, cFill3 )
     { SetWhichPor( POR_TABCENTER ); }
     OUTPUT_OPERATOR
 };
@@ -102,9 +102,9 @@ class SwTabDecimalPortion : public SwTabPortion
 {
     const xub_Unicode cTab;
 public:
-    inline SwTabDecimalPortion( const KSHORT nTabPos, const xub_Unicode cTab,
-                                const xub_Unicode cFill = '\0' )
-         : SwTabPortion( nTabPos, cFill ), cTab(cTab)
+    inline SwTabDecimalPortion( const KSHORT nTabPos4, const xub_Unicode cTab,
+                                const xub_Unicode cFill4 = '\0' )
+         : SwTabPortion( nTabPos4, cFill4 ), cTab(cTab)
     { SetWhichPor( POR_TABDECIMAL ); }
     inline xub_Unicode GetTabDecimal() const { return cTab; }
     OUTPUT_OPERATOR

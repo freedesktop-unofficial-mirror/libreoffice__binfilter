@@ -452,13 +452,13 @@ namespace binfilter {
 /*N*/         SwDrawVirtObj* pDrawVirtObj = (*aDrawVirtObjIter);
 /*N*/         if ( pDrawVirtObj->GetAnchorFrm() )
 /*N*/         {
-/*N*/             SwPageFrm* pPage = pDrawVirtObj->GetAnchorFrm()->FindPageFrm();
-/*N*/             if( pOldBoundRect && pPage )
+/*N*/             SwPageFrm* pPage2 = pDrawVirtObj->GetAnchorFrm()->FindPageFrm();
+/*N*/             if( pOldBoundRect && pPage2 )
 /*N*/             {
 /*N*/                 SwRect aOldRect( *pOldBoundRect );
 /*N*/                 aOldRect.Pos() += pDrawVirtObj->GetOffset();
 /*N*/                 if( aOldRect.HasArea() )
-/*N*/                     Notify_Background( pDrawVirtObj ,pPage,
+/*N*/                     Notify_Background( pDrawVirtObj ,pPage2,
 /*N*/                                        aOldRect, PREP_FLY_LEAVE,TRUE);
 /*N*/             }
 /*N*/             SwRect aRect( pDrawVirtObj->GetBoundRect() );
@@ -825,17 +825,17 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
         case FLY_PAGE:
             {
                 USHORT nPgNum = pAnch->GetPageNum();
-                SwPageFrm *pPage = static_cast<SwPageFrm*>(pRoot->Lower());
+                SwPageFrm *pPage3 = static_cast<SwPageFrm*>(pRoot->Lower());
 
-                for ( USHORT i = 1; i < nPgNum && pPage; ++i )
+                for ( USHORT i = 1; i < nPgNum && pPage3; ++i )
                 {
-                    pPage = static_cast<SwPageFrm*>(pPage->GetNext());
+                    pPage3 = static_cast<SwPageFrm*>(pPage3->GetNext());
                 }
 
-                if ( pPage )
+                if ( pPage3 )
                 {
                     bSetAnchorPos = false;
-                    pPage->SwFrm::AppendDrawObj( this );
+                    pPage3->SwFrm::AppendDrawObj( this );
                 }
                 else
                     //Sieht doof aus, ist aber erlaubt (vlg. SwFEShell::SetPageObjsNewPage)

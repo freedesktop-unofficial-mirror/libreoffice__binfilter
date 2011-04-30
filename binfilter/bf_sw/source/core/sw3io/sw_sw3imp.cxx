@@ -1678,11 +1678,11 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   if( nExpFFVersion > SOFFICE_FILEFORMAT_40 )
 /*N*/   {
 /*N*/       const SwSectionFmts& rSectFmts = rDoc.GetSections();
-/*N*/       for( sal_uInt16 n = rSectFmts.Count(); n; )
+/*N*/       for( sal_uInt16 nn = rSectFmts.Count(); nn; )
 /*N*/       {
 /*N*/           const SwTOXType* pType;
 /*N*/           const SwTOXBaseSection *pTOXBaseSect;
-/*N*/           const SwSectionFmt* pSectFmt = rSectFmts[ --n ];
+/*N*/           const SwSectionFmt* pSectFmt = rSectFmts[ --nn ];
 /*N*/           const SwSection* pSect = pSectFmt->GetSection();
 /*N*/           if( pSect && TOX_CONTENT_SECTION == pSect->GetType() &&
 /*N*/               pSect->GetFmt() && pSectFmt->GetSectionNode() &&
@@ -1765,9 +1765,9 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/                   pTOXBaseSect->GetMainEntryCharStyle();
 /*N*/               if( rMainStyle.Len() )
 /*N*/               {
-/*?*/                   sal_uInt16 nPoolId = SwStyleNameMapper::GetPoolIdFromUIName( rMainStyle,
+/*?*/                   sal_uInt16 nPoolId2 = SwStyleNameMapper::GetPoolIdFromUIName( rMainStyle,
 /*?*/                                                    GET_POOLID_CHRFMT );
-/*N*/                   Add( rMainStyle, nPoolId );
+/*N*/                   Add( rMainStyle, nPoolId2 );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -1828,8 +1828,8 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*?*/           pNames->DeleteAndDestroy( 0, pNames->Count() );
 /*N*/
 /*N*/       Sw3FrmFmts *pFmts = pExportInfo->pTblLineBoxFmts40;
-/*N*/       sal_uInt16 nArrLen = pFmts->Count();
-/*N*/       for( n=0; n<nArrLen; n++ )
+/*N*/       sal_uInt16 nArrLen2 = pFmts->Count();
+/*N*/       for( n=0; n<nArrLen2; n++ )
 /*N*/       {
 /*N*/           // TODO: unicode: currect?
 /*N*/           String * pName = new String( (*pFmts)[n]->GetName() );

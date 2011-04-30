@@ -459,46 +459,46 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
             //change existing tab
             xub_StrLen nStart = rPattern.SearchAscii( "<T" );
             xub_StrLen nEnd = rPattern.Search( '>', nStart );
-            String sTmp( rPattern.Copy( nStart, nEnd - nStart + 1 ));
+            String sTmp2( rPattern.Copy( nStart, nEnd - nStart + 1 ));
             rPattern.Erase( nStart, nEnd - nStart + 1 );
 
             // if TabAlign is set
             String sTabAlign;
-            if(sTmp.GetTokenCount(',') >= 4)
+            if(sTmp2.GetTokenCount(',') >= 4)
             {
-                sTabAlign = sTmp.GetToken(3, ',');
+                sTabAlign = sTmp2.GetToken(3, ',');
                 sTabAlign.Erase(sTabAlign.Len() - 1, 1);
             }
             String sTabFillChar;
-            if(sTmp.GetTokenCount(',') >= 5)
+            if(sTmp2.GetTokenCount(',') >= 5)
             {
-                sTabFillChar = sTmp.GetToken(4, ',');
+                sTabFillChar = sTmp2.GetToken(4, ',');
                 sTabFillChar.Erase(sTabAlign.Len() - 1, 1);
             }
-            sTmp.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<T ,," ));
-            sTmp += sVal;
+            sTmp2.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "<T ,," ));
+            sTmp2 += sVal;
             if( sTabAlign.Len() )
             {
-                sTmp += ',';
-                sTmp += sTabAlign;
+                sTmp2 += ',';
+                sTmp2 += sTabAlign;
             }
             if(sTabFillChar.Len())
             {
-                sTmp += ',';
-                sTmp += sTabFillChar;
+                sTmp2 += ',';
+                sTmp2 += sTabFillChar;
             }
-            sTmp += '>';
-            rPattern.Insert( sTmp, nStart );
+            sTmp2 += '>';
+            rPattern.Insert( sTmp2, nStart );
         }
         else
         {
             //insert new tab after the first token
             xub_StrLen nIndex = rPattern.Search('>');
-            String sTmp;
-            sTmp.AssignAscii( SwForm::aFormTab );
-            sTmp.InsertAscii( " ,,", nFormTabLen - 1);
-            sTmp.Insert( sVal, nFormTabLen + 2 );
-            rPattern.Insert( sTmp, nIndex + 1 );
+            String sTmp3;
+            sTmp3.AssignAscii( SwForm::aFormTab );
+            sTmp3.InsertAscii( " ,,", nFormTabLen - 1);
+            sTmp3.Insert( sVal, nFormTabLen + 2 );
+            rPattern.Insert( sTmp3, nIndex + 1 );
         }
     }
 }

@@ -90,18 +90,18 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/   SvxNumberFormat(rFmt),
 /*N*/     pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rFmt.GetVertOrient()))
 /*N*/ {
-/*N*/   SvxFrameVertOrient eVertOrient = rFmt.GetVertOrient();
+/*N*/   SvxFrameVertOrient eVertOrient2 = rFmt.GetVertOrient();
 /*N*/   SetGraphicBrush( rFmt.GetBrush(), &rFmt.GetGraphicSize(),
-/*N*/                                               &eVertOrient);
+/*N*/                                               &eVertOrient2);
 /*N*/ }
 
 /*N*/ SwNumFmt::SwNumFmt(const SvxNumberFormat& rNumFmt, SwDoc* pDoc) :
 /*N*/   SvxNumberFormat(rNumFmt),
 /*N*/     pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rNumFmt.GetVertOrient()))
 /*N*/ {
-/*N*/     SvxFrameVertOrient eVertOrient = rNumFmt.GetVertOrient();
+/*N*/     SvxFrameVertOrient eVertOrient3 = rNumFmt.GetVertOrient();
 /*N*/     SetGraphicBrush( rNumFmt.GetBrush(), &rNumFmt.GetGraphicSize(),
-/*N*/                                               &eVertOrient);
+/*N*/                                               &eVertOrient3);
 /*N*/     const String& rCharStyleName = rNumFmt.SvxNumberFormat::GetCharFmtName();
 /*N*/   if( rCharStyleName.Len() )
 /*N*/   {

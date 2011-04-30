@@ -1440,13 +1440,11 @@ using namespace ::com::sun::star::i18n;
 /*N*/       {
 /*N*/           //search for a refernce with the same name
 /*N*/           SwTxtAttr* pHt;
-        // redefinition of *pHtEnd shadows declaration at top of method
-        // usage within if stmt does NOT match usage above, also used again below switch/case...
-/*N*/           xub_StrLen *pHtEnd, *pHintEnd;
+/*N*/           xub_StrLen *pHtEnd2, *pHintEnd;
 /*N*/           for( USHORT n = 0, nEnd = Count(); n < nEnd; ++n )
 /*N*/               if( RES_TXTATR_REFMARK == (pHt = GetHt( n ))->Which() &&
 /*N*/                   pHint->GetAttr() == pHt->GetAttr() &&
-/*N*/                   0 != ( pHtEnd = pHt->GetEnd() ) &&
+/*N*/                   0 != ( pHtEnd2 = pHt->GetEnd() ) &&
 /*N*/                   0 != ( pHintEnd = pHint->GetEnd() ) )
 /*N*/               {
 /*?*/                   DBG_BF_ASSERT(0, "STRIP");

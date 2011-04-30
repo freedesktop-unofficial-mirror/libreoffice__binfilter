@@ -49,12 +49,12 @@ SwFontCache *pSwFontCache = NULL;
 |*
 |*************************************************************************/
 
-/*N*/ SwFontObj::SwFontObj( const void *pOwner, ViewShell *pSh ) :
-/*N*/   SwCacheObj( (void*)pOwner ),
-/*N*/   aSwFont( &((SwTxtFmtColl *)pOwner)->GetAttrSet(), pSh ? pSh->GetDoc() : 0 )
+/*N*/ SwFontObj::SwFontObj( const void *pOwner2, ViewShell *pSh ) :
+/*N*/   SwCacheObj( (void*)pOwner2 ),
+/*N*/   aSwFont( &((SwTxtFmtColl *)pOwner2)->GetAttrSet(), pSh ? pSh->GetDoc() : 0 )
 /*N*/ {
 /*N*/   aSwFont.GoMagic( pSh, aSwFont.GetActual() );
-/*N*/     const SwAttrSet& rAttrSet = ((SwTxtFmtColl *)pOwner)->GetAttrSet();
+/*N*/     const SwAttrSet& rAttrSet = ((SwTxtFmtColl *)pOwner2)->GetAttrSet();
 /*N*/     for (USHORT i = RES_CHRATR_BEGIN; i < RES_CHRATR_END; i++)
 /*N*/         pDefaultArray[ StackPos[ i ] ] = &rAttrSet.Get( i, TRUE );
 /*N*/ }
@@ -69,9 +69,9 @@ SwFontCache *pSwFontCache = NULL;
 |*
 |*************************************************************************/
 
-/*N*/ SwFontAccess::SwFontAccess( const void *pOwner, ViewShell *pSh ) :
-/*N*/   SwCacheAccess( *pSwFontCache, pOwner,
-/*N*/           (BOOL) ((SwTxtFmtColl*)pOwner)->IsInSwFntCache() ),
+/*N*/ SwFontAccess::SwFontAccess( const void *pOwner3, ViewShell *pSh ) :
+/*N*/   SwCacheAccess( *pSwFontCache, pOwner3,
+/*N*/           (BOOL) ((SwTxtFmtColl*)pOwner3)->IsInSwFntCache() ),
 /*N*/   pShell( pSh )
 /*N*/ {
 /*N*/ }

@@ -107,10 +107,6 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
-
 /*N*/ SV_IMPL_PTRARR( _FndBoxes, _FndBox* )
 /*N*/ SV_IMPL_PTRARR( _FndLines, _FndLine* )
 
@@ -645,31 +641,6 @@ USHORT CheckMergeSel( const SwSelBoxes& rBoxes )
 /*M*/   return nRet;
 /*M*/ }
 
-/*  MA: 20. Sep. 93 wird nicht mehr gebraucht.
-static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
-{
-    const SwLayoutFrm *pLay = pCell->GetPrevLayoutLeaf();
-    if ( pLay && pLay->IsLayoutFrm() && !pLay->IsTab() )
-    {
-        //GetPrevLayoutLeaf() liefert ggf. auch die Umgebung einer Tab zurueck
-        //(naehmlich genau dann, wenn die Zelle noch Vorgaenger hat).
-        const SwFrm *pFrm = pLay->Lower();
-        while ( pFrm->GetNext() )
-            pFrm = pFrm->GetNext();
-        pLay = pFrm->IsTabFrm() ? (SwLayoutFrm*)pFrm : 0;
-    }
-    if ( pLay && pLay->IsTabFrm() )
-    {
-        //GetPrevLayoutLeaf() liefert ggf. auch Tabellen zurueck die letzte
-        //Zelle dieser Tabelle ist das das gesuchte Blatt.
-        pLay = ((SwTabFrm*)pLay)->FindLastCntnt()->GetUpper();
-        while ( !pLay->IsCellFrm() )
-            pLay = pLay->GetUpper();
-    }
-    return pLay;
-}
-*/
-
 /*N*/ void lcl_FindStartEndRow( const SwLayoutFrm *&rpStart,
 /*N*/                            const SwLayoutFrm *&rpEnd,
 /*N*/                            const int bChkProtected )
@@ -815,10 +786,10 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/     while ( (rpEnd->Frm().*fnRect->fnGetLeft)() > nEX ) )
 /*M*/ #endif
 /*M*/     {
-/*M*/         const SwLayoutFrm* pTmp = rpEnd->GetPrevLayoutLeaf();
-/*M*/         if( !pTmp || !pTab->IsAnLower( pTmp ) )
+/*M*/         const SwLayoutFrm* pTmp2 = rpEnd->GetPrevLayoutLeaf();
+/*M*/         if( !pTmp2 || !pTab->IsAnLower( pTmp2 ) )
 /*M*/             break;
-/*M*/         rpEnd = pTmp;
+/*M*/         rpEnd = pTmp2;
 /*M*/     }
 /*M*/
 /*M*/   if( !bChkProtected )    // geschuetzte Zellen beachten ?
@@ -828,46 +799,46 @@ static const SwLayoutFrm *GetPrevCell( const SwLayoutFrm *pCell )
 /*M*/   //Also muss ggf. nocheinmal rueckwaerts gesucht werden.
 /*M*/   while ( rpStart->GetFmt()->GetProtect().IsCntntProtected() )
 /*M*/   {
-/*M*/       const SwLayoutFrm *pTmp = rpStart;
-/*M*/       pTmp = pTmp->GetNextLayoutLeaf();
-/*M*/       while ( pTmp && (pTmp->Frm().*fnRect->fnGetLeft)() > nEX )//erstmal die Zeile ueberspr.
-/*M*/           pTmp = pTmp->GetNextLayoutLeaf();
-/*M*/       while ( pTmp && (pTmp->Frm().*fnRect->fnGetLeft)() < nSX &&
-/*M*/                       (pTmp->Frm().*fnRect->fnGetRight)()< nSX2 )
-/*M*/           pTmp = pTmp->GetNextLayoutLeaf();
-/*M*/       const SwTabFrm *pTab = rpStart->FindTabFrm();
-/*M*/       if ( !pTab->IsAnLower( pTmp ) )
+/*M*/       const SwLayoutFrm *pTmp3 = rpStart;
+/*M*/       pTmp3 = pTmp3->GetNextLayoutLeaf();
+/*M*/       while ( pTmp3 && (pTmp3->Frm().*fnRect->fnGetLeft)() > nEX )//erstmal die Zeile ueberspr.
+/*M*/           pTmp3 = pTmp3->GetNextLayoutLeaf();
+/*M*/       while ( pTmp3 && (pTmp3->Frm().*fnRect->fnGetLeft)() < nSX &&
+/*M*/                       (pTmp3->Frm().*fnRect->fnGetRight)()< nSX2 )
+/*M*/           pTmp3 = pTmp3->GetNextLayoutLeaf();
+/*M*/       const SwTabFrm *pTab2 = rpStart->FindTabFrm();
+/*M*/       if ( !pTab2->IsAnLower( pTmp3 ) )
 /*M*/       {
-/*M*/           pTab = pTab->GetFollow();
-/*M*/           rpStart = pTab->FirstCell();
+/*M*/           pTab2 = pTab2->GetFollow();
+/*M*/           rpStart = pTab2->FirstCell();
 /*M*/           while ( (rpStart->Frm().*fnRect->fnGetLeft)() < nSX &&
 /*M*/                   (rpStart->Frm().*fnRect->fnGetRight)()< nSX2 )
 /*M*/               rpStart = rpStart->GetNextLayoutLeaf();
 /*M*/       }
 /*M*/       else
-/*M*/           rpStart = pTmp;
+/*M*/           rpStart = pTmp3;
 /*M*/   }
 /*M*/   while ( rpEnd->GetFmt()->GetProtect().IsCntntProtected() )
 /*M*/   {
-/*M*/       const SwLayoutFrm *pTmp = rpEnd;
-/*M*/       pTmp = pTmp->GetPrevLayoutLeaf();
-/*M*/       while ( pTmp && (pTmp->Frm().*fnRect->fnGetLeft)() < nEX )//erstmal die Zeile ueberspr.
-/*M*/           pTmp = pTmp->GetPrevLayoutLeaf();
-/*M*/       while ( pTmp && (pTmp->Frm().*fnRect->fnGetLeft)() > nEX )
-/*M*/           pTmp = pTmp->GetPrevLayoutLeaf();
-/*M*/       const SwTabFrm *pTab = rpEnd->FindTabFrm();
-/*M*/       if ( !pTmp || !pTab->IsAnLower( pTmp ) )
+/*M*/       const SwLayoutFrm *pTmp4 = rpEnd;
+/*M*/       pTmp4 = pTmp4->GetPrevLayoutLeaf();
+/*M*/       while ( pTmp4 && (pTmp4->Frm().*fnRect->fnGetLeft)() < nEX )//erstmal die Zeile ueberspr.
+/*M*/           pTmp4 = pTmp4->GetPrevLayoutLeaf();
+/*M*/       while ( pTmp4 && (pTmp4->Frm().*fnRect->fnGetLeft)() > nEX )
+/*M*/           pTmp4 = pTmp4->GetPrevLayoutLeaf();
+/*M*/       const SwTabFrm *pTab3 = rpEnd->FindTabFrm();
+/*M*/       if ( !pTmp4 || !pTab3->IsAnLower( pTmp4 ) )
 /*M*/       {
-/*M*/           pTab = (const SwTabFrm*)pTab->FindPrev();
-/*M*/           OSL_ENSURE( pTab->IsTabFrm(), "Vorgaenger vom Follow nicht der Master.");
-/*M*/           rpEnd = pTab->FindLastCntnt()->GetUpper();
+/*M*/           pTab3 = (const SwTabFrm*)pTab3->FindPrev();
+/*M*/           OSL_ENSURE( pTab3->IsTabFrm(), "Vorgaenger vom Follow nicht der Master.");
+/*M*/           rpEnd = pTab3->FindLastCntnt()->GetUpper();
 /*M*/           while( !rpEnd->IsCellFrm() )
 /*M*/               rpEnd = rpEnd->GetUpper();
 /*M*/           while ( (rpEnd->Frm().*fnRect->fnGetLeft)() > nEX )
 /*M*/               rpEnd = rpEnd->GetPrevLayoutLeaf();
 /*M*/       }
 /*M*/       else
-/*M*/           rpEnd = pTmp;
+/*M*/           rpEnd = pTmp4;
 /*M*/   }
 /*M*/ }
 
@@ -1325,7 +1296,7 @@ BOOL lcl_IsLineOfTblFrm( const SwTabFrm& rTable, const SwFrm& rChk )
         if ( !pTable->IsFollow() )
         {
             SwFrm  *pSibling = 0;
-            SwFrm  *pUpper   = 0;
+            SwFrm  *pUpper2   = 0;
             int i;
             for ( i = rTable.GetTabLines().Count()-1;
                     i >= 0 && !pSibling; --i )
@@ -1342,19 +1313,19 @@ BOOL lcl_IsLineOfTblFrm( const SwTabFrm& rTable, const SwFrm& rChk )
             }
             if ( pSibling )
             {
-                pUpper = pSibling->GetUpper();
+                pUpper2 = pSibling->GetUpper();
                 if ( !pLineBehind )
                     pSibling = 0;
             }
             else
  // ???? oder das der Letzte Follow der Tabelle ????
-                pUpper = pTable;
+                pUpper2 = pTable;
 
             for ( i = nStPos; (USHORT)i <= nEndPos; ++i )
                 lcl_InsertRow( *rTable.GetTabLines()[i],
-                                (SwLayoutFrm*)pUpper, pSibling );
-            if ( pUpper->IsTabFrm() )
-                ((SwTabFrm*)pUpper)->SetCalcLowers();
+                                (SwLayoutFrm*)pUpper2, pSibling );
+            if ( pUpper2->IsTabFrm() )
+                ((SwTabFrm*)pUpper2)->SetCalcLowers();
         }
         else if ( nStPos == 0 && rTable.IsHeadlineRepeat() )
         {

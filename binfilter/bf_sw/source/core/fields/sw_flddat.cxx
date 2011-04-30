@@ -48,8 +48,8 @@ using namespace ::com::sun::star;
     Beschreibung: Datum/Zeit-Typ
  ---------------------------------------------------*/
 
-/*N*/ SwDateTimeFieldType::SwDateTimeFieldType(SwDoc* pDoc)
-/*N*/   : SwValueFieldType( pDoc, RES_DATETIMEFLD )
+/*N*/ SwDateTimeFieldType::SwDateTimeFieldType(SwDoc* pDoc1)
+/*N*/   : SwValueFieldType( pDoc1, RES_DATETIMEFLD )
 /*N*/ {}
 
 /*--------------------------------------------------------------------
@@ -65,8 +65,8 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
     Beschreibung: Datum/Zeit-Feld
  --------------------------------------------------------------------*/
 
-/*N*/ SwDateTimeField::SwDateTimeField(SwDateTimeFieldType* pType, USHORT nSub, ULONG nFmt, USHORT nLng)
-/*N*/   : SwValueField(pType, nFmt, nLng, 0.0),
+/*N*/ SwDateTimeField::SwDateTimeField(SwDateTimeFieldType* pType1, USHORT nSub, ULONG nFmt, USHORT nLng)
+/*N*/   : SwValueField(pType1, nFmt, nLng, 0.0),
 /*N*/   nSubType(nSub),
 /*N*/   nOffset(0)
 /*N*/ {

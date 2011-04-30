@@ -223,18 +223,17 @@ namespace binfilter {
 
 /*N*/ const SwLineLayout *SwTxtIter::PrevLine()
 /*N*/ {
-/*N*/   const SwLineLayout *pPrev = Prev();
-/*N*/   if( !pPrev )
+/*N*/   const SwLineLayout *pPrev2 = Prev();
+/*N*/   if( !pPrev2 )
 /*N*/       return 0;
 /*N*/
-/*N*/   const SwLineLayout *pLast = pPrev;
-/*N*/   while( pPrev && pPrev->IsDummy() )
+/*N*/   const SwLineLayout *pLast = pPrev2;
+/*N*/   while( pPrev2 && pPrev2->IsDummy() )
 /*N*/   {
-///*N*/         DBG_LOOP;
-/*N*/       pLast = pPrev;
-/*N*/       pPrev = Prev();
+/*N*/       pLast = pPrev2;
+/*N*/       pPrev2 = Prev();
 /*N*/   }
-/*N*/   return (SwLineLayout*)(pPrev ? pPrev : pLast);
+/*N*/   return (SwLineLayout*)(pPrev2 ? pPrev2 : pLast);
 /*N*/ }
 
 /*************************************************************************
@@ -245,7 +244,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   while( Next() )
 /*N*/   {
-///*N*/         DBG_LOOP;
 /*N*/   }
 /*N*/ }
 
@@ -415,19 +413,19 @@ namespace binfilter {
 /*N*/                     pLine = pLine->GetNext();
 /*N*/                 }
 /*N*/
-/*N*/                 SwpHints* pHints = GetTxtFrm()->GetTxtNode()->GetpSwpHints();
+/*N*/                 SwpHints* pHints1 = GetTxtFrm()->GetTxtNode()->GetpSwpHints();
 /*N*/
 /*N*/                 // examine hints in range nEnd - (nEnd + nRangeChar)
-/*N*/                 for( USHORT i = 0; i < pHints->Count(); i++ )
+/*N*/                 for( USHORT i = 0; i < pHints1->Count(); i++ )
 /*N*/                 {
-/*N*/                     const SwTxtAttr* pHt = pHints->GetHt( i );
+/*N*/                     const SwTxtAttr* pHt = pHints1->GetHt( i );
 /*N*/                     if( RES_TXTATR_FLYCNT == pHt->Which() )
 /*N*/                     {
 /*N*/                         // check, if hint is in our range
-/*?*/                         const USHORT nPos = *pHt->GetStart();
-/*?*/                         if ( nEnd <= nPos && nPos < nRangeEnd )
+/*?*/                         const USHORT nPos2 = *pHt->GetStart();
+/*?*/                         if ( nEnd <= nPos2 && nPos2 < nRangeEnd )
 /*?*/                             pFollow->_InvalidateRange(
-/*?*/                                 SwCharRange( nPos, nPos ), 0 );
+/*?*/                                 SwCharRange( nPos2, nPos2 ), 0 );
 /*N*/                     }
 /*N*/                 }
 /*N*/             }

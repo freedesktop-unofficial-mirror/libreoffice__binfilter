@@ -69,8 +69,8 @@ using namespace ::com::sun::star;
 /*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt )
-/*N*/   : aExpand(rExpand), pFnt(pFnt), nViewWidth(0), nNextOffset(0),
+/*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt1 )
+/*N*/   : aExpand(rExpand), pFnt(pFnt1), nViewWidth(0), nNextOffset(0),
 /*N*/     bFollow( sal_False ), bHasFollow( sal_False )
 /*N*/ {
 /*N*/   SetWhichPor( POR_FLD );
@@ -99,20 +99,8 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*************************************************************************
- *               virtual SwFldPortion::GetViewWidth()
- *************************************************************************/
-
-
-/*************************************************************************
- *                 virtual SwFldPortion::Format()
- *************************************************************************/
-
-// 8653: in keinem Fall nur SetLen(0);
-
-/*************************************************************************
  *   Hilfsklasse SwFldSlot
  **************************************************************************/
-
 class SwFldSlot
 {
     const XubString *pOldTxt;
@@ -341,7 +329,6 @@ public:
 /*M*/           if( aNew.Len() || IsQuoVadisPortion() )
 /*M*/           {
 /*M*/               // sal_True, weil es ein FollowFeld ist
-/*M*/               // SwFont *pFont = new SwFont( rInf.GetFont()->GetFnt() );
 /*M*/               SwFldPortion *pFld = Clone( aNew );
 /*M*/               if( !pFld->GetFont() )
 /*M*/               {
@@ -367,11 +354,6 @@ public:
 /*M*/ }
 
 /*************************************************************************
- *               virtual SwFldPortion::Paint()
- *************************************************************************/
-
-
-/*************************************************************************
  *              virtual SwFldPortion::GetExpTxt()
  *************************************************************************/
 
@@ -387,11 +369,6 @@ public:
 /*N*/ }
 
 /*************************************************************************
- *              virtual SwFldPortion::HandlePortion()
- *************************************************************************/
-
-
-/*************************************************************************
  *                virtual SwFldPortion::GetTxtSize()
  *************************************************************************/
 
@@ -401,15 +378,6 @@ public:
 /*N*/   SwPosSize aSize( SwExpandPortion::GetTxtSize( rInf ) );
 /*N*/   return aSize;
 /*N*/ }
-
-/*************************************************************************
- *                      class SwHiddenPortion
- *************************************************************************/
-
-/*************************************************************************
- *               virtual SwHiddenPortion::Paint()
- *************************************************************************/
-
 
 /*************************************************************************
  *              virtual SwHiddenPortion::GetExpTxt()
@@ -425,9 +393,9 @@ public:
  *                      class SwNumberPortion
  *************************************************************************/
 
-/*N*/ SwNumberPortion::SwNumberPortion( const XubString &rExpand, SwFont *pFnt,
+/*N*/ SwNumberPortion::SwNumberPortion( const XubString &rExpand, SwFont *pFnt2,
 /*N*/                   const sal_Bool bLft, const sal_Bool bCntr, const KSHORT nMinDst )
-/*N*/       : SwFldPortion( rExpand, pFnt ), nFixWidth(0), nMinDist( nMinDst )
+/*N*/       : SwFldPortion( rExpand, pFnt2 ), nFixWidth(0), nMinDist( nMinDst )
 /*N*/ {
 /*N*/   SetWhichPor( POR_NUMBER );
 /*N*/   SetLeft( bLft );
@@ -456,7 +424,6 @@ public:
 /*M*/   rInf.SetNumDone( !rInf.GetRest() );
 /*M*/   if( rInf.IsNumDone() )
 /*M*/   {
-/*M*/ //        SetAscent( rInf.GetAscent() );
 /*M*/         OSL_ENSURE( Height() && nAscent, "NumberPortions without Height | Ascent" );
 /*M*/
 /*M*/       long nDiff = rInf.Left() - rInf.First() + rInf.ForcedLeftMargin();
@@ -491,22 +458,6 @@ public:
 /*M*/   }
 /*M*/   return bFull;
 /*M*/ }
-
-/*  Ein FormatEOL deutet daraufhin, dass der folgende Text
- *  nicht mit auf die Zeile passte. Damit die Numerierung mitwandert,
- *  wird diese NumberPortion verborgen.
- */
-
-    // This caused trouble with flys anchored as characters.
-    // If one of these is numbered but does not fit to the line,
-    // it calls this function, causing a loop because both the number
-    // portion and the fly portion go to the next line
-//    SetHide( sal_True );
-
-/*************************************************************************
- *               virtual SwNumberPortion::Paint()
- *************************************************************************/
-
 
 
 /*************************************************************************

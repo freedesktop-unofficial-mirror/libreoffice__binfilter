@@ -93,9 +93,9 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
  *                  SwTxtFormatter::CtorInit()
  *************************************************************************/
 
-/*N*/ void SwTxtFormatter::CtorInit( SwTxtFrm *pFrm, SwTxtFormatInfo *pNewInf )
+/*N*/ void SwTxtFormatter::CtorInit( SwTxtFrm *pFrm1, SwTxtFormatInfo *pNewInf )
 /*N*/ {
-/*N*/   SwTxtPainter::CtorInit( pFrm, pNewInf );
+/*N*/   SwTxtPainter::CtorInit( pFrm1, pNewInf );
 /*N*/   pInf = pNewInf;
 /*N*/   pDropFmt = GetInfo().GetDropFmt();
 /*N*/   pMulti = NULL;
@@ -192,24 +192,24 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/       // die noch eine echte Breite hat.
 /*N*/       // Ausnahme: SoftHyphPortions duerfen dabei natuerlich
 /*N*/       // nicht vergessen werden, obwohl sie keine Breite haben.
-/*N*/       SwLinePortion *pPrev = pPor;
+/*N*/       SwLinePortion *pPrev1 = pPor;
 /*N*/       while( pPor && pPor != pUnderFlow )
 /*N*/       {
 ///*N*/             DBG_LOOP;
 /*N*/           if( !pPor->IsKernPortion() &&
 /*N*/               ( pPor->Width() || pPor->IsSoftHyphPortion() ) )
 /*N*/           {
-/*N*/               while( pPrev != pPor )
+/*N*/               while( pPrev1 != pPor )
 /*N*/               {
-/*N*/                   pPrev->Move( rInf );
-/*N*/                   rInf.SetLast( pPrev );
-/*N*/                   pPrev = pPrev->GetPortion();
-/*N*/                   OSL_ENSURE( pPrev, "UnderFlow: Loosing control!" );
+/*N*/                   pPrev1->Move( rInf );
+/*N*/                   rInf.SetLast( pPrev1 );
+/*N*/                   pPrev1 = pPrev1->GetPortion();
+/*N*/                   OSL_ENSURE( pPrev1, "UnderFlow: Loosing control!" );
 /*N*/               };
 /*N*/           }
 /*N*/           pPor = pPor->GetPortion();
 /*N*/       }
-/*N*/       pPor = pPrev;
+/*N*/       pPor = pPrev1;
 /*N*/       if( pPor && // Flies + Initialen werden nicht beim UnderFlow mitgenommen
 /*N*/           ( pPor->IsFlyPortion() || pPor->IsDropPortion() ||
 /*N*/             pPor->IsFlyCntPortion() ) )
@@ -705,17 +705,17 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
  *                 SwTxtFormatter::CalcAdjustLine()
  *************************************************************************/
 
-/*N*/ void SwTxtFormatter::CalcAdjustLine( SwLineLayout *pCurr )
+/*N*/ void SwTxtFormatter::CalcAdjustLine( SwLineLayout *pCurr1 )
 /*N*/ {
 /*N*/     if( SVX_ADJUST_LEFT != GetAdjust() && !pMulti)
 /*N*/   {
-/*N*/       pCurr->SetFormatAdj(sal_True);
+/*N*/       pCurr1->SetFormatAdj(sal_True);
 /*N*/       if( IsFlyInCntBase() )
 /*N*/       {
-/*N*/           CalcAdjLine( pCurr );
+/*N*/           CalcAdjLine( pCurr1 );
 /*N*/           // 23348: z.B. bei zentrierten Flys muessen wir den RefPoint
 /*N*/           // auf jeden Fall umsetzen, deshalb bAllWays = sal_True
-/*N*/           UpdatePos( pCurr, GetTopLeft(), GetStart(), sal_True );
+/*N*/           UpdatePos( pCurr1, GetTopLeft(), GetStart(), sal_True );
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -861,8 +861,8 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/   pPor->SetLen(1);
 /*N*/   CalcAscent( rInf, pPor );
 /*N*/
-/*N*/   const SwFont* pFnt = rInf.GetFont();
-/*N*/   KSHORT nExpect = Min( KSHORT( ((Font *)pFnt)->GetSize().Height() ),
+/*N*/   const SwFont* pFnt3 = rInf.GetFont();
+/*N*/   KSHORT nExpect = Min( KSHORT( ((Font *)pFnt3)->GetSize().Height() ),
 /*N*/                         KSHORT( pPor->GetAscent() ) ) / 8;
 /*N*/   if ( !nExpect )
 /*N*/       nExpect = 1;
@@ -1289,10 +1289,10 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
  *                      SwTxtFormatter::FormatLine()
  *************************************************************************/
 
-/*M*/ xub_StrLen SwTxtFormatter::FormatLine( const xub_StrLen nStart )
+/*M*/ xub_StrLen SwTxtFormatter::FormatLine( const xub_StrLen nStart1 )
 /*M*/ {
 /*M*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*M*/             "SwTxtFormatter::FormatLine( nStart ) with unswapped frame" );
+/*M*/             "SwTxtFormatter::FormatLine( nStart1 ) with unswapped frame" );
 /*N*/
 /*N*/     // For the formatting routines, we set pOut to the reference device.
 /*N*/     SwHookOut aHook( GetInfo() );
@@ -1323,7 +1323,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/     // for an optimal repaint rectangle, we want to compare fly portions
 /*M*/     // before and after the BuildPortions call
 /*M*/     const sal_Bool bOptimizeRepaint = AllowRepaintOpt();
-/*M*/     const xub_StrLen nOldLineEnd = nStart + pCurr->GetLen();
+/*M*/     const xub_StrLen nOldLineEnd = nStart1 + pCurr->GetLen();
 /*M*/     SvLongs* pFlyStart = 0;
 /*M*/
 /*M*/     // these are the conditions for a fly position comparison
@@ -1442,7 +1442,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/     if ( pSaveFld )
 /*M*/         delete pSaveFld;
 /*M*/
-/*M*/   xub_StrLen nNewStart = nStart + pCurr->GetLen();
+/*M*/   xub_StrLen nNewStart = nStart1 + pCurr->GetLen();
 /*M*/
 /*M*/     // adjust text if kana compression is enabled
 /*M*/     GetInfo().GetParaPortion()->GetScriptInfo();
@@ -1500,18 +1500,18 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/         const USHORT nRubyHeight = pGrid->GetRubyHeight();
 /*?*/         const sal_Bool bRubyTop = ! pGrid->GetRubyTextBelow();
 /*?*/
-/*?*/         USHORT nLineHeight = nGridWidth + nRubyHeight;
-/*?*/         USHORT nLineDist = nLineHeight;
+/*?*/         USHORT nLineHeight1 = nGridWidth + nRubyHeight;
+/*?*/         USHORT nLineDist = nLineHeight1;
 /*?*/
-/*?*/         while ( pCurr->Height() > nLineHeight )
-/*?*/             nLineHeight += nLineDist;
+/*?*/         while ( pCurr->Height() > nLineHeight1 )
+/*?*/             nLineHeight1 += nLineDist;
 /*?*/
 /*?*/         KSHORT nAsc = pCurr->GetAscent() +
 /*?*/                       ( bRubyTop ?
-/*?*/                        ( nLineHeight - pCurr->Height() + nRubyHeight ) / 2 :
-/*?*/                        ( nLineHeight - pCurr->Height() - nRubyHeight ) / 2 );
+/*?*/                        ( nLineHeight1 - pCurr->Height() + nRubyHeight ) / 2 :
+/*?*/                        ( nLineHeight1 - pCurr->Height() - nRubyHeight ) / 2 );
 /*?*/
-/*?*/         pCurr->Height( nLineHeight );
+/*?*/         pCurr->Height( nLineHeight1 );
 /*?*/         pCurr->SetAscent( nAsc );
 /*?*/         pInf->GetParaPortion()->SetFixLineHeight();
 /*?*/
@@ -1525,11 +1525,11 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*?*/             if( nTmp < 100 )
 /*?*/                 nTmp = 100;
 /*?*/
-/*?*/             nTmp *= nLineHeight;
-/*?*/             nLineHeight = (USHORT)(nTmp / 100);
+/*?*/             nTmp *= nLineHeight1;
+/*?*/             nLineHeight1 = (USHORT)(nTmp / 100);
 /*?*/         }
 /*?*/
-/*?*/         pCurr->SetRealHeight( nLineHeight );
+/*?*/         pCurr->SetRealHeight( nLineHeight1 );
 /*?*/         return;
 /*N*/     }
 /*N*/

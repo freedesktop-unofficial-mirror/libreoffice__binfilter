@@ -844,10 +844,10 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/                   {
 /*?*/                       BYTE nRealLevel = GetRealLevel(nLevel);
 /*?*/                       USHORT nArrLen = rDoc.GetTxtFmtColls()->Count();
-/*?*/                       for( USHORT i=0; i<nArrLen; i++ )
+/*?*/                       for( USHORT ii=0; ii<nArrLen; ii++ )
 /*?*/                       {
 /*?*/                           SwTxtFmtColl* pCur =
-/*?*/                               (*rDoc.GetTxtFmtColls())[i];
+/*?*/                               (*rDoc.GetTxtFmtColls())[ii];
 /*?*/                           BYTE nCurLevel = pCur->GetOutlineLevel();
 /*?*/                           if( nCurLevel != NO_NUMBERING &&
 /*?*/                               GetRealLevel(nCurLevel) == nRealLevel )

@@ -101,7 +101,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * GetAttr() das entartete Attribut.
  *************************************************************************/
 
-/*N*/ SwTxtAttr *SwAttrIter::GetAttr( const xub_StrLen nPos ) const
+/*N*/ SwTxtAttr *SwAttrIter::GetAttr( const xub_StrLen nPos1 ) const
 /*N*/ {
 /*N*/   if( pHints )
 /*N*/   {
@@ -109,9 +109,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       {
 /*N*/           SwTxtAttr *pPos = pHints->GetHt(i);
 /*N*/           xub_StrLen nStart = *pPos->GetStart();
-/*N*/           if( nPos < nStart )
+/*N*/           if( nPos1 < nStart )
 /*N*/               return 0;
-/*N*/           if( nPos == nStart && !pPos->GetEnd() )
+/*N*/           if( nPos1 == nStart && !pPos->GetEnd() )
 /*N*/               return pPos;
 /*N*/       }
 /*N*/   }

@@ -923,9 +923,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       String aExpand;
-/*N*/       rIo.InString( *rIo.pStrm, aExpand );
-/*N*/       pFld->InitContent( aExpand );
+/*N*/       String aExpand2;
+/*N*/       rIo.InString( *rIo.pStrm, aExpand2 );
+/*N*/       pFld->InitContent( aExpand2 );
 /*N*/   }
 /*N*/
 /*N*/   return pFld;

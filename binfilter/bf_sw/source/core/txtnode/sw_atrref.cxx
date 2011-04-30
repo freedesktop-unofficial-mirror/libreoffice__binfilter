@@ -77,8 +77,8 @@ int SwFmtRefMark::operator==( const SfxPoolItem& /*rAttr*/ ) const
 // Attribut fuer Inhalts-/Positions-Referenzen im Text
 
 /*N*/ SwTxtRefMark::SwTxtRefMark( const SwFmtRefMark& rAttr,
-/*N*/                   xub_StrLen nStart, xub_StrLen* pEnde )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nStart ),
+/*N*/                   xub_StrLen nStart2, xub_StrLen* pEnde )
+/*N*/   : SwTxtAttrEnd( rAttr, nStart2, nStart2 ),
 /*N*/   pEnd( 0 ),
 /*N*/   pMyTxtNd( 0 )
 /*N*/ {

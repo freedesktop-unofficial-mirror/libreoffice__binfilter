@@ -729,11 +729,11 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*?*/                   aName = pOLENd->GetOLEObj().GetOleRef()->GetClassName();
 /*N*/
 /*N*/               BOOL bFound = FALSE;
-/*N*/               for ( USHORT i = 0;
-/*N*/                     i < pGlobalOLEExcludeList->Count() && !bFound;
-/*N*/                     ++i )
+/*N*/               for ( USHORT ii = 0;
+/*N*/                     ii < pGlobalOLEExcludeList->Count() && !bFound;
+/*N*/                     ++ii )
 /*N*/               {
-/*N*/                   bFound = *(SvGlobalName*)(*pGlobalOLEExcludeList)[i] ==
+/*N*/                   bFound = *(SvGlobalName*)(*pGlobalOLEExcludeList)[ii] ==
 /*N*/                                   aName;
 /*N*/               }
 /*N*/               if ( bFound )

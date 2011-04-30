@@ -236,7 +236,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/        RES_GRF_REREAD_AND_INCACHE != nWhich )
 /*N*/       SwCntntFrm::Modify( pOld, pNew );
 /*N*/
-/*N*/   bool bCompletePaint = TRUE;
+/*N*/   bool bCompletePaint2 = TRUE;
 /*N*/
 /*N*/   switch( nWhich )
 /*N*/   {
@@ -274,7 +274,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/   case RES_GRAPHIC_ARRIVED:
 /*N*/       if ( GetNode()->GetNodeType() == ND_GRFNODE )
 /*N*/       {
-/*N*/           bCompletePaint = FALSE;
+/*N*/           bCompletePaint2 = FALSE;
 /*N*/           SwGrfNode* pNd = (SwGrfNode*) GetNode();
 /*N*/
 /*N*/           CLEARCACHE( pNd )
@@ -311,7 +311,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*?*/           return;
 /*N*/   }
 /*N*/
-/*N*/   if( bCompletePaint )
+/*N*/   if( bCompletePaint2 )
 /*N*/   {
 /*N*/       InvalidatePrt();
 /*N*/       SetCompletePaint();

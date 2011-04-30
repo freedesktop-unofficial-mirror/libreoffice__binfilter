@@ -211,7 +211,7 @@ namespace binfilter {
  * ( hauptsaechlich Korrrektur der X-Position )
  *************************************************************************/
 
-/*N*/ void SwTxtFormatter::UpdatePos( SwLineLayout *pCurr, Point aStart,
+/*N*/ void SwTxtFormatter::UpdatePos( SwLineLayout *pCurr1, Point aStart,
 /*N*/   xub_StrLen nStartIdx, sal_Bool bAllWays ) const
 /*N*/ {
 /*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
@@ -219,12 +219,12 @@ namespace binfilter {
 /*N*/
 /*N*/     if( GetInfo().IsTest() )
 /*N*/       return;
-/*N*/   SwLinePortion *pFirst = pCurr->GetFirstPortion();
+/*N*/   SwLinePortion *pFirst = pCurr1->GetFirstPortion();
 /*N*/   SwLinePortion *pPos = pFirst;
 /*N*/   SwTxtPaintInfo aTmpInf( GetInfo() );
-/*N*/   aTmpInf.SetSpaceAdd( pCurr->GetpSpaceAdd() );
+/*N*/   aTmpInf.SetSpaceAdd( pCurr1->GetpSpaceAdd() );
 /*N*/   aTmpInf.ResetSpaceIdx();
-/*N*/     aTmpInf.SetKanaComp( pCurr->GetpKanaComp() );
+/*N*/     aTmpInf.SetKanaComp( pCurr1->GetpKanaComp() );
 /*N*/     aTmpInf.ResetKanaIdx();
 /*N*/
 /*N*/   // Die Groesse des Frames
@@ -233,8 +233,8 @@ namespace binfilter {
 /*N*/
 /*N*/   long nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc;
 /*N*/   lcl_MaxAscDescent( pPos, nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc );
-/*N*/   KSHORT nTmpHeight = pCurr->GetRealHeight();
-/*N*/   KSHORT nAscent = pCurr->GetAscent() + nTmpHeight - pCurr->Height();
+/*N*/   KSHORT nTmpHeight = pCurr1->GetRealHeight();
+/*N*/   KSHORT nAscent = pCurr1->GetAscent() + nTmpHeight - pCurr1->Height();
 /*N*/   sal_uInt8 nFlags = SETBASE_ULSPACE;
 /*N*/   if( GetMulti() )
                 {DBG_BF_ASSERT(0, "STRIP");}

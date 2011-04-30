@@ -182,7 +182,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwTxtFrm::GetFtnLine()
  *************************************************************************/
 
-/*N*/ SwTwips SwTxtFrm::GetFtnLine( const SwTxtFtn *pFtn, sal_Bool bLocked ) const
+/*N*/ SwTwips SwTxtFrm::GetFtnLine( const SwTxtFtn *pFtn, sal_Bool bLocked1 ) const
 /*N*/ {
 /*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::GetFtnLine with swapped frame" );
@@ -198,7 +198,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // von der Ref aus!
 /*N*/       // Trotzdem wollen wir nichts unversucht lassen und geben die
 /*N*/       // Unterkante des Frames zurueck.
-/*?*/       if( !bLocked )
+/*?*/       if( !bLocked1 )
 /*?*/           pThis->Prepare( PREP_ADJUST_FRM );
 /*?*/         return IsVertical() ? Frm().Left() : Frm().Bottom();
 /*N*/   }
@@ -908,8 +908,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   const SwAttrSet& rSet = pInfo->GetCharFmt(*pDoc)->GetAttrSet();
 /*N*/
 /*N*/   const SwAttrSet* pParSet = &rInf.GetCharAttr();
-/*N*/     SwFont *pFnt = new SwFont( pParSet, rInf.GetDoc() );
-/*N*/     pFnt->SetDiffFnt(&rSet, rInf.GetDoc() );
+/*N*/     SwFont *pFnt3 = new SwFont( pParSet, rInf.GetDoc() );
+/*N*/     pFnt3->SetDiffFnt(&rSet, rInf.GetDoc() );
 /*N*/   SwTxtFtn* pTxtFtn = rFtn.GetTxtFtn();
 /*N*/   if( pTxtFtn )
 /*N*/   {
@@ -921,18 +921,18 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // untenstehende Methode SwFtnNumPortion::DiffFont() angepasst
 /*N*/       // werden.
 /*N*/       if( aIter.GetFnt()->IsSymbol(rInf.GetVsh()) || aIter.GetFnt()->GetCharSet() !=
-/*N*/           pFnt->GetCharSet() )
+/*N*/           pFnt3->GetCharSet() )
 /*N*/       {
-/*N*/           const BYTE nAct = pFnt->GetActual();
-/*N*/           pFnt->SetName( aIter.GetFnt()->GetName(), nAct );
-/*N*/           pFnt->SetStyleName( aIter.GetFnt()->GetStyleName(), nAct );
-/*N*/           pFnt->SetFamily( aIter.GetFnt()->GetFamily(),nAct );
-/*N*/           pFnt->SetCharSet( aIter.GetFnt()->GetCharSet(), nAct );
+/*N*/           const BYTE nAct = pFnt3->GetActual();
+/*N*/           pFnt3->SetName( aIter.GetFnt()->GetName(), nAct );
+/*N*/           pFnt3->SetStyleName( aIter.GetFnt()->GetStyleName(), nAct );
+/*N*/           pFnt3->SetFamily( aIter.GetFnt()->GetFamily(),nAct );
+/*N*/           pFnt3->SetCharSet( aIter.GetFnt()->GetCharSet(), nAct );
 /*N*/       }
 /*N*/   }
 /*N*/
-/*M*/       pFnt->SetVertical( pFnt->GetOrientation(), pFrm->IsVertical() );
-/*N*/   return new SwFtnNumPortion( aFtnTxt, pFnt );
+/*M*/       pFnt3->SetVertical( pFnt3->GetOrientation(), pFrm->IsVertical() );
+/*N*/   return new SwFtnNumPortion( aFtnTxt, pFnt3 );
 /*N*/ }
 
 /*************************************************************************
@@ -1258,9 +1258,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwFtnPortion::SwFtnPortion()
  *************************************************************************/
 
-/*N*/ SwFtnPortion::SwFtnPortion( const XubString &rExpand, SwTxtFrm *pFrm,
-/*N*/                             SwTxtFtn *pFtn, KSHORT nReal )
-/*N*/         : SwFldPortion( rExpand, 0 ), pFrm(pFrm), pFtn(pFtn), nOrigHeight( nReal )
+/*N*/ SwFtnPortion::SwFtnPortion( const XubString &rExpand, SwTxtFrm *pFrm4,
+/*N*/                             SwTxtFtn *pFtn4, KSHORT nReal )
+/*N*/         : SwFldPortion( rExpand, 0 ), pFrm(pFrm4), pFtn(pFtn4), nOrigHeight( nReal )
 /*N*/ {
 /*N*/   SetLen(1);
 /*N*/   SetWhichPor( POR_FTN );

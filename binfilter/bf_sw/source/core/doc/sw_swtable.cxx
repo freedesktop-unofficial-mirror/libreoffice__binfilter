@@ -303,15 +303,15 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // die 1. ist mit Buchstaben addressiert!
 /*N*/       sal_Unicode cChar;
-/*N*/       BOOL bFirst = TRUE;
+/*N*/       BOOL bFirst2 = TRUE;
 /*N*/       while( 0 != ( cChar = rStr.GetChar( nPos )) &&
 /*N*/              ( (cChar >= 'A' && cChar <= 'Z') ||
 /*N*/                (cChar >= 'a' && cChar <= 'z') ) )
 /*N*/       {
 /*N*/           if( (cChar -= 'A') >= 26 )
 /*?*/               cChar -= 'a' - '[';
-/*N*/           if( bFirst )
-/*N*/               bFirst = FALSE;
+/*N*/           if( bFirst2 )
+/*N*/               bFirst2 = FALSE;
 /*N*/           else
 /*?*/               ++nRet;
 /*N*/           nRet = nRet * 52 + cChar;

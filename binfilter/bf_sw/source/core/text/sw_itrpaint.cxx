@@ -64,27 +64,22 @@ namespace binfilter {
 /*************************************************************************
  *                  SwTxtPainter::CtorInit()
  *************************************************************************/
-/*N*/ void SwTxtPainter::CtorInit( SwTxtFrm *pFrm, SwTxtPaintInfo *pNewInf )
+/*N*/ void SwTxtPainter::CtorInit( SwTxtFrm *pFrm1, SwTxtPaintInfo *pNewInf )
 /*N*/ {
-/*N*/   SwTxtCursor::CtorInit( pFrm, pNewInf );
+/*N*/   SwTxtCursor::CtorInit( pFrm1, pNewInf );
 /*N*/   pInf = pNewInf;
-/*N*/   SwFont *pFnt = GetFnt();
-/*N*/   GetInfo().SetFont( pFnt );
+/*N*/   SwFont *pFnt2 = GetFnt();
+/*N*/   GetInfo().SetFont( pFnt2 );
 /*N*/ #ifdef DBG_UTIL
-/*N*/   if( ALIGN_BASELINE != pFnt->GetAlign() )
+/*N*/   if( ALIGN_BASELINE != pFnt2->GetAlign() )
 /*N*/   {
-/*?*/       OSL_ENSURE( ALIGN_BASELINE == pFnt->GetAlign(),
+/*?*/       OSL_ENSURE( ALIGN_BASELINE == pFnt2->GetAlign(),
 /*?*/               "+SwTxtPainter::CTOR: font alignment revolution" );
-/*?*/       pFnt->SetAlign( ALIGN_BASELINE );
+/*?*/       pFnt2->SetAlign( ALIGN_BASELINE );
 /*N*/   }
 /*N*/ #endif
 /*N*/   bPaintDrop = sal_False;
 /*N*/ }
-
-
-/*************************************************************************
- *                    SwTxtPainter::CalcPaintOfst()
- *************************************************************************/
 
 /*************************************************************************
  *                    SwTxtPainter::DrawTextLine()

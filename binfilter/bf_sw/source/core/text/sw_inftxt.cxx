@@ -84,9 +84,6 @@ using namespace ::com::sun::star::beans;
 // steht im number.cxx
 extern const sal_Char sBulletFntName[];
 
-// OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
-//extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
-
 #ifdef DBG_UTIL
 // Test2: WYSIWYG++
 // Test4: WYSIWYG debug
@@ -259,8 +256,6 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     // bURLNotify wird gesetzt, wenn MakeGraphic dies vorbereitet
 /*N*/     // TODO: Aufdröseln
 /*N*/     bURLNotify = pNoteURL && !bOnWin;
-/*N*/ //    bURLNotify = pNoteURL && !bOnWin
-/*N*/ //        && (pOut && OUTDEV_PRINTER != pOut->GetOutDevType());
 /*N*/
 /*N*/     SetSnapToGrid( pNd->GetSwAttrSet().GetParaGrid().GetValue() &&
 /*N*/                    pFrm->IsInDocBody() );
@@ -323,18 +318,9 @@ static sal_Bool bDbgLow = sal_False;
 
 /*N*/ void SwTxtSizeInfo::SelectFont()
 /*N*/ {
-/*N*/   // 8731: Der Weg muss ueber ChgPhysFnt gehen, sonst geraet
-/*N*/   // der FontMetricCache durcheinander. In diesem Fall steht pLastMet
-/*N*/   // auf dem alten Wert.
-/*N*/   // Falsch: GetOut()->SetFont( GetFont()->GetFnt() );
 /*N*/   GetFont()->Invalidate();
 /*N*/   GetFont()->ChgPhysFnt( pVsh, GetOut() );
 /*N*/ }
-
-/*************************************************************************
- *                      SwTxtSizeInfo::NoteAnimation()
- *************************************************************************/
-
 
 /*************************************************************************
  *                      SwTxtSizeInfo::GetTxtSize()
@@ -343,11 +329,11 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/ SwPosSize SwTxtSizeInfo::GetTxtSize( OutputDevice* pOutDev,
 /*N*/                                      const SwScriptInfo* pSI,
 /*N*/                                      const XubString& rTxt,
-/*N*/                                    const xub_StrLen nIdx,
-/*N*/                                      const xub_StrLen nLen,
+/*N*/                                    const xub_StrLen nIdx2,
+/*N*/                                      const xub_StrLen nLen2,
 /*N*/                                      const USHORT nComp ) const
 /*N*/ {
-/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOutDev, pSI, rTxt, nIdx, nLen );
+/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOutDev, pSI, rTxt, nIdx2, nLen2 );
 /*N*/     aDrawInf.SetFrm( pFrm );
 /*N*/     aDrawInf.SetFont( pFnt );
 /*N*/     aDrawInf.SetSnapToGrid( SnapToGrid() );
@@ -385,11 +371,11 @@ static sal_Bool bDbgLow = sal_False;
  *                      SwTxtSizeInfo::GetTxtSize()
  *************************************************************************/
 
-/*N*/ void SwTxtSizeInfo::GetTxtSize( const SwScriptInfo* pSI, const xub_StrLen nIdx,
-/*N*/                                 const xub_StrLen nLen, const USHORT nComp,
+/*N*/ void SwTxtSizeInfo::GetTxtSize( const SwScriptInfo* pSI, const xub_StrLen nIdx3,
+/*N*/                                 const xub_StrLen nLen3, const USHORT nComp,
 /*N*/                                 USHORT& nMinSize, USHORT& nMaxSizeDiff ) const
 /*N*/ {
-/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, pSI, *pTxt, nIdx, nLen );
+/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, pSI, *pTxt, nIdx3, nLen3 );
 /*N*/     aDrawInf.SetFrm( pFrm );
 /*N*/     aDrawInf.SetFont( pFnt );
 /*N*/     aDrawInf.SetSnapToGrid( SnapToGrid() );
@@ -485,77 +471,6 @@ static sal_Bool bDbgLow = sal_False;
 extern Color aGlobalRetoucheColor;
 
 /*************************************************************************
- *                          lcl_IsDarkBackground
- *
- * Returns if the current background color is dark.
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::_DrawText()
- *************************************************************************/
-
-
-/*************************************************************************
- *                          lcl_CalcRect()
- *************************************************************************/
-
-
-/*************************************************************************
- *                          lcl_DrawSpecial
- *
- * Draws a special portion, e.g., line break portion, tab portion.
- * rPor - The portion
- * rRect - The rectangle surrounding the character
- * pCol     - Specify a color for the character
- * bCenter  - Draw the character centered, otherwise left aligned
- * bRotate  - Rotate the character if character rotation is set
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawRect()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawTab()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawLineBreak()
- *************************************************************************/
-
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawRedArrow()
- *************************************************************************/
-
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawPostIts()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawBackGround()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawViewOpt()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::_NotifyURL()
- *************************************************************************/
-
-
-/*************************************************************************
  *                  lcl_InitHyphValues()
  *************************************************************************/
 
@@ -602,7 +517,7 @@ extern Color aGlobalRetoucheColor;
  *                  SwTxtFormatInfo::InitHyph()
  *************************************************************************/
 
-/*N*/ sal_Bool SwTxtFormatInfo::InitHyph( const sal_Bool bAutoHyph )
+/*N*/ sal_Bool SwTxtFormatInfo::InitHyph( const sal_Bool bAutoHyph1 )
 /*N*/ {
 /*N*/   const SwAttrSet& rAttrSet = GetTxtFrm()->GetTxtNode()->GetSwAttrSet();
 /*N*/   SetHanging( rAttrSet.GetHangingPunctuation().GetValue() );
@@ -610,15 +525,15 @@ extern Color aGlobalRetoucheColor;
 /*N*/   SetForbiddenChars( rAttrSet.GetForbiddenRule().GetValue() );
 /*N*/   const SvxHyphenZoneItem &rAttr = rAttrSet.GetHyphenZone();
 /*N*/   MaxHyph() = rAttr.GetMaxHyphens();
-/*N*/   sal_Bool bAuto = bAutoHyph || rAttr.IsHyphen();
+/*N*/   sal_Bool bAuto = bAutoHyph1 || rAttr.IsHyphen();
 /*N*/   if( bAuto || bInterHyph )
 /*N*/   {
 /*N*/       nHyphStart = nHyphWrdStart = STRING_LEN;
 /*N*/       nHyphWrdLen = 0;
 /*N*/
-/*N*/       INT16 nMinLeading  = Max(rAttr.GetMinLead(), sal_uInt8(2));
-/*N*/       INT16 nMinTrailing = rAttr.GetMinTrail();
-/*N*/       lcl_InitHyphValues( aHyphVals, nMinLeading, nMinTrailing);
+/*N*/       INT16 nMinLeading1  = Max(rAttr.GetMinLead(), sal_uInt8(2));
+/*N*/       INT16 nMinTrailing1 = rAttr.GetMinTrail();
+/*N*/       lcl_InitHyphValues( aHyphVals, nMinLeading1, nMinTrailing1);
 /*N*/   }
 /*N*/   return bAuto;
 /*N*/ }
@@ -715,12 +630,12 @@ extern Color aGlobalRetoucheColor;
 /*N*/     if ( GetTxtFrm()->IsFollow() )
 /*N*/     {
 /*N*/         const SwTxtFrm* pMaster = GetTxtFrm()->FindMaster();
-/*N*/         const SwLinePortion* pPara = pMaster->GetPara();
+/*N*/         const SwLinePortion* pPara1 = pMaster->GetPara();
 /*N*/
 /*N*/         // there is a master for this follow and the master does not have
 /*N*/         // any contents (especially it does not have a number portion)
-/*N*/         bNumDone = ! pPara ||
-/*N*/                    ! ((SwParaPortion*)pPara)->GetFirstPortion()->IsFlyPortion();
+/*N*/         bNumDone = ! pPara1 ||
+/*N*/                    ! ((SwParaPortion*)pPara1)->GetFirstPortion()->IsFlyPortion();
 /*N*/     }
 /*N*/
 /*N*/   pRoot = 0;
@@ -785,12 +700,6 @@ extern Color aGlobalRetoucheColor;
 /*N*/   cHookChar = 0;
 /*N*/   const xub_Unicode cTabDec = GetLastTab() ? (sal_Unicode)GetTabDecimal() : 0;
 /*N*/   xub_StrLen i = nStart;
-/*N*/
-/*N*/     // Removed for i7288. bSkip used to be passed from SwFldPortion::Format
-/*N*/     // as IsFollow(). Therefore more than one special character was not
-/*N*/     // handled correctly at the beginning of follow fields.
-/*N*/ //    if ( bSkip && i < nEnd )
-/*N*/ //       ++i;
 /*N*/
 /*N*/   for( ; i < nEnd; ++i )
 /*N*/   {
@@ -994,16 +903,6 @@ extern Color aGlobalRetoucheColor;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
- *                     SwDefFontSave::SwDefFontSave()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwDefFontSave::~SwDefFontSave()
- *************************************************************************/
-
 
 /*************************************************************************
  *                  SwTxtFormatInfo::ChgHyph()

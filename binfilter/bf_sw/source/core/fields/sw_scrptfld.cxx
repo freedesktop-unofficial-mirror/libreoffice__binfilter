@@ -57,10 +57,10 @@ using namespace ::rtl;
     Beschreibung: SwScriptField
  --------------------------------------------------------------------*/
 
-/*N*/ SwScriptField::SwScriptField( SwScriptFieldType* pType,
+/*N*/ SwScriptField::SwScriptField( SwScriptFieldType* pType2,
 /*N*/                               const String& rType, const String& rCode,
 /*N*/                               BOOL bURL )
-/*N*/   : SwField( pType ), sType( rType ), sCode( rCode ), bCodeURL( bURL )
+/*N*/   : SwField( pType2 ), sType( rType ), sCode( rCode ), bCodeURL( bURL )
 /*N*/ {
 /*N*/ }
 

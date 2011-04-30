@@ -355,7 +355,6 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
                                 SwSelBoxes* pAllDelBoxes = 0,
                                 USHORT* pCurPos = 0 )
  {
- //JP 16.04.97:  2.Teil fuer Bug 36271
     BOOL bChgd = FALSE;
     const SwTableLine* pLine = rBox.GetUpper();
     const SwTableBoxes& rTblBoxes = pLine->GetTabBoxes();
@@ -854,18 +853,18 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
     USHORT nInsPos = pLines->C40_GETPOS( SwTableLine, pNewLine );
     pLines->C40_INSERT( SwTableLine, pInsLine, nInsPos );
 
-    SwTableBox* pLeft = new SwTableBox( (SwTableBoxFmt*)pMergeBox->GetFrmFmt(), 0, pInsLine );
-    SwTableBox* pRight = new SwTableBox( (SwTableBoxFmt*)pMergeBox->GetFrmFmt(), 0, pInsLine );
+    SwTableBox* pLeft2 = new SwTableBox( (SwTableBoxFmt*)pMergeBox->GetFrmFmt(), 0, pInsLine );
+    SwTableBox* pRight2 = new SwTableBox( (SwTableBoxFmt*)pMergeBox->GetFrmFmt(), 0, pInsLine );
     pMergeBox->SetUpper( pInsLine );
-    pInsLine->GetTabBoxes().C40_INSERT( SwTableBox, pLeft, 0 );
-    pLeft->ClaimFrmFmt();
+    pInsLine->GetTabBoxes().C40_INSERT( SwTableBox, pLeft2, 0 );
+    pLeft2->ClaimFrmFmt();
     pInsLine->GetTabBoxes().C40_INSERT( SwTableBox, pMergeBox, 1 );
-    pInsLine->GetTabBoxes().C40_INSERT( SwTableBox, pRight, 2 );
-    pRight->ClaimFrmFmt();
+    pInsLine->GetTabBoxes().C40_INSERT( SwTableBox, pRight2, 2 );
+    pRight2->ClaimFrmFmt();
 
     // in diese kommen alle Lines, die ueber dem selektierten Bereich stehen
     // Sie bilden also eine Upper/Lower Line
-    _InsULPara aPara( pTblNd, TRUE, TRUE, pLeft, pMergeBox, pRight, pInsLine );
+    _InsULPara aPara( pTblNd, TRUE, TRUE, pLeft2, pMergeBox, pRight2, pInsLine );
 
     // move die oben/unten ueberhaengenden Lines vom selektierten Bereich
     pFndBox->GetLines()[0]->GetBoxes().ForEach( &::binfilter::lcl_Merge_MoveBox,
@@ -876,23 +875,23 @@ BOOL lcl_Merge_MoveLine( const _FndLine*& rpFndLine, void* pPara )
                                                     &aPara );
 
     // move die links/rechts hereinreichenden Boxen vom selektierten Bereich
-    aPara.SetLeft( pLeft );
+    aPara.SetLeft( pLeft2 );
     pFndBox->GetLines().ForEach( &::binfilter::lcl_Merge_MoveLine, &aPara );
 
-    aPara.SetRight( pRight );
+    aPara.SetRight( pRight2 );
     pFndBox->GetLines().ForEach( &lcl_Merge_MoveLine, &aPara );
 
-    if( !pLeft->GetTabLines().Count() )
-        _DeleteBox( *this, pLeft, 0, FALSE, FALSE );
+    if( !pLeft2->GetTabLines().Count() )
+        _DeleteBox( *this, pLeft2, 0, FALSE, FALSE );
     else
     {
-        lcl_CalcWidth( pLeft );     // bereche die Breite der Box
+        lcl_CalcWidth( pLeft2 );     // bereche die Breite der Box
     }
-    if( !pRight->GetTabLines().Count() )
-        _DeleteBox( *this, pRight, 0, FALSE, FALSE );
+    if( !pRight2->GetTabLines().Count() )
+        _DeleteBox( *this, pRight2, 0, FALSE, FALSE );
     else
     {
-        lcl_CalcWidth( pRight );        // bereche die Breite der Box
+        lcl_CalcWidth( pRight2 );        // bereche die Breite der Box
     }
 
     DeleteSel( pDoc, rBoxes, FALSE, FALSE );

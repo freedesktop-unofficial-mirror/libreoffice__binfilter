@@ -769,10 +769,10 @@ struct ParaRstFmt
 /*N*/
 /*N*/   if( aNew.Count() && aCallMod.GetDepends() )
 /*N*/   {
-/*N*/       const SfxPoolItem* pItem;
+/*N*/       const SfxPoolItem* pItem2;
 /*N*/       if( ( SFX_ITEM_SET ==
-/*N*/                 aNew.GetItemState( RES_PARATR_TABSTOP, FALSE, &pItem ) ) &&
-/*N*/           ((SvxTabStopItem*)pItem)->Count() )
+/*N*/                 aNew.GetItemState( RES_PARATR_TABSTOP, FALSE, &pItem2 ) ) &&
+/*N*/           ((SvxTabStopItem*)pItem2)->Count() )
 /*N*/       {
 /*N*/           // TabStop-Aenderungen behandeln wir erstmal anders:
 /*N*/           // dann aender bei allen TabStop die dafault's auf den neuen Wert
@@ -780,15 +780,15 @@ struct ParaRstFmt
 /*N*/           //              damit nicht in allen Sets die gleiche Berechnung
 /*N*/           //              auf dem gleichen TabStop (gepoolt!) vorgenommen
 /*N*/           //              wird. Als Modify wird ein FmtChg verschickt.
-/*N*/           SwTwips nNewWidth = (*(SvxTabStopItem*)pItem)[ 0 ].GetTabPos(),
+/*N*/           SwTwips nNewWidth = (*(SvxTabStopItem*)pItem2)[ 0 ].GetTabPos(),
 /*N*/                   nOldWidth = ((SvxTabStopItem&)aOld.Get(RES_PARATR_TABSTOP))[ 0 ].GetTabPos();
 /*N*/
 /*N*/           int bChg = FALSE;
 /*N*/           USHORT nMaxItems = GetAttrPool().GetItemCount( RES_PARATR_TABSTOP );
 /*N*/           for( USHORT n = 0; n < nMaxItems; ++n )
-/*N*/               if( 0 != (pItem = GetAttrPool().GetItem( RES_PARATR_TABSTOP, n ) ))
+/*N*/               if( 0 != (pItem2 = GetAttrPool().GetItem( RES_PARATR_TABSTOP, n ) ))
 /*N*/                   bChg |= lcl_SetNewDefTabStops( nOldWidth, nNewWidth,
-/*N*/                                               *(SvxTabStopItem*)pItem );
+/*N*/                                               *(SvxTabStopItem*)pItem2 );
 /*N*/
 /*N*/           aNew.ClearItem( RES_PARATR_TABSTOP );
 /*N*/           aOld.ClearItem( RES_PARATR_TABSTOP );

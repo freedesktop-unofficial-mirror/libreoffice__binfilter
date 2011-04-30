@@ -205,15 +205,15 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/
 /*N*/     OSL_ENSURE( HasFollow(), "CalcFollow: missing Follow." );
 /*N*/
-/*N*/   SwTxtFrm *pFollow = GetFollow();
+/*N*/   SwTxtFrm *pFollow1 = GetFollow();
 /*N*/
 /*N*/   SwParaPortion *pPara = GetPara();
 /*N*/   sal_Bool bFollowFld = pPara ? pPara->IsFollowField() : sal_False;
 /*N*/
-/*N*/     if( !pFollow->GetOfst() || pFollow->GetOfst() != nTxtOfst ||
-/*N*/         bFollowFld || pFollow->IsFieldFollow() ||
-/*N*/         ( pFollow->IsVertical() && !pFollow->Prt().Width() ) ||
-/*N*/         ( ! pFollow->IsVertical() && !pFollow->Prt().Height() ) )
+/*N*/     if( !pFollow1->GetOfst() || pFollow1->GetOfst() != nTxtOfst ||
+/*N*/         bFollowFld || pFollow1->IsFieldFollow() ||
+/*N*/         ( pFollow1->IsVertical() && !pFollow1->Prt().Width() ) ||
+/*N*/         ( ! pFollow1->IsVertical() && !pFollow1->Prt().Height() ) )
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       const SwFrm *pOldUp = GetUpper();
@@ -234,9 +234,9 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/           bOldInvaLayout = pPage->IsInvalidLayout();
 /*N*/       }
 /*N*/
-/*N*/       pFollow->_SetOfst( nTxtOfst );
-/*N*/       pFollow->SetFieldFollow( bFollowFld );
-/*N*/       if( HasFtn() || pFollow->HasFtn() )
+/*N*/       pFollow1->_SetOfst( nTxtOfst );
+/*N*/       pFollow1->SetFieldFollow( bFollowFld );
+/*N*/       if( HasFtn() || pFollow1->HasFtn() )
 /*N*/       {
 /*?*/           ValidateFrm();
 /*?*/           ValidateBodyFrm();
@@ -250,8 +250,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       //Der Fussnotenbereich darf sich keinesfalls vergrossern.
 /*N*/       SwSaveFtnHeight aSave( FindFtnBossFrm( sal_True ), LONG_MAX );
 /*N*/
-/*N*/         pFollow->CalcFtnFlag();
-/*N*/       if ( !pFollow->GetNext() && !pFollow->HasFtn() )
+/*N*/         pFollow1->CalcFtnFlag();
+/*N*/       if ( !pFollow1->GetNext() && !pFollow1->HasFtn() )
 /*N*/             nOldBottom = bVert ? 0 : LONG_MAX;
 /*N*/
 /*N*/       while( sal_True )
@@ -263,7 +263,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               // werden, da das FormatWidthCols() nicht funktioniert, wenn
 /*N*/               // es aus dem MakeAll des _gelockten_ Follows heraus gerufen
 /*N*/               // wird.
-/*N*/               SwSectionFrm* pSct = pFollow->FindSctFrm();
+/*N*/               SwSectionFrm* pSct = pFollow1->FindSctFrm();
 /*N*/               if( pSct && !pSct->IsAnLower( this ) )
 /*N*/               {
 /*?*/                   if( pSct->GetFollow() )
@@ -280,7 +280,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/                     // Thus, forbid intrinsic format of follow.
 /*N*/                     {
 /*N*/                         bool bIsFollowInColumn = false;
-/*N*/                         SwFrm* pFollowUpper = pFollow->GetUpper();
+/*N*/                         SwFrm* pFollowUpper = pFollow1->GetUpper();
 /*N*/                         while ( pFollowUpper )
 /*N*/                         {
 /*N*/                             if ( pFollowUpper->IsColumnFrm() )
@@ -297,27 +297,27 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/                         }
 /*N*/                         if ( bIsFollowInColumn )
 /*N*/                         {
-/*N*/                             pFollow->ForbidFollowFormat();
+/*N*/                             pFollow1->ForbidFollowFormat();
 /*N*/                         }
 /*N*/                     }
 /*N*/
-/*N*/               pFollow->Calc();
+/*N*/               pFollow1->Calc();
 /*N*/               // Der Follow merkt anhand seiner Frm().Height(), dass was schief
 /*N*/               // gelaufen ist.
-/*N*/               OSL_ENSURE( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: cheesy follow" );
-/*N*/               if( pFollow->GetPrev() )
+/*N*/               OSL_ENSURE( !pFollow1->GetPrev(), "SwTxtFrm::CalcFollow: cheesy follow" );
+/*N*/               if( pFollow1->GetPrev() )
 /*N*/               {
-/*?*/                   pFollow->Prepare( PREP_CLEAR );
-/*?*/                   pFollow->Calc();
-/*?*/                   OSL_ENSURE( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: very cheesy follow" );
+/*?*/                   pFollow1->Prepare( PREP_CLEAR );
+/*?*/                   pFollow1->Calc();
+/*?*/                   OSL_ENSURE( !pFollow1->GetPrev(), "SwTxtFrm::CalcFollow: very cheesy follow" );
 /*N*/                     }
 /*N*/
 /*N*/                     // OD 14.03.2003 #i11760# - reset control flag for follow format.
-/*N*/                     pFollow->AllowFollowFormat();
+/*N*/                     pFollow1->AllowFollowFormat();
 /*N*/               }
 /*N*/
 /*N*/               //Sicherstellen, dass der Follow gepaintet wird.
-/*N*/               pFollow->SetCompletePaint();
+/*N*/               pFollow1->SetCompletePaint();
 /*N*/           }
 /*N*/
 /*N*/           pPara = GetPara();
@@ -329,7 +329,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               break;
 /*N*/       }
 /*N*/
-/*N*/       if( HasFtn() || pFollow->HasFtn() )
+/*N*/       if( HasFtn() || pFollow1->HasFtn() )
 /*N*/       {
 /*?*/           ValidateBodyFrm();
 /*?*/           ValidateFrm();
@@ -1627,8 +1627,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/               rLine.CtorInit( this, &rInf );
 /*?*/               rLine.SetDropLines( 1 );
 /*?*/               rLine.CalcDropHeight( 1 );
-/*?*/               SwCharRange aRange( 0, rInf.GetTxt().Len() );
-/*?*/               *(pPara->GetReformat()) = aRange;
+/*?*/               SwCharRange aRange1( 0, rInf.GetTxt().Len() );
+/*?*/               *(pPara->GetReformat()) = aRange1;
 /*?*/               _Format( rLine, rInf, sal_True );
 /*?*/               // 8047: Wir painten alles...
 /*?*/               SetCompletePaint();

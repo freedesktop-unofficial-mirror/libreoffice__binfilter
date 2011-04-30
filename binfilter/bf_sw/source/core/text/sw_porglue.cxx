@@ -51,26 +51,6 @@ namespace binfilter {
 /*N*/ }
 
 /*************************************************************************
- *                virtual SwGluePortion::GetCrsrOfst()
- *************************************************************************/
-
-
-/*************************************************************************
- *                virtual SwGluePortion::GetTxtSize()
- *************************************************************************/
-
-
-/*************************************************************************
- *              virtual SwGluePortion::GetExpTxt()
- *************************************************************************/
-
-
-/*************************************************************************
- *                virtual SwGluePortion::Paint()
- *************************************************************************/
-
-
-/*************************************************************************
  *                      SwGluePortion::MoveGlue()
  *************************************************************************/
 
@@ -113,8 +93,8 @@ namespace binfilter {
 /*N*/   SetWhichPor( POR_FIX );
 /*N*/ }
 /*N*/
-/*N*/ SwFixPortion::SwFixPortion(const KSHORT nFixWidth, const KSHORT nFixPos)
-/*N*/      : SwGluePortion(nFixWidth), nFix(nFixPos)
+/*N*/ SwFixPortion::SwFixPortion(const KSHORT nFixWidth1, const KSHORT nFixPos)
+/*N*/      : SwGluePortion(nFixWidth1), nFix(nFixPos)
 /*N*/ {
 /*N*/   SetWhichPor( POR_FIX );
 /*N*/ }
@@ -123,8 +103,8 @@ namespace binfilter {
  *                class SwMarginPortion
  *************************************************************************/
 
-/*N*/ SwMarginPortion::SwMarginPortion( const KSHORT nFixWidth )
-/*N*/   :SwGluePortion( nFixWidth )
+/*N*/ SwMarginPortion::SwMarginPortion( const KSHORT nFixWidth2 )
+/*N*/   :SwGluePortion( nFixWidth2 )
 /*N*/ {
 /*N*/   SetWhichPor( POR_MARGIN );
 /*N*/ }
@@ -156,7 +136,6 @@ namespace binfilter {
 /*N*/       SwGluePortion *pLeft = 0;
 /*N*/       while( pPos )
 /*N*/       {
-///*N*/             DBG_LOOP;
 /*N*/           if( pPos->InFixMargGrp() )
 /*N*/               pLeft = (SwGluePortion*)pPos;
 /*N*/           pPos = pPos->GetPortion();
@@ -200,8 +179,6 @@ namespace binfilter {
 /*?*/           }
 /*?*/           while( pPrev != pLeft )
 /*?*/           {
-///*?*/                 DBG_LOOP;
-/*?*/
 /*?*/               if( bNoMove || pPrev->PrtWidth() >= nRightGlue ||
 /*?*/                   pPrev->InHyphGrp() || pPrev->IsKernPortion() )
 /*?*/               {
@@ -245,7 +222,6 @@ namespace binfilter {
 /*N*/       pRight = pLeft ? pLeft : (SwGluePortion*)this;
 /*N*/   }
 /*N*/ }
-
 
 
 }

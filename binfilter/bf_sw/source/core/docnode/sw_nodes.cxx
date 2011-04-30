@@ -1149,9 +1149,9 @@ namespace binfilter {
 /*N*/ };
 
 
-/*N*/ void SwNodes::RemoveNode( ULONG nDelPos, ULONG nSize, bool bDel )
+/*N*/ void SwNodes::RemoveNode( ULONG nDelPos, ULONG nSize2, bool bDel )
 /*N*/ {
-/*N*/   ULONG nEnd = nDelPos + nSize;
+/*N*/   ULONG nEnd = nDelPos + nSize2;
 /*N*/   SwNode* pNew = (*this)[ nEnd ];
 /*N*/
 /*N*/   if( pRoot )
@@ -1181,7 +1181,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bDel )
 /*N*/   {
-/*N*/       ULONG nCnt = nSize;
+/*N*/       ULONG nCnt = nSize2;
 /*N*/       SwNode *pDel = (*this)[ nDelPos+nCnt-1 ], *pPrev = (*this)[ nDelPos+nCnt-2 ];
 /*N*/
 /*N*/ #if 1
@@ -1224,7 +1224,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/ #endif
 /*N*/
-/*N*/   BigPtrArray::Remove( nDelPos, nSize );
+/*N*/   BigPtrArray::Remove( nDelPos, nSize2 );
 /*N*/ }
 
 /*N*/ void SwNodes::RegisterIndex( SwNodeIndex& rIdx )

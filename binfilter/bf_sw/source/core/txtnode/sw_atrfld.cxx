@@ -211,8 +211,8 @@ int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 |*
 *************************************************************************/
 
-/*N*/ SwTxtFld::SwTxtFld( const SwFmtFld& rAttr, xub_StrLen nStart )
-/*N*/   : SwTxtAttr( rAttr, nStart ),
+/*N*/ SwTxtFld::SwTxtFld( const SwFmtFld& rAttr, xub_StrLen nStart2 )
+/*N*/   : SwTxtAttr( rAttr, nStart2 ),
 /*N*/   aExpand( rAttr.GetFld()->Expand() ),
 /*N*/   pMyTxtNd( 0 )
 /*N*/ {

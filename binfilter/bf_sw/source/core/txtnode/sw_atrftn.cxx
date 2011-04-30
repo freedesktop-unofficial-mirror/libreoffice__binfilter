@@ -151,8 +151,8 @@ void SwFmtFtn::SetEndNote( BOOL b )
  *                      class SwTxt/FmtFnt
  *************************************************************************/
 
-/*N*/ SwTxtFtn::SwTxtFtn( const SwFmtFtn& rAttr, xub_StrLen nStart )
-/*N*/   : SwTxtAttr( rAttr, nStart ),
+/*N*/ SwTxtFtn::SwTxtFtn( const SwFmtFtn& rAttr, xub_StrLen nStart2 )
+/*N*/   : SwTxtAttr( rAttr, nStart2 ),
 /*N*/   pMyTxtNd( 0 ),
 /*N*/   pStartNode( 0 ),
 /*N*/   nSeqNo( USHRT_MAX )

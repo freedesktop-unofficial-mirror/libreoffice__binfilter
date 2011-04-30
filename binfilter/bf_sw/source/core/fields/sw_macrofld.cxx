@@ -61,9 +61,9 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;
     Beschreibung: Das Macrofeld selbst
  --------------------------------------------------------------------*/
 
-/*N*/ SwMacroField::SwMacroField(SwMacroFieldType* pType,
+/*N*/ SwMacroField::SwMacroField(SwMacroFieldType* pType3,
 /*N*/                          const String& rLibAndName, const String& rTxt) :
-/*N*/   SwField(pType), aMacro(rLibAndName), aText(rTxt)
+/*N*/   SwField(pType3), aMacro(rLibAndName), aText(rTxt)
 /*N*/ {
 /*N*/ }
 

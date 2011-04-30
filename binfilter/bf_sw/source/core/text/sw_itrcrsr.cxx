@@ -76,43 +76,43 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*************************************************************************
  *                SwTxtMargin::CtorInit()
  *************************************************************************/
-/*M*/ void SwTxtMargin::CtorInit( SwTxtFrm *pFrm, SwTxtSizeInfo *pNewInf )
+/*M*/ void SwTxtMargin::CtorInit( SwTxtFrm *pFrm1, SwTxtSizeInfo *pNewInf )
 /*M*/ {
-/*M*/   SwTxtIter::CtorInit( pFrm, pNewInf );
+/*M*/   SwTxtIter::CtorInit( pFrm1, pNewInf );
 /*M*/
 /*M*/   pInf = pNewInf;
 /*M*/   GetInfo().SetFont( GetFnt() );
-/*M*/   SwTxtNode *pNode = pFrm->GetTxtNode();
+/*M*/   SwTxtNode *pNode = pFrm1->GetTxtNode();
 /*M*/
 /*M*/   const SvxLRSpaceItem &rSpace =
-/*M*/       pFrm->GetTxtNode()->GetSwAttrSet().GetLRSpace();
+/*M*/       pFrm1->GetTxtNode()->GetSwAttrSet().GetLRSpace();
 /*M*/
 /*M*/ #ifdef BIDI
 /*M*/     //
 /*M*/     // Carefully adjust the text formatting ranges.
 /*M*/     //
 /*M*/     const int nLMWithNum = pNode->GetLeftMarginWithNum( sal_True );
-/*M*/     if ( pFrm->IsRightToLeft() )
-/*M*/         nLeft = pFrm->Frm().Left() + pFrm->Prt().Left() + nLMWithNum -
+/*M*/     if ( pFrm1->IsRightToLeft() )
+/*M*/         nLeft = pFrm1->Frm().Left() + pFrm1->Prt().Left() + nLMWithNum -
 /*M*/                 ( rSpace.GetTxtFirstLineOfst() < 0 ?
 /*M*/                   rSpace.GetTxtFirstLineOfst() :
 /*M*/                   0 );
 /*M*/     else
-/*M*/         nLeft = Max( long( rSpace.GetTxtLeft() + nLMWithNum), pFrm->Prt().Left() ) +
-/*M*/                 pFrm->Frm().Left();
+/*M*/         nLeft = Max( long( rSpace.GetTxtLeft() + nLMWithNum), pFrm1->Prt().Left() ) +
+/*M*/                 pFrm1->Frm().Left();
 /*M*/ #else
 /*M*/     nLeft = Max( long( rSpace.GetTxtLeft() + pNode->GetLeftMarginWithNum(sal_True) ),
-/*M*/                  pFrm->Prt().Left() ) +
-/*M*/             pFrm->Frm().Left();
+/*M*/                  pFrm1->Prt().Left() ) +
+/*M*/             pFrm1->Frm().Left();
 /*M*/ #endif
 /*M*/
-/*M*/     nRight = pFrm->Frm().Left() + pFrm->Prt().Left() + pFrm->Prt().Width();
+/*M*/     nRight = pFrm1->Frm().Left() + pFrm1->Prt().Left() + pFrm1->Prt().Width();
 /*M*/
 /*M*/   if( nLeft >= nRight )
-/*M*/       nLeft = pFrm->Prt().Left() + pFrm->Frm().Left();
+/*M*/       nLeft = pFrm1->Prt().Left() + pFrm1->Frm().Left();
 /*M*/   if( nLeft >= nRight ) // z.B. bei grossen Absatzeinzuegen in schmalen Tabellenspalten
 /*M*/       nRight = nLeft + 1; // einen goennen wir uns immer
-/*M*/   if( pFrm->IsFollow() && pFrm->GetOfst() )
+/*M*/   if( pFrm1->IsFollow() && pFrm1->GetOfst() )
 /*M*/       nFirst = nLeft;
 /*M*/   else
 /*M*/   {
@@ -172,25 +172,25 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*M*/           nFirstLineOfs = nFLOfst;
 /*M*/
 /*M*/ #ifdef BIDI
-/*M*/         if ( pFrm->IsRightToLeft() )
+/*M*/         if ( pFrm1->IsRightToLeft() )
 /*M*/             nFirst = nLeft + nFirstLineOfs;
 /*M*/         else
 /*M*/             nFirst = Max( rSpace.GetTxtLeft() + nLMWithNum + nFirstLineOfs,
-/*M*/                           pFrm->Prt().Left() ) + pFrm->Frm().Left();
+/*M*/                           pFrm1->Prt().Left() ) + pFrm1->Frm().Left();
 /*M*/ #else
 /*M*/       nFirst = Max( rSpace.GetTxtLeft() + pNode->GetLeftMarginWithNum( sal_True )
-/*M*/           + nFirstLineOfs, pFrm->Prt().Left() ) + pFrm->Frm().Left();
+/*M*/           + nFirstLineOfs, pFrm1->Prt().Left() ) + pFrm1->Frm().Left();
 /*M*/ #endif
 /*M*/
 /*M*/       if( nFirst >= nRight )
 /*M*/           nFirst = nRight - 1;
 /*M*/   }
-/*M*/     const SvxAdjustItem& rAdjust = pFrm->GetTxtNode()->GetSwAttrSet().GetAdjust();
+/*M*/     const SvxAdjustItem& rAdjust = pFrm1->GetTxtNode()->GetSwAttrSet().GetAdjust();
 /*M*/   nAdjust = rAdjust.GetAdjust();
 /*M*/
 /*M*/ #ifdef BIDI
 /*M*/     // left is left and right is right
-/*M*/     if ( pFrm->IsRightToLeft() )
+/*M*/     if ( pFrm1->IsRightToLeft() )
 /*M*/     {
 /*M*/         if ( SVX_ADJUST_LEFT == nAdjust )
 /*M*/             nAdjust = SVX_ADJUST_RIGHT;
@@ -257,9 +257,9 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*************************************************************************
  *                      SwTxtCursor::CtorInit()
  *************************************************************************/
-/*N*/ void SwTxtCursor::CtorInit( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf )
+/*N*/ void SwTxtCursor::CtorInit( SwTxtFrm *pFrm2, SwTxtSizeInfo *pInf2 )
 /*N*/ {
-/*N*/   SwTxtMargin::CtorInit( pFrm, pInf );
+/*N*/   SwTxtMargin::CtorInit( pFrm2, pInf2 );
 /*N*/   // 6096: Vorsicht, die Iteratoren sind abgeleitet!
 /*N*/   // GetInfo().SetOut( GetInfo().GetWin() );
 /*N*/ }
@@ -317,7 +317,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       KSHORT nPorHeight = nTmpHeight;
 /*N*/       KSHORT nPorAscent = nTmpAscent;
 /*N*/       SwTwips nX = 0;
-/*N*/       SwTwips nFirst = 0;
+/*N*/       SwTwips nFirst1 = 0;
 /*N*/       SwLinePortion *pPor = pCurr->GetFirstPortion();
 /*N*/         SvShorts* pSpaceAdd = pCurr->GetpSpaceAdd();
 /*N*/         SvUShorts* pKanaComp = pCurr->GetpKanaComp();
@@ -339,12 +339,12 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/           if ( pPor->InSpaceGrp() && nSpaceAdd )
                     {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           if( bNoTxt )
-/*N*/               nFirst = nX;
+/*N*/               nFirst1 = nX;
 /*N*/           // 8670: EndPortions zaehlen hier einmal als TxtPortions.
 /*N*/           if( pPor->InTxtGrp() || pPor->IsBreakPortion() )
 /*N*/           {
 /*N*/               bNoTxt = sal_False;
-/*N*/               nFirst = nX;
+/*N*/               nFirst1 = nX;
 /*N*/           }
 /*N*/             if( pPor->IsMultiPortion() && ((SwMultiPortion*)pPor)->HasTabulator() )
 /*N*/           {
@@ -384,7 +384,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       if( !pPor )
 /*N*/       {
 /*N*/           // Es sind nur Spezialportions unterwegs.
-/*N*/           nX = nFirst;
+/*N*/           nX = nFirst1;
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -727,7 +727,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/
 /*N*/     _GetCharRect( pOrig, nFindOfst, pCMS );
 /*N*/
-/*N*/     const SwTwips nRight = Right() - 12;
+/*N*/     const SwTwips nRight1 = Right() - 12;
 /*N*/
 /*N*/     pOrig->Pos().X() += aCharPos.X();
 /*N*/   pOrig->Pos().Y() += aCharPos.Y();
@@ -740,8 +740,8 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/       pCMS->p2Lines->aPortion.Pos().Y() += aCharPos.Y();
 /*N*/   }
 /*N*/
-/*N*/   if( pOrig->Left() > nRight )
-/*?*/       pOrig->Pos().X() = nRight;
+/*N*/   if( pOrig->Left() > nRight1 )
+/*?*/       pOrig->Pos().X() = nRight1;
 /*N*/
 /*N*/   if( nMax )
 /*N*/   {

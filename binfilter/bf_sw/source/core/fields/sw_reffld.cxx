@@ -127,9 +127,9 @@ using namespace ::rtl;
 /*N*/   while( nRefCnt && nCnt && aRefArr[ nRefCnt ] == aArr[ nCnt ] )
 /*N*/     {
 /*N*/ #ifdef VERTICAL_LAYOUT
-/*N*/         const SwFrm* pFrm = (const SwFrm*)aArr[ nCnt ];
-/*N*/         bVert = pFrm->IsVertical();
-/*N*/         bR2L = pFrm->IsRightToLeft();
+/*N*/         const SwFrm* pFrm1 = (const SwFrm*)aArr[ nCnt ];
+/*N*/         bVert = pFrm1->IsVertical();
+/*N*/         bR2L = pFrm1->IsRightToLeft();
 /*N*/ #endif
 /*N*/       --nCnt, --nRefCnt;
 /*N*/     }
