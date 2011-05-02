@@ -2152,8 +2152,11 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/       delete pMsgInfo;
 /*N*/   while (( pMsgInfo = aMsgStackFinal.Pop() ))
 /*N*/       delete pMsgInfo;
-/*N*/   while (( pMsgInfo = aMsgQueue.Get() ))
-/*N*/       delete pMsgInfo;
+/*N*/
+/*N*/   ScChangeTrackMsgQueue::iterator itQueue;
+/*N*/   for (itQueue = aMsgQueue.begin(); itQueue != aMsgQueue.end(); ++itQueue)
+/*N*/       delete *itQueue;
+/*N*/   aMsgQueue.clear();
 /*N*/ }
 
 
@@ -2254,7 +2257,7 @@ const USHORT ScChangeTrack::nContentSlots =
 /*N*/           ScChangeTrackMsgInfo* pMsg;
 /*N*/           while (( pMsg = aMsgStackFinal.Pop() ))
 /*N*/           {
-/*N*/               aMsgQueue.Put( pMsg );
+/*N*/               aMsgQueue.push_back( pMsg );
 /*N*/               bNew = TRUE;
 /*N*/           }
 /*N*/           if ( bNew )

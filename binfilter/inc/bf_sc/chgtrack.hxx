@@ -29,13 +29,14 @@
 #ifndef SC_CHGTRACK_HXX
 #define SC_CHGTRACK_HXX
 
+#include <deque>
+
 #include <bf_svtools/bf_solar.h>
 
 
 #include <tools/datetime.hxx>
 #include <tools/table.hxx>
 #include <tools/stack.hxx>
-#include <tools/queue.hxx>
 #include <tools/mempool.hxx>
 #include <bf_svtools/lstner.hxx>
 
@@ -939,7 +940,7 @@ struct ScChangeTrackMsgInfo
 };
 
 // MsgQueue fuer Benachrichtigung via ModifiedLink
-/*N*/ DECLARE_QUEUE( ScChangeTrackMsgQueue, ScChangeTrackMsgInfo* )
+/*N*/ typedef std::deque<ScChangeTrackMsgInfo*> ScChangeTrackMsgQueue;
 /*N*/ DECLARE_STACK( ScChangeTrackMsgStack, ScChangeTrackMsgInfo* )
 
 enum ScChangeTrackMergeState
