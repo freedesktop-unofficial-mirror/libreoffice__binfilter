@@ -31,7 +31,6 @@
 
 #include <tools/link.hxx>
 #include <tools/string.hxx>
-#include <tools/list.hxx>
 
 #include <com/sun/star/awt/ImageStatus.hpp>
 #include <com/sun/star/awt/XImageConsumer.hpp>
@@ -39,12 +38,12 @@
 #include <com/sun/star/lang/XInitialization.hpp>
 
 #include <cppuhelper/weak.hxx>
+#include <vector>
 
 
 // -----------------
 // - ImageProducer -
 // -----------------
-
 
 
 class SvStream;
@@ -67,7 +66,7 @@ class ImageProducer :   public ::com::sun::star::awt::XImageProducer,
 private:
 
     ::rtl::OUString maURL;
-    List            maConsList;
+    std::vector< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageConsumer > * > maConsList;
     Graphic*        mpGraphic;
     SvStream*       mpStm;
     binfilter::GraphicFilter*   mpFilter;
