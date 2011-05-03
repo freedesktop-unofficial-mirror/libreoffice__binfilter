@@ -29,30 +29,51 @@
 #ifndef _PARALIST_HXX
 #define _PARALIST_HXX
 
-
 #include <bf_svtools/bf_solar.h>
-
-#include <tools/list.hxx>
-
 #include <tools/link.hxx>
+#include <vector>
+
 namespace binfilter {
 class Paragraph;
 
-class ParagraphList : private List
+class ParagraphList
 {
 private:
     Link            aVisibleStateChangedHdl;
+    std::vector< Paragraph* > aList;
 
 public:
     void            Clear( BOOL bDestroyParagraphs );
 
-    ULONG           GetParagraphCount() const           { return List::Count(); }
-    Paragraph*      GetParagraph( ULONG nPos ) const    { return (Paragraph*)List::GetObject( nPos ); }
+    ULONG           GetParagraphCount() const           { return aList.size(); }
+    Paragraph*      GetParagraph( ULONG nPos ) const    { return aList[ nPos ]; }
 
-    ULONG           GetAbsPos( Paragraph* pParent ) const { return List::GetPos( pParent ); }
+    ULONG           GetAbsPos( Paragraph* pParent ) const {
+                        for( size_t i = 0, n = aList.size(); i < n; ++i ) {
+                            if ( pParent == aList[ i ] ) {
+                                return i;
+                            }
+                        }
+                        return ULONG_MAX;
+                    }
 
-    void            Insert( Paragraph* pPara, ULONG nAbsPos = LIST_APPEND ) { List::Insert( pPara, nAbsPos ); }
-    void            Remove( ULONG nPara ) { List::Remove( nPara ); }
+    void            Insert( Paragraph* pPara, ULONG nAbsPos = ULONG_MAX ) {
+                        if ( nAbsPos < aList.size() ) {
+                            std::vector< Paragraph* >::iterator it = aList.begin();
+                            std::advance( it, nAbsPos );
+                            aList.insert( it, pPara );
+                        } else {
+                            aList.push_back( pPara );
+                        }
+                    }
+
+    void            Remove( ULONG nPara ) {
+                        if ( nPara < aList.size() ) {
+                            std::vector< Paragraph* >::iterator it = aList.begin();
+                            std::advance( it, nPara );
+                            aList.erase( it );
+                        }
+                    }
 
 
 /*NBFF*/    Paragraph*      GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const;
