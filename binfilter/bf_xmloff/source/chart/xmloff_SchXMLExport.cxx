@@ -374,18 +374,15 @@ void SchXMLExportHelper::parseDocument( uno::Reference< chart::XChartDocument >&
             if( xDocPropSet.is())
             {
                 sal_Bool bTranslate = sal_False;
-                ::rtl::OUString aTransPropName;
-                enum XMLTokenEnum eTransToken;
 
+                ::rtl::OUString aTransPropName= ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "TranslatedColumns" ));;
+                enum XMLTokenEnum eTransToken = ::binfilter::xmloff::token::XML_COLUMN_MAPPING;
                 uno::Any aAny = xDocPropSet->getPropertyValue(
                     ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasTranslatedColumns" )));
+
                 aAny >>= bTranslate;
-                if( bTranslate )
-                {
-                    aTransPropName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "TranslatedColumns" ));
-                    eTransToken = ::binfilter::xmloff::token::XML_COLUMN_MAPPING;
-                }
-                else
+
+                if( ! bTranslate )
                 {
                     aAny = xDocPropSet->getPropertyValue(
                         ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "HasTranslatedRows" )));

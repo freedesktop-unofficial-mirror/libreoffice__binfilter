@@ -132,7 +132,7 @@ using ::rtl::OUString;
 
 /*M*/ BOOL SwStdFontConfig::IsFontDefault(USHORT nFontType) const
 /*M*/ {
-/*M*/   BOOL bSame;
+/*M*/   BOOL bSame = TRUE;
 /*M*/     SvtLinguOptions aLinguOpt;
 /*N*/
 /*N*/   // #107253# Replaced SvtLinguConfig with SwLinguConfig wrapper with UsageCount

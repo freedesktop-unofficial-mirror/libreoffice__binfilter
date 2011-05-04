@@ -481,12 +481,12 @@ const USHORT nBlockGrowSize = 20;
 /*N*/   CHECKIDX( ppInf, nBlock, nSize, nCur );
 /*N*/
 /*N*/   // Es wird von vorne nach hinten ueber das InfoBlock Array iteriert.
-/*N*/   // Wenn zwischen durch Block gel”scht werden, dann mussen alle
+/*N*/   // Wenn zwischen durch Block gel?scht werden, dann mussen alle
 /*N*/   // nachfolgenden verschoben werden. Dazu werden die Pointer pp und qq
 /*N*/   // benutzt; wobei pp das "alte" Array, qq das "neue" Array ist.
 /*N*/   BlockInfo** pp = ppInf, **qq = pp;
 /*N*/   BlockInfo* p;
-/*N*/   BlockInfo* pLast;                   // letzter nicht voller Block
+/*N*/   BlockInfo* pLast = NULL;          // letzter nicht voller Block
 /*N*/   USHORT nLast = 0;                   // fehlende Elemente
 /*N*/   USHORT nBlkdel = 0;                 // Anzahl der geloeschte Bloecke
 /*N*/   USHORT nFirstChgPos = USHRT_MAX;    // ab welcher Pos gab es die 1. Aenderung?
