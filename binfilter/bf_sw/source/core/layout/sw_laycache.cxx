@@ -571,7 +571,7 @@ namespace binfilter {
 /*N*/     BOOL bLongTab = FALSE;
 /*N*/     ULONG nMaxRowPerPage(0);
 /*N*/     nNodeIndex -= nStartOfContent;
-/*N*/     USHORT nRows;
+/*N*/     USHORT nRows = 0;
 /*N*/     if( rpFrm->IsTabFrm() )
 /*N*/     {
 /*N*/         //Inside a table counts every row as a paragraph
@@ -661,7 +661,7 @@ namespace binfilter {
 /*N*/                 if( nOfst < STRING_LEN )
 /*N*/                 {
 /*N*/                     sal_Bool bSplit = sal_False;
-/*N*/                     sal_Bool bRepeat;
+/*N*/                     sal_Bool bRepeat = sal_False;
 /*N*/                     if( !bLongTab && rpFrm->IsTxtFrm() &&
 /*N*/                         SW_LAYCACHE_IO_REC_PARA == nType &&
 /*N*/                         nOfst<((SwTxtFrm*)rpFrm)->GetTxtNode()->GetTxt().Len() )

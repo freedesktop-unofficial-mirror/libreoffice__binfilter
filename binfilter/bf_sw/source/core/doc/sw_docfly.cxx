@@ -566,7 +566,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*?*/
 /*?*/           BOOL bChanges = TRUE;
 /*?*/           xub_StrLen nIndx = STRING_NOTFOUND;
-/*?*/           SwTxtNode *pTxtNode;
+/*?*/           SwTxtNode *pTxtNode = NULL;
 /*?*/           int nOld = pContact->GetFmt()->GetAnchor().GetAnchorId();
 /*?*/           if( !bSameOnly && FLY_IN_CNTNT == nOld )
 /*?*/           {

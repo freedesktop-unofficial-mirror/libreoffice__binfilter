@@ -395,7 +395,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/     // the width of the kerning portion has to be adjusted
 /*N*/     SwKernPortion* pGridKernPortion = 0;
 /*N*/
-/*N*/   sal_Bool bFull;
+/*N*/   sal_Bool bFull = sal_False;
 /*N*/     SwTwips nUnderLineStart = 0;
 /*N*/   rInf.Y( Y() );
 /*N*/
@@ -1535,7 +1535,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*N*/
 /*N*/   // Das Dummyflag besitzen Zeilen, die nur Flyportions enthalten, diese
 /*N*/   // sollten kein Register etc. beachten. Dummerweise hat kann es eine leere
-/*N*/   // Zeile am Absatzende geben (bei leeren Abs�tzen oder nach einem
+/*N*/   // Zeile am Absatzende geben (bei leeren Abs?tzen oder nach einem
 /*N*/   // Shift-Return), die das Register durchaus beachten soll.
 /*N*/     if( !pCurr->IsDummy() || ( !pCurr->GetNext() &&
 /*N*/         GetStart() >= GetTxtFrm()->GetTxt().Len() && !bNewLine ) )

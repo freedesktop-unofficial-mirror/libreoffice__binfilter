@@ -285,7 +285,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   String aName( rType.GetTypeName() );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
-/*N*/   USHORT nNum, nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
+/*N*/   USHORT nNum = 0, nTmp = 0, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/

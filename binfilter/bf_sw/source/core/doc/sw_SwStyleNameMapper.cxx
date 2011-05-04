@@ -348,7 +348,7 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/ }
 /*N*/ const NameToIdHash & SwStyleNameMapper::getHashTable ( SwGetPoolIdFromName eFlags, sal_Bool bProgName )
 /*N*/ {
-/*N*/   NameToIdHash *pHash;
+/*N*/   NameToIdHash *pHash = NULL;
 /*N*/   const SvStringsDtor *pStrings;
 /*N*/
 /*N*/   switch ( eFlags )

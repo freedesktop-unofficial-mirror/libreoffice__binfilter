@@ -510,8 +510,8 @@ namespace binfilter {
 /*N*/
 /*N*/           const SwFrm *pPre = pCnt;
 /*N*/           const SwFrm *pLay = pUp->GetLeaf( MAKEPAGE_NONE, TRUE, pCnt );
-/*N*/           SwTwips nFrmTop, nPrtHeight;
-/*N*/           BOOL bSct;
+/*N*/           SwTwips nFrmTop(0), nPrtHeight(0);
+/*N*/           BOOL bSct=FALSE;
 /*N*/           const SwSectionFrm *pSect = pUp->FindSctFrm();
 /*N*/           if( pSect )
 /*N*/           {

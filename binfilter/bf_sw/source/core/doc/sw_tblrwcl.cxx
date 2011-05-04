@@ -309,7 +309,7 @@ void lcl_LastBoxSetWidth( SwTableBoxes &rBoxes, const long nOffset,
         else
             --nLinePos;
         SwTableLine* pLine = rTblLns[ nLinePos ];
-        SwTwips nFndBoxWidth, nFndWidth = nBoxStt + nBoxWidth;
+        SwTwips nFndBoxWidth = 0, nFndWidth = nBoxStt + nBoxWidth;
         USHORT nBoxCnt = pLine->GetTabBoxes().Count();
 
         for( USHORT n = 0; 0 < nFndWidth && n < nBoxCnt; ++n )

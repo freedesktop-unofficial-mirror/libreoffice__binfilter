@@ -460,15 +460,15 @@ namespace binfilter {
 /*N*/   // Die aktuelle NumRuke muss gerettet werden, falls ein 3.1/40-Export
 /*N*/   // stattfindet und eine Sectioninnerhalb einer Section geschrieben
 /*N*/   // wird (z.B. Flys)
-/*N*/   SwNumRule* pOld40Rule;
+/*N*/   SwNumRule* pOld40Rule = NULL;
 /*N*/   if( IsSw31Or40Export() )
 /*N*/   {
 /*N*/       pOld40Rule = pCurNumRule;
 /*N*/       pCurNumRule = NULL;
 /*N*/   }
 /*N*/
-/*N*/   BOOL bOldExportFlyFrmFmt;
-/*N*/   const SwFlyFrm* pOldExportFlyFrm;
+/*N*/   BOOL bOldExportFlyFrmFmt = FALSE;
+/*N*/   const SwFlyFrm* pOldExportFlyFrm = NULL;
 /*N*/   if( pExportInfo )
 /*N*/   {
 /*N*/       bOldExportFlyFrmFmt = pExportInfo->bFlyFrmFmt;
@@ -531,7 +531,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ULONG nNodes = 0;
 /*N*/
-/*N*/   ULONG nWords, nChars;
+/*N*/   ULONG nWords = 0, nChars = 0;
 /*N*/   ULONG nRepNodesToWrite = 0;
 /*N*/   SwTxtNode *pLastNode = NULL;
 /*N*/   BOOL bFirstNode = bTopLevel;

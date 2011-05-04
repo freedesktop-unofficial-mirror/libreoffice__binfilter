@@ -56,7 +56,7 @@ namespace binfilter {
 /*N*/ BOOL SwServerObject::IsLinkInServer( const SwBaseLink* pChkLnk ) const
 /*N*/ {
 /*N*/   ULONG nSttNd = 0, nEndNd = 0;
-/*N*/   xub_StrLen nStt, nEnd;
+/*N*/   xub_StrLen nStt = 0, nEnd = 0;
 /*N*/   const SwNode* pNd = 0;
 /*N*/   const SwNodes* pNds = 0;
 /*N*/

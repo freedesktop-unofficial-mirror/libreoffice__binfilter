@@ -343,7 +343,7 @@ namespace binfilter {
 /*N*/   //Die vertikale Position wird berechnet, die relative horizontale
 /*N*/   //Position ist stets 0.
 /*N*/
-/*N*/   SdrObject *pSdrObj;
+/*N*/   SdrObject *pSdrObj = NULL;
 /*N*/   SwRect aBoundRect;
 /*N*/   long nOldWidth;
 /*N*/   if( bDraw )

@@ -1757,7 +1757,7 @@ namespace binfilter {
 /*N*/       //Wachstum innerhalb der Tabelle - und damit der Tabelle selbst -
 /*N*/       //stattgefunden haben kann, muss die untere Kante durch die
 /*N*/       //Unterkante der letzten Zeile bestimmt werden.
-/*N*/       SwLayoutFrm *pRow;
+/*N*/       SwLayoutFrm *pRow = NULL;
 /*N*/       SwRect aScrollRect( pTab->PaintArea() );
 /*N*/       if ( IsPaint() || bAddRect )
 /*N*/       {
@@ -1996,7 +1996,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           //Wenn der Frame die Seite vorwaerts gewechselt hat, so lassen wir
 /*N*/           //den Vorgaenger nocheinmal durchlaufen.
-/*N*/           //So werden einerseits Vorgaenger erwischt, die jetzt f�r Retouche
+/*N*/           //So werden einerseits Vorgaenger erwischt, die jetzt f?r Retouche
 /*N*/           //verantwortlich sind, andererseits werden die Fusszeilen
 /*N*/           //auch angefasst.
 /*N*/           bool bSetCntnt = TRUE;

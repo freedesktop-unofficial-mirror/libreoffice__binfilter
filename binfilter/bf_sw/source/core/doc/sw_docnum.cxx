@@ -578,7 +578,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/       aName = SW_RESSTR( STR_NUMRULE_DEFNAME );
 /*N*/   }
 /*N*/
-/*N*/   USHORT nNum, nTmp, nFlagSize = ( pNumRuleTbl->Count() / 8 ) +2;
+/*N*/   USHORT nNum = 0, nTmp = 0, nFlagSize = ( pNumRuleTbl->Count() / 8 ) +2;
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/

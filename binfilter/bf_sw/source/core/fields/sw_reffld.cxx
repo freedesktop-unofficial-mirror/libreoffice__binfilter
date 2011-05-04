@@ -147,7 +147,7 @@ using namespace ::rtl;
 /*N*/   const SwFrm* pFldFrm = (const SwFrm*)aArr[ nCnt ];
 /*N*/
 /*N*/   // unterschiedliche Frames, dann ueberpruefe deren Y-/X-Position
-/*N*/   BOOL bRefIsLower;
+/*N*/   BOOL bRefIsLower = false;
 /*N*/   if( ( FRM_COLUMN | FRM_CELL ) & pFldFrm->GetType() ||
 /*N*/       ( FRM_COLUMN | FRM_CELL ) & pRefFrm->GetType() )
 /*N*/   {

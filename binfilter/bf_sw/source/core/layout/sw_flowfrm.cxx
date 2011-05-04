@@ -283,7 +283,7 @@ namespace binfilter {
 /*N*/       for ( USHORT i = 0; nRet < 3 && i < rObjs.Count(); ++i )
 /*N*/       {
 /*N*/           SdrObject *pObj = rObjs[i];
-/*N*/           SdrObjUserCall *pUserCall;
+/*N*/           SdrObjUserCall *pUserCall = NULL;
 /*N*/           const SwFrmFmt *pFmt = pObj->IsWriterFlyFrame() ?
 /*N*/               ((SwVirtFlyDrawObj*)pObj)->GetFmt() :
 /*N*/               ((SwContact*)(pUserCall = GetUserCall(pObj)))->GetFmt();

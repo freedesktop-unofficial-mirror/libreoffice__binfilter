@@ -133,7 +133,7 @@ namespace binfilter {
 /*N*/     SWRECTFN( pFrm )
 /*N*/     // nOrigin is an absolut value, rLine referes to the swapped situation.
 /*N*/
-/*N*/     SwTwips nTmpY;
+/*N*/     SwTwips nTmpY(0);
 /*N*/     if ( pFrm->IsVertical() )
                 {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
@@ -363,7 +363,7 @@ namespace binfilter {
 /*N*/     SWRECTFN( pFrm4 )
 /*N*/
 /*N*/     const SwTwips nDocPrtTop = (pFrm4->*fnRect->fnGetPrtTop)();
-/*N*/     SwTwips nOldHeight;
+/*N*/     SwTwips nOldHeight(0);
 /*N*/     SwTwips nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
 /*N*/     if ( bVert )

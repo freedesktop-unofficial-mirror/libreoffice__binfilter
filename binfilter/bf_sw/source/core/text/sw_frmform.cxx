@@ -224,8 +224,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/         SwTwips nMyPos = (Frm().*fnRect->fnGetTop)();
 /*N*/
 /*N*/       const SwPageFrm *pPage = 0;
-/*N*/       sal_Bool  bOldInvaCntnt,
-/*N*/             bOldInvaLayout;
+/*N*/       sal_Bool  bOldInvaCntnt = sal_False,
+/*N*/             bOldInvaLayout = sal_False;
 /*N*/       if ( !IsInFly() && GetNext() )
 /*N*/       {
 /*N*/           pPage = FindPageFrm();
@@ -981,7 +981,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {   // Wenn wir Zeilen abgeben, darf kein Join auf den Folows gerufen werden,
 /*N*/       // im Gegenteil, es muss ggf. sogar ein Follow erzeugt werden.
 /*N*/       // Dies muss auch geschehen, wenn die Textmasse komplett im Master
-/*N*/       // bleibt, denn es k�nnte ja ein harter Zeilenumbruch noch eine weitere
+/*N*/       // bleibt, denn es k?nnte ja ein harter Zeilenumbruch noch eine weitere
 /*N*/       // Zeile (ohne Textmassse) notwendig machen!
 /*N*/       nEnd = rLine.GetEnd();
 /*N*/       if( GetFollow() )
@@ -1849,7 +1849,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/
 /*M*/               const sal_Bool bOrphan = IsWidow();
 /*M*/                 const SwFtnBossFrm* pFtnBoss = HasFtn() ? FindFtnBossFrm() : 0;
-/*M*/                 SwTwips nFtnHeight;
+/*M*/                 SwTwips nFtnHeight(0);
 /*M*/                 if( pFtnBoss )
 /*M*/                 {
 /*M*/                     const SwFtnContFrm* pCont = pFtnBoss->FindFtnCont();

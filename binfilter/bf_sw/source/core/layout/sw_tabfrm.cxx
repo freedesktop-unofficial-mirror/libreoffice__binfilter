@@ -800,7 +800,7 @@ namespace binfilter {
 /*N*/                       const BOOL bMoveFtns = bFtnsInDoc && pRow &&
 /*N*/                                              !GetFollow()->IsJoinLocked();
 /*N*/
-/*N*/                       SwFtnBossFrm *pOldBoss;
+/*N*/                       SwFtnBossFrm *pOldBoss = NULL;
 /*N*/                       if ( bMoveFtns )
 /*N*/                           pOldBoss = pRow->FindFtnBossFrm( TRUE );
 /*N*/
@@ -1840,7 +1840,7 @@ namespace binfilter {
 /*N*/             // converted to text and the table was the only content in the
 /*N*/             // section beside a footnote.
 /*N*/             // Note: lock state will be restored.
-/*N*/             bool bOldLock;
+/*N*/             bool bOldLock = false;
 /*N*/             if ( pSct )
 /*N*/             {
 /*N*/                 bOldLock = pSct->IsColLocked() ? true : false;

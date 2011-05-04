@@ -240,7 +240,7 @@ BOOL lcl_GC_Line_Border( const SwTableLine*& rpLine, void* pPara )
         const SwTableBox *pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos ),
                          *pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
         const SfxPoolItem *pBtmItem, *pTopItem;
-        const SvxBorderLine *pBtmLine, *pTopLine;
+        const SvxBorderLine *pBtmLine = NULL, *pTopLine = NULL;
         BOOL bGetTopItem = TRUE, bGetBtmItem = TRUE;
 
         do {

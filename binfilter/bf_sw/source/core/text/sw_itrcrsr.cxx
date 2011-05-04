@@ -869,7 +869,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/     KSHORT nWidth30;
+/*N*/     KSHORT nWidth30 = 0;
 /*N*/     if ( pPor->IsPostItsPortion() )
                 {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
