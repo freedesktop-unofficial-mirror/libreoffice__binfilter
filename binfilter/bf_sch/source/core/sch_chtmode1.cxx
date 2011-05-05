@@ -511,7 +511,7 @@ namespace binfilter {
 /*N*/   nRowListCnt = aRegressAttrList.size();
 /*N*/
 /*N*/   DBG_ASSERT( pDefaultColors, "invalid default colors" );
-/*N*/   sal_Int32 nNumDefCol = pDefaultColors->Count();
+/*N*/   size_t nNumDefCol = pDefaultColors->size();
 /*N*/   DBG_ASSERT( nNumDefCol, "Empty Default Color List" );
 /*N*/
 /*N*/   if (nCnt != nRowListCnt)
@@ -537,8 +537,7 @@ namespace binfilter {
 /*N*/               pRegressAttr->Put(XLineWidthItem(100));
 /*N*/               if( nNumDefCol != 0 )
 /*N*/               {
-/*N*/                   XColorEntry* pEntry = (XColorEntry*)pDefaultColors->
-/*N*/                       GetObject(i % nNumDefCol);
+/*N*/                   XColorEntry* pEntry = (*pDefaultColors)[ i % nNumDefCol ];
 /*N*/                   pRegressAttr->Put(XLineColorItem(pEntry->GetName(),
 /*N*/                                                    pEntry->GetColor()));
 /*N*/               }
@@ -579,8 +578,7 @@ namespace binfilter {
 /*N*/               pAverageAttr->Put(XLineWidthItem(0));
 /*N*/               if( nNumDefCol != 0 )
 /*N*/               {
-/*N*/                   XColorEntry* pEntry = (XColorEntry*)pDefaultColors->
-/*N*/                       GetObject(i % nNumDefCol);
+/*N*/                   XColorEntry* pEntry = (*pDefaultColors)[ i % nNumDefCol ];
 /*N*/                   pAverageAttr->Put(XLineColorItem(pEntry->GetName(),
 /*N*/                                                    pEntry->GetColor()));
 /*N*/               }
@@ -742,14 +740,13 @@ namespace binfilter {
 /*N*/
 /*N*/   CHART_TRACE1( "ChartModel::SetDefAttrRow - Row #%ld", i );
 /*N*/
-/*N*/   sal_Int32 nNumDefCol = pDefaultColors->Count();
+/*N*/   size_t nNumDefCol = pDefaultColors->size();
 /*N*/   DBG_ASSERT( nNumDefCol, "invalid default colors" );
 /*N*/
 /*N*/   pDataRowAttr->Put(*pDummyAttr);
 /*N*/   if( nNumDefCol != 0 )
 /*N*/   {
-/*N*/       XColorEntry* pEntry = (XColorEntry*)pDefaultColors->
-/*N*/           GetObject(i % nNumDefCol);
+/*N*/       XColorEntry* pEntry = (*pDefaultColors)[ i % nNumDefCol ];
 /*N*/       pDataRowAttr->Put(XFillColorItem(pEntry->GetName(),
 /*N*/                                        pEntry->GetColor()));
 /*N*/
@@ -806,7 +803,7 @@ namespace binfilter {
 /*N*/ void ChartModel::CreateDefaultColors ()
 /*N*/ {
 /*N*/   SchOptions* pOptions = SCH_MOD1()->GetSchOptions();
-/*N*/   long nCount;
+/*N*/   size_t nCount;
 /*N*/   ColorData* pDefaultCol = NULL;
 /*N*/
 /*N*/   if( pOptions )
@@ -816,7 +813,7 @@ namespace binfilter {
 /*N*/       pDefaultCol = new ColorData[ nCount ];
 /*N*/       DBG_ASSERT( nCount == ROW_COLOR_COUNT, "Chart: dynamic default color array size not supported yet" );
 /*N*/
-/*N*/       for( int i=0; i<nCount; i++ )
+/*N*/       for( size_t i=0; i<nCount; i++ )
 /*N*/       {
 /*N*/           pDefaultCol[ i ] = aDefCols.GetColorData( i );
 /*N*/       }
@@ -841,13 +838,13 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // create colors from table if they exist otherwise copy default colors
-/*N*/   pDefaultColors = new List;
+/*N*/   pDefaultColors = new XColorEntryList;
 /*N*/   Color aCol;
 /*N*/
-/*N*/   for( int i=0; i<nCount; i++ )
+/*N*/   for( size_t i = 0; i < nCount; i++ )
 /*N*/   {
 /*N*/       aCol.SetColor( pDefaultCol[ i ] );
-/*N*/       pDefaultColors->Insert( new XColorEntry( aCol, String() ), LIST_APPEND );
+/*N*/       pDefaultColors->push_back( new XColorEntry( aCol, String() ) );
 /*N*/   }
 /*N*/
 /*N*/   delete[] pDefaultCol;
@@ -859,17 +856,17 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void ChartModel::DestroyDefaultColors ()
-/*N*/ {
-/*N*/   if (pDefaultColors)
-/*N*/   {
-/*N*/       while (pDefaultColors->Count())
-/*N*/           delete (XColorEntry*)pDefaultColors->Remove(pDefaultColors->Count() - 1);
-/*N*/       delete pDefaultColors;
-/*N*/   }
-/*N*/
-/*N*/   pDefaultColors = 0;
-/*N*/ }
+void ChartModel::DestroyDefaultColors ()
+{
+    if (pDefaultColors)
+    {
+        for( size_t i = 0, n = pDefaultColors->size(); i < n; ++i )
+            delete (*pDefaultColors)[ i ];
+        pDefaultColors->clear();
+        delete pDefaultColors;
+    }
+    pDefaultColors = 0;
+}
 
 /*************************************************************************
 |*

@@ -829,7 +829,7 @@ namespace binfilter {
 /*N*/     if( ( nCol >= nPieCount ) &&
 /*N*/         pDefaultColors )
 /*N*/     {
-/*?*/         XColorEntry* pColEntry = SAL_STATIC_CAST( XColorEntry*, pDefaultColors->GetObject( nCol % pDefaultColors->Count()));
+/*?*/         XColorEntry* pColEntry = (*pDefaultColors)[ nCol % pDefaultColors->size() ];
 /*?*/         aAttr.Put( XFillColorItem( pColEntry->GetName(), pColEntry->GetColor()));
 /*N*/     }
 /*N*/

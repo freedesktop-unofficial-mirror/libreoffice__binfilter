@@ -42,16 +42,16 @@
 #include "bf_svx/obj3d.hxx"
 #include "bf_svx/poly3d.hxx"
 #include <bf_svx/viewpt3d.hxx>
-#include <vcl/field.hxx>
 #include <bf_svx/svdtrans.hxx>
+#include <bf_svx/chrtitem.hxx>
+#include <bf_svx/svdoutl.hxx>
+#include <bf_svx/xtable.hxx>
+#include <bf_svx/svdotext.hxx>
+#include <vcl/field.hxx>
 #include <tools/gen.hxx>
 #include <tools/color.hxx>
-#include <tools/list.hxx>
-#include <bf_svx/chrtitem.hxx>
 #include <tools/string.hxx>
-#include <bf_svx/svdoutl.hxx>
 #include "adjust.hxx"
-#include <bf_svx/svdotext.hxx>
 #include <bf_svx/svdobj.hxx>
 #include <bf_svtools/itemset.hxx>
 #include <bf_svx/svdobj.hxx>
@@ -92,6 +92,7 @@ class SchRectObj;
 
 typedef ::std::vector< SfxItemSet* > ItemSetList;
 typedef ::std::vector< E3dLabelObj* > DescrList;
+typedef ::std::vector< XColorEntry* > XColorEntryList;
 
 #define VERTICAL_LINE aLine[0].Y() = rRect.Bottom(); aLine[1].Y() = rRect.Top();
 #define HORIZONTAL_LINE aLine[0].X() = rRect.Left(); aLine[1].X() = rRect.Right();
@@ -737,7 +738,7 @@ private:
     SvxChartStyle       eOldChartStyle;
     int                 eChartLinePoints[ LINE_POINT_COUNT ];
 
-    List*               pDefaultColors;
+    XColorEntryList*    pDefaultColors;
 
     BOOL                bTextScalable;
     BOOL                bIsCopied;
