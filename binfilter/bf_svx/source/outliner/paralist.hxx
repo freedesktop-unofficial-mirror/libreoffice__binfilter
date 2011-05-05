@@ -32,6 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 #include <tools/link.hxx>
 #include <vector>
+#include <limits.h>
 
 namespace binfilter {
 class Paragraph;

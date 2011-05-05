@@ -31,7 +31,6 @@
 
 
 #include <bf_so3/iface.hxx>
-#include <sot/agg.hxx>
 #include <bf_svtools/ownlist.hxx>
 
 #include "bf_so3/soerr.hxx"
