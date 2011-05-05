@@ -399,11 +399,11 @@ void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreads
                             SvXMLElementExport aElemSD(rExport, XML_NAMESPACE_TABLE, XML_SOURCE_SERVICE, sal_True, sal_True);
                             rExport.CheckAttrList();
                         }
-                        List aDimensions = pDPSave->GetDimensions();
-                        sal_Int32 nDimCount = aDimensions.Count();
-                        for (sal_Int32 nDim = 0; nDim < nDimCount; nDim++)
+                        type_ScDPDimensionList aDimensions = pDPSave->GetDimensions();
+                        size_t nDimCount = aDimensions.size();
+                        for (size_t nDim = 0; nDim < nDimCount; nDim++)
                         {
-                            ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimensions.GetObject(nDim);
+                            ScDPSaveDimension* pDim = aDimensions[ nDim ];
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_SOURCE_FIELD_NAME, ::rtl::OUString(pDim->GetName()));
                             if (pDim->IsDataLayout())
                                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_IS_DATA_LAYOUT_FIELD, XML_TRUE);

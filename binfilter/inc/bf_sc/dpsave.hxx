@@ -31,7 +31,6 @@
 
 #include <bf_svtools/bf_solar.h>
 #include <tools/string.hxx>
-#include <tools/list.hxx>
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
 #include <vector>
 
@@ -131,11 +130,12 @@ public:
     void Store( SvStream& ) const {}
 };
 
+typedef std::vector< ScDPSaveDimension* > type_ScDPDimensionList;
 
 class ScDPSaveData
 {
 private:
-    List        aDimList;
+    type_ScDPDimensionList  aDimList;
     USHORT      nColumnGrandMode;
     USHORT      nRowGrandMode;
     USHORT      nIgnoreEmptyMode;
@@ -150,8 +150,8 @@ public:
 
     BOOL                    operator== ( const ScDPSaveData& r ) const;
 
-    const List&             GetDimensions() const { return aDimList; }
-    void                    AddDimension(ScDPSaveDimension* pDim) { aDimList.Insert(pDim, LIST_APPEND); }
+    const type_ScDPDimensionList&   GetDimensions() const { return aDimList; }
+    void                    AddDimension(ScDPSaveDimension* pDim) { aDimList.push_back(pDim); }
 
     ScDPSaveDimension*      GetDimensionByName(const String& rName);
     ScDPSaveDimension*      GetDataLayoutDimension();

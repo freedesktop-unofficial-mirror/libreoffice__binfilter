@@ -480,11 +480,11 @@ using namespace ::com::sun::star;
 /*N*/   nIgnoreEmptyMode( r.nIgnoreEmptyMode ),
 /*N*/   nRepeatEmptyMode( r.nRepeatEmptyMode )
 /*N*/ {
-/*N*/   long nCount = r.aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = r.aDimList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pNew = new ScDPSaveDimension( *(ScDPSaveDimension*)r.aDimList.GetObject(i) );
-/*N*/       aDimList.Insert( pNew, LIST_APPEND );
+/*N*/       ScDPSaveDimension* pNew = new ScDPSaveDimension( *r.aDimList[ i ] );
+/*N*/       aDimList.push_back( pNew );
 /*N*/   }
 /*N*/ }
 
@@ -499,20 +499,20 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       //  remove old dimensions
 /*N*/
-/*N*/       long nCount = aDimList.Count();
-/*N*/       long i;
-/*N*/       for (i=0; i<nCount; i++)
-/*N*/           delete (ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/       aDimList.Clear();
+/*N*/       size_t nCount = aDimList.size();
+/*N*/       size_t i;
+/*N*/       for (i=0; i < nCount; i++)
+/*N*/           delete aDimList[ i ];
+/*N*/       aDimList.clear();
 /*N*/
 /*N*/       //  copy new dimensions
 /*N*/
-/*N*/       nCount = r.aDimList.Count();
-/*N*/       for (i=0; i<nCount; i++)
+/*N*/       nCount = r.aDimList.size();
+/*N*/       for (i=0; i < nCount; i++)
 /*N*/       {
 /*N*/           ScDPSaveDimension* pNew =
-/*N*/               new ScDPSaveDimension( *(ScDPSaveDimension*)r.aDimList.GetObject(i) );
-/*N*/           aDimList.Insert( pNew, LIST_APPEND );
+/*N*/               new ScDPSaveDimension( *r.aDimList[ i ] );
+/*N*/           aDimList.push_back( pNew );
 /*N*/       }
 /*N*/   }
 /*N*/   return *this;
@@ -526,13 +526,12 @@ using namespace ::com::sun::star;
 /*N*/        nRepeatEmptyMode != r.nRepeatEmptyMode )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   ULONG nCount = aDimList.Count();
-/*N*/   if ( nCount != r.aDimList.Count() )
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   if ( nCount != r.aDimList.size() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   for (ULONG i=0; i<nCount; i++)
-/*N*/       if ( !( *(ScDPSaveDimension*)aDimList.GetObject(i) ==
-/*N*/               *(ScDPSaveDimension*)r.aDimList.GetObject(i) ) )
+/*N*/   for (size_t i=0; i < nCount; i++)
+/*N*/       if ( !( *aDimList[ i ] == *r.aDimList[ i ] ) )
 /*N*/           return FALSE;
 /*N*/
 /*N*/   return TRUE;
@@ -540,32 +539,32 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPSaveData::~ScDPSaveData()
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/       delete (ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/   aDimList.Clear();
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i<nCount; i++)
+/*N*/       delete aDimList[ i ];
+/*N*/   aDimList.clear();
 /*N*/ }
 
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetDimensionByName(const String& rName)
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/       ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/       if ( pDim->GetName() == rName && !pDim->IsDataLayout() )
 /*N*/           return pDim;
 /*N*/   }
 /*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( rName, FALSE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
+/*N*/   aDimList.push_back( pNew );
 /*N*/   return pNew;
 /*N*/ }
 
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetExistingDimensionByName(const String& rName)
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/       ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/       if ( pDim->GetName() == rName && !pDim->IsDataLayout() )
 /*N*/           return pDim;
 /*N*/   }
@@ -574,15 +573,15 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetDataLayoutDimension()
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i<nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/       ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/       if ( pDim->IsDataLayout() )
 /*N*/           return pDim;
 /*N*/   }
 /*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( String(), TRUE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
+/*N*/   aDimList.push_back( pNew );
 /*N*/   return pNew;
 /*N*/ }
 /*N*/
@@ -594,7 +593,7 @@ using namespace ::com::sun::star;
 /*N*/   ScDPSaveDimension* pOld = GetDimensionByName( rName );
 /*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( *pOld );
 /*N*/   pNew->SetDupFlag( TRUE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
+/*N*/   aDimList.push_back( pNew );
 /*N*/   return pNew;
 /*N*/ }
 /*N*/
@@ -676,10 +675,10 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       lcl_ResetOrient( xSource );
 /*N*/
-/*N*/       long nCount = aDimList.Count();
-/*N*/       for (long i=0; i<nCount; i++)
+/*N*/       size_t nCount = aDimList.size();
+/*N*/       for (size_t i=0; i < nCount; i++)
 /*N*/       {
-/*N*/           ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/           ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/           ::rtl::OUString aName = pDim->GetName();
 /*N*/           BOOL bData = pDim->IsDataLayout();
 /*N*/
@@ -716,7 +715,7 @@ using namespace ::com::sun::star;
 /*N*/                       String aNewName = pDim->GetName();
 /*N*/
 /*N*/                       // different name for each duplication of a (real) dimension...
-/*N*/                       for (long j=0; j<=i; j++)   //! Test !!!!!!
+/*N*/                       for (size_t j=0; j<=i; j++) //! Test !!!!!!
 /*N*/                           aNewName += '*';        //! modify name at creation of SaveDimension
 /*N*/
 /*N*/                       uno::Reference<util::XCloneable> xCloneable( xIntDim, uno::UNO_QUERY );
@@ -766,7 +765,7 @@ using namespace ::com::sun::star;
 /*N*/   for (long i=0; i<nNewCount; i++)
 /*N*/   {
 /*N*/       ScDPSaveDimension* pNew = new ScDPSaveDimension( rStream );
-/*N*/       aDimList.Insert( pNew, LIST_APPEND );
+/*N*/       aDimList.push_back( pNew );
 /*N*/   }
 /*N*/
 /*N*/   rStream >> nColumnGrandMode;
