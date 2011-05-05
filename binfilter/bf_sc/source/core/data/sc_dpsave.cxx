@@ -199,11 +199,11 @@ using namespace ::com::sun::star;
 /*N*/           pSubTotalFuncs[nSub] = r.pSubTotalFuncs[nSub];
 /*N*/   }
 /*N*/
-/*N*/   long nCount = r.aMemberList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = r.aMemberList.size();
+/*N*/   for (size_t i = 0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveMember* pNew = new ScDPSaveMember( *(ScDPSaveMember*)r.aMemberList.GetObject(i) );
-/*N*/       aMemberList.Insert( pNew, LIST_APPEND );
+/*N*/       ScDPSaveMember* pNew = new ScDPSaveMember( *r.aMemberList[ i ] );
+/*N*/       aMemberList.push_back( pNew );
 /*N*/   }
 /*N*/   if (r.pLayoutName)
 /*N*/       pLayoutName = new String( *(r.pLayoutName) );
@@ -244,17 +244,17 @@ using namespace ::com::sun::star;
 /*N*/   for (i=0; i<nNewCount; i++)
 /*N*/   {
 /*N*/       ScDPSaveMember* pNew = new ScDPSaveMember( rStream );
-/*N*/       aMemberList.Insert( pNew, LIST_APPEND );
+/*N*/       aMemberList.push_back( pNew );
 /*N*/   }
 /*N*/   pLayoutName = NULL;
 /*N*/ }
 /*N*/
 /*N*/ ScDPSaveDimension::~ScDPSaveDimension()
 /*N*/ {
-/*N*/   long nCount = aMemberList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/       delete (ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/   aMemberList.Clear();
+/*N*/   size_t nCount = aMemberList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
+/*N*/       delete aMemberList[ i ];
+/*N*/   aMemberList.clear();
 /*N*/   if (pLayoutName)
 /*N*/       delete pLayoutName;
 /*N*/   delete [] pSubTotalFuncs;
@@ -280,13 +280,12 @@ using namespace ::com::sun::star;
 /*N*/       if ( pSubTotalFuncs[i] != r.pSubTotalFuncs[i] )
 /*N*/           return FALSE;
 /*N*/
-/*N*/   ULONG nCount = aMemberList.Count();
-/*N*/   if ( nCount != r.aMemberList.Count() )
+/*N*/   size_t nCount = aMemberList.size();
+/*N*/   if ( nCount != r.aMemberList.size() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   for (ULONG i=0; i<nCount; i++)
-/*N*/       if ( !( *(ScDPSaveMember*)aMemberList.GetObject(i) ==
-/*N*/               *(ScDPSaveMember*)r.aMemberList.GetObject(i) ) )
+/*N*/   for (size_t i = 0; i < nCount; i++)
+/*N*/       if ( !( *aMemberList[ i ] == *r.aMemberList[ i ] ) )
 /*N*/           return FALSE;
 /*N*/
 /*N*/   return TRUE;
@@ -385,7 +384,7 @@ using namespace ::com::sun::star;
 /*N*/   //  Level loop outside of aMemberList loop
 /*N*/   //  because SubTotals have to be set independently of known members
 /*N*/
-/*N*/   long nCount = aMemberList.Count();
+/*N*/   size_t nCount = aMemberList.size();
 /*N*/
 /*N*/   long nHierCount = 0;
 /*N*/   uno::Reference<container::XIndexAccess> xHiers;
@@ -446,9 +445,9 @@ using namespace ::com::sun::star;
 /*N*/                   uno::Reference<container::XNameAccess> xMembers = xMembSupp->getMembers();
 /*N*/                   if ( xMembers.is() )
 /*N*/                   {
-/*N*/                       for (long i=0; i<nCount; i++)
+/*N*/                       for (size_t i = 0; i < nCount; i++)
 /*N*/                       {
-/*N*/                           ScDPSaveMember* pMember = (ScDPSaveMember*)aMemberList.GetObject(i);
+/*N*/                           ScDPSaveMember* pMember = aMemberList[ i ];
 /*N*/                           ::rtl::OUString aLclName = pMember->GetName();
 /*N*/                           if ( xMembers->hasByName( aLclName ) )
 /*N*/                           {

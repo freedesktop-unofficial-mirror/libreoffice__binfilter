@@ -30,12 +30,10 @@
 #define SC_DPSAVE_HXX
 
 #include <bf_svtools/bf_solar.h>
-
 #include <tools/string.hxx>
-
 #include <tools/list.hxx>
-
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
+#include <vector>
 
 class SvStream;
 
@@ -74,6 +72,8 @@ public:
 };
 
 
+typedef std::vector< ScDPSaveMember* > type_MemberList;
+
 class ScDPSaveDimension
 {
 private:
@@ -88,7 +88,7 @@ private:
     BOOL        bSubTotalDefault;   //! at level
     long        nSubTotalCount;
     USHORT*     pSubTotalFuncs;     // enum GeneralFunction
-    List        aMemberList;
+    type_MemberList aMemberList;
 
 public:
                             ScDPSaveDimension(const String& rName, BOOL bDataLayout);
@@ -98,8 +98,8 @@ public:
 
     BOOL                    operator== ( const ScDPSaveDimension& r ) const;
 
-    const List&             GetMembers() { return aMemberList; }
-    void                    AddMember(ScDPSaveMember* pMember) { aMemberList.Insert(pMember, LIST_APPEND); };
+    const type_MemberList&  GetMembers() { return aMemberList; }
+    void                    AddMember(ScDPSaveMember* pMember) { aMemberList.push_back( pMember ); };
 
     void                    SetDupFlag(BOOL bSet)   { bDupFlag = bSet; }
     BOOL                    GetDupFlag() const      { return bDupFlag; }

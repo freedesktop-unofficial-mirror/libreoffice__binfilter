@@ -442,19 +442,19 @@ void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreads
                                         SvXMLElementExport aElemST(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_SUBTOTAL, sal_True, sal_True);
                                     }
                                 }
-                                List aMembers = pDim->GetMembers();
-                                sal_Int32 nMemberCount = aMembers.Count();
+                                type_MemberList aMembers = pDim->GetMembers();
+                                size_t nMemberCount = aMembers.size();
                                 if (nMemberCount > 0)
                                 {
                                     SvXMLElementExport aElemDPMs(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBERS, sal_True, sal_True);
                                     rExport.CheckAttrList();
-                                    for (sal_Int32 nMember = 0; nMember < nMemberCount; nMember++)
+                                    for (size_t nMember = 0; nMember < nMemberCount; nMember++)
                                     {
-                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NAME, ::rtl::OUString(((ScDPSaveMember*)aMembers.GetObject(nMember))->GetName()));
+                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NAME, ::rtl::OUString( aMembers[ nMember ]->GetName() ) );
                                         ::rtl::OUStringBuffer sTmpBuffer;
-                                        SvXMLUnitConverter::convertBool(sTmpBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetIsVisible());
+                                        SvXMLUnitConverter::convertBool(sTmpBuffer, aMembers[ nMember ]->GetIsVisible() );
                                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY, sTmpBuffer.makeStringAndClear());
-                                        SvXMLUnitConverter::convertBool(sTmpBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetShowDetails());
+                                        SvXMLUnitConverter::convertBool(sTmpBuffer, aMembers[ nMember ]->GetShowDetails() );
                                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY_DETAILS, sTmpBuffer.makeStringAndClear());
                                         SvXMLElementExport aElemDPM(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBER, sal_True, sal_True);
                                         rExport.CheckAttrList();
