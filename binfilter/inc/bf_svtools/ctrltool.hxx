@@ -32,23 +32,26 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <sal/types.h>
-#include <tools/list.hxx>
 #include <vcl/metric.hxx>
+#include <vector>
 
 class OutputDevice;
 
 namespace binfilter {
 
 class ImplFontListNameInfo;
+typedef ::std::vector< ImplFontListNameInfo* > ImplFontListNameInfoList;
+
 #define FONTLIST_FONTINFO_NOTFOUND  ((USHORT)0xFFFF)
 
 #define FONTLIST_FONTNAMETYPE_PRINTER           ((USHORT)0x0001)
 #define FONTLIST_FONTNAMETYPE_SCREEN            ((USHORT)0x0002)
 #define FONTLIST_FONTNAMETYPE_SCALABLE          ((USHORT)0x0004)
 
-class FontList : private List
+class FontList
 {
 private:
+    ImplFontListNameInfoList    maFontListNameInfoList;
     XubString               maMapBoth;
     XubString               maMapPrinterOnly;
     XubString               maMapScreenOnly;
@@ -91,8 +94,8 @@ public:
                                  FontWeight eWeight,
                                  FontItalic eItalic ) const;
 
-    USHORT                  GetFontNameCount() const
-                                { return (USHORT)List::Count(); }
+    size_t                  GetFontNameCount() const
+                                { return maFontListNameInfoList.size(); }
 private:
                             FontList( const FontList& );
     FontList&               operator =( const FontList& );

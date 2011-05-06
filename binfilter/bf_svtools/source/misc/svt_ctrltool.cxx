@@ -113,21 +113,21 @@ ImplFontListNameInfo* FontList::ImplFind( const XubString& rSearchName, ULONG* p
     // und somit die Wahrscheinlichkeit das hinten angehaengt werden muss
     // sehr gross ist.
     StringCompare eComp;
-    ULONG nCnt = Count();
+    size_t nCnt = maFontListNameInfoList.size();
     if ( !nCnt )
     {
         if ( pIndex )
-            *pIndex = LIST_APPEND;
+            *pIndex = ULONG_MAX;
         return NULL;
     }
     else
     {
-        ImplFontListNameInfo* pCmpData = (ImplFontListNameInfo*)List::GetObject( nCnt-1 );
+        ImplFontListNameInfo* pCmpData = maFontListNameInfoList[ nCnt-1 ];
         eComp = rSearchName.CompareTo( pCmpData->maSearchName );
         if ( eComp == COMPARE_GREATER )
         {
             if ( pIndex )
-                *pIndex = LIST_APPEND;
+                *pIndex = ULONG_MAX;
             return NULL;
         }
         else if ( eComp == COMPARE_EQUAL )
@@ -144,7 +144,7 @@ ImplFontListNameInfo* FontList::ImplFind( const XubString& rSearchName, ULONG* p
     do
     {
         nMid = (nLow + nHigh) / 2;
-        pCompareData = (ImplFontListNameInfo*)List::GetObject( nMid );
+        pCompareData = maFontListNameInfoList[ nMid ];
         eComp = rSearchName.CompareTo( pCompareData->maSearchName );
         if ( eComp == COMPARE_LESS )
         {
@@ -226,7 +226,16 @@ void FontList::ImplInsertFonts( OutputDevice* pDevice, BOOL bAll,
                 pData->mpFirst      = pNewInfo;
                 pNewInfo->mpNext    = NULL;
                 pData->mnType       = 0;
-                Insert( (void*)pData, nIndex );
+                if ( nIndex < maFontListNameInfoList.size() )
+                {
+                    ImplFontListNameInfoList::iterator it = maFontListNameInfoList.begin();
+                    ::std::advance( it, nIndex );
+                    maFontListNameInfoList.insert( it, pData );
+                }
+                else
+                {
+                    maFontListNameInfoList.push_back( pData );
+                }
             }
         }
         else
@@ -286,8 +295,7 @@ void FontList::ImplInsertFonts( OutputDevice* pDevice, BOOL bAll,
 
 // =======================================================================
 
-FontList::FontList( OutputDevice* pDevice, OutputDevice* pDevice2, BOOL bAll ) :
-    List( 4096, sal::static_int_cast< USHORT >(pDevice->GetDevFontCount()), 32 )
+FontList::FontList( OutputDevice* pDevice, OutputDevice* pDevice2, BOOL bAll )
 {
     // Variablen initialisieren
     mpDev = pDevice;
@@ -329,21 +337,19 @@ FontList::~FontList()
         delete[] mpSizeAry;
 
     // FontInfos loeschen
-    ImplFontListNameInfo* pData = (ImplFontListNameInfo*)First();
-    while ( pData )
+    for( size_t i = 0, n = maFontListNameInfoList.size(); i < n; ++i )
     {
         ImplFontListFontInfo* pTemp;
-        ImplFontListFontInfo* pInfo = pData->mpFirst;
+        ImplFontListFontInfo* pInfo = maFontListNameInfoList[ i ]->mpFirst;
         while ( pInfo )
         {
             pTemp = pInfo->mpNext;
             delete pInfo;
             pInfo = pTemp;
         }
-        ImplFontListNameInfo* pNext = (ImplFontListNameInfo*)Next();
-        delete pData;
-        pData = pNext;
+        delete maFontListNameInfoList[ i ];
     }
+    maFontListNameInfoList.clear();
 }
 
 // -----------------------------------------------------------------------
