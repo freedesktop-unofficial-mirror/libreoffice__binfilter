@@ -30,45 +30,27 @@
 #define _SDASAITM_HXX
 
 #include <bf_svtools/poolitem.hxx>
-#include <tools/list.hxx>
+
 namespace binfilter {
-
-class SdrAutoShapeAdjustmentValue
-{
-    sal_uInt32  nValue;
-
-    friend class SdrAutoShapeAdjustmentItem;
-
-    public :
-
-        void        SetValue( sal_Int32 nVal ) { nValue = nVal; };
-        sal_Int32   GetValue() const { return nValue; };
-
-};
 
 class SdrAutoShapeAdjustmentItem : public SfxPoolItem
 {
-            List    aAdjustmentValueList;
+public :
 
-    public :
+    TYPEINFO();
+    SdrAutoShapeAdjustmentItem();
+    SdrAutoShapeAdjustmentItem( SvStream& rIn, sal_uInt16 nVersion );
 
-            TYPEINFO();
-            SdrAutoShapeAdjustmentItem();
-            SdrAutoShapeAdjustmentItem( SvStream& rIn, sal_uInt16 nVersion );
-            ~SdrAutoShapeAdjustmentItem();
-
-            virtual int                 operator==( const SfxPoolItem& ) const;
-            virtual SfxPoolItem*        Create( SvStream&, sal_uInt16 nItem ) const;
-            virtual SvStream&           Store( SvStream& rStream, sal_uInt16 ) const { return rStream; }
-            virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
-            virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
+    virtual int                 operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*        Create( SvStream&, sal_uInt16 nItem ) const;
+    virtual SvStream&           Store( SvStream& rStream, sal_uInt16 ) const { return rStream; }
+    virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
+    virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
 
 #ifdef SDR_ISPOOLABLE
-            virtual int IsPoolable() const;
+    virtual int IsPoolable() const;
 #endif
-
-            sal_uInt32                          GetCount() const { return aAdjustmentValueList.Count(); };
 };
 
 }//end of namespace binfilter

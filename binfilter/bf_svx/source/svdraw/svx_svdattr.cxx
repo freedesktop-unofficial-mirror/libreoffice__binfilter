@@ -929,35 +929,14 @@ SdrAutoShapeAdjustmentItem::SdrAutoShapeAdjustmentItem( SvStream& rIn, sal_uInt1
 {
     if ( nVersion )
     {
-        sal_uInt32 i, nCount;
+        sal_uInt32 nCount;
         rIn >> nCount;
-        for ( i = 0; i < nCount; i++ )
-        {DBG_BF_ASSERT(0, "STRIP");
-        }
     }
-}
-
-SdrAutoShapeAdjustmentItem::~SdrAutoShapeAdjustmentItem()
-{
-    void* pPtr;
-    for ( pPtr = aAdjustmentValueList.First(); pPtr; pPtr = aAdjustmentValueList.Next() )
-        delete (SdrAutoShapeAdjustmentValue*)pPtr;
 }
 
 int SdrAutoShapeAdjustmentItem::operator==( const SfxPoolItem& rCmp ) const
 {
     int bRet = SfxPoolItem::operator==( rCmp );
-    if ( bRet )
-    {
-        bRet = ((SdrAutoShapeAdjustmentItem&)rCmp).GetCount() == GetCount();
-        if ( bRet )
-        {
-            sal_uInt32 i;
-            for ( i = 0; i < GetCount(); i++ )
-            {DBG_BF_ASSERT(0, "STRIP");
-            }
-        }
-    }
     return bRet;
 }
 
@@ -969,11 +948,7 @@ SfxPoolItem* SdrAutoShapeAdjustmentItem::Create( SvStream& rIn, sal_uInt16 nItem
 
 SfxPoolItem* SdrAutoShapeAdjustmentItem::Clone( SfxItemPool * /*pPool*/ ) const
 {
-    sal_uInt32 i;
     SdrAutoShapeAdjustmentItem* pItem = new SdrAutoShapeAdjustmentItem;
-    for ( i = 0; i < GetCount(); i++ )
-    {DBG_BF_ASSERT(0, "STRIP");
-    }
     return pItem;
 }
 
