@@ -27,50 +27,45 @@
  ************************************************************************/
 
 #include "svditer.hxx"
-
-
-
-// #99190#
 #include "scene3d.hxx"
+
 namespace binfilter {
 
-/*N*/ SdrObjListIter::SdrObjListIter(const SdrObjList& rObjList, SdrIterMode eMode, BOOL bReverse)
-/*N*/ : maObjList(1024, 64, 64),
-/*N*/   mnIndex(0L),
-/*N*/   mbReverse(bReverse)
-/*N*/ {
-/*N*/   ImpProcessObjectList(rObjList, eMode);
-/*N*/   Reset();
-/*N*/ }
+SdrObjListIter::SdrObjListIter(const SdrObjList& rObjList, SdrIterMode eMode, BOOL bReverse)
+:   mnIndex(0L),
+    mbReverse(bReverse)
+{
+    ImpProcessObjectList(rObjList, eMode);
+    Reset();
+}
 
-/*N*/ SdrObjListIter::SdrObjListIter(const SdrObject& rGroup, SdrIterMode eMode, BOOL bReverse)
-/*N*/ : maObjList(1024, 64, 64),
-/*N*/   mnIndex(0L),
-/*N*/   mbReverse(bReverse)
-/*N*/ {
-/*N*/   ImpProcessObjectList(*rGroup.GetSubList(), eMode);
-/*N*/   Reset();
-/*N*/ }
+SdrObjListIter::SdrObjListIter(const SdrObject& rGroup, SdrIterMode eMode, BOOL bReverse)
+:   mnIndex(0L),
+    mbReverse(bReverse)
+{
+    ImpProcessObjectList(*rGroup.GetSubList(), eMode);
+    Reset();
+}
 
-/*N*/ void SdrObjListIter::ImpProcessObjectList(const SdrObjList& rObjList, SdrIterMode eMode)
-/*N*/ {
-/*N*/   for(sal_uInt32 a(0L); a < rObjList.GetObjCount(); a++)
-/*N*/   {
-/*N*/       SdrObject* pObj = rObjList.GetObj(a);
-/*N*/       sal_Bool bIsGroup(pObj->IsGroupObject());
-/*N*/
-/*N*/       // #99190# 3D objects are no group objects, IsGroupObject()
-/*N*/       // only tests if pSub is not null ptr :-(
-/*N*/       if(bIsGroup && pObj->ISA(E3dObject) && !pObj->ISA(E3dScene))
-/*N*/           bIsGroup = sal_False;
-/*N*/
-/*N*/       if(eMode != IM_DEEPNOGROUPS || !bIsGroup)
-/*N*/           maObjList.Insert(pObj, LIST_APPEND);
-/*N*/
-/*N*/       if(bIsGroup && eMode != IM_FLAT)
-/*N*/           ImpProcessObjectList(*pObj->GetSubList(), eMode);
-/*N*/   }
-/*N*/ }
+void SdrObjListIter::ImpProcessObjectList(const SdrObjList& rObjList, SdrIterMode eMode)
+{
+    for(sal_uInt32 a(0L); a < rObjList.GetObjCount(); a++)
+    {
+        SdrObject* pObj = rObjList.GetObj(a);
+        sal_Bool bIsGroup(pObj->IsGroupObject());
+
+        // #99190# 3D objects are no group objects, IsGroupObject()
+        // only tests if pSub is not null ptr :-(
+        if(bIsGroup && pObj->ISA(E3dObject) && !pObj->ISA(E3dScene))
+            bIsGroup = sal_False;
+
+        if(eMode != IM_DEEPNOGROUPS || !bIsGroup)
+            maObjList.push_back( pObj );
+
+        if(bIsGroup && eMode != IM_FLAT)
+            ImpProcessObjectList(*pObj->GetSubList(), eMode);
+    }
+}
 
 }
 
