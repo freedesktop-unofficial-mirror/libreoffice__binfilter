@@ -38,7 +38,6 @@
 #include <tools/string.hxx>
 #include <tools/list.hxx>
 #include <tools/link.hxx>
-#include <vector>
 
 namespace binfilter
 {
@@ -51,23 +50,22 @@ class DdeLink;
 class DdeRequest;
 class DdeWarmLink;
 class DdeHotLink;
+class ConvList;
 struct DdeDataImp;
 struct DdeImp;
 
-typedef ::std::vector< DdeConnection* > DdeConnections;
-typedef ::std::vector< DdeTransaction* > DdeTransactions;
-typedef ::std::vector< long > DdeFormats;
-
+DECLARE_LIST( DdeConnections, DdeConnection* )
+DECLARE_LIST( DdeTransactions, DdeTransaction* )
+DECLARE_LIST( DdeFormats, long )
 
 #ifdef WNT
 class DdeService;
 class DdeItem;
 class DdeItemImp;
 class DdeTopic;
-
-typedef ::std::vector< DdeService* > DdeServices;
-typedef ::std::vector< DdeTopic* > DdeTopics;
-typedef ::std::vector< DdeItem* > DdeItems;
+DECLARE_LIST( DdeServices, DdeService* )
+DECLARE_LIST( DdeTopics, DdeTopic* )
+DECLARE_LIST( DdeItems, DdeItem* )
 #endif
 
 
