@@ -47,6 +47,7 @@
 #include <bf_svtools/bf_prewin.h>
 #include <ddeml.h>
 #include <bf_svtools/bf_postwin.h>
+#include <bf_svtools/svdde.hxx>
 #include "ddewrap.hxx"
 
 /*
