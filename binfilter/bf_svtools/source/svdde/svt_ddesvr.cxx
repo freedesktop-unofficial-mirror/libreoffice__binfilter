@@ -208,9 +208,9 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
 
     for ( pService = rAll.First(); pService; pService = rAll.Next() )
     {
-        for( pC = pService->pConv->First(); pC;
-             pC = pService->pConv->Next() )
+        for ( size_t i = 0, n = pService->pConv->size(); i < n; ++i )
         {
+            pC = (*pService->pConv)[ i ];
             if ( pC->hConv == hConv )
                 goto found;
         }
