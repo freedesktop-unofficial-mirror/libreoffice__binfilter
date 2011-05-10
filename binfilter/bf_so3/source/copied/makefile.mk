@@ -32,7 +32,6 @@ TARGET := so3_copied
 ENABLE_EXCEPTIONS := TRUE
 
 .INCLUDE: settings.mk
-.INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
 SLOFILES = $(SLO)$/staticbaseurl.obj
 
