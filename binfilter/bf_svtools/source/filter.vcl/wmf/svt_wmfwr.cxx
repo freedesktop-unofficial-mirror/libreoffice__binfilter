@@ -271,9 +271,9 @@ void WMFWriter::MayCallback()
 
 void WMFWriter::CountActionsAndBitmaps( const GDIMetaFile & rMTF )
 {
-    ULONG nAction, nActionCount;
+    size_t nAction, nActionCount;
 
-    nActionCount = rMTF.GetActionCount();
+    nActionCount = rMTF.GetActionSize();
 
     for ( nAction=0; nAction<nActionCount; nAction++ )
     {
@@ -1078,12 +1078,12 @@ void WMFWriter::SetAllAttr()
 
 void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
 {
-    ULONG       nA, nACount;
+    size_t      nA, nACount;
     MetaAction* pMA;
 
     if( bStatus )
     {
-        nACount = rMTF.GetActionCount();
+        nACount = rMTF.GetActionSize();
 
         WMFRecord_SetStretchBltMode();
 
@@ -1572,8 +1572,8 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
                     const MetaEPSAction* pA = (const MetaEPSAction*)pMA;
                     const GDIMetaFile aGDIMetaFile( pA->GetSubstitute() );
 
-                    INT32 nCount = aGDIMetaFile.GetActionCount();
-                    for ( INT32 i = 0; i < nCount; i++ )
+                    size_t nCount = aGDIMetaFile.GetActionSize();
+                    for ( size_t i = 0; i < nCount; i++ )
                     {
                         const MetaAction* pMetaAct = aGDIMetaFile.GetAction( i );
                         if ( pMetaAct->GetType() == META_BMPSCALE_ACTION )

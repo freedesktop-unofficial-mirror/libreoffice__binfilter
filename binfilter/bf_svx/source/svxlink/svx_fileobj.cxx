@@ -226,7 +226,7 @@ noch eine Baustelle:
 /*?*/                   break;
 /*?*/
 /*?*/               default:
-/*?*/                   if( aGrf.GetGDIMetaFile().GetActionCount() )
+/*?*/                   if( aGrf.GetGDIMetaFile().GetActionSize() )
 /*?*/                   {
 /*?*/                       GDIMetaFile aMeta( aGrf.GetGDIMetaFile() );
 /*?*/                       aMeta.Write( aMemStm );

@@ -537,7 +537,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/       }
 /*?*/
-/*?*/       if( aMtf.GetActionCount() )
+/*?*/       if( aMtf.GetActionSize() )
 /*?*/       {
 /*?*/           Size        aSizeLog( aBound.GetSize() );
 /*?*/           const Size  aMinSizeLog( pOut->PixelToLogic( Size( 1, 1 ) ) );

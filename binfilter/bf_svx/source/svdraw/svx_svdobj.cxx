@@ -1975,7 +1975,7 @@ class ImpSkeleton;
 /*N*/   aMtf.WindStart();
 /*N*/   rPoly.Clear();
 /*N*/
-/*N*/   for( ULONG nActionNum = 0, nActionAnz = aMtf.GetActionCount(); nActionNum < nActionAnz; nActionNum++ )
+/*N*/   for( size_t nActionNum = 0, nActionAnz = aMtf.GetActionSize(); nActionNum < nActionAnz; nActionNum++ )
 /*N*/   {
 /*N*/       const MetaAction&   rAct = *aMtf.GetAction( nActionNum );
 /*N*/       BOOL                bXPoly = FALSE;
