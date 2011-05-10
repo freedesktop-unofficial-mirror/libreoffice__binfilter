@@ -63,6 +63,18 @@ class DdeItem;
 class DdeTopics;
 class DdeItems;
 
+// ----------------
+// - Conversation -
+// ----------------
+
+struct Conversation
+{
+    HCONV       hConv;
+    DdeTopic*   pTopic;
+};
+
+typedef ::std::vector< Conversation* > ConvList;
+
 // ---------------
 // - DdeInternal -
 // ---------------
