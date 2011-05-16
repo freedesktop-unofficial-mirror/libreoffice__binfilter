@@ -195,17 +195,17 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   nPolySize = 8;
 /*N*/                   Polygon aPoly( nPolySize );
-/*N*/                   aPoly[0] = Point( aPos.X(),                     aPos.Y() );
+/*N*/                   aPoly[0] = Point(static_cast<long>(aPos.X()),                   static_cast<long>(aPos.Y()));
 /*N*/
-/*N*/                   aPoly[1] = Point( aPos.X() + fBase - fOffset,   aPos.Y() );
-/*N*/                   aPoly[2] = Point( aPos.X() + fBase,             aPos.Y() );
-/*N*/                   aPoly[3] = Point( aPos.X() + fBase,             aPos.Y() + fOffset );
+/*N*/                   aPoly[1] = Point(static_cast<long>(aPos.X() + fBase - fOffset), static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[2] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[3] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y() + fOffset));
 /*N*/
-/*N*/                   aPoly[4] = Point( aPos.X() + fBase,             aPos.Y() + aSizeVec.Y() - fOffset );
-/*N*/                   aPoly[5] = Point( aPos.X() + fBase,             aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[6] = Point( aPos.X() + fBase - fOffset,   aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[4] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffset));
+/*N*/                   aPoly[5] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[6] = Point(static_cast<long>(aPos.X() + fBase - fOffset), static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
-/*N*/                   aPoly[7] = Point( aPos.X(),                     aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[7] = Point(static_cast<long>(aPos.X()),                   static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
 /*N*/                   aPolyPoly.Insert( aPoly );
 /*N*/               }
@@ -214,10 +214,10 @@ namespace binfilter {
 /*N*/                   nPolySize = 4;
 /*N*/                   Polygon aPoly( nPolySize );
 /*N*/
-/*N*/                   aPoly[0]=Point(aPos.X()         , aPos.Y());
-/*N*/                   aPoly[1]=Point(aPos.X() + fBase , aPos.Y());
-/*N*/                   aPoly[2]=Point(aPos.X() + fBase , aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[3]=Point(aPos.X()         , aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[0]=Point(static_cast<long>(aPos.X()),         static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[1]=Point(static_cast<long>(aPos.X() + fBase), static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[2]=Point(static_cast<long>(aPos.X() + fBase), static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[3]=Point(static_cast<long>(aPos.X()),         static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
 /*N*/                   aPolyPoly.Insert(aPoly);
 /*N*/               }
@@ -274,15 +274,15 @@ namespace binfilter {
 /*N*/
 /*N*/               if( ! bIsTip )      // skip these points for the tip
 /*N*/               {
-/*N*/                   aPoly[i++] = Point( aPos.X(),                   aPos.Y());
-/*N*/                   aPoly[i++] = Point( aPos.X() + r1 - fOffset,    aPos.Y());
+/*N*/                   aPoly[i++] = Point( static_cast<long>(aPos.X()),                static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[i++] = Point( static_cast<long>(aPos.X() + r1 - fOffset), static_cast<long>(aPos.Y()));
 /*N*/               }
-/*N*/               aPoly[i++] = Point( aPos.X() + r1,                  aPos.Y());
-/*N*/               aPoly[i++] = Point( aPos.X() + r1 + fOffsetX,       aPos.Y() + fOffsetY);
-/*N*/               aPoly[i++] = Point( aPos.X() + r2 - fOffsetX,       aPos.Y() + aSizeVec.Y() - fOffsetY);
-/*N*/               aPoly[i++] = Point( aPos.X() + r2,                  aPos.Y() + aSizeVec.Y());
-/*N*/               aPoly[i++] = Point( aPos.X() + r2 - fOffset,        aPos.Y() + aSizeVec.Y());
-/*N*/               aPoly[i++] = Point( aPos.X(),                       aPos.Y() + aSizeVec.Y());
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r1),            static_cast<long>(aPos.Y()));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r1 + fOffsetX), static_cast<long>(aPos.Y() + fOffsetY));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r2 - fOffsetX), static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffsetY));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r2),            static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r2 - fOffset),  static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X()),                 static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
 /*N*/               aPolyPoly.Insert( aPoly );
 /*N*/
@@ -309,21 +309,21 @@ namespace binfilter {
 /*N*/                   2.0 * fOffset < aSizeVec.Y() )
 /*N*/               {
 /*N*/                   Polygon aPoly( 13 );
-/*N*/                   aPoly[ 0] = Point( aPos.X() + fOffset,                  aPos.Y() );
-/*N*/                   aPoly[ 1] = Point( aPos.X(),                            aPos.Y() );
-/*N*/                   aPoly[ 2] = Point( aPos.X(),                            aPos.Y() + fOffset );
+/*N*/                   aPoly[ 0] = Point(static_cast<long>(aPos.X() + fOffset),                static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[ 1] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[ 2] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y() + fOffset));
 /*N*/
-/*N*/                   aPoly[ 3] = Point( aPos.X(),                            aPos.Y() + aSizeVec.Y() - fOffset );
-/*N*/                   aPoly[ 4] = Point( aPos.X(),                            aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[ 5] = Point( aPos.X() + fOffset,                  aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[ 3] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffset));
+/*N*/                   aPoly[ 4] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[ 5] = Point(static_cast<long>(aPos.X() + fOffset),                static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
-/*N*/                   aPoly[ 6] = Point( aPos.X() + aSizeVec.X() - fOffset,   aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[ 7] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[ 8] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() + aSizeVec.Y() - fOffset );
+/*N*/                   aPoly[ 6] = Point(static_cast<long>(aPos.X() + aSizeVec.X() - fOffset), static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[ 7] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[ 8] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffset));
 /*N*/
-/*N*/                   aPoly[ 9] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() + fOffset );
-/*N*/                   aPoly[10] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() );
-/*N*/                   aPoly[11] = Point( aPos.X() + aSizeVec.X() - fOffset,   aPos.Y() );
+/*N*/                   aPoly[ 9] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y() + fOffset));
+/*N*/                   aPoly[10] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[11] = Point(static_cast<long>(aPos.X() + aSizeVec.X() - fOffset), static_cast<long>(aPos.Y()));
 /*N*/
 /*N*/                   aPoly[12] = aPoly[ 0];
 /*N*/                   aPolyPoly.Insert( aPoly );
@@ -331,10 +331,10 @@ namespace binfilter {
 /*N*/               else
 /*N*/               {
 /*N*/                   Polygon aPoly(5);
-/*N*/                   aPoly[0]=Point(aPos.X(), aPos.Y());
-/*N*/                   aPoly[1]=Point(aPos.X(), aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[2]=Point(aPos.X() + aSizeVec.X(), aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[3]=Point(aPos.X() + aSizeVec.X(), aPos.Y());
+/*N*/                   aPoly[0]=Point(static_cast<long>(aPos.X()),                static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[1]=Point(static_cast<long>(aPos.X()),                static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[2]=Point(static_cast<long>(aPos.X() + aSizeVec.X()), static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[3]=Point(static_cast<long>(aPos.X() + aSizeVec.X()), static_cast<long>(aPos.Y()));
 /*N*/                   aPoly[4]=aPoly[0];
 /*N*/
 /*N*/                   aPolyPoly.Insert(aPoly);

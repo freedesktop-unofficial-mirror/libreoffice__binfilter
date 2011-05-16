@@ -159,7 +159,7 @@ sal_Bool XMLCharHeightDiffHdl::exportXML( OUString& rStrExpValue, const uno::Any
     float nRel = 0;
     if( (rValue >>= nRel) && (nRel != 0) )
     {
-        SvXMLUnitConverter::convertMeasure( aOut, nRel, MAP_POINT, MAP_POINT );
+        SvXMLUnitConverter::convertMeasure( aOut, static_cast<sal_Int32>(nRel), MAP_POINT, MAP_POINT );
         rStrExpValue = aOut.makeStringAndClear();
     }
 

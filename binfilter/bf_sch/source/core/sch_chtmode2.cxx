@@ -222,7 +222,7 @@ enum ChartStyleV0
 /*N*/                                    aTextAttr,
 /*N*/                                    FALSE,
 /*N*/                                    CHADJUST_TOP_LEFT,  //FG: wie der Default
-/*N*/                                    GetPage(0)->GetSize().Width() * fMaximumWidth);
+/*N*/                                    static_cast<long>(GetPage(0)->GetSize().Width() * fMaximumWidth));
 /*N*/
 /*N*/           // FG: Das hier soll verhindern dass der Text in der Legende markiert werden kann
 /*N*/           //     dazu gibt es ja kein gueltiges Kontextmenue
@@ -256,7 +256,7 @@ enum ChartStyleV0
 /*?*/                   SdrObject *pText = CreateTextObj( CHOBJID_TEXT, Point(), aLegendText,
 /*?*/                                                     aTextAttr, FALSE,
 /*?*/                                                     CHADJUST_TOP_LEFT,
-/*?*/                                                     GetPage( 0 )->GetSize().Width() * fMaximumWidth );
+/*?*/                                                     static_cast<long>(GetPage( 0 )->GetSize().Width() * fMaximumWidth));
 /*?*/
 /*?*/                   pText->SetMarkProtect( TRUE );
 /*?*/                   aTextList.Insert(pText, LIST_APPEND);

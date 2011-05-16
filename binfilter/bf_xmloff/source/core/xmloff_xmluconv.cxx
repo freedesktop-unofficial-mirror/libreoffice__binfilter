@@ -1313,7 +1313,7 @@ sal_Bool SvXMLUnitConverter::convertDateTime( ::com::sun::star::util::DateTime& 
         rDateTime.Hours = (sal_uInt16)nHour;
         rDateTime.Minutes = (sal_uInt16)nMin;
         rDateTime.Seconds = (sal_uInt16)nSec;
-        rDateTime.HundredthSeconds = sDoubleStr.toDouble() * 100;
+        rDateTime.HundredthSeconds = static_cast<sal_uInt16>(sDoubleStr.toDouble() * 100);
     }
     return bSuccess;
 }

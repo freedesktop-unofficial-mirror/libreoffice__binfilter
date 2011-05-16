@@ -384,7 +384,7 @@ void SAL_CALL Svx3DSceneObject::setPropertyValue( const OUString& aPropertyName,
             aCam.SetPosAndLookAt(aCamPos, aLookAt);
             aCam.SetFocalLength(fCamFocal / 100.0);
             aCam.SetDefaults(Vector3D(0.0, 0.0, fCamPosZ), aLookAt, fCamFocal / 100.0);
-            aCam.SetDeviceWindow(Rectangle(0, 0, fW, fH));
+            aCam.SetDeviceWindow(Rectangle(0, 0, static_cast<long>(fW), static_cast<long>(fH)));
 
             // set at scene
             pScene->SetCamera(aCam);
