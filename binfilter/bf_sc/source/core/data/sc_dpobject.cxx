@@ -137,7 +137,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScDPObject::ScDPObject(const ScDPObject& r) :
+/*N*/ ScDPObject::ScDPObject(const ScDPObject& r) : DataObject(r),
 /*N*/   pDoc( r.pDoc ),
 /*N*/   pSaveData( NULL ),
 /*N*/   aTableName( r.aTableName ),

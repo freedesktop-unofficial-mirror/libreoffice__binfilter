@@ -114,6 +114,7 @@ SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextBase& rText, sal_uInt16 nP
 
 SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextContent& rContent ) throw()
     : SvxUnoTextRangeBase(rContent)
+    , XTextContent(rContent), XEnumerationAccess(rContent), XTypeProvider(rContent)
     , cppu::OWeakAggObject()
     , rParentText(rContent.rParentText)
     , aDisposeListeners(aDisposeContainerMutex)
@@ -431,6 +432,7 @@ SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextBase& rText ) throw()
 
 SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextCursor& rCursor ) throw()
     : SvxUnoTextRangeBase(rCursor)
+    , XTextCursor(rCursor), XTypeProvider(rCursor)
     , cppu::OWeakAggObject()
     , xParentText(rCursor.xParentText)
 {

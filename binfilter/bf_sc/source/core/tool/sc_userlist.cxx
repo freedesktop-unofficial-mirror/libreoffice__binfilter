@@ -70,7 +70,7 @@ namespace binfilter {
 /*N*/   InitTokens();
 /*N*/ }
 
-/*N*/ ScUserListData::ScUserListData(const ScUserListData& rData) :
+/*N*/ ScUserListData::ScUserListData(const ScUserListData& rData) : DataObject(rData),
 /*N*/   aStr(rData.aStr)
 /*N*/ {
 /*N*/   InitTokens();

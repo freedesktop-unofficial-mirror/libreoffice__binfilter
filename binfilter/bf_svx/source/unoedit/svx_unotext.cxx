@@ -205,7 +205,7 @@ SvxUnoTextRangeBase::SvxUnoTextRangeBase( const SvxEditSource* pSource, const Sf
 }
 
 SvxUnoTextRangeBase::SvxUnoTextRangeBase( const SvxUnoTextRangeBase& rRange ) throw()
-: aPropSet(rRange.getPropertyMap())
+: XTextRange(rRange), XPropertySet(), XMultiPropertySet(), XPropertyState(), XServiceInfo(), XUnoTunnel(), aPropSet(rRange.getPropertyMap())
 {
     SolarMutexGuard aGuard;
 
@@ -1473,7 +1473,7 @@ SvxUnoTextBase::SvxUnoTextBase( const SvxEditSource* pSource, const SfxItemPrope
 }
 
 SvxUnoTextBase::SvxUnoTextBase( const SvxUnoTextBase& rText ) throw()
-:SvxUnoTextRangeBase( rText )
+: SvxUnoTextRangeBase( rText ), XText(rText), XEnumerationAccess(rText), XTextRangeMover(rText), XTypeProvider(rText)
 {
     xParentText = rText.xParentText;
 }

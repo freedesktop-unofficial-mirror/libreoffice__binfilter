@@ -255,7 +255,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ ScDBData::ScDBData( const ScDBData& rData ) :
+/*N*/ ScDBData::ScDBData( const ScDBData& rData ) : DataObject(rData),
 /*N*/   ScRefreshTimer      ( rData ),
 /*N*/   aName               (rData.aName),
 /*N*/   nTable              (rData.nTable),

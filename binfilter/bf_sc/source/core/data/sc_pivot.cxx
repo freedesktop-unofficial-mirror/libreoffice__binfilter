@@ -181,7 +181,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 /*N*/
-/*N*/ ScPivot::ScPivot(const ScPivot& rPivot):
+/*N*/ ScPivot::ScPivot(const ScPivot& rPivot): DataObject(rPivot),
 /*N*/   pDoc            (rPivot.pDoc),
 /*N*/   aQuery          (rPivot.aQuery),
 /*N*/   bHasHeader      (rPivot.bHasHeader),

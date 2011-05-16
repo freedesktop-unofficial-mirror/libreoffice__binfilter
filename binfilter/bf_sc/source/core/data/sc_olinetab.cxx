@@ -50,7 +50,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScOutlineEntry::ScOutlineEntry( const ScOutlineEntry& rEntry ) :
+/*N*/ ScOutlineEntry::ScOutlineEntry( const ScOutlineEntry& rEntry ) : DataObject(rEntry),
 /*N*/   nStart  ( rEntry.nStart ),
 /*N*/   nSize   ( rEntry.nSize ),
 /*N*/   bHidden ( rEntry.bHidden ),

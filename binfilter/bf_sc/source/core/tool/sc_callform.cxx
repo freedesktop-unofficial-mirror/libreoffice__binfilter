@@ -103,7 +103,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 
 
-/*N*/ FuncData::FuncData(const FuncData& rData) :
+/*N*/ FuncData::FuncData(const FuncData& rData) : DataObject(rData),
 /*N*/   pModuleData     (rData.pModuleData),
 /*N*/   aInternalName   (rData.aInternalName),
 /*N*/   aFuncName       (rData.aFuncName),
@@ -134,7 +134,7 @@ class ModuleData : public DataObject
     osl::Module* pInstance;
 public:
     ModuleData(const String& rStr, osl::Module* pInst) : aName (rStr), pInstance (pInst) {}
-    ModuleData(const ModuleData& rData) : aName (rData.aName) {pInstance = new osl::Module(aName);}
+    ModuleData(const ModuleData& rData) : DataObject(rData), aName (rData.aName) {pInstance = new osl::Module(aName);}
     ~ModuleData() { delete pInstance; }
     virtual DataObject* Clone() const { return new ModuleData(*this); }
 

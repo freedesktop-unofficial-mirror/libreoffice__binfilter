@@ -77,7 +77,8 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ Collection::Collection(const Collection& rCollection)
-/*N*/   :   nCount ( 0 ),
+/*N*/   :   DataObject(rCollection),
+/*N*/       nCount ( 0 ),
 /*N*/       nLimit ( 0 ),
 /*N*/       nDelta ( 0 ),
 /*N*/       pItems ( NULL )

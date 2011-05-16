@@ -93,7 +93,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ ScRangeData::ScRangeData(const ScRangeData& rScRangeData) :
+/*N*/ ScRangeData::ScRangeData(const ScRangeData& rScRangeData) : DataObject(rScRangeData),
 /*N*/   aName   (rScRangeData.aName),
 /*N*/   pCode       (rScRangeData.pCode ? rScRangeData.pCode->Clone() : new ScTokenArray),      // echte Kopie erzeugen (nicht copy-ctor)
 /*N*/   aPos        (rScRangeData.aPos),

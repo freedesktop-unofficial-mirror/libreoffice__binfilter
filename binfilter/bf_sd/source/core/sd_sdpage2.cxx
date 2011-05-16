@@ -222,7 +222,7 @@ void SdPage::SetModel(SdrModel* pNewModel)
 }
 
 SdPage::SdPage(const SdPage& rSrcPage)
-: FmFormPage(rSrcPage)
+: FmFormPage(rSrcPage), SdrObjUserCall(rSrcPage)
 {
     ePageKind           = rSrcPage.ePageKind;
     eAutoLayout         = rSrcPage.eAutoLayout;

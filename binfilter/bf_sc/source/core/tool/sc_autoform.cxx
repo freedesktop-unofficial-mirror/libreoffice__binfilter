@@ -369,7 +369,7 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/         ppDataField[ nIndex ] = new ScAutoFormatDataField;
 /*N*/ }
 
-/*N*/ ScAutoFormatData::ScAutoFormatData( const ScAutoFormatData& rData ) :
+/*N*/ ScAutoFormatData::ScAutoFormatData( const ScAutoFormatData& rData ) : DataObject(rData),
 /*N*/       aName( rData.aName ),
 /*N*/       nStrResId( rData.nStrResId ),
 /*N*/       bIncludeFont( rData.bIncludeFont ),

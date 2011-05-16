@@ -113,7 +113,7 @@ friend class StrCollection;
     String aStr;
 public:
                         StrData(const String& rStr) : aStr(rStr) {}
-                        StrData(const StrData& rData) :aStr(rData.aStr) {}
+                        StrData(const StrData& rData) : DataObject(rData), aStr(rData.aStr) {}
     virtual DataObject* Clone() const;
     const String&       GetString() const { return aStr; }
     // SetString nur, wenn StrData nicht in StrCollection ist! !!!
@@ -157,7 +157,8 @@ public:
                             BOOL bAllStrings );
 
             TypedStrData( const TypedStrData& rCpy )
-                : aStrValue(rCpy.aStrValue),
+                : DataObject(rCpy),
+                  aStrValue(rCpy.aStrValue),
                   nValue(rCpy.nValue),
                   nStrType(rCpy.nStrType) {}
 

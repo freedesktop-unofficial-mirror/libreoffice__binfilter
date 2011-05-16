@@ -837,7 +837,9 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   : SvRefBase()
 /*N*/   , SotObject()
 /*N*/   , SvObject()
+/*N*/   , SvPersist()
 /*N*/   , SfxObjectShell( rShell.GetCreateMode() )
+/*N*/   , SfxInPlaceObject()
 /*N*/   , SfxListener()
 /*N*/   , __SCDOCSHELL_INIT
 /*N*/ {
