@@ -357,8 +357,8 @@ void lcl_GetRowCol(const String& rCellName, sal_uInt16& rRow, sal_uInt16& rCol)
     nLen = sCol.Len();
     if(!nLen)
     {
-        rRow = -1;
-        rCol = -1;
+        rRow = SAL_MAX_UINT16;
+        rCol = SAL_MAX_UINT16;
     }
     else
     {
@@ -2303,7 +2303,7 @@ uno::Reference< table::XCellRange >  SwXTextTable::getCellRangeByName(const OUSt
             if(!sTLName.Len() || !sBRName.Len())
                 throw uno::RuntimeException();
             SwRangeDescriptor aDesc;
-            aDesc.nTop = aDesc.nLeft =  aDesc.nBottom = aDesc.nRight = -1;
+            aDesc.nTop = aDesc.nLeft =  aDesc.nBottom = aDesc.nRight = SAL_MAX_UINT16;
             lcl_GetRowCol(sTLName, aDesc.nTop, aDesc.nLeft);
             lcl_GetRowCol(sBRName, aDesc.nBottom, aDesc.nRight);
             aRef = GetRangeByName(pFmt, pTable, sTLName, sBRName, aDesc);
@@ -3409,7 +3409,7 @@ Reference< XCellRange >  SwXCellRange::getCellRangeByName(const OUString& rRange
     if(!sTLName.Len() || !sBRName.Len())
         throw uno::RuntimeException();
     SwRangeDescriptor aDesc;
-    aDesc.nTop = aDesc.nLeft =  aDesc.nBottom = aDesc.nRight = -1;
+    aDesc.nTop = aDesc.nLeft =  aDesc.nBottom = aDesc.nRight = SAL_MAX_UINT16;
     lcl_GetRowCol(sTLName, aDesc.nTop, aDesc.nLeft);
     lcl_GetRowCol(sBRName, aDesc.nBottom, aDesc.nRight);
     return getCellRangeByPosition(aDesc.nLeft - aRgDesc.nLeft, aDesc.nTop - aRgDesc.nTop,

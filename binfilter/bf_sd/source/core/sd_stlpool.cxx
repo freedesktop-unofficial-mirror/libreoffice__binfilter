@@ -1176,7 +1176,7 @@ namespace binfilter {
 /*N*/               const short nLSpace = i ? i * 1200 : 1200;
 /*N*/               aNumberFormat.SetLSpace(nLSpace);
 /*N*/               aNumberFormat.SetAbsLSpace(nLSpace);
-/*N*/               USHORT nFirstLineOffset = -600;
+/*N*/               USHORT nFirstLineOffset = 600;
 /*N*/
 /*N*/               ULONG nFontSize = 20;
 /*N*/               switch(i)
@@ -1185,14 +1185,14 @@ namespace binfilter {
 /*N*/                   case 1:
 /*N*/                   {
 /*N*/                       nFontSize = 32;
-/*N*/                       nFirstLineOffset = -900;
+/*N*/                       nFirstLineOffset = 900;
 /*N*/                   }
 /*N*/                   break;
 /*N*/
 /*N*/                   case 2:
 /*N*/                   {
 /*N*/                       nFontSize = 28;
-/*N*/                       nFirstLineOffset = -800;
+/*N*/                       nFirstLineOffset = 800;
 /*N*/                       aNumberFormat.SetBulletChar( 0x2013 );  // StarBats: 0xF000 + 150
 /*N*/                       aNumberFormat.SetBulletRelSize(75);
 /*N*/                   }
@@ -1212,7 +1212,7 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/               }
 /*N*/
-/*N*/               aNumberFormat.SetFirstLineOffset(nFirstLineOffset);
+/*N*/               aNumberFormat.SetFirstLineOffset(-nFirstLineOffset);
 /*N*/               nFontSize = (USHORT)((nFontSize * 2540L) / 72);  // Pt --> 1/100 mm
 /*N*/               rBulletFont.SetSize(Size(0,846));       // 24 pt
 /*N*/               aNumberFormat.SetBulletFont(&rBulletFont);
