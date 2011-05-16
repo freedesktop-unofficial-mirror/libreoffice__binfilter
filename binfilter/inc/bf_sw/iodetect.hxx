@@ -452,7 +452,7 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
     }                                                                        \
                                                                              \
     sal_Char aBuffer[ 4098 ];                                                \
-    ULONG nBytesRead;                                                        \
+    ULONG nBytesRead(0);                                                     \
     if( pMedium )                                                            \
     {                                                                        \
         SvStream* pIStrm = pMedium->GetInStream();                           \

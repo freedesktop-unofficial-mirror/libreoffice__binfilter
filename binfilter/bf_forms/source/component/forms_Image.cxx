@@ -277,7 +277,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
     // wird das meiste bei gelocktem Solar-Mutex erledigen.
     Reference<XPropertySet>  xSet;
     InterfaceRef  xParent;
-    FormButtonType eButtonType;
+    FormButtonType eButtonType = FormButtonType_PUSH;
     {
         SolarMutexGuard aGuard;
 

@@ -233,7 +233,7 @@ extern const ScFormulaCell* pLastFormulaTreeTop;    // in cellform.cxx
 /*N*/   BOOL bFound=FALSE;
 /*N*/   USHORT nEndRow = nStartRow + nSize - 1;
 /*N*/   USHORT nStartIndex( 0 );
-/*N*/   USHORT nEndIndex;
+/*N*/   USHORT nEndIndex(0);
 /*N*/   USHORT i;
 /*N*/
 /*N*/   for ( i = nFirstIndex; i < nCount && pItems[i].nRow <= nEndRow; i++ )

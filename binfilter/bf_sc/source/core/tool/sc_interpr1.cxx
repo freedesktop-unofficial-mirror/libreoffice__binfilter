@@ -2851,7 +2851,7 @@ void ScInterpreter::ScTable()
 /*N*/           }
 /*N*/           if ( rEntry.bQueryByString )
 /*N*/                  rParam.bRegExp = MayBeRegExp( *rEntry.pStr, pDok );
-/*N*/           USHORT nDelta, nR, nC;
+/*N*/           USHORT nDelta(0), nR, nC;
 /*N*/              if (nCol1 == nCol2)
 /*N*/              {                                           // search row in column
 /*N*/               rParam.nRow2 = nRow2;
