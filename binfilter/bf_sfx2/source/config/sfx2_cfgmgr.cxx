@@ -184,9 +184,9 @@ static const char pStorageName[] = "Configurations";
 /*N*/
 /*N*/     SvStorageInfoList aList;
 /*N*/     rStorage.FillInfoList( &aList );
-/*N*/     for( USHORT i = 0; i < aList.Count(); i++ )
+/*N*/     for( size_t i = 0; i < aList.size(); i++ )
 /*N*/     {
-/*?*/         SvStorageInfo& rInfo = aList.GetObject( i );
+/*?*/         SvStorageInfo& rInfo = aList[ i ];
 /*?*/         if ( rInfo.IsStream() )
 /*?*/         {
 /*?*/             // get StreamName and ItemType

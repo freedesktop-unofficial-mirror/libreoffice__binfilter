@@ -583,12 +583,16 @@ using namespace ::rtl;
 /*N*/
 /*N*/           // erstmal alle nicht "OLE-Objecte" aus der Liste entfernen
                 sal_uInt32 n;
-/*N*/           for( n = aInfoList.Count(); n; )
+/*N*/           for( n = aInfoList.size(); n; )
 /*N*/           {
-/*N*/               const String& rName = aInfoList.GetObject( --n ).GetName();
+/*N*/               const String& rName = aInfoList[ --n ].GetName();
 /*N*/               // in ndole.cxx wird dieser PreFix benutzt
 /*N*/               if( 3 != rName.Match( String::CreateFromAscii("Obj") ))
-/*N*/                   aInfoList.Remove( n );
+                    {
+                        SvStorageInfoList::iterator it = aInfoList.begin();
+                        ::std::advance( it, n );
+                        aInfoList.erase( it );
+                    }
 /*N*/           }
 /*N*/
 /*N*/           // dann alle referenzierten Object aus der Liste entfernen
@@ -600,12 +604,14 @@ using namespace ::rtl;
 /*N*/               if( pOLENd )
 /*N*/               {
 /*N*/                   const String& rOLEName = pOLENd->GetOLEObj().GetName();
-/*N*/                   for( n = aInfoList.Count(); n; )
+/*N*/                   for( n = aInfoList.size(); n; )
 /*N*/                   {
-/*N*/                       const String& rName = aInfoList.GetObject( --n ).GetName();
+/*N*/                       const String& rName = aInfoList[ --n ].GetName();
 /*N*/                       if( rOLEName == rName )
 /*N*/                       {
-/*N*/                           aInfoList.Remove( n );
+                                SvStorageInfoList::iterator it = aInfoList.begin();
+                                ::std::advance( it, n );
+                                aInfoList.erase( it );
 /*N*/                           break;
 /*N*/                       }
 /*N*/                   }
@@ -614,9 +620,9 @@ using namespace ::rtl;
             // und jetzt haben wir alle Objecte, die nicht mehr
             // referenziert werden
 /*N*/           SvPersist* p = this;
-/*N*/           for( n = aInfoList.Count(); n; )
+/*N*/           for( n = aInfoList.size(); n; )
 /*N*/           {
-/*?*/               const String& rName = aInfoList.GetObject( --n ).GetName();
+/*?*/               const String& rName = aInfoList[ --n ].GetName();
 /*?*/               SvInfoObjectRef aRef( p->Find( rName ) );
 /*?*/               if( aRef.Is() )
 /*?*/                   p->Remove( &aRef );

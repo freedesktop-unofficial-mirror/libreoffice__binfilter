@@ -1555,18 +1555,18 @@ BOOL BasicManager::RemoveLib( USHORT nLib, BOOL bDelBasicFromStorage )
 
                 // Wenn kein weiterer Stream vorhanden,
                 // dann auch den SubStorage loeschen.
-                SvStorageInfoList aInfoList( 0, 4 );
+                SvStorageInfoList aInfoList;
                 xBasicStorage->FillInfoList( &aInfoList );
-                if ( !aInfoList.Count() )
+                if ( aInfoList.empty() )
                 {
                     xBasicStorage.Clear();
                     xStorage->Remove( BasicStreamName );
                     xStorage->Commit();
                     // Wenn kein weiterer Streams oder SubStorages vorhanden,
                     // dann auch den Storage loeschen.
-                    aInfoList.Clear();
+                    aInfoList.clear();
                     xStorage->FillInfoList( &aInfoList );
-                    if ( !aInfoList.Count() )
+                    if ( aInfoList.empty() )
                     {
                         String aName_( xStorage->GetName() );
                         xStorage.Clear();

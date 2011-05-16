@@ -45,8 +45,6 @@
 #undef SvStorageStreamRef
 #endif
 
-class  SvStorageInfoList;
-
 namespace binfilter {
 
 class SvStorage;

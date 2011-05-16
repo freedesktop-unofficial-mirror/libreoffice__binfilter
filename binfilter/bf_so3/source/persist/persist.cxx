@@ -668,7 +668,7 @@ BOOL SvPersist::ImplCopy( SvPersist* pSrc, const String& rStorageName, BOOL bMov
             {
                 SvStorageInfoList aList;
                 aSrcEleStor->FillInfoList( &aList );
-                bSave = !aList.Count();
+                bSave = aList.empty();
                 if ( !bSave )
                 {
                     if( pStor->GetVersion() <= SOFFICE_FILEFORMAT_50 )

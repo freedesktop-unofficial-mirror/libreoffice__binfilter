@@ -377,7 +377,7 @@ sal_False           Das Objekt konnte nicht geladen werden
             {
                 SvStorageInfoList aList;
                 xStor->FillInfoList( &aList );
-                if ( !aList.Count() && !xStor->IsOLEStorage() )
+                if ( aList.empty() && !xStor->IsOLEStorage() )
                     SetError( ERRCODE_IO_BROKENPACKAGE );
                 else
                 {
