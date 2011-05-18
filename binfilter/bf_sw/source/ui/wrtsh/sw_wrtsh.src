@@ -1690,7 +1690,7 @@ String STR_MERGE_TABLE
 String STR_TRANSLITERATE
 {
     Text [ de ] = "Groß-/Kleinschreibung" ;
-    Text [ en-US ] = "Case/Characters";
+    Text [ en-US ] = "~Change Case";
     Text[ pt ] = "Caixa/Caracteres";
     Text[ ru ] = "регистр";
     Text[ el ] = "Κεφαλαία/Πεζά";

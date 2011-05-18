@@ -190,7 +190,7 @@
         HelpID = FN_NUMBER_BULLETS ; \
         /* ### ACHTUNG: Neuer Text in Resource? ~Numerierung/Aufz�hlung... : ~Numerierung/Aufz�hlung... */\
         Text [ de ] = "~Nummerierung/Aufz�hlung..." ; \
-        Text [ en-US ] = "~Numbering/Bullets..." ; \
+        Text [ en-US ] = "~Bullets and Numbering..." ; \
         Text [ x-comment ] = " ";\
         Text[ pt ] = "~Marcas/Numeração...";\
         Text[ ru ] = "Нумерация/маркировка...";\

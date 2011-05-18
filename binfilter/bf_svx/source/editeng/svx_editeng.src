@@ -264,7 +264,7 @@ String RID_EDITUNDO_SETSTYLE
 String RID_EDITUNDO_TRANSLITERATE
 {
     Text [ de ] = "Groß-/Kleinschreibung";
-    Text [ en-US ] = "Case/Characters";
+    Text [ en-US ] = "~Change Case";
     Text [ x-comment ] = "; nk03.04.01: hier passt Englisch Uebesetzung besser.";
     Text[ pt ] = "Caixa/Caracteres";
     Text[ ru ] = "Регистр";

@@ -3757,7 +3757,7 @@
         Identifier = DEFINE_SLOTID_FOR_NUMBER_BULLETS ; \
         HelpID = DEFINE_SLOTID_FOR_NUMBER_BULLETS ; \
         Text [ de ] = "~Nummerierung/Aufz�hlung..." ; \
-        Text [ en-US ] = "~Numbering/Bullets..." ; \
+        Text [ en-US ] = "~Bullets and Numbering..." ; \
         Text [ x-comment ] = " ";\
         Text[ pt ] = "~Marcas/Numeração...";\
         Text[ ru ] = "Нумерация/маркировка...";\
@@ -5479,7 +5479,7 @@
                 };\
             };\
         };\
-        Text [ en-US ] = "Case/Characters";\
+        Text [ en-US ] = "~Change Case";\
         Text [ x-comment ] = "nk03.04.01: hier passt Englisch Uebesetzung besser.";\
         Text[ pt ] = "Caixa/Caracteres";\
         Text[ ru ] = "Регистр";\
