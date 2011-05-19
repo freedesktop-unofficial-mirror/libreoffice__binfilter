@@ -32,7 +32,7 @@
 #include "bf_svtools/svtdllapi.h"
 
 #include <tools/stream.hxx>
-#include <tools/ownlist.hxx>
+#include <bf_tools/ownlist.hxx>
 
 #include <com/sun/star/uno/Sequence.hxx>
 
