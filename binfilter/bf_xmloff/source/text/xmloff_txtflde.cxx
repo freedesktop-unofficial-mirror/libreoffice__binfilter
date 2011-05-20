@@ -2164,11 +2164,7 @@ void XMLTextFieldExport::ProcessValueAndType(
     }
     else
     {
-
         // number: value-type=..., value...=..., data-style-name=...
-
-        DBG_ASSERT(bExportValueType || ~bExportValue,
-                   "value w/o value type not supported!");
 
         // take care of illegal formats
         // (shouldn't happen, but does if document is corrupted)

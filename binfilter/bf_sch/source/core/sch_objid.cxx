@@ -144,7 +144,7 @@ namespace binfilter {
 
 // this function is for debugging only
 // therefore it is ok to use char* instead of UniString
-/*N*/ char* GetCHOBJIDName( const long id )
+/*N*/ const char* GetCHOBJIDName( const long id )
 /*N*/ {
 /*N*/   switch( id )
 /*N*/   {

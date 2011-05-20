@@ -72,7 +72,7 @@ extern SdrObject* GetObjWithId(UINT16 nObjId, const SdrObjList& rObjList,
 
 //Die hier folgenden Funktionen dienen AUSSCHLIESSLICH zu DEBUG-Zwecken
 #if OSL_DEBUG_LEVEL > 0
-extern char *GetCHOBJIDName(const long id);
+extern const char *GetCHOBJIDName(const long id);
 #endif
 
 } //namespace binfilter

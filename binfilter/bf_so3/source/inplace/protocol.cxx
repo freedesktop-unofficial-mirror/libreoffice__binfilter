@@ -752,8 +752,8 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
     // nach dem ClientConnect darf alles passieren, bis auf loeschen von this
     if( (bLastActionConnect && !bSvrConnect) || (!bLastActionConnect && bSvrConnect) )
     { // Object verbinden Ich darf verbinden
-        DBG_ASSERT( bConnect && bConnectP && bLastActionConnect && !bSvrConnect
-                    || !bConnect && !bConnectP && !bLastActionConnect && bSvrConnect,
+        DBG_ASSERT( (bConnect && bConnectP && bLastActionConnect && !bSvrConnect)
+                    || (!bConnect && !bConnectP && !bLastActionConnect && bSvrConnect),
                     "connect assert failed" );
         bSvrConnect = bConnect;
         DBG_PROTLOG( "Obj - Connected", bConnectP )
@@ -830,8 +830,8 @@ void ImplSvEditObjectProtocol::Opened( BOOL bOpenP )
     // nach dem ClientOpen darf alles passieren, bis auf loeschen von this
     if( (bLastActionOpen && !bSvrOpen) || (!bLastActionOpen && bSvrOpen) )
     { // Object oeffnen
-        DBG_ASSERT( bOpen && bOpenP && bLastActionOpen && !bSvrOpen
-                    || !bOpen && !bOpenP && !bLastActionOpen && bSvrOpen,
+        DBG_ASSERT( (bOpen && bOpenP && bLastActionOpen && !bSvrOpen)
+                    || (!bOpen && !bOpenP && !bLastActionOpen && bSvrOpen),
                     "open assert failed" );
         bSvrOpen = bOpen;
         DBG_PROTLOG( "Svr - Opened", bOpenP )
@@ -899,8 +899,8 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
     // nach dem ClientEmbed darf alles passieren, bis auf loeschen von this
     if( (bLastActionEmbed && !bSvrEmbed) || (!bLastActionEmbed && bSvrEmbed) )
     { // Object oeffnen
-        DBG_ASSERT( bEmbed && bEmbedP && bLastActionEmbed && !bSvrEmbed
-                    || !bEmbed && !bEmbedP && !bLastActionEmbed && bSvrEmbed,
+        DBG_ASSERT( (bEmbed && bEmbedP && bLastActionEmbed && !bSvrEmbed)
+                    || (!bEmbed && !bEmbedP && !bLastActionEmbed && bSvrEmbed),
                     "embed assert failed" );
         bSvrEmbed = bEmbed;
         DBG_PROTLOG( "Svr - Embedded", bEmbedP )
@@ -974,8 +974,8 @@ void ImplSvEditObjectProtocol::PlugIn
     // nach dem ClientPlugIn darf alles passieren, bis auf loeschen von this
     if( (bLastActionPlugIn && !bSvrPlugIn) || (!bLastActionPlugIn && bSvrPlugIn) )
     { // Object oeffnen
-        DBG_ASSERT( bPlugIn && bPlugInP && bLastActionPlugIn && !bSvrPlugIn
-                    || !bPlugIn && !bPlugInP && !bLastActionPlugIn && bSvrPlugIn,
+        DBG_ASSERT( (bPlugIn && bPlugInP && bLastActionPlugIn && !bSvrPlugIn)
+                    || (!bPlugIn && !bPlugInP && !bLastActionPlugIn && bSvrPlugIn),
                     "PlugIn assert failed" );
         bSvrPlugIn = bPlugIn;
         DBG_PROTLOG( "Svr - PlugIn", bPlugInP )
@@ -1049,8 +1049,8 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
     // nach dem ClientIPActive darf alles passieren, bis auf loeschen von this
     if( (bLastActionIPActive && !bSvrIPActive) || (!bLastActionIPActive && bSvrIPActive) )
     { // Object oeffnen
-        DBG_ASSERT( bIPActive && bIPActiveP && bLastActionIPActive && !bSvrIPActive
-                    || !bIPActive && !bIPActiveP && !bLastActionIPActive && bSvrIPActive,
+        DBG_ASSERT( (bIPActive && bIPActiveP && bLastActionIPActive && !bSvrIPActive)
+                    || (!bIPActive && !bIPActiveP && !bLastActionIPActive && bSvrIPActive),
                     "inplace assert failed" );
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrIPActive = bIPActive;
@@ -1169,8 +1169,8 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
     // nach dem ClientUIActive darf alles passieren, bis auf loeschen von this
     if( (bLastActionUIActive && !bSvrUIActive) || (!bLastActionUIActive && bSvrUIActive) )
     { // Object oeffnen
-        DBG_ASSERT( bUIActive && bUIActiveP && bLastActionUIActive && !bSvrUIActive
-                    || !bUIActive && !bUIActiveP && !bLastActionUIActive && bSvrUIActive,
+        DBG_ASSERT( (bUIActive && bUIActiveP && bLastActionUIActive && !bSvrUIActive)
+                    || (!bUIActive && !bUIActiveP && !bLastActionUIActive && bSvrUIActive),
                     "ui assert failed" );
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrUIActive = bUIActive;

@@ -758,7 +758,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   //! multi-header for individual entries
 /*N*/
-/*N*/   DBG_ASSERT( aDimList.Count()==0, "ScDPSaveData::Load not empty" );
+/*N*/   DBG_ASSERT( aDimList.size()==0, "ScDPSaveData::Load not empty" );
 /*N*/
 /*N*/   long nNewCount;
 /*N*/   rStream >> nNewCount;
