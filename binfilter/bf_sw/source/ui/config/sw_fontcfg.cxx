@@ -230,7 +230,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwStdFontConfig::Commit() {}
-    void SwStdFontConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwStdFontConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 }
 

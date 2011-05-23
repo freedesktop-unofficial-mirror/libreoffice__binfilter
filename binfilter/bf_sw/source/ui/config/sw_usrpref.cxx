@@ -86,7 +86,7 @@ using ::rtl::OUString;
 
 
     void SwContentViewConfig::Commit() {}
-    void SwContentViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwContentViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 /*N*/ Sequence<OUString> SwContentViewConfig::GetPropertyNames()
 /*N*/ {
@@ -217,7 +217,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwLayoutViewConfig::Commit() {}
-    void SwLayoutViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwLayoutViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 
@@ -309,7 +309,7 @@ using ::rtl::OUString;
 
 
     void SwGridConfig::Commit() {}
-    void SwGridConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwGridConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 /*N*/ Sequence<OUString> SwGridConfig::GetPropertyNames()
 /*N*/ {
@@ -402,7 +402,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwCursorConfig::Commit() {}
-    void SwCursorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwCursorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 
@@ -463,7 +463,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwWebColorConfig::Commit() {}
-    void SwWebColorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwWebColorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 

@@ -126,7 +126,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwDBConfig::Commit() {}
-    void SwDBConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwDBConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 }
 

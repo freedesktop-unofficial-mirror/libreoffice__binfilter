@@ -87,18 +87,18 @@ static const char aPostItStr[] = "  ";
 |*
 |*************************************************************************/
 
-/*M*/ SwViewOption::SwViewOption() :
-/*M*/   nZoom( 100 ),
-/*M*/   nPagePrevRow( 1 ),
-/*M*/   nPagePrevCol( 2 ),
-/*M*/   eZoom( 0 ),
-/*M*/   nTblDest(TBL_DEST_CELL),
-/*M*/   bReadonly(FALSE),
-/*M*/     bSelectionInReadonly(FALSE),
-/*M*/   aRetoucheColor( COL_TRANSPARENT ),
-/*M*/   nShdwCrsrFillMode( FILL_TAB ),
-/*M*/     bStarOneSetting(FALSE),
-/*M*/     bIsPagePreview(FALSE)
+/*M*/ SwViewOption::SwViewOption()
+/*M*/ : aRetoucheColor( COL_TRANSPARENT )
+/*M*/ , nPagePrevRow( 1 )
+/*M*/ , nPagePrevCol( 2 )
+/*M*/ , nShdwCrsrFillMode( FILL_TAB )
+/*M*/ , bReadonly(FALSE)
+/*M*/ , bStarOneSetting(FALSE)
+/*M*/ , bIsPagePreview(FALSE)
+/*M*/ , bSelectionInReadonly(FALSE)
+/*M*/ , nZoom( 100 )
+/*M*/ , eZoom( 0 )
+/*M*/ , nTblDest(TBL_DEST_CELL)
 /*M*/ {
 /*M*/   // Initialisierung ist jetzt etwas einfacher
 /*M*/   // alle Bits auf 0
@@ -296,7 +296,7 @@ static const char aPostItStr[] = "  ";
 /*N*/ }
 
 /*************************************************************************/
-/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 /*nFlag*/, BOOL bSet, BOOL /*bSaveInConfig*/ )
+/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 /*nFlag*/, BOOL /*bSet*/, BOOL /*bSaveInConfig*/ )
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 

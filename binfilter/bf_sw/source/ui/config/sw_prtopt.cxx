@@ -129,7 +129,7 @@ using ::rtl::OUString;
 
 
     void SwPrintOptions::Commit() {}
-    void SwPrintOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwPrintOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 

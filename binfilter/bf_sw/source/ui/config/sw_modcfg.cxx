@@ -231,7 +231,7 @@ using ::rtl::OUString;
 
 
     void SwRevisionConfig::Commit() {}
-    void SwRevisionConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwRevisionConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 //-----------------------------------------------------------------------------
 
@@ -388,9 +388,9 @@ using ::rtl::OUString;
 /*N*/ SwInsertConfig::SwInsertConfig(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Insert") : C2U("Office.Writer/Insert"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
-/*N*/   bIsWeb(bWeb),
 /*N*/   pCapOptions(0),
-/*N*/   pOLEMiscOpt(0)
+/*N*/   pOLEMiscOpt(0),
+/*N*/   bIsWeb(bWeb)
 /*N*/ {
 /*N*/   aGlobalNames[GLOB_NAME_CALC   ] = SvGlobalName(BF_SO3_SC_CLASSID);
 /*N*/   aGlobalNames[GLOB_NAME_IMPRESS] = SvGlobalName(BF_SO3_SIMPRESS_CLASSID);
@@ -404,7 +404,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwInsertConfig::Commit() {}
-    void SwInsertConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwInsertConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 
@@ -675,7 +675,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwTableConfig::Commit() {}
-    void SwTableConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwTableConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 
@@ -699,7 +699,7 @@ using ::rtl::OUString;
 /*N*/ }
 
     void SwMiscConfig::Commit() {}
-    void SwMiscConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwMiscConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 
