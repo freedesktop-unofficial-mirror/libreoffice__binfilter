@@ -252,17 +252,17 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ }
 
 
-/*N*/ SwOLEObj::SwOLEObj( SvInPlaceObject *pObj ) :
-/*N*/   pOLERef( new SvInPlaceObjectRef( pObj ) ),
-/*N*/   pOLENd( 0 )
+/*N*/ SwOLEObj::SwOLEObj( SvInPlaceObject *pObj )
+/*N*/   : pOLENd( 0 )
+/*N*/   , pOLERef( new SvInPlaceObjectRef( pObj ) )
 /*N*/ {
 /*N*/ }
 
 
-/*N*/ SwOLEObj::SwOLEObj( const String &rString ) :
-/*N*/   pOLERef( 0 ),
-/*N*/   pOLENd( 0 ),
-/*N*/   aName( rString )
+/*N*/ SwOLEObj::SwOLEObj( const String &rString )
+/*N*/   : pOLENd( 0 )
+/*N*/   , pOLERef( 0 )
+/*N*/   , aName( rString )
 /*N*/ {
 /*N*/ }
 
@@ -397,10 +397,10 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ }
 
 /*N*/ SwOLELRUCache::SwOLELRUCache()
-/*N*/   : SvPtrarr( 64, 16 ),
-/*N*/   ::utl::ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Cache" ))),
-/*N*/   bInUnload( sal_False ),
-/*N*/   nLRU_InitSize( 20 )
+/*N*/   : SvPtrarr( 64, 16 )
+/*N*/   , ::utl::ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Cache" )))
+/*N*/   , nLRU_InitSize( 20 )
+/*N*/   , bInUnload( sal_False )
 /*N*/ {
 /*N*/   EnableNotification( GetPropertyNames() );
 /*N*/   Load();
