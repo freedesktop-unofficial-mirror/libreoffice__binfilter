@@ -102,7 +102,7 @@ using ::rtl::OUString;
 /*N*/                   case  4: bPrintBlackFont        = *(sal_Bool*)pValues[nProp].getValue();  break;
 /*N*/                     case  5:
 /*N*/                     {
-/*N*/                         sal_Int32 nTmp;
+/*N*/                         sal_Int32 nTmp(0);
 /*N*/                         pValues[nProp] >>=  nTmp;
 /*N*/                         nPrintPostIts = (sal_Int16)nTmp;
 /*N*/                     }
