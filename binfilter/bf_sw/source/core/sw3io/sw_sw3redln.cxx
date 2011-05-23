@@ -445,7 +445,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       pPos->nNode = rNodeIdx;
 /*N*/       xub_StrLen nLen = rNode.GetCntntNode()->Len();
 /*N*/       xub_StrLen nIdx = static_cast< xub_StrLen >( nNodeOff+nCntntOff );
-/*N*/       OSL_ENSURE( nIdx>=0 && nIdx<=nLen, "ungueltiger Cntnt-Offset" );
+/*N*/       OSL_ENSURE( nIdx<=nLen, "ungueltiger Cntnt-Offset" );
 /*N*/       if( nIdx > nLen )
 /*N*/       {
 /*N*/           bInvalid = sal_True;

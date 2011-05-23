@@ -774,7 +774,7 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/               }
 /*N*/           }
 /*N*/           else if( bOutline && IsSw31Or40Export() &&
-/*N*/                    (pFmt->GetAbsLSpace() > 0U ||
+/*N*/                    (pFmt->GetAbsLSpace() > 0 ||
 /*N*/                     pFmt->GetFirstLineOffset() != 0) )
 /*N*/           {
 /*N*/               // Im 3.1- oder 4.0-Format gab es noch keinen linken Abstand

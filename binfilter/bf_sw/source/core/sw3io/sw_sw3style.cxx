@@ -150,6 +150,7 @@ class SwStyleSheetPool : public SfxStyleSheetBasePool {
     SwDoc&       rDoc;          // Dokument
     Sw3Fmts*     pConvToSymbolFmts;
     long         nExpFFVersion; // FF-Version fuer Export
+    using SfxStyleSheetBasePool::Create;
     virtual SfxStyleSheetBase* Create( const String&, SfxStyleFamily, USHORT nMask);
     void Add( const SwFmt& rFmt, SfxStyleFamily eFam );
     void CopyFromDoc( BOOL bUsed );
@@ -191,15 +192,16 @@ public:
 
 /*N*/ SwStyleSheet::SwStyleSheet( const String& rName, SwStyleSheetPool& rPool1,
 /*N*/                           SfxStyleFamily eFam, USHORT nMask1 )
-/*N*/   : SfxStyleSheetBase( rName, rPool1, eFam, nMask1 ),
-/*N*/     rDoc( rPool1.rDoc ), aSet( rPool1.rPool,
+/*N*/   : SfxStyleSheetBase( rName, rPool1, eFam, nMask1 )
+/*N*/   , aSet( rPool1.rPool,
 /*N*/           RES_CHRATR_BEGIN,       RES_CHRATR_END - 1,
 /*N*/           RES_PARATR_BEGIN,       RES_PARATR_END - 1,
 /*N*/           RES_FRMATR_BEGIN,       RES_FRMATR_END - 1,
-/*N*/           0 ),
-/*N*/     cFlags( 0 ),
-/*N*/     pCondColls( 0 ),
-/*N*/     pNumLRSpace( 0 )
+/*N*/           0 )
+/*N*/   , rDoc( rPool1.rDoc )
+/*N*/   , cFlags( 0 )
+/*N*/   , pCondColls( 0 )
+/*N*/   , pNumLRSpace( 0 )
 /*N*/ {
 /*N*/   nId = 0xFFFF;
 /*N*/   nHelpId = UCHAR_MAX;
@@ -396,9 +398,10 @@ public:
 
 /*N*/ SwStyleSheetPool::SwStyleSheetPool( SwDoc& r, SfxItemPool& rp, long nFFVersion,
 /*N*/                                   Sw3Fmts *pConvFmts )
-/*N*/               : SfxStyleSheetBasePool( rp ), rDoc( r ),
-/*N*/                 nExpFFVersion( nFFVersion ),
-/*N*/                 pConvToSymbolFmts( pConvFmts )
+/*N*/ : SfxStyleSheetBasePool( rp )
+/*N*/ , rDoc( r )
+/*N*/ , pConvToSymbolFmts( pConvFmts )
+/*N*/ , nExpFFVersion( nFFVersion )
 /*N*/ {}
 
 /*N*/ SwStyleSheetPool::~SwStyleSheetPool()
