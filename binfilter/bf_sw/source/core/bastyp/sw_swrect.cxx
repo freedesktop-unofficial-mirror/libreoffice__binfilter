@@ -286,9 +286,9 @@ namespace binfilter {
 
 
 
-/*N*/ SvStream &operator<<( SvStream &rStream, const SwRect &rRect )
+/*N*/ SvStream &operator<<( SvStream &rStream, const SwRect & )
 /*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP");
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return rStream;
 /*N*/ }
 #endif

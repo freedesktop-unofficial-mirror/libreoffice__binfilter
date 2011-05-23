@@ -104,29 +104,29 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   , const ByteString &rNm
 /*N*/ #endif
-/*N*/   ) :
-/*N*/   SwCacheObjArr( (BYTE)nInitSize, (BYTE)nGrowSize ),
-/*N*/   aFreePositions( 5, 5 ),
-/*N*/   nMax( nInitSize ),
-/*N*/   nCurMax( nInitSize ),
-/*N*/   pRealFirst( 0 ),
-/*N*/   pFirst( 0 ),
-/*N*/   pLast( 0 )
+/*N*/   )
+/*N*/   : SwCacheObjArr( (BYTE)nInitSize, (BYTE)nGrowSize )
+/*N*/   , aFreePositions( 5, 5 )
+/*N*/   , pRealFirst( 0 )
+/*N*/   , pFirst( 0 )
+/*N*/   , pLast( 0 )
+/*N*/   , nMax( nInitSize )
+/*N*/   , nCurMax( nInitSize )
 /*N*/ #ifdef DBG_UTIL
-/*N*/   , aName( rNm ),
-/*N*/   nAppend( 0 ),
-/*N*/   nInsertFree( 0 ),
-/*N*/   nReplace( 0 ),
-/*N*/   nGetSuccess( 0 ),
-/*N*/   nGetFail( 0 ),
-/*N*/   nToTop( 0 ),
-/*N*/   nDelete( 0 ),
-/*N*/   nGetSeek( 0 ),
-/*N*/   nAverageSeekCnt( 0 ),
-/*N*/   nFlushCnt( 0 ),
-/*N*/   nFlushedObjects( 0 ),
-/*N*/   nIncreaseMax( 0 ),
-/*N*/   nDecreaseMax( 0 )
+/*N*/   , aName( rNm )
+/*N*/   , nAppend( 0 )
+/*N*/   , nInsertFree( 0 )
+/*N*/   , nReplace( 0 )
+/*N*/   , nGetSuccess( 0 )
+/*N*/   , nGetFail( 0 )
+/*N*/   , nToTop( 0 )
+/*N*/   , nDelete( 0 )
+/*N*/   , nGetSeek( 0 )
+/*N*/   , nAverageSeekCnt( 0 )
+/*N*/   , nFlushCnt( 0 )
+/*N*/   , nFlushedObjects( 0 )
+/*N*/   , nIncreaseMax( 0 )
+/*N*/   , nDecreaseMax( 0 )
 /*N*/ #endif
 /*N*/ {
 /*N*/ }
@@ -528,10 +528,10 @@ namespace binfilter {
 
 
 /*N*/ SwCacheObj::SwCacheObj( const void *pOwn ) :
-/*N*/   nLock( 0 ),
-/*N*/   nCachePos( USHRT_MAX ),
 /*N*/   pNext( 0 ),
 /*N*/   pPrev( 0 ),
+/*N*/   nCachePos( USHRT_MAX ),
+/*N*/   nLock( 0 ),
 /*N*/   pOwner( pOwn )
 /*N*/ {
 /*N*/ }
