@@ -488,7 +488,9 @@ using ::rtl::OUString;
 /*?*/               switch(nProp)
 /*?*/               {
 /*?*/                   case  0:
-/*?*/                       sal_Int32 nSet; pValues[nProp] >>= nSet; rParent.SetRetoucheColor(nSet);
+/*?*/                       sal_Int32 nSet(0);
+/*?*/                       pValues[nProp] >>= nSet;
+/*?*/                       rParent.SetRetoucheColor(nSet);
 /*?*/                   break;// "Color",
 /*?*/               }
 /*N*/           }
