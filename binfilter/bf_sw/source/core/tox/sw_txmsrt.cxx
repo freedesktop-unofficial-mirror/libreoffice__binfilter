@@ -136,8 +136,13 @@ SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
                                     const SwTxtTOXMark* pMark,
                                     const SwTOXInternational* pInter,
                                     const ::com::sun::star::lang::Locale* pLocale )
-    : pTxtMark( pMark ), pTOXNd( 0 ), nPos( 0 ), nType( nTyp ),
-    pTOXIntl( pInter ), bValidTxt( FALSE ), nCntPos( 0 )
+    : pTOXNd( 0 )
+    , pTxtMark( pMark )
+    , pTOXIntl( pInter )
+    , nPos( 0 )
+    , nCntPos( 0 )
+    , nType( nTyp )
+    , bValidTxt( FALSE )
 {
     if ( pLocale )
         aLocale = *pLocale;
@@ -181,6 +186,8 @@ SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
             }
             else
                 nCntPos = n;
+            break;
+        default:
             break;
         }
     }
