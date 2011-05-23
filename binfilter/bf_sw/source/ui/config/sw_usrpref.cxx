@@ -172,7 +172,7 @@ using ::rtl::OUString;
 /*N*/                     case 14: rParent.SetShowHiddenPara(bSet); break;// "NonprintingCharacter/HiddenParagraph",
 /*N*/                     case 15:
 /*N*/                     {
-/*N*/                       sal_Int32 nSet; pValues[nProp] >>= nSet;
+                              sal_Int32 nSet(0); pValues[nProp] >>= nSet;
 /*N*/                         rParent.SetUpdateLinkMode(nSet, TRUE);
 /*N*/                   }
 /*N*/                   break;// "Update/Link",
@@ -263,39 +263,39 @@ using ::rtl::OUString;
 /*M*/                     case  8:
 /*M*/                     {
 /*M*/                         rParent.bIsHScrollMetricSet = sal_True;
-/*M*/                         sal_Int32 nUnit; pValues[nProp] >>= nUnit;
+                              sal_Int32 nUnit(0); pValues[nProp] >>= nUnit;
 /*M*/                         rParent.eHScrollMetric = ((FieldUnit)nUnit);  // "Window/HorizontalRulerUnit"
 /*M*/                     }
 /*M*/                     break;
 /*M*/                     case  9:
 /*M*/                     {
 /*M*/                         rParent.bIsVScrollMetricSet = sal_True;
-/*M*/                         sal_Int32 nUnit; pValues[nProp] >>= nUnit;
+                              sal_Int32 nUnit(0); pValues[nProp] >>= nUnit;
 /*M*/                         rParent.eVScrollMetric = ((FieldUnit)nUnit); // "Window/VerticalRulerUnit"
 /*M*/                     }
 /*M*/                     break;
 /*M*/                     case 10: rParent.SetSmoothScroll(bSet); break;// "Window/SmoothScroll",
 /*M*/                     case 11:
 /*M*/                     {
-/*M*/                         sal_Int32 nVal; pValues[nProp] >>= nVal;
+                              sal_Int32 nVal(0); pValues[nProp] >>= nVal;
 /*N*/                         rParent.SetZoom((USHORT)nVal);
 /*M*/                     }
 /*M*/                     break;// "Zoom/Value",
 /*M*/                     case 12:
 /*M*/                     {
-/*M*/                         sal_Int32 nVal; pValues[nProp] >>= nVal;
+                              sal_Int32 nVal(0); pValues[nProp] >>= nVal;
 /*M*/                         rParent.SetZoomType((BYTE)nVal);
 /*M*/                     }
 /*M*/                     break;// "Zoom/Type",
 /*M*/                     case 13:
 /*M*/                   {
-/*M*/                       sal_Int32 nUnit; pValues[nProp] >>= nUnit;
+                              sal_Int32 nUnit(0); pValues[nProp] >>= nUnit;
 /*M*/                         rParent.SetMetric((FieldUnit)nUnit, TRUE);
 /*M*/                   }
 /*M*/                   break;// "Other/MeasureUnit",
 /*M*/                     case 14:
 /*M*/                   {
-/*M*/                       sal_Int32 nTab; pValues[nProp] >>= nTab;
+                              sal_Int32 nTab(0); pValues[nProp] >>= nTab;
 /*M*/                         rParent.SetDefTab(MM100_TO_TWIP(nTab), TRUE);
 /*M*/                   }
 /*M*/                   break;// "Other/TabStop",
@@ -364,7 +364,7 @@ using ::rtl::OUString;
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               sal_Bool bSet = nProp < 3 ? *(sal_Bool*)pValues[nProp].getValue() : sal_False;
-/*N*/               sal_Int32 nSet;
+                    sal_Int32 nSet(0);
 /*N*/               if(nProp >= 3)
 /*N*/                   pValues[nProp] >>= nSet;
 /*N*/               switch(nProp)
@@ -434,9 +434,9 @@ using ::rtl::OUString;
 /*N*/       {
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
-/*N*/               sal_Bool bSet;
-/*N*/               sal_Int32 nSet;
-/*N*/                 if(nProp != 1 )
+                    sal_Bool bSet(0);
+                    sal_Int32 nSet(0);
+                    if(nProp != 1 )
 /*N*/                   bSet = *(sal_Bool*)pValues[nProp].getValue();
 /*N*/               else
 /*N*/                   pValues[nProp] >>= nSet;

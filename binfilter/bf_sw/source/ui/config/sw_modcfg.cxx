@@ -274,7 +274,7 @@ using ::rtl::OUString;
 /*N*/       {
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
-/*N*/               sal_Int32 nVal;
+                    sal_Int32 nVal(0);
 /*N*/               pValues[nProp] >>= nVal;
 /*N*/               switch(nProp)
 /*N*/               {
@@ -433,7 +433,7 @@ using ::rtl::OUString;
 /*N*/       break;//Category
 /*N*/       case 2:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;  pValues[nProp] >>= nTemp;
+                sal_Int32 nTemp(0);  pValues[nProp] >>= nTemp;
 /*N*/           rOpt.SetNumType(nTemp);
 /*N*/       }
 /*N*/       break;//Numbering",
@@ -452,13 +452,13 @@ using ::rtl::OUString;
 /*N*/       break;//Delimiter",
 /*N*/       case 5:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;  pValues[nProp] >>= nTemp;
+                sal_Int32 nTemp(0);  pValues[nProp] >>= nTemp;
 /*N*/           rOpt.SetLevel(nTemp);
 /*N*/       }
 /*N*/       break;//Level",
 /*N*/       case 6:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;  pValues[nProp] >>= nTemp;
+                sal_Int32 nTemp(0);  pValues[nProp] >>= nTemp;
 /*N*/           rOpt.SetPos(nTemp);
 /*N*/       }
 /*N*/       break;//Position",
@@ -657,7 +657,7 @@ using ::rtl::OUString;
 /*N*/       {
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
-/*N*/               sal_Int32 nTemp;
+                    sal_Int32 nTemp(0);
 /*N*/               switch(nProp)
 /*N*/               {
 /*N*/                   case 0 : pValues[nProp] >>= nTemp; nTblHMove = (USHORT)MM100_TO_TWIP(nTemp); break;  //"Shift/Row",
