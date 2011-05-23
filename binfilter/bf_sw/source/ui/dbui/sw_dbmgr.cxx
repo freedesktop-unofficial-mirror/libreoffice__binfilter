@@ -174,14 +174,14 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
     Beschreibung: CTOR
  --------------------------------------------------------------------*/
 
-/*N*/ SwNewDBMgr::SwNewDBMgr() :
-/*N*/             pImpl(new SwNewDBMgr_Impl(*this)),
-/*N*/             pMergeEvtSrc(NULL),
-/*N*/             bInMerge(FALSE),
-/*N*/             bMergeLock(FALSE),
-/*N*/             bMergeSilent(FALSE),
-/*N*/           nMergeType(DBMGR_INSERT),
-/*N*/           bInitDBFields(FALSE)
+/*N*/ SwNewDBMgr::SwNewDBMgr()
+/*N*/ : nMergeType(DBMGR_INSERT)
+/*N*/ , bInitDBFields(FALSE)
+/*N*/ , bInMerge(FALSE)
+/*N*/ , bMergeSilent(FALSE)
+/*N*/ , bMergeLock(FALSE)
+/*N*/ , pImpl(new SwNewDBMgr_Impl(*this))
+/*N*/ , pMergeEvtSrc(NULL)
 /*N*/ {
 /*N*/ }
 
@@ -267,10 +267,9 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 
 
 /*N*/ BOOL SwNewDBMgr::ToNextRecord(
-/*N*/     const String& rDataSource, const String& rCommand, sal_Int32 nCommandType)
+/*N*/     const String& rDataSource, const String& rCommand, sal_Int32 /*nCommandType*/)
 /*N*/ {
 /*N*/     SwDSParam* pFound = 0;
-/*N*/     BOOL bRet = TRUE;
 /*N*/     if(pImpl->pMergeData &&
 /*N*/         rDataSource == (String)pImpl->pMergeData->sDataSource &&
 /*N*/         rCommand == (String)pImpl->pMergeData->sCommand)
@@ -342,7 +341,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/ }
 
 
-/*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32 nSet)
+/*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32)
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
