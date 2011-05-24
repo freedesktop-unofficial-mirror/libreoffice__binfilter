@@ -425,7 +425,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   if( aValues.getLength() == aNames.getLength() &&
 /*N*/       pValues->hasValue() )
 /*N*/   {
-/*N*/       sal_Int32 nVal;
+/*N*/       sal_Int32 nVal(0);
 /*N*/       *pValues >>= nVal;
 /*N*/       if( 20 > nVal )
 /*N*/           nVal = 20;
