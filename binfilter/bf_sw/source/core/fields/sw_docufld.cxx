@@ -585,7 +585,7 @@ BOOL SwAuthorField::PutValue( const uno::Any& rAny, BYTE nMId )
 
 /*N*/ String SwTemplNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
-/*N*/   OSL_ENSURE(nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
+/*N*/   OSL_ENSURE(nFmt < FF_END, "Expand: kein guelt. Fmt!" );
 /*N*/
 /*N*/   String aRet;
 /*N*/   const SfxDocumentInfo* pDInfo = pDoc->GetpInfo();
@@ -914,9 +914,9 @@ BOOL SwDocStatField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/           if( nSub == DI_CREATE )
 /*N*/               ;       // das wars schon!!
 /*N*/           else if( ( nSub == DI_CHANGE &&
-/*N*/                   (pInf->GetChanged().GetTime() != aTmp.GetTime() ) ||
+/*N*/                   (pInf->GetChanged().GetTime() != aTmp.GetTime()) ) ||
 /*N*/                   ( (nExtSub & ~DI_SUB_FIXED) == DI_SUB_AUTHOR &&
-/*N*/                   pInf->GetDocumentNumber() > 1) ) )
+/*N*/                   pInf->GetDocumentNumber() > 1 ) )
 /*N*/               aTmp = pInf->GetChanged();
 /*N*/           else if( nSub == DI_PRINT &&
 /*N*/                   pInf->GetPrinted().GetTime() != aTmp.GetTime() )

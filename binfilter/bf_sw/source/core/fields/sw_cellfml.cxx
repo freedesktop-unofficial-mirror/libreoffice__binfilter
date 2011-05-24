@@ -236,8 +236,11 @@ const USHORT cMAXSTACKSIZE = 50;
 // Struktur, die zum TabelleRechnen benoetigt wird
 
 /*N*/ SwTblCalcPara::SwTblCalcPara( SwCalc& rCalculator, const SwTable& rTable )
-/*N*/   : rCalc( rCalculator ), pTbl( &rTable ), nStackCnt( 0 ),
-/*N*/   nMaxSize( cMAXSTACKSIZE ), pLastTblBox( 0 )
+/*N*/   : pLastTblBox( 0 )
+/*N*/   , nStackCnt( 0 )
+/*N*/   , nMaxSize( cMAXSTACKSIZE )
+/*N*/   , rCalc( rCalculator )
+/*N*/   , pTbl( &rTable )
 /*N*/ {
 /*N*/   pBoxStk = new SwTableSortBoxes;
 /*N*/ }
@@ -270,18 +273,14 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   // ein Bereich in dieser Klammer ?
 /*N*/   if( pLastBox )
 /*N*/   {
-/*N*/   //TODOUNICODE: does it work?
-/*N*/ //        pEndBox = (SwTableBox*)(long)(*pLastBox);
-/*N*/       pEndBox = (SwTableBox*)pLastBox->ToInt32();
+/*N*/       pEndBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(pLastBox->ToInt64()));
 /*N*/
 /*N*/       // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/       if( !rTbl.GetTabSortBoxes().Seek_Entry( pEndBox ))
 /*?*/           pEndBox = 0;
 /*N*/       rFirstBox.Erase( 0, pLastBox->Len()+1 );
 /*N*/   }
-/*N*/   //TODOUNICODE: does it work?
-/*N*/ //    pSttBox = (SwTableBox*)(long)rFirstBox;
-/*N*/   pSttBox = (SwTableBox*)rFirstBox.ToInt32();
+/*N*/   pSttBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(rFirstBox.ToInt64()));
 /*N*/   // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/   if( !rTbl.GetTabSortBoxes().Seek_Entry( pSttBox ))
 /*?*/       pSttBox = 0;
@@ -325,8 +324,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   rFirstBox.Erase(0,1);
 /*N*/   if( pLastBox )
 /*N*/   {
-/*N*/ //        pBox = (SwTableBox*)(long)(*pLastBox);
-/*N*/       pBox = (SwTableBox*)pLastBox->ToInt32();
+/*N*/       pBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(pLastBox->ToInt64()));
 /*N*/
 /*N*/       // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/       if( rTbl.GetTabSortBoxes().Seek_Entry( pBox ))
@@ -337,8 +335,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/       rFirstBox.Erase( 0, pLastBox->Len()+1 );
 /*N*/   }
 /*N*/
-/*N*/ //    pBox = (SwTableBox*)(long)rFirstBox;
-/*N*/   pBox = (SwTableBox*)rFirstBox.ToInt32();
+/*N*/   pBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(rFirstBox.ToInt64()));
 /*N*/   // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/   if( rTbl.GetTabSortBoxes().Seek_Entry( pBox ))
 /*N*/       rNewStr += pBox->GetName();
@@ -360,13 +357,13 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   if( pLastBox )
 /*N*/   {
 /*N*/       pBox = rTbl.GetTblBox( *pLastBox );
-/*N*/       rNewStr += String::CreateFromInt32( (long)pBox );
+/*N*/       rNewStr += String::CreateFromInt64( (sal_PtrDiff)pBox );
 /*N*/       rNewStr += ':';
 /*N*/       rFirstBox.Erase( 0, pLastBox->Len()+1 );
 /*N*/   }
 /*N*/
 /*N*/   pBox = rTbl.GetTblBox( rFirstBox );
-/*N*/   rNewStr += String::CreateFromInt32( (long)pBox );
+/*N*/   rNewStr += String::CreateFromInt64( (sal_PtrDiff)pBox );
 /*N*/
 /*N*/   // Kennung fuer Box erhalten
 /*N*/   rNewStr += rFirstBox.GetChar( rFirstBox.Len() - 1 );

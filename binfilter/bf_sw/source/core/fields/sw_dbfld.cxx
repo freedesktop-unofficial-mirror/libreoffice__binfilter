@@ -75,8 +75,8 @@ using namespace ::rtl;
 SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData& rDBData )
     : SwValueFieldType( pDocPtr, RES_DBFLD )
     , aDBData(rDBData)
-    , nRefCnt(0)
     , sColumn(rNam)
+    , nRefCnt(0)
 {
     if(aDBData.sDataSource.getLength() || aDBData.sCommand.getLength())
     {
@@ -192,11 +192,11 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
  --------------------------------------------------------------------*/
 
 /*N*/ SwDBField::SwDBField(SwDBFieldType* pTyp, ULONG nFmt)
-/*N*/   :   SwValueField(pTyp, nFmt),
-/*N*/       bValidValue(FALSE),
-/*N*/       bIsInBodyTxt(TRUE),
-/*N*/       bInitialized(FALSE),
-/*N*/       nSubType(0)
+/*N*/   : SwValueField(pTyp, nFmt)
+/*N*/   , nSubType(0)
+/*N*/   , bIsInBodyTxt(TRUE)
+/*N*/   , bValidValue(FALSE)
+/*N*/   , bInitialized(FALSE)
 /*N*/ {
 /*N*/   if (GetTyp())
 /*N*/       ((SwDBFieldType*)GetTyp())->AddRef();
@@ -766,7 +766,7 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 
 /*N*/ String SwDBNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
-/*N*/   OSL_ENSURE( nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
+/*N*/   OSL_ENSURE( nFmt < FF_END, "Expand: kein guelt. Fmt!" );
 /*N*/   const SwDBData aData = pDoc->GetDBData();
 /*N*/   String sRet(aData.sDataSource);
 /*N*/   sRet += '.';

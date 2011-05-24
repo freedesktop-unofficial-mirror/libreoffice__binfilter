@@ -190,9 +190,9 @@ void SwUserField::SetPar2(const String& rStr)
  --------------------------------------------------------------------*/
 
 /*N*/ SwUserFieldType::SwUserFieldType( SwDoc* pDocPtr, const String& aNam )
-/*N*/   : SwValueFieldType( pDocPtr, RES_USERFLD ),
-/*N*/   nType(GSE_STRING),
-/*N*/   nValue( 0 )
+/*N*/   : SwValueFieldType( pDocPtr, RES_USERFLD )
+/*N*/   , nValue( 0 )
+/*N*/   , nType(GSE_STRING)
 /*N*/ {
 /*N*/   bValidValue = bDeleted = sal_False;
 /*N*/   aName = aNam;

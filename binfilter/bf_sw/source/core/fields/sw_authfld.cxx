@@ -131,30 +131,30 @@ BOOL    SwAuthEntry::GetNextAuthorField(USHORT& nPos, String& rToFill)const
 
 
 SwAuthorityFieldType::SwAuthorityFieldType(SwDoc* pDoc)
-    : SwFieldType( RES_AUTHORITY ),
-    m_pDoc(pDoc),
-    m_pDataArr(new SwAuthDataArr ),
-    m_pSequArr(new SvLongs(5, 5)),
-    m_pSortKeyArr(new SortKeyArr(3, 3)),
-    m_bSortByDocument(TRUE),
-    m_bIsSequence(FALSE),
-    m_cPrefix('['),
-    m_cSuffix(']'),
-    m_eLanguage((LanguageType)GetAppLanguage())
+    : SwFieldType( RES_AUTHORITY )
+    , m_pDoc(pDoc)
+    , m_pDataArr(new SwAuthDataArr )
+    , m_pSequArr(new SvLongs(5, 5))
+    , m_pSortKeyArr(new SortKeyArr(3, 3))
+    , m_cPrefix('[')
+    , m_cSuffix(']')
+    , m_bIsSequence(FALSE)
+    , m_bSortByDocument(TRUE)
+    , m_eLanguage((LanguageType)GetAppLanguage())
 {
 }
 
 SwAuthorityFieldType::SwAuthorityFieldType( const SwAuthorityFieldType& rFType)
-    : SwFieldType( RES_AUTHORITY ),
-    m_pDataArr(new SwAuthDataArr ),
-    m_pSequArr(new SvLongs(5, 5)),
-    m_pSortKeyArr(new SortKeyArr(3, 3)),
-    m_bSortByDocument(rFType.m_bSortByDocument),
-    m_bIsSequence(rFType.m_bIsSequence),
-    m_cPrefix(rFType.m_cPrefix),
-    m_cSuffix(rFType.m_cSuffix),
-    m_eLanguage(rFType.m_eLanguage),
-    m_sSortAlgorithm(rFType.m_sSortAlgorithm)
+    : SwFieldType( RES_AUTHORITY )
+    , m_pDataArr(new SwAuthDataArr )
+    , m_pSequArr(new SvLongs(5, 5))
+    , m_pSortKeyArr(new SortKeyArr(3, 3))
+    , m_cPrefix(rFType.m_cPrefix)
+    , m_cSuffix(rFType.m_cSuffix)
+    , m_bIsSequence(rFType.m_bIsSequence)
+    , m_bSortByDocument(rFType.m_bSortByDocument)
+    , m_eLanguage(rFType.m_eLanguage)
+    , m_sSortAlgorithm(rFType.m_sSortAlgorithm)
 {
     for(USHORT i = 0; i < rFType.m_pSortKeyArr->Count(); i++)
         m_pSortKeyArr->Insert((*rFType.m_pSortKeyArr)[i], i);
