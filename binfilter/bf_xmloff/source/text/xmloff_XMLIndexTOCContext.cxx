@@ -118,7 +118,6 @@ XMLIndexTOCContext::XMLIndexTOCContext(
         if (SvXMLUnitConverter::convertEnum(nTmp, rLocalName, aIndexTypeMap))
         {
             // check for array index:
-            DBG_ASSERT(nTmp >= 0, "index too low");
             DBG_ASSERT(nTmp < (sizeof(aIndexServiceMap)/sizeof(sal_Char*)),
                        "index too high");
             DBG_ASSERT(sizeof(aIndexServiceMap) ==
