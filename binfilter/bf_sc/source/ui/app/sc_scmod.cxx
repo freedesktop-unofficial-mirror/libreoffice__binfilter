@@ -36,8 +36,6 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#include <tools/pstm.hxx>
-
 #include <bf_svtools/poolitem.hxx>
 
 #include <bf_svx/itemdata.hxx>

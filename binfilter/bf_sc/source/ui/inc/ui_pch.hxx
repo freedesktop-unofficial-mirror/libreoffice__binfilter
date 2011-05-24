@@ -125,7 +125,6 @@
 #include <vcl/field.hxx>
 #include <vcl/spinfld.hxx>
 #include <vcl/combobox.hxx>
-#include <tools/pstm.hxx>
 #include <bf_svtools/eitem.hxx>
 #include <bf_svtools/itempool.hxx>
 #include <bf_so3/so2ref.hxx>
