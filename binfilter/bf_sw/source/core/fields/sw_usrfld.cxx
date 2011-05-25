@@ -174,7 +174,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/       break;
 /*N*/   case FIELD_PROP_FORMAT:
 /*?*/       {
-/*?*/           sal_Int32 nTmp;
+/*?*/           sal_Int32 nTmp(0);
 /*?*/           rAny >>= nTmp;
 /*?*/           SetFormat(nTmp);
 /*?*/       }
