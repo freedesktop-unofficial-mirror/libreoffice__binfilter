@@ -243,7 +243,7 @@ void SwField::SetSubType(USHORT /*nType*/)
 /*N*/     {
 /*N*/         case FIELD_PROP_BOOL4:
 /*N*/         {
-/*N*/             BOOL bFixed;
+/*N*/             BOOL bFixed(0);
 /*N*/             if(rVal >>= bFixed)
 /*N*/                 bIsAutomaticLanguage = !bFixed;
 /*N*/         }
