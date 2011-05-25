@@ -157,7 +157,7 @@ using namespace ::rtl;
 /*N*/ SwTxtNode* GetFirstTxtNode( const SwDoc& rDoc, SwPosition& rPos,
 /*N*/                           const SwCntntFrm *pCFrm, Point &rPt )
 /*N*/ {
-/*N*/   SwTxtNode* pTxtNode;
+/*N*/   SwTxtNode* pTxtNode = NULL;
 /*N*/   if ( !pCFrm )
 /*N*/   {
 /*?*/       rPos.nNode = *rDoc.GetNodes().GetEndOfContent().StartOfSectionNode();
