@@ -100,7 +100,6 @@
 #include <bf_svtools/args.hxx>
 #include <vcl/image.hxx>
 #include <vcl/timer.hxx>
-#include <tools/unqidx.hxx>
 #include <vcl/symbol.hxx>
 #include <vcl/fixed.hxx>
 #include <bf_svtools/brdcst.hxx>
