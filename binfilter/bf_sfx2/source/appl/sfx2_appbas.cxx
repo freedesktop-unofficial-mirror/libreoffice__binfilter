@@ -54,6 +54,7 @@
 
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
+#include <boost/scoped_ptr.hpp>
 
 namespace binfilter {
 
@@ -65,31 +66,21 @@ using namespace ::com::sun::star::script;
 
 namespace
 {
-    static BasicManager*& lcl_getAppBasicManager()
+    class AppBasicManagerHolder
     {
-        static BasicManager* s_pAppBasicManager = NULL;
-        return s_pAppBasicManager;
-    }
-}
+    private:
+        SfxScriptLibraryContainer* m_pBasicCont;
+        SfxDialogLibraryContainer* m_pDialogCont;
+        BasicManager* m_pAppBasicManager;
+    public:
+        AppBasicManagerHolder();
+        BasicManager* getBasicManager() { return m_pAppBasicManager; };
+        ~AppBasicManagerHolder();
+    };
 
-//========================================================================
+    boost::scoped_ptr<AppBasicManagerHolder> s_pAppBasicManager;
 
-StarBASIC* SfxApplication::GetBasic_Impl() const
-{
-    BasicManager* pBasMgr = lcl_getAppBasicManager();
-    return pBasMgr ? pBasMgr->GetLib(0) : NULL;
-}
-
-//=========================================================================
-
-BasicManager* SfxApplication::GetBasicManager()
-{
-    if ( pAppData_Impl->nBasicCallLevel == 0 )
-        // sicherheitshalber
-        EnterBasicCall();
-
-    BasicManager*& pBasMgr = lcl_getAppBasicManager();
-    if ( !pBasMgr )
+    AppBasicManagerHolder::AppBasicManagerHolder()
     {
         // Directory bestimmen
         SvtPathOptions aPathCFG;
@@ -105,41 +96,69 @@ BasicManager* SfxApplication::GetBasicManager()
         INetURLObject aAppBasic( SvtPathOptions().SubstituteVariable( String::CreateFromAscii("$(progurl)") ) );
         aAppBasic.insertName( Application::GetAppName() );
 
-        pBasMgr = new BasicManager( new StarBASIC, &aAppBasicDir );
+        m_pAppBasicManager = new BasicManager(new StarBASIC, &aAppBasicDir);
 
         // Als Destination das erste Dir im Pfad:
         String aFileName( aAppBasic.getName() );
         aAppBasic = INetURLObject( aAppBasicDir.GetToken(1) );
         DBG_ASSERT( aAppBasic.GetProtocol() != INET_PROT_NOT_VALID, "Invalid URL!" );
         aAppBasic.insertName( aFileName );
-        pBasMgr->SetStorageName( aAppBasic.PathToFileName() );
+        m_pAppBasicManager->SetStorageName( aAppBasic.PathToFileName() );
 
         // globale Variablen
-        StarBASIC *pBas = pBasMgr->GetLib(0);
+        StarBASIC *pBas = m_pAppBasicManager->GetLib(0);
         sal_Bool bBasicWasModified = pBas->IsModified();
 
         // Basic container
-        SfxScriptLibraryContainer* pBasicCont = new SfxScriptLibraryContainer
-            ( DEFINE_CONST_UNICODE( "StarBasic" ), pBasMgr );
-        pBasicCont->acquire();  // Hold via UNO
-        Reference< XLibraryContainer > xBasicCont = static_cast< XLibraryContainer* >( pBasicCont );
-        pBasicCont->setBasicManager( pBasMgr );
+        m_pBasicCont = new SfxScriptLibraryContainer
+            ( DEFINE_CONST_UNICODE( "StarBasic" ), m_pAppBasicManager );
+        m_pBasicCont->acquire();    // Hold via UNO
+        Reference< XLibraryContainer > xBasicCont = static_cast< XLibraryContainer* >( m_pBasicCont );
+        m_pBasicCont->setBasicManager( m_pAppBasicManager );
 
         // Dialog container
-        SfxDialogLibraryContainer* pDialogCont = new SfxDialogLibraryContainer( NULL );
-        pDialogCont->acquire(); // Hold via UNO
-        Reference< XLibraryContainer > xDialogCont = static_cast< XLibraryContainer* >( pDialogCont );
+        m_pDialogCont = new SfxDialogLibraryContainer( NULL );
+        m_pDialogCont->acquire();   // Hold via UNO
+        Reference< XLibraryContainer > xDialogCont = static_cast< XLibraryContainer* >( m_pDialogCont );
 
         LibraryContainerInfo* pInfo = new LibraryContainerInfo
-            ( xBasicCont, xDialogCont, static_cast< OldBasicPassword* >( pBasicCont ) );
-        pBasMgr->SetLibraryContainerInfo( pInfo );
+            ( xBasicCont, xDialogCont, static_cast< OldBasicPassword* >( m_pBasicCont ) );
+        m_pAppBasicManager->SetLibraryContainerInfo( pInfo );
 
         // Durch MakeVariable wird das Basic modifiziert.
         if ( !bBasicWasModified )
             pBas->SetModified( sal_False );
     }
 
-    return pBasMgr;
+    AppBasicManagerHolder::~AppBasicManagerHolder()
+    {
+        m_pDialogCont->release();
+        m_pBasicCont->release();
+        BasicManager::LegacyDeleteBasicManager(m_pAppBasicManager);
+    }
+}
+
+//========================================================================
+
+StarBASIC* SfxApplication::GetBasic_Impl() const
+{
+    if (!s_pAppBasicManager)
+        return NULL;
+    return s_pAppBasicManager->getBasicManager()->GetLib(0);
+}
+
+//=========================================================================
+
+BasicManager* SfxApplication::GetBasicManager()
+{
+    if ( pAppData_Impl->nBasicCallLevel == 0 )
+        // sicherheitshalber
+        EnterBasicCall();
+
+    if (!s_pAppBasicManager)
+        s_pAppBasicManager.reset(new AppBasicManagerHolder);
+
+    return s_pAppBasicManager->getBasicManager();
 }
 
 //--------------------------------------------------------------------
