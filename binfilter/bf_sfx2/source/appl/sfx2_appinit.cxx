@@ -152,7 +152,7 @@ public:
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr = new SfxFrameObjectFactoryPtr;
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr->pSfxFrameObjectFactory = SfxFrameObject::ClassFactory();
 /*N*/
-/*N*/   pImp->pEventHdl = new UniqueIndex( 1, 4, 4 );
+/*N*/   pImp->pEventHdl = new UniqueIndex( 1 );
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   // Der SimplerErrorHandler dient Debugzwecken. In der Product werden
