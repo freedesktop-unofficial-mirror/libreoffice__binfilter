@@ -536,14 +536,6 @@ namespace xmloff
                             aPropertyStates.push_back( aNumberStyleState );
                         }
 
-#ifdef DBG_UTIL
-                        ::std::vector< XMLPropertyState >::const_iterator aHaveALook = aPropertyStates.begin();
-                        for ( ; aHaveALook != aPropertyStates.end(); ++aHaveALook )
-                        {
-                            sal_Int32 nDummy = 0;
-                        }
-#endif
-
                         if ( aPropertyStates.size() )
                         {   // add to the style pool
                             ::rtl::OUString sColumnStyleName = m_rContext.GetAutoStylePool()->Add( XML_STYLE_FAMILY_CONTROL_ID, aPropertyStates );
