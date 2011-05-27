@@ -157,7 +157,7 @@ using namespace ::rtl;
 /*N*/ SwTxtNode* GetFirstTxtNode( const SwDoc& rDoc, SwPosition& rPos,
 /*N*/                           const SwCntntFrm *pCFrm, Point &rPt )
 /*N*/ {
-/*N*/   SwTxtNode* pTxtNode;
+/*N*/   SwTxtNode* pTxtNode = NULL;
 /*N*/   if ( !pCFrm )
 /*N*/   {
 /*?*/       rPos.nNode = *rDoc.GetNodes().GetEndOfContent().StartOfSectionNode();
@@ -310,9 +310,9 @@ using namespace ::rtl;
 
 /*N*/ SwGetExpField::SwGetExpField(SwGetExpFieldType* pTyp, const String& rFormel,
 /*N*/                           USHORT nSub, ULONG nFmt)
-/*N*/   : SwFormulaField( pTyp, nFmt, 0.0 ),
-/*N*/   nSubType(nSub),
-/*N*/   bIsInBodyTxt( TRUE )
+/*N*/   : SwFormulaField( pTyp, nFmt, 0.0 )
+/*N*/   , bIsInBodyTxt( TRUE )
+/*N*/   , nSubType(nSub)
 /*N*/ {
 /*N*/   SetFormula( rFormel );
 /*N*/ }
@@ -466,12 +466,13 @@ BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
  --------------------------------------------------*/
 
 /*N*/ SwSetExpFieldType::SwSetExpFieldType( SwDoc* pInDoc, const String& rName, USHORT nTyp )
-/*N*/   : SwValueFieldType( pInDoc, RES_SETEXPFLD ),
-/*N*/   sName( rName ),
-/*N*/   nType(nTyp),
-/*N*/   cDelim( '.' ), nLevel( UCHAR_MAX ),
-/*N*/   bDeleted( FALSE ),
-/*N*/   pOutlChgNd( 0 )
+/*N*/   : SwValueFieldType( pInDoc, RES_SETEXPFLD )
+/*N*/   , sName( rName )
+/*N*/   , pOutlChgNd( 0 )
+/*N*/   , cDelim( '.' )
+/*N*/   , nType(nTyp)
+/*N*/   , nLevel( UCHAR_MAX )
+/*N*/   , bDeleted( FALSE )
 /*N*/ {
 /*N*/   if( ( GSE_SEQ | GSE_STRING ) & nType )
 /*N*/       EnableFormat(FALSE);    // Numberformatter nicht einsetzen
@@ -837,8 +838,11 @@ void SwSetExpField::SetPar2(const String& rStr)
  --------------------------------------------------------------------*/
 
 /*N*/ SwInputField::SwInputField(SwInputFieldType* pType1, const String& rContent,
-/*N*/                          const String& rPrompt, USHORT nSub, ULONG nFmt) :
-/*N*/   SwField(pType1, nFmt), nSubType(nSub), aContent(rContent), aPText(rPrompt)
+/*N*/                          const String& rPrompt, USHORT nSub, ULONG nFmt)
+/*N*/   : SwField(pType1, nFmt)
+/*N*/   , aContent(rContent)
+/*N*/   , aPText(rPrompt)
+/*N*/   , nSubType(nSub)
 /*N*/ {
 /*N*/ }
 

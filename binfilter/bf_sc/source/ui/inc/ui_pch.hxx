@@ -100,7 +100,6 @@
 #include <bf_svtools/args.hxx>
 #include <vcl/image.hxx>
 #include <vcl/timer.hxx>
-#include <tools/unqidx.hxx>
 #include <vcl/symbol.hxx>
 #include <vcl/fixed.hxx>
 #include <bf_svtools/brdcst.hxx>
@@ -125,7 +124,6 @@
 #include <vcl/field.hxx>
 #include <vcl/spinfld.hxx>
 #include <vcl/combobox.hxx>
-#include <tools/pstm.hxx>
 #include <bf_svtools/eitem.hxx>
 #include <bf_svtools/itempool.hxx>
 #include <bf_so3/so2ref.hxx>

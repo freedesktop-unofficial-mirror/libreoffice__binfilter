@@ -130,10 +130,10 @@ using namespace ::com::sun::star;
                     Felder sind n-mal vorhanden, Feldtypen nur einmal
  --------------------------------------------------------------------*/
 
-/*N*/ SwField::SwField(SwFieldType* pTyp, sal_uInt32 nFmt, USHORT nLng) :
-/*N*/   nFormat(nFmt),
-/*N*/     nLang(nLng),
-/*N*/     bIsAutomaticLanguage(TRUE)
+/*N*/ SwField::SwField(SwFieldType* pTyp, sal_uInt32 nFmt, USHORT nLng)
+/*N*/   : nLang(nLng)
+/*N*/   , bIsAutomaticLanguage(TRUE)
+/*N*/   , nFormat(nFmt)
 /*N*/ {
 /*N*/   OSL_ENSURE( pTyp, "SwField: ungueltiger SwFieldType" );
 /*N*/   pType = pTyp;
@@ -243,7 +243,7 @@ void SwField::SetSubType(USHORT /*nType*/)
 /*N*/     {
 /*N*/         case FIELD_PROP_BOOL4:
 /*N*/         {
-/*N*/             BOOL bFixed;
+/*N*/             BOOL bFixed(0);
 /*N*/             if(rVal >>= bFixed)
 /*N*/                 bIsAutomaticLanguage = !bFixed;
 /*N*/         }

@@ -31,6 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
+#include <tools/pstm.hxx>
 #include <tools/time.hxx>
 #include <bf_so3/so2ref.hxx>
 #include <bf_so3/iface.hxx>

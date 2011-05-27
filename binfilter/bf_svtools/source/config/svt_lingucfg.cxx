@@ -535,7 +535,6 @@ SvtLinguConfigItem & SvtLinguConfig::GetConfigItem()
         pCfgItem = new SvtLinguConfigItem;
         ItemHolder1::holdConfigItem(E_LINGUCFG);
     }
-    ++nCfgItemRefCount;
     return *pCfgItem;
 }
 
