@@ -265,7 +265,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/                   // uns voruebergehend mal im Subtyp, sofern es
 /*N*/                   // ueberhaupt als entsprechendes Format in Frage kommt.
 /*N*/                   if( RES_SETEXPFLD==rWhich &&
-/*N*/                       rFmt >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
 /*N*/                       rFmt <= (USHORT)SVX_NUM_BITMAP )
 /*N*/                   {
 /*N*/                       rSubType = (USHORT)rFmt;
@@ -1754,8 +1753,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   // Hack: fuer Seq-Felder wurde das Original-Format im Subtyp uebergeben,
 /*N*/   // aber nur, wenn es auch als entsprechendes Format in Frage kommt.
 /*N*/   // (SUB_VISIBLE und SUB_CMD sind disjunkt).
-/*N*/   if( nSubType >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
-/*N*/       nSubType <= (USHORT)SVX_NUM_BITMAP )
+/*N*/   if( nSubType <= (USHORT)SVX_NUM_BITMAP )
 /*N*/   {
 /*N*/       if( GSE_SEQ & nType )
 /*N*/           rFmt = nSubType;
@@ -2302,8 +2300,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ {
         OSL_ENSURE( !rIo.IsSw31Export(),
                 "Wer will denn da ein Script-Feld exportieren" );
-
-        ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
 
         String aCode;
         if( ((SwScriptField*)pFld)->IsCodeURL() )
