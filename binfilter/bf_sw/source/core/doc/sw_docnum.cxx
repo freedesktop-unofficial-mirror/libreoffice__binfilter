@@ -745,11 +745,8 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           BYTE nLevel = aNum.GetLevel();
-/*N*/           BYTE nNdOldLvl = MAXLEVEL;
 /*N*/           if( pStt->GetNum() )
 /*N*/           {
-/*N*/               if( NO_NUMBERING != pStt->GetNum()->GetLevel() )
-/*N*/                   nNdOldLvl = nLevel = pStt->GetNum()->GetLevel();
 /*N*/               if( pStt->GetNum()->IsStart() )
 /*N*/               {
 /*?*/                   aNum.SetStart( TRUE );
@@ -861,30 +858,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   ((SwTxtFmtColl*)pStt->GetFmtColl())->GetOutlineLevel() )
 /*N*/               pOutlNd = pStt;
 /*N*/
-/*N*/ //FEATURE::CONDCOLL
-/*N*/
-/*N*/ #ifndef NUM_RELSPACE
-/*N*/           // hat sich eine Level - Aenderung ergeben, so setze jetzt die
-/*N*/           // gueltigen Einzuege
-/*N*/           if( sbCheck && ( nLevel != nNdOldLvl || pStt->IsSetNumLSpace())
-/*N*/               && GetRealLevel( nLevel ) < MAXLEVEL )
-/*N*/           {
-/*N*/               SvxLRSpaceItem aLR( ((SvxLRSpaceItem&)pStt->SwCntntNode::GetAttr(
-/*N*/                                   RES_LR_SPACE )) );
-/*N*/
-/*N*/               const SwNumFmt& rNFmt = pRule->Get( GetRealLevel( nLevel ));
-/*N*/
-/*N*/               // ohne Nummer immer ohne FirstLineOffset!!!!
-/*N*/               short nFOfst = rNFmt.GetFirstLineOffset();
-/*N*/               if( nLevel & NO_NUMLEVEL ) nFOfst = 0;
-/*N*/               aLR.SetTxtFirstLineOfstValue( nFOfst );
-/*N*/               aLR.SetTxtLeft( rNFmt.GetAbsLSpace() );
-/*N*/
-/*N*/               pStt->SwCntntNode::SetAttr( aLR );
-/*N*/           }
-/*N*/           // Flag immer loeschen!
-/*N*/           pStt->SetNumLSpace( FALSE );
-/*N*/ #endif
 /*N*/           aNum.SetStart( FALSE );
 /*N*/           aNum.SetSetValue( USHRT_MAX );
 /*N*/       }

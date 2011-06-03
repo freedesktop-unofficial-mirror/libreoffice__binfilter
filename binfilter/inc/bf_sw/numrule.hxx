@@ -102,7 +102,7 @@ class SwNumRule
     static USHORT aDefNumIndents[ MAXLEVEL ];
     static USHORT nRefCount;
     static Font* pDefBulletFont;
-    static char* pDefOutlineName;
+    static const char* pDefOutlineName;
 
     SwNumFmt* aFmts[ MAXLEVEL ];
 
@@ -140,7 +140,7 @@ public:
     inline const Font* GetBulletFont( const SwNodeNum& ) const;
     static inline const Font& GetDefBulletFont();
 
-    static char* GetOutlineRuleName() { return pDefOutlineName; }
+    static const char* GetOutlineRuleName() { return pDefOutlineName; }
 
     static inline USHORT GetNumIndent( BYTE nLvl );
     static inline USHORT GetBullIndent( BYTE nLvl );

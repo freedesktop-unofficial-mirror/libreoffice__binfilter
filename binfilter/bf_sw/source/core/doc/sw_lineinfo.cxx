@@ -67,7 +67,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ SwLineNumberInfo::SwLineNumberInfo(const SwLineNumberInfo &rCpy ) :
+/*N*/ SwLineNumberInfo::SwLineNumberInfo(const SwLineNumberInfo &rCpy ) : SwClient(),
 /*N*/   aType( rCpy.GetNumType() ),
 /*N*/   aDivider( rCpy.GetDivider() ),
 /*N*/   nPosFromLeft( rCpy.GetPosFromLeft() ),
