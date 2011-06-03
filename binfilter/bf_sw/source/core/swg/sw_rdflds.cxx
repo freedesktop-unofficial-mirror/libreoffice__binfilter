@@ -503,8 +503,7 @@ static SwField* In_SwSetExpField( SwSwgReader& rPar, SwSetExpFieldType* pType, U
     // aber nur, wenn es auch als entsprechendes Format in Frage kommt.
     // (SUB_VISIBLE und SUB_CMD sind disjunkt).
     USHORT nSubType = ((SwSetExpField *)pFld)->GetSubType();
-    if( nSub >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
-        nSub <= (USHORT)SVX_NUM_BITMAP )
+    if( nSub <= (USHORT)SVX_NUM_BITMAP )
     {
         if( GSE_SEQ & nSubType )
             nNewFldFmt = nSub;
