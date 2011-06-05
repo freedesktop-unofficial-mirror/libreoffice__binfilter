@@ -1739,7 +1739,9 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
 
 
 /*N*/ SwDocUpdtFld::SwDocUpdtFld()
-/*N*/   : pFldSortLst( 0 ), nFldLstGetMode( 0 ), nFldUpdtPos( LONG_MAX )
+/*N*/   : pFldSortLst( 0 )
+/*N*/   , nFldUpdtPos( LONG_MAX )
+/*N*/   , nFldLstGetMode( 0 )
 /*N*/ {
 /*N*/   bInUpdateFlds = bFldsDirty = FALSE;
 /*N*/   memset( aFldTypeTable, 0, sizeof( aFldTypeTable ) );

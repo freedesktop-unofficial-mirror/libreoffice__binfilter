@@ -335,7 +335,7 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*M*/               pItem = 0;
 /*M*/           SwFmtVertOrient aOldV( rFmt.GetVertOrient() );
 /*M*/
-/*M*/           if( HORI_NONE == aOldV.GetVertOrient() && (!pItem ||
+/*M*/           if( VERT_NONE == aOldV.GetVertOrient() && (!pItem ||
 /*M*/               aOldV.GetPos() == ((SwFmtVertOrient*)pItem)->GetPos() ) )
 /*M*/           {
 /*M*/               SwTwips nPos = FLY_IN_CNTNT == nOld ? 0 : aOldV.GetPos();
