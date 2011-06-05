@@ -581,12 +581,8 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/     // get the start of the last kashida group
-/*N*/     USHORT nLastKashida = nChg;
 /*N*/     if( nCntKash && i18n::ScriptType::COMPLEX == nScript )
-/*N*/     {
 /*N*/         --nCntKash;
-/*N*/         nLastKashida = GetKashida( nCntKash );
-/*N*/     }
 /*N*/
 /*N*/     // remove invalid entries from kashida array
 /*N*/     aKashida.Remove( nCntKash, aKashida.Count() - nCntKash );
@@ -735,10 +731,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/         nScript = (BYTE)pBreakIt->xBreak->getScriptType( rTxt, nChg );
 /*N*/         nLastCompression = nChg;
-/*N*/ #ifdef BIDI
-/*N*/         nLastKashida = nChg;
-/*N*/ #endif
-/*N*/
 /*N*/     } while ( TRUE );
 /*N*/
 /*N*/ #ifdef DBG_UTIL
@@ -765,8 +757,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/     // Perform Unicode Bidi Algorithm for text direction information
 /*N*/     nCnt = 0;
-/*N*/     sal_Bool bLatin = sal_False;
-/*N*/     sal_Bool bAsian = sal_False;
 /*N*/     sal_Bool bComplex = sal_False;
 /*N*/
 /*N*/     while( nCnt < CountScriptChg() )
@@ -775,10 +765,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/         switch ( nScript )
 /*N*/         {
 /*N*/         case i18n::ScriptType::LATIN:
-/*N*/             bLatin = sal_True;
-/*N*/             break;
 /*N*/         case i18n::ScriptType::ASIAN:
-/*N*/             bAsian = sal_True;
 /*N*/             break;
 /*N*/         case i18n::ScriptType::COMPLEX:
 /*N*/             bComplex = sal_True;

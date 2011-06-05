@@ -148,9 +148,7 @@ public:
 
 inline const SfxPoolItem& SwAttrHandler::GetDefault( const USHORT nAttribID ) const
 {
-    OSL_ENSURE( 0 <= nAttribID && nAttribID < RES_TXTATR_END,
-            "this attrib does not ex."
-            );
+    OSL_ENSURE( nAttribID < RES_TXTATR_END, "this attrib does not ex." );
     OSL_ENSURE( pDefaultArray[ StackPos[ nAttribID ] ], "array not initialized" );
     return *pDefaultArray[ StackPos[ nAttribID ] ];
 }

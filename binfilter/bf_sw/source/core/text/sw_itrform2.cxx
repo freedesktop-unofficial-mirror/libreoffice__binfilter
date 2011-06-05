@@ -1395,8 +1395,8 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 /*M*/         }
 /*M*/         else
 /*M*/         {
-/*M*/             bBuild = ( GetInfo().GetTxtFly()->IsOn() && ChkFlyUnderflow( GetInfo() )
-/*M*/                      || GetInfo().CheckFtnPortion( pCurr ) );
+/*M*/             bBuild = ( (GetInfo().GetTxtFly()->IsOn() && ChkFlyUnderflow(GetInfo()))
+/*M*/                      || GetInfo().CheckFtnPortion(pCurr) );
 /*M*/             if( bBuild )
 /*M*/             {
 /*M*/                 GetInfo().SetNumDone( bOldNumDone );

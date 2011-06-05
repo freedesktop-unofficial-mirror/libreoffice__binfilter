@@ -71,13 +71,13 @@ using namespace ::com::sun::star;
 /*N*/                               const KSHORT nDropHeight1,
 /*N*/                               const KSHORT nDropDescent1,
 /*N*/                               const KSHORT nDistance1 )
-/*N*/   : pPart( 0 ),
-/*N*/     nLines( nLineCnt ),
-/*N*/   nDropHeight(nDropHeight1),
-/*N*/   nDropDescent(nDropDescent1),
-/*N*/   nDistance(nDistance1),
-/*N*/   nX(0),
-/*N*/   nFix(0)
+/*N*/   : pPart( 0 )
+/*N*/   , nLines( nLineCnt )
+/*N*/   , nDropHeight(nDropHeight1)
+/*N*/   , nDropDescent(nDropDescent1)
+/*N*/   , nDistance(nDistance1)
+/*N*/   , nFix(0)
+/*N*/   , nX(0)
 /*N*/ {
 /*N*/     SetWhichPor( POR_DROP );
 /*N*/ }
@@ -292,7 +292,6 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/     // build DropPortionParts:
 /*N*/     OSL_ENSURE( ! rInf.GetIdx(), "Drop Portion not at 0 position!" );
-/*N*/     xub_StrLen nIdx = rInf.GetIdx();
 /*N*/     xub_StrLen nNextChg = 0;
 /*N*/     const SwCharFmt* pFmt = pDropFmt->GetCharFmt();
 /*N*/     SwDropPortionPart* pCurrPart = 0;

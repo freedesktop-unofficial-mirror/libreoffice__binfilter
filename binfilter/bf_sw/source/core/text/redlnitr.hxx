@@ -55,7 +55,7 @@ class SwExtend
     sal_Bool Inside() const { return ( nPos >= nStart && nPos < nEnd ); }
     void ActualizeFont( SwFont &rFnt, xub_StrLen nAttr );
 public:
-    SwExtend( const SvUShorts &rA, xub_StrLen nSt ) : rArr( rA ), pFnt(0),
+    SwExtend( const SvUShorts &rA, xub_StrLen nSt ) : pFnt(0), rArr( rA ),
         nStart( nSt ), nPos( STRING_LEN ), nEnd( nStart + rA.Count() ) {}
     ~SwExtend() { delete pFnt; }
     sal_Bool IsOn() const { return pFnt != 0; }
@@ -73,9 +73,9 @@ class SwRedlineItr
     SwExtend *pExt;
     sal_Bool bOn;
 public:
-SwRedlineItr( const SwTxtNode& rTxtNd, SwFont& rFnt, SwAttrHandler& rAH,
-xub_StrLen nRedlPos, sal_Bool bShw, const SvUShorts *pArr = 0,
-xub_StrLen nStart = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;
+SwRedlineItr( const SwTxtNode&, SwFont&, SwAttrHandler&,
+xub_StrLen, sal_Bool, const SvUShorts * = 0,
+xub_StrLen = STRING_LEN ){DBG_BF_ASSERT(0, "STRIP");} ;
     inline sal_Bool IsOn() const { return bOn || ( pExt && pExt->IsOn() ); }
     inline sal_Bool ExtOn() { if( pExt ) return pExt->IsOn(); return sal_False; }
 };

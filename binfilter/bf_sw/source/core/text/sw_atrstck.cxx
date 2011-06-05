@@ -150,8 +150,8 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/            ! pShell->GetViewOptions()->IsPagePreview() &&
 /*M*/            RES_TXTATR_INETFMT == rAttr.Which() &&
 /*M*/            RES_CHRATR_COLOR == rItem.Which() &&
-/*M*/            ( ((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsVisitedLinks() ||
-/*M*/            ! ((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsLinks() );
+/*M*/            ( (((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsVisitedLinks()) ||
+/*M*/            (!((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsLinks()) );
 /*M*/ }
 
 
@@ -257,7 +257,10 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *                      SwAttrHandler::SwAttrHandler()
  *************************************************************************/
 
-/*M*/ SwAttrHandler::SwAttrHandler() : pShell( 0 ), pFnt( 0 ), bVertLayout( sal_False )
+/*M*/ SwAttrHandler::SwAttrHandler()
+/*M*/  : pShell( 0 )
+/*M*/  , bVertLayout( sal_False )
+/*M*/  , pFnt( 0 )
 /*M*/
 /*N*/ {
 /*N*/     memset( pDefaultArray, 0, NUM_DEFAULT_VALUES * sizeof(SfxPoolItem*) );

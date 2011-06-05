@@ -264,16 +264,16 @@ namespace binfilter {
  *************************************************************************/
 
 // 1170: beruecksichtigt Mehrdeutigkeiten:
-/*N*/ const SwLineLayout *SwTxtCursor::CharCrsrToLine( const xub_StrLen nPos )
+/*N*/ const SwLineLayout *SwTxtCursor::CharCrsrToLine( const xub_StrLen nInPos )
 /*N*/ {
-/*N*/   CharToLine( nPos );
-/*N*/   if( nPos != nStart )
+/*N*/   CharToLine( nInPos );
+/*N*/   if( nInPos != nStart )
 /*N*/       bRightMargin = sal_False;
-/*N*/   sal_Bool bPrev = bRightMargin && pCurr->GetLen() && GetPrev() &&
+/*N*/   sal_Bool bLclPrev = bRightMargin && pCurr->GetLen() && GetPrev() &&
 /*N*/       GetPrev()->GetLen();
-/*N*/   if( bPrev && nPos && CH_BREAK == GetInfo().GetChar( nPos-1 ) )
-/*N*/       bPrev = sal_False;
-/*N*/   return bPrev ? PrevLine() : pCurr;
+/*N*/   if( bLclPrev && nInPos && CH_BREAK == GetInfo().GetChar( nInPos-1 ) )
+/*N*/       bLclPrev = sal_False;
+/*N*/   return bLclPrev ? PrevLine() : pCurr;
 /*N*/ }
 
 /*************************************************************************

@@ -84,17 +84,6 @@ using namespace ::com::sun::star::beans;
 // steht im number.cxx
 extern const sal_Char sBulletFntName[];
 
-#ifdef DBG_UTIL
-// Test2: WYSIWYG++
-// Test4: WYSIWYG debug
-static sal_Bool bDbgLow = sal_False;
-#endif
-
-#ifdef DBG_UTIL
-
-
-#endif
-
 /*************************************************************************
  *                      SwLineInfo::SwLineInfo()
  *************************************************************************/
@@ -142,7 +131,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const OutputDevice *pOut = rInf.GetOut();
 /*N*/     const OutputDevice *pWin = rInf.GetVsh()->GetWin();
 /*N*/     const OutputDevice *pRef = rInf.GetRefDev();
-/*N*/     OSL_ENSURE( pOut && pRef, "ChkOutDev: invalid output devices" );
+/*N*/     OSL_ENSURE( pWin && pOut && pRef, "ChkOutDev: invalid output devices" );
 /*N*/ }
 /*N*/ #endif    // PRODUCT
 
@@ -278,7 +267,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/ }
 
 /*N*/ SwTxtSizeInfo::SwTxtSizeInfo( const SwTxtSizeInfo &rNew, const XubString &rTxt,
-/*N*/                             const xub_StrLen nIdx, const xub_StrLen nLen )
+/*N*/                             const xub_StrLen nInIdx, const xub_StrLen nInLen )
 /*N*/   : SwTxtInfo( rNew ),
 /*N*/       pKanaComp(((SwTxtSizeInfo&)rNew).GetpKanaComp()),
 /*N*/     pVsh(((SwTxtSizeInfo&)rNew).GetVsh()),
@@ -289,8 +278,8 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     pFrm( rNew.pFrm ),
 /*N*/     pOpt(&rNew.GetOpt()),
 /*N*/     pTxt(&rTxt),
-/*N*/     nIdx(nIdx),
-/*N*/     nLen(nLen),
+/*N*/     nIdx(nInIdx),
+/*N*/     nLen(nInLen),
 /*N*/       nKanaIdx( rNew.GetKanaIdx() ),
 /*N*/     bOnWin( rNew.OnWin() ),
 /*N*/     bNotEOL( rNew.NotEOL() ),
@@ -458,14 +447,14 @@ static sal_Bool bDbgLow = sal_False;
 
 
 /*N*/ SwTxtPaintInfo::SwTxtPaintInfo( const SwTxtPaintInfo &rInf )
-/*N*/   : SwTxtSizeInfo( rInf ),
-/*N*/     aTxtFly( *rInf.GetTxtFly() ),
-/*N*/     aPos( rInf.GetPos() ),
-/*N*/     aPaintRect( rInf.GetPaintRect() ),
-/*N*/     nSpaceIdx( rInf.GetSpaceIdx() ),
-/*N*/     pSpaceAdd( rInf.GetpSpaceAdd() ),
-/*N*/     pWrongList( rInf.GetpWrongList() ),
-/*N*/       pBrushItem( rInf.GetBrushItem() )
+/*N*/   : SwTxtSizeInfo( rInf )
+/*N*/   , pWrongList( rInf.GetpWrongList() )
+/*N*/   , pSpaceAdd( rInf.GetpSpaceAdd() )
+/*N*/   , pBrushItem( rInf.GetBrushItem() )
+/*N*/   , aTxtFly( *rInf.GetTxtFly() )
+/*N*/   , aPos( rInf.GetPos() )
+/*N*/   , aPaintRect( rInf.GetPaintRect() )
+/*N*/   , nSpaceIdx( rInf.GetSpaceIdx() )
 /*N*/ { }
 
 extern Color aGlobalRetoucheColor;

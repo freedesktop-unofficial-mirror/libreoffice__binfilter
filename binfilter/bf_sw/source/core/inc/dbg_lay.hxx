@@ -84,7 +84,7 @@ public:
     static ULONG Record() { return nRecord; }
     static void SetRecord( ULONG nNew ) { nRecord = nNew; }
     static BOOL Record( ULONG nFunc ) { return 0 != (( nFunc | PROT_INIT ) & nRecord); }
-    static void Record( const SwFrm* pFrm, ULONG nFunction, ULONG nAction, void* pParam ){DBG_BF_ASSERT(0, "STRIP");}
+    static void Record( const SwFrm*, ULONG, ULONG, void* ){DBG_BF_ASSERT(0, "STRIP");}
     static void Init();
     static void Stop();
 };
@@ -92,7 +92,7 @@ public:
 class SwEnterLeave
 {
     SwImplEnterLeave* pImpl;
-    void Ctor( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar ){DBG_BF_ASSERT(0, "STRIP");}
+    void Ctor( const SwFrm*, ULONG, ULONG, void* ){DBG_BF_ASSERT(0, "STRIP");}
     void Dtor(){DBG_BF_ASSERT(0, "STRIP");}
 public:
      SwEnterLeave( const SwFrm* pFrm, ULONG nFunc, ULONG nAct, void* pPar )

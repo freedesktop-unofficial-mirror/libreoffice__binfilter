@@ -78,8 +78,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ {
 /*N*/     if ( ( ! pFrm->IsVertical() &&
 /*N*/              pFrm->Frm().Width() == pFrm->GetUpper()->Prt().Width() ) ||
-/*N*/              pFrm->IsVertical() &&
-/*N*/              pFrm->Frm().Height() == pFrm->GetUpper()->Prt().Height() )
+/*N*/          (   pFrm->IsVertical() &&
+/*N*/              pFrm->Frm().Height() == pFrm->GetUpper()->Prt().Height() ) )
 /*N*/       pFrm->bValidSize = sal_True;
 /*
     pFrm->bValidPrtArea = sal_True;

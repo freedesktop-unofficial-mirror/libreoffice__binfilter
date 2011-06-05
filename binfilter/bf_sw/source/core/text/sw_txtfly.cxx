@@ -539,7 +539,7 @@ namespace binfilter {
 /*N*/           // ausweichen oder die Oberkante des naechsten Rahmens, den wir
 /*N*/           // beachten muessen. Wir koennen also jetzt getrost bis zu diesem
 /*N*/           // Wert anwachsen, so sparen wir einige Leerzeilen.
-/*N*/             SWRECTFN( pFrm )
+/*N*/             sal_Bool bVert = pFrm->IsVertical();
 /*N*/             long nNextTop = pTxtFly->GetNextTop();
 /*N*/             if ( bVert )
                     {DBG_BF_ASSERT(0, "STRIP");}
@@ -840,30 +840,6 @@ namespace binfilter {
 /*N*/       pMaster = (SwCntntFrm*)pMaster->FindMaster();
 /*N*/   return pMaster;
 /*N*/ }
-
-/*************************************************************************
- *                      SwTxtFly::DrawTextOpaque()
- *
- * IN: dokumentglobal
- * DrawTextOpaque() wird von DrawText() gerufen.
- * Die Clipregions werden so gesetzt, dass nur die Teile ausgegeben werden,
- * die nicht in den Bereichen von FlyFrms liegen, die undurchsichtig und
- * ueber dem aktuellen Frame liegen.
- * Die On-Optimierung uebernimmt DrawText()!
- *************************************************************************/
-
-#define UINT32_MAX 0xFFFFFFFF
-
-
-/*************************************************************************
- *                      SwTxtFly::DrawFlyRect()
- *
- * IN: windowlokal
- * Zwei Feinheiten gilt es zu beachten:
- * 1) DrawRect() oberhalb des ClipRects sind erlaubt !
- * 2) FlyToRect() liefert groessere Werte als die Framedaten !
- *************************************************************************/
-
 
 /*************************************************************************
  *                      SwTxtFly::GetTop()
@@ -1179,8 +1155,9 @@ namespace binfilter {
  * class SwContourCache
  *************************************************************************/
 
-/*N*/ SwContourCache::SwContourCache() :
-/*N*/   nObjCnt( 0 ), nPntCnt( 0 )
+/*N*/ SwContourCache::SwContourCache()
+/*N*/   : nPntCnt( 0 )
+/*N*/   , nObjCnt( 0 )
 /*N*/ {
 /*N*/   memset( (SdrObject**)pSdrObj, 0, sizeof(pSdrObj) );
 /*N*/   memset( pTextRanger, 0, sizeof(pTextRanger) );
@@ -1240,15 +1217,13 @@ namespace binfilter {
 /*N*/         const SwRect &rLine, const SwTxtFrm* pFrm, const long nXPos,
 /*N*/         const sal_Bool bRight )
 /*N*/ {
-/*N*/     SWRECTFN( pFrm )
-/*N*/
 /*N*/     SwRect aRet;
 /*N*/   const SwFmt *pFmt =
 /*N*/       ((SwContact*)GetUserCall(pObj))->GetFmt();
 /*N*/   if( pFmt->GetSurround().IsContour() &&
 /*N*/       ( !pObj->IsWriterFlyFrame() ||
-/*N*/         ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower() &&
-/*N*/         ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower()->IsNoTxtFrm() ) )
+/*N*/         (((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower() &&
+/*N*/         ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower()->IsNoTxtFrm()) ) )
 /*N*/   {
 /*N*/         aRet = GetBoundRect( pObj );
 /*N*/       if( aRet.IsOver( rLine ) )
@@ -1451,10 +1426,10 @@ namespace binfilter {
 /*N*/                     SwRect aFly = FlyToRect( pObj, rRect );
 /*N*/                   if( aFly.IsEmpty() || !aFly.IsOver( rRect ) )
 /*N*/                       continue;
-/*N*/                     if( !bRet ||
+/*N*/                     if( !bRet || (
 /*N*/                         ( !pCurrFrm->IsRightToLeft() &&
 /*N*/                           ( (aFly.*fnRect->fnGetLeft)() <
-/*N*/                             (pRect->*fnRect->fnGetLeft)() ) ||
+/*N*/                             (pRect->*fnRect->fnGetLeft)() ) ) ||
 /*N*/                         ( pCurrFrm->IsRightToLeft() &&
 /*N*/                           ( (aFly.*fnRect->fnGetRight)() >
 /*N*/                             (pRect->*fnRect->fnGetRight)() ) ) ) )

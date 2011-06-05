@@ -230,7 +230,6 @@ namespace binfilter {
 /*N*/   , nOrphLines( 0 )
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( pFrm2 )
-/*N*/     SWRECTFN( pFrm2 )
 /*N*/
 /*N*/   if( bKeep )
 /*N*/   {

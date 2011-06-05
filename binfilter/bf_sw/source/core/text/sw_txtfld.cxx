@@ -353,8 +353,6 @@ namespace binfilter {
 /*?*/           pRet = new SwGrfNumPortion( (SwFrm*)GetTxtFrm(),rNumFmt.GetBrush(),
 /*?*/               rNumFmt.GetGraphicOrientation(), rNumFmt.GetGraphicSize(),
 /*?*/               bLeft, bCenter, nMinDist );
-/*?*/           long nTmpA = rInf.GetLast()->GetAscent();
-/*?*/           rInf.GetLast()->Height() - nTmpA;
 /*?*/           if( !rInf.IsTest() )
                     {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
