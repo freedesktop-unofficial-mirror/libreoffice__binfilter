@@ -629,12 +629,6 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/               continue;
 /*N*/
 /*N*/           const SwPosition& rPos1 = pMark->GetPos();
-/*N*/           const SwPosition* pPos2 = pMark->GetOtherPos();
-/*N*/           if( rPos1.nContent.GetIndex() > STRING_MAXLEN52 &&
-/*N*/               ( !pPos2 ||
-/*N*/                 (rPos1.nNode.GetIndex() == pPos2->nNode.GetIndex() &&
-/*N*/                  pPos2->nContent.GetIndex() > STRING_MAXLEN52) ) )
-/*N*/               continue;
 /*N*/
 /*N*/           if( pDoc->IsInHeaderFooter( rPos1.nNode ) )
 /*N*/           {
@@ -887,8 +881,6 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/           {
 /*N*/               OpenRec( SWG_MARK );
 /*N*/               xub_StrLen nOffs = pMark->GetNodeOff();
-/*N*/               if( nOffs > STRING_MAXLEN52 )
-/*N*/                   nOffs = STRING_MAXLEN52;
 /*N*/               *pStrm << (sal_uInt8) pMark->GetType()
 /*N*/                      << (sal_uInt16) pMark->GetId()
 /*N*/                      << (sal_uInt16) nOffs;
