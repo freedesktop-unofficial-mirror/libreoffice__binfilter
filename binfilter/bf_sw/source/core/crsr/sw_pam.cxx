@@ -323,13 +323,17 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 *************************************************************************/
 
 /*N*/ SwPaM::SwPaM( const SwPosition& rPos, SwPaM* pRing )
-/*N*/   : aBound1( rPos ), aBound2( rPos ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rPos )
+/*N*/   , aBound2( rPos )
 /*N*/ {
 /*N*/   pPoint = pMark = &aBound1;
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( const SwPosition& rMk, const SwPosition& rPt, SwPaM* pRing )
-/*N*/   : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rMk )
+/*N*/   , aBound2( rPt )
 /*N*/ {
 /*N*/   pMark = &aBound1;
 /*N*/   pPoint = &aBound2;
@@ -338,7 +342,9 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ SwPaM::SwPaM( const SwNode& rMk, const SwNode& rPt,
 /*N*/               long nMkOffset, long nPtOffset, SwPaM* pRing )
-/*N*/   : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rMk )
+/*N*/   , aBound2( rPt )
 /*N*/ {
 /*N*/   if( nMkOffset )
 /*N*/       aBound1.nNode += nMkOffset;
@@ -354,7 +360,9 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ SwPaM::SwPaM( const SwNode& rMk, xub_StrLen nMkCntnt,
 /*N*/             const SwNode& rPt, xub_StrLen nPtCntnt, SwPaM* pRing )
-/*N*/   : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rMk )
+/*N*/   , aBound2( rPt )
 /*N*/ {
 /*N*/   aBound1.nContent.Assign( aBound1.nNode.GetNode().GetCntntNode(), nMkCntnt );
 /*N*/   aBound2.nContent.Assign( aBound2.nNode.GetNode().GetCntntNode(), nPtCntnt );
@@ -363,14 +371,18 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( SwPaM &rPam )
-/*N*/   : aBound1( *(rPam.pPoint) ), aBound2( *(rPam.pMark) ), Ring( &rPam )
+/*N*/   : Ring( &rPam )
+/*N*/   , aBound1( *(rPam.pPoint) )
+/*N*/   , aBound2( *(rPam.pMark) )
 /*N*/ {
 /*N*/   pPoint = &aBound1;
 /*N*/   pMark  = rPam.HasMark() ? &aBound2 : pPoint;
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( const SwNode& rNd, xub_StrLen nCntnt, SwPaM* pRing )
-/*N*/   : aBound1( rNd ), aBound2( rNd ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rNd )
+/*N*/   , aBound2( rNd )
 /*N*/ {
 /*N*/   aBound1.nContent.Assign( aBound1.nNode.GetNode().GetCntntNode(), nCntnt );
 /*N*/   aBound2.nContent = aBound1.nContent;
@@ -378,7 +390,9 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( const SwNodeIndex& rNd, xub_StrLen nCntnt, SwPaM* pRing )
-/*N*/   : aBound1( rNd ), aBound2( rNd ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rNd )
+/*N*/   , aBound2( rNd )
 /*N*/ {
 /*N*/   aBound1.nContent.Assign( rNd.GetNode().GetCntntNode(), nCntnt );
 /*N*/   aBound2.nContent = aBound1.nContent;

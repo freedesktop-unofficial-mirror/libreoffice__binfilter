@@ -47,14 +47,14 @@ namespace binfilter {
 
 /*N*/ SwBookmark::SwBookmark(const SwPosition& aPos, const KeyCode& rCode,
 /*N*/                       const String& rName, const String& rShortName )
-/*N*/   : SwModify( 0 ),
-/*N*/   aStartMacro( aEmptyStr, aEmptyStr ),
-/*N*/   aEndMacro  ( aEmptyStr, aEmptyStr ),
-/*N*/   aCode(rCode),
-/*N*/   aName(rName),
-/*N*/   aShortName(rShortName),
-/*N*/   pPos2( 0 ),
-/*N*/   eMarkType( BOOKMARK )
+/*N*/   : SwModify( 0 )
+/*N*/   , pPos2( 0 )
+/*N*/   , aStartMacro( aEmptyStr, aEmptyStr )
+/*N*/   , aEndMacro  ( aEmptyStr, aEmptyStr )
+/*N*/   , aName(rName)
+/*N*/   , aShortName(rShortName)
+/*N*/   , aCode(rCode)
+/*N*/   , eMarkType( BOOKMARK )
 /*N*/ {
 /*N*/   pPos1 = new SwPosition(aPos);
 /*N*/ }

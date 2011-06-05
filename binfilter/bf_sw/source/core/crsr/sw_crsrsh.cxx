@@ -832,8 +832,7 @@ using namespace ::com::sun::star::util;
 /*?*/          pCurCrsr->GetMark()->nNode;
 /*?*/ }
 
-/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(
-/*?*/                           USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
+/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(USHORT, USHORT, SwPaM*) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
