@@ -411,17 +411,17 @@ namespace binfilter {
 |*  SwLayAction::SwLayAction()
 |*
 |*************************************************************************/
-/*N*/ SwLayAction::SwLayAction( SwRootFrm *pRt, SwViewImp *pI ) :
-/*N*/   pRoot( pRt ),
-/*N*/   pImp( pI ),
-/*N*/   pOptTab( 0 ),
-/*N*/   pWait( 0 ),
-/*N*/   nPreInvaPage( USHRT_MAX ),
-/*N*/   nCheckPageNum( USHRT_MAX ),
-/*N*/   nStartTicks( Ticks() ),
-/*N*/   nInputType( 0 ),
-/*N*/   nEndPage( USHRT_MAX ),
-/*N*/   pProgress(NULL)
+/*N*/ SwLayAction::SwLayAction( SwRootFrm *pRt, SwViewImp *pI )
+/*N*/   : pRoot( pRt )
+/*N*/   , pImp( pI )
+/*N*/   , pOptTab( 0 )
+/*N*/   , pWait( 0 )
+/*N*/   , pProgress(NULL)
+/*N*/   , nPreInvaPage( USHRT_MAX )
+/*N*/   , nStartTicks( Ticks() )
+/*N*/   , nInputType( 0 )
+/*N*/   , nEndPage( USHRT_MAX )
+/*N*/   , nCheckPageNum( USHRT_MAX )
 /*N*/ {
 /*N*/   bPaintExtraData = ::binfilter::IsExtraData( pImp->GetShell()->GetDoc() );
 /*N*/   bPaint = bComplete = bWaitAllowed = bCheckPages = TRUE;
@@ -601,7 +601,7 @@ namespace binfilter {
 /*N*/       pPage = (SwPageFrm*)pPage->GetNext();
 /*N*/
 /*N*/   SwDoc* pDoc = pRoot->GetFmt()->GetDoc();
-/*N*/   BOOL bNoLoop = pPage ? SwLayouter::StartLoopControl( pDoc, pPage ) : NULL;
+/*N*/   BOOL bNoLoop = pPage ? SwLayouter::StartLoopControl( pDoc, pPage ) : FALSE;
 /*N*/   USHORT nPercentPageNum = 0;
 /*N*/   while ( (pPage && !IsInterrupt()) || nCheckPageNum != USHRT_MAX )
 /*N*/   {
@@ -999,16 +999,16 @@ namespace binfilter {
 /*N*/ {
 /*N*/   OSL_ENSURE( pFrm->IsLayoutFrm(), "FindFirstInvaLay, no LayFrm" );
 /*N*/
-/*N*/   if ( !pFrm->IsValid() || pFrm->IsCompletePaint() &&
-/*N*/        pFrm->Frm().Top() < nBottom )
+/*N*/   if ( !pFrm->IsValid() || (pFrm->IsCompletePaint() &&
+/*N*/        pFrm->Frm().Top() < nBottom) )
 /*N*/       return pFrm;
 /*N*/   pFrm = ((SwLayoutFrm*)pFrm)->Lower();
 /*N*/   while ( pFrm )
 /*N*/   {
 /*N*/       if ( pFrm->IsLayoutFrm() )
 /*N*/       {
-/*N*/           if ( !pFrm->IsValid() || pFrm->IsCompletePaint() &&
-/*N*/                pFrm->Frm().Top() < nBottom )
+/*N*/           if ( !pFrm->IsValid() || (pFrm->IsCompletePaint() &&
+/*N*/                pFrm->Frm().Top() < nBottom) )
 /*N*/               return pFrm;
 /*N*/           const SwFrm *pTmp;
 /*N*/           if ( 0 != (pTmp = ::binfilter::lcl_FindFirstInvaLay( pFrm, nBottom )) )
@@ -2482,7 +2482,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/
 /*N*/       bool bInValid;
-/*N*/       *pImp->GetShell()->GetViewOptions();
+/*N*/       pImp->GetShell()->GetViewOptions();
 /*N*/       SwPageFrm *pPg = (SwPageFrm*)pRoot->Lower();
 /*N*/       do
 /*N*/       {   bInValid = pPg->IsInvalidCntnt() || pPg->IsInvalidLayout() ||

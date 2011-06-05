@@ -470,7 +470,7 @@ namespace binfilter {
 /*N*/       // einspaltige Bereiche muessen zu ihrem Upper durchschalten
 /*N*/       while( pUp->IsSctFrm() )
 /*N*/           pUp = pUp->GetUpper();
-/*N*/         SWRECTFN( pUp )
+/*N*/         sal_Bool bVert = pUp->IsVertical();
 /*N*/       //Dem Textflus folgen.
 /*N*/         if ( pUp->Frm().IsInside( rPt ) )
 /*N*/       {

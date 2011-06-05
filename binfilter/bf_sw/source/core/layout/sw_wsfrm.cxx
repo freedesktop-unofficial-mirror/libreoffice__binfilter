@@ -77,15 +77,15 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwFrm::SwFrm( SwModify *pMod ) :
-/*N*/   SwClient( pMod ),
-/*N*/   pUpper( 0 ),
-/*N*/   pNext( 0 ),
-/*N*/   pPrev( 0 ),
-/*N*/   pDrawObjs( 0 )
+/*N*/ SwFrm::SwFrm( SwModify *pMod )
+/*N*/   : SwClient( pMod )
 /*N*/ #ifdef DBG_UTIL
 /*N*/   , nFrmId( SwFrm::nLastFrmId++ )
 /*N*/ #endif
+/*N*/   , pUpper( 0 )
+/*N*/   , pNext( 0 )
+/*N*/   , pPrev( 0 )
+/*N*/   , pDrawObjs( 0 )
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
 /*N*/     bFlag01 = bFlag02 = bFlag03 = bFlag04 = bFlag05 = 0;

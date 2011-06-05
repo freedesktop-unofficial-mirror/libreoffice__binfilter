@@ -420,19 +420,19 @@ namespace binfilter {
 |*************************************************************************/
 
 
-/*N*/ SwRootFrm::SwRootFrm( SwFrmFmt *pFmt, ViewShell * pSh ) :
-/*N*/   SwLayoutFrm( pFmt->GetDoc()->MakeFrmFmt(
-/*N*/       XubString( "Root", RTL_TEXTENCODING_MS_1252 ), pFmt ) ),
-/*N*/   pTurbo( 0 ),
-/*N*/   pLastPage( 0 ),
-/*N*/   pCurrShell( pSh ),
-/*N*/   pWaitingCurrShell( 0 ),
-/*N*/   pDestroy( 0 ),
-/*N*/   nPhyPageNums( 0 ),
-/*N*/   pDrawPage( 0 ),
-/*N*/   nBrowseWidth( MM50*4 )  //2cm Minimum
+/*N*/ SwRootFrm::SwRootFrm( SwFrmFmt *pFmt, ViewShell * pSh )
+/*N*/   : SwLayoutFrm( pFmt->GetDoc()->MakeFrmFmt(
+/*N*/       XubString( "Root", RTL_TEXTENCODING_MS_1252 ), pFmt ) )
+/*N*/   , nBrowseWidth( MM50*4 )    //2cm Minimum
+/*N*/   , pTurbo( 0 )
+/*N*/   , pLastPage( 0 )
+/*N*/   , pCurrShell( pSh )
+/*N*/   , pWaitingCurrShell( 0 )
+/*N*/   , pDrawPage( 0 )
+/*N*/   , pDestroy( 0 )
+/*N*/   , nPhyPageNums( 0 )
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   ,nAccessibleShells( 0 )
+/*N*/   , nAccessibleShells( 0 )
 /*N*/ #endif
 /*N*/ {
 /*N*/     nType = FRMC_ROOT;

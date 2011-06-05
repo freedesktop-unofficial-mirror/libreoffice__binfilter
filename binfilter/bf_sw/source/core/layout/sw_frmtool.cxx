@@ -605,7 +605,7 @@ namespace binfilter {
 /*N*/           pLay->InvalidateNextPos();
 /*N*/   }
 /*N*/   if ( !IsLowersComplete() &&
-/*N*/        !((pLay->GetType()&FRM_FLY|FRM_SECTION) &&
+/*N*/        !(pLay->GetType()&(FRM_FLY|FRM_SECTION) &&
 /*N*/           pLay->Lower() && pLay->Lower()->IsColumnFrm()) &&
 /*N*/        (bPos || bNotify) && !(pLay->GetType() & 0x1823) )  //Tab, Row, FtnCont, Root, Page
 /*N*/   {
