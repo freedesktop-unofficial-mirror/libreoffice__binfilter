@@ -59,10 +59,10 @@ namespace binfilter {
 
 
 /*N*/ SwFmtFtn::SwFmtFtn( BOOL bEN )
-/*N*/   : SfxPoolItem( RES_TXTATR_FTN ),
-/*N*/   nNumber( 0 ),
-/*N*/   pTxtAttr( 0 ),
-/*N*/   bEndNote( bEN )
+/*N*/   : SfxPoolItem( RES_TXTATR_FTN )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , nNumber( 0 )
+/*N*/   , bEndNote( bEN )
 /*N*/ {
 /*N*/ }
 
@@ -152,10 +152,10 @@ void SwFmtFtn::SetEndNote( BOOL b )
  *************************************************************************/
 
 /*N*/ SwTxtFtn::SwTxtFtn( const SwFmtFtn& rAttr, xub_StrLen nStart2 )
-/*N*/   : SwTxtAttr( rAttr, nStart2 ),
-/*N*/   pMyTxtNd( 0 ),
-/*N*/   pStartNode( 0 ),
-/*N*/   nSeqNo( USHRT_MAX )
+/*N*/   : SwTxtAttr( rAttr, nStart2 )
+/*N*/   , pStartNode( 0 )
+/*N*/   , pMyTxtNd( 0 )
+/*N*/   , nSeqNo( USHRT_MAX )
 /*N*/ {
 /*N*/   ((SwFmtFtn&)rAttr).pTxtAttr = this;
 /*N*/ }

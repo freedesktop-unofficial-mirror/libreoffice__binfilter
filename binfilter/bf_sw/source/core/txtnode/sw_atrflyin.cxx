@@ -48,9 +48,9 @@
 namespace binfilter {
 
 /*N*/ SwFmtFlyCnt::SwFmtFlyCnt( SwFrmFmt *pFrmFmt )
-/*N*/   : SfxPoolItem( RES_TXTATR_FLYCNT ),
-/*N*/   pFmt( pFrmFmt ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   : SfxPoolItem( RES_TXTATR_FLYCNT )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , pFmt( pFrmFmt )
 /*N*/ {
 /*N*/ }
 

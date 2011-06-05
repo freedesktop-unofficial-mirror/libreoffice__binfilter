@@ -239,7 +239,6 @@ namespace binfilter {
 /*N*/         { \
 /*N*/             OSL_ENSURE(!this, text); \
 /*N*/             DumpHints(*(SwpHtStart*)this,aHtEnd); \
-/*N*/             const BOOL bErr = 0 == (cond); /* fuer den CV */ \
 /*N*/             return !((SwpHintsArr*)this)->Resort(); \
 /*N*/         }
 /*N*/
@@ -259,7 +258,6 @@ namespace binfilter {
 /*N*/
 /*N*/       // 2a) gueltiger Pointer? vgl. DELETEFF
 /*N*/       const SwTxtAttr *pHt = (*this)[i];
-/*N*/       CHECK_ERR( 0xFF != *(char*)pHt, "HintsCheck: start ptr was deleted" );
 /*N*/
 /*N*/       // 3a) Stimmt die Start-Sortierung?
 /*N*/       xub_StrLen nIdx = *pHt->GetStart();
@@ -276,7 +274,6 @@ namespace binfilter {
 /*N*/
 /*N*/       // 2b) gueltiger Pointer? vgl. DELETEFF
 /*N*/       const SwTxtAttr *pHtEnd = aHtEnd[i];
-/*N*/       CHECK_ERR( 0xFF != *(char*)pHtEnd, "HintsCheck: end ptr was deleted" );
 /*N*/
 /*N*/       // 3b) Stimmt die End-Sortierung?
 /*N*/       nIdx = *pHtEnd->GetAnyEnd();

@@ -47,16 +47,16 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SwFmtRefMark::SwFmtRefMark( const XubString& rName )
-/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK ),
-/*N*/   aRefName( rName ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , aRefName( rName )
 /*N*/ {
 /*N*/ }
 
 /*N*/ SwFmtRefMark::SwFmtRefMark( const SwFmtRefMark& rAttr )
-/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK ),
-/*N*/   aRefName( rAttr.aRefName ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , aRefName( rAttr.aRefName )
 /*N*/ {
 /*N*/ }
 
@@ -78,9 +78,9 @@ int SwFmtRefMark::operator==( const SfxPoolItem& /*rAttr*/ ) const
 
 /*N*/ SwTxtRefMark::SwTxtRefMark( const SwFmtRefMark& rAttr,
 /*N*/                   xub_StrLen nStart2, xub_StrLen* pEnde )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart2, nStart2 ),
-/*N*/   pEnd( 0 ),
-/*N*/   pMyTxtNd( 0 )
+/*N*/   : SwTxtAttrEnd( rAttr, nStart2, nStart2 )
+/*N*/   , pMyTxtNd( 0 )
+/*N*/   , pEnd( 0 )
 /*N*/ {
 /*N*/   ((SwFmtRefMark&)rAttr).pTxtAttr = this;
 /*N*/   if( pEnde )
