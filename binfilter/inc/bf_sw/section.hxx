@@ -32,7 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#include <com/sun/star/uno/Sequence.h>
+#include <com/sun/star/uno/Sequence.hxx>
 #include <bf_so3/lnkbase.hxx>
 #include <frmfmt.hxx>
 namespace binfilter {

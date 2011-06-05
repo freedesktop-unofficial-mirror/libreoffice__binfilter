@@ -40,7 +40,7 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 #include <bf_svtools/itemset.hxx>
-#include <com/sun/star/uno/Sequence.h>
+#include <com/sun/star/uno/Sequence.hxx>
 #include <numrule.hxx>
 #include <redlenum.hxx>
 class Graphic;
