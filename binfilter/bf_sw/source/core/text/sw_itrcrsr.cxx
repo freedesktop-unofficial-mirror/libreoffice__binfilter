@@ -709,6 +709,7 @@ sal_Bool SwTxtCursor::bRightMargin = sal_False;
 /*?*/
 /*?*/         OSL_ENSURE( ! nLineOfst || SP_EXTEND_RANGE_BEFORE != nExtendRange,
 /*?*/                 "LineOffset AND Number Portion?" );
+/*?*/         (void)nLineOfst;
 /*?*/
 /*?*/         // portions which are behind the string
 /*?*/         if ( SP_EXTEND_RANGE_BEHIND == nExtendRange )

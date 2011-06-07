@@ -1375,7 +1375,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/           case TOX_OBJECTS:
 /*N*/           case TOX_TABLES:
 /*N*/               {
-/*N*/                   sal_uInt16 nPoolId;
+/*N*/                   sal_uInt16 nPoolId(0);
 /*N*/                   switch( pType->GetType() )
 /*N*/                   {
 /*?*/                   case TOX_ILLUSTRATIONS:
