@@ -707,6 +707,7 @@ namespace binfilter {
 /*N*/
 /*N*/       OSL_ENSURE( rSz.Height() != 0 || rFrmSz.GetHeightPercent(), "Hoehe des RahmenAttr ist 0." );
 /*N*/       OSL_ENSURE( rSz.Width()  != 0 || rFrmSz.GetWidthPercent(), "Breite des RahmenAttr ist 0." );
+/*N*/       (void)rSz;
 /*N*/
 /*N*/         SWRECTFN( this )
 /*N*/         if( !HasFixSize() )
