@@ -188,9 +188,9 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/ {
 /*N*/   const KSHORT nLineWidth = rInf.RealWidth();
 /*N*/
-/*N*/   KSHORT nFlyAscent;
-/*N*/   KSHORT nFlyHeight;
-/*N*/   KSHORT nFlyDescent;
+/*N*/   KSHORT nFlyAscent(0);
+/*N*/   KSHORT nFlyHeight(0);
+/*N*/   KSHORT nFlyDescent(0);
 /*N*/   sal_Bool bOnlyPostIts = sal_True;
 /*N*/   SetHanging( sal_False );
 /*N*/
