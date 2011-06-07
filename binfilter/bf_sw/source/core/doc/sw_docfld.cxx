@@ -292,7 +292,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   OSL_ENSURE( !pHt || RES_TABLEFML_UPDATE  == pHt->Which(),
 /*N*/           "Was ist das fuer ein MessageItem?" );
 /*N*/
-/*N*/   SwFieldType* pFldType;
+/*N*/   SwFieldType* pFldType = NULL;
         USHORT i=0;
 /*N*/   for( i = 0; i < pFldTypes->Count(); ++i )
 /*N*/   {
