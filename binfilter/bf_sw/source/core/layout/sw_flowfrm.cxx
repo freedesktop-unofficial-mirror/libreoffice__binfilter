@@ -1771,7 +1771,7 @@ namespace binfilter {
 /*?*/           }
 /*N*/       }
 /*N*/       BOOL bUnlock = FALSE;
-/*N*/       BOOL bFollow;
+/*N*/       BOOL bFollow = FALSE;
 /*N*/       //Section locken, sonst kann sie bei Fluss des einzigen Cntnt etwa
 /*N*/       //von zweiter in die erste Spalte zerstoert werden.
 /*N*/       SwSectionFrm* pSect = pNewUpper->FindSctFrm();
