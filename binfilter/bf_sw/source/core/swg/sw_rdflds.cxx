@@ -221,10 +221,6 @@ static SwField* In_SwUserField( SwSwgReader& rPar, SwUserFieldType* pType,
         return 0;
 
     return new SwUserField( pType, nSub );    // MS: Hier kann auch das Format mit
-                                        // uebergeben werden
-    if( UF_STRING & pType->GetType() )
-        nNewFldFmt = 0; // Warum auch immer!
-
 }
 
 static SwField* In_SwFileNameField( SwSwgReader&, SwFileNameFieldType* pType )
