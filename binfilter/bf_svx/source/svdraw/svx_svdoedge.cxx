@@ -1270,8 +1270,6 @@ namespace binfilter {
 /*N*/       else if (nPntAnz==4) { // Z oder U
 /*N*/           if (nAngle1==nAngle2) cForm='U';
 /*N*/           else cForm='Z';
-/*N*/       } else if (nPntAnz==4) { // ?? ??
-/*N*/           // ...                 -?    -?
 /*N*/       } else if (nPntAnz==6) { // S oder C oder ...
 /*N*/           if (nAngle1!=nAngle2) {
 /*N*/               // Fuer Typ S hat Linie2 dieselbe Richtung wie Linie4.

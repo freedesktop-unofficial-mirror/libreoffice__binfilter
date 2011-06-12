@@ -101,12 +101,12 @@ namespace binfilter {
 /*N*/   if ( (X3 < X0 && X0 < X1) || (Y3 < Y0 && Y0 < Y1) ) return FALSE;
 /*N*/   if ( (X1 < X0 && X0 < X3) || (Y1 < Y0 && Y0 < Y3) ) return FALSE;
 /*N*/   if ( (X0 < X3 && X3 < X1) || (Y0 < Y3 && Y3 < Y1) ) return FALSE;
-/*N*/   if ( (X1 < X3 && X3 < X0) || (Y1 < Y3 && Y3 < Y3) ) return FALSE;
+/*N*/   if ( (X1 < X3 && X3 < X0) || (Y1 < Y3 && Y3 < Y0) ) return FALSE;
 /*N*/
 /*N*/   if ( (X3 < X0 && X0 < X2) || (Y3 < Y0 && Y0 < Y2) ) return FALSE;
 /*N*/   if ( (X2 < X0 && X0 < X3) || (Y2 < Y0 && Y0 < Y3) ) return FALSE;
 /*N*/   if ( (X0 < X3 && X3 < X2) || (Y0 < Y3 && Y3 < Y2) ) return FALSE;
-/*N*/   if ( (X2 < X3 && X3 < X0) || (Y2 < Y3 && Y3 < Y3) ) return FALSE;
+/*N*/   if ( (X2 < X3 && X3 < X0) || (Y2 < Y3 && Y3 < Y0) ) return FALSE;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
