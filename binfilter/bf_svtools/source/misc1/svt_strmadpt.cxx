@@ -669,22 +669,6 @@ USHORT SvInputStream::IsA() const
 }
 
 //============================================================================
-// virtual
-void SvInputStream::AddMark(ULONG nPos)
-{
-    if (open() && m_pPipe)
-        m_pPipe->addMark(nPos);
-}
-
-//============================================================================
-// virtual
-void SvInputStream::RemoveMark(ULONG nPos)
-{
-    if (open() && m_pPipe)
-        m_pPipe->removeMark(nPos);
-}
-
-//============================================================================
 //
 //  SvDataPipe_Impl
 //
