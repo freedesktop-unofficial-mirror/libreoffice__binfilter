@@ -868,7 +868,7 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/           if( pRet )
 /*N*/           {
 /*N*/               pRet->SetVersion( pStor->GetVersion() );
-/*N*/               pRet->SetKey( pStor->GetKey() );
+/*N*/               pRet->SetCryptMaskKey( pStor->GetKey() );
 /*N*/           }
 /*N*/       }
 /*N*/

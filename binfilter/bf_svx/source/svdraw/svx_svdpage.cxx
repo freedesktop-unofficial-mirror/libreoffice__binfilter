@@ -879,7 +879,7 @@ using namespace ::com::sun::star;
 /*?*/                                       Graphic aGraphic;
 /*?*/
 /*?*/                                       xSimStm->SetBufferSize( 32768 );
-/*?*/                                       xSimStm->SetKey( xSimStorage->GetKey() );
+/*?*/                                       xSimStm->SetCryptMaskKey( xSimStorage->GetKey() );
 /*?*/                                       *xSimStm >> aGraphic;
 /*?*/                                       xSimStm->SetBufferSize( 0 );
 /*?*/

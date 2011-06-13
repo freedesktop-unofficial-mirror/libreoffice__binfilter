@@ -393,13 +393,13 @@ sal_Bool SdBINFilter::Import()
             {
                 xDocStm->SetVersion( pStore->GetVersion() );
                 if( bKeySet )
-                    xDocStm->SetKey( aStrKey );
+                    xDocStm->SetCryptMaskKey( aStrKey );
 
                 if( (bRet = ( xDocStm->GetError() == 0 )) )
                 {
                     xDocStm->SetBufferSize( DOCUMENT_BUFFER_SIZE );
                     if( bKeySet )
-                        xDocStm->SetKey( aStrKey );
+                        xDocStm->SetCryptMaskKey( aStrKey );
                     mrDocument.SetModelStorage( pStore );
                     *xDocStm >> mrDocument;
                     mrDocument.SetModelStorage( NULL );

@@ -498,7 +498,7 @@ using namespace ::com::sun::star;
 /*N*/                       if( ! rDocumentStream->GetError())
 /*N*/                       {
 /*N*/                           rDocumentStream->SetBufferSize( DOCUMENT_BUFFER_SIZE );
-/*N*/                           rDocumentStream->SetKey( pStor->GetKey()); // set password
+/*N*/                           rDocumentStream->SetCryptMaskKey( pStor->GetKey()); // set password
 /*N*/
 /*N*/                             // read ChartModel
 /*N*/                           *rDocumentStream >> *pChDoc;
