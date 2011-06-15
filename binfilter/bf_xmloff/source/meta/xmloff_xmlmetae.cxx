@@ -225,6 +225,8 @@ rtl::OUString lcl_GetProductName()
     utl::ConfigManager& rMgr = utl::ConfigManager::GetConfigManager();
     ::rtl::OUString aValue;
     uno::Any aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTNAME);
+    ::rtl::OUString os( RTL_CONSTASCII_USTRINGPARAM("$_OS") );
+    ::rtl::Bootstrap::expandMacros(os);
     if ( (aAny >>= aValue) && aValue.getLength() )
         aName.append( aValue ).append( (sal_Unicode)' ' );
 
@@ -236,7 +238,7 @@ rtl::OUString lcl_GetProductName()
     if ( (aAny >>= aValue) && aValue.getLength() )
         aName.append( aValue ).append( (sal_Unicode)' ' );
     aName.append( (sal_Unicode)'(' );
-    aName.appendAscii( TOOLS_INETDEF_OS );
+    aResult.append( os );
     aName.append( (sal_Unicode)')' );
 
     return aName.makeStringAndClear();
