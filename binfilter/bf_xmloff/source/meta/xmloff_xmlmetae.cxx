@@ -36,6 +36,7 @@
 #include <tools/time.hxx>
 
 #include <unotools/bootstrap.hxx>
+#include <rtl/bootstrap.hxx>
 
 #include "xmlnmspe.hxx"
 
