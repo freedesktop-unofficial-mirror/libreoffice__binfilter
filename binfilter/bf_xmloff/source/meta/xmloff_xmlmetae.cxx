@@ -239,7 +239,7 @@ rtl::OUString lcl_GetProductName()
     if ( (aAny >>= aValue) && aValue.getLength() )
         aName.append( aValue ).append( (sal_Unicode)' ' );
     aName.append( (sal_Unicode)'(' );
-    aResult.append( os );
+    aName.append( os );
     aName.append( (sal_Unicode)')' );
 
     return aName.makeStringAndClear();
