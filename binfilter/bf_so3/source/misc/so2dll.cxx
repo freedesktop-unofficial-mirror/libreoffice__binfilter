@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 
 #ifdef WIN
 
-#ifndef _SVWIN_H
 #include <svwin.h>
-#endif
 
-#ifndef _SYSDEP_HXX
 #include <sysdep.hxx>
-#endif
 
 #endif
 
@@ -79,9 +76,7 @@ void ResourceDummy (void )
 
 #ifdef OS2
 
-#ifndef _SVWIN_H
 #include <svpm.h>
-#endif
 
 // Statische DLL-Verwaltungs-Variablen
 static ULONG hDLLInst = 0;      // HANDLE der DLL
@@ -109,3 +104,4 @@ extern "C" int WEPDummy( int )
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

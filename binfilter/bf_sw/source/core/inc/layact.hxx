@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -105,7 +106,7 @@ class SwLayAction
     BOOL bPaintExtraData;   //Anzeige von Zeilennumerierung o. ae. eingeschaltet?
     BOOL bActionInProgress; // wird in Action() anfangs gesetzt und zum Schluss geloescht
 
-    // OD 14.04.2003 #106346# - new flag for content formatting on interrupt.
+    // new flag for content formatting on interrupt.
     sal_Bool    mbFormatCntntOnInterrupt;
 #ifdef _LAYACT_CXX
 
@@ -242,3 +243,5 @@ inline void SwLayAction::SetCheckPageNum( USHORT nNew )
 
 } //namespace binfilter
 #endif  //_LAYACT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,31 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PAGEMASTERPROPHDL_HXX_
 #include "PageMasterPropHdl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
-#endif
 
-#ifndef _COMPHELPER_TYPES_HXX_
 #include <comphelper/types.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -81,7 +68,7 @@ sal_Bool XMLPMPropHdl_PageStyleLayout::equals( const Any& rAny1, const Any& rAny
 sal_Bool XMLPMPropHdl_PageStyleLayout::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
 
@@ -102,7 +89,7 @@ sal_Bool XMLPMPropHdl_PageStyleLayout::importXML(
 sal_Bool XMLPMPropHdl_PageStyleLayout::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool        bRet = sal_False;
     PageStyleLayout eLayout;
@@ -145,7 +132,7 @@ sal_Bool XMLPMPropHdl_NumFormat::importXML(
         Any& rValue,
         const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Int16 nSync;
+    sal_Int16 nSync(0);
     sal_Int16 nNumType = NumberingType::NUMBER_NONE;
     rUnitConverter.convertNumFormat( nNumType, rStrImpValue, OUString(),
                                      sal_True );
@@ -179,7 +166,7 @@ sal_Bool XMLPMPropHdl_NumFormat::exportXML(
         const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool    bRet = sal_False;
-    sal_Int16   nNumType;
+    sal_Int16   nNumType(0);
 
     if( rValue >>= nNumType )
     {
@@ -235,7 +222,7 @@ sal_Bool XMLPMPropHdl_NumLetterSync::exportXML(
         const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool    bRet = sal_False;
-    sal_Int16   nNumType;
+    sal_Int16   nNumType(0);
 
     if( rValue >>= nNumType )
     {
@@ -258,7 +245,7 @@ XMLPMPropHdl_PaperTrayNumber::~XMLPMPropHdl_PaperTrayNumber()
 sal_Bool XMLPMPropHdl_PaperTrayNumber::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -283,10 +270,10 @@ sal_Bool XMLPMPropHdl_PaperTrayNumber::importXML(
 sal_Bool XMLPMPropHdl_PaperTrayNumber::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
-    sal_Int32   nPaperTray;
+    sal_Int32   nPaperTray(0);
 
     if( rValue >>= nPaperTray )
     {
@@ -319,7 +306,7 @@ XMLPMPropHdl_Print::~XMLPMPropHdl_Print()
 sal_Bool XMLPMPropHdl_Print::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Unicode cToken  = ' ';
     sal_Int32   nTokenIndex = 0;
@@ -338,7 +325,7 @@ sal_Bool XMLPMPropHdl_Print::importXML(
 sal_Bool XMLPMPropHdl_Print::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( getBOOL( rValue ) )
     {
@@ -360,7 +347,7 @@ XMLPMPropHdl_CenterHorizontal::~XMLPMPropHdl_CenterHorizontal()
 sal_Bool XMLPMPropHdl_CenterHorizontal::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -379,7 +366,7 @@ sal_Bool XMLPMPropHdl_CenterHorizontal::importXML(
 sal_Bool XMLPMPropHdl_CenterHorizontal::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
 
@@ -402,7 +389,7 @@ XMLPMPropHdl_CenterVertical::~XMLPMPropHdl_CenterVertical()
 sal_Bool XMLPMPropHdl_CenterVertical::importXML(
         const OUString& rStrImpValue,
         Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -420,7 +407,7 @@ sal_Bool XMLPMPropHdl_CenterVertical::importXML(
 sal_Bool XMLPMPropHdl_CenterVertical::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool    bRet = sal_False;
 
@@ -437,3 +424,5 @@ sal_Bool XMLPMPropHdl_CenterVertical::exportXML(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

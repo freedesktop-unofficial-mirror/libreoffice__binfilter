@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,48 +26,25 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLSTYLESEXPORTHELPER_HXX
 #include "XMLStylesExportHelper.hxx"
-#endif
 
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include <bf_xmloff/XMLEventExport.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETCONDITION_HPP_
 #include <com/sun/star/sheet/XSheetCondition.hpp>
-#endif
 
 #include <algorithm>
 namespace binfilter {
@@ -158,10 +136,10 @@ sal_Bool ScMyValidationsContainer::AddValidation(const uno::Any& aTempAny,
         ::rtl::OUString sImputTitle;
         aAny >>= sImputTitle;
         aAny = xPropertySet->getPropertyValue(sSHOWERR);
-        sal_Bool bShowErrorMessage;
+        sal_Bool bShowErrorMessage(sal_False);
         aAny >>= bShowErrorMessage;
         aAny = xPropertySet->getPropertyValue(sSHOWINP);
-        sal_Bool bShowImputMessage;
+        sal_Bool bShowImputMessage(sal_False);
         aAny >>= bShowImputMessage;
         aAny = xPropertySet->getPropertyValue(sTYPE);
         sheet::ValidationType aValidationType;
@@ -245,6 +223,8 @@ rtl::OUString ScMyValidationsContainer::GetCondition(const ScMyValidation& aVali
             case sheet::ValidationType_WHOLE :
                 sCondition += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("cell-content-is-whole-number()"));
             break;
+            default :
+            break;
         }
         if (aValidation.sFormula1.getLength() ||
             (aValidation.aOperator == sheet::ConditionOperator_BETWEEN &&
@@ -277,6 +257,8 @@ rtl::OUString ScMyValidationsContainer::GetCondition(const ScMyValidation& aVali
                     break;
                     case sheet::ConditionOperator_NOT_EQUAL :
                         sCondition += ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("!="));
+                    break;
+                    default :
                     break;
                 }
                 sCondition += aValidation.sFormula1;
@@ -362,7 +344,7 @@ void ScMyValidationsContainer::WriteMessage(ScXMLExport& rExport,
 
 void ScMyValidationsContainer::WriteValidations(ScXMLExport& rExport)
 {
-    if (aValidationVec.size())
+    if (!aValidationVec.empty())
     {
         SvXMLElementExport aElemVs(rExport, XML_NAMESPACE_TABLE, XML_CONTENT_VALIDATIONS, sal_True, sal_True);
         ScMyValidationVec::iterator aItr = aValidationVec.begin();
@@ -429,9 +411,11 @@ void ScMyValidationsContainer::WriteValidations(ScXMLExport& rExport)
                         }
                     }
                     break;
+                    default :
+                    break;
                 }
             }
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -479,7 +463,7 @@ void ScMyDefaultStyles::FillDefaultStyles(const sal_uInt16 nTable,
         sal_Bool bPrevAutoStyle;
         sal_Bool bIsAutoStyle;
         sal_Bool bResult;
-        sal_Int32 nPrevIndex;
+        sal_Int32 nPrevIndex(0);
         sal_Int32 nIndex;
         sal_Int32 nRepeat(0);
         sal_Int32 nEmptyRepeat(0);
@@ -578,18 +562,18 @@ sal_Bool ScMyRowFormatRange::operator< (const ScMyRowFormatRange& rRange) const
 }
 
 ScRowFormatRanges::ScRowFormatRanges()
-    : pRowDefaults(NULL),
-    pColDefaults(NULL),
-    aRowFormatRanges(),
-    nSize(0)
+    : aRowFormatRanges()
+    , pRowDefaults(NULL)
+    , pColDefaults(NULL)
+    , nSize(0)
 {
 }
 
 ScRowFormatRanges::ScRowFormatRanges(const ScRowFormatRanges* pRanges)
-    : pRowDefaults(pRanges->pRowDefaults),
-    pColDefaults(pRanges->pColDefaults),
-    aRowFormatRanges(pRanges->aRowFormatRanges),
-    nSize(pRanges->nSize)
+    : aRowFormatRanges(pRanges->aRowFormatRanges)
+    , pRowDefaults(pRanges->pRowDefaults)
+    , pColDefaults(pRanges->pColDefaults)
+    , nSize(pRanges->nSize)
 {
 }
 
@@ -722,10 +706,10 @@ sal_Int32 ScRowFormatRanges::GetMaxRows()
         {
             if ((*aItr).nRepeatRows < nMaxRows)
                 nMaxRows = (*aItr).nRepeatRows;
-            aItr++;
+            ++aItr;
         }
     else
-        DBG_ERROR("no ranges found");
+        OSL_FAIL("no ranges found");
     return nMaxRows;
 }
 
@@ -771,19 +755,19 @@ ScFormatRangeStyles::~ScFormatRangeStyles()
     while (i != aStyleNames.end())
     {
         delete *i;
-        i++;
+        ++i;
     }
     i = aAutoStyleNames.begin();
     while (i != aAutoStyleNames.end())
     {
         delete *i;
-        i++;
+        ++i;
     }
     ScMyFormatRangeListVec::iterator j = aTables.begin();
     while (j != aTables.end())
     {
         delete *j;
-        j++;
+        ++j;
     }
 }
 
@@ -896,7 +880,7 @@ sal_Int32 ScFormatRangeStyles::GetStyleNameIndex(const sal_uInt16 nTable,
             return (*aItr).nStyleNameIndex;
         }
         else
-            aItr++;
+            ++aItr;
     }
     return -1;
 }
@@ -937,7 +921,7 @@ sal_Int32 ScFormatRangeStyles::GetStyleNameIndex(const sal_uInt16 nTable, const 
             if (bRemoveRange && (*aItr).aRangeAddress.EndRow < nRow)
                 aItr = pFormatRanges->erase(aItr);
             else
-                aItr++;
+                ++aItr;
         }
     }
     return -1;
@@ -996,13 +980,15 @@ void ScFormatRangeStyles::GetFormatRanges(const sal_Int32 nStartColumn, const sa
                 pRowFormatRanges->AddRange(aRange, nRow);
                 nColumns += aRange.nRepeatColumns;
             }
-            aItr++;
+            ++aItr;
         }
         else
+        {
             if(aItr->aRangeAddress.EndRow < nRow)
                 aItr = pFormatRanges->erase(aItr);
             else
-                aItr++;
+                ++aItr;
+        }
     }
     pRowFormatRanges->Sort();
 }
@@ -1051,7 +1037,7 @@ ScColumnRowStylesBase::~ScColumnRowStylesBase()
     while (i != aStyleNames.end())
     {
         delete *i;
-        i++;
+        ++i;
     }
 }
 
@@ -1203,3 +1189,5 @@ rtl::OUString* ScRowStyles::GetStyleName(const sal_Int16 nTable, const sal_Int32
     return GetStyleNameByIndex(GetStyleNameIndex(nTable, nField));
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

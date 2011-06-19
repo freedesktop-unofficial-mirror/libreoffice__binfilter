@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,11 @@
 #ifndef _FORMS_COMBOBOX_HXX_
 #define _FORMS_COMBOBOX_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
-#endif
-#ifndef FORMS_ERRORBROADCASTER_HXX
 #include "errorbroadcaster.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -120,6 +113,10 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
+
+    using OBoundControlModel::disposing;
+    using OPropertySetHelper::getFastPropertyValue;
+
     IMPLEMENT_INFO_SERVICE()
 
 protected:
@@ -149,3 +146,4 @@ public:
 }//end of namespace binfilter
 #endif // _FORMS_COMBOBOX_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -35,9 +33,7 @@
 #include "asciiopt.hxx"
 #include "asciiopt.hrc"
 
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
 namespace binfilter {
 
 
@@ -50,8 +46,8 @@ const sal_Int32 ASCIIDLG_MAXROWS                = 10000;
 const sal_Int32 ASCIIDLG_MAXROWS                = 32000;
 #endif
 
-static const sal_Char __FAR_DATA pStrFix[] = "FIX";
-static const sal_Char __FAR_DATA pStrMrg[] = "MRG";
+static const sal_Char pStrFix[] = "FIX";
+static const sal_Char pStrMrg[] = "MRG";
 
 
 // ============================================================================
@@ -214,3 +210,5 @@ static const sal_Char __FAR_DATA pStrMrg[] = "MRG";
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

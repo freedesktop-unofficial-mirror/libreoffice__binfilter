@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,26 +31,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _REDLNITR_HXX
 #include <redlnitr.hxx>
-#endif
-#ifndef _ITRTXT_HXX
 #include <itrtxt.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
@@ -64,9 +53,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwAttrIter::Chg( SwTxtAttr *pHt )
 /*N*/ {
-/*N*/     ASSERT( pHt && pFnt, "No attribute of font available for change");
+/*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for change");
 /*N*/     if( pRedln && pRedln->IsOn() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->ChangeTxtAttr( pFnt, *pHt, sal_True );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/         aAttrHandler.PushAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt++;
@@ -78,10 +67,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwAttrIter::Rst( SwTxtAttr *pHt )
 /*N*/ {
-/*N*/     ASSERT( pHt && pFnt, "No attribute of font available for reset");
+/*N*/     OSL_ENSURE( pHt && pFnt, "No attribute of font available for reset");
 /*N*/     // get top from stack after removing pHt
 /*N*/     if( pRedln && pRedln->IsOn() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->ChangeTxtAttr( pFnt, *pHt, sal_False );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/         aAttrHandler.PopAndChg( *pHt, *pFnt );
 /*N*/   nChgCnt--;
@@ -112,7 +101,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * GetAttr() das entartete Attribut.
  *************************************************************************/
 
-/*N*/ SwTxtAttr *SwAttrIter::GetAttr( const xub_StrLen nPos ) const
+/*N*/ SwTxtAttr *SwAttrIter::GetAttr( const xub_StrLen nPos1 ) const
 /*N*/ {
 /*N*/   if( pHints )
 /*N*/   {
@@ -120,9 +109,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       {
 /*N*/           SwTxtAttr *pPos = pHints->GetHt(i);
 /*N*/           xub_StrLen nStart = *pPos->GetStart();
-/*N*/           if( nPos < nStart )
+/*N*/           if( nPos1 < nStart )
 /*N*/               return 0;
-/*N*/           if( nPos == nStart && !pPos->GetEnd() )
+/*N*/           if( nPos1 == nStart && !pPos->GetEnd() )
 /*N*/               return pPos;
 /*N*/       }
 /*N*/   }
@@ -162,7 +151,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ sal_Bool SwAttrIter::SeekStartAndChg( OutputDevice *pOut, const sal_Bool bParaFont )
 /*N*/ {
 /*N*/     if ( pRedln && pRedln->ExtOn() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->LeaveExtend( *pFnt, 0 );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     // reset font to its original state
 /*N*/     aAttrHandler.Reset();
@@ -173,7 +162,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/       pFnt->SetProportion( nPropFont );
 /*N*/     if( pRedln )
 /*N*/   {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pRedln->Clear( pFnt );
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( pHints && !bParaFont )
@@ -261,14 +250,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ sal_Bool SwAttrIter::Seek( const xub_StrLen nNewPos )
 /*N*/ {
 /*N*/     if ( pRedln && pRedln->ExtOn() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pRedln->LeaveExtend( *pFnt, nNewPos );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   if( pHints )
 /*N*/   {
 /*N*/       if( !nNewPos || nNewPos < nPos )
 /*N*/       {
 /*N*/             if( pRedln )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               pRedln->Clear( NULL );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/             // reset font to its original state
 /*N*/             aAttrHandler.Reset();
@@ -284,7 +273,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/             // changes for extended input directly to the font
 /*N*/             if ( pRedln && pRedln->ExtOn() )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pRedln->UpdateExtFont( *pFnt );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/       }
 /*N*/       SeekFwd( nNewPos );
@@ -293,7 +282,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     pFnt->SetActual( WhichFont( nNewPos, 0, pScriptInfo ) );
 /*N*/
 /*N*/     if( pRedln )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       nChgCnt += pRedln->Seek( *pFnt, nNewPos, nPos );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   nPos = nNewPos;
 /*N*/
 /*N*/   if( nPropFont )
@@ -320,7 +309,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       }
 /*N*/   }
 /*N*/     if( pRedln )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       return pRedln->GetNextRedln( nNext );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   return nNext;
 /*N*/ }
 
@@ -366,3 +355,5 @@ public:
 };
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

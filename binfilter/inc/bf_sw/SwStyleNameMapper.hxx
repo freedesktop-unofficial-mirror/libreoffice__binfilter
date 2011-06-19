@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,16 +28,10 @@
 #ifndef _SWSTYLENAMEMAPPER_HXX
 #define _SWSTYLENAMEMAPPER_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _GETPOOLIDFROMNAMEENUM_HXX
 #include <SwGetPoolIdFromName.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 class String;
 
@@ -140,7 +135,7 @@ struct StringHash
 };
 
 
-typedef ::std::hash_map < const String*, sal_uInt16, StringHash, StringEq > NameToIdHash;
+typedef ::boost::unordered_map < const String*, sal_uInt16, StringHash, StringEq > NameToIdHash;
 
 class SwStyleNameMapper
 {
@@ -254,3 +249,5 @@ public:
 };
 } //namespace binfilter
 #endif // _NAME_MAPPER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

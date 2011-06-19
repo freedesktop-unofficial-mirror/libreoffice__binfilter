@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,39 +30,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVX_FMDPAGE_HXX //autogen
 #include <bf_svx/fmdpage.hxx>
-#endif
-#ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // helper for implementations
-#endif
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 namespace binfilter {
 
 class SdrMarkList;
@@ -99,9 +78,8 @@ public:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShape >  _CreateShape( SdrObject *pObj ) const throw ();
 };
 
-/* -----------------09.12.98 08:57-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef cppu::WeakAggImplHelper3
 <
     ::com::sun::star::drawing::XDrawPage,
@@ -145,9 +123,8 @@ public:
     SwFmDrawPage*   GetSvxPage();
     void    Invalidate() {pDoc = 0;}
 };
-/* -----------------22.01.99 10:20-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwShapeDescriptor_Impl;
 class SwXGroupShape;
 typedef
@@ -231,9 +208,8 @@ public:
     SwShapeDescriptor_Impl*     GetDescImpl() {return pImpl;}
     ::com::sun::star::uno::Reference< ::com::sun::star::uno::XAggregation >                 GetAggregationInterface() {return xShapeAgg;}
 };
-/* -----------------------------31.05.01 09:54--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXGroupShape :
     public SwXShape,
     public ::com::sun::star::drawing::XShapes
@@ -264,3 +240,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

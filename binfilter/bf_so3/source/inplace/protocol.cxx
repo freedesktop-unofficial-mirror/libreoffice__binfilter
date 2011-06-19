@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -46,11 +47,11 @@ namespace binfilter {
     aTS += "( ";                                \
     aTS += bVal ? "TRUE" : "FALSE";             \
     aTS += " )";                                \
-    DBG_TRACE( aTS.GetBuffer() );               \
+    OSL_TRACE( "%s", aTS.GetBuffer() );               \
 }
 
 #define DBG_PROTREC(FuncName)                   \
-    DBG_TRACE( FuncName )
+    OSL_TRACE( FuncName )
 
 
 /************** struct ImplSvEditObjectProtocol ***************************/
@@ -234,22 +235,9 @@ void SvEditObjectProtocol::Imp_DeleteDefault()
 |*    SvEditObjectProtocol::~SvEditObjectProtocol()
 |*    SvEditObjectProtocol::Release()
 |*
-|*    Beschreibung
-|*    Ersterstellung    MM 15.08.94
-|*    Letzte Aenderung  MM 15.08.94
-|*
 *************************************************************************/
 SvEditObjectProtocol::SvEditObjectProtocol()
 {
-/*
-    if( !SOAPP->pIEOPDflt )
-    {
-        SOAPP->pIEOPDflt = new ImplSvEditObjectProtocol();
-        SOAPP->pIEOPDflt->nRefCount = 1; // nie freigeben
-    }
-    pImp = SOAPP->pIEOPDflt;
-    pImp->nRefCount++;
-*/
     pImp = new ImplSvEditObjectProtocol();
     pImp->nRefCount = 1;
 }
@@ -293,10 +281,6 @@ BOOL SvEditObjectProtocol::Release()
 |*    SvEditObjectProtocol::GetObj()
 |*    SvEditObjectProtocol::GetClient()
 |*
-|*    Beschreibung
-|*    Ersterstellung    MM 15.08.94
-|*    Letzte Aenderung  MM 15.08.94
-|*
 *************************************************************************/
 SvEmbeddedObject * SvEditObjectProtocol::GetObj() const
 {
@@ -322,10 +306,6 @@ SvInPlaceClient * SvEditObjectProtocol::GetIPClient() const
 |*    SvEditObjectProtocol::IsEmbed()
 |*    SvEditObjectProtocol::IsInPlaceActive()
 |*    SvEditObjectProtocol::IsUIActive()
-|*
-|*    Beschreibung
-|*    Ersterstellung    MM 15.08.94
-|*    Letzte Aenderung  MM 15.08.94
 |*
 *************************************************************************/
 BOOL SvEditObjectProtocol::IsConnect() const
@@ -460,7 +440,6 @@ ErrCode ImplSvEditObjectProtocol::PlugInProtocol()
             return EmbedProtocol();
     }
 
-    //MakeVisible();
     // IPProtocol ist TRUE, wenn eines der drei Protokolle
     // gefahren werden konnte
     if( !bIPActive && !bEmbed && !bPlugIn && !ERRCODE_TOERROR( nRet ) )
@@ -507,10 +486,6 @@ ErrCode ImplSvEditObjectProtocol::IPProtocol()
             // auf PlugIn Protokoll umsteigen
             nRet = PlugInProtocol();
     }
-    /*
-    else
-        MakeVisible();
-        */
 
     CLASS_INVARIANT
 
@@ -777,8 +752,8 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
     // nach dem ClientConnect darf alles passieren, bis auf loeschen von this
     if( (bLastActionConnect && !bSvrConnect) || (!bLastActionConnect && bSvrConnect) )
     { // Object verbinden Ich darf verbinden
-        DBG_ASSERT( bConnect && bConnectP && bLastActionConnect && !bSvrConnect
-                    || !bConnect && !bConnectP && !bLastActionConnect && bSvrConnect,
+        DBG_ASSERT( (bConnect && bConnectP && bLastActionConnect && !bSvrConnect)
+                    || (!bConnect && !bConnectP && !bLastActionConnect && bSvrConnect),
                     "connect assert failed" );
         bSvrConnect = bConnect;
         DBG_PROTLOG( "Obj - Connected", bConnectP )
@@ -855,8 +830,8 @@ void ImplSvEditObjectProtocol::Opened( BOOL bOpenP )
     // nach dem ClientOpen darf alles passieren, bis auf loeschen von this
     if( (bLastActionOpen && !bSvrOpen) || (!bLastActionOpen && bSvrOpen) )
     { // Object oeffnen
-        DBG_ASSERT( bOpen && bOpenP && bLastActionOpen && !bSvrOpen
-                    || !bOpen && !bOpenP && !bLastActionOpen && bSvrOpen,
+        DBG_ASSERT( (bOpen && bOpenP && bLastActionOpen && !bSvrOpen)
+                    || (!bOpen && !bOpenP && !bLastActionOpen && bSvrOpen),
                     "open assert failed" );
         bSvrOpen = bOpen;
         DBG_PROTLOG( "Svr - Opened", bOpenP )
@@ -903,9 +878,6 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
 
     if( bEmbedP )
         Opened( bEmbedP );
-/*  else gibt nicht  ueber embed
-        Reset2Embed();
-*/
 
     if( bLastActionEmbed != bEmbedP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
@@ -927,8 +899,8 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
     // nach dem ClientEmbed darf alles passieren, bis auf loeschen von this
     if( (bLastActionEmbed && !bSvrEmbed) || (!bLastActionEmbed && bSvrEmbed) )
     { // Object oeffnen
-        DBG_ASSERT( bEmbed && bEmbedP && bLastActionEmbed && !bSvrEmbed
-                    || !bEmbed && !bEmbedP && !bLastActionEmbed && bSvrEmbed,
+        DBG_ASSERT( (bEmbed && bEmbedP && bLastActionEmbed && !bSvrEmbed)
+                    || (!bEmbed && !bEmbedP && !bLastActionEmbed && bSvrEmbed),
                     "embed assert failed" );
         bSvrEmbed = bEmbed;
         DBG_PROTLOG( "Svr - Embedded", bEmbedP )
@@ -981,9 +953,6 @@ void ImplSvEditObjectProtocol::PlugIn
 
     if( bPlugInP )
         Opened( bPlugInP );
-/*  else gibt nicht  ueber PlugIn
-        Reset2PlugIn();
-*/
 
     if( bLastActionPlugIn != bPlugInP )
         return; // irgend einer hat rekursiv das Protokoll geaendert
@@ -1005,8 +974,8 @@ void ImplSvEditObjectProtocol::PlugIn
     // nach dem ClientPlugIn darf alles passieren, bis auf loeschen von this
     if( (bLastActionPlugIn && !bSvrPlugIn) || (!bLastActionPlugIn && bSvrPlugIn) )
     { // Object oeffnen
-        DBG_ASSERT( bPlugIn && bPlugInP && bLastActionPlugIn && !bSvrPlugIn
-                    || !bPlugIn && !bPlugInP && !bLastActionPlugIn && bSvrPlugIn,
+        DBG_ASSERT( (bPlugIn && bPlugInP && bLastActionPlugIn && !bSvrPlugIn)
+                    || (!bPlugIn && !bPlugInP && !bLastActionPlugIn && bSvrPlugIn),
                     "PlugIn assert failed" );
         bSvrPlugIn = bPlugIn;
         DBG_PROTLOG( "Svr - PlugIn", bPlugInP )
@@ -1080,19 +1049,12 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
     // nach dem ClientIPActive darf alles passieren, bis auf loeschen von this
     if( (bLastActionIPActive && !bSvrIPActive) || (!bLastActionIPActive && bSvrIPActive) )
     { // Object oeffnen
-        DBG_ASSERT( bIPActive && bIPActiveP && bLastActionIPActive && !bSvrIPActive
-                    || !bIPActive && !bIPActiveP && !bLastActionIPActive && bSvrIPActive,
+        DBG_ASSERT( (bIPActive && bIPActiveP && bLastActionIPActive && !bSvrIPActive)
+                    || (!bIPActive && !bIPActiveP && !bLastActionIPActive && bSvrIPActive),
                     "inplace assert failed" );
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrIPActive = bIPActive;
         DBG_PROTLOG( "Svr - InPlaceActivate", bIPActiveP )
-        if( aIPObj->Owner() )
-        {
-            if( bIPActive )
-                SvInPlaceObject::GetIPActiveObjectList().Insert( aIPObj, LIST_APPEND );
-            else
-                SvInPlaceObject::GetIPActiveObjectList().Remove( aIPObj );
-        }
         if( bIPActive )
         {
             aIPObj->InPlaceActivate( bIPActive );
@@ -1150,10 +1112,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
     bLastActionUIActive = bUIActiveP;
     if( bUIActiveP )
         InPlaceActivate( bUIActiveP );
-/* gibt nichts ueber UIActive
-    else
-        Reset2UIActive();
-*/
     DBG_PROTLOG( "UIActivate", bUIActiveP )
     DBG_ASSERT( !bEmbed && !bPlugIn, "ui assert failed" );
     bUIActive = bUIActiveP; // vor der Aktion den Status setzen
@@ -1211,8 +1169,8 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
     // nach dem ClientUIActive darf alles passieren, bis auf loeschen von this
     if( (bLastActionUIActive && !bSvrUIActive) || (!bLastActionUIActive && bSvrUIActive) )
     { // Object oeffnen
-        DBG_ASSERT( bUIActive && bUIActiveP && bLastActionUIActive && !bSvrUIActive
-                    || !bUIActive && !bUIActiveP && !bLastActionUIActive && bSvrUIActive,
+        DBG_ASSERT( (bUIActive && bUIActiveP && bLastActionUIActive && !bSvrUIActive)
+                    || (!bUIActive && !bUIActiveP && !bLastActionUIActive && bSvrUIActive),
                     "ui assert failed" );
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrUIActive = bUIActive;
@@ -1240,14 +1198,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
         aIPClient->UIActivate( FALSE );
     }
 
-    /*
-    if( bUIActive )
-    {
-        if( aIPClient->Owner() )
-            // Object anordnen anstossen
-            aIPObj->GetIPEnv()->DoRectsChanged();
-    }
-    */
     CLASS_INVARIANT
 }
 
@@ -1311,3 +1261,4 @@ void SvEditObjectProtocol::SetInClosed( BOOL bInClosed )
 
 }
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

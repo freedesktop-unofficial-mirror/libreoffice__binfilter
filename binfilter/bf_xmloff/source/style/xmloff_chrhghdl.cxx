@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,21 +27,13 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_CHARHEIGHTTYPES_HXX
 #include <chrhghdl.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 namespace binfilter {
@@ -63,7 +56,7 @@ XMLCharHeightHdl::~XMLCharHeightHdl()
     // nothing to do
 }
 
-sal_Bool XMLCharHeightHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     double fSize;
 
@@ -80,7 +73,7 @@ sal_Bool XMLCharHeightHdl::importXML( const OUString& rStrImpValue, uno::Any& rV
     return sal_False;
 }
 
-sal_Bool XMLCharHeightHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     OUStringBuffer aOut;
 
@@ -126,7 +119,7 @@ sal_Bool XMLCharHeightPropHdl::exportXML( OUString& rStrExpValue, const uno::Any
 {
     OUStringBuffer aOut( rStrExpValue );
 
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     if( rValue >>= nValue )
     {
         rUnitConverter.convertPercent( aOut, nValue );
@@ -146,7 +139,7 @@ XMLCharHeightDiffHdl::~XMLCharHeightDiffHdl()
     // nothing to do
 }
 
-sal_Bool XMLCharHeightDiffHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightDiffHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Int32 nRel = 0;
 
@@ -159,14 +152,14 @@ sal_Bool XMLCharHeightDiffHdl::importXML( const OUString& rStrImpValue, uno::Any
     return sal_False;
 }
 
-sal_Bool XMLCharHeightDiffHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharHeightDiffHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     OUStringBuffer aOut;
 
     float nRel = 0;
     if( (rValue >>= nRel) && (nRel != 0) )
     {
-        SvXMLUnitConverter::convertMeasure( aOut, nRel, MAP_POINT, MAP_POINT );
+        SvXMLUnitConverter::convertMeasure( aOut, static_cast<sal_Int32>(nRel), MAP_POINT, MAP_POINT );
         rStrExpValue = aOut.makeStringAndClear();
     }
 
@@ -174,3 +167,5 @@ sal_Bool XMLCharHeightDiffHdl::exportXML( OUString& rStrExpValue, const uno::Any
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

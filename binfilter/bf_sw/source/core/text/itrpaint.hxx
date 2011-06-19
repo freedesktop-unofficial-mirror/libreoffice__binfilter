@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -45,8 +46,8 @@ protected:
     void CtorInit( SwTxtFrm *pFrm, SwTxtPaintInfo *pInf );
     inline SwTxtPainter() { }
 public:
-    inline SwTxtPainter( SwTxtFrm *pFrm, SwTxtPaintInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtPainter( SwTxtFrm *pTxtFrm, SwTxtPaintInfo *pTxtPaintInf )
+           { CtorInit( pTxtFrm, pTxtPaintInf ); }
     // if PaintMultiPortion is called recursively, we have to pass the
     // surrounding SwBidiPortion
     inline void SetPaintDrop( const sal_Bool bNew ) { bPaintDrop = bNew; }
@@ -61,3 +62,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

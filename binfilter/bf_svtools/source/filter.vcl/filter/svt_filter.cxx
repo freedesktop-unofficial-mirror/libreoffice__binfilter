@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,7 +32,7 @@
 #if defined UNX && defined ALPHA
 #include <fstream.hxx>
 #endif
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <comphelper/processfactory.hxx>
 #include <ucbhelper/content.hxx>
 #include <cppuhelper/implbase1.hxx>
@@ -43,9 +44,7 @@
 #include <vcl/svapp.hxx>
 #include <osl/file.hxx>
 #include <bf_svtools/filter.hxx>
-#ifndef _FILTER_CONFIG_CACHE_HXX_
 #include "FilterConfigCache.hxx"
-#endif
 #include <bf_svtools/FilterConfigItem.hxx>
 #include <bf_svtools/fltcall.hxx>
 #include <bf_svtools/wmf.hxx>
@@ -57,55 +56,23 @@
 #include "sgffilt.hxx"
 #include "osl/module.hxx"
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
 #include <com/sun/star/awt/Size.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
 #include <com/sun/star/uno/XInterface.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XWEAK_HPP_
 #include <com/sun/star/uno/XWeak.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
 #include <com/sun/star/uno/XAggregation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SVG_XSVGWRITER_HPP_
 #include <com/sun/star/svg/XSVGWriter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
 #include <com/sun/star/ucb/CommandAbortedException.hpp>
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 #include <rtl/bootstrap.hxx>
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #define PMGCHUNG_msOG       0x6d734f47      // Microsoft Office Animated GIF
 
@@ -206,7 +173,7 @@ void ImplDirEntryHelper::Kill( const String& rMainUrl )
         ::ucbhelper::Content aCnt( rMainUrl,
                              ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XCommandEnvironment >() );
 
-        aCnt.executeCommand( ::rtl::OUString::createFromAscii( "delete" ),
+        aCnt.executeCommand( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "delete" )),
                              ::com::sun::star::uno::makeAny( sal_Bool( sal_True ) ) );
     }
     catch( ::com::sun::star::ucb::CommandAbortedException& )
@@ -279,9 +246,6 @@ inline String ImpGetExtension( const String &rPath )
 |*                                 TRUE, wenn die Datei WAHRSCHEINLICH von
 |*                                 dem Format ist, ODER WENN DAS FORMAT
 |*                                 DIESER FUNKTION NICHT BEKANNT IST!
-|*
-|*    Ersterstellung    OH 26.05.95
-|*    Letzte Aenderung  OH 07.08.95
 |*
 *************************************************************************/
 
@@ -1314,7 +1278,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
         sal_Int32 i;
         for ( i = 0; i < pFilterData->getLength(); i++ )
         {
-            if ( (*pFilterData)[ i ].Name.equalsAscii( "PreviewSizeHint" ) )
+            if ( (*pFilterData)[ i ].Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "PreviewSizeHint" ) ) )
             {
                 awt::Size aSize;
                 if ( (*pFilterData)[ i ].Value >>= aSize )
@@ -1326,7 +1290,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
                         nImportFlags &=~GRFILTER_I_FLAGS_FOR_PREVIEW;
                 }
             }
-            else if ( (*pFilterData)[ i ].Name.equalsAscii( "AllowPartialStreamRead" ) )
+            else if ( (*pFilterData)[ i ].Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "AllowPartialStreamRead" ) ) )
             {
                 (*pFilterData)[ i ].Value >>= bAllowPartialStreamRead;
                 if ( bAllowPartialStreamRead )
@@ -1334,7 +1298,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
                 else
                     nImportFlags &=~GRFILTER_I_FLAGS_ALLOW_PARTIAL_STREAMREAD;
             }
-            else if ( (*pFilterData)[ i ].Name.equalsAscii( "CreateNativeLink" ) )
+            else if ( (*pFilterData)[ i ].Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "CreateNativeLink" ) ) )
             {
                 (*pFilterData)[ i ].Value >>= bCreateNativeLink;
             }
@@ -1430,7 +1394,7 @@ USHORT GraphicFilter::ImportGraphic( Graphic& rGraphic, const String& rPath, SvS
                             break;
                         }
                     }
-                    aIter++;
+                    ++aIter;
                 }
             }
 
@@ -1866,7 +1830,7 @@ USHORT GraphicFilter::ExportGraphic( const Graphic& rGraphic, const String& rPat
                     sal_Int32 k, j, i = 0;
                     for ( i = 0; i < pFilterData->getLength(); i++ )
                     {
-                        if ( (*pFilterData)[ i ].Name.equalsAscii( "AdditionalChunks" ) )
+                        if ( (*pFilterData)[ i ].Name.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "AdditionalChunks" ) ) )
                         {
                             com::sun::star::uno::Sequence< com::sun::star::beans::PropertyValue > aAdditionalChunkSequence;
                             if ( (*pFilterData)[ i ].Value >>= aAdditionalChunkSequence )
@@ -1920,10 +1884,10 @@ USHORT GraphicFilter::ExportGraphic( const Graphic& rGraphic, const String& rPat
                     if( xMgr.is() )
                     {
                         ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > xSaxWriter( xMgr->createInstance(
-                            ::rtl::OUString::createFromAscii( "com.sun.star.xml.sax.Writer" ) ), ::com::sun::star::uno::UNO_QUERY );
+                            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Writer" )) ), ::com::sun::star::uno::UNO_QUERY );
 
                         ::com::sun::star::uno::Reference< ::com::sun::star::svg::XSVGWriter > xSVGWriter( xMgr->createInstance(
-                            ::rtl::OUString::createFromAscii( "com.sun.star.svg.SVGWriter" ) ), ::com::sun::star::uno::UNO_QUERY );
+                            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.svg.SVGWriter" )) ), ::com::sun::star::uno::UNO_QUERY );
 
                         if( xSaxWriter.is() && xSVGWriter.is() )
                         {
@@ -2048,3 +2012,5 @@ GraphicFilter* GraphicFilter::GetGraphicFilter()
     return pGraphicFilter;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

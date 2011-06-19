@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -70,110 +71,6 @@ void SdPage::EndListenOutlineText()
 
         delete pOutlineStyles;
     }
-}
-
-void SdPage::WriteData(SvStream& rOut) const
-{
-    FmFormPage::WriteData( rOut );
-    rOut.SetStreamCharSet(GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rOut.GetVersion()));
-
-    if ( pModel->IsStreamingSdrModel() )
-    {
-        return;
-    }
-
-    // letzter Parameter ist die aktuelle Versionsnummer des Codes
-    SdIOCompat aIO(rOut, STREAM_WRITE, 7);
-
-    BOOL bDummy = TRUE;
-    BOOL bManual = ( PRESCHANGE_MANUAL == ePresChange ); // nur der Kompat.halber
-
-    rOut<<bDummy;                      // ehem. bTemplateMode
-    rOut<<bDummy;                      // ehem. bBackgroundMode
-    rOut<<bDummy;                      // ehem. bOutlineMode
-
-    UINT16 nUI16Temp = (UINT16) eAutoLayout;
-    rOut << nUI16Temp;
-
-    // Selektionskennung ist nicht persistent, wird nicht geschrieben
-
-    sal_uInt32 nULTemp;
-    nULTemp = (sal_uInt32)eFadeSpeed;
-    rOut << nULTemp;
-    nULTemp = (sal_uInt32)eFadeEffect;
-    rOut << nULTemp;
-    rOut << bManual;
-    rOut << nTime;
-    rOut << bSoundOn;
-    rOut << bExcluded;
-    rOut.WriteByteString( aLayoutName );
-
-    // Liste der Praesentationsobjekt abspeichern
-    UINT32 nUserCallCount = 0;
-    UINT32 nCount = (UINT32)aPresObjList.Count();
-    UINT32 nValidCount = nCount;
-
-    // NULL-Pointer rauszaehlen. Eigentlich haben die nichts in der Liste
-    // verloren, aber es gibt leider Kundenfiles, in denen so was vorkommt.
-    UINT32 nObj; for (nObj = 0; nObj < nCount; nObj++)
-    {
-        SdrObject* pObj = (SdrObject*)aPresObjList.GetObject(nObj);
-        if (!pObj)
-            nValidCount--;
-    }
-    rOut << nValidCount;
-
-    for (nObj = 0; nObj < nCount; nObj++)
-    {
-        SdrObject* pObj = (SdrObject*)aPresObjList.GetObject(nObj);
-        if (pObj)
-        {
-           rOut << pObj->GetOrdNum();
-
-           if ( ( (SdPage*) pObj->GetUserCall() ) == this)
-           {
-               nUserCallCount++;
-           }
-        }
-    }
-
-    nUI16Temp = (UINT16)ePageKind;
-    rOut << nUI16Temp;
-
-    // Liste der Praesentationsobjekt abspeichern,
-    // welche einen UserCall auf die Seite haben
-    rOut << nUserCallCount;
-    for (nObj = 0; nObj < nCount; nObj++)
-    {
-        SdrObject* pObj = (SdrObject*)aPresObjList.GetObject(nObj);
-
-        if ( pObj && ( (SdPage*) pObj->GetUserCall() ) == this)
-        {
-            rOut << pObj->GetOrdNum();
-        }
-    }
-
-    // #90477# INT16 nI16Temp = ::GetStoreCharSet( gsl_getSystemTextEncoding() );  // .EXEs vor 303 werten den aus
-    INT16 nI16Temp = GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rOut.GetVersion());
-
-    rOut << nI16Temp;
-
-    rOut.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel(aSoundFile,
-                                                  INetURLObject::WAS_ENCODED,
-                                                  INetURLObject::DECODE_UNAMBIGUOUS));
-    rOut.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel(aFileName,
-                                                  INetURLObject::WAS_ENCODED,
-                                                  INetURLObject::DECODE_UNAMBIGUOUS));
-    rOut.WriteByteString( aBookmarkName );
-
-    UINT16 nPaperBinTemp = nPaperBin;
-    rOut << nPaperBinTemp;
-
-    UINT16 nOrientationTemp = (UINT16) eOrientation;
-    rOut << nOrientationTemp;
-
-    UINT16 nPresChangeTemp = (UINT16) ePresChange; // ab 370 (IO-Version 7)
-    rOut << nPresChangeTemp;
 }
 
 void SdPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
@@ -325,7 +222,7 @@ void SdPage::SetModel(SdrModel* pNewModel)
 }
 
 SdPage::SdPage(const SdPage& rSrcPage)
-: FmFormPage(rSrcPage)
+: FmFormPage(rSrcPage), SdrObjUserCall(rSrcPage)
 {
     ePageKind           = rSrcPage.ePageKind;
     eAutoLayout         = rSrcPage.eAutoLayout;
@@ -366,13 +263,13 @@ SdPage::SdPage(const SdPage& rSrcPage)
 
 SdrPage* SdPage::Clone() const
 {
-    SdPage* pPage = new SdPage(*this);
+    SdPage* pLclPage = new SdPage(*this);
 
     if( (PK_STANDARD == ePageKind) && !IsMasterPage() )
     {
         // preserve presentation order on slide duplications
         SdrObjListIter aSrcIter( *this, IM_DEEPWITHGROUPS );
-        SdrObjListIter aDstIter( *pPage, IM_DEEPWITHGROUPS );
+        SdrObjListIter aDstIter( *pLclPage, IM_DEEPWITHGROUPS );
 
         while( aSrcIter.IsMore() && aDstIter.IsMore() )
         {
@@ -393,7 +290,7 @@ SdrPage* SdPage::Clone() const
         DBG_ASSERT( !aSrcIter.IsMore() && !aDstIter.IsMore(), "unequal shape numbers after a page clone?" );
     }
 
-    return(pPage);
+    return(pLclPage);
 }
 
 SfxStyleSheet* SdPage::GetTextStyleSheetForObject( SdrObject* pObj ) const
@@ -446,3 +343,5 @@ void SdPage::getAlienAttributes( ::com::sun::star::uno::Any& rAttributes )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

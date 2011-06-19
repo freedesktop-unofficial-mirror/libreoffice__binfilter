@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _UNOEVENT_HXX
 #define _UNOEVENT_HXX
 
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
 
 namespace binfilter {
 
@@ -120,3 +119,5 @@ protected:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

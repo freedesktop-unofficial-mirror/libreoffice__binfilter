@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -42,29 +40,15 @@
 #include "dbcolect.hxx"
 #include "datauno.hxx"
 
-#ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 #define SC_ENABLEUSERSORTLIST   "EnableUserSortList"
@@ -76,15 +60,15 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLDatabaseRangesContext::ScXMLDatabaseRangesContext( ScXMLImport& rImport,
+ScXMLDatabaseRangesContext::ScXMLDatabaseRangesContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
-                                      ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+                                      ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/) :
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     // has no attributes
-    rImport.LockSolarMutex();
+    rInImport.LockSolarMutex();
 }
 
 ScXMLDatabaseRangesContext::~ScXMLDatabaseRangesContext()
@@ -92,7 +76,7 @@ ScXMLDatabaseRangesContext::~ScXMLDatabaseRangesContext()
     GetScImport().UnlockSolarMutex();
 }
 
-SvXMLImportContext *ScXMLDatabaseRangesContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLDatabaseRangesContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -100,18 +84,18 @@ SvXMLImportContext *ScXMLDatabaseRangesContext::CreateChildContext( USHORT nPref
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetDatabaseRangesElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_DATABASE_RANGE :
         {
-            pContext = new ScXMLDatabaseRangeContext( GetScImport(), nPrefix,
+            pContext = new ScXMLDatabaseRangeContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -120,38 +104,38 @@ void ScXMLDatabaseRangesContext::EndElement()
 {
 }
 
-ScXMLDatabaseRangeContext::ScXMLDatabaseRangeContext( ScXMLImport& rImport,
+ScXMLDatabaseRangeContext::ScXMLDatabaseRangeContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    aSubTotalColumns(),
+    aSortSequence(),
+    eOrientation(table::TableOrientation_ROWS),
     nRefresh(0),
     nSubTotalsUserListIndex(0),
     nSubTotalRuleGroupFieldNumber(0),
     bContainsSort(sal_False),
     bContainsSubTotal(sal_False),
+    bNative(sal_True),
     bIsSelection(sal_False),
     bKeepFormats(sal_False),
     bMoveCells(sal_False),
     bStripData(sal_False),
-    eOrientation(table::TableOrientation_ROWS),
     bContainsHeader(sal_True),
     bAutoFilter(sal_False),
-    bFilterCopyOutputData(sal_False),
-    bFilterIsCaseSensitive(sal_False),
-    bFilterSkipDuplicates(sal_False),
-    bFilterUseRegularExpressions(sal_False),
-    bFilterConditionSourceRange(sal_False),
     bSubTotalsBindFormatsToContent(sal_False),
     bSubTotalsIsCaseSensitive(sal_False),
     bSubTotalsInsertPageBreaks(sal_False),
     bSubTotalsSortGroups(sal_False),
     bSubTotalsEnabledUserList(sal_False),
     bSubTotalsAscending(sal_True),
-    bNative(sal_True),
-    aSubTotalColumns(),
-    aSortSequence()
+    bFilterCopyOutputData(sal_False),
+    bFilterIsCaseSensitive(sal_False),
+    bFilterSkipDuplicates(sal_False),
+    bFilterUseRegularExpressions(sal_False),
+    bFilterConditionSourceRange(sal_False)
 {
     nSourceType = sheet::DataImportMode_NONE;
     String sUnbenannt = ScGlobal::GetRscString(STR_DB_NONAME);
@@ -162,12 +146,12 @@ ScXMLDatabaseRangeContext::ScXMLDatabaseRangeContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_DATABASE_RANGE_ATTR_NAME :
             {
@@ -230,7 +214,7 @@ ScXMLDatabaseRangeContext::~ScXMLDatabaseRangeContext()
 {
 }
 
-SvXMLImportContext *ScXMLDatabaseRangeContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLDatabaseRangeContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -238,50 +222,50 @@ SvXMLImportContext *ScXMLDatabaseRangeContext::CreateChildContext( USHORT nPrefi
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetDatabaseRangeElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_DATABASE_RANGE_SOURCE_SQL :
         {
-            pContext = new ScXMLSourceSQLContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSourceSQLContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
         case XML_TOK_DATABASE_RANGE_SOURCE_TABLE :
         {
-            pContext = new ScXMLSourceTableContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSourceTableContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
         case XML_TOK_DATABASE_RANGE_SOURCE_QUERY :
         {
-            pContext = new ScXMLSourceQueryContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSourceQueryContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
         case XML_TOK_FILTER :
         {
-            pContext = new ScXMLFilterContext( GetScImport(), nPrefix,
+            pContext = new ScXMLFilterContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
         case XML_TOK_SORT :
         {
             bContainsSort = sal_True;
-            pContext = new ScXMLSortContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSortContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
         case XML_TOK_DATABASE_RANGE_SUBTOTAL_RULES :
         {
             bContainsSubTotal = sal_True;
-            pContext = new ScXMLSubTotalRulesContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSubTotalRulesContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, this);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -474,13 +458,13 @@ void ScXMLDatabaseRangeContext::EndElement()
     }
 }
 
-ScXMLSourceSQLContext::ScXMLSourceSQLContext( ScXMLImport& rImport,
+ScXMLSourceSQLContext::ScXMLSourceSQLContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -488,12 +472,12 @@ ScXMLSourceSQLContext::ScXMLSourceSQLContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SOURCE_SQL_ATTR_DATABASE_NAME :
             {
@@ -519,15 +503,15 @@ ScXMLSourceSQLContext::~ScXMLSourceSQLContext()
 {
 }
 
-SvXMLImportContext *ScXMLSourceSQLContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSourceSQLContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -536,13 +520,13 @@ void ScXMLSourceSQLContext::EndElement()
 {
 }
 
-ScXMLSourceTableContext::ScXMLSourceTableContext( ScXMLImport& rImport,
+ScXMLSourceTableContext::ScXMLSourceTableContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -550,12 +534,12 @@ ScXMLSourceTableContext::ScXMLSourceTableContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SOURCE_TABLE_ATTR_DATABASE_NAME :
             {
@@ -576,15 +560,15 @@ ScXMLSourceTableContext::~ScXMLSourceTableContext()
 {
 }
 
-SvXMLImportContext *ScXMLSourceTableContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSourceTableContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -593,13 +577,13 @@ void ScXMLSourceTableContext::EndElement()
 {
 }
 
-ScXMLSourceQueryContext::ScXMLSourceQueryContext( ScXMLImport& rImport,
+ScXMLSourceQueryContext::ScXMLSourceQueryContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -607,12 +591,12 @@ ScXMLSourceQueryContext::ScXMLSourceQueryContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SOURCE_QUERY_ATTR_DATABASE_NAME :
             {
@@ -633,15 +617,15 @@ ScXMLSourceQueryContext::~ScXMLSourceQueryContext()
 {
 }
 
-SvXMLImportContext *ScXMLSourceQueryContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSourceQueryContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -650,13 +634,13 @@ void ScXMLSourceQueryContext::EndElement()
 {
 }
 
-ScXMLSubTotalRulesContext::ScXMLSubTotalRulesContext( ScXMLImport& rImport,
+ScXMLSubTotalRulesContext::ScXMLSubTotalRulesContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -664,12 +648,12 @@ ScXMLSubTotalRulesContext::ScXMLSubTotalRulesContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SUBTOTAL_RULES_ATTR_BIND_STYLES_TO_CONTENT :
             {
@@ -694,7 +678,7 @@ ScXMLSubTotalRulesContext::~ScXMLSubTotalRulesContext()
 {
 }
 
-SvXMLImportContext *ScXMLSubTotalRulesContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSubTotalRulesContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -702,24 +686,24 @@ SvXMLImportContext *ScXMLSubTotalRulesContext::CreateChildContext( USHORT nPrefi
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetDatabaseRangeSubTotalRulesElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_SUBTOTAL_RULES_SORT_GROUPS :
         {
-            pContext = new ScXMLSortGroupsContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSortGroupsContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, pDatabaseRangeContext);
         }
         break;
         case XML_TOK_SUBTOTAL_RULES_SUBTOTAL_RULE :
         {
-            pContext = new ScXMLSubTotalRuleContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSubTotalRuleContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, pDatabaseRangeContext);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -728,13 +712,13 @@ void ScXMLSubTotalRulesContext::EndElement()
 {
 }
 
-ScXMLSortGroupsContext::ScXMLSortGroupsContext( ScXMLImport& rImport,
+ScXMLSortGroupsContext::ScXMLSortGroupsContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     pDatabaseRangeContext->SetSubTotalsSortGroups(sal_True);
@@ -743,12 +727,12 @@ ScXMLSortGroupsContext::ScXMLSortGroupsContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SORT_GROUPS_ATTR_DATA_TYPE :
             {
@@ -795,15 +779,15 @@ ScXMLSortGroupsContext::~ScXMLSortGroupsContext()
 {
 }
 
-SvXMLImportContext *ScXMLSortGroupsContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSortGroupsContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -812,13 +796,13 @@ void ScXMLSortGroupsContext::EndElement()
 {
 }
 
-ScXMLSubTotalRuleContext::ScXMLSubTotalRuleContext( ScXMLImport& rImport,
+ScXMLSubTotalRuleContext::ScXMLSubTotalRuleContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -826,12 +810,12 @@ ScXMLSubTotalRuleContext::ScXMLSubTotalRuleContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SUBTOTAL_RULE_ATTR_GROUP_BY_FIELD_NUMBER :
             {
@@ -846,7 +830,7 @@ ScXMLSubTotalRuleContext::~ScXMLSubTotalRuleContext()
 {
 }
 
-SvXMLImportContext *ScXMLSubTotalRuleContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSubTotalRuleContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -854,18 +838,18 @@ SvXMLImportContext *ScXMLSubTotalRuleContext::CreateChildContext( USHORT nPrefix
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetSubTotalRulesSubTotalRuleElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_SUBTOTAL_RULE_SUBTOTAL_FIELD :
         {
-            pContext = new ScXMLSubTotalFieldContext( GetScImport(), nPrefix,
+            pContext = new ScXMLSubTotalFieldContext( GetScImport(), nInPrefix,
                                                           rLName, xAttrList, pDatabaseRangeContext);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -874,13 +858,13 @@ void ScXMLSubTotalRuleContext::EndElement()
 {
 }
 
-ScXMLSubTotalFieldContext::ScXMLSubTotalFieldContext( ScXMLImport& rImport,
+ScXMLSubTotalFieldContext::ScXMLSubTotalFieldContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                         ScXMLDatabaseRangeContext* pTempDatabaseRangeContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     pDatabaseRangeContext = pTempDatabaseRangeContext;
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -888,12 +872,12 @@ ScXMLSubTotalFieldContext::ScXMLSubTotalFieldContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_SUBTOTAL_FIELD_ATTR_FIELD_NUMBER :
             {
@@ -913,15 +897,15 @@ ScXMLSubTotalFieldContext::~ScXMLSubTotalFieldContext()
 {
 }
 
-SvXMLImportContext *ScXMLSubTotalFieldContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLSubTotalFieldContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = 0;
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -935,3 +919,5 @@ void ScXMLSubTotalFieldContext::EndElement()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -48,14 +46,10 @@
 #include "docpool.hxx"
 #include "appoptio.hxx"
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 #include <bf_svx/svdfield.hxx>      //  SdrRegisterFieldClasses
 #include <rtl/logfile.hxx>
@@ -138,3 +132,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

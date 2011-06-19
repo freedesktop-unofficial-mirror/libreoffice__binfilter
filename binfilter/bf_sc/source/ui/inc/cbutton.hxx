@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #ifndef SC_CBUTTON_HXX
 #define SC_CBUTTON_HXX
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 
 class Window;
@@ -71,3 +70,4 @@ protected:
 #endif // SC_CBUTTON_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

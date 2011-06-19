@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,26 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_FCONTNR_HXX
 #include <bf_sfx2/fcontnr.hxx>
-#endif
 
 
-#ifndef _DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
 
 #include "dllname.hxx"
 namespace binfilter {
@@ -71,7 +60,7 @@ SFX_IMPL_OBJECTFACTORY_LIB( SmDocShell,
                             String::CreateFromAscii(DLL_NAME) )
 {
     SfxObjectFactory& rFactory = (SfxObjectFactory&)Factory();
-    SfxFactoryFilterContainer *pFltContainer = rFactory.GetFilterContainer( FALSE );
+    /*SfxFactoryFilterContainer *pFltContainer =*/ rFactory.GetFilterContainer( FALSE );
     rFactory.GetFilterContainer()->SetDetectFilter( &SmDLL::DetectFilter );
 
    // FG: Sonst gibts keine Hilfe im Math  #38447#
@@ -298,7 +287,7 @@ ULONG SmDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
         SvStream *pStrm = rMedium.GetInStream();
         if (pStrm && !pStrm->GetError())
         {
-            const int nSize = 5;
+            const USHORT nSize = 5;
             sal_Char aBuffer[nSize+1];
             aBuffer[nSize] = 0;
             ULONG nBytesRead = pStrm->Read( aBuffer, nSize );
@@ -327,3 +316,5 @@ ULONG SmDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,39 +28,24 @@
 
 #include <bf_svtools/helpopt.hxx>
 
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _SV_HELP_HXX
 #include <vcl/help.hxx>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 #include "itemholder2.hxx"
 
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -178,7 +164,7 @@ Sequence< OUString > SvtHelpOptions_Impl::GetPropertyNames()
 // -----------------------------------------------------------------------
 
 SvtHelpOptions_Impl::SvtHelpOptions_Impl()
-    : ConfigItem( OUString::createFromAscii("Office.Common/Help") )
+    : ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Help" )) )
     , pList( 0 )
     , bExtendedHelp( sal_False )
     , bHelpTips( sal_True )
@@ -291,10 +277,10 @@ void  SvtHelpOptions_Impl::Load(const uno::Sequence< ::rtl::OUString>& rProperty
 void SvtHelpOptions_Impl::implGetURLCounters( Sequence< ::rtl::OUString >& _rNodeNames, Sequence< Any >& _rURLs, Sequence< Any >& _rCounters )
 {
     // the ignore counters for the help agent URLs
-    const ::rtl::OUString sIgnoreListNodePath = ::rtl::OUString::createFromAscii("HelpAgent/IgnoreList");
-    const ::rtl::OUString sPathSeparator = ::rtl::OUString::createFromAscii("/");
-    const ::rtl::OUString sURLLocalPath = ::rtl::OUString::createFromAscii("/Name");
-    const ::rtl::OUString sCounterLocalPath = ::rtl::OUString::createFromAscii("/Counter");
+    const ::rtl::OUString sIgnoreListNodePath( RTL_CONSTASCII_USTRINGPARAM( "HelpAgent/IgnoreList" ));
+    const ::rtl::OUString sPathSeparator( RTL_CONSTASCII_USTRINGPARAM( "/" ));
+    const ::rtl::OUString sURLLocalPath( RTL_CONSTASCII_USTRINGPARAM( "/Name" ));
+    const ::rtl::OUString sCounterLocalPath( RTL_CONSTASCII_USTRINGPARAM( "/Counter" ));
 
     // get the names of all the nodes containing ignore counters
     // collect the node names we have to ask
@@ -351,10 +337,10 @@ void SvtHelpOptions_Impl::implSaveURLCounters()
 {
     ::osl::MutexGuard aGuard(aIgnoreCounterSafety);
 
-    const ::rtl::OUString sIgnoreListNodePath = ::rtl::OUString::createFromAscii("HelpAgent/IgnoreList");
-    const ::rtl::OUString sPathSeparator = ::rtl::OUString::createFromAscii("/");
-    const ::rtl::OUString sURLLocalPath = ::rtl::OUString::createFromAscii("/Name");
-    const ::rtl::OUString sCounterLocalPath = ::rtl::OUString::createFromAscii("/Counter");
+    const ::rtl::OUString sIgnoreListNodePath( RTL_CONSTASCII_USTRINGPARAM( "HelpAgent/IgnoreList" ));
+    const ::rtl::OUString sPathSeparator( RTL_CONSTASCII_USTRINGPARAM( "/" ));
+    const ::rtl::OUString sURLLocalPath( RTL_CONSTASCII_USTRINGPARAM( "/Name" ));
+    const ::rtl::OUString sCounterLocalPath( RTL_CONSTASCII_USTRINGPARAM( "/Counter" ));
 
     // get the current URL/counter pairs (as they're persistent at the moment)
     Sequence< ::rtl::OUString > aNodeNames;
@@ -438,7 +424,7 @@ void SvtHelpOptions_Impl::implSaveURLCounters()
     ::rtl::OUString sNewNodeName;
     Sequence< ::rtl::OUString > aNewCounterDataNodeNames(2);
     Sequence< Any >             aNewCounterDataValues(2);
-    const ::rtl::OUString sNodeNameBase = ::rtl::OUString::createFromAscii("URL");
+    const ::rtl::OUString sNodeNameBase( RTL_CONSTASCII_USTRINGPARAM( "URL" ));
     for (   ConstMapString2IntIterator aCollectNew = aURLIgnoreCounters.begin();
             aCollectNew != aURLIgnoreCounters.end();
             ++aCollectNew
@@ -587,3 +573,5 @@ SvtHelpOptions::~SvtHelpOptions()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

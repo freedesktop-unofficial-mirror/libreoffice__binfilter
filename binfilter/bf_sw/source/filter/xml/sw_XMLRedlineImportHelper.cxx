@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,79 +26,35 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
+#include <osl/diagnose.h>
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
-#ifndef _XMLREDLINEIMPORTHELPER_HXX
 #include "XMLRedlineImportHelper.hxx"
-#endif
-
-#ifndef _UNOOBJ_HXX
 #include "unoobj.hxx"
-#endif
 
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
 
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _POOLFMT_HXX
 #include "poolfmt.hxx"
-#endif
-
-#ifndef _UNOREDLINE_HXX
 #include "unoredline.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_XWORDCURSOR_HPP_
 #include <com/sun/star/text/XWordCursor.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
 #include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 namespace binfilter {
 
 
@@ -214,6 +171,7 @@ void XTextRangeOrNodeIndexPosition::SetAsNodeIndex(
     SwUnoInternalPaM aPaM(*pDoc);
     sal_Bool bSuccess = SwXTextRange::XTextRangeToSwPaM( aPaM, rRange);
     DBG_ASSERT(bSuccess, "illegal range");
+    (void)bSuccess;
 
     // PaM -> Index
     Set(aPaM.GetPoint()->nNode);
@@ -229,6 +187,7 @@ void XTextRangeOrNodeIndexPosition::CopyPositionInto(SwPosition& rPos)
         SwUnoInternalPaM aUnoPaM(*GetDoc());
         sal_Bool bSuccess = SwXTextRange::XTextRangeToSwPaM(aUnoPaM, xRange);
         DBG_ASSERT(bSuccess, "illegal range");
+        (void)bSuccess;
 
         rPos = *aUnoPaM.GetPoint();
     }
@@ -295,12 +254,12 @@ RedlineInfo::RedlineInfo() :
     sAuthor(),
     sComment(),
     aDateTime(),
+    bMergeLastParagraph( sal_False ),
     aAnchorStart(),
     aAnchorEnd(),
     pContentIndex(NULL),
     pNextRedline(NULL),
-    bNeedsAdjustment( sal_False ),
-    bMergeLastParagraph( sal_False )
+    bNeedsAdjustment( sal_False )
 {
 }
 
@@ -365,7 +324,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
 {
     // delete all left over (and obviously incomplete) RedlineInfos (and map)
     RedlineMapType::iterator aFind = aRedlineMap.begin();
-    for( ; aRedlineMap.end() != aFind; aFind++ )
+    for( ; aRedlineMap.end() != aFind; ++aFind )
     {
         RedlineInfo* pInfo = aFind->second;
 
@@ -373,7 +332,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
         // and delete the incomplete ones. Finally, delete it.
         if( IsReady(pInfo) )
         {
-            DBG_ERROR("forgotten RedlineInfo; now inserted");
+            OSL_FAIL("forgotten RedlineInfo; now inserted");
             InsertIntoDocument( pInfo );
         }
         else
@@ -382,7 +341,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
             pInfo->bNeedsAdjustment = sal_False;
             if( IsReady(pInfo) )
             {
-                DBG_ERROR("RedlineInfo without adjustment; now inserted");
+                OSL_FAIL("RedlineInfo without adjustment; now inserted");
                 InsertIntoDocument( pInfo );
             }
             else
@@ -391,7 +350,7 @@ XMLRedlineImportHelper::~XMLRedlineImportHelper()
                 // (i.e. end without start, or start without
                 // end). This may well be a problem in the file,
                 // rather than the code.
-                DBG_ERROR("incomplete redline (maybe file was corrupt); "
+                OSL_FAIL("incomplete redline (maybe file was corrupt); "
                           "now deleted");
             }
         }
@@ -512,7 +471,7 @@ Reference<XTextCursor> XMLRedlineImportHelper::CreateRedlineTextSection(
     Reference<XTextCursor> xReturn;
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     // get RedlineInfo
     RedlineMapType::iterator aFind = aRedlineMap.find(rId);
@@ -600,11 +559,11 @@ void XMLRedlineImportHelper::SetCursor(
 
 void XMLRedlineImportHelper::AdjustStartNodeCursor(
     const OUString& rId,        /// ID used in RedlineAdd() call
-    sal_Bool bStart,
-    Reference<XTextRange> & rRange)
+    sal_Bool /*bStart*/,
+    Reference<XTextRange> & /*rRange*/)
 {
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     // start + end nodes are treated the same. For either it's
     // necessary that the target node already exists.
@@ -644,7 +603,7 @@ void XMLRedlineImportHelper::InsertIntoDocument(RedlineInfo* pRedlineInfo)
     DBG_ASSERT(IsReady(pRedlineInfo), "redline info not complete yet!");
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     // Insert the Redline as described by pRedlineInfo into the
     // document.  If we are in insert mode, don't insert any redlines
@@ -775,3 +734,5 @@ void XMLRedlineImportHelper::SetProtectionKey(
     aProtectionKey = rKey;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

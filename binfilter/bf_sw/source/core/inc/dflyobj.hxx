@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,8 @@
 #ifndef _DFLYOBJ_HXX
 #define _DFLYOBJ_HXX
 
-#ifndef _SVDOVIRT_HXX //autogen
 #include <bf_svx/svdovirt.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 namespace binfilter {
 
 class SwFlyFrm;
@@ -59,6 +56,8 @@ public:
     SwFlyDrawObj();
     ~SwFlyDrawObj();
 
+    using SdrObject::operator=;
+
 
     // ItemSet access
 
@@ -83,6 +82,8 @@ public:
     SwVirtFlyDrawObj(SdrObject& rNew, SwFlyFrm* pFly);
     ~SwVirtFlyDrawObj();
 
+    using SdrObject::operator=;
+
     //Ueberladene Methoden der Basisklasse SdrVirtObj
 
     //Wir nehemen die Groessenbehandlung vollstaendig selbst in die Hand.
@@ -104,3 +105,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

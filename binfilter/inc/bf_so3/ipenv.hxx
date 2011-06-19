@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 #include <bf_so3/client.hxx>
 //#include <tools/mapunit.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/
@@ -53,10 +52,10 @@ namespace binfilter {
 
 class  SvInPlaceClient;
 class  SvInPlaceObject;
-class  SvContainerEnvironment;
 class  SvInPlaceClipWindow;
 class  SvInPlaceWindow;
-class  SvContainerEnvironmentList;
+class  SvContainerEnvironment;
+
 //=========================================================================
 class SO3_DLLPUBLIC SvAppFrame : public SvObject
 {
@@ -107,8 +106,7 @@ friend class SvInPlaceObject;
 private:
     SvInPlaceEnvironment *      pIPEnv; // IP-Env des Objektes
     SvInPlaceClient *           pObj;   // kann auch NULL sein
-    SvContainerEnvironment *    pParent;// fuer IP in IP
-    SvContainerEnvironmentList * pChildList; // fuer IP in IP
+    SvContainerEnvironment*     pParent;// fuer IP in IP
     WorkWindow *                pTopWin;// Application window
     WorkWindow *                pDocWin;// doc window != pTopWin
     SvAppFrameRef               xAppFrame;
@@ -137,7 +135,7 @@ private:
     SO3_DLLPRIVATE void         ResetIPEnv()
                     { pIPEnv = NULL; }
     SO3_DLLPRIVATE void         MakeWinContext_Impl();
-    //void          DeleteWindows_Impl();
+
 protected:
     virtual void    ShowUIByChildDeactivate();
 
@@ -165,10 +163,6 @@ public:
     OLEINPLACEFRAMEINFO *   GetOleInfo_Impl();
 
     SvContainerEnvironment* GetParent() const { return pParent; }
-    SvContainerEnvironment* GetChild( ULONG n ) const;
-    void                    ResetChilds();
-    void                    ResetChilds2IPActive();
-    BOOL                    IsChild( SvContainerEnvironment * pEnv ) const;
     SvInPlaceEnvironment *  GetIPEnv() const { return pIPEnv; }
 
     BOOL            IsStub() const;
@@ -217,7 +211,6 @@ public:
     virtual void    ShowDocument( const INetURLObject &,
                                   const XubString & );
 };
-DECLARE_LIST(SvContainerEnvironmentList,SvContainerEnvironment*)
 
 /*************************************************************************/
 class SO3_DLLPUBLIC SvInPlaceEnvironment
@@ -249,8 +242,6 @@ private:
     SvContainerEnvironment *pContEnv;
     SvInPlaceObject *       pObj;
 
-    SO3_DLLPRIVATE void             MergeMenus();
-    SO3_DLLPRIVATE void             ReleaseClientMenu();
 protected:
     SO3_DLLPRIVATE virtual void TopWinResize();
     SO3_DLLPRIVATE virtual void DocWinResize();
@@ -264,8 +255,6 @@ protected:
                                         const Rectangle & rClip );
 
     SO3_DLLPRIVATE virtual      BOOL DispatchAccel( const KeyCode & );
-
-    SO3_DLLPRIVATE void         DeleteObjMenu();
 
     SO3_DLLPRIVATE void             MakeWindows();
     SO3_DLLPRIVATE void         DeleteWindows();
@@ -356,3 +345,5 @@ public:
 }
 
 #endif // _IPENV_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

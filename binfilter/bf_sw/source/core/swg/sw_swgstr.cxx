@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -53,7 +54,7 @@ namespace binfilter {
  {
     // Dies sind Randomwerte, die konstant zur Verschluesselung
     // des Passworts verwendet werden.
-    static BYTE __READONLY_DATA cEncode[] =
+    static BYTE const cEncode[] =
     { 0xAB, 0x9E, 0x43, 0x05, 0x38, 0x12, 0x4d, 0x44,
       0xD5, 0x7e, 0xe3, 0x84, 0x98, 0x23, 0x3f, 0xba };
 
@@ -216,7 +217,7 @@ BYTE swistream::next()
     long pos = pStrm->Tell();
     short n = nLong; nLong = 3;
     cType = get();
-    long val;
+    long val(0);
     swstreambase::operator>>( val );
     // Man achte darauf: Dieser Wert ist immer positiv,
     // es findet keine VZ-Erweiterung statt!
@@ -251,3 +252,5 @@ BYTE swistream::skipnext()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

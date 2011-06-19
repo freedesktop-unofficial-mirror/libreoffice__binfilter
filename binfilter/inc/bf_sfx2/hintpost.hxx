@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef _SFXHINTPOST_HXX
 #define _SFXHINTPOST_HXX
 
-#ifndef _SFXGENLINK_HXX
 #include <bf_sfx2/genlink.hxx>
-#endif
 
-#ifndef _REF_HXX //autogen
 #include <tools/ref.hxx>
-#endif
 namespace binfilter {
 
 class SfxHint;
@@ -78,3 +75,5 @@ SV_DECL_IMPL_REF(SfxHintPoster);
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

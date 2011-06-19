@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,9 @@
  *
  ************************************************************************/
 
-// System - Includes -----------------------------------------------------
-
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 #include <bf_svx/eeitem.hxx>
@@ -44,28 +38,17 @@
 #include <bf_svx/editstat.hxx>
 
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include <bf_svx/flditem.hxx>
-//#include <vcl/system.hxx>
 #include <bf_svtools/inethist.hxx>
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
 #endif
@@ -80,7 +63,7 @@ namespace binfilter {
 
 //  Delimiters zusaetzlich zu EditEngine-Default:
 
-const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
+const sal_Char ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 
 
 //------------------------------------------------------------------------
@@ -180,8 +163,8 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/               BOOL bDeleteEnginePoolP )
 /*N*/           :
 /*N*/           pEnginePool( pEnginePoolP ),
-/*N*/           bDeleteEnginePool( bDeleteEnginePoolP ),
 /*N*/           pDefaults( NULL ),
+/*N*/           bDeleteEnginePool( bDeleteEnginePoolP ),
 /*N*/           bDeleteDefaults( FALSE )
 /*N*/ {
 /*N*/ }
@@ -190,8 +173,8 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/ ScEnginePoolHelper::ScEnginePoolHelper( const ScEnginePoolHelper& rOrg )
 /*N*/           :
 /*N*/           pEnginePool( rOrg.bDeleteEnginePool ? rOrg.pEnginePool->Clone() : rOrg.pEnginePool ),
-/*N*/           bDeleteEnginePool( rOrg.bDeleteEnginePool ),
 /*N*/           pDefaults( NULL ),
+/*N*/           bDeleteEnginePool( rOrg.bDeleteEnginePool ),
 /*N*/           bDeleteDefaults( FALSE )
 /*N*/ {
 /*N*/ }
@@ -374,12 +357,12 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/       {
 /*?*/       case SVX_CHARS_UPPER_LETTER:
 /*?*/       case SVX_CHARS_LOWER_LETTER:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTmpStr = lcl_GetCharStr( nNo );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           break;
 /*?*/
 /*?*/       case SVX_ROMAN_UPPER:
 /*?*/       case SVX_ROMAN_LOWER:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTmpStr = lcl_GetRomanStr( nNo );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           break;
 /*?*/
 /*?*/       case SVX_NUMBER_NONE:
@@ -407,14 +390,14 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/   eNumType = SVX_ARABIC;
 /*N*/ }
 
-/*N*/ ScHeaderEditEngine::ScHeaderEditEngine( SfxItemPool* pEnginePool, BOOL bDeleteEnginePool )
-/*N*/       : ScEditEngineDefaulter( pEnginePool, bDeleteEnginePool )
+/*N*/ ScHeaderEditEngine::ScHeaderEditEngine( SfxItemPool* pInEnginePool, BOOL bInDeleteEnginePool )
+/*N*/       : ScEditEngineDefaulter( pInEnginePool, bInDeleteEnginePool )
 /*N*/ {
 /*N*/ }
 
-/*N*/ String __EXPORT ScHeaderEditEngine::CalcFieldValue( const SvxFieldItem& rField,
-/*N*/                                   USHORT nPara, USHORT nPos,
-/*N*/                                   Color*& rTxtColor, Color*& rFldColor )
+/*N*/ String ScHeaderEditEngine::CalcFieldValue( const SvxFieldItem& rField,
+/*N*/                                   USHORT /*nPara*/, USHORT /*nPos*/,
+/*N*/                                   Color*& /*rTxtColor*/, Color*& /*rFldColor*/ )
 /*N*/ {
 /*N*/   String aRet;
 /*N*/   const SvxFieldData* pFieldData = rField.GetField();
@@ -446,14 +429,14 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/             aRet = ScGlobal::pLocaleData->getDate(aData.aDate);
 /*N*/       else
 /*N*/       {
-/*N*/           //DBG_ERROR("unbekannter Feldbefehl");
+/*N*/           //OSL_FAIL("unbekannter Feldbefehl");
 /*N*/           aRet = '?';
 /*N*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
             // #i75599# no assertion - can happen with old files
-/*N*/       //DBG_ERROR("FieldData ist 0");
+/*N*/       //OSL_FAIL("FieldData ist 0");
 /*N*/       aRet = '?';
 /*N*/   }
 /*N*/
@@ -466,10 +449,10 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 //
 //------------------------------------------------------------------------
 
-/*N*/ ScFieldEditEngine::ScFieldEditEngine( SfxItemPool* pEnginePool,
-/*N*/           SfxItemPool* pTextObjectPool, BOOL bDeleteEnginePool )
+/*N*/ ScFieldEditEngine::ScFieldEditEngine( SfxItemPool* pInEnginePool,
+/*N*/           SfxItemPool* pTextObjectPool, BOOL bInDeleteEnginePool )
 /*N*/       :
-/*N*/       ScEditEngineDefaulter( pEnginePool, bDeleteEnginePool ),
+/*N*/       ScEditEngineDefaulter( pInEnginePool, bInDeleteEnginePool ),
 /*N*/       bExecuteURL( TRUE )
 /*N*/ {
 /*N*/   if ( pTextObjectPool )
@@ -479,9 +462,9 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/   SetControlWord( (GetControlWord() | EE_CNTRL_MARKFIELDS) & ~EE_CNTRL_RTFSTYLESHEETS );
 /*N*/ }
 
-/*N*/ String __EXPORT ScFieldEditEngine::CalcFieldValue( const SvxFieldItem& rField,
-/*N*/                                   USHORT nPara, USHORT nPos,
-/*N*/                                   Color*& rTxtColor, Color*& rFldColor )
+/*N*/ String ScFieldEditEngine::CalcFieldValue( const SvxFieldItem& rField,
+/*N*/                                   USHORT /*nPara*/, USHORT /*nPos*/,
+/*N*/                                   Color*& rTxtColor, Color*& /*rFldColor*/ )
 /*N*/ {
 /*N*/   String aRet;
 /*N*/   const SvxFieldData* pFieldData = rField.GetField();
@@ -511,7 +494,7 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           //DBG_ERROR("unbekannter Feldbefehl");
+/*N*/           //OSL_FAIL("unbekannter Feldbefehl");
 /*N*/           aRet = '?';
 /*N*/       }
 /*N*/   }
@@ -524,3 +507,5 @@ const sal_Char __FAR_DATA ScEditUtil::pCalcDelimiters[] = "=();+-*/^&<>";
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,25 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
 #include <bf_goodies/graphicobject.hxx>
-#endif
 #include <bf_svx/xenum.hxx>
 namespace binfilter {
 
 //---------------
 // class XOBitmap
 //---------------
-
-#if defined HP9000 || defined SINIX
-static Size aXOBitmapDefaultSize( 8, 8 );
-#endif
 
 class XOBitmap
 {
@@ -66,15 +57,9 @@ public:
     XOBitmap();
     XOBitmap( const BfGraphicObject& rGraphicObject, XBitmapStyle eStyle = XBITMAP_TILE );
     XOBitmap( const Bitmap& rBitmap, XBitmapStyle eStyle = XBITMAP_TILE );
-#if defined HP9000 || defined SINIX
-    XOBitmap( const USHORT* pArray, const Color& aPixelColor,
-             const Color& aBckgrColor, const Size& rSize = aXOBitmapDefaultSize,
-             XBitmapStyle eStyle = XBITMAP_TILE );
-#else
     XOBitmap( const USHORT* pArray, const Color& aPixelColor,
              const Color& aBckgrColor, const Size& rSize = Size( 8, 8 ),
              XBitmapStyle eStyle = XBITMAP_TILE );
-#endif
     XOBitmap( const XOBitmap& rXBmp );
     ~XOBitmap();
 
@@ -105,3 +90,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

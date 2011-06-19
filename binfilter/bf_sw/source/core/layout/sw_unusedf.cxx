@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 
 #include "cntfrm.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 namespace binfilter {
 
@@ -43,7 +42,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwCntntFrm::WouldFit( SwTwips &, BOOL& )
 /*N*/ {
-/*N*/   ASSERT( FALSE, "WouldFit des CntntFrm gerufen." );
+/*N*/   OSL_ENSURE( FALSE, "WouldFit des CntntFrm gerufen." );
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -56,9 +55,11 @@ namespace binfilter {
 /*N*/ BOOL SwFrm::GetCharRect( SwRect&, const SwPosition&,
 /*N*/                        SwCrsrMoveState* ) const
 /*N*/ {
-/*N*/   ASSERT( FALSE, "GetCharRect() der Basis gerufen." );
+/*N*/   OSL_ENSURE( FALSE, "GetCharRect() der Basis gerufen." );
 /*N*/   return FALSE;
 /*N*/ }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_BREAKTYPES_HXX
 #include <breakhdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_BREAKTYPE_HPP_
 #include <com/sun/star/style/BreakType.hpp>
-#endif
 
 
 namespace binfilter {
@@ -92,7 +85,7 @@ sal_Bool XMLFmtBreakBeforePropHdl::exportXML( OUString& rStrExpValue, const uno:
 
     if( !( rValue >>= eBreak ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( !( rValue >>= nValue ) )
             return sal_False;
 
@@ -116,7 +109,7 @@ sal_Bool XMLFmtBreakBeforePropHdl::exportXML( OUString& rStrExpValue, const uno:
     }
 
     OUStringBuffer aOut;
-    sal_Bool bOk = rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
+    rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
     rStrExpValue = aOut.makeStringAndClear();
 
     return sal_True;
@@ -155,7 +148,7 @@ sal_Bool XMLFmtBreakAfterPropHdl::exportXML( OUString& rStrExpValue, const uno::
 
     if( !( rValue >>= eBreak ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( !( rValue >>= nValue ) )
             return sal_False;
 
@@ -179,9 +172,11 @@ sal_Bool XMLFmtBreakAfterPropHdl::exportXML( OUString& rStrExpValue, const uno::
     }
 
     OUStringBuffer aOut;
-    sal_Bool bOk = rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
+    rUnitConverter.convertEnum( aOut, nEnum, pXML_BreakTypes );
     rStrExpValue = aOut.makeStringAndClear();
 
     return sal_True;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

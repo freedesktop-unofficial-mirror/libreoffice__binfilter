@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,36 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 
-#ifndef _SVDOUNO_HXX
 #include "svdouno.hxx"
-#endif
-#ifndef _SVDPAGV_HXX
 #include "svdpagv.hxx"
-#endif
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 #include "svdstr.hrc"   // Objektname
-#ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
-#endif
-#ifndef _SVDVITER_HXX
 #include "svdviter.hxx"
-#endif
 
 #include <set>
 
@@ -91,7 +74,7 @@ namespace binfilter {
 /*N*/ };
 
 // XEventListener
-/*N*/ void SAL_CALL SdrControlEventListenerImpl::disposing( const ::com::sun::star::lang::EventObject& Source )
+/*N*/ void SAL_CALL SdrControlEventListenerImpl::disposing( const ::com::sun::star::lang::EventObject& /*Source*/ )
 /*N*/   throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   if (pObj)
@@ -183,7 +166,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // nur ein owner darf eigenstaendig erzeugen
 /*N*/   if (rModelName.Len())
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     CreateUnoControlModel(rModelName);
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ SdrUnoObj::~SdrUnoObj()
@@ -215,7 +198,6 @@ namespace binfilter {
 
 /** helper class to restore graphics at <awt::XView> object after <SdrUnoObj::Paint>
 
-    OD 08.05.2003 #109432#
     Restoration of graphics necessary to assure that paint on a window
 
     @author OD
@@ -250,7 +232,7 @@ namespace binfilter {
 /*N*/       return;
 /*N*/
 /*N*/   if (pOut)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
         // Nur dieses eine OutDev beruecksichtigen
 /*N*/   }
 /*N*/   else if (pModel)
@@ -356,7 +338,6 @@ namespace binfilter {
 /*N*/     // (relative to a layer. Remember that the visibility of a layer is a view attribute
 /*N*/     // - the same layer can be visible in one view, and invisible in another view, at the
 /*N*/     // same time)
-/*N*/     // 2003-06-03 - #110592# - fs@openoffice.org
 /*N*/
 /*N*/     // collect all views in which our old layer is visible
 /*N*/     ::std::set< SdrView* > aPreviouslyVisible;
@@ -376,7 +357,7 @@ namespace binfilter {
 /*N*/         SdrViewIter aIter( this );
 /*N*/       for ( SdrView* pView = aIter.FirstView(); pView; pView = aIter.NextView() )
 /*N*/         {
-/*N*/             ::std::set< SdrView* >::const_iterator aPrevPos = aPreviouslyVisible.find( pView );
+/*N*/             ::std::set< SdrView* >::iterator aPrevPos = aPreviouslyVisible.find( pView );
 /*N*/             if ( aPreviouslyVisible.end() != aPrevPos )
 /*N*/             {   // in pView, we were visible _before_ the layer change, and are
 /*N*/                 // visible _after_ the layer change, too
@@ -413,24 +394,6 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-
-
-/*N*/ void SdrUnoObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrRectObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrUnoObj");
-/*N*/ #endif
-/*N*/
-/*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch schreiben
-/*N*/   {
-/*?*/       // UNICODE: rOut << aUnoControlModelTypeName;
-/*?*/       rOut.WriteByteString(aUnoControlModelTypeName);
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrUnoObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError() != 0)
@@ -445,7 +408,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/
 /*N*/   if (bOwnUnoControlModel)                    // nur als besitzt des Models dieses auch lesen
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -492,3 +455,5 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

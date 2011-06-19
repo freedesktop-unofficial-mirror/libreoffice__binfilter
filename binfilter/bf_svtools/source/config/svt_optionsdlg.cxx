@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,36 +31,23 @@
 
 #include <bf_svtools/optionsdlg.hxx>
 
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 #include "itemholder1.hxx"
 
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::beans ;
 using namespace com::sun::star::uno;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -84,7 +72,7 @@ private:
         }
     };
 
-    typedef std::hash_map< OUString, sal_Bool, OUStringHashCode, ::std::equal_to< OUString > > OptionNodeList;
+    typedef boost::unordered_map< OUString, sal_Bool, OUStringHashCode, ::std::equal_to< OUString > > OptionNodeList;
 
     OUString        m_sPathDelimiter;
     OptionNodeList  m_aOptionNodeList;
@@ -236,3 +224,5 @@ SvtOptionsDialogOptions::~SvtOptionsDialogOptions()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

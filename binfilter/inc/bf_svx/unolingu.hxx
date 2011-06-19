@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,28 +31,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYLIST_HPP_
 #include <com/sun/star/linguistic2/XDictionaryList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
 #include <com/sun/star/linguistic2/XDictionary1.hpp>
-#endif
 class Window;
 namespace binfilter {
 
@@ -90,8 +77,6 @@ public:
 class LinguMgr
 {
     friend class LinguMgrExitLstnr;
-
-    //static ::VOS::ORefCount aRefCount;
 
     static ::com::sun::star::uno::Reference<
         ::com::sun::star::linguistic2::XLinguServiceManager > xLngSvcMgr;
@@ -180,9 +165,10 @@ LanguageType                        SvxLocaleToLanguage(
 ::com::sun::star::lang::Locale      SvxCreateLocale( LanguageType eLang );
 
 
-//TL:TODO: soll mal den rictigen Rückgabetyp bekommen!
+//TL:TODO: soll mal den rictigen Rï¿½ckgabetyp bekommen!
 
 
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

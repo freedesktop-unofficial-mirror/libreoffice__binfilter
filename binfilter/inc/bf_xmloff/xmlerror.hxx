@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _XMLOFF_XMLERROR_HXX
 #define _XMLOFF_XMLERROR_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXParseException.hpp>
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 // STL includes
 #include <vector>
@@ -89,8 +86,8 @@ namespace binfilter {
 // SvXMLExport/SvXMLImport error flags
 #define ERROR_NO                0x0000
 #define ERROR_DO_NOTHING        0x0001
-#define ERROR_ERROR_OCCURED     0x0002
-#define ERROR_WARNING_OCCURED   0x0004
+#define ERROR_ERROR_OCCURRED     0x0002
+#define ERROR_WARNING_OCCURRED   0x0004
 
 
 class ErrorRecord;
@@ -140,3 +137,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -40,61 +38,31 @@
 #include <bf_svx/xmlgrhlp.hxx>
 #include <bf_svtools/sfxecode.hxx>
 #include <bf_sfx2/appuno.hxx>
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
 
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/io/XActiveDataSource.hpp>
 #include <com/sun/star/io/XActiveDataControl.hpp>
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HXX_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_DISPOSEDEXCEPTION_HPP_
 #include <com/sun/star/lang/DisposedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PACKAGES_ZIP_ZIPIOEXCEPTION_HPP_
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
-#endif
 
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <bf_svtools/saveopt.hxx>
-#endif
 
 #include "document.hxx"
 #include "xmlwrap.hxx"
 #include "xmlimprt.hxx"
 #include "xmlexprt.hxx"
-#ifndef __GLOBSTR_HRC_
 #include "globstr.hrc"
-#endif
-#ifndef _SCERRORS_HXX
 #include "scerrors.hxx"
-#endif
-#ifndef SC_XMLEXPORTSHAREDDATA_HXX
 #include "XMLExportSharedData.hxx"
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #ifndef SEQTYPE
 namespace binfilter {
  #if defined(__SUNPRO_CC) && (__SUNPRO_CC == 0x500)
@@ -107,6 +75,8 @@ namespace binfilter {
 #define MAP_LEN(x) x, sizeof(x) - 1
 
 using namespace ::com::sun::star;
+
+using rtl::OUString;
 
 // -----------------------------------------------------------------------
 
@@ -139,7 +109,7 @@ uno::Reference <task::XStatusIndicator> ScXMLImportWrapper::GetStatusIndicator(
                     }
                     catch( lang::DisposedException e )
                     {
-                        DBG_ERROR("Exception while trying to get a Status Indicator");
+                        OSL_FAIL("Exception while trying to get a Status Indicator");
                     }
                 }
             }
@@ -203,32 +173,6 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
                         aAny.getValueType() == ::getBooleanCppuType() &&
                         *(sal_Bool *)aAny.getValue();
     }
-    // #99667#; no longer necessary
-/*  else if ( pMedium )
-    {
-        // if there is a medium and if this medium has a load environment,
-        // we get an active data source from the medium.
-        pMedium->GetInStream()->Seek( 0 );
-        xSource = pMedium->GetDataSource();
-        DBG_ASSERT( xSource.is(), "got no data source from medium" );
-        if( !xSource.is() )
-            return sal_False;
-
-        // get a pipe for connecting the data source to the parser
-        xPipe = xServiceFactory->createInstance(
-                OUString::createFromAscii("com.sun.star.io.Pipe") );
-        DBG_ASSERT( xPipe.is(),
-                "XMLReader::Read: com.sun.star.io.Pipe service missing" );
-        if( !xPipe.is() )
-            return sal_False;
-
-        // connect pipe's output stream to the data source
-        uno::Reference<io::XOutputStream> xPipeOutput( xPipe, uno::UNO_QUERY );
-        xSource->setOutputStream( xPipeOutput );
-
-        aParserInput.aInputStream =
-            uno::Reference< io::XInputStream >( xPipe, uno::UNO_QUERY );
-    }*/
     else
         return SCERR_IMPORT_UNKNOWN;
 
@@ -255,7 +199,6 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
             xSourceControl->start();
     }
 
-    sal_Bool bFormatError = sal_False;
     try
     {
         xParser->parseStream( aParserInput );
@@ -270,7 +213,7 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
 #ifdef DBG_UTIL
             ByteString aError( "SAX parse exception catched while importing:\n" );
             aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-            DBG_ERROR( aError.GetBuffer() );
+            OSL_FAIL( aError.GetBuffer() );
 #endif
 
             String sErr( String::CreateFromInt32( r.LineNumber ));
@@ -303,7 +246,7 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
 #ifdef DBG_UTIL
             ByteString aError( "SAX exception catched while importing:\n" );
             aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-            DBG_ERROR( aError.GetBuffer() );
+            OSL_FAIL( aError.GetBuffer() );
 #endif
             nReturn = SCERR_IMPORT_FORMAT;
         }
@@ -313,7 +256,7 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
 #ifdef DBG_UTIL
         ByteString aError( "Zip exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         nReturn = ERRCODE_IO_BROKENPACKAGE;
     }
@@ -322,7 +265,7 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
 #ifdef DBG_UTIL
         ByteString aError( "IO exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         nReturn = SCERR_IMPORT_OPEN;
     }
@@ -331,7 +274,7 @@ sal_uInt32 ScXMLImportWrapper::ImportFromComponent(uno::Reference<lang::XMultiSe
 #ifdef DBG_UTIL
         ByteString aError( "uno exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         nReturn = SCERR_IMPORT_UNKNOWN;
     }
@@ -796,3 +739,5 @@ sal_Bool ScXMLImportWrapper::Export(sal_Bool bStylesOnly)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

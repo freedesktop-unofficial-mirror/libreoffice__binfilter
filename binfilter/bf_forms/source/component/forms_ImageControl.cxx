@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,71 +26,31 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _FRM_IMAGE_CONTROL_HXX_
 #include "ImageControl.hxx"
-#endif
 
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
-#ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _COM_SUN_STAR_AWT_XPOPUPMENU_HPP_
 #include <com/sun/star/awt/XPopupMenu.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_POPUPMENUDIRECTION_HPP_
 #include <com/sun/star/awt/PopupMenuDirection.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UI_DIALOGS_EXTENDEDFILEPICKERELEMENTIDS_HPP_
 #include <com/sun/star/ui/dialogs/ExtendedFilePickerElementIds.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XFILEPICKERCONTROLACCESS_HPP_
 #include <com/sun/star/ui/dialogs/XFilePickerControlAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
 #include <com/sun/star/sdbc/DataType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_MOUSEBUTTON_HPP_
 #include <com/sun/star/awt/MouseButton.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
 #include <com/sun/star/io/XActiveDataSink.hpp>
-#endif
 
-
-#ifndef _UNOTOOLS_STREAMHELPER_HXX_
 #include <unotools/streamhelper.hxx>
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 namespace binfilter {
 
@@ -104,7 +65,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -164,7 +124,6 @@ OImageControlModel::OImageControlModel( const OImageControlModel* _pOriginal, co
     osl_incrementInterlockedCount( &m_refCount );
     {
         // simulate a propertyChanged event for the ImageURL
-        // 2003-05-15 - #109591# - fs@openoffice.org
         Any aImageURL;
         getFastPropertyValue( aImageURL, PROPERTY_ID_IMAGE_URL );
         _propertyChanged( PropertyChangeEvent( *this, PROPERTY_IMAGE_URL, sal_False, PROPERTY_ID_IMAGE_URL, Any( ), aImageURL ) );
@@ -270,7 +229,7 @@ void OImageControlModel::_propertyChanged( const PropertyChangeEvent& rEvt )
 
     Reference<XActiveDataSink>  xSink(
         m_xServiceFactory->createInstance(
-        ::rtl::OUString::createFromAscii("com.sun.star.io.ObjectInputStream")), UNO_QUERY);
+        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.ObjectInputStream" ))), UNO_QUERY);
     if (!xSink.is())
         return;
 
@@ -438,7 +397,7 @@ void OImageControlModel::read(const Reference<XObjectInputStream>& _rxInStream) 
             readCommonProperties(_rxInStream);
             break;
         default :
-            DBG_ERROR("OImageControlModel::read : unknown version !");
+            OSL_FAIL("OImageControlModel::read : unknown version !");
             m_bReadOnly = sal_False;
             defaultCommonProperties();
             break;
@@ -547,7 +506,7 @@ OImageControlControl::OImageControlControl(const Reference<XMultiServiceFactory>
             xComp->addMouseListener(this);
     }
     // Refcount bei 1 fuer den Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 // UNO Anbindung
@@ -579,31 +538,6 @@ StringSequence  OImageControlControl::getSupportedServiceNames() throw()
 void SAL_CALL OImageControlControl::createPeer(const Reference<XToolkit>& _rxToolkit, const Reference<XWindowPeer>& Parent) throw( RuntimeException )
 {
     OBoundControl::createPeer(_rxToolkit, Parent);
-    // the following is not necessary anymore. The aggregated control (from the toolkit project)
-    // itself will register as image consumer at the image producer, so there's no need to do this ourself.
-    // This holds since our model is an XImageProducer itself, and thus hiding the XImageProducer of the aggregated
-    // model. Before, we had two ImageProducers working in parallel.
-    // 2003-05-15 - 109591 - fs@openoffice.org
-
-/**
-    if (!m_xControl.is())
-        return;
-
-    // ImageConsumer vom Control holen
-    Reference<XWindowPeer>  xPeer = m_xControl->getPeer();
-    Reference<XImageConsumer>  xImageConsumer(xPeer, UNO_QUERY);
-    if (!xImageConsumer.is())
-        return;
-
-    // ImageConsumer am Imageproducer setzen
-    Reference<XImageProducerSupplier>  xImageSource(m_xControl->getModel(), UNO_QUERY);
-    if (!xImageSource.is())
-        return;
-    Reference<XImageProducer>  xImageProducer = xImageSource->getImageProducer();
-
-    xImageProducer->addConsumer(xImageConsumer);
-    xImageProducer->startProduction();
-*/
 }
 
 //------------------------------------------------------------------------------
@@ -617,38 +551,6 @@ void OImageControlControl::implClearGraphics()
 //------------------------------------------------------------------------------
 void OImageControlControl::implInsertGraphics()
 {
-//  Reference< XPropertySet > xSet( getModel(), UNO_QUERY );
-//  if ( !xSet.is() )
-//      return;
-
-//  ::rtl::OUString sTitle = FRM_RES_STRING(RID_STR_IMPORT_GRAPHIC);
-//  // build some arguments for the upcoming dialog
-//  try
-//  {
-//      ::binfilter::sfx2::FileDialogHelper aDialog( ::binfilter::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );//STRIP008       ::sfx2::FileDialogHelper aDialog( ::sfx2::FILEOPEN_LINK_PREVIEW, SFXWB_GRAPHIC );
-//      aDialog.SetTitle( sTitle );
-
-//      Reference< XFilePickerControlAccess > xController(aDialog.GetFilePicker(), UNO_QUERY);
-//      DBG_ASSERT( xController.is(), "OImageControlControl::implInsertGraphics: invalid file picker!" );
-//      if ( xController.is() )
-//      {
-//          xController->setValue(ExtendedFilePickerElementIds::CHECKBOX_PREVIEW, 0, ::cppu::bool2any(sal_True));
-//          xController->enableControl(ExtendedFilePickerElementIds::CHECKBOX_LINK, sal_False);
-//      }
-
-//      if ( ERRCODE_NONE == aDialog.Execute() )
-//      {
-//          // reset the url property in case it already has the value we're about to set - in this case
-//          // our propertyChanged would not get called without this.
-//          implClearGraphics();
-
-//          xSet->setPropertyValue( PROPERTY_IMAGE_URL, makeAny( ::rtl::OUString( aDialog.GetPath() ) ) );
-//      }
-//  }
-//  catch(Exception&)
-//  {
-//      DBG_ERROR("OImageControlControl::implInsertGraphics: caught an exception while attempting to execute the FilePicker!");
-//  }
 }
 
 // MouseListener
@@ -663,7 +565,7 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
     // is this a request for a context menu?
     if ( e.PopupTrigger )
     {
-        Reference< XPopupMenu > xMenu( m_xServiceFactory->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.awt.PopupMenu" ) ), UNO_QUERY );
+        Reference< XPopupMenu > xMenu( m_xServiceFactory->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.awt.PopupMenu" )) ), UNO_QUERY );
         DBG_ASSERT( xMenu.is(), "OImageControlControl::mousePressed: could not create a popup menu!" );
 
         Reference< XWindowPeer > xWindowPeer = getPeer();
@@ -686,7 +588,6 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
             if ( ( e.X < 0 ) || ( e.Y < 0 ) )
             {   // context menu triggered by keyboard
                 // position it in the center of the control
-                // 102205 - 16.08.2002 - fs@openoffice.org
                 Reference< XWindow > xWindow( static_cast< ::cppu::OWeakObject* >( this ), UNO_QUERY );
                 OSL_ENSURE( xWindow.is(), "OImageControlControl::mousePressed: me not a window? How this?" );
                 if ( xWindow.is() )
@@ -724,7 +625,6 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
 
             // wenn Control nicht gebunden ist, kein Dialog (da die zu schickende URL hinterher sowieso
             // versanden wuerde)
-            // FS - #64946# - 19.04.99
             Reference<XPropertySet> xBoundField;
             if (hasProperty(PROPERTY_BOUNDFIELD, xSet))
                 ::cppu::extractInterface(xBoundField, xSet->getPropertyValue(PROPERTY_BOUNDFIELD));
@@ -736,7 +636,7 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
                     return;
             }
 
-            sal_Bool bReadOnly;
+            sal_Bool bReadOnly(sal_False);
             xSet->getPropertyValue(PROPERTY_READONLY) >>= bReadOnly;
             if (bReadOnly)
                 return;
@@ -751,3 +651,5 @@ void OImageControlControl::mousePressed(const ::com::sun::star::awt::MouseEvent&
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef _SXCTITM_HXX
 #define _SXCTITM_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 enum SdrCaptionType   {SDRCAPT_TYPE1,SDRCAPT_TYPE2,SDRCAPT_TYPE3,SDRCAPT_TYPE4};
@@ -54,3 +51,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

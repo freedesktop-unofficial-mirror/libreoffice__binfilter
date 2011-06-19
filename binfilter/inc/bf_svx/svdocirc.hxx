@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -66,12 +65,12 @@ protected:
     Point                       aPnt2;
 
 private:
-    XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, FASTBOOL bContour=FALSE) const;
+    XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, bool bContour=FALSE) const;
     void ImpSetAttrToCircInfo(); // Werte vom Pool kopieren
     void ImpSetCircInfoToAttr(); // Werte in den Pool kopieren
 
     // Liefert TRUE, wenn das Painten ein XPolygon erfordert.
-    FASTBOOL PaintNeedsXPoly() const;
+    bool PaintNeedsXPoly() const;
     virtual void RecalcXPoly();
 
 protected:
@@ -95,13 +94,14 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
-    virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
 
 
     virtual void operator=(const SdrObject& rObj);
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
-    virtual void TakeXorPoly(XPolyPolygon& rXPoly, FASTBOOL bDetail) const;
+    virtual void TakeXorPoly(XPolyPolygon& rXPoly, bool bDetail) const;
+    using SdrObject::TakeContour;
     virtual void TakeContour(XPolyPolygon& rXPoly) const;
 
 
@@ -109,17 +109,17 @@ public:
 
     virtual void NbcMove(const Size& aSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
-    virtual void NbcShear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+    virtual void NbcShear (const Point& rRef, long nWink, double tn, bool bVShear);
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
 protected:
 public:
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     long GetStartWink() const { return nStartWink; }
     long GetEndWink() const { return nEndWink; }
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
@@ -128,10 +128,11 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 };
 
 }//end of namespace binfilter
 #endif //_SVDOCIRC_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

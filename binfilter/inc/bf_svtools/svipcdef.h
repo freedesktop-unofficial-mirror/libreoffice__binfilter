@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,8 +38,6 @@ extern "C" {
 
 #if defined (WNT) || defined (WIN)
 #define CDECL __cdecl
-#elif defined CSET
-#define CDECL _System
 #else
 #define CDECL
 #endif
@@ -71,3 +70,5 @@ extern long CDECL IPCCallFunction(void *,unsigned long,void *,
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

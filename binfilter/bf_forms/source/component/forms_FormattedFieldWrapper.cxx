@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,52 +26,26 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _FRM_FORMATTED_FIELD_WRAPPER_HXX_
 #include "FormattedFieldWrapper.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
 #include <com/sun/star/awt/XFocusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
 #include <com/sun/star/awt/XKeyListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
 #include <com/sun/star/form/XChangeBroadcaster.hpp>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 
-#ifndef _FORMS_EDIT_HXX_
 #include "Edit.hxx"
-#endif
-#ifndef _FORMS_FORMATTEDFIELD_HXX_
 #include "FormattedField.hxx"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
 
 namespace binfilter {
 
@@ -107,8 +82,8 @@ InterfaceRef SAL_CALL OFormattedFieldWrapper_CreateInstance(const Reference<XMul
 
 //------------------------------------------------------------------
 OFormattedFieldWrapper::OFormattedFieldWrapper(const Reference<XMultiServiceFactory>& _rxFactory, sal_Bool _bActAsFormatted)
-    :m_pEditPart(NULL)
-    ,m_xServiceFactory(_rxFactory)
+    :m_xServiceFactory(_rxFactory)
+    ,m_pEditPart(NULL)
 {
     DBG_CTOR(OFormattedFieldWrapper, NULL);
 
@@ -239,7 +214,7 @@ Any SAL_CALL OFormattedFieldWrapper::queryAggregation(const Type& _rType) throw 
 //------------------------------------------------------------------
 ::rtl::OUString SAL_CALL OFormattedFieldWrapper::getImplementationName(  ) throw (RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii("com.sun.star.comp.forms.OFormattedFieldWrapper");
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms.OFormattedFieldWrapper" ));
 }
 
 //------------------------------------------------------------------
@@ -410,7 +385,7 @@ void OFormattedFieldWrapper::ensureAggregate()
             Reference< XServiceInfo > xSI(m_xAggregate, UNO_QUERY);
             if (!xSI.is())
             {
-                DBG_ERROR("OFormattedFieldWrapper::ensureAggregate: the aggregate has nbo XServiceInfo!");
+                OSL_FAIL("OFormattedFieldWrapper::ensureAggregate: the aggregate has nbo XServiceInfo!");
                 m_xAggregate.clear();
             }
         }
@@ -428,3 +403,5 @@ void OFormattedFieldWrapper::ensureAggregate()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

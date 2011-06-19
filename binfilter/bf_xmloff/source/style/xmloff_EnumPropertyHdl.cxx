@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,27 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include <EnumPropertyHdl.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 /*
 
@@ -73,7 +64,7 @@ XMLEnumPropertyHdl::~XMLEnumPropertyHdl()
     // Nothing to do
 }
 
-sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     USHORT nValue = 0;
 
@@ -94,7 +85,7 @@ sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValu
             rValue <<= (sal_Int8) nValue;
             break;
         default:
-            DBG_ERROR( "Wrong type for enum property handler!" );
+            OSL_FAIL( "Wrong type for enum property handler!" );
             return sal_False;
         }
         return sal_True;
@@ -103,9 +94,9 @@ sal_Bool XMLEnumPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValu
     return sal_False;
 }
 
-sal_Bool XMLEnumPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLEnumPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if(!(rValue >>= nValue ))
         if(!::cppu::enum2int(nValue, rValue) )
             return sal_False;
@@ -120,3 +111,5 @@ sal_Bool XMLEnumPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValu
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

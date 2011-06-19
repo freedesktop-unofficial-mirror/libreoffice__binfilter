@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
 #include <cppuhelper/implbase2.hxx>
 
@@ -143,9 +138,9 @@ void SAL_CALL SvxUnoColorTable::insertByName( const OUString& aName, const uno::
     }
 }
 
-void SAL_CALL SvxUnoColorTable::removeByName( const OUString& Name )
+void SAL_CALL SvxUnoColorTable::removeByName( const OUString& /*rName*/ )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
-{DBG_BF_ASSERT(0, "STRIP");//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");
 }
 
 // XNameReplace
@@ -165,9 +160,9 @@ void SAL_CALL SvxUnoColorTable::replaceByName( const OUString& aName, const uno:
 }
 
 // XNameAccess
-uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& aName )
+uno::Any SAL_CALL SvxUnoColorTable::getByName( const  OUString& /*rName*/ )
     throw( container::NoSuchElementException,  lang::WrappedTargetException, uno::RuntimeException)
-{DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP");     uno::Any aAny; return aAny;
 }
 
 uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
@@ -176,11 +171,6 @@ uno::Sequence< OUString > SAL_CALL SvxUnoColorTable::getElementNames(  )
     const long nCount = pTable ? pTable->Count() : 0;
 
     uno::Sequence< OUString > aSeq( nCount );
-    OUString* pStrings = aSeq.getArray();
-
-    for( long nIndex = 0; nIndex < nCount; nIndex++ )
-    {DBG_BF_ASSERT(0, "STRIP");//STRIP001
-    }
 
     return aSeq;
 }
@@ -208,7 +198,7 @@ sal_Bool SAL_CALL SvxUnoColorTable::hasElements(  )
 /**
  * Create a colortable
  */
-uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const uno::Reference< lang::XMultiServiceFactory > & rSMgr) throw(uno::Exception)
+uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/) throw(uno::Exception)
 {
     return *new SvxUnoColorTable();
 }
@@ -218,14 +208,11 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoColorTable_createInstance(const
 //
 }
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
-namespace binfilter {//STRIP009
-//STRIP002 added begin
+namespace binfilter {
 //------the following is added for sfx2 integrate with svx
 extern "C" {
 void* SAL_CALL sfx2_component_getFactory(   const   sal_Char*   pImplementationName ,
@@ -233,12 +220,11 @@ void* SAL_CALL sfx2_component_getFactory(   const   sal_Char*   pImplementationN
                                                  void*      pRegistryKey        );
 
 }
-//STRIP002 added end
 
 extern "C"
 {
 
-void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** ppEnv )
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** /*ppEnv*/ )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
@@ -253,7 +239,7 @@ void SAL_CALL writeInfo( registry::XRegistryKey * pRegistryKey, const OUString& 
         xNewKey->createKey( rServices.getConstArray()[i]);
 }
 
-void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
+SAL_DLLPUBLIC_EXPORT void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
 {
     void * pRet = 0;
     if( pServiceManager  )
@@ -282,10 +268,10 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
             pRet = xFactory.get();
         }
     }
-    if (0==pRet)// added for sfx2 moudle integration with svx   //STRIP002 begin
+    if (0==pRet)// added for sfx2 moudle integration with svx
     {
         pRet=sfx2_component_getFactory(pImplName,pServiceManager,pRegistryKey);
-    }//STRIP002 end
+    }
 
     return pRet;
 }
@@ -294,3 +280,5 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServic
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

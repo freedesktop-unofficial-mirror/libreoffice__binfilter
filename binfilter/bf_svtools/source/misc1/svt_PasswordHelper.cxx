@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,21 +28,10 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-
-#ifndef GCC
-#endif
-
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include "PasswordHelper.hxx"
-#endif
 
-#ifndef _RTL_DIGEST_H_
 #include <rtl/digest.h>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 using namespace com::sun::star;
 
@@ -116,3 +106,5 @@ bool SvPasswordHelper::CompareHashPassword(const uno::Sequence<sal_Int8>& rOldPa
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

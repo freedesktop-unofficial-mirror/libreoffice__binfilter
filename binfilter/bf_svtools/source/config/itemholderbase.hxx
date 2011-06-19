@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 
 #include <vector>
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 namespace binfilter
 {
@@ -135,3 +134,5 @@ typedef ::std::vector< TItemInfo > TItems;
 }
 
 #endif // INCLUDED_SVTOOLS_ITEMHOLDERBASE_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

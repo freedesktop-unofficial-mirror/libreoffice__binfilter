@@ -190,7 +190,7 @@
         HelpID = FN_NUMBER_BULLETS ; \
         /* ### ACHTUNG: Neuer Text in Resource? ~Numerierung/Aufz�hlung... : ~Numerierung/Aufz�hlung... */\
         Text [ de ] = "~Nummerierung/Aufz�hlung..." ; \
-        Text [ en-US ] = "~Numbering/Bullets..." ; \
+        Text [ en-US ] = "~Bullets and Numbering..." ; \
         Text [ x-comment ] = " ";\
         Text[ pt ] = "~Marcas/Numeração...";\
         Text[ ru ] = "Нумерация/маркировка...";\
@@ -4505,10 +4505,6 @@ MenuItem _MN_VIEW
                         };
                         MenuItem
                         {
-                            ITEM_INSERT_HYPERLINK_INSERT
-                        };
-                        MenuItem
-                        {
                             Identifier = FN_EDIT_FORMULA ;
                             HelpID = FN_EDIT_FORMULA ;
                             Text [ de ] = "~Rechenleiste" ;
@@ -6058,70 +6054,6 @@ MenuItem _MN_INS
 #endif //MN_SW_PORTAL
 
              //#else
-#if 0
-            MenuItem
-            {
-                Identifier = SID_INSERT_PLUGIN ;
-                HelpID = SID_INSERT_PLUGIN ;
-                Text [ de ] = "PlugIn..." ;
-                Text [ en-US ] = "Plug-in..." ;
-                Text [ x-comment ] = " ";
-                Text[ pt ] = "PlugIn...";
-                Text[ ru ] = "Подключаемый модуль...";
-                Text[ el ] = "Συνδεόμενη υπομονάδα...";
-                Text[ nl ] = "PlugIn...";
-                Text[ fr ] = "Plug-in...";
-                Text[ es ] = "Plug-in...";
-                Text[ fi ] = "Lisäosa...";
-                Text[ ca ] = "Extensió...";
-                Text[ it ] = "PlugIn...";
-                Text[ sk ] = "Zásuvný modul...";
-                Text[ da ] = "PlugIn...";
-                Text[ sv ] = "Plug-in...";
-                Text[ pl ] = "Wtyczka plug-in...";
-                Text[ pt-BR ] = "Plug-in...";
-                Text[ th ] = "ปลั๊กอิน...";
-                Text[ ja ] = "プラグイン...";
-                Text[ ko ] = "플러그인...";
-                Text[ zh-CN ] = "Plug-In ...";
-                Text[ zh-TW ] = "PlugIn...";
-                Text[ tr ] = "Takı...";
-                Text[ hi-IN ] = "प्लग-इन...";
-                Text[ ar ] = "...توصيل";
-                Text[ he ] = "‮תוכנה מיתווספת...‬";
-            };
-            MenuItem
-            {
-                Identifier = SID_INSERT_APPLET ;
-                HelpID = SID_INSERT_APPLET ;
-                Text [ de ] = "Applet..." ;
-                Text [ en-US ] = "Applet..." ;
-                Text [ x-comment ] = " ";
-                Text[ pt ] = "Applet...";
-                Text[ ru ] = "Апплет...";
-                Text[ el ] = "Μικροεφαρμογή...";
-                Text[ nl ] = "Applet...";
-                Text[ fr ] = "Applet...";
-                Text[ es ] = "Miniaplicación...";
-                Text[ fi ] = "Sovelma...";
-                Text[ ca ] = "Applet...";
-                Text[ it ] = "Applet...";
-                Text[ sk ] = "Applet...";
-                Text[ da ] = "Applet...";
-                Text[ sv ] = "Applet...";
-                Text[ pl ] = "Aplet...";
-                Text[ pt-BR ] = "Applet...";
-                Text[ th ] = "แอ็พเพล็ต...";
-                Text[ ja ] = "アプレット...";
-                Text[ ko ] = "애플릿...";
-                Text[ zh-CN ] = "Applet...";
-                Text[ zh-TW ] = "Applet...";
-                Text[ tr ] = "Applet...";
-                Text[ hi-IN ] = "एप्लेट्...";
-                Text[ ar ] = "...تطبيق صغير";
-                Text[ he ] = "‮תוכניתונת...‬";
-            };
-#endif
             MenuItem
             {
                 Identifier = SID_INSERT_FLOATINGFRAME ;

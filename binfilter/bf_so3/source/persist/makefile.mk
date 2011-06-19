@@ -63,4 +63,3 @@ SLOFILES=
 # --- Targets -------------------------------------------------------
 
 .INCLUDE :  target.mk
-.INCLUDE :  $(SUBPRJ)$/util$/target.pmk

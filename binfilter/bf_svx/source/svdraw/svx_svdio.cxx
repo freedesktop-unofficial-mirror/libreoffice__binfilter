@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include "svdio.hxx"
 #include "svdobj.hxx"
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -85,7 +84,7 @@ namespace binfilter {
 /*N*/       Write();
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrIOHeader::OpenRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrIOHeader::OpenRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = TRUE;
 /*N*/
@@ -105,7 +104,7 @@ namespace binfilter {
 /*N*/   if(bLookAhead)
 /*N*/   {
 /*?*/       rStream.Seek(nFilePos);
-/*?*/       DBG_ERROR("SdrIOHeader::CloseRecord(): CloseRecord im Modus LookAhead.");
+/*?*/       OSL_FAIL("SdrIOHeader::CloseRecord(): CloseRecord im Modus LookAhead.");
 /*?*/       return;
 /*N*/   }
 /*N*/
@@ -144,7 +143,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrIOHeader::CloseRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrIOHeader::CloseRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = FALSE;
 /*N*/   bClosed = TRUE;
@@ -319,7 +318,7 @@ namespace binfilter {
 /*?*/           aStr.Insert(":\n", 0);
 /*?*/           ImpGetRecordName(aStr2, nHasSubRecCount, nReadSubRecCount);
 /*?*/           aStr.Insert(aStr2, 0);
-/*?*/           DBG_ERROR(aStr.GetBuffer());
+/*?*/           OSL_FAIL(aStr.GetBuffer());
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -344,7 +343,7 @@ namespace binfilter {
 /*?*/
 /*?*/           aStr += " zuviel gelesen. FilePos wird korregiert";
 /*?*/
-/*?*/           DBG_ERROR(aStr.GetBuffer());
+/*?*/           OSL_FAIL(aStr.GetBuffer());
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -497,7 +496,7 @@ namespace binfilter {
 /*N*/       Write();
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrDownCompat::OpenSubRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrDownCompat::OpenSubRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = TRUE;
 /*N*/ }
@@ -546,7 +545,7 @@ namespace binfilter {
 /*?*/
 /*?*/           aErrMsg += " zuviel gelesen, FilePos korregiert.";
 /*?*/
-/*?*/           DBG_ERROR(aErrMsg.GetBuffer());
+/*?*/           OSL_FAIL(aErrMsg.GetBuffer());
 /*N*/       }
 #endif
 
@@ -569,7 +568,7 @@ namespace binfilter {
 /*N*/       rStream.Seek(nAktPos);
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("SdrDownCompat::CloseSubRecord(): Falscher StreamMode angegeben.");
+/*N*/       OSL_FAIL("SdrDownCompat::CloseSubRecord(): Falscher StreamMode angegeben.");
 /*N*/
 /*N*/   bOpen = FALSE;
 /*N*/   bClosed = TRUE;
@@ -644,3 +643,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

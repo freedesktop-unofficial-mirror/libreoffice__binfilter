@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,31 +31,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_I18N_CHARTYPE_HDL
 #include <com/sun/star/i18n/CharType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
 
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
-#ifndef _SWFONT_HXX
 #include <swfont.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
@@ -100,8 +87,7 @@ xub_StrLen lcl_CalcCaseMap( const SwFont& rFnt,
 {
     int j = 0;
     const xub_StrLen nEnd = nOfst + nLen;
-    ASSERT( nEnd <= rOrigString.Len(), "lcl_CalcCaseMap: Wrong parameters" )
-
+    OSL_ENSURE( nEnd <= rOrigString.Len(), "lcl_CalcCaseMap: Wrong parameters" );
     // special case for title case:
     const bool bTitle = SVX_CASEMAP_TITEL == rFnt.GetCaseMap() &&
                         pBreakIt->xBreak.is();
@@ -160,7 +146,7 @@ public:
     const Size &GetSize() const { return aTxtSize; }
 };
 
-/*N*/ void SwDoGetCapitalSize::Init( SwFntObj *pUpperFont, SwFntObj *pLowerFont )
+/*N*/ void SwDoGetCapitalSize::Init( SwFntObj* /*pUpperFont*/, SwFntObj* /*pLowerFont*/ )
 /*N*/ {
 /*N*/   aTxtSize.Height() = 0;
 /*N*/   aTxtSize.Width() = 0;
@@ -212,8 +198,10 @@ protected:
     xub_StrLen nBreak;
 public:
     SwDoGetCapitalBreak( SwDrawTextInfo &rInfo, long nWidth, xub_StrLen *pExtra)
-        :   SwDoCapitals ( rInfo ), nTxtWidth( nWidth ),
-            nBreak( STRING_LEN ), pExtraPos( pExtra )
+        : SwDoCapitals ( rInfo )
+        , pExtraPos( pExtra )
+        , nTxtWidth( nWidth )
+        , nBreak( STRING_LEN )
         { }
     xub_StrLen GetBreak() const { return nBreak; }
 };
@@ -264,8 +252,10 @@ protected:
     xub_StrLen nCrsr;
     USHORT nOfst;
 public:
-    SwDoCapitalCrsrOfst( SwDrawTextInfo &rInfo, const USHORT nOfs ) :
-        SwDoCapitals( rInfo ), nOfst( nOfs ), nCrsr( 0 )
+    SwDoCapitalCrsrOfst( SwDrawTextInfo &rInfo, const USHORT nOfs )
+        : SwDoCapitals( rInfo )
+        , nCrsr( 0 )
+        , nOfst( nOfs )
         { }
 
     void DrawSpace( const Point &rPos );
@@ -290,23 +280,13 @@ class SwDoDrawStretchCapital : public SwDoDrawCapital
     const USHORT nOrgWidth;
 public:
 
-    SwDoDrawStretchCapital( SwDrawTextInfo &rInfo, const USHORT nCapWidth )
-            : SwDoDrawCapital( rInfo ),
-              nCapWidth( nCapWidth ),
-              nOrgWidth( rInfo.GetWidth() ),
-              nStrLen( rInfo.GetLen() )
+    SwDoDrawStretchCapital( SwDrawTextInfo &rInfo, const USHORT nCapWidth2 )
+            : SwDoDrawCapital( rInfo )
+            , nStrLen( rInfo.GetLen() )
+            , nCapWidth( nCapWidth2 )
+            , nOrgWidth( rInfo.GetWidth() )
         { }
 };
-
-/*************************************************************************
- *                    SwDoDrawStretchCapital
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwSubFont::DrawStretchCapital()
- *************************************************************************/
-
 
 /*************************************************************************
  *                  SwSubFont::DoOnCapitals() const
@@ -319,7 +299,7 @@ public:
 
 /*N*/ void SwSubFont::DoOnCapitals( SwDoCapitals &rDo )
 /*N*/ {
-/*N*/   ASSERT( pLastFont, "SwFont::DoOnCapitals: No LastFont?!" );
+/*N*/   OSL_ENSURE( pLastFont, "SwFont::DoOnCapitals: No LastFont?!" );
 /*N*/
 /*N*/   Size aPartSize;
 /*N*/   long nKana = 0;
@@ -348,7 +328,6 @@ public:
 /*N*/   SwFntAccess *pBigFontAccess = NULL;
 /*N*/   SwFntObj *pBigFont;
 /*N*/   SwFntAccess *pSpaceFontAccess = NULL;
-/*N*/   SwFntObj *pSpaceFont = NULL;
 /*N*/
 /*N*/   const void *pMagic2 = NULL;
 /*N*/   USHORT nIndex2 = 0;
@@ -359,7 +338,7 @@ public:
 /*N*/                           || aFont.GetStrikeout() != STRIKEOUT_NONE;
 /*N*/   const BOOL bWordWise = bUnderStriked && aFont.IsWordLineMode() &&
 /*N*/                          rDo.GetInf().GetDrawSpace();
-/*N*/   const short nKern = rDo.GetInf().GetKern();
+/*N*/   const short nKern2 = rDo.GetInf().GetKern();
 /*N*/
 /*N*/   if ( bUnderStriked )
 /*N*/   {
@@ -368,10 +347,7 @@ public:
 /*?*/           aFont.SetWordLineMode( FALSE );
 /*?*/           pSpaceFontAccess = new SwFntAccess( pMagic2, nIndex2, &aFont,
 /*?*/                                               rDo.GetInf().GetShell() );
-/*?*/           pSpaceFont = pSpaceFontAccess->Get();
 /*N*/       }
-/*N*/       else
-/*N*/           pSpaceFont = pLastFont;
 /*N*/
 /*N*/       // Wir basteln uns einen Font fuer die Grossbuchstaben:
 /*N*/       aFont.SetUnderline( UNDERLINE_NONE );
@@ -447,8 +423,8 @@ public:
 /*N*/           aPartSize = pSmallFont->GetTextSize( rDo.GetInf() );
 /*N*/           nKana += rDo.GetInf().GetKanaDiff();
 /*N*/           rDo.GetInf().SetOut( *pOldOut );
-/*N*/           if( nKern && nPos < nMaxPos )
-/*?*/               aPartSize.Width() += nKern;
+/*N*/           if( nKern2 && nPos < nMaxPos )
+/*?*/               aPartSize.Width() += nKern2;
 /*N*/           rDo.Do();
 /*N*/           nOldPos = nPos;
 /*N*/       }
@@ -456,7 +432,7 @@ public:
 /*N*/              pBreakIt->GetLocale( eLng ), CharType::LOWERCASE_LETTER);
 /*N*/       if( nPos == STRING_LEN || nPos > nMaxPos )
 /*N*/           nPos = nMaxPos;
-/*N*/       ASSERT( nPos, "nextCharBlock not implemented?" );
+/*N*/       OSL_ENSURE( nPos, "nextCharBlock not implemented?" );
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if( !nPos )
 /*N*/           nPos = nMaxPos;
@@ -477,7 +453,7 @@ public:
 /*?*/                       ++nTmp;
 /*?*/                   if( nOldPos < nTmp )
 /*?*/                   {
-                            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         pLastFont = pSpaceFont;
+                            DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   while( nTmp < nPos && CH_BLANK != rOldText.GetChar( nTmp ) )
 /*?*/                       ++nTmp;
@@ -514,8 +490,8 @@ public:
 /*?*/                       for( xub_StrLen nI = nOldPos; nI < nPos; ++nI )
 /*?*/                           if( CH_BLANK == rOldText.GetChar( nI ) )
 /*?*/                           aPartSize.Width() += rDo.GetInf().GetSpace();
-/*N*/                   if( nKern && nPos < nMaxPos )
-/*?*/                       aPartSize.Width() += nKern;
+/*N*/                   if( nKern2 && nPos < nMaxPos )
+/*?*/                       aPartSize.Width() += nKern2;
 /*N*/                   rDo.Do();
 /*N*/                   nOldPos = nTmp;
 /*N*/               }
@@ -525,7 +501,7 @@ public:
 /*N*/              pBreakIt->GetLocale( eLng ), CharType::LOWERCASE_LETTER);
 /*N*/       if( nPos == STRING_LEN || nPos > nMaxPos )
 /*N*/           nPos = nMaxPos;
-/*N*/       ASSERT( nPos, "endOfCharBlock not implemented?" );
+/*N*/       OSL_ENSURE( nPos, "endOfCharBlock not implemented?" );
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if( !nPos )
 /*N*/           nPos = nMaxPos;
@@ -540,7 +516,7 @@ public:
 /*N*/   {
 /*N*/       if( rDo.GetInf().GetDrawSpace() )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pLastFont = pSpaceFont;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if ( bWordWise )
 /*?*/           delete pSpaceFontAccess;
@@ -560,3 +536,5 @@ public:
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

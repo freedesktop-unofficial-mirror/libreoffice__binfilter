@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #define _SB_SBDEF_HXX
 
 
-#ifndef _SBXDEF_HXX
-#include <sbxdef.hxx>
-#endif
+#include <bf_basic/sbxdef.hxx>
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #if _SOLAR__PRIVATE
 #define _BASIC_TEXTPORTIONS
@@ -113,3 +110,5 @@ enum PropertyMode
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

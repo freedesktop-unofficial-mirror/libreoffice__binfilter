@@ -1,7 +1,7 @@
 #*************************************************************************
 #
 # DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
-# 
+#
 # Copyright 2000, 2010 Oracle and/or its affiliates.
 #
 # OpenOffice.org - a multi-platform office productivity suite
@@ -43,31 +43,31 @@ INC+= -I$(PRJ)$/inc$/bf_basic
 EXCEPTIONSFILES=$(SLO)$/sbxarray.obj
 
 SLOFILES=	\
-    $(EXCEPTIONSFILES) \
-    $(SLO)$/sbxbase.obj	\
+    $(EXCEPTIONSFILES)      \
+    $(SLO)$/sbxbase.obj     \
     $(SLO)$/sbxvar.obj      \
     $(SLO)$/sbxvalue.obj    \
-    $(SLO)$/sbxdec.obj \
-    $(SLO)$/sbxint.obj  \
+    $(SLO)$/sbxdec.obj      \
+    $(SLO)$/sbxint.obj      \
     $(SLO)$/sbxcurr.obj     \
-    $(SLO)$/sbxstr.obj  \
-    $(SLO)$/sbxbool.obj \
-    $(SLO)$/sbxdbl.obj  \
-    $(SLO)$/sbxdate.obj \
-    $(SLO)$/sbxsng.obj  \
-    $(SLO)$/sbxlng.obj  \
-    $(SLO)$/sbxobj.obj  \
+    $(SLO)$/sbxstr.obj      \
+    $(SLO)$/sbxbool.obj     \
+    $(SLO)$/sbxdbl.obj      \
+    $(SLO)$/sbxdate.obj     \
+    $(SLO)$/sbxsng.obj      \
+    $(SLO)$/sbxlng.obj      \
+    $(SLO)$/sbxobj.obj      \
     $(SLO)$/sbxscan.obj     \
-    $(SLO)$/sbxbyte.obj \
-    $(SLO)$/sbxchar.obj \
-    $(SLO)$/sbxulng.obj \
-    $(SLO)$/sbxuint.obj \
-    $(SLO)$/sbxcoll.obj \
+    $(SLO)$/sbxbyte.obj     \
+    $(SLO)$/sbxchar.obj     \
+    $(SLO)$/sbxulng.obj     \
+    $(SLO)$/sbxuint.obj     \
+    $(SLO)$/sbxcoll.obj     \
     $(SLO)$/sbxres.obj      \
-    $(SLO)$/sbxexec.obj \
+    $(SLO)$/sbxexec.obj
 
-#	$(SLO)$/sbxvals.obj	\
-    $(SLO)$/sbxmstrm.obj	\
+#	$(SLO)$/sbxvals.obj     \
+    $(SLO)$/sbxmstrm.obj
 
 
 # --- Targets -------------------------------------------------------------

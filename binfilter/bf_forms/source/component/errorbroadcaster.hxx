@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,10 @@
 #ifndef FORMS_ERRORBROADCASTER_HXX
 #define FORMS_ERRORBROADCASTER_HXX
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
 #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.h>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_SQLEXCEPTION_HPP_
 #include <com/sun/star/sdbc/SQLException.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -81,3 +74,4 @@ namespace frm
 }//end of namespace binfilter
 #endif // FORMS_ERRORBROADCASTER_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

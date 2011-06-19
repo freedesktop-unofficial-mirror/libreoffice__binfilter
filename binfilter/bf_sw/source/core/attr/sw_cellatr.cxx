@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,31 +33,17 @@
 
 #include <float.h>
 
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NODE_HXX
 #include <node.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
 namespace binfilter {
 
 
@@ -76,7 +63,7 @@ namespace binfilter {
 
 /*N*/ int SwTblBoxNumFormat::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return GetValue() == ((SwTblBoxNumFormat&)rAttr).GetValue() &&
 /*N*/           bAuto == ((SwTblBoxNumFormat&)rAttr).bAuto;
 /*N*/ }
@@ -104,7 +91,7 @@ namespace binfilter {
 
 /*N*/ int SwTblBoxFormula::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*?*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*?*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
  /*?*/  return GetFormula() == ((SwTblBoxFormula&)rAttr).GetFormula() &&
  /*?*/          pDefinedIn == ((SwTblBoxFormula&)rAttr).pDefinedIn;
 /*N*/ }
@@ -165,7 +152,7 @@ SwTableBox* SwTblBoxFormula::GetTableBox()
 
 /*N*/ int SwTblBoxValue::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return nValue == ((SwTblBoxValue&)rAttr).nValue;
 /*N*/ }
 
@@ -179,3 +166,5 @@ SwTableBox* SwTblBoxFormula::GetTableBox()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

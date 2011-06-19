@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -58,13 +59,9 @@
 
 #include <bf_svtools/svstdarr.hxx>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter
 {
@@ -371,3 +368,5 @@ BOOL SvByteStringsISortDtor::Seek_Entry( const ByteStringPtr aE, USHORT* pP ) co
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

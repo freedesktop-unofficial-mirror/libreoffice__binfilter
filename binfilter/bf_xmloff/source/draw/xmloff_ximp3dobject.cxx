@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,60 +30,39 @@
 #pragma hdrstop
 #endif
 
-
-#ifndef _XIMP3DOBJECT_HXX
 #include "ximp3dobject.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-
-
-
-
-
-
-
-
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_DOUBLESEQUENCE_HPP_
 #include <com/sun/star/drawing/DoubleSequence.hpp>
-#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXML3DObjectContext, SdXMLShapeContext );
 
 SdXML3DObjectContext::SdXML3DObjectContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mbSetTransform( FALSE )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetImport().GetShapeImport()->Get3DObjectAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_3DOBJECT_DRAWSTYLE_NAME:
             {
@@ -134,78 +114,16 @@ void SdXML3DObjectContext::EndElement()
     SdXMLShapeContext::EndElement();
 }
 
-//////////////////////////////////////////////////////////////////////////////
-/*
-void SdXML3DObjectContext::AddShape(uno::Reference< drawing::XShape >& xShape)
-{
-    if(xShape.is() && mxShapes.is())
-    {
-        // set shape local
-        mxShape = xShape;
-
-        // add new shape to parent
-        mxShapes->add( xShape );
-    }
-}
-*/
-//////////////////////////////////////////////////////////////////////////////
-/*
-void SdXML3DObjectContext::SetStyle()
-{
-    // set style on shape
-    if(maDrawStyleName.getLength() && mxShape.is())
-    {
-        const SvXMLStyleContext* pStyle = 0L;
-        sal_Bool bAutoStyle(FALSE);
-
-        if(GetImport().GetShapeImport()->GetAutoStylesContext())
-            pStyle = GetImport().GetShapeImport()->GetAutoStylesContext()->FindStyleChildContext(
-            XML_STYLE_FAMILY_SD_GRAPHICS_ID, maDrawStyleName);
-
-        if(pStyle)
-            bAutoStyle = TRUE;
-
-        if(!pStyle && GetImport().GetShapeImport()->GetStylesContext())
-            pStyle = GetImport().GetShapeImport()->GetStylesContext()->
-            FindStyleChildContext(XML_STYLE_FAMILY_SD_GRAPHICS_ID, maDrawStyleName);
-
-        if(pStyle && pStyle->ISA(XMLShapeStyleContext))
-        {
-            uno::Reference< beans::XPropertySet > xPropSet(mxShape, uno::UNO_QUERY);
-            if(xPropSet.is())
-            {
-                XMLShapeStyleContext* pDocStyle = (XMLShapeStyleContext*)pStyle;
-
-                if(pDocStyle->GetStyle().is())
-                {
-                    // set style on object
-                    uno::Any aAny;
-                    aAny <<= pDocStyle->GetStyle();
-                    xPropSet->setPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("Style")), aAny);
-                }
-
-                if(bAutoStyle)
-                {
-                    // set PropertySet on object
-                    pDocStyle->FillPropertySet(xPropSet);
-                }
-            }
-        }
-    }
-}
-*/
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXML3DCubeObjectShapeContext, SdXML3DObjectContext);
 
 SdXML3DCubeObjectShapeContext::SdXML3DCubeObjectShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXML3DObjectContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXML3DObjectContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     maMinEdge(-2500.0, -2500.0, -2500.0),
     maMaxEdge(2500.0, 2500.0, 2500.0),
     mbMinEdgeUsed(FALSE),
@@ -215,12 +133,12 @@ SdXML3DCubeObjectShapeContext::SdXML3DCubeObjectShapeContext(
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetImport().GetShapeImport()->Get3DCubeObjectAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_3DCUBEOBJ_MINEDGE:
             {
@@ -304,18 +222,16 @@ void SdXML3DCubeObjectShapeContext::EndElement()
     SdXML3DObjectContext::EndElement();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXML3DSphereObjectShapeContext, SdXML3DObjectContext);
 
 SdXML3DSphereObjectShapeContext::SdXML3DSphereObjectShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXML3DObjectContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXML3DObjectContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     maCenter(0.0, 0.0, 0.0),
     maSize(5000.0, 5000.0, 5000.0),
     mbCenterUsed(FALSE),
@@ -325,12 +241,12 @@ SdXML3DSphereObjectShapeContext::SdXML3DSphereObjectShapeContext(
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetImport().GetShapeImport()->Get3DSphereObjectAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_3DSPHEREOBJ_CENTER:
             {
@@ -411,29 +327,27 @@ void SdXML3DSphereObjectShapeContext::EndElement()
     SdXML3DObjectContext::EndElement();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXML3DPolygonBasedShapeContext, SdXML3DObjectContext );
 
 SdXML3DPolygonBasedShapeContext::SdXML3DPolygonBasedShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXML3DObjectContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+:   SdXML3DObjectContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetImport().GetShapeImport()->Get3DPolygonBasedAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_3DPOLYGONBASED_VIEWBOX:
             {
@@ -531,18 +445,16 @@ void SdXML3DPolygonBasedShapeContext::EndElement()
     SdXML3DObjectContext::EndElement();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXML3DLatheObjectShapeContext, SdXML3DPolygonBasedShapeContext);
 
 SdXML3DLatheObjectShapeContext::SdXML3DLatheObjectShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXML3DPolygonBasedShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+:   SdXML3DPolygonBasedShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
 }
 
@@ -574,18 +486,16 @@ void SdXML3DLatheObjectShapeContext::EndElement()
     SdXML3DPolygonBasedShapeContext::EndElement();
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXML3DExtrudeObjectShapeContext, SdXML3DPolygonBasedShapeContext);
 
 SdXML3DExtrudeObjectShapeContext::SdXML3DExtrudeObjectShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXML3DPolygonBasedShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+:   SdXML3DPolygonBasedShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
 }
 
@@ -616,5 +526,6 @@ void SdXML3DExtrudeObjectShapeContext::EndElement()
     SdXML3DPolygonBasedShapeContext::EndElement();
 }
 
-// EOF
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

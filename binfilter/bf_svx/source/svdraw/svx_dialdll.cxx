@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,19 +35,13 @@
 #include "brshitem.hxx"
 
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 
 
 
-#ifndef _FILTER_HXX //autogen
 #include <bf_svtools/filter.hxx>
-#endif
 
-#ifndef _WALLITEM_HXX
 #include <bf_svtools/wallitem.hxx>
-#endif
 namespace binfilter {
 
 // struct DialogsResMgr --------------------------------------------------
@@ -55,9 +50,9 @@ namespace binfilter {
 /*N*/   pGrapicFilter(0)
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   ByteString aName( "bf_svx" );       //STRIP005
+/*N*/   ByteString aName( "bf_svx" );
 /*N*/ #else
-/*N*/   ByteString aName( "bf_svl" );       //STRIP005
+/*N*/   ByteString aName( "bf_svl" );
 /*N*/ #endif
 /*N*/     pResMgr = ResMgr::CreateResMgr( aName.GetBuffer(), Application::GetSettings().GetUILocale() );
 /*N*/ }
@@ -75,7 +70,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( !(*GetAppData(BF_SHL_SVX)), "Ctor, but pointer not null" );
 /*N*/
 /*N*/   (*(DialogsResMgr**)GetAppData(BF_SHL_SVX)) = new DialogsResMgr;
-/*N*/   SvxBrushItem::InitSfxLink();  //  OV,30.06.1998
+/*N*/   SvxBrushItem::InitSfxLink();
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -93,3 +88,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

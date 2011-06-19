@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,16 +30,10 @@
 #include "mapprov.hxx"
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -55,19 +50,19 @@ ChartArea::~ChartArea()
 ::rtl::OUString SAL_CALL ChartArea::getImplementationName()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "ChartArea" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartArea" ));
 }
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartArea::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 4 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartArea" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.LineProperties" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.FillProperties" );
-    aSeq[ 3 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartArea" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.LineProperties" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.FillProperties" ));
+    aSeq[ 3 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -89,7 +84,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChartArea::getImplementationId()
 ::rtl::OUString SAL_CALL ChartArea::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartArea" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartArea" ));
 }
 
 // XUnoTunnel
@@ -122,3 +117,5 @@ const uno::Sequence< sal_Int8 > & ChartArea::getUnoTunnelId() throw()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

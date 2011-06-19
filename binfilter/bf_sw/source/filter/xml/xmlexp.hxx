@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,13 @@
 #ifndef _XMLEXP_HXX
 #define _XMLEXP_HXX
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
+#include <vector>
+
 namespace binfilter {
 
 class SwPaM;
@@ -57,12 +52,12 @@ class SwTableLines;
 class SwTableBox;
 class SwXMLTableColumn_Impl;
 class SwXMLTableLines_Impl;
-class SwXMLTableLinesCache_Impl;
 class SwXMLTableColumnsSortByWidth_Impl;
 class SwXMLTableFrmFmtsSort_Impl;
 class SwXMLTableInfo_Impl;
 class SwTableNode;
 
+typedef ::std::vector< SwXMLTableLines_Impl* > SwXMLTableLinesCache_Impl;
 
 #ifndef XML_PROGRESS_REF_NOT_SET
 #define XML_PROGRESS_REF_NOT_SET ((sal_Int32)-1)
@@ -205,3 +200,4 @@ inline const SvXMLUnitConverter& SwXMLExport::GetTwipUnitConverter() const
 } //namespace binfilter
 #endif  //  _XMLEXP_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,49 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_SETTINGSEXPORTHELPER_HXX
 #include "SettingsExportHelper.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORYHXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSUPPORTEDLOCALES_HPP_
 #include <com/sun/star/linguistic2/XSupportedLocales.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_PRINTERINDEPENDENTLAYOUT_HPP_
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
-#endif
-#ifndef _XMLENUMS_HXX_
 #include <xmlenums.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -103,7 +75,7 @@ void XMLSettingsExportHelper::CallTypeFunction(const uno::Any& rAny,
              * This assertion pops up when exporting values which are set to:
              * PropertyAttribute::MAYBEVOID, and thus are _supposed_ to have
              * a VOID value...so I'm removing it ...mtg
-             * DBG_ERROR("no type");
+             * OSL_FAIL("no type");
              */
         }
         break;
@@ -114,35 +86,35 @@ void XMLSettingsExportHelper::CallTypeFunction(const uno::Any& rAny,
         break;
         case uno::TypeClass_BYTE:
         {
-            sal_Int8 nInt8;
+            sal_Int8 nInt8(0);
             aAny >>= nInt8;
             exportByte(nInt8, rName);
         }
         break;
         case uno::TypeClass_SHORT:
         {
-            sal_Int16 nInt16;
+            sal_Int16 nInt16(0);
             aAny >>= nInt16;
             exportShort(nInt16, rName);
         }
         break;
         case uno::TypeClass_LONG:
         {
-            sal_Int32 nInt32;
+            sal_Int32 nInt32(0);
             aAny >>= nInt32;
             exportInt(nInt32, rName);
         }
         break;
         case uno::TypeClass_HYPER:
         {
-            sal_Int64 nInt64;
+            sal_Int64 nInt64(0);
             aAny >>= nInt64;
             exportLong(nInt64, rName);
         }
         break;
         case uno::TypeClass_DOUBLE:
         {
-            double fDouble;
+            double fDouble(0.0);
             aAny >>= fDouble;
             exportDouble(fDouble, rName);
         }
@@ -200,7 +172,7 @@ void XMLSettingsExportHelper::CallTypeFunction(const uno::Any& rAny,
                 exportSymbolDescriptors(aProps, rName);
             }
             else
-                DBG_ERROR("this type is not implemented now");
+                OSL_FAIL("this type is not implemented now");
         }
         break;
     }
@@ -528,7 +500,7 @@ void lcl_manipulateSetting(
     if( rName.equalsAsciiL(
             RTL_CONSTASCII_STRINGPARAM( "PrinterIndependentLayout" ) ) )
     {
-        sal_Int16 nTmp;
+        sal_Int16 nTmp = 0;
         if( rAny >>= nTmp )
         {
             if( nTmp == document::PrinterIndependentLayout::LOW_RESOLUTION )
@@ -541,3 +513,5 @@ void lcl_manipulateSetting(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

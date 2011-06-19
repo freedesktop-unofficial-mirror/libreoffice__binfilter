@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -35,13 +33,9 @@
 
 //___________________________________________________________________
 
-#ifndef _XMLOFF_PROGRESSBARHELPER_HXX
 #include "ProgressBarHelper.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -51,16 +45,16 @@ const float fProgressStep = 0.5;
 
 ProgressBarHelper::ProgressBarHelper(const ::com::sun::star::uno::Reference < ::com::sun::star::task::XStatusIndicator>& xTempStatusIndicator,
                                     const sal_Bool bTempStrict)
-    : fOldPercent(0.0),
-    nRange(nDefaultProgressBarRange),
-    xStatusIndicator(xTempStatusIndicator),
-    nReference(100),
-    nValue(0),
+    : xStatusIndicator(xTempStatusIndicator)
+    , nRange(nDefaultProgressBarRange)
+    , nReference(100)
+    , nValue(0)
+    , fOldPercent(0.0)
+    , bStrict(bTempStrict)
+    , bRepeat(sal_True)
 #ifdef DBG_UTIL
-    bFailure(sal_False),
+    , bFailure(sal_False)
 #endif
-    bStrict(bTempStrict),
-    bRepeat(sal_True)
 {
 }
 
@@ -74,8 +68,6 @@ sal_Int32 ProgressBarHelper::ChangeReference(sal_Int32 nNewReference)
     {
         if (nReference)
         {
-            double fPercent(nNewReference / nReference);
-            double fValue(nValue * fPercent);
             nValue = sal_Int32(nValue);
             nReference = nNewReference;
         }
@@ -125,7 +117,7 @@ void ProgressBarHelper::SetValue(sal_Int32 nTempValue)
 #ifdef DBG_UTIL
         else if (!bFailure)
         {
-            DBG_ERROR("tried to set a wrong value on the progressbar");
+            OSL_FAIL("tried to set a wrong value on the progressbar");
             bFailure = sal_True;
         }
 #endif
@@ -133,3 +125,5 @@ void ProgressBarHelper::SetValue(sal_Int32 nTempValue)
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

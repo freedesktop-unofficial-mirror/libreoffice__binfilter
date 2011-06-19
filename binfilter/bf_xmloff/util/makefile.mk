@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..
 
 PRJNAME=binfilter
@@ -73,21 +71,16 @@ SHL1STDLIBS= \
         $(BFSVTOOLLIB)	\
         $(TOOLSLIB)		\
         $(I18NISOLANGLIB) \
-        $(VOSLIB)		\
         $(CPPULIB)		\
         $(CPPUHELPERLIB)\
         $(COMPHELPERLIB)\
         $(VCLLIB)		\
         $(TKLIB)		\
         $(SALLIB)		\
+        $(SALHELPERLIB)		\
         $(UNOTOOLSLIB)	\
         $(BFGOODIESLIB) \
         $(BFSO3LIB)
-
-# SCO: the linker does know about weak symbols, but we can't ignore multiple defined symbols
-.IF "(OS)"=="SCO"
-SHL1STDLIBS+=-licg617mxp
-.ENDIF
 
 SHL1DEF=    $(MISC)$/$(SHL1TARGET).def
 SHL1LIBS=   $(LIB1TARGET)

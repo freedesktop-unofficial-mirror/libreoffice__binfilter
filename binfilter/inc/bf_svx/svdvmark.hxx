@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
 namespace binfilter {
 
@@ -78,28 +77,28 @@ class SdrViewUserMarker
     USHORT                      nPixelDistance;      // Abstand des Rahmen zum eigentlichen pRect
     USHORT                      nLineWdt;            // Strichstaerke
     USHORT                      nCrossSize;          // fuer CrossHair und Stripes. 0=FullWindow
-    FASTBOOL                    bLineWdtLog;
-    FASTBOOL                    bCrossSizeLog;
-    FASTBOOL                    bSolidArea;
-    FASTBOOL                    bDashed;
-    FASTBOOL                    bCrossHair;          // Bei pPoint: Fadenkreuz. Sonst Dot (Rect oder Circle)
-    FASTBOOL                    bStripes;            // Bei pRect
-    FASTBOOL                    bEllipse;            // Bei pRect oder pPoint
-    FASTBOOL                    bPolyLine;           // Bei pPoly oder pXPoly
-    FASTBOOL                    bAnimate;
-    FASTBOOL                    bVisible;
+    bool                    bLineWdtLog;
+    bool                    bCrossSizeLog;
+    bool                    bSolidArea;
+    bool                    bDashed;
+    bool                    bCrossHair;          // Bei pPoint: Fadenkreuz. Sonst Dot (Rect oder Circle)
+    bool                    bStripes;            // Bei pRect
+    bool                    bEllipse;            // Bei pRect oder pPoint
+    bool                    bPolyLine;           // Bei pPoly oder pXPoly
+    bool                    bAnimate;
+    bool                    bVisible;
 
     USHORT                      nAnimateDelay;
     USHORT                      nAnimateSpeed;
     USHORT                      nAnimateAnz;
-    FASTBOOL                    bAnimateBwd;
-    FASTBOOL                    bAnimateToggle;
+    bool                    bAnimateBwd;
+    bool                    bAnimateToggle;
     USHORT                      nAnimateDelayCountDown;
     USHORT                      nAnimateSpeedCountDown;
     USHORT                      nAnimateNum;
 
-    FASTBOOL                    bHasPointer;
-    FASTBOOL                    bMouseMovable;
+    bool                    bHasPointer;
+    bool                    bMouseMovable;
 
 protected:
     void ImpDelGeometrics();
@@ -124,8 +123,8 @@ public:
     void SetAnimateDelay(USHORT nTime) { nAnimateDelay=(nTime+25)/50; }
     void SetAnimateSpeed(USHORT nTime) { nAnimateSpeed=(nTime+25)/50; if (nAnimateSpeed>0) nAnimateSpeed--; }
     void SetAnimateCount(USHORT nAnz) { nAnimateAnz=nAnz; }
-    void SetAnimateBackward(FASTBOOL bOn) { bAnimateBwd=bOn; }
-    void SetAnimateToggle(FASTBOOL bOn) { bAnimateToggle=bOn; }
+    void SetAnimateBackward(bool bOn) { bAnimateBwd=bOn; }
+    void SetAnimateToggle(bool bOn) { bAnimateToggle=bOn; }
 
     const Point* GetPoint() const { return pPoint; }
     const Rectangle* GetRectangle() const { return pRect; }
@@ -134,36 +133,37 @@ public:
     const XPolygon* GetXPolygon() const { return pXPoly; }
     const XPolyPolygon* GetXPolyPolygon() const { return pXPolyPoly; }
 
-    FASTBOOL IsDot() const { return pPoint!=NULL && !bCrossHair; }
-    FASTBOOL IsCrossHair() const { return pPoint!=NULL && bCrossHair; }
-    FASTBOOL IsRectangle() const { return pRect!=NULL && !bEllipse && !bStripes; }
-    FASTBOOL IsStripes() const { return pRect!=NULL && bStripes; }
-    FASTBOOL IsEllipse() const { return pRect!=NULL && bEllipse; }
-    FASTBOOL IsPolyLine() const { return (pPoly!=NULL || pPolyPoly!=NULL || pXPoly!=NULL || pXPolyPoly!=NULL) && bPolyLine; }
+    bool IsDot() const { return pPoint!=NULL && !bCrossHair; }
+    bool IsCrossHair() const { return pPoint!=NULL && bCrossHair; }
+    bool IsRectangle() const { return pRect!=NULL && !bEllipse && !bStripes; }
+    bool IsStripes() const { return pRect!=NULL && bStripes; }
+    bool IsEllipse() const { return pRect!=NULL && bEllipse; }
+    bool IsPolyLine() const { return (pPoly!=NULL || pPolyPoly!=NULL || pXPoly!=NULL || pXPolyPoly!=NULL) && bPolyLine; }
 
-    FASTBOOL IsSolidArea() const { return bSolidArea && pPoint==NULL && !bPolyLine; }
-    FASTBOOL IsDashed() const { return bDashed; }
+    bool IsSolidArea() const { return bSolidArea && pPoint==NULL && !bPolyLine; }
+    bool IsDashed() const { return bDashed; }
     USHORT GetPixelDistance() const { return nPixelDistance; }
     USHORT GetLineWidth() const { return nLineWdt; }
-    FASTBOOL IsLineWidthIsLogic() const { return bLineWdtLog; }
+    bool IsLineWidthIsLogic() const { return bLineWdtLog; }
     USHORT GetCrossHairSize() const { return nCrossSize; }
-    FASTBOOL IsCrossHairSizeIsLogic() const { return bCrossSizeLog; }
+    bool IsCrossHairSizeIsLogic() const { return bCrossSizeLog; }
 
-    FASTBOOL IsAnimate() const { return bAnimate; }
+    bool IsAnimate() const { return bAnimate; }
     USHORT GetAnimateDelay() const { return nAnimateDelay*50; }
     USHORT GetAnimateSpeed() const { return (nAnimateSpeed+1)*50; }
     USHORT GetAnimateCount() const { return nAnimateAnz; }
-    FASTBOOL IsAnimateBackward() const { return bAnimateBwd; }
-    FASTBOOL IsAnimateToggle() const { return bAnimateToggle; }
+    bool IsAnimateBackward() const { return bAnimateBwd; }
+    bool IsAnimateToggle() const { return bAnimateToggle; }
 
     void Show();
     void Hide();
-    FASTBOOL IsVisible() const { return bVisible; }
+    bool IsVisible() const { return bVisible; }
 
-    FASTBOOL HasPointer() const { return bHasPointer; }
-    FASTBOOL IsMouseMovable() const { return bMouseMovable; }
+    bool HasPointer() const { return bHasPointer; }
+    bool IsMouseMovable() const { return bMouseMovable; }
 };
 
 }//end of namespace binfilter
 #endif //_SVDVMARK_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

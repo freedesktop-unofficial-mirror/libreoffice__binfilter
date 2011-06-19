@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,23 +33,15 @@
 
 #include <string.h>     // wg. memcpy() und bitte nicht memory.h (WKC)
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 
-#ifndef SC_TOKEN_HXX
 #include "token.hxx"
-#endif
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 namespace binfilter {
 
@@ -135,15 +128,6 @@ class ScRangeData;
 // Konstanten und Datentypen compilerintern:
 
 
-#if 0
-/*
-    OpCode   eOp;           // OpCode
-    StackVar eType;         // type of data
-    USHORT   nRefCnt;       // reference count
-    BOOL     bRaw;          // nicht per Clone auf passende Groesse getrimmt
- */
-#endif
-
 #define SC_TOKEN_FIX_MEMBERS    \
     OpCode   eOp;               \
     StackVar eType;             \
@@ -170,6 +154,7 @@ struct ScRawToken
     // den private dtor brauchen) und wissen, was sie tun..
     friend class ScTokenArray;
     friend class ScInterpreter;
+    friend USHORT lcl_ScRawTokenOffset();
 private:
     SC_TOKEN_FIX_MEMBERS
 public:
@@ -375,7 +360,7 @@ public:
 
     void Load30( SvStream&, const ScAddress& );
     void Load( SvStream&, USHORT, const ScAddress& );
-    void Store( SvStream&, const ScAddress& ) const;
+    void Store( SvStream&, const ScAddress& ) const {}
 
     ScToken* AddToken( const ScRawToken& );
      ScToken* AddToken( const ScToken& );
@@ -425,7 +410,7 @@ struct ScStringHashCode
         return rtl_ustr_hashCode_WithLength( rStr.GetBuffer(), rStr.Len() );
     }
 };
-typedef ::std::hash_map< String, OpCode, ScStringHashCode, ::std::equal_to< String > > ScOpCodeHashMap;
+typedef ::boost::unordered_map< String, OpCode, ScStringHashCode, ::std::equal_to< String > > ScOpCodeHashMap;
 
 class ScCompiler
 {
@@ -577,3 +562,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

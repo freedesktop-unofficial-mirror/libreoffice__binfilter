@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,30 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLLINENUMBERINGEXPORT_HXX_
 #include "XMLLineNumberingExport.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_XLINENUMBERINGPROPERTIES_HPP_
 #include "com/sun/star/text/XLineNumberingProperties.hpp"
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HPP_
 #include <com/sun/star/style/LineNumberPosition.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 namespace binfilter {
@@ -65,7 +54,6 @@ using ::com::sun::star::text::XLineNumberingProperties;
 
 
 XMLLineNumberingExport::XMLLineNumberingExport(SvXMLExport& rExp) :
-    rExport(rExp),
     sCharStyleName(RTL_CONSTASCII_USTRINGPARAM("CharStyleName")),
     sCountEmptyLines(RTL_CONSTASCII_USTRINGPARAM("CountEmptyLines")),
     sCountLinesInFrames(RTL_CONSTASCII_USTRINGPARAM("CountLinesInFrames")),
@@ -76,11 +64,12 @@ XMLLineNumberingExport::XMLLineNumberingExport(SvXMLExport& rExp) :
     sNumberingType(RTL_CONSTASCII_USTRINGPARAM("NumberingType")),
     sIsOn(RTL_CONSTASCII_USTRINGPARAM("IsOn")),
     sRestartAtEachPage(RTL_CONSTASCII_USTRINGPARAM("RestartAtEachPage")),
-    sSeparatorInterval(RTL_CONSTASCII_USTRINGPARAM("SeparatorInterval"))
+    sSeparatorInterval(RTL_CONSTASCII_USTRINGPARAM("SeparatorInterval")),
+    rExport(rExp)
 {
 }
 
-SvXMLEnumMapEntry __READONLY_DATA aLineNumberPositionMap[] =
+SvXMLEnumMapEntry const aLineNumberPositionMap[] =
 {
     { XML_LEFT,     style::LineNumberPosition::LEFT },
     { XML_RIGHT,    style::LineNumberPosition::RIGHT },
@@ -148,7 +137,7 @@ void XMLLineNumberingExport::Export()
 
             // Distance
             aAny = xLineNumbering->getPropertyValue(sDistance);
-            sal_Int32 nLength;
+            sal_Int32 nLength(0);
             aAny >>= nLength;
             if (nLength != 0)
             {
@@ -161,7 +150,7 @@ void XMLLineNumberingExport::Export()
             // NumeringType
             OUStringBuffer sNumPosBuf;
             aAny = xLineNumbering->getPropertyValue(sNumberingType);
-            sal_Int16 nFormat;
+            sal_Int16 nFormat(0);
             aAny >>= nFormat;
             rExport.GetMM100UnitConverter().convertNumFormat( sNumPosBuf, nFormat );
             rExport.AddAttribute(XML_NAMESPACE_STYLE, XML_NUM_FORMAT,
@@ -176,7 +165,7 @@ void XMLLineNumberingExport::Export()
 
             // number position
             aAny = xLineNumbering->getPropertyValue(sNumberPosition);
-            sal_Int16 nPosition;
+            sal_Int16 nPosition(0);
             aAny >>= nPosition;
             if (SvXMLUnitConverter::convertEnum(sNumPosBuf, nPosition,
                                                 aLineNumberPositionMap))
@@ -187,7 +176,7 @@ void XMLLineNumberingExport::Export()
 
             // sInterval
             aAny = xLineNumbering->getPropertyValue(sInterval);
-            sal_Int16 nLineInterval;
+            sal_Int16 nLineInterval(0);
             aAny >>= nLineInterval;
             OUStringBuffer sBuf;
             SvXMLUnitConverter::convertNumber(sBuf,
@@ -208,13 +197,13 @@ void XMLLineNumberingExport::Export()
 
                 // SeparatorInterval
                 aAny = xLineNumbering->getPropertyValue(sSeparatorInterval);
-                sal_Int16 nLineDistance;
+                sal_Int16 nLineDistance(0);
                 aAny >>= nLineDistance;
-                OUStringBuffer sBuf;
-                SvXMLUnitConverter::convertNumber(sBuf,
+                OUStringBuffer sLclBuf;
+                SvXMLUnitConverter::convertNumber(sLclBuf,
                                                   (sal_Int32)nLineDistance);
                 rExport.AddAttribute(XML_NAMESPACE_TEXT, XML_INCREMENT,
-                                     sBuf.makeStringAndClear());
+                                     sLclBuf.makeStringAndClear());
 
                 SvXMLElementExport aSeparatorElem(rExport, XML_NAMESPACE_TEXT,
                                                   XML_LINENUMBERING_SEPARATOR,
@@ -227,3 +216,5 @@ void XMLLineNumberingExport::Export()
     // can't even get supplier: don't save -> default
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

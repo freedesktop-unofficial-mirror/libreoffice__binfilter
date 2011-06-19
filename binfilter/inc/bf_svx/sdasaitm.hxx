@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,52 +29,31 @@
 #ifndef _SDASAITM_HXX
 #define _SDASAITM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+
 namespace binfilter {
-
-class SdrAutoShapeAdjustmentValue
-{
-    sal_uInt32  nValue;
-
-    friend class SdrAutoShapeAdjustmentItem;
-
-    public :
-
-        void        SetValue( sal_Int32 nVal ) { nValue = nVal; };
-        sal_Int32   GetValue() const { return nValue; };
-
-};
 
 class SdrAutoShapeAdjustmentItem : public SfxPoolItem
 {
-            List    aAdjustmentValueList;
+public :
 
-    public :
+    TYPEINFO();
+    SdrAutoShapeAdjustmentItem();
+    SdrAutoShapeAdjustmentItem( SvStream& rIn, sal_uInt16 nVersion );
 
-            TYPEINFO();
-            SdrAutoShapeAdjustmentItem();
-            SdrAutoShapeAdjustmentItem( SvStream& rIn, sal_uInt16 nVersion );
-            ~SdrAutoShapeAdjustmentItem();
-
-            virtual int                 operator==( const SfxPoolItem& ) const;
-            virtual SfxPoolItem*        Create( SvStream&, sal_uInt16 nItem ) const;
-            virtual SvStream&           Store( SvStream&, sal_uInt16 nVersion ) const;
-            virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
-            virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
+    virtual int                 operator==( const SfxPoolItem& ) const;
+    virtual SfxPoolItem*        Create( SvStream&, sal_uInt16 nItem ) const;
+    virtual SvStream&           Store( SvStream& rStream, sal_uInt16 ) const { return rStream; }
+    virtual SfxPoolItem*        Clone( SfxItemPool* pPool = NULL ) const;
+    virtual sal_uInt16          GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
 
 #ifdef SDR_ISPOOLABLE
-            virtual int IsPoolable() const;
+    virtual int IsPoolable() const;
 #endif
-
-            sal_uInt32                          GetCount() const { return aAdjustmentValueList.Count(); };
 };
 
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

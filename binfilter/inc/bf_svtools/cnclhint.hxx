@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,17 +28,11 @@
 #ifndef _SFXCNCLHINT_HXX
 #define _SFXCNCLHINT_HXX
 
-#ifndef _SFXHINT_HXX
 #include <bf_svtools/hint.hxx>
-#endif
 
-#ifndef _SFXCANCEL_HXX
 #include <bf_svtools/cancel.hxx>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 namespace binfilter {
 
@@ -58,3 +53,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

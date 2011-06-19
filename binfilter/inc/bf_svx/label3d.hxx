@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,9 @@
 #ifndef _E3D_LABEL3D_HXX
 #define _E3D_LABEL3D_HXX
 
-#ifndef _E3D_PNTOBJ3D_HXX
 #include <bf_svx/pntobj3d.hxx>
-#endif
+#include <vector>
+
 namespace binfilter {
 
 class Viewport3D;
@@ -40,7 +41,7 @@ class E3dLabelObj;
 /************************************************************************/
 
 class E3dLabelObj;
-DECLARE_LIST(E3dLabelList, E3dLabelObj*)//STRIP008 DECLARE_LIST(E3dLabelList, E3dLabelObj*);
+typedef ::std::vector< E3dLabelObj* > E3dLabelList;
 
 /*************************************************************************
 |*
@@ -79,6 +80,8 @@ class E3dLabelObj : public E3dPointObj
 
     virtual ~E3dLabelObj();
 
+    using SdrAttrObj::operator=;
+
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pNewModel);
 
@@ -87,7 +90,7 @@ class E3dLabelObj : public E3dPointObj
 
     const SdrObject* Get2DLabelObj() const { return p2DLabelObj; }
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
@@ -96,3 +99,5 @@ class E3dLabelObj : public E3dPointObj
 
 }//end of namespace binfilter
 #endif          // _E3D_LABEL3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

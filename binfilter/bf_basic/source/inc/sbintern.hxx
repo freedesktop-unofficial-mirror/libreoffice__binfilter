@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _SB_INTERN_HXX
 
 #include <sbxfac.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 #include "sb.hxx"
 
 namespace
@@ -139,3 +138,4 @@ SbiGlobals* GetSbData();
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

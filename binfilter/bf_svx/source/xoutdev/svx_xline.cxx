@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,7 +31,6 @@
 #endif
 
 #include <stdlib.h>
-//#include <math.h>
 #include <tools/bigint.hxx>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
@@ -101,12 +101,12 @@ namespace binfilter {
 /*N*/   if ( (X3 < X0 && X0 < X1) || (Y3 < Y0 && Y0 < Y1) ) return FALSE;
 /*N*/   if ( (X1 < X0 && X0 < X3) || (Y1 < Y0 && Y0 < Y3) ) return FALSE;
 /*N*/   if ( (X0 < X3 && X3 < X1) || (Y0 < Y3 && Y3 < Y1) ) return FALSE;
-/*N*/   if ( (X1 < X3 && X3 < X0) || (Y1 < Y3 && Y3 < Y3) ) return FALSE;
+/*N*/   if ( (X1 < X3 && X3 < X0) || (Y1 < Y3 && Y3 < Y0) ) return FALSE;
 /*N*/
 /*N*/   if ( (X3 < X0 && X0 < X2) || (Y3 < Y0 && Y0 < Y2) ) return FALSE;
 /*N*/   if ( (X2 < X0 && X0 < X3) || (Y2 < Y0 && Y0 < Y3) ) return FALSE;
 /*N*/   if ( (X0 < X3 && X3 < X2) || (Y0 < Y3 && Y3 < Y2) ) return FALSE;
-/*N*/   if ( (X2 < X3 && X3 < X0) || (Y2 < Y3 && Y3 < Y3) ) return FALSE;
+/*N*/   if ( (X2 < X3 && X3 < X0) || (Y2 < Y3 && Y3 < Y0) ) return FALSE;
 /*N*/
 /*N*/   return TRUE;
 /*N*/ }
@@ -149,10 +149,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::XOutCalcXPolyExtent()
 |*
-|*    Beschreibung
-|*    Ersterstellung    14.08.95 ESO
-|*    Letzte Aenderung  15.08.95 ESO
-|*
 *************************************************************************/
 
 /*N*/ Rectangle XOutCalcXPolyExtent(const XPolygon& rXPoly, OutputDevice* pOut)
@@ -163,7 +159,7 @@ namespace binfilter {
 /*N*/   USHORT i;
 /*N*/   USHORT nPntMax=rXPoly.GetPointCount()-1;
 /*N*/
-/*N*/   FASTBOOL bHasBezier=FALSE;
+/*N*/   bool bHasBezier=FALSE;
 /*N*/   Rectangle aRect(rXPoly[0],rXPoly[0]);
 /*N*/   // zunaechst das Rect der Stuetzstellen (ohne Kontrollpunkte) bestimmen
 /*N*/   Point aPt;
@@ -225,10 +221,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::CalcBezierStepCount()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  14.12.94 ESO
-|*
 *************************************************************************/
 
 /*N*/ long XOutCalcBezierStepCount( const XPolygon& rXPoly, USHORT nIndex,
@@ -267,10 +259,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::CalcBezier()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  14.12.94 ESO
 |*
 *************************************************************************/
 
@@ -325,10 +313,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::CreatePolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  14.12.94
 |*
 *************************************************************************/
 
@@ -395,7 +379,7 @@ namespace binfilter {
 /*N*/   return aPoly;
 /*N*/ }
 
-/*N*/ Polygon XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* pOut )
+/*N*/ Polygon XOutCreatePolygonBezier( const XPolygon& rXPoly, OutputDevice* )
 /*N*/ {
 /*N*/   sal_uInt16 i, nPtCount = rXPoly.GetPointCount();
 /*N*/   Polygon aPoly( nPtCount );
@@ -464,8 +448,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      Uebergang zwischen zwei Linien eines Polygons
 |*                      berechnen
-|*    Ersterstellung    02.12.94
-|*    Letzte Aenderung  09.01.95
 |*
 \************************************************************************/
 
@@ -475,8 +457,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawStartEndPoly()
 |*
 |*    Linienanfang- bzw. -endpolygon zeichnen
-|*    Ersterstellung    17.01.95 ESO
-|*    Letzte Aenderung  18.01.95 ESO
 |*
 \************************************************************************/
 
@@ -486,8 +466,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawLineStartEnd()
 |*
 |*    Linienanfang bzw. -ende eines Polygons zeichnen
-|*    Ersterstellung    18.01.95 ESO
-|*    Letzte Aenderung  20.01.95 ESO
 |*
 \************************************************************************/
 
@@ -497,8 +475,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawFatLine()
 |*
 |*    Beschreibung      Dicke Linie mit oder ohne Linienstile zeichnen
-|*    Ersterstellung    28.11.94
-|*    Letzte Aenderung  09.10.95
 |*
 \************************************************************************/
 
@@ -508,8 +484,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawPatternLine()
 |*
 |*    Beschreibung      Haarlinie mit Linienstil zeichnen
-|*    Ersterstellung    13.08.95 ESO
-|*    Letzte Aenderung  14.08.95 ESO
 |*
 \************************************************************************/
 
@@ -519,8 +493,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawLinePolygon()
 |*
 |*    Beschreibung      Polygon-Linie (ggf. mit Linienmuster) zeichnen
-|*    Ersterstellung    28.11.94
-|*    Letzte Aenderung  09.10.95 ESO
 |*
 \************************************************************************/
 
@@ -565,7 +537,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/       }
 /*?*/
-/*?*/       if( aMtf.GetActionCount() )
+/*?*/       if( aMtf.GetActionSize() )
 /*?*/       {
 /*?*/           Size        aSizeLog( aBound.GetSize() );
 /*?*/           const Size  aMinSizeLog( pOut->PixelToLogic( Size( 1, 1 ) ) );
@@ -595,7 +567,6 @@ namespace binfilter {
 /*N*/ void XOutputDevice::ImpDrawLinePolygon(const Polygon& rPoly, BOOL bClosePoly)
 /*N*/ {
 /*N*/   Polygon         aPoly( rPoly );
-/*N*/   const Point*    pNextPoint;
 /*N*/   Point           aLineStartPos, aLineEndPos;
 /*N*/   XLineParam      aLParam, aStartParam, aEndParam;
 /*N*/   USHORT          nPntMax = aPoly.GetSize() - 1;
@@ -603,7 +574,7 @@ namespace binfilter {
 /*N*/   if( nPntMax >= 1 )
 /*N*/   {
 /*N*/       if( bHair || ( ( XLINE_SOLID == eLineStyle ) && ( nLineWidth ==  0 ) ) )
-/*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*N*/       {{DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       }
 /*N*/       else if( XLINE_NONE != eLineStyle )
 /*N*/       {
@@ -715,7 +686,7 @@ namespace binfilter {
 /*?*/                   nPntMax--;
 /*?*/               aLParam.Init(aPoly[nPntMax], aPoly[i], nLineWidth);
 /*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 CalcFatLineJoin(aPoly[i], aPoly[i+1], aLParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*?*/           else
 /*?*/               aLParam.Init(aPoly[i], aPoly[i+1], nLineWidth);
@@ -730,31 +701,28 @@ namespace binfilter {
 /*?*/                       break;
 /*?*/                   nPos++;
 /*?*/               }
-/*?*/               if ( nPos+1 <= nPntMax )    pNextPoint = &aPoly[nPos+1];
-/*?*/               else if ( bClosePoly )      pNextPoint = &aPoly[0];
-/*?*/               else                        pNextPoint = NULL;
 /*?*/
 /*?*/               if ( nLineWidth > 0 )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawFatLine(aPoly[i], aPoly[i+1], pNextPoint, aLParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               i = nPos;
 /*?*/           }
 /*?*/           if ( bClosePoly )
 /*?*/           {
 /*?*/               if ( nLineWidth > 0 )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     DrawFatLine(aPoly[i], aPoly[0], &aPoly[1], aLParam);
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/           else
 /*?*/           {
 /*?*/               if ( bLineStart )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawStartEndPoly(aLineStartPos, aLineStartPoly, aStartParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/               if ( bLineEnd )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 DrawStartEndPoly(aLineEndPos, aLineEndPoly, aEndParam);
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*?*/
 /*?*/           if( nLineWidth == 0 )
@@ -768,3 +736,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

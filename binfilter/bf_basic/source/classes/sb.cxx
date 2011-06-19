@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,44 +32,23 @@
 #include <tools/rcid.h>
 #include <tools/config.hxx>
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #ifndef __RSC //autogen
 #include <tools/errinf.hxx>
 #endif
-#ifndef _SBXCLASS_HXX //autogen
 #include <sbx.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _TOOLS_RC_HXX //autogen
 #include <tools/rc.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #include "sbunoobj.hxx"
 #include "sbjsmeth.hxx"
 #include "sbjsmod.hxx"
 #include "sbintern.hxx"
 #include "image.hxx"
-/*?*/ //#include "disas.hxx"
-/*?*/ //#include "runtime.hxx"
-/*?*/ //#include "sbuno.hxx"
-/*?*/ //#include "stdobj.hxx"
 #include "filefmt.hxx"
-/*?*/ //#include "sb.hrc"
-/*?*/ //#include "basrid.hxx"
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
 namespace binfilter {
-
-// #pragma SW_SEGMENT_CLASS( SBASIC, SBASIC_CODE )
 
 TYPEINIT1(StarBASIC,SbxObject)
 
@@ -84,7 +64,7 @@ struct SFX_VB_ErrorItem
     SbError nErrorSFX;
 };
 
-const SFX_VB_ErrorItem __FAR_DATA SFX_VB_ErrorTab[] =
+const SFX_VB_ErrorItem SFX_VB_ErrorTab[] =
 {
     { 1, SbERR_BASIC_EXCEPTION },  // #87844 Map exception to error code 1
     { 2, SbERR_SYNTAX },
@@ -393,7 +373,7 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
             SbMethod* pImplMethod = pIfaceMethod->getImplMethod();
             if( !pImplMethod )
             {
-                DBG_ERROR( "No ImplMethod" );
+                OSL_FAIL( "No ImplMethod" );
                 continue;
             }
 
@@ -403,7 +383,7 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
             SbMethod* pImplMethodCopy = p ? PTR_CAST(SbMethod,p) : NULL;
             if( !pImplMethodCopy )
             {
-                DBG_ERROR( "Found no ImplMethod copy" );
+                OSL_FAIL( "Found no ImplMethod copy" );
                 continue;
             }
             SbIfaceMapperMethod* pNewIfaceMethod =
@@ -425,7 +405,6 @@ SbClassModuleObject::SbClassModuleObject( SbModule* pClassModule )
             pProcedureProp->SetFlag( SBX_NO_BROADCAST );
             SbProcedureProperty* pNewProp = new SbProcedureProperty
                 ( pProcedureProp->GetName(), pProcedureProp->GetType() );
-                // ( pProcedureProp->GetName(), pProcedureProp->GetType(), this );
             pNewProp->ResetFlag( SBX_NO_BROADCAST );
             pProcedureProp->SetFlags( nFlags_ );
             pProps->PutDirect( pNewProp, i );
@@ -635,7 +614,7 @@ StarBASIC::StarBASIC( StarBASIC* p )
         pOLEFAC = new SbOLEFactory;
         AddFactory( pOLEFAC );
     }
-//  pRtl = new SbiStdObject( String( RTL_CONSTASCII_USTRINGPARAM(RTLNAME) ), this );
+
     // Suche ueber StarBASIC ist immer global
     SetFlag( SBX_GBLSEARCH );
 }
@@ -685,7 +664,6 @@ void* StarBASIC::operator new( size_t n )
 {
     if( n < sizeof( StarBASIC ) )
     {
-//      DBG_ASSERT( FALSE, "Warnung: inkompatibler BASIC-Stand!" );
         n = sizeof( StarBASIC );
     }
     return ::operator new( n );
@@ -763,15 +741,7 @@ SbModule* StarBASIC::FindModule( const String& rName )
 // Init-Code aller Module ausfuehren (auch in inserteten Bibliotheken)
 void StarBASIC::InitAllModules( StarBASIC* pBasicNotToInit )
 {
-    // Eigene Module initialisieren
-/*?*/ //    for ( USHORT nMod = 0; nMod < pModules->Count(); nMod++ )
-/*?*/ //    {
-/*?*/ //        SbModule* pModule = (SbModule*)pModules->Get( nMod );
-/*?*/ //        if( !pModule->IsCompiled() )
-/*?*/ //            pModule->Compile();
-/*?*/ //        pModule->RunInit();
-/*?*/ //    }
-    DBG_ERROR( "StarBASIC::InitAllModules: dead code!" );
+    OSL_FAIL( "StarBASIC::InitAllModules: dead code!" );
     // Alle Objekte ueberpruefen, ob es sich um ein Basic handelt
     // Wenn ja, auch dort initialisieren
     for ( USHORT nObj = 0; nObj < pObjs->Count(); nObj++ )
@@ -827,8 +797,6 @@ SbxVariable* StarBASIC::Find( const String& rName, SbxClassType t )
             if( rName.EqualsIgnoreCaseAscii( RTLNAME ) )
                 pRes = pRtl;
         }
-/*?*/ //        if( !pRes )
-/*?*/ //            pRes = ((SbiStdObject*) (SbxObject*) pRtl)->Find( rName, t );
         if( pRes )
             pRes->SetFlag( SBX_EXTFOUND );
     }
@@ -880,15 +848,7 @@ BOOL StarBASIC::Call( const String& rName, SbxArray* pParam )
     return bRes;
 }
 
-void StarBASIC::Stop()
-{
-/*?*/ //    SbiInstance* p = pINST;
-/*?*/ //    while( p )
-/*?*/ //    {
-/*?*/ //        p->Stop();
-/*?*/ //        p = p->pNext;
-/*?*/ //    }
-}
+void StarBASIC::Stop() { }
 
 BOOL StarBASIC::IsRunning()
 {
@@ -901,7 +861,7 @@ BOOL StarBASIC::IsRunning()
 *
 **************************************************************************/
 
-USHORT __EXPORT StarBASIC::BreakHdl()
+USHORT StarBASIC::BreakHdl()
 {
     return (USHORT) ( aBreakHdl.IsSet()
         ? aBreakHdl.Call( this ) : SbDEBUG_CONTINUE );
@@ -993,7 +953,7 @@ static BOOL bStaticSuppressSfxResource = FALSE;
 
 void StarBASIC::MakeErrorText( SbError nId, const String& /*aMsg*/ )
 {
-    vos::OGuard aSolarGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aSolarGuard;
 
     if( bStaticSuppressSfxResource )
     {
@@ -1003,26 +963,6 @@ void StarBASIC::MakeErrorText( SbError nId, const String& /*aMsg*/ )
 
     USHORT nOldID = GetVBErrorCode( nId );
 
-    // Hilfsklasse instanzieren
-/*?*/ //    BasicResId aId( RID_BASIC_START );
-/*?*/ //    BasicStringList_Impl aMyStringList( aId, USHORT(nId & ERRCODE_RES_MASK) );
-
-/*?*/ //    if( aMyStringList.IsErrorTextAvailable() )
-/*?*/ ///*?*/ //    {
-/*?*/ //        // Merge Message mit Zusatztext
-/*?*/ //        String aMsg1 = aMyStringList.GetString();
-/*?*/ //        // Argument-Platzhalter durch %s ersetzen
-/*?*/ //        String aSrgStr( RTL_CONSTASCII_USTRINGPARAM("$(ARG1)") );
-/*?*/ //        USHORT nResult = aMsg1.Search( aSrgStr );
-/*?*/ //
-/*?*/ //        if( nResult != STRING_NOTFOUND )
-/*?*/ //        {
-/*?*/ //            aMsg1.Erase( nResult, aSrgStr.Len() );
-/*?*/ //            aMsg1.Insert( aMsg, nResult );
-/*?*/ //        }
-/*?*/ //        GetSbData()->aErrMsg = aMsg1;
-/*?*/ //    }
-/*?*/ //    else if( nOldID != 0 )
     if( nOldID != 0 )
     {
         String aStdMsg( RTL_CONSTASCII_USTRINGPARAM("error ") );
@@ -1037,16 +977,11 @@ void StarBASIC::MakeErrorText( SbError nId, const String& /*aMsg*/ )
 BOOL StarBASIC::CError
     ( SbError code, const String& rMsg, USHORT l, USHORT c1, USHORT c2 )
 {
-    vos::OGuard aSolarGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aSolarGuard;
 
     // Compiler-Fehler waehrend der Laufzeit -> Programm anhalten
     if( IsRunning() )
     {
-        // #109018 Check if running Basic is affected
-/*?*/ //        StarBASIC* pStartedBasic = pINST->GetBasic();
-/*?*/ //        if( pStartedBasic != this )
-/*?*/ //            return FALSE;
-
         Stop();
     }
 
@@ -1067,7 +1002,7 @@ BOOL StarBASIC::CError
         bRet = (BOOL) GetSbData()->aErrHdl.Call( this );
     else
         bRet = ErrorHdl();
-    GetSbData()->bCompiler = FALSE;     // nur TRUE fuer Error-Handler
+    GetSbData()->bCompiler = FALSE;     // Only TRUE for Error-Handler
     return bRet;
 }
 
@@ -1079,7 +1014,7 @@ BOOL StarBASIC::RTError
 
 BOOL StarBASIC::RTError( SbError code, const String& rMsg, USHORT l, USHORT c1, USHORT c2 )
 {
-    vos::OGuard aSolarGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aSolarGuard;
 
     SbError c = code;
     if( (c & ERRCODE_CLASS_MASK) == ERRCODE_CLASS_COMPILER )
@@ -1102,19 +1037,11 @@ void StarBASIC::Error( SbError n )
     Error( n, String() );
 }
 
-void StarBASIC::Error( SbError /*n*/, const String& /*rMsg*/ )
-{
-/*?*/ //    if( pINST )
-/*?*/ //        pINST->Error( n, rMsg );
-}
+void StarBASIC::Error( SbError /*n*/, const String& /*rMsg*/ ) { }
 
-void StarBASIC::FatalError( SbError /*n*/ )
-{
-/*?*/ //    if( pINST )
-/*?*/ //        pINST->FatalError( n );
-}
+void StarBASIC::FatalError( SbError /*n*/ ) { }
 
-BOOL __EXPORT StarBASIC::ErrorHdl()
+BOOL StarBASIC::ErrorHdl()
 {
     return (BOOL) ( aErrorHdl.IsSet()
         ? aErrorHdl.Call( this ) : FALSE );
@@ -1122,7 +1049,7 @@ BOOL __EXPORT StarBASIC::ErrorHdl()
 
 /**************************************************************************
 *
-*   Laden und Speichern
+*   Saving and Loading
 *
 **************************************************************************/
 
@@ -1181,20 +1108,6 @@ BOOL StarBASIC::LoadData( SvStream& r, USHORT nVer )
     // Suche ueber StarBASIC ist immer global
     DBG_ASSERT( IsSet( SBX_GBLSEARCH ), "Basic ohne GBLSEARCH geladen" );
     SetFlag( SBX_GBLSEARCH );
-    return TRUE;
-}
-
-BOOL StarBASIC::StoreData( SvStream& r ) const
-{
-    if( !SbxObject::StoreData( r ) )
-        return FALSE;
-    r << (UINT16) pModules->Count();
-    for( USHORT i = 0; i < pModules->Count(); i++ )
-    {
-        SbModule* p = (SbModule*) pModules->Get( i );
-        if( !p->Store( r ) )
-            return FALSE;
-    }
     return TRUE;
 }
 
@@ -1353,7 +1266,7 @@ void BasicCollection::CollAdd( SbxArray* pPar_ )
                 }
                 nNextIndex = nAfterIndex + 1;
             }
-            else // if( nCount == 4 )
+            else
             {
                 INT32 nBeforeIndex = implGetIndex( pBefore );
                 if( nBeforeIndex == -1 )
@@ -1429,3 +1342,5 @@ void BasicCollection::CollRemove( SbxArray* pPar_ )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

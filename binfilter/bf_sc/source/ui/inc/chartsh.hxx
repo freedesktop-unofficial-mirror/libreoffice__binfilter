@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef CHARTSH_HXX
 #define CHARTSH_HXX
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include "shellids.hxx"
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>
-#endif
 
 class ScViewData;
 
@@ -51,9 +46,11 @@ public:
 
     SFX_DECL_INTERFACE(SCID_CHART_SHELL);
 
-    ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}//STRIP001    ScChartShell(ScViewData* pData);
+    ScChartShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

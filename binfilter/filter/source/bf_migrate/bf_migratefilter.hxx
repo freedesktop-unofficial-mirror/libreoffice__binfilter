@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,13 @@
 #ifndef _BF_MIGRATEFILTER_HXX
 #define _BF_MIGRATEFILTER_HXX
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XFILTER_HPP_
 #include <com/sun/star/document/XFilter.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XIMPORTER_HPP_
 #include <com/sun/star/document/XImporter.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
 #include <cppuhelper/implbase4.hxx>
 namespace binfilter {
@@ -124,3 +117,5 @@ sal_Bool SAL_CALL bf_MigrateFilter_supportsService(const ::rtl::OUString& Servic
 }//end of namespace binfilter
 #endif // _BF_MIGRATEFILTER_HXX
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

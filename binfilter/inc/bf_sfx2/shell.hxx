@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,9 @@
 #ifndef _SFX_SHELL_HXX
 #define _SFX_SHELL_HXX
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include <tools/string.hxx>
 
@@ -48,7 +43,7 @@ class SfxPoolItem;
 struct SfxShell_Impl;
 
 typedef SfxPoolItem* SfxPoolItemPtr;
-SV_DECL_PTRARR_DEL( SfxItemPtrArray, SfxPoolItemPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SfxItemPtrArray, SfxPoolItemPtr, 4, 4 )
 typedef SfxItemPtrArray SfxItemArray_Impl;
 
 //====================================================================
@@ -85,3 +80,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

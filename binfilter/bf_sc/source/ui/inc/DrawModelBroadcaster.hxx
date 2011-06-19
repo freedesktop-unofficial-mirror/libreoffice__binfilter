@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 #define _SC_DRAWMODELBROADCASTER_HXX
 
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.h>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTBROADCASTER_HPP_
 #include <com/sun/star/document/XEventBroadcaster.hpp>
-#endif
 namespace binfilter {
 
 class SdrModel;
@@ -68,3 +61,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

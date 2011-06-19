@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -79,16 +77,16 @@ namespace binfilter {
 /*N*/   SetRefreshControl( pDocShell->GetDocument()->GetRefreshTimerControlAddress() );
 /*N*/ }
 
-/*N*/ __EXPORT ScAreaLink::~ScAreaLink()
+/*N*/ ScAreaLink::~ScAreaLink()
 /*N*/ {
 /*N*/   StopRefreshTimer();
 /*N*/ }
 
 
-/*N*/  void __EXPORT ScAreaLink::DataChanged( const String&,
+/*N*/  void ScAreaLink::DataChanged( const String&,
 /*N*/                                      const ::com::sun::star::uno::Any& )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/     //  bei bInCreate nichts tun, damit Update gerufen werden kann, um den Status im
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -179,7 +177,7 @@ namespace binfilter {
 /*N*/   String aTempArea;
 /*N*/
 /*N*/   if( rNewFilter == ScDocShell::GetWebQueryFilterName() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       aTempArea = ScHTMLImport::GetHTMLRangeNameList( pSrcDoc, rNewArea );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/       aTempArea = rNewArea;
 /*N*/
@@ -223,8 +221,8 @@ namespace binfilter {
 /*N*/   {
 /*N*/       ScDocShellModificator aModificator( *pDocShell );
 /*N*/
-/*N*/       USHORT nStartX = aDestPos.Col();
-/*N*/       USHORT nStartY = aDestPos.Row();
+/*N*/       aDestPos.Col();
+/*N*/       aDestPos.Row();
 /*N*/       USHORT nOldEndX = aOldRange.aEnd.Col();
 /*N*/       USHORT nOldEndY = aOldRange.aEnd.Row();
 /*N*/       USHORT nNewEndX = aNewRange.aEnd.Col();
@@ -235,7 +233,6 @@ namespace binfilter {
 /*N*/       //  Undo initialisieren
 /*N*/
 /*N*/       ScDocument* pUndoDoc = NULL;
-/*N*/       ScDocument* pRedoDoc = NULL;
 /*N*/       if ( bAddUndo && bUndo )
 /*N*/       {
 /*N*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
@@ -319,7 +316,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( bAddUndo && bUndo)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRedoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       //  neue Einstellungen merken
@@ -337,7 +334,7 @@ namespace binfilter {
 /*N*/           aDestArea = aNewRange;
 /*N*/
 /*N*/       if ( nNewRefresh != GetRefreshDelay() )
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetRefreshDelay( nNewRefresh );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/       USHORT nPaintEndX = Max( aOldRange.aEnd.Col(), aNewRange.aEnd.Col() );
 /*N*/       USHORT nPaintEndY = Max( aOldRange.aEnd.Row(), aNewRange.aEnd.Row() );
@@ -384,9 +381,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, pCaller )
+/*N*/ IMPL_LINK( ScAreaLink, RefreshHdl, ScAreaLink*, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 long nRes = Refresh( aFileName, aFilterName, aSourceArea,
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

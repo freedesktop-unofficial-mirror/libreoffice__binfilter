@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,6 @@
 
 
 #include <limits.h>
-
-#ifndef GCC
-#endif
 
 #include <bf_svtools/itempool.hxx>
 #include <bf_svtools/itemset.hxx>
@@ -143,3 +141,5 @@ const SfxSetItem& SfxItemPoolCache::ApplyTo( const SfxSetItem &rOrigItem, BOOL b
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

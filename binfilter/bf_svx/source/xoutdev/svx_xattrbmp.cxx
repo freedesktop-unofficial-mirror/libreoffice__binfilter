@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,11 @@
 #include <vcl/virdev.hxx>
 #include <toolkit/unohlp.hxx>
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
 #include "dialogs.hrc"
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 #include "xtable.hxx"
@@ -45,9 +42,7 @@
 
 #include "unoapi.hxx"
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW
@@ -59,10 +54,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOBitmap::XOBitmap()
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
@@ -78,10 +69,6 @@ namespace binfilter {
 |*
 |*    XOBitmap::XOBitmap( Bitmap aBitmap, XBitmapStyle eStyle = XBITMAP_TILE )
 |*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
-|*
 *************************************************************************/
 
 /*N*/ XOBitmap::XOBitmap( const Bitmap& rBmp, XBitmapStyle eInStyle ) :
@@ -96,10 +83,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOBitmap::XOBitmap( Bitmap aBitmap, XBitmapStyle eStyle = XBITMAP_TILE )
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -117,10 +100,6 @@ namespace binfilter {
 |*    XOBitmap::XOBitmap( USHORT* pArray, const Color& aPixelColor,
 |*          const Color& aBckgrColor, const Size& rSize = Size( 8, 8 ),
 |*          XBitmapStyle eStyle = XBITMAP_TILE )
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -151,10 +130,6 @@ namespace binfilter {
 |*
 |*    XOBitmap::XOBitmap( const XOBitmap& rXBmp )
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
-|*
 *************************************************************************/
 
 /*N*/ XOBitmap::XOBitmap( const XOBitmap& rXBmp ) :
@@ -184,10 +159,6 @@ namespace binfilter {
 |*
 |*    XOBitmap::XOBitmap( Bitmap aBitmap, XBitmapStyle eStyle = XBITMAP_TILE )
 |*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
-|*
 *************************************************************************/
 
 /*N*/ XOBitmap::~XOBitmap()
@@ -199,10 +170,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOBitmap& XOBitmap::operator=( const XOBitmap& rXBmp )
-|*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
@@ -232,10 +199,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    int XOBitmap::operator==( const XOBitmap& rXOBitmap ) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -268,10 +231,6 @@ namespace binfilter {
 |*
 |*    void SetPixelArray( const USHORT* pArray )
 |*
-|*    Beschreibung
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
-|*
 *************************************************************************/
 
 /*N*/ void XOBitmap::SetPixelArray( const USHORT* pArray )
@@ -296,10 +255,6 @@ namespace binfilter {
 |*
 |*    Bitmap XOBitmap::GetBitmap()
 |*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
-|*
 *************************************************************************/
 
 /*N*/ Bitmap XOBitmap::GetBitmap() const
@@ -310,10 +265,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    Bitmap XOBitmap::GetGraphicObject()
-|*
-|*    Beschreibung
-|*    Ersterstellung
-|*    Letzte Aenderung
 |*
 *************************************************************************/
 
@@ -331,8 +282,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      Umwandlung der Bitmap in Array, Hinter- u.
 |*                      Vordergrundfarbe
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
@@ -377,15 +326,12 @@ namespace binfilter {
 |*
 |*    Beschreibung      Umwandlung des Arrays, Hinter- u.
 |*                      Vordergrundfarbe in eine Bitmap
-|*    Ersterstellung    27.07.95
-|*    Letzte Aenderung  27.07.95
 |*
 *************************************************************************/
 
 /*N*/ void XOBitmap::Array2Bitmap()
 /*N*/ {
 /*N*/   VirtualDevice   aVD;
-/*N*/   BOOL            bPixelColor = FALSE;
 /*N*/   USHORT          nLines = 8; // von Type abhaengig
 /*N*/
 /*N*/   if( !pPixelArray )
@@ -419,10 +365,6 @@ namespace binfilter {
 |*    XFillBitmapItem::XFillBitmapItem(const XubString& rName,
 |*                                 const Bitmap& rTheBitmap)
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillBitmapItem::XFillBitmapItem(const XubString& rName,
@@ -436,10 +378,6 @@ namespace binfilter {
 |*
 |*    XFillBitmapItem::XFillBitmapItem(const XFillBitmapItem& rItem)
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ XFillBitmapItem::XFillBitmapItem(const XFillBitmapItem& rItem) :
@@ -451,10 +389,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XFillBitmapItem::XFillBitmapItem(SvStream& rIn)
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  26.07.94
 |*
 *************************************************************************/
 
@@ -475,7 +409,7 @@ namespace binfilter {
 /*?*/
 /*?*/           if( aBmp.GetSizePixel().Width() == 8 &&
 /*?*/               aBmp.GetSizePixel().Height() == 8 )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           else
 /*?*/               aXOBitmap.SetBitmapType( XBITMAP_IMPORT );
@@ -522,7 +456,7 @@ namespace binfilter {
 
 //*************************************************************************
 
-/*N*/ XFillBitmapItem::XFillBitmapItem( SfxItemPool* pPool, const XOBitmap& rTheBitmap )
+/*N*/ XFillBitmapItem::XFillBitmapItem( SfxItemPool* /*pPool*/, const XOBitmap& rTheBitmap )
 /*N*/ :     NameOrIndex( XATTR_FILLBITMAP, -1 ),
 /*N*/   aXOBitmap( rTheBitmap )
 /*N*/ {
@@ -532,13 +466,9 @@ namespace binfilter {
 |*
 |*    XFillBitmapItem::Clone(SfxItemPool* pPool) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
-/*N*/ SfxPoolItem* XFillBitmapItem::Clone(SfxItemPool* pPool) const
+/*N*/ SfxPoolItem* XFillBitmapItem::Clone(SfxItemPool* /*pPool*/) const
 /*N*/ {
 /*N*/   return new XFillBitmapItem(*this);
 /*N*/ }
@@ -546,10 +476,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    int XFillBitmapItem::operator==(const SfxPoolItem& rItem) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  26.07.95
 |*
 *************************************************************************/
 
@@ -563,10 +489,6 @@ namespace binfilter {
 |*
 |*    SfxPoolItem* XFillBitmapItem::Create(SvStream& rIn, USHORT nVer) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  17.11.94
-|*
 *************************************************************************/
 
 /*N*/ SfxPoolItem* XFillBitmapItem::Create(SvStream& rIn, USHORT nVer) const
@@ -576,62 +498,7 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    SfxPoolItem* XFillBitmapItem::Store(SvStream& rOut) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    17.11.94
-|*    Letzte Aenderung  26.07.94
-|*
-*************************************************************************/
-
-/*N*/ SvStream& XFillBitmapItem::Store( SvStream& rOut, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   NameOrIndex::Store( rOut, nItemVersion );
-/*N*/
-/*N*/   if (!IsIndex())
-/*N*/   {
-/*N*/       rOut << (INT16) aXOBitmap.GetBitmapStyle();
-/*N*/       if( !aXOBitmap.GetBitmap() )
-/*N*/           rOut << (INT16) XBITMAP_NONE;
-/*N*/       else
-/*N*/       {
-/*N*/           rOut << (INT16) aXOBitmap.GetBitmapType();
-/*N*/           if( aXOBitmap.GetBitmapType() == XBITMAP_IMPORT )
-/*N*/           {
-/*N*/               const USHORT    nOldComprMode = rOut.GetCompressMode();
-/*N*/               USHORT          nNewComprMode = nOldComprMode;
-/*N*/
-/*N*/               if( rOut.GetVersion() >= SOFFICE_FILEFORMAT_50 )
-/*N*/                   nNewComprMode |= COMPRESSMODE_ZBITMAP;
-/*N*/               else
-/*N*/                   nNewComprMode &= ~COMPRESSMODE_ZBITMAP;
-/*N*/
-/*N*/               rOut.SetCompressMode( nNewComprMode );
-/*N*/               rOut << aXOBitmap.GetBitmap();
-/*N*/               rOut.SetCompressMode( nOldComprMode );
-/*N*/           }
-/*N*/           else if( aXOBitmap.GetBitmapType() == XBITMAP_8X8 )
-/*N*/           {
-/*N*/               USHORT* pArray = aXOBitmap.GetPixelArray();
-/*N*/               for( USHORT i = 0; i < 64; i++ )
-/*N*/                   rOut << (USHORT) *( pArray + i );
-/*N*/
-/*N*/               rOut << aXOBitmap.GetPixelColor();
-/*N*/               rOut << aXOBitmap.GetBackgroundColor();
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return rOut;
-/*N*/ }
-
-/*************************************************************************
-|*
 |*    const Bitmap& XFillBitmapItem::GetValue(const XBitmapTable* pTable) const
-|*
-|*    Beschreibung
-|*    Ersterstellung    15.11.94
-|*    Letzte Aenderung  26.07.94
 |*
 *************************************************************************/
 
@@ -648,13 +515,9 @@ namespace binfilter {
 |*
 |*    USHORT XFillBitmapItem::GetVersion() const
 |*
-|*    Beschreibung
-|*    Ersterstellung    26.07.95
-|*    Letzte Aenderung  26.07.95
-|*
 *************************************************************************/
 
-/*N*/ USHORT XFillBitmapItem::GetVersion( USHORT nFileFormatVersion ) const
+/*N*/ USHORT XFillBitmapItem::GetVersion( USHORT /*nFileFormatVersion*/ ) const
 /*N*/ {
 /*N*/   // 2. Version
 /*N*/   return( 1 );
@@ -665,9 +528,8 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillBitmapItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool XFillBitmapItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -677,15 +539,15 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( nMemberId == MID_GRAFURL )
 /*N*/   {
-/*N*/       XOBitmap aXOBitmap( GetValue() );
+/*N*/       XOBitmap aTmpXOBitmap( GetValue() );
 /*N*/       ::rtl::OUString aURL( RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX));
-/*N*/       aURL += ::rtl::OUString::createFromAscii( aXOBitmap.GetGraphicObject().GetUniqueID().GetBuffer() );
+/*N*/       aURL += ::rtl::OUString::createFromAscii( aTmpXOBitmap.GetGraphicObject().GetUniqueID().GetBuffer() );
 /*N*/       rVal <<= aURL;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       XOBitmap aXOBitmap( GetValue() );
-/*?*/       Bitmap aBmp( aXOBitmap.GetBitmap() );
+/*?*/       XOBitmap aTmpXOBitmap( GetValue() );
+/*?*/       Bitmap aBmp( aTmpXOBitmap.GetBitmap() );
 /*?*/       BitmapEx aBmpEx( aBmp );
 /*?*/
 /*?*/       ::com::sun::star::uno::Reference< ::com::sun::star::awt::XBitmap > xBmp(
@@ -694,14 +556,13 @@ namespace binfilter {
 /*?*/       rVal <<= xBmp;
 /*N*/   }
 /*N*/
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool XFillBitmapItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool XFillBitmapItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   if( nMemberId == MID_NAME )
 /*N*/   {
@@ -709,7 +570,7 @@ namespace binfilter {
 /*?*/       if(rVal >>= aName)
 /*?*/       {
 /*?*/           SetName( aName );
-/*?*/           return sal_True;
+/*?*/           return true;
 /*?*/       }
 /*N*/   }
 /*N*/   else if( nMemberId == MID_GRAFURL )
@@ -720,7 +581,7 @@ namespace binfilter {
 /*N*/           BfGraphicObject aGrafObj( CreateGraphicObjectFromURL( aURL ) );
 /*N*/           XOBitmap aBMP( aGrafObj );
 /*N*/           SetValue( aBMP );
-/*N*/           return sal_True;
+/*N*/           return true;
 /*N*/       }
 /*N*/   }
 /*N*/   else
@@ -738,12 +599,12 @@ namespace binfilter {
 /*?*/           if(aInput.GetSizePixel().Width() == 8
 /*?*/               && aInput.GetSizePixel().Height() == 8
 /*?*/               && aInput.GetColorCount() == 2)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
-/*?*/           return sal_True;
+/*?*/           return true;
 /*?*/       }
 /*?*/   }
-/*N*/   return sal_False;
+/*N*/   return false;
 /*N*/ }
 
 /*N*/ BOOL XFillBitmapItem::CompareValueFunc( const NameOrIndex* p1, const NameOrIndex* p2 )
@@ -774,3 +635,5 @@ namespace binfilter {
 /*N*/   return (XFillBitmapItem*)this;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

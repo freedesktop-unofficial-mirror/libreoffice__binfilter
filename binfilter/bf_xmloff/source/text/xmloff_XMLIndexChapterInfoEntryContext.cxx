@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,36 +27,22 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXCHAPTERINFOENTRYCONTEXT_HXX_
 #include "XMLIndexChapterInfoEntryContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_CHAPTERFORMAT_HPP_
 #include <com/sun/star/text/ChapterFormat.hpp>
-#endif
 namespace binfilter {
 
 
@@ -75,11 +62,11 @@ using ::com::sun::star::xml::sax::XAttributeList;
 TYPEINIT1( XMLIndexChapterInfoEntryContext, XMLIndexSimpleEntryContext);
 
 XMLIndexChapterInfoEntryContext::XMLIndexChapterInfoEntryContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLIndexTemplateContext& rTemplate,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        XMLIndexSimpleEntryContext(rImport, rTemplate.sTokenChapterInfo,
+        XMLIndexSimpleEntryContext(rInImport, rTemplate.sTokenChapterInfo,
                                    rTemplate, nPrfx, rLocalName),
         nChapterInfo(ChapterFormat::NAME_NUMBER),
         bChapterInfoOK(sal_False)
@@ -109,10 +96,10 @@ void XMLIndexChapterInfoEntryContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if (XML_NAMESPACE_TEXT == nPrefix)
+        if (XML_NAMESPACE_TEXT == nLclPrefix)
         {
             if ( IsXMLToken( sLocalName, XML_STYLE_NAME ) )
             {
@@ -161,3 +148,5 @@ void XMLIndexChapterInfoEntryContext::FillPropertyValues(
     rValues[nIndex].Value = aAny;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

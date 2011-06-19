@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _DBCONFIG_HXX
 #define _DBCONFIG_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 struct SwDBData;
 class SwDBConfig : public ::utl::ConfigItem
@@ -50,3 +49,4 @@ public:
 }
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

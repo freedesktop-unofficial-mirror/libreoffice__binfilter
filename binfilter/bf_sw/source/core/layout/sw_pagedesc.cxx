@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,96 +34,63 @@
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #include <hintids.hxx>
 
-#ifndef _SVX_PBINITEM_HXX //autogen
 #include <bf_svx/pbinitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
 #include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include "bf_svx/frmdiritem.hxx"
-#endif
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _PAGEFRM_HXX //autogen
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>          // fuer GetAttrPool
-#endif
 namespace binfilter {
 
 /*************************************************************************
 |*
 |*  SwPageDesc::SwPageDesc()
 |*
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    MA 16. Feb. 94
-|*
 |*************************************************************************/
 
 
 
-/*N*/ SwPageDesc::SwPageDesc( const String& rName, SwFrmFmt *pFmt, SwDoc *pDc ) :
-/*N*/   SwModify( 0 ),
-/*N*/   aDescName( rName ),
-/*N*/   aDepend( this, 0 ),
-/*N*/   nRegHeight( 0 ),
-/*N*/   nRegAscent( 0 ),
-/*N*/   bLandscape( FALSE ),
-/*N*/   eUse( (UseOnPage)(PD_ALL | PD_HEADERSHARE | PD_FOOTERSHARE) ),
-/*N*/   aMaster( pDc->GetAttrPool(), rName, pFmt ),
-/*N*/   aLeft( pDc->GetAttrPool(), rName, pFmt ),
-/*N*/   pFollow( this ),
-/*N*/   aFtnInfo()
+/*N*/ SwPageDesc::SwPageDesc( const String& rName, SwFrmFmt *pFmt, SwDoc *pDc )
+/*N*/   : SwModify( 0 )
+/*N*/   , aDescName( rName )
+/*N*/   , aMaster( pDc->GetAttrPool(), rName, pFmt )
+/*N*/   , aLeft( pDc->GetAttrPool(), rName, pFmt )
+/*N*/   , aDepend( this, 0 )
+/*N*/   , pFollow( this )
+/*N*/   , nRegHeight( 0 )
+/*N*/   , nRegAscent( 0 )
+/*N*/   , eUse( (UseOnPage)(PD_ALL | PD_HEADERSHARE | PD_FOOTERSHARE) )
+/*N*/   , bLandscape( FALSE )
+/*N*/   , aFtnInfo()
 /*N*/ {
 /*N*/ }
 
 
 
-/*N*/ SwPageDesc::SwPageDesc( const SwPageDesc &rCpy ) :
-/*N*/   SwModify( 0 ),
-/*N*/   aDepend( this, (SwModify*)rCpy.aDepend.GetRegisteredIn() ),
-/*N*/   nRegHeight( rCpy.GetRegHeight() ),
-/*N*/   nRegAscent( rCpy.GetRegAscent() ),
-/*N*/   aDescName( rCpy.GetName() ),
-/*N*/   bLandscape( rCpy.GetLandscape() ),
-/*N*/   aNumType( rCpy.GetNumType() ),
-/*N*/   eUse( rCpy.ReadUseOn() ),
-/*N*/   aMaster( rCpy.GetMaster() ),
-/*N*/   aLeft( rCpy.GetLeft() ),
-/*N*/   pFollow( rCpy.pFollow ),
-/*N*/   aFtnInfo( rCpy.GetFtnInfo() )
+/*N*/ SwPageDesc::SwPageDesc( const SwPageDesc &rCpy )
+/*N*/   : SwModify( 0 )
+/*N*/   , aDescName( rCpy.GetName() )
+/*N*/   , aNumType( rCpy.GetNumType() )
+/*N*/   , aMaster( rCpy.GetMaster() )
+/*N*/   , aLeft( rCpy.GetLeft() )
+/*N*/   , aDepend( this, (SwModify*)rCpy.aDepend.GetRegisteredIn() )
+/*N*/   , pFollow( rCpy.pFollow )
+/*N*/   , nRegHeight( rCpy.GetRegHeight() )
+/*N*/   , nRegAscent( rCpy.GetRegAscent() )
+/*N*/   , eUse( rCpy.ReadUseOn() )
+/*N*/   , bLandscape( rCpy.GetLandscape() )
+/*N*/   , aFtnInfo( rCpy.GetFtnInfo() )
 /*N*/ {
 /*N*/ }
 
@@ -138,8 +106,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Gespiegelt werden nur die Raender.
 |*      Attribute wie Umrandung und dergleichen werden 1:1 kopiert.
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    01. Nov. 94
 |*
 |*************************************************************************/
 
@@ -180,8 +146,6 @@ namespace binfilter {
 |*                SwPageDesc::GetInfo()
 |*
 |*    Beschreibung      erfragt Informationen
-|*    Ersterstellung    JP 31.03.94
-|*    Letzte Aenderung  JP 31.03.94
 |*
 *************************************************************************/
 
@@ -193,8 +157,6 @@ namespace binfilter {
 |*                SwPageDesc::SetRegisterFmtColl()
 |*
 |*    Beschreibung      setzt die Vorlage fuer die Registerhaltigkeit
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -217,8 +179,6 @@ namespace binfilter {
 |*                SwPageDesc::GetRegisterFmtColl()
 |*
 |*    Beschreibung      holt die Vorlage fuer die Registerhaltigkeit
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -234,8 +194,6 @@ namespace binfilter {
 |*                SwPageDesc::RegisterChange()
 |*
 |*    Beschreibung      benachrichtigt alle betroffenen PageFrames
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -269,8 +227,6 @@ namespace binfilter {
 |*
 |*    Beschreibung      reagiert insbesondere auf Aenderungen
 |*                      der Vorlage fuer die Registerhaltigkeit
-|*    Ersterstellung    AMA 22.07.96
-|*    Letzte Aenderung  AMA 22.07.96
 |*
 *************************************************************************/
 
@@ -293,9 +249,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFtnInfo::SwPageFtnInfo()
-|*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 24. Feb. 93
 |*
 |*************************************************************************/
 
@@ -331,9 +284,6 @@ namespace binfilter {
 |*
 |*  SwPageFtnInfo::operator=
 |*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 24. Feb. 93
-|*
 |*************************************************************************/
 
 
@@ -353,9 +303,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFtnInfo::operator==
-|*
-|*  Ersterstellung      MA 01. Mar. 93
-|*  Letzte Aenderung    MA 01. Mar. 93
 |*
 |*************************************************************************/
 
@@ -378,3 +325,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

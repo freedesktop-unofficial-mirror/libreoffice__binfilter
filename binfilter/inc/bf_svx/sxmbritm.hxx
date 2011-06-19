@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef SXMBRITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 namespace binfilter {
 
 // Die Masslinie unterhalb der Bezugskante
@@ -46,9 +43,11 @@ namespace binfilter {
 // (SdrMeasureLineDistItem) ueber die Bezugskante hinwegdraggt
 class SdrMeasureBelowRefEdgeItem: public SdrYesNoItem {
 public:
-    SdrMeasureBelowRefEdgeItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_MEASUREBELOWREFEDGE,bOn) {}
+    SdrMeasureBelowRefEdgeItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_MEASUREBELOWREFEDGE,bOn) {}
     SdrMeasureBelowRefEdgeItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASUREBELOWREFEDGE,rIn) {}
 };
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

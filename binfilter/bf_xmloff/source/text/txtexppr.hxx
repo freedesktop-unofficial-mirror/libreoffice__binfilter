@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,11 @@
 #define _XMLOFF_TXTEXPPR_HXX
 
 
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
-#ifndef _XMLOFF_TXTDROPE_HXX
 #include "txtdrope.hxx"
-#endif
-#ifndef _XMLOFF_XMLTABE_HXX
 #include "xmltabe.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTCOLUMNSEXPORT_HXX
 #include "XMLTextColumnsExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLBACKGROUNDIMAGEEXPORT_HXX
 #include "XMLBackgroundImageExport.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLExport;
@@ -106,3 +97,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,18 +32,12 @@
 
 #include "hintids.hxx"
 
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "frmatr.hxx"
 #include "dflyobj.hxx"
@@ -50,17 +45,12 @@
 #include "flyfrms.hxx"
 namespace binfilter {
 
-static FASTBOOL bInResize = FALSE;
-
 /*N*/ TYPEINIT1( SwFlyDrawObj, SdrObject )
 /*N*/ TYPEINIT1( SwVirtFlyDrawObj, SdrVirtObj )
 
 /*************************************************************************
 |*
 |*  SwFlyDrawObj::Ctor
-|*
-|*  Ersterstellung      MA 18. Apr. 95
-|*  Letzte Aenderung    MA 28. May. 96
 |*
 *************************************************************************/
 /*N*/ SwFlyDrawObj::SwFlyDrawObj()
@@ -81,9 +71,6 @@ static FASTBOOL bInResize = FALSE;
 |*
 |*  SwFlyDrawObj::Paint()
 |*
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    MA 20. May. 95
-|*
 *************************************************************************/
 
 
@@ -91,18 +78,15 @@ static FASTBOOL bInResize = FALSE;
 |*
 |*  SwFlyDrawObj::Factory-Methoden
 |*
-|*  Ersterstellung      MA 23. Feb. 95
-|*  Letzte Aenderung    MA 23. Feb. 95
-|*
 *************************************************************************/
 
-/*N*/ UINT32 __EXPORT SwFlyDrawObj::GetObjInventor() const
+/*N*/ UINT32 SwFlyDrawObj::GetObjInventor() const
 /*N*/ {
 /*N*/   return SWGInventor;
 /*N*/ }
 
 
-/*N*/ UINT16 __EXPORT SwFlyDrawObj::GetObjIdentifier()  const
+/*N*/ UINT16 SwFlyDrawObj::GetObjIdentifier()   const
 /*N*/ {
 /*N*/   return SwFlyDrawObjIdentifier;
 /*N*/ }
@@ -112,9 +96,6 @@ static FASTBOOL bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::CToren, Dtor
-|*
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    MA 28. May. 96
 |*
 *************************************************************************/
 
@@ -129,7 +110,7 @@ static FASTBOOL bInResize = FALSE;
 /*N*/ }
 
 
-/*N*/ __EXPORT SwVirtFlyDrawObj::~SwVirtFlyDrawObj()
+/*N*/ SwVirtFlyDrawObj::~SwVirtFlyDrawObj()
 /*N*/ {
 /*N*/   if ( GetPage() )    //Der SdrPage die Verantwortung entziehen.
 /*N*/       GetPage()->RemoveObject( GetOrdNum() );
@@ -138,9 +119,6 @@ static FASTBOOL bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::GetFmt()
-|*
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    MA 08. Dec. 94
 |*
 *************************************************************************/
 
@@ -154,9 +132,6 @@ static FASTBOOL bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::Paint()
-|*
-|*  Ersterstellung      MA 20. Dec. 94
-|*  Letzte Aenderung    MA 18. Dec. 95
 |*
 *************************************************************************/
 
@@ -174,8 +149,6 @@ static FASTBOOL bInResize = FALSE;
 |*                         und der Point in dessen Flaeche nicht steht.
 |*                      4. der Point in der Flaeche liegt und der Rahmen
 |*                         selektiert ist.
-|*  Ersterstellung      MA 08. Dec. 94
-|*  Letzte Aenderung    JP 25.03.96
 |*
 *************************************************************************/
 
@@ -184,9 +157,6 @@ static FASTBOOL bInResize = FALSE;
 |*
 |*  SwVirtFlyDrawObj::TakeObjInfo()
 |*
-|*  Ersterstellung      MA 03. May. 95
-|*  Letzte Aenderung    MA 03. May. 95
-|*
 *************************************************************************/
 
 
@@ -194,9 +164,6 @@ static FASTBOOL bInResize = FALSE;
 /*************************************************************************
 |*
 |*  SwVirtFlyDrawObj::Groessenermittlung
-|*
-|*  Ersterstellung      MA 12. Jan. 95
-|*  Letzte Aenderung    MA 10. Nov. 95
 |*
 *************************************************************************/
 
@@ -209,7 +176,7 @@ static FASTBOOL bInResize = FALSE;
 /*N*/ }
 
 
-/*N*/ const Rectangle& __EXPORT SwVirtFlyDrawObj::GetBoundRect() const
+/*N*/ const Rectangle& SwVirtFlyDrawObj::GetBoundRect() const
 /*N*/ {
 /*N*/   SetRect();
 /*N*/   return aOutRect;
@@ -220,7 +187,7 @@ static FASTBOOL bInResize = FALSE;
 
 
 
-/*N*/ const Rectangle& __EXPORT SwVirtFlyDrawObj::GetSnapRect()  const
+/*N*/ const Rectangle& SwVirtFlyDrawObj::GetSnapRect()  const
 /*N*/ {
 /*N*/   SetRect();
 /*N*/   return aOutRect;
@@ -242,9 +209,6 @@ static FASTBOOL bInResize = FALSE;
 |*
 |*  SwVirtFlyDrawObj::Move() und Resize()
 |*
-|*  Ersterstellung      MA 12. Jan. 95
-|*  Letzte Aenderung    MA 26. Jul. 96
-|*
 *************************************************************************/
 
 
@@ -262,3 +226,5 @@ static FASTBOOL bInResize = FALSE;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

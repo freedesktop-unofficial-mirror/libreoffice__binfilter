@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,7 +28,7 @@
 
 #include "socont.h"
 #include <bf_so3/svstor.hxx>
-
+#include <sal/macros.h>
 
 #define LOMETRIC_PER_INCH   254
 
@@ -36,8 +37,6 @@
 
 #define MAP_PIX_TO_LOGHIM(x,ppli)   MulDiv(HIMETRIC_PER_INCH, (x), (ppli))
 #define MAP_LOGHIM_TO_PIX(x,ppli)   MulDiv((ppli), (x), HIMETRIC_PER_INCH)
-
-#define ARRAYSIZE(a)    (sizeof(a)/sizeof(a[0]))
 
 namespace binfilter {
 
@@ -125,7 +124,6 @@ void RectConvertMappings(LPRECT pRect, HDC hDC, WIN_BOOL fToDevice)
         {
         hDC=GetDC(NULL);
         SetMapMode(hDC, MM_HIMETRIC);
-        //SetMapMode(hDC, MM_LOMETRIC);
         fSysDC=TRUE;
         }
 
@@ -156,7 +154,6 @@ void RectConvertMappings(LPRECT pRect, HDC hDC, WIN_BOOL fToDevice)
  */
 
 CSO_Cont::CSO_Cont(DWORD dwID, HWND hWnd, SvOutPlaceObject * pPG)
-//CSO_Cont::CSO_Cont(DWORD dwID, HWND hWnd, PCPages pPG)
     {
     m_hWnd=hWnd;
     m_dwID=dwID;
@@ -171,7 +168,6 @@ CSO_Cont::CSO_Cont(DWORD dwID, HWND hWnd, SvOutPlaceObject * pPG)
     m_clsID=CLSID_NULL;
     m_fSetExtent=FALSE;
 
-    //CHAPTER17MOD
     m_cRef=0;
     m_pIOleObject=NULL;
     m_pIViewObject2=NULL;
@@ -181,27 +177,22 @@ CSO_Cont::CSO_Cont(DWORD dwID, HWND hWnd, SvOutPlaceObject * pPG)
     m_pImpIAdviseSink=NULL;
 
     m_fRepaintEnabled=TRUE;
-    //End CHAPTER17MOD
+
     return;
     }
 
 
 CSO_Cont::~CSO_Cont(void)
     {
-    //CHAPTER17MOD
     //Object pointers cleaned up in Close.
-
     DeleteInterfaceImp(m_pImpIAdviseSink);
     DeleteInterfaceImp(m_pImpIOleClientSite);
-    //End CHAPTER17MOD
 
     return;
     }
 
 
 
-
-//CHAPTER17MOD
 /*
  * CSO_Cont::QueryInterface
  * CSO_Cont::AddRef
@@ -248,10 +239,6 @@ STDMETHODIMP_(ULONG) CSO_Cont::Release(void)
     return 0;
     }
 
-//End CHAPTER17MOD
-
-
-
 
 
 /*
@@ -279,47 +266,11 @@ DWORD CSO_Cont::GetID(void)
  *  UINT            Number of characters stored.
  */
 
-//UINT CSO_Cont::GetStorageName(LPOLESTR pszName)
 String CSO_Cont::GetStorageName()
 {
     // used in SvOutPlaceObject too, don't change name
     return String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) );
 }
-
-
-
-//CHAPTER17MOD
-/*
- * CSO_Cont::StorageGet
- *
- * Purpose:
- *  Returns the IStorage pointer maintained by this tenant,
- *  AddRef'd of course.
- *
- * Parameters:
- *  ppStg           LPSTORAGE * in which to return the pointer.
- *
- * Return Value:
- *  None
- */
-
-/* MM ???
-void CSO_Cont::StorageGet(LPSTORAGE *ppStg)
-    {
-    if (NULL==ppStg)
-        return;
-
-    *ppStg=m_pIStorage;
-
-    if (NULL!=*ppStg)
-        (*ppStg)->AddRef();
-
-    return;
-    }
-*/
-//End CHAPTER17MOD
-
-
 
 
 /*
@@ -353,14 +304,10 @@ void CSO_Cont::StorageGet(LPSTORAGE *ppStg)
 UINT CSO_Cont::Create(TENANTTYPE tType, LPVOID pvType
     , LPFORMATETC pFE, PPOINTL pptl, LPSIZEL pszl
     , SotStorage * pIStorage, PPATRONOBJECT ppo, DWORD dwData)
-//    , LPSTORAGE pIStorage, PPATRONOBJECT ppo, DWORD dwData)
     {
     HRESULT             hr;
     LPUNKNOWN           pObj = NULL;
     UINT                uRet=CREATE_GRAPHICONLY;
-    //CHAPTER17MOD
-    //Some things moves to ObjectInitialize
-    //End CHAPTER17MOD
 
     if (NULL==pvType || NULL==pIStorage)
         return CREATE_FAILED;
@@ -462,76 +409,6 @@ UINT CSO_Cont::Create(TENANTTYPE tType, LPVOID pvType
     }
 
 
-
-/*
- * CSO_Cont::Save
- *
- * Purpose:
- *
- * Parameters:
- *  pIStorage       LPSTORAGE of the page we live in.
- *
- * Return Value:
- *  WIN_BOOL            TRUE if successful, FALSE otherwise.
- */
-
-WIN_BOOL CSO_Cont::Save(SotStorage *pIStorage)
-    {
-    LPPERSISTSTORAGE    pIPS;
-
-    if (NULL!=m_pIStorage)
-        {
-        /*
-         * We need to OleSave again because we might have changed
-         * the size or position of this tenant.  We also need to
-         * save the rectangle on the page, since that's not known
-         * to OLE.
-         */
-        m_pObj->QueryInterface(IID_IPersistStorage, (PPVOID)&pIPS);
-
-        //This fails for static objects...so we improvise if so
-        if (FAILED(OleSave(pIPS, m_pIStorage, TRUE)))
-            {
-            //This is essentially what OleSave does.
-            WriteClassStg(m_pIStorage, m_clsID);
-            pIPS->Save(m_pIStorage, TRUE);
-            }
-
-        pIPS->SaveCompleted(NULL);
-        pIPS->Release();
-        m_pIStorage->Commit(STGC_DEFAULT);
-
-        // copy to SotStream
-        // Create the stream
-        String szTemp = GetStorageName();
-        SotStorageStreamRef xStm = pIStorage->OpenSotStream( szTemp, STREAM_STD_READWRITE );
-        if( xStm->GetError() )
-            return FALSE;
-        //We know we only hold one ref from Create or Load
-        HGLOBAL hGlobal = NULL;
-        GetHGlobalFromILockBytes(
-            pTmpStorage,    //Pointer to the byte array object
-            &hGlobal );//Pointer to the current memory handle for the specified byte array
-        if( !hGlobal )
-            return FALSE;
-        void * pMem = GlobalLock( hGlobal );
-        if( !pMem )
-            return FALSE;
-        xStm->SetSize( 0 );
-        ULONG nMaxLen = GlobalSize( hGlobal );
-        xStm->Write( pMem, nMaxLen );
-//SvFileStream aFS( "d:\\temp\\test.ttt", STREAM_STD_READWRITE );
-//aFS.Write( pMem, nMaxLen );
-        GlobalUnlock( hGlobal );
-
-        return TRUE;
-        }
-
-    return FALSE;
-    }
-
-
-
 /*
  * CSO_Cont::Load
  *
@@ -578,7 +455,6 @@ WIN_BOOL CSO_Cont::Load(SotStorage *pIStorage, DWORD dwAspect, WIN_BOOL fSetExte
         if (NULL!=m_pIViewObject2)
             {
             m_pIViewObject2->SetAdvise(dwAspect, 0, NULL);
-//            m_pIViewObject2->SetAdvise(m_fe.dwAspect, 0, NULL);
             ReleaseInterface(m_pIViewObject2);
             }
 
@@ -605,18 +481,13 @@ WIN_BOOL CSO_Cont::Load(SotStorage *pIStorage, DWORD dwAspect, WIN_BOOL fSetExte
         return FALSE;
         }
 
-    //CHAPTER17MOD
     m_fSetExtent=fSetExtent;
-    //m_fSetExtent=pti->fSetExtent;
     ObjectInitialize(pObj, dwAspect, NULL);
-    //ObjectInitialize(pObj, &pti->fe, NULL);
 
     //Restore the original state before reloading.
     m_dwState=dwState;
-    //End CHAPTER17MOD
 
     RectSet(&rcl, FALSE, FALSE);
-    //RectSet(&pti->rcl, FALSE, FALSE);
     return TRUE;
     }
 
@@ -636,28 +507,12 @@ WIN_BOOL CSO_Cont::Load(SotStorage *pIStorage, DWORD dwAspect, WIN_BOOL fSetExte
  *  None
  */
 
-//void CSO_Cont::GetInfo(PTENANTINFO pti)
 void CSO_Cont::GetInfo(DWORD& rAspect, WIN_BOOL & rSetExtend )
 {
     rAspect = dwAspect;
     rSetExtend = m_fSetExtent;
-    /*
-    if (NULL!=pti)
-        {
-        pti->dwID=m_dwID;
-        pti->rcl=m_rcl;
-        pti->fe=m_fe;
-        pti->fSetExtent=m_fSetExtent;
-        }
-
-    return;
-    */
 }
 
-
-
-
-//CHAPTER17MOD
 /*
  * CSO_Cont::ObjectInitialize
  * (Protected)
@@ -676,22 +531,15 @@ void CSO_Cont::GetInfo(DWORD& rAspect, WIN_BOOL & rSetExtend )
  *  WIN_BOOL            TRUE if the function succeeded, FALSE otherwise.
  */
 
-//WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, LPFORMATETC pFE, DWORD dwData)
 WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwData)
     {
     HRESULT         hr;
     LPPERSIST       pIPersist=NULL;
     DWORD           dw;
-    //PCDocument      pDoc;
     TCHAR           szFile[CCHPATHMAX];
-
-    //if (NULL==pObj || NULL==pFE)
-    //    return FALSE;
 
     m_pObj=pObj;
     dwAspect = dwAspect_;
-    //m_fe=*pFE;
-    //m_fe.ptd=NULL;
     m_dwState=TENANTSTATE_DEFAULT;
 
     /*
@@ -725,7 +573,6 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
         return FALSE;
 
     m_pIViewObject2->SetAdvise(dwAspect, 0, m_pImpIAdviseSink);
-    //m_pIViewObject2->SetAdvise(m_fe.dwAspect, 0, m_pImpIAdviseSink);
 
     IOleCache* pIOleCache = NULL;
     if ( SUCCEEDED(m_pIViewObject2->QueryInterface(IID_IOleCache, (PPVOID)&pIOleCache)) && pIOleCache )
@@ -754,15 +601,6 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
             DWORD nConn;
             FORMATETC aFormat = { 0, 0, ASPECT_CONTENT, -1, TYMED_MFPICT };
             hr = pIOleCache->Cache( &aFormat, /*ADVFCACHE_FORCEBUILTIN*/ /*ADVF_PRIMEFIRST*/ ADVFCACHE_ONSAVE, &nConn );
-/*
-            IDataObject* pIDataObject = NULL;
-            if ( SUCCEEDED(pObj->QueryInterface(IID_IDataObject, (PPVOID)&pIDataObject)) && pIDataObject )
-            {
-                pIOleCache->InitCache( pIDataObject );
-                pIDataObject->Release();
-                pIDataObject = NULL;
-            }
-*/
         }
 
         pIOleCache->Release();
@@ -789,11 +627,9 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
      * remember to draw it properly and do extents right.
      */
     m_pIOleObject->GetMiscStatus(dwAspect, &m_grfMisc);
-    //m_pIOleObject->GetMiscStatus(m_fe.dwAspect, &m_grfMisc);
 
     if (OLEMISC_ONLYICONIC & m_grfMisc)
         dwAspect=DVASPECT_ICON;
-        //m_fe.dwAspect=DVASPECT_ICON;
 
     /*
      * We could pass m_pImpIOleClientSite in an OleCreate* call, but
@@ -815,14 +651,6 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
      * Roundabout, but it works.
      */
 
-    /* MM ???
-    pDoc=(PCDocument)SendMessage(GetParent(m_hWnd), DOCM_PDOCUMENT
-        , 0, 0L);
-
-    if (NULL!=pDoc)
-        pDoc->FilenameGet(szFile, CCHPATHMAX);
-    else
-    */
         szFile[0]=0;
 
     NotifyOfRename(szFile, NULL);
@@ -839,7 +667,6 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
      * a view advise.
      */
 
-    //if (DVASPECT_ICON & m_fe.dwAspect)
     if (DVASPECT_ICON & dwAspect)
         {
         DWORD           dw=DVASPECT_CONTENT;
@@ -854,9 +681,6 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
 
     return TRUE;
     }
-//End CHAPTER17MOD
-
-
 
 
 /*
@@ -879,16 +703,8 @@ WIN_BOOL CSO_Cont::ObjectInitialize(LPUNKNOWN pObj, DWORD dwAspect_, DWORD dwDat
  *  WIN_BOOL            TRUE if opening succeeds, FALSE otherwise.
  */
 
-//WIN_BOOL CSO_Cont::Open(LPSTORAGE pIStorage)
 WIN_BOOL CSO_Cont::Open(SotStorage * pIStorage)
     {
-    /*
-    HRESULT     hr=NOERROR;
-    DWORD       dwMode=STGM_TRANSACTED | STGM_READWRITE
-                    | STGM_SHARE_EXCLUSIVE;
-    OLECHAR     szTemp[32];
-    */
-
     if (NULL==m_pIStorage)
         {
         if (NULL==pIStorage)
@@ -899,8 +715,6 @@ WIN_BOOL CSO_Cont::Open(SotStorage * pIStorage)
          * none, then create it.  In either case we end up with an
          * IStorage that we either save in pPage or release.
          */
-
-//      StgCreateDocfile( "d:\\temp\\test.ttt", STGM_CREATE | STGM_READWRITE | STGM_SHARE_EXCLUSIVE, NULL, &m_pIStorage );
 
         SotStorageStreamRef xStm;
         String szTemp = GetStorageName();
@@ -957,20 +771,6 @@ WIN_BOOL CSO_Cont::Open(SotStorage * pIStorage)
                 &m_pIStorage    //Indirect pointer to the new storage object
             );
         }
-
-        /* MM ??? StgOpenStorage
-        GetStorageName(szTemp);
-        hr=pIStorage->OpenStorage(szTemp, NULL, dwMode, NULL, 0
-            , &m_pIStorage);
-
-        if (FAILED(hr))
-            {
-            hr=pIStorage->CreateStorage(szTemp, dwMode, 0, 0
-                , &m_pIStorage);
-            }
-        if (FAILED(hr))
-            return FALSE;
-        */
         }
     else
     {
@@ -981,7 +781,6 @@ WIN_BOOL CSO_Cont::Open(SotStorage * pIStorage)
 
     m_cOpens++;
 
-    //CHAPTER17MOD
     //Create these if we don't have them already.
     if (NULL==m_pImpIOleClientSite && NULL==m_pImpIAdviseSink)
         {
@@ -991,7 +790,6 @@ WIN_BOOL CSO_Cont::Open(SotStorage * pIStorage)
         if (NULL==m_pImpIOleClientSite || NULL==m_pImpIAdviseSink)
             return FALSE;
         }
-    //End CHAPTER17MOD
 
     return TRUE;
     }
@@ -1031,7 +829,6 @@ void CSO_Cont::Close(WIN_BOOL fCommit)
          * We can't use a zero reference count to know when to NULL
          * this since other things might have AddRef'd the storage.
          */
-        //CHAPTER17MOD
         if (0==--m_cOpens)
             {
             m_pIStorage=NULL;
@@ -1048,13 +845,11 @@ void CSO_Cont::Close(WIN_BOOL fCommit)
             if (NULL!=m_pIViewObject2)
                 {
                 m_pIViewObject2->SetAdvise(dwAspect, 0, NULL);
-                //m_pIViewObject2->SetAdvise(m_fe.dwAspect, 0, NULL);
                 ReleaseInterface(m_pIViewObject2);
                 }
 
             ReleaseInterface(m_pObj);
             }
-        //End CHAPTER17MOD
         }
 
     return;
@@ -1076,7 +871,6 @@ void CSO_Cont::Close(WIN_BOOL fCommit)
  *  WIN_BOOL            TRUE if the object is open, FALSE otherwise.
  */
 
-//WIN_BOOL CSO_Cont::Update(void)
 WIN_BOOL CSO_Cont::Update()
     {
     Save( m_pPG->GetWorkingStorage());
@@ -1107,15 +901,12 @@ WIN_BOOL CSO_Cont::Update()
  *  None
  */
 
-//void CSO_Cont::Destroy(LPSTORAGE pIStorage)
 void CSO_Cont::Destroy(SotStorage * pIStorage)
     {
     if (NULL!=pIStorage)
         {
-        //CHAPTER17MOD
         if (NULL!=m_pIOleObject)
             m_pIOleObject->Close(OLECLOSE_NOSAVE);
-        //End CHAPTER17MOD
 
         if (NULL!=m_pIStorage)
             {
@@ -1130,8 +921,6 @@ void CSO_Cont::Destroy(SotStorage * pIStorage)
 
         String szTemp = GetStorageName();
         pIStorage->Remove(szTemp);
-        //GetStorageName(szTemp);
-        //pIStorage->DestroyElement(szTemp);
 
         m_pIStorage=NULL;
         pTmpStorage = NULL;
@@ -1179,21 +968,8 @@ void CSO_Cont::Select(WIN_BOOL fSelect)
     RECTFROMRECTL(rc, m_rcl);
     RectConvertMappings(&rc, NULL, TRUE);
 
-    /* MM ???
-    OffsetRect(&rc, -(int)m_pPG->m_xPos, -(int)m_pPG->m_yPos);
-
-    hDC=GetDC(m_hWnd);
-
-    UIDrawHandles(&rc, hDC, UI_HANDLES_INSIDE
-        | UI_HANDLES_NOBORDER | UI_HANDLES_USEINVERSE
-        , CXYHANDLE, !fWasSelected);
-
-    ReleaseDC(m_hWnd, hDC);
-    */
-
     if (fSelect)
         m_pPG->SetModified();
-        //m_pPG->m_fDirty=TRUE;
 
     return;
     }
@@ -1201,7 +977,6 @@ void CSO_Cont::Select(WIN_BOOL fSelect)
 
 
 
-//CHAPTER17MOD
 /*
  * CSO_Cont::ShowAsOpen
  *
@@ -1231,13 +1006,6 @@ void CSO_Cont::ShowAsOpen(WIN_BOOL fOpen)
         {
         RECTFROMRECTL(rc, m_rcl);
         RectConvertMappings(&rc, NULL, TRUE);
-        /* MM ???
-        OffsetRect(&rc, -(int)m_pPG->m_xPos, -(int)m_pPG->m_yPos);
-
-        hDC=GetDC(m_hWnd);
-        UIDrawShading(&rc, hDC, UI_SHADE_FULLRECT, 0);
-        ReleaseDC(m_hWnd, hDC);
-        */
         }
 
     if (fWasOpen && !fOpen)
@@ -1287,27 +1055,6 @@ void CSO_Cont::ShowYourself(void)
 
     //Get the window rectangle offset for the current scroll pos.
     GetClientRect(m_hWnd, &rc);
-    /* MM ???
-    OffsetRect(&rc, m_pPG->m_xPos, m_pPG->m_yPos);
-
-    //Check if the object is already visible. (macro in bookguid.h)
-    SETPOINT(pt1, (int)rcl.left,  (int)rcl.top);
-    SETPOINT(pt2, (int)rcl.right, (int)rcl.bottom);
-
-    if (PtInRect(&rc, pt1) && PtInRect(&rc, pt2))
-        return;
-
-    //Check if the upper left is within the upper left quadrant
-    if (((int)rcl.left > rc.left
-        && (int)rcl.left < ((rc.right+rc.left)/2))
-        && ((int)rcl.top > rc.top
-        && (int)rcl.top < ((rc.bottom+rc.top)/2)))
-        return;
-
-    //These are macros in INC\BOOK1632.H
-    SendScrollPosition(m_hWnd, WM_HSCROLL, rcl.left-8);
-    SendScrollPosition(m_hWnd, WM_VSCROLL, rcl.top-8);
-    */
     return;
     }
 
@@ -1330,19 +1077,6 @@ void CSO_Cont::ShowYourself(void)
 
 void CSO_Cont::AddVerbMenu(HMENU, UINT)
     {
-    /* MM ???
-    HMENU       hMenuTemp;
-    LPOLEOBJECT pObj=m_pIOleObject;
-
-    //If we're static, say we have no object.
-    if (TENANTTYPE_STATIC==m_tType)
-        pObj=NULL;
-
-    OleUIAddVerbMenu(pObj, NULL, hMenu, iPos, IDM_VERBMIN
-        , IDM_VERBMAX, TRUE, IDM_EDITCONVERT, &hMenuTemp);
-
-    return;
-    */
     }
 
 
@@ -1506,14 +1240,12 @@ void CSO_Cont::NotifyOfRename(LPTSTR pszFile, LPVOID)
     if (TEXT('\0')==*pszFile)
         {
         // MM ???
-        lstrcpyn( szObj, "untitled", ARRAYSIZE(szObj) );
-        //LoadString(m_pPG->m_hInst, IDS_UNTITLED, szObj, sizeof(szObj));
+        lstrcpyn( szObj, "untitled", SAL_N_ELEMENTS(szObj) );
         }
     else
         {
         // MM ???
-        lstrcpyn( szObj, "untitled", ARRAYSIZE(szObj) );
-        //GetFileTitle(pszFile, szObj, sizeof(szObj));
+        lstrcpyn( szObj, "untitled", SAL_N_ELEMENTS(szObj) );
 
        #ifndef WIN32
         //Force filenames to uppercase in DOS versions.
@@ -1522,8 +1254,7 @@ void CSO_Cont::NotifyOfRename(LPTSTR pszFile, LPVOID)
         }
 
     // MM ???
-    lstrcpyn( szApp, "app name", ARRAYSIZE(szApp) );
-    //LoadString(m_pPG->m_hInst, IDS_CAPTION, szApp, sizeof(szApp));
+    lstrcpyn( szApp, "app name", SAL_N_ELEMENTS(szApp) );
    #ifdef WIN32ANSI
     OLECHAR     szObjW[40], szAppW[40];
 
@@ -1535,11 +1266,6 @@ void CSO_Cont::NotifyOfRename(LPTSTR pszFile, LPVOID)
    #endif
     return;
     }
-
-//End CHAPTER17MOD
-
-
-
 
 
 /*
@@ -1559,9 +1285,7 @@ void CSO_Cont::NotifyOfRename(LPTSTR pszFile, LPVOID)
 
 WIN_BOOL CSO_Cont::Activate(LONG iVerb, HWND hParent )
     {
-    //CHAPTER17MOD
     RECT        rc, rcH;
-    //CHourglass *pHour;
     SIZEL       szl;
 
     //Can't activate statics.
@@ -1575,8 +1299,6 @@ WIN_BOOL CSO_Cont::Activate(LONG iVerb, HWND hParent )
     RectConvertMappings(&rc, NULL, TRUE);
     SO_MetricRectInPixelsToHimetric( &rc, &rcH);
 
-    //pHour=new CHourglass;
-
     //Get the server running first, then do a SetExtent, then show it
     OleRun(m_pIOleObject);
 
@@ -1584,7 +1306,6 @@ WIN_BOOL CSO_Cont::Activate(LONG iVerb, HWND hParent )
         {
         SETSIZEL(szl, rcH.right-rcH.left, rcH.top-rcH.bottom);
         m_pIOleObject->SetExtent(dwAspect, &szl);
-        //m_pIOleObject->SetExtent(m_fe.dwAspect, &szl);
         m_fSetExtent=FALSE;
         }
 
@@ -1597,7 +1318,6 @@ WIN_BOOL CSO_Cont::Activate(LONG iVerb, HWND hParent )
 
     //If object changes, IAdviseSink::OnViewChange will see it.
     return SUCCEEDED( hr );
-    //End CHAPTER17MOD
     }
 
 
@@ -1663,15 +1383,6 @@ void CSO_Cont::Draw(HDC hDC, DVTARGETDEVICE *ptd, HDC hIC
     RECTL           rcl = { 0, 0, xOff, -yOff };
     UINT            uMM;
 
-    //CHAPTER17MOD
-    //We hold IViewObject2 all the time now, so no QueryInterface
-    //End CHAPTER17MOD
-
-    //RECTFROMRECTL(rc, m_rcl);
-    //OffsetRect(&rc, -xOff, -yOff);
-    //RECTLFROMRECT(rcl, rc);
-
-    //CHAPTER17MOD
     //Repaint erases the rectangle to insure full object cleanup
 
     if (!fNoColor && !fPrinter)
@@ -1685,9 +1396,6 @@ void CSO_Cont::Draw(HDC hDC, DVTARGETDEVICE *ptd, HDC hIC
 
     //We have to use Draw since we have a target device and IC.
     hr=m_pIViewObject2->Draw(dwAspect, -1, NULL, ptd, hIC, hDC, NULL, &rcl, NULL, 0);
-    //hr=m_pIViewObject2->Draw(dwAspect, -1, NULL, ptd, hIC, hDC, &rcl, NULL, NULL, 0);
-
-    //End CHAPTER17MOD
 
     /*
      * If Draw failed, then perhaps it couldn't work for the device,
@@ -1696,9 +1404,7 @@ void CSO_Cont::Draw(HDC hDC, DVTARGETDEVICE *ptd, HDC hIC
      */
     if (FAILED(hr))
         OleDraw(m_pObj, dwAspect, hDC, &rc);
-        //OleDraw(m_pObj, m_fe.dwAspect, hDC, &rc);
 
-    //CHAPTER17MOD
     if (!fPrinter
         && (TENANTSTATE_SELECTED | TENANTSTATE_OPEN) & m_dwState)
         {
@@ -1722,7 +1428,6 @@ void CSO_Cont::Draw(HDC hDC, DVTARGETDEVICE *ptd, HDC hIC
 
         uMM=SetMapMode(hDC, uMM);
         }
-    //End CHAPTER17MOD
 
     return;
     }
@@ -1749,7 +1454,6 @@ void CSO_Cont::Draw(HDC hDC, DVTARGETDEVICE *ptd, HDC hIC
 void CSO_Cont::Repaint(void)
     {
 
-    //CHAPTER17MOD
     /*
      * We might be asked to repaint from
      * IOleClientSite::OnShowWindow after we've switched pages if
@@ -1757,18 +1461,7 @@ void CSO_Cont::Repaint(void)
      */
     if (0==m_cOpens || !m_fRepaintEnabled)
         return;
-    //End CHAPTER17MOD
 
-    /* MM ???
-    hDC=GetDC(m_hWnd);
-    SetRect(&rc, m_pPG->m_xPos, m_pPG->m_yPos, 0, 0);
-    RectConvertMappings(&rc, NULL, FALSE);
-
-    SetMapMode(hDC, MM_LOMETRIC);
-    Draw(hDC, NULL, NULL, rc.left, rc.top, FALSE, FALSE);
-
-    ReleaseDC(m_hWnd, hDC);
-    */
     return;
     }
 
@@ -1781,18 +1474,12 @@ void CSO_Cont::Invalidate(void)
     RectGet(&rcl, TRUE);
     RECTFROMRECTL(rc, rcl);
 
-    /* MMM ???
-    OffsetRect(&rc, -(int)m_pPG->m_xPos, -(int)m_pPG->m_yPos);
-    InvalidateRect(m_hWnd, &rc, FALSE);
-    */
-
     return;
     }
 
 
 
 
-//CHAPTER17MOD
 /*
  * CSO_Cont::ObjectClassFormatAndIcon
  *
@@ -1926,12 +1613,10 @@ WIN_BOOL CSO_Cont::SwitchOrUpdateAspect(HGLOBAL hMetaIcon
     WIN_BOOL        fUpdate=FALSE;
 
     //Nothing to do if we're content already and there's no icon.
-    //if (NULL==hMetaIcon && DVASPECT_CONTENT==m_fe.dwAspect)
     if (NULL==hMetaIcon && DVASPECT_CONTENT==dwAspect)
         return FALSE;
 
     //If we're iconic already, just cache the new icon
-    //if (NULL!=hMetaIcon && DVASPECT_ICON==m_fe.dwAspect)
     if (NULL!=hMetaIcon && DVASPECT_ICON==dwAspect)
         hr=StarObject_SetIconInCache(m_pIOleObject, hMetaIcon);
     else
@@ -1945,14 +1630,12 @@ WIN_BOOL CSO_Cont::SwitchOrUpdateAspect(HGLOBAL hMetaIcon
          */
         hr=StarObject_SwitchDisplayAspect(m_pIOleObject
             , &dwAspect, dwAspect, hMetaIcon, !fPreserve
-            //, &m_fe.dwAspect, dwAspect, hMetaIcon, !fPreserve
             , TRUE, m_pImpIAdviseSink, &fUpdate);
 
         if (SUCCEEDED(hr))
             {
             //Update MiscStatus for the new aspect
             m_pIOleObject->GetMiscStatus(dwAspect, &m_grfMisc);
-            //m_pIOleObject->GetMiscStatus(m_fe.dwAspect, &m_grfMisc);
 
             if (fUpdate)
                 m_pIOleObject->Update();    //This repaints.
@@ -1965,15 +1648,11 @@ WIN_BOOL CSO_Cont::SwitchOrUpdateAspect(HGLOBAL hMetaIcon
         SIZEL       szl;
 
         m_pIOleObject->GetExtent(dwAspect, &szl);
-        //m_pIOleObject->GetExtent(m_fe.dwAspect, &szl);
 
         if (0 > szl.cy)
             szl.cy=-szl.cy;
 
         //Convert HIMETRIC absolute units to our LOMETRIC mapping
-        //if (0!=szl.cx && 0!=szl.cy)
-        //    SETSIZEL(szl, szl.cx/10, -szl.cy/10);
-
         Invalidate();                   //Remove old aspect
         SizeSet(&szl, FALSE, FALSE);    //Change size
         Repaint();                      //Paint the new one
@@ -2004,13 +1683,6 @@ void CSO_Cont::EnableRepaint(WIN_BOOL fEnable)
     m_fRepaintEnabled=fEnable;
     return;
     }
-//End CHAPTER17MOD
-
-
-
-
-
-
 
 
 /*
@@ -2062,9 +1734,7 @@ void CSO_Cont::FormatEtcGet(LPFORMATETC pFE, WIN_BOOL fPresentation)
     if (NULL!=pFE)
         {
         SETDefFormatEtc(*pFE, 0, TYMED_NULL);
-        //*pFE=m_fe;
 
-        //CHAPTER17MOD
         //If there is no format, use metafile (for embedded objects)
         if (fPresentation || 0==pFE->cfFormat)
             {
@@ -2072,7 +1742,6 @@ void CSO_Cont::FormatEtcGet(LPFORMATETC pFE, WIN_BOOL fPresentation)
             pFE->cfFormat=CF_METAFILEPICT;
             pFE->tymed=TYMED_MFPICT;
             }
-        //End CHAPTER17MOD
         }
 
     return;
@@ -2083,7 +1752,6 @@ void CSO_Cont::FormatEtcGet(LPFORMATETC pFE, WIN_BOOL fPresentation)
 
 WIN_BOOL CSO_Cont::GetExtent(LPSIZEL pszl)
 {
-    //SETSIZEL((*pszl), 2*LOMETRIC_PER_INCH, 2*LOMETRIC_PER_INCH);
     SETSIZEL((*pszl), 2*HIMETRIC_PER_INCH, 2*HIMETRIC_PER_INCH);
     SIZEL szl = SIZEL();
     HRESULT hr=ResultFromScode(E_FAIL);
@@ -2092,19 +1760,15 @@ WIN_BOOL CSO_Cont::GetExtent(LPSIZEL pszl)
     if (NULL!=m_pIViewObject2)
         {
         hr = m_pIViewObject2->GetExtent(dwAspect, -1, NULL, &szl);
-        //hr=m_pIViewObject2->GetExtent(m_fe.dwAspect, -1, NULL, &szl);
         }
     else
         {
         if (NULL!=m_pIOleObject)
             hr = m_pIOleObject->GetExtent(dwAspect, &szl);
-            //hr=m_pIOleObject->GetExtent(m_fe.dwAspect, &szl);
         }
     if (SUCCEEDED(hr))
         {
         *pszl = szl;
-        //Convert HIMETRIC to our LOMETRIC mapping
-        //SETSIZEL((*pszl), szl.cx/10, szl.cy/10);
         }
 
     return SUCCEEDED( hr );
@@ -2156,9 +1820,7 @@ void CSO_Cont::SizeGet(LPSIZEL pszl, WIN_BOOL fDevice)
     return;
     }
 
-//CHAPTER17MOD
 void CSO_Cont::SizeSet(LPSIZEL pszl, WIN_BOOL fDevice, WIN_BOOL fInformObj)
-//End CHAPTER17MOD
     {
     SIZEL           szl;
 
@@ -2183,15 +1845,11 @@ void CSO_Cont::SizeSet(LPSIZEL pszl, WIN_BOOL fDevice, WIN_BOOL fInformObj)
 
 
     //Tell OLE that this object was resized.
-    //CHAPTER17MOD
     if (NULL!=m_pIOleObject && fInformObj)
         {
         HRESULT     hr;
         WIN_BOOL        fRun=FALSE;
 
-        //Convert our LOMETRIC into HIMETRIC by *=10
-        //szl.cx*=10;
-        //szl.cy*=-10;    //Our size is stored negative.
         if( szl.cy < 0 )
             szl.cy *= -1;
 
@@ -2213,7 +1871,6 @@ void CSO_Cont::SizeSet(LPSIZEL pszl, WIN_BOOL fDevice, WIN_BOOL fInformObj)
             }
 
         hr=m_pIOleObject->SetExtent(dwAspect, &szl);
-        //hr=m_pIOleObject->SetExtent(m_fe.dwAspect, &szl);
 
         /*
          * If the object is not running and it does not have
@@ -2237,7 +1894,6 @@ void CSO_Cont::SizeSet(LPSIZEL pszl, WIN_BOOL fDevice, WIN_BOOL fInformObj)
                 m_fSetExtent=TRUE;
             }
         }
-    //End CHAPTER17MOD
 
     return;
     }
@@ -2260,9 +1916,7 @@ void CSO_Cont::RectGet(LPRECTL prcl, WIN_BOOL fDevice)
     }
 
 
-//CHAPTER17MOD
 void CSO_Cont::RectSet(LPRECTL prcl, WIN_BOOL fDevice, WIN_BOOL fInformObj)
-//End CHAPTER17MOD
     {
     SIZEL   szl;
     LONG    cx, cy;
@@ -2288,9 +1942,7 @@ void CSO_Cont::RectSet(LPRECTL prcl, WIN_BOOL fDevice, WIN_BOOL fInformObj)
     if ((m_rcl.right-m_rcl.left)!=cx || (m_rcl.bottom-m_rcl.top)!=cy)
         {
         SETSIZEL(szl, m_rcl.right-m_rcl.left, m_rcl.bottom-m_rcl.top);
-        //CHAPTER17MOD
         SizeSet(&szl, FALSE, fInformObj);
-        //End CHAPTER17MOD
         }
 
     return;
@@ -2398,3 +2050,5 @@ CLSID CSO_Cont::GetCLSID()
     return m_clsID;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

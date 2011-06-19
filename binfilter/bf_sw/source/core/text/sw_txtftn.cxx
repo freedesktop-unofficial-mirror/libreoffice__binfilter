@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,40 +33,20 @@
 
 #include "viewsh.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pagefrm.hxx"
 
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 #include "txtcfg.hxx"
 #include "porftn.hxx"
@@ -162,7 +143,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ sal_Bool SwTxtFrm::CalcPrepFtnAdjust()
 /*N*/ {
-/*N*/   ASSERT( HasFtn(), "Wer ruft mich da?" );
+/*N*/   OSL_ENSURE( HasFtn(), "Wer ruft mich da?" );
 /*N*/   SwFtnBossFrm *pBoss = FindFtnBossFrm( sal_True );
 /*N*/   const SwFtnFrm *pFtn = pBoss->FindFirstFtn( this );
 /*N*/   if( pFtn && FTNPOS_CHAPTER != GetNode()->GetDoc()->GetFtnInfo().ePos &&
@@ -201,10 +182,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwTxtFrm::GetFtnLine()
  *************************************************************************/
 
-/*N*/ SwTwips SwTxtFrm::GetFtnLine( const SwTxtFtn *pFtn, sal_Bool bLocked ) const
+/*N*/ SwTwips SwTxtFrm::GetFtnLine( const SwTxtFtn *pFtn, sal_Bool bLocked1 ) const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
-/*N*/             "SwTxtFrm::GetFtnLine with swapped frame" )
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
+/*N*/             "SwTxtFrm::GetFtnLine with swapped frame" );
 /*N*/
 /*N*/   SwTxtFrm *pThis = (SwTxtFrm*)this;
 /*N*/
@@ -217,7 +198,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // von der Ref aus!
 /*N*/       // Trotzdem wollen wir nichts unversucht lassen und geben die
 /*N*/       // Unterkante des Frames zurueck.
-/*?*/       if( !bLocked )
+/*?*/       if( !bLocked1 )
 /*?*/           pThis->Prepare( PREP_ADJUST_FRM );
 /*?*/         return IsVertical() ? Frm().Left() : Frm().Bottom();
 /*N*/   }
@@ -231,7 +212,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/
 /*N*/     SwTwips nRet = aLine.Y() + SwTwips(aLine.GetLineHeight());
 /*N*/     if( IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nRet = SwitchHorizontalToVertical( nRet );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     UNDO_SWAP( this )
 /*N*/
@@ -248,7 +229,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwTwips SwTxtFrm::_GetFtnFrmHeight() const
 /*N*/ {
-/*N*/   ASSERT( !IsFollow() && IsInFtn(), "SwTxtFrm::SetFtnLine: moon walk" );
+/*N*/   OSL_ENSURE( !IsFollow() && IsInFtn(), "SwTxtFrm::SetFtnLine: moon walk" );
 /*N*/
 /*N*/   const SwFtnFrm *pFtnFrm = FindFtnFrm();
 /*N*/   const SwTxtFrm *pRef = (const SwTxtFrm *)pFtnFrm->GetRef();
@@ -285,7 +266,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                   break;
 /*?*/               pTmp = pTmp->GetUpper();
 /*?*/           }
-/*?*/           ASSERT( bInvalidPos, "Hanging below FtnCont" );
+/*?*/           OSL_ENSURE( bInvalidPos, "Hanging below FtnCont" );
 /*N*/       }
 /*N*/ #endif
 /*N*/
@@ -444,7 +425,6 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/
 /*?*/               if( pFtnFrm )
 /*?*/               {
-/*?*/                   const sal_Bool bEndDoc = bEndn ? sal_True : bFtnEndDoc;
 /*?*/                   if( bRollBack )
 /*?*/                   {
 /*?*/                       while ( pFtnFrm )
@@ -455,10 +435,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else if( GetFollow() )
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   {
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                   else
 /*?*/                   {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bEndDoc || ( bEndn && pEndBoss->IsInSct() &&
+/*?*/                         DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -505,7 +485,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ void SwTxtFrm::ConnectFtn( SwTxtFtn *pFtn, const SwTwips nDeadLine )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::ConnectFtn with swapped frame" );
 /*N*/
 /*N*/   bFtn = sal_True;
@@ -551,7 +531,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   }
 /*N*/   else if( bEnd && pSect )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm *pFtnFrm = pSrcFrm ? pBoss->FindFtn( pSrcFrm, pFtn ) : NULL;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bDocEnd || bEnd )
@@ -559,7 +539,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/       if( !pSrcFrm )
 /*?*/           pBoss->AppendFtn( this, pFtn );
 /*?*/       else if( pSrcFrm != this )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pBoss->ChangeFtnRef( pSrcFrm, pFtn, this );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       bInFtnConnect = sal_False;
 /*?*/       return;
 /*N*/   }
@@ -588,7 +568,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/               //Wenn die Fussnote bei einem Follow angemeldet ist, so ist
 /*N*/               //es jetzt an der Zeit sie umzumelden.
 /*N*/               if ( pSrcFrm != this )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pBoss->ChangeFtnRef( pSrcFrm, pFtn, this );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               //Es steht Platz zur Verfuegung, also kann die Fussnote evtl.
 /*N*/               //wachsen.
 /*N*/                 if ( pFtnFrm->GetFollow() && nDiff > 0 )
@@ -620,7 +600,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/           {   // Wenn unser Boss in einem spaltigen Bereich sitzt, es aber auf
 /*N*/               // der Seite schon einen FtnContainer gibt, hilft nur die brutale
 /*N*/               // Methode
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( pSect && pSect->FindFtnBossFrm( !bEnd )->FindFtnCont() )
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -676,7 +656,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/ SwFtnPortion *SwTxtFormatter::NewFtnPortion( SwTxtFormatInfo &rInf,
 /*N*/                                            SwTxtAttr *pHint )
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
 /*N*/             "NewFtnPortion with unswapped frame" );
 /*N*/
 /*N*/   if( !pFrm->IsFtnAllowed() )
@@ -710,7 +690,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     SWRECTFN( pFrm )
 /*N*/
 /*N*/     if( bVert )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nLower = pFrm->SwitchHorizontalToVertical( nLower );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     SwTwips nAdd;
 /*N*/
@@ -741,11 +721,11 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     // #i10770#: If there are fly frames anchored at previous paragraphs,
 /*N*/     // the deadline should consider their lower borders.
 /*N*/     SwFrm* pStartFrm = pFrm->GetUpper()->GetLower();
-/*N*/     ASSERT( pStartFrm, "Upper has no lower" )
+/*N*/     OSL_ENSURE( pStartFrm, "Upper has no lower" );
 /*N*/     SwTwips nFlyLower = bVert ? LONG_MAX : 0;
 /*N*/     while ( pStartFrm != pFrm )
 /*N*/     {
-/*N*/         ASSERT( pStartFrm, "Frame chain is broken" )
+/*N*/         OSL_ENSURE( pStartFrm, "Frame chain is broken" );
 /*N*/         if ( pStartFrm->GetDrawObjs() )
 /*N*/         {
 /*N*/             const SwDrawObjs &rObjs = *pStartFrm->GetDrawObjs();
@@ -852,19 +832,19 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/                       SwFtnContFrm* pFtnC = pTmp->FindFtnCont();
 /*?*/                       if( pFtnC )
 /*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm* pTmp = (SwFtnFrm*)pFtnC->Lower();
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/                   // Ist dies die letzte passende Zeile?
 /*N*/                     SwTwips nTmpBot = Y() + nReal * 2;
 /*N*/
 /*N*/                     if( bVert )
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                         nTmpBot = pFrm->SwitchHorizontalToVertical( nTmpBot );
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
-/*N*/                     SWRECTFN( pFtnCont )
+/*N*/                     SWRECTFNX( pFtnCont )
 /*N*/
-/*N*/                     long nDiff = (*fnRect->fnYDiff)(
-/*N*/                                      (pFtnCont->Frm().*fnRect->fnGetTop)(),
+/*N*/                     long nDiff = (*fnRectX->fnYDiff)(
+/*N*/                                      (pFtnCont->Frm().*fnRectX->fnGetTop)(),
 /*N*/                                       nTmpBot );
 /*N*/
 /*N*/                     if( pScrFrm && nDiff < 0 )
@@ -905,7 +885,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwNumberPortion *SwTxtFormatter::NewFtnNumPortion( SwTxtFormatInfo &rInf ) const
 /*N*/ {
-/*N*/   ASSERT( pFrm->IsInFtn() && !pFrm->GetIndPrev() && !rInf.IsFtnDone(),
+/*N*/   OSL_ENSURE( pFrm->IsInFtn() && !pFrm->GetIndPrev() && !rInf.IsFtnDone(),
 /*N*/           "This is the wrong place for a ftnnumber" );
 /*N*/   if( rInf.GetTxtStart() != nStart ||
 /*N*/       rInf.GetTxtStart() != rInf.GetIdx() )
@@ -928,8 +908,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   const SwAttrSet& rSet = pInfo->GetCharFmt(*pDoc)->GetAttrSet();
 /*N*/
 /*N*/   const SwAttrSet* pParSet = &rInf.GetCharAttr();
-/*N*/     SwFont *pFnt = new SwFont( pParSet, rInf.GetDoc() );
-/*N*/     pFnt->SetDiffFnt(&rSet, rInf.GetDoc() );
+/*N*/     SwFont *pFnt3 = new SwFont( pParSet, rInf.GetDoc() );
+/*N*/     pFnt3->SetDiffFnt(&rSet, rInf.GetDoc() );
 /*N*/   SwTxtFtn* pTxtFtn = rFtn.GetTxtFtn();
 /*N*/   if( pTxtFtn )
 /*N*/   {
@@ -941,18 +921,18 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // untenstehende Methode SwFtnNumPortion::DiffFont() angepasst
 /*N*/       // werden.
 /*N*/       if( aIter.GetFnt()->IsSymbol(rInf.GetVsh()) || aIter.GetFnt()->GetCharSet() !=
-/*N*/           pFnt->GetCharSet() )
+/*N*/           pFnt3->GetCharSet() )
 /*N*/       {
-/*N*/           const BYTE nAct = pFnt->GetActual();
-/*N*/           pFnt->SetName( aIter.GetFnt()->GetName(), nAct );
-/*N*/           pFnt->SetStyleName( aIter.GetFnt()->GetStyleName(), nAct );
-/*N*/           pFnt->SetFamily( aIter.GetFnt()->GetFamily(),nAct );
-/*N*/           pFnt->SetCharSet( aIter.GetFnt()->GetCharSet(), nAct );
+/*N*/           const BYTE nAct = pFnt3->GetActual();
+/*N*/           pFnt3->SetName( aIter.GetFnt()->GetName(), nAct );
+/*N*/           pFnt3->SetStyleName( aIter.GetFnt()->GetStyleName(), nAct );
+/*N*/           pFnt3->SetFamily( aIter.GetFnt()->GetFamily(),nAct );
+/*N*/           pFnt3->SetCharSet( aIter.GetFnt()->GetCharSet(), nAct );
 /*N*/       }
 /*N*/   }
 /*N*/
-/*M*/       pFnt->SetVertical( pFnt->GetOrientation(), pFrm->IsVertical() );
-/*N*/   return new SwFtnNumPortion( aFtnTxt, pFnt );
+/*M*/       pFnt3->SetVertical( pFnt3->GetOrientation(), pFrm->IsVertical() );
+/*N*/   return new SwFtnNumPortion( aFtnTxt, pFnt3 );
 /*N*/ }
 
 /*************************************************************************
@@ -961,7 +941,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*?*/ XubString lcl_GetPageNumber( const SwPageFrm* pPage )
 /*?*/ {
-/*?*/   ASSERT( pPage, "GetPageNumber: Homeless TxtFrm" );
+/*?*/   OSL_ENSURE( pPage, "GetPageNumber: Homeless TxtFrm" );
 /*?*/   MSHORT nVirtNum = pPage->GetVirtPageNum();
 /*?*/   const SvxNumberType& rNum = pPage->GetPageDesc()->GetNumType();
 /*?*/   return rNum.GetNumStr( nVirtNum );
@@ -977,15 +957,15 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       return 0;
 /*N*/
 /*N*/   // Aha, wir sind also im Fussnotenbereich
-/*N*/   const SwFtnInfo &rFtnInfo = pFrm->GetNode()->GetDoc()->GetFtnInfo();
+/*N*/   pFrm->GetNode()->GetDoc()->GetFtnInfo();
 /*N*/   SwTxtFrm *pQuoFrm = pFrm->FindQuoVadisFrm();
 /*N*/   if( !pQuoFrm )
 /*N*/       return 0;
 /*?*/   const SwPageFrm* pPage = pFrm->FindPageFrm();
-/*?*/   const SwPageFrm* pQuoPage = pQuoFrm->FindPageFrm();
+/*?*/   pQuoFrm->FindPageFrm();
 /*?*/   if( pPage == pQuoFrm->FindPageFrm() )
 /*?*/       return 0; // Wenn der QuoVadis auf der selben (spaltigen) Seite steht
-            {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001 /*?*/  const XubString aPage = lcl_GetPageNumber( pPage );
+            {DBG_BF_ASSERT(0, "STRIP");} return 0;
 /*N*/ }
 
 /*************************************************************************
@@ -994,7 +974,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*M*/ xub_StrLen SwTxtFormatter::FormatQuoVadis( const xub_StrLen nOffset )
 /*M*/ {
-/*M*/     ASSERT( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
+/*M*/     OSL_ENSURE( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
 /*M*/             "SwTxtFormatter::FormatQuoVadis with swapped frame" );
 /*M*/
 /*M*/   if( !pFrm->IsInFtn() || pFrm->ImplFindFtnFrm()->GetAttr()->GetFtn().IsEndNote() )
@@ -1017,7 +997,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   else
 /*M*/   {
 /*M*/       const SwPageFrm* pPage = pFrm->FindPageFrm();
-/*M*/       const SwPageFrm* pErgoPage = pErgoFrm->FindPageFrm();
+/*M*/       pErgoFrm->FindPageFrm();
 /*M*/       if( pPage == pErgoFrm->FindPageFrm() )
 /*M*/           return nOffset; // Wenn der ErgoSum auf der selben Seite steht
 /*M*/   }
@@ -1034,7 +1014,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   FeedInf( rInf );
 /*M*/   SeekStartAndChg( rInf, sal_True );
 /*M*/   if( GetRedln() && pCurr->HasRedline() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 GetRedln()->Seek( *pFnt, nOffset, 0 );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/   // Ein fieser Sonderfall: Flyfrms reichen in die Zeile und stehen
 /*M*/   // natuerlich da, wo wir unseren Quovadis Text reinsetzen wollen.
@@ -1068,8 +1048,8 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/       rInf.SetRest( 0 );
 /*M*/         pCurrPor->Move( rInf );
 /*M*/
-/*M*/         ASSERT( pFollow->IsQuoVadisPortion(),
-/*M*/                 "Quo Vadis, rest of QuoVadisPortion" )
+/*M*/         OSL_ENSURE( pFollow->IsQuoVadisPortion(),
+/*M*/                 "Quo Vadis, rest of QuoVadisPortion" );
 /*M*/
 /*M*/         // format the rest and append it to the other QuoVadis parts
 /*M*/       pFollow->Format( rInf );
@@ -1093,7 +1073,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*M*/   nLastLeft = nOldRealWidth - pCurr->Width();
 /*M*/   FeedInf( rInf );
 /*M*/ #ifdef USED
-/*M*/   ASSERT( nOldRealWidth == rInf.RealWidth() && nLastLeft >= pQuo->Width(),
+/*M*/   OSL_ENSURE( nOldRealWidth == rInf.RealWidth() && nLastLeft >= pQuo->Width(),
 /*M*/           "SwTxtFormatter::FormatQuoVadis: crime doesn't pay" );
 /*M*/ #endif
 /*M*/
@@ -1278,9 +1258,9 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *                      SwFtnPortion::SwFtnPortion()
  *************************************************************************/
 
-/*N*/ SwFtnPortion::SwFtnPortion( const XubString &rExpand, SwTxtFrm *pFrm,
-/*N*/                             SwTxtFtn *pFtn, KSHORT nReal )
-/*N*/         : SwFldPortion( rExpand, 0 ), pFrm(pFrm), pFtn(pFtn), nOrigHeight( nReal )
+/*N*/ SwFtnPortion::SwFtnPortion( const XubString &rExpand, SwTxtFrm *pFrm4,
+/*N*/                             SwTxtFtn *pFtn4, KSHORT nReal )
+/*N*/         : SwFldPortion( rExpand, 0 ), pFrm(pFrm4), pFtn(pFtn4), nOrigHeight( nReal )
 /*N*/ {
 /*N*/   SetLen(1);
 /*N*/   SetWhichPor( POR_FTN );
@@ -1323,18 +1303,18 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *               virtual SwFtnPortion::Paint()
  *************************************************************************/
 
-/*N*/ void SwFtnPortion::Paint( const SwTxtPaintInfo &rInf ) const
+/*N*/ void SwFtnPortion::Paint( const SwTxtPaintInfo &/*rInf*/ ) const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    SwFtnSave aFtnSave( rInf, pFtn );
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
  *               virtual SwFtnPortion::GetTxtSize()
  *************************************************************************/
 
-/*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &rInfo ) const
+/*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &/*rInfo*/ ) const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   SwFtnSave aFtnSave( rInfo, pFtn );
+            DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*************************************************************************
@@ -1403,7 +1383,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * Wird im SwTxtFrm::Prepare() gerufen
  *************************************************************************/
 
-/*N*/ sal_Bool SwParaPortion::UpdateQuoVadis( const XubString &rQuo )
+/*N*/ sal_Bool SwParaPortion::UpdateQuoVadis( const XubString & /*rQuo*/ )
 /*N*/ {
 /*N*/   SwLineLayout *pLay = this;
 /*N*/   while( pLay->GetNext() )
@@ -1423,9 +1403,11 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   if( !pQuo )
 /*N*/       return sal_False;
 /*N*/
-            {DBG_BF_ASSERT(0, "STRIP");} return sal_False;//STRIP001 /*?*/  return pQuo->GetQuoTxt() == rQuo;
+            {DBG_BF_ASSERT(0, "STRIP");} return sal_False;
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -39,27 +37,25 @@
 #include "xmlsceni.hxx"
 #include "attrib.hxx"
 
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace xmloff::token;
 
+using rtl::OUString;
+
 //------------------------------------------------------------------
 
 ScXMLTableScenarioContext::ScXMLTableScenarioContext(
-        ScXMLImport& rImport,
+        ScXMLImport& rInImport,
         USHORT nPrfx,
         const OUString& rLName,
         const uno::Reference< xml::sax::XAttributeList >& xAttrList ):
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     aBorderColor( COL_BLACK ),
     bDisplayBorder( sal_True ),
     bCopyBack( sal_True ),
@@ -67,18 +63,18 @@ ScXMLTableScenarioContext::ScXMLTableScenarioContext(
     bCopyFormulas( sal_True ),
     bIsActive( sal_False )
 {
-    rImport.LockSolarMutex();
+    rInImport.LockSolarMutex();
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     const SvXMLTokenMap& rAttrTokenMap = GetScImport().GetTableScenarioAttrTokenMap();
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_TABLE_SCENARIO_ATTR_DISPLAY_BORDER:
             {
@@ -131,11 +127,11 @@ ScXMLTableScenarioContext::~ScXMLTableScenarioContext()
 }
 
 SvXMLImportContext *ScXMLTableScenarioContext::CreateChildContext(
-        USHORT nPrefix,
+        USHORT nInPrefix,
         const OUString& rLName,
-        const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+        const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 }
 
 void ScXMLTableScenarioContext::EndElement()
@@ -167,3 +163,5 @@ void ScXMLTableScenarioContext::EndElement()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

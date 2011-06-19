@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -51,13 +52,9 @@
 
 #else
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 class SvStream;
 
@@ -89,7 +86,7 @@ public:
     inline NUMTYPE              To() const { return nTo; }
     inline BOOL                 HasRange() const { return nTo>nFrom; }
     virtual SfxPoolItem*        Create( SvStream &, USHORT nVersion ) const;
-    virtual SvStream&           Store( SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store( SvStream &rStream, USHORT ) const { return rStream; }
 };
 
 // -----------------------------------------------------------------------
@@ -114,10 +111,12 @@ public:
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     inline const NUMTYPE*       GetRanges() const { return _pRanges; }
     virtual SfxPoolItem*        Create( SvStream &, USHORT nVersion ) const;
-    virtual SvStream&           Store( SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store( SvStream &rStream, USHORT ) const { return rStream; }
 };
 
 }
 
 #endif
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/rectitem.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
 #include <com/sun/star/awt/Rectangle.hpp>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 #include "memberid.hrc"
@@ -133,16 +128,7 @@ SfxPoolItem* SfxRectangleItem::Create(SvStream &rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxRectangleItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxRectangleItem, 0);
-    rStream << aVal;
-    return rStream;
-}
-
-
-// -----------------------------------------------------------------------
-BOOL SfxRectangleItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+bool SfxRectangleItem::QueryValue( ::com::sun::star::uno::Any& rVal,
                                    BYTE nMemberId) const
 {
     nMemberId &= ~CONVERT_TWIPS;
@@ -160,17 +146,17 @@ BOOL SfxRectangleItem::QueryValue( ::com::sun::star::uno::Any& rVal,
         case MID_RECT_RIGHT: rVal <<= aVal.getY(); break;
         case MID_WIDTH: rVal <<= aVal.getWidth(); break;
         case MID_HEIGHT: rVal <<= aVal.getHeight(); break;
-        default: DBG_ERROR("Wrong MemberID!"); return FALSE;
+        default: OSL_FAIL("Wrong MemberID!"); return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 // -----------------------------------------------------------------------
-BOOL SfxRectangleItem::PutValue( const com::sun::star::uno::Any& rVal,
+bool SfxRectangleItem::PutValue( const com::sun::star::uno::Any& rVal,
                                  BYTE nMemberId  )
 {
-    BOOL bRet = FALSE;
+    bool bRet = false;
     nMemberId &= ~CONVERT_TWIPS;
     com::sun::star::awt::Rectangle aValue;
     sal_Int32 nVal = 0;
@@ -193,7 +179,7 @@ BOOL SfxRectangleItem::PutValue( const com::sun::star::uno::Any& rVal,
             case MID_RECT_RIGHT: aVal.setY( nVal ); break;
             case MID_WIDTH: aVal.setWidth( nVal ); break;
             case MID_HEIGHT: aVal.setHeight( nVal ); break;
-            default: DBG_ERROR("Wrong MemberID!"); return FALSE;
+            default: OSL_FAIL("Wrong MemberID!"); return false;
         }
     }
 
@@ -203,3 +189,4 @@ BOOL SfxRectangleItem::PutValue( const com::sun::star::uno::Any& rVal,
 }
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

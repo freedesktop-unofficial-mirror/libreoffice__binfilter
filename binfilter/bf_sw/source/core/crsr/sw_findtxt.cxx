@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,16 +35,10 @@
 #define _SVSTDARR_ULONGS
 
 
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 namespace binfilter {
 
@@ -51,25 +46,16 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::util;
 
 
-
-
-
-
-
 // Parameter fuers Suchen und Ersetzen von Text
 
 
-
-
-
-
-/*M*/ ULONG SwCursor::Find( const SearchOptions& rSearchOpt,
-/*M*/                       SwDocPositions nStart, SwDocPositions nEnde,
-/*M*/                         BOOL& bCancel,
-/*M*/                       FindRanges eFndRngs, int bReplace )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ ULONG SwCursor::Find( const SearchOptions& /*rSearchOpt*/,
+/*M*/       SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/,
+/*M*/       BOOL& /*bCancel*/,
+/*M*/       FindRanges /*eFndRngs*/, int /*bReplace*/ )
+/*M*/ {
+        DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*M*/ }
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

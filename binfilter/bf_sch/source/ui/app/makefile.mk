@@ -25,7 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -44,8 +43,6 @@ BMP_IN =$(BFPRJ)$/res
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_sch
 # --- Files --------------------------------------------------------
-
-#IMGLST_SRS=$(SRS)$/app.srs
 
 SRS1NAME=$(TARGET)
 SRC1FILES =	sch_app.src		\

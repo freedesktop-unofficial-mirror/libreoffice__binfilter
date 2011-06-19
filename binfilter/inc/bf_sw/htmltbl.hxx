@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #define _HTMLTBL_HXX
 
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "node.hxx"     // Fuer SwStartNode
@@ -88,3 +85,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

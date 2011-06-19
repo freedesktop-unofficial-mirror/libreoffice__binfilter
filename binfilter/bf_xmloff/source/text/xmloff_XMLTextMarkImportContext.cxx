@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,41 +31,26 @@
 
 #include "rtl/ustring.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
@@ -73,14 +59,16 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
 
+using rtl::OUString;
+
 TYPEINIT1( XMLTextMarkImportContext, SvXMLImportContext);
 
 XMLTextMarkImportContext::XMLTextMarkImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLTextImportHelper& rHlp,
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         rHelper(rHlp)
 {
 }
@@ -88,7 +76,7 @@ XMLTextMarkImportContext::XMLTextMarkImportContext(
 enum lcl_MarkType { TypeReference, TypeReferenceStart, TypeReferenceEnd,
                     TypeBookmark, TypeBookmarkStart, TypeBookmarkEnd };
 
-static SvXMLEnumMapEntry __READONLY_DATA lcl_aMarkTypeMap[] =
+static SvXMLEnumMapEntry const lcl_aMarkTypeMap[] =
 {
     { XML_REFERENCE_MARK,           TypeReference },
     { XML_REFERENCE_MARK_START,     TypeReferenceStart },
@@ -182,11 +170,11 @@ void XMLTextMarkImportContext::StartElement(
 
                 case TypeReferenceStart:
                 case TypeReferenceEnd:
-                    DBG_ERROR("reference start/end are handled in txtparai !");
+                    OSL_FAIL("reference start/end are handled in txtparai !");
                     break;
 
                 default:
-                    DBG_ERROR("unknown mark type");
+                    OSL_FAIL("unknown mark type");
                     break;
             }
         }
@@ -195,13 +183,13 @@ void XMLTextMarkImportContext::StartElement(
 
 
 void XMLTextMarkImportContext::CreateAndInsertMark(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const OUString& sServiceName,
     const OUString& sMarkName,
     const Reference<XTextRange> & rRange)
 {
     // create mark
-    Reference<XMultiServiceFactory> xFactory(rImport.GetModel(),UNO_QUERY);
+    Reference<XMultiServiceFactory> xFactory(rInImport.GetModel(),UNO_QUERY);
     if( xFactory.is() )
     {
         Reference<XInterface> xIfc = xFactory->createInstance(sServiceName);
@@ -218,7 +206,7 @@ void XMLTextMarkImportContext::CreateAndInsertMark(
             {
                 // if inserting marks, bAbsorb==sal_False will cause
                 // collapsing of the given XTextRange.
-                rImport.GetTextImport()->GetText()->insertTextContent(rRange,
+                rInImport.GetTextImport()->GetText()->insertTextContent(rRange,
                                                      xTextContent, sal_True);
             }
         }
@@ -226,22 +214,22 @@ void XMLTextMarkImportContext::CreateAndInsertMark(
 }
 
 sal_Bool XMLTextMarkImportContext::FindName(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const Reference<XAttributeList> & xAttrList,
     OUString& sName)
 {
-    sal_Bool bNameOK;
+    sal_Bool bNameOK(sal_False);
 
     // find name attribute first
     sal_Int16 nLength = xAttrList->getLength();
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = rImport.GetNamespaceMap().
+        sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              IsXMLToken(sLocalName, XML_NAME)   )
         {
             sName = xAttrList->getValueByIndex(nAttr);
@@ -252,3 +240,5 @@ sal_Bool XMLTextMarkImportContext::FindName(
     return bNameOK;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

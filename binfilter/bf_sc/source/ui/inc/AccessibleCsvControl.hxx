@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,38 +31,18 @@
 #ifndef _SC_ACCESSIBLECSVCONTROL_HXX
 #define _SC_ACCESSIBLECSVCONTROL_HXX
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXT_HPP_
 #include <com/sun/star/accessibility/XAccessibleText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETABLE_HPP_
 #include <com/sun/star/accessibility/XAccessibleTable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLESELECTION_HPP_
 #include <com/sun/star/accessibility/XAccessibleSelection.hpp>
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _SVX_ACCESSILE_STATIC_TEXT_BASE_HXX_
 #include <bf_svx/AccessibleStaticTextBase.hxx>
-#endif
 
-#ifndef _SC_ACCESSIBLECONTEXTBASE_HXX
 #include "AccessibleContextBase.hxx"
-#endif
 namespace utl { class AccessibleStateSetHelper; }
 namespace binfilter {
 
@@ -69,7 +50,6 @@ namespace binfilter {
 // ============================================================================
 
 class ScCsvControl;
-//STRIP008 namespace utl { class AccessibleStateSetHelper; }
 
 /** Accessible base class used for CSV controls. */
 class ScAccessibleCsvControl : public ScAccessibleContextBase
@@ -699,3 +679,4 @@ private:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

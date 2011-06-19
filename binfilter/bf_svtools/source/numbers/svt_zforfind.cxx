@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,33 +28,18 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
 #include <ctype.h>
 #include <stdlib.h>
 #include <float.h>
 #include <errno.h>
 
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
 #include <com/sun/star/i18n/CalendarFieldIndex.hpp>
-#endif
 
 #include <bf_svtools/zforlist.hxx>         // NUMBERFORMAT_XXX
 #include "zforscan.hxx"
@@ -130,17 +116,6 @@ ImpSvNumberInputScan::~ImpSvNumberInputScan()
 
 void ImpSvNumberInputScan::Reset()
 {
-#if 0
-// ER 16.06.97 18:56 Vorbelegung erfolgt jetzt in NumberStringDivision,
-// wozu immer alles loeschen wenn einiges wieder benutzt oder gar nicht
-// gebraucht wird..
-    for (USHORT i = 0; i < SV_MAX_ANZ_INPUT_STRINGS; i++)
-    {
-        sStrArray[i].Erase();
-        nNums[i] = SV_MAX_ANZ_INPUT_STRINGS-1;
-        IsNum[i] = FALSE;
-    }
-#endif
     nMonth       = 0;
     nMonthPos    = 0;
     nTimePos     = 0;
@@ -170,17 +145,7 @@ inline BOOL ImpSvNumberInputScan::MyIsdigit( sal_Unicode c )
 {
     // If the input string wouldn't be converted using TransformInput() we'd
     // to use something similar to the following and to adapt many places.
-#if 0
-    // use faster isdigit() if possible
-    if ( c < 128 )
-        return isdigit( (unsigned char) c ) != 0;
-    if ( c < 256 )
-        return FALSE;
-    String aTmp( c );
-    return pFormatter->GetCharClass()->isDigit( aTmp, 0 );
-#else
     return c < 128 && isdigit( (unsigned char) c );
-#endif
 }
 
 
@@ -1048,14 +1013,14 @@ BOOL ImpSvNumberInputScan::GetDateRef( double& fDays, USHORT& nCounter,
                 }
             break;
             default:
-                DBG_ERROR( "ImpSvNumberInputScan::GetDateRef: unknown NfEvalDateFormat" );
+                OSL_FAIL( "ImpSvNumberInputScan::GetDateRef: unknown NfEvalDateFormat" );
                 DateFmt = YMD;
                 bFormatTurn = FALSE;
         }
+/*
         if ( bFormatTurn )
         {
-#if 0
-/* TODO:
+TODO:
 We are currently not able to fully support a switch to another calendar during
 input for the following reasons:
 1. We do have a problem if both (locale's default and format's) calendars
@@ -1079,15 +1044,8 @@ input for the following reasons:
 4. Last and least: the GetMonth() method currently only matches month names of
    the default calendar. Alternating month names of the actual format's
    calendar would have to be implemented. No problem.
-
-*/
-            if ( pFormat->IsOtherCalendar( nStringScanNumFor ) )
-                pFormat->SwitchToOtherCalendar( aOrgCalendar, fOrgDateTime );
-            else
-                pFormat->SwitchToSpecifiedCalendar( aOrgCalendar, fOrgDateTime,
-                        nStringScanNumFor );
-#endif
         }
+*/
 
         res = TRUE;
         nCounter = 0;
@@ -1272,7 +1230,7 @@ input for the following reasons:
                 }   // switch (nMonthPos)
                 break;
 
-            default:                // more than two numbers (31.12.94 8:23) (31.12. 8:23)
+            default:                // more than two numbers
                 switch (nMonthPos)  // where is the month
                 {
                     case 0:             // not found
@@ -2803,3 +2761,5 @@ BOOL ImpSvNumberInputScan::IsNumberFormat(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

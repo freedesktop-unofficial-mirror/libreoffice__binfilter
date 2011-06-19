@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <limits.h>             // USHRT_MAX
 
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 using namespace ::ucbhelper;
 using namespace ::com::sun::star::uno;
@@ -85,3 +84,5 @@ namespace binfilter {
 // -----------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

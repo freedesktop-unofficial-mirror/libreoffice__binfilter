@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,33 +28,20 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef _SVTOOLS_SOURCEVIEWCONFIG_HXX
 #include <bf_svtools/sourceviewconfig.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include <itemholder1.hxx>
 
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -113,25 +101,19 @@ public:
 SourceViewConfig_Impl* SourceViewConfig::m_pImplConfig = 0;
 sal_Int32              SourceViewConfig::m_nRefCount = 0;
 namespace { struct lclMutex : public rtl::Static< ::osl::Mutex, lclMutex > {}; }
-/* -----------------------------28.08.2002 16:45------------------------------
 
- ---------------------------------------------------------------------------*/
 SourceViewConfig_Impl::SourceViewConfig_Impl() :
-    ConfigItem(OUString::createFromAscii("Office.Common/Font/SourceViewFont")),
+    ConfigItem(OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Font/SourceViewFont" ))),
     m_nFontHeight(12),
     m_bProportionalFontOnly(sal_False)
 {
     Load();
 }
-/* -----------------------------28.08.2002 16:45------------------------------
 
- ---------------------------------------------------------------------------*/
 SourceViewConfig_Impl::~SourceViewConfig_Impl()
 {
 }
-/* -----------------------------28.08.2002 16:25------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SourceViewConfig_Impl::GetPropertyNames()
 {
     //this list needs exactly to mach the enum PropertyNameIndex
@@ -150,9 +132,7 @@ Sequence< OUString > SourceViewConfig_Impl::GetPropertyNames()
     return aNames;
 }
 
-/*-- 28.08.2002 16:37:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SourceViewConfig_Impl::Load()
 {
     Sequence< OUString > aNames = GetPropertyNames();
@@ -176,16 +156,12 @@ void SourceViewConfig_Impl::Load()
         }
     }
 }
-/*-- 28.08.2002 16:38:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SourceViewConfig_Impl::Notify( const Sequence< OUString >& )
 {
     Load();
 }
-/*-- 28.08.2002 16:38:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SourceViewConfig_Impl::Commit()
 {
     ClearModified();
@@ -211,9 +187,7 @@ void SourceViewConfig_Impl::Commit()
         Broadcast(aHint);
     }
 }
-/*-- 28.08.2002 16:32:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SourceViewConfig::SourceViewConfig()
 {
     {
@@ -228,9 +202,7 @@ SourceViewConfig::SourceViewConfig()
     }
     StartListening( *m_pImplConfig, TRUE );
 }
-/*-- 28.08.2002 16:32:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SourceViewConfig::~SourceViewConfig()
 {
     EndListening( *m_pImplConfig, TRUE );
@@ -242,12 +214,11 @@ SourceViewConfig::~SourceViewConfig()
         DELETEZ( m_pImplConfig );
     }
 }
-/* -----------------------------30.08.2002 10:40------------------------------
 
- ---------------------------------------------------------------------------*/
 void SourceViewConfig::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
     Broadcast( rHint );
 }
 }
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

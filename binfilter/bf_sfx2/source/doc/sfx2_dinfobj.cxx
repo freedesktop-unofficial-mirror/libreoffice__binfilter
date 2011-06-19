@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,8 +26,6 @@
  *
  ************************************************************************/
 
-//#include <string.h>
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -34,15 +33,12 @@
 #include "app.hxx"
 #include "objface.hxx"
 #include "sfxsids.hrc"
-#include "docinf.hxx"
 #include "docfile.hxx"
 #include "openflag.hxx"
 #include "dinfobj.hxx"
 #include "fcontnr.hxx"
 
-#ifndef _SBXCLASS_HXX //autogen
 #include "bf_basic/sbx.hxx"
-#endif
 //========================================================================
 
 #define DocumentInfo
@@ -232,3 +228,5 @@ void SfxDocumentInfoObject_Impl::Notify( SfxBroadcaster& rBC,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

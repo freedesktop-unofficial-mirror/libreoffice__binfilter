@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,53 +26,31 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 #ifndef _SVSTDARR_STRINGSSORTDTOR_DECL
 #define _SVSTDARR_STRINGSSORTDTOR
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLITMAP_HXX
-//#include "xmlitmap.hxx"
-#endif
 
-
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLASTPLP_HXX
 #include "xmlaustp.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
-//using namespace ::com::sun::star::text;
+
+using rtl::OUString;
 using namespace ::binfilter::xmloff::token;
 
 using ::com::sun::star::document::XEventsSupplier;
@@ -82,9 +61,9 @@ XMLStyleExport::XMLStyleExport(
         SvXMLAutoStylePoolP *pAutoStyleP ) :
     rExport( rExp ),
     sIsPhysical( RTL_CONSTASCII_USTRINGPARAM( "IsPhysical" ) ),
+    sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
     sFollowStyle( RTL_CONSTASCII_USTRINGPARAM( "FollowStyle" ) ),
     sNumberingStyleName( RTL_CONSTASCII_USTRINGPARAM( "NumberingStyleName" ) ),
-    sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
     sPoolStyleName( rPoolStyleName ),
     pAutoStylePool( pAutoStyleP  )
 {
@@ -94,11 +73,11 @@ XMLStyleExport::~XMLStyleExport()
 {
 }
 
-void XMLStyleExport::exportStyleAttributes( const Reference< XStyle >& rStyle )
+void XMLStyleExport::exportStyleAttributes( const Reference< XStyle >& /*rStyle*/ )
 {
 }
 
-void XMLStyleExport::exportStyleContent( const Reference< XStyle >& rStyle )
+void XMLStyleExport::exportStyleContent( const Reference< XStyle >& /*rStyle*/ )
 {
 }
 
@@ -257,32 +236,6 @@ sal_Bool XMLStyleExport::exportDefaultStyle(
     return sal_True;
 }
 
-#if 0
-void XMLStyleExport::exportStyleFamily(
-    const sal_Char *pFamily,
-    const OUString& rXMLFamily,
-    const UniReference < XMLPropertySetMapper >& rPropMapper,
-    sal_Bool bUsed, sal_uInt16 nFamily, const OUString* pPrefix)
-{
-    const OUString sFamily(OUString::createFromAscii(pFamily ));
-    UniReference < SvXMLExportPropertyMapper > xExpPropMapper =
-        new SvXMLExportPropertyMapper( rPropMapper );
-    exportStyleFamily( sFamily, rXMLFamily, xExpPropMapper, bUsed, nFamily,
-                       pPrefix);
-}
-
-void XMLStyleExport::exportStyleFamily(
-    const OUString& rFamily, const OUString& rXMLFamily,
-    const UniReference < XMLPropertySetMapper >& rPropMapper,
-    sal_Bool bUsed, sal_uInt16 nFamily, const OUString* pPrefix)
-{
-    UniReference < SvXMLExportPropertyMapper > xExpPropMapper =
-        new SvXMLExportPropertyMapper( rPropMapper );
-    exportStyleFamily( rFamily, rXMLFamily, xExpPropMapper, bUsed, nFamily,
-                       pPrefix);
-}
-#endif
-
 void XMLStyleExport::exportStyleFamily(
     const sal_Char *pFamily,
     const OUString& rXMLFamily,
@@ -429,3 +382,5 @@ void XMLStyleExport::exportStyleFamily(
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

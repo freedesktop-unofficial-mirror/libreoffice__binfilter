@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _SC_XMLTABLEHEADERFOOTERCONTEXT_HXX_
 #include "XMLTableHeaderFooterContext.hxx"
-#endif
 
 #include "unonames.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
@@ -46,24 +40,26 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
 using namespace xmloff::token;
 
+using rtl::OUString;
+
 
 TYPEINIT1( XMLTableHeaderFooterContext, SvXMLImportContext );
 
-XMLTableHeaderFooterContext::XMLTableHeaderFooterContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLTableHeaderFooterContext::XMLTableHeaderFooterContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                        const OUString& rLName,
                        const uno::Reference<
                             xml::sax::XAttributeList > & xAttrList,
                         const Reference < XPropertySet > & rPageStylePropSet,
                        sal_Bool bFooter, sal_Bool bLft ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xPropSet( rPageStylePropSet ),
-    sOn( OUString::createFromAscii( bFooter ? SC_UNO_PAGE_FTRON : SC_UNO_PAGE_HDRON ) ),
-    sShareContent( OUString::createFromAscii( bFooter ? SC_UNO_PAGE_FTRSHARED : SC_UNO_PAGE_HDRSHARED ) ),
-    sContent( OUString::createFromAscii( bFooter ? SC_UNO_PAGE_RIGHTFTRCON : SC_UNO_PAGE_RIGHTHDRCON ) ),
-    sContentLeft( OUString::createFromAscii( bFooter ? SC_UNO_PAGE_LEFTFTRCONT : SC_UNO_PAGE_LEFTHDRCONT ) ),
+    sOn( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_FTRON )): OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_PAGE_HDRON )) ),
+    sShareContent( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_FTRSHARED) ) : OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_PAGE_HDRSHARED )) ),
+    sContent( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_RIGHTFTRCON )) : OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_PAGE_RIGHTHDRCON )) ),
+    sContentLeft( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNO_PAGE_LEFTFTRCONT )) : OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNO_PAGE_LEFTHDRCONT)) ),
+    bDisplay( sal_True ),
     bInsertContent( sal_True ),
     bLeft( bLft ),
-    bDisplay( sal_True ),
     bContainsLeft(sal_False),
     bContainsRight(sal_False),
     bContainsCenter(sal_False)
@@ -73,7 +69,7 @@ XMLTableHeaderFooterContext::XMLTableHeaderFooterContext( SvXMLImport& rImport, 
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         OUString aLName;
-        sal_uInt16 nPrefix =
+        /*sal_uInt16 nLclPrefix =*/
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
                                                             &aLName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
@@ -145,13 +141,13 @@ XMLTableHeaderFooterContext::~XMLTableHeaderFooterContext()
 }
 
 SvXMLImportContext *XMLTableHeaderFooterContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if ((nPrefix == XML_NAMESPACE_TEXT) &&
+    if ((nInPrefix == XML_NAMESPACE_TEXT) &&
         IsXMLToken(rLocalName, XML_P))
     {
         if (!xTextCursor.is())
@@ -168,13 +164,13 @@ SvXMLImportContext *XMLTableHeaderFooterContext::CreateChildContext(
         }
         pContext =
             GetImport().GetTextImport()->CreateTextChildContext(GetImport(),
-                                                                    nPrefix,
+                                                                    nInPrefix,
                                                                     rLocalName,
                                                                     xAttrList);
     }
     else
     {
-        if (nPrefix == XML_NAMESPACE_STYLE)
+        if (nInPrefix == XML_NAMESPACE_STYLE)
         {
             if (xHeaderFooterContent.is())
             {
@@ -198,14 +194,14 @@ SvXMLImportContext *XMLTableHeaderFooterContext::CreateChildContext(
                 {
                     xText->setString(sEmpty);
                     //SvXMLImport aSvXMLImport( GetImport() );
-                    uno::Reference<text::XTextCursor> xTextCursor( xText->createTextCursor() );
-                    pContext = new XMLHeaderFooterRegionContext( GetImport(), nPrefix, rLocalName, xAttrList, xTextCursor);
+                    uno::Reference<text::XTextCursor> xLclTextCursor( xText->createTextCursor() );
+                    pContext = new XMLHeaderFooterRegionContext( GetImport(), nInPrefix, rLocalName, xAttrList, xLclTextCursor);
                 }
             }
         }
     }
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -242,12 +238,12 @@ void XMLTableHeaderFooterContext::EndElement()
 
 TYPEINIT1( XMLHeaderFooterRegionContext, SvXMLImportContext );
 
-XMLHeaderFooterRegionContext::XMLHeaderFooterRegionContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLHeaderFooterRegionContext::XMLHeaderFooterRegionContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                        const OUString& rLName,
                        const uno::Reference<
-                            xml::sax::XAttributeList > & xAttrList,
+                            xml::sax::XAttributeList > & /*xAttrList*/,
                        uno::Reference< text::XTextCursor >& xCursor ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xTextCursor ( xCursor )
 {
     xOldTextCursor = GetImport().GetTextImport()->GetCursor();
@@ -259,23 +255,23 @@ XMLHeaderFooterRegionContext::~XMLHeaderFooterRegionContext()
 }
 
 SvXMLImportContext *XMLHeaderFooterRegionContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if ((nPrefix == XML_NAMESPACE_TEXT) &&
+    if ((nInPrefix == XML_NAMESPACE_TEXT) &&
         IsXMLToken(rLocalName, XML_P))
     {
         pContext =
             GetImport().GetTextImport()->CreateTextChildContext(GetImport(),
-                                                                    nPrefix,
+                                                                    nInPrefix,
                                                                     rLocalName,
                                                                     xAttrList);
     }
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -298,3 +294,5 @@ void XMLHeaderFooterRegionContext::EndElement()
         GetImport().GetTextImport()->SetCursor(xOldTextCursor);
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

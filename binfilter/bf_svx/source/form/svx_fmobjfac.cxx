@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,69 +25,30 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-
-
-
-#ifndef _FM_FMOBJFAC_HXX
 #include "fmobjfac.hxx"
-#endif
-
-#ifndef _FM_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
-
-#ifndef _FM_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
 #include <com/sun/star/sdbc/XRowSetListener.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
 #include <com/sun/star/frame/XFrame.hpp>
-#endif
 
-#ifndef _SVX_FMSHIMP_HXX
 #include "fmshimp.hxx"
-#endif
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
-
-
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
-
-
-
-#ifndef _SVX_FMSERVS_HXX
 #include "fmservs.hxx"
-#endif
-
-
-
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
 
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 
 /*************************************************************************
 |*
@@ -129,7 +91,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/               pObjFactory->pNewObj = new FmFormObj(pObjFactory->nIdentifier);
 /*N*/           }   break;
 /*?*/           default:
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 return 0;
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*?*/   }
 /*N*/
@@ -139,3 +101,5 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

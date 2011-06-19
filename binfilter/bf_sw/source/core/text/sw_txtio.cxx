@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,13 +38,9 @@
 #error Wer fummelt denn an den makefiles?
 #endif
 
-#define CONSTCHAR( name, string ) static const sal_Char __FAR_DATA name[] = string
-//#include "txtcfg.hxx"
+#define CONSTCHAR( name, string ) static const sal_Char name[] = string
 
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "flyfrms.hxx"
 #include "inftxt.hxx"
@@ -268,52 +265,10 @@ namespace binfilter {
 /*N*/ }
 } //namespace binfilter
 /*N*/ #endif
-namespace binfilter {//STRIP009
-/*N*/ SvStream &operator<<( SvStream &rOs, const SwpHints &rHints ) //$ ostream
+namespace binfilter {
+/*N*/ SvStream &operator<<( SvStream &rOs, const SwpHints & )
 /*N*/ {
 /*N*/   rOs << " {HINTS:";
-/*N*/ #ifdef JP_NEWCORE
-/*N*/   for( MSHORT i = 0; i < rHints.GetSize(); ++i)
-/*N*/   {
-/*N*/       SwTxtHint *pHint = (SwTxtHint*) rHints[i];
-/*N*/
-/*N*/       if(0 != GetCharWidth(pHint))
-/*N*/           rOs << "CHARWIDTH" << ' '; // << GetCharWidth(pHint)->frCPI;
-/*N*/       else if(0 != GetColor(pHint))
-/*N*/           rOs << "COLOR" << ' ' ; // << GetColor(pHint)->aColor;
-/*N*/       else if(0 != GetCrossedOut(pHint))
-/*N*/           rOs << "CROSSEDOUT" << ' ' << (MSHORT)(GetCrossedOut(pHint)->nState);
-/*N*/       else if(0 != GetAttrFont(pHint))
-/*N*/           rOs << "ATTRFONT" << ' ' <<
-/*N*/           (const char *)(GetAttrFont(pHint)->sFamilyName) << ',' <<
-/*N*/           ((MSHORT) GetAttrFont(pHint)->eFamily);
-/*N*/       else if(0 != GetPosture(pHint))
-/*N*/           rOs << "POSTURE" << ' ' << GetPosture(pHint)->nPosture;
-/*N*/       else if(0 != GetFontSize(pHint))
-/*N*/           rOs << "FONTSIZE" << ' ' << GetFontSize(pHint)->nSize;
-/*N*/       else if(0 != GetUnderline(pHint))
-/*N*/           rOs << "UNDERLINE" << ' ' << (MSHORT)(GetUnderline(pHint)->nState);
-/*N*/       else if(0 != GetWeight(pHint))
-/*N*/           rOs << "WEIGHT" << ' ' << GetWeight(pHint)->nWeight;
-/*N*/       else if(0 != GetContour(pHint))
-/*N*/           rOs << "CONTOUR" << ' ' << GetContour(pHint)->nState;
-/*N*/       else if(0 != GetShadowed(pHint))
-/*N*/           rOs << "SHADOWED" << ' ' << GetShadowed(pHint)->nState;
-/*N*/       else if(0 != GetAutoKern(pHint))
-/*N*/           rOs << "AUTOKERN" << ' ' << GetAutoKern(pHint)->nState;
-/*N*/       else if(0 != GetWordLineMode(pHint))
-/*N*/           rOs << "WORDLINEMODE" << ' ' << GetWordLineMode(pHint)->nState;
-/*N*/       else
-/*N*/           rOs << pHint->Which();
-/*N*/
-/*N*/       rOs << ',' << pHint->GetStart()->GetIndex()
-/*N*/               << '-'
-/*N*/               << (pHint->GetEnd() ? pHint->GetEnd()->GetIndex() : STRING_LEN)
-/*N*/               << "\n";
-/*N*/   }
-/*N*/ #endif
-/*N*/   // JP_NEWCORE
-/*N*/
 /*N*/   rOs << '}';
 /*N*/   return rOs;
 /*N*/ }
@@ -332,12 +287,12 @@ namespace binfilter {//STRIP009
 } //namespace binfilter
 
 /*N*/ #if OSL_DEBUG_LEVEL < 2
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ static void Error()
 /*N*/ {
 /*N*/   // wegen PM und BCC
 /*N*/   sal_Bool bFalse = sal_False;
-/*N*/   ASSERT( bFalse, "txtio: No debug version" );
+/*N*/   OSL_ENSURE( bFalse, "txtio: No debug version" );
 /*N*/ }
 
 #define IMPL_OUTOP(class) \
@@ -387,22 +342,21 @@ namespace binfilter {//STRIP009
 /*N*/ IMPL_OUTOP( SwArrowPortion )
 /*N*/ IMPL_OUTOP( SwMultiPortion )
 
-/*N*/ const char *GetPortionName( const MSHORT nType )
+/*N*/ const char *GetPortionName( const MSHORT )
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ const char *GetPrepName( const PrepareHint ePrep )
+/*N*/ const char *GetPrepName( const PrepareHint )
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void SwLineLayout::DebugPortions( SvStream &rOs, const XubString &rTxt, //$ ostream
-/*N*/                                               const xub_StrLen nStart )
+/*N*/ void SwLineLayout::DebugPortions( SvStream &, const XubString &, const xub_StrLen )
 /*N*/ {
 /*N*/ }
 
-/*N*/ const char *GetLangName( const MSHORT nLang )
+/*N*/ const char *GetLangName( const MSHORT )
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
@@ -412,7 +366,7 @@ namespace binfilter {//STRIP009
 # include <stdlib.h>
 # include "swtypes.hxx"      // ZTCCONST
 # include "swfont.hxx"     // SwDropPortion
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ CONSTCHAR( pClose, "} " );
 
 /*************************************************************************
@@ -475,7 +429,7 @@ namespace binfilter {//STRIP009
 /*N*/     pPOR_HIDDEN, pPOR_QUOVADIS, pPOR_ERGOSUM,
 /*N*/     pPOR_NUMBER, pPOR_BULLET, pPOR_UNKW, pPOR_PAR
 /*N*/   };
-/*N*/   ASSERT( eType < PORTYPE_END, "GetPortionName: bad type" );
+/*N*/   OSL_ENSURE( eType < PORTYPE_END, "GetPortionName: bad type" );
 /*N*/   return( ppNameArr[eType] );
 /*N*/ #else
 /*N*/   return 0;
@@ -513,7 +467,7 @@ namespace binfilter {//STRIP009
 /*N*/       pPREP_UL_SPACE, pPREP_MUST_FIT, pPREP_WIDOWS, pPREP_QUOVADIS,
 /*N*/       pPREP_PAGE
 /*N*/   };
-/*N*/   ASSERT( ePrep < PREP_END, "GetPrepName: unknown PrepareHint" );
+/*N*/   OSL_ENSURE( ePrep < PREP_END, "GetPrepName: unknown PrepareHint" );
 /*N*/   return( ppNameArr[ePrep] );
 /*N*/ }
 
@@ -1077,3 +1031,4 @@ namespace binfilter {//STRIP009
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,82 +32,34 @@
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #include <hintids.hxx>
 
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef SVTOOLS_FSTATHELPER_HXX
 #include <bf_svtools/fstathelper.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <bf_svtools/moduleoptions.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _FLTINI_HXX
 #include <fltini.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -125,7 +78,7 @@ using namespace ::com::sun::star;
 /*N*/   // ist ein Medium angegeben, dann aus diesem die Streams besorgen
 /*N*/   if( 0 != (po->pMedium = pMedium ) && !po->SetStrmStgPtr() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 po->SetReadUTF8( FALSE );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/      return ERR_SWG_FILE_FORMAT_ERROR;
 /*N*/   }
 /*N*/
@@ -166,8 +119,6 @@ using namespace ::com::sun::star;
 /*N*/   // ersten ist.
 /*N*/   SwPaM *pEnd = pPam;
 /*N*/
-/*N*/   BOOL bReadPageDescs = FALSE;
-/*N*/
 /*N*/   SwNodeIndex aSplitIdx( pDoc->GetNodes() );
 /*N*/
 /*N*/   SwRedlineMode eOld = pDoc->GetRedlineMode();
@@ -183,7 +134,7 @@ using namespace ::com::sun::star;
 /*N*/       if( pCrsr )
 /*N*/       {
 /*?*/           // Pam auf den Node davor setzen damit er nicht mit verschoben wird
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwNodeIndex& rTmp = pPam->GetPoint()->nNode;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       // Speicher mal alle Fly's
@@ -277,24 +228,24 @@ using namespace ::com::sun::star;
 // Initiales Einlesben
 
 
-/*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pDoc )
-/*N*/   : SwDocFac( pDoc ),
+/*N*/ SwReader::SwReader( SvStorage& rStg, const String& rFileName, SwDoc *pInDoc )
+/*N*/   : SwDocFac( pInDoc ),
 /*N*/   pStrm( 0 ),
 /*N*/   pStg( &rStg ),
 /*N*/   pMedium( 0 ),
-/*N*/   aFileName( rFileName ),
-/*N*/   pCrsr( 0 )
+/*N*/   pCrsr( 0 ),
+/*N*/   aFileName( rFileName )
 /*N*/ {
 /*N*/ }
 
 
- SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwDoc *pDoc )
-    : SwDocFac( pDoc ),
+ SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwDoc *pInDoc )
+    : SwDocFac( pInDoc ),
     pStrm( 0 ),
     pStg( 0 ),
     pMedium( &rMedium ),
-    aFileName( rFileName ),
-    pCrsr( 0 )
+    pCrsr( 0 ),
+    aFileName( rFileName )
  {
  }
 
@@ -302,17 +253,21 @@ using namespace ::com::sun::star;
 
  SwReader::SwReader( SfxMedium& rMedium, const String& rFileName, SwPaM& rPam )
     : SwDocFac( rPam.GetDoc() ),
-    aFileName( rFileName ),
-    pStg( 0 ),
     pStrm( 0 ),
+    pStg( 0 ),
     pMedium( &rMedium ),
-    pCrsr( &rPam )
+    pCrsr( &rPam ),
+    aFileName( rFileName )
  {
  }
 /*N*/ Reader::Reader()
-/*N*/   : pStrm(0), pStg(0), pMedium(0), pTemplate(0),
-/*N*/   bTmplBrowseMode( FALSE ), bInsertMode( FALSE ),
-/*N*/   bReadUTF8( FALSE ), bBlockMode( FALSE ), bOrganizerMode( FALSE ),
+/*N*/   : pTemplate(0)
+/*N*/   , pStrm(0)
+/*N*/   , pStg(0)
+/*N*/   , pMedium(0)
+/*N*/   , bInsertMode( FALSE )
+/*N*/   , bTmplBrowseMode( FALSE )
+/*N*/   , bReadUTF8( FALSE ), bBlockMode( FALSE ), bOrganizerMode( FALSE ),
 /*N*/     bHasAskTemplateName( FALSE ), bIgnoreHTMLComments( FALSE )
 /*N*/ {
 /*N*/ }
@@ -369,7 +324,7 @@ using namespace ::com::sun::star;
 /*?*/       if( bLoad )
 /*?*/       {
 /*?*/           ClearTemplate();
-/*?*/           ASSERT( !pTemplate, "Who holds the template doc?" );
+/*?*/           OSL_ENSURE( !pTemplate, "Who holds the template doc?" );
 /*?*/
 /*?*/           SvStorageRef xStor( new SvStorage( aTDir.GetFull(), STREAM_READ ));
 /*?*/           ULONG nFormat = xStor->GetFormat();
@@ -396,37 +351,15 @@ using namespace ::com::sun::star;
 /*?*/               // we cannot create a SwDocShell. We could create a
 /*?*/               // SwWebDocShell however, because this exists always
 /*?*/               // for the help.
-                    OSL_ASSERT("ReadXML removed");
-
-//               SvtModuleOptions aModuleOptions;
-//              if( aModuleOptions.IsWriter() )
-//              {
-//                  SwDocShell *pDocSh =
-//                      new SwDocShell ( SFX_CREATE_MODE_INTERNAL );
-//                  SvEmbeddedObjectRef xDocSh = pDocSh;
-//                  if( pDocSh->DoInitNew( 0 ) )
-//                  {
-//                      pTemplate = pDocSh->GetDoc();
-//                      pTemplate->SetOle2Link( Link() );
-//                      pTemplate->SetBrowseMode( bTmplBrowseMode );
-//                      pTemplate->RemoveAllFmtLanguageDependencies();
-//
-//                      ReadXML->SetOrganizerMode( TRUE );
-//                      SwReader aRdr( *xStor, aEmptyStr, pTemplate );
-//                      aRdr.Read( *ReadXML );
-//                      ReadXML->SetOrganizerMode( FALSE );
-//
-//                      pTemplate->AddLink();
-//                  }
-//                }
+                                OSL_ASSERT("ReadXML removed");
 /*?*/           }
 /*?*/           else
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTemplate = new SwDoc;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*?*/
-/*?*/       ASSERT( !pTemplate || ::binfilter::IsDocument(
+/*?*/       OSL_ENSURE( !pTemplate || ::binfilter::IsDocument(
 /*?*/               aTDir.GetMainURL( INetURLObject::NO_DECODE ) ) ||
 /*?*/               aTemplateNm.EqualsAscii( "$$Dummy$$" ),
 /*?*/               "TemplatePtr but no template exist!" );
@@ -443,7 +376,7 @@ using namespace ::com::sun::star;
 /*N*/   if( pTemplate )
 /*N*/   {
 /*?*/       rDoc.RemoveAllFmtLanguageDependencies();
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDoc.ReplaceStyles( *pTemplate );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
@@ -473,7 +406,7 @@ using namespace ::com::sun::star;
 // muessen die Methode ueberladen
 int Reader::SetStrmStgPtr()
 {
-   ASSERT( pMedium, "Wo ist das Medium??" );
+   OSL_ENSURE( pMedium, "Wo ist das Medium??" );
 
    if( pMedium->IsStorage() )
    {
@@ -503,7 +436,7 @@ int Reader::SetStrmStgPtr()
  }
 
 
-void Reader::SetNoOutlineNum( SwDoc& rDoc )
+void Reader::SetNoOutlineNum( SwDoc& /*rDoc*/ )
 {
 }
 
@@ -536,242 +469,12 @@ void Reader::ResetFrmFmts( SwDoc& rDoc )
     }
 }
 
-    // read the sections of the document, which is equal to the medium.
-    // returns the count of it
 
-// ------------------------------------------------
-
-
-
-
-// ------------------------------------------------
-
-
-
-
-
-/*
- * Writer
- */
-
-/*
- * Konstruktoren, Destruktoren sind inline (inc/shellio.hxx).
- */
-
-
-
-
-
-
-/*N*/ SwWriter::SwWriter( SvStream& rStrm, SwPaM& rPam, BOOL bWriteAll )
-/*N*/   : pStrm( &rStrm ),
-/*N*/   pStg( 0 ),
-/*N*/   pMedium( 0 ),
-/*N*/   pShell( 0 ),
-/*N*/   pOutPam( &rPam ),
-/*N*/   rDoc( *rPam.GetDoc() ),
-/*N*/   bWriteAll( bWriteAll )
+/*N*/ BOOL SetHTMLTemplate( SwDoc & /*rDoc*/ )
 /*N*/ {
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*
-
-SwWriter::SwWriter( SvStorage& rStg, SwCrsrShell &rShell, BOOL bWriteAll )
-    : pStrm( 0 ),
-    pStg( &rStg ),
-    pMedium( 0 ),
-    pShell( &rShell ),
-    pOutPam( 0 ),
-    rDoc( *rShell.GetDoc() ),
-    bWriteAll( bWriteAll )
-{
 }
-*/
 
-
-/*N*/ SwWriter::SwWriter(SvStorage& rStg,SwDoc &rDoc)
-/*N*/   :pStrm( 0 ),
-/*N*/   pStg( &rStg ),
-/*N*/   pMedium( 0 ),
-/*N*/   pShell( 0 ),
-/*N*/   pOutPam( 0 ),
-/*N*/   rDoc( rDoc ),
-/*N*/   bWriteAll( TRUE )
-/*N*/ {
-/*N*/ }
-/*
-
-SwWriter::SwWriter( SvStorage& rStg, SwPaM& rPam, BOOL bWriteAll )
-    : pStrm( 0 ),
-    pStg( &rStg ),
-    pMedium( 0 ),
-    pShell( 0 ),
-    pOutPam( &rPam ),
-    rDoc( *rPam.GetDoc() ),
-    bWriteAll( bWriteAll )
-{
-}
-*/
-
-
-
-
-/*
-
-SwWriter::SwWriter( SfxMedium& rMedium, SwPaM& rPam, BOOL bWriteAll )
-    : pStrm( 0 ),
-    pStg( 0 ),
-    pShell( 0 ),
-    pMedium( &rMedium ),
-    pOutPam( &rPam ),
-    rDoc( *rPam.GetDoc() ),
-    bWriteAll( bWriteAll )
-{
-}
-*/
-
-
-/*N*/ ULONG SwWriter::Write( WriterRef& rxWriter, const String* pRealFileName )
-/*N*/ {
-/*N*/   BOOL bHasMark = FALSE;
-/*N*/   SwPaM * pPam;
-/*N*/
-/*N*/   SwDoc *pDoc = 0L;
-/*N*/     SvEmbeddedObjectRef* pRefForDocSh = 0;
-/*N*/
-/*N*/   if ( pShell && !bWriteAll && pShell->IsTableMode() )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bWriteAll = TRUE;
-/*N*/   }
-/*N*/
-/*N*/   if( !bWriteAll && ( pShell || pOutPam ))
-/*N*/   {
-/*N*/       if( pShell )
-/*?*/           pPam = pShell->GetCrsr();
-/*N*/       else
-/*N*/           pPam = pOutPam;
-/*N*/
-/*N*/       SwPaM *pEnd = pPam;
-/*N*/
-/*N*/       // Erste Runde: Nachsehen, ob eine Selektion besteht.
-/*N*/       while(TRUE)
-/*N*/       {
-/*N*/           bHasMark = bHasMark || pPam->HasMark();
-/*N*/           pPam = (SwPaM *) pPam->GetNext();
-/*N*/           if(bHasMark || pPam == pEnd)
-/*N*/               break;
-/*N*/       }
-/*N*/
-/*N*/       // Wenn keine Selektion besteht, eine ueber das ganze Dokument aufspannen.
-/*N*/       if(!bHasMark)
-/*N*/       {
-/*?*/           if( pShell )
-/*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pShell->Push();
-/*?*/           }
-/*?*/           else
-/*?*/           {
-/*?*/               pPam = new SwPaM( *pPam );
-/*?*/               pPam->Move( fnMoveBackward, fnGoDoc );
-/*?*/               pPam->SetMark();
-/*?*/               pPam->Move( fnMoveForward, fnGoDoc );
-/*?*/           }
-/*N*/       }
-/*N*/       // pPam ist immer noch der akt. Cursor !!
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // keine Shell oder alles schreiben -> eigenen Pam erzeugen
-/*N*/       SwDoc* pOutDoc = pDoc ? pDoc : &rDoc;
-/*N*/       pPam = new SwPaM( pOutDoc->GetNodes().GetEndOfContent() );
-/*N*/       pPam->Move( fnMoveBackward, fnGoDoc );
-/*N*/       pPam->SetMark();
-/*N*/       pPam->Move( fnMoveForward, fnGoDoc );
-/*N*/   }
-/*N*/
-/*N*/   rxWriter->bWriteAll = bWriteAll;
-/*N*/   SwDoc* pOutDoc = pDoc ? pDoc : &rDoc;
-/*N*/
-/*N*/   // falls der Standart PageDesc. immer noch auf initalen Werten steht
-/*N*/   // (wenn z.B. kein Drucker gesetzt wurde) dann setze jetzt auf DIN A4
-/*N*/   if( !pOutDoc->GetPrt() )
-/*N*/   {
-/*?*/       const SwPageDesc& rPgDsc = pOutDoc->GetPageDesc( 0L );
-/*?*/       //const SwPageDesc& rPgDsc = *pOutDoc->GetPageDescFromPool( RES_POOLPAGE_STANDARD );;
-/*?*/       const SwFmtFrmSize& rSz = rPgDsc.GetMaster().GetFrmSize();
-/*?*/       // Clipboard-Dokument wird immer ohne Drucker angelegt, so ist
-/*?*/       // der Std.PageDesc immer aug LONG_MAX !! Mappe dann auf DIN A4
-/*?*/       if( LONG_MAX == rSz.GetHeight() || LONG_MAX == rSz.GetWidth() )
-/*?*/       {
-/*?*/           SwPageDesc aNew( rPgDsc );
-/*?*/           SwFmtFrmSize aNewSz( rSz );
-/*?*/           aNewSz.SetHeight( lA4Height );
-/*?*/           aNewSz.SetWidth( lA4Width );
-/*?*/           aNew.GetMaster().SetAttr( aNewSz );
-/*?*/           pOutDoc->ChgPageDesc( 0, aNew );
-/*?*/       }
-/*N*/   }
-/*N*/
-/*N*/   SwEditShell* pESh = pOutDoc->GetEditShell();
-/*N*/   if( pESh )
-/*N*/       pESh->StartAllAction();
-/*N*/
-/*N*/   BOOL bWasPurgeOle = pOutDoc->IsPurgeOLE();
-/*N*/   pOutDoc->SetPurgeOLE( FALSE );
-/*N*/
-/*N*/   ULONG nError = 0;
-/*N*/   if( pMedium )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nError = rxWriter->Write( *pPam, *pMedium, pRealFileName );
-/*N*/   else if( pStg )
-/*N*/       nError = rxWriter->Write( *pPam, *pStg, pRealFileName );
-/*N*/   else if( pStrm )
-/*N*/       nError = rxWriter->Write( *pPam, *pStrm, pRealFileName );
-/*N*/
-/*N*/   pOutDoc->SetPurgeOLE( bWasPurgeOle );
-/*N*/   if( pESh )
-/*N*/       pESh->EndAllAction();
-/*N*/
-/*N*/   // Falls nur zum Schreiben eine Selektion aufgespannt wurde, vor der
-/*N*/   // Rueckkehr den alten Crsr wieder herstellen.
-/*N*/   if( !bWriteAll && ( pShell || pOutPam ))
-/*N*/   {
-/*N*/       if(!bHasMark)
-/*N*/       {
-/*?*/           if( pShell )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pShell->Pop( FALSE );
-/*?*/           else
-/*?*/               delete pPam;
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       delete pPam;            // loesche den hier erzeugten Pam
-/*N*/       // Alles erfolgreich geschrieben? Sag' das dem Dokument!
-/*N*/       if( !IsError( nError ) && !pDoc )
-/*N*/           rDoc.ResetModified();
-/*N*/   }
-/*N*/
-/*N*/   if ( pDoc )
-/*N*/   {
-/*N*/         delete pRefForDocSh;
-/*?*/       if ( !pDoc->RemoveLink() )
-/*?*/           delete pDoc;
-/*?*/       bWriteAll = FALSE;
-/*N*/   }
-/*N*/
-/*N*/   return nError;
-/*N*/ }
-
-
-/*  */
-
-// ----------------------------------------------------------------------
-
-
-/*N*/ BOOL SetHTMLTemplate( SwDoc & rDoc )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   // Vorlagennamen von den Sfx-HTML-Filter besorgen!!!
-/*N*/ }
-
-
-}
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

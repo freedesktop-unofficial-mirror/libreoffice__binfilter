@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
 #include <bf_sfx2/docfilt.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
@@ -65,7 +62,7 @@ public:
     { (void)pPool;  return new SfxRefItem( *this ); }
     virtual int              operator==( const SfxPoolItem& rL) const
     {   return ((SfxRefItem&)rL).aRef == aRef; }
-    SfxRefItem( USHORT nWhich, const SvRefBaseRef& rValue ) : SfxPoolItem( nWhich )
+    SfxRefItem( USHORT nWhichIn, const SvRefBaseRef& rValue ) : SfxPoolItem( nWhichIn )
     {   aRef = rValue; }
     const SvRefBaseRef&      GetValue() const { return aRef; }
 
@@ -313,3 +310,5 @@ class SfxFilterMatcherIter
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

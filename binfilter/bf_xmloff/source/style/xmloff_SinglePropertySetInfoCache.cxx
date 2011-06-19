@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
-#ifndef _XMLOFF_SINGLEPROPERTYSETINFOCACHE_HXX
 #include "SinglePropertySetInfoCache.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -91,3 +86,5 @@ sal_Bool SinglePropertySetInfoCache::hasProperty(
     return bRet;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

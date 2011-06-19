@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,10 +29,6 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 // INCLUDE ---------------------------------------------------------------
-
-#ifndef GCC
-#endif
-
 #include <tools/string.hxx>
 #include <tools/stream.hxx>
 
@@ -107,10 +104,6 @@ SfxItemPresentation SfxSetItem::GetPresentation
 
 // --------------------------------------------------------------------------
 
-SvStream& SfxSetItem::Store(SvStream& rStream, USHORT) const
-{
-    GetItemSet().Store(rStream);
-    return rStream;
 }
 
-}
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

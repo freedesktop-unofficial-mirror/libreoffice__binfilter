@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,10 @@
 #ifndef SVX_FORM_SDBDATACOLUMN_HXX
 #define SVX_FORM_SDBDATACOLUMN_HXX
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
 #include <com/sun/star/sdb/XColumn.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOLUMNUPDATE_HPP_
 #include <com/sun/star/sdb/XColumnUpdate.hpp>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 namespace binfilter {
 
 //..............................................................................
@@ -148,3 +141,5 @@ namespace svxform
 //..............................................................................
 }//end of namespace binfilter   // namespace svxform
 //..............................................................................
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

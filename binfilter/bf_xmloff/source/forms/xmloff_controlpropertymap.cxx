@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 #ifndef __SGI_STL_ALGORITHM
 #include <algorithm>
 #endif
 
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include "contextid.hxx"
-#endif
 
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #include "controlpropertymap.hxx"
-#endif
 
 #include <string.h>
 namespace binfilter {
@@ -55,7 +48,7 @@ namespace xmloff
 
 #define MAP_ASCII( name, prefix, token, type, context )  { name, sizeof(name)-1, prefix, token, type, context }
 #define MAP_CONST( name, prefix, token, type, context )  { name.ascii, name.length, prefix, token, type, context }
-#define MAP_END()   { NULL, 0, 0, XML_TOKEN_INVALID, 0 }
+#define MAP_END()   { NULL, 0, 0, XML_TOKEN_INVALID, 0, 0 }
 
     XMLPropertyMapEntry* getControlStylePropertyMap_Access( )
     {
@@ -152,3 +145,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

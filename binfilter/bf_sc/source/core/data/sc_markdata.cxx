@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -55,9 +53,9 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ScMarkData::ScMarkData(const ScMarkData& rData) :
-/*N*/   pMultiSel( NULL ),
 /*N*/   aMarkRange( rData.aMarkRange ),
-/*N*/   aMultiRange( rData.aMultiRange )
+/*N*/   aMultiRange( rData.aMultiRange ),
+/*N*/   pMultiSel( NULL )
 /*N*/ {
 /*N*/   bMarked      = rData.bMarked;
 /*N*/   bMultiMarked = rData.bMultiMarked;
@@ -367,3 +365,5 @@ namespace binfilter {
 /*N*/   return FALSE;       // nix
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

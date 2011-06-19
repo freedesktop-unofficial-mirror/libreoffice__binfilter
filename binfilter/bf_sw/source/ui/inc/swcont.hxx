@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 class SwContentType;
@@ -95,7 +94,7 @@ public:
 
     const SwContentType*    GetParent() const {return pParent;}
     const String&           GetName()   const {return sContentName;}
-    int                     operator==(const SwContent& rCont) const
+    int                     operator==(const SwContent&) const
                                 {
                                     //gleich sind sie nie, sonst fallen sie aus dem Array
                                     return FALSE;
@@ -116,3 +115,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

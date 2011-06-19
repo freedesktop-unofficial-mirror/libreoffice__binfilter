@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
+
 class IntlWrapper;
+
 namespace binfilter {
-
-
 
 //Die Framesize ---------------------------------
 
@@ -82,10 +77,10 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer ) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
-    virtual USHORT           GetVersion( USHORT nFFVer ) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     SwFrmSize GetSizeType() const { return eFrmSize; }
     void SetSizeType( SwFrmSize eSize ) { eFrmSize = eSize; }
@@ -122,3 +117,4 @@ inline const SwFmtFrmSize &SwFmt::GetFrmSize(BOOL bInP) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

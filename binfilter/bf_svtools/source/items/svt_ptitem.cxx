@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/ptitem.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_POINT_HPP_
 #include <com/sun/star/awt/Point.hpp>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 #include "memberid.hrc"
@@ -134,16 +129,7 @@ SfxPoolItem* SfxPointItem::Create(SvStream &rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxPointItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxPointItem, 0);
-    rStream << aVal;
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
-BOOL SfxPointItem::QueryValue( uno::Any& rVal,
+bool SfxPointItem::QueryValue( uno::Any& rVal,
                                BYTE nMemberId ) const
 {
     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -159,20 +145,20 @@ BOOL SfxPointItem::QueryValue( uno::Any& rVal,
         case 0: rVal <<= aTmp; break;
         case MID_X: rVal <<= aTmp.X; break;
         case MID_Y: rVal <<= aTmp.Y; break;
-        default: DBG_ERROR("Wrong MemberId!"); return FALSE;
+    default: OSL_FAIL("Wrong MemberId!"); return false;
     }
 
-    return TRUE;
+    return true;
 }
 
 // -----------------------------------------------------------------------
 
-BOOL SfxPointItem::PutValue( const uno::Any& rVal,
+bool SfxPointItem::PutValue( const uno::Any& rVal,
                              BYTE nMemberId )
 {
     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
     nMemberId &= ~CONVERT_TWIPS;
-    BOOL bRet = FALSE;
+    bool bRet = false;
     awt::Point aValue;
     sal_Int32 nVal = 0;
     if ( !nMemberId )
@@ -198,7 +184,7 @@ BOOL SfxPointItem::PutValue( const uno::Any& rVal,
             case 0: aVal.setX( aValue.X ); aVal.setY( aValue.Y ); break;
             case MID_X: aVal.setX( nVal ); break;
             case MID_Y: aVal.setY( nVal ); break;
-            default: DBG_ERROR("Wrong MemberId!"); return FALSE;
+            default: OSL_FAIL("Wrong MemberId!"); return false;
         }
     }
 
@@ -206,3 +192,5 @@ BOOL SfxPointItem::PutValue( const uno::Any& rVal,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

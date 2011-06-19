@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,14 +29,16 @@
 #ifndef _SVX_UNOIPSET_HXX_
 #define _SVX_UNOIPSET_HXX_
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
+#include <vector>
+
 namespace binfilter {
 struct SfxItemPropertyMap;
 class SfxItemSet;
-class SvxIDPropertyCombineList;
+class SvxIDPropertyCombine;
 class SdrItemPool;
+
+typedef ::std::vector< SvxIDPropertyCombine* > SvxIDPropertyCombineList;
 
 class SvxShape;
 
@@ -45,7 +48,6 @@ class SvxItemPropertySet
     const SfxItemPropertyMap*   mpLastMap;
     SvxIDPropertyCombineList*   pCombiList;
     sal_Bool                    mbConvertTwips;
-//-/    void Generate3DAttrDefaultItem(sal_uInt16 nWID, SfxItemSet& rSet);
 
 public:
     SvxItemPropertySet( const SfxItemPropertyMap *pMap, sal_Bool bConvertTwips = sal_False );
@@ -76,3 +78,4 @@ public:
 }//end of namespace binfilter
 #endif // _SVX_UNOIPSET_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

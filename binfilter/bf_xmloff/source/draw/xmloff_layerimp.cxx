@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,34 +28,21 @@
 
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERMANAGER_HPP_
 #include <com/sun/star/drawing/XLayerManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERSUPPLIER_HPP_
 #include <com/sun/star/drawing/XLayerSupplier.hpp>
-#endif
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_LAYERIMP_HXX
 #include "layerimp.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::cppu;
 using namespace ::com::sun::star;
@@ -68,14 +56,16 @@ using namespace ::com::sun::star::container;
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_NAME;
 
+using rtl::OUString;
+
 
 TYPEINIT1( SdXMLLayerSetContext, SvXMLImportContext );
 
-SdXMLLayerSetContext::SdXMLLayerSetContext( SvXMLImport& rImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName,
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList)
-: SvXMLImportContext(rImport, nPrfx, rLocalName)
+SdXMLLayerSetContext::SdXMLLayerSetContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,   const ::rtl::OUString& rLocalName,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/)
+: SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
-    Reference< XLayerSupplier > xLayerSupplier( rImport.GetModel(), UNO_QUERY );
+    Reference< XLayerSupplier > xLayerSupplier( rInImport.GetModel(), UNO_QUERY );
     DBG_ASSERT( xLayerSupplier.is(), "XModel is not supporting XLayerSupplier!" );
     if( xLayerSupplier.is() )
         mxLayerManager = xLayerSupplier->getLayerManager();
@@ -85,7 +75,7 @@ SdXMLLayerSetContext::~SdXMLLayerSetContext()
 {
 }
 
-SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName,
+SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     if( mxLayerManager.is() )
@@ -97,12 +87,12 @@ SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nPrefix, c
         const sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for(sal_Int16 i=0; i < nAttrCount; i++)
         {
-            OUString aLocalName;
-            if( GetImport().GetNamespaceMap().GetKeyByAttrName( xAttrList->getNameByIndex( i ), &aLocalName ) == XML_NAMESPACE_DRAW )
+            OUString aLclLocalName;
+            if( GetImport().GetNamespaceMap().GetKeyByAttrName( xAttrList->getNameByIndex( i ), &aLclLocalName ) == XML_NAMESPACE_DRAW )
             {
                 const OUString sValue( xAttrList->getValueByIndex( i ) );
 
-                if( IsXMLToken( aLocalName, XML_NAME ) )
+                if( IsXMLToken( aLclLocalName, XML_NAME ) )
                 {
                     aName = sValue;
                 }
@@ -136,6 +126,8 @@ SvXMLImportContext * SdXMLLayerSetContext::CreateChildContext( USHORT nPrefix, c
         }
     }
 
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

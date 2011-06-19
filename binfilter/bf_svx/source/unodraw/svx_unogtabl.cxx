@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
 
 
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
 #include "xdef.hxx"
 #include "xflgrit.hxx"
@@ -106,3 +103,5 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoGradientTable_createInstance( S
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

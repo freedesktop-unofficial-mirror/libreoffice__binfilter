@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <editdoc.hxx>
 namespace binfilter {
@@ -76,3 +71,5 @@ namespace binfilter {
 #endif
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

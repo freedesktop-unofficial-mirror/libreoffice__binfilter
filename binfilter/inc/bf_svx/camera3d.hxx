@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _VIEWPT3D_HXX
 #include <bf_svx/viewpt3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -54,7 +53,7 @@ class Camera3D : public Viewport3D
     double      fFocalLength;
     double      fBankAngle;
 
-    FASTBOOL    bAutoAdjustProjection;
+    bool    bAutoAdjustProjection;
 
  public:
     Camera3D(const Vector3D& rPos, const Vector3D& rLookAt,
@@ -86,17 +85,17 @@ class Camera3D : public Viewport3D
     // Um den Blickpunkt drehen, Position wird dabei veraendert
     void RotateAroundLookAt(double fHAngle, double fVAngle);
 
-    void SetAutoAdjustProjection(FASTBOOL bAdjust = TRUE)
+    void SetAutoAdjustProjection(bool bAdjust = TRUE)
         { bAutoAdjustProjection = bAdjust; }
-    FASTBOOL IsAutoAdjustProjection() const { return bAutoAdjustProjection; }
+    bool IsAutoAdjustProjection() const { return bAutoAdjustProjection; }
 
     // Die Umstellung von Filerevision 12 auf 13 erfolgte zur 355
     // 5.2.1997 Franz Gotsis, ReadData31 kann also auch die
     // zur 4.0 gehoerigen Filrevisionen bis zu 12 lesen.
-    virtual void WriteData31(SvStream& rOut) const;
+    virtual void WriteData31(SvStream& ) const {}
     virtual void ReadData31(SvStream& rIn);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
 
@@ -105,3 +104,5 @@ SvStream& operator>>(SvStream& rIStream, Viewport3D&);
 
 }//end of namespace binfilter
 #endif      // _CAMERA3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

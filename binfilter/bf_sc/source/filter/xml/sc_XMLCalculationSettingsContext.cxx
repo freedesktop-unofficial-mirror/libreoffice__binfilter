@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,47 +26,24 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLCALCULATIONSETTINGSCONTEXT_HXX
 #include "XMLCalculationSettingsContext.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef SC_DOCOPTIO_HXX
 #include "docoptio.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -73,12 +51,12 @@ using namespace xmloff::token;
 
 //------------------------------------------------------------------
 
-ScXMLCalculationSettingsContext::ScXMLCalculationSettingsContext( ScXMLImport& rImport,
+ScXMLCalculationSettingsContext::ScXMLCalculationSettingsContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     fIterationEpsilon(0.001),
     nIterationCount(100),
     nYear2000(1930),
@@ -96,40 +74,40 @@ ScXMLCalculationSettingsContext::ScXMLCalculationSettingsContext( ScXMLImport& r
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE)
+        if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            if (IsXMLToken(aLocalName, XML_CASE_SENSITIVE))
+            if (IsXMLToken(aLclLocalName, XML_CASE_SENSITIVE))
             {
                 if (IsXMLToken(sValue, XML_FALSE))
                     bIgnoreCase = sal_True;
             }
-            else if (IsXMLToken(aLocalName, XML_PRECISION_AS_SHOWN))
+            else if (IsXMLToken(aLclLocalName, XML_PRECISION_AS_SHOWN))
             {
                 if (IsXMLToken(sValue, XML_TRUE))
                     bCalcAsShown = sal_True;
             }
-            else if (IsXMLToken(aLocalName, XML_SEARCH_CRITERIA_MUST_APPLY_TO_WHOLE_CELL))
+            else if (IsXMLToken(aLclLocalName, XML_SEARCH_CRITERIA_MUST_APPLY_TO_WHOLE_CELL))
             {
                 if (IsXMLToken(sValue, XML_FALSE))
                     bMatchWholeCell = sal_False;
             }
-            else if (IsXMLToken(aLocalName, XML_AUTOMATIC_FIND_LABELS))
+            else if (IsXMLToken(aLclLocalName, XML_AUTOMATIC_FIND_LABELS))
             {
                 if (IsXMLToken(sValue, XML_FALSE))
                     bLookUpLabels = sal_False;
             }
-            else if (IsXMLToken(aLocalName, XML_NULL_YEAR))
+            else if (IsXMLToken(aLclLocalName, XML_NULL_YEAR))
             {
                 sal_Int32 nTemp;
                 GetScImport().GetMM100UnitConverter().convertNumber(nTemp, sValue);
                 nYear2000 = static_cast<sal_uInt16>(nTemp);
             }
-            else if (IsXMLToken(aLocalName, XML_USE_REGULAR_EXPRESSIONS))
+            else if (IsXMLToken(aLclLocalName, XML_USE_REGULAR_EXPRESSIONS))
             {
                 if (IsXMLToken(sValue, XML_FALSE))
                     bUseRegularExpressions = sal_False;
@@ -142,23 +120,23 @@ ScXMLCalculationSettingsContext::~ScXMLCalculationSettingsContext()
 {
 }
 
-SvXMLImportContext *ScXMLCalculationSettingsContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLCalculationSettingsContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if (nPrefix == XML_NAMESPACE_TABLE)
+    if (nInPrefix == XML_NAMESPACE_TABLE)
     {
         if (IsXMLToken(rLName, XML_NULL_DATE))
-            pContext = new ScXMLNullDateContext(GetScImport(), nPrefix, rLName, xAttrList, this);
+            pContext = new ScXMLNullDateContext(GetScImport(), nInPrefix, rLName, xAttrList, this);
         else if (IsXMLToken(rLName, XML_ITERATION))
-            pContext = new ScXMLIterationContext(GetScImport(), nPrefix, rLName, xAttrList, this);
+            pContext = new ScXMLIterationContext(GetScImport(), nInPrefix, rLName, xAttrList, this);
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -204,24 +182,24 @@ void ScXMLCalculationSettingsContext::EndElement()
     }
 }
 
-ScXMLNullDateContext::ScXMLNullDateContext( ScXMLImport& rImport,
+ScXMLNullDateContext::ScXMLNullDateContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       ScXMLCalculationSettingsContext* pCalcSet) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE && IsXMLToken(aLocalName, XML_DATE_VALUE))
+        if (nLclPrefix == XML_NAMESPACE_TABLE && IsXMLToken(aLclLocalName, XML_DATE_VALUE))
         {
             util::DateTime aDateTime;
             GetScImport().GetMM100UnitConverter().convertDateTime(aDateTime, sValue);
@@ -238,12 +216,12 @@ ScXMLNullDateContext::~ScXMLNullDateContext()
 {
 }
 
-SvXMLImportContext *ScXMLNullDateContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLNullDateContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -252,37 +230,37 @@ void ScXMLNullDateContext::EndElement()
 {
 }
 
-ScXMLIterationContext::ScXMLIterationContext( ScXMLImport& rImport,
+ScXMLIterationContext::ScXMLIterationContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       ScXMLCalculationSettingsContext* pCalcSet) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE)
+        if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            if (IsXMLToken(aLocalName, XML_STATUS))
+            if (IsXMLToken(aLclLocalName, XML_STATUS))
             {
                 if (IsXMLToken(sValue, XML_ENABLE))
                     pCalcSet->SetIterationStatus(sal_True);
             }
-            else if (IsXMLToken(aLocalName, XML_STEPS))
+            else if (IsXMLToken(aLclLocalName, XML_STEPS))
             {
                 sal_Int32 nSteps;
                 GetScImport().GetMM100UnitConverter().convertNumber(nSteps, sValue);
                 pCalcSet->SetIterationCount(nSteps);
             }
-            else if (IsXMLToken(aLocalName, XML_MAXIMUM_DIFFERENCE))
+            else if (IsXMLToken(aLclLocalName, XML_MAXIMUM_DIFFERENCE))
             {
                 double fDif;
                 GetScImport().GetMM100UnitConverter().convertDouble(fDif, sValue);
@@ -296,12 +274,12 @@ ScXMLIterationContext::~ScXMLIterationContext()
 {
 }
 
-SvXMLImportContext *ScXMLIterationContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLIterationContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -310,3 +288,5 @@ void ScXMLIterationContext::EndElement()
 {
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

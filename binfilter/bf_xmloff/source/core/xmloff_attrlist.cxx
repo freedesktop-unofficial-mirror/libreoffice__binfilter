@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 #include <vector>
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
@@ -73,7 +72,7 @@ sal_Int16 SAL_CALL SvXMLAttributeList::getLength(void) throw( ::com::sun::star::
 }
 
 
-SvXMLAttributeList::SvXMLAttributeList( const SvXMLAttributeList &r )
+SvXMLAttributeList::SvXMLAttributeList( const SvXMLAttributeList &r ) : cppu::WeakImplHelper3<com::sun::star::xml::sax::XAttributeList, com::sun::star::util::XCloneable, com::sun::star::lang::XUnoTunnel>(r)
 {
     m_pImpl = new SvXMLAttributeList_Impl;
     *m_pImpl = *(r.m_pImpl);
@@ -96,28 +95,28 @@ SvXMLAttributeList::SvXMLAttributeList( const uno::Reference<
 
 OUString SAL_CALL SvXMLAttributeList::getNameByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
 {
-    if( i < m_pImpl->vecAttribute.size() ) {
+    if( i < static_cast<sal_Int16>(m_pImpl->vecAttribute.size()) ) {
         return m_pImpl->vecAttribute[i].sName;
     }
     return OUString();
 }
 
 
-OUString SAL_CALL SvXMLAttributeList::getTypeByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
+OUString SAL_CALL SvXMLAttributeList::getTypeByIndex(sal_Int16 /*i*/) throw( ::com::sun::star::uno::RuntimeException )
 {
     return sType;
 }
 
 OUString SAL_CALL  SvXMLAttributeList::getValueByIndex(sal_Int16 i) throw( ::com::sun::star::uno::RuntimeException )
 {
-    if( i < m_pImpl->vecAttribute.size() ) {
+    if( i < static_cast<sal_Int16>(m_pImpl->vecAttribute.size()) ) {
         return m_pImpl->vecAttribute[i].sValue;
     }
     return OUString();
 
 }
 
-OUString SAL_CALL SvXMLAttributeList::getTypeByName( const OUString& sName ) throw( ::com::sun::star::uno::RuntimeException )
+OUString SAL_CALL SvXMLAttributeList::getTypeByName( const OUString& /*sName*/ ) throw( ::com::sun::star::uno::RuntimeException )
 {
     return sType;
 }
@@ -238,3 +237,5 @@ sal_Int64 SAL_CALL SvXMLAttributeList::getSomething( const uno::Sequence< sal_In
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,37 +27,23 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXTABSTOPENTRYCONTEXT_HXX_
 #include "XMLIndexTabStopEntryContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 
@@ -73,11 +60,11 @@ using ::com::sun::star::xml::sax::XAttributeList;
 TYPEINIT1( XMLIndexTabStopEntryContext, XMLIndexSimpleEntryContext );
 
 XMLIndexTabStopEntryContext::XMLIndexTabStopEntryContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLIndexTemplateContext& rTemplate,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        XMLIndexSimpleEntryContext(rImport, rTemplate.sTokenTabStop,
+        XMLIndexSimpleEntryContext(rInImport, rTemplate.sTokenTabStop,
                                    rTemplate, nPrfx, rLocalName),
         sLeaderChar(),
         nTabPosition(0),
@@ -99,11 +86,11 @@ void XMLIndexTabStopEntryContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sAttr = xAttrList->getValueByIndex(nAttr);
-        if (XML_NAMESPACE_STYLE == nPrefix)
+        if (XML_NAMESPACE_STYLE == nLclPrefix)
         {
             if ( IsXMLToken( sLocalName, XML_TYPE ) )
             {
@@ -177,3 +164,5 @@ void XMLIndexTabStopEntryContext::FillPropertyValues(
                 "length incorrectly precumputed!" );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

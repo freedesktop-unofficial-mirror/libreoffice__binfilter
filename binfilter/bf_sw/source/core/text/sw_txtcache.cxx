@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -39,9 +40,6 @@ namespace binfilter {
 |*
 |*  SwTxtLine::SwTxtLine(), ~SwTxtLine()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwTxtLine::SwTxtLine( SwTxtFrm *pFrm, SwParaPortion *pNew ) :
@@ -59,9 +57,6 @@ namespace binfilter {
 |*
 |*  SwTxtLineAccess::NewObj()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwCacheObj *SwTxtLineAccess::NewObj()
@@ -72,9 +67,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtLineAccess::GetPara()
-|*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
 |*
 |*************************************************************************/
 
@@ -98,22 +90,16 @@ namespace binfilter {
 |*
 |*  SwTxtLineAccess::SwTxtLineAccess()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 16. Mar. 94
-|*
 |*************************************************************************/
 
-/*N*/ SwTxtLineAccess::SwTxtLineAccess( const SwTxtFrm *pOwner ) :
-/*N*/   SwCacheAccess( *SwTxtFrm::GetTxtCache(), pOwner, pOwner->GetCacheIdx() )
+/*N*/ SwTxtLineAccess::SwTxtLineAccess( const SwTxtFrm *pOwner1 ) :
+/*N*/   SwCacheAccess( *SwTxtFrm::GetTxtCache(), pOwner1, pOwner1->GetCacheIdx() )
 /*N*/ {
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwTxtLineAccess::IsAvailable
-|*
-|*  Ersterstellung      MA 23. Mar. 94
-|*  Letzte Aenderung    MA 23. Mar. 94
 |*
 |*************************************************************************/
 
@@ -127,9 +113,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTxtFrm::HasPara()
-|*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
 |*
 |*************************************************************************/
 
@@ -152,9 +135,6 @@ namespace binfilter {
 |*
 |*  SwTxtFrm::GetPara()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwParaPortion *SwTxtFrm::GetPara()
@@ -175,14 +155,11 @@ namespace binfilter {
 |*
 |*  SwTxtFrm::ClearPara()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
-|*
 |*************************************************************************/
 
 /*N*/ void SwTxtFrm::ClearPara()
 /*N*/ {
-/*N*/   ASSERT( !IsLocked(), "+SwTxtFrm::ClearPara: this is locked." );
+/*N*/   OSL_ENSURE( !IsLocked(), "+SwTxtFrm::ClearPara: this is locked." );
 /*N*/   if ( !IsLocked() && GetCacheIdx() != MSHRT_MAX )
 /*N*/   {
 /*N*/       SwTxtLine *pTxtLine = (SwTxtLine*)SwTxtFrm::GetTxtCache()->
@@ -201,9 +178,6 @@ namespace binfilter {
 |*
 |*  SwTxtFrm::SetPara()
 |*
-|*  Ersterstellung      MA 16. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
-|*
 |*************************************************************************/
 
 /*N*/ void SwTxtFrm::SetPara( SwParaPortion *pNew, sal_Bool bDelete )
@@ -221,7 +195,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( !pNew, "+SetPara: Losing SwParaPortion" );
+/*?*/           OSL_ENSURE( !pNew, "+SetPara: Losing SwParaPortion" );
 /*?*/           nCacheIdx = MSHRT_MAX;
 /*N*/       }
 /*N*/   }
@@ -232,10 +206,12 @@ namespace binfilter {
 /*N*/           nCacheIdx = pTxtLine->GetCachePos();
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( sal_False, "+SetPara: InsertCache failed." );
+/*?*/           OSL_FAIL( "+SetPara: InsertCache failed." );
 /*N*/       }
 /*N*/   }
 /*N*/ }
 /*N*/
 /*N*/
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

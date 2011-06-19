@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -36,9 +34,7 @@
 
 #include "convuno.hxx"
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 namespace binfilter {
 
@@ -69,3 +65,5 @@ void ScUnoConversion::FillLocale( lang::Locale& rLocale, LanguageType eLang )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

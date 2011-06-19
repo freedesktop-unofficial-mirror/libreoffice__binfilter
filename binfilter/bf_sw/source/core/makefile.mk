@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
@@ -71,11 +69,6 @@ SUBLIBS2= \
         $(SLB)$/sw_doc.lib \
         $(SLB)$/sw_docnode.lib \
         $(SLB)$/sw_unocore.lib
-
-.IF "$(dbgutil)" != ""
-SUBLIBS2+= \
-        $(SLB)$/sw_except.lib
-.ENDIF
 
 #-------------------------------------------------------------------------
 

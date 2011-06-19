@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,46 +31,22 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
-#endif
 namespace binfilter {
 
 
@@ -82,10 +59,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPosition
-|*
-|*  Beschreibung        PAM.DOC
-|*  Ersterstellung      VB  4.3.91
-|*  Letzte Aenderung    VB  4.3.91
 |*
 *************************************************************************/
 
@@ -120,7 +93,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator<(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator<(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if( nNode < rPos.nNode )
 /*N*/       return TRUE;
@@ -130,7 +103,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator>(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator>(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if(nNode > rPos.nNode )
 /*N*/       return TRUE;
@@ -140,7 +113,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator<=(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator<=(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if(nNode < rPos.nNode )
 /*N*/       return TRUE;
@@ -150,7 +123,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator>=(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator>=(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if(nNode > rPos.nNode )
 /*N*/       return TRUE;
@@ -160,7 +133,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator==(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator==(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   return
 /*N*/       ( ( nNode == rPos.nNode ) && ( nContent == rPos.nContent ) ?
@@ -168,7 +141,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SwPosition::operator!=(const SwPosition &rPos) const
+/*N*/ bool SwPosition::operator!=(const SwPosition &rPos) const
 /*N*/ {
 /*N*/   if( nNode != rPos.nNode )
 /*N*/       return TRUE;
@@ -230,7 +203,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL lcl_ChkOneRange( CHKSECTION eSec, BOOL bChkSections,
+/*N*/ bool lcl_ChkOneRange( CHKSECTION eSec, BOOL bChkSections,
 /*N*/                   const SwNode& rBaseEnd, ULONG nStt, ULONG nEnd )
 /*N*/ {
 /*N*/   if( eSec != Chk_Both )
@@ -262,8 +235,8 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL CheckNodesRange( const SwNodeIndex& rStt,
-/*N*/                       const SwNodeIndex& rEnd, FASTBOOL bChkSection )
+/*N*/ bool CheckNodesRange( const SwNodeIndex& rStt,
+/*N*/                       const SwNodeIndex& rEnd, bool bChkSection )
 /*N*/ {
 /*N*/   const SwNodes& rNds = rStt.GetNodes();
 /*N*/   ULONG nStt = rStt.GetIndex(), nEnd = rEnd.GetIndex();
@@ -294,7 +267,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode )
+/*N*/ bool GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode )
 /*N*/ {
 /*N*/   if( pNd->IsCntntNode() )
 /*N*/       return ((SwCntntNode*)pNd)->GoNext( pIdx, nMode );
@@ -302,7 +275,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoPrevious( SwNode* pNd, SwIndex * pIdx, USHORT nMode )
+/*N*/ bool GoPrevious( SwNode* pNd, SwIndex * pIdx, USHORT nMode )
 /*N*/ {
 /*N*/   if( pNd->IsCntntNode() )
 /*N*/       return ((SwCntntNode*)pNd)->GoPrevious( pIdx, nMode );
@@ -310,7 +283,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ SwCntntNode* GoNextNds( SwNodeIndex* pIdx, FASTBOOL bChk )
+/*N*/ SwCntntNode* GoNextNds( SwNodeIndex* pIdx, bool bChk )
 /*N*/ {
 /*N*/   SwNodeIndex aIdx( *pIdx );
 /*N*/   SwCntntNode* pNd = aIdx.GetNodes().GoNext( &aIdx );
@@ -326,7 +299,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, FASTBOOL bChk )
+/*N*/ SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, bool bChk )
 /*N*/ {
 /*N*/   SwNodeIndex aIdx( *pIdx );
 /*N*/   SwCntntNode* pNd = aIdx.GetNodes().GoPrevious( &aIdx );
@@ -347,20 +320,20 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 |*
 |*  SwPointAndMark
 |*
-|*  Beschreibung        PAM.DOC
-|*  Ersterstellung      VB  4.3.91
-|*  Letzte Aenderung    JP  6.5.91
-|*
 *************************************************************************/
 
 /*N*/ SwPaM::SwPaM( const SwPosition& rPos, SwPaM* pRing )
-/*N*/   : aBound1( rPos ), aBound2( rPos ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rPos )
+/*N*/   , aBound2( rPos )
 /*N*/ {
 /*N*/   pPoint = pMark = &aBound1;
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( const SwPosition& rMk, const SwPosition& rPt, SwPaM* pRing )
-/*N*/   : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rMk )
+/*N*/   , aBound2( rPt )
 /*N*/ {
 /*N*/   pMark = &aBound1;
 /*N*/   pPoint = &aBound2;
@@ -369,7 +342,9 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ SwPaM::SwPaM( const SwNode& rMk, const SwNode& rPt,
 /*N*/               long nMkOffset, long nPtOffset, SwPaM* pRing )
-/*N*/   : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rMk )
+/*N*/   , aBound2( rPt )
 /*N*/ {
 /*N*/   if( nMkOffset )
 /*N*/       aBound1.nNode += nMkOffset;
@@ -385,7 +360,9 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 /*N*/ SwPaM::SwPaM( const SwNode& rMk, xub_StrLen nMkCntnt,
 /*N*/             const SwNode& rPt, xub_StrLen nPtCntnt, SwPaM* pRing )
-/*N*/   : aBound1( rMk ), aBound2( rPt ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rMk )
+/*N*/   , aBound2( rPt )
 /*N*/ {
 /*N*/   aBound1.nContent.Assign( aBound1.nNode.GetNode().GetCntntNode(), nMkCntnt );
 /*N*/   aBound2.nContent.Assign( aBound2.nNode.GetNode().GetCntntNode(), nPtCntnt );
@@ -394,14 +371,18 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( SwPaM &rPam )
-/*N*/   : aBound1( *(rPam.pPoint) ), aBound2( *(rPam.pMark) ), Ring( &rPam )
+/*N*/   : Ring( &rPam )
+/*N*/   , aBound1( *(rPam.pPoint) )
+/*N*/   , aBound2( *(rPam.pMark) )
 /*N*/ {
 /*N*/   pPoint = &aBound1;
 /*N*/   pMark  = rPam.HasMark() ? &aBound2 : pPoint;
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( const SwNode& rNd, xub_StrLen nCntnt, SwPaM* pRing )
-/*N*/   : aBound1( rNd ), aBound2( rNd ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rNd )
+/*N*/   , aBound2( rNd )
 /*N*/ {
 /*N*/   aBound1.nContent.Assign( aBound1.nNode.GetNode().GetCntntNode(), nCntnt );
 /*N*/   aBound2.nContent = aBound1.nContent;
@@ -409,7 +390,9 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 /*N*/ SwPaM::SwPaM( const SwNodeIndex& rNd, xub_StrLen nCntnt, SwPaM* pRing )
-/*N*/   : aBound1( rNd ), aBound2( rNd ), Ring( pRing )
+/*N*/   : Ring( pRing )
+/*N*/   , aBound1( rNd )
+/*N*/   , aBound2( rNd )
 /*N*/ {
 /*N*/   aBound1.nContent.Assign( rNd.GetNode().GetCntntNode(), nCntnt );
 /*N*/   aBound2.nContent = aBound1.nContent;
@@ -457,7 +440,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 // Bewegen des Cursors
 
 
-/*N*/ FASTBOOL SwPaM::Move( SwMoveFn fnMove, SwGoInDoc fnGo )
+/*N*/ bool SwPaM::Move( SwMoveFn fnMove, SwGoInDoc fnGo )
 /*N*/ {
 /*N*/   return (*fnGo)( *this, fnMove );
 /*N*/ }
@@ -476,9 +459,6 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 |*                      SwPaM *         der zu setzende Bereich
 |*                      const SwPaM&    der enventuell vorgegeben Bereich
 |*    Return-Werte      SwPaM*          der entsprehend neu gesetzte Bereich
-|*
-|*    Ersterstellung    JP 26.04.91
-|*    Letzte Aenderung  JP 26.04.91
 |*
 *************************************************************************/
 
@@ -537,33 +517,33 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ void GoStartSection( SwPosition * pPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void GoStartSection( SwPosition* /*pPos*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // gehe an das Ende der akt. Grund-Section
 
 
-/*N*/ void GoEndSection( SwPosition * pPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void GoEndSection( SwPosition* /*pPos*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 
-/*N*/ FASTBOOL GoInDoc( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInDoc( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   (*fnMove->fnDoc)( rPam.GetPoint() );
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoInSection( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GoInSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoInNode( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInNode( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   SwCntntNode *pNd = (*fnMove->fnNds)( &rPam.GetPoint()->nNode, TRUE );
 /*N*/   if( pNd )
@@ -573,7 +553,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoInCntnt( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoInCntnt( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   if( (*fnMove->fnNd)( &rPam.GetPoint()->nNode.GetNode(),
 /*N*/                       &rPam.GetPoint()->nContent, CRSR_SKIP_CHARS ))
@@ -581,20 +561,20 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/   return GoInNode( rPam, fnMove );
 /*N*/ }
 
-/*N*/ FASTBOOL GoInCntntCells( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ bool GoInCntntCells( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 // --------- Funktionsdefinitionen fuer die SwCrsrShell --------------
 
 
-/*N*/ FASTBOOL GoPrevPara( SwPaM & rPam, SwPosPara aPosPara )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GoPrevPara( SwPaM & /*rPam*/, SwPosPara /*aPosPara*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoCurrPara( SwPaM & rPam, SwPosPara aPosPara )
+/*N*/ bool GoCurrPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {
 /*N*/   SwPosition& rPos = *rPam.GetPoint();
 /*N*/   SwCntntNode * pNd = rPos.nNode.GetNode().GetCntntNode();
@@ -623,7 +603,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoNextPara( SwPaM & rPam, SwPosPara aPosPara )
+/*N*/ bool GoNextPara( SwPaM & rPam, SwPosPara aPosPara )
 /*N*/ {
 /*N*/   if( rPam.Move( fnMoveForward, fnGoNode ) )
 /*N*/   {
@@ -639,7 +619,7 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 
 
-/*N*/ FASTBOOL GoCurrSection( SwPaM & rPam, SwMoveFn fnMove )
+/*N*/ bool GoCurrSection( SwPaM & rPam, SwMoveFn fnMove )
 /*N*/ {
 /*N*/   SwPosition& rPos = *rPam.GetPoint();
 /*N*/   SwPosition aSavePos( rPos );        // eine Vergleichsposition
@@ -659,18 +639,17 @@ enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoNextSection( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GoNextSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GoPrevSection( SwPaM & rPam, SwMoveFn fnMove )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GoPrevSection( SwPaM & /*rPam*/, SwMoveFn /*fnMove*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
-
-
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

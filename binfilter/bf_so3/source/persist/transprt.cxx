@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,159 +26,66 @@
  *
  ************************************************************************/
 
-#define _TRANSPRT_CXX "$Revision: 1.6 $"
+#define _TRANSPRT_CXX
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertiesChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGENOTIFIER_HPP_
 #include <com/sun/star/beans/XPropertiesChangeNotifier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
 #include <com/sun/star/io/XActiveDataControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASINK_HPP_
 #include <com/sun/star/io/XActiveDataSink.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSTREAMLISTENER_HPP_
 #include <com/sun/star/io/XStreamListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONABORT_HPP_
 #include <com/sun/star/task/XInteractionAbort.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONAPPROVE_HPP_
 #include <com/sun/star/task/XInteractionApprove.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
 #include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UCB_CHAOSPROGRESSSTART_HPP_
 #include <com/sun/star/ucb/CHAOSProgressStart.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_COMMAND_HPP_
 #include <com/sun/star/ucb/Command.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_DOCUMENTHEADERFIELD_HPP_
 #include <com/sun/star/ucb/DocumentHeaderField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_INTERACTIVECHAOSEXCEPTION_HPP_
 #include <com/sun/star/ucb/InteractiveCHAOSException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_INSERTCOMMANDARGUMENT_HPP_
 #include <com/sun/star/ucb/InsertCommandArgument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_OPENCOMMANDARGUMENT2_HPP_
 #include <com/sun/star/ucb/OpenCommandArgument2.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_OPENMODE_HPP_
 #include <com/sun/star/ucb/OpenMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_POSTCOMMANDARGUMENT_HPP_
 #include <com/sun/star/ucb/PostCommandArgument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCONTENT_HPP_
 #include <com/sun/star/ucb/XContent.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
 
-#ifndef _VOS_MACROS_HXX_
-#include <vos/macros.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
+#include <sal/macros.h>
+#include <osl/mutex.hxx>
+#include <rtl/ref.hxx>
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
-#ifndef _EINF_HXX
 #include <tools/errinf.hxx>
-#endif
-#ifndef _TOOLS_INETMSG_HXX
 #include <tools/inetmsg.hxx>
-#endif
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
-#endif
 
-#ifndef _BINDING_HXX
 #include <bf_so3/binding.hxx>
-#endif
-#ifndef _BINDDATA_HXX
 #include <binddata.hxx>
-#endif
-#ifndef _TRANSPRT_HXX
 #include <bf_so3/transprt.hxx>
-#endif
-#ifndef _TRANSUNO_HXX
 #include <transuno.hxx>
-#endif
-#ifndef _SO2DEFS_HXX
 #include <bf_so3/so2defs.hxx>
-#endif
 
 #ifndef CONTENT_TYPE_STR_APP_WWWFORM
 #define CONTENT_TYPE_STR_APP_WWWFORM "application/x-www-form-urlencoded"
@@ -236,13 +144,23 @@ SvBindingTransport::~SvBindingTransport (void)
 SvBindingTransportFactory::SvBindingTransportFactory (void)
 {
     SvBindingTransportFactoryList &rList = BAPP()->m_aTransportFactories;
-    rList.Insert (this, rList.Count());
+    rList.push_back( this );
 }
 
 SvBindingTransportFactory::~SvBindingTransportFactory (void)
 {
     SvBindingTransportFactoryList &rList = BAPP()->m_aTransportFactories;
-    rList.Remove (this);
+    for ( SvBindingTransportFactoryList::iterator it = rList.begin();
+          it < rList.end();
+          ++it
+        )
+    {
+        if ( *it == this )
+        {
+            rList.erase( it );
+            break;
+        }
+    }
 }
 
 SvBindingTransportContext::~SvBindingTransportContext (void)
@@ -261,7 +179,17 @@ SvBindingTransportContext::~SvBindingTransportContext (void)
 SvLockBytesFactory::~SvLockBytesFactory (void)
 {
     SvLockBytesFactoryList &rList = BAPP()->m_aLockBytesFactories;
-    rList.Remove (this);
+    for ( SvLockBytesFactoryList::iterator it = rList.begin();
+          it < rList.end();
+          ++it
+        )
+    {
+        if ( *it == this )
+        {
+            rList.erase( it );
+            break;
+        }
+    }
 }
 
 /*
@@ -272,10 +200,10 @@ SvLockBytesFactory* SvLockBytesFactory::GetFactory (const String &rUrl)
     SvLockBytesFactoryList &rList = BAPP()->m_aLockBytesFactories;
     SvLockBytesFactory *pFactory = NULL;
 
-    ULONG i, n = rList.Count();
+    size_t i, n = rList.size();
     for (i = 0; i < n; i++)
     {
-        pFactory = rList.GetObject(i);
+        pFactory = rList[ i ];
         if (pFactory)
         {
             WildCard aWild (pFactory->GetWildcard());
@@ -606,7 +534,7 @@ ErrCode UcbTransportLockBytes::ReadAt (
     Sequence<sal_Int8> aData;
     sal_Int32          nSize;
 
-    nCount = VOS_MIN(nCount, 0x7FFFFFFF);
+    nCount = SAL_MIN(nCount, 0x7FFFFFFF);
     try
     {
         while (!m_bTerminated)
@@ -638,7 +566,7 @@ ErrCode UcbTransportLockBytes::ReadAt (
     if (pRead)
         *pRead = ULONG(nSize);
 
-    sal_uInt32 nRead = VOS_MAX(m_nRead, nPos + nSize);
+    sal_uInt32 nRead = SAL_MAX(m_nRead, nPos + nSize);
     SAL_CONST_CAST(UcbTransportLockBytes*, this)->m_nRead = nRead;
 
     return ERRCODE_NONE;
@@ -1142,7 +1070,7 @@ sal_Int64 SAL_CALL UcbTransportInputStream_Impl::getLength (void)
  *
  *======================================================================*/
 
-class TransportThread_Impl : public ::vos::OThread
+class TransportThread_Impl : public ::osl::Thread
 {
     Link            m_aLink;
 public:
@@ -1213,7 +1141,7 @@ protected:
     String                               m_aUrl;
     SvBindingTransportContext           &m_rCtx;
     SvBindingTransportCallback          *m_pCallback;
-    vos::ORef<UcbTransportDataSink_Impl> m_xSink;
+    rtl::Reference<UcbTransportDataSink_Impl> m_xSink;
     SvLockBytesRef                       m_xLockBytes;
     Reference<XContent>                  m_xContent;
     OUString                             m_aContentType;
@@ -1235,7 +1163,7 @@ protected:
 
     /** getMutex_Impl.
      */
-    inline vos::IMutex& getMutex_Impl (void);
+    inline osl::Mutex& getMutex_Impl (void);
 
     /** createContent_Impl.
      */
@@ -1250,7 +1178,7 @@ protected:
 private:
     /** Representation.
      */
-    vos::OMutex                         m_aMutex;
+    osl::Mutex                          m_aMutex;
     Reference<XInteractionHandler>      m_xInteractionHdl;
     oslInterlockedCount                 m_nProgressDepth;
     sal_Int32                           m_nProgressMin;
@@ -1266,7 +1194,7 @@ private:
  */
 inline sal_Bool UcbTransport_Impl::getCallback_Impl ( SvBindingTransportCallback *&rpCallback)
 {
-    vos::OGuard aGuard (m_aMutex);
+    osl::MutexGuard aGuard (m_aMutex);
     rpCallback = m_pCallback;
     return (!!rpCallback);
 }
@@ -1274,7 +1202,7 @@ inline sal_Bool UcbTransport_Impl::getCallback_Impl ( SvBindingTransportCallback
 /*
  * getMutex_Impl.
  */
-inline vos::IMutex& UcbTransport_Impl::getMutex_Impl (void)
+inline osl::Mutex& UcbTransport_Impl::getMutex_Impl (void)
 {
     return m_aMutex;
 }
@@ -1354,10 +1282,10 @@ IMPL_LINK( UcbTransport_Impl, ExecuteCallback, void*, pVoid )
         if ( bAborted || bException  )
         {
             // download aborted
-            if ( m_xSink.isValid() )
+            if ( m_xSink.is() )
             {
                 m_xSink->terminate();
-                m_xSink.unbind();
+                m_xSink.clear();
             }
 
             if ( getCallback_Impl(pCB) )
@@ -1371,12 +1299,12 @@ IMPL_LINK( UcbTransport_Impl, ExecuteCallback, void*, pVoid )
                 m_aContentType = getContentType_Impl(xProcessor);
             }
 
-            if ( m_xSink.isValid() )
+            if ( m_xSink.is() )
             {
                 m_xSink->terminate();
                 if( !m_xLockBytes.Is() )
                     m_xLockBytes = m_xSink->getLockBytes();
-                m_xSink.unbind();
+                m_xSink.clear();
             }
 
             if ( !m_bMimeAvail )
@@ -1433,8 +1361,8 @@ void UcbTransport_Impl::start (void)
         {
             m_aContentType = getContentType_Impl (xProcessor);
             if (m_aContentType.getLength() == 0)
-                m_aContentType = OUString::createFromAscii(
-                                     CONTENT_TYPE_STR_APP_OCTSTREAM);
+                m_aContentType = OUString(RTL_CONSTASCII_USTRINGPARAM(
+                                     CONTENT_TYPE_STR_APP_OCTSTREAM));
             m_bMimeAvail = sal_True;
             xProps->addPropertiesChangeListener (Sequence<OUString>(), this);
         }
@@ -1444,12 +1372,12 @@ void UcbTransport_Impl::start (void)
         aArgument.Priority = m_rCtx.GetPriority();
 
         m_xSink = new UcbTransportDataSink_Impl();
-        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.getBodyPtr());
+        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
 
         if (m_rCtx.GetBindMode() & SVBIND_NEWESTVERSION)
-            m_aCommand.Name = OUString::createFromAscii ("synchronize");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "synchronize" ));
         else
-            m_aCommand.Name = OUString::createFromAscii ("open");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "open" ));
         m_aCommand.Handle = -1;
         m_aCommand.Argument <<= aArgument;
 
@@ -1466,7 +1394,7 @@ void UcbTransport_Impl::start (void)
             return;
         }
 
-        m_aCommand.Name = OUString::createFromAscii ("insert");
+        m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "insert" ));
         m_aCommand.Handle = -1;
         m_aCommand.Argument <<= InsertCommandArgument( Reference<XInputStream> ( new UcbTransportInputStream_Impl(xLockBytes) ),
                                                        sal_False );
@@ -1544,7 +1472,7 @@ Reference<XProgressHandler> SAL_CALL UcbTransport_Impl::getProgressHandler (void
  */
 void SAL_CALL UcbTransport_Impl::disposing ( const EventObject & ) throw(RuntimeException)
 {
-    vos::OGuard aGuard (m_aMutex);
+    osl::MutexGuard aGuard (m_aMutex);
     // m_xTask = NULL;
 }
 
@@ -1563,8 +1491,7 @@ void SAL_CALL UcbTransport_Impl::handle ( const Reference<XInteractionRequest> &
                 = Reference< XInteractionHandler >(
                       xFactory->
                           createInstance(
-                              OUString::createFromAscii(
-                                  "com.sun.star.task.InteractionHandler")),
+                              OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.task.InteractionHandler" ))),
                       UNO_QUERY);
     }
     DBG_ASSERT(m_xInteractionHdl.is(),
@@ -1594,7 +1521,7 @@ void SAL_CALL UcbTransport_Impl::push ( const Any &rStatus) throw(RuntimeExcepti
         }
         if (!m_xLockBytes.Is())
         {
-            if (m_xSink.isValid())
+            if (m_xSink.is())
                 m_xLockBytes = m_xSink->getLockBytes();
         }
         if (m_bMimeAvail && m_xLockBytes.Is() && getCallback_Impl (pCB))
@@ -1622,7 +1549,7 @@ void SAL_CALL UcbTransport_Impl::update ( const Any &rStatus) throw(RuntimeExcep
             }
             if (!m_xLockBytes.Is())
             {
-                if (m_xSink.isValid())
+                if (m_xSink.is())
                     m_xLockBytes = m_xSink->getLockBytes();
             }
             if (m_bMimeAvail && m_xLockBytes.Is() && getCallback_Impl (pCB))
@@ -1659,7 +1586,7 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
     for (i = 0; i < n; i++)
     {
         PropertyChangeEvent evt (rEvent[i]);
-        if (evt.PropertyName == OUString::createFromAscii ("ContentType"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" )))
         {
             if (evt.NewValue >>= m_aContentType)
             {
@@ -1672,9 +1599,9 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
             }
             continue;
         }
-        if (evt.PropertyName == OUString::createFromAscii ("DocumentBody"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "DocumentBody" )))
         {
-            if (m_xSink.isValid())
+            if (m_xSink.is())
                 m_xLockBytes = m_xSink->getLockBytes();
             continue;
         }
@@ -1686,7 +1613,7 @@ void SAL_CALL UcbTransport_Impl::propertiesChange ( const Sequence<PropertyChang
  */
 void UcbTransport_Impl::dispose_Impl (void)
 {
-    vos::OGuard aGuard (m_aMutex);
+    osl::MutexGuard aGuard (m_aMutex);
 
     Reference<XPropertiesChangeNotifier> xProps (m_xContent, UNO_QUERY);
     if (xProps.is())
@@ -1703,7 +1630,7 @@ OUString UcbTransport_Impl::getContentType_Impl ( const Reference<XCommandProces
     OUString aResult;
     if (rxProcessor.is())
     {
-        OUString aName (OUString::createFromAscii ("ContentType"));
+        OUString aName (OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" )));
         Sequence<Property> aProps(1);
 
         aProps[0].Name = aName;
@@ -1844,7 +1771,7 @@ void UcbHTTPTransport_Impl::start (void)
         sal_Int32 n = aProps.getLength();
         aProps.realloc (n + 1);
 
-        aProps[n].Name = OUString::createFromAscii ("Referer");
+        aProps[n].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
         aProps[n].Handle = -1;
         aProps[n].Value <<= OUString(aUrl);
     }
@@ -1863,15 +1790,15 @@ void UcbHTTPTransport_Impl::start (void)
         m_xSink = new UcbTransportDataSink_Impl();
 
         if (m_rCtx.GetBindMode() & SVBIND_NEWESTVERSION)
-            m_aCommand.Name = OUString::createFromAscii ("synchronize");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "synchronize" ));
         else
-            m_aCommand.Name = OUString::createFromAscii ("open");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "open" ));
         m_aCommand.Handle = -1;
 
         OpenCommandArgument2 aArgument;
         aArgument.Mode = OpenMode::DOCUMENT;
         aArgument.Priority = m_rCtx.GetPriority();
-        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.getBodyPtr());
+        aArgument.Sink = SAL_STATIC_CAST(OWeakObject*, m_xSink.get());
         m_aCommand.Argument <<= aArgument;
 
         m_nCommandId = xProcessor->createCommandIdentifier();
@@ -1901,7 +1828,7 @@ void UcbHTTPTransport_Impl::start (void)
 
             sal_Int32 n = aProps.getLength();
             aProps.realloc (n + 1);
-            aProps[n].Name = OUString::createFromAscii ("ContentType");
+            aProps[n].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "ContentType" ));
             aProps[n].Value <<= OUString(aMimeType);
 
             SvBindingTransport_Impl::setProperties (xProcessor, aProps);
@@ -1910,7 +1837,7 @@ void UcbHTTPTransport_Impl::start (void)
 
         if (eAction == BINDACTION_PUT)
         {
-            m_aCommand.Name = OUString::createFromAscii ("insert");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "insert" ));
             m_aCommand.Handle = -1;
             m_aCommand.Argument <<= InsertCommandArgument( Reference<XInputStream> ( new UcbTransportInputStream_Impl(xLockBytes)),
                                                            sal_False );
@@ -1919,12 +1846,12 @@ void UcbHTTPTransport_Impl::start (void)
         {
             m_xSink = new UcbTransportDataSink_Impl();
 
-            m_aCommand.Name = OUString::createFromAscii ("post");
+            m_aCommand.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "post" ));
             m_aCommand.Handle = -1;
 
             PostCommandArgument aArgument;
             aArgument.Source = new UcbTransportInputStream_Impl(xLockBytes);
-            aArgument.Sink = static_cast< OWeakObject* >(m_xSink.getBodyPtr());
+            aArgument.Sink = static_cast< OWeakObject* >(m_xSink.get());
             m_aCommand.Argument <<= aArgument;
         }
 
@@ -2001,7 +1928,7 @@ void SAL_CALL UcbHTTPTransport_Impl::propertiesChange ( const Sequence<PropertyC
     for (i = 0; i < n; i++)
     {
         PropertyChangeEvent evt (rEvent[i]);
-        if (evt.PropertyName == OUString::createFromAscii ("DocumentHeader"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "DocumentHeader" )))
         {
             Sequence<DocumentHeaderField> aHead;
             if (evt.NewValue >>= aHead)
@@ -2021,12 +1948,12 @@ void SAL_CALL UcbHTTPTransport_Impl::propertiesChange ( const Sequence<PropertyC
             }
             continue;
         }
-        if (evt.PropertyName == OUString::createFromAscii ("PresentationURL"))
+        if (evt.PropertyName == OUString( RTL_CONSTASCII_USTRINGPARAM( "PresentationURL" )))
         {
             OUString aUrl;
             if (evt.NewValue >>= aUrl)
             {
-                OUString aBad (OUString::createFromAscii ("private:"));
+                OUString aBad (OUString( RTL_CONSTASCII_USTRINGPARAM( "private:" )));
                 if (!(aUrl.compareTo (aBad, aBad.getLength()) == 0))
                 {
                     // URL changed (Redirection).
@@ -2061,7 +1988,7 @@ void UcbHTTPTransport_Impl::analyzeHeader_Impl (
 
         if (aName.CompareIgnoreCaseToAscii("Content-Type") == COMPARE_EQUAL)
         {
-            vos::OGuard aGuard (getMutex_Impl());
+            osl::MutexGuard aGuard (getMutex_Impl());
 
             m_aContentType = aValue;
             m_bNeedMime = sal_False;
@@ -2112,7 +2039,7 @@ void UcbHTTPTransport_Impl::handleError_Impl (
 class UcbTransport : public SvBindingTransport
 {
 public:
-    UcbTransport (const vos::ORef<UcbTransport_Impl> &rxImpl);
+    UcbTransport (const rtl::Reference<UcbTransport_Impl> &rxImpl);
     virtual ~UcbTransport (void);
 
     /** SvBindingTransport.
@@ -2123,7 +2050,7 @@ public:
 private:
     /** Representation.
      */
-    vos::ORef<UcbTransport_Impl> m_xImpl;
+    rtl::Reference<UcbTransport_Impl> m_xImpl;
 
     /** Not implemented.
      */
@@ -2133,7 +2060,7 @@ private:
 /*
  * UcbTransport.
  */
-UcbTransport::UcbTransport (const vos::ORef<UcbTransport_Impl> &rxImpl)
+UcbTransport::UcbTransport (const rtl::Reference<UcbTransport_Impl> &rxImpl)
     : m_xImpl (rxImpl)
 {
 }
@@ -2150,7 +2077,7 @@ UcbTransport::~UcbTransport (void)
  */
 void UcbTransport::Start (void)
 {
-    if (m_xImpl.isValid())
+    if (m_xImpl.is())
         m_xImpl->start();
 }
 
@@ -2159,7 +2086,7 @@ void UcbTransport::Start (void)
  */
 void UcbTransport::Abort (void)
 {
-    if (m_xImpl.isValid())
+    if (m_xImpl.is())
         m_xImpl->abort();
 }
 
@@ -2209,7 +2136,7 @@ SvBindingTransport* CntTransportFactory::CreateTransport (
         (eProto == INET_PROT_FILE ) ||
         (eProto == INET_PROT_FTP  )    )
     {
-        vos::ORef<UcbTransport_Impl> xImpl;
+        rtl::Reference<UcbTransport_Impl> xImpl;
         if ((eProto == INET_PROT_HTTPS) || (eProto == INET_PROT_HTTP))
             xImpl = new UcbHTTPTransport_Impl (rUrl, rCtx, pCB);
         else if ((eProto == INET_PROT_FTP) && BAPP()->ShouldUseFtpProxy (rUrl))
@@ -2222,3 +2149,5 @@ SvBindingTransport* CntTransportFactory::CreateTransport (
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

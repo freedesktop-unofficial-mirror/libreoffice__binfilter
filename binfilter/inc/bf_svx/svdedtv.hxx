@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,19 +33,11 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
 #include <bf_svx/svdmrkv.hxx>
 
-#ifndef _XPOLY_HXX
-#include <bf_svx/xpoly.hxx>
-#endif
-
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 namespace binfilter {
 
 class SfxUndoAction;
@@ -330,3 +323,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDEDTV_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

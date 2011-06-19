@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,29 +30,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>      // fuer die WhichIds
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_GRFCROP_HXX
 #include <bf_svx/grfcrop.hxx>
-#endif
 
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>     // fuer inlines
-#endif
-#ifndef _FORMAT_HXX
 #include <format.hxx>       // fuer inlines
-#endif
 namespace binfilter {
 
 /******************************************************************************
@@ -88,13 +75,13 @@ public:
     virtual USHORT          GetValueCount() const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual int             operator==( const SfxPoolItem& ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal,
-                                        BYTE nMemberId = 0 );
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal,
+                                      BYTE nMemberId = 0 );
 
     inline SwMirrorGrf& operator=( const SwMirrorGrf& rMirrorGrf )
         {
@@ -140,12 +127,12 @@ public:
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual int             operator==( const SfxPoolItem& ) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
-                                            BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal,
-                                            BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
+                                        BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal,
+                                      BYTE nMemberId = 0 );
 
     void SetUnrotatedSize( const Size& rSz )        { aUnrotatedSize = rSz; }
     const Size& GetUnrotatedSize() const            { return aUnrotatedSize; }
@@ -234,13 +221,13 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual int             operator==( const SfxPoolItem& ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
-                                            BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal,
-                                            BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
+                                        BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal,
+                                      BYTE nMemberId = 0 );
 
 
     const double& GetValue() const              { return nValue; }
@@ -269,10 +256,10 @@ public:
     // pure virtual-Methiden from SfxInt16Item
     virtual SfxPoolItem* Clone( SfxItemPool *pPool = 0 ) const;
     virtual USHORT       GetVersion( USHORT nFFVer ) const;
-    virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
-                                        BYTE nMemberId = 0 ) const;
-    virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal,
-                                        BYTE nMemberId = 0 );
+    virtual bool         QueryValue( ::com::sun::star::uno::Any& rVal,
+                                     BYTE nMemberId = 0 ) const;
+    virtual bool         PutValue( const ::com::sun::star::uno::Any& rVal,
+                                   BYTE nMemberId = 0 );
 };
 
 class SwDrawModeGrf : public SfxEnumItem
@@ -286,13 +273,13 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
 
     // pure virtual-Methiden von SfxEnumItem
-    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001  virtual USHORT          GetValueCount() const;
+    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
-    virtual BOOL            QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
-    virtual BOOL            PutValue( const ::com::sun::star::uno::Any& rVal,
-                                        BYTE nMemberId = 0 );
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal,
+                                      BYTE nMemberId = 0 );
 };
 
 
@@ -364,3 +351,5 @@ inline const SwDrawModeGrf &SwFmt::GetDrawModeGrf(BOOL bInP) const
 
 } //namespace binfilter
 #endif  // _GRFATR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

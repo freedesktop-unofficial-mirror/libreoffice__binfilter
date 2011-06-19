@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,31 +35,19 @@
 #define INCLUDED_ALGORITHM
 #endif
 
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include "rtl/instance.hxx"
-#endif
 
-#ifndef _RTL_CRC_H_
 #include "rtl/crc.h"
-#endif
 
-#ifndef _RTL_MEMORY_H_
 #include "rtl/memory.h"
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 namespace binfilter
 {
@@ -524,3 +513,5 @@ BOOL INetURLHistory::QueryUrl_Impl (const INetURLObject &rUrl)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

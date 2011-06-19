@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,98 +31,42 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SVX_PAGEITEM_HXX
 #include <bf_svx/pageitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
 #include <com/sun/star/text/SetVariableType.hpp>
-#endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOFIELD_HXX
 #include <unofield.hxx>
-#endif
-#ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
-#endif
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
-#ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _USRFLD_HXX
 #include <usrfld.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>
-#endif
-#ifndef _SWCACHE_HXX
 #include <swcache.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::rtl;
@@ -137,7 +82,7 @@ using namespace ::rtl;
 /*N*/           nM = nU + ( nO - nU ) / 2;
 /*N*/           if( *(rArr.GetData() + nM) == nIdx )
 /*N*/           {
-/*N*/               ASSERT( FALSE, "Index ist schon vorhanden, darf nie sein!" );
+/*N*/               OSL_ENSURE( FALSE, "Index ist schon vorhanden, darf nie sein!" );
 /*N*/               return;
 /*N*/           }
 /*N*/           if( *(rArr.GetData() + nM) < nIdx )
@@ -167,7 +112,7 @@ using namespace ::rtl;
 //-----------------------------------------------------------------------------
 /*N*/ sal_Int32 lcl_APIToSubType(const uno::Any& rAny)
 /*N*/ {
-/*N*/       sal_Int16 nVal;
+/*N*/       sal_Int16 nVal(0);
 /*N*/       rAny >>= nVal;
 /*N*/       sal_Int32 nSet = 0;
 /*N*/       switch(nVal)
@@ -177,7 +122,7 @@ using namespace ::rtl;
 /*?*/           case SetVariableType::FORMULA:  nSet = GSE_FORMULA; break;
 /*N*/           case SetVariableType::STRING:   nSet = GSE_STRING;  break;
 /*N*/           default:
-/*?*/               DBG_ERROR("wrong value");
+/*?*/               OSL_FAIL("wrong value");
 /*?*/               nSet = -1;
 /*N*/       }
 /*N*/       return nSet;
@@ -212,7 +157,7 @@ using namespace ::rtl;
 /*N*/ SwTxtNode* GetFirstTxtNode( const SwDoc& rDoc, SwPosition& rPos,
 /*N*/                           const SwCntntFrm *pCFrm, Point &rPt )
 /*N*/ {
-/*N*/   SwTxtNode* pTxtNode;
+/*N*/   SwTxtNode* pTxtNode = NULL;
 /*N*/   if ( !pCFrm )
 /*N*/   {
 /*?*/       rPos.nNode = *rDoc.GetNodes().GetEndOfContent().StartOfSectionNode();
@@ -220,7 +165,7 @@ using namespace ::rtl;
 /*?*/       while( 0 != (pCNd = rDoc.GetNodes().GoNext( &rPos.nNode ) ) &&
 /*?*/               0 == ( pTxtNode = pCNd->GetTxtNode() ) )
 /*?*/                       ;
-/*?*/       ASSERT( pTxtNode, "wo ist der 1.TextNode" );
+/*?*/       OSL_ENSURE( pTxtNode, "wo ist der 1.TextNode" );
 /*?*/       rPos.nContent.Assign( pTxtNode, 0 );
 /*N*/   }
 /*N*/   else if ( !pCFrm->IsValid() )
@@ -249,7 +194,7 @@ using namespace ::rtl;
 /*N*/       {
 /*N*/           // hole das FlyFormat
 /*N*/           SwFrmFmt* pFlyFmt = ((SwFlyFrm*)pLayout)->GetFmt();
-/*N*/           ASSERT( pFlyFmt, "kein FlyFormat gefunden, wo steht das Feld" );
+/*N*/           OSL_ENSURE( pFlyFmt, "kein FlyFormat gefunden, wo steht das Feld" );
 /*N*/
 /*N*/           const SwFmtAnchor &rAnchor = pFlyFmt->GetAnchor();
 /*N*/
@@ -264,7 +209,7 @@ using namespace ::rtl;
 /*N*/                    FLY_AUTO_CNTNT == rAnchor.GetAnchorId() ||
 /*N*/                    FLY_IN_CNTNT == rAnchor.GetAnchorId() )
 /*N*/           {
-/*N*/               ASSERT( rAnchor.GetCntntAnchor(), "keine gueltige Position" );
+/*N*/               OSL_ENSURE( rAnchor.GetCntntAnchor(), "keine gueltige Position" );
 /*N*/               rPos = *rAnchor.GetCntntAnchor();
 /*N*/               pTxtNode = rPos.nNode.GetNode().GetTxtNode();
 /*N*/               if( FLY_AT_CNTNT == rAnchor.GetAnchorId() )
@@ -342,8 +287,8 @@ using namespace ::rtl;
     Beschreibung: SwSetExpFieldType by JP
  --------------------------------------------------------------------*/
 
-/*N*/ SwGetExpFieldType::SwGetExpFieldType(SwDoc* pDoc)
-/*N*/   : SwValueFieldType( pDoc, RES_GETEXPFLD )
+/*N*/ SwGetExpFieldType::SwGetExpFieldType(SwDoc* _pDoc)
+/*N*/   : SwValueFieldType( _pDoc, RES_GETEXPFLD )
 /*N*/ {
 /*N*/ }
 
@@ -365,9 +310,9 @@ using namespace ::rtl;
 
 /*N*/ SwGetExpField::SwGetExpField(SwGetExpFieldType* pTyp, const String& rFormel,
 /*N*/                           USHORT nSub, ULONG nFmt)
-/*N*/   : SwFormulaField( pTyp, nFmt, 0.0 ),
-/*N*/   nSubType(nSub),
-/*N*/   bIsInBodyTxt( TRUE )
+/*N*/   : SwFormulaField( pTyp, nFmt, 0.0 )
+/*N*/   , bIsInBodyTxt( TRUE )
+/*N*/   , nSubType(nSub)
 /*N*/ {
 /*N*/   SetFormula( rFormel );
 /*N*/ }
@@ -436,9 +381,7 @@ void SwGetExpField::SetPar2(const String& rStr)
 /*N*/       SwValueField::SetLanguage(nLng);
 /*N*/ }
 
-/*-----------------07.03.98 16:08-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwGetExpField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -476,13 +419,11 @@ void SwGetExpField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------07.03.98 16:08-------------------
 
---------------------------------------------------*/
 BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
-    sal_Int32 nTmp;
+    sal_Int32 nTmp(0);
     String sTmp;
     switch( nMId )
     {
@@ -524,13 +465,14 @@ BOOL SwGetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
  Set-Expression-Type
  --------------------------------------------------*/
 
-/*N*/ SwSetExpFieldType::SwSetExpFieldType( SwDoc* pDoc, const String& rName, USHORT nTyp )
-/*N*/   : SwValueFieldType( pDoc, RES_SETEXPFLD ),
-/*N*/   sName( rName ),
-/*N*/   nType(nTyp),
-/*N*/   cDelim( '.' ), nLevel( UCHAR_MAX ),
-/*N*/   bDeleted( FALSE ),
-/*N*/   pOutlChgNd( 0 )
+/*N*/ SwSetExpFieldType::SwSetExpFieldType( SwDoc* pInDoc, const String& rName, USHORT nTyp )
+/*N*/   : SwValueFieldType( pInDoc, RES_SETEXPFLD )
+/*N*/   , sName( rName )
+/*N*/   , pOutlChgNd( 0 )
+/*N*/   , cDelim( '.' )
+/*N*/   , nType(nTyp)
+/*N*/   , nLevel( UCHAR_MAX )
+/*N*/   , bDeleted( FALSE )
 /*N*/ {
 /*N*/   if( ( GSE_SEQ | GSE_STRING ) & nType )
 /*N*/       EnableFormat(FALSE);    // Numberformatter nicht einsetzen
@@ -605,9 +547,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 
 
 
-/* -----------------24.03.99 09:44-------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ BOOL SwSetExpFieldType::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -629,7 +569,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -657,7 +597,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*?*/       break;
 /*N*/   case FIELD_PROP_SHORT1:
 /*N*/       {
-/*N*/           sal_Int8 nLvl;
+/*N*/           sal_Int8 nLvl(0);
 /*N*/           rAny >>= nLvl;
 /*N*/           if(nLvl < 0 || nLvl >= MAXLEVEL)
 /*N*/               SetOutlineLvl(UCHAR_MAX);
@@ -666,7 +606,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -793,7 +733,7 @@ void SwSetExpFieldType::Modify( SfxPoolItem*, SfxPoolItem* )
 /*N*/   sExpand = ((SwValueFieldType*)GetTyp())->ExpandValue( rAny, GetFormat(),
 /*N*/                                                           GetLanguage());
 /*N*/ }
-/* -----------------14.07.99 12:21-------------------
+/* --------------------------------------------------
     Description: Find the index of the reference text
     following the current field
  --------------------------------------------------*/
@@ -897,9 +837,12 @@ void SwSetExpField::SetPar2(const String& rStr)
     Beschreibung: Eingabefeld
  --------------------------------------------------------------------*/
 
-/*N*/ SwInputField::SwInputField(SwInputFieldType* pType, const String& rContent,
-/*N*/                          const String& rPrompt, USHORT nSub, ULONG nFmt) :
-/*N*/   SwField(pType, nFmt), nSubType(nSub), aContent(rContent), aPText(rPrompt)
+/*N*/ SwInputField::SwInputField(SwInputFieldType* pType1, const String& rContent,
+/*N*/                          const String& rPrompt, USHORT nSub, ULONG nFmt)
+/*N*/   : SwField(pType1, nFmt)
+/*N*/   , aContent(rContent)
+/*N*/   , aPText(rPrompt)
+/*N*/   , nSubType(nSub)
 /*N*/ {
 /*N*/ }
 
@@ -944,9 +887,7 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/   return sRet;
 /*N*/ }
 
-/*-----------------06.03.98 11:12-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwInputField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -959,13 +900,11 @@ void SwSetExpField::SetPar2(const String& rStr)
 /*N*/       rAny <<= OUString( aPText );
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------06.03.98 11:12-------------------
 
---------------------------------------------------*/
 BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -978,7 +917,7 @@ BOOL SwInputField::PutValue( const uno::Any& rAny, BYTE nMId )
         binfilter::GetString( rAny, aPText );
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
@@ -1019,9 +958,7 @@ void SwInputField::SetSubType(USHORT nSub)
 {
     nSubType = nSub;
 }
-/*-----------------05.03.98 17:22-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwSetExpField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -1050,8 +987,8 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/           //I18N - if the formula contains only "TypeName+1"
 /*N*/           //and it's one of the initially created sequence fields
 /*N*/           //then the localized names has to be replaced by a programmatic name
-/*N*/           OUString sFormula = SwXFieldMaster::LocalizeFormula(*this, GetFormula(), TRUE);
-/*N*/           rAny <<= OUString( sFormula );
+/*N*/           OUString sLclFormula = SwXFieldMaster::LocalizeFormula(*this, GetFormula(), TRUE);
+/*N*/           rAny <<= OUString( sLclFormula );
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_DOUBLE:
@@ -1087,14 +1024,12 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------05.03.98 17:22-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwSetExpField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
-/*N*/   sal_Int32 nTmp32;
-/*N*/   sal_Int16 nTmp16;
+/*N*/   sal_Int32 nTmp32(0);
+/*N*/   sal_Int16 nTmp16(0);
 /*N*/   String sTmp;
 /*N*/   switch( nMId )
 /*N*/   {
@@ -1113,9 +1048,6 @@ void SwInputField::SetSubType(USHORT nSub)
 /*?*/           rAny >>= nTmp16;
 /*?*/           if(nTmp16 <= SVX_NUMBER_NONE )
 /*?*/               SetFormat(nTmp16);
-/*?*/           else
-/*?*/               //exception(wrong_value)
-/*?*/               ;
 /*?*/       }
 /*?*/       break;
 /*?*/   case FIELD_PROP_USHORT1:
@@ -1133,8 +1065,8 @@ void SwInputField::SetSubType(USHORT nSub)
 /*N*/           //I18N - if the formula contains only "TypeName+1"
 /*N*/           //and it's one of the initially created sequence fields
 /*N*/           //then the localized names has to be replaced by a programmatic name
-/*N*/           OUString sFormula = SwXFieldMaster::LocalizeFormula(*this, uTmp, FALSE);
-/*N*/           SetFormula( sFormula );
+/*N*/           OUString sLclFormula = SwXFieldMaster::LocalizeFormula(*this, uTmp, FALSE);
+/*N*/           SetFormula( sLclFormula );
 /*N*/       }
 /*N*/       break;
 /*N*/   case FIELD_PROP_DOUBLE:
@@ -1173,3 +1105,5 @@ void SwInputField::SetSubType(USHORT nSub)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

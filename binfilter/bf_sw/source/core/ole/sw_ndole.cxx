@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,51 +32,23 @@
 #endif
 
 
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -112,7 +85,7 @@ public:
 };
 
 void SwOLELRUCache::Commit() {}
-void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SwOLELRUCache::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 
 SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
@@ -145,7 +118,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ SwCntntNode *SwOLENode::SplitNode( const SwPosition & )
 /*N*/ {
 /*N*/   // OLE-Objecte vervielfaeltigen ??
-/*N*/   ASSERT( FALSE, "OleNode: can't split." );
+/*N*/   OSL_ENSURE( FALSE, "OleNode: can't split." );
 /*N*/   return this;
 /*N*/ }
 
@@ -161,31 +134,11 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/                                   SwGrfFmtColl* pGrfColl,
 /*N*/                                   SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
+/*N*/   OSL_ENSURE( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
 /*N*/
 /*N*/   SwOLENode *pNode =
 /*N*/       new SwOLENode( rWhere, pObj, pGrfColl, pAutoAttr );
 /*N*/
-/*N*/ #if 0
-/*N*/ JP 02.10.97 - OLE Objecte stehen immer alleine im Rahmen, also hat es
-/*N*/               keinen Sinn, nach einem vorherigen/nachfolgenden
-/*N*/               ContentNode zu suchen!
-/*N*/
-/*N*/   SwCntntNode *pCntntNd;
-/*N*/   SwIndex aIdx( rWhere, -1 );
-/*N*/   if ( (pCntntNd=(*this)[ rWhere ]->GetCntntNode()) != 0 )
-/*N*/       pCntntNd->MakeFrms( rWhere, aIdx );
-/*N*/   else
-/*N*/   {
-/*N*/       aIdx--;
-/*N*/       if ( (pCntntNd=(*this)[aIdx]->GetCntntNode()) != 0 )
-/*N*/       {
-/*N*/           SwIndex aTmp( aIdx );
-/*N*/           aIdx++;
-/*N*/           pCntntNd->MakeFrms( aTmp, aIdx );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/   return pNode;
 /*N*/ }
 
@@ -195,30 +148,11 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/                                   SwGrfFmtColl* pGrfColl,
 /*N*/                                   SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
+/*N*/   OSL_ENSURE( pGrfColl,"SwNodes::MakeOLENode: Formatpointer ist 0." );
 /*N*/
 /*N*/   SwOLENode *pNode =
 /*N*/       new SwOLENode( rWhere, rName, pGrfColl, pAutoAttr );
 /*N*/
-/*N*/ #if 0
-/*N*/ JP 02.10.97 - OLE Objecte stehen immer alleine im Rahmen, also hat es
-/*N*/               keinen Sinn, nach einem vorherigen/nachfolgenden
-/*N*/               ContentNode zu suchen!
-/*N*/   SwCntntNode *pCntntNd;
-/*N*/   SwIndex aIdx( rWhere, -1 );
-/*N*/   if ( (pCntntNd=(*this)[ rWhere ]->GetCntntNode()) != 0 )
-/*N*/       pCntntNd->MakeFrms( rWhere, aIdx );
-/*N*/   else
-/*N*/   {
-/*N*/       aIdx--;
-/*N*/       if ( (pCntntNd=(*this)[aIdx]->GetCntntNode()) != 0 )
-/*N*/       {
-/*N*/           SwIndex aTmp( aIdx );
-/*N*/           aIdx++;
-/*N*/           pCntntNd->MakeFrms( aTmp, aIdx );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/   return pNode;
 /*N*/ }
 
@@ -239,8 +173,8 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   SvPersist* p = pDoc->GetPersist();
 /*N*/   if( !p )
 /*N*/   {
-/*?*/       ASSERT( pDoc->GetRefForDocShell(),
-/*?*/                       "wo ist die Ref-Klasse fuer die DocShell?")
+/*?*/       OSL_ENSURE( pDoc->GetRefForDocShell(),
+/*?*/                       "wo ist die Ref-Klasse fuer die DocShell?");
 /*?*/       p = new SwDocShell( pDoc, SFX_CREATE_MODE_INTERNAL );
 /*?*/       *pDoc->GetRefForDocShell() = p;
 /*?*/       p->DoInitNew( NULL );
@@ -318,17 +252,17 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ }
 
 
-/*N*/ SwOLEObj::SwOLEObj( SvInPlaceObject *pObj ) :
-/*N*/   pOLERef( new SvInPlaceObjectRef( pObj ) ),
-/*N*/   pOLENd( 0 )
+/*N*/ SwOLEObj::SwOLEObj( SvInPlaceObject *pObj )
+/*N*/   : pOLENd( 0 )
+/*N*/   , pOLERef( new SvInPlaceObjectRef( pObj ) )
 /*N*/ {
 /*N*/ }
 
 
-/*N*/ SwOLEObj::SwOLEObj( const String &rString ) :
-/*N*/   pOLERef( 0 ),
-/*N*/   pOLENd( 0 ),
-/*N*/   aName( rString )
+/*N*/ SwOLEObj::SwOLEObj( const String &rString )
+/*N*/   : pOLENd( 0 )
+/*N*/   , pOLERef( 0 )
+/*N*/   , aName( rString )
 /*N*/ {
 /*N*/ }
 
@@ -372,7 +306,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/       SvPersist* p = pDoc->GetPersist();
 /*N*/       if( !p )
 /*N*/       {
-/*?*/           ASSERT( !this, "warum wird hier eine DocShell angelegt?" );
+/*?*/           OSL_ENSURE( !this, "warum wird hier eine DocShell angelegt?" );
 /*?*/           p = new SwDocShell( pDoc, SFX_CREATE_MODE_INTERNAL );
 /*?*/           p->DoInitNew( NULL );
 /*N*/       }
@@ -391,7 +325,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/           //              found.
 /*?*/           p->Insert( refObj );
 /*N*/       }
-/*N*/       ASSERT( refObj.Is(), "InsertObject failed" );
+/*N*/       OSL_ENSURE( refObj.Is(), "InsertObject failed" );
 /*N*/   }
 /*N*/ }
 
@@ -405,7 +339,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   if( !pOLERef || !pOLERef->Is() )
 /*N*/   {
 /*N*/       SvPersist* p = pOLENd->GetDoc()->GetPersist();
-/*N*/       ASSERT( p, "kein SvPersist vorhanden" );
+/*N*/       OSL_ENSURE( p, "kein SvPersist vorhanden" );
 /*N*/
 /*N*/       // MIB 18.5.97: DIe Base-URL wird jetzt gesetzt, damit Plugins
 /*N*/       // nach dem Laden und vor dem Aktivieren des Frames korrekt
@@ -418,8 +352,8 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/               ::binfilter::StaticBaseUrl::SetBaseURL( pMedium->GetName() );
 /*N*/
 /*N*/       SvPersistRef xObj = p->GetObject( aName );
-/*N*/       ASSERT( !pOLERef || !pOLERef->Is(),
-/*N*/               "rekursiver Aufruf von GetOleRef() ist nicht erlaubt" )
+/*N*/       OSL_ENSURE( !pOLERef || !pOLERef->Is(),
+/*N*/               "rekursiver Aufruf von GetOleRef() ist nicht erlaubt" );
 /*N*/
 /*N*/       ::binfilter::StaticBaseUrl::SetBaseURL( sBaseURL );
 /*N*/
@@ -463,10 +397,10 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ }
 
 /*N*/ SwOLELRUCache::SwOLELRUCache()
-/*N*/   : SvPtrarr( 64, 16 ),
-/*N*/   ::utl::ConfigItem( OUString::createFromAscii( "Office.Common/Cache" )),
-/*N*/   bInUnload( sal_False ),
-/*N*/   nLRU_InitSize( 20 )
+/*N*/   : SvPtrarr( 64, 16 )
+/*N*/   , ::utl::ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/Cache" )))
+/*N*/   , nLRU_InitSize( 20 )
+/*N*/   , bInUnload( sal_False )
 /*N*/ {
 /*N*/   EnableNotification( GetPropertyNames() );
 /*N*/   Load();
@@ -476,7 +410,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/ {
 /*N*/   Sequence< OUString > aNames( 1 );
 /*N*/   OUString* pNames = aNames.getArray();
-/*N*/   pNames[0] = OUString::createFromAscii( "Writer/OLE_Objects" );
+/*N*/   pNames[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Writer/OLE_Objects" ));
 /*N*/   return aNames;
 /*N*/ }
 
@@ -491,7 +425,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   if( aValues.getLength() == aNames.getLength() &&
 /*N*/       pValues->hasValue() )
 /*N*/   {
-/*N*/       sal_Int32 nVal;
+/*N*/       sal_Int32 nVal(0);
 /*N*/       *pValues >>= nVal;
 /*N*/       if( 20 > nVal )
 /*N*/           nVal = 20;
@@ -541,7 +475,7 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   {
 /*?*/       SwOLEObj* pObj = &rObj;
 /*?*/       USHORT nPos = SvPtrarr::GetPos( pObj );
-/*?*/       ASSERT( USHRT_MAX != nPos, "Insert a new OLE object into a looked cache" );
+/*?*/       OSL_ENSURE( USHRT_MAX != nPos, "Insert a new OLE object into a looked cache" );
 /*?*/   }
 /*N*/ #endif
 /*N*/ }
@@ -559,3 +493,5 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

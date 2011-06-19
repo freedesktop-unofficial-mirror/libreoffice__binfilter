@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
 namespace binfilter {
 
@@ -152,3 +151,5 @@ BOOL ClassName::Seek_Entry( const Type* pObj, ULONG* pPos ) const           \
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

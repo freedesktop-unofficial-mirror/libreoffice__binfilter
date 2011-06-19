@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,40 +33,20 @@
 
 #include <hintids.hxx>
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
 #define ITEMID_LINE             SID_ATTR_LINE_STYLE
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _PAGEDESC_HXX //autogen
 #include <pagedesc.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>       // fuer SetModifyAtAttr
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>      // fuer SetModifyAtAttr
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 namespace binfilter {
 
 
@@ -138,7 +119,7 @@ namespace binfilter {
 /*N*/ USHORT SwAttrSet::ClearItem_BC( USHORT nWhich1, USHORT nWhich2,
 /*N*/                       SwAttrSet* pOld, SwAttrSet* pNew )
 /*N*/ {
-/*N*/   ASSERT( nWhich1 <= nWhich2, "kein gueltiger Bereich" );
+/*N*/   OSL_ENSURE( nWhich1 <= nWhich2, "kein gueltiger Bereich" );
 /*N*/   pNewSet = pNew;
 /*N*/   pOldSet = pOld;
 /*N*/   USHORT nRet = 0;
@@ -287,7 +268,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ #ifdef DBG_UTIL
 /*N*/   else
-/*N*/       ASSERT( !this, "weder Format noch ContentNode - keine Attribute kopiert");
+/*N*/       OSL_ENSURE( !this, "weder Format noch ContentNode - keine Attribute kopiert");
 /*N*/ #endif
 /*N*/ }
 
@@ -307,3 +288,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

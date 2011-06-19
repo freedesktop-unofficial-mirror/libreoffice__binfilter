@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,52 +28,30 @@
 
 #include <set>
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
 #include <com/sun/star/drawing/PointSequence.hpp>
-#endif
 
 
 #include <cppuhelper/implbase2.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <xlnedit.hxx>
-#endif
-#ifndef _SVX_XLNSTIT_HXX
 #include <xlnstit.hxx>
-#endif
 #include "svdmodel.hxx"
 #include "xdef.hxx"
 
 #include <vector>
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 
 
 #include "unoapi.hxx"
@@ -81,7 +60,6 @@ namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::cppu;
-using namespace ::vos;
 
 typedef std::vector< SfxItemSet* > ItemPoolVector;
 
@@ -156,7 +134,7 @@ void SvxUnoMarkerTable::dispose()
 }
 
 // SfxListener
-void SvxUnoMarkerTable::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
+void SvxUnoMarkerTable::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint ) throw()
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
 
@@ -211,7 +189,7 @@ void SAL_CALL SvxUnoMarkerTable::ImplInsertByName( const OUString& aName, const 
 void SAL_CALL SvxUnoMarkerTable::insertByName( const OUString& aApiName, const uno::Any& aElement )
     throw( lang::IllegalArgumentException, container::ElementExistException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( hasByName( aApiName ) )
         throw container::ElementExistException();
@@ -225,7 +203,7 @@ void SAL_CALL SvxUnoMarkerTable::insertByName( const OUString& aApiName, const u
 void SAL_CALL SvxUnoMarkerTable::removeByName( const OUString& aApiName )
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String Name;
     SvxUnogetInternalNameForItem( XATTR_LINEEND, aApiName, Name );
@@ -245,7 +223,7 @@ void SAL_CALL SvxUnoMarkerTable::removeByName( const OUString& aApiName )
             maItemSetVector.erase( aIter );
             return;
         }
-        aIter++;
+        ++aIter;
     }
 
     if( !hasByName( Name ) )
@@ -256,7 +234,7 @@ void SAL_CALL SvxUnoMarkerTable::removeByName( const OUString& aApiName )
 void SAL_CALL SvxUnoMarkerTable::replaceByName( const OUString& aApiName, const uno::Any& aElement )
     throw( lang::IllegalArgumentException, container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aName;
     SvxUnogetInternalNameForItem( XATTR_LINEEND, aApiName, aName );
@@ -286,7 +264,7 @@ void SAL_CALL SvxUnoMarkerTable::replaceByName( const OUString& aApiName, const 
             (*aIter)->Put( aStartMarker, XATTR_LINESTART );
             return;
         }
-        aIter++;
+        ++aIter;
     }
 
     // if it is not in our own sets, modify the pool!
@@ -345,7 +323,7 @@ static sal_Bool getByNameFromPool( const String& rSearchName, SfxItemPool* pPool
 uno::Any SAL_CALL SvxUnoMarkerTable::getByName( const OUString& aApiName )
     throw( container::NoSuchElementException,  lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aName;
     SvxUnogetInternalNameForItem( XATTR_LINEEND, aApiName, aName );
@@ -394,7 +372,7 @@ static void createNamesForPool( SfxItemPool* pPool, USHORT nWhich, std::set< OUS
 uno::Sequence< OUString > SAL_CALL SvxUnoMarkerTable::getElementNames()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     std::set< OUString, comphelper::UStringLess > aNameSet;
 
@@ -421,7 +399,7 @@ uno::Sequence< OUString > SAL_CALL SvxUnoMarkerTable::getElementNames()
 sal_Bool SAL_CALL SvxUnoMarkerTable::hasByName( const OUString& aName )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( aName.getLength() == 0 )
         return sal_False;
@@ -462,7 +440,7 @@ uno::Type SAL_CALL SvxUnoMarkerTable::getElementType(  )
 sal_Bool SAL_CALL SvxUnoMarkerTable::hasElements(  )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     NameOrIndex *pItem;
 
@@ -497,3 +475,5 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoMarkerTable_createInstance( Sdr
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

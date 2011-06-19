@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,24 +36,14 @@
 #include <com/sun/star/beans/PropertyValues.hpp>
 #include <com/sun/star/uno/Sequence.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
 
 #include <symbol.hxx>
 #include <types.hxx>
@@ -154,7 +145,7 @@ struct SmFntFmtListEntry
 };
 
 
-SV_DECL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry, 8, 8 )//STRIP008 ;
+SV_DECL_OBJARR( SmFntFmtListEntryArr, SmFntFmtListEntry, 8, 8 )
 
 
 class SmFontFormatList
@@ -208,7 +199,7 @@ class SmMathConfig
 
 
 
-    void    Save();
+    void    Save() {};
 
     SmSym           ReadSymbol( SmMathConfigItem &rCfg,
                         const ::rtl::OUString &rSymbolName,
@@ -256,3 +247,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

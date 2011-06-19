@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,41 +26,19 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_HATCHSTYLE_HXX
 #include "HatchStyle.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
 
 #include "rtl/ustring.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 
@@ -77,7 +56,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_TABSTOP_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aHatchAttrTokenMap[] =
+static SvXMLTokenMapEntry aHatchAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW, XML_NAME, XML_TOK_HATCH_NAME },
     { XML_NAMESPACE_DRAW, XML_STYLE, XML_TOK_HATCH_STYLE },
@@ -87,7 +66,7 @@ static __FAR_DATA SvXMLTokenMapEntry aHatchAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HatchStyle_Enum[] =
+SvXMLEnumMapEntry const pXML_HatchStyle_Enum[] =
 {
     { XML_HATCHSTYLE_SINGLE,    drawing::HatchStyle_SINGLE },
     { XML_HATCHSTYLE_DOUBLE,    drawing::HatchStyle_DOUBLE },
@@ -150,14 +129,14 @@ sal_Bool XMLHatchStyleImport::importXML(
             case XML_TOK_HATCH_STYLE:
                 {
                     sal_uInt16 eValue;
-                    if( bHasStyle = rUnitConverter.convertEnum( eValue, rStrValue, pXML_HatchStyle_Enum ) )
+                    if( (bHasStyle = rUnitConverter.convertEnum( eValue, rStrValue, pXML_HatchStyle_Enum )) )
                         aHatch.Style = (drawing::HatchStyle) eValue;
                 }
                 break;
             case XML_TOK_HATCH_COLOR:
                 {
                     Color aColor;
-                    if( bHasColor = rUnitConverter.convertColor( aColor, rStrValue ) )
+                    if( (bHasColor = rUnitConverter.convertColor( aColor, rStrValue )) )
                         aHatch.Color = (sal_Int32)( aColor.GetColor() );
                 }
                 break;
@@ -258,3 +237,5 @@ sal_Bool XMLHatchStyleExport::exportXML(
 
 #endif // #ifndef SVX_LIGHT
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,39 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_MARKERSTYLE_HXX
 #include "MarkerStyle.hxx"
-#endif
 
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
 #include "rtl/ustring.hxx"
 
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -284,3 +271,5 @@ sal_Bool XMLMarkerStyleExport::exportXML(
 
 #endif // #ifndef SVX_LIGHT
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -76,9 +77,9 @@ SV_DECL_VARARR_SORT( _SwPamRanges, SwPamRange, 0, 1 )
 class SwPamRanges : private _SwPamRanges
 {
 public:
-    SwPamRanges( const SwPaM& rRing ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwPamRanges( const SwPaM& rRing );
+    SwPamRanges( const SwPaM& /*rRing*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
-    SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return rPam;} //STRIP001 SwPaM& SetPam( USHORT nArrPos, SwPaM& rPam );
+    SwPaM& SetPam( USHORT /*nArrPos*/, SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return rPam;}
 
     USHORT Count() const
                 {   return _SwPamRanges::Count(); }
@@ -87,3 +88,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

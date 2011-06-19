@@ -1,9 +1,8 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 #ifndef _XMLOFF_FUNCTIONAL_HXX
 #define _XMLOFF_FUNCTIONAL_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 /* THIS HEADER IS DEPRECATED. USE comphelper/stl_types.hxx INSTEAD!!! */
 
@@ -28,3 +27,5 @@ struct less_functor
 namespace binfilter {
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

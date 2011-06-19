@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,17 +32,11 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _VECTOR2D_HXX
 #include <tools/vector2d.hxx>
-#endif
 
 /*************************************************************************
 |*
@@ -104,3 +99,5 @@ public:
 
 
 #endif          // _B2D_POINT3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

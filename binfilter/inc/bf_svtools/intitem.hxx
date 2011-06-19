@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SVTOOLS_CINTITEM_HXX
 #include <bf_svtools/cintitem.hxx>
-#endif
 
 namespace binfilter
 {
@@ -88,15 +85,15 @@ public:
                                                 const ::IntlWrapper * = 0)
         const;
 
-    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 ) const;
 
-    virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal,
+    virtual bool PutValue( const ::com::sun::star::uno::Any& rVal,
                            BYTE nMemberId = 0 );
 
     virtual SfxPoolItem * Create(SvStream & rStream, USHORT) const;
 
-    virtual SvStream & Store(SvStream & rStream, USHORT) const;
+    virtual SvStream & Store(SvStream & rStream, USHORT) const { return rStream; }
 
     virtual SfxPoolItem * Clone(SfxItemPool * = 0) const;
 
@@ -173,3 +170,4 @@ public:
 
 #endif // _SFXINTITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

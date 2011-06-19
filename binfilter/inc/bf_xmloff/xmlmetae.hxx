@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,27 +29,13 @@
 #ifndef _XMLOFF_XMLMETAE_HXX
 #define _XMLOFF_XMLMETAE_HXX
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
 #include <com/sun/star/document/XDocumentInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 class Time;
 
 namespace com { namespace sun { namespace star { namespace frame {
@@ -95,3 +82,4 @@ public:
 }//end of namespace binfilter
 #endif // _XMLOFF_XMLMETAE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

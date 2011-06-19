@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _SCH_TRANSFERABLE_HXX_
 #define _SCH_TRANSFERABLE_HXX_
 
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
 class Graphic;
@@ -69,3 +68,5 @@ public:
 
 } //namespace binfilter
 #endif  // _SCH_TRANSFERABLE_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

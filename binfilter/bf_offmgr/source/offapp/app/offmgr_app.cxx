@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _OFF_APP_HXX
 #include "app.hxx"
-#endif
 
 #include <bf_svx/dialdll.hxx>
 #include "bf_basic/basrdll.hxx"
@@ -48,7 +47,7 @@
 #include <bf_svx/unoshcol.hxx>
 #include <bf_svx/xtable.hxx>
 #include <bf_svtools/moduleoptions.hxx>
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 using namespace ::com::sun::star::uno;
 
@@ -117,7 +116,7 @@ public:
 
 /*N*/ TYPEINIT1(OfficeApplication,SfxApplication);
 
-/*N*/  Reference< XInterface > SAL_CALL SvxShapeCollection_CreateInstance( const Reference< ::com::sun::star::lang::XMultiServiceFactory >& rSMgr ) throw( Exception )
+/*N*/  Reference< XInterface > SAL_CALL SvxShapeCollection_CreateInstance( const Reference< ::com::sun::star::lang::XMultiServiceFactory >& /*rSMgr*/ ) throw( Exception )
 /*N*/  {
 /*?*/     return *( new SvxShapeCollection() );
 /*N*/  }
@@ -151,11 +150,11 @@ public:
 /*N*/   // Servies etc. registrieren
 /*N*/   Reference< ::com::sun::star::lang::XMultiServiceFactory >  xSMgr = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   Reference< ::com::sun::star::container::XSet >  xSet( xSMgr, UNO_QUERY );
-/*N*/   Sequence< ::rtl::OUString >         aName( 1 );
+/*N*/   Sequence< ::rtl::OUString >         aLclName( 1 );
 /*N*/   Reference< ::com::sun::star::lang::XSingleServiceFactory >  xFact;
 /*N*/
-/*N*/   aName.getArray()[0] = ::rtl::OUString::createFromAscii("com.sun.star.drawing.ShapeCollection");
-/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString::createFromAscii("ShapeCollection"), SvxShapeCollection_CreateInstance, aName );
+/*N*/   aLclName.getArray()[0] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ShapeCollection" ));
+/*N*/   xFact = ::cppu::createSingleFactory( xSMgr, ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ShapeCollection" )), SvxShapeCollection_CreateInstance, aLclName );
 /*N*/   xSet->insert( makeAny(xFact) );
 /*N*/ }
 
@@ -167,3 +166,5 @@ public:
 /*N*/ }
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

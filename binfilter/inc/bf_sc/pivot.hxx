@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -51,11 +52,8 @@
 
 #include <global.hxx>
 
-//STRIP008 class SubTotal;
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
 #define PIVOT_DATA_FIELD        (MAXCOL + 1)
 #define PIVOT_FUNC_REF          (MAXCOL + 1)
@@ -178,7 +176,7 @@ public:
 
 
     BOOL        Load(SvStream& rStream, ScMultipleReadHeader& rHdr );
-    BOOL        Store(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    BOOL Store(SvStream&, ScMultipleWriteHeader&) const {return FALSE;}
 
     void        SetQuery(const ScQueryParam& rQuery);
     void        GetQuery(ScQueryParam& rQuery) const;
@@ -255,7 +253,7 @@ public:
             ScPivot*    operator[]( const USHORT nIndex) const {return (ScPivot*)At(nIndex);}
 
     BOOL    Load( SvStream& rStream );
-    BOOL    Store( SvStream& rStream ) const;
+    BOOL Store( SvStream& ) const {return FALSE;}
 
     void    UpdateReference(UpdateRefMode eUpdateRefMode,
                                 USHORT nCol1, USHORT nRow1, USHORT nTab1,
@@ -307,3 +305,5 @@ struct LabelData
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

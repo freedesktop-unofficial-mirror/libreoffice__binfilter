@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,58 +26,25 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>       //EndAllAction gibts nur an der EditShell
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
-#ifndef _CELLFRM_HXX //autogen
 #include <cellfrm.hxx>
-#endif
 namespace binfilter {
 
 // setze Crsr in die naechsten/vorherigen Celle
-
-
-
-
-
-
-
-
-
-
-
 
 // suche die naechste nicht geschuetzte Zelle innerhalb der Tabelle
 // Parameter:
@@ -86,8 +54,6 @@ namespace binfilter {
 //      0   - Idx steht auf/in einer nicht geschuetzten Zelle
 //      !0  - Node hinter der Tabelle
 
-
-
 // suche die vorherige nicht geschuetzte Zelle innerhalb der Tabelle
 // Parameter:
 //      rIdx    - steht auf dem EndNode der Tabelle
@@ -96,39 +62,31 @@ namespace binfilter {
 //      0   - Idx steht auf/in einer nicht geschuetzten Zelle
 //      !0  - Node hinter der Tabelle
 
-
-
-
-
-/*N*/ FASTBOOL GotoPrevTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GotoPrevTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
+/*N*/                       bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL GotoNextTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GotoNextTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
+/*N*/                       bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL GotoCurrTable( SwPaM& rCurCrsr, SwPosTable fnPosTbl,
-/*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GotoCurrTable( SwPaM& /*rCurCrsr*/, SwPosTable /*fnPosTbl*/,
+/*N*/                       bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::MoveTable( SwWhichTable fnWhichTbl, SwPosTable fnPosTbl )
+/*N*/ bool SwCursor::MoveTable( SwWhichTable /*fnWhichTbl*/, SwPosTable /*fnPosTbl*/ )
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCrsrShell::CheckTblBoxCntnt( const SwPosition* pPos )
+/*N*/ bool SwCrsrShell::CheckTblBoxCntnt( const SwPosition* pPos )
 /*N*/ {
 /*N*/   if( !pBoxIdx || !pBoxPtr || IsSelTblCells() || !IsAutoUpdateCells() )
 /*N*/       return FALSE;
@@ -187,12 +145,11 @@ namespace binfilter {
 /*?*/   {
 /*?*/       // jetzt sollten wir mal die Pointer zerstoeren, bevor ein weiterer
 /*?*/       // aufruf kommt.
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ClearTblBoxCntnt();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/
 /*?*/   return 0 != pChkBox;
 /*N*/ }
-
 
 /*N*/ void SwCrsrShell::ClearTblBoxCntnt()
 /*N*/ {
@@ -200,9 +157,9 @@ namespace binfilter {
 /*N*/   pBoxPtr = 0;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCrsrShell::EndAllTblBoxEdit()
+/*N*/ bool SwCrsrShell::EndAllTblBoxEdit()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;
+/*N*/   bool bRet = FALSE;
 /*N*/   ViewShell *pSh = this;
 /*N*/   do {
 /*N*/       if( pSh->IsA( TYPE( SwCrsrShell ) ) )
@@ -213,7 +170,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

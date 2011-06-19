@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,24 +30,12 @@
 #define SC_INPUTWIN_HXX
 
 
-#ifndef _TOOLBOX_HXX //autogen
 #include <vcl/toolbox.hxx>
-#endif
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
 namespace binfilter {
 
 class ScEditEngineDefaulter;
@@ -184,3 +173,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

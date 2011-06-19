@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,18 +32,12 @@
 #include <limits.h>
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {
@@ -121,3 +116,5 @@ SvXMLImportItemMapper::getMapEntries() const
 
 } //namespace binfilter
 #endif  //  _XMLIMPIT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _SVX_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
-#ifndef _SWTYPES_HXX
 #include "swtypes.hxx"
-#endif
 
 namespace binfilter {
 using namespace ::com::sun::star::uno;
@@ -66,7 +53,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   _GetLocale( (LanguageType)GetAppLanguage() );
 /*N*/   Reference< XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   Reference < XInterface > xI = xMSF->createInstance(
-/*N*/       ::rtl::OUString::createFromAscii( "com.sun.star.i18n.BreakIterator" ) );
+/*N*/       ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.BreakIterator" )) );
 /*N*/   if ( xI.is() )
 /*N*/   {
 /*N*/       Any x = xI->queryInterface( ::getCppuType((const Reference< XBreakIterator >*)0) );
@@ -116,3 +103,5 @@ using namespace ::com::sun::star::i18n;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

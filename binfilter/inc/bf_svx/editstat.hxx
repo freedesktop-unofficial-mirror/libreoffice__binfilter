@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 namespace binfilter {
 
 #define EE_CNTRL_USECHARATTRIBS     0x00000001  // Verwendung harter ZeichenAttr.
@@ -96,7 +93,7 @@ namespace binfilter {
     EE_STAT_CRSRLEFTPARA zur Zeit bei Cursorbewegungen und Return.
 */
 
-inline void SetFlags( ULONG& rBits, const ULONG nMask, FASTBOOL bOn )
+inline void SetFlags( ULONG& rBits, const ULONG nMask, bool bOn )
 {
     if ( bOn )
         rBits |= nMask;
@@ -115,7 +112,7 @@ public:
             EditStatus()                { nStatusBits = 0; nControlBits = 0; nPrevPara = 0xFFFF; }
 
     void    Clear()                     { nStatusBits = 0; }
-    void    SetControlBits( ULONG nMask, FASTBOOL bOn )
+    void    SetControlBits( ULONG nMask, bool bOn )
                 { SetFlags( nControlBits, nMask, bOn ); }
 
     ULONG   GetStatusWord() const       { return nStatusBits; }
@@ -157,3 +154,4 @@ struct SpellCallbackInfo
 }//end of namespace binfilter
 #endif // _EDITSTAT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

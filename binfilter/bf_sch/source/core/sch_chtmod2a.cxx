@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,29 +33,20 @@
 #include <bf_svtools/zforlist.hxx>
 #endif
 
-#ifndef _SVDOCIRC_HXX //autogen
 #include <bf_svx/svdocirc.hxx>
-#endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
-
-
 #endif
+
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 #include <bf_svx/fwdtitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 #ifndef _CHTMODEL_HXX
 #endif
 
@@ -63,29 +55,21 @@
 #include <math.h>
 #include <float.h>
 
-
 #include "pairs.hxx"
 #include "globfunc.hxx"
 
-
-#ifndef _SVX_XLINIIT_HXX //autogen
 #include <bf_svx/xlineit.hxx>
-#endif
 // header for Line
 
 #include "chaxis.hxx"
 #include "chdescr.hxx"
 #include "calculat.hxx"
+
 namespace binfilter {
 
 #define SCH_SIN(a)      (sin((double)a * F_PI / 18000.0))
 #define SCH_COS(a)      (cos((double)a * F_PI / 18000.0))
 
-/*************************************************************************
-|*
-|* DataDescription Array initialisieren (loeschen)
-|*
-\************************************************************************/
 /*************************************************************************
 |*
 |* Kreisdiagramm erzeugen
@@ -110,7 +94,6 @@ namespace binfilter {
 /*N*/   DataDescription*    pDescription = NULL;
 /*N*/   long                nCol;
 /*N*/   Size                aDescrOfs;
-/*N*/   BOOL                bInserted  = FALSE;
 /*N*/
 /*N*/   //  Pie charts may not have titles of axes.
 /*N*/   bShowXAxisTitle = FALSE;
@@ -130,8 +113,7 @@ namespace binfilter {
 /*N*/   for( nCol = 0; nCol < nColCnt; nCol++ )
 /*N*/   {
 /*N*/       SfxItemSet aDataPointAttr( GetFullDataPointAttr( nCol, nRow ));
-/*N*/       double     fData    = GetData( nCol, nRow );
-/*N*/       long       nIndex   = nCol + nRow * nColCnt;
+/*N*/       /*double fData =*/ GetData( nCol, nRow );
 /*N*/
 /*N*/       nSegOfsMax = Max( PieSegOfs( nCol ), nSegOfsMax );
 /*N*/
@@ -140,7 +122,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( (eDescr != CHDESCR_NONE) && bShowDataDescr )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             // data description required
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -220,19 +202,12 @@ namespace binfilter {
 /*?*/               Point aCircPos = aCircRect.TopLeft();
 /*?*/
 /*?*/               long nAngleDiff;
-/*?*/               long nAngleHook;
 /*?*/
 /*?*/               // determine the bisector angle
 /*?*/               if (nStartAng > nEndAng)
-/*?*/               {
 /*?*/                   nAngleDiff = (nEndAng + 36000 - nStartAng) / 2;
-/*?*/                   nAngleHook = (nStartAng + nAngleDiff) % 36000;
-/*?*/               }
 /*?*/               else
-/*?*/               {
 /*?*/                   nAngleDiff = (nEndAng - nStartAng) / 2;
-/*?*/                   nAngleHook = nStartAng + nAngleDiff;
-/*?*/               }
 /*?*/
 /*?*/               // set the text position according to the position of the pie
 /*?*/               if (nStartAng < 9000)
@@ -289,16 +264,16 @@ namespace binfilter {
 /*N*/   pGroup->GetSubList ()->SetRectsDirty ();
 /*N*/
 /*N*/   // resize of pie charts is allowed proportionally only
-/*N*/   SdrObjTransformInfoRec aInfo;
-/*N*/   aInfo.bResizeFreeAllowed    = FALSE;
-/*N*/   aInfo.bResizePropAllowed    = TRUE;
-/*N*/   aInfo.bRotateFreeAllowed    = FALSE;
-/*N*/   aInfo.bRotate90Allowed      = FALSE;
-/*N*/   aInfo.bMirrorFreeAllowed    = FALSE;
-/*N*/   aInfo.bMirror45Allowed      = FALSE;
-/*N*/   aInfo.bMirror90Allowed      = FALSE;
-/*N*/   aInfo.bShearAllowed         = FALSE;
-/*N*/   pGroup->SetObjInfo(aInfo);
+/*N*/   SdrObjTransformInfoRec aLclInfo;
+/*N*/   aLclInfo.bResizeFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bResizePropAllowed    = TRUE;
+/*N*/   aLclInfo.bRotateFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bRotate90Allowed      = FALSE;
+/*N*/   aLclInfo.bMirrorFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bMirror45Allowed      = FALSE;
+/*N*/   aLclInfo.bMirror90Allowed      = FALSE;
+/*N*/   aLclInfo.bShearAllowed         = FALSE;
+/*N*/   pGroup->SetObjInfo(aLclInfo);
 /*N*/
 /*N*/   Dirty2D (1, nColCnt, &pDescrList, FALSE, pDescription);
 /*N*/
@@ -356,7 +331,6 @@ namespace binfilter {
 /*N*/   for (nRow = 0; nRow < nRowCnt; nRow++)
 /*N*/   {
 /*N*/       SchObjGroup *pRowGroup = (SchObjGroup*) CreateSimpleGroup (CHOBJID_DIAGRAM_ROWGROUP, TRUE, TRUE);
-/*N*/       BOOL        bInserted  = FALSE;
 /*N*/
 /*N*/       pRowGroup->InsertUserData(new SchDataRow((short)nRow));
 /*N*/       pList->NbcInsertObject(pRowGroup);
@@ -367,14 +341,13 @@ namespace binfilter {
 /*N*/       for (nCol = 0; nCol < nColCnt; nCol++)
 /*N*/       {
 /*N*/           SfxItemSet aDataPointAttr(GetFullDataPointAttr(nCol, nRow));
-/*N*/           double     fData           = GetData (nCol, nRow);
-/*N*/           long       nIndex          = nCol + nRow * nColCnt;
+/*N*/           /*double fData =*/ GetData (nCol, nRow);
 /*N*/
 /*N*/           SvxChartDataDescr eDescr = ((const SvxChartDataDescrItem&)aDataPointAttr.
 /*N*/                                            Get(SCHATTR_DATADESCR_DESCR)).GetValue();
 /*N*/
 /*N*/           if( (eDescr != CHDESCR_NONE) && bShowDataDescr)
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
                 /**************************************************************
                 * DataDescription erforderlich
                 **************************************************************/
@@ -547,18 +520,18 @@ namespace binfilter {
 /*N*/   pGroup->GetSubList()->SetRectsDirty();
 /*N*/
 /*N*/   // Ein Kreisdiagramm soll man nur proportional Resizen koennen (vorerst)
-/*N*/   SdrObjTransformInfoRec aInfo;
-/*N*/   aInfo.bResizeFreeAllowed    = FALSE;
-/*N*/   aInfo.bResizePropAllowed    = TRUE;
-/*N*/   aInfo.bRotateFreeAllowed    = FALSE;
-/*N*/   aInfo.bRotate90Allowed      = FALSE;
-/*N*/   aInfo.bMirrorFreeAllowed    = FALSE;
-/*N*/   aInfo.bMirror45Allowed      = FALSE;
-/*N*/   aInfo.bMirror90Allowed      = FALSE;
-/*N*/   aInfo.bShearAllowed         = FALSE;
-/*N*/   pGroup->SetObjInfo(aInfo);
+/*N*/   SdrObjTransformInfoRec aLclInfo;
+/*N*/   aLclInfo.bResizeFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bResizePropAllowed    = TRUE;
+/*N*/   aLclInfo.bRotateFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bRotate90Allowed      = FALSE;
+/*N*/   aLclInfo.bMirrorFreeAllowed    = FALSE;
+/*N*/   aLclInfo.bMirror45Allowed      = FALSE;
+/*N*/   aLclInfo.bMirror90Allowed      = FALSE;
+/*N*/   aLclInfo.bShearAllowed         = FALSE;
+/*N*/   pGroup->SetObjInfo(aLclInfo);
 /*N*/
-/*N*/     Dirty2D (nRowCnt, nColCnt, pDescrLists, TRUE, pDescription);
+/*N*/   Dirty2D (nRowCnt, nColCnt, pDescrLists, TRUE, pDescription);
 /*N*/
 /*N*/   delete[] pTotal;
 /*N*/   delete[] pDescription;
@@ -583,11 +556,10 @@ namespace binfilter {
 /*N*/
 /*N*/   // ask for sorting
 /*N*/
-/*N*/   BOOL    bSortTable = FALSE;
 /*N*/   BOOL    bRepaint   = FALSE;
 
 /*N*/   if( IsXYChart() && ! ISFLAGSET( nChartStatus, CHS_USER_NOQUERY ) )  // in this case ask for sorting
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SchObjGroup *pGroup;
@@ -614,7 +586,7 @@ namespace binfilter {
 /*N*/   if(pRefDev)
 /*N*/       aLegendSize = pRefDev->PixelToLogic (pRefDev->LogicToPixel (aLegendSize));
 /*N*/   else
-/*N*/       DBG_ERROR("ChartModel: no RefDevice");
+/*N*/       OSL_FAIL("ChartModel: no RefDevice");
 /*N*/
 /*N*/   long nLegendHeight = aLegendSize.Height () * 9 / 10;
 /*N*/
@@ -661,8 +633,7 @@ namespace binfilter {
 /*N*/         pLineObject  = NULL;
 /*N*/
         if( ((const SfxBoolItem &) rDataRowAttr.Get( SCHATTR_STAT_AVERAGE )).GetValue() )
-//          pStatLists[ nRow ]->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
-           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  pList->NbcInsertObject( AverageValueY( nRow, FALSE, aRect,
+           {DBG_BF_ASSERT(0, "STRIP"); }
 
 /*N*/         aSplinePoints.clear();
 /*N*/
@@ -675,8 +646,8 @@ namespace binfilter {
 /*N*/           double fDataY    = GetData(nCol, nRow, FALSE);
 /*N*/           double fDataX    = GetData(nCol, 0, FALSE);
 /*N*/
-/*N*/             if (((fDataX != DBL_MIN) && (!bLogarithmX || bLogarithmX && (fDataX > 0.0))) &&
-/*N*/               ((fDataY != DBL_MIN) && (!bLogarithmY || bLogarithmY && (fDataY > 0.0))))
+/*N*/             if (((fDataX != DBL_MIN) && (!bLogarithmX || (bLogarithmX && (fDataX > 0.0)))) &&
+/*N*/               ((fDataY != DBL_MIN) && (!bLogarithmY || (bLogarithmY && (fDataY > 0.0)))))
 /*N*/           {
 /*N*/               long nXPos = pChartXAxis->GetPos(fDataX);
 /*N*/               long nYPos = pAxis->GetPos(fDataY);
@@ -719,7 +690,7 @@ namespace binfilter {
 /*N*/
 /*N*/                   if ((SvxChartKindError)
 /*?*/                       ((const SfxInt32Item &) aDataPointAttr.Get (SCHATTR_STAT_KIND_ERROR)).GetValue () != CHERROR_NONE)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 AverageErrorY(nRow,fDataY,aPoint,FALSE,aDataPointAttr,pStatLists[nRow],pAxis);
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/                   if(aDescr.Enabled())
 /*N*/                   {
@@ -781,7 +752,6 @@ namespace binfilter {
 /*N*/               pLineObject->InsertUserData( new SchObjectId( CHOBJID_DIAGRAM_ROWSLINE ));
 /*N*/               pLineObject->InsertUserData( new SchDataRow( (short)nRow ));
 /*N*/
-//-/                pObj->NbcSetAttributes( aLineAttr, FALSE );
 /*N*/               pLineObject->SetItemSet( aLineAttr);
 /*N*/
 /*N*/           }
@@ -791,7 +761,7 @@ namespace binfilter {
         // ------------------------------------
 /*N*/       if (((const SfxInt32Item &) rDataRowAttr.Get (SCHATTR_STAT_REGRESSTYPE)).GetValue () != CHREGRESS_NONE)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 double fConst;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 
@@ -903,7 +873,7 @@ namespace binfilter {
 /*N*/   if(pRefDev)
 /*N*/       aLegendSize = pRefDev->PixelToLogic (pRefDev->LogicToPixel (aLegendSize));
 /*N*/   else
-/*?*/       DBG_ERROR("ChartModel: no RefDevice");
+/*?*/       OSL_FAIL("ChartModel: no RefDevice");
 /*N*/
 /*N*/   long nLegendHeight = aLegendSize.Height () * 9 / 10;
 /*N*/
@@ -1079,7 +1049,6 @@ namespace binfilter {
 /*N*/           MergeDataPointAttr(aDataPointAttr,nCol,nRow);
 /*N*/
 /*N*/           long nIndex = nCol + nRow * nColCnt;
-/*N*/ //            double fData = fabs(GetData(nCol, nRow, bPercent));
 /*N*/           double fData = GetData(nCol, nRow, bPercent);
 /*N*/
 /*N*/           if (pYAxisList)
@@ -1107,7 +1076,7 @@ namespace binfilter {
 /*?*/               if (!pDescription)
 /*?*/               {
 /*?*/                   // DataDescription noch nicht vorhanden -> erzeugen
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription = new DataDescription [nRowCnt * nColCnt];
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               pDescription [nIndex].eDescr = eDescr;
@@ -1143,7 +1112,7 @@ namespace binfilter {
 /*N*/
 /*N*/               nPoints ++;
 /*N*/
-/*N*/               if(HasSymbols(nRow)) // if ((eChartStyle == CHSTYLE_2D_NET_SYMBOLS) ||(eChartStyle == CHSTYLE_2D_NET_SYMBOLS_STACK) ||(eChartStyle == CHSTYLE_2D_NET_SYMBOLS_PERCENT))
+/*N*/               if(HasSymbols(nRow))
 /*N*/               {
 /*N*/                   SdrObject *pNewObj = CreateSymbol (aDataLine[nPoints - 1], nRow, nCol,
 /*N*/                                                      (SfxItemSet &) rDataRowAttr, nLegendHeight);
@@ -1156,32 +1125,9 @@ namespace binfilter {
 /*N*/
 /*N*/               fOldData [nCol] = fData;
 /*N*/
-/*N*/               ChartAdjust eAdjust;
-/*N*/
-/*N*/               if (fAngle > 0 && fAngle < F_PI / 4)
-/*N*/               {
-/*?*/                   eAdjust = CHADJUST_CENTER_LEFT;
-/*N*/               }
-/*N*/               else if (fAngle >= F_PI / 4 && fAngle <= 3 * F_PI / 4)
-/*N*/                    {
-/*N*/                        eAdjust = CHADJUST_BOTTOM_CENTER;
-/*N*/                    }
-/*N*/                    else if (fAngle > 3 * F_PI / 4 && fAngle <= 5 * F_PI / 4)
-/*N*/                         {
-/*N*/                             eAdjust = CHADJUST_CENTER_RIGHT;
-/*N*/                         }
-/*N*/                         else if (fAngle > 5 * F_PI / 4 && fAngle <= 7 * F_PI / 4)
-/*N*/                              {
-/*N*/                                  eAdjust = CHADJUST_TOP_CENTER;
-/*N*/                              }
-/*N*/                              else
-/*N*/                              {
-/*N*/                                  eAdjust = CHADJUST_CENTER_LEFT;
-/*N*/                              }
-/*N*/
 /*N*/               if (pDescription)
 /*N*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pDescription [nIndex].fValue = GetData(nCol,nRow,FALSE);//#55586# fData;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/           else
@@ -1198,7 +1144,6 @@ namespace binfilter {
 /*?*/                   pObj->InsertUserData(new SchDataRow((short)nRow));
 /*?*/                   pRowLists[nRow]->NbcInsertObject(pObj,0); //#54870# Linie nach hinten
 /*?*/
-/*?*/ //-/                  pObj->NbcSetAttributes(aLineAttr, FALSE);
 /*?*/                   pObj->SetItemSet(aLineAttr);
 /*?*/
 /*?*/                   nPoints = 0;
@@ -1237,7 +1182,6 @@ namespace binfilter {
 /*N*/           pObj->InsertUserData(new SchDataRow((short)nRow));
 /*N*/           pRowLists[nRow]->NbcInsertObject(pObj,0);//#54870# hinter die Symbole mit der Linie
 /*N*/
-/*N*/ //-/          pObj->NbcSetAttributes(aLineAttr, FALSE);
 /*N*/           pObj->SetItemSet(aLineAttr);
 /*N*/
 /*N*/       }
@@ -1279,11 +1223,9 @@ namespace binfilter {
 /*?*/       {
 /*?*/           double fTotal = 0.0;
 /*?*/           double fMax   = 0.0;
-/*?*/           long   nDirty = 0;
                 long   nRows  = 0;
 /*?*/
-/*?*/             //    Calculate the total of all segements with percentage value and
-/*?*/           //  remember the largest segment's index in nDirty and its value in fMax.
+/*?*/             //    Calculate the total of all segements with percentage value
 /*?*/           for (nRows = nStart;nRows < nRowCnt;nRows ++)
 /*?*/               if (pDescrLists [nRows])
 /*?*/               {
@@ -1297,10 +1239,7 @@ namespace binfilter {
 /*?*/                       {
 /*?*/                           fTotal += fTemp;
 /*?*/                           if (fMax < fTemp)
-/*?*/                           {
 /*?*/                               fMax   = fTemp;
-/*?*/                               nDirty = nIndex;
-/*?*/                           }
 /*?*/                       }
 /*?*/                   }
 /*?*/               }
@@ -1317,7 +1256,7 @@ namespace binfilter {
 /*?*/                           (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
 /*?*/                           if (fTotal > 100.0000001)
 /*?*/                           {
-/*?*/                               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ERROR2( "Dirty2D: ROW value is being changed total=%lf, Vman=%lf",
+/*?*/                               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*?*/
 /*?*/                   if (pDescription [nIndex].fValue != DBL_MIN)
@@ -1335,11 +1274,9 @@ namespace binfilter {
 /*?*/
 /*?*/           double fTotal = 0.0;
 /*?*/           double fMax   = 0.0;
-/*?*/           long   nDirty = 0;
                 long   nCols = 0;
 /*?*/
-/*?*/             //    Calculate the total of all segements with a percentage value and
-/*?*/           //  remember the largest segment's index in nDirty and its value in fMax.
+/*?*/             //    Calculate the total of all segements with a percentage value
 /*?*/           for (nCols = 0;nCols < nColCnt;nCols ++)
 /*?*/           {
 /*?*/               long   nIndex = nCols + nRows * nColCnt;
@@ -1352,10 +1289,7 @@ namespace binfilter {
 /*?*/                   {
 /*?*/                       fTotal += fTemp;
 /*?*/                       if (fMax < fTemp)
-/*?*/                       {
 /*?*/                           fMax   = fTemp;
-/*?*/                           nDirty = nIndex;
-/*?*/                       }
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -1371,7 +1305,7 @@ namespace binfilter {
 /*?*/                       (pDescription [nIndex].eDescr == CHDESCR_TEXTANDPERCENT))
 /*?*/                       if (fTotal > 100.0000001)
 /*?*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DBG_ERROR2( "Dirty2D: COL value is being changed total=%lf, Vman=%lf",
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/
 /*?*/               if (pDescription[ nIndex ].fValue != DBL_MIN)
@@ -1381,12 +1315,6 @@ namespace binfilter {
 /*?*/       }
 /*?*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Trage ggf. Mittelwert und Fehlerbalken ein
-|*
-\************************************************************************/
 
 /*************************************************************************
 |*
@@ -1436,7 +1364,7 @@ namespace binfilter {
 |*
 \*************************************************************/
 /*N*/ SdrObject* ChartModel::CreateDonutSegment( SfxItemSet& aAttr,
-/*N*/                                          Rectangle&  aRect, ULONG nWidth,
+/*N*/                                          Rectangle&  aRect, ULONG /*nWidth*/,
 /*N*/                                          long nCol,         long nRow,
 /*N*/                                          long nStartAngle,  long nEndAngle,
 /*N*/                                          long nCount)
@@ -1475,3 +1403,5 @@ namespace binfilter {
 /*N*/   return pRectObj;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

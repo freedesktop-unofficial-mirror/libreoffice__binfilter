@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,6 +42,8 @@ public:
 
     SchAxisObj( ChartModel* = NULL );
 
+    using SdrObjGroup::operator=;
+
 };
 
 class Sch3dAxisObj : public SchE3dObject
@@ -50,8 +53,11 @@ public:
 
     Sch3dAxisObj();
 
+    using SdrAttrObj::operator=;
+
 };
 
 } //namespace binfilter
 #endif // _SCH_AXISOBJ_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

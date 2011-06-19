@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,19 +28,13 @@
 
 #include "svdstr.hrc"
 
-#ifndef _E3D_CUBE3D_HXX
 #include "cube3d.hxx"
-#endif
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
 
 
-#ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dCubeObj, E3dCompoundObject);
@@ -77,17 +72,10 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdrObject *E3dCubeObj::DoConvertToPolyObj(BOOL bBezier) const
+/*N*/ SdrObject *E3dCubeObj::DoConvertToPolyObj(BOOL /*bBezier*/) const
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Give out simple line geometry
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -213,39 +201,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dCubeObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*?*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // call parent, schreibt die SubList (alte Geometrie) raus
-/*N*/   E3dCompoundObject::WriteData(rOut);
-/*N*/
-/*N*/   E3dIOCompat aCompat(rOut, STREAM_WRITE, 1);
-/*N*/   rOut << aCubePos;
-/*N*/   rOut << aCubeSize;
-/*N*/   rOut << BOOL(bPosIsCenter);
-/*N*/   rOut << nSideFlags;
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*?*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/
@@ -316,8 +271,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void E3dCubeObj::SetPosIsCenter(BOOL bNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dCubeObj::SetPosIsCenter(BOOL /*bNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -337,3 +292,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

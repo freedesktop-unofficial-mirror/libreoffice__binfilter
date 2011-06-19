@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 namespace binfilter {
 
 
@@ -42,7 +41,7 @@ class SchStyleSheet : public SfxStyleSheet
 {
 protected:
     virtual void Load (SvStream& rIn, USHORT nVersion);
-    virtual void Store(SvStream& rOut);
+    virtual void Store(SvStream&) {}
 
 public:
     TYPEINFO();
@@ -57,3 +56,4 @@ public:
 } //namespace binfilter
 #endif     // _SCH_STLSHEET_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

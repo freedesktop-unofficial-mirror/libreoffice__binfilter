@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XEXECUTABLEDIALOG_HPP_
 #include <com/sun/star/ui/dialogs/XExecutableDialog.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 // INCLUDE ---------------------------------------------------------------
 
@@ -39,25 +36,13 @@
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#ifndef _PSTM_HXX
-#include <tools/pstm.hxx>
-#endif
-
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/outliner.hxx>
@@ -102,12 +87,9 @@
 #include "formdata.hxx"
 #include "tpusrlst.hxx"
 #include "tpcalc.hxx"
-#include "tpprint.hxx"
 #include "detfunc.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #define SC_IDLE_MIN     150
 #define SC_IDLE_MAX     3000
 #define SC_IDLE_STEP    75
@@ -119,10 +101,10 @@ static USHORT nIdleCount = 0;
 //------------------------------------------------------------------
 
 /*N*/ ScModule::ScModule( SfxObjectFactory* pFact ) :
-/*N*/   ScModuleDummy( SFX_APP()->CreateResManager( "bf_sc" ), FALSE, pFact ), //STRIP005
-/*N*/   bIsWaterCan( FALSE ),
-/*N*/   bIsInEditCommand( FALSE ),
+/*N*/   ScModuleDummy( SFX_APP()->CreateResManager( "bf_sc" ), FALSE, pFact ),
+/*N*/   pMessagePool( NULL ),
 /*N*/   pRefInputHandler( NULL ),
+/*N*/   pTeamDlg( NULL ),
 /*N*/   pViewCfg( NULL ),
 /*N*/   pDocCfg( NULL ),
 /*N*/   pAppCfg( NULL ),
@@ -131,12 +113,12 @@ static USHORT nIdleCount = 0;
 /*N*/   pNavipiCfg( NULL ),
 /*N*/   pColorConfig( NULL ),
 /*N*/   pCTLOptions( NULL ),
-/*N*/   pTeamDlg( NULL ),
-/*N*/   nCurRefDlgId( 0 ),
 /*N*/   pErrorHdl( NULL ),
 /*N*/   pSvxErrorHdl( NULL ),
-/*N*/   pMessagePool( NULL ),
-/*N*/   pFormEditData( NULL )
+/*N*/   pFormEditData( NULL ),
+/*N*/   nCurRefDlgId( 0 ),
+/*N*/   bIsWaterCan( FALSE ),
+/*N*/   bIsInEditCommand( FALSE )
 /*N*/ {
 /*N*/   //  im ctor ist der ResManager (DLL-Daten) noch nicht initialisiert!
 /*N*/
@@ -184,7 +166,7 @@ static USHORT nIdleCount = 0;
 
 //------------------------------------------------------------------
 
-/*N*/ void ScModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if ( rHint.ISA(SfxSimpleHint) )
 /*N*/   {
@@ -196,10 +178,10 @@ static USHORT nIdleCount = 0;
 /*N*/       }
 /*N*/       else if ( nHintId == SFX_HINT_COLORS_CHANGED || nHintId == SFX_HINT_ACCESSIBILITY_CHANGED )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( ScDetectiveFunc::IsColorsInitialized() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/         else if ( nHintId == SFX_HINT_CTL_SETTINGS_CHANGED )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/   }
 /*N*/ }
@@ -241,13 +223,9 @@ static USHORT nIdleCount = 0;
 
 //------------------------------------------------------------------
 
-#define TEXT_WIDTH(s)   rStatusBar.GetTextWidth((s))
-
-/*N*/ void ScModule::FillStatusBar(StatusBar& rStatusBar)
+/*N*/ void ScModule::FillStatusBar(StatusBar& /*rStatusBar*/)
 /*N*/ {
 /*N*/ }
-
-#undef TEXT_WIDTH
 
 //------------------------------------------------------------------
 //
@@ -294,12 +272,10 @@ static USHORT nIdleCount = 0;
 /*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void ScModule::SetAppOptions( const ScAppOptions& rOpt )
+/*N*/ void ScModule::SetAppOptions( const ScAppOptions& /*rOpt*/ )
 /*N*/ {
 /*N*/   if ( !pAppCfg )
 /*N*/       pAppCfg = new ScAppCfg;
-/*N*/
-/*N*/   pAppCfg->SetOptions( rOpt );
 /*N*/ }
 
 /*N*/ void global_InitAppOptions()
@@ -315,12 +291,10 @@ static USHORT nIdleCount = 0;
 /*N*/   return *pAppCfg;
 /*N*/ }
 
-/*N*/ void ScModule::SetInputOptions( const ScInputOptions& rOpt )
+/*N*/ void ScModule::SetInputOptions( const ScInputOptions& /*rOpt*/ )
 /*N*/ {
 /*N*/   if ( !pInputCfg )
 /*N*/       pInputCfg = new ScInputCfg;
-/*N*/
-/*N*/   pInputCfg->SetOptions( rOpt );
 /*N*/ }
 
 /*N*/ const ScInputOptions& ScModule::GetInputOptions()
@@ -331,12 +305,10 @@ static USHORT nIdleCount = 0;
 /*N*/   return *pInputCfg;
 /*N*/ }
 
-/*N*/ void ScModule::SetPrintOptions( const ScPrintOptions& rOpt )
+/*N*/ void ScModule::SetPrintOptions( const ScPrintOptions& /*rOpt*/ )
 /*N*/ {
 /*N*/   if ( !pPrintCfg )
 /*N*/       pPrintCfg = new ScPrintCfg;
-/*N*/
-/*N*/   pPrintCfg->SetOptions( rOpt );
 /*N*/ }
 
 /*N*/ const ScPrintOptions& ScModule::GetPrintOptions()
@@ -392,7 +364,7 @@ static USHORT nIdleCount = 0;
 /*N*/   nIdleCount = 0;
 /*N*/ }
 
-/*N*/ IMPL_LINK( ScModule, IdleHandler, Timer*, pTimer )
+/*N*/ IMPL_LINK( ScModule, IdleHandler, Timer*, EMPTYARG )
 /*N*/ {
 /*N*/   if ( Application::AnyInput( INPUT_MOUSEANDKEYBOARD ) )
 /*N*/   {
@@ -407,7 +379,7 @@ static USHORT nIdleCount = 0;
 /*?*/       ScDocument* pDoc = pDocSh->GetDocument();
 /*?*/       if ( pDoc->IsLoadingDone() )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bLinks = pDoc->IdleCheckLinks();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -438,16 +410,18 @@ static USHORT nIdleCount = 0;
 /*N*/   return 0;
 /*N*/ }
 
-IMPL_LINK( ScModule, SpellTimerHdl, Timer*, pTimer )
+IMPL_LINK( ScModule, SpellTimerHdl, Timer*, EMPTYARG )
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( Application::AnyInput( INPUT_KEYBOARD ) )
+    DBG_BF_ASSERT(0, "STRIP");
     return 0;
 }
 
-/*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, pInfo )
+/*N*/ IMPL_LINK( ScModule, CalcFieldValueHdl, EditFieldInfo*, EMPTYARG )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (pInfo)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -36,16 +34,16 @@ PROJECTPCHSOURCE=$(BFPRJ)$/util$/sd_sd
 PRJNAME=binfilter
 TARGET=sd_unoidl
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
+
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
+
 # --- Files --------------------------------------------------------
 
 .IF "$(COM)"=="GCC"

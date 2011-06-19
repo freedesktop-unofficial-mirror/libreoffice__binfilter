@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -90,12 +88,6 @@ namespace binfilter {
 // -----------------------------------------------------------------------------------------
 
 // special handling for non-convertable characters is no longer needed
-#if 0
-
-//  read string from a string cell in original CharSet
-
-
-#endif
 
 // -----------------------------------------------------------------------------------------
 
@@ -178,7 +170,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               break;
 /*N*/           default:
-/*N*/               DBG_ERROR( "Falscher Zellentyp" );
+/*N*/               OSL_FAIL( "Falscher Zellentyp" );
 /*N*/               rStream.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/               return;
 /*N*/       }
@@ -209,143 +201,6 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTab )
-{
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDBCollection* pDBColl = pDocument->GetDBCollection();
-
-    return FALSE;
-}
-
-/*N*/ void ScColumn::SaveData( SvStream& rStream ) const
-/*N*/ {
-/*N*/   CellType eCellType;
-/*N*/   ScBaseCell* pCell;
-/*N*/   USHORT i;
-/*N*/     ScFontToSubsFontConverter_AutoPtr xFontConverter;
-/*N*/     const ULONG nFontConverterFlags = FONTTOSUBSFONT_EXPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/
-/*N*/   //  Zeilen hinter MAXROW abziehen
-/*N*/   USHORT nSaveMaxRow = pDocument->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow != MAXROW )
-/*N*/   {
-/*N*/       if ( nSaveCount && pItems[nSaveCount-1].nRow > nSaveMaxRow )
-/*N*/       {
-/*?*/           pDocument->SetLostData();           // Warnung ausgeben
-/*?*/           do
-/*?*/               --nSaveCount;
-/*?*/           while ( nSaveCount && pItems[nSaveCount-1].nRow > nSaveMaxRow );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  Zellen abziehen, die wegen Import nicht gespeichert werden
-/*N*/   BOOL bRemoveAny = lcl_RemoveAny( pDocument, nCol, nTab );
-/*N*/   USHORT nEffCount = nSaveCount;
-/*N*/   if ( bRemoveAny )
-/*N*/   {
-/*?*/       for (i=0; i<nSaveCount; i++)
-/*?*/           if ( lcl_RemoveThis( pDocument, nCol, pItems[i].nRow, nTab ) )
-/*?*/               --nEffCount;
-/*?*/
-/*?*/ //        String aDbg("Tab ");aDbg+=nTab;aDbg+=" Col ";aDbg+=nCol;
-/*?*/ //        aDbg+=" Remove ";aDbg+=nSaveCount-nEffCount; DBG_ERROR(aDbg);
-/*N*/   }
-/*N*/
-/*N*/   rStream << nEffCount;           // nEffCount: Zellen, die wirklich gespeichert werden
-/*N*/
-/*N*/   ScAttrIterator aIter( pAttrArray, 0, MAXROW );
-/*N*/   USHORT nStt, nEnd;
-/*N*/   const ScPatternAttr* pAttr;
-/*N*/   do
-/*N*/   {
-/*N*/       pAttr = aIter.Next( nStt, nEnd );
-/*N*/   }
-/*N*/     while( pAttr && !(
-/*N*/         (xFontConverter = pAttr->GetSubsFontConverter( nFontConverterFlags ))
-/*N*/         || pAttr->IsSymbolFont()) );
-/*N*/
-/*N*/   for (i=0; i<nSaveCount; i++)        // nSaveCount: Ende auf MAXROW angepasst
-/*N*/   {
-/*N*/       USHORT nRow = pItems[i].nRow;
-/*N*/
-/*N*/       if ( !bRemoveAny || !lcl_RemoveThis( pDocument, nCol, nRow, nTab ) )
-/*N*/       {
-/*N*/           rStream << nRow;
-/*N*/
-/*N*/           pCell = pItems[i].pCell;
-/*N*/           eCellType = pCell->GetCellType();
-/*N*/
-/*N*/           switch( eCellType )
-/*N*/           {
-/*N*/               case CELLTYPE_VALUE:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScValueCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*N*/               case CELLTYPE_STRING:
-/*N*/                   if( pAttr )
-/*N*/                   {
-/*N*/                       if( nRow > nEnd )
-/*N*/                         {
-/*N*/                             do
-/*N*/                             {
-/*N*/                                 do
-/*N*/                                 {
-/*N*/                                     pAttr = aIter.Next( nStt, nEnd );
-/*N*/                                 }
-/*N*/                                 while ( pAttr && nRow > nEnd );     // #99139# skip all formats before this cell
-/*N*/                             }
-/*N*/                             while( pAttr && !(
-/*N*/                                 (xFontConverter = pAttr->GetSubsFontConverter( nFontConverterFlags ))
-/*N*/                                 || pAttr->IsSymbolFont()) );
-/*N*/                         }
-/*N*/                       if( pAttr && nRow >= nStt && nRow <= nEnd )
-/*N*/                           eCellType = CELLTYPE_SYMBOLS;
-/*N*/                   }
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   if ( eCellType == CELLTYPE_SYMBOLS )
-/*N*/                   {
-/*N*/                       //  cell string contains true symbol characters
-/*N*/                         CharSet eOld = rStream.GetStreamCharSet();
-/*N*/                         rStream.SetStreamCharSet( RTL_TEXTENCODING_SYMBOL );
-/*N*/                         ((ScStringCell*)pCell)->Save( rStream, xFontConverter );
-/*N*/                         rStream.SetStreamCharSet( eOld );
-/*N*/                   }
-/*N*/                   else
-/*N*/                       ((ScStringCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*N*/               case CELLTYPE_EDIT:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScEditCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*N*/               case CELLTYPE_FORMULA:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScFormulaCell*)pCell)->Save( rStream, aHdr );
-/*N*/                   break;
-/*N*/               case CELLTYPE_NOTE:
-/*N*/                   rStream << (BYTE) eCellType;
-/*N*/                   ((ScNoteCell*)pCell)->Save( rStream );
-/*N*/                   break;
-/*?*/               default:
-/*?*/                   {
-/*?*/                       //  #53846# soll zwar nicht vorkommen, aber falls doch,
-/*?*/                       //  eine leere NoteCell speichern, damit das Dokument
-/*?*/                       //  ueberhaupt wieder geladen werden kann.
-/*?*/                       rStream << (BYTE) CELLTYPE_NOTE;
-/*?*/                       ScNoteCell aDummyCell;
-/*?*/                       aDummyCell.Save( rStream );
-/*?*/                       DBG_ERROR( "Falscher Zellentyp" );
-/*?*/                   }
-/*?*/                   break;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-// -----------------------------------------------------------------------------------------
-
 /*N*/ void ScColumn::LoadNotes( SvStream& rStream )
 /*N*/ {
 /*N*/   ScReadHeader aHdr(rStream);
@@ -360,7 +215,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/           pItems[nPos].pCell->LoadNote(rStream);
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR("falsche Pos in ScColumn::LoadNotes");
+/*N*/           OSL_FAIL("falsche Pos in ScColumn::LoadNotes");
 /*N*/           rStream.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/       }
 /*N*/   }
@@ -392,7 +247,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*?*/       nNoteCount = 0;
 /*?*/       for (i=0; i<nCount; i++)
 /*?*/           if ( pItems[i].pCell->GetNotePtr() && pItems[i].nRow<=nSaveMaxRow &&
-/*?*/                   !lcl_RemoveThis( pDocument, nCol, pItems[i].nRow, nTab ) )
+/*?*/                   true )
 /*?*/               ++nNoteCount;
 /*N*/   }
 /*N*/   else
@@ -409,7 +264,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/   for (i=0; i<nCount && rStream.GetError() == SVSTREAM_OK; i++)
 /*N*/   {
 /*N*/       USHORT nRow = pItems[i].nRow;
-/*N*/       if ( !bRemoveAny || !lcl_RemoveThis( pDocument, nCol, nRow, nTab ) )
+/*N*/       if ( !bRemoveAny || true )
 /*N*/       {
 /*N*/           const ScPostIt* pNote = pItems[i].pCell->GetNotePtr();
 /*N*/           if ( pNote && nRow <= nSaveMaxRow )
@@ -519,7 +374,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/               break;
 /*N*/           default:
 /*N*/               {
-/*N*/                   DBG_ERROR("unbekannter Sub-Record in ScColumn::Load");
+/*N*/                   OSL_FAIL("unbekannter Sub-Record in ScColumn::Load");
 /*N*/                   ScReadHeader aDummyHeader( rStream );
 /*N*/               }
 /*N*/       }
@@ -536,7 +391,7 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/         ScFontToSubsFontConverter_AutoPtr xFontConverter;
 /*N*/         const ULONG nFontConverterFlags = FONTTOSUBSFONT_IMPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS;
 /*N*/         ScSymbolStringCellEntry* pE;
-/*N*/         USHORT nStt, nEnd;
+/*N*/         USHORT nStt(0), nEnd(0);
 /*N*/
 /*N*/         ScAttrIterator aIter( pAttrArray, 0, MAXROW );
 /*N*/         const ScPatternAttr* pAttr = aIter.Next( nStt, nEnd );
@@ -563,33 +418,6 @@ BOOL lcl_RemoveThis( ScDocument* pDocument, USHORT nCol, USHORT nRow, USHORT nTa
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ BOOL ScColumn::Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   if (!IsEmptyData())             //! Test, ob alles weggelassen wird?
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLDATA;
-/*N*/       SaveData( rStream );
-/*N*/   }
-/*N*/   USHORT nNotes = NoteCount();    //! Test, ob alles weggelassen wird?
-/*N*/   if (nNotes)
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLNOTES;
-/*N*/       SaveNotes( rStream );
-/*N*/   }
-/*N*/   if (!IsEmptyAttr())
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLATTRIB;
-/*N*/       pAttrArray->Save( rStream );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-// -----------------------------------------------------------------------------------------
 
                                     //  GetNeededSize: optimale Hoehe / Breite in Pixeln
 
@@ -914,12 +742,12 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/               double nCosAbs = fabs( cos( nRealOrient ) );
 /*?*/               double nSinAbs = fabs( sin( nRealOrient ) );
 /*?*/               long nHeight = (long)( aSize.Height() * nCosAbs + aSize.Width() * nSinAbs );
-/*?*/               long nWidth;
+/*?*/               long nWidth(0);
 /*?*/               if ( eRotMode == SVX_ROTATE_MODE_STANDARD )
 /*?*/                   nWidth  = (long)( aSize.Width() * nCosAbs + aSize.Height() * nSinAbs );
 /*?*/               else if ( rOptions.bTotalSize )
 /*?*/               {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) ( pDocument->GetColWidth( nCol,nTab ) * nPPT );
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
 /*?*/                   nWidth  = (long)( aSize.Height() / nSinAbs );   //! begrenzen?
@@ -1609,7 +1437,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*N*/       ScBroadcasterList* pBC = pCell->GetBroadcaster();
 /*N*/       if (pBC)
 /*N*/       {
-/*N*/ //            rLst.EndListening(*pBC);
 /*N*/           pBC->EndBroadcasting(rLst);
 /*N*/
 /*N*/           if (!pBC->HasListeners())
@@ -1620,11 +1447,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*N*/                   pCell->SetBroadcaster(NULL);
 /*N*/           }
 /*N*/       }
-/*N*/ //        else
-/*N*/ //            DBG_ERROR("ScColumn::EndListening - kein Broadcaster");
 /*N*/   }
-/*N*/ //    else
-/*N*/ //        DBG_ERROR("ScColumn::EndListening - keine Zelle");
 /*N*/ }
 
 
@@ -1663,7 +1486,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 
 /*N*/ void lcl_UpdateSubTotal( ScFunctionData& rData, ScBaseCell* pCell )
 /*N*/ {
-/*N*/   double nValue;
+/*N*/   double nValue(0.0);
 /*N*/   BOOL bVal = FALSE;
 /*N*/   BOOL bCell = TRUE;
 /*N*/   switch (pCell->GetCellType())
@@ -1694,7 +1517,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*?*/       case CELLTYPE_NOTE:
 /*?*/           bCell = FALSE;
 /*?*/           break;
-/*?*/       // bei Strings nichts
+/*?*/       default:
+/*?*/           break;
 /*N*/   }
 /*N*/
 /*N*/   if (!rData.bError)
@@ -1727,6 +1551,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*?*/               if (bVal)
 /*?*/                   if (++rData.nCount == 1 || nValue < rData.nVal )
 /*?*/                       rData.nVal = nValue;
+/*?*/               break;
+/*?*/           default:
 /*?*/               break;
 /*N*/       }
 /*N*/   }
@@ -1784,9 +1610,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nWidth = (long) 
 /*N*/           case CELLTYPE_EDIT:
 /*N*/               nTotal += 50;
 /*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   return nTotal;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,40 +26,24 @@
  *
  ************************************************************************/
 
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef SC_CHARTLIS_HXX
 #include "chartlis.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCOLUMNROWRANGE_HPP_
 #include <com/sun/star/table/XColumnRowRange.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
 
 ScMyShapeResizer::ScMyShapeResizer(ScXMLImport& rTempImport)
-    : aShapes(),
-    rImport(rTempImport),
-    pCollection(NULL)
+    : rImport(rTempImport)
+    , aShapes()
+    , pCollection(NULL)
 {
 }
 
@@ -213,12 +198,12 @@ void ScMyShapeResizer::ResizeShapes()
                                             uno::Reference<beans::XPropertySet> xShapeProps (aItr->xShape, uno::UNO_QUERY);
                                             if(xShapeProps.is())
                                             {
-                                                uno::Any aAny = xShapeProps->getPropertyValue(  sStartShape );
+                                                uno::Any aTmpAny = xShapeProps->getPropertyValue(   sStartShape );
                                                 uno::Reference<drawing::XShape> xStartShape;
-                                                aAny >>= xStartShape;
-                                                aAny = xShapeProps->getPropertyValue( sEndShape );
+                                                aTmpAny >>= xStartShape;
+                                                aTmpAny = xShapeProps->getPropertyValue( sEndShape );
                                                 uno::Reference<drawing::XShape> xEndShape;
-                                                aAny >>= xEndShape;
+                                                aTmpAny >>= xEndShape;
                                                 if (!xStartShape.is() && !xEndShape.is())
                                                 {
                                                     awt::Size aOldSize(aSize);
@@ -240,8 +225,8 @@ void ScMyShapeResizer::ResizeShapes()
                                                     if (xStartShape.is())
                                                     {
                                                         awt::Point aEndPoint;
-                                                        uno::Any aAny = xShapeProps->getPropertyValue(sEndPosition);
-                                                        aAny >>= aEndPoint;
+                                                        uno::Any aLclAny = xShapeProps->getPropertyValue(sEndPosition);
+                                                        aLclAny >>= aEndPoint;
                                                         aPoint.X = aRec.Left() + aEndPoint.X;
                                                         aPoint.Y = aRec.Top() + aEndPoint.Y;
                                                         sProperty = sEndPosition;
@@ -249,15 +234,15 @@ void ScMyShapeResizer::ResizeShapes()
                                                     else
                                                     {
                                                         awt::Point aStartPoint;
-                                                        uno::Any aAny = xShapeProps->getPropertyValue(sStartPosition);
-                                                        aAny >>= aStartPoint;
+                                                        uno::Any aLclAny = xShapeProps->getPropertyValue(sStartPosition);
+                                                        aLclAny >>= aStartPoint;
                                                         aPoint.X = aRec.Left() + aStartPoint.X;
                                                         aPoint.Y = aRec.Top() + aStartPoint.Y;
                                                         sProperty = sStartPosition;
                                                     }
-                                                    uno::Any aAny;
-                                                    aAny <<= aPoint;
-                                                    xShapeProps->setPropertyValue(sProperty, aAny);
+                                                    uno::Any aLclAny;
+                                                    aLclAny <<= aPoint;
+                                                    xShapeProps->setPropertyValue(sProperty, aLclAny);
                                                 }
                                             }
                                         }
@@ -287,7 +272,7 @@ void ScMyShapeResizer::ResizeShapes()
                                                 }
                                                 catch ( uno::Exception& )
                                                 {
-                                                    DBG_ERROR("This Captionshape has no CaptionPoint property.");
+                                                    OSL_FAIL("This Captionshape has no CaptionPoint property.");
                                                 }
                                             }
                                             Point aCorePoint(aPoint.X, aPoint.Y);
@@ -313,7 +298,7 @@ void ScMyShapeResizer::ResizeShapes()
                                         {
                                             // #96159# it is possible, that shapes have a negative position
                                             // this is now handled here
-                                            DBG_ERROR("no or negative end address of this shape");
+                                            OSL_FAIL("no or negative end address of this shape");
                                             awt::Point aRefPoint;
                                             aRefPoint.X = aRec.Left();
                                             aRefPoint.Y = aRec.Top();
@@ -331,7 +316,7 @@ void ScMyShapeResizer::ResizeShapes()
                         }
                     }
                     else
-                        DBG_ERROR("something wents wrong");
+                        OSL_FAIL("something wents wrong");
                     if (IsOLE(aItr->xShape))
                     {
                         uno::Reference < beans::XPropertySet > xShapeProps ( aItr->xShape, uno::UNO_QUERY );
@@ -359,3 +344,5 @@ void ScMyShapeResizer::ResizeShapes()
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

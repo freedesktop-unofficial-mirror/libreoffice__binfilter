@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _EEITEM_HXX //autogen
 #include <eeitem.hxx>
-#endif
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include "svdfield.hxx"
 #include "svdotext.hxx"
@@ -58,10 +49,12 @@ namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
-/*N*/ FASTBOOL SdrTextObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-/*N*/   FASTBOOL bEdit, Color*& rpTxtColor, Color*& rpFldColor, XubString& rRet) const
+/*N*/ bool SdrTextObj::CalcFieldValue(const SvxFieldItem&, USHORT, USHORT,
+/*N*/   bool, Color*&, Color*&, XubString&) const
 /*N*/ {
 /*N*/   return FALSE;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

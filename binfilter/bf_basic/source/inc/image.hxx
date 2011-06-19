@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _SBIMAGE_HXX
 
 #include "sbintern.hxx"
-#ifndef _RTL_USTRING_HXX
 #include <rtl/ustring.hxx>
-#endif
 #include "filefmt.hxx"
 
 // Diese Klasse liest das vom Compiler erzeugte Image ein und verwaltet
@@ -77,7 +76,7 @@ public:
     BOOL Load( SvStream&, UINT32& nVer );       // Loads image from stream
                             // nVer is set to version
                             // of image
-    BOOL Save( SvStream&, UINT32 = B_CURVERSION );
+    BOOL Save( SvStream&, UINT32 = B_CURVERSION ) {return false; }
     BOOL IsError()                  { return bError;    }
 
     const char* GetCode() const     { return pCode;     }
@@ -106,3 +105,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

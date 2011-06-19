@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
@@ -114,7 +113,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
-/*N*/ void ImpEditEngine::UndoActionEnd( USHORT nId )
+/*N*/ void ImpEditEngine::UndoActionEnd( USHORT /*nId*/ )
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() )
@@ -132,7 +131,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( !IsInUndo(), "InsertUndo im Undomodus!" );
 /*N*/   if ( pUndoMarkSelection )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditUndoMarkSelection* pU = new EditUndoMarkSelection( this, *pUndoMarkSelection );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   GetUndoManager().AddUndoAction( pUndo, bTryMerge );
 /*N*/ #endif
@@ -258,24 +257,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/     }
 /*N*/
-/*N*/ #ifdef EDITDEBUG
-/*N*/ /*
-/*N*/ #ifdef MAC
-/*N*/       FILE* fp = fopen( "debug.log", "a" );
-/*N*/ #elif defined UNX
-/*N*/       FILE* fp = fopen( "/tmp/debug.log", "a" );
-/*N*/ #else
-/*N*/       FILE* fp = fopen( "d:\\debug.log", "a" );
-/*N*/ #endif
-/*N*/       if ( fp )
-/*N*/       {
-/*N*/           fprintf( fp, "\n\n<= Attribute: Absatz %i\n", nNode );
-/*N*/           DbgOutItemSet( fp, aCurSet, TRUE, FALSE );
-/*N*/           fclose( fp );
-/*N*/       }
-/*N*/ */
-/*N*/ #endif
-/*N*/
 /*N*/   return aCurSet;
 /*N*/ }
 
@@ -382,8 +363,6 @@ namespace binfilter {
 /*N*/
 /*N*/   USHORT nStartNode = aEditDoc.GetPos( aSel.Min().GetNode() );
 /*N*/   USHORT nEndNode = aEditDoc.GetPos( aSel.Max().GetNode() );
-/*N*/
-/*N*/   BOOL bCheckLanguage = FALSE;
 /*N*/
 /*N*/   // ueber die Absaetze iterieren...
 /*N*/   for ( USHORT nNode = nStartNode; nNode <= nEndNode; nNode++ )
@@ -563,3 +542,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

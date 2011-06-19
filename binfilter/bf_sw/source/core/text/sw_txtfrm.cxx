@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,116 +31,48 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>      // GetDoc()
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>  // InvalidateSpelling
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>        // SwInsChr
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
-#ifndef _DBG_LAY_HXX
 #include <dbg_lay.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _FMTLINE_HXX
 #include <fmtline.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectFrm
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>       // Iteratoren
-#endif
-#ifndef _WIDORP_HXX
 #include <widorp.hxx>       // SwFrmBreak
-#endif
-#ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>     // GetLineSpace benutzt pLastFont
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _WRONG_HXX
 #include <wrong.hxx>        // SwWrongList
-#endif
-#ifndef _LINEINFO_HXX
 #include <lineinfo.hxx>
-#endif
 
 #if OSL_DEBUG_LEVEL > 1
 namespace binfilter {
 extern const sal_Char *GetPrepName( const enum PrepareHint ePrep );
-} //STRIP008
+}
 #endif
 namespace binfilter {
 /*N*/ TYPEINIT1( SwTxtFrm, SwCntntFrm );
@@ -275,7 +208,7 @@ namespace binfilter {
 
 /*N*/ void SwTxtFrm::Init()
 /*N*/ {
-/*N*/   ASSERT( !IsLocked(), "+SwTxtFrm::Init: this ist locked." );
+/*N*/   OSL_ENSURE( !IsLocked(), "+SwTxtFrm::Init: this ist locked." );
 /*N*/   if( !IsLocked() )
 /*N*/   {
 /*N*/       ClearPara();
@@ -343,7 +276,7 @@ namespace binfilter {
 /*N*/   if( !Frm().Width() && IsValid() && GetUpper()->IsValid() )
 /*N*/                                      //bei Stackueberlauf (StackHack) invalid!
 /*N*/   {
-/*N*/         ASSERT( Frm().Width(), "SwTxtFrm::IsHiddenNow: thin frame" );
+/*N*/         OSL_ENSURE( Frm().Width(), "SwTxtFrm::IsHiddenNow: thin frame" );
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/
@@ -368,7 +301,7 @@ namespace binfilter {
 // Entfernt die Anhaengsel des Textfrms wenn dieser hidden ist
 
 /*N*/ void SwTxtFrm::HideHidden()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -481,8 +414,8 @@ namespace binfilter {
 
 /*N*/ void SwTxtFrm::CalcLineSpace()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
-/*N*/             "SwTxtFrm::CalcLineSpace with swapped frame!" )
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
+/*N*/             "SwTxtFrm::CalcLineSpace with swapped frame!" );
 /*N*/
 /*N*/   if( IsLocked() || !HasPara() )
 /*N*/       return;
@@ -515,12 +448,12 @@ namespace binfilter {
 /*N*/   // 4291: Unterlauf bei Flys
 /*N*/   if( aInf.GetTxtFly()->IsOn() )
 /*N*/   {
-/*N*/       SwRect aFrm( Frm() );
+/*N*/       SwRect aTmpFrm( Frm() );
 /*N*/       if( nDelta < 0 )
-/*N*/           aFrm.Height( Prt().Height() );
+/*N*/           aTmpFrm.Height( Prt().Height() );
 /*N*/       else
-/*N*/           aFrm.Height( aNewSize.Height() );
-/*N*/       if( aInf.GetTxtFly()->Relax( aFrm ) )
+/*N*/           aTmpFrm.Height( aNewSize.Height() );
+/*N*/       if( aInf.GetTxtFly()->Relax( aTmpFrm ) )
 /*N*/       {
 /*?*/           Init();
 /*?*/           return;
@@ -546,7 +479,7 @@ namespace binfilter {
 /*N*/               Grow(nDelta,pHeight);
 /*N*/           else
 /*N*/               Shrink(-nDelta,pHeight);
-/*N*/           ASSERT( GetPara(), "+SwTxtFrm::CalcLineSpace: missing format information" );
+/*N*/           OSL_ENSURE( GetPara(), "+SwTxtFrm::CalcLineSpace: missing format information" );
 /*N*/           if( pPara )
 /*N*/               pPara->GetRepaint()->SSize( Prt().SSize() );
 /*N*/ #endif
@@ -584,8 +517,6 @@ namespace binfilter {
 
 /*N*/ void lcl_ModifyOfst( SwTxtFrm* pFrm, xub_StrLen nPos, xub_StrLen nLen )
 /*N*/ {
-/*N*/   if( nLen < 0 )
-/*N*/       nPos -= nLen;
 /*N*/   while( pFrm && pFrm->GetOfst() <= nPos )
 /*N*/       pFrm = pFrm->GetFollow();
 /*N*/   while( pFrm )
@@ -684,7 +615,7 @@ namespace binfilter {
 /*M*/           SET_SCRIPT_INVAL( nPos )
 /*M*/           bSetFldsDirty = bRecalcFtnFlag = sal_True;
 /*M*/           if( HasFollow() )
-/*M*/               lcl_ModifyOfst( this, nPos, -1 );
+/*M*/               lcl_ModifyOfst( this, nPos, STRING_LEN );
 /*M*/       }
 /*M*/       break;
 /*M*/       case RES_DEL_TXT:
@@ -1088,7 +1019,7 @@ namespace binfilter {
 
 /*M*/ void SwTxtFrm::PrepWidows( const MSHORT nNeed, sal_Bool bNotify )
 /*M*/ {
-/*M*/   ASSERT(GetFollow() && nNeed, "+SwTxtFrm::Prepare: lost all friends");
+/*M*/   OSL_ENSURE(GetFollow() && nNeed, "+SwTxtFrm::Prepare: lost all friends");
 /*M*/
 /*M*/   SwParaPortion *pPara = GetPara();
 /*M*/   if ( !pPara )
@@ -1228,13 +1159,15 @@ namespace binfilter {
 /*N*/
 /*N*/               return;
 /*N*/           }
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   if( !HasPara() && PREP_MUST_FIT != ePrep )
 /*N*/   {
 /*N*/         SetInvalidVert( TRUE );  // Test
-/*N*/       ASSERT( !IsLocked(), "SwTxtFrm::Prepare: three of a perfect pair" );
+/*N*/       OSL_ENSURE( !IsLocked(), "SwTxtFrm::Prepare: three of a perfect pair" );
 /*N*/       if ( bNotify )
 /*N*/           InvalidateSize();
 /*N*/       else
@@ -1478,7 +1411,7 @@ namespace binfilter {
 /*?*/               // letzte Zeile formatiert werden, damit ggf. die erste Zeile des Follows
 /*?*/               // hochrutschen kann, die extra auf die naechste Seite gerutscht war, um mit
 /*?*/               // der Fussnote zusammen zu sein, insbesondere bei spaltigen Bereichen.
-/*?*/               ASSERT( GetFollow(), "PREP_FTN_GONE darf nur vom Follow gerufen werden" );
+/*?*/               OSL_ENSURE( GetFollow(), "PREP_FTN_GONE darf nur vom Follow gerufen werden" );
 /*?*/               xub_StrLen nPos = GetFollow()->GetOfst();
 /*?*/               if( IsFollow() && GetOfst() == nPos )       // falls wir gar keine Textmasse besitzen,
 /*?*/                   FindMaster()->Prepare( PREP_FTN_GONE ); // rufen wir das Prepare unseres Masters
@@ -1500,7 +1433,7 @@ namespace binfilter {
 /*N*/           if( pVoid )
 /*N*/           {
 /*N*/               xub_StrLen nWhere = CalcFlyPos( (SwFrmFmt*)pVoid );
-/*N*/               ASSERT( STRING_LEN != nWhere, "Prepare: Why me?" );
+/*N*/               OSL_ENSURE( STRING_LEN != nWhere, "Prepare: Why me?" );
 /*N*/               InvalidateRange( SwCharRange( nWhere, 1 ) );
 /*N*/               return;
 /*N*/           }
@@ -1538,7 +1471,7 @@ namespace binfilter {
 /*N*/       pPara->SetPrep( sal_True );
 /*N*/ }
 
-/* -----------------11.02.99 17:56-------------------
+/* --------------------------------------------------
  * Kleine Hilfsklasse mit folgender Funktion:
  * Sie soll eine Probeformatierung vorbereiten.
  * Der Frame wird in Groesse und Position angepasst, sein SwParaPortion zur Seite
@@ -1594,7 +1527,7 @@ public:
 /*N*/   pOldPara = pFrm->HasPara() ? pFrm->GetPara() : NULL;
 /*N*/   pFrm->SetPara( new SwParaPortion(), sal_False );
 /*N*/
-/*N*/     ASSERT( ! pFrm->IsSwapped(), "A frame is swapped before _Format" );
+/*N*/     OSL_ENSURE( ! pFrm->IsSwapped(), "A frame is swapped before _Format" );
 /*N*/
 /*N*/     if ( pFrm->IsVertical() )
 /*?*/         pFrm->SwapWidthAndHeight();
@@ -1607,7 +1540,7 @@ public:
 /*N*/     if ( pFrm->IsVertical() )
 /*?*/         pFrm->SwapWidthAndHeight();
 /*N*/
-/*N*/     ASSERT( ! pFrm->IsSwapped(), "A frame is swapped after _Format" );
+/*N*/     OSL_ENSURE( ! pFrm->IsSwapped(), "A frame is swapped after _Format" );
 /*N*/ }
 
 /*N*/ SwTestFormat::~SwTestFormat()
@@ -1647,7 +1580,7 @@ public:
 
 /*N*/ sal_Bool SwTxtFrm::WouldFit( SwTwips &rMaxHeight, sal_Bool &bSplit )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::WouldFit with swapped frame" );
 /*N*/     SWRECTFN( this );
 /*N*/
@@ -1675,7 +1608,7 @@ public:
 /*N*/   // In sehr unguenstigen Faellen kann GetPara immer noch 0 sein.
 /*N*/   // Dann returnen wir sal_True, um auf der neuen Seite noch einmal
 /*N*/   // anformatiert zu werden.
-/*N*/   ASSERT( HasPara() || IsHiddenNow(), "WouldFit: GetFormatted() and then !HasPara()" );
+/*N*/   OSL_ENSURE( HasPara() || IsHiddenNow(), "WouldFit: GetFormatted() and then !HasPara()" );
 /*N*/     if( !HasPara() || ( !(Frm().*fnRect->fnGetHeight)() && IsHiddenNow() ) )
 /*N*/       return sal_True;
 /*N*/
@@ -1749,8 +1682,8 @@ public:
 
 /*N*/ KSHORT SwTxtFrm::GetParHeight() const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
-/*N*/             "SwTxtFrm::GetParHeight with swapped frame" )
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
+/*N*/             "SwTxtFrm::GetParHeight with swapped frame" );
 /*N*/
 /*N*/   if( !HasPara() )
 /*N*/   {   // Fuer nichtleere Absaetze ist dies ein Sonderfall, da koennen wir
@@ -1881,6 +1814,8 @@ public:
 /*?*/       case SVX_INTER_LINE_SPACE_FIX:
 /*?*/           if ( rSpace.GetInterLineSpace() > 0 )
 /*?*/               nRet = (KSHORT)rSpace.GetInterLineSpace();
+/*?*/       default:
+/*?*/           break;
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
@@ -2082,9 +2017,8 @@ SwTwips lcl_CalcFlyBasePos( const SwTxtFrm& rFrm, SwRect aFlyRect,
 
 void SwTxtFrm::CalcBaseOfstForFly()
 {
-    ASSERT( !IsVertical() || !IsSwapped(),
-            "SwTxtFrm::CalcBasePosForFly with swapped frame!" )
-
+    OSL_ENSURE( !IsVertical() || !IsSwapped(),
+            "SwTxtFrm::CalcBasePosForFly with swapped frame!" );
     const SwNode* pNode = GetTxtNode();
     const SwDoc* pDoc = pNode->GetDoc();
     if ( !pDoc->IsAddFlyOffsets() )
@@ -2127,3 +2061,5 @@ void SwTxtFrm::CalcBaseOfstForFly()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

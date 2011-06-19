@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,35 +29,17 @@
 #define _SFX_SRCHITEM_HXX
 
 // include ---------------------------------------------------------------
-#ifndef _COM_SUN_STAR_UTIL_XSEARCHDESCRIPTOR_HPP_
 #include <com/sun/star/util/XSearchDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHOPTIONS_HPP_
 #include <com/sun/star/util/SearchOptions.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_SEARCHFLAGS_HPP_
 #include <com/sun/star/util/SearchFlags.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_TRANSLITERATIONMODULES_HPP_
 #include <com/sun/star/i18n/TransliterationModules.hpp>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SFX_SRCHDEFS_HXX_
 #include <bf_sfx2/srchdefs.hxx>
-#endif
 namespace binfilter {
 
 // defines ---------------------------------------------------------------
@@ -114,8 +97,8 @@ public:
     SvxSearchItem( const SvxSearchItem& rItem );
     virtual ~SvxSearchItem();
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual int              operator == ( const SfxPoolItem& ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -304,3 +287,4 @@ sal_Bool SvxSearchItem::IsMatchFullHalfWidthForms() const
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

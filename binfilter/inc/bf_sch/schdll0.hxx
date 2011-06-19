@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,12 +33,8 @@
 
 #include <bf_so3/pseudo.hxx>
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _TOOLS_RESMGR_HXX //autogen
 #include <tools/resmgr.hxx>
-#endif
 
 class SotFactory;
 class SvFactory;
@@ -60,10 +57,10 @@ public:
                 // 'p' + SfxObjectShell-subclass + 'Factory'
     SotFactory *pSchChartDocShellFactory;  // Namensaufbau zwingend!!
 
-    SchModuleDummy(ResMgr    *pResMgr,
-                   BOOL      bDummy,
+    SchModuleDummy(ResMgr    *pInResMgr,
+                   BOOL      bInDummy,
                    SotFactory *pObjFact) :
-        SfxModule(pResMgr, bDummy, (SfxObjectFactory*) pObjFact, NULL),
+        SfxModule(pInResMgr, bInDummy, (SfxObjectFactory*) pObjFact, NULL),
         pSchChartDocShellFactory(pObjFact)
     {
     }
@@ -81,3 +78,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

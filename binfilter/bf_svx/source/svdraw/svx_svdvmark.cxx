@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,7 @@
 #include "svdobj.hxx"
 #include "svdpntv.hxx"
 
-//#ifndef NOOLDSV //autogen
-//#include <vcl/system.hxx>
-//#endif
 namespace binfilter {
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrViewUserMarker::SdrViewUserMarker(SdrPaintView* pView_)
 /*N*/ : pView(pView_),
@@ -76,7 +72,7 @@ namespace binfilter {
 /*N*/
 /*N*/ SdrViewUserMarker::~SdrViewUserMarker()
 /*N*/ {
-/*N*/   if (bVisible) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 Hide();
+/*N*/   if (bVisible) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   if (pView!=NULL) pView->ImpRemoveUserMarker(this);
 /*N*/   ImpDelGeometrics();
 /*N*/ }
@@ -93,7 +89,7 @@ namespace binfilter {
 
 /*N*/ void SdrViewUserMarker::SetLineWidth(USHORT nWdt)
 /*N*/ {
-/*N*/   FASTBOOL bVis=bVisible;
+/*N*/   bool bVis=bVisible;
 /*N*/   if (bVis) Hide();
 /*N*/   nLineWdt=nWdt;
 /*N*/   if (bVis) Show();
@@ -109,3 +105,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

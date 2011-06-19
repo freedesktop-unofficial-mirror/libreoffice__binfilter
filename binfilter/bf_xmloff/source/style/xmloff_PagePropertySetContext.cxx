@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,25 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 #include "PagePropertySetContext.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGECONTEXT_HXX
 #include "XMLBackgroundImageContext.hxx"
-#endif
-#ifndef _XMLTEXTCOLUMNSCONTEXT_HXX
 #include "XMLTextColumnsContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
-#ifndef _XMLOFF_XMLFOOTNOTESEPARATORIMPORT_HXX
 #include "XMLFootnoteSeparatorImport.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -51,14 +40,14 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 
 PagePropertySetContext::PagePropertySetContext(
-                 SvXMLImport& rImport, sal_uInt16 nPrfx,
+                 SvXMLImport& rInImport, sal_uInt16 nPrfx,
                  const OUString& rLName,
                  const Reference< xml::sax::XAttributeList > & xAttrList,
                  ::std::vector< XMLPropertyState > &rProps,
                  const UniReference < SvXMLImportPropertyMapper > &rMap,
                  sal_Int32 nStartIndex, sal_Int32 nEndIndex,
                  const PageContextType aTempType ) :
-    SvXMLPropertySetContext( rImport, nPrfx, rLName, xAttrList, rProps, rMap, nStartIndex, nEndIndex )
+    SvXMLPropertySetContext( rInImport, nPrfx, rLName, xAttrList, rProps, rMap, nStartIndex, nEndIndex )
 {
     aType = aTempType;
 }
@@ -68,10 +57,10 @@ PagePropertySetContext::~PagePropertySetContext()
 }
 
 SvXMLImportContext *PagePropertySetContext::CreateChildContext(
-                   sal_uInt16 nPrefix,
+                   sal_uInt16 nInPrefix,
                    const OUString& rLocalName,
                    const Reference< xml::sax::XAttributeList > & xAttrList,
-                   ::std::vector< XMLPropertyState > &rProperties,
+                   ::std::vector< XMLPropertyState > &rInProperties,
                    const XMLPropertyState& rProp )
 {
     sal_Int32 nPos = CTF_PM_GRAPHICPOSITION;
@@ -90,6 +79,8 @@ SvXMLImportContext *PagePropertySetContext::CreateChildContext(
             nFil = CTF_PM_FOOTERGRAPHICFILTER;
         }
         break;
+        default:
+        break;
     }
     SvXMLImportContext *pContext = 0;
 
@@ -105,46 +96,50 @@ SvXMLImportContext *PagePropertySetContext::CreateChildContext(
                     nFil  == xMapper->getPropertySetMapper()
                         ->GetEntryContextId( rProp.mnIndex-1 ),
                     "invalid property map!");
+        (void)nPos;
+        (void)nFil;
         pContext =
-            new XMLBackgroundImageContext( GetImport(), nPrefix,
+            new XMLBackgroundImageContext( GetImport(), nInPrefix,
                                            rLocalName, xAttrList,
                                            rProp,
                                            rProp.mnIndex-2,
                                            rProp.mnIndex-1,
                                            -1,
-                                           rProperties );
+                                           rInProperties );
         break;
 
     case CTF_PM_TEXTCOLUMNS:
 #ifndef SVX_LIGHT
-        pContext = new XMLTextColumnsContext( GetImport(), nPrefix,
+        pContext = new XMLTextColumnsContext( GetImport(), nInPrefix,
                                               rLocalName, xAttrList, rProp,
-                                              rProperties );
+                                              rInProperties );
 #else
         // create default context to skip content
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 #endif // #ifndef SVX_LIGHT
         break;
 
     case CTF_PM_FTN_LINE_WEIGTH:
 #ifndef SVX_LIGHT
         pContext = new XMLFootnoteSeparatorImport(
-            GetImport(), nPrefix, rLocalName, rProperties,
+            GetImport(), nInPrefix, rLocalName, rInProperties,
             xMapper->getPropertySetMapper(), rProp.mnIndex);
 #else
         // create default context to skip content
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName);
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName);
 #endif // #ifndef SVX_LIGHT
         break;
     }
 
     if( !pContext )
-        pContext = SvXMLPropertySetContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = SvXMLPropertySetContext::CreateChildContext( nInPrefix, rLocalName,
                                                             xAttrList,
-                                                            rProperties, rProp );
+                                                            rInProperties, rProp );
 
     return pContext;
 }
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
-#endif
 
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 
 #include <bf_svtools/itemset.hxx>
 #include <bf_svtools/smplhint.hxx>
@@ -60,9 +57,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdStyleSheet::SdStyleSheet(const String& rName, SfxStyleSheetBasePool& rPool,
-/*N*/                          SfxStyleFamily eFamily, USHORT nMask) :
-/*N*/   SfxStyleSheet(rName, rPool, eFamily, nMask)
+/*N*/ SdStyleSheet::SdStyleSheet(const String& rName, SfxStyleSheetBasePool& rInPool,
+/*N*/                          SfxStyleFamily eFamily, USHORT nInMask) :
+/*N*/   SfxStyleSheet(rName, rInPool, eFamily, nInMask)
 /*N*/ {
 /*N*/ }
 
@@ -95,17 +92,6 @@ namespace binfilter {
 /*N*/   // Da im Draw kein StyleSheet read-only sein soll, wird an dieser Stelle
 /*N*/   // das Flag zurueckgesetzt.
 /*N*/   nMask &= ~SFXSTYLEBIT_READONLY;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Store
-|*
-\************************************************************************/
-
-/*N*/ void SdStyleSheet::Store(SvStream& rOut)
-/*N*/ {
-/*N*/   SfxStyleSheetBase::Store(rOut);
 /*N*/ }
 
 /*************************************************************************
@@ -397,3 +383,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

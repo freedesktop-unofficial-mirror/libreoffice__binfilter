@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,14 +27,12 @@
  ************************************************************************/
 
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 namespace binfilter {
 
-using namespace rtl;
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_TOKEN_INVALID;
+using ::rtl::OUString;
 
 // TODO: optimize this!
 
@@ -91,3 +90,5 @@ UINT16 SvXMLItemMapEntries::getCount() const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

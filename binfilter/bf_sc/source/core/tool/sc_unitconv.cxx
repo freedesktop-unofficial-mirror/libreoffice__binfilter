@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,8 +36,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 // --------------------------------------------------------------------
 
@@ -102,13 +100,13 @@ using namespace ::com::sun::star::uno;
 /*N*/ #define CFGSTR_UNIT_TO        "ToUnit"
 /*N*/ #define CFGSTR_UNIT_FACTOR    "Factor"
 
-/*N*/ ScUnitConverter::ScUnitConverter( USHORT nInit, USHORT nDelta ) :
-/*N*/       StrCollection( nInit, nDelta, FALSE )
+/*N*/ ScUnitConverter::ScUnitConverter( USHORT nInit, USHORT nInDelta ) :
+/*N*/       StrCollection( nInit, nInDelta, FALSE )
 /*N*/ {
 /*N*/   //  read from configuration - "convert.ini" is no longer used
 /*N*/   //! config item as member to allow change of values
 /*N*/
-/*N*/   ScLinkConfigItem aConfigItem( OUString::createFromAscii( CFGPATH_UNIT ) );
+/*N*/   ScLinkConfigItem aConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_UNIT )) );
 /*N*/
 /*N*/   // empty node name -> use the config item's path itself
 /*N*/     OUString aEmptyString;
@@ -129,11 +127,11 @@ using namespace ::com::sun::star::uno;
 /*N*/           sPrefix += sSlash;
 /*N*/
 /*N*/           pValNameArray[nIndex] = sPrefix;
-/*N*/           pValNameArray[nIndex++] += OUString::createFromAscii( CFGSTR_UNIT_FROM );
+/*N*/           pValNameArray[nIndex++] += OUString(RTL_CONSTASCII_USTRINGPARAM( CFGSTR_UNIT_FROM ));
 /*N*/           pValNameArray[nIndex] = sPrefix;
-/*N*/           pValNameArray[nIndex++] += OUString::createFromAscii( CFGSTR_UNIT_TO );
+/*N*/           pValNameArray[nIndex++] += OUString(RTL_CONSTASCII_USTRINGPARAM( CFGSTR_UNIT_TO ));
 /*N*/           pValNameArray[nIndex] = sPrefix;
-/*N*/           pValNameArray[nIndex++] += OUString::createFromAscii( CFGSTR_UNIT_FACTOR );
+/*N*/           pValNameArray[nIndex++] += OUString(RTL_CONSTASCII_USTRINGPARAM( CFGSTR_UNIT_FACTOR ));
 /*N*/       }
 /*N*/
 /*N*/       Sequence<Any> aProperties = aConfigItem.GetProperties(aValNames);
@@ -144,7 +142,7 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/           OUString sFromUnit;
 /*N*/           OUString sToUnit;
-/*N*/           double fFactor;
+/*N*/           double fFactor(0.0);
 /*N*/
 /*N*/           nIndex = 0;
 /*N*/           for (long i=0; i<nNodeCount; i++)
@@ -177,3 +175,5 @@ using namespace ::com::sun::star::uno;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

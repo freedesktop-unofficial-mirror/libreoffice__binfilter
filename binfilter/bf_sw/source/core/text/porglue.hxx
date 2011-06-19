@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,10 +28,8 @@
 #ifndef _PORGLUE_HXX
 #define _PORGLUE_HXX
 
-
-//#include <stdlib.h>
-
 #include "porlin.hxx"
+
 namespace binfilter {
 
 class SwRect;
@@ -57,7 +56,7 @@ public:
     inline void MoveAllGlue( SwGluePortion *pTarget );
     inline void MoveHalfGlue( SwGluePortion *pTarget );
     inline void AdjFixWidth();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");};//STRIP001   virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& ) const{DBG_BF_ASSERT(0, "STRIP");};
 
     OUTPUT_OPERATOR
 };
@@ -133,3 +132,4 @@ CLASSIO( SwMarginPortion )
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

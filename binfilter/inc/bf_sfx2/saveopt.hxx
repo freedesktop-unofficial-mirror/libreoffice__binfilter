@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,9 @@
 
 
 #include <tools/wintypes.hxx>
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 // -----------------------------------------------------------------------
 #include "bf_sfx2/cfgitem.hxx"
 namespace binfilter {
@@ -83,7 +78,7 @@ private:
 
 protected:
     virtual int     Load(SvStream&);
-    virtual BOOL    Store(SvStream&);
+    virtual BOOL    Store(SvStream&) {}
     virtual void    UseDefault();
 
 public:
@@ -143,3 +138,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,49 +26,31 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLREDLINEEXPORT_HXX
 #include "XMLRedlineExport.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XREDLINESSUPPLIER_HPP_
 #include <com/sun/star/document/XRedlinesSupplier.hpp>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 
@@ -105,12 +88,11 @@ XMLRedlineExport::XMLRedlineExport(SvXMLExport& rExp) :
     sRedlineComment(RTL_CONSTASCII_USTRINGPARAM("RedlineComment")),
     sRedlineDateTime(RTL_CONSTASCII_USTRINGPARAM("RedlineDateTime")),
     sRedlineSuccessorData(RTL_CONSTASCII_USTRINGPARAM("RedlineSuccessorData")),
-    sRedlineType(RTL_CONSTASCII_USTRINGPARAM("RedlineType")),
     sRedlineText(RTL_CONSTASCII_USTRINGPARAM("RedlineText")),
+    sRedlineType(RTL_CONSTASCII_USTRINGPARAM("RedlineType")),
     sStyle(RTL_CONSTASCII_USTRINGPARAM("Style")),
     sTextTable(RTL_CONSTASCII_USTRINGPARAM("TextTable")),
     sUnknownChange(RTL_CONSTASCII_USTRINGPARAM("UnknownChange")),
-    sChangePrefix(RTL_CONSTASCII_USTRINGPARAM("ct")),
     sStartRedline(RTL_CONSTASCII_USTRINGPARAM("StartRedline")),
     sEndRedline(RTL_CONSTASCII_USTRINGPARAM("EndRedline")),
     sRedlineIdentifier(RTL_CONSTASCII_USTRINGPARAM("RedlineIdentifier")),
@@ -118,6 +100,7 @@ XMLRedlineExport::XMLRedlineExport(SvXMLExport& rExp) :
     sRedlineProtectionKey(RTL_CONSTASCII_USTRINGPARAM("RedlineProtectionKey")),
     sRecordChanges(RTL_CONSTASCII_USTRINGPARAM("RecordChanges")),
     sMergeLastPara(RTL_CONSTASCII_USTRINGPARAM("MergeLastPara")),
+    sChangePrefix(RTL_CONSTASCII_USTRINGPARAM("ct")),
     rExport(rExp),
     aChangeMap(),
     pCurrentChangesList(NULL)
@@ -130,7 +113,7 @@ XMLRedlineExport::~XMLRedlineExport()
     // delete changes lists
     for( ChangesMapType::iterator aIter = aChangeMap.begin();
          aIter != aChangeMap.end();
-         aIter++ )
+         ++aIter )
     {
         delete aIter->second;
     }
@@ -200,7 +183,7 @@ void XMLRedlineExport::ExportChangesList(
             // iterate over changes list
             for( ChangesListType::iterator aIter = pChangesList->begin();
                  aIter != pChangesList->end();
-                 aIter++ )
+                 ++aIter )
             {
                 ExportChangedRegion( *aIter );
             }
@@ -486,7 +469,7 @@ const OUString XMLRedlineExport::ConvertTypeName(
     }
     else
     {
-        DBG_ERROR("unknown redline type");
+        OSL_FAIL("unknown redline type");
         return sUnknownChange;
     }
 }
@@ -662,7 +645,7 @@ void XMLRedlineExport::ExportStartOrEndRedline(
     }
     else
     {
-        DBG_ERROR("XPropertySet expected");
+        OSL_FAIL("XPropertySet expected");
     }
 }
 
@@ -677,7 +660,7 @@ void XMLRedlineExport::ExportStartOrEndRedline(
     }
     else
     {
-        DBG_ERROR("XPropertySet expected");
+        OSL_FAIL("XPropertySet expected");
     }
 }
 
@@ -698,3 +681,5 @@ void XMLRedlineExport::WriteComment(const OUString& rComment)
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

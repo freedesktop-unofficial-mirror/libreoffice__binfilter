@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,18 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
 #include "eventimport.hxx"
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -136,7 +129,7 @@ namespace xmloff
         Reference< XEventAttacherManager > xEventManager(_rxContainer, UNO_QUERY);
         if (!xEventManager.is())
         {
-            OSL_ENSURE(sal_False, "ODefaultEventAttacherManager::setEvents: invalid argument!");
+            OSL_FAIL("ODefaultEventAttacherManager::setEvents: invalid argument!");
             return;
         }
 
@@ -162,3 +155,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,18 +35,12 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #include "swtypes.hxx"
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
 namespace com{namespace sun{namespace star{
     namespace container{
         class XNameAccess;
@@ -264,3 +259,4 @@ inline ULONG   SwFldMgr::GetCurFldFmt() const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

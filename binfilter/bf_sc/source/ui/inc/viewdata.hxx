@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef SC_VIEWDATA_HXX
 #define SC_VIEWDATA_HXX
 
-#ifndef SC_VIEWOPTI_HXX
 #include "viewopti.hxx"
-#endif
 
-#ifndef SC_MARKDATA_HXX
 #include "markdata.hxx"
-#endif
 class Window;
 namespace binfilter {
 
@@ -242,7 +239,7 @@ public:
     double          GetPPTX() const { return nPPTX; }
     double          GetPPTY() const { return nPPTY; }
 
-    void            GetMultiArea( ScRangeListRef& rRange ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void          GetMultiArea( ScRangeListRef& rRange );
+    void            GetMultiArea( ScRangeListRef& /*rRange*/ ){DBG_BF_ASSERT(0, "STRIP");}
 
 
     BOOL            IsAnyFillMode()             { return nFillMode != SC_FILL_NONE; }
@@ -401,3 +398,4 @@ inline ScSplitPos Which( ScVSplitPos eVPos )
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

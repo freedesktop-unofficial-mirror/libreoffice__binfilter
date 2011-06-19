@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,21 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
-#endif
 
 #define ITEMID_COLOR_TABLE      SID_COLOR_TABLE
 #define ITEMID_GRADIENT_LIST    SID_GRADIENT_LIST
@@ -51,39 +42,19 @@
 #define ITEMID_BITMAP_LIST      SID_BITMAP_LIST
 #define ITEMID_DASH_LIST        SID_DASH_LIST
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
-#ifndef _SVX_DRAWITEM_HXX
 #include <bf_svx/drawitem.hxx>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _DPAGE_HXX
 #include <dpage.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -181,7 +152,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
     SetDefaultFontHeight( 240 );
     SetSwapGraphics( TRUE );
 
-    ASSERT( pDocSh, "DocShell not found" );
+    OSL_ENSURE( pDocSh, "DocShell not found" );
     SvxColorTableItem* pColItem = ( SvxColorTableItem* )
                                 ( pDocSh->GetItem( ITEMID_COLOR_TABLE ) );
     XColorTable *pXCol = pColItem ? pColItem->GetColorTable() :
@@ -221,7 +192,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 \************************************************************************/
 
 
-/*N*/ SdrPage* SwDrawDocument::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* SwDrawDocument::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   SwDPage* pPage = new SwDPage(*this, bMasterPage);
 /*N*/   pPage->SetName( String::CreateFromAscii(
@@ -273,7 +244,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*?*/                   if( pRet )
 /*?*/                   {
 /*?*/                       pRet->SetVersion( xPictureStorage->GetVersion() );
-/*?*/                       pRet->SetKey( xPictureStorage->GetKey() );
+/*?*/                       pRet->SetCryptMaskKey( xPictureStorage->GetKey() );
 /*?*/
 /*?*/                         rInfo.mbDeleteAfterUse = TRUE;
 /*?*/                         rInfo.mpStorageRef = new SvStorageRef( xPictureStorage );
@@ -284,7 +255,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/         else if( xRoot->IsStream( sDrawStrmNm ) )
 /*N*/       {
 /*N*/           long nFFVersion = xRoot->GetVersion();
-/*N*/           ASSERT( nFFVersion == SOFFICE_FILEFORMAT_31 ||
+/*N*/           OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_31 ||
 /*N*/                   nFFVersion == SOFFICE_FILEFORMAT_40 ||
 /*N*/                   nFFVersion == SOFFICE_FILEFORMAT_50,
 /*N*/                   "Am Root-Storage ist keine FF-Version gesetzt!" );
@@ -294,7 +265,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/           if( SOT_FORMATSTR_ID_STARWRITER_30 == xRoot->GetFormat() &&
 /*N*/               nFFVersion != SOFFICE_FILEFORMAT_31 )
 /*N*/           {
-/*?*/               ASSERT( nFFVersion == SOFFICE_FILEFORMAT_31,
+/*?*/               OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_31,
 /*?*/                       "Fileformat-Version auf 3.1 umgesetzt" );
 /*?*/               xRoot->SetVersion( nFFVersion = SOFFICE_FILEFORMAT_31 );
 /*N*/           }
@@ -303,7 +274,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/                      SOT_FORMATSTR_ID_STARWRITERGLOB_40 == xRoot->GetFormat() ) &&
 /*N*/                    nFFVersion != SOFFICE_FILEFORMAT_40 )
 /*N*/           {
-/*?*/               ASSERT( nFFVersion == SOFFICE_FILEFORMAT_40,
+/*?*/               OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_40,
 /*?*/                       "Fileformat-Version auf 4.0 umgesetzt" );
 /*?*/               xRoot->SetVersion( nFFVersion = SOFFICE_FILEFORMAT_40 );
 /*N*/           }
@@ -312,7 +283,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*N*/                      SOT_FORMATSTR_ID_STARWRITERGLOB_50 == xRoot->GetFormat() ) &&
 /*N*/                    nFFVersion != SOFFICE_FILEFORMAT_50 )
 /*N*/           {
-/*?*/               ASSERT( nFFVersion == SOFFICE_FILEFORMAT_50,
+/*?*/               OSL_ENSURE( nFFVersion == SOFFICE_FILEFORMAT_50,
 /*?*/                       "Fileformat-Version auf 4.0 umgesetzt" );
 /*?*/               xRoot->SetVersion( nFFVersion = SOFFICE_FILEFORMAT_50 );
 /*N*/           }
@@ -333,3 +304,5 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "sbx.hxx"
 #include "sbxres.hxx"
@@ -288,15 +287,7 @@ BOOL SbxStdCollection::LoadData( SvStream& rStrm, USHORT nVer )
     return bRes;
 }
 
-BOOL SbxStdCollection::StoreData( SvStream& rStrm ) const
-{
-    BOOL bRes = SbxCollection::StoreData( rStrm );
-    if( bRes )
-    {
-        rStrm.WriteByteString( aElemClass, RTL_TEXTENCODING_ASCII_US );
-        rStrm << bAddRemoveOk;
-    }
-    return bRes;
-}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,71 +34,29 @@
 #define _SVX_PARAITEM_HXX
 #define _SVX_TEXTITEM_HXX
 
-#ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SWWAIT_HXX
 #include <swwait.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>
-#endif
-#ifndef _SWREGION_HXX
 #include <swregion.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _LAYACT_HXX
 #include <layact.hxx>
-#endif
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>
-#endif
 #include <shellres.hxx>
 namespace binfilter {
 
@@ -105,7 +64,7 @@ BOOL ViewShell::bLstAct = FALSE;
 ShellResource *ViewShell::pShellRes = 0;
 Window *ViewShell::pCareWindow = 0;
 
-FASTBOOL bInSizeNotify = FALSE;
+bool bInSizeNotify = FALSE;
 
 /*N*/ DBG_NAME(LayoutIdle)
 
@@ -114,8 +73,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::ImplEndAction()
-|*
-|*  Letzte Aenderung    MA 04. Sep. 96
 |*
 ******************************************************************************/
 
@@ -153,7 +110,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   if ( Imp()->GetRegion() && Imp()->GetRegion()->GetOrigin() != VisArea() )
 /*N*/       Imp()->DelRegions();
 /*N*/
-/*N*/   const FASTBOOL bExtraData = ::binfilter::IsExtraData( GetDoc() );
+/*N*/   const bool bExtraData = ::binfilter::IsExtraData( GetDoc() );
 /*N*/
 /*N*/   if ( !bIdleEnd )
 /*N*/   {
@@ -183,7 +140,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   {
 /*?*/       if ( !nLockPaint )
 /*?*/       {
-/*?*/           FASTBOOL bPaintsFromSystem = aInvalidRect.HasArea();
+/*?*/           bool bPaintsFromSystem = aInvalidRect.HasArea();
 /*?*/           GetWin()->Update();
 /*?*/           if ( aInvalidRect.HasArea() )
 /*?*/           {
@@ -194,7 +151,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*?*/               // to give it a chance to react with proper IAO updates
 /*?*/               if (HasDrawView())
 /*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   GetDrawView()->ForceInvalidateMarkHandles();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               ResetInvalidRect();
@@ -213,14 +170,14 @@ FASTBOOL bInSizeNotify = FALSE;
 /*?*/           BOOL bShowCrsr = (pRegion || Imp()->GetScrollRects()) &&
 /*?*/                               IsA( TYPE(SwCrsrShell) );
 /*?*/           if( bShowCrsr )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ((SwCrsrShell*)this)->HideCrsrs();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/           Scroll();
 /*?*/           if ( bPaintsFromSystem && Imp()->pScrolledArea )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               Imp()->FlushScrolledArea();
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/           if ( pRegion )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           {
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           if( bShowCrsr )
 /*?*/               ((SwCrsrShell*)this)->ShowCrsrs( TRUE );
 /*?*/       }
@@ -267,9 +224,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::ImplStartAction()
 |*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 25. Jul. 94
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::ImplStartAction()
@@ -281,9 +235,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::AddPaintRect()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 09. Feb. 97
 |*
 ******************************************************************************/
 
@@ -307,9 +258,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /******************************************************************************
 |*
 |*  ViewShell::InvalidateWindows()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 09. Feb. 97
 |*
 ******************************************************************************/
 
@@ -338,9 +286,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::MakeVisible()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    AMA 10. Okt. 95
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::MakeVisible( const SwRect &rRect )
@@ -365,7 +310,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/           else
 /*N*/           {
 /*N*/               //MA: 04. Nov. 94, braucht doch keiner oder??
-/*N*/               ASSERT( !this, "MakeVisible fuer Drucker wird doch gebraucht?" );
+/*N*/               OSL_ENSURE( !this, "MakeVisible fuer Drucker wird doch gebraucht?" );
 /*N*/           }
 /*N*/
 /*N*/ #endif
@@ -373,32 +318,9 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   }
 /*N*/ }
 
-/******************************************************************************
-|*
-|*  ViewShell::CareChildWindow()
-|*
-|*  Ersterstellung      AMA 10. Okt. 95
-|*  Letzte Aenderung    AMA 10. Okt. 95
-|*
-******************************************************************************/
-
-
-/******************************************************************************
-|*
-|*  ViewShell::GetPagePos()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 04. Aug. 93
-|*
-******************************************************************************/
-
-
 /*************************************************************************
 |*
 |*    ViewShell::LayoutIdle()
-|*
-|*    Ersterstellung    MA 26. May. 92
-|*    Letzte Aenderung  OG 19. Mar. 96
 |*
 *************************************************************************/
 
@@ -447,9 +369,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::Reformat
 |*
-|*  Ersterstellung      BP ???
-|*  Letzte Aenderung    MA 13. Feb. 98
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::Reformat()
@@ -477,9 +396,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::CalcLayout()
 |*                  Vollstaendige Formatierung von Layout und Inhalt.
-|*
-|*  Ersterstellung      MA 31. Jan. 94
-|*  Letzte Aenderung    MA 08. Oct. 96
 |*
 ******************************************************************************/
 
@@ -535,9 +451,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::SetFirstVisPageInvalid()
 |*
-|*  Ersterstellung      MA 19. May. 94
-|*  Letzte Aenderung    MA 19. May. 94
-|*
 ******************************************************************************/
 
 /*N*/ void ViewShell::SetFirstVisPageInvalid()
@@ -554,12 +467,9 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::SizeChgNotify()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 17. Sep. 96
-|*
 ******************************************************************************/
 
-/*N*/ void ViewShell::SizeChgNotify(const Size &rSize)
+/*N*/ void ViewShell::SizeChgNotify(const Size &)
 /*N*/ {
 /*N*/   if ( !pWin )
 /*N*/       bDocSizeChgd = TRUE;
@@ -590,9 +500,6 @@ FASTBOOL bInSizeNotify = FALSE;
 /*************************************************************************
 |*
 |*    ViewShell::GetLayout()
-|*
-|*    Ersterstellung    OK 26. May. 92
-|*    Letzte Aenderung  MA 16. Sep. 93
 |*
 *************************************************************************/
 
@@ -630,9 +537,6 @@ FASTBOOL bInSizeNotify = FALSE;
 |*
 |*  ViewShell::UISizeNotify()
 |*
-|*  Ersterstellung      MA 14. Jan. 97
-|*  Letzte Aenderung    MA 14. Jan. 97
-|*
 ******************************************************************************/
 
 
@@ -641,7 +545,7 @@ FASTBOOL bInSizeNotify = FALSE;
 /*N*/   if ( bDocSizeChgd )
 /*N*/   {
 /*N*/       bDocSizeChgd = FALSE;
-/*N*/       FASTBOOL bOld = bInSizeNotify;
+/*N*/       bool bOld = bInSizeNotify;
 /*N*/       bInSizeNotify = TRUE;
 /*N*/       DBG_BF_ASSERT(0, "STRIP");//::binfilter::SizeNotify( this, GetLayout()->Frm().SSize() );
 /*N*/       bInSizeNotify = bOld;
@@ -661,3 +565,5 @@ ShellResource* ViewShell::GetShellRes()
     return pShellRes;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

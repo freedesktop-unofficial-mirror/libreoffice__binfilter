@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScDocument;
@@ -147,8 +146,8 @@ class ScQueryCellIterator           // alle nichtleeren Zellen in einem Bereich
     {
         nStopOnMismatchDisabled = 0x00,
         nStopOnMismatchEnabled  = 0x01,
-        nStopOnMismatchOccured  = 0x02,
-        nStopOnMismatchExecuted = nStopOnMismatchEnabled | nStopOnMismatchOccured
+        nStopOnMismatchOccurred  = 0x02,
+        nStopOnMismatchExecuted = nStopOnMismatchEnabled | nStopOnMismatchOccurred
     };
 
     enum TestEqualConditionBits
@@ -318,3 +317,4 @@ private:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
 class Window;
 class OutputDevice;
@@ -381,9 +376,7 @@ public:
     inline void SetPDFExport(BOOL b)
         { (b != 0) ? (nCore2Options |= VIEWOPT_CORE2_PDF_EXPORT) : (nCore2Options &= ~VIEWOPT_CORE2_PDF_EXPORT);}
 
-/*---------------------------------------------------------------------------
 
-----------------------------------------------------------------------------*/
 
 
     inline short GetDivisionX() const   { return nDivisionX; }
@@ -474,7 +467,7 @@ public:
     void SetPrtFormat( BOOL b)
         { b ? (nUIOptions |= VIEWOPT_2_PRTFORMAT) : (nUIOptions &= ~VIEWOPT_2_PRTFORMAT); }
 
-    void            SetZoomType     (BYTE nZoom){ eZoom = nZoom;    }
+    void            SetZoomType     (BYTE eZoom_){ eZoom = eZoom_;  }
     void            SetTblDest( BYTE nNew )     { nTblDest = nNew;  }
 
     const String&   GetSymbolFont() const {return sSymbolFont;}
@@ -570,3 +563,5 @@ USHORT      GetHtmlMode(const SwDocShell*);
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

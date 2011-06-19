@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
-#endif
 
 // -------------------------------------------------------------------
 
@@ -88,30 +85,20 @@ typedef int (FAR PASCAL *FNw4wf)( LPSTR, LPSTR, LPSTR, LPSTR, FNDisplay );
 
 // -------------------------------------------------------------------
 
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _W4WFLT_HXX
 #include <w4wflt.hxx>
-#endif
 
-#ifndef _SWERROR_H
 #include <swerror.h>
-#endif
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 #define ERR_DLL 9999
 
-/*N*/ USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ USHORT AutoDetec( const String& /*rFileName*/, USHORT & /*rVersion*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 // Handler fuer die Prozentanzeige
@@ -299,7 +286,7 @@ static const ULONG nErrors[18]={
     return 0;
 }
 
-FASTBOOL W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter )
+bool W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter )
 {
 #ifdef MAC
     return TRUE;            // dann beim CallMacRes feststellen
@@ -352,3 +339,5 @@ FASTBOOL W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

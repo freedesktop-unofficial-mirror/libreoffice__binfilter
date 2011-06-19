@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter
 {
@@ -45,9 +44,9 @@ namespace binfilter
 //! will fail upon reading these entries. Nevertheless, old versions are NOT
 //! able to display those new keywords => blank display.
 //
-// Note: 2005-09-02: the above applies to the binary file format.
+// Note: the above applies to the binary file format.
 //
-// ER 15.12.99: This table is externally only to be used with method
+// This table is externally only to be used with method
 // String SvNumberformat::GetMappedFormatstring( const NfKeywordTable&, const LocaleDataWrapper& );
 // and method
 // void SvNumberFormatter::FillKeywordTable( NfKeywordTable&, LanguageType );
@@ -124,3 +123,4 @@ typedef String NfKeywordTable [NF_KEYWORD_ENTRIES_COUNT];
 
 #endif // INCLUDED_SVTOOLS_NFKEYTAB_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

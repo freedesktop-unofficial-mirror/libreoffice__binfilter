@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -117,7 +115,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void ScSheetDPData::DisposeData()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ long ScSheetDPData::GetColumnCount()
@@ -125,10 +123,6 @@ namespace binfilter {
 /*N*/   return pImpl->nColCount;
 /*N*/ }
 
-
-/*N*/ const TypedStrCollection& ScSheetDPData::GetColumnEntries(long nColumn)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
-/*N*/ }
 
 /*N*/ String ScSheetDPData::getDimensionName(long nColumn)
 /*N*/ {
@@ -140,7 +134,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if ( nColumn >= pImpl->nColCount )
 /*N*/   {
-/*?*/       DBG_ERROR("getDimensionName: invalid dimension");
+/*?*/       OSL_FAIL("getDimensionName: invalid dimension");
 /*?*/       return String();
 /*N*/   }
 /*N*/   else
@@ -173,7 +167,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if ( nDim >= pImpl->nColCount )
 /*N*/   {
-/*?*/       DBG_ERROR("IsDateDimension: invalid dimension");
+/*?*/       OSL_FAIL("IsDateDimension: invalid dimension");
 /*?*/       return FALSE;
 /*N*/   }
 /*N*/   else
@@ -194,8 +188,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ UINT32 ScSheetDPData::GetNumberFormat(long nDim)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ UINT32 ScSheetDPData::GetNumberFormat(long)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ BOOL ScSheetDPData::getIsDataLayoutDimension(long nColumn)
@@ -215,8 +209,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& rParam )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ BOOL ScSheetDPData::GetNextRow( const ScDPTableIteratorParam& )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -228,3 +222,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

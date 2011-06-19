@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,139 +31,60 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
 #include <com/sun/star/text/XTextDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
 #include <com/sun/star/text/XTextRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_TXTIMP_HXX
 #include <bf_xmloff/txtimp.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTSHAPEIMPORTHELPER_HXX_
 #include <bf_xmloff/XMLTextShapeImportHelper.hxx>
-#endif
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
 #include <bf_xmloff/XMLFontStylesContext.hxx>
-#endif
-#ifndef _XMLOFF_PROGRESSBARHELPER_HXX
 #include <bf_xmloff/ProgressBarHelper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_PRINTERINDEPENDENTLAYOUT_HPP_
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _UNOCRSR_HXX
 #include "unocrsr.hxx"
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _PAM_HXX //autogen wg. SwPaM
 #include <pam.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 #include <bf_xmloff/DocumentSettingsContext.hxx>
-#endif
 
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
 
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
 
-#ifndef _FORBIDDEN_CHARACTERS_ENUM_HXX
 #include <ForbiddenCharactersEnum.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <bf_svtools/saveopt.hxx>
-#endif
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <sal/macros.h>
+#include <osl/mutex.hxx>
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
@@ -172,6 +94,8 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::drawing;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 struct OUStringEquals
 {
@@ -197,7 +121,7 @@ enum SwXMLDocTokens
     XML_TOK_OFFICE_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDocTokenMap[] =
+static SvXMLTokenMapEntry aDocTokenMap[] =
 {
     { XML_NAMESPACE_OFFICE, XML_FONT_DECLS,     XML_TOK_DOC_FONTDECLS   },
     { XML_NAMESPACE_OFFICE, XML_STYLES,         XML_TOK_DOC_STYLES      },
@@ -218,20 +142,20 @@ class SwXMLDocContext_Impl : public SvXMLImportContext
 
 public:
 
-    SwXMLDocContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
+    SwXMLDocContext_Impl( SwXMLImport& rInImport, sal_uInt16 nPrfx,
                 const OUString& rLName,
                 const Reference< xml::sax::XAttributeList > & xAttrList );
     virtual ~SwXMLDocContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
                 const OUString& rLocalName,
                 const Reference< xml::sax::XAttributeList > & xAttrList );
 };
 
-SwXMLDocContext_Impl::SwXMLDocContext_Impl( SwXMLImport& rImport,
+SwXMLDocContext_Impl::SwXMLDocContext_Impl( SwXMLImport& rInImport,
                 sal_uInt16 nPrfx, const OUString& rLName,
                 const Reference< xml::sax::XAttributeList > & xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     // process document class
     // global-text is handled via document shell;
@@ -240,11 +164,11 @@ SwXMLDocContext_Impl::SwXMLDocContext_Impl( SwXMLImport& rImport,
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+        if ( (XML_NAMESPACE_OFFICE == nLclPrefix) &&
              IsXMLToken( sLocalName, XML_CLASS ) )
         {
             if ( IsXMLToken( xAttrList->getValueByIndex(nAttr), XML_LABEL ) )
@@ -274,14 +198,14 @@ SwXMLDocContext_Impl::~SwXMLDocContext_Impl()
 }
 
 SvXMLImportContext *SwXMLDocContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetSwImport().GetDocElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_DOC_FONTDECLS:
         pContext = GetSwImport().CreateFontDeclsContext( rLocalName,
@@ -319,12 +243,12 @@ SvXMLImportContext *SwXMLDocContext_Impl::CreateChildContext(
         pContext = GetSwImport().CreateBodyContext( rLocalName );
         break;
     case XML_TOK_DOC_SETTINGS:
-        pContext = new XMLDocumentSettingsContext ( GetImport(), nPrefix, rLocalName, xAttrList );
+        pContext = new XMLDocumentSettingsContext ( GetImport(), nInPrefix, rLocalName, xAttrList );
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
 
     return pContext;
@@ -341,22 +265,22 @@ const SvXMLTokenMap& SwXMLImport::GetDocElemTokenMap()
 }
 
 SvXMLImportContext *SwXMLImport::CreateContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_OFFICE==nPrefix &&
+    if( XML_NAMESPACE_OFFICE==nInPrefix &&
         ( IsXMLToken( rLocalName, XML_DOCUMENT ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_META ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_SETTINGS ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_STYLES ) ||
           IsXMLToken( rLocalName, XML_DOCUMENT_CONTENT ) ))
-        pContext = new SwXMLDocContext_Impl( *this, nPrefix, rLocalName,
+        pContext = new SwXMLDocContext_Impl( *this, nInPrefix, rLocalName,
                                              xAttrList );
     else
-        pContext = SvXMLImport::CreateContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImport::CreateContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -366,20 +290,20 @@ SwXMLImport::SwXMLImport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceFactory,
     sal_uInt16 nImportFlags)
 :   SvXMLImport( xServiceFactory, nImportFlags ),
-    bLoadDoc( sal_True ),
-    bInsert( sal_False ),
-    bBlock( sal_False ),
-    bOrganizerMode( sal_False ),
-    nStyleFamilyMask( SFX_STYLE_FAMILY_ALL ),
+    pSttNdIdx( 0 ),
+    pTableItemMapper( 0 ),
     pDocElemTokenMap( 0 ),
     pTableElemTokenMap( 0 ),
     pTableCellAttrTokenMap( 0 ),
-    pTableItemMapper( 0 ),
-    pSttNdIdx( 0 ),
-    bShowProgress( sal_True ),
-    bPreserveRedlineMode( sal_True ),
     pGraphicResolver( 0 ),
-    pEmbeddedResolver( 0 )
+    pEmbeddedResolver( 0 ),
+    nStyleFamilyMask( SFX_STYLE_FAMILY_ALL ),
+    bLoadDoc( sal_True ),
+    bInsert( sal_False ),
+    bBlock( sal_False ),
+    bShowProgress( sal_True ),
+    bOrganizerMode( sal_False ),
+    bPreserveRedlineMode( sal_True )
 {
     _InitItemImport();
 
@@ -479,13 +403,13 @@ sal_Int64 SAL_CALL SwXMLImport::getSomething( const Sequence< sal_Int8 >& rId )
 OTextCursorHelper *lcl_xml_GetSwXTextCursor( const Reference < XTextCursor >& rTextCursor )
 {
     Reference<XUnoTunnel> xCrsrTunnel( rTextCursor, UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     if( !xCrsrTunnel.is() )
         return 0;
     OTextCursorHelper *pTxtCrsr =
         (OTextCursorHelper *)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     return pTxtCrsr;
 }
 
@@ -500,7 +424,7 @@ void SwXMLImport::startDocument( void )
         return;
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     // There only is a text cursor by now if we are in insert mode. In any
     // other case we have to create one at the start of the document.
@@ -521,12 +445,12 @@ void SwXMLImport::startDocument( void )
         if( IMPORT_ALL == getImportFlags() )
         {
             pTxtCrsr = lcl_xml_GetSwXTextCursor( xTextCursor );
-            ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+            OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
             if( !pTxtCrsr )
                 return;
 
             pDoc = pTxtCrsr->GetDoc();
-            ASSERT( pDoc, "SwDoc missing" );
+            OSL_ENSURE( pDoc, "SwDoc missing" );
             if( !pDoc )
                 return;
 
@@ -554,12 +478,12 @@ void SwXMLImport::startDocument( void )
 
     if( !pTxtCrsr  )
         pTxtCrsr = lcl_xml_GetSwXTextCursor( xTextCursor );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     if( !pTxtCrsr )
         return;
 
     SwDoc *pDoc = pTxtCrsr->GetDoc();
-    ASSERT( pDoc, "SwDoc missing" );
+    OSL_ENSURE( pDoc, "SwDoc missing" );
     if( !pDoc )
         return;
 
@@ -592,8 +516,8 @@ void SwXMLImport::startDocument( void )
     if( !GetGraphicResolver().is() )
     {
         pGraphicResolver = SvXMLGraphicHelper::Create( GRAPHICHELPER_MODE_READ );
-        Reference< document::XGraphicObjectResolver > xGraphicResolver( pGraphicResolver );
-        SetGraphicResolver( xGraphicResolver );
+        Reference< document::XGraphicObjectResolver > xLclGraphicResolver( pGraphicResolver );
+        SetGraphicResolver( xLclGraphicResolver );
     }
 
     if( !GetEmbeddedResolver().is() )
@@ -604,8 +528,8 @@ void SwXMLImport::startDocument( void )
             pEmbeddedResolver = SvXMLEmbeddedObjectHelper::Create(
                                             *pPersist,
                                             EMBEDDEDOBJECTHELPER_MODE_READ );
-            Reference< document::XEmbeddedObjectResolver > xEmbeddedResolver( pEmbeddedResolver );
-            SetEmbeddedResolver( xEmbeddedResolver );
+            Reference< document::XEmbeddedObjectResolver > xLclEmbeddedResolver( pEmbeddedResolver );
+            SetEmbeddedResolver( xLclEmbeddedResolver );
         }
     }
 }
@@ -618,7 +542,7 @@ void SwXMLImport::endDocument( void )
         return;
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( pGraphicResolver )
         SvXMLGraphicHelper::Destroy( pGraphicResolver );
@@ -636,11 +560,11 @@ void SwXMLImport::endDocument( void )
     {
         Reference<XUnoTunnel> xCrsrTunnel( GetTextImport()->GetCursor(),
                                               UNO_QUERY);
-        ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+        OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
         OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-        ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+        OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
         SwPaM *pPaM = pTxtCrsr->GetPaM();
         if( IsInsertMode() && pSttNdIdx->GetIndex() )
         {
@@ -663,10 +587,10 @@ void SwXMLImport::endDocument( void )
 
 #ifdef DBG_UTIL
                 // !!! This should be impossible !!!!
-                ASSERT( pSttNdIdx->GetIndex()+1 !=
+                OSL_ENSURE( pSttNdIdx->GetIndex()+1 !=
                                         pPaM->GetBound( sal_True ).nNode.GetIndex(),
                         "PaM.Bound1 point to new node " );
-                ASSERT( pSttNdIdx->GetIndex()+1 !=
+                OSL_ENSURE( pSttNdIdx->GetIndex()+1 !=
                                         pPaM->GetBound( sal_False ).nNode.GetIndex(),
                         "PaM.Bound2 points to new node" );
 
@@ -868,18 +792,18 @@ void SwXMLImport::SetViewSettings(const Sequence < PropertyValue > & aViewProps)
         return;
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
     Reference < XText > xText = xTextDoc->getText();
     Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-    ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
     if( !xTextTunnel.is() )
         return;
 
     SwXText *pText = (SwXText *)xTextTunnel->getSomething(
                                         SwXText::getUnoTunnelId() );
-    ASSERT( pText, "SwXText missing" );
+    OSL_ENSURE( pText, "SwXText missing" );
     if( !pText )
         return;
 
@@ -891,7 +815,7 @@ void SwXMLImport::SetViewSettings(const Sequence < PropertyValue > & aViewProps)
     sal_Int32 nCount = aViewProps.getLength();
     const PropertyValue *pValue = aViewProps.getConstArray();
 
-    long nTmp;
+    long nTmp(0);
     sal_Bool bShowRedlineChanges = sal_False, bBrowseMode = sal_False,
              bShowFooter = sal_False, bShowHeader = sal_False;
     sal_Bool bChangeShowRedline = sal_False, bChangeBrowseMode = sal_False,
@@ -963,7 +887,7 @@ void SwXMLImport::SetViewSettings(const Sequence < PropertyValue > & aViewProps)
 void SwXMLImport::SetConfigurationSettings(const Sequence < PropertyValue > & aConfigProps)
 {
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Reference< lang::XMultiServiceFactory > xFac( GetModel(), UNO_QUERY );
     if( !xFac.is() )
@@ -985,6 +909,8 @@ void SwXMLImport::SetConfigurationSettings(const Sequence < PropertyValue > & aC
 -----------------------------------------------------------------
 #include <stdio.h>
 #include <string.h>
+
+#include <sal/macros.h>
 
  const char* aNmArr[] = {
  "ForbiddenCharacters" ,
@@ -1027,20 +953,20 @@ int Chk_Unique_hashValue( unsigned short nTblSize )
 {
     memset( aArr, 0, sizeof( aArr ) );
     unsigned long ii;
-    for( int n = 0; n < sizeof( aNmArr ) / sizeof( aNmArr[0] ); ++n )
+    for( int n = 0; n < SAL_N_ELEMENTS( aNmArr ); ++n )
     {
         ii = calc_hash( aNmArr[ n ] ) % nTblSize;
         if( aArr[ ii ] )
             break;
         aArr[ ii ] = 1;
     }
-    return n == ( sizeof( aNmArr ) / sizeof( aNmArr[0] ) );
+    return n == SAL_N_ELEMENTS( aNmArr );
 }
 
 void Show_Result( unsigned short nTblSize )
 {
     printf( "\nTblSz = %d\n", nTblSize );
-    for( int n = 0; n < sizeof( aNmArr ) / sizeof( aNmArr[0] ); ++n )
+    for( int n = 0; n < SAL_N_ELEMENTS( aNmArr ); ++n )
     {
         unsigned long ii = calc_hash( aNmArr[ n ] ) % nTblSize;
         printf( "%-30s -> %3d\n", aNmArr[ n ], ii );
@@ -1054,7 +980,7 @@ void main()
 
     for( nSub = ' '; nSub < 127; ++nSub )
         for( nPrime = 13 ; nPrime < 99; ++nPrime )
-            for( nTblSize = sizeof( aNmArr ) / sizeof( aNmArr[0] );
+            for( nTblSize = SAL_N_ELEMENTS( aNmArr );
                     nTblSize < TBL_MAX; ++nTblSize )
                 if( Chk_Unique_hashValue( nTblSize ))
                 {
@@ -1073,7 +999,7 @@ void main()
 
     Show_Result( nTblSize );
     printf( "\nPrime: %d, nSub: %d, TblSz = %d - %d", nPrime, nSub,
-            sizeof( aNmArr ) / sizeof( aNmArr[0] ), nTblSize );
+            SAL_N_ELEMENTS( aNmArr ), nTblSize );
 }
 -----------------------------------------------------------------
     */
@@ -1143,10 +1069,10 @@ void main()
         if( !bIsUserSetting )
         {
             // test over the hash value if the entry is in the table.
-            const sal_Unicode* p = pValues->Name;
+            const sal_Unicode* p = pValues->Name.getStr();
             for( ULONG nLen = pValues->Name.getLength(); nLen; --nLen, ++p )
                 nHash = (nHash * nPrime) ^ ( *p - nSub );
-            nHash %= sizeof( aNotSetArr ) / sizeof( aNotSetArr[0] );
+            nHash %= SAL_N_ELEMENTS( aNotSetArr );
             bSet = 0 == aNotSetArr[ nHash ].pName ||
                     !pValues->Name.equalsAsciiL(
                             aNotSetArr[ nHash ].pName,
@@ -1169,7 +1095,7 @@ void main()
             }
             catch( Exception& )
             {
-                DBG_ERROR( "SwXMLImport::SetConfigurationSettings: Exception!" );
+                OSL_FAIL( "SwXMLImport::SetConfigurationSettings: Exception!" );
             }
         }
         pValues++;
@@ -1189,12 +1115,12 @@ void main()
     Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
     Reference < XText > xText = xTextDoc->getText();
     Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-    ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
     if( xTextTunnel.is() )
     {
         SwXText *pText = (SwXText *)xTextTunnel->getSomething(
                                         SwXText::getUnoTunnelId() );
-        ASSERT( pText, "SwXText missing" );
+        OSL_ENSURE( pText, "SwXText missing" );
         if( pText )
         {
             SwDoc *pDoc = pText->GetDoc();
@@ -1401,3 +1327,5 @@ OUString SAL_CALL SwXMLImport::getImplementationName()
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

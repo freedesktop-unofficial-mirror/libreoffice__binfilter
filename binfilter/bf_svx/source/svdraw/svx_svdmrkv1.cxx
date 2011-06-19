@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -71,7 +72,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bChg=FALSE;
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if (bChg) ((SdrMarkView*)this)->bMarkedPointsRectsDirty=TRUE;
 /*N*/   ((SdrMarkView*)this)->bMrkPntDirty=FALSE;
@@ -97,8 +98,10 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL SdrMarkView::MarkGluePoints(const Rectangle* pRect, BOOL bUnmark)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL SdrMarkView::MarkGluePoints(const Rectangle* /*pRect*/, BOOL /*bUnmark*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

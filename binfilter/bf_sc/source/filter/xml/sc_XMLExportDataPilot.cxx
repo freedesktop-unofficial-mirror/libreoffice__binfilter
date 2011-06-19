@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,66 +26,31 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLEXPORTDATAPILOT_HXX
 #include "XMLExportDataPilot.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_DPOBJECT_HXX
 #include "dpobject.hxx"
-#endif
-#ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
-#endif
-#ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
-#endif
-#ifndef SC_SCPATATR_HXX
 #include "patattr.hxx"
-#endif
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
-#endif
-#ifndef SC_DPSAVE_HXX
 #include "dpsave.hxx"
-#endif
-#ifndef SC_DPSHTTAB_HXX
 #include "dpshttab.hxx"
-#endif
-#ifndef SC_DPSDBTAB_HXX
 #include "dpsdbtab.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_DATAIMPORTMODE_HPP_
 #include <com/sun/star/sheet/DataImportMode.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -157,7 +123,7 @@ rtl::OUString ScXMLExportDataPilot::getDPOperatorXML(const ScQueryOp aFilterOper
             return GetXMLToken(XML_TOP_VALUES);
             break;
         default:
-            DBG_ERROR("This FilterOperator is not supported.");
+            OSL_FAIL("This FilterOperator is not supported.");
     }
     return ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("="));
 }
@@ -313,7 +279,7 @@ void ScXMLExportDataPilot::WriteDPFilter(const ScQueryParam& aQueryParam)
     }
 }
 
-void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreadsheetDocument>& xSpreadDoc)
+void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreadsheetDocument>& /*xSpreadDoc*/)
 {
     pDoc = rExport.GetDocument();
     if (pDoc)
@@ -433,11 +399,11 @@ void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreads
                             SvXMLElementExport aElemSD(rExport, XML_NAMESPACE_TABLE, XML_SOURCE_SERVICE, sal_True, sal_True);
                             rExport.CheckAttrList();
                         }
-                        List aDimensions = pDPSave->GetDimensions();
-                        sal_Int32 nDimCount = aDimensions.Count();
-                        for (sal_Int32 nDim = 0; nDim < nDimCount; nDim++)
+                        type_ScDPDimensionList aDimensions = pDPSave->GetDimensions();
+                        size_t nDimCount = aDimensions.size();
+                        for (size_t nDim = 0; nDim < nDimCount; nDim++)
                         {
-                            ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimensions.GetObject(nDim);
+                            ScDPSaveDimension* pDim = aDimensions[ nDim ];
                             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_SOURCE_FIELD_NAME, ::rtl::OUString(pDim->GetName()));
                             if (pDim->IsDataLayout())
                                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_IS_DATA_LAYOUT_FIELD, XML_TRUE);
@@ -476,20 +442,20 @@ void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreads
                                         SvXMLElementExport aElemST(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_SUBTOTAL, sal_True, sal_True);
                                     }
                                 }
-                                List aMembers = pDim->GetMembers();
-                                sal_Int32 nMemberCount = aMembers.Count();
+                                type_MemberList aMembers = pDim->GetMembers();
+                                size_t nMemberCount = aMembers.size();
                                 if (nMemberCount > 0)
                                 {
                                     SvXMLElementExport aElemDPMs(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBERS, sal_True, sal_True);
                                     rExport.CheckAttrList();
-                                    for (sal_Int32 nMember = 0; nMember < nMemberCount; nMember++)
+                                    for (size_t nMember = 0; nMember < nMemberCount; nMember++)
                                     {
-                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NAME, ::rtl::OUString(((ScDPSaveMember*)aMembers.GetObject(nMember))->GetName()));
-                                        ::rtl::OUStringBuffer sBuffer;
-                                        SvXMLUnitConverter::convertBool(sBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetIsVisible());
-                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY, sBuffer.makeStringAndClear());
-                                        SvXMLUnitConverter::convertBool(sBuffer, ((ScDPSaveMember*)aMembers.GetObject(nMember))->GetShowDetails());
-                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY_DETAILS, sBuffer.makeStringAndClear());
+                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_NAME, ::rtl::OUString( aMembers[ nMember ]->GetName() ) );
+                                        ::rtl::OUStringBuffer sTmpBuffer;
+                                        SvXMLUnitConverter::convertBool(sTmpBuffer, aMembers[ nMember ]->GetIsVisible() );
+                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY, sTmpBuffer.makeStringAndClear());
+                                        SvXMLUnitConverter::convertBool(sTmpBuffer, aMembers[ nMember ]->GetShowDetails() );
+                                        rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DISPLAY_DETAILS, sTmpBuffer.makeStringAndClear());
                                         SvXMLElementExport aElemDPM(rExport, XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBER, sal_True, sal_True);
                                         rExport.CheckAttrList();
                                     }
@@ -503,3 +469,5 @@ void ScXMLExportDataPilot::WriteDataPilots(const uno::Reference <sheet::XSpreads
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

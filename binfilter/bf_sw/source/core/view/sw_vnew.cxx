@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,66 +31,30 @@
 #pragma hdrstop
 #endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // Zugriff auf TxtCache
-#endif
-#ifndef _NOTXTFRM_HXX
 #include <notxtfrm.hxx>
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _PTQUEUE_HXX
 #include <ptqueue.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>        // SdrView
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _ACCESSIBILITYOPTIONS_HXX
 #include <accessibilityoptions.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
 |*
 |*  ViewShell::Init()
-|*
-|*  Letzte Aenderung    MA 14. Jun. 96
 |*
 |*************************************************************************/
 
@@ -166,9 +131,6 @@ namespace binfilter {
 |*
 |*  ViewShell::~ViewShell()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 10. May. 95
-|*
 ******************************************************************************/
 
 /*N*/ ViewShell::~ViewShell()
@@ -196,7 +158,7 @@ namespace binfilter {
 /*N*/                       for( SwFrm* pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) );
 /*N*/                           pFrm; pFrm = (SwFrm*)aIter.Next() )
 /*N*/                       {
-/*N*/                           ASSERT( pFrm->IsNoTxtFrm(), "GraphicNode with Text?" );
+/*N*/                           OSL_ENSURE( pFrm->IsNoTxtFrm(), "GraphicNode with Text?" );
 /*N*/                           ((SwNoTxtFrm*)pFrm)->StopAnimation( pOut );
 /*N*/                       }
 /*N*/                   }
@@ -227,7 +189,7 @@ namespace binfilter {
 /*N*/       //Ggf. aus der PaintQueue entfernen lassen
 /*N*/       SwPaintQueue::Remove( this );
 /*N*/
-/*N*/       ASSERT( !nStartAction, "EndAction() pending." );
+/*N*/       OSL_ENSURE( !nStartAction, "EndAction() pending." );
 /*N*/   }
 /*N*/
 /*N*/   if ( pDoc )
@@ -253,3 +215,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

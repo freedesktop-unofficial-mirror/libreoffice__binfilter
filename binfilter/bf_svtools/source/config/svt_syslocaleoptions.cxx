@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,49 +28,21 @@
 
 #include <bf_svtools/syslocaleoptions.hxx>
 
-#ifndef _SVT_BROADCAST_HXX
 #include <broadcast.hxx>
-#endif
-#ifndef _SVT_LISTENER_HXX
 #include <listener.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _SV_SETTINGS_HXX
 #include <vcl/settings.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 
@@ -82,10 +55,9 @@ namespace binfilter
 
 using namespace osl;
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
-
+using ::rtl::OUString;
 
 SvtSysLocaleOptions_Impl*   SvtSysLocaleOptions::pOptions = NULL;
 sal_Int32                   SvtSysLocaleOptions::nRefCount = 0;
@@ -382,9 +354,7 @@ void SvtSysLocaleOptions_Impl::Notify( const Sequence< rtl::OUString >& seqPrope
     if ( nHint )
         Broadcast( nHint );
 }
-/* -----------------10.02.2004 15:25-----------------
 
- --------------------------------------------------*/
 void SvtSysLocaleOptions_Impl::UpdateMiscSettings_Impl()
 {
     AllSettings aAllSettings( Application::GetSettings() );
@@ -459,9 +429,7 @@ const OUString& SvtSysLocaleOptions::GetCurrencyConfigString() const
     return pOptions->GetCurrencyString();
 }
 
-/*-- 11.02.2004 13:31:41---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 // static
 void SvtSysLocaleOptions::GetCurrencyAbbrevAndLanguage( String& rAbbrev,
@@ -499,3 +467,5 @@ const Link& SvtSysLocaleOptions::GetCurrencyChangeLink()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

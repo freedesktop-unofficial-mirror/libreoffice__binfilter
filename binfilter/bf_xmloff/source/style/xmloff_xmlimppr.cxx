@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,37 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
 
 
 
 
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 #include "unoatrcn.hxx"
 #include "xmlnmspe.hxx"
 
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 
 
 // STL includes
@@ -70,7 +59,6 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::xml;
 using namespace ::com::sun::star::xml::sax;
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::lang::IllegalArgumentException;
@@ -78,12 +66,15 @@ using ::com::sun::star::lang::WrappedTargetException;
 using ::com::sun::star::beans::UnknownPropertyException;
 using ::com::sun::star::beans::PropertyVetoException;
 
+using rtl::OUString;
+using rtl::OUStringBuffer;
+
 
 SvXMLImportPropertyMapper::SvXMLImportPropertyMapper(
         const UniReference< XMLPropertySetMapper >& rMapper,
-        SvXMLImport& rImp ):
-    maPropMapper  ( rMapper ),
-    rImport(rImp)
+        SvXMLImport& rImp )
+    : rImport(rImp)
+    , maPropMapper(rMapper)
 {
 }
 
@@ -560,7 +551,7 @@ sal_Bool SvXMLImportPropertyMapper::_FillMultiPropertySet(
     i = 0;
     for( PropertyPairs::iterator aIter = aPropertyPairs.begin();
          aIter != aPropertyPairs.end();
-         aIter++ )
+         ++aIter )
     {
         pNamesArray[i] = *(aIter->first);
         pValuesArray[i++] = *(aIter->second);
@@ -589,3 +580,5 @@ void SvXMLImportPropertyMapper::finished(
         mxNextMapper->finished( rProperties, nStartIndex, nEndIndex );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

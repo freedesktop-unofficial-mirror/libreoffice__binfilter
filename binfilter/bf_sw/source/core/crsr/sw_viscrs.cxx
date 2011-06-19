@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,44 +36,21 @@
 #endif
 
 
-#ifndef _VIEWOPT_HXX //autogen
 #include <viewopt.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>   // SwTxtFrm
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>
-#endif
 
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>          // ResId fuer Abfrage wenn zu Search & Replaces
-#endif
 namespace binfilter {
 
-
-// OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
-//extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
 extern void SwCalcPixStatics( OutputDevice *pOut );
 
 
@@ -244,7 +222,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/     }
 /*N*/
 /*N*/     if( aRect.Height() )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/     if( !pCrsrShell->IsOverwriteCrsr() || bIsDragCrsr ||
 /*N*/         pCrsrShell->IsSelection() )
@@ -282,7 +260,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ void SwSelPaintRects::Hide()
 /*N*/ {
 /*N*/   for( USHORT n = 0; n < Count(); ++n )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     Paint( (*this)[n] );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   SwRects::Remove( 0, Count() );
 /*N*/ }
 
@@ -302,7 +280,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/
 /*N*/   if( Count() || aTmp.Count() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwRegionRects aReg( pCShell->VisArea() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -322,7 +300,7 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/       (GetMark()->nNode == GetPoint()->nNode ||
 /*N*/       (GetMark()->nNode.GetNode().IsCntntNode() &&
 /*N*/        GetMark()->nNode.GetNode().GetCntntNode()->GetFrm() )  ))
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     GetDoc()->GetRootFrm()->CalcFrmRects( *this, GetShell()->IsTableMode() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 
@@ -349,3 +327,5 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ SwShellTableCrsr::operator SwShellTableCrsr* ()   { return this; }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

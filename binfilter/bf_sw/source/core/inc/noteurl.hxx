@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -30,15 +31,9 @@
 #define _NOTEURL_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include "swrect.hxx"
-#endif
 class MapMode;
 
 namespace binfilter {
@@ -81,3 +76,4 @@ extern SwNoteURL *pNoteURL;
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,78 +30,35 @@
 #pragma hdrstop
 #endif
 
-//#ifndef NOOLDSV //autogen
-//#include <vcl/system.hxx>
-//#endif
-#ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
-#endif
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <bf_svx/xfillit0.hxx>
-#endif
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <bf_svx/xlineit0.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_NUMITEM_HXX //autogen
 #include <bf_svx/numitem.hxx>
-#endif
 #define ITEMID_BRUSH    0
-#ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
 #define ITEMID_EMPHASISMARK       EE_CHAR_EMPHASISMARK
 #define ITEMID_CHARRELIEF         EE_CHAR_RELIEF
-#ifndef _SVX_CHARRELIEFITEM_HXX
 #include <bf_svx/charreliefitem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
-#endif
 
 
 #include <bf_svx/svdattr.hxx>
 #include <bf_svx/bulitem.hxx>
 #include <bf_svx/lrspitem.hxx>
 #include <bf_svx/adjitem.hxx>
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 
 #define _SDR_POSITIVE
 #define _SDR_ITEMS
@@ -122,8 +80,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdStyleSheetPool::SdStyleSheetPool(SfxItemPool& rPool, SdDrawDocument* pDocument) :
-/*N*/   SfxStyleSheetPool(rPool),
+/*N*/ SdStyleSheetPool::SdStyleSheetPool(SfxItemPool& rPoolIn, SdDrawDocument* pDocument) :
+/*N*/   SfxStyleSheetPool(rPoolIn),
 /*N*/   pActualStyleSheet(NULL),
 /*N*/   pDoc(pDocument)
 /*N*/ {
@@ -147,9 +105,9 @@ namespace binfilter {
 
 /*N*/ SfxStyleSheetBase* SdStyleSheetPool::Create(const String& rName,
 /*N*/                                           SfxStyleFamily eFamily,
-/*N*/                                           USHORT nMask )
+/*N*/                                           USHORT nMaskIn )
 /*N*/ {
-/*N*/   return new SdStyleSheet(rName, *this, eFamily, nMask);
+/*N*/   return new SdStyleSheet(rName, *this, eFamily, nMaskIn);
 /*N*/ }
 
 
@@ -212,7 +170,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void SdStyleSheetPool::CreateLayoutStyleSheets(const String& rLayoutName, sal_Bool bCheck /*=sal_False*/ )
+/*N*/ void SdStyleSheetPool::CreateLayoutStyleSheets(const String& rLayoutName, sal_Bool /*bCheck*/ )
 /*N*/ {
 /*N*/   sal_Bool bCreated = sal_False;
 /*N*/
@@ -291,8 +249,8 @@ namespace binfilter {
 /*N*/
 /*N*/               if( nLevel == 1 )
 /*N*/               {
-/*N*/                   Font aBulletFont( GetBulletFont() );
-/*N*/                   PutNumBulletItem( pSheet, aBulletFont );
+/*N*/                   Font aLclBulletFont( GetBulletFont() );
+/*N*/                   PutNumBulletItem( pSheet, aLclBulletFont );
 /*N*/               }
 /*N*/           }
 /*N*/
@@ -474,9 +432,9 @@ namespace binfilter {
 /*N*/       rSubtitleSet.Put( SfxUInt16Item(EE_PARA_BULLETSTATE, 0) );
 /*N*/       aSvxLRSpaceItem.SetTxtLeft(0);
 /*N*/       rSubtitleSet.Put(aSvxLRSpaceItem);
-/*N*/       Font aBulletFont( GetBulletFont() );
-/*N*/       aBulletFont.SetSize(Size(0, 1129));     // 32 pt
-/*N*/       PutNumBulletItem( pSheet, aBulletFont );
+/*N*/       Font aLclBulletFont( GetBulletFont() );
+/*N*/       aLclBulletFont.SetSize(Size(0, 1129));      // 32 pt
+/*N*/       PutNumBulletItem( pSheet, aLclBulletFont );
 /*N*/   }
 /*N*/
     /**************************************************************************
@@ -564,7 +522,6 @@ namespace binfilter {
 /*N*/       rBackgroundSet.Put(XFillStyleItem(XFILL_NONE));
 /*N*/   }
 /*N*/
-/*N*/   DBG_ASSERT( !bCheck || !bCreated, "missing layout style sheets detected!" );
 /*N*/ }
 
 /*************************************************************************
@@ -629,13 +586,12 @@ namespace binfilter {
 /*N*/   SfxStyleSheetBase* pSheet = NULL;
 /*N*/   SfxStyleSheetBase* pParent = NULL;
 /*N*/
-/*N*/   //USHORT nMask = SFXSTYLEBIT_ALL & ~SFXSTYLEBIT_USERDEF;
-/*N*/   USHORT nMask = SFXSTYLEBIT_USED;
+/*N*/   USHORT nLclMask = SFXSTYLEBIT_USED;
 /*N*/
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_TITLE));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -644,7 +600,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_SUBTITLE));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent(String());
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -653,7 +609,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_BACKGROUNDOBJECTS));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -662,7 +618,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_BACKGROUND));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -671,7 +627,7 @@ namespace binfilter {
 /*N*/   aName = String(SdResId(STR_PSEUDOSHEET_NOTES));
 /*N*/   if (!(pSheet = Find(aName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/   {
-/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/       pSheet = &Make(aName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/       pSheet->SetParent( String() );
 /*N*/       ((SfxStyleSheet*)pSheet)->StartListening(*this);
 /*N*/   }
@@ -688,7 +644,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if (!(pSheet = Find(aLevelName, SFX_STYLE_FAMILY_PSEUDO)))
 /*N*/       {
-/*N*/           pSheet = &Make(aLevelName, SFX_STYLE_FAMILY_PSEUDO, nMask);
+/*N*/           pSheet = &Make(aLevelName, SFX_STYLE_FAMILY_PSEUDO, nLclMask);
 /*N*/
 /*N*/           if (pSheet)
 /*N*/           {
@@ -713,12 +669,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bNewHelpIds = FALSE;
 /*N*/   String aHelpFile;
-/*N*/   ULONG  nCount = aStyles.Count();
+/*N*/   size_t  nCount = aStyles.size();
 /*N*/   List* pEraseList = NULL;
 /*N*/
-/*N*/   for( ULONG n=0; n < nCount; n++ )
+/*N*/   for( size_t n=0; n < nCount; n++ )
 /*N*/   {
-/*N*/       SfxStyleSheetBase* pStyle = aStyles.GetObject( n );
+/*N*/       SfxStyleSheetBase* pStyle = aStyles[ n ];
 /*N*/
 /*N*/       if( !pStyle->IsUserDefined() )
 /*N*/       {
@@ -872,7 +828,6 @@ namespace binfilter {
 /*N*/                   String aStr( SdResId( STR_PSEUDOSHEET_OUTLINE ) );
 /*N*/                   aStr.Append( sal_Unicode( ' ' ));
 /*N*/                   String aStr2( RTL_CONSTASCII_USTRINGPARAM( "Gliederung " ));
-/*N*/                   sal_Int32 nNumber = 0;
 /*N*/
 /*N*/                   if( aOldName == String( SdResId( STR_PSEUDOSHEET_TITLE ) ) ||
 /*N*/                       aOldName.EqualsAscii( "Titel", 0, RTL_CONSTASCII_LENGTH( "Titel" )))
@@ -957,8 +912,7 @@ namespace binfilter {
 
 /*N*/ void SdStyleSheetPool::AdjustLRSpaceItems()
 /*N*/ {
-/*N*/   String aHelpFile;
-/*N*/   ULONG nCount = aStyles.Count();
+/*N*/   size_t nCount = aStyles.size();
 /*N*/
 /*N*/   // #63254# Aenderungen nicht mehr broadcasten,statt dessen nach
 /*N*/   // AdjustLRSpaceItems() ein UpdateStyleSheets am Outliner
@@ -987,9 +941,9 @@ namespace binfilter {
 /*N*/   String aStandardName(SdResId(STR_STANDARD_STYLESHEET_NAME));
 /*N*/   SfxStyleSheet* pSheetOutlineLevelOne = NULL;
 /*N*/
-/*N*/   for (ULONG n = 0; n < nCount; n++)
+/*N*/   for (size_t n = 0; n < nCount; n++)
 /*N*/   {
-/*N*/       SfxStyleSheet* pSheet = (SfxStyleSheet*)aStyles.GetObject(n);
+/*N*/       SfxStyleSheet* pSheet = (SfxStyleSheet*)aStyles[ n ];
 /*N*/       SfxItemSet& rSet = pSheet->GetItemSet();
 /*N*/       String aName( pSheet->GetName() );
 /*N*/       String aHelpFile;
@@ -1088,13 +1042,13 @@ namespace binfilter {
 /*N*/                 aName.Search(aSubtitleName) != STRING_NOTFOUND )
 /*N*/       {
 /*N*/           // Titel- oder Untertitel-Vorlage
-/*N*/           SfxItemSet& rSet = pSheet->GetItemSet();
+/*N*/           SfxItemSet& rLclSet = pSheet->GetItemSet();
 /*N*/
-/*N*/           if (rSet.GetItemState(EE_PARA_BULLETSTATE) != SFX_ITEM_ON ||
-/*N*/               ((const SfxUInt16Item&) rSet.Get(EE_PARA_BULLETSTATE)).GetValue() == 1)
+/*N*/           if (rLclSet.GetItemState(EE_PARA_BULLETSTATE) != SFX_ITEM_ON ||
+/*N*/               ((const SfxUInt16Item&) rLclSet.Get(EE_PARA_BULLETSTATE)).GetValue() == 1)
 /*N*/           {
 /*N*/               SfxUInt16Item aBulletStateItem(EE_PARA_BULLETSTATE, 0); // Bullets nicht sichtbar
-/*N*/               rSet.Put(aBulletStateItem);
+/*N*/               rLclSet.Put(aBulletStateItem);
 /*N*/           }
 /*N*/
 /*N*/           if( nHelpId == HID_PSEUDOSHEET_TITLE ||
@@ -1222,7 +1176,7 @@ namespace binfilter {
 /*N*/               const short nLSpace = i ? i * 1200 : 1200;
 /*N*/               aNumberFormat.SetLSpace(nLSpace);
 /*N*/               aNumberFormat.SetAbsLSpace(nLSpace);
-/*N*/               USHORT nFirstLineOffset = -600;
+/*N*/               USHORT nFirstLineOffset = 600;
 /*N*/
 /*N*/               ULONG nFontSize = 20;
 /*N*/               switch(i)
@@ -1231,14 +1185,14 @@ namespace binfilter {
 /*N*/                   case 1:
 /*N*/                   {
 /*N*/                       nFontSize = 32;
-/*N*/                       nFirstLineOffset = -900;
+/*N*/                       nFirstLineOffset = 900;
 /*N*/                   }
 /*N*/                   break;
 /*N*/
 /*N*/                   case 2:
 /*N*/                   {
 /*N*/                       nFontSize = 28;
-/*N*/                       nFirstLineOffset = -800;
+/*N*/                       nFirstLineOffset = 800;
 /*N*/                       aNumberFormat.SetBulletChar( 0x2013 );  // StarBats: 0xF000 + 150
 /*N*/                       aNumberFormat.SetBulletRelSize(75);
 /*N*/                   }
@@ -1258,7 +1212,7 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/               }
 /*N*/
-/*N*/               aNumberFormat.SetFirstLineOffset(nFirstLineOffset);
+/*N*/               aNumberFormat.SetFirstLineOffset(-nFirstLineOffset);
 /*N*/               nFontSize = (USHORT)((nFontSize * 2540L) / 72);  // Pt --> 1/100 mm
 /*N*/               rBulletFont.SetSize(Size(0,846));       // 24 pt
 /*N*/               aNumberFormat.SetBulletFont(&rBulletFont);
@@ -1299,3 +1253,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,7 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwFieldType;
 class SwFrmFmt;
 class SwCharFmt;
@@ -51,13 +52,9 @@ namespace com { namespace sun { namespace star { namespace i18n {
 }}}}
 
 
-#ifndef _SWTYPES_HXX //autogen
 #include <swtypes.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 
 typedef SwFieldType* SwFldTypePtr;
@@ -65,7 +62,7 @@ typedef SwFieldType* SwFldTypePtr;
 
 //PageDescriptor-Schnittstelle
 //typedef SwPageDesc * SwPageDescPtr;
-//SV_DECL_PTRARR_DEL(SwPageDescs, SwPageDescPtr,1,1)//STRIP008 ;
+//SV_DECL_PTRARR_DEL(SwPageDescs, SwPageDescPtr,1,1)
 
 typedef SwFrmFmt* SwFrmFmtPtr;
 SV_DECL_PTRARR_DEL(SwFrmFmts,SwFrmFmtPtr,4,4)
@@ -130,3 +127,4 @@ SV_DECL_PTRARR(SwOLENodes,SwOLENodePtr,16,16)
 } //namespace binfilter
 #endif  //_DOCARY_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

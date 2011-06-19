@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 namespace rtl
 {
@@ -65,7 +60,7 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
 
     inline SvxBlinkItem& operator=(const SvxBlinkItem& rBlink) {
             SetValue(rBlink.GetValue());
@@ -76,3 +71,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

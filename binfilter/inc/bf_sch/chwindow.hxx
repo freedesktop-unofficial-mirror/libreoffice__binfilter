@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,18 +30,10 @@
 #define _SCH_SDWINDOW_HXX
 
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_EVENT_HXX //autogen
 #include <vcl/event.hxx>
-#endif
-#ifndef _TRANSFER_HXX //autogen
 #include <bf_svtools/transfer.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace accessibility {
         class XAccessible;
@@ -51,11 +44,6 @@ namespace binfilter {
 class SchViewShell;
 class ChartModel;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace accessibility {
-//STRIP008      class XAccessible;
-//STRIP008  }
-//STRIP008 }}}
 
 namespace accessibility
 {
@@ -125,3 +113,5 @@ public:
 
 } //namespace binfilter
 #endif      // _SCH_SDWINDOW_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

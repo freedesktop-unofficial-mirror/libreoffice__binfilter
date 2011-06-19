@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,12 +25,12 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifdef _MSC_VER
 #pragma optimize("e",off)
-
-
 #pragma hdrstop
 #endif
+
 #define ITEMID_FONTLIST         0
 #define ITEMID_POSTURE          0
 #define ITEMID_WEIGHT           0
@@ -55,72 +56,34 @@
 #define ITEMID_FONTWIDTH   EE_CHAR_FONTWIDTH
 
 #include <bf_svtools/whiter.hxx>
-
 #include <bf_svx/eeitem.hxx>
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
 #endif
 
-#endif
-
-
 #include <bf_svx/fhgtitem.hxx>
-
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-
-
-#ifndef _CHTMODEL_HXX
 #include <globfunc.hxx>
-#endif
-
-
-
 
 #include "math.h"
 #include "float.h"
 
-
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_AKRNITEM_HXX //autogen
 #include <bf_svx/akrnitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
-#endif
 
 #include <algorithm>
 #include <functional>
@@ -141,7 +104,6 @@ namespace binfilter {
 /*N*/   pObj->SetMoveProtect (bProtect);
 /*N*/   pObj->SetResizeProtect (bResize);
 /*N*/   if (pAttr)
-/*N*/ //-/      pObj->NbcSetAttributes (*pAttr, FALSE);//#63904# Nbc neu
 /*N*/       pObj->SetItemSet(*pAttr);
 /*N*/
 /*N*/   return pObj;
@@ -475,13 +437,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Faktor fuer Koordinaten-Multiplikation berechnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Konvertiert in echte RGB-Farben.
 |*
 \************************************************************************/
@@ -517,21 +472,6 @@ namespace binfilter {
 /*N*/
 /*N*/   return aStackStr;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* "Entstapelt" den angegebenen String.
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Aendert die Helligkeit der Fuellfarbe des Ziel-ItemSets;
-|* Liefert die alte Fuellfarbe zurueck.
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -734,6 +674,9 @@ namespace binfilter {
 /*N*/       case CHTXTORIENT_STANDARD:
 /*N*/       case CHTXTORIENT_STACKED:
 /*N*/           break;
+/*N*/
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/
 /*N*/   return nDegrees;
@@ -786,6 +729,8 @@ namespace binfilter {
 /*N*/               case CHADJUST_BOTTOM_RIGHT:
 /*N*/                   rAdjust = CHADJUST_BOTTOM_LEFT;
 /*N*/                   break;
+/*N*/               default:
+/*N*/                   break;
 /*N*/           }
 /*N*/           break;
 /*N*/
@@ -823,7 +768,11 @@ namespace binfilter {
 /*N*/               case CHADJUST_BOTTOM_RIGHT:
 /*N*/                   rAdjust = CHADJUST_TOP_RIGHT;
 /*N*/                   break;
+/*N*/               default:
+/*N*/                   break;
 /*N*/           }
+/*N*/           break;
+/*N*/       default:
 /*N*/           break;
 /*N*/   }
 /*N*/ }
@@ -851,6 +800,8 @@ namespace binfilter {
 /*N*/           rTextObj.NbcRotate(rPos, nAng, sin(fVal), cos(fVal));
 /*N*/           break;
 /*N*/       }
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/
 /*N*/   Rectangle aRect = rTextObj.GetLogicRect();
@@ -869,8 +820,9 @@ namespace binfilter {
 /*N*/           rTextObj.NbcRotate(rPos, nDegrees, sin(fVal), cos(fVal));
 /*N*/           Rectangle aNewBoundRect=rTextObj.GetBoundRect();
 /*N*/           rTextObj.NbcMove( AdjustRotatedRect(aOldBoundRect, eAdjust, aNewBoundRect));
-/*N*/           break;
 /*N*/       }
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/ }
 
@@ -1008,7 +960,7 @@ namespace binfilter {
 //neue in alte Achsenattr konvertieren
 /*N*/ void AxisAttrNew2Old(SfxItemSet &rDestSet,long nId,BOOL bClear)
 /*N*/ {
-/*N*/   USHORT nOff;
+/*N*/   USHORT nOff(0);
 /*N*/   double f;
 /*N*/   BOOL b;
 /*N*/   SfxItemSet aSet(rDestSet); //Kopie
@@ -1294,23 +1246,13 @@ namespace binfilter {
 /*N*/       rFont.SetPitch(    pFontItem->GetPitch());
 /*N*/   }
 /*N*/
-/*N*/ //    rFont.SetColor( ((const SvxColorItem&)rSet.Get( EE_CHAR_COLOR )).GetValue() );
-/*N*/ //    rFont.SetName( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetFamilyName() );
-/*N*/ //    rFont.SetFamily( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetFamily() );
-/*N*/ //    rFont.SetPitch( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetPitch() );
-/*N*/ //    rFont.SetCharSet( ((const SvxFontItem&)rSet.Get( EE_CHAR_FONTINFO )).GetCharSet() );
-/*N*/
 /*N*/   //  Scale the font's horizontal size like the vertical size.  Assume that the original size is
 /*N*/   //  7pt.  The scaling is done here because the item EE_CHAR_FONTWIDTH holds a horizontal scaling
 /*N*/   //  factor.  The horizontal size can therefore not be stored there.  But as the font is scaled
 /*N*/   //  uniformly, the horizontal size depends uniquely on the vertical size.
 /*N*/   long nFontHeight = static_cast<const SvxFontHeightItem&>(rSet.Get(EE_CHAR_FONTHEIGHT)).GetHeight();
-/*N*/   const double fSevenPoint = (1000/*scale*/ * 2.54/*cm per inch*/ / 72/*point per inch*/ * 7 /*pt*/);
 /*N*/   long nFontWidth = 0;    // #89001# use default font width
 /*N*/   rFont.SetSize (Size (nFontWidth, nFontHeight));
-/*N*/   //  Old line.
-/*N*/   //  rFont.SetSize( Size( ((const SvxFontWidthItem&)rSet.Get( EE_CHAR_FONTWIDTH )).GetWidth(),
-/*N*/   //   ((const SvxFontHeightItem&)rSet.Get( EE_CHAR_FONTHEIGHT )).GetHeight() ) );
 /*N*/
 /*N*/   rFont.SetWeight( ((const SvxWeightItem&)rSet.Get( EE_CHAR_WEIGHT )).GetWeight() );
 /*N*/   rFont.SetUnderline( ((const SvxUnderlineItem&)rSet.Get( EE_CHAR_UNDERLINE )).GetUnderline() );
@@ -1318,12 +1260,8 @@ namespace binfilter {
 /*N*/   rFont.SetItalic( ((const SvxPostureItem&)rSet.Get( EE_CHAR_ITALIC )).GetPosture() );
 /*N*/   rFont.SetOutline( ((const SvxContourItem&)rSet.Get( EE_CHAR_OUTLINE )).GetValue() );
 /*N*/   rFont.SetShadow( ((const SvxShadowedItem&)rSet.Get( EE_CHAR_SHADOW )).GetValue() );
-/*N*/   //rFont.SetEscapement( ((const SvxEscapementItem&)rSet.Get( EE_CHAR_ESCAPEMENT)).GetEsc() );
-/*N*/   //rFont.SetPropr( ((const SvxEscapementItem&)rSet.Get( EE_CHAR_ESCAPEMENT)).GetProp() );
 /*N*/   rFont.SetKerning( ((const SvxAutoKernItem&)rSet.Get( EE_CHAR_PAIRKERNING )).GetValue() );
-/*N*/   //rFont.SetFixKerning( ((const SvxKerningItem&)rSet.Get( EE_CHAR_KERNING )).GetValue() );
 /*N*/   rFont.SetWordLineMode( ((const SvxWordLineModeItem&)rSet.Get( EE_CHAR_WLM )).GetValue() );
-/*N*/ //    rFont.SetOrientation( (short)(rDesc.Orientation*10) );
 /*N*/ }
 
 
@@ -1332,17 +1270,13 @@ namespace binfilter {
 
 // ==================== DEBUG SfxItemSets ====================
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX
 #include <bf_svtools/itemiter.hxx>
-#endif
 
 #include <cstdio>       // for snprintf
 #include <cstring>      // for strncat
-namespace binfilter {//STRIP009
-/*N*/ void Dbg_DebugItems( SfxItemSet& rSet, ChartModel* pModel, long num )
+namespace binfilter {
+/*N*/ void Dbg_DebugItems( SfxItemSet& rSet, ChartModel* pModel )
 /*N*/ {
 /*N*/   SfxItemPool *pItemPool=&( pModel->GetItemPool() );
 /*N*/
@@ -1350,13 +1284,13 @@ namespace binfilter {//STRIP009
 /*N*/   char pSmallBuf[ 128 ] = "";
 /*N*/
 /*N*/   const USHORT* pRanges = rSet.GetRanges();
-/*N*/   for( long n = 0; pRanges[ n ] && n<32; n++ )
+/*N*/   for( long n = 0; pRanges[ n ] && n<32; n+=2 )
 /*N*/   {
-/*N*/       snprintf( pSmallBuf, sizeof(pSmallBuf), "[%ld; %ld] ", pRanges[ n ], pRanges[ ++n ] );
+/*N*/       snprintf( pSmallBuf, sizeof(pSmallBuf), "[%"SAL_PRIdINT32"; %"SAL_PRIdINT32"] ", (sal_uInt32)pRanges[ n ], (sal_uInt32)pRanges[ n+1 ] );
 /*N*/       strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/   }
 /*N*/
-/*N*/   DBG_TRACE1( "SCH:ItemDBG - Ranges: %s", pBuf );
+/*N*/   OSL_TRACE( "SCH:ItemDBG - Ranges: %s", pBuf );
 /*N*/
 /*N*/   pBuf[ 0 ] = '\0';
 /*N*/
@@ -1378,7 +1312,7 @@ namespace binfilter {//STRIP009
 /*N*/               nCns++;
 /*N*/           if( nCnt < 100 )
 /*N*/           {
-/*N*/               snprintf( pSmallBuf, sizeof(pSmallBuf), "%ld, ", nWhich );
+/*N*/               snprintf( pSmallBuf, sizeof(pSmallBuf), "%"SAL_PRIdINT32", ", (sal_uInt32) nWhich );
 /*N*/               strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/           }
 /*N*/
@@ -1392,7 +1326,7 @@ namespace binfilter {//STRIP009
 /*N*/       pItem = aIterator.NextItem();
 /*N*/   }
 /*N*/
-/*N*/   DBG_TRACE1( "SCH:ItemDBG - List: %s", pBuf );
+/*N*/   OSL_TRACE( "SCH:ItemDBG - List: %s", pBuf );
 /*N*/
 /*N*/   long nColor = -1;
 /*N*/   long nMat = -1;
@@ -1403,7 +1337,6 @@ namespace binfilter {//STRIP009
 /*N*/       Color aColor( ( ( const XFillColorItem* ) pPoolItem )->GetValue() );
 /*N*/       nColor=aColor.GetRGBColor();
 /*N*/   }
-/*N*/ //-/  if( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_3D_MAT_COLOR, TRUE, &pPoolItem ) )
 /*N*/   if( SFX_ITEM_SET == rSet.GetItemState( SDRATTR_3DOBJ_MAT_COLOR, TRUE, &pPoolItem ) )
 /*N*/   {
 /*N*/       Color aNew(  ((const SvxColorItem*) pPoolItem )->GetValue()   );
@@ -1413,11 +1346,12 @@ namespace binfilter {//STRIP009
 /*N*/
 /*N*/   long r=COLORDATA_RED(nColor),g=COLORDATA_GREEN(nColor),b=COLORDATA_BLUE(nColor);
 /*N*/
-/*N*/   DBG_TRACE4( "SCH:ItemDBG - Info: this=%lx, #=%ld, WID-able=%ld, invalid=%ld", (long)pModel, nCnt, nCnv, nInv );
-/*N*/   DBG_TRACE5( "... Chart=%ld, RGB=(%d, %d, %d), Mat=%ld", nCns, r, g, b, nMat );
+/*N*/   OSL_TRACE( "SCH:ItemDBG - Info: this=%lx, #=%ld, WID-able=%ld, invalid=%ld", (long)pModel, nCnt, nCnv, nInv );
+/*N*/   OSL_TRACE( "... Chart=%ld, RGB=(%d, %d, %d), Mat=%ld", nCns, r, g, b, nMat );
 /*N*/ }
 } //namespace binfilter
 #endif
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

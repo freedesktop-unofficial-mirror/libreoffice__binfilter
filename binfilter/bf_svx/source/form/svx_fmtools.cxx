@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -59,7 +60,7 @@ using namespace ::com::sun::star;
 /*N*/           }
 /*N*/           catch(uno::Exception&)
 /*N*/           {
-/*N*/               DBG_ERROR( "getElementPos: caught an exception!" );
+/*N*/               OSL_FAIL( "getElementPos: caught an exception!" );
 /*N*/           }
 /*N*/
 /*N*/       }
@@ -68,3 +69,5 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

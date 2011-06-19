@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,34 +29,19 @@
 #ifndef SC_CHGTRACK_HXX
 #define SC_CHGTRACK_HXX
 
+#include <deque>
+
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
-#ifndef _STACK_HXX //autogen
 #include <tools/stack.hxx>
-#endif
-#ifndef _QUEUE_HXX //autogen
-#include <tools/queue.hxx>
-#endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef SC_BIGRANGE_HXX
 #include "bigrange.hxx"
-#endif
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
 #ifdef SC_CHGTRACK_CXX
 // core/inc
@@ -135,10 +121,10 @@ public:
                                 ScChangeActionLinkEntry(
                                         ScChangeActionLinkEntry** ppPrevP,
                                         ScChangeAction* pActionP )
-                                    :   ppPrev( ppPrevP ),
-                                        pNext( *ppPrevP ),
-                                        pAction( pActionP ),
-                                        pLink( NULL )
+                                    : pNext( *ppPrevP )
+                                    , ppPrev( ppPrevP )
+                                    , pAction( pActionP )
+                                    , pLink( NULL )
                                     {
                                         if ( pNext )
                                             pNext->ppPrev = &pNext;
@@ -177,7 +163,7 @@ public:
                                     {
                                         if ( ppPrev )
                                         {
-                                            if ( *ppPrev = pNext )
+                                            if (( *ppPrev = pNext ))
                                                 pNext->ppPrev = ppPrev;
                                             ppPrev = NULL;  // not inserted
                                         }
@@ -188,7 +174,7 @@ public:
                                         if ( !ppPrev )
                                         {
                                             ppPrev = ppPrevP;
-                                            if ( pNext = *ppPrevP )
+                                            if (( pNext = *ppPrevP ))
                                                 pNext->ppPrev = &pNext;
                                             *ppPrevP = this;
                                         }
@@ -219,8 +205,8 @@ class ScChangeActionCellListEntry
                                 ScChangeActionCellListEntry(
                                     ScChangeActionContent* pContentP,
                                     ScChangeActionCellListEntry* pNextP )
-                                    :   pContent( pContentP ),
-                                        pNext( pNextP )
+                                    : pNext( pNextP )
+                                    , pContent( pContentP )
                                     {}
 
 public:
@@ -292,7 +278,7 @@ protected:
                                     ScMultipleReadHeader&, ScChangeTrack* );
     virtual                     ~ScChangeAction();
 /*N*/
-/*N*/   static  void                StoreCell( ScBaseCell*, SvStream&,
+/*N*/   static  void            StoreCell( ScBaseCell*, SvStream&,
 /*N*/                                   ScMultipleWriteHeader& );
 /*N*/   static ScBaseCell*          LoadCell( SvStream&, ScMultipleReadHeader&,
 /*N*/                                   ScDocument*, USHORT nVer );
@@ -377,7 +363,7 @@ protected:
 /*N*/                               // used in Reject() instead of IsRejectable()
 /*N*/           BOOL                IsInternalRejectable() const;
 /*N*/
-/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -444,7 +430,7 @@ public:
 /*N*/                               // eine Spalte/Zeile beruecksichtigt (fuer
 /*N*/                               // Auflistung der einzelnen Eintraege).
 /*N*/   virtual void                GetDescription( String&, ScDocument*,
-/*N*/                                   BOOL bSplitRange = FALSE ) const {}
+/*N*/                                   BOOL /*bSplitRange*/ = FALSE ) const {}
 /*N*/
 /*N*/   virtual void                GetRefString( String&, ScDocument*,
 /*N*/                                   BOOL bFlag3D = FALSE ) const;
@@ -483,7 +469,7 @@ class ScChangeActionIns : public ScChangeAction
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
 /*N*/
-/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/
 public:
                                 ScChangeActionIns(const ULONG nActionNumber,
@@ -514,12 +500,12 @@ class ScChangeActionDelMoveEntry : public ScChangeActionLinkEntry
 
 
                                 ScChangeActionDelMoveEntry(
-                                    ScChangeActionDelMoveEntry** ppPrev,
+                                    ScChangeActionDelMoveEntry** ppInPrev,
                                     ScChangeActionMove* pMove,
                                     short nFrom, short nTo )
                                     :   ScChangeActionLinkEntry(
                                             (ScChangeActionLinkEntry**)
-                                                ppPrev,
+                                                ppInPrev,
                                             (ScChangeAction*) pMove ),
                                         nCutOffFrom( nFrom ),
                                         nCutOffTo( nTo )
@@ -586,7 +572,7 @@ class ScChangeActionDel : public ScChangeAction
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
 /*N*/
-/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -685,7 +671,7 @@ class ScChangeActionMove : public ScChangeAction
 /*N*/
 /*N*/   virtual BOOL                Reject( ScDocument* );
 /*N*/
-/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -745,7 +731,7 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/                                       if ( !ppPrevInSlot )
 /*N*/                                       {
 /*N*/                                           ppPrevInSlot = pp;
-/*N*/                                           if ( pNextInSlot = *pp )
+/*N*/                                           if (( pNextInSlot = *pp ))
 /*N*/                                               pNextInSlot->ppPrevInSlot = &pNextInSlot;
 /*N*/                                           *pp = this;
 /*N*/                                       }
@@ -754,7 +740,7 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/                                   {
 /*N*/                                       if ( ppPrevInSlot )
 /*N*/                                       {
-/*N*/                                           if ( *ppPrevInSlot = pNextInSlot )
+/*N*/                                           if (( *ppPrevInSlot = pNextInSlot ))
 /*N*/                                               pNextInSlot->ppPrevInSlot = ppPrevInSlot;
 /*N*/                                           ppPrevInSlot = NULL;    // not inserted
 /*N*/                                       }
@@ -799,7 +785,7 @@ class ScChangeActionContent : public ScChangeAction
 /*N*/           void                PutValueToDoc( ScBaseCell*, const String&,
 /*N*/                                   ScDocument*, short nDx, short nDy ) const;
 /*N*/
-/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/   virtual BOOL                StoreLinks( SvStream& ) const;
 /*N*/   virtual BOOL                LoadLinks( SvStream&, ScChangeTrack* );
 /*N*/
@@ -918,9 +904,9 @@ class ScChangeActionReject : public ScChangeAction
 /*N*/   virtual void                AddContent( ScChangeActionContent* ) {}
 /*N*/   virtual void                DeleteCellEntries() {}
 /*N*/
-/*N*/   virtual BOOL                Reject( ScDocument* p ) { return FALSE; }
+/*N*/   virtual BOOL                Reject( ScDocument* /*p*/ ) { return FALSE; }
 /*N*/
-/*N*/   virtual BOOL                Store( SvStream&, ScMultipleWriteHeader& ) const;
+/*N*/   virtual BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 /*N*/
 public:
                                 ScChangeActionReject(const ULONG nActionNumber,
@@ -954,7 +940,7 @@ struct ScChangeTrackMsgInfo
 };
 
 // MsgQueue fuer Benachrichtigung via ModifiedLink
-/*N*/ DECLARE_QUEUE( ScChangeTrackMsgQueue, ScChangeTrackMsgInfo* )
+/*N*/ typedef std::deque<ScChangeTrackMsgInfo*> ScChangeTrackMsgQueue;
 /*N*/ DECLARE_STACK( ScChangeTrackMsgStack, ScChangeTrackMsgInfo* )
 
 enum ScChangeTrackMergeState
@@ -1203,7 +1189,7 @@ public:
 /*N*/                                   ULONG nStartAction, ULONG nEndAction );
 /*N*/
 /*N*/           BOOL                Load( SvStream& rStrm, USHORT nVer );
-/*N*/           BOOL                Store( SvStream& rStrm );
+/*N*/    BOOL    Store( SvStream& ) {return FALSE;}
 /*N*/           USHORT              GetLoadedFileFormatVersion() const
 /*N*/                                   { return nLoadedFileFormatVersion; }
 /*N*/
@@ -1234,3 +1220,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

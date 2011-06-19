@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HPP_
 #include <com/sun/star/script/XTypeConverter.hpp>
-#endif
 
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 
@@ -82,10 +77,10 @@ SfxPoolItem* SfxGlobalNameItem::Clone(SfxItemPool *) const
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxGlobalNameItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
+bool SfxGlobalNameItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
 {
     com::sun::star::uno::Reference < com::sun::star::script::XTypeConverter > xConverter
-            ( ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.script.Converter")),
+            ( ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.Converter" ))),
             com::sun::star::uno::UNO_QUERY );
     com::sun::star::uno::Sequence< sal_Int8 > aSeq;
     com::sun::star::uno::Any aNew;
@@ -96,22 +91,24 @@ BOOL SfxGlobalNameItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
     if ( aSeq.getLength() == 16 )
     {
         m_aName.MakeFromMemory( (void*) aSeq.getConstArray() );
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxGlobalNameItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxGlobalNameItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxGlobalNameItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE ) const
+bool SfxGlobalNameItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE ) const
 {
     ::com::sun::star::uno::Sequence< sal_Int8 > aSeq( 16 );
     void* pData = ( void* ) &m_aName.GetCLSID();
     memcpy( aSeq.getArray(), pData, 16 );
     rVal <<= aSeq;
-    return TRUE;
+    return true;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

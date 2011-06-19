@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -29,15 +30,9 @@
 #ifndef _SVTOOLS_LOCALRESACCESS_HXX_
 #define _SVTOOLS_LOCALRESACCESS_HXX_
 
-#ifndef _TOOLS_RC_HXX
 #include <tools/rc.hxx>
-#endif
-#ifndef _TOOLS_RCID_H
 #include <tools/rcid.h>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 //.........................................................................
 namespace binfilter
@@ -87,3 +82,4 @@ namespace binfilter
 
 #endif // _SVTOOLS_LOCALRESACCESS_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

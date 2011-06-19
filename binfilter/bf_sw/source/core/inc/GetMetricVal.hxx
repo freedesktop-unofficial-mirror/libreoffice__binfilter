@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,13 +35,7 @@ namespace binfilter {
 
 inline USHORT GetMetricVal( int n )
 {
-#ifdef USE_MEASUREMENT
-    USHORT nVal = MEASURE_METRIC == GetAppLocaleData().getMeasurementSystemEnum()
-                    ? 567       // 1 cm
-                    : 770;      // 1/2 Inch
-#else
     USHORT nVal = 567;      // 1 cm
-#endif
 
     if( CM_01 == n )
         nVal /= 10;
@@ -52,3 +47,5 @@ inline USHORT GetMetricVal( int n )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

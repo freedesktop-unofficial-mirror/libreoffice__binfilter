@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,19 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLBASICI_HXX
 #include "xmlbasici.hxx"
-#endif
 
-#ifndef _XMLOFF_ATTRLIST_HXX
 #include "attrlist.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -52,9 +45,9 @@ namespace binfilter
     // XMLBasicImportContext
     // =============================================================================
 
-    XMLBasicImportContext::XMLBasicImportContext( SvXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
+    XMLBasicImportContext::XMLBasicImportContext( SvXMLImport& rInImport, USHORT nPrfx, const ::rtl::OUString& rLName,
             const Reference< frame::XModel >& rxModel )
-        :SvXMLImportContext( rImport, nPrfx, rLName )
+        :SvXMLImportContext( rInImport, nPrfx, rLName )
         ,m_xModel( rxModel )
     {
         Reference< lang::XMultiServiceFactory > xMSF = GetImport().getServiceFactory();
@@ -85,16 +78,16 @@ namespace binfilter
     // -----------------------------------------------------------------------------
 
     SvXMLImportContext* XMLBasicImportContext::CreateChildContext(
-        USHORT nPrefix, const ::rtl::OUString& rLocalName,
-        const Reference< xml::sax::XAttributeList >& rxAttrList )
+        USHORT nInPrefix, const ::rtl::OUString& rLocalName,
+        const Reference< xml::sax::XAttributeList >& /*rxAttrList*/ )
     {
         SvXMLImportContext* pContext = 0;
 
         if ( m_xHandler.is() )
-            pContext = new XMLBasicImportChildContext( GetImport(), nPrefix, rLocalName, m_xHandler );
+            pContext = new XMLBasicImportChildContext( GetImport(), nInPrefix, rLocalName, m_xHandler );
 
         if ( !pContext )
-            pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+            pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
         return pContext;
     }
@@ -152,9 +145,9 @@ namespace binfilter
     // XMLBasicImportChildContext
     // =============================================================================
 
-    XMLBasicImportChildContext::XMLBasicImportChildContext( SvXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
+    XMLBasicImportChildContext::XMLBasicImportChildContext( SvXMLImport& rInImport, USHORT nPrfx, const ::rtl::OUString& rLName,
             const Reference< xml::sax::XDocumentHandler >& rxHandler )
-        :SvXMLImportContext( rImport, nPrfx, rLName )
+        :SvXMLImportContext( rInImport, nPrfx, rLName )
         ,m_xHandler( rxHandler )
     {
     }
@@ -168,10 +161,10 @@ namespace binfilter
     // -----------------------------------------------------------------------------
 
     SvXMLImportContext* XMLBasicImportChildContext::CreateChildContext(
-        USHORT nPrefix, const ::rtl::OUString& rLocalName,
-        const Reference< xml::sax::XAttributeList >& xAttrList )
+        USHORT nInPrefix, const ::rtl::OUString& rLocalName,
+        const Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
     {
-        return new XMLBasicImportChildContext( GetImport(), nPrefix, rLocalName, m_xHandler );
+        return new XMLBasicImportChildContext( GetImport(), nInPrefix, rLocalName, m_xHandler );
     }
 
     // -----------------------------------------------------------------------------
@@ -211,3 +204,5 @@ namespace binfilter
 //.........................................................................
 }   // namespace binfilter
 //.........................................................................
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

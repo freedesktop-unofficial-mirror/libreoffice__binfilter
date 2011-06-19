@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -53,7 +54,7 @@ namespace binfilter {
 /*N*/   if (!bSorted) {
 /*N*/       bSorted=TRUE;
 /*N*/       ULONG nAnz=aList.Count();
-/*N*/       if (nAnz>1) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (nAnz>1) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -110,45 +111,15 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   return CONTAINER_ENTRY_NOTFOUND;
-
-    /*
-    ForceSort();
-    if (pObj==NULL || aList.Count()==0) return CONTAINER_ENTRY_NOTFOUND;
-    const SdrObjList* pOL=pObj->GetObjList();
-    ULONG nObjOrd=pObj->GetOrdNum();
-    ULONG nL=0;
-    ULONG nR=aList.Count();
-    if (GetMark(nL)->GetObj()==pObj) return nL;
-    while (nL+1<nR) { // Der Gesuchte befindet sich zwischen, nicht auf den Grenzen!
-        ULONG nMid=(nL+nR)/2;
-        const SdrObject* pMidObj=GetMark(nMid)->GetObj();
-        if (pMidObj==pObj) return nMid; // Hurra, gefunden!
-        const SdrObjList* pMidOL=pMidObj!=NULL ? pMidObj->GetObjList() : NULL;
-        ULONG nMidObjOrd=pMidObj!=NULL ? pMidObj->GetOrdNum() : 0;
-        if (pMidOL==pOL) {
-            if (nMidObjOrd<nObjOrd) nL=nMid;
-            else if (nMidObjOrd>nObjOrd) nR=nMid;
-            else {
-                DBG_ASSERT(FALSE,"SdrMarkList::FindObject(): Anderes Objekt mit gleicher OrdNum gefunden!");
-                return CONTAINER_ENTRY_NOTFOUND;
-            }
-        } else if ((long)pMidOL<(long)pOL) nL=nMid;
-        else nR=nMid;
-    }
-    return CONTAINER_ENTRY_NOTFOUND;
-    */
 /*N*/ }
 
-/*N*/ void SdrMarkList::InsertEntry(const SdrMark& rMark, FASTBOOL bChkSort)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrMarkList::InsertEntry(const SdrMark& /*rMark*/, bool /*bChkSort*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-
-
-
-/*N*/ FASTBOOL SdrMarkList::DeletePageView(const SdrPageView& rPV)
+/*N*/ bool SdrMarkList::DeletePageView(const SdrPageView& rPV)
 /*N*/ {
-/*N*/   FASTBOOL bChgd=FALSE;
+/*N*/   bool bChgd=FALSE;
 /*N*/   for (ULONG i=GetMarkCount(); i>0;) {
 /*?*/       i--;
 /*?*/       SdrMark* pMark=GetMark(i);
@@ -167,9 +138,9 @@ namespace binfilter {
 
 
 
-/*N*/ FASTBOOL SdrMarkList::TakeBoundRect(SdrPageView* pPV, Rectangle& rRect) const
+/*N*/ bool SdrMarkList::TakeBoundRect(SdrPageView* pPV, Rectangle& rRect) const
 /*N*/ {
-/*N*/   FASTBOOL bFnd=FALSE;
+/*N*/   bool bFnd=FALSE;
 /*N*/   Rectangle aR;
 /*N*/
 /*N*/   for (ULONG i=0; i<GetMarkCount(); i++) {
@@ -187,9 +158,9 @@ namespace binfilter {
 /*N*/   return bFnd;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrMarkList::TakeSnapRect(SdrPageView* pPV, Rectangle& rRect) const
+/*N*/ bool SdrMarkList::TakeSnapRect(SdrPageView* pPV, Rectangle& rRect) const
 /*N*/ {
-/*N*/   FASTBOOL bFnd=FALSE;
+/*N*/   bool bFnd=FALSE;
 /*N*/
 /*N*/   for (ULONG i=0; i<GetMarkCount(); i++) {
 /*?*/       SdrMark* pMark=GetMark(i);
@@ -207,3 +178,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

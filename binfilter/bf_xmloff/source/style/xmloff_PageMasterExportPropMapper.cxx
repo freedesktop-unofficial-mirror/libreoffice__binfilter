@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,27 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
 #include "PageMasterExportPropMapper.hxx"
-#endif
 
-#ifndef _COMPHELPER_TYPES_HXX_
 #include <comphelper/types.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -78,7 +67,7 @@ inline void lcl_RemoveState( XMLPropertyState* pState )
 
 void lcl_RemoveStateIfZero16( XMLPropertyState* pState )
 {
-    sal_Int16   nValue;
+    sal_Int16   nValue(0);
     if( (pState->maValue >>= nValue) && !nValue )
         lcl_RemoveState( pState );
 }
@@ -137,7 +126,7 @@ XMLPropertyStateBuffer::XMLPropertyStateBuffer() :
 {
 }
 
-void XMLPropertyStateBuffer::ContextFilter( ::std::vector< XMLPropertyState >& rPropState )
+void XMLPropertyStateBuffer::ContextFilter( ::std::vector< XMLPropertyState >& /*rPropState*/ )
 {
     if( pPMBorderAll )
     {
@@ -195,7 +184,7 @@ void XMLPropertyStateBuffer::ContextFilter( ::std::vector< XMLPropertyState >& r
     {
         if( pPMPaddingTop && pPMPaddingBottom && pPMPaddingLeft && pPMPaddingRight )
         {
-            sal_Int32 nTop, nBottom, nLeft, nRight;
+            sal_Int32 nTop(0), nBottom(0), nLeft(0), nRight(0);
 
             pPMPaddingTop->maValue >>= nTop;
             pPMPaddingBottom->maValue >>= nBottom;
@@ -234,9 +223,9 @@ XMLPageMasterExportPropMapper::~XMLPageMasterExportPropMapper()
 }
 
 void XMLPageMasterExportPropMapper::handleElementItem(
-        SvXMLExport& rExport,
+        SvXMLExport& /*rExport*/,
         const XMLPropertyState& rProperty,
-        sal_uInt16 nFlags,
+        sal_uInt16 /*nFlags*/,
         const ::std::vector< XMLPropertyState >* pProperties,
         sal_uInt32 nIdx ) const
 {
@@ -250,8 +239,8 @@ void XMLPageMasterExportPropMapper::handleElementItem(
         case CTF_PM_FOOTERGRAPHICURL:
             {
                 DBG_ASSERT( pProperties && (nIdx >= 2), "property vector missing" );
-                sal_Int32 nPos;
-                sal_Int32 nFilter;
+                sal_Int32 nPos(0);
+                sal_Int32 nFilter(0);
                 switch( nContextId  )
                 {
                 case CTF_PM_GRAPHICURL:
@@ -300,12 +289,12 @@ void XMLPageMasterExportPropMapper::handleElementItem(
 }
 
 void XMLPageMasterExportPropMapper::handleSpecialItem(
-        SvXMLAttributeList& rAttrList,
-        const XMLPropertyState& rProperty,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap,
-        const ::std::vector< XMLPropertyState >* pProperties,
-        sal_uInt32 nIdx) const
+        SvXMLAttributeList& /*rAttrList*/,
+        const XMLPropertyState& /*rProperty*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/,
+        const ::std::vector< XMLPropertyState >* /*pProperties*/,
+        sal_uInt32 /*nIdx*/) const
 {
 }
 
@@ -423,3 +412,5 @@ void XMLPageMasterExportPropMapper::ContextFilter(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

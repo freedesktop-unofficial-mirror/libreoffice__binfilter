@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,13 @@
 #ifndef _SVTOOLS_JAVAINTERACTION_HXX_
 #define _SVTOOLS_JAVAINTERACTION_HXX_
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
 #include <com/sun/star/task/XInteractionRequest.hpp>
 
-#ifndef _SVTOOLS_JAVACONTEXT_HXX_
 #include <bf_svtools/javacontext.hxx>
-#endif
 
 #define JAVA_INTERACTION_HANDLER_NAME "java-vm.interaction-handler"
 
@@ -89,3 +82,5 @@ private:
 }
 
 #endif // _DESKTOP_JAVAINTERACTION_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 #include <sot/formats.hxx>
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 #include "linkmgr.hxx"
 #include "fileobj.hxx"
@@ -52,9 +45,9 @@ namespace binfilter {
 
 
 
-/*N*/ SvxLinkManager::SvxLinkManager( SvPersist * pPersist )
+/*N*/ SvxLinkManager::SvxLinkManager( SvPersist * pInPersist )
 /*N*/ {
-/*N*/   SvLinkManager::SetPersist( pPersist );
+/*N*/   SvLinkManager::SetPersist( pInPersist );
 /*N*/ }
 
 /*N*/ ::binfilter::SvLinkSourceRef SvxLinkManager::CreateObj( ::binfilter::SvBaseLink * pLink )
@@ -66,7 +59,7 @@ namespace binfilter {
 /*N*/       return new SvFileObject;
 /*N*/
 /*N*/   case OBJECT_INTERN:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 return new SvxInternalLink();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*?*/   return SvLinkManager::CreateObj( pLink );
 /*N*/ }
@@ -225,3 +218,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

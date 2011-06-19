@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -36,7 +34,6 @@ TARGET=sw_swg
 NO_HIDS=TRUE
 
 AUTOSEG=true
-#ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 

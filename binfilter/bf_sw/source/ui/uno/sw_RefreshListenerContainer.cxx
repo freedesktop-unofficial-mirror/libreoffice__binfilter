@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _REFRESH_LISTENER_CONTAINER_HXX_
 #include <RefreshListenerContainer.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHLISTENER_HPP_
 #include <com/sun/star/util/XRefreshListener.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -44,8 +41,8 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::util;
 
-SwRefreshListenerContainer::SwRefreshListenerContainer( uno::XInterface* pxParent)
-: SwEventListenerContainer ( pxParent )
+SwRefreshListenerContainer::SwRefreshListenerContainer( uno::XInterface* pParent)
+    : SwEventListenerContainer ( pParent )
 {
 }
 
@@ -62,3 +59,5 @@ void SwRefreshListenerContainer::Refreshed ()
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

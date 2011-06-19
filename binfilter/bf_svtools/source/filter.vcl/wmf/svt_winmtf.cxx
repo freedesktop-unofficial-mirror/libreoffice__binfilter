@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,12 +32,8 @@
 
 #include "winmtf.hxx"
 #include <vcl/metaact.hxx>
-#ifndef _SV_METRIC_HXX
 #include <vcl/metric.hxx>
-#endif
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
 
 namespace binfilter
 {
@@ -548,7 +545,7 @@ void WinMtfOutput::ImplMap( Font& rFont )
 {
     // !!! HACK: Wir setzen die Breite jetzt immer auf Null,
     // da OS die Breite unterschiedlich interpretieren;
-    // muss spaeter in SV portabel gemacht werden ( KA 08.02.96 )
+    // muss spaeter in SV portabel gemacht werden
     Size  aFontSize = ImplMap ( rFont.GetSize() );
 
     if( aFontSize.Height() < 0 )
@@ -844,7 +841,7 @@ void WinMtfOutput::CreateObject( INT32 nIndex, GDIObjectType eType, void* pStyle
             break;
 
             default:
-                DBG_ERROR( "unsupported style not deleted" );
+                OSL_FAIL( "unsupported style not deleted" );
                 break;
         }
     }
@@ -2177,3 +2174,5 @@ void WinMtfOutput::Pop()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,60 +33,32 @@
 
 #include <limits.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 #define _SVSTDARR_STRINGSSORT
 
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTINFMT_HXX
 #include <fmtinfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
-#ifndef _TXMSRT_HXX
 #include <txmsrt.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
-#endif
-#ifndef _CHPFLD_HXX
 #include <chpfld.hxx>
-#endif
 namespace binfilter {
 
 const sal_Unicode cNumRepl      = '@';
 const sal_Unicode cEndPageNum   = '~';
-const sal_Char __FAR_DATA sPageDeli[] = ", ";
+const sal_Char sPageDeli[] = ", ";
 
 /*N*/ SV_IMPL_PTRARR(SwTOXSortTabBases, SwTOXSortTabBasePtr)
 
@@ -109,9 +82,9 @@ typedef LinkStruct* LinkStructPtr;
      Beschreibung: Marke loeschen
  --------------------------------------------------------------------*/
 
-/*N*/ void SwDoc::Delete( SwTOXMark* pTOXMark )
+/*N*/ void SwDoc::Delete( SwTOXMark* /*pTOXMark*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -143,7 +116,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/       pSectNd->SetNewSection( pNew );
 /*N*/
 /*N*/       if( bExpand )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/       else if( 1 == rTOX.GetTitle().Len() && IsInReading() )
 /*N*/       // insert title of TOX
@@ -234,7 +207,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/       SectionType eT = pSectNd->GetSection().GetType();
 /*N*/       if( TOX_CONTENT_SECTION == eT )
 /*N*/       {
-/*N*/           ASSERT( pSectNd->GetSection().ISA( SwTOXBaseSection ),
+/*N*/           OSL_ENSURE( pSectNd->GetSection().ISA( SwTOXBaseSection ),
 /*N*/                   "keine TOXBaseSection!" );
 /*N*/           SwTOXBaseSection& rTOXSect = (SwTOXBaseSection&)
 /*N*/                                               pSectNd->GetSection();
@@ -244,32 +217,26 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
-/* -----------------01.09.99 16:01-------------------
 
- --------------------------------------------------*/
 /*N*/ const SwAttrSet& SwDoc::GetTOXBaseAttrSet(const SwTOXBase& rTOXBase) const
 /*N*/ {
-/*N*/   ASSERT( rTOXBase.ISA( SwTOXBaseSection ), "no TOXBaseSection!" );
+/*N*/   OSL_ENSURE( rTOXBase.ISA( SwTOXBaseSection ), "no TOXBaseSection!" );
 /*N*/   const SwTOXBaseSection& rTOXSect = (const SwTOXBaseSection&)rTOXBase;
 /*N*/   SwSectionFmt* pFmt = rTOXSect.GetFmt();
-/*N*/   ASSERT( pFmt, "invalid TOXBaseSection!" );
+/*N*/   OSL_ENSURE( pFmt, "invalid TOXBaseSection!" );
 /*N*/   return pFmt->GetAttrSet();
 /*N*/ }
-/* -----------------02.09.99 07:48-------------------
 
- --------------------------------------------------*/
-/* -----------------02.09.99 08:06-------------------
 
- --------------------------------------------------*/
 
 /*--------------------------------------------------------------------
      Beschreibung: Verzeichnis loeschen
  --------------------------------------------------------------------*/
 
 
-/*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& rTOXBase, BOOL bDelNodes )
+/*N*/ BOOL SwDoc::DeleteTOX( const SwTOXBase& /*rTOXBase*/, BOOL /*bDelNodes*/ )
 /*N*/ {
-/*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;//STRIP001    // its only delete the TOX, not the nodes
+/*N*/  DBG_BF_ASSERT(0, "STRIP"); return TRUE;
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -285,9 +252,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/           ++nCnt;
 /*N*/   return nCnt;
 /*N*/ }
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ const SwTOXType* SwDoc::GetTOXType( TOXTypes eTyp, USHORT nId ) const
 /*N*/ {
 /*N*/   const SwTOXTypePtr * ppTTypes = pTOXTypes->GetData();
@@ -304,18 +269,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 
 #endif
 
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ const SwTOXType* SwDoc::InsertTOXType( const SwTOXType& rTyp )
 /*N*/ {
 /*N*/   SwTOXType * pNew = new SwTOXType( rTyp );
 /*N*/   pTOXTypes->Insert( pNew, pTOXTypes->Count() );
 /*N*/   return pNew;
 /*N*/ }
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ String SwDoc::GetUniqueTOXBaseName( const SwTOXType& rType,
 /*N*/                                   const String* pChkStr ) const
 /*N*/ {
@@ -324,7 +285,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/   String aName( rType.GetTypeName() );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
-/*N*/   USHORT nNum, nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
+/*N*/   USHORT nNum = 0, nTmp = 0, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/
@@ -367,12 +328,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/   return aName += String::CreateFromInt32( ++nNum );
 /*N*/ }
 
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 /*N*/ BOOL SwDoc::SetTOXBaseName(const SwTOXBase& rTOXBase, const String& rName)
 /*N*/ {
-/*N*/   ASSERT( rTOXBase.ISA( SwTOXBaseSection ),
+/*N*/   OSL_ENSURE( rTOXBase.ISA( SwTOXBaseSection ),
 /*N*/                   "keine TOXBaseSection!" );
 /*N*/   SwTOXBaseSection* pTOX = (SwTOXBaseSection*)&rTOXBase;
 /*N*/
@@ -386,9 +345,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*--------------------------------------------------------------------
 
- --------------------------------------------------------------------*/
 
 
 /*  */
@@ -417,9 +374,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
      Beschreibung: Verzeichnisinhalt zusammensammeln
  --------------------------------------------------------------------*/
 
-/*N*/ void SwTOXBaseSection::Update(const SfxItemSet* pAttr,
-/*N*/                               const bool        _bNewTOX )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwTOXBaseSection::Update(const SfxItemSet* /*pAttr*/,
+/*N*/                               const bool /*_bNewTOX*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*--------------------------------------------------------------------
@@ -451,12 +408,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
  --------------------------------------------------------------------*/
 
 
-/* -----------------14.07.99 09:59-------------------
+/* --------------------------------------------------
     Description: generate content from sequence fields
  --------------------------------------------------*/
-/* -----------------15.09.99 14:18-------------------
 
- --------------------------------------------------*/
 
 /*--------------------------------------------------------------------
      Beschreibung:  Verzeichnisinhalt aus Inhaltsformen generieren
@@ -475,7 +430,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
                     SwPosition aPos( *pNd );
                     SwDoc* pDoc = (SwDoc*)pNd->GetDoc();
 #ifdef DBG_UTIL
-                    ASSERT( GetBodyTxtNode( pDoc, aPos, pFrm ),
+                    OSL_ENSURE( GetBodyTxtNode( pDoc, aPos, pFrm ),
                             "wo steht der Absatz" );
 #else
                     GetBodyTxtNode( pDoc, aPos, pFrm );
@@ -502,8 +457,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
  --------------------------------------------------------------------*/
 
 
-// OD 18.03.2003 #106329# - add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
-// in order to control, which page description is used, no appropriate one is found.
+// add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc> in order to control,
+// which page description is used, no appropriate one is found.
 
 /*--------------------------------------------------------------------
      Beschreibung: Seitennummer errechnen und nach dem Formatieren
@@ -516,9 +471,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/       return ;
 
     // die aktuellen Seitennummern ins Verzeichnis eintragen
-/*?*/   SwPageFrm*  pAktPage    = 0;
-/*?*/   USHORT      nPage       = 0;
-/*?*/   SwDoc* pDoc = (SwDoc*)GetFmt()->GetDoc();
+/*?*/   (SwDoc*)GetFmt()->GetDoc();
 /*?*/
 /*?*/     SwTOXInternational aIntl( GetLanguage(),
 /*?*/                               TOX_INDEX == GetTOXType()->GetType() ?
@@ -534,3 +487,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // hole den TextNode und
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,8 @@
 
 #include "rtl/ustring.hxx"
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-#endif
-namespace vos { class OModule; }
 namespace binfilter {
 
 // ------------
@@ -82,3 +78,5 @@ public:
 
 } //namespace binfilter
 #endif // _SD_SDFILTER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,12 +32,8 @@
 #endif
 
 #include <hintids.hxx>
-#ifndef _ERRHDL_HXX //autogen
-#include <errhdl.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
+#include <osl/diagnose.h>
 #include <fmthbsh.hxx>
-#endif
 namespace binfilter {
 
 
@@ -45,8 +42,6 @@ namespace binfilter {
 |*    class SwFmtHardBlank
 |*
 |*    Beschreibung      Dokument 1.20
-|*    Ersterstellung    JP 23.11.90
-|*    Letzte Aenderung  JP 20.02.91
 |*
 *************************************************************************/
 
@@ -54,7 +49,7 @@ namespace binfilter {
 /*N*/   : SfxPoolItem( RES_TXTATR_HARDBLANK ),
 /*N*/   cChar( cCh )
 /*N*/ {
-/*N*/   ASSERT( !bCheck || (' ' != cCh && '-' != cCh),
+/*N*/   OSL_ENSURE( !bCheck || (' ' != cCh && '-' != cCh),
 /*N*/           "Invalid character for the HardBlank attribute - "
 /*N*/           "must be a normal unicode character" );
 /*N*/ }
@@ -66,8 +61,6 @@ namespace binfilter {
 |*    class SwFmtSoftHyph
 |*
 |*    Beschreibung      Dokument 1.20
-|*    Ersterstellung    JP 23.11.90
-|*    Letzte Aenderung  JP 20.02.91
 |*
 *************************************************************************/
 
@@ -80,3 +73,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

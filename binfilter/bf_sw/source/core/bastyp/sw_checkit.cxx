@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _CHECKIT_HXX
 #include <checkit.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -45,7 +42,7 @@ SwCheckIt::SwCheckIt()
 {
     Reference< XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
     Reference < XInterface > xI = xMSF->createInstance(
-        ::rtl::OUString::createFromAscii( "com.sun.star.i18n.InputSequenceChecker" ) );
+        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.InputSequenceChecker" )) );
     if ( xI.is() )
     {
         Any x = xI->queryInterface( ::getCppuType((const Reference< XInputSequenceChecker >*)0) );
@@ -54,3 +51,5 @@ SwCheckIt::SwCheckIt()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

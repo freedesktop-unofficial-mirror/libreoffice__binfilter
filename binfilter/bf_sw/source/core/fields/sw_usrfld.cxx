@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,30 +31,18 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
 
 
-#ifndef _CALC_HXX
 #include <calc.hxx>
-#endif
-#ifndef _USRFLD_HXX
 #include <usrfld.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::rtl;
 /*--------------------------------------------------------------------
@@ -139,9 +128,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   nSubType = nSub & 0xff00;
 /*N*/ }
 
-/*-----------------09.03.98 08:04-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwUserField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -167,9 +154,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------09.03.98 08:04-------------------
 
---------------------------------------------------*/
 /*N*/ sal_Bool SwUserField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -189,7 +174,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/       break;
 /*N*/   case FIELD_PROP_FORMAT:
 /*?*/       {
-/*?*/           sal_Int32 nTmp;
+/*?*/           sal_Int32 nTmp(0);
 /*?*/           rAny >>= nTmp;
 /*?*/           SetFormat(nTmp);
 /*?*/       }
@@ -205,9 +190,9 @@ void SwUserField::SetPar2(const String& rStr)
  --------------------------------------------------------------------*/
 
 /*N*/ SwUserFieldType::SwUserFieldType( SwDoc* pDocPtr, const String& aNam )
-/*N*/   : SwValueFieldType( pDocPtr, RES_USERFLD ),
-/*N*/   nType(GSE_STRING),
-/*N*/   nValue( 0 )
+/*N*/   : SwValueFieldType( pDocPtr, RES_USERFLD )
+/*N*/   , nValue( 0 )
+/*N*/   , nType(GSE_STRING)
 /*N*/ {
 /*N*/   bValidValue = bDeleted = sal_False;
 /*N*/   aName = aNam;
@@ -307,16 +292,14 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/
 /*N*/       // der SdrPage (und damit den VCControls) sagen, das sich was getan hat
 /*N*/       if( GetDoc()->GetDrawModel() && GetDepends() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     ((SwDPage*)GetDoc()->GetDrawModel()->GetPage( 0 ))->
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
-/*N*/       sal_Bool bModified = GetDoc()->IsModified();
+/*N*/       GetDoc()->IsModified();
 /*N*/       GetDoc()->SetModified();
 /*N*/   }
 /*N*/ }
 
-/*-----------------04.03.98 17:05-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwUserFieldType::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -335,13 +318,11 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
-/*-----------------04.03.98 17:05-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwUserFieldType::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -349,7 +330,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/   {
 /*N*/   case FIELD_PROP_DOUBLE:
 /*N*/       {
-/*N*/           double fVal;
+/*N*/           double fVal(0.0);
 /*N*/           rAny >>= fVal;
 /*N*/           nValue = fVal;
 /*N*/
@@ -376,7 +357,7 @@ void SwUserField::SetPar2(const String& rStr)
 /*N*/         }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return sal_True;
 /*N*/ }
@@ -384,3 +365,5 @@ void SwUserField::SetPar2(const String& rStr)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,42 +32,18 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SVX_NUMDEF_HXX //autogen
 #include <bf_svx/numdef.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 namespace com{namespace sun{ namespace star{
     namespace text{
         class XNumberingFormatter;
@@ -171,7 +148,7 @@ public:
     SvxNumberFormat(SvStream &rStream);
     ~SvxNumberFormat();
 
-    SvStream&       Store(SvStream &rStream, FontToSubsFontConverter pConverter);
+    SvStream&   Store(SvStream &rStream, FontToSubsFontConverter) { return rStream; }
 
     SvxNumberFormat& operator=( const SvxNumberFormat&  );
     BOOL            operator==( const SvxNumberFormat&  ) const;
@@ -249,7 +226,7 @@ public:
     int                     operator!=( const SvxNumRule& rRule ) const {return !(*this == rRule);}
 
 
-    SvStream&               Store(SvStream &rStream);
+    SvStream& Store(SvStream &rStream) { return rStream; }
 
     const SvxNumberFormat*  Get(USHORT nLevel)const;
     const SvxNumberFormat&  GetLevel(USHORT nLevel)const;
@@ -272,9 +249,8 @@ public:
 
     BOOL                    UnLinkGraphics();
 };
-/* -----------------27.10.98 13:04-------------------
- *
- * --------------------------------------------------*/
+
+
 class SvxNumBulletItem : public SfxPoolItem
 {
     SvxNumRule*             pNumRule;
@@ -286,17 +262,16 @@ public:
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT           GetVersion( USHORT nFileVersion ) const;
     virtual int              operator==( const SfxPoolItem& ) const;
 
     SvxNumRule*             GetNumRule() const {return pNumRule;}
 
-    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
-/* -----------------28.10.98 15:21-------------------
- *
- * --------------------------------------------------*/
+
+
 class SvxNodeNum
 {
     USHORT nLevelVal[ SVX_MAX_NUM ];    // Nummern aller Levels
@@ -339,11 +314,11 @@ inline SvxNodeNum& SvxNodeNum::operator=( const SvxNodeNum& rCpy )
     return *this;
 }
 
-/* --------------------------------------------------
- *
- * --------------------------------------------------*/
+
+
 SvxNumRule* SvxConvertNumRule( const SvxNumRule* pRule, USHORT nLevel, SvxNumRuleType eType );
 
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

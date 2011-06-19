@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 namespace binfilter
 {
@@ -42,7 +41,7 @@ BOOL SgfBMapFilter(SvStream& rInp, SvStream& rOut);
 BOOL SgfVectFilter(SvStream& rInp, GDIMetaFile& rMtf);
 BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath );
 
-// Konstanten fÅr CheckSgfTyp()
+// Konstanten fÔøΩr CheckSgfTyp()
 #define SGF_BITIMAGE   1     /* Bitmap                      */
 #define SGF_SIMPVECT   2     /* Einfaches Vectorformat      */
 #define SGF_POSTSCRP   3     /* Postscript file             */
@@ -50,7 +49,9 @@ BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath );
 #define SGF_DONTKNOW 255     /* Unbekannt oder kein SGF/SGV */
 
 #define SGV_VERSION    3     /* SGV mit anderer Version wird abgewiesen */
-                             /* 3 entspricht StarDraw 2.00/2.01 MÑrz'93 */
+                             /* 3 entspricht StarDraw 2.00/2.01 MÔøΩrz'93 */
 }
 
 #endif  //_SGFFILT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

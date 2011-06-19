@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,46 +26,25 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLEXPORTITERATOR_HXX
 #include "XMLExportIterator.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGESQUERY_HPP_
 #include <com/sun/star/sheet/XCellRangesQuery.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XSheetAnnotationsSupplier.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
-#endif
-#ifndef SC_CONVUNO_HXX
 #include "convuno.hxx"
-#endif
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef SC_XMLEXPORTSHAREDDATA_HXX
 #include "XMLExportSharedData.hxx"
-#endif
-#ifndef _SC_XMLSTYLESEXPORTHELPER_HXX
 #include "XMLStylesExportHelper.hxx"
-#endif
 
 #include <algorithm>
 namespace binfilter {
@@ -352,7 +332,6 @@ sal_Bool ScMyEmptyDatabaseRangesContainer::GetFirstAddress( table::CellAddress& 
 void ScMyEmptyDatabaseRangesContainer::SetCellData( ScMyCell& rMyCell )
 {
     rMyCell.bHasEmptyDatabase = sal_False;
-    sal_Int16 nTable = rMyCell.aCellAddress.Sheet;
     ScMyEmptyDatabaseRangeList::iterator aItr = aDatabaseList.begin();
     if( aItr != aDatabaseList.end() )
     {
@@ -506,6 +485,8 @@ void ScMyDetectiveOpContainer::Sort()
 ScMyCell::ScMyCell() :
     aShapeList(),
     aDetectiveObjVec(),
+    fValue( 0.0 ),
+    bIsAutoStyle( sal_False ),
     bHasShape( sal_False ),
     bIsMergedBase( sal_False ),
     bIsCovered( sal_False ),
@@ -513,15 +494,14 @@ ScMyCell::ScMyCell() :
     bHasEmptyDatabase( sal_False ),
     bHasDetectiveObj( sal_False ),
     bHasDetectiveOp( sal_False ),
-    bIsMatrixBase( sal_False ),
-    bIsMatrixCovered( sal_False ),
-    bHasAnnotation( sal_False ),
-    bIsAutoStyle( sal_False ),
     bIsEditCell( sal_False ),
     bKnowWhetherIsEditCell( sal_False ),
     bHasStringValue( sal_False ),
     bHasDoubleValue( sal_False ),
-    bHasXText( sal_False )
+    bHasXText( sal_False ),
+    bIsMatrixBase( sal_False ),
+    bIsMatrixCovered( sal_False ),
+    bHasAnnotation( sal_False )
 {
 }
 
@@ -541,15 +521,15 @@ sal_Bool ScMyExportAnnotation::operator<(const ScMyExportAnnotation& rAnno) cons
 
 
 ScMyNotEmptyCellsIterator::ScMyNotEmptyCellsIterator(ScXMLExport& rTempXMLExport)
-    : rExport(rTempXMLExport),
-    pCellItr(NULL),
-    pShapes(NULL),
-    pMergedRanges(NULL),
-    pAreaLinks(NULL),
-    pEmptyDatabaseRanges(NULL),
-    pDetectiveObj(NULL),
-    pDetectiveOp(NULL),
-    nCurrentTable(-1)
+    : pShapes(NULL)
+    , pEmptyDatabaseRanges(NULL)
+    , pMergedRanges(NULL)
+    , pAreaLinks(NULL)
+    , pDetectiveObj(NULL)
+    , pDetectiveOp(NULL)
+    , rExport(rTempXMLExport)
+    , pCellItr(NULL)
+    , nCurrentTable(-1)
 {
 }
 
@@ -564,7 +544,7 @@ void ScMyNotEmptyCellsIterator::Clear()
         delete pCellItr;
     if (!aAnnotations.empty())
     {
-        DBG_ERROR("not all Annotations saved");
+        OSL_FAIL("not all Annotations saved");
         aAnnotations.clear();
     }
     pCellItr = NULL;
@@ -736,3 +716,5 @@ sal_Bool ScMyNotEmptyCellsIterator::GetNext(ScMyCell& aCell, ScFormatRangeStyles
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

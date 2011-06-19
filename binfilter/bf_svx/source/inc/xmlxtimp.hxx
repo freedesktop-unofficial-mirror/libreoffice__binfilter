@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SVX_XMLXTIMP_HXX
 #define _SVX_XMLXTIMP_HXX
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {
@@ -65,3 +64,4 @@ private:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

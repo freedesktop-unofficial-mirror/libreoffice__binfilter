@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,53 +31,23 @@
 #pragma hdrstop
 #endif
 
-#ifndef _METRIC_HXX //autogen
 #include <vcl/metric.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // Bildschirmabgleich
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>      // Bildschirmabgleich abschalten, ViewOption
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _SWFONT_HXX
 #include <swfont.hxx>       // CH_BLANK + CH_BULLET
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // SwTxtFrm
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 
 // Enable this to use the helpclass SwRVPMark
 #if OSL_DEBUG_LEVEL > 1
@@ -108,9 +79,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 |*
 |*  SwFntCache::Flush()
 |*
-|*  Ersterstellung      AMA 16. Dez. 94
-|*  Letzte Aenderung    AMA 16. Dez. 94
-|*
 |*************************************************************************/
 
 /*N*/ void SwFntCache::Flush( )
@@ -127,13 +95,10 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 |*
 |*  SwFntObj::SwFntObj(), ~SwFntObj()
 |*
-|*  Ersterstellung      AMA 7. Nov. 94
-|*  Letzte Aenderung    AMA 7. Nov. 94
-|*
 |*************************************************************************/
 
-/*N*/ SwFntObj::SwFntObj( const SwSubFont &rFont, const void *pOwner, ViewShell *pSh ) :
-/*N*/   SwCacheObj( (void*)pOwner ),
+/*N*/ SwFntObj::SwFntObj( const SwSubFont &rFont, const void *pOwner2, ViewShell *pSh ) :
+/*N*/   SwCacheObj( (void*)pOwner2 ),
 /*N*/   aFont( rFont ),
 /*N*/   pScrFont( NULL ),
 /*N*/   pPrtFont( &aFont ),
@@ -183,9 +148,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*************************************************************************
  *
  *  USHORT SwFntObj::GetAscent( const OutputDevice *pOut )
- *
- *  Ersterstellung      AMA 7. Nov. 94
- *  Letzte Aenderung    AMA 7. Nov. 94
  *
  *  Beschreibung: liefern den Ascent des Fonts auf dem
  *  gewuenschten Outputdevice zurueck, ggf. muss der Bildschirmfont erst
@@ -258,20 +220,19 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  *  SwFntObj::CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut )
  *
- *  Ersterstellung      AMA 7. Nov. 94
- *  Letzte Aenderung    AMA 7. Nov. 94
- *
  *  pOut is the output device, not the reference device
  *
  *************************************************************************/
 
-/*N*/ void SwFntObj::CreateScrFont( const ViewShell *pSh, const OutputDevice& rOut )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwFntObj::CreateScrFont( const ViewShell* /*pSh*/, const OutputDevice& /*rOut*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 /*N*/ void SwFntObj::GuessLeading( const ViewShell *pSh, const FontMetric& rMet )
 /*N*/ {
+/*N*/   (void)pSh;
+/*N*/   (void)rMet;
 /*N*/ //  Wie waere es mit 50% des Descents (StarMath??):
 /*N*/ //    nLeading = USHORT( aMet.GetDescent() / 2 );
 /*N*/
@@ -313,7 +274,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*?*/                   aWinMet.GetAscent() - rMet.GetAscent() - nTmpLeading );
 /*?*/               if( nDiff > 0 )
 /*?*/               {
-/*?*/                   ASSERT( nPrtAscent < USHRT_MAX, "GuessLeading: PrtAscent-Fault" );
+/*?*/                   OSL_ENSURE( nPrtAscent < USHRT_MAX, "GuessLeading: PrtAscent-Fault" );
 /*?*/                   nPrtAscent += (USHORT)(( 2 * nDiff ) / 5);
 /*?*/               }
 /*N*/           }
@@ -339,9 +300,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*************************************************************************
  *
  *  void SwFntObj::SetDeviceFont( const OutputDevice *pOut ),
- *
- *  Ersterstellung      AMA 7. Nov. 94
- *  Letzte Aenderung    AMA 7. Nov. 94
  *
  *  Beschreibung: stellt den Font am gewuenschten OutputDevice ein,
  *  am Bildschirm muss eventuell erst den Abgleich durchgefuehrt werden.
@@ -395,9 +353,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  * void SwFntObj::DrawText( ... )
  *
- *  Ersterstellung      AMA 16. Dez. 94
- *  Letzte Aenderung    AMA 16. Dez. 94
- *
  *  Beschreibung: Textausgabe
  *                  auf dem Bildschirm          => DrawTextArray
  *                  auf dem Drucker, !Kerning   => DrawText
@@ -406,8 +361,8 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *************************************************************************/
 
 
-/*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* pOut )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False; //STRIP001
+/*N*/ sal_Bool lcl_IsMonoSpaceFont( const OutputDevice* /*pOut*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_False;
 /*N*/ }
 
 // ER 09.07.95 20:34
@@ -430,9 +385,6 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
  *
  *  Size SwFntObj::GetTextSize( const OutputDevice *pOut, const String &rTxt,
  *           const USHORT nIdx, const USHORT nLen, const short nKern = 0 );
- *
- *  Ersterstellung      AMA 16. Dez. 94
- *  Letzte Aenderung    AMA 16. Dez. 94
  *
  *  Beschreibung: ermittelt die TextSize (des Druckers)
  *
@@ -494,20 +446,20 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/                            rInf.GetScriptInfo()->CountCompChg() &&
 /*N*/                      lcl_IsMonoSpaceFont( rInf.GetpOut() );
 /*N*/
-/*N*/   ASSERT( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
+/*N*/   OSL_ENSURE( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
 /*N*/           CountCompChg()), "Compression without info" );
 /*N*/
 /*N*/     // This is the part used e.g., for cursor travelling
 /*N*/     // See condition for DrawText or DrawTextArray (bDirectPrint)
 /*N*/     if ( pPrinter && pPrinter != rInf.GetpOut() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/         if( !pPrtFont->IsSameInstance( rInf.GetpOut()->GetFont() ) )
 /*N*/             rInf.GetpOut()->SetFont( *pPrtFont );
 /*N*/       if( bCompress )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -533,13 +485,10 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 |*
 |*  SwFntAccess::SwFntAccess()
 |*
-|*  Ersterstellung      AMA 9. Nov. 94
-|*  Letzte Aenderung    AMA 9. Nov. 94
-|*
 |*************************************************************************/
 
 /*N*/ SwFntAccess::SwFntAccess( const void* &rMagic,
-/*N*/               USHORT &rIndex, const void *pOwner, ViewShell *pSh,
+/*N*/               USHORT &rIndex, const void *pOwner3, ViewShell *pSh,
 /*N*/               BOOL bCheck ) :
 /*N*/   SwCacheAccess( *pFntCache, rMagic, rIndex ),
 /*N*/   pShell( pSh )
@@ -578,7 +527,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/           if ( ( pFntObj->GetZoom( ) == nZoom ) &&
 /*N*/                ( pFntObj->pPrinter == pOut ) &&
 /*N*/                  pFntObj->GetPropWidth() ==
-/*N*/                       ((SwSubFont*)pOwner)->GetPropWidth() )
+/*N*/                       ((SwSubFont*)pOwner3)->GetPropWidth() )
 /*N*/               return; // Die Ueberpruefung ergab: Drucker+Zoom okay.
 /*N*/           pFntObj->Unlock( ); // Vergiss dies Objekt, es wurde leider
 /*N*/           pObj = NULL;        // eine Drucker/Zoomaenderung festgestellt.
@@ -587,10 +536,10 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/         // Search by font comparison, quite expensive!
 /*N*/         // Look for same font and same printer
 /*N*/         pFntObj = pFntCache->First();
-/*N*/       while ( pFntObj && !( pFntObj->aFont == *(Font *)pOwner &&
+/*N*/       while ( pFntObj && !( pFntObj->aFont == *(Font *)pOwner3 &&
 /*N*/                               pFntObj->GetZoom() == nZoom &&
 /*N*/                               pFntObj->GetPropWidth() ==
-/*N*/                               ((SwSubFont*)pOwner)->GetPropWidth() &&
+/*N*/                               ((SwSubFont*)pOwner3)->GetPropWidth() &&
 /*N*/                               ( !pFntObj->pPrinter || pFntObj->pPrinter == pOut ) ) )
 /*N*/           pFntObj = pFntCache->Next( pFntObj );
 /*N*/
@@ -599,10 +548,10 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/           // Wir haben zwar einen ohne Drucker gefunden, mal sehen, ob es
 /*N*/           // auch noch einen mit identischem Drucker gibt.
 /*N*/           SwFntObj *pTmpObj = pFntObj;
-/*N*/           while( pTmpObj && !( pTmpObj->aFont == *(Font *)pOwner &&
+/*N*/           while( pTmpObj && !( pTmpObj->aFont == *(Font *)pOwner3 &&
 /*N*/                  pTmpObj->GetZoom()==nZoom && pTmpObj->pPrinter==pOut &&
 /*N*/                  pTmpObj->GetPropWidth() ==
-/*N*/                       ((SwSubFont*)pOwner)->GetPropWidth() ) )
+/*N*/                       ((SwSubFont*)pOwner3)->GetPropWidth() ) )
 /*N*/               pTmpObj = pFntCache->Next( pTmpObj );
 /*N*/           if( pTmpObj )
 /*N*/               pFntObj = pTmpObj;
@@ -612,16 +561,16 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/       {
 /*N*/           // Das Objekt muss neu angelegt werden, deshalb muss der Owner ein
 /*N*/           // SwFont sein, spaeter wird als Owner die "MagicNumber" gehalten.
-/*N*/           SwCacheAccess::pOwner = pOwner;
+/*N*/           SwCacheAccess::pOwner = pOwner3;
 /*N*/           pFntObj = Get(); // hier wird via NewObj() angelegt und gelockt.
-/*N*/           ASSERT(pFntObj, "No Font, no Fun.");
+/*N*/           OSL_ENSURE(pFntObj, "No Font, no Fun.");
 /*N*/       }
 /*N*/         else  // Font has been found, so we lock it.
 /*N*/       {
 /*N*/           pFntObj->Lock();
 /*N*/           if( pFntObj->pPrinter != pOut ) // Falls bis dato kein Drucker bekannt
 /*N*/           {
-/*N*/               ASSERT( !pFntObj->pPrinter, "SwFntAccess: Printer Changed" );
+/*N*/               OSL_ENSURE( !pFntObj->pPrinter, "SwFntAccess: Printer Changed" );
 /*N*/                 pFntObj->CreatePrtFont( *pOut );
 /*N*/               pFntObj->pPrinter = pOut;
 /*N*/               pFntObj->pScrFont = NULL;
@@ -663,7 +612,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/                            rInf.GetScriptInfo()->CountCompChg() &&
 /*N*/                      lcl_IsMonoSpaceFont( rInf.GetpOut() );
 /*N*/
-/*N*/     ASSERT( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
+/*N*/     OSL_ENSURE( !bCompress || ( rInf.GetScriptInfo() && rInf.GetScriptInfo()->
 /*N*/             CountCompChg()), "Compression without info" );
 /*N*/
 /*N*/   USHORT nTxtBreak = 0;
@@ -705,7 +654,7 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 /*N*/     }
 /*N*/
 /*N*/     if( aSub[nActual].IsCapital() && nLn )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nTxtBreak = GetCapitalBreak( rInf.GetShell(), rInf.GetpOut(),
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/   {
 /*N*/       nKern = CheckKerning();
@@ -810,3 +759,5 @@ extern Color aGlobalRetoucheColor;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,35 +29,16 @@
 #ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #define _XMLOFF_XMLASTPL_IMPL_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 #include <vector>
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <maptype.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include <xmlexppr.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLAutoStylePoolP;
@@ -73,13 +55,9 @@ class SvXMLExport;
 // Implementationclass for stylefamily-information
 //
 
-typedef ::rtl::OUString *OUStringPtr;
-DECLARE_LIST( SvXMLAutoStylePoolCache_Impl, OUStringPtr )
-
 class XMLFamilyData_Impl
 {
 public:
-    SvXMLAutoStylePoolCache_Impl        *pCache;
     sal_uInt32                          mnFamily;
     ::rtl::OUString                     maStrFamilyName;
     UniReference < SvXMLExportPropertyMapper >  mxMapper;
@@ -98,8 +76,7 @@ public:
 
     XMLFamilyData_Impl( sal_Int32 nFamily ) :
         mnFamily( nFamily ), mpParentList( NULL ),
-        mpNameList( NULL ), mnCount( 0 ), mnName( 0 ),
-        pCache( 0 )
+        mpNameList( NULL ), mnCount( 0 ), mnName( 0 )
     {}
     ~XMLFamilyData_Impl();
 
@@ -143,7 +120,7 @@ public:
 };
 
 typedef SvXMLAutoStylePoolPropertiesP_Impl *SvXMLAutoStylePoolPropertiesPPtr;
-DECLARE_LIST( SvXMLAutoStylePoolPropertiesPList_Impl, SvXMLAutoStylePoolPropertiesPPtr )
+typedef ::std::vector< SvXMLAutoStylePoolPropertiesPPtr > SvXMLAutoStylePoolPropertiesPList_Impl;
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -230,3 +207,5 @@ struct SvXMLAutoStylePoolPExport_Impl
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,7 +38,7 @@
 
 // Freigeben, wenn SD-Storages verwendet werden sollen
 #define SDSTORAGES
-#define SD_ERROR    DBG_ERROR( "use ole2, while SDSTORAGES defined" )
+#define SD_ERROR    OSL_FAIL( "use ole2, while SDSTORAGES defined" )
 
 // kein Profiling
 #undef DBG_PROFSTART
@@ -199,8 +200,6 @@ void SvStorage::TestMemberInvariant( BOOL bPrint )
 |*                      der RefCounter schon um 1 erhoet.
 |*                      Die Uebergabe erfolgt in pStorageCTor. Die Variable
 |*                      ist NULL, wenn es nicht geklappt hat.
-|*    Ersterstellung    MM 23.06.94
-|*    Letzte Aenderung  MM 23.06.94
 |*
 *************************************************************************/
 #define INIT_SVSTORAGE()                    \
@@ -441,3 +440,5 @@ SvStorage * SvStorage::OpenOLEStorage( const String & rEleName,
     return pStor;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

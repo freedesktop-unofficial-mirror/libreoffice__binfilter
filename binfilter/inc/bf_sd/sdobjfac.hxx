@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SDOBJFAC_HXX
 #define _SDOBJFAC_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------
@@ -59,3 +58,4 @@ extern SdObjectFactory aSdObjectFactory;
 } //namespace binfilter
 #endif // _SDOBJFAC_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

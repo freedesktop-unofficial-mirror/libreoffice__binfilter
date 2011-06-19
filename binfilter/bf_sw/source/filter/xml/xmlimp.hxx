@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,13 @@
 #ifndef _XMLIMP_HXX
 #define _XMLIMP_HXX
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemSet;
@@ -227,3 +220,5 @@ inline void SwXMLImport::SetProgressValue( sal_Int32 nValue )
 
 } //namespace binfilter
 #endif  //  _XMLIMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,9 +42,7 @@
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 #include "drawitem.hxx"
 namespace binfilter {
@@ -88,9 +87,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxColorTableItem::operator==( const SfxPoolItem& rItem ) const
+/*?*/ int SvxColorTableItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -131,9 +130,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxGradientListItem::operator==( const SfxPoolItem& rItem ) const
+/*?*/ int SvxGradientListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -174,9 +173,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxHatchListItem::operator==( const SfxPoolItem& rItem ) const
+/*?*/ int SvxHatchListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -217,9 +216,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxBitmapListItem::operator==( const SfxPoolItem& rItem ) const
+/*?*/ int SvxBitmapListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -261,9 +260,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ int SvxDashListItem::operator==( const SfxPoolItem& rItem ) const
+/*?*/ int SvxDashListItem::operator==( const SfxPoolItem& /*rItem*/ ) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    DBG_ASSERT( SfxPoolItem::operator==( rItem ), "unequal type" );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -319,3 +318,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

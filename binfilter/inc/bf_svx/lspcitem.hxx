@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,16 +30,10 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 namespace rtl
 {
@@ -75,13 +70,13 @@ public:
 
     // "pure virtual Methoden" vom SfxPoolItem
     virtual int              operator==( const SfxPoolItem& ) const;
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
 
     // Methoden zum Abfragen und Aendern
     // Interlinespace wird zur Hoehe addiert.
@@ -123,3 +118,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

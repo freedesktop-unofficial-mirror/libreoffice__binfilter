@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -39,7 +37,6 @@
 // SFX
 #define _SFXAPPWIN_HXX
 #define _SFX_SAVEOPT_HXX
-//#define _SFX_CHILDWIN_HXX ***
 #define _SFXCTRLITEM_HXX
 #define _SFXPRNMON_HXX
 #define _INTRO_HXX
@@ -56,23 +53,19 @@
 #define _SFX_MINFITEM_HXX
 #define _SFXEVENT_HXX
 
-//#define _SI_HXX
-//#define SI_NODRW
 #define _SI_DLL_HXX
 #define _SIDLL_HXX
 #define _SI_NOITEMS
 #define _SI_NOOTHERFORMS
 #define _SI_NOSBXCONTROLS
 #define _SINOSBXCONTROLS
-#define _SI_NODRW         //
+#define _SI_NODRW
 #define _SI_NOCONTROL
 #define _VCBRW_HXX
 #define _VCTRLS_HXX
-//#define _VCSBX_HXX
 #define _VCONT_HXX
 #define _VDRWOBJ_HXX
 #define _VCATTR_HXX
-
 
 #define _SVX_DAILDLL_HXX
 #define _SVX_HYPHEN_HXX
@@ -116,36 +109,36 @@ extern BOOL bIsOlk, bOderSo;
 
 /*N*/ ScTable::ScTable( ScDocument* pDoc, USHORT nNewTab, const String& rNewName,
 /*N*/                   BOOL bColInfo, BOOL bRowInfo ) :
-/*N*/   pDocument( pDoc ),
 /*N*/   aName( rNewName ),
-/*N*/   nTab( nNewTab ),
 /*N*/   bScenario( FALSE ),
-/*N*/   bActiveScenario( FALSE ),
-/*N*/   nScenarioFlags( 0 ),
-/*N*/   aScenarioColor( COL_LIGHTGRAY ),
 /*N*/   nLinkMode( 0 ),
-/*N*/   pColWidth( NULL ),
-/*N*/   pColFlags( NULL ),
-/*N*/   pRowHeight( NULL ),
-/*N*/   pRowFlags( NULL ),
-/*N*/   pOutlineTable( NULL ),
-/*N*/   bVisible( TRUE ),
-/*N*/   pSearchParam( NULL ),
-/*N*/   pSearchText ( NULL ),
-/*N*/   bProtected( FALSE ),
-/*N*/   nRecalcLvl( 0 ),
+/*N*/   aPageStyle( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) ),
 /*N*/   bPageSizeValid( FALSE ),
 /*N*/   nRepeatStartX( REPEAT_NONE ),
 /*N*/   nRepeatStartY( REPEAT_NONE ),
-/*N*/   aPageStyle( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) ),
+/*N*/   bProtected( FALSE ),
+/*N*/   pColWidth( NULL ),
+/*N*/   pRowHeight( NULL ),
+/*N*/   pColFlags( NULL ),
+/*N*/   pRowFlags( NULL ),
+/*N*/   pOutlineTable( NULL ),
 /*N*/   bTableAreaValid( FALSE ),
+/*N*/   bVisible( TRUE ),
+/*N*/   nTab( nNewTab ),
+/*N*/   nRecalcLvl( 0 ),
+/*N*/   pDocument( pDoc ),
+/*N*/   pSearchParam( NULL ),
+/*N*/   pSearchText ( NULL ),
+/*N*/   pSortCollator( NULL ),
 /*N*/   nPrintRangeCount( 0 ),
 /*N*/   pPrintRanges( NULL ),
 /*N*/   pRepeatColRange( NULL ),
 /*N*/   pRepeatRowRange( NULL ),
 /*N*/   nLockCount( 0 ),
 /*N*/   pScenarioRanges( NULL ),
-/*N*/   pSortCollator( NULL )
+/*N*/   aScenarioColor( COL_LIGHTGRAY ),
+/*N*/   nScenarioFlags( 0 ),
+/*N*/   bActiveScenario( FALSE )
 /*N*/ {
 /*N*/   USHORT i;
 /*N*/
@@ -197,7 +190,7 @@ extern BOOL bIsOlk, bOderSo;
 /*?*/
 /*?*/       ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
 /*?*/       if (pDrawLayer)
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage( nTab );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete[] pColWidth;
@@ -223,7 +216,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/ {
 /*N*/   String aMd( "D\344umling", RTL_TEXTENCODING_MS_1252 );  // ANSI
 /*N*/   if( rNewName == aMd )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 bIsOlk = bOderSo = TRUE;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   aName = rNewName;
 /*N*/ }
 
@@ -312,9 +305,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   USHORT nRngStart;
-/*N*/   USHORT nRngEnd;
-/*N*/   USHORT nLast = 0;
+/*N*/   USHORT nRngStart(0);
+/*N*/   USHORT nRngEnd(0);
+/*N*/   USHORT nLast(0);
 /*N*/   USHORT i;
 /*N*/   for (i=0; i<nCount; i++)
 /*N*/   {
@@ -392,26 +385,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/   return bRet;
 /*N*/ }
 
-/*      vorher:
-
-    BOOL bFound = FALSE;
-    USHORT nMaxX = 0;
-    USHORT nMaxY = 0;
-    for (USHORT i=0; i<=MAXCOL; i++)
-        if (!aCol[i].IsEmpty())
-        {
-            bFound = TRUE;
-            nMaxX = i;
-            USHORT nColY = aCol[i].GetLastEntryPos();
-            if (nColY > nMaxY)
-                nMaxY = nColY;
-        }
-
-    rEndCol = nMaxX;
-    rEndRow = nMaxY;
-    return bFound;
-*/
-
 /*N*/ BOOL ScTable::GetPrintArea( USHORT& rEndCol, USHORT& rEndRow, BOOL bNotes ) const
 /*N*/ {
 /*N*/   BOOL bFound = FALSE;
@@ -453,8 +426,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/   rEndRow = nMaxY;
 /*N*/   return bFound;
 /*N*/ }
-
-
 
 /*N*/ BOOL ScTable::GetDataStart( USHORT& rStartCol, USHORT& rStartRow ) const
 /*N*/ {
@@ -503,21 +474,16 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pDrawLayer->ScRemovePage
 /*N*/   return bFound;
 /*N*/ }
 
-/*N*/ void ScTable::GetDataArea( USHORT& rStartCol, USHORT& rStartRow, USHORT& rEndCol, USHORT& rEndRow,
-/*N*/                           BOOL bIncludeOld )
+/*N*/ void ScTable::GetDataArea( USHORT&, USHORT&, USHORT&, USHORT&,
+/*N*/                           BOOL )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    BOOL bLeft       = FALSE;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-
-
-
-
-
-/*N*/ void ScTable::GetNextPos( USHORT& rCol, USHORT& rRow, short nMovX, short nMovY,
-/*N*/                               BOOL bMarked, BOOL bUnprotected, const ScMarkData& rMark )
+/*N*/ void ScTable::GetNextPos( USHORT&, USHORT&, short, short,
+/*N*/                               BOOL, BOOL, const ScMarkData& )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bUnprotected && !IsProtected())     // Tabelle ueberhaupt geschuetzt?
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL ScTable::GetNextMarkedCell( USHORT& rCol, USHORT& rRow, const ScMarkData& rMark )
@@ -561,13 +527,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bUnprotected && !IsProte
 /*N*/   return FALSE;                               // alle Spalten durch
 /*N*/ }
 
-/*N*/ void ScTable::UpdateDrawRef( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-/*N*/                                   USHORT nCol2, USHORT nRow2, USHORT nTab2,
-/*N*/                                   short nDx, short nDy, short nDz )
+/*N*/ void ScTable::UpdateDrawRef( UpdateRefMode /*eUpdateRefMode*/, USHORT /*nCol1*/, USHORT /*nRow1*/, USHORT nTab1,
+/*N*/                                   USHORT /*nCol2*/, USHORT /*nRow2*/, USHORT nTab2,
+/*N*/                                   short /*nDx*/, short /*nDy*/, short nDz )
 /*N*/ {
 /*N*/   if ( nTab >= nTab1 && nTab <= nTab2 && nDz == 0 )       // only within the table
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pDocument->GetDrawLayer();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -672,14 +638,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pD
 /*N*/   }
 /*N*/ }
 
-
-
 /*N*/ void ScTable::UpdateInsertTab(USHORT nTable)
 /*N*/ {
 /*N*/   if (nTab >= nTable) nTab++;
 /*N*/   for (USHORT i=0; i <= MAXCOL; i++) aCol[i].UpdateInsertTab(nTable);
 /*N*/ }
-
 
 /*N*/  void ScTable::UpdateDeleteTab( USHORT nTable, BOOL bIsMove, ScTable* pRefUndo )
 /*N*/  {
@@ -715,19 +678,19 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         ScDrawLayer* pDrawLayer = pD
 /*N*/   return bInUse;
 /*N*/ }
 
-/*N*/ void ScTable::ReplaceRangeNamesInUse(USHORT nCol1, USHORT nRow1,
-/*N*/                               USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScIndexMap& rMap )
+/*N*/ void ScTable::ReplaceRangeNamesInUse(USHORT, USHORT,
+/*N*/                               USHORT, USHORT,
+/*N*/                                   const ScIndexMap& )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for (USHORT i = nCol1; i <= nCol2 && (i <= MAXCOL); i++)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScTable::ExtendPrintArea( OutputDevice* pDev,
-/*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT& rEndCol, USHORT nEndRow )
+/*N*/                   USHORT /*nStartCol*/, USHORT nStartRow, USHORT& rEndCol, USHORT nEndRow )
 /*N*/ {
 /*N*/   if ( !pColFlags || !pRowFlags )
 /*N*/   {
-/*N*/       DBG_ERROR("keine ColInfo oder RowInfo in ExtendPrintArea");
+/*N*/       OSL_FAIL("keine ColInfo oder RowInfo in ExtendPrintArea");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -849,7 +812,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for (USHORT i = nCol1; i <= 
 /*N*/   if (nPos < nPrintRangeCount && pPrintRanges)
 /*N*/       pPrintRanges[nPos] = rNew;
 /*N*/   else
-/*N*/       DBG_ERROR("SetPrintRange falsch");
+/*N*/       OSL_FAIL("SetPrintRange falsch");
 /*N*/ }
 
 /*N*/ const ScRange* ScTable::GetPrintRange(USHORT nPos) const
@@ -866,9 +829,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for (USHORT i = nCol1; i <= 
 /*N*/   rSaveTab.SetRepeat( pRepeatColRange, pRepeatRowRange );
 /*N*/ }
 
-
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

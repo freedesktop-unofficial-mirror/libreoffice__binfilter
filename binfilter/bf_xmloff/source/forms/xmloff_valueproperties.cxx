@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_VALUEPROPERTIES_HXX_
 #include "valueproperties.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -105,7 +100,7 @@ namespace xmloff
     void OValuePropertiesMetaData::getValueLimitPropertyNames(sal_Int16 _nFormComponentType,
         sal_Char const * & _rpMinValuePropertyName, sal_Char const * & _rpMaxValuePropertyName)
     {
-        _rpMinValuePropertyName = _rpMinValuePropertyName = NULL;
+        _rpMinValuePropertyName = _rpMaxValuePropertyName = NULL;
         switch (_nFormComponentType)
         {
             case FormComponentType::DATEFIELD:
@@ -179,3 +174,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

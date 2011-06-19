@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,40 +27,24 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
 
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
 
 
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 
-#ifndef _SVX_EDITSOURCE_HXX
 #include "editsource.hxx"
-#endif
 
-#ifndef _SVX_UNOTEXT_HXX
 #include "unotext.hxx"
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::document;
@@ -67,9 +52,10 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::text;
-using namespace ::rtl;
 using namespace cppu;
 using namespace xmloff::token;
+
+using rtl::OUString;
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -90,8 +76,8 @@ using namespace xmloff::token;
 /*N*/
 /*N*/ ///////////////////////////////////////////////////////////////////////
 /*N*/
-/*N*/ SvxXMLTextImportContext::SvxXMLTextImportContext( SvXMLImport& rImport, USHORT nPrfx, const OUString& rLName, const Reference< XAttributeList >& xAttrList, const Reference< XText >& xText )
-/*N*/ : SvXMLImportContext( rImport, nPrfx, rLName ), mxText( xText )
+/*N*/ SvxXMLTextImportContext::SvxXMLTextImportContext( SvXMLImport& rInImport, USHORT nPrfx, const OUString& rLName, const Reference< XAttributeList >& /*xAttrList*/, const Reference< XText >& xText )
+/*N*/ : SvXMLImportContext( rInImport, nPrfx, rLName ), mxText( xText )
 /*N*/ {
 /*N*/ }
 /*N*/
@@ -99,27 +85,29 @@ using namespace xmloff::token;
 /*N*/ {
 /*N*/ }
 /*N*/
-/*N*/ SvXMLImportContext *SvxXMLTextImportContext::CreateChildContext( USHORT nPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
+/*N*/ SvXMLImportContext *SvxXMLTextImportContext::CreateChildContext( USHORT nInPrefix, const OUString& rLocalName, const Reference< XAttributeList >& xAttrList )
 /*N*/ {
 /*N*/   SvXMLImportContext* pContext = NULL;
-/*N*/   if(XML_NAMESPACE_OFFICE == nPrefix && IsXMLToken( rLocalName, XML_BODY ) )
+/*N*/   if(XML_NAMESPACE_OFFICE == nInPrefix && IsXMLToken( rLocalName, XML_BODY ) )
 /*N*/   {
-/*N*/       pContext = new SvxXMLTextImportContext( GetImport(), nPrefix, rLocalName, xAttrList, mxText );
+/*N*/       pContext = new SvxXMLTextImportContext( GetImport(), nInPrefix, rLocalName, xAttrList, mxText );
 /*N*/   }
-/*N*/   else if( XML_NAMESPACE_OFFICE == nPrefix && IsXMLToken( rLocalName, XML_AUTOMATIC_STYLES ) )
+/*N*/   else if( XML_NAMESPACE_OFFICE == nInPrefix && IsXMLToken( rLocalName, XML_AUTOMATIC_STYLES ) )
 /*N*/   {
-/*N*/       pContext = new SvXMLStylesContext( GetImport(), nPrefix, rLocalName, xAttrList );
+/*N*/       pContext = new SvXMLStylesContext( GetImport(), nInPrefix, rLocalName, xAttrList );
 /*N*/       GetImport().GetTextImport()->SetAutoStyles( (SvXMLStylesContext*)pContext );
 /*N*/
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       pContext = GetImport().GetTextImport()->CreateTextChildContext( GetImport(), nPrefix, rLocalName, xAttrList );
+/*N*/       pContext = GetImport().GetTextImport()->CreateTextChildContext( GetImport(), nInPrefix, rLocalName, xAttrList );
 /*N*/   }
 /*N*/
 /*N*/   if( NULL == pContext )
-/*N*/       pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+/*N*/       pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 /*N*/
 /*N*/   return pContext;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

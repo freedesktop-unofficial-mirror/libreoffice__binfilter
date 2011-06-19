@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <xmlprhdl.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 namespace binfilter {
 
 XMLPropertyHandler::~XMLPropertyHandler()
@@ -44,3 +41,5 @@ sal_Bool XMLPropertyHandler::equals( const ::com::sun::star::uno::Any& r1, const
     return (r1 == r2);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

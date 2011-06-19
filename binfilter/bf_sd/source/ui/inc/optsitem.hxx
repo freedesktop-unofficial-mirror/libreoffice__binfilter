@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,27 +29,13 @@
 #ifndef _SD_OPTSITEM_HXX
 #define _SD_OPTSITEM_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_ //autogen
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _SFXCFGITEM_HXX //autogen
 #include <bf_sfx2/cfgitem.hxx>
-#endif
-#ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
-#ifndef _SVX_OPTGRID_HXX //autogen
 #include <bf_svx/optgrid.hxx>
-#endif
-#ifndef _SVX_DLGUTIL_HXX
 #include <bf_svx/dlgutil.hxx>
-#endif
 namespace binfilter {
 
 
@@ -129,7 +116,7 @@ protected:
 
     virtual void            GetPropNameArray( const char**& ppNames, ULONG& rCount ) const = 0;
     virtual BOOL            ReadData( const ::com::sun::star::uno::Any* pValues ) = 0;
-    virtual BOOL            WriteData( ::com::sun::star::uno::Any* pValues ) const = 0;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const = 0;
 
 public:
 
@@ -166,7 +153,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
             SdOptionsLayout( USHORT nConfigId, BOOL bUseConfig );
@@ -211,7 +198,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -278,7 +265,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -371,7 +358,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -422,7 +409,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -447,7 +434,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -514,7 +501,7 @@ protected:
 
     virtual void GetPropNameArray( const char**& ppNames, ULONG& rCount ) const;
     virtual BOOL ReadData( const ::com::sun::star::uno::Any* pValues );
-    virtual BOOL WriteData( ::com::sun::star::uno::Any* pValues ) const;
+    virtual BOOL WriteData( ::com::sun::star::uno::Any* ) const {return FALSE;}
 
 public:
 
@@ -601,3 +588,5 @@ public:
 
 } //namespace binfilter
 #endif // _SD_OPTSITEM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

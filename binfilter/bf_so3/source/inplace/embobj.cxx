@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -128,14 +129,7 @@ void SvEmbeddedInfoObject::Load( SvPersistStream & rStm )
     }
 }
 
-void SvEmbeddedInfoObject::Save( SvPersistStream & rStm )
-{
-    SvInfoObject::Save( rStm );
-    rStm << (BYTE)INFO_VERSION;
-    BOOL bIsLink = FALSE;
-    rStm << bIsLink;
-    rStm << GetVisArea();
-}
+void SvEmbeddedInfoObject::Save( SvPersistStream & ) {}
 
 /************************************************************************
 |*    SvEmbeddedInfoObject::SetObj()
@@ -211,7 +205,7 @@ void SvEmbeddedObject::TestMemberObjRef( BOOL /*bFree*/ )
     {
         ByteString aTest = "\t\tGetClient() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetClient() ) );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -288,38 +282,6 @@ BOOL SvEmbeddedObject::Load( SvStorage * pStor )
     { // Ich bin es nicht selbst
         return SvPersist::Load( pStor );
     }
-}
-
-/*************************************************************************
-|*    SvEmbeddedObject::Save()
-|*
-|*    Beschreibung
-*************************************************************************/
-BOOL SvEmbeddedObject::Save()
-{
-    return SvPersist::Save();
-}
-
-BOOL SvEmbeddedObject::SaveAs( SvStorage * pNewStor )
-{
-    BOOL bRet = FALSE;
-    if( SvPersist::SaveAs( pNewStor ) )
-    {
-        bRet = TRUE;
-        if( bRet && Owner() && GetParent()
-          && SOFFICE_FILEFORMAT_31 == pNewStor->GetVersion() )
-        {
-            ULONG n = pNewStor->GetFormat();
-            if( n == SOT_FORMATSTR_ID_STARWRITER_30 || n == SOT_FORMATSTR_ID_STARDRAW
-              || n == SOT_FORMATSTR_ID_STARCALC )
-            {
-                // empty MTF for 3.1 formats
-                GDIMetaFile aMtf;
-                MakeContentStream( pNewStor, aMtf );
-            }
-        }
-    }
-    return bRet;
 }
 
 /*************************************************************************
@@ -461,7 +423,7 @@ void SvEmbeddedObject::SetModified( BOOL bModifiedP )
 
             // Fuer diesen Fall muss der gesammte Ablauf noch
             // einmal geprueft werden
-            DBG_ASSERT( xPar.Is() && pP || !pP && !xPar.Is(),
+            DBG_ASSERT( (xPar.Is() && pP) || (!pP && !xPar.Is()),
                         "Persist-Parent ist kein EmbeddedObject" );
         }
     }
@@ -546,7 +508,7 @@ void SvEmbeddedObject::Embed( BOOL )
     String aTest( "Object---Embed---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bEmbed ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
 }
 
@@ -594,7 +556,7 @@ void SvEmbeddedObject::PlugIn( BOOL )
     String aTest( "Object---PlugIn---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bPlugIn ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
 }
 
@@ -711,7 +673,7 @@ void SvEmbeddedObject::Open( BOOL bOpen )
     String aTest( "Object---Open---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bOpen ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
 
     SendViewChanged();
@@ -986,3 +948,5 @@ void SvEmbeddedObject::OnDocumentPrinterChanged( Printer * )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

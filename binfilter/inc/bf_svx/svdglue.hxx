@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,12 +37,8 @@ class SvStream;
 namespace binfilter {
 class SdrObject;
 }//end of namespace binfilter
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -75,33 +72,33 @@ class SdrGluePoint {
     USHORT   nEscDir;
     USHORT   nId;
     USHORT   nAlign;
-    FASTBOOL bNoPercent:1;
-    FASTBOOL bReallyAbsolute:1; // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
+    bool bNoPercent:1;
+    bool bReallyAbsolute:1; // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
 public:
     SdrGluePoint(): nEscDir(SDRESC_SMART),nId(0),nAlign(0) { bNoPercent=FALSE; bReallyAbsolute=FALSE; }
-    SdrGluePoint(const Point& rNewPos, FASTBOOL bNewPercent=TRUE, USHORT nNewAlign=0): aPos(rNewPos),nEscDir(SDRESC_SMART),nId(0),nAlign(nNewAlign) { bNoPercent=!bNewPercent; bReallyAbsolute=FALSE; }
-    FASTBOOL operator==(const SdrGluePoint& rCmpGP) const   { return aPos==rCmpGP.aPos && nEscDir==rCmpGP.nEscDir && nId==rCmpGP.nId && nAlign==rCmpGP.nAlign && bNoPercent==rCmpGP.bNoPercent && bReallyAbsolute==rCmpGP.bReallyAbsolute; }
-    FASTBOOL operator!=(const SdrGluePoint& rCmpGP) const   { return !operator==(rCmpGP); }
+    SdrGluePoint(const Point& rNewPos, bool bNewPercent=TRUE, USHORT nNewAlign=0): aPos(rNewPos),nEscDir(SDRESC_SMART),nId(0),nAlign(nNewAlign) { bNoPercent=!bNewPercent; bReallyAbsolute=FALSE; }
+    bool operator==(const SdrGluePoint& rCmpGP) const   { return aPos==rCmpGP.aPos && nEscDir==rCmpGP.nEscDir && nId==rCmpGP.nId && nAlign==rCmpGP.nAlign && bNoPercent==rCmpGP.bNoPercent && bReallyAbsolute==rCmpGP.bReallyAbsolute; }
+    bool operator!=(const SdrGluePoint& rCmpGP) const   { return !operator==(rCmpGP); }
     const Point& GetPos() const                             { return aPos; }
     void         SetPos(const Point& rNewPos)               { aPos=rNewPos; }
     USHORT       GetEscDir() const                          { return nEscDir; }
     void         SetEscDir(USHORT nNewEsc)                  { nEscDir=nNewEsc; }
-    /*FASTBOOL   IsEscapeSmart() const                      { return nEscDir==SDRESC_SMART; }
+    /*bool   IsEscapeSmart() const                      { return nEscDir==SDRESC_SMART; }
     void         SetEscapeSmart()                           { nEscDir=SDRESC_SMART; }
-    FASTBOOL     IsEscapeLeft() const                       { return (nEscDir&SDRESC_LEFT)!=0; }
-    void         SetEscapeLeft(FASTBOOL bOn)                { nEscDir=bOn ? (nEscDir|SDRESC_LEFT) : (nEscDir&~SDRESC_LEFT); }
-    FASTBOOL     IsEscapeRight() const                      { return (nEscDir&SDRESC_RIGHT)!=0; }
-    void         SetEscapeRight(FASTBOOL bOn)               { nEscDir=bOn ? (nEscDir|SDRESC_RIGHT) : (nEscDir&~SDRESC_RIGHT); }
-    FASTBOOL     IsEscapeTop() const                        { return (nEscDir&SDRESC_TOP)!=0; }
-    void         SetEscapeTop(FASTBOOL bOn)                 { nEscDir=bOn ? (nEscDir|SDRESC_TOP) : (nEscDir&~SDRESC_TOP); }
-    FASTBOOL     IsEscapeBottom() const                     { return (nEscDir&SDRESC_BOTTOM)!=0; }
-    void         SetEscapeBottom(FASTBOOL bOn)              { nEscDir=bOn ? (nEscDir|SDRESC_BOTTOM) : (nEscDir&~SDRESC_BOTTOM); }*/
+    bool     IsEscapeLeft() const                       { return (nEscDir&SDRESC_LEFT)!=0; }
+    void         SetEscapeLeft(bool bOn)                { nEscDir=bOn ? (nEscDir|SDRESC_LEFT) : (nEscDir&~SDRESC_LEFT); }
+    bool     IsEscapeRight() const                      { return (nEscDir&SDRESC_RIGHT)!=0; }
+    void         SetEscapeRight(bool bOn)               { nEscDir=bOn ? (nEscDir|SDRESC_RIGHT) : (nEscDir&~SDRESC_RIGHT); }
+    bool     IsEscapeTop() const                        { return (nEscDir&SDRESC_TOP)!=0; }
+    void         SetEscapeTop(bool bOn)                 { nEscDir=bOn ? (nEscDir|SDRESC_TOP) : (nEscDir&~SDRESC_TOP); }
+    bool     IsEscapeBottom() const                     { return (nEscDir&SDRESC_BOTTOM)!=0; }
+    void         SetEscapeBottom(bool bOn)              { nEscDir=bOn ? (nEscDir|SDRESC_BOTTOM) : (nEscDir&~SDRESC_BOTTOM); }*/
     USHORT       GetId() const                              { return nId; }
     void         SetId(USHORT nNewId)                       { nId=nNewId; }
-    FASTBOOL     IsPercent() const                          { return !bNoPercent; }
-    void         SetPercent(FASTBOOL bOn)                   { bNoPercent=!bOn; }
+    bool     IsPercent() const                          { return !bNoPercent; }
+    void         SetPercent(bool bOn)                   { bNoPercent=!bOn; }
     // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
-    FASTBOOL     IsReallyAbsolute() const                   { return bReallyAbsolute; }
+    bool     IsReallyAbsolute() const                   { return bReallyAbsolute; }
     USHORT       GetAlign() const                           { return nAlign; }
     void         SetAlign(USHORT nAlg)                      { nAlign=nAlg; }
     USHORT       GetHorzAlign() const                       { return nAlign&0x00FF; }
@@ -117,7 +114,7 @@ public:
 
 class SdrGluePointList {
     Container aList;
-//    FASTBOOL bSorted; // Muss noch implementiert werden oder?
+//    bool bSorted; // Muss noch implementiert werden oder?
     // Eigentlich sollte die GluePointList stets sortiert sein (solange die
     // Id's ausreichen)
 protected:
@@ -145,3 +142,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDGLUE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

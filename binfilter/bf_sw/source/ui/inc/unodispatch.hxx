@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,32 +28,18 @@
 #ifndef _UNODISPATCH_HXX
 #define _UNODISPATCH_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
 #include <com/sun/star/frame/XDispatchProviderInterception.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
 #include <list>
-//#ifndef _OSL_MUTEX_HXX_
-//#include <osl/mutex.hxx>
-//#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
+
 namespace binfilter {
 
 class SwView;
-//---------------------------------------------------------------------------------------------------------------------
+
 class SwXDispatchProviderInterceptor : public cppu::WeakImplHelper3
 <
     ::com::sun::star::frame::XDispatchProviderInterceptor,
@@ -63,7 +50,7 @@ class SwXDispatchProviderInterceptor : public cppu::WeakImplHelper3
     class DispatchMutexLock_Impl
     {
         //::osl::MutexGuard   aGuard; #102295# solar mutex has to be used currently
-        vos::OGuard         aGuard;
+        osl::MutexGuard         aGuard;
         DispatchMutexLock_Impl();
     public:
         DispatchMutexLock_Impl(SwXDispatchProviderInterceptor&);
@@ -108,7 +95,7 @@ public:
     // view destroyed
     void    Invalidate();
 };
-//---------------------------------------------------------------------------------------------------------------------
+
 struct StatusStruct_Impl
 {
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XStatusListener> xListener;
@@ -144,3 +131,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

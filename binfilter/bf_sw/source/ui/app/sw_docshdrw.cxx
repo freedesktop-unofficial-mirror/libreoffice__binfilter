@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #endif
 
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
 #define ITEMID_COLOR_TABLE      SID_COLOR_TABLE
 #define ITEMID_GRADIENT_LIST    SID_GRADIENT_LIST
@@ -43,30 +42,16 @@
 #define ITEMID_LINEEND_LIST     SID_LINEEND_LIST
 
 
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _SVX_DRAWITEM_HXX //autogen
 #include <bf_svx/drawitem.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVDOUTL_HXX
 #include <bf_svx/svdoutl.hxx>
-#endif
 
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 namespace binfilter {
 
 /*--------------------------------------------------------------------
@@ -86,10 +71,12 @@ namespace binfilter {
 /*N*/       PutItem( SvxDashListItem( pDrDoc->GetDashList() ) );
 /*N*/       PutItem( SvxLineEndListItem( pDrDoc->GetLineEndList() ) );
 /*N*/
-/*N*/       Outliner& rOutliner = pDrDoc->GetDrawOutliner();
+/*N*/       pDrDoc->GetDrawOutliner();
 /*N*/   }
 /*N*/   else
 /*N*/       PutItem( SvxColorTableItem( OFF_APP()->GetStdColorTable() ));
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

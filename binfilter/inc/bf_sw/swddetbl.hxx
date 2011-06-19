@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,8 +41,8 @@ public:
     TYPEINFO();
     // Constructor movet alle Lines/Boxen aus der SwTable zu sich.
     // Die SwTable ist danach Leer und muss geloescht werden.
-    SwDDETable( SwTable& rTable, SwDDEFieldType* pDDEType,
-        BOOL bUpdate = TRUE ):SwTable( rTable ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 BOOL bUpdate = TRUE );
+    SwDDETable( SwTable& rTable, SwDDEFieldType*,
+        BOOL =TRUE ):SwTable( rTable ){DBG_BF_ASSERT(0, "STRIP");}
     SwDDEFieldType* GetDDEFldType();
     inline const SwDDEFieldType* GetDDEFldType() const;
 };
@@ -56,3 +57,5 @@ inline const SwDDEFieldType* SwDDETable::GetDDEFldType() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

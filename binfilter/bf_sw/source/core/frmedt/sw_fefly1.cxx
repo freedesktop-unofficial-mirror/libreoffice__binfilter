@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,64 +30,28 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -182,7 +147,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/
 /*N*/   default:
-/*N*/       ASSERT( !&rDoc, "Falsche ID fuer neuen Anker." );
+/*N*/       OSL_ENSURE( !&rDoc, "Falsche ID fuer neuen Anker." );
 /*N*/   }
 /*N*/
 /*N*/   rSet.Put( aNewAnch );
@@ -206,7 +171,7 @@ using namespace ::com::sun::star;
 /*N*/   SwDoc* pDoc = (SwDoc*)rFmt.GetDoc();
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ASSERT( !(nNew == FLY_PAGE &&
+/*N*/   OSL_ENSURE( !(nNew == FLY_PAGE &&
 /*N*/       (FLY_AT_CNTNT==nOld || FLY_AUTO_CNTNT==nOld || FLY_IN_CNTNT==nOld ) &&
 /*N*/       pDoc->IsInHeaderFooter( rOldAnch.GetCntntAnchor()->nNode )),
 /*N*/           "Unerlaubter Ankerwechsel in Head/Foot." );
@@ -221,8 +186,6 @@ using namespace ::com::sun::star;
 |*  SwFEShell::FindFlyFrm()
 |*
 |*  Beschreibung        Liefert den Fly wenn einer Selektiert ist.
-|*  Ersterstellung      MA 03. Nov. 92
-|*  Letzte Aenderung    MA 05. Mar. 96
 |*
 *************************************************************************/
 
@@ -242,80 +205,5 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 } //namespace binfilter
-#include <fmtcnct.hxx>
-#if 0
-#include <algorithm>
-#include <iostream>
-#include <iterator>
 
-
-/*M*/ static ::std::ostream & operator << (::std::ostream & aStream,
-/*M*/                                      const String & aString)
-/*M*/ {
-/*M*/     ByteString aByteString(aString, RTL_TEXTENCODING_ASCII_US);
-/*M*/     aStream << aByteString.GetBuffer();
-/*M*/
-/*M*/     return aStream;
-/*M*/ }
-
-/*M*/ void lcl_PrintFrameChainPrev(const SwFrmFmt * pFmt)
-/*M*/ {
-/*M*/     if (pFmt != NULL)
-/*M*/     {
-/*M*/         lcl_PrintFrameChainPrev(pFmt->GetChain().GetPrev());
-/*M*/
-/*M*/         ::std::clog << pFmt->GetName() << "->";
-/*M*/     }
-/*M*/ }
-
-/*M*/ void lcl_PrintFrameChainNext(const SwFrmFmt * pFmt)
-/*M*/ {
-/*M*/     if (pFmt != NULL)
-/*M*/     {
-/*M*/         ::std::clog << "->" << pFmt->GetName();
-/*M*/
-/*M*/         lcl_PrintFrameChainPrev(pFmt->GetChain().GetNext());
-/*M*/     }
-/*M*/ }
-
-/*M*/ void lcl_PrintFrameChain(const SwFrmFmt & rFmt)
-/*M*/ {
-/*M*/     lcl_PrintFrameChainPrev(rFmt.GetChain().GetPrev());
-/*M*/     ::std::clog << "(" <<  rFmt.GetName() << ")";
-/*M*/     lcl_PrintFrameChainNext(rFmt.GetChain().GetNext());
-/*M*/     ::std::clog << ::std::endl;
-/*M*/ }
-
-/*M*/ String lcl_GetChainableString(int nVal)
-/*M*/ {
-/*M*/     switch(nVal)
-/*M*/     {
-/*M*/     case SW_CHAIN_OK:
-/*M*/         return String::CreateFromAscii("OK");
-/*M*/
-/*M*/     case SW_CHAIN_SOURCE_CHAINED:
-/*M*/         return String::CreateFromAscii("source chained");
-/*M*/
-/*M*/     case SW_CHAIN_SELF:
-/*M*/         return String::CreateFromAscii("self");
-/*M*/
-/*M*/     case SW_CHAIN_IS_IN_CHAIN:
-/*M*/         return String::CreateFromAscii("in chain");
-/*M*/
-/*M*/     case SW_CHAIN_NOT_FOUND:
-/*M*/         return String::CreateFromAscii("not found");
-/*M*/
-/*M*/     case SW_CHAIN_NOT_EMPTY:
-/*M*/         return String::CreateFromAscii("not empty");
-/*M*/
-/*M*/     case SW_CHAIN_WRONG_AREA:
-/*M*/         return String::CreateFromAscii("wrong area");
-/*M*/
-/*M*/     default:
-/*M*/         return String::CreateFromAscii("??");
-/*M*/
-/*M*/     }
-/*M*/ }
-#endif
-
-
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

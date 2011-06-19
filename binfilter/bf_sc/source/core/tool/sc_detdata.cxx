@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -48,6 +46,7 @@ namespace binfilter {
 //------------------------------------------------------------------------
 
 /*N*/ ScDetOpList::ScDetOpList(const ScDetOpList& rList) :
+/*N*/   ScDetOpArr_Impl(),
 /*N*/   bHasAddError( FALSE )
 /*N*/ {
 /*N*/   USHORT nCount = rList.Count();
@@ -80,12 +79,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDetOpList::Append( ScDetOpData* pData )
+/*N*/ void ScDetOpList::Append( ScDetOpData* pInData )
 /*N*/ {
-/*N*/   if ( pData->GetOperation() == SCDETOP_ADDERROR )
+/*N*/   if ( pInData->GetOperation() == SCDETOP_ADDERROR )
 /*N*/       bHasAddError = TRUE;
 /*N*/
-/*N*/   Insert( pData, Count() );
+/*N*/   Insert( pInData, Count() );
 /*N*/ }
 
 
@@ -115,28 +114,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScDetOpList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nCount = Count();
-/*N*/   rStream << nCount;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       //  1) Position (ScAddress)
-/*N*/       //  2) Operation (USHORT)
-/*N*/
-/*N*/       aHdr.StartEntry();
-/*N*/
-/*N*/       ScDetOpData* pData = (*this)[i];
-/*N*/       rStream << pData->GetPos();
-/*N*/       rStream << (USHORT) pData->GetOperation();
-/*N*/
-/*N*/       aHdr.EndEntry();
-/*N*/   }
-/*N*/ }
-
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

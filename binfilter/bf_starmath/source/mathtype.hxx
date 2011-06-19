@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef MATHTYPE_HXX
 #define MATHTYPE_HXX
 
-#ifndef NODE_HXX
 #include "node.hxx"
-#endif
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 
 #include <set>
 namespace binfilter {
@@ -80,16 +77,34 @@ typedef ::std::set< MathTypeFont, LessMathTypeFont > MathTypeFontSet;
 class MathType
 {
 public:
-    MathType(String &rIn) : bSilent(sal_False),nDefaultSize(12),nLSize(0),
-        nDSize(0),nCurSize(0),nLastSize(0),nVAlign(0),nHAlign(0),rRet(rIn)
+    MathType(String &rIn)
+        : rRet(rIn)
+        , nHAlign(0)
+        , nVAlign(0)
+        , nDefaultSize(12)
+        , nLSize(0)
+        , nDSize(0)
+        , nCurSize(0)
+        , nLastSize(0)
+        , bSilent(sal_False)
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001       Init();
+        DBG_BF_ASSERT(0, "STRIP");
     }
-    MathType(String &rIn,SmNode *pIn) : bSilent(sal_False),nDefaultSize(12),
-        nLSize(0),nDSize(0),nCurSize(0),nLastSize(0),nVAlign(0),nHAlign(2),
-        pTree(pIn),rRet(rIn),nInsertion(0),nSpec(0)
+    MathType(String &rIn,SmNode *pIn)
+        : rRet(rIn)
+        , pTree(pIn)
+        , nHAlign(2)
+        , nVAlign(0)
+        , nInsertion(0)
+        , nDefaultSize(12)
+        , nLSize(0)
+        , nDSize(0)
+        , nCurSize(0)
+        , nLastSize(0)
+        , nSpec(0)
+        , bSilent(sal_False)
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001Init();
+        DBG_BF_ASSERT(0, "STRIP");
     }
 private:
 /*Ver 2 Header*/
@@ -102,12 +117,12 @@ private:
     SvStorageStream *pS;
 
 
-    int xfLMOVE(sal_uInt8 nTest) {return nTest&0x80;}
-    int xfAUTO(sal_uInt8 nTest) {return nTest&0x10;}
-    int xfEMBELL(sal_uInt8 nTest) {return nTest&0x20;}
-    int xfNULL(sal_uInt8 nTest) {return nTest&0x10;}
-    int xfLSPACE(sal_uInt8 nTest) {return nTest&0x40;}
-    int xfRULER(sal_uInt8 nTest) {return nTest&0x20;}
+    int xfLMOVE(sal_uInt8 nTest) const {return nTest&0x80;}
+    int xfAUTO(sal_uInt8 nTest) const {return nTest&0x10;}
+    int xfEMBELL(sal_uInt8 nTest) const {return nTest&0x20;}
+    int xfNULL(sal_uInt8 nTest) const {return nTest&0x10;}
+    int xfLSPACE(sal_uInt8 nTest) const {return nTest&0x40;}
+    int xfRULER(sal_uInt8 nTest) const {return nTest&0x20;}
 
 
     String &rRet;
@@ -147,3 +162,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

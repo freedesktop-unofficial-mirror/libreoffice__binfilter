@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 namespace binfilter {
 
 class Volume3D;
@@ -129,12 +128,12 @@ class Viewport3D
     Vector3D    MapToDevice(const Vector3D&) const;
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // Wird nur vom Stream-Operator gerufen
     virtual void ReadData31(SvStream& rIn);
-    virtual void WriteData31(SvStream& rOut) const;
+    virtual void WriteData31(SvStream& ) const {}
 };
 
 // FG: eigentlich sollten die Stream-Funktionen in der 3D-Engine nicht verwendet werden
@@ -146,3 +145,5 @@ SvStream& operator>>(SvStream& rIStream, Viewport3D&);
 
 }//end of namespace binfilter
 #endif      // _VIEWPT3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SFXVISIBILITYITEM_HXX
 #include <bf_svtools/visitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {
@@ -95,21 +90,21 @@ SfxItemPresentation SfxVisibilityItem::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL SfxVisibilityItem::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
+bool SfxVisibilityItem::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
 {
     rVal <<= m_nValue;
-    return TRUE;
+    return true;
 }
 
 //============================================================================
 // virtual
-BOOL SfxVisibilityItem::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
+bool SfxVisibilityItem::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
 {
     if (rVal >>= m_nValue)
-        return TRUE;
+        return true;
 
-    DBG_ERROR( "SfxInt16Item::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxInt16Item::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
@@ -118,15 +113,6 @@ SfxPoolItem * SfxVisibilityItem::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(SfxVisibilityItem, 0);
     return new SfxVisibilityItem(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & SfxVisibilityItem::Store(SvStream & rStream, USHORT) const
-{
-    DBG_CHKTHIS(SfxVisibilityItem, 0);
-    rStream << m_nValue.bVisible;
-    return rStream;
 }
 
 //============================================================================
@@ -154,3 +140,5 @@ UniString SfxVisibilityItem::GetValueTextByVal(BOOL bTheValue) const
             UniString::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("FALSE"));
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

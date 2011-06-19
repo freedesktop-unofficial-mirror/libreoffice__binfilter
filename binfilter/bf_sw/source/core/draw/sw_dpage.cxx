@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,35 +31,17 @@
 #endif
 
 
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _DPAGE_HXX
 #include <dpage.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -90,28 +73,22 @@ using namespace ::com::sun::star::frame;
 |*
 |*  SwDPage::ReplaceObject()
 |*
-|*  Ersterstellung      MA 07. Aug. 95
-|*  Letzte Aenderung    MA 07. Aug. 95
-|*
 *************************************************************************/
 
 /*N*/ SdrObject*  SwDPage::ReplaceObject( SdrObject* pNewObj, ULONG nObjNum )
 /*N*/ {
 /*N*/   SdrObject *pOld = GetObj( nObjNum );
-/*N*/   ASSERT( pOld, "Oups, Object not replaced" );
+/*N*/   OSL_ENSURE( pOld, "Oups, Object not replaced" );
 /*N*/   SdrObjUserCall* pContact;
 /*N*/   if ( 0 != ( pContact = GetUserCall(pOld) ) &&
 /*N*/        RES_DRAWFRMFMT == ((SwContact*)pContact)->GetFmt()->Which())
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       ((SwDrawContact*)pContact)->ChangeMasterObject( pNewObj );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   return FmFormPage::ReplaceObject( pNewObj, nObjNum );
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwDPage::GetGridFrameList()
-|*
-|*  Ersterstellung      MA 04. Sep. 95
-|*  Letzte Aenderung    MA 15. Feb. 96
 |*
 *************************************************************************/
 
@@ -123,9 +100,6 @@ using namespace ::com::sun::star::frame;
 |*  String SwDPage::GetLinkData( const String& )
 |*  void SwDPage::SetLinkData( const String&, const String& )
 |*  void SwDPage::UpdateLinkData( const String&, const String& )
-|*
-|*  Ersterstellung      JP 04.09.95
-|*  Letzte Aenderung    JP 04.09.95
 |*
 *************************************************************************/
 
@@ -146,9 +120,7 @@ Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
                     aRect.Right()  = aPt.X();
                     aRect.Bottom() = aPt.Y();
 */
-/* -----------------------------27.11.00 07:35--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ Reference< XInterface > SwDPage::createUnoPage()
 /*N*/ {
 /*N*/   Reference<XModel> xModel = rDoc.GetDocShell()->GetBaseModel();
@@ -159,3 +131,5 @@ Bug 29593: QuickHelp immer an der MausPosition anzeigen (besonders unter OS/2)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

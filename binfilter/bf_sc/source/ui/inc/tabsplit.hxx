@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define SC_TABSPLIT_HXX
 
 
-#ifndef _SV_SPLIT_HXX //autogen
 #include <vcl/split.hxx>
-#endif
 namespace binfilter {
 
 class ScViewData;
@@ -58,3 +57,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

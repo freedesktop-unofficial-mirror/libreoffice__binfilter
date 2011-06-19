@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 #include "misccfg.hxx"
 namespace binfilter {
 
@@ -44,8 +41,9 @@ namespace binfilter {
 #define DEF_INCH    2540L
 #define DEF_RELTWIP 1440L
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------
@@ -53,22 +51,20 @@ using namespace ::com::sun::star::uno;
  --------------------------------------------------------------------*/
 /*N*/ SfxMiscCfg::SfxMiscCfg() :
 /*N*/   ConfigItem(C2U("Office.Common") ),
-/*N*/   nYear2000( SvNumberFormatter::GetYear2000Default() ),
-/*N*/   bNotFound (FALSE),
 /*N*/   bPaperSize(FALSE),
-/*N*/   bPaperOrientation (FALSE)
+/*N*/   bPaperOrientation (FALSE),
+/*N*/   bNotFound (FALSE),
+/*N*/   nYear2000( SvNumberFormatter::GetYear2000Default() )
 /*N*/ {
 /*N*/   Load();
 /*N*/ }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SfxMiscCfg::~SfxMiscCfg()
 /*N*/ {
 /*N*/ }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SfxMiscCfg::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -89,9 +85,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ void SfxMiscCfg::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
@@ -116,18 +111,18 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*?*/ void SfxMiscCfg::Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& aPropertyNames)
+
+/*?*/ void SfxMiscCfg::Notify( const ::com::sun::star::uno::Sequence<rtl::OUString>& /*aPropertyNames*/)
 /*?*/ {
 /*?*/   Load();
 /*?*/ }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*?*/ void SfxMiscCfg::Commit()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

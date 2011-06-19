@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,17 +25,13 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <tools/debug.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "dbcolect.hxx"
 #include "rechead.hxx"
@@ -56,14 +53,14 @@ namespace binfilter {
 /*N*/   nEndCol     (nCol2),
 /*N*/   nEndRow     (nRow2),
 /*N*/   bByRow      (bByR),
+/*N*/   bHasHeader  (bHasH),
 /*N*/   bDoSize     (FALSE),
 /*N*/   bKeepFmt    (FALSE),
 /*N*/   bStripData  (FALSE),
-/*N*/   bHasHeader  (bHasH),
+/*N*/   bIsAdvanced (FALSE),
 /*N*/   bDBSelection(FALSE),
 /*N*/   nIndex      (0),
 /*N*/   nExportIndex(0),
-/*N*/   bIsAdvanced (FALSE),
 /*N*/   bAutoFilter (FALSE),
 /*N*/   bModified   (FALSE)
 /*N*/ {
@@ -91,22 +88,20 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ScDBData::ScDBData( SvStream& rStream, ScMultipleReadHeader& rHdr ) :
-/*N*/                   // nicht in der Datei:
-/*N*/   bAutoFilter     (FALSE),
-/*N*/   bModified       (FALSE),
-/*N*/   nExportIndex    (0),
-/*N*/                   // nicht in alten Versionen:
 /*N*/   bDoSize         (FALSE),
 /*N*/   bKeepFmt        (FALSE),
 /*N*/   bStripData      (FALSE),
-/*N*/   nIndex          (0),
+/*N*/   bSortUserDef    (FALSE),
+/*N*/   nSortUserIndex  (0),
 /*N*/   bIsAdvanced     (FALSE),
+/*N*/   nSubUserIndex   (0),
 /*N*/   bDBSelection    (FALSE),
 /*N*/   bDBSql          (TRUE),
 /*N*/   nDBType         (ScDbTable),
-/*N*/   nSubUserIndex   (0),
-/*N*/   bSortUserDef    (FALSE),
-/*N*/   nSortUserIndex  (0)
+/*N*/   nIndex          (0),
+/*N*/   nExportIndex    (0),
+/*N*/   bAutoFilter     (FALSE),
+/*N*/   bModified       (FALSE)
 /*N*/ {
 /*N*/   rHdr.StartEntry();
 /*N*/
@@ -260,116 +255,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDBData::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   USHORT i;
-/*N*/   USHORT j;
-/*N*/   rtl_TextEncoding eCharSet = rStream.GetStreamCharSet();
-/*N*/
-/*N*/   rStream.WriteByteString( aName, eCharSet );
-/*N*/   rStream << nTable;
-/*N*/   rStream << nStartCol;
-/*N*/   rStream << nStartRow;
-/*N*/   rStream << nEndCol;
-/*N*/   rStream << nEndRow;
-/*N*/   rStream << bByRow;
-/*N*/   rStream << bHasHeader;
-/*N*/   rStream << bSortCaseSens;
-/*N*/   rStream << bIncludePattern;
-/*N*/   rStream << bSortInplace;
-/*N*/   rStream << nSortDestTab;
-/*N*/   rStream << nSortDestCol;
-/*N*/   rStream << nSortDestRow;
-/*N*/   rStream << bQueryInplace;
-/*N*/   rStream << bQueryCaseSens;
-/*N*/   rStream << bQueryRegExp;
-/*N*/   rStream << bQueryDuplicate;
-/*N*/   rStream << nQueryDestTab;
-/*N*/   rStream << nQueryDestCol;
-/*N*/   rStream << nQueryDestRow;
-/*N*/   rStream << bSubRemoveOnly;
-/*N*/   rStream << bSubReplace;
-/*N*/   rStream << bSubPagebreak;
-/*N*/   rStream << bSubCaseSens;
-/*N*/   rStream << bSubDoSort;
-/*N*/   rStream << bSubAscending;
-/*N*/   rStream << bSubIncludePattern;
-/*N*/   rStream << bSubUserDef;
-/*N*/   rStream << bDBImport;
-/*N*/
-/*N*/   rStream.WriteByteString( aDBName, eCharSet );
-/*N*/   rStream.WriteByteString( aDBStatement, eCharSet );
-/*N*/   rStream << bDBNative;
-/*N*/
-/*N*/   for (i=0; i<MAXSORT; i++)
-/*N*/   {
-/*N*/       rStream << bDoSort[i];
-/*N*/       rStream << nSortField[i];
-/*N*/       rStream << bAscending[i];
-/*N*/   }
-/*N*/   for (i=0; i<MAXQUERY; i++)
-/*N*/   {
-/*N*/       rStream << bDoQuery[i];
-/*N*/       rStream << nQueryField[i];
-/*N*/       rStream << (BYTE) eQueryOp[i];
-/*N*/       rStream << bQueryByString[i];
-/*N*/       rStream.WriteByteString( *pQueryStr[i], eCharSet );
-/*N*/       rStream << nQueryVal[i];
-/*N*/       rStream << (BYTE) eQueryConnect[i];
-/*N*/   }
-/*N*/   for (i=0; i<MAXSUBTOTAL; i++)
-/*N*/   {
-/*N*/       rStream << bDoSubTotal[i];
-/*N*/       rStream << nSubField[i];
-/*N*/
-/*N*/       USHORT nCount = nSubTotals[i];
-/*N*/       rStream << nCount;
-/*N*/       for (j=0; j<nCount; j++)
-/*N*/       {
-/*N*/           rStream << pSubTotals[i][j];
-/*N*/           rStream << (BYTE)pFunctions[i][j];
-/*N*/       }
-/*N*/   }
-/*N*/   rStream << nIndex;                  // seit 24.10.95
-/*N*/
-/*N*/   rStream << bDBSelection;
-/*N*/
-/*N*/   rStream << bDBSql;                  // seit 4.2.97
-/*N*/
-/*N*/   rStream << nSubUserIndex;           // seit 5.2.97
-/*N*/   rStream << bSortUserDef;
-/*N*/   rStream << nSortUserIndex;
-/*N*/
-/*N*/   rStream << bDoSize;                 // seit 13.2.97
-/*N*/   rStream << bKeepFmt;
-/*N*/
-/*N*/   rStream << bStripData;              // seit 23.2.97
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )
-/*N*/   {
-/*N*/       //  folgendes gab's in der 4.0 noch nicht
-/*N*/
-/*N*/       //  alte Versionen suchen immer nach Tables und Queries
-/*N*/       rStream << nDBType;                 // seit 20.11.97
-/*N*/
-/*N*/       //  starting from 591, store advanced filter source range
-/*N*/       //  only if set, to avoid unneccessary warnings
-/*N*/       if (bIsAdvanced)
-/*N*/       {
-/*?*/           rStream << (BOOL) TRUE;
-/*?*/           rStream << aAdvSource;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   // aSortLocale / aSortAlgorithm are not in binary file format
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ ScDBData::ScDBData( const ScDBData& rData ) :
+/*N*/ ScDBData::ScDBData( const ScDBData& rData ) : DataObject(rData),
 /*N*/   ScRefreshTimer      ( rData ),
 /*N*/   aName               (rData.aName),
 /*N*/   nTable              (rData.nTable),
@@ -385,11 +271,11 @@ namespace binfilter {
 /*N*/   bSortCaseSens       (rData.bSortCaseSens),
 /*N*/   bIncludePattern     (rData.bIncludePattern),
 /*N*/   bSortInplace        (rData.bSortInplace),
+/*N*/   bSortUserDef        (rData.bSortUserDef),
+/*N*/   nSortUserIndex      (rData.nSortUserIndex),
 /*N*/   nSortDestTab        (rData.nSortDestTab),
 /*N*/   nSortDestCol        (rData.nSortDestCol),
 /*N*/   nSortDestRow        (rData.nSortDestRow),
-/*N*/   bSortUserDef        (rData.bSortUserDef),
-/*N*/   nSortUserIndex      (rData.nSortUserIndex),
 /*N*/   aSortLocale         (rData.aSortLocale),
 /*N*/   aSortAlgorithm      (rData.aSortAlgorithm),
 /*N*/   bQueryInplace       (rData.bQueryInplace),
@@ -851,25 +737,25 @@ namespace binfilter {
 //  IsEqual - alles gleich
 
 
-/*N*/ ScDBData* ScDBCollection::GetDBAtCursor(USHORT nCol, USHORT nRow, USHORT nTab, BOOL bStartOnly) const
+/*N*/ ScDBData* ScDBCollection::GetDBAtCursor(USHORT /*nCol*/, USHORT /*nRow*/, USHORT /*nTab*/, BOOL /*bStartOnly*/) const
 /*N*/ {
 /*N*/   ScDBData* pNoNameData = NULL;
 /*N*/   if (pItems)
 /*N*/   {
-/*N*/       const String& rNoName = ScGlobal::GetRscString( STR_DB_NONAME );
+/*N*/       ScGlobal::GetRscString( STR_DB_NONAME );
 /*N*/
 /*N*/       for (USHORT i = 0; i < nCount; i++)
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (((ScDBData*)pItems[i])->IsDBAtCursor(nCol, nRow, nTab, bStartOnly))
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
 
-/*N*/ ScDBData* ScDBCollection::GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const
+/*N*/ ScDBData* ScDBCollection::GetDBAtArea(USHORT /*nTab*/, USHORT /*nCol1*/, USHORT /*nRow1*/, USHORT /*nCol2*/, USHORT /*nRow2*/) const
 /*N*/ {
 /*N*/   ScDBData* pNoNameData = NULL;
 /*N*/   if (pItems)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const String& rNoName = ScGlobal::GetRscString( STR_DB_NONAME );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pNoNameData;             // "unbenannt" nur zurueck, wenn sonst nichts gefunden
 /*N*/ }
@@ -901,47 +787,14 @@ namespace binfilter {
 /*N*/   return bSuccess;
 /*N*/ }
 
-/*N*/ BOOL ScDBCollection::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT i;
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/   USHORT nSaveMaxRow = pDoc->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow < MAXROW )
-/*N*/   {
-/*N*/       nSaveCount = 0;
-/*N*/       for (i=0; i<nCount; i++)
-/*N*/           if ( !((const ScDBData*)At(i))->IsBeyond(nSaveMaxRow) )
-/*N*/               ++nSaveCount;
-/*N*/
-/*N*/       if ( nSaveCount < nCount )
-/*N*/           pDoc->SetLostData();            // Warnung ausgeben
-/*N*/   }
-/*N*/
-/*N*/   rStream << nSaveCount;
-/*N*/
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/   for (i=0; i<nCount && bSuccess; i++)
-/*N*/   {
-/*N*/       const ScDBData* pDBData = (const ScDBData*)At(i);
-/*N*/       if ( nSaveMaxRow == MAXROW || !pDBData->IsBeyond(nSaveMaxRow) )
-/*N*/           bSuccess = pDBData->Store( rStream, aHdr );
-/*N*/   }
-/*N*/
-/*N*/   rStream << nEntryIndex;             // seit 24.10.95
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ void ScDBCollection::UpdateReference(UpdateRefMode eUpdateRefMode,
-/*N*/                               USHORT nCol1, USHORT nRow1, USHORT nTab1,
-/*N*/                               USHORT nCol2, USHORT nRow2, USHORT nTab2,
-/*N*/                               short nDx, short nDy, short nDz )
+/*N*/ void ScDBCollection::UpdateReference(UpdateRefMode /*eUpdateRefMode*/,
+/*N*/                               USHORT /*nCol1*/, USHORT /*nRow1*/, USHORT /*nTab1*/,
+/*N*/                               USHORT /*nCol2*/, USHORT /*nRow2*/, USHORT /*nTab2*/,
+/*N*/                               short /*nDx*/, short /*nDy*/, short /*nDz*/ )
 /*N*/ {
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT theCol1;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -978,3 +831,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

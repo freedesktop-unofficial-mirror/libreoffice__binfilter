@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _SORTOPT_HXX
 #include <sortopt.hxx>
-#endif
 namespace binfilter {
 
 
@@ -56,11 +51,11 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ SwSortKey::SwSortKey(const SwSortKey& rOld) :
-/*N*/   eSortOrder( rOld.eSortOrder ),
-/*N*/   sSortType( rOld.sSortType ),
-/*N*/   nColumnId( rOld.nColumnId ),
-/*N*/   bIsNumeric( rOld.bIsNumeric )
+/*N*/ SwSortKey::SwSortKey(const SwSortKey& rOld)
+/*N*/   : sSortType( rOld.sSortType )
+/*N*/   , eSortOrder( rOld.eSortOrder )
+/*N*/   , nColumnId( rOld.nColumnId )
+/*N*/   , bIsNumeric( rOld.bIsNumeric )
 /*N*/ {
 /*N*/ }
 
@@ -70,11 +65,10 @@ namespace binfilter {
 
 
 /*N*/ SwSortOptions::SwSortOptions()
-/*?*/   : //STRIP001 eDirection( SRT_ROWS ),
-/*N*/   nLanguage( LANGUAGE_SYSTEM ),
-/*N*/   cDeli( 9 ),
-/*N*/   bTable( FALSE ),
-/*N*/   bIgnoreCase( FALSE )
+/*N*/   : cDeli( 9 )
+/*?*/   , nLanguage( LANGUAGE_SYSTEM )
+/*N*/   , bTable( FALSE )
+/*N*/   , bIgnoreCase( FALSE )
 /*N*/ {
 /*N*/ }
 
@@ -102,3 +96,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

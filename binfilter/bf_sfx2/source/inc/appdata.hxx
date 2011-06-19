@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,7 +29,6 @@
 #define _SFX_APPDATA_HXX
 
 #include <tools/link.hxx>
-#include <tools/list.hxx>
 #include <bf_svtools/lstner.hxx>
 #include <vcl/timer.hxx>
 #include <tools/string.hxx>
@@ -116,3 +116,4 @@ public:
 #endif // #ifndef _SFX_APPDATA_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

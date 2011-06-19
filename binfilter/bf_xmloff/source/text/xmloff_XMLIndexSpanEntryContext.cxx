@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 #include "XMLIndexSpanEntryContext.hxx"
-#endif
 
 #include "rtl/ustring.hxx"
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 namespace binfilter {
 
@@ -47,11 +44,11 @@ using ::com::sun::star::beans::PropertyValue;
 TYPEINIT1( XMLIndexSpanEntryContext, XMLIndexSimpleEntryContext);
 
 XMLIndexSpanEntryContext::XMLIndexSpanEntryContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLIndexTemplateContext& rTemplate,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        XMLIndexSimpleEntryContext(rImport, rTemplate.sTokenText,
+        XMLIndexSimpleEntryContext(rInImport, rTemplate.sTokenText,
                                    rTemplate, nPrfx, rLocalName)
 {
     nValues++;  // one more for the text string
@@ -80,3 +77,5 @@ void XMLIndexSpanEntryContext::FillPropertyValues(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

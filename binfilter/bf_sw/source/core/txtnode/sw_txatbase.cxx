@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SwTxtAttr::SwTxtAttr( const SfxPoolItem& rAttr, xub_StrLen nStt )
@@ -75,3 +72,5 @@ namespace binfilter {
 /*N*/   return &nEnd;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

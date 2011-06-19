@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,13 +35,9 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;
@@ -208,3 +205,5 @@ private:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

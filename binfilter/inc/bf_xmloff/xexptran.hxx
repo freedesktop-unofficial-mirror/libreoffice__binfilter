@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,37 +31,23 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include <bf_goodies/matrix3d.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HPP_
 #include <com/sun/star/drawing/PointSequenceSequence.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
 #include <com/sun/star/drawing/PointSequence.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
 #include <com/sun/star/awt/Size.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_FLAGSEQUENCESEQUENCE_HPP_
 #include <com/sun/star/drawing/FlagSequenceSequence.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_FLAGSEQUENCE_HPP_
 #include <com/sun/star/drawing/FlagSequence.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
-#endif
+
+#include <vector>
 
 namespace binfilter {
 class Vector3D;
@@ -75,8 +62,8 @@ class SvXMLUnitConverter;
 
 //////////////////////////////////////////////////////////////////////////////
 
-DECLARE_LIST(ImpSdXMLExpTransObj2DBaseList, ImpSdXMLExpTransObj2DBase*)//STRIP007 ;
-DECLARE_LIST(ImpSdXMLExpTransObj3DBaseList, ImpSdXMLExpTransObj3DBase*)//STRIP007 ;
+typedef ::std::vector< ImpSdXMLExpTransObj2DBase* > ImpSdXMLExpTransObj2DBaseList;
+typedef ::std::vector< ImpSdXMLExpTransObj3DBase* > ImpSdXMLExpTransObj3DBaseList;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -95,7 +82,7 @@ public:
     void AddTranslate(const Vector2D& rNew);
     void AddSkewX(double fNew);
 
-    sal_Bool NeedsAction() const { return (sal_Bool)(maList.Count() > 0L); }
+    sal_Bool NeedsAction() const { return (sal_Bool)!maList.empty(); }
     void GetFullTransform(Matrix3D& rFullTrans);
     const ::rtl::OUString& GetExportString(const SvXMLUnitConverter& rConv);
     void SetString(const ::rtl::OUString& rNew, const SvXMLUnitConverter& rConv);
@@ -118,7 +105,7 @@ public:
     void AddMatrix(const Matrix4D& rNew);
 
     void AddHomogenMatrix(const ::com::sun::star::drawing::HomogenMatrix& xHomMat);
-    sal_Bool NeedsAction() const { return (sal_Bool)(maList.Count() > 0L); }
+    sal_Bool NeedsAction() const { return (sal_Bool)( !maList.empty() ); }
     void GetFullTransform(Matrix4D& rFullTrans);
     BOOL GetFullHomogenTransform( ::com::sun::star::drawing::HomogenMatrix& xHomMat);
     const ::rtl::OUString& GetExportString(const SvXMLUnitConverter& rConv);
@@ -212,3 +199,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XEXPTRANSFORM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

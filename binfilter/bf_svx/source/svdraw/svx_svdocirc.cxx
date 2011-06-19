@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,30 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include <xlnedwit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include <xlnstwit.hxx>
-#endif
 
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include <xlnstit.hxx>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <xlnedit.hxx>
-#endif
 
 #include "svdocirc.hxx"
 #include <math.h>
@@ -57,21 +46,13 @@
 #include "svdio.hxx"
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
-#endif
 
-#ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
-#endif
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 
@@ -150,13 +131,13 @@ namespace binfilter {
 /*N*/   return UINT16(eKind);
 /*N*/ }
 
-/*N*/ FASTBOOL SdrCircObj::PaintNeedsXPoly() const
+/*N*/ bool SdrCircObj::PaintNeedsXPoly() const
 /*N*/ {
 /*N*/   // XPoly ist notwendig fuer alle gedrehten Ellipsenobjekte,
 /*N*/   // fuer alle Kreis- und Ellipsenabschnitte
 /*N*/   // und wenn nicht WIN dann (erstmal) auch fuer Kreis-/Ellipsenausschnitte
 /*N*/   // und Kreis-/Ellipsenboegen (wg. Genauigkeit)
-/*N*/   FASTBOOL bNeed=aGeo.nDrehWink!=0 || aGeo.nShearWink!=0 || eKind==OBJ_CCUT;
+/*N*/   bool bNeed=aGeo.nDrehWink!=0 || aGeo.nShearWink!=0 || eKind==OBJ_CCUT;
 /*N*/ #ifndef WIN
 /*N*/   // Wenn nicht Win, dann fuer alle ausser Vollkreis (erstmal!!!)
 /*N*/   if (eKind!=OBJ_CIRC) bNeed=TRUE;
@@ -202,7 +183,7 @@ namespace binfilter {
 /*N*/   return bNeed;
 /*N*/ }
 
-/*N*/ XPolygon SdrCircObj::ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, FASTBOOL bContour) const
+/*N*/ XPolygon SdrCircObj::ImpCalcXPoly(const Rectangle& rRect1, long nStart, long nEnd, bool bContour) const
 /*N*/ {
 /*N*/   bContour=TRUE; // am 14.1.97 wg. Umstellung TakeContour ueber Mtf und Paint. Joe.
 /*N*/   long rx=rRect1.GetWidth()/2;  // Da GetWidth()/GetHeight() jeweils 1
@@ -230,7 +211,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   ((SdrCircObj*)this)->bXPolyIsLine=eKind==OBJ_CARC;
-/*N*/   FASTBOOL bClose=eKind==OBJ_CIRC /*|| eKind==OBJ_SECT*/;
+/*N*/   bool bClose=eKind==OBJ_CIRC /*|| eKind==OBJ_SECT*/;
 /*N*/   XPolygon aXPoly(rRect1.Center(),rx,ry,USHORT(a),USHORT(e),bClose);
 /*N*/   if (eKind!=OBJ_CIRC && nStart==nEnd) {
 /*?*/       if (eKind==OBJ_SECT) {
@@ -244,7 +225,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (eKind==OBJ_SECT) { // Der Sektor soll Start/Ende im Zentrum haben
 /*N*/       // Polygon um einen Punkt rotieren (Punkte im Array verschieben)
-/*N*/       unsigned nPointAnz=aXPoly.GetPointCount();
+/*N*/       /*unsigned nPointAnz=*/aXPoly.GetPointCount();
 /*N*/       aXPoly.Insert(0,rRect1.Center(),XPOLY_NORMAL);
 /*N*/       aXPoly[aXPoly.GetPointCount()]=rRect1.Center();
 /*N*/   }
@@ -289,7 +270,7 @@ namespace binfilter {
 /*N*/   ImpAddTextToBoundRect();
 /*N*/ }
 
-/*N*/ FASTBOOL SdrCircObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
+/*N*/ bool SdrCircObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
 /*N*/ {
 /*N*/   // Hidden objects on masterpages, draw nothing
 /*N*/   if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
@@ -358,14 +339,15 @@ namespace binfilter {
 /*?*/                 switch (eKind) {
 /*?*/                     case OBJ_SECT: rXOut.DrawPie(aR,aTmpPt1,aTmpPt2); break;
 /*?*/                     case OBJ_CARC: rXOut.DrawArc(aR,aTmpPt1,aTmpPt2); break;
-/*?*/                     case OBJ_CCUT: DBG_ERROR("SdrCircObj::Paint(): ein Kreisabschnitt muss immer mit XPoly gepaintet werden"); break;
+/*?*/                     case OBJ_CCUT: OSL_FAIL("SdrCircObj::Paint(): ein Kreisabschnitt muss immer mit XPoly gepaintet werden"); break;
+                          default: break;
 /*?*/                 }
 /*?*/             }
 /*?*/         }
 /*?*/
 /*?*/       // new shadow line drawing
 /*?*/       if( pLineGeometry.get() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // draw the line geometry
 /*?*/       }
 /*N*/   }
@@ -398,7 +380,8 @@ namespace binfilter {
 /*?*/               switch (eKind) {
 /*?*/                   case OBJ_SECT: rXOut.DrawPie(aRect,aPnt1,aPnt2); break;
 /*?*/                   case OBJ_CARC: rXOut.DrawArc(aRect,aPnt1,aPnt2); break;
-/*?*/                   case OBJ_CCUT: DBG_ERROR("SdrCircObj::Paint(): ein Kreisabschnitt muss immer mit XPoly gepaintet werden"); break;
+/*?*/                   case OBJ_CCUT: OSL_FAIL("SdrCircObj::Paint(): ein Kreisabschnitt muss immer mit XPoly gepaintet werden"); break;
+                        default: break;
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -411,10 +394,10 @@ namespace binfilter {
 /*N*/       ImpDrawColorLineGeometry(rXOut, rSet, *pLineGeometry);
 /*N*/   }
 /*N*/
-/*N*/   FASTBOOL bOk=TRUE;
-/*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bOk=TRUE;
+/*N*/   if (HasText()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bOk;
@@ -433,7 +416,7 @@ namespace binfilter {
 /*N*/   aPnt2 = ((SdrCircObj&)rObj).aPnt2;
 /*N*/ }
 
-/*N*/ void SdrCircObj::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
+/*N*/ void SdrCircObj::TakeXorPoly(XPolyPolygon& rPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   XPolygon aP(ImpCalcXPoly(aRect,nStartWink,nEndWink));
 /*N*/   if (!bXPolyIsLine) { // Polygon schliessen
@@ -484,12 +467,12 @@ namespace binfilter {
 /*N*/ void SdrCircObj::NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
 /*N*/   long nWink0=aGeo.nDrehWink;
-/*N*/   FASTBOOL bNoShearRota=(aGeo.nDrehWink==0 && aGeo.nShearWink==0);
+/*N*/   bool bNoShearRota=(aGeo.nDrehWink==0 && aGeo.nShearWink==0);
 /*N*/   SdrTextObj::NbcResize(rRef,xFact,yFact);
 /*N*/   bNoShearRota|=(aGeo.nDrehWink==0 && aGeo.nShearWink==0);
 /*N*/   if (eKind!=OBJ_CIRC) {
-/*N*/       FASTBOOL bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/       FASTBOOL bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
+/*N*/       bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
+/*N*/       bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
 /*N*/       if (bXMirr || bYMirr) {
 /*N*/           // bei bXMirr!=bYMirr muessten eigentlich noch die beiden
 /*N*/           // Linienende vertauscht werden. Das ist jedoch mal wieder
@@ -533,7 +516,7 @@ namespace binfilter {
 /*N*/   ImpSetCircInfoToAttr();
 /*N*/ }
 
-/*N*/ void SdrCircObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+/*N*/ void SdrCircObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
 /*N*/   SdrTextObj::NbcShear(rRef,nWink,tn,bVShear);
 /*N*/   SetXPolyDirty();
@@ -635,7 +618,7 @@ namespace binfilter {
 
 
 
-/*N*/ void __EXPORT SdrCircObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrCircObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SetXPolyDirty();
 /*N*/   SdrRectObj::SFX_NOTIFY(rBC,rBCType,rHint,rHintType);
@@ -673,7 +656,7 @@ namespace binfilter {
 /*N*/
 /*N*/ }
 
-/*N*/ void SdrCircObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrCircObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SetXPolyDirty();
 /*N*/   SdrRectObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
@@ -790,67 +773,11 @@ namespace binfilter {
 /*N*/ SdrObject* SdrCircObj::DoConvertToPolyObj(BOOL bBezier) const
 /*N*/ {
 /*N*/   XPolygon aXP(ImpCalcXPoly(aRect,nStartWink,nEndWink));
-/*N*/   SdrObjKind ePathKind=OBJ_PATHFILL;
-/*N*/   FASTBOOL bFill=TRUE;
+/*N*/   bool bFill=TRUE;
 /*N*/   if (eKind==OBJ_CARC) bFill=FALSE;
 /*N*/   SdrObject* pRet=ImpConvertMakeObj(XPolyPolygon(aXP),bFill,bBezier);
 /*N*/   pRet=ImpConvertAddText(pRet,bBezier);
 /*N*/   return pRet;
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrCircObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrCircSetItem aCircAttr(rSet.GetPool());
-/*N*/   aCircAttr.GetItemSet().Put(rSet);
-/*N*/   aCircAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aCircAttr);
-/*N*/ }
-
-/*N*/ void SdrCircObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_CIRC);
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrCircObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrRectObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrCircObj");
-/*N*/ #endif
-/*N*/
-/*N*/   if(eKind != OBJ_CIRC)
-/*N*/   {
-/*N*/       rOut << nStartWink;
-/*N*/       rOut << nEndWink;
-/*N*/   }
-/*N*/
-/*N*/   SfxItemPool* pPool=GetItemPool();
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_CIRC));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rOut << UINT16(SFX_ITEMS_NULL);
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SdrCircObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
@@ -922,3 +849,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

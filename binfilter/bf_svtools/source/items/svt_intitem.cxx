@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,12 @@
 
 #include <bf_svtools/intitem.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _BIGINT_HXX
 #include <tools/bigint.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SFXMETRICITEM_HXX
 #include <bf_svtools/metitem.hxx>
-#endif
 
 namespace binfilter
 {
@@ -165,26 +158,26 @@ SfxItemPresentation SfxInt16Item::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL SfxInt16Item::QueryValue(::com::sun::star::uno::Any& rVal, BYTE) const
+bool SfxInt16Item::QueryValue(::com::sun::star::uno::Any& rVal, BYTE) const
 {
     sal_Int16 nValue = m_nValue;
     rVal <<= nValue;
-    return TRUE;
+    return true;
 }
 
 //============================================================================
 // virtual
-BOOL SfxInt16Item::PutValue(const com::sun::star::uno::Any& rVal, BYTE )
+bool SfxInt16Item::PutValue(const com::sun::star::uno::Any& rVal, BYTE )
 {
     sal_Int16 nValue = sal_Int16();
     if (rVal >>= nValue)
     {
         m_nValue = nValue;
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxInt16Item::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxInt16Item::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
@@ -193,15 +186,6 @@ SfxPoolItem * SfxInt16Item::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(SfxInt16Item, 0);
     return new SfxInt16Item(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & SfxInt16Item::Store(SvStream & rStream, USHORT) const
-{
-    DBG_CHKTHIS(SfxInt16Item, 0);
-    rStream << short(m_nValue);
-    return rStream;
 }
 
 //============================================================================
@@ -311,3 +295,5 @@ int SfxMetricItem::HasMetrics() const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

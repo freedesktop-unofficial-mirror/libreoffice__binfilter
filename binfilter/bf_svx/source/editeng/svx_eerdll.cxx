@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,18 +35,12 @@
 #include <eerdll.hxx>
 
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 #include <eerdll2.hxx>
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <lspcitem.hxx>
 #include <adjitem.hxx>
@@ -54,9 +49,7 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 
 
@@ -64,17 +57,11 @@
 #include <emphitem.hxx>
 #include <scriptspaceitem.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <akrnitem.hxx>
 #include <cntritem.hxx>
@@ -100,9 +87,7 @@
 
 
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 /*N*/ GlobalEditData::GlobalEditData()
@@ -203,9 +188,9 @@ namespace binfilter {
 /*N*/   return ppDefItems;
 /*N*/ }
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> GlobalEditData::GetForbiddenCharsTable()
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> GlobalEditData::GetForbiddenCharsTable()
 /*N*/ {
-/*N*/   if ( !xForbiddenCharsTable.isValid() )
+/*N*/   if ( !xForbiddenCharsTable.is() )
 /*N*/   {
 /*N*/       ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/       xForbiddenCharsTable = new SvxForbiddenCharactersTable( xMSF );
@@ -236,9 +221,9 @@ namespace binfilter {
 /*N*/   *(EditDLL**)GetAppData(BF_SHL_EDIT) = this;
 /*N*/
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   ByteString aResMgrName( "bf_svx" ); //STRIP005
+/*N*/   ByteString aResMgrName( "bf_svx" );
 /*N*/ #else
-/*N*/   ByteString aResMgrName( "bf_svl" ); //STRIP005
+/*N*/   ByteString aResMgrName( "bf_svl" );
 /*N*/ #endif
 /*N*/   pResMgr = ResMgr::CreateResMgr(
 /*N*/         aResMgrName.GetBuffer(), Application::GetSettings().GetUILocale() );
@@ -250,3 +235,5 @@ namespace binfilter {
 /*N*/   delete pGlobalData;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

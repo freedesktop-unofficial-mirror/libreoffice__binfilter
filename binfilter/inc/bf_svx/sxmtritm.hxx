@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 namespace binfilter {
 
 // Den Text quer zur Masslinie (90deg Drehung nach links)
 class SdrMeasureTextRota90Item: public SdrYesNoItem {
 public:
-    SdrMeasureTextRota90Item(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURETEXTROTA90,bOn) {}
+    SdrMeasureTextRota90Item(bool bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURETEXTROTA90,bOn) {}
     SdrMeasureTextRota90Item(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASURETEXTROTA90,rIn) {}
 };
 
@@ -50,9 +47,11 @@ public:
 // Masslinie gebracht (wenn nicht Rota90)
 class SdrMeasureTextUpsideDownItem: public SdrYesNoItem {
 public:
-    SdrMeasureTextUpsideDownItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURETEXTUPSIDEDOWN,bOn) {}
+    SdrMeasureTextUpsideDownItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_MEASURETEXTUPSIDEDOWN,bOn) {}
     SdrMeasureTextUpsideDownItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASURETEXTUPSIDEDOWN,rIn) {}
 };
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

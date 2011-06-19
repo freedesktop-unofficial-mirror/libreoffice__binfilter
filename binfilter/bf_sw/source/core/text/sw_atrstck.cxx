@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,101 +31,39 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX
 #include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX
 #include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_CHARRELIEFITEM_HXX
 #include <bf_svx/charreliefitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX
 #include <bf_svx/wrlmitem.hxx>
-#endif
-#ifndef _SVX_AKRNITEM_HXX
 #include <bf_svx/akrnitem.hxx>
-#endif
-#ifndef _SVX_BLNKITEM_HXX
 #include <bf_svx/blnkitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
-#endif
-#ifndef _SVX_CHARSCALEITEM_HXX
 #include <bf_svx/charscaleitem.hxx>
-#endif
-#ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
 #include <fchrfmt.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _TXTINET_HXX
 #include <txtinet.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
-#endif
 namespace binfilter {
 
 #define STACK_INCREMENT 4
@@ -211,8 +150,8 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/            ! pShell->GetViewOptions()->IsPagePreview() &&
 /*M*/            RES_TXTATR_INETFMT == rAttr.Which() &&
 /*M*/            RES_CHRATR_COLOR == rItem.Which() &&
-/*M*/            ( ((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsVisitedLinks() ||
-/*M*/            ! ((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsLinks() );
+/*M*/            ( (((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsVisitedLinks()) ||
+/*M*/            (!((SwTxtINetFmt&)rAttr).IsVisited() && SwViewOption::IsLinks()) );
 /*M*/ }
 
 
@@ -258,7 +197,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*?*/         }
 /*?*/     }
 /*N*/
-/*N*/     ASSERT( nPos <= nCount, "wrong position for insert operation");
+/*N*/     OSL_ENSURE( nPos <= nCount, "wrong position for insert operation");
 /*N*/
 /*N*/     if ( nPos < nCount )
 /*N*/         memmove( pArray + nPos + 1, pArray + nPos,
@@ -318,7 +257,10 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *                      SwAttrHandler::SwAttrHandler()
  *************************************************************************/
 
-/*M*/ SwAttrHandler::SwAttrHandler() : pShell( 0 ), pFnt( 0 ), bVertLayout( sal_False )
+/*M*/ SwAttrHandler::SwAttrHandler()
+/*M*/  : pShell( 0 )
+/*M*/  , bVertLayout( sal_False )
+/*M*/  , pFnt( 0 )
 /*M*/
 /*N*/ {
 /*N*/     memset( pDefaultArray, 0, NUM_DEFAULT_VALUES * sizeof(SfxPoolItem*) );
@@ -413,7 +355,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 {
 /*M*/                     // we let pItem change rFnt
 /*M*/                     if ( lcl_ChgHyperLinkColor( rAttr, *pItem, pShell ) )
-/*M*/                     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                     {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                         // for hyperlinks we still have to evaluate
 /*M*/                         // the appearence settings
 /*M*/                     }
@@ -437,9 +379,9 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *                      SwAttrHandler::Push()
  *************************************************************************/
 
-/*M*/ sal_Bool SwAttrHandler::Push( const SwTxtAttr& rAttr, const SfxPoolItem& rItem, SwFont& rFnt )
+/*M*/ sal_Bool SwAttrHandler::Push( const SwTxtAttr& rAttr, const SfxPoolItem& rItem, SwFont& /*rFnt*/ )
 /*M*/ {
-/*M*/     ASSERT( rItem.Which() < RES_TXTATR_WITHEND_END ||
+/*M*/     OSL_ENSURE( rItem.Which() < RES_TXTATR_WITHEND_END ||
 /*M*/             RES_UNKNOWNATR_CONTAINER == rItem.Which() ,
 /*M*/             "I do not want this attribute, nWhich >= RES_TXTATR_WITHEND_END" );
 /*M*/
@@ -462,7 +404,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/     }
 /*M*/
 /*M*/     USHORT nPos = aAttrStack[ nStack ].Count();
-/*M*/     ASSERT( nPos, "empty stack?" );
+/*M*/     OSL_ENSURE( nPos, "empty stack?" );
 /*M*/     aAttrStack[ nStack ].Insert( rAttr, nPos - 1 );
 /*M*/     return sal_False;
 /*M*/ }
@@ -526,7 +468,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
  *************************************************************************/
 /*M*/ void SwAttrHandler::ActivateTop( SwFont& rFnt, const USHORT nAttr )
 /*M*/ {
-/*M*/     ASSERT( nAttr < RES_TXTATR_WITHEND_END,
+/*M*/     OSL_ENSURE( nAttr < RES_TXTATR_WITHEND_END,
 /*M*/             "I cannot activate this attribute, nWhich >= RES_TXTATR_WITHEND_END" );
 /*M*/
 /*M*/     const USHORT nStackPos = StackPos[ nAttr ];
@@ -550,7 +492,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/             {
 /*M*/                 // for hyperlinks we still have to evaluate
 /*M*/                 // the appearence settings
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Color aColor;
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*M*/             }
 /*M*/             else
 /*M*/                 FontChg( *pItemNext, rFnt, sal_False );
@@ -571,7 +513,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/     {
 /*M*/         // ruby stack has no more attributes
 /*M*/         // check, if an rotation attribute has to be applied
-/*?*/        DBG_BF_ASSERT(0, "STRIP"); //STRIP001  USHORT nTwoLineStack = StackPos[ RES_CHRATR_TWO_LINES ];
+/*?*/        DBG_BF_ASSERT(0, "STRIP");
 /*M*/     }
 /*M*/ }
 
@@ -717,7 +659,7 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/
 /*M*/             if ( pTwoLineAttr )
 /*M*/             {
-/*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pTwoLineItem = lcl_GetItem( *pTwoLineAttr, RES_CHRATR_TWO_LINES );
+/*?*/                DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 bTwoLineAct = ((SvxTwoLinesItem*)pTwoLineItem)->GetValue();
 /*M*/             }
 /*M*/             else
@@ -753,12 +695,11 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/                 break;
 /*M*/
 /*M*/             USHORT nRotateStack = StackPos[ RES_CHRATR_ROTATE ];
-/*M*/             const SfxPoolItem* pRotateItem = 0;
 /*M*/             const SwTxtAttr* pRotateAttr = aAttrStack[ nRotateStack ].Top();
 /*M*/
 /*M*/             if ( pRotateAttr )
 /*M*/             {
-/*?*/                DBG_BF_ASSERT(0, "STRIP"); //STRIP001  pRotateItem = lcl_GetItem( *pRotateAttr, RES_CHRATR_ROTATE );
+/*?*/                DBG_BF_ASSERT(0, "STRIP");
 /*M*/             }
 /*M*/             else
 /*M*/                 rFnt.SetVertical(
@@ -786,3 +727,5 @@ const BYTE StackPos[ RES_TXTATR_WITHEND_END - RES_CHRATR_BEGIN + 1 ] = {
 /*M*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

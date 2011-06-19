@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _E3D_SCENE3D_HXX
 #include <bf_svx/scene3d.hxx>
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -57,8 +52,10 @@ public:
 
     virtual UINT16 GetObjIdentifier() const;
 
+    using SdrAttrObj::operator=;
+
     // Zeichenmethode
-    virtual FASTBOOL Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
+    virtual bool Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const;
 
     // Die Kontur fuer TextToContour
 
@@ -71,3 +68,5 @@ protected:
 
 }//end of namespace binfilter
 #endif          // _E3D_POLYSC3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

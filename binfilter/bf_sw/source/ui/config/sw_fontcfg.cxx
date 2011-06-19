@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,42 +31,33 @@
 #pragma hdrstop
 #endif
 
-#ifndef _FONTCFG_HXX
 #include <fontcfg.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <bf_svtools/lingucfg.hxx>
-#endif
 
 
 
 // #107253#
-#ifndef _SWLINGUCONFIG_HXX
 #include <swlinguconfig.hxx>
-#endif
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 /*N*/ #define C2S(cChar) String::CreateFromAscii(cChar)
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
-/* -----------------07.10.2002 12:15-----------------
- *
- * --------------------------------------------------*/
+
+
 /*M*/ inline LanguageType lcl_LanguageOfType(sal_Int16 nType, sal_Int16 eWestern, sal_Int16 eCJK, sal_Int16 eCTL)
 /*M*/ {
 /*M*/     return LanguageType(
 /*M*/                 nType < FONT_STANDARD_CJK ? eWestern :
 /*N*/                     nType >= FONT_STANDARD_CTL ? eCTL : eCJK);
 /*M*/ }
-/* -----------------------------08.09.00 15:52--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> SwStdFontConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -95,9 +87,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-----------------03.09.96 15.00-------------------
 
---------------------------------------------------*/
+
 
 /*N*/ SwStdFontConfig::SwStdFontConfig() :
 /*N*/     ::utl::ConfigItem(C2U("Office.Writer"))
@@ -131,20 +122,17 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------08.09.00 15:58--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------08.09.00 15:56--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
 /*N*/ SwStdFontConfig::~SwStdFontConfig()
 /*N*/ {}
-/*-----------------18.01.97 10.05-------------------
 
---------------------------------------------------*/
+
 /*M*/ BOOL SwStdFontConfig::IsFontDefault(USHORT nFontType) const
 /*M*/ {
-/*M*/   BOOL bSame;
+/*M*/   BOOL bSame = TRUE;
 /*M*/     SvtLinguOptions aLinguOpt;
 /*N*/
 /*N*/   // #107253# Replaced SvtLinguConfig with SwLinguConfig wrapper with UsageCount
@@ -200,7 +188,7 @@ using namespace ::com::sun::star::uno;
 /*M*/   return bSame;
 /*M*/ }
 
-/* -----------------11.01.99 13:16-------------------
+/* --------------------------------------------------
  * Standards auslesen
  * --------------------------------------------------*/
 /*N*/ String  SwStdFontConfig::GetDefaultFor(USHORT nFontType, LanguageType eLang)
@@ -242,6 +230,8 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwStdFontConfig::Commit() {}
-    void SwStdFontConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwStdFontConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

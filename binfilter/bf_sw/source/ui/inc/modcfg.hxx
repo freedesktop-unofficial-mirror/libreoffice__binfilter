@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,16 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 #include <tools/wintypes.hxx>
-#ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "authratr.hxx"
 #include "caption.hxx"
 #include "tblenum.hxx"
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------------------------------------------------------------
@@ -63,9 +56,8 @@ protected:
     InsCaptionOpt* Find(const SwCapObjType eType, const SvGlobalName *pOleId = 0) const;
 };
 
-/* -----------------------------10.10.00 16:14--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwModuleOptions;
 class SwRevisionConfig : public ::utl::ConfigItem
 {
@@ -90,9 +82,8 @@ class SwRevisionConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------11.10.00 09:00--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwInsertConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
@@ -119,9 +110,8 @@ class SwInsertConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------11.10.00 09:00--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwTableConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
@@ -146,9 +136,8 @@ class SwTableConfig : public ::utl::ConfigItem
     virtual void Commit();
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
-/* -----------------------------18.01.01 16:57--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwMiscConfig : public ::utl::ConfigItem
 {
     friend class SwModuleOptions;
@@ -176,9 +165,8 @@ class SwMiscConfig : public ::utl::ConfigItem
     virtual void Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
 };
 
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwModuleOptions
 {
     SwRevisionConfig                aRevisionConfig;
@@ -326,3 +314,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 
@@ -50,13 +47,8 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
-/*  virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
-                                    SfxMapUnit eCoreMetric,
-                                    SfxMapUnit ePresMetric,
-                                    String &rText,
-                                    const ::IntlWrapper*    pIntl = 0 ) const;
-*/  virtual USHORT           GetVersion( USHORT nFFVer ) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
+    virtual USHORT    GetVersion( USHORT nFFVer ) const;
 };
 
 
@@ -72,3 +64,4 @@ inline const SwFmtNoBalancedColumns &SwFmt::GetBalancedColumns(BOOL bInP) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

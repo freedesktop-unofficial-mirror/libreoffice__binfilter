@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -36,12 +34,11 @@
 #include <tools/debug.hxx>
 
 #include "miscuno.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 SC_SIMPLE_SERVICE_INFO( ScEmptyEnumeration, "ScEmptyEnumeration", "stardiv.unknown" )
 SC_SIMPLE_SERVICE_INFO( ScEmptyEnumerationAccess, "ScEmptyEnumerationAccess", "stardiv.unknown" )
@@ -50,7 +47,6 @@ SC_SIMPLE_SERVICE_INFO( ScPrintSettingsObj, "ScPrintSettingsObj", "stardiv.unkno
 
 SC_SIMPLE_SERVICE_INFO( ScNameToIndexAccess, "ScNameToIndexAccess", "stardiv.unknown" )
 
-//------------------------------------------------------------------------
 
 //  static
 uno::Reference<uno::XInterface> ScUnoHelpFunctions::AnyToInterface( const uno::Any& rAny )
@@ -152,7 +148,7 @@ sal_Bool ScUnoHelpFunctions::GetBoolFromAny( const uno::Any& aAny )
 //  static
 sal_Int16 ScUnoHelpFunctions::GetInt16FromAny( const uno::Any& aAny )
 {
-    sal_Int16 nRet;
+    sal_Int16 nRet = 0;
     if ( aAny >>= nRet )
         return nRet;
     return 0;
@@ -161,7 +157,7 @@ sal_Int16 ScUnoHelpFunctions::GetInt16FromAny( const uno::Any& aAny )
 //  static
 sal_Int32 ScUnoHelpFunctions::GetInt32FromAny( const uno::Any& aAny )
 {
-    sal_Int32 nRet;
+    sal_Int32 nRet = 0;
     if ( aAny >>= nRet )
         return nRet;
     return 0;
@@ -184,7 +180,6 @@ void ScUnoHelpFunctions::SetBoolInAny( uno::Any& rAny, sal_Bool bValue )
     rAny.setValue( &bValue, getBooleanCppuType() );
 }
 
-//------------------------------------------------------------------------
 
 ScIndexEnumeration::ScIndexEnumeration(const uno::Reference<container::XIndexAccess>& rInd,
                                        const ::rtl::OUString& rServiceName) :
@@ -202,14 +197,14 @@ ScIndexEnumeration::~ScIndexEnumeration()
 
 sal_Bool SAL_CALL ScIndexEnumeration::hasMoreElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( nPos < xIndex->getCount() );
 }
 
 uno::Any SAL_CALL ScIndexEnumeration::nextElement() throw(container::NoSuchElementException,
                                         lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Any aReturn;
     try
     {
@@ -225,7 +220,7 @@ uno::Any SAL_CALL ScIndexEnumeration::nextElement() throw(container::NoSuchEleme
 ::rtl::OUString SAL_CALL ScIndexEnumeration::getImplementationName()
     throw(::com::sun::star::uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii("ScIndexEnumeration");
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScIndexEnumeration" ));
 }
 
 sal_Bool SAL_CALL ScIndexEnumeration::supportsService( const ::rtl::OUString& ServiceName )
@@ -244,7 +239,6 @@ sal_Bool SAL_CALL ScIndexEnumeration::supportsService( const ::rtl::OUString& Se
     return aRet;
 }
 
-//------------------------------------------------------------------------
 
 ScEmptyEnumerationAccess::~ScEmptyEnumerationAccess()
 {
@@ -255,13 +249,13 @@ ScEmptyEnumerationAccess::~ScEmptyEnumerationAccess()
 uno::Reference<container::XEnumeration> SAL_CALL ScEmptyEnumerationAccess::createEnumeration()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScEmptyEnumeration;
 }
 
 uno::Type SAL_CALL ScEmptyEnumerationAccess::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return getCppuType((uno::Reference<uno::XInterface>*)0);    // or what?
 }
 
@@ -270,7 +264,6 @@ sal_Bool SAL_CALL ScEmptyEnumerationAccess::hasElements() throw(uno::RuntimeExce
     return FALSE;
 }
 
-//------------------------------------------------------------------------
 
 ScEmptyEnumeration::ScEmptyEnumeration()
 {
@@ -284,14 +277,14 @@ ScEmptyEnumeration::~ScEmptyEnumeration()
 
 sal_Bool SAL_CALL ScEmptyEnumeration::hasMoreElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return FALSE;
 }
 
 uno::Any SAL_CALL ScEmptyEnumeration::nextElement() throw(container::NoSuchElementException,
                                         lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return uno::Any();
 }
 
@@ -346,7 +339,6 @@ sal_Bool SAL_CALL ScNameToIndexAccess::hasElements(  ) throw(::com::sun::star::u
     return getCount() > 0;
 }
 
-//------------------------------------------------------------------------
 
 ScPrintSettingsObj::~ScPrintSettingsObj()
 {
@@ -361,7 +353,7 @@ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScPrintSettingsObj::getProperty
 }
 
 void SAL_CALL ScPrintSettingsObj::setPropertyValue(
-                        const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
+                        const ::rtl::OUString& /*aPropertyName*/, const uno::Any& /*aValue*/ )
                 throw(beans::UnknownPropertyException, beans::PropertyVetoException,
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
@@ -369,7 +361,7 @@ void SAL_CALL ScPrintSettingsObj::setPropertyValue(
     //! later...
 }
 
-uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& aPropertyName )
+uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& /*aPropertyName*/ )
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
@@ -380,8 +372,6 @@ uno::Any SAL_CALL ScPrintSettingsObj::getPropertyValue( const ::rtl::OUString& a
 SC_IMPL_DUMMY_PROPERTY_LISTENER( ScPrintSettingsObj )
 
 
-//------------------------------------------------------------------------
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

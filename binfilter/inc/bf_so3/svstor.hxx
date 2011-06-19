@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,12 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _IFACE_HXX
 #include <bf_so3/iface.hxx>
-#endif
-#ifndef _SOT_STORAGE_HXX
 #include <sot/storage.hxx>
-#endif
 
 #include <bf_so3/so2defs.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 #ifdef SvStorage
 #undef SvStorage
@@ -49,8 +44,6 @@
 #undef SvStorageStream
 #undef SvStorageStreamRef
 #endif
-
-class  SvStorageInfoList;
 
 namespace binfilter {
 
@@ -235,3 +228,5 @@ inline SvStorageRef::SvStorageRef( SotObject * pObjP )
 }
 
 #endif // _SVSTOR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

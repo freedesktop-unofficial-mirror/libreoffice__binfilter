@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef SVX_SQLPARSERCLIENT_HXX
 #define SVX_SQLPARSERCLIENT_HXX
 
-#ifndef SVX_DBTOOLSCLIENT_HXX
 #include "dbtoolsclient.hxx"
-#endif
-#ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #include "ParseContext.hxx"
-#endif
 namespace binfilter {
 
 //........................................................................
@@ -45,10 +42,9 @@ namespace svxform
     //= OSQLParserClient
     //====================================================================
     class OSQLParserClient : public ODbtoolsClient
-        ,public ::binfilter::svxform::OParseContextClient//STRIP008                             ,public ::svxform::OParseContextClient
+        ,public ::binfilter::svxform::OParseContextClient
     {
     private:
-        //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
         ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > m_xORB;
 
     protected:
@@ -57,7 +53,6 @@ namespace svxform
     protected:
         OSQLParserClient(
             const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB);
-        //add by BerryJia for fixing Bug97420 Time:2002-9-12-11:00(PRC time)
 
     protected:
     };
@@ -70,3 +65,4 @@ namespace svxform
 #endif // SVX_SQLPARSERCLIENT_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

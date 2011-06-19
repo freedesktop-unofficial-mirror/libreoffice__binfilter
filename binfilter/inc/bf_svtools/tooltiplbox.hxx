@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SVTOOLS_TOOLTIPLBOX_HXX
 #define SVTOOLS_TOOLTIPLBOX_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SV_LSTBOX_HXX
 #include <vcl/lstbox.hxx>
-#endif
 
 namespace binfilter
 {
@@ -71,3 +68,4 @@ protected:
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

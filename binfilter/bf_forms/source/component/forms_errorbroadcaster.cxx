@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef FORMS_ERRORBROADCASTER_HXX
 #include "errorbroadcaster.hxx"
-#endif
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
 #include <com/sun/star/sdb/SQLContext.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -77,9 +72,9 @@ namespace frm
     }
 
     //------------------------------------------------------------------------------
-    void SAL_CALL OErrorBroadcaster::onError( const SQLException& _rException, const ::rtl::OUString& _rContextDescription )
+    void SAL_CALL OErrorBroadcaster::onError( const SQLException& /*_rException*/, const ::rtl::OUString& /*_rContextDescription*/ )
     {
-        OSL_ENSURE( false, "OErrorBroadcaster::onError: dead code!" );
+        OSL_FAIL( "OErrorBroadcaster::onError: dead code!" );
     }
 
     //------------------------------------------------------------------------------
@@ -111,3 +106,5 @@ namespace frm
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

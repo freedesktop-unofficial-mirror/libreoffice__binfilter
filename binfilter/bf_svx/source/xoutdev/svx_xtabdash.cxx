@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,13 @@
 // include ---------------------------------------------------------------
 
 #ifndef SVX_LIGHT
-
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
-
 #endif
-#ifndef _SV_SVAPP_HXX
+
 #include <vcl/svapp.hxx>
-#endif
-
 #include <tools/urlobj.hxx>
 #include <vcl/virdev.hxx>
 #include <bf_svtools/itemset.hxx>
@@ -54,25 +47,16 @@
 #include "xpool.hxx"
 #include "xoutx.hxx"
 
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <xlineit0.hxx>
-#endif
-
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <xlnclit.hxx>
-#endif
-
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
-
-#ifndef _SVX_XLNDSIT_HXX //autogen
 #include <xlndsit.hxx>
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 #define GLOBALOVERFLOW
 
@@ -121,13 +105,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XDashTable::Save()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XDashTable::Create()
 /*N*/ {
 /*N*/   return( FALSE );
@@ -142,7 +119,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XDashTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XDashTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -267,34 +244,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XDashList::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-
-
-/*
-
-
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckDash0, 4 );
-    pStream->WriteByteString(String( pszChckDash0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XDashList::Create()
 /*N*/ {
 /*N*/   XubString aStr( SVX_RES( RID_SVXSTR_LINESTYLE ) );
@@ -366,7 +315,6 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   pVD->DrawRect( Rectangle( aZero, aVDSize ) );
 /*N*/   pXLSet->GetItemSet().Put( XLineDashItem( String(), Get( nIndex )->GetDash() ) );
 /*N*/
-/*N*/ //-/  pXOut->SetLineAttr( *pXLSet );
 /*N*/   pXOut->SetLineAttr( pXLSet->GetItemSet() );
 /*N*/
 /*N*/   pXOut->DrawLine( Point( 0, aVDSize.Height() / 2 ),
@@ -389,7 +337,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ XubString& XDashList::ConvertName( XubString& rStrName )
 /*N*/ {
-/*N*/   static USHORT __READONLY_DATA aDefResId[] =
+/*N*/   static USHORT const aDefResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_DASH5_DEF,
 /*N*/       RID_SVXSTR_DASH0_DEF,
@@ -403,7 +351,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       RID_SVXSTR_DASH9_DEF,
 /*N*/       RID_SVXSTR_DASH10_DEF
 /*N*/   };
-/*N*/   static USHORT __READONLY_DATA aResId[] =
+/*N*/   static USHORT const aResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_DASH5,
 /*N*/       RID_SVXSTR_DASH0,
@@ -420,7 +368,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   BOOL bFound = FALSE;
 /*N*/
-/*N*/   for( int i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
+/*N*/   for( size_t i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
 /*N*/   {
 /*N*/       XubString aStrDefName = SVX_RESSTR( aDefResId[i] );
 /*N*/       if( rStrName.Search( aStrDefName ) == 0 )
@@ -445,7 +393,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   XDashEntry* pEntry = NULL;
 /*N*/   long        nCount;
-/*N*/   XubString   aName;
+/*N*/   XubString   aLclName;
 /*N*/
 /*N*/   long        nStyle;
 /*N*/   long        nDots;
@@ -460,10 +408,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   {
 /*N*/       for (long nIndex = 0; nIndex < nCount; nIndex++)
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nDots;
 /*N*/           rIn >> nDotLen;
@@ -472,7 +420,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           rIn >> nDistance;
 /*N*/           XDash aDash((XDashStyle)nStyle, (BYTE)nDots, nDotLen,
 /*N*/                       (BYTE)nDashes, nDashLen, nDistance);
-/*N*/           pEntry = new XDashEntry (aDash, aName);
+/*N*/           pEntry = new XDashEntry (aDash, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -485,10 +433,10 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nDots;
 /*N*/           rIn >> nDotLen;
@@ -503,7 +451,7 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/           XDash aDash((XDashStyle)nStyle, (BYTE)nDots, nDotLen,
 /*N*/                       (BYTE)nDashes, nDashLen, nDistance);
-/*N*/           pEntry = new XDashEntry (aDash, aName);
+/*N*/           pEntry = new XDashEntry (aDash, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -513,3 +461,5 @@ char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

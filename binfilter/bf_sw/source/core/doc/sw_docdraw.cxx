@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,95 +31,44 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 #ifndef _SVX_FLDITEM_HXX //autogen
 #define ITEMID_FIELD EE_FEATURE_FIELD
 #endif
-#ifndef _MyEDITENG_HXX //autogen
 #include <bf_svx/editeng.hxx>
-#endif
-#ifndef _SVDOUTL_HXX
 #include <bf_svx/svdoutl.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
 
-#ifndef _SVDPOOL_HXX //autogen
 #include <bf_svx/svdpool.hxx>
-#endif
 
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _SWHINTS_HXX
 #include <swhints.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>           // fuer MakeDrawView
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
 
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
 
-// OD 26.06.2003 #108784#
-#ifndef _SVDPAGV_HXX
 #include <bf_svx/svdpagv.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -131,30 +81,24 @@ using namespace ::com::sun::star::linguistic2;
 |*
 |*  SwDoc::GroupSelection / SwDoc::UnGroupSelection
 |*
-|*  Ersterstellung      JP 21.08.95
-|*  Letzte Aenderung    JP 21.08.95
-|*
 |*************************************************************************/
 
-/*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& rDrawView )
+/*N*/ SwDrawContact* SwDoc::GroupSelection( SdrView& /*rDrawView*/ )
 /*N*/ {
-    // OD 30.06.2003 #108784# - replace marked 'virtual' drawing objects by
+    // replace marked 'virtual' drawing objects by
     // the corresponding 'master' drawing objects.
-DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedDrawVirtObjs( rDrawView );
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 
-/*N*/ void SwDoc::UnGroupSelection( SdrView& rDrawView )
+/*N*/ void SwDoc::UnGroupSelection( SdrView& /*rDrawView*/ )
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     int bUndo = DoesUndo();
+/*N*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwDoc::DeleteSelection()
-|*
-|*  Ersterstellung      MA 14. Nov. 95
-|*  Letzte Aenderung    MA 14. Nov. 95
 |*
 |*************************************************************************/
 
@@ -162,9 +106,6 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 /*************************************************************************
 |*
 |*  SwDoc::DeleteSelection()
-|*
-|*  Ersterstellung      JP 11.01.96
-|*  Letzte Aenderung    JP 11.01.96
 |*
 |*************************************************************************/
 
@@ -199,7 +140,9 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 /*N*/               nOrdNum = ((SwDrawContact*)aIter())->GetMaster()->GetOrdNum();
 /*N*/   }
 /*N*/   else
-/*N*/           ASSERT( !this, "was ist das fuer ein Format?" );
+        {
+/*N*/           OSL_ENSURE( !this, "was ist das fuer ein Format?" );
+        }
 /*N*/ }
 } //namespace binfilter
 /*************************************************************************/
@@ -208,11 +151,9 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;    //STRIP001 SwDrawView::ReplaceMarkedD
 // neu aufgebaut.
 
 // #75371#
-#ifndef _SXENDITM_HXX
 #include <bf_svx/sxenditm.hxx>
-#endif
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ void SwDoc::InitDrawModel()
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::InitDrawModel" );
@@ -246,7 +187,7 @@ namespace binfilter {//STRIP009
 /*N*/   else
 /*?*/       pSdrPool->FreezeIdRanges();
 /*N*/
-/*N*/     // SJ: #95129# set FontHeight pool defaults without changing static SdrEngineDefaults
+/*N*/     // set FontHeight pool defaults without changing static SdrEngineDefaults
 /*N*/   aAttrPool.SetPoolDefaultItem(SvxFontHeightItem( 240, 100, EE_CHAR_FONTHEIGHT ));
 /*N*/
 /*N*/   RTL_LOGFILE_CONTEXT_TRACE( aLog, "before create DrawDocument" );
@@ -264,8 +205,7 @@ namespace binfilter {//STRIP009
 /*N*/   sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("Controls" ));
 /*N*/   nControls = pDrawModel->GetLayerAdmin().NewLayer( sLayerNm )->GetID();
 /*N*/
-/*N*/     // OD 25.06.2003 #108784# - add invisible layers corresponding to the
-/*N*/     // visible ones.
+/*N*/     // add invisible layers corresponding to the visible ones.
 /*N*/     {
 /*N*/         sLayerNm.AssignAscii(RTL_CONSTASCII_STRINGPARAM("InvisibleHell" ));
 /*N*/         nInvisibleHell   = pDrawModel->GetLayerAdmin().NewLayer( sLayerNm )->GetID();
@@ -302,8 +242,6 @@ namespace binfilter {//STRIP009
 /*N*/ }
 
 /** method to determine, if a layer ID belongs to the visible ones.
-
-    OD 25.06.2003 #108784#
     Note: If given layer ID is unknown, method asserts and returns <false>.
 
     @author OD
@@ -326,7 +264,7 @@ bool SwDoc::IsVisibleLayerId( const SdrLayerID& _nLayerId )
     }
     else
     {
-        ASSERT( false, "<SwDoc::IsVisibleLayerId(..)> - unknown layer ID." );
+        OSL_FAIL( "<SwDoc::IsVisibleLayerId(..)> - unknown layer ID." );
         bRetVal = false;
     }
 
@@ -334,8 +272,6 @@ bool SwDoc::IsVisibleLayerId( const SdrLayerID& _nLayerId )
 }
 
 /** method to determine, if the corresponding visible layer ID for a invisible one.
-
-    OD 25.06.2003 #108784#
     Note: If given layer ID is a visible one, method returns given layer ID.
     Note: If given layer ID is unknown, method returns given layer ID.
 
@@ -361,12 +297,12 @@ SdrLayerID SwDoc::GetVisibleLayerIdByInvisibleOne( const SdrLayerID& _nInvisible
               _nInvisibleLayerId == GetHellId() ||
               _nInvisibleLayerId == GetControlsId() )
     {
-        ASSERT( false, "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID already an invisible one." );
+        OSL_FAIL( "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID already an invisible one." );
         nVisibleLayerId = _nInvisibleLayerId;
     }
     else
     {
-        ASSERT( false, "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID is unknown." );
+        OSL_FAIL( "<SwDoc::GetVisibleLayerIdByInvisibleOne(..)> - given layer ID is unknown." );
         nVisibleLayerId = _nInvisibleLayerId;
     }
 
@@ -374,8 +310,6 @@ SdrLayerID SwDoc::GetVisibleLayerIdByInvisibleOne( const SdrLayerID& _nInvisible
 }
 
 /** method to determine, if the corresponding invisible layer ID for a visible one.
-
-    OD 25.06.2003 #108784#
     Note: If given layer ID is a invisible one, method returns given layer ID.
     Note: If given layer ID is unknown, method returns given layer ID.
 
@@ -401,12 +335,12 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
               _nVisibleLayerId == GetInvisibleHellId() ||
               _nVisibleLayerId == GetInvisibleControlsId() )
     {
-        ASSERT( false, "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID already an invisible one." );
+        OSL_FAIL( "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID already an invisible one." );
         nInvisibleLayerId = _nVisibleLayerId;
     }
     else
     {
-        ASSERT( false, "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID is unknown." );
+        OSL_FAIL( "<SwDoc::GetInvisibleLayerIdByVisibleOne(..)> - given layer ID is unknown." );
         nInvisibleLayerId = _nVisibleLayerId;
     }
 
@@ -425,9 +359,9 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 /*N*/       delete pDrawModel; pDrawModel = 0;
 /*N*/       SfxItemPool *pSdrPool = aAttrPool.GetSecondaryPool();
 /*N*/
-/*N*/       ASSERT( pSdrPool, "missing Pool" );
+/*N*/       OSL_ENSURE( pSdrPool, "missing Pool" );
 /*N*/       SfxItemPool *pEEgPool = pSdrPool->GetSecondaryPool();
-/*N*/       ASSERT( !pEEgPool->GetSecondaryPool(), "i don't accept additional pools");
+/*N*/       OSL_ENSURE( !pEEgPool->GetSecondaryPool(), "i don't accept additional pools");
 /*N*/       pSdrPool->Delete();                 //Erst die Items vernichten lassen,
 /*N*/                                           //dann erst die Verkettung loesen
 /*N*/       aAttrPool.SetSecondaryPool( 0 );    //Der ist ein muss!
@@ -442,7 +376,7 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 
 /*N*/ SdrModel* SwDoc::_MakeDrawModel()
 /*N*/ {
-/*N*/   ASSERT( !pDrawModel, "_MakeDrawModel: Why?" );
+/*N*/   OSL_ENSURE( !pDrawModel, "_MakeDrawModel: Why?" );
 /*N*/   InitDrawModel();
 /*N*/   if ( pLayout && pLayout->GetCurrShell() )
 /*N*/   {
@@ -464,11 +398,11 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 /*N*/ }
 
 
-/*************************************************************************/
-/*
-/* Am Outliner Link auf Methode fuer Felddarstellung in Editobjekten setzen
-/*
-/*************************************************************************/
+/*************************************************************************
+|*
+|* Am Outliner Link auf Methode fuer Felddarstellung in Editobjekten setzen
+|*
+\*************************************************************************/
 
 /*N*/ void SwDoc::SetCalcFieldValueHdl(Outliner* pOutliner)
 /*N*/ {
@@ -481,8 +415,10 @@ SdrLayerID SwDoc::GetInvisibleLayerIdByVisibleOne( const SdrLayerID& _nVisibleLa
 |*
 \************************************************************************/
 
-/*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, pInfo)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK(SwDoc, CalcFieldValueHdl, EditFieldInfo*, /*pInfo*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/  return(0);
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

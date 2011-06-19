@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,32 +27,11 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
-
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
-
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
-
-#ifndef _E3D_EXTRUD3D_HXX
 #include "extrud3d.hxx"
-#endif
-
-#ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
-#endif
-
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
-
-
-
 
 namespace binfilter {
 
@@ -289,7 +269,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dExtrudeObj::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
+/*N*/ void E3dExtrudeObj::CreateWireframe(Polygon3D& /*rWirePoly*/, const Matrix4D* /*pTf*/,
 /*N*/   E3dDragDetail eDetail)
 /*N*/ {
 /*N*/   if ( eDetail == E3DDETAIL_ALLLINES ||
@@ -300,54 +280,8 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       // call parent
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dExtrudeObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // call parent
-/*N*/   E3dCompoundObject::WriteData(rOut);
-/*N*/
-/*N*/   E3dIOCompat aCompat(rOut, STREAM_WRITE, 1);
-/*N*/   rOut << aExtrudePolygon;
-/*N*/   rOut << fExtrudeScale;
-/*N*/
-/*N*/   rOut << (double)GetExtrudeDepth();
-/*N*/
-/*N*/   rOut << (double)GetPercentBackScale() / 100.0;
-/*N*/
-/*N*/   rOut << (double)GetPercentDiagonal() / 200.0;
-/*N*/
-/*N*/   rOut << GetSmoothNormals(); // #107245# (BOOL)bExtrudeSmoothed;
-/*N*/   rOut << GetSmoothLids(); // #107245# (BOOL)bExtrudeSmoothFrontBack;
-/*N*/   rOut << GetCharacterMode(); // #107245# (BOOL)bExtrudeCharacterMode;
-/*N*/
-/*N*/   // Ab Version 513a (5.2.99): Parameter fuer das
-/*N*/   // Erzeugen der Vorder/Rueckwand
-/*N*/   rOut << GetCloseFront(); // #107245# (BOOL)bExtrudeCloseFront;
-/*N*/   rOut << GetCloseBack(); // #107245# (BOOL)bExtrudeCloseBack;
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -399,13 +333,13 @@ namespace binfilter {
 /*N*/           {
 /*N*/               // Ab Version 513a (5.2.99): Parameter fuer das
 /*N*/               // Erzeugen der Vorder/Rueckwand
-/*N*/               BOOL bTmp;
+/*N*/               BOOL bLclTmp;
 /*N*/
-/*N*/               rIn >> bTmp; // #107245# bExtrudeCloseFront = bTmp;
-/*N*/               mpObjectItemSet->Put(Svx3DCloseFrontItem(bTmp));
+/*N*/               rIn >> bLclTmp; // #107245# bExtrudeCloseFront = bLclTmp;
+/*N*/               mpObjectItemSet->Put(Svx3DCloseFrontItem(bLclTmp));
 /*N*/
-/*N*/               rIn >> bTmp; // #107245# bExtrudeCloseBack = bTmp;
-/*N*/               mpObjectItemSet->Put(Svx3DCloseBackItem(bTmp));
+/*N*/               rIn >> bLclTmp; // #107245# bExtrudeCloseBack = bLclTmp;
+/*N*/               mpObjectItemSet->Put(Svx3DCloseBackItem(bLclTmp));
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -603,56 +537,6 @@ namespace binfilter {
 /*N*/ }
 
 
-// #107245#
-// void E3dExtrudeObj::SetExtrudeSmoothed(BOOL bNew)
-// {
-//  if(bExtrudeSmoothed != bNew)
-//  {
-//      bExtrudeSmoothed = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeSmoothFrontBack(BOOL bNew)
-// {
-//  if(bExtrudeSmoothFrontBack != bNew)
-//  {
-//      bExtrudeSmoothFrontBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeCharacterMode(BOOL bNew)
-// {
-//  if(bExtrudeCharacterMode != bNew)
-//  {
-//      bExtrudeCharacterMode = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeCloseFront(BOOL bNew)
-// {
-//  if(bExtrudeCloseFront != bNew)
-//  {
-//      bExtrudeCloseFront = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dExtrudeObj::SetExtrudeCloseBack(BOOL bNew)
-// {
-//  if(bExtrudeCloseBack != bNew)
-//  {
-//      bExtrudeCloseBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
 //////////////////////////////////////////////////////////////////////////////
 // private support routines for ItemSet access
 
@@ -681,27 +565,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Aufbrechen
-|*
-\************************************************************************/
-
-
-
 // EOF
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

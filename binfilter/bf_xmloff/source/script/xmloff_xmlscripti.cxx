@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -38,7 +39,6 @@
 #include <com/sun/star/document/XEventsSupplier.hpp>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -47,6 +47,8 @@ using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 
 //-------------------------------------------------------------------------
@@ -65,7 +67,7 @@ private:
     OUString                    msLanguage;
 
 public:
-    XMLScriptModuleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLScriptModuleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                             const OUString& rLName, const OUString& aLibName,
                             const Reference<XAttributeList>& xAttrList,
                             XMLScriptElementContext& rParentContext,
@@ -73,7 +75,7 @@ public:
 
     virtual ~XMLScriptModuleContext();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
                                  const OUString& rLName,
                                  const Reference<XAttributeList>& xAttrList );
     virtual void EndElement();
@@ -93,14 +95,14 @@ private:
     OUString                    msLibName;
 
 public:
-    XMLScriptElementContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLScriptElementContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                             const OUString& rLName,
                             const Reference<XAttributeList>& xAttrList,
                             XMLScriptContext& rParentContext,
                             Reference<XStarBasicAccess> xBasicAccess );
     virtual ~XMLScriptElementContext();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
                                  const OUString& rLName,
                                  const Reference<XAttributeList>& xAttrList );
     virtual void EndElement();
@@ -116,25 +118,25 @@ XMLScriptElementContext::~XMLScriptElementContext()
 }
 
 
-SvXMLImportContext* XMLScriptElementContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext* XMLScriptElementContext::CreateChildContext( sal_uInt16 nInPrefix,
                                      const OUString& rLName,
                                      const Reference<XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( XML_NAMESPACE_SCRIPT == nPrefix)
+    if ( XML_NAMESPACE_SCRIPT == nInPrefix)
     {
         if( IsXMLToken( msLName, XML_LIBRARY_EMBEDDED ) )
         {
             if( IsXMLToken( rLName, XML_MODULE ) )
             {
-                pContext = new XMLScriptModuleContext( GetImport(), nPrefix,
+                pContext = new XMLScriptModuleContext( GetImport(), nInPrefix,
                     rLName, msLibName, xAttrList, *this, mxBasicAccess );
             }
             //else if( IsXMLToken( rLName, XML_DIALOG ) )
             //{
                 //pContext = new XMLScriptDialogContext( GetImport(),
-                    //nPrefix, rLName, xAttrList, *this, mxBasicAccess );
+                    //nInPrefix, rLName, xAttrList, *this, mxBasicAccess );
             //}
         }
     }
@@ -143,7 +145,7 @@ SvXMLImportContext* XMLScriptElementContext::CreateChildContext( sal_uInt16 nPre
     if ( !pContext )
     {
         //  default context to ignore unknown elements
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     }
     return pContext;
 }
@@ -159,15 +161,15 @@ void XMLScriptElementContext::Characters( const ::rtl::OUString& rChars )
 
 //-------------------------------------------------------------------------
 
-XMLScriptModuleContext::XMLScriptModuleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLScriptModuleContext::XMLScriptModuleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const OUString& rLName, const OUString& aLibName,
                                     const Reference<XAttributeList>& xAttrList,
                                     XMLScriptElementContext& rParentContext,
                                     Reference<XStarBasicAccess> xBasicAccess )
-    : SvXMLImportContext( rImport, nPrfx, rLName )
-    , msLibName( aLibName )
+    : SvXMLImportContext( rInImport, nPrfx, rLName )
     , mrParent( rParentContext )
     , mxBasicAccess( xBasicAccess )
+    , msLibName( aLibName )
 {
     mrParent.AddRef();
 
@@ -198,11 +200,11 @@ XMLScriptModuleContext::~XMLScriptModuleContext()
     mrParent.ReleaseRef();
 }
 
-SvXMLImportContext* XMLScriptModuleContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext* XMLScriptModuleContext::CreateChildContext( sal_uInt16 nInPrefix,
                                      const OUString& rLName,
-                                     const Reference<XAttributeList>& xAttrList )
+                                     const Reference<XAttributeList>& /*xAttrList*/ )
 {
-    SvXMLImportContext* pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    SvXMLImportContext* pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     return pContext;
 }
 
@@ -227,12 +229,12 @@ private:
     ::rtl::OUString m_aLanguage;
 
 public:
-    XMLScriptChildContext( SvXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
+    XMLScriptChildContext( SvXMLImport& rInImport, USHORT nPrfx, const ::rtl::OUString& rLName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel>& rxModel,
         const ::rtl::OUString& rLanguage );
     virtual ~XMLScriptChildContext();
 
-    virtual SvXMLImportContext* CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName,
+    virtual SvXMLImportContext* CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList );
 
     virtual void EndElement();
@@ -240,9 +242,9 @@ public:
 
 // -----------------------------------------------------------------------------
 
-XMLScriptChildContext::XMLScriptChildContext( SvXMLImport& rImport, USHORT nPrfx, const ::rtl::OUString& rLName,
+XMLScriptChildContext::XMLScriptChildContext( SvXMLImport& rInImport, USHORT nPrfx, const ::rtl::OUString& rLName,
         const Reference< frame::XModel >& rxModel, const ::rtl::OUString& rLanguage )
-    :SvXMLImportContext( rImport, nPrfx, rLName )
+    :SvXMLImportContext( rInImport, nPrfx, rLName )
     ,m_xModel( rxModel )
     ,m_aLanguage( rLanguage )
 {
@@ -257,18 +259,18 @@ XMLScriptChildContext::~XMLScriptChildContext()
 // -----------------------------------------------------------------------------
 
 SvXMLImportContext* XMLScriptChildContext::CreateChildContext(
-    USHORT nPrefix, const ::rtl::OUString& rLocalName,
+    USHORT nInPrefix, const ::rtl::OUString& rLocalName,
     const Reference< xml::sax::XAttributeList >& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
     ::rtl::OUString aBasic( RTL_CONSTASCII_USTRINGPARAM( "Basic" ) );
 
-    if ( m_aLanguage == aBasic && nPrefix == XML_NAMESPACE_SCRIPT && IsXMLToken( rLocalName, XML_LIBRARIES ) )
-        pContext = new XMLBasicImportContext( GetImport(), nPrefix, rLocalName, m_xModel );
+    if ( m_aLanguage == aBasic && nInPrefix == XML_NAMESPACE_SCRIPT && IsXMLToken( rLocalName, XML_LIBRARIES ) )
+        pContext = new XMLBasicImportContext( GetImport(), nInPrefix, rLocalName, m_xModel );
 
     if ( !pContext )
-        pContext = SvXMLImportContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImportContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -283,9 +285,9 @@ void XMLScriptChildContext::EndElement()
 // XMLScriptContext: context for <office:script> element
 // =============================================================================
 
-XMLScriptContext::XMLScriptContext( SvXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+XMLScriptContext::XMLScriptContext( SvXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
         const Reference<XModel>& rDocModel )
-    :SvXMLImportContext( rImport, nPrfx, rLName )
+    :SvXMLImportContext( rInImport, nPrfx, rLName )
     ,m_xModel( rDocModel )
 {
 }
@@ -299,17 +301,17 @@ XMLScriptContext::~XMLScriptContext()
 // -----------------------------------------------------------------------------
 
 SvXMLImportContext* XMLScriptContext::CreateChildContext(
-    sal_uInt16 nPrefix, const OUString& rLName,
+    sal_uInt16 nInPrefix, const OUString& rLName,
     const Reference<XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( nPrefix == XML_NAMESPACE_OFFICE )
+    if ( nInPrefix == XML_NAMESPACE_OFFICE )
     {
         if ( IsXMLToken( rLName, XML_EVENTS ) )
         {
             Reference< XEventsSupplier > xSupplier( GetImport().GetModel(), UNO_QUERY );
-            pContext = new XMLEventsImportContext( GetImport(), nPrefix, rLName, xSupplier );
+            pContext = new XMLEventsImportContext( GetImport(), nInPrefix, rLName, xSupplier );
         }
         else if ( IsXMLToken( rLName, XML_SCRIPT_DATA ) )
         {
@@ -318,13 +320,13 @@ SvXMLImportContext* XMLScriptContext::CreateChildContext(
             if ( xAttrList.is() )
             {
                 ::rtl::OUString aLanguage = xAttrList->getValueByName( aAttrName );
-                pContext = new XMLScriptChildContext( GetImport(), nPrefix, rLName, m_xModel, aLanguage );
+                pContext = new XMLScriptChildContext( GetImport(), nInPrefix, rLName, m_xModel, aLanguage );
             }
         }
     }
 
     if ( !pContext )
-        pContext = SvXMLImportContext::CreateChildContext( nPrefix, rLName, xAttrList);
+        pContext = SvXMLImportContext::CreateChildContext( nInPrefix, rLName, xAttrList);
 
     return pContext;
 }
@@ -338,3 +340,5 @@ void XMLScriptContext::EndElement()
 // -----------------------------------------------------------------------------
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

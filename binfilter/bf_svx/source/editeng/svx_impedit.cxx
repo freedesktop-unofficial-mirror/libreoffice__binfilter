@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
@@ -50,9 +49,7 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 
 
@@ -86,7 +83,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*N*/     if ( pEditEngine->pImpEditEngine->GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTVIEWSELECTIONCHANGED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -154,14 +151,14 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/       sal_uInt16 nStartLine = 0;
 /*?*/       sal_uInt16 nEndLine = pTmpPortion->GetLines().Count() -1;
 /*?*/       if ( nPara == nStartPara )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nStartLine = pTmpPortion->GetLines().FindLine( aTmpSel.Min().GetIndex(), sal_False );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       if ( nPara == nEndPara )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nEndLine = pTmpPortion->GetLines().FindLine( aTmpSel.Max().GetIndex(), sal_True );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/       // ueber die Zeilen iterieren....
 /*?*/       for ( sal_uInt16 nLine = nStartLine; nLine <= nEndLine; nLine++ )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pTmpPortion->GetLines().GetObject( nLine );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/   }
 /*?*/
@@ -250,7 +247,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return aRect;
 /*N*/ }
 
-/*N*/ void ImpEditView::ShowCursor( sal_Bool bGotoCursor, sal_Bool bForceVisCursor, USHORT nShowCursorFlags )
+/*N*/ void ImpEditView::ShowCursor( sal_Bool /*bGotoCursor*/, sal_Bool /*bForceVisCursor*/, USHORT /*nShowCursorFlags*/ )
 /*N*/ {
 /*N*/   // Kein ShowCursor bei einer leeren View...
 /*N*/   if ( ( aOutArea.Left() >= aOutArea.Right() ) && ( aOutArea.Top() >= aOutArea.Bottom() ) )
@@ -258,3 +255,5 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

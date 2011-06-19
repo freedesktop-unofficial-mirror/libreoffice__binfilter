@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -58,11 +56,6 @@ namespace binfilter {
 extern const ScFormulaCell* pLastFormulaTreeTop;    // cellform.cxx Err527 WorkAround
 
 // STATIC DATA -----------------------------------------------------------
-
-#ifdef erDEBUG
-ULONG erCountBCAInserts = 0;
-ULONG erCountBCAFinds = 0;
-#endif
 
 // -----------------------------------------------------------------------
 
@@ -334,12 +327,11 @@ ULONG erCountBCAFinds = 0;
 /*N*/       ScBroadcasterList* pBC;
 /*N*/       ScFormulaCell* pTrack;
 /*N*/       ScFormulaCell* pNext;
-/*N*/       BOOL bIsChanged = TRUE;
 /*N*/       pTrack = pFormulaTrack;
 /*N*/       do
 /*N*/       {
 /*N*/           ScHint aHint( nHintId, pTrack->aPos, pTrack );
-/*N*/           if ( pBC = pTrack->GetBroadcaster() )
+/*N*/           if (( pBC = pTrack->GetBroadcaster() ))
 /*N*/               pBC->Broadcast( aHint );
 /*N*/           pBASM->AreaBroadcast( aHint );
 /*N*/           //  Repaint fuer bedingte Formate mit relativen Referenzen:
@@ -363,7 +355,7 @@ ULONG erCountBCAFinds = 0;
 /*?*/           SetForcedFormulas( TRUE );
 /*?*/           if ( bAutoCalc && !IsAutoCalcShellDisabled() && !IsInInterpreter()
 /*?*/                   && !IsCalculatingFormulaTree() )
-{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 /*?*/               CalcFormulaTree( TRUE );
+{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/           else
 /*?*/               SetForcedFormulaPending( TRUE );
 /*N*/       }
@@ -382,7 +374,7 @@ ULONG erCountBCAFinds = 0;
 /*N*/ }
 
 /*N*/ void ScDocument::UpdateBroadcastAreas( UpdateRefMode eUpdateRefMode,
-/*N*/       const ScRange& rRange, short nDx, short nDy, short nDz
+/*N*/       const ScRange& /*rRange*/, short nDx, short nDy, short nDz
 /*N*/   )
 /*N*/ {
 /*N*/   BOOL bExpandRefsOld = IsExpandRefs();
@@ -400,10 +392,12 @@ ULONG erCountBCAFinds = 0;
 /*?*/       if ( IsAutoCalcShellDisabled() )
 /*?*/           SetForcedFormulaPending( TRUE );
 /*?*/       else if ( !IsInInterpreter() )
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             CalcFormulaTree( TRUE );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

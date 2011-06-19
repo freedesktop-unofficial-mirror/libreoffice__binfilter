@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,11 @@
 #ifndef _SC_ACCESSIBLETEXT_HXX
 #define _SC_ACCESSIBLETEXT_HXX
 
-#ifndef SC_TEXTSUNO_HXX
 #include "textuno.hxx"
-#endif
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
-#endif
 
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 
 #include <memory>
 namespace binfilter {
@@ -66,7 +59,7 @@ public:
 
     virtual ScAccessibleTextData* Clone() const = 0;
 
-    virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) {}
+    virtual void        Notify( SfxBroadcaster& /*rBC*/, const SfxHint& /*rHint*/ ) {}
 
     virtual SvxTextForwarder* GetTextForwarder() = 0;
     virtual SvxViewForwarder* GetViewForwarder() = 0;
@@ -91,9 +84,9 @@ class ScAccessibleCellBaseTextData : public ScAccessibleTextData,
                                      public ScCellTextData
 {
 public:
-                        ScAccessibleCellBaseTextData(ScDocShell* pDocShell,
+                        ScAccessibleCellBaseTextData(ScDocShell* pInDocShell,
                             const ScAddress& rP)
-                            : ScCellTextData(pDocShell, rP) {}
+                            : ScCellTextData(pInDocShell, rP) {}
     virtual             ~ScAccessibleCellBaseTextData() {}
     virtual void        Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) { ScCellTextData::Notify(rBC, rHint); }
 
@@ -157,7 +150,7 @@ public:
     virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool bCreate );
 
     virtual void                UpdateData() {  }
-    virtual void                SetDoUpdate(sal_Bool bValue) {  }
+    virtual void                SetDoUpdate(sal_Bool /*bValue*/) {  }
     virtual sal_Bool            IsDirty() const { return sal_False; }
 
     DECL_LINK( NotifyHdl, EENotify* );
@@ -210,7 +203,7 @@ public:
 
     virtual SvxTextForwarder* GetTextForwarder();
     virtual SvxViewForwarder* GetViewForwarder();
-    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool bCreate ) { return NULL; }
+    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool /*bCreate*/ ) { return NULL; }
 
     DECL_LINK( NotifyHdl, EENotify* );
 private:
@@ -239,7 +232,7 @@ public:
 
     virtual SvxTextForwarder* GetTextForwarder();
     virtual SvxViewForwarder* GetViewForwarder();
-    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool bCreate ) { return NULL; }
+    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool /*bCreate*/ ) { return NULL; }
 
     DECL_LINK( NotifyHdl, EENotify* );
 private:
@@ -271,10 +264,10 @@ public:
 
     virtual SvxTextForwarder* GetTextForwarder();
     virtual SvxViewForwarder* GetViewForwarder();
-    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool bCreate ) { return NULL; }
+    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool /*bCreate*/ ) { return NULL; }
 
     virtual void                UpdateData() {  }
-    virtual void                SetDoUpdate(sal_Bool bValue) {  }
+    virtual void                SetDoUpdate(sal_Bool /*bValue*/) {  }
     virtual sal_Bool            IsDirty() const { return sal_False; }
 private:
     ScPreviewViewForwarder* mpViewForwarder;
@@ -304,10 +297,10 @@ public:
 
     virtual SvxTextForwarder* GetTextForwarder();
     virtual SvxViewForwarder* GetViewForwarder();
-    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool bCreate ) { return NULL; }
+    virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool /*bCreate*/ ) { return NULL; }
 
     virtual void                UpdateData() {  }
-    virtual void                SetDoUpdate(sal_Bool bValue) {  }
+    virtual void                SetDoUpdate(sal_Bool /*bValue*/) {  }
     virtual sal_Bool            IsDirty() const { return sal_False; }
 private:
     ScPreviewViewForwarder* mpViewForwarder;
@@ -356,7 +349,7 @@ public:
     virtual SvxEditViewForwarder* GetEditViewForwarder( sal_Bool bCreate );
 
     virtual void                UpdateData() {}
-    virtual void                SetDoUpdate( sal_Bool bValue ) {}
+    virtual void                SetDoUpdate( sal_Bool /*bValue*/ ) {}
     virtual sal_Bool            IsDirty() const { return sal_False; }
 };
 
@@ -365,3 +358,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

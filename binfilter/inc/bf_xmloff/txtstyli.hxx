@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _XMLOFF_TXTSTYLI_HXX_
 #define _XMLOFF_TXTSTYLI_HXX_
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLTokenMap;
@@ -98,10 +97,10 @@ public:
     inline sal_Bool HasCombinedCharactersLetter()
         { return bHasCombinedCharactersLetter; }
 
-#ifdef CONV_STAR_FONTS
     const ::std::vector< XMLPropertyState > & _GetProperties() { return GetProperties(); }
-#endif
 };
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

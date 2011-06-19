@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 
 namespace binfilter {
 
@@ -75,3 +74,5 @@ inline void SwNewHdl::SetErrLnk( const Link &rLink )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

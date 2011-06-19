@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SCH_SCHRESID_HXX
 #define _SCH_SCHRESID_HXX
 
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 namespace binfilter {
 
 class SchResId : public ResId
@@ -44,3 +43,4 @@ class SchResId : public ResId
 } //namespace binfilter
 #endif      // _SCH_SCHRESID_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

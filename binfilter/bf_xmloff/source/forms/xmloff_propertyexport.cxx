@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,46 +28,20 @@
 
 #include <stdio.h>
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <xmlexp.hxx>
-#endif
-#ifndef _XMLOFF_FORMS_PROPERTYEXPORT_HXX_
 #include "propertyexport.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _COMPHELPER_TYPES_HXX_
 #include <comphelper/types.hxx>
-#endif
 
-#ifndef _UNOTOOLS_DATETIME_HXX_
 #include <unotools/datetime.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -265,13 +240,13 @@ namespace xmloff
                     //add by BerryJia for Bug102407
                     if(TypeClass_VOID == aValue.getValueType().getTypeClass())
                     {
-                        AddAttribute(XML_NAMESPACE_FORM, "property-is-void", ::rtl::OUString::createFromAscii("true"));
-                        SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                        AddAttribute(XML_NAMESPACE_FORM, "property-is-void", ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "true" )));
+                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                     }
                     else
                     {
                         sValue = implConvertAny(aValue);
-                        SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                             // (no whitespace inside the tag)
                         m_rContext.getGlobalContext().GetDocHandler()->characters(sValue);
                     }
@@ -305,7 +280,7 @@ namespace xmloff
                         pSequenceIterator = new OSequenceIterator< sal_Int64 >(aValue);
                         break;
                     default:
-                        OSL_ENSURE(sal_False, "OPropertyExport::exportRemainingProperties: unsupported sequence tyoe !");
+                        OSL_FAIL("OPropertyExport::exportRemainingProperties: unsupported sequence tyoe !");
                         break;
                 }
                 if (pSequenceIterator)
@@ -313,7 +288,7 @@ namespace xmloff
                     ::rtl::OUString sCurrent;
                     while (pSequenceIterator->hasMoreElements())
                     {
-                        SvXMLElementExport aValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
+                        SvXMLElementExport aLclValueTag(m_rContext.getGlobalContext(), XML_NAMESPACE_FORM, "property-value", sal_True, sal_False);
                             // (no whitespace inside the tag)
                         m_rContext.getGlobalContext().GetDocHandler()->characters(implConvertAny(pSequenceIterator->nextElement()));
                     }
@@ -615,7 +590,7 @@ namespace xmloff
                 break;
             case TypeClass_HYPER:
                 // TODO
-                OSL_ENSURE(sal_False, "OPropertyExport::implConvertAny: missing implementation for sal_Int64!");
+                OSL_FAIL("OPropertyExport::implConvertAny: missing implementation for sal_Int64!");
                 break;
             case TypeClass_ENUM:
             {
@@ -657,7 +632,7 @@ namespace xmloff
                     // if any other types are added here, please remember to adjust implGetPropertyXMLType accordingly
 
                     // no more options ...
-                    OSL_ENSURE(sal_False, "OPropertyExport::implConvertAny: unsupported value type!");
+                    OSL_FAIL("OPropertyExport::implConvertAny: unsupported value type!");
                     break;
                 }
                 // let the unit converter format is as string
@@ -733,8 +708,7 @@ namespace xmloff
             // the property must exist
             if (!m_xPropertyInfo->hasPropertyByName(_rPropertyName))
             {
-                OSL_ENSURE(sal_False,
-                    ::rtl::OString("OPropertyExport::dbg_implCheckProperty: no property with the name ") +=
+                OSL_FAIL(::rtl::OString("OPropertyExport::dbg_implCheckProperty: no property with the name ") +=
                     ::rtl::OString(_rPropertyName.getStr(), _rPropertyName.getLength(), RTL_TEXTENCODING_ASCII_US) +=
                     ::rtl::OString("!"));
                 return;
@@ -749,7 +723,7 @@ namespace xmloff
         }
         catch(Exception&)
         {
-            OSL_ENSURE(sal_False, "OPropertyExport::dbg_implCheckProperty: caught an exception, could not check the property!");
+            OSL_FAIL("OPropertyExport::dbg_implCheckProperty: caught an exception, could not check the property!");
         }
     }
 #endif // DBG_UTIL - dbg_implCheckProperty
@@ -760,3 +734,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

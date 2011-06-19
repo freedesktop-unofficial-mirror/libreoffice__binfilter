@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DENTITY_HXX
 #include "b3dentty.hxx"
-#endif
 
-//#ifndef _B3D_B3DCOMMN_HXX
-//#include "b3dcommn.hxx"
-//#endif
-
-#ifndef _B3D_B3DTRANS_HXX
 #include "b3dtrans.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 /*************************************************************************
@@ -159,3 +150,5 @@ BASE3D_IMPL_BUCKET(B3dEntity, Bucket)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

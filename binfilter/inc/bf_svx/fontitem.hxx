@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 
 namespace rtl
 {
@@ -78,9 +73,9 @@ public:
     virtual int              operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion) const;
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
+    virtual bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 
     // ZugriffsMethoden:
@@ -119,3 +114,4 @@ void GetDefaultFonts( SvxFontItem& rLatin, SvxFontItem& rAsian,
 }//end of namespace binfilter
 #endif // #ifndef _SVX_FONTITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

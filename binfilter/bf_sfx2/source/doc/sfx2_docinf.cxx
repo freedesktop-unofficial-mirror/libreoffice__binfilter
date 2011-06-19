@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _BIGINT_HXX //autogen wg. BigInt
 #include <tools/bigint.hxx>
-#endif
 #include <tools/urlobj.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <tools/tenccvt.hxx>
@@ -49,14 +48,14 @@ namespace binfilter {
 /*?*/
 /*?*/   SfxStringItem()
 /*?*/
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 //========================================================================
 
-static const char __FAR_DATA pDocInfoSlot[] = "SfxDocumentInfo";
-static const char __FAR_DATA pPropSlot[] = "\005SummaryInformation";
-static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
+static const char pDocInfoSlot[] = "SfxDocumentInfo";
+static const char pPropSlot[] = "\005SummaryInformation";
+static const char pDocInfoHeader[] = "SfxDocumentInfo";
 #define VERSION 11
 #define STREAM_BUFFER_SIZE 2048
 
@@ -128,18 +127,9 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       SfxPSCodePageProperty_Impl( CharSet nCharSet ) : SfxPSProperty_Impl( 1, VT_I2 ), nEncoding( nCharSet ) {}
 /*N*/       virtual ~SfxPSCodePageProperty_Impl() {}
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream );
+/*N*/   virtual ULONG   Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG   Len();
 /*N*/ };
-
-/*N*/ ULONG SfxPSCodePageProperty_Impl::Save( SvStream& rStream )
-/*N*/ {
-/*N*/     sal_uInt32 nCodePage = rtl_getWindowsCodePageFromTextEncoding(nEncoding);
-/*N*/     if (nCodePage == 0)
-/*N*/         nCodePage = 1252;
-/*N*/   rStream << (UINT16)nCodePage;
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 /*N*/ ULONG SfxPSCodePageProperty_Impl::Len()
 /*N*/ {
@@ -156,8 +146,10 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/     BOOL bIsUniCode;
 /*N*/
 /*N*/ public:
-/*N*/     SfxPSStringProperty_Impl( UINT32 nIdP, const String& aStr ) :
-/*N*/         aString(aStr), SfxPSProperty_Impl( nIdP, VT_LPSTR ), bIsUniCode(FALSE)
+/*N*/     SfxPSStringProperty_Impl( UINT32 nIdP, const String& aStr )
+/*N*/         : SfxPSProperty_Impl( nIdP, VT_LPSTR )
+/*N*/         , aString(aStr)
+/*N*/         , bIsUniCode(FALSE)
 /*N*/     {
 /*N*/         nEncoding = RTL_TEXTENCODING_UTF8;
 /*N*/     }
@@ -170,29 +162,12 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/
 /*N*/     void SetIsUniCode() { bIsUniCode = TRUE; }
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream );
+/*N*/   virtual ULONG   Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG   Load( SvStream& rStream );
 /*N*/   virtual ULONG   Len();
 /*N*/
 /*N*/   const String&   GetString() { return aString; }
 /*N*/ };
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSStringProperty_Impl::Save( SvStream& rStream )
-/*N*/ {
-/*N*/   // Now we always write property strings with UTF8 encoding, so we
-/*N*/   // can ensure full unicode compatibility. The code page attribute is
-/*N*/   // written with UTF8 set!
-/*N*/   // Force nEncoding set to UTF8!
-/*N*/     ByteString aTemp( aString, RTL_TEXTENCODING_UTF8 );
-/*N*/   nEncoding = RTL_TEXTENCODING_UTF8;
-/*N*/   UINT32 nLen = aTemp.Len();
-/*N*/   rStream << (UINT32)( nLen + 1 );
-/*N*/   rStream.Write( aTemp.GetBuffer(), nLen );
-/*N*/   rStream << '\0';
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -280,20 +255,14 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   UINT32  aInt;
 /*N*/
 /*N*/   public:
-/*N*/   SfxPSUINT32Property_Impl( UINT32 nIdP, UINT32 aIntP ) :
-/*N*/       aInt( aIntP ), SfxPSProperty_Impl( nIdP, VT_I4 ) {}
+/*N*/   SfxPSUINT32Property_Impl( UINT32 nIdP, UINT32 aIntP )
+/*N*/       : SfxPSProperty_Impl( nIdP, VT_I4 )
+/*N*/       , aInt( aIntP )
+/*N*/       {}
 /*N*/
-/*N*/   virtual ULONG   Save( SvStream& rStream );
+/*N*/   virtual ULONG   Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG   Len();
 /*N*/ };
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSUINT32Property_Impl::Save( SvStream& rStream )
-/*N*/ {
-/*N*/   rStream << aInt;
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -310,44 +279,19 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   DateTime aDateTime;
 /*N*/
 /*N*/ public:
-/*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP, const DateTime& rDateTime ) :
-/*N*/       aDateTime( rDateTime ), SfxPSProperty_Impl( nIdP, VT_FILETIME ) {}
+/*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP, const DateTime& rDateTime )
+/*N*/       : SfxPSProperty_Impl( nIdP, VT_FILETIME )
+/*N*/       , aDateTime( rDateTime )
+/*N*/       {}
 /*N*/   SfxPSDateTimeProperty_Impl( UINT32 nIdP ) :
 /*N*/       SfxPSProperty_Impl( nIdP, VT_FILETIME ) {};
 /*N*/
-/*N*/   virtual ULONG Save( SvStream& rStream );
+/*N*/   virtual ULONG Save( SvStream& ) {return 1;}
 /*N*/   virtual ULONG Load( SvStream& rStream );
 /*N*/   virtual ULONG Len();
 /*N*/
 /*N*/   const DateTime& GetDateTime() { return aDateTime; }
 /*N*/ };
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSDateTimeProperty_Impl::Save(SvStream &rStream)
-/*N*/ {
-/*N*/   // Nicht Valid ist das gleiche, wie bei MS, nur nicht konvertiert
-/*N*/   if( aDateTime.IsValid() )
-/*N*/       aDateTime.ConvertToUTC();
-/*N*/   BigInt a100nPerSecond(10000000L);
-/*N*/   BigInt a100nPerDay=a100nPerSecond*BigInt(60L*60*24);
-/*N*/   USHORT nYears=aDateTime.GetYear()-1601;
-/*N*/   long nDays=
-/*N*/       nYears*365+nYears/4-nYears/100+nYears/400+
-/*N*/           aDateTime.GetDayOfYear()-1;
-/*N*/   BigInt aTime=
-/*N*/       a100nPerDay*BigInt(nDays)+a100nPerSecond*
-/*N*/           BigInt((long)( aDateTime.GetSec() +
-/*N*/                  60* aDateTime.GetMin() +
-/*N*/                  60L*60* aDateTime.GetHour() ));
-/*N*/
-/*N*/   BigInt aUlongMax(SAL_MAX_UINT32);
-/*N*/   aUlongMax += 1;
-/*N*/
-/*N*/   rStream<<rStream<<static_cast<sal_uInt32>(static_cast<ULONG>(aTime % aUlongMax));
-/*N*/   rStream<<rStream<<static_cast<sal_uInt32>(static_cast<ULONG>(aTime / aUlongMax));
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
 
 //-------------------------------------------------------------------------
 
@@ -396,14 +340,14 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 //=========================================================================
 
 /*N*/ typedef SfxPSProperty_Impl *SfxPSPropertyPtr_Impl;
-/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10)//STRIP008 ;
+/*N*/ SV_DECL_PTRARR_DEL(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl, 10, 10)
 /*N*/ SV_IMPL_PTRARR(SfxPSPropertyArr_Impl, SfxPSPropertyPtr_Impl);
 
 /*N*/ struct SfxPSSection_Impl
 /*N*/ {
 /*N*/   SvGlobalName aId;
 /*N*/   SfxPSPropertyArr_Impl aProperties;
-/*N*/   ULONG Save(SvStream &rStream);
+/*N*/   ULONG Save(SvStream &) {return 1;}
 /*N*/ };
 
 //=========================================================================
@@ -418,7 +362,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   void   SetSectionName(const SvGlobalName& aIdP);
 /*N*/   void   AddProperty( SfxPSProperty_Impl* pProp);
 /*N*/
-/*N*/   ULONG Save(SvStream &rStream);
+/*N*/   ULONG Save(SvStream &) {return 1;}
 /*N*/ };
 
 
@@ -452,69 +396,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ }
 
 
-/*N*/ ULONG SfxPS_Impl::Save(SvStream &rStream)
-/*N*/ {
-/*N*/   SvGlobalName aName;
-/*N*/   rStream << (UINT16) 0xfffe // ByteOrder
-/*N*/       << (UINT16) 0          // version
-/*N*/       << (UINT16) 1          // Os MinorVersion
-/*N*/       << (UINT16)            // Os Type
-/*N*/ #if defined(MAC)
-/*N*/       1
-/*N*/ #elif defined(WNT)
-/*N*/       2
-/*N*/ #else
-/*N*/       0
-/*N*/ #endif
-/*N*/       << aName
-/*N*/       << (UINT32)1; // Immer eine Section
-/*N*/   return aSection.Save(rStream);
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ ULONG SfxPSSection_Impl::Save(SvStream &rStream)
-/*N*/ {
-/*N*/
-/*N*/ //Nur eine Section schreiben: ( Use of more than 1 section is discouraged
-/*N*/ //and will not be supported in future windows apis).
-/*N*/
-/*N*/   ULONG nPos = rStream.Tell();
-/*N*/   nPos += 20;
-/*N*/   rStream << aId << (UINT32)nPos; //Offset
-/*N*/
-/*N*/
-/*N*/   //SectionHeader Schreiben
-/*N*/   ULONG nLen=8;
-/*N*/   USHORT n;
-/*N*/   for(n=0;n<aProperties.Count();n++)
-/*N*/       nLen+=(((aProperties[n]->Len() + 3) >> 2) << 2)+12;
-/*N*/   rStream << (UINT32) nLen << (UINT32) aProperties.Count();
-/*N*/
-/*N*/   //PropertyId/Offsetpaare schreiben
-/*N*/
-/*N*/   nLen=8+aProperties.Count()*8;
-/*N*/   for(n=0;n<aProperties.Count();n++)
-/*N*/   {
-/*N*/       rStream << aProperties[n]->GetId() << (UINT32)nLen;
-/*N*/       nLen+=(((aProperties[n]->Len() + 3) >> 2) << 2) + 4;
-/*N*/   }
-/*N*/
-/*N*/   //Inhalte schreiben
-/*N*/   for(n=0;n<aProperties.Count();n++)
-/*N*/   {
-/*N*/       rStream << (UINT32) aProperties[n]->GetType();
-/*N*/       aProperties[n]->Save(rStream);
-/*N*/       nLen=aProperties[n]->Len();
-/*N*/       while(nLen++%4) //Auffuellen auf DWORD Grenze
-/*N*/           rStream << (UINT8) 0;
-/*N*/   }
-/*N*/
-/*N*/   return rStream.GetErrorCode();
-/*N*/ }
-
-//========================================================================
-
 /*N*/ SvStream& PaddWithBlanks_Impl(SvStream &rStream, USHORT nCount)
 /*N*/ {
 /*N*/   for ( USHORT n = nCount; n; --n )
@@ -542,7 +423,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/       nVersion( nV ), bPasswd( bPass ) { aHeader = String::CreateFromAscii( pHeader ); }
 /*N*/   FileHeader( SvStream& rStream );
 /*N*/
-/*N*/   void    Save( SvStream& rStream ) const;
+/*N*/   void Save( SvStream& ) const {};
 /*N*/ };
 
 //-------------------------------------------------------------------------
@@ -561,18 +442,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 
 //-------------------------------------------------------------------------
 
-/*N*/ void FileHeader::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   long nVer = rStream.GetVersion();
-/*N*/   rStream.SetVersion( SOFFICE_FILEFORMAT_40 );
-/*N*/     rStream.WriteByteString( aHeader );
-/*N*/   rStream.SetVersion( nVer );
-/*N*/   rStream << nVersion;
-/*N*/   rStream << (BYTE)bPasswd;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ BOOL SfxDocUserKey::Load(SvStream &rStream)
 /*N*/ {
 /*N*/     rStream.ReadByteString( aTitle );
@@ -582,28 +451,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   return rStream.GetError() == SVSTREAM_OK;
 /*N*/ }
 
-
-//-------------------------------------------------------------------------
-
-/*N*/ BOOL SfxDocUserKey::Save(SvStream &rStream) const
-/*N*/ {
-/*N*/   DBG_ASSERT( aTitle.Len() <= SFXDOCUSERKEY_LENMAX, "length of user key title overflow" );
-/*N*/   DBG_ASSERT( aWord.Len() <= SFXDOCUSERKEY_LENMAX, "length of user key value overflow" );
-/*N*/
-/*N*/   // save the title of the user key
-/*N*/   String aString = aTitle;
-/*N*/   aString.Erase( SFXDOCUSERKEY_LENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCUSERKEY_LENMAX - aString.Len());
-/*N*/
-/*N*/   // save the value of the user key
-/*N*/   aString = aWord;
-/*N*/   aString.Erase( SFXDOCUSERKEY_LENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCUSERKEY_LENMAX - aString.Len());
-/*N*/
-/*N*/   return rStream.GetError() == SVSTREAM_OK;
-/*N*/ }
 
 //-------------------------------------------------------------------------
 /*N*/ SfxDocUserKey::SfxDocUserKey( const String& rTitle, const String& rWord ) :
@@ -801,101 +648,6 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ }
 
 //-------------------------------------------------------------------------
-
-/*N*/ BOOL SfxDocumentInfo::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   FileHeader aHeader(pDocInfoHeader, VERSION, bPasswd? 1: 0);
-/*N*/   aHeader.Save(rStream);
-/*N*/   CharSet eNewFileCharSet = GetSOStoreTextEncoding( eFileCharSet );
-/*N*/   rStream << (USHORT)eNewFileCharSet;
-/*N*/   rStream.SetStreamCharSet(eNewFileCharSet);
-/*N*/   rStream << (bPortableGraphics? (BYTE)1: (BYTE)0)
-/*N*/           << (bQueryTemplate? (BYTE)1: (BYTE)0);
-/*N*/   aCreated.Save(rStream);
-/*N*/   aChanged.Save(rStream);
-/*N*/   aPrinted.Save(rStream);
-/*N*/
-/*N*/   DBG_ASSERT( aTitle.Len() <= SFXDOCINFO_TITLELENMAX , "length of title overflow" );
-/*N*/   DBG_ASSERT( aTheme.Len() <= SFXDOCINFO_THEMELENMAX , "length of theme overflow" );
-/*N*/   DBG_ASSERT( aComment.Len() <= SFXDOCINFO_COMMENTLENMAX , "length of description overflow" );
-/*N*/   DBG_ASSERT( aKeywords.Len() <= SFXDOCINFO_KEYWORDLENMAX , "length of keywords overflow" );
-/*N*/
-/*N*/   // save the title
-/*N*/   String aString = aTitle;
-/*N*/   aString.Erase( SFXDOCINFO_TITLELENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_TITLELENMAX - aString.Len());
-/*N*/   // save the theme
-/*N*/   aString = aTheme;
-/*N*/   aString.Erase( SFXDOCINFO_THEMELENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_THEMELENMAX - aString.Len());
-/*N*/   // save the description
-/*N*/   aString = aComment;
-/*N*/   aString.Erase( SFXDOCINFO_COMMENTLENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_COMMENTLENMAX - aString.Len());
-/*N*/   // save the keywords
-/*N*/   aString = aKeywords;
-/*N*/   aString.Erase( SFXDOCINFO_KEYWORDLENMAX );
-/*N*/   rStream.WriteByteString( aString );
-/*N*/     PaddWithBlanks_Impl(rStream, SFXDOCINFO_KEYWORDLENMAX - aString.Len());
-/*N*/
-/*N*/   for(USHORT i = 0; i < MAXDOCUSERKEYS; ++i)
-/*N*/       aUserKeys[i].Save(rStream);
-/*N*/     rStream.WriteByteString( aTemplateName );
-/*N*/     rStream.WriteByteString( aTemplateFileName );
-/*N*/     rStream << (long)aTemplateDate.GetDate()
-/*N*/           << (long)aTemplateDate.GetTime();
-/*N*/
-/*N*/   // wurde mal fuer MB in Panik eingebaut und dann doch nie benutzt :-)
-/*N*/   if ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 )
-/*N*/       rStream << (USHORT) 0;
-/*N*/
-/*N*/     rStream << GetTime() << GetDocumentNumber();
-/*N*/
-/*N*/   rStream << nUserDataSize;
-/*N*/   if(pUserData)
-/*N*/       rStream.Write(pUserData, nUserDataSize);
-/*N*/   rStream << (bTemplateConfig? (BYTE)1: (BYTE)0);
-/*N*/   if( aHeader.nVersion > 5 )
-/*N*/   {
-/*N*/       rStream << bReloadEnabled;
-/*N*/         rStream.WriteByteString( aReloadURL );
-/*N*/       rStream << nReloadSecs;
-/*N*/         rStream.WriteByteString( aDefaultTarget );
-/*N*/   }
-/*N*/   if ( aHeader.nVersion > 6 )
-/*N*/       rStream << (bSaveGraphicsCompressed? (BYTE)1: (BYTE)0);
-/*N*/   if ( aHeader.nVersion > 7 )
-/*N*/       rStream << (bSaveOriginalGraphics? (BYTE)1: (BYTE)0);
-/*N*/   if ( aHeader.nVersion > 8 )
-/*N*/   {
-/*N*/       rStream << (bSaveVersionOnClose? (BYTE)1: (BYTE)0);
-/*N*/         rStream.WriteByteString( pImp->aCopiesTo );
-/*N*/         rStream.WriteByteString( pImp->aOriginal );
-/*N*/         rStream.WriteByteString( pImp->aReferences );
-/*N*/         rStream.WriteByteString( pImp->aRecipient );
-/*N*/         rStream.WriteByteString( pImp->aReplyTo );
-/*N*/         rStream.WriteByteString( pImp->aBlindCopies );
-/*N*/         rStream.WriteByteString( pImp->aInReplyTo );
-/*N*/         rStream.WriteByteString( pImp->aNewsgroups );
-/*N*/         rStream << pImp->nPriority;
-/*N*/   }
-/*N*/   if ( aHeader.nVersion > 9 )
-/*N*/   {
-/*N*/         rStream.WriteByteString( pImp->aSpecialMimeType );
-/*N*/   }
-/*N*/   if ( aHeader.nVersion > 10 )
-/*N*/   {
-/*N*/       rStream << ( pImp->bUseUserData ? (BYTE)1: (BYTE)0 );
-/*N*/   }
-/*N*/
-/*N*/   return rStream.GetError() == SVSTREAM_OK;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
 /*N*/ BOOL SfxDocumentInfo::Load(SvStorage* pStorage)
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
@@ -904,7 +656,7 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/ #endif
 /*N*/     if ( pStorage->GetVersion() >= SOFFICE_FILEFORMAT_60 )
 /*N*/     {
-/*N*/         DBG_ERROR("This method only supports binary file format, use service StandaloneDocumentInfo!");
+/*N*/         OSL_FAIL("This method only supports binary file format, use service StandaloneDocumentInfo!");
 /*N*/         return FALSE;
 /*N*/     }
 /*N*/
@@ -916,29 +668,15 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   BOOL bRet = Load(*aStr);
 /*N*/   if ( bRet )
 /*N*/   {
-/*N*/       String aStr = SotExchange::GetFormatMimeType( pStorage->GetFormat() );
-/*N*/       USHORT nPos = aStr.Search(';');
+/*N*/       String aLclStr = SotExchange::GetFormatMimeType( pStorage->GetFormat() );
+/*N*/       USHORT nPos = aLclStr.Search(';');
 /*N*/       if ( nPos != STRING_NOTFOUND )
-/*N*/           pImp->aSpecialMimeType = aStr.Copy( 0, nPos );
+/*N*/           pImp->aSpecialMimeType = aLclStr.Copy( 0, nPos );
 /*N*/       else
-/*N*/           pImp->aSpecialMimeType = aStr;
+/*N*/           pImp->aSpecialMimeType = aLclStr;
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
-/*N*/ }
-
-//-------------------------------------------------------------------------
-
-/*N*/ BOOL SfxDocumentInfo::Save(SvStorage* pStorage) const
-/*N*/ {
-/*N*/   SvStorageStreamRef aStr = pStorage->OpenStream( String::CreateFromAscii( pDocInfoSlot ), STREAM_TRUNC | STREAM_STD_READWRITE);
-/*N*/   if(!aStr.Is())
-/*N*/       return FALSE;
-/*N*/   aStr->SetVersion( pStorage->GetVersion() );
-/*N*/   aStr->SetBufferSize(STREAM_BUFFER_SIZE);
-/*N*/   if(!Save(*aStr))
-/*N*/       return FALSE;
-/*N*/   return SavePropertySet( pStorage );
 /*N*/ }
 
 //-------------------------------------------------------------------------
@@ -1135,36 +873,33 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 
 //-------------------------------------------------------------------------
 
-/*N*/ String SfxDocumentInfo::AdjustTextLen_Impl( const String& rText, USHORT nMax )
+/*N*/ String SfxDocumentInfo::AdjustTextLen_Impl( const String& rText, USHORT /*nMax*/ )
 /*N*/ {
 /*N*/   String aRet = rText;
-/*! pb: dont cut any longer because the new file format has no length limit
-    if ( aRet.Len() > nMax )
-        aRet.Erase( nMax ); */
 /*N*/   return aRet;
 /*N*/ }
 
 //-------------------------------------------------------------------------
 
 /*N*/ SfxDocumentInfo::SfxDocumentInfo() :
+/*N*/   eFileCharSet(gsl_getSystemTextEncoding()),
 /*N*/   bPasswd(FALSE),
 /*N*/   bQueryTemplate(FALSE),
 /*N*/   bTemplateConfig(FALSE),
-/*N*/   eFileCharSet(gsl_getSystemTextEncoding()),
-/*N*/   nUserDataSize(0),
-/*N*/   pUserData(0),
-/*N*/   lTime(0),
-/*N*/   nDocNo(1),
+/*N*/   bSaveVersionOnClose( FALSE ),
 /*N*/   aChanged( TIMESTAMP_INVALID_DATETIME ),
 /*N*/   aPrinted( TIMESTAMP_INVALID_DATETIME ),
-/*N*/   bSaveVersionOnClose( FALSE )
+/*N*/   nUserDataSize(0),
+/*N*/   nDocNo(1),
+/*N*/   pUserData(0),
+/*N*/   lTime(0)
 /*N*/ {
 /*N*/   pImp = new SfxDocumentInfo_Impl;
 /*N*/
 /*N*/   bReadOnly = FALSE;
 /*N*/   bReloadEnabled = FALSE;
 /*N*/   nReloadSecs = 60;
-/*N*/   SfxApplication *pSfxApp = SFX_APP();
+/*N*/   /*SfxApplication *pSfxApp =*/ SFX_APP();
 /*N*/     bPortableGraphics = TRUE;
 /*N*/     SvtSaveOptions aSaveOptions;
 /*N*/     bSaveGraphicsCompressed = FALSE;
@@ -1315,3 +1050,5 @@ static const char __FAR_DATA pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   aKeywords = AdjustTextLen_Impl( rVal, SFXDOCINFO_KEYWORDLENMAX );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 
@@ -37,15 +36,12 @@
 #include <stdlib.h>
 #endif
 
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #include <math.h>
 #include <string.h>
 #include <ctype.h>
 
 #include "sbxres.hxx"
-#include "sbxbase.hxx"
 #include <bf_svtools/svtools.hrc>
 
 namespace binfilter {
@@ -516,3 +512,5 @@ BOOL SbxValue::Scan( const XubString& rSrc, USHORT* pLen )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

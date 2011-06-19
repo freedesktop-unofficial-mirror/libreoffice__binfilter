@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,56 +26,28 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_INTERFACE_CONTAINER_HXX_
 #include "InterfaceContainer.hxx"
-#endif
 
-#ifndef _COMPHELPER_EVENTATTACHERMGR_HXX_
 #include <comphelper/eventattachermgr.hxx>
-#endif
-#ifndef _COMPHELPER_ENUMHELPER_HXX_
 #include <comphelper/enumhelper.hxx>
-#endif
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
-#ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
-#endif
 
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
-#ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_WRONGFORMATEXCEPTION_HPP_
 #include <com/sun/star/io/WrongFormatException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include <algorithm>
 #include <memory>
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -118,8 +91,8 @@ OInterfaceContainer::OInterfaceContainer(
                 const Reference<XMultiServiceFactory>& _rxFactory,
                 ::osl::Mutex& _rMutex,
                 const Type& _rElementType)
-        :m_rMutex(_rMutex)
-        ,m_aContainerListeners(_rMutex)
+        :m_aContainerListeners(_rMutex)
+        ,m_rMutex(_rMutex)
         ,m_aElementType(_rElementType)
         ,m_xServiceFactory(_rxFactory)
 {
@@ -299,10 +272,9 @@ void OInterfaceContainer::transformEvents( const EventFormat _eTargetFormat )
             }
         }
     }
-    catch( const Exception& e )
+    catch( const Exception& )
     {
-        e;  // make compiler happy
-        DBG_ERROR( "OInterfaceContainer::transformEvents: caught an exception!" );
+        OSL_FAIL( "OInterfaceContainer::transformEvents: caught an exception!" );
     }
 }
 
@@ -401,7 +373,6 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
 
     // after ::read the object is expected to be in the state it was when ::write was called, so we have
     // to empty ourself here
-    // FS - 71598 - 12.01.00
     while (getCount())
         removeByIndex(0);
 
@@ -411,7 +382,7 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
     if (nLen)
     {
         // 1. Version
-        sal_uInt16 nVersion = _rxInStream->readShort();
+        /*sal_uInt16 nVersion =*/ _rxInStream->readShort();
 
         // 2. Objekte
         for (sal_Int32 i = 0; i < nLen; i++)
@@ -421,16 +392,14 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
             {
                 xObj = _rxInStream->readObject();
             }
-            catch(WrongFormatException& e)
+            catch(WrongFormatException& )
             {
-                e;  // make compiler happy
                 // the object could not be read
                 // create a object (so the readEvents below will assign the events to the right controls)
                 xObj = lcl_createPlaceHolder( m_xServiceFactory );
                 if ( !xObj.is() )
                     // couldn't handle it
                     throw;
-                // 72133 - 09.02.00 - FS
             }
             catch(Exception&)
             {
@@ -457,7 +426,7 @@ void SAL_CALL OInterfaceContainer::read( const Reference< XObjectInputStream >& 
                 }
                 catch( const Exception& )
                 {
-                    DBG_ERROR( "OInterfaceContainerHelper::read: reading succeeded, but not inserting!" );
+                    OSL_FAIL( "OInterfaceContainerHelper::read: reading succeeded, but not inserting!" );
                     // create a placeholder
                     xElement = xElement.query( lcl_createPlaceHolder( m_xServiceFactory ) );
                     if ( !xElement.is() )
@@ -637,18 +606,6 @@ void OInterfaceContainer::approveNewElement( const Reference< XPropertySet >& _r
     Reference< XChild > xChild( _rxObject, UNO_QUERY );
     if ( !xChild.is() || xChild->getParent().is() )
     {
-#ifdef FS_PRIV_DEBUG
-        ::rtl::OUString sChildName, sParentName;
-        Reference< XNamed > xNamed( xChild, UNO_QUERY );
-        if ( xNamed.is() )
-            sChildName = xNamed->getName();
-        if ( xChild.is() )
-        {
-            xNamed = xNamed.query( xChild->getParent() );
-            if ( xNamed.is() )
-                sParentName = xNamed->getName();
-        }
-#endif
         lcl_throwIllegalArgumentException();
     }
 
@@ -937,7 +894,7 @@ void SAL_CALL OInterfaceContainer::insertByName(const ::rtl::OUString& _rName, c
     }
     catch( const Exception& )
     {
-        DBG_ERROR( "OInterfaceContainer::insertByName: caught an exception!" );
+        OSL_FAIL( "OInterfaceContainer::insertByName: caught an exception!" );
     }
     implInsert( m_aItems.size(), xElementProps, sal_True, aElementMetaData.get(), sal_True );
 }
@@ -1121,3 +1078,5 @@ InterfaceRef OFormComponents::getParent() throw( RuntimeException )
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

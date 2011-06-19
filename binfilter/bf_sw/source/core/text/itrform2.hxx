@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -138,8 +139,8 @@ public:
     sal_Bool CalcOnceMore();
 
     void CtorInit( SwTxtFrm *pFrm, SwTxtFormatInfo *pInf );
-    inline SwTxtFormatter( SwTxtFrm *pFrm, SwTxtFormatInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtFormatter( SwTxtFrm *pTxtFrm, SwTxtFormatInfo *pTxtFrmInf )
+           { CtorInit( pTxtFrm, pTxtFrmInf ); }
     ~SwTxtFormatter();
 
     xub_StrLen FormatLine( const xub_StrLen nStart );
@@ -209,3 +210,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

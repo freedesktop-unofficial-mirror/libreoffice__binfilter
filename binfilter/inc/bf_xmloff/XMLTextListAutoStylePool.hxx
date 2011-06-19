@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPARE_HPP_
 #include <com/sun/star/ucb/XAnyCompare.hpp>
-#endif
 
 namespace com { namespace sun { namespace star { namespace container {
     class XIndexReplace; } } } }
@@ -79,3 +78,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

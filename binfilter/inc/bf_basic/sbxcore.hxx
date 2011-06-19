@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "sbxdef.hxx"
 
@@ -95,7 +90,7 @@ class SbxBase : virtual public SvRefBase
     SbxBaseImpl* mpSbxBaseImpl; // Impl data
 
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 protected:
     USHORT nFlags;          // Flag-Bits
 
@@ -129,7 +124,7 @@ public:
 
     static SbxBase* Load( SvStream& );
     static void Skip( SvStream& );
-    BOOL Store( SvStream& );
+    BOOL Store( SvStream& ) {return FALSE;}
     virtual BOOL LoadCompleted();
     virtual BOOL StoreCompleted();
 
@@ -192,3 +187,5 @@ inline BOOL SbxBase::IsVisible() const
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

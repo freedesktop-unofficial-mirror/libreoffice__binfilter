@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -48,7 +49,7 @@ namespace binfilter {
 /*N*/   while( pPor )
 /*N*/   {
 /*N*/       ++nCount;
-/*N*/       ASSERT( nCount < 200 && pPor != pStart,
+/*N*/       OSL_ENSURE( nCount < 200 && pPor != pStart,
 /*N*/               "ChkChain(): lost in chains" );
 /*N*/       if( nCount >= 200 || pPor == pStart )
 /*N*/       {
@@ -83,10 +84,10 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *               SwLinePortion::SwLinePortion( )
  *************************************************************************/
 
-/*N*/ SwLinePortion::SwLinePortion( ) :
-/*N*/   nLineLength( 0 ),
-/*N*/   nAscent( 0 ),
-/*N*/   pPortion( NULL )
+/*N*/ SwLinePortion::SwLinePortion( )
+/*N*/   : pPortion( NULL )
+/*N*/   , nLineLength( 0 )
+/*N*/   , nAscent( 0 )
 /*N*/ {
 /*N*/ }
 
@@ -121,7 +122,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/ {
 /*N*/   SwLinePortion *pPos = pPortion;
 /*N*/   do
-/*N*/   {   ASSERT( pPos != this, "SwLinePortion::Truncate: loop" );
+/*N*/   {   OSL_ENSURE( pPos != this, "SwLinePortion::Truncate: loop" );
 /*N*/       SwLinePortion *pLast = pPos;
 /*N*/       pPos = pPos->GetPortion();
 /*N*/       pLast->SetPortion( 0 );
@@ -186,7 +187,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/ SwLinePortion *SwLinePortion::Cut( SwLinePortion *pVictim )
 /*N*/ {
 /*N*/   SwLinePortion *pPrev = pVictim->FindPrevPortion( this );
-/*N*/   ASSERT( pPrev, "SwLinePortion::Cut(): can't cut" );
+/*N*/   OSL_ENSURE( pPrev, "SwLinePortion::Cut(): can't cut" );
 /*N*/   pPrev->SetPortion( pVictim->GetPortion() );
 /*N*/   pVictim->SetPortion(0);
 /*N*/   return pVictim;
@@ -198,14 +199,14 @@ const sal_Char *GetPortionName( const MSHORT nType );
 
 /*N*/ SwLinePortion *SwLinePortion::FindPrevPortion( const SwLinePortion *pRoot )
 /*N*/ {
-/*N*/   ASSERT( pRoot != this, "SwLinePortion::FindPrevPortion(): invalid root" );
+/*N*/   OSL_ENSURE( pRoot != this, "SwLinePortion::FindPrevPortion(): invalid root" );
 /*N*/   SwLinePortion *pPos = (SwLinePortion*)pRoot;
 /*N*/   while( pPos->GetPortion() && pPos->GetPortion() != this )
 /*N*/   {
 ///*N*/         DBG_LOOP;
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
-/*N*/   ASSERT( pPos->GetPortion(),
+/*N*/   OSL_ENSURE( pPos->GetPortion(),
 /*N*/           "SwLinePortion::FindPrevPortion: blowing in the wind");
 /*N*/   return pPos;
 /*N*/ }
@@ -221,7 +222,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 /*N*/
 /*N*/ SwPosSize SwLinePortion::GetTxtSize( const SwTxtSizeInfo & ) const
 /*N*/ {
-/*N*/   ASSERT( !this, "SwLinePortion::GetTxtSize: don't ask me about sizes, "
+/*N*/   OSL_ENSURE( !this, "SwLinePortion::GetTxtSize: don't ask me about sizes, "
 /*N*/                  "I'm only a stupid SwLinePortion" );
 /*N*/   return SwPosSize();
 /*N*/ }
@@ -270,7 +271,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
 
 // Format end of line
 
-/*N*/ void SwLinePortion::FormatEOL( SwTxtFormatInfo &rInf )
+/*N*/ void SwLinePortion::FormatEOL( SwTxtFormatInfo & /*rInf*/ )
 /*N*/ { }
 
 /*************************************************************************
@@ -324,7 +325,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *              virtual SwLinePortion::CalcSpacing()
  *************************************************************************/
 
-/*N*/ long SwLinePortion::CalcSpacing( short nSpaceAdd, const SwTxtSizeInfo &rInf ) const
+/*N*/ long SwLinePortion::CalcSpacing( short /*nSpaceAdd*/, const SwTxtSizeInfo & /*rInf*/ ) const
 /*N*/ {
 /*N*/   return 0;
 /*N*/ }
@@ -333,7 +334,7 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *              virtual SwLinePortion::GetExpTxt()
  *************************************************************************/
 
-/*N*/ sal_Bool SwLinePortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwLinePortion::GetExpTxt( const SwTxtSizeInfo & /*rInf*/, XubString &/*rTxt*/ ) const
 /*N*/ {
 /*N*/   return sal_False;
 /*N*/ }
@@ -344,3 +345,5 @@ const sal_Char *GetPortionName( const MSHORT nType );
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

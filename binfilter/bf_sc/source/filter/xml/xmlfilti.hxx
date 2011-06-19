@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,27 +28,13 @@
 #ifndef SC_XMLFILTI_HXX
 #define SC_XMLFILTI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_FILTEROPERATOR_HPP_
 #include <com/sun/star/sheet/FilterOperator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_TABLEFILTERFIELD_HPP_
 #include <com/sun/star/sheet/TableFilterField.hpp>
-#endif
-#ifndef _STACK_HXX
 #include <tools/stack.hxx>
-#endif
 
 #include "xmldrani.hxx"
 #include "xmldpimp.hxx"
@@ -322,3 +309,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

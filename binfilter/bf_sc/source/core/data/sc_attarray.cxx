@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -41,9 +39,7 @@
 #include <bf_svx/shaditem.hxx>
 #include <bf_svtools/poolcach.hxx>
 
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
 
 #include "attarray.hxx"
 #include "document.hxx"
@@ -56,16 +52,7 @@
 namespace binfilter {
 
 
-#undef DBG_INVALIDATE
-/*N*/ #define DBGOUTPUT(s) \
-/*N*/   DBG_ERROR( String("Invalidate ") + String(s) + String(": ") \
-/*N*/              + String(nCol) + String('/') + String(aAdrStart.Row()) + String('/') + String(nTab) \
-/*N*/              + String(" bis ") \
-/*N*/              + String(nCol) + String('/') + String(aAdrEnd.Row())   + String('/') + String(nTab) \
-/*N*/             );
-
 // STATIC DATA -----------------------------------------------------------
-
 
 //------------------------------------------------------------------------
 
@@ -74,7 +61,7 @@ namespace binfilter {
 /*N*/   nTab( nNewTab ),
 /*N*/   pDocument( pDoc )
 /*N*/ {
-/*N*/   ScDocumentPool* pDocPool = pDocument->GetPool();
+/*N*/   /*ScDocumentPool* pDocPool =*/ pDocument->GetPool();
 /*N*/
 /*N*/     nCount = nLimit = 1;
 /*N*/   pData = new ScAttrEntry[1];
@@ -128,7 +115,7 @@ namespace binfilter {
 /*?*/       ByteString aMsg = ByteString::CreateFromInt32(nErr);
 /*?*/       aMsg += " errors in attribute array, column ";
 /*?*/       aMsg += ByteString::CreateFromInt32(nCol);
-/*?*/       DBG_ERROR( aMsg.GetBuffer() );
+/*?*/       OSL_FAIL( aMsg.GetBuffer() );
 /*N*/   }
 /*N*/ }
 #endif
@@ -155,9 +142,6 @@ namespace binfilter {
 /*N*/               aAdrStart.SetRow( i ? pData[i-1].nRow+1 : 0 );
 /*N*/               aAdrEnd  .SetRow( pData[i].nRow );
 /*N*/               pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/               DBGOUTPUT("Reset");
-/*N*/ #endif
 /*N*/           }
 /*N*/           // bedingtes Format gesetzt oder geloescht?
 /*N*/           if ( &pPattern->GetItem(ATTR_CONDITIONAL) != &pOldPattern->GetItem(ATTR_CONDITIONAL) )
@@ -288,7 +272,7 @@ namespace binfilter {
 
 /*N*/ void ScAttrArray::SetPatternArea(USHORT nStartRow, USHORT nEndRow, const ScPatternAttr *pPattern, BOOL bPutToPool )
 /*N*/ {
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       if (bPutToPool)
 /*N*/           pPattern = (const ScPatternAttr*) &pDocument->GetPool()->Put(*pPattern);
@@ -343,9 +327,6 @@ namespace binfilter {
 /*N*/                     aAdrStart.SetRow( Max(nStartRow,ns) );
 /*N*/                     aAdrEnd  .SetRow( Min(nEndRow,pData[nx].nRow) );
 /*N*/                     pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/                     DBGOUTPUT("SetPatternArea");
-/*N*/ #endif
 /*N*/                 }
 /*N*/                 if ( &rNewSet.Get(ATTR_CONDITIONAL) != &rOldSet.Get(ATTR_CONDITIONAL) )
 /*N*/                 {
@@ -470,13 +451,13 @@ namespace binfilter {
 
 /*N*/ void ScAttrArray::ApplyStyleArea( USHORT nStartRow, USHORT nEndRow, ScStyleSheet* pStyle )
 /*N*/ {
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       short nPos;
 /*N*/       USHORT nStart=0;
 /*N*/       if (!Search( nStartRow, nPos ))
 /*N*/       {
-/*N*/           DBG_ERROR("Search-Fehler");
+/*N*/           OSL_FAIL("Search-Fehler");
 /*N*/           return;
 /*N*/       }
 /*N*/
@@ -520,9 +501,6 @@ namespace binfilter {
 /*N*/                   aAdrStart.SetRow( nPos ? pData[nPos-1].nRow+1 : 0 );
 /*N*/                   aAdrEnd  .SetRow( pData[nPos].nRow );
 /*N*/                   pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/                   DBGOUTPUT("ApplyStyleArea");
-/*N*/ #endif
 /*N*/               }
 /*N*/
 /*N*/               pDocument->GetPool()->Remove(*pData[nPos].pPattern);
@@ -556,13 +534,13 @@ namespace binfilter {
 /*N*/   TestData();
 /*N*/ #endif
 /*N*/
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       short nPos;
 /*N*/       USHORT nStart=0;
 /*N*/       if (!Search( nStartRow, nPos ))
 /*N*/       {
-/*N*/           DBG_ERROR("Search-Fehler");
+/*N*/           OSL_FAIL("Search-Fehler");
 /*N*/           return;
 /*N*/       }
 /*N*/
@@ -602,9 +580,6 @@ namespace binfilter {
 /*N*/                       aAdrStart.SetRow( nPos ? pData[nPos-1].nRow+1 : 0 );
 /*N*/                       aAdrEnd  .SetRow( pData[nPos].nRow );
 /*N*/                       pDocument->InvalidateTextWidth( &aAdrStart, &aAdrEnd, bNumFormatChanged );
-/*N*/ #ifdef DBG_INVALIDATE
-/*N*/                       DBGOUTPUT("ApplyCacheArea");
-/*N*/ #endif
 /*N*/                   }
 /*N*/
 /*N*/                   // bedingte Formate neu gesetzt oder geloescht ?
@@ -682,7 +657,7 @@ namespace binfilter {
 /*N*/ void ScAttrArray::MergePatternArea( USHORT nStartRow, USHORT nEndRow,
 /*N*/                                   SfxItemSet** ppSet, BOOL bDeep ) const
 /*N*/ {
-/*N*/   if (nStartRow >= 0 && nStartRow <= MAXROW && nEndRow >= 0 && nEndRow <= MAXROW)
+/*N*/   if (nStartRow <= MAXROW && nEndRow <= MAXROW)
 /*N*/   {
 /*N*/       const ScPatternAttr* pOld1 = NULL;
 /*N*/       const ScPatternAttr* pOld2 = NULL;
@@ -691,7 +666,7 @@ namespace binfilter {
 /*N*/       USHORT nStart=0;
 /*N*/       if (!Search( nStartRow, nPos ))
 /*N*/       {
-/*N*/           DBG_ERROR("Search-Fehler");
+/*N*/           OSL_FAIL("Search-Fehler");
 /*N*/           return;
 /*N*/       }
 /*N*/
@@ -990,9 +965,9 @@ namespace binfilter {
 
             //      Bereich loeschen, aber Merge-Flags stehenlassen
 
-/*N*/ void ScAttrArray::DeleteAreaSafe(USHORT nStartRow, USHORT nEndRow)
+/*N*/ void ScAttrArray::DeleteAreaSafe(USHORT, USHORT)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetPatternAreaSafe( nStartRow, nEndRow, pDocument->GetDefPattern(), TRUE );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1396,8 +1371,8 @@ namespace binfilter {
 /*N*/   if (pData)
 /*N*/   {
 /*N*/       BOOL bFirst=TRUE;
-/*N*/       USHORT nStartIndex;
-/*N*/       USHORT nEndIndex;
+/*N*/       USHORT nStartIndex(0);
+/*N*/       USHORT nEndIndex(0);
 /*N*/       USHORT i = 0;
 /*N*/       for (i = 0; i < nCount-1; i++)
 /*N*/           if (pData[i].nRow >= nStartRow && pData[i].nRow <= nStartRow+nSize-1)
@@ -1464,9 +1439,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScAttrArray::DeleteHardAttr(USHORT nStartRow, USHORT nEndRow)
+/*N*/ void ScAttrArray::DeleteHardAttr(USHORT, USHORT)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocument->GetDefPattern();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
         // Verschieben innerhalb eines Dokuments
@@ -1562,49 +1537,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocu
 
 
 
-//------------------------------------------------------------------------
-//
-//                          Laden / Speichern
-//
-
-
-/*N*/ void ScAttrArray::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream, 8 );
-/*N*/
-/*N*/   ScDocumentPool* pDocPool = pDocument->GetPool();
-/*N*/
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/   USHORT nSaveMaxRow = pDocument->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow != MAXROW )
-/*N*/   {
-/*?*/       if ( nSaveCount > 1 && pData[nSaveCount-2].nRow >= nSaveMaxRow )
-/*?*/       {
-/*?*/           pDocument->SetLostData();           // Warnung ausgeben
-/*?*/           do
-/*?*/               --nSaveCount;
-/*?*/           while ( nSaveCount > 1 && pData[nSaveCount-2].nRow >= nSaveMaxRow );
-/*?*/       }
-/*N*/   }
-/*N*/
-/*N*/   rStream << nSaveCount;
-/*N*/
-/*N*/   const SfxPoolItem* pItem;
-/*N*/   for (USHORT i=0; i<nSaveCount; i++)
-/*N*/   {
-/*N*/       rStream << Min( pData[i].nRow, nSaveMaxRow );
-/*N*/
-/*N*/       const ScPatternAttr* pPattern = pData[i].pPattern;
-/*N*/       pDocPool->StoreSurrogate( rStream, pPattern );
-/*N*/
-/*N*/       //  FALSE, weil ATTR_CONDITIONAL (noch) nicht in Vorlagen:
-/*N*/       if (pPattern->GetItemSet().GetItemState(ATTR_CONDITIONAL,FALSE,&pItem) == SFX_ITEM_SET)
-/*N*/           pDocument->SetConditionalUsed( ((const SfxUInt32Item*)pItem)->GetValue() );
-/*N*/
-/*N*/       if (pPattern->GetItemSet().GetItemState(ATTR_VALIDDATA,FALSE,&pItem) == SFX_ITEM_SET)
-/*N*/           pDocument->SetValidationUsed( ((const SfxUInt32Item*)pItem)->GetValue() );
-/*N*/   }
-/*N*/ }
+//                          Laden
 
 
 /*N*/ void ScAttrArray::Load( SvStream& rStream )
@@ -1634,7 +1567,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocu
 /*N*/       if (!pNewPattern)
 /*N*/       {
 /*?*/           // da is was schiefgelaufen
-/*?*/           DBG_ERROR("ScAttrArray::Load: Surrogat nicht im Pool");
+/*?*/           OSL_FAIL("ScAttrArray::Load: Surrogat nicht im Pool");
 /*?*/           pNewPattern = pDocument->GetDefPattern();
 /*N*/       }
 /*N*/       ScDocumentPool::CheckRef( *pNewPattern );
@@ -1699,3 +1632,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const ScPatternAttr* pDefPattern = pDocu
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

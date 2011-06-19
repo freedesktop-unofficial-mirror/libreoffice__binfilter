@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_PROPERTY_HXX_
 #include "property.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
 
 
 
@@ -443,3 +440,5 @@ IMPLEMENT_CONSTASCII_USTRING(PROPERTY_PERSISTENCE_MAXTEXTLENGTH, "PersistenceMax
 //... namespace frm .......................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

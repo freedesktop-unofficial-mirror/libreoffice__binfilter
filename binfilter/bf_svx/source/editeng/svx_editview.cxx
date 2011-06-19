@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,41 +26,27 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #define _SOLAR__PRIVATE 1
 
-
-
-
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
 #include <editview.hxx>
 
-
-
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
-
-
 
 #include <editeng.hrc>
 #include <helpid.hrc>
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HDL_
 #include <com/sun/star/beans/PropertyValues.hdl>
-#endif
+
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::linguistic2;
@@ -68,7 +55,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ DBG_NAME( EditView )
 
 // From SW => Create common method
-
 
 /*N*/ EditView::~EditView()
 /*N*/ {
@@ -102,12 +88,12 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   ParaPortion* pPortion = PIMPEE->FindParaPortion( aNewSelection.Min().GetNode() );
 /*N*/   if ( !pPortion->IsVisible() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pPortion = PIMPEE->GetPrevVisPortion( pPortion );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   pPortion = PIMPEE->FindParaPortion( aNewSelection.Max().GetNode() );
 /*N*/   if ( !pPortion->IsVisible() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pPortion = PIMPEE->GetPrevVisPortion( pPortion );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   pImpEditView->DrawSelection();  // alte Selektion 'weg-zeichnen'
@@ -140,10 +126,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-
-
-
-
 /*N*/ Window*   EditView::GetWindow() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditView, 0 );
@@ -172,8 +154,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   DBG_CHKOBJ( pImpEditView->pEditEngine, EditEngine, 0 );
 /*N*/
 /*N*/ // Draw vertraegt die Assertion nicht, spaeter mal aktivieren
-/*N*/ //    DBG_ASSERT( pImpEditView->pEditEngine->HasView( this ), "ShowCursor - View nicht angemeldet!" );
-/*N*/ //    DBG_ASSERT( !GetWindow()->IsInPaint(), "ShowCursor - Why in Paint ?!" );
 /*N*/
 /*N*/   if ( pImpEditView->pEditEngine->HasView( this ) )
 /*N*/   {
@@ -191,27 +171,17 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ }
 
 
-
-
-
-
-
-
-
-
-
-#ifndef SVX_LIGHT
-#endif
-
 /*N*/ void EditView::Cut()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditView::Copy()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void EditView::Paste()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,33 +25,18 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifndef _SVX_TABWIN_HXX
 #define _SVX_TABWIN_HXX
 
-
-
-
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
-
-
-
-//#ifndef _SVX_FMTOOLS_HXX
-//#include "fmtools.hxx"
-//#endif
 
 namespace binfilter {
-//end of namespace binfilter
-//==================================================================
+
 class FmFieldWin;
 
-//========================================================================
 class FmFormShell;
 
-//========================================================================
-
-//========================================================================
 class FmFieldWinMgr : public SfxChildWindow
 {
 public:
@@ -63,3 +49,4 @@ public:
 }
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

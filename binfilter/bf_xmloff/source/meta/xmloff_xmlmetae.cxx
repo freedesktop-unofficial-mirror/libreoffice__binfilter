@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,33 +27,22 @@
  ************************************************************************/
 
 #include <tools/inetdef.hxx>
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 #include <unotools/configmgr.hxx>
 
 #include "xmlmetae.hxx"
 
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
-#ifndef _UTL_BOOTSTRAP_HXX
 #include <unotools/bootstrap.hxx>
-#endif
+#include <rtl/bootstrap.hxx>
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -177,7 +167,7 @@ SfxXMLMetaExport::SfxXMLMetaExport(
         try
         {
             uno::Any aLocAny = xDocProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii( PROP_CHARLOCALE ) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_CHARLOCALE )) );
             aLocAny >>= aLocale;
         }
         catch (beans::UnknownPropertyException&)
@@ -233,24 +223,23 @@ rtl::OUString lcl_GetProductName()
     //  get the correct product name from the configuration
 
     ::rtl::OUStringBuffer aName;
-    utl::ConfigManager* pMgr = utl::ConfigManager::GetConfigManager();
-    if (pMgr)
-    {
-        ::rtl::OUString aValue;
-        uno::Any aAny = pMgr->GetDirectConfigProperty(utl::ConfigManager::PRODUCTNAME);
-        if ( (aAny >>= aValue) && aValue.getLength() )
-            aName.append( aValue ).append( (sal_Unicode)' ' );
+    utl::ConfigManager& rMgr = utl::ConfigManager::GetConfigManager();
+    ::rtl::OUString aValue;
+    uno::Any aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTNAME);
+    ::rtl::OUString os( RTL_CONSTASCII_USTRINGPARAM("$_OS") );
+    ::rtl::Bootstrap::expandMacros(os);
+    if ( (aAny >>= aValue) && aValue.getLength() )
+        aName.append( aValue ).append( (sal_Unicode)' ' );
 
-        aAny = pMgr->GetDirectConfigProperty(utl::ConfigManager::PRODUCTVERSION);
-        if ( (aAny >>= aValue) && aValue.getLength() )
-            aName.append( aValue ).append( (sal_Unicode)' ' );
+    aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTVERSION);
+    if ( (aAny >>= aValue) && aValue.getLength() )
+        aName.append( aValue ).append( (sal_Unicode)' ' );
 
-        aAny = pMgr->GetDirectConfigProperty(utl::ConfigManager::PRODUCTEXTENSION);
-        if ( (aAny >>= aValue) && aValue.getLength() )
-            aName.append( aValue ).append( (sal_Unicode)' ' );
-    }
+    aAny = rMgr.GetDirectConfigProperty(utl::ConfigManager::PRODUCTEXTENSION);
+    if ( (aAny >>= aValue) && aValue.getLength() )
+        aName.append( aValue ).append( (sal_Unicode)' ' );
     aName.append( (sal_Unicode)'(' );
-    aName.appendAscii( TOOLS_INETDEF_OS );
+    aName.append( os );
     aName.append( (sal_Unicode)')' );
 
     return aName.makeStringAndClear();
@@ -281,39 +270,39 @@ void SfxXMLMetaExport::Export()
     }
 
     //  document title
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_TITLE),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TITLE)),
                          XML_NAMESPACE_DC, XML_TITLE );
 
     //  description
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_DESCRIPTION),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DESCRIPTION)),
                          XML_NAMESPACE_DC, XML_DESCRIPTION );
 
     //  subject
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_THEME),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_THEME)),
                          XML_NAMESPACE_DC, XML_SUBJECT );
 
     //  created...
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_AUTHOR),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_AUTHOR)),
                          XML_NAMESPACE_META, XML_INITIAL_CREATOR );
-    SimpleDateTimeElement( ::rtl::OUString::createFromAscii(PROP_CREATIONDATE),
+    SimpleDateTimeElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_CREATIONDATE)),
                            XML_NAMESPACE_META, XML_CREATION_DATE );
 
     //  modified...
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_MODIFIEDBY),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFIEDBY)),
                          XML_NAMESPACE_DC, XML_CREATOR );
-    SimpleDateTimeElement( ::rtl::OUString::createFromAscii(PROP_MODIFYDATE),
+    SimpleDateTimeElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFYDATE)),
                            XML_NAMESPACE_DC, XML_DATE );
 
     //  printed...
-    SimpleStringElement( ::rtl::OUString::createFromAscii(PROP_PRINTEDBY),
+    SimpleStringElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTEDBY)),
                          XML_NAMESPACE_META, XML_PRINTED_BY );
-    SimpleDateTimeElement( ::rtl::OUString::createFromAscii(PROP_PRINTDATE),
+    SimpleDateTimeElement( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTDATE)),
                            XML_NAMESPACE_META, XML_PRINT_DATE );
 
     //  keywords
     // service DocumentInfo contains keywords in a single string, comma separated.
     aPropVal = xInfoProp->getPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_KEYWORDS) );
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_KEYWORDS)) );
     ::rtl::OUString sKeywords;
     aPropVal >>= sKeywords;
     if ( sKeywords.getLength() )
@@ -334,18 +323,6 @@ void SfxXMLMetaExport::Export()
     }
 
     //  document language
-#if 0
-    if ( eLanguage != LANGUAGE_SYSTEM )
-    {
-        sValue = ConvertLanguageToIsoString( eLanguage, '-' );
-        if ( sValue.getLength() )
-        {
-            SvXMLElementExport aElem( rExport, XML_NAMESPACE_DC, XML_LANGUAGE,
-                                      sal_True, sal_False );
-            aElem->Characters( sValue );
-        }
-    }
-#endif
     if ( aLocale.Language.getLength() )
     {
         sValue = aLocale.Language;
@@ -361,8 +338,8 @@ void SfxXMLMetaExport::Export()
 
     //  editing cycles
     aPropVal = xInfoProp->getPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_EDITINGCYCLES) );
-    sal_Int32 nCycles;
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGCYCLES)) );
+    sal_Int32 nCycles = 0;
     if ( aPropVal >>= nCycles )
     {
         sValue = ::rtl::OUString::valueOf( nCycles );
@@ -376,8 +353,8 @@ void SfxXMLMetaExport::Export()
     //  editing duration
     //  property is a int32 with the Time::GetTime value
     aPropVal = xInfoProp->getPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_EDITINGDURATION) );
-    sal_Int32 nDurVal;
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGDURATION)) );
+    sal_Int32 nDurVal = 0;
     if ( aPropVal >>= nDurVal )
     {
         Time aDurTime( nDurVal );
@@ -391,7 +368,7 @@ void SfxXMLMetaExport::Export()
 
     //  default target
     aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_DEFAULTTARGET) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DEFAULTTARGET)) );
     ::rtl::OUString sDefTarget;
     aPropVal >>= sDefTarget;
     if ( sDefTarget.getLength() )
@@ -412,14 +389,14 @@ void SfxXMLMetaExport::Export()
 
     //  auto-reload
     aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_RELOADENABLED) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADENABLED)) );
     BOOL bAutoReload = FALSE;
     if ( aPropVal.getValueTypeClass() == uno::TypeClass_BOOLEAN )
         bAutoReload = *(sal_Bool*)aPropVal.getValue();
     if ( bAutoReload )
     {
         aPropVal = xInfoProp->getPropertyValue(
-                            ::rtl::OUString::createFromAscii(PROP_RELOADURL) );
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADURL)) );
         ::rtl::OUString sReloadURL;
         aPropVal >>= sReloadURL;
         if ( sReloadURL.getLength() )
@@ -429,8 +406,8 @@ void SfxXMLMetaExport::Export()
         }
 
         aPropVal = xInfoProp->getPropertyValue(
-                            ::rtl::OUString::createFromAscii(PROP_RELOADSECS) );
-        sal_Int32 nSecs;
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADSECS)) );
+        sal_Int32 nSecs = 0;
         if ( aPropVal >>= nSecs )
         {
             Time aTime;
@@ -447,7 +424,7 @@ void SfxXMLMetaExport::Export()
 
     //  template
     aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATEURL) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATEURL)) );
     ::rtl::OUString sTplPath;
     aPropVal >>= sTplPath;
     if ( sTplPath.getLength() )
@@ -462,7 +439,7 @@ void SfxXMLMetaExport::Export()
 
         //  template name
         aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATENAME) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATENAME)) );
         ::rtl::OUString sTplName;
         aPropVal >>= sTplName;
         if ( sTplName.getLength() )
@@ -472,7 +449,7 @@ void SfxXMLMetaExport::Export()
 
         //  template date
         aPropVal = xInfoProp->getPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATEDATE) );
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATEDATE)) );
         util::DateTime aDateTime;
         if ( aPropVal >>= aDateTime )
         {
@@ -506,3 +483,5 @@ void SfxXMLMetaExport::Export()
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

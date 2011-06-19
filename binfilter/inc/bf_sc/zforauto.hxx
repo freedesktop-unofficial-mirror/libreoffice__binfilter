@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _ZFORAUTO_HXX_
 #define _ZFORAUTO_HXX_
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 namespace binfilter {
 
 
@@ -48,9 +45,9 @@ class ScNumFormatAbbrev
 public:
     ScNumFormatAbbrev();
     ScNumFormatAbbrev(const ScNumFormatAbbrev& aFormat);
-    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter) {DBG_BF_ASSERT(0, "STRIP"); } //STRIP001    ScNumFormatAbbrev(ULONG nFormat, SvNumberFormatter& rFormatter);
+    ScNumFormatAbbrev(ULONG /*nFormat*/, SvNumberFormatter& /*rFormatter*/) {DBG_BF_ASSERT(0, "STRIP"); }
     void Load( SvStream& rStream );         // Laden der Zahlenformate
-    void Save( SvStream& rStream ) const;   // Speichern der Zahlenformate
+    void Save( SvStream& ) const {} // Speichern der Zahlenformate
 };
 
 
@@ -59,3 +56,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

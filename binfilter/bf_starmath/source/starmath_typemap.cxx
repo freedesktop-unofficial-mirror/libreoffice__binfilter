@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -139,23 +140,15 @@
 #define SvxCellVerJustifyEnumItem SfxVoidItem
 #define SvxCellOrientationEnumItem SfxVoidItem
 
-#ifndef _SFXMSG_HXX //autogen
 #include <bf_sfx2/msg.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SVX_ZOOMITEM_HXX //autogen
 #include <bf_svx/zoomitem.hxx>
-#endif
-#ifndef _SFXSLSTITM_HXX
 #include <bf_svtools/slstitm.hxx>
-#endif
 
 #define SFX_TYPEMAP
 namespace binfilter {
 #include "smslots.hxx"
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

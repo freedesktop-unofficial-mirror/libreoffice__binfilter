@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "paratr.hxx"
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 
 
 #ifdef VERTICAL_LAYOUT
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 #endif
 
 #include "txtcfg.hxx"
@@ -69,18 +60,9 @@ namespace binfilter {
 
 /*N*/ void SwTxtIter::CtorInit( SwTxtFrm *pNewFrm, SwTxtInfo *pNewInf )
 /*N*/ {
-/*N*/ #ifdef DBGTXT
-/*N*/   // nStopAt laesst sich vom CV bearbeiten.
-/*N*/   static MSHORT nStopAt = 0;
-/*N*/   if( nStopAt == pNewFrm->GetFrmId() )
-/*N*/   {
-/*N*/       int i = pNewFrm->GetFrmId();
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   SwTxtNode *pNode = pNewFrm->GetTxtNode();
 /*N*/
-/*N*/   ASSERT( pNewFrm->GetPara(), "No paragraph" );
+/*N*/   OSL_ENSURE( pNewFrm->GetPara(), "No paragraph" );
 /*N*/
 /*N*/ #ifdef VERTICAL_LAYOUT
 /*N*/     SwAttrIter::CtorInit( *pNode, pNewFrm->GetPara()->GetScriptInfo(), pNewFrm );
@@ -241,18 +223,17 @@ namespace binfilter {
 
 /*N*/ const SwLineLayout *SwTxtIter::PrevLine()
 /*N*/ {
-/*N*/   const SwLineLayout *pPrev = Prev();
-/*N*/   if( !pPrev )
+/*N*/   const SwLineLayout *pPrev2 = Prev();
+/*N*/   if( !pPrev2 )
 /*N*/       return 0;
 /*N*/
-/*N*/   const SwLineLayout *pLast = pPrev;
-/*N*/   while( pPrev && pPrev->IsDummy() )
+/*N*/   const SwLineLayout *pLast = pPrev2;
+/*N*/   while( pPrev2 && pPrev2->IsDummy() )
 /*N*/   {
-///*N*/         DBG_LOOP;
-/*N*/       pLast = pPrev;
-/*N*/       pPrev = Prev();
+/*N*/       pLast = pPrev2;
+/*N*/       pPrev2 = Prev();
 /*N*/   }
-/*N*/   return (SwLineLayout*)(pPrev ? pPrev : pLast);
+/*N*/   return (SwLineLayout*)(pPrev2 ? pPrev2 : pLast);
 /*N*/ }
 
 /*************************************************************************
@@ -263,7 +244,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   while( Next() )
 /*N*/   {
-///*N*/         DBG_LOOP;
 /*N*/   }
 /*N*/ }
 
@@ -284,16 +264,16 @@ namespace binfilter {
  *************************************************************************/
 
 // 1170: beruecksichtigt Mehrdeutigkeiten:
-/*N*/ const SwLineLayout *SwTxtCursor::CharCrsrToLine( const xub_StrLen nPos )
+/*N*/ const SwLineLayout *SwTxtCursor::CharCrsrToLine( const xub_StrLen nInPos )
 /*N*/ {
-/*N*/   CharToLine( nPos );
-/*N*/   if( nPos != nStart )
+/*N*/   CharToLine( nInPos );
+/*N*/   if( nInPos != nStart )
 /*N*/       bRightMargin = sal_False;
-/*N*/   sal_Bool bPrev = bRightMargin && pCurr->GetLen() && GetPrev() &&
+/*N*/   sal_Bool bLclPrev = bRightMargin && pCurr->GetLen() && GetPrev() &&
 /*N*/       GetPrev()->GetLen();
-/*N*/   if( bPrev && nPos && CH_BREAK == GetInfo().GetChar( nPos-1 ) )
-/*N*/       bPrev = sal_False;
-/*N*/   return bPrev ? PrevLine() : pCurr;
+/*N*/   if( bLclPrev && nInPos && CH_BREAK == GetInfo().GetChar( nInPos-1 ) )
+/*N*/       bLclPrev = sal_False;
+/*N*/   return bLclPrev ? PrevLine() : pCurr;
 /*N*/ }
 
 /*************************************************************************
@@ -319,16 +299,12 @@ namespace binfilter {
 /*N*/
 /*N*/     if ( bHasGrid )
 /*N*/     {
-/*?*/         const USHORT nGridWidth = pGrid->GetBaseHeight();
-/*?*/         const USHORT nRubyHeight = pGrid->GetRubyHeight();
-/*?*/         const sal_Bool bRubyTop = ! pGrid->GetRubyTextBelow();
-/*?*/
 /*?*/         if ( GetInfo().IsMulti() )
 /*?*/             // we are inside the GetCharRect recursion for multi portions
 /*?*/             // we center the portion in its surrounding line
 /*?*/             nOfst = ( pCurr->Height() - nPorHeight ) / 2 + nPorAscent;
 /*?*/         else
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -337,7 +313,7 @@ namespace binfilter {
 /*?*/                 nOfst += nPorAscent;
 /*?*/                 break;
 /*?*/             case SvxParaVertAlignItem::CENTER :
-/*?*/                 ASSERT( rLine.Height() >= nPorHeight, "Portion height > Line height");
+/*?*/                 OSL_ENSURE( rLine.Height() >= nPorHeight, "Portion height > Line height");
 /*?*/                 nOfst += ( rLine.Height() - nPorHeight ) / 2 + nPorAscent;
 /*?*/                 break;
 /*?*/             case SvxParaVertAlignItem::BOTTOM :
@@ -371,7 +347,7 @@ namespace binfilter {
 /*N*/             nOfst += nPorAscent;
 /*N*/             break;
 /*N*/         case SvxParaVertAlignItem::CENTER :
-/*N*/             ASSERT( rLine.Height() >= nPorHeight, "Portion height > Line height");
+/*N*/             OSL_ENSURE( rLine.Height() >= nPorHeight, "Portion height > Line height");
 /*N*/             nOfst += ( rLine.Height() - nPorHeight ) / 2 + nPorAscent;
 /*N*/             break;
 /*N*/         case SvxParaVertAlignItem::BOTTOM :
@@ -437,19 +413,19 @@ namespace binfilter {
 /*N*/                     pLine = pLine->GetNext();
 /*N*/                 }
 /*N*/
-/*N*/                 SwpHints* pHints = GetTxtFrm()->GetTxtNode()->GetpSwpHints();
+/*N*/                 SwpHints* pHints1 = GetTxtFrm()->GetTxtNode()->GetpSwpHints();
 /*N*/
 /*N*/                 // examine hints in range nEnd - (nEnd + nRangeChar)
-/*N*/                 for( USHORT i = 0; i < pHints->Count(); i++ )
+/*N*/                 for( USHORT i = 0; i < pHints1->Count(); i++ )
 /*N*/                 {
-/*N*/                     const SwTxtAttr* pHt = pHints->GetHt( i );
+/*N*/                     const SwTxtAttr* pHt = pHints1->GetHt( i );
 /*N*/                     if( RES_TXTATR_FLYCNT == pHt->Which() )
 /*N*/                     {
 /*N*/                         // check, if hint is in our range
-/*?*/                         const USHORT nPos = *pHt->GetStart();
-/*?*/                         if ( nEnd <= nPos && nPos < nRangeEnd )
+/*?*/                         const USHORT nPos2 = *pHt->GetStart();
+/*?*/                         if ( nEnd <= nPos2 && nPos2 < nRangeEnd )
 /*?*/                             pFollow->_InvalidateRange(
-/*?*/                                 SwCharRange( nPos, nPos ), 0 );
+/*?*/                                 SwCharRange( nPos2, nPos2 ), 0 );
 /*N*/                     }
 /*N*/                 }
 /*N*/             }
@@ -504,7 +480,7 @@ namespace binfilter {
 /*N*/      pOut( rInfo.GetOut() ),
 /*N*/      bOnWin( rInfo.OnWin() )
 /*N*/ {
-/*N*/     ASSERT( rInfo.GetRefDev(), "No reference device for text formatting" )
+/*N*/     OSL_ENSURE( rInfo.GetRefDev(), "No reference device for text formatting" );
 /*N*/
 /*N*/     // set new values
 /*N*/     rInfo.SetOut( rInfo.GetRefDev() );
@@ -519,3 +495,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

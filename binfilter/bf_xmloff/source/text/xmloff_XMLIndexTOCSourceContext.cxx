@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,36 +27,24 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXTOCSOURCECONTEXT_HXX_
 #include "XMLIndexTOCSourceContext.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 namespace binfilter {
@@ -80,22 +69,22 @@ const sal_Char sAPI_CreateFromLevelParagraphStyles[] = "CreateFromLevelParagraph
 TYPEINIT1( XMLIndexTOCSourceContext, XMLIndexSourceBaseContext );
 
 XMLIndexTOCSourceContext::XMLIndexTOCSourceContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropSet) :
-        XMLIndexSourceBaseContext(rImport, nPrfx, rLocalName,
+        XMLIndexSourceBaseContext(rInImport, nPrfx, rLocalName,
                                   rPropSet, sal_True),
-        // use all chapters by default
-        nOutlineLevel(rImport.GetTextImport()->GetChapterNumbering()->
-                                                                  getCount()),
-        bUseOutline(sal_True),
-        bUseMarks(sal_True),
         sCreateFromMarks(RTL_CONSTASCII_USTRINGPARAM(sAPI_CreateFromMarks)),
         sLevel(RTL_CONSTASCII_USTRINGPARAM(sAPI_Level)),
        sCreateFromOutline(RTL_CONSTASCII_USTRINGPARAM(sAPI_CreateFromOutline)),
         sCreateFromLevelParagraphStyles(RTL_CONSTASCII_USTRINGPARAM(
             sAPI_CreateFromLevelParagraphStyles)),
+        // use all chapters by default
+        nOutlineLevel(rInImport.GetTextImport()->GetChapterNumbering()->
+                                                                  getCount()),
+        bUseOutline(sal_True),
+        bUseMarks(sal_True),
         bUseParagraphStyles(sal_False)
 {
 }
@@ -191,15 +180,15 @@ void XMLIndexTOCSourceContext::EndElement()
 
 
 SvXMLImportContext* XMLIndexTOCSourceContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+    if ( (XML_NAMESPACE_TEXT == nInPrefix) &&
          IsXMLToken(rLocalName, XML_TABLE_OF_CONTENT_ENTRY_TEMPLATE) )
     {
         return new XMLIndexTemplateContext(GetImport(), rIndexPropertySet,
-                                           nPrefix, rLocalName,
+                                           nInPrefix, rLocalName,
                                            aLevelNameTOCMap,
                                            XML_OUTLINE_LEVEL,
                                            aLevelStylePropNameTOCMap,
@@ -207,9 +196,11 @@ SvXMLImportContext* XMLIndexTOCSourceContext::CreateChildContext(
     }
     else
     {
-        return XMLIndexSourceBaseContext::CreateChildContext(nPrefix,
+        return XMLIndexSourceBaseContext::CreateChildContext(nInPrefix,
                                                              rLocalName,
                                                              xAttrList);
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

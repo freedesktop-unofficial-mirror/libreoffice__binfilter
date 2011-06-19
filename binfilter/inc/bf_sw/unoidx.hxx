@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,31 +30,18 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEXMARK_HPP_
 #include <com/sun/star/text/XDocumentIndexMark.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEX_HPP_
 #include <com/sun/star/text/XDocumentIndex.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
 namespace binfilter {
 class SwTOXBaseSection;
 class SwTOXMark;
 class SwTOXType;
-/* -----------------07.12.98 10:08-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwDocIdxProperties_Impl;
 class SwXIndexStyleAccess_Impl;
 class SwXIndexTokenAccess_Impl;
@@ -149,9 +137,8 @@ public:
 
     void attachToRange(const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > & xTextRange)throw( ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
 };
-/* -----------------07.12.98 10:08-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXDocumentIndexMark : public cppu::WeakImplHelper4
 <
     ::com::sun::star::text::XDocumentIndexMark,
@@ -234,9 +221,8 @@ public:
                                                 SwDoc* pDoc);
     void                Invalidate();
 };
-/* -----------------05.05.99 12:27-------------------
- *
- * --------------------------------------------------*/
+
+
 
 class SwXDocumentIndexes : public SwCollectionBaseClass,
     public SwUnoCollection
@@ -277,9 +263,8 @@ public:
 
     static SwXDocumentIndex* GetObject(const SwTOXBaseSection* pTOX);
 };
-/* -----------------13.09.99 16:39-------------------
 
- --------------------------------------------------*/
+
 class SwXIndexStyleAccess_Impl : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XIndexReplace,
@@ -312,9 +297,8 @@ public:
 
 };
 
-/* -----------------13.09.99 16:39-------------------
 
- --------------------------------------------------*/
+
 class SwXIndexTokenAccess_Impl : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XIndexReplace,
@@ -353,3 +337,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

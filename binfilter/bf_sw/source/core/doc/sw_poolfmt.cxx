@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,132 +32,52 @@
 #endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
 #include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX //autogen
 #include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef SW_FMTLINE_HXX
 #include <fmtline.hxx>
-#endif
 
-#ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>
-#endif
-#ifndef _GETMETRICVAL_HXX
 #include <GetMetricVal.hxx>
-#endif
 namespace binfilter {
 const USHORT PT_3   =  3 * 20;      //  3 pt
 const USHORT PT_6   =  6 * 20;      //  6 pt
@@ -176,7 +97,7 @@ const USHORT PT_24  = 24 * 20;      // 22 pt
 //const USHORT HTML_PARSPACE = ((CM_05 * 7) / 10);
 #define HTML_PARSPACE   GetMetricVal( CM_05 )
 
-static const sal_Char __FAR_DATA sKomma[] = ", ";
+static const sal_Char sKomma[] = ", ";
 
 static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 //  PT_16, PT_14, PT_14, PT_12, PT_12,          // normal
@@ -291,7 +212,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/
 /*N*/   if( pDoc->IsHTMLMode() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ::lcl_SetDfltFont( DEFAULTFONT_LATIN_TEXT, DEFAULTFONT_CJK_TEXT,
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( pColl )
@@ -407,7 +328,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ ( USHORT nId, String* pDesc, SfxItemPresentation ePres,
 /*N*/   SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, BOOL bRegardLanguage)
 /*N*/ {
-/*N*/   ASSERT(
+/*N*/   OSL_ENSURE(
 /*N*/       (RES_POOLCOLL_TEXT_BEGIN <= nId && nId < RES_POOLCOLL_TEXT_END) ||
 /*N*/       (RES_POOLCOLL_LISTS_BEGIN <= nId && nId < RES_POOLCOLL_LISTS_END) ||
 /*N*/       (RES_POOLCOLL_EXTRA_BEGIN <= nId && nId < RES_POOLCOLL_EXTRA_END) ||
@@ -446,7 +367,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   else if (RES_POOLCOLL_HTML_BEGIN <= nId && nId < RES_POOLCOLL_HTML_END)
 /*N*/       nResId = RC_POOLCOLL_HTML_BEGIN - RES_POOLCOLL_HTML_BEGIN;
 /*N*/
-/*N*/   ASSERT( nResId, "Ungueltige Pool-ID" );
+/*N*/   OSL_ENSURE( nResId, "Ungueltige Pool-ID" );
 /*N*/   if( !nResId )
 /*N*/       return GetTxtCollFromPool( RES_POOLCOLL_STANDARD, pDesc, ePres,
 /*N*/                                   eCoreMetric, ePresMetric );
@@ -1064,7 +985,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/           aLR.SetLeft( GetMetricVal( CM_1 ));
 /*N*/           aLR.SetRight( GetMetricVal( CM_1 ));
 /*N*/           aSet.Put( aLR );
-/*N*/ //            aSet.Put( SvxAdjustItem( SVX_ADJUST_BLOCK ) );
 /*N*/           SvxULSpaceItem aUL;
 /*N*/           if( !pDesc )
 /*N*/               aUL = pNewColl->GetULSpace();
@@ -1205,7 +1125,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/           //          -> returne das erste
 /*M*/           if( RES_POOLCHR_BEGIN > nId || nId >= RES_POOLCHR_END )
 /*M*/           {
-/*M*/               ASSERT( !this, "ungueltige Id" );
+/*M*/               OSL_ENSURE( !this, "ungueltige Id" );
 /*M*/               nId = RES_POOLCHR_BEGIN;
 /*M*/           }
 /*M*/       }
@@ -1224,7 +1144,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/           //          -> returne das erste
 /*M*/           if( RES_POOLFRM_BEGIN > nId || nId >= RES_POOLFRM_END )
 /*M*/           {
-/*M*/               ASSERT( !this, "ungueltige Id" );
+/*M*/               OSL_ENSURE( !this, "ungueltige Id" );
 /*M*/               nId = RES_POOLFRM_BEGIN;
 /*M*/           }
 /*M*/       }
@@ -1232,10 +1152,10 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/
 /*M*/   default:
 /*M*/       // Fehlerfall, unbekanntes Format
-/*M*/       ASSERT( nId, "ungueltige Id" );
+/*M*/       OSL_ENSURE( nId, "ungueltige Id" );
 /*M*/       return 0;
 /*M*/   }
-/*M*/   ASSERT( nRCId, "ungueltige Id" );
+/*M*/   OSL_ENSURE( nRCId, "ungueltige Id" );
 /*M*/
 /*M*/   while( nArrCnt-- )
 /*M*/       for( USHORT n = 0; n < (*pArray[nArrCnt]).Count(); ++n )
@@ -1255,7 +1175,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*M*/   if( pDesc )
 /*M*/   {
 /*M*/       pNewFmt = 0;
-/*M*/ //        *pDesc = aEmptyStr; // oder den Namen ?? aNm;
 /*M*/       *pDesc = aNm;
 /*M*/   }
 /*M*/   else
@@ -1491,7 +1410,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric,
 /*N*/     BOOL bRegardLanguage)
 /*N*/ {
-/*N*/   ASSERT( RES_POOLPAGE_BEGIN <= nId && nId < RES_POOLPAGE_END,
+/*N*/   OSL_ENSURE( RES_POOLPAGE_BEGIN <= nId && nId < RES_POOLPAGE_END,
 /*N*/           "Falsche AutoFormat-Id" );
 /*N*/
 /*N*/   SwPageDesc *pNewPgDsc;
@@ -1508,7 +1427,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   // Fehlerfall: unbekannte Poolvorlage
 /*N*/   if( RES_POOLPAGE_BEGIN > nId ||  nId >= RES_POOLPAGE_END )
 /*N*/   {
-/*?*/       ASSERT( !this, "ungueltige Id" );
+/*?*/       OSL_ENSURE( !this, "ungueltige Id" );
 /*?*/       nId = RES_POOLPAGE_BEGIN;
 /*N*/   }
 /*N*/
@@ -1517,7 +1436,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/   if( pDesc )
 /*N*/   {
 /*?*/       pNewPgDsc = 0;
-/*?*/ //        *pDesc = aEmptyStr; // oder den Namen ?? aNm;
 /*?*/       *pDesc = aNm;
 /*N*/   }
 /*N*/   else
@@ -1659,9 +1577,9 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ }
 
 /*N*/ SwNumRule* SwDoc::GetNumRuleFromPool( USHORT nId, String* pDesc,
-/*N*/   SfxItemPresentation ePres, SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric )
+/*N*/   SfxItemPresentation /*ePres*/, SfxMapUnit /*eCoreMetric*/, SfxMapUnit /*ePresMetric*/ )
 /*N*/ {
-/*N*/   ASSERT( RES_POOLNUMRULE_BEGIN <= nId && nId < RES_POOLNUMRULE_END,
+/*N*/   OSL_ENSURE( RES_POOLNUMRULE_BEGIN <= nId && nId < RES_POOLNUMRULE_END,
 /*N*/           "Falsche AutoFormat-Id" );
 /*N*/
 /*N*/   SwNumRule* pNewRule;
@@ -1677,7 +1595,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
     // Fehlerfall: unbekannte Poolvorlage
 /*N*/   if( RES_POOLNUMRULE_BEGIN > nId ||  nId >= RES_POOLNUMRULE_END )
 /*N*/   {
-/*?*/       ASSERT( !this, "ungueltige Id" );
+/*?*/       OSL_ENSURE( !this, "ungueltige Id" );
 /*?*/       nId = RES_POOLNUMRULE_BEGIN;
 /*N*/   }
 
@@ -1726,19 +1644,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,5  1,0  1,5  2,0   2,5   3,0   3,5   4,0   4,5   5,0
 /*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1757,21 +1663,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/                  1588, 1758                   // 2.80, 3.10
 /*N*/               };
 /*N*/
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   385,  385,  770,  963,
-/*N*/                  1155, 1386, 1771, 2002,
-/*N*/                  2156, 2387
-/*N*/               };
-/*N*/
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
 /*N*/           SwNumFmt aFmt;
 /*N*/           aFmt.SetNumberingType(SVX_NUM_ARABIC);
 /*N*/           aFmt.SetCharFmt( pNumCFmt );
@@ -1816,19 +1708,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,5  1,0  1,5  2,0   2,5   3,0   3,5   4,0   4,5   5,0
 /*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1847,21 +1727,8 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/                   369,  624,      // 0.65, 1.10,
 /*N*/                   255,  879       // 0.45, 1.55
 /*N*/               };
-/*N*/           static const USHORT aAbsSpaceInch0to2[] =
-/*N*/               {
-/*N*/                   308,  308,
-/*N*/                   501,  847,
-/*N*/                   347, 1194
-/*N*/               };
 /*N*/
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           const USHORT* pArr0to2 = MEASURE_METRIC ==
-/*N*/                           GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                               ? aAbsSpace0to2
-/*N*/                               : aAbsSpaceInch0to2;
-/*N*/ #else
 /*N*/           const USHORT* pArr0to2 = aAbsSpace0to2;
-/*N*/ #endif
 /*N*/           SwNumFmt aFmt;
 /*N*/           aFmt.SetNumberingType(SVX_NUM_ARABIC);
 /*N*/           aFmt.SetStart( 1 );
@@ -1921,19 +1788,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,4  0,8  1,2  1,6  2,0   2,4   2,8   3,2   3,6   4,0
 /*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1957,19 +1812,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,3  0,6  0,9  1,2  1,5  1,8   2,1   2,4   2,7   3,0
 /*N*/                   170, 340, 510, 680, 850, 1020, 1191, 1361, 1531, 1701
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   170, 340, 510, 680, 850, 1020, 1191, 1361, 1531, 1701
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -2011,19 +1854,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,4  0,8  1,2  1,6  2,0   2,4   2,8   3,2   3,6   4,0
 /*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -2053,19 +1884,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,4  0,8  1,2  1,6  2,0   2,4   2,8   3,2   3,6   4,0
 /*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -2078,12 +1897,6 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/
 /*N*/   if( pDesc )
 /*N*/   {
-/*N*/ //JP 25.02.98: wie soll die Beschreibung sein??
-/*N*/ //        String aStr;
-/*N*/ //        aSet.GetPresentation( ePres, eCoreMetric, ePresMetric, aStr );
-/*N*/ //        *pDesc += sKomma;
-/*N*/ //        *pDesc += aStr;
-/*N*/
 /*?*/       delete pNewRule, pNewRule = 0;
 /*N*/   }
 /*N*/
@@ -2149,7 +1962,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
     // dann fuege neu ein
 USHORT SwDoc::SetDocPattern( const String& rPatternName )
 {
-    ASSERT( rPatternName.Len(), "kein Dokument-Vorlagenname" );
+    OSL_ENSURE( rPatternName.Len(), "kein Dokument-Vorlagenname" );
 
     USHORT nNewPos = aPatternNms.Count();
     for( USHORT n = 0; n < aPatternNms.Count(); ++n )
@@ -2315,3 +2128,5 @@ void SwDoc::RemoveAllFmtLanguageDependencies()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

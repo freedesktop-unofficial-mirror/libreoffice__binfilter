@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,33 +29,21 @@
 #ifndef _SFX_SFXUNO_HXX
 #define _SFX_SFXUNO_HXX
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_URL_HPP_
 #include <com/sun/star/util/URL.hpp>
-#endif
 
 //________________________________________________________________________________________________________________________
 //  fix uno header
 //________________________________________________________________________________________________________________________
 
-#ifndef _COM_SUN_STAR_UNO_TYPE_H_
 #include <com/sun/star/uno/Type.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
 
 namespace binfilter {
 
@@ -593,3 +582,5 @@ inline sal_Bool operator==( const UNOURL& aURL1, const UNOURL& aURL2 )
 
 }//end of namespace binfilter
 #endif // _SFX_SFXUNO_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

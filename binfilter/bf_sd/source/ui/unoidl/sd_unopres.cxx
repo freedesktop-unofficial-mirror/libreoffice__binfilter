@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -38,13 +39,12 @@
 #include "unohelp.hxx"
 #include "unopage.hxx"
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::cppu;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 const SfxItemPropertyMap* ImplGetPresentationPropertyMap()
@@ -65,19 +65,18 @@ const SfxItemPropertyMap* ImplGetPresentationPropertyMap()
         { MAP_CHAR_LEN(UNO_NAME_SHOW_USEPEN),       ATTR_PRESENT_PEN,               &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN("IsTransitionOnClick"),      ATTR_PRESENT_CHANGE_PAGE,       &::getBooleanCppuType(),                0, 0 },
         { MAP_CHAR_LEN("IsShowLogo"),               ATTR_PRESENT_SHOW_PAUSELOGO,    &::getBooleanCppuType(),                0, 0 },
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
 
     };
 
     return aPresentationPropertyMap_Impl;
 }
 
-SfxItemPropertyMap map_impl[] = { 0,0,0,0 };
-
 ///////////////////////////////////////////////////////////////////////////////
 
 SdXPresentation::SdXPresentation(SdXImpressDocument& rMyModel) throw()
-:   maPropSet(ImplGetPresentationPropertyMap()), mrModel(rMyModel)
+    : mrModel(rMyModel)
+    , maPropSet(ImplGetPresentationPropertyMap())
 {
 }
 
@@ -110,14 +109,14 @@ uno::Sequence< OUString > SAL_CALL SdXPresentation::getSupportedServiceNames(  )
 uno::Reference< beans::XPropertySetInfo > SAL_CALL SdXPresentation::getPropertySetInfo()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
  }
 
 void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mrModel.GetDoc();
     if(pDoc == NULL)
@@ -125,13 +124,11 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry(aPropertyName);
 
-    sal_Bool bValuesChanged = sal_False;
-
     switch( pMap ? pMap->nWID : -1 )
     {
     case ATTR_PRESENT_ALL:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -139,7 +136,6 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
         if( pDoc->GetPresAll() != bVal )
         {
             pDoc->SetPresAll( bVal );
-            bValuesChanged = sal_True;
             if( bVal )
                 pDoc->SetCustomShow( false );
         }
@@ -147,14 +143,13 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_CHANGE_PAGE:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if ( bVal == pDoc->GetPresLockedPages() )
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresLockedPages( !bVal );
         }
         break;
@@ -162,14 +157,13 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 
     case ATTR_PRESENT_ANIMATION_ALLOWED:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->IsAnimationAllowed() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetAnimationAllowed(bVal);
         }
         break;
@@ -193,34 +187,31 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
             }
 
             pDoc->SetCustomShow( true );
-            bValuesChanged = sal_True;
         }
         break;
     }
     case ATTR_PRESENT_ENDLESS:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetPresEndless() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresEndless(bVal);
         }
         break;
     }
     case ATTR_PRESENT_FULLSCREEN:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetPresFullScreen() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresFullScreen(bVal);
         }
         break;
@@ -234,82 +225,76 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
         pDoc->SetCustomShow(false);
         pDoc->SetPresAll(false);
 
-        bValuesChanged = sal_True;
         break;
     }
     case ATTR_PRESENT_MANUEL:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetPresManual() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresManual(bVal);
         }
         break;
     }
     case ATTR_PRESENT_MOUSE:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetPresMouseVisible() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresMouseVisible(bVal);
         }
         break;
     }
     case ATTR_PRESENT_ALWAYS_ON_TOP:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetPresAlwaysOnTop() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresAlwaysOnTop(bVal);
         }
         break;
     }
     case ATTR_PRESENT_NAVIGATOR:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetStartPresWithNavigator() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetStartPresWithNavigator(bVal);
         }
         break;
     }
     case ATTR_PRESENT_PEN:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
 
         if(pDoc->GetPresMouseAsPen() != bVal)
         {
-            bValuesChanged = sal_True;
             pDoc->SetPresMouseAsPen(bVal);
         }
         break;
     }
     case ATTR_PRESENT_PAUSE_TIMEOUT:
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if(!(aValue >>= nValue) || (nValue < 0))
             throw lang::IllegalArgumentException();
 
@@ -318,7 +303,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
     }
     case ATTR_PRESENT_SHOW_PAUSELOGO:
     {
-        sal_Bool bVal;
+        sal_Bool bVal(sal_False);
 
         if(! sd::any2bool( aValue, bVal ) )
             throw lang::IllegalArgumentException();
@@ -333,7 +318,7 @@ void SAL_CALL SdXPresentation::setPropertyValue( const OUString& aPropertyName, 
 uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any any;
 
@@ -408,19 +393,19 @@ uno::Any SAL_CALL SdXPresentation::getPropertyValue( const OUString& PropertyNam
     return any;
 }
 
-void SAL_CALL SdXPresentation::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener )    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::addPropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )    throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SdXPresentation::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener )  throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
+void SAL_CALL SdXPresentation::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )  throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
 }
 
@@ -439,3 +424,5 @@ void SAL_CALL SdXPresentation::rehearseTimings(  ) throw(uno::RuntimeException)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

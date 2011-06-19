@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
+#include <vector>
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -46,10 +44,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    class ImpXPolygon
-|*
-|*    Beschreibung
-|*    Ersterstellung       08.11.94
-|*    Letzte Aenderung Joe 26.09.95
 |*
 *************************************************************************/
 class ImpXPolygon
@@ -68,8 +62,8 @@ public:
     ImpXPolygon( const ImpXPolygon& rImpXPoly );
     ~ImpXPolygon();
 
-    FASTBOOL operator==(const ImpXPolygon& rImpXPoly) const;
-    FASTBOOL operator!=(const ImpXPolygon& rImpXPoly) const { return !operator==(rImpXPoly); }
+    bool operator==(const ImpXPolygon& rImpXPoly) const;
+    bool operator!=(const ImpXPolygon& rImpXPoly) const { return !operator==(rImpXPoly); }
 
     void CheckPointDelete()
     {
@@ -90,12 +84,8 @@ public:
 |*
 |*    class ImpXPolyPolygon
 |*
-|*    Beschreibung
-|*    Ersterstellung          08.11.94
-|*    Letzte Aenderung  Joe 26-09-1995
-|*
 *************************************************************************/
-DECLARE_LIST( XPolygonList, XPolygon* )//STRIP008 DECLARE_LIST( XPolygonList, XPolygon* );
+typedef ::std::vector< XPolygon* > XPolygonList;
 
 class ImpXPolyPolygon
 {
@@ -103,9 +93,9 @@ public:
     XPolygonList aXPolyList;
     USHORT       nRefCount;
 
-                 ImpXPolyPolygon( USHORT nInitSize = 16, USHORT nResize = 16 ) :
-                    aXPolyList( 1024, nInitSize, nResize )
+                 ImpXPolyPolygon()
                     { nRefCount = 1; }
+
                 ImpXPolyPolygon( const ImpXPolyPolygon& rImpXPolyPoly );
                 ~ImpXPolyPolygon();
 
@@ -115,3 +105,5 @@ public:
 
 }//end of namespace binfilter
 #endif      // _XPOLYIMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

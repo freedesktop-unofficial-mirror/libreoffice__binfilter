@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef SVTOOLS_URL_FILTER_HXX
 #define SVTOOLS_URL_FILTER_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 #include <functional>
 #include <vector>
 
@@ -71,3 +68,5 @@ public:
 }
 
 #endif // SVTOOLS_URL_FILTER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

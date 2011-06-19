@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,54 +34,27 @@
 //  include uno header first!
 //________________________________________________________________________________________________________________
 
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
 #include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
-
-//________________________________________________________________________________________________________________
-//  include something else
-//________________________________________________________________________________________________________________
 
 #if _SOLAR__PRIVATE
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
 #endif
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SO2DEFS_HXX //autogen
 #include <bf_so3/so2defs.hxx>
-#endif
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
 #include <bf_so3/svstor.hxx>
 
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
 
 #include <bf_sfx2/shell.hxx>
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
+
 namespace binfilter {
  class SvLinkSource;
 }
@@ -145,10 +119,6 @@ typedef sal_uInt32 SfxObjectShellFlags;
 #define SFX_LOADED_IMAGES       2
 #define SFX_LOADED_ALL          3
 
-//--------------------------------------------------------------------
-
-#define SEQUENCE                ::com::sun::star::uno::Sequence
-#define OUSTRING                ::rtl::OUString
 
 //--------------------------------------------------------------------
 
@@ -245,7 +215,6 @@ public:
     void                        FlushDocInfo();
     sal_Bool                    HasName() const { return bHasName; }
     virtual String              GetAPIName() const;
-    void                        SetHasName( sal_Bool bSet = sal_True ) { bHasName = bSet; }
     sal_Bool                    IsReadOnly() const;
     sal_Bool                    IsReadOnlyMedium() const;
     sal_Bool                    IsReadOnlyUI() const;
@@ -258,7 +227,6 @@ public:
     void                        SetError(sal_uInt32 rErr);
 
     virtual sal_Bool            LoadOwnFormat( SfxMedium& pMedium );
-    virtual sal_Bool            SaveAsOwnFormat( SfxMedium& pMedium );
 
     virtual sal_Bool            DoInitNew( SvStorage * pStor );
     virtual void                DoHandsOff();
@@ -270,10 +238,6 @@ public:
                                         StorageMode nStorageMode );
 
     virtual sal_Bool            DoLoad( SfxMedium * pMedium );
-    virtual sal_Bool            DoSave();
-    virtual sal_Bool            DoSaveAs( SvStorage * pNewStor );
-    virtual sal_Bool            DoSaveCompleted( SvStorage * pNewStor = NULL );
-    virtual sal_Bool            DoSaveCompleted( SfxMedium * pNewStor);
 
     virtual sal_Bool            ConvertFrom( SfxMedium &rMedium );
     virtual sal_Bool            ConvertTo( SfxMedium &rMedium );
@@ -304,8 +268,7 @@ public:
     virtual void                ViewAssigned();
     virtual sal_uInt16          PrepareClose( sal_Bool bUI = sal_True, sal_Bool bForBrowsing = sal_False );
     virtual sal_Bool            IsInformationLost();
-    virtual sal_Bool            Save();
-    virtual sal_Bool            SaveAs( SvStorage * pNewStg );
+    virtual sal_Bool            Save() {return false;}
     virtual Size                GetFirstPageSize();
     virtual sal_Bool            DoClose();
     virtual void                PrepareReload();
@@ -328,8 +291,6 @@ public:
     SfxProgress*                GetProgress() const;
     void                        SetWaitCursor( BOOL bSet ) const;
 
-//(mba)    virtual SotObjectRef        CreateAggObj( const SotFactory* pFact );
-
     // Naming Interface
     void                        SetTitle( const String& rTitle );
     String                      GetTitle( sal_uInt16 nMaxLen = 0 ) const;
@@ -347,8 +308,8 @@ public:
 
     // Contents
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
-    void                            SetStyleSheetPool( SfxStyleSheetBasePool *pPool ) {
-                                        pStyleSheetPool = pPool; }
+    void                            SetStyleSheetPool( SfxStyleSheetBasePool *pPoolIn ) {
+                                        pStyleSheetPool = pPoolIn; }
 
     //determine the position of the "Automatic" filter in the stylist
     void                        SetAutoStyleFilterIndex(sal_uInt16 nSet);
@@ -378,20 +339,6 @@ public:
                                         sal_uInt16 nIdx1,
                                         sal_uInt16 nIdx2 = INDEX_IGNORE );
 
-    virtual void                GetContent( String &,
-                                        Bitmap &rClosedBitmap,
-                                        Bitmap &rOpenedBitmap,
-                                        BmpColorMode eColorMode,
-                                        sal_Bool   &bCanDelete,
-                                        sal_uInt16 nPos,
-                                        sal_uInt16 nIdx1,
-                                        sal_uInt16 nIdx2 = INDEX_IGNORE );
-
-
-
-
-
-
     virtual void                LoadStyles( SfxObjectShell &rSource );
     void                        ReadNote( INote * );
     void                        UpdateNote( INote * );
@@ -409,10 +356,13 @@ public:
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > GetBaseModel();
     // Nur uebergangsweise fuer die Applikationen !!!
 
-    virtual SEQUENCE< OUSTRING >    GetEventNames();
+//--------------------------------------------------------------------
+
+    virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
 
 #if _SOLAR__PRIVATE
-    static SEQUENCE< OUSTRING > GetEventNames_Impl();
+    static ::com::sun::star::uno::Sequence< ::rtl::OUString >   GetEventNames_Impl();
+
     void                        InitBasicManager_Impl( SvStorage *pStor, const String* pName = NULL );
     SfxObjectShell_Impl*        Get_Impl() { return pImp; }
     const SfxObjectShell_Impl*  Get_Impl() const { return pImp; }
@@ -421,8 +371,6 @@ public:
 
     // Laden-speichern public internals
     void                        Reload_Impl();
-    sal_Bool                    DoSave_Impl( const SfxItemSet* pSet=0 );
-    sal_Bool                    Save_Impl( const SfxItemSet* pSet=0 );
     void                        UpdatePickList_Impl();
     sal_Bool                    PreDoSaveAs_Impl(const String &rFileName, const String &rFiltName, SfxItemSet *);
     sal_Bool                    APISaveAs_Impl ( const String& aFileName, SfxItemSet* aParams );
@@ -432,7 +380,7 @@ public:
     void                        SetProgress_Impl( SfxProgress *pProgress );
     sal_uInt16&                 GetAktViewNo() { return nViewNo; }
     void                        SetActivateEvent_Impl(sal_uInt16 );
-    FASTBOOL                    SaveWindows_Impl( SvStorage &rStor ) const;
+    bool                    SaveWindows_Impl( SvStorage &rStor ) const;
 #endif
 };
 
@@ -494,9 +442,9 @@ public:
                                 SfxPoolItem( 0 ),
                                 pObjSh( pObjShell )
                             {}
-                            SfxObjectShellItem( sal_uInt16 nWhich,
+                            SfxObjectShellItem( sal_uInt16 nWhichIn,
                                                 SfxObjectShell *pObjShell ):
-                                SfxPoolItem( nWhich ),
+                                SfxPoolItem( nWhichIn ),
                                 pObjSh( pObjShell )
                             {}
 
@@ -510,3 +458,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

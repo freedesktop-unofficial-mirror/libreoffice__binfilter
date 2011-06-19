@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,18 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 #define ITEMID_SEARCH                   SID_SEARCH_ITEM
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
 
 
-#ifndef _SO_CLSIDS_HXX //autogen
 #include <comphelper/classids.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -55,8 +50,8 @@ TYPEINIT1(SdGraphicDocShell, SdDrawDocShell);
 
 SFX_IMPL_OBJECTFACTORY_LOD(SdGraphicDocShell, sdraw, SvGlobalName(BF_SO3_SDRAW_CLASSID), Sd)
 
-SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocType)
-: SdDrawDocShell(eMode, bDataObject, eDocType)
+SdGraphicDocShell::SdGraphicDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eInDocType)
+: SdDrawDocShell(eMode, bDataObject, eInDocType)
 {
     SetStyleFamily( 2 );
 }
@@ -66,3 +61,5 @@ SdGraphicDocShell::~SdGraphicDocShell()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,23 +29,10 @@
 #include "svddrgv.hxx"
 #include "svdio.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
+
 namespace binfilter {
 
 #define XOR_DRAG_PEN   PEN_DOT
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@@  @@@@@   @@@@   @@@@   @@ @@ @@ @@@@@ @@   @@
-//  @@  @@ @@  @@ @@  @@ @@  @@  @@ @@ @@ @@    @@   @@
-//  @@  @@ @@  @@ @@  @@ @@      @@ @@ @@ @@    @@ @ @@
-//  @@  @@ @@@@@  @@@@@@ @@ @@@  @@@@@ @@ @@@@  @@@@@@@
-//  @@  @@ @@  @@ @@  @@ @@  @@   @@@  @@ @@    @@@@@@@
-//  @@  @@ @@  @@ @@  @@ @@  @@   @@@  @@ @@    @@@ @@@
-//  @@@@@  @@  @@ @@  @@  @@@@@    @   @@ @@@@@ @@   @@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrDragView::ImpClearVars()
 /*N*/ {
@@ -109,33 +97,25 @@ namespace binfilter {
 /*N*/   return SdrExchangeView::IsAction() || pDragBla!=NULL;
 /*N*/ }
 
-
-
-
 /*N*/ void SdrDragView::BrkAction()
 /*N*/ {
 /*N*/   SdrExchangeView::BrkAction();
 /*N*/   BrkDragObj();
-//STRIP012/*N*/     RefreshAllIAOManagers();
 /*N*/ }
-
 
 /*N*/ void SdrDragView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrExchangeView::ToggleShownXor(pOut,pRegion);
     if (pDragBla!=NULL && aDragStat.IsShown() &&
-    1 )//STRIP001 //STRIP001        (!IS_TYPE(SdrDragMovHdl,pDragBla)) { // das ist ein Hack !!!!!!!!!!
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 DrawDragObj(pOut,TRUE);
+    1 )
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
 /*N*/ void SdrDragView::BrkDragObj()
 /*N*/ {
-/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -146,29 +126,21 @@ namespace binfilter {
 /*N*/   if (IsNoDragXorPolys()!=bOn) {
 /*N*/       BOOL bDragging=pDragBla!=NULL;
 /*N*/       BOOL bShown=bDragging && aDragStat.IsShown();
-/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 HideDragObj(pDragWin);
+/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       bNoDragXorPolys=bOn;
-/*N*/       if (bDragging) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (bDragging) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
-/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ShowDragObj(pDragWin);
+/*N*/       if (bShown) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SdrDragView::SetDragStripes(BOOL bOn)
 /*N*/ {
-/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (pDragBla!=NULL && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   } else {
 /*N*/       bDragStripes=bOn;
 /*N*/   }
 /*N*/ }
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -218,3 +190,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

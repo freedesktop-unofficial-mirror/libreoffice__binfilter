@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_CONDITIO_HXX
 #include "conditio.hxx"
-#endif
 namespace binfilter {
 
 class ScPatternAttr;
@@ -89,7 +88,7 @@ public:
                                 ScDocument* pDocument );
             ~ScValidationData();
 
-    void            Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const;
+    void Store(SvStream&, ScMultipleWriteHeader&) const {}
 
     ScValidationData* Clone() const     // echte Kopie
                     { return new ScValidationData( GetDocument(), *this ); }
@@ -137,7 +136,7 @@ public:
 typedef ScValidationData* ScValidationDataPtr;
 
 SV_DECL_PTRARR_SORT(ScValidationEntries_Impl, ScValidationDataPtr,
-                        SC_COND_GROW, SC_COND_GROW)//STRIP008 ;
+                        SC_COND_GROW, SC_COND_GROW)
 
 class ScValidationDataList : public ScValidationEntries_Impl
 {
@@ -152,7 +151,7 @@ public:
     ScValidationData* GetData( sal_uInt32 nKey );
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
-    void    Store( SvStream& rStream ) const;
+    void Store( SvStream& ) const {}
     void    ResetUsed();
 
     void    CompileXML();
@@ -163,3 +162,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

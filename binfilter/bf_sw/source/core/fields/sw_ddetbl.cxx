@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,21 +32,13 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
 #include <swddetbl.hxx>
-#endif
 namespace binfilter {
 
 
@@ -59,9 +52,11 @@ namespace binfilter {
 
 /*N*/ SwDDEFieldType* SwDDETable::GetDDEFldType()
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    return (SwDDEFieldType*)aDepend.GetRegisteredIn();
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

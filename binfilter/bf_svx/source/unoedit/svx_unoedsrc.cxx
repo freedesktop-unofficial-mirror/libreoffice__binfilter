@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include "unoedsrc.hxx"
 namespace binfilter {
@@ -59,17 +58,19 @@ SvxViewForwarder* SvxEditSource::GetViewForwarder()
     return NULL;
 }
 
-SvxEditViewForwarder* SvxEditSource::GetEditViewForwarder( sal_Bool bCreate )
+SvxEditViewForwarder* SvxEditSource::GetEditViewForwarder( sal_Bool /*bCreate*/ )
 {
     return NULL;
 }
 
 SfxBroadcaster& SvxEditSource::GetBroadcaster() const
 {
-    DBG_ERROR("SvxEditSource::GetBroadcaster called for implementation missing this feature!");
+    OSL_FAIL("SvxEditSource::GetBroadcaster called for implementation missing this feature!");
 
     static SfxBroadcaster aBroadcaster;
 
     return aBroadcaster;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

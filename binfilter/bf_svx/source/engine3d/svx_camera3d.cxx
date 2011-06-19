@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _CAMERA3D_HXX
 #include "camera3d.hxx"
-#endif
 
 
-#ifndef _SVDIO_HXX
 #include <svdio.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -242,65 +239,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Stream-Out-Operator fuer Camera3D   fuer die Filerevision 3.1
-|*
-\************************************************************************/
-
-/*N*/ void Camera3D::WriteData31(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   Viewport3D::WriteData(rOut);
-/*N*/
-/*N*/   rOut << aResetPos;
-/*N*/   rOut << aResetLookAt;
-/*N*/   rOut << fResetFocalLength;
-/*N*/   rOut << fResetBankAngle;
-/*N*/   rOut << aPosition;
-/*N*/   rOut << aLookAt;
-/*N*/   rOut << fFocalLength;
-/*N*/   rOut << fBankAngle;
-/*N*/   rOut << BOOL(bAutoAdjustProjection);
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Stream-Out-Operator fuer Camera3D
-|* Zur Version 356 wurde das Fileformat inkompatibel, wenn man das alte
-|* Format schreiben will, muss man die Version am Stream abfragen.
-|*
-\************************************************************************/
-
-/*N*/ void Camera3D::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/
-/*N*/   if (rOut.GetVersion() < 3560)  // FG: Ab der Release 356 wurde das Fileformat geaendert
-/*N*/   {                              //     Falls das Format der Version 31 geschrieben werden soll
-/*N*/       WriteData31(rOut);         //     muss am Stream die Version der 3.1 gesetzt sein.
-/*N*/       return;                    //     Im Prinzip kann man auf diese Art auch Zwischenversionen
-/*N*/   }                              //     erzeugen.
-/*N*/
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("Camera3D");
-/*N*/ #endif
-/*N*/   Viewport3D::WriteData(rOut);
-/*N*/
-/*N*/   rOut << aResetPos;              // Alles Vektoren 3*double
-/*N*/   rOut << aResetLookAt;
-/*N*/   rOut << fResetFocalLength;
-/*N*/   rOut << fResetBankAngle;
-/*N*/   rOut << aPosition;
-/*N*/   rOut << aLookAt;
-/*N*/   rOut << fFocalLength;
-/*N*/   rOut << fBankAngle;
-/*N*/   rOut << BOOL(bAutoAdjustProjection);
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Stream-In-Operator fuer Camera3D
 |*
 \************************************************************************/
@@ -392,3 +330,5 @@ namespace binfilter {
 /*N*/   return rIStream;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

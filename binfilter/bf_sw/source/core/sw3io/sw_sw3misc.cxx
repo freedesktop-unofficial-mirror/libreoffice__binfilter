@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,123 +29,55 @@
 
 #define _ZFORLIST_DECLARE_TABLE
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
-#endif
 
 #include <stdio.h>
 
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARYLIST_HPP_
 #include <com/sun/star/linguistic2/XDictionaryList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XDICTIONARY1_HPP_
 #include <com/sun/star/linguistic2/XDictionary1.hpp>
-#endif
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
 
-#ifndef _SWDOCSH_HXX //autogen
 #include <docsh.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef SW_LINEINFO_HXX //autogen
 #include <lineinfo.hxx>
-#endif
-#ifndef _PVPRTDAT_HXX
 #include <pvprtdat.hxx>
-#endif
-#ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
-#endif
-#ifndef _SW3MARKS_HXX
 #include <sw3marks.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 using namespace ::com::sun::star;
@@ -210,7 +143,7 @@ public:
 /*N*/   SwNodeIndex *pNdIdx = new SwNodeIndex( rNodeIdx );
 /*N*/   if( pStartNodeIdx )
 /*N*/   {
-/*N*/       ASSERT( !pEndNodeIdx, "more than two TOX indexes" );
+/*N*/       OSL_ENSURE( !pEndNodeIdx, "more than two TOX indexes" );
 /*N*/       if( !pEndNodeIdx )
 /*N*/       {
 /*N*/           if( rNodeIdx.GetIndex() < pStartNodeIdx->GetIndex() )
@@ -285,7 +218,7 @@ public:
 /*N*/               if( pFmt )
 /*N*/               {
 /*N*/ #ifdef TEST_FMTCHACHE
-/*N*/                   ASSERT( FindNamedFmt( nIdx, cKind ) == pFmt,
+/*N*/                   OSL_ENSURE( FindNamedFmt( nIdx, cKind ) == pFmt,
 /*N*/                           "Format-Cache liefert falsches Ergebnis" );
 /*N*/ #endif
 /*N*/                   return pFmt;
@@ -295,7 +228,7 @@ public:
 /*N*/
 /*N*/           pFmt = FindNamedFmt( nIdx, cKind );
 /*N*/   }
-/*N*/   ASSERT( pFmt, "Format-ID unbekannt" );
+/*N*/   OSL_ENSURE( pFmt, "Format-ID unbekannt" );
 /*N*/   return pFmt;
 /*N*/ }
 
@@ -367,7 +300,7 @@ public:
 /*?*/               return pFmt;
 /*?*/       }
 /*?*/   }
-/*?*/   ASSERT( !this, "Benanntes Format nicht gefunden" );
+/*?*/   OSL_ENSURE( !this, "Benanntes Format nicht gefunden" );
 /*?*/ // Falls ueber den Organizer, die Styles veraendert wurden, kein Fehler
 /*?*/ // melden, sonder auf Standard zurueck fallen
 /*?*/ // Error();
@@ -409,7 +342,7 @@ public:
 /*?*/       // und der hat vielleicht eine unbekannte Absatzvorlage
 /*?*/       if( bPageDescs && !bTxtColls )
 /*?*/           return pDoc->GetTxtCollFromPool( RES_POOLCOLL_STANDARD );
-/*?*/       ASSERT( !this, "TextColl nicht gefunden" );
+/*?*/       OSL_ENSURE( !this, "TextColl nicht gefunden" );
 /*?*/
 /*?*/ // Falls ueber den Organizer, die Styles veraendert wurden, kein Fehler
 /*?*/ // melden, sonder auf Standard zurueck fallen
@@ -441,7 +374,7 @@ public:
 /*?*/           if( p )
 /*?*/               return p;
 /*?*/       }
-/*?*/       ASSERT( !this, "PageDesc nicht gefunden" );
+/*?*/       OSL_ENSURE( !this, "PageDesc nicht gefunden" );
 /*?*/ // Falls ueber den Organizer, die Styles veraendert wurden, kein Fehler
 /*?*/ // melden, sonder auf Standard zurueck fallen
 /*?*/ //     Error();
@@ -482,7 +415,7 @@ void Sw3IoImp::InMacroTbl()
 /*N*/   if( !pMac )
 /*N*/       return;
 /*N*/
-/*?*/   ASSERT( SOFFICE_FILEFORMAT_31 == pStrm->GetVersion() ||
+/*?*/   OSL_ENSURE( SOFFICE_FILEFORMAT_31 == pStrm->GetVersion() ||
 /*?*/           SOFFICE_FILEFORMAT_40 == pStrm->GetVersion() ||
 /*?*/           SOFFICE_FILEFORMAT_50 == pStrm->GetVersion(),
 /*?*/           "Macro-Table: Gibt es ein neues Fileformat?" );
@@ -533,7 +466,7 @@ void Sw3IoImp::InMacroTbl()
 /*N*/   CloseFlagRec();
 /*N*/
 /*N*/   //JP 13.10.95: laut Changes-Mail von MI
-/*N*/   static sal_uInt16 __READONLY_DATA nRange[] =
+/*N*/   static sal_uInt16 const nRange[] =
 /*N*/                   {
 /*N*/                       FN_PARAM_ADDPRINTER, FN_PARAM_ADDPRINTER,
 /*N*/                       SID_HTML_MODE,  SID_HTML_MODE,
@@ -696,12 +629,6 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/               continue;
 /*N*/
 /*N*/           const SwPosition& rPos1 = pMark->GetPos();
-/*N*/           const SwPosition* pPos2 = pMark->GetOtherPos();
-/*N*/           if( rPos1.nContent.GetIndex() > STRING_MAXLEN52 &&
-/*N*/               ( !pPos2 ||
-/*N*/                 (rPos1.nNode.GetIndex() == pPos2->nNode.GetIndex() &&
-/*N*/                  pPos2->nContent.GetIndex() > STRING_MAXLEN52) ) )
-/*N*/               continue;
 /*N*/
 /*N*/           if( pDoc->IsInHeaderFooter( rPos1.nNode ) )
 /*N*/           {
@@ -723,7 +650,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/               for( sal_uInt16 n = 0; n < nArrLen; ++n )
 /*N*/               {
 /*N*/                   const SwBookmark* pMark = pBookmarks->GetObject( n );
-/*N*/                   ASSERT( pMark->IsBookMark(),
+/*N*/                   OSL_ENSURE( pMark->IsBookMark(),
 /*N*/                           "Wo kommt da die Nicht text::Bookmark her?" );
 /*N*/
 /*N*/                   if( !IsSw31Export() && n >= nCntntBkmkStart )
@@ -732,7 +659,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/                       aMark.SetId( n );
 /*N*/                   const SwPosition* pPos1 = &pMark->GetPos();
 /*N*/                   const SwPosition* pPos2 = pMark->GetOtherPos();
-/*N*/                   ASSERT( pPos1->nNode.GetNode().IsTxtNode(),
+/*N*/                   OSL_ENSURE( pPos1->nNode.GetNode().IsTxtNode(),
 /*N*/                            "Bookmark position outside text node" );
 /*N*/                   aMark.SetNodePos( pPos1->nNode.GetIndex() );
 /*N*/                   if( aMark.GetNodePos() < nEndOfIcons ||
@@ -744,7 +671,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/                   }
 /*N*/                   if( pPos2 )
 /*N*/                   {
-/*?*/                       ASSERT( pPos2->nNode.GetNode().IsTxtNode(),
+/*?*/                       OSL_ENSURE( pPos2->nNode.GetNode().IsTxtNode(),
 /*?*/                               "Other bookmark position outside text node" );
 /*?*/                       aMark.SetNodePos( pPos2->nNode.GetIndex() );
 /*?*/                       if( aMark.GetNodePos() < nEndOfIcons ||
@@ -762,7 +689,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/               for( sal_uInt16 n = 0; n < nArrLen; ++n )
 /*?*/               {
 /*?*/                   const SwBookmark* pMark = pBookmarks->GetObject( n );
-/*?*/                   ASSERT( pMark->IsBookMark(),
+/*?*/                   OSL_ENSURE( pMark->IsBookMark(),
 /*?*/                           "Wo kommt da die Nicht Bookmark her?" );
 /*?*/
 /*?*/                   if( !IsSw31Export() && n >= nCntntBkmkStart )
@@ -771,7 +698,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/                       aMark.SetId( n );
 /*?*/
 /*?*/                   const SwPosition* pPos = &pMark->GetPos();
-/*?*/                   ASSERT( pPos->nNode.GetNode().IsTxtNode(),
+/*?*/                   OSL_ENSURE( pPos->nNode.GetNode().IsTxtNode(),
 /*?*/                            "Bookmark position outside text node" );
 /*?*/
 /*?*/                   aMark.SetNodePos( pPos->nNode.GetIndex() );
@@ -782,7 +709,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/                   pPos = pMark->GetOtherPos();
 /*?*/                   if( pPos )
 /*?*/                   {
-/*?*/                       ASSERT( pPos->nNode.GetNode().IsTxtNode(),
+/*?*/                       OSL_ENSURE( pPos->nNode.GetNode().IsTxtNode(),
 /*?*/                               "Other bookmark position outside text node" );
 /*?*/                       aMark.SetNodePos( pPos->nNode.GetIndex() );
 /*?*/                       aMark.SetNodeOff( pPos->nContent.GetIndex() );
@@ -871,7 +798,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/   // Ist was da?
 /*N*/   if( !pBookmarks->Count() )
 /*N*/       delete pBookmarks, pBookmarks = NULL;
-/*N*/   ASSERT( !pMarks || pMarks->Count(),
+/*N*/   OSL_ENSURE( !pMarks || pMarks->Count(),
 /*N*/           "Marks-Array haette nicht angelegt werden muessen" );
 /*N*/   if( pMarks && !pMarks->Count() )
 /*?*/       delete pMarks, pMarks = NULL;
@@ -890,7 +817,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/   SwIndex aOff( rPos.GetNode().GetCntntNode(), nCntntOff + nOff );
 /*N*/   if( cType < SW3_BOOK_POINT )
 /*N*/   {
-/*N*/       ASSERT( pTOXs && nId < pTOXs->Count(), "invalid TOX id" );
+/*N*/       OSL_ENSURE( pTOXs && nId < pTOXs->Count(), "invalid TOX id" );
 /*N*/       if( pTOXs && nId < pTOXs->Count() )
 /*N*/           pTOXs->GetObject( nId )->SetNodeIdx( rPos );
 /*N*/   }
@@ -899,7 +826,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       SwBookmark* pBook = 0;
 /*N*/       if( pBookmarks && nId < pBookmarks->Count() )
 /*N*/           pBook = pBookmarks->GetObject( nId );
-/*N*/       ASSERT( pBook, "Ungueltige text::Bookmark-ID" );
+/*N*/       OSL_ENSURE( pBook, "Ungueltige text::Bookmark-ID" );
 /*N*/
 /*N*/       if( pBook )
 /*N*/       {
@@ -954,8 +881,6 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/           {
 /*N*/               OpenRec( SWG_MARK );
 /*N*/               xub_StrLen nOffs = pMark->GetNodeOff();
-/*N*/               if( nOffs > STRING_MAXLEN52 )
-/*N*/                   nOffs = STRING_MAXLEN52;
 /*N*/               *pStrm << (sal_uInt8) pMark->GetType()
 /*N*/                      << (sal_uInt16) pMark->GetId()
 /*N*/                      << (sal_uInt16) nOffs;
@@ -979,8 +904,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 
 /*N*/ void Sw3IoImp::InBookmarks()
 /*N*/ {
-/*N*/   ASSERT( !pBookmarks || IsVersion(SWG_SVXMACROS),
-/*N*/           "Frueher standen text::Bookmarks doch nur in einem Stream???" )
+/*N*/   OSL_ENSURE( !pBookmarks || IsVersion(SWG_SVXMACROS),
+/*N*/           "Frueher standen text::Bookmarks doch nur in einem Stream???" );
 /*N*/   if( pBookmarks )
 /*N*/   {
 /*?*/       delete pBookmarks;
@@ -1048,18 +973,18 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 
 /*N*/ void Sw3IoImp::OutBookmarks( sal_Bool bPageStyles )
 /*N*/ {
-/*N*/   ASSERT( bPageStyles || !IsSw31Export(),
+/*N*/   OSL_ENSURE( bPageStyles || !IsSw31Export(),
 /*N*/           "Beim 3.1-Export kommen keine text::Bookmarks in den Contents-Stream" );
 /*N*/
 /*N*/   short nArrLen = pBookmarks ? pBookmarks->Count() : 0;
 /*N*/   if( nArrLen && bPageStyles && !IsSw31Export() )
 /*N*/   {
-/*N*/       ASSERT( nCntntBkmkStart <= nArrLen,
+/*N*/       OSL_ENSURE( nCntntBkmkStart <= nArrLen,
 /*N*/               "Mehr text::Bookmarks in Page-Styles als ueberhaupt vorhanden?" );
 /*N*/       nArrLen = nCntntBkmkStart;
 /*N*/       nCntntBkmkStart = 0;
 /*N*/   }
-/*N*/   ASSERT( IsSw31Export() || nCntntBkmkStart==0,
+/*N*/   OSL_ENSURE( IsSw31Export() || nCntntBkmkStart==0,
 /*N*/           "Wieso sind da noch text::Bookmarks aus Seitenvorlagen?" );
 /*N*/
 /*N*/   if( nArrLen )
@@ -1068,8 +993,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       for( int i = 0; i < nArrLen; i++ )
 /*N*/       {
 /*N*/           SwBookmark& rMark = (SwBookmark&) *(*pBookmarks)[i];
-/*N*/           ASSERT( rMark.IsBookMark(),
-/*N*/                   "Wo kommt da die Nicht text::Bookmark her?" )
+/*N*/           OSL_ENSURE( rMark.IsBookMark(),
+/*N*/                   "Wo kommt da die Nicht text::Bookmark her?" );
 /*N*/
 /*N*/           const SvxMacro& rStt = rMark.GetStartMacro();
 /*N*/           const SvxMacro& rEnd = rMark.GetEndMacro();
@@ -1108,9 +1033,9 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/   {
 /*N*/       OpenRec( SWG_TOXDESC );
 /*N*/       String aTypeName, aTitle;
-/*N*/       sal_uInt16 nStrIdx = IDX_NO_VALUE;
+/*N*/       sal_uInt16 nStrIdx0 = IDX_NO_VALUE;
 /*N*/       if( IsVersion( SWG_LONGIDX ) )
-/*N*/           *pStrm >> nStrIdx;
+/*N*/           *pStrm >> nStrIdx0;
 /*N*/       else
 /*N*/           InString( *pStrm, aTypeName );
 /*N*/
@@ -1131,8 +1056,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       // Wenn keine Name da ist, dann handelt es sich um
 /*N*/       // das Standard-Verzeichnis des entsprechenden Typs. Der
 /*N*/       // (internationalisierte) Name wird dann gesetzt.
-/*N*/       if( IDX_NO_VALUE != nStrIdx )
-/*?*/           aTypeName = aStringPool.Find( nStrIdx );
+/*N*/       if( IDX_NO_VALUE != nStrIdx0 )
+/*?*/           aTypeName = aStringPool.Find( nStrIdx0 );
 /*N*/       else if( !aTypeName.Len() )
 /*N*/           aTypeName = SwTOXBase::GetTOXName( eTOXType );
 /*N*/
@@ -1188,11 +1113,11 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/       *pStrm >> nTmpl;
 /*N*/       for( i = 0; Good() && i < nTmpl; i++ )
 /*N*/       {
-/*N*/           sal_uInt16 nStrIdx;
-/*N*/           *pStrm >> nStrIdx;
+/*N*/           sal_uInt16 nStrIdx1;
+/*N*/           *pStrm >> nStrIdx1;
 /*N*/           if( i < aForm.GetFormMax() )
 /*N*/           {
-/*N*/               String sNm( aStringPool.Find( nStrIdx ) );
+/*N*/               String sNm( aStringPool.Find( nStrIdx1 ) );
 /*N*/               if( !sNm.Len() )
 /*N*/               {
 /*N*/                   // Bug 37672: falls keiner gefunden wird, nehme
@@ -1450,7 +1375,7 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*N*/           case TOX_OBJECTS:
 /*N*/           case TOX_TABLES:
 /*N*/               {
-/*N*/                   sal_uInt16 nPoolId;
+/*N*/                   sal_uInt16 nPoolId(0);
 /*N*/                   switch( pType->GetType() )
 /*N*/                   {
 /*?*/                   case TOX_ILLUSTRATIONS:
@@ -1462,6 +1387,8 @@ extern sal_Bool lcl_sw3io_isTOXHeaderSection( const SwStartNode& rSttNd );
 /*?*/                   case TOX_TABLES:
 /*?*/                       nPoolId = RES_POOLCOLL_LABEL_TABLE;
 /*?*/                       break;
+                        default:
+                            break;
 /*N*/                   }
 /*N*/                   String aName;
 /*N*/                   SwStyleNameMapper::FillUIName( nPoolId, aName );
@@ -1510,23 +1437,23 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/
 /*N*/       sal_uInt8 cFlags = OpenFlagRec();
 /*N*/
-/*N*/       sal_uInt16 nType, nCreateType, nCaptionDisplay, nStrIdx, nSeqStrIdx, nData;
+/*N*/       sal_uInt16 nType0, nCreateType, nCaptionDisplay, nStrIdx0, nSeqStrIdx, nData;
 /*N*/       sal_uInt16 nOLEOptions = 0;
 /*N*/       sal_uInt8 cFormFlags;
 /*N*/
-/*N*/       String aTitle, aName, aDummy;
+/*N*/       String aTitle, aName0, aDummy;
 /*N*/
-/*N*/       *pStrm  >> nType
+/*N*/       *pStrm  >> nType0
 /*N*/               >> nCreateType
 /*N*/               >> nCaptionDisplay
-/*N*/               >> nStrIdx
+/*N*/               >> nStrIdx0
 /*N*/               >> nSeqStrIdx
 /*N*/               >> nData
 /*N*/               >> cFormFlags;
 /*N*/       CloseFlagRec();
 /*N*/
 /*N*/       sal_uInt16 nMainStyleIdx = IDX_NO_VALUE;
-/*N*/       InString( *pStrm, aName );
+/*N*/       InString( *pStrm, aName0 );
 /*N*/       InString( *pStrm, aTitle );
 /*N*/       if( nVersion < SWG_NEWTOX2 )
 /*N*/           InString( *pStrm, aDummy );     // was AutoMarkURL
@@ -1536,10 +1463,10 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/                   >> nMainStyleIdx;
 /*N*/       }
 /*N*/
-/*N*/       TOXTypes eTOXType = (TOXTypes)nType;
+/*N*/       TOXTypes eTOXType = (TOXTypes)nType0;
 /*N*/       String aTypeName;
-/*N*/       if( IDX_NO_VALUE != nStrIdx )
-/*?*/           aTypeName = aStringPool.Find( nStrIdx );
+/*N*/       if( IDX_NO_VALUE != nStrIdx0 )
+/*?*/           aTypeName = aStringPool.Find( nStrIdx0 );
 /*N*/       else
 /*N*/           aTypeName = SwTOXBase::GetTOXName( eTOXType );
 /*N*/
@@ -1592,24 +1519,24 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/               {
 /*N*/                   OpenRec( SWG_FORMTOKEN_LCL );
 /*N*/
-/*N*/                   sal_uInt16 nType, nStrIdx;
+/*N*/                   sal_uInt16 nType1, nStrIdx1;
 /*N*/
 /*N*/                   OpenFlagRec();
-/*N*/                   *pStrm  >> nType
-/*N*/                           >> nStrIdx;
+/*N*/                   *pStrm  >> nType1
+/*N*/                           >> nStrIdx1;
 /*N*/                   CloseFlagRec();
 /*N*/
-/*N*/                   if( nType < TOKEN_END )
+/*N*/                   if( nType1 < TOKEN_END )
 /*N*/                   {
 /*N*/                         //#92986# some older versions created a
 /*N*/                         //wrong content index entry definition
-/*N*/                         if(TOKEN_ENTRY == nType && eTOXType == TOX_CONTENT)
-/*N*/                             nType = TOKEN_ENTRY_TEXT;
-/*N*/                         SwFormToken aToken( (FormTokenType)nType );
-/*N*/                       if( IDX_NO_VALUE != nStrIdx )
+/*N*/                         if(TOKEN_ENTRY == nType1 && eTOXType == TOX_CONTENT)
+/*N*/                             nType1 = TOKEN_ENTRY_TEXT;
+/*N*/                         SwFormToken aToken( (FormTokenType)nType1 );
+/*N*/                       if( IDX_NO_VALUE != nStrIdx1 )
 /*N*/                       {
-/*?*/                           aToken.sCharStyleName = aStringPool.Find( nStrIdx );
-/*?*/                           aToken.nPoolId = aStringPool.FindPoolId( nStrIdx );
+/*?*/                           aToken.sCharStyleName = aStringPool.Find( nStrIdx1 );
+/*?*/                           aToken.nPoolId = aStringPool.FindPoolId( nStrIdx1 );
 /*N*/                       }
 /*N*/                       switch( aToken.eTokenType )
 /*N*/                       {
@@ -1648,6 +1575,8 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*?*/                               aToken.nAuthorityField = nAuthorityField;
 /*?*/                           }
 /*?*/                           break;
+                            default:
+                                break;
 /*N*/                       }
 /*N*/
 /*N*/                       aPattern += aToken.GetString();
@@ -1670,12 +1599,12 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/       *pStrm >> nTemplates;
 /*N*/       for( i = 0; Good() && i < nTemplates; i++ )
 /*N*/       {
-/*N*/           sal_uInt16 nStrIdx;
-/*N*/           *pStrm >> nStrIdx;
+/*N*/           sal_uInt16 nStrIdx2;
+/*N*/           *pStrm >> nStrIdx2;
 /*N*/           if( i < aForm.GetFormMax() )
 /*N*/           {
-/*N*/               String sNm( aStringPool.Find( nStrIdx ) );
-/*N*/               ASSERT( sNm.Len(), "Template name not found" );
+/*N*/               String sNm( aStringPool.Find( nStrIdx2 ) );
+/*N*/               OSL_ENSURE( sNm.Len(), "Template name not found" );
 /*N*/               if( !sNm.Len() )
 /*N*/               {
 /*N*/                   // #37672#: if the style has not been found, use the default
@@ -1732,7 +1661,7 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/
 /*N*/       Sw3TOXBase *pTOX = new Sw3TOXBase( pTOXType, aForm, nCreateType,
 /*N*/                                          aTitle );
-/*N*/       pTOX->SetTOXName( aName );
+/*N*/       pTOX->SetTOXName( aName0 );
 /*N*/       pTOX->SetCaptionDisplay( (SwCaptionDisplay)nCaptionDisplay );
 /*N*/       pTOX->SetOLEOptions( nOLEOptions );
 /*N*/
@@ -1770,15 +1699,15 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*?*/           String aStyleNames;
 /*?*/           for( sal_uInt16 j=0; j<nCount; j++ )
 /*?*/           {
-/*?*/               String aName;
-/*?*/               *pStrm >> nStrIdx;
-/*?*/               if( IDX_NO_VALUE != nStrIdx )
+/*?*/               String aName1;
+/*?*/               *pStrm >> nStrIdx0;
+/*?*/               if( IDX_NO_VALUE != nStrIdx0 )
 /*?*/               {
-/*?*/                   aName = aStringPool.Find( nStrIdx );
+/*?*/                   aName1 = aStringPool.Find( nStrIdx0 );
 /*?*/
 /*?*/                   if( aStyleNames.Len() )
 /*?*/                       aStyleNames += TOX_STYLE_DELIMITER;
-/*?*/                   aStyleNames += aName;
+/*?*/                   aStyleNames += aName1;
 /*?*/               }
 /*?*/           }
 /*?*/           if( nLevel < aForm.GetFormMax() )
@@ -1790,9 +1719,9 @@ extern void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, sal_uInt16 nStrId,
 /*N*/       // #37672#: every user index must have a style name.
 /*N*/       if( TOX_USER == eTOXType && !pTOX->GetStyleNames(0).Len() )
 /*N*/       {
-/*N*/           String aName = *SwStyleNameMapper::GetExtraUINameArray()[ RES_POOLCOLL_LABEL_ABB
+/*N*/           String aName2 = *SwStyleNameMapper::GetExtraUINameArray()[ RES_POOLCOLL_LABEL_ABB
 /*N*/                                           - RES_POOLCOLL_EXTRA_BEGIN ];
-/*?*/           pTOX->SetStyleNames( aName, 0 );
+/*?*/           pTOX->SetStyleNames( aName2, 0 );
 /*N*/       }
 /*N*/
 /*N*/       cFlags = OpenFlagRec();
@@ -1890,12 +1819,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       {
 /*?*/           SwFieldType *pFldType =
 /*?*/               pDoc->GetFldType( RES_SETEXPFLD, rSequenceName );
-/*?*/           ASSERT( pFldType, "sequence field type not found" );
+/*?*/           OSL_ENSURE( pFldType, "sequence field type not found" );
 /*?*/           if( pFldType )
 /*?*/           {
 /*?*/               sal_uInt16 nPoolId = lcl_sw3io_GetSetExpFieldPoolId(rSequenceName);
 /*?*/               nSeqStrIdx = aStringPool.Find( rSequenceName, nPoolId );
-/*?*/               ASSERT( IDX_NO_VALUE != nSeqStrIdx,
+/*?*/               OSL_ENSURE( IDX_NO_VALUE != nSeqStrIdx,
 /*?*/                       "no string pool entry found for sequence field" );
 /*?*/           }
 /*N*/       }
@@ -1903,7 +1832,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       // If it is one of the predefined indexes, its name isn't exported.
 /*N*/       // This way, the index is found in foreign version, too.
 /*N*/       const String& rTypeName = pType->GetTypeName();
-/*N*/       sal_uInt16 nStrIdx = rTypeName != SwTOXBase::GetTOXName(eType)
+/*N*/       sal_uInt16 nStrIdx0 = rTypeName != SwTOXBase::GetTOXName(eType)
 /*N*/               ? aStringPool.Find( rTypeName, USHRT_MAX )
 /*N*/               : IDX_NO_VALUE;
 /*N*/
@@ -1918,7 +1847,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/               << (sal_uInt16)  eType
 /*N*/               << (sal_uInt16)  pTOXBaseSect->GetCreateType()
 /*N*/               << (sal_uInt16)  pTOXBaseSect->GetCaptionDisplay()
-/*N*/               << nStrIdx
+/*N*/               << nStrIdx0
 /*N*/               << nSeqStrIdx
 /*N*/               << nData
 /*N*/               << cFormFlags;
@@ -1966,13 +1895,13 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/                   SwFormToken aToken( aEnum.GetNextToken() );
 /*N*/
 /*N*/                   OpenRec( SWG_FORMTOKEN_LCL );
-/*N*/                   sal_uInt16 nStrIdx = IDX_NO_VALUE;
+/*N*/                   sal_uInt16 nStrIdx1 = IDX_NO_VALUE;
 /*N*/                   if( aToken.sCharStyleName.Len() )
-/*N*/                       nStrIdx = aStringPool.Find( aToken.sCharStyleName,
+/*N*/                       nStrIdx1 = aStringPool.Find( aToken.sCharStyleName,
 /*N*/                                                   aToken.nPoolId );
 /*N*/                   *pStrm  << (sal_uInt8)0x04
 /*N*/                           << (sal_uInt16)aToken.eTokenType
-/*N*/                           << nStrIdx;
+/*N*/                           << nStrIdx1;
 /*N*/                   switch( aToken.eTokenType )
 /*N*/                   {
 /*N*/                   case TOKEN_TAB_STOP:
@@ -1989,6 +1918,8 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/                   case TOKEN_AUTHORITY:
 /*?*/                       *pStrm  << (sal_uInt16)aToken.nAuthorityField;
 /*?*/                       break;
+                        default:
+                            break;
 /*N*/                   }
 /*N*/
 /*N*/                   CloseRec( SWG_FORMTOKEN_LCL );
@@ -2051,8 +1982,8 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/               {
 /*?*/                   String aName =
 /*?*/                       rStyleNames.GetToken( 0, TOX_STYLE_DELIMITER, nStrPos );
-/*?*/                   ASSERT( aName.Len(), "empty style name" );
-/*?*/                   sal_uInt16 nStrIdx = IDX_NO_VALUE;
+/*?*/                   OSL_ENSURE( aName.Len(), "empty style name" );
+/*?*/                   sal_uInt16 nStrIdx2 = IDX_NO_VALUE;
 /*?*/                   if( aName.Len() )
 /*?*/                   {
 /*?*/                       const SwTxtFmtColl *pColl =
@@ -2060,10 +1991,10 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/                       sal_uInt16 nPoolId = pColl
 /*?*/                           ? pColl->GetPoolFmtId()
 /*?*/                           : SwStyleNameMapper::GetPoolIdFromUIName( aName, GET_POOLID_TXTCOLL );
-/*?*/                       nStrIdx = aStringPool.Find( aName, nPoolId );
+/*?*/                       nStrIdx2 = aStringPool.Find( aName, nPoolId );
 /*?*/                   }
 /*?*/
-/*N*/                   *pStrm  << nStrIdx;
+/*N*/                   *pStrm  << nStrIdx2;
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -2112,12 +2043,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           // #67763# If, for some reason, a TOX's point or mark have not been
 /*N*/           // read, the TOX has to be skipped.
 /*N*/           Sw3TOXBase *pTOX = (*pTOXs)[i];
-/*N*/           ASSERT( pTOX->GetStartNodeIdx() && pTOX->GetEndNodeIdx(),
+/*N*/           OSL_ENSURE( pTOX->GetStartNodeIdx() && pTOX->GetEndNodeIdx(),
 /*N*/                   "missing TOX index" );
 /*N*/           if( !(pTOX->GetStartNodeIdx() && pTOX->GetEndNodeIdx()) )
 /*N*/               continue;
 /*N*/
-/*N*/           ASSERT( pTOX->GetStartNodeIdx()->GetIndex() <=
+/*N*/           OSL_ENSURE( pTOX->GetStartNodeIdx()->GetIndex() <=
 /*N*/                   pTOX->GetEndNodeIdx()->GetIndex(),
 /*N*/                   "wrong TOX index order" );
 /*N*/           if( pTOX->GetStartNodeIdx()->GetIndex() >
@@ -2130,7 +2061,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           if( pTOX->GetStartNodeIdx()->GetNode().FindStartNode() !=
 /*N*/               pTOX->GetEndNodeIdx()->GetNode().FindStartNode() )
 /*N*/           {
-/*N*/               ASSERT( !this, "TOX indices are not within the same section" );
+/*N*/               OSL_ENSURE( !this, "TOX indices are not within the same section" );
 /*N*/               continue;
 /*N*/           }
 /*N*/
@@ -2151,13 +2082,13 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           sal_uInt32 nEndNdIdx = pTOX->GetEndNodeIdx()->GetIndex();
 /*N*/           const SwTOXBaseSection *pSect =
 /*N*/               pDoc->InsertTableOf( nStartNdIdx, nEndNdIdx, *pTOX );
-/*N*/           ASSERT( pSect, "insertion of TOX failed" );
+/*N*/           OSL_ENSURE( pSect, "insertion of TOX failed" );
 /*N*/           if( !pSect )
 /*N*/               continue;
 /*N*/
-/*N*/           ASSERT( pSect->GetName() == pTOX->GetTOXName(),
+/*N*/           OSL_ENSURE( pSect->GetName() == pTOX->GetTOXName(),
 /*N*/                   "tox has wrong name" );
-/*N*/           ASSERT( pSect->GetFmt()->GetSectionNode()->GetIndex() ==
+/*N*/           OSL_ENSURE( pSect->GetFmt()->GetSectionNode()->GetIndex() ==
 /*N*/                   nStartNdIdx,
 /*N*/                   "unexpected tox section start position" );
 /*N*/
@@ -2175,12 +2106,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/               // If the format has been cached already, the cache entry has
 /*N*/               // to be replaced, too.
 /*N*/               sal_uInt16 nStrIdx = pTOX->GetSectFmtStrIdx();
-/*N*/               ASSERT( IDX_NO_VALUE != nStrIdx, "string pool index missing" );
+/*N*/               OSL_ENSURE( IDX_NO_VALUE != nStrIdx, "string pool index missing" );
 /*N*/               if( IDX_NO_VALUE != nStrIdx )
 /*N*/               {
 /*N*/ #ifdef DBG_UTIL
 /*N*/                   SwFmt *pTmp = aStringPool.FindCachedFmt( nStrIdx );
-/*N*/                   ASSERT( !pTmp || pTmp == (SwFmt *)pTOXSectFmt,
+/*N*/                   OSL_ENSURE( !pTmp || pTmp == (SwFmt *)pTOXSectFmt,
 /*N*/                           "wrong format cached?" );
 /*N*/
 /*N*/ #endif
@@ -2193,17 +2124,17 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/           }
 /*N*/
 /*N*/           sal_uInt32 nTitleLen = pTOX->GetTitleLen();
-/*N*/           ASSERT( !nTitleLen || pTOX->GetTitleSectFmt(),
+/*N*/           OSL_ENSURE( !nTitleLen || pTOX->GetTitleSectFmt(),
 /*N*/                   "missing tox title section format" );
 /*N*/           if( nTitleLen > 0 && pTOX->GetTitleSectFmt() )
 /*N*/           {
 /*N*/               SwNodeIndex aEndNdIdx( *pTOX->GetStartNodeIdx(), nTitleLen-1 );
 /*N*/
-/*N*/               ASSERT( pTOX->GetStartNodeIdx()->GetNode().IsCntntNode(),
+/*N*/               OSL_ENSURE( pTOX->GetStartNodeIdx()->GetNode().IsCntntNode(),
 /*N*/                       "tox title section start is not a content node" );
-/*N*/               ASSERT( aEndNdIdx.GetNode().IsCntntNode(),
+/*N*/               OSL_ENSURE( aEndNdIdx.GetNode().IsCntntNode(),
 /*N*/                       "tox title section end is not a content node" );
-/*N*/               ASSERT( pTOX->GetStartNodeIdx()->GetIndex() <=
+/*N*/               OSL_ENSURE( pTOX->GetStartNodeIdx()->GetIndex() <=
 /*N*/                       aEndNdIdx.GetIndex(),
 /*N*/                       "invalid TOX title section end" );
 /*N*/
@@ -2251,15 +2182,15 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/ {
 /*N*/   ByteString sStr8;
 /*N*/   String  sStr, sSQL;
-/*N*/   SwDBData aData;
+/*N*/   SwDBData aData3;
 /*N*/   OpenRec( SWG_DBNAME );
 /*N*/
 /*N*/   // MIB 9.4.97: Die Datenbanknamen koennen 0xff enthalten und muessen
 /*N*/   // deshalb von Hand konvertiert werden.
 /*N*/   pStrm->ReadByteString( sStr8 );
 /*N*/   sStr = ConvertStringNoDbDelim( sStr8,  eSrcSet );
-/*N*/   aData.sDataSource = sStr.GetToken(0, DB_DELIM);
-/*N*/   aData.sCommand = sStr.GetToken(1, DB_DELIM);
+/*N*/   aData3.sDataSource = sStr.GetToken(0, DB_DELIM);
+/*N*/   aData3.sCommand = sStr.GetToken(1, DB_DELIM);
 /*N*/
 /*N*/   if( IsVersion( SWG_NONUMLEVEL, SWG_DESKTOP40 ) )
 /*N*/   {
@@ -2282,7 +2213,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*?*/       }
 /*?*/       else if( nVersion >= SWG_DBTABLE )
 /*?*/       {
-/*?*/           aData.sCommand = aTableName;
+/*?*/           aData3.sCommand = aTableName;
 /*?*/       }
 /*N*/
 /*N*/   }
@@ -2298,8 +2229,8 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   {
 /*N*/       if( sSQL.Len() && nVersion >= SWG_DBTABLE )
 /*N*/       {
-/*?*/           aData.sCommand = sSQL;
-/*?*/           aData.nCommandType = sdb::CommandType::COMMAND;
+/*?*/           aData3.sCommand = sSQL;
+/*?*/           aData3.nCommandType = sdb::CommandType::COMMAND;
 /*N*/       }
 /*N*/
 /*N*/       sal_uInt16 nCount;
@@ -2319,22 +2250,22 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/                      >> nSelEnd;
 /*N*/               sDBName = ConvertStringNoDbDelim( sStr8, eSrcSet );
 /*N*/
-/*N*/                 SwDBData aData;
-/*N*/                 aData.sDataSource = sDBName.GetToken(0, DB_DELIM);
-/*N*/                 aData.sCommand = sDBName.GetToken(1, DB_DELIM);
-/*N*/                 aData.nCommandType = -1;
-/*N*/                 rDBMgr.AddDSData(aData, nSelStart, nSelEnd );
+/*N*/                 SwDBData aData4;
+/*N*/                 aData4.sDataSource = sDBName.GetToken(0, DB_DELIM);
+/*N*/                 aData4.sCommand = sDBName.GetToken(1, DB_DELIM);
+/*N*/                 aData4.nCommandType = -1;
+/*N*/                 rDBMgr.AddDSData(aData4, nSelStart, nSelEnd );
 /*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       // sonst zumindest irgendeinen Namen setzen
-/*N*/       aData = pDoc->GetNewDBMgr()->GetAddressDBName();
+/*N*/       aData3 = pDoc->GetNewDBMgr()->GetAddressDBName();
 /*N*/   }
 /*N*/
 /*N*/   CloseRec( SWG_DBNAME );
-/*N*/   pDoc->ChgDBData( aData );
+/*N*/   pDoc->ChgDBData( aData3 );
 /*N*/ }
 
 /*N*/ void Sw3IoImp::OutDBName()
@@ -2375,12 +2306,12 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   {
 /*N*/       // Die Datenbank-Beschreibung koennen wir im 4.0 FF auf einen Schlag
 /*N*/       // rausschreiben
-/*N*/       SwDBData aData = pDoc->_GetDBDesc();
-/*N*/       String sTmpDBName = aData.sDataSource;
+/*N*/       SwDBData aData1 = pDoc->_GetDBDesc();
+/*N*/       String sTmpDBName = aData1.sDataSource;
 /*N*/       sTmpDBName += DB_DELIM;
-/*N*/       sTmpDBName += (String)aData.sCommand;
-/*N*/       ByteString s8 = ConvertStringNoDbDelim( sTmpDBName, eSrcSet );
-/*N*/       pStrm->WriteByteString( s8 );
+/*N*/       sTmpDBName += (String)aData1.sCommand;
+/*N*/       ByteString s8a = ConvertStringNoDbDelim( sTmpDBName, eSrcSet );
+/*N*/       pStrm->WriteByteString( s8a  );
 /*N*/
 /*N*/       // Datenbankname, SQL-Statement und aktuelle Selektion abspeichern
 /*N*/       long nSelStart, nSelEnd;
@@ -2391,14 +2322,14 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       for (sal_uInt16 i = 0; i < nCount; i++)
 /*N*/       {
 /*N*/           String sDesc(*aDBNameList.GetObject(i));
-/*N*/           ByteString s8 = ConvertStringNoDbDelim( sDesc, eSrcSet );
-/*N*/           pStrm->WriteByteString( s8 );
+/*N*/           ByteString s8b = ConvertStringNoDbDelim( sDesc, eSrcSet );
+/*N*/           pStrm->WriteByteString( s8b );
 /*N*/
-/*N*/             SwDBData aData;
-/*N*/             aData.sDataSource = sDesc.GetToken(0, DB_DELIM);
-/*N*/             aData.sCommand = sDesc.GetToken(1, DB_DELIM);
-/*N*/             aData.nCommandType = -1;
-/*N*/             rDBMgr.GetDSSelection(aData, nSelStart, nSelEnd);
+/*N*/             SwDBData aData2;
+/*N*/             aData2.sDataSource = sDesc.GetToken(0, DB_DELIM);
+/*N*/             aData2.sCommand = sDesc.GetToken(1, DB_DELIM);
+/*N*/             aData2.nCommandType = -1;
+/*N*/             rDBMgr.GetDSSelection(aData2, nSelStart, nSelEnd);
 /*N*/
 /*N*/           *pStrm << (sal_Int32)nSelStart
 /*N*/                  << (sal_Int32)nSelEnd;
@@ -2451,7 +2382,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 
 /*N*/ void Sw3IoImp::OutDocStat( sal_Bool bFirst )
 /*N*/ {
-/*N*/   sal_uInt32 nAktPos;
+/*N*/   sal_uInt32 nAktPos = 0;
 /*N*/   if( bFirst )
 /*N*/   {
 /*N*/       OpenRec( SWG_DOCSTAT );
@@ -2533,7 +2464,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/       }
 /*N*/       if( bFound )
 /*N*/       {
-/*N*/           ASSERT( pChecked, "Sw3IoImp::InDictonary: pChecked == 0" );
+/*N*/           OSL_ENSURE( pChecked, "Sw3IoImp::InDictonary: pChecked == 0" );
 /*N*/           sal_uInt16 nCnt = pDic[--i]->getCount();
 /*N*/           pChecked[ i ] = sal_True;
 /*N*/           if( nCnt != nCount )
@@ -2764,7 +2695,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   // Achtung: Das drittunterste Bit 0x04 wird jetzt benutzt
 /*N*/   // als Flag, ob Absatzabstaende addiert oder maximiert werden
 /*N*/   // 0x20 - makes the same at start of doc an at page starts behind page breaks
-/*N*/   ASSERT( (n3 & 0x03) == 0, "Sw3IoImp::OutDocDummies: byte1 falsch" );
+/*N*/   OSL_ENSURE( (n3 & 0x03) == 0, "Sw3IoImp::OutDocDummies: byte1 falsch" );
 /*N*/   n3 &= 0xfc;
 /*N*/
 /*N*/   // Der Link-Update-Mode muss noch etwas konvertiert werden, damit
@@ -2776,7 +2707,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   case AUTOMATIC:     n3 |= 0x02; break;
 /*N*/   case GLOBALSETTING: n3 |= 0x03; break;
 /*N*/   default:
-/*N*/       ASSERT( !this, "Sw3IoImp::OutDocDummies: Wert von LinkUpdMode unbek." );
+/*N*/       OSL_ENSURE( !this, "Sw3IoImp::OutDocDummies: Wert von LinkUpdMode unbek." );
 /*N*/       break;
 /*N*/   }
 /*N*/
@@ -2789,7 +2720,7 @@ extern sal_uInt16 lcl_sw3io_GetSetExpFieldPoolId( const String& rName );
 /*N*/   case AUTOUPD_FIELD_AND_CHARTS:  n3 |= ( 0x02 << 3); break;
 /*N*/   case AUTOUPD_GLOBALSETTING:     n3 |= ( 0x03 << 3); break;
 /*N*/   default:
-/*N*/       ASSERT( !this, "Sw3IoImp::OutDocDummies: Wert von FieldUpdMode unbek." );
+/*N*/       OSL_ENSURE( !this, "Sw3IoImp::OutDocDummies: Wert von FieldUpdMode unbek." );
 /*N*/       break;
 /*N*/   }
 /*N*/
@@ -2873,3 +2804,5 @@ void Sw3IoImp::InPagePreViewPrintData()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

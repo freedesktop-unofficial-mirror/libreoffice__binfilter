@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,14 +28,8 @@
 
 #include <outl_pch.hxx>
 
-//#include <math.h>
-
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
 
 #define _OUTLINER_CXX
 #include <paralist.hxx>
@@ -43,32 +38,20 @@
 #include <editstat.hxx>
 #include <scripttypeitem.hxx>
 
-#ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
-#endif
 
-#ifndef _SVX_NUMITEM_HXX
 #include <numitem.hxx>
-#endif
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
 
-#ifndef _SVX_BRSHITEM_HXX
 #include <brshitem.hxx>
-#endif
 
 // #101498# calculate if it's RTL or not
 #include <unicode/ubidi.h>
 
-#ifndef _SVX_LRSPITEM_HXX
 #include "lrspitem.hxx"
-#endif
 
-#ifndef _UNDO_HXX
 #include <bf_svtools/undo.hxx>
-#endif
 
 namespace binfilter {
 
@@ -118,8 +101,8 @@ namespace binfilter {
 /*N*/       rnDepth = nMaxDepth;
 /*N*/ }
 
-/*N*/ Paragraph* Outliner::Insert(const XubString& rText, ULONG nAbsPos, USHORT nDepth)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ Paragraph* Outliner::Insert(const XubString&, ULONG, USHORT)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 
@@ -132,7 +115,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( bPasting || pEditEngine->IsInUndo() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Paragraph* pPara = new Paragraph( 0xffff );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -224,7 +207,7 @@ namespace binfilter {
 /*?*/           nCtrl |= EE_CNTRL_OUTLINER;
 /*N*/       }
 /*N*/       break;
-/*N*/       default: DBG_ERROR( "Outliner::Init - Invalid Mode!" );
+/*N*/       default: OSL_FAIL( "Outliner::Init - Invalid Mode!" );
 /*N*/   }
 /*N*/
 /*N*/   pEditEngine->SetControlWord( nCtrl );
@@ -451,7 +434,7 @@ namespace binfilter {
 /*N*/   DBG_ASSERT( pEditEngine->GetParagraphCount()==rPObj.Count(),"SetText failed");
 /*N*/ }
 
-/*N*/ XubString __EXPORT Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
+/*N*/ XubString Outliner::CalcFieldValue( const SvxFieldItem& rField, USHORT nPara, USHORT nPos, Color*& rpTxtColor, Color*& rpFldColor )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   if ( !aCalcFieldValueHdl.IsSet() )
@@ -549,7 +532,6 @@ namespace binfilter {
 /*N*/     DBG_ASSERT( ( nDepth >= nMinDepth ) && ( nDepth <= nMaxDepth ), "ImplInitDepth - Depth is invalid!" );
 /*N*/
 /*N*/   Paragraph* pPara = pParaList->GetParagraph( nPara );
-/*N*/   USHORT nOldDepth = pPara->GetDepth();
 /*N*/   pPara->SetDepth( nDepth );
 /*N*/
 /*N*/   // Bei IsInUndo brauchen Attribute und Style nicht eingestellt werden,
@@ -575,7 +557,7 @@ namespace binfilter {
 /*N*/ #ifndef SVX_LIGHT
 /*N*/       if ( bUndo )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new OutlinerUndoChangeDepth( this, nPara, nOldDepth, nDepth ) );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/ #endif
 /*N*/
@@ -583,7 +565,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void Outliner::SetParaAttribs( ULONG nPara, const SfxItemSet& rSet, bool bApiCall /* = false */ )
+/*N*/ void Outliner::SetParaAttribs( ULONG nPara, const SfxItemSet& rSet, bool /*bApiCall = false */ )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/
@@ -602,7 +584,7 @@ namespace binfilter {
 /*N*/       if( bLRSpaceChanged )
 /*N*/       {
 /*N*/           const SvxNumBulletItem& rNumBullet = (const SvxNumBulletItem&)pEditEngine->GetParaAttrib( (USHORT)nPara, EE_PARA_NUMBULLET );
-/*N*/           Paragraph* pPara = pParaList->GetParagraph( nPara );
+/*N*/           pPara = pParaList->GetParagraph( nPara );
 /*N*/           const USHORT nDepth = pPara->GetDepth();
 /*N*/           if ( rNumBullet.GetNumRule()->GetLevelCount() > nDepth )
 /*N*/           {
@@ -637,7 +619,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/     else
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");//STRIP001 aStdFont = pEditEngine->GetStandardFont( nPara );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   Font aBulletFont;
@@ -679,14 +661,14 @@ namespace binfilter {
 /*N*/   return aBulletFont;
 /*N*/ }
 
-/*N*/ void Outliner::PaintBullet( USHORT nPara, const Point& rStartPos,
-/*N*/   const Point& rOrigin, short nOrientation, OutputDevice* pOutDev )
+/*N*/ void Outliner::PaintBullet( USHORT nPara, const Point& /*rStartPos*/,
+/*N*/   const Point& /*rOrigin*/, short /*nOrientation*/, OutputDevice* /*pOutDev*/ )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/
 /*N*/   if ( ImplHasBullet( nPara ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bVertical = IsVertical();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -925,7 +907,6 @@ namespace binfilter {
 /*?*/           const SfxUInt16Item& rLevel = (const SfxUInt16Item&) pEditEngine->GetParaAttrib( nPara, EE_PARA_OUTLLEVEL );
 /*?*/           if ( pPara->GetDepth() != rLevel.GetValue() )
 /*?*/           {
-/*?*/               USHORT nMin = Min( pPara->GetDepth(), (USHORT)rLevel.GetValue() );
 /*?*/               pPara->SetDepth( rLevel.GetValue() );
 /*?*/               ImplCalcBulletText( nPara, TRUE, TRUE );
 /*?*/           }
@@ -956,7 +937,7 @@ namespace binfilter {
 /*N*/           nBulletWidth = aBulletSize.Width();
 /*N*/
 /*N*/       if ( bAdjust && !bOutlineMode )
-/*N*/       {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*N*/       {{DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/
 /*N*/       // Vertikal:
@@ -1002,7 +983,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/     if ( bReturnPaperPos )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Size aBulletSize( aBulletArea.GetSize() );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/   return aBulletArea;
 /*N*/ }
@@ -1085,28 +1066,28 @@ namespace binfilter {
 /*N*/   return pEditEngine->GetParaAttribs( (USHORT)nPara );
 /*N*/ }
 
-/*N*/ IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, pPara )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK( Outliner, ParaVisibleStateChangedHdl, Paragraph*, EMPTYARG )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, pInfos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK( Outliner, BeginMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, pInfos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK( Outliner, BeginPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, pInfos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK( Outliner, EndPasteOrDropHdl, PasteOrDropInfos*, EMPTYARG )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, pInfos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK( Outliner, EndMovingParagraphsHdl, MoveParagraphsInfo*, EMPTYARG )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     return 0;
 /*N*/ }
 
@@ -1231,8 +1212,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( Outliner, EditEngineNotifyHdl, EENotify*, pNotify )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK( Outliner, EditEngineNotifyHdl, EENotify*, EMPTYARG )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     return 0;
 /*N*/ }
 
@@ -1252,8 +1233,6 @@ namespace binfilter {
 /*?*/       ubidi_setPara(pBidi, reinterpret_cast<const UChar *>(rText.GetBuffer()), rText.Len(), nDefaultDir, NULL, &nError);  // UChar != sal_Unicode in MinGW
 /*?*/         nError = U_ZERO_ERROR;
 /*?*/
-/*?*/         sal_Int32 nCount(ubidi_countRuns(pBidi, &nError));
-/*?*/
 /*?*/         int32_t nStart(0);
 /*?*/         int32_t nEnd;
 /*?*/         UBiDiLevel nCurrDir;
@@ -1270,3 +1249,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

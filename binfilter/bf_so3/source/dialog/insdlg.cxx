@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -123,17 +124,15 @@ void SvObjectServerList::FillInsertObjects()
     Reference< XMultiServiceFactory > _globalMSFactory= utl::getProcessServiceFactory();
     if( _globalMSFactory.is())
     {
-        OUString sProviderService =
-        OUString::createFromAscii( "com.sun.star.configuration.ConfigurationProvider" );
+        OUString sProviderService( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationProvider" ));
         Reference<XMultiServiceFactory > sProviderMSFactory(
             _globalMSFactory->createInstance( sProviderService ),UNO_QUERY );
 
         if( sProviderMSFactory.is())
         {
-            OUString sReaderService =
-                OUString::createFromAscii( "com.sun.star.configuration.ConfigurationAccess" );
+            OUString sReaderService( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationAccess" ));
             Sequence< Any > aArguments( 1 );
-            aArguments[0] <<= OUString::createFromAscii( "org.openoffice.Office.Common");
+            aArguments[0] <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "org.openoffice.Office.Common" ));
 
             Reference< XHierarchicalNameAccess > xHierNameAccess(
                 sProviderMSFactory->createInstanceWithArguments( sReaderService,aArguments ),
@@ -141,21 +140,21 @@ void SvObjectServerList::FillInsertObjects()
 
             if( xHierNameAccess.is())
             {
-                OUString sTagName=  OUString::createFromAscii("OfficeObjects");
+                OUString sTagName( RTL_CONSTASCII_USTRINGPARAM( "OfficeObjects" ));
                 Any _a= xHierNameAccess->getByHierarchicalName(sTagName);
                 Reference<XNameAccess> nameAccess;
                 _a >>= nameAccess;
                 if( nameAccess.is())
                 {
                     Sequence<OUString> seqNames= nameAccess->getElementNames();
-                    OUString sSeparator( OUString::createFromAscii("/"));
+                    OUString sSeparator( OUString( RTL_CONSTASCII_USTRINGPARAM( "/" )));
                     for(int i=0; i<seqNames.getLength(); i++)
                     {
 
                         OUString sComponentName= sTagName + sSeparator + seqNames[i] + sSeparator +
-                            OUString::createFromAscii("Name");
+                            OUString( RTL_CONSTASCII_USTRINGPARAM( "Name" ));
                         OUString sKey= sTagName + sSeparator + seqNames[i] + sSeparator +
-                            OUString::createFromAscii("Key");
+                            OUString( RTL_CONSTASCII_USTRINGPARAM( "Key" ));
                         Any anyName= xHierNameAccess->getByHierarchicalName(sComponentName);
                         Any anyKey= xHierNameAccess->getByHierarchicalName( sKey);
 
@@ -182,7 +181,7 @@ void SvObjectServerList::FillInsertObjects()
     //SvGlobalName aOleFact = *SvOutPlaceObject::ClassFactory();
     //String aOleObj( SoResid( STR_FURTHER_OBJECT ) );
     //Append( SvObjectServer( aOleFact, aOleObj ) );
-    DBG_ERROR( "non-working code!" );
+    OSL_FAIL( "non-working code!" );
     // TODO: dead corpses
 #endif
 
@@ -197,3 +196,5 @@ void SvObjectServerList::FillInsertObjects()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,35 +26,21 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEVENTIMPORTHELPER_HXX
 #include "XMLEventImportHelper.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif // _XMLOFF_XMLERROR_HXX
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -70,20 +57,20 @@ TYPEINIT1(XMLEventsImportContext,  SvXMLImportContext);
 
 
 XMLEventsImportContext::XMLEventsImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName)
+        SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
 }
 
 
 XMLEventsImportContext::XMLEventsImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const Reference<XEventsSupplier> & xEventsSupplier) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         xEvents(xEventsSupplier->getEvents())
 {
 }
@@ -106,7 +93,7 @@ XMLEventsImportContext::~XMLEventsImportContext()
 
 
 void XMLEventsImportContext::StartElement(
-    const Reference<XAttributeList> & xAttrList)
+    const Reference<XAttributeList> & /*xAttrList*/)
 {
     // nothing to be done
 }
@@ -117,7 +104,7 @@ void XMLEventsImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLEventsImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
@@ -134,10 +121,10 @@ SvXMLImportContext* XMLEventsImportContext::CreateChildContext(
     for (sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr), &sLocalName );
 
-        if (XML_NAMESPACE_SCRIPT == nPrefix)
+        if (XML_NAMESPACE_SCRIPT == nLclPrefix)
         {
             if (IsXMLToken(sLocalName, XML_EVENT_NAME))
             {
@@ -154,7 +141,7 @@ SvXMLImportContext* XMLEventsImportContext::CreateChildContext(
 
     // b) delegate to factory
     return GetImport().GetEventImport().CreateContext(
-        GetImport(), nPrefix, rLocalName, xAttrList,
+        GetImport(), nInPrefix, rLocalName, xAttrList,
         this, sEventName, sLanguage);
 }
 
@@ -178,7 +165,7 @@ void XMLEventsImportContext::SetEvents(
         EventsVector::iterator aEnd = aCollectEvents.end();
         for(EventsVector::iterator aIter = aCollectEvents.begin();
             aIter != aEnd;
-            aIter++)
+            ++aIter)
         {
             AddEventValues(aIter->first, aIter->second);
 //          EventNameValuesPair* pPair = &(*aIter);
@@ -200,7 +187,7 @@ sal_Bool XMLEventsImportContext::GetEventSequence(
     EventsVector::iterator aIter = aCollectEvents.begin();
     while( (aIter != aCollectEvents.end()) && (aIter->first != rName) )
     {
-        aIter++;
+        ++aIter;
     }
 
     // if we're not at the end, set the sequence
@@ -249,3 +236,5 @@ void XMLEventsImportContext::AddEventValues(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

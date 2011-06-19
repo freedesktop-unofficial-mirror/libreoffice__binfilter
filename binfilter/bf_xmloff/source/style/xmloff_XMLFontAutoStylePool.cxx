@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -180,38 +173,38 @@ OUString XMLFontAutoStylePool::Add(
     }
     else
     {
-        OUString sName;
+        OUString sLclName;
         sal_Int32 nLen = rFamilyName.indexOf( sal_Unicode(';'), 0 );
         if( -1 == nLen )
         {
-            sName = rFamilyName;
+            sLclName = rFamilyName;
         }
         else if( nLen > 0 )
         {
-            sName = rFamilyName.copy( 0, nLen );
-            sName.trim();
+            sLclName = rFamilyName.copy( 0, nLen );
+            sLclName.trim();
         }
 
-        if( !sName.getLength() )
-            sName = OUString::valueOf( sal_Unicode( 'F' ) );
+        if( !sLclName.getLength() )
+            sLclName = OUString::valueOf( sal_Unicode( 'F' ) );
 
-        if( pNames->Seek_Entry( &sName, 0 ) )
+        if( pNames->Seek_Entry( &sLclName, 0 ) )
         {
             sal_Int32 nCount = 1;
-            OUString sPrefix( sName );
-            sName += OUString::valueOf( nCount );
-            while( pNames->Seek_Entry( &sName, 0 ) )
+            OUString sPrefix( sLclName );
+            sLclName += OUString::valueOf( nCount );
+            while( pNames->Seek_Entry( &sLclName, 0 ) )
             {
-                sName = sPrefix;
-                sName += OUString::valueOf( ++nCount );
+                sLclName = sPrefix;
+                sLclName += OUString::valueOf( ++nCount );
             }
         }
 
         XMLFontAutoStylePoolEntry_Impl *pEntry =
-            new XMLFontAutoStylePoolEntry_Impl( sName, rFamilyName, rStyleName,
+            new XMLFontAutoStylePoolEntry_Impl( sLclName, rFamilyName, rStyleName,
                                                 nFamily, nPitch, eEnc );
         pPool->Insert( pEntry );
-        pNames->Insert( new OUString( sName ) );
+        pNames->Insert( new OUString( sLclName ) );
     }
 
     return sName;
@@ -284,7 +277,7 @@ void XMLFontAutoStylePool::exportXML()
             GetExport().AddAttribute( XML_NAMESPACE_STYLE,
                                       XML_FONT_CHARSET, sTmp );
 
-        SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE,
+        SvXMLElementExport aAnotherElem( GetExport(), XML_NAMESPACE_STYLE,
                                   XML_FONT_DECL,
                                   sal_True, sal_True );
     }
@@ -292,3 +285,5 @@ void XMLFontAutoStylePool::exportXML()
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,66 +26,37 @@
  *
  ************************************************************************/
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _SW_XTEXT_DEFAULTS_HXX
 #include <SwXTextDefaults.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
 #include <fchrfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
-#endif
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _UNOMAP_HXX
 #include <unomap.hxx>
-#endif
-#ifndef SW_UNOMID_HXX
 #include <unomid.h>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _UNOPRNMS_HXX
 #include <unoprnms.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 namespace binfilter {
 
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
+
+using rtl::OUString;
 
 // declarations
 void lcl_setPageDesc(SwDoc*, const uno::Any&, SfxItemSet& ); // from unoobj.cxx
@@ -93,8 +65,8 @@ void lcl_setPageDesc(SwDoc*, const uno::Any&, SfxItemSet& ); // from unoobj.cxx
 
 
 SwXTextDefaults::SwXTextDefaults ( SwDoc * pNewDoc )
-: pDoc (pNewDoc)
-, aPropSet (aSwMapProvider.GetPropertyMap ( PROPERTY_MAP_TEXT_DEFAULT ) )
+    : aPropSet (aSwMapProvider.GetPropertyMap ( PROPERTY_MAP_TEXT_DEFAULT ) )
+    , pDoc(pNewDoc)
 {
 }
 
@@ -115,7 +87,7 @@ Reference< XPropertySetInfo > SAL_CALL SwXTextDefaults::getPropertySetInfo(  )
 void SAL_CALL SwXTextDefaults::setPropertyValue( const OUString& rPropertyName, const Any& aValue )
         throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if (!pDoc)
         throw RuntimeException();
     const SfxItemPropertyMap *pMap = SfxItemPropertyMap::GetByName( aPropSet.getPropertyMap(), rPropertyName);
@@ -181,7 +153,7 @@ void SAL_CALL SwXTextDefaults::setPropertyValue( const OUString& rPropertyName, 
 Any SAL_CALL SwXTextDefaults::getPropertyValue( const OUString& rPropertyName )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if (!pDoc)
         throw RuntimeException();
     const SfxItemPropertyMap *pMap = SfxItemPropertyMap::GetByName( aPropSet.getPropertyMap(), rPropertyName);
@@ -194,28 +166,28 @@ Any SAL_CALL SwXTextDefaults::getPropertyValue( const OUString& rPropertyName )
 }
 
 
-void SAL_CALL SwXTextDefaults::addPropertyChangeListener( const OUString& rPropertyName, const Reference< XPropertyChangeListener >& xListener )
+void SAL_CALL SwXTextDefaults::addPropertyChangeListener( const OUString& /*rPropertyName*/, const Reference< XPropertyChangeListener >& /*xListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING ( "not implemented" );
 }
 
 
-void SAL_CALL SwXTextDefaults::removePropertyChangeListener( const OUString& rPropertyName, const Reference< XPropertyChangeListener >& aListener )
+void SAL_CALL SwXTextDefaults::removePropertyChangeListener( const OUString& /*rPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING ( "not implemented" );
 }
 
 
-void SAL_CALL SwXTextDefaults::addVetoableChangeListener( const OUString& rPropertyName, const Reference< XVetoableChangeListener >& aListener )
+void SAL_CALL SwXTextDefaults::addVetoableChangeListener( const OUString& /*rPropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING ( "not implemented" );
 }
 
 
-void SAL_CALL SwXTextDefaults::removeVetoableChangeListener( const OUString& rPropertyName, const Reference< XVetoableChangeListener >& aListener )
+void SAL_CALL SwXTextDefaults::removeVetoableChangeListener( const OUString& /*rPropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ )
         throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
     DBG_WARNING ( "not implemented" );
@@ -226,7 +198,7 @@ void SAL_CALL SwXTextDefaults::removeVetoableChangeListener( const OUString& rPr
 PropertyState SAL_CALL SwXTextDefaults::getPropertyState( const OUString& rPropertyName )
         throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     PropertyState eRet = PropertyState_DIRECT_VALUE;
     if (!pDoc)
         throw RuntimeException();
@@ -325,3 +297,5 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwXTextDefaults::getSupportedServiceNa
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
 
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -60,10 +57,10 @@ using namespace ::rtl;
     Beschreibung: SwScriptField
  --------------------------------------------------------------------*/
 
-/*N*/ SwScriptField::SwScriptField( SwScriptFieldType* pType,
+/*N*/ SwScriptField::SwScriptField( SwScriptFieldType* pType2,
 /*N*/                               const String& rType, const String& rCode,
 /*N*/                               BOOL bURL )
-/*N*/   : SwField( pType ), sType( rType ), sCode( rCode ), bCodeURL( bURL )
+/*N*/   : SwField( pType2 ), sType( rType ), sCode( rCode ), bCodeURL( bURL )
 /*N*/ {
 /*N*/ }
 
@@ -105,9 +102,7 @@ String SwScriptField::GetPar2() const
 {
     return sCode;
 }
-/*-----------------05.03.98 15:00-------------------
 
---------------------------------------------------*/
 BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 {
     nMId &= ~CONVERT_TWIPS;
@@ -123,13 +118,11 @@ BOOL SwScriptField::QueryValue( uno::Any& rAny, BYTE nMId ) const
         rAny.setValue(&bCodeURL, ::getBooleanCppuType());
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
-/*-----------------05.03.98 15:00-------------------
 
---------------------------------------------------*/
 BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -145,9 +138,11 @@ BOOL SwScriptField::PutValue( const uno::Any& rAny, BYTE nMId )
         bCodeURL = *(sal_Bool*)rAny.getValue();
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

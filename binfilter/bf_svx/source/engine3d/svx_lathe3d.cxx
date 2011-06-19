@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,32 +27,11 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
-
-
-
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
-
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
-
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
-
-#ifndef _E3D_LATHE3D_HXX
 #include "lathe3d.hxx"
-#endif
-
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
-
 
 
 namespace binfilter {
@@ -197,15 +177,14 @@ namespace binfilter {
 /*N*/       Matrix4D aRotMat;
 /*N*/
 /*N*/       // Skalierung vorbereiten
-/*N*/       double fScalePerStep;
+/*N*/       double fScalePerStep(0.0);
 /*N*/       if(GetBackScale() != 100)
 /*N*/           fScalePerStep = (((double)GetBackScale() - 100.0) / 100.0) / (double)GetHorizontalSegments();
 /*N*/
 /*N*/       // Texturen erzeugen?
 /*N*/       double fTextureDepth=1.0;
-/*N*/       double fTextureStart=0.0;
 /*N*/       if(!GetCreateTexture())
-/*N*/           fTextureStart = fTextureDepth = 0.0;
+/*N*/           fTextureDepth = 0.0;
 /*N*/
 /*N*/       // aPrev bis aBack ausfuellen als Startvorbereitung
 /*N*/       aRotMat.RotateY(-(fAng / (double)GetHorizontalSegments()));
@@ -362,7 +341,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dLatheObj::CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf,
+/*N*/ void E3dLatheObj::CreateWireframe(Polygon3D& /*rWirePoly*/, const Matrix4D* /*pTf*/,
 /*N*/   E3dDragDetail eDetail)
 /*N*/ {
 /*N*/   // Nur selbst erzeugen, wenn alle Linien angezeigt werden sollen
@@ -374,143 +353,8 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       // call parent
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 E3dObject::CreateWireframe(rWirePoly, pTf, eDetail);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dLatheObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // leider kann das E3dLatheObj nicht auf E3dObject abgestuetzt werden,
-/*N*/   // da neue Member hinzugekommen sind und die Kompatibilitaet erhalten
-/*N*/   // bleiben muss.
-/*N*/   SdrAttrObj::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dLatheObj");
-/*N*/ #endif
-/*N*/
-/*N*/   pSub->Save(rOut);
-/*N*/
-/*N*/   // Parameter aus E3dObject speichern
-/*N*/   rOut << aLocalBoundVol;
-/*N*/   Old_Matrix3D aMat3D;
-/*N*/   aMat3D = aTfMatrix;
-/*N*/   rOut << aMat3D;
-/*N*/   rOut << nLogicalGroup;
-/*N*/   rOut << nObjTreeLevel;
-/*N*/   rOut << nPartOfParent;
-/*N*/   rOut << UINT16(eDragDetail);
-/*N*/
-/*N*/   // neue Member
-/*N*/   // Alte version schreibt Polygon3D raus, neue Version
-/*N*/   // benutzt dafuer das erste Teilpolygon von PolyPolygon3D
-/*N*/   // rOut << aPolyPoly3D;
-/*N*/   rOut << aPolyPoly3D[0];
-/*N*/
-/*N*/   rOut << GetHorizontalSegments();
-/*N*/
-/*N*/   rOut << GetEndAngle();
-/*N*/
-/*N*/   rOut << ((E3dLatheObj*)this)->GetDoubleSided();
-/*N*/   rOut << fLatheScale;
-/*N*/
-/*N*/   // Ab Version 364f (19.06.97)
-/*N*/
-/*N*/   // #83965# internally the real number of segments (edges) is
-/*N*/   // used, no longer the number of points
-/*N*/   sal_Int32 nVSegs = GetVerticalSegments();
-/*N*/   if(!aPolyPoly3D[0].IsClosed())
-/*N*/       nVSegs += 1;
-/*N*/
-/*N*/   rOut << nVSegs;
-/*N*/
-/*N*/   // Ab Version 374 (15.12.97)
-/*N*/   rOut << aPolyPoly3D;
-/*N*/
-/*N*/   rOut << ((double)GetBackScale() / 100.0);
-/*N*/
-/*N*/   rOut << ((double)GetPercentDiagonal() / 200.0);
-/*N*/
-/*N*/   rOut << GetSmoothNormals(); // #107245# (BOOL)bLatheSmoothed;
-/*N*/   rOut << GetSmoothLids(); // #107245# (BOOL)bLatheSmoothFrontBack;
-/*N*/   rOut << GetCharacterMode(); // #107245# (BOOL)bLatheCharacterMode;
-/*N*/
-/*N*/   // Ab Version 395 (8.6.98): Parameter aus dem Objekt
-/*N*/   // E3dCompoundObject. Da irgendwann mal jemand die Ableitungs-
-/*N*/   // hierarchie beim FileFormat unterbrochen hat, wurden diese Attribute
-/*N*/   // bisher NOCH NIE gespeichert (Grrr). Diese Stelle muss nun natuerlich
-/*N*/   // auch IMMER MITGEPFLEGT werden, wenn sich Parameter in
-/*N*/   // E3dCompoundObject oder E3dObject aendern.
-/*N*/   rOut << GetDoubleSided();
-/*N*/
-/*N*/   rOut << BOOL(bCreateNormals);
-/*N*/   rOut << BOOL(bCreateTexture);
-/*N*/
-/*N*/   sal_uInt16 nVal = GetNormalsKind();
-/*N*/   rOut << BOOL(nVal > 0);
-/*N*/   rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/   nVal = GetTextureProjectionX();
-/*N*/   rOut << BOOL(nVal > 0);
-/*N*/   rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/   nVal = GetTextureProjectionY();
-/*N*/   rOut << BOOL(nVal > 0);
-/*N*/   rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/   rOut << BOOL(GetShadow3D());
-/*N*/
-/*N*/   rOut << GetMaterialAmbientColor();
-/*N*/   rOut << GetMaterialColor();
-/*N*/   rOut << GetMaterialSpecular();
-/*N*/   rOut << GetMaterialEmission();
-/*N*/   rOut << GetMaterialSpecularIntensity();
-/*N*/
-/*N*/   aBackMaterial.WriteData(rOut);
-/*N*/
-/*N*/   rOut << (UINT16)GetTextureKind();
-/*N*/
-/*N*/   rOut << (UINT16)GetTextureMode();
-/*N*/
-/*N*/   rOut << BOOL(GetNormalsInvert());
-/*N*/
-/*N*/   // Ab Version 513a (5.2.99): Parameter fuer das
-/*N*/   // Erzeugen der Vorder/Rueckwand
-/*N*/   rOut << GetCloseFront(); // #107245# BOOL(bLatheCloseFront);
-/*N*/   rOut << GetCloseBack(); // #107245# BOOL(bLatheCloseBack);
-/*N*/
-/*N*/   // neu ab 534: (hat noch gefehlt)
-/*N*/   rOut << BOOL(GetTextureFilter());
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -616,11 +460,10 @@ namespace binfilter {
 /*N*/
 /*N*/       if (aCompat.GetBytesLeft())
 /*N*/       {
-/*N*/           // Ab Version 364f (19.06.97)
 /*N*/           sal_Int32 nTmp;
 /*N*/           rIn >> nTmp;
 /*N*/
-/*N*/           // #83965# internally the real number of segments (edges) is
+/*N*/           // internally the real number of segments (edges) is
 /*N*/           // used, no longer the number of points
 /*N*/           if(!aPolyPoly3D[0].IsClosed())
 /*N*/               nTmp -= 1;
@@ -630,7 +473,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if (aCompat.GetBytesLeft())
 /*N*/       {
-/*N*/           // Ab Version 374 (15.12.97)
 /*N*/           // Gesamtes PolyPolygon laden
 /*N*/           BOOL bTmp;
 /*N*/           double fTmp;
@@ -811,20 +653,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Wandle das Objekt in ein Gruppenobjekt bestehend aus n Polygonen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Neue Segmentierung (Beschreibung siehe Header-File)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Lokale Parameter setzen mit Geometrieneuerzeugung
 |*
 \************************************************************************/
@@ -845,57 +673,6 @@ namespace binfilter {
 /*N*/       bGeometryValid = FALSE;
 /*N*/   }
 /*N*/ }
-
-
-// #107245#
-// void E3dLatheObj::SetLatheSmoothed(BOOL bNew)
-// {
-//  if(bLatheSmoothed != bNew)
-//  {
-//      bLatheSmoothed = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheSmoothFrontBack(BOOL bNew)
-// {
-//  if(bLatheSmoothFrontBack != bNew)
-//  {
-//      bLatheSmoothFrontBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheCharacterMode(BOOL bNew)
-// {
-//  if(bLatheCharacterMode != bNew)
-//  {
-//      bLatheCharacterMode = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheCloseFront(BOOL bNew)
-// {
-//  if(bLatheCloseFront != bNew)
-//  {
-//      bLatheCloseFront = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
-
-// #107245#
-// void E3dLatheObj::SetLatheCloseBack(BOOL bNew)
-// {
-//  if(bLatheCloseBack != bNew)
-//  {
-//      bLatheCloseBack = bNew;
-//      bGeometryValid = FALSE;
-//  }
-// }
 
 //////////////////////////////////////////////////////////////////////////////
 // private support routines for ItemSet access
@@ -935,27 +712,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Aufbrechen
-|*
-\************************************************************************/
-
-
-
 // EOF
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

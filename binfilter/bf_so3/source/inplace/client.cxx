@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,10 +37,7 @@
 #include <vcl/sysdata.hxx>
 #endif
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>
-#endif
-
 #include <vcl/window.hxx>
 #include <bf_so3/client.hxx>
 #include <tools/debug.hxx>
@@ -49,7 +47,6 @@
 
 namespace binfilter {
 
-//=========================================================================
 TYPEINIT0(SvClientData);
 
 SvClientData::SvClientData( SvEmbeddedClient * pCl, Window * pWin )
@@ -61,12 +58,10 @@ SvClientData::SvClientData( SvEmbeddedClient * pCl, Window * pWin )
 {
 }
 
-//=========================================================================
 SvClientData::~SvClientData()
 {
 }
 
-//=========================================================================
 void SvClientData::Invalidate()
 /*  [Beschreibung]
 
@@ -90,7 +85,6 @@ void SvClientData::Invalidate()
     }
 }
 
-//=========================================================================
 Window * SvClientData::GetEditWin() const
 /*  [Beschreibung]
 
@@ -108,7 +102,6 @@ Window * SvClientData::GetEditWin() const
     return pEditWin;
 }
 
-//=========================================================================
 void SvClientData::SetSizeScale
 (
     const Fraction & rScaleWidth,
@@ -126,7 +119,6 @@ void SvClientData::SetSizeScale
     aScaleHeight = rScaleHeight;
 }
 
-//=========================================================================
 BOOL SvClientData::SetObjArea
 (
     const Rectangle & rArea
@@ -153,7 +145,6 @@ BOOL SvClientData::SetObjArea
    return FALSE;  // Bereich hat sich geandert
 }
 
-//=========================================================================
 Rectangle SvClientData::GetObjArea() const
 /*  [Beschreibung]
 
@@ -171,7 +162,6 @@ Rectangle SvClientData::GetObjArea() const
     return aObjRect;
 }
 
-//=========================================================================
 Rectangle SvClientData::PixelObjAreaToLogic
 (
     const Rectangle & rPixRect
@@ -189,11 +179,6 @@ Rectangle SvClientData::PixelObjAreaToLogic
 
 */
 {
-/*  Zu frueh, da dies schon in DoVerb passiert! Fuer externe Fenster muss
-    der MapMode auf Default stehen
-    if( !pEditWin )
-        pEditWin = GetEditWin();
-*/
     Rectangle aR = rPixRect;
     if( pEditWin )
     {
@@ -206,7 +191,6 @@ Rectangle SvClientData::PixelObjAreaToLogic
     return aR;
 }
 
-//=========================================================================
 #include <math.h>
 
 Rectangle SvClientData::LogicObjAreaToPixel
@@ -227,11 +211,6 @@ Rectangle SvClientData::LogicObjAreaToPixel
 
 */
 {
-/*  Zu frueh, da dies schon in DoVerb passiert! Fuer externe Fenster muss
-    der MapMode auf Default stehen
-    if( !pEditWin )
-        ((SvClientData *)this)->pEditWin = ((SvClientData *)this)->GetEditWin();
-*/
     Rectangle aR( rRect );
     // *must* happen before LogicToPixel conversion, as:
     // scaling down to pixel is integer, which leads to
@@ -273,7 +252,7 @@ void SvEmbeddedClient::TestMemberObjRef( BOOL bFree )
     {
         ByteString aTest = "\t\tGetEmbedObj() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetEmbedObj() ) );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -288,7 +267,7 @@ void SvEmbeddedClient::TestMemberInvariant( BOOL bPrint )
         {
             ByteString aTest( "\t\tSvClientData == " );
             aTest.Append( ByteString::CreateFromInt32(  (ULONG)GetClientData() ) );
-            DBG_TRACE( aTest.GetBuffer() );
+            OSL_TRACE( "%s", aTest.GetBuffer() );
         }
     }
 #else
@@ -299,12 +278,8 @@ void SvEmbeddedClient::TestMemberInvariant( BOOL bPrint )
 
 /************************************************************************
 |*    SvEmbeddedClient::SvEmbeddedClient()
-|*
-|*    Beschreibung
 *************************************************************************/
-//=========================================================================
 //==============SvEmbeddedClient===========================================
-//=========================================================================
 #define INIT_CTOR                               \
       pParent           ( NULL )                \
     , nAspect           ( ASPECT_CONTENT )      \
@@ -318,14 +293,12 @@ SvEmbeddedClient::SvEmbeddedClient()
 {
 }
 
-//=========================================================================
 SvEmbeddedClient::~SvEmbeddedClient()
 {
     if( bDeleteData )
         delete pData;
 }
 
-//=========================================================================
 void SvEmbeddedClient::MakeViewData()
 /*  [Beschreibung]
 
@@ -364,7 +337,6 @@ void SvEmbeddedClient::MakeViewData()
     }
 }
 
-//=========================================================================
 void SvEmbeddedClient::FreeViewData
 (
     SvClientData * pDataP   /* View-Daten die zerst"ort werden k"onnen */
@@ -399,7 +371,6 @@ void SvEmbeddedClient::FreeViewData
     }
 }
 
-//=========================================================================
 SvClientData * SvEmbeddedClient::GetClientData()
 /*  [Beschreibung]
 
@@ -421,13 +392,11 @@ SvClientData * SvEmbeddedClient::GetClientData()
     return pData;
 }
 
-//=========================================================================
 BOOL SvEmbeddedClient::CanPlugIn()
 {
     return bCanPlugIn;
 }
 
-//=========================================================================
 ErrCode SvEmbeddedClient::GetContURL
 (
     INetURLObject & rURL    /* Hier wird der URL des Containers
@@ -453,18 +422,13 @@ ErrCode SvEmbeddedClient::GetContURL
     return nRet;
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::Embedded()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvEmbeddedClient::Embedded( BOOL bEmbed )
 {
 #ifdef DBG_UTIL_PROT
     String aTest( "Client---Embedded---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bEmbed ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest );
+    OSL_TRACE( "%s", aTest.GetBuffer() );
 #endif
 
     if( Owner() )
@@ -482,25 +446,19 @@ void SvEmbeddedClient::Embedded( BOOL bEmbed )
         FreeViewData( pData );
 }
 
-//=========================================================================
 void SvEmbeddedClient::PlugIn( BOOL bPlugIn )
 {
 #ifdef DBG_UTIL_PROT
     String aTest( "Client---PlugIn---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bPlugIn ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #else
     (void)bPlugIn;
 #endif
 
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::ViewChanged()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvEmbeddedClient::ViewChanged( USHORT nAspectP )
 {
     if( Owner() )
@@ -514,11 +472,6 @@ void SvEmbeddedClient::ViewChanged( USHORT nAspectP )
     }
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::SaveObject()
-|*
-|*    Beschreibung
-*************************************************************************/
 BOOL SvEmbeddedClient::SaveObject()
 {
     BOOL bRet = FALSE;
@@ -527,14 +480,13 @@ BOOL SvEmbeddedClient::SaveObject()
         SvEmbeddedObject * pE = GetEmbedObj();
         if( pE )
         {
-            bRet = pE->DoSave();
-            pE->DoSaveCompleted();
+            bRet = false;
+            // was pE->DoSaveCompleted(); but return value is not checked
         }
     }
     return bRet;
 }
 
-//=========================================================================
 SvEmbeddedObjectRef SvEmbeddedClient::GetContainer()
 /*  [Beschreibung]
 
@@ -563,7 +515,6 @@ SvEmbeddedObjectRef SvEmbeddedClient::GetContainer()
     return xCont;
 }
 
-//=========================================================================
 void SvEmbeddedClient::MakeVisible()
 /*  [Beschreibung]
 
@@ -578,8 +529,6 @@ void SvEmbeddedClient::MakeVisible()
 
 /*************************************************************************
 |*    InPlace Protocoll
-|*
-|*    Beschreibung
 *************************************************************************/
 void SvEmbeddedClient::Connected( BOOL bConnect )
 { // Zu dieser Methode gibt es kein Ole2 aequivalent
@@ -587,17 +536,12 @@ void SvEmbeddedClient::Connected( BOOL bConnect )
     String aTest( "Client---Connected---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bConnect ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #endif
     if( !bConnect && HasViewData() )
         FreeViewData( pData );
 }
 
-/*************************************************************************
-|*    SvEmbeddedClient::Opened()
-|*
-|*    Beschreibung
-*************************************************************************/
 void SvEmbeddedClient::Closed()
 {
     // genau in diesem muss die InClose-Variable zurueckgesetzt werden
@@ -614,7 +558,7 @@ void SvEmbeddedClient::Opened( BOOL bOpen )
     String aTest( "Client---Opened---" );
     aTest += Owner() ? "Intern" : "Extern: ";
     aTest += bOpen ? "TRUE" : "FALSE";
-    DBG_TRACE( aTest )
+    OSL_TRACE( "%s", aTest.GetBuffer() )
 #else
     (void)bOpen;
 #endif
@@ -623,3 +567,4 @@ void SvEmbeddedClient::Opened( BOOL bOpen )
 
 }
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

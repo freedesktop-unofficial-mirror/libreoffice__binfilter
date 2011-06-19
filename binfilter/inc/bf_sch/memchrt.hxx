@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXDEFS_HXX
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
-#ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 #include <bf_sch/cellranges.hxx>
 
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
 class SvStream;
 
 namespace binfilter {
@@ -106,7 +93,7 @@ struct ChartSelectionInfo
 #define CHART_SEL_POINT         16  // den Datenpunkt selektieren
 #define CHART_SEL_SETCURSOR     32  // Cursor an die Stelle (nCol,nRow) setzen
 #define CHART_SEL_CHANGEVALUE   64  // Wert in der Tabelle aendern (auf fValue)
-#define CHART_SEL_COLOR         128 // Farbinformation für farbigen Rahmen um den Selektionsbereich herum ist gesetzt
+#define CHART_SEL_COLOR         128 // Farbinformation fï¿½r farbigen Rahmen um den Selektionsbereich herum ist gesetzt
 #define CHART_SEL_QUERYSUPPORT  256
 #define CHART_SEL_QUERYPOSSIBLE 512
 
@@ -870,3 +857,4 @@ inline void SchMemChart::SetReadOnly( BOOL bNewValue )
 } //namespace binfilter
 #endif  // _SCH_MEMCHRT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

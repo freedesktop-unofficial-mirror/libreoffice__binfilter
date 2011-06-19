@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,46 +26,37 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTREMOVE_HPP_
 #include <com/sun/star/text/XRelativeTextContentRemove.hpp>
-#endif
-#ifndef _XMLOFF_TEXTHEADERFOOTERCONTEXT_HXX_
 #include "XMLTextHeaderFooterContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
-//using namespace ::com::sun::star::style;
+
+using rtl::OUString;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
-//using namespace ::com::sun::star::container;
-//using namespace ::com::sun::star::lang;
-//using namespace ::com::sun::star::text;
 
 
 TYPEINIT1( XMLTextHeaderFooterContext, SvXMLImportContext );
 
-XMLTextHeaderFooterContext::XMLTextHeaderFooterContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLTextHeaderFooterContext::XMLTextHeaderFooterContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                        const OUString& rLName,
                        const uno::Reference<
-                            xml::sax::XAttributeList > & xAttrList,
+                            xml::sax::XAttributeList > & /*xAttrList*/,
                         const Reference < XPropertySet > & rPageStylePropSet,
                        sal_Bool bFooter, sal_Bool bLft ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xPropSet( rPageStylePropSet ),
-    sOn( OUString::createFromAscii( bFooter ? "FooterIsOn" : "HeaderIsOn" ) ),
-    sShareContent( OUString::createFromAscii( bFooter ? "FooterIsShared"
-                                                      : "HeaderIsShared" ) ),
-    sText( OUString::createFromAscii( bFooter ? "FooterText" : "HeaderText" ) ),
-    sTextLeft( OUString::createFromAscii( bFooter ? "FooterTextLeft"
-                                                     : "HeaderTextLeft" ) ),
+    sOn(  bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM("FooterIsOn")) : OUString(RTL_CONSTASCII_USTRINGPARAM("HeaderIsOn"))  ),
+    sShareContent( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM("FooterIsShared"))
+                                                      : OUString(RTL_CONSTASCII_USTRINGPARAM("HeaderIsShared")) ),
+    sText( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM("FooterText")) : OUString(RTL_CONSTASCII_USTRINGPARAM("HeaderText")) ),
+    sTextLeft( bFooter ? OUString(RTL_CONSTASCII_USTRINGPARAM("FooterTextLeft"))
+                                                     : OUString(RTL_CONSTASCII_USTRINGPARAM("HeaderTextLeft")) ),
     bInsertContent( sal_True ),
     bLeft( bLft )
 {
@@ -101,7 +93,7 @@ XMLTextHeaderFooterContext::~XMLTextHeaderFooterContext()
 }
 
 SvXMLImportContext *XMLTextHeaderFooterContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
@@ -132,7 +124,7 @@ SvXMLImportContext *XMLTextHeaderFooterContext::CreateChildContext(
 
                     // The content has not to be removed, because the header
                     // or footer is empty already.
-                    bRemoveContent;
+                    bRemoveContent = sal_False;
                 }
 
                 // If a header or footer is not shared, share it now.
@@ -152,10 +144,7 @@ SvXMLImportContext *XMLTextHeaderFooterContext::CreateChildContext(
             aAny >>= xText;
 
             if( bRemoveContent )
-            {
-                OUString sText;
-                xText->setString( sText );
-            }
+                xText->setString( OUString() );
 
             UniReference < XMLTextImportHelper > xTxtImport =
                 GetImport().GetTextImport();
@@ -166,11 +155,11 @@ SvXMLImportContext *XMLTextHeaderFooterContext::CreateChildContext(
 
         pContext =
             GetImport().GetTextImport()->CreateTextChildContext(
-                GetImport(), nPrefix, rLocalName, xAttrList,
+                GetImport(), nInPrefix, rLocalName, xAttrList,
                 XML_TEXT_TYPE_HEADER_FOOTER );
     }
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -194,3 +183,5 @@ void XMLTextHeaderFooterContext::EndElement()
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

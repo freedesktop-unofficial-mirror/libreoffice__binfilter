@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _FM_FMMODEL_HXX
 #include <bf_svx/fmmodel.hxx>
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScDocument;
@@ -99,8 +92,8 @@ public:
                     ScDrawLayer( ScDocument* pDocument, const String& rName );
     virtual         ~ScDrawLayer();
 
-    virtual SdrPage*  AllocPage(FASTBOOL bMasterPage);
-    virtual void    SetChanged( FASTBOOL bFlg = TRUE );
+    virtual SdrPage*  AllocPage(bool bMasterPage);
+    virtual void    SetChanged( bool bFlg = TRUE );
 
     virtual SvStream* GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const;
 
@@ -117,7 +110,7 @@ public:
     void            UpdateBasic();              // DocShell-Basic in DrawPages setzen
 
     void            Load( SvStream& rStream );
-    void            Store( SvStream& rStream ) const;
+    void Store( SvStream& ) const {}
 
     BOOL            GetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const;
 
@@ -165,3 +158,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

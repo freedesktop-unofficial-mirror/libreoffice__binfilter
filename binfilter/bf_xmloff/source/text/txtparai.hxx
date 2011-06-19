@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #define _XMLOFF_TEXTPARAI_HXX_
 
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace com { namespace sun { namespace star {
 namespace text {  class XTextRange; }
 namespace xml { namespace sax { class XAttributeList; } }
@@ -43,11 +40,9 @@ namespace binfilter {
 
 class XMLHints_Impl;
 
-#ifdef CONV_STAR_FONTS
 #define CONV_FROM_STAR_BATS 1
 #define CONV_FROM_STAR_MATH 2
 #define CONV_STAR_FONT_FLAGS_VALID 4
-#endif
 
 class XMLParaContext : public SvXMLImportContext
 {
@@ -58,9 +53,7 @@ class XMLParaContext : public SvXMLImportContext
     XMLHints_Impl           *pHints;
     sal_Bool                bIgnoreLeadingSpace;
     sal_Bool                bHeading;
-#ifdef CONV_STAR_FONTS
     sal_uInt8               nStarFontsConvFlags;
-#endif
 
 public:
 
@@ -87,3 +80,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

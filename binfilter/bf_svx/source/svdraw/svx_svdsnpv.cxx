@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -106,9 +107,9 @@ namespace binfilter {
 /*N*/ void SdrSnapView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
 /*N*/ {
 /*N*/   SdrPaintView::ToggleShownXor(pOut,pRegion);
-/*N*/   if (IsSetPageOrg()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsSetPageOrg()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-/*N*/   if (IsDragHelpLine()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsDragHelpLine()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -130,13 +131,13 @@ namespace binfilter {
 
 /*N*/ void SdrSnapView::BrkSetPageOrg()
 /*N*/ {
-/*N*/   if (bSetPageOrg) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bSetPageOrg) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SdrSnapView::BrkDragHelpLine()
 /*N*/ {
-/*N*/   if (bDragHelpLine) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bDragHelpLine) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -272,3 +273,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

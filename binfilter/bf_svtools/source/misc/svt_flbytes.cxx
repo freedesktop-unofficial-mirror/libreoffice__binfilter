@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _FLBYTES_HXX
 #include <flbytes.hxx>
-#endif
 
 #ifndef _SVSTDARR_ULONGS_DECL
 #define _SVSTDARR_ULONGS
@@ -111,3 +108,5 @@ ErrCode SvSyncLockBytes::WriteAt(ULONG nPos, const void * pBuffer,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

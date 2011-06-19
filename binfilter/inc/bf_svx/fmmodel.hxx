@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 class SbxObject;
 class SbxArray;
 class SbxValue;
@@ -66,7 +65,7 @@ public:
     FmFormModel(const XubString& rPath, SfxItemPool* pPool=NULL,
                 SvPersist* pPers=NULL );
     FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers,
-                FASTBOOL bUseExtColorTable);
+                bool bUseExtColorTable);
 
     virtual ~FmFormModel();
 
@@ -76,7 +75,7 @@ public:
     virtual void     InsertMasterPage(SdrPage* pPage, sal_uInt16 nPos=0xFFFF);
     virtual SdrPage* RemoveMasterPage(sal_uInt16 nPgNum);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrIOHeader& rHead, SvStream& rIn);
 
     virtual SdrLayerID      GetControlExportLayerId( const SdrObject& rObj ) const;
@@ -108,3 +107,4 @@ public:
 }//end of namespace binfilter
 #endif          // _FM_FMMODEL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

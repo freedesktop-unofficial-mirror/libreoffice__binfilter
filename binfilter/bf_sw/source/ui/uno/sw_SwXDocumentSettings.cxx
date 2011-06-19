@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,90 +29,45 @@
 #pragma hdrstop
 #endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _SW_XDOCUMENT_SETTINGS_HXX
 #include <SwXDocumentSettings.hxx>
-#endif
-#ifndef _SW_XPRINTPREVIEWSETTINGS_HXX_
 #include <SwXPrintPreviewSettings.hxx>
-#endif
-#ifndef _COMPHELPER_MASTERPROPERTSETINFO_HXX_
 #include <comphelper/MasterPropertySetInfo.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_PRINTERINDEPENDENTLAYOUT_HPP_
 #include <com/sun/star/document/PrinterIndependentLayout.hpp>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _CHCMPRSE_HXX
 #include <chcmprse.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
-#endif
-#ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
-#endif
 #include <cmdid.h>
-#ifndef _SVX_ZOOMITEM_HXX
 #include <bf_svx/zoomitem.hxx>
-#endif
-#ifndef _COMPHELPER_TYPEGENERATION_HXX_
 #include <comphelper/TypeGeneration.hxx>
-#endif
-#ifndef _UNOMOD_HXX
 #include <unomod.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 
-using namespace rtl;
 using namespace comphelper;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
+
+using rtl::OUString;
 
 enum SwDocumentSettingsPropertyHandles
 {
@@ -248,7 +204,7 @@ void SwXDocumentSettings::release ()
 uno::Sequence< uno::Type > SAL_CALL SwXDocumentSettings::getTypes(  )
     throw (RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Sequence< uno::Type > aBaseTypes( 5 );
     uno::Type* pBaseTypes = aBaseTypes.getArray();
@@ -267,7 +223,7 @@ uno::Sequence< uno::Type > SAL_CALL SwXDocumentSettings::getTypes(  )
 uno::Sequence< sal_Int8 > SAL_CALL SwXDocumentSettings::getImplementationId(  )
     throw (RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     static Sequence< sal_Int8 > aId( 16 );
     static sal_Bool bInit = sal_False;
     if(!bInit)
@@ -297,7 +253,7 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
             break;
         case HANDLE_LINK_UPDATE_MODE:
         {
-            sal_Int16 nMode;
+            sal_Int16 nMode = 0;
             rValue >>= nMode;
             switch (nMode)
             {
@@ -331,14 +287,14 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_ADD_PARA_TABLE_SPACING:
         {
-            sal_Bool bParaSpace;
+            sal_Bool bParaSpace = sal_False;
             rValue >>= bParaSpace;
             mpDoc->SetParaSpaceMax( bParaSpace, mpDoc->IsParaSpaceMaxAtPages());
         }
         break;
         case HANDLE_ADD_PARA_TABLE_SPACING_AT_START:
         {
-            sal_Bool bParaSpacePage;
+            sal_Bool bParaSpacePage = sal_False;
             rValue >>= bParaSpacePage;
             mpDoc->SetParaSpaceMax( mpDoc->IsParaSpaceMax(), bParaSpacePage);
         }
@@ -388,7 +344,7 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
                     SvMemoryStream aStream (aSequence.getArray(), nSize,
                                             STREAM_READ );
                     aStream.Seek ( STREAM_SEEK_TO_BEGIN );
-                    static sal_uInt16 __READONLY_DATA nRange[] =
+                    static sal_uInt16 const nRange[] =
                     {
                         FN_PARAM_ADDPRINTER, FN_PARAM_ADDPRINTER,
                         SID_HTML_MODE,  SID_HTML_MODE,
@@ -419,7 +375,7 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_CHARACTER_COMPRESSION_TYPE:
         {
-            sal_Int16 nMode;
+            sal_Int16 nMode = 0;
             rValue >>= nMode;
             switch (nMode)
             {
@@ -435,9 +391,9 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_APPLY_USER_DATA:
         {
-            SfxDocumentInfo& rInfo = mpDocSh->GetDocInfo();
+            SfxDocumentInfo& rLclInfo = mpDocSh->GetDocInfo();
             sal_Bool bUseUserData = *(sal_Bool*)rValue.getValue();
-            rInfo.SetUseUserData(bUseUserData);
+            rLclInfo.SetUseUserData(bUseUserData);
         }
         break;
         case HANDLE_SAVE_GLOBAL_DOCUMENT_LINKS:
@@ -469,9 +425,9 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_SAVE_VERSION_ON_CLOSE:
         {
-            SfxDocumentInfo& rInfo = mpDocSh->GetDocInfo();
+            SfxDocumentInfo& rLclInfo = mpDocSh->GetDocInfo();
             sal_Bool bSaveVersion = *(sal_Bool*)rValue.getValue();
-            rInfo.SetSaveVersionOnClose ( bSaveVersion );
+            rLclInfo.SetSaveVersionOnClose ( bSaveVersion );
         }
         break;
         case HANDLE_UPDATE_FROM_TEMPLATE:
@@ -482,14 +438,14 @@ void SwXDocumentSettings::_setSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_PRINTER_INDEPENDENT_LAYOUT:
         {
-            sal_Int16 nTmp;
+            sal_Int16 nTmp = 0;
             rValue >>= nTmp;
             mpDoc->SetUseVirtualDevice( nTmp != document::PrinterIndependentLayout::DISABLED  );
         }
         break;
         case HANDLE_IS_LABEL_DOC :
         {
-            sal_Bool bSet;
+            sal_Bool bSet = sal_False;
             if(!(rValue >>= bSet))
                 throw IllegalArgumentException();
             mpDoc->SetLabelDoc(bSet);
@@ -610,8 +566,8 @@ void SwXDocumentSettings::_getSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_APPLY_USER_DATA:
         {
-            SfxDocumentInfo &rInfo = mpDocSh->GetDocInfo();
-            sal_Bool bUseUserInfo = rInfo.IsUseUserData();
+            SfxDocumentInfo &rLclInfo = mpDocSh->GetDocInfo();
+            sal_Bool bUseUserInfo = rLclInfo.IsUseUserData();
             rValue.setValue(&bUseUserInfo, ::getBooleanCppuType());
         }
         break;
@@ -646,8 +602,8 @@ void SwXDocumentSettings::_getSingleValue( const comphelper::PropertyInfo & rInf
         break;
         case HANDLE_SAVE_VERSION_ON_CLOSE:
         {
-            SfxDocumentInfo& rInfo = mpDocSh->GetDocInfo();
-            sal_Bool bSaveVersion = rInfo.IsSaveVersionOnClose();
+            SfxDocumentInfo& rLclInfo = mpDocSh->GetDocInfo();
+            sal_Bool bSaveVersion = rLclInfo.IsSaveVersionOnClose();
             rValue.setValue(&bSaveVersion, ::getBooleanCppuType());
         }
         break;
@@ -722,3 +678,5 @@ Sequence< OUString > SAL_CALL SwXDocumentSettings::getSupportedServiceNames(  )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

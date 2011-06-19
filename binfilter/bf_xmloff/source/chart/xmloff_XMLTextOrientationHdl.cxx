@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,9 +27,7 @@
  ************************************************************************/
 #include "XMLTextOrientationHdl.hxx"
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -41,7 +40,7 @@ XMLTextOrientationHdl::~XMLTextOrientationHdl()
 sal_Bool XMLTextOrientationHdl::importXML(
     const ::rtl::OUString& rStrImpValue,
     ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRetval( sal_False );
 
@@ -62,9 +61,9 @@ sal_Bool XMLTextOrientationHdl::importXML(
 sal_Bool XMLTextOrientationHdl::exportXML(
     ::rtl::OUString& rStrExpValue,
     const ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Bool bVal;
+    sal_Bool bVal = sal_False;
     sal_Bool bRetval( sal_False );
 
     if( rValue >>= bVal )
@@ -79,3 +78,5 @@ sal_Bool XMLTextOrientationHdl::exportXML(
     return bRetval;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

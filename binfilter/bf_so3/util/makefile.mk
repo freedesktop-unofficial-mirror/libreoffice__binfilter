@@ -33,7 +33,6 @@ PRJNAME=binfilter
 TARGET=bf_so
 
 USE_LDUMP2=TRUE
-#LDUMP2=LDUMP3
 
 # --- Settings -----------------------------------------------------
 
@@ -72,7 +71,6 @@ SHL1STDLIBS=\
         $(UNOTOOLSLIB) \
         $(TOOLSLIB)	\
         $(BFSVTOOLLIB) \
-        $(VOSLIB) \
         $(COMPHELPERLIB) \
         $(CPPUHELPERLIB) \
         $(CPPULIB) \
@@ -89,7 +87,7 @@ SHL1STDLIBS+= \
 .ENDIF
 
 .IF "$(GUI)"=="WIN"
-SHL1STDLIBS=$(VOSLIB) \
+SHL1STDLIBS= \
             ole2.lib compobj.lib storage.lib shell.lib \
             ole2disp.lib typelib.lib
 .ENDIF
@@ -131,8 +129,6 @@ DEF1DES 	=StarObjects
 # --- Targets ------------------------------------------------------
 
 .INCLUDE :  target.mk
-.INCLUDE :  target.pmk
-
 
 # --- SO2-Filter-Datei ---
 

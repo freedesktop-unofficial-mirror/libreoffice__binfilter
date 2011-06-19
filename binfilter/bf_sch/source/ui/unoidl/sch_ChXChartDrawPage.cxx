@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,12 @@
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 namespace binfilter {
 
 
-using namespace vos;
 using namespace ::com::sun::star;
 
 #define CHART_DRAW_PAGE_WIDTH_ID 1
@@ -54,18 +48,18 @@ const SfxItemPropertyMap* ImplGetChartDrawPageMap()
     {
         { MAP_CHAR_LEN( "Width" ),  CHART_DRAW_PAGE_WIDTH_ID,   &::getCppuType((const sal_Int32*)0), 0, 0 },
         { MAP_CHAR_LEN( "Height" ), CHART_DRAW_PAGE_HEIGHT_ID,  &::getCppuType((const sal_Int32*)0), 0, 0 },
-        { 0,0,0,0,0 }
+        { 0,0,0,0,0,0 }
     };
 
     return aChartDrawPage;
 }
 
-ChXChartDrawPage::ChXChartDrawPage( ChartModel* pModel ) :
-        SvxDrawPage( pModel? pModel->GetPage( 0 ): NULL ),
-        mpModel( pModel ),
+ChXChartDrawPage::ChXChartDrawPage( ChartModel* pInModel ) :
+        SvxDrawPage( pInModel? pInModel->GetPage( 0 ): NULL ),
+        mpModel( pInModel ),
         maPropSet( ImplGetChartDrawPageMap() )
 {
-    DBG_ASSERT( pModel != NULL, "ChXChartDrawPage: Invalid model (=> invalid page)" );
+    DBG_ASSERT( pInModel != NULL, "ChXChartDrawPage: Invalid model (=> invalid page)" );
 }
 
 ChXChartDrawPage::~ChXChartDrawPage() throw()
@@ -131,7 +125,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChXChartDrawPage::getImplementationId() throw
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXChartDrawPage::getPropertySetInfo()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     return maPropSet.getPropertySetInfo();
 }
@@ -143,7 +137,7 @@ void SAL_CALL ChXChartDrawPage::setPropertyValue( const ::rtl::OUString& aProper
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( aPropertyName );
     if( mpModel &&
@@ -156,12 +150,12 @@ void SAL_CALL ChXChartDrawPage::setPropertyValue( const ::rtl::OUString& aProper
         {
             case CHART_DRAW_PAGE_WIDTH_ID:
                 {
-                    const SdrPage* pPage = mpModel->GetPage( 0 );
-                    if( pPage )
+                    const SdrPage* pLclPage = mpModel->GetPage( 0 );
+                    if( pLclPage )
                     {
-                        sal_Int32 nWidth;
+                        sal_Int32 nWidth(0);
                         aValue >>= nWidth;
-                        Size aSize = pPage->GetSize();
+                        Size aSize = pLclPage->GetSize();
                         aSize.setWidth( nWidth );
 
                         mpModel->ResizePage( aSize );
@@ -170,12 +164,12 @@ void SAL_CALL ChXChartDrawPage::setPropertyValue( const ::rtl::OUString& aProper
                 break;
             case CHART_DRAW_PAGE_HEIGHT_ID:
                 {
-                    const SdrPage* pPage = mpModel->GetPage( 0 );
-                    if( pPage )
+                    const SdrPage* pLclPage = mpModel->GetPage( 0 );
+                    if( pLclPage )
                     {
-                        sal_Int32 nHeight;
+                        sal_Int32 nHeight(0);
                         aValue >>= nHeight;
-                        Size aSize = pPage->GetSize();
+                        Size aSize = pLclPage->GetSize();
                         aSize.setHeight( nHeight );
 
                         mpModel->ResizePage( aSize );
@@ -191,7 +185,7 @@ uno::Any SAL_CALL ChXChartDrawPage::getPropertyValue( const ::rtl::OUString& aPr
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aResult;
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( aPropertyName );
@@ -203,20 +197,20 @@ uno::Any SAL_CALL ChXChartDrawPage::getPropertyValue( const ::rtl::OUString& aPr
         {
             case CHART_DRAW_PAGE_WIDTH_ID:
                 {
-                    const SdrPage* pPage = mpModel->GetPage( 0 );
-                    if( pPage )
+                    const SdrPage* pLclPage = mpModel->GetPage( 0 );
+                    if( pLclPage )
                     {
-                        Size aSize = pPage->GetSize();
+                        Size aSize = pLclPage->GetSize();
                         aResult <<= aSize.getWidth();
                     }
                 }
                 break;
             case CHART_DRAW_PAGE_HEIGHT_ID:
                 {
-                    const SdrPage* pPage = mpModel->GetPage( 0 );
-                    if( pPage )
+                    const SdrPage* pLclPage = mpModel->GetPage( 0 );
+                    if( pLclPage )
                     {
-                        Size aSize = pPage->GetSize();
+                        Size aSize = pLclPage->GetSize();
                         aResult <<= aSize.getHeight();
                     }
                 }
@@ -226,31 +220,33 @@ uno::Any SAL_CALL ChXChartDrawPage::getPropertyValue( const ::rtl::OUString& aPr
     return aResult;
 }
 
-void SAL_CALL ChXChartDrawPage::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                           const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXChartDrawPage::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                           const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDrawPage::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                              const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXChartDrawPage::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                              const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDrawPage::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                           const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartDrawPage::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                           const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDrawPage::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                              const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartDrawPage::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                              const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

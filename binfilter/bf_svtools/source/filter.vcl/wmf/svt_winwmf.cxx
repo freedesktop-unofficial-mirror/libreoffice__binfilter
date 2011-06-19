@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 
 #include "winmtf.hxx"
-#ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
-#endif
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter
 {
@@ -1215,7 +1210,7 @@ sal_Bool WMFReader::GetPlaceableBound( Rectangle& rPlaceableBound, SvStream* pSt
 
                 case W_META_SETPIXEL:
                 {
-                    const Color aColor = ReadColor();
+                    ReadColor();
                     GetWinExtMax( ReadYX(), rPlaceableBound, nMapMode );
                 }
                 break;
@@ -1236,12 +1231,11 @@ sal_Bool WMFReader::GetPlaceableBound( Rectangle& rPlaceableBound, SvStream* pSt
                 case W_META_EXTTEXTOUT:
                 {
                     sal_uInt16  nLen, nOptions;
-                    sal_Int32   nRecordPos, nRecordSize;
+                    sal_Int32   nRecordSize;
                     Point       aPosition;
                     Rectangle   aRect;
 
                     pStm->SeekRel(-6);
-                    nRecordPos = pStm->Tell();
                     *pStm >> nRecordSize;
                     pStm->SeekRel(2);
                     aPosition = ReadYX();
@@ -1318,3 +1312,5 @@ sal_Bool WMFReader::GetPlaceableBound( Rectangle& rPlaceableBound, SvStream* pSt
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

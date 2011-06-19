@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,278 +33,102 @@
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
-#endif
-#ifndef _SV_MAPMOD_HXX
 #include <vcl/mapmod.hxx>
-#endif
 
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
 
-#ifndef _SFXMACITEM_HXX
 #include <bf_svtools/macitem.hxx>
-#endif
-#ifndef _SVX_PBINITEM_HXX
 #include <bf_svx/pbinitem.hxx>
-#endif
-#ifndef _SVX_KEEPITEM_HXX
 #include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_NLBKITEM_HXX
 #include <bf_svx/nlbkitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX
 #include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_PRSZITEM_HXX
 #include <bf_svx/prszitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX
 #include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX
 #include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_PRNTITEM_HXX
 #include <bf_svx/prntitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX
 #include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX
 #include <bf_svx/wrlmitem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX
 #include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX
 #include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ORPHITEM_HXX
 #include <bf_svx/orphitem.hxx>
-#endif
-#ifndef _SVX_WIDWITEM_HXX
 #include <bf_svx/widwitem.hxx>
-#endif
-#ifndef _SVX_NHYPITEM_HXX
 #include <bf_svx/nhypitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX
 #include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _SVX_LSPCITEM_HXX
 #include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_BLNKITEM_HXX
 #include <bf_svx/blnkitem.hxx>
-#endif
-#ifndef _SVX_AKRNITEM_HXX
 #include <bf_svx/akrnitem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX
 #include <bf_svx/emphitem.hxx>
-#endif
-#ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
-#endif
-#ifndef _SVX_SCRIPSPACEITEM_HXX
 #include <bf_svx/scriptspaceitem.hxx>
-#endif
-#ifndef _SVX_HNGPNCTITEM_HXX
 #include <bf_svx/hngpnctitem.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX
 #include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_CHARSCALEITEM_HXX
 #include <bf_svx/charscaleitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
-#ifndef _SVX_CHARRELIEFITEM_HXX
 #include <bf_svx/charreliefitem.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
-#ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
-#ifndef _OFF_APP_HXX
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
-#endif
-#ifndef _SVX_PARAVERTALIGNITEM_HXX
 #include <bf_svx/paravertalignitem.hxx>
-#endif
-#ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
-#endif
 
 
-#ifndef _FMTHBSH_HXX
 #include <fmthbsh.hxx>
-#endif
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTSRND_HXX
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX
 #include <fmtrfmrk.hxx>
-#endif
-#ifndef _FMTTSPLT_HXX
 #include <fmtlsplt.hxx>
-#endif
-#ifndef _FMTEIRO_HXX
 #include <fmteiro.hxx>
-#endif
-#ifndef _FMTCLDS_HXX
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTURL_HXX
 #include <fmturl.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTHDFT_HXX
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTPDSC_HXX
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTFORDR_HXX
 #include <fmtfordr.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTINFMT_HXX
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _FMTCNCT_HXX
 #include <fmtcnct.hxx>
-#endif
-#ifndef _FMTLINE_HXX
 #include <fmtline.hxx>
-#endif
-#ifndef _FMTFTNTX_HXX
 #include <fmtftntx.hxx>
-#endif
-#ifndef _FMTRUBY_HXX
 #include <fmtruby.hxx>
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
-#ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #include <hfspacingitem.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _INIT_HXX
 #include <init.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _GRFATR_HXX
 #include <grfatr.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _TBLAFMT_HXX
 #include <tblafmt.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
-#endif
-#ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _CHECKIT_HXX
 #include <checkit.hxx>
-#endif
 
-#ifndef _SWCALWRP_HXX
 #include <swcalwrp.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 extern void _FrmFinit();
@@ -313,12 +138,12 @@ extern void ClearFEShellTabCols();
 |*  einige Bereiche fuer die Set in Collections / Nodes
 |*************************************************************************/
     // AttrSet-Range fuer die 2 Break-Attribute
-USHORT __FAR_DATA aBreakSetRange[] = {
+USHORT aBreakSetRange[] = {
     RES_PAGEDESC, RES_BREAK,
     0 };
 
     // AttrSet-Range fuer die TxtFmtColl
-USHORT __FAR_DATA aTxtFmtCollSetRange[] = {
+USHORT aTxtFmtCollSetRange[] = {
     RES_FRMATR_BEGIN, RES_FRMATR_END-1,
     RES_CHRATR_BEGIN, RES_CHRATR_END-1,
     RES_PARATR_BEGIN, RES_PARATR_END-1,
@@ -327,7 +152,7 @@ USHORT __FAR_DATA aTxtFmtCollSetRange[] = {
 };
 
     // AttrSet-Range fuer die GrfFmtColl
-USHORT __FAR_DATA aGrfFmtCollSetRange[] = {
+USHORT aGrfFmtCollSetRange[] = {
     RES_FRMATR_BEGIN, RES_FRMATR_END-1,
     RES_GRFATR_BEGIN, RES_GRFATR_END-1,
     RES_UNKNOWNATR_BEGIN, RES_UNKNOWNATR_END-1,
@@ -335,7 +160,7 @@ USHORT __FAR_DATA aGrfFmtCollSetRange[] = {
 };
 
     // AttrSet-Range fuer die TextNode
-USHORT __FAR_DATA aTxtNodeSetRange[] = {
+USHORT aTxtNodeSetRange[] = {
     RES_FRMATR_BEGIN, RES_FRMATR_END-1,
     RES_CHRATR_BEGIN, RES_CHRATR_END-1,
     RES_PARATR_BEGIN, RES_PARATR_END-1,
@@ -344,14 +169,14 @@ USHORT __FAR_DATA aTxtNodeSetRange[] = {
 };
 
     // AttrSet-Range fuer die NoTxtNode
-USHORT __FAR_DATA aNoTxtNodeSetRange[] = {
+USHORT aNoTxtNodeSetRange[] = {
     RES_FRMATR_BEGIN, RES_FRMATR_END-1,
     RES_GRFATR_BEGIN, RES_GRFATR_END-1,
     RES_UNKNOWNATR_BEGIN, RES_UNKNOWNATR_END-1,
     0
 };
 
-USHORT __FAR_DATA aTableSetRange[] = {
+USHORT aTableSetRange[] = {
     RES_FILL_ORDER,     RES_FRM_SIZE,
     RES_LR_SPACE,       RES_BREAK,
     RES_BACKGROUND,     RES_SHADOW,
@@ -363,7 +188,7 @@ USHORT __FAR_DATA aTableSetRange[] = {
     0
 };
 
-USHORT __FAR_DATA aTableLineSetRange[] = {
+USHORT aTableLineSetRange[] = {
     RES_FILL_ORDER,     RES_FRM_SIZE,
     RES_LR_SPACE,       RES_UL_SPACE,
     RES_BACKGROUND,     RES_SHADOW,
@@ -373,7 +198,7 @@ USHORT __FAR_DATA aTableLineSetRange[] = {
     0
 };
 
-USHORT __FAR_DATA aTableBoxSetRange[] = {
+USHORT aTableBoxSetRange[] = {
     RES_FILL_ORDER,     RES_FRM_SIZE,
     RES_LR_SPACE,       RES_UL_SPACE,
     RES_BACKGROUND,     RES_SHADOW,
@@ -385,21 +210,21 @@ USHORT __FAR_DATA aTableBoxSetRange[] = {
 };
 
 // AttrSet-Range fuer die SwFrmFmt
-USHORT __FAR_DATA aFrmFmtSetRange[] = {
+USHORT aFrmFmtSetRange[] = {
     RES_FRMATR_BEGIN, RES_FRMATR_END-1,
     RES_UNKNOWNATR_BEGIN, RES_UNKNOWNATR_END-1,
     0
 };
 
 // AttrSet-Range fuer die SwCharFmt
-USHORT __FAR_DATA aCharFmtSetRange[] = {
+USHORT aCharFmtSetRange[] = {
     RES_CHRATR_BEGIN, RES_CHRATR_END-1,
     RES_UNKNOWNATR_BEGIN, RES_UNKNOWNATR_END-1,
     0
 };
 
 // AttrSet-Range fuer die SwPageDescFmt
-USHORT __FAR_DATA aPgFrmFmtSetRange[] = {
+USHORT aPgFrmFmtSetRange[] = {
     RES_FRMATR_BEGIN, RES_FRMATR_END-1,
     RES_UNKNOWNATR_BEGIN, RES_UNKNOWNATR_END-1,
     0
@@ -409,9 +234,9 @@ USHORT __FAR_DATA aPgFrmFmtSetRange[] = {
  * lege eine Tabelle fuer einen Zugriff auf die
  * Default-Format-Attribute an
  ******************************************************************************/
-SwDfltAttrTab __FAR_DATA aAttrTab;
+SwDfltAttrTab aAttrTab;
 
-SfxItemInfo __FAR_DATA aSlotTab[] =
+SfxItemInfo aSlotTab[] =
 {
     { SID_ATTR_CHAR_CASEMAP, SFX_ITEM_POOLABLE },       // RES_CHRATR_CASEMAP
     { SID_ATTR_CHAR_CHARSETCOLOR, SFX_ITEM_POOLABLE },  // RES_CHRATR_CHARSETCOLOR
@@ -567,13 +392,13 @@ USHORT* SwAttrPool::pVersionMap3 = 0;
 USHORT* SwAttrPool::pVersionMap4 = 0;
 SwIndexReg* SwIndexReg::pEmptyIndexArray = 0;
 
-const sal_Char* __FAR_DATA pMarkToTable     = "table";
-const sal_Char* __FAR_DATA pMarkToFrame     = "frame";
-const sal_Char* __FAR_DATA pMarkToRegion    = "region";
-const sal_Char* __FAR_DATA pMarkToText      = "text";
-const sal_Char* __FAR_DATA pMarkToOutline   = "outline";
-const sal_Char* __FAR_DATA pMarkToGraphic   = "graphic";
-const sal_Char* __FAR_DATA pMarkToOLE       = "ole";
+const sal_Char* pMarkToTable        = "table";
+const sal_Char* pMarkToFrame        = "frame";
+const sal_Char* pMarkToRegion   = "region";
+const sal_Char* pMarkToText     = "text";
+const sal_Char* pMarkToOutline  = "outline";
+const sal_Char* pMarkToGraphic  = "graphic";
+const sal_Char* pMarkToOLE      = "ole";
 
 SvPtrarr *pGlobalOLEExcludeList = 0;
 
@@ -910,7 +735,6 @@ public:
 /*N*/   delete SwSelPaintRects::pMapMode;
 /*N*/   delete SwFntObj::pPixMap;
 /*N*/
-/*N*/   delete SwEditShell::pAutoFmtFlags;
 /*N*/   delete SwNumRule::pDefBulletFont;
 /*N*/
 /*N*/ #ifdef DBG_UTIL
@@ -1031,3 +855,5 @@ public:
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

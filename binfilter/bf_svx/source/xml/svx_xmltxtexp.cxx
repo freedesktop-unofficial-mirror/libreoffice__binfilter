@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 /** this file implements an export of a selected EditEngine content into
     a xml stream. See bf_svx/source/inc/xmledit.hxx for interface */
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPAREFACTORY_HPP_
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
 
 
 
@@ -48,41 +43,25 @@
 
 
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "bf_xmloff/xmlexp.hxx"
-#endif
 
 
-#ifndef _SVX_UNOFORED_HXX
 #include "unofored.hxx"
-#endif
 
-#ifndef _SVX_UNOTEXT_HXX
 #include "unotext.hxx"
-#endif
 
-#ifndef _SVX_EDITSOURCE_HXX
 #include "editsource.hxx"
-#endif
 
 #include <cppuhelper/implbase4.hxx>
 
-#ifndef _SVX_UNOFIELD_HXX
 #include "unofield.hxx"
-#endif
 
-#ifndef SVX_UNOMOD_HXX
 #include "unomod.hxx"
-#endif
 #include "unonrule.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::container;
@@ -91,8 +70,9 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::awt;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::xml::sax;
-using namespace ::rtl;
 using namespace cppu;
+
+using rtl::OUString;
 
 ///////////////////////////////////////////////////////////////////////
 
@@ -186,3 +166,5 @@ class SvxEditEngineSourceImpl;
 /*N*/ {
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

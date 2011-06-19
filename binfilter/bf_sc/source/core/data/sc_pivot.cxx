@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -183,7 +181,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 /*N*/
-/*N*/ ScPivot::ScPivot(const ScPivot& rPivot):
+/*N*/ ScPivot::ScPivot(const ScPivot& rPivot): DataObject(rPivot),
 /*N*/   pDoc            (rPivot.pDoc),
 /*N*/   aQuery          (rPivot.aQuery),
 /*N*/   bHasHeader      (rPivot.bHasHeader),
@@ -191,10 +189,10 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   bDetectCat      (rPivot.bDetectCat),
 /*N*/   bMakeTotalCol   (rPivot.bMakeTotalCol),
 /*N*/   bMakeTotalRow   (rPivot.bMakeTotalRow),
-/*N*/   nColNameCount   (0),
-/*N*/   pColNames       (NULL),
 /*N*/   aName           (rPivot.aName),
 /*N*/   aTag            (rPivot.aTag),
+/*N*/   nColNameCount   (0),
+/*N*/   pColNames       (NULL),
 /*N*/   nSrcCol1        (rPivot.nSrcCol1),
 /*N*/   nSrcRow1        (rPivot.nSrcRow1),
 /*N*/   nSrcCol2        (rPivot.nSrcCol2),
@@ -392,54 +390,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       }
 /*N*/   }
 /*N*/   // sonst wird hinterher aus ScPivotCollection::Load ein Name vergeben
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ BOOL ScPivot::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << bHasHeader
-/*N*/
-/*N*/           << nSrcCol1
-/*N*/           << nSrcRow1
-/*N*/           << nSrcCol2
-/*N*/           << nSrcRow2
-/*N*/           << nSrcTab
-/*N*/
-/*N*/           << nDestCol1
-/*N*/           << nDestRow1
-/*N*/           << nDestCol2
-/*N*/           << nDestRow2
-/*N*/           << nDestTab
-/*N*/
-/*N*/           << nColCount;
-/*N*/   lcl_SaveFieldArr( rStream, aColArr, nColCount );
-/*N*/   rStream << nRowCount;
-/*N*/   lcl_SaveFieldArr( rStream, aRowArr, nRowCount );
-/*N*/   rStream << nDataCount;
-/*N*/   lcl_SaveFieldArr( rStream, aDataArr, nDataCount );
-/*N*/
-/*N*/   aQuery.Store( rStream );
-/*N*/
-/*N*/   rStream << bIgnoreEmpty;
-/*N*/   rStream << bDetectCat;
-/*N*/
-/*N*/   rStream << bMakeTotalCol;       // ab 355i
-/*N*/   rStream << bMakeTotalRow;
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )  // Name/Tag/Spalten ab 5.0
-/*N*/   {
-/*N*/       rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aTag,  rStream.GetStreamCharSet() );
-/*N*/
-/*N*/       if (!pColNames) ((ScPivot*)this)->nColNameCount = 0;        // soll nicht sein
-/*N*/       rStream << nColNameCount;
-/*N*/       for (USHORT nCol=0; nCol<nColNameCount; nCol++)
-/*N*/           rStream.WriteByteString( pColNames[nCol], rStream.GetStreamCharSet() );
-/*N*/   }
 /*N*/
 /*N*/   rHdr.EndEntry();
 /*N*/   return TRUE;
@@ -816,7 +766,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/                   if (!(pDataList->AtInsert(pDataList->GetCount(), pStrData)))
 /*N*/                   {
 /*?*/                       delete pStrData;
-/*?*/                       DBG_ERROR("Fehler bei pDataList->AtInsert");
+/*?*/                       OSL_FAIL("Fehler bei pDataList->AtInsert");
 /*N*/                   }
 /*N*/
 /*N*/                   ++nDataCount;
@@ -832,11 +782,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 
 /*N*/ void ScPivot::GetDataFields(PivotField* pFieldArr, short& rCount) const
 /*N*/ {
-/*  for (short i=0; i<nDataCount; i++)
-        pFieldArr[i] = aDataArr[i];
-    rCount = nDataCount;
-*/
-/*N*/
 /*N*/   rCount = 0;
 /*N*/   for (short i=0; i<nDataCount; i++)
 /*N*/   {
@@ -862,10 +807,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 
 /*N*/ BOOL ScPivot::CreateData(BOOL bKeepDest)
 /*N*/ {
-/*N*/   //
-/*N*/   //
-/*N*/   //
-/*N*/
 /*N*/   USHORT nOldCol2 = nDestCol2;
 /*N*/   USHORT nOldRow2 = nDestRow2;
 /*N*/
@@ -941,11 +882,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   pColRef = NULL;
 /*N*/ }
 
-
-
-
-
-
 //--------------------------------------------------------------------------------------------------
 // Private Methoden
 //--------------------------------------------------------------------------------------------------
@@ -990,7 +926,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       BOOL bValidLine = TRUE;
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
@@ -1055,7 +991,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/       BOOL bValidLine = TRUE;
 /*N*/       if (bIgnoreEmpty)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aSrcAdr.SetRow( nRow );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if (bValidLine)
 /*N*/           bValidLine = pDoc->pTab[nSrcTab]->ValidQuery(nRow, aQuery);
@@ -1138,7 +1074,7 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/                           ppDataArr[nRIndex][nCIndex].Update(nVal);
 /*N*/                       }
 /*N*/                       else
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ppDataArr[nRIndex][nCIndex].UpdateNoVal();      // nur nCount
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
 /*N*/               }
 /*N*/           }
@@ -1208,11 +1144,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*?*/           else
 /*?*/               nColLines += (pRowList[i]->GetCount() * aRowArr[i].nFuncCount);
 /*N*/       }
-/*N*/       /*
-        // Ergebnisspalten des letzten Elements
-        if (aRowArr[nRowCount-1].nCol != PIVOT_DATA_FIELD)
-            nColLines += (pRowList[nRowCount-1]->GetCount() * aRowArr[nRowCount-1].nFuncCount);
-        */
 /*N*/       if (nColLines > MAXCOL)
 /*?*/           nDestCol2 = MAXCOL+2;   // ungueltig, 1 wird unten abgezogen
 /*N*/       else if (bDataAtCol)
@@ -1254,11 +1185,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*?*/           else
 /*?*/               nRowLines += (pColList[i]->GetCount() * aColArr[i].nFuncCount);
 /*N*/       }
-        /*
-        // Ergebniszeilen des letzten Elements
-        if (aColArr[nColCount-1].nCol != PIVOT_DATA_FIELD)
-             nRowLines += (pColList[nColCount-1]->GetCount() * aColArr[nColCount-1].nFuncCount);
-         */
 /*N*/       if (nRowLines > MAXROW)
 /*?*/           nDestRow2 = MAXROW+2;   // ungueltig, 1 wird unten abgezogen
 /*N*/       else if (!bDataAtCol)
@@ -1288,10 +1214,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 
-
-
-
-
 /*N*/ USHORT ScPivot::GetCategoryRow( USHORT nCol, USHORT nRow )
 /*N*/ {
 /*N*/   USHORT nMinRow = nSrcRow1;
@@ -1309,5 +1231,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/ }
 
 
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

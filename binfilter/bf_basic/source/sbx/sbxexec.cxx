@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
 #include "sbx.hxx"
 
 namespace binfilter {
@@ -255,47 +252,6 @@ static SbxVariable* PlusMinus( SbxObject* pObj, SbxObject* pGbl, const xub_Unico
     return refVar;
 }
 
-/*?*/ // static SbxVariable* Assign( SbxObject* pObj, SbxObject* pGbl, const xub_Unicode** ppBuf )
-/*?*/ // {
-/*?*/ //    const xub_Unicode* p = *ppBuf;
-/*?*/ //    SbxVariableRef refVar( Operand( pObj, pGbl, &p, TRUE ) );
-/*?*/ //    p = SkipWhitespace( p );
-/*?*/ //    if( refVar.Is() )
-/*?*/ //    {
-/*?*/ //        if( *p == '=' )
-/*?*/ //        {
-/*?*/ //            // Nur auf Props zuweisen!
-/*?*/ //            if( refVar->GetClass() != SbxCLASS_PROPERTY )
-/*?*/ //            {
-/*?*/ //                SbxBase::SetError( SbxERR_BAD_ACTION );
-/*?*/ //                refVar.Clear();
-/*?*/ //            }
-/*?*/ //            else
-/*?*/ //            {
-/*?*/ //                p++;
-/*?*/ //                SbxVariableRef refVar2( PlusMinus( pObj, pGbl, &p ) );
-/*?*/ //                if( refVar2.Is() )
-/*?*/ //                {
-/*?*/ //                    SbxVariable* pVar = refVar;
-/*?*/ //                    SbxVariable* pVar2 = refVar2;
-/*?*/ //                    *pVar = *pVar2;
-/*?*/ //                    pVar->SetParameters( NULL );
-/*?*/ //                }
-/*?*/ //            }
-/*?*/ //        }
-/*?*/ //        else
-/*?*/ //            // Einfacher Aufruf: einmal aktivieren
-/*?*/ //            refVar->Broadcast( SBX_HINT_DATAWANTED );
-/*?*/ //    }
-/*?*/ //    *ppBuf = p;
-/*?*/ //    if( refVar.Is() )
-/*?*/ //        refVar->AddRef();
-/*?*/ //    return refVar;
-/*?*/ // }
-/*?*/ //
-/*?*/ // // Einlesen eines Elements. Dies ist ein Symbol, optional gefolgt
-/*?*/ // // von einer Parameterliste. Das Symbol wird im angegebenen Objekt
-/*?*/ // // gesucht und die Parameterliste wird ggf. angefuegt.
 
 static SbxVariable* Element
     ( SbxObject* pObj, SbxObject* pGbl, const xub_Unicode** ppBuf,
@@ -359,33 +315,7 @@ static SbxVariable* Element
     return refVar;
 }
 
-/*?*/ // // Hauptroutine
-/*?*/ //
-/*?*/ // SbxVariable* SbxObject::Execute( const XubString& rTxt )
-/*?*/ // {
-/*?*/ //    SbxVariable* pVar = NULL;
-/*?*/ //    const xub_Unicode* p = rTxt.GetBuffer();
-/*?*/ //    for( ;; )
-/*?*/ //    {
-/*?*/ //        p = SkipWhitespace( p );
-/*?*/ //        if( !*p )
-/*?*/ //            break;
-/*?*/ //        if( *p++ != '[' )
-/*?*/ //        {
-/*?*/ //            SetError( SbxERR_SYNTAX ); break;
-/*?*/ //        }
-/*?*/ //        pVar = Assign( this, this, &p );
-/*?*/ //        if( !pVar )
-/*?*/ //            break;
-/*?*/ //        p = SkipWhitespace( p );
-/*?*/ //        if( *p++ != ']' )
-/*?*/ //        {
-/*?*/ //            SetError( SbxERR_SYNTAX ); break;
-/*?*/ //        }
-/*?*/ //    }
-/*?*/ //    return pVar;
-/*?*/ // }
-/*?*/ //
+
 SbxVariable* SbxObject::FindQualified( const XubString& rName, SbxClassType t )
 {
     SbxVariable* pVar = NULL;
@@ -401,3 +331,5 @@ SbxVariable* SbxObject::FindQualified( const XubString& rName, SbxClassType t )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

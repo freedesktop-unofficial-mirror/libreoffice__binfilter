@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,85 +32,38 @@
 #endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifdef WTC
-#define private public
-#endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTFORDR_HXX //autogen
 #include <fmtfordr.hxx>
-#endif
-#ifndef _FMTLSPLT_HXX
 #include <fmtlsplt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
-#endif
-#ifndef _TBLAFMT_HXX
 #include <tblafmt.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
 
-#ifndef _NODE2LAY_HXX
 #include <node2lay.hxx>
-#endif
 
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
 
-#ifndef _DOCSH_HXX
 #include "docsh.hxx"
-#endif
 
 #ifdef _MSAVE_HXX
 #endif
@@ -217,7 +171,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
  {
     if( !nCnt )
         return FALSE;
-    ASSERT( pLine, "keine gueltige Zeile" );
+    OSL_ENSURE( pLine, "keine gueltige Zeile" );
 
     // Index hinter die letzte Box der Line
     ULONG nIdxPos;
@@ -270,7 +224,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
         SwStartNode* pSttNd = new SwStartNode( aEndIdx, ND_STARTNODE,
                                                 SwTableBoxStartNode );
         pSttNd->pStartOfSection = pTblNd;
-        SwEndNode* pEndNd = new SwEndNode( aEndIdx, *pSttNd );
 
         pPrvBox = new SwTableBox( pBoxFmt, *pSttNd, pLine );
 
@@ -310,8 +263,8 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/                                    const SvUShorts* pColArr,
 /*N*/                                    BOOL bCalledFromShell )
 /*N*/ {
-/*N*/   ASSERT( nRows, "Tabelle ohne Zeile?" );
-/*N*/   ASSERT( nCols, "Tabelle ohne Spalten?" );
+/*N*/   OSL_ENSURE( nRows, "Tabelle ohne Zeile?" );
+/*N*/   OSL_ENSURE( nCols, "Tabelle ohne Spalten?" );
 /*N*/
 /*N*/   {
 /*N*/       // nicht in Fussnoten kopieren !!
@@ -438,10 +391,10 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/       SwTableBoxes& rBoxes = pLine->GetTabBoxes();
 /*N*/       for( USHORT i = 0; i < nCols; ++i )
 /*N*/       {
-/*N*/           SwTableBoxFmt *pBoxF;
+/*N*/           SwTableBoxFmt *pBoxF(0);
 /*N*/           if( pTAFmt )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BYTE nId = !n ? 0 : (( n+1 == nRows )
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else if( bDfltBorders )
 /*N*/           {
@@ -480,7 +433,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pTblNd->EndOfSectionNode(), *pTblNd, 1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -576,9 +529,9 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 // ---------- teilen / zusammenfassen von Boxen in der Tabelle --------
 
-/*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert, USHORT nCnt,
-/*N*/                       sal_Bool bSameHeight )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL SwDoc::SplitTbl( const SwSelBoxes& /*rBoxes*/, sal_Bool /*bVert*/, USHORT /*nCnt*/,
+/*N*/                       sal_Bool /*bSameHeight*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
@@ -618,7 +571,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 
 /*N*/ void SwTableNode::MakeFrms( SwNodeIndex* pIdxBehind )
 /*N*/ {
-/*N*/   ASSERT( pIdxBehind, "kein Index" );
+/*N*/   OSL_ENSURE( pIdxBehind, "kein Index" );
 /*N*/   *pIdxBehind = *this;
 /*N*/   SwNode *pNd = GetNodes().FindPrvNxtFrmNode( *pIdxBehind, EndOfSectionNode() );
 /*N*/   if( !pNd )
@@ -657,7 +610,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           if ( !pFrm->IsFollow() )
 /*N*/           {
 /*N*/               while ( pFrm->HasFollow() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFrm->JoinAndDelFollows();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               pFrm->Cut();
 /*N*/               delete pFrm;
 /*N*/               bAgain = TRUE;
@@ -668,16 +621,16 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ }
 
 
-/*N*/ void SwTableNode::SetNewTable( SwTable* pNewTable, BOOL bNewFrames )
+/*N*/ void SwTableNode::SetNewTable( SwTable* /*pNewTable*/, BOOL /*bNewFrames*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    DelFrms();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
     // setze das TabelleAttribut Undo auf:
 
 
 
-/* -----------------18.07.98 11:45-------------------
+/* --------------------------------------------------
  *  Direktzugriff fuer UNO
  * --------------------------------------------------*/
 
@@ -778,7 +731,7 @@ BOOL lcl_BoxSetSplitBoxFmts( const SwTableBox*& rpBox, void* pPara )
         }
         else
         {
-USHORT __FAR_DATA aTableSplitBoxSetRange[] = {
+USHORT aTableSplitBoxSetRange[] = {
     RES_LR_SPACE,       RES_UL_SPACE,
     RES_BACKGROUND,     RES_SHADOW,
     RES_PROTECT,        RES_PROTECT,
@@ -959,3 +912,5 @@ USHORT __FAR_DATA aTableSplitBoxSetRange[] = {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,24 +27,16 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_BORDERTYPES_HXX
 #include <bordrhdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -158,13 +151,13 @@ SvXMLEnumMapEntry pXML_NamedBorderWidths[] =
     DEF_DOUBLE_LINE##n##_DIST
 
 
-static sal_uInt16 __READONLY_DATA aSBorderWidths[] =
+static sal_uInt16 const aSBorderWidths[] =
 {
     SBORDER_ENTRY( 0 ), SBORDER_ENTRY( 1 ), SBORDER_ENTRY( 2 ),
     SBORDER_ENTRY( 3 ), SBORDER_ENTRY( 4 )
 };
 
-static sal_uInt16 __READONLY_DATA aDBorderWidths[] =
+static sal_uInt16 const aDBorderWidths[] =
 {
     DBORDER_ENTRY( 0 ),
     DBORDER_ENTRY( 7 ),
@@ -461,3 +454,5 @@ sal_Bool XMLBorderHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue
     return sal_True;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,18 +30,9 @@
 #define SC_DPSAVE_HXX
 
 #include <bf_svtools/bf_solar.h>
-
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-
-#ifndef _LIST_HXX //autogen wg. List
-#include <tools/list.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_SHEET_XDIMENSIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
-#endif
+#include <vector>
 
 class SvStream;
 
@@ -75,9 +67,11 @@ public:
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::uno::XInterface>& xMember );
 
-    void                    Store( SvStream& rStream ) const;
+    void Store( SvStream& ) const {}
 };
 
+
+typedef std::vector< ScDPSaveMember* > type_MemberList;
 
 class ScDPSaveDimension
 {
@@ -93,7 +87,7 @@ private:
     BOOL        bSubTotalDefault;   //! at level
     long        nSubTotalCount;
     USHORT*     pSubTotalFuncs;     // enum GeneralFunction
-    List        aMemberList;
+    type_MemberList aMemberList;
 
 public:
                             ScDPSaveDimension(const String& rName, BOOL bDataLayout);
@@ -103,8 +97,8 @@ public:
 
     BOOL                    operator== ( const ScDPSaveDimension& r ) const;
 
-    const List&             GetMembers() { return aMemberList; }
-    void                    AddMember(ScDPSaveMember* pMember) { aMemberList.Insert(pMember, LIST_APPEND); };
+    const type_MemberList&  GetMembers() { return aMemberList; }
+    void                    AddMember(ScDPSaveMember* pMember) { aMemberList.push_back( pMember ); };
 
     void                    SetDupFlag(BOOL bSet)   { bDupFlag = bSet; }
     BOOL                    GetDupFlag() const      { return bDupFlag; }
@@ -133,14 +127,15 @@ public:
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::uno::XInterface>& xDim );
 
-    void                    Store( SvStream& rStream ) const;
+    void Store( SvStream& ) const {}
 };
 
+typedef std::vector< ScDPSaveDimension* > type_ScDPDimensionList;
 
 class ScDPSaveData
 {
 private:
-    List        aDimList;
+    type_ScDPDimensionList  aDimList;
     USHORT      nColumnGrandMode;
     USHORT      nRowGrandMode;
     USHORT      nIgnoreEmptyMode;
@@ -155,8 +150,8 @@ public:
 
     BOOL                    operator== ( const ScDPSaveData& r ) const;
 
-    const List&             GetDimensions() const { return aDimList; }
-    void                    AddDimension(ScDPSaveDimension* pDim) { aDimList.Insert(pDim, LIST_APPEND); }
+    const type_ScDPDimensionList&   GetDimensions() const { return aDimList; }
+    void                    AddDimension(ScDPSaveDimension* pDim) { aDimList.push_back(pDim); }
 
     ScDPSaveDimension*      GetDimensionByName(const String& rName);
     ScDPSaveDimension*      GetDataLayoutDimension();
@@ -177,7 +172,7 @@ public:
     void                    WriteToSource( const ::com::sun::star::uno::Reference<
                                             ::com::sun::star::sheet::XDimensionsSupplier>& xSource );
 
-    void                    Store( SvStream& rStream ) const;
+    void Store( SvStream& ) const {}
     void                    Load( SvStream& rStream );
 
 };
@@ -186,3 +181,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

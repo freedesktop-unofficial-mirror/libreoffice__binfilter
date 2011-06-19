@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,33 +29,19 @@
 #define _SVX_FMUNDO_HXX
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XSCRIPTLISTENER_HPP_
 #include <com/sun/star/script/XScriptListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
 
 
 
 
-#ifndef _SVDOUNO_HXX //autogen wg. SdrUnoObj
 #include "svdouno.hxx"
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 FORWARD_DECLARE_INTERFACE(awt,XControl)
 FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
 namespace binfilter {
@@ -64,8 +51,6 @@ class FmFormObj;
 class SdrObject;
 class FmXFormView;
 
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControlContainer)
 //FORWARD_DECLARE_INTERFACE(uno,Reference)
 
 //==================================================================
@@ -158,3 +143,4 @@ public:
 }//end of namespace binfilter
 #endif  //_SVX_FMUNDO_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

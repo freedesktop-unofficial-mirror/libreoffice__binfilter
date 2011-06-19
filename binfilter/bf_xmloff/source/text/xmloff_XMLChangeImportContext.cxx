@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLCHANGEIMPORTCONTEXT_HXX
 #include "XMLChangeImportContext.hxx"
-#endif
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 namespace binfilter {
 
@@ -58,13 +49,13 @@ using ::binfilter::xmloff::token::XML_CHANGE_ID;
 TYPEINIT1( XMLChangeImportContext, SvXMLImportContext );
 
 XMLChangeImportContext::XMLChangeImportContext(
-    SvXMLImport& rImport,
-    sal_Int16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_Int16 nInPrefix,
     const OUString& rLocalName,
     sal_Bool bStart,
     sal_Bool bEnd,
     sal_Bool bOutsideOfParagraph) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         bIsStart(bStart),
         bIsEnd(bEnd),
         bIsOutsideOfParagraph(bOutsideOfParagraph)
@@ -83,10 +74,10 @@ void XMLChangeImportContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              IsXMLToken( sLocalName, XML_CHANGE_ID ) )
         {
             // Id found! Now call RedlineImportHelper
@@ -112,3 +103,5 @@ void XMLChangeImportContext::StartElement(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

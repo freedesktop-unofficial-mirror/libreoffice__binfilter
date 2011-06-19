@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _TXTFLCNT_HXX
 #define _TXTFLCNT_HXX
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 class SwFlyInCntFrm;
@@ -70,3 +69,4 @@ inline const SwFlyInCntFrm *SwTxtFlyCnt::GetFlyFrm( const SwFrm *pCurrFrm ) cons
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

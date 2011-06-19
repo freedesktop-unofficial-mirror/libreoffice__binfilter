@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,38 +30,20 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 #ifndef _SVSTDARR_BYTES_DECL
 #define _SVSTDARR_BYTES
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _VCL_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SW3IDS_HXX
 #include <sw3ids.hxx>
-#endif
-#ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
-#endif
 #include <list>
 class SvStream;
 class SvXub_StrLens;
@@ -127,13 +110,13 @@ class SvxFontItem;
 class SdrObject;
 
 
-extern sal_Char __FAR_DATA SW3HEADER[];     // 3.0/3.1 Header
-extern sal_Char __FAR_DATA SW4HEADER[];     // 4.0 Header
-extern sal_Char __FAR_DATA SW5HEADER[];     // 5.0 Header
+extern sal_Char SW3HEADER[];        // 3.0/3.1 Header
+extern sal_Char SW4HEADER[];        // 4.0 Header
+extern sal_Char SW5HEADER[];        // 5.0 Header
 
-extern sal_Char __FAR_DATA sSW3IO_FixedField[];
-extern sal_Char __FAR_DATA sSW3IO_AuthorityField[];
-extern sal_Char __FAR_DATA sSW3IO_DropDownField[]; // #108791#
+extern sal_Char sSW3IO_FixedField[];
+extern sal_Char sSW3IO_AuthorityField[];
+extern sal_Char sSW3IO_DropDownField[]; // #108791#
 
 // die Block-Groessen fuer die einzelnen Stream (Lesen/Schreiben)
 #define SW3_BSR_STYLES 16384
@@ -301,7 +284,7 @@ public:
 
     void   LoadOld( SvStream& );
     void   Load( SvStream&, USHORT nVersion );
-    void   Store( SvStream& );
+    void   Store( SvStream& ) {}
 
     static USHORT ConvertFromOldPoolId( USHORT nId, USHORT nVersion );
     static USHORT ConvertToOldPoolId( USHORT nId, sal_uInt32 nFFVersion );
@@ -862,3 +845,5 @@ void lcl_sw3io__ConvertMarkToOutline( String& rURL );
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

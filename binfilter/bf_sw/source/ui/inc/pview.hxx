@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,25 +30,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXVIEWFRM_HXX //autogen
 #include <bf_sfx2/viewfrm.hxx>
-#endif
-#ifndef _VIEWFAC_HXX //autogen
 #include <bf_sfx2/viewfac.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SFXVIEWSH_HXX //autogen
 #include <bf_sfx2/viewsh.hxx>
-#endif
 #include "shellid.hxx"
-#ifndef _SVX_ZOOMITEM_HXX
 #include <bf_svx/zoomitem.hxx>
-#endif
 class ImageButton;
 class Button;
 class SvtAccessibilityOptions;
@@ -156,7 +145,7 @@ class SwPagePreView: public SfxViewShell
     SwScrollbar             *pVScrollbar;
      ImageButton             *pPageUpBtn,
                             *pPageDownBtn;
-     // Dummy-Window zum FÅllen der rechten unteren Ecke, wenn beide Scrollbars
+     // Dummy-Window zum FÔøΩllen der rechten unteren Ecke, wenn beide Scrollbars
     // aktiv sind
      Window                 *pScrollFill;
 
@@ -207,9 +196,9 @@ public:
 
 
         // Handler
-    void            Execute(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void            Execute(SfxRequest&);
-    void            GetState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void            GetState(SfxItemSet&);
-    void            StateUndo(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void            StateUndo(SfxItemSet&);
+    void            Execute(SfxRequest&){DBG_BF_ASSERT(0, "STRIP");} ;
+    void            GetState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;
+    void            StateUndo(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;
 
     SwDocShell*     GetDocShell();
 
@@ -243,3 +232,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
-#include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _LNKBASE_HXX
+#include <com/sun/star/uno/Sequence.hxx>
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
 namespace binfilter {
 
 // Forward Deklaration
@@ -282,3 +277,4 @@ inline SwSection* SwSectionFmt::GetParentSection() const
 #endif
     //_SECTION_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

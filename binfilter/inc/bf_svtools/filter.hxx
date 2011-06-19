@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,37 +31,19 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _FLTCALL_HXX
 #include <bf_svtools/fltcall.hxx>
-#endif
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
 class Window;
 struct ConvertData;
@@ -199,8 +182,6 @@ class  GraphicDescriptor
 
     void                ImpConstruct();
 
-//#if 0 // _SOLAR__PRIVATE
-
     BOOL                ImpDetectBMP( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectGIF( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectJPG( SvStream& rStm, BOOL bExtendedInfo );
@@ -225,8 +206,6 @@ class  GraphicDescriptor
     BOOL                ImpDetectWMF( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectSGV( SvStream& rStm, BOOL bExtendedInfo );
     BOOL                ImpDetectEMF( SvStream& rStm, BOOL bExtendedInfo );
-
-//#endif
 
     GraphicDescriptor( const GraphicDescriptor& );
     GraphicDescriptor& operator=( const GraphicDescriptor& );
@@ -404,3 +383,5 @@ public:
 }
 
 #endif  //_FILTER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

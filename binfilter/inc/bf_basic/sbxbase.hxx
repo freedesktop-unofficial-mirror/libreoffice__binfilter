@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,11 @@
 #ifndef _SBXBASE_HXX
 #define _SBXBASE_HXX
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _LIST_HXX
-#include "tools/list.hxx"
-#endif
-
-#ifndef _SVARRAY_HXX
 #include "bf_svtools/svarray.hxx"
-#endif
 
-#ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
-#endif
 
 namespace binfilter {
 
@@ -51,18 +42,12 @@ class SbxVariable;
 class SbxBasicFormater;
 
 SV_DECL_PTRARR_DEL(SbxFacs,SbxFactory*,5,5)
-DECLARE_LIST(SbxVarList_Impl, SbxVariable*)
 
 // AppData-Struktur fuer SBX:
 struct SbxAppData
 {
     SbxError            eSbxError;  // Fehlercode
     SbxFacs             aFacs;      // Factories
-    SbxVarList_Impl     aVars;      // fuer Dump
-                                            // Format()-Befehl
-    LanguageType        eBasicFormaterLangType;
-        // Bem.: es ist sinnvoll diese Klasse 'global' zu speichern, da
-        //       einige Resourcen (Strings) in der Klasse gehalten werden.
 
     SbxAppData() : eSbxError( SbxERR_OK ), aFacs() {}
 };
@@ -72,3 +57,5 @@ SbxAppData* GetSbxData_Impl();
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SC_XMLDDELINKSCONTEXT_HXX
 #define _SC_XMLDDELINKSCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
 #ifndef __SGI_STL_LIST
 #include <list>
@@ -234,3 +233,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

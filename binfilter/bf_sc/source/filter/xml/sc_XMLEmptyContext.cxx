@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -40,10 +38,10 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 
-ScXMLEmptyContext::ScXMLEmptyContext( ScXMLImport& rImport,
+ScXMLEmptyContext::ScXMLEmptyContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
 }
 
@@ -51,12 +49,12 @@ ScXMLEmptyContext::~ScXMLEmptyContext()
 {
 }
 
-SvXMLImportContext *ScXMLEmptyContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLEmptyContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    SvXMLImportContext *pContext = new ScXMLEmptyContext(GetScImport(), nPrefix, rLName);
+    SvXMLImportContext *pContext = new ScXMLEmptyContext(GetScImport(), nInPrefix, rLName);
 
     return pContext;
 }
@@ -65,3 +63,5 @@ void ScXMLEmptyContext::EndElement()
 {
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

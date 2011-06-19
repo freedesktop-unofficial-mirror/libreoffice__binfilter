@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,26 +30,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _TBLENUM_HXX
 #include <tblenum.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 
 #ifndef DBG_UTIL
-#ifndef _NODE_HXX
 #include <node.hxx>         // fuer StartNode->GetMyIndex
-#endif
 #else
 namespace binfilter {
 class SwStartNode;
@@ -82,13 +71,13 @@ class SwTableBox_Impl;
 SV_DECL_REF( SwServerObject )
 #endif
 
-SV_DECL_PTRARR_DEL(SwTableLines, SwTableLine*, 10, 20)//STRIP008 ;
-SV_DECL_PTRARR_DEL(SwTableBoxes, SwTableBox*, 25, 50)//STRIP008 ;
+SV_DECL_PTRARR_DEL(SwTableLines, SwTableLine*, 10, 20)
+SV_DECL_PTRARR_DEL(SwTableBoxes, SwTableBox*, 25, 50)
 
 // speicher die Inhaltstragenden Box-Pointer zusaetzlich in einem
 // sortierten Array (fuers rechnen in der Tabelle)
 typedef SwTableBox* SwTableBoxPtr;
-SV_DECL_PTRARR_SORT( SwTableSortBoxes, SwTableBoxPtr, 25, 50 )//STRIP008 ;
+SV_DECL_PTRARR_SORT( SwTableSortBoxes, SwTableBoxPtr, 25, 50 )
 
 class SwTable: public SwClient           //Client vom FrmFmt
 {
@@ -139,7 +128,7 @@ public:
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
 
     void GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
-                     FASTBOOL bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
+                     bool bHidden = FALSE, BOOL bCurRowOnly = FALSE ) const;
 
     BOOL DeleteSel( SwDoc*, const SwSelBoxes& rBoxes,
                             const BOOL bDelMakeFrms = TRUE,
@@ -316,3 +305,5 @@ public:
 
 } //namespace binfilter
 #endif  //_SWTABLE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

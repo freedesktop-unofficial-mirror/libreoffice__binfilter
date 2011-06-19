@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,15 @@
 #ifndef SC_DISPUNO_HXX
 #define SC_DISPUNO_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTOR_HPP_
 #include <com/sun/star/frame/XDispatchProviderInterceptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScImportParam
-#endif
 
 namespace com { namespace sun { namespace star { namespace frame {
     class XDispatchProviderInterception;
@@ -58,7 +49,7 @@ class ScTabViewShell;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::frame::XStatusListener >* XStatusListenerPtr;
-SV_DECL_PTRARR_DEL( XStatusListenerArr_Impl, XStatusListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XStatusListenerArr_Impl, XStatusListenerPtr, 4, 4 )
 
 
 class ScDispatchProviderInterceptor : public cppu::WeakImplHelper2<
@@ -163,3 +154,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

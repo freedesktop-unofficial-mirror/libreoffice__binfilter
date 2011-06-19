@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_FUDRAW_HXX
 #define SC_FUDRAW_HXX
 
-#ifndef _SC_FUPOOR_HXX
 #include "fupoor.hxx"
-#endif
 
-#ifndef _SV_POINTR_HXX //autogen
 #include <vcl/pointr.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -67,3 +64,5 @@ class FuDraw : public FuPoor
 
 } //namespace binfilter
 #endif      // _SD_FUDRAW_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

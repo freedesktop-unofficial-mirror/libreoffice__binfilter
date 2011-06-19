@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _XMLOFF_TRANSGRADIENTSTYLE_HXX
 
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 namespace com { namespace sun { namespace star {
     namespace uno { template<class A> class Reference; }
     namespace xml { namespace sax { class XAttributeList; } }
@@ -73,3 +72,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _XMLOFF_TRANSGRADIENTSTYLE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 #define _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 
-#ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
 #include <com/sun/star/text/TextContentAnchorType.hpp>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 
@@ -58,3 +55,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

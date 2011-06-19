@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _SVDOUTL_HXX //autogen
 #include "svdoutl.hxx"
-#endif
-#ifndef _SVDOTEXT_HXX //autogen
 #include "svdotext.hxx"
-#endif
-#ifndef _EDITSTAT_HXX //autogen wg. EE_CNTRL_STRETCHING
 #include <editstat.hxx>
-#endif
 namespace binfilter {
 
 
@@ -71,10 +66,10 @@ namespace binfilter {
 /*N*/   if( pObj && pObj != pTextObj )
 /*N*/   {
 /*N*/       SetUpdateMode(FALSE);
-/*N*/       USHORT nOutlinerMode = OUTLINERMODE_OUTLINEOBJECT;
+/*N*/       USHORT nLclOutlinerMode = OUTLINERMODE_OUTLINEOBJECT;
 /*N*/       if ( !pObj->IsOutlText() )
-/*N*/           nOutlinerMode = OUTLINERMODE_TEXTOBJECT;
-/*N*/       Init( nOutlinerMode );
+/*N*/           nLclOutlinerMode = OUTLINERMODE_TEXTOBJECT;
+/*N*/       Init( nLclOutlinerMode );
 /*N*/
 /*N*/       SetGlobalCharStretching(100,100);
 /*N*/
@@ -111,7 +106,7 @@ namespace binfilter {
 /*N*/ XubString SdrOutliner::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
 /*N*/                                      Color*& rpTxtColor, Color*& rpFldColor)
 /*N*/ {
-/*N*/   FASTBOOL bOk = FALSE;
+/*N*/   bool bOk = FALSE;
 /*N*/   XubString aRet;
 /*N*/
 /*N*/   if (pTextObj)
@@ -128,3 +123,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

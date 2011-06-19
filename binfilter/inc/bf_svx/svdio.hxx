@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -378,58 +377,59 @@ public:
 IO-Datenstruktur:
 
 ?--------?    ?---?              ?---?
-| SdrData | --->´Modl??---->----?>´Ende?-->
+| SdrData | --->ï¿½Modl??---->----?>ï¿½Ende?-->
 ?--------?    ?---?  ?---?   ?---?
-                       ?-´View?-?
+                       ?-ï¿½View?-?
                           ?---?
 
 ?-----?        ?------?  ?------? ?-------?               ?---?
-| Modl |     --->´ModlHdr?->´ModlDat?>´ItemPool?>?---->----?>´Ende?-->
+| Modl |     --->ï¿½ModlHdr?->ï¿½ModlDat?>ï¿½ItemPool?>?---->----?>ï¿½Ende?-->
 ?-----?        ?------?  ?------? ?-------?   ?---?   ?---?
-                                                    ?-´Layr?-?
+                                                    ?-ï¿½Layr?-?
                                                     |  ?---? |
                                                       ?---? 
-                                                    ?-´LSet?-?
+                                                    ?-ï¿½LSet?-?
                                                     |  ?---? |
                                                       ?---? 
-                                                    ?-´Page?-?
+                                                    ?-ï¿½Page?-?
                                                        ?---?
 
 ?-------?      ?----------?  ?----------?
-|ItemPool|   --->´ItemPoolHdr?->´SfxItemPool?-->
+|ItemPool|   --->ï¿½ItemPoolHdr?->ï¿½SfxItemPool?-->
 ?-------?      ?----------?  ?----------?
 
 ?-----?        ?------?  ?------?               ?-------?
-| Page |     --->´PageHdr?->´PageDat?>?---->----?>´DObjList?-->
+| Page |     --->ï¿½PageHdr?->ï¿½PageDat?>?---->----?>ï¿½DObjList?-->
 ?-----?        ?------?  ?------?   ?---?   ?-------?
-                                        ?-´Layr?-?
+                                        ?-ï¿½Layr?-?
                                         |  ?---? |
                                           ?---? 
-                                        ?-´LSet?-?
+                                        ?-ï¿½LSet?-?
                                            ?---?
 
 ?---------?                    ?---?
-| DObjList | --->?----->-----?>´Ende?-->
+| DObjList | --->?----->-----?>ï¿½Ende?-->
 ?---------?      ?-----?   ?---?
                  ?-?DObj ?-?
                     ?-----?
 
 ?-----?        ?------?  ?------?
-| DObj |     --->´DObjHdr?->´DObjDat?->?----->-------?-->
+| DObj |     --->ï¿½DObjHdr?->ï¿½DObjDat?->?----->-------?-->
 ?-----?        ?------?  ?------?    ?-------? 
-                                         ?>´DObjList?>?
+                                         ?>ï¿½DObjList?>?
                                             ?-------?
 ?-----?        ?------?  ?------?
-| Layr |     --->´LayrHdr?->´LayrDat?-->
+| Layr |     --->ï¿½LayrHdr?->ï¿½LayrDat?-->
 ?-----?        ?------?  ?------?
 
 ?-----?        ?------?  ?------?
-| LSet |     --->´LSetHdr?->´LSetDat?-->
+| LSet |     --->ï¿½LSetHdr?->ï¿½LSetDat?-->
 ?-----?        ?------?  ?------?
 
 ?-----?        ?------?  ?------?
-| View |     --->´ViewHdr?->´ViewDat?-->
+| View |     --->ï¿½ViewHdr?->ï¿½ViewDat?-->
 ?-----?        ?------?  ?------?
 
 ///////////////////////////////////////////////////////////////////////////////////////////////// */
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

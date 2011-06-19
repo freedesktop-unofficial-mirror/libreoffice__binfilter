@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,36 +28,21 @@
 
 #include <bf_svtools/useroptions.hxx>
 
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 #include <rtl/logfile.hxx>
 #include "itemholder2.hxx"
 
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -207,7 +193,7 @@ void SvtUserOptions_Impl::InitFullName()
 // -----------------------------------------------------------------------
 SvtUserOptions_Impl::SvtUserOptions_Impl() :
 
-    ConfigItem( OUString::createFromAscii("UserProfile") ),
+    ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "UserProfile" )) ),
 
     m_bIsROCompany( READONLY_DEFAULT ),
     m_bIsROFirstName( READONLY_DEFAULT ),
@@ -231,7 +217,7 @@ SvtUserOptions_Impl::SvtUserOptions_Impl() :
     InitUserPropertyNames();
     EnableNotification( PropertyNames::get() );
     Load();
-    Any aAny = ConfigManager::GetConfigManager()->GetDirectConfigProperty( ConfigManager::LOCALE );
+    Any aAny = ConfigManager::GetConfigManager().GetDirectConfigProperty( ConfigManager::LOCALE );
     OUString aLocale;
     if ( aAny >>= aLocale )
         m_aLocale = String( aLocale );
@@ -598,13 +584,13 @@ const String& SvtUserOptions::GetFullName() const
     return pImp->GetFullName();
 }
 
-/* -----------------07.07.2003 09:30-----------------
 
- --------------------------------------------------*/
 void SvtUserOptions::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
     Broadcast( rHint );
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

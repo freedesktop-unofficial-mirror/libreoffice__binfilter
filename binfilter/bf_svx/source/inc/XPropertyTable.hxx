@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SVX_XPROPERTYTABLE_HXX
 #define _SVX_XPROPERTYTABLE_HXX
 
-#ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
 #include <com/sun/star/uno/XInterface.hpp>
-#endif
 namespace binfilter {
 
 class XPropertyList;
@@ -47,3 +46,4 @@ com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SvxUnoXBitma
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

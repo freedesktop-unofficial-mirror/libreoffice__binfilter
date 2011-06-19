@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_NUMRULE_HXX
 #include <numithdl.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -52,14 +51,16 @@ sal_Bool XMLNumRulePropHdl::equals( const uno::Any& r1, const uno::Any& r2 ) con
     return mxNumRuleCompare.is() && mxNumRuleCompare->compare( r1, r2 ) == 0;
 }
 
-sal_Bool XMLNumRulePropHdl::importXML( const ::rtl::OUString& rStrImpValue, ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLNumRulePropHdl::importXML( const ::rtl::OUString& /*rStrImpValue*/, ::com::sun::star::uno::Any& /*rValue*/, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_False;
 }
 
-sal_Bool XMLNumRulePropHdl::exportXML( ::rtl::OUString& rStrExpValue, const ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLNumRulePropHdl::exportXML( ::rtl::OUString& /*rStrExpValue*/, const ::com::sun::star::uno::Any& /*rValue*/, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_False;
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

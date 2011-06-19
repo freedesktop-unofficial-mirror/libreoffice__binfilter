@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 #include "bf_sfx2/objsh.hxx"
 #include "bf_sfx2/sfx.hrc"
 
@@ -73,10 +72,8 @@ protected:
 
     virtual BOOL        InitNew( SvStorage * );         // Rekursiv
     virtual BOOL        Load( SvStorage * );            // Rekursiv
-    virtual BOOL        Save();                         // Rekursiv
-    virtual BOOL        SaveAs( SvStorage * pNewStg );  // Rekursiv
+    virtual BOOL        Save() {return false;}                         // Rekursiv
     virtual void        HandsOff();                     // Rekursiv
-    virtual BOOL        SaveCompleted( SvStorage * );   // Rekursiv
 
     virtual ErrCode     Verb( long nVerbPos,
                             SvEmbeddedClient *pCaller,
@@ -128,3 +125,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

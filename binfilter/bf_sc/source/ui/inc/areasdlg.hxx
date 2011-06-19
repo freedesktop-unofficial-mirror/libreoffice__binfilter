@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 #ifndef SC_AREASDLG_HXX
 #define SC_AREASDLG_HXX
 
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef SC_ANYREFDG_HXX
 #include <anyrefdg.hxx>
-#endif
 namespace binfilter {
 
 class ScDocument;
@@ -109,3 +104,4 @@ private:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

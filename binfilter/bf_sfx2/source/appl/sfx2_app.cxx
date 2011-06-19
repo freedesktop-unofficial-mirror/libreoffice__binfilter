@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,9 +38,7 @@
 
 #define _SVSTDARR_STRINGSDTOR
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 #include <rtl/logfile.hxx>
 
@@ -57,7 +56,7 @@
 #include "imestatuswindow.hxx"
 #include "docfilt.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 #include <bf_so3/ipenv.hxx>
 
@@ -98,15 +97,15 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/ }
 
 /*N*/ SfxApplication::SfxApplication()
-/*N*/   : _nFeatures( ULONG_MAX )
-/*N*/   , pImp( 0 )
-/*N*/   , pAppData_Impl( 0 )
+/*N*/   : pImp( 0 )
+/*N*/   , _nFeatures( ULONG_MAX )
 /*N*/     , pCfgMgr( 0 )
+/*N*/   , pOptions( 0 )
+/*N*/   , pAppData_Impl( 0 )
 /*N*/     , bInInit( sal_False )
 /*N*/     , bInExit( sal_False )
 /*N*/     , bDowning( sal_True )
 /*N*/   , bCreatedExternal( sal_False )
-/*N*/   , pOptions( 0 )
 /*N*/ {
 /*N*/
 /*N*/   pImp = new SfxApplication_Impl;
@@ -167,8 +166,7 @@ SfxApplication* SfxApplication::pApp = NULL;
 
 /*N*/ ResMgr* SfxApplication::CreateResManager( const char *pPrefix )
 /*N*/ {
-/*N*/     String aMgrName = String::CreateFromAscii( pPrefix );
-/*N*/     return ResMgr::CreateResMgr(U2S(aMgrName));
+/*N*/     return ResMgr::CreateResMgr(pPrefix);
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -186,3 +184,5 @@ SfxApplication* SfxApplication::pApp = NULL;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_MATRIX_HXX
 #define SC_MATRIX_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -101,7 +98,7 @@ public:
     BOOL HasMat() const                         { return pMat != NULL; }
 
     ScMatrix(SvStream& rStream);
-    void Store(SvStream& rStream) const;
+    void Store(SvStream&) const {}
 
     void GetDimensions(USHORT& rC, USHORT& rR) const { rC = nAnzCol; rR = nAnzRow; };
     ULONG GetElementCount() const       { return (ULONG) nAnzCol * nAnzRow; }
@@ -184,3 +181,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

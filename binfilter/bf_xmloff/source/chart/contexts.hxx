@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #include "SchXMLImport.hxx"
 #include "SchXMLTableContext.hxx"
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include "xmltkmap.hxx"
-#endif
 namespace com { namespace sun { namespace star { namespace xml { namespace sax {
         class XAttributeList;
 }}}}}
@@ -95,3 +92,5 @@ public:
 
 }//end of namespace binfilter
 #endif  // _SCH_XML_CONTEXTS_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,16 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _PSTM_HXX //autogen
 #include <tools/pstm.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
-#endif
+#include <vector>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/
 class SotFactory;
-class SotFactoryList;
 class SvAdviseSinkIndex;
 class WorkWindow;
 class MDIWindow;
@@ -62,17 +55,18 @@ namespace binfilter
 {
 class SvInPlaceClient;
 class SvInPlaceClientList;
-class SvInPlaceObjectList;
 class ImplSvEditObjectProtocol;
-class SvContainerEnvironmentList;
 class SvInPlaceEnvironment;
 class SvVerbList;
 struct SvBindingData;
 class SvObjectList;
 class ImpFactory;
 
+class  SvContainerEnvironment;
+typedef ::std::vector< SvContainerEnvironment* > SvContainerEnvironmentList;
+
 //=========================================================================
-struct SO3_DLLPRIVATE ConvertTo_Impl
+struct SO3_DLLPUBLIC ConvertTo_Impl
 /*  [Beschreibung]
 
     In dieser Struktur werden Informationen "uber den Vorg"anger und den
@@ -134,7 +128,6 @@ public:
 
     // InPlace-Bearbeitung
     SvInPlaceClientList *       pIPActiveClientList;
-    SvInPlaceObjectList *       pIPActiveObjectList;
     SvInPlaceEnvironment *      pUIShowIPEnv;
     ImplSvEditObjectProtocol *  pIEOPDflt;
 
@@ -167,3 +160,4 @@ public:
 }
 #endif //_SO2DLL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

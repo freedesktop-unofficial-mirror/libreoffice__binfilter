@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,57 +31,25 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
 
 
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _FLTINI_HXX
 #include <fltini.hxx>
-#endif
-#ifndef _EXLPAR_HXX
 #include <exlpar.hxx>
-#endif
-#ifndef _FLTGLBLS_HXX
 #include <fltglbls.hxx>
-#endif
-#ifndef _EXCXFBUF_HXX
 #include <excxfbuf.hxx>
-#endif
-#ifndef _EXCVFBFF_HXX
 #include <excvfbff.hxx>
-#endif
-#ifndef _EXCFNTBF_HXX
 #include <excfntbf.hxx>
-#endif
-#ifndef _SWFLTOPT_HXX
 #include <swfltopt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -230,7 +199,7 @@ ULONG ExcelReader::Read( SwDoc &rDoc, SwPaM &rPam,
     }
     else if( !pStrm )
     {
-        ASSERT( FALSE, "ExcelReader-Read ohne Stream/Storage" );
+        OSL_ENSURE( FALSE, "ExcelReader-Read ohne Stream/Storage" );
         nRet = ERR_SWG_READ_ERROR;
     }
 
@@ -256,3 +225,5 @@ int ExcelReader::GetReaderType()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

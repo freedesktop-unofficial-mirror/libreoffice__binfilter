@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,8 @@
 #pragma hdrstop
 #endif
 
-
-//#define TEST_DELAYED_RESIZE
-
-#ifdef TEST_DELAYED_RESIZE
-#endif
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
+#include <osl/diagnose.h>
 
 #include "htmltbl.hxx"
 namespace binfilter {
@@ -51,7 +41,7 @@ namespace binfilter {
 #define MAX_TABWIDTH (USHRT_MAX - 2001)
 
 /*N*/ SwHTMLTableLayout::~SwHTMLTableLayout()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // Die Breiten der Umrandung werden zunaechst wie in Netscape berechnet:
@@ -64,30 +54,11 @@ namespace binfilter {
 // eine Umrandung hat.
 
 
-
-
-
-
-
-
-
-
-
-
-
 // nAbsAvail ist der verfuegbare Platz in TWIPS.
 // nRelAvail ist der auf USHRT_MAX bezogene verfuegbare Platz oder 0
 // nAbsSpace ist der Anteil von nAbsAvail, der durch der umgebende Zelle
 //           fur die Umrandung und den Abstand zum Inhalt reserviert ist.
 
-
-
-
-
-
-
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

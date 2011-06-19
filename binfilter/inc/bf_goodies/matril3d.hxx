@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,17 +32,11 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _B3D_BUCKET_HXX
 #include "bucket.hxx"
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter {
 
@@ -91,7 +86,7 @@ public:
     B3dMaterial();
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
 
     // Vergleichsoperator
@@ -103,3 +98,5 @@ protected:
 }//end of namespace binfilter
 
 #endif          // _B3D_MATRIL3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

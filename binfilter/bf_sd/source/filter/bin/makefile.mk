@@ -25,15 +25,12 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
 PRJNAME=binfilter
 TARGET=sd_bin
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
@@ -41,6 +38,7 @@ NO_HIDS=TRUE
 .INCLUDE : settings.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
+
 # --- Files --------------------------------------------------------
 
 SLOFILES =\

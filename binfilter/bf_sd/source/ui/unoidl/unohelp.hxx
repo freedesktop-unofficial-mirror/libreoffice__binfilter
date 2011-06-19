@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,7 +25,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-namespace binfilter {//STRIP009
+namespace binfilter {
 namespace sd
 {
 inline sal_Bool any2bool( const ::com::sun::star::uno::Any& rAny, sal_Bool& rBool )
@@ -35,7 +36,7 @@ inline sal_Bool any2bool( const ::com::sun::star::uno::Any& rAny, sal_Bool& rBoo
     }
     else
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if(!(rAny >>= nValue))
             return sal_False;
         rBool = nValue != 0;
@@ -59,3 +60,5 @@ inline void bool2any( sal_Bool bBool, ::com::sun::star::uno::Any& rAny )
         aAny <<= uno::Reference< xint >(this)
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

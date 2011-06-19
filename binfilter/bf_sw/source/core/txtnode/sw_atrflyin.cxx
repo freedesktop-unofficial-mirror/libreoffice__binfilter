@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,47 +33,39 @@
 
 #include "cntfrm.hxx"       // _GetFly
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pam.hxx"          // fuer SwTxtFlyCnt
 #include "ndtxt.hxx"        // SwFlyFrmFmt
 #include "frmfmt.hxx"       // SwFlyFrmFmt
 
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
 #include "txtfrm.hxx"
 #include "flyfrms.hxx"
 namespace binfilter {
 
 /*N*/ SwFmtFlyCnt::SwFmtFlyCnt( SwFrmFmt *pFrmFmt )
-/*N*/   : SfxPoolItem( RES_TXTATR_FLYCNT ),
-/*N*/   pFmt( pFrmFmt ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   : SfxPoolItem( RES_TXTATR_FLYCNT )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , pFmt( pFrmFmt )
 /*N*/ {
 /*N*/ }
 
-int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
+int SwFmtFlyCnt::operator==( const SfxPoolItem& /*rAttr*/ ) const
 {
-    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
 }
 
-/*N*/ SfxPoolItem* __EXPORT SwFmtFlyCnt::Clone( SfxItemPool* ) const
+/*N*/ SfxPoolItem* SwFmtFlyCnt::Clone( SfxItemPool* ) const
 /*N*/ {
 /*N*/   return new SwFmtFlyCnt( pFmt );
 /*N*/ }
 
-/*N*/ SwTxtFlyCnt::SwTxtFlyCnt( const SwFmtFlyCnt& rAttr, xub_StrLen nStart )
-/*N*/   : SwTxtAttr( rAttr, nStart )
+/*N*/ SwTxtFlyCnt::SwTxtFlyCnt( const SwFmtFlyCnt& rAttr, xub_StrLen nStart2 )
+/*N*/   : SwTxtAttr( rAttr, nStart2 )
 /*N*/ {
 /*N*/   ((SwFmtFlyCnt&)rAttr).pTxtAttr = this;
 /*N*/ }
@@ -115,7 +108,7 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ void SwTxtFlyCnt::CopyFlyFmt( SwDoc* pDoc )
 /*N*/ {
 /*N*/   SwFrmFmt* pFmt = GetFlyCnt().GetFrmFmt();
-/*N*/   ASSERT( pFmt, "von welchem Format soll ich eine Kopie erzeugen?" )
+/*N*/   OSL_ENSURE( pFmt, "von welchem Format soll ich eine Kopie erzeugen?" );
 /*N*/   // Das FlyFrmFmt muss dupliziert werden.
 /*N*/   // In CopyLayoutFmt (siehe doclay.cxx) wird das FlyFrmFmt erzeugt
 /*N*/   // und der Inhalt dupliziert.
@@ -140,7 +133,7 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*?*/       else
 /*?*/       {
 /*?*/           pPos->nContent.Assign( 0, 0 );
-/*?*/           ASSERT( !this, "CopyFlyFmt: Was fuer ein Anker?" );
+/*?*/           OSL_ENSURE( !this, "CopyFlyFmt: Was fuer ein Anker?" );
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -223,12 +216,12 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/   SwFrmFmt* pFrmFmt = GetFlyCnt().GetFrmFmt();
 /*N*/   if( RES_DRAWFRMFMT == pFrmFmt->Which() )
 /*N*/   {
-/*?*/       ASSERT(  !this, "SwTxtFlyCnt::_GetFlyFrm: DrawInCnt-Baustelle!" );
+/*?*/       OSL_ENSURE(  !this, "SwTxtFlyCnt::_GetFlyFrm: DrawInCnt-Baustelle!" );
 /*?*/       return NULL;
 /*N*/   }
 /*N*/
 /*N*/   SwClientIter aIter( *GetFlyCnt().pFmt );
-/*N*/   ASSERT( pCurrFrm->IsTxtFrm(), "SwTxtFlyCnt::_GetFlyFrm for TxtFrms only." );
+/*N*/   OSL_ENSURE( pCurrFrm->IsTxtFrm(), "SwTxtFlyCnt::_GetFlyFrm for TxtFrms only." );
 /*N*/
 /*N*/   if( aIter.GoStart() )
 /*N*/   {
@@ -279,3 +272,5 @@ int __EXPORT SwFmtFlyCnt::operator==( const SfxPoolItem& rAttr ) const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

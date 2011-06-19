@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,24 +28,14 @@
 
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_STYLE_TABSTOP_HPP_
 #include <com/sun/star/style/TabStop.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTABE_HXX
 #include "xmltabe.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -119,7 +110,7 @@ void SvxXMLTabStopExport::Export( const uno::Any& rAny )
     uno::Sequence< ::com::sun::star::style::TabStop> aSeq;
     if(!(rAny >>= aSeq))
     {
-        DBG_ERROR( "SvxXMLTabStopExport needs a Sequence ::com::sun::star::style::TabStop>" );
+        OSL_FAIL( "SvxXMLTabStopExport needs a Sequence ::com::sun::star::style::TabStop>" );
     }
     else
     {
@@ -143,3 +134,5 @@ void SvxXMLTabStopExport::Export( const uno::Any& rAny )
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

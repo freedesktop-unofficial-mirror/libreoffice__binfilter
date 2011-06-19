@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_MARKARR_HXX
 #include "markarr.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 class Fraction;
 class OutputDevice;
 class Rectangle;
@@ -293,13 +290,12 @@ public:
     USHORT      NoteCount( USHORT nMaxRow = MAXROW ) const;
 
     void        LoadData( SvStream& rStream );
-    void        SaveData( SvStream& rStream ) const;
 
     void        LoadNotes( SvStream& rStream );
     void        SaveNotes( SvStream& rStream ) const;
 
     BOOL        Load( SvStream& rStream, ScMultipleReadHeader& rHdr );
-    BOOL        Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    BOOL        Save( SvStream&, ScMultipleWriteHeader& ) const {return false; }
     BOOL        TestTabRefAbs(USHORT nTable);
 
 
@@ -360,3 +356,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

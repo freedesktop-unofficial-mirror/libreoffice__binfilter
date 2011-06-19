@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,35 +26,21 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLFOOTNOTESEPARATOREXPORT_HXX
 #include "XMLFootnoteSeparatorExport.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
 #include <com/sun/star/text/HorizontalAdjust.hpp>
-#endif
 
 namespace binfilter {
 
@@ -122,6 +109,7 @@ void XMLFootnoteSeparatorExport::exportXML(
         case CTF_PM_FTN_LINE_WEIGTH:
             DBG_ASSERT( i == nIdx,
                         "received wrong property state index" );
+            (void)nIdx;
             rState.maValue >>= nLineWeight;
             break;
         }
@@ -175,3 +163,5 @@ void XMLFootnoteSeparatorExport::exportXML(
                              XML_FOOTNOTE_SEP, sal_True, sal_True);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

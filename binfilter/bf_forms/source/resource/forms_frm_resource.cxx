@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,14 +28,10 @@
 
 #include "frm_resource.hxx"
 
-#ifndef _TOOLS_SIMPLERESMGR_HXX_
 #include <tools/simplerm.hxx>
-#endif
 
 // ---- needed as long as we have no contexts for components ---
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 //---------------------------------------------------
 
 #include <bf_svtools/bf_solar.h>
@@ -61,7 +58,7 @@ namespace frm
         if (m_pImpl)
             return;
 
-        ByteString sFileName("bf_frm"); //STRIP005
+        ByteString sFileName("bf_frm");
 
         m_pImpl = SimpleResMgr::Create(sFileName.GetBuffer(), Application::GetSettings().GetUILocale());
 
@@ -89,3 +86,5 @@ namespace frm
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

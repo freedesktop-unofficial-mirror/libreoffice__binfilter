@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _TBXANCHR_HXX
 #define _TBXANCHR_HXX
 
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 namespace binfilter {
 
 class SwTbxAnchor : public SfxToolBoxControl
@@ -46,3 +45,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

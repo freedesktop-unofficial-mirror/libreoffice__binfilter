@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,86 +26,51 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen wg. SfxItemSet
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-
-
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 
-#ifndef _XMLOFF_TXTSTYLI_HXX
 #include "txtstyli.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
-#ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 #include "XMLChartStyleContext.hxx"
-#endif
-#ifndef _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
 #include "XMLChartPropertySetMapper.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include "XMLShapeStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_FILLSTYLECONTEXTS_HXX_
 #include "FillStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFOOTNOTECONFIGURATIONIMPORTCONTEXT_HXX
 #include "XMLFootnoteConfigurationImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYCONFIGURATIONCONTEXT_HXX_
 #include "XMLIndexBibliographyConfigurationContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingImportContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 #include "PageMasterImportContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
 #include "PageMasterImportPropMapper.hxx"
-#endif
+
+#include <vector>
+
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
 
+using rtl::OUString;
+using ::std::vector;
+
 // ---------------------------------------------------------------------
 
-static __FAR_DATA SvXMLTokenMapEntry aStyleStylesElemTokenMap[] =
+static SvXMLTokenMapEntry aStyleStylesElemTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,  XML_STYLE,          XML_TOK_STYLE_STYLE                },
     { XML_NAMESPACE_STYLE,  XML_PAGE_MASTER,    XML_TOK_STYLE_PAGE_MASTER          },
@@ -195,11 +161,11 @@ SvXMLStyleContext::~SvXMLStyleContext()
 {
 }
 
-SvXMLImportContext *SvXMLStyleContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext *SvXMLStyleContext::CreateChildContext( sal_uInt16 nInPrefix,
                                             const OUString& rLocalName,
-                                            const uno::Reference< xml::sax::XAttributeList > & xAttrList )
+                                            const uno::Reference< xml::sax::XAttributeList > & /*xAttrList*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );;
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );;
 }
 
 void SvXMLStyleContext::StartElement( const uno::Reference< xml::sax::XAttributeList > & xAttrList )
@@ -208,11 +174,11 @@ void SvXMLStyleContext::StartElement( const uno::Reference< xml::sax::XAttribute
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        SetAttribute( nPrefix, aLocalName, rValue );
+        SetAttribute( nLclPrefix, aLclLocalName, rValue );
     }
 }
 
@@ -220,15 +186,15 @@ void SvXMLStyleContext::SetDefaults()
 {
 }
 
-void SvXMLStyleContext::CreateAndInsert( sal_Bool bOverwrite )
+void SvXMLStyleContext::CreateAndInsert( sal_Bool /*bOverwrite*/ )
 {
 }
 
-void SvXMLStyleContext::CreateAndInsertLate( sal_Bool bOverwrite )
+void SvXMLStyleContext::CreateAndInsertLate( sal_Bool /*bOverwrite*/ )
 {
 }
 
-void SvXMLStyleContext::Finish( sal_Bool bOverwrite )
+void SvXMLStyleContext::Finish( sal_Bool /*bOverwrite*/ )
 {
 }
 
@@ -282,8 +248,7 @@ int SvXMLStyleIndexCmp_Impl( const SvXMLStyleIndex_Impl& r1,
 
 // ---------------------------------------------------------------------
 
-typedef SvXMLStyleContext *SvXMLStyleContextPtr;
-DECLARE_LIST( SvXMLStyleContexts_Impl, SvXMLStyleContextPtr )
+typedef vector< SvXMLStyleContext* > SvXMLStyleContexts_Impl;
 
 DECLARE_CONTAINER_SORT_DEL( SvXMLStyleIndices_Impl, SvXMLStyleIndex_Impl )
 IMPL_CONTAINER_SORT( SvXMLStyleIndices_Impl, SvXMLStyleIndex_Impl,
@@ -308,16 +273,16 @@ public:
     SvXMLStylesContext_Impl();
     ~SvXMLStylesContext_Impl();
 
-    sal_uInt32 GetStyleCount() const { return aStyles.Count(); }
+    sal_uInt32 GetStyleCount() const { return aStyles.size(); }
 
     const SvXMLStyleContext *GetStyle( sal_uInt32 i ) const
     {
-        return i < aStyles.Count() ? aStyles.GetObject(i) : 0;
+        return i < aStyles.size() ? aStyles[ i ] : 0;
     }
 
     SvXMLStyleContext *GetStyle( sal_uInt32 i )
     {
-        return i < aStyles.Count() ? aStyles.GetObject(i) : 0;
+        return i < aStyles.size() ? aStyles[ i ] : 0;
     }
 
     inline void AddStyle( SvXMLStyleContext *pStyle );
@@ -334,29 +299,26 @@ public:
     const OUString& GetParentHRef() { return sParentHRef; }
 };
 
-SvXMLStylesContext_Impl::SvXMLStylesContext_Impl() :
+SvXMLStylesContext_Impl::SvXMLStylesContext_Impl()
+    : aStyles()
+    , pIndices( 0 )
 #ifdef DBG_UTIL
-    nIndexCreated( 0 ),
+    , nIndexCreated( 0 )
 #endif
-    aStyles( 20, 5 ),
-    pIndices( 0 )
 {}
 
 SvXMLStylesContext_Impl::~SvXMLStylesContext_Impl()
 {
     delete pIndices;
 
-    while( aStyles.Count() )
-    {
-        SvXMLStyleContext *pStyle = aStyles.GetObject(0);
-        aStyles.Remove( 0UL );
-        pStyle->ReleaseRef();
-    }
+    for ( size_t i = 0, n = aStyles.size(); i < n; ++i )
+        aStyles[i]->ReleaseRef();
+    aStyles.clear();
 }
 
 inline void SvXMLStylesContext_Impl::AddStyle( SvXMLStyleContext *pStyle )
 {
-    aStyles.Insert( pStyle, aStyles.Count() );
+    aStyles.push_back( pStyle );
     pStyle->AddRef();
 
     FlushIndex();
@@ -366,12 +328,9 @@ void SvXMLStylesContext_Impl::Clear()
 {
     FlushIndex();
 
-    while( aStyles.Count() )
-    {
-        SvXMLStyleContext *pStyle = aStyles.GetObject(0);
-        aStyles.Remove( 0UL );
-        pStyle->ReleaseRef();
-    }
+    for ( size_t i = 0, n = aStyles.size(); i < n; ++i )
+        aStyles[i]->ReleaseRef();
+    aStyles.clear();
 }
 
 const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
@@ -381,20 +340,20 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
 {
     const SvXMLStyleContext *pStyle = 0;
 
-    if( !pIndices && bCreateIndex && aStyles.Count() > 0 )
+    if( !pIndices && bCreateIndex && aStyles.size() > 0 )
     {
 #ifdef DBG_UTIL
         DBG_ASSERT( 0==nIndexCreated,
                     "Performance warning: sdbcx::Index created multiple times" );
 #endif
         ((SvXMLStylesContext_Impl *)this)->pIndices =
-            new SvXMLStyleIndices_Impl( aStyles.Count(), 5 );
-        for( sal_uInt32 i=0; i < aStyles.Count(); i++ )
+            new SvXMLStyleIndices_Impl( aStyles.size(), 5 );
+        for( size_t i=0; i < aStyles.size(); i++ )
         {
-            SvXMLStyleIndex_Impl* pStyleIndex = new SvXMLStyleIndex_Impl( aStyles.GetObject(i));
+            SvXMLStyleIndex_Impl* pStyleIndex = new SvXMLStyleIndex_Impl( aStyles[ i ] );
             if (!pIndices->Insert( pStyleIndex ))
             {
-                DBG_ERROR("Here is a double Style");
+                OSL_FAIL("Here is a double Style");
                 delete pStyleIndex;
             }
         }
@@ -412,9 +371,9 @@ const SvXMLStyleContext *SvXMLStylesContext_Impl::FindStyleChildContext(
     }
     else
     {
-        for( sal_uInt32 i=0; !pStyle && i < aStyles.Count(); i++ )
+        for( size_t i=0; !pStyle && i < aStyles.size(); i++ )
         {
-            const SvXMLStyleContext *pS = aStyles.GetObject( i );
+            const SvXMLStyleContext *pS = aStyles[ i ];
             if( pS->GetFamily() == nFamily &&
                 pS->GetName() == rName )
                 pStyle = pS;
@@ -444,7 +403,7 @@ const SvXMLStyleContext *SvXMLStylesContext::GetStyle( sal_uInt32 i ) const
 }
 
 SvXMLStyleContext *SvXMLStylesContext::CreateStyleChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
@@ -452,14 +411,14 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleChildContext(
 
     if(GetImport().GetDataStylesImport())
     {
-        pStyle = GetImport().GetDataStylesImport()->CreateChildContext(GetImport(), nPrefix,
+        pStyle = GetImport().GetDataStylesImport()->CreateChildContext(GetImport(), nInPrefix,
                                                rLocalName, xAttrList, *this);
     }
 
     if (!pStyle)
     {
         const SvXMLTokenMap& rTokenMap = GetStyleStylesElemTokenMap();
-        sal_uInt16 nToken = rTokenMap.Get( nPrefix, rLocalName );
+        sal_uInt16 nToken = rTokenMap.Get( nInPrefix, rLocalName );
         switch( nToken  )
         {
             case XML_TOK_STYLE_STYLE:
@@ -470,12 +429,12 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleChildContext(
                 for( sal_Int16 i=0; i < nAttrCount; i++ )
                 {
                     const OUString& rAttrName = xAttrList->getNameByIndex( i );
-                    OUString aLocalName;
-                    sal_uInt16 nPrefix =
+                    OUString aLclLocalName;
+                    sal_uInt16 nLclPrefix =
                         GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                                    &aLocalName );
-                    if( XML_NAMESPACE_STYLE == nPrefix &&
-                        IsXMLToken( aLocalName, XML_FAMILY ) )
+                                                                    &aLclLocalName );
+                    if( XML_NAMESPACE_STYLE == nLclPrefix &&
+                        IsXMLToken( aLclLocalName, XML_FAMILY ) )
                     {
                         const OUString& rValue = xAttrList->getValueByIndex( i );
                         nFamily = GetFamily( rValue );
@@ -483,69 +442,69 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleChildContext(
                     }
                 }
                 pStyle = XML_TOK_STYLE_STYLE==nToken
-                    ? CreateStyleStyleChildContext( nFamily, nPrefix,
+                    ? CreateStyleStyleChildContext( nFamily, nInPrefix,
                                                     rLocalName, xAttrList )
-                    : CreateDefaultStyleStyleChildContext( nFamily, nPrefix,
+                    : CreateDefaultStyleStyleChildContext( nFamily, nInPrefix,
                                                     rLocalName, xAttrList );
             }
             break;
             case XML_TOK_STYLE_PAGE_MASTER:
             {
-                pStyle = new PageStyleContext( GetImport(), nPrefix,
+                pStyle = new PageStyleContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList, *this );
             }
             break;
             case XML_TOK_TEXT_LIST_STYLE:
-                pStyle = new SvxXMLListStyleContext( GetImport(), nPrefix,
+                pStyle = new SvxXMLListStyleContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList );
                 break;
             case XML_TOK_TEXT_OUTLINE:
-                pStyle = new SvxXMLListStyleContext( GetImport(), nPrefix,
+                pStyle = new SvxXMLListStyleContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList, sal_True );
                 break;
             case XML_TOK_TEXT_FOOTNOTE_CONFIG:
 #ifndef SVX_LIGHT
                 pStyle = new XMLFootnoteConfigurationImportContext(GetImport(),
-                                                                   nPrefix,
+                                                                   nInPrefix,
                                                                    rLocalName,
                                                                    xAttrList,
                                                                    sal_False);
 #else
                 // create default context to skip content
-                pStyle = new SvXMLStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new SvXMLStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
 #endif // #ifndef SVX_LIGHT
                 break;
 
             case XML_TOK_TEXT_ENDNOTE_CONFIG:
 #ifndef SVX_LIGHT
                 pStyle = new XMLFootnoteConfigurationImportContext(GetImport(),
-                                                                   nPrefix,
+                                                                   nInPrefix,
                                                                    rLocalName,
                                                                    xAttrList,
                                                                    sal_True);
 #else
                 // create default context to skip content
-                pStyle = new SvXMLStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new SvXMLStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
 #endif // #ifndef SVX_LIGHT
                 break;
 
             case XML_TOK_TEXT_BIBLIOGRAPHY_CONFIG:
 #ifndef SVX_LIGHT
                 pStyle = new XMLIndexBibliographyConfigurationContext(
-                    GetImport(), nPrefix, rLocalName, xAttrList);
+                    GetImport(), nInPrefix, rLocalName, xAttrList);
 #else
                 // create default context to skip content
-                pStyle = new SvXMLStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new SvXMLStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
 #endif // #ifndef SVX_LIGHT
                 break;
 
             case XML_TOK_TEXT_LINENUMBERING_CONFIG:
 #ifndef SVX_LIGHT
                 pStyle = new XMLLineNumberingImportContext(
-                    GetImport(), nPrefix, rLocalName, xAttrList);
+                    GetImport(), nInPrefix, rLocalName, xAttrList);
 #else
                 // create default context to skip content
-                pStyle = new SvXMLStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new SvXMLStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
 #endif // #ifndef SVX_LIGHT
                 break;
 
@@ -554,32 +513,32 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleChildContext(
             //
             case XML_TOK_STYLES_GRADIENTSTYLES:
             {
-                pStyle = new XMLGradientStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new XMLGradientStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
                 break;
             }
             case XML_TOK_STYLES_HATCHSTYLES:
             {
-                pStyle = new XMLHatchStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new XMLHatchStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
                 break;
             }
             case XML_TOK_STYLES_BITMAPSTYLES:
             {
-                pStyle = new XMLBitmapStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new XMLBitmapStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
                 break;
             }
             case XML_TOK_STYLES_TRANSGRADIENTSTYLES:
             {
-                pStyle = new XMLTransGradientStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new XMLTransGradientStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
                 break;
             }
             case XML_TOK_STYLES_MARKERSTYLES:
             {
-                pStyle = new XMLMarkerStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new XMLMarkerStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
                 break;
             }
             case XML_TOK_STYLES_DASHSTYLES:
             {
-                pStyle = new XMLDashStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+                pStyle = new XMLDashStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
                 break;
             }
         }
@@ -589,7 +548,7 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleChildContext(
 }
 
 SvXMLStyleContext *SvXMLStylesContext::CreateStyleStyleChildContext(
-        sal_uInt16 nFamily, sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nFamily, sal_uInt16 nInPrefix, const OUString& rLocalName,
         const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLStyleContext *pStyle = 0;
@@ -599,33 +558,33 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleStyleChildContext(
         case XML_STYLE_FAMILY_TEXT_PARAGRAPH:
         case XML_STYLE_FAMILY_TEXT_TEXT:
         case XML_STYLE_FAMILY_TEXT_SECTION:
-            pStyle = new XMLTextStyleContext( GetImport(), nPrefix, rLocalName,
+            pStyle = new XMLTextStyleContext( GetImport(), nInPrefix, rLocalName,
                                               xAttrList, *this, nFamily );
             break;
 
         case XML_STYLE_FAMILY_CONTROL_ID:
             pStyle = const_cast< SvXMLImport& >( GetImport() ).GetFormImport()->createControlStyleContext(
-                nPrefix, rLocalName, xAttrList, *this, nFamily );
+                nInPrefix, rLocalName, xAttrList, *this, nFamily );
             break;
 
         case XML_STYLE_FAMILY_TEXT_RUBY:
-            pStyle = new XMLPropStyleContext( GetImport(), nPrefix, rLocalName,
+            pStyle = new XMLPropStyleContext( GetImport(), nInPrefix, rLocalName,
                                               xAttrList, *this, nFamily );
             break;
         case XML_STYLE_FAMILY_SCH_CHART_ID:
 #ifndef SVX_LIGHT
-            pStyle = new XMLChartStyleContext( GetImport(), nPrefix, rLocalName,
+            pStyle = new XMLChartStyleContext( GetImport(), nInPrefix, rLocalName,
                                                xAttrList, *this, nFamily );
 #else
             // create default context to skip content
-            pStyle = new SvXMLStyleContext( GetImport(), nPrefix, rLocalName, xAttrList, nFamily );
+            pStyle = new SvXMLStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList, nFamily );
 #endif
             break;
 
         case XML_STYLE_FAMILY_SD_GRAPHICS_ID:
         case XML_STYLE_FAMILY_SD_PRESENTATION_ID:
         case XML_STYLE_FAMILY_SD_POOL_ID:
-            pStyle = new XMLShapeStyleContext( GetImport(), nPrefix, rLocalName,
+            pStyle = new XMLShapeStyleContext( GetImport(), nInPrefix, rLocalName,
                                                xAttrList, *this, nFamily );
     }
 
@@ -633,8 +592,8 @@ SvXMLStyleContext *SvXMLStylesContext::CreateStyleStyleChildContext(
 }
 
 SvXMLStyleContext *SvXMLStylesContext::CreateDefaultStyleStyleChildContext(
-        sal_uInt16 nFamily, sal_uInt16 nPrefix, const OUString& rLocalName,
-        const uno::Reference< xml::sax::XAttributeList > & xAttrList )
+        sal_uInt16 /*nFamily*/, sal_uInt16 /*nInPrefix*/, const OUString& /*rLocalName*/,
+        const uno::Reference< xml::sax::XAttributeList > & /*xAttrList*/ )
 {
     return 0;
 }
@@ -785,7 +744,7 @@ UniReference < SvXMLImportPropertyMapper > SvXMLStylesContext::GetImportProperty
         break;
 #ifndef SVX_LIGHT
     case XML_STYLE_FAMILY_CONTROL_ID:
-        xMapper = const_cast<SvXMLImport&>(GetImport()).GetFormImport()->getStylePropertyMapper().getBodyPtr();
+        xMapper = const_cast<SvXMLImport&>(GetImport()).GetFormImport()->getStylePropertyMapper().get();
         break;
 #endif // #ifndef SVX_LIGHT
     }
@@ -859,25 +818,25 @@ OUString SvXMLStylesContext::GetServiceName( sal_uInt16 nFamily ) const
 }
 
 
-SvXMLStylesContext::SvXMLStylesContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SvXMLStylesContext::SvXMLStylesContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                         const OUString& rLName,
-                                        const uno::Reference< xml::sax::XAttributeList > & xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
-    pImpl( new SvXMLStylesContext_Impl ),
-    pStyleStylesElemTokenMap( 0 ),
-    sParaStyleServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.ParagraphStyle" ) ),
-    sTextStyleServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.CharacterStyle" ) )
+                                        const uno::Reference< xml::sax::XAttributeList > & xAttrList)
+    : SvXMLImportContext( rInImport, nPrfx, rLName )
+    , sParaStyleServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.ParagraphStyle" ) )
+    , sTextStyleServiceName( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.CharacterStyle" ) )
+    , pImpl( new SvXMLStylesContext_Impl )
+    , pStyleStylesElemTokenMap( 0 )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        if( XML_NAMESPACE_NONE == nPrefix &&
-            IsXMLToken( aLocalName, XML_ID ) )
+                                                            &aLclLocalName );
+        if( XML_NAMESPACE_NONE == nLclPrefix &&
+            IsXMLToken( aLclLocalName, XML_ID ) )
         {
             pImpl->SetId( xAttrList->getValueByIndex( i ) );
         }
@@ -891,24 +850,24 @@ SvXMLStylesContext::~SvXMLStylesContext()
     delete pImpl;
 }
 
-SvXMLImportContext *SvXMLStylesContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext *SvXMLStylesContext::CreateChildContext( sal_uInt16 nInPrefix,
                                          const OUString& rLocalName,
                                          const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_OFFICE == nPrefix &&
+    if( XML_NAMESPACE_OFFICE == nInPrefix &&
         IsXMLToken( rLocalName, XML_USE_STYLES ) )
     {
         OUString sHRef;
-        pContext = new SvXMLUseStylesContext( GetImport(), nPrefix, rLocalName,
+        pContext = new SvXMLUseStylesContext( GetImport(), nInPrefix, rLocalName,
                                               xAttrList, sHRef );
         pImpl->SetParentHRef( sHRef );
     }
     else
     {
         SvXMLStyleContext *pStyle =
-            CreateStyleChildContext( nPrefix, rLocalName, xAttrList );
+            CreateStyleChildContext( nInPrefix, rLocalName, xAttrList );
 //      DBG_ASSERT( pStyle->GetFamily(), "Style without a family" );
         if( pStyle )
         {
@@ -918,7 +877,7 @@ SvXMLImportContext *SvXMLStylesContext::CreateChildContext( sal_uInt16 nPrefix,
         }
         else
         {
-            pContext = new SvXMLImportContext( GetImport(), nPrefix,
+            pContext = new SvXMLImportContext( GetImport(), nInPrefix,
                                                rLocalName );
         }
     }
@@ -1010,12 +969,12 @@ SvXMLUseStylesContext::SvXMLUseStylesContext(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        if( XML_NAMESPACE_XLINK == nPrefix &&
-            IsXMLToken( aLocalName, XML_HREF ) )
+                                                            &aLclLocalName );
+        if( XML_NAMESPACE_XLINK == nLclPrefix &&
+            IsXMLToken( aLclLocalName, XML_HREF ) )
         {
             rHRef = xAttrList->getValueByIndex( i );
             // TODO: Hack!
@@ -1037,3 +996,5 @@ SvXMLUseStylesContext::~SvXMLUseStylesContext()
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

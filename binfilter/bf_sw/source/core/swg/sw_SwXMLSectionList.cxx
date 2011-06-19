@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,29 +32,19 @@
 #define _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_STRINGS
 #include <bf_svtools/svstdarr.hxx>
-#ifndef _SW_XMLSECTIONLIST_HXX
 #include <SwXMLSectionList.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::binfilter::xmloff::token;
-#include <tools/debug.hxx>  //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
-sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
+sal_Char const sXML_np__block_list[] = "_block-list";
 
 // #110680#
 /*N*/ SwXMLSectionList::SwXMLSectionList(
@@ -62,7 +53,7 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 /*N*/ : SvXMLImport( xServiceFactory ),
 /*N*/   rSectionList ( rNewSectionList )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetNamespaceMap().Add( OUString ( RTL_CONSTASCII_USTRINGPARAM ( sXML_np__block_list ) ),
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -71,3 +62,5 @@ sal_Char __READONLY_DATA sXML_np__block_list[] = "_block-list";
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

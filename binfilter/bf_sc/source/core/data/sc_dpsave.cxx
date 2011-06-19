@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -116,15 +117,6 @@ using namespace ::com::sun::star;
 /*N*/   lcl_SkipExtra( rStream );       // reads at least 1 USHORT
 /*N*/ }
 /*N*/
-/*N*/ void ScDPSaveMember::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/   rStream << nVisibleMode;
-/*N*/   rStream << nShowDetailsMode;
-/*N*/
-/*N*/   rStream << (USHORT) 0;  // nExtra
-/*N*/ }
-/*N*/
 /*N*/ ScDPSaveMember::~ScDPSaveMember()
 /*N*/ {
 /*N*/ }
@@ -163,11 +155,11 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       if ( nVisibleMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/           lcl_SetBoolProperty( xMembProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_ISVISIBLE), (BOOL)nVisibleMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ISVISIBLE)), (BOOL)nVisibleMode );
 /*N*/
 /*N*/       if ( nShowDetailsMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/           lcl_SetBoolProperty( xMembProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_SHOWDETAILS), (BOOL)nShowDetailsMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SHOWDETAILS)), (BOOL)nShowDetailsMode );
 /*N*/   }
 /*N*/ }
 /*N*/
@@ -175,16 +167,16 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ ScDPSaveDimension::ScDPSaveDimension(const String& rName, BOOL bDataLayout) :
 /*N*/   aName( rName ),
+/*N*/   pLayoutName( NULL ),
 /*N*/   bIsDataLayout( bDataLayout ),
 /*N*/   bDupFlag( FALSE ),
 /*N*/   nOrientation( sheet::DataPilotFieldOrientation_HIDDEN ),
-/*N*/   bSubTotalDefault( TRUE ),
-/*N*/   nSubTotalCount( 0 ),
-/*N*/   pSubTotalFuncs( NULL ),
-/*N*/   nShowEmptyMode( SC_DPSAVEMODE_DONTKNOW ),
 /*N*/   nFunction( sheet::GeneralFunction_AUTO ),
 /*N*/   nUsedHierarchy( -1 ),
-/*N*/   pLayoutName( NULL )
+/*N*/   nShowEmptyMode( SC_DPSAVEMODE_DONTKNOW ),
+/*N*/   bSubTotalDefault( TRUE ),
+/*N*/   nSubTotalCount( 0 ),
+/*N*/   pSubTotalFuncs( NULL )
 /*N*/ {
 /*N*/ }
 /*N*/
@@ -193,12 +185,12 @@ using namespace ::com::sun::star;
 /*N*/   bIsDataLayout( r.bIsDataLayout ),
 /*N*/   bDupFlag( r.bDupFlag ),
 /*N*/   nOrientation( r.nOrientation ),
+/*N*/   nFunction( r.nFunction ),
+/*N*/   nUsedHierarchy( r.nUsedHierarchy ),
+/*N*/   nShowEmptyMode( r.nShowEmptyMode ),
 /*N*/   bSubTotalDefault( r.bSubTotalDefault ),
 /*N*/   nSubTotalCount( r.nSubTotalCount ),
-/*N*/   pSubTotalFuncs( NULL ),
-/*N*/   nShowEmptyMode( r.nShowEmptyMode ),
-/*N*/   nFunction( r.nFunction ),
-/*N*/   nUsedHierarchy( r.nUsedHierarchy )
+/*N*/   pSubTotalFuncs( NULL )
 /*N*/ {
 /*N*/   if ( nSubTotalCount && r.pSubTotalFuncs )
 /*N*/   {
@@ -207,11 +199,11 @@ using namespace ::com::sun::star;
 /*N*/           pSubTotalFuncs[nSub] = r.pSubTotalFuncs[nSub];
 /*N*/   }
 /*N*/
-/*N*/   long nCount = r.aMemberList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = r.aMemberList.size();
+/*N*/   for (size_t i = 0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveMember* pNew = new ScDPSaveMember( *(ScDPSaveMember*)r.aMemberList.GetObject(i) );
-/*N*/       aMemberList.Insert( pNew, LIST_APPEND );
+/*N*/       ScDPSaveMember* pNew = new ScDPSaveMember( *r.aMemberList[ i ] );
+/*N*/       aMemberList.push_back( pNew );
 /*N*/   }
 /*N*/   if (r.pLayoutName)
 /*N*/       pLayoutName = new String( *(r.pLayoutName) );
@@ -252,50 +244,17 @@ using namespace ::com::sun::star;
 /*N*/   for (i=0; i<nNewCount; i++)
 /*N*/   {
 /*N*/       ScDPSaveMember* pNew = new ScDPSaveMember( rStream );
-/*N*/       aMemberList.Insert( pNew, LIST_APPEND );
+/*N*/       aMemberList.push_back( pNew );
 /*N*/   }
 /*N*/   pLayoutName = NULL;
 /*N*/ }
 /*N*/
-/*N*/ void ScDPSaveDimension::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   long i;
-/*N*/
-/*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/   rStream << bIsDataLayout;
-/*N*/
-/*N*/   rStream << bDupFlag;
-/*N*/
-/*N*/   rStream << nOrientation;
-/*N*/   rStream << nFunction;           // enum GeneralFunction
-/*N*/   rStream << nUsedHierarchy;
-/*N*/
-/*N*/   rStream << nShowEmptyMode;      //! at level
-/*N*/
-/*N*/   //! subtotals at level
-/*N*/   rStream << bSubTotalDefault;
-/*N*/   long nSubCnt = pSubTotalFuncs ? nSubTotalCount : 0;
-/*N*/   rStream << nSubCnt;
-/*N*/   for (i=0; i<nSubCnt; i++)
-/*N*/       rStream << pSubTotalFuncs[i];
-/*N*/
-/*N*/   rStream << (USHORT) 0;  // nExtra
-/*N*/
-/*N*/   long nCount = aMemberList.Count();
-/*N*/   rStream << nCount;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScDPSaveMember* pMember = (const ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/       pMember->Store( rStream );
-/*N*/   }
-/*N*/ }
-/*N*/
 /*N*/ ScDPSaveDimension::~ScDPSaveDimension()
 /*N*/ {
-/*N*/   long nCount = aMemberList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/       delete (ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/   aMemberList.Clear();
+/*N*/   size_t nCount = aMemberList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
+/*N*/       delete aMemberList[ i ];
+/*N*/   aMemberList.clear();
 /*N*/   if (pLayoutName)
 /*N*/       delete pLayoutName;
 /*N*/   delete [] pSubTotalFuncs;
@@ -317,18 +276,16 @@ using namespace ::com::sun::star;
 /*N*/   if ( nSubTotalCount && ( !pSubTotalFuncs || !r.pSubTotalFuncs ) )   // should not happen
 /*N*/       return FALSE;
 /*N*/
-/*N*/   long i;
-/*N*/   for (i=0; i<nSubTotalCount; i++)
+/*N*/   for (long i=0; i<nSubTotalCount; i++)
 /*N*/       if ( pSubTotalFuncs[i] != r.pSubTotalFuncs[i] )
 /*N*/           return FALSE;
 /*N*/
-/*N*/   long nCount = aMemberList.Count();
-/*N*/   if ( nCount != r.aMemberList.Count() )
+/*N*/   size_t nCount = aMemberList.size();
+/*N*/   if ( nCount != r.aMemberList.size() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ( !( *(ScDPSaveMember*)aMemberList.GetObject(i) ==
-/*N*/               *(ScDPSaveMember*)r.aMemberList.GetObject(i) ) )
+/*N*/   for (size_t i = 0; i < nCount; i++)
+/*N*/       if ( !( *aMemberList[ i ] == *r.aMemberList[ i ] ) )
 /*N*/           return FALSE;
 /*N*/
 /*N*/   return TRUE;
@@ -411,23 +368,23 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       sheet::DataPilotFieldOrientation eOrient = (sheet::DataPilotFieldOrientation)nOrientation;
 /*N*/       aAny <<= eOrient;
-/*N*/       xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION), aAny );
+/*N*/       xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIENTATION)), aAny );
 /*N*/
 /*N*/       sheet::GeneralFunction eFunc = (sheet::GeneralFunction)nFunction;
 /*N*/       aAny <<= eFunc;
-/*N*/       xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_FUNCTION), aAny );
+/*N*/       xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_FUNCTION)), aAny );
 /*N*/
 /*N*/       if ( nUsedHierarchy >= 0 )
 /*N*/       {
 /*N*/           aAny <<= (INT32)nUsedHierarchy;
-/*N*/           xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY), aAny );
+/*N*/           xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_USEDHIERARCHY)), aAny );
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   //  Level loop outside of aMemberList loop
 /*N*/   //  because SubTotals have to be set independently of known members
 /*N*/
-/*N*/   long nCount = aMemberList.Count();
+/*N*/   size_t nCount = aMemberList.size();
 /*N*/
 /*N*/   long nHierCount = 0;
 /*N*/   uno::Reference<container::XIndexAccess> xHiers;
@@ -471,11 +428,11 @@ using namespace ::com::sun::star;
 /*N*/                       pArray[i] = (sheet::GeneralFunction)pSubTotalFuncs[i];
 /*N*/                   uno::Any aAny;
 /*N*/                   aAny <<= aSeq;
-/*N*/                   xLevProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_SUBTOTALS), aAny );
+/*N*/                   xLevProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SUBTOTALS)), aAny );
 /*N*/               }
 /*N*/               if ( nShowEmptyMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/                   lcl_SetBoolProperty( xLevProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_SHOWEMPTY), (BOOL)nShowEmptyMode );
+/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SHOWEMPTY)), (BOOL)nShowEmptyMode );
 /*N*/
 /*N*/               // exceptions are caught at ScDPSaveData::WriteToSource
 /*N*/           }
@@ -488,14 +445,14 @@ using namespace ::com::sun::star;
 /*N*/                   uno::Reference<container::XNameAccess> xMembers = xMembSupp->getMembers();
 /*N*/                   if ( xMembers.is() )
 /*N*/                   {
-/*N*/                       for (long i=0; i<nCount; i++)
+/*N*/                       for (size_t i = 0; i < nCount; i++)
 /*N*/                       {
-/*N*/                           ScDPSaveMember* pMember = (ScDPSaveMember*)aMemberList.GetObject(i);
-/*N*/                           ::rtl::OUString aName = pMember->GetName();
-/*N*/                           if ( xMembers->hasByName( aName ) )
+/*N*/                           ScDPSaveMember* pMember = aMemberList[ i ];
+/*N*/                           ::rtl::OUString aLclName = pMember->GetName();
+/*N*/                           if ( xMembers->hasByName( aLclName ) )
 /*N*/                           {
 /*N*/                               uno::Reference<uno::XInterface> xMemberInt = ScUnoHelpFunctions::AnyToInterface(
-/*N*/                                   xMembers->getByName( aName ) );
+/*N*/                                   xMembers->getByName( aLclName ) );
 /*N*/                               pMember->WriteToSource( xMemberInt );
 /*N*/                           }
 /*N*/                           // missing member is no error
@@ -523,11 +480,11 @@ using namespace ::com::sun::star;
 /*N*/   nIgnoreEmptyMode( r.nIgnoreEmptyMode ),
 /*N*/   nRepeatEmptyMode( r.nRepeatEmptyMode )
 /*N*/ {
-/*N*/   long nCount = r.aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = r.aDimList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pNew = new ScDPSaveDimension( *(ScDPSaveDimension*)r.aDimList.GetObject(i) );
-/*N*/       aDimList.Insert( pNew, LIST_APPEND );
+/*N*/       ScDPSaveDimension* pNew = new ScDPSaveDimension( *r.aDimList[ i ] );
+/*N*/       aDimList.push_back( pNew );
 /*N*/   }
 /*N*/ }
 
@@ -542,20 +499,20 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       //  remove old dimensions
 /*N*/
-/*N*/       long nCount = aDimList.Count();
-/*N*/       long i;
-/*N*/       for (i=0; i<nCount; i++)
-/*N*/           delete (ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/       aDimList.Clear();
+/*N*/       size_t nCount = aDimList.size();
+/*N*/       size_t i;
+/*N*/       for (i=0; i < nCount; i++)
+/*N*/           delete aDimList[ i ];
+/*N*/       aDimList.clear();
 /*N*/
 /*N*/       //  copy new dimensions
 /*N*/
-/*N*/       nCount = r.aDimList.Count();
-/*N*/       for (i=0; i<nCount; i++)
+/*N*/       nCount = r.aDimList.size();
+/*N*/       for (i=0; i < nCount; i++)
 /*N*/       {
 /*N*/           ScDPSaveDimension* pNew =
-/*N*/               new ScDPSaveDimension( *(ScDPSaveDimension*)r.aDimList.GetObject(i) );
-/*N*/           aDimList.Insert( pNew, LIST_APPEND );
+/*N*/               new ScDPSaveDimension( *r.aDimList[ i ] );
+/*N*/           aDimList.push_back( pNew );
 /*N*/       }
 /*N*/   }
 /*N*/   return *this;
@@ -569,13 +526,12 @@ using namespace ::com::sun::star;
 /*N*/        nRepeatEmptyMode != r.nRepeatEmptyMode )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   long nCount = aDimList.Count();
-/*N*/   if ( nCount != r.aDimList.Count() )
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   if ( nCount != r.aDimList.size() )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/       if ( !( *(ScDPSaveDimension*)aDimList.GetObject(i) ==
-/*N*/               *(ScDPSaveDimension*)r.aDimList.GetObject(i) ) )
+/*N*/   for (size_t i=0; i < nCount; i++)
+/*N*/       if ( !( *aDimList[ i ] == *r.aDimList[ i ] ) )
 /*N*/           return FALSE;
 /*N*/
 /*N*/   return TRUE;
@@ -583,32 +539,32 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPSaveData::~ScDPSaveData()
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/       delete (ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/   aDimList.Clear();
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i<nCount; i++)
+/*N*/       delete aDimList[ i ];
+/*N*/   aDimList.clear();
 /*N*/ }
 
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetDimensionByName(const String& rName)
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/       ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/       if ( pDim->GetName() == rName && !pDim->IsDataLayout() )
 /*N*/           return pDim;
 /*N*/   }
 /*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( rName, FALSE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
+/*N*/   aDimList.push_back( pNew );
 /*N*/   return pNew;
 /*N*/ }
 
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetExistingDimensionByName(const String& rName)
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i < nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/       ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/       if ( pDim->GetName() == rName && !pDim->IsDataLayout() )
 /*N*/           return pDim;
 /*N*/   }
@@ -617,15 +573,15 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPSaveDimension* ScDPSaveData::GetDataLayoutDimension()
 /*N*/ {
-/*N*/   long nCount = aDimList.Count();
-/*N*/   for (long i=0; i<nCount; i++)
+/*N*/   size_t nCount = aDimList.size();
+/*N*/   for (size_t i=0; i<nCount; i++)
 /*N*/   {
-/*N*/       ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/       ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/       if ( pDim->IsDataLayout() )
 /*N*/           return pDim;
 /*N*/   }
 /*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( String(), TRUE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
+/*N*/   aDimList.push_back( pNew );
 /*N*/   return pNew;
 /*N*/ }
 /*N*/
@@ -637,7 +593,7 @@ using namespace ::com::sun::star;
 /*N*/   ScDPSaveDimension* pOld = GetDimensionByName( rName );
 /*N*/   ScDPSaveDimension* pNew = new ScDPSaveDimension( *pOld );
 /*N*/   pNew->SetDupFlag( TRUE );
-/*N*/   aDimList.Insert( pNew, LIST_APPEND );
+/*N*/   aDimList.push_back( pNew );
 /*N*/   return pNew;
 /*N*/ }
 /*N*/
@@ -676,7 +632,7 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           uno::Any aAny;
 /*N*/           aAny <<= eOrient;
-/*N*/           xDimProp->setPropertyValue( ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION), aAny );
+/*N*/           xDimProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIENTATION)), aAny );
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -699,10 +655,10 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           if ( nIgnoreEmptyMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY), (BOOL)nIgnoreEmptyMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_IGNOREEMPTY)), (BOOL)nIgnoreEmptyMode );
 /*N*/           if ( nRepeatEmptyMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY), (BOOL)nRepeatEmptyMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_REPEATIFEMPTY)), (BOOL)nRepeatEmptyMode );
 /*N*/       }
 /*N*/       catch(uno::Exception&)
 /*N*/       {
@@ -719,10 +675,10 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/       lcl_ResetOrient( xSource );
 /*N*/
-/*N*/       long nCount = aDimList.Count();
-/*N*/       for (long i=0; i<nCount; i++)
+/*N*/       size_t nCount = aDimList.size();
+/*N*/       for (size_t i=0; i < nCount; i++)
 /*N*/       {
-/*N*/           ScDPSaveDimension* pDim = (ScDPSaveDimension*)aDimList.GetObject(i);
+/*N*/           ScDPSaveDimension* pDim = aDimList[ i ];
 /*N*/           ::rtl::OUString aName = pDim->GetName();
 /*N*/           BOOL bData = pDim->IsDataLayout();
 /*N*/
@@ -741,7 +697,7 @@ using namespace ::com::sun::star;
 /*N*/                   if ( xDimProp.is() )
 /*N*/                   {
 /*N*/                       bFound = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-/*N*/                                   ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+/*N*/                                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ISDATALAYOUT)) );
 /*N*/                       //! error checking -- is "IsDataLayoutDimension" property required??
 /*N*/                   }
 /*N*/               }
@@ -759,7 +715,7 @@ using namespace ::com::sun::star;
 /*N*/                       String aNewName = pDim->GetName();
 /*N*/
 /*N*/                       // different name for each duplication of a (real) dimension...
-/*N*/                       for (long j=0; j<=i; j++)   //! Test !!!!!!
+/*N*/                       for (size_t j=0; j<=i; j++) //! Test !!!!!!
 /*N*/                           aNewName += '*';        //! modify name at creation of SaveDimension
 /*N*/
 /*N*/                       uno::Reference<util::XCloneable> xCloneable( xIntDim, uno::UNO_QUERY );
@@ -786,50 +742,30 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           if ( nColumnGrandMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), (BOOL)nColumnGrandMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_COLUMNGRAND)), (BOOL)nColumnGrandMode );
 /*N*/           if ( nRowGrandMode != SC_DPSAVEMODE_DONTKNOW )
 /*N*/               lcl_SetBoolProperty( xSourceProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), (BOOL)nRowGrandMode );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ROWGRAND)), (BOOL)nRowGrandMode );
 /*N*/       }
 /*N*/   }
 /*N*/   catch(uno::Exception&)
 /*N*/   {
-/*N*/       DBG_ERROR("exception in WriteToSource");
+/*N*/       OSL_FAIL("exception in WriteToSource");
 /*N*/   }
-/*N*/ }
-/*N*/
-/*N*/ void ScDPSaveData::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   //! multi-header for individual entries
-/*N*/
-/*N*/   long nCount = aDimList.Count();
-/*N*/   rStream << nCount;
-/*N*/   for (long i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScDPSaveDimension* pDim = (const ScDPSaveDimension*)aDimList.GetObject(i);
-/*N*/       pDim->Store( rStream );
-/*N*/   }
-/*N*/
-/*N*/   rStream << nColumnGrandMode;
-/*N*/   rStream << nRowGrandMode;
-/*N*/   rStream << nIgnoreEmptyMode;
-/*N*/   rStream << nRepeatEmptyMode;
-/*N*/
-/*N*/   rStream << (USHORT) 0;  // nExtra
 /*N*/ }
 /*N*/
 /*N*/ void ScDPSaveData::Load( SvStream& rStream )
 /*N*/ {
 /*N*/   //! multi-header for individual entries
 /*N*/
-/*N*/   DBG_ASSERT( aDimList.Count()==0, "ScDPSaveData::Load not empty" );
+/*N*/   DBG_ASSERT( aDimList.size()==0, "ScDPSaveData::Load not empty" );
 /*N*/
 /*N*/   long nNewCount;
 /*N*/   rStream >> nNewCount;
 /*N*/   for (long i=0; i<nNewCount; i++)
 /*N*/   {
 /*N*/       ScDPSaveDimension* pNew = new ScDPSaveDimension( rStream );
-/*N*/       aDimList.Insert( pNew, LIST_APPEND );
+/*N*/       aDimList.push_back( pNew );
 /*N*/   }
 /*N*/
 /*N*/   rStream >> nColumnGrandMode;
@@ -840,3 +776,5 @@ using namespace ::com::sun::star;
 /*N*/   lcl_SkipExtra( rStream );       // reads at least 1 USHORT
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

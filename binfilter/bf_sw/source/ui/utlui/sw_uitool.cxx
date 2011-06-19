@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,72 +31,33 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _UIPARAM_HXX
 #include <uiparam.hxx>
-#endif
 
+#include <osl/diagnose.h>
 
-
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_SIZEITEM_HXX //autogen
 #include <bf_svx/sizeitem.hxx>
-#endif
-#ifndef _SVX_PAGEITEM_HXX //autogen
 #include <bf_svx/pageitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _UIITEMS_HXX
 #include <uiitems.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
-#endif
 
-#ifndef _ERROR_H
-#include <error.h>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
-#ifndef _UTLUI_HRC
 #include <utlui.hrc>
-#endif
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 // 50 cm 28350
@@ -199,7 +161,7 @@ namespace binfilter {
 /*N*/           //
 /*N*/           SwFmtHeader aHeaderFmt(rMaster.GetHeader());
 /*N*/           SwFrmFmt *pHeaderFmt = aHeaderFmt.GetHeaderFmt();
-/*N*/           ASSERT(pHeaderFmt != 0, "kein HeaderFormat");
+/*N*/           OSL_ENSURE(pHeaderFmt != 0, "kein HeaderFormat");
 /*N*/
 /*N*/           ::binfilter::FillHdFt(pHeaderFmt, rHeaderSet);
 /*N*/
@@ -235,7 +197,7 @@ namespace binfilter {
 /*N*/           //
 /*N*/           SwFmtFooter aFooterFmt(rMaster.GetFooter());
 /*N*/           SwFrmFmt *pFooterFmt = aFooterFmt.GetFooterFmt();
-/*N*/           ASSERT(pFooterFmt != 0, "kein FooterFormat");
+/*N*/           OSL_ENSURE(pFooterFmt != 0, "kein FooterFormat");
 /*N*/
 /*N*/           ::binfilter::FillHdFt(pFooterFmt, rFooterSet);
 /*N*/
@@ -328,7 +290,7 @@ namespace binfilter {
 /*N*/   const SfxPoolItem *pBoxInfo;
 /*N*/   if ( SFX_ITEM_SET == rSet.GetItemState( SID_ATTR_BORDER_INNER,
 /*N*/                                           TRUE, &pBoxInfo) )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 aBoxInfo = *(SvxBoxInfoItem*)pBoxInfo;
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   aBoxInfo.SetTable( FALSE );
 /*N*/       // Abstandsfeld immer anzeigen
@@ -353,7 +315,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFmtHeader &rHeaderFmt = rMaster.GetHeader();
 /*N*/       const SwFrmFmt *pHeaderFmt = rHeaderFmt.GetHeaderFmt();
-/*N*/       ASSERT(pHeaderFmt != 0, kein HeaderFormat.);
+/*N*/       OSL_ENSURE(pHeaderFmt != 0, "kein HeaderFormat.");
 /*N*/
 /*N*/       // HeaderInfo, Raender, Hintergrund, Umrandung
 /*N*/       //
@@ -399,7 +361,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFmtFooter &rFooterFmt = rMaster.GetFooter();
 /*N*/       const SwFrmFmt *pFooterFmt = rFooterFmt.GetFooterFmt();
-/*N*/       ASSERT(pFooterFmt != 0, kein FooterFormat.);
+/*N*/       OSL_ENSURE(pFooterFmt != 0, "kein FooterFormat.");
 /*N*/
 /*N*/       // FooterInfo, Raender, Hintergrund, Umrandung
 /*N*/       //
@@ -457,3 +419,5 @@ namespace binfilter {
 /*N*/
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,37 +37,21 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
 #include <com/sun/star/text/PageNumberType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
 #include <com/sun/star/util/Date.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLOFF_TEXTIMP_HXX_
 #include <bf_xmloff/txtimp.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace xml { namespace sax { class XAttributeList; } }
@@ -158,7 +143,7 @@ class XMLTextFieldImportContext : public SvXMLImportContext
 protected:
 
     // data members for use in subclasses
-    sal_Bool bValid;                        /// ist dieses Feld gültig?
+    sal_Bool bValid;                        /// ist dieses Feld gï¿½ltig?
 
 public:
 
@@ -1426,3 +1411,5 @@ protected:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

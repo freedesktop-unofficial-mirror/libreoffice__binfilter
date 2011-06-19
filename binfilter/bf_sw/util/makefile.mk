@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..
 BFPRJ=..
 
@@ -55,7 +53,6 @@ MYRESLIBNAME=sw
 sw_res_files= \
     $(SRS)$/sw_app.srs          \
     $(SRS)$/sw_config.srs       \
-    $(SRS)$/sw_dochdl.srs       \
     $(SRS)$/sw_fldui.srs        \
     $(SRS)$/sw_globdoc.srs      \
     $(SRS)$/sw_index.srs        \
@@ -108,6 +105,7 @@ SHL2STDLIBS+= \
     $(CPPUHELPERLIB) \
     $(CPPULIB) \
     $(SALLIB) \
+    $(SALHELPERLIB) \
         $(SVTOOLLIB) \
     $(ICUUCLIB)
 
@@ -126,12 +124,6 @@ SHL2DEPN=   \
     $(SLB)$/sw_core2.lib\
     $(SLB)$/sw_filter.lib\
         $(SLB)$/sw_ui.lib
-
-
-#SHL2OBJS= \
-#	$(OUT)$/slo$/sw_swmodule.obj \
-#	$(OUT)$/slo$/sw_swdll.obj
-#	$(SLO)$/sw_.obj		  ^ \ nicht vergessen!
 
 
 SHL2DEF=    $(MISC)$/$(SHL2TARGET).def

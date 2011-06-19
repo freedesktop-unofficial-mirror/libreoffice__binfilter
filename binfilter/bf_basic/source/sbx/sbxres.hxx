@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 // Zur Zeit sind Ressources im SVTOOLS-Projekt nicht vorgesehen.
 // Da es sich um unkritische Ressourcen handelt (BASIC-Keywords),
@@ -92,3 +91,5 @@ const char* GetSbxRes( USHORT );
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

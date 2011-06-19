@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,146 +30,54 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _UNOEVTLSTNR_HXX
 #include <unoevtlstnr.hxx>
-#endif
-#ifndef _UNOBASECLASS_HXX
 #include <unobaseclass.hxx>
-#endif
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _FLYENUM_HXX //autogen
 #include <flyenum.hxx>
-#endif
-#ifndef _FLDBAS_HXX //autogen
 #include <fldbas.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _PAM_HXX //autogen
 #include <pam.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
-#ifndef _SORTOPT_HXX //autogen
 #include <sortopt.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINSERTABLE_HPP_
 #include <com/sun/star/document/XDocumentInsertable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
 #include <com/sun/star/text/XTextCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XWORDCURSOR_HPP_
 #include <com/sun/star/text/XWordCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XPARAGRAPHCURSOR_HPP_
 #include <com/sun/star/text/XParagraphCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XSENTENCECURSOR_HPP_
 #include <com/sun/star/text/XSentenceCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
 #include <com/sun/star/text/XFootnote.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELD_HPP_
 #include <com/sun/star/text/XTextField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
 #include <com/sun/star/text/XTextRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSORTABLE_HPP_
 #include <com/sun/star/util/XSortable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTENTENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSTATES_HPP_
 #include <com/sun/star/beans/XMultiPropertyStates.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTRANGECOMPARE_HPP_
 #include <com/sun/star/text/XTextRangeCompare.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTINSERT_HPP_
 #include <com/sun/star/text/XRelativeTextContentInsert.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTREMOVE_HPP_
 #include <com/sun/star/text/XRelativeTextContentRemove.hpp>
-#endif
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>   // helper for factories
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE6_HXX_
 #include <cppuhelper/implbase6.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE9_HXX_
 #include <cppuhelper/implbase9.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE11_HXX_
 #include <cppuhelper/implbase11.hxx>    // helper for implementations
-#endif
-#ifndef _SW_TEXTCURSORHELPER_HXX
 #include "TextCursorHelper.hxx"
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 #define C2U(cChar) ::rtl::OUString::createFromAscii(cChar)
@@ -182,9 +91,8 @@ class SwFmtFld;
 class SwFmtRefMark;
 class SwEvtLstnrArray;
 class GetCurTxtFmtColl;
-/* -----------------------------01.12.00 18:09--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwParaSelection
 {
     SwUnoCrsr* pUnoCrsr;
@@ -193,9 +101,8 @@ public:
     ~SwParaSelection();
 };
 
-/* -----------------29.04.98 07:35-------------------
- *
- * --------------------------------------------------*/
+
+
 enum CursorType
 {
     CURSOR_INVALID,
@@ -211,9 +118,8 @@ enum CursorType
     CURSOR_SELECTION_IN_TABLE
 };
 
-/* -----------------29.04.98 07:35-------------------
- *
- * --------------------------------------------------*/
+
+
 #define PUNOPAM (_pStartCrsr)
 
 #define FOREACHUNOPAM_START(pCrsr) \
@@ -226,11 +132,10 @@ enum CursorType
     }
 
 
-/* -----------------26.06.98 16:18-------------------
- *
- * --------------------------------------------------*/
 
-SV_DECL_PTRARR(SwDependArr, SwDepend*, 2, 2)//STRIP008 ;
+
+
+SV_DECL_PTRARR(SwDependArr, SwDepend*, 2, 2)
 
 SwPageDesc* GetPageDescByName_Impl(SwDoc& rDoc, const String& rName);
 ::com::sun::star::uno::Sequence< sal_Int8 > CreateUnoTunnelId();
@@ -238,9 +143,8 @@ SwPageDesc* GetPageDescByName_Impl(SwDoc& rDoc, const String& rName);
 void CollectFrameAtNode( SwClient& rClnt, const SwNodeIndex& rIdx,
                             SwDependArr& rFrameArr, BOOL bSort );
 
-/* -----------------29.04.98 07:35-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwUnoInternalPaM : public SwPaM
 {
     SwUnoInternalPaM( const SwUnoInternalPaM& );
@@ -251,7 +155,7 @@ public:
     SwUnoInternalPaM&   operator=(const SwPaM& rPaM);
 };
 
-/*-----------------04.03.98 11:54-------------------
+/*--------------------------------------------------
     Start/EndAction oder Start/EndAllAction
 --------------------------------------------------*/
 class UnoActionContext
@@ -263,7 +167,7 @@ class UnoActionContext
 
         void InvalidateDocument() {pDoc = 0;}
 };
-/* -----------------07.07.98 12:03-------------------
+/* --------------------------------------------------
  *  Actions kurzfristig unterbrechen
  * --------------------------------------------------*/
 class UnoActionRemoveContext
@@ -278,13 +182,12 @@ class UnoActionRemoveContext
  *
  ******************************************************************************/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > * XTextRangeRefPtr;
-SV_DECL_PTRARR(XTextRangeArr, XTextRangeRefPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(XTextRangeArr, XTextRangeRefPtr, 4, 4)
 
 void ClientModify(SwClient* pClient, SfxPoolItem *pOld, SfxPoolItem *pNew);
 
-/* -----------------03.12.98 12:22-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTextRange;
 class SwXTextCursor;
 class SwXText : public ::com::sun::star::text::XText,
@@ -368,9 +271,8 @@ public:
     CursorType      GetTextType() {return eCrsrType;}
 };
 
-/* -----------------03.12.98 12:16-------------------
- *
- * --------------------------------------------------*/
+
+
 enum SwGetPropertyStatesCaller
 {
     SW_PROPERTY_STATE_CALLER_DEFAULT,
@@ -522,7 +424,6 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 
     //XMultiPropertyStates
-    //virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyState > SAL_CALL getPropertyStates( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyName ) throw (::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setAllPropertiesToDefault(  ) throw (::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setPropertiesToDefault( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames ) throw (::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any > SAL_CALL getPropertyDefaults( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames ) throw (::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
@@ -552,57 +453,7 @@ public:
                             const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& rDescriptor,
                             SwSortOptions& rSortOpt);
 };
-/*-----------------20.03.98 07:47-------------------
 
---------------------------------------------------*/
-/* das wird zunaechst nicht gebraucht - bisher fuer den XPropertySetCloner
-class SwXPropertySet : public ::com::sun::star::beans::XPropertySet,
-                        public UsrObject
-{
-    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>*       pAny;
-    ::com::sun::star::uno::Sequence< Property >*    pInfo;
-
-public:
-    // Eigentumsuebergang der Pointer!
-    SwXPropertySet( ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any>*       pAny,
-                    ::com::sun::star::uno::Sequence<Property>*  pInfo );
-    virtual ~SwXPropertySet();
-
-    SMART_UNO_DECLARATION( SwXPropertySet, UsrObject );
-
-    //XPropertySet
-    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo(  ) throw(::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL setPropertyValue( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Any& aValue ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual ::com::sun::star::uno::Any SAL_CALL getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL addPropertyChangeListener( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& xListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removePropertyChangeListener( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener >& aListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL addVetoableChangeListener( const ::rtl::OUString& PropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL removeVetoableChangeListener( const ::rtl::OUString& PropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener >& aListener ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
-
-};
-/*-----------------20.03.98 08:26-------------------
-
---------------------------------------------------*/
-/* das wird zunaechst nicht gebraucht - bisher fuer den XPropertySetCloner
-
-class SwXPropertySetInfo: public ::com::sun::star::beans::XPropertySetInfo, UsrObject
-{
-    ::com::sun::star::uno::Sequence< Property >*        pSeq;
-
-public:
-    SwXPropertySetInfo( const ::com::sun::star::uno::Sequence<Property>& rInfo );
-    virtual ~SwXPropertySetInfo();
-
-    SMART_UNO_DECLARATION( SwXPropertySetInfo, UsrObject );
-
-    virtual ::com::sun::star::uno::Sequence< Property > getProperties(void) throw( ::com::sun::star::uno::RuntimeException );
-    virtual Property getPropertyByName(const ::rtl::OUString& Name) throw( ::com::sun::star::uno::RuntimeException );
-    virtual BOOL hasPropertyByName(const ::rtl::OUString& Name) throw( ::com::sun::star::uno::RuntimeException );
-};
-
-/*-----------------20.02.98 08:45-------------------
-
---------------------------------------------------*/
 typedef
 cppu::WeakImplHelper5
 <
@@ -668,9 +519,8 @@ public:
     SwDoc*          GetDoc(){return pDoc;}
 };
 
-/*-----------------23.02.98 10:45-------------------
 
---------------------------------------------------*/
+
 
 typedef cppu::WeakAggImplHelper2
 <
@@ -715,9 +565,8 @@ public:
 
     ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextCursor >  CreateTextCursor(BOOL bIgnoreTables = sal_False);
 };
-/*-----------------23.02.98 12:05-------------------
 
---------------------------------------------------*/
+
 class SwXTextRange : public cppu::WeakImplHelper7
 <
     ::com::sun::star::text::XTextRange,
@@ -821,9 +670,8 @@ public:
                         const SwPosition& rPos, const SwPosition* pMark);
 };
 
-/* -----------------15.05.98 08:29-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef cppu::WeakImplHelper3
 <
     ::com::sun::star::container::XIndexAccess,
@@ -869,9 +717,8 @@ public:
     const SwUnoCrsr*    GetCursor() const { return (const SwUnoCrsr*)GetRegisteredIn(); }
 };
 
-/*-----------------09.03.98 13:57-------------------
 
---------------------------------------------------*/
+
 struct SwTextSectionProperties_Impl;
 class SwXTextSection : public cppu::WeakImplHelper7
 <
@@ -919,7 +766,6 @@ public:
     virtual void SAL_CALL removeEventListener(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > & aListener) throw( ::com::sun::star::uno::RuntimeException );
 
     //XMultiPropertySet
-//    virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySetInfo > SAL_CALL getPropertySetInfo(  ) throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setPropertyValues( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any >& aValues ) throw(::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException);
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any > SAL_CALL getPropertyValues( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames ) throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL addPropertiesChangeListener( const ::com::sun::star::uno::Sequence< ::rtl::OUString >& aPropertyNames, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertiesChangeListener >& xListener ) throw(::com::sun::star::uno::RuntimeException);
@@ -958,9 +804,8 @@ public:
     SwSectionFmt*   GetFmt()const {return (SwSectionFmt*)GetRegisteredIn();}
     static SwXTextSection* GetImplementation(::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xRef );
 };
-/*-----------------12.02.98 08:01-------------------
 
---------------------------------------------------*/
+
 typedef
 cppu::WeakImplHelper5
 <
@@ -1054,9 +899,8 @@ public:
     void            Invalidate();
 };
 
-/*-----------------07.04.98 08:10-------------------
 
---------------------------------------------------*/
+
 class SwXParagraphEnumeration : public SwSimpleEnumerationBaseClass,
     public SwClient
 {
@@ -1088,9 +932,8 @@ public:
     //SwClient
     virtual void            Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/*-----------------07.04.98 08:15-------------------
 
---------------------------------------------------*/
+
 class SwXParagraph : public cppu::WeakImplHelper9
 <
     ::com::sun::star::beans::XMultiPropertySet,
@@ -1194,9 +1037,8 @@ public:
     //void attachToRange(const ::com::sun::star::uno::Reference< ::com::sun::star::text::XTextRange > & xTextRange)throw( ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException );
     void attachToText(SwXText* pParent, SwUnoCrsr* pCrsr);
 };
-/* -----------------23.03.99 12:57-------------------
- *
- * --------------------------------------------------*/
+
+
 #define PARAFRAME_PORTION_PARAGRAPH     0
 #define PARAFRAME_PORTION_CHAR          1
 #define PARAFRAME_PORTION_TEXTRANGE     2
@@ -1230,9 +1072,8 @@ public:
     //SwClient
     virtual void    Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/* -----------------29.05.98 14:42-------------------
- *
- * --------------------------------------------------*/
+
+
 
 class SwXTextPortionEnumeration : public cppu::WeakImplHelper3
 <
@@ -1280,40 +1121,6 @@ public:
     virtual void        Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
 
-/* -----------------29.09.98 09:01-------------------
- *
- * --------------------------------------------------*/
-/* os: 04.12.98 11:40 hier gibt es noch keine sinnvolle Definition
-#define MAX_SORT_FIELDS 3 // das ist eher willkuerlich (wie im Dialog)
-class SwXTextSortDescriptor : public XTextSortDescriptor,
-                                public UsrObject
-{
-    SwSortOptions   aSortOptions;
-    BOOL            bUseHeader;
-public:
-    SwXTextSortDescriptor(BOOL bUsedInTable);
-    virtual ~SwXTextSortDescriptor();
-
-    //XTextSortDescriptor
-    virtual sal_Unicode getTextColumnSeparator(void) const;
-    virtual void setTextColumnSeparator(sal_Unicode TextColumnSeparator_);
-
-    //XSortDescriptor
-    virtual ::com::sun::star::uno::Sequence< ::com::sun::star::util::SortField > getSortFields(void) const;
-    virtual void setSortFields(const ::com::sun::star::uno::Sequence< ::com::sun::star::util::SortField >& SortFields_);
-    virtual sal_uInt16 getMaxFieldCount(void) const;
-    virtual ColumnsOrRows getOrientation(void) const;
-    virtual void setOrientation(ColumnsOrRows Orientation_);
-    virtual BOOL getUseHeader(void) const;
-    virtual void setUseHeader(BOOL UseHeader_);
-
-    const SwSortOptions&    GetSortOptions() const {return aSortOptions;}
-    void                    SetSortOptions(const SwSortOptions& rSortOpt);
-};
-*/
-/* -----------------25.08.98 11:02-------------------
- *
- * --------------------------------------------------*/
 typedef
 cppu::WeakImplHelper2
 <
@@ -1363,9 +1170,8 @@ public:
     //SwClient
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/* -----------------27.08.98 15:11-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXReferenceMark : public SwRefBookmarkBaseClass,
     public SwClient
 {
@@ -1429,3 +1235,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

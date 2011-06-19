@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,35 +29,14 @@
 #ifndef SC_NAVIPI_HXX
 #define SC_NAVIPI_HXX
 
-#ifndef _TOOLBOX_HXX //autogen
 #include <vcl/toolbox.hxx>
-#endif
-#ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _STDCTRL_HXX //autogen
 #include <bf_svtools/stdctrl.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
-
-#ifndef SC_CONTENT_HXX
-#include "content.hxx"
-#endif
-
-#ifndef _SVEDIT_HXX //autogen
 #include <bf_svtools/svmedit.hxx>
-#endif
 namespace binfilter {
 
 
@@ -82,38 +62,6 @@ enum NavListMode { NAV_LMODE_NONE       = 0x4000,
                    NAV_LMODE_DOCS       = 0x800,
                    NAV_LMODE_SCENARIOS  = 0x400 };
 
-//========================================================================
-// class ScScenarioListBox -----------------------------------------------
-//========================================================================
-
-//========================================================================
-// class ScScenarioWindow ------------------------------------------------
-//========================================================================
-
-//==================================================================
-//  class ColumnEdit
-//==================================================================
-
-
-//==================================================================
-//  class RowEdit
-//==================================================================
-
-
-//==================================================================
-//  class ScDocListBox
-//==================================================================
-
-
-//==================================================================
-//  class CommandToolBox
-//==================================================================
-
-//==================================================================
-//  class ScNavigatorDlg
-//==================================================================
-
-
 //==================================================================
 
 class ScNavigatorDialogWrapper: public SfxChildWindowContext
@@ -122,7 +70,7 @@ public:
             ScNavigatorDialogWrapper( Window*           pParent,
                                       USHORT            nId,
                                       SfxBindings*      pBindings,
-                                      SfxChildWinInfo*  pInfo ):SfxChildWindowContext( nId ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SfxChildWinInfo*    pInfo );
+                                      SfxChildWinInfo*  pInfo ):SfxChildWindowContext( nId ){DBG_BF_ASSERT(0, "STRIP");}
 
     SFX_DECL_CHILDWINDOW_CONTEXT(ScNavigatorDialogWrapper)
 
@@ -134,3 +82,4 @@ public:
 } //namespace binfilter
 #endif // SC_NAVIPI_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

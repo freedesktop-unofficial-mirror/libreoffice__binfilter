@@ -25,16 +25,12 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
 PRJNAME=binfilter
 TARGET=forms_component
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
@@ -43,6 +39,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 .INCLUDE : settings.mk
 INC+= -I$(PRJ)$/inc$/bf_forms
+
 # --- Types -------------------------------------
 
 INCPRE+=$(SOLARINCDIR)$/offuh

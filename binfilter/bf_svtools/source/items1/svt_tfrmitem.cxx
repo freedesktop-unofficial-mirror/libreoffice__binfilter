@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 #include <tools/stream.hxx>
 #include <tools/debug.hxx>
@@ -108,20 +107,6 @@ SfxPoolItem* SfxTargetFrameItem::Create( SvStream& rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxTargetFrameItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxTargetFrameItem, 0 );
-    USHORT nCount = (USHORT)(SfxOpenModeLast+1);
-    rStream << nCount;
-    for( USHORT nCur = 0; nCur <= (USHORT)SfxOpenModeLast; nCur++ )
-    {
-        writeByteString(rStream, _aFrames[ nCur ]);
-    }
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxTargetFrameItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxTargetFrameItem, 0 );
@@ -130,7 +115,7 @@ SfxPoolItem* SfxTargetFrameItem::Clone( SfxItemPool* ) const
 
 // -----------------------------------------------------------------------
 // virtual
-BOOL SfxTargetFrameItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool SfxTargetFrameItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     String aVal;
     for ( int i = 0; i <= SfxOpenModeLast; i++ )
@@ -140,12 +125,12 @@ BOOL SfxTargetFrameItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
     }
 
     rVal <<= rtl::OUString( aVal );
-    return TRUE;
+    return true;
 }
 
 // -----------------------------------------------------------------------
 // virtual
-BOOL SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     rtl::OUString aValue;
     if ( rVal >>= aValue )
@@ -155,11 +140,13 @@ BOOL SfxTargetFrameItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
         for ( USHORT i = 0; i <= SfxOpenModeLast; i++ )
             _aFrames[ i ] = aVal.GetToken( i );
 
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxTargetFrameItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxTargetFrameItem::PutValue - Wrong type!" );
+    return false;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

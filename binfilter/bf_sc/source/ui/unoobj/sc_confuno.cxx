@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,24 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include "confuno.hxx"
 #include "unonames.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "docsh.hxx"
 #include "miscuno.hxx"
 #include "forbiuno.hxx"
 #include "viewopti.hxx"
-#ifndef SC_SCDOCPOL_HXX
 #include "docpool.hxx"
-#endif
 #include "bf_sc.hrc"
 
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX
 #include <bf_sfx2/docinf.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -65,32 +57,32 @@ const SfxItemPropertyMap* lcl_GetConfigPropertyMap()
 {
     static SfxItemPropertyMap aConfigPropertyMap_Impl[] =
     {
-        {MAP_CHAR_LEN(SC_UNO_SHOWZERO),     0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_SHOWNOTES),    0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_SHOWGRID),     0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_GRIDCOLOR),    0,  &getCppuType((sal_Int32*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_SHOWPAGEBR),   0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNONAME_LINKUPD),  0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_COLROWHDR),    0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_SHEETTABS),    0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_OUTLSYMB),     0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_SNAPTORASTER), 0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_RASTERVIS),    0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_RASTERRESX),   0,  &getCppuType((sal_Int32*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_RASTERRESY),   0,  &getCppuType((sal_Int32*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_RASTERSUBX),   0,  &getCppuType((sal_Int32*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_RASTERSUBY),   0,  &getCppuType((sal_Int32*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_RASTERSYNC),   0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_AUTOCALC),     0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_PRINTERNAME),  0,  &getCppuType((::rtl::OUString*)0),  0},
-        {MAP_CHAR_LEN(SC_UNO_PRINTERSETUP), 0,  &getCppuType((uno::Sequence<sal_Int8>*)0),  0},
-        {MAP_CHAR_LEN(SC_UNO_APPLYDOCINF),  0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_FORBIDDEN),    0,  &getCppuType((uno::Reference<i18n::XForbiddenCharacters>*)0), beans::PropertyAttribute::READONLY},
-        {MAP_CHAR_LEN(SC_UNO_CHARCOMP),     0,  &getCppuType((sal_Int16*)0),        0},
-        {MAP_CHAR_LEN(SC_UNO_ASIANKERN),    0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SCSAVEVERSION),       0,  &getBooleanCppuType(),              0},
-        {MAP_CHAR_LEN(SC_UNO_UPDTEMPL),     0,  &getBooleanCppuType(),              0},
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNO_SHOWZERO),     0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_SHOWNOTES),    0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_SHOWGRID),     0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_GRIDCOLOR),    0,  &getCppuType((sal_Int32*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_SHOWPAGEBR),   0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNONAME_LINKUPD),  0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_COLROWHDR),    0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_SHEETTABS),    0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_OUTLSYMB),     0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_SNAPTORASTER), 0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_RASTERVIS),    0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_RASTERRESX),   0,  &getCppuType((sal_Int32*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_RASTERRESY),   0,  &getCppuType((sal_Int32*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_RASTERSUBX),   0,  &getCppuType((sal_Int32*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_RASTERSUBY),   0,  &getCppuType((sal_Int32*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_RASTERSYNC),   0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_AUTOCALC),     0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_PRINTERNAME),  0,  &getCppuType((::rtl::OUString*)0),  0,0},
+        {MAP_CHAR_LEN(SC_UNO_PRINTERSETUP), 0,  &getCppuType((uno::Sequence<sal_Int8>*)0),  0,0},
+        {MAP_CHAR_LEN(SC_UNO_APPLYDOCINF),  0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_FORBIDDEN),    0,  &getCppuType((uno::Reference<i18n::XForbiddenCharacters>*)0), beans::PropertyAttribute::READONLY,0},
+        {MAP_CHAR_LEN(SC_UNO_CHARCOMP),     0,  &getCppuType((sal_Int16*)0),        0,0},
+        {MAP_CHAR_LEN(SC_UNO_ASIANKERN),    0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SCSAVEVERSION),       0,  &getBooleanCppuType(),              0,0},
+        {MAP_CHAR_LEN(SC_UNO_UPDTEMPL),     0,  &getBooleanCppuType(),              0,0},
+        {0,0,0,0,0,0}
     };
     return aConfigPropertyMap_Impl;
 }
@@ -98,8 +90,8 @@ const SfxItemPropertyMap* lcl_GetConfigPropertyMap()
 //------------------------------------------------------------------------
 
 ScDocumentConfiguration::ScDocumentConfiguration(ScDocShell* pDocSh)
-    : aPropSet ( lcl_GetConfigPropertyMap() ) ,
-    pDocShell(pDocSh)
+    : pDocShell(pDocSh)
+    , aPropSet ( lcl_GetConfigPropertyMap() )
 {
     pDocShell->GetDocument()->AddUnoObject(*this);
 }
@@ -110,7 +102,7 @@ ScDocumentConfiguration::~ScDocumentConfiguration()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDocumentConfiguration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDocumentConfiguration::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -126,7 +118,7 @@ void ScDocumentConfiguration::Notify( SfxBroadcaster& rBC, const SfxHint& rHint 
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDocumentConfiguration::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( aPropSet.getPropertyMap() );
     return aRef;
@@ -138,7 +130,7 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if(pDocShell)
     {
@@ -156,7 +148,7 @@ void SAL_CALL ScDocumentConfiguration::setPropertyValue(
                 aViewOpt.SetOption(VOPT_GRID, ScUnoHelpFunctions::GetBoolFromAny( aValue ) );
             else if ( aPropertyName.compareToAscii( SC_UNO_GRIDCOLOR ) == 0 )
             {
-                sal_Int64 nColor;
+                sal_Int64 nColor(0);
                 if (aValue >>= nColor)
                 {
                     String aColorName;
@@ -279,7 +271,7 @@ uno::Any SAL_CALL ScDocumentConfiguration::getPropertyValue( const ::rtl::OUStri
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Any aRet;
 
     if(pDocShell)
@@ -386,7 +378,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDocumentConfiguration )
 
 ::rtl::OUString SAL_CALL ScDocumentConfiguration::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScDocumentConfiguration" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScDocumentConfiguration" ));
 }
 
 sal_Bool SAL_CALL ScDocumentConfiguration::supportsService( const ::rtl::OUString& rServiceName )
@@ -402,11 +394,13 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScDocumentConfiguration::getSupportedSe
 {
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCCOMPSCPREADSHEETSETTINGS_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCDOCUMENTSETTINGS_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCOMPSCPREADSHEETSETTINGS_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCDOCUMENTSETTINGS_SERVICE ));
     return aRet;
 }
 
 //-------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

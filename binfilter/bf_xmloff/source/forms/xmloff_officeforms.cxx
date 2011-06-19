@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,34 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
-#ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #include "officeforms.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -71,8 +54,8 @@ namespace xmloff
     //=========================================================================
     TYPEINIT1(OFormsRootImport, SvXMLImportContext);
     //-------------------------------------------------------------------------
-    OFormsRootImport::OFormsRootImport( SvXMLImport& rImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName )
-        :SvXMLImportContext(rImport, nPrfx, rLocalName)
+    OFormsRootImport::OFormsRootImport( SvXMLImport& rInImport, sal_uInt16 nPrfx, const ::rtl::OUString& rLocalName )
+        :SvXMLImportContext(rInImport, nPrfx, rLocalName)
     {
     }
 
@@ -130,7 +113,7 @@ namespace xmloff
         }
         catch(Exception&)
         {
-            OSL_ENSURE(sal_False, "OFormsRootImport::StartElement: caught an exception while setting the document properties!");
+            OSL_FAIL("OFormsRootImport::StartElement: caught an exception while setting the document properties!");
         }
     }
 
@@ -199,7 +182,7 @@ namespace xmloff
         }
         catch(Exception&)
         {
-            OSL_ENSURE(sal_False, "OFormsRootExport::addModelAttributes: caught an exception while retrieving the document properties!");
+            OSL_FAIL("OFormsRootExport::addModelAttributes: caught an exception while retrieving the document properties!");
         }
     }
 
@@ -209,3 +192,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

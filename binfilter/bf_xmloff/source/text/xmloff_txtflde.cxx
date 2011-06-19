@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,132 +31,39 @@
  *  export of all text fields
  */
 
-#ifndef _XMLOFF_TXTFLDE_HXX
 #include "txtflde.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-
-#ifndef XMLOFF_NUMEHELP_HXX
 #include "numehelp.hxx"
-#endif
 
-
-
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 #include "XMLTextCharStyleNamesElementExport.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_TEXT_USERDATAPART_HPP_
 #include <com/sun/star/text/UserDataPart.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_PAGENUMBERTYPE_HPP_
 #include <com/sun/star/text/PageNumberType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HPP_
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDSOURCE_HPP_
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
 #include <com/sun/star/text/XDependentTextField.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP
 #include <com/sun/star/text/SetVariableType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_PLACEHOLDERTYPE_HPP_
 #include <com/sun/star/text/PlaceholderType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_TEXT_FILENAMEDISPLAYFORMAT_HPP_
 #include <com/sun/star/text/FilenameDisplayFormat.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_CHAPTERFORMAT_HPP_
 #include <com/sun/star/text/ChapterFormat.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_TEMPLATEDISPLAYFORMAT_HPP_
 #include <com/sun/star/text/TemplateDisplayFormat.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
 #include <com/sun/star/container/XNameReplace.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-
-
-#ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATATYPE_HPP_
 #include <com/sun/star/text/BibliographyDataType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-
 #include <vector>
+
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -168,68 +76,71 @@ using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::container;
 using namespace ::binfilter::xmloff::token;
 
-
-static sal_Char __READONLY_DATA FIELD_SERVICE_SENDER[] = "ExtendedUser";
-static sal_Char __READONLY_DATA FIELD_SERVICE_AUTHOR[] = "Author";
-static sal_Char __READONLY_DATA FIELD_SERVICE_JUMPEDIT[] = "JumpEdit";
-static sal_Char __READONLY_DATA FIELD_SERVICE_GETEXP[] = "GetExpression";
-static sal_Char __READONLY_DATA FIELD_SERVICE_SETEXP[] = "SetExpression";
-static sal_Char __READONLY_DATA FIELD_SERVICE_USER[] = "User";
-static sal_Char __READONLY_DATA FIELD_SERVICE_INPUT[] = "Input";
-static sal_Char __READONLY_DATA FIELD_SERVICE_USERINPUT[] = "InputUser";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DATETIME[] = "DateTime";
-static sal_Char __READONLY_DATA FIELD_SERVICE_PAGENUMBER[] = "PageNumber";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DB_NEXT[] = "DatabaseNextSet";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DB_SELECT[] = "DatabaseNumberOfSet";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DB_NUMBER[] = "DatabaseSetNumber";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DB_DISPLAY[] = "Database";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DB_NAME[] = "DatabaseName";
-static sal_Char __READONLY_DATA FIELD_SERVICE_CONDITIONAL_TEXT[] = "ConditionalText";
-static sal_Char __READONLY_DATA FIELD_SERVICE_HIDDEN_TEXT[] = "HiddenText";
-static sal_Char __READONLY_DATA FIELD_SERVICE_HIDDEN_PARAGRAPH[] = "HiddenParagraph";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_CHANGE_AUTHOR[] = "DocInfo.ChangeAuthor";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_CHANGE_DATE_TIME[] = "DocInfo.ChangeDateTime";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_EDIT_TIME[] = "DocInfo.EditTime";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_DESCRIPTION[] = "DocInfo.Description";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_CREATE_AUTHOR[] = "DocInfo.CreateAuthor";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_CREATE_DATE_TIME[] = "DocInfo.CreateDateTime";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_INFO0[] = "DocInfo.Info0";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_INFO1[] = "DocInfo.Info1";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_INFO2[] = "DocInfo.Info2";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_INFO3[] = "DocInfo.Info3";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_PRINT_AUTHOR[] = "DocInfo.PrintAuthor";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_PRINT_DATE_TIME[] = "DocInfo.PrintDateTime";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_KEY_WORDS[] = "DocInfo.KeyWords";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_SUBJECT[] = "DocInfo.Subject";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_TITLE[] = "DocInfo.Title";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DOC_INFO_REVISION[] = "DocInfo.Revision";
-static sal_Char __READONLY_DATA FIELD_SERVICE_FILE_NAME[] = "FileName";
-static sal_Char __READONLY_DATA FIELD_SERVICE_CHAPTER[] = "Chapter";
-static sal_Char __READONLY_DATA FIELD_SERVICE_TEMPLATE_NAME[] = "TemplateName";
-static sal_Char __READONLY_DATA FIELD_SERVICE_PAGE_COUNT[] = "PageCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_PARAGRAPH_COUNT[] = "ParagraphCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_WORD_COUNT[] = "WordCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_CHARACTER_COUNT[] = "CharacterCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_TABLE_COUNT[] = "TableCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_GRAPHIC_COUNT[] = "GraphicObjectCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_OBJECT_COUNT[] = "EmbeddedObjectCount";
-static sal_Char __READONLY_DATA FIELD_SERVICE_REFERENCE_PAGE_SET[] = "ReferencePageSet";
-static sal_Char __READONLY_DATA FIELD_SERVICE_REFERENCE_PAGE_GET[] = "ReferencePageGet";
-static sal_Char __READONLY_DATA FIELD_SERVICE_SHEET_NAME[] = "SheetName";
-static sal_Char __READONLY_DATA FIELD_SERVICE_MACRO[] = "Macro";
-static sal_Char __READONLY_DATA FIELD_SERVICE_GET_REFERENCE[] = "GetReference";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DDE[] = "DDE";
-static sal_Char __READONLY_DATA FIELD_SERVICE_URL[] = "URL";
-static sal_Char __READONLY_DATA FIELD_SERVICE_BIBLIOGRAPHY[] = "Bibliography";
-static sal_Char __READONLY_DATA FIELD_SERVICE_SCRIPT[] = "Script";
-static sal_Char __READONLY_DATA FIELD_SERVICE_ANNOTATION[] = "Annotation";
-static sal_Char __READONLY_DATA FIELD_SERVICE_COMBINED_CHARACTERS[] = "CombinedCharacters";
-static sal_Char __READONLY_DATA FIELD_SERVICE_MEASURE[] = "Measure";
-static sal_Char __READONLY_DATA FIELD_SERVICE_TABLE_FORMULA[] = "TableFormula";
-static sal_Char __READONLY_DATA FIELD_SERVICE_DROP_DOWN[] = "DropDown";
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
-SvXMLEnumStringMapEntry __READONLY_DATA aFieldServiceNameMapping[] =
+static sal_Char const FIELD_SERVICE_SENDER[] = "ExtendedUser";
+static sal_Char const FIELD_SERVICE_AUTHOR[] = "Author";
+static sal_Char const FIELD_SERVICE_JUMPEDIT[] = "JumpEdit";
+static sal_Char const FIELD_SERVICE_GETEXP[] = "GetExpression";
+static sal_Char const FIELD_SERVICE_SETEXP[] = "SetExpression";
+static sal_Char const FIELD_SERVICE_USER[] = "User";
+static sal_Char const FIELD_SERVICE_INPUT[] = "Input";
+static sal_Char const FIELD_SERVICE_USERINPUT[] = "InputUser";
+static sal_Char const FIELD_SERVICE_DATETIME[] = "DateTime";
+static sal_Char const FIELD_SERVICE_PAGENUMBER[] = "PageNumber";
+static sal_Char const FIELD_SERVICE_DB_NEXT[] = "DatabaseNextSet";
+static sal_Char const FIELD_SERVICE_DB_SELECT[] = "DatabaseNumberOfSet";
+static sal_Char const FIELD_SERVICE_DB_NUMBER[] = "DatabaseSetNumber";
+static sal_Char const FIELD_SERVICE_DB_DISPLAY[] = "Database";
+static sal_Char const FIELD_SERVICE_DB_NAME[] = "DatabaseName";
+static sal_Char const FIELD_SERVICE_CONDITIONAL_TEXT[] = "ConditionalText";
+static sal_Char const FIELD_SERVICE_HIDDEN_TEXT[] = "HiddenText";
+static sal_Char const FIELD_SERVICE_HIDDEN_PARAGRAPH[] = "HiddenParagraph";
+static sal_Char const FIELD_SERVICE_DOC_INFO_CHANGE_AUTHOR[] = "DocInfo.ChangeAuthor";
+static sal_Char const FIELD_SERVICE_DOC_INFO_CHANGE_DATE_TIME[] = "DocInfo.ChangeDateTime";
+static sal_Char const FIELD_SERVICE_DOC_INFO_EDIT_TIME[] = "DocInfo.EditTime";
+static sal_Char const FIELD_SERVICE_DOC_INFO_DESCRIPTION[] = "DocInfo.Description";
+static sal_Char const FIELD_SERVICE_DOC_INFO_CREATE_AUTHOR[] = "DocInfo.CreateAuthor";
+static sal_Char const FIELD_SERVICE_DOC_INFO_CREATE_DATE_TIME[] = "DocInfo.CreateDateTime";
+static sal_Char const FIELD_SERVICE_DOC_INFO_INFO0[] = "DocInfo.Info0";
+static sal_Char const FIELD_SERVICE_DOC_INFO_INFO1[] = "DocInfo.Info1";
+static sal_Char const FIELD_SERVICE_DOC_INFO_INFO2[] = "DocInfo.Info2";
+static sal_Char const FIELD_SERVICE_DOC_INFO_INFO3[] = "DocInfo.Info3";
+static sal_Char const FIELD_SERVICE_DOC_INFO_PRINT_AUTHOR[] = "DocInfo.PrintAuthor";
+static sal_Char const FIELD_SERVICE_DOC_INFO_PRINT_DATE_TIME[] = "DocInfo.PrintDateTime";
+static sal_Char const FIELD_SERVICE_DOC_INFO_KEY_WORDS[] = "DocInfo.KeyWords";
+static sal_Char const FIELD_SERVICE_DOC_INFO_SUBJECT[] = "DocInfo.Subject";
+static sal_Char const FIELD_SERVICE_DOC_INFO_TITLE[] = "DocInfo.Title";
+static sal_Char const FIELD_SERVICE_DOC_INFO_REVISION[] = "DocInfo.Revision";
+static sal_Char const FIELD_SERVICE_FILE_NAME[] = "FileName";
+static sal_Char const FIELD_SERVICE_CHAPTER[] = "Chapter";
+static sal_Char const FIELD_SERVICE_TEMPLATE_NAME[] = "TemplateName";
+static sal_Char const FIELD_SERVICE_PAGE_COUNT[] = "PageCount";
+static sal_Char const FIELD_SERVICE_PARAGRAPH_COUNT[] = "ParagraphCount";
+static sal_Char const FIELD_SERVICE_WORD_COUNT[] = "WordCount";
+static sal_Char const FIELD_SERVICE_CHARACTER_COUNT[] = "CharacterCount";
+static sal_Char const FIELD_SERVICE_TABLE_COUNT[] = "TableCount";
+static sal_Char const FIELD_SERVICE_GRAPHIC_COUNT[] = "GraphicObjectCount";
+static sal_Char const FIELD_SERVICE_OBJECT_COUNT[] = "EmbeddedObjectCount";
+static sal_Char const FIELD_SERVICE_REFERENCE_PAGE_SET[] = "ReferencePageSet";
+static sal_Char const FIELD_SERVICE_REFERENCE_PAGE_GET[] = "ReferencePageGet";
+static sal_Char const FIELD_SERVICE_SHEET_NAME[] = "SheetName";
+static sal_Char const FIELD_SERVICE_MACRO[] = "Macro";
+static sal_Char const FIELD_SERVICE_GET_REFERENCE[] = "GetReference";
+static sal_Char const FIELD_SERVICE_DDE[] = "DDE";
+static sal_Char const FIELD_SERVICE_URL[] = "URL";
+static sal_Char const FIELD_SERVICE_BIBLIOGRAPHY[] = "Bibliography";
+static sal_Char const FIELD_SERVICE_SCRIPT[] = "Script";
+static sal_Char const FIELD_SERVICE_ANNOTATION[] = "Annotation";
+static sal_Char const FIELD_SERVICE_COMBINED_CHARACTERS[] = "CombinedCharacters";
+static sal_Char const FIELD_SERVICE_MEASURE[] = "Measure";
+static sal_Char const FIELD_SERVICE_TABLE_FORMULA[] = "TableFormula";
+static sal_Char const FIELD_SERVICE_DROP_DOWN[] = "DropDown";
+
+
+SvXMLEnumStringMapEntry const aFieldServiceNameMapping[] =
 {
     ENUM_STRING_MAP_ENTRY( FIELD_SERVICE_SENDER, FIELD_ID_SENDER ),
     ENUM_STRING_MAP_ENTRY( FIELD_SERVICE_AUTHOR, FIELD_ID_AUTHOR ),
@@ -367,21 +278,21 @@ XMLTextFieldExport::XMLTextFieldExport( SvXMLExport& rExp,
           RTL_CONSTASCII_USTRINGPARAM("NumberingSeparator")),
       sPropertyNumberingType(
           RTL_CONSTASCII_USTRINGPARAM("NumberingType")),
-      sPropertyDateTimeValue(RTL_CONSTASCII_USTRINGPARAM("DateTimeValue")),
-      sPropertyUserText(RTL_CONSTASCII_USTRINGPARAM("UserText")),
-      sPropertyOffset(RTL_CONSTASCII_USTRINGPARAM("Offset")),
       sPropertyDataBaseName(RTL_CONSTASCII_USTRINGPARAM("DataBaseName")),
       sPropertyDataTableName(RTL_CONSTASCII_USTRINGPARAM("DataTableName")),
-      sPropertyCondition(RTL_CONSTASCII_USTRINGPARAM("Condition")),
+      sPropertyDateTimeValue(RTL_CONSTASCII_USTRINGPARAM("DateTimeValue")),
+      sPropertyDataColumnName(RTL_CONSTASCII_USTRINGPARAM("DataColumnName")),
       sPropertySetNumber(RTL_CONSTASCII_USTRINGPARAM("SetNumber")),
       sPropertyIsDataBaseFormat(RTL_CONSTASCII_USTRINGPARAM("DataBaseFormat")),
-      sPropertyDataColumnName(RTL_CONSTASCII_USTRINGPARAM("DataColumnName")),
+      sPropertyUserText(RTL_CONSTASCII_USTRINGPARAM("UserText")),
+      sPropertyOffset(RTL_CONSTASCII_USTRINGPARAM("Offset")),
+      sPropertyCondition(RTL_CONSTASCII_USTRINGPARAM("Condition")),
       sPropertyDateTime(RTL_CONSTASCII_USTRINGPARAM("DateTime")),
       sPropertyTrueContent(RTL_CONSTASCII_USTRINGPARAM("TrueContent")),
       sPropertyFalseContent(RTL_CONSTASCII_USTRINGPARAM("FalseContent")),
       sPropertyRevision(RTL_CONSTASCII_USTRINGPARAM("Revision")),
-      sPropertyFileFormat(RTL_CONSTASCII_USTRINGPARAM("FileFormat")),
       sPropertyChapterFormat(RTL_CONSTASCII_USTRINGPARAM("ChapterFormat")),
+      sPropertyFileFormat(RTL_CONSTASCII_USTRINGPARAM("FileFormat")),
       sPropertyLevel(RTL_CONSTASCII_USTRINGPARAM("Level")),
       sPropertyIsDate(RTL_CONSTASCII_USTRINGPARAM("IsDate")),
       sPropertyAdjust(RTL_CONSTASCII_USTRINGPARAM("Adjust")),
@@ -394,16 +305,16 @@ XMLTextFieldExport::XMLTextFieldExport( SvXMLExport& rExp,
       sPropertyReferenceFieldSource(
           RTL_CONSTASCII_USTRINGPARAM("ReferenceFieldSource")),
       sPropertySequenceNumber(RTL_CONSTASCII_USTRINGPARAM("SequenceNumber")),
-      sPropertySequenceValue(RTL_CONSTASCII_USTRINGPARAM("SequenceValue")),
       sPropertySourceName(RTL_CONSTASCII_USTRINGPARAM("SourceName")),
-      sPropertyDDECommandType(RTL_CONSTASCII_USTRINGPARAM("DDECommandType")),
-      sPropertyDDECommandFile(RTL_CONSTASCII_USTRINGPARAM("DDECommandFile")),
-      sPropertyDDECommandElement(
-          RTL_CONSTASCII_USTRINGPARAM("DDECommandElement")),
       sPropertyIsAutomaticUpdate(
           RTL_CONSTASCII_USTRINGPARAM("IsAutomaticUpdate")),
       sPropertyDependentTextFields(
           RTL_CONSTASCII_USTRINGPARAM("DependentTextFields")),
+      sPropertyDDECommandType(RTL_CONSTASCII_USTRINGPARAM("DDECommandType")),
+      sPropertyDDECommandFile(RTL_CONSTASCII_USTRINGPARAM("DDECommandFile")),
+      sPropertyDDECommandElement(
+          RTL_CONSTASCII_USTRINGPARAM("DDECommandElement")),
+      sPropertySequenceValue(RTL_CONSTASCII_USTRINGPARAM("SequenceValue")),
       sPropertyURL(RTL_CONSTASCII_USTRINGPARAM("URL")),
       sPropertyTargetFrame(RTL_CONSTASCII_USTRINGPARAM("TargetFrame")),
       sPropertyFields(RTL_CONSTASCII_USTRINGPARAM("Fields")),
@@ -781,7 +692,7 @@ sal_Bool XMLTextFieldExport::IsStringField(
     case FIELD_ID_PLACEHOLDER:
     case FIELD_ID_UNKNOWN:
     default:
-        DBG_ERROR("unkown field type/field has no content");
+        OSL_FAIL("unkown field type/field has no content");
         return sal_True; // invalid info; string in case of doubt
     }
 }
@@ -992,7 +903,7 @@ void XMLTextFieldExport::ExportFieldAutoStyle(
 
     case FIELD_ID_UNKNOWN:
     default:
-        DBG_ERROR("unkown field type!");
+        OSL_FAIL("unkown field type!");
         // ignore -> no format for unkowns
         break;
     }
@@ -1075,7 +986,7 @@ void XMLTextFieldExport::ExportField(const Reference<XTextField> & rTextField )
                                   sal_False, sal_False);
 
         // finally, export the field itself
-        ExportFieldHelper( rTextField, xPropSet, xRangePropSet, nToken );
+        ExportFieldHelper( rTextField, xPropSet, nToken );
     }
 }
 
@@ -1083,7 +994,6 @@ void XMLTextFieldExport::ExportField(const Reference<XTextField> & rTextField )
 void XMLTextFieldExport::ExportFieldHelper(
     const Reference<XTextField> & rTextField,
     const Reference<XPropertySet> & rPropSet,
-    const Reference<XPropertySet> & rRangePropSet,
     enum FieldIdEnum nToken)
 {
     // get property set info (because some attributes are not support
@@ -1801,7 +1711,7 @@ void XMLTextFieldExport::ExportFieldHelper(
 
     case FIELD_ID_UNKNOWN:
     default:
-        DBG_ERROR("unkown field type encountered!");
+        OSL_FAIL("unkown field type encountered!");
         // always export content
         GetExport().Characters(sPresentation);
     }
@@ -1858,7 +1768,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
                 sal_Int32 i = 0;
                 for( set<OUString>::iterator aSetIter = rOurMasters.begin();
                      aSetIter != rOurMasters.end();
-                     aSetIter++, i++ )
+                     ++aSetIter, ++i )
                 {
                     aFieldMasters[i] = *aSetIter;
                 }
@@ -1931,7 +1841,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // now process fields:
 
     // variable field masters:
-    if (aVarName.size() > 0)
+    if (!aVarName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -1940,7 +1850,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aVarIter = aVarName.begin();
              aVarIter != aVarName.end();
-             aVarIter++) {
+             ++aVarIter) {
 
             OUString sName = *aVarIter;
 
@@ -1990,7 +1900,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // else: no declarations element
 
     // sequence field masters:
-    if (aSeqName.size() > 0)
+    if (!aSeqName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -1999,7 +1909,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aSeqIter = aSeqName.begin();
              aSeqIter != aSeqName.end();
-             aSeqIter++) {
+             ++aSeqIter) {
 
             OUString sName = *aSeqIter;
 
@@ -2032,7 +1942,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // else: no declarations element
 
     // user field field masters:
-    if (aUserName.size() > 0)
+    if (!aUserName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -2041,7 +1951,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aUserIter = aUserName.begin();
              aUserIter != aUserName.end();
-             aUserIter++) {
+             ++aUserIter) {
 
             OUString sName = *aUserIter;
 
@@ -2081,7 +1991,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
     // else: no declarations element
 
     // DDE field field masters:
-    if (aDdeName.size() > 0)
+    if (!aDdeName.empty())
     {
         SvXMLElementExport aElem( GetExport(),
                                   XML_NAMESPACE_TEXT,
@@ -2090,7 +2000,7 @@ void XMLTextFieldExport::ExportFieldDeclarations(
 
         for (vector<OUString>::iterator aDdeIter = aDdeName.begin();
              aDdeIter != aDdeName.end();
-             aDdeIter++)
+             ++aDdeIter)
         {
             OUString sName = *aDdeIter;
 
@@ -2254,11 +2164,7 @@ void XMLTextFieldExport::ProcessValueAndType(
     }
     else
     {
-
         // number: value-type=..., value...=..., data-style-name=...
-
-        DBG_ASSERT(bExportValueType || ~bExportValue,
-                   "value w/o value type not supported!");
 
         // take care of illegal formats
         // (shouldn't happen, but does if document is corrupted)
@@ -2373,8 +2279,7 @@ void XMLTextFieldExport::ProcessString(enum XMLTokenEnum eName,
 void XMLTextFieldExport::ProcessString(
     enum XMLTokenEnum eName,
     enum XMLTokenEnum eValue,
-    sal_Bool bOmitEmpty,
-    sal_uInt16 nPrefix)
+    sal_Bool bOmitEmpty)
 {
     DBG_ASSERT( eName != XML_TOKEN_INVALID, "invalid element token" );
     DBG_ASSERT( bOmitEmpty || (eValue != XML_TOKEN_INVALID),
@@ -2393,11 +2298,10 @@ void XMLTextFieldExport::ProcessString(
 void XMLTextFieldExport::ProcessString(
     enum XMLTokenEnum eName,
     enum XMLTokenEnum eValue,
-    enum XMLTokenEnum eDefault,
-    sal_uInt16 nPrefix)
+    enum XMLTokenEnum eDefault)
 {
     if ( eValue != eDefault )
-        ProcessString( eName, eValue, sal_False, nPrefix);
+        ProcessString( eName, eValue, sal_False );
 }
 
 
@@ -2556,7 +2460,7 @@ void XMLTextFieldExport::ProcessDateTime(enum XMLTokenEnum eName,
 }
 
 
-SvXMLEnumMapEntry __READONLY_DATA aBibliographyDataTypeMap[] =
+SvXMLEnumMapEntry const aBibliographyDataTypeMap[] =
 {
     { XML_ARTICLE,          BibliographyDataType::ARTICLE },
     { XML_BOOK,             BibliographyDataType::BOOK },
@@ -2600,7 +2504,7 @@ void XMLTextFieldExport::ProcessBibliographyData(
         if (aValues[i].Name.equalsAsciiL("BibiliographicType",
                                          sizeof("BibiliographicType")-1))
         {
-            sal_Int16 nTypeId;
+            sal_Int16 nTypeId(0);
             aValues[i].Value >>= nTypeId;
             OUStringBuffer sBuf;
 
@@ -2776,7 +2680,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapPlaceholderType(sal_uInt16 nType)
 
         default:
             // unkown placeholder: XML_TEXT
-            DBG_ERROR("unkown placeholder type");
+            OSL_FAIL("unkown placeholder type");
     }
 
     return eType;
@@ -2815,7 +2719,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapPageNumberName(
             nOffset -= 1;
             break;
         default:
-            DBG_ERROR("unknown page number type");
+            OSL_FAIL("unknown page number type");
             eName = XML_TOKEN_INVALID;
             break;
     }
@@ -2849,7 +2753,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapTemplateDisplayFormat(sal_Int16 nFormat
             eName = XML_TITLE;
             break;
         default:
-            DBG_ERROR("unknown template display format");
+            OSL_FAIL("unknown template display format");
             eName = XML_TOKEN_INVALID;
             break;
     }
@@ -2886,7 +2790,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapCountFieldName(sal_Int16 nToken)
             eElement = XML_OBJECT_COUNT;
             break;
         default:
-            DBG_ERROR("no count field token");
+            OSL_FAIL("no count field token");
             eElement = XML_TOKEN_INVALID;
             break;
     }
@@ -2917,7 +2821,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapChapterDisplayFormat(sal_Int16 nFormat)
             eName = XML_PLAIN_NUMBER;
             break;
         default:
-            DBG_ERROR("unkown chapter display format");
+            OSL_FAIL("unkown chapter display format");
             eName = XML_TOKEN_INVALID;
             break;
     }
@@ -2946,7 +2850,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapFilenameDisplayFormat(sal_Int16 nFormat
             eName = XML_NAME_AND_EXTENSION;
             break;
         default:
-            DBG_ERROR("unknown filename display format");
+            OSL_FAIL("unknown filename display format");
     }
 
     return eName;
@@ -2987,7 +2891,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapReferenceType(sal_Int16 nType)
             eElement = XML_TEMPLATE;
             break;
         default:
-            DBG_ERROR("unknown reference type");
+            OSL_FAIL("unknown reference type");
             eElement = XML_TEMPLATE;
             break;
     }
@@ -3018,7 +2922,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapReferenceSource(sal_Int16 nType)
             eElement = XML_ENDNOTE_REF;
             break;
         default:
-            DBG_ERROR("unkown reference source");
+            OSL_FAIL("unkown reference source");
             break;
     }
 
@@ -3293,7 +3197,7 @@ enum XMLTokenEnum XMLTextFieldExport::MapBibliographyFieldName(OUString sName)
     }
     else
     {
-        DBG_ERROR("Unknown bibliography info data");
+        OSL_FAIL("Unknown bibliography info data");
         eName = XML_TOKEN_INVALID;
     }
 
@@ -3441,3 +3345,5 @@ inline Sequence<OUString> const GetStringSequenceProperty(
     return aSequence;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

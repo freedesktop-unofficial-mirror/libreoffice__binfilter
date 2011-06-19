@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,37 +30,17 @@
 
 #include <bf_svtools/languageoptions.hxx>
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SFXSMPLHINT_HXX
+#include <osl/mutex.hxx>
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #include <itemholder2.hxx>
 
@@ -370,15 +351,15 @@ SvtCTLOptions::TextNumerals SvtCTLOptions::GetCTLTextNumerals() const
     DBG_ASSERT( pCTLOptions->IsLoaded(), "CTL options not loaded" );
     return pCTLOptions->GetCTLTextNumerals();
 }
-/* -----------------30.04.2003 10:40-----------------
 
- --------------------------------------------------*/
 void SvtCTLOptions::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
     Broadcast( rHint );
 }
 
 // -----------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

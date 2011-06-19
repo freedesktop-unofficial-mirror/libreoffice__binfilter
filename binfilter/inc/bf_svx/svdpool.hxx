@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _XPOOL_HXX
 #include <bf_svx/xpool.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 class XLineAttrSetItem;
@@ -49,35 +46,19 @@ class SdrMiscSetItem;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class SdrItemPool: public XOutdevItemPool {
-//-/#ifdef SDRDEFITEMCACHE
-//-/friend class SdrAttrObj;
-//-/    const XLineAttrSetItem*   pDefLineAttr;
-//-/    const XFillAttrSetItem*   pDefFillAttr;
-//-/    const XTextAttrSetItem*   pDefTextAttr;
-//-/    const SdrShadowSetItem*   pDefShadAttr;
-//-/    const SdrOutlinerSetItem* pDefOutlAttr;
-//-/    const SdrMiscSetItem*     pDefMiscAttr;
-//-/    const XLineAttrSetItem*   pDefTextFrameLineAttr;
-//-/    const XFillAttrSetItem*   pDefTextFrameFillAttr;
-//-/    const XTextAttrSetItem*   pDefTextFrameTextAttr;
-//-/    const SdrShadowSetItem*   pDefTextFrameShadAttr;
-//-/    const SdrOutlinerSetItem* pDefTextFrameOutlAttr;
-//-/    const SdrMiscSetItem*     pDefTextFrameMiscAttr;
-//-/#endif
 private:
     void Ctor(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd);
-//-/    void ImpMakeDefItems();
 public:
     // Kontstruktion des Pools als MasterPool
     SdrItemPool(USHORT nAttrStart=SDRATTR_START, USHORT nAttrEnd=SDRATTR_END,
-        FASTBOOL bLoadRefCounts = TRUE);
+        bool bLoadRefCounts = TRUE);
 
     // Damit meine SetItems mit dem MasterPool konstruiert werden koennen.
     // Der SdrItemPool wird dabei automatisch als Secondary an den
     // uebergebenen MasterPool bzw. an's Ende einer bestehenden Pool-Kette
     // angehaengt.
     SdrItemPool(SfxItemPool* pMaster, USHORT nAttrStart=SDRATTR_START, USHORT nAttrEnd=SDRATTR_END,
-        FASTBOOL bLoadRefCounts = TRUE);
+        bool bLoadRefCounts = TRUE);
 
     SdrItemPool(const SdrItemPool& rPool);
     virtual ~SdrItemPool();
@@ -91,3 +72,4 @@ public:
 }//end of namespace binfilter
 #endif // _SVDPOOL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

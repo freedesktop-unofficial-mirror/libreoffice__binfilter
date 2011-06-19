@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,12 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
 #define _ZFORLIST_DECLARE_TABLE
 
 #include <vcl/svapp.hxx>
 #include <tools/color.hxx>
 #include <tools/debug.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <osl/mutex.hxx>
 #include <rtl/uuid.h>
 
@@ -103,7 +101,7 @@ void SvNumberFormatsSupplierObj::SettingsChanged()
 uno::Reference<beans::XPropertySet> SAL_CALL SvNumberFormatsSupplierObj::getNumberFormatSettings()
                                         throw(uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     return new SvNumberFormatSettingsObj( this );
 }
@@ -111,7 +109,7 @@ uno::Reference<beans::XPropertySet> SAL_CALL SvNumberFormatsSupplierObj::getNumb
 uno::Reference<util::XNumberFormats> SAL_CALL SvNumberFormatsSupplierObj::getNumberFormats()
                                         throw(uno::RuntimeException)
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     return new SvNumberFormatsObj( this );
 }
@@ -164,3 +162,5 @@ SvNumberFormatsSupplierObj* SvNumberFormatsSupplierObj::getImplementation(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

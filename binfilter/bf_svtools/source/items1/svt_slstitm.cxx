@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,12 @@
 
 #include <bf_svtools/slstitm.hxx>
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {
@@ -188,34 +181,6 @@ SfxPoolItem* SfxStringListItem::Create( SvStream & rStream, USHORT ) const
     return new SfxStringListItem( Which(), rStream );
 }
 
-//------------------------------------------------------------------------
-
-SvStream& SfxStringListItem::Store( SvStream & rStream, USHORT ) const
-{
-    if( !pImp )
-    {
-        rStream << 0L;
-        return rStream;
-    }
-
-    DBG_ASSERT(pImp->nRefCount!=0xffff,"ImpList not valid");
-
-    long nCount = pImp->aList.Count();
-    rStream << nCount;
-
-    long i;
-    String* pStr;
-    for( i=0; i < nCount; i++ )
-    {
-        pStr = (String*)(pImp->aList.GetObject( i ));
-        writeByteString(rStream, *pStr);
-    }
-
-    return rStream;
-}
-
-//------------------------------------------------------------------------
-
 void SfxStringListItem::SetString( const XubString& rStr )
 {
     DBG_ASSERT(GetRefCount()==0,"SetString:RefCount!=0");
@@ -318,22 +283,22 @@ void SfxStringListItem::GetStringList( com::sun::star::uno::Sequence< rtl::OUStr
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxStringListItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxStringListItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     com::sun::star::uno::Sequence< rtl::OUString > aValue;
     if ( rVal >>= aValue )
     {
         SetStringList( aValue );
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxStringListItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxStringListItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxStringListItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool SfxStringListItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     // GetString() is not const!!!
     SfxStringListItem* pThis = const_cast< SfxStringListItem * >( this );
@@ -341,8 +306,10 @@ BOOL SfxStringListItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
     com::sun::star::uno::Sequence< rtl::OUString > aStringList;
     pThis->GetStringList( aStringList );
     rVal = ::com::sun::star::uno::makeAny( aStringList );
-    return TRUE;
+    return true;
 }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_LIGHT3D_HXX
 #include "light3d.hxx"
-#endif
 
 namespace binfilter {
 
@@ -67,13 +62,11 @@ namespace binfilter {
 
 /*N*/ E3dLight::E3dLight() :
 /*N*/   E3dPointObj(Vector3D()),
-/*N*/
 /*N*/   aColor(255, 255, 255),
-/*N*/
+/*N*/   fIntensity(1.0),
 /*N*/   fRed(1.0),
 /*N*/   fGreen(1.0),
 /*N*/   fBlue(1.0),
-/*N*/   fIntensity(1.0),
 /*N*/   bOn(TRUE),
 /*N*/   bVisible(FALSE)
 /*N*/ {
@@ -110,7 +103,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dLight::ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
+/*N*/ bool E3dLight::ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
 /*N*/                                   double fR, double fG, double fB) const
 /*N*/ {
 /*N*/   ULONG   nR(rNewColor.GetRed()),
@@ -144,9 +137,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dLight::CalcLighting(Color& rNewColor,
-/*N*/                               const Vector3D& rPnt,
-/*N*/                               const Vector3D& rPntNormal,
+/*N*/ bool E3dLight::CalcLighting(Color& rNewColor,
+/*N*/                               const Vector3D& /*rPnt*/,
+/*N*/                               const Vector3D& /*rPntNormal*/,
 /*N*/                               const Color& rPntColor)
 /*N*/ {
 /*N*/   return ImpCalcLighting(rNewColor, rPntColor, fRed, fGreen, fBlue);
@@ -225,35 +218,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* sichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dLight::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   E3dPointObj::WriteData(rOut);
-/*N*/
-/*N*/ #ifdef E3D_STREAMING
-/*N*/
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dLight");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aColor;
-/*N*/   rOut << fIntensity;
-/*N*/   rOut << fRed;
-/*N*/   rOut << fGreen;
-/*N*/   rOut << fBlue;
-/*N*/   rOut << BOOL(bOn);
-/*N*/   rOut << BOOL(bVisible);
-/*N*/ #endif
-/*N*/ #endif    // #ifndef SVX_LIGHT
-/*N*/ }
-
-/*************************************************************************
-|*
 |* laden
 |*
 \************************************************************************/
@@ -281,27 +245,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Attribute setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Attribute setzen
-|*
-\************************************************************************/
-
-/*N*/ void E3dLight::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void E3dLight::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
 /*N*/ {
 /*N*/ }
 
@@ -318,3 +262,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

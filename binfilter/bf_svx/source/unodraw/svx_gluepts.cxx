@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_CONTAINER_XIDENTIFIERCONTAINER_HPP_
 #include <com/sun/star/container/XIdentifierContainer.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_GLUEPOINT2_HDL_
 #include <com/sun/star/drawing/GluePoint2.hpp>
-#endif
 
 #include <cppuhelper/implbase2.hxx>
 
@@ -233,7 +228,7 @@ SvxUnoGluePointAccess::~SvxUnoGluePointAccess() throw()
         EndListening( *mpObject->GetModel() );
 }
 
-void SvxUnoGluePointAccess::Notify( SfxBroadcaster& rBC, const SfxHint& rHint ) throw()
+void SvxUnoGluePointAccess::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint ) throw()
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
 
@@ -405,7 +400,7 @@ uno::Sequence< sal_Int32 > SAL_CALL SvxUnoGluePointAccess::getIdentifiers() thro
 /* deprecated */
 
 // XIndexContainer
-void SAL_CALL SvxUnoGluePointAccess::insertByIndex( sal_Int32 Index, const uno::Any& Element )
+void SAL_CALL SvxUnoGluePointAccess::insertByIndex( sal_Int32 /*Index*/, const uno::Any& Element )
     throw(lang::IllegalArgumentException, lang::IndexOutOfBoundsException,
             lang::WrappedTargetException, uno::RuntimeException)
 {
@@ -555,3 +550,5 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoGluePointAccess_createInstance(
     return *new SvxUnoGluePointAccess(pObject);
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #ifndef _SB_SBJSMETH_HXX
 #define _SB_SBJSMETH_HXX
 
-#ifndef _SB_SBMETH_HXX
 #include "sbmeth.hxx"
-#endif
 
 namespace binfilter {
 
@@ -57,3 +56,5 @@ SV_DECL_IMPL_REF(SbJScriptMethod)
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

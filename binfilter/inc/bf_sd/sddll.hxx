@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,12 +33,8 @@
 
 #include <bf_so3/pseudo.hxx>
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
 class SvFactory;
 class SotFactory;
 namespace binfilter {
@@ -92,9 +89,9 @@ public:
     SotFactory* pSdDrawDocShellFactory;
     SotFactory* pSdGraphicDocShellFactory;
 
-               SdModuleDummy(ResMgr* pResMgr, BOOL bDummy,
+               SdModuleDummy(ResMgr* pResMgrIn, BOOL bDummyIn,
                              SotFactory* pDrawObjFact, SotFactory* pGraphicObjFact)
-               : SfxModule(pResMgr, bDummy,
+               : SfxModule(pResMgrIn, bDummyIn,
                             // Der erste Factory-Pointer muss gueltig sein!
                            (SfxObjectFactory*) (pDrawObjFact ? pDrawObjFact    : pGraphicObjFact),
                            (SfxObjectFactory*) (pDrawObjFact ? pGraphicObjFact : pDrawObjFact),
@@ -113,3 +110,4 @@ public:
 } //namespace binfilter
 #endif                               // _SDDLL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,14 +30,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 namespace utl {
     class TextSearch;
 }
@@ -130,7 +127,7 @@ public:
 
 
 /*N*/   void                Load( SvStream& rStream, USHORT nVer );
-/*N*/   void                Store( SvStream& rStream ) const;
+/*N*/   void  Store( SvStream& ) const {}
 
     // #i49161# this is needed to save documents with change tracking
     ScChangeViewSettings&   operator=   ( const ScChangeViewSettings& r );
@@ -145,3 +142,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

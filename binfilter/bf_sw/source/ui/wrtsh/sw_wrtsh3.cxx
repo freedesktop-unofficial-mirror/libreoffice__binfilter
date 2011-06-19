@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,14 +31,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "wrtsh.hxx"
 #include "wrtsh.hrc"
@@ -58,20 +55,10 @@ extern sal_Bool bNoInterrupt;       // in mainwn.cxx
  --------------------------------------------------------------------*/
 
 
-/*N*/ void SwWrtShell::DrawSelChanged(SdrView* pView)
+/*N*/ void SwWrtShell::DrawSelChanged(SdrView*)
 /*N*/ {
-//STRIP001  static sal_uInt16 __READONLY_DATA aInval[] =
-//STRIP001 /*N*/     {
-//STRIP001 /*N*/         SID_ATTR_FILL_STYLE, SID_ATTR_FILL_COLOR, SID_ATTR_LINE_STYLE,
-//STRIP001 /*N*/         SID_ATTR_LINE_WIDTH, SID_ATTR_LINE_COLOR, 0
-//STRIP001 /*N*/     };
-//STRIP001 /*N*/
-//STRIP001 /*N*/     GetView().GetViewFrame()->GetBindings().Invalidate(aInval);
-//STRIP001 /*N*/
-//STRIP001 /*N*/     sal_Bool bOldVal = bNoInterrupt;
-//STRIP001 /*N*/ /*N*/     bNoInterrupt = sal_True;    // Trick, um AttrChangedNotify ueber Timer auszufuehren
-//STRIP001 /*N*/ /*N*/     GetView().AttrChangedNotify(this);
-//STRIP001 /*N*/ /*N*/     bNoInterrupt = bOldVal;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

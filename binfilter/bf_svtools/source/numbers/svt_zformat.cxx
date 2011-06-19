@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,43 +31,20 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <float.h>
-// #include <math.h>
 #include <errno.h>
 #include <stdlib.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_NATIVENUMBERWRAPPER_HXX
 #include <unotools/nativenumberwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
 #include <com/sun/star/i18n/CalendarFieldIndex.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARDISPLAYINDEX_HPP_
 #include <com/sun/star/i18n/CalendarDisplayIndex.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARDISPLAYCODE_HPP_
 #include <com/sun/star/i18n/CalendarDisplayCode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_AMPMVALUE_HPP_
 #include <com/sun/star/i18n/AmPmValue.hpp>
-#endif
 
 #define _ZFORMAT_CXX
 #include <bf_svtools/zformat.hxx>
@@ -76,18 +54,16 @@
 #include <bf_svtools/zforlist.hxx>
 #include "numhead.hxx"
 
-#ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
 #include "nfsymbol.hxx"
-#endif
 
 namespace binfilter
 {
 
 namespace {
 struct Gregorian
-    : public rtl::StaticWithInit<const ::rtl::OUString, Gregorian> {
-    const ::rtl::OUString operator () () {
-        return ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("gregorian"));
+    : public rtl::StaticWithInit<rtl::OUString, Gregorian> {
+    const rtl::OUString operator () () {
+        return rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("gregorian"));
     }
 };
 }
@@ -166,33 +142,6 @@ void ImpSvNumberformatInfo::Copy( const ImpSvNumberformatInfo& rNumFor, USHORT n
     nCntPre      = rNumFor.nCntPre;
     nCntPost     = rNumFor.nCntPost;
     nCntExp      = rNumFor.nCntExp;
-}
-
-void ImpSvNumberformatInfo::Save(SvStream& rStream, USHORT nAnz) const
-{
-    for (USHORT i = 0; i < nAnz; i++)
-    {
-        rStream.WriteByteString( sStrArray[i], rStream.GetStreamCharSet() );
-        short nType = nTypeArray[i];
-        switch ( nType )
-        {   // der Krampf fuer Versionen vor SV_NUMBERFORMATTER_VERSION_NEW_CURR
-            case NF_SYMBOLTYPE_CURRENCY :
-                rStream << short( NF_SYMBOLTYPE_STRING );
-            break;
-            case NF_SYMBOLTYPE_CURRDEL :
-            case NF_SYMBOLTYPE_CURREXT :
-                rStream << short(0);        // werden ignoriert (hoffentlich..)
-            break;
-            default:
-                if ( nType > NF_KEY_LASTKEYWORD_SO5 )
-                    rStream << short( NF_SYMBOLTYPE_STRING );  // all new keywords are string
-                else
-                    rStream << nType;
-        }
-
-    }
-    rStream << eScannedType << bThousand << nThousand
-            << nCntPre << nCntPost << nCntExp;
 }
 
 void ImpSvNumberformatInfo::Load(SvStream& rStream, USHORT nAnz)
@@ -320,13 +269,6 @@ void ImpSvNumFor::Copy( const ImpSvNumFor& rNumFor, ImpSvNumberformatScan* pSc )
     aNatNum = rNumFor.aNatNum;
 }
 
-void ImpSvNumFor::Save(SvStream& rStream) const
-{
-    rStream << nAnzStrings;
-    aI.Save(rStream, nAnzStrings);
-    rStream.WriteByteString( sColorName, rStream.GetStreamCharSet() );
-}
-
 void ImpSvNumFor::Load(SvStream& rStream, ImpSvNumberformatScan& rSc,
         String& rLoadedColorName )
 {
@@ -368,36 +310,6 @@ BOOL ImpSvNumFor::GetNewCurrencySymbol( String& rSymbol,
     }
     //! kein Erase an rSymbol, rExtension
     return FALSE;
-}
-
-
-void ImpSvNumFor::SaveNewCurrencyMap( SvStream& rStream ) const
-{
-    USHORT j;
-    USHORT nCnt = 0;
-    for ( j=0; j<nAnzStrings; j++ )
-    {
-        switch ( aI.nTypeArray[j] )
-        {
-            case NF_SYMBOLTYPE_CURRENCY :
-            case NF_SYMBOLTYPE_CURRDEL :
-            case NF_SYMBOLTYPE_CURREXT :
-                nCnt++;
-            break;
-        }
-    }
-    rStream << nCnt;
-    for ( j=0; j<nAnzStrings; j++ )
-    {
-        switch ( aI.nTypeArray[j] )
-        {
-            case NF_SYMBOLTYPE_CURRENCY :
-            case NF_SYMBOLTYPE_CURRDEL :
-            case NF_SYMBOLTYPE_CURREXT :
-                rStream << j << aI.nTypeArray[j];
-            break;
-        }
-    }
 }
 
 
@@ -553,7 +465,7 @@ SvNumberformat::SvNumberformat(String& rString,
         bStarFlag( FALSE )
 {
     // If the group (AKA thousand) separator is a Non-Breaking Space (French)
-    // replace all occurences by a simple space.
+    // replace all occurrences by a simple space.
     // The tokens will be changed to the LocaleData separator again later on.
     const sal_Unicode cNBSp = 0xA0;
     const String& rThSep = GetFormatter().GetNumThousandSep();
@@ -1376,7 +1288,7 @@ NfHackConversion SvNumberformat::Load( SvStream& rStream,
         NumFor[i].Load( rStream, rScan, aLoadedColorName );
         if ( pHackConverter && eHackConversion == NF_CONVERT_NONE )
         {
-            //! HACK! ER 29.07.97 13:52
+            //! HACK!
             // leider wurde nicht gespeichert, was SYSTEM on Save wirklich war :-/
             // aber immerhin wird manchmal fuer einen Entry FARBE oder COLOR gespeichert..
             // System-German FARBE nach System-xxx COLOR umsetzen und vice versa,
@@ -1567,77 +1479,6 @@ void SvNumberformat::LoadString( SvStream& rStream, String& rStr )
 }
 
 
-void SvNumberformat::Save( SvStream& rStream, ImpSvNumMultipleWriteHeader& rHdr ) const
-{
-    String aFormatstring( sFormatstring );
-    String aComment( sComment );
-#if NF_COMMENT_IN_FORMATSTRING
-    // der Kommentar im Formatstring wird nicht gespeichert, um in alten Versionen
-    // nicht ins schleudern zu kommen und spaeter getrennte Verarbeitung
-    // (z.B. im Dialog) zu ermoeglichen
-    SetComment( "", aFormatstring, aComment );
-#endif
-
-    BOOL bNewCurrency = HasNewCurrency();
-    if ( bNewCurrency )
-    {   // SV_NUMBERFORMATTER_VERSION_NEW_CURR im Kommentar speichern
-        aComment.Insert( cNewCurrencyMagic, 0 );
-        aComment.Insert( cNewCurrencyMagic, 0 );
-        aComment.Insert( aFormatstring, 1 );
-        Build50Formatstring( aFormatstring );       // alten Formatstring generieren
-    }
-
-    // old SO5 versions do behave strange (no output) if standard flag is set
-    // on formats not prepared for it (not having the following exact types)
-    BOOL bOldStandard = bStandard;
-    if ( bOldStandard )
-    {
-        switch ( eType )
-        {
-            case NUMBERFORMAT_NUMBER :
-            case NUMBERFORMAT_DATE :
-            case NUMBERFORMAT_TIME :
-            case NUMBERFORMAT_DATETIME :
-            case NUMBERFORMAT_PERCENT :
-            case NUMBERFORMAT_SCIENTIFIC :
-                // ok to save
-            break;
-            default:
-                bOldStandard = FALSE;
-        }
-    }
-
-    rHdr.StartEntry();
-    rStream.WriteByteString( aFormatstring, rStream.GetStreamCharSet() );
-    rStream << eType << fLimit1 << fLimit2 << (USHORT) eOp1 << (USHORT) eOp2
-            << bOldStandard << bIsUsed;
-    for (USHORT i = 0; i < 4; i++)
-        NumFor[i].Save(rStream);
-    // ab SV_NUMBERFORMATTER_VERSION_NEWSTANDARD
-    rStream.WriteByteString( aComment, rStream.GetStreamCharSet() );
-    rStream << nNewStandardDefined;
-    // ab SV_NUMBERFORMATTER_VERSION_NEW_CURR
-    rStream << nNewCurrencyVersionId;
-    rStream << bNewCurrency;
-    if ( bNewCurrency )
-    {
-        for ( USHORT j=0; j<4; j++ )
-        {
-            NumFor[j].SaveNewCurrencyMap( rStream );
-        }
-    }
-
-    // the real standard flag to load with versions >638 if different
-    if ( bStandard != bOldStandard )
-    {
-        rStream << nNewStandardFlagVersionId;
-        rStream << bStandard;
-    }
-
-    rHdr.EndEntry();
-}
-
-
 BOOL SvNumberformat::HasNewCurrency() const
 {
     for ( USHORT j=0; j<4; j++ )
@@ -1728,31 +1569,6 @@ void SvNumberformat::ImpGetOutputStandard(double& fNumber, String& OutString)
                 GetFormatter().GetNumDecimalSep().GetChar(0));
     else
     {
-#if 0
-{
-        // debugger test case for ANSI standard correctness
-        ::rtl::OUString aTest;
-        // expect 0.00123   OK
-        aTest = ::rtl::math::doubleToUString( 0.001234567,
-                rtl_math_StringFormat_G, 3, '.', sal_True );
-        // expect 123       OK
-        aTest = ::rtl::math::doubleToUString( 123.4567,
-                rtl_math_StringFormat_G, 3, '.', sal_True );
-        // expect 123.5     OK
-        aTest = ::rtl::math::doubleToUString( 123.4567,
-                rtl_math_StringFormat_G, 4, '.', sal_True );
-        // expect 1e+03 (as 999.6 rounded to 3 significant digits results in
-        // 1000 with an exponent equal to significant digits)
-        // Currently (24-Jan-2003) we do fail in this case and output 1000
-        // instead, negligible.
-        aTest = ::rtl::math::doubleToUString( 999.6,
-                rtl_math_StringFormat_G, 3, '.', sal_True );
-        // expect what? result is 1.2e+004
-        aTest = ::rtl::math::doubleToUString( 12345.6789,
-                rtl_math_StringFormat_G, -3, '.', sal_True );
-}
-#endif
-
         OutString = ::rtl::math::doubleToUString( fNumber,
                 rtl_math_StringFormat_F, nStandardPrec /*2*/,
                 GetFormatter().GetNumDecimalSep().GetChar(0), sal_True );
@@ -1858,15 +1674,7 @@ BOOL SvNumberformat::GetOutputString(String& sString,
     }
     return FALSE;
 }
-/*
-void SvNumberformat::GetNextFareyNumber(ULONG nPrec, ULONG x0, ULONG x1,
-                                        ULONG y0, ULONG y1,
-                                        ULONG& x2,ULONG& y2)
-{
-    x2 = ((y0+nPrec)/y1)*x1 - x0;
-    y2 = ((y0+nPrec)/y1)*y1 - y0;
-}
-*/
+
 ULONG SvNumberformat::ImpGGT(ULONG x, ULONG y)
 {
     if (y == 0)
@@ -2047,7 +1855,7 @@ BOOL SvNumberformat::GetOutputString(double fNumber,
                 }
                 if (rInfo.nCntExp == 0)
                 {
-                    DBG_ERROR("SvNumberformat:: Bruch, nCntExp == 0");
+                    OSL_FAIL("SvNumberformat:: Bruch, nCntExp == 0");
                     return FALSE;
                 }
                 ULONG nBasis = ((ULONG)floor(           // 9, 99, 999 ,...
@@ -2143,7 +1951,6 @@ BOOL SvNumberformat::GetOutputString(double fNumber,
                     {
                         ULONG x2 = ((y0+nBasis)/y1)*x1 - x0; // naechste Farey-Zahl
                         ULONG y2 = ((y0+nBasis)/y1)*y1 - y0;
-//                      GetNextFareyNumber(nBasis, x0, x1, y0, y1, x2, y2);
                         x0 = x1;
                         y0 = y1;
                         x1 = x2;
@@ -2172,11 +1979,6 @@ BOOL SvNumberformat::GetOutputString(double fNumber,
                 else                                    // grosse Nenner
                 {                                       // 0,1234->123/1000
                     ULONG nGgt;
-/*
-                    nDiv = nBasis+1;
-                    nFrac = ((ULONG)floor(0.5 + fNumber *
-                                    pow(10.0,rInfo.nCntExp)));
-*/
                     nDiv = 10000000;
                     nFrac = ((ULONG)floor(0.5 + fNumber * 10000000.0));
                     nGgt = ImpGGT(nDiv, nFrac);
@@ -3829,7 +3631,7 @@ DateFormat SvNumberformat::GetDateOrder() const
     }
     else
     {
-        DBG_ERROR( "SvNumberformat::GetDateOrder: no date" );
+        OSL_FAIL( "SvNumberformat::GetDateOrder: no date" );
     }
     return rLoc().getDateFormat();
 }
@@ -3840,7 +3642,7 @@ sal_uInt32 SvNumberformat::GetExactDateOrder() const
     sal_uInt32 nRet = 0;
     if ( (eType & NUMBERFORMAT_DATE) != NUMBERFORMAT_DATE )
     {
-        DBG_ERROR( "SvNumberformat::GetExactDateOrder: no date" );
+        OSL_FAIL( "SvNumberformat::GetExactDateOrder: no date" );
         return nRet;
     }
     short const * const pType = NumFor[0].Info().nTypeArray;
@@ -4091,3 +3893,5 @@ USHORT SvNumberformat::ImpGetNumForStringElementCount( USHORT nNumFor ) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

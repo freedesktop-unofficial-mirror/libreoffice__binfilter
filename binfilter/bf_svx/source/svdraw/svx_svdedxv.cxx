@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,7 @@
 
 #include "svdedxv.hxx"
 #include <bf_svtools/solar.hrc>
-
-#ifndef _STRING_H
-#include <tools/string.h>
-#endif
-
-
-
-
-
-
-
-
-
-
+#include <string.h>
 #include "svditext.hxx"
 #include "svdoutl.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
@@ -83,7 +71,7 @@ namespace binfilter {
 /*N*/ SdrObjEditView::~SdrObjEditView()
 /*N*/ {
 /*N*/   pTextEditWin = NULL;            // Damit es in EndTextEdit kein ShowCursor gibt
-/*N*/   if (IsTextEdit()){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  EndTextEdit();
+/*N*/   if (IsTextEdit()){DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/     if (pTextEditOutliner!=NULL) {
 /*?*/         delete pTextEditOutliner;
 /*N*/     }
@@ -106,7 +94,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void __EXPORT SdrObjEditView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrObjEditView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/     SdrGlueEditView::SFX_NOTIFY(rBC,rBCType,rHint,rHintType);
 /*N*/     // Printerwechsel waerend des Editierens
@@ -131,45 +119,27 @@ namespace binfilter {
 /*N*/ void SdrObjEditView::ModelHasChanged()
 /*N*/ {
 /*N*/     SdrGlueEditView::ModelHasChanged();
-/*N*/     if (IsTextEdit() && !pTextEditObj->IsInserted()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 EndTextEdit(); // Objekt geloescht
+/*N*/     if (IsTextEdit() && !pTextEditObj->IsInserted()) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/     // TextEditObj geaendert?
-/*N*/     if (IsTextEdit()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     if (IsTextEdit()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@@@ @@@@@ @@   @@ @@@@@@  @@@@@ @@@@@  @@ @@@@@@
-//    @@   @@    @@@ @@@   @@    @@    @@  @@ @@   @@
-//    @@   @@     @@@@@    @@    @@    @@  @@ @@   @@
-//    @@   @@@@    @@@     @@    @@@@  @@  @@ @@   @@
-//    @@   @@     @@@@@    @@    @@    @@  @@ @@   @@
-//    @@   @@    @@@ @@@   @@    @@    @@  @@ @@   @@
-//    @@   @@@@@ @@   @@   @@    @@@@@ @@@@@  @@   @@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-/*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject* pObj, SdrPageView* pPV, Window* pWin,
-/*N*/   SdrOutliner* pGivenOutliner, OutlinerView* pGivenOutlinerView,
-/*N*/   BOOL bDontDeleteOutliner, BOOL bOnlyOneView)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL SdrObjEditView::BegTextEdit(SdrObject*, SdrPageView*, Window*,
+/*N*/   SdrOutliner*, OutlinerView*,
+/*N*/   BOOL, BOOL)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL bDontDeleteReally)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet; //STRIP001
+/*N*/ SdrEndTextEditKind SdrObjEditView::EndTextEdit(BOOL)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");SdrEndTextEditKind eRet=SDRENDTEXTEDIT_UNCHANGED; return eRet;
 /*N*/ }
 
 /*N*/ void SdrObjEditView::DelWin(OutputDevice* pWin1)
 /*N*/ {
 /*N*/     SdrGlueEditView::DelWin(pWin1);
 /*N*/     if (pTextEditObj!=NULL && !bTextEditOnlyOneView && pWin1->GetOutDevType()==OUTDEV_WINDOW) {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (ULONG i=pTextEditOutliner->GetViewCount(); i>0;) {
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -191,9 +161,11 @@ namespace binfilter {
 
 /*N*/ void SdrObjEditView::BrkMacroObj()
 /*N*/ {
-/*N*/     if (pMacroObj!=NULL) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     if (pMacroObj!=NULL) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

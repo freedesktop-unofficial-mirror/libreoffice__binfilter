@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -39,58 +40,26 @@
     #include <time.h>           // clock()
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX //autogen wg. Application
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
-#ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>      // GetDoc()
-#endif
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _WRONG_HXX
 #include <wrong.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx> // SwDrawTextInfo
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -122,8 +91,8 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/ {
 /*N*/   xub_StrLen nOrigLen = aText.Len();
 /*N*/
-/*N*/   ASSERT( rIdx <= nOrigLen, "Array ueberindiziert." );
-/*N*/   ASSERT( nOrigLen < STRING_LEN, "USHRT_MAX ueberschritten." );
+/*N*/   OSL_ENSURE( rIdx <= nOrigLen, "Array ueberindiziert." );
+/*N*/   OSL_ENSURE( nOrigLen < STRING_LEN, "USHRT_MAX ueberschritten." );
 /*N*/
 /*N*/   if( nOrigLen == aText.Insert( c, rIdx.GetIndex() ).Len() )
 /*N*/       return *this;
@@ -209,8 +178,6 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/   xub_StrLen nMin = aText.Len();
 /*M*/   xub_StrLen nMax = nStart;
 /*M*/
-/*M*/   const BOOL bNoLen = !nMin;
-/*M*/
 /*M*/     // We have to remember the "new" attributes, which have
 /*M*/     // been introduced by splitting surrounding attributes (case 4).
 /*M*/     // They may not be forgotten inside the "Forget" function
@@ -245,11 +212,11 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/
 /*M*/
 /*M*/       if( nStart <= nAttrStart )          // Faelle: 1,3,5
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/       else                                // Faelle: 2,4,5
 /*M*/           if( *pAttrEnd > nStart )        // Faelle: 2,4
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/       ++i;
 /*M*/   }
@@ -298,10 +265,10 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*M*/ SwScanner::SwScanner( const SwTxtNode& rNd, const SwWrongList* pWrng,
 /*M*/                       USHORT nType, xub_StrLen nStart, xub_StrLen nEnde,
 /*M*/                       BOOL bRev, BOOL bOS )
-/*M*/     : rNode( rNd ), pWrong( pWrng ), nWordType( nType ), nLen( 0 ),
+/*M*/     : pWrong( pWrng ), rNode( rNd ), nLen( 0 ), nWordType( nType ),
 /*M*/       bReverse( bRev ), bStart( TRUE ), bIsOnlineSpell( bOS )
 /*M*/ {
-/*M*/     ASSERT( rNd.GetTxt().Len(), "SwScanner: EmptyString" );
+/*M*/     OSL_ENSURE( rNd.GetTxt().Len(), "SwScanner: EmptyString" );
 /*M*/   if( bReverse )
 /*M*/   {
 /*M*/       nBegin = nEnde;
@@ -319,8 +286,8 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 
 /*N*/ BOOL SwScanner::NextWord()
 /*N*/ {
-/*N*/     ASSERT( ! bReverse,
-/*N*/             "SwScanner::NextWord() currently not implemented for reverse mode" )
+/*N*/     OSL_ENSURE( ! bReverse,
+/*N*/             "SwScanner::NextWord() currently not implemented for reverse mode" );
 /*N*/
 /*N*/     nBegin += nLen;
 /*N*/
@@ -366,7 +333,7 @@ bool lcl_IsSkippableWhiteSpace( xub_Unicode cCh )
 /*N*/     // we have to differenciate between these cases:
 /*N*/     if ( aBound.startPos <= nBegin )
 /*N*/     {
-/*N*/         ASSERT( aBound.endPos >= nBegin, "Unexpected aBound result" )
+/*N*/         OSL_ENSURE( aBound.endPos >= nBegin, "Unexpected aBound result" );
 /*N*/
 /*N*/         // restrict boundaries to script boundaries and nEndPos
 /*N*/         const USHORT nCurrScript =
@@ -423,3 +390,5 @@ SwLinguStatistik aSwLinguStat;
 // change text to Upper/Lower/Hiragana/Katagana/...
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

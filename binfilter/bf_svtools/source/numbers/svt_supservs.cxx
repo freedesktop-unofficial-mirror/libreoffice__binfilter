@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,7 +31,7 @@
 #include <com/sun/star/lang/Locale.hpp>
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 #include <strmadpt.hxx>
 #include "instrm.hxx"
@@ -40,13 +41,12 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::io;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::util;
-using namespace ::vos;
 using namespace ::utl;
 
 namespace binfilter
 {
 
-#define PERSISTENT_SERVICE_NAME     ::rtl::OUString::createFromAscii("com.sun.star.util.NumberFormatsSupplier");
+#define PERSISTENT_SERVICE_NAME     ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatsSupplier" ));
 
 //-------------------------------------------------------------------------
 Reference< XInterface > SAL_CALL SvNumberFormatsSupplierServiceObject_CreateInstance(const Reference< XMultiServiceFactory >& _rxFactory)
@@ -89,7 +89,7 @@ Any SAL_CALL SvNumberFormatsSupplierServiceObject::queryAggregation( const Type&
 //-------------------------------------------------------------------------
 void SAL_CALL SvNumberFormatsSupplierServiceObject::initialize( const Sequence< Any >& _rArguments ) throw(Exception, RuntimeException)
 {
-    OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
         // the mutex of the base class .... hope we have a real (i.e. own) mutex sometimes
 
     DBG_ASSERT(m_pOwnFormatter == NULL,
@@ -119,7 +119,7 @@ void SAL_CALL SvNumberFormatsSupplierServiceObject::initialize( const Sequence< 
 #ifdef DBG_UTIL
         else
         {
-            DBG_ERROR("SvNumberFormatsSupplierServiceObject::initialize : unknown argument !");
+            OSL_FAIL("SvNumberFormatsSupplierServiceObject::initialize : unknown argument !");
         }
 #endif
     }
@@ -132,7 +132,7 @@ void SAL_CALL SvNumberFormatsSupplierServiceObject::initialize( const Sequence< 
 //-------------------------------------------------------------------------
 ::rtl::OUString SAL_CALL SvNumberFormatsSupplierServiceObject::getImplementationName(  ) throw(RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii("com.sun.star.uno.util.numbers.SvNumberFormatsSupplierServiceObject");
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.uno.util.numbers.SvNumberFormatsSupplierServiceObject" ));
 }
 
 //-------------------------------------------------------------------------
@@ -164,7 +164,7 @@ Sequence< ::rtl::OUString > SAL_CALL SvNumberFormatsSupplierServiceObject::getSu
 //-------------------------------------------------------------------------
 void SAL_CALL SvNumberFormatsSupplierServiceObject::write( const Reference< XObjectOutputStream >& _rxOutStream ) throw(IOException, RuntimeException)
 {
-    OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     implEnsureFormatter();
 
     Reference< XOutputStream > xStream(_rxOutStream.get());
@@ -177,7 +177,7 @@ void SAL_CALL SvNumberFormatsSupplierServiceObject::write( const Reference< XObj
 //-------------------------------------------------------------------------
 void SAL_CALL SvNumberFormatsSupplierServiceObject::read( const Reference< XObjectInputStream >& _rxInStream ) throw(IOException, RuntimeException)
 {
-    OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     implEnsureFormatter();
 
     Reference< XInputStream > xStream(_rxInStream.get());
@@ -189,7 +189,7 @@ void SAL_CALL SvNumberFormatsSupplierServiceObject::read( const Reference< XObje
 //-------------------------------------------------------------------------
 Reference< XPropertySet > SAL_CALL SvNumberFormatsSupplierServiceObject::getNumberFormatSettings() throw(RuntimeException)
 {
-    OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     implEnsureFormatter();
     return SvNumberFormatsSupplierObj::getNumberFormatSettings();
 }
@@ -197,7 +197,7 @@ Reference< XPropertySet > SAL_CALL SvNumberFormatsSupplierServiceObject::getNumb
 //-------------------------------------------------------------------------
 Reference< XNumberFormats > SAL_CALL SvNumberFormatsSupplierServiceObject::getNumberFormats() throw(RuntimeException)
 {
-    OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     implEnsureFormatter();
     return SvNumberFormatsSupplierObj::getNumberFormats();
 }
@@ -230,3 +230,5 @@ void SvNumberFormatsSupplierServiceObject::implEnsureFormatter()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

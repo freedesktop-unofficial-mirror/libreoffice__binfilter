@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,37 +28,14 @@
 #ifndef _SC_DWFUNCTR_HXX
 #define _SC_DWFUNCTR_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
-
-#ifndef _SFXDOCKWIN_HXX //autogen
 #include <bf_sfx2/dockwin.hxx>
-#endif
-
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-
-#ifndef _STDCTRL_HXX //autogen
 #include <bf_svtools/stdctrl.hxx>
-#endif
-
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-
-#ifndef _IMAGEBTN_HXX //autogen
 #include <vcl/button.hxx>
-#endif
-
-#ifndef _COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
-
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // ScAddress
-#endif
 
 namespace binfilter {
 
@@ -66,14 +44,14 @@ namespace binfilter {
 #endif
 /*************************************************************************
 |*
-|* Ableitung vom SfxChildWindow als "Behaelter" fuer Controller
+|* Derivation from SfxChildWindow as "Container" for Controller
 |*
 \************************************************************************/
 
 class ScFunctionChildWindow : public SfxChildWindow
 {
  public:
-     ScFunctionChildWindow( Window* pParent, USHORT nId, SfxBindings* pBindings,SfxChildWinInfo* pInfo):SfxChildWindow( pParent, nId ){DBG_ASSERT(0, "STRIP")}; //STRIP001 ScFunctionChildWindow( Window*, USHORT, SfxBindings*,
+     ScFunctionChildWindow( Window* pParent, USHORT nId, SfxBindings* pBindings,SfxChildWinInfo* pInfo):SfxChildWindow( pParent, nId ){DBG_ASSERT(0, "STRIP")};
 
     SFX_DECL_CHILDWINDOW(ScFunctionChildWindow);
 };
@@ -82,3 +60,4 @@ class ScFunctionChildWindow : public SfxChildWindow
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

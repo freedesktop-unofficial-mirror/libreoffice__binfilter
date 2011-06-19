@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,11 +30,7 @@
 #include <math.h>
 #include "xpoly.hxx"
 
-
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
-
 
 namespace binfilter {
 
@@ -51,11 +48,10 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& rxFact, const Fraction& ryFact, FASTBOOL bNoJustify)
+/*N*/ void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& rxFact, const Fraction& ryFact, bool bNoJustify)
 /*N*/ {
 /*N*/   Fraction xFact(rxFact);
 /*N*/   Fraction yFact(ryFact);
-/*N*/   long nHgt=rRect.Bottom()-rRect.Top();
 /*N*/
 /*N*/   {
 /*N*/       if (xFact.GetDenominator()==0) {
@@ -151,7 +147,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
+/*N*/ void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.GetSize();
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
@@ -159,7 +155,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
+/*N*/ void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.GetPointCount();
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
@@ -167,7 +163,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear)
+/*N*/ void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, bool bVShear)
 /*N*/ {
 /*N*/   USHORT nAnz=rPoly.Count();
 /*N*/   for (USHORT i=0; i<nAnz; i++) {
@@ -313,7 +309,7 @@ namespace binfilter {
 /*N*/   nShW-=27000; // ShearWink wird zur Senkrechten gemessen
 /*N*/   nShW=-nShW;  // Negieren, denn '+' ist Rechtskursivierung
 /*N*/
-/*N*/   FASTBOOL bMirr=aPt3.Y()<0;
+/*N*/   bool bMirr=aPt3.Y()<0;
 /*N*/   if (bMirr) { // "Punktetausch" bei Spiegelung
 /*N*/       nHgt=-nHgt;
 /*N*/       nShW+=18000;
@@ -356,7 +352,7 @@ namespace binfilter {
 /*NBFF*/ {
 /*NBFF*/    INT32 nMul=rF.GetNumerator();
 /*NBFF*/    INT32 nDiv=rF.GetDenominator();
-/*NBFF*/    FASTBOOL bNeg=FALSE;
+/*NBFF*/    bool bNeg=FALSE;
 /*NBFF*/    if (nMul<0) { nMul=-nMul; bNeg=!bNeg; }
 /*NBFF*/    if (nDiv<0) { nDiv=-nDiv; bNeg=!bNeg; }
 /*NBFF*/    if (nMul==0 || nDiv==0) return;
@@ -399,7 +395,7 @@ namespace binfilter {
 /*?*/ FrPair GetMapFactor(FieldUnit eS, FieldUnit eD)
 /*?*/ {
 /*?*/   if (eS==eD) return FrPair(1,1,1,1);
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");}return FrPair(1,1,1,1);//STRIP001 //STRIP001 /*?*/    FrPair aS(GetInchOrMM(eS));
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");}return FrPair(1,1,1,1);
 /*?*/ };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -411,14 +407,9 @@ namespace binfilter {
     // 1 yd      =  3 ft      =     36" =       914,4mm
     // 1 ft      = 12 "       =      1" =       304,8mm
 
-
-
-
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

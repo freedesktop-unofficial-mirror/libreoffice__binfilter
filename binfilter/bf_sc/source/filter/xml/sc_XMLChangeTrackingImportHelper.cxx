@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _SC_XMLCHANGETRACKINGIMPORTHELPER_HXX
 #include "XMLChangeTrackingImportHelper.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_CELL_HXX
 #include "cell.hxx"
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 namespace binfilter {
 
 #define SC_CHANGE_ID_PREFIX "ct"
@@ -53,10 +44,10 @@ ScMyCellInfo::ScMyCellInfo(ScBaseCell* pTempCell, const ::rtl::OUString& rFormul
     sFormulaAddress(rFormulaAddress),
     sFormula(rFormula),
     fValue(rValue),
-    nType(nTempType),
-    nMatrixFlag(nTempMatrixFlag),
     nMatrixCols(nTempMatrixCols),
-    nMatrixRows(nTempMatrixRows)
+    nMatrixRows(nTempMatrixRows),
+    nType(nTempType),
+    nMatrixFlag(nTempMatrixFlag)
 {
 }
 
@@ -133,17 +124,17 @@ ScMyBaseAction::~ScMyBaseAction()
 {
 }
 
-ScMyInsAction::ScMyInsAction(const ScChangeActionType nActionType)
-    : ScMyBaseAction(nActionType)
+ScMyInsAction::ScMyInsAction(const ScChangeActionType nInActionType)
+    : ScMyBaseAction(nInActionType)
 {
 }
 
-ScMyDelAction::ScMyDelAction(const ScChangeActionType nActionType)
-    : ScMyBaseAction(nActionType),
-    pInsCutOff(NULL),
-    aMoveCutOffs(),
-    aGeneratedList(),
-    nD(0)
+ScMyDelAction::ScMyDelAction(const ScChangeActionType nInActionType)
+    : ScMyBaseAction(nInActionType)
+    , aGeneratedList()
+    , pInsCutOff(NULL)
+    , aMoveCutOffs()
+    , nD(0)
 {
 }
 
@@ -154,9 +145,9 @@ ScMyDelAction::~ScMyDelAction()
 }
 
 ScMyMoveAction::ScMyMoveAction()
-    : ScMyBaseAction(SC_CAT_MOVE),
-    pMoveRanges(NULL),
-    aGeneratedList()
+    : ScMyBaseAction(SC_CAT_MOVE)
+    , aGeneratedList()
+    , pMoveRanges(NULL)
 {
 }
 
@@ -184,15 +175,15 @@ ScMyRejAction::ScMyRejAction()
 {
 }
 
-ScXMLChangeTrackingImportHelper::ScXMLChangeTrackingImportHelper()
-    : sIDPrefix(RTL_CONSTASCII_USTRINGPARAM(SC_CHANGE_ID_PREFIX)),
-    aActions(),
+ScXMLChangeTrackingImportHelper::ScXMLChangeTrackingImportHelper() :
     aUsers(),
-    nMultiSpanned(0),
-    nMultiSpannedSlaveCount(0),
-    pCurrentAction(NULL),
+    aActions(),
     pDoc(NULL),
     pTrack(NULL),
+    pCurrentAction(NULL),
+    sIDPrefix(RTL_CONSTASCII_USTRINGPARAM(SC_CHANGE_ID_PREFIX)),
+    nMultiSpanned(0),
+    nMultiSpannedSlaveCount(0),
     bChangeTrack(sal_False)
 {
     nPrefixLength = sIDPrefix.getLength();
@@ -236,6 +227,8 @@ void ScXMLChangeTrackingImportHelper::StartChangeAction(const ScChangeActionType
             pCurrentAction = new ScMyRejAction();
         }
         break;
+        default:
+        break;
     }
 }
 
@@ -254,7 +247,7 @@ sal_uInt32 ScXMLChangeTrackingImportHelper::GetIDFromString(const ::rtl::OUStrin
             nResult = nValue;
         }
         else
-            DBG_ERROR("wrong change action ID");
+            OSL_FAIL("wrong change action ID");
     }
     return nResult;
 }
@@ -306,6 +299,8 @@ void ScXMLChangeTrackingImportHelper::SetPosition(const sal_Int32 nPosition, con
                                         nInt32Max, nInt32Max, nPosition + nCount - 1);
         }
         break;
+        default:
+        break;
     }
 }
 
@@ -343,7 +338,7 @@ void ScXMLChangeTrackingImportHelper::SetInsertionCutOff(const sal_uInt32 nID, c
         static_cast<ScMyDelAction*>(pCurrentAction)->pInsCutOff = new ScMyInsertionCutOff(nID, nPosition);
     }
     else
-        DBG_ERROR("wrong action type");
+        OSL_FAIL("wrong action type");
 }
 
 void ScXMLChangeTrackingImportHelper::AddMoveCutOff(const sal_uInt32 nID, const sal_Int32 nStartPosition, const sal_Int32 nEndPosition)
@@ -354,7 +349,7 @@ void ScXMLChangeTrackingImportHelper::AddMoveCutOff(const sal_uInt32 nID, const 
         static_cast<ScMyDelAction*>(pCurrentAction)->aMoveCutOffs.push_front(ScMyMoveCutOff(nID, nStartPosition, nEndPosition));
     }
     else
-        DBG_ERROR("wrong action type");
+        OSL_FAIL("wrong action type");
 }
 
 void ScXMLChangeTrackingImportHelper::SetMoveRanges(const ScBigRange& aSourceRange, const ScBigRange& aTargetRange)
@@ -364,7 +359,7 @@ void ScXMLChangeTrackingImportHelper::SetMoveRanges(const ScBigRange& aSourceRan
          static_cast<ScMyMoveAction*>(pCurrentAction)->pMoveRanges = new ScMyMoveRanges(aSourceRange, aTargetRange);
     }
     else
-        DBG_ERROR("wrong action type");
+        OSL_FAIL("wrong action type");
 }
 
 void ScXMLChangeTrackingImportHelper::GetMultiSpannedRange()
@@ -384,7 +379,7 @@ void ScXMLChangeTrackingImportHelper::GetMultiSpannedRange()
         }
     }
     else
-        DBG_ERROR("wrong action type");
+        OSL_FAIL("wrong action type");
 }
 
 void ScXMLChangeTrackingImportHelper::AddGenerated(ScMyCellInfo* pCellInfo, const ScBigRange& aBigRange)
@@ -400,7 +395,7 @@ void ScXMLChangeTrackingImportHelper::AddGenerated(ScMyCellInfo* pCellInfo, cons
         static_cast<ScMyDelAction*>(pCurrentAction)->aGeneratedList.push_back(pGenerated);
     }
     else
-        DBG_ERROR("try to insert a generated action to a wrong action");
+        OSL_FAIL("try to insert a generated action to a wrong action");
 }
 
 void ScXMLChangeTrackingImportHelper::EndChangeAction()
@@ -411,7 +406,7 @@ void ScXMLChangeTrackingImportHelper::EndChangeAction()
     if (pCurrentAction && pCurrentAction->nActionNumber > 0)
         aActions.push_back(pCurrentAction);
     else
-        DBG_ERROR("no current action");
+        OSL_FAIL("no current action");
     pCurrentAction = NULL;
 }
 
@@ -533,7 +528,7 @@ void ScXMLChangeTrackingImportHelper::CreateGeneratedActions(ScMyGeneratedList& 
                     DBG_ASSERT((*aItr)->nID, "could not insert generated action");
                 }
             }
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -571,7 +566,7 @@ void ScXMLChangeTrackingImportHelper::SetDeletionDependences(ScMyDelAction* pAct
                 pDelAct->SetCutOffInsert(pInsAction, static_cast<sal_Int16>(pAction->pInsCutOff->nPosition));
         }
         else
-            DBG_ERROR("no cut off insert action");
+            OSL_FAIL("no cut off insert action");
     }
     if (!pAction->aMoveCutOffs.empty())
     {
@@ -590,7 +585,7 @@ void ScXMLChangeTrackingImportHelper::SetDeletionDependences(ScMyDelAction* pAct
                                         static_cast<sal_Int16>(aItr->nEndPosition));
             }
             else
-                DBG_ERROR("no cut off move action");
+                OSL_FAIL("no cut off move action");
             aItr = pAction->aMoveCutOffs.erase(aItr);
         }
     }
@@ -688,7 +683,7 @@ void ScXMLChangeTrackingImportHelper::SetDependences(ScMyBaseAction* pAction)
             SetContentDependences(static_cast<ScMyContentAction*>(pAction), static_cast<ScChangeActionContent*>(pAct));
     }
     else
-        DBG_ERROR("could not find the action");
+        OSL_FAIL("could not find the action");
 }
 
 void ScXMLChangeTrackingImportHelper::SetNewCell(ScMyContentAction* pAction)
@@ -740,7 +735,7 @@ void ScXMLChangeTrackingImportHelper::SetNewCell(ScMyContentAction* pAction)
                     }
                 }
                 else
-                    DBG_ERROR("wrong cell position");
+                    OSL_FAIL("wrong cell position");
             }
         }
     }
@@ -795,14 +790,16 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
                     pAction = CreateRejectionAction(static_cast<ScMyRejAction*>(*aItr));
                 }
                 break;
+                default:
+                break;
             }
 
             if (pAction)
                 pTrack->AppendLoaded(pAction);
             else
-                DBG_ERROR("no action");
+                OSL_FAIL("no action");
 
-            aItr++;
+            ++aItr;
         }
         if (pTrack->GetLast())
             pTrack->SetActionMax(pTrack->GetLast()->GetActionNumber());
@@ -813,7 +810,7 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
             SetDependences(*aItr);
 
             if ((*aItr)->nActionType == SC_CAT_CONTENT)
-                aItr++;
+                ++aItr;
             else
             {
                 if (*aItr)
@@ -841,3 +838,5 @@ void ScXMLChangeTrackingImportHelper::CreateChangeTrack(ScDocument* pTempDoc)
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

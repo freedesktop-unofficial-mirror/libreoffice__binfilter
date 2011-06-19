@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,13 +32,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 class Font;
 class OutputDevice;
 class Fraction;
@@ -78,7 +75,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream& rStream, USHORT nVersion) const;
-    virtual SvStream&       Store(SvStream& rStream, USHORT nItemVersion) const;
+    virtual SvStream&     Store(SvStream& rStream, USHORT) const { return rStream; }
 
     virtual int             operator==(const SfxPoolItem& rCmp) const;
 
@@ -191,3 +188,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -129,33 +127,8 @@ ScChangeViewSettings& ScChangeViewSettings::operator=( const ScChangeViewSetting
 /*N*/   SetTheComment(aComment);
 /*N*/ }
 
-/*N*/ void ScChangeViewSettings::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream, 42 );      // Groesse, wenn String und RangeList leer sind
-/*N*/
-/*N*/   rStream << bShowIt;
-/*N*/   rStream << bIsDate;
-/*N*/   rStream << (BYTE) eDateMode;
-/*N*/   rStream << (UINT32) aFirstDateTime.GetDate();
-/*N*/   rStream << (UINT32) aFirstDateTime.GetTime();
-/*N*/   rStream << (UINT32) aLastDateTime.GetDate();
-/*N*/   rStream << (UINT32) aLastDateTime.GetTime();
-/*N*/   rStream << bIsAuthor;
-/*N*/   rStream << bEveryoneButMe;
-/*N*/   rStream.WriteByteString( aAuthorToShow, rStream.GetStreamCharSet() );
-/*N*/   rStream << bIsRange;
-/*N*/   aRangeList.Store( rStream );
-/*N*/   rStream << bShowAccepted;
-/*N*/   rStream << bShowRejected;
-/*N*/
-/*N*/   // Zusaetzlich Kommentar-Informationen schreiben (src509)
-/*N*/   if(bIsComment || aComment.Len()>0) //#59103#
-/*N*/   {
-/*N*/       rStream << bIsComment;
-/*N*/       rStream.WriteByteString( aComment, rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/ }
-
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

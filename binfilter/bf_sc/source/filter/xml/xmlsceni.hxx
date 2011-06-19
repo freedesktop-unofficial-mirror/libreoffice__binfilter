@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,21 +28,13 @@
 #ifndef SC_XMLSCENI_HXX
 #define SC_XMLSCENI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 namespace binfilter {
 
 class ScXMLImport;
@@ -80,3 +73,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,82 +30,37 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XGLUEPOINTSSUPPLIER_HPP_
 #include <com/sun/star/drawing/XGluePointsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
 #include <com/sun/star/uno/XAggregation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_POINT_HPP_
 #include <com/sun/star/awt/Point.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POLYGONKIND_HPP_
 #include <com/sun/star/drawing/PolygonKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SVX_UNOIPSET_HXX_
-#include <bf_svx/unoipset.hxx>
-#endif
-
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAKAGG_HXX_
 #include <cppuhelper/weakagg.hxx>
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.h>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 #include <comphelper/servicehelper.hxx>
 
 #include <cppuhelper/implbase11.hxx>
 
 #include <bf_svx/unoprov.hxx>
+
 class SvGlobalName;
 namespace binfilter {
 class SfxItemSet;
@@ -124,7 +80,7 @@ struct SvxShapeImpl;
 class SvxShapeMaster;
 
 // WARNING: if you update the supported interfaces, also update the
-//          SvxShape::queryAggregation helper method
+//          SvxShape::tryQueryAggregation helper method
 class SvxShape : public cppu::WeakAggImplHelper11<
                             ::com::sun::star::drawing::XShape,
                             ::com::sun::star::lang::XComponent,
@@ -176,7 +132,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
 
     ::com::sun::star::uno::Any GetAnyForItem( SfxItemSet& aSet, const SfxItemPropertyMap* pMap ) const;
 
-    sal_Bool queryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
+    sal_Bool tryQueryAggregation( const ::com::sun::star::uno::Type & rType, ::com::sun::star::uno::Any& rAny );
 
     sal_Bool SAL_CALL SetFillAttribute( sal_Int32 nWID, const ::rtl::OUString& rName );
 
@@ -299,6 +255,7 @@ class SvxShape : public cppu::WeakAggImplHelper11<
     virtual sal_Int16 SAL_CALL resetActionLocks(  ) throw (::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
+
 #include <bf_svx/unotext.hxx>
 namespace binfilter {
 class SvxShapeText : public SvxShape, public SvxUnoTextBase
@@ -352,15 +309,10 @@ virtual void SAL_CALL release() throw();
 virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
+
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPEGROUP_HPP_
 #include <com/sun/star/drawing/XShapeGroup.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
 namespace binfilter {
 /***********************************************************************
 *                                                                      *
@@ -418,9 +370,7 @@ virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId
 };
 }//end of namespace binfilter
 
-#ifndef _COM_SUN_STAR_DRAWING_XCONNECTORSHAPE_HPP_
 #include <com/sun/star/drawing/XConnectorShape.hpp>
-#endif
 namespace binfilter {
 /***********************************************************************
 *                                                                      *
@@ -461,20 +411,23 @@ virtual void SAL_CALL disconnectBegin( const ::com::sun::star::uno::Reference< :
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId(  ) throw(::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
-#ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
+
 #include <com/sun/star/drawing/XControlShape.hpp>
-#endif
 namespace binfilter {
 /***********************************************************************
 *                                                                      *
 ***********************************************************************/
 class SvxShapeControl : public ::com::sun::star::drawing::XControlShape, public SvxShapeText
 {
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 private:
 
     void convertPropertyName( const ::rtl::OUString& rApiName, ::rtl::OUString& rInternalName, sal_Bool& rNeedsConversion );
-    void valueAlignToParaAdjust(::com::sun::star::uno::Any& rValue);  //added by BerryJia for fixing Bug102407 2002-11-04
-    void valueParaAdjustToAlign(::com::sun::star::uno::Any& rValue);  //added by BerryJia for fixing Bug102407 2002-11-04
+    void valueAlignToParaAdjust(::com::sun::star::uno::Any& rValue);
+    void valueParaAdjustToAlign(::com::sun::star::uno::Any& rValue);
 
 public:
     SvxShapeControl( SdrObject* pObj ) throw();
@@ -542,9 +495,8 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames() throw(::com::sun::star::uno::RuntimeException);
 };
 }//end of namespace binfilter
-#ifndef _XPOLY_HXX
+
 #include <bf_svx/xpoly.hxx>
-#endif
 
 namespace binfilter {
 /***********************************************************************
@@ -555,6 +507,10 @@ class SvxShapePolyPolygon : public SvxShapeText
 private:
     ::com::sun::star::drawing::PolygonKind ePolygonKind;
     XPolyPolygon aEmptyPoly;
+
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
 
 public:
     SvxShapePolyPolygon( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew ) throw(::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::beans::PropertyVetoException);
@@ -583,6 +539,10 @@ private:
     ::com::sun::star::drawing::PolygonKind ePolygonKind;
     XPolyPolygon aEmptyPoly;
 
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 public:
     SvxShapePolyPolygonBezier( SdrObject* pObj , ::com::sun::star::drawing::PolygonKind eNew ) throw();
     virtual ~SvxShapePolyPolygonBezier() throw();
@@ -605,6 +565,10 @@ public:
 ***********************************************************************/
 class SvxGraphicObject : public SvxShapeText
 {
+protected:
+    using SvxUnoTextRangeBase::setPropertyValue;
+    using SvxUnoTextRangeBase::getPropertyValue;
+
 public:
     SvxGraphicObject( SdrObject* pObj ) throw();
     virtual ~SvxGraphicObject() throw();
@@ -748,3 +712,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

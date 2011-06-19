@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,79 +29,15 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-
-#ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
-#endif
-
-
-
-
-
-
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
-
-
-
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
-
-
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
-
-
-
-
-
-
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
-
-
-
-
-
-
-
-
-
-
-
-#ifndef _SVX_XLNWTIT_HXX
 #include "xlnwtit.hxx"
-#endif
-
-
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
-
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
-
-
-
-
-
-
-
-
-
-
-
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-
 
 namespace binfilter {
 
@@ -152,7 +89,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   // Owner holen
 /*N*/   DBG_ASSERT(GetOwnerObj()->ISA(E3dObject), "AW: Entfernen 3DObject aus Parent != 3DObject");
-/*N*/   E3dObject* pOwner = (E3dObject*)GetOwnerObj();
+/*N*/   /*E3dObject* pOwner =*/ (E3dObject*)GetOwnerObj();
 /*N*/
 /*N*/   // call parent
 /*N*/   SdrObject* pRetval = SdrObjList::RemoveObject(nObjNum);
@@ -175,8 +112,8 @@ namespace binfilter {
 /*N*/ E3dObject::E3dObject() :
 /*N*/   nLogicalGroup(0),
 /*N*/   nObjTreeLevel(0),
-/*N*/   eDragDetail(E3DDETAIL_ONEBOX),
 /*N*/   nPartOfParent(0),
+/*N*/   eDragDetail(E3DDETAIL_ONEBOX),
 /*N*/   bTfHasChanged(TRUE),
 /*N*/   bBoundVolValid(TRUE),
 /*N*/   bIsSelected(FALSE)
@@ -202,13 +139,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Selektions-Flag setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Aufbrechen, default-Implementierungen
 |*
 \************************************************************************/
@@ -225,7 +155,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dObject::SetRectsDirty(FASTBOOL bNotMyself)
+/*N*/ void E3dObject::SetRectsDirty(bool bNotMyself)
 /*N*/ {
 /*N*/   // call parent
 /*N*/   SdrAttrObj::SetRectsDirty(bNotMyself);
@@ -266,20 +196,13 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Faehigkeiten des Objektes feststellen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Layer abfragen
 |*
 \************************************************************************/
 
 /*N*/ SdrLayerID E3dObject::GetLayer() const
 /*N*/ {
-/*N*/   FASTBOOL bFirst = TRUE;
+/*N*/   bool bFirst = TRUE;
 /*N*/   E3dObjList* pOL = pSub;
 /*N*/   ULONG       nObjCnt = pOL->GetObjCount();
 /*N*/   SdrLayerID  nLayer = SdrLayerID(nLayerID);
@@ -407,12 +330,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Objekt verschieben in 2D, wird bei Cursortasten benoetigt
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
 |* liefere die Sublist, aber nur dann, wenn darin Objekte enthalten sind !
 |*
 \************************************************************************/
@@ -421,47 +338,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return pSub;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Anzahl der Handles zurueckgeben
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Handle-Liste fuellen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Paint; wird z.Z. nicht benutzt, da das Paint ueber die
-|* (2D-)Displayliste der Szene laeuft
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objekt als Kontur in das Polygon einfuegen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Schatten fuer 3D-Objekte zeichnen
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -719,14 +595,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* hierarchische Transformation ueber alle Parents bestimmen und mit
-|* der uebergebenen Matrix verketten
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* hierarchische Transformation ueber alle Parents bestimmen, in
 |* aFullTfMatrix ablegen und diese zurueckgeben
 |*
@@ -801,94 +669,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Transformationsmatrix zuruecksetzen mit Repaint-Broadcast
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Translation
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|* Translation mit Repaint-Broadcast
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Skalierungen
-|*
-\************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/*************************************************************************
-|*
-|* gleichmaessige Skalierung
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Skalierungen mit mit Repaint-Broadcast
-|*
-\************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Rotationen mit Winkel in Radiant
-|*
-\************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Rotationen mit Repaint-Broadcast
-|*
-\************************************************************************/
-
-
-/************************************************************************/
-
-
-/************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Objektbaum-Ebene des Objekts und aller Children setzen
 |*
 \************************************************************************/
@@ -909,49 +689,6 @@ namespace binfilter {
 /*N*/       ((E3dObject*) pObj)->SetObjTreeLevel(nNewLevel);
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* logische Gruppe setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Linien fuer die Wireframe-Darstellung des Objekts dem uebergebenen
-|* Polygon3D hinzufuegen. Als default wird das BoundVolume verwendet.
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Wireframe-XPolyPolygon erzeugen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Drag-Polygon zurueckgeben
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -1041,7 +778,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ void E3dObject::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet,
-/*N*/   FASTBOOL bDontRemoveHardAttr)
+/*N*/   bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   // call parent
 /*N*/   SdrAttrObj::NbcSetStyleSheet(pNewStyleSheet, bDontRemoveHardAttr);
@@ -1084,62 +821,15 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dObject::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long position = rOut.Tell();
-/*N*/   SdrAttrObj::WriteData(rOut);
-/*N*/   position = rOut.Tell();
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dObject");
-/*N*/ #endif
-/*N*/
-/*N*/   position = rOut.Tell();
-/*N*/   pSub->Save(rOut);
-/*N*/   position = rOut.Tell();
-/*N*/
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       rOut << aLocalBoundVol;
-/*N*/
-/*N*/       Old_Matrix3D aMat3D;
-/*N*/       aMat3D = aTfMatrix;
-/*N*/       rOut << aMat3D;
-/*N*/
-/*N*/       rOut << nLogicalGroup;
-/*N*/       rOut << nObjTreeLevel;
-/*N*/       rOut << nPartOfParent;
-/*N*/       rOut << UINT16(eDragDetail);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       WriteOnlyOwnMembers(rOut);
-/*N*/   }
-/*N*/   position = rOut.Tell();
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/
 
 /*N*/ void E3dObject::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
-/*N*/   long position = rIn.Tell();
 /*N*/   if (ImpCheckSubRecords (rHead, rIn))
 /*N*/   {
-/*N*/       position = rIn.Tell();
 /*N*/       SdrAttrObj::ReadData(rHead, rIn);
-/*N*/       position = rIn.Tell();
 /*N*/       // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/       SdrDownCompat aCompat(rIn, STREAM_READ);
 /*N*/ #ifdef DBG_UTIL
@@ -1147,7 +837,6 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/       pSub->Load(rIn, *pPage);
 /*N*/
-/*N*/       position = rIn.Tell();
 /*N*/       if ((rIn.GetVersion() < 3560) || (rHead.GetVersion() <= 12))
 /*N*/       {
 /*N*/           UINT16  nTmp16;
@@ -1167,7 +856,6 @@ namespace binfilter {
 /*N*/       {
 /*N*/           ReadOnlyOwnMembers(rHead, rIn);
 /*N*/       }
-/*N*/       position = rIn.Tell();
 /*N*/
 /*N*/       // Wie ein veraendertes Objekt behandeln
 /*N*/       SetTransformChanged();
@@ -1188,7 +876,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dObject::ReadOnlyOwnMembers(const SdrObjIOHeader& rHead, SvStream& rIn)
+/*N*/ void E3dObject::ReadOnlyOwnMembers(const SdrObjIOHeader& /*rHead*/, SvStream& rIn)
 /*N*/ {
 /*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/   SdrDownCompat aCompat(rIn, STREAM_READ);
@@ -1453,7 +1141,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // Schatten beruecksichtigen
 /*N*/       if(DoDrawShadow())
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 
         // Linienbreite beruecksichtigen
@@ -1493,79 +1181,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Rausschreiben der Datenmember eines E3dCompounds
-|*
-\************************************************************************/
-
-/*N*/ void E3dCompoundObject::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/ #ifdef E3D_STREAMING
-/*N*/
-/*N*/   if (!aLocalBoundVol.IsValid() && aBoundVol.IsValid())
-/*N*/   {
-/*N*/       // Das aLocalBoundVol wird gespeichert.
-/*N*/       // Ist dieses ungueltig, so wird das aBoundVol genommen
-/*N*/       // (sollten beim E3dCompoundObject sowieso gleich sein)
-/*N*/       ((E3dCompoundObject*) this)->aLocalBoundVol = aBoundVol;
-/*N*/   }
-/*N*/
-/*N*/   E3dObject::WriteData(rOut);
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       // In diesem Fall passiert nichts, da vor der Version 4.0
-/*N*/       // also im Falle der Revision 3.1
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aCompat.SetID("E3dCompoundObject");
-/*N*/ #endif
-/*N*/       rOut << BOOL(GetDoubleSided());
-/*N*/ #endif
-/*N*/
-/*N*/       // neue Parameter zur Geometrieerzeugung
-/*N*/       rOut << BOOL(bCreateNormals);
-/*N*/       rOut << BOOL(bCreateTexture);
-/*N*/
-/*N*/       sal_uInt16 nVal = GetNormalsKind();
-/*N*/       rOut << BOOL(nVal > 0);
-/*N*/       rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/       nVal = GetTextureProjectionX();
-/*N*/       rOut << BOOL(nVal > 0);
-/*N*/       rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/       nVal = GetTextureProjectionY();
-/*N*/       rOut << BOOL(nVal > 0);
-/*N*/       rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/       rOut << BOOL(GetShadow3D());
-/*N*/
-/*N*/       // neu al 384:
-/*N*/       rOut << GetMaterialAmbientColor();
-/*N*/       rOut << GetMaterialColor();
-/*N*/       rOut << GetMaterialSpecular();
-/*N*/       rOut << GetMaterialEmission();
-/*N*/       rOut << GetMaterialSpecularIntensity();
-/*N*/
-/*N*/       aBackMaterial.WriteData(rOut);
-/*N*/
-/*N*/       rOut << (UINT16)GetTextureKind();
-/*N*/
-/*N*/       rOut << (UINT16)GetTextureMode();
-/*N*/
-/*N*/       rOut << BOOL(GetNormalsInvert());
-/*N*/
-/*N*/       // neu ab 534: (hat noch gefehlt)
-/*N*/       rOut << BOOL(GetTextureFilter());
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Einlesen der Datenmember eines E3dCompounds
 |*
 \************************************************************************/
@@ -1593,7 +1208,6 @@ namespace binfilter {
 /*N*/   if (aCompat.GetBytesLeft () >= sizeof (BOOL))
 /*N*/   {
 /*N*/       BOOL bTmp, bTmp2;
-/*N*/       sal_uInt16 nTmp;
 /*N*/
 /*N*/       rIn >> bTmp;
 /*N*/       mpObjectItemSet->Put(Svx3DDoubleSidedItem(bTmp));
@@ -1601,6 +1215,8 @@ namespace binfilter {
 /*N*/       // neue Parameter zur Geometrieerzeugung
 /*N*/       if (aCompat.GetBytesLeft () >= sizeof (BOOL))
 /*N*/       {
+/*N*/           sal_uInt16 nTmp;
+/*N*/
 /*N*/           rIn >> bTmp;
 /*N*/           bCreateNormals = bTmp;
 /*N*/
@@ -1688,22 +1304,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Bitmaps fuer 3D-Darstellung von Gradients und Hatches holen
-|*
-\************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
-|* Give out simple line geometry
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -1953,13 +1553,13 @@ namespace binfilter {
 /*N*/ void E3dCompoundObject::CreateFront(
 /*N*/   const PolyPolygon3D& rPolyPoly3D,
 /*N*/   const PolyPolygon3D& rFrontNormals,
-/*N*/   BOOL bCreateNormals,
-/*N*/   BOOL bCreateTexture)
+/*N*/   BOOL bInCreateNormals,
+/*N*/   BOOL bInCreateTexture)
 /*N*/ {
 /*N*/   // Vorderseite
-/*N*/   if(bCreateNormals)
+/*N*/   if(bInCreateNormals)
 /*N*/   {
-/*N*/       if(bCreateTexture)
+/*N*/       if(bInCreateTexture)
 /*N*/       {
 /*N*/           // Polygon fuer die Textur erzeugen
 /*N*/           PolyPolygon3D aPolyTexture = rPolyPoly3D;
@@ -2021,19 +1621,19 @@ namespace binfilter {
 /*N*/ void E3dCompoundObject::CreateBack(
 /*N*/   const PolyPolygon3D& rPolyPoly3D,
 /*N*/   const PolyPolygon3D& rBackNormals,
-/*N*/   BOOL bCreateNormals,
-/*N*/   BOOL bCreateTexture)
+/*N*/   BOOL bInCreateNormals,
+/*N*/   BOOL bInCreateTexture)
 /*N*/ {
 /*N*/   // PolyPolygon umdrehen
 /*N*/   PolyPolygon3D aLocalPoly = rPolyPoly3D;
 /*N*/   aLocalPoly.FlipDirections();
 /*N*/
 /*N*/   // Rueckseite
-/*N*/   if(bCreateNormals)
+/*N*/   if(bInCreateNormals)
 /*N*/   {
 /*N*/       PolyPolygon3D aLocalNormals = rBackNormals;
 /*N*/       aLocalNormals.FlipDirections();
-/*N*/       if(bCreateTexture)
+/*N*/       if(bInCreateTexture)
 /*N*/       {
 /*N*/           // Polygon fuer die Textur erzeugen
 /*N*/           PolyPolygon3D aPolyTexture(aLocalPoly);
@@ -2099,19 +1699,19 @@ namespace binfilter {
 /*N*/   const PolyPolygon3D& rPolyPolyBack,
 /*N*/   const PolyPolygon3D& rFrontNormals,
 /*N*/   const PolyPolygon3D& rBackNormals,
-/*N*/   BOOL bCreateNormals,
+/*N*/   BOOL bInCreateNormals,
 /*N*/   double fSurroundFactor,
 /*N*/   double fTextureStart,
 /*N*/   double fTextureDepth,
 /*N*/   BOOL bRotateTexture90)
 /*N*/ {
 /*N*/   USHORT nPolyCnt = rPolyPolyFront.Count();
-/*N*/   BOOL bCreateTexture = (fTextureDepth == 0.0) ? FALSE : TRUE;
-/*N*/   double fPolyLength, fPolyPos;
-/*N*/   USHORT nLastIndex;
+/*N*/   BOOL bLclCreateTexture = (fTextureDepth == 0.0) ? FALSE : TRUE;
+/*N*/   double fPolyLength(0.0), fPolyPos(0.0);
+/*N*/   USHORT nLastIndex(0);
 /*N*/
 /*N*/   // Verbindungsstuecke
-/*N*/   if(bCreateNormals)
+/*N*/   if(bInCreateNormals)
 /*N*/   {
 /*N*/       for(UINT16 a=0;a<nPolyCnt;a++)
 /*N*/       {
@@ -2132,7 +1732,7 @@ namespace binfilter {
 /*N*/           aNormal3D[3] = rPolyNormalsFront[nPrefillIndex];
 /*N*/           aNormal3D[2] = rPolyNormalsBack[nPrefillIndex];
 /*N*/
-/*N*/           if(bCreateTexture)
+/*N*/           if(bLclCreateTexture)
 /*N*/           {
 /*N*/               fPolyLength = rPoly3DFront.GetLength();
 /*N*/               fPolyPos = 0.0;
@@ -2171,7 +1771,7 @@ namespace binfilter {
 /*N*/               aNormal3D[3] = rPolyNormalsFront[i];
 /*N*/               aNormal3D[2] = rPolyNormalsBack[i];
 /*N*/
-/*N*/               if(bCreateTexture)
+/*N*/               if(bLclCreateTexture)
 /*N*/               {
 /*N*/                   // Texturkoordinaten ermitteln
 /*N*/                   Vector3D aPart = rPoly3DFront[i] - rPoly3DFront[nLastIndex];
@@ -2319,28 +1919,12 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Copy-Operator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Ausgabeparameter an 3D-Kontext setzen
-|*
-\************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
 |* Hittest fuer 3D-Objekte, wird an Geometrie weitergegeben
 |*
 \************************************************************************/
 
 /*N*/ SdrObject* E3dCompoundObject::CheckHit(const Point& rPnt, USHORT nTol,
-/*N*/   const SetOfByte* pVisiLayer) const
+/*N*/   const SetOfByte* /*pVisiLayer*/) const
 /*N*/ {
 /*N*/   E3dPolyScene* pScene = (E3dPolyScene*)GetScene();
 /*N*/   if(pScene)
@@ -2398,7 +1982,7 @@ namespace binfilter {
 /*N*/
 /*N*/                       // 3D Volumes schneiden sich, teste in der Geometrie
 /*N*/                       // auf Basis der Projektion weiter
-/*N*/                       if(((E3dCompoundObject*)this)->aDisplayGeometry.CheckHit(aFront, aBack, nTol) != -1L)
+/*N*/                       if(((E3dCompoundObject*)this)->aDisplayGeometry.CheckHit(aFront, aBack, nTol) == sal_True)
 /*?*/                           return ((E3dCompoundObject*)this);
 /*N*/                   }
 /*N*/               }
@@ -2410,21 +1994,9 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Geometrie des Objektes auf angegebenen Punkt zentrieren
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Schattenattribute holen
 |*
 \************************************************************************/
-
-
-
-
-
 
 /*N*/ BOOL E3dCompoundObject::DoDrawShadow()
 /*N*/ {
@@ -2446,13 +2018,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return bRetval;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Objekt als WireFrame zeichnen
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -2526,8 +2091,8 @@ namespace binfilter {
 /*N*/   double fSurroundFactor,             // Wertebereich der Texturkoordinaten im Umlauf
 /*N*/   double fTextureStart,               // TexCoor ueber Extrude-Tiefe
 /*N*/   double fTextureDepth,               // TexCoor ueber Extrude-Tiefe
-/*N*/   BOOL bCreateTexture,
-/*N*/   BOOL bCreateNormals,
+/*N*/   BOOL bInCreateTexture,
+/*N*/   BOOL bInCreateNormals,
 /*N*/   BOOL bCharacterExtrude,             // FALSE=exakt, TRUE=ohne Ueberschneidungen
 /*N*/   BOOL bRotateTexture90,              // Textur der Seitenflaechen um 90 Grad kippen
 /*N*/   PolyPolygon3D* pLineGeometry        // For creation of line geometry
@@ -2563,11 +2128,11 @@ namespace binfilter {
 /*N*/           AddFrontNormals(rFront, aNormalsFront, aOffset);
 /*N*/
 /*N*/           if(!bSmoothFrontBack)
-/*N*/               CreateFront(rFront, aNormalsFront, bCreateNormals, bCreateTexture);
+/*N*/               CreateFront(rFront, aNormalsFront, bInCreateNormals, bInCreateTexture);
 /*N*/           if(bSmoothLeft)
 /*N*/               AddFrontNormals(rFront, aNormalsLeft, aOffset);
 /*N*/           if(bSmoothFrontBack)
-/*?*/               CreateFront(rFront, aNormalsLeft, bCreateNormals, bCreateTexture);
+/*?*/               CreateFront(rFront, aNormalsLeft, bInCreateNormals, bInCreateTexture);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -2582,11 +2147,11 @@ namespace binfilter {
 /*N*/           AddBackNormals(rBack, aNormalsBack, aOffset);
 /*N*/
 /*N*/           if(!bSmoothFrontBack)
-/*N*/               CreateBack(rBack, aNormalsBack, bCreateNormals, bCreateTexture);
+/*N*/               CreateBack(rBack, aNormalsBack, bInCreateNormals, bInCreateTexture);
 /*N*/           if(bSmoothRight)
 /*N*/               AddBackNormals(rBack, aNormalsRight, aOffset);
 /*N*/           if(bSmoothFrontBack)
-/*?*/               CreateBack(rBack, aNormalsRight, bCreateNormals, bCreateTexture);
+/*?*/               CreateBack(rBack, aNormalsRight, bInCreateNormals, bInCreateTexture);
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -2597,7 +2162,7 @@ namespace binfilter {
 /*N*/       // eigentliches Zwischenstueck
 /*N*/       CreateInBetween(rFront, rBack,
 /*N*/           aNormalsLeft, aNormalsRight,
-/*N*/           bCreateNormals,
+/*N*/           bInCreateNormals,
 /*N*/           fSurroundFactor,
 /*N*/           fTextureStart,
 /*N*/           fTextureDepth,
@@ -2616,7 +2181,7 @@ namespace binfilter {
 /*N*/       // Mit Scraegen, Vorderseite
 /*N*/       PolyPolygon3D aLocalFront = rFront;
 /*N*/       PolyPolygon3D aLocalBack = rBack;
-/*N*/       double fExtrudeDepth, fDiagLen;
+/*N*/       double fExtrudeDepth, fDiagLen = 0.0;
 /*N*/       double fTexMidStart = fTextureStart;
 /*N*/       double fTexMidDepth = fTextureDepth;
 /*N*/
@@ -2717,14 +2282,14 @@ namespace binfilter {
 /*N*/           // vordere Zwischenstuecke erzeugen
 /*N*/           CreateInBetween(aOuterFront, aLocalFront,
 /*N*/               aNormalsOuterFront, aNormalsLeft,
-/*N*/               bCreateNormals,
+/*N*/               bInCreateNormals,
 /*N*/               fSurroundFactor,
 /*N*/               fTextureStart,
 /*N*/               fTextureDepth * fPercentDiag,
 /*N*/               bRotateTexture90);
 /*N*/
 /*N*/           // Vorderseite erzeugen
-/*N*/           CreateFront(aOuterFront, aNormalsOuterFront, bCreateNormals, bCreateTexture);
+/*N*/           CreateFront(aOuterFront, aNormalsOuterFront, bInCreateNormals, bInCreateTexture);
 /*N*/
 /*N*/           // Weitere Texturwerte setzen
 /*N*/           fTexMidStart += fTextureDepth * fPercentDiag;
@@ -2826,14 +2391,14 @@ namespace binfilter {
 /*N*/           // hintere Zwischenstuecke erzeugen
 /*N*/           CreateInBetween(aLocalBack, aOuterBack,
 /*N*/               aNormalsRight, aNormalsOuterBack,
-/*N*/               bCreateNormals,
+/*N*/               bInCreateNormals,
 /*N*/               fSurroundFactor,
 /*N*/               fTextureStart + (fTextureDepth * (1.0 - fPercentDiag)),
 /*N*/               fTextureDepth * fPercentDiag,
 /*N*/               bRotateTexture90);
 /*N*/
 /*N*/           // Rueckseite erzeugen
-/*N*/           CreateBack(aOuterBack, aNormalsOuterBack, bCreateNormals, bCreateTexture);
+/*N*/           CreateBack(aOuterBack, aNormalsOuterBack, bInCreateNormals, bInCreateTexture);
 /*N*/
 /*N*/           // Weitere Texturwerte setzen
 /*N*/           fTexMidDepth -= fTextureDepth * fPercentDiag;
@@ -2847,7 +2412,7 @@ namespace binfilter {
 /*N*/       // eigentliches Zwischenstueck
 /*N*/       CreateInBetween(aLocalFront, aLocalBack,
 /*N*/           aNormalsLeft, aNormalsRight,
-/*N*/           bCreateNormals,
+/*N*/           bInCreateNormals,
 /*N*/           fSurroundFactor,
 /*N*/           fTexMidStart,
 /*N*/           fTexMidDepth,
@@ -2867,14 +2432,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Parameter Geometrieerzeugung setzen
-|*
-\************************************************************************/
-
-
 
 /*************************************************************************
 |*
@@ -2904,38 +2461,6 @@ namespace binfilter {
 /*?*/       aMaterialAmbientColor = rColor;
 /*N*/   }
 /*N*/ }
-
-
-
-/*************************************************************************
-|*
-|* 3D Ausgabe
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objekt als Kontur in das Polygon einfuegen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Schatten fuer 3D-Objekte zeichnen
-|*
-\************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
-|* convert given PolyPolygon3D to screen coor
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -2982,3 +2507,5 @@ namespace binfilter {
 
 // EOF
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

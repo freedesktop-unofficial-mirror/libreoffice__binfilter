@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 #define SC_CONVUNO_HXX
 
 
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
 
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScUnoConversion
@@ -182,3 +177,4 @@ inline sal_Bool operator!=(
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 #pragma optimize("",off)
 #endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
-#ifndef _SCH_MEMCHRT_HXX
 #include "memchrt.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -43,26 +40,18 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
 #define ITEMID_FONT        EE_CHAR_FONTINFO
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _CHTMODEL_HXX
 #include <globfunc.hxx>
-#endif
 
 
 
@@ -421,55 +410,6 @@ namespace binfilter {
 /*N*/   return pOutliner;
 /*N*/ }
 
-/*
-UINT32 ChartModel::ValFor mat () const
-{
-    return nValFo rmat;
-}
-
-
-UINT32& ChartModel::ValForm at()
-{
-    return nVal Format;
-}
-
-
-UINT32 ChartModel::PercentVa lFormat () const
-{
-    return nPercentV alFormat;
-}
-
-
-UINT32& ChartModel::Per centValFormat ()
-{
-    return nPercentValFo rmat;
-}
-
-
-UINT32 ChartModel::Des crFormat () const
-{
-    return nDescrFor mat;
-}
-
-
-UINT32& ChartModel::Desc rFormat()
-{
-    return nDes crFormat;
-}
-
-
-UINT32 ChartModel::PercentD escrFormat () const
-{
-    return nPercentDescrFo rmat;
-}
-
-
-UINT32& ChartModel::Percent DescrF ormat ()
-{
-    return nPercentDescr Format;
-}
-
-*/
 /*N*/ BOOL ChartModel::IsInitialized() const
 /*N*/ {
 /*N*/   return mbIsInitialized;
@@ -592,37 +532,6 @@ UINT32& ChartModel::Percent DescrF ormat ()
 /*N*/       case CHSTYLE_2D_PERCENTCOLUMN :
 /*N*/           return FALSE;
 
-//          case CHSTYLE_2D_LINE :
-//          case CHSTYLE_2D_STACKEDLINE :
-//          case CHSTYLE_2D_PERCENTLINE :
-//          case CHSTYLE_2D_LINESYMBOLS :
-//          case CHSTYLE_2D_STACKEDLINESYM :
-//          case CHSTYLE_2D_PERCENTLINESYM :
-//          case CHSTYLE_2D_CUBIC_SPLINE :
-//          case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL :
-//          case CHSTYLE_2D_B_SPLINE :
-//          case CHSTYLE_2D_B_SPLINE_SYMBOL :
-
-//          case CHSTYLE_2D_XY :
-//          case CHSTYLE_2D_XYSYMBOLS :
-//          case CHSTYLE_2D_XY_LINE :
-//          case CHSTYLE_2D_CUBIC_SPLINE_XY :
-//          case CHSTYLE_2D_CUBIC_SPLINE_SYMBOL_XY :
-//          case CHSTYLE_2D_B_SPLINE_XY :
-//          case CHSTYLE_2D_B_SPLINE_SYMBOL_XY :
-
-//          case CHSTYLE_2D_BAR :
-//          case CHSTYLE_2D_STACKEDBAR:
-//          case CHSTYLE_2D_PERCENTBAR:
-
-//          case CHSTYLE_2D_AREA :
-//          case CHSTYLE_2D_PERCENTAREA :
-//          case CHSTYLE_2D_STACKEDAREA :
-
-//          case CHSTYLE_2D_STOCK_1:
-//          case CHSTYLE_2D_STOCK_2:
-//          case CHSTYLE_2D_STOCK_3:
-//          case CHSTYLE_2D_STOCK_4:
 /*N*/       default :
 /*N*/           return TRUE;
 /*N*/   }
@@ -650,3 +559,5 @@ UINT32& ChartModel::Percent DescrF ormat ()
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,76 +26,35 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef SC_XMLEXPORTDATABASERANGES_HXX
 #include "XMLExportDatabaseRanges.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef _SC_XMLEXPORTITERATOR_HXX
 #include "XMLExportIterator.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef SC_DBCOLECT_HXX
 #include "dbcolect.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef __GLOBSTR_HRC_
 #include "globstr.hrc"
-#endif
-#ifndef SC_XMLEXPORTSHAREDDATA_HXX
 #include "XMLExportSharedData.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_DATAIMPORTMODE_HPP_
 #include <com/sun/star/sheet/DataImportMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_TABLESORTFIELD_HPP_
 #include <com/sun/star/table/TableSortField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HPP_
 #include <com/sun/star/sheet/XSubTotalField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATABASERANGES_HPP_
 #include <com/sun/star/sheet/XDatabaseRanges.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATABASERANGE_HPP_
 #include <com/sun/star/sheet/XDatabaseRange.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 //! not found in unonames.hxx
@@ -240,6 +200,8 @@ void ScXMLExportDatabaseRanges::WriteImportDescriptor(const uno::Sequence <beans
             rExport.CheckAttrList();
         }
         break;
+        default :
+        break;
     }
 }
 
@@ -293,6 +255,8 @@ rtl::OUString ScXMLExportDatabaseRanges::getOperatorXML(const sheet::FilterOpera
         case sheet::FilterOperator_TOP_VALUES :
             return GetXMLToken(XML_TOP_VALUES);
             break;
+        default :
+            break;
     }
     return ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("="));
 }
@@ -324,7 +288,7 @@ void ScXMLExportDatabaseRanges::WriteFilterDescriptor(const uno::Reference <shee
         uno::Reference <beans::XPropertySet> xPropertySet (xSheetFilterDescriptor, uno::UNO_QUERY);
         if (xPropertySet.is())
         {
-            sal_Bool bCopyOutputData;
+            sal_Bool bCopyOutputData( sal_False );
             uno::Any aCopyOutputData = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_COPYOUT)));
             if (aCopyOutputData >>= bCopyOutputData)
                 if (bCopyOutputData)
@@ -350,7 +314,7 @@ void ScXMLExportDatabaseRanges::WriteFilterDescriptor(const uno::Reference <shee
                 rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_CONDITION_SOURCE_RANGE_ADDRESS, sOUCellAddress);
             }
 
-            sal_Bool bSkipDuplicates;
+            sal_Bool bSkipDuplicates( sal_False );
             uno::Any aSkipDuplicates = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_SKIPDUP)));
             if (aSkipDuplicates >>= bSkipDuplicates)
                 if (bSkipDuplicates)
@@ -459,7 +423,6 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
     uno::Sequence <table::TableSortField> aSortFields;
     sal_Bool bBindFormatsToContent (sal_True);
     sal_Bool bCopyOutputData (sal_False);
-    sal_Bool bIsCaseSensitive (sal_False);
     sal_Bool bIsUserListEnabled (sal_False);
     table::CellAddress aOutputPosition;
     sal_Int32 nUserListIndex = 0;
@@ -478,12 +441,6 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
             uno::Any aCopyOutputData = aSortProperties[i].Value;
             aCopyOutputData >>= bCopyOutputData;
         }
-//      no longer supported
-/*      else if (aSortProperties[i].Name.compareToAscii(SC_UNONAME_ISCASE) == 0)
-        {
-            uno::Any aIsCaseSensitive = aSortProperties[i].Value;
-            aIsCaseSensitive >>= bIsCaseSensitive;
-        }*/
         else if (aSortProperties[i].Name.compareToAscii(SC_UNONAME_ISULIST) == 0)
         {
             uno::Any aIsUserListEnabled = aSortProperties[i].Value;
@@ -584,6 +541,8 @@ void ScXMLExportDatabaseRanges::WriteSortDescriptor(const uno::Sequence <beans::
                     case table::TableSortFieldType_NUMERIC :
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_DATA_TYPE, XML_NUMBER);
                     break;
+                    default :
+                    break;
                 }
             }
             else
@@ -608,17 +567,17 @@ void ScXMLExportDatabaseRanges::WriteSubTotalDescriptor(const ::com::sun::star::
             sal_Int32 nUserSortListIndex = 0;
             if (xPropertySet.is())
             {
-                sal_Bool bBindFormatsToContent;
+                sal_Bool bBindFormatsToContent( sal_False );
                 uno::Any aBindFormatsToContent = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_BINDFMT)));
                 if (aBindFormatsToContent >>= bBindFormatsToContent)
                     if (!bBindFormatsToContent)
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_BIND_STYLES_TO_CONTENT, XML_FALSE);
-                sal_Bool bInsertPageBreaks;
+                sal_Bool bInsertPageBreaks( sal_False );
                 uno::Any aInsertPageBreaks = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_INSBRK)));
                 if (aInsertPageBreaks >>= bInsertPageBreaks)
                     if (bInsertPageBreaks)
                         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_PAGE_BREAKS_ON_GROUP_CHANGE, XML_TRUE);
-                sal_Bool bIsCaseSensitive;
+                sal_Bool bIsCaseSensitive( sal_False );
                 uno::Any aIsCaseSensitive = xPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_ISCASE)));
                 if (aIsCaseSensitive >>= bIsCaseSensitive)
                     if (bIsCaseSensitive)
@@ -766,7 +725,7 @@ void ScXMLExportDatabaseRanges::WriteDatabaseRanges(const ::com::sun::star::uno:
 
                                     sal_Bool bSortColumns(sal_True);
                                     sal_Bool bFound(sal_False);
-                                    sal_uInt32 nProperty(0);
+                                    sal_Int32 nProperty(0);
                                     while (!bFound && (nProperty < aSortProperties.getLength()))
                                     {
                                         if (aSortProperties[nProperty].Name.compareToAscii(SC_UNONAME_ISSORTCOLUMNS) == 0)
@@ -804,3 +763,5 @@ void ScXMLExportDatabaseRanges::WriteDatabaseRanges(const ::com::sun::star::uno:
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

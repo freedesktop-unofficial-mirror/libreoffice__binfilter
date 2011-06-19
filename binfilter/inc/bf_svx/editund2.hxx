@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,11 +29,7 @@
 #ifndef _EDITUND2_HXX
 #define _EDITUND2_HXX
 
-//#include <tools.hxx>
-
-#ifndef _UNDO_HXX
 #include <bf_svtools/undo.hxx>
-#endif
 namespace binfilter {
 
 class ImpEditEngine;
@@ -64,6 +61,7 @@ public:
     virtual void    Undo()      = 0;
     virtual void    Redo()      = 0;
     virtual void    Repeat()    = 0;
+    using SfxUndoAction::Repeat;
 
     virtual String  GetComment() const;
     virtual USHORT  GetId() const;
@@ -72,3 +70,4 @@ public:
 }//end of namespace binfilter
 #endif  // _EDITUND2_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

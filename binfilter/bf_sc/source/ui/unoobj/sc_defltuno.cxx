@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -41,7 +39,7 @@
 #include "miscuno.hxx"
 #include "docsh.hxx"
 #include "docpool.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "unonames.hxx"
 #include "docoptio.hxx"
 namespace binfilter {
@@ -74,7 +72,7 @@ const SfxItemPropertyMap* lcl_GetDocDefaultsMap()
         {MAP_CHAR_LEN(SC_UNO_CTL_CLOCAL),   ATTR_CTL_FONT_LANGUAGE, &getCppuType((lang::Locale*)0), 0, MID_LANG_LOCALE },
         {MAP_CHAR_LEN(SC_UNO_STANDARDDEC),              0,      &getCppuType((sal_Int16*)0),        0, 0 },
         {MAP_CHAR_LEN(SC_UNO_TABSTOPDIS),               0,      &getCppuType((sal_Int32*)0),        0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aDocDefaultsMap_Impl;
 }
@@ -101,7 +99,7 @@ ScDocDefaultsObj::~ScDocDefaultsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDocDefaultsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDocDefaultsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( SfxSimpleHint ) &&
             ((const SfxSimpleHint&)rHint).GetId() == SFX_HINT_DYING )
@@ -125,7 +123,7 @@ void ScDocDefaultsObj::ItemsChanged()
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDocDefaultsObj::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( lcl_GetDocDefaultsMap() );
     return aRef;
@@ -137,7 +135,7 @@ void SAL_CALL ScDocDefaultsObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -154,7 +152,7 @@ void SAL_CALL ScDocDefaultsObj::setPropertyValue(
             if (pDoc)
             {
                 ScDocOptions aDocOpt(pDoc->GetDocOptions());
-                sal_Int16 nValue;
+                sal_Int16 nValue = 0;
                 if (aValue >>= nValue)
                 {
                     aDocOpt.SetStdPrecision(static_cast<sal_uInt8> (nValue));
@@ -170,7 +168,7 @@ void SAL_CALL ScDocDefaultsObj::setPropertyValue(
             if (pDoc)
             {
                 ScDocOptions aDocOpt(pDoc->GetDocOptions());
-                sal_Int32 nValue;
+                sal_Int32 nValue = 0;
                 if (aValue >>= nValue)
                 {
                     aDocOpt.SetTabDistance(static_cast<sal_uInt16>(HMMToTwips(nValue)));
@@ -232,7 +230,7 @@ uno::Any SAL_CALL ScDocDefaultsObj::getPropertyValue( const ::rtl::OUString& aPr
 {
     //  use pool default if set
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -285,7 +283,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDocDefaultsObj )
 beans::PropertyState SAL_CALL ScDocDefaultsObj::getPropertyState( const ::rtl::OUString& aPropertyName )
                                 throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -323,7 +321,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScDocDefaultsObj::getPropertyStates
 {
     //  the simple way: call getPropertyState
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
     uno::Sequence<beans::PropertyState> aRet(aPropertyNames.getLength());
     beans::PropertyState* pStates = aRet.getArray();
@@ -335,7 +333,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScDocDefaultsObj::getPropertyStates
 void SAL_CALL ScDocDefaultsObj::setPropertyToDefault( const ::rtl::OUString& aPropertyName )
                             throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -360,7 +358,7 @@ uno::Any SAL_CALL ScDocDefaultsObj::getPropertyDefault( const ::rtl::OUString& a
 {
     //  always use static default
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pDocShell )
         throw uno::RuntimeException();
@@ -383,3 +381,5 @@ uno::Any SAL_CALL ScDocDefaultsObj::getPropertyDefault( const ::rtl::OUString& a
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

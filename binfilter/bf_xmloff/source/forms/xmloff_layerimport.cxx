@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,73 +26,28 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_LAYERIMPORT_HXX_
 #include "layerimport.hxx"
-#endif
-#ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 #include "elementimport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #include "officeforms.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef XMLOFF_FORMSTYLES_HXX
 #include "formstyles.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_EVENTIMPORTHELPER_HXX
 #include "XMLEventImportHelper.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMSUBMITENCODING_HPP_
 #include <com/sun/star/form/FormSubmitEncoding.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMSUBMITMETHOD_HPP_
 #include <com/sun/star/form/FormSubmitMethod.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_NAVIGATIONBARMODE_HPP_
 #include <com/sun/star/form/NavigationBarMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_TABULATORCYCLE_HPP_
 #include <com/sun/star/form/TabulatorCycle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
 #include <com/sun/star/form/FormButtonType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
-#endif
 #include <tools/wintypes.hxx>       // for check states
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
-#ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
-#endif
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #include "controlpropertyhdl.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #include "controlpropertymap.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_FORMEVENTS_HXX_
 #include "formevents.hxx"
-#endif
 #ifndef XMLOFF_FORMS_FORMCELLBINDING
 #include "formcellbinding.hxx"
 #endif
@@ -253,8 +209,8 @@ namespace xmloff
 
         // initialize our style map
         m_xPropertyHandlerFactory = new OControlPropertyHandlerFactory();
-        ::vos::ORef< XMLPropertySetMapper > xStylePropertiesMapper = new XMLPropertySetMapper(getControlStylePropertyMap(), m_xPropertyHandlerFactory.getBodyPtr());
-        m_xImportMapper = new SvXMLImportPropertyMapper(xStylePropertiesMapper.getBodyPtr(), _rImporter);
+        ::rtl::Reference< XMLPropertySetMapper > xStylePropertiesMapper = new XMLPropertySetMapper(getControlStylePropertyMap(), m_xPropertyHandlerFactory.get());
+        m_xImportMapper = new SvXMLImportPropertyMapper(xStylePropertiesMapper.get(), _rImporter);
 
         // 'initialize'
         m_aCurrentPageIds = m_aControlIds.end();
@@ -330,11 +286,11 @@ namespace xmloff
                 }
                 catch(const Exception&)
                 {
-                    OSL_ENSURE(sal_False, "OFormLayerXMLImport_Impl::applyControlNumberStyle: couldn't set the format!");
+                    OSL_FAIL("OFormLayerXMLImport_Impl::applyControlNumberStyle: couldn't set the format!");
                 }
             }
             else
-                OSL_ENSURE(sal_False, "OFormLayerXMLImport_Impl::applyControlNumberStyle: did not find the style with the given name!");
+                OSL_FAIL("OFormLayerXMLImport_Impl::applyControlNumberStyle: did not find the style with the given name!");
         }
     }
 
@@ -429,7 +385,7 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    ::vos::ORef< SvXMLImportPropertyMapper > OFormLayerXMLImport_Impl::getStylePropertyMapper() const
+    ::rtl::Reference< SvXMLImportPropertyMapper > OFormLayerXMLImport_Impl::getStylePropertyMapper() const
     {
         return m_xImportMapper;
     }
@@ -496,7 +452,7 @@ namespace xmloff
         }
         catch(Exception&)
         {
-            OSL_ENSURE(sal_False, "OFormLayerXMLImport_Impl::endPage: unable to knit the control references (caught an exception)!");
+            OSL_FAIL("OFormLayerXMLImport_Impl::endPage: unable to knit the control references (caught an exception)!");
         }
 
         // now that we have all children of the forms collection, attach the events
@@ -522,7 +478,7 @@ namespace xmloff
             if (m_aCurrentPageIds->second.end() != aPos)
                 xReturn = aPos->second;
             else
-                OSL_ENSURE(sal_False, "OFormLayerXMLImport_Impl::lookupControlId: invalid control id (did not find it)!");
+                OSL_FAIL("OFormLayerXMLImport_Impl::lookupControlId: invalid control id (did not find it)!");
         }
         return xReturn;
     }
@@ -538,7 +494,7 @@ namespace xmloff
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OFormLayerXMLImport_Impl::createContext(const sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-        const Reference< sax::XAttributeList >& _rxAttribs)
+        const Reference< sax::XAttributeList >& /*_rxAttribs*/)
     {
         OSL_ENSURE(m_xForms.is(), "OFormLayerXMLImport_Impl::createContext: have no forms collection (did you use startPage?)!");
         OSL_ENSURE(0 == _rLocalName.compareToAscii("form"), "OFormLayerXMLImport_Impl::createContext: don't know the element name (must be \"form\")!");
@@ -598,7 +554,7 @@ namespace xmloff
                 }
                 catch( const Exception& )
                 {
-                    OSL_ENSURE( sal_False, "OFormLayerXMLImport_Impl::documentDone: caught an exception while binding to a cell!" );
+                    OSL_FAIL( "OFormLayerXMLImport_Impl::documentDone: caught an exception while binding to a cell!" );
                 }
             }
             m_aCellValueBindings.clear();
@@ -625,7 +581,7 @@ namespace xmloff
                 }
                 catch( const Exception& )
                 {
-                    OSL_ENSURE( sal_False, "OFormLayerXMLImport_Impl::documentDone: caught an exception while binding to a cell range!" );
+                    OSL_FAIL( "OFormLayerXMLImport_Impl::documentDone: caught an exception while binding to a cell range!" );
                 }
             }
             m_aCellRangeListSources.clear();
@@ -637,3 +593,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

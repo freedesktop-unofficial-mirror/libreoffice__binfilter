@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 
 #include "layouter.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pagefrm.hxx"
@@ -60,7 +59,7 @@ namespace binfilter {
 
 /*N*/ SwLooping::SwLooping( SwPageFrm* pPage )
 /*N*/ {
-/*N*/   ASSERT( pPage, "Where's my page?" );
+/*N*/   OSL_ENSURE( pPage, "Where's my page?" );
 /*N*/   nMinPage = pPage->GetPhyPageNum();
 /*N*/   nMaxPage = nMinPage;
 /*N*/   nCount = 0;
@@ -107,7 +106,7 @@ namespace binfilter {
 /*N*/           return;
 /*N*/ #endif
 /*N*/ #endif
-/*N*/       ASSERT( FALSE, "Looping Louie" );
+/*N*/       OSL_ENSURE( FALSE, "Looping Louie" );
 /*N*/       nCount = 0;
 /*N*/       Drastic( pPage->Lower() );
 /*N*/       if( nNew > nMinPage && pPage->GetPrev() )
@@ -121,12 +120,9 @@ namespace binfilter {
 |*
 |*  SwLayouter::SwLayouter()
 |*
-|*  Ersterstellung      AMA 02. Nov. 99
-|*  Letzte Aenderung    AMA 02. Nov. 99
-|*
 |*************************************************************************/
 
-/*N*/ SwLayouter::SwLayouter() : pLooping( NULL ) //STRIP001 pEndnoter( NULL ), pLooping( NULL )
+/*N*/ SwLayouter::SwLayouter() : pLooping( NULL )
 /*N*/ {
 /*N*/ }
 
@@ -139,9 +135,9 @@ namespace binfilter {
 
 
 
-/*N*/ void SwLayouter::LoopControl( SwPageFrm* pPage, BYTE nLoop )
+/*N*/ void SwLayouter::LoopControl( SwPageFrm* pPage, BYTE /*nLoop*/ )
 /*N*/ {
-/*N*/   ASSERT( pLooping, "Looping: Lost control" );
+/*N*/   OSL_ENSURE( pLooping, "Looping: Lost control" );
 /*N*/   pLooping->Control( pPage );
 /*N*/ }
 
@@ -163,7 +159,7 @@ namespace binfilter {
 
 /*N*/ BOOL SwLayouter::StartLoopControl( SwDoc* pDoc, SwPageFrm *pPage )
 /*N*/ {
-/*N*/   ASSERT( pDoc, "No doc, no fun" );
+/*N*/   OSL_ENSURE( pDoc, "No doc, no fun" );
 /*N*/   if( !pDoc->GetLayouter() )
 /*N*/       pDoc->SetLayouter( new SwLayouter() );
 /*N*/   return !pDoc->GetLayouter()->pLooping &&
@@ -172,3 +168,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

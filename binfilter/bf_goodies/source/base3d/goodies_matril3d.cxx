@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_MATRIL3D_HXX
 #include "matril3d.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 
@@ -48,15 +45,6 @@ B3dMaterial::B3dMaterial()
     aEmission(COL_BLACK),           // Keine Selbstleuchtfarbe
     nExponent(15)                   // Glanzpunktbuendelung
 {
-}
-
-void B3dMaterial::WriteData(SvStream& rOut) const
-{
-    rOut << aAmbient;
-    rOut << aDiffuse;
-    rOut << aSpecular;
-    rOut << aEmission;
-    rOut << nExponent;
 }
 
 void B3dMaterial::ReadData(SvStream& rIn)
@@ -88,3 +76,5 @@ BOOL B3dMaterial::operator==(const B3dMaterial& rMat)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

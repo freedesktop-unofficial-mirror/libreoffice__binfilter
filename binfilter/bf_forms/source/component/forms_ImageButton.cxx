@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,36 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-
-#ifndef _FRM_IMAGE_BUTTON_HXX_
 #include "ImageButton.hxx"
-#endif
-
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_AWT_MOUSEBUTTON_HPP_
 #include <com/sun/star/awt/MouseButton.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
-
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-
 #include "bf_so3/staticbaseurl.hxx"
+
 namespace binfilter {
 
 //.........................................................................
@@ -64,7 +44,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -208,7 +187,7 @@ void OImageButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) t
         break;
 
         default :
-            DBG_ERROR("OImageButtonModel::read : unknown version !");
+            OSL_FAIL("OImageButtonModel::read : unknown version !");
             m_eButtonType = FormButtonType_PUSH;
             m_sTargetURL = ::rtl::OUString();
             m_sTargetFrame = ::rtl::OUString();
@@ -258,7 +237,7 @@ OImageButtonControl::OImageButtonControl(const Reference<XMultiServiceFactory>& 
             xComp->addMouseListener((XMouseListener*)this);
     }
     // Refcount bei 1 fuer angemeldeten Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 // UNO Anbindung
@@ -307,3 +286,5 @@ void OImageButtonControl::mousePressed(const MouseEvent& e) throw ( ::com::sun::
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,35 +26,20 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _XMLOFF_VISAREACONTEXT_HXX
 #include "VisAreaContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -61,12 +47,12 @@ using namespace ::binfilter::xmloff::token;
 
 //------------------------------------------------------------------
 
-XMLVisAreaContext::XMLVisAreaContext( SvXMLImport& rImport,
+XMLVisAreaContext::XMLVisAreaContext( SvXMLImport& rInImport,
                                          USHORT nPrfx,
                                                    const ::rtl::OUString& rLName,
                                               const uno::Reference<xml::sax::XAttributeList>& xAttrList,
                                             ::com::sun::star::awt::Rectangle& rRect, const sal_Int16 nMeasureUnit ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     process( xAttrList, rRect, nMeasureUnit );
 }
@@ -87,29 +73,29 @@ void XMLVisAreaContext::process( const uno::Reference< xml::sax::XAttributeList>
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_OFFICE)
+        if (nLclPrefix == XML_NAMESPACE_OFFICE)
         {
-            if (IsXMLToken( aLocalName, XML_X ))
+            if (IsXMLToken( aLclLocalName, XML_X ))
             {
                 SvXMLUnitConverter::convertMeasure(nX, sValue, aMapUnit);
                 rRect.X = nX;
             }
-            else if (IsXMLToken( aLocalName, XML_Y ))
+            else if (IsXMLToken( aLclLocalName, XML_Y ))
             {
                 SvXMLUnitConverter::convertMeasure(nY, sValue, aMapUnit);
                 rRect.Y = nY;
             }
-            else if (IsXMLToken( aLocalName, XML_WIDTH ))
+            else if (IsXMLToken( aLclLocalName, XML_WIDTH ))
             {
                 SvXMLUnitConverter::convertMeasure(nWidth, sValue, aMapUnit);
                 rRect.Width = nWidth;
             }
-            else if (IsXMLToken( aLocalName, XML_HEIGHT ))
+            else if (IsXMLToken( aLclLocalName, XML_HEIGHT ))
             {
                 SvXMLUnitConverter::convertMeasure(nHeight, sValue, aMapUnit);
                 rRect.Height = nHeight;
@@ -118,13 +104,13 @@ void XMLVisAreaContext::process( const uno::Reference< xml::sax::XAttributeList>
     }
 }
 
-SvXMLImportContext *XMLVisAreaContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *XMLVisAreaContext::CreateChildContext( USHORT nInPrefix,
                                      const ::rtl::OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     // here is no context
-    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    SvXMLImportContext *pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -133,3 +119,5 @@ void XMLVisAreaContext::EndElement()
 {
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

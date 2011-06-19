@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 
-#ifndef _E3D_CUBE3D_HXX
 #include "cube3d.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 
 namespace binfilter {
@@ -92,3 +89,5 @@ namespace binfilter {
 /*N*/   bDefaultDither = TRUE;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

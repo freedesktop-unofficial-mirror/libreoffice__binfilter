@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
-#endif
 
 
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
 #include "xdef.hxx"
 #include "xflhtit.hxx"
@@ -104,3 +101,5 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoHatchTable_createInstance( SdrM
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

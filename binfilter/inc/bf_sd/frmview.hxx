@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,13 +33,9 @@
 
 #include <com/sun/star/beans/PropertyValue.hpp>
 
-#ifndef _SVDVIEW_HXX
 #include <bf_svx/svdview.hxx>
-#endif
 
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
 namespace binfilter {
 
 class SdDrawDocument;
@@ -87,7 +84,7 @@ private:
     double          nTabCtrlPercent;
 
 public:
-    FrameView(SdDrawDocument* pDrawDoc, FrameView* pFrameView = NULL );
+    FrameView(SdDrawDocument* pDrawDoc);
     FrameView(const FrameView& rFrameView);
     virtual ~FrameView();
 
@@ -207,3 +204,4 @@ public:
 } //namespace binfilter
 #endif      // _SD_FRMVIEW_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

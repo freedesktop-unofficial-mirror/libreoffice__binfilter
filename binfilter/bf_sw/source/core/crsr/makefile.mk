@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -50,7 +48,6 @@ CDEFS+=-Dmydebug
 SLOFILES =	\
         $(SLO)$/sw_bookmrk.obj \
         $(SLO)$/sw_callnk.obj \
-        $(SLO)$/sw_crbm.obj \
         $(SLO)$/sw_crsrsh.obj \
         $(SLO)$/sw_findattr.obj \
         $(SLO)$/sw_findcoll.obj \

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,25 +36,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _CSTITEM_HXX //autogen
 #include <bf_svtools/cstitem.hxx>
-#endif
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_STARTOPTIONS_HXX
 #include <bf_svtools/startoptions.hxx>
-#endif
 #include <bf_svtools/itempool.hxx>
 #include <bf_svtools/urihelper.hxx>
 #include <bf_svtools/helpopt.hxx>
-#include <vos/process.hxx>
 
 #include "appimp.hxx"
 #include "sfxtypes.hxx"
@@ -113,13 +103,8 @@ static SfxVoidItem aStaticDefault(1);
 #pragma code_seg()
 #endif
 
-static SfxPoolItem* aStaticDefaults[1] =
-{
-    &aStaticDefault
-};
-
 #ifdef TF_POOLABLE
-static SfxItemInfo __READONLY_DATA aItemInfos[] =
+static SfxItemInfo const aItemInfos[] =
 {
     { 0, 0 }
 };
@@ -128,7 +113,7 @@ static SfxItemInfo __READONLY_DATA aItemInfos[] =
 //===================================================================
 
 typedef Link* LinkPtr;
-SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(SfxInitLinkList, LinkPtr, 4, 4)
 
 /*N*/ TYPEINIT1(SfxSysChangeHint, SfxHint);
 /*N*/ TYPEINIT2(SfxApplication,SfxShell,SfxBroadcaster);
@@ -207,3 +192,5 @@ void SfxApplication::Main( )
 //-------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

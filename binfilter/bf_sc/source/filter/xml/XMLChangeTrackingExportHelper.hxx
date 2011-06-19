@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,12 @@
 #ifndef _SC_XMLCHANGETRACKINGEXPORTHELPER_HXX
 #define _SC_XMLCHANGETRACKINGEXPORTHELPER_HXX
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 #ifndef __SGI_STL_LIST
 #include <list>
 #endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 class DateTime;
 class String;
@@ -108,3 +103,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

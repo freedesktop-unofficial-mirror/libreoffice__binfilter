@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,25 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _XMLOFF_I18NMAP_HXX
 #include "i18nmap.hxx"
-#endif
 namespace binfilter {
 
-using namespace rtl;
-
+using ::rtl::OUString;
 class SvI18NMapEntry_Impl
 {
     USHORT          nKind;
@@ -135,3 +127,5 @@ const OUString& SvI18NMap::Get( USHORT nKind, const OUString& rName ) const
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 class SwField;
@@ -64,7 +61,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     virtual void Modify( SfxPoolItem* pOld, SfxPoolItem* pNew );
     virtual BOOL GetInfo( SfxPoolItem& rInfo ) const;
@@ -83,3 +80,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,21 +33,13 @@
 #ifndef _XMLOFF_TXTFLDE_HXX
 #define _XMLOFF_TXTFLDE_HXX
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 
 #include <map>
 #include <set>
@@ -237,8 +230,6 @@ protected:
                 ::com::sun::star::text::XTextField> & rTextField,
         const ::com::sun::star::uno::Reference<
                 ::com::sun::star::beans::XPropertySet> & rPropSet,
-        const ::com::sun::star::uno::Reference<
-                ::com::sun::star::beans::XPropertySet> & rRangePropSet,
         enum FieldIdEnum nToken);
 
     /// export an empty element
@@ -292,15 +283,13 @@ protected:
     void ProcessString(
         enum ::binfilter::xmloff::token::XMLTokenEnum eXmlName,     /// attribute token (namespace text)
         enum ::binfilter::xmloff::token::XMLTokenEnum eValue,           /// attribute token
-        sal_Bool bOmitEmpty = sal_False, /// omit attribute, if value is empty
-        sal_uInt16 nPrefix = XML_NAMESPACE_TEXT);   /// attribute name prefix
+        sal_Bool bOmitEmpty = sal_False); /// omit attribute, if value is empty
 
     /// export a string attribute, omit if default
     void ProcessString(
         enum ::binfilter::xmloff::token::XMLTokenEnum eXmlName,     /// attribute token (namespace text)
         enum ::binfilter::xmloff::token::XMLTokenEnum eValue,           /// attribute value token
-        enum ::binfilter::xmloff::token::XMLTokenEnum eDefault,     /// default value token
-        sal_uInt16 nPrefix = XML_NAMESPACE_TEXT);   /// attribute name prefix
+        enum ::binfilter::xmloff::token::XMLTokenEnum eDefault);        /// default value token
 
     /// export a string as a sequence of paragraphs
     void ProcessParagraphSequence(
@@ -502,3 +491,5 @@ private:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,55 +28,42 @@
 
 #include <tools/debug.hxx>
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include "XMLShapeStyleContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX
 #include "XMLShapePropertySetContext.hxx"
-#endif
 
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include "contextid.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <xmlnmspe.hxx>
-#endif
 
 
 
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_PROPERTIES;
+
+using rtl::OUString;
 
 //////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( XMLShapeStyleContext, XMLPropStyleContext );
 
 XMLShapeStyleContext::XMLShapeStyleContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLName,
     const uno::Reference< xml::sax::XAttributeList >& xAttrList,
     SvXMLStylesContext& rStyles,
-    sal_uInt16 nFamily)
-:   XMLPropStyleContext(rImport, nPrfx, rLName, xAttrList, rStyles, nFamily ),
+    sal_uInt16 nInFamily)
+:   XMLPropStyleContext(rInImport, nPrfx, rLName, xAttrList, rStyles, nInFamily ),
     m_bIsNumRuleAlreadyConverted( sal_False )
 {
 }
@@ -101,26 +89,26 @@ void XMLShapeStyleContext::SetAttribute( sal_uInt16 nPrefixKey, const ::rtl::OUS
 }
 
 SvXMLImportContext *XMLShapeStyleContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
             GetStyles()->GetImportPropertyMapper( GetFamily() );
         if( xImpPrMap.is() )
-            pContext = new XMLShapePropertySetContext( GetImport(), nPrefix,
+            pContext = new XMLShapePropertySetContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     GetProperties(),
                                                     xImpPrMap );
     }
 
     if( !pContext )
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -208,8 +196,10 @@ void XMLShapeStyleContext::FillPropertySet( const Reference< beans::XPropertySet
     }
 }
 
-void XMLShapeStyleContext::Finish( sal_Bool bOverwrite )
+void XMLShapeStyleContext::Finish( sal_Bool /*bOverwrite*/ )
 {
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

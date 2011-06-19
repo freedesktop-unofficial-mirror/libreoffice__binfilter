@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,35 +32,19 @@
 
 
 #ifndef SVX_LIGHT
-#ifndef _SFX_PRINTER_HXX
 #include <bf_sfx2/printer.hxx>
-#endif
 #include "sdoutl.hxx"
 #else   // SVX_LIGHT
 #define SfxPrinter Printer
 #endif // !SVX_LIGHT
 
-#ifndef _SVX_PAPERINF_HXX
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVDOPAGE_HXX //autogen
 #include <bf_svx/svdopage.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _EEITEMID_HXX //autogen
 #include <bf_svx/eeitemid.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
 
 #include <bf_svx/dialogs.hrc>
@@ -255,7 +240,7 @@ void SdDrawDocument::CreateFirstPages()
         Size aDefSize(21000, 29700);   // A4-Hochformat
 
         BOOL bMasterPage;
-        SdPage* pHandoutPage = (SdPage*) AllocPage(bMasterPage=FALSE);
+        SdPage* pHandoutPage = (SdPage*) AllocPage((bMasterPage=FALSE));
 
         // Stets Querformat
         if (aDefSize.Height() <= aDefSize.Width())
@@ -272,7 +257,7 @@ void SdDrawDocument::CreateFirstPages()
         pHandoutPage->SetName( String (SdResId(STR_HANDOUT) ) );
         InsertPage(pHandoutPage, 0);
 
-        SdPage* pHandoutMPage = (SdPage*) AllocPage(bMasterPage=TRUE);
+        SdPage* pHandoutMPage = (SdPage*) AllocPage((bMasterPage=TRUE));
         pHandoutMPage->SetSize( pHandoutPage->GetSize() );
         pHandoutMPage->SetPageKind(PK_HANDOUT);
         pHandoutMPage->SetBorder( pHandoutPage->GetLftBorder(),
@@ -287,7 +272,7 @@ void SdDrawDocument::CreateFirstPages()
 
         if (nPageCount == 0)
         {
-            pPage = (SdPage*) AllocPage(bMasterPage=FALSE);
+            pPage = (SdPage*) AllocPage((bMasterPage=FALSE));
 
             if (eDocType == DOCUMENT_TYPE_DRAW)
             {
@@ -313,7 +298,7 @@ void SdDrawDocument::CreateFirstPages()
         /**********************************************************************
         * MasterPage einfuegen und an der Seite vermerken
         **********************************************************************/
-        SdPage* pMPage = (SdPage*) AllocPage(bMasterPage=TRUE);
+        SdPage* pMPage = (SdPage*) AllocPage((bMasterPage=TRUE));
         pMPage->SetSize( pPage->GetSize() );
         pMPage->SetBorder( pPage->GetLftBorder(),
                            pPage->GetUppBorder(),
@@ -327,7 +312,7 @@ void SdDrawDocument::CreateFirstPages()
         /**********************************************************************
         * Notizen-Seite einfuegen
         **********************************************************************/
-        SdPage* pNotesPage = (SdPage*) AllocPage(bMasterPage=FALSE);
+        SdPage* pNotesPage = (SdPage*) AllocPage((bMasterPage=FALSE));
 
         // Stets Hochformat
         if (aDefSize.Height() >= aDefSize.Width())
@@ -348,7 +333,7 @@ void SdDrawDocument::CreateFirstPages()
         /**********************************************************************
         * MasterPage einfuegen und an der Notizen-Seite vermerken
         **********************************************************************/
-        SdPage* pNotesMPage = (SdPage*) AllocPage(bMasterPage=TRUE);
+        SdPage* pNotesMPage = (SdPage*) AllocPage((bMasterPage=TRUE));
         pNotesMPage->SetSize( pNotesPage->GetSize() );
         pNotesMPage->SetPageKind(PK_NOTES);
         pNotesMPage->SetBorder( pNotesPage->GetLftBorder(),
@@ -368,30 +353,30 @@ void SdDrawDocument::CreateFirstPages()
 
 void SdDrawDocument::SetLanguage( const LanguageType eLang, const USHORT nId )
 {
-    BOOL bChanged = FALSE;
+    BOOL bLclChanged = FALSE;
 
     if( nId == EE_CHAR_LANGUAGE && eLanguage != eLang )
     {
         eLanguage = eLang;
-        bChanged = TRUE;
+        bLclChanged = TRUE;
     }
     else if( nId == EE_CHAR_LANGUAGE_CJK && eLanguageCJK != eLang )
     {
          eLanguageCJK = eLang;
-         bChanged = TRUE;
+         bLclChanged = TRUE;
      }
      else if( nId == EE_CHAR_LANGUAGE_CTL && eLanguageCTL != eLang )
      {
          eLanguageCTL = eLang;
-         bChanged = TRUE;
+         bLclChanged = TRUE;
      }
 
-    if( bChanged )
+    if( bLclChanged )
     {
         GetDrawOutliner().SetDefaultLanguage( Application::GetSettings().GetLanguage() );
         pHitTestOutliner->SetDefaultLanguage( Application::GetSettings().GetLanguage() );
         pItemPool->SetPoolDefaultItem( SvxLanguageItem( eLang, nId ) );
-        SetChanged( bChanged );
+        SetChanged( bLclChanged );
     }
 }
 
@@ -411,7 +396,7 @@ LanguageType SdDrawDocument::GetLanguage( const USHORT nId ) const
 
 void SdDrawDocument::WorkStartupHdl()
 {
-    BOOL bChanged = IsChanged();
+    BOOL bLclChanged = IsChanged();
 
     SdPage* pHandoutMPage = GetMasterSdPage(0, PK_HANDOUT);
 
@@ -428,7 +413,7 @@ void SdDrawDocument::WorkStartupHdl()
     if (pNotesPage->GetAutoLayout() == AUTOLAYOUT_NONE)
         pNotesPage->SetAutoLayout(AUTOLAYOUT_NOTES, TRUE);
 
-    SetChanged(bChanged || FALSE);
+    SetChanged(bLclChanged || FALSE);
 }
 
 SdAnimationInfo* SdDrawDocument::GetAnimationInfo(SdrObject* pObject) const
@@ -497,7 +482,7 @@ void SdDrawDocument::CheckMasterPages()
     {
         // there is a fatal error in the master page order,
         // we need to repair the document
-        sal_Bool bChanged = sal_False;
+        sal_Bool bLclChanged = sal_False;
 
         nPage = 1;
         while( nPage < nMaxPages )
@@ -505,7 +490,7 @@ void SdDrawDocument::CheckMasterPages()
             pPage = static_cast<SdPage*> (GetMasterPage( nPage ));
             if( pPage->GetPageKind() != PK_STANDARD )
             {
-                bChanged = sal_True;
+                bLclChanged = sal_True;
                 USHORT nFound = nPage + 1;
                 while( nFound < nMaxPages )
                 {
@@ -535,7 +520,7 @@ void SdDrawDocument::CheckMasterPages()
 
             if( (NULL == pNotesPage) || (pNotesPage->GetPageKind() != PK_NOTES) || ( pPage->GetLayoutName() != pNotesPage->GetLayoutName() ) )
             {
-                bChanged = sal_True;
+                bLclChanged = sal_True;
 
                 USHORT nFound = nPage + 1;
                 while( nFound < nMaxPages )
@@ -569,19 +554,19 @@ void SdDrawDocument::CheckMasterPages()
                     if( nFound == nMaxPages )
                         pRefNotesPage = NULL;
 
-                    SdPage* pNotesPage = static_cast<SdPage*>(AllocPage(sal_True));
-                    pNotesPage->SetPageKind(PK_NOTES);
+                    SdPage* pLclNotesPage = static_cast<SdPage*>(AllocPage(sal_True));
+                    pLclNotesPage->SetPageKind(PK_NOTES);
                     if( pRefNotesPage )
                     {
-                        pNotesPage->SetSize( pRefNotesPage->GetSize() );
-                        pNotesPage->SetBorder( pRefNotesPage->GetLftBorder(),
+                        pLclNotesPage->SetSize( pRefNotesPage->GetSize() );
+                        pLclNotesPage->SetBorder( pRefNotesPage->GetLftBorder(),
                                                 pRefNotesPage->GetUppBorder(),
                                                 pRefNotesPage->GetRgtBorder(),
                                                 pRefNotesPage->GetLwrBorder() );
                     }
-                    InsertMasterPage(pNotesPage,  nPage );
-                    pNotesPage->SetLayoutName( pPage->GetLayoutName() );
-                    pNotesPage->SetAutoLayout(AUTOLAYOUT_NOTES, sal_True, sal_True);
+                    InsertMasterPage(pLclNotesPage,  nPage );
+                    pLclNotesPage->SetLayoutName( pPage->GetLayoutName() );
+                    pLclNotesPage->SetAutoLayout(AUTOLAYOUT_NOTES, sal_True, sal_True);
                     nMaxPages++;
                 }
             }
@@ -592,18 +577,20 @@ void SdDrawDocument::CheckMasterPages()
         // now remove all remaining and unused non PK_STANDARD slides
         while( nPage < nMaxPages )
         {
-            bChanged = sal_True;
+            bLclChanged = sal_True;
 
             RemoveMasterPage( nPage );
             nMaxPages--;
         }
 
-        if( bChanged )
+        if( bLclChanged )
         {
-            DBG_ERROR( "master pages where in a wrong order" );
+            OSL_FAIL( "master pages where in a wrong order" );
             RecalcPageNums( sal_True);
         }
     }
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

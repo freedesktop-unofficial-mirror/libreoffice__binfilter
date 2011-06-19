@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,44 +33,22 @@
 
 #include <float.h>
 
-#ifndef _SVX_PAGEITEM_HXX
 #include <bf_svx/pageitem.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
-#ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DBFLD_HXX
 #include <dbfld.hxx>
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 using namespace ::com::sun::star::sdbc;
 using namespace ::com::sun::star;
@@ -93,21 +72,22 @@ using namespace ::rtl;
     Beschreibung: DatenbankFeldTyp
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData& rDBData ) :
-/*N*/   SwValueFieldType( pDocPtr, RES_DBFLD ),
-/*N*/   aDBData(rDBData),
-/*N*/   nRefCnt(0),
-/*N*/   sColumn(rNam)
-/*N*/ {
-/*N*/     if(aDBData.sDataSource.getLength() || aDBData.sCommand.getLength())
-/*N*/     {
-/*N*/         sName =  aDBData.sDataSource;
-/*N*/         sName += DB_DELIM;
-/*N*/         sName += (String)aDBData.sCommand;
-/*N*/         sName += DB_DELIM;
-/*N*/     }
-/*N*/   sName += GetColumnName();
-/*N*/ }
+SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData& rDBData )
+    : SwValueFieldType( pDocPtr, RES_DBFLD )
+    , aDBData(rDBData)
+    , sColumn(rNam)
+    , nRefCnt(0)
+{
+    if(aDBData.sDataSource.getLength() || aDBData.sCommand.getLength())
+    {
+        sName =  aDBData.sDataSource;
+        sName += DB_DELIM;
+        sName += (String)aDBData.sCommand;
+        sName += DB_DELIM;
+    }
+    sName += GetColumnName();
+}
+
 //------------------------------------------------------------------------------
 
 /*N*/ SwFieldType* SwDBFieldType::Copy() const
@@ -126,7 +106,7 @@ using namespace ::rtl;
 
 /*N*/ void SwDBFieldType::ReleaseRef()
 /*N*/ {
-/*N*/   ASSERT(nRefCnt > 0, "RefCount kleiner 0!");
+/*N*/   OSL_ENSURE(nRefCnt > 0, "RefCount kleiner 0!");
 /*N*/
 /*N*/   if (--nRefCnt <= 0)
 /*N*/   {
@@ -140,12 +120,10 @@ using namespace ::rtl;
 /*N*/   }
 /*N*/ }
 
-/* -----------------24.02.99 14:51-------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ BOOL SwDBFieldType::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
-/*N*/     nMId &= ~CONVERT_TWIPS;
+/*N*/   nMId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_PAR2:
@@ -161,13 +139,11 @@ using namespace ::rtl;
 /*N*/       rAny <<= aDBData.nCommandType;
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/* -----------------24.02.99 14:51-------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ BOOL SwDBFieldType::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -207,7 +183,7 @@ using namespace ::rtl;
 /*N*/       rAny >>= aDBData.nCommandType;
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -216,11 +192,11 @@ using namespace ::rtl;
  --------------------------------------------------------------------*/
 
 /*N*/ SwDBField::SwDBField(SwDBFieldType* pTyp, ULONG nFmt)
-/*N*/   :   SwValueField(pTyp, nFmt),
-/*N*/       bValidValue(FALSE),
-/*N*/       bIsInBodyTxt(TRUE),
-/*N*/       bInitialized(FALSE),
-/*N*/       nSubType(0)
+/*N*/   : SwValueField(pTyp, nFmt)
+/*N*/   , nSubType(0)
+/*N*/   , bIsInBodyTxt(TRUE)
+/*N*/   , bValidValue(FALSE)
+/*N*/   , bInitialized(FALSE)
 /*N*/ {
 /*N*/   if (GetTyp())
 /*N*/       ((SwDBFieldType*)GetTyp())->AddRef();
@@ -343,14 +319,6 @@ SwFieldType* SwDBField::ChgTyp( SwFieldType* pNewType )
 }
 
 /*--------------------------------------------------------------------
-    Beschreibung: Aktuellen Field-Value holen und chachen
- --------------------------------------------------------------------*/
-
-/*N*/ void SwDBField::Evaluate()
- /*N*/ {    DBG_ERROR("STRIP");
-/*N*/ }
-
-/*--------------------------------------------------------------------
     Beschreibung: Namen erfragen
  --------------------------------------------------------------------*/
 
@@ -377,9 +345,7 @@ const String& SwDBField::GetPar1() const
 /*N*/   nSubType = nType;
 /*N*/ }
 
-/*-----------------06.03.98 16:15-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -404,14 +370,12 @@ const String& SwDBField::GetPar1() const
 /*?*/       rAny <<= OUString(aContent);
 /*?*/       break;
 /*?*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/
 /*N*/ }
-/*-----------------06.03.98 16:15-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -425,15 +389,15 @@ const String& SwDBField::GetPar1() const
 /*N*/       break;
 /*N*/     case FIELD_PROP_BOOL2:
 /*N*/     {
-/*N*/         USHORT nSubType = GetSubType();
-/*N*/         sal_Bool bVisible;
+/*N*/         USHORT nSubType1 = GetSubType();
+/*N*/         sal_Bool bVisible(false);
 /*N*/         if(!(rAny >>= bVisible))
 /*N*/             return FALSE;
 /*N*/         if(bVisible)
-/*N*/             nSubType &= ~SUB_INVISIBLE;
+/*N*/             nSubType1 &= ~SUB_INVISIBLE;
 /*N*/         else
-/*N*/             nSubType |= SUB_INVISIBLE;
-/*N*/         SetSubType(nSubType);
+/*N*/             nSubType1 |= SUB_INVISIBLE;
+/*N*/         SetSubType(nSubType1);
 /*N*/         //invalidate text node
 /*N*/         if(GetTyp())
 /*N*/         {
@@ -455,7 +419,7 @@ const String& SwDBField::GetPar1() const
 /*N*/     break;
 /*N*/   case FIELD_PROP_FORMAT:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;
+/*N*/           sal_Int32 nTemp(0);
 /*N*/           rAny >>= nTemp;
 /*N*/           SetFormat(nTemp);
 /*N*/       }
@@ -464,7 +428,7 @@ const String& SwDBField::GetPar1() const
 /*N*/       ::binfilter::GetString( rAny, aContent );
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
@@ -473,12 +437,12 @@ const String& SwDBField::GetPar1() const
     Beschreibung: Basisklasse fuer alle weiteren Datenbankfelder
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, ULONG nFmt) :
-/*N*/   SwField(pTyp, nFmt),
-/*N*/     aDBData(rDBData),
-/*N*/     nSubType(0)
-/*N*/ {
-/*N*/ }
+SwDBNameInfField::SwDBNameInfField(SwFieldType* pTyp, const SwDBData& rDBData, ULONG nFmt)
+    : SwField(pTyp, nFmt)
+    , aDBData(rDBData)
+    , nSubType(0)
+{
+}
 
 //------------------------------------------------------------------------------
 
@@ -494,9 +458,7 @@ const String& SwDBField::GetPar1() const
 
 //------------------------------------------------------------------------------
 
-/*-----------------06.03.98 16:55-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNameInfField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -518,13 +480,11 @@ const String& SwDBField::GetPar1() const
 /*N*/     }
 /*N*/     break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------06.03.98 16:55-------------------
 
---------------------------------------------------*/
 BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -541,45 +501,37 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
         break;
     case FIELD_PROP_BOOL2:
     {
-        USHORT nSubType = GetSubType();
-        sal_Bool bVisible;
+        USHORT nSubType2 = GetSubType();
+        sal_Bool bVisible(sal_False);
         if(!(rAny >>= bVisible))
             return FALSE;
         if(bVisible)
-            nSubType &= ~SUB_INVISIBLE;
+            nSubType2 &= ~SUB_INVISIBLE;
         else
-            nSubType |= SUB_INVISIBLE;
-        SetSubType(nSubType);
+            nSubType2 |= SUB_INVISIBLE;
+        SetSubType(nSubType2);
     }
     break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
-/* -----------------4/10/2003 15:03------------------
 
- --------------------------------------------------*/
 /*N*/ USHORT SwDBNameInfField::GetSubType() const
 /*N*/ {
 /*N*/     return nSubType;
 /*N*/ }
-/* -----------------4/10/2003 15:03------------------
 
- --------------------------------------------------*/
 /*N*/ void SwDBNameInfField::SetSubType(USHORT nType)
 /*N*/ {
 /*N*/     nSubType = nType;
 /*N*/ }
 
-/*--------------------------------------------------------------------
-    Beschreibung: NaechsterDatensatz
- --------------------------------------------------------------------*/
-
-/*N*/ SwDBNextSetFieldType::SwDBNextSetFieldType()
-/*N*/   : SwFieldType( RES_DBNEXTSETFLD )
-/*N*/ {
-/*N*/ }
+SwDBNextSetFieldType::SwDBNextSetFieldType()
+    : SwFieldType( RES_DBNEXTSETFLD )
+{
+}
 
 //------------------------------------------------------------------------------
 
@@ -588,16 +540,16 @@ BOOL SwDBNameInfField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
             SwDBNextSetFieldType* pTmp = new SwDBNextSetFieldType();
             return pTmp;
 /*N*/ }
-/*--------------------------------------------------------------------
-    Beschreibung: SwDBSetField
- --------------------------------------------------------------------*/
 
-/*N*/ SwDBNextSetField::SwDBNextSetField(SwDBNextSetFieldType* pTyp,
-/*N*/                                  const String& rCond,
-/*N*/                                  const String& rDummy,
-/*N*/                                  const SwDBData& rDBData) :
-/*N*/   SwDBNameInfField(pTyp, rDBData), aCond(rCond), bCondValid(TRUE)
-/*N*/ {}
+SwDBNextSetField::SwDBNextSetField(
+    SwDBNextSetFieldType* pTyp,
+    const String& rCond,
+    const String& /*rDummy*/ ,
+    const SwDBData& rDBData
+)   : SwDBNameInfField( pTyp, rDBData )
+    , aCond( rCond )
+    , bCondValid( TRUE )
+{}
 
 //------------------------------------------------------------------------------
 
@@ -641,9 +593,7 @@ void SwDBNextSetField::SetPar1(const String& rStr)
 {
     aCond = rStr;
 }
-/*-----------------06.03.98 16:16-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNextSetField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -658,9 +608,7 @@ void SwDBNextSetField::SetPar1(const String& rStr)
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*-----------------06.03.98 16:16-------------------
 
---------------------------------------------------*/
 BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -677,28 +625,13 @@ BOOL SwDBNextSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nM
 }
 
 /*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-/*
-String SwDBNextSetField::GetPar2() const
-{
-    return GetDBName();
-}
-
-void SwDBNextSetField::SetPar2(const String& rStr)
-{
-    GetDBName() = rStr;
-}
-*/
-
-/*--------------------------------------------------------------------
     Beschreibung: Datensatz mit bestimmter ID
  --------------------------------------------------------------------*/
 
-/*N*/ SwDBNumSetFieldType::SwDBNumSetFieldType() :
-/*N*/   SwFieldType( RES_DBNUMSETFLD )
-/*N*/ {
-/*N*/ }
+SwDBNumSetFieldType::SwDBNumSetFieldType()
+    : SwFieldType( RES_DBNUMSETFLD )
+{
+}
 
 //------------------------------------------------------------------------------
 
@@ -779,9 +712,7 @@ void SwDBNumSetField::SetPar2(const String& rStr)
 {
     aPar2 = rStr;
 }
-/*-----------------06.03.98 16:16-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNumSetField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -799,9 +730,7 @@ void SwDBNumSetField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*-----------------06.03.98 16:16-------------------
 
---------------------------------------------------*/
 BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -813,7 +742,7 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
         break;
     case FIELD_PROP_FORMAT:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rAny >>= nVal;
             aPar2 = String::CreateFromInt32(nVal);
         }
@@ -837,7 +766,7 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 
 /*N*/ String SwDBNameFieldType::Expand(ULONG nFmt) const
 /*N*/ {
-/*N*/   ASSERT( nFmt >= FF_BEGIN && nFmt < FF_END, "Expand: kein guelt. Fmt!" );
+/*N*/   OSL_ENSURE( nFmt < FF_END, "Expand: kein guelt. Fmt!" );
 /*N*/   const SwDBData aData = pDoc->GetDBData();
 /*N*/   String sRet(aData.sDataSource);
 /*N*/   sRet += '.';
@@ -883,16 +812,12 @@ BOOL    SwDBNumSetField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 /*N*/   return pTmp;
 /*N*/ }
 
-/*-----------------06.03.98 16:16-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBNameField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   return SwDBNameInfField::QueryValue(rAny, nMId );
 /*N*/ }
-/*-----------------06.03.98 16:16-------------------
 
---------------------------------------------------*/
 BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     return SwDBNameInfField::PutValue(rAny, nMId );
@@ -934,7 +859,6 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*?*/       return aEmptyStr;
 /*N*/   else
 /*N*/       return FormatNumber((USHORT)nNumber, GetFormat());
-/*N*/   //return(nNumber == 0 ? aEmptyStr : FormatNumber(nNumber, GetFormat()));
 /*N*/ }
 
 //------------------------------------------------------------------------------
@@ -962,9 +886,7 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*N*/     pTmp->SetSubType(GetSubType());
 /*N*/   return pTmp;
 /*N*/ }
-/*-----------------06.03.98 16:15-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDBSetNumberField::QueryValue( ::com::sun::star::uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/   BOOL bRet = TRUE;
@@ -982,9 +904,7 @@ BOOL SwDBNameField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId 
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
-/*-----------------06.03.98 16:15-------------------
 
---------------------------------------------------*/
 BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE nMId )
 {
     BOOL bRet = TRUE;
@@ -993,13 +913,12 @@ BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
     {
     case FIELD_PROP_USHORT1:
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             rAny >>= nSet;
             if(nSet < (INT16) SVX_NUMBER_NONE )
                 SetFormat(nSet);
             else
-                //exception(wrong_value)
-                ;
+               {} //exception(wrong_value)
         }
         break;
     case FIELD_PROP_FORMAT:
@@ -1013,3 +932,5 @@ BOOL SwDBSetNumberField::PutValue( const ::com::sun::star::uno::Any& rAny, BYTE 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

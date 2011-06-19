@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
 
 namespace binfilter {
@@ -63,7 +62,7 @@ class ImpTextPortionHandler
     // Variablen fuer ConvertToPathObj
     SdrObjGroup*                pGroup;
     SdrModel*                   pModel;
-    FASTBOOL                    bToPoly;
+    bool                    bToPoly;
 
     // Variablen fuer DrawFitText
     Point                       aPos;
@@ -89,10 +88,10 @@ private:
 public:
     ImpTextPortionHandler(SdrOutliner& rOutln, const SdrTextObj& rTxtObj);
 
-    void DrawTextToPath(ExtOutputDevice& rXOut, FASTBOOL bDrawEffect=TRUE);
+    void DrawTextToPath(ExtOutputDevice& rXOut, bool bDrawEffect=TRUE);
 
     // wird von DrawTextToPath() gesetzt:
-    const Rectangle& GetFormTextBoundRect() { return aFormTextBoundRect; }
+    const Rectangle& GetFormTextBoundRect() const { return aFormTextBoundRect; }
 
 
     // #101498#
@@ -106,3 +105,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDTXHDL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

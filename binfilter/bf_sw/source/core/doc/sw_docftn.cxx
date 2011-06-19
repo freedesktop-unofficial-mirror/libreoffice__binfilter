@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,47 +31,21 @@
 #pragma hdrstop
 #endif
 
-#ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
-#endif
-#ifndef _ROOTFRM_HXX //autogen
 #include <rootfrm.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _PAM_HXX //autogen
 #include <pam.hxx>
-#endif
-#ifndef _PAGEDESC_HXX //autogen
 #include <pagedesc.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
 namespace binfilter {
 
 
@@ -126,16 +101,16 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ SwEndNoteInfo::SwEndNoteInfo(const SwEndNoteInfo& rInfo) :
-/*N*/   SwClient( rInfo.GetFtnTxtColl() ),
-/*N*/   aPageDescDep( this, 0 ),
-/*N*/   aCharFmtDep( this, 0 ),
-/*N*/   aAnchorCharFmtDep( this, 0 ),
-/*N*/   aFmt( rInfo.aFmt ),
-/*N*/   nFtnOffset( rInfo.nFtnOffset ),
-/*N*/   sPrefix( rInfo.sPrefix ),
-/*N*/   sSuffix( rInfo.sSuffix ),
-/*N*/   bEndNote( TRUE )
+/*N*/ SwEndNoteInfo::SwEndNoteInfo(const SwEndNoteInfo& rInfo)
+/*N*/   : SwClient( rInfo.GetFtnTxtColl() )
+/*N*/   , aPageDescDep( this, 0 )
+/*N*/   , aCharFmtDep( this, 0 )
+/*N*/   , aAnchorCharFmtDep( this, 0 )
+/*N*/   , sPrefix( rInfo.sPrefix )
+/*N*/   , sSuffix( rInfo.sSuffix )
+/*N*/   , bEndNote( TRUE )
+/*N*/   , aFmt( rInfo.aFmt )
+/*N*/   , nFtnOffset( rInfo.nFtnOffset )
 /*N*/ {
 /*N*/   if( rInfo.GetPageDescDep()->GetRegisteredIn() )
 /*N*/       ((SwModify*)rInfo.GetPageDescDep()->GetRegisteredIn())->Add( &aPageDescDep );
@@ -148,13 +123,13 @@ namespace binfilter {
 /*?*/               &aAnchorCharFmtDep );
 /*N*/ }
 
-/*N*/ SwEndNoteInfo::SwEndNoteInfo(SwTxtFmtColl *pFmt) :
-/*N*/   SwClient(pFmt),
-/*N*/   aPageDescDep( this, 0 ),
-/*N*/   aCharFmtDep( this, 0 ),
-/*N*/   aAnchorCharFmtDep( this, 0 ),
-/*N*/   nFtnOffset( 0 ),
-/*N*/   bEndNote( TRUE )
+/*N*/ SwEndNoteInfo::SwEndNoteInfo(SwTxtFmtColl *pFmt)
+/*N*/   : SwClient(pFmt)
+/*N*/   , aPageDescDep( this, 0 )
+/*N*/   , aCharFmtDep( this, 0 )
+/*N*/   , aAnchorCharFmtDep( this, 0 )
+/*N*/   , bEndNote( TRUE )
+/*N*/   , nFtnOffset( 0 )
 /*N*/ {
 /*N*/   aFmt.SetNumberingType(SVX_NUM_ROMAN_LOWER);
 /*N*/ }
@@ -176,9 +151,9 @@ namespace binfilter {
 /*N*/   pDesc->Add( &((SwClient&)aPageDescDep) );
 /*N*/ }
 
-/*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& rFmt)
+/*N*/ void SwEndNoteInfo::SetFtnTxtColl(SwTxtFmtColl& /*rFmt*/)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rFmt.Add(this);
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwCharFmt* SwEndNoteInfo::GetCharFmt(SwDoc &rDoc) const
@@ -273,10 +248,10 @@ namespace binfilter {
 /*N*/   bEndNote = FALSE;
 /*N*/ }
 
-/*N*/ SwFtnInfo::SwFtnInfo(SwTxtFmtColl *pFmt) :
-/*N*/   SwEndNoteInfo( pFmt ),
-/*N*/   eNum( FTNNUM_DOC ),
-/*N*/   ePos( FTNPOS_PAGE )
+/*N*/ SwFtnInfo::SwFtnInfo(SwTxtFmtColl *pFmt)
+/*N*/   : SwEndNoteInfo( pFmt )
+/*N*/   , ePos( FTNPOS_PAGE )
+/*N*/   , eNum( FTNNUM_DOC )
 /*N*/ {
 /*N*/   aFmt.SetNumberingType(SVX_NUM_ARABIC);
 /*N*/   bEndNote = FALSE;
@@ -291,20 +266,17 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFtnInfo &rOld = GetFtnInfo();
 /*N*/
-/*N*/
-/*N*/       FASTBOOL bPageNum = rInfo.eNum == FTNNUM_PAGE &&
-/*N*/                           rOld.eNum != FTNNUM_PAGE;
-/*N*/       FASTBOOL bFtnPos  = rInfo.ePos != rOld.ePos;
-/*N*/       FASTBOOL bFtnDesc = rOld.ePos == FTNPOS_CHAPTER &&
-/*N*/                           rInfo.GetPageDesc( *this ) != rOld.GetPageDesc( *this );
-/*N*/       FASTBOOL bExtra   = rInfo.aQuoVadis != rOld.aQuoVadis ||
-/*N*/                           rInfo.aErgoSum != rOld.aErgoSum ||
-/*N*/                           rInfo.aFmt.GetNumberingType() != rOld.aFmt.GetNumberingType() ||
-/*N*/                           rInfo.GetPrefix() != rOld.GetPrefix() ||
-/*N*/                           rInfo.GetSuffix() != rOld.GetSuffix();
+/*N*/       bool bFtnPos  = rInfo.ePos != rOld.ePos;
+/*N*/       rOld.ePos == FTNPOS_CHAPTER &&
+/*N*/           rInfo.GetPageDesc( *this ) != rOld.GetPageDesc( *this );
+/*N*/       rInfo.aQuoVadis != rOld.aQuoVadis ||
+/*N*/           rInfo.aErgoSum != rOld.aErgoSum ||
+/*N*/           rInfo.aFmt.GetNumberingType() != rOld.aFmt.GetNumberingType() ||
+/*N*/           rInfo.GetPrefix() != rOld.GetPrefix() ||
+/*N*/           rInfo.GetSuffix() != rOld.GetSuffix();
 /*N*/       SwCharFmt *pOldChrFmt = rOld.GetCharFmt( *this ),
 /*N*/                 *pNewChrFmt = rInfo.GetCharFmt( *this );
-/*N*/       FASTBOOL bFtnChrFmts = pOldChrFmt != pNewChrFmt;
+/*N*/       bool bFtnChrFmts = pOldChrFmt != pNewChrFmt;
 /*N*/
 /*N*/       *pFtnInfo = rInfo;
 /*N*/
@@ -314,7 +286,7 @@ namespace binfilter {
 /*?*/               GetRootFrm()->RemoveFtns();
 /*?*/           else
 /*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetRootFrm()->UpdateFtnNums();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/       if( FTNNUM_PAGE != rInfo.eNum )
@@ -336,23 +308,23 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !(GetEndNoteInfo() == rInfo) )
 /*N*/   {
-/*N*/       FASTBOOL bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
-/*N*/       FASTBOOL bExtra   = !bNumChg &&
-/*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()||
+/*N*/       bool bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
+/*N*/       bool bExtra   = (!bNumChg &&
+/*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()) ||
 /*N*/                           rInfo.GetPrefix() != GetEndNoteInfo().GetPrefix() ||
 /*N*/                           rInfo.GetSuffix() != GetEndNoteInfo().GetSuffix();
-/*N*/       FASTBOOL bFtnDesc = rInfo.GetPageDesc( *this ) !=
+/*N*/       bool bFtnDesc = rInfo.GetPageDesc( *this ) !=
 /*N*/                           GetEndNoteInfo().GetPageDesc( *this );
 /*N*/       SwCharFmt *pOldChrFmt = GetEndNoteInfo().GetCharFmt( *this ),
 /*N*/                 *pNewChrFmt = rInfo.GetCharFmt( *this );
-/*N*/       FASTBOOL bFtnChrFmts = pOldChrFmt != pNewChrFmt;
+/*N*/       bool bFtnChrFmts = pOldChrFmt != pNewChrFmt;
 /*N*/
 /*N*/       *pEndNoteInfo = rInfo;
 /*N*/
 /*N*/       if ( GetRootFrm() )
 /*N*/       {
 /*?*/           if ( bFtnDesc )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     GetRootFrm()->CheckFtnPageDescs( TRUE );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/           if ( bExtra )
 /*?*/           {
 /*?*/               //Fuer die Benachrichtung bezueglich ErgoSum usw. sparen wir uns
@@ -418,7 +390,7 @@ namespace binfilter {
 /*N*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*N*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*N*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -441,7 +413,7 @@ namespace binfilter {
 /*?*/               pTxtFtn->SetNumber( nNumber, &rNumStr );
 /*?*/               if( rFtn.IsEndNote() != bIsEndNote )
 /*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ((SwFmtFtn&)rFtn).SetEndNote( bIsEndNote );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*N*/       }
@@ -458,7 +430,7 @@ namespace binfilter {
 /*N*/               rFtnArr.UpdateAllFtn();
 /*N*/       }
 /*N*/       else if( GetRootFrm() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 GetRootFrm()->UpdateFtnNums();
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return bChg;
 /*N*/ }
@@ -468,3 +440,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

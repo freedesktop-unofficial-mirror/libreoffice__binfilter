@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _PORRST_HXX
 #define _PORRST_HXX
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "porlay.hxx"
 #include "porexp.hxx"
@@ -62,7 +61,7 @@ public:
             SwBreakPortion( const SwLinePortion &rPortion );
     // liefert 0 zurueck, wenn keine Nutzdaten enthalten sind.
     virtual SwLinePortion *Compress();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& ) const{DBG_BF_ASSERT(0, "STRIP");} ;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     USHORT GetRestWidth() const { return nRestWidth; }
 
@@ -157,3 +156,5 @@ CLASSIO( SwArrowPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

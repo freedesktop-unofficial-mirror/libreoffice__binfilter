@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 #include <bf_svx/eeitem.hxx>
 class SvStream;
@@ -78,7 +73,7 @@ public:
     const EditTextObject&       GetTextObject() const           { return *pText; }
     void                        ClearPortionInfo();
     BOOL                        IsEditDoc() const               { return bIsEditDoc; }
-    void                        Store( SvStream& ) const;
+    void                        Store( SvStream& ) const {}
     static OutlinerParaObject*  Create( SvStream&, SfxItemPool* pTextObjectPool = 0 );
 
     BOOL                        ChangeStyleSheets(  const XubString& rOldName, SfxStyleFamily eOldFamily,
@@ -94,3 +89,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

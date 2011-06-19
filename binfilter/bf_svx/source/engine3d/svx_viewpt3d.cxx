@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _VIEWPT3D_HXX
 #include "viewpt3d.hxx"
-#endif
 
-#ifndef _VOLUME3D_HXX
 #include "volume3d.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -50,16 +45,16 @@ namespace binfilter {
 /*N*/   aVUV(0, 1, 1),
 /*N*/   aPRP(0, 0, 2),
 /*N*/   fVPD(-3),
-/*N*/   aViewPoint (0, 0, 5000),
 /*N*/   fNearClipDist (0.0),
 /*N*/   fFarClipDist (0.0),
-/*N*/   fWRatio (1.0),
-/*N*/   fHRatio (1.0),
 /*N*/   eProjection(PR_PERSPECTIVE),
 /*N*/   eAspectMapping(AS_NO_MAPPING),
-/*N*/   bTfValid(0),
 /*N*/   // DeviceRect-Groesse < 0 -> ungueltig
-/*N*/   aDeviceRect(Point(0,0), Size(-1,-1))
+/*N*/   aDeviceRect(Point(0,0), Size(-1,-1)),
+/*N*/   aViewPoint (0, 0, 5000),
+/*N*/   bTfValid(0),
+/*N*/   fWRatio (1.0),
+/*N*/   fHRatio (1.0)
 /*N*/ {
 /*N*/   aViewWin.X = -1; aViewWin.Y = -1;
 /*N*/   aViewWin.W =  2; aViewWin.H = 2;
@@ -199,6 +194,9 @@ namespace binfilter {
 /*N*/           fTmp = aViewWin.W;
 /*N*/           aViewWin.W = aViewWin.H * fRatio;
 /*N*/           aViewWin.X = aViewWin.X * aViewWin.W / fTmp;
+/*N*/           break;
+/*N*/
+/*N*/       default:
 /*N*/           break;
 /*N*/   }
 /*N*/   fWRatio = nNewW / aViewWin.W;
@@ -377,83 +375,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Abstand der vorderen Clippingebene setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Abstand der hinteren Clippingebene setzen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Stream-Out-Operator fuer Viewport3D (Version 3.1)
-|*
-\************************************************************************/
-
-/*N*/ void Viewport3D::WriteData31(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   rOut << aVRP;
-/*N*/   rOut << aVPN;
-/*N*/   rOut << aVUV;
-/*N*/   rOut << aPRP;
-/*N*/   rOut << fVPD;
-/*N*/   rOut << fNearClipDist;
-/*N*/   rOut << fFarClipDist;
-/*N*/   rOut << UINT16(eProjection);
-/*N*/   rOut << UINT16(eAspectMapping);
-/*N*/   rOut << aDeviceRect;
-/*N*/   rOut << aViewWin.X;
-/*N*/   rOut << aViewWin.Y;
-/*N*/   rOut << aViewWin.W;
-/*N*/   rOut << aViewWin.H;
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Stream-Out-Operator fuer Viewport3D ab File-Revision 13
-|* implementiert zum Hauptupdate 355 am 4.2.97 FG (freigegeben ab 356)
-|*
-\************************************************************************/
-
-/*N*/ void Viewport3D::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       Viewport3D::WriteData31(rOut);
-/*N*/       return;
-/*N*/   }
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("Viewport3D");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aVRP;
-/*N*/   rOut << aVPN;
-/*N*/   rOut << aVUV;
-/*N*/   rOut << aPRP;
-/*N*/   rOut << fVPD;
-/*N*/   rOut << fNearClipDist;
-/*N*/   rOut << fFarClipDist;
-/*N*/   rOut << UINT16(eProjection);
-/*N*/   rOut << UINT16(eAspectMapping);
-/*N*/   rOut << aDeviceRect;
-/*N*/   rOut << aViewWin.X;
-/*N*/   rOut << aViewWin.Y;
-/*N*/   rOut << aViewWin.W;
-/*N*/   rOut << aViewWin.H;
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Stream-In-Operator fuer Viewport3D fuer die Version 3.1
 |*
 \************************************************************************/
@@ -566,3 +487,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

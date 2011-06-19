@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _VCL_FNTSTYLE_HXX
 #include <vcl/fntstyle.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 namespace binfilter {
 
 // class SvxCharRotateItem ----------------------------------------------
@@ -59,7 +54,7 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream & rStrm, USHORT nIVer) const;
+    virtual SvStream& Store(SvStream & rStrm, USHORT) const { return rStrm; }
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
     virtual String          GetValueTextByPos( USHORT nPos ) const;
@@ -71,9 +66,9 @@ public:
                                     String &rText,
                                     const ::IntlWrapper * = 0 ) const;
 
-    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
+    virtual bool PutValue( const ::com::sun::star::uno::Any& rVal,
                                     BYTE nMemberId );
-    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                                 BYTE nMemberId ) const;
 
     inline SvxCharReliefItem& operator=( const SvxCharReliefItem& rItem )
@@ -86,3 +81,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

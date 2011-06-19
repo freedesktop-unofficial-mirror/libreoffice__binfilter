@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,13 +33,9 @@
 #include <map>
 #endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include <bf_xmloff/xmlprhdl.hxx>
-#endif
 namespace binfilter {
 
 /**
@@ -112,3 +109,5 @@ private:
 
 }//end of namespace binfilter
 #endif  // _XMLOFF_PROPERTYHANDLERFACTORY_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

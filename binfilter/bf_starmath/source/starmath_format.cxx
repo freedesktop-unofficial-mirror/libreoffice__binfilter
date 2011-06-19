@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 
-#ifndef FORMAT_HXX
 #include "format.hxx"
-#endif
 namespace binfilter {
 
 /////////////////////////////////////////////////////////////////
@@ -91,9 +84,6 @@ namespace binfilter {
 
 /*N*/ String GetDefaultFontName( LanguageType nLang, USHORT nIdent )
 /*N*/ {
-/*N*/     DBG_ASSERT( FNT_BEGIN <= nIdent  &&  nIdent <= FNT_END,
-/*N*/             "index out opd range" );
-/*N*/
 /*N*/     if (FNT_MATH == nIdent)
 /*?*/         return String::CreateFromAscii( FNTNAME_MATH );
 /*N*/     else
@@ -106,7 +96,7 @@ namespace binfilter {
 /*?*/             case SCRIPTTYPE_COMPLEX :   pTable = aCTLDefFnts; break;
 /*?*/             default :
 /*?*/                 pTable = aLatinDefFnts;
-/*?*/                 DBG_ERROR( "unknown script-type" );
+/*?*/                 OSL_FAIL( "unknown script-type" );
 /*N*/         }
 /*N*/
 /*N*/         return Application::GetDefaultDevice()->GetDefaultFont(
@@ -408,3 +398,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

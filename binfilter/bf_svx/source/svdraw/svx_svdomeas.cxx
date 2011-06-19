@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,57 +36,22 @@
 #include "svdview.hxx"
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-
-
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include "xlnstit.hxx"
-#endif
-
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include "xlnstwit.hxx"
-#endif
-
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
-#endif
-
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include "xlnwtit.hxx"
-#endif
-
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include "xlnedwit.hxx"
-#endif
-
-#ifndef _SVX_XLNSTCIT_HXX //autogen
 #include "xlnstcit.hxx"
-#endif
-
-#ifndef _SVX_XLNEDCIT_HXX //autogen
 #include "xlnedcit.hxx"
-#endif
 
-
-
-#ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
-#endif
 
-
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
-
 #include "svdfield.hxx"
 
-
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 namespace binfilter {
 
@@ -96,21 +62,21 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PERSIST1(SdrMeasureField,SvxFieldData);
 /*N*/
-/*N*/ __EXPORT SdrMeasureField::~SdrMeasureField()
+/*N*/ SdrMeasureField::~SdrMeasureField()
 /*N*/ {
 /*N*/ }
 
-/*N*/ SvxFieldData* __EXPORT SdrMeasureField::Clone() const
+/*N*/ SvxFieldData* SdrMeasureField::Clone() const
 /*N*/ {
 /*N*/   return new SdrMeasureField(*this);
 /*N*/ }
 
-/*N*/ int __EXPORT SdrMeasureField::operator==(const SvxFieldData& rSrc) const
+/*N*/ int SdrMeasureField::operator==(const SvxFieldData& rSrc) const
 /*N*/ {
 /*N*/   return eMeasureFieldKind==((SdrMeasureField&)rSrc).GetMeasureFieldKind();
 /*N*/ }
 
-/*N*/ void __EXPORT SdrMeasureField::Load(SvPersistStream& rIn)
+/*N*/ void SdrMeasureField::Load(SvPersistStream& rIn)
 /*N*/ {
 /*N*/   SdrDownCompat aCompat(rIn,STREAM_READ); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
 /*N*/ #ifdef DBG_UTIL
@@ -121,14 +87,7 @@ namespace binfilter {
 /*N*/   eMeasureFieldKind=(SdrMeasureFieldKind)nFieldKind;
 /*N*/ }
 
-/*N*/ void __EXPORT SdrMeasureField::Save(SvPersistStream& rOut)
-/*N*/ {
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrMeasureField");
-/*N*/ #endif
-/*N*/   rOut<<(UINT16)eMeasureFieldKind;
-/*N*/ }
+/*N*/ void SdrMeasureField::Save(SvPersistStream&) {}
 
 /*?*/ void SdrMeasureField::TakeRepresentation(const SdrMeasureObj& rObj, XubString& rStr) const
 /*?*/ {
@@ -191,18 +150,18 @@ namespace binfilter {
 /*?*/
 /*?*/               if(rStr.Search(cDec) != STRING_NOTFOUND)
 /*?*/               {
-/*?*/                   xub_StrLen nLen(rStr.Len() - 1);
+/*?*/                   xub_StrLen nLen2(rStr.Len() - 1);
 /*?*/
-/*?*/                   while(rStr.GetChar(nLen) == sal_Unicode('0'))
+/*?*/                   while(rStr.GetChar(nLen2) == sal_Unicode('0'))
 /*?*/                   {
-/*?*/                       rStr.Erase(nLen);
-/*?*/                       nLen--;
+/*?*/                       rStr.Erase(nLen2);
+/*?*/                       nLen2--;
 /*?*/                   }
 /*?*/
-/*?*/                   if(rStr.GetChar(nLen) == cDec)
+/*?*/                   if(rStr.GetChar(nLen2) == cDec)
 /*?*/                   {
-/*?*/                       rStr.Erase(nLen);
-/*?*/                       nLen--;
+/*?*/                       rStr.Erase(nLen2);
+/*?*/                       nLen2--;
 /*?*/                   }
 /*?*/
 /*?*/                   if(!rStr.Len())
@@ -308,17 +267,17 @@ namespace binfilter {
 /*N*/   long                        nHelplineDist;
 /*N*/   long                        nHelpline1Len;
 /*N*/   long                        nHelpline2Len;
-/*N*/   FASTBOOL                    bBelowRefEdge;
-/*N*/   FASTBOOL                    bTextRota90;
-/*N*/   FASTBOOL                    bTextUpsideDown;
+/*N*/   bool                    bBelowRefEdge;
+/*N*/   bool                    bTextRota90;
+/*N*/   bool                    bTextUpsideDown;
 /*N*/   long                        nMeasureOverhang;
 /*N*/   FieldUnit                   eMeasureUnit;
 /*N*/   Fraction                    aMeasureScale;
-/*N*/   FASTBOOL                    bShowUnit;
+/*N*/   bool                    bShowUnit;
 /*N*/   String                      aFormatString;
-/*N*/   FASTBOOL                    bTextAutoAngle;
+/*N*/   bool                    bTextAutoAngle;
 /*N*/   long                        nTextAutoAngleView;
-/*N*/   FASTBOOL                    bTextIsFixedAngle;
+/*N*/   bool                    bTextIsFixedAngle;
 /*N*/   long                        nTextFixedAngle;
 /*N*/ };
 /*N*/
@@ -354,11 +313,11 @@ namespace binfilter {
 /*N*/   long                        nArrow1Wdt; // Breite des 1. Pfeils
 /*N*/   long                        nArrow2Wdt; // Breite des 2. Pfeils
 /*N*/   long                        nShortLineLen; // Linienlaenge, wenn PfeileAussen
-/*N*/   FASTBOOL                    bArrow1Center; // Pfeil 1 zentriert?
-/*N*/   FASTBOOL                    bArrow2Center; // Pfeil 2 zentriert?
-/*N*/   FASTBOOL                    bAutoUpsideDown; // UpsideDown durch Automatik
-/*N*/   FASTBOOL                    bPfeileAussen;
-/*N*/   FASTBOOL                    bBreakedLine;
+/*N*/   bool                    bArrow1Center; // Pfeil 1 zentriert?
+/*N*/   bool                    bArrow2Center; // Pfeil 2 zentriert?
+/*N*/   bool                    bAutoUpsideDown; // UpsideDown durch Automatik
+/*N*/   bool                    bPfeileAussen;
+/*N*/   bool                    bBreakedLine;
 /*N*/ };
 
 /*N*/ void SdrMeasureObj::ImpTakeAttr(ImpMeasureRec& rRec) const
@@ -399,15 +358,15 @@ namespace binfilter {
 /*N*/   rPol.nLineLen=GetLen(aDelt);
 /*N*/
 /*N*/   rPol.nLineWdt2=0;
-/*N*/   long nArrow1Len=0; FASTBOOL bArrow1Center=FALSE;
-/*N*/   long nArrow2Len=0; FASTBOOL bArrow2Center=FALSE;
+/*N*/   long nArrow1Len=0; bool bArrow1Center=FALSE;
+/*N*/   long nArrow2Len=0; bool bArrow2Center=FALSE;
 /*N*/   long nArrow1Wdt=0;
 /*N*/   long nArrow2Wdt=0;
 /*N*/   rPol.nArrow1Wdt=0;
 /*N*/   rPol.nArrow2Wdt=0;
 /*N*/   long nArrowNeed=0;
 /*N*/   long nShortLen=0;
-/*N*/   FASTBOOL bPfeileAussen=FALSE;
+/*N*/   bool bPfeileAussen=FALSE;
 /*N*/
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/   sal_Int32 nLineWdt = ((XLineWidthItem&)(rSet.Get(XATTR_LINEWIDTH))).GetValue(); // Strichstaerke
@@ -437,13 +396,13 @@ namespace binfilter {
 /*N*/   rPol.eUsedTextHPos=rRec.eWantTextHPos;
 /*N*/   rPol.eUsedTextVPos=rRec.eWantTextVPos;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURE_TEXTVAUTO) rPol.eUsedTextVPos=SDRMEASURE_ABOVE;
-/*N*/   FASTBOOL bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
+/*N*/   bool bBrkLine=rPol.eUsedTextVPos==SDRMEASURETEXT_BREAKEDLINE;
 /*N*/   if (rPol.eUsedTextVPos==SDRMEASURETEXT_VERTICALCENTERED) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pOutlinerParaObject!=NULL && pOutlinerParaObject->GetTextObject().GetParagraphCount()==1) {
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   rPol.bBreakedLine=bBrkLine;
 /*N*/   if (rPol.eUsedTextHPos==SDRMEASURE_TEXTHAUTO) { // bei zu breitem Text diesen eventuell nach aussen schieben
-/*N*/       FASTBOOL bOutside=FALSE;
+/*N*/       bool bOutside=FALSE;
 /*N*/       long nNeedSiz=!rRec.bTextRota90 ? rPol.aTextSize.Width() : rPol.aTextSize.Height();
 /*N*/       if (nNeedSiz>rPol.nLineLen) bOutside=TRUE; // Text passt nicht in die Mitte
 /*N*/       if (bBrkLine) {
@@ -583,8 +542,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SdrMeasureObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-/*N*/   FASTBOOL bEdit,
+/*N*/ bool SdrMeasureObj::CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
+/*N*/   bool bEdit,
 /*N*/   Color*& rpTxtColor, Color*& rpFldColor, XubString& rRet) const
 /*N*/ {
 /*N*/   const SvxFieldData* pField=rField.GetField();
@@ -644,13 +603,13 @@ namespace binfilter {
 /*N*/   ImpCalcGeometrics(aRec,aMPol);
 /*N*/
 /*N*/   // TextSize ermitteln inkl. Textrahmenabstaende
-/*N*/   Size aTextSize(aMPol.aTextSize);
-/*N*/   if (aTextSize.Width()<1) aTextSize.Width()=1;
-/*N*/   if (aTextSize.Height()<1) aTextSize.Height()=1;
-/*N*/   aTextSize.Width()+=GetTextLeftDistance()+GetTextRightDistance();
-/*N*/   aTextSize.Height()+=GetTextUpperDistance()+GetTextLowerDistance();
+/*N*/   Size aLclTextSize(aMPol.aTextSize);
+/*N*/   if (aLclTextSize.Width()<1) aLclTextSize.Width()=1;
+/*N*/   if (aLclTextSize.Height()<1) aLclTextSize.Height()=1;
+/*N*/   aLclTextSize.Width()+=GetTextLeftDistance()+GetTextRightDistance();
+/*N*/   aLclTextSize.Height()+=GetTextUpperDistance()+GetTextLowerDistance();
 /*N*/
-/*N*/   Point aPt1(aMPol.aMainline1.aP1);
+/*N*/   Point aLclPt1(aMPol.aMainline1.aP1);
 /*N*/   long nLen=aMPol.nLineLen;
 /*N*/   long nLWdt=aMPol.nLineWdt2;
 /*N*/   long nArr1Len=aMPol.nArrow1Len;
@@ -663,63 +622,63 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   Point aTextPos;
-/*N*/   FASTBOOL bRota90=aRec.bTextRota90;
-/*N*/   FASTBOOL bUpsideDown=aRec.bTextUpsideDown!=aMPol.bAutoUpsideDown;
-/*N*/   FASTBOOL bBelowRefEdge=aRec.bBelowRefEdge;
+/*N*/   bool bRota90=aRec.bTextRota90;
+/*N*/   bool bUpsideDown=aRec.bTextUpsideDown!=aMPol.bAutoUpsideDown;
+/*N*/   bool bBelowRefEdge=aRec.bBelowRefEdge;
 /*N*/   SdrMeasureTextHPos eMH=aMPol.eUsedTextHPos;
 /*N*/   SdrMeasureTextVPos eMV=aMPol.eUsedTextVPos;
 /*N*/   if (!bRota90) {
 /*N*/       switch (eMH) {
-/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aPt1.X()-aTextSize.Width()-nArr1Len-nLWdt; break;
-/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aPt1.X()+nLen+nArr2Len+nLWdt; break;
-/*N*/           default: aTextPos.X()=aPt1.X(); aTextSize.Width()=nLen;
+/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aLclPt1.X()-aLclTextSize.Width()-nArr1Len-nLWdt; break;
+/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aLclPt1.X()+nLen+nArr2Len+nLWdt; break;
+/*N*/           default: aTextPos.X()=aLclPt1.X(); aLclTextSize.Width()=nLen;
 /*N*/       }
 /*N*/       switch (eMV) {
 /*N*/           case SDRMEASURETEXT_VERTICALCENTERED:
-/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aPt1.Y()-aTextSize.Height()/2; break;
+/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aLclPt1.Y()-aLclTextSize.Height()/2; break;
 /*N*/           case SDRMEASURE_BELOW: {
-/*N*/               if (!bUpsideDown) aTextPos.Y()=aPt1.Y()+nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()-aTextSize.Height()-nLWdt;
+/*N*/               if (!bUpsideDown) aTextPos.Y()=aLclPt1.Y()+nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()-aLclTextSize.Height()-nLWdt;
 /*N*/           } break;
 /*N*/           default: {
-/*N*/               if (!bUpsideDown) aTextPos.Y()=aPt1.Y()-aTextSize.Height()-nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()+nLWdt;
+/*N*/               if (!bUpsideDown) aTextPos.Y()=aLclPt1.Y()-aLclTextSize.Height()-nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()+nLWdt;
 /*N*/           }
 /*N*/       }
 /*N*/       if (bUpsideDown) {
-/*N*/           aTextPos.X()+=aTextSize.Width();
-/*N*/           aTextPos.Y()+=aTextSize.Height();
+/*N*/           aTextPos.X()+=aLclTextSize.Width();
+/*N*/           aTextPos.Y()+=aLclTextSize.Height();
 /*N*/       }
 /*N*/   } else { // also wenn bTextRota90==TRUE
 /*N*/       switch (eMH) {
-/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aPt1.X()-aTextSize.Height()-nArr1Len; break;
-/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aPt1.X()+nLen+nArr2Len; break;
-/*N*/           default: aTextPos.X()=aPt1.X(); aTextSize.Height()=nLen;
+/*N*/           case SDRMEASURE_TEXTLEFTOUTSIDE: aTextPos.X()=aLclPt1.X()-aLclTextSize.Height()-nArr1Len; break;
+/*N*/           case SDRMEASURE_TEXTRIGHTOUTSIDE: aTextPos.X()=aLclPt1.X()+nLen+nArr2Len; break;
+/*N*/           default: aTextPos.X()=aLclPt1.X(); aLclTextSize.Height()=nLen;
 /*N*/       }
 /*N*/       switch (eMV) {
 /*N*/           case SDRMEASURETEXT_VERTICALCENTERED:
-/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aPt1.Y()+aTextSize.Width()/2; break;
+/*N*/           case SDRMEASURETEXT_BREAKEDLINE: aTextPos.Y()=aLclPt1.Y()+aLclTextSize.Width()/2; break;
 /*N*/           case SDRMEASURE_BELOW: {
-/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aPt1.Y()+aTextSize.Width()+nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()-nLWdt;
+/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aLclPt1.Y()+aLclTextSize.Width()+nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()-nLWdt;
 /*N*/           } break;
 /*N*/           default: {
-/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aPt1.Y()-nLWdt;
-/*N*/               else aTextPos.Y()=aPt1.Y()+aTextSize.Width()+nLWdt;
+/*N*/               if (!bBelowRefEdge) aTextPos.Y()=aLclPt1.Y()-nLWdt;
+/*N*/               else aTextPos.Y()=aLclPt1.Y()+aLclTextSize.Width()+nLWdt;
 /*N*/           }
 /*N*/       }
 /*N*/       if (bUpsideDown) {
-/*N*/           aTextPos.X()+=aTextSize.Height();
-/*N*/           aTextPos.Y()-=aTextSize.Width();
+/*N*/           aTextPos.X()+=aLclTextSize.Height();
+/*N*/           aTextPos.Y()-=aLclTextSize.Width();
 /*N*/       }
 /*N*/   }
 /*N*/   if (aMPol.nTextWink!=aGeo.nDrehWink) {
 /*N*/       ((SdrMeasureObj*)this)->aGeo.nDrehWink=aMPol.nTextWink;
 /*N*/       ((SdrMeasureObj*)this)->aGeo.RecalcSinCos();
 /*N*/   }
-/*N*/   RotatePoint(aTextPos,aPt1,aMPol.nLineSin,aMPol.nLineCos);
-/*N*/   aTextSize.Width()++; aTextSize.Height()++; // wg. des komischen Verhaltens beim Rect-Ctor
-/*N*/   rRect=Rectangle(aTextPos,aTextSize);
+/*N*/   RotatePoint(aTextPos,aLclPt1,aMPol.nLineSin,aMPol.nLineCos);
+/*N*/   aLclTextSize.Width()++; aLclTextSize.Height()++; // wg. des komischen Verhaltens beim Rect-Ctor
+/*N*/   rRect=Rectangle(aTextPos,aLclTextSize);
 /*N*/   rRect.Justify();
 /*N*/   ((SdrMeasureObj*)this)->aRect=rRect;
 /*N*/
@@ -728,30 +687,6 @@ namespace binfilter {
 /*N*/       ((SdrMeasureObj*)this)->aGeo.RecalcSinCos();
 /*N*/   }
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ void SdrMeasureObj::NbcMove(const Size& rSiz)
 /*N*/ {
@@ -841,13 +776,8 @@ namespace binfilter {
 /*N*/   SetTextDirty();
 /*N*/ }
 
-
-
-
-
-
-/*N*/ FASTBOOL SdrMeasureObj::BegTextEdit(SdrOutliner& rOutl)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ bool SdrMeasureObj::BegTextEdit(SdrOutliner& /*rOutl*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
 /*N*/ }
 
 /*N*/ void SdrMeasureObj::EndTextEdit(SdrOutliner& rOutl)
@@ -873,7 +803,7 @@ namespace binfilter {
 /*N*/   if (pOutlinerParaObject==NULL) SetTextDirty(); // Text neu berechnen!
 /*N*/ }
 
-/*N*/ void SdrMeasureObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText,
+/*N*/ void SdrMeasureObj::TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText,
 /*N*/   Rectangle* pAnchorRect, BOOL bLineWidth ) const
 /*N*/ {
 /*N*/   if (bTextDirty) UndirtyText();
@@ -889,7 +819,7 @@ namespace binfilter {
 
 
 
-/*N*/ void __EXPORT SdrMeasureObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrMeasureObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   if (HAS_BASE(SfxStyleSheet,&rBC)) {
 /*?*/       SfxSimpleHint* pSimple=PTR_CAST(SfxSimpleHint,&rHint);
@@ -907,7 +837,7 @@ namespace binfilter {
 /*N*/   SdrTextObj::SFX_NOTIFY(rBC,rBCType,rHint,rHintType);
 /*N*/ }
 
-/*N*/ void SdrMeasureObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrMeasureObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SetTextDirty();
 /*N*/   SdrTextObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
@@ -944,62 +874,6 @@ namespace binfilter {
 /*N*/   SetTextDirty();
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrMeasureObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrMeasureSetItem aMeasAttr(rSet.GetPool());
-/*N*/   aMeasAttr.GetItemSet().Put(rSet);
-/*N*/   aMeasAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aMeasAttr);
-/*N*/ }
-
-/*N*/ void SdrMeasureObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_MEASURE);
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrMeasureObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   UndirtyText();
-/*N*/
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrMeasureObj");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aPt1;
-/*N*/   rOut << aPt2;
-/*N*/   rOut << BOOL(FALSE); // bTextOverwritten wg. Kompatibilitaet. Gibt's nicht mehr.
-/*N*/
-/*N*/   SfxItemPool* pPool=GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_MEASURE));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*N*/   }
-/*N*/ }
-
 /*N*/ void SdrMeasureObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;
@@ -1029,3 +903,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

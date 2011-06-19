@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,35 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include <fonthdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
 
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
-static SvXMLEnumMapEntry __READONLY_DATA aFontFamilyGenericMapping[] =
+static SvXMLEnumMapEntry const aFontFamilyGenericMapping[] =
 {
     { XML_DECORATIVE,       FAMILY_DECORATIVE },
 
@@ -65,7 +56,7 @@ static SvXMLEnumMapEntry __READONLY_DATA aFontFamilyGenericMapping[] =
     { XML_TOKEN_INVALID,    0               }
 };
 
-static SvXMLEnumMapEntry __READONLY_DATA aFontPitchMapping[] =
+static SvXMLEnumMapEntry const aFontPitchMapping[] =
 {
     { XML_FIXED,            PITCH_FIXED     },
     { XML_VARIABLE,         PITCH_VARIABLE  },
@@ -81,7 +72,7 @@ XMLFontFamilyNamePropHdl::~XMLFontFamilyNamePropHdl()
     // Nothing to do
 }
 
-sal_Bool XMLFontFamilyNamePropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLFontFamilyNamePropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
     String sValue;
@@ -134,7 +125,7 @@ sal_Bool XMLFontFamilyNamePropHdl::importXML( const OUString& rStrImpValue, uno:
     return bRet;
 }
 
-sal_Bool XMLFontFamilyNamePropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLFontFamilyNamePropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
     OUString aStrFamilyName;
@@ -234,7 +225,7 @@ sal_Bool XMLFontFamilyPropHdl::exportXML( OUString& rStrExpValue, const uno::Any
     sal_Bool bRet = sal_False;
     OUStringBuffer aOut;
 
-    sal_Int16 nFamily;
+    sal_Int16 nFamily(0);
     if( rValue >>= nFamily )
     {
         FontFamily eFamily = (FontFamily)nFamily;
@@ -257,7 +248,7 @@ XMLFontEncodingPropHdl::~XMLFontEncodingPropHdl()
     // Nothing to do
 }
 
-sal_Bool XMLFontEncodingPropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLFontEncodingPropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
 
@@ -267,11 +258,11 @@ sal_Bool XMLFontEncodingPropHdl::importXML( const OUString& rStrImpValue, uno::A
     return bRet;
 }
 
-sal_Bool XMLFontEncodingPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLFontEncodingPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
     OUStringBuffer aOut;
-    sal_Int16 nSet;
+    sal_Int16 nSet(0);
 
     if( rValue >>= nSet )
     {
@@ -310,7 +301,7 @@ sal_Bool XMLFontPitchPropHdl::importXML( const OUString& rStrImpValue, uno::Any&
 sal_Bool XMLFontPitchPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nPitch;
+    sal_Int16 nPitch(0);
     OUStringBuffer aOut;
 
     FontPitch ePitch = PITCH_DONTKNOW;
@@ -326,3 +317,5 @@ sal_Bool XMLFontPitchPropHdl::exportXML( OUString& rStrExpValue, const uno::Any&
     return bRet;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

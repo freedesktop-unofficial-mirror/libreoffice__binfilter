@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbxmeth.hxx"
 #include "sbdef.hxx"
 
@@ -61,7 +60,7 @@ class SbMethod : public SbxMethod
     SbMethod( const String&, SbxDataType, SbModule* );
     SbMethod( const SbMethod& );
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual ~SbMethod();
 
 public:
@@ -104,3 +103,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

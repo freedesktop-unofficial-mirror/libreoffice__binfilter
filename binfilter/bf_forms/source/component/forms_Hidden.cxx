@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,31 +28,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-
-#ifndef _FORMS_HIDDEN_HXX_
 #include "Hidden.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 namespace binfilter {
 
@@ -61,7 +44,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -213,7 +195,7 @@ void SAL_CALL OHiddenModel::read(const Reference<stario::XObjectInputStream>& _r
     {
         case 1 : { ::rtl::OUString sDummy; _rxInStream >> sDummy; _rxInStream >> m_sHiddenValue; } break;
         case 2 : _rxInStream >> m_sHiddenValue; break;
-        default : DBG_ERROR("OHiddenModel::read : unknown version !"); m_sHiddenValue = ::rtl::OUString();
+        default : OSL_FAIL("OHiddenModel::read : unknown version !"); m_sHiddenValue = ::rtl::OUString();
     }
     OControlModel::read(_rxInStream);
 }
@@ -223,3 +205,5 @@ void SAL_CALL OHiddenModel::read(const Reference<stario::XObjectInputStream>& _r
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

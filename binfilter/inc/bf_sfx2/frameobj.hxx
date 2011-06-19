@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 namespace binfilter {
 
 //=========================================================================
@@ -66,9 +65,7 @@ protected:
 
                             // Laden speichern
     virtual BOOL            Load( SvStorage * );
-    virtual BOOL            Save();
-    virtual BOOL            SaveAs( SvStorage * );
-    virtual BOOL            SaveCompleted( SvStorage * );
+    virtual BOOL            Save() {return false;}
 
                             ~SfxFrameObject();
 public:
@@ -107,3 +104,5 @@ SO2_DECL_IMPL_REF(SfxFrameObject)
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

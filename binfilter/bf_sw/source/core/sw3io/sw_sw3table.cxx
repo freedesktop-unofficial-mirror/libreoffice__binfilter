@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,19 +35,13 @@
 
 #include "swerror.h"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #define _SVSTDARR_STRINGSDTOR
 #include "sw3imp.hxx"
@@ -115,12 +110,12 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 
 /*N*/ void Sw3IoImp::CollectTblLineBoxFmts40()
 /*N*/ {
-/*N*/   ASSERT( pExportInfo, "Wo ist die Export-Info?" );
+/*N*/   OSL_ENSURE( pExportInfo, "Wo ist die Export-Info?" );
 /*N*/   for( USHORT i=0; i<pDoc->GetTblFrmFmts()->Count(); i++ )
 /*N*/   {
 /*N*/       SwClientIter aIter( *(*pDoc->GetTblFrmFmts())[i] );
 /*N*/       SwTable *pTable = (SwTable *)aIter.First( TYPE(SwTable) );
-/*N*/       ASSERT( pTable, "Tabellen-Format ohne Tabelle" );
+/*N*/       OSL_ENSURE( pTable, "Tabellen-Format ohne Tabelle" );
 /*N*/       if( !pTable )
 /*N*/           continue;
 /*N*/
@@ -145,7 +140,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/ {
 /*N*/   USHORT nIdx = pTblLineBoxFmts ? pTblLineBoxFmts->GetPos( pFmt )
 /*N*/                                 : USHRT_MAX;
-/*N*/   ASSERT( USHRT_MAX != nIdx, "Tabellen-Line/-Box-Format nicht gefunden" );
+/*N*/   OSL_ENSURE( USHRT_MAX != nIdx, "Tabellen-Line/-Box-Format nicht gefunden" );
 /*N*/   if( USHRT_MAX == nIdx )
 /*N*/       Error();
 /*N*/
@@ -154,11 +149,11 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/ USHORT Sw3IoImp::GetTblLineBoxFmtStrPoolId40( SwFrmFmt *pFmt )
 /*N*/ {
-/*N*/   ASSERT( pExportInfo, "Wo ist die Export-Info?" );
+/*N*/   OSL_ENSURE( pExportInfo, "Wo ist die Export-Info?" );
 /*N*/   USHORT nPos = pExportInfo->pTblLineBoxFmts40
 /*N*/                       ? pExportInfo->pTblLineBoxFmts40->GetPos( pFmt )
 /*N*/                       : USHRT_MAX;
-/*N*/   ASSERT( USHRT_MAX != nPos, "Tabellen-Line/-Box-Format nicht gefunden" );
+/*N*/   OSL_ENSURE( USHRT_MAX != nPos, "Tabellen-Line/-Box-Format nicht gefunden" );
 /*N*/   if( USHRT_MAX == nPos )
 /*N*/       Error();
 /*N*/
@@ -168,7 +163,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/ SwFrmFmt *Sw3IoImp::GetTblLineBoxFmt( USHORT nIdx )
 /*N*/ {
-/*N*/   ASSERT( pTblLineBoxFmts && nIdx < pTblLineBoxFmts->Count(),
+/*N*/   OSL_ENSURE( pTblLineBoxFmts && nIdx < pTblLineBoxFmts->Count(),
 /*N*/           "Tabellen-Line/-Box-Format nicht gefunden" );
 /*N*/   if( pTblLineBoxFmts && nIdx < pTblLineBoxFmts->Count() )
 /*N*/       return (*pTblLineBoxFmts)[nIdx];
@@ -296,7 +291,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/               InTableLine( pTbl->GetTabLines(), NULL, nLine++, rPos );
 /*N*/           rPos = pNd->EndOfSectionIndex()+1;
 /*N*/
-/*N*/           ASSERT( nCntntBox == nBoxes ,
+/*N*/           OSL_ENSURE( nCntntBox == nBoxes ,
 /*N*/               "Anzahl der Boxen stimmt nicht mit den gelesenen ueberein" );
 /*N*/
 /*N*/           if( pDDEFldType && !pNd->GetTable().IsTblComplex() )
@@ -448,7 +443,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( pFmt, "Line-Format fehlt" );
+/*N*/       OSL_ENSURE( pFmt, "Line-Format fehlt" );
 /*N*/       Error();    // kein FrameFmt
 /*N*/   }
 /*N*/
@@ -483,7 +478,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   BYTE cFlags;
 /*N*/
 /*N*/   SwFrmFmt* pFmt = rLine.GetFrmFmt();
-/*N*/   UINT16 nFmtId;
+/*N*/   UINT16 nFmtId(0);
 /*N*/   if( IsSw31Or40Export() )
 /*N*/   {
 /*N*/       cFlags = 0x04;      // keine Flags, Fmt-Id, Anzahl Boxen
@@ -566,7 +561,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   }
 /*N*/   else if( (cFlags & 0x20) != 0 )
 /*N*/   {
-/*N*/       ASSERT( IsVersion(SWG_LONGIDX), "0x20 doch schon frueher benutzt?" );
+/*N*/       OSL_ENSURE( IsVersion(SWG_LONGIDX), "0x20 doch schon frueher benutzt?" );
 /*N*/       pFmt = (SwTableBoxFmt *)GetTblLineBoxFmt( nFmtId );
 /*N*/   }
 /*N*/   else if( !IsVersion(SWG_LONGIDX) )
@@ -611,7 +606,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*?*/               pBox = pNewBox;
 /*?*/               rPos = pBox->GetSttNd()->EndOfSectionIndex() + 1;
 /*?*/ #ifdef DBG_UTIL
-/*?*/               ASSERT( !this, "Tabellenzelle ohne Lines und ohne Content" );
+/*?*/               OSL_ENSURE( !this, "Tabellenzelle ohne Lines und ohne Content" );
 /*?*/               ++nCntntBox;
 /*?*/ #endif
 /*N*/           }
@@ -623,7 +618,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( pFmt, "Box-Format fehlt" );
+/*N*/       OSL_ENSURE( pFmt, "Box-Format fehlt" );
 /*N*/       Error();    // kein FrmFmt
 /*N*/   }
 /*N*/   CloseRec( SWG_TABLEBOX );
@@ -651,7 +646,7 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/
 /*N*/   BYTE cFlags;
 /*N*/
-/*N*/   UINT16 nFmtId;
+/*N*/   UINT16 nFmtId(0);
 /*N*/   SwFrmFmt* pFmt = rBox.GetFrmFmt();
 /*N*/   if( IsSw31Or40Export() )
 /*N*/   {
@@ -701,3 +696,5 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,60 +31,26 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _VIRTOUTP_HXX
 #include <virtoutp.hxx>
-#endif
-#ifndef _BLINK_HXX
 #include <blink.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
-#endif
-#ifndef _NOTXTFRM_HXX
 #include <notxtfrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ #ifndef VERTICAL_LAYOUT
@@ -370,7 +337,7 @@ namespace binfilter {
 /*N*/       if( (*SwFrm::GetCachePtr())[ --n ] )
 /*N*/       {
 /*N*/           SwCacheObj* pObj = (*SwFrm::GetCachePtr())[ n ];
-/*N*/           ASSERT( !pObj, "Wer hat sich nicht ausgetragen?")
+/*N*/           OSL_ENSURE( !pObj, "Wer hat sich nicht ausgetragen?");
 /*N*/       }
 /*N*/ #endif
 /*N*/   delete SwRootFrm::pVout;
@@ -381,9 +348,6 @@ namespace binfilter {
 |*
 |*  RootFrm::Alles was so zur CurrShell gehoert
 |*
-|*  Ersterstellung      MA 09. Sep. 98
-|*  Letzte Aenderung    MA 18. Feb. 99
-|*
 |*************************************************************************/
 
 /*N*/ typedef CurrShell* CurrShellPtr;
@@ -392,7 +356,7 @@ namespace binfilter {
 
 /*N*/ CurrShell::CurrShell( ViewShell *pNew )
 /*N*/ {
-/*N*/   ASSERT( pNew, "0-Shell einsetzen?" );
+/*N*/   OSL_ENSURE( pNew, "0-Shell einsetzen?" );
 /*N*/   pRoot = pNew->GetLayout();
 /*N*/   if ( pRoot )
 /*N*/   {
@@ -452,25 +416,23 @@ namespace binfilter {
 |*      Der RootFrm laesst sich grundsaetzlich vom Dokument ein eigenes
 |*      FrmFmt geben. Dieses loescht er dann selbst im DTor.
 |*      Das eigene FrmFmt wird vom uebergebenen Format abgeleitet.
-|*  Ersterstellung      SS 05-Apr-1991
-|*  Letzte Aenderung    MA 12. Dec. 94
 |*
 |*************************************************************************/
 
 
-/*N*/ SwRootFrm::SwRootFrm( SwFrmFmt *pFmt, ViewShell * pSh ) :
-/*N*/   SwLayoutFrm( pFmt->GetDoc()->MakeFrmFmt(
-/*N*/       XubString( "Root", RTL_TEXTENCODING_MS_1252 ), pFmt ) ),
-/*N*/   pTurbo( 0 ),
-/*N*/   pLastPage( 0 ),
-/*N*/   pCurrShell( pSh ),
-/*N*/   pWaitingCurrShell( 0 ),
-/*N*/   pDestroy( 0 ),
-/*N*/   nPhyPageNums( 0 ),
-/*N*/   pDrawPage( 0 ),
-/*N*/   nBrowseWidth( MM50*4 )  //2cm Minimum
+/*N*/ SwRootFrm::SwRootFrm( SwFrmFmt *pFmt, ViewShell * pSh )
+/*N*/   : SwLayoutFrm( pFmt->GetDoc()->MakeFrmFmt(
+/*N*/       XubString( "Root", RTL_TEXTENCODING_MS_1252 ), pFmt ) )
+/*N*/   , nBrowseWidth( MM50*4 )    //2cm Minimum
+/*N*/   , pTurbo( 0 )
+/*N*/   , pLastPage( 0 )
+/*N*/   , pCurrShell( pSh )
+/*N*/   , pWaitingCurrShell( 0 )
+/*N*/   , pDrawPage( 0 )
+/*N*/   , pDestroy( 0 )
+/*N*/   , nPhyPageNums( 0 )
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   ,nAccessibleShells( 0 )
+/*N*/   , nAccessibleShells( 0 )
 /*N*/ #endif
 /*N*/ {
 /*N*/     nType = FRMC_ROOT;
@@ -558,9 +520,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::~SwRootFrm()
 |*
-|*  Ersterstellung      SS 05-Apr-1991
-|*  Letzte Aenderung    MA 12. Dec. 94
-|*
 |*************************************************************************/
 
 
@@ -579,16 +538,13 @@ namespace binfilter {
 /*N*/   delete pCurrShells;
 /*N*/
 /*N*/ #ifdef ACCESSIBLE_LAYOUT
-/*N*/   ASSERT( 0==nAccessibleShells, "Some accessible shells are left" );
+/*N*/   OSL_ENSURE( 0==nAccessibleShells, "Some accessible shells are left" );
 /*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwRootFrm::SetFixSize()
-|*
-|*  Ersterstellung      MA 23. Jul. 92
-|*  Letzte Aenderung    MA 11. Mar. 93
 |*
 |*************************************************************************/
 
@@ -616,9 +572,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::RemoveMasterObjs()
 |*
-|*  Ersterstellung      MA 19.10.95
-|*  Letzte Aenderung    MA 19.10.95
-|*
 |*************************************************************************/
 
 
@@ -637,3 +590,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

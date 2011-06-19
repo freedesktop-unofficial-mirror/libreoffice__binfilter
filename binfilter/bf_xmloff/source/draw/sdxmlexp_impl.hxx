@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,26 +29,18 @@
 #ifndef _SDXMLEXP_IMPL_HXX
 #define _SDXMLEXP_IMPL_HXX
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATOR_HPP_
 #include <com/sun/star/task/XStatusIndicator.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
+
+#include <vector>
+
 class Rectangle;
 namespace binfilter {
 class SfxPoolItem;
@@ -61,15 +54,17 @@ class OUStrings_Impl;
 class OUStringsSort_Impl;
 
 class ImpPresPageDrawStylePropMapper;
-class ImpXMLEXPPageMasterList;
 class ImpXMLEXPPageMasterInfo;
 class ImpXMLDrawPageInfoList;
-class ImpXMLAutoLayoutInfoList;
+class ImpXMLAutoLayoutInfo;
 class SvXMLAutoStylePoolP;
 class XMLSdPropHdlFactory;
 class ImpXMLShapeStyleInfo;
 class XMLShapeExportPropertyMapper;
 class XMLPageExportPropertyMapper;
+
+typedef ::std::vector< ImpXMLEXPPageMasterInfo* > ImpXMLEXPPageMasterList;
+typedef ::std::vector< ImpXMLAutoLayoutInfo*    > ImpXMLAutoLayoutInfoList;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -203,3 +198,4 @@ public:
 }//end of namespace binfilter
 #endif  //  _SDXMLEXP_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

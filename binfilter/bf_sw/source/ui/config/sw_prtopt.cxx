@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _PRTOPT_HXX
 #include <prtopt.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------
@@ -79,9 +74,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------06.09.00 16:44--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwPrintOptions::SwPrintOptions(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Print") :  C2U("Office.Writer/Print"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -108,7 +102,7 @@ using namespace ::com::sun::star::uno;
 /*N*/                   case  4: bPrintBlackFont        = *(sal_Bool*)pValues[nProp].getValue();  break;
 /*N*/                     case  5:
 /*N*/                     {
-/*N*/                         sal_Int32 nTmp;
+/*N*/                         sal_Int32 nTmp(0);
 /*N*/                         pValues[nProp] >>=  nTmp;
 /*N*/                         nPrintPostIts = (sal_Int16)nTmp;
 /*N*/                     }
@@ -126,19 +120,19 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------06.09.00 16:50--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwPrintOptions::~SwPrintOptions()
 /*N*/ {
 /*N*/ }
-/* -----------------------------06.09.00 16:43--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 
     void SwPrintOptions::Commit() {}
-    void SwPrintOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwPrintOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

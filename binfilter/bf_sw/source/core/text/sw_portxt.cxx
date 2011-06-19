@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,23 +33,13 @@
 
 #include <ctype.h>
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef _GUESS_HXX
 #include <guess.hxx>    // SwTxtGuess, Zeilenumbruch
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _PORFLD_HXX
 #include <porfld.hxx>       // SwFldPortion
-#endif
 namespace binfilter {
 
 #if OSL_DEBUG_LEVEL > 1
@@ -131,7 +122,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/
 /*N*/         if ( LANGUAGE_THAI == aLang )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             nCnt = SwScriptInfo::ThaiJustify( *pStr, 0, 0, nPos, nEnd - nPos );
+                DBG_BF_ASSERT(0, "STRIP");
 /*?*/             return nCnt;
 /*N*/         }
 /*N*/     }
@@ -140,7 +131,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/     // Kashida Justification: Insert Kashidas
 /*N*/     if ( nEnd > nPos && pSI && COMPLEX == nScript )
 /*N*/     {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         LanguageType aLang =
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ #endif
 /*N*/
@@ -310,7 +301,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*M*/           // this should usually be true but
 /*M*/           aGuess.AlternativeSpelling( rInf, rInf.GetSoftHyphPos() - 1 );
 /*M*/           bFull = CreateHyphen( rInf, aGuess );
-/*M*/             ASSERT( bFull, "Problem with hyphenation!!!" );
+/*M*/             OSL_ENSURE( bFull, "Problem with hyphenation!!!" );
 /*M*/       }
 /*M*/       rInf.ChgHyph( bHyph );
 /*M*/       rInf.SetSoftHyphPos( 0 );
@@ -401,7 +392,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*M*/
 /*M*/             SetLen( aGuess.BreakPos() - rInf.GetIdx() );
 /*M*/
-/*M*/             ASSERT( aGuess.BreakStart() >= aGuess.FieldDiff(),
+/*M*/             OSL_ENSURE( aGuess.BreakStart() >= aGuess.FieldDiff(),
 /*M*/                     "Trouble with expanded field portions during line break" );
 /*M*/             const xub_StrLen nRealStart = aGuess.BreakStart() - aGuess.FieldDiff();
 /*N*/             if( aGuess.BreakPos() < nRealStart && !InExpGrp() )
@@ -457,9 +448,9 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( rInf.RealWidth() || (rInf.X() == rInf.Width()),
+/*N*/   OSL_ENSURE( rInf.RealWidth() || (rInf.X() == rInf.Width()),
 /*N*/       "SwTxtPortion::Format: missing real width" );
-/*N*/   ASSERT( Height(), "SwTxtPortion::Format: missing height" );
+/*N*/   OSL_ENSURE( Height(), "SwTxtPortion::Format: missing height" );
 /*N*/
 /*N*/   return _Format( rInf );
 /*N*/ }
@@ -552,7 +543,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 
-/*N*/ sal_Bool SwTxtPortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwTxtPortion::GetExpTxt( const SwTxtSizeInfo &/*rInf*/, XubString &/*rTxt*/ ) const
 /*N*/ {
 /*N*/   return sal_False;
 /*N*/ }
@@ -638,3 +629,5 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

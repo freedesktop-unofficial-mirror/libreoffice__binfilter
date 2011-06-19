@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
 namespace binfilter {
 class BfGraphicObject;
 
@@ -62,7 +57,7 @@ class SdrGrafObjGeoData : public SdrRectObjGeoData
 {
 public:
 
-    FASTBOOL    bMirrored;
+    bool    bMirrored;
 
                 SdrGrafObjGeoData() :
                     bMirrored( FALSE ) {}
@@ -85,7 +80,7 @@ protected:
     void                    ImpSetAttrToGrafInfo(); // Werte vom Pool kopieren
     void                    ImpSetGrafInfoToAttr(); // Werte in den Pool kopieren
     BfGraphicAttr           aGrafInfo;
-    FASTBOOL                bCopyToPoolOnAfterRead;
+    bool                bCopyToPoolOnAfterRead;
 
     String                  aName;
 
@@ -100,16 +95,16 @@ protected:
     void*                   pReserve4;
     void*                   pReserve5;
     SdrGraphicLink*         pGraphicLink;       // Und hier noch ein Pointer fuer gelinkte Grafiken
-    FASTBOOL                bMirrored;          // True bedeutet, die Grafik ist horizontal, d.h. ueber die Y-Achse gespiegelt auszugeben.
+    bool                bMirrored;          // True bedeutet, die Grafik ist horizontal, d.h. ueber die Y-Achse gespiegelt auszugeben.
     ULONG                   nGrafStreamPos;
-    FASTBOOL                bDummy1:1;
-    FASTBOOL                bDummy2:1;
+    bool                bDummy1:1;
+    bool                bDummy2:1;
 
 #if _SOLAR__PRIVATE
 
     void                    ImpLinkAnmeldung();
     void                    ImpLinkAbmeldung();
-    void                    ImpPaintReplacement(OutputDevice* pOutDev, const XubString& rText, const Bitmap* pBmp, FASTBOOL bFill) const;
+    void                    ImpPaintReplacement(OutputDevice* pOutDev, const XubString& rText, const Bitmap* pBmp, bool bFill) const;
 
     sal_Bool                ImpUpdateGraphicLink() const;
 
@@ -141,7 +136,7 @@ public:
 
     void                    SetGraphicLink(const String& rFileName, const String& rFilterName);
     void                    ReleaseGraphicLink();
-    FASTBOOL                IsLinkedGraphic() const { return (BOOL)aFileName.Len(); }
+    bool                IsLinkedGraphic() const { return (BOOL)aFileName.Len(); }
 
     const String&           GetFileName() const { return aFileName; }
     const String&           GetFilterName() const { return aFilterName; }
@@ -152,7 +147,7 @@ public:
     virtual String          GetName() const;
 
     virtual UINT16          GetObjIdentifier() const;
-    virtual FASTBOOL        Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool        Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject*      CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
 
@@ -168,7 +163,7 @@ public:
 
     virtual void            SetPage(SdrPage* pNewPage);
     virtual void            SetModel(SdrModel* pNewModel);
-    virtual void            WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void            ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     void                    ReadDataTilV10(const SdrObjIOHeader& rHead, SvStream& rIn);
 
@@ -178,7 +173,7 @@ public:
     virtual void            SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                                         const SfxHint& rHint, const TypeId& rHintType );
     virtual void            ForceDefaultAttr();
-    virtual void            NbcSetStyleSheet( SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr );
+    virtual void            NbcSetStyleSheet( SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr );
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
@@ -187,8 +182,8 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
     virtual void            AfterRead();
 
@@ -199,3 +194,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOGRAF_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,14 @@
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
 #include "schattr.hxx"
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 #include "globfunc.hxx"
@@ -63,19 +58,19 @@ ChartTitle::~ChartTitle()
 ::rtl::OUString SAL_CALL ChartTitle::getImplementationName()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "ChartTitle" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartTitle" ));
 }
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartTitle::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 4 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartTitle" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.Shape" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.style.CharacterProperties" );
-    aSeq[ 3 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTitle" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.Shape" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.CharacterProperties" ));
+    aSeq[ 3 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -97,7 +92,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChartTitle::getImplementationId()
 ::rtl::OUString SAL_CALL ChartTitle::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartTitle" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartTitle" ));
 }
 
 // XUnoTunnel
@@ -185,3 +180,5 @@ void ChartTitle::GetPropertyValue( const SfxItemPropertyMap & rProperty,
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

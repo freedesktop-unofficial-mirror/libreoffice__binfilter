@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _FMTRFMRK_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtRefMark;
@@ -54,7 +53,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     const SwTxtRefMark *GetTxtRefMark() const   { return pTxtAttr; }
     SwTxtRefMark *GetTxtRefMark()               { return pTxtAttr; }
@@ -66,3 +65,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

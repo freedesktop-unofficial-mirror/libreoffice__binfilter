@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SDGCPITM_HXX
 #define _SDGCPITM_HXX
 
-#ifndef _SVX_GRFCROP_HXX
 #include <bf_svx/grfcrop.hxx>
-#endif
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 //------------------
@@ -58,3 +55,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _SDGCPITM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

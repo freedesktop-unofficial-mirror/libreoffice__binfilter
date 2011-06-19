@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #ifndef _SC_CSVSPLITS_HXX
 #define _SC_CSVSPLITS_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 #include <vector>
 namespace binfilter {
@@ -41,9 +40,9 @@ namespace binfilter {
 // ============================================================================
 
 /** Constant for an invalid vector index. */
-const sal_uInt32 CSV_VEC_NOTFOUND   = ~0UL;
+const sal_uInt32 CSV_VEC_NOTFOUND = SAL_MAX_UINT32;
 /** Constant for an invalid ruler position. */
-const sal_Int32 CSV_POS_INVALID     = -1;
+const sal_Int32 CSV_POS_INVALID = -1;
 
 
 // ----------------------------------------------------------------------------
@@ -66,3 +65,4 @@ private:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,15 @@
 
 
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
 // impress import
 extern uno::Sequence< OUString > SAL_CALL SdImpressXMLImport_getSupportedServiceNames() throw();
@@ -213,12 +212,12 @@ extern "C"
 {
 #endif
 
-void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** ppEnv )
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment( const sal_Char ** ppEnvTypeName, uno_Environment ** /*ppEnv*/ )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
-void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * pRegistryKey )
+SAL_DLLPUBLIC_EXPORT void * SAL_CALL component_getFactory( const sal_Char * pImplName, void * pServiceManager, void * /*pRegistryKey*/ )
 {
     void * pRet = 0;
     if( pServiceManager )
@@ -532,7 +531,7 @@ sal_Bool XMLRegisterServices( ::com::sun::star::uno::Reference< ::com::sun::star
     catch( uno::Exception& )
     {
 #ifdef DBG_UTIL
-        DBG_ERROR( "Cannot register XMLOFF services" );
+        OSL_FAIL( "Cannot register XMLOFF services" );
 #endif
         return sal_False;
     }
@@ -542,3 +541,5 @@ sal_Bool XMLRegisterServices( ::com::sun::star::uno::Reference< ::com::sun::star
 
 #endif // #ifndef SVX_LIGHT
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

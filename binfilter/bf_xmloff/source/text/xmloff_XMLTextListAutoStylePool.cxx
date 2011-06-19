@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,40 +26,28 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _CNTRSRT_HXX
 #include <bf_svtools/cntnrsrt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPAREFACTORY_HPP_
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 #include "XMLTextListAutoStylePool.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::style;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 int XMLTextListAutoStylePoolNameCmp_Impl( const OUString& r1,
@@ -93,8 +82,8 @@ public:
 
     XMLTextListAutoStylePoolEntry_Impl(
             const Reference < XIndexReplace > & rNumRules ) :
-        nPos( 0 ),
         xNumRules( rNumRules ),
+        nPos( 0 ),
         bIsNamed( sal_False )
     {
         Reference < XNamed > xNamed( xNumRules, UNO_QUERY );
@@ -107,8 +96,8 @@ public:
 
     XMLTextListAutoStylePoolEntry_Impl(
             const OUString& rInternalName ) :
-        nPos( 0 ),
         sInternalName( rInternalName ),
+        nPos( 0 ),
         bIsNamed( sal_True )
     {
     }
@@ -126,8 +115,8 @@ XMLTextListAutoStylePoolEntry_Impl::XMLTextListAutoStylePoolEntry_Impl(
         XMLTextListAutoStylePoolNames_Impl& rNames,
         const OUString& rPrefix,
         sal_uInt32& rName ) :
-    nPos( nP ),
     xNumRules( rNumRules ),
+    nPos( nP ),
     bIsNamed( sal_False )
 {
     Reference < XNamed > xNamed( xNumRules, UNO_QUERY );
@@ -182,10 +171,10 @@ IMPL_CONTAINER_SORT( XMLTextListAutoStylePool_Impl,
 
 XMLTextListAutoStylePool::XMLTextListAutoStylePool( SvXMLExport& rExp ) :
     rExport( rExp ),
+    sPrefix( RTL_CONSTASCII_USTRINGPARAM("L") ),
     pPool( new XMLTextListAutoStylePool_Impl( 5, 5 ) ),
     pNames( new XMLTextListAutoStylePoolNames_Impl( 5, 5 ) ),
-    nName( 0 ),
-    sPrefix( RTL_CONSTASCII_USTRINGPARAM("L") )
+    nName( 0 )
 {
     Reference<ucb::XAnyCompareFactory> xCompareFac( rExp.GetModel(), uno::UNO_QUERY );
     if( xCompareFac.is() )
@@ -314,3 +303,5 @@ void XMLTextListAutoStylePool::exportXML() const
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

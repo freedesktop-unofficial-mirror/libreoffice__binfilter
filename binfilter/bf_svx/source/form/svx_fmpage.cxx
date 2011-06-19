@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,36 +32,26 @@
 
 #define ENABLE_BYTESTRING_STREAM_OPERATORS
 
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
 
 
 
-#ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
 #ifndef SVX_LIGHT
 #endif
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
 #endif
-#endif
 
 
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMPGEIMP_HXX
 #include "fmpgeimp.hxx"
 #endif
-#endif
 
-#ifndef _SVDIO_HXX //autogen
 #include "svdio.hxx"
-#endif
 
 #ifndef SVX_LIGHT
 #endif
@@ -71,10 +62,8 @@
 
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 #endif
 
 namespace binfilter {
@@ -83,20 +72,17 @@ namespace binfilter {
 /*N*/ TYPEINIT1(FmFormPage, SdrPage);
 
 //------------------------------------------------------------------
-/*N*/ FmFormPage::FmFormPage(FmFormModel& rModel, StarBASIC* _pBasic, FASTBOOL bMasterPage)
+/*N*/ FmFormPage::FmFormPage(FmFormModel& rModel, StarBASIC* _pBasic, bool bMasterPage)
 /*N*/          :SdrPage(rModel, bMasterPage)
-/*N*/          ,pBasic(_pBasic)
 /*N*/ #ifndef SVX_LIGHT
 /*N*/          ,pImpl(new FmFormPageImpl(this))
 /*N*/ #else
 /*N*/          ,pImpl(NULL)
 /*N*/ #endif
+/*N*/          ,pBasic(_pBasic)
 /*N*/ {
 /*N*/ }
 
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
 /*N*/ FmFormPage::~FmFormPage()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
@@ -104,43 +90,6 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/ }
 
-//------------------------------------------------------------------
-/*N*/ void FmFormPage::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   {
-/*N*/       {
-/*N*/           SdrDownCompat aVCCompat1( rOut, STREAM_WRITE );
-/*N*/           sal_uInt16 n = 0;
-/*N*/           rOut << n;
-/*N*/       }
-/*N*/       SdrPage::WriteData( rOut );
-/*N*/       SdrDownCompat aVCCompat2( rOut, STREAM_WRITE );
-/*N*/
-/*N*/       rOut << ByteString(aPageName, gsl_getSystemTextEncoding());
-/*N*/       rOut << (sal_uInt32)0x11051967;
-/*N*/       rOut << (sal_uInt32)0x19670511;
-/*N*/       sal_uInt16 nVer = 1;
-/*N*/       rOut << nVer;
-/*N*/       {
-/*N*/           SdrDownCompat aVCCompat3( rOut, STREAM_WRITE);
-/*N*/           sal_uInt32 nFormCount = 0;
-/*N*/           rOut << nFormCount;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   // dont use the flag in that way: if (rOut.GetVersion() >= SOFFICE_FILEFORMAT_40)
-/*N*/   if (rOut.GetVersion() >= 3830)
-/*N*/   {
-/*N*/       SdrDownCompat aCompat(rOut, STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/       pImpl->WriteData(rOut);
-/*N*/   }
-/*N*/ #else
-/*N*/   DBG_ERROR( "FmFormPage::WriteData: not to be called in SVX_LIGHT version!" );
-/*N*/ #endif
-/*N*/ }
-
-//------------------------------------------------------------------
 /*N*/ void FmFormPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   {
@@ -210,3 +159,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

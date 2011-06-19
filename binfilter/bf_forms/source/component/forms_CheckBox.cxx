@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,31 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _FORMS_CHECKBOX_HXX_
 #include "CheckBox.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 namespace binfilter {
 
@@ -59,7 +44,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -179,7 +163,7 @@ void SAL_CALL OCheckBoxModel::disposing()
 }
 
 //------------------------------------------------------------------------------
-void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& _rEvent) throw(RuntimeException)
+void OCheckBoxModel::_propertyChanged(const PropertyChangeEvent& /*rEvent*/) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OCheckBoxModel::_propertyChanged: dead code!?" );
 }
@@ -333,7 +317,7 @@ void SAL_CALL OCheckBoxModel::read(const Reference<stario::XObjectInputStream>& 
             readCommonProperties(_rxInStream);
             break;
         default :
-            DBG_ERROR("OCheckBoxModel::read : unknown version !");
+            OSL_FAIL("OCheckBoxModel::read : unknown version !");
             m_sReferenceValue = ::rtl::OUString();
             m_nDefaultChecked = 0;
             defaultCommonProperties();
@@ -365,3 +349,5 @@ void OCheckBoxModel::reset(void) throw (com::sun::star::uno::RuntimeException)
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,12 @@
 #include "nmspmap.hxx"
 #include "xmluconv.hxx"
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -60,30 +49,30 @@ using namespace xmloff::token;
 
 XMLNumberFormatAttributesExportHelper::XMLNumberFormatAttributesExportHelper(
             ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier >& xTempNumberFormatsSupplier)
-    : pExport(NULL),
-    xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ()),
-    aNumberFormats(),
-    sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT)),
-    sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    : xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ())
+    , pExport(NULL)
+    , sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT))
+    , sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    , aNumberFormats()
 {
 }
 
 XMLNumberFormatAttributesExportHelper::XMLNumberFormatAttributesExportHelper(
             ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier >& xTempNumberFormatsSupplier,
             SvXMLExport& rTempExport, sal_uInt16 nTempNamespace)
-      : pExport(&rTempExport),
-    xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ()),
-    aNumberFormats(),
-    nNamespace(nTempNamespace),
-    sAttrValueType(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE_TYPE))),
-    sAttrValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE))),
-    sAttrDateValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_DATE_VALUE))),
-    sAttrTimeValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_TIME_VALUE))),
-    sAttrBooleanValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_BOOLEAN_VALUE))),
-    sAttrStringValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_STRING_VALUE))),
-    sAttrCurrency(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_CURRENCY))),
-    sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT)),
-    sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    : xNumberFormats(xTempNumberFormatsSupplier.is() ? xTempNumberFormatsSupplier->getNumberFormats() : ::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormats > ())
+    , pExport(&rTempExport)
+    , sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT))
+    , sType(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE))
+    , sAttrValueType(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE_TYPE)))
+    , sAttrValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_VALUE)))
+    , sAttrDateValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_DATE_VALUE)))
+    , sAttrTimeValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_TIME_VALUE)))
+    , sAttrBooleanValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_BOOLEAN_VALUE)))
+    , sAttrStringValue(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_STRING_VALUE)))
+    , sAttrCurrency(rTempExport.GetNamespaceMap().GetQNameByKey( nTempNamespace, GetXMLToken(XML_CURRENCY)))
+    , aNumberFormats()
+    , nNamespace(nTempNamespace)
 {
 }
 
@@ -279,7 +268,7 @@ sal_Bool XMLNumberFormatAttributesExportHelper::GetCurrencySymbol(const sal_Int3
             }
             catch ( uno::Exception& )
             {
-                DBG_ERROR("Numberformat not found");
+                OSL_FAIL("Numberformat not found");
             }
         }
     }
@@ -301,7 +290,7 @@ sal_Int16 XMLNumberFormatAttributesExportHelper::GetCellType(const sal_Int32 nNu
                 uno::Any aIsStandardFormat = xNumberPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_STANDARDFORMAT)));
                 aIsStandardFormat >>= bIsStandard;
                 uno::Any aNumberType = xNumberPropertySet->getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(XML_TYPE)));
-                sal_Int16 nNumberType;
+                sal_Int16 nNumberType(0);
                 if ( aNumberType >>= nNumberType )
                 {
                     return nNumberType;
@@ -309,7 +298,7 @@ sal_Int16 XMLNumberFormatAttributesExportHelper::GetCellType(const sal_Int32 nNu
             }
             catch ( uno::Exception& )
             {
-                DBG_ERROR("Numberformat not found");
+                OSL_FAIL("Numberformat not found");
             }
         }
     }
@@ -367,7 +356,7 @@ sal_Bool XMLNumberFormatAttributesExportHelper::GetCurrencySymbol(const sal_Int3
         }
         catch ( uno::Exception& )
         {
-            DBG_ERROR("Numberformat not found");
+            OSL_FAIL("Numberformat not found");
         }
     }
     return sal_False;
@@ -386,7 +375,7 @@ sal_Int16 XMLNumberFormatAttributesExportHelper::GetCellType(const sal_Int32 nNu
             uno::Any aIsStandardFormat = xNumberPropertySet->getPropertyValue(sStandardFormat);
             aIsStandardFormat >>= bIsStandard;
             uno::Any aNumberType = xNumberPropertySet->getPropertyValue(sType);
-            sal_Int16 nNumberType;
+            sal_Int16 nNumberType(0);
             if ( aNumberType >>= nNumberType )
             {
                 return nNumberType;
@@ -394,7 +383,7 @@ sal_Int16 XMLNumberFormatAttributesExportHelper::GetCellType(const sal_Int32 nNu
         }
         catch ( uno::Exception& )
         {
-            DBG_ERROR("Numberformat not found");
+            OSL_FAIL("Numberformat not found");
         }
     }
     return 0;
@@ -548,7 +537,7 @@ void XMLNumberFormatAttributesExportHelper::SetNumberFormatAttributes(
         WriteAttributes(nTypeKey, rValue, sCurrency, bExportValue);
     }
     else
-        DBG_ERROR("no SvXMLExport given");
+        OSL_FAIL("no SvXMLExport given");
 }
 
 void XMLNumberFormatAttributesExportHelper::SetNumberFormatAttributes(
@@ -563,6 +552,8 @@ void XMLNumberFormatAttributesExportHelper::SetNumberFormatAttributes(
             pExport->AddAttribute(sAttrStringValue, rValue);
     }
     else
-        DBG_ERROR("no SvXMLExport given");
+        OSL_FAIL("no SvXMLExport given");
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

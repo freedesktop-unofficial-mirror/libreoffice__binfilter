@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,43 +28,21 @@
 #ifndef SC_XMLCELLI_HXX
 #define SC_XMLCELLI_HXX
 
-#ifndef _SC_XMLDETECTIVECONTEXT_HXX
 #include "XMLDetectiveContext.hxx"
-#endif
-#ifndef _SC_XMLCELLRANGESOURCECONTEXT_HXX
 #include "XMLCellRangeSourceContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCELL_HPP_
 #include <com/sun/star/table/XCell.hpp>
-#endif
 #include <tools/time.hxx>
 #include <com/sun/star/util/DateTime.hpp>
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
 #include <com/sun/star/table/XCellRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETDOCUMENT_HPP_
 #include <com/sun/star/sheet/XSpreadsheetDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLImport;
@@ -160,3 +139,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,77 +31,48 @@
 #define _BASEDLGS_HXX
 #define _BIGINT_HXX
 #define _CACHESTR_HXX
-//#define _CLIP_HXX
 #define _CONFIG_HXX
 #define _CURSOR_HXX
-//#define _COLOR_HXX
-//#define _CTRLBOX_HXX
-//#define _CTRLTOOL_HXX
 #define _DIALOGS_HXX
 #define _DLGCFG_HXX
 #define _DYNARR_HXX
 #define _EXTATTR_HXX
-//#define _FIELD_HXX
 #define _FILDLG_HXX
-//#define _FILTER_HXX
 #define _FONTDLG_HXX
 #define _FRM3D_HXX
-//#define _GRAPH_HXX
-//#define _GDIMTF_HXX
 #define _INTRO_HXX
 #define _ISETBWR_HXX
 #define _NO_SVRTF_PARSER_HXX
-//#define _MDIFRM_HXX
 #define _MACRODLG_HXX
 #define _MODALDLG_HXX
 #define _MOREBUTTON_HXX
-//#define _MAPMOD_HXX
 #define _OUTLINER_HXX
-//#define _PAL_HXX
 #define _PASSWD_HXX
-//#define _PRNDLG_HXX   //
 #define _POLY_HXX
 #define _PVRWIN_HXX
 #define _QUEUE_HXX
 #define _RULER_HXX
 #define _SCRWIN_HXX
-//#define _SELENG_HXX
 #define _SETBRW_HXX
-//#define _SOUND_HXX
 #define _STACK_HXX
-//#define _STATUS_HXX ***
 #define _STDMENU_HXX
-//#define _STDCTRL_HXX
-//#define _SYSDLG_HXX
-//#define _TAB_HXX
 #define _TABBAR_HXX
-//#define _TREELIST_HXX
-//#define _VALUESET_HXX
 #define _VCBRW_HXX
 #define _VCTRLS_HXX
-//#define _VCATTR_HXX
 #define _VCSBX_HXX
 #define _VCONT_HXX
 #define _VDRWOBJ_HXX
-//#define _VIEWFAC_HXX
 
 
 #define _SFX_PRNMON_HXX
 #define _SFX_RESMGR_HXX
-//#define _SFX_SAVEOPT_HXX
 #define _SFX_TEMPLDLG_HXX
-//#define _SFXAPP_HXX
 #define _SFXBASIC_HXX
-//#define _SFXCTRLITEM_HXX
-//#define _SFXDISPATCH_HXX
 #define _SFXFILEDLG_HXX
 #define _SFXIMGMGR_HXX
 #define _SFXMNUMGR_HXX
-//#define _SFXMSG_HXX
 #define _SFXMSGDESCR_HXX
 #define _SFXMSGPOOL_HXX
-//#define _SFXOBJFACE_HXX
-//#define _SFXREQUEST_HXX
 #define _SFXSTBITEM_HXX
 #define _SFXSTBMGR_HXX
 #define _SFXTBXCTRL_HXX
@@ -140,9 +112,6 @@
 #define _SVX_THESDLG_HXX
 
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -153,12 +122,9 @@
 #include <bf_sfx2/app.hxx>
 
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "docsh.hxx"
 #include "globstr.hrc"
 #include "undodat.hxx"
-//#include "pivot.hxx"
 #include "consoli.hxx"
 #include "dbcolect.hxx"
 #include "bf_sc.hrc"
@@ -171,11 +137,11 @@ namespace binfilter {
 //  ehemalige viewfunc/dbfunc Methoden
 //
 
-/*N*/ void ScDocShell::ErrorMessage( USHORT nGlobStrId )
+/*N*/ void ScDocShell::ErrorMessage( USHORT /*nGlobStrId*/ )
 /*N*/ {
 /*N*/   //! StopMarking an der (aktiven) View?
 /*N*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Window* pParent = GetDialogParent();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL ScDocShell::IsEditable() const
@@ -185,9 +151,9 @@ namespace binfilter {
 /*N*/   return !IsReadOnly() || aDocument.IsImportingXML();
 /*N*/ }
 
-/*N*/ void ScDocShell::DBAreaDeleted( USHORT nTab, USHORT nX1, USHORT nY1, USHORT nX2, USHORT nY2 )
+/*N*/ void ScDocShell::DBAreaDeleted( USHORT /*nTab*/, USHORT /*nX1*/, USHORT /*nY1*/, USHORT /*nX2*/, USHORT /*nY2*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -210,7 +176,7 @@ namespace binfilter {
 /*N*/
 /*N*/   ScDBData* pData = aDocument.GetDBAtArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/   if (!pData)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pData = lcl_GetDBNearCursor( aDocument.GetDBCollection(), nCol, nRow, nTab );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   BOOL bSelected = ( bForceMark || rMarked.aStart != rMarked.aEnd );
 /*N*/
@@ -279,7 +245,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( bSelected )
 /*N*/       {
-/*N*/ //            bMark = FALSE;
 /*N*/       }
 /*N*/       else
 /*N*/       {                                       // zusammenhaengender Bereich
@@ -347,7 +312,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if ( pUndoColl )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aDocument.CompileDBFormula( FALSE );      // CompileFormulaString
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           //  neuen Bereich am Sba anmelden nicht mehr noetig
@@ -358,9 +323,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/       pData = pNoNameData;
 /*N*/   }
-/*N*/
-/*N*/ //    if (bMark)
-/*N*/ //        MarkRange( ScRange( nStartCol, nStartRow, nTab, nEndCol, nEndRow, nTab ), FALSE );
 /*N*/
 /*N*/   return pData;
 /*N*/ }
@@ -473,9 +435,8 @@ namespace binfilter {
 /*N*/   aData.GetSize( nColSize, nRowSize );
 /*N*/   if (bRecord && nColSize && nRowSize)
 /*N*/   {
-/*N*/       ScDBData* pUndoData = pDestData ? new ScDBData(*pDestData) : NULL;
+/*N*/       pDestData ? new ScDBData(*pDestData) : NULL;
 /*N*/
-/*N*/       USHORT nDestTab = rParam.nTab;
 /*N*/       ScArea aDestArea( rParam.nTab, rParam.nCol, rParam.nRow,
 /*N*/                           rParam.nCol+nColSize-1, rParam.nRow+nRowSize-1 );
 /*N*/       if (rParam.bByCol) ++aDestArea.nColEnd;
@@ -483,11 +444,11 @@ namespace binfilter {
 /*N*/
 /*N*/       if (rParam.bReferenceData)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTabCount = aDocument.GetTableCount();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -529,7 +490,7 @@ namespace binfilter {
 /*N*/   aModificator.SetDocumentModified();
 /*N*/ }
 
-/*N*/ void ScDocShell::UseScenario( USHORT nTab, const String& rName, BOOL bRecord )
+/*N*/ void ScDocShell::UseScenario( USHORT nTab, const String& rName, BOOL /*bRecord*/ )
 /*N*/ {
 /*N*/   if (!aDocument.IsScenario(nTab))
 /*N*/   {
@@ -549,7 +510,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if (nSrcTab <= MAXTAB)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( aDocument.TestCopyScenario( nSrcTab, nTab ) )            // Zellschutz testen
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -559,33 +520,35 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR( "UseScenario auf Szenario-Blatt" );
+/*N*/       OSL_FAIL( "UseScenario auf Szenario-Blatt" );
 /*N*/ }
 
-/*N*/ void ScDocShell::ModifyScenario( USHORT nTab, const String& rName, const String& rComment,
-/*N*/                                   const Color& rColor, USHORT nFlags )
+/*N*/ void ScDocShell::ModifyScenario( USHORT /*nTab*/, const String& /*rName*/, const String& /*rComment*/,
+/*N*/                                   const Color& /*rColor*/, USHORT /*nFlags*/ )
 /*N*/ {
 /*?*/   //  Undo
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aOldName;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ USHORT ScDocShell::MakeScenario( USHORT nTab, const String& rName, const String& rComment,
-/*N*/                                   const Color& rColor, USHORT nFlags,
-/*N*/                                   ScMarkData& rMark, BOOL bRecord )
+/*N*/ USHORT ScDocShell::MakeScenario( USHORT /*nTab*/, const String& /*rName*/, const String& /*rComment*/,
+/*N*/                                   const Color& /*rColor*/, USHORT /*nFlags*/,
+/*N*/                                   ScMarkData& /*rMark*/, BOOL /*bRecord*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 rMark.MarkToMulti();
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*N*/ BOOL ScDocShell::MoveTable( USHORT nSrcTab, USHORT nDestTab, BOOL bCopy, BOOL bRecord )
+/*N*/ BOOL ScDocShell::MoveTable( USHORT /*nSrcTab*/, USHORT /*nDestTab*/, BOOL /*bCopy*/, BOOL /*bRecord*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, pDBData )
+/*N*/ IMPL_LINK( ScDocShell, RefreshDBDataHdl, ScDBData*, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 ScDBDocFunc aFunc(*this);
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

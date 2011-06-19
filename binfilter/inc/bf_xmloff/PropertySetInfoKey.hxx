@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,8 @@
 #ifndef _XMLOFF_PROPERTYSETINFOKEY_HXX
 #define _XMLOFF_PROPERTYSETINFOKEY_HXX
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace beans { class XPropertySetInfo; }
@@ -70,3 +67,5 @@ inline PropertySetInfoKey::PropertySetInfoKey(
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

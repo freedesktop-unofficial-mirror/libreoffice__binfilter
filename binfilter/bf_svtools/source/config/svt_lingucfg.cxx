@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,33 +30,23 @@
 
 
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
+#include <sal/macros.h>
 
-#ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <bf_svtools/lingucfg.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUPROPS_HXX_
 #include <linguprops.hxx>
-#endif
 
 #include <itemholder1.hxx>
 
-using namespace rtl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::beans;
 using namespace com::sun::star::lang;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -266,7 +257,7 @@ const Sequence< OUString > & SvtLinguConfigItem::GetPropertyNames()
 
     if (!bInitialized)
     {
-        INT32 nMax = sizeof(aNamesToHdl) / sizeof(aNamesToHdl[0]);
+        INT32 nMax = SAL_N_ELEMENTS(aNamesToHdl);
 
         aNames.realloc( nMax );
         OUString *pNames = aNames.getArray();
@@ -427,7 +418,7 @@ BOOL SvtLinguConfigItem::LoadOptions( const Sequence< OUString > &rProperyNames 
                 case UPH_DATA_FILES_CHANGED_CHECK_VALUE :
                     { rOpt.bRODataFilesChangedCheckValue = pROStates[i]; rVal >>= rOpt.nDataFilesChangedCheckValue;  } break;
                 default:
-                    DBG_ERROR( "unexpected case" );
+                    OSL_FAIL( "unexpected case" );
             }
         }
 
@@ -544,7 +535,6 @@ SvtLinguConfigItem & SvtLinguConfig::GetConfigItem()
         pCfgItem = new SvtLinguConfigItem;
         ItemHolder1::holdConfigItem(E_LINGUCFG);
     }
-    ++nCfgItemRefCount;
     return *pCfgItem;
 }
 
@@ -561,3 +551,5 @@ BOOL SvtLinguConfig::GetOptions( SvtLinguOptions &rOptions ) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

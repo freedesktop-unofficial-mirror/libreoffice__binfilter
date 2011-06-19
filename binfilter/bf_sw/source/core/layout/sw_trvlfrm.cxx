@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,64 +32,28 @@
 #endif
 
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
 
-#ifndef _PAGEFRM_HXX //autogen
 #include <pagefrm.hxx>
-#endif
-#ifndef _FTNFRM_HXX //autogen
 #include <ftnfrm.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FLYFRM_HXX //autogen
 #include <flyfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX //autogen
 #include <tabfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX //autogen
 #include <txtfrm.hxx>
-#endif
-#ifndef _DOC_HXX //autogen
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX //autogen
 #include <pam.hxx>
-#endif
-#ifndef _SWTABLE_HXX //autogen
 #include <swtable.hxx>
-#endif
-#ifndef _CRSTATE_HXX //autogen
 #include <crstate.hxx>
-#endif
-#ifndef _FRMTOOL_HXX //autogen
 #include <frmtool.hxx>
-#endif
-#ifndef _HINTS_HXX //autogen
 #include <hints.hxx>
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
 namespace binfilter {
 
 
@@ -101,8 +66,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       Sucht denjenigen CntntFrm, innerhalb dessen
 |*                      PrtArea der Point liegt.
-|*  Ersterstellung      MA 20. Jul. 92
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 
@@ -112,8 +75,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       Sucht die Seite, innerhalb der der gesuchte Point
 |*                      liegt.
-|*  Ersterstellung      MA 20. Jul. 92
-|*  Letzte Aenderung    MA 18. Jul. 96
 |*
 |*************************************************************************/
 
@@ -125,8 +86,6 @@ namespace binfilter {
 |*  Beschreibung:       Reicht Primaer den Aufruf an die erste Seite weiter.
 |*                      Wenn der 'reingereichte Point veraendert wird,
 |*                      so wird FALSE zurueckgegeben.
-|*  Ersterstellung      MA 01. Jun. 92
-|*  Letzte Aenderung    MA 30. Nov. 94
 |*
 |*************************************************************************/
 
@@ -138,17 +97,12 @@ namespace binfilter {
 |*                      der Crsr notfalls mit Gewalt in einen der CntntFrms
 |*                      gesetzt.
 |*                      In geschuetzte Zellen gibt es hier keinen Eingang.
-|*  Ersterstellung      MA 04. Jun. 93
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwFlyFrm::GetCrsrOfst()
-|*
-|*  Ersterstellung      MA 15. Dec. 92
-|*  Letzte Aenderung    MA 23. May. 95
 |*
 |*************************************************************************/
 //Problem: Wenn zwei Flys genau gleich gross sind und auf derselben
@@ -165,8 +119,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    Beschreibung      Layoutabhaengiges Cursortravelling
-|*    Ersterstellung    MA 23. Jul. 92
-|*    Letzte Aenderung  MA 06. Sep. 93
 |*
 |*************************************************************************/
 
@@ -180,9 +132,9 @@ namespace binfilter {
 /*N*/ typedef const SwCntntFrm *(*GetNxtPrvCnt)( const SwCntntFrm* );
 
 //Frame in wiederholter Headline?
-/*N*/ FASTBOOL lcl_IsInRepeatedHeadline( const SwFrm *pFrm,
-/*N*/                                   const SwTabFrm** ppTFrm = 0 )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ bool lcl_IsInRepeatedHeadline( const SwFrm* /*pFrm*/,
+/*N*/                                   const SwTabFrm** /*ppTFrm*/ = 0 )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
@@ -191,8 +143,8 @@ namespace binfilter {
 //MA 26. Jan. 98: Chg auch andere Geschuetzte Bereiche ueberspringen.
 /*N*/ const SwCntntFrm * MA_FASTCALL lcl_MissProtectedFrames( const SwCntntFrm *pCnt,
 /*N*/                                                      GetNxtPrvCnt fnNxtPrv,
-/*N*/                                                      FASTBOOL bMissHeadline,
-/*N*/                                                      FASTBOOL bInReadOnly )
+/*N*/                                                      bool bMissHeadline,
+/*N*/                                                      bool bInReadOnly )
 /*N*/ {
 /*N*/   if ( pCnt && pCnt->IsInTab() )
 /*N*/   {
@@ -229,8 +181,6 @@ namespace binfilter {
 |*          diejenige in der der PaM sitzt. Anderfalls ist die aktuelle
 |*          Seite die erste Seite innerhalb der VisibleArea.
 |*          Es wird nur auf den vorhandenen Seiten gearbeitet!
-|*  Ersterstellung      MA 20. May. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
 |*
 |*************************************************************************/
 
@@ -244,8 +194,6 @@ namespace binfilter {
 |*          Liefert Null, wenn die Operation nicht moeglich ist.
 |*          Der PaM sitzt in der letzten Seite, wenn die Seitenzahl zu gross
 |*          gewaehlt wurde.
-|*  Ersterstellung      MA 20. May. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
 |*
 |*************************************************************************/
 
@@ -260,8 +208,6 @@ namespace binfilter {
 |*      andere Anfang/Ende.
 |*      Fuer die Bestimmung der Seite und des Cntnt (Anfang/Ende) werden
 |*      die im folgenden definierten Funktionen benutzt.
-|*    Ersterstellung    MA 15. Oct. 92
-|*    Letzte Aenderung  MA 28. Feb. 93
 |*
 |*************************************************************************/
 
@@ -288,8 +234,6 @@ namespace binfilter {
  *                      erweitert bis einer gefunden wird.
 |*                      Zurueckgegeben wird die 'Semantisch richtige' Position
 |*                      innerhalb der PrtArea des gefundenen CntntFrm
-|*  Ersterstellung      MA 15. Jul. 92
-|*  Letzte Aenderung    MA 09. Jan. 97
 |*
 |*************************************************************************/
 /*N*/ ULONG CalcDiff( const Point &rPt1, const Point &rPt2 )
@@ -481,9 +425,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   ASSERT( pActual, "Keinen Cntnt gefunden." );
+/*N*/   OSL_ENSURE( pActual, "Keinen Cntnt gefunden." );
 /*N*/   if ( bBodyOnly )
-/*N*/       ASSERT( pActual->IsInDocBody(), "Cnt nicht im Body." );
+/*N*/       OSL_ENSURE( pActual->IsInDocBody(), "Cnt nicht im Body." );
 /*N*/ #endif
 /*N*/
 /*N*/   //Spezialfall fuer das selektieren von Tabellen, nicht in wiederholte
@@ -553,9 +497,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Analog zu SwLayoutFrm::GetCntntPos().
 |*                      Spezialisiert fuer Felder in Rahmen.
-|*
-|*  Ersterstellung      MA 22. Mar. 95
-|*  Letzte Aenderung    MA 07. Nov. 95
 |*
 |*************************************************************************/
 /*N*/ void SwPageFrm::GetCntntPosition( const Point &rPt, SwPosition &rPos ) const
@@ -634,7 +575,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // CntntFrm nicht formatiert -> immer auf Node-Anfang
 /*?*/       SwCntntNode* pCNd = (SwCntntNode*)pAct->GetNode();
-/*?*/       ASSERT( pCNd, "Wo ist mein CntntNode?" );
+/*?*/       OSL_ENSURE( pCNd, "Wo ist mein CntntNode?" );
 /*?*/       rPos.nNode = *pCNd;
 /*?*/       rPos.nContent.Assign( pCNd, 0 );
 /*N*/   }
@@ -651,13 +592,11 @@ namespace binfilter {
 |*
 |*  Beschreibung        Es wird der naechstliegende Cntnt zum uebergebenen
 |*                      Point gesucht. Es wird nur im BodyText gesucht.
-|*  Ersterstellung      MA 15. Jul. 92
-|*  Letzte Aenderung    JP 11.10.2001
 |*
 |*************************************************************************/
 
 //!!!!! Es wird nur der vertikal naechstliegende gesucht.
-//JP 11.10.2001: only in tables we try to find the right column - Bug 72294
+// only in tables we try to find the right column
 
 /*************************************************************************
 |*
@@ -669,14 +608,10 @@ namespace binfilter {
 |*          Liefert Null, wenn die Operation nicht moeglich ist.
 |*          Die Pos ist die der letzten Seite, wenn die Seitenzahl zu gross
 |*          gewaehlt wurde.
-|*  Ersterstellung      MA 01. Jun. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
 |*
 |*************************************************************************/
 
 /** get page frame by phyiscal page number
-
-    OD 14.01.2003 #103492#
 
     @return pointer to the page frame with the given physical page number
 */
@@ -697,9 +632,6 @@ namespace binfilter {
 |*    Beschreibung      Ist der Frm bzw. die Section in der er steht
 |*                      geschuetzt?
 |*                      Auch Fly in Fly in ... und Fussnoten
-|*
-|*    Ersterstellung    MA 28. Jul. 93
-|*    Letzte Aenderung  MA 06. Nov. 97
 |*
 |*************************************************************************/
 /*N*/ BOOL SwFrm::IsProtected() const
@@ -752,9 +684,6 @@ namespace binfilter {
 |*    SwFrm::GetPhyPageNum()
 |*    Beschreibung:     Liefert die physikalische Seitennummer
 |*
-|*    Ersterstellung    OK 06.07.93 08:35
-|*    Letzte Aenderung  MA 30. Nov. 94
-|*
 |*************************************************************************/
 /*N*/ USHORT SwFrm::GetPhyPageNum() const
 /*N*/ {
@@ -762,7 +691,7 @@ namespace binfilter {
 /*N*/   return pPage ? pPage->GetPhyPageNum() : 0;
 /*N*/ }
 
-/*-----------------26.02.01 11:25-------------------
+/*--------------------------------------------------
  * SwFrm::WannaRightPage()
  * decides if the page want to be a rightpage or not.
  * If the first content of the page has a page descriptor,
@@ -810,7 +739,7 @@ namespace binfilter {
 /*N*/           pDesc = (SwPageDesc*)&pDoc->GetPageDesc( 0 );
 /*N*/       }
 /*N*/   }
-/*N*/   ASSERT( pDesc, "No pagedescriptor" );
+/*N*/   OSL_ENSURE( pDesc, "No pagedescriptor" );
 /*N*/   BOOL bOdd;
 /*N*/   if( nPgNum )
 /*N*/       bOdd = nPgNum % 2 ? TRUE : FALSE;
@@ -834,9 +763,6 @@ namespace binfilter {
 |*
 |*    SwFrm::GetVirtPageNum()
 |*    Beschreibung:     Liefert die virtuelle Seitennummer mit Offset
-|*
-|*    Ersterstellung    OK 06.07.93 08:35
-|*    Letzte Aenderung  MA 30. Nov. 94
 |*
 |*************************************************************************/
 /*N*/ USHORT SwFrm::GetVirtPageNum() const
@@ -891,9 +817,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::MakeTblCrsrs()
 |*
-|*  Ersterstellung      MA 14. May. 93
-|*  Letzte Aenderung    MA 02. Feb. 94
-|*
 |*************************************************************************/
 //Ermitteln und einstellen derjenigen Zellen die von der Selektion
 //eingeschlossen sind.
@@ -903,9 +826,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRootFrm::CalcFrmRects
-|*
-|*  Ersterstellung      MA 24. Aug. 92
-|*  Letzte Aenderung    MA 24. Aug. 93
 |*
 |*************************************************************************/
 
@@ -943,3 +863,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

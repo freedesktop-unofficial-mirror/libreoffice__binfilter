@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,47 +29,23 @@
 #ifndef _FRM_INTERFACE_CONTAINER_HXX_
 #define _FRM_INTERFACE_CONTAINER_HXX_
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
 #include <com/sun/star/io/XPersistObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
 #include <com/sun/star/container/XContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
-#endif
 
 
-#ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx>
-#endif
 namespace binfilter {
 
     using namespace ::comphelper;
@@ -98,7 +75,7 @@ namespace frm
     };
 
 typedef ::std::vector<InterfaceRef> OInterfaceArray;
-typedef ::std::hash_multimap< ::rtl::OUString, InterfaceRef, ::comphelper::UStringHash, ::comphelper::UStringEqual> OInterfaceMap;
+typedef ::boost::unordered_multimap< ::rtl::OUString, InterfaceRef, ::comphelper::UStringHash, ::comphelper::UStringEqual> OInterfaceMap;
 
 //==================================================================
 // OInterfaceContainer
@@ -231,11 +208,11 @@ protected:
             ) throw(::com::sun::star::lang::IllegalArgumentException);
 
     // called after the object is inserted, but before the "real listeners" are notified
-    virtual void implInserted( const ElementDescription* _pElement ) { }
+    virtual void implInserted( const ElementDescription* /*_pElement*/ ) { }
     // called after the object is removed, but before the "real listeners" are notified
-    virtual void implRemoved(const InterfaceRef& _rxObject) { }
+    virtual void implRemoved(const InterfaceRef& /*_rxObject*/) { }
     // called after an object was replaced, but before the "real listeners" are notified
-    virtual void implReplaced( const InterfaceRef& _rxReplacedObject, const ElementDescription* _pElement ) { }
+    virtual void implReplaced( const InterfaceRef& /*_rxReplacedObject*/, const ElementDescription* /*_pElement*/ ) { }
 
     void SAL_CALL writeEvents(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& _rxOutStream);
     void SAL_CALL readEvents(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectInputStream>& _rxInStream);
@@ -308,6 +285,9 @@ public:
 // ::com::sun::star::form::XFormComponent
     virtual ::comphelper::InterfaceRef SAL_CALL getParent() throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setParent(const ::comphelper::InterfaceRef& Parent) throw(::com::sun::star::lang::NoSupportException, ::com::sun::star::uno::RuntimeException);
+
+    // XEventListener
+    using OInterfaceContainer::disposing;
 };
 //.........................................................................
 }   // namespace frm
@@ -316,3 +296,4 @@ public:
 }//end of namespace binfilter
 #endif          // _FRM_INTERFACE_CONTAINER_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

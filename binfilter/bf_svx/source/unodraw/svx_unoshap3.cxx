@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,19 +28,11 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_DOUBLESEQUENCE_HPP_
 #include <com/sun/star/drawing/DoubleSequence.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HPP_
 #include <com/sun/star/drawing/CameraGeometry.hpp>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -55,13 +48,13 @@
 #include "svdmodel.hxx"
 namespace binfilter {
 
-using namespace ::vos;
-using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
+
+using rtl::OUString;
 
 #define INTERFACE_TYPE( xint ) \
     ::getCppuType((const Reference< xint >*)0)
@@ -75,8 +68,8 @@ using namespace ::com::sun::star::container;
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DSceneObject::Svx3DSceneObject( SdrObject* pObj, SvxDrawPage* pDrawPage ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DSCENEOBJECT) ), pPage( pDrawPage )
+Svx3DSceneObject::Svx3DSceneObject( SdrObject* pInObj, SvxDrawPage* pDrawPage ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DSCENEOBJECT) ), pPage( pDrawPage )
 {
 }
 
@@ -102,7 +95,7 @@ uno::Any SAL_CALL Svx3DSceneObject::queryAggregation( const uno::Type & rType )
     else QUERYINT( container::XIndexAccess );
     else QUERYINT( container::XElementAccess );
     else
-        SvxShape::queryAggregation( rType, aAny );
+        SvxShape::tryQueryAggregation( rType, aAny );
 
     return aAny;
 }
@@ -147,7 +140,7 @@ uno::Sequence< sal_Int8 > SAL_CALL Svx3DSceneObject::getImplementationId()
 void SAL_CALL Svx3DSceneObject::add( const Reference< drawing::XShape >& xShape )
     throw( uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxShape* pShape = SvxShape::getImplementation( xShape );
 
@@ -177,7 +170,7 @@ void SAL_CALL Svx3DSceneObject::add( const Reference< drawing::XShape >& xShape 
 void SAL_CALL Svx3DSceneObject::remove( const Reference< drawing::XShape >& xShape )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxShape* pShape = SvxShape::getImplementation( xShape );
 
@@ -218,7 +211,7 @@ void SAL_CALL Svx3DSceneObject::remove( const Reference< drawing::XShape >& xSha
 sal_Int32 SAL_CALL Svx3DSceneObject::getCount()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nRetval = 0;
 
@@ -232,7 +225,7 @@ sal_Int32 SAL_CALL Svx3DSceneObject::getCount()
 uno::Any SAL_CALL Svx3DSceneObject::getByIndex( sal_Int32 Index )
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( pObj == NULL || pObj->GetSubList() == NULL )
         throw uno::RuntimeException();
@@ -263,7 +256,7 @@ uno::Type SAL_CALL Svx3DSceneObject::getElementType()
 sal_Bool SAL_CALL Svx3DSceneObject::hasElements()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return pObj && pObj->GetSubList() && (pObj->GetSubList()->GetObjCount() > 0);
 }
@@ -315,10 +308,8 @@ sal_Bool SAL_CALL Svx3DSceneObject::hasElements()
 
 //----------------------------------------------------------------------
 } //namespace binfilter
-#ifndef _SVDITER_HXX
 #include <svditer.hxx>
-#endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 struct ImpRememberTransAndRect
 {
     Matrix4D                    maMat;
@@ -328,7 +319,7 @@ struct ImpRememberTransAndRect
 void SAL_CALL Svx3DSceneObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -393,7 +384,7 @@ void SAL_CALL Svx3DSceneObject::setPropertyValue( const OUString& aPropertyName,
             aCam.SetPosAndLookAt(aCamPos, aLookAt);
             aCam.SetFocalLength(fCamFocal / 100.0);
             aCam.SetDefaults(Vector3D(0.0, 0.0, fCamPosZ), aLookAt, fCamFocal / 100.0);
-            aCam.SetDeviceWindow(Rectangle(0, 0, fW, fH));
+            aCam.SetDeviceWindow(Rectangle(0, 0, static_cast<long>(fW), static_cast<long>(fH)));
 
             // set at scene
             pScene->SetCamera(aCam);
@@ -439,7 +430,7 @@ void SAL_CALL Svx3DSceneObject::setPropertyValue( const OUString& aPropertyName,
 uno::Any SAL_CALL Svx3DSceneObject::getPropertyValue( const OUString& PropertyName )
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && PropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -493,8 +484,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DSceneObject::getSupportedServiceNames()
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DCubeObject::Svx3DCubeObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DCUBEOBJEKT) )
+Svx3DCubeObject::Svx3DCubeObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DCUBEOBJEKT) )
 {
 }
 
@@ -507,7 +498,7 @@ Svx3DCubeObject::~Svx3DCubeObject() throw()
 void SAL_CALL Svx3DCubeObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -530,8 +521,8 @@ void SAL_CALL Svx3DCubeObject::setPropertyValue( const OUString& aPropertyName, 
         drawing::Direction3D aDirection;
         if( aValue >>= aDirection )
         {
-            Vector3D aSize(aDirection.DirectionX, aDirection.DirectionY, aDirection.DirectionZ);
-            ((E3dCubeObj*)pObj)->SetCubeSize(aSize);
+            Vector3D aLclSize(aDirection.DirectionX, aDirection.DirectionY, aDirection.DirectionZ);
+            ((E3dCubeObj*)pObj)->SetCubeSize(aLclSize);
         }
     }
     else if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_POS_IS_CENTER)) )
@@ -553,7 +544,7 @@ void SAL_CALL Svx3DCubeObject::setPropertyValue( const OUString& aPropertyName, 
 uno::Any SAL_CALL Svx3DCubeObject::getPropertyValue( const OUString& aPropertyName )
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -611,8 +602,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DCubeObject::getSupportedServiceNames()
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DSphereObject::Svx3DSphereObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DSPHEREOBJECT) )
+Svx3DSphereObject::Svx3DSphereObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DSPHEREOBJECT) )
 {
 }
 
@@ -625,7 +616,7 @@ Svx3DSphereObject::~Svx3DSphereObject() throw()
 void SAL_CALL Svx3DSphereObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)))
     {
@@ -662,7 +653,7 @@ void SAL_CALL Svx3DSphereObject::setPropertyValue( const OUString& aPropertyName
 uno::Any SAL_CALL Svx3DSphereObject::getPropertyValue( const OUString& aPropertyName )
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)))
     {
@@ -713,15 +704,13 @@ uno::Sequence< OUString > SAL_CALL Svx3DSphereObject::getSupportedServiceNames()
 *                                                                      *
 ***********************************************************************/
 } //namespace binfilter
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-#endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 
 //----------------------------------------------------------------------
-Svx3DLatheObject::Svx3DLatheObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DLATHEOBJECT) )
+Svx3DLatheObject::Svx3DLatheObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DLATHEOBJECT) )
 {
 }
 
@@ -810,7 +799,7 @@ Svx3DLatheObject::~Svx3DLatheObject() throw()
 void SAL_CALL Svx3DLatheObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -848,7 +837,7 @@ void SAL_CALL Svx3DLatheObject::setPropertyValue( const OUString& aPropertyName,
 uno::Any SAL_CALL Svx3DLatheObject::getPropertyValue( const OUString& aPropertyName )
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -921,8 +910,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DLatheObject::getSupportedServiceNames()
 *                                                                      *
 ***********************************************************************/
 
-Svx3DExtrudeObject::Svx3DExtrudeObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DEXTRUDEOBJECT) )
+Svx3DExtrudeObject::Svx3DExtrudeObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DEXTRUDEOBJECT) )
 {
 }
 
@@ -935,7 +924,7 @@ Svx3DExtrudeObject::~Svx3DExtrudeObject() throw()
 void SAL_CALL Svx3DExtrudeObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -960,7 +949,7 @@ void SAL_CALL Svx3DExtrudeObject::setPropertyValue( const OUString& aPropertyNam
 uno::Any SAL_CALL Svx3DExtrudeObject::getPropertyValue( const OUString& aPropertyName )
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -1035,8 +1024,8 @@ uno::Sequence< OUString > SAL_CALL Svx3DExtrudeObject::getSupportedServiceNames(
 ***********************************************************************/
 
 //----------------------------------------------------------------------
-Svx3DPolygonObject::Svx3DPolygonObject( SdrObject* pObj ) throw()
-:   SvxShape( pObj, aSvxMapProvider.GetMap(SVXMAP_3DPOLYGONOBJECT) )
+Svx3DPolygonObject::Svx3DPolygonObject( SdrObject* pInObj ) throw()
+:   SvxShape( pInObj, aSvxMapProvider.GetMap(SVXMAP_3DPOLYGONOBJECT) )
 {
 }
 
@@ -1049,7 +1038,7 @@ Svx3DPolygonObject::~Svx3DPolygonObject() throw()
 void SAL_CALL Svx3DPolygonObject::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw( beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -1099,7 +1088,7 @@ void SAL_CALL Svx3DPolygonObject::setPropertyValue( const OUString& aPropertyNam
 uno::Any SAL_CALL Svx3DPolygonObject::getPropertyValue( const OUString& aPropertyName )
     throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pObj && aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_3D_TRANSFORM_MATRIX)) )
     {
@@ -1152,3 +1141,5 @@ uno::Sequence< OUString > SAL_CALL Svx3DPolygonObject::getSupportedServiceNames(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _UNOMAP_HXX
 #define _UNOMAP_HXX
 
-#ifndef _SFX_ITEMPROP_HXX //autogen
 #include <bf_svtools/itemprop.hxx>
-#endif
 namespace binfilter {
 
 #define PROPERTY_NONE 0
@@ -279,9 +278,8 @@ namespace binfilter {
 #define WID_TXTCOL_IS_AUTOMATIC         5
 #define WID_TXTCOL_AUTO_DISTANCE        6
 
-/* -----------------04.07.98 11:41-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwItemPropertySet : public SfxItemPropertySet
 {
 protected:
@@ -290,9 +288,8 @@ public:
     SwItemPropertySet( const SfxItemPropertyMap *pMap ) :
         SfxItemPropertySet( pMap ){}
 };
-/* -----------------04.07.98 11:41-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwUnoPropertyMapProvider
 {
     SfxItemPropertyMap* aMapArr[PROPERTY_MAP_END];
@@ -316,3 +313,5 @@ public:
 extern SwUnoPropertyMapProvider aSwMapProvider;
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

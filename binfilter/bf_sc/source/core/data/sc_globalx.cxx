@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,18 +30,10 @@
 #include "callform.hxx"
 #include "global.hxx"
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENTBROKER_HXX
 #include <ucbhelper/contentbroker.hxx>
-#endif
-#ifndef _UCBHELPER_CONTENT_HXX
 #include <ucbhelper/content.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
-#endif
 
 #include <tools/debug.hxx>
 #include <bf_svtools/pathoptions.hxx>
@@ -113,7 +106,7 @@ namespace binfilter {
 /*N*/                               do
 /*?*/                               {
 /*?*/                                   ::rtl::OUString aId( xContentAccess->queryContentIdentifierString() );
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001                           InitExternalFunc( aId );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                               }
 /*?*/                               while ( xResultSet->next() );
 /*?*/                           }
@@ -141,3 +134,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

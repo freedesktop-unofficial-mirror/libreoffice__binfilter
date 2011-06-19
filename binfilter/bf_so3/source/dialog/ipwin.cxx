@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_ACCESSIBLEROLE_HPP_
 #include <com/sun/star/accessibility/AccessibleRole.hpp>
-#endif
 
 #include <bf_so3/ipenv.hxx>
 #include <bf_so3/ipobj.hxx>
@@ -802,3 +801,5 @@ void SvInPlaceClipWindow::SetRectsPixel( const Rectangle & rObjRect,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

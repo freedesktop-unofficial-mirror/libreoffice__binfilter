@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,21 +28,13 @@
 #ifndef _SYLAYITM_HXX
 #define _SYLAYITM_HXX
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef _SVDTYPES_HXX //autogen
 #include <bf_svx/svdtypes.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------
@@ -67,3 +60,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -44,8 +45,10 @@ ULONG LoadFile( const String& rFileName, USHORT nFilter,
                 const String& rVersion, String & rTmpFile );
 
 enum W4WDLL_TYPE { W4WDLL_EXPORT, W4WDLL_IMPORT, W4WDLL_AUTODETEC };
-FASTBOOL W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter = 0 );
+bool W4WDLLExist( W4WDLL_TYPE eType, USHORT nFilter = 0 );
 
 
 } //namespace binfilter
 #endif  // _W4WFLT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

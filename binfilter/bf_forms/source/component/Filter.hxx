@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,38 +29,20 @@
 #ifndef FORMS_COMPONENT_FILTER_HXX
 #define FORMS_COMPONENT_FILTER_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XBOUNDCOMPONENT_HPP_
 #include <com/sun/star/form/XBoundComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_SQLCONTEXT_HPP_
 #include <com/sun/star/sdb/SQLContext.hpp>
-#endif
 
-#ifndef _TOOLKIT_CONTROLS_UNOCONTROL_HXX_
 #include <toolkit/controls/unocontrol.hxx>
-#endif
 
 
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
-#ifndef _CONNECTIVITY_SQLPARSE_HXX
 #include <connectivity/sqlparse.hxx>
-#endif
 
-#ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #include <bf_svx/ParseContext.hxx>
-#endif
 class Window;
 namespace binfilter {
 
@@ -81,7 +64,7 @@ namespace frm
 
     class OFilterControl    :public UnoControl
                             ,public OFilterControl_BASE
-                            ,public ::binfilter::svxform::OParseContextClient//STRIP008                             ,public ::svxform::OParseContextClient
+                            ,public ::binfilter::svxform::OParseContextClient
     {
         TextListenerMultiplexer     m_aTextListeners;
 
@@ -133,8 +116,8 @@ namespace frm
         virtual sal_Int16       SAL_CALL getMaxTextLen() throw( ::com::sun::star::uno::RuntimeException );
 
     // ::com::sun::star::form::XBoundComponent
-        virtual void            SAL_CALL addUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & l) throw( ::com::sun::star::uno::RuntimeException ) {}
-        virtual void            SAL_CALL removeUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & l) throw( ::com::sun::star::uno::RuntimeException ) {}
+        virtual void            SAL_CALL addUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & /*l*/) throw( ::com::sun::star::uno::RuntimeException ) {}
+        virtual void            SAL_CALL removeUpdateListener(const ::com::sun::star::uno::Reference< ::com::sun::star::form::XUpdateListener > & /*l*/) throw( ::com::sun::star::uno::RuntimeException ) {}
         virtual sal_Bool        SAL_CALL commit() throw( ::com::sun::star::uno::RuntimeException );
 
     // ::com::sun::star::lang::XEventListener
@@ -142,7 +125,7 @@ namespace frm
 
     // ::com::sun::star::awt::XFocusListener
         virtual void            SAL_CALL focusGained(const ::com::sun::star::awt::FocusEvent& e) throw( ::com::sun::star::uno::RuntimeException );
-        virtual void            SAL_CALL focusLost(const ::com::sun::star::awt::FocusEvent& e) throw( ::com::sun::star::uno::RuntimeException ){}
+        virtual void            SAL_CALL focusLost(const ::com::sun::star::awt::FocusEvent& /*e*/) throw( ::com::sun::star::uno::RuntimeException ){}
 
     // ::com::sun::star::awt::XItemListener
         virtual void            SAL_CALL itemStateChanged(const ::com::sun::star::awt::ItemEvent& rEvent) throw( ::com::sun::star::uno::RuntimeException );
@@ -173,3 +156,5 @@ namespace frm
 
 }//end of namespace binfilter
 #endif // FORMS_COMPONENT_FILTER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

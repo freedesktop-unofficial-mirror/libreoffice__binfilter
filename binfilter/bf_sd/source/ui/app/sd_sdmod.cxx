@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -86,14 +87,14 @@ IMPL_LINK(SdModule, CalcFieldValueHdl, EditFieldInfo*, pInfo)
 {
     if( pInfo )
     {
-        const String aStr( RTL_CONSTASCII_STRINGPARAM( "???" ) );
+        const String aStr( RTL_CONSTASCII_USTRINGPARAM( "???" ) );
         pInfo->SetRepresentation( aStr );
     }
 
     return(0);
 }
 
-void SdModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SdModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if( rHint.ISA( SfxSimpleHint ) &&
         ( (SfxSimpleHint&) rHint ).GetId() == SFX_HINT_DEINITIALIZING )
@@ -140,10 +141,12 @@ OutputDevice* SdModule::GetVirtualRefDevice (void)
     return mpVirtualRefDevice;
 }
 
-OutputDevice* SdModule::GetRefDevice (SdDrawDocShell& rDocShell)
+OutputDevice* SdModule::GetRefDevice (SdDrawDocShell& /*rDocShell*/)
 {
     return GetVirtualRefDevice();
 }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,62 +28,30 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XLOADABLE_HPP_
 #include <com/sun/star/form/XLoadable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_COLUMNVALUE_HPP_
 #include <com/sun/star/sdbc/ColumnValue.hpp>
-#endif
 
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 
-#ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
-#endif
 
 namespace binfilter {
 
@@ -131,7 +100,7 @@ OControl::OControl(const Reference<com::sun::star::lang::XMultiServiceFactory>& 
     }
 
     // Refcount wieder bei NULL
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -448,7 +417,7 @@ void OControlModel::readHelpTextCompatibly(const staruno::Reference< stario::XOb
     }
     catch(const Exception&)
     {
-        OSL_ENSURE(sal_False, "OControlModel::readHelpTextCompatibly: could not forward the property value to the aggregate!");
+        OSL_FAIL("OControlModel::readHelpTextCompatibly: could not forward the property value to the aggregate!");
     }
 }
 
@@ -463,7 +432,7 @@ void OControlModel::writeHelpTextCompatibly(const staruno::Reference< stario::XO
     }
     catch(const Exception&)
     {
-        OSL_ENSURE(sal_False, "OControlModel::writeHelpTextCompatibly: could not retrieve the property value from the aggregate!");
+        OSL_FAIL("OControlModel::writeHelpTextCompatibly: could not retrieve the property value from the aggregate!");
     }
     ::comphelper::operator<<( _rxOutStream, sHelpText);
 }
@@ -475,9 +444,9 @@ OControlModel::OControlModel(
             const ::rtl::OUString& rDefault, const sal_Bool _bSetDelegator)
     :OComponentHelper(m_aMutex)
     ,OPropertySetAggregationHelper(OComponentHelper::rBHelper)
+    ,m_xServiceFactory(_rxFactory)
     ,m_nTabIndex(FRM_DEFAULT_TABINDEX)
     ,m_nClassId(FormComponentType::CONTROL)
-    ,m_xServiceFactory(_rxFactory)
 {
     DBG_CTOR(OControlModel, NULL);
     if (_rUnoControlModelTypeName.getLength())  // the is a model we have to aggregate
@@ -504,9 +473,9 @@ OControlModel::OControlModel(
 OControlModel::OControlModel( const OControlModel* _pOriginal, const Reference< XMultiServiceFactory>& _rxFactory, const sal_Bool _bSetDelegator )
     :OComponentHelper( m_aMutex )
     ,OPropertySetAggregationHelper( OComponentHelper::rBHelper )
+    ,m_xServiceFactory( _rxFactory )
     ,m_nTabIndex( FRM_DEFAULT_TABINDEX )
     ,m_nClassId( FormComponentType::CONTROL )
-    ,m_xServiceFactory( _rxFactory )
 {
     DBG_CTOR( OControlModel, NULL );
     DBG_ASSERT( _pOriginal, "OControlModel::OControlModel: invalid original!" );
@@ -629,7 +598,7 @@ Sequence<rtl::OUString> SAL_CALL OControlModel::getSupportedServiceNames() throw
     aSupported.realloc(aSupported.getLength() + 2);
     ::rtl::OUString* pArray = aSupported.getArray();
     pArray[aSupported.getLength()-2] = FRM_SUN_FORMCOMPONENT;
-    pArray[aSupported.getLength()-1] = ::rtl::OUString::createFromAscii("com.sun.star.form.FormControlModel");
+    pArray[aSupported.getLength()-1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.FormControlModel" ));
 
     return aSupported;
 }
@@ -907,12 +876,12 @@ OBoundControlModel::OBoundControlModel(
     :OControlModel(_rxFactory, _rUnoControlModelTypeName, _rDefault, _bSetDelegator)
     ,m_aUpdateListeners(m_aMutex)
     ,m_aResetListeners(m_aMutex)
+    ,m_aLabelServiceName(FRM_SUN_COMPONENT_FIXEDTEXT)
     ,m_bLoaded(sal_False)
     ,m_bRequired(sal_False)
     ,m_bCommitable(_bCommitable)
-    ,m_aLabelServiceName(FRM_SUN_COMPONENT_FIXEDTEXT)
-    ,m_bResetting(sal_False)
     ,m_bForwardValueChanges(sal_True)
+    ,m_bResetting(sal_False)
 {
     DBG_CTOR(frm_OBoundControlModel, NULL);
 }
@@ -927,8 +896,8 @@ OBoundControlModel::OBoundControlModel(
     ,m_bLoaded( sal_False )
     ,m_bRequired( sal_False )
     ,m_bCommitable( _bCommitable )
-    ,m_bResetting( sal_False )
     ,m_bForwardValueChanges( sal_True )
+    ,m_bResetting( sal_False )
 {
     DBG_CTOR(frm_OBoundControlModel, NULL);
 
@@ -1034,7 +1003,7 @@ StringSequence SAL_CALL OBoundControlModel::getSupportedServiceNames() throw(Run
     aSupported.realloc(aSupported.getLength() + 1);
 
     ::rtl::OUString* pArray = aSupported.getArray();
-    pArray[aSupported.getLength()-1] = ::rtl::OUString::createFromAscii("com.sun.star.form.DataAwareControlModel");
+    pArray[aSupported.getLength()-1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.DataAwareControlModel" ));
     return aSupported;
 }
 
@@ -1060,7 +1029,6 @@ void SAL_CALL OBoundControlModel::write( const Reference<stario::XObjectOutputSt
     // in anything from data loss to crash.
     // (use writeCommonProperties instead, this is called in derived classes write-method)
     // !!! EOIN !!!
-    // FS - 68876 - 28.09.1999
 }
 
 //------------------------------------------------------------------------------
@@ -1136,7 +1104,7 @@ void SAL_CALL OBoundControlModel::read( const Reference< stario::XObjectInputStr
     OControlModel::read(_rxInStream);
 
     osl::MutexGuard aGuard(m_aMutex);
-    UINT16 nVersion = _rxInStream->readShort();
+    /*UINT16 nVersion =*/ _rxInStream->readShort();
     ::comphelper::operator>>( _rxInStream, m_aControlSource);
 }
 
@@ -1212,7 +1180,7 @@ void OBoundControlModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, co
             rValue >>= m_aControlSource;
             break;
         case PROPERTY_ID_BOUNDFIELD:
-            DBG_ERROR("OBoundControlModel::setFastPropertyValue_NoBroadcast : BoundField should be a read-only property !");
+            OSL_FAIL("OBoundControlModel::setFastPropertyValue_NoBroadcast : BoundField should be a read-only property !");
                 throw com::sun::star::lang::IllegalArgumentException();
             break;
         case PROPERTY_ID_CONTROLLABEL:
@@ -1256,8 +1224,8 @@ void OBoundControlModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, co
                     // found my root
                     break;
 
-                Reference<XChild> xAsChild(xMyTopLevel, UNO_QUERY);
-                xMyTopLevel = xAsChild.is() ? xAsChild->getParent() : InterfaceRef();
+                Reference<XChild> xLclAsChild(xMyTopLevel, UNO_QUERY);
+                xMyTopLevel = xLclAsChild.is() ? xLclAsChild->getParent() : InterfaceRef();
             }
             InterfaceRef xNewTopLevel = xAsChild->getParent();
             while (xNewTopLevel.is())
@@ -1266,8 +1234,8 @@ void OBoundControlModel::setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, co
                 if (!xAsForm.is())
                     break;
 
-                Reference<XChild> xAsChild(xNewTopLevel, UNO_QUERY);
-                xNewTopLevel = xAsChild.is() ? xAsChild->getParent() : InterfaceRef();
+                Reference<XChild> xLclAsChild(xNewTopLevel, UNO_QUERY);
+                xNewTopLevel = xLclAsChild.is() ? xLclAsChild->getParent() : InterfaceRef();
             }
             if (xNewTopLevel != xMyTopLevel)
             {
@@ -1344,9 +1312,9 @@ sal_Bool SAL_CALL OBoundControlModel::commit() throw(RuntimeException)
 
     if (bSucceed)
     {
-        cppu::OInterfaceIteratorHelper aIter(m_aUpdateListeners);
-        while (aIter.hasMoreElements())
-            ((XUpdateListener*)aIter.next())->updated(aEvt);
+        cppu::OInterfaceIteratorHelper aLclIter(m_aUpdateListeners);
+        while (aLclIter.hasMoreElements())
+            ((XUpdateListener*)aLclIter.next())->updated(aEvt);
     }
 
     return bSucceed;
@@ -1383,7 +1351,7 @@ sal_Bool OBoundControlModel::connectToField(const Reference<XRowSet>& rForm)
         // darf ich mich ueberhaupt an dieses Feld binden (Typ-Check)
         if (xFieldCandidate.is())
         {
-            sal_Int32 nFieldType;
+            sal_Int32 nFieldType(0);
             xFieldCandidate->getPropertyValue(PROPERTY_FIELDTYPE) >>= nFieldType;
             if (_approve(nFieldType))
                 setField(xFieldCandidate,sal_False);
@@ -1399,13 +1367,14 @@ sal_Bool OBoundControlModel::connectToField(const Reference<XRowSet>& rForm)
                 m_xField->addPropertyChangeListener(PROPERTY_VALUE, this);
                                 m_xColumnUpdate = Reference<XColumnUpdate>(m_xField, UNO_QUERY);
                                 m_xColumn = Reference<XColumn>(m_xField, UNO_QUERY);
-                INT32 nNullableFlag; m_xField->getPropertyValue(PROPERTY_ISNULLABLE) >>= nNullableFlag;
+                INT32 nNullableFlag(0);
+                m_xField->getPropertyValue(PROPERTY_ISNULLABLE) >>= nNullableFlag;
                 m_bRequired = (ColumnValue::NO_NULLS == nNullableFlag);
                     // we're optimistic : in case of ColumnValue_NULLABLE_UNKNOWN we assume nullability ....
             }
             else
             {
-                OSL_ENSURE(sal_False, "OBoundControlModel::connectToField: property NAME not supported!");
+                OSL_FAIL("OBoundControlModel::connectToField: property NAME not supported!");
                 setField(NULL,sal_False);
             }
         }
@@ -1429,26 +1398,26 @@ sal_Bool OBoundControlModel::_approve(sal_Int32 _nColumnType)
 
 // XLoadListener
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::loaded(const com::sun::star::lang::EventObject& _rEvent) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::loaded(const com::sun::star::lang::EventObject& /*rEvent*/) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OBoundControlModel::loaded: dead code!?" );
 }
 
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::unloaded( const com::sun::star::lang::EventObject& aEvent ) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::unloaded( const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::reloading( const com::sun::star::lang::EventObject& aEvent ) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::reloading( const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
     m_bForwardValueChanges = sal_False;
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObject& aEvent) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObject& ) throw(RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
 
@@ -1462,7 +1431,7 @@ void SAL_CALL OBoundControlModel::unloading(const com::sun::star::lang::EventObj
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OBoundControlModel::reloaded(const com::sun::star::lang::EventObject& aEvent) throw(RuntimeException)
+void SAL_CALL OBoundControlModel::reloaded(const com::sun::star::lang::EventObject& /*rEvent*/) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OBoundControlModel::reloaded: dead code!?" );
 }
@@ -1507,3 +1476,5 @@ void OBoundControlModel::setField( const Reference< XPropertySet>& _rxField,sal_
 //... namespace frm .......................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -38,9 +39,7 @@
 #define INCLUDED_LIMITS_H
 #endif
 
-#ifndef _RTL_ALLOC_H_
 #include <rtl/alloc.h>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
@@ -585,15 +584,9 @@ _SV_DECL_PTRARR_DEF( SvPtrarr, VoidPtr, 0, 1,  )
 
 // SORTARR - Begin
 
-#ifdef __MWERKS__
-#define __MWERKS__PRIVATE public
-#else
-#define __MWERKS__PRIVATE private
-#endif
-
 #define _SORT_CLASS_DEF(nm, AE, IS, GS, vis)\
 typedef BOOL (*FnForEach_##nm)( const AE&, void* );\
-class vis nm : __MWERKS__PRIVATE nm##_SAR \
+class vis nm : private nm##_SAR \
 {\
 public:\
     nm(USHORT nSize = IS, BYTE nG = GS)\
@@ -762,27 +755,10 @@ void nm::Remove( const AE &aE, USHORT nL )\
         nm##_SAR::Remove( nP, nL);\
 }\
 
-#if defined(TCPP)
-
-#define _SORTARR_BLC_CASTS(nm, AE )\
-    BOOL Insert(  AE &aE ) {\
-        return Insert( (const AE&)aE );\
-    }\
-    USHORT GetPos( AE& aE ) const { \
-        return SvPtrarr::GetPos((const VoidPtr&)aE);\
-    }\
-    void Remove( AE& aE, USHORT nL = 1 ) { \
-        Remove( (const AE&) aE, nL  );\
-    }
-
-#else
-
 #define _SORTARR_BLC_CASTS(nm, AE )\
     USHORT GetPos( const AE& aE ) const { \
         return SvPtrarr::GetPos((const VoidPtr&)aE);\
     }
-
-#endif
 
 #define _SV_DECL_PTRARR_SORT_ALG(nm, AE, IS, GS, vis)\
 SV_DECL_PTRARR_VISIBILITY(nm##_SAR, AE, IS, GS, vis)\
@@ -943,7 +919,7 @@ public:\
 #define C40_PTR_REPLACE( c, p) Replace( (c const *) p )
 #define C40_GETPOS( c, r) GetPos( (c const *)r )
 #else
-#if defined WTC || defined ICC || defined HPUX || (defined GCC && __GNUC__ >= 3) || (defined(WNT) && _MSC_VER >= 1400)
+#if defined ICC|| (defined GCC && __GNUC__ >= 3) || (defined(WNT) && _MSC_VER >= 1400)
 #define C40_INSERT( c, p, n ) Insert( (c const *&) p, n )
 #define C40_PUSH( c, p) Push( (c const *&) p )
 #define C40_PTR_INSERT( c, p ) Insert( (c const *&) p )
@@ -965,3 +941,5 @@ public:\
 }
 
 #endif  //_SVARRAY_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

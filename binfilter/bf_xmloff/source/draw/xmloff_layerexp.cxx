@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,29 +27,20 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_DRAWING_XLAYERSUPPLIER_HPP_
 #include <com/sun/star/drawing/XLayerSupplier.hpp>
-#endif
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_LAYEREXP_HXX
 #include "layerexp.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -57,6 +49,9 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 void SdXMLayerExporter::exportLayer( SvXMLExport& rExport )
 {
@@ -91,8 +86,10 @@ void SdXMLayerExporter::exportLayer( SvXMLExport& rExport )
                 rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_NAME, aName );
             }
 
-            SvXMLElementExport aElem( rExport, XML_NAMESPACE_DRAW, XML_LAYER, sal_True, sal_True );
+            SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_DRAW, XML_LAYER, sal_True, sal_True );
         }
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

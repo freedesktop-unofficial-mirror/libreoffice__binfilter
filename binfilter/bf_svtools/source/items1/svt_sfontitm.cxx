@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _VCOMPAT_HXX
 #include <tools/vcompat.hxx>
-#endif
 
-#ifndef _SFONTITM_HXX
 #include <bf_svtools/sfontitm.hxx>
-#endif
 
 namespace binfilter
 {
@@ -125,27 +120,7 @@ SfxPoolItem * SfxFontItem::Create(SvStream & rStream, USHORT) const
     return pItem;
 }
 
-//============================================================================
-// virtual
-SvStream & SfxFontItem::Store(SvStream & rStream, USHORT) const
-{
-    VersionCompat aItemCompat(rStream, STREAM_WRITE, 1);
-    {
-        VersionCompat aFontCompat(rStream, STREAM_WRITE, 1);
-        writeByteString(rStream, m_aName);
-        writeByteString(rStream, m_aStyleName);
-        rStream << m_aSize << sal_Int16(m_nCharSet)
-                << m_nFamily << m_nPitch << m_nWeight << m_nUnderline
-                << m_nStrikeout << m_nItalic << sal_Int16(m_nLanguage)
-                << m_nWidthType << m_nOrientation << sal_Int8(m_bWordLine)
-                << sal_Int8(m_bOutline) << sal_Int8(m_bShadow)
-                << sal_Int8(m_bKerning);
-    }
-    SAL_CONST_CAST(Color &, m_aColor).Write(rStream, TRUE);
-    SAL_CONST_CAST(Color &, m_aFillColor).Write(rStream, TRUE);
-    rStream << sal_Int16(m_bHasFont << 2 | m_bHasColor
-                          | m_bHasFillColor << 1);
-    return rStream;
-}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

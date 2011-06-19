@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,12 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVTOOLS_CTYPEITM_HXX
 #include <bf_svtools/ctypeitm.hxx>
-#endif
 
 namespace binfilter
 {
@@ -110,17 +105,6 @@ SfxPoolItem* CntContentTypeItem::Create( SvStream& rStream,
         rStream.SeekRel(CNTSTRINGITEM_STREAM_SEEKREL);
 
     return new CntContentTypeItem(Which(), aValue);
-}
-
-//----------------------------------------------------------------------------
-// virtual
-SvStream & CntContentTypeItem::Store(SvStream & rStream, USHORT) const
-{
-    // CntContentTypeItem used to be derived from CntStringItem, so take that
-    // into account:
-    writeUnicodeString(rStream, GetValue());
-    rStream << CNTSTRINGITEM_STREAM_MAGIC << BOOL(FALSE);
-    return rStream;
 }
 
 //----------------------------------------------------------------------------
@@ -220,7 +204,7 @@ void CntContentTypeItem::SetValue( const INetContentType eType )
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL CntContentTypeItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool CntContentTypeItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     rVal <<= rtl::OUString(GetValue());
     return true;
@@ -228,7 +212,7 @@ BOOL CntContentTypeItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL CntContentTypeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool CntContentTypeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     rtl::OUString aValue;
     if ( rVal >>= aValue )
@@ -243,7 +227,9 @@ BOOL CntContentTypeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
         return true;
     }
 
-    DBG_ERROR( "CntContentTypeItem::PutValue - Wrong type!" );
+    OSL_FAIL( "CntContentTypeItem::PutValue - Wrong type!" );
     return false;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

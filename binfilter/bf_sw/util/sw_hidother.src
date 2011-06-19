@@ -26,7 +26,6 @@
  ************************************************************************/
 #define NO_LOCALIZE_EXPORT
 #include "..\inc\helpid.h"          // HID_FUNC_XXX
-//#include "shellid.hxx"            // HID_FUNC_XXX da kommen sie eigentlich her
 #include "hidother.hrc"
 
 //  Help-IDs fuer Dokument-Fenster

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,76 +26,33 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_DROPCAPFORMAT_HPP_
 #include <com/sun/star/style/DropCapFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_FONTRELIEF_HPP_
 #include <com/sun/star/text/FontRelief.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
 #include <com/sun/star/text/WrapTextMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCOLUMNS_HPP_
 #include <com/sun/star/text/XTextColumns.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_RELORIENTATION_HPP_
 #include <com/sun/star/text/RelOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_RUBYADJUST_HPP_
 #include <com/sun/star/text/RubyAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_FONTEMPHASIS_HPP_
 #include <com/sun/star/text/FontEmphasis.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_PARAGRAPHVERTALIGN_HPP_
 #include <com/sun/star/text/ParagraphVertAlign.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include "xmltypes.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 #include "XMLAnchorTypePropHdl.hxx"
-#endif
-#ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
-#endif
-#ifndef _XMLOFF_XMLCLIPPROPERTYHANDLER_HXX
 #include "XMLClipPropertyHandler.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTCOLUMNSPPROPERTYHANDLER_HXX
 #include "XMLTextColumnsPropertyHandler.hxx"
-#endif
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include "NamedBoolPropertyHdl.hxx"
-#endif
-#ifndef _XMLOFF_TXTPRHDL_HXX
 #include "txtprhdl.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
-//using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
-//using namespace ::com::sun::star::container;
-//using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
@@ -103,7 +61,7 @@ using namespace ::binfilter::xmloff::token;
 
 // ---------------------------------------------------------------------------
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HoriPos_Enum[] =
+SvXMLEnumMapEntry const pXML_HoriPos_Enum[] =
 {
     { XML_FROM_LEFT,        HoriOrientation::NONE   },
     { XML_FROM_INSIDE,      HoriOrientation::NONE   },  // import only
@@ -115,7 +73,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_HoriPos_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HoriPosMirrored_Enum[] =
+SvXMLEnumMapEntry const pXML_HoriPosMirrored_Enum[] =
 {
     { XML_FROM_INSIDE,      HoriOrientation::NONE   },
     { XML_INSIDE,           HoriOrientation::LEFT   },
@@ -124,7 +82,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_HoriPosMirrored_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HoriRel_Enum[] =
+SvXMLEnumMapEntry const pXML_HoriRel_Enum[] =
 {
     { XML_PARAGRAPH,            RelOrientation::FRAME   },
     { XML_PARAGRAPH_CONTENT,    RelOrientation::PRINT_AREA  },
@@ -142,7 +100,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_HoriRel_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HoriRelFrame_Enum[] =
+SvXMLEnumMapEntry const pXML_HoriRelFrame_Enum[] =
 {
     { XML_FRAME,                RelOrientation::FRAME   },
     { XML_FRAME_CONTENT,        RelOrientation::PRINT_AREA  },
@@ -156,7 +114,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_HoriRelFrame_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_HoriMirror_Enum[] =
+SvXMLEnumMapEntry const pXML_HoriMirror_Enum[] =
 {
     { XML_FROM_LEFT,        sal_False   },
     { XML_FROM_INSIDE,      sal_True    },
@@ -168,7 +126,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_HoriMirror_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VertPos_Enum[] =
+SvXMLEnumMapEntry const pXML_VertPos_Enum[] =
 {
     { XML_FROM_TOP,         VertOrientation::NONE       },
     { XML_TOP,              VertOrientation::TOP        },
@@ -184,7 +142,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_VertPos_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VertPosAtChar_Enum[] =
+SvXMLEnumMapEntry const pXML_VertPosAtChar_Enum[] =
 {
     { XML_FROM_TOP,         VertOrientation::NONE       },
     { XML_TOP,              VertOrientation::TOP        },
@@ -199,7 +157,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_VertPosAtChar_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VertRel_Enum[] =
+SvXMLEnumMapEntry const pXML_VertRel_Enum[] =
 {
     { XML_PARAGRAPH,            RelOrientation::FRAME   },
     { XML_PARAGRAPH_CONTENT,    RelOrientation::PRINT_AREA  },
@@ -211,7 +169,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_VertRel_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VertRelPage_Enum[] =
+SvXMLEnumMapEntry const pXML_VertRelPage_Enum[] =
 {
     { XML_PAGE,         RelOrientation::FRAME   },
     { XML_PAGE_CONTENT, RelOrientation::PRINT_AREA  },
@@ -220,14 +178,14 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_VertRelPage_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VertRelFrame_Enum[] =
+SvXMLEnumMapEntry const pXML_VertRelFrame_Enum[] =
 {
     { XML_FRAME,            RelOrientation::FRAME   },
     { XML_FRAME_CONTENT,    RelOrientation::PRINT_AREA  },
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VertRelAsChar_Enum[] =
+SvXMLEnumMapEntry const pXML_VertRelAsChar_Enum[] =
 {
     { XML_BASELINE,     VertOrientation::TOP        },
     { XML_BASELINE,     VertOrientation::CENTER     },  // export only
@@ -241,7 +199,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_VertRelAsChar_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_RubyAdjust_Enum[] =
+SvXMLEnumMapEntry const pXML_RubyAdjust_Enum[] =
 {
     { XML_LEFT,                 RubyAdjust_LEFT },
     { XML_CENTER,               RubyAdjust_CENTER },
@@ -251,7 +209,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_RubyAdjust_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_FontRelief_Enum[] =
+SvXMLEnumMapEntry const pXML_FontRelief_Enum[] =
 {
     { XML_NONE,             FontRelief::NONE        },
     { XML_ENGRAVED,         FontRelief::ENGRAVED    },
@@ -259,7 +217,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_FontRelief_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VerticalAlign_Enum[] =
+SvXMLEnumMapEntry const pXML_VerticalAlign_Enum[] =
 {
     { XML_TOP,          ParagraphVertAlign::TOP     },
     { XML_MIDDLE,       ParagraphVertAlign::CENTER  },
@@ -310,18 +268,18 @@ sal_Bool XMLDropCapPropHdl_Impl::equals(
 }
 
 sal_Bool XMLDropCapPropHdl_Impl::importXML(
-        const OUString& rStrImpValue,
-           Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const OUString& /*rStrImpValue*/,
+           Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "drop caps are an element import property" );
     return sal_False;
 }
 
 sal_Bool XMLDropCapPropHdl_Impl::exportXML(
-        OUString& rStrExpValue,
-        const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        OUString& /*rStrExpValue*/,
+        const Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "drop caps are an element export property" );
     return sal_False;
@@ -347,7 +305,7 @@ public:
 sal_Bool XMLOpaquePropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -365,7 +323,7 @@ sal_Bool XMLOpaquePropHdl_Impl::importXML(
 sal_Bool XMLOpaquePropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
            rStrExpValue = GetXMLToken( XML_FOREGROUND );
@@ -399,7 +357,7 @@ public:
 sal_Bool XMLContourModePropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -417,7 +375,7 @@ sal_Bool XMLContourModePropHdl_Impl::importXML(
 sal_Bool XMLContourModePropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
            rStrExpValue = GetXMLToken( XML_OUTSIDE );
@@ -472,7 +430,7 @@ sal_Bool XMLParagraphOnlyPropHdl_Impl::importXML(
 sal_Bool XMLParagraphOnlyPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
            rStrExpValue = GetXMLToken( XML_1 );
@@ -488,7 +446,7 @@ XMLParagraphOnlyPropHdl_Impl::~XMLParagraphOnlyPropHdl_Impl()
 
 // ---------------------------------------------------------------------------
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Wrap_Enum[] =
+SvXMLEnumMapEntry const pXML_Wrap_Enum[] =
 {
     { XML_NONE,         WrapTextMode_NONE },
     { XML_RUN_THROUGH,  WrapTextMode_THROUGHT },
@@ -573,7 +531,7 @@ public:
 sal_Bool XMLFrameProtectPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -602,7 +560,7 @@ sal_Bool XMLFrameProtectPropHdl_Impl::importXML(
 sal_Bool XMLFrameProtectPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
     {
@@ -635,7 +593,7 @@ XMLFrameProtectPropHdl_Impl::~XMLFrameProtectPropHdl_Impl()
 
 // ---------------------------------------------------------------------------
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Anchor_Enum[] =
+SvXMLEnumMapEntry const pXML_Anchor_Enum[] =
 {
     { XML_CHAR,         TextContentAnchorType_AT_CHARACTER },
     { XML_PAGE,         TextContentAnchorType_AT_PAGE },
@@ -739,18 +697,18 @@ sal_Bool XMLTextColumnsPropertyHandler::equals(
 }
 
 sal_Bool XMLTextColumnsPropertyHandler::importXML(
-        const OUString& rStrImpValue,
-           Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const OUString& /*rStrImpValue*/,
+           Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "columns are an element import property" );
     return sal_False;
 }
 
 sal_Bool XMLTextColumnsPropertyHandler::exportXML(
-        OUString& rStrExpValue,
-        const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        OUString& /*rStrExpValue*/,
+        const Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "columns are an element export property" );
     return sal_False;
@@ -792,9 +750,9 @@ sal_Bool XMLHoriMirrorPropHdl_Impl::importXML(
 }
 
 sal_Bool XMLHoriMirrorPropHdl_Impl::exportXML(
-        OUString& rStrExpValue,
-        const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        OUString& /*rStrExpValue*/,
+        const Any& /*rValue*/,
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DBG_ASSERT( !this, "HorMirror properyt shouldn't be exported" );
 
@@ -831,7 +789,7 @@ public:
 sal_Bool XMLGrfMirrorPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     sal_Bool bVal = sal_False;
@@ -861,7 +819,7 @@ sal_Bool XMLGrfMirrorPropHdl_Impl::importXML(
 sal_Bool XMLGrfMirrorPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( *(sal_Bool *)rValue.getValue() )
     {
@@ -900,7 +858,7 @@ XMLGrfMirrorPropHdl_Impl::~XMLGrfMirrorPropHdl_Impl()
 
 // ---------------------------------------------------------------------------
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Emphasize_Enum[] =
+SvXMLEnumMapEntry const pXML_Emphasize_Enum[] =
 {
     { XML_NONE,     FontEmphasis::NONE },
     { XML_DOT,      FontEmphasis::DOT_ABOVE },
@@ -979,7 +937,7 @@ sal_Bool XMLTextEmphasizePropHdl_Impl::exportXML(
 {
     OUStringBuffer aOut( 15 );
     sal_Bool bRet = sal_True;
-    sal_Int16 nType;
+    sal_Int16 nType(0);
     if( rValue >>= nType )
     {
         sal_Bool bBelow = sal_False;
@@ -1032,7 +990,7 @@ public:
 sal_Bool XMLTextCombineCharPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( rStrImpValue.getLength() )
         rValue <<= rStrImpValue.copy( 0, 1 );
@@ -1045,7 +1003,7 @@ sal_Bool XMLTextCombineCharPropHdl_Impl::importXML(
 sal_Bool XMLTextCombineCharPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     rValue >>= rStrExpValue;
 
@@ -1094,7 +1052,7 @@ sal_Bool XMLTextRelWidthHeightPropHdl_Impl::exportXML(
         const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     if( (rValue >>= nValue) && nValue > 0 )
     {
         OUStringBuffer aOut;
@@ -1135,7 +1093,7 @@ public:
 sal_Bool XMLTextSyncWidthHeightPropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bValue = (rStrImpValue == sValue );
     rValue.setValue( &bValue, ::getBooleanCppuType() );
@@ -1146,7 +1104,7 @@ sal_Bool XMLTextSyncWidthHeightPropHdl_Impl::importXML(
 sal_Bool XMLTextSyncWidthHeightPropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
     if( *(sal_Bool *)rValue.getValue() )
@@ -1211,7 +1169,7 @@ sal_Bool XMLTextRotationAnglePropHdl_Impl::exportXML(
         const Any& rValue,
         const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Int16 nAngle;
+    sal_Int16 nAngle(0);
     sal_Bool bRet = ( rValue >>= nAngle );
     if( bRet )
     {
@@ -1419,3 +1377,5 @@ const XMLPropertyHandler *XMLTextPropertyHandlerFactory::GetPropertyHandler(
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 #include "svdpage.hxx"
 
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -70,14 +69,14 @@ namespace binfilter {
 /*N*/   return new SfxItemSet(rPool);
 /*N*/ }
 
-/*N*/ void SdrPageObj::ItemChange(const sal_uInt16 nWhich, const SfxPoolItem* pNewItem)
+/*N*/ void SdrPageObj::ItemChange(const sal_uInt16 /*nWhich*/, const SfxPoolItem* /*pNewItem*/)
 /*N*/ {
 /*N*/   // #86481# simply ignore item setting on page objects
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrPageObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
+/*N*/ void SdrPageObj::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId&, const SfxHint& rHint, const TypeId&)
 /*N*/ {
 /*N*/   SdrHint* pSdrHint = PTR_CAST(SdrHint, &rHint);
 /*N*/
@@ -222,20 +221,6 @@ namespace binfilter {
 /*N*/   SdrObject::NbcSetLogicRect(rRect);
 /*N*/ }
 
-
-
-
-
-/*N*/ void SdrPageObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrObject::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrPageObj");
-/*N*/ #endif
-/*N*/   rOut<<nPageNum;
-/*N*/ }
-
 /*N*/ void SdrPageObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;
@@ -247,7 +232,7 @@ namespace binfilter {
 /*N*/   rIn>>nPageNum;
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

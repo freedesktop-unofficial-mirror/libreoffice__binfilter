@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,106 +31,42 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
-#endif
-#ifndef _SVX_BLNKITEM_HXX //autogen
 #include <bf_svx/blnkitem.hxx>
-#endif
-#ifndef _SVX_NHYPITEM_HXX //autogen
 #include <bf_svx/nhypitem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX //autogen
 #include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX //autogen
 #include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_AKRNITEM_HXX //autogen
 #include <bf_svx/akrnitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_CHARRELIEFITEM_HXX
 #include <bf_svx/charreliefitem.hxx>
-#endif
-#ifndef _SVX_CNTRITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX //autogen
 #include <bf_svx/emphitem.hxx>
-#endif
-#ifndef _SVX_CHARSCALEITEM_HXX
 #include <bf_svx/charscaleitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
-#ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
-#ifndef _CHARATR_HXX
 #include <charatr.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // Bildschirmabgleich
-#endif
-#ifndef _SWFONT_HXX
 #include <swfont.hxx>
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>     // FontCache
-#endif
 namespace binfilter {
 
 #if defined(WIN) || defined(WNT) || defined(PM2)
@@ -184,7 +121,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/             break;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/         default :
-/*N*/             ASSERT( sal_False, "Unsupported direction" );
+/*N*/             OSL_FAIL( "Unsupported direction" );
 /*N*/             break;
 /*N*/ #endif
 /*N*/         }
@@ -211,7 +148,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*?*/             break;
 /*?*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/         default :
-/*?*/             ASSERT( sal_False, "Unsupported direction" );
+/*?*/             OSL_FAIL( "Unsupported direction" );
 /*?*/             break;
 /*?*/ #endif
 /*?*/         }
@@ -478,7 +415,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   }
 /*N*/   bPaintBlank = FALSE;
 /*N*/   bPaintWrong = FALSE;
-/*N*/   ASSERT( aSub[SW_LATIN].IsTransparent(), "SwFont: Transparent revolution" );
+/*N*/   OSL_ENSURE( aSub[SW_LATIN].IsTransparent(), "SwFont: Transparent revolution" );
 /*N*/ }
 
 /*************************************************************************
@@ -683,7 +620,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 
 /*N*/ void SwFont::ChgPhysFnt( ViewShell *pSh, OutputDevice *pOut )
 /*N*/ {
-/*N*/   ASSERT( pOut, "SwFont:;ChgPhysFnt, not OutDev." );
+/*N*/   OSL_ENSURE( pOut, "SwFont:;ChgPhysFnt, not OutDev." );
 /*N*/
 /*N*/   if( bOrgChg && aSub[nActual].IsEsc() )
 /*N*/   {
@@ -879,7 +816,7 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/   rInf.SetLen( nLn );
 /*N*/   xub_StrLen nCrsr = 0;
 /*N*/   if( IsCapital() && nLn )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       nCrsr = GetCapitalCrsrOfst( rInf );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/   {
 /*N*/       const XubString &rOldTxt = rInf.GetText();
@@ -887,9 +824,9 @@ using namespace ::com::sun::star::i18n::ScriptType;
 /*N*/       rInf.SetKern( CheckKerning() );
 /*N*/       SV_STAT( nGetTextSize );
 /*N*/       if ( !IsCaseMap() )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nCrsr = pLastFont->GetCrsrOfst( rInf );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       rInf.SetKern( nOldKern );
 /*N*/       rInf.SetText( rOldTxt );
@@ -915,3 +852,5 @@ using namespace ::com::sun::star::i18n::ScriptType;
 //Helper for filters to find true lineheight of a font
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

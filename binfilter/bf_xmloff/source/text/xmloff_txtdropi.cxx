@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,31 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_STYLE_DROPCAPFORMAT_HPP_
 #include <com/sun/star/style/DropCapFormat.hpp>
-#endif
-#ifndef _TXTDROPI_HXX
 #include "txtdropi.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 
 enum SvXMLTokenMapDropAttrs
@@ -61,7 +51,7 @@ enum SvXMLTokenMapDropAttrs
     XML_TOK_DROP_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDropAttrTokenMap[] =
+static SvXMLTokenMapEntry aDropAttrTokenMap[] =
 {
     { XML_NAMESPACE_STYLE, XML_LINES,       XML_TOK_DROP_LINES  },
     { XML_NAMESPACE_STYLE, XML_LENGTH,      XML_TOK_DROP_LENGTH },
@@ -84,13 +74,13 @@ void XMLTextDropCapImportContext::ProcessAttrs(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_DROP_LINES:
             if( GetImport().GetMM100UnitConverter().convertNumber( nTmp, rValue, 0, 255 ) )
@@ -133,13 +123,13 @@ void XMLTextDropCapImportContext::ProcessAttrs(
 }
 
 XMLTextDropCapImportContext::XMLTextDropCapImportContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         const XMLPropertyState& rProp,
         sal_Int32 nWholeWordIdx,
         ::std::vector< XMLPropertyState > &rProps ) :
-    XMLElementPropertyContext( rImport, nPrfx, rLName, rProp, rProps ),
+    XMLElementPropertyContext( rInImport, nPrfx, rLName, rProp, rProps ),
     aWholeWordProp( nWholeWordIdx )
 {
     ProcessAttrs( xAttrList );
@@ -160,3 +150,5 @@ void XMLTextDropCapImportContext::EndElement()
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

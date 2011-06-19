@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -42,13 +43,13 @@ namespace binfilter
 #define SgfStarDraw   7 /* StarDraw SGV-Datei          */
 #define SgfDontKnow 255 /* Unbekannt oder kein SGF/SGV */
 
-// Konstanten fr SgfHeader.SwGrCol
-#define SgfBlckWhit 1 /* Schwarz/Weiá Bild                  Ä¿ SimpVector,  */
-#define SgfGrayscal 2 /* Bild mit Graustufen                 ³ StarDraw und */
-#define Sgf16Colors 3 /* Farbbild (16 Farben)               ÄÙ Bit Image    */
-#define SgfVectFarb 4 /* Farben fr Linien verwenden        Ä¿              */
-#define SgfVectGray 5 /* Graustufen fr Linien verwenden     ³ Nur fr      */
-#define SgfVectWdth 6 /* Strichst„rken fr Linien verwenden ÄÙ SimpVector   */
+// Konstanten fï¿½r SgfHeader.SwGrCol
+#define SgfBlckWhit 1 /* Schwarz/Weiï¿½ Bild                  Ä¿ SimpVector,  */
+#define SgfGrayscal 2 /* Bild mit Graustufen                 ï¿½ StarDraw und */
+#define Sgf16Colors 3 /* Farbbild (16 Farben)               ï¿½ï¿½ Bit Image    */
+#define SgfVectFarb 4 /* Farben fï¿½r Linien verwenden        Ä¿              */
+#define SgfVectGray 5 /* Graustufen fï¿½r Linien verwenden     ï¿½ Nur fï¿½r      */
+#define SgfVectWdth 6 /* Strichstï¿½rken fï¿½r Linien verwenden ï¿½ï¿½ SimpVector   */
 
 
 #define SgfHeaderSize 42
@@ -131,13 +132,13 @@ public:
 class BmpInfoHeader
 {
 public:
-    UINT32 Size;       // Gr”áe des BmpInfoHeaders
+    UINT32 Size;       // Grï¿½ï¿½e des BmpInfoHeaders
     INT32  Width;      // Breite in Pixel
-    INT32  Hight;      // H”he in Pixel
+    INT32  Hight;      // Hï¿½he in Pixel
     UINT16 Planes;     // Anzahl der Planes (immer 1)
     UINT16 PixBits;    // Anzahl der Bit je Pixel (1,4,8,oder 24)
     UINT32 Compress;   // Datenkompression
-    UINT32 ImgSize;    // Gr”áe der Images in Bytes. Ohne Kompression ist auch 0 erlaubt.
+    UINT32 ImgSize;    // Grï¿½ï¿½e der Images in Bytes. Ohne Kompression ist auch 0 erlaubt.
     INT32  xDpmm;      // Dot per Meter (0 ist erlaubt)
     INT32  yDpmm;      // Dot per Meter (0 ist erlaubt)
     UINT32 ColUsed;    // Anzahl der verwendeten Farben (0=alle)
@@ -161,3 +162,5 @@ public:
 
 
 #endif //_SGFBRAM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

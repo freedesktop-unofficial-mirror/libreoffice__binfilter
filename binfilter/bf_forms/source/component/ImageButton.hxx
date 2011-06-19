@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _FRM_IMAGE_BUTTON_HXX_
 #define _FRM_IMAGE_BUTTON_HXX_
 
-#ifndef _FRM_IMAGE_HXX_
 #include "Image.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XMOUSELISTENER_HPP_
 #include <com/sun/star/awt/XMouseListener.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -102,11 +99,13 @@ public:
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& _rSource) throw(::com::sun::star::uno::RuntimeException)
         { OControl::disposing(_rSource); }
 
+    using OImageControl::disposing;
+
 // ::com::sun::star::awt::XMouseListener
-    virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
-    virtual void SAL_CALL mouseEntered(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
-    virtual void SAL_CALL mouseExited(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mouseEntered(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mouseExited(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
 };
 
 //.........................................................................
@@ -116,3 +115,4 @@ public:
 }//end of namespace binfilter
 #endif // _FRM_IMAGE_BUTTON_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

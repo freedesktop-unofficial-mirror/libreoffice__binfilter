@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,31 +33,19 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <svxfont.hxx>
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 
 #include <fontitem.hxx>
 #include <postitem.hxx>
@@ -77,9 +66,7 @@
 #include <charreliefitem.hxx>
 #include <editattr.hxx>
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 namespace binfilter {
 
@@ -122,8 +109,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribFont
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribFont::EditCharAttribFont( const SvxFontItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribFont::EditCharAttribFont( const SvxFontItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_FONTINFO || rAttr.Which() == EE_CHAR_FONTINFO_CJK || rAttr.Which() == EE_CHAR_FONTINFO_CTL, "Kein Fontattribut!" );
 /*N*/ }
@@ -141,8 +128,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribItalic
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribItalic::EditCharAttribItalic( const SvxPostureItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribItalic::EditCharAttribItalic( const SvxPostureItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_ITALIC || rAttr.Which() == EE_CHAR_ITALIC_CJK || rAttr.Which() == EE_CHAR_ITALIC_CTL, "Kein Italicattribut!" );
 /*N*/ }
@@ -155,8 +142,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribWeight
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribWeight::EditCharAttribWeight( const SvxWeightItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribWeight::EditCharAttribWeight( const SvxWeightItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_WEIGHT || rAttr.Which() == EE_CHAR_WEIGHT_CJK || rAttr.Which() == EE_CHAR_WEIGHT_CTL, "Kein Weightttribut!" );
 /*N*/ }
@@ -169,8 +156,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribUnderline
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribUnderline::EditCharAttribUnderline( const SvxUnderlineItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribUnderline::EditCharAttribUnderline( const SvxUnderlineItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_UNDERLINE, "Kein Underlineattribut!" );
 /*N*/ }
@@ -185,8 +172,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribFontHeight
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribFontHeight::EditCharAttribFontHeight( const SvxFontHeightItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribFontHeight::EditCharAttribFontHeight( const SvxFontHeightItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_FONTHEIGHT || rAttr.Which() == EE_CHAR_FONTHEIGHT_CJK || rAttr.Which() == EE_CHAR_FONTHEIGHT_CTL, "Kein Heightattribut!" );
 /*N*/ }
@@ -200,13 +187,13 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribFontWidth
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribFontWidth::EditCharAttribFontWidth( const SvxCharScaleWidthItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribFontWidth::EditCharAttribFontWidth( const SvxCharScaleWidthItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_FONTWIDTH, "Kein Widthattribut!" );
 /*N*/ }
 
-/*N*/ void EditCharAttribFontWidth::SetFont( SvxFont& rFont, OutputDevice* )
+/*N*/ void EditCharAttribFontWidth::SetFont( SvxFont&, OutputDevice* )
 /*N*/ {
 /*N*/   // must be calculated outside, because f(device)...
 /*N*/ }
@@ -214,8 +201,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribStrikeout
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribStrikeout::EditCharAttribStrikeout( const SvxCrossedOutItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribStrikeout::EditCharAttribStrikeout( const SvxCrossedOutItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_STRIKEOUT, "Kein Sizeattribut!" );
 /*N*/ }
@@ -228,8 +215,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribColor
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribColor::EditCharAttribColor( const SvxColorItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribColor::EditCharAttribColor( const SvxColorItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_COLOR, "Kein Colorattribut!" );
 /*N*/ }
@@ -242,8 +229,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribLanguage
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribLanguage::EditCharAttribLanguage( const SvxLanguageItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribLanguage::EditCharAttribLanguage( const SvxLanguageItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( ( rAttr.Which() == EE_CHAR_LANGUAGE ) || ( rAttr.Which() == EE_CHAR_LANGUAGE_CJK ) || ( rAttr.Which() == EE_CHAR_LANGUAGE_CTL ), "Kein Languageattribut!" );
 /*N*/ }
@@ -256,8 +243,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribShadow
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribShadow::EditCharAttribShadow( const SvxShadowedItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribShadow::EditCharAttribShadow( const SvxShadowedItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_SHADOW, "Kein Shadowattribut!" );
 /*N*/ }
@@ -270,8 +257,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribEscapement
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribEscapement::EditCharAttribEscapement( const SvxEscapementItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribEscapement::EditCharAttribEscapement( const SvxEscapementItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_ESCAPEMENT, "Kein Escapementattribut!" );
 /*N*/ }
@@ -301,8 +288,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribOutline
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribOutline::EditCharAttribOutline( const SvxContourItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribOutline::EditCharAttribOutline( const SvxContourItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_OUTLINE, "Kein Outlineattribut!" );
 /*N*/ }
@@ -396,8 +383,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribPairKerning
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribPairKerning::EditCharAttribPairKerning( const SvxAutoKernItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribPairKerning::EditCharAttribPairKerning( const SvxAutoKernItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_PAIRKERNING, "Kein PairKerning!" );
 /*N*/ }
@@ -410,8 +397,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribKerning
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribKerning::EditCharAttribKerning( const SvxKerningItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribKerning::EditCharAttribKerning( const SvxKerningItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_KERNING, "Kein Kerning!" );
 /*N*/ }
@@ -424,8 +411,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribWordLineMode
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribWordLineMode::EditCharAttribWordLineMode( const SvxWordLineModeItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribWordLineMode::EditCharAttribWordLineMode( const SvxWordLineModeItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_WLM, "Kein Kerning!" );
 /*N*/ }
@@ -438,8 +425,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribEmphasisMark
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribEmphasisMark::EditCharAttribEmphasisMark( const SvxEmphasisMarkItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribEmphasisMark::EditCharAttribEmphasisMark( const SvxEmphasisMarkItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_EMPHASISMARK, "Kein Emphasisattribut!" );
 /*N*/ }
@@ -452,8 +439,8 @@ namespace binfilter {
 // -------------------------------------------------------------------------
 // class EditCharAttribRelief
 // -------------------------------------------------------------------------
-/*N*/ EditCharAttribRelief::EditCharAttribRelief( const SvxCharReliefItem& rAttr, USHORT nStart, USHORT nEnd )
-/*N*/   : EditCharAttrib( rAttr, nStart, nEnd )
+/*N*/ EditCharAttribRelief::EditCharAttribRelief( const SvxCharReliefItem& rAttr, USHORT nInStart, USHORT nInEnd )
+/*N*/   : EditCharAttrib( rAttr, nInStart, nInEnd )
 /*N*/ {
 /*N*/   DBG_ASSERT( rAttr.Which() == EE_CHAR_RELIEF, "Not a relief attribute!" );
 /*N*/ }
@@ -463,3 +450,5 @@ namespace binfilter {
 /*N*/   rFont.SetRelief( (FontRelief)((const SvxCharReliefItem*)GetItem())->GetValue() );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

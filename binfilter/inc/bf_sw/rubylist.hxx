@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #define _RUBYLIST_HXX
 
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _FMTRUBY_HXX
 #include <fmtruby.hxx>
-#endif
 namespace binfilter {
 
 class SwRubyListEntry
@@ -58,3 +55,5 @@ SV_DECL_PTRARR_DEL( SwRubyList, SwRubyListEntryPtr, 0, 32 )
 
 } //namespace binfilter
 #endif  //_RUBYLIST_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

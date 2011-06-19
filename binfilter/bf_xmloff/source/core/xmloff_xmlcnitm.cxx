@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
 
 #include "xmlcnimp.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::xml;
+using ::rtl::OUString;
 
 typedef ::rtl::OUString *OUStringPtr;
 SV_DECL_PTRARR_DEL( SvXMLAttrContainerData_Impl, OUStringPtr, 5, 5 )
@@ -196,7 +193,7 @@ void SvXMLAttrContainerData::Remove( USHORT i )
     }
     else
     {
-        DBG_ERROR( "illegal index" );
+        OSL_FAIL( "illegal index" );
     }
 }
 
@@ -207,16 +204,18 @@ sal_uInt16 SvXMLAttrContainerData::GetAttrCount() const
 
 const ::rtl::OUString& SvXMLAttrContainerData::GetAttrLName(sal_uInt16 i) const
 {
-    OSL_ENSURE( i >= 0 && i < pLNames->Count(),
+    OSL_ENSURE( i < pLNames->Count(),
                 "SvXMLAttrContainerData::GetLName: illegal index" );
     return *(*pLNames)[i];
 }
 
 const ::rtl::OUString& SvXMLAttrContainerData::GetAttrValue(sal_uInt16 i) const
 {
-    OSL_ENSURE( i >= 0 && i < pValues->Count(),
+    OSL_ENSURE( i < pValues->Count(),
                 "SvXMLAttrContainerData::GetValue: illegal index" );
     return *(*pValues)[i];
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

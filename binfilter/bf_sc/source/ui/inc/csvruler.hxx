@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 #ifndef _SC_CSVRULER_HXX
 #define _SC_CSVRULER_HXX
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _SC_CSVCONTROL_HXX
 #include "csvcontrol.hxx"
-#endif
-#ifndef _SC_CSVSPLITS_HXX
 #include "csvsplits.hxx"
-#endif
 namespace binfilter {
 
 
@@ -95,3 +90,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

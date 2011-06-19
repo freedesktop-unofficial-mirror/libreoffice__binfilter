@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -44,15 +42,15 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ ScDrawPage::ScDrawPage(ScDrawLayer& rNewModel, StarBASIC* pBasic, BOOL bMasterPage) :
-/*N*/   FmFormPage(rNewModel, pBasic, bMasterPage)
+/*N*/ ScDrawPage::ScDrawPage(ScDrawLayer& rNewModel, StarBASIC* pInBasic, BOOL bMasterPage) :
+/*N*/   FmFormPage(rNewModel, pInBasic, bMasterPage)
 /*N*/ {
 /*N*/   SetSize( Size( LONG_MAX, LONG_MAX ) );
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ __EXPORT ScDrawPage::~ScDrawPage()
+/*N*/ ScDrawPage::~ScDrawPage()
 /*N*/ {
 /*N*/ }
 
@@ -68,3 +66,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

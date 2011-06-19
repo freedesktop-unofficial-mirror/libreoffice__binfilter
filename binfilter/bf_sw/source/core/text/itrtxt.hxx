@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -75,8 +76,8 @@ protected:
     inline SwTxtIter() { }
 
 public:
-    inline SwTxtIter( SwTxtFrm *pFrm, SwTxtInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtIter( SwTxtFrm* _pFrm, SwTxtInfo* _pInf )
+           { CtorInit( _pFrm, _pInf ); }
     inline const SwLineLayout *GetCurr() const { return pCurr; } // niemals 0!
     inline const SwLineLayout *GetNext() const { return pCurr->GetNext(); }
            const SwLineLayout *GetPrev();
@@ -165,8 +166,8 @@ protected:
     void CtorInit( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf );
     inline SwTxtMargin() { }
 public:
-    inline SwTxtMargin( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtMargin( SwTxtFrm* _pFrm, SwTxtSizeInfo* _pInf )
+           { CtorInit( _pFrm, _pInf ); }
     inline SwTwips GetLeftMargin() const;
     inline SwTwips Left() const;
     inline SwTwips Right() const { return nRight; }
@@ -233,8 +234,8 @@ protected:
     void CalcNewBlock( SwLineLayout *pCurr, const SwLinePortion *pStopAt,
         SwTwips nReal = 0 );
 public:
-    inline SwTxtAdjuster( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf )
-           { SwTxtMargin::CtorInit( pFrm, pInf ); }
+    inline SwTxtAdjuster( SwTxtFrm* _pFrm, SwTxtSizeInfo* _pInf )
+           { SwTxtMargin::CtorInit( _pFrm, _pInf ); }
 
     // wird von SwTxtFormatter wegen UpdatePos ueberladen
     void CalcAdjLine( SwLineLayout *pCurr );
@@ -266,12 +267,12 @@ protected:
     void CtorInit( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf );
     inline SwTxtCursor() { }
 public:
-    inline SwTxtCursor( SwTxtFrm *pFrm, SwTxtSizeInfo *pInf )
-           { CtorInit( pFrm, pInf ); }
+    inline SwTxtCursor( SwTxtFrm* _pFrm, SwTxtSizeInfo* _pInf )
+           { CtorInit( _pFrm, _pInf ); }
     sal_Bool GetCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
         const long nMax = 0 );
-    sal_Bool GetEndCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,//STRIP001     sal_Bool GetEndCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
-    const long nMax = 0 ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} ;//STRIP001         const long nMax = 0 );
+    sal_Bool GetEndCharRect(SwRect *, const xub_StrLen, SwCrsrMoveState* = 0,
+                            const long /*nMax*/ = 0 ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} ;
     xub_StrLen GetCrsrOfst( SwPosition *pPos, const Point &rPoint,
                 const MSHORT nChgNode, const SwCrsrMoveState* = 0 ) const;
     // 1170: beruecksichtigt Mehrdeutigkeiten; Implementierung s.u.
@@ -353,3 +354,5 @@ inline SwTwips SwTxtMargin::Left() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

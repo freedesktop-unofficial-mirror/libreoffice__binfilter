@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _SWCACHE_HXX
+#include <osl/diagnose.h>
 #include <swcache.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR(SwCacheObjArr,SwCacheObj*);
@@ -53,9 +48,6 @@ namespace binfilter {
 |*
 |*  SwCache::Check()
 |*
-|*  Ersterstellung      MA 23. Mar. 94
-|*  Letzte Aenderung    MA 23. Mar. 94
-|*
 |*************************************************************************/
 
 #ifdef DBG_UTIL
@@ -66,8 +58,8 @@ namespace binfilter {
 /*N*/       return;
 /*N*/
 /*N*/   //Konsistenspruefung.
-/*N*/   ASSERT( !pLast->GetNext(), "Last but not last." );
-/*N*/   ASSERT( !pRealFirst->GetPrev(), "First but not first." );
+/*N*/   OSL_ENSURE( !pLast->GetNext(), "Last but not last." );
+/*N*/   OSL_ENSURE( !pRealFirst->GetPrev(), "First but not first." );
 /*N*/   USHORT nCnt = 0;
 /*N*/   BOOL bFirstFound = FALSE;
 /*N*/   SwCacheObj *pObj = pRealFirst;
@@ -78,20 +70,20 @@ namespace binfilter {
 /*N*/       SwCacheObj *pTmp = pLast;
 /*N*/       while ( pTmp && pTmp != pObj )
 /*N*/           pTmp = pTmp->GetPrev();
-/*N*/       ASSERT( pTmp, "Objekt not found." );
+/*N*/       OSL_ENSURE( pTmp, "Objekt not found." );
 /*N*/
 /*N*/       ++nCnt;
 /*N*/       if ( pObj == pFirst )
 /*N*/           bFirstFound = TRUE;
 /*N*/       if ( !pObj->GetNext() )
-/*N*/           ASSERT( pObj == pLast, "Last not Found." );
+/*N*/           OSL_ENSURE( pObj == pLast, "Last not Found." );
 /*N*/       pObj = pObj->GetNext();
-/*N*/       ASSERT( pObj != pRekursive, "Recursion in SwCache." );
+/*N*/       OSL_ENSURE( pObj != pRekursive, "Recursion in SwCache." );
 /*N*/   }
-/*N*/   ASSERT( bFirstFound, "First not Found." );
-/*N*/   ASSERT( (nCnt + aFreePositions.Count()) == Count(), "Lost Chain." );
+/*N*/   OSL_ENSURE( bFirstFound, "First not Found." );
+/*N*/   OSL_ENSURE( (nCnt + aFreePositions.Count()) == Count(), "Lost Chain." );
 /*N*/   if ( Count() == nCurMax )
-/*N*/       ASSERT( (nCurMax - nCnt) == aFreePositions.Count(), "Lost FreePositions." );
+/*N*/       OSL_ENSURE( (nCurMax - nCnt) == aFreePositions.Count(), "Lost FreePositions." );
 /*N*/ }
 #endif
 
@@ -105,9 +97,6 @@ namespace binfilter {
 |*
 |*  SwCache::SwCache(), ~SwCache()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
-|*
 |*************************************************************************/
 
 
@@ -115,29 +104,29 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   , const ByteString &rNm
 /*N*/ #endif
-/*N*/   ) :
-/*N*/   SwCacheObjArr( (BYTE)nInitSize, (BYTE)nGrowSize ),
-/*N*/   aFreePositions( 5, 5 ),
-/*N*/   nMax( nInitSize ),
-/*N*/   nCurMax( nInitSize ),
-/*N*/   pRealFirst( 0 ),
-/*N*/   pFirst( 0 ),
-/*N*/   pLast( 0 )
+/*N*/   )
+/*N*/   : SwCacheObjArr( (BYTE)nInitSize, (BYTE)nGrowSize )
+/*N*/   , aFreePositions( 5, 5 )
+/*N*/   , pRealFirst( 0 )
+/*N*/   , pFirst( 0 )
+/*N*/   , pLast( 0 )
+/*N*/   , nMax( nInitSize )
+/*N*/   , nCurMax( nInitSize )
 /*N*/ #ifdef DBG_UTIL
-/*N*/   , aName( rNm ),
-/*N*/   nAppend( 0 ),
-/*N*/   nInsertFree( 0 ),
-/*N*/   nReplace( 0 ),
-/*N*/   nGetSuccess( 0 ),
-/*N*/   nGetFail( 0 ),
-/*N*/   nToTop( 0 ),
-/*N*/   nDelete( 0 ),
-/*N*/   nGetSeek( 0 ),
-/*N*/   nAverageSeekCnt( 0 ),
-/*N*/   nFlushCnt( 0 ),
-/*N*/   nFlushedObjects( 0 ),
-/*N*/   nIncreaseMax( 0 ),
-/*N*/   nDecreaseMax( 0 )
+/*N*/   , aName( rNm )
+/*N*/   , nAppend( 0 )
+/*N*/   , nInsertFree( 0 )
+/*N*/   , nReplace( 0 )
+/*N*/   , nGetSuccess( 0 )
+/*N*/   , nGetFail( 0 )
+/*N*/   , nToTop( 0 )
+/*N*/   , nDelete( 0 )
+/*N*/   , nGetSeek( 0 )
+/*N*/   , nAverageSeekCnt( 0 )
+/*N*/   , nFlushCnt( 0 )
+/*N*/   , nFlushedObjects( 0 )
+/*N*/   , nIncreaseMax( 0 )
+/*N*/   , nDecreaseMax( 0 )
 /*N*/ #endif
 /*N*/ {
 /*N*/ }
@@ -178,7 +167,7 @@ namespace binfilter {
 /*N*/       (( sOut += "Anzahl Cache-Verkleinerungen:       " )
 /*N*/                   += ByteString::CreateFromInt32( nDecreaseMax ))+= '\n';
 /*N*/
-/*N*/       DBG_ERROR( sOut.GetBuffer() );
+/*N*/       OSL_FAIL( sOut.GetBuffer() );
 /*N*/   }
 /*N*/   Check();
 /*N*/ #endif
@@ -190,15 +179,12 @@ namespace binfilter {
 |*
 |*  SwCache::Flush()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
-|*
 |*************************************************************************/
 
 
 /*N*/ void SwCache::Flush( const BYTE nPercent )
 /*N*/ {
-/*N*/   ASSERT( nPercent == 100, "SwCache::Flush() arbeitet nur 100%'ig" );
+/*N*/   OSL_ENSURE( nPercent == 100, "SwCache::Flush() arbeitet nur 100%'ig" );
 /*N*/
 /*N*/   INCREMENT( nFlushCnt );
 /*N*/   SwCacheObj *pObj = pRealFirst;
@@ -209,7 +195,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if ( pObj->IsLocked() )
 /*N*/       {
-/*?*/           ASSERT( TRUE, "Flushing locked objects." );
+/*?*/           OSL_ENSURE( TRUE, "Flushing locked objects." );
 /*?*/           if ( !pRealFirst )
 /*?*/           {
 /*?*/               pRealFirst = pFirst = pLast = pObj;
@@ -243,9 +229,6 @@ namespace binfilter {
 |*
 |*  SwCache::ToTop()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 24. Apr. 95
-|*
 |*************************************************************************/
 
 
@@ -261,7 +244,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( !pRealFirst )
 /*N*/   {   //Der erste wird eingetragen.
-/*?*/       ASSERT( !pFirst && !pLast, "First not first." );
+/*?*/       OSL_ENSURE( !pFirst && !pLast, "First not first." );
 /*?*/       pRealFirst = pFirst = pLast = pObj;
 /*?*/       CHECK;
 /*?*/       return;
@@ -270,7 +253,7 @@ namespace binfilter {
 /*N*/   //Ausschneiden.
 /*N*/   if ( pObj == pLast )
 /*N*/   {
-/*N*/       ASSERT( pObj->GetPrev(), "Last but no Prev." );
+/*N*/       OSL_ENSURE( pObj->GetPrev(), "Last but no Prev." );
 /*N*/       pLast = pObj->GetPrev();
 /*N*/       pLast->SetNext( 0 );
 /*N*/   }
@@ -293,7 +276,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( pFirst, "ToTop, First ist not RealFirst an Empty." );
+/*N*/       OSL_ENSURE( pFirst, "ToTop, First ist not RealFirst an Empty." );
 /*N*/
 /*N*/       if ( pFirst->GetPrev() )
 /*N*/       {
@@ -312,9 +295,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCache::Get()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 22. Aug. 94
 |*
 |*************************************************************************/
 
@@ -369,16 +349,13 @@ namespace binfilter {
 |*
 |*  SwCache::Delete()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
-|*
 |*************************************************************************/
 
 
 /*N*/ void SwCache::DeleteObj( SwCacheObj *pObj )
 /*N*/ {
 /*N*/   CHECK;
-/*N*/   ASSERT( !pObj->IsLocked(), "SwCache::Delete: Object ist Locked." );
+/*N*/   OSL_ENSURE( !pObj->IsLocked(), "SwCache::Delete: Object ist Locked." );
 /*N*/   if ( pObj->IsLocked() )
 /*N*/       return;
 /*N*/
@@ -413,32 +390,18 @@ namespace binfilter {
 /*N*/       //wiederfinden werden.
 /*?*/       for ( USHORT i = 0; i < Count(); ++i )
 /*?*/       {
-/*?*/           SwCacheObj *pObj = operator[](i);
-/*?*/           if ( !pObj )
+/*?*/           SwCacheObj *pObj1 = operator[](i);
+/*?*/           if ( !pObj1 )
 /*?*/           {   SwCacheObjArr::Remove( i, 1 );
 /*?*/               --i;
 /*?*/           }
 /*?*/           else
-/*?*/               pObj->SetCachePos( i );
+/*?*/               pObj1->SetCachePos( i );
 /*?*/       }
 /*?*/       aFreePositions.Remove( 0, aFreePositions.Count() );
 /*N*/   }
 /*N*/   CHECK;
 /*N*/ }
-
-/*
-
-
-void SwCache::Delete( const void *pOwner, const USHORT nIndex )
-{
-    INCREMENT( nDelete );
-    SwCacheObj *pObj;
-    if ( 0 != (pObj = Get( pOwner, nIndex, FALSE )) )
-        DeleteObj( pObj );
-}
-*/
-
-
 
 /*N*/ void SwCache::Delete( const void *pOwner )
 /*N*/ {
@@ -453,16 +416,13 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCache::Insert()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 20. Sep. 94
-|*
 |*************************************************************************/
 
 
 /*N*/ BOOL SwCache::Insert( SwCacheObj *pNew )
 /*N*/ {
 /*N*/   CHECK;
-/*N*/   ASSERT( !pNew->GetPrev() && !pNew->GetNext(), "New but not new." );
+/*N*/   OSL_ENSURE( !pNew->GetPrev() && !pNew->GetNext(), "New but not new." );
 /*N*/
 /*N*/   USHORT nPos;//Wird hinter den if's zum setzen am Obj benutzt.
 /*N*/   if ( Count() < nCurMax )
@@ -491,13 +451,13 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 /*N*/           pObj = pObj->GetPrev();
 /*N*/       if ( !pObj )
 /*N*/       {
-/*N*/           ASSERT( FALSE, "Cache overflow." );
+/*N*/           OSL_ENSURE( FALSE, "Cache overflow." );
 /*N*/           return FALSE;
 /*N*/       }
 /*N*/
 /*N*/       nPos = pObj->GetCachePos();
 /*N*/       if ( pObj == pLast )
-/*N*/       {   ASSERT( pObj->GetPrev(), "Last but no Prev" );
+/*N*/       {   OSL_ENSURE( pObj->GetPrev(), "Last but no Prev" );
 /*N*/           pLast = pObj->GetPrev();
 /*N*/           pLast->SetNext( 0 );
 /*N*/       }
@@ -525,7 +485,7 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 /*N*/       pNew->SetNext( pFirst );
 /*N*/   }
 /*N*/   else
-/*N*/   {   ASSERT( !pLast, "Last but no First." );
+/*N*/   {   OSL_ENSURE( !pLast, "Last but no First." );
 /*N*/       pLast = pNew;
 /*N*/   }
 /*N*/   if ( pFirst == pRealFirst )
@@ -539,9 +499,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 /*************************************************************************
 |*
 |*  SwCache::SetLRUOfst()
-|*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
 |*
 |*************************************************************************/
 
@@ -567,17 +524,14 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCacheObj::SwCacheObj()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 24. Nov. 95
-|*
 |*************************************************************************/
 
 
 /*N*/ SwCacheObj::SwCacheObj( const void *pOwn ) :
-/*N*/   nLock( 0 ),
-/*N*/   nCachePos( USHRT_MAX ),
 /*N*/   pNext( 0 ),
 /*N*/   pPrev( 0 ),
+/*N*/   nCachePos( USHRT_MAX ),
+/*N*/   nLock( 0 ),
 /*N*/   pOwner( pOwn )
 /*N*/ {
 /*N*/ }
@@ -592,9 +546,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCacheObj::SetLock(), Unlock()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 15. Mar. 94
-|*
 |*************************************************************************/
 
 #ifdef DBG_UTIL
@@ -603,7 +554,7 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 
 /*N*/ void SwCacheObj::Lock()
 /*N*/ {
-/*N*/   ASSERT( nLock < UCHAR_MAX, "To many Locks for CacheObject." );
+/*N*/   OSL_ENSURE( nLock < UCHAR_MAX, "To many Locks for CacheObject." );
 /*N*/   ++nLock;
 /*N*/ }
 
@@ -611,7 +562,7 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 
 /*N*/ void SwCacheObj::Unlock()
 /*N*/ {
-/*N*/   ASSERT( nLock, "No more Locks available." );
+/*N*/   OSL_ENSURE( nLock, "No more Locks available." );
 /*N*/   --nLock;
 /*N*/ }
 #endif
@@ -620,15 +571,12 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCacheAccess::Get()
 |*
-|*  Ersterstellung      MA 15. Mar. 94
-|*  Letzte Aenderung    MA 04. Apr. 95
-|*
 |*************************************************************************/
 
 
 /*N*/ void SwCacheAccess::_Get()
 /*N*/ {
-/*N*/   ASSERT( !pObj, "SwCacheAcces Obj already available." );
+/*N*/   OSL_ENSURE( !pObj, "SwCacheAcces Obj already available." );
 /*N*/
 /*N*/   pObj = NewObj();
 /*N*/   if ( !rCache.Insert( pObj ) )
@@ -644,9 +592,6 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 |*
 |*  SwCacheAccess::IsAvailable()
 |*
-|*  Ersterstellung      MA 23. Mar. 94
-|*  Letzte Aenderung    MA 23. Mar. 94
-|*
 |*************************************************************************/
 
 
@@ -656,3 +601,5 @@ void SwCache::Delete( const void *pOwner, const USHORT nIndex )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

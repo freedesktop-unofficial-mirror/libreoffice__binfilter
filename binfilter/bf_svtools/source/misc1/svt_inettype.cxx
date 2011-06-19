@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,22 +29,12 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _TOOLS_TABLE_HXX
 #include <tools/table.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 
-#ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
-#endif
-#ifndef _SVTOOLS_SVTDATA_HXX
 #include <bf_svtools/svtdata.hxx>
-#endif
-#ifndef _SVTOOLS_HRC
 #include <bf_svtools/svtools.hrc>
-#endif
 
 #ifndef _SVSTDARR_STRINGSSORT_DECL
 #define _SVSTDARR_STRINGSSORT
@@ -747,7 +738,7 @@ UniString INetContentTypes::GetContentType(INetContentType eTypeID)
                               Registration::GetContentType(eTypeID);
     if (aTypeName.Len() == 0)
     {
-        DBG_ERROR("INetContentTypes::GetContentType(): Bad ID");
+        OSL_FAIL("INetContentTypes::GetContentType(): Bad ID");
         return
             UniString::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(
                                            CONTENT_TYPE_STR_APP_OCTSTREAM));
@@ -870,3 +861,5 @@ bool INetContentTypes::parse(UniString const & rMediaType,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

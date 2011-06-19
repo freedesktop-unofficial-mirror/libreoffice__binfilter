@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -69,8 +67,9 @@ using namespace ::com::sun::star;
 /*N*/ ScChartListener::ScChartListener( const String& rName, ScDocument* pDocP,
 /*N*/       const ScRange& rRange ) :
 /*N*/   StrData( rName ),
-/*N*/   pDoc( pDocP ),
+/*N*/   SfxListener(),
 /*N*/   pUnoData( NULL ),
+/*N*/   pDoc( pDocP ),
 /*N*/   bUsed( FALSE ),
 /*N*/   bDirty( FALSE ),
 /*N*/   bSeriesRangesScheduled( FALSE )
@@ -81,9 +80,10 @@ using namespace ::com::sun::star;
 /*N*/ ScChartListener::ScChartListener( const String& rName, ScDocument* pDocP,
 /*N*/       const ScRangeListRef& rRangeList ) :
 /*N*/   StrData( rName ),
+/*N*/   SfxListener(),
 /*N*/   aRangeListRef( rRangeList ),
-/*N*/   pDoc( pDocP ),
 /*N*/   pUnoData( NULL ),
+/*N*/   pDoc( pDocP ),
 /*N*/   bUsed( FALSE ),
 /*N*/   bDirty( FALSE ),
 /*N*/   bSeriesRangesScheduled( FALSE )
@@ -92,8 +92,9 @@ using namespace ::com::sun::star;
 
 /*N*/ ScChartListener::ScChartListener( const ScChartListener& r ) :
 /*N*/       StrData( r ),
-/*N*/       pDoc( r.pDoc ),
+/*N*/       SfxListener(),
 /*N*/       pUnoData( NULL ),
+/*N*/       pDoc( r.pDoc ),
 /*N*/       bUsed( FALSE ),
 /*N*/       bDirty( r.bDirty ),
 /*N*/       bSeriesRangesScheduled( r.bSeriesRangesScheduled )
@@ -113,7 +114,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject* ScChartListener::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 return new ScChartListener( *this );
+        DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 /*N*/ void ScChartListener::SetUno(
@@ -139,7 +140,7 @@ using namespace ::com::sun::star;
 /*N*/   return uno::Reference< chart::XChartData >();
 /*N*/ }
 
-/*N*/ void __EXPORT ScChartListener::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void ScChartListener::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   const ScHint* p = PTR_CAST( ScHint, &rHint );
 /*N*/   if( p && (p->GetId() & (SC_HINT_DATACHANGED | SC_HINT_DYING)) )
@@ -238,14 +239,14 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject*   ScChartListenerCollection::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new ScChartListenerCollection( *this );
+        DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 
-/*N*/ void ScChartListenerCollection::ChangeListening( const String& rName,
-/*N*/       const ScRangeListRef& rRangeListRef, BOOL bDirty )
+/*N*/ void ScChartListenerCollection::ChangeListening( const String& /*rName*/,
+/*N*/       const ScRangeListRef& /*rRangeListRef*/, BOOL /*bDirty*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener aCLSearcher( rName, pDoc, rRangeListRef );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScChartListenerCollection::FreeUnused()
@@ -289,7 +290,7 @@ using namespace ::com::sun::star;
 /*N*/   aTimer.Start();
 /*N*/ }
 
-/*N*/ IMPL_LINK( ScChartListenerCollection, TimerHdl, Timer*, pTimer )
+/*N*/ IMPL_LINK( ScChartListenerCollection, TimerHdl, Timer*, EMPTYARG )
 /*N*/ {
 /*N*/   if ( Application::AnyInput( INPUT_KEYBOARD ) )
 /*N*/   {
@@ -332,7 +333,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -342,7 +343,7 @@ using namespace ::com::sun::star;
 /*N*/   ScRange aRange( 0, 0, nTab, MAXCOL, MAXROW, nTab );
 /*N*/   for ( USHORT nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScChartListener* pCL = (ScChartListener*) pItems[ nIndex ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -352,3 +353,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

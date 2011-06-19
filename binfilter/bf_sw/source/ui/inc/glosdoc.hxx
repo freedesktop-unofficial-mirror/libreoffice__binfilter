@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,13 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTGROUP_HPP_
 #include <com/sun/star/text/XAutoTextGroup.hpp>
-#endif
 class SvStrings;
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwTextBlocks;
 
 class SwDocShell;
@@ -50,17 +45,13 @@ class SwDocShell;
 
 #ifndef SW_DECL_SWDOCSHELL_DEFINED
 #define SW_DECL_SWDOCSHELL_DEFINED
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif namespace
-namespace binfilter {//STRIP009
+namespace binfilter {
 SV_DECL_REF( SwDocShell )
 } //namespace binfilter
 #endif
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
 #include <vector>
 namespace binfilter {
@@ -84,7 +75,7 @@ class SwGlossaries
     SvStrings               *pPathArr;
     SvStrings               *pGlosArr;
     BOOL                    bError;
-    SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 //STRIP001  SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const;
+    SwTextBlocks*   GetGlosDoc(const String &rName, BOOL bCreate = TRUE) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
     SvStrings       *GetNameList();
     void RemoveFileFromList( const String& rGroup );
     void InvalidateUNOOjects();
@@ -154,3 +145,5 @@ public:
 
 } //namespace binfilter
 #endif // _GLOSDOC_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

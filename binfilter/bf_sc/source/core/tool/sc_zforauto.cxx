@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -35,30 +33,28 @@
 //------------------------------------------------------------------------
 
 #include <bf_svtools/zformat.hxx>
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 #include <tools/debug.hxx>
 
 #include "zforauto.hxx"
 #include "global.hxx"
 namespace binfilter {
 
-static const sal_Char __FAR_DATA pStandardName[] = "Standard";
+static const sal_Char pStandardName[] = "Standard";
 
 //------------------------------------------------------------------------
 
 /*N*/ ScNumFormatAbbrev::ScNumFormatAbbrev() :
+/*N*/   sFormatstring   ( RTL_CONSTASCII_USTRINGPARAM( pStandardName ) ),
 /*N*/   eLnge           (LANGUAGE_SYSTEM),
-/*N*/   eSysLnge        (LANGUAGE_GERMAN),      // sonst passt "Standard" nicht
-/*N*/   sFormatstring   ( RTL_CONSTASCII_USTRINGPARAM( pStandardName ) )
+/*N*/   eSysLnge        (LANGUAGE_GERMAN)       // sonst passt "Standard" nicht
 /*N*/ {
 /*N*/ }
 
 /*N*/ ScNumFormatAbbrev::ScNumFormatAbbrev(const ScNumFormatAbbrev& aFormat) :
+/*N*/   sFormatstring   (aFormat.sFormatstring),
 /*N*/   eLnge           (aFormat.eLnge),
-/*N*/   eSysLnge        (aFormat.eSysLnge),
-/*N*/   sFormatstring   (aFormat.sFormatstring)
+/*N*/   eSysLnge        (aFormat.eSysLnge)
 /*N*/ {
 /*N*/ }
 
@@ -73,16 +69,6 @@ static const sal_Char __FAR_DATA pStandardName[] = "Standard";
 /*N*/         eSysLnge = Application::GetSettings().GetLanguage();
 /*N*/ }
 
-/*N*/ void ScNumFormatAbbrev::Save( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream.WriteByteString( sFormatstring, rStream.GetStreamCharSet() );
-/*N*/   rStream << (USHORT) eSysLnge << (USHORT) eLnge;
-/*N*/ }
-
-
-
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

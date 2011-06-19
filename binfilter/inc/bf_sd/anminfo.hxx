@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,22 +31,12 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONEFFECT_HPP_
 #include <com/sun/star/presentation/AnimationEffect.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
 #include <com/sun/star/presentation/ClickAction.hpp>
-#endif
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 class Polygon;
 class Point;
 class SvStream;
@@ -103,9 +94,9 @@ public:
                             SdAnimationInfo(const SdAnimationInfo& rAnmInfo);
     virtual                 ~SdAnimationInfo();
 
-    virtual SdrObjUserData* Clone(SdrObject* pObj) const {DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001   virtual SdrObjUserData* Clone(SdrObject* pObj) const;
+    virtual SdrObjUserData* Clone(SdrObject* /*pObj*/) const {DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
-    virtual void            WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void            ReadData(SvStream& rIn);
 
             // NULL loest die Verbindung zum Pfadobjekt
@@ -115,3 +106,4 @@ public:
 } //namespace binfilter
 #endif // _SD_ANMINFO_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

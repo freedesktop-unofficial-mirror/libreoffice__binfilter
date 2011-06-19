@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef _XMLITMAP_HXX
 #define _XMLITMAP_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {
@@ -104,3 +99,5 @@ SV_IMPL_REF( SvXMLItemMapEntries )
 
 } //namespace binfilter
 #endif  //  _XMLITMAP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

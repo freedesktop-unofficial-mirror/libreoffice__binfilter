@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,11 +33,9 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
-
 #include <bf_svx/svdedtv.hxx>
+
 namespace binfilter {
 
 //************************************************************
@@ -59,17 +58,9 @@ enum SdrObjClosedKind   {SDROBJCLOSED_DONTCARE,    // nur fuer Statusabfrage
                          SDROBJCLOSED_TOGGLE};     // nur fuer Set: Toggle (not implemented yet)
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-// @@@@@   @@@@  @@  @@  @@  @@@@@ @@@@@  @@ @@@@@@  @@ @@ @@ @@@@@ @@   @@
-// @@  @@ @@  @@ @@  @@  @@  @@    @@  @@ @@   @@    @@ @@ @@ @@    @@   @@
-// @@  @@ @@  @@ @@  @@  @@  @@    @@  @@ @@   @@    @@ @@ @@ @@    @@ @ @@
-// @@@@@  @@  @@ @@   @@@@   @@@@  @@  @@ @@   @@    @@@@@ @@ @@@@  @@@@@@@
-// @@     @@  @@ @@    @@    @@    @@  @@ @@   @@     @@@  @@ @@    @@@@@@@
-// @@     @@  @@ @@    @@    @@    @@  @@ @@   @@     @@@  @@ @@    @@@ @@@
-// @@      @@@@  @@@@@ @@    @@@@@ @@@@@  @@   @@      @   @@ @@@@@ @@   @@
+// POLYEDIT VIEW
 //
-////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 class SdrPolyEditView: public SdrEditView
@@ -105,14 +96,9 @@ public:
 
     // Moeglicherweise ist das Obj hinterher geloescht:
     BOOL IsDeleteMarkedPointsPossible() const { return HasMarkedPoints(); }
-
-
-    // Hierbei entstehen eventuell beliebig viele neue Objekte:
-
-    // Alle markierten Polylines werden zu Polygonen, alle offenen
-    // Bezierkurven zu geschlossenen.
 };
 
 }//end of namespace binfilter
 #endif //_SVDPOEV_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -76,6 +75,7 @@ public:
     TYPEINFO();
     SdrCaptionObj();
     virtual ~SdrCaptionObj();
+    using SdrRectObj::operator=;
 
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
@@ -93,13 +93,10 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
-
-
-
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
@@ -116,7 +113,7 @@ protected:
 
 public:
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     const Point& GetTailPos() const;
@@ -129,3 +126,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOCAPT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

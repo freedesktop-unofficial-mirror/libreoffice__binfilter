@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -89,39 +90,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
 
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>                   // GetAdjust()
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>           // W4WStkEntry, W4WStack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>                   // SwW4WParser
-#endif
 
 
 namespace binfilter {
@@ -137,7 +118,7 @@ static SwCntntNode* GetCntntNode( SwNodeIndex& rIdx, BOOL bNext )
     {
     pCNd = bNext ? rIdx.GetNodes().GoPrevious( &rIdx )
              : rIdx.GetNodes().GoNext( &rIdx );
-        ASSERT( pCNd, "kein ContentNode gefunden" );
+        OSL_ENSURE( pCNd, "kein ContentNode gefunden" );
     }
     return pCNd;
 }
@@ -206,7 +187,9 @@ BOOL W4WStkEntry::MakeRegion( SwPaM& rRegion ) const
 
 
 W4WCtrlStack::W4WCtrlStack( SwW4WParser& rPars )
-    : W4WCtrlStkEntries( 10, 5 ), pParentStack( 0 ), pParser( &rPars )
+    : W4WCtrlStkEntries( 10, 5 )
+    , pParser( &rPars )
+    , pParentStack( 0 )
 {
 }
 
@@ -243,7 +226,7 @@ W4WCtrlStack::W4WCtrlStack( W4WCtrlStack& rCpy, const SwPosition& rPos )
 
 W4WCtrlStack::~W4WCtrlStack()
 {
-    ASSERT( !Count(), "noch Attribute auf dem Stack" );
+    OSL_ENSURE( !Count(), "noch Attribute auf dem Stack" );
 }
 
 
@@ -307,7 +290,7 @@ void W4WCtrlStack::StealAttr( const SwPosition& rPos, USHORT nAttrId )
 // Anschliessend rekurs. Aufruf auf dem Parent-Stack.
 void W4WCtrlStack::SetLockedAttrClosed( USHORT nAttrId )
 {
-    ASSERT(    ( POOLATTR_BEGIN     <= nAttrId && POOLATTR_END > nAttrId )
+    OSL_ENSURE(    ( POOLATTR_BEGIN     <= nAttrId && POOLATTR_END > nAttrId )
             || ( RES_FLTRATTR_BEGIN <= nAttrId && RES_FLTRATTR_END > nAttrId ),
         "Attribut-Id ist ungueltig" );
 
@@ -369,11 +352,10 @@ void W4WCtrlStack::StealWWTabAttr( const SwPosition& rPos )
 BOOL W4WCtrlStack::SetAttr( const SwPosition& rPos, USHORT nAttrId,
                             BOOL bTstEnde, BOOL bDoNotSetInDoc )
 {
-    ASSERT( !nAttrId ||
+    OSL_ENSURE( !nAttrId ||
         ( POOLATTR_BEGIN <= nAttrId && POOLATTR_END > nAttrId ) ||
         ( RES_FLTRATTR_BEGIN <= nAttrId && RES_FLTRATTR_END > nAttrId ),
-        "Falsche Id fuers Attribut" )
-
+        "Falsche Id fuers Attribut" );
     BOOL bFound = FALSE;
     USHORT nCnt = Count();
 
@@ -606,3 +588,5 @@ SfxPoolItem* SwW4WAnchor::Clone( SfxItemPool* ) const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

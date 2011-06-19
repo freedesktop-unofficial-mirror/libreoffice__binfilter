@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -96,10 +97,10 @@ namespace binfilter {
 /*N*/ }
 
 /*?*/ BOOL SfxConfigItem::ReInitialize()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
-/*?*/ String SfxConfigItem::GetStreamName( USHORT nType )
+/*?*/ String SfxConfigItem::GetStreamName( USHORT /*nType*/ )
 /*?*/ {
 /*?*/     return String();
 /*?*/ }
@@ -109,3 +110,5 @@ namespace binfilter {
 /*N*/   m_pCfgMgr = pMgr; pMgr->AddConfigItem(*this);
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

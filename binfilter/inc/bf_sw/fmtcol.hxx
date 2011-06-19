@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>      // fuer MAXLEVEL
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 namespace binfilter {
 
 class SwDoc;        // fuer friend
@@ -103,30 +98,6 @@ public:
     SwTxtFmtColl& GetNextTxtFmtColl() const { return *pNextTxtFmtColl; }
 
     BOOL IsAtDocNodeSet() const;
-
-/*----------------- JP 09.08.94 17:36 -------------------
- wird die Funktionalitaet von Zeichenvorlagen an Absatzvorlagen
- ueberhaupt benoetigt ??
-
- Wenn, ja dann muessen im TextNode und hier in der TxtCollection ein 2.
- Attset fuer die Char-Attribute angelegt werden; damit die Vererbung
- und der Zugriff auf die gesetzen Attribute richtig funktioniert!!
-
-    virtual BOOL SetDerivedFrom( SwFmtColl* pDerFrom = 0 );
-
-    inline SwCharFmt* GetCharFmt() const;
-    inline BOOL IsCharFmtSet() const;
-    void SetCharFmt(SwCharFmt *);
-    void ResetCharFmt();
-inline BOOL SwTxtFmtColl::IsCharFmtSet() const
-{
-    return aCharDepend.GetRegisteredIn() ? TRUE : FALSE;
-}
-inline SwCharFmt* SwTxtFmtColl::GetCharFmt() const
-{
-    return (SwCharFmt*)aCharDepend.GetRegisteredIn();
-}
---------------------------------------------------*/
 };
 
 typedef SwTxtFmtColl* SwTxtFmtCollPtr;
@@ -211,7 +182,7 @@ public:
 
 
 typedef SwCollCondition* SwCollConditionPtr;
-SV_DECL_PTRARR_DEL( SwFmtCollConditions, SwCollConditionPtr, 0, 5 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwFmtCollConditions, SwCollConditionPtr, 0, 5 )
 
 class SwConditionTxtFmtColl : public SwTxtFmtColl
 {
@@ -233,9 +204,6 @@ public:
 
     virtual ~SwConditionTxtFmtColl();
 
-    // zum "abfischen" von Aenderungen
-//  virtual void Modify( SfxPoolItem*, SfxPoolItem* );
-
     const SwCollCondition* HasCondition( const SwCollCondition& rCond ) const;
     const SwFmtCollConditions& GetCondColls() const     { return aCondColls; }
     void InsertCondition( const SwCollCondition& rCond );
@@ -253,7 +221,7 @@ inline void SwTxtFmtColl::SetNextTxtFmtColl( SwTxtFmtColl& rNext )
 
 inline void SwTxtFmtColl::SetOutlineLevel( BYTE nLevel )
 {
-    ASSERT( nLevel < MAXLEVEL || nLevel == NO_NUMBERING ,
+    OSL_ENSURE( nLevel < MAXLEVEL || nLevel == NO_NUMBERING ,
                             "SwTxtFmtColl: Level too low" );
     nOutlineLevel = nLevel;
 }
@@ -262,3 +230,4 @@ inline void SwTxtFmtColl::SetOutlineLevel( BYTE nLevel )
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -43,16 +44,12 @@
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
 // header for class SvXMLAttrContainerItem
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
 
 #ifndef _SVX_BRSHITEM_HXX //autogen
 #define ITEMID_BRUSH SCHATTR_SYMBOL_BRUSH
@@ -485,3 +482,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

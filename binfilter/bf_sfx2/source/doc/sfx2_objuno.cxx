@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,31 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_DISPOSEDEXCEPTION_HPP_
 #include <com/sun/star/lang/DisposedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XFRAME_HPP_
 #include <com/sun/star/frame/XFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>
-#endif
-#ifndef _COM_SUN_STAR_IO_IOEXCEPTION_HPP_
 #include <com/sun/star/io/IOException.hpp>
-#endif
 
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/document/XImporter.hpp>
 
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-#endif
 
 #include <tools/errcode.hxx>
 #include <bf_so3/svstor.hxx>
@@ -66,7 +53,6 @@
 #include "sfxsids.hrc"
 #include "printer.hxx"
 #include "objsh.hxx"
-#include "docinf.hxx"
 #include "docfile.hxx"
 #include "openflag.hxx"
 #include "app.hxx"
@@ -76,10 +62,9 @@
 #include "objshimp.hxx"
 
 #include <osl/mutex.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 namespace binfilter {
 
-using namespace vos;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::frame;
@@ -124,34 +109,12 @@ using namespace ::com::sun::star::frame;
 /*N*/     { "TemplateDate"    , 12, MID_DOCINFO_TEMPLATEDATE, &::getCppuType((const ::com::sun::star::util::DateTime*)0),PROPERTY_MAYBEVOID, 0 },
 /*N*/   { "Theme"           , 5 , MID_DOCINFO_SUBJECT, &::getCppuType((const ::rtl::OUString*)0), PROPERTY_UNBOUND, 0 },
 /*N*/   { "Title"           , 5 , WID_TITLE,          &::getCppuType((const ::rtl::OUString*)0), PROPERTY_UNBOUND, 0 },
-/*N*/   {0,0,0,0,0}
+/*N*/   {0,0,0,0,0,0}
 /*N*/ };
 
 //-----------------------------------------------------------------------------
 /*N*/ SFX_IMPL_XINTERFACE_5( SfxDocumentInfoObject, OWeakObject, ::com::sun::star::document::XDocumentInfo, ::com::sun::star::lang::XComponent, ::com::sun::star::beans::XPropertySet, ::com::sun::star::beans::XFastPropertySet, ::com::sun::star::beans::XPropertyAccess )
 /*N*/ SFX_IMPL_XTYPEPROVIDER_5( SfxDocumentInfoObject, ::com::sun::star::document::XDocumentInfo, ::com::sun::star::lang::XComponent, ::com::sun::star::beans::XPropertySet, ::com::sun::star::beans::XFastPropertySet, ::com::sun::star::beans::XPropertyAccess )
-/*
-::com::sun::star::uno::Reference< ::com::sun::star::reflection::XIdlClass >  SfxDocumentInfoObject::getStaticIdlClass()
-{
-    // Global Method, must be guarded (multithreading)
-    MutexGuard aGuard( Mutex::getGlobalMutex() );
-    {
-        // use the standard class implementation of the usr library
-        static ::com::sun::star::uno::Reference< ::com::sun::star::reflection::XIdlClass >  xClass =
-        createStandardClass(
-            "com.sun.star.comp.sfx2.DocumentInfo",
-            OWeakObject::getStaticIdlClass(),
-            4,
-            ::getCppuType((const ::com::sun::star::lang::XComponent*)0),
-            ::getCppuType((const ::com::sun::star::document::XDocumentInfo*)0),
-            ::getCppuType((const ::com::sun::star::beans::XPropertyAccess*)0),
-            ::getCppuType((const ::com::sun::star::beans::XPropertySet*)0),
-            ::getCppuType((const ::com::sun::star::beans::XFastPropertySet*)0) );
-
-        return xClass;
-    }
-}
-*/
 //-----------------------------------------------------------------------------
 /*N*/ struct SfxDocumentInfoObject_Impl
 /*N*/ {
@@ -170,10 +133,10 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ SfxDocumentInfoObject::SfxDocumentInfoObject( sal_Bool bStandalone )
 /*N*/   : _aPropSet( aDocInfoPropertyMap_Impl )
-/*N*/   , _pInfo( NULL )
-/*N*/   , _pFilter( NULL )
 /*N*/   , _bStandalone( bStandalone )
 /*N*/   , _pImp( new SfxDocumentInfoObject_Impl( NULL ) )
+/*N*/   , _pInfo( NULL )
+/*N*/   , _pFilter( NULL )
 /*N*/ {
         _pInfo = new SfxDocumentInfo;
 /*N*/ }
@@ -182,10 +145,10 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ SfxDocumentInfoObject::SfxDocumentInfoObject( SfxObjectShell *pObjSh )
 /*N*/   : _aPropSet( aDocInfoPropertyMap_Impl )
-/*N*/   , _pInfo( 0 )
-/*N*/   , _pFilter( NULL )
 /*N*/   , _bStandalone( sal_False )
 /*N*/   , _pImp( new SfxDocumentInfoObject_Impl( pObjSh ) )
+/*N*/   , _pInfo( 0 )
+/*N*/   , _pFilter( NULL )
 /*N*/ {
 /*N*/   if ( pObjSh )
 /*N*/   {
@@ -211,12 +174,6 @@ using namespace ::com::sun::star::frame;
 /*N*/ {
 /*N*/   ::com::sun::star::lang::EventObject aEvent( (::cppu::OWeakObject *)this );
 /*N*/   _pImp->_aDisposeContainer.disposeAndClear( aEvent );
-
-/*
-    _xCurrent = ::com::sun::star::uno::Reference< ::com::sun::star::frame::XController > ();
-    for ( sal_uInt32 n = _aControllers.ge.getLength(); n; --n )
-        SequenceRemoveElementAt( _aControllers, n-1 );
-*/
 /*N*/ }
 
 //-----------------------------------------------------------------------------
@@ -264,22 +221,22 @@ using namespace ::com::sun::star::frame;
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::addPropertyChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::addPropertyChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::removePropertyChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::removePropertyChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertyChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::addVetoableChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::addVetoableChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 
 //-----------------------------------------------------------------------------
 
-/*N*/ void SAL_CALL  SfxDocumentInfoObject::removeVetoableChangeListener(const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & aListener) throw( ::com::sun::star::uno::RuntimeException )
+/*N*/ void SAL_CALL  SfxDocumentInfoObject::removeVetoableChangeListener(const ::rtl::OUString& /*aPropertyName*/, const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XVetoableChangeListener > & /*aListener*/) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {}
 /*N*/
 /*N*/ ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL  SfxDocumentInfoObject::getPropertyValues( void ) throw( ::com::sun::star::uno::RuntimeException )
@@ -360,7 +317,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxDocumentInfoObject::setFastPropertyValue(sal_Int32 nHandle, const ::com::sun::star::uno::Any& aValue) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   sal_Bool bModified = sal_True;
 /*N*/
 /*N*/   if ( aValue.getValueType() == ::getCppuType((const ::rtl::OUString*)0) )
@@ -505,7 +462,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   }
 /*N*/   else if ( aValue.getValueType() == ::getBooleanCppuType() )
 /*N*/   {
-/*N*/       sal_Bool bBoolVal ;
+/*N*/       sal_Bool bBoolVal(sal_False);
 /*N*/       aValue >>= bBoolVal ;
 /*N*/       switch ( nHandle )
 /*N*/       {
@@ -521,8 +478,8 @@ using namespace ::com::sun::star::frame;
 /*N*/   }
 /*N*/   else if ( aValue.getValueType() == ::getCppuType((const sal_Int32*)0) )
 /*N*/   {
-/*N*/       long nIntVal ;
-/*N*/       aValue >>= nIntVal ;
+/*N*/       long nIntVal(0);
+/*N*/       aValue >>= nIntVal;
 /*N*/       switch ( nHandle )
 /*N*/       {
 /*N*/           case MID_DOCINFO_AUTOLOADSECS:
@@ -536,8 +493,8 @@ using namespace ::com::sun::star::frame;
 /*N*/   }
 /*N*/   else if ( aValue.getValueType() == ::getCppuType((const sal_Int16*)0) )
 /*N*/   {
-/*N*/       short nIntVal ;
-/*N*/       aValue >>= nIntVal ;
+/*N*/       short nIntVal(0);
+/*N*/       aValue >>= nIntVal;
 /*N*/       switch ( nHandle )
 /*N*/       {
 /*N*/           case MID_DOCINFO_REVISION:
@@ -560,7 +517,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL  SfxDocumentInfoObject::getFastPropertyValue(sal_Int32 nHandle) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   ::com::sun::star::uno::Any aValue;
 /*N*/   if ( nHandle == WID_CONTENT_TYPE )
 /*N*/   {
@@ -711,7 +668,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ sal_Int16 SAL_CALL  SfxDocumentInfoObject::getUserFieldCount() throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   return _pInfo->GetUserKeyCount();
 /*N*/ }
 
@@ -719,7 +676,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ ::rtl::OUString SAL_CALL  SfxDocumentInfoObject::getUserFieldName(sal_Int16 nIndex) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/       return _pInfo->GetUserKey( nIndex ).GetTitle();
 /*N*/   else
@@ -730,7 +687,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ ::rtl::OUString SAL_CALL  SfxDocumentInfoObject::getUserFieldValue(sal_Int16 nIndex) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/       return _pInfo->GetUserKey( nIndex ).GetWord();
 /*N*/   else
@@ -741,7 +698,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void  SAL_CALL SfxDocumentInfoObject::setUserFieldName(sal_Int16 nIndex, const ::rtl::OUString& aName ) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/   {
 /*N*/       const SfxDocUserKey& rKey = _pInfo->GetUserKey( nIndex );
@@ -756,7 +713,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxDocumentInfoObject::setUserFieldValue( sal_Int16 nIndex, const ::rtl::OUString& aValue ) throw( ::com::sun::star::uno::RuntimeException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   if ( nIndex < _pInfo->GetUserKeyCount() )
 /*N*/   {
 /*N*/       const SfxDocUserKey& rKey = _pInfo->GetUserKey( nIndex );
@@ -803,7 +760,7 @@ using namespace ::com::sun::star::frame;
 /*N*/   // Filter-Detection wegen FileFormat-Version
 /*N*/   _pFilter = 0;
 /*N*/   if ( 0 != SFX_APP()->GetFilterMatcher().GuessFilter( *_pMedium, &_pFilter )
-/*N*/           || !bWrite && !_pFilter )
+/*N*/           || (!bWrite && !_pFilter) )
 /*N*/       // unbekanntes Dateiformat
 /*N*/       return NULL;
 /*N*/
@@ -852,7 +809,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxStandaloneDocumentInfoObject::loadFromURL(const ::rtl::OUString& aURL) throw( ::com::sun::star::io::IOException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   sal_Bool bOK = sal_False;
 /*N*/   String aName( aURL );
 /*N*/     SvStorage* pStorage = GetStorage_Impl( aName, sal_False );
@@ -914,7 +871,7 @@ using namespace ::com::sun::star::frame;
 
 /*N*/ void SAL_CALL  SfxStandaloneDocumentInfoObject::storeIntoURL(const ::rtl::OUString& aURL) throw( ::com::sun::star::io::IOException )
 /*N*/ {
-/*N*/   ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   sal_Bool bOK = sal_False;
 /*N*/   String aName( aURL );
 /*N*/   SvStorage* pStor = GetStorage_Impl( aName, sal_True );
@@ -944,30 +901,6 @@ Reference< XInterface > SAL_CALL bf_BinaryDocInfo_createInstance(const Reference
 }
 
 
-//=============================================================================
-/* ASMUSS
-#ifdef TEST_CODE
-    // Testcode fuer DocumentInfoObject
-    // Einmal zum Holen
-    ::com::sun::star::uno::Reference< XServiceManager >  xMan = getGlobalServiceManager();
-    ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Uik > aIfaces( 2 );
-    aIfaces.getArray()[0] = ::getCppuType((const Reference< ::com::sun::star::document::XDocumentInfo >*)0);
-    aIfaces.getArray()[1] = ::getCppuType((const Reference< ::com::sun::star::beans::XFastPropertySet >*)0);
-    ::com::sun::star::uno::Reference< XServiceProvider >  xSSI = xMan->getServiceProvider(
-            "com.sun.star.document.DocumentInfo", aIfaces, ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Uik >() );
-// automatisch auskommentiert - [getIdlClass(es) or queryInterface] - Bitte XTypeProvider benutzen!
-//  ::com::sun::star::uno::Reference< ::com::sun::star::document::XDocumentInfo >  xInfo = (::com::sun::star::document::XDocumentInfo*) xSSI->newInstance()->queryInterface( ::getCppuType((const Reference< ::com::sun::star::document::XDocumentInfo >*)0) );
-
-// automatisch auskommentiert - [getIdlClass(es) or queryInterface] - Bitte XTypeProvider benutzen!
-//  ::com::sun::star::uno::Reference< ::com::sun::star::beans::XFastPropertySet >  xProps = (::com::sun::star::beans::XFastPropertySet*) xInfo->queryInterface( ::getCppuType((const Reference< ::com::sun::star::beans::XFastPropertySet >*)0) );
-
-
-    // Laden und Werte auslesen
-    xInfo->load( StringToOUString( aURL, CHARSET_SYSTEM ) );
-    ::com::sun::star::uno::Any aValue = xProps->getFastPropertyValue( WID_FROM );
-    String aAuthor = OUStringToString( aValue.getString(), CHARSET_SYSTEM );
-#endif
-*/
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

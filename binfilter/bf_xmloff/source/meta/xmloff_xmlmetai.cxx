@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -78,7 +79,7 @@ private:
     ::rtl::OUString       sFieldName;     // for <meta:user-defined>
 
 public:
-    SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    SfxXMLMetaElementContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                 const ::rtl::OUString& rLName,
                                 const uno::Reference<
                                     xml::sax::XAttributeList>& xAttrList,
@@ -129,7 +130,7 @@ enum SfxXMLMetaElemTokens
 // XML_TOK_META_KEYWORD is not in map,
 // handled in SfxXMLMetaElementContext::CreateChildContext
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaElemTokenMap[] =
+static SvXMLTokenMapEntry aMetaElemTokenMap[] =
 {
     { XML_NAMESPACE_DC,     XML_TITLE,             XML_TOK_META_TITLE },
     { XML_NAMESPACE_DC,     XML_DESCRIPTION,       XML_TOK_META_DESCRIPTION },
@@ -160,7 +161,7 @@ enum SfxXMLMetaTemplateTokens
     XML_TOK_META_TEMPLATE_END = XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaTemplateTokenMap[] =
+static SvXMLTokenMapEntry aMetaTemplateTokenMap[] =
 {
     { XML_NAMESPACE_XLINK,  XML_HREF,              XML_TOK_META_TEMPLATE_HREF },
     { XML_NAMESPACE_XLINK,  XML_TITLE,             XML_TOK_META_TEMPLATE_TITLE },
@@ -175,7 +176,7 @@ enum SfxXMLMetaReloadTokens
     XML_TOK_META_RELOAD_END = XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaReloadTokenMap[] =
+static SvXMLTokenMapEntry aMetaReloadTokenMap[] =
 {
     { XML_NAMESPACE_XLINK,  XML_HREF,              XML_TOK_META_RELOAD_HREF },
     { XML_NAMESPACE_META,   XML_DELAY,             XML_TOK_META_RELOAD_DELAY },
@@ -356,7 +357,7 @@ sal_Bool SfxXMLMetaElementContext::ParseISODurationString(
             {
                 //! how many days is a year or month?
 
-                DBG_ERROR("years or months in duration: not implemented");
+                OSL_FAIL("years or months in duration: not implemented");
                 bSuccess = sal_False;
             }
             else
@@ -375,11 +376,11 @@ sal_Bool SfxXMLMetaElementContext::ParseISODurationString(
 
 //-------------------------------------------------------------------------
 
-SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<xml::sax::XAttributeList>& xAttrList,
                                     SfxXMLMetaContext& rParentContext, sal_uInt16 nType ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     rParent( rParentContext ),
     nElementType( nType )
 {
@@ -397,24 +398,24 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             for( sal_Int16 i=0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                    sAttrName, &aLocalName );
+                ::rtl::OUString aLclLocalName;
+                sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                    sAttrName, &aLclLocalName );
                 ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
                 SvXMLTokenMap aTokenMap( aMetaTemplateTokenMap );
-                switch( aTokenMap.Get( nPrefix, aLocalName ) )
+                switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
                 {
                 case XML_TOK_META_TEMPLATE_HREF:
                     aPropAny <<= GetImport().GetAbsoluteReference(sValue);
                     xInfoProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATEURL),
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATEURL)),
                         aPropAny );
                     break;
                 case XML_TOK_META_TEMPLATE_TITLE:
                     aPropAny <<= sValue;
                     xInfoProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_TEMPLATENAME),
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TEMPLATENAME)),
                         aPropAny );
                     break;
                 case XML_TOK_META_TEMPLATE_DATE:
@@ -424,8 +425,8 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                         {
                             aPropAny <<= aDateTime;
                             xInfoProp->setPropertyValue(
-                                ::rtl::OUString::createFromAscii(
-                                            PROP_TEMPLATEDATE), aPropAny );
+                                ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                                            PROP_TEMPLATEDATE)), aPropAny );
                         }
                     }
                     break;
@@ -444,26 +445,26 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             sal_Bool bReload = sal_True;
             aPropAny.setValue( &bReload, getBooleanCppuType() );
             xInfoProp->setPropertyValue(
-                    ::rtl::OUString::createFromAscii(PROP_RELOADENABLED),
+                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADENABLED)),
                     aPropAny );
 
             sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
             for( sal_Int16 i=0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                    sAttrName, &aLocalName );
+                ::rtl::OUString aLclLocalName;
+                sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                    sAttrName, &aLclLocalName );
                 ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
                 SvXMLTokenMap aTokenMap( aMetaReloadTokenMap );
                 uno::Any aAny;
-                switch( aTokenMap.Get( nPrefix, aLocalName ) )
+                switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
                 {
                     case XML_TOK_META_RELOAD_HREF:
                         aPropAny <<= GetImport().GetAbsoluteReference(sValue);
                         xInfoProp->setPropertyValue(
-                            ::rtl::OUString::createFromAscii(PROP_RELOADURL),
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_RELOADURL)),
                             aPropAny );
                         break;
                     case XML_TOK_META_RELOAD_DELAY:
@@ -474,8 +475,8 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
                                 sal_Int32 nSecs = aTime.GetMSFromTime() / 1000;
                                 aPropAny <<= nSecs;
                                 xInfoProp->setPropertyValue(
-                                    ::rtl::OUString::createFromAscii(
-                                                PROP_RELOADSECS), aPropAny );
+                                    ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+                                                PROP_RELOADSECS)), aPropAny );
                             }
                         }
                         break;
@@ -494,16 +495,16 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
             for( sal_Int16 i=0; i < nAttrCount; i++ )
             {
                 ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-                ::rtl::OUString aLocalName;
-                sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                    sAttrName, &aLocalName );
-                if ( nPrefix == XML_NAMESPACE_OFFICE &&
-                     IsXMLToken(aLocalName, XML_TARGET_FRAME_NAME) )
+                ::rtl::OUString aLclLocalName;
+                sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                    sAttrName, &aLclLocalName );
+                if ( nLclPrefix == XML_NAMESPACE_OFFICE &&
+                     IsXMLToken(aLclLocalName, XML_TARGET_FRAME_NAME) )
                 {
                     ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
                     aPropAny <<= sValue;
                     xInfoProp->setPropertyValue(
-                        ::rtl::OUString::createFromAscii(PROP_DEFAULTTARGET),
+                        ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DEFAULTTARGET)),
                         aPropAny );
                 }
             }
@@ -517,11 +518,11 @@ SfxXMLMetaElementContext::SfxXMLMetaElementContext( SvXMLImport& rImport, sal_uI
         for( INT16 i=0; i < nAttrCount; i++ )
         {
             ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-            ::rtl::OUString aLocalName;
-            sal_uInt16 nPrefix = rImport.GetNamespaceMap().GetKeyByAttrName(
-                                                sAttrName, &aLocalName );
-            if ( nPrefix == XML_NAMESPACE_META &&
-                 IsXMLToken(aLocalName, XML_NAME) )
+            ::rtl::OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = rInImport.GetNamespaceMap().GetKeyByAttrName(
+                                                sAttrName, &aLclLocalName );
+            if ( nLclPrefix == XML_NAMESPACE_META &&
+                 IsXMLToken(aLclLocalName, XML_NAME) )
             {
                 sFieldName = xAttrList->getValueByIndex( i );
             }
@@ -536,25 +537,25 @@ SfxXMLMetaElementContext::~SfxXMLMetaElementContext()
     rParent.ReleaseRef();
 }
 
-SvXMLImportContext* SfxXMLMetaElementContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext* SfxXMLMetaElementContext::CreateChildContext( sal_uInt16 nInPrefix,
                                      const ::rtl::OUString& rLName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
     if ( nElementType == XML_TOK_META_KEYWORDS &&
-         nPrefix == XML_NAMESPACE_META &&
+         nInPrefix == XML_NAMESPACE_META &&
          IsXMLToken(rLName, XML_KEYWORD) )
     {
         //  <office:keyword> inside of <office:keywords>
-        pContext = new SfxXMLMetaElementContext( GetImport(), nPrefix, rLName,
+        pContext = new SfxXMLMetaElementContext( GetImport(), nInPrefix, rLName,
                                     xAttrList, rParent, XML_TOK_META_KEYWORD );
     }
 
     if ( !pContext )
     {
         //  default context to ignore unknown elements
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     }
     return pContext;
 }
@@ -574,48 +575,48 @@ void SfxXMLMetaElementContext::EndElement()
         // simple strings
         case XML_TOK_META_TITLE:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_TITLE), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_TITLE)), aPropAny );
             break;
         case XML_TOK_META_DESCRIPTION:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_DESCRIPTION), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_DESCRIPTION)), aPropAny );
             break;
         case XML_TOK_META_SUBJECT:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_THEME), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_THEME)), aPropAny );
             break;
         case XML_TOK_META_INITIALCREATOR:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_AUTHOR), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_AUTHOR)), aPropAny );
             break;
         case XML_TOK_META_CREATOR:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_MODIFIEDBY), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFIEDBY)), aPropAny );
             break;
         case XML_TOK_META_PRINTEDBY:
             aPropAny <<= sContent;
-            xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_PRINTEDBY), aPropAny );
+            xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTEDBY)), aPropAny );
             break;
         // date/time
         case XML_TOK_META_CREATIONDATE:
             if ( ParseISODateTimeString( sContent, aDateTime ) )
             {
                 aPropAny <<= aDateTime;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_CREATIONDATE), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_CREATIONDATE)), aPropAny );
             }
             break;
         case XML_TOK_META_DATE:
             if ( ParseISODateTimeString( sContent, aDateTime ) )
             {
                 aPropAny <<= aDateTime;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_MODIFYDATE), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_MODIFYDATE)), aPropAny );
             }
             break;
         case XML_TOK_META_PRINTDATE:
             if ( ParseISODateTimeString( sContent, aDateTime ) )
             {
                 aPropAny <<= aDateTime;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_PRINTDATE), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_PRINTDATE)), aPropAny );
             }
             break;
         // others
@@ -642,7 +643,7 @@ void SfxXMLMetaElementContext::EndElement()
                     try
                     {
                         xDocProp->setPropertyValue(
-                            ::rtl::OUString::createFromAscii( PROP_CHARLOCALE ),
+                            ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_CHARLOCALE )),
                             aPropAny );
                     }
                     catch (beans::UnknownPropertyException&)
@@ -656,7 +657,7 @@ void SfxXMLMetaElementContext::EndElement()
             if ( lcl_GetNumber( sContent, nValue, USHRT_MAX ) )
             {
                 aPropAny <<= (sal_Int16) nValue;
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_EDITINGCYCLES), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGCYCLES)), aPropAny );
             }
             break;
         case XML_TOK_META_EDITINGDURATION:
@@ -664,7 +665,7 @@ void SfxXMLMetaElementContext::EndElement()
             if ( ParseISODurationString( sContent, aTime ) )
             {
                 aPropAny <<= (sal_Int32) aTime.GetTime();
-                xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_EDITINGDURATION), aPropAny );
+                xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_EDITINGDURATION)), aPropAny );
             }
             break;
         case XML_TOK_META_KEYWORDS:
@@ -684,7 +685,7 @@ void SfxXMLMetaElementContext::EndElement()
         case XML_TOK_META_DOCUMENT_STATISTIC:
             break;
         default:
-            DBG_ERROR("wrong element");
+            OSL_FAIL("wrong element");
     }
 }
 
@@ -698,10 +699,10 @@ void SfxXMLMetaElementContext::Characters( const ::rtl::OUString& rChars )
 //  context for <office:meta> element
 //
 
-SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<frame::XModel>& rDocModel ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xDocProp( rDocModel, uno::UNO_QUERY ),
     pTokenMap( NULL ),
     nUserKeys( 0 )
@@ -718,10 +719,10 @@ SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
 #endif
 }
 
-SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SfxXMLMetaContext::SfxXMLMetaContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<document::XDocumentInfo>&  rDocInfo ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xDocInfo( rDocInfo ),
     xInfoProp( rDocInfo, uno::UNO_QUERY ),
     pTokenMap ( NULL ),
@@ -738,7 +739,7 @@ SfxXMLMetaContext::~SfxXMLMetaContext()
     delete pTokenMap;
 }
 
-SvXMLImportContext* SfxXMLMetaContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext* SfxXMLMetaContext::CreateChildContext( sal_uInt16 nInPrefix,
                                     const ::rtl::OUString& rLName,
                                     const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
@@ -747,15 +748,15 @@ SvXMLImportContext* SfxXMLMetaContext::CreateChildContext( sal_uInt16 nPrefix,
     if (!pTokenMap)
         pTokenMap = new SvXMLTokenMap( aMetaElemTokenMap );
 
-    sal_uInt16 nToken = pTokenMap->Get( nPrefix, rLName );
+    sal_uInt16 nToken = pTokenMap->Get( nInPrefix, rLName );
     if ( nToken != XML_TOK_UNKNOWN )
         pContext = new SfxXMLMetaElementContext( GetImport(),
-                                nPrefix, rLName, xAttrList, *this, nToken );
+                                nInPrefix, rLName, xAttrList, *this, nToken );
 
     if ( !pContext )
     {
         //  default context to ignore unknown elements
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
     }
     return pContext;
 }
@@ -766,7 +767,7 @@ void SfxXMLMetaContext::EndElement()
     {
         uno::Any aAny;
         aAny <<= ::rtl::OUString(sKeywords);
-        xInfoProp->setPropertyValue( ::rtl::OUString::createFromAscii(PROP_KEYWORDS), aAny );
+        xInfoProp->setPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(PROP_KEYWORDS)), aAny );
     }
 }
 
@@ -795,3 +796,5 @@ void SfxXMLMetaContext::AddUserField( const ::rtl::OUString& rName, const ::rtl:
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

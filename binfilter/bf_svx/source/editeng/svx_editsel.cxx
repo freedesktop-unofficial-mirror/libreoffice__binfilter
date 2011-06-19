@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editview.hxx>
@@ -49,40 +48,40 @@ namespace binfilter {
 /*N*/   pCurView = NULL;
 /*N*/ }
 
-/*N*/ void __EXPORT EditSelFunctionSet::CreateAnchor()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditSelFunctionSet::CreateAnchor()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditSelFunctionSet::DestroyAnchor()
+/*N*/ void EditSelFunctionSet::DestroyAnchor()
 /*N*/ {
 /*N*/   // Nur bei Mehrfachselektion
 /*N*/ }
 
-/*N*/ BOOL __EXPORT EditSelFunctionSet::SetCursorAtPoint( const Point& rPointPixel, BOOL )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL EditSelFunctionSet::SetCursorAtPoint( const Point& /*rPointPixel*/, BOOL )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL __EXPORT EditSelFunctionSet::IsSelectionAtPoint( const Point& rPointPixel )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL EditSelFunctionSet::IsSelectionAtPoint( const Point& /*rPointPixel*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     return FALSE;
 /*N*/ }
 
-/*N*/ void __EXPORT EditSelFunctionSet::DeselectAtPoint( const Point& )
+/*N*/ void EditSelFunctionSet::DeselectAtPoint( const Point& )
 /*N*/ {
 /*N*/ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /*N*/ // !  Implementieren, wenn Mehrfachselektion moeglich  !
 /*N*/ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /*N*/ }
 
-/*N*/ void __EXPORT EditSelFunctionSet::BeginDrag()
+/*N*/ void EditSelFunctionSet::BeginDrag()
 /*N*/ {
 /*N*/   // Nur bei Mehrfachselektion
 /*N*/ }
 
 
-/*N*/ void __EXPORT EditSelFunctionSet::DeselectAll()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditSelFunctionSet::DeselectAll()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //  ----------------------------------------------------------------------
@@ -109,3 +108,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

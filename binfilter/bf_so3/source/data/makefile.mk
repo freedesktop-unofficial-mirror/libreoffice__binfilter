@@ -36,7 +36,6 @@ TARGET=so3_data
 .INCLUDE :  settings.mk
 .INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
-
 # --- Files --------------------------------------------------------
 
 SLOFILES=                                                           \
@@ -46,5 +45,3 @@ SLOFILES=                                                           \
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :  target.mk
-
-.INCLUDE :  $(SUBPRJ)$/util$/target.pmk

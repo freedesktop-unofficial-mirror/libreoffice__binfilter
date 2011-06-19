@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -53,7 +54,7 @@ namespace binfilter {
         virtual ULONG GetReleaseFromCache() const;
         virtual SvStream* GetSwapStream() const;
         virtual void Load( SvStream& );
-        virtual void Save( SvStream& );
+        virtual void Save( SvStream& ) {};
         virtual void Assign( const SvDataCopyStream& );
 
     public:
@@ -92,3 +93,5 @@ namespace binfilter {
     };
 }//end of namespace binfilter
 #endif // _BF_GOODIES_GRAPHICOBJECT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

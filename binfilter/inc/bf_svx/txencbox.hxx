@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,10 +30,8 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
 #endif
-#endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

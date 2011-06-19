@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,25 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 #include <cppuhelper/implbase2.hxx>
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "eeitem.hxx"
 #include "numitem.hxx"
@@ -308,7 +299,7 @@ void SvxUnoNumberingRuleTable::CreateName( OUString& rStrName)
 
     for( sal_Int32 nPostfix = 1; nPostfix<= nCount && bFound; nPostfix++ )
     {
-        rStrName = OUString::createFromAscii( "Standard " );
+        rStrName = OUString( RTL_CONSTASCII_USTRINGPARAM( "Standard " ));
         rStrName += OUString::valueOf( nPostfix );
         bFound = hasByName( rStrName );
     }
@@ -323,3 +314,5 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoNumberingRuleTable_createInstan
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

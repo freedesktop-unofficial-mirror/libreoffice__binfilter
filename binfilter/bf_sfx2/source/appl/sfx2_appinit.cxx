@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,69 +27,31 @@
  ************************************************************************/
 #include "app.hxx"
 
-#ifndef _COM_SUN_STAR_FRAME_XTERMINATELISTENER_HPP_
 #include <com/sun/star/frame/XTerminateListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDESKTOP_HPP_
 #include <com/sun/star/frame/XDesktop.hpp>
-#endif
 
 #include <bf_svtools/svtools.hrc>
 #include <bf_svtools/saveopt.hxx>
 #include <bf_svtools/localisationoptions.hxx>
 
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
-#ifndef _SV_RESARY_HXX
 #include <tools/resary.hxx>
-#endif
 
-#ifndef _SOERR_HXX //autogen
 #include <bf_so3/soerr.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _INETBND_HXX //autogen
 #include <bf_so3/inetbnd.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _VOS_SECURITY_HXX_
-#include <vos/security.hxx>
-#endif
-#ifndef _UCBHELPER_CONFIGURATIONKEYS_HXX_
+#include <osl/security.hxx>
 #include <ucbhelper/configurationkeys.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_HISTORYOPTIONS_HXX
 #include <bf_svtools/historyoptions.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <bf_svtools/moduleoptions.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 
@@ -115,11 +78,9 @@
 #include "fcontnr.hxx"
 #include "helper.hxx"   // SfxContentHelper::Kill()
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
 #include <cppuhelper/implbase1.hxx>
 
@@ -149,11 +110,11 @@ public:
     virtual void SAL_CALL disposing( const EventObject& Source ) throw( RuntimeException );
 };
 
-/*N*/ void SAL_CALL SfxTerminateListener_Impl::disposing( const EventObject& Source ) throw( RuntimeException )
+/*N*/ void SAL_CALL SfxTerminateListener_Impl::disposing( const EventObject& /*Source*/ ) throw( RuntimeException )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SfxTerminateListener_Impl::queryTermination( const EventObject& aEvent ) throw(TerminationVetoException, RuntimeException )
+/*N*/ void SAL_CALL SfxTerminateListener_Impl::queryTermination( const EventObject& /*aEvent*/ ) throw(TerminationVetoException, RuntimeException )
 /*N*/ {
 /*N*/ }
 
@@ -163,7 +124,7 @@ public:
 /*N*/     if( xDesktop.is() == sal_True )
 /*N*/         xDesktop->removeTerminateListener( this );
 /*N*/
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/     SfxApplication* pApp = SFX_APP();
 /*N*/     pApp->Broadcast( SfxSimpleHint( SFX_HINT_DEINITIALIZING ) );
 /*N*/     pApp->NotifyEvent(SfxEventHint( SFX_EVENT_CLOSEAPP) );
@@ -175,11 +136,11 @@ public:
 
 //====================================================================
 
-/*N*/ FASTBOOL SfxApplication::Initialize_Impl()
+/*N*/ bool SfxApplication::Initialize_Impl()
 /*N*/ {
 /*N*/
 /*N*/     Reference < XDesktop > xDesktop ( ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-                                           ::rtl::OUString::createFromAscii("com.sun.star.frame.Desktop") ), UNO_QUERY );
+                                           ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.Desktop" )) ), UNO_QUERY );
 /*N*/     xDesktop->addTerminateListener( new SfxTerminateListener_Impl() );
 /*N*/
 /*N*/     // StarObjects initialisieren
@@ -190,9 +151,8 @@ public:
 /*N*/   // Wrapper angelegt werden
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr = new SfxFrameObjectFactoryPtr;
 /*N*/   pAppData_Impl->pSfxFrameObjectFactoryPtr->pSfxFrameObjectFactory = SfxFrameObject::ClassFactory();
-/*N*/   SvBindStatusCallback::SetProgressCallback( STATIC_LINK( 0, SfxProgress, DefaultBindingProgress ) );
 /*N*/
-/*N*/   pImp->pEventHdl = new UniqueIndex( 1, 4, 4 );
+/*N*/   pImp->pEventHdl = new UniqueIndex( 1 );
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   // Der SimplerErrorHandler dient Debugzwecken. In der Product werden
@@ -211,7 +171,7 @@ public:
 /*N*/
 /*N*/   pImp->pObjShells = new SfxObjectShellArr_Impl;
 /*N*/
-/*N*/ //    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/ //    SolarMutexGuard aGuard;
 /*N*/
 /*N*/   SfxEventConfiguration::RegisterEvent(SFX_EVENT_STARTAPP,        String(),   String::CreateFromAscii("OnStartApp") );
 /*N*/   SfxEventConfiguration::RegisterEvent(SFX_EVENT_CLOSEAPP,        String(),   String::CreateFromAscii("OnCloseApp") );
@@ -244,3 +204,5 @@ public:
 /*N*/     return sal_True;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

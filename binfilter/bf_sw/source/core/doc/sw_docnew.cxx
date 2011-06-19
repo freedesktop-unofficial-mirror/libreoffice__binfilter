@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,155 +29,65 @@
 
 #define ROLBCK_HISTORY_ONLY     // Der Kampf gegen die CLOOK's
 
-#ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HDL_
 #include <com/sun/star/i18n/ForbiddenCharacters.hdl>
-#endif
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
-#endif
 
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTFORDR_HXX
 #include <fmtfordr.hxx>
-#endif
-#ifndef _PVPRTDAT_HXX
 #include <pvprtdat.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Damit der RootDtor gerufen wird.
-#endif
-#ifndef _LAYOUTER_HXX
 #include <layouter.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SW_PRINTDATA_HXX
 #include <printdata.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>
-#endif
-#ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>          // fuer die Pool-Vorlage
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _VISITURL_HXX
 #include <visiturl.hxx>         // fuer die URL-Change Benachrichtigung
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _LINEINFO_HXX
 #include <lineinfo.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include <drawdoc.hxx>
-#endif
-#ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
-#endif
-#ifndef _EXTINPUT_HXX
 #include <extinput.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
-#ifndef _UNOCLBCK_HXX
 #include <unoclbck.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _LAYCACHE_HXX
 #include <laycache.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>              // fuer den dflt - Printer in SetJob
-#endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {
-const sal_Char __FAR_DATA sFrmFmtStr[] = "Frameformat";
-const sal_Char __FAR_DATA sEmptyPageStr[] = "Empty Page";
-const sal_Char __FAR_DATA sColumnCntStr[] = "Columncontainer";
-const sal_Char __FAR_DATA sCharFmtStr[] = "Zeichenformat";
-const sal_Char __FAR_DATA sTxtCollStr[] = "Textformatvorlage";
-const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
+const sal_Char sFrmFmtStr[] = "Frameformat";
+const sal_Char sEmptyPageStr[] = "Empty Page";
+const sal_Char sColumnCntStr[] = "Columncontainer";
+const sal_Char sCharFmtStr[] = "Zeichenformat";
+const sal_Char sTxtCollStr[] = "Textformatvorlage";
+const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 
 /*N*/ SV_IMPL_PTRARR( SwNumRuleTbl, SwNumRulePtr)
 /*N*/ SV_IMPL_PTRARR( SwTxtFmtColls, SwTxtFmtCollPtr)
@@ -202,63 +113,66 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
  * exportierte Methoden
  */
 
-/*N*/ SwDoc::SwDoc() :
-/*N*/   aAttrPool( this ),
-/*N*/   aNodes( this ),
-/*N*/   pFrmFmtTbl( new SwFrmFmts() ),
-/*N*/   pCharFmtTbl( new SwCharFmts() ),
-/*N*/   pSpzFrmFmtTbl( new SwSpzFrmFmts() ),
-/*N*/   pTblFrmFmtTbl( new SwFrmFmts() ),
-/*N*/   pDfltFrmFmt( new SwFrmFmt( aAttrPool, sFrmFmtStr, 0 ) ),
-/*N*/   pEmptyPageFmt( new SwFrmFmt( aAttrPool, sEmptyPageStr, pDfltFrmFmt ) ),
-/*N*/   pColumnContFmt( new SwFrmFmt( aAttrPool, sColumnCntStr, pDfltFrmFmt ) ),
-/*N*/   pDfltCharFmt( new SwCharFmt( aAttrPool, sCharFmtStr, 0 ) ),
-/*N*/   pDfltTxtFmtColl( new SwTxtFmtColl( aAttrPool, sTxtCollStr ) ),
-/*N*/   pTxtFmtCollTbl( new SwTxtFmtColls() ),
-/*N*/   pDfltGrfFmtColl( new SwGrfFmtColl( aAttrPool, sGrfCollStr ) ),
-/*N*/   pGrfFmtCollTbl( new SwGrfFmtColls() ),
-/*N*/   pSectionFmtTbl( new SwSectionFmts() ),
-/*N*/   pFldTypes( new SwFldTypes() ),
-/*N*/   pBookmarkTbl( new SwBookmarks( 0, 16 ) ),
-/*N*/   pTOXTypes( new SwTOXTypes() ),
-/*N*/   pDefTOXBases( new SwDefTOXBase_Impl() ),
-/*N*/   nLinkCt( 0 ),
-/*N*/   pGlossaryDoc( 0 ),
-/*N*/   pOutlineRule( 0 ),
-/*N*/   pLayout( 0 ),                   // Rootframe des spezifischen Layouts.
-/*N*/   pPrt( 0 ),
-/*N*/     pPrtData( 0 ),
-/*N*/   pExtInputRing( 0 ),
-/*N*/   pLayouter( 0 ),
-/*N*/     pLayoutCache( 0 ),
-/*N*/   nLockExpFld( 0 ),
-/*N*/   pDocShell( 0 ),
-/*N*/   pDrawModel( 0 ),
-/*N*/   pUpdtFlds( new SwDocUpdtFld() ),
-/*N*/   pLinkMgr( new SvxLinkManager( 0 ) ),
-/*N*/   pSwgInfo( 0 ),
-/*N*/   pDocShRef( 0 ),
-/*N*/   pACEWord( 0 ),
-/*N*/   pURLStateChgd( 0 ),
-/*N*/   pNumberFormatter( 0 ),
-/*N*/   pFtnInfo( new SwFtnInfo ),
-/*N*/   pEndNoteInfo( new SwEndNoteInfo ),
-/*N*/   pLineNumberInfo( new SwLineNumberInfo ),
-/*N*/   pFtnIdxs( new SwFtnIdxs ),
-/*N*/   pDocStat( new SwDocStat ),
-/*N*/   pNumRuleTbl( new SwNumRuleTbl ),
-/*N*/   eRedlineMode( SwRedlineMode(REDLINE_SHOW_INSERT | REDLINE_SHOW_DELETE) ),
-/*N*/   pRedlineTbl( new SwRedlineTbl ),
-/*N*/   pUnoCrsrTbl( new SwUnoCrsrTbl( 0, 16 ) ),
-/*N*/   pPgPViewPrtData( 0 ),
-/*N*/   pAutoFmtRedlnComment( 0 ),
-/*N*/   pUnoCallBack(new SwUnoCallBack(0)),
-/*N*/   nAutoFmtRedlnCommentNo( 0 ),
-/*N*/   eChrCmprType( CHARCOMPRESS_NONE ),
-/*N*/     n32Dummy1( 0 ), n32Dummy2( 0 ), n8Dummy1( 0x80 ), n8Dummy2( 0 ),
-/*N*/   nLinkUpdMode( GLOBALSETTING ),
-/*N*/   nFldUpdMode( AUTOUPD_GLOBALSETTING ),
-/*N*/   bReadlineChecked(sal_False)
+/*N*/ SwDoc::SwDoc()
+/*N*/   : aNodes( this )
+/*N*/   , aAttrPool( this )
+/*N*/   , pDfltFrmFmt( new SwFrmFmt( aAttrPool, sFrmFmtStr, 0 ) )
+/*N*/   , pEmptyPageFmt( new SwFrmFmt( aAttrPool, sEmptyPageStr, pDfltFrmFmt ) )
+/*N*/   , pColumnContFmt( new SwFrmFmt( aAttrPool, sColumnCntStr, pDfltFrmFmt ) )
+/*N*/   , pDfltCharFmt( new SwCharFmt( aAttrPool, sCharFmtStr, 0 ) )
+/*N*/   , pDfltTxtFmtColl( new SwTxtFmtColl( aAttrPool, sTxtCollStr ) )
+/*N*/   , pDfltGrfFmtColl( new SwGrfFmtColl( aAttrPool, sGrfCollStr ) )
+/*N*/   , pFrmFmtTbl( new SwFrmFmts() )
+/*N*/   , pCharFmtTbl( new SwCharFmts() )
+/*N*/   , pSpzFrmFmtTbl( new SwSpzFrmFmts() )
+/*N*/   , pSectionFmtTbl( new SwSectionFmts() )
+/*N*/   , pTblFrmFmtTbl( new SwFrmFmts() )
+/*N*/   , pTxtFmtCollTbl( new SwTxtFmtColls() )
+/*N*/   , pGrfFmtCollTbl( new SwGrfFmtColls() )
+/*N*/   , pBookmarkTbl( new SwBookmarks( 0, 16 ) )
+/*N*/   , pTOXTypes( new SwTOXTypes() )
+/*N*/   , pDefTOXBases( new SwDefTOXBase_Impl() )
+/*N*/   , pLayout( 0 )                  // Rootframe des spezifischen Layouts.
+/*N*/   , pDrawModel( 0 )
+/*N*/   , pUpdtFlds( new SwDocUpdtFld() )
+/*N*/   , pFldTypes( new SwFldTypes() )
+/*N*/   , pPrt( 0 )
+/*N*/   , pPrtData( 0 )
+/*N*/   , pGlossaryDoc( 0 )
+/*N*/   , pOutlineRule( 0 )
+/*N*/   , pFtnInfo( new SwFtnInfo )
+/*N*/   , pEndNoteInfo( new SwEndNoteInfo )
+/*N*/   , pLineNumberInfo( new SwLineNumberInfo )
+/*N*/   , pFtnIdxs( new SwFtnIdxs )
+/*N*/   , pDocStat( new SwDocStat )
+/*N*/   , pSwgInfo( 0 )
+/*N*/   , pDocShell( 0 )
+/*N*/   , pDocShRef( 0 )
+/*N*/   , pLinkMgr( new SvxLinkManager( 0 ) )
+/*N*/   , pACEWord( 0 )
+/*N*/   , pURLStateChgd( 0 )
+/*N*/   , pNumberFormatter( 0 )
+/*N*/   , pNumRuleTbl( new SwNumRuleTbl )
+/*N*/   , pRedlineTbl( new SwRedlineTbl )
+/*N*/   , pAutoFmtRedlnComment( 0 )
+/*N*/   , pUnoCrsrTbl( new SwUnoCrsrTbl( 0, 16 ) )
+/*N*/   , pPgPViewPrtData( 0 )
+/*N*/   , pExtInputRing( 0 )
+/*N*/   , pLayouter( 0 )
+/*N*/   , pLayoutCache( 0 )
+/*N*/   , pUnoCallBack(new SwUnoCallBack(0))
+/*N*/   , nAutoFmtRedlnCommentNo( 0 )
+/*N*/   , nLinkUpdMode( GLOBALSETTING )
+/*N*/   , nFldUpdMode( AUTOUPD_GLOBALSETTING )
+/*N*/   , eRedlineMode( SwRedlineMode(REDLINE_SHOW_INSERT | REDLINE_SHOW_DELETE) )
+/*N*/   , eChrCmprType( CHARCOMPRESS_NONE )
+/*N*/   , nLinkCt( 0 )
+/*N*/   , nLockExpFld( 0 )
+/*N*/   , bReadlineChecked(sal_False)
+/*N*/   , n32Dummy1( 0 )
+/*N*/   , n32Dummy2( 0 )
+/*N*/   , n8Dummy1( 0x80 )
+/*N*/   , n8Dummy2( 0 )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::SwDoc" );
 /*N*/
@@ -500,7 +414,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   pFtnColl = pEndNoteInfo->GetFtnTxtColl();
 /*N*/   if ( pFtnColl ) pFtnColl->Remove(pEndNoteInfo);
 /*N*/
-/*N*/   ASSERT( pDfltTxtFmtColl == (*pTxtFmtCollTbl)[0],
+/*N*/   OSL_ENSURE( pDfltTxtFmtColl == (*pTxtFmtCollTbl)[0],
 /*N*/           "Default-Text-Collection muss immer am Anfang stehen" );
 /*N*/
 /*N*/   // JP 27.01.98: opt.: ausgehend davon, das Standard als 2. im Array
@@ -511,7 +425,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   pTxtFmtCollTbl->DeleteAndDestroy( 1, pTxtFmtCollTbl->Count()-1 );
 /*N*/   delete pTxtFmtCollTbl;
 /*N*/
-/*N*/   ASSERT( pDfltGrfFmtColl == (*pGrfFmtCollTbl)[0],
+/*N*/   OSL_ENSURE( pDfltGrfFmtColl == (*pGrfFmtCollTbl)[0],
 /*N*/           "Default-Grf-Collection muss immer am Anfang stehen" );
 /*N*/
 /*N*/   pGrfFmtCollTbl->DeleteAndDestroy( 1, pGrfFmtCollTbl->Count()-1 );
@@ -661,7 +575,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 
 /*N*/ SfxPrinter& SwDoc::_GetPrt() const
 /*N*/ {
-/*N*/     ASSERT( ! pPrt, "Do not call _GetPrt(), call GetPrt() instead" )
+/*N*/     OSL_ENSURE( ! pPrt, "Do not call _GetPrt(), call GetPrt() instead" );
 /*N*/
 /*N*/     // wir erzeugen einen default SfxPrinter.
 /*N*/   // Das ItemSet wird vom Sfx geloescht!
@@ -702,7 +616,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/       {
 /*N*/           ((SwDrawDocument*)pDrawModel)->SetObjectShell( pDocShell );
 /*N*/           pDrawModel->SetPersist( pDocShell );
-/*N*/           ASSERT( pDrawModel->GetPersist() == GetPersist(),
+/*N*/           OSL_ENSURE( pDrawModel->GetPersist() == GetPersist(),
 /*N*/                   "draw model's persist is out of sync" );
 /*N*/       }
 /*N*/   }
@@ -752,17 +666,15 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/       DELETEZ( pPgPViewPrtData );
 /*N*/   SetModified();
 /*N*/ }
-/* -----------------------------06.01.00 14:03--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwModify* SwDoc::GetUnoCallBack() const
 /*N*/ {
 /*N*/   return pUnoCallBack;
 /*N*/ }
 
-/*N*/ vos::ORef < SvxForbiddenCharactersTable > & SwDoc::GetForbiddenCharacterTbl()
+/*N*/ rtl::Reference < SvxForbiddenCharactersTable > & SwDoc::GetForbiddenCharacterTbl()
 /*N*/ {
-/*N*/   if( !xForbiddenCharsTable.isValid() )
+/*N*/   if( !xForbiddenCharsTable.is() )
 /*N*/   {
 /*N*/       ::com::sun::star::uno::Reference<
 /*N*/           ::com::sun::star::lang::XMultiServiceFactory > xMSF =
@@ -778,7 +690,7 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/                           BOOL bLocaleData ) const
 /*N*/ {
 /*N*/   const ::com::sun::star::i18n::ForbiddenCharacters* pRet = 0;
-/*N*/   if( xForbiddenCharsTable.isValid() )
+/*N*/   if( xForbiddenCharsTable.is() )
 /*N*/       pRet = xForbiddenCharsTable->GetForbiddenCharacters( nLang, FALSE );
 /*N*/   if( bLocaleData && !pRet && pBreakIt )
 /*N*/       pRet = &pBreakIt->GetForbidden( (LanguageType)nLang );
@@ -808,10 +720,10 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/   }
 /*N*/ }
 
-/*-----------------28.5.2001 10:06------------------
+/*
  * SwDoc:
  *  Reading and writing of the layout cache.
- *--------------------------------------------------*/
+ */
 
 /*N*/ void SwDoc::ReadLayoutCache( SvStream& rStream )
 /*N*/ {
@@ -831,3 +743,5 @@ const sal_Char __FAR_DATA sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

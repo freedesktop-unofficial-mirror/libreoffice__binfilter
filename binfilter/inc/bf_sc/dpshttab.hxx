@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_DPTABDAT_HXX
 #include "dptabdat.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 
@@ -68,7 +65,6 @@ public:
     virtual         ~ScSheetDPData();
 
     virtual long                    GetColumnCount();
-    virtual const TypedStrCollection&   GetColumnEntries(long nColumn);
     virtual String                  getDimensionName(long nColumn);
     virtual BOOL                    getIsDataLayoutDimension(long nColumn);
     virtual BOOL                    IsDateDimension(long nDim);
@@ -85,3 +81,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

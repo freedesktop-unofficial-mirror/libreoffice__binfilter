@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLER_BRUSHTYPES_HXX
 #include <backhdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 namespace binfilter {
 
@@ -158,7 +151,7 @@ sal_Bool XMLBackGraphicPositionPropHdl::importXML( const OUString& rStrImpValue,
     return bRet;
 }
 
-sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_True;
     OUStringBuffer aOut;
@@ -166,7 +159,7 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
     style::GraphicLocation eLocation;
     if( !( rValue >>= eLocation ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
         if( rValue >>= nValue )
             eLocation = (style::GraphicLocation)nValue;
         else
@@ -197,6 +190,8 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
             aOut.append( GetXMLToken(XML_BOTTOM) );
             bRet = sal_True;
             break;
+        default:
+            break;
         }
 
         if( bRet )
@@ -219,6 +214,8 @@ sal_Bool XMLBackGraphicPositionPropHdl::exportXML( OUString& rStrExpValue, const
             case style::GraphicLocation_RIGHT_TOP:
             case style::GraphicLocation_RIGHT_BOTTOM:
                 aOut.append( GetXMLToken(XML_RIGHT) );
+                break;
+            default:
                 break;
             }
         }
@@ -259,6 +256,9 @@ void XMLBackGraphicPositionPropHdl::MergeXMLVertPos( style::GraphicLocation& ePo
                style::GraphicLocation_RIGHT_MIDDLE :
                style::GraphicLocation_RIGHT_BOTTOM);
         break;
+
+    default:
+        break;
     }
 }
 
@@ -294,7 +294,11 @@ void XMLBackGraphicPositionPropHdl::MergeXMLHoriPos( style::GraphicLocation& ePo
                style::GraphicLocation_MIDDLE_BOTTOM :
                style::GraphicLocation_RIGHT_BOTTOM);
         break;
+    default:
+        break;
     }
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

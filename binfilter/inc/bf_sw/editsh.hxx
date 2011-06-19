@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,30 +30,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _SVXSWAFOPT_HXX
 #include <bf_svx/swafopt.hxx>
-#endif
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>   // fuer Basisklasse
-#endif
-#ifndef _ITABENUM_HXX
 #include <itabenum.hxx>
-#endif
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLALTERNATIVES_HPP_
 #include <com/sun/star/linguistic2/XSpellAlternatives.hpp>
-#endif
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
 }}}}
@@ -132,9 +117,6 @@ class SwLineNumberInfo;
 class SwAttrSet;
 class SwAuthEntry;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace uno {
-//STRIP008  template < class > class Sequence;
-//STRIP008 }}}};
 
 
 // Flags for GetScriptType - to define how handle weak - scripts (b.e.
@@ -186,8 +168,6 @@ SV_DECL_PTRARR_DEL( SwGetINetAttrs, SwGetINetAttr*, 0, 5 )
 
 class SwEditShell: public SwCrsrShell
 {
-    static SvxSwAutoFmtFlags* pAutoFmtFlags;
-
     // fuer die privaten Methoden DelRange und die vom AutoCorrect
     friend void _InitCore();
     friend void _FinitCore();
@@ -317,3 +297,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

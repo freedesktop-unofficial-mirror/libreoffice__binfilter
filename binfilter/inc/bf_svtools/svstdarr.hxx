@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,50 +26,37 @@
  *
  ************************************************************************/
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter
 {
 
-//#ifdef _SVSTDARR_BOOLS
 #ifndef _SVSTDARR_BOOLS_DECL
 SV_DECL_VARARR_VISIBILITY( SvBools, BOOL, 1, 1,  )
 #define _SVSTDARR_BOOLS_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTES
 #ifndef _SVSTDARR_BYTES_DECL
 SV_DECL_VARARR_VISIBILITY( SvBytes, BYTE, 1, 1,  )
 #define _SVSTDARR_BYTES_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_ULONGS
 #ifndef _SVSTDARR_ULONGS_DECL
 SV_DECL_VARARR_VISIBILITY( SvULongs, ULONG, 1, 1,  )
 #define _SVSTDARR_ULONGS_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_USHORTS
 #ifndef _SVSTDARR_USHORTS_DECL
 SV_DECL_VARARR_VISIBILITY( SvUShorts, USHORT, 1, 1,  )
 #define _SVSTDARR_USHORTS_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_USHORTSSORT
 #ifndef _SVSTDARR_USHORTSSORT_DECL
 
 typedef BOOL (*FnForEach_SvUShortsSort)( const USHORT&, void* );
-class  SvUShortsSort : __MWERKS__PRIVATE SvUShorts
+class  SvUShortsSort : private SvUShorts
 {
 public:
     SvUShortsSort(BYTE nSize = 1, BYTE nG = 1)
@@ -107,135 +95,86 @@ private:
 
 #define _SVSTDARR_USHORTSSORT_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_LONGS
 #ifndef _SVSTDARR_LONGS_DECL
 SV_DECL_VARARR_VISIBILITY( SvLongs, long, 1, 1,  )
 #define _SVSTDARR_LONGS_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_SHORTS
 #ifndef _SVSTDARR_SHORTS_DECL
 SV_DECL_VARARR_VISIBILITY( SvShorts, short, 1, 1,  )
 #define _SVSTDARR_SHORTS_DECL
 #endif
-//#endif
-
-/*
- form here all Arrays for Strings, ByteString and then
- len of a string (xub_StrLen)
-#if (defined(_SVSTDARR_STRINGS) && !defined(_SVSTDARR_STRINGS_DECL)) || \
-    (defined(_SVSTDARR_STRINGSDTOR) && !defined(_SVSTDARR_STRINGSDTOR_DECL)) || \
-    (defined(_SVSTDARR_STRINGSSORT) && !defined(_SVSTDARR_STRINGSSORT_DECL)) || \
-    (defined(_SVSTDARR_STRINGSSORTDTOR) && !defined(_SVSTDARR_STRINGSSORTDTOR_DECL)) || \
-    (defined(_SVSTDARR_STRINGSISORT) && !defined(_SVSTDARR_STRINGSISORT_DECL)) || \
-    (defined(_SVSTDARR_STRINGSISORTDTOR) && !defined(_SVSTDARR_STRINGSISORTDTOR_DECL)) || \
-    (defined(_SVSTDARR_BYTESTRINGS) && !defined(_SVSTDARR_BYTESTRINGS_DECL)) || \
-    (defined(_SVSTDARR_BYTESTRINGSDTOR) && !defined(_SVSTDARR_BYTESTRINGSDTOR_DECL)) || \
-    (defined(_SVSTDARR_BYTESTRINGSSORT) && !defined(_SVSTDARR_BYTESTRINGSSORT_DECL)) || \
-    (defined(_SVSTDARR_BYTESTRINGSSORTDTOR) && !defined(_SVSTDARR_BYTESTRINGSSORTDTOR_DECL)) || \
-    (defined(_SVSTDARR_BYTESTRINGSISORT) && !defined(_SVSTDARR_BYTESTRINGSISORT_DECL)) || \
-    (defined(_SVSTDARR_BYTESTRINGSISORTDTOR) && !defined(_SVSTDARR_BYTESTRINGSISORTDTOR_DECL)) || \
-    (defined(_SVSTDARR_XUB_STRLEN) && !defined(_SVSTDARR_XUB_STRLEN_DECL))
-*/
-
 
 typedef String* StringPtr;
 typedef ByteString* ByteStringPtr;
 
-//#endif
 
-//#ifdef _SVSTDARR_STRINGS
 #ifndef _SVSTDARR_STRINGS_DECL
 SV_DECL_PTRARR_VISIBILITY( SvStrings, StringPtr, 1, 1,  )
 #define _SVSTDARR_STRINGS_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_STRINGSDTOR
 #ifndef _SVSTDARR_STRINGSDTOR_DECL
 SV_DECL_PTRARR_DEL_VISIBILITY( SvStringsDtor, StringPtr, 1, 1,  )
 #define _SVSTDARR_STRINGSDTOR_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_STRINGSSORT
 #ifndef _SVSTDARR_STRINGSSORT_DECL
 SV_DECL_PTRARR_SORT_VISIBILITY( SvStringsSort, StringPtr, 1, 1,  )
 #define _SVSTDARR_STRINGSSORT_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_STRINGSSORTDTOR
 #ifndef _SVSTDARR_STRINGSSORTDTOR_DECL
 SV_DECL_PTRARR_SORT_DEL_VISIBILITY( SvStringsSortDtor, StringPtr, 1, 1,  )
 #define _SVSTDARR_STRINGSSORTDTOR_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_STRINGSISORT
 #ifndef _SVSTDARR_STRINGSISORT_DECL
 SV_DECL_PTRARR_SORT_VISIBILITY( SvStringsISort, StringPtr, 1, 1,  )
 #define _SVSTDARR_STRINGSISORT_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_STRINGSISORTDTOR
 #ifndef _SVSTDARR_STRINGSISORTDTOR_DECL
 SV_DECL_PTRARR_SORT_DEL_VISIBILITY( SvStringsISortDtor, StringPtr, 1, 1,  )
 #define _SVSTDARR_STRINGSISORTDTOR_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTESTRINGS
 #ifndef _SVSTDARR_BYTESTRINGS_DECL
 SV_DECL_PTRARR_VISIBILITY( SvByteStrings, ByteStringPtr, 1, 1,  )
 #define _SVSTDARR_BYTESTRINGS_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTESTRINGSDTOR
 #ifndef _SVSTDARR_BYTESTRINGSDTOR_DECL
 SV_DECL_PTRARR_DEL_VISIBILITY( SvByteStringsDtor, ByteStringPtr, 1, 1,  )
 #define _SVSTDARR_BYTESTRINGSDTOR_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTESTRINGSSORT
 #ifndef _SVSTDARR_BYTESTRINGSSORT_DECL
 SV_DECL_PTRARR_SORT_VISIBILITY( SvByteStringsSort, ByteStringPtr, 1, 1,  )
 #define _SVSTDARR_BYTESTRINGSSORT_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTESTRINGSSORTDTOR
 #ifndef _SVSTDARR_BYTESTRINGSSORTDTOR_DECL
 SV_DECL_PTRARR_SORT_DEL_VISIBILITY( SvByteStringsSortDtor, ByteStringPtr, 1, 1,  )
 #define _SVSTDARR_BYTESTRINGSSORTDTOR_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTESTRINGSISORT
 #ifndef _SVSTDARR_BYTESTRINGSISORT_DECL
 SV_DECL_PTRARR_SORT_VISIBILITY( SvByteStringsISort, ByteStringPtr, 1, 1,  )
 #define _SVSTDARR_BYTESTRINGSISORT_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_BYTESTRINGSISORTDTOR
 #ifndef _SVSTDARR_BYTESTRINGSISORTDTOR_DECL
 SV_DECL_PTRARR_SORT_DEL_VISIBILITY( SvByteStringsISortDtor, ByteStringPtr, 1, 1,  )
 #define _SVSTDARR_BYTESTRINGSISORTDTOR_DECL
 #endif
-//#endif
 
-//#ifdef _SVSTDARR_XUB_STRLEN
 #ifndef _SVSTDARR_XUB_STRLEN_DECL
 SV_DECL_VARARR_VISIBILITY( SvXub_StrLens, xub_StrLen, 1, 1,  )
 #define _SVSTDARR_XUB_STRLEN_DECL
 #endif
-//#endif
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

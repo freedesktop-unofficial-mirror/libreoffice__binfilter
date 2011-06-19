@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,36 +31,18 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _RDSWG_HXX
 #include <rdswg.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 
@@ -171,9 +154,9 @@ SwTOXBase* SwSwgReader::InTOXBase()
     switch( eType )
     {
         case TOX_INDEX: {
-            USHORT nOptions;
-            r >> nOptions;
-            pBase->SetOptions( nOptions );
+            USHORT nLclOptions;
+            r >> nLclOptions;
+            pBase->SetOptions( nLclOptions );
             } break;
         case TOX_CONTENT: {
             USHORT nLevel;
@@ -262,3 +245,5 @@ void SwSwgReader::InTOX( SwNodeIndex& rPos, SwTxtNode* pNd )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx" // -> enum UpdateRefMode
-#endif
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 namespace rtl {
     class OUStringBuffer;
 }
@@ -47,9 +44,6 @@ class ScDocument;
 class ScMultipleReadHeader;
 class ScMultipleWriteHeader;
 
-//STRIP008 namespace rtl {
-//STRIP008  class OUStringBuffer;
-//STRIP008 }
 
 
 //------------------------------------------------------------------------
@@ -108,7 +102,7 @@ public:
 
     virtual DataObject* Clone() const;
 
-    BOOL            Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    BOOL Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 
 
     void            GetName( String& rName ) const  { rName = aName; }
@@ -185,14 +179,15 @@ public:
 
     ScRangeName(const ScRangeName& rScRangeName, ScDocument* pDocument);
 
-    virtual DataObject*     Clone(ScDocument* pDoc) const
-                             { return new ScRangeName(*this, pDoc); }
+    using Collection::Clone;
+    virtual DataObject*     Clone(ScDocument* pDoc_) const
+                             { return new ScRangeName(*this, pDoc_); }
     ScRangeData*            operator[]( const USHORT nIndex) const
                              { return (ScRangeData*)At(nIndex); }
     virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const;
 
     BOOL                    Load( SvStream& rStream, USHORT nVer );
-    BOOL                    Store( SvStream& rStream ) const;
+    BOOL Store( SvStream& ) const {return FALSE;}
     BOOL                    SearchName( const String& rName, USHORT& rPos ) const;
 /*N*/   void                    UpdateReference(UpdateRefMode eUpdateRefMode,
 /*N*/                               const ScRange& rRange,
@@ -210,3 +205,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

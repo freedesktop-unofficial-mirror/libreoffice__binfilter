@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -79,7 +80,9 @@ const ::com::sun::star::i18n::ForbiddenCharacters* SvxForbiddenCharactersTable::
 /*N*/   pInf->aForbiddenChars = rForbiddenChars;
 /*N*/ }
 
-/*N*/ void SvxForbiddenCharactersTable::ClearForbiddenCharacters( USHORT nLanguage )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SvxForbiddenCharactersTable::ClearForbiddenCharacters( USHORT )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

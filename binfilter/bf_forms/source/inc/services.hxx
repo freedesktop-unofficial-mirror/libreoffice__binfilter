@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _FRM_SERVICES_HXX_
 #define _FRM_SERVICES_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _FRM_STRINGS_HXX_
 #include "strings.hxx"
-#endif
 namespace binfilter {
 
 //... namespace frm .......................................................
@@ -213,3 +210,4 @@ DECLARE_CONSTASCII_USTRING(FRM_SUN_FORMCOMPONENT);
 }//end of namespace binfilter
 #endif // _FRM_SERVICES_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

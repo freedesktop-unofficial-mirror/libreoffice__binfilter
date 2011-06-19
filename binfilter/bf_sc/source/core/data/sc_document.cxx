@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -44,9 +42,7 @@
 #include <bf_svtools/poolcach.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <bf_svtools/zforlist.hxx>
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 
 #include "attarray.hxx"
 #include "patattr.hxx"
@@ -72,9 +68,7 @@
 #include "indexmap.hxx"
 #include "detfunc.hxx"      // for UpdateAllComments
 #include "scmod.hxx"
-#ifndef SC_DOCITER_HXX
 #include "dociter.hxx"
-#endif
 #include "progress.hxx"
 #ifndef __SGI_STL_SET
 #include <set>
@@ -272,7 +266,7 @@ namespace binfilter {
 /*N*/               if (pDPCollection)
 /*?*/                   pDPCollection->UpdateReference( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               if (pDetOpList)
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDetOpList->UpdateReference( this, URM_INSDEL, aRange, 0,0,1 );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               UpdateChartRef( URM_INSDEL, 0,0,nPos, MAXCOL,MAXROW,MAXTAB, 0,0,1 );
 /*N*/               UpdateRefAreaLinks( URM_INSDEL, aRange, 0,0,1 );
 /*N*/               if ( pUnoBroadcaster )
@@ -379,7 +373,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::RenameTab( USHORT nTab, const String& rName, BOOL bUpdateRef,
+/*N*/ BOOL ScDocument::RenameTab( USHORT nTab, const String& rName, BOOL /*bUpdateRef*/,
 /*N*/       BOOL bExternalDocument )
 /*N*/ {
 /*N*/   BOOL    bValid = FALSE;
@@ -784,26 +778,15 @@ namespace binfilter {
 /*N*/              pRefUndoDoc, pUndoOutline );
 /*N*/ }
 
-
-//  fuer Area-Links: Zellen einuegen/loeschen, wenn sich der Bereich veraendert
-//  (ohne Paint)
-
-
-
-
-
-
-/*N*/ BOOL ScDocument::CanFitBlock( const ScRange& rOld, const ScRange& rNew )
+/*N*/ BOOL ScDocument::CanFitBlock( const ScRange&, const ScRange& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 if ( rOld == rNew )
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-
-/*N*/ void ScDocument::FitBlock( const ScRange& rOld, const ScRange& rNew, BOOL bClear )
+/*N*/ void ScDocument::FitBlock( const ScRange&, const ScRange&, BOOL )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (bClear)
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
 
 /*N*/ void ScDocument::DeleteArea(USHORT nCol1, USHORT nRow1,
 /*N*/                           USHORT nCol2, USHORT nRow2,
@@ -862,7 +845,7 @@ namespace binfilter {
 /*N*/       nMaxTableNumber = nTab2 + 1;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("InitUndo");
+/*N*/       OSL_FAIL("InitUndo");
 /*N*/ }
 
 /*N*/ void ScDocument::CopyToDocument(USHORT nCol1, USHORT nRow1, USHORT nTab1,
@@ -920,7 +903,7 @@ namespace binfilter {
 /*N*/                           USHORT nCol2, USHORT nRow2,
 /*N*/                           BOOL bCut, ScDocument* pClipDoc,
 /*N*/                           BOOL bAllTabs, const ScMarkData* pMarks,
-/*N*/                           BOOL bKeepScenarioFlags, BOOL bIncludeObjects)
+/*N*/                           BOOL /*bKeepScenarioFlags*/, BOOL bIncludeObjects)
 /*N*/ {
 /*N*/   DBG_ASSERT( bAllTabs || pMarks, "CopyToClip: ScMarkData fehlt" );
 /*N*/
@@ -930,12 +913,11 @@ namespace binfilter {
 /*N*/       PutInOrder( nRow1, nRow2 );
 /*N*/       if (!pClipDoc)
 /*N*/       {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             DBG_ERROR("CopyToClip: no ClipDoc");
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       pClipDoc->aDocName = aDocName;
 /*N*/       pClipDoc->aClipRange = ScRange( nCol1,nRow1,0, nCol2,nRow2,0 );
-/*N*/       pClipDoc->ResetClip( this, pMarks );
 /*N*/       USHORT i, j;
 /*N*/       pClipDoc->pRangeName->FreeAll();
 /*N*/       for (i = 0; i < pRangeName->GetCount(); i++)        //! DB-Bereiche Pivot-Bereiche auch !!!
@@ -961,13 +943,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             DBG_ERROR("CopyToClip: n
 /*N*/           if (pTab[i] && pClipDoc->pTab[i])
 /*N*/               if ( bAllTabs || !pMarks || pMarks->GetTableSelect(i) )
 /*N*/               {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pTab[i]->CopyToClip(nCol1, nRow1, nCol2, nRow2, pClipDoc->pTab[i], bKeepScenarioFlags);
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/                   if ( pDrawLayer && bIncludeObjects )
 /*N*/                   {
 /*N*/                       //  also copy drawing objects
 /*N*/
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         Rectangle aObjRect = GetMMRect( nCol1, nRow1, nCol2, nRow2, i );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/               }
 /*N*/
@@ -975,36 +957,33 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         Rectangle aO
 /*N*/   }
 /*N*/ }
 
-void ScDocument::StartListeningFromClip( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, const ScMarkData& rMark, USHORT nInsFlag )
+void ScDocument::StartListeningFromClip( USHORT, USHORT, USHORT, USHORT, const ScMarkData&, USHORT )
 {
 }
 
-
-/*N*/ void ScDocument::BroadcastFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                               USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScMarkData& rMark, USHORT nInsFlag )
+/*N*/ void ScDocument::BroadcastFromClip( USHORT, USHORT,
+/*N*/                               USHORT, USHORT,
+/*N*/                                   const ScMarkData&, USHORT )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (nInsFlag & IDF_CONTENTS)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-
-/*N*/ void ScDocument::CopyBlockFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                                   USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScMarkData& rMark,
-/*N*/                                   short nDx, short nDy,
-/*N*/                                   const ScCopyBlockFromClipParams* pCBFCP )
+/*N*/ void ScDocument::CopyBlockFromClip( USHORT, USHORT,
+/*N*/                                   USHORT, USHORT,
+/*N*/                                   const ScMarkData&,
+/*N*/                                   short, short,
+/*N*/                                   const ScCopyBlockFromClipParams* )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    ScTable** ppClipTab = pCBFCP->pClipDoc->pTab;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-
-/*N*/ void ScDocument::CopyNonFilteredFromClip( USHORT nCol1, USHORT nRow1,
-/*N*/                                   USHORT nCol2, USHORT nRow2,
-/*N*/                                   const ScMarkData& rMark,
-/*N*/                                   short nDx, short nDy,
-/*N*/                                   const ScCopyBlockFromClipParams* pCBFCP )
+/*N*/ void ScDocument::CopyNonFilteredFromClip( USHORT, USHORT,
+/*N*/                                   USHORT, USHORT,
+/*N*/                                   const ScMarkData&,
+/*N*/                                   short, short,
+/*N*/                                   const ScCopyBlockFromClipParams* )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip for ranges of consecutive non-filtered rows
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1047,11 +1026,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
                     A proper solution would ask the user how to proceed.
                     The adjustment of the indices in the formulas is done later.
                 */
-/*N*/               ScRangeData* pClipData = (*pClipDoc->pRangeName)[i];
-/*N*/               if ( pRangeName->SearchName( pClipData->GetName(), k ) )
+/*N*/               ScRangeData* pLclClipData = (*pClipDoc->pRangeName)[i];
+/*N*/               if ( pRangeName->SearchName( pLclClipData->GetName(), k ) )
 /*N*/               {
 /*N*/                   pClipRangeNames[i] = NULL;  // range name not inserted
-/*N*/                   USHORT nOldIndex = pClipData->GetIndex();
+/*N*/                   USHORT nOldIndex = pLclClipData->GetIndex();
 /*N*/                   USHORT nNewIndex = ((*pRangeName)[k])->GetIndex();
 /*N*/                   aClipRangeMap.SetPair( i, nOldIndex, nNewIndex );
 /*N*/                   if ( !bRangeNameReplace )
@@ -1059,14 +1038,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*N*/                   ScRangeData* pData = new ScRangeData( *pClipData );
+/*N*/                   ScRangeData* pData = new ScRangeData( *pLclClipData );
 /*N*/                   pData->SetDocument(this);
 /*N*/                   if ( pRangeName->FindIndex( pData->GetIndex() ) )
 /*N*/                       pData->SetIndex(0);     // need new index, done in Insert
 /*N*/                   if ( pRangeName->Insert( pData ) )
 /*N*/                   {
 /*N*/                       pClipRangeNames[i] = pData;
-/*N*/                       USHORT nOldIndex = pClipData->GetIndex();
+/*N*/                       USHORT nOldIndex = pLclClipData->GetIndex();
 /*N*/                       USHORT nNewIndex = pData->GetIndex();
 /*N*/                       aClipRangeMap.SetPair( i, nOldIndex, nNewIndex );
 /*N*/                       if ( !bRangeNameReplace )
@@ -1076,7 +1055,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                   {   // must be an overflow
 /*N*/                       delete pData;
 /*N*/                       pClipRangeNames[i] = NULL;
-/*N*/                       aClipRangeMap.SetPair( i, pClipData->GetIndex(), 0 );
+/*N*/                       aClipRangeMap.SetPair( i, pLclClipData->GetIndex(), 0 );
 /*N*/                       bRangeNameReplace = TRUE;
 /*N*/                   }
 /*N*/               }
@@ -1093,7 +1072,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                                   nXw, nYw, 0 );
 /*N*/           nXw -= pClipDoc->aClipRange.aEnd.Col();
 /*N*/           nYw -= pClipDoc->aClipRange.aEnd.Row();         // only extra value from ExtendMerge
-/*N*/           USHORT nDestAddX, nDestAddY;
+/*N*/           USHORT nDestAddX(0), nDestAddY(0);
 /*N*/           pClipDoc->GetClipArea( nDestAddX, nDestAddY, bIncludeFiltered );
 /*N*/           nXw += nDestAddX;
 /*N*/           nYw += nDestAddY;                               // ClipArea, plus ExtendMerge value
@@ -1109,10 +1088,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/           DeleteArea(nCol1, nRow1, nCol2, nRow2, rMark, nDelFlag);
 /*N*/
 /*N*/           bInsertingFromOtherDoc = TRUE;  // kein Broadcast/Listener aufbauen bei Insert
-/*N*/           USHORT nC1 = nCol1;
-/*N*/           USHORT nR1 = nRow1;
-/*N*/           USHORT nC2 = nC1 + nXw;
-/*N*/           USHORT nR2 = nR1 + nYw;
+/*N*/           USHORT nC1_a = nCol1;
+/*N*/           USHORT nR1_a = nRow1;
+/*N*/           USHORT nC2_a = nC1_a + nXw;
+/*N*/           USHORT nR2_a = nR1_a + nYw;
 /*N*/           USHORT nClipStartCol = pClipDoc->aClipRange.aStart.Col();
 /*N*/           USHORT nClipStartRow = pClipDoc->aClipRange.aStart.Row();
 /*N*/
@@ -1148,22 +1127,22 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/           {
 /*N*/               do
 /*N*/               {
-/*N*/                   short nDx = ((short)nC1) - nClipStartCol;
-/*N*/                   short nDy = ((short)nR1) - nClipStartRow;
+/*N*/                   short nDx = ((short)nC1_a) - nClipStartCol;
+/*N*/                   short nDy = ((short)nR1_a) - nClipStartRow;
 /*N*/                   if ( bIncludeFiltered )
-/*N*/                       CopyBlockFromClip( nC1, nR1, nC2, nR2, rMark, nDx, nDy, &aCBFCP );
+/*N*/                       CopyBlockFromClip( nC1_a, nR1_a, nC2_a, nR2_a, rMark, nDx, nDy, &aCBFCP );
 /*N*/                   else
-/*N*/                       CopyNonFilteredFromClip( nC1, nR1, nC2, nR2, rMark, nDx, nDy, &aCBFCP );
-/*N*/                   nC1 = nC2 + 1;
-/*N*/                   nC2 = Min((USHORT)(nC1 + nXw), nCol2);
+/*N*/                       CopyNonFilteredFromClip( nC1_a, nR1_a, nC2_a, nR2_a, rMark, nDx, nDy, &aCBFCP );
+/*N*/                   nC1_a = nC2_a + 1;
+/*N*/                   nC2_a = Min((USHORT)(nC1_a + nXw), nCol2);
 /*N*/               }
-/*N*/               while (nC1 <= nCol2);
-/*N*/               nC1 = nCol1;
-/*N*/               nC2 = nC1 + nXw;
-/*N*/               nR1 = nR2 + 1;
-/*N*/               nR2 = Min((USHORT)(nR1 + nYw), nRow2);
+/*N*/               while (nC1_a <= nCol2);
+/*N*/               nC1_a = nCol1;
+/*N*/               nC2_a = nC1_a + nXw;
+/*N*/               nR1_a = nR2_a + 1;
+/*N*/               nR2_a = Min((USHORT)(nR1_a + nYw), nRow2);
 /*N*/           }
-/*N*/           while (nR1 <= nRow2);
+/*N*/           while (nR1_a <= nRow2);
 /*N*/
 /*N*/           ScColumn::bDoubleAlloc = bOldDouble;
 /*N*/
@@ -1183,10 +1162,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                       pClipRangeNames[i]->ReplaceRangeNamesInUse( aClipRangeMap );
 /*N*/               }
 /*N*/               // then update the formulas, they might need the just updated range names
-/*N*/               USHORT nC1 = nCol1;
-/*N*/               USHORT nR1 = nRow1;
-/*N*/               USHORT nC2 = nC1 + nXw;
-/*N*/               USHORT nR2 = nR1 + nYw;
+/*N*/               USHORT nC1_b = nCol1;
+/*N*/               USHORT nR1_b = nRow1;
+/*N*/               USHORT nC2_b = nC1_b + nXw;
+/*N*/               USHORT nR2_b = nR1_b + nYw;
 /*N*/               do
 /*N*/               {
 /*N*/                   do
@@ -1194,17 +1173,17 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/                       for (k = 0; k <= MAXTAB; k++)
 /*N*/                       {
 /*N*/                           if ( pTab[k] && rMark.GetTableSelect(k) )
-/*N*/                               pTab[k]->ReplaceRangeNamesInUse(nC1, nR1,
-/*N*/                                   nC2, nR2, aClipRangeMap );
+/*N*/                               pTab[k]->ReplaceRangeNamesInUse(nC1_b, nR1_b,
+/*N*/                                   nC2_b, nR2_b, aClipRangeMap );
 /*N*/                       }
-/*N*/                       nC1 = nC2 + 1;
-/*N*/                       nC2 = Min((USHORT)(nC1 + nXw), nCol2);
-/*N*/                   } while (nC1 <= nCol2);
-/*N*/                   nC1 = nCol1;
-/*N*/                   nC2 = nC1 + nXw;
-/*N*/                   nR1 = nR2 + 1;
-/*N*/                   nR2 = Min((USHORT)(nR1 + nYw), nRow2);
-/*N*/               } while (nR1 <= nRow2);
+/*N*/                       nC1_b = nC2_b + 1;
+/*N*/                       nC2_b = Min((USHORT)(nC1_b + nXw), nCol2);
+/*N*/                   } while (nC1_b <= nCol2);
+/*N*/                   nC1_b = nCol1;
+/*N*/                   nC2_b = nC1_b + nXw;
+/*N*/                   nR1_b = nR2_b + 1;
+/*N*/                   nR2_b = Min((USHORT)(nR1_b + nYw), nRow2);
+/*N*/               } while (nR1_b <= nRow2);
 /*N*/           }
 /*N*/           if ( pClipRangeNames )
 /*N*/               delete [] pClipRangeNames;
@@ -1219,24 +1198,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  call CopyBlockFromClip f
 /*N*/   }
 /*N*/ }
 
-
-
-
-/*N*/ void ScDocument::GetClipArea(USHORT& nClipX, USHORT& nClipY, BOOL bIncludeFiltered)
+/*N*/ void ScDocument::GetClipArea(USHORT&, USHORT&, BOOL)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
-
-
-
-
-
-
-
-
-
 
 /*N*/ void ScDocument::PutCell( USHORT nCol, USHORT nRow, USHORT nTab, ScBaseCell* pCell, BOOL bForceTab )
 /*N*/ {
@@ -1418,7 +1383,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       rpCell = pTab[nTab]->GetCell( nCol, nRow );
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("GetCell ohne Tabelle");
+/*N*/       OSL_FAIL("GetCell ohne Tabelle");
 /*N*/       rpCell = NULL;
 /*N*/   }
 /*N*/ }
@@ -1430,7 +1395,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   if ( pTab[nTab] )
 /*N*/       return pTab[nTab]->GetCell( rPos );
 /*N*/
-/*N*/   DBG_ERROR("GetCell ohne Tabelle");
+/*N*/   OSL_FAIL("GetCell ohne Tabelle");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -1498,7 +1463,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 
 /*N*/  void ScDocument::AddTableOpFormulaCell( ScFormulaCell* pCell )
 /*N*/  {
-/*N*/      ScInterpreterTableOpParams* p = aTableOpList.Last();
+/*N*/      ScInterpreterTableOpParams* p = ( aTableOpList.empty() ) ? NULL : aTableOpList.back();
 /*N*/      if ( p && p->bCollectNotifications )
 /*N*/      {
 /*N*/          if ( p->bRefresh )
@@ -1618,7 +1583,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetColWidth( nCol );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1627,7 +1592,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetOriginalWidth( nCol );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1638,7 +1603,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetOriginalHeight( nRow );
-/*N*/   DBG_ERROR("Wrong table number");
+/*N*/   OSL_FAIL("Wrong table number");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1647,7 +1612,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetRowHeight( nRow );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1656,7 +1621,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetHiddenRowCount( nRow );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1674,7 +1639,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetOptimalColWidth( nCol, pDev, nPPTX, nPPTY,
 /*N*/           rZoomX, rZoomY, bFormula, pMarkData, bSimpleTextImport );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1691,7 +1656,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->SetOptimalHeight( nStartRow, nEndRow, nExtra,
 /*N*/                                               pDev, nPPTX, nPPTY, rZoomX, rZoomY, bShrink );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -1727,7 +1692,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetColFlags( nCol );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1735,7 +1700,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ {
 /*N*/   if ( nTab<=MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetRowFlags( nRow );
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   return 0;
 /*N*/ }
 
@@ -1827,12 +1792,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       }
 /*N*/       ScDefaultAttrSet::iterator aDefaultItr = aSet.begin();
 /*N*/       aItr = aDefaultItr;
-/*N*/       aItr++;
+/*N*/       ++aItr;
 /*N*/       while (aItr != aSet.end())
 /*N*/       {
 /*N*/           if (aItr->nCount > aDefaultItr->nCount)
 /*N*/               aDefaultItr = aItr;
-/*N*/           aItr++;
+/*N*/           ++aItr;
 /*N*/       }
 /*N*/       nDefault = aDefaultItr->nFirst;
 /*N*/       bRet = TRUE;
@@ -1842,7 +1807,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::GetRowDefault( USHORT nTab, USHORT nRow, USHORT nLastCol, USHORT& nDefault)
+/*N*/ BOOL ScDocument::GetRowDefault( USHORT, USHORT, USHORT, USHORT&)
 /*N*/ {
 /*N*/   BOOL bRet(FALSE);
 /*N*/   return bRet;
@@ -1860,7 +1825,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       if (pTemp)
 /*N*/           return pTemp;
 /*N*/       else
-/*N*/           DBG_ERROR( "Attribut Null" );
+/*N*/           OSL_FAIL( "Attribut Null" );
 /*N*/   }
 /*N*/   return &xPoolHelper->GetDocPool()->GetDefaultItem( nWhich );
 /*N*/ }
@@ -2009,14 +1974,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   }
 /*N*/ }
 
-
-/*N*/ BOOL ScDocument::IsStyleSheetUsed( const ScStyleSheet& rStyle, BOOL bGatherAllStyles ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ BOOL ScDocument::IsStyleSheetUsed( const ScStyleSheet&, BOOL ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
-
-
-
-
 
 /*N*/ BOOL ScDocument::ApplyFlagsTab( USHORT nStartCol, USHORT nStartRow,
 /*N*/                       USHORT nEndCol, USHORT nEndRow, USHORT nTab, INT16 nFlags )
@@ -2025,23 +1985,15 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       if (pTab[nTab])
 /*N*/           return pTab[nTab]->ApplyFlags( nStartCol, nStartRow, nEndCol, nEndRow, nFlags );
 /*N*/
-/*N*/   DBG_ERROR("ApplyFlags: falsche Tabelle");
+/*N*/   OSL_FAIL("ApplyFlags: falsche Tabelle");
 /*N*/   return FALSE;
 /*N*/ }
 
-
-
-
-/*N*/ BOOL ScDocument::RemoveFlagsTab( USHORT nStartCol, USHORT nStartRow,
-/*N*/                       USHORT nEndCol, USHORT nEndRow, USHORT nTab, INT16 nFlags )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL ScDocument::RemoveFlagsTab( USHORT, USHORT,
+/*N*/                       USHORT, USHORT, USHORT, INT16 )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
-
-
-
-
-
 
 /*N*/ ScPatternAttr* ScDocument::CreateSelectionPattern( const ScMarkData& rMark, BOOL bDeep )
 /*N*/ {
@@ -2184,10 +2136,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/                     nMask );
 /*N*/ }
 
-/*N*/ BOOL ScDocument::IsBlockEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-/*N*/                                       USHORT nEndCol, USHORT nEndRow ) const
+/*N*/ BOOL ScDocument::IsBlockEmpty( USHORT /*nTab*/, USHORT /*nStartCol*/, USHORT /*nStartRow*/,
+/*N*/                                       USHORT /*nEndCol*/, USHORT /*nEndRow*/ ) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (VALIDTAB(nTab))
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -2197,7 +2149,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->LockTable();
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Tabellennummer");
+/*N*/       OSL_FAIL("Falsche Tabellennummer");
 /*N*/ }
 
 
@@ -2206,7 +2158,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       pTab[nTab]->UnlockTable();
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Tabellennummer");
+/*N*/       OSL_FAIL("Falsche Tabellennummer");
 /*N*/ }
 
 
@@ -2227,7 +2179,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/           return pTab[nTab]->IsBlockEditable( nStartCol, nStartRow, nEndCol,
 /*N*/               nEndRow, pOnlyNotBecauseOfMatrix );
 /*N*/
-/*N*/   DBG_ERROR("Falsche Tabellennummer");
+/*N*/   OSL_FAIL("Falsche Tabellennummer");
 /*N*/   if ( pOnlyNotBecauseOfMatrix )
 /*N*/       *pOnlyNotBecauseOfMatrix = FALSE;
 /*N*/   return FALSE;
@@ -2381,7 +2333,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("ExtendOverlapped: falscher Bereich");
+/*N*/       OSL_FAIL("ExtendOverlapped: falscher Bereich");
 /*N*/
 /*N*/   return bFound;
 /*N*/ }
@@ -2398,10 +2350,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/           bFound = pTab[nTab]->ExtendMerge( nStartCol, nStartRow, rEndCol, rEndRow, bRefresh, bAttrs );
 /*N*/
 /*N*/       if (bRefresh)
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStartCol, nStartRow, rEndCol, rEndRow, nTab );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("ExtendMerge: falscher Bereich");
+/*N*/       OSL_FAIL("ExtendMerge: falscher Bereich");
 /*N*/
 /*N*/   return bFound;
 /*N*/ }
@@ -2520,8 +2472,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/ {
 /*N*/   const SfxItemSet* pSet = &rAttr.GetItemSet();
 /*N*/   BOOL bSet = FALSE;
-/*N*/   USHORT i;
-/*N*/   for (i=ATTR_PATTERN_START; i<=ATTR_PATTERN_END && !bSet; i++)
+/*N*/   for (USHORT i=ATTR_PATTERN_START; i<=ATTR_PATTERN_END && !bSet; i++)
 /*N*/       if (pSet->GetItemState(i) == SFX_ITEM_SET)
 /*N*/           bSet = TRUE;
 /*N*/
@@ -2545,23 +2496,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-
-/*N*/ void ScDocument::ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/ }
-
-
-/*N*/ void ScDocument::ClearSelectionItems( const USHORT* pWhich, const ScMarkData& rMark )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
-/*N*/ }
-
-
-
-
-
 
 /*N*/ ScPatternAttr* ScDocument::GetDefPattern() const
 /*N*/ {
@@ -2687,7 +2621,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::LoadPool( SvStream& rStream, BOOL bLoadRefCounts )
+/*N*/ BOOL ScDocument::LoadPool( SvStream& rStream, BOOL /*bLoadRefCounts*/ )
 /*N*/ {
 /*N*/   //  bLoadingDone wird beim Laden des StylePools (ScStyleSheet::GetItemSet) gebraucht
 /*N*/   bLoadingDone = FALSE;
@@ -2700,7 +2634,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/
 /*N*/   ScPatternAttr::pDoc = this;
 /*N*/
-/*N*/   if ( xPoolHelper.isValid() && !bIsClip )
+/*N*/   if ( xPoolHelper.is() && !bIsClip )
 /*N*/       xPoolHelper->SourceDocumentGone();
 /*N*/
 /*N*/   xPoolHelper = new ScPoolHelper( this );
@@ -2748,7 +2682,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/                   xPoolHelper->GetEditPool()->Load( rStream );
 /*N*/                   break;
 /*?*/               default:
-/*?*/                   DBG_ERROR("unbekannter Sub-Record in ScDocument::LoadPool");
+/*?*/                   OSL_FAIL("unbekannter Sub-Record in ScDocument::LoadPool");
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -2756,7 +2690,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/       bRet = TRUE;
 /*N*/   }
 /*N*/   else
-/*?*/       DBG_ERROR("LoadPool: SCID_POOLS nicht gefunden");
+/*?*/       OSL_FAIL("LoadPool: SCID_POOLS nicht gefunden");
 /*N*/
 /*N*/   if (!bStylesFound)
 /*?*/       xPoolHelper->GetStylePool()->CreateStandardStyles();
@@ -2772,83 +2706,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/
 /*N*/   return bRet;
 /*N*/ }
-
-
-/*N*/ BOOL ScDocument::SavePool( SvStream& rStream ) const
-/*N*/ {
-/*N*/   xPoolHelper->GetDocPool()->SetFileFormatVersion( (USHORT)rStream.GetVersion() );
-/*N*/
-/*N*/   USHORT nOldBufSize = rStream.GetBufferSize();
-/*N*/   rStream.SetBufferSize( 32768 );
-/*N*/   CharSet eOldSet = rStream.GetStreamCharSet();
-/*N*/     CharSet eStoreCharSet = ::GetSOStoreTextEncoding(
-/*N*/         gsl_getSystemTextEncoding(), (USHORT)rStream.GetVersion() );
-/*N*/     rStream.SetStreamCharSet( eStoreCharSet );
-/*N*/
-/*N*/   //  ::com::press-Mode fuer Grafiken in Brush-Items (Hintergrund im Seitenformat)
-/*N*/
-/*N*/   USHORT nComprMode = rStream.GetCompressMode() & ~(COMPRESSMODE_ZBITMAP | COMPRESSMODE_NATIVE);
-/*N*/   BOOL bNative = FALSE;
-/*N*/   BOOL bCompr = FALSE;
-/*N*/
-/*N*/   if ( rStream.GetVersion() >= SOFFICE_FILEFORMAT_40 && bCompr )
-/*N*/       nComprMode |= COMPRESSMODE_ZBITMAP;             //  komprimiert ab 4.0
-/*N*/   if ( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 && bNative )
-/*N*/       nComprMode |= COMPRESSMODE_NATIVE;              //  Originalformat ab 5.0
-/*N*/   rStream.SetCompressMode( nComprMode );
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_NEWPOOLS;
-/*N*/       ScWriteHeader aHdr( rStream );
-/*N*/
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_CHARSET;
-/*N*/           ScWriteHeader aSetHdr( rStream, 2 );
-/*N*/           rStream << (BYTE) 0     // dummy, old System::GetGUIType()
-/*N*/                     << (BYTE) eStoreCharSet;
-/*N*/       }
-/*N*/
-/*N*/       //  Force the default style's name to be "Standard" for all languages in the file.
-/*N*/       //  This is needed for versions up to 5.1, to find the default pattern's style in
-/*N*/       //  the UpdateStyleSheet call.
-/*N*/       //  #89078# this has to be set for the DocPool save, too, so the default style name
-/*N*/       //  is adjusted for the patterns, or a wrong style would be used if other styles
-/*N*/       //  match the default style's name after CharacterSet conversion.
-/*N*/
-/*N*/       String aFileStdName = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(STRING_STANDARD));
-/*N*/       if ( aFileStdName != ScGlobal::GetRscString(STR_STYLENAME_STANDARD) )
-/*N*/           xPoolHelper->GetStylePool()->SetForceStdName( &aFileStdName );
-/*N*/
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_DOCPOOL;
-/*N*/           ScWriteHeader aDocPoolHdr( rStream );
-/*N*/           xPoolHelper->GetDocPool()->Store( rStream );
-/*N*/       }
-/*N*/
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_STYLEPOOL;
-/*N*/           ScWriteHeader aStylePoolHdr( rStream );
-/*N*/           xPoolHelper->GetStylePool()->SetSearchMask( SFX_STYLE_FAMILY_ALL );
-/*N*/
-/*N*/           xPoolHelper->GetStylePool()->Store( rStream, FALSE );
-/*N*/       }
-/*N*/
-/*N*/       xPoolHelper->GetStylePool()->SetForceStdName( NULL );
-/*N*/
-/*N*/       if ( rStream.GetVersion() >= SOFFICE_FILEFORMAT_50 )
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_EDITPOOL;
-/*N*/           ScWriteHeader aEditPoolHdr( rStream );
-/*N*/           xPoolHelper->GetEditPool()->SetFileFormatVersion( (USHORT)rStream.GetVersion() );
-/*N*/           xPoolHelper->GetEditPool()->Store( rStream );
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   rStream.SetStreamCharSet( eOldSet );
-/*N*/   rStream.SetBufferSize( nOldBufSize );
-/*N*/   return TRUE;
-/*N*/ }
-
 
 /*N*/ long ScDocument::GetCellCount() const
 /*N*/ {
@@ -2903,7 +2760,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 /*N*/   if ( nTab <= MAXTAB && pTab[nTab] )
 /*N*/       return pTab[nTab]->GetPageSize();
 /*N*/
-/*N*/   DBG_ERROR("falsche Tab");
+/*N*/   OSL_FAIL("falsche Tab");
 /*N*/   return Size();
 /*N*/ }
 
@@ -3030,3 +2887,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             RefreshAutoFilter( nStar
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

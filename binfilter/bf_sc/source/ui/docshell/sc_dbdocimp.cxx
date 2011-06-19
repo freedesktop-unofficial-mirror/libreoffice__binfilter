@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,7 +34,6 @@
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------
 
 #include <comphelper/processfactory.hxx>
 #include <comphelper/types.hxx>
@@ -66,9 +66,7 @@
 #include "attrib.hxx"
 #include "dbdocutl.hxx"
 #include "editable.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -91,7 +89,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 #define SC_DBPROP_SELECTION         "Selection"
 #define SC_DBPROP_CURSOR            "Cursor"
 
-// -----------------------------------------------------------------
 
 /*M*/ BOOL ScDBDocFunc::DoImport( USHORT nTab, const ScImportParam& rParam,
 /*M*/         const uno::Reference< sdbc::XResultSet >& xResultSet,
@@ -109,7 +106,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                                           rParam.nCol2, rParam.nRow2 );
 /*M*/       if (!pDBData)
 /*M*/       {
-/*M*/           DBG_ERROR( "DoImport: no DBData" );
+/*M*/           OSL_FAIL( "DoImport: no DBData" );
 /*M*/           return FALSE;
 /*M*/       }
 /*M*/   }
@@ -120,9 +117,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   ScDocShellModificator aModificator( rDocShell );
 /*M*/
 /*M*/   BOOL bSuccess = FALSE;
-/*M*/   BOOL bApi = FALSE;                      //! pass as argument
-/*M*/   BOOL bTruncated = FALSE;                // for warning
-/*M*/   USHORT nErrStringId = 0;
 /*M*/   String aErrorMessage;
 /*M*/
 /*M*/   USHORT nCol = rParam.nCol1;
@@ -132,7 +126,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   long i;
 /*M*/
 /*M*/   BOOL bDoSelection = FALSE;
-/*M*/   BOOL bRealSelection = FALSE;            // TRUE if not everything is selected
 /*M*/   ULONG nListPos = 0;
 /*M*/   ULONG nRowsRead = 0;
 /*M*/   ULONG nListCount = 0;
@@ -168,7 +161,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/             bDispose = sal_True;
 /*M*/             xRowSet = uno::Reference<sdbc::XRowSet>(
 /*M*/                     ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*M*/                         ::rtl::OUString::createFromAscii( SC_SERVICE_ROWSET ) ),
+/*M*/                         ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_SERVICE_ROWSET )) ),
 /*M*/                     uno::UNO_QUERY);
 /*M*/             uno::Reference<beans::XPropertySet> xRowProp( xRowSet, uno::UNO_QUERY );
 /*M*/             DBG_ASSERT( xRowProp.is(), "can't get RowSet" );
@@ -185,22 +178,22 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/                 aAny <<= ::rtl::OUString( rParam.aDBName );
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_DATASOURCENAME), aAny );
+/*M*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_DBPROP_DATASOURCENAME)), aAny );
 /*M*/
 /*M*/                 aAny <<= ::rtl::OUString( rParam.aStatement );
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_COMMAND), aAny );
+/*M*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_DBPROP_COMMAND)), aAny );
 /*M*/
 /*M*/                 aAny <<= nType;
 /*M*/                 xRowProp->setPropertyValue(
-/*M*/                             ::rtl::OUString::createFromAscii(SC_DBPROP_COMMANDTYPE), aAny );
+/*M*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_DBPROP_COMMANDTYPE)), aAny );
 /*M*/
 /*M*/                 uno::Reference<sdb::XCompletedExecution> xExecute( xRowSet, uno::UNO_QUERY );
 /*M*/                 if ( xExecute.is() )
 /*M*/                 {
 /*M*/                     uno::Reference<task::XInteractionHandler> xHandler(
 /*M*/                             ::legacy_binfilters::getLegacyProcessServiceFactory()->createInstance(
-/*M*/                                 ::rtl::OUString::createFromAscii( SC_SERVICE_INTHANDLER ) ),
+/*M*/                                 ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_SERVICE_INTHANDLER )) ),
 /*M*/                             uno::UNO_QUERY);
 /*M*/                     xExecute->executeWithCompletion( xHandler );
 /*M*/                 }
@@ -268,7 +261,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                           ULONG nNextRow = (ULONG) pSelection->GetObject(nListPos);
 /*M*/                           while (nRowsRead+1 < nNextRow && !bEnd)
 /*M*/                           {
-/*M*/                               bRealSelection = TRUE;
 /*M*/                               if ( !xRowSet->next() )
 /*M*/                                   bEnd = TRUE;
 /*M*/                               ++nRowsRead;
@@ -277,7 +269,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                       }
 /*M*/                       else
 /*M*/                       {
-/*M*/                           bRealSelection = TRUE;  // more data available but not used
 /*M*/                           bEnd = TRUE;
 /*M*/                       }
 /*M*/                   }
@@ -300,13 +291,12 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/                           ++nInserted;
 /*M*/                           if (!(nInserted & 15))
-/*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                           }
 /*M*/                       }
 /*M*/                       else        // past the end of the spreadsheet
 /*M*/                       {
 /*M*/                           bEnd = TRUE;            // don't continue
-/*M*/                           bTruncated = TRUE;      // warning flag
 /*M*/                       }
 /*M*/                   }
 /*M*/
@@ -326,7 +316,7 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/   }
 /*M*/   catch ( uno::Exception& )
 /*M*/   {
-/*M*/       DBG_ERROR("Unexpected exception in database");
+/*M*/       OSL_FAIL("Unexpected exception in database");
 /*M*/   }
 /*M*/
 /*M*/   ScColumn::bDoubleAlloc = FALSE;
@@ -359,12 +349,10 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*N*/       aTester.TestBlock( pDoc, nTab, rParam.nCol1,rParam.nRow1,nEndCol,nEndRow );
 /*N*/       if ( !aTester.IsEditable() )
 /*N*/       {
-/*N*/           nErrStringId = aTester.GetMessageId();
 /*N*/           bSuccess = FALSE;
 /*N*/       }
 /*N*/       else if ( pDoc->GetChangeTrack() != NULL )
 /*M*/       {
-/*M*/           nErrStringId = STR_PROTECTIONERR;
 /*M*/           bSuccess = FALSE;
 /*M*/       }
 /*M*/   }
@@ -377,7 +365,6 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/                       nEndCol+nFormulaCols, nEndRow, nTab );
 /*M*/       if (!pDoc->CanFitBlock( aOld, aNew ))
 /*M*/       {
-/*M*/           nErrStringId = STR_MSSG_DOSUBTOTALS_2;      // can't insert cells
 /*M*/           bSuccess = FALSE;
 /*M*/       }
 /*M*/   }
@@ -430,14 +417,10 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/       USHORT nUndoEndRow = Max( nEndRow, rParam.nRow2 );
 /*M*/
 /*M*/       ScDocument* pUndoDoc = NULL;
-/*M*/       ScDBData* pUndoDBData = NULL;
 /*M*/       if ( bRecord )
 /*M*/       {
 /*M*/           pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
 /*M*/           pUndoDoc->InitUndo( pDoc, nTab, nTab );
-/*M*/
-/*M*/           if ( !bAddrInsert )
-/*M*/               pUndoDBData = new ScDBData( *pDBData );
 /*M*/       }
 /*M*/
 /*M*/       ScMarkData aNewMark;
@@ -524,12 +507,12 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/       if( !bAddrInsert )      // update database range
 /*M*/       {
-/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDBData->SetImportParam( rParam );
+/*M*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       if (bRecord)
 /*M*/       {
-/*M*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pRedoDoc = pImportDoc;
+/*M*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       pDoc->SetDirty();
@@ -538,31 +521,12 @@ SV_DECL_IMPL_REF(SbaSelectionList)
 /*M*/
 /*M*/       if (pWaitWin)
 /*M*/           pWaitWin->LeaveWait();
-/*M*/
-//*M*/      if ( bTruncated && !bApi )          // show warning
-//*M*/          ErrorHandler::HandleError(SCWARN_IMPORT_RANGE_OVERFLOW);
 /*M*/   }
-//*M*/  else if ( !bApi )
-//*M*/  {
-//*M*/      if (pWaitWin)
-//*M*/          pWaitWin->LeaveWait();
-//*M*/
-//*M*/      if (!aErrorMessage.Len())
-//*M*/      {
-//*M*/          if (!nErrStringId)
-//*M*/              nErrStringId = STR_MSSG_IMPORTDATA_0;
-//*M*/          aErrorMessage = ScGlobal::GetRscString( nErrStringId );
-//*M*/      }
-//*M*/      InfoBox aInfoBox( rDocShell.GetDialogParent(), aErrorMessage );
-//*M*/      aInfoBox.Execute();
-//*M*/  }
-/*M*/
 /*M*/   delete pImportDoc;
 /*M*/
 /*M*/   return bSuccess;
 /*M*/ }
 
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,6 +62,7 @@ public:
     TYPEINFO();
     SdrVirtObj(SdrObject& rNewObj);
     virtual ~SdrVirtObj();
+    using SdrObject::operator=;
     virtual SdrObject& ReferencedObj();
     virtual const SdrObject& GetReferencedObj() const;
     virtual void SetModel(SdrModel* pNewModel);
@@ -86,7 +86,7 @@ public:
 
 
     virtual long GetRotateAngle() const;
-    virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
+    virtual long GetShearAngle(bool bVertical=FALSE) const;
 
 
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
@@ -99,15 +99,15 @@ public:
     // private support routines for ItemSet access. NULL pointer means clear item.
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
+    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 
@@ -120,3 +120,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOVIRT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

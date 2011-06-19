@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,15 +38,9 @@ class StatusBar;
 class SfxMedium;
 class SfxFilter;
 
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFX_OBJFAC_HXX
 #include <bf_sfx2/docfac.hxx>
-#endif
 namespace binfilter {
 
 //-------------------------------------------------------------------------
@@ -98,8 +93,8 @@ public:
                     // 'p' + SfxObjectShell-subclass + 'Factory'
     SotFactory*     pScDocShellFactory;
 
-                    ScModuleDummy( ResMgr *pResMgr, BOOL bDummy, SfxObjectFactory* pFact )
-                    :   SfxModule(pResMgr, bDummy, pFact, NULL),
+                    ScModuleDummy( ResMgr *pResMgrIn, BOOL bDummyIn, SfxObjectFactory* pFact )
+                    :   SfxModule(pResMgrIn, bDummyIn, pFact, NULL),
                         pScDocShellFactory(pFact)
                     {}
 
@@ -113,3 +108,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

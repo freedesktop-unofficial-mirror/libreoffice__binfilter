@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,16 +30,11 @@
 #pragma hdrstop
 #endif
 
-
-
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
-
 #include "config.hxx"
 #include "starmath.hrc"
-namespace binfilter {
 
+namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::ucb;
@@ -80,12 +76,12 @@ long                SF_Ident = SF_IDENT;
 
 /*N*/ SmSym::SmSym() :
 /*N*/   Name(C2S("unknown")),
-/*N*/   Character('\0'),
+/*N*/   aSetName(C2S("unknown")),
 /*N*/   pHashNext(0),
 /*N*/   pSymSetManager(0),
+/*N*/   Character('\0'),
 /*N*/   bPredefined(FALSE),
-/*N*/     bDocSymbol(FALSE),
-/*N*/   aSetName(C2S("unknown"))
+/*N*/     bDocSymbol(FALSE)
 /*N*/ {
 /*N*/   aExportName = Name;
 /*N*/   Face.SetTransparent(TRUE);
@@ -149,7 +145,7 @@ long                SF_Ident = SF_IDENT;
 /*N*/ SmSymSet::SmSymSet(const String& rName)
 /*N*/ {
 /*N*/   Name = rName;
-/*N*/   SymbolList.Clear();
+/*N*/   SymbolList.clear();
 /*N*/
 /*N*/   pSymSetManager = 0;
 /*N*/ }
@@ -163,14 +159,12 @@ long                SF_Ident = SF_IDENT;
 /*N*/
 /*N*/     if (pSymbol)
 /*N*/         pSymbol->SetSetName( GetName() );
-/*N*/   SymbolList.Insert(pSymbol, LIST_APPEND);
-/*N*/   DBG_ASSERT(SymbolList.GetPos(pSymbol) == SymbolList.Count() - 1,
-/*N*/       "Sm : ... ergibt falschen return Wert");
+/*N*/   SymbolList.push_back( pSymbol );
 /*N*/
 /*N*/   if (pSymSetManager)
 /*N*/       pSymSetManager->SetModified(TRUE);
 /*N*/
-/*N*/   return (USHORT) SymbolList.Count() - 1;
+/*N*/   return (USHORT) SymbolList.size() - 1;
 /*N*/ }
 
 
@@ -231,8 +225,8 @@ long                SF_Ident = SF_IDENT;
 
 /*N*/ void SmSymSetManager::EnterHashTable(SmSymSet& rSymbolSet)
 /*N*/ {
-/*N*/   for (int i = 0; i < rSymbolSet.GetCount(); i++)
-/*N*/         EnterHashTable( *rSymbolSet.SymbolList.GetObject(i) );
+/*N*/   for ( size_t i = 0; i < rSymbolSet.GetCount(); i++ )
+/*N*/         EnterHashTable( *rSymbolSet.SymbolList[ i ] );
 /*N*/ }
 
 /*N*/ void SmSymSetManager::FillHashTable()
@@ -247,17 +241,10 @@ long                SF_Ident = SF_IDENT;
 /*N*/ }
 
 
-
-
-
 /*N*/ SmSymSetManager::SmSymSetManager(USHORT HashTableSize)
 /*N*/ {
 /*N*/     pImpl = new SmSymSetManager_Impl( *this, HashTableSize );
 /*N*/ }
-
-
-
-
 
 
 /*N*/ USHORT SmSymSetManager::AddSymbolSet(SmSymSet* pSymbolSet)
@@ -269,8 +256,8 @@ long                SF_Ident = SF_IDENT;
 /*N*/
 /*N*/   pSymbolSet->pSymSetManager = this;
 /*N*/
-/*N*/   for (int i = 0; i < pSymbolSet->GetCount(); i++)
-/*?*/       pSymbolSet->SymbolList.GetObject(i)->pSymSetManager = this;
+/*N*/   for ( size_t i = 0; i < pSymbolSet->GetCount(); i++ )
+/*?*/       pSymbolSet->SymbolList[ i ]->pSymSetManager = this;
 /*N*/
 /*N*/   FillHashTable();
 /*N*/   pImpl->Modified = TRUE;
@@ -309,11 +296,6 @@ long                SF_Ident = SF_IDENT;
 /*N*/     }
 /*N*/
 /*N*/   return pSym;
-/*N*/ }
-
-
-/*N*/ void SmSymSetManager::AddReplaceSymbol( const SmSym &rSymbol )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
 /*N*/ }
 
 
@@ -380,7 +362,7 @@ long                SF_Ident = SF_IDENT;
 /*N*/
 /*N*/     if (0 == nCount)
 /*N*/     {
-/*N*/         DBG_ERROR( "no symbol set found" );
+/*N*/         OSL_FAIL( "no symbol set found" );
 /*N*/         pImpl->Modified = FALSE;
 /*N*/     }
 /*N*/ }
@@ -390,3 +372,5 @@ long                SF_Ident = SF_IDENT;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

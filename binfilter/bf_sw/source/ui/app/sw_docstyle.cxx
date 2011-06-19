@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,81 +33,35 @@
 
 #define _SVSTDARR_USHORTS
 
-#ifndef _UIPARAM_HXX
 #include <uiparam.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SFXITEMITER_HXX
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
-#endif
-#ifndef _UITOOL_HXX
 #include <uitool.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _CHARFMT_HXX
+#include <osl/diagnose.h>
 #include <charfmt.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _CCOLL_HXX
 #include <ccoll.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _UIITEMS_HXX
 #include <uiitems.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _SWSTYLE_H
 #include <swstyle.h>
-#endif
-#ifndef _APP_HRC
 #include <app.hrc>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 // MD 06.02.95: Die Formatnamen in der Liste aller Namen haben als
@@ -168,7 +123,7 @@ namespace binfilter {
 /*N*/ SwCharFmt* lcl_FindCharFmt(   SwDoc& rDoc,
 /*N*/                           const String& rName,
 /*N*/                           SwDocStyleSheet* pStyle = 0,
-/*N*/                           FASTBOOL bCreate = TRUE )
+/*N*/                           bool bCreate = TRUE )
 /*N*/ {
 /*N*/   SwCharFmt*  pFmt = 0;
 /*N*/   if( rName.Len() )
@@ -214,7 +169,7 @@ namespace binfilter {
 /*N*/ SwTxtFmtColl* lcl_FindParaFmt(    SwDoc& rDoc,
 /*N*/                               const String& rName,
 /*N*/                               SwDocStyleSheet* pStyle = 0,
-/*N*/                               FASTBOOL bCreate = TRUE )
+/*N*/                               bool bCreate = TRUE )
 /*N*/ {
 /*N*/   SwTxtFmtColl*   pColl = 0;
 /*N*/
@@ -257,7 +212,7 @@ namespace binfilter {
 /*N*/ SwFrmFmt* lcl_FindFrmFmt( SwDoc& rDoc,
 /*N*/                           const String& rName,
 /*N*/                           SwDocStyleSheet* pStyle = 0,
-/*N*/                           FASTBOOL bCreate = TRUE )
+/*N*/                           bool bCreate = TRUE )
 /*N*/ {
 /*N*/   SwFrmFmt* pFmt = 0;
 /*N*/   if( rName.Len() )
@@ -295,7 +250,7 @@ namespace binfilter {
 /*N*/ const SwPageDesc* lcl_FindPageDesc(   SwDoc&  rDoc,
 /*N*/                                   const String&    rName,
 /*N*/                                   SwDocStyleSheet* pStyle = 0,
-/*N*/                                   FASTBOOL bCreate = TRUE )
+/*N*/                                   bool bCreate = TRUE )
 /*N*/ {
 /*N*/   const SwPageDesc* pDesc = 0;
 /*N*/
@@ -329,7 +284,7 @@ namespace binfilter {
 /*N*/ const SwNumRule* lcl_FindNumRule( SwDoc&  rDoc,
 /*N*/                                   const String&    rName,
 /*N*/                                   SwDocStyleSheet* pStyle = 0,
-/*N*/                                   FASTBOOL bCreate = TRUE )
+/*N*/                                   bool bCreate = TRUE )
 /*N*/ {
 /*N*/   const SwNumRule* pRule = 0;
 /*N*/
@@ -400,18 +355,17 @@ namespace binfilter {
 
 /*N*/ SwDocStyleSheet::SwDocStyleSheet( SwDoc&          rDocument,
 /*N*/                                   const String&           rName,
-/*N*/                                   SwDocStyleSheetPool&    rPool,
+/*N*/                                   SwDocStyleSheetPool&    rInPool,
 /*N*/                                   SfxStyleFamily          eFam,
-/*N*/                                   USHORT                  nMask) :
+/*N*/                                   USHORT                  nInMask) :
 /*N*/
-/*N*/   SfxStyleSheetBase( rName, rPool, eFam, nMask ),
-/*N*/   rDoc(rDocument),
+/*N*/   SfxStyleSheetBase( rName, rInPool, eFam, nInMask ),
 /*N*/   pCharFmt(0),
-/*N*/   pFrmFmt(0),
 /*N*/   pColl(0),
+/*N*/   pFrmFmt(0),
 /*N*/   pDesc(0),
 /*N*/   pNumRule(0),
-/*N*/   bPhysical(FALSE),
+/*N*/   rDoc(rDocument),
 /*N*/   aCoreSet(GetPool().GetPool(),
 /*N*/           RES_CHRATR_BEGIN,       RES_CHRATR_END - 1,
 /*N*/           RES_PARATR_BEGIN,       RES_PARATR_END - 1,
@@ -429,22 +383,23 @@ namespace binfilter {
 /*N*/           SID_ATTR_NUMBERING_RULE,    SID_ATTR_NUMBERING_RULE,
 /*N*/           SID_PARA_BACKGRND_DESTINATION,  SID_ATTR_BRUSH_CHAR,
 /*N*/           SID_ATTR_NUMBERING_RULE,    SID_ATTR_NUMBERING_RULE,
-/*N*/           0)
+/*N*/           0),
+/*N*/   bPhysical(FALSE)
 /*N*/ {
 /*N*/   nHelpId = UCHAR_MAX;
 /*N*/ }
 
 
-/*N*/ SwDocStyleSheet::SwDocStyleSheet( const SwDocStyleSheet& rOrg) :
-/*N*/   SfxStyleSheetBase(rOrg),
-/*N*/   pCharFmt(rOrg.pCharFmt),
-/*N*/   pFrmFmt(rOrg.pFrmFmt),
-/*N*/   pColl(rOrg.pColl),
-/*N*/   pDesc(rOrg.pDesc),
-/*N*/   pNumRule(rOrg.pNumRule),
-/*N*/   rDoc(rOrg.rDoc),
-/*N*/   bPhysical(rOrg.bPhysical),
-/*N*/   aCoreSet(rOrg.aCoreSet)
+/*N*/ SwDocStyleSheet::SwDocStyleSheet( const SwDocStyleSheet& rOrg)
+/*N*/   : SfxStyleSheetBase(rOrg)
+/*N*/   , pCharFmt(rOrg.pCharFmt)
+/*N*/   , pColl(rOrg.pColl)
+/*N*/   , pFrmFmt(rOrg.pFrmFmt)
+/*N*/   , pDesc(rOrg.pDesc)
+/*N*/   , pNumRule(rOrg.pNumRule)
+/*N*/   , rDoc(rOrg.rDoc)
+/*N*/   , aCoreSet(rOrg.aCoreSet)
+/*N*/   , bPhysical(rOrg.bPhysical)
 /*N*/ {
 /*N*/ }
 
@@ -573,19 +528,19 @@ namespace binfilter {
 /*N*/   switch(nFamily)
 /*N*/   {
 /*N*/       case SFX_STYLE_FAMILY_CHAR :
-/*N*/           ASSERT( pCharFmt, "SwCharFormat fehlt!" )
+/*N*/           OSL_ENSURE( pCharFmt, "SwCharFormat fehlt!" );
 /*N*/           if( 0 != ( pFmt = pCharFmt ) && rStr.Len() )
 /*N*/               pParent = lcl_FindCharFmt(rDoc, rStr);
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PARA :
-/*N*/           ASSERT( pColl, "Collektion fehlt!")
+/*N*/           OSL_ENSURE( pColl, "Collektion fehlt!");
 /*N*/           if( 0 != ( pFmt = pColl ) && rStr.Len() )
 /*N*/               pParent = lcl_FindParaFmt( rDoc, rStr );
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_FRAME:
-/*?*/           ASSERT(pFrmFmt, "FrameFormat fehlt!");
+/*?*/           OSL_ENSURE(pFrmFmt, "FrameFormat fehlt!");
 /*?*/           if( 0 != ( pFmt = pFrmFmt ) && rStr.Len() )
 /*?*/               pParent = lcl_FindFrmFmt( rDoc, rStr );
 /*?*/           break;
@@ -594,7 +549,7 @@ namespace binfilter {
 /*N*/       case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bRet = FALSE;
@@ -632,7 +587,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/   case SFX_STYLE_FAMILY_PARA :
 /*N*/   {
-/*N*/       ASSERT(pColl, "Collection fehlt!");
+/*N*/       OSL_ENSURE(pColl, "Collection fehlt!");
 /*N*/       if( pColl )
 /*N*/       {
 /*N*/           SwTxtFmtColl* pFollow = pColl;
@@ -645,7 +600,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   case SFX_STYLE_FAMILY_PAGE :
 /*N*/   {
-/*N*/       ASSERT(pDesc, "PageDesc fehlt!");
+/*N*/       OSL_ENSURE(pDesc, "PageDesc fehlt!");
 /*N*/       if( pDesc )
 /*N*/       {
 /*N*/           const SwPageDesc* pFollowDesc = rStr.Len()
@@ -667,7 +622,7 @@ namespace binfilter {
 /*N*/   case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/       break;
 /*N*/   default:
-/*?*/       ASSERT(!this, "unbekannte Style-Familie");
+/*?*/       OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/   }
 /*N*/
 /*N*/   return TRUE;
@@ -686,7 +641,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case SFX_STYLE_FAMILY_CHAR:
 /*N*/           {
-/*N*/               ASSERT(pCharFmt, "Wo ist das SwCharFmt");
+/*N*/               OSL_ENSURE(pCharFmt, "Wo ist das SwCharFmt");
 /*N*/               aCoreSet.Put(pCharFmt->GetAttrSet());
 /*N*/               if(pCharFmt->DerivedFrom())
 /*N*/                   aCoreSet.SetParent(&pCharFmt->DerivedFrom()->GetAttrSet());
@@ -704,7 +659,7 @@ namespace binfilter {
 /*N*/               aBoxInfo.SetValid( VALID_DISABLE, TRUE );
 /*N*/               if ( nFamily == SFX_STYLE_FAMILY_PARA )
 /*N*/               {
-/*N*/                   ASSERT(pColl, "Wo ist die Collektion");
+/*N*/                   OSL_ENSURE(pColl, "Wo ist die Collektion");
 /*N*/                   aCoreSet.Put(pColl->GetAttrSet());
 /*N*/                   aCoreSet.Put( aBoxInfo );
 /*N*/                   aCoreSet.Put(SfxBoolItem(SID_ATTR_AUTO_STYLE_UPDATE, pColl->IsAutoUpdateFmt()));
@@ -713,7 +668,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*N*/                   ASSERT(pFrmFmt, "Wo ist das FrmFmt");
+/*N*/                   OSL_ENSURE(pFrmFmt, "Wo ist das FrmFmt");
 /*N*/                   aCoreSet.Put(pFrmFmt->GetAttrSet());
 /*N*/                   aCoreSet.Put( aBoxInfo );
 /*N*/                   aCoreSet.Put(SfxBoolItem(SID_ATTR_AUTO_STYLE_UPDATE, pFrmFmt->IsAutoUpdateFmt()));
@@ -725,24 +680,24 @@ namespace binfilter {
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PAGE :
 /*N*/           {
-/*N*/               ASSERT(pDesc, "Kein PageDescriptor");
+/*N*/               OSL_ENSURE(pDesc, "Kein PageDescriptor");
 /*N*/               ::binfilter::PageDescToItemSet(*((SwPageDesc*)pDesc), aCoreSet);
 /*N*/           }
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/           {
-/*N*/               ASSERT(pNumRule, "Keine NumRule");
+/*N*/               OSL_ENSURE(pNumRule, "Keine NumRule");
 /*N*/               SvxNumRule aRule = pNumRule->MakeSvxNumRule();
 /*N*/               aCoreSet.Put(SvxNumBulletItem(aRule));
 /*N*/           }
 /*N*/           break;
 /*N*/
-/*N*/
-/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/ #ifdef DBG_UTIL
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/ #endif
+                break;
 /*N*/   }
 /*N*/   // Member der Basisklasse
 /*N*/   pSet = &aCoreSet;
@@ -763,7 +718,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwImplShellAction aTmpSh( rDoc );
 /*N*/
-/*N*/   ASSERT( &rSet != &aCoreSet, "SetItemSet mit eigenem Set ist nicht erlaubt" );
+/*N*/   OSL_ENSURE( &rSet != &aCoreSet, "SetItemSet mit eigenem Set ist nicht erlaubt" );
 /*N*/
 /*N*/   SwFmt* pFmt = 0;
 /*N*/   SwPageDesc* pNewDsc = 0;
@@ -773,14 +728,14 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case SFX_STYLE_FAMILY_CHAR :
 /*N*/           {
-/*N*/               ASSERT(pCharFmt, "Wo ist das CharFormat");
+/*N*/               OSL_ENSURE(pCharFmt, "Wo ist das CharFormat");
 /*N*/               pFmt = pCharFmt;
 /*N*/           }
 /*N*/           break;
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PARA :
 /*N*/       {
-/*N*/           ASSERT(pColl, "Wo ist die Collection");
+/*N*/           OSL_ENSURE(pColl, "Wo ist die Collection");
 /*N*/           const SfxPoolItem* pAutoUpdate;
 /*N*/           if(SFX_ITEM_SET == rSet.GetItemState(SID_ATTR_AUTO_STYLE_UPDATE,FALSE, &pAutoUpdate ))
 /*N*/           {
@@ -794,13 +749,13 @@ namespace binfilter {
 /*N*/
 /*N*/           if( RES_CONDTXTFMTCOLL == pColl->Which() && pCondItem )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmt* pFindFmt;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else if( pCondItem && !pColl->GetDepends() )
 /*N*/           {
 /*?*/               // keine bedingte Vorlage, dann erstmal erzeugen und
 /*?*/               // alle wichtigen Werte uebernehmen
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwConditionTxtFmtColl* pCColl = rDoc.MakeCondTxtFmtColl(
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           pFmt = pColl;
 
@@ -832,7 +787,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       case SFX_STYLE_FAMILY_FRAME:
 /*N*/       {
-/*N*/           ASSERT(pFrmFmt, "Wo ist das FrmFmt");
+/*N*/           OSL_ENSURE(pFrmFmt, "Wo ist das FrmFmt");
 /*N*/           const SfxPoolItem* pAutoUpdate;
 /*N*/           if(SFX_ITEM_SET == rSet.GetItemState(SID_ATTR_AUTO_STYLE_UPDATE,FALSE, &pAutoUpdate ))
 /*N*/           {
@@ -844,7 +799,7 @@ namespace binfilter {
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PAGE :
 /*N*/           {
-/*N*/               ASSERT(pDesc, "Wo ist der PageDescriptor");
+/*N*/               OSL_ENSURE(pDesc, "Wo ist der PageDescriptor");
 /*N*/
 /*N*/               if( rDoc.FindPageDescByName( pDesc->GetName(), &nPgDscPos ))
 /*N*/               {
@@ -856,7 +811,7 @@ namespace binfilter {
 /*N*/
 /*N*/       case SFX_STYLE_FAMILY_PSEUDO:
 /*N*/           {
-/*N*/               ASSERT(pNumRule, "Wo ist die NumRule");
+/*N*/               OSL_ENSURE(pNumRule, "Wo ist die NumRule");
 /*N*/               const SfxPoolItem* pItem;
 /*N*/               switch( rSet.GetItemState( SID_ATTR_NUMBERING_RULE, FALSE, &pItem ))
 /*N*/               {
@@ -882,10 +837,11 @@ namespace binfilter {
 /*N*/           }
 /*N*/           break;
 /*N*/
-/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/ #ifdef DBG_UTIL
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/ #endif
+                break;
 /*N*/   }
 /*N*/
 /*N*/   if( pFmt && rSet.Count())
@@ -948,7 +904,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pCharFmt;
 /*N*/       if( bFillOnlyInfo && !bPhysical )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bDeleteInfo = TRUE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       pFmt = pCharFmt;
@@ -973,7 +929,7 @@ namespace binfilter {
 /*N*/           bPhysical = 0 != pColl;
 /*N*/           if( bFillOnlyInfo && !bPhysical )
 /*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           pFmt = pColl;
@@ -994,7 +950,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pFrmFmt;
 /*N*/       if( bFillOnlyInfo && bPhysical )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pFmt = pFrmFmt;
 /*N*/       if( !bCreate && !pFmt )
@@ -1011,7 +967,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pDesc;
 /*N*/       if( bFillOnlyInfo && !pDesc )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if( pDesc )
@@ -1037,7 +993,7 @@ namespace binfilter {
 /*N*/       bPhysical = 0 != pNumRule;
 /*N*/       if( bFillOnlyInfo && !pNumRule )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bDeleteInfo = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if( pNumRule )
@@ -1058,6 +1014,8 @@ namespace binfilter {
 /*N*/       if( bDeleteInfo )
 /*N*/           pNumRule = 0;
 /*N*/       break;
+        default:
+            break;
 /*N*/   }
 /*N*/
 /*N*/   if( SFX_STYLE_FAMILY_CHAR == nFamily ||
@@ -1067,25 +1025,25 @@ namespace binfilter {
 /*N*/       if( pFmt )
 /*N*/           nPoolId = pFmt->GetPoolFmtId();
 /*N*/
-/*N*/       USHORT nMask = 0;
+/*N*/       USHORT nLclMask = 0;
 /*N*/       if( pFmt == rDoc.GetDfltCharFmt() )
-/*N*/           nMask |= SFXSTYLEBIT_READONLY;
+/*N*/           nLclMask |= SFXSTYLEBIT_READONLY;
 /*N*/       else if( USER_FMT & nPoolId )
-/*N*/           nMask |= SFXSTYLEBIT_USERDEF;
+/*N*/           nLclMask |= SFXSTYLEBIT_USERDEF;
 /*N*/
 /*N*/       switch ( COLL_GET_RANGE_BITS & nPoolId )
 /*N*/       {
-/*N*/       case COLL_TEXT_BITS:     nMask |= SWSTYLEBIT_TEXT;    break;
-/*N*/       case COLL_DOC_BITS :     nMask |= SWSTYLEBIT_CHAPTER; break;
-/*N*/       case COLL_LISTS_BITS:    nMask |= SWSTYLEBIT_LIST;    break;
-/*N*/       case COLL_REGISTER_BITS: nMask |= SWSTYLEBIT_IDX;     break;
-/*N*/       case COLL_EXTRA_BITS:    nMask |= SWSTYLEBIT_EXTRA;   break;
-/*N*/       case COLL_HTML_BITS:     nMask |= SWSTYLEBIT_HTML;    break;
+/*N*/       case COLL_TEXT_BITS:     nLclMask |= SWSTYLEBIT_TEXT;     break;
+/*N*/       case COLL_DOC_BITS :     nLclMask |= SWSTYLEBIT_CHAPTER; break;
+/*N*/       case COLL_LISTS_BITS:    nLclMask |= SWSTYLEBIT_LIST;     break;
+/*N*/       case COLL_REGISTER_BITS: nLclMask |= SWSTYLEBIT_IDX;      break;
+/*N*/       case COLL_EXTRA_BITS:    nLclMask |= SWSTYLEBIT_EXTRA;    break;
+/*N*/       case COLL_HTML_BITS:     nLclMask |= SWSTYLEBIT_HTML;     break;
 /*N*/       }
 /*N*/
 /*N*/       if( pFmt )
 /*N*/       {
-/*N*/           ASSERT( bPhysical, "Format nicht gefunden" );
+/*N*/           OSL_ENSURE( bPhysical, "Format nicht gefunden" );
 /*N*/
 /*N*/           nHelpId = pFmt->GetPoolHelpId();
 /*N*/           if( pFmt->GetPoolHlpFileId() != UCHAR_MAX )
@@ -1094,13 +1052,13 @@ namespace binfilter {
 /*N*/               aHelpFile.Erase();
 /*N*/
 /*N*/           if( RES_CONDTXTFMTCOLL == pFmt->Which() )
-/*N*/               nMask |= SWSTYLEBIT_CONDCOLL;
+/*N*/               nLclMask |= SWSTYLEBIT_CONDCOLL;
 /*N*/       }
 /*N*/
-/*N*/       SetMask( nMask );
+/*N*/       SetMask( nLclMask );
 /*N*/   }
 /*N*/   if( bDeleteInfo && bFillOnlyInfo )
-/*?*/ { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001  ::lcl_DeleteInfoStyles( nFamily, aDelArr, rDoc );
+/*?*/ { DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   return bRet;
 /*N*/ }
 
@@ -1127,7 +1085,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwTxtFmtColl *pPar = (*rDoc.GetTxtFmtColls())[0];
 /*N*/               if( nMask & SWSTYLEBIT_CONDCOLL )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pColl = rDoc.MakeCondTxtFmtColl( aName, pPar );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               else
 /*N*/                   pColl = rDoc.MakeTxtFmtColl( aName, pPar );
 /*N*/           }
@@ -1166,6 +1124,8 @@ namespace binfilter {
 /*?*/               pNumRule = pRule;
 /*?*/           }
 /*N*/           break;
+            default:
+                break;
 /*N*/   }
 /*N*/   bPhysical = TRUE;
 /*N*/   aCoreSet.ClearItem();
@@ -1256,14 +1216,6 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
-
-
-
-/*  */
-
 /*--------------------------------------------------------------------
     Beschreibung:   Methoden fuer den DocStyleSheetPool
  --------------------------------------------------------------------*/
@@ -1276,20 +1228,20 @@ namespace binfilter {
 /*N*/   bOrganizer = bOrg;
 /*N*/ }
 
-/*N*/  SwDocStyleSheetPool::~SwDocStyleSheetPool()
+/*N*/ SwDocStyleSheetPool::~SwDocStyleSheetPool()
 /*N*/ {
 /*N*/ }
 
-/*N*/ SfxStyleSheetBase&     SwDocStyleSheetPool::Make(
+/*N*/ SfxStyleSheetBase& SwDocStyleSheetPool::Make(
 /*N*/       const String&   rName,
 /*N*/       SfxStyleFamily  eFam,
-/*N*/       USHORT          nMask,
-/*N*/       USHORT          nPos )
+/*N*/       USHORT nInMask,
+/*N*/       USHORT /*nPos*/ )
 /*N*/ {
 /*N*/   aStyleSheet.PresetName(rName);
 /*N*/   aStyleSheet.PresetParent(aEmptyStr);
 /*N*/   aStyleSheet.PresetFollow(aEmptyStr);
-/*N*/   aStyleSheet.SetMask(nMask) ;
+/*N*/   aStyleSheet.SetMask(nInMask) ;
 /*N*/   aStyleSheet.SetFamily(eFam);
 /*N*/   aStyleSheet.SetPhysical(TRUE);
 /*N*/   aStyleSheet.Create();
@@ -1303,17 +1255,17 @@ namespace binfilter {
 
 
 /*N*/ SfxStyleSheetIterator*  SwDocStyleSheetPool::CreateIterator(
-/*N*/                       SfxStyleFamily eFam, USHORT nMask )
+/*N*/                       SfxStyleFamily eFam, USHORT nInMask )
 /*N*/ {
-/*N*/   return new SwStyleSheetIterator( this, eFam, nMask );
+/*N*/   return new SwStyleSheetIterator( this, eFam, nInMask );
 /*N*/ }
 
 
 
 
-/*N*/ BOOL  SwDocStyleSheetPool::SetParent( SfxStyleFamily eFam,
-/*N*/                               const String &rStyle, const String &rParent )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL  SwDocStyleSheetPool::SetParent( SfxStyleFamily /*eFam*/,
+/*N*/                               const String& /*rStyle*/, const String& /*rParent*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ SfxStyleSheetBase* SwDocStyleSheetPool::Find( const String& rName,
@@ -1375,7 +1327,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           ASSERT(!this, "unbekannte Style-Familie");
+/*N*/           OSL_ENSURE(!this, "unbekannte Style-Familie");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1427,7 +1379,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwDoc& rDoc = ((SwDocStyleSheetPool*)pBasePool)->GetDoc();
 /*N*/   const USHORT nSrchMask = nMask;
-/*N*/   const BOOL bSearchUsed = SearchUsed();
+/*N*/   const BOOL bLclSearchUsed = SearchUsed();
 /*N*/
 /*N*/   const BOOL bOrganizer = ((SwDocStyleSheetPool*)pBasePool)->IsOrganizerMode();
 /*N*/
@@ -1441,17 +1393,17 @@ namespace binfilter {
 /*?*/           if( pFmt->IsDefault() && pFmt != rDoc.GetDfltCharFmt() )
 /*?*/               continue;
 /*?*/
-/*?*/           const BOOL  bUsed = bSearchUsed && (bOrganizer || rDoc.IsUsed(*pFmt));
+/*?*/           const BOOL  bUsed = bLclSearchUsed && (bOrganizer || rDoc.IsUsed(*pFmt));
 /*?*/           if( !bUsed )
 /*?*/           {
 /*?*/               // Standard ist keine Benutzervorlage #46181#
 /*?*/               const USHORT nId = rDoc.GetDfltCharFmt() == pFmt ?
-/*?*/                       RES_POOLCHR_INET_NORMAL :
+/*?*/                       static_cast<USHORT>(RES_POOLCHR_INET_NORMAL) :
 /*?*/                               pFmt->GetPoolFmtId();
 /*?*/               if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*?*/                   ? !(nId & USER_FMT)
 /*?*/                       // benutzte gesucht und keine gefunden
-/*?*/                   : bSearchUsed )
+/*?*/                   : bLclSearchUsed )
 /*?*/               continue;
 /*?*/
 /*?*/               if( rDoc.IsHTMLMode() && !(nId & USER_FMT) &&
@@ -1476,7 +1428,7 @@ namespace binfilter {
 /*?*/       {
 /*?*/           if( !rDoc.IsHTMLMode() )
 /*?*/               AppendStyleList(SwStyleNameMapper::GetChrFmtUINameArray(),
-/*?*/                               bSearchUsed, GET_POOLID_CHRFMT, cCHAR);
+/*?*/                               bLclSearchUsed, GET_POOLID_CHRFMT, cCHAR);
 /*?*/           else
 /*?*/           {
 /*?*/               aLst.Append( cCHAR, *SwStyleNameMapper::GetChrFmtUINameArray()[
@@ -1489,7 +1441,7 @@ namespace binfilter {
 /*?*/                       RES_POOLCHR_FOOTNOTE - RES_POOLCHR_BEGIN ] );
 /*?*/           }
 /*?*/           AppendStyleList(SwStyleNameMapper::GetHTMLChrFmtUINameArray(),
-/*?*/                               bSearchUsed, GET_POOLID_CHRFMT, cCHAR);
+/*?*/                               bLclSearchUsed, GET_POOLID_CHRFMT, cCHAR);
 /*N*/       }
 /*N*/   }
 
@@ -1519,7 +1471,7 @@ namespace binfilter {
 /*N*/               continue;
 /*N*/
 /*N*/           const BOOL bUsed = bOrganizer || rDoc.IsUsed(*pColl);
-/*N*/           if( !(bSearchUsed && bUsed ))
+/*N*/           if( !(bLclSearchUsed && bUsed ))
 /*N*/           {
 /*N*/               const USHORT nId = pColl->GetPoolFmtId();
 /*N*/               switch ( (nSMask & ~SFXSTYLEBIT_USED) )
@@ -1580,7 +1532,7 @@ namespace binfilter {
 /*?*/                   break;
 /*N*/               default:
 /*N*/                   // benutzte gesucht und keine gefunden
-/*N*/                   if( bSearchUsed )
+/*N*/                   if( bLclSearchUsed )
 /*N*/                       continue;
 /*N*/               }
 /*N*/           }
@@ -1590,29 +1542,29 @@ namespace binfilter {
 /*N*/       const BOOL bAll = nSMask == SFXSTYLEBIT_ALL;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_TEXT )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetTextUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA );
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA );
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_CHAPTER )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetDocUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_LIST )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetListsUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_IDX )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetRegisterUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_EXTRA )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetExtraUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
+/*N*/                           bLclSearchUsed, GET_POOLID_TXTCOLL, cPARA ) ;
 /*N*/       if ( bAll || (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_CONDCOLL )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( !bSearchUsed ||
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if ( bAll ||
 /*N*/           (nSMask & ~SFXSTYLEBIT_USED) == SWSTYLEBIT_HTML ||
 /*N*/           (nSMask & ~SFXSTYLEBIT_USED) ==
 /*N*/                       (SWSTYLEBIT_HTML | SFXSTYLEBIT_USERDEF) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 AppendStyleList(SwStyleNameMapper::GetHTMLUINameArray(),
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1627,13 +1579,13 @@ namespace binfilter {
 /*?*/               continue;
 /*?*/
 /*?*/           const USHORT nId = pFmt->GetPoolFmtId();
-/*?*/           BOOL bUsed = bSearchUsed && ( bOrganizer || rDoc.IsUsed(*pFmt));
+/*?*/           BOOL bUsed = bLclSearchUsed && ( bOrganizer || rDoc.IsUsed(*pFmt));
 /*?*/           if( !bUsed )
 /*?*/           {
 /*?*/               if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*?*/                   ? !(nId & USER_FMT)
 /*?*/                   // benutzte gesucht und keine gefunden
-/*?*/                   : bSearchUsed )
+/*?*/                   : bLclSearchUsed )
 /*?*/                   continue;
 /*?*/           }
 /*?*/
@@ -1644,7 +1596,7 @@ namespace binfilter {
 /*?*/       //
 /*?*/       if ( nSrchMask == SFXSTYLEBIT_ALL )
 /*?*/           AppendStyleList(SwStyleNameMapper::GetFrmFmtUINameArray(),
-/*?*/                                   bSearchUsed, GET_POOLID_FRMFMT, cFRAME);
+/*?*/                                   bLclSearchUsed, GET_POOLID_FRMFMT, cFRAME);
 /*N*/   }
 /*N*/
 /*N*/   if( nSearchFamily == SFX_STYLE_FAMILY_PAGE ||
@@ -1655,13 +1607,13 @@ namespace binfilter {
 /*N*/       {
 /*N*/           const SwPageDesc& rDesc = rDoc.GetPageDesc(i);
 /*N*/           const USHORT nId = rDesc.GetPoolFmtId();
-/*N*/           BOOL bUsed = bSearchUsed && ( bOrganizer || rDoc.IsUsed(rDesc));
+/*N*/           BOOL bUsed = bLclSearchUsed && ( bOrganizer || rDoc.IsUsed(rDesc));
 /*N*/           if( !bUsed )
 /*N*/           {
 /*N*/               if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*N*/                   ? !(nId & USER_FMT)
 /*N*/                   // benutzte gesucht und keine gefunden
-/*N*/                   : bSearchUsed )
+/*N*/                   : bLclSearchUsed )
 /*?*/                   continue;
 /*N*/           }
 /*N*/
@@ -1669,7 +1621,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       if ( nSrchMask == SFXSTYLEBIT_ALL )
 /*N*/           AppendStyleList(SwStyleNameMapper::GetPageDescUINameArray(),
-/*N*/                           bSearchUsed, GET_POOLID_PAGEDESC, cPAGE);
+/*N*/                           bLclSearchUsed, GET_POOLID_PAGEDESC, cPAGE);
 /*N*/   }
 /*N*/
 /*N*/   if( nSearchFamily == SFX_STYLE_FAMILY_PSEUDO ||
@@ -1681,13 +1633,13 @@ namespace binfilter {
 /*?*/           const SwNumRule& rRule = *rNumTbl[ i ];
 /*?*/           if( !rRule.IsAutoRule() )
 /*?*/           {
-/*?*/               BOOL bUsed = bSearchUsed && ( bOrganizer || rDoc.IsUsed(rRule) );
+/*?*/               BOOL bUsed = bLclSearchUsed && ( bOrganizer || rDoc.IsUsed(rRule) );
 /*?*/               if( !bUsed )
 /*?*/               {
 /*?*/                   if( (nSrchMask & ~SFXSTYLEBIT_USED) == SFXSTYLEBIT_USERDEF
 /*?*/                       ? !(rRule.GetPoolFmtId() & USER_FMT)
 /*?*/                       // benutzte gesucht und keine gefunden
-/*?*/                       : bSearchUsed )
+/*?*/                       : bLclSearchUsed )
 /*?*/                       continue;
 /*?*/               }
 /*?*/
@@ -1696,7 +1648,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       if ( nSrchMask == SFXSTYLEBIT_ALL )
 /*?*/           AppendStyleList(SwStyleNameMapper::GetNumRuleUINameArray(),
-/*?*/                           bSearchUsed, GET_POOLID_NUMRULE, cNUMRULE);
+/*?*/                           bLclSearchUsed, GET_POOLID_NUMRULE, cNUMRULE);
 /*N*/   }
 /*N*/
 /*N*/   if(aLst.Count() > 0)
@@ -1728,11 +1680,11 @@ namespace binfilter {
 
 /*N*/ void SwStyleSheetIterator::AppendStyleList(const SvStringsDtor& rList,
 /*N*/                                           BOOL    bTestUsed,
-/*N*/                                           USHORT nSection, char cType )
+/*N*/                                           USHORT /*nSection*/, char cType )
 /*N*/ {
 /*N*/   if( bTestUsed )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwDoc& rDoc = ((SwDocStyleSheetPool*)pBasePool)->GetDoc();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       for ( USHORT i=0; i < rList.Count(); ++i )
@@ -1745,9 +1697,11 @@ namespace binfilter {
 /*N*/   if( rHint.ISA( SfxStyleSheetHint ) &&
 /*N*/       SFX_STYLESHEET_ERASED == ((SfxStyleSheetHint&) rHint).GetHint() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxStyleSheetBase* pStyle = ((SfxStyleSheetHint&)rHint).GetStyleSheet();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

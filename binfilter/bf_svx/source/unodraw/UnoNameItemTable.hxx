@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,24 +29,16 @@
 #ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #define _SVX_UNONAMEITEMTABLE_HXX_
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
 #include <cppuhelper/implbase2.hxx>
 
 #include <vector>
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SVX_XIT_HXX
 #include "xit.hxx"
-#endif
 
 namespace binfilter {
 
@@ -98,3 +91,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _SVX_UNONAMEITEMTABLE_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,54 +28,32 @@
 
 //--------------------------------------------------------------------------------------------------------
 
-#ifndef  _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
-#ifndef  _COM_SUN_STAR_UTL_URL_HPP_
 #include <com/sun/star/util/URL.hpp>
-#endif
 
-#ifndef  _COM_SUN_STAR_UTL_XURLTRANSFORMER_HPP_
 #include <com/sun/star/util/XURLTransformer.hpp>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SFXMACITEM_HXX
 #include <bf_svtools/macitem.hxx>
-#endif
 
-#ifndef _SFX_APPUNO_HXX
 #include <appuno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX
 #include <objsh.hxx>
-#endif
-#ifndef _SFX_SFXBASEMODEL_HXX_
 #include <sfxbasemodel.hxx>
-#endif
-#ifndef _SFX_EVENTCONF_HXX
 #include <evntconf.hxx>
-#endif
 
 #include <bf_svtools/securityoptions.hxx>
 #include <comphelper/processfactory.hxx>
 
-#ifndef _SFX_EVENTSUPPLIER_HXX_
 #include "eventsupplier.hxx"
-#endif
 
 #include "app.hxx"
 
 #include "sfxsids.hrc"
 #include "docfile.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 //--------------------------------------------------------------------------------------------------------
@@ -124,8 +103,8 @@ namespace binfilter {
 /*N*/                   SEQUENCE < PROPERTYVALUE > aProperties;
 /*N*/                   if ( aValue >>= aProperties )
 /*N*/                   {
-/*N*/                       long nCount = aProperties.getLength();
-/*N*/                       for ( long nIndex = 0; nIndex < nCount; nIndex++ )
+/*N*/                       long nLclCount = aProperties.getLength();
+/*N*/                       for ( long nIndex = 0; nIndex < nLclCount; nIndex++ )
 /*N*/                       {
 /*N*/                           if ( aProperties[ nIndex ].Name.compareToAscii( PROP_EVENT_TYPE ) == 0 )
 /*N*/                           {
@@ -178,33 +157,33 @@ namespace binfilter {
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
-/*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& aName ) throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasByName( const OUSTRING& /*rName*/ ) throw ( RUNTIMEEXCEPTION )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
 //  --- XElementAccess ( parent of XNameAccess ) ---
 //--------------------------------------------------------------------------------------------------------
 /*?*/ UNOTYPE SAL_CALL SfxEvents_Impl::getElementType() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE; //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); UNOTYPE aUNOTYPE; return aUNOTYPE;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
 /*?*/ sal_Bool SAL_CALL SfxEvents_Impl::hasElements() throw ( RUNTIMEEXCEPTION )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");  return FALSE;
 /*?*/ }
 
 //--------------------------------------------------------------------------------------------------------
 // --- ::document::XEventListener ---
 //--------------------------------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SfxEvents_Impl::notifyEvent( const DOCEVENTOBJECT& aEvent ) throw( RUNTIMEEXCEPTION )
+/*N*/ void SAL_CALL SfxEvents_Impl::notifyEvent( const DOCEVENTOBJECT& /*aEvent*/ ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/ }
 
 //--------------------------------------------------------------------------------------------------------
 // --- ::lang::XEventListener ---
 //--------------------------------------------------------------------------------------------------------
-/*N*/ void SAL_CALL SfxEvents_Impl::disposing( const EVENTOBJECT& Source ) throw( RUNTIMEEXCEPTION )
+/*N*/ void SAL_CALL SfxEvents_Impl::disposing( const EVENTOBJECT& /*Source*/ ) throw( RUNTIMEEXCEPTION )
 /*N*/ {
 /*N*/   ::osl::MutexGuard aGuard( maMutex );
 /*N*/
@@ -278,7 +257,7 @@ namespace binfilter {
 /*N*/           else if ( aProperties[ nIndex ].Name.compareToAscii( PROP_MACRO_NAME ) == 0 )
 /*N*/               aProperties[ nIndex ].Value >>= aMacroName;
 /*N*/           else
-/*N*/               DBG_ERROR("Unknown propery value!");
+/*N*/               OSL_FAIL("Unknown propery value!");
 /*N*/           nIndex += 1;
 /*N*/       }
 /*N*/
@@ -398,21 +377,21 @@ namespace binfilter {
 /*N*/           // wrong properties
 /*N*/           return;
 /*N*/
-            OUSTRING sApplication( OUSTRING::createFromAscii( "application" ) );
-            OUSTRING sDocument( OUSTRING::createFromAscii( "document" ) );
+            OUSTRING sApplication( OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "application" )) );
+            OUSTRING sDocument( OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "document" )) );
             if ( aLibrary != sApplication && aLibrary != sDocument )
             {
-                if ( aLibrary == OUSTRING( SFX_APP()->GetName() ) || aLibrary.equalsAscii( "StarDesktop" ) )
+                if ( aLibrary == OUSTRING( SFX_APP()->GetName() ) || aLibrary.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "StarDesktop" ) ) )
                     aLibrary = sApplication;
                 else
                     aLibrary = sDocument;
             }
 /*N*/
-/*N*/       aOutProps[1].Name = OUSTRING::createFromAscii( PROP_SCRIPT );
+/*N*/       aOutProps[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_SCRIPT ));
 /*N*/       aOutProps[1].Value <<= aScript;
-/*N*/       aOutProps[2].Name = OUSTRING::createFromAscii( PROP_LIBRARY );
+/*N*/       aOutProps[2].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_LIBRARY ));
 /*N*/       aOutProps[2].Value <<= aLibrary;
-/*N*/       aOutProps[3].Name = OUSTRING::createFromAscii( PROP_MACRO_NAME );
+/*N*/       aOutProps[3].Name = rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( PROP_MACRO_NAME ));
 /*N*/       aOutProps[3].Value <<= aMacroName;
 /*N*/       rRet <<= aOutProps;
 /*N*/     }
@@ -436,7 +415,7 @@ namespace binfilter {
 /*N*/   m_refCount++;
 /*N*/   pImp = new SfxEvents_Impl( NULL, this );
 /*N*/   m_xEvents = pImp;
-/*N*/     m_xJobsBinding = REFERENCE< XJOBEXECUTOR >(xSmgr->createInstance(OUSTRING::createFromAscii("com.sun.star.task.JobExecutor")), UNO_QUERY);
+/*N*/     m_xJobsBinding = REFERENCE< XJOBEXECUTOR >(xSmgr->createInstance(OUSTRING( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.task.JobExecutor" ))), UNO_QUERY);
 /*N*/   m_refCount--;
 /*N*/   StartListening(*SFX_APP());
 /*N*/ }
@@ -456,7 +435,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SfxGlobalEvents_Impl::Notify( SfxBroadcaster& aBC, const SfxHint& aHint )
+/*N*/ void SfxGlobalEvents_Impl::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& aHint )
 /*N*/ {
 /*N*/   SfxEventHint* pNamedHint = PTR_CAST( SfxEventHint, &aHint );
 /*N*/   if ( pNamedHint )
@@ -493,3 +472,5 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }}
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -43,7 +44,7 @@ namespace binfilter {
 /*N*/               const SwpHtEnd &rHtEnd )
 /*N*/ {
 #ifdef DBG_UTIL
-        DBG_BF_ASSERT(0, "STRIP");//STRIP001    aDbstream << "DumpHints:" << endl;
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ }
 /*N*/ #else
@@ -94,11 +95,7 @@ namespace binfilter {
  *************************************************************************/
 
 // Zuerst nach Ende danach nach Ptr
-/*N*/ #ifdef HP9000
-/*N*/ BOOL lcl_IsLessEnd( const SwTxtAttr &rHt1, const SwTxtAttr &rHt2 )
-/*N*/ #else
 /*N*/ inline BOOL lcl_IsLessEnd( const SwTxtAttr &rHt1, const SwTxtAttr &rHt2 )
-/*N*/ #endif
 /*N*/ {
 /*N*/   xub_StrLen nHt1 = *rHt1.GetAnyEnd();
 /*N*/   xub_StrLen nHt2 = *rHt2.GetAnyEnd();
@@ -198,8 +195,8 @@ namespace binfilter {
 /*N*/   Resort();
 /*N*/ #ifdef DBG_UTIL
 /*N*/   USHORT nPos;
-/*N*/   ASSERT(!SwpHtStart::Seek_Entry( pHt, &nPos ), "Insert: hint already in HtStart");
-/*N*/   ASSERT(!aHtEnd.Seek_Entry( pHt, &nPos ), "Insert: hint already in HtEnd");
+/*N*/   OSL_ENSURE(!SwpHtStart::Seek_Entry( pHt, &nPos ), "Insert: hint already in HtStart");
+/*N*/   OSL_ENSURE(!aHtEnd.Seek_Entry( pHt, &nPos ), "Insert: hint already in HtEnd");
 /*N*/ #endif
 /*N*/   SwpHtStart::Insert( pHt );
 /*N*/   aHtEnd.Insert( pHt );
@@ -240,9 +237,8 @@ namespace binfilter {
 /*N*/ #define CHECK_ERR(cond, text) \
 /*N*/         if(!(cond)) \
 /*N*/         { \
-/*N*/             ASSERT(!this, text); \
+/*N*/             OSL_ENSURE(!this, text); \
 /*N*/             DumpHints(*(SwpHtStart*)this,aHtEnd); \
-/*N*/             const BOOL bErr = 0 == (cond); /* fuer den CV */ \
 /*N*/             return !((SwpHintsArr*)this)->Resort(); \
 /*N*/         }
 /*N*/
@@ -262,7 +258,6 @@ namespace binfilter {
 /*N*/
 /*N*/       // 2a) gueltiger Pointer? vgl. DELETEFF
 /*N*/       const SwTxtAttr *pHt = (*this)[i];
-/*N*/       CHECK_ERR( 0xFF != *(char*)pHt, "HintsCheck: start ptr was deleted" );
 /*N*/
 /*N*/       // 3a) Stimmt die Start-Sortierung?
 /*N*/       xub_StrLen nIdx = *pHt->GetStart();
@@ -279,7 +274,6 @@ namespace binfilter {
 /*N*/
 /*N*/       // 2b) gueltiger Pointer? vgl. DELETEFF
 /*N*/       const SwTxtAttr *pHtEnd = aHtEnd[i];
-/*N*/       CHECK_ERR( 0xFF != *(char*)pHtEnd, "HintsCheck: end ptr was deleted" );
 /*N*/
 /*N*/       // 3b) Stimmt die End-Sortierung?
 /*N*/       nIdx = *pHtEnd->GetAnyEnd();
@@ -329,7 +323,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/ #ifdef NIE
 /*N*/ #ifdef DBG_UTIL
-/*N*/ //            ASSERT( bResort, "!Resort/Start: correcting hints-array" );
+/*N*/ //            OSL_ENSURE( bResort, "!Resort/Start: correcting hints-array" );
 /*N*/           aDbstream << "Resort: Starts" << endl;
 /*N*/           DumpHints( *this, aHtEnd );
 /*N*/ #endif
@@ -364,7 +358,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/ #ifdef NIE
 /*N*/ #ifdef DBG_UTIL
-/*N*/ //            ASSERT( bResort, "!Resort/Ends: correcting hints-array" );
+/*N*/ //            OSL_ENSURE( bResort, "!Resort/Ends: correcting hints-array" );
 /*N*/           aDbstream << "Resort: Ends" << endl;
 /*N*/           DumpHints( *this, aHtEnd );
 /*N*/ #endif
@@ -400,3 +394,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

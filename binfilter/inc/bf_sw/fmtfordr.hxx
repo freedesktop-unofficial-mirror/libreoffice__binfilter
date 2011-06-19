@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 //Die FillOrder ---------------------------------
@@ -58,8 +55,8 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
+    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
     SwFillOrder GetFillOrder() const { return SwFillOrder(GetValue()); }
     void  SetFillOrder( const SwFillOrder eNew ) { SetValue( USHORT(eNew) ); }
@@ -83,3 +80,4 @@ inline const SwFmtFillOrder &SwFmt::GetFillOrder(BOOL bInP) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

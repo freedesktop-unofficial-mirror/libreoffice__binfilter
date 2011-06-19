@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -47,15 +48,6 @@ class ScDocument;
 class SfxMedium;
 class ScMySharedData;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace uno { template<class X> class Reference; }
-//STRIP008  namespace frame { class XModel; }
-//STRIP008  namespace task { class XStatusIndicator; }
-//STRIP008  namespace lang { class XMultiServiceFactory; }
-//STRIP008  namespace uno { class XInterface; }
-//STRIP008  namespace xml {
-//STRIP008      namespace sax { struct InputSource; } }
-//STRIP008 } } }
 
 class ScXMLImportWrapper
 {
@@ -92,3 +84,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

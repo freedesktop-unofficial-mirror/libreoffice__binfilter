@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,44 +30,24 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERQUERY_HPP_
 #include <com/sun/star/container/XContainerQuery.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATION_HPP_
 #include <com/sun/star/container/XEnumeration.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_NAMEDVALUE_HPP_
 #include <com/sun/star/beans/NamedValue.hpp>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
 #include <rtl/ustring.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <sot/storage.hxx>
 #include <sot/exchange.hxx>
 #include <comphelper/mediadescriptor.hxx>
 #include <unotools/ucbstreamhelper.hxx>
 #include <vcl/svapp.hxx>
-#ifndef _OSL_MODULE_HXX_
 #include <osl/module.hxx>
-#endif
-#ifndef _OSL_FILE_HXX_
 #include <osl/file.hxx>
-#endif
 
 #if defined( WNT )
 
@@ -91,157 +72,156 @@ struct TypesInfo
     sal_Int32   Length;
 };
 
-// --> OD 2005-08-04 #i47323#, #i51938# - list of file types
-// the binfilter modul is responsible for
+// the binfilter module is responsible for
 // - see /filter/source/config/fragments/filters/
 static const sal_uInt8 nStreamFileTypeCount = 114;
 static const sal_uInt8 nFileTypeCount = 29 + nStreamFileTypeCount;
 static const sal_uInt8 nW4WStartOffset = 5;
 static const TypesInfo aFileTypeList[ nFileTypeCount ] =
 {
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_10"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_20"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_DOS"),
-    RTL_CONSTASCII_STRINGPARAM("writer_Lotus_1_2_3_10_DOS_StarWriter"),
-    RTL_CONSTASCII_STRINGPARAM("writer_Lotus_1_2_3_10_WIN_StarWriter"),
-    RTL_CONSTASCII_STRINGPARAM("writer_Ami_Pro_1x_31_W4W"),                 // 5 , 33
-    RTL_CONSTASCII_STRINGPARAM("writer_CTOS_DEF_W4W"),                      // 6 , 36
-    RTL_CONSTASCII_STRINGPARAM("writer_Claris_Works_W4W"),                  // 7 , 57
-    RTL_CONSTASCII_STRINGPARAM("writer_DCA_Revisable_Form_Text_W4W"),       // 8 , 15
-    RTL_CONSTASCII_STRINGPARAM("writer_DCA_with_Display_Write_5_W4W"),      // 9 , 15
-    RTL_CONSTASCII_STRINGPARAM("writer_DCAFFT_Final_Form_Text_W4W"),        //10, 32
-    RTL_CONSTASCII_STRINGPARAM("writer_DEC_DX_W4W"),                        //11, 30
-    RTL_CONSTASCII_STRINGPARAM("writer_DEC_WPS_PLUS_W4W"),                  //12, 45
-    RTL_CONSTASCII_STRINGPARAM("writer_DataGeneral_CEO_Write_W4W"),         //13, 104
-    RTL_CONSTASCII_STRINGPARAM("writer_DisplayWrite_20_4x_W4W"),            //14, 15
-    RTL_CONSTASCII_STRINGPARAM("writer_DisplayWrite_5x_W4W"),               //15, 15
-    RTL_CONSTASCII_STRINGPARAM("writer_EBCDIC_W4W"),                        //16, 02
-    RTL_CONSTASCII_STRINGPARAM("writer_Enable_W4W"),                        //17, 28
-    RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_30_W4W"),            //18, 42
-    RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_40_W4W"),            //19, 42
-    RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_50_W4W"),            //20, 42
-    RTL_CONSTASCII_STRINGPARAM("writer_Frame_Work_III_W4W"),                //21, 29
-    RTL_CONSTASCII_STRINGPARAM("writer_Frame_Work_IV_W4W"),                 //22, 29
-    RTL_CONSTASCII_STRINGPARAM("writer_HP_AdvanceWrite_Plus_W4W"),          //23, 22
-    RTL_CONSTASCII_STRINGPARAM("writer_ICL_Office_Power_6_W4W"),            //24, 102
-    RTL_CONSTASCII_STRINGPARAM("writer_ICL_Office_Power_7_W4W"),            //25, 102
-    RTL_CONSTASCII_STRINGPARAM("writer_Interleaf_W4W"),                     //26, 35
-    RTL_CONSTASCII_STRINGPARAM("writer_Interleaf_5_6_W4W"),                 //27, 46
-    RTL_CONSTASCII_STRINGPARAM("writer_Legacy_Winstar_onGO_W4W"),           //28, 37
-    RTL_CONSTASCII_STRINGPARAM("writer_Lotus_Manuscript_W4W"),              //29, 24
-    RTL_CONSTASCII_STRINGPARAM("writer_MASS_11_Rel_80_83_W4W"),             //30, 31
-    RTL_CONSTASCII_STRINGPARAM("writer_MASS_11_Rel_85_90_W4W"),             //31, 31
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_30_W4W"),                 //32, 54
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_40_W4W"),                 //33, 54
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_5x_W4W"),                 //34, 54
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_WinWord_1x_W4W"),                 //35, 44
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_WinWord_2x_W4W"),                 //36, 44
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_3x_W4W"),                    //37, 05
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_4x_W4W"),                    //38, 05
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_5x_W4W"),                    //39, 05
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_6x_W4W"),                    //40, 49
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_20_DOS_W4W"),               //41, 39
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_30_Win_W4W"),               //42, 39
-    RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_40_Mac_W4W"),               //43, 58
-    RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_4x_50_W4W"),               //44, 51
-    RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_II_W4W"),                  //45, 52
-    RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_Pro_W4W"),                 //46, 56
-    RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_33_W4W"),                  //47, 10
-    RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_4_W4W"),                   //48, 10
-    RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_Adv_36_W4W"),              //49, 10
-    RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_Adv_II_37_W4W"),           //50, 10
-    RTL_CONSTASCII_STRINGPARAM("writer_NAVY_DIF_W4W"),                      //51, 18
-    RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_40_W4W"),               //52, 16
-    RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_50_W4W"),               //53, 16
-    RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_6x_W4W"),               //54, 16
-    RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_10_W4W"),           //55, 08
-    RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_20_W4W"),           //56, 08
-    RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_30_W4W"),           //57, 08
-    RTL_CONSTASCII_STRINGPARAM("writer_PFS_Write_W4W"),                     //58, 08
-    RTL_CONSTASCII_STRINGPARAM("writer_Peach_Text_W4W"),                    //59, 27
-    RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_10_W4W"),         //60, 33
-    RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_2x_W4W"),         //61, 33
-    RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_Plus_W4W"),       //62, 33
-    RTL_CONSTASCII_STRINGPARAM("writer_QA_Write_10_30_W4W"),                //63, 23
-    RTL_CONSTASCII_STRINGPARAM("writer_QA_Write_40_W4W"),                   //64, 23
-    RTL_CONSTASCII_STRINGPARAM("writer_Rapid_File_10_W4W"),                 //65, 25
-    RTL_CONSTASCII_STRINGPARAM("writer_Rapid_File_12_W4W"),                 //66, 25
-    RTL_CONSTASCII_STRINGPARAM("writer_Samna_Word_IV_IV_Plus_W4W"),         //67, 22
-    RTL_CONSTASCII_STRINGPARAM("writer_Total_Word_W4W"),                    //68, 14
-    RTL_CONSTASCII_STRINGPARAM("writer_Uniplex_V7_V8_W4W"),                 //69, 101
-    RTL_CONSTASCII_STRINGPARAM("writer_Uniplex_onGO_W4W"),                  //70, 101
-    RTL_CONSTASCII_STRINGPARAM("writer_VolksWriter_3_and_4_W4W"),           //71, 14
-    RTL_CONSTASCII_STRINGPARAM("writer_VolksWriter_Deluxe_W4W"),            //72, 11
-    RTL_CONSTASCII_STRINGPARAM("writer_WITA_W4W"),                          //73, 34
-    RTL_CONSTASCII_STRINGPARAM("writer_Wang_II_SWP_W4W"),                   //74, 88
-    RTL_CONSTASCII_STRINGPARAM("writer_Wang_PC_W4W"),                       //75, 26
-    RTL_CONSTASCII_STRINGPARAM("writer_Wang_WP_Plus_W4W"),                  //76, 89
-    RTL_CONSTASCII_STRINGPARAM("writer_Win_Write_3x_W4W"),                  //77, 43
-    RTL_CONSTASCII_STRINGPARAM("writer_WiziWord_30_W4W"),                   //78, 47
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_51_52_W4W"),         //79, 07
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_60_W4W"),            //80, 48
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_61_W4W"),            //81, 48
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_70_W4W"),            //82, 07
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_41_W4W"),                //83, 06
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_42_W4W"),                //84, 06
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_50_W4W"),                //85, 07
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_51_W4W"),                //86, 07
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_60_W4W"),                //87, 07
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_61_W4W"),                //88, 07
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_1_W4W"),             //89, 59
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_2_W4W"),             //90, 60
-    RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_3_W4W"),             //91, 60
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_Win_1x_20_W4W"),            //92, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_2000_Rel_30_W4W"),          //93, 09
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_2000_Rel_35_W4W"),          //94, 09
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_33x_W4W"),                  //95, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_345_W4W"),                  //96, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_40_W4W"),                   //97, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_50_W4W"),                   //98, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_55_W4W"),                   //99, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_60_W4W"),                   //100, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WordStar_70_W4W"),                   //101, 04
-    RTL_CONSTASCII_STRINGPARAM("writer_WriteNow_30_Macintosh_W4W"),         //102, 62
-    RTL_CONSTASCII_STRINGPARAM("writer_Writing_Assistant_W4W"),             //103, 13
-    RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_50_Illustrator_W4W"),      //104, 103
-    RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_50_W4W"),                  //105, 103
-    RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_60_Color_Bitmap_W4W"),     //106, 103
-    RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_60_Res_Graphic_W4W"),      //107, 103
-    RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Win_10_W4W"),                //108, 17
-    RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_III_W4W"),                   //109, 17
-    RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_IIIP_W4W"),                  //110, 17
-    RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_IV_W4W"),                    //111, 17
-    RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Sig_Win_W4W"),               //112, 17
-    RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Signature_W4W"),             //113, 17
-    RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_30"),
-    RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_30_VorlageTemplate"),
-    RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_40"),
-    RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_40_VorlageTemplate"),
-    RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_50"),
-    RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_50_VorlageTemplate"),
-    RTL_CONSTASCII_STRINGPARAM("chart_StarChart_30"),
-    RTL_CONSTASCII_STRINGPARAM("chart_StarChart_40"),
-    RTL_CONSTASCII_STRINGPARAM("chart_StarChart_50"),
-    RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_30"),
-    RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_30_Vorlage"),
-    RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_50"),
-    RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_50_Vorlage"),
-    RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_40"),
-    RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_40_Vorlage"),
-    RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_50"),
-    RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_50_Vorlage"),
-    RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_50_packed"),
-    RTL_CONSTASCII_STRINGPARAM("math_StarMath_30"),
-    RTL_CONSTASCII_STRINGPARAM("math_StarMath_40"),
-    RTL_CONSTASCII_STRINGPARAM("math_StarMath_50"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_30"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_30_VorlageTemplate"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_40"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_40_VorlageTemplate"),
-    RTL_CONSTASCII_STRINGPARAM("writer_globaldocument_StarWriter_40GlobalDocument"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_50"),
-    RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_50_VorlageTemplate"),
-    RTL_CONSTASCII_STRINGPARAM("writer_globaldocument_StarWriter_50GlobalDocument")
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_10")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_20")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_DOS")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_Lotus_1_2_3_10_DOS_StarWriter")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_Lotus_1_2_3_10_WIN_StarWriter")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_Ami_Pro_1x_31_W4W")},                 // 5 , 33
+    {RTL_CONSTASCII_STRINGPARAM("writer_CTOS_DEF_W4W")},                      // 6 , 36
+    {RTL_CONSTASCII_STRINGPARAM("writer_Claris_Works_W4W")},                  // 7 , 57
+    {RTL_CONSTASCII_STRINGPARAM("writer_DCA_Revisable_Form_Text_W4W")},       // 8 , 15
+    {RTL_CONSTASCII_STRINGPARAM("writer_DCA_with_Display_Write_5_W4W")},      // 9 , 15
+    {RTL_CONSTASCII_STRINGPARAM("writer_DCAFFT_Final_Form_Text_W4W")},        //10, 32
+    {RTL_CONSTASCII_STRINGPARAM("writer_DEC_DX_W4W")},                        //11, 30
+    {RTL_CONSTASCII_STRINGPARAM("writer_DEC_WPS_PLUS_W4W")},                  //12, 45
+    {RTL_CONSTASCII_STRINGPARAM("writer_DataGeneral_CEO_Write_W4W")},         //13, 104
+    {RTL_CONSTASCII_STRINGPARAM("writer_DisplayWrite_20_4x_W4W")},            //14, 15
+    {RTL_CONSTASCII_STRINGPARAM("writer_DisplayWrite_5x_W4W")},               //15, 15
+    {RTL_CONSTASCII_STRINGPARAM("writer_EBCDIC_W4W")},                        //16, 02
+    {RTL_CONSTASCII_STRINGPARAM("writer_Enable_W4W")},                        //17, 28
+    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_30_W4W")},            //18, 42
+    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_40_W4W")},            //19, 42
+    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Maker_MIF_50_W4W")},            //20, 42
+    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Work_III_W4W")},                //21, 29
+    {RTL_CONSTASCII_STRINGPARAM("writer_Frame_Work_IV_W4W")},                 //22, 29
+    {RTL_CONSTASCII_STRINGPARAM("writer_HP_AdvanceWrite_Plus_W4W")},          //23, 22
+    {RTL_CONSTASCII_STRINGPARAM("writer_ICL_Office_Power_6_W4W")},            //24, 102
+    {RTL_CONSTASCII_STRINGPARAM("writer_ICL_Office_Power_7_W4W")},            //25, 102
+    {RTL_CONSTASCII_STRINGPARAM("writer_Interleaf_W4W")},                     //26, 35
+    {RTL_CONSTASCII_STRINGPARAM("writer_Interleaf_5_6_W4W")},                 //27, 46
+    {RTL_CONSTASCII_STRINGPARAM("writer_Legacy_Winstar_onGO_W4W")},           //28, 37
+    {RTL_CONSTASCII_STRINGPARAM("writer_Lotus_Manuscript_W4W")},              //29, 24
+    {RTL_CONSTASCII_STRINGPARAM("writer_MASS_11_Rel_80_83_W4W")},             //30, 31
+    {RTL_CONSTASCII_STRINGPARAM("writer_MASS_11_Rel_85_90_W4W")},             //31, 31
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_30_W4W")},                 //32, 54
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_40_W4W")},                 //33, 54
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_MacWord_5x_W4W")},                 //34, 54
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_WinWord_1x_W4W")},                 //35, 44
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_WinWord_2x_W4W")},                 //36, 44
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_3x_W4W")},                    //37, 05
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_4x_W4W")},                    //38, 05
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_5x_W4W")},                    //39, 05
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Word_6x_W4W")},                    //40, 49
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_20_DOS_W4W")},               //41, 39
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_30_Win_W4W")},               //42, 39
+    {RTL_CONSTASCII_STRINGPARAM("writer_MS_Works_40_Mac_W4W")},               //43, 58
+    {RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_4x_50_W4W")},               //44, 51
+    {RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_II_W4W")},                  //45, 52
+    {RTL_CONSTASCII_STRINGPARAM("writer_Mac_Write_Pro_W4W")},                 //46, 56
+    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_33_W4W")},                  //47, 10
+    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_4_W4W")},                   //48, 10
+    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_Adv_36_W4W")},              //49, 10
+    {RTL_CONSTASCII_STRINGPARAM("writer_MultiMate_Adv_II_37_W4W")},           //50, 10
+    {RTL_CONSTASCII_STRINGPARAM("writer_NAVY_DIF_W4W")},                      //51, 18
+    {RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_40_W4W")},               //52, 16
+    {RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_50_W4W")},               //53, 16
+    {RTL_CONSTASCII_STRINGPARAM("writer_OfficeWriter_6x_W4W")},               //54, 16
+    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_10_W4W")},           //55, 08
+    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_20_W4W")},           //56, 08
+    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_First_Choice_30_W4W")},           //57, 08
+    {RTL_CONSTASCII_STRINGPARAM("writer_PFS_Write_W4W")},                     //58, 08
+    {RTL_CONSTASCII_STRINGPARAM("writer_Peach_Text_W4W")},                    //59, 27
+    {RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_10_W4W")},         //60, 33
+    {RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_2x_W4W")},         //61, 33
+    {RTL_CONSTASCII_STRINGPARAM("writer_Professional_Write_Plus_W4W")},       //62, 33
+    {RTL_CONSTASCII_STRINGPARAM("writer_QA_Write_10_30_W4W")},                //63, 23
+    {RTL_CONSTASCII_STRINGPARAM("writer_QA_Write_40_W4W")},                   //64, 23
+    {RTL_CONSTASCII_STRINGPARAM("writer_Rapid_File_10_W4W")},                 //65, 25
+    {RTL_CONSTASCII_STRINGPARAM("writer_Rapid_File_12_W4W")},                 //66, 25
+    {RTL_CONSTASCII_STRINGPARAM("writer_Samna_Word_IV_IV_Plus_W4W")},         //67, 22
+    {RTL_CONSTASCII_STRINGPARAM("writer_Total_Word_W4W")},                    //68, 14
+    {RTL_CONSTASCII_STRINGPARAM("writer_Uniplex_V7_V8_W4W")},                 //69, 101
+    {RTL_CONSTASCII_STRINGPARAM("writer_Uniplex_onGO_W4W")},                  //70, 101
+    {RTL_CONSTASCII_STRINGPARAM("writer_VolksWriter_3_and_4_W4W")},           //71, 14
+    {RTL_CONSTASCII_STRINGPARAM("writer_VolksWriter_Deluxe_W4W")},            //72, 11
+    {RTL_CONSTASCII_STRINGPARAM("writer_WITA_W4W")},                          //73, 34
+    {RTL_CONSTASCII_STRINGPARAM("writer_Wang_II_SWP_W4W")},                   //74, 88
+    {RTL_CONSTASCII_STRINGPARAM("writer_Wang_PC_W4W")},                       //75, 26
+    {RTL_CONSTASCII_STRINGPARAM("writer_Wang_WP_Plus_W4W")},                  //76, 89
+    {RTL_CONSTASCII_STRINGPARAM("writer_Win_Write_3x_W4W")},                  //77, 43
+    {RTL_CONSTASCII_STRINGPARAM("writer_WiziWord_30_W4W")},                   //78, 47
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_51_52_W4W")},         //79, 07
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_60_W4W")},            //80, 48
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_61_W4W")},            //81, 48
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Win_70_W4W")},            //82, 07
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_41_W4W")},                //83, 06
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_42_W4W")},                //84, 06
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_50_W4W")},                //85, 07
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_51_W4W")},                //86, 07
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_60_W4W")},                //87, 07
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_61_W4W")},                //88, 07
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_1_W4W")},             //89, 59
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_2_W4W")},             //90, 60
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordPerfect_Mac_3_W4W")},             //91, 60
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_Win_1x_20_W4W")},            //92, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_2000_Rel_30_W4W")},          //93, 09
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_2000_Rel_35_W4W")},          //94, 09
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_33x_W4W")},                  //95, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_345_W4W")},                  //96, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_40_W4W")},                   //97, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_50_W4W")},                   //98, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_55_W4W")},                   //99, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_60_W4W")},                   //100, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WordStar_70_W4W")},                   //101, 04
+    {RTL_CONSTASCII_STRINGPARAM("writer_WriteNow_30_Macintosh_W4W")},         //102, 62
+    {RTL_CONSTASCII_STRINGPARAM("writer_Writing_Assistant_W4W")},             //103, 13
+    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_50_Illustrator_W4W")},      //104, 103
+    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_50_W4W")},                  //105, 103
+    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_60_Color_Bitmap_W4W")},     //106, 103
+    {RTL_CONSTASCII_STRINGPARAM("writer_XEROX_XIF_60_Res_Graphic_W4W")},      //107, 103
+    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Win_10_W4W")},                //108, 17
+    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_III_W4W")},                   //109, 17
+    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_IIIP_W4W")},                  //110, 17
+    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_IV_W4W")},                    //111, 17
+    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Sig_Win_W4W")},               //112, 17
+    {RTL_CONSTASCII_STRINGPARAM("writer_XyWrite_Signature_W4W")},             //113, 17
+    {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_30")},
+    {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_30_VorlageTemplate")},
+    {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_40")},
+    {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_40_VorlageTemplate")},
+    {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_50")},
+    {RTL_CONSTASCII_STRINGPARAM("calc_StarCalc_50_VorlageTemplate")},
+    {RTL_CONSTASCII_STRINGPARAM("chart_StarChart_30")},
+    {RTL_CONSTASCII_STRINGPARAM("chart_StarChart_40")},
+    {RTL_CONSTASCII_STRINGPARAM("chart_StarChart_50")},
+    {RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_30")},
+    {RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_30_Vorlage")},
+    {RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_50")},
+    {RTL_CONSTASCII_STRINGPARAM("draw_StarDraw_50_Vorlage")},
+    {RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_40")},
+    {RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_40_Vorlage")},
+    {RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_50")},
+    {RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_50_Vorlage")},
+    {RTL_CONSTASCII_STRINGPARAM("impress_StarImpress_50_packed")},
+    {RTL_CONSTASCII_STRINGPARAM("math_StarMath_30")},
+    {RTL_CONSTASCII_STRINGPARAM("math_StarMath_40")},
+    {RTL_CONSTASCII_STRINGPARAM("math_StarMath_50")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_30")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_30_VorlageTemplate")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_40")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_40_VorlageTemplate")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_globaldocument_StarWriter_40GlobalDocument")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_50")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_StarWriter_50_VorlageTemplate")},
+    {RTL_CONSTASCII_STRINGPARAM("writer_globaldocument_StarWriter_50GlobalDocument")}
 };
 //list of Word4Word filters the identifiers are returned by AutoDetec
 static const sal_uInt8 nW4WFilterCount = 109;
@@ -358,9 +338,8 @@ static const USHORT aW4WIdentifier[nW4WFilterCount] =
      17 //"writer_XyWrite_Signature_W4W"
 };
 
-/*-- 06.03.2006 14:48:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 #ifndef WNT
 //Same as osl::Module, except will search for its modules in the filter subdir
 class filterModule : public osl::Module
@@ -394,7 +373,7 @@ USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
 
     typedef int (FAR PASCAL *FNautorec)( LPSTR, int, LPINT );
 
-    String aAutoRecDLL(RTL_CONSTASCII_STRINGPARAM("autorec.dll"));
+    String aAutoRecDLL(RTL_CONSTASCII_USTRINGPARAM("autorec.dll"));
     SvtPathOptions aOpt;
     if( !aOpt.SearchFile( aAutoRecDLL, SvtPathOptions::PATH_FILTER ))
         return 0;
@@ -419,7 +398,7 @@ USHORT AutoDetec( const String& rFileName, USHORT & rVersion )
     //some reason the different platforms had different argument lists from
     //eachother, so we can't have super clean code :-(
     filterModule aAutoRec;
-    String aTmpStr(RTL_CONSTASCII_STRINGPARAM((SVLIBRARY("autorec"))));
+    String aTmpStr(RTL_CONSTASCII_USTRINGPARAM((SVLIBRARY("autorec"))));
     if (aAutoRec.filterLoad(aTmpStr))
     {
         typedef int (*autorec_t)(const char*, int*);
@@ -462,7 +441,7 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
     ::rtl::OUString aName( rTypeName );
     rTypeName = ::rtl::OUString();
 
-    const sal_Char __FAR_DATA FILTER_SWG[]    = "SWG";
+    const sal_Char FILTER_SWG[]    = "SWG";
     if ( bCheckAll || aName.equalsAsciiL( aFileTypeList[0].Type, aFileTypeList[0].Length ) )
     {
         // StarWriter 1.0
@@ -484,8 +463,8 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
     if ( bCheckAll || aName.equalsAsciiL( aFileTypeList[2].Type, aFileTypeList[2].Length ) )
     {
         // StarWriter DOS
-        sal_Char __READONLY_DATA sSw6_FormatStt[] =         ".\\\\\\ WRITER ";
-        sal_Char __READONLY_DATA sSw6_FormatEnd[] =         " \\\\\\";
+        sal_Char const sSw6_FormatStt[] =         ".\\\\\\ WRITER ";
+        sal_Char const sSw6_FormatEnd[] =         " \\\\\\";
 
 
         if ( 0 == strncmp( sSw6_FormatStt, aBuffer, 12 ) &&
@@ -515,9 +494,8 @@ bool checkFormat( SvStream* pStream, ::rtl::OUString& rTypeName, ::rtl::OUString
         }
     }
     //check for W4W at the end of the type name
-    if( rURL.getLength() && (bCheckAll || aName.getLength() > 4 &&
-                String(aName).Copy( xub_StrLen(aName.getLength()) - 4, 4 ).EqualsAscii( "_W4W" )))
-//            aName.equalsAsciiL( aFileTypeList[5].Type, aFileTypeList[5].Length )) )
+    if( rURL.getLength() && (bCheckAll || (aName.getLength() > 4 &&
+                String(aName).Copy( xub_StrLen(aName.getLength()) - 4, 4 ).EqualsAscii( "_W4W" ))))
     {
         // W4W
         ::rtl::OUString sFileName = INetURLObject( rURL ).getFSysPath(INetURLObject::FSYS_DETECT);
@@ -558,7 +536,7 @@ BinFilterDetect::~BinFilterDetect()
 
 ::rtl::OUString SAL_CALL BinFilterDetect::detect( ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& lDescriptor ) throw( ::com::sun::star::uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // create MediaDescriptor
     comphelper::MediaDescriptor aMedium( lDescriptor );
@@ -629,12 +607,12 @@ BinFilterDetect::~BinFilterDetect()
                 // check if template type is wanted (template and "normal" document share the MediaType)
                 // a template type will be detected only if the file extension is "vor" (how else?!)
                 INetURLObject aObj( aFileName );
-                sal_Bool bIsTemplate = ( aObj.getExtension().equalsAscii("vor") );
+                sal_Bool bIsTemplate = ( aObj.getExtension().equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("vor")) );
 
                 // get possible types
                 Reference< ::com::sun::star::container::XContainerQuery > xTypeCFG ( xTypes, UNO_QUERY_THROW );
                 Sequence < com::sun::star::beans::NamedValue > aSeq(1);
-                aSeq[0].Name = ::rtl::OUString::createFromAscii("ClipboardFormat");
+                aSeq[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ClipboardFormat" ));
                 aSeq[0].Value <<= aFormatName;
                 Reference < com::sun::star::container::XEnumeration > xEnum = xTypeCFG->createSubSetEnumerationByProperties( aSeq );
                 while ( xEnum->hasMoreElements() )
@@ -648,7 +626,7 @@ BinFilterDetect::~BinFilterDetect()
                         // check wether this type specifies a template
                         sal_Bool bIsTemplateType = sal_False;
                         for ( sal_Int32 n=0; n<aExtensions.getLength(); n++ )
-                            if ( aExtensions[n].equalsAscii("vor") )
+                            if ( aExtensions[n].equalsAsciiL(RTL_CONSTASCII_STRINGPARAM("vor")) )
                                 bIsTemplateType = sal_True;
 
                         if ( bIsTemplateType != bIsTemplate )
@@ -750,14 +728,14 @@ UNOSEQUENCE< UNOOUSTRING > BinFilterDetect::impl_getStaticSupportedServiceNames(
 {
     UNOMUTEXGUARD aGuard( UNOMUTEX::getGlobalMutex() );
     UNOSEQUENCE< UNOOUSTRING > seqServiceNames( 1 );
-    seqServiceNames.getArray() [0] = UNOOUSTRING::createFromAscii( "com.sun.star.frame.ExtendedTypeDetection"  );
+    seqServiceNames.getArray() [0] = UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.frame.ExtendedTypeDetection" ));
     return seqServiceNames ;
 }
 
 /* Helper for XServiceInfo */
 UNOOUSTRING BinFilterDetect::impl_getStaticImplementationName()
 {
-    return UNOOUSTRING::createFromAscii( "com.sun.star.comp.sfx2.BinaryFormatDetector" );
+    return UNOOUSTRING( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.sfx2.BinaryFormatDetector" ));
 }
 
 /* Helper for registry */
@@ -769,15 +747,15 @@ UNOREFERENCE< UNOXINTERFACE > SAL_CALL BinFilterDetect::impl_createInstance( con
 }
 extern "C" {
 
-void SAL_CALL component_getImplementationEnvironment(   const   sal_Char**          ppEnvironmentTypeName   ,
-                                                                uno_Environment**   ppEnvironment           )
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(  const   sal_Char**          ppEnvironmentTypeName   ,
+                                                                uno_Environment**   /*ppEnvironment*/           )
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
 }
 
-void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName ,
+SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory(   const   sal_Char*   pImplementationName ,
                                                 void*       pServiceManager     ,
-                                                void*       pRegistryKey        )
+                                                void*       /*pRegistryKey*/        )
 {
     // Set default return value for this operation - if it failed.
     void* pReturn = NULL ;
@@ -812,3 +790,4 @@ void* SAL_CALL component_getFactory(    const   sal_Char*   pImplementationName 
 } // extern "C"
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,11 +26,6 @@
  *
  ************************************************************************/
 
-// System - Includes -----------------------------------------------------
-
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -39,10 +35,7 @@
 #endif
                                         // sonst Absturz Win beim Fuellen
 
-// INCLUDE ---------------------------------------------------------------
-
 #include "scitems.hxx"
-//#include <math.h>
 
 #include "globstr.hrc"
 #include "document.hxx"
@@ -119,3 +112,5 @@ extern USHORT nScFillModeMouseModifier;     // global.cxx
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

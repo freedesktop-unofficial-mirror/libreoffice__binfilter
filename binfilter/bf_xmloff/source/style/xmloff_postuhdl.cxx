@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,27 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_POSTURETYPES_HXX
 #include <postuhdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_AWT_FONTSLANT_HPP_
 #include <com/sun/star/awt/FontSlant.hpp>
-#endif
 
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
 
 namespace binfilter {
 
@@ -53,7 +44,7 @@ using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
-SvXMLEnumMapEntry __READONLY_DATA aPostureGenericMapping[] =
+SvXMLEnumMapEntry const aPostureGenericMapping[] =
 {
     { XML_POSTURE_NORMAL,       ITALIC_NONE     },
     { XML_POSTURE_ITALIC,       ITALIC_NORMAL   },
@@ -90,7 +81,7 @@ sal_Bool XMLPosturePropHdl::exportXML( OUString& rStrExpValue, const uno::Any& r
 
     if( !( rValue >>= eSlant ) )
     {
-        sal_Int32 nValue;
+        sal_Int32 nValue(0);
 
         if( !( rValue >>= nValue ) )
             return sal_False;
@@ -105,3 +96,5 @@ sal_Bool XMLPosturePropHdl::exportXML( OUString& rStrExpValue, const uno::Any& r
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

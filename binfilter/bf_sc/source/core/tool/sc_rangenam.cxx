@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,9 +35,7 @@
 #include <tools/debug.hxx>
 #include <string.h>
 #include <unotools/collatorwrapper.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "rangenam.hxx"
 #include "compiler.hxx"
@@ -55,7 +51,7 @@ namespace binfilter {
 // Interner ctor fuer das Suchen nach einem Index
 
 /*N*/ ScRangeData::ScRangeData( USHORT n )
-/*N*/          : nIndex( n ), pCode( NULL ), bModified( FALSE )
+/*N*/          : pCode( NULL ), nIndex( n ), bModified( FALSE )
 /*N*/ {}
 
 /*N*/ ScRangeData::ScRangeData( ScDocument* pDok,
@@ -65,12 +61,12 @@ namespace binfilter {
 /*N*/                         RangeType nType,
 /*N*/                         BOOL bEnglish ) :
 /*N*/               aName       ( rName ),
+/*N*/               pCode       ( NULL ),
 /*N*/               aPos        ( rAddress ),
 /*N*/               eType       ( nType ),
 /*N*/               pDoc        ( pDok ),
 /*N*/               nIndex      ( 0 ),
 /*N*/               nExportIndex( 0 ),
-/*N*/               pCode       ( NULL ),
 /*N*/               bModified   ( FALSE )
 /*N*/ {
 /*N*/   if (rSymbol.Len() > 0)
@@ -97,13 +93,13 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ ScRangeData::ScRangeData(const ScRangeData& rScRangeData) :
+/*N*/ ScRangeData::ScRangeData(const ScRangeData& rScRangeData) : DataObject(rScRangeData),
 /*N*/   aName   (rScRangeData.aName),
+/*N*/   pCode       (rScRangeData.pCode ? rScRangeData.pCode->Clone() : new ScTokenArray),      // echte Kopie erzeugen (nicht copy-ctor)
 /*N*/   aPos        (rScRangeData.aPos),
 /*N*/   eType       (rScRangeData.eType),
 /*N*/   pDoc        (rScRangeData.pDoc),
 /*N*/   nIndex      (rScRangeData.nIndex),
-/*N*/   pCode       (rScRangeData.pCode ? rScRangeData.pCode->Clone() : new ScTokenArray),      // echte Kopie erzeugen (nicht copy-ctor)
 /*N*/   bModified   (rScRangeData.bModified)
 /*N*/ {}
 
@@ -149,19 +145,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ BOOL ScRangeData::Store
-/*N*/   ( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream.WriteByteString( aName, rStream.GetStreamCharSet() );
-/*N*/   rStream << (UINT32) aPos << eType << nIndex << (BYTE) 0x00;
-/*N*/   pCode->Store( rStream, aPos );
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
 /*N*/ BOOL ScRangeData::IsBeyond( USHORT nMaxRow ) const
 /*N*/ {
 /*N*/   if ( aPos.Row() > nMaxRow )
@@ -169,7 +152,7 @@ namespace binfilter {
 /*N*/
 /*N*/   ScToken* t;
 /*N*/   pCode->Reset();
-/*N*/   while ( t = pCode->GetNextReference() )
+/*N*/   while (( t = pCode->GetNextReference() ))
 /*N*/       if ( t->GetSingleRef().nRow > nMaxRow ||
 /*N*/               (t->GetType() == svDoubleRef &&
 /*N*/               t->GetDoubleRef().Ref2.nRow > nMaxRow) )
@@ -328,14 +311,14 @@ namespace binfilter {
 
 
 
-/*N*/ void ScRangeData::ReplaceRangeNamesInUse( const ScIndexMap& rMap )
+/*N*/ void ScRangeData::ReplaceRangeNamesInUse( const ScIndexMap& /*rMap*/ )
 /*N*/ {
 /*N*/   BOOL bCompile = FALSE;
 /*N*/   for ( ScToken* p = pCode->First(); p; p = pCode->Next() )
 /*N*/   {
 /*N*/       if ( p->GetOpCode() == ocName )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nIndex = p->GetIndex();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   if ( bCompile )
@@ -360,7 +343,7 @@ namespace binfilter {
 /*N*/   USHORT nMaxTab = nMinTab;
 /*N*/   ScToken* t;
 /*N*/   pCode->Reset();
-/*N*/   while ( t = pCode->GetNextReference() )
+/*N*/   while (( t = pCode->GetNextReference() ))
 /*N*/   {
 /*N*/       SingleRefData& rRef1 = t->GetSingleRef();
 /*N*/       if ( rRef1.IsTabRel() && !rRef1.IsTabDeleted() )
@@ -393,7 +376,7 @@ namespace binfilter {
 /*?*/       aPos.SetTab( aPos.Tab() - nMove );
 /*?*/
 /*?*/       pCode->Reset();
-/*?*/       while ( t = pCode->GetNextReference() )
+/*?*/       while (( t = pCode->GetNextReference() ))
 /*?*/       {
 /*?*/           SingleRefData& rRef1 = t->GetSingleRef();
 /*?*/           if ( rRef1.IsTabRel() && !rRef1.IsTabDeleted() )
@@ -487,37 +470,6 @@ namespace binfilter {
 /*N*/   return bSuccess;
 /*N*/ }
 
-/*N*/ BOOL ScRangeName::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT i;
-/*N*/   USHORT nSaveCount = nCount;
-/*N*/   USHORT nSaveMaxRow = pDoc->GetSrcMaxRow();
-/*N*/   if ( nSaveMaxRow < MAXROW )
-/*N*/   {
-/*N*/       nSaveCount = 0;
-/*N*/       for (i=0; i<nCount; i++)
-/*N*/       if ( !((const ScRangeData*)At(i))->IsBeyond(nSaveMaxRow) )
-/*N*/               ++nSaveCount;
-/*N*/
-/*N*/       if ( nSaveCount < nCount )
-/*?*/           pDoc->SetLostData();            // Warnung ausgeben
-/*N*/   }
-/*N*/
-/*N*/   rStream << nSharedMaxIndex << nSaveCount;
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   for (i=0; i<nCount && bSuccess; i++)
-/*N*/   {
-/*N*/       const ScRangeData* pRangeData = (const ScRangeData*)At(i);
-/*N*/       if ( nSaveMaxRow == MAXROW || !pRangeData->IsBeyond(nSaveMaxRow) )
-/*N*/           bSuccess = pRangeData->Store( rStream, aHdr );
-/*N*/   }
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
 /*N*/ void ScRangeName::UpdateReference(    UpdateRefMode eUpdateRefMode,
 /*N*/                                   const ScRange& rRange,
 /*N*/                                   short nDx, short nDy, short nDz )
@@ -568,13 +520,15 @@ namespace binfilter {
 
 
 
-/*N*/ void ScRangeName::UpdateTabRef(USHORT nOldTable, USHORT nFlag, USHORT nNewTable)
+/*N*/ void ScRangeName::UpdateTabRef(USHORT /*nOldTable*/, USHORT /*nFlag*/, USHORT /*nNewTable*/)
 /*N*/ {
 /*N*/   for (USHORT i=0; i<nCount; i++)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScRangeData*)pItems[i])->UpdateTabRef(nOldTable, nFlag, nNewTable);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

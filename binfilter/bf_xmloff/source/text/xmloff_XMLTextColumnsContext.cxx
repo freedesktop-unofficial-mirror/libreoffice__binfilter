@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCOLUMNS_HPP_
 #include <com/sun/star/text/XTextColumns.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_VERTICALALIGNMENT_HPP_
 #include <com/sun/star/style/VerticalAlignment.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTEXTCOLUMNSCONTEXT_HXX
 #include "XMLTextColumnsContext.hxx"
-#endif
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -59,6 +45,8 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::beans;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 enum SvXMLTokenMapAttrs
 {
@@ -77,7 +65,7 @@ enum SvXMLSepTokenMapAttrs
     XML_TOK_COLUMN_SEP_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aColAttrTokenMap[] =
+static SvXMLTokenMapEntry aColAttrTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,  XML_REL_WIDTH,      XML_TOK_COLUMN_WIDTH },
     { XML_NAMESPACE_FO,     XML_MARGIN_LEFT,    XML_TOK_COLUMN_MARGIN_LEFT },
@@ -85,7 +73,7 @@ static __FAR_DATA SvXMLTokenMapEntry aColAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aColSepAttrTokenMap[] =
+static SvXMLTokenMapEntry aColSepAttrTokenMap[] =
 {
     { XML_NAMESPACE_STYLE,  XML_WIDTH,          XML_TOK_COLUMN_SEP_WIDTH },
     { XML_NAMESPACE_STYLE,  XML_COLOR,          XML_TOK_COLUMN_SEP_COLOR },
@@ -94,7 +82,7 @@ static __FAR_DATA SvXMLTokenMapEntry aColSepAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Sep_Align_Enum[] =
+SvXMLEnumMapEntry const pXML_Sep_Align_Enum[] =
 {
     { XML_TOP,          VerticalAlignment_TOP   },
     { XML_MIDDLE,       VerticalAlignment_MIDDLE },
@@ -109,7 +97,7 @@ class XMLTextColumnContext_Impl: public SvXMLImportContext
 public:
     TYPEINFO();
 
-    XMLTextColumnContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLTextColumnContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                const OUString& rLName,
                                const uno::Reference<
                                        xml::sax::XAttributeList > & xAttrList,
@@ -123,12 +111,12 @@ public:
 TYPEINIT1( XMLTextColumnContext_Impl, SvXMLImportContext );
 
 XMLTextColumnContext_Impl::XMLTextColumnContext_Impl(
-                               SvXMLImport& rImport, sal_uInt16 nPrfx,
+                               SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                const OUString& rLName,
                                const uno::Reference<
                                        xml::sax::XAttributeList > & xAttrList,
                                const SvXMLTokenMap& rTokenMap ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     aColumn.Width = 0;
     aColumn.LeftMargin = 0;
@@ -138,14 +126,14 @@ XMLTextColumnContext_Impl::XMLTextColumnContext_Impl(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         sal_Int32 nVal;
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_COLUMN_WIDTH:
             {
@@ -191,7 +179,7 @@ class XMLTextColumnSepContext_Impl: public SvXMLImportContext
 public:
     TYPEINFO();
 
-    XMLTextColumnSepContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLTextColumnSepContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                const OUString& rLName,
                                const uno::Reference<
                                        xml::sax::XAttributeList > & xAttrList,
@@ -209,12 +197,12 @@ public:
 TYPEINIT1( XMLTextColumnSepContext_Impl, SvXMLImportContext );
 
 XMLTextColumnSepContext_Impl::XMLTextColumnSepContext_Impl(
-                               SvXMLImport& rImport, sal_uInt16 nPrfx,
+                               SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                const OUString& rLName,
                                const uno::Reference<
                                        xml::sax::XAttributeList > & xAttrList,
                                const SvXMLTokenMap& rTokenMap ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     nWidth( 2 ),
     nColor( 0 ),
     nHeight( 100 ),
@@ -224,14 +212,14 @@ XMLTextColumnSepContext_Impl::XMLTextColumnSepContext_Impl(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         sal_Int32 nVal;
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_COLUMN_SEP_WIDTH:
             if( GetImport().GetMM100UnitConverter().
@@ -277,47 +265,47 @@ SV_DECL_PTRARR( XMLTextColumnsArray_Impl, XMLTextColumnContext_ImplPtr, 5, 5 )
 TYPEINIT1( XMLTextColumnsContext, XMLElementPropertyContext );
 
 XMLTextColumnsContext::XMLTextColumnsContext(
-                                SvXMLImport& rImport, sal_uInt16 nPrfx,
+                                SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                 const OUString& rLName,
                                 const Reference< xml::sax::XAttributeList >&
                                     xAttrList,
                                 const XMLPropertyState& rProp,
                                  ::std::vector< XMLPropertyState > &rProps ) :
-    XMLElementPropertyContext( rImport, nPrfx, rLName, rProp, rProps ),
-    pColumnAttrTokenMap( new SvXMLTokenMap(aColAttrTokenMap) ),
-    pColumnSepAttrTokenMap( new SvXMLTokenMap(aColSepAttrTokenMap) ),
-      pColumns( 0 ),
-    pColumnSep( 0 ),
-    nCount( 0 ),
-    bAutomatic( sal_False ),
-    nAutomaticDistance( 0 ),
+    XMLElementPropertyContext( rInImport, nPrfx, rLName, rProp, rProps ),
     sSeparatorLineIsOn(RTL_CONSTASCII_USTRINGPARAM("SeparatorLineIsOn")),
     sSeparatorLineWidth(RTL_CONSTASCII_USTRINGPARAM("SeparatorLineWidth")),
     sSeparatorLineColor(RTL_CONSTASCII_USTRINGPARAM("SeparatorLineColor")),
     sSeparatorLineRelativeHeight(RTL_CONSTASCII_USTRINGPARAM("SeparatorLineRelativeHeight")),
     sSeparatorLineVerticalAlignment(RTL_CONSTASCII_USTRINGPARAM("SeparatorLineVerticalAlignment")),
     sIsAutomatic(RTL_CONSTASCII_USTRINGPARAM("IsAutomatic")),
-    sAutomaticDistance(RTL_CONSTASCII_USTRINGPARAM("AutomaticDistance"))
+    sAutomaticDistance(RTL_CONSTASCII_USTRINGPARAM("AutomaticDistance")),
+    pColumns( 0 ),
+    pColumnSep( 0 ),
+    pColumnAttrTokenMap( new SvXMLTokenMap(aColAttrTokenMap) ),
+    pColumnSepAttrTokenMap( new SvXMLTokenMap(aColSepAttrTokenMap) ),
+    nCount( 0 ),
+    bAutomatic( sal_False ),
+    nAutomaticDistance( 0 )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     sal_Int32 nVal;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
-        if( XML_NAMESPACE_FO == nPrefix )
+        if( XML_NAMESPACE_FO == nLclPrefix )
         {
-            if( IsXMLToken( aLocalName, XML_COLUMN_COUNT ) &&
+            if( IsXMLToken( aLclLocalName, XML_COLUMN_COUNT ) &&
                 GetImport().GetMM100UnitConverter().
                                 convertNumber( nVal, rValue, 0, SHRT_MAX ) )
             {
                 nCount = (sal_Int16)nVal;
             }
-            else if( IsXMLToken( aLocalName, XML_COLUMN_GAP ) )
+            else if( IsXMLToken( aLclLocalName, XML_COLUMN_GAP ) )
             {
                 bAutomatic = GetImport().GetMM100UnitConverter().
                     convertMeasure( nAutomaticDistance, rValue );
@@ -330,12 +318,12 @@ XMLTextColumnsContext::~XMLTextColumnsContext()
 {
     if( pColumns )
     {
-        sal_uInt16 nCount = pColumns->Count();
-        while( nCount )
+        sal_uInt16 nLclCount = pColumns->Count();
+        while( nLclCount )
         {
-            nCount--;
-            XMLTextColumnContext_Impl *pColumn = (*pColumns)[nCount];
-            pColumns->Remove( nCount, 1 );
+            nLclCount--;
+            XMLTextColumnContext_Impl *pColumn = (*pColumns)[nLclCount];
+            pColumns->Remove( nLclCount, 1 );
             pColumn->ReleaseRef();
         }
     }
@@ -348,17 +336,17 @@ XMLTextColumnsContext::~XMLTextColumnsContext()
 }
 
 SvXMLImportContext *XMLTextColumnsContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_COLUMN ) )
     {
         XMLTextColumnContext_Impl *pColumn =
-            new XMLTextColumnContext_Impl( GetImport(), nPrefix, rLocalName,
+            new XMLTextColumnContext_Impl( GetImport(), nInPrefix, rLocalName,
                                            xAttrList, *pColumnAttrTokenMap );
 
         // add new tabstop to array of tabstops
@@ -370,11 +358,11 @@ SvXMLImportContext *XMLTextColumnsContext::CreateChildContext(
 
         pContext = pColumn;
     }
-    else if( XML_NAMESPACE_STYLE == nPrefix &&
+    else if( XML_NAMESPACE_STYLE == nInPrefix &&
              IsXMLToken( rLocalName, XML_COLUMN_SEP ) )
     {
         pColumnSep =
-            new XMLTextColumnSepContext_Impl( GetImport(), nPrefix, rLocalName,
+            new XMLTextColumnSepContext_Impl( GetImport(), nInPrefix, rLocalName,
                                            xAttrList, *pColumnSepAttrTokenMap );
         pColumnSep->AddRef();
 
@@ -382,7 +370,7 @@ SvXMLImportContext *XMLTextColumnsContext::CreateChildContext(
     }
     else
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -507,3 +495,5 @@ void XMLTextColumnsContext::EndElement( )
 
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

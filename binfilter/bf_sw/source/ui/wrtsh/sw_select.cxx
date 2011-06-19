@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,46 +33,20 @@
 
 #include <limits.h>
 
-
-
-
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _SWDTFLVR_HXX
-#include <swdtflvr.hxx>
-#endif
 
-#if OSL_DEBUG_LEVEL > 1
-#endif
 namespace binfilter {
 
-namespace com { namespace sun { namespace star { namespace util {
-    struct SearchOptions;
-} } } }
-
-using namespace ::com::sun::star::util;
-
-
-static long nStartDragX = 0, nStartDragY = 0;
-static BOOL  bStartDrag = FALSE;
-
-/*------------------------------------------------------------------------
- Beschreibung:  Rahmengebundenes Macro ausfuehren
-------------------------------------------------------------------------*/
-
-/*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, pFlyFmt )
+/*N*/ IMPL_LINK( SwWrtShell, ExecFlyMac, void *, EMPTYARG )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwFrmFmt *pFmt = pFlyFmt ? (SwFrmFmt*)pFlyFmt : GetFlyFrmFmt();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

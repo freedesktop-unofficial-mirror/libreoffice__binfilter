@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _SVDOBJ_HXX
 #include <svdobj.hxx>
-#endif
 
 #include "unomlstr.hxx"
 namespace binfilter {
@@ -44,14 +43,14 @@ SvxUnoShapeModifyListener::~SvxUnoShapeModifyListener() throw()
 }
 
 // ::com::sun::star::util::XModifyListener
-void SAL_CALL SvxUnoShapeModifyListener::modified(const lang::EventObject& aEvent) throw( uno::RuntimeException )
+void SAL_CALL SvxUnoShapeModifyListener::modified(const lang::EventObject& /*rEvent*/) throw( uno::RuntimeException )
 {
     if( mpObj )
         mpObj->SendRepaintBroadcast();
 }
 
 // ::com::sun::star::lang::XEventListener
-void SvxUnoShapeModifyListener::disposing(const lang::EventObject& Source) throw( uno::RuntimeException )
+void SvxUnoShapeModifyListener::disposing(const lang::EventObject& /*rSource*/) throw( uno::RuntimeException )
 {
     invalidate();
 }
@@ -64,3 +63,5 @@ void SvxUnoShapeModifyListener::invalidate() throw()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

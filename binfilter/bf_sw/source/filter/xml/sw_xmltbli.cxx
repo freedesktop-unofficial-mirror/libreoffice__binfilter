@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,128 +35,61 @@
 
 #include <limits.h>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLE_HPP_
 #include <com/sun/star/text/XTextTable.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
 #include <com/sun/star/table/XCellRange.hpp>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _XMLOFF_FAMILIES_HXX
 #include <bf_xmloff/families.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
 
-#ifndef _SVX_PROTITEM_HXX
 #include <bf_svx/protitem.hxx>
-#endif
 
-#ifndef _POOLFMT_HXX
 #include "poolfmt.hxx"
-#endif
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTFORDR_HXX
 #include "fmtfordr.hxx"
-#endif
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
-#ifndef _SWTABLE_HXX
 #include "swtable.hxx"
-#endif
-#ifndef _SWTBLFMT_HXX
 #include "swtblfmt.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX
 #include "pam.hxx"
-#endif
-#ifndef _UNOTBL_HXX
 #include "unotbl.hxx"
-#endif
-#ifndef _UNOCRSR_HXX
 #include "unocrsr.hxx"
-#endif
-#ifndef _CELLATR_HXX
 #include "cellatr.hxx"
-#endif
-#ifndef _SWDDETBL_HXX
 #include "swddetbl.hxx"
-#endif
-#ifndef _DDEFLD_HXX
 #include "ddefld.hxx"
-#endif
 
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>   // for cTokenSeparator
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTBLI_HXX
 #include "xmltbli.hxx"
-#endif
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _NDTXT_HXX
 #include "ndtxt.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -164,7 +98,9 @@ using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::table;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
-using ::std::hash_map;
+using ::boost::unordered_map;
+
+using rtl::OUString;
 
 enum SwXMLTableElemTokens
 {
@@ -193,7 +129,7 @@ enum SwXMLTableCellAttrTokens
     XML_TOK_TABLE_CELL_ATTR_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableElemTokenMap[] =
+static SvXMLTokenMapEntry aTableElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TABLE_HEADER_COLUMNS,
             XML_TOK_TABLE_HEADER_COLS },
@@ -216,7 +152,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableCellAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableCellAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_STYLE_NAME, XML_TOK_TABLE_STYLE_NAME },
     { XML_NAMESPACE_TABLE, XML_NUMBER_COLUMNS_SPANNED, XML_TOK_TABLE_NUM_COLS_SPANNED },
@@ -270,9 +206,9 @@ class SwXMLTableCell_Impl
 public:
 
     SwXMLTableCell_Impl( sal_uInt32 nRSpan=1UL, sal_uInt32 nCSpan=1UL ) :
+        pStartNode( 0 ),
         nRowSpan( nRSpan ),
         nColSpan( nCSpan ),
-        pStartNode( 0 ),
         bProtected( sal_False )
         {}
 
@@ -346,7 +282,6 @@ inline void SwXMLTableCell_Impl::Dispose()
         xSubTable = 0;
 }
 
-// ---------------------------------------------------------------------
 
 typedef SwXMLTableCell_Impl* SwXMLTableCellPtr;
 SV_DECL_PTRARR_DEL(SwXMLTableCells_Impl,SwXMLTableCellPtr,5,5)
@@ -391,7 +326,7 @@ SwXMLTableRow_Impl::SwXMLTableRow_Impl( const OUString& rStyleName,
 {
     if( pDfltCellStyleName  )
         aDfltCellStyleName = *pDfltCellStyleName;
-    ASSERT( nCells <= USHRT_MAX,
+    OSL_ENSURE( nCells <= USHRT_MAX,
             "SwXMLTableRow_Impl::SwXMLTableRow_Impl: too many cells" );
     if( nCells > USHRT_MAX )
         nCells = USHRT_MAX;
@@ -404,14 +339,14 @@ SwXMLTableRow_Impl::SwXMLTableRow_Impl( const OUString& rStyleName,
 
 inline SwXMLTableCell_Impl *SwXMLTableRow_Impl::GetCell( sal_uInt32 nCol ) const
 {
-    ASSERT( nCol < USHRT_MAX,
+    OSL_ENSURE( nCol < USHRT_MAX,
             "SwXMLTableRow_Impl::GetCell: column number is to big" );
     return aCells[(sal_uInt16)nCol];
 }
 
 void SwXMLTableRow_Impl::Expand( sal_uInt32 nCells, sal_Bool bOneCell )
 {
-    ASSERT( nCells <= USHRT_MAX,
+    OSL_ENSURE( nCells <= USHRT_MAX,
             "SwXMLTableRow_Impl::Expand: too many cells" );
     if( nCells > USHRT_MAX )
         nCells = USHRT_MAX;
@@ -425,7 +360,7 @@ void SwXMLTableRow_Impl::Expand( sal_uInt32 nCells, sal_Bool bOneCell )
         nColSpan--;
     }
 
-    ASSERT( nCells<=aCells.Count(),
+    OSL_ENSURE( nCells<=aCells.Count(),
             "SwXMLTableRow_Impl::Expand: wrong number of cells" );
 }
 
@@ -442,7 +377,6 @@ void SwXMLTableRow_Impl::Dispose()
         aCells[i]->Dispose();
 }
 
-// ---------------------------------------------------------------------
 
 class SwXMLTableCellContext_Impl : public SvXMLImportContext
 {
@@ -473,14 +407,14 @@ class SwXMLTableCellContext_Impl : public SvXMLImportContext
 public:
 
     SwXMLTableCellContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             SwXMLTableContext *pTable );
 
     virtual ~SwXMLTableCellContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext(
-            sal_uInt16 nPrefix, const OUString& rLocalName,
+            sal_uInt16 nInPrefix, const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
     virtual void EndElement();
 
@@ -488,34 +422,34 @@ public:
 };
 
 SwXMLTableCellContext_Impl::SwXMLTableCellContext_Impl(
-        SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+        SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         SwXMLTableContext *pTable ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    sFormula(),
     xMyTable( pTable ),
+    fValue( 0.0 ),
+    bHasValue( sal_False ),
+    bProtect( sal_False ),
     nRowSpan( 1UL ),
     nColSpan( 1UL ),
     nColRepeat( 1UL ),
     bHasTextContent( sal_False ),
-    bHasTableContent( sal_False ),
-    sFormula(),
-    fValue( 0.0 ),
-    bHasValue( sal_False ),
-    bProtect( sal_False )
+    bHasTableContent( sal_False )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rTokenMap =
             GetSwImport().GetTableCellAttrTokenMap();
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_TABLE_STYLE_NAME:
             aStyleName = rValue;
@@ -605,7 +539,7 @@ inline void SwXMLTableCellContext_Impl::_InsertContent()
 
 inline void SwXMLTableCellContext_Impl::InsertContent()
 {
-    ASSERT( !HasContent(), "content already there" );
+    OSL_ENSURE( !HasContent(), "content already there" );
     _InsertContent();
     bHasTextContent = sal_True;
 }
@@ -624,19 +558,19 @@ inline void SwXMLTableCellContext_Impl::InsertContent(
 }
 
 SvXMLImportContext *SwXMLTableCellContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_TABLE == nPrefix &&
+    if( XML_NAMESPACE_TABLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_SUB_TABLE ) )
     {
         if( !HasContent() )
         {
             SwXMLTableContext *pTblContext =
-                new SwXMLTableContext( GetSwImport(), nPrefix, rLocalName,
+                new SwXMLTableContext( GetSwImport(), nInPrefix, rLocalName,
                                        xAttrList, GetTable() );
             pContext = pTblContext;
             if( GetTable()->IsValid() )
@@ -648,12 +582,12 @@ SvXMLImportContext *SwXMLTableCellContext_Impl::CreateChildContext(
         if( GetTable()->IsValid() )
             InsertContentIfNotThere();
         pContext = GetImport().GetTextImport()->CreateTextChildContext(
-                        GetImport(), nPrefix, rLocalName, xAttrList,
+                        GetImport(), nInPrefix, rLocalName, xAttrList,
                         XML_TEXT_TYPE_CELL  );
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -662,7 +596,6 @@ void SwXMLTableCellContext_Impl::EndElement()
 {
     if( GetTable()->IsValid() )
     {
-        sal_Bool bEmpty = sal_False;
         if( bHasTextContent )
         {
             GetImport().GetTextImport()->DeleteParagraph();
@@ -676,11 +609,11 @@ void SwXMLTableCellContext_Impl::EndElement()
 
                 // Until we have an API for copying we have to use the core.
                 Reference<XUnoTunnel> xSrcCrsrTunnel( xSrcTxtCursor, UNO_QUERY);
-                ASSERT( xSrcCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+                OSL_ENSURE( xSrcCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
                 OTextCursorHelper *pSrcTxtCrsr =
                         (OTextCursorHelper*)xSrcCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-                ASSERT( pSrcTxtCrsr, "SwXTextCursor missing" );
+                OSL_ENSURE( pSrcTxtCrsr, "SwXTextCursor missing" );
                 SwDoc *pDoc = pSrcTxtCrsr->GetDoc();
                 const SwPaM *pSrcPaM = pSrcTxtCrsr->GetPaM();
 
@@ -690,12 +623,12 @@ void SwXMLTableCellContext_Impl::EndElement()
 
                     Reference<XUnoTunnel> xDstCrsrTunnel(
                         GetImport().GetTextImport()->GetCursor(), UNO_QUERY);
-                    ASSERT( xDstCrsrTunnel.is(),
+                    OSL_ENSURE( xDstCrsrTunnel.is(),
                             "missing XUnoTunnel for Cursor" );
                     OTextCursorHelper *pDstTxtCrsr =
                             (OTextCursorHelper*)xDstCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-                    ASSERT( pDstTxtCrsr, "SwXTextCursor missing" );
+                    OSL_ENSURE( pDstTxtCrsr, "SwXTextCursor missing" );
                     SwPaM aSrcPaM( *pSrcPaM->GetPoint(),
                                    *pSrcPaM->GetMark() );
                     SwPosition aDstPos( *pDstTxtCrsr->GetPaM()->GetPoint() );
@@ -720,8 +653,6 @@ void SwXMLTableCellContext_Impl::EndElement()
     }
 }
 
-// ---------------------------------------------------------------------
-
 class SwXMLTableColContext_Impl : public SvXMLImportContext
 {
     SvXMLImportContextRef   xMyTable;
@@ -731,7 +662,7 @@ class SwXMLTableColContext_Impl : public SvXMLImportContext
 public:
 
     SwXMLTableColContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             SwXMLTableContext *pTable );
 
@@ -741,10 +672,10 @@ public:
 };
 
 SwXMLTableColContext_Impl::SwXMLTableColContext_Impl(
-        SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+        SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         SwXMLTableContext *pTable ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xMyTable( pTable )
 {
     sal_uInt32 nColRep = 1UL;
@@ -755,18 +686,18 @@ SwXMLTableColContext_Impl::SwXMLTableColContext_Impl(
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
-        if( XML_NAMESPACE_TABLE == nPrefix )
+        if( XML_NAMESPACE_TABLE == nLclPrefix )
         {
-            if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
                 aStyleName = rValue;
-            else if( IsXMLToken( aLocalName, XML_NUMBER_COLUMNS_REPEATED ) )
+            else if( IsXMLToken( aLclLocalName, XML_NUMBER_COLUMNS_REPEATED ) )
                 nColRep = (sal_uInt32)rValue.toInt32();
-            else if( IsXMLToken( aLocalName, XML_DEFAULT_CELL_STYLE_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_DEFAULT_CELL_STYLE_NAME ) )
                 aDfltCellStyleName = rValue;
         }
     }
@@ -801,8 +732,6 @@ SwXMLTableColContext_Impl::~SwXMLTableColContext_Impl()
 {
 }
 
-// ---------------------------------------------------------------------
-
 class SwXMLTableColsContext_Impl : public SvXMLImportContext
 {
     SvXMLImportContextRef   xMyTable;
@@ -813,7 +742,7 @@ class SwXMLTableColsContext_Impl : public SvXMLImportContext
 public:
 
     SwXMLTableColsContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             SwXMLTableContext *pTable,
@@ -822,17 +751,17 @@ public:
     virtual ~SwXMLTableColsContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext(
-            sal_uInt16 nPrefix, const OUString& rLocalName,
+            sal_uInt16 nInPrefix, const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
     SwXMLImport& GetSwImport() { return (SwXMLImport&)GetImport(); }
 };
 
 SwXMLTableColsContext_Impl::SwXMLTableColsContext_Impl(
-        SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
-        const Reference< xml::sax::XAttributeList > & xAttrList,
+        SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
+        const Reference< xml::sax::XAttributeList > & /*xAttrList*/,
         SwXMLTableContext *pTable, sal_Bool bHead ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xMyTable( pTable ),
     bHeader( bHead )
 {
@@ -843,26 +772,24 @@ SwXMLTableColsContext_Impl::~SwXMLTableColsContext_Impl()
 }
 
 SvXMLImportContext *SwXMLTableColsContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_TABLE == nPrefix &&
+    if( XML_NAMESPACE_TABLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_TABLE_COLUMN ) &&
         GetTable()->IsInsertColPossible() )
-        pContext = new SwXMLTableColContext_Impl( GetSwImport(), nPrefix,
+        pContext = new SwXMLTableColContext_Impl( GetSwImport(), nInPrefix,
                                                   rLocalName, xAttrList,
                                                   GetTable() );
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
-
-// ---------------------------------------------------------------------
 
 class SwXMLTableRowContext_Impl : public SvXMLImportContext
 {
@@ -875,13 +802,13 @@ class SwXMLTableRowContext_Impl : public SvXMLImportContext
 public:
 
     SwXMLTableRowContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             SwXMLTableContext *pTable, sal_Bool bInHead=sal_False );
 
     virtual ~SwXMLTableRowContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
             const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
@@ -890,13 +817,13 @@ public:
     SwXMLImport& GetSwImport() { return (SwXMLImport&)GetImport(); }
 };
 
-SwXMLTableRowContext_Impl::SwXMLTableRowContext_Impl( SwXMLImport& rImport,
+SwXMLTableRowContext_Impl::SwXMLTableRowContext_Impl( SwXMLImport& rInImport,
         sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         SwXMLTableContext *pTable,
         sal_Bool bInHead ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xMyTable( pTable ),
     nRowRepeat( 1 )
 {
@@ -907,24 +834,24 @@ SwXMLTableRowContext_Impl::SwXMLTableRowContext_Impl( SwXMLImport& rImport,
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
-        if( XML_NAMESPACE_TABLE == nPrefix )
+        if( XML_NAMESPACE_TABLE == nLclPrefix )
         {
-            if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
             {
                 aStyleName = rValue;
             }
-            else if( IsXMLToken( aLocalName, XML_NUMBER_ROWS_REPEATED ) )
+            else if( IsXMLToken( aLclLocalName, XML_NUMBER_ROWS_REPEATED ) )
             {
                 nRowRepeat = (sal_uInt32)rValue.toInt32();
                 if( nRowRepeat < 1UL )
                     nRowRepeat = 1UL;
             }
-            else if( IsXMLToken( aLocalName, XML_DEFAULT_CELL_STYLE_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_DEFAULT_CELL_STYLE_NAME ) )
             {
                 aDfltCellStyleName = rValue;
             }
@@ -950,34 +877,33 @@ SwXMLTableRowContext_Impl::~SwXMLTableRowContext_Impl()
 }
 
 SvXMLImportContext *SwXMLTableRowContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_TABLE == nPrefix )
+    if( XML_NAMESPACE_TABLE == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_TABLE_CELL ) )
         {
             if( !GetTable()->IsValid() || GetTable()->IsInsertCellPossible() )
                 pContext = new SwXMLTableCellContext_Impl( GetSwImport(),
-                                                           nPrefix,
+                                                           nInPrefix,
                                                            rLocalName,
                                                            xAttrList,
                                                            GetTable() );
         }
         else if( IsXMLToken( rLocalName, XML_COVERED_TABLE_CELL ) )
-            pContext = new SvXMLImportContext( GetImport(), nPrefix,
+            pContext = new SvXMLImportContext( GetImport(), nInPrefix,
                                                rLocalName );
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
 
-// ---------------------------------------------------------------------
 
 class SwXMLTableRowsContext_Impl : public SvXMLImportContext
 {
@@ -989,7 +915,7 @@ class SwXMLTableRowsContext_Impl : public SvXMLImportContext
 
 public:
 
-    SwXMLTableRowsContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
+    SwXMLTableRowsContext_Impl( SwXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             SwXMLTableContext *pTable,
@@ -997,20 +923,20 @@ public:
 
     virtual ~SwXMLTableRowsContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( sal_uInt16 nInPrefix,
             const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
     SwXMLImport& GetSwImport() { return (SwXMLImport&)GetImport(); }
 };
 
-SwXMLTableRowsContext_Impl::SwXMLTableRowsContext_Impl( SwXMLImport& rImport,
+SwXMLTableRowsContext_Impl::SwXMLTableRowsContext_Impl( SwXMLImport& rInImport,
         sal_uInt16 nPrfx,
         const OUString& rLName,
-        const Reference< xml::sax::XAttributeList > & xAttrList,
+        const Reference< xml::sax::XAttributeList > & /*xAttrList*/,
         SwXMLTableContext *pTable,
         sal_Bool bHead ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xMyTable( pTable ),
     bHeader( bHead )
 {
@@ -1021,27 +947,26 @@ SwXMLTableRowsContext_Impl::~SwXMLTableRowsContext_Impl()
 }
 
 SvXMLImportContext *SwXMLTableRowsContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_TABLE == nPrefix &&
+    if( XML_NAMESPACE_TABLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_TABLE_ROW ) &&
         GetTable()->IsInsertRowPossible() )
-        pContext = new SwXMLTableRowContext_Impl( GetSwImport(), nPrefix,
+        pContext = new SwXMLTableRowContext_Impl( GetSwImport(), nInPrefix,
                                                   rLocalName, xAttrList,
                                                   GetTable(),
                                                   bHeader );
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
 
-// ---------------------------------------------------------------------
 
 class SwXMLDDETableContext_Impl : public SvXMLImportContext
 {
@@ -1056,7 +981,7 @@ public:
     TYPEINFO();
 
     SwXMLDDETableContext_Impl(
-        SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName);
+        SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName);
 
     ~SwXMLDDETableContext_Impl();
 
@@ -1073,8 +998,8 @@ public:
 TYPEINIT1( SwXMLDDETableContext_Impl, SvXMLImportContext );
 
 SwXMLDDETableContext_Impl::SwXMLDDETableContext_Impl(
-    SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName) :
-        SvXMLImportContext(rImport, nPrfx, rLName),
+    SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName) :
+        SvXMLImportContext(rInImport, nPrfx, rLName),
         sConnectionName(),
         sDDEApplication(),
         sDDEItem(),
@@ -1095,31 +1020,31 @@ void SwXMLDDETableContext_Impl::StartElement(
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        if (XML_NAMESPACE_OFFICE == nPrefix)
+        if (XML_NAMESPACE_OFFICE == nLclPrefix)
         {
-            if ( IsXMLToken( aLocalName, XML_DDE_APPLICATION ) )
+            if ( IsXMLToken( aLclLocalName, XML_DDE_APPLICATION ) )
             {
                 sDDEApplication = rValue;
             }
-            else if ( IsXMLToken( aLocalName, XML_DDE_TOPIC ) )
+            else if ( IsXMLToken( aLclLocalName, XML_DDE_TOPIC ) )
             {
                 sDDETopic = rValue;
             }
-            else if ( IsXMLToken( aLocalName, XML_DDE_ITEM ) )
+            else if ( IsXMLToken( aLclLocalName, XML_DDE_ITEM ) )
             {
                 sDDEItem = rValue;
             }
-            else if ( IsXMLToken( aLocalName, XML_NAME ) )
+            else if ( IsXMLToken( aLclLocalName, XML_NAME ) )
             {
                 sConnectionName = rValue;
             }
-            else if ( IsXMLToken( aLocalName, XML_AUTOMATIC_UPDATE ) )
+            else if ( IsXMLToken( aLclLocalName, XML_AUTOMATIC_UPDATE ) )
             {
                 sal_Bool bTmp;
                 if (SvXMLUnitConverter::convertBool(bTmp, rValue))
@@ -1142,11 +1067,6 @@ String lcl_GenerateFldTypeName(OUString sPrefix, SwTableNode* pTableNode)
     {
         sPrefixStr = String('_');
     }
-//  else if (sPrefixStr.Copy(0, 1).IsAlphaAscii())
-//  {
-//      sPrefixStr.Insert('_', 0);
-//  }
-    // else: name is OK.
 
     // increase count until we find a name that is not yet taken
     String sName;
@@ -1230,8 +1150,6 @@ SwDDEFieldType* lcl_GetDDEFieldType(SwXMLDDETableContext_Impl* pContext,
 }
 
 
-// ---------------------------------------------------------------------
-
 class TableBoxIndex
 {
 public:
@@ -1278,61 +1196,61 @@ SwXMLTableCell_Impl *SwXMLTableContext::GetCell( sal_uInt32 nRow,
 
 TYPEINIT1( SwXMLTableContext, XMLTextTableContext );
 
-SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
+SwXMLTableContext::SwXMLTableContext( SwXMLImport& rInImport,
         sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList ) :
-    XMLTextTableContext( rImport, nPrfx, rLName ),
-    pRows( new SwXMLTableRows_Impl ),
+    XMLTextTableContext( rInImport, nPrfx, rLName ),
     pColumnDefaultCellStyleNames( 0 ),
+    pRows( new SwXMLTableRows_Impl ),
     pTableNode( 0 ),
     pBox1( 0 ),
     pSttNd1( 0 ),
     pBoxFmt( 0 ),
     pLineFmt( 0 ),
-    nCurRow( 0UL ),
-    nCurCol( 0UL ),
-    nWidth( 0UL ),
+    pSharedBoxFormats(NULL),
+    pDDESource(NULL),
     bFirstSection( sal_True ),
     bRelWidth( sal_True ),
     bHasHeading( sal_False ),
-    pDDESource(NULL),
-    pSharedBoxFormats(NULL)
+    nCurRow( 0UL ),
+    nCurCol( 0UL ),
+    nWidth( 0UL )
 {
     OUString aName;
 
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
-        if( XML_NAMESPACE_TABLE == nPrefix )
+        if( XML_NAMESPACE_TABLE == nLclPrefix )
         {
-            if( IsXMLToken( aLocalName, XML_STYLE_NAME ) )
+            if( IsXMLToken( aLclLocalName, XML_STYLE_NAME ) )
                 aStyleName = rValue;
-            else if( IsXMLToken( aLocalName, XML_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_NAME ) )
                 aName = rValue;
-            else if( IsXMLToken( aLocalName, XML_DEFAULT_CELL_STYLE_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_DEFAULT_CELL_STYLE_NAME ) )
                 aDfltCellStyleName = rValue;
         }
     }
 
-    SwXMLImport& rSwImport = GetSwImport();
+    /*SwXMLImport& rSwImport =*/ GetSwImport();
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     String sTblName;
@@ -1353,13 +1271,13 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     const SwXTextTable *pXTable = 0;
     Reference<XMultiServiceFactory> xFactory( GetImport().GetModel(),
                                               UNO_QUERY );
-    ASSERT( xFactory.is(), "factory missing" );
+    OSL_ENSURE( xFactory.is(), "factory missing" );
     if( xFactory.is() )
     {
         OUString sService(
                 RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.text.TextTable" ) );
         Reference<XInterface> xIfc = xFactory->createInstance( sService );
-        ASSERT( xIfc.is(), "Couldn't create a table" );
+        OSL_ENSURE( xIfc.is(), "Couldn't create a table" );
 
         if( xIfc.is() )
             xTable = Reference< XTextTable > ( xIfc, UNO_QUERY );
@@ -1387,7 +1305,7 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
         {
             pXTable = (SwXTextTable*)xTableTunnel->getSomething(
                                             SwXTextTable::getUnoTunnelId() );
-            ASSERT( pXTable, "SwXTextTable missing" );
+            OSL_ENSURE( pXTable, "SwXTextTable missing" );
         }
 
         Reference < XCellRange > xCellRange( xTable, UNO_QUERY );
@@ -1402,11 +1320,11 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     if( pXTable )
     {
         SwFrmFmt *pTblFrmFmt = pXTable->GetFrmFmt();
-        ASSERT( pTblFrmFmt, "table format missing" );
+        OSL_ENSURE( pTblFrmFmt, "table format missing" );
         SwTable *pTbl = SwTable::FindTable( pTblFrmFmt );
-        ASSERT( pTbl, "table missing" );
+        OSL_ENSURE( pTbl, "table missing" );
         pTableNode = pTbl->GetTableNode();
-        ASSERT( pTableNode, "table node missing" );
+        OSL_ENSURE( pTableNode, "table node missing" );
 
         pTblFrmFmt->SetName( sTblName );
 
@@ -1416,28 +1334,28 @@ SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
     }
 }
 
-SwXMLTableContext::SwXMLTableContext( SwXMLImport& rImport,
+SwXMLTableContext::SwXMLTableContext( SwXMLImport& rInImport,
         sal_uInt16 nPrfx,
         const OUString& rLName,
-        const Reference< xml::sax::XAttributeList > & xAttrList,
+        const Reference< xml::sax::XAttributeList > & /*xAttrList*/,
         SwXMLTableContext *pTable ) :
-    XMLTextTableContext( rImport, nPrfx, rLName ),
-    xParentTable( pTable ),
-    pRows( new SwXMLTableRows_Impl ),
+    XMLTextTableContext( rInImport, nPrfx, rLName ),
     pColumnDefaultCellStyleNames( 0 ),
+    pRows( new SwXMLTableRows_Impl ),
     pTableNode( pTable->pTableNode ),
     pBox1( 0 ),
     pSttNd1( 0 ),
     pBoxFmt( 0 ),
     pLineFmt( 0 ),
-    nCurRow( 0UL ),
-    nCurCol( 0UL ),
-    nWidth( 0UL ),
+    pSharedBoxFormats(NULL),
+    xParentTable( pTable ),
+    pDDESource(NULL),
     bFirstSection( sal_False ),
     bRelWidth( sal_True ),
     bHasHeading( sal_False ),
-    pDDESource(NULL),
-    pSharedBoxFormats(NULL)
+    nCurRow( 0UL ),
+    nCurCol( 0UL ),
+    nWidth( 0UL )
 {
 }
 
@@ -1451,7 +1369,7 @@ SwXMLTableContext::~SwXMLTableContext()
     GetImport().GetTextImport()->RedlineAdjustStartNodeCursor(sal_False);
 }
 
-SvXMLImportContext *SwXMLTableContext::CreateChildContext( sal_uInt16 nPrefix,
+SvXMLImportContext *SwXMLTableContext::CreateChildContext( sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
@@ -1459,32 +1377,32 @@ SvXMLImportContext *SwXMLTableContext::CreateChildContext( sal_uInt16 nPrefix,
 
     const SvXMLTokenMap& rTokenMap = GetSwImport().GetTableElemTokenMap();
     sal_Bool bHeader = sal_False;
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_TABLE_HEADER_COLS:
         bHeader = sal_True;
     case XML_TOK_TABLE_COLS:
         if( IsValid() )
-            pContext = new SwXMLTableColsContext_Impl( GetSwImport(), nPrefix,
+            pContext = new SwXMLTableColsContext_Impl( GetSwImport(), nInPrefix,
                                                        rLocalName, xAttrList,
                                                        this, bHeader );
         break;
     case XML_TOK_TABLE_COL:
         if( IsValid() && IsInsertColPossible() )
-            pContext = new SwXMLTableColContext_Impl( GetSwImport(), nPrefix,
+            pContext = new SwXMLTableColContext_Impl( GetSwImport(), nInPrefix,
                                                       rLocalName, xAttrList,
                                                       this );
         break;
     case XML_TOK_TABLE_HEADER_ROWS:
         bHeader = sal_True;
     case XML_TOK_TABLE_ROWS:
-        pContext = new SwXMLTableRowsContext_Impl( GetSwImport(), nPrefix,
+        pContext = new SwXMLTableRowsContext_Impl( GetSwImport(), nInPrefix,
                                                    rLocalName, xAttrList,
                                                    this, bHeader );
         break;
     case XML_TOK_TABLE_ROW:
         if( IsInsertRowPossible() )
-            pContext = new SwXMLTableRowContext_Impl( GetSwImport(), nPrefix,
+            pContext = new SwXMLTableRowContext_Impl( GetSwImport(), nInPrefix,
                                                       rLocalName, xAttrList,
                                                       this );
         break;
@@ -1496,7 +1414,7 @@ SvXMLImportContext *SwXMLTableContext::CreateChildContext( sal_uInt16 nPrefix,
             {
                 pDDESource->ReleaseRef();
             }
-            pDDESource = new SwXMLDDETableContext_Impl( GetSwImport(), nPrefix,
+            pDDESource = new SwXMLDDETableContext_Impl( GetSwImport(), nInPrefix,
                                                         rLocalName );
             pDDESource->AddRef();
             pContext = pDDESource;
@@ -1505,25 +1423,25 @@ SvXMLImportContext *SwXMLTableContext::CreateChildContext( sal_uInt16 nPrefix,
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
 
-void SwXMLTableContext::InsertColumn( sal_Int32 nWidth, sal_Bool bRelWidth,
+void SwXMLTableContext::InsertColumn( sal_Int32 nInWidth, sal_Bool bInRelWidth,
                                          const OUString *pDfltCellStyleName )
 {
-    ASSERT( nCurCol < USHRT_MAX,
+    OSL_ENSURE( nCurCol < USHRT_MAX,
             "SwXMLTableContext::InsertColumn: no space left" );
     if( nCurCol >= USHRT_MAX )
         return;
 
-    if( nWidth < MINLAY )
-        nWidth = MINLAY;
-    else if( nWidth > USHRT_MAX )
-        nWidth = USHRT_MAX;
-    aColumnWidths.Insert( (sal_uInt16)nWidth, aColumnWidths.Count() );
-    aColumnRelWidths.Insert( bRelWidth, aColumnRelWidths.Count() );
+    if( nInWidth < MINLAY )
+        nInWidth = MINLAY;
+    else if( nInWidth > USHRT_MAX )
+        nInWidth = USHRT_MAX;
+    aColumnWidths.Insert( (sal_uInt16)nInWidth, aColumnWidths.Count() );
+    aColumnRelWidths.Insert( bInRelWidth, aColumnRelWidths.Count() );
     if( (pDfltCellStyleName && pDfltCellStyleName->getLength() > 0) ||
         pColumnDefaultCellStyleNames )
     {
@@ -1549,11 +1467,11 @@ sal_Int32 SwXMLTableContext::GetColumnWidth( sal_uInt32 nCol,
     if( nLast > aColumnWidths.Count() )
         nLast = aColumnWidths.Count();
 
-    sal_Int32 nWidth = 0L;
+    sal_Int32 nLclWidth = 0L;
     for( sal_uInt16 i=(sal_uInt16)nCol; i < nLast; i++ )
-        nWidth += aColumnWidths[i];
+        nLclWidth += aColumnWidths[i];
 
-    return nWidth;
+    return nLclWidth;
 }
 
 OUString SwXMLTableContext::GetColumnDefaultCellStyleName( sal_uInt32 nCol ) const
@@ -1574,17 +1492,17 @@ void SwXMLTableContext::InsertCell( const OUString& rStyleName,
                                     sal_Bool bHasValue,
                                     double fValue)
 {
-    ASSERT( nCurCol < GetColumnCount(),
+    OSL_ENSURE( nCurCol < GetColumnCount(),
             "SwXMLTableContext::InsertCell: row is full" );
-    ASSERT( nCurRow < USHRT_MAX,
+    OSL_ENSURE( nCurRow < USHRT_MAX,
             "SwXMLTableContext::InsertCell: table is full" );
     if( nCurCol >= USHRT_MAX || nCurRow > USHRT_MAX )
         return;
 
-    ASSERT( nRowSpan >=1UL, "SwXMLTableContext::InsertCell: row span is 0" );
+    OSL_ENSURE( nRowSpan >=1UL, "SwXMLTableContext::InsertCell: row span is 0" );
     if( 0UL == nRowSpan )
         nRowSpan = 1UL;
-    ASSERT( nColSpan >=1UL, "SwXMLTableContext::InsertCell: col span is 0" );
+    OSL_ENSURE( nColSpan >=1UL, "SwXMLTableContext::InsertCell: col span is 0" );
     if( 0UL == nColSpan )
         nColSpan = 1UL;
 
@@ -1641,9 +1559,9 @@ void SwXMLTableContext::InsertCell( const OUString& rStyleName,
     // Add rows
     if( pRows->Count() < nRowsReq )
     {
-        OUString aStyleName;
+        OUString aLclStyleName;
         for( i=pRows->Count(); i<nRowsReq; i++ )
-            pRows->Insert( new SwXMLTableRow_Impl(aStyleName,GetColumnCount()),
+            pRows->Insert( new SwXMLTableRow_Impl(aLclStyleName,GetColumnCount()),
                            pRows->Count() );
     }
 
@@ -1676,7 +1594,7 @@ void SwXMLTableContext::InsertRow( const OUString& rStyleName,
                                    const OUString& rDfltCellStyleName,
                                    sal_Bool bInHead )
 {
-    ASSERT( nCurRow < USHRT_MAX,
+    OSL_ENSURE( nCurRow < USHRT_MAX,
             "SwXMLTableContext::InsertRow: no space left" );
     if( nCurRow >= USHRT_MAX )
         return;
@@ -1740,8 +1658,8 @@ void SwXMLTableContext::FinishRow()
     // Insert an empty cell at the end of the line if the row is not complete
     if( nCurCol < GetColumnCount() )
     {
-        OUString aStyleName;
-        InsertCell( aStyleName, 1U, GetColumnCount() - nCurCol,
+        OUString aLclStyleName;
+        InsertCell( aLclStyleName, 1U, GetColumnCount() - nCurCol,
                     InsertTableSection() );
     }
 
@@ -1867,7 +1785,7 @@ SwTableBoxFmt* SwXMLTableContext::GetSharedBoxFormat(
     if ( pSharedBoxFormats == NULL )
         pSharedBoxFormats = new map_BoxFmt();
 
-    SwTableBoxFmt* pBoxFmt;
+    SwTableBoxFmt* pLclBoxFmt;
 
     TableBoxIndex aKey( rStyleName, nColumnWidth, bProtected );
     map_BoxFmt::iterator aIter = pSharedBoxFormats->find( aKey );
@@ -1877,36 +1795,36 @@ SwTableBoxFmt* SwXMLTableContext::GetSharedBoxFormat(
 
         // get the old format, and reset all attributes
         // (but preserve FillOrder)
-        pBoxFmt = (SwTableBoxFmt*)pBox->ClaimFrmFmt();
-        SwFmtFillOrder aFillOrder( pBoxFmt->GetFillOrder() );
-        pBoxFmt->ResetAllAttr();
-        pBoxFmt->SetAttr( aFillOrder );
+        pLclBoxFmt = (SwTableBoxFmt*)pBox->ClaimFrmFmt();
+        SwFmtFillOrder aFillOrder( pLclBoxFmt->GetFillOrder() );
+        pLclBoxFmt->ResetAllAttr();
+        pLclBoxFmt->SetAttr( aFillOrder );
         bNew = sal_True;    // it's a new format now
 
         // share this format, if allowed
         if ( bMayShare )
-            (*pSharedBoxFormats)[ aKey ] = pBoxFmt;
+            (*pSharedBoxFormats)[ aKey ] = pLclBoxFmt;
     }
     else
     {
         // set the shared format
-        pBoxFmt = aIter->second;
-        pBox->ChgFrmFmt( pBoxFmt );
+        pLclBoxFmt = aIter->second;
+        pBox->ChgFrmFmt( pLclBoxFmt );
         bNew = sal_False;   // copied from an existing format
 
         // claim it, if we are not allowed to share
         if ( !bMayShare )
-            pBoxFmt = (SwTableBoxFmt*)pBox->ClaimFrmFmt();
+            pLclBoxFmt = (SwTableBoxFmt*)pBox->ClaimFrmFmt();
     }
 
     // lock format (if so desired)
     if ( pModifyLocked != NULL )
     {
-        (*pModifyLocked) = pBoxFmt->IsModifyLocked();
-        pBoxFmt->LockModify();
+        (*pModifyLocked) = pLclBoxFmt->IsModifyLocked();
+        pLclBoxFmt->LockModify();
     }
 
-    return pBoxFmt;
+    return pLclBoxFmt;
 }
 
 SwTableBox *SwXMLTableContext::MakeTableBox( SwTableLine *pUpper,
@@ -1984,12 +1902,12 @@ SwTableBox *SwXMLTableContext::MakeTableBox( SwTableLine *pUpper,
                     {
                         if( pPrevRow->GetCell(i)->GetRowSpan() > 1UL )
                         {
-                            const SwXMLTableCell_Impl *pCell =
+                            const SwXMLTableCell_Impl *pLclCell =
                                 GetCell( nStartRow, i );
-                            sal_uInt32 nColSpan = pCell->GetColSpan();
-                            FixRowSpan( nStartRow-1UL, i, nColSpan );
+                            sal_uInt32 nLclColSpan = pLclCell->GetColSpan();
+                            FixRowSpan( nStartRow-1UL, i, nLclColSpan );
                             ReplaceWithEmptyCell( nStartRow, i );
-                            i += nColSpan;
+                            i += nLclColSpan;
                         }
                         else
                         {
@@ -2007,12 +1925,11 @@ SwTableBox *SwXMLTableContext::MakeTableBox( SwTableLine *pUpper,
 
 SwTableBox *SwXMLTableContext::MakeTableBox(
         SwTableLine *pUpper, const SwXMLTableCell_Impl *pCell,
-        sal_uInt32 nTopRow, sal_uInt32 nLeftCol, sal_uInt32 nBottomRow,
+        sal_uInt32 /*nTopRow*/, sal_uInt32 nLeftCol, sal_uInt32 /*nBottomRow*/,
         sal_uInt32 nRightCol )
 {
     SwTableBox *pBox;
     sal_uInt32 nColSpan = nRightCol - nLeftCol;
-    sal_uInt32 nRowSpan = nBottomRow - nTopRow;
     sal_Int32 nColWidth = GetColumnWidth( nLeftCol, nColSpan );
 
     if( pCell->GetStartNode() )
@@ -2032,7 +1949,7 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
     OUString sStyleName = pCell->GetStyleName();
     sal_Bool bModifyLocked;
     sal_Bool bNew;
-    SwTableBoxFmt *pBoxFmt = GetSharedBoxFormat(
+    SwTableBoxFmt *pLclBoxFmt = GetSharedBoxFormat(
         pBox, sStyleName, nColWidth, pCell->IsProtected(),
         pCell->GetStartNode() && pCell->GetFormula().getLength() == 0 &&
             ! pCell->HasValue(),
@@ -2043,12 +1960,12 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
     {
         // set style
         const SfxItemSet *pAutoItemSet = 0;
-        if( pCell->GetStartNode() && sStyleName &&
+        if( pCell->GetStartNode() && sStyleName.getLength() &&
             GetSwImport().FindAutomaticStyle(
                 XML_STYLE_FAMILY_TABLE_CELL, sStyleName, &pAutoItemSet ) )
         {
             if( pAutoItemSet )
-                pBoxFmt->SetAttr( *pAutoItemSet );
+                pLclBoxFmt->SetAttr( *pAutoItemSet );
         }
     }
 
@@ -2069,7 +1986,7 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
         {
             // default num format?
             const SfxPoolItem* pItem = NULL;
-            if( pBoxFmt->GetItemState( RES_BOXATR_FORMAT, FALSE, &pItem )
+            if( pLclBoxFmt->GetItemState( RES_BOXATR_FORMAT, FALSE, &pItem )
                             == SFX_ITEM_SET )
             {
                 const SwTblBoxNumFormat* pNumFormat =
@@ -2102,9 +2019,9 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
         if( bSuppressNumericContent )
         {
             // suppress numeric content? Then reset number format!
-            pBoxFmt->ResetAttr( RES_BOXATR_FORMULA );
-            pBoxFmt->ResetAttr( RES_BOXATR_FORMAT );
-            pBoxFmt->ResetAttr( RES_BOXATR_VALUE );
+            pLclBoxFmt->ResetAttr( RES_BOXATR_FORMULA );
+            pLclBoxFmt->ResetAttr( RES_BOXATR_FORMAT );
+            pLclBoxFmt->ResetAttr( RES_BOXATR_VALUE );
         }
         else
         {
@@ -2115,14 +2032,14 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
             {
                 // formula cell: insert formula if valid
                 SwTblBoxFormula aFormulaItem( rFormula );
-                pBoxFmt->SetAttr( aFormulaItem );
+                pLclBoxFmt->SetAttr( aFormulaItem );
             }
 
             // always insert value, even if default
             if( pCell->HasValue() )
             {
                 SwTblBoxValue aValueItem( pCell->GetValue() );
-                pBoxFmt->SetAttr( aValueItem );
+                pLclBoxFmt->SetAttr( aValueItem );
             }
         }
 
@@ -2135,14 +2052,14 @@ SwTableBox *SwXMLTableContext::MakeTableBox(
     {
         SvxProtectItem aProtectItem;
         aProtectItem.SetCntntProtect( sal_True );
-        pBoxFmt->SetAttr( aProtectItem );
+        pLclBoxFmt->SetAttr( aProtectItem );
     }
 
     // restore old modify-lock state
     if (! bModifyLocked)
-        pBoxFmt->UnlockModify();
+        pLclBoxFmt->UnlockModify();
 
-    pBoxFmt->SetAttr( SwFmtFrmSize( ATT_VAR_SIZE, nColWidth ) );
+    pLclBoxFmt->SetAttr( SwFmtFrmSize( ATT_VAR_SIZE, nColWidth ) );
 
     return pBox;
 }
@@ -2193,7 +2110,7 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
         sal_Bool bSplitted = sal_False;
         while( !bSplitted )
         {
-            ASSERT( nCol < nRightCol, "Zu weit gelaufen" );
+            OSL_ENSURE( nCol < nRightCol, "Zu weit gelaufen" );
 
             // Kann hinter der aktuellen HTML-Tabellen-Spalte gesplittet
             // werden? Wenn ja, koennte der enstehende Bereich auch noch
@@ -2230,15 +2147,15 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
 #ifdef DBG_UTIL
             if( nCol == nRightCol-1UL )
             {
-                ASSERT( bSplit, "Split-Flag falsch" );
-                ASSERT( !bHoriSplitMayContinue,
+                OSL_ENSURE( bSplit, "Split-Flag falsch" );
+                OSL_ENSURE( !bHoriSplitMayContinue,
                         "HoriSplitMayContinue-Flag falsch" );
                 SwXMLTableCell_Impl *pCell = GetCell( nTopRow, nStartCol );
-                ASSERT( pCell->GetRowSpan() != (nBottomRow-nTopRow) ||
+                OSL_ENSURE( pCell->GetRowSpan() != (nBottomRow-nTopRow) ||
                         !bHoriSplitPossible, "HoriSplitPossible-Flag falsch" );
             }
 #endif
-            ASSERT( !bHoriSplitMayContinue || bHoriSplitPossible,
+            OSL_ENSURE( !bHoriSplitMayContinue || bHoriSplitPossible,
                     "bHoriSplitMayContinue, aber nicht bHoriSplitPossible" );
 
             if( bSplit )
@@ -2252,32 +2169,6 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
                     // is a content box
                     nSplitCol = nCol + 1UL;
 
-#if 0
-                    // eventuell ist die Zelle noch leer
-                    if( !pCell->GetContents() )
-                    {
-                        ASSERT( 1UL==pCell->GetRowSpan(),
-                                "leere Box ist nicht 1 Zeile hoch" );
-                        const SwStartNode* pPrevStNd =
-                            GetPrevBoxStartNode( nTopRow, nStartCol );
-                        HTMLTableCnts *pCnts = new HTMLTableCnts(
-                            pParser->InsertTableSection(pPrevStNd) );
-                        SwHTMLTableLayoutCnts *pCntsLayoutInfo =
-                            pCnts->CreateLayoutInfo();
-
-                        pCell->SetContents( pCnts );
-                        pLayoutInfo->GetCell( nTopRow, nStartCol )
-                                   ->SetContents( pCntsLayoutInfo );
-
-                        // ggf. COLSPAN beachten
-                        for( sal_uInt16 j=nStartCol+1; j<nSplitCol; j++ )
-                        {
-                            GetCell(nTopRow,j)->SetContents( pCnts );
-                            pLayoutInfo->GetCell( nTopRow, j )
-                                       ->SetContents( pCntsLayoutInfo );
-                        }
-                    }
-#endif
                     pBox = MakeTableBox( pLine, pCell,
                                          nTopRow, nStartCol,
                                          nBottomRow, nSplitCol );
@@ -2304,9 +2195,9 @@ SwTableLine *SwXMLTableContext::MakeTableLine( SwTableBox *pUpper,
                     // the split at the last split position we remembered.
                     if( bHoriSplitPossible || nSplitCol > nCol+1 )
                     {
-                        ASSERT( !bHoriSplitMayContinue,
+                        OSL_ENSURE( !bHoriSplitMayContinue,
                                 "bHoriSplitMayContinue==sal_True" );
-                        ASSERT( bHoriSplitPossible || nSplitCol == nRightCol,
+                        OSL_ENSURE( bHoriSplitPossible || nSplitCol == nRightCol,
                                 "bHoriSplitPossible-Flag sollte gesetzt sein" );
 
                         nSplitCol = nCol + 1UL;
@@ -2353,8 +2244,8 @@ void SwXMLTableContext::_MakeTable( SwTableBox *pBox )
 
     if( 0UL == pRows->Count() )
     {
-        OUString aStyleName;
-        InsertCell( aStyleName, 1U, nCols, InsertTableSection() );
+        OUString aLclStyleName;
+        InsertCell( aLclStyleName, 1U, nCols, InsertTableSection() );
     }
 
     // TODO: Do we have to keep both values, the realtive and the absolute
@@ -2588,7 +2479,7 @@ void SwXMLTableContext::MakeTable()
     // this method will modify the document directly -> lock SolarMutex
     // This will call all other MakeTable*(..) methods, so
     // those don't need to be locked separately.
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     SwXMLImport& rSwImport = GetSwImport();
 
@@ -2598,8 +2489,6 @@ void SwXMLTableContext::MakeTable()
     sal_Bool bSetHoriOrient = sal_False;
 
     sal_uInt16 nPrcWidth = 0U;
-    sal_Bool bCalcWidth = sal_False;
-    sal_Bool bSetWidth = sal_False;
 
     pTableNode->GetTable().SetHeadlineRepeat( bHasHeading );
 
@@ -2634,6 +2523,8 @@ void SwXMLTableContext::MakeTable()
                     eHoriOrient = HORI_LEFT_AND_WIDTH;
                     bSetHoriOrient = sal_True;
                 }
+                break;
+            default:
                 break;
             }
         }
@@ -2774,11 +2665,11 @@ const SwStartNode *SwXMLTableContext::InsertTableSection(
     const SwStartNode *pStNd;
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
             (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
 
     if( bFirstSection )
     {
@@ -2834,3 +2725,5 @@ Reference < XTextContent > SwXMLTableContext::GetXTextContent() const
     return xTextContent;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -86,13 +87,13 @@ void SdDrawDocShell::Construct()
 
 SdDrawDocShell::SdDrawDocShell(SfxObjectCreateMode eMode, BOOL bDataObject, DocumentType eDocumentType) :
     SfxObjectShell(eMode),
-    pPrinter(NULL),
-    pDoc(NULL),
-    bUIActive(FALSE),
     pProgress(NULL),
+    pDoc(NULL),
+    pPrinter(NULL),
+    eDocType(eDocumentType),
+    bUIActive(FALSE),
     bSdDataObj(bDataObject),
     bOwnPrinter(FALSE),
-    eDocType(eDocumentType),
     mbNewDocument( sal_True )
 {
     Construct();
@@ -148,7 +149,7 @@ void SdDrawDocShell::SetVisArea(const Rectangle& rRect)
 
 Rectangle SdDrawDocShell::GetVisArea(USHORT nAspect) const
 {
-    Rectangle aVisArea;
+    Rectangle aLclVisArea;
 
     if( ( ASPECT_THUMBNAIL == nAspect ) || ( ASPECT_DOCPRINT == nAspect ) )
     {
@@ -158,14 +159,14 @@ Rectangle SdDrawDocShell::GetVisArea(USHORT nAspect) const
          aSrcMapMode.SetMapUnit(MAP_100TH_MM);
 
          aSize = Application::GetDefaultDevice()->LogicToLogic(aSize, &aSrcMapMode, &aDstMapMode);
-         aVisArea.SetSize(aSize);
+         aLclVisArea.SetSize(aSize);
     }
     else
     {
-        aVisArea = SfxInPlaceObject::GetVisArea(nAspect);
+        aLclVisArea = SfxInPlaceObject::GetVisArea(nAspect);
     }
 
-    return (aVisArea);
+    return (aLclVisArea);
 }
 
 
@@ -277,8 +278,8 @@ BOOL SdDrawDocShell::InitNew( SvStorage * pStor )
 {
     BOOL bRet = SfxInPlaceObject::InitNew( pStor );
 
-    Rectangle aVisArea( Point(0, 0), Size(14100, 10000) );
-    SetVisArea(aVisArea);
+    Rectangle aLclVisArea( Point(0, 0), Size(14100, 10000) );
+    SetVisArea(aLclVisArea);
 
     if (bRet)
     {
@@ -296,7 +297,6 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
     BOOL    bRet = FALSE;
     BOOL    bXML = ( nStoreVer >= SOFFICE_FILEFORMAT_60 );
     BOOL    bBinary = ( nStoreVer < SOFFICE_FILEFORMAT_60 );
-    bool    bStartPresentation = false;
 
     if( bBinary || bXML )
     {
@@ -305,12 +305,12 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
         if( bRet )
         {
             SdFilter*   pFilter = NULL;
-            SfxMedium* pMedium = 0L;
+            SfxMedium* pLclMedium = 0L;
 
             if( bBinary )
             {
-                pMedium = new SfxMedium( pStore );
-                pFilter = new SdBINFilter( *pMedium, *this, sal_True );
+                pLclMedium = new SfxMedium( pStore );
+                pFilter = new SdBINFilter( *pLclMedium, *this, sal_True );
             }
             else if( bXML )
             {
@@ -322,8 +322,8 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
 
             if(pFilter)
                 delete pFilter;
-            if(pMedium)
-                delete pMedium;
+            if(pLclMedium)
+                delete pLclMedium;
         }
     }
     else
@@ -352,84 +352,6 @@ BOOL SdDrawDocShell::Load( SvStorage* pStore )
     return bRet;
 }
 
- BOOL SdDrawDocShell::Save()
- {
-     if( GetCreateMode() == SFX_CREATE_MODE_STANDARD )
-         SvInPlaceObject::SetVisArea( Rectangle() );
-
-     BOOL bRet = SfxInPlaceObject::Save();
-
-     if( bRet )
-     {
-         SvStorage* pStore = GetStorage();
-         SfxMedium  aMedium( pStore );
-         SdFilter*  pFilter = NULL;
-
-         if( pStore->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-             pFilter = new SdXMLFilter( aMedium, *this, sal_True );
-         else
-             pFilter = new SdBINFilter( aMedium, *this, sal_True );
-
-         UpdateDocInfoForSave();
-
-         bRet = pFilter ? pFilter->Export() : FALSE;
-         delete pFilter;
-     }
-
-     return bRet;
- }
-
-BOOL SdDrawDocShell::SaveAs( SvStorage* pStore )
-{
-    if( GetCreateMode() == SFX_CREATE_MODE_STANDARD )
-        SvInPlaceObject::SetVisArea( Rectangle() );
-
-    UINT32  nVBWarning = ERRCODE_NONE;
-    BOOL    bRet = SfxInPlaceObject::SaveAs( pStore );
-
-    if( bRet )
-    {
-        SdFilter* pFilter = NULL;
-
-        if( pStore->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-        {
-            SfxMedium aMedium( pStore );
-            pFilter = new SdXMLFilter( aMedium, *this, sal_True );
-
-            UpdateDocInfoForSave();
-
-            bRet = pFilter->Export();
-        }
-        else
-        {
-            OSL_ASSERT("binary export removed");
-        }
-
-        delete pFilter;
-    }
-
-    if( GetError() == ERRCODE_NONE )
-        SetError( nVBWarning );
-
-    return bRet;
-}
-
-BOOL SdDrawDocShell::SaveCompleted( SvStorage * pStor )
-{
-    BOOL bRet = FALSE;
-
-    if( SfxInPlaceObject::SaveCompleted(pStor) )
-    {
-        pDoc->NbcSetChanged( FALSE );
-
-        bRet = TRUE;
-
-        if( pDoc )
-            pDoc->HandsOff();
-    }
-    return bRet;
-}
-
 void SdDrawDocShell::HandsOff()
 {
     SfxInPlaceObject::HandsOff();
@@ -448,37 +370,6 @@ SfxStyleSheetBasePool* SdDrawDocShell::GetStyleSheetPool()
     return( (SfxStyleSheetBasePool*) pDoc->GetStyleSheetPool() );
 }
 
-
-BOOL SdDrawDocShell::SaveAsOwnFormat( SfxMedium& rMedium )
-{
-
-    const SfxFilter* pFilter = rMedium.GetFilter();
-
-    if (pFilter->IsOwnTemplateFormat())
-    {
-        String aLayoutName;
-
-        SfxStringItem* pLayoutItem;
-        if( rMedium.GetItemSet()->GetItemState(SID_TEMPLATE_NAME, FALSE, (const SfxPoolItem**) & pLayoutItem ) == SFX_ITEM_SET )
-        {
-            aLayoutName = pLayoutItem->GetValue();
-        }
-        else
-        {
-            INetURLObject aURL( rMedium.GetName() );
-            aURL.removeExtension();
-            aLayoutName = aURL.getName();
-        }
-
-        if( aLayoutName.Len() )
-        {
-            String aOldPageLayoutName = pDoc->GetSdPage(0, PK_STANDARD)->GetLayoutName();
-            pDoc->RenameLayoutTemplate(aOldPageLayoutName, aLayoutName);
-        }
-     }
-
-    return SfxObjectShell::SaveAsOwnFormat(rMedium);
-}
 
 void SdDrawDocShell::FillClass(SvGlobalName* pClassName,ULONG*  pFormat, String* pAppName, String* pFullTypeName, String* pShortTypeName, long    nFileFormat) const
 {
@@ -565,3 +456,5 @@ SfxPrinter* SdDrawDocShell::CreatePrinter( SvStream& rIn, SdDrawDocument& rDoc )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

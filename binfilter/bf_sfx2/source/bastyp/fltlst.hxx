@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,45 +32,17 @@
 //*****************************************************************************************************************
 //  includes
 //*****************************************************************************************************************
-#ifndef _SFX_FCONTNR_HXX
 #include <fcontnr.hxx>
-#endif
-
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UTIL_XFLUSHABLE_HPP_
 #include <com/sun/star/util/XFlushable.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_UTIL_XFLUSHLISTENER_HPP_
 #include <com/sun/star/util/XFlushListener.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTLISTENER_HPP_
 #include <com/sun/star/document/XEventListener.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
 #include <com/sun/star/lang/EventObject.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
 #include <com/sun/star/uno/RuntimeException.hpp>
-#endif
+
 namespace binfilter {
 
 //*****************************************************************************************************************
@@ -102,3 +75,5 @@ class SfxFilterListener : public ::cppu::WeakImplHelper1< ::com::sun::star::util
 
 }//end of namespace binfilter
 #endif // _SFX_FLTLST_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

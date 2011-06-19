@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,88 +26,39 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
 #include <com/sun/star/text/XTextFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
 #include <com/sun/star/text/SizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTSUPPLIER_HPP_
 #include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLANCHORTYPEPROPHDL_HXX
 #include "XMLAnchorTypePropHdl.hxx"
-#endif
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTIMPORTCONTEXT_HXX
 #include "XMLEmbeddedObjectImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include "XMLBase64ImportContext.hxx"
-#endif
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include "i18nmap.hxx"
-#endif
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMAGEMAPCONTEXT_HXX_
 #include "XMLImageMapContext.hxx"
-#endif
 
-#ifndef _XMLTEXTFRAMECONTEXT_HXX
 #include "XMLTextFrameContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTLISTBLOCKCONTEXT_HXX
 #include "XMLTextListBlockContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTLISTITEMCONTEXT_HXX
 #include "XMLTextListItemContext.hxx"
-#endif
 namespace binfilter {
 
 
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
@@ -118,6 +70,8 @@ using namespace ::com::sun::star::drawing;
 using namespace ::com::sun::star::document;
 using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::document::XEventsSupplier;
+
+using rtl::OUString;
 
 class XMLTextFrameContextHyperlink_Impl
 {
@@ -157,7 +111,7 @@ public:
 
     TYPEINFO();
 
-    XMLTextFrameDescContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLTextFrameDescContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                   const ::rtl::OUString& rLName,
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
@@ -170,11 +124,11 @@ public:
 TYPEINIT1( XMLTextFrameDescContext_Impl, SvXMLImportContext );
 
 XMLTextFrameDescContext_Impl::XMLTextFrameDescContext_Impl(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
-        const Reference< XAttributeList > & xAttrList,
+        const Reference< XAttributeList > & /*xAttrList*/,
         OUString& rD  ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     rDesc( rD )
 {
 }
@@ -196,7 +150,7 @@ public:
 
     TYPEINFO();
 
-    XMLTextFrameParam_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLTextFrameParam_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                   const ::rtl::OUString& rLName,
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
@@ -212,13 +166,13 @@ XMLTextFrameParam_Impl::~XMLTextFrameParam_Impl()
 }
 
 XMLTextFrameParam_Impl::XMLTextFrameParam_Impl(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
           const ::rtl::OUString& rLName,
         const ::com::sun::star::uno::Reference<
                 ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
-        sal_uInt16 nType,
+        sal_uInt16 /*nType*/,
         ParamMap &rParamMap):
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     OUString sName, sValue;
     sal_Bool bFoundValue = sal_False; // to allow empty values
@@ -228,16 +182,16 @@ XMLTextFrameParam_Impl::XMLTextFrameParam_Impl(
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
-        if ( XML_NAMESPACE_DRAW == nPrefix )
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLclLocalName );
+        if ( XML_NAMESPACE_DRAW == nLclPrefix )
         {
-               if( IsXMLToken(aLocalName, XML_VALUE) )
+               if( IsXMLToken(aLclLocalName, XML_VALUE) )
             {
                 sValue = rValue;
                 bFoundValue=sal_True;
             }
-            else if( IsXMLToken(aLocalName, XML_NAME) )
+            else if( IsXMLToken(aLclLocalName, XML_NAME) )
             {
                 sName = rValue;
             }
@@ -254,7 +208,7 @@ public:
 
     TYPEINFO();
 
-    XMLTextFrameContourContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLTextFrameContourContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                   const ::rtl::OUString& rLName,
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
@@ -266,12 +220,12 @@ public:
 TYPEINIT1( XMLTextFrameContourContext_Impl, SvXMLImportContext );
 
 XMLTextFrameContourContext_Impl::XMLTextFrameContourContext_Impl(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         const Reference < XPropertySet >& rPropSet,
         sal_Bool bPath ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xPropSet( rPropSet )
 {
     OUString sD, sPoints, sViewBox;
@@ -289,11 +243,11 @@ XMLTextFrameContourContext_Impl::XMLTextFrameContourContext_Impl(
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+                                                            &aLclLocalName );
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_TEXT_CONTOUR_VIEWBOX:
             sViewBox = rValue;
@@ -592,14 +546,14 @@ void XMLTextFrameContext::Create( sal_Bool bHRefOrBase64 )
         // URL
         OSL_ENSURE( sHRef.getLength() > 0 || xBase64Stream.is(),
                     "neither URL nor base64 image data given" );
-        UniReference < XMLTextImportHelper > xTxtImport =
+        UniReference < XMLTextImportHelper > xLclTxtImport =
             GetImport().GetTextImport();
         if( sHRef.getLength() )
         {
-            sal_Bool bForceLoad = xTxtImport->IsInsertMode() ||
-                                  xTxtImport->IsBlockMode() ||
-                                  xTxtImport->IsStylesOnlyMode() ||
-                                  xTxtImport->IsOrganizerMode();
+            sal_Bool bForceLoad = xLclTxtImport->IsInsertMode() ||
+                                  xLclTxtImport->IsBlockMode() ||
+                                  xLclTxtImport->IsStylesOnlyMode() ||
+                                  xLclTxtImport->IsOrganizerMode();
             sHRef = GetImport().ResolveGraphicObjectURL( sHRef, !bForceLoad );
         }
         else if( xBase64Stream.is() )
@@ -693,14 +647,12 @@ sal_Bool XMLTextFrameContext::CreateIfNotThere()
 }
 
 XMLTextFrameContext::XMLTextFrameContext(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         TextContentAnchorType eATyp,
         sal_uInt16 nNewType ) :
-    nType( nNewType ),
-    eAnchorType( eATyp ),
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sWidth(RTL_CONSTASCII_USTRINGPARAM("Width")),
     sRelativeWidth(RTL_CONSTASCII_USTRINGPARAM("RelativeWidth")),
     sHeight(RTL_CONSTASCII_USTRINGPARAM("Height")),
@@ -722,7 +674,9 @@ XMLTextFrameContext::XMLTextFrameContext(
     sGraphicRotation(RTL_CONSTASCII_USTRINGPARAM("GraphicRotation")),
     sTextBoxServiceName(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextFrame")),
     sGraphicServiceName(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.GraphicObject")),
-    pHyperlink( 0 )
+    pHyperlink( 0 ),
+    nType( nNewType ),
+    eAnchorType( eATyp )
 {
     nX = 0;
     nY = 0;
@@ -752,11 +706,11 @@ XMLTextFrameContext::XMLTextFrameContext(
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+                                                            &aLclLocalName );
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_TEXT_FRAME_STYLE_NAME:
             sStyleName = rValue;
@@ -987,26 +941,26 @@ void XMLTextFrameContext::EndElement()
 }
 
 SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_SVG == nPrefix &&
+    if( XML_NAMESPACE_SVG == nInPrefix &&
         IsXMLToken( rLocalName, XML_DESC ) )
     {
         pContext = new XMLTextFrameDescContext_Impl( GetImport(),
-                                              nPrefix, rLocalName,
+                                              nInPrefix, rLocalName,
                                                xAttrList, sDesc );
     }
-    else if( XML_NAMESPACE_DRAW == nPrefix )
+    else if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if ( (nType == XML_TEXT_FRAME_APPLET || nType == XML_TEXT_FRAME_PLUGIN) &&
               IsXMLToken( rLocalName, XML_PARAM ) )
         {
             pContext = new XMLTextFrameParam_Impl( GetImport(),
-                                              nPrefix, rLocalName,
+                                              nInPrefix, rLocalName,
                                                xAttrList, nType, aParamMap );
         }
         else
@@ -1015,14 +969,14 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
             {
                 if( CreateIfNotThere() )
                     pContext = new XMLTextFrameContourContext_Impl( GetImport(),
-                                                  nPrefix, rLocalName,
+                                                  nInPrefix, rLocalName,
                                                   xAttrList, xPropSet, sal_False );
             }
             else if( IsXMLToken( rLocalName, XML_CONTOUR_PATH ) )
             {
                 if( CreateIfNotThere() )
                     pContext = new XMLTextFrameContourContext_Impl( GetImport(),
-                                                  nPrefix, rLocalName,
+                                                  nInPrefix, rLocalName,
                                                   xAttrList, xPropSet, sal_True );
             }
             else if ( IsXMLToken( rLocalName, XML_IMAGE_MAP ) &&
@@ -1031,12 +985,12 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
                         nType == XML_TEXT_FRAME_OBJECT_OLE ) )
             {
                 if( CreateIfNotThere() )
-                    pContext = new XMLImageMapContext( GetImport(), nPrefix,
+                    pContext = new XMLImageMapContext( GetImport(), nInPrefix,
                                                        rLocalName, xPropSet );
             }
         }
     }
-    else if( (XML_NAMESPACE_OFFICE == nPrefix) )
+    else if( (XML_NAMESPACE_OFFICE == nInPrefix) )
     {
         if( IsXMLToken( rLocalName, XML_EVENTS ) )
         {
@@ -1048,7 +1002,7 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
                 if (xEventsSupplier.is())
                 {
                     // OK, we have the events, so create the context
-                    pContext = new XMLEventsImportContext(GetImport(), nPrefix,
+                    pContext = new XMLEventsImportContext(GetImport(), nInPrefix,
                                                       rLocalName, xEventsSupplier);
                 }
                 // else: no events, no event import
@@ -1072,7 +1026,7 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
                     break;
                 }
                 if( xBase64Stream.is() )
-                    pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                    pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     xBase64Stream );
             }
@@ -1080,15 +1034,15 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
     }
     if( !pContext &&
             ( XML_TEXT_FRAME_OBJECT == nType &&
-              (XML_NAMESPACE_OFFICE == nPrefix &&
-               IsXMLToken( rLocalName, XML_DOCUMENT )) ||
-              (XML_NAMESPACE_MATH == nPrefix &&
-               IsXMLToken(rLocalName, XML_MATH) ) ) )
+              ( ( XML_NAMESPACE_OFFICE == nInPrefix &&
+                  IsXMLToken( rLocalName, XML_DOCUMENT ) ) ||
+                ( XML_NAMESPACE_MATH == nInPrefix &&
+                  IsXMLToken(rLocalName, XML_MATH ) ) ) ) )
     {
         if( !xPropSet.is() && !bCreateFailed )
         {
             XMLEmbeddedObjectImportContext *pEContext =
-                new XMLEmbeddedObjectImportContext( GetImport(), nPrefix,
+                new XMLEmbeddedObjectImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList );
             sFilterService = pEContext->GetFilterServiceName();
             if( sFilterService.getLength() != 0 )
@@ -1109,11 +1063,11 @@ SvXMLImportContext *XMLTextFrameContext::CreateChildContext(
     }
     if( !pContext && xOldTextCursor.is() )  // text-box
         pContext = GetImport().GetTextImport()->CreateTextChildContext(
-                            GetImport(), nPrefix, rLocalName, xAttrList,
+                            GetImport(), nInPrefix, rLocalName, xAttrList,
                             XML_TEXT_TYPE_TEXTBOX );
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -1145,7 +1099,7 @@ void XMLTextFrameContext::Characters( const OUString& rChars )
             if( bOwnBase64Stream && xBase64Stream.is() )
             {
                 OUString sChars;
-                if( sBase64CharsLeft )
+                if( sBase64CharsLeft.getLength() )
                 {
                     sChars = sBase64CharsLeft;
                     sChars += sTrimmedChars;
@@ -1216,3 +1170,5 @@ Reference < XTextContent > XMLTextFrameContext::GetTextContent() const
     return Reference < XTextContent >( xPropSet, UNO_QUERY );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,25 +30,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _FRACT_HXX
 #include <tools/fract.hxx>
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>  //fuer SwTwips
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;
@@ -264,39 +253,30 @@ inline void SwPageDesc::ChgHeaderShare( BOOL bNew )
 {
     if ( bNew )
         eUse = (UseOnPage) (eUse | PD_HEADERSHARE);
-        // (USHORT&)eUse |= (USHORT)PD_HEADERSHARE;
     else
         eUse = (UseOnPage) (eUse & PD_NOHEADERSHARE);
-        // (USHORT&)eUse &= (USHORT)PD_NOHEADERSHARE;
 }
 inline void SwPageDesc::ChgFooterShare( BOOL bNew )
 {
     if ( bNew )
         eUse = (UseOnPage) (eUse | PD_FOOTERSHARE);
-        // (USHORT&)eUse |= (USHORT)PD_FOOTERSHARE;
     else
         eUse = (UseOnPage) (eUse & PD_NOFOOTERSHARE);
-        // (USHORT&)eUse &= (USHORT)PD_NOFOOTERSHARE;
 }
 inline void SwPageDesc::SetUseOn( UseOnPage eNew )
 {
     UseOnPage eTmp = PD_NONE;
     if ( eUse & PD_HEADERSHARE )
         eTmp = PD_HEADERSHARE;
-        // (USHORT&)eTmp |= (USHORT)PD_HEADERSHARE;
     if ( eUse & PD_FOOTERSHARE )
         eTmp = (UseOnPage) (eTmp | PD_FOOTERSHARE);
-        // (USHORT&)eTmp |= (USHORT)PD_FOOTERSHARE;
     eUse = (UseOnPage) (eTmp | eNew);
-    // (USHORT&)eUse = eTmp | eNew;
 }
 inline UseOnPage SwPageDesc::GetUseOn() const
 {
     UseOnPage eRet = eUse;
     eRet = (UseOnPage) (eRet & PD_NOHEADERSHARE);
-    // (USHORT&)eRet &= (USHORT)PD_NOHEADERSHARE;
     eRet = (UseOnPage) (eRet & PD_NOFOOTERSHARE);
-    // (USHORT&)eRet &= (USHORT)PD_NOFOOTERSHARE;
     return eRet;
 }
 
@@ -329,3 +309,5 @@ inline const SwFrmFmt *SwPageDesc::GetLeftFmt() const
 
 } //namespace binfilter
 #endif  //_PAGEDESC_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

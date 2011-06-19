@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,12 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TIME_HXX //autogen
+#include <tools/pstm.hxx>
 #include <tools/time.hxx>
-#endif
 #include <bf_so3/so2ref.hxx>
 #include <bf_so3/iface.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/
@@ -142,7 +140,6 @@ private:
     SO3_DLLPRIVATE SvInfoObjectMemberList *GetInfoList();
     SO3_DLLPRIVATE void            CountModified( BOOL bDirection );
     SO3_DLLPRIVATE void            dtorClear();
-    SO3_DLLPRIVATE BOOL            SaveElement( SvStorage*, SvInfoObject* );
     SO3_DLLPRIVATE SvPersistRef    CreateObjectFromStorage( SvInfoObject*, const SvStorageRef& );
     SO3_DLLPRIVATE BOOL            ImplCopy( SvPersist*, const String&, BOOL );
 
@@ -163,19 +160,14 @@ protected:
 
     virtual BOOL    InitNew( SvStorage * );         // Rekursiv
     virtual BOOL    Load( SvStorage * );            // Rekursiv
-    virtual BOOL    Save();                         // Rekursiv
-    virtual BOOL    SaveAs( SvStorage * pNewStg );  // Rekursiv
+    virtual BOOL    Save() {return false;}          // Rekursiv
     virtual void    HandsOff();                     // Rekursiv
-    virtual BOOL    SaveCompleted( SvStorage * );   // Rekursiv
 
     SO3_DLLPRIVATE BOOL            DoLoadContent( SvStorage *, BOOL bOwner );
     virtual void    LoadContent( SvStream & rStm, BOOL bOwner );
     SO3_DLLPRIVATE BOOL            DoSaveContent( SvStorage *, BOOL bOwner );
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner );
 
-    BOOL            SaveChilds();                       // Rekursiv
-    BOOL            SaveAsChilds( SvStorage * pNewStg );// Rekursiv
-    BOOL            SaveCompletedChilds( SvStorage * ); // Rekursiv
     SO3_DLLPRIVATE BOOL         HasStorage() const { return aStorage.Is(); }
 public:
                     SvPersist();
@@ -233,10 +225,7 @@ public:
                             short nStorMode );
     virtual BOOL    DoLoad( SvStorage * );
     BOOL            DoOwnerLoad( SvStorage * );
-    virtual BOOL    DoSave();
-    virtual BOOL    DoSaveAs( SvStorage * pNewStg );
     virtual void    DoHandsOff();
-    virtual BOOL    DoSaveCompleted( SvStorage * = NULL );
     void            CleanUp(BOOL bRecurse=FALSE); //Rekursiv
 
     const Time &    GetModifyTime() const { return aModifiedTime; }
@@ -306,3 +295,5 @@ SV_DECL_IMPL_PERSIST_LIST(SvInfoObject,SvInfoObject*)
 }
 
 #endif // _PERSIST_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

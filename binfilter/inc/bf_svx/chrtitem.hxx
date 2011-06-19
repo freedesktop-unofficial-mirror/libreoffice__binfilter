@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -204,13 +205,6 @@ public:
 
 //------------------------------------------------------------------
 
-#ifdef ITEMID_CHARTREGRESS
-
-
-#endif
-
-//------------------------------------------------------------------
-
 #ifdef ITEMID_CHARTDATADESCR
 
 class SvxChartDataDescrItem : public SfxEnumItem
@@ -301,22 +295,6 @@ public:
 
 #endif
 
-//------------------------------------------------------------------
-
-#ifdef ITEMID_CHARTKINDERROR
-
-
-#endif
-
-//------------------------------------------------------------------
-
-#ifdef ITEMID_CHARTINDICATE
-
-
-#endif
-
-//------------------------------------------------------------------
-
 #ifdef ITEMID_DOUBLE
 
 class SvxDoubleItem : public SfxPoolItem
@@ -328,16 +306,14 @@ public:
     SvxDoubleItem(double fValue = 0.0, USHORT nId = ITEMID_DOUBLE);
     SvxDoubleItem(const SvxDoubleItem& rItem);
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool         QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool         PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
 
     virtual int              operator == (const SfxPoolItem&) const;
     virtual SfxPoolItem* Clone(SfxItemPool *pPool = NULL) const;
     virtual SfxPoolItem* Create(SvStream& rIn, USHORT nVersion) const;
-    virtual SvStream& Store(SvStream& rOut, USHORT nItemVersion ) const;
-
-
+    virtual SvStream& Store(SvStream& rOut, USHORT) const { return rOut; }
 
     double GetValue() const { return fVal; }
     void SetValue(double fNewVal) { fVal = fNewVal; }
@@ -348,3 +324,4 @@ public:
 }//end of namespace binfilter
 #endif   // _SVX_CHRTITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

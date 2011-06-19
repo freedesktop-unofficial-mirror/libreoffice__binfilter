@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,24 +26,15 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
-#ifndef SC_XMLEXPORTSHAREDDATA_HXX
 #include "XMLExportSharedData.hxx"
-#endif
-#ifndef _SC_XMLEXPORTITERATOR_HXX
 #include "XMLExportIterator.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -154,3 +146,5 @@ void ScMySharedData::AddTableShape(const sal_Int32 nTable, const uno::Reference<
     (*pTableShapes)[nTable].push_back(xShape);
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -43,9 +41,7 @@
 #include <stdlib.h>
 #include <ctype.h>
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include "document.hxx"
 #include "rangeutl.hxx"
@@ -219,17 +215,6 @@ namespace binfilter {
 /*N*/   eConnect = (ScQueryConnect) cConnect;
 /*N*/ }
 /*N*/
-/*N*/ void ScQueryEntry::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream << bDoQuery
-/*N*/           << bQueryByString
-/*N*/           << (BYTE) eOp
-/*N*/           << (BYTE) eConnect
-/*N*/           << nField
-/*N*/           << nVal;
-/*N*/   rStream.WriteByteString( *pStr, rStream.GetStreamCharSet() );
-/*N*/ }
-
 /*N*/ ::utl::TextSearch* ScQueryEntry::GetSearchTextPtr( BOOL bCaseSens )
 /*N*/ {
 /*N*/   if ( !pSearchParam )
@@ -253,10 +238,16 @@ namespace binfilter {
 
 /*N*/ ScQueryParam::ScQueryParam( const ScQueryParam& r ) :
 /*N*/       nCol1(r.nCol1),nRow1(r.nRow1),nCol2(r.nCol2),nRow2(r.nRow2),nTab(r.nTab),
-/*N*/       nDestTab(r.nDestTab),nDestCol(r.nDestCol),nDestRow(r.nDestRow),
-/*N*/       bHasHeader(r.bHasHeader),bInplace(r.bInplace),bCaseSens(r.bCaseSens),
-/*N*/       bRegExp(r.bRegExp),bDuplicate(r.bDuplicate),bByRow(r.bByRow),
-/*N*/       bDestPers(r.bDestPers)
+/*N*/       bHasHeader(r.bHasHeader),
+/*N*/       bByRow(r.bByRow),
+/*N*/       bInplace(r.bInplace),
+/*N*/       bCaseSens(r.bCaseSens),
+/*N*/       bRegExp(r.bRegExp),
+/*N*/       bDuplicate(r.bDuplicate),
+/*N*/       bDestPers(r.bDestPers),
+/*N*/       nDestTab(r.nDestTab),
+/*N*/       nDestCol(r.nDestCol),
+/*N*/       nDestRow(r.nDestRow)
 /*N*/ {
 /*N*/   nEntryCount = 0;
 /*N*/
@@ -316,12 +307,11 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
+BOOL ScQueryParam::operator==( const ScQueryParam& /*rOther*/ ) const
 {
     BOOL bEqual = FALSE;
-
     // Anzahl der Queries gleich?
-     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nUsed       = 0;
+    DBG_BF_ASSERT(0, "STRIP");
     return bEqual;
 }
 
@@ -435,43 +425,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 /*N*/       pEntries[i].Load(rStream);
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ void ScQueryParam::Store( SvStream& rStream ) const       // z.B. fuer Pivot-Tabelle
-/*N*/ {
-/*N*/   // bDestPers wird nicht geladen/gespeichert
-/*N*/
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   DBG_ASSERT( nEntryCount <= MAXQUERY || !pEntries[MAXQUERY].bDoQuery,
-/*N*/                   "zuviele Eintraege bei ScQueryParam::Store" );
-/*N*/
-/*N*/
-/*N*/   if ( nEntryCount < MAXQUERY )
-/*N*/   {
-/*N*/       DBG_ERROR("ScQueryParam::Store - zuwenig Eintraege");
-/*N*/       ((ScQueryParam*)this)->Resize( MAXQUERY );
-/*N*/   }
-/*N*/
-/*N*/   rStream << nCol1
-/*N*/           << nRow1
-/*N*/           << nCol2
-/*N*/           << nRow2
-/*N*/           << nDestTab
-/*N*/           << nDestCol
-/*N*/           << nDestRow
-/*N*/           << bHasHeader
-/*N*/           << bInplace
-/*N*/           << bCaseSens
-/*N*/           << bRegExp
-/*N*/           << bDuplicate
-/*N*/           << bByRow;
-/*N*/
-/*N*/   for (USHORT i=0; i<MAXQUERY; i++)
-/*N*/       pEntries[i].Store(rStream);
-/*N*/ }
-
-//------------------------------------------------------------------------
 // struct ScSubTotalParam:
 
 /*N*/ ScSubTotalParam::ScSubTotalParam()
@@ -490,9 +443,15 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 /*N*/ ScSubTotalParam::ScSubTotalParam( const ScSubTotalParam& r ) :
 /*N*/       nCol1(r.nCol1),nRow1(r.nRow1),nCol2(r.nCol2),nRow2(r.nRow2),
-/*N*/       bReplace(r.bReplace),bPagebreak(r.bPagebreak),bCaseSens(r.bCaseSens),
-/*N*/       bDoSort(r.bDoSort),bAscending(r.bAscending),bUserDef(r.bUserDef),nUserIndex(r.nUserIndex),
-/*N*/       bIncludePattern(r.bIncludePattern),bRemoveOnly(r.bRemoveOnly)
+/*N*/       bRemoveOnly(r.bRemoveOnly),
+/*N*/       bReplace(r.bReplace),
+/*N*/       bPagebreak(r.bPagebreak),
+/*N*/       bCaseSens(r.bCaseSens),
+/*N*/       bDoSort(r.bDoSort),
+/*N*/       bAscending(r.bAscending),
+/*N*/       bUserDef(r.bUserDef),
+/*N*/       nUserIndex(r.nUserIndex),
+/*N*/       bIncludePattern(r.bIncludePattern)
 /*N*/ {
 /*N*/   for (USHORT i=0; i<MAXSUBTOTAL; i++)
 /*N*/   {
@@ -611,10 +570,13 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 //------------------------------------------------------------------------
 
 /*N*/ ScConsolidateParam::ScConsolidateParam( const ScConsolidateParam& r ) :
-/*N*/       ppDataAreas( NULL ),
 /*N*/       nCol(r.nCol),nRow(r.nRow),nTab(r.nTab),
-/*N*/       bByCol(r.bByCol),bByRow(r.bByRow),bReferenceData(r.bReferenceData),
-/*N*/       nDataAreaCount(0),eFunction(r.eFunction)
+/*N*/       eFunction(r.eFunction),
+/*N*/       nDataAreaCount(0),
+/*N*/       ppDataAreas( NULL ),
+/*N*/       bByCol(r.bByCol),
+/*N*/       bByRow(r.bByRow),
+/*N*/       bReferenceData(r.bReferenceData)
 /*N*/ {
 /*N*/   if ( r.nDataAreaCount > 0 )
 /*N*/   {
@@ -627,14 +589,14 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScConsolidateParam::~ScConsolidateParam()
+/*N*/ ScConsolidateParam::~ScConsolidateParam()
 /*N*/ {
 /*N*/   ClearDataAreas();
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScConsolidateParam::ClearDataAreas()
+/*N*/ void ScConsolidateParam::ClearDataAreas()
 /*N*/ {
 /*N*/   if ( ppDataAreas )
 /*N*/   {
@@ -648,7 +610,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScConsolidateParam::Clear()
+/*N*/ void ScConsolidateParam::Clear()
 /*N*/ {
 /*N*/   ClearDataAreas();
 /*N*/
@@ -659,7 +621,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ ScConsolidateParam& __EXPORT ScConsolidateParam::operator=( const ScConsolidateParam& r )
+/*N*/ ScConsolidateParam& ScConsolidateParam::operator=( const ScConsolidateParam& r )
 /*N*/ {
 /*N*/   nCol            = r.nCol;
 /*N*/   nRow            = r.nRow;
@@ -678,7 +640,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScConsolidateParam::SetAreas( ScArea* const* ppAreas, USHORT nCount )
+/*N*/ void ScConsolidateParam::SetAreas( ScArea* const* ppAreas, USHORT nCount )
 /*N*/ {
 /*N*/   ClearDataAreas();
 /*N*/   if ( ppAreas && nCount > 0 )
@@ -713,19 +675,6 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 /*N#116571#*/   }
 /*N*/ }
 
-/*N*/ void ScConsolidateParam::Store( SvStream& rStream ) const
-/*N*/ {
-/*N#116571#*/   ScWriteHeader aHdr( rStream, 12+10*nDataAreaCount );
-/*N#116571#*/
-/*N#116571#*/   rStream << nCol << nRow << nTab
-/*N#116571#*/           << bByCol << bByRow << bReferenceData << (BYTE) eFunction;
-/*N#116571#*/
-/*N#116571#*/   rStream << nDataAreaCount;
-/*N#116571#*/   for (USHORT i=0; i<nDataAreaCount; i++)
-/*N#116571#*/       rStream << *ppDataAreas[i];
-/*N*/ }
-
-//------------------------------------------------------------------------
 // struct ScPivotParam:
 
 /*N*/ ScPivotParam::ScPivotParam()
@@ -741,12 +690,14 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 /*N*/ ScPivotParam::ScPivotParam( const ScPivotParam& r )
 /*N*/   :   nCol( r.nCol ), nRow( r.nRow ), nTab( r.nTab ),
+/*N*/       ppLabelArr( NULL ), nLabels(0),
+/*N*/       nColCount(0),
+/*N*/       nRowCount(0),
+/*N*/       nDataCount(0),
 /*N*/       bIgnoreEmptyRows(r.bIgnoreEmptyRows),
 /*N*/       bDetectCategories(r.bDetectCategories),
 /*N*/       bMakeTotalCol(r.bMakeTotalCol),
-/*N*/       bMakeTotalRow(r.bMakeTotalRow),
-/*N*/       ppLabelArr( NULL ), nLabels(0),
-/*N*/       nColCount(0), nRowCount(0), nDataCount(0)
+/*N*/       bMakeTotalRow(r.bMakeTotalRow)
 /*N*/ {
 /*N*/   SetLabelData    ( r.ppLabelArr, r.nLabels );
 /*N*/   SetPivotArrays  ( r.aColArr, r.aRowArr, r.aDataArr,
@@ -755,7 +706,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPivotParam::~ScPivotParam()
+/*N*/ ScPivotParam::~ScPivotParam()
 /*N*/ {
 /*N*/   ClearLabelData();
 /*N*/ }
@@ -765,7 +716,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPivotParam::ClearLabelData()
+/*N*/ void ScPivotParam::ClearLabelData()
 /*N*/ {
 /*N*/   if ( (nLabels > 0) && ppLabelArr )
 /*N*/   {
@@ -782,7 +733,7 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPivotParam::SetLabelData( LabelData** pLabArr,
+/*N*/ void ScPivotParam::SetLabelData( LabelData**  pLabArr,
 /*N*/                                         USHORT        nLab )
 /*N*/ {
 /*N*/   ClearLabelData();
@@ -798,19 +749,19 @@ BOOL ScQueryParam::operator==( const ScQueryParam& rOther ) const
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPivotParam::SetPivotArrays    ( const PivotField* pColArr,
-/*N*/                                             const PivotField* pRowArr,
-/*N*/                                             const PivotField* pDataArr,
-/*N*/                                             USHORT            nColCnt,
-/*N*/                                             USHORT            nRowCnt,
-/*N*/                                             USHORT            nDataCnt )
+/*N*/ void ScPivotParam::SetPivotArrays ( const PivotField*,
+/*N*/                                             const PivotField*,
+/*N*/                                             const PivotField*,
+/*N*/                                             USHORT,
+/*N*/                                             USHORT,
+/*N*/                                             USHORT )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ ScPivotParam& __EXPORT ScPivotParam::operator=( const ScPivotParam& r )
+/*N*/ ScPivotParam& ScPivotParam::operator=( const ScPivotParam& r )
 /*N*/ {
 /*N*/   nCol              = r.nCol;
 /*N*/   nRow              = r.nRow;
@@ -902,7 +853,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 /*N*/   bShown = rCpy.bShown;
 /*N*/ }
 
-/*N*/ __EXPORT ScPostIt::~ScPostIt()
+/*N*/ ScPostIt::~ScPostIt()
 /*N*/ {
 /*N*/ }
 
@@ -1232,10 +1183,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 /*N*/       sal_Unicode* p = aTmp.GetBufferAccess();
 /*N*/       p[ nPos ] = 0;
 /*N*/       BOOL bExternal = FALSE;
-/*N*/       if( nRes1 = lcl_ConvertSingleRef( bExternal, p, pDoc, aStart ) )
+/*N*/       if(( nRes1 = lcl_ConvertSingleRef( bExternal, p, pDoc, aStart ) ))
 /*N*/       {
 /*N*/           aEnd = aStart;  // die Tab _muss_ gleich sein, so ist`s weniger Code
-/*N*/           if ( nRes2 = lcl_ConvertSingleRef( bExternal, p + nPos+ 1, pDoc, aEnd ) )
+/*N*/           if (( nRes2 = lcl_ConvertSingleRef( bExternal, p + nPos+ 1, pDoc, aEnd ) ))
 /*N*/           {
 /*N*/               if ( bExternal && aStart.Tab() != aEnd.Tab() )
 /*N*/                   nRes2 &= ~SCA_VALID_TAB;    // #REF!
@@ -1393,3 +1344,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ClearPivotArrays();
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

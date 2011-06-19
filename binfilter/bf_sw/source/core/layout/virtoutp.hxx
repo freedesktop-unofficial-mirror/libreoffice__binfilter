@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
 #include "swtypes.hxx"      // UCHAR
 #include "swrect.hxx"       // SwRect
@@ -58,10 +57,10 @@ private:
 
 
 public:
-    SwLayVout() : pVirDev(NULL), pOut(0), aSize(0, VIRTUALHEIGHT), nCount(0) {}
+    SwLayVout() : pOut(0), pVirDev(NULL), aSize(0, VIRTUALHEIGHT), nCount(0) {}
     ~SwLayVout() { delete pVirDev; }
 
-    /// OD 27.09.2002 #103636# - change 2nd parameter <rRect> - no longer <const>
+    /// change 2nd parameter <rRect> - no longer <const>
 
     void SetOrgRect( SwRect &rRect ) { aOrgRect = rRect; }
     const SwRect& GetOrgRect() const { return aOrgRect; }
@@ -73,3 +72,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

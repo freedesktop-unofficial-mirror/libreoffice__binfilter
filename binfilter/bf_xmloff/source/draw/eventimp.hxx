@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _XMLOFF_EVENTIMP_HXX
 #define _XMLOFF_EVENTIMP_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -62,3 +59,4 @@ public:
 }//end of namespace binfilter
 #endif  //  _XMLOFF_EVENTIMP_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

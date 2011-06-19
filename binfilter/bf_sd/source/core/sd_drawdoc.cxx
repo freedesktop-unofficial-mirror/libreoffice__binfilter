@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -63,7 +64,6 @@
 #include <bf_svx/outlobj.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <comphelper/extract.hxx>
-#include <vos/xception.hxx>
 #include <i18npool/mslangid.hxx>
 #include <unotools/charclass.hxx>
 #include <comphelper/processfactory.hxx>
@@ -86,7 +86,7 @@
 #include "bf_sd/docshell.hxx"
 #include "bf_sd/grdocsh.hxx"
 
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 #include <tools/tenccvt.hxx>
 
@@ -112,41 +112,41 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
     FmFormModel(
     SvtPathOptions().GetPalettePath(),
     NULL, (SvPersist*)pDrDocSh ),
-    eDocType(eType),
+    pOutliner(NULL),
+    pInternalOutliner(NULL),
+    pOnlineSpellingTimer(NULL),
+    pOnlineSpellingList(NULL),
+    pDeletedPresObjList(NULL),
+    pCustomShowList(NULL),
     pDocSh( (SdDrawDocShell*) pDrDocSh ),
+    bHasOnlineSpellErrors(FALSE),
+    bInitialOnlineSpellingEnabled(TRUE),
+    bNewOrLoadCompleted(FALSE),
     bPresAll(TRUE),
     bPresEndless(FALSE),
     bPresManual(FALSE),
     bPresMouseVisible(TRUE),
     bPresMouseAsPen(FALSE),
-    bPresLockedPages(FALSE),
     bStartPresWithNavigator(FALSE),
     bAnimationAllowed(TRUE),
+    bPresLockedPages(FALSE),
     bPresAlwaysOnTop(FALSE),
     bPresFullScreen(TRUE),
     nPresPause(10),
     bPresShowLogo(FALSE),
     bCustomShow(false),
+    mbStartWithPresentation( false ),
     nPresFirstPage(1),
-    pOutliner(NULL),
-    pInternalOutliner(NULL),
-    ePageNumType(SVX_ARABIC),
-    bNewOrLoadCompleted(FALSE),
-    pOnlineSpellingTimer(NULL),
-    pOnlineSpellingList(NULL),
-    bInitialOnlineSpellingEnabled(TRUE),
-    bHasOnlineSpellErrors(FALSE),
-    mpLocale(NULL),
-    mpCharClass(NULL),
-    bAllocDocSh(FALSE),
-    pDeletedPresObjList(NULL),
-    nFileFormatVersion(SDIOCOMPAT_VERSIONDONTKNOW),
-    pDocStor(NULL),
-    pCustomShowList(NULL),
     eLanguage( LANGUAGE_SYSTEM ),
     eLanguageCJK( LANGUAGE_SYSTEM ),
     eLanguageCTL( LANGUAGE_SYSTEM ),
-    mbStartWithPresentation( false )
+    ePageNumType(SVX_ARABIC),
+    bAllocDocSh(FALSE),
+    eDocType(eType),
+    nFileFormatVersion(SDIOCOMPAT_VERSIONDONTKNOW),
+    pDocStor(NULL),
+    mpCharClass(NULL),
+    mpLocale(NULL)
 {
     SetObjectShell(pDrDocSh);       // fuer das VCDrawModel
 
@@ -199,7 +199,7 @@ SdDrawDocument::SdDrawDocument(DocumentType eType, SfxObjectShell* pDrDocSh) :
     LanguageType eRealCTLLanguage = Application::GetSettings().GetLanguage();
     if( MsLangId::isRightToLeft( eRealCTLLanguage ) )
     {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // ... then we have to set this as a default
+        DBG_BF_ASSERT(0, "STRIP");
     }
 
     SetDefaultTabulator( 1250 );
@@ -336,7 +336,7 @@ SdDrawDocument::~SdDrawDocument()
 |*
 \************************************************************************/
 
-SdrPage* SdDrawDocument::AllocPage(FASTBOOL bMasterPage)
+SdrPage* SdDrawDocument::AllocPage(bool bMasterPage)
 {
     return new SdPage(*this, NULL, bMasterPage);
 }
@@ -789,7 +789,7 @@ void SdDrawDocument::SetPresMouseAsPen(BOOL bNewPresMouseAsPen)
 |*
 \************************************************************************/
 
-void SdDrawDocument::SetChanged(FASTBOOL bFlag)
+void SdDrawDocument::SetChanged(bool bFlag)
 {
     if (pDocSh)
     {
@@ -815,7 +815,7 @@ void SdDrawDocument::SetChanged(FASTBOOL bFlag)
 |*
 \************************************************************************/
 
-void SdDrawDocument::NbcSetChanged(FASTBOOL bFlag)
+void SdDrawDocument::NbcSetChanged(bool bFlag)
 {
     // #100237# forward to baseclass
     FmFormModel::SetChanged(bFlag);
@@ -950,7 +950,6 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
         // Praesentationsobjekte muessen wieder Listener der entsprechenden
         // Vorlagen werden
         SdStyleSheetPool* pSPool = (SdStyleSheetPool*) GetStyleSheetPool();
-        SfxStyleSheet*    pSheet = NULL;
         USHORT nPage, nPageCount;
 
         // #96323# create missing layout style sheets for broken documents
@@ -988,12 +987,12 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
             if (nObjCount)
             {
                 // Listen mit Titel- und Gliederungsvorlagen erstellen
-                String aName = pPage->GetLayoutName();
-                aName.Erase( aName.SearchAscii( SD_LT_SEPARATOR ));
+                String aLclName = pPage->GetLayoutName();
+                aLclName.Erase( aLclName.SearchAscii( SD_LT_SEPARATOR ));
 
-                List* pOutlineList = pSPool->CreateOutlineSheetList(aName);
+                List* pOutlineList = pSPool->CreateOutlineSheetList(aLclName);
                 SfxStyleSheet* pTitleSheet = (SfxStyleSheet*)
-                                                pSPool->GetTitleSheet(aName);
+                                                pSPool->GetTitleSheet(aLclName);
 
                 // jetzt nach Titel- und Gliederungstextobjekten suchen und
                 // Objekte zu Listenern machen
@@ -1003,7 +1002,7 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
                     if (pObj->GetObjInventor() == SdrInventor)
                     {
                         OutlinerParaObject* pOPO = pObj->GetOutlinerParaObject();
-                        SdPage* pPage = (SdPage*) pObj->GetPage();
+                        SdPage* pLclPage = (SdPage*) pObj->GetPage();
                         UINT16 nId = pObj->GetObjIdentifier();
 
                         if (nId == OBJ_TITLETEXT)
@@ -1022,29 +1021,29 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
 
                             for (USHORT nSheet = 0; nSheet < 10; nSheet++)
                             {
-                                pSheet = (SfxStyleSheet*)pOutlineList->GetObject(nSheet);
-                                if (pSheet)
+                                SfxStyleSheet *pLclSheet = (SfxStyleSheet*)pOutlineList->GetObject(nSheet);
+                                if (pLclSheet)
                                 {
-                                    pObj->StartListening(*pSheet);
+                                    pObj->StartListening(*pLclSheet);
 
                                     if( nSheet == 0)
                                         // Textrahmen hoert auf StyleSheet der Ebene1
-                                        pObj->NbcSetStyleSheet(pSheet, TRUE);
+                                        pObj->NbcSetStyleSheet(pLclSheet, TRUE);
                                 }
                             }
                         }
 
-                        if (pObj->ISA(SdrTextObj) && pObj->IsEmptyPresObj() && pPage)
+                        if (pObj->ISA(SdrTextObj) && pObj->IsEmptyPresObj() && pLclPage)
                         {
-                            PresObjKind ePresObjKind = pPage->GetPresObjKind(pObj);
-                            String aString = pPage->GetPresObjText(ePresObjKind);
+                            PresObjKind ePresObjKind = pLclPage->GetPresObjKind(pObj);
+                            String aString = pLclPage->GetPresObjText(ePresObjKind);
 
                             if (aString.Len())
                             {
                                 SdOutliner* pInternalOutl = GetInternalOutliner(TRUE);
                                 pInternalOutl->SetMinDepth(0);
-                                pPage->SetObjText( (SdrTextObj*) pObj, pInternalOutl, ePresObjKind, aString );
-                                pObj->NbcSetStyleSheet( pPage->GetStyleSheetForPresObj( ePresObjKind ), TRUE );
+                                pLclPage->SetObjText( (SdrTextObj*) pObj, pInternalOutl, ePresObjKind, aString );
+                                pObj->NbcSetStyleSheet( pLclPage->GetStyleSheetForPresObj( ePresObjKind ), TRUE );
                                 pInternalOutl->Clear();
                             }
                         }
@@ -1083,12 +1082,12 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
             if (nObjCount)
             {
                 // Listen mit Titel- und Gliederungsvorlagen erstellen
-                String aName = pPage->GetLayoutName();
-                aName.Erase(aName.SearchAscii( SD_LT_SEPARATOR ));
+                String aLclName = pPage->GetLayoutName();
+                aLclName.Erase(aLclName.SearchAscii( SD_LT_SEPARATOR ));
 
-                List* pOutlineList = pSPool->CreateOutlineSheetList(aName);
+                List* pOutlineList = pSPool->CreateOutlineSheetList(aLclName);
                 SfxStyleSheet* pTitleSheet = (SfxStyleSheet*)
-                                                pSPool->GetTitleSheet(aName);
+                                                pSPool->GetTitleSheet(aLclName);
 
                 // jetzt nach Titel- und Gliederungstextobjekten suchen und
                 // Objekte zu Listenern machen
@@ -1116,31 +1115,31 @@ void SdDrawDocument::NewOrLoadCompleted(DocCreationMode eMode)
 
                             for (USHORT nSheet = 0; nSheet < 10; nSheet++)
                             {
-                                pSheet = (SfxStyleSheet*)pOutlineList->GetObject(nSheet);
-                                if (pSheet)
+                                SfxStyleSheet *pLclSheet = (SfxStyleSheet*)pOutlineList->GetObject(nSheet);
+                                if (pLclSheet)
                                 {
-                                    pObj->StartListening(*pSheet);
+                                    pObj->StartListening(*pLclSheet);
 
                                     if( nSheet == 0)
                                         // Textrahmen hoert auf StyleSheet der Ebene1
-                                        pObj->NbcSetStyleSheet(pSheet, TRUE);
+                                        pObj->NbcSetStyleSheet(pLclSheet, TRUE);
                                 }
                             }
                         }
 
-                        SdPage* pPage = (SdPage*) pObj->GetPage();
+                        SdPage* pLclPage = (SdPage*) pObj->GetPage();
 
-                        if (pObj->ISA(SdrTextObj) && pObj->IsEmptyPresObj() && pPage)
+                        if (pObj->ISA(SdrTextObj) && pObj->IsEmptyPresObj() && pLclPage)
                         {
-                            PresObjKind ePresObjKind = pPage->GetPresObjKind(pObj);
-                            String aString = pPage->GetPresObjText(ePresObjKind);
+                            PresObjKind ePresObjKind = pLclPage->GetPresObjKind(pObj);
+                            String aString = pLclPage->GetPresObjText(ePresObjKind);
 
                             if (aString.Len())
                             {
                                 SdOutliner* pInternalOutl = GetInternalOutliner(TRUE);
                                 pInternalOutl->SetMinDepth(0);
-                                pPage->SetObjText( (SdrTextObj*) pObj, pInternalOutl, ePresObjKind, aString );
-                                pObj->NbcSetStyleSheet( pPage->GetStyleSheetForPresObj( ePresObjKind ), TRUE );
+                                pLclPage->SetObjText( (SdrTextObj*) pObj, pInternalOutl, ePresObjKind, aString );
+                                pObj->NbcSetStyleSheet( pLclPage->GetStyleSheetForPresObj( ePresObjKind ), TRUE );
                                 pInternalOutl->Clear();
                             }
                         }
@@ -1309,9 +1308,8 @@ uno::Reference< uno::XInterface > SdDrawDocument::createUnoModel()
     {
         xModel = pDocSh->GetModel();
     }
-    catch( uno::RuntimeException& e )
+    catch( uno::RuntimeException& )
     {
-        e;                              // to avoid a compiler warning...
     }
 
     return xModel;
@@ -1356,3 +1354,5 @@ sal_Int32 SdDrawDocument::GetPrinterIndependentLayout (void)
     return mnPrinterIndependentLayout;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,16 +36,11 @@
 
 #include <com/sun/star/i18n/UnicodeType.hpp>
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
+#include <sal/macros.h>
 
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
-#ifndef CONFIG_HXX
 #include "config.hxx"
-#endif
 
 #include "node.hxx"
 namespace binfilter {
@@ -86,27 +82,6 @@ using namespace ::com::sun::star::i18n;
 
 /*?*/ static const SmTokenTableEntry aTokenTable[] =
 /*?*/ {
-/*?*/ //    { "#", TPOUND, '\0', 0, 0 },
-/*?*/ //    { "##", TDPOUND, '\0', 0, 0 },
-/*?*/ //    { "&", TAND, MS_AND, TGPRODUCT, 0 },
-/*?*/ //    { "(", TLPARENT, MS_LPARENT, TGLBRACES, 5 },    //! 5 to continue expression
-/*?*/ //    { ")", TRPARENT, MS_RPARENT, TGRBRACES, 0 },    //! 0 to terminate expression
-/*?*/ //    { "*", TMULTIPLY, MS_MULTIPLY, TGPRODUCT, 0 },
-/*?*/ //    { "+", TPLUS, MS_PLUS, TGUNOPER | TGSUM, 5 },
-/*?*/ //    { "+-", TPLUSMINUS, MS_PLUSMINUS, TGUNOPER | TGSUM, 5 },
-/*?*/ //    { "-", TMINUS, MS_MINUS, TGUNOPER | TGSUM, 5 },
-/*?*/ //    { "-+", TMINUSPLUS, MS_MINUSPLUS, TGUNOPER | TGSUM, 5 },
-/*?*/ //    { ".", TPOINT, '\0', 0, 0 },
-/*?*/ //    { "/", TDIVIDEBY, MS_SLASH, TGPRODUCT, 0 },
-/*?*/ //    { "<", TLT, MS_LT, TGRELATION, 0 },
-/*?*/ //    { "<<", TLL, MS_LL, TGRELATION, 0 },
-/*?*/ //    { "<=", TLE, MS_LE, TGRELATION, 0 },
-/*?*/ //    { "<>", TNEQ, MS_NEQ, TGRELATION, 0},
-/*?*/ //    { "<?>", TPLACE, MS_PLACE, 0, 5 },
-/*?*/ //    { "=", TASSIGN, MS_ASSIGN, TGRELATION, 0},
-/*?*/ //    { ">", TGT, MS_GT, TGRELATION, 0 },
-/*?*/ //    { ">=", TGE, MS_GE, TGRELATION, 0 },
-/*?*/ //    { ">>", TGG, MS_GG, TGRELATION, 0 },
 /*?*/   { "Im" , TIM, MS_IM, TGSTANDALONE, 5 },
 /*?*/   { "MZ23", TDEBUG, '\0', TGATTRIBUT, 0 },
 /*?*/   { "Re" , TRE, MS_RE, TGSTANDALONE, 5 },
@@ -313,16 +288,6 @@ using namespace ::com::sun::star::i18n;
 /*?*/   { "widevec", TWIDEVEC, MS_VEC, TGATTRIBUT, 5},
 /*?*/   { "wp" , TWP, MS_WP, TGSTANDALONE, 5},
 /*?*/   { "yellow", TYELLOW, '\0', TGCOLOR, 0},
-/*?*/ //    { "[", TLBRACKET, MS_LBRACKET, TGLBRACES, 5},   //! 5 to continue expression
-/*?*/ //    { "\\", TESCAPE, '\0', 0, 5},
-/*?*/ //    { "]", TRBRACKET, MS_RBRACKET, TGRBRACES, 0},   //! 0 to terminate expression
-/*?*/ //    { "^", TRSUP, '\0', TGPOWER, 0},
-/*?*/ //    { "_", TRSUB, '\0', TGPOWER, 0},
-/*?*/ //    { "`", TSBLANK, '\0', TGBLANK, 5},
-/*?*/ //    { "{", TLGROUP, MS_LBRACE, 0, 5},       //! 5 to continue expression
-/*?*/ //    { "|", TOR, MS_OR, TGSUM, 0},
-/*?*/ //    { "}", TRGROUP, MS_RBRACE, 0, 0},       //! 0 to terminate expression
-/*?*/ //    { "~", TBLANK, '\0', TGBLANK, 5},
 /*?*/   { "", TEND, '\0', 0, 0}
 /*?*/ };
 
@@ -332,7 +297,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   const SmTokenTableEntry * pRes = 0;
 /*N*/   if (rName.Len())
 /*N*/   {
-/*N*/       INT32 nEntries = sizeof( aTokenTable ) / sizeof( aTokenTable[0] );
+/*N*/       INT32 nEntries = SAL_N_ELEMENTS( aTokenTable );
 /*N*/       for (INT32 i = 0;  i < nEntries;  ++i)
 /*N*/       {
 /*N*/           if (rName.EqualsIgnoreCaseAscii( aTokenTable[i].pIdent ))
@@ -407,7 +372,7 @@ using namespace ::com::sun::star::i18n;
 
 // Continuing characters may be any alphanumeric or dot.
 /*?*/ const sal_Int32 coContFlags =
-/*?*/     ( coStartFlags | KParseTokens::ASC_DOT ) & ~KParseTokens::IGNORE_LEADING_WS
+/*?*/     (( coStartFlags | KParseTokens::ASC_DOT ) & ~KParseTokens::IGNORE_LEADING_WS)
 /*?*/     | KParseTokens::TWO_DOUBLE_QUOTES_BREAK_STRING;
 
 // First character for numbers, may be any numeric or dot
@@ -1320,8 +1285,8 @@ const sal_Int32 coNumContFlags =
 /*N*/   }
 /*N*/
 /*N*/   // Blanks am Zeilenende ignorieren wenn die entsprechende Option gesetzt ist
-/*N*/   if (CurToken.eType == TNEWLINE  ||  CurToken.eType == TEND
-/*N*/         &&  SM_MOD1()->GetConfig()->IsIgnoreSpacesRight())
+/*N*/   if (CurToken.eType == TNEWLINE  ||  (CurToken.eType == TEND
+/*N*/         &&  SM_MOD1()->GetConfig()->IsIgnoreSpacesRight()))
 /*?*/       pBlankNode->Clear();
 /*N*/
 /*N*/   NodeStack.Push(pBlankNode);
@@ -1520,28 +1485,28 @@ const sal_Int32 coNumContFlags =
 /*N*/ {
 /*N*/   NextToken();
 /*N*/
-/*N*/   sal_Unicode cChar;
 /*N*/   switch (CurToken.eType)
-/*N*/   {   case TLPARENT :     cChar = MS_LPARENT;     break;
-/*N*/       case TRPARENT :     cChar = MS_RPARENT;     break;
-/*N*/       case TLBRACKET :    cChar = MS_LBRACKET;    break;
-/*N*/       case TRBRACKET :    cChar = MS_RBRACKET;    break;
-/*N*/         case TLDBRACKET :   cChar = MS_LDBRACKET;   break;
-/*N*/         case TRDBRACKET :   cChar = MS_RDBRACKET;   break;
+/*N*/   {   case TLPARENT :
+/*N*/       case TRPARENT :
+/*N*/       case TLBRACKET :
+/*N*/       case TRBRACKET :
+/*N*/         case TLDBRACKET :
+/*N*/         case TRDBRACKET :
 /*N*/       case TLBRACE :
-/*N*/       case TLGROUP :      cChar = MS_LBRACE;      break;
+/*N*/       case TLGROUP :
 /*N*/       case TRBRACE :
-/*N*/       case TRGROUP :      cChar = MS_RBRACE;      break;
-/*N*/       case TLANGLE :      cChar = MS_LANGLE;      break;
-/*N*/       case TRANGLE :      cChar = MS_RANGLE;      break;
-/*N*/       case TLCEIL :       cChar = MS_LCEIL;       break;
-/*N*/       case TRCEIL :       cChar = MS_RCEIL;       break;
-/*N*/       case TLFLOOR :      cChar = MS_LFLOOR;      break;
-/*N*/       case TRFLOOR :      cChar = MS_RFLOOR;      break;
+/*N*/       case TRGROUP :
+/*N*/       case TLANGLE :
+/*N*/       case TRANGLE :
+/*N*/       case TLCEIL :
+/*N*/       case TRCEIL :
+/*N*/       case TLFLOOR :
+/*N*/       case TRFLOOR :
 /*N*/       case TLLINE :
-/*N*/       case TRLINE :       cChar = MS_LINE;        break;
+/*N*/       case TRLINE :
 /*N*/       case TLDLINE :
-/*N*/       case TRDLINE :      cChar = MS_DLINE;       break;
+/*N*/       case TRDLINE :
+/*N*/           break;
 /*N*/       default:
 /*N*/           Error(PE_UNEXPECTED_TOKEN);
 /*N*/   }
@@ -1603,6 +1568,7 @@ const sal_Int32 coNumContFlags =
 /*N*/                   case TLIM :     pLim = "lim";       break;
 /*N*/                   case TLIMSUP :  pLim = "lim sup";   break;
 /*N*/                   case TLIMINF :  pLim = "lim inf";   break;
+                        default: break;
 /*N*/               }
 /*N*/               if( pLim )
 /*N*/                   CurToken.aText.AssignAscii( pLim );
@@ -1640,7 +1606,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   BOOL         bIsPostfix = eType == TFACT;
 /*N*/
 /*N*/   SmStructureNode *pSNode;
-/*N*/   SmNode *pOper,
+/*N*/   SmNode *pOper = 0,
 /*N*/          *pExtra = 0,
 /*N*/          *pArg;
 /*N*/
@@ -2229,19 +2195,19 @@ const sal_Int32 coNumContFlags =
 /*M*/     }
 /*M*/     else    // 5.0 <-> 6.0 formula text (symbol name) conversion
 /*M*/     {
-/*M*/         LanguageType nLang = GetLanguage();
+/*M*/         LanguageType nLclLang = GetLanguage();
 /*M*/         SmLocalizedSymbolData &rData = SM_MOD1()->GetLocSymbolData();
 /*M*/         const ResStringArray *pFrom = 0;
 /*M*/         const ResStringArray *pTo   = 0;
 /*M*/         if (CONVERT_50_TO_60 == GetConversion())
 /*M*/         {
-/*M*/             pFrom = rData.Get50NamesArray( nLang );
-/*M*/             pTo   = rData.Get60NamesArray( nLang );
+/*M*/             pFrom = rData.Get50NamesArray( nLclLang );
+/*M*/             pTo   = rData.Get60NamesArray( nLclLang );
 /*M*/         }
 /*M*/         else if (CONVERT_60_TO_50 == GetConversion())
 /*M*/         {
-/*M*/             pFrom = rData.Get60NamesArray( nLang );
-/*M*/             pTo   = rData.Get50NamesArray( nLang );
+/*M*/             pFrom = rData.Get60NamesArray( nLclLang );
+/*M*/             pTo   = rData.Get50NamesArray( nLclLang );
 /*M*/         }
 /*M*/         if (pFrom  &&  pTo)
 /*M*/         {
@@ -2318,10 +2284,9 @@ const sal_Int32 coNumContFlags =
 /*N*/   ColOff       = 0;
 /*N*/   CurError     = -1;
 /*N*/
-/*N*/   for (USHORT i = 0;  i < ErrDescList.Count();  i++)
-/*N*/       delete ErrDescList.Remove(i);
-/*N*/
-/*N*/   ErrDescList.Clear();
+        for ( size_t i = 0, n = ErrDescList.size(); i < n; ++i )
+            delete ErrDescList[ i ];
+        ErrDescList.clear();
 /*N*/
 /*N*/   NodeStack.Clear();
 /*N*/
@@ -2333,7 +2298,7 @@ const sal_Int32 coNumContFlags =
 /*N*/ }
 
 
-/*N*/ USHORT SmParser::AddError(SmParseError Type, SmNode *pNode)
+/*N*/ void SmParser::AddError(SmParseError Type, SmNode *pNode)
 /*N*/ {
 /*N*/   SmErrorDesc *pErrDesc = new SmErrorDesc;
 /*N*/
@@ -2363,9 +2328,7 @@ const sal_Int32 coNumContFlags =
 /*N*/   }
 /*N*/   pErrDesc->Text += SmResId(nRID);
 /*N*/
-/*N*/   ErrDescList.Insert(pErrDesc);
-/*N*/
-/*N*/   return (USHORT) ErrDescList.GetPos(pErrDesc);
+/*N*/   ErrDescList.push_back( pErrDesc );
 /*N*/ }
 
 
@@ -2376,3 +2339,5 @@ const sal_Int32 coNumContFlags =
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

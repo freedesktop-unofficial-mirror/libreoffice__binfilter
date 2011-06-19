@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,23 +30,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
 
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 namespace rtl { class OUString; }
 namespace binfilter {
 
@@ -162,3 +155,5 @@ inline const UniReference< XMLPropertySetMapper >&
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLIMPPR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

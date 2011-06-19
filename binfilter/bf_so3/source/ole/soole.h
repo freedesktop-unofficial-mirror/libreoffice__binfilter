@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -44,20 +45,11 @@
 #define WIN32ANSI
 #endif
 
-//#ifdef INC_OLEUI
 #ifdef WIN32
-/*
- * Comment the next line and remove the comment from the
- * line after it to compile for Windows NT 3.5.
- */
 #include <oledlg.h>
-//#include <ole2ui.h>
 #else
 #include <ole2ui.h>
 #endif
-//#endif
-
-//#include <bookguid.h>
 
 #ifdef INC_CONTROLS
 #define INC_AUTOMATION
@@ -91,9 +83,6 @@
 #include <malloc.h>
 #endif
 
-//#include <book1632.h>
-//#include <dbgout.h>
-
 #ifdef INC_CLASSLIB
 extern "C"
     {
@@ -104,7 +93,6 @@ extern "C"
    #endif
     }
 
-//#include <classlib.h>
 #endif
 
 
@@ -429,7 +417,6 @@ STDAPI StarObject_OleCreateFromFile(REFCLSID, LPCSTR, REFIID
            , DWORD, LPFORMATETC, LPOLECLIENTSITE, LPSTORAGE, LPVOID *);
 
 #ifdef skbdkbasdfbasbjdas
-//#ifndef NOMACROREDIRECT
 #undef StringFromCLSID
 #define StringFromCLSID(c, pp) StarObject_StringFromCLSID(c, pp)
 
@@ -457,9 +444,6 @@ STDAPI StarObject_OleCreateFromFile(REFCLSID, LPCSTR, REFIID
 #undef CreateFileMoniker
 #define CreateFileMoniker(p, i) StarObject_CreateFileMoniker(p, i)
 
-//#undef CreateItemMoniker
-//#define CreateItemMoniker(p1, p2, i) StarObject_CreateItemMoniker(p1, p2, i)
-
 #undef MkParseDisplayName
 #define MkParseDisplayName(b, p, u, i) StarObject_MkParseDisplayName(b, p, u, i)
 
@@ -476,3 +460,5 @@ STDAPI StarObject_OleCreateFromFile(REFCLSID, LPCSTR, REFIID
 }
 
 #endif //_StarObject_H_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

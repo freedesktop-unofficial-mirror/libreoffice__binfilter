@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,22 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 FORWARD_DECLARE_INTERFACE(container,XNameContainer)
 namespace binfilter {
 
 class StarBASIC;
 class FmFormModel;
 class FmFormPageImpl;   // haelt die Liste aller Forms
-
-//FORWARD_DECLARE_INTERFACE(uno,Reference)
-//STRIP008 FORWARD_DECLARE_INTERFACE(container,XNameContainer)
 
 class SfxJSArray;
 class HelpEvent;
@@ -58,13 +52,13 @@ class FmFormPage : public SdrPage
 public:
     TYPEINFO();
 
-    FmFormPage(FmFormModel& rModel,StarBASIC*, FASTBOOL bMasterPage=sal_False);
+    FmFormPage(FmFormModel& rModel,StarBASIC*, bool bMasterPage=sal_False);
     ~FmFormPage();
 
     using SdrPage::NbcInsertObject;
     using SdrPage::ReplaceObject;
 
-    virtual void    WriteData(SvStream& rOut) const;
+    virtual void    WriteData(SvStream& ) const {}
     virtual void    ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     virtual void    SetModel(SdrModel* pNewModel);
 
@@ -75,7 +69,6 @@ public:
 
     virtual SdrObject* RemoveObject(ULONG nObjNum);
 
-#ifndef SVX_LIGHT
     /** Insert _pClone into the page.
         If _pClone is no form object, InsertObject will be called.
         If _pClone is a form object, the page will create forms as needed to properly place the control model of the new object
@@ -91,7 +84,6 @@ public:
         without (to much) structure loss.
         If _pObj isn't a form object, nothing happens.
     */
-#endif
 
     // Zugriff auf alle Formulare
     const ::com::sun::star::uno::Reference< ::com::sun::star::container::XNameContainer>& GetForms() const;
@@ -110,3 +102,4 @@ public:
 }//end of namespace binfilter
 #endif          // _SVX_FMPAGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,48 +28,19 @@
 
 #include <stdio.h>
 
-#ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #include "layerexport.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_ELEMENTEXPORT_HXX_
 #include "elementexport.hxx"
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include "contextid.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #include "controlpropertyhdl.hxx"
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #include "controlpropertymap.hxx"
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_FORMEVENTS_HXX_
 #include "formevents.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -92,7 +64,7 @@ namespace xmloff
     //---------------------------------------------------------------------
     const ::rtl::OUString& OFormLayerXMLExport_Impl::getControlNumberStyleNamePrefix()
     {
-        static const ::rtl::OUString s_sControlNumberStyleNamePrefix = ::rtl::OUString::createFromAscii("C");
+        static const ::rtl::OUString s_sControlNumberStyleNamePrefix( RTL_CONSTASCII_USTRINGPARAM( "C" ));
         return s_sControlNumberStyleNamePrefix;
     }
 
@@ -105,14 +77,14 @@ namespace xmloff
 
         // add our style family to the export context's style pool
         m_xPropertyHandlerFactory = new OControlPropertyHandlerFactory();
-        ::vos::ORef< XMLPropertySetMapper > xStylePropertiesMapper = new XMLPropertySetMapper( getControlStylePropertyMap(), m_xPropertyHandlerFactory.getBodyPtr() );
-        m_xExportMapper = new OFormExportPropertyMapper( xStylePropertiesMapper.getBodyPtr() );
+        ::rtl::Reference< XMLPropertySetMapper > xStylePropertiesMapper = new XMLPropertySetMapper( getControlStylePropertyMap(), m_xPropertyHandlerFactory.get() );
+        m_xExportMapper = new OFormExportPropertyMapper( xStylePropertiesMapper.get() );
 
         // our style family
         m_rContext.GetAutoStylePool()->AddFamily(
             XML_STYLE_FAMILY_CONTROL_ID,
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( XML_STYLE_FAMILY_CONTROL_NAME ) ),
-            m_xExportMapper.getBodyPtr(),
+            m_xExportMapper.get(),
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( XML_STYLE_FAMILY_CONTROL_PREFIX) )
         );
 
@@ -138,7 +110,7 @@ namespace xmloff
 
         if (!xSI->supportsService(SERVICE_FORMSCOLLECTION))
         {
-            OSL_ENSURE(sal_False, "OFormLayerXMLExport_Impl::implCheckPage: invalid collection (is no com.sun.star.form.Forms)!");
+            OSL_FAIL("OFormLayerXMLExport_Impl::implCheckPage: invalid collection (is no com.sun.star.form.Forms)!");
             // nothing to do
             return sal_False;
         }
@@ -186,7 +158,7 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    ::vos::ORef< SvXMLExportPropertyMapper > OFormLayerXMLExport_Impl::getStylePropertyMapper()
+    ::rtl::Reference< SvXMLExportPropertyMapper > OFormLayerXMLExport_Impl::getStylePropertyMapper()
     {
         return m_xExportMapper;
     }
@@ -248,7 +220,7 @@ namespace xmloff
             }
             catch(Exception&)
             {
-                OSL_ENSURE(sal_False, "OFormLayerXMLExport_Impl::exportCollectionElements: caught an exception ... skipping the current element!");
+                OSL_FAIL("OFormLayerXMLExport_Impl::exportCollectionElements: caught an exception ... skipping the current element!");
                 continue;
             }
         }
@@ -564,14 +536,6 @@ namespace xmloff
                             aPropertyStates.push_back( aNumberStyleState );
                         }
 
-#ifdef DBG_UTIL
-                        ::std::vector< XMLPropertyState >::const_iterator aHaveALook = aPropertyStates.begin();
-                        for ( ; aHaveALook != aPropertyStates.end(); ++aHaveALook )
-                        {
-                            sal_Int32 nDummy = 0;
-                        }
-#endif
-
                         if ( aPropertyStates.size() )
                         {   // add to the style pool
                             ::rtl::OUString sColumnStyleName = m_rContext.GetAutoStylePool()->Add( XML_STYLE_FAMILY_CONTROL_ID, aPropertyStates );
@@ -583,14 +547,13 @@ namespace xmloff
                         }
                     }
                     else
-                        OSL_ENSURE( sal_False, "OFormLayerXMLExport_Impl::collectGridAutoStyles: invalid grid column encountered!" );
+                        OSL_FAIL( "OFormLayerXMLExport_Impl::collectGridAutoStyles: invalid grid column encountered!" );
                 }
             }
         }
-        catch( const Exception& e )
+        catch( const Exception& )
         {
-            e;  // make compiler happy
-            OSL_ENSURE( sal_False, "OFormLayerXMLExport_Impl::collectGridAutoStyles: error examining the grid colums!" );
+            OSL_FAIL( "OFormLayerXMLExport_Impl::collectGridAutoStyles: error examining the grid colums!" );
         }
     }
 
@@ -686,8 +649,8 @@ namespace xmloff
                 // create it for en-US (does not really matter, as we will specify a locale for every
                 // concrete language to use)
                 Sequence< Any > aSupplierArgs(1);
-                aSupplierArgs[0] <<= Locale (   ::rtl::OUString::createFromAscii("en"),
-                                                ::rtl::OUString::createFromAscii("US"),
+                aSupplierArgs[0] <<= Locale (   ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "en" )),
+                                                ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "US" )),
                                                 ::rtl::OUString()
                                             );
                 // #110680#
@@ -743,3 +706,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

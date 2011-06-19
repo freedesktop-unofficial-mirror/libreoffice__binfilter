@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 class VirtualDevice;
 class INetURLObject;
 class Polygon;
@@ -81,3 +76,5 @@ BOOL DitherBitmap( Bitmap& rBitmap );
 
 }//end of namespace binfilter
 #endif // _XOUTBMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

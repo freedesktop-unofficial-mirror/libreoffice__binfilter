@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,76 +26,23 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONEXPORT_HXX_
 #include "XMLSectionExport.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-
-
 #include <vector>
 
-
-
-
-
-
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_SECTIONFILELINK_HPP_
 #include <com/sun/star/text/SectionFileLink.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEX_HPP_
 #include <com/sun/star/text/XDocumentIndex.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_TEXT_BIBLIOGRAPHYDATAFIELD_HPP_
 #include <com/sun/star/text/BibliographyDataField.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XCHAPTERNUMBERINGSUPPLIER_HPP_
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
-#endif
-
-
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_TXTFLDE_HXX
 #include "txtflde.hxx"
-#endif
 
 namespace binfilter {
 
@@ -121,13 +69,21 @@ using ::com::sun::star::uno::XInterface;
 XMLSectionExport::XMLSectionExport(
     SvXMLExport& rExp,
     XMLTextParagraphExport& rParaExp) :
-        rExport(rExp),
-        rParaExport(rParaExp),
         sCondition(RTL_CONSTASCII_USTRINGPARAM("Condition")),
         sCreateFromChapter(RTL_CONSTASCII_USTRINGPARAM("CreateFromChapter")),
+        sCreateFromEmbeddedObjects(RTL_CONSTASCII_USTRINGPARAM("CreateFromEmbeddedObjects")),
+        sCreateFromGraphicObjects(RTL_CONSTASCII_USTRINGPARAM("CreateFromGraphicObjects")),
         sCreateFromLabels(RTL_CONSTASCII_USTRINGPARAM("CreateFromLabels")),
         sCreateFromMarks(RTL_CONSTASCII_USTRINGPARAM("CreateFromMarks")),
+        sCreateFromOtherEmbeddedObjects(RTL_CONSTASCII_USTRINGPARAM("CreateFromOtherEmbeddedObjects")),
         sCreateFromOutline(RTL_CONSTASCII_USTRINGPARAM("CreateFromOutline")),
+        sCreateFromStarCalc(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarCalc")),
+        sCreateFromStarChart(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarChart")),
+        sCreateFromStarDraw(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarDraw")),
+        sCreateFromStarImage(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarImage")),
+        sCreateFromStarMath(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarMath")),
+        sCreateFromTables(RTL_CONSTASCII_USTRINGPARAM("CreateFromTables")),
+        sCreateFromTextFrames(RTL_CONSTASCII_USTRINGPARAM("CreateFromTextFrames")),
         sDdeCommandElement(RTL_CONSTASCII_USTRINGPARAM("DDECommandElement")),
         sDdeCommandFile(RTL_CONSTASCII_USTRINGPARAM("DDECommandFile")),
         sDdeCommandType(RTL_CONSTASCII_USTRINGPARAM("DDECommandType")),
@@ -153,19 +109,9 @@ XMLSectionExport::XMLSectionExport(
         sUseCombinedEntries(RTL_CONSTASCII_USTRINGPARAM("UseCombinedEntries")),
         sUseDash(RTL_CONSTASCII_USTRINGPARAM("UseDash")),
         sUseKeyAsEntry(RTL_CONSTASCII_USTRINGPARAM("UseKeyAsEntry")),
+        sUseLevelFromSource(RTL_CONSTASCII_USTRINGPARAM("UseLevelFromSource")),
         sUsePP(RTL_CONSTASCII_USTRINGPARAM("UsePP")),
         sUseUpperCase(RTL_CONSTASCII_USTRINGPARAM("UseUpperCase")),
-        sCreateFromOtherEmbeddedObjects(RTL_CONSTASCII_USTRINGPARAM("CreateFromOtherEmbeddedObjects")),
-        sCreateFromStarCalc(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarCalc")),
-        sCreateFromStarChart(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarChart")),
-        sCreateFromStarDraw(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarDraw")),
-        sCreateFromStarImage(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarImage")),
-        sCreateFromStarMath(RTL_CONSTASCII_USTRINGPARAM("CreateFromStarMath")),
-        sCreateFromEmbeddedObjects(RTL_CONSTASCII_USTRINGPARAM("CreateFromEmbeddedObjects")),
-        sCreateFromGraphicObjects(RTL_CONSTASCII_USTRINGPARAM("CreateFromGraphicObjects")),
-        sCreateFromTables(RTL_CONSTASCII_USTRINGPARAM("CreateFromTables")),
-        sCreateFromTextFrames(RTL_CONSTASCII_USTRINGPARAM("CreateFromTextFrames")),
-        sUseLevelFromSource(RTL_CONSTASCII_USTRINGPARAM("UseLevelFromSource")),
         sIsCommaSeparated(RTL_CONSTASCII_USTRINGPARAM("IsCommaSeparated")),
         sIsAutomaticUpdate(RTL_CONSTASCII_USTRINGPARAM("IsAutomaticUpdate")),
         sIsRelativeTabstops(RTL_CONSTASCII_USTRINGPARAM("IsRelativeTabstops")),
@@ -183,6 +129,8 @@ XMLSectionExport::XMLSectionExport(
         sIsCurrentlyVisible(RTL_CONSTASCII_USTRINGPARAM("IsCurrentlyVisible")),
         sHeadingStyleName(RTL_CONSTASCII_USTRINGPARAM("HeadingStyleName")),
         sEmpty(),
+        rExport(rExp),
+        rParaExport(rParaExp),
         bHeadingDummiesExported( sal_False )
 {
 }
@@ -337,7 +285,7 @@ void XMLSectionExport::ExportSectionEnd(
                         break;
 
                     default:
-                        DBG_ERROR("unknown index type");
+                        OSL_FAIL("unknown index type");
                         // default: skip index!
                         break;
                 }
@@ -363,7 +311,7 @@ void XMLSectionExport::ExportSectionEnd(
         }
         else
         {
-            DBG_ERROR("Need element name!");
+            OSL_FAIL("Need element name!");
         }
     }
     // else: autostyles -> ignore
@@ -407,7 +355,7 @@ void XMLSectionExport::ExportIndexStart(
 
         default:
             // skip index
-            DBG_ERROR("unknown index type");
+            OSL_FAIL("unknown index type");
             break;
     }
 }
@@ -425,7 +373,7 @@ void XMLSectionExport::ExportIndexHeaderStart(
 }
 
 
-SvXMLEnumStringMapEntry __READONLY_DATA aIndexTypeMap[] =
+SvXMLEnumStringMapEntry const aIndexTypeMap[] =
 {
     ENUM_STRING_MAP_ENTRY( "com.sun.star.text.ContentIndex", TEXT_SECTION_TYPE_TOC ),
     ENUM_STRING_MAP_ENTRY( "com.sun.star.text.DocumentIndex", TEXT_SECTION_TYPE_ALPHABETICAL ),
@@ -609,7 +557,7 @@ void XMLSectionExport::ExportTableOfContentStart(
         // TOC specific index source attributes:
 
         // outline-level: 1..10
-        sal_Int16 nLevel;
+        sal_Int16 nLevel(0);
         if( rPropertySet->getPropertyValue(sLevel) >>= nLevel )
         {
             OUStringBuffer sBuffer;
@@ -924,7 +872,7 @@ void XMLSectionExport::ExportBaseIndexSource(
         aAny = xLevelTemplates->getByIndex(i);
         aAny >>= aTemplateSequence;
 
-        // export the sequence (abort export if an error occured; #91214#)
+        // export the sequence (abort export if an error occurred; #91214#)
         sal_Bool bResult =
             ExportIndexTemplate(eType, i, rPropertySet, aTemplateSequence);
         if ( !bResult )
@@ -946,11 +894,12 @@ void XMLSectionExport::ExportBaseIndexSource(
 
 void XMLSectionExport::ExportBaseIndexBody(
     SectionTypeEnum eType,
-    const Reference<XPropertySet> & rSection)
+    const Reference<XPropertySet> & /*rSection*/)
 {
     // type not used; checked anyway.
     DBG_ASSERT(eType >= TEXT_SECTION_TYPE_TOC, "illegal index type");
     DBG_ASSERT(eType <= TEXT_SECTION_TYPE_BIBLIOGRAPHY, "illegal index type");
+    (void)eType;
 
     // export start only
 
@@ -983,7 +932,7 @@ void XMLSectionExport::ExportTableAndIllustrationIndexSourceAttributes(
 
     // caption format
     aAny = rPropertySet->getPropertyValue(sLabelDisplayType);
-    sal_Int16 nType;
+    sal_Int16 nType(0);
     aAny >>= nType;
     GetExport().AddAttribute(XML_NAMESPACE_TEXT,
                              XML_CAPTION_SEQUENCE_FORMAT,
@@ -1180,7 +1129,7 @@ enum TemplateParamEnum
     TOK_TPARAM_BIBLIOGRAPHY_DATA
 };
 
-SvXMLEnumStringMapEntry __READONLY_DATA aTemplateTypeMap[] =
+SvXMLEnumStringMapEntry const aTemplateTypeMap[] =
 {
     ENUM_STRING_MAP_ENTRY( "TokenEntryNumber",  TOK_TTYPE_ENTRY_NUMBER ),
     ENUM_STRING_MAP_ENTRY( "TokenEntryText",    TOK_TTYPE_ENTRY_TEXT ),
@@ -1194,7 +1143,7 @@ SvXMLEnumStringMapEntry __READONLY_DATA aTemplateTypeMap[] =
     ENUM_STRING_MAP_END()
 };
 
-SvXMLEnumStringMapEntry __READONLY_DATA aTemplateParamMap[] =
+SvXMLEnumStringMapEntry const aTemplateParamMap[] =
 {
     ENUM_STRING_MAP_ENTRY( "TokenType",             TOK_TPARAM_TOKEN_TYPE ),
     ENUM_STRING_MAP_ENTRY( "CharacterStyleName",    TOK_TPARAM_CHAR_STYLE ),
@@ -1207,7 +1156,7 @@ SvXMLEnumStringMapEntry __READONLY_DATA aTemplateParamMap[] =
     ENUM_STRING_MAP_END()
 };
 
-SvXMLEnumMapEntry __READONLY_DATA aBibliographyDataFieldMap[] =
+SvXMLEnumMapEntry const aBibliographyDataFieldMap[] =
 {
     { XML_ADDRESS,              BibliographyDataField::ADDRESS },
     { XML_ANNOTE,               BibliographyDataField::ANNOTE },
@@ -1322,6 +1271,7 @@ void XMLSectionExport::ExportIndexTemplateElement(
                     bRightAligned =
                         *(sal_Bool *)rValues[i].Value.getValue();
                     bRightAlignedOK = sal_True;
+                    (void)bRightAlignedOK;
                     break;
 
                 case TOK_TPARAM_TAB_POSITION:
@@ -1456,6 +1406,7 @@ void XMLSectionExport::ExportIndexTemplateElement(
         if (TOK_TTYPE_CHAPTER_INFO == nTokenType)
         {
             DBG_ASSERT(bChapterFormatOK, "need chapter info");
+            (void)bChapterFormatOK;
             GetExport().AddAttribute(
                 XML_NAMESPACE_TEXT, XML_DISPLAY,
                 XMLTextFieldExport::MapChapterDisplayFormat(nChapterFormat));
@@ -1651,10 +1602,10 @@ void XMLSectionExport::ExportBibliographyConfiguration(SvXMLExport& rExport)
                     if (rValue.Name.equalsAsciiL(sAPI_SortKey,
                                                  sizeof(sAPI_SortKey)-1))
                     {
-                        sal_Int16 nKey;
-                        rValue.Value >>= nKey;
+                        sal_Int16 nLclKey(0);
+                        rValue.Value >>= nLclKey;
                         OUStringBuffer sBuf;
-                        if (SvXMLUnitConverter::convertEnum( sBuf, nKey,
+                        if (SvXMLUnitConverter::convertEnum( sBuf, nLclKey,
                                                  aBibliographyDataFieldMap ) )
                         {
                             rExport.AddAttribute(XML_NAMESPACE_TEXT, XML_KEY,
@@ -1834,3 +1785,5 @@ void XMLSectionExport::ExportMasterDocHeadingDummies()
     bHeadingDummiesExported  = sal_True;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

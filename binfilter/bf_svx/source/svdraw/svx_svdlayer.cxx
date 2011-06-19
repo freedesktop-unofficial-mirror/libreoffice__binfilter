@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,7 +37,7 @@ namespace binfilter {
 // SetOfByte
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ FASTBOOL SetOfByte::IsEmpty() const
+/*N*/ bool SetOfByte::IsEmpty() const
 /*N*/ {
 /*N*/   for (USHORT i=0; i<32; i++) {
 /*N*/       if (aData[i]!=0) return FALSE;
@@ -147,7 +148,7 @@ namespace binfilter {
 /*N*/       rIn >> rLayer.nType;
 /*N*/
 /*N*/       if(rLayer.nType == 1)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -219,8 +220,7 @@ namespace binfilter {
 /*N*/   aLSets(1024,16,16),
 /*N*/   pModel(NULL)
 /*N*/ {
-/*N*/   sal_Char aTextControls[] = "Controls";
-/*N*/   aControlLayerName = String(aTextControls, sizeof(aTextControls-1));
+/*N*/   aControlLayerName = String(RTL_CONSTASCII_USTRINGPARAM("Controls"));
 /*N*/   pParent=pNewParent;
 /*N*/ }
 
@@ -230,8 +230,7 @@ namespace binfilter {
 /*?*/   pParent(NULL),
 /*?*/   pModel(NULL)
 /*?*/ {
-/*?*/   sal_Char aTextControls[] = "Controls";
-/*?*/   aControlLayerName = String(aTextControls, sizeof(aTextControls-1));
+/*?*/   aControlLayerName = String(RTL_CONSTASCII_USTRINGPARAM("Controls"));
 /*?*/   *this = rSrcLayerAdmin;
 /*?*/ }
 
@@ -281,7 +280,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrLayerAdmin::Broadcast(FASTBOOL bLayerSet) const
+/*N*/ void SdrLayerAdmin::Broadcast(bool bLayerSet) const
 /*N*/ {
 /*N*/   if (pModel!=NULL) {
 /*N*/       SdrHint aHint(bLayerSet ? HINT_LAYERSETORDERCHG : HINT_LAYERORDERCHG);
@@ -304,7 +303,7 @@ namespace binfilter {
 
 
 
-/*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, FASTBOOL bInherited) const
+/*N*/ const SdrLayer* SdrLayerAdmin::GetLayer(const XubString& rName, bool /*bInherited*/) const
 /*N*/ {
 /*N*/   UINT16 i(0);
 /*N*/   const SdrLayer* pLay = NULL;
@@ -325,7 +324,7 @@ namespace binfilter {
 /*N*/   return pLay;
 /*N*/ }
 
-/*N*/ SdrLayerID SdrLayerAdmin::GetLayerID(const XubString& rName, FASTBOOL bInherited) const
+/*N*/ SdrLayerID SdrLayerAdmin::GetLayerID(const XubString& rName, bool bInherited) const
 /*N*/ {
 /*N*/   SdrLayerID nRet=SDRLAYER_NOTFOUND;
 /*N*/   const SdrLayer* pLay=GetLayer(rName,bInherited);
@@ -382,3 +381,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

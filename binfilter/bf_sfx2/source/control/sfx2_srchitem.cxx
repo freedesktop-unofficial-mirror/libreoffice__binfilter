@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,9 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
-#ifndef __SBX_SBXVARIABLE_HXX
 #include "bf_basic/sbxvar.hxx"
-#endif
-#ifndef _SVT_SEARCHOPT_HXX_
 #include <bf_svtools/searchopt.hxx>
-#endif
-
+#include <sal/macros.h>
 
 #include <bf_svtools/memberid.hrc>
 
@@ -49,13 +44,13 @@
 
 namespace binfilter {
 
-//using namespace uno;
-using namespace rtl;
 using namespace utl;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 #define CFG_ROOT_NODE   "Office.Common/SearchOptions"
 
@@ -91,7 +86,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       "Japanese/IsIgnoreMiddleDot"            // 18
 /*N*/   };
 /*N*/
-/*N*/     const int nCount = sizeof( aTranslitNames ) / sizeof( aTranslitNames[0] );
+/*N*/   const int nCount = SAL_N_ELEMENTS( aTranslitNames );
 /*N*/   Sequence< OUString > aNames( nCount );
 /*N*/   OUString* pNames = aNames.getArray();
 /*N*/   for (INT32 i = 0;  i < nCount;  ++i)
@@ -104,7 +99,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ SvxSearchItem::SvxSearchItem( const sal_uInt16 nId ) :
 /*N*/
 /*N*/   SfxPoolItem( nId ),
-/*N*/   ConfigItem( OUString::createFromAscii( CFG_ROOT_NODE ) ),
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFG_ROOT_NODE )) ),
 /*N*/
 /*N*/   aSearchOpt      (   SearchAlgorithms_ABSOLUTE,
 /*N*/                       SearchFlags::LEV_RELAXED,
@@ -113,15 +108,15 @@ using namespace ::com::sun::star::uno;
 /*N*/                           Locale(),
 /*N*/                           2, 2, 2,
 /*N*/                           TransliterationModules_IGNORE_CASE ),
+/*N*/   eFamily         ( SFX_STYLE_FAMILY_PARA ),
 /*N*/   nCommand        ( 0 ),
+/*N*/   nCellType       ( SVX_SEARCHIN_FORMULA ),
+/*N*/   nAppFlag        ( SVX_SEARCHAPP_WRITER ),
+/*N*/   bRowDirection   ( sal_True ),
+/*N*/   bAllTables      ( sal_False ),
 /*N*/   bBackward       ( sal_False ),
 /*N*/   bPattern        ( sal_False ),
 /*N*/   bContent        ( sal_False ),
-/*N*/   eFamily         ( SFX_STYLE_FAMILY_PARA ),
-/*N*/   bRowDirection   ( sal_True ),
-/*N*/   bAllTables      ( sal_False ),
-/*N*/   nCellType       ( SVX_SEARCHIN_FORMULA ),
-/*N*/   nAppFlag        ( SVX_SEARCHAPP_WRITER ),
 /*N*/   bAsianOptions   ( FALSE )
 /*N*/ {
 /*N*/   EnableNotification( lcl_GetNotifyNames() );
@@ -185,18 +180,18 @@ using namespace ::com::sun::star::uno;
 /*N*/ SvxSearchItem::SvxSearchItem( const SvxSearchItem& rItem ) :
 /*N*/
 /*N*/   SfxPoolItem ( rItem ),
-/*N*/   ConfigItem( OUString::createFromAscii( CFG_ROOT_NODE ) ),
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFG_ROOT_NODE )) ),
 /*N*/
 /*N*/   aSearchOpt      ( rItem.aSearchOpt ),
+/*N*/   eFamily         ( rItem.eFamily ),
 /*N*/   nCommand        ( rItem.nCommand ),
+/*N*/   nCellType       ( rItem.nCellType ),
+/*N*/   nAppFlag        ( rItem.nAppFlag ),
+/*N*/   bRowDirection   ( rItem.bRowDirection ),
+/*N*/   bAllTables      ( rItem.bAllTables ),
 /*N*/   bBackward       ( rItem.bBackward ),
 /*N*/   bPattern        ( rItem.bPattern ),
 /*N*/   bContent        ( rItem.bContent ),
-/*N*/   eFamily         ( rItem.eFamily ),
-/*N*/   bRowDirection   ( rItem.bRowDirection ),
-/*N*/   bAllTables      ( rItem.bAllTables ),
-/*N*/   nCellType       ( rItem.nCellType ),
-/*N*/   nAppFlag        ( rItem.nAppFlag ),
 /*N*/   bAsianOptions   ( rItem.bAsianOptions )
 /*N*/ {
 /*N*/   EnableNotification( lcl_GetNotifyNames() );
@@ -209,7 +204,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 // -----------------------------------------------------------------------
-/*N*/ SfxPoolItem* SvxSearchItem::Clone( SfxItemPool *pPool) const
+/*N*/ SfxPoolItem* SvxSearchItem::Clone( SfxItemPool * /*pPool*/) const
 /*N*/ {
 /*N*/   return new SvxSearchItem(*this);
 /*N*/ }
@@ -223,7 +218,6 @@ using namespace ::com::sun::star::uno;
 /*N*/          rItem1.searchFlag            == rItem2.searchFlag    &&
 /*N*/          rItem1.searchString          == rItem2.searchString  &&
 /*N*/          rItem1.replaceString         == rItem2.replaceString &&
-/*N*/          //rItem1.Locale              == rItem2.Locale        &&
 /*N*/          rItem1.changedChars          == rItem2.changedChars  &&
 /*N*/          rItem1.deletedChars          == rItem2.deletedChars  &&
 /*N*/          rItem1.insertedChars         == rItem2.insertedChars &&
@@ -253,28 +247,28 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ SfxItemPresentation SvxSearchItem::GetPresentation
 /*N*/ (
-/*N*/   SfxItemPresentation ePres,
-/*N*/   SfxMapUnit          eCoreUnit,
-/*N*/   SfxMapUnit          ePresUnit,
-/*N*/   XubString&          rText,
+/*N*/   SfxItemPresentation /*ePres*/,
+/*N*/   SfxMapUnit          /*eCoreUnit*/,
+/*N*/   SfxMapUnit          /*ePresUnit*/,
+/*N*/   XubString&          /*rText*/,
 /*N*/     const ::IntlWrapper *
 /*N*/ ) const
 /*N*/ {
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }
 
-/*N*/ void SvxSearchItem::Notify( const Sequence< OUString > &rPropertyNames )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SvxSearchItem::Notify( const Sequence< OUString > & /*rPropertyNames*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ sal_Bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
+/*N*/ bool SvxSearchItem::QueryValue( ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return sal_True;//STRIP001
+/*N*/ bool SvxSearchItem::PutValue( const ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMemberId*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return true;
 /*N*/ }
 
 void SvxSearchItem::Commit()
@@ -282,3 +276,5 @@ void SvxSearchItem::Commit()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

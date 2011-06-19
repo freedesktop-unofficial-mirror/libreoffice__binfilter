@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _XMLOFF_TEXTIMP_HXX_
 #define _XMLOFF_TEXTIMP_HXX_
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 #ifndef __SGI_STL_MAP
 #include <map>
@@ -39,29 +38,15 @@
 #include <vector>
 #endif
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
-
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include <bf_xmloff/xmlimppr.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
 
 // functional.hxx is obsolete and should be replaced by its comphelper
 // counterpart
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 namespace com { namespace sun { namespace star {
 namespace text { class XText; class XTextCursor; class XTextRange; class XTextContent; }
 namespace frame { class XModel; }
@@ -360,9 +345,6 @@ enum XMLTextType
 #define XML_TEXT_RENAME_TYPE_FRAME 10
 #define XML_TEXT_RENAME_TYPE_TABLE 20
 
-// create type for section list, XMLSectionList_Impl
-DECLARE_LIST( XMLSectionList_Impl, XMLSectionImportContext* )
-
 class XMLTextImportHelper : public UniRefBase
 {
     SvXMLTokenMap *pTextElemTokenMap;
@@ -382,8 +364,6 @@ class XMLTextImportHelper : public UniRefBase
     SvXMLImportContextRef xFontDecls;
     SvXMLImportContextRef xListBlock;
     SvXMLImportContextRef xListItem;
-
-    XMLSectionList_Impl aSectionList;
 
     UniReference < SvXMLImportPropertyMapper > xParaImpPrMap;
     UniReference < SvXMLImportPropertyMapper > xTextImpPrMap;
@@ -577,15 +557,12 @@ public:
     void SetListItem( XMLTextListItemContext *pListItem );
     void _SetListItem( SvXMLImportContext *pListItem );
 
-    XMLSectionList_Impl& GetSectionList() { return aSectionList; }
-
-#ifdef CONV_STAR_FONTS
     ::rtl::OUString ConvertStarFonts( const ::rtl::OUString& rChars,
                                       const ::rtl::OUString& rStyleName,
                                       sal_uInt8& rFlags,
                                       sal_Bool bPara,
                                          SvXMLImport& rImport ) const;
-#endif
+
     // insert a string without special whitespace processing enabled
     void InsertString( const ::rtl::OUString& rChars );
     // insert a string with special whitespace processing enabled
@@ -882,3 +859,5 @@ inline const SvXMLTokenMap& XMLTextImportHelper::GetTextMasterPageElemTokenMap()
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

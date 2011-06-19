@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,22 +33,12 @@
 
 #include <math.h>
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 
-#ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
-#endif
-#ifndef SC_CELL_HXX
 #include "cell.hxx"
-#endif
-#ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
-#endif
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 
 #if SC_SPEW_ENABLED
 #include "scspew.hxx"
@@ -439,7 +430,7 @@ void ScCalcTeam();
 void ScAnswer();
 void ScTTT();
 void ScSpewFunc();
-void ScGame(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void ScGame();
+void ScGame(){DBG_BF_ASSERT(0, "STRIP");}
 
 //----------------Funktionen in interpr2.cxx---------------
 double GetDate(INT16 nYear, INT16 nMonth, INT16 nDay);
@@ -728,3 +719,5 @@ inline BOOL ScInterpreter::CheckStringResultLen( String& rResult, const String& 
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

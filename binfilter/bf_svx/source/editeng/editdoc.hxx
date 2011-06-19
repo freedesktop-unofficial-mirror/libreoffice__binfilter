@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,27 +32,19 @@
 #include <editattr.hxx>
 #include <svxfont.hxx>
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _TOOLS_TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 namespace binfilter {
 
 class ImpEditEngine;
 class SvxTabStop;
 
-DBG_NAMEEX( EE_TextPortion )//STRIP008
+DBG_NAMEEX( EE_TextPortion )
 
 #define CHARPOSGROW     16
 #define DEFTAB          720
@@ -103,7 +96,7 @@ struct ScriptTypePosInfo
     }
 };
 
-SV_DECL_VARARR( ScriptTypePosInfos, ScriptTypePosInfo, 0, 4 )//STRIP008 ;
+SV_DECL_VARARR( ScriptTypePosInfos, ScriptTypePosInfo, 0, 4 )
 
 struct WritingDirectionInfo
 {
@@ -119,10 +112,10 @@ struct WritingDirectionInfo
     }
 };
 
-SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 )//STRIP008 ;
+SV_DECL_VARARR( WritingDirectionInfos, WritingDirectionInfo, 0, 4 )
 
 typedef EditCharAttrib* EditCharAttribPtr;
-SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( CharAttribArray, EditCharAttribPtr, 0, 4 )
 
 
 
@@ -235,7 +228,7 @@ public:
 };
 
 typedef ContentNode* ContentNodePtr;
-SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( ContentList, ContentNodePtr, 0, 4 )
 
 // -------------------------------------------------------------------------
 // class EditPaM
@@ -358,7 +351,7 @@ public:
 // class TextPortionList
 // -------------------------------------------------------------------------
 typedef TextPortion* TextPortionPtr;
-SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 )//STRIP008 ;
+SV_DECL_PTRARR( TextPortionArray, TextPortionPtr, 0, 8 )
 
 class TextPortionList : public TextPortionArray
 {
@@ -373,7 +366,7 @@ public:
 
 class ParaPortion;
 
-SV_DECL_VARARR( CharPosArray, sal_Int32, 0, CHARPOSGROW )//STRIP008 ;
+SV_DECL_VARARR( CharPosArray, sal_Int32, 0, CHARPOSGROW )
 
 // ------------------------------------------------------------------------
 // class EditLine
@@ -443,7 +436,7 @@ public:
     USHORT          GetLen() const                  { return nEnd - nStart; }
 
     USHORT          GetStartPosX() const            { return nStartPosX; }
-    void            SetStartPosX( USHORT nStart )   { nStartPosX = nStart; }
+    void            SetStartPosX( USHORT nInStart ) { nStartPosX = nInStart; }
 
     Size            CalcTextSize( ParaPortion& rParaPortion );
 
@@ -467,7 +460,7 @@ public:
 // class LineList
 // -------------------------------------------------------------------------
 typedef EditLine* EditLinePtr;
-SV_DECL_PTRARR( LineArray, EditLinePtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( LineArray, EditLinePtr, 0, 4 )
 
 class EditLineList : public LineArray
 {
@@ -544,7 +537,7 @@ public:
 };
 
 typedef ParaPortion* ParaPortionPtr;
-SV_DECL_PTRARR( DummyParaPortionList, ParaPortionPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( DummyParaPortionList, ParaPortionPtr, 0, 4 )
 
 // -------------------------------------------------------------------------
 // class ParaPortionList
@@ -615,7 +608,7 @@ public:
 };
 
 typedef DeletedNodeInfo* DeletedNodeInfoPtr;
-SV_DECL_PTRARR( DeletedNodesList, DeletedNodeInfoPtr, 0, 4 )//STRIP008 ;
+SV_DECL_PTRARR( DeletedNodesList, DeletedNodeInfoPtr, 0, 4 )
 
 // -------------------------------------------------------------------------
 // class EditDoc
@@ -716,8 +709,10 @@ public:
                         EditEngineItemPool( BOOL bPersistenRefCounts );
                         ~EditEngineItemPool();
 
-    virtual SvStream&   Store( SvStream& rStream ) const;
+    virtual SvStream& Store( SvStream& rStream ) const { return rStream; }
 };
 
 }//end of namespace binfilter
 #endif // _EDITDOC_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

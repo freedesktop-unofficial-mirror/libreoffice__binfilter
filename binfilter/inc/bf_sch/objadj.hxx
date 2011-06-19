@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,11 @@
 #ifndef _SCH_OBJADJ_HXX
 #define _SCH_OBJADJ_HXX
 
-#ifndef _SCH_ADJUST_HXX
 #include "adjust.hxx"
-#endif
 
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 namespace binfilter {
 
 
@@ -61,7 +54,7 @@ public:
 
     virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     void SetAdjust(ChartAdjust eAdj) { eAdjust = eAdj; }
@@ -83,3 +76,4 @@ extern SchObjectAdjust* GetObjectAdjust(const SdrObject& rObj);
 #endif  // _SCH_OBJADJ_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

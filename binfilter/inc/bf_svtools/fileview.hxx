@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,32 +28,16 @@
 #ifndef _SVT_FILEVIEW_HXX
 #define _SVT_FILEVIEW_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCONTENT_HPP_
 #include <com/sun/star/ucb/XContent.hpp>
-#endif
 
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
-#ifndef _SV_IMAGE_HXX
 #include <vcl/image.hxx>
-#endif
-#ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
-#endif
-#ifndef _SV_BUTTON_HXX
 #include <vcl/button.hxx>
-#endif
-#ifndef _SV_DIALOG_HXX
 #include <vcl/dialog.hxx>
-#endif
 
 namespace binfilter
 {
@@ -277,3 +262,4 @@ public:
 
 #endif // _SVT_FILEVIEW_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,13 +27,10 @@
  ************************************************************************/
 
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #include "bf_svtools/brdcst.hxx"
 
 #include "sbx.hxx"
-#include "sbxbase.hxx"
 #include "sbxres.hxx"
 #include "sbxconv.hxx"
 #include <math.h>
@@ -46,9 +44,6 @@ TYPEINIT1(SbxVariable,SbxValue)
 TYPEINIT1(SbxHint,SfxSimpleHint)
 
 extern UINT32 nVarCreator;          // in SBXBASE.CXX, fuer LoadData()
-#ifdef DBG_UTIL
-static ULONG nVar = 0;
-#endif
 
 ///////////////////////////// Konstruktoren //////////////////////////////
 
@@ -58,10 +53,6 @@ SbxVariable::SbxVariable() : SbxValue()
     pParent = NULL;
     nUserData = 0;
     nHash = 0;
-#ifdef DBG_UTIL
-    DbgOutf( "SbxVariable::Ctor %lx=%ld", (void*)this, ++nVar );
-    GetSbxData_Impl()->aVars.Insert( this, LIST_APPEND );
-#endif
 }
 
 SbxVariable::SbxVariable( const SbxVariable& r )
@@ -81,13 +72,6 @@ SbxVariable::SbxVariable( const SbxVariable& r )
         nUserData = 0;
         nHash = 0;
     }
-#ifdef DBG_UTIL
-    static sal_Char const aCellsStr[] = "Cells";
-    if ( maName.EqualsAscii( aCellsStr ) )
-        maName.AssignAscii( aCellsStr, sizeof( aCellsStr )-1 );
-    DbgOutf( "SbxVariable::Ctor %lx=%ld", (void*)this, ++nVar );
-    GetSbxData_Impl()->aVars.Insert( this, LIST_APPEND );
-#endif
 }
 
 SbxVariable::SbxVariable( SbxDataType t, void* p ) : SbxValue( t, p )
@@ -96,22 +80,10 @@ SbxVariable::SbxVariable( SbxDataType t, void* p ) : SbxValue( t, p )
     pParent = NULL;
     nUserData = 0;
     nHash = 0;
-#ifdef DBG_UTIL
-    DbgOutf( "SbxVariable::Ctor %lx=%ld", (void*)this, ++nVar );
-    GetSbxData_Impl()->aVars.Insert( this, LIST_APPEND );
-#endif
 }
 
 SbxVariable::~SbxVariable()
 {
-#ifdef DBG_UTIL
-    ByteString aBStr( (const UniString&)maName, RTL_TEXTENCODING_ASCII_US );
-    DbgOutf( "SbxVariable::Dtor %lx (%s)", (void*)this, aBStr.GetBuffer() );
-    static sal_Char const aCellsStr[] = "Cells";
-    if ( maName.EqualsAscii( aCellsStr ) )
-        maName.AssignAscii( aCellsStr, sizeof( aCellsStr )-1 );
-    GetSbxData_Impl()->aVars.Remove( this );
-#endif
     delete pCst;
 }
 
@@ -439,49 +411,6 @@ BOOL SbxVariable::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbxVariable::StoreData( SvStream& rStrm ) const
-{
-    rStrm << (BYTE) 0xFF;       // Marker
-    BOOL bValStore;
-    if( this->IsA( TYPE(SbxMethod) ) )
-    {
-        // #50200 Verhindern, dass Objekte, die zur Laufzeit als Return-Wert
-        // in der Methode als Value gespeichert sind, mit gespeichert werden
-        SbxVariable* pThis = (SbxVariable*)this;
-        USHORT nSaveFlags = GetFlags();
-        pThis->SetFlag( SBX_WRITE );
-        pThis->SbxValue::Clear();
-        pThis->SetFlags( nSaveFlags );
-
-        // Damit die Methode in keinem Fall ausgefuehrt wird!
-        // CAST, um const zu umgehen!
-        pThis->SetFlag( SBX_NO_BROADCAST );
-        bValStore = SbxValue::StoreData( rStrm );
-        pThis->ResetFlag( SBX_NO_BROADCAST );
-    }
-    else
-        bValStore = SbxValue::StoreData( rStrm );
-    if( !bValStore )
-        return FALSE;
-    // if( !SbxValue::StoreData( rStrm ) )
-        // return FALSE;
-    rStrm.WriteByteString( maName, RTL_TEXTENCODING_ASCII_US );
-    rStrm << nUserData;
-    if( pInfo.Is() )
-    {
-        rStrm << (BYTE) 2;      // Version 2: mit UserData!
-        pInfo->StoreData( rStrm );
-    }
-    else
-        rStrm << (BYTE) 0;
-    // Privatdaten nur speichern, wenn es eine SbxVariable ist
-    if( GetClass() == SbxCLASS_VARIABLE )
-        return StorePrivateData( rStrm );
-    else
-        return TRUE;
-}
-
-////////////////////////////// SbxInfo ///////////////////////////////////
 
 SbxInfo::SbxInfo() : aHelpFile(), nHelpId( 0 ), aParams()
 {}
@@ -562,3 +491,5 @@ void SbxVariable::Dump( SvStream& rStrm, BOOL bFill )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

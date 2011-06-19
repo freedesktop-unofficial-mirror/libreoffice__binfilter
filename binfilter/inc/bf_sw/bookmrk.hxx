@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,13 @@
 #include <bf_svtools/bf_solar.h>
 
                             //die Attribut richtig angezogen werden.
-#ifndef _SFXMACITEM_HXX
 #include <bf_svtools/macitem.hxx>
-#endif
 
-#ifndef _KEYCOD_HXX //autogen
 #include <vcl/keycod.hxx>
-#endif
-#ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _BKMRKE_HXX
 #include <bkmrke.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 #ifndef SW_DECL_SWSERVEROBJECT_DEFINED
@@ -134,3 +125,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

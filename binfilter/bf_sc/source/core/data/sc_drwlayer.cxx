@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,16 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
-
-
 #include "scitems.hxx"
 #include <bf_svx/eeitem.hxx>
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
 #include <bf_svx/objfac3d.hxx>
 #include <bf_svx/svdoutl.hxx>
 #include <bf_svx/svditer.hxx>
@@ -49,9 +43,7 @@
 #include <bf_svx/svdoole2.hxx>
 #include <bf_svx/svdundo.hxx>
 #include <bf_svx/drawitem.hxx>
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
 #include <bf_sfx2/docfile.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/itempool.hxx>
@@ -99,7 +91,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 
 // -----------------------------------------------------------------------
 
-/*N*/ __EXPORT ScTabDeletedHint::~ScTabDeletedHint()
+/*N*/ ScTabDeletedHint::~ScTabDeletedHint()
 /*N*/ {
 /*N*/ }
 
@@ -108,7 +100,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScTabSizeChangedHint::~ScTabSizeChangedHint()
+/*N*/ ScTabSizeChangedHint::~ScTabSizeChangedHint()
 /*N*/ {
 /*N*/ }
 
@@ -181,7 +173,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*?*/       SetColorTable( OFF_APP()->GetStdColorTable() );
 /*N*/
 /*N*/   SetSwapGraphics(TRUE);
-/*N*/ //    SetSwapAsynchron(TRUE);     // an der View
 /*N*/
 /*N*/   SetScaleUnit(MAP_100TH_MM);
 /*N*/   SfxItemPool& rPool = GetItemPool();
@@ -222,7 +213,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/   }
 /*N*/ }
 
-/*N*/ __EXPORT ScDrawLayer::~ScDrawLayer()
+/*N*/ ScDrawLayer::~ScDrawLayer()
 /*N*/ {
 /*N*/   Broadcast(SdrHint(HINT_MODELCLEARED));
 /*N*/
@@ -237,7 +228,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/ }
 
 
-/*N*/ SdrPage* __EXPORT ScDrawLayer::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* ScDrawLayer::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   //  don't create basic until it is needed
 /*N*/   StarBASIC* pBasic = NULL;
@@ -251,8 +242,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/   //  don't create basic until it is needed
 /*N*/   //! remove this method?
 /*N*/ }
-
-
 
 /*N*/ void ScDrawLayer::ScAddPage( USHORT nTab )
 /*N*/ {
@@ -272,10 +261,6 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/   if (pPage)
 /*N*/       pPage->SetName(rNewName);
 /*N*/ }
-
-
-
-
 
 /*N*/ void ScDrawLayer::SetPageSize( USHORT nPageNo, const Size& rSize )
 /*N*/ {
@@ -298,7 +283,7 @@ BOOL bDrawIsInUndo = FALSE;         //! Member
 /*N*/           SdrObject* pObj = pPage->GetObj( i );
 /*N*/           ScDrawObjData* pData = GetObjData( pObj );
 /*N*/           if( pData )
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pData );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -338,35 +323,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 /*N*/               break;
 /*N*/           default:
 /*N*/               {
-/*N*/                   DBG_ERROR("unbekannter Sub-Record in ScDrawLayer::Load");
+/*N*/                   OSL_FAIL("unbekannter Sub-Record in ScDrawLayer::Load");
 /*N*/                   ScReadHeader aDummyHdr( rStream );
 /*N*/               }
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   GetItemPool().LoadCompleted();
-/*N*/ }
-
-/*N*/ void ScDrawLayer::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/
-/*N*/ //-/  const_cast<ScDrawLayer*>(this)->PrepareStore();     // non-const
-/*N*/   const_cast<ScDrawLayer*>(this)->PreSave();      // non-const
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_DRAWPOOL;
-/*N*/       ScWriteHeader aPoolHdr( rStream );
-/*N*/       GetItemPool().Store( rStream );             //! in Pool-Stream ?
-/*N*/   }
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_DRAWMODEL;
-/*N*/       ScWriteHeader aDrawHdr( rStream );
-/*N*/       rStream << *this;
-/*N*/   }
-/*N*/
-/*N*/   const_cast<ScDrawLayer*>(this)->PostSave();     // non-const
 /*N*/ }
 
 /*N*/ BOOL ScDrawLayer::GetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const
@@ -756,12 +719,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 /*N*/ }
 
 
-
-
-
-
-
-
 // static
 
 /*N*/ inline BOOL IsNamedObject( SdrObject* pObj, const String& rName )
@@ -855,14 +812,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 // static:
 
 
-/*N*/ void __EXPORT ScDrawLayer::SetChanged( FASTBOOL bFlg /* =TRUE */ )
+/*N*/ void ScDrawLayer::SetChanged( bool bFlg /* =TRUE */ )
 /*N*/ {
 /*N*/   if ( bFlg && pDoc )
 /*N*/       pDoc->SetChartListenerCollectionNeedsUpdate( TRUE );
 /*N*/   FmFormModel::SetChanged( bFlg );
 /*N*/ }
 
-/*N*/ SvStream* __EXPORT ScDrawLayer::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
+/*N*/ SvStream* ScDrawLayer::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
 /*N*/ {
 /*N*/   DBG_ASSERT( pDoc, "ScDrawLayer::GetDocumentStream without document" );
 /*N*/   if ( !pDoc )
@@ -911,7 +868,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 /*N*/           if( pRet )
 /*N*/           {
 /*N*/               pRet->SetVersion( pStor->GetVersion() );
-/*N*/               pRet->SetKey( pStor->GetKey() );
+/*N*/               pRet->SetCryptMaskKey( pStor->GetKey() );
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -930,3 +887,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 RecalcPos( pObj, pDa
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

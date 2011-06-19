@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,13 +34,9 @@
 
 #include "itemholderbase.hxx"
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
 #include <com/sun/star/lang/XEventListener.hpp>
-#endif
 
 //-----------------------------------------------
 // namespaces
@@ -97,3 +94,5 @@ class ItemHolder2 : private ItemHolderMutexBase
 
 }
 #endif // INCLUDED_SVTOOLS_ITEMHOLDER2_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

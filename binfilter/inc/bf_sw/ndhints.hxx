@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "numrule.hxx"
 #include <vector>
@@ -89,13 +86,7 @@ public:
     inline USHORT GetStartCount() const { return Count(); }
     inline USHORT GetStartOf( const SwTxtAttr *pHt ) const;
     inline USHORT GetEndOf( const SwTxtAttr *pHt ) const;
-    inline USHORT GetPos( const SwTxtAttr *pHt ) const
-//  OS: in svmem.hxx wird fuer TCPP GetPos ohne const gerufen
-#ifdef TCPP
-        { return SwpHtStart::GetPos( (SwTxtAttr *)pHt ); }
-#else
-        { return SwpHtStart::GetPos( pHt ); }
-#endif
+    inline USHORT GetPos( const SwTxtAttr *pHt ) const { return SwpHtStart::GetPos( pHt ); }
 
 #ifdef USED
     // Der Zugriffsoperator soll bald nur noch const sein!
@@ -229,3 +220,5 @@ inline SwTxtAttr *SwpHintsArr::Cut( const USHORT nPosInStart )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

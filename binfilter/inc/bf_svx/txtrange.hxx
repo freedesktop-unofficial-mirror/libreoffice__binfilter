@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -47,10 +48,6 @@ typedef SvLongs* SvLongsPtr;
 /*************************************************************************
 |*
 |*    class TextRanger
-|*
-|*    Beschreibung
-|*    Ersterstellung       20.01.97
-|*    Letzte Aenderung AMA 20.01.97
 |*
 *************************************************************************/
 class TextRanger
@@ -110,3 +107,5 @@ public:
 
 }//end of namespace binfilter
 #endif      // _TXTRANGE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

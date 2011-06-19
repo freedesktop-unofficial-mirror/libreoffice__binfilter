@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,38 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include "XMLBase64ImportContext.hxx"
-#endif
 
-#ifndef _XMLBACKGROUNDIMAGECONTEXT_HXX
 #include "XMLBackgroundImageContext.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::io;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 enum SvXMLTokenMapAttrs
 {
@@ -71,7 +59,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_NGIMG_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aBGImgAttributesAttrTokenMap[] =
+static SvXMLTokenMapEntry aBGImgAttributesAttrTokenMap[] =
 {
     { XML_NAMESPACE_XLINK, XML_HREF,        XML_TOK_BGIMG_HREF      },
     { XML_NAMESPACE_XLINK, XML_TYPE,        XML_TOK_BGIMG_TYPE      },
@@ -141,6 +129,9 @@ void lcl_xmlbic_MergeHoriPos( GraphicLocation& ePos,
                         ? GraphicLocation_MIDDLE_BOTTOM
                         : GraphicLocation_RIGHT_BOTTOM);
         break;
+
+    default:
+        break;
     }
 }
 
@@ -180,6 +171,8 @@ void lcl_xmlbic_MergeVertPos( GraphicLocation& ePos,
                         ? GraphicLocation_RIGHT_MIDDLE
                         : GraphicLocation_RIGHT_BOTTOM);
         break;
+    default:
+        break;
     }
 }
 
@@ -198,13 +191,13 @@ void XMLBackgroundImageContext::ProcessAttrs(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_BGIMG_HREF:
             sURL = rValue;
@@ -338,7 +331,7 @@ void XMLBackgroundImageContext::ProcessAttrs(
 }
 
 XMLBackgroundImageContext::XMLBackgroundImageContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         const XMLPropertyState& rProp,
@@ -346,7 +339,7 @@ XMLBackgroundImageContext::XMLBackgroundImageContext(
         sal_Int32 nFilterIdx,
         sal_Int32 nTransparencyIdx,
         ::std::vector< XMLPropertyState > &rProps ) :
-    XMLElementPropertyContext( rImport, nPrfx, rLName, rProp, rProps ),
+    XMLElementPropertyContext( rInImport, nPrfx, rLName, rProp, rProps ),
     aPosProp( nPosIdx ),
     aFilterProp( nFilterIdx ),
     aTransparencyProp( nTransparencyIdx ),
@@ -360,11 +353,11 @@ XMLBackgroundImageContext::~XMLBackgroundImageContext()
 }
 
 SvXMLImportContext *XMLBackgroundImageContext::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = NULL;
-    if( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    if( (XML_NAMESPACE_OFFICE == nInPrefix) &&
         xmloff::token::IsXMLToken( rLocalName,
                                         xmloff::token::XML_BINARY_DATA ) )
     {
@@ -372,14 +365,14 @@ SvXMLImportContext *XMLBackgroundImageContext::CreateChildContext(
         {
             xBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( xBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     xBase64Stream );
         }
     }
     if( !pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -418,3 +411,5 @@ void XMLBackgroundImageContext::EndElement()
         rProperties.push_back( aTransparencyProp );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

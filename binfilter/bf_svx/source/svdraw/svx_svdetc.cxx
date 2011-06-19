@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
-#endif
 
 #include "svdetc.hxx"
 #include "svditext.hxx"
@@ -36,61 +35,22 @@
 #include "svdview.hxx"
 #include "svdoutl.hxx"
 
-#ifndef _SV_BMPACC_HXX //autogen
 #include <vcl/bmpacc.hxx>
-#endif
-
-#ifndef _EEITEM_HXX //autogen
 #include <eeitem.hxx>
-#endif
-
-
-
-#ifndef INCLUDED_SVTOOLS_CACHEOPTIONS_HXX
 #include <bf_svtools/cacheoptions.hxx>
-#endif
 
-
-
-
-
-
-
-
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include "xflclit.hxx"
-#endif
-
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include "xflhtit.hxx"
-#endif
-
-#ifndef _SVX_XBTMPIT_HXX //autogen
 #include "xbtmpit.hxx"
-#endif
-
-#ifndef _SVX_XFLGRIT_HXX //autogen
 #include "xflgrit.hxx"
-#endif
-
-#ifndef _SVDOOLE2_HXX //autogen
 #include "svdoole2.hxx"
-#endif
 
-
-
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 // #97870#
-#ifndef _SVX_XFLBCKIT_HXX
 #include "xflbckit.hxx"
-#endif
 
-#ifndef _B3D_B3DCOLOR_HXX
 #include <bf_goodies/b3dcolor.hxx>
-#endif
 
 namespace binfilter {
 
@@ -201,7 +161,7 @@ namespace binfilter {
 /*N*/   return bUnloaded;
 /*N*/ }
 
-/*N*/ IMPL_LINK(OLEObjCache, UnloadCheckHdl, AutoTimer*, pTim)
+/*N*/ IMPL_LINK(OLEObjCache, UnloadCheckHdl, AutoTimer*, EMPTYARG)
 /*N*/ {
 /*N*/   if (nSize <= Count())
 /*N*/   {
@@ -266,7 +226,7 @@ namespace binfilter {
 
 /*?*/ class ImpClipMerk {
 /*?*/   Region aClip;
-/*?*/   FASTBOOL   bClip;
+/*?*/   bool   bClip;
 /*?*/ public:
 /*?*/   ImpClipMerk(const OutputDevice& rOut): aClip(rOut.GetClipRegion()),bClip(rOut.IsClipRegion()) {}
 /*?*/   void Restore(OutputDevice& rOut)
@@ -330,7 +290,7 @@ namespace binfilter {
 /*?*/   const Color& GetLineColor() const { return aLineColor; }
 /*?*/ };
 
-/*N*/ ImpSdrHdcMerk::ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode, FASTBOOL bAutoMerk):
+/*N*/ ImpSdrHdcMerk::ImpSdrHdcMerk(const OutputDevice& rOut, USHORT nNewMode, bool bAutoMerk):
 /*N*/   pFarbMerk(NULL),
 /*N*/   pClipMerk(NULL),
 /*N*/   pLineColorMerk(NULL),
@@ -344,36 +304,6 @@ namespace binfilter {
 /*N*/   if (pFarbMerk!=NULL) delete pFarbMerk;
 /*N*/   if (pClipMerk!=NULL) delete pClipMerk;
 /*N*/   if (pLineColorMerk !=NULL) delete pLineColorMerk;
-/*N*/ }
-
-/*N*/ void ImpSdrHdcMerk::Save(const OutputDevice& rOut)
-/*N*/ {
-/*N*/   if (pFarbMerk!=NULL)
-/*N*/   {
-/*N*/       delete pFarbMerk;
-/*N*/       pFarbMerk=NULL;
-/*N*/   }
-/*N*/   if (pClipMerk!=NULL)
-/*N*/   {
-/*N*/       delete pClipMerk;
-/*N*/       pClipMerk=NULL;
-/*N*/   }
-/*N*/   if (pLineColorMerk !=NULL)
-/*N*/   {
-/*N*/       delete pLineColorMerk ;
-/*N*/       pLineColorMerk =NULL;
-/*N*/   }
-/*N*/   if ((nMode & SDRHDC_SAVECLIPPING) ==SDRHDC_SAVECLIPPING)
-/*N*/       pClipMerk=new ImpClipMerk(rOut);
-/*N*/
-/*N*/   USHORT nCol=nMode & SDRHDC_SAVEPENANDBRUSHANDFONT;
-/*N*/
-/*N*/   if (nCol==SDRHDC_SAVEPEN)
-/*N*/       pLineColorMerk=new Color( rOut.GetLineColor() );
-/*N*/   else if (nCol==SDRHDC_SAVEPENANDBRUSHANDFONT)
-/*N*/       pFarbMerk=new ImpColorMerk(rOut);
-/*N*/   else if (nCol!=0)
-/*N*/       pFarbMerk=new ImpColorMerk(rOut,nCol);
 /*N*/ }
 
 /*N*/ void ImpSdrHdcMerk::Restore(OutputDevice& rOut, USHORT nMask) const
@@ -422,10 +352,10 @@ namespace binfilter {
 /*N*/       if (rLink.IsSet()) {
 /*N*/           aList.Insert(new Link(rLink),nPos);
 /*N*/       } else {
-/*N*/           DBG_ERROR("SdrLinkList::InsertLink(): Versuch, einen nicht gesetzten Link einzufuegen");
+/*N*/           OSL_FAIL("SdrLinkList::InsertLink(): Versuch, einen nicht gesetzten Link einzufuegen");
 /*N*/       }
 /*N*/   } else {
-/*N*/       DBG_ERROR("SdrLinkList::InsertLink(): Link schon vorhanden");
+/*N*/       OSL_FAIL("SdrLinkList::InsertLink(): Link schon vorhanden");
 /*N*/   }
 /*N*/ }
 /*N*/
@@ -436,17 +366,17 @@ namespace binfilter {
 /*N*/       Link* pLink=(Link*)aList.Remove(nFnd);
 /*N*/       delete pLink;
 /*N*/   } else {
-/*N*/       DBG_ERROR("SdrLinkList::RemoveLink(): Link nicht gefunden");
+/*N*/       OSL_FAIL("SdrLinkList::RemoveLink(): Link nicht gefunden");
 /*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 // #98988# Re-implement GetDraftFillColor(...)
 
-/*N*/ FASTBOOL GetDraftFillColor(const SfxItemSet& rSet, Color& rCol)
+/*N*/ bool GetDraftFillColor(const SfxItemSet& rSet, Color& rCol)
 /*N*/ {
 /*N*/   XFillStyle eFill=((XFillStyleItem&)rSet.Get(XATTR_FILLSTYLE)).GetValue();
-/*N*/   FASTBOOL bRetval(FALSE);
+/*N*/   bool bRetval(FALSE);
 /*N*/
 /*N*/   switch(eFill)
 /*N*/   {
@@ -506,13 +436,13 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   for(sal_uInt32 nX(0L); nX < nWidth; nX += nXStep)
 /*?*/                   {
-/*?*/                       const BitmapColor& rCol = (pAccess->HasPalette())
+/*?*/                       const BitmapColor& rLclCol = (pAccess->HasPalette())
 /*?*/                           ? pAccess->GetPaletteColor((BYTE)pAccess->GetPixel(nY, nX))
 /*?*/                           : pAccess->GetPixel(nY, nX);
 /*?*/
-/*?*/                       nRt += rCol.GetRed();
-/*?*/                       nGn += rCol.GetGreen();
-/*?*/                       nBl += rCol.GetBlue();
+/*?*/                       nRt += rLclCol.GetRed();
+/*?*/                       nGn += rLclCol.GetGreen();
+/*?*/                       nBl += rLclCol.GetBlue();
 /*?*/                       nAnz++;
 /*?*/                   }
 /*?*/               }
@@ -533,6 +463,8 @@ namespace binfilter {
 /*?*/
 /*?*/           break;
 /*?*/       }
+            case XFILL_NONE:
+                break;
 /*N*/   }
 /*N*/
 /*N*/   return bRetval;
@@ -566,43 +498,7 @@ namespace binfilter {
 
 /*N*/ SdrOutliner* SdrMakeOutliner( USHORT nOutlinerMode, SdrModel* pModel )
 /*N*/ {
-/*N*/   SdrEngineDefaults& rDefaults = SdrEngineDefaults::GetDefaults();
-
-/*
-    MapUnit  eUn( (pMod==NULL) ? rDefaults.eMapUnit : pMod->GetScaleUnit());
-    Fraction aFr( *((pMod==NULL) ? &rDefaults.aMapFraction : &pMod->GetScaleFraction()));
-
-    if ( pMod->GetRefDevice() )
-        pOutl->SetRefDevice( pMod->GetRefDevice() );
-    else
-    {
-        MapMode aMapMode(eUn,Point(0,0),aFr,aFr);
-        pOutl->SetRefMapMode( aMapMode );
-    }
-
-    SfxItemSet aSet(pOutl->GetEmptyItemSet());
-    aSet.Put(SvxFontItem(rDefaults.eFontFamily, rDefaults.aFontName, String(), PITCH_DONTKNOW, gsl_getSystemTextEncoding() ) );
-    aSet.Put(SvxColorItem(rDefaults.aFontColor));
-    ULONG nHgt=rDefaults.nFontHeight;
-    FASTBOOL bDifUn=(eUn!=rDefaults.eMapUnit); // different MapUnits
-    FASTBOOL bDifFr=(aFr!=rDefaults.aMapFraction); // different MapFractions
-    if (bDifUn || bDifFr) { // Wenn pMod!=NULL und pMod->Map!=rDef.Map
-        long nTmpLong=long(nHgt); // caasting im Ctor bringt unter MSVC sehr merkwuerdige Fehlermeldungen
-        BigInt aHgt1(nTmpLong); // umrechnen von DefMap in ModMap
-        FrPair aUnitMul(GetMapFactor(rDefaults.eMapUnit,eUn));
-
-        if (bDifUn) aHgt1*=aUnitMul.Y().GetNumerator();
-        if (bDifFr) aHgt1*=aFr.GetNumerator();
-        if (bDifFr) aHgt1*=rDefaults.aMapFraction.GetDenominator();
-        if (bDifUn) aHgt1/=aUnitMul.Y().GetDenominator();
-        if (bDifFr) aHgt1/=aFr.GetDenominator();
-        if (bDifFr) aHgt1/=rDefaults.aMapFraction.GetNumerator();
-
-        nHgt=ULONG(long(aHgt1));
-    }
-    aSet.Put(SvxFontHeightItem(nHgt));
-    pOutl->SetDefaults(aSet);
-*/
+/*N*/   /*SdrEngineDefaults& rDefaults =*/ SdrEngineDefaults::GetDefaults();
 
 /*N*/   SfxItemPool* pPool = &pModel->GetItemPool();
 /*N*/   SdrOutliner* pOutl = new SdrOutliner( pPool, nOutlinerMode );
@@ -640,9 +536,9 @@ namespace binfilter {
 /*N*/   if(!rGlobalData.pResMgr)
 /*N*/   {
 /*N*/ #ifndef SVX_LIGHT
-/*N*/       ByteString aName("bf_svx");         //STRIP005
+/*N*/       ByteString aName("bf_svx");
 /*N*/ #else
-/*N*/       ByteString aName("bf_svl");         //STRIP005
+/*N*/       ByteString aName("bf_svl");
 /*N*/ #endif
 /*N*/       rGlobalData.pResMgr =
 /*N*/             ResMgr::CreateResMgr( aName.GetBuffer(), Application::GetSettings().GetUILocale() );
@@ -651,3 +547,5 @@ namespace binfilter {
 /*N*/   return rGlobalData.pResMgr;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

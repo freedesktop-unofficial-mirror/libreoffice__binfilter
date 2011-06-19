@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,16 +35,12 @@
 #include "cntfrm.hxx"
 #include "node.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "frmtool.hxx"
 
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 #include "tabfrm.hxx"
 #include "sectfrm.hxx"
 #include "flyfrms.hxx"
@@ -58,8 +55,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Sucht den ersten/letzten CntntFrm im BodyText unterhalb
 |*      der Seite.
-|*  Ersterstellung      MA 15. Feb. 93
-|*  Letzte Aenderung    MA 18. Apr. 94
 |*
 |*************************************************************************/
 /*N*/ SwLayoutFrm *SwFtnBossFrm::FindBodyCont()
@@ -88,9 +83,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*  Beschreibung            Prueft, ob der Frame irgendwo in seiner
 |*          untergeordneten Struktur einen oder mehrere CntntFrm's enthaelt;
 |*          Falls ja wird der erste gefundene CntntFrm zurueckgegeben.
-|*
-|*  Ersterstellung      MA 13. May. 92
-|*  Letzte Aenderung    MA 20. Apr. 94
 |*
 |*************************************************************************/
 
@@ -144,8 +136,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*                  hineinzukommen. Dort hangelt es sich wieder hoch zum
 |*                  ersten SwCellFrm, seit es SectionFrms gibt, reicht kein
 |*                  ContainsCntnt()->GetUpper() mehr...
-|*  Ersterstellung      AMA 17. Mar. 99
-|*  Letzte Aenderung    AMA 17. Mar. 99
 |*
 |*************************************************************************/
 
@@ -163,8 +153,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  Beschreibung wie ContainsCntnt, nur dass nicht nur CntntFrms, sondern auch
 |*          Bereiche und Tabellen zurueckgegeben werden.
-|*  Ersterstellung      AMA 10. Mar. 99
-|*  Letzte Aenderung    AMA 10. Mar. 99
 |*
 |*************************************************************************/
 
@@ -228,9 +216,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  SwFrm::GetLower()
 |*
-|*  Ersterstellung      MA 27. Jul. 92
-|*  Letzte Aenderung    MA 09. Oct. 97
-|*
 |*************************************************************************/
 /*N*/ const SwFrm* SwFrm::GetLower() const
 /*N*/ {
@@ -245,9 +230,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*************************************************************************
 |*
 |*  SwLayoutFrm::IsAnLower()
-|*
-|*  Ersterstellung      MA 18. Mar. 93
-|*  Letzte Aenderung    MA 18. Mar. 93
 |*
 |*************************************************************************/
 /*N*/ BOOL SwLayoutFrm::IsAnLower( const SwFrm *pAssumed ) const
@@ -268,8 +250,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /** method to check relative position of layout frame to
     a given layout frame.
 
-    OD 08.11.2002 - refactoring of pseudo-local method <lcl_Apres(..)> in
-    <txtftn.cxx> for #104840#.
+    refactoring of pseudo-local method <lcl_Apres(..)> in <txtftn.cxx>
 
     @param _aCheckRefLayFrm
     constant reference of an instance of class <SwLayoutFrm> which
@@ -279,8 +260,8 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 
     @return true, if <this> is positioned before the layout frame <p>
 */
-/*N*/ bool SwLayoutFrm::IsBefore( const SwLayoutFrm* _pCheckRefLayFrm ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ bool SwLayoutFrm::IsBefore( const SwLayoutFrm* /*_pCheckRefLayFrm*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************
@@ -294,8 +275,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*      zeigen.
 |*      pLower darf allerdings auf einen TabFrm zeigen, denn diese stehen
 |*      direkt neben den CntntFrms.
-|*  Ersterstellung      MA 29. May. 92
-|*  Letzte Aenderung    MA 30. Oct. 97
 |*
 |*************************************************************************/
 /*N*/ const SwFrm * MA_FASTCALL lcl_LastLower( const SwFrm *pFrm )
@@ -312,9 +291,9 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   const SwFrm       *pFrm = this;
 /*N*/   const SwLayoutFrm *pLayoutFrm = 0;
 /*N*/   const SwFrm       *p;
-/*N*/   FASTBOOL bGoingUp = TRUE;
+/*N*/   bool bGoingUp = TRUE;
 /*N*/   do {
-/*N*/       FASTBOOL bGoingBwd = FALSE, bGoingDown = FALSE;
+/*N*/       bool bGoingBwd = FALSE, bGoingDown = FALSE;
 /*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 != (p = ::binfilter::lcl_LastLower( pFrm ))))) &&
 /*N*/           !(bGoingBwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetPrevLink()
 /*N*/                                                     : pFrm->GetPrev()))) &&
@@ -341,8 +320,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*          zeigen.
 |*          pLower darf allerdings auf einen TabFrm zeigen, denn diese stehen
 |*          direkt neben den CntntFrms.
-|*  Ersterstellung      MA 13. May. 92
-|*  Letzte Aenderung    MA 30. Oct. 97
 |*
 |*************************************************************************/
 /*N*/ const SwLayoutFrm *SwFrm::GetNextLayoutLeaf() const
@@ -350,9 +327,9 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   const SwFrm       *pFrm = this;
 /*N*/   const SwLayoutFrm *pLayoutFrm = 0;
 /*N*/   const SwFrm       *p;
-/*N*/   FASTBOOL bGoingUp = FALSE;
+/*N*/   bool bGoingUp = FALSE;
 /*N*/   do {
-/*N*/       FASTBOOL bGoingFwd = FALSE, bGoingDown = FALSE;
+/*N*/       bool bGoingFwd = FALSE, bGoingDown = FALSE;
 /*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 !=
 /*N*/           (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*N*/           !(bGoingFwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetNextLink()
@@ -375,9 +352,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*  SwFrm::FindRootFrm(), FindTabFrm(), FindFtnFrm(), FindFlyFrm(),
 |*         FindPageFrm(), FindColFrm()
 |*
-|*  Ersterstellung      ??
-|*  Letzte Aenderung    MA 05. Sep. 93
-|*
 |*************************************************************************/
 /*N*/ SwRootFrm* SwFrm::FindRootFrm()
 /*N*/ {
@@ -387,8 +361,8 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   // Casting the GetDep() result instead of the frame itself (that has
 /*N*/   // been done before) makes it save to use that method in constructors
 /*N*/   // and destructors.
-/*N*/   ASSERT( GetDep(), "frame is not registered any longer" );
-/*N*/   ASSERT( IsLayoutFrm() || IsCntntFrm(), "invalid frame type" );
+/*N*/   OSL_ENSURE( GetDep(), "frame is not registered any longer" );
+/*N*/   OSL_ENSURE( IsLayoutFrm() || IsCntntFrm(), "invalid frame type" );
 /*N*/   SwDoc *pDoc = IsLayoutFrm()
 /*N*/                       ? static_cast < SwFrmFmt * >( GetDep() )->GetDoc()
 /*N*/                       : static_cast < SwCntntNode * >( GetDep() )->GetDoc();
@@ -441,7 +415,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       !pRet->GetNext() && !pRet->GetPrev() )
 /*N*/   {
 /*?*/       SwSectionFrm* pSct = pRet->FindSctFrm();
-/*?*/       ASSERT( pSct, "FindFtnBossFrm: Single column outside section?" );
+/*?*/       OSL_ENSURE( pSct, "FindFtnBossFrm: Single column outside section?" );
 /*?*/       if( !pSct->IsFtnAtEnd() )
 /*?*/           return pSct->FindFtnBossFrm( TRUE );
 /*N*/   }
@@ -530,9 +504,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*  SwFrmFrm::GetAttrSet()
 |*
-|*  Ersterstellung      MA 02. Aug. 93
-|*  Letzte Aenderung    MA 02. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ const SwAttrSet* SwFrm::GetAttrSet() const
 /*N*/ {
@@ -568,8 +539,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*        auf.
 |*      - Tabellen verhalten sich prinzipiell analog zu den Cntnts
 |*      - Bereiche ebenfalls
-|*  Ersterstellung      AK 14-Feb-1991
-|*  Letzte Aenderung    AMA 10. Mar. 99
 |*
 |*************************************************************************/
 
@@ -578,10 +547,10 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/ SwFrm* lcl_NextFrm( SwFrm* pFrm )
 /*N*/ {
 /*N*/   SwFrm *pRet = 0;
-/*N*/   FASTBOOL bGoingUp = FALSE;
+/*N*/   bool bGoingUp = FALSE;
 /*N*/   do {
 /*N*/       SwFrm *p;
-/*N*/       FASTBOOL bGoingFwd = FALSE, bGoingDown = FALSE;
+/*N*/       bool bGoingFwd = FALSE, bGoingDown = FALSE;
 /*N*/       if( !(bGoingDown = (!bGoingUp && ( 0 !=
 /*N*/            (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*N*/           !(bGoingFwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetNextLink()
@@ -631,9 +600,9 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   }
 /*N*/     else if ( IsRowFrm() )
 /*N*/     {
-/*N*/         SwFrm* pUpper = GetUpper();
-/*N*/         if ( pUpper->IsTabFrm() && ((SwTabFrm*)pUpper)->GetFollow() )
-/*N*/             return ((SwTabFrm*)pUpper)->GetFollow()->GetLower();
+/*N*/         SwFrm* pUpper1 = GetUpper();
+/*N*/         if ( pUpper1->IsTabFrm() && ((SwTabFrm*)pUpper1)->GetFollow() )
+/*N*/             return ((SwTabFrm*)pUpper1)->GetFollow()->GetLower();
 /*N*/         else return NULL;
 /*N*/     }
 /*N*/   else
@@ -646,7 +615,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/       SwLayoutFrm *pUp = pThis->GetUpper();
 /*N*/       while ( !pUp->IsCellFrm() )
 /*?*/           pUp = pUp->GetUpper();
-/*N*/       ASSERT( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
+/*N*/       OSL_ENSURE( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
 /*N*/       SwFrm *pNxt = lcl_NextFrm( pThis );
 /*N*/       if ( pUp->IsAnLower( pNxt ) )
 /*?*/           pRet = pNxt;
@@ -661,8 +630,8 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/           {
 /*N*/               while ( pNxtCnt )
 /*N*/               {
-/*N*/                     // OD 02.04.2003 #108446# - check for endnote, only if found
-/*N*/                     // next content isn't contained in a section, that collect its
+/*N*/                     // check for endnote, only if found next content isn't
+/*N*/                     // contained in a section, that collect its
 /*N*/                     // endnotes at its end.
 /*N*/                     bool bEndn = IsInSct() && !IsSctFrm() &&
 /*N*/                                  ( !pNxtCnt->IsInSct() ||
@@ -810,7 +779,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*?*/           SwLayoutFrm *pUp = pThis->GetUpper();
 /*?*/           while ( !pUp->IsCellFrm() )
 /*?*/               pUp = pUp->GetUpper();
-/*?*/           ASSERT( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
+/*?*/           OSL_ENSURE( pUp, "Cntnt in Tabelle aber nicht in Zelle." );
 /*?*/           if ( pUp->IsAnLower( pPrvCnt ) )
 /*?*/               return pPrvCnt;
 /*N*/       }
@@ -930,9 +899,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*
 |*    SwFrm::IsMoveable();
 |*
-|*    Ersterstellung    MA 09. Mar. 93
-|*    Letzte Aenderung  MA 05. May. 95
-|*
 |*************************************************************************/
 /*N*/ BOOL SwFrm::IsMoveable() const
 /*N*/ {
@@ -980,9 +946,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 |*      Frms rueckwaerts gegangen wird.
 |*      Vorwaetzwander funktioniert analog.
 |*
-|*    Ersterstellung    ??
-|*    Letzte Aenderung  MA 30. Oct. 97
-|*
 |*************************************************************************/
 
 
@@ -993,10 +956,10 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*M*/   const SwFrm *pFrm = this;
 /*M*/     // #100926#
 /*M*/     SwCntntFrm *pCntntFrm = 0;
-/*M*/     FASTBOOL bGoingUp = ! IsCntntFrm();
+/*M*/     bool bGoingUp = ! IsCntntFrm();
 /*M*/   do {
 /*M*/       const SwFrm *p;
-/*M*/       FASTBOOL bGoingFwd = FALSE, bGoingDown = FALSE;
+/*M*/       bool bGoingFwd = FALSE, bGoingDown = FALSE;
 /*M*/       if( !(bGoingDown = (!bGoingUp && ( 0 !=
 /*M*/            (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*M*/           !(bGoingFwd = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetNextLink()
@@ -1015,10 +978,10 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*M*/   const SwFrm *pFrm = this;
 /*M*/     SwCntntFrm *pCntntFrm = 0;
 /*M*/     // #100926#
-/*M*/     FASTBOOL bGoingUp = ! IsCntntFrm();
+/*M*/     bool bGoingUp = ! IsCntntFrm();
 /*M*/   do {
 /*M*/       const SwFrm *p;
-/*M*/       FASTBOOL bGoingBack = FALSE, bGoingDown = FALSE;
+/*M*/       bool bGoingBack = FALSE, bGoingDown = FALSE;
 /*M*/       if( !(bGoingDown = (!bGoingUp && (0 !=
 /*M*/            (p = pFrm->IsLayoutFrm() ? ((SwLayoutFrm*)pFrm)->Lower() : 0)))) &&
 /*M*/           !(bGoingBack = (0 != (p = pFrm->IsFlyFrm() ? ((SwFlyFrm*)pFrm)->GetPrevLink()
@@ -1037,9 +1000,6 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*************************************************************************
 |*
 |*    SwFrm::SetInfFlags();
-|*
-|*    Ersterstellung    MA 05. Apr. 94
-|*    Letzte Aenderung  MA 05. Apr. 94
 |*
 |*************************************************************************/
 /*N*/ void SwFrm::SetInfFlags()
@@ -1065,7 +1025,7 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/ #ifdef DBG_UTIL
 /*N*/           if( pFrm->IsTabFrm() )
 /*N*/           {
-/*N*/               ASSERT( !bIsInTab, "Table in table: Not implemented." );
+/*N*/               OSL_ENSURE( !bIsInTab, "Table in table: Not implemented." );
 /*N*/               bIsInTab = TRUE;
 /*N*/           }
 /*N*/ #endif
@@ -1087,12 +1047,12 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 /*N*/   } while ( pFrm && !pFrm->IsPageFrm() ); //Oberhalb der Seite kommt nix
 /*N*/ }
 
-/*-----------------22.8.2001 14:30------------------
+/*
  * SwFrm::SetDirFlags( BOOL )
  * actualizes the vertical or the righttoleft-flags.
  * If the property is derived, it's from the upper or (for fly frames) from
  * the anchor. Otherwise we've to call a virtual method to check the property.
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwFrm::SetDirFlags( BOOL bVert )
 /*N*/ {
@@ -1135,3 +1095,5 @@ SwCntntFrm *SwPageFrm::FindLastBodyCntnt()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

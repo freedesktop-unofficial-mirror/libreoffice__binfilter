@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,15 +42,9 @@
 #include <tools/debug.hxx>
 #include <tools/datetime.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 
 #include <vcl/svapp.hxx>
@@ -127,18 +122,6 @@ SfxPoolItem* SfxDateTimeItem::Create( SvStream& rStream, USHORT ) const
     return new SfxDateTimeItem( Which(), aDT );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxDateTimeItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxDateTimeItem, 0);
-    rStream << aDateTime.GetDate();
-    rStream << aDateTime.GetTime();
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxDateTimeItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS(SfxDateTimeItem, 0);
@@ -181,8 +164,8 @@ SfxItemPresentation SfxDateTimeItem::GetPresentation
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxDateTimeItem::PutValue( const com::sun::star::uno::Any& rVal,
-                                   BYTE nMemberId )
+bool SfxDateTimeItem::PutValue( const com::sun::star::uno::Any& rVal,
+                                BYTE nMemberId )
 {
     nMemberId &= ~CONVERT_TWIPS;
     com::sun::star::util::DateTime aValue;
@@ -195,16 +178,16 @@ BOOL SfxDateTimeItem::PutValue( const com::sun::star::uno::Any& rVal,
                                       aValue.Minutes,
                                       aValue.Seconds,
                                       aValue.HundredthSeconds ) );
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxDateTimeItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxDateTimeItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxDateTimeItem::QueryValue( com::sun::star::uno::Any& rVal,
+bool SfxDateTimeItem::QueryValue( com::sun::star::uno::Any& rVal,
                                    BYTE nMemberId ) const
 {
     nMemberId &= ~CONVERT_TWIPS;
@@ -216,7 +199,7 @@ BOOL SfxDateTimeItem::QueryValue( com::sun::star::uno::Any& rVal,
                                            aDateTime.GetMonth(),
                                            aDateTime.GetYear() );
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 // -----------------------------------------------------------------------
@@ -236,3 +219,5 @@ SfxItemPresentation SfxColumnDateTimeItem::GetPresentation( SfxItemPresentation,
 }
 */
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #endif
 
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #include "swregion.hxx"
 namespace binfilter {
 
@@ -43,9 +42,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRegionRects::SwRegionRects()
-|*
-|*  Ersterstellung      MA 28. Oct. 92
-|*  Letzte Aenderung    MA 01. Feb. 93
 |*
 |*************************************************************************/
 
@@ -66,7 +62,7 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/  inline void SwRegionRects::InsertRect( const SwRect &rRect, const USHORT nPos,
-/*N*/                                      FASTBOOL &rDel )
+/*N*/                                      bool &rDel )
 /*N*/  {
 /*N*/   if( rDel )
 /*N*/   {
@@ -86,8 +82,6 @@ namespace binfilter {
 |*      entfernt.
 |*      Dazu muessen die vorhandenen Rechtecke entweder aufgeteilt oder
 |*      geloescht werden.
-|*  Ersterstellung      MA 28. Oct. 92
-|*  Letzte Aenderung    MA 09. Sep. 93
 |*
 |*************************************************************************/
 
@@ -104,7 +98,7 @@ namespace binfilter {
 /*N*/
 /*N*/           // Das erste Rect, das wir inserten wollen, nimmt die
 /*N*/           // Stelle von i ein. So ersparen wir uns das Delete().
-/*N*/           FASTBOOL bDel = TRUE;
+/*N*/           bool bDel = TRUE;
 /*N*/
 /*N*/           //Jetzt aufteilen das Teil: Es sollen diejenigen Rechtecke
 /*N*/           //zurueckbleiben, die im alten aber nicht im neuen liegen.
@@ -163,8 +157,6 @@ namespace binfilter {
 |*  SwRegionRects::Compress()
 |*
 |*  Beschreibung        Zusammenfassen von benachbarten Rechtecken.
-|*  Ersterstellung      MA 16. Apr. 93
-|*  Letzte Aenderung    MA 21. Apr. 93
 |*
 |*************************************************************************/
 
@@ -178,3 +170,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_SCRIPT_XTYPECONVERTER_HPP_
 #include <com/sun/star/script/XTypeConverter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 #include <comphelper/processfactory.hxx>
 
@@ -75,25 +72,27 @@ SfxPoolItem* SfxIntegerListItem::Clone( SfxItemPool * ) const
     return new SfxIntegerListItem( *this );
 }
 
-BOOL SfxIntegerListItem::PutValue  ( const com::sun::star::uno::Any& rVal, BYTE )
+bool SfxIntegerListItem::PutValue  ( const com::sun::star::uno::Any& rVal, BYTE )
 {
     ::com::sun::star::uno::Reference < ::com::sun::star::script::XTypeConverter > xConverter
-            ( ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString::createFromAscii("com.sun.star.script.Converter")),
+            ( ::comphelper::getProcessServiceFactory()->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.Converter" ))),
             ::com::sun::star::uno::UNO_QUERY );
     ::com::sun::star::uno::Any aNew;
     try { aNew = xConverter->convertTo( rVal, ::getCppuType((const ::com::sun::star::uno::Sequence < sal_Int32 >*)0) ); }
     catch (::com::sun::star::uno::Exception&)
     {
-        return FALSE;
+        return false;
     }
 
     return ( aNew >>= m_aList );
 }
 
-BOOL SfxIntegerListItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE ) const
+bool SfxIntegerListItem::QueryValue( com::sun::star::uno::Any& rVal, BYTE ) const
 {
     rVal <<= m_aList;
-    return TRUE;
+    return true;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

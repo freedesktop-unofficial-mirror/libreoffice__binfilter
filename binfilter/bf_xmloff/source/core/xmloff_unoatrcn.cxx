@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,21 +27,13 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
 #include "xmlcnimp.hxx"
 
@@ -153,7 +146,7 @@ uno::Any SAL_CALL SvUnoAttributeContainer::getByName(const OUString& aName)
 
     xml::AttributeData aData;
     aData.Namespace = mpContainer->GetAttrNamespace(nAttr);
-    aData.Type = OUString::createFromAscii("CDATA");
+    aData.Type = OUString( RTL_CONSTASCII_USTRINGPARAM( "CDATA" ));
     aData.Value = mpContainer->GetAttrValue(nAttr);
 
     uno::Any aAny;
@@ -280,13 +273,13 @@ void SAL_CALL SvUnoAttributeContainer::removeByName(const OUString& Name)
 //XServiceInfo
 OUString SAL_CALL SvUnoAttributeContainer::getImplementationName(void) throw( uno::RuntimeException )
 {
-    return OUString::createFromAscii( "SvUnoAttributeContainer" );
+    return OUString( RTL_CONSTASCII_USTRINGPARAM( "SvUnoAttributeContainer" ));
 }
 
 uno::Sequence< OUString > SvUnoAttributeContainer::getSupportedServiceNames(void)
     throw( uno::RuntimeException )
 {
-    OUString aSN( OUString::createFromAscii( "com.sun.star.xml.AttributeContainer" ) );
+    OUString aSN( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.AttributeContainer" )) );
     uno::Sequence< OUString > aNS( &aSN, 1L );
     return aNS;
 }
@@ -308,3 +301,5 @@ sal_Bool SvUnoAttributeContainer::supportsService(const OUString& ServiceName)
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

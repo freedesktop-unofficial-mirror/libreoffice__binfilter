@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -85,7 +86,7 @@ SO2_DECL_REF(SvStorage)
 
 #define DOCUMENT_BUFFER_SIZE    (USHORT)32768
 
-static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
+static const char pStarMathDoc[] = "StarMathDocument";
 
 
 /**************************************************************************/
@@ -318,8 +319,8 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-/*N*/ void SmDocShell::SetPrinter( SfxPrinter *pNew )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SmDocShell::SetPrinter( SfxPrinter * /*pNew*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SmDocShell::OnDocumentPrinterChanged( Printer *pPrt )
@@ -353,10 +354,10 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   SfxObjectShell(eMode),
 /*N*/   pSymSetMgr          ( 0 ),
 /*N*/   pTree               ( 0 ),
-/*N*/   pPrinter            ( 0 ),
-/*N*/   pTmpPrinter         ( 0 ),
 /*N*/   pEditEngineItemPool ( 0 ),
 /*N*/   pEditEngine         ( 0 ),
+/*N*/   pPrinter            ( 0 ),
+/*N*/   pTmpPrinter         ( 0 ),
 /*N*/   nModifyCount        ( 0 ),
 /*N*/   bIsFormulaArranged  ( FALSE )
 /*N*/ {
@@ -431,17 +432,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   {
 /*N*/       bRet = TRUE;
 /*N*/       SetVisArea(Rectangle(Point(0, 0), Size(2000, 1000)));
-/*N*/ #if 0
-/*N*/       if (pStor)
-/*N*/       {
-/*N*/           aDocStream = pStor->OpenStream(String::CreateFromAscii(pStarMathDoc));
-/*N*/           aDocStream->SetVersion (pStor->GetVersion ());
-/*N*/           GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion()));
-/*N*/
-/*N*/           if (! aDocStream )
-/*N*/               bRet = FALSE;
-/*N*/       }
-/*N*/ #endif
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -456,7 +446,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/       if( pStor->IsStream( aTmpStr ))
 /*N*/       {
 /*N*/           // is this a MathType Storage?
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             MathType aEquation(aText);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if( pStor->IsStream(C2S("content.xml")) ||
 /*N*/                pStor->IsStream(C2S("Content.xml")) )
@@ -519,45 +509,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/           << '\0';
 /*N*/ }
 
-/*N*/ BOOL SmDocShell::Save()
-/*N*/ {
-/*N*/     //! apply latest changes if necessary
-/*N*/     UpdateText();
-/*N*/
-/*N*/     if ( SfxInPlaceObject::Save() )
-/*N*/   {
-/*N*/       if( !pTree )
-/*N*/           Parse();
-/*N*/       if( pTree && !IsFormulaArranged() )
-/*N*/           ArrangeFormula();
-/*N*/
-/*N*/       SvStorage *pStor = GetStorage();
-/*N*/       if(pStor->GetVersion() >= SOFFICE_FILEFORMAT_60)
-/*N*/       {
-/*N*/           // a math package as a storage
-/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-/*N*/           SmXMLWrapper aEquation(xModel);
-/*N*/           SfxMedium aMedium(pStor);
-/*N*/           aEquation.SetFlat(sal_False);
-/*N*/           return aEquation.Export(aMedium);
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*?*/           aDocStream = pStor->OpenStream(String::CreateFromAscii(pStarMathDoc));
-/*?*/           aDocStream->SetVersion (pStor->GetVersion ());
-/*?*/           GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion()));
-/*?*/
-/*?*/           aDocStream->Seek(0);
-/*?*/           ImplSave( aDocStream );
-/*?*/
-/*?*/           aDocStream.Clear();
-/*?*/           return TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-
 /*N*/ void SmDocShell::UpdateText()
 /*N*/ {
 /*N*/     if (pEditEngine && pEditEngine->IsModified())
@@ -569,79 +520,9 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/ }
 
 
-/*N*/ BOOL SmDocShell::SaveAs(SvStorage * pNewStor)
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/
-/*N*/     //! apply latest changes if necessary
-/*N*/     UpdateText();
-/*N*/
-/*N*/     if ( SfxInPlaceObject::SaveAs( pNewStor ) )
-/*N*/   {
-/*N*/       if( !pTree )
-/*?*/           Parse();
-/*N*/       if( pTree && !IsFormulaArranged() )
-/*?*/           ArrangeFormula();
-/*N*/
-/*N*/       if (pNewStor->GetVersion() >= SOFFICE_FILEFORMAT_60)
-/*N*/       {
-/*N*/           // a math package as a storage
-/*?*/              Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-/*?*/           SmXMLWrapper aEquation(xModel);
-/*?*/           SfxMedium aMedium(pNewStor);
-/*?*/           aEquation.SetFlat(sal_False);
-/*?*/           bRet = aEquation.Export(aMedium);
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           SvStorageStreamRef aStm = pNewStor->OpenStream(
-/*N*/                                       String::CreateFromAscii(pStarMathDoc));
-/*N*/           aStm->SetVersion( pNewStor->GetVersion() );
-/*N*/           GetPool().SetFileFormatVersion( USHORT( pNewStor->GetVersion() ));
-/*N*/           aStm->SetBufferSize(DOCUMENT_BUFFER_SIZE);
-/*N*/           aStm->SetKey( pNewStor->GetKey() ); // Passwort setzen
-/*N*/
-/*N*/           if ( aStm.Is() )
-/*N*/           {
-/*N*/               ImplSave( aStm );
-/*N*/               bRet = TRUE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
-
-/*N*/ BOOL SmDocShell::SaveCompleted(SvStorage * pStor)
-/*N*/ {
-/*N*/   if( SfxInPlaceObject::SaveCompleted( pStor ))
-/*N*/   {
-/*N*/ #if 0
-/*N*/       if (! pStor)
-/*N*/           return TRUE;
-/*N*/
-/*N*/       aDocStream = pStor->OpenStream(String::CreateFromAscii(pStarMathDoc));
-/*N*/       aDocStream->SetVersion (pStor->GetVersion ());
-/*N*/       GetPool().SetFileFormatVersion(USHORT(pStor->GetVersion()));
-/*N*/       aDocStream->SetBufferSize(DOCUMENT_BUFFER_SIZE);
-/*N*/       aDocStream->SetKey( pStor->GetKey() ); // Passwort setzen
-/*N*/       return aDocStream.Is();
-/*N*/ #endif
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
-/*N*/ }
-
-
-
-
-
 /*N*/ void SmDocShell::HandsOff()
 /*N*/ {
 /*N*/   SfxInPlaceObject::HandsOff();
-/*N*/ #if 0
-/*N*/   aDocStream.Clear();
-/*N*/ #endif
 /*N*/ }
 
 
@@ -685,7 +566,7 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/   aTempStream->SetVersion (pStor->GetVersion ());
 /*N*/   GetPool().SetFileFormatVersion (USHORT(pStor->GetVersion()));
 /*N*/   aTempStream->SetBufferSize(DOCUMENT_BUFFER_SIZE);
-/*N*/   aTempStream->SetKey( pStor->GetKey() ); // Passwort setzen
+/*N*/   aTempStream->SetCryptMaskKey( pStor->GetKey() ); // Passwort setzen
 /*N*/
 /*N*/   if (aTempStream->GetError() == 0)
 /*N*/   {
@@ -754,9 +635,6 @@ static const char __FAR_DATA pStarMathDoc[] = "StarMathDocument";
 /*N*/           }
 /*N*/
 /*N*/           bRet = TRUE;
-/*N*/ #if 0
-/*N*/           aDocStream = aTempStream;
-/*N*/ #endif
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -798,7 +676,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
         UINT32       lDataSize;
         String       aBuffer;
         ByteString   aByteStr;
-        SmSymSet    *pSymbolSet;
 
         *pSvStream >> lDataSize >> lIdent >> lVersion;
 
@@ -839,10 +716,6 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 
                     case 'S':
                     {
-                        // not sure about this...
-                        /* ??? pSymbolSet = new SmSymSet();
-                        ReadSM20SymSet(pSvStream, pSymbolSet);
-                        delete pSymbolSet; */
                         String      aTmp;
                         USHORT      n;
                         pSvStream->ReadByteString(aTmp, eEnc);
@@ -929,3 +802,5 @@ BOOL SmDocShell::Try2x (SvStorage *pStor,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,20 +33,11 @@
 #include <sysdep.hxx>
 #endif
 #include <string.h>
-// #include <math.h>
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SOT_FORMATS_HXX //autogen
 #include <sot/formats.hxx>
-#endif
 
 #include "urihelper.hxx"
 #include <bf_svtools/imap.hxx>
@@ -63,3 +55,5 @@ namespace binfilter
 TYPEINIT0_AUTOFACTORY( ImageMap );
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

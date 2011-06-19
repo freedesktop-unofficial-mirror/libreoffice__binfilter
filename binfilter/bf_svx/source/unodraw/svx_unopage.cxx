@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _SVX_USE_UNOGLOBALS_
 
 #ifndef SVX_LIGHT
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 #endif
 
 /*
@@ -47,21 +46,15 @@
 #include "svdopath.hxx"
 #include "svdomeas.hxx"
 
-#ifndef _E3D_EXTRUD3D_HXX
 #include <extrud3d.hxx>
-#endif
 
-#ifndef _E3D_LATHE3D_HXX
 #include <lathe3d.hxx>
-#endif
 #include <cube3d.hxx>
 #include <sphere3d.hxx>
 #include <polygn3d.hxx>
 
 namespace binfilter {
 
-using namespace ::vos;
-using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -69,14 +62,14 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::drawing;
 
+using rtl::OUString;
+
 #define INTERFACE_TYPE( xint ) \
     ::getCppuType((const Reference< xint >*)0)
 
 #define QUERYINT( xint ) \
     if( rType == ::getCppuType((const Reference< xint >*)0) ) \
         aAny <<= Reference< xint >(this)
-
-DECLARE_LIST( SvxDrawPageList, SvxDrawPage * )//STRIP008 ;
 
 extern SfxItemPropertyMap* ImplGetSvxOle2PropertyMap();
 extern SfxItemPropertyMap* ImplGetSvxPageShapePropertyMap();
@@ -114,7 +107,7 @@ SvxDrawPage::~SvxDrawPage() throw()
 // SfxListener
 
 //----------------------------------------------------------------------
-void SvxDrawPage::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SvxDrawPage::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if( pModel )
     {
@@ -139,6 +132,27 @@ void SvxDrawPage::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
                     }
                 }
                 break;
+            case HINT_UNKNOWN:
+            case HINT_LAYERCHG:
+            case HINT_LAYERORDERCHG:
+            case HINT_LAYERSETCHG:
+            case HINT_LAYERSETORDERCHG:
+            case HINT_PAGECHG:
+            case HINT_OBJCHG:
+            case HINT_OBJINSERTED:
+            case HINT_OBJREMOVED:
+            case HINT_OBJLISTCLEARED:
+            case HINT_REFDEVICECHG:
+            case HINT_DEFAULTTABCHG:
+            case HINT_DEFFONTHGTCHG:
+            case HINT_MODELSAVED:
+            case HINT_CONTROLINSERTED:
+            case HINT_CONTROLREMOVED:
+            case HINT_SWITCHTOPAGE:
+            case HINT_OBJLISTCLEAR:
+            case HINT_BEGEDIT:
+            case HINT_ENDEDIT:
+                break;
             }
         }
 
@@ -157,7 +171,7 @@ void SvxDrawPage::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 void SAL_CALL SvxDrawPage::add( const Reference< drawing::XShape >& xShape )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxShape* pShape = SvxShape::getImplementation( xShape );
 
@@ -190,7 +204,7 @@ void SAL_CALL SvxDrawPage::add( const Reference< drawing::XShape >& xShape )
 void SAL_CALL SvxDrawPage::remove( const Reference< drawing::XShape >& xShape )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxShape* pShape = SvxShape::getImplementation( xShape );
 
@@ -230,7 +244,7 @@ sal_Int32 SAL_CALL SvxDrawPage::getCount()
 uno::Any SAL_CALL SvxDrawPage::getByIndex( sal_Int32 Index )
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pPage == NULL)
         throw uno::RuntimeException();
@@ -316,7 +330,7 @@ void SvxDrawPage::_SelectObjectInView( const Reference< drawing::XShape > & xSha
 Reference< drawing::XShapeGroup > SAL_CALL SvxDrawPage::group( const Reference< drawing::XShapes >& xShapes )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     DBG_ASSERT(pPage,"SdrPage ist NULL! [CL]");
     DBG_ASSERT(pView, "SdrView ist NULL! [CL]");
@@ -352,7 +366,7 @@ Reference< drawing::XShapeGroup > SAL_CALL SvxDrawPage::group( const Reference< 
 void SAL_CALL SvxDrawPage::ungroup( const Reference< drawing::XShapeGroup >& aGroup )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     DBG_ASSERT(pPage,"SdrPage ist NULL! [CL]");
     DBG_ASSERT(pView, "SdrView ist NULL! [CL]");
@@ -478,7 +492,7 @@ SdrObject *SvxDrawPage::_CreateSdrObject( const Reference< drawing::XShape > & x
 //----------------------------------------------------------------------
 void SvxDrawPage::GetTypeAndInventor( sal_uInt16& rType, sal_uInt32& rInventor, const OUString& aName ) const throw()
 {
-    sal_uInt32 nTempType = aSdrShapeIdentifierMap.getId( aName );
+    sal_uInt32 nTempType = UHashMap::getId( aName );
 
     if(nTempType & E3D_INVENTOR_FLAG)
     {
@@ -545,7 +559,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                     pRet = new Svx3DPolygonObject( pObj );
                     break;
                 default: // unbekanntes 3D-Objekt auf der Page
-                    DBG_ERROR( "svx::SvxDrawPage::CreateShapeByTypeAndInventor(), unkown 3d-object found!" );
+                    OSL_FAIL( "svx::SvxDrawPage::CreateShapeByTypeAndInventor(), unkown 3d-object found!" );
                     pRet = new SvxShape( pObj );
                     break;
             }
@@ -636,8 +650,8 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                                 {
 
                                     const SvGlobalName aClassId( pInfo->GetClassName() );
-                                    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID ); //STRIP003
-                                    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID ); //STRIP003
+                                    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID );
+                                    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID );
                                     const SvGlobalName aIFrameClassId( BF_SO3_IFRAME_CLASSID );
 
                                     if( aPluginClassId == aClassId )
@@ -686,7 +700,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
                     pRet = new SvxShapeControl( pObj );
                     break;
                 default: // unbekanntes 2D-Objekt auf der Page
-                    DBG_ERROR("Nicht implementierter Starone-Shape erzeugt! [CL]");
+                    OSL_FAIL("Nicht implementierter Starone-Shape erzeugt! [CL]");
                     pRet = new SvxShapeText( pObj );
                     break;
             }
@@ -694,7 +708,7 @@ SvxShape* SvxDrawPage::CreateShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt3
         }
         default: // Unbekannter Inventor
         {
-            DBG_ERROR("AW: Unknown Inventor in SvxDrawPage::_CreateShape()");
+            OSL_FAIL("AW: Unknown Inventor in SvxDrawPage::_CreateShape()");
             break;
         }
     }
@@ -778,3 +792,5 @@ SvxShape* CreateSvxShapeByTypeAndInventor( sal_uInt16 nType, sal_uInt32 nInvento
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

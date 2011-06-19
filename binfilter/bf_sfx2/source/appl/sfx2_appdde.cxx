@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _SVDDE_HXX //autogen
 #include <bf_svtools/svdde.hxx>
-#endif
 #include <tools/urlobj.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #ifdef _MSC_VER
@@ -47,30 +46,30 @@ namespace binfilter {
 
 /*?*/ long SfxObjectShell::DdeExecute
 /*?*/ (
-/*?*/   const String&   rCmd        // in unserer BASIC-Syntax formuliert
+/*?*/   const String&   /*rCmd*/        // in unserer BASIC-Syntax formuliert
 /*?*/ )
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*?*/ long SfxObjectShell::DdeGetData
 /*?*/ (
-/*?*/   const String&   rItem,                      // das anzusprechende Item
-/*?*/   const String& rMimeType,                    // in: Format
-/*?*/   ::com::sun::star::uno::Any & rValue     // out: angeforderte Daten
+/*?*/   const String&   /*rItem*/,                      // das anzusprechende Item
+/*?*/   const String& /*rMimeType*/,                    // in: Format
+/*?*/   ::com::sun::star::uno::Any & /*rValue*/     // out: angeforderte Daten
 /*?*/ )
-{DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+{DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*?*/ long SfxObjectShell::DdeSetData
 /*?*/ (
-/*?*/   const String&   rItem,                      // das anzusprechende Item
-/*?*/   const String& rMimeType,                    // in: Format
-/*?*/   const ::com::sun::star::uno::Any & rValue   // out: angeforderte Daten
+/*?*/   const String&   /*rItem*/,                      // das anzusprechende Item
+/*?*/   const String& /*rMimeType*/,                    // in: Format
+/*?*/   const ::com::sun::star::uno::Any & /*rValue*/   // out: angeforderte Daten
 /*?*/ )
 /*?*/
 /*  [Beschreibung]
@@ -82,18 +81,20 @@ namespace binfilter {
     Die Basisimplementierung nimmt keine Daten entgegen und liefert 0 zur"uck.
 */
 /*?*/
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
 
 /*?*/ ::binfilter::SvLinkSource* SfxObjectShell::DdeCreateLinkSource
 /*?*/ (
-/*?*/   const String&   rItem      // das zu erzeugende Item
+/*?*/   const String&   /*rItem*/      // das zu erzeugende Item
 /*?*/ )
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 //--------------------------------------------------------------------
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

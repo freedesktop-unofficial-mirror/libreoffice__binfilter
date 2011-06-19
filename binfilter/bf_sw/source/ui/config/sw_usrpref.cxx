@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,24 +35,19 @@
 
 #include "usrpref.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "crstate.hxx"
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
 /*N*/ #define C2S(cChar) String::CreateFromAscii(cChar)
@@ -81,18 +77,16 @@ using namespace ::com::sun::star::uno;
 /*N*/   if(pWebColorConfig)
 /*N*/       pWebColorConfig->Load();
 /*N*/ }
-/* -----------------------------13.02.01 09:48--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwMasterUsrPref::~SwMasterUsrPref()
 /*N*/ {
 /*N*/   delete pWebColorConfig;
 /*N*/ }
-/*-- 28.09.00 09:55:32---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
     void SwContentViewConfig::Commit() {}
-    void SwContentViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwContentViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 /*N*/ Sequence<OUString> SwContentViewConfig::GetPropertyNames()
 /*N*/ {
@@ -128,9 +122,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwContentViewConfig::SwContentViewConfig(BOOL bIsWeb, SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(bIsWeb ? C2U("Office.WriterWeb/Content") :  C2U("Office.Writer/Content"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -138,18 +131,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   bWeb(bIsWeb)
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwContentViewConfig::~SwContentViewConfig()
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwContentViewConfig::Load()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -182,7 +172,7 @@ using namespace ::com::sun::star::uno;
 /*N*/                     case 14: rParent.SetShowHiddenPara(bSet); break;// "NonprintingCharacter/HiddenParagraph",
 /*N*/                     case 15:
 /*N*/                     {
-/*N*/                       sal_Int32 nSet; pValues[nProp] >>= nSet;
+                              sal_Int32 nSet(0); pValues[nProp] >>= nSet;
 /*N*/                         rParent.SetUpdateLinkMode(nSet, TRUE);
 /*N*/                   }
 /*N*/                   break;// "Update/Link",
@@ -193,9 +183,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> SwLayoutViewConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -228,11 +217,10 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwLayoutViewConfig::Commit() {}
-    void SwLayoutViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwLayoutViewConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwLayoutViewConfig::SwLayoutViewConfig(BOOL bIsWeb, SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(bIsWeb ? C2U("Office.WriterWeb/Layout") :  C2U("Office.Writer/Layout"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -240,18 +228,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   bWeb(bIsWeb)
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:35---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwLayoutViewConfig::~SwLayoutViewConfig()
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:36---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 28.09.00 09:55:36---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*M*/ void SwLayoutViewConfig::Load()
 /*M*/ {
 /*M*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -278,39 +263,39 @@ using namespace ::com::sun::star::uno;
 /*M*/                     case  8:
 /*M*/                     {
 /*M*/                         rParent.bIsHScrollMetricSet = sal_True;
-/*M*/                         sal_Int32 nUnit; pValues[nProp] >>= nUnit;
+                              sal_Int32 nUnit(0); pValues[nProp] >>= nUnit;
 /*M*/                         rParent.eHScrollMetric = ((FieldUnit)nUnit);  // "Window/HorizontalRulerUnit"
 /*M*/                     }
 /*M*/                     break;
 /*M*/                     case  9:
 /*M*/                     {
 /*M*/                         rParent.bIsVScrollMetricSet = sal_True;
-/*M*/                         sal_Int32 nUnit; pValues[nProp] >>= nUnit;
+                              sal_Int32 nUnit(0); pValues[nProp] >>= nUnit;
 /*M*/                         rParent.eVScrollMetric = ((FieldUnit)nUnit); // "Window/VerticalRulerUnit"
 /*M*/                     }
 /*M*/                     break;
 /*M*/                     case 10: rParent.SetSmoothScroll(bSet); break;// "Window/SmoothScroll",
 /*M*/                     case 11:
 /*M*/                     {
-/*M*/                         sal_Int32 nVal; pValues[nProp] >>= nVal;
+                              sal_Int32 nVal(0); pValues[nProp] >>= nVal;
 /*N*/                         rParent.SetZoom((USHORT)nVal);
 /*M*/                     }
 /*M*/                     break;// "Zoom/Value",
 /*M*/                     case 12:
 /*M*/                     {
-/*M*/                         sal_Int32 nVal; pValues[nProp] >>= nVal;
+                              sal_Int32 nVal(0); pValues[nProp] >>= nVal;
 /*M*/                         rParent.SetZoomType((BYTE)nVal);
 /*M*/                     }
 /*M*/                     break;// "Zoom/Type",
 /*M*/                     case 13:
 /*M*/                   {
-/*M*/                       sal_Int32 nUnit; pValues[nProp] >>= nUnit;
+                              sal_Int32 nUnit(0); pValues[nProp] >>= nUnit;
 /*M*/                         rParent.SetMetric((FieldUnit)nUnit, TRUE);
 /*M*/                   }
 /*M*/                   break;// "Other/MeasureUnit",
 /*M*/                     case 14:
 /*M*/                   {
-/*M*/                       sal_Int32 nTab; pValues[nProp] >>= nTab;
+                              sal_Int32 nTab(0); pValues[nProp] >>= nTab;
 /*M*/                         rParent.SetDefTab(MM100_TO_TWIP(nTab), TRUE);
 /*M*/                   }
 /*M*/                   break;// "Other/TabStop",
@@ -320,12 +305,11 @@ using namespace ::com::sun::star::uno;
 /*M*/       }
 /*M*/   }
 /*M*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 
     void SwGridConfig::Commit() {}
-    void SwGridConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwGridConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 /*N*/ Sequence<OUString> SwGridConfig::GetPropertyNames()
 /*N*/ {
@@ -348,9 +332,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwGridConfig::SwGridConfig(BOOL bIsWeb, SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(bIsWeb ? C2U("Office.WriterWeb/Grid") :  C2U("Office.Writer/Grid"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -358,18 +341,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   bWeb(bIsWeb)
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwGridConfig::~SwGridConfig()
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
 /*N*/ void SwGridConfig::Load()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -384,7 +364,7 @@ using namespace ::com::sun::star::uno;
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
 /*N*/               sal_Bool bSet = nProp < 3 ? *(sal_Bool*)pValues[nProp].getValue() : sal_False;
-/*N*/               sal_Int32 nSet;
+                    sal_Int32 nSet(0);
 /*N*/               if(nProp >= 3)
 /*N*/                   pValues[nProp] >>= nSet;
 /*N*/               switch(nProp)
@@ -403,9 +383,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/ }
 
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> SwCursorConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static const char* aPropNames[] =
@@ -423,29 +402,25 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwCursorConfig::Commit() {}
-    void SwCursorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwCursorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwCursorConfig::SwCursorConfig(SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(C2U("Office.Writer/Cursor"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
 /*N*/   rParent(rPar)
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwCursorConfig::~SwCursorConfig()
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
-/* -----------------------------19.01.01 13:07--------------------------------
 
- ---------------------------------------------------------------------------*/
+
+
 /*N*/ void SwCursorConfig::Load()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
@@ -459,9 +434,9 @@ using namespace ::com::sun::star::uno;
 /*N*/       {
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
-/*N*/               sal_Bool bSet;
-/*N*/               sal_Int32 nSet;
-/*N*/                 if(nProp != 1 )
+                    sal_Bool bSet(0);
+                    sal_Int32 nSet(0);
+                    if(nProp != 1 )
 /*N*/                   bSet = *(sal_Bool*)pValues[nProp].getValue();
 /*N*/               else
 /*N*/                   pValues[nProp] >>= nSet;
@@ -476,9 +451,8 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   }
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwWebColorConfig::SwWebColorConfig(SwMasterUsrPref& rPar) :
 /*N*/     ConfigItem(C2U("Office.WriterWeb/Background"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -489,20 +463,17 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwWebColorConfig::Commit() {}
-    void SwWebColorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwWebColorConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwWebColorConfig::~SwWebColorConfig()
 /*N*/ {
 /*N*/ }
-/*-- 28.09.00 09:55:33---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 28.09.00 09:55:34---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwWebColorConfig::Load()
 /*N*/ {
 /*N*/   Sequence<Any> aValues = GetProperties(aPropNames);
@@ -517,7 +488,9 @@ using namespace ::com::sun::star::uno;
 /*?*/               switch(nProp)
 /*?*/               {
 /*?*/                   case  0:
-/*?*/                       sal_Int32 nSet; pValues[nProp] >>= nSet; rParent.SetRetoucheColor(nSet);
+/*?*/                       sal_Int32 nSet(0);
+/*?*/                       pValues[nProp] >>= nSet;
+/*?*/                       rParent.SetRetoucheColor(nSet);
 /*?*/                   break;// "Color",
 /*?*/               }
 /*N*/           }
@@ -527,3 +500,5 @@ using namespace ::com::sun::star::uno;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

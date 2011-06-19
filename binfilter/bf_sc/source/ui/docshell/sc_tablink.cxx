@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,11 +30,6 @@
 #pragma optimize("",off)
 #endif
 
-//------------------------------------------------------------------
-
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -46,9 +42,7 @@
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/fcontnr.hxx>
 #include <bf_svx/linkmgr.hxx>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "tablink.hxx"
 
@@ -95,7 +89,7 @@ namespace binfilter {
 /*N*/   SetRefreshControl( pDocShell->GetDocument()->GetRefreshTimerControlAddress() );
 /*N*/ }
 
-/*N*/ __EXPORT ScTableLink::~ScTableLink()
+/*N*/ ScTableLink::~ScTableLink()
 /*N*/ {
 /*N*/   // Verbindung aufheben
 /*N*/
@@ -109,7 +103,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void __EXPORT ScTableLink::DataChanged( const String&,
+/*N*/ void ScTableLink::DataChanged( const String&,
 /*N*/                                       const ::com::sun::star::uno::Any& )
 /*N*/ {
 /*N*/   SvxLinkManager* pLinkManager=pDocShell->GetDocument()->GetLinkManager();
@@ -173,8 +167,6 @@ namespace binfilter {
 /*N*/   if (!aNewOpt.Len())
 /*N*/       aNewOpt = aOptions;
 /*N*/
-/*N*/   BOOL bFirst = TRUE;
-/*N*/
 /*N*/   //  Tabellen kopieren
 /*N*/
 /*N*/   ScDocShellModificator aModificator( *pDocShell );
@@ -222,7 +214,6 @@ namespace binfilter {
 /*N*/           else
 /*N*/           {
 /*N*/               pDoc->DeleteAreaTab( 0,0,MAXCOL,MAXROW, nTab, IDF_ALL );
-/*N*/ //                pDoc->ClearDrawPage(nTab);
 /*N*/               //  Fehler eintragen
 /*N*/               pDoc->SetString( 0,0,nTab, ScGlobal::GetRscString(STR_LINKERROR) );
 /*N*/               pDoc->SetString( 0,1,nTab, ScGlobal::GetRscString(STR_LINKERRORFILE) );
@@ -252,7 +243,6 @@ namespace binfilter {
 /*N*/
 /*N*/   //  aufraeumen
 /*N*/
-/*N*/ //    pSrcShell->DoClose();
 /*N*/   aRef->DoClose();
 /*N*/
 /*N*/   //  Paint (koennen mehrere Tabellen sein)
@@ -281,7 +271,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ IMPL_LINK( ScTableLink, RefreshHdl, ScTableLink*, pCaller )
+/*N*/ IMPL_LINK( ScTableLink, RefreshHdl, ScTableLink*, EMPTYARG )
 /*N*/ {
 /*N*/   long nRes = Refresh( aFileName, aFilterName, NULL, GetRefreshDelay() ) != 0;
 /*N*/   return nRes;
@@ -358,7 +348,7 @@ namespace binfilter {
 
 /*M*/ ScDocumentLoader::ScDocumentLoader( const String& rFileName,
 /*M*/                                   String& rFilterName, String& rOptions,
-/*M*/                                   UINT32 nRekCnt, BOOL bWithInteraction ) :
+/*M*/                                   UINT32 /*nRekCnt*/, BOOL bWithInteraction ) :
 /*M*/       pDocShell(0),
 /*M*/       pMedium(0)
 /*M*/ {
@@ -386,7 +376,7 @@ namespace binfilter {
 /*M*/   ScDocument* pDoc = pDocShell->GetDocument();
 /*M*/   if( pDoc )
 /*M*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScExtDocOptions*  pExtDocOpt = pDoc->GetExtDocOptions();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/
 /*M*/   pDocShell->DoLoad( pMedium );
@@ -398,9 +388,6 @@ namespace binfilter {
 /*N*/
 /*N*/ ScDocumentLoader::~ScDocumentLoader()
 /*N*/ {
-/*  if ( pDocShell )
-        pDocShell->DoClose();
-*/
 /*N*/   if ( aRef.Is() )
 /*N*/       aRef->DoClose();
 /*N*/   else if ( pMedium )
@@ -420,3 +407,5 @@ namespace binfilter {
 /*N*/       return TRUE;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

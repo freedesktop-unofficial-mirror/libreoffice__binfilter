@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,12 +27,8 @@
  ************************************************************************/
 
 
-#ifndef _SV_SPLITWIN_HXX //autogen
 #include <vcl/splitwin.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -68,14 +65,14 @@ namespace binfilter {
 /*N*/ };
 
 /*N*/ SfxFrameDescriptor::SfxFrameDescriptor( SfxFrameSetDescriptor *pParSet ) :
+/*N*/   pParentFrameSet( pParSet ),
+/*N*/   pFrameSet( 0L ),
 /*N*/   aMargin( -1, -1 ),
 /*N*/   nWidth( 0L ),
-/*N*/   nItemId( 0 ),
-/*N*/   pFrameSet( 0L ),
-/*N*/   pParentFrameSet( pParSet ),
 /*N*/   eScroll( ScrollingAuto ),
 /*N*/   eSizeSelector( SIZE_ABS ),
 /*N*/   nHasBorder( BORDER_YES ),
+/*N*/   nItemId( 0 ),
 /*N*/   bResizeHorizontal( TRUE ),
 /*N*/   bResizeVertical( TRUE ),
 /*N*/   bHasUI( TRUE ),
@@ -85,7 +82,7 @@ namespace binfilter {
 /*N*/
 /*N*/   pImp = new SfxFrameDescriptor_Impl;
 /*N*/   if ( pParentFrameSet )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pParentFrameSet->InsertFrame( this );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 /*N*/ SfxFrameDescriptor::~SfxFrameDescriptor()
@@ -95,17 +92,17 @@ namespace binfilter {
 /*N*/   if ( pFrameSet )
 /*N*/       delete pFrameSet;
 /*N*/   if ( pParentFrameSet )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pParentFrameSet->RemoveFrame( this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   delete pImp;
 /*N*/ }
 
-/*?*/ void SfxFrameDescriptor::SetURL( const String& rURL )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ void SfxFrameDescriptor::SetURL( const String& /*rURL*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*N*/ SfxFrameDescriptor* SfxFrameDescriptor::Clone(
-/*N*/   SfxFrameSetDescriptor *pSet, BOOL bWithIds ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/   SfxFrameSetDescriptor * /*pSet*/, BOOL /*bWithIds*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ SfxFrameProperties&   SfxFrameProperties::operator =(
@@ -165,9 +162,9 @@ namespace binfilter {
 
 /*?*/ SfxItemPresentation SfxFrameDescriptorItem::GetPresentation
 /*?*/ (
-/*?*/   SfxItemPresentation ePres,
-/*?*/   SfxMapUnit          eCoreUnit,
-/*?*/   SfxMapUnit          ePresUnit,
+/*?*/   SfxItemPresentation /*ePres*/,
+/*?*/   SfxMapUnit          /*eCoreUnit*/,
+/*?*/   SfxMapUnit          /*ePresUnit*/,
 /*?*/   XubString&          rText,
 /*?*/     const ::IntlWrapper *
 /*?*/ ) const
@@ -178,3 +175,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

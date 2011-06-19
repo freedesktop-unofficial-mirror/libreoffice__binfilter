@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,41 +29,19 @@
 #ifndef INCLUDED_SVTOOLS_ONDEMAND_HXX
 #define INCLUDED_SVTOOLS_ONDEMAND_HXX
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_COLLATORWRAPPER_HXX
 #include <unotools/collatorwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
 #include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_TRANSLITERATIONMODULES_HPP_
 #include <com/sun/star/i18n/TransliterationModules.hpp>
-#endif
-#ifndef _UNOTOOLS_NATIVENUMBERWRAPPER_HXX
 #include <unotools/nativenumberwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 namespace binfilter
 {
@@ -492,3 +471,4 @@ public:
 
 #endif // INCLUDED_SVTOOLS_ONDEMAND_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

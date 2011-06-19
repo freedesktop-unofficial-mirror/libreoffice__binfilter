@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -94,19 +95,6 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ SvStream& SfxPrinter::Store( SvStream& rStream ) const
-
-/*  [Beschreibung]
-
-    Speichert das verwendete JobSetup des <SfxPrinter>s.
-*/
-
-/*N*/ {
-/*N*/   return ( rStream << GetJobSetup() );
-/*N*/ }
-
-//--------------------------------------------------------------------
-
 /*N*/ SfxPrinter::SfxPrinter( SfxItemSet* pTheOptions ) :
 
 /*  [Beschreibung]
@@ -138,13 +126,12 @@ namespace binfilter {
 /*N*/       SetJobSetup( rTheOrigJobSetup );
         }
 
-        // --> FME 2006-09-19 #b6449032# Use old XPrinter emulation. rTheOrigJobSetup
+        // --> Use old XPrinter emulation. rTheOrigJobSetup
         // already has this setting (see SfxPrinter::Create()).
         JobSetup aJobSetup( GetJobSetup() );
         aJobSetup.SetValue( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StrictSO52Compatibility" ) ),
                             rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "true" ) ) );
         SetJobSetup( aJobSetup );
-        // <--
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -187,8 +174,10 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*?*/ const SfxFont* SfxPrinter::GetFontByName( const String &rFontName )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ const SfxFont* SfxPrinter::GetFontByName( const String & )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

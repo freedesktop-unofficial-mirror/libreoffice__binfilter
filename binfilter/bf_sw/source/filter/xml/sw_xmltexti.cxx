@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,111 +26,52 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include <bf_xmloff/txtprmap.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOCRSR_HXX
 #include "unocrsr.hxx"
-#endif
-#ifndef _UNOOBJ_HXX
 #include "unoobj.hxx"
-#endif
-#ifndef _UNOFRAME_HXX
 #include "unoframe.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include "doc.hxx"
-#endif
-#ifndef _UNOCOLL_HXX
 #include "unocoll.hxx"
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTBLI_HXX
 #include "xmltbli.hxx"
-#endif
-#ifndef _XMLTEXTI_HXX
 #include "xmltexti.hxx"
-#endif
-#ifndef _XMLREDLINEIMPORTHELPER_HXX
 #include "XMLRedlineImportHelper.hxx"
-#endif
-#ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
 #include <bf_xmloff/XMLFilterServiceNames.h>
-#endif
 
-#ifndef _SW_APPLET_IMPL_HXX
 #include <SwAppletImpl.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
 
-#ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
-#endif
 
 #include <bf_sfx2/frmdescr.hxx>
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -137,6 +79,9 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::xml::sax;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 struct XMLServiceMapEntry_Impl
@@ -161,7 +106,7 @@ const XMLServiceMapEntry_Impl aServiceMap[] =
     SERVICE_MAP_ENTRY( IMPRESS, SIMPRESS ),
     SERVICE_MAP_ENTRY( CHART, SCH ),
     SERVICE_MAP_ENTRY( MATH, SM ),
-    { 0, 0, 0, 0 }
+    { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
 };
 static void lcl_putHeightAndWidth ( SfxItemSet &rItemSet,
         sal_Int32 nHeight, sal_Int32 nWidth,
@@ -191,10 +136,10 @@ SwXMLTextImportHelper::SwXMLTextImportHelper(
         const Reference < XModel>& rModel,
         SvXMLImport& rImport,
         const Reference<XPropertySet> & rInfoSet,
-        sal_Bool bInsertM, sal_Bool bStylesOnlyM, sal_Bool bProgress,
+        sal_Bool bInsertM, sal_Bool bStylesOnlyM, sal_Bool bInProgress,
         sal_Bool bBlockM, sal_Bool bOrganizerM,
-        sal_Bool bPreserveRedlineMode ) :
-    XMLTextImportHelper( rModel, rImport, bInsertM, bStylesOnlyM, bProgress,
+        sal_Bool /*bPreserveRedlineMode*/ ) :
+    XMLTextImportHelper( rModel, rImport, bInsertM, bStylesOnlyM, bInProgress,
                          bBlockM, bOrganizerM ),
     pRedlineHelper( NULL )
 {
@@ -230,11 +175,11 @@ sal_Bool SwXMLTextImportHelper::IsInHeaderFooter() const
 {
     Reference<XUnoTunnel> xCrsrTunnel(
             ((SwXMLTextImportHelper *)this)->GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     return pDoc->IsInHeaderFooter( pTxtCrsr->GetPaM()->GetPoint()->nNode );
@@ -249,19 +194,19 @@ SwOLENode *lcl_GetOLENode( const SwFrmFmt *pFrmFmt )
         const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();
         pOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
     }
-    ASSERT( pOLENd, "Where is the OLE node" );
+    OSL_ENSURE( pOLENd, "Where is the OLE node" );
     return pOLENd;
 }
 
 Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
-           SvXMLImport& rImport,
+           SvXMLImport& /*rImport*/,
         const OUString& rHRef,
         const OUString& rStyleName,
         const OUString& rTblName,
         sal_Int32 nWidth, sal_Int32 nHeight )
 {
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Reference < XPropertySet > xPropSet;
 
@@ -275,11 +220,11 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
         return xPropSet;
 
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -360,8 +305,8 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
     {
         const SwFmtCntnt& rCntnt = pFrmFmt->GetCntnt();
         const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();
-        SwOLENode *pOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
-        ASSERT( pOLENd, "Where is the OLE node" );
+        SwOLENode *pLclOLENd = pNdIdx->GetNodes()[pNdIdx->GetIndex() + 1]->GetOLENode();
+        OSL_ENSURE( pLclOLENd, "Where is the OLE node" );
 
         OUStringBuffer aBuffer( rTblName.getLength() );
         sal_Bool bQuoted = sal_False;
@@ -428,7 +373,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
         if( !bError )
         {
             OUString sTblName( aBuffer.makeStringAndClear() );
-            pOLENd->SetChartTblName( GetRenameMap().Get( XML_TEXT_RENAME_TYPE_TABLE, sTblName ) );
+            pLclOLENd->SetChartTblName( GetRenameMap().Get( XML_TEXT_RENAME_TYPE_TABLE, sTblName ) );
         }
     }
 
@@ -442,7 +387,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertOLEObject(
             UniReference < SvXMLImportPropertyMapper > xImpPrMap =
                 pStyle->GetStyles()
                       ->GetImportPropertyMapper(pStyle->GetFamily());
-            ASSERT( xImpPrMap.is(), "Where is the import prop mapper?" );
+            OSL_ENSURE( xImpPrMap.is(), "Where is the import prop mapper?" );
             if( xImpPrMap.is() )
             {
                 UniReference<XMLPropertySetMapper> rPropMapper =
@@ -516,15 +461,15 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertApplet(
         sal_Int32 nWidth, sal_Int32 nHeight )
 {
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Reference < XPropertySet > xPropSet;
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -552,11 +497,11 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertPlugin(
 {
     Reference < XPropertySet > xPropSet;
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -602,15 +547,15 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
         sal_Int32 nWidth, sal_Int32 nHeight )
 {
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Reference < XPropertySet > xPropSet;
     Reference<XUnoTunnel> xCrsrTunnel( GetCursor(), UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     SfxItemSet aItemSet( pDoc->GetAttrPool(), RES_FRMATR_BEGIN,
@@ -635,7 +580,7 @@ Reference< XPropertySet > SwXMLTextImportHelper::createAndInsertFloatingFrame(
             UniReference < SvXMLImportPropertyMapper > xImpPrMap =
                 pStyle->GetStyles()
                       ->GetImportPropertyMapper(pStyle->GetFamily());
-            ASSERT( xImpPrMap.is(), "Where is the import prop mapper?" );
+            OSL_ENSURE( xImpPrMap.is(), "Where is the import prop mapper?" );
             if( xImpPrMap.is() )
             {
                 UniReference<XMLPropertySetMapper> rPropMapper =
@@ -714,14 +659,14 @@ void SwXMLTextImportHelper::endAppletOrPlugin(
         ::std::map < const ::rtl::OUString, ::rtl::OUString, ::comphelper::UStringLess > &rParamMap)
 {
     // this method will modify the document directly -> lock SolarMutex
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     Reference<XUnoTunnel> xCrsrTunnel( rPropSet, UNO_QUERY );
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for embedded" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for embedded" );
     SwXFrame *pFrame =
                 (SwXFrame *)xCrsrTunnel->getSomething(
                                     SwXFrame::getUnoTunnelId() );
-    ASSERT( pFrame, "SwXFrame missing" );
+    OSL_ENSURE( pFrame, "SwXFrame missing" );
     SwFrmFmt *pFrmFmt = pFrame->GetFrmFmt();
     const SwFmtCntnt& rCntnt = pFrmFmt->GetCntnt();
     const SwNodeIndex *pNdIdx = rCntnt.GetCntntIdx();
@@ -843,3 +788,5 @@ void SwXMLTextImportHelper::SetChangesProtectionKey(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

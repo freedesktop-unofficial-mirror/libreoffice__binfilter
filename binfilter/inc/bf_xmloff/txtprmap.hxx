@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,8 @@
 #ifndef _XMLOFF_TEXTPRMAP_HXX_
 #define _XMLOFF_TEXTPRMAP_HXX_
 
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include <bf_xmloff/contextid.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
 namespace binfilter {
 
 #define CTF_CHARHEIGHT               (XML_TEXT_CTF_START + 1)
@@ -176,3 +173,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

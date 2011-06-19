@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -198,7 +199,7 @@ CntItemPool* CntItemPool::_pThePool = NULL;
 /*N*/ }
 
 //-------------------------------------------------------------------------
-/*N*/ CntStaticPoolDefaults_Impl::CntStaticPoolDefaults_Impl( CntItemPool* pPool )
+/*N*/ CntStaticPoolDefaults_Impl::CntStaticPoolDefaults_Impl( CntItemPool* /*pPool*/ )
 /*N*/ : m_nItems( 1 ),
 /*N*/   m_ppDefaults( new SfxPoolItem* [ m_nItems ] ),
 /*N*/   m_pItemInfos( new SfxItemInfo  [ m_nItems ] )
@@ -212,3 +213,5 @@ CntItemPool* CntItemPool::_pThePool = NULL;
 /*N*/       SFX_ITEM_POOLABLE );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

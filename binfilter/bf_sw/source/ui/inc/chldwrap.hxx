@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef _CHLDWRAP_HXX
 #define _CHLDWRAP_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 namespace binfilter {
 
 class SwDocShell;
@@ -44,7 +41,7 @@ class SwChildWinWrapper : public SfxChildWindow
 
     // Implementation in fldtdlg.cxx
 protected:
-    SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwChildWinWrapper(Window *pParentWindow, USHORT nId);
+    SwChildWinWrapper(Window *pParentWindow, USHORT nId):SfxChildWindow(pParentWindow, nId){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 
@@ -52,3 +49,4 @@ protected:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

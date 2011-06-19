@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,15 +35,9 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;
@@ -105,9 +100,13 @@ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
 
  public:
     SwCollectTblLineBoxes( BOOL bTop, USHORT nMd = 0, SwHistory* pHist=0 )
-        : aPosArr( 16, 16 ), aBoxes( 16, 16 ),
-        bGetFromTop( bTop ), bGetValues( TRUE ), nMode( nMd ),
-        nWidth( 0 ), pHst( pHist )
+        : aPosArr( 16, 16 )
+        , aBoxes( 16, 16 )
+        , pHst( pHist )
+        , nMode( nMd )
+        , nWidth( 0 )
+        , bGetFromTop( bTop )
+        , bGetValues( TRUE )
     {}
 
     void AddBox( const SwTableBox& rBox );
@@ -129,7 +128,7 @@ void _DeleteBox( SwTable& rTbl, SwTableBox* pBox,
     USHORT GetMode() const              { return nMode; }
     void SetValues( BOOL bFlag )        { bGetValues = FALSE; nWidth = 0;
                                           bGetFromTop = bFlag; }
-    FASTBOOL Resize( USHORT nOffset, USHORT nWidth );
+    bool Resize( USHORT nOffset, USHORT nWidth );
  };
 
 BOOL lcl_Box_CollectBox( const SwTableBox*& rpBox, void* pPara );
@@ -144,10 +143,16 @@ struct _SwGCLineBorder
     USHORT nLinePos;
 
     _SwGCLineBorder( const SwTable& rTable )
-        : pLines( &rTable.GetTabLines() ), nLinePos( 0 ), pShareFmts(0) {}
+        : pLines( &rTable.GetTabLines() )
+        , pShareFmts(0)
+        , nLinePos( 0 )
+        {}
 
     _SwGCLineBorder( const SwTableBox& rBox )
-        : pLines( &rBox.GetTabLines() ), nLinePos( 0 ), pShareFmts(0) {}
+        : pLines( &rBox.GetTabLines() )
+        , pShareFmts(0)
+        , nLinePos( 0 )
+        {}
     BOOL IsLastLine() const { return nLinePos + 1 >= pLines->Count(); }
 };
 
@@ -193,8 +198,7 @@ public:
     SwFrmFmt* GetFormat( long nWidth ) const;
     SwFrmFmt* GetFormat( const SfxPoolItem& rItem ) const;
     void AddFormat( const SwFrmFmt& rFmt );
-//STRIP001  // returnt TRUE, wenn geloescht werden kann
-    FASTBOOL RemoveFormat( const SwFrmFmt& rFmt );
+    bool RemoveFormat( const SwFrmFmt& rFmt );
 };
 
 
@@ -222,3 +226,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

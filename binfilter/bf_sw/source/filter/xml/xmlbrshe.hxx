@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _XMLBRSHE_HXX
 #define _XMLBRSHE_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 namespace binfilter {
 
@@ -58,3 +57,4 @@ public:
 } //namespace binfilter
 #endif  //  _XMLBRSHE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

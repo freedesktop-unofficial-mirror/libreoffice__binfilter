@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _SD_STLPOOL_HXX
 
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 namespace binfilter {
 
 class SdStyleSheet;
@@ -45,6 +44,7 @@ private:
     SdDrawDocument*    pDoc;
 
 protected:
+    using SfxStyleSheetPool::Create;
     virtual SfxStyleSheetBase* Create(const String& rName,
                                       SfxStyleFamily eFamily,
                                       USHORT nMask);
@@ -86,3 +86,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

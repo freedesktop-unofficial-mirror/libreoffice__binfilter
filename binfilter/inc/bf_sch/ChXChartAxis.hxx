@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #define _CHXCHART_AXIS_HXX
 
 // header for SvNumberFormatsSupplierObj
-#ifndef _NUMUNO_HXX
 #include <bf_svtools/numuno.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
 
 #include "ChXChartObject.hxx"
 namespace binfilter {
@@ -127,3 +124,4 @@ protected:
 } //namespace binfilter
 #endif  // _CHXCHART_AXIS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

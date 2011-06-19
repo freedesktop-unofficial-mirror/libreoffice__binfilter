@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,85 +26,34 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_LINEDASH_HPP_
 #include <com/sun/star/drawing/LineDash.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
 
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "bf_xmloff/xmlnmspe.hxx"
-#endif
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "bf_xmloff/nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "bf_xmloff/xmlkywd.hxx"
-#endif
-
-
-#ifndef _XMLOFF_DASHSTYLE_HXX
 #include "bf_xmloff/DashStyle.hxx"
-#endif
-
-#ifndef _XMLOFF_GRADIENTSTYLE_HXX
 #include "bf_xmloff/GradientStyle.hxx"
-#endif
-
-#ifndef _XMLOFF_HATCHSTYLE_HXX
 #include "bf_xmloff/HatchStyle.hxx"
-#endif
-
-#ifndef _XMLOFF_IMAGESTYLE_HXX
 #include "bf_xmloff/ImageStyle.hxx"
-#endif
-
-#ifndef _XMLOFF_MARKERSTYLE_HXX
 #include "bf_xmloff/MarkerStyle.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-
-
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
 
-#ifndef _XMLGRHLP_HXX
 #include "xmlgrhlp.hxx"
-#endif
-
 #include "xmlxtexp.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::container;
@@ -133,3 +83,5 @@ using namespace cppu;
 /*N*/ {
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

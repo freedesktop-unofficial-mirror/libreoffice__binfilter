@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIMERANGE_HPP_
 #include <com/sun/star/util/DateTimeRange.hpp>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 #include <comphelper/processfactory.hxx>
@@ -130,23 +127,6 @@ SfxPoolItem* SfxDateTimeRangeItem::Create( SvStream& rStream, USHORT ) const
     return new SfxDateTimeRangeItem( Which(), aStartDT, aEndDT );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxDateTimeRangeItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxDateTimeRangeItem, 0 );
-
-    rStream << aStartDateTime.GetDate();
-    rStream << aStartDateTime.GetTime();
-
-    rStream << aEndDateTime.GetDate();
-    rStream << aEndDateTime.GetTime();
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxDateTimeRangeItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxDateTimeRangeItem, 0 );
@@ -187,7 +167,7 @@ SfxItemPresentation SfxDateTimeRangeItem::GetPresentation
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     com::sun::star::util::DateTimeRange aValue;
     if ( rVal >>= aValue )
@@ -206,36 +186,38 @@ BOOL SfxDateTimeRangeItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
                                            aValue.EndMinutes,
                                            aValue.EndSeconds,
                                            aValue.EndHundredthSeconds ) );
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxDateTimeRangeItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxDateTimeRangeItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxDateTimeRangeItem::QueryValue( com::sun::star::uno::Any& rVal,
+bool SfxDateTimeRangeItem::QueryValue( com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId ) const
 {
     nMemberId &= ~CONVERT_TWIPS;
     com::sun::star::util::DateTimeRange aValue( aStartDateTime.Get100Sec(),
-                                                   aStartDateTime.GetSec(),
-                                                      aStartDateTime.GetMin(),
-                                                   aStartDateTime.GetHour(),
-                                                   aStartDateTime.GetDay(),
-                                                   aStartDateTime.GetMonth(),
-                                                   aStartDateTime.GetYear(),
+                                                aStartDateTime.GetSec(),
+                                                aStartDateTime.GetMin(),
+                                                aStartDateTime.GetHour(),
+                                                aStartDateTime.GetDay(),
+                                                aStartDateTime.GetMonth(),
+                                                aStartDateTime.GetYear(),
                                                 aEndDateTime.Get100Sec(),
-                                                   aEndDateTime.GetSec(),
-                                                      aEndDateTime.GetMin(),
-                                                   aEndDateTime.GetHour(),
-                                                   aEndDateTime.GetDay(),
-                                                   aEndDateTime.GetMonth(),
-                                                   aEndDateTime.GetYear() );
+                                                aEndDateTime.GetSec(),
+                                                aEndDateTime.GetMin(),
+                                                aEndDateTime.GetHour(),
+                                                aEndDateTime.GetDay(),
+                                                aEndDateTime.GetMonth(),
+                                                aEndDateTime.GetYear() );
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

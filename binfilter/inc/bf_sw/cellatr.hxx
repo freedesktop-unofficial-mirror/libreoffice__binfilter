@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
 #include "format.hxx"
 #include "cellfml.hxx"
@@ -53,7 +50,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     inline SwTblBoxNumFormat& operator=( const SwTblBoxNumFormat& rAttr )
@@ -79,7 +76,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     // erfrage und setze den Modify-Pointer
@@ -106,7 +103,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion) const;
 
     inline SwTblBoxValue& operator=( const SwTblBoxValue& rCmp )
@@ -147,3 +144,5 @@ inline const SwTblBoxValue          &SwFmt::GetTblBoxValue(BOOL bInP) const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

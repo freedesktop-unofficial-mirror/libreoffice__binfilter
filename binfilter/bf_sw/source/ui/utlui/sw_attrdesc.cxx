@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,48 +34,34 @@
 
 
 
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _SW_HF_EAT_SPACINGITEM_HXX
 #include <hfspacingitem.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _ATTRDESC_HRC
 #include <attrdesc.hrc>
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT2(SwFmtCharFmt,SfxPoolItem,SwClient);
 
 // erfrage die Attribut-Beschreibung
 /*N*/ void SwAttrSet::GetPresentation(
-/*N*/       SfxItemPresentation ePres,
-/*N*/       SfxMapUnit eCoreMetric,
-/*N*/       SfxMapUnit ePresMetric,
-/*N*/       String &rText ) const
+/*N*/       SfxItemPresentation /*ePres*/,
+/*N*/       SfxMapUnit /*eCoreMetric*/,
+/*N*/       SfxMapUnit /*ePresMetric*/,
+/*N*/       String & /*rText*/ ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] = ", ";
+DBG_BF_ASSERT(0, "STRIP");
 }
 
 
 /*N*/ void SwPageDesc::GetPresentation(
-/*N*/       SfxItemPresentation ePres,
-/*N*/       SfxMapUnit eCoreMetric,
-/*N*/       SfxMapUnit ePresMetric,
+/*N*/       SfxItemPresentation /*ePres*/,
+/*N*/       SfxMapUnit /*eCoreMetric*/,
+/*N*/       SfxMapUnit /*ePresMetric*/,
 /*N*/       String &rText ) const
 /*N*/ {
 /*N*/   rText = GetName();
@@ -86,13 +73,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] =
 
 /*N*/ SfxItemPresentation SwFmtCharFmt::GetPresentation
 /*N*/ (
-/*N*/   SfxItemPresentation ePres,
-/*N*/   SfxMapUnit          eCoreUnit,
-/*N*/   SfxMapUnit          ePresUnit,
-/*N*/   String&             rText,
-/*N*/     const ::IntlWrapper*        pIntl
+/*N*/   SfxItemPresentation /*ePres*/,
+/*N*/   SfxMapUnit          /*eCoreUnit*/,
+/*N*/   SfxMapUnit          /*ePresUnit*/,
+/*N*/   String&             /*rText*/,
+/*N*/     const ::IntlWrapper* /*pIntl*/
 /*N*/ ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return SFX_ITEM_PRESENTATION_NONE;
 /*N*/ }
 
@@ -133,21 +120,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] =
 /*N*/ {
 /*N*/     // no UI support available
 /*N*/     return SfxBoolItem::GetPresentation( ePres, eCoreUnit, ePresUnit, rText, pIntl );
-/*    switch ( ePres )
-    {
-        case SFX_ITEM_PRESENTATION_NONE:
-            rText.Erase();
-            return SFX_ITEM_PRESENTATION_NONE;
-        case SFX_ITEM_PRESENTATION_NAMELESS:
-        case SFX_ITEM_PRESENTATION_COMPLETE:
-        {
-            USHORT nId = GetValue() ? STR_CONNECT_BORDER_ON : STR_CONNECT_BORDER_OFF;
-            rText = SW_RESSTR( nId );
-            return ePres;
-        }
-    }
-    return SFX_ITEM_PRESENTATION_NONE;
- */
 /*N*/ }
 
 
@@ -213,42 +185,18 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 static sal_Char __READONLY_DATA sKomma[] =
 
 /*M*/ SfxItemPresentation SwHeaderAndFooterEatSpacingItem::GetPresentation
 /*M*/ (
-/*M*/   SfxItemPresentation ePres,
-/*M*/   SfxMapUnit          eCoreUnit,
-/*M*/   SfxMapUnit          ePresUnit,
-/*M*/   String&             rText,
-/*M*/     const ::IntlWrapper*        pIntl
+/*M*/   SfxItemPresentation /*ePres*/,
+/*M*/   SfxMapUnit          /*eCoreUnit*/,
+/*M*/   SfxMapUnit          /*ePresUnit*/,
+/*M*/   String&             /*rText*/,
+/*M*/   const ::IntlWrapper*  /*pIntl*/
 /*M*/ ) const
 /*M*/ {
-//    rText.Erase();
-//    switch ( ePres )
-//    {
-//        case SFX_ITEM_PRESENTATION_NONE:
-//            rText.Erase();
-//            break;
-//        case SFX_ITEM_PRESENTATION_NAMELESS:
-//        case SFX_ITEM_PRESENTATION_COMPLETE:
-//        {
-//            if ( GetValue() )
-//                rText = SW_RESSTR(STR_EDIT_IN_READONLY);
-//            return ePres;
-//        }
-//    }
 /*M*/   return SFX_ITEM_PRESENTATION_NONE;
 /*M*/ }
 
 
-// ---------------------- Grafik-Attribute --------------------------
-
-
-
-
-
-
-
-
-
-
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

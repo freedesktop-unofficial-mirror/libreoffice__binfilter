@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,30 +30,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTSUPPLIER_HPP_
 #include <com/sun/star/document/XEmbeddedObjectSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFRAME_HPP_
 #include <com/sun/star/text/XTextFrame.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
 #include <com/sun/star/util/XModifyListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
 
 #include <cppuhelper/implbase1.hxx>
 #include <cppuhelper/implbase2.hxx>
@@ -62,9 +47,8 @@
 namespace binfilter {
 
 class SwDoc;
-/*-----------------12.02.98 11:21-------------------
 
---------------------------------------------------*/
+
 class BaseFrameProperties_Impl;
 class SwXFrame : public cppu::WeakImplHelper6
 <
@@ -166,9 +150,8 @@ public:
     void            ResetDescriptor();
     static SdrObject *GetOrCreateSdrObject( SwFlyFrmFmt *pFmt );
 };
-/*-----------------20.02.98 11:28-------------------
 
---------------------------------------------------*/
+
 typedef cppu::WeakImplHelper3
 <
     ::com::sun::star::text::XTextFrame,
@@ -241,9 +224,8 @@ public:
     void * SAL_CALL operator new( size_t ) throw();
     void SAL_CALL operator delete( void * ) throw();
 };
-/*-----------------20.02.98 11:28-------------------
 
---------------------------------------------------*/
+
 typedef cppu::WeakImplHelper2
 <
     ::com::sun::star::text::XTextContent,
@@ -287,9 +269,8 @@ public:
     void * SAL_CALL operator new( size_t ) throw();
     void SAL_CALL operator delete( void * ) throw();
 };
-/*-----------------20.02.98 11:28-------------------
 
---------------------------------------------------*/
+
 typedef cppu::WeakImplHelper3
 <
     ::com::sun::star::text::XTextContent,
@@ -368,3 +349,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,64 +26,32 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #define _ZFORLIST_DECLARE_TABLE
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-
-
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
-#endif
-#ifndef _SWDDETBL_HXX
 #include <swddetbl.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FMTCNCT_HXX
 #include <fmtcnct.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
+
 namespace binfilter {
 
 // Struktur fuer das Mappen von alten und neuen Frame-Formaten an den
@@ -96,7 +65,7 @@ namespace binfilter {
 /*N*/   {}
 /*N*/ };
 
-/*N*/ SV_DECL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt, 0, 10 )//STRIP008 ;
+/*N*/ SV_DECL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt, 0, 10 )
 /*N*/ SV_IMPL_VARARR( _MapTblFrmFmts, _MapTblFrmFmt );
 
 /*N*/ SwCntntNode* SwTxtNode::MakeCopy( SwDoc* pDoc, const SwNodeIndex& rIdx ) const
@@ -167,22 +136,31 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ struct _CopyTable
-/*N*/ {
-/*N*/   SwDoc* pDoc;
-/*N*/   ULONG nOldTblSttIdx;
-/*N*/   _MapTblFrmFmts& rMapArr;
-/*N*/   SwTableLine* pInsLine;
-/*N*/   SwTableBox* pInsBox;
-/*N*/   SwTableNode *pTblNd;
-/*N*/   const SwTable *pOldTable;
-/*N*/
-/*N*/   _CopyTable( SwDoc* pDc, _MapTblFrmFmts& rArr, ULONG nOldStt,
-/*N*/               SwTableNode& rTblNd, const SwTable* pOldTbl )
-/*N*/       : pDoc(pDc), pTblNd(&rTblNd), nOldTblSttIdx(nOldStt),
-/*N*/       rMapArr(rArr), pOldTable( pOldTbl ), pInsLine(0), pInsBox(0)
-/*N*/   {}
-/*N*/ };
+struct _CopyTable
+{
+    SwDoc* pDoc;
+    ULONG nOldTblSttIdx;
+    _MapTblFrmFmts& rMapArr;
+    SwTableLine* pInsLine;
+    SwTableBox* pInsBox;
+    SwTableNode *pTblNd;
+    const SwTable *pOldTable;
+
+    _CopyTable(
+        SwDoc* pDc,
+        _MapTblFrmFmts& rArr,
+        ULONG nOldStt,
+        SwTableNode& rTblNd,
+        const SwTable* pOldTbl
+    )   : pDoc(pDc)
+        , nOldTblSttIdx(nOldStt)
+        , rMapArr(rArr)
+        , pInsLine(0)
+        , pInsBox(0)
+        , pTblNd(&rTblNd)
+        , pOldTable( pOldTbl )
+    {}
+};
 
 /*N*/ BOOL lcl_CopyTblBox( const SwTableBox*& rpBox, void* pPara );
 
@@ -232,7 +210,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SwNodeIndex aNewIdx( *pCT->pTblNd,
 /*N*/                           rpBox->GetSttIdx() - pCT->nOldTblSttIdx );
-/*N*/       ASSERT( aNewIdx.GetNode().IsStartNode(), "Index nicht auf einem StartNode" );
+/*N*/       OSL_ENSURE( aNewIdx.GetNode().IsStartNode(), "Index nicht auf einem StartNode" );
 /*N*/       pNewBox = new SwTableBox( pBoxFmt, aNewIdx, pCT->pInsLine );
 /*N*/   }
 /*N*/
@@ -293,16 +271,6 @@ namespace binfilter {
 /*N*/
 /*N*/   {
 /*N*/       // nicht in Fussnoten kopieren !!
-/*
-!! Mal ohne Frames
-        SwCntntNode* pCNd = pDoc->GetNodes()[ rIdx ]->GetCntntNode();
-        SwFrm* pFrm;
-        if( (pCNd && 0 != ( pFrm = pCNd->GetFrm()))
-                ? pFrm->FindFtnFrm()
-                : rIdx < pDoc->GetNodes().EndOfInserts &&
-                    pDoc->GetNodes()[pDoc->GetNodes().EndOfInserts]->StartOfSection()
-                    < rIdx )
-*/
 /*N*/       if( rIdx < pDoc->GetNodes().GetEndOfInserts().GetIndex() &&
 /*N*/           rIdx >= pDoc->GetNodes().GetEndOfInserts().StartOfSectionIndex() )
 /*?*/           return 0;
@@ -338,7 +306,7 @@ namespace binfilter {
 /*N*/   {
 /*?*/       // es wird eine DDE-Tabelle kopiert
 /*?*/       // ist im neuen Dokument ueberhaupt der FeldTyp vorhanden ?
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDDEType = ((SwDDETable&)GetTable()).GetDDEFldType();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   // dann kopiere erstmal den Inhalt der Tabelle, die Zuordnung der
 /*N*/   // Boxen/Lines und das anlegen der Frames erfolgt spaeter
@@ -372,11 +340,7 @@ namespace binfilter {
 
 //  ----- Copy-Methode vom SwDoc ------
 
-    // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
-
-
-
-
+// verhinder das Kopieren in Fly's, die im Bereich verankert sind.
 
 // Kopieren eines Bereiches im oder in ein anderes Dokument !
 
@@ -389,40 +353,18 @@ namespace binfilter {
 /*N*/
 /*N*/   SwDoc* pDoc = rPos.nNode.GetNode().GetDoc();
 /*N*/
-/*N*/   // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
-/*N*/   if( pDoc == this )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Start-/EndNode noch korrigieren
-/*N*/   }
-/*N*/
-/*N*/   SwPaM* pRedlineRange = 0;
-/*N*/   if( pDoc->IsRedlineOn() ||
-/*N*/       (!pDoc->IsIgnoreRedline() && pDoc->GetRedlineTbl().Count() ) )
-/*N*/       pRedlineRange = new SwPaM( rPos );
-/*N*/
 /*N*/   SwRedlineMode eOld = pDoc->GetRedlineMode();
 /*N*/
 /*N*/   BOOL bRet = FALSE;
 /*N*/
-/*N*/   if( pDoc && pDoc != this )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
 /*N*/   // Copy in sich selbst (ueber mehrere Nodes wird hier gesondert
 /*N*/   // behandelt; in einem TextNode wird normal behandelt)
-/*N*/   else if( ! ( *pStt <= rPos && rPos < *pEnd &&
+/*N*/   if( ! ( *pStt <= rPos && rPos < *pEnd &&
 /*N*/           ( pStt->nNode != pEnd->nNode ||
 /*N*/             !pStt->nNode.GetNode().IsTxtNode() )) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     bRet = _Copy( rPam, rPos, TRUE, pRedlineRange );    // nur normales Kopieren
-/*N*/
-/*N*/   else
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( this == pDoc, " falscher Copy-Zweig!" );
-/*N*/   }
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   pDoc->SetRedlineMode_intern( eOld );
-/*N*/   if( pRedlineRange )
-/*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pDoc->IsRedlineOn() )
-/*N*/   }
 /*N*/
 /*N*/   return bRet;
 /*N*/ }
@@ -463,9 +405,9 @@ namespace binfilter {
 /*N*/           !rRg.aStart.GetNode().IsSectionNode() &&
 /*N*/           !aTmpI.GetNode().IsEndNode() )
 /*N*/       {
-/*N*/           ASSERT( rInsPos.GetIndex() - aSavePos.GetIndex() ==
+/*N*/           OSL_ENSURE( rInsPos.GetIndex() - aSavePos.GetIndex() ==
 /*N*/                   rRg.aEnd.GetIndex() - rRg.aStart.GetIndex(),
-/*N*/                   "Es wurden zu wenig Nodes kopiert!" )
+/*N*/                   "Es wurden zu wenig Nodes kopiert!" );
 /*N*/       }
 /*N*/   }
 /*N*/ #endif
@@ -477,11 +419,11 @@ namespace binfilter {
 /*N*/   // dann kopiere noch alle Bookmarks
 /*N*/   if( GetBookmarks().Count() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aRgTmp( rRg.aStart, rRg.aEnd );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bDelRedlines && ( REDLINE_DELETE_REDLINES & pDest->GetRedlineMode() ))
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_DeleteRedlines( rRg, aCpyRange );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   pDest->GetNodes()._DelDummyNodes( aCpyRange );
 /*N*/ }
@@ -543,7 +485,7 @@ namespace binfilter {
 /*N*/
 /*N*/       // ueberpruefe Rekursion: Inhalt in "seinen eigenen" Frame
 /*N*/       // kopieren. Dann nicht kopieren
-/*N*/       FASTBOOL bMakeCpy = TRUE;
+/*N*/       bool bMakeCpy = TRUE;
 /*N*/       if( pDest == this )
 /*N*/       {
 /*N*/           const SwFmtCntnt& rCntnt = rZSortFly.GetFmt()->GetCntnt();
@@ -567,7 +509,7 @@ namespace binfilter {
 /*N*/
 /*N*/   //Alle chains, die im Original vorhanden sind, soweit wie moeglich wieder
 /*N*/   //aufbauen.
-/*N*/   ASSERT( aArr.Count() == aNewArr.Count(), "Missing new Flys" );
+/*N*/   OSL_ENSURE( aArr.Count() == aNewArr.Count(), "Missing new Flys" );
 /*N*/   if ( aArr.Count() == aNewArr.Count() )
 /*N*/   {
 /*N*/       for ( n = 0; n < aArr.Count(); ++n )
@@ -576,15 +518,11 @@ namespace binfilter {
 /*N*/           const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/           int nCnt = 0 != rChain.GetPrev();
 /*N*/           nCnt += rChain.GetNext() ? 1: 0;
-/*N*/           for ( USHORT k = 0; nCnt && k < aArr.Count(); ++k )
-/*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const _ZSortFly &rTmp = aArr[k];
-/*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
 
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

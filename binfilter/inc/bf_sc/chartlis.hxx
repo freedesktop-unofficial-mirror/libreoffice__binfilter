@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,26 +32,14 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 
-//STRIP008 class ScDocument;
-//STRIP008 class ScChartUnoData;
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
 #include <com/sun/star/chart/XChartData.hpp>
-#endif
 namespace binfilter {
 class ScDocument;
 class ScChartUnoData;
@@ -142,3 +131,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
-
-#ifndef _SVDGLUE_HXX
 #include <bf_svx/svdglue.hxx>
-#endif
+
 namespace binfilter {
 
 //************************************************************
@@ -77,7 +74,7 @@ public:
     ~SdrObjConnection();
 
     void ResetVars();
-    FASTBOOL TakeGluePoint(SdrGluePoint& rGP, FASTBOOL bSetAbsolutePos) const;
+    bool TakeGluePoint(SdrGluePoint& rGP, bool bSetAbsolutePos) const;
     void Write(SvStream& rOut, const SdrObject* pObj) const;
     void Read(SvStream& rIn, const SdrObject* pObj);
     void ReadTilV10(SvStream& rIn, const SdrObject* pObj);
@@ -134,7 +131,7 @@ public:
     Point& ImpGetLineVersatzPoint(SdrEdgeLineCode eLineCode);
     const Point& ImpGetLineVersatzPoint(SdrEdgeLineCode eLineCode) const { return ((SdrEdgeInfoRec*)this)->ImpGetLineVersatzPoint(eLineCode); }
     USHORT ImpGetPolyIdx(SdrEdgeLineCode eLineCode, const XPolygon& rXP) const;
-    FASTBOOL ImpIsHorzLine(SdrEdgeLineCode eLineCode, const XPolygon& rXP) const;
+    bool ImpIsHorzLine(SdrEdgeLineCode eLineCode, const XPolygon& rXP) const;
     void ImpSetLineVersatz(SdrEdgeLineCode eLineCode, const XPolygon& rXP, long nVal);
     long ImpGetLineVersatz(SdrEdgeLineCode eLineCode, const XPolygon& rXP) const;
 
@@ -161,19 +158,19 @@ protected:
     SdrObjConnection            aCon2;  // Verbindungszustand des Linienendes
 
     XPolygon*                   pEdgeTrack;
-    FASTBOOL                    bEdgeTrackDirty; // TRUE=Verbindungsverlauf muss neu berechnet werden.
-    FASTBOOL                    nNotifyingCount; // Verrieglung
+    bool                    bEdgeTrackDirty; // TRUE=Verbindungsverlauf muss neu berechnet werden.
+    int                         nNotifyingCount; // Verrieglung
     SdrEdgeInfoRec              aEdgeInfo;
 
     // #109007#
     // Bool to allow supporession of default connects at object
     // inside test (HitTest) and object center test (see ImpFindConnector())
-    FASTBOOL                    mbSuppressDefaultConnect;
+    bool                    mbSuppressDefaultConnect;
 
 public:
     // #109007#
     // Interface to default connect suppression
-    void SetSuppressDefaultConnect(sal_Bool bNew) { mbSuppressDefaultConnect = (FASTBOOL)bNew; }
+    void SetSuppressDefaultConnect(sal_Bool bNew) { mbSuppressDefaultConnect = (bool)bNew; }
     sal_Bool GetSuppressDefaultConnect() const { return (sal_Bool)mbSuppressDefaultConnect; }
 
 protected:
@@ -186,7 +183,7 @@ protected:
         const Point& rPt2, long nAngle2, const Rectangle& rBoundRect2, const Rectangle& rBewareRect2,
         ULONG* pnQuality, SdrEdgeInfoRec* pInfo) const;
     USHORT ImpCalcEscAngle(SdrObject* pObj, const Point& aPt2) const;
-    void ImpSetTailPoint(FASTBOOL bTail1, const Point& rPt);
+    void ImpSetTailPoint(bool bTail1, const Point& rPt);
     void ImpSetAttrToEdgeInfo(); // Werte vom Pool nach aEdgeInfo kopieren
     void ImpSetEdgeInfoToAttr(); // Werte vom aEdgeInfo in den Pool kopieren
 
@@ -195,12 +192,13 @@ public:
 
     SdrEdgeObj();
     virtual ~SdrEdgeObj();
+    using SdrTextObj::operator=;
 
-    SdrObjConnection& GetConnection(FASTBOOL bTail1) { return *(bTail1 ? &aCon1 : &aCon2); }
+    SdrObjConnection& GetConnection(bool bTail1) { return *(bTail1 ? &aCon1 : &aCon2); }
     virtual UINT16 GetObjIdentifier() const;
     virtual const Rectangle& GetBoundRect() const;
     virtual const Rectangle& GetSnapRect() const;
-    virtual FASTBOOL IsNode() const;
+    virtual bool IsNode() const;
     virtual SdrGluePoint GetVertexGluePoint(USHORT nNum) const;
 
     // ItemSet access
@@ -210,18 +208,18 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // bTail1=TRUE: Linienanfang, sonst LinienEnde
     // pObj=NULL: Disconnect
     void SetEdgeTrackDirty() { bEdgeTrackDirty=TRUE; }
-    void ConnectToNode(FASTBOOL bTail1, SdrObject* pObj);
-    void DisconnectFromNode(FASTBOOL bTail1);
-    SdrObject* GetConnectedNode(FASTBOOL bTail1) const;
-    const SdrObjConnection& GetConnection(FASTBOOL bTail1) const { return *(bTail1 ? &aCon1 : &aCon2); }
+    void ConnectToNode(bool bTail1, SdrObject* pObj);
+    void DisconnectFromNode(bool bTail1);
+    SdrObject* GetConnectedNode(bool bTail1) const;
+    const SdrObjConnection& GetConnection(bool bTail1) const { return *(bTail1 ? &aCon1 : &aCon2); }
 
     virtual void RecalcBoundRect();
     virtual void RecalcSnapRect();
@@ -241,7 +239,7 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 
@@ -377,3 +375,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOEDGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

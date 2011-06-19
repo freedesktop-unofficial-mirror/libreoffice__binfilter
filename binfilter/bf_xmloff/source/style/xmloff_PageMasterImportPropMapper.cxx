@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,22 +30,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_PAGEMASTERIMPORTPROPMAPPER_HXX
 #include "PageMasterImportPropMapper.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 #define XML_LINE_LEFT 0
@@ -133,8 +124,7 @@ void PageMasterImportPropertyMapper::finished(::std::vector< XMLPropertyState >&
     XMLPropertyState* pFooterHeight = NULL;
     XMLPropertyState* pFooterMinHeight = NULL;
     XMLPropertyState* pFooterDynamic = NULL;
-    ::std::vector< XMLPropertyState >::iterator property = rProperties.begin();
-    for (property; property != rProperties.end(); property++)
+    for (::std::vector< XMLPropertyState >::iterator property = rProperties.begin(); property != rProperties.end(); property++)
     {
         sal_Int16 nContextID = getPropertySetMapper()->GetEntryContextId(property->mnIndex);
         if (property->mnIndex >= nStartIndex && property->mnIndex < nEndIndex)
@@ -342,3 +332,5 @@ void PageMasterImportPropertyMapper::finished(::std::vector< XMLPropertyState >&
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

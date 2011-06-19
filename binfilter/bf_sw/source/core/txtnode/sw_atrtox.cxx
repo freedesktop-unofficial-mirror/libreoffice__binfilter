@@ -1,3 +1,4 @@
+    /* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SwTxtTOXMark::SwTxtTOXMark( const SwTOXMark& rAttr,
-/*N*/                   xub_StrLen nStart, xub_StrLen* pEnde )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nStart ),
+/*N*/                   xub_StrLen nStart2, xub_StrLen* pEnde )
+/*N*/   : SwTxtAttrEnd( rAttr, nStart2, nStart2 ),
 /*N*/   pEnd( 0 ),
 /*N*/   pMyTxtNd( 0 )
 /*N*/ {
@@ -102,3 +95,5 @@ namespace binfilter {
 /*N*/   ((SwTOXType*)pType)->Add( &rTOX );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 #include <xmlbahdl.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 namespace binfilter {
@@ -76,14 +71,14 @@ sal_Bool lcl_xmloff_getAny( const Any& rValue, sal_Int32& nValue,
     {
     case 1:
         {
-            sal_Int8 nValue8;
+            sal_Int8 nValue8(0);
             bRet = rValue >>= nValue8;
             nValue = nValue8;
         }
         break;
     case 2:
         {
-            sal_Int16 nValue16;
+            sal_Int16 nValue16(0);
             bRet = rValue >>= nValue16;
             nValue = nValue16;
         }
@@ -263,7 +258,7 @@ sal_Bool XMLBoolPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, c
 {
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {
@@ -301,7 +296,7 @@ sal_Bool XMLNBoolPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, 
 {
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {
@@ -415,7 +410,7 @@ sal_Bool XMLColorPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, 
 {
     sal_Bool bRet = sal_False;
     Color aColor;
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
 
     if( rValue >>= nColor )
     {
@@ -441,7 +436,7 @@ XMLStringPropHdl::~XMLStringPropHdl()
     // Nothing to do
 }
 
-sal_Bool XMLStringPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLStringPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -451,7 +446,7 @@ sal_Bool XMLStringPropHdl::importXML( const OUString& rStrImpValue, Any& rValue,
     return bRet;
 }
 
-sal_Bool XMLStringPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLStringPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -483,7 +478,7 @@ sal_Bool XMLDoublePropHdl::exportXML( OUString& rStrExpValue, const Any& rValue,
 {
     sal_Bool bRet = sal_False;
 
-    double fValue;
+    double fValue = 0.0;
 
     if( rValue >>= fValue )
     {
@@ -531,7 +526,7 @@ sal_Bool XMLColorTransparentPropHdl::importXML( const OUString& rStrImpValue, An
 sal_Bool XMLColorTransparentPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
 
     if( rStrExpValue == sTransparent )
         bRet = sal_False;
@@ -567,7 +562,7 @@ XMLIsTransparentPropHdl::~XMLIsTransparentPropHdl()
     // Nothing to do
 }
 
-sal_Bool XMLIsTransparentPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLIsTransparentPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bValue = ( (rStrImpValue == sTransparent) == bTransPropValue);
     rValue.setValue( &bValue, ::getBooleanCppuType() );
@@ -575,7 +570,7 @@ sal_Bool XMLIsTransparentPropHdl::importXML( const OUString& rStrImpValue, Any& 
     return sal_True;
 }
 
-sal_Bool XMLIsTransparentPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLIsTransparentPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -615,7 +610,7 @@ sal_Bool XMLColorAutoPropHdl::importXML( const OUString& rStrImpValue, Any& rVal
 
     // This is a multi property: the value might be set to AUTO_COLOR
     // already by the XMLIsAutoColorPropHdl!
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
     if( !(rValue >>= nColor) || -1 != nColor )
     {
         Color aColor;
@@ -631,7 +626,7 @@ sal_Bool XMLColorAutoPropHdl::exportXML( OUString& rStrExpValue, const Any& rVal
 {
     sal_Bool bRet = sal_False;
 
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
     if( (rValue >>= nColor) && -1 != nColor )
     {
         Color aColor( nColor );
@@ -674,7 +669,7 @@ sal_Bool XMLIsAutoColorPropHdl::importXML( const OUString& rStrImpValue, Any& rV
 sal_Bool XMLIsAutoColorPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int32 nColor;
+    sal_Int32 nColor(0);
 
     if( (rValue >>= nColor) && -1 == nColor )
     {
@@ -698,16 +693,18 @@ XMLCompareOnlyPropHdl::~XMLCompareOnlyPropHdl()
     // Nothing to do
 }
 
-sal_Bool XMLCompareOnlyPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCompareOnlyPropHdl::importXML( const OUString&, Any&, const SvXMLUnitConverter& ) const
 {
     DBG_ASSERT( !this, "importXML called for compare-only-property" );
     return sal_False;
 }
 
-sal_Bool XMLCompareOnlyPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCompareOnlyPropHdl::exportXML( OUString&, const Any&, const SvXMLUnitConverter& ) const
 {
     DBG_ASSERT( !this, "exportXML called for compare-only-property" );
     return sal_False;
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

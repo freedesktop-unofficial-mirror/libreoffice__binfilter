@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -47,7 +48,7 @@ const double EPSILON = 1e-06;
 //+++ 3D-Hilfsfunktionen +++++++++++++++++++++++++++++++++++++++++++++++++
 //++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-FASTBOOL Do3DEdgesIntersect(const Vector3D& rV1a, const Vector3D& rV1b,
+bool Do3DEdgesIntersect(const Vector3D& rV1a, const Vector3D& rV1b,
                             const Vector3D& rV2a, const Vector3D& rV2b);
 
 enum E3dDragDetail { E3DDETAIL_DEFAULT = 0,
@@ -67,3 +68,5 @@ enum E3dDragConstraint { E3DDRAG_CONSTR_X   = 0x0001,
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

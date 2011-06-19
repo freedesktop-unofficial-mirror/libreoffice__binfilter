@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _STACK_HXX //autogen
 #include <tools/stack.hxx>
-#endif
+#include <vector>
 
 namespace binfilter {
 
@@ -157,7 +155,7 @@ struct SmErrorDesc
 };
 
 DECLARE_STACK(SmNodeStack,  SmNode *)
-DECLARE_LIST(SmErrDescList, SmErrorDesc *)
+typedef ::std::vector< SmErrorDesc* > SmErrDescList;
 
 /**************************************************************************/
 
@@ -230,8 +228,8 @@ protected:
     void    Brace();
     void    Bracebody(BOOL bIsLeftRight);
     void    Function();
-/*N*/   void    Binom(); // matrixfett.smf
-/*N*/   void    Stack(); // matrixfett.smf
+    void    Binom(); // matrixfett.smf
+    void    Stack(); // matrixfett.smf
     void    Matrix();
     void    Special();
     void    GlyphSpecial();
@@ -257,7 +255,7 @@ public:
     BOOL         IsExportSymbolNames() const        { return bExportSymNames; }
     void         SetExportSymbolNames(BOOL bVal)    { bExportSymNames = bVal; }
 
-    USHORT       AddError(SmParseError Type, SmNode *pNode);
+    void        AddError(SmParseError Type, SmNode *pNode);
 
 };
 
@@ -271,3 +269,4 @@ inline BOOL SmParser::TokenInGroup(ULONG nGroup)
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

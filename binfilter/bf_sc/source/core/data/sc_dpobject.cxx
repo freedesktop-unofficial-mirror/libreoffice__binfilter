@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -51,9 +52,7 @@
 #include <comphelper/processfactory.hxx>
 #include <tools/debug.hxx>
 #include <bf_svtools/zforlist.hxx>      // IsNumberFormat
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -112,11 +111,11 @@ using namespace ::com::sun::star;
 /*N*/           if ( xDimProp.is() )
 /*N*/           {
 /*N*/               bFound = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-/*N*/                   ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+/*N*/                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ISDATALAYOUT)) );
 /*N*/               //! error checking -- is "IsDataLayoutDimension" property required??
 /*N*/               if (bFound)
 /*N*/                   nRet = ScUnoHelpFunctions::GetEnumProperty(
-/*N*/                           xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
+/*N*/                           xDimProp, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIENTATION)),
 /*N*/                           sheet::DataPilotFieldOrientation_HIDDEN );
 /*N*/           }
 /*N*/       }
@@ -128,19 +127,18 @@ using namespace ::com::sun::star;
 
 /*N*/ ScDPObject::ScDPObject( ScDocument* pD ) :
 /*N*/   pDoc( pD ),
-/*N*/   bAlive( FALSE ),
 /*N*/   pSaveData( NULL ),
 /*N*/   pSheetDesc( NULL ),
 /*N*/   pImpDesc( NULL ),
 /*N*/   pServDesc( NULL ),
 /*N*/   pOutput( NULL ),
-/*N*/   bSettingsChanged( FALSE )
+/*N*/   bSettingsChanged( FALSE ),
+/*N*/   bAlive( FALSE )
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScDPObject::ScDPObject(const ScDPObject& r) :
+/*N*/ ScDPObject::ScDPObject(const ScDPObject& r) : DataObject(r),
 /*N*/   pDoc( r.pDoc ),
-/*N*/   bAlive( FALSE ),
 /*N*/   pSaveData( NULL ),
 /*N*/   aTableName( r.aTableName ),
 /*N*/   aTableTag( r.aTableTag ),
@@ -149,7 +147,8 @@ using namespace ::com::sun::star;
 /*N*/   pImpDesc( NULL ),
 /*N*/   pServDesc( NULL ),
 /*N*/   pOutput( NULL ),
-/*N*/   bSettingsChanged( FALSE )
+/*N*/   bSettingsChanged( FALSE ),
+/*N*/   bAlive( FALSE )
 /*N*/ {
 /*N*/   if (r.pSaveData)
 /*N*/       pSaveData = new ScDPSaveData(*r.pSaveData);
@@ -173,7 +172,7 @@ using namespace ::com::sun::star;
 
 /*N*/ DataObject* ScDPObject::Clone() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new ScDPObject(*this);
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*N*/ void ScDPObject::SetAlive(BOOL bSet)
@@ -215,19 +214,19 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new ScDPObject(*this)
 /*N*/   pSheetDesc->aQueryParam.nCol2 = pSheetDesc->aSourceRange.aEnd.Col();
 /*N*/   pSheetDesc->aQueryParam.nRow2 = pSheetDesc->aSourceRange.aEnd.Row();;
 /*N*/   pSheetDesc->aQueryParam.bHasHeader = TRUE;
-/*N*/   USHORT nCount = pSheetDesc->aQueryParam.GetEntryCount();
+/*N*/   /*USHORT nCount =*/ pSheetDesc->aQueryParam.GetEntryCount();
 /*N*/
 /*N*/   InvalidateSource();     // new source must be created
 /*N*/ }
 
-/*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc& rDesc)
+/*N*/ void ScDPObject::SetImportDesc(const ScImportSourceDesc&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pImpDesc && rDesc == *pImpDesc )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc& rDesc)
+/*N*/ void ScDPObject::SetServiceData(const ScDPServiceDesc&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -260,11 +259,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/
 /*N*/       if ( pImpDesc )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDatabaseDPData* pData = new ScDatabaseDPData( pDoc->GetServiceManager(), *pImpDesc );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else if ( pServDesc )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 xSource = CreateSource( *pServDesc );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if ( !xSource.is() )    // sheet data or error in above cases
@@ -272,7 +271,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           DBG_ASSERT( !pImpDesc && !pServDesc, "DPSource could not be created" );
 /*N*/           if (!pSheetDesc)
 /*N*/           {
-/*?*/               DBG_ERROR("no source descriptor");
+/*?*/               OSL_FAIL("no source descriptor");
 /*?*/               pSheetDesc = new ScSheetSourceDesc;     // dummy defaults
 /*N*/           }
 /*N*/           ScSheetDPData* pData = new ScSheetDPData( pDoc, *pSheetDesc );
@@ -295,7 +294,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*?*/           }
 /*?*/           catch(uno::Exception&)
 /*?*/           {
-/*?*/               DBG_ERROR("exception in refresh");
+/*?*/               OSL_FAIL("exception in refresh");
 /*?*/           }
 /*?*/       }
 /*?*/
@@ -317,10 +316,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 
 
 
-/*N*/ void ScDPObject::UpdateReference( UpdateRefMode eUpdateRefMode,
-/*N*/                                    const ScRange& rRange, short nDx, short nDy, short nDz )
+/*N*/ void ScDPObject::UpdateReference( UpdateRefMode /*eUpdateRefMode*/,
+/*N*/                                    const ScRange& /*rRange*/, short /*nDx*/, short /*nDy*/, short /*nDz*/ )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Output area
+    DBG_BF_ASSERT(0, "STRIP");
 }
 
 /*N*/ USHORT lcl_FirstSubTotal( const uno::Reference<beans::XPropertySet>& xDimProp )       // PIVOT_FUNC mask
@@ -330,7 +329,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   {
 /*N*/       uno::Reference<container::XIndexAccess> xHiers = new ScNameToIndexAccess( xDimSupp->getHierarchies() );
 /*N*/       long nHierarchy = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-/*N*/                               ::rtl::OUString::createFromAscii(DP_PROP_USEDHIERARCHY) );
+/*N*/                               ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_USEDHIERARCHY)) );
 /*N*/       if ( nHierarchy >= xHiers->getCount() )
 /*N*/           nHierarchy = 0;
 /*N*/
@@ -349,7 +348,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/               try
 /*N*/               {
 /*N*/                   aSubAny = xLevProp->getPropertyValue(
-/*N*/                           ::rtl::OUString::createFromAscii(DP_PROP_SUBTOTALS) );
+/*N*/                           ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_SUBTOTALS)) );
 /*N*/               }
 /*N*/               catch(uno::Exception&)
 /*N*/               {
@@ -368,7 +367,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/       }
 /*N*/   }
 /*N*/
-/*?*/   DBG_ERROR("FirstSubTotal: NULL");
+/*?*/   OSL_FAIL("FirstSubTotal: NULL");
 /*?*/   return 0;
 /*N*/ }
 
@@ -394,7 +393,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   USHORT nOutCount = 0;
 /*N*/   BOOL bDataFound = FALSE;
 /*N*/
-/*N*/   //! merge multiple occurences (data field with different functions)
+/*N*/   //! merge multiple occurrences (data field with different functions)
 /*N*/   //! force data field in one dimension
 /*N*/
 /*N*/   long nPos[PIVOT_MAXFIELD];
@@ -408,7 +407,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           ScUnoHelpFunctions::AnyToInterface( xDims->getByIndex(nDim) );
 /*N*/       uno::Reference<beans::XPropertySet> xDimProp( xIntDim, uno::UNO_QUERY );
 /*N*/       long nDimOrient = ScUnoHelpFunctions::GetEnumProperty(
-/*N*/                           xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_ORIENTATION),
+/*N*/                           xDimProp, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIENTATION)),
 /*N*/                           sheet::DataPilotFieldOrientation_HIDDEN );
 /*N*/       if ( xDimProp.is() && nDimOrient == nOrient )
 /*N*/       {
@@ -416,7 +415,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           if ( nOrient == sheet::DataPilotFieldOrientation_DATA )
 /*N*/           {
 /*N*/               sheet::GeneralFunction eFunc = (sheet::GeneralFunction)ScUnoHelpFunctions::GetEnumProperty(
-/*N*/                                           xDimProp, ::rtl::OUString::createFromAscii(DP_PROP_FUNCTION),
+/*N*/                                           xDimProp, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_FUNCTION)),
 /*N*/                                           sheet::GeneralFunction_NONE );
 /*N*/               if ( eFunc == sheet::GeneralFunction_AUTO )
 /*N*/               {
@@ -429,12 +428,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/               nMask = lcl_FirstSubTotal( xDimProp );      // from first hierarchy
 /*N*/
 /*N*/           BOOL bDataLayout = ScUnoHelpFunctions::GetBoolProperty( xDimProp,
-/*N*/                                   ::rtl::OUString::createFromAscii(DP_PROP_ISDATALAYOUT) );
+/*N*/                                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ISDATALAYOUT)) );
 /*N*/           uno::Any aOrigAny;
 /*N*/           try
 /*N*/           {
 /*N*/               aOrigAny = xDimProp->getPropertyValue(
-/*N*/                               ::rtl::OUString::createFromAscii(DP_PROP_ORIGINAL) );
+/*N*/                               ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ORIGINAL)) );
 /*N*/           }
 /*N*/           catch(uno::Exception&)
 /*N*/           {
@@ -446,7 +445,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           {
 /*?*/               uno::Reference<container::XNamed> xNameOrig( xIntOrig, uno::UNO_QUERY );
 /*?*/               if ( xNameOrig.is() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nDupSource = lcl_FindName( xNameOrig->getName(), xDimsName );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           }
 /*N*/
 /*N*/           BOOL bDupUsed = FALSE;
@@ -488,7 +487,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/               pFields[nOutCount].nFuncMask = nMask;
 /*N*/               pFields[nOutCount].nFuncCount = lcl_CountBits( nMask );
 /*N*/               nPos[nOutCount] = ScUnoHelpFunctions::GetLongProperty( xDimProp,
-/*N*/                                   ::rtl::OUString::createFromAscii(DP_PROP_POSITION) );
+/*N*/                                   ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_POSITION)) );
 /*N*/               ++nOutCount;
 /*N*/           }
 /*N*/       }
@@ -541,55 +540,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDPObject::StoreNew( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   //  save all data
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   if ( pImpDesc )
-/*N*/   {
-/*N*/       rStream << (BYTE) SC_DP_SOURCE_DATABASE;
-/*N*/       rStream.WriteByteString( pImpDesc->aDBName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pImpDesc->aObject, rStream.GetStreamCharSet() );
-/*N*/       rStream << pImpDesc->nType;     // USHORT
-/*N*/       rStream << pImpDesc->bNative;
-/*N*/   }
-/*N*/   else if ( pServDesc )
-/*N*/   {
-/*N*/       rStream << (BYTE) SC_DP_SOURCE_SERVICE;
-/*N*/       rStream.WriteByteString( pServDesc->aServiceName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParSource,   rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParName,     rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParUser,     rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( pServDesc->aParPass,     rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       if (!pSheetDesc)
-/*N*/       {
-/*N*/           DBG_ERROR("no source descriptor");
-/*N*/           ((ScDPObject*)this)->pSheetDesc = new ScSheetSourceDesc;        // dummy defaults
-/*N*/       }
-/*N*/
-/*N*/       rStream << (BYTE) SC_DP_SOURCE_SHEET;
-/*N*/       rStream << pSheetDesc->aSourceRange;
-/*N*/       pSheetDesc->aQueryParam.Store( rStream );
-/*N*/   }
-/*N*/
-/*N*/   rStream << aOutRange;
-/*N*/
-/*N*/   DBG_ASSERT(pSaveData, "ScDPObject::StoreNew no SaveData");
-/*N*/   pSaveData->Store( rStream );
-/*N*/
-/*N*/   //  additional data starting from 561b
-/*N*/   rStream.WriteByteString( aTableName, rStream.GetStreamCharSet() );
-/*N*/   rStream.WriteByteString( aTableTag,  rStream.GetStreamCharSet() );
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-/*N*/
 /*N*/ BOOL ScDPObject::LoadNew(SvStream& rStream, ScMultipleReadHeader& rHdr )
 /*N*/ {
 /*N*/   rHdr.StartEntry();
@@ -630,7 +580,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown source type");
+/*N*/           OSL_FAIL("unknown source type");
 /*N*/   }
 /*N*/
 /*N*/   rStream >> aOutRange;
@@ -642,84 +592,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   {
 /*N*/       rStream.ReadByteString( aTableName, rStream.GetStreamCharSet() );
 /*N*/       rStream.ReadByteString( aTableTag,  rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/   return TRUE;
-/*N*/ }
-
-/*N*/ BOOL ScDPObject::StoreOld( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
-/*N*/ {
-/*N*/   //  write compatible data for office 5.1 and below
-/*N*/
-/*N*/   DBG_ASSERT( pSheetDesc, "StoreOld: !pSheetDesc" );
-/*N*/   ScRange aStoreRange;
-/*N*/   ScQueryParam aStoreQuery;
-/*N*/   if (pSheetDesc)
-/*N*/   {
-/*N*/       aStoreRange = pSheetDesc->aSourceRange;
-/*N*/       aStoreQuery = pSheetDesc->aQueryParam;
-/*N*/   }
-/*N*/
-/*N*/   ((ScDPObject*)this)->CreateObjects();       // xSource is needed for field numbers
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << (BOOL) TRUE;         // bHasHeader
-/*N*/
-/*N*/   rStream << aStoreRange.aStart.Col();
-/*N*/   rStream << aStoreRange.aStart.Row();
-/*N*/   rStream << aStoreRange.aEnd.Col();
-/*N*/   rStream << aStoreRange.aEnd.Row();
-/*N*/   rStream << aStoreRange.aStart.Tab();
-/*N*/
-/*N*/   //! make sure aOutRange is initialized
-/*N*/
-/*N*/   rStream << aOutRange.aStart.Col();
-/*N*/   rStream << aOutRange.aStart.Row();
-/*N*/   rStream << aOutRange.aEnd.Col();
-/*N*/   rStream << aOutRange.aEnd.Row();
-/*N*/   rStream << aOutRange.aStart.Tab();
-/*N*/
-/*N*/   BOOL bAddData = ( lcl_GetDataGetOrientation( xSource ) == sheet::DataPilotFieldOrientation_HIDDEN );
-/*N*/
-/*N*/   lcl_SaveOldFieldArr( rStream, xSource, sheet::DataPilotFieldOrientation_ROW,    aStoreRange.aStart.Col(), bAddData );
-/*N*/   lcl_SaveOldFieldArr( rStream, xSource, sheet::DataPilotFieldOrientation_COLUMN, aStoreRange.aStart.Col(), FALSE );
-/*N*/   lcl_SaveOldFieldArr( rStream, xSource, sheet::DataPilotFieldOrientation_DATA,   aStoreRange.aStart.Col(), FALSE );
-/*N*/
-/*N*/   aStoreQuery.Store( rStream );
-/*N*/
-/*N*/   BOOL bColumnGrand   = TRUE;
-/*N*/   BOOL bRowGrand      = TRUE;
-/*N*/   BOOL bIgnoreEmpty   = FALSE;
-/*N*/   BOOL bRepeatIfEmpty = FALSE;
-/*N*/
-/*N*/   uno::Reference<beans::XPropertySet> xProp( xSource, uno::UNO_QUERY );
-/*N*/   if (xProp.is())
-/*N*/   {
-/*N*/       bColumnGrand = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), TRUE );
-/*N*/       bRowGrand = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), TRUE );
-/*N*/
-/*N*/       // following properties may be missing for external sources
-/*N*/       bIgnoreEmpty = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY) );
-/*N*/       bRepeatIfEmpty = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY) );
-/*N*/   }
-/*N*/
-/*N*/   rStream << bIgnoreEmpty;        // bIgnoreEmpty
-/*N*/   rStream << bRepeatIfEmpty;      // bDetectCat
-/*N*/
-/*N*/   rStream << bColumnGrand;        // bMakeTotalCol
-/*N*/   rStream << bRowGrand;           // bMakeTotalRow
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )
-/*N*/   {
-/*N*/       rStream.WriteByteString( aTableName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aTableTag,  rStream.GetStreamCharSet() );
-/*N*/       rStream << (USHORT)0;       // nColNameCount
 /*N*/   }
 /*N*/
 /*N*/   rHdr.EndEntry();
@@ -758,15 +630,15 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/       try
 /*N*/       {
 /*N*/           rParam.bMakeTotalCol = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_COLUMNGRAND), TRUE );
+/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_COLUMNGRAND)), TRUE );
 /*N*/           rParam.bMakeTotalRow = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_ROWGRAND), TRUE );
+/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_ROWGRAND)), TRUE );
 /*N*/
 /*N*/           // following properties may be missing for external sources
 /*N*/           rParam.bIgnoreEmptyRows = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_IGNOREEMPTY) );
+/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_IGNOREEMPTY)) );
 /*N*/           rParam.bDetectCategories = ScUnoHelpFunctions::GetBoolProperty( xProp,
-/*N*/                       ::rtl::OUString::createFromAscii(DP_PROP_REPEATIFEMPTY) );
+/*N*/                       ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(DP_PROP_REPEATIFEMPTY)) );
 /*N*/       }
 /*N*/       catch(uno::Exception&)
 /*N*/       {
@@ -787,14 +659,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/ void ScDPObject::ConvertOrientation( ScDPSaveData& rSaveData,
 /*N*/                           PivotField* pFields, USHORT nCount, USHORT nOrient,
 /*N*/                           ScDocument* pDoc, USHORT nRow, USHORT nTab,
-/*N*/                           const uno::Reference<sheet::XDimensionsSupplier>& xSource,
+/*N*/                           const uno::Reference<sheet::XDimensionsSupplier>& /*xSource*/,
 /*N*/                           BOOL bOldDefaults,
 /*N*/                           PivotField* pRefColFields, USHORT nRefColCount,
 /*N*/                           PivotField* pRefRowFields, USHORT nRefRowCount )
 /*N*/ {
-/*N*/   //  pDoc or xSource must be set
-/*N*/   DBG_ASSERT( pDoc || xSource.is(), "missing string source" );
-/*N*/
 /*N*/   String aDocStr;
 /*N*/   ScDPSaveDimension* pDim;
 /*N*/
@@ -809,7 +678,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/           if ( pDoc )
 /*N*/               pDoc->GetString( nCol, nRow, nTab, aDocStr );
 /*N*/           else
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aDocStr = lcl_GetDimName( xSource, nCol );  // cols must start at 0
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/           if ( aDocStr.Len() )
 /*N*/               pDim = rSaveData.GetDimensionByName(aDocStr);
@@ -887,7 +756,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   }
 }
 
-/*N*/ void ScDPObject::InitFromOldPivot( const ScPivot& rOld, ScDocument* pDoc, BOOL bSetSource )
+/*N*/ void ScDPObject::InitFromOldPivot( const ScPivot& rOld, ScDocument* pInDoc, BOOL bSetSource )
 /*N*/ {
 /*N*/   ScDPSaveData aSaveData;
 /*N*/
@@ -897,13 +766,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/   rOld.GetParam( aParam, aQuery, aArea );
 /*N*/
 /*N*/   ConvertOrientation( aSaveData, aParam.aColArr, aParam.nColCount,
-/*N*/                           sheet::DataPilotFieldOrientation_COLUMN, pDoc, aArea.nRowStart, aArea.nTab,
+/*N*/                           sheet::DataPilotFieldOrientation_COLUMN, pInDoc, aArea.nRowStart, aArea.nTab,
 /*N*/                           uno::Reference<sheet::XDimensionsSupplier>(), TRUE );
 /*N*/   ConvertOrientation( aSaveData, aParam.aRowArr, aParam.nRowCount,
-/*N*/                           sheet::DataPilotFieldOrientation_ROW, pDoc, aArea.nRowStart, aArea.nTab,
+/*N*/                           sheet::DataPilotFieldOrientation_ROW, pInDoc, aArea.nRowStart, aArea.nTab,
 /*N*/                           uno::Reference<sheet::XDimensionsSupplier>(), TRUE );
 /*N*/   ConvertOrientation( aSaveData, aParam.aDataArr, aParam.nDataCount,
-/*N*/                           sheet::DataPilotFieldOrientation_DATA, pDoc, aArea.nRowStart, aArea.nTab,
+/*N*/                           sheet::DataPilotFieldOrientation_DATA, pInDoc, aArea.nRowStart, aArea.nTab,
 /*N*/                           uno::Reference<sheet::XDimensionsSupplier>(), TRUE,
 /*N*/                           aParam.aColArr, aParam.nColCount, aParam.aRowArr, aParam.nRowCount );
 /*N*/
@@ -953,48 +822,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 
 /*N*/ DataObject* ScDPCollection::Clone() const
 /*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new ScDPCollection(*this);
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
-/*N*/ BOOL ScDPCollection::StoreOld( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   USHORT nSheetCount = 0;
-/*N*/   USHORT i;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ( ((const ScDPObject*)At(i))->IsSheetData() )
-/*N*/           ++nSheetCount;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << nSheetCount;         // only tables from sheet data
-/*N*/
-/*N*/   for (i=0; i<nCount && bSuccess; i++)
-/*N*/   {
-/*N*/       const ScDPObject* pObj = (const ScDPObject*)At(i);
-/*N*/       if ( pObj->IsSheetData() )
-/*N*/           bSuccess = pObj->StoreOld( rStream, aHdr );
-/*N*/   }
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
-/*N*/ BOOL ScDPCollection::StoreNew( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << (long)SC_DP_VERSION_CURRENT;
-/*N*/   rStream << (long)nCount;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount && bSuccess; i++)
-/*N*/       bSuccess = ((const ScDPObject*)At(i))->StoreNew( rStream, aHdr );
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-/*N*/
 /*N*/ BOOL ScDPCollection::LoadNew( SvStream& rStream )
 /*N*/ {
 /*N*/   BOOL bSuccess = TRUE;
@@ -1009,7 +839,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 /*N*/
 /*N*/   if ( nVer != SC_DP_VERSION_CURRENT )
 /*N*/   {
-/*N*/       DBG_ERROR("skipping unknown version of data pilot obejct");
+/*N*/       OSL_FAIL("skipping unknown version of data pilot obejct");
 /*N*/       if ( rStream.GetError() == SVSTREAM_OK )
 /*N*/           rStream.SetError( SCWARN_IMPORT_INFOLOST );
 /*N*/       return FALSE;
@@ -1087,3 +917,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if ( pServDesc && rDesc == *pServDesc )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

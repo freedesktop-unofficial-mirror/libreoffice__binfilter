@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef SC_PIVOTSH_HXX
 #define SC_PIVOTSH_HXX
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
 #include "shellids.hxx"
 namespace binfilter {
@@ -46,9 +43,9 @@ class ScPivotShell : public SfxShell
 public:
     SFX_DECL_INTERFACE(SCID_PIVOT_SHELL);
 
-    ScPivotShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_ASSERT(0, "STRIP")}; //STRIP001 ScPivotShell( ScTabViewShell* pView );
-    void    Execute ( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void    Execute ( SfxRequest& rReq );
-    void    GetState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void    GetState( SfxItemSet& rSet );
+    ScPivotShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_ASSERT(0, "STRIP")};
+    void    Execute ( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -57,3 +54,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

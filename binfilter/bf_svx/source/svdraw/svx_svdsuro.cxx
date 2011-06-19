@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -83,8 +84,8 @@ namespace binfilter {
 /*N*/ void SdrObjSurrogate::ImpMakeSurrogate()
 /*N*/ {
 /*N*/   if (pObj!=NULL) { // ansonsten bleibt eList=SDROBJLIST_UNKNOWN, weil Obj=NULL
-/*N*/       FASTBOOL bSameList=FALSE;
-/*N*/       FASTBOOL bSamePage=FALSE;
+/*N*/       bool bSameList=FALSE;
+/*N*/       bool bSamePage=FALSE;
 /*N*/       pModel=pObj->GetModel();
 /*N*/       pList=pObj->GetObjList();
 /*N*/       pRootList=pList;
@@ -102,7 +103,7 @@ namespace binfilter {
 /*N*/               SdrObjList* pL=pList->GetUpList();
 /*N*/               nGrpLevel=0;
 /*N*/               while (pL!=NULL) { pL=pL->GetUpList(); nGrpLevel++; }
-/*N*/               if (nGrpLevel!=0) { DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Aha, verschachtelt
+/*N*/               if (nGrpLevel!=0) { DBG_BF_ASSERT(0, "STRIP");
 /*N*/               } // if (nGrpLevel!=0)
 /*N*/           } // if (eList!=SDROBJLIST_SAMELIST)
 /*N*/           if (bSameList) eList=SDROBJLIST_SAMELIST;
@@ -121,7 +122,7 @@ namespace binfilter {
 /*N*/               if (pPage!=NULL) {
 /*N*/                   nPageNum=pPage->GetPageNum();
 /*N*/               } else {
-/*?*/                   DBG_ERROR("ImpMakeSurrogate(): eList ist eine Page, aber pPage==NULL");
+/*?*/                   OSL_FAIL("ImpMakeSurrogate(): eList ist eine Page, aber pPage==NULL");
 /*?*/                   if (pGrpOrdNums!=NULL) {
 /*?*/                       delete [] pGrpOrdNums;
 /*?*/                       pGrpOrdNums=NULL;
@@ -142,7 +143,7 @@ namespace binfilter {
 /*N*/       case 0: rOut<<BYTE(nVal);   break;
 /*N*/       case 1: rOut<<UINT16(nVal); break;
 /*N*/       case 3: rOut<<nVal;         break;
-/*N*/       default: DBG_ERROR("ImpWriteValue(): Nur Bytelaengen 1, 2 oder 4 sind erlaubt!");
+/*N*/       default: OSL_FAIL("ImpWriteValue(): Nur Bytelaengen 1, 2 oder 4 sind erlaubt!");
 /*N*/   } // switch
 /*N*/ }
 
@@ -152,7 +153,7 @@ namespace binfilter {
 /*N*/       case 0: { BYTE n;   rIn>>n; rVal=n; } break;
 /*N*/       case 1: { UINT16 n; rIn>>n; rVal=n; } break;
 /*N*/       case 3: {           rIn>>rVal;      } break;
-/*N*/       default: DBG_ERROR("ImpReadValue(): Nur Bytelaengen 1, 2 oder 4 sind erlaubt!");
+/*N*/       default: OSL_FAIL("ImpReadValue(): Nur Bytelaengen 1, 2 oder 4 sind erlaubt!");
 /*N*/   } // switch
 /*N*/ }
 
@@ -162,7 +163,7 @@ namespace binfilter {
 /*N*/   if (rSurro.eList==SDROBJLIST_UNKNOWN) {
 /*N*/       rOut<<nId;
 /*N*/   } else {
-/*N*/       FASTBOOL bGrp=rSurro.nGrpLevel!=0;
+/*N*/       bool bGrp=rSurro.nGrpLevel!=0;
 /*N*/       if (bGrp) nId|=0x20; // Gruppierung
 /*N*/       ULONG nMaxOrdNum=rSurro.nOrdNum;
 /*N*/       unsigned i;
@@ -194,7 +195,7 @@ namespace binfilter {
 /*N*/   rIn>>nId;
 /*N*/   eList=SdrObjListKind(nId & 0x1F);
 /*N*/   if (eList!=SDROBJLIST_UNKNOWN) {
-/*N*/       FASTBOOL bGrp=(nId & 0x20)!=0;      // Id-Byte
+/*N*/       bool bGrp=(nId & 0x20)!=0;      // Id-Byte
 /*N*/       unsigned nByteAnz=(nId & 0xC0)>>6;  // aufschluesseln
 /*N*/       ImpReadValue(rIn,nOrdNum,nByteAnz); // Ordnungsnummer des Objekts
 /*N*/       if (SdrIsPageKind(eList)) { // Seitennummer schreiben
@@ -220,34 +221,34 @@ namespace binfilter {
 /*N*/                   if (eList==SDROBJLIST_SAMELIST) {
 /*N*/                       pRootList=pRefObj->GetObjList();
 /*N*/                       if (pRootList==NULL) {
-/*N*/                           DBG_ERROR("SdrObjSurrogate::ImpFindObj(): eList=SDROBJLIST_SAMELIST, pRefObj hat jedoch keine ObjList");
+/*N*/                           OSL_FAIL("SdrObjSurrogate::ImpFindObj(): eList=SDROBJLIST_SAMELIST, pRefObj hat jedoch keine ObjList");
 /*N*/                           return;
 /*N*/                       }
 /*N*/                   } else {
 /*N*/                       if (pPage!=NULL) {
 /*N*/                           pRootList=pPage;
 /*N*/                       } else {
-/*N*/                           DBG_ERROR("SdrObjSurrogate::ImpFindObj(): eList=SDROBJLIST_SAMEPAGE, pRefObj hat jedoch keine Page");
+/*N*/                           OSL_FAIL("SdrObjSurrogate::ImpFindObj(): eList=SDROBJLIST_SAMEPAGE, pRefObj hat jedoch keine Page");
 /*N*/                           return;
 /*N*/                       }
 /*N*/                   }
 /*N*/               } else {
-/*N*/                   DBG_ERROR("SdrObjSurrogate::ImpFindObj(): Relatives Surrogat benoetigt Referenzobjekt");
+/*N*/                   OSL_FAIL("SdrObjSurrogate::ImpFindObj(): Relatives Surrogat benoetigt Referenzobjekt");
 /*N*/                   return;
 /*N*/               }
 /*N*/           } break;
 /*N*/           case SDROBJLIST_DRAWPAGE: pPage=pModel->GetPage(nPageNum); pRootList=pPage; break;
 /*N*/           case SDROBJLIST_MASTERPAGE: pPage=pModel->GetMasterPage(nPageNum); pRootList=pPage; break;
 /*N*/           case SDROBJLIST_VIRTOBJECTS: {
-/*N*/               DBG_ERROR("SdrObjSurrogate::ImpFindObj(): Persistente virtuelle Objekte in dieser Version nicht verfuegbar");
+/*N*/               OSL_FAIL("SdrObjSurrogate::ImpFindObj(): Persistente virtuelle Objekte in dieser Version nicht verfuegbar");
 /*N*/               return;
 /*N*/           } break;
 /*N*/           case SDROBJLIST_SYMBOLTABLE: {
-/*N*/               DBG_ERROR("SdrObjSurrogate::ImpFindObj(): Symbole in dieser Version nicht verfuegbar");
+/*N*/               OSL_FAIL("SdrObjSurrogate::ImpFindObj(): Symbole in dieser Version nicht verfuegbar");
 /*N*/               return;
 /*N*/           } break;
 /*N*/           default: {
-/*N*/               DBG_ERROR("SdrObjSurrogate::ImpFindObj(): Unbekannter oder unsinniger Objektlistentyp");
+/*N*/               OSL_FAIL("SdrObjSurrogate::ImpFindObj(): Unbekannter oder unsinniger Objektlistentyp");
 /*N*/               return;
 /*N*/           }
 /*N*/       } // switch
@@ -257,11 +258,11 @@ namespace binfilter {
 /*?*/           if (pO!=NULL) {
 /*?*/               pList=pO->GetSubList();
 /*?*/               if (pList==NULL) {
-/*?*/                   DBG_ERROR("SdrObjSurrogate::ImpFindObj(): Objekt ist kein Gruppenobjekt");
+/*?*/                   OSL_FAIL("SdrObjSurrogate::ImpFindObj(): Objekt ist kein Gruppenobjekt");
 /*?*/                   return;
 /*?*/               }
 /*?*/           } else {
-/*?*/               DBG_ERROR("SdrObjSurrogate::ImpFindObj(): Gruppenobjekt nicht gefunden");
+/*?*/               OSL_FAIL("SdrObjSurrogate::ImpFindObj(): Gruppenobjekt nicht gefunden");
 /*?*/               return;
 /*?*/           }
 /*N*/       }
@@ -278,3 +279,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

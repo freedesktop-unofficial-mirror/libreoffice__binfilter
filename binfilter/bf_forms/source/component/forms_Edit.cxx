@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,84 +26,44 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
 #include <com/sun/star/awt/XFocusListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
 #include <com/sun/star/awt/XKeyListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_XCHANGEBROADCASTER_HPP_
 #include <com/sun/star/form/XChangeBroadcaster.hpp>
-#endif
 
 
 
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 
-#ifndef _FORMS_EDIT_HXX_
 #include "Edit.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XSUBMIT_HPP_
 #include <com/sun/star/form/XSubmit.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
-#endif
-#ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
-#endif
 
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
-#endif
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
 namespace binfilter {
 
@@ -170,7 +131,7 @@ OEditControl::OEditControl(const Reference<XMultiServiceFactory>& _rxFactory)
         }
     }
     // Refcount wieder bei 2 fuer beide Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -232,7 +193,7 @@ void OEditControl::disposing(const EventObject& Source) throw( RuntimeException 
 
 // XFocusListener
 //------------------------------------------------------------------------------
-void OEditControl::focusGained( const FocusEvent& e ) throw ( ::com::sun::star::uno::RuntimeException)
+void OEditControl::focusGained( const FocusEvent& /*e*/ ) throw ( ::com::sun::star::uno::RuntimeException)
 {
     Reference<XPropertySet>  xSet(getModel(), UNO_QUERY);
     if (xSet.is())
@@ -240,7 +201,7 @@ void OEditControl::focusGained( const FocusEvent& e ) throw ( ::com::sun::star::
 }
 
 //------------------------------------------------------------------------------
-void OEditControl::focusLost( const FocusEvent& e ) throw ( ::com::sun::star::uno::RuntimeException)
+void OEditControl::focusLost( const FocusEvent& /*e*/ ) throw ( ::com::sun::star::uno::RuntimeException)
 {
     Reference<XPropertySet>  xSet(getModel(), UNO_QUERY);
     if (xSet.is())
@@ -315,7 +276,7 @@ void OEditControl::keyPressed(const ::com::sun::star::awt::KeyEvent& e) throw ( 
 }
 
 //------------------------------------------------------------------------------
-void OEditControl::keyReleased(const ::com::sun::star::awt::KeyEvent& e) throw ( ::com::sun::star::uno::RuntimeException)
+void OEditControl::keyReleased(const ::com::sun::star::awt::KeyEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException)
 {
 }
 
@@ -353,11 +314,11 @@ DBG_NAME(OEditModel)
 OEditModel::OEditModel(const Reference<XMultiServiceFactory>& _rxFactory)
              :OEditBaseModel( _rxFactory, VCL_CONTROLMODEL_EDIT, FRM_CONTROL_EDIT )
                                     // use the old control name for compytibility reasons
-    ,m_bMaxTextLenModified(sal_False)
-    ,m_nKeyType(NumberFormat::UNDEFINED)
-    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFormatKey(0)
+    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
+    ,m_bMaxTextLenModified(sal_False)
     ,m_bWritingFormattedFake(sal_False)
     ,m_bNumericField(sal_False)
 {
@@ -372,11 +333,11 @@ OEditModel::OEditModel(const Reference<XMultiServiceFactory>& _rxFactory)
 //------------------------------------------------------------------
 OEditModel::OEditModel( const OEditModel* _pOriginal, const Reference<XMultiServiceFactory>& _rxFactory )
         :OEditBaseModel( _pOriginal, _rxFactory )
-    ,m_bMaxTextLenModified(sal_False)
-    ,m_nKeyType(NumberFormat::UNDEFINED)
-    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFormatKey(0)
+    ,m_aNullDate(DBTypeConversion::getStandardDate())
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
+    ,m_bMaxTextLenModified(sal_False)
     ,m_bWritingFormattedFake(sal_False)
     ,m_bNumericField(sal_False)
 {
@@ -494,7 +455,6 @@ void OEditModel::write(const Reference<XObjectOutputStream>& _rxOutStream) throw
     {   // -> fuer die Dauer des Speicherns meinem aggregierten Model die alte TextLen einreden
 
         // before doing this we have to save the current text value of the aggregate, as this may be affected by resetting the text len
-        // FS - 08.12.99 - 70606
         aCurrentText = m_xAggregateSet->getPropertyValue(PROPERTY_TEXT);
 
         m_xAggregateSet->getPropertyValue(PROPERTY_MAXTEXTLEN) >>= nOldTextLen;
@@ -553,3 +513,5 @@ sal_Int16 OEditModel::getPersistenceFlags() const
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

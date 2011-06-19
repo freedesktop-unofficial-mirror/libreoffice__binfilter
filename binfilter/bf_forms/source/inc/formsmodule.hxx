@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef FORMS_MODULE_HXX
 #define FORMS_MODULE_HXX
 
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -205,3 +204,4 @@ typedef ::com::sun::star::uno::Reference< ::com::sun::star::lang::XSingleService
 }//end of namespace binfilter
 #endif // FORMS_MODULE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

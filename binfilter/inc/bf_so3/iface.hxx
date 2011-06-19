@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,27 +29,17 @@
 #ifndef _IFACE_HXX
 #define _IFACE_HXX
 
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SVBORDER_HXX
 #include <tools/svborder.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
 #include <bf_so3/factory.hxx>
 #include <bf_so3/so2dll.hxx>
 
 #include <sot/object.hxx>
 
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 struct IUnknown;
 
@@ -82,7 +73,7 @@ class  SvSoIPCService;
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE(ClassName)                                     \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     return p;                                                             \
@@ -101,7 +92,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE1(ClassName,Super1)                             \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -129,7 +120,7 @@ SO2_IMPL_CLASS1_DLL(ClassName,FactoryName,Super1,                     \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE2(ClassName,Super1,Super2)                          \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -159,7 +150,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE3(ClassName,Super1,Super2,Super3)               \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -191,7 +182,7 @@ SotFactory * ClassName::pFactory = NULL;                                   \
 /**************************************************************************
 **************************************************************************/
 #define SO2_IMPL_INTERFACE4(ClassName,Super1,Super2,Super3,Super4)        \
-::IUnknown * __EXPORT ClassName::GetInterface( const SvGlobalName & rName ) \
+::IUnknown * ClassName::GetInterface( const SvGlobalName & rName ) \
 {                                                                         \
     ::IUnknown * p = GetMemberInterface( rName );                           \
     if( !p )                                                              \
@@ -320,15 +311,10 @@ RECT GetSysRect( const Rectangle & rRect );
 Rectangle GetSvRect( const RECT & rRect );
 #endif
 
-#ifdef DBG_UTIL
-ByteString  SvPrint( const SvBorder & );
-ByteString  SvPrint( const Rectangle & );
-ByteString  SvPrint( const Point & );
-ByteString  SvPrint( const Size & );
-#endif
-
 //=========================================================================
 
 }
 
 #endif // _IFACE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

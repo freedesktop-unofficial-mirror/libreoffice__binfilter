@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _FRM_BUTTON_HXX_
 #define _FRM_BUTTON_HXX_
 
-#ifndef _FRM_IMAGE_HXX_
 #include "Image.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XBUTTON_HPP_
 #include <com/sun/star/awt/XButton.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -114,6 +111,9 @@ public:
 // ::com::sun::star::lang::XEventListener
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& _rSource) throw(::com::sun::star::uno::RuntimeException)
         { OControl::disposing(_rSource); }
+
+    using OImageControl::disposing;
+
 private:
     DECL_LINK( OnClick, void* );
 };
@@ -125,3 +125,4 @@ private:
 }//end of namespace binfilter
 #endif // _FRM_BUTTON_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

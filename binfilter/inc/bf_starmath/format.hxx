@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,11 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef UTILITY_HXX
 #include "utility.hxx"
-#endif
-#ifndef TYPES_HXX
 #include <types.hxx>
-#endif
 namespace binfilter {
 
 
@@ -126,7 +119,7 @@ class SmFormat : public SfxBroadcaster
 
 public:
     SmFormat();
-    SmFormat(const SmFormat &rFormat) { *this = rFormat; }
+    SmFormat(const SmFormat &rFormat) : SfxBroadcaster() { *this = rFormat; }
 
     const Size &    GetBaseSize() const             { return aBaseSize; }
     void            SetBaseSize(const Size &rSize)  { aBaseSize = rSize; }
@@ -184,3 +177,4 @@ inline BOOL    SmFormat::operator != (const SmFormat &rFormat) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

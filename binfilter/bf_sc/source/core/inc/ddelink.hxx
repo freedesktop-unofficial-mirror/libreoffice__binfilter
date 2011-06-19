@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef SC_DDELINK_HXX
 #define SC_DDELINK_HXX
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 namespace binfilter {
 
 class ScDocument;
@@ -66,7 +63,7 @@ public:
             ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr );
     virtual ~ScDdeLink();
 
-    void            Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    void Store( SvStream&, ScMultipleWriteHeader& ) const {}
 
                                             // von SvBaseLink ueberladen:
     virtual void    DataChanged( const String& rMimeType,
@@ -91,3 +88,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

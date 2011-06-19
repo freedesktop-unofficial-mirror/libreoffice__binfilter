@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,29 +28,14 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
 #include <stdlib.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_NUMBERFORMATCODEWRAPPER_HXX
 #include <unotools/numberformatcodewrapper.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #include <bf_svtools/zforlist.hxx>
 #include <bf_svtools/zformat.hxx>
@@ -58,9 +44,7 @@
 #include "zforscan.hxx"
 #undef _ZFORSCAN_CXX
 
-#ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
 #include "nfsymbol.hxx"
-#endif
 
 namespace binfilter
 {
@@ -1040,14 +1024,6 @@ void ImpSvNumberformatScan::Reset()
 {
     nAnzStrings = 0;
     nAnzResStrings = 0;
-#if 0
-// ER 20.06.97 14:05   nicht noetig, wenn nAnzStrings beachtet wird
-    for (size_t i = 0; i < NF_MAX_FORMAT_SYMBOLS; i++)
-    {
-        sStrArray[i].Erase();
-        nTypeArray[i] = 0;
-    }
-#endif
     eScannedType = NUMBERFORMAT_UNDEFINED;
     nRepPos = 0;
     bExp = FALSE;
@@ -2790,3 +2766,5 @@ void ImpSvNumberformatScan::CopyInfo(ImpSvNumberformatInfo* pInfo, USHORT nAnz)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

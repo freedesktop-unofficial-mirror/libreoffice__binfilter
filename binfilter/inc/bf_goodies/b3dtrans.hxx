@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
 // Zu verwendender DephRange des Z-Buffers
 #define ZBUFFER_DEPTH_RANGE         (256.0 * 256.0 * 256.0)
@@ -301,3 +300,5 @@ protected:
 }//end of namespace binfilter
 
 #endif          // _B3D_B3DTRANS_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

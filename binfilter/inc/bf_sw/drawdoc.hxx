@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _FM_FMMODEL_HXX
 #include <bf_svx/fmmodel.hxx>
-#endif
 class Window;
 class SbxValue;
 class SbxObject;
@@ -55,7 +54,7 @@ public:
     const SwDoc& GetDoc() const { return *pDoc; }
           SwDoc& GetDoc()       { return *pDoc; }
 
-    virtual SdrPage* AllocPage(FASTBOOL bMasterPage);
+    virtual SdrPage* AllocPage(bool bMasterPage);
 
     // fuers "load on demand" von Grafiken im DrawingLayer
     virtual SvStream* GetDocumentStream( SdrDocumentStreamInfo& rInfo ) const;
@@ -66,3 +65,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

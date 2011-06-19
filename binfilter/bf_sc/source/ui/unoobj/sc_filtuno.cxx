@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,7 +36,7 @@
 
 #include "filtuno.hxx"
 #include "miscuno.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "imoptdlg.hxx"
 #include "docsh.hxx"
 #include "globstr.hrc"
@@ -74,7 +72,7 @@ ScFilterOptionsObj::~ScFilterOptionsObj()
 uno::Reference<uno::XInterface> SAL_CALL ScFilterOptionsObj_CreateInstance(
                         const uno::Reference<lang::XMultiServiceFactory>& )
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
 
     return (::cppu::OWeakObject*) new ScFilterOptionsObj;
@@ -82,14 +80,14 @@ uno::Reference<uno::XInterface> SAL_CALL ScFilterOptionsObj_CreateInstance(
 
 ::rtl::OUString ScFilterOptionsObj::getImplementationName_Static()
 {
-    return ::rtl::OUString::createFromAscii( SCFILTEROPTIONSOBJ_IMPLNAME );
+    return ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFILTEROPTIONSOBJ_IMPLNAME ));
 }
 
 uno::Sequence< ::rtl::OUString> ScFilterOptionsObj::getSupportedServiceNames_Static()
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCFILTEROPTIONSOBJ_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFILTEROPTIONSOBJ_SERVICE ));
     return aRet;
 }
 
@@ -100,7 +98,7 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScFilterOptionsObj::getPropertyValu
     uno::Sequence<beans::PropertyValue> aRet(1);
     beans::PropertyValue* pArray = aRet.getArray();
 
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_FILTEROPTIONS );
+    pArray[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_FILTEROPTIONS ));
     pArray[0].Value <<= aFilterOptions;
 
     return aRet;
@@ -130,7 +128,7 @@ void SAL_CALL ScFilterOptionsObj::setPropertyValues( const uno::Sequence<beans::
 
 // XExecutableDialog
 
-void SAL_CALL ScFilterOptionsObj::setTitle( const ::rtl::OUString& aTitle ) throw(uno::RuntimeException)
+void SAL_CALL ScFilterOptionsObj::setTitle( const ::rtl::OUString& /*aTitle*/ ) throw(uno::RuntimeException)
 {
     // not used
 }
@@ -147,25 +145,16 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         INetURLObject aURL( aFileName );
         String aExt = aURL.getExtension();
         String aPrivDatName = aURL.getName();
-        sal_Unicode cAsciiDel;
-        if (aExt.EqualsIgnoreCaseAscii("CSV"))
-            cAsciiDel = ',';
-        else
-            cAsciiDel = '\t';
 
         SvStream* pInStream = NULL;
         if ( xInputStream.is() )
             pInStream = ::utl::UcbStreamHelper::CreateStream( xInputStream );
 
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScImportAsciiDlg* pDlg = new ScImportAsciiDlg( NULL, aPrivDatName, pInStream, cAsciiDel );
+        DBG_BF_ASSERT(0, "STRIP");
         delete pInStream;
     }
     else
     {
-        sal_Bool bMultiByte = sal_True;
-        sal_Bool bDBEnc     = sal_False;
-        sal_Bool bAscii     = sal_False;
-
         sal_Unicode cStrDel = '"';
         sal_Unicode cAsciiDel = ';';
         rtl_TextEncoding eEncoding = RTL_TEXTENCODING_DONTKNOW;
@@ -184,7 +173,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
                 cAsciiDel = '\t';
 
             aTitle = ScGlobal::GetRscString( STR_EXPORT_ASCII );
-            bAscii = sal_True;
         }
         else if ( aFilterString == ScDocShell::GetLotusFilterName() )
         {
@@ -208,8 +196,6 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
             }
             // common for dBase import/export
             eEncoding = RTL_TEXTENCODING_IBM_850;
-            bMultiByte = sal_False;
-            bDBEnc = sal_True;
         }
         else if ( aFilterString == ScDocShell::GetDifFilterName() )
         {
@@ -228,7 +214,7 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
         }
 
         ScImportOptions aOptions( cAsciiDel, cStrDel, eEncoding);
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScImportOptionsDlg* pDlg = new ScImportOptionsDlg( NULL, bAscii,
+        DBG_BF_ASSERT(0, "STRIP");
     }
 
     xInputStream.clear();   // don't hold the stream longer than necessary
@@ -238,7 +224,7 @@ sal_Int16 SAL_CALL ScFilterOptionsObj::execute() throw(uno::RuntimeException)
 
 // XImporter
 
-void SAL_CALL ScFilterOptionsObj::setTargetDocument( const uno::Reference<lang::XComponent>& xDoc )
+void SAL_CALL ScFilterOptionsObj::setTargetDocument( const uno::Reference<lang::XComponent>& /*xDoc*/ )
                             throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
     bExport = sal_False;
@@ -246,10 +232,12 @@ void SAL_CALL ScFilterOptionsObj::setTargetDocument( const uno::Reference<lang::
 
 // XExporter
 
-void SAL_CALL ScFilterOptionsObj::setSourceDocument( const uno::Reference<lang::XComponent>& xDoc )
+void SAL_CALL ScFilterOptionsObj::setSourceDocument( const uno::Reference<lang::XComponent>& /*xDoc*/ )
                             throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
     bExport = sal_True;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

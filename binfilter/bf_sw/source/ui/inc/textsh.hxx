@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SWTEXTSH_HXX
 #define _SWTEXTSH_HXX
 
-#ifndef _SWBASESH_HXX
 #include <basesh.hxx>
-#endif
 class Button;
 namespace binfilter {
 
@@ -48,27 +47,27 @@ public:
 
     void    GetState(SfxItemSet &);
 
-    void    ExecInsert(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecInsert(SfxRequest &);
+    void    ExecInsert(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
     void    StateInsert(SfxItemSet&);
-    void    ExecEnterNum(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecEnterNum(SfxRequest &);
-    void    ExecBasicMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecBasicMove(SfxRequest &);
-    void    ExecMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMove(SfxRequest &);
-    void    ExecMovePage(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMovePage(SfxRequest &);
-    void    ExecMoveCol(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecMoveCol(SfxRequest &);
-    void    ExecMoveLingu(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    ExecMoveLingu(SfxRequest &);
-    void    ExecMoveMisc(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecMoveMisc(SfxRequest &);
+    void    ExecEnterNum(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecBasicMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecMove(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecMovePage(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecMoveCol(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecMoveLingu(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecMoveMisc(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
     void    StateField(SfxItemSet &);
-    void    ExecIdx(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}  ;//STRIP001  void    ExecIdx(SfxRequest &);
+    void    ExecIdx(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}  ;
     void    GetIdxState(SfxItemSet &);
-    void    ExecGlossary(SfxRequest &);//STRIP001   void    ExecGlossary(SfxRequest &);
+    void    ExecGlossary(SfxRequest &);
 
-    void    ExecCharAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecCharAttr(SfxRequest &);
-    void    ExecCharAttrArgs(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecCharAttrArgs(SfxRequest &);
-    void    ExecParaAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecParaAttr(SfxRequest &);
-    void    ExecParaAttrArgs(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecParaAttrArgs(SfxRequest &);
+    void    ExecCharAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecCharAttrArgs(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecParaAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecParaAttrArgs(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
     void    ExecAttr(SfxRequest &);
-    void    ExecDB(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecDB(SfxRequest &);
-    void    ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    ExecTransliteration(SfxRequest &);
+    void    ExecDB(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
 
     void    GetAttrState(SfxItemSet &);
 
@@ -78,3 +77,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

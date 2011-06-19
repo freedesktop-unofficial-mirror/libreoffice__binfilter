@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------
@@ -43,7 +40,7 @@ namespace binfilter {
 //------------------------------
 class SdrObjMoveProtectItem: public SdrYesNoItem {
 public:
-    SdrObjMoveProtectItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_OBJMOVEPROTECT,bOn) {}
+    SdrObjMoveProtectItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_OBJMOVEPROTECT,bOn) {}
     SdrObjMoveProtectItem(SvStream& rIn): SdrYesNoItem(SDRATTR_OBJMOVEPROTECT,rIn) {}
 };
 
@@ -52,9 +49,11 @@ public:
 //------------------------------
 class SdrObjSizeProtectItem: public SdrYesNoItem {
 public:
-    SdrObjSizeProtectItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_OBJSIZEPROTECT,bOn) {}
+    SdrObjSizeProtectItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_OBJSIZEPROTECT,bOn) {}
     SdrObjSizeProtectItem(SvStream& rIn): SdrYesNoItem(SDRATTR_OBJSIZEPROTECT,rIn) {}
 };
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

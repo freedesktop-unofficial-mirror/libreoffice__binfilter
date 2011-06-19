@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,13 +34,9 @@
 #include <bf_sfx2/sfxdefs.hxx>
 
 // header for class SfxModule
-#ifndef _SFXMODULE_HXX
 #include <bf_sfx2/module.hxx>
-#endif
 // header for class SvInPlaceObject
-#ifndef _IPOBJ_HXX
 #include <bf_so3/ipobj.hxx>
-#endif
 
 #include <bf_sch/chattr.hxx>    // to do: remove this line and replace most of the schdll.hxx includes to chattr.hxx
 class OutputDevice;
@@ -127,3 +124,4 @@ extern_c void __LOADONCALLAPI SchGetDefaultForRowText( const SchMemChart& rMemCh
 } //namespace binfilter
 #endif          // _SCH_DLL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

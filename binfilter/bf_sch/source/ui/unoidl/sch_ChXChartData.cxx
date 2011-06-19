@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,12 @@
 #include "ChXChartData.hxx"
 
 // header for SvxServiceInfoHelper
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 // header for class OGuard
 // header for rtl_createUuid
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include "chtmodel.hxx"
 #include "memchrt.hxx"
@@ -49,7 +44,6 @@ namespace binfilter {
 #define SCH_ASCII_TO_OU( s )  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( s ) )
 #endif
 
-using namespace vos;
 using namespace ::com::sun::star;
 
 #define SCH_BIN_MIN(a,b) ( ((a)<(b))? (a) : (b) )
@@ -182,7 +176,7 @@ sal_Int64 SAL_CALL ChXChartData::getSomething( const uno::Sequence< sal_Int8 >& 
 }
 
 // XEventListener listens to disposing of XModel
-void SAL_CALL ChXChartData::disposing( const lang::EventObject& Source ) throw( uno::RuntimeException )
+void SAL_CALL ChXChartData::disposing( const lang::EventObject& /*Source*/ ) throw( uno::RuntimeException )
 {
     // XModel is disposed -> mpModel is invalid now
     mpModel = NULL;
@@ -261,7 +255,7 @@ uno::Sequence< uno::Sequence< double > > SAL_CALL ChXChartDataArray::getData() t
     if( ! mpModel )
         return uno::Sequence< uno::Sequence< double > >();
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     double *pData;
 
@@ -299,7 +293,7 @@ void SAL_CALL ChXChartDataArray::setData( const uno::Sequence< uno::Sequence< do
     if( ! mpModel )
         return;
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // get number of rows/columns
     const uno::Sequence< double >* pSequence = aData.getConstArray();
@@ -355,7 +349,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getRowDescriptions(
     if( ! mpModel )
         return uno::Sequence< ::rtl::OUString >();
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nRow, nRowCnt = pDocData->GetRowCount();
@@ -378,7 +372,7 @@ void SAL_CALL ChXChartDataArray::setRowDescriptions( const uno::Sequence< ::rtl:
     if( ! mpModel )
         return;
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nRow, nRowCnt = SCH_BIN_MIN( (sal_Int32)pDocData->GetRowCount(), aRowDescriptions.getLength() );
@@ -397,7 +391,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getColumnDescriptio
     if( ! mpModel )
         return uno::Sequence< ::rtl::OUString >();
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nCol, nColCnt = pDocData->GetColCount();
@@ -418,7 +412,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getColumnDescriptio
     if( ! mpModel )
         return;
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchMemChart* pDocData = mpModel->GetChartData();
     sal_Int32 nCol, nColCnt = SCH_BIN_MIN( (sal_Int32)pDocData->GetColCount(), aColumnDescriptions.getLength() );
@@ -481,3 +475,5 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataArray::getSupportedService
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

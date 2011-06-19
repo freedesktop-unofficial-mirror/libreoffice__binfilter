@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_TABSTOPTYPES_HXX
 #include <tabsthdl.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_TABSTOP_HPP_
 #include <com/sun/star/style/TabStop.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -87,14 +82,16 @@ sal_Bool XMLTabStopPropHdl::equals( const uno::Any& r1, const uno::Any& r2 ) con
     return bEqual;
 }
 
-sal_Bool XMLTabStopPropHdl::importXML( const ::rtl::OUString& rStrImpValue, ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLTabStopPropHdl::importXML( const ::rtl::OUString& /*rStrImpValue*/, ::com::sun::star::uno::Any& /*rValue*/, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_False;
 }
 
-sal_Bool XMLTabStopPropHdl::exportXML( ::rtl::OUString& rStrExpValue, const ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLTabStopPropHdl::exportXML( ::rtl::OUString& /*rStrExpValue*/, const ::com::sun::star::uno::Any& /*rValue*/, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_False;
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

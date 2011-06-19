@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DATATRANSFER_XTRANSFERABLE_HPP_
 #include <com/sun/star/datatransfer/XTransferable.hpp>
-#endif
 
 #include <bf_so3/ipobj.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 //=========================================================================
 namespace binfilter
@@ -86,10 +81,8 @@ protected:
                     // Laden speichern
     SO3_DLLPRIVATE virtual BOOL    InitNew( SvStorage * );
     SO3_DLLPRIVATE virtual BOOL    Load( SvStorage * );
-    SO3_DLLPRIVATE virtual BOOL    Save();
-    SO3_DLLPRIVATE virtual BOOL    SaveAs( SvStorage * );
+    SO3_DLLPRIVATE virtual BOOL    Save() {return false;}
     SO3_DLLPRIVATE virtual void    HandsOff();
-    SO3_DLLPRIVATE virtual BOOL    SaveCompleted( SvStorage * );
 
     SO3_DLLPRIVATE              ~SvOutPlaceObject();
 public:
@@ -129,3 +122,4 @@ SO2_DECL_IMPL_REF(SvOutPlaceObject)
 
 #endif // _OUTPLACE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

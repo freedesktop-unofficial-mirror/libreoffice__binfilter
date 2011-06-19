@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,69 +26,31 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _FORMS_COMBOBOX_HXX_
 #include "ComboBox.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
-#ifndef _FORMS_BASELISTBOX_HXX_
 #include "BaseListBox.hxx"
-#endif
-#ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
-#endif
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XQUERIESSUPPLIER_HPP_
 #include <com/sun/star/sdb/XQueriesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
-#endif
 
 #include <limits.h>
 
@@ -158,11 +121,11 @@ OComboBoxModel::OComboBoxModel(const Reference<XMultiServiceFactory>& _rxFactory
                     // use the old control name for compytibility reasons
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_eListSourceType(ListSourceType_TABLE)
-    ,m_bEmptyIsNull(sal_True)
     ,m_aNullDate(DBTypeConversion::getStandardDate())
-    ,m_nKeyType(NumberFormat::UNDEFINED)
     ,m_nFormatKey(0)
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
+    ,m_bEmptyIsNull(sal_True)
 {
     DBG_CTOR( OComboBoxModel, NULL );
 
@@ -177,9 +140,9 @@ OComboBoxModel::OComboBoxModel( const OComboBoxModel* _pOriginal, const Referenc
     :OBoundControlModel( _pOriginal, _rxFactory )
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_aNullDate(DBTypeConversion::getStandardDate())
-    ,m_nKeyType(NumberFormat::UNDEFINED)
     ,m_nFormatKey(0)
     ,m_nFieldType(DataType::OTHER)
+    ,m_nKeyType(NumberFormat::UNDEFINED)
 {
     DBG_CTOR( OComboBoxModel, NULL );
 
@@ -366,7 +329,7 @@ void SAL_CALL OComboBoxModel::write(const Reference<stario::XObjectOutputStream>
 
     if ((nAnyMask & BOUNDCOLUMN) == BOUNDCOLUMN)
     {
-        sal_Int16 nBoundColumn;
+        sal_Int16 nBoundColumn(0);
         m_aBoundColumn >>= nBoundColumn;
         _rxOutStream << nBoundColumn;
     }
@@ -391,7 +354,7 @@ void SAL_CALL OComboBoxModel::read(const Reference<stario::XObjectInputStream>& 
 
     if (nVersion > 0x0006)
     {
-        DBG_ERROR("OComboBoxModel::read : invalid (means unknown) version !");
+        OSL_FAIL("OComboBoxModel::read : invalid (means unknown) version !");
         m_aListSource = ::rtl::OUString();
         m_aBoundColumn <<= (sal_Int16)0;
         m_aDefaultText = ::rtl::OUString();
@@ -428,9 +391,9 @@ void SAL_CALL OComboBoxModel::read(const Reference<stario::XObjectInputStream>& 
 
     if ((nAnyMask & BOUNDCOLUMN) == BOUNDCOLUMN)
     {
-        sal_Int16 nValue;
-        _rxInStream >> nValue;
-        m_aBoundColumn <<= nValue;
+        sal_Int16 nLclValue;
+        _rxInStream >> nLclValue;
+        m_aBoundColumn <<= nLclValue;
     }
 
     if (nVersion > 0x0001)
@@ -472,7 +435,7 @@ void OComboBoxModel::loadData()
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OComboBoxModel::reloaded( const EventObject& aEvent ) throw(RuntimeException)
+void SAL_CALL OComboBoxModel::reloaded( const EventObject& /*rEvent*/ ) throw(RuntimeException)
 {
     OSL_ENSURE( false, "OComboBoxModel::reloaded: dead code!?" );
 }
@@ -509,3 +472,5 @@ StringSequence SAL_CALL OComboBoxControl::getSupportedServiceNames() throw(Runti
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -59,7 +60,7 @@ namespace binfilter {
 /*N*/   return rRefObj;
 /*N*/ }
 
-/*N*/ void __EXPORT SdrVirtObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrVirtObj::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& /*rBCType*/, const SfxHint& /*rHint*/, const TypeId& /*rHintType*/)
 /*N*/ {
 /*N*/   bClosedObj=rRefObj.IsClosedObj();
 /*N*/   SetRectsDirty(); // hier noch Optimieren.
@@ -180,7 +181,7 @@ namespace binfilter {
 /*N*/   return rRefObj.GetRotateAngle();
 /*N*/ }
 
-/*N*/ long SdrVirtObj::GetShearAngle(FASTBOOL bVertical) const
+/*N*/ long SdrVirtObj::GetShearAngle(bool bVertical) const
 /*N*/ {
 /*N*/   return rRefObj.GetShearAngle(bVertical);
 /*N*/ }
@@ -203,15 +204,15 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrObjGeoData* SdrVirtObj::NewGeoData() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
-/*N*/ void SdrVirtObj::SaveGeoData(SdrObjGeoData& rGeo) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrVirtObj::SaveGeoData(SdrObjGeoData& /*rGeo*/) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SdrVirtObj::RestGeoData(const SdrObjGeoData& rGeo)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrVirtObj::RestGeoData(const SdrObjGeoData& /*rGeo*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -231,62 +232,14 @@ namespace binfilter {
 /*N*/   return rRefObj.CreateNewItemSet(rPool);
 /*N*/ }
 
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// private support routines for ItemSet access
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrVirtObj::PreSave()
-/*N*/ {
+/*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SdrVirtObj::PostSave()
-/*N*/ {
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-/*N*/ void SdrVirtObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-/*N*/ void SdrVirtObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrVirtObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   rRefObj.NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*?*/ void SdrVirtObj::WriteData(SvStream& rOut) const
-/*?*/ {
-/*?*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*?*/ #ifdef DBG_UTIL
-/*?*/   aCompat.SetID("SdrVirtObj");
-/*?*/ #endif
-/*?*/   // fehlende Implementation
-/*?*/   rOut<<aAnchor;
-/*?*/ }
 
 /*?*/ void SdrVirtObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*?*/ {
@@ -313,3 +266,5 @@ namespace binfilter {
 /*?*/     return Point(0,0);
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

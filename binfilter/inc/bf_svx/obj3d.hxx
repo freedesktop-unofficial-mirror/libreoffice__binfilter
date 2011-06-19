@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,65 +31,22 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOATTR_HXX //autogen
 #include <bf_svx/svdoattr.hxx>
-#endif
-
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-
-#ifndef _VOLUME3D_HXX
 #include <bf_svx/volume3d.hxx>
-#endif
-
-#ifndef _SVX_MATRIX3D_HXX
 #include <bf_svx/matrix3d.hxx>
-#endif
-
-#ifndef _DEF3D_HXX
 #include <bf_svx/def3d.hxx>
-#endif
-
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
-
-#ifndef _E3D_DEFLT3D_HXX
 #include <bf_svx/deflt3d.hxx>
-#endif
-
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
-
-#ifndef _B3D_B3DGEOM_HXX
 #include <bf_goodies/b3dgeom.hxx>
-#endif
-
-#ifndef _B3D_MATRIL3D_HXX
 #include <bf_goodies/matril3d.hxx>
-#endif
-
-#ifndef _B3D_B3DTEX_HXX
 #include <bf_goodies/b3dtex.hxx>
-#endif
-
-#ifndef _B3D_B3DLIGHT_HXX
 #include <bf_goodies/b3dlight.hxx>
-#endif
-
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
-
-#ifndef _SVX3DITEMS_HXX
 #include <bf_svx/svx3ditems.hxx>
-#endif
-
-#ifndef _SVX_XFLCLIT_HXX
 #include <bf_svx/xflclit.hxx>
-#endif
+
 class Base3D;
 namespace binfilter {
 class SfxPoolItem;
@@ -98,7 +56,6 @@ class SfxPoolItem;
 //************************************************************
 
 class Viewport3D;
-class E3dLightList;
 class E3dScene;
 class E3dPolyScene;
 class PolyPolygon3D;
@@ -200,7 +157,7 @@ class E3dObject : public SdrAttrObj
     SfxItemPool* ImpGetItemPool() const;
     const SfxPoolItem* ImpSetNewAttr(const SfxPoolItem* pAkt,
                                      const SfxPoolItem* pNew,
-                                     FASTBOOL bChg = TRUE);
+                                     bool bChg = TRUE);
 
  public:
     TYPEINFO();
@@ -209,15 +166,17 @@ class E3dObject : public SdrAttrObj
 
     virtual void RecalcSnapRect();
     virtual void RecalcBoundRect();
-    virtual void SetRectsDirty(FASTBOOL bNotMyself=FALSE);
+    virtual void SetRectsDirty(bool bNotMyself=FALSE);
 
     virtual ~E3dObject();
+    using SdrAttrObj::operator=;
 
     virtual UINT32  GetObjInventor() const;
     virtual UINT16  GetObjIdentifier() const;
 
 
     virtual SdrLayerID  GetLayer() const;
+    using SdrObject::GetLayer;
     virtual void        NbcSetLayer(SdrLayerID nLayer);
 
     virtual void        SetObjList(SdrObjList* pNewObjList);
@@ -226,13 +185,6 @@ class E3dObject : public SdrAttrObj
 /*N*/   virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 
     virtual SdrObjList* GetSubList() const;
-
-
-    // 3D-Zeichenmethode
-
-    // Objekt als Kontur in das Polygon einfuegen
-
-    // Schatten fuer 3D-Objekte zeichnen
 
     // 3D-Objekt in die Gruppe einfuegen; Eigentumsuebergang!
     virtual void Insert3DObj(E3dObject* p3DObj);
@@ -254,13 +206,6 @@ class E3dObject : public SdrAttrObj
     virtual void NbcResetTransform();
     virtual void SetTransform(const Matrix4D& rMatrix);
 
-    // Translation
-    // Skalierung
-
-
-    // Rotation mit Winkel in Radiant
-
-
     // [FG] 2D-Rotationen, werden hier als Rotationen um die Z-Achse, die in den Bildschirm zeigt,
     //      implementiert plus eine Verschiebung der Scene. Dies bedeutet auch die Scene (E3dScene)
     //      muss diese Routine in der Klasse als virtual definieren.
@@ -275,7 +220,7 @@ class E3dObject : public SdrAttrObj
 
     USHORT GetObjTreeLevel() const { return nObjTreeLevel; }
 
-    FASTBOOL HasLogicalGroup() { return ( nLogicalGroup > 0 ); }
+    bool HasLogicalGroup() { return ( nLogicalGroup > 0 ); }
     USHORT GetLogicalGroup() { return nLogicalGroup; }
 
     void SetDragDetail(E3dDragDetail eDetail)   { eDragDetail = eDetail; }
@@ -283,7 +228,7 @@ class E3dObject : public SdrAttrObj
 
     void    SetPartOfParent(UINT16 nPartCode = 1) { nPartOfParent = nPartCode; }
     UINT16  GetPartCode()   { return nPartOfParent; }
-    FASTBOOL IsPartOfParent() const { return (nPartOfParent != 0); }
+    bool IsPartOfParent() const { return (nPartOfParent != 0); }
 
 
     // ItemSet access
@@ -299,9 +244,9 @@ class E3dObject : public SdrAttrObj
 
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void AfterRead();
 
@@ -457,14 +402,14 @@ protected:
 
     void SetDefaultAttributes(E3dDefaultAttributes& rDefault);
 
-    // convert given PolyPolygon3D to screen coor
-
 public :
     TYPEINFO();
 
     E3dCompoundObject();
     E3dCompoundObject(E3dDefaultAttributes& rDefault);
     virtual ~E3dCompoundObject();
+
+    using SdrAttrObj::operator=;
 
     // DoubleSided: TRUE/FALSE
     BOOL GetDoubleSided() const
@@ -530,18 +475,8 @@ public :
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol,
         const SetOfByte* pVisiLayer) const;
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
-
-    // 3D-Zeichenmethode
-
-    // Objekt als Kontur in das Polygon einfuegen
-
-    // Schatten fuer 3D-Objekte zeichnen
-
-    // #78972#
-
-    // Bitmaps fuer 3D-Darstellung von Gradients und Hatches holen
 
     // Geometrieerzeugung
     void DestroyGeometry();
@@ -558,27 +493,19 @@ public :
     // Unterstuetzung Objekte lesen
     BOOL AreBytesLeft() const { return bBytesLeft; }
 
-    // Copy-Operator
-
-    // Ausgabeparameter an 3D-Kontext setzen
 private:
-public:
 
+public:
     // DisplayGeometry rausruecken
     B3dGeometry& GetDisplayGeometry();
-
-    // Transformation auf die Geometrie anwenden
 
     // Schattenattribute holen
     BOOL DoDrawShadow();
 
-    // WireFrame Darstellung eines Objektes
-
-    // Nromalen invertiert benutzen
 private:
     void SetInvertNormals(BOOL bNew);
-public:
 
+public:
     // Material des Objektes
     const Color& GetMaterialAmbientColor() const { return aMaterialAmbientColor; }
     void SetMaterialAmbientColor(const Color& rColor);
@@ -589,3 +516,5 @@ public:
 
 }//end of namespace binfilter
 #endif          // _E3D_OBJ3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

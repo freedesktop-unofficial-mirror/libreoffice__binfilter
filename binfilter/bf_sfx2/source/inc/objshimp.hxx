@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,8 @@
 #ifndef _SFX_OBJSHIMP_HXX
 #define _SFX_OBJSHIMP_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
 #include <bf_svtools/securityoptions.hxx>
 #include "objsh.hxx"
@@ -43,7 +40,7 @@ namespace binfilter {
 class AsynchronLink;
 //====================================================================
 
-DBG_NAMEEX(SfxObjectShell)//STRIP008 ;
+DBG_NAMEEX(SfxObjectShell)
 
 class SfxViewFrame;
 struct MarkData_Impl
@@ -135,61 +132,63 @@ struct SfxObjectShell_Impl
     sal_Bool                bDisposing;
 
     SfxObjectShell_Impl() :
-        nTime(),
-        bIsTmp( sal_False),
-        bClosing( sal_False),
-        bSetInPlaceObj( sal_False),
-        bPasswd( sal_False),
+        pDocInfo ( 0),
+        pCfgMgr( 0),
         pInPlaceObj( 0),
         pBasicMgr( 0),
         pBasicLibContainer( 0 ),
         pDialogLibContainer( 0 ),
         pProgress( 0),
+        nTime(),
         nVisualDocumentNumber( USHRT_MAX),
-        bIsSaving( sal_False),
-        bIsNamedVisible( sal_False),
-        pCfgMgr( 0),
+
         bTemplateConfig( sal_False),
+        bInList ( sal_False),
+        bClosing( sal_False),
+        bSetInPlaceObj( sal_False),
+        bIsSaving( sal_False),
+        bPasswd( sal_False),
+        bIsTmp( sal_False),
+        bIsNamedVisible( sal_False),
         bDidWarnFormat( sal_False),
         bDidDangerousSave(sal_False),
-        bIsBasicDefault( sal_True ),
         bIsTemplate(sal_False),
+        bIsAbortingImport ( sal_False),
+        bImportDone ( sal_False),
+        bInPrepareClose( sal_False ),
+        bPreparedForClose( sal_False ),
+        bWaitingForPicklist( sal_False ),
+        bModuleSearched( sal_False ),
+        bIsBasicDefault( sal_True ),
+        bIsHelpObjSh( sal_False ),
+        bForbidCaching( sal_False ),
+        bForbidReload( sal_False ),
+        bSupportsEventMacros( sal_True ),
+        bLoadingWindows( sal_False ),
+        bBasicInitialized( sal_False ),
+        bHidden( sal_False ),
+
         lErr(ERRCODE_NONE),
         nEventId ( 0),
-        pDocInfo ( 0),
-        bIsAbortingImport ( sal_False),
-        bInList ( sal_False),
-        bImportDone ( sal_False),
+        bDoNotTouchDocInfo( sal_False ),
         pReloadTimer ( 0),
-        nLoadedFlags ( SFX_LOADED_MAINDOCUMENT ),
         pMarkData( 0 ),
+        nLoadedFlags ( SFX_LOADED_MAINDOCUMENT ),
         bInFrame( sal_False ),
         bModalMode( sal_False ),
         bRunningMacro( sal_False ),
         bReloadAvailable( sal_False ),
         nAutoLoadLocks( 0 ),
-        bInPrepareClose( sal_False ),
-        bPreparedForClose( sal_False ),
-        bWaitingForPicklist( sal_False ),
         pModule( 0 ),
-        bModuleSearched( sal_False ),
         pFrame( 0 ),
         pImageManager( 0 ),
         pTbxConfig( 0 ),
         pEventConfig(NULL),
-        bIsHelpObjSh( sal_False ),
-        bForbidCaching( sal_False ),
-        bDoNotTouchDocInfo( sal_False ),
-        bForbidReload( sal_False ),
-        bBasicInitialized( sal_False ),
         eFlags( SFXOBJECTSHELL_UNDEFINED ),
         pCloser( 0 ),
-        bSupportsEventMacros( sal_True ),
         bReadOnlyUI( sal_False ),
         bHiddenLockedByAPI( sal_False ),
-        bInCloseEvent( sal_False ),
-        bLoadingWindows( sal_False ),
-        bHidden( sal_False )
+        bInCloseEvent( sal_False )
         , nStyleFilter( 0 )
         , nMacroMode( -1 )
         , bDisposing( sal_False )
@@ -201,3 +200,4 @@ struct SfxObjectShell_Impl
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

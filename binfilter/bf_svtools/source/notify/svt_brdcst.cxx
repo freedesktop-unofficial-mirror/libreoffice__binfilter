@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,8 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-#ifndef GCC
-#endif
-
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include <bf_svtools/hint.hxx>
 #include <bf_svtools/smplhint.hxx>
@@ -62,22 +58,12 @@ void SfxBroadcaster::Broadcast( const SfxHint &rHint )
     // is anybody to notify?
     if ( aListeners.Count() /*! || aGlobListeners.Count() */ )
     {
-        #if 0
-        // determine the type only once, because of its expensiveness
-        const TypeId& rBCType = Type();
-        const TypeId& rHintType = rHint.Type();
-        #endif
-
         // notify all registered listeners exactly once
         for ( USHORT n = 0; n < aListeners.Count(); ++n )
         {
             SfxListener* pListener = aListeners[n];
             if ( pListener )
-                #if 0
-                pListener->SFX_NOTIFY( *this, rBCType, rHint, rHintType );
-                #else
                 pListener->Notify( *this, rHint );
-                #endif
         }
     }
 }
@@ -143,7 +129,7 @@ BOOL SfxBroadcaster::AddListener( SfxListener& rListener )
         aListeners.Insert( pListener, aListeners.Count() );
     else
     {
-        DBG_ERROR( "array overflow" );
+        OSL_FAIL( "array overflow" );
         return FALSE;
     }
 
@@ -204,3 +190,5 @@ BOOL SfxBroadcaster::HasListeners() const
 
 //--------------------------------------------------------------------
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,19 +33,11 @@
 
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _HORIORNT_HXX
+#include <osl/diagnose.h>
 #include <horiornt.hxx>
-#endif
 
-#ifndef _EXTINPUT_HXX
 #include <extinput.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 namespace binfilter {
 
 
@@ -93,3 +86,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

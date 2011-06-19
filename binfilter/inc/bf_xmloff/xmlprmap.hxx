@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,37 +29,23 @@
 #ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #define _XMLOFF_PROPERTYSETMAPPER_HXX
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include <bf_xmloff/xmltypes.hxx>
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLUnitConverter;
@@ -184,3 +171,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _XMLOFF_PROPERTYSETMAPPER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

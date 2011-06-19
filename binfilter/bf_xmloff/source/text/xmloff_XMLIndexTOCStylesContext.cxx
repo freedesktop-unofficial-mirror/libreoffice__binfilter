@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,33 +28,21 @@
 
 
 
-#ifndef _XMLOFF_XMLINDEXTOCSTYLESCONTEXT_HXX_
 #include "XMLIndexTOCStylesContext.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
@@ -77,16 +66,16 @@ TYPEINIT1( XMLIndexTOCStylesContext, SvXMLImportContext );
 
 
 XMLIndexTOCStylesContext::XMLIndexTOCStylesContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     Reference<XPropertySet> & rPropSet,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
+        sLevelParagraphStyles(RTL_CONSTASCII_USTRINGPARAM(
+            sAPI_LevelParagraphStyles)),
         rTOCPropertySet(rPropSet),
         aStyleNames(),
-        nOutlineLevel(-1),
-        sLevelParagraphStyles(RTL_CONSTASCII_USTRINGPARAM(
-            sAPI_LevelParagraphStyles))
+        nOutlineLevel(-1)
 {
 }
 
@@ -102,10 +91,10 @@ void XMLIndexTOCStylesContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              (IsXMLToken(sLocalName, XML_OUTLINE_LEVEL)) )
         {
             sal_Int32 nTmp;
@@ -146,12 +135,12 @@ void XMLIndexTOCStylesContext::EndElement()
 }
 
 SvXMLImportContext *XMLIndexTOCStylesContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     // check for index-source-style
-    if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+    if ( (XML_NAMESPACE_TEXT == nInPrefix) &&
          IsXMLToken( rLocalName, XML_INDEX_SOURCE_STYLE ) )
     {
         // find text:style-name attribute and record in aStyleNames
@@ -159,10 +148,10 @@ SvXMLImportContext *XMLIndexTOCStylesContext::CreateChildContext(
         for(sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
         {
             OUString sLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
                 GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                                   &sLocalName );
-            if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+            if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
                  IsXMLToken( sLocalName, XML_STYLE_NAME ) )
             {
                 aStyleNames.push_back(xAttrList->getValueByIndex(nAttr));
@@ -171,7 +160,9 @@ SvXMLImportContext *XMLIndexTOCStylesContext::CreateChildContext(
     }
 
     // always return default context; we already got the interesting info
-    return SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+    return SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                   xAttrList);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

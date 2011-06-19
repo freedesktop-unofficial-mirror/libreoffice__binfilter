@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _B3D_B3DENTITY_HXX
 #include "b3dentty.hxx"
-#endif
 
 namespace binfilter {
 
@@ -326,3 +325,5 @@ protected:
 }//end of namespace binfilter
 
 #endif          // _B3D_B3DCOMPO_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

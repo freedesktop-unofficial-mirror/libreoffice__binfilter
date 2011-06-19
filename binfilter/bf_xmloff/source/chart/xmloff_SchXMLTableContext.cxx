@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,29 +29,15 @@
 #include "SchXMLTableContext.hxx"
 #include "SchXMLParagraphContext.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -61,10 +48,10 @@ using namespace ::binfilter::xmloff::token;
 // ----------------------------------------
 
 SchXMLTableContext::SchXMLTableContext( SchXMLImportHelper& rImpHelper,
-                                        SvXMLImport& rImport,
+                                        SvXMLImport& rInImport,
                                         const ::rtl::OUString& rLName,
                                         SchXMLTable& aTable ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TABLE, rLName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_TABLE, rLName ),
         mrImportHelper( rImpHelper ),
         mrTable( aTable )
 {
@@ -79,14 +66,14 @@ SchXMLTableContext::~SchXMLTableContext()
 }
 
 SvXMLImportContext *SchXMLTableContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
     const SvXMLTokenMap& rTokenMap = mrImportHelper.GetTableElemTokenMap();
 
-    switch( rTokenMap.Get( nPrefix, rLocalName ))
+    switch( rTokenMap.Get( nInPrefix, rLocalName ))
     {
         case XML_TOK_TABLE_HEADER_COLS:
         case XML_TOK_TABLE_COLUMNS:
@@ -107,7 +94,7 @@ SvXMLImportContext *SchXMLTableContext::CreateChildContext(
             break;
 
         default:
-            pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+            pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -123,10 +110,10 @@ SvXMLImportContext *SchXMLTableContext::CreateChildContext(
 
 SchXMLTableColumnsContext::SchXMLTableColumnsContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
+    SvXMLImport& rLclImport,
     const ::rtl::OUString& rLocalName,
     SchXMLTable& aTable ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TABLE, rLocalName ),
+        SvXMLImportContext( rLclImport, XML_NAMESPACE_TABLE, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrTable( aTable )
 {
@@ -137,19 +124,19 @@ SchXMLTableColumnsContext::~SchXMLTableColumnsContext()
 }
 
 SvXMLImportContext* SchXMLTableColumnsContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
-    if( nPrefix == XML_NAMESPACE_TABLE &&
+    if( nInPrefix == XML_NAMESPACE_TABLE &&
         IsXMLToken( rLocalName, XML_TABLE_COLUMN ) )
     {
         pContext = new SchXMLTableColumnContext( mrImportHelper, GetImport(), rLocalName, mrTable );
     }
     else
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -160,10 +147,10 @@ SvXMLImportContext* SchXMLTableColumnsContext::CreateChildContext(
 
 SchXMLTableColumnContext::SchXMLTableColumnContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const ::rtl::OUString& rLocalName,
     SchXMLTable& aTable ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TABLE, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_TABLE, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrTable( aTable )
 {
@@ -178,11 +165,11 @@ void SchXMLTableColumnContext::StartElement( const uno::Reference< xml::sax::XAt
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        if( nPrefix == XML_NAMESPACE_TABLE &&
-            IsXMLToken( aLocalName, XML_NUMBER_COLUMNS_REPEATED ) )
+        if( nLclPrefix == XML_NAMESPACE_TABLE &&
+            IsXMLToken( aLclLocalName, XML_NUMBER_COLUMNS_REPEATED ) )
         {
             aValue = xAttrList->getValueByIndex( i );
             break;   // we only need this attribute
@@ -214,10 +201,10 @@ SchXMLTableColumnContext::~SchXMLTableColumnContext()
 
 SchXMLTableRowsContext::SchXMLTableRowsContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const ::rtl::OUString& rLocalName,
     SchXMLTable& aTable ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TABLE, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_TABLE, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrTable( aTable )
 {
@@ -228,20 +215,20 @@ SchXMLTableRowsContext::~SchXMLTableRowsContext()
 }
 
 SvXMLImportContext* SchXMLTableRowsContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
-    if( nPrefix == XML_NAMESPACE_TABLE &&
+    if( nInPrefix == XML_NAMESPACE_TABLE &&
         IsXMLToken( rLocalName, XML_TABLE_ROW ) )
     {
         pContext = new SchXMLTableRowContext( mrImportHelper, GetImport(), rLocalName, mrTable );
     }
     else
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -253,10 +240,10 @@ SvXMLImportContext* SchXMLTableRowsContext::CreateChildContext(
 
 SchXMLTableRowContext::SchXMLTableRowContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const ::rtl::OUString& rLocalName,
     SchXMLTable& aTable ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TABLE, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_TABLE, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrTable( aTable )
 {
@@ -274,21 +261,21 @@ SchXMLTableRowContext::~SchXMLTableRowContext()
 }
 
 SvXMLImportContext* SchXMLTableRowContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
     // <table:table-cell> element
-    if( nPrefix == XML_NAMESPACE_TABLE &&
+    if( nInPrefix == XML_NAMESPACE_TABLE &&
         IsXMLToken(rLocalName, XML_TABLE_CELL ) )
     {
         pContext = new SchXMLTableCellContext( mrImportHelper, GetImport(), rLocalName, mrTable );
     }
     else
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -305,10 +292,10 @@ SvXMLImportContext* SchXMLTableRowContext::CreateChildContext(
 
 SchXMLTableCellContext::SchXMLTableCellContext(
     SchXMLImportHelper& rImpHelper,
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const ::rtl::OUString& rLocalName,
     SchXMLTable& aTable ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TABLE, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_TABLE, rLocalName ),
         mrImportHelper( rImpHelper ),
         mrTable( aTable )
 {
@@ -322,7 +309,7 @@ void SchXMLTableCellContext::StartElement( const uno::Reference< xml::sax::XAttr
 {
     sal_Int16 nAttrCount = xAttrList.is()? xAttrList->getLength(): 0;
     ::rtl::OUString aValue;
-    ::rtl::OUString aLocalName;
+    ::rtl::OUString aLclLocalName;
     ::rtl::OUString aCellContent;
     SchXMLCellType eValueType  = SCH_CELL_TYPE_UNKNOWN;
     const SvXMLTokenMap& rAttrTokenMap = mrImportHelper.GetCellAttrTokenMap();
@@ -330,9 +317,9 @@ void SchXMLTableCellContext::StartElement( const uno::Reference< xml::sax::XAttr
     for( sal_Int16 i = 0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        USHORT nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        USHORT nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ))
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ))
         {
             case XML_TOK_CELL_VAL_TYPE:
                 aValue = xAttrList->getValueByIndex( i );
@@ -370,15 +357,15 @@ void SchXMLTableCellContext::StartElement( const uno::Reference< xml::sax::XAttr
 }
 
 SvXMLImportContext* SchXMLTableCellContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const ::rtl::OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
     // <text:p> element
     if( mbReadPara &&
-        nPrefix == XML_NAMESPACE_TEXT &&
+        nInPrefix == XML_NAMESPACE_TEXT &&
         IsXMLToken( rLocalName, XML_P ) )
     {
         // we have to read a string here (not a float)
@@ -386,7 +373,7 @@ SvXMLImportContext* SchXMLTableCellContext::CreateChildContext(
     }
     else
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -408,7 +395,7 @@ void SchXMLTableHelper::applyTableSimple(
 {
     // interpret table like this:
     //
-    //  series ----+---\
+    //  series ----+---+
     //             |   |
     //  categories |   |
     //        |    |   |
@@ -478,3 +465,5 @@ void SchXMLTableHelper::applyTableSimple(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

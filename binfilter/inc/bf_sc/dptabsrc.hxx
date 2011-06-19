@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,56 +33,24 @@
 
 
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // enum ScSubTotalFunc
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XDIMENSIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XHIERARCHIESSUPPLIER_HPP_
 #include <com/sun/star/sheet/XHierarchiesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XLEVELSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XLevelsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XMEMBERSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XMembersSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATAPILOTRESULTS_HPP_
 #include <com/sun/star/sheet/XDataPilotResults.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATAPILOTMEMBERRESULTS_HPP_
 #include <com/sun/star/sheet/XDataPilotMemberResults.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_GENERALFUNCTION_HPP_
 #include <com/sun/star/sheet/GeneralFunction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
 namespace binfilter {
 
 
@@ -605,3 +574,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

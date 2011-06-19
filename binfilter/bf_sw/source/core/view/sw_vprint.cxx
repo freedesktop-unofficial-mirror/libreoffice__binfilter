@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,26 +27,14 @@
  ************************************************************************/
 
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>      // Imp->SetFirstVisPageInvalid()
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>      //      -- " --
-#endif
-#ifndef _PTQUEUE_HXX
 #include <ptqueue.hxx>
-#endif
 
 #include <bf_sfx2/printer.hxx>
 
@@ -121,3 +110,5 @@ SwQueuedPaint *SwPaintQueue::pQueue = 0;
 /*M*/         pOut = pTmpDev;    //Oder was sonst?
 /*M*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include "shellid.hxx"
 namespace binfilter {
 
@@ -66,26 +65,28 @@ public:
 
                  SwDrawTextShell(SwView &rView);
 
-    void        StateDisableItems(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        StateDisableItems(SfxItemSet &);
+    void        StateDisableItems(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");};
 
-    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        Execute(SfxRequest &);
-    void        ExecDraw(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecDraw(SfxRequest &);
-    void        GetState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        GetState(SfxItemSet &);
-    void        GetDrawTxtCtrlState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void        GetDrawTxtCtrlState(SfxItemSet&);
+    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        ExecDraw(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");};
+    void        GetState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        GetDrawTxtCtrlState(SfxItemSet&){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    void        ExecFontWork(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        ExecFontWork(SfxRequest& rReq);
-    void        StateFontWork(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void        StateFontWork(SfxItemSet& rSet);
-    void        ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        ExecFormText(SfxRequest& rReq);
-    void        GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void        GetFormTextState(SfxItemSet& rSet);
-    void        ExecDrawLingu(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void        ExecDrawLingu(SfxRequest &rReq);
-    void        ExecUndo(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecUndo(SfxRequest &rReq);
-    void        StateUndo(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void        StateUndo(SfxItemSet &rSet);
-    void        ExecClpbrd(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void       ExecClpbrd(SfxRequest &rReq);
-    void        StateClpbrd(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      StateClpbrd(SfxItemSet &rSet);
-    void        StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        StateInsert(SfxItemSet &rSet);
-    void        ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void        ExecTransliteration(SfxRequest &);
+    void        ExecFontWork(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        StateFontWork(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        ExecDrawLingu(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        ExecUndo(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");};
+    void        StateUndo(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");};
+    void        ExecClpbrd(SfxRequest &rReq){DBG_BF_ASSERT(0, "STRIP");};
+    void        StateClpbrd(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");};
+    void        StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;
+    void        ExecTransliteration(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
 
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

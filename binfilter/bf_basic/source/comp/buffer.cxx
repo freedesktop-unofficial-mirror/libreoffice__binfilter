@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,7 +26,6 @@
  *
  ************************************************************************/
 
-/*?*/ // #include "sbcomp.hxx"
 #include "buffer.hxx"
 #include <string.h>
 
@@ -82,7 +82,6 @@ BOOL SbiBuffer::Check( USHORT n )
         else p = new char [nSize + nn];
         if( !p )
         {
-/*?*/ //            pParser->Error( SbERR_PROG_TOO_LARGE );
             nInc = 0;
             delete[] pBuf; pBuf = NULL;
             return FALSE;
@@ -169,3 +168,5 @@ BOOL SbiBuffer::operator +=( const String& n )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
 namespace binfilter {
 
@@ -84,7 +79,7 @@ class TimeStamp
         BOOL                IsValid (                           ) const ;
         void                SetInvalid();
         BOOL                Load    ( SvStream& rStream         )       ;
-        BOOL                Save    ( SvStream& rStream         ) const ;
+        BOOL                Save    ( SvStream& ) const {return false;}
         void                SetName ( const String& rName       )       ;
         void                SetTime ( const DateTime& rDateTime )       ;
         const String&       GetName (                           ) const ;
@@ -127,3 +122,5 @@ class TimeStamp
 
 }
 #endif // _TIMESTAMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

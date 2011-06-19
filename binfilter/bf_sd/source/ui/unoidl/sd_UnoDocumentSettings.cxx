@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -51,9 +52,7 @@ namespace binfilter {
 
 using namespace ::comphelper;
 using namespace ::osl;
-using namespace ::rtl;
 using namespace ::cppu;
-using namespace ::vos;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
@@ -64,6 +63,8 @@ using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::i18n;
+
+using rtl::OUString;
 
 namespace sd
 {
@@ -206,14 +207,14 @@ DocumentSettings::~DocumentSettings() throw()
 
 void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, const Any* pValues ) throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     SdDrawDocShell* pDocSh = mpModel->GetDocShell();
     if( NULL == pDoc || NULL == pDocSh )
         throw UnknownPropertyException();
 
-    sal_Bool bOk, bChanged = sal_False, bValue;
+    sal_Bool bOk, bChanged = sal_False, bValue = sal_False;
 
     SfxPrinter* pPrinter = NULL;
     SdOptionsPrintItem* pPrinterOptions = NULL;
@@ -226,7 +227,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
             pPrinter = pDocSh->GetPrinter( sal_True );
             if(pPrinter->GetOptions().GetItemState( ATTR_OPTIONS_PRINT, FALSE, (const SfxPoolItem**) &pPrinterOptions) != SFX_ITEM_SET)
             {
-                DBG_ERROR( "could not get printer options!" );
+                OSL_FAIL( "could not get printer options!" );
                 pPrinter = NULL;
                 pPrinterOptions = NULL;
                 continue;
@@ -374,7 +375,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 break;
             case HANDLE_APPLYUSERDATA:
                 {
-                    sal_Bool bApplyUserData;
+                    sal_Bool bApplyUserData(sal_False);
                     if( *pValues >>= bApplyUserData )
                     {
                         SfxDocumentInfo& rInfo = pDocSh->GetDocInfo();
@@ -480,7 +481,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 break;
             case HANDLE_PRINTQUALITY:
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     if( *pValues >>= nValue )
                     {
                         pPrinterOptions->SetOutputQuality( (sal_uInt16)nValue );
@@ -490,7 +491,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 break;
             case HANDLE_MEASUREUNIT:
                 {
-                    sal_Int16 nValue;
+                    sal_Int16 nValue(0);
                     if( *pValues >>= nValue )
                     {
                         short nFieldUnit;
@@ -504,7 +505,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 break;
             case HANDLE_SCALE_NUM:
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     if( *pValues >>= nValue )
                     {
                         Fraction aFract( nValue, pDoc->GetUIScale().GetDenominator() );
@@ -516,7 +517,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 break;
             case HANDLE_SCALE_DOM:
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     if( *pValues >>= nValue )
                     {
                         Fraction aFract( pDoc->GetUIScale().GetNumerator(), nValue );
@@ -529,7 +530,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
 
             case HANDLE_TABSTOP:
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     if( (*pValues >>= nValue) && (nValue >= 0) )
                     {
                         pDoc->SetDefaultTabulator((sal_uInt16)nValue);
@@ -540,7 +541,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 break;
             case HANDLE_PAGENUMFMT:
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     if( (*pValues >>= nValue ) && (nValue >= SVX_CHARS_UPPER_LETTER ) && (nValue <= SVX_PAGEDESC) )
                     {
                         pDoc->SetPageNumType((SvxNumType)nValue);
@@ -555,10 +556,10 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                     if( *pValues >>= aPrinterName )
                     {
                         bOk = sal_True;
-                        SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_True );
-                        if (pPrinter)
+                        SfxPrinter *pLclPrinter = pDocSh->GetPrinter( sal_True );
+                        if (pLclPrinter)
                         {
-                            SfxPrinter *pNewPrinter = new SfxPrinter ( pPrinter->GetOptions().Clone(), aPrinterName );
+                            SfxPrinter *pNewPrinter = new SfxPrinter ( pLclPrinter->GetOptions().Clone(), aPrinterName );
                             pDocSh->SetPrinter( pNewPrinter );
                         }
                     }
@@ -603,7 +604,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
 
             case HANDLE_PARAGRAPHSUMMATION :
             {
-                sal_Bool bIsSummationOfParagraphs;
+                sal_Bool bIsSummationOfParagraphs(sal_False);
                 if ( *pValues >>= bIsSummationOfParagraphs )
                 {
                     bOk = sal_True;
@@ -637,7 +638,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
 
             case HANDLE_CHARCOMPRESS:
             {
-                sal_Int16 nCharCompressType;
+                sal_Int16 nCharCompressType(0);
                 if( *pValues >>= nCharCompressType )
                 {
                     bOk = sal_True;
@@ -662,7 +663,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
             }
             case HANDLE_ASIANPUNCT:
             {
-                sal_Bool bAsianPunct;
+                sal_Bool bAsianPunct(sal_False);
                 if( *pValues >>= bAsianPunct )
                 {
                     bOk = sal_True;
@@ -687,11 +688,11 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
             }
             case HANDLE_UPDATEFROMTEMPLATE:
             {
-                sal_Bool bValue;
-                if( *pValues >>= bValue )
+                sal_Bool bLclValue(sal_False);
+                if( *pValues >>= bLclValue )
                 {
                     SfxDocumentInfo& rInfo = pDocSh->GetDocInfo();
-                    rInfo.SetQueryLoadTemplate( bValue );
+                    rInfo.SetQueryLoadTemplate( bLclValue );
                     bOk = sal_True;
                 }
             }
@@ -703,7 +704,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
                 // the document and determine it really differs from the old
                 // one.
                 sal_Int16 nOldValue = pDoc->GetPrinterIndependentLayout ();
-                sal_Int16 nValue;
+                sal_Int16 nValue(0);
                 if (*pValues >>= nValue)
                 {
                     pDoc->SetPrinterIndependentLayout (nValue);
@@ -739,7 +740,7 @@ void DocumentSettings::_setPropertyValues( const PropertyMapEntry** ppEntries, c
 
 void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, Any* pValue ) throw(UnknownPropertyException, WrappedTargetException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     SdDrawDocument* pDoc = mpModel->GetDoc();
     SdDrawDocShell* pDocSh = mpModel->GetDocShell();
@@ -756,7 +757,7 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
             pPrinter = pDocSh->GetPrinter( sal_True );
             if(pPrinter->GetOptions().GetItemState( ATTR_OPTIONS_PRINT, FALSE, (const SfxPoolItem**) &pPrinterOptions) != SFX_ITEM_SET)
             {
-                DBG_ERROR( "could not get printer options!" );
+                OSL_FAIL( "could not get printer options!" );
                 pPrinter = NULL;
                 pPrinterOptions = NULL;
                 continue;
@@ -896,17 +897,17 @@ void DocumentSettings::_getPropertyValues( const PropertyMapEntry** ppEntries, A
                 break;
             case HANDLE_PRINTERNAME:
                 {
-                    SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_False );
-                    *pValue <<= pPrinter ? OUString ( pPrinter->GetName()) : OUString();
+                    SfxPrinter *pLclPrinter = pDocSh->GetPrinter( sal_False );
+                    *pValue <<= pLclPrinter ? OUString ( pLclPrinter->GetName()) : OUString();
                 }
                 break;
             case HANDLE_PRINTERJOB:
                 {
-                    SfxPrinter *pPrinter = pDocSh->GetPrinter( sal_False );
-                    if (pPrinter)
+                    SfxPrinter *pLclPrinter = pDocSh->GetPrinter( sal_False );
+                    if (pLclPrinter)
                     {
                         SvMemoryStream aStream;
-                        pPrinter->Store( aStream );
+                        pLclPrinter->Store( aStream );
                         aStream.Seek ( STREAM_SEEK_TO_END );
                         sal_uInt32 nSize = aStream.Tell();
                         aStream.Seek ( STREAM_SEEK_TO_BEGIN );
@@ -1075,3 +1076,5 @@ Sequence< OUString > SAL_CALL DocumentSettings::getSupportedServiceNames(  )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

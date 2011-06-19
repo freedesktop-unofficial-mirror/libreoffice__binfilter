@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -45,16 +46,10 @@
 #include "svdstr.hrc"    // Objektname
 
 
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -82,7 +77,7 @@ namespace binfilter {
 
 
 
-// Closed() wird gerufen, wenn die Verknüpfung geloesst wird.
+// Closed() wird gerufen, wenn die Verkn?fung geloesst wird.
 
 
 
@@ -122,7 +117,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjGroupLinkUserData::~ImpSdrObjGroupLinkUserData()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pLink;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ }
 
@@ -146,46 +141,6 @@ namespace binfilter {
 /*N*/   pData->pLink=NULL;
 /*N*/   //pObj1->ImpLinkAnmeldung();
 /*N*/   return pData;
-/*N*/ }
-
-
-/*N*/ void ImpSdrObjGroupLinkUserData::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("ImpSdrObjGroupLinkUserData");
-/*N*/ #endif
-/*N*/
-/*N*/   String aRelFileName;
-/*N*/
-/*N*/   if( aFileName.Len() )
-/*N*/   {
-/*N*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
-/*N*/                                               INetURLObject::WAS_ENCODED,
-/*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/   }
-/*N*/
-/*N*/   rOut.WriteByteString( aRelFileName );
-/*N*/
-/*N*/   // UNICODE: rOut << aObjName;
-/*N*/   rOut.WriteByteString(aObjName);
-/*N*/
-/*N*/   rOut << UINT32(aFileDate0.GetDate());
-/*N*/   rOut << UINT32(aFileDate0.GetTime());
-/*N*/   rOut << aSnapRect0;
-/*N*/   rOut << nDrehWink0;
-/*N*/   rOut << nShearWink0;
-/*N*/   rOut << BOOL(bMasterPage);
-/*N*/   rOut << nPageNum;
-/*N*/   rOut << nObjNum;
-/*N*/   rOut << BOOL(bOrigPos);
-/*N*/   rOut << BOOL(bOrigSize);
-/*N*/   rOut << BOOL(bOrigRotate);
-/*N*/   rOut << BOOL(bOrigShear);
 /*N*/ }
 
 /*N*/ void ImpSdrObjGroupLinkUserData::ReadData(SvStream& rIn)
@@ -284,7 +239,7 @@ namespace binfilter {
 /*N*/   for (USHORT nNum=nAnz; nNum>0;) {
 /*N*/       nNum--;
 /*N*/       SdrObjUserData* pData=GetUserData(nNum);
-/*N*/       if (pData->GetInventor()==SdrInventor && pData->GetId()==SDRUSERDATA_OBJGROUPLINK) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (pData->GetInventor()==SdrInventor && pData->GetId()==SDRUSERDATA_OBJGROUPLINK) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -310,7 +265,7 @@ namespace binfilter {
 
 
 /*N*/ void SdrObjGroup::ImpLinkAnmeldung()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -321,7 +276,7 @@ namespace binfilter {
 /*N*/   SvxLinkManager* pLinkManager=pModel!=NULL ? pModel->GetLinkManager() : NULL;
 /*N*/   if (pLinkManager!=NULL && pData!=NULL && pData->pLink!=NULL) { // Nicht 2x Abmelden
 /*N*/       // Bei Remove wird *pLink implizit deleted
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLinkManager->Remove( pData->pLink );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif // SVX_LIGHT
 /*N*/ }
@@ -337,7 +292,7 @@ namespace binfilter {
 
 /*N*/ SdrLayerID SdrObjGroup::GetLayer() const
 /*N*/ {
-/*N*/   FASTBOOL b1st=TRUE;
+/*N*/   bool b1st=TRUE;
 /*N*/   SdrLayerID nLay=SdrLayerID(nLayerId);
 /*N*/   SdrObjList* pOL=pSub;
 /*N*/   ULONG nObjAnz=pOL->GetObjCount();
@@ -370,9 +325,9 @@ namespace binfilter {
 
 /*N*/ void SdrObjGroup::SetPage(SdrPage* pNewPage)
 /*N*/ {
-/*N*/   FASTBOOL bLinked=IsLinkedGroup();
-/*N*/   FASTBOOL bRemove=pNewPage==NULL && pPage!=NULL;
-/*N*/   FASTBOOL bInsert=pNewPage!=NULL && pPage==NULL;
+/*N*/   bool bLinked=IsLinkedGroup();
+/*N*/   bool bRemove=pNewPage==NULL && pPage!=NULL;
+/*N*/   bool bInsert=pNewPage!=NULL && pPage==NULL;
 /*N*/
 /*N*/   if (bLinked && bRemove) {
 /*?*/       ImpLinkAbmeldung();
@@ -389,8 +344,8 @@ namespace binfilter {
 
 /*N*/ void SdrObjGroup::SetModel(SdrModel* pNewModel)
 /*N*/ {
-/*N*/   FASTBOOL bLinked=IsLinkedGroup();
-/*N*/   FASTBOOL bChg=pNewModel!=pModel;
+/*N*/   bool bLinked=IsLinkedGroup();
+/*N*/   bool bChg=pNewModel!=pModel;
 /*N*/   if (bLinked && bChg) {
 /*N*/       ImpLinkAbmeldung();
 /*N*/   }
@@ -450,9 +405,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ FASTBOOL SdrObjGroup::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
+/*N*/ bool SdrObjGroup::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
 /*N*/ {
-/*N*/   FASTBOOL bOk=TRUE;
+/*N*/   bool bOk=TRUE;
 /*N*/   if (pSub->GetObjCount()!=0) {
 /*N*/       bOk=pSub->Paint(rXOut,rInfoRec);
 /*N*/   } else { // ansonsten ist es eine leere Gruppe
@@ -463,7 +418,7 @@ namespace binfilter {
 /*?*/           pOutDev->DrawRect(aOutRect);
 /*N*/       }
 /*N*/   }
-/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return bOk;
 /*N*/ }
@@ -514,7 +469,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrObjGroup::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
+/*N*/ void SdrObjGroup::TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const
 /*N*/ {
 /*N*/   rPoly.Clear();
 /*N*/   ULONG nAnz=pSub->GetObjCount();
@@ -531,23 +486,15 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
 /*N*/ long SdrObjGroup::GetRotateAngle() const
 /*N*/ {
 /*N*/   return nDrehWink;
 /*N*/ }
 
-
-/*N*/ long SdrObjGroup::GetShearAngle(FASTBOOL bVertical) const
+/*N*/ long SdrObjGroup::GetShearAngle(bool /*bVertical*/) const
 /*N*/ {
 /*N*/   return nShearWink;
 /*N*/ }
-
 
 /*N*/ void SdrObjGroup::NbcSetSnapRect(const Rectangle& rRect)
 /*N*/ {
@@ -558,7 +505,7 @@ namespace binfilter {
 /*N*/   long nDivY=aOld.Bottom()-aOld.Top();
 /*N*/   if (nDivX==0) { nMulX=1; nDivX=1; }
 /*N*/   if (nDivY==0) { nMulY=1; nDivY=1; }
-/*N*/   if (nMulX!=nDivX || nMulY!=nDivY) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (nMulX!=nDivX || nMulY!=nDivY) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if (rRect.Left()!=aOld.Left() || rRect.Top()!=aOld.Top()) {
 /*N*/       NbcMove(Size(rRect.Left()-aOld.Left(),rRect.Top()-aOld.Top()));
@@ -591,8 +538,8 @@ namespace binfilter {
 
 /*N*/ void SdrObjGroup::NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
-/*N*/   FASTBOOL bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/   FASTBOOL bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
+/*N*/   bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
+/*N*/   bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
 /*N*/   if (bXMirr || bYMirr) {
 /*N*/       Point aRef1(GetSnapRect().Center());
 /*N*/       if (bXMirr) {
@@ -701,8 +648,8 @@ namespace binfilter {
 /*N*/ void SdrObjGroup::Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
 /*N*/   if (xFact.GetNumerator()!=xFact.GetDenominator() || yFact.GetNumerator()!=yFact.GetDenominator()) {
-/*N*/       FASTBOOL bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/       FASTBOOL bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
+/*N*/       bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
+/*N*/       bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
 /*N*/       if (bXMirr || bYMirr) {
 /*N*/           Point aRef1(GetSnapRect().Center());
 /*N*/           if (bXMirr) {
@@ -753,7 +700,7 @@ namespace binfilter {
 /*N*/ void SdrObjGroup::SetAnchorPos(const Point& rPnt)
 /*N*/ {
 /*N*/   Rectangle aBoundRect0; if (pUserCall!=NULL) aBoundRect0=GetBoundRect();
-/*N*/   FASTBOOL bChg=aAnchor!=rPnt;
+/*N*/   bool bChg=aAnchor!=rPnt;
 /*N*/   aAnchor=rPnt;
 /*N*/   Size aSiz(rPnt.X()-aAnchor.X(),rPnt.Y()-aAnchor.Y());
 /*N*/   MovePoint(aRefPoint,aSiz);
@@ -873,44 +820,13 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrObjGroup::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PreSave();
-/*N*/
-/*N*/   if(!IsLinkedGroup())
-/*N*/   {
-/*N*/       sal_uInt32 nCount(pSub->GetObjCount());
-/*N*/       for(sal_uInt32 a(0); a < nCount; a++)
-/*N*/           pSub->GetObj(a)->PreSave();
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrObjGroup::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PostSave();
-/*N*/
-/*N*/   if(!IsLinkedGroup())
-/*N*/   {
-/*N*/       sal_uInt32 nCount(pSub->GetObjCount());
-/*N*/       for(sal_uInt32 a(0); a < nCount; a++)
-/*N*/           pSub->GetObj(a)->PostSave();
-/*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ SfxStyleSheet* SdrObjGroup::GetStyleSheet() const
 /*N*/ {
 /*N*/   // Hier mit 'nem Iterator. Es koennte sonst passieren dass ein
 /*N*/   // verschachteltes Gruppenobjekt wegen DontCare NULL liefert.
 /*N*/   // Das koennte ich dann nicht unterscheiden von NotSet.
 /*N*/   SfxStyleSheet* pRet=NULL;
-/*N*/   FASTBOOL b1st=TRUE;
+/*N*/   bool b1st=TRUE;
 /*N*/   SdrObjListIter aIter(*this,IM_DEEPNOGROUPS);
 /*N*/   while (aIter.IsMore()) {
 /*N*/       SdrObject* pObj=aIter.Next();
@@ -926,7 +842,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrObjGroup::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrObjGroup::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   if (!IsLinkedGroup()) {
 /*N*/       SdrObjList* pOL=pSub;
@@ -938,12 +854,12 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrObjGroup::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrObjGroup::SetStyleSheet(SfxStyleSheet* /*pNewStyleSheet*/, bool /*bDontRemoveHardAttr*/)
 /*N*/ {
 /*N*/   if (!IsLinkedGroup()) {
 /*N*/       SdrObjList* pOL=pSub;
 /*N*/       ULONG nObjAnz=pOL->GetObjCount();
-/*N*/       for (ULONG i=0; i<nObjAnz; i++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       for (ULONG i=0; i<nObjAnz; i++) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -963,30 +879,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   pSub->RestartAllAnimations(pPageView);
 /*N*/ }
-
-
-
-
-/*N*/ void SdrObjGroup::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrObject::WriteData(rOut);
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrObjGroup");
-/*N*/ #endif
-/*N*/
-/*N*/   // UNICODE: rOut << aName;
-/*N*/   rOut.WriteByteString(aName);
-/*N*/
-/*N*/   UINT8 nTemp = bRefPoint; rOut << nTemp;
-/*N*/   rOut << aRefPoint;
-/*N*/   pSub->Save(rOut);
-/*N*/   rOut << INT32(nDrehWink);
-/*N*/   rOut << INT32(nShearWink);
-/*N*/ }
-
 
 /*N*/ void SdrObjGroup::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
@@ -1031,3 +923,5 @@ namespace binfilter {
 // ItemPool fuer dieses Objekt wechseln
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

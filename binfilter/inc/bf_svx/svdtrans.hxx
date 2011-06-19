@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -66,7 +67,7 @@ inline void MovePoly(PolyPolygon& rPoly, const Size& S)  { rPoly.Move(S.Width(),
 void MoveXPoly(XPolygon& rPoly, const Size& S);
 void MoveXPoly(XPolyPolygon& rPoly, const Size& S);
 
-void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& xFact, const Fraction& yFact, FASTBOOL bNoJustify=FALSE);
+void ResizeRect(Rectangle& rRect, const Point& rRef, const Fraction& xFact, const Fraction& yFact, bool bNoJustify=FALSE);
 inline void ResizePoint(Point& rPnt, const Point& rRef, Fraction xFact, Fraction yFact);
 void ResizePoly(Polygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 void ResizeXPoly(XPolygon& rPoly, const Point& rRef, const Fraction& xFact, const Fraction& yFact);
@@ -80,15 +81,15 @@ void RotateXPoly(XPolyPolygon& rPoly, const Point& rRef, double sn, double cs);
 // MirrorRect macht nur Sinn bei Spiegelachsen
 // mit einem durch 45 Degree teilbaren Winkel!
 
-inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
-void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
-void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
-void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, FASTBOOL bVShear=FALSE);
+inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, bool bVShear=FALSE);
+void ShearPoly(Polygon& rPoly, const Point& rRef, double tn, bool bVShear=FALSE);
+void ShearXPoly(XPolygon& rPoly, const Point& rRef, double tn, bool bVShear=FALSE);
+void ShearXPoly(XPolyPolygon& rPoly, const Point& rRef, double tn, bool bVShear=FALSE);
 
 // rPnt.X bzw rPnt.Y wird auf rCenter.X bzw. rCenter.Y gesetzt!
 // anschliessend muss rPnt nur noch um rCenter gedreht werden.
 // Der Rueckgabewinkel ist ausnahmsweise in Rad.
-inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad, FASTBOOL bVertical);
+inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad, bool bVertical);
 // Die folgenden Methoden behandeln einen Punkt eines XPolygons, wobei die
 // benachbarten Kontrollpunkte des eigentlichen Punktes ggf. in pC1/pC2
 // uebergeben werden. Ueber rSin/rCos wird gleichzeitig sin(nWink) und cos(nWink)
@@ -117,7 +118,7 @@ inline void RotatePoint(Point& rPnt, const Point& rRef, double sn, double cs)
     rPnt.Y()=Round(rRef.Y()+dy*cs-dx*sn);
 }
 
-inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, FASTBOOL bVShear)
+inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, bool bVShear)
 {
     if (!bVShear) { // Horizontal
         if (rPnt.Y()!=rRef.Y()) { // sonst nicht noetig
@@ -130,7 +131,7 @@ inline void ShearPoint(Point& rPnt, const Point& rRef, double tn, FASTBOOL bVShe
     }
 }
 
-inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad, FASTBOOL bVertical)
+inline double GetCrookAngle(Point& rPnt, const Point& rCenter, const Point& rRad, bool bVertical)
 {
     double nWink;
     if (bVertical) {
@@ -202,7 +203,7 @@ public:
     double   nTan;      // tan(nShearWink)
     double   nSin;      // sin(nDrehWink)
     double   nCos;      // cos(nDrehWink)
-    FASTBOOL bMirrored; // Horizontal gespiegelt? (ni)
+    bool bMirrored; // Horizontal gespiegelt? (ni)
 public:
     GeoStat(): nDrehWink(0),nShearWink(0),nTan(0.0),nSin(0.0),nCos(1.0),bMirrored(FALSE) {}
     void RecalcSinCos();
@@ -239,20 +240,20 @@ public:
 // Fuer die Umrechnung von Masseinheiten
 FrPair GetMapFactor(FieldUnit eS, FieldUnit eD);
 
-inline FASTBOOL IsMetric(MapUnit eU) {
+inline bool IsMetric(MapUnit eU) {
     return (eU==MAP_100TH_MM || eU==MAP_10TH_MM || eU==MAP_MM || eU==MAP_CM);
 }
 
-inline FASTBOOL IsInch(MapUnit eU) {
+inline bool IsInch(MapUnit eU) {
     return (eU==MAP_1000TH_INCH || eU==MAP_100TH_INCH || eU==MAP_10TH_INCH || eU==MAP_INCH ||
             eU==MAP_POINT       || eU==MAP_TWIP);
 }
 
-inline FASTBOOL IsMetric(FieldUnit eU) {
+inline bool IsMetric(FieldUnit eU) {
     return (eU==FUNIT_MM || eU==FUNIT_CM || eU==FUNIT_M || eU==FUNIT_KM || eU==FUNIT_100TH_MM);
 }
 
-inline FASTBOOL IsInch(FieldUnit eU) {
+inline bool IsInch(FieldUnit eU) {
     return (eU==FUNIT_TWIP || eU==FUNIT_POINT || eU==FUNIT_PICA ||
             eU==FUNIT_INCH || eU==FUNIT_FOOT || eU==FUNIT_MILE);
 }
@@ -262,9 +263,9 @@ class SdrFormatter {
     long      nMul_;
     long      nDiv_;
     short     nKomma_;
-    FASTBOOL  bSrcFU;
-    FASTBOOL  bDstFU;
-    FASTBOOL  bDirty;
+    bool  bSrcFU;
+    bool  bDstFU;
+    bool  bDirty;
     MapUnit   eSrcMU;
     MapUnit   eDstMU;
     FieldUnit eSrcFU;
@@ -286,3 +287,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDTRANS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

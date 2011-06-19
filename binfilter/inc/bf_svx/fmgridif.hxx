@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,86 +28,34 @@
 #ifndef _SVX_FMGRIDIF_HXX
 #define _SVX_FMGRIDIF_HXX
 
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HPP_
 #include <com/sun/star/view/XSelectionSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
 #include <com/sun/star/container/XContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSETLISTENER_HPP_
 #include <com/sun/star/sdbc/XRowSetListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XROWSETSUPPLIER_HPP_
 #include <com/sun/star/sdb/XRowSetSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XRESET_HPP_
 #include <com/sun/star/form/XReset.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XBOUNDCOMPONENT_HPP_
 #include <com/sun/star/form/XBoundComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
 #include <com/sun/star/form/XLoadListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XGRID_HPP_
 #include <com/sun/star/form/XGrid.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XGRIDPEER_HPP_
 #include <com/sun/star/form/XGridPeer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XGRIDFIELDDATASUPPLIER_HPP_
 #include <com/sun/star/form/XGridFieldDataSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDER_HPP_
 #include <com/sun/star/frame/XDispatchProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XSTATUSLISTENER_HPP_
 #include <com/sun/star/frame/XStatusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDERINTERCEPTION_HPP_
 #include <com/sun/star/frame/XDispatchProviderInterception.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODESELECTOR_HPP_
 #include <com/sun/star/util/XModeSelector.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYLISTENER_HPP_
 #include <com/sun/star/util/XModifyListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYBROADCASTER_HPP_
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
-#endif
 
-#ifndef _TOOLKIT_CONTROLS_UNOCONTROL_HXX_
 #include <toolkit/controls/unocontrol.hxx>
-#endif
-#ifndef _TOOLKIT_AWT_VCLXWINDOW_HXX_
 #include <toolkit/awt/vclxwindow.hxx>
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE11_HXX_
 #include <cppuhelper/implbase11.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE12_HXX_
 #include <cppuhelper/implbase12.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE8_HXX_
 #include <cppuhelper/implbase8.hxx>
-#endif
 namespace binfilter {
 
 class DbGridColumn;
@@ -565,3 +514,4 @@ protected:
 }//end of namespace binfilter
 #endif // _SVX_FMGRID_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

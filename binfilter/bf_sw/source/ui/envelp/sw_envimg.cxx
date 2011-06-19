@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _ENVIMG_HXX
 #include <envimg.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
 namespace binfilter {
 
 #ifdef WIN
@@ -49,8 +44,8 @@ namespace binfilter {
 #endif
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 
@@ -59,7 +54,7 @@ using namespace ::com::sun::star::uno;
 /*N*/ SwEnvItem::SwEnvItem() :
 /*N*/   SfxPoolItem(FN_ENVELOP)
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     aAddrText       = aEmptyStr;
+/*N*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 // --------------------------------------------------------------------------
 /*N*/ SwEnvItem::SwEnvItem(const SwEnvItem& rItem) :
@@ -67,23 +62,23 @@ using namespace ::com::sun::star::uno;
 /*N*/   aAddrText      (rItem.aAddrText),
 /*N*/   bSend          (rItem.bSend),
 /*N*/   aSendText      (rItem.aSendText),
-/*N*/   lSendFromLeft  (rItem.lSendFromLeft),
-/*N*/   lSendFromTop   (rItem.lSendFromTop),
 /*N*/   lAddrFromLeft  (rItem.lAddrFromLeft),
 /*N*/   lAddrFromTop   (rItem.lAddrFromTop),
+/*N*/   lSendFromLeft  (rItem.lSendFromLeft),
+/*N*/   lSendFromTop   (rItem.lSendFromTop),
 /*N*/   lWidth         (rItem.lWidth),
 /*N*/   lHeight        (rItem.lHeight),
 /*N*/   eAlign         (rItem.eAlign),
 /*N*/   bPrintFromAbove(rItem.bPrintFromAbove),
 /*N*/   lShiftRight    (rItem.lShiftRight),
 /*N*/   lShiftDown     (rItem.lShiftDown)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // --------------------------------------------------------------------------
-/*N*/ int SwEnvItem::operator ==(const SfxPoolItem& rItem) const
+/*N*/ int SwEnvItem::operator ==(const SfxPoolItem&) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  const SwEnvItem& rEnv = (const SwEnvItem&) rItem;
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 // --------------------------------------------------------------------------
@@ -93,3 +88,5 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  const SwEnvItem& rEnv = (const S
 /*N*/ }
 // --------------------------------------------------------------------------
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

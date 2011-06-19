@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -112,7 +113,7 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 } //namespace binfilter
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
@@ -152,7 +153,7 @@ namespace binfilter {//STRIP009
 /*N*/       ImpResetPossibilityFlags();
 /*N*/       aMark.ForceSort();
 /*N*/       ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/       if (nMarkAnz!=0) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (nMarkAnz!=0) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       ImpCheckToTopBtmPossible();
 /*N*/       ((SdrPolyEditView*)this)->ImpCheckPolyPossibilities();
@@ -202,3 +203,5 @@ namespace binfilter {//STRIP009
 #endif
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

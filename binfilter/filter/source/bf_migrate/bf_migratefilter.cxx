@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,56 +26,22 @@
  *
  ************************************************************************/
 
-#ifndef _BF_MIGRATEFILTER_HXX
 #include <bf_migratefilter.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UTIL_XCLOSEABLE_HPP_
 #include <com/sun/star/util/XCloseable.hpp>
-#endif
-
 #include <com/sun/star/document/XExporter.hpp>
-
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_FRAME_XLOADABLE_HPP_
 #include <com/sun/star/frame/XLoadable.hpp>
-#endif
 #include <com/sun/star/frame/XStorable.hpp>
-
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
-
-
-#ifndef _LEGACYBINFILTERMGR_HXX
 #include <legacysmgr/legacy_binfilters_smgr.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
 #include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
-
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-
-#ifndef _SFX_FCONTNR_HXX
 #include <bf_sfx2/fcontnr.hxx>
-#endif
-
-#ifndef _SFX_OBJFAC_HXX
 #include <bf_sfx2/docfac.hxx>
-#endif
-
 #include <bf_so3/staticbaseurl.hxx>
 
 namespace binfilter {
 
-using namespace rtl;
 using namespace com::sun::star;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
@@ -86,6 +53,7 @@ using namespace com::sun::star::xml::sax;
 using namespace com::sun::star::frame;
 using namespace com::sun::star::task;
 using namespace com::sun::star::util;
+using ::rtl::OUString;
 
 const OUString sServiceNameTextDocument(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.TextDocument"));
 const OUString sServiceNameGlobalDocument(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.text.GlobalDocument"));
@@ -281,12 +249,12 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             }
             catch(IOException& /*e*/)
             {
-                OSL_ENSURE(sal_False, "IO exception.");
+                OSL_FAIL("IO exception.");
                 bRetval = sal_False;
             }
             catch(IllegalArgumentException& /*e*/)
             {
-                OSL_ENSURE(sal_False, "uno url invalid");
+                OSL_FAIL("uno url invalid");
                 bRetval = sal_False;
             }
         }
@@ -311,47 +279,37 @@ sal_Bool bf_MigrateFilter::importImpl(const Sequence< ::com::sun::star::beans::P
             || rStrippedServiceInfo->supportsService(sServiceNameWebDocument) ) && pFilter->UsesStorage() )
         {
             // writer document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Writer)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Writer)" ));
         }
         else if(rStrippedServiceInfo->supportsService(sServiceNamePresentationDocument))
         {
             // presentation: Ask BEFORE draw since presentation supports draw, too
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Impress)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Impress)" ));
         }
         else if(rStrippedServiceInfo->supportsService(sServiceNameDrawingDocument))
         {
             // drawing document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Draw)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Draw)" ));
         }
         else if(rStrippedServiceInfo->supportsService(sServiceNameSpreadsheetDocument))
         {
             // calc document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Calc)");
+            aFilterName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "StarOffice XML (Calc)" ));
         }
-/*
-        else if(rStrippedServiceInfo->supportsService(sServiceNameChartDocument))
+
+        if ( aFilterName.getLength() && !bInserting &&  pFilter->GetFilterFlags() &  SFX_FILTER_EXPORT)
         {
-            // chart document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Chart)");
-        }
-        else if(rStrippedServiceInfo->supportsService(sServiceNameFormulaProperties))
-        {
-            // formula document
-            aFilterName = ::rtl::OUString::createFromAscii("StarOffice XML (Math)");
-        }
-*/
-        if ( aFilterName.getLength() && !bInserting )
-        {
+            // we do not enter here if the filter has not EXPORT capability, since this implies no write
             uno::Reference < io::XStream > xTempFile(
-                mxMSF->createInstance( ::rtl::OUString::createFromAscii( "com.sun.star.io.TempFile" ) ),
+                mxMSF->createInstance( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.io.TempFile" )) ),
                     uno::UNO_QUERY_THROW );
             uno::Reference < frame::XStorable > xDoc( rStrippedDocument, uno::UNO_QUERY );
             uno::Sequence < beans::PropertyValue > args(2);
-            args[0].Name = ::rtl::OUString::createFromAscii("OutputStream");
+            args[0].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OutputStream" ));
             args[0].Value <<= xTempFile->getOutputStream();
-            args[1].Name = ::rtl::OUString::createFromAscii("FilterName");
+            args[1].Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "FilterName" ));
             args[1].Value <<= aFilterName;
-            xDoc->storeToURL( ::rtl::OUString::createFromAscii("private:stream/"), args );
+            xDoc->storeToURL( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "private:stream/" )), args );
             xTempFile->getOutputStream()->closeOutput();
 
             Sequence< Any > aArgs( 2 );
@@ -592,5 +550,7 @@ Sequence< OUString > SAL_CALL bf_MigrateFilter::getSupportedServiceNames()
     return bf_MigrateFilter_getSupportedServiceNames();
 }
 
-// eof
+
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
 
-#ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
 #include "PropertySetMerger.hxx"
-#endif
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
@@ -39,9 +36,7 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLAttrContainerItem_Impl;
@@ -87,9 +82,12 @@ public:
 // --------------------------------------------------------------------
 
 PropertySetMergerImpl::PropertySetMergerImpl( Reference< XPropertySet > rPropSet1, Reference< XPropertySet > rPropSet2 )
-: mxPropSet1( rPropSet1 ), mxPropSet2( rPropSet2 ),
-  mxPropSet1State( rPropSet1, UNO_QUERY ), mxPropSet2State( rPropSet2, UNO_QUERY ),
-  mxPropSet1Info( rPropSet1->getPropertySetInfo() ), mxPropSet2Info( rPropSet2->getPropertySetInfo() )
+    : mxPropSet1( rPropSet1 )
+    , mxPropSet1State( rPropSet1, UNO_QUERY )
+    , mxPropSet1Info( rPropSet1->getPropertySetInfo() )
+    , mxPropSet2( rPropSet2 )
+    , mxPropSet2State( rPropSet2, UNO_QUERY )
+    , mxPropSet2Info( rPropSet2->getPropertySetInfo() )
 {
 }
 
@@ -127,19 +125,19 @@ Any SAL_CALL PropertySetMergerImpl::getPropertyValue( const OUString& PropertyNa
     }
 }
 
-void SAL_CALL PropertySetMergerImpl::addPropertyChangeListener( const OUString& aPropertyName, const Reference< XPropertyChangeListener >& xListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::addPropertyChangeListener( const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*xListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SAL_CALL PropertySetMergerImpl::removePropertyChangeListener( const OUString& aPropertyName, const Reference< XPropertyChangeListener >& aListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::removePropertyChangeListener( const OUString& /*aPropertyName*/, const Reference< XPropertyChangeListener >& /*aListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SAL_CALL PropertySetMergerImpl::addVetoableChangeListener( const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::addVetoableChangeListener( const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
-void SAL_CALL PropertySetMergerImpl::removeVetoableChangeListener( const OUString& PropertyName, const Reference< XVetoableChangeListener >& aListener ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
+void SAL_CALL PropertySetMergerImpl::removeVetoableChangeListener( const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener >& /*aListener*/ ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
 }
 
@@ -266,3 +264,5 @@ Reference< XPropertySet > PropertySetMerger_CreateInstance( Reference< XProperty
     return new PropertySetMergerImpl( rPropSet1, rPropSet2 );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

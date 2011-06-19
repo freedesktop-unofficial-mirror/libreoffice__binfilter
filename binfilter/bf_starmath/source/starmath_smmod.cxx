@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,36 +26,22 @@
  *
  ************************************************************************/
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SFX_HRC //autogen
 #include <bf_sfx2/sfx.hrc>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 
 #include <vcl/virdev.hxx>
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
 #include "smmod.hxx"
 #include <bf_so3/factory.hxx>
 
-#ifndef _CONFIG_HXX
 #include "config.hxx"
-#endif
 #include "starmath.hrc"
-namespace binfilter {//STRIP009
+namespace binfilter {
 /*N*/ TYPEINIT1( SmModuleDummy, SfxModule );
 /*N*/ TYPEINIT1( SmModule, SmModuleDummy );
 
@@ -193,9 +180,9 @@ namespace binfilter {//STRIP009
 /*N*/ }
 
 /*N*/ SmModule::SmModule(SvFactory* pObjFact) :
-/*N*/   SmModuleDummy(SFX_APP()->CreateResManager("bf_sm"), FALSE, pObjFact),   //STRIP005
-/*N*/     pConfig( 0 ),
+/*N*/   SmModuleDummy(SFX_APP()->CreateResManager("bf_sm"), FALSE, pObjFact),
 /*N*/     pColorConfig( 0 ),
+/*N*/     pConfig( 0 ),
 /*N*/     pLocSymbolData( 0 ),
 /*N*/     pRectCache( new SmRectCache ),
 /*N*/     pSysLocale( 0 ),
@@ -227,7 +214,7 @@ namespace binfilter {//STRIP009
 /*N*/     pThis->pVirtualDev = new VirtualDevice;
 /*N*/ }
 
-/*N*/ void SmModule::ApplyColorConfigValues( const ColorConfig &rColorCfg )
+/*N*/ void SmModule::ApplyColorConfigValues( const ColorConfig & /*rColorCfg*/ )
 /*N*/ {
 /*N*/ }
 
@@ -242,7 +229,7 @@ namespace binfilter {//STRIP009
 /*N*/     return *pColorConfig;
 /*N*/ }
 
-/*N*/ void SmModule::Notify( SfxBroadcaster &rBC, const SfxHint &rHint )
+/*N*/ void SmModule::Notify( SfxBroadcaster &/*rBC*/, const SfxHint &rHint )
 /*N*/ {
 /*N*/     if (rHint.ISA(SfxSimpleHint))
 /*N*/     {
@@ -272,3 +259,5 @@ namespace binfilter {//STRIP009
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _FRAME_HXX
 #include <frame.hxx>            // fuer AttrCache
-#endif
 
-#ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>           // fuer SwParaFmt - SwHyphenBug
-#endif
-#ifndef _SWCACHE_HXX
 #include <swcache.hxx>
-#endif
 namespace binfilter {
 
 
@@ -57,11 +50,11 @@ namespace binfilter {
 /*N*/           const USHORT* pWhichRanges, SwFmt *pDrvdFrm, USHORT nFmtWhich )
 /*N*/   : SwModify( pDrvdFrm ),
 /*N*/   aSet( rPool, pWhichRanges ),
+/*N*/   nWhichId( nFmtWhich ),
+/*N*/   nFmtId( 0 ),
 /*N*/   nPoolFmtId( USHRT_MAX ),
 /*N*/   nPoolHelpId( USHRT_MAX ),
-/*N*/   nPoolHlpFileId( UCHAR_MAX ),
-/*N*/   nFmtId( 0 ),
-/*N*/   nWhichId( nFmtWhich )
+/*N*/   nPoolHlpFileId( UCHAR_MAX )
 /*N*/ {
 /*N*/   aFmtName.AssignAscii( pFmtNm );
 /*N*/   bWritten = bFmtInDTOR = bAutoUpdateFmt = bLayerFmt = FALSE; // LAYER_IMPL
@@ -77,11 +70,11 @@ namespace binfilter {
 /*N*/   : SwModify( pDrvdFrm ),
 /*N*/   aFmtName( rFmtNm ),
 /*N*/   aSet( rPool, pWhichRanges ),
+/*N*/   nWhichId( nFmtWhich ),
+/*N*/   nFmtId( 0 ),
 /*N*/   nPoolFmtId( USHRT_MAX ),
 /*N*/   nPoolHelpId( USHRT_MAX ),
-/*N*/   nPoolHlpFileId( UCHAR_MAX ),
-/*N*/   nFmtId( 0 ),
-/*N*/   nWhichId( nFmtWhich )
+/*N*/   nPoolHlpFileId( UCHAR_MAX )
 /*N*/ {
 /*N*/   bWritten = bFmtInDTOR = bAutoUpdateFmt = bLayerFmt = FALSE; // LAYER_IMPL
 /*N*/   bAutoFmt = TRUE;
@@ -96,11 +89,11 @@ namespace binfilter {
 /*?*/   : SwModify( pDrvdFrm ),
 /*?*/   aFmtName( rFmtNm ),
 /*?*/   aSet( rPool, nWhich1, nWhich2 ),
+/*?*/   nWhichId( nFmtWhich ),
+/*?*/   nFmtId( 0 ),
 /*?*/   nPoolFmtId( USHRT_MAX ),
 /*?*/   nPoolHelpId( USHRT_MAX ),
-/*?*/   nPoolHlpFileId( UCHAR_MAX ),
-/*?*/   nFmtId( 0 ),
-/*?*/   nWhichId( nFmtWhich )
+/*?*/   nPoolHlpFileId( UCHAR_MAX )
 /*?*/ {
 /*?*/   bWritten = bFmtInDTOR = bAutoUpdateFmt = bLayerFmt = FALSE; // LAYER_IMPL
 /*?*/   bAutoFmt = TRUE;
@@ -113,11 +106,11 @@ namespace binfilter {
 /*N*/   : SwModify( rFmt.DerivedFrom() ),
 /*N*/   aFmtName( rFmt.aFmtName ),
 /*N*/   aSet( rFmt.aSet ),
+/*N*/   nWhichId( rFmt.nWhichId ),
+/*N*/   nFmtId( 0 ),
 /*N*/   nPoolFmtId( rFmt.GetPoolFmtId() ),
 /*N*/   nPoolHelpId( rFmt.GetPoolHelpId() ),
-/*N*/   nPoolHlpFileId( rFmt.GetPoolHlpFileId() ),
-/*N*/   nFmtId( 0 ),
-/*N*/   nWhichId( rFmt.nWhichId )
+/*N*/   nPoolHlpFileId( rFmt.GetPoolHlpFileId() )
 /*N*/ {
 /*N*/   bWritten = bFmtInDTOR = bLayerFmt = FALSE; // LAYER_IMPL
 /*N*/   bAutoFmt = rFmt.bAutoFmt;
@@ -133,8 +126,7 @@ namespace binfilter {
 |*    SwFmt &SwFmt::operator=(const SwFmt& aFmt)
 |*
 |*    Beschreibung      Dokument 1.14
-|*    Ersterstellung    JP 22.11.90
-|*    Letzte Aenderung  JP 05.08.94
+|*
 *************************************************************************/
 
 
@@ -188,7 +180,7 @@ namespace binfilter {
 
 /*N*/ void SwFmt::SetName( const String& rNewName, sal_Bool bBroadcast )
 /*N*/ {
-/*N*/   ASSERT(!IsDefault(), "SetName: Defaultformat" );
+/*N*/   OSL_ENSURE(!IsDefault(), "SetName: Defaultformat" );
 /*N*/   if( bBroadcast )
 /*N*/   {
 /*N*/       SwStringMsgPoolItem aOld( RES_NAME_CHANGED, aFmtName );
@@ -220,7 +212,6 @@ namespace binfilter {
 /*N*/ void SwFmt::CopyAttrs( const SwFmt& rFmt, BOOL bReplace )
 /*N*/ {
 /*N*/   // kopiere nur das Attribut-Delta Array
-/*N*/   register SwCharFmt* pDropCharFmt = 0;
 /*N*/
 /*N*/   if ( IsInCache() )
 /*N*/   {
@@ -266,8 +257,7 @@ namespace binfilter {
 |*    SwFmt::~SwFmt()
 |*
 |*    Beschreibung      Dokument 1.14
-|*    Ersterstellung    JP 22.11.90
-|*    Letzte Aenderung  JP 14.02.91
+|*
 *************************************************************************/
 
 
@@ -277,7 +267,7 @@ namespace binfilter {
 /*N*/   /* alle Abhaengigen auf DerivedFrom umhaengen */
 /*N*/   if( GetDepends() )
 /*N*/   {
-/*N*/       ASSERT(DerivedFrom(), "SwFmt::~SwFmt: Def Abhaengige!" );
+/*N*/       OSL_ENSURE(DerivedFrom(), "SwFmt::~SwFmt: Def Abhaengige!" );
 /*N*/
 /*N*/       bFmtInDTOR = TRUE;
 /*N*/
@@ -298,8 +288,7 @@ namespace binfilter {
 |*    void SwFmt::Modify( SfxPoolItem* pOldValue, SfxPoolItem* pNewValue )
 |*
 |*    Beschreibung      Dokument 1.14
-|*    Ersterstellung    JP 22.11.90
-|*    Letzte Aenderung  JP 05.08.94
+|*
 *************************************************************************/
 
 
@@ -391,7 +380,7 @@ namespace binfilter {
 // aber wer ruft das hier ????
 //ASSERT( FALSE, "Modify ohne Absender verschickt" );
 //JP 11.06.96: DropCaps koennen hierher kommen
-/*N*/ ASSERT( RES_PARATR_DROP == nWhich, "Modify ohne Absender verschickt" );
+/*N*/ OSL_ENSURE( RES_PARATR_DROP == nWhich, "Modify ohne Absender verschickt" );
 /*N*/               bWeiter = FALSE;
 /*N*/           }
 /*N*/
@@ -431,7 +420,7 @@ namespace binfilter {
 /*N*/   if ( (pDerFrom == DerivedFrom()) || (pDerFrom == this) )
 /*N*/       return FALSE;
 /*N*/
-/*N*/   ASSERT( Which()==pDerFrom->Which()
+/*N*/   OSL_ENSURE( Which()==pDerFrom->Which()
 /*N*/           || ( Which()==RES_CONDTXTFMTCOLL && pDerFrom->Which()==RES_TXTFMTCOLL)
 /*N*/           || ( Which()==RES_TXTFMTCOLL && pDerFrom->Which()==RES_CONDTXTFMTCOLL)
 /*N*/           || ( Which()==RES_FLYFRMFMT && pDerFrom->Which()==RES_FRMFMT ),
@@ -604,9 +593,6 @@ namespace binfilter {
 /*************************************************************************
 |*    void SwFmt::GetInfo( const SfxPoolItem& ) const
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 18.04.94
-|*    Letzte Aenderung  JP 05.08.94
 *************************************************************************/
 
 /*N*/
@@ -618,8 +604,6 @@ namespace binfilter {
 
 
 /** SwFmt::IsBackgroundTransparent - for feature #99657#
-
-    OD 22.08.2002
     Virtual method to determine, if background of format is transparent.
     Default implementation returns false. Thus, subclasses have to overload
     method, if the specific subclass can have a transparent background.
@@ -634,3 +618,5 @@ namespace binfilter {
 /*M*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,16 +30,10 @@
 #include "mapprov.hxx"
 
 // header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -55,18 +50,18 @@ ChartLine::~ChartLine()
 ::rtl::OUString SAL_CALL ChartLine::getImplementationName()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "ChartLine" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ChartLine" ));
 }
 
 uno::Sequence< ::rtl::OUString > SAL_CALL ChartLine::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 3 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartLine" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.LineProperties" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartLine" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.LineProperties" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -88,7 +83,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChartLine::getImplementationId()
 ::rtl::OUString SAL_CALL ChartLine::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartLine" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartLine" ));
 }
 
 // XUnoTunnel
@@ -120,3 +115,5 @@ const uno::Sequence< sal_Int8 > & ChartLine::getUnoTunnelId() throw()
     return *pSeq;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

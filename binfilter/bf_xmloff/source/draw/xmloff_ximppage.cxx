@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,21 +32,15 @@
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_ANIMIMP_HXX
 #include "animimp.hxx"
-#endif
 
 
 
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -57,11 +52,11 @@ using namespace ::binfilter::xmloff::token;
 TYPEINIT1( SdXMLGenericPageContext, SvXMLImportContext );
 
 SdXMLGenericPageContext::SdXMLGenericPageContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     USHORT nPrfx, const OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList>& xAttrList,
+    const uno::Reference< xml::sax::XAttributeList>& /*xAttrList*/,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SvXMLImportContext( rImport, nPrfx, rLocalName ),
+:   SvXMLImportContext( rInImport, nPrfx, rLocalName ),
     mxShapes( rShapes )
 {
 }
@@ -74,7 +69,7 @@ SdXMLGenericPageContext::~SdXMLGenericPageContext()
 
 //////////////////////////////////////////////////////////////////////////////
 
-void SdXMLGenericPageContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
+void SdXMLGenericPageContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     GetImport().GetShapeImport()->pushGroupForSorting( mxShapes );
 
@@ -86,33 +81,33 @@ void SdXMLGenericPageContext::StartElement( const ::com::sun::star::uno::Referen
 
 //////////////////////////////////////////////////////////////////////////////
 
-SvXMLImportContext* SdXMLGenericPageContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext* SdXMLGenericPageContext::CreateChildContext( USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = 0L;
 
-    if( nPrefix == XML_NAMESPACE_PRESENTATION && IsXMLToken( rLocalName, XML_ANIMATIONS ) )
+    if( nInPrefix == XML_NAMESPACE_PRESENTATION && IsXMLToken( rLocalName, XML_ANIMATIONS ) )
     {
-        pContext = new XMLAnimationsContext( GetImport(), nPrefix, rLocalName, xAttrList );
+        pContext = new XMLAnimationsContext( GetImport(), nInPrefix, rLocalName, xAttrList );
     }
-    else if( nPrefix == XML_NAMESPACE_OFFICE && IsXMLToken( rLocalName, XML_FORMS ) )
+    else if( nInPrefix == XML_NAMESPACE_OFFICE && IsXMLToken( rLocalName, XML_FORMS ) )
     {
 #ifndef SVX_LIGHT
         if( GetImport().IsFormsSupported() )
-            pContext = GetImport().GetFormImport()->createOfficeFormsContext( GetImport(), nPrefix, rLocalName );
+            pContext = GetImport().GetFormImport()->createOfficeFormsContext( GetImport(), nInPrefix, rLocalName );
 #endif
     }
     else
     {
         // call GroupChildContext function at common ShapeImport
         pContext = GetImport().GetShapeImport()->CreateGroupChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList, mxShapes);
+            GetImport(), nInPrefix, rLocalName, xAttrList, mxShapes);
     }
 
     // call parent when no own context was created
     if(!pContext)
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName, xAttrList);
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }
@@ -258,3 +253,5 @@ void SdXMLGenericPageContext::SetPageMaster( OUString& rsPageMasterName )
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

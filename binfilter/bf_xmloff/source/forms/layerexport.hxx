@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,10 @@
 #ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #define _XMLOFF_FORMS_LAYEREXPORT_HXX_
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATS_HPP_
 #include <com/sun/star/util/XNumberFormats.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
 #include <com/sun/star/awt/XControlModel.hpp>
-#endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_IFACECOMPARE_HXX_
 #include "ifacecompare.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLExport;
@@ -72,8 +65,8 @@ namespace xmloff
         PropertySetBag      m_aIgnoreList;
 
         // style handling
-        ::vos::ORef< XMLPropertyHandlerFactory >    m_xPropertyHandlerFactory;
-        ::vos::ORef< SvXMLExportPropertyMapper >    m_xExportMapper;
+        ::rtl::Reference< XMLPropertyHandlerFactory >   m_xPropertyHandlerFactory;
+        ::rtl::Reference< SvXMLExportPropertyMapper >   m_xExportMapper;
 
         // we need our own number formats supplier:
         // Controls which have a number formats do not work with the formats supplier of the document they reside
@@ -177,7 +170,7 @@ namespace xmloff
         virtual SvXMLExport&                                getGlobalContext();
         virtual ::rtl::OUString                             getObjectStyleName(
             const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rxObject );
-        virtual ::vos::ORef< SvXMLExportPropertyMapper >    getStylePropertyMapper();
+        virtual ::rtl::Reference< SvXMLExportPropertyMapper >   getStylePropertyMapper();
 
         /** clear any structures which have been build in the recent <method>examine</method> calls.
         */
@@ -300,3 +293,4 @@ namespace xmloff
 #endif // _XMLOFF_FORMS_LAYEREXPORT_HXX_
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

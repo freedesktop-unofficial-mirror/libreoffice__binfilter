@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,78 +37,45 @@
 #include "ChartArea.hxx"
 
 
-#ifndef _SVX_UNONAMESPACEMAP_HXX_
 #include <bf_svx/UnoNamespaceMap.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
 
-#ifndef SCH_UNOPMAP_HXX
 #include "mapprov.hxx"
-#endif
 // header for SvxChartLegendPosItem
 #ifndef _SVX_CHRTITEM_HXX
 #include "schattr.hxx"
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
-#ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
-#ifndef _SCH_OBJID_HXX
 #include "objid.hxx"
-#endif
 
-#ifndef _SCH_SCHGROUP_HXX
 #include "schgroup.hxx"
-#endif
 
 // for access to table addresses
 #include "memchrt.hxx"
 
 // header for SvNumberFormatsSupplierObj
-#ifndef _NUMUNO_HXX
 #include <bf_svtools/numuno.hxx>
-#endif
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVX_UNOFILL_HXX_
 #include <bf_svx/unofill.hxx>
-#endif
-#ifndef _SVX_UNOSHGRP_HXX
 #include <bf_svx/unoshcol.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICENAME_HPP_
 #include <com/sun/star/lang/XServiceName.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
 namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
-using namespace vos;
 using namespace ::com::sun::star;
 using ::rtl::OUString;
 
@@ -129,7 +97,7 @@ ChXChartDocument::ChXChartDocument( SchChartDocShell* pShell ) :
 {
     if( pShell )
     {
-        OGuard aSolarGuard( Application::GetSolarMutex());
+        SolarMutexGuard aSolarGuard;
 
         m_pDocShell = pShell;
         if( m_pDocShell->GetModelPtr())
@@ -159,7 +127,7 @@ ChXChartDocument::~ChXChartDocument()
             }
             catch( uno::RuntimeException & aEx )
             {
-                DBG_ERROR1( "Exception caught in DTOR: %s",
+                OSL_TRACE( "Exception caught in DTOR: %s",
                             ::rtl::OUStringToOString( aEx.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
             }
         }
@@ -175,7 +143,7 @@ ChXChartDocument::~ChXChartDocument()
 void ChXChartDocument::setDiagramType( const ::rtl::OUString& aType,
                                        sal_Bool bKeepAddin /* = sal_False */ ) throw()
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( ! m_pModel )
         return;
@@ -243,7 +211,7 @@ void ChXChartDocument::SetChartModel( ChartModel* pModel ) throw()
     m_aPropSet = SvxItemPropertySet( aSchMapProvider.GetMap( CHMAP_DOC, m_pModel ));
 }
 
-void ChXChartDocument::RefreshData( const chart::ChartDataChangeEvent& aEvent ) throw()
+void ChXChartDocument::RefreshData( const chart::ChartDataChangeEvent& /*aEvent*/ ) throw()
 {
     osl::Guard< osl::Mutex > aGuard( GetMutex());
 
@@ -494,27 +462,27 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDocument::getAvailableServiceN
     ::std::vector< OUString > aServices;
 
     // chart types
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_LINE ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_AREA ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_BAR ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_PIE ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_XY ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_NET ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_DONUT ));
-    aServices.push_back( OUString::createFromAscii( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_STOCK ));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_LINE )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_AREA )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_BAR )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_PIE )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_XY )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_NET )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_DONUT )));
+    aServices.push_back( OUString(RTL_CONSTASCII_USTRINGPARAM( SCH_X_STR_CHTYPE_NAMESPACE SCH_X_STR_CHTYPE_STOCK )));
 
     // style tables (for XML)
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.DashTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.GradientTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.HatchTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.BitmapTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.TransparencyGradientTable" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.drawing.MarkerTable" ));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.DashTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.GradientTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.HatchTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.BitmapTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.TransparencyGradientTable" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.MarkerTable" )));
 
     // XML namespacemap / object resolver
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.xml.NamespaceMap" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.document.ExportGraphicObjectResolver" ));
-    aServices.push_back( OUString::createFromAscii( "com.sun.star.document.ImportGraphicObjectResolver" ));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.NamespaceMap" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.ExportGraphicObjectResolver" )));
+    aServices.push_back( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.document.ImportGraphicObjectResolver" )));
 
     // shapes
     uno::Sequence< OUString > aDrawServices( SvxUnoDrawMSFactory::getAvailableServiceNames() );
@@ -544,7 +512,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( m_pModel )
     {
@@ -560,7 +528,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
             {
                 case CHATTR_DIAGRAM_START:      // dummy id for "HasLegend"
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal(sal_False);
                         aValue >>= bVal;
                         m_pModel->SetShowLegend( bVal );
                         m_pModel->SetLegendHasBeenMoved( FALSE );
@@ -611,7 +579,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                                     break;
                                 case CHATTR_EXPORT_TABLE:
                                     {
-                                        sal_Bool bValueToSet;
+                                        sal_Bool bValueToSet(sal_False);
                                         aValue >>= bValueToSet;
 
                                         SchChartRange aRange = pData->GetChartRange();
@@ -624,7 +592,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                                     break;
                                 case CHATTR_FIRST_COL_LABELS:
                                     {
-                                        sal_Bool bValueToSet;
+                                        sal_Bool bValueToSet(sal_False);
                                         aValue >>= bValueToSet;
 
                                         SchChartRange aRange = pData->GetChartRange();
@@ -637,7 +605,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                                     break;
                                 case CHATTR_FIRST_ROW_LABELS:
                                     {
-                                        sal_Bool bValueToSet;
+                                        sal_Bool bValueToSet(sal_False);
                                         aValue >>= bValueToSet;
 
                                         SchChartRange aRange = pData->GetChartRange();
@@ -651,7 +619,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -674,7 +642,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -692,10 +660,10 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
                             }
                             else
                             {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                                 String aTmpString( aPropertyName );
                                 ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                                DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                             }
                         }
@@ -720,7 +688,7 @@ void SAL_CALL ChXChartDocument::setPropertyValue( const ::rtl::OUString& aProper
         }
         else if( aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "ExportForClipboard" )))
         {
-            sal_Bool bBool;
+            sal_Bool bBool(sal_False);
             aValue >>= bBool;
             m_pDocShell->SetClipboardExport( bBool );
         }
@@ -738,7 +706,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     if( m_pModel )
@@ -825,7 +793,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -853,7 +821,7 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             }
                         }
                         else
-                            DBG_ERROR( "invalid SchMemChart" );
+                            OSL_FAIL( "invalid SchMemChart" );
                     }
                     break;
 
@@ -871,10 +839,10 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             }
                             else
                             {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                                 String aTmpString( aPropertyName );
                                 ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                                DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                                OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                             }
                         }
@@ -888,13 +856,13 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
                             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                             {
-                                sal_Int32 nValue;
+                                sal_Int32 nValue(sal_False);
                                 aAny >>= nValue;
                                 aAny <<= static_cast< sal_Int16 >( nValue );
                             }
                             else
                             {
-                                DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                                OSL_FAIL( "getPropertyValue(): wrong Type!" );
                             }
                         }
                     }
@@ -921,29 +889,29 @@ uno::Any SAL_CALL ChXChartDocument::getPropertyValue( const ::rtl::OUString& aPr
     return aAny;
 }
 
-void SAL_CALL ChXChartDocument::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                           const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXChartDocument::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                           const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDocument::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                              const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXChartDocument::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                              const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDocument::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                           const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartDocument::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                           const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartDocument::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                              const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartDocument::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                              const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -1035,7 +1003,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         // use AddIn
         if( m_pModel )
         {
-            OGuard aGuard( Application::GetSolarMutex());
+            SolarMutexGuard aLclGuard;
             m_pModel->SetChartAddIn( xAddIn );
 
             // initialize AddIn with this as chart document
@@ -1070,7 +1038,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         }
         else
         {
-            DBG_ERROR( "No Model - Couldn't attach AddIn" );
+            OSL_FAIL( "No Model - Couldn't attach AddIn" );
         }
     }
     else
@@ -1082,7 +1050,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
         // clear addin
         if( m_pModel )
         {
-            OGuard aGuard( Application::GetSolarMutex());
+            SolarMutexGuard aLclGuard;
             uno::Reference< util::XRefreshable > xRefreshable;
             m_pModel->SetChartAddIn( xRefreshable );
         }
@@ -1115,7 +1083,7 @@ void SAL_CALL ChXChartDocument::setDiagram( const uno::Reference< chart::XDiagra
                         // update local model
                         if( m_pModel )
                         {
-                            OGuard aGuard( Application::GetSolarMutex());
+                            SolarMutexGuard aLclGuard;
                             m_pModel = m_pDocShell->GetModelPtr();
                         }
                     }
@@ -1243,7 +1211,7 @@ void SAL_CALL ChXChartDocument::lockControllers() throw( uno::RuntimeException )
 {
     if( m_pModel )
     {
-        OGuard aGuard( Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         m_pModel->LockBuild();
     }
     else
@@ -1254,7 +1222,7 @@ void SAL_CALL ChXChartDocument::unlockControllers() throw( uno::RuntimeException
 {
     if( m_pModel )
     {
-        OGuard aGuard( Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         m_pModel->UnlockBuild();
     }
     else
@@ -1265,7 +1233,7 @@ sal_Bool SAL_CALL ChXChartDocument::hasControllersLocked() throw( uno::RuntimeEx
 {
     if( m_pModel )
     {
-        OGuard aGuard( Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         return m_pModel->IsLockedBuild();
     }
     else
@@ -1405,7 +1373,7 @@ void ChXChartDocument::InitNumberFormatter() throw( uno::RuntimeException )
     {
         if( m_pModel )
         {
-            OGuard aGuard( Application::GetSolarMutex());
+            SolarMutexGuard aLclGuard;
             mrNumberFormatter = new SvNumberFormatsSupplierObj( m_pModel->GetNumFormatter() );
         }
         else
@@ -1537,7 +1505,7 @@ void SAL_CALL ChXChartDocument::disposing (const lang::EventObject & Source)
         return;
 
     //  Inform the document shell of the disposing of Source.Source.
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SchChartDocShell* pDocSh = (SchChartDocShell*)GetObjectShell();
     if (pDocSh == NULL)
@@ -1602,11 +1570,10 @@ uno::Reference< drawing::XShapes > ChXChartDocument::GetAdditionalShapes()
         DBG_ASSERT( xFoundShapes.is(), "Couldn't create a shape collection!" );
         if( xFoundShapes.is())
         {
-            ::std::vector< uno::Reference< drawing::XShape > >::iterator aIter;
-            for( aIter = aShapeVector.begin(); aIter != aShapeVector.end(); ++aIter )
-                xFoundShapes->add( *aIter );
+            ::std::vector< uno::Reference< drawing::XShape > >::iterator aLclIter;
+            for( aLclIter = aShapeVector.begin(); aLclIter != aShapeVector.end(); ++aLclIter )
+                xFoundShapes->add( *aLclIter );
         }
-//          }
     }
 
     return xFoundShapes;
@@ -1665,7 +1632,7 @@ uno::Sequence< sal_Int32 > ChXChartDocument::GetTransSequence( SchMemChart* pDat
     }
     else
     {
-        DBG_ERROR( "Invalid MemChart" );
+        OSL_FAIL( "Invalid MemChart" );
     }
 
     return aResult;
@@ -1703,9 +1670,11 @@ bool ChXChartDocument::SetTransSequence( SchMemChart* pData, bool bColumns, cons
     }
     else
     {
-        DBG_ERROR( "Invalid MemChart" );
+        OSL_FAIL( "Invalid MemChart" );
     }
 
     return bResult;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

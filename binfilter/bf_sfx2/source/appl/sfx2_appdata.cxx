@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,7 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 
 #define _SVSTDARR_STRINGS
 #include <bf_svtools/svstdarr.hxx>
@@ -37,28 +36,26 @@
 #include "docfile.hxx"
 #include "imestatuswindow.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 /*N*/ SfxAppData_Impl::SfxAppData_Impl( SfxApplication* pApp ) :
-/*N*/       pProgress(0),
+            pSfxFrameObjectFactoryPtr(0),
+/*N*/       pInitLinkList(0),
+/*N*/       pMatcher( 0 ),
+/*N*/       pCancelMgr( 0 ),
 /*N*/       pPool(0),
 /*N*/       pEventConfig(0),
+/*N*/       pMiscConfig(0),
+            pThisDocument(0),
+/*N*/       pProgress(0),
 /*N*/       nBasicCallLevel(0),
 /*N*/       nRescheduleLocks(0),
 /*N*/       nInReschedule(0),
-/*N*/       pInitLinkList(0),
-            pSfxFrameObjectFactoryPtr(0),
-            pThisDocument(0),
-/*N*/       pMatcher( 0 ),
-/*N*/       pCancelMgr( 0 ),
-/*N*/       pMiscConfig(0),
-/*N*/       bInQuit(sal_False),
-/*N*/       bInException( sal_False ),
 /*N*/       m_xImeStatusWindow(new sfx2::appl::ImeStatusWindow(
-/*N*/                                *pApp, ::legacy_binfilters::getLegacyProcessServiceFactory()))
+/*N*/                                *pApp, ::legacy_binfilters::getLegacyProcessServiceFactory())),
+/*N*/       bInQuit(sal_False),
+/*N*/       bInException( sal_False )
 /*N*/ {
 /*N*/ }
 
@@ -67,3 +64,5 @@ namespace binfilter {
 /*N*/   delete pCancelMgr;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

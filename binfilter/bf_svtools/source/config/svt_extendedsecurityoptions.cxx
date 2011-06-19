@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,49 +28,21 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/extendedsecurityoptions.hxx>
-
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
-
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-
 #include <bf_svtools/pathoptions.hxx>
-
-#include <hash_map>
-
+#include <boost/unordered_map.hpp>
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 
@@ -90,14 +63,10 @@ namespace binfilter
 //_________________________________________________________________________________________________________________
 
 #define ROOTNODE_SECURITY               OUString(RTL_CONSTASCII_USTRINGPARAM("Office.Security"))
-
 #define SECURE_EXTENSIONS_SET           OUString(RTL_CONSTASCII_USTRINGPARAM("SecureExtensions"))
 #define EXTENSION_PROPNAME              OUString(RTL_CONSTASCII_USTRINGPARAM("/Extension"))
-
 #define PROPERTYNAME_HYPERLINKS_OPEN    OUString(RTL_CONSTASCII_USTRINGPARAM("Hyperlinks/Open"))
-
 #define PROPERTYHANDLE_HYPERLINKS_OPEN  0
-
 #define PROPERTYCOUNT                   1
 
 //_________________________________________________________________________________________________________________
@@ -112,7 +81,7 @@ struct OUStringHashCode
     }
 };
 
-class ExtensionHashMap : public ::std::hash_map< ::rtl::OUString,
+class ExtensionHashMap : public ::boost::unordered_map< ::rtl::OUString,
                                                  sal_Int32,
                                                  OUStringHashCode,
                                                  ::std::equal_to< ::rtl::OUString > >
@@ -216,7 +185,6 @@ class SvtExtendedSecurityOptions_Impl : public ConfigItem
     private:
         OUString                                        m_aSecureExtensionsSetName;
         OUString                                        m_aExtensionPropName;
-
         SvtExtendedSecurityOptions::OpenHyperlinkMode   m_eOpenHyperlinkMode;
         sal_Bool                                        m_bROOpenHyperlinkMode;
         ExtensionHashMap                                m_aExtensionHashMap;
@@ -261,7 +229,7 @@ SvtExtendedSecurityOptions_Impl::SvtExtendedSecurityOptions_Impl()
                     m_eOpenHyperlinkMode = (SvtExtendedSecurityOptions::OpenHyperlinkMode)nMode;
                 else
                 {
-                    DBG_ERROR("Wrong type for Open mode!");
+                    OSL_FAIL("Wrong type for Open mode!");
                 }
                 m_bROOpenHyperlinkMode = seqRO[nProperty];
             }
@@ -441,3 +409,5 @@ Mutex& SvtExtendedSecurityOptions::GetInitMutex()
     return *pMutex;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

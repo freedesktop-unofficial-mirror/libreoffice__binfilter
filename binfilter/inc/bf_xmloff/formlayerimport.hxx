@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,24 +29,12 @@
 #ifndef _XMLOFF_FORMLAYERIMPORT_HXX_
 #define _XMLOFF_FORMLAYERIMPORT_HXX_
 
-#ifndef _VOS_REFERNCE_HXX_
-#include <vos/refernce.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
+#include <salhelper/simplereferenceobject.hxx>
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMPPR_HXX
+#include <rtl/ref.hxx>
 #include <bf_xmloff/xmlimppr.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLImport;
@@ -65,7 +54,7 @@ namespace xmloff
     /** allows you to import a &lt;form:form&gt; element
     */
     class OFormLayerXMLImport
-                :public ::vos::OReference
+                :public ::salhelper::SimpleReferenceObject
     {
         OFormLayerXMLImport_Impl*   m_pImpl;
 
@@ -75,7 +64,7 @@ namespace xmloff
 
         /** retrieves the property mapper form form related auto styles.
         */
-        ::vos::ORef< SvXMLImportPropertyMapper >
+        ::rtl::Reference< SvXMLImportPropertyMapper >
                 getStylePropertyMapper() const;
 
         /** start importing the forms of the given page
@@ -174,3 +163,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMLAYERIMPORT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

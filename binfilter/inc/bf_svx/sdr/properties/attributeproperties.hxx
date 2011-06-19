@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _ATTRIBUTEPROPERTIES_HXX
 #define _ATTRIBUTEPROPERTIES_HXX
 
-#ifndef _DEFAULTPROPERTIES_HXX
 #include <sdr/properties/defaultproperties.hxx>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -105,3 +104,5 @@ namespace Sdr
 #endif //_ATTRIBUTEPROPERTIES_HXX
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

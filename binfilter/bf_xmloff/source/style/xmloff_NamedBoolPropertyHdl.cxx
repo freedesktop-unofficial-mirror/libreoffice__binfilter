@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include <NamedBoolPropertyHdl.hxx>
-#endif
 
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 
@@ -52,7 +49,7 @@ XMLNamedBoolPropertyHdl::~XMLNamedBoolPropertyHdl()
     // Nothing to do
 }
 
-sal_Bool XMLNamedBoolPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLNamedBoolPropertyHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( rStrImpValue == maTrueStr )
     {
@@ -69,7 +66,7 @@ sal_Bool XMLNamedBoolPropertyHdl::importXML( const OUString& rStrImpValue, Any& 
     return sal_False;
 }
 
-sal_Bool XMLNamedBoolPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLNamedBoolPropertyHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     if( ::cppu::any2bool( rValue ) )
     {
@@ -84,3 +81,5 @@ sal_Bool XMLNamedBoolPropertyHdl::exportXML( OUString& rStrExpValue, const Any& 
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

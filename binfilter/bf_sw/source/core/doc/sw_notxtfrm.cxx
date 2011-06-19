@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,107 +26,42 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-
-
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-
-#ifndef _FMTSRND_HXX
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _VISCRS_HXX
+#include <osl/diagnose.h>
 #include <viscrs.hxx>
-#endif
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _NOTXTFRM_HXX
 #include <notxtfrm.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
 
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
-#endif
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
 namespace binfilter {
 
 #define DEFTEXTSIZE  12
-
-// OD 25.09.2002 #99739# - insert declaration of global methods <SwAlignRect>
-//     and <SwAlignGrtRect>.
-//     Methods are implemented in /core/layout/paintfrm.cxx
-// OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
-//extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
-//extern void SwAlignGrfRect( SwRect *pGrfRect, const OutputDevice &rOut );
 
 //Zum asynchronen (erstmaligem) anfordern von Grafiken
 
 
 extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
-
-
-
-
-
-
-
-
-
-
 /*************************************************************************
 |*
 |*    SwGrfFrm::SwGrfFrm(ViewShell * const,SwGrfNode *)
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 03. Mar. 93
 |*
 *************************************************************************/
 
@@ -153,10 +89,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    SwNoTxtNode::MakeFrm()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 03. Mar. 93
-|*
 *************************************************************************/
 
 
@@ -169,10 +101,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    SwNoTxtFrm::~SwNoTxtFrm()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 30. Apr. 96
-|*
 *************************************************************************/
 
 /*N*/ SwNoTxtFrm::~SwNoTxtFrm()
@@ -182,63 +110,13 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 
 /*************************************************************************
 |*
-|*    void SwNoTxtFrm::Modify( SwHint * pOld, SwHint * pNew )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  JP 05.03.91
-|*
-*************************************************************************/
-
-
-
-
-
-
-/*************************************************************************
-|*
 |*    void SwNoTxtFrm::Paint()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 05.03.91
-|*    Letzte Aenderung  MA 10. Jan. 97
-|*
 *************************************************************************/
 
-/*N*/ void SwNoTxtFrm::Paint( const SwRect &rRect ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwNoTxtFrm::Paint( const SwRect& /*rRect*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-/*************************************************************************
-|*
-|*    void lcl_CalcRect( Point & aPt, Size & aDim,
-|*                   USHORT nMirror )
-|*
-|*    Beschreibung      Errechne die Position und die Groesse der Grafik im
-|*                      Frame, entsprechen der aktuellen Grafik-Attribute
-|*
-|*    Parameter         Point&  die Position im Frame  ( auch Return-Wert )
-|*                      Size&   die Groesse der Grafik ( auch Return-Wert )
-|*                      MirrorGrf   akt. Spiegelungs-Attribut
-|*    Ersterstellung    JP 04.03.91
-|*    Letzte Aenderung  JP 31.08.94
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*    void SwNoTxtFrm::GetGrfArea()
-|*
-|*    Beschreibung      Errechne die Position und die Groesse der Bitmap
-|*                      innerhalb des uebergebenem Rechtecks.
-|*
-|*    Ersterstellung    JP 03.09.91
-|*    Letzte Aenderung  MA 11. Oct. 94
-|*
-*************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -246,8 +124,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    Beschreibung      Gebe die Groesse des umgebenen FLys und
 |*                      damit die der Grafik zurueck.
-|*    Ersterstellung    JP 04.03.91
-|*    Letzte Aenderung  JP 31.08.94
 |*
 *************************************************************************/
 
@@ -264,9 +140,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*************************************************************************
 |*
 |*    SwNoTxtFrm::MakeAll()
-|*
-|*    Ersterstellung    MA 29. Nov. 96
-|*    Letzte Aenderung  MA 29. Nov. 96
 |*
 *************************************************************************/
 
@@ -298,8 +171,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*    SwNoTxtFrm::Format()
 |*
 |*    Beschreibung      Errechne die Groesse der Bitmap, wenn noetig
-|*    Ersterstellung    JP 11.03.91
-|*    Letzte Aenderung  MA 13. Mar. 96
 |*
 *************************************************************************/
 
@@ -330,23 +201,19 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 |*
 |*    SwNoTxtFrm::GetCharRect()
 |*
-|*    Beschreibung
-|*    Ersterstellung    SS 29-Apr-1991
-|*    Letzte Aenderung  MA 10. Oct. 94
-|*
 |*************************************************************************/
 
 
-/*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect &rRect, const SwPosition& rPos,
-/*N*/                             SwCrsrMoveState *pCMS ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ BOOL SwNoTxtFrm::GetCharRect( SwRect& /*rRect*/, const SwPosition& /*rPos*/,
+/*N*/                             SwCrsrMoveState* /*pCMS*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 
-/*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* pPos, Point& aPoint,
+/*N*/ BOOL SwNoTxtFrm::GetCrsrOfst(SwPosition* /*pPos*/, Point& /*aPoint*/,
 /*N*/                           const SwCrsrMoveState* ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -369,7 +236,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/        RES_GRF_REREAD_AND_INCACHE != nWhich )
 /*N*/       SwCntntFrm::Modify( pOld, pNew );
 /*N*/
-/*N*/   FASTBOOL bCompletePaint = TRUE;
+/*N*/   bool bCompletePaint2 = TRUE;
 /*N*/
 /*N*/   switch( nWhich )
 /*N*/   {
@@ -379,7 +246,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*?*/   case RES_GRF_REREAD_AND_INCACHE:
 /*?*/       if( ND_GRFNODE == GetNode()->GetNodeType() )
 /*?*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   bCompletePaint = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -407,7 +274,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/   case RES_GRAPHIC_ARRIVED:
 /*N*/       if ( GetNode()->GetNodeType() == ND_GRFNODE )
 /*N*/       {
-/*N*/           bCompletePaint = FALSE;
+/*N*/           bCompletePaint2 = FALSE;
 /*N*/           SwGrfNode* pNd = (SwGrfNode*) GetNode();
 /*N*/
 /*N*/           CLEARCACHE( pNd )
@@ -425,12 +292,12 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/               if( pSh->IsPreView() )
 /*N*/               {
 /*?*/                   if( pSh->GetWin() )
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::binfilter::RepaintPagePreview( pSh, aRect );
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else if ( pSh->VisArea().IsOver( aRect ) &&
 /*?*/                    OUTDEV_WINDOW == pSh->GetOut()->GetOutDevType() )
 /*?*/               {
-/*?*/                     // OD 27.11.2002 #105519# - invalidate instead of painting
+/*?*/                     // invalidate instead of painting
 /*?*/                     pSh->GetWin()->Invalidate( aRect.SVRect() );
 /*?*/               }
 /*N*/
@@ -444,7 +311,7 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*?*/           return;
 /*N*/   }
 /*N*/
-/*N*/   if( bCompletePaint )
+/*N*/   if( bCompletePaint2 )
 /*N*/   {
 /*N*/       InvalidatePrt();
 /*N*/       SetCompletePaint();
@@ -466,6 +333,6 @@ extern void ClrContourCache( const SdrObject *pObj ); // TxtFly.Cxx
 /*N*/   return pGrfNd && pGrfNd->IsAnimated();
 /*N*/ }
 
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------
@@ -54,7 +53,7 @@ public:
     virtual         ~ScUserListData();
 
     virtual DataObject*     Clone() const { return new ScUserListData(*this); }
-/*N*/           BOOL            Store( SvStream& rStream ) const;
+/*N*/  BOOL Store( SvStream& ) const {return FALSE;}
     const   String&         GetString() const { return aStr; }
             BOOL            GetSubIndex(const String& rSubStr, USHORT& rIndex) const;
 };
@@ -70,7 +69,7 @@ public:
 
             ScUserListData* GetData( const String& rSubStr ) const;
 /*N*/           BOOL            Load( SvStream& rStream );
-/*N*/           BOOL            Store( SvStream& rStream ) const;
+/*N*/ BOOL Store( SvStream& ) const {return FALSE;}
             /// If the list in rStr is already inserted
             BOOL            HasEntry( const String& rStr ) const;
 
@@ -88,3 +87,4 @@ inline ScUserListData* ScUserList::operator[]( const USHORT nIndex) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,18 +27,12 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_ESCAPETYPES_HXX
 #include <escphdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
 namespace binfilter {
@@ -63,7 +58,6 @@ XMLEscapementPropHdl::~XMLEscapementPropHdl()
 
 sal_Bool XMLEscapementPropHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Bool bRet = sal_False;
     sal_Int16 nVal;
 
     SvXMLTokenEnumerator aTokens( rStrImpValue );
@@ -95,8 +89,7 @@ sal_Bool XMLEscapementPropHdl::importXML( const OUString& rStrImpValue, uno::Any
 
 sal_Bool XMLEscapementPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
-    sal_Bool bRet = sal_False;
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )
@@ -161,7 +154,7 @@ sal_Bool XMLEscapementHeightPropHdl::exportXML( OUString& rStrExpValue, const un
 {
     OUStringBuffer aOut( rStrExpValue );
 
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if( rValue >>= nValue )
     {
         if( rStrExpValue.getLength() )
@@ -174,3 +167,5 @@ sal_Bool XMLEscapementHeightPropHdl::exportXML( OUString& rStrExpValue, const un
     return rStrExpValue.getLength();
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

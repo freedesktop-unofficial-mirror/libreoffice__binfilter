@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,41 +28,17 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
 #include <deque>
-
 #include <bf_svtools/internaloptions.hxx>
-
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 
@@ -102,54 +79,13 @@ namespace binfilter
 #define FIXPROPERTYHANDLE_SENDCRASHMAIL     1
 #define FIXPROPERTYHANDLE_USEMAILUI         2
 #define FIXPROPERTYHANDLE_CURRENTTEMPURL    3
-//#define FIXPROPERTYHANDLE_REMOVEMENUENTRYCLOSE   3
-//#define FIXPROPERTYHANDLE_REMOVEMENUENTRYBACKTOWEBTOP         4
-//#define FIXPROPERTYHANDLE_REMOVEMENUENTRYNEWWEBTOP         5
-//#define FIXPROPERTYHANDLE_REMOVEMENUENTRYLOGOUT         6
-
 #define FIXPROPERTYCOUNT                    4
-/*
-#define PROPERTYNAME_RECOVERYLIST           OUString(RTL_CONSTASCII_USTRINGPARAM("RecoveryList"             ))
-#define PROPERTYNAME_URL                    OUString(RTL_CONSTASCII_USTRINGPARAM("OrgURL"                   ))
-#define PROPERTYNAME_FILTER                 OUString(RTL_CONSTASCII_USTRINGPARAM("FilterName"               ))
-#define PROPERTYNAME_TEMPNAME               OUString(RTL_CONSTASCII_USTRINGPARAM("TempURL"                  ))
-
-#define OFFSET_URL                          0
-#define OFFSET_FILTER                       1
-#define OFFSET_TEMPNAME                     2
-*/
 #define PATHDELIMITER                       OUString(RTL_CONSTASCII_USTRINGPARAM("/"                        ))
 #define FIXR                                OUString(RTL_CONSTASCII_USTRINGPARAM("r"                        ))
 
 //_________________________________________________________________________________________________________________
 //  private declarations!
 //_________________________________________________________________________________________________________________
-/*
-struct tIMPL_RecoveryEntry
-{
-    OUString    sURL        ;
-    OUString    sFilter     ;
-    OUString    sTempName   ;
-
-    tIMPL_RecoveryEntry()
-    {
-        sURL        =   OUString();
-        sFilter     =   OUString();
-        sTempName   =   OUString();
-    }
-
-    tIMPL_RecoveryEntry(    const   OUString&   sNewURL         ,
-                            const   OUString&   sNewFilter      ,
-                            const   OUString&   sNewTempName    )
-    {
-        sURL        =   sNewURL         ;
-        sFilter     =   sNewFilter      ;
-        sTempName   =   sNewTempName    ;
-    }
-};
-
-typedef deque< tIMPL_RecoveryEntry > tIMPL_RecoveryStack;
-*/
 class SvtInternalOptions_Impl : public ConfigItem
 {
     //-------------------------------------------------------------------------------------------------------------
@@ -166,7 +102,6 @@ class SvtInternalOptions_Impl : public ConfigItem
         sal_Bool                m_bSendCrashMail    ;   /// cache "SendCrashMail" of Internal section
         sal_Bool                m_bUseMailUI;
         OUString                m_aCurrentTempURL   ;
-    //  tIMPL_RecoveryStack     m_aRecoveryList     ;   /// cache "RecoveryList" of Internal section
     //-------------------------------------------------------------------------------------------------------------
     //  public methods
     //-------------------------------------------------------------------------------------------------------------
@@ -313,29 +248,6 @@ SvtInternalOptions_Impl::SvtInternalOptions_Impl()
     seqValues[FIXPROPERTYHANDLE_SENDCRASHMAIL   ] >>= m_bSendCrashMail  ;
     seqValues[FIXPROPERTYHANDLE_USEMAILUI       ] >>= m_bUseMailUI  ;
     seqValues[FIXPROPERTYHANDLE_CURRENTTEMPURL  ] >>= m_aCurrentTempURL ;
-//    seqValues[FIXPROPERTYHANDLE_REMOVEMENUENTRYCLOSE ] >>= m_bRemoveMenuEntryClose  ;
-//    seqValues[FIXPROPERTYHANDLE_REMOVEMENUENTRYBACKTOWEBTOP ] >>= m_bRemoveMenuEntryBackToWebtop  ;
-//    seqValues[FIXPROPERTYHANDLE_REMOVEMENUENTRYNEWWEBTOP ] >>= m_bRemoveMenuEntryNewWebtop  ;
-//    seqValues[FIXPROPERTYHANDLE_REMOVEMENUENTRYLOGOUT ] >>= m_bRemoveMenuEntryLogout  ;
-/*
-    // Read dynamical set "RecoveryList" then.
-    // 3 subkeys for every item!
-    // Attention: Start at next element after last fixed entry! We must ignore "Slot" and "SendCrashMail" ...
-    tIMPL_RecoveryEntry aEntry;
-    sal_uInt32 nCount       = seqValues.getLength() ;
-    sal_uInt32 nPosition    = FIXPROPERTYCOUNT      ;
-
-    while( nPosition<nCount )
-    {
-        seqValues[nPosition] >>= aEntry.sURL        ;
-        ++nPosition;
-        seqValues[nPosition] >>= aEntry.sFilter     ;
-        ++nPosition;
-        seqValues[nPosition] >>= aEntry.sTempName   ;
-        ++nPosition;
-        m_aRecoveryList.push_front( aEntry );
-    }
-*/
     // We don't need any notifications here.
     // "Slot" and "SendCrashMail" are readonly(!) and our recovery list should not modified during runtime - it's used
     // by our crash guard only ... otherwise we have a big problem.
@@ -367,49 +279,6 @@ void SvtInternalOptions_Impl::Commit()
     pValues[0] <<= m_aCurrentTempURL;
 
     PutProperties( aNames, aValues );
-
-/*
-    // Write set of dynamic properties then.
-    ClearNodeSet( PROPERTYNAME_RECOVERYLIST );
-
-    tIMPL_RecoveryEntry         aItem                   ;
-    OUString                    sNode                   ;
-    Sequence< PropertyValue >   seqPropertyValues( 3 )  ;   // Every node in set has 3 sub-nodes!( url, filter, tempname )
-
-    // Copy list entries to save-list and write it to configuration.
-
-    sal_uInt32 nCount = m_aRecoveryList.size();
-    for( sal_uInt32 nItem=0; nItem<nCount; ++nItem )
-    {
-        aItem = m_aRecoveryList.top();
-        m_aRecoveryList.pop();
-        sNode = PROPERTYNAME_RECOVERYLIST + PATHDELIMITER + FIXR + OUString::valueOf( (sal_Int32)nItem ) + PATHDELIMITER;
-        seqPropertyValues[OFFSET_URL        ].Name  =   sNode + PROPERTYNAME_URL        ;
-        seqPropertyValues[OFFSET_FILTER     ].Name  =   sNode + PROPERTYNAME_FILTER     ;
-        seqPropertyValues[OFFSET_TEMPNAME   ].Name  =   sNode + PROPERTYNAME_TEMPNAME   ;
-        seqPropertyValues[OFFSET_URL        ].Value <<= aItem.sURL                      ;
-        seqPropertyValues[OFFSET_FILTER     ].Value <<= aItem.sFilter                   ;
-        seqPropertyValues[OFFSET_TEMPNAME   ].Value <<= aItem.sTempName                 ;
-
-        SetSetProperties( PROPERTYNAME_RECOVERYLIST, seqPropertyValues );
-    }
-
-    tIMPL_RecoveryStack::iterator iRecovery = m_aRecoveryList.begin();
-    for ( sal_uInt32 nItem=0; iRecovery != m_aRecoveryList.end(); ++nItem, ++iRecovery)
-    {
-        aItem = *iRecovery;
-        sNode = PROPERTYNAME_RECOVERYLIST + PATHDELIMITER + FIXR +
-            OUString::valueOf( (sal_Int32)nItem ) + PATHDELIMITER;
-        seqPropertyValues[OFFSET_URL        ].Name  =   sNode + PROPERTYNAME_URL        ;
-        seqPropertyValues[OFFSET_FILTER     ].Name  =   sNode + PROPERTYNAME_FILTER     ;
-        seqPropertyValues[OFFSET_TEMPNAME   ].Name  =   sNode + PROPERTYNAME_TEMPNAME   ;
-        seqPropertyValues[OFFSET_URL        ].Value <<= iRecovery->sURL                 ;
-        seqPropertyValues[OFFSET_FILTER     ].Value <<= iRecovery->sFilter              ;
-        seqPropertyValues[OFFSET_TEMPNAME   ].Value <<= iRecovery->sTempName            ;
-        SetSetProperties( PROPERTYNAME_RECOVERYLIST, seqPropertyValues );
-    }
-
-    */
 }
 
 //*****************************************************************************************************************
@@ -417,14 +286,6 @@ void SvtInternalOptions_Impl::Commit()
 //*****************************************************************************************************************
 Sequence< OUString > SvtInternalOptions_Impl::impl_GetPropertyNames()
 {
-    /*
-    // First get ALL names of current existing list items in configuration!
-    Sequence< OUString > seqRecoveryItems = GetNodeNames( PROPERTYNAME_RECOVERYLIST );
-    // Get information about list counts ...
-    sal_Int32 nRecoveryCount = seqRecoveryItems.getLength();
-    // ... and create a property list with right size! (+2...for fix properties!) (*3 ... = sub nodes for every set node!)
-    Sequence< OUString > seqProperties( FIXPROPERTYCOUNT + (nRecoveryCount*3) );
-    */
     Sequence< OUString > seqProperties(4);
 
     // Add names of fix properties to list.
@@ -432,26 +293,7 @@ Sequence< OUString > SvtInternalOptions_Impl::impl_GetPropertyNames()
     seqProperties[FIXPROPERTYHANDLE_SENDCRASHMAIL   ]   =   FIXPROPERTYNAME_SENDCRASHMAIL   ;
     seqProperties[FIXPROPERTYHANDLE_USEMAILUI       ]   =   FIXPROPERTYNAME_USEMAILUI       ;
     seqProperties[FIXPROPERTYHANDLE_CURRENTTEMPURL  ]   =   FIXPROPERTYNAME_CURRENTTEMPURL  ;
-//    seqProperties[FIXPROPERTYHANDLE_REMOVEMENUENTRYCLOSE        ]   =   FIXPROPERTYNAME_REMOVEMENUENTRYCLOSE;
-//    seqProperties[FIXPROPERTYHANDLE_REMOVEMENUENTRYBACKTOWEBTOP ]   =   FIXPROPERTYNAME_REMOVEMENUENTRYBACKTOWEBTOP;
-//    seqProperties[FIXPROPERTYHANDLE_REMOVEMENUENTRYNEWWEBTOP    ]   =   FIXPROPERTYNAME_REMOVEMENUENTRYNEWWEBTOP;
-//    seqProperties[FIXPROPERTYHANDLE_REMOVEMENUENTRYLOGOUT       ]   =   FIXPROPERTYNAME_REMOVEMENUENTRYLOGOUT;
-/*
-    sal_uInt32 nPosition = FIXPROPERTYCOUNT;
-    // Add names for recovery list to list.
-    // 3 subkeys for every item!
-    // nPosition is the start point of an list item, nItem an index into right list of node names!
-    for( sal_Int32 nItem=0; nItem<nRecoveryCount; ++nItem )
-    {
-        seqProperties[nPosition] = PROPERTYNAME_RECOVERYLIST + PATHDELIMITER + seqRecoveryItems[nItem] + PATHDELIMITER + PROPERTYNAME_URL       ;
-        ++nPosition;
-        seqProperties[nPosition] = PROPERTYNAME_RECOVERYLIST + PATHDELIMITER + seqRecoveryItems[nItem] + PATHDELIMITER + PROPERTYNAME_FILTER    ;
-        ++nPosition;
-        seqProperties[nPosition] = PROPERTYNAME_RECOVERYLIST + PATHDELIMITER + seqRecoveryItems[nItem] + PATHDELIMITER + PROPERTYNAME_TEMPNAME  ;
-        ++nPosition;
-    }
-*/
-    // Return result.
+
     return seqProperties;
 }
 
@@ -525,3 +367,5 @@ Mutex& SvtInternalOptions::GetOwnStaticMutex()
     return *pMutex;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

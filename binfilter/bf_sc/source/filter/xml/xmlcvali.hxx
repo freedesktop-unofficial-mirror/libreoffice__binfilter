@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,25 +28,13 @@
 #ifndef SC_XMLCVALI_HXX
 #define SC_XMLCVALI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONALERTSTYLE_HPP_
 #include <com/sun/star/sheet/ValidationAlertStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONTYPE_HPP_
 #include <com/sun/star/sheet/ValidationType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HPP_
 #include <com/sun/star/sheet/ConditionOperator.hpp>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;
@@ -74,3 +63,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

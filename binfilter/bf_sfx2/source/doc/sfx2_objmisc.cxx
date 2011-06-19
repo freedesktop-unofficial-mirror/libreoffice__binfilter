@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,29 +26,19 @@
  *
  ************************************************************************/
 
-#ifndef _INETMSG_HXX //autogen
-#include <bf_svtools/inetmsg.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
+#include <tools/inetmsg.hxx>
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 #include <bf_so3/inetbnd.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <bf_sfx2/app.hxx>
 
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_MACROEXECMODE_HPP_
 #include <com/sun/star/document/MacroExecMode.hpp>
-#endif
 
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/uno/Any.h>
@@ -58,12 +49,8 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::ucb;
 using namespace ::com::sun::star::document;
 
-#ifndef _SB_BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
-#ifndef _SBXCLASS_HXX //autogen
 #include "bf_basic/sbx.hxx"
-#endif
 
 #include <unotools/ucbhelper.hxx>
 #include <bf_svtools/inettype.hxx>
@@ -90,7 +77,8 @@ namespace binfilter {
 /*N*/
 /*N*/ public:
 /*N*/   SfxHeaderAttributes_Impl( SfxObjectShell* pSh ) :
-/*N*/       pDoc( pSh ), SvKeyValueIterator(),
+/*N*/       SvKeyValueIterator(),
+/*N*/       pDoc( pSh ),
 /*N*/       xIter( pSh->GetMedium()->GetHeaderAttributes_Impl() ),
 /*N*/       bAlert( sal_False ) {}
 /*N*/
@@ -105,7 +93,7 @@ namespace binfilter {
 
 //=========================================================================
 
-/*N*/ sal_uInt16 __READONLY_DATA aTitleMap_Impl[3][2] =
+/*N*/ sal_uInt16 const aTitleMap_Impl[3][2] =
 /*N*/ {
 /*N*/                               //  local               remote
 /*N*/   /*  SFX_TITLE_CAPTION   */  {   SFX_TITLE_FILENAME, SFX_TITLE_TITLE },
@@ -509,13 +497,10 @@ namespace binfilter {
 /*N*/   // lokale Datei?
 /*N*/   if ( aURL.GetProtocol() == INET_PROT_FILE )
 /*N*/   {
-/*N*/         String aName( aURL.HasMark() ? INetURLObject( aURL.GetURLNoMark() ).PathToFileName() : aURL.PathToFileName() );
+/*N*/         String aLclName( aURL.HasMark() ? INetURLObject( aURL.GetURLNoMark() ).PathToFileName() : aURL.PathToFileName() );
 /*N*/
-/*N*/ //        if ( nMaxLength > SFX_TITLE_MAXLEN )
-/*N*/ //            return X( DirEntry( aName ).GetFull( FSYS_STYLE_HOST, sal_False, nMaxLength ) );
-/*N*/ //        else
 /*N*/       if ( nMaxLength == SFX_TITLE_FULLNAME )
-/*N*/           return X( aName );
+/*N*/           return X( aLclName );
 /*N*/
 /*N*/       if ( !pImp->aTitle.Len() )
 /*N*/       {
@@ -545,11 +530,11 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else if ( nMaxLength == SFX_TITLE_FILENAME )
 /*N*/       {
-/*N*/           String aName( aURL.GetLastName() );
-/*N*/           aName = INetURLObject::decode( aName, INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET );
-/*N*/           if( !aName.Len() )
-/*N*/               aName = aURL.GetURLNoPass();
-/*N*/           return X(aName);
+/*N*/           String aLclName( aURL.GetLastName() );
+/*N*/           aLclName = INetURLObject::decode( aLclName, INET_HEX_ESCAPE, INetURLObject::DECODE_WITH_CHARSET );
+/*N*/           if( !aLclName.Len() )
+/*N*/               aLclName = aURL.GetURLNoPass();
+/*N*/           return X(aLclName);
 /*N*/       }
 /*N*/       else if ( nMaxLength == SFX_TITLE_FULLNAME )
 /*N*/           return X(aURL.GetMainURL( INetURLObject::DECODE_TO_IURI ));
@@ -689,7 +674,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       ((SfxHeaderAttributes_Impl*)GetHeaderAttributes())->SetAttributes();
 /*N*/       pImp->bImportDone = sal_True;
-/*N*/       const SfxFilter* pFilter = GetMedium()->GetFilter();
+/*N*/       /*const SfxFilter* pFilter =*/ GetMedium()->GetFilter();
         // Salvage
 /*N*/       SFX_ITEMSET_ARG( pMedium->GetItemSet(), pSalvageItem,
 /*N*/                        SfxStringItem, SID_DOC_SALVAGE, sal_False );
@@ -804,7 +789,7 @@ namespace binfilter {
 /*N*/ }
 
 } //namespace binfilter
-namespace binfilter {//STRIP009
+namespace binfilter {
 //-------------------------------------------------------------------------
 
 /*N*/ void SfxObjectShell::SetBaseURL( const String& rURL )
@@ -873,12 +858,12 @@ namespace binfilter {//STRIP009
 /*?*/   {
 /*?*/       DateTime aDateTime;
 /*?*/       if( INetRFC822Message::ParseDateField( rKV.GetValue(), aDateTime ) )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       else
 /*?*/       {
-/*?*/ //            DBG_ERROR( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDoc->GetMedium()->SetExpired_Impl( Date( 1, 1, 1970 ) );
+/*?*/ //            OSL_FAIL( "Schlechtes ::com::sun::star::util::DateTime fuer Expired" );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/   }
 /*?*/   else if( rKV.GetKey().CompareIgnoreCaseToAscii( "content-type" ) == COMPARE_EQUAL )
@@ -891,7 +876,7 @@ namespace binfilter {//STRIP009
 /*?*/       {
 /*?*/           const INetContentTypeParameter * pCharset = aParameters.find("charset");
 /*?*/           if (pCharset != 0)
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 pDoc->GetMedium()->SetCharset( pCharset->m_sValue );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*?*/   }
 /*?*/ }
@@ -938,32 +923,34 @@ namespace binfilter {//STRIP009
 /*N*/   return bPreview;
 /*N*/ }
 
-/*N*/ void SfxObjectShell::SetWaitCursor( BOOL bSet ) const
+/*N*/ void SfxObjectShell::SetWaitCursor( BOOL /*bSet*/ ) const
 /*N*/ {
 /*N*/ }
 
 /*N*/ String SfxObjectShell::GetAPIName() const
 /*N*/ {
 /*N*/   INetURLObject aURL( GetMedium()->GetName() );
-/*N*/     String aName( aURL.GetBase() );
-/*N*/     if( !aName.Len() )
-/*N*/         aName = aURL.GetURLNoPass();
-/*N*/     if ( !aName.Len() )
-/*N*/         aName = GetTitle( SFX_TITLE_DETECT );
-/*N*/     return aName;
+/*N*/     String aLclName( aURL.GetBase() );
+/*N*/     if( !aLclName.Len() )
+/*N*/         aLclName = aURL.GetURLNoPass();
+/*N*/     if ( !aLclName.Len() )
+/*N*/         aLclName = GetTitle( SFX_TITLE_DETECT );
+/*N*/     return aLclName;
 /*N*/ }
 
-/*N*/ void SfxObjectShell::Invalidate( USHORT nId )
+/*N*/ void SfxObjectShell::Invalidate( USHORT /*nId*/ )
 /*N*/ {
 /*N*/ }
 
 // nMacroMode == -1 : uninitialized
 // other values as in /com/sun/star/document/MacroExecMode.hxx
 
-void SfxObjectShell::AdjustMacroMode( const String& rScriptType )
+void SfxObjectShell::AdjustMacroMode( const String& /*rScriptType*/ )
 {
     // no macro execution at all in binfilter
     pImp->nMacroMode = MacroExecMode::NEVER_EXECUTE;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

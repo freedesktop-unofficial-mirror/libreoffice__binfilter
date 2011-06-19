@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,19 +28,13 @@
 #ifndef _SWSYNCBTN_HXX
 #define _SWSYNCBTN_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
 #ifdef _SYNCDLG
 
-#ifndef _BASEDLGS_HXX //autogen
 #include <bf_sfx2/basedlgs.hxx>
-#endif
 
-#ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 namespace binfilter {
 
 class SwWrtShell;
@@ -54,7 +49,7 @@ class SwWrtShell;
 /*------------------------------------------------------------------------
     Beschreibung:
 ------------------------------------------------------------------------*/
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwSyncChildWin : public SfxChildWindow
 {
 public:
@@ -70,3 +65,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

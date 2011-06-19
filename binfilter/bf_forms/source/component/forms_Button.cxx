@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,37 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-
-#ifndef _FRM_BUTTON_HXX_
 #include "Button.hxx"
-#endif
-
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _COMPHELPER_STREAMSECTION_HXX_
 #include <comphelper/streamsection.hxx>
-#endif
-
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
 #include "bf_so3/staticbaseurl.hxx"
+
 namespace binfilter {
 
 //.........................................................................
@@ -65,7 +45,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -237,7 +216,7 @@ void OButtonModel::read(const Reference<XObjectInputStream>& _rxInStream) throw 
         break;
 
         default:
-            DBG_ERROR("OButtonModel::read : unknown version !");
+            OSL_FAIL("OButtonModel::read : unknown version !");
             m_eButtonType = FormButtonType_PUSH;
             m_sTargetURL = ::rtl::OUString();
             m_sTargetFrame = ::rtl::OUString();
@@ -287,7 +266,7 @@ OButtonControl::OButtonControl(const Reference<XMultiServiceFactory>& _rxFactory
             xButton->addActionListener(this);
     }
     // Refcount bei 1 fuer Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -314,7 +293,7 @@ Any SAL_CALL OButtonControl::queryAggregation(const Type& _rType) throw (Runtime
 
 // ActionListener
 //------------------------------------------------------------------------------
-void OButtonControl::actionPerformed(const ActionEvent& rEvent) throw ( ::com::sun::star::uno::RuntimeException)
+void OButtonControl::actionPerformed(const ActionEvent& /*rEvent*/) throw ( ::com::sun::star::uno::RuntimeException)
 {
     // Asynchron fuer starutil::URL-Button
     sal_uInt32 n = Application::PostUserEvent( LINK(this, OButtonControl,OnClick) );
@@ -363,7 +342,6 @@ IMPL_LINK( OButtonControl, OnClick, void*, EMPTYARG )
                 // catch exceptions
                 // and catch them on a per-listener basis - if one listener fails, the others still need
                 // to get notified
-                // 97676 - 21.02.2002 - fs@openoffice.org
                 try
                 {
                     static_cast< XActionListener* >( aIter.next() )->actionPerformed(aEvt);
@@ -376,7 +354,7 @@ IMPL_LINK( OButtonControl, OnClick, void*, EMPTYARG )
 #endif
                 catch( const Exception& )
                 {
-                    DBG_ERROR( "OButtonControl::OnClick: caught a exception other than RuntimeException!" );
+                    OSL_FAIL( "OButtonControl::OnClick: caught a exception other than RuntimeException!" );
                 }
             }
         }
@@ -427,3 +405,5 @@ void SAL_CALL OButtonControl::removeActionListener(const Reference<XActionListen
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

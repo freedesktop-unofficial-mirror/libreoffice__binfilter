@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 
@@ -51,7 +50,7 @@ enum CrawlStatus
     CSTAT_ERR_NOTEXISTS     = 6,        /* Server existiert nicht                       */
     CSTAT_ERR_NOTREACHED    = 7,        /* Server nicht ereicht                         */
     CSTAT_UPD_IMMEDIATELY   = 8,        /* es wird gleich ueberprueftt                  */
-    CSTAT_ERR_OFFLINE       = 9         /* Ueberpruefung nicht m�glich, da Offline        */
+    CSTAT_ERR_OFFLINE       = 9         /* Ueberpruefung nicht m?glich, da Offline      */
 };
 
 DBG_NAMEEX(SfxCrawlStatusItem)
@@ -73,7 +72,7 @@ public:
     using SfxPoolItem::Compare;
     virtual int             Compare( const SfxPoolItem &rWith )         const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT nItemVersion )    const;
-    virtual SvStream&       Store( SvStream&, USHORT nItemVersion )     const;
+    virtual SvStream& Store( SvStream& rStream, USHORT ) const { return rStream; }
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 )             const;
 
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
@@ -86,9 +85,9 @@ public:
     CrawlStatus             GetStatus() const { return eStatus; }
     void                    SetStatus(CrawlStatus eNew) { eStatus = eNew; }
 
-    virtual BOOL PutValue  ( const ::com::sun::star::uno::Any& rVal,
+    virtual bool PutValue  ( const ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 );
-    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 ) const;
 };
 
@@ -96,3 +95,4 @@ public:
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

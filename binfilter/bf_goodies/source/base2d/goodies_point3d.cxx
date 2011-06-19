@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _B2D_POINT3D_HXX
 #include "point3d.hxx"
-#endif
 
 /*************************************************************************
 |*
@@ -54,8 +53,8 @@ Point3D& Point3D::operator+= (const Point3D& rPnt)
         }
         else
         {
-            V[0] = V[0] + rPnt[0] * V[3];
-            V[1] = V[1] + rPnt[1] * V[3];
+            V[0] = V[0] + rPnt[0] * V[2];
+            V[1] = V[1] + rPnt[1] * V[2];
         }
     }
     else
@@ -93,8 +92,8 @@ Point3D& Point3D::operator-= (const Point3D& rPnt)
         }
         else
         {
-            V[0] = V[0] - rPnt[0] * V[3];
-            V[1] = V[1] - rPnt[1] * V[3];
+            V[0] = V[0] - rPnt[0] * V[2];
+            V[1] = V[1] - rPnt[1] * V[2];
         }
     }
     else
@@ -443,3 +442,5 @@ SvStream& operator<<(SvStream& rOStream, const Point3D& rPoint3D)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

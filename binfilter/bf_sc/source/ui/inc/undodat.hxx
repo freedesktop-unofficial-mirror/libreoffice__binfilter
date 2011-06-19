@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,15 @@
 #ifndef SC_UNDODAT_HXX
 #define SC_UNDODAT_HXX
 
-#ifndef SC_UNDOBASE_HXX
 #include "undobase.hxx"
-#endif
 
-#ifndef SC_RANGEUTL_HXX
 #include "rangeutl.hxx"     // ScArea
-#endif
 
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"     // ScRangeListRef
-#endif
 
-#ifndef SC_MARKDATA_HXX
 #include "markdata.hxx"
-#endif
 
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"
-#endif
 namespace binfilter {
 
 
@@ -138,3 +129,4 @@ private:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,42 +29,20 @@
 #ifndef _UNOMAILMERGE_HXX_
 #define _UNOMAILMERGE_HXX_
 
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // WeakImplHelper4
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>    // OMultiTypeInterfaceContainerHelperVar
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>  // !! needed for OMultiTypeInterfaceContainerHelperVar !!
-#endif
 
 
-#ifndef _COM_SUN_STAR_TASK_XJOB_HPP_
 #include <com/sun/star/task/XJob.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
 #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XMAILMERGEBROADCASTER_HPP_
 #include <com/sun/star/text/XMailMergeBroadcaster.hpp>
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX
 #include <bf_sfx2/objsh.hxx>   // SfxObjectShellRef
-#endif
 namespace com { namespace sun { namespace star { namespace sdbc {
     class XResultSet;
     class XConnection;
@@ -87,27 +66,6 @@ namespace rtl {
 }
 namespace binfilter {
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace sdbc {
-//STRIP008     class XResultSet;
-//STRIP008     class XConnection;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace frame {
-//STRIP008     class XModel;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
-//STRIP008     class XMultiServiceFactory;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace text {
-//STRIP008     class XMailMergeListener;
-//STRIP008     struct MailMergeEvent;
-//STRIP008 }}}}
-//STRIP008
-//STRIP008 namespace rtl {
-//STRIP008     class OUString;
-//STRIP008 }
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -221,3 +179,4 @@ extern ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > SAL
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

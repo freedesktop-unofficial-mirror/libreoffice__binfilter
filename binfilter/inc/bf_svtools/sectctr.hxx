@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_SV_H
 #include <vcl/sv.h>
-#endif
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
 
 class ScrollBar;
 class ScrollBarBox;
@@ -159,3 +156,5 @@ public:
 
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

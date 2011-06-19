@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
@@ -43,19 +40,14 @@
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
 #include "unotext.hxx"
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::cppu;
 using namespace ::com::sun::star;
 
@@ -87,13 +79,13 @@ SvxUnoTextContentEnumeration::~SvxUnoTextContentEnumeration() throw()
 sal_Bool SAL_CALL SvxUnoTextContentEnumeration::hasMoreElements(void)
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return nNextParagraph < pEditSource->GetTextForwarder()->GetParagraphCount();
 }
 
 uno::Any SvxUnoTextContentEnumeration::nextElement(void) throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(!hasMoreElements())
         throw container::NoSuchElementException();
@@ -110,20 +102,23 @@ uno::Reference< text::XText > xDummyText;
 uno::Sequence< uno::Type > SvxUnoTextContent::maTypeSequence;
 
 SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextBase& rText, sal_uInt16 nPara ) throw()
-:   SvxUnoTextRangeBase(rText),rParentText(rText),
-    aDisposeListeners(aDisposeContainerMutex),
-    nParagraph(nPara),
-    bDisposing( sal_False )
+    : SvxUnoTextRangeBase(rText)
+    , nParagraph(nPara)
+    , rParentText(rText)
+    , aDisposeListeners(aDisposeContainerMutex)
+    , bDisposing( sal_False )
 {
     xParentText =  const_cast<SvxUnoTextBase*>(&rText);
     SetSelection( ESelection( nParagraph,0, nParagraph, GetEditSource()->GetTextForwarder()->GetTextLen( nParagraph ) ) );
 }
 
 SvxUnoTextContent::SvxUnoTextContent( const SvxUnoTextContent& rContent ) throw()
-:   SvxUnoTextRangeBase(rContent),
-    aDisposeListeners(aDisposeContainerMutex),
-    rParentText(rContent.rParentText),
-    bDisposing( sal_False )
+    : SvxUnoTextRangeBase(rContent)
+    , XTextContent(rContent), XEnumerationAccess(rContent), XTypeProvider(rContent)
+    , cppu::OWeakAggObject()
+    , rParentText(rContent.rParentText)
+    , aDisposeListeners(aDisposeContainerMutex)
+    , bDisposing( sal_False )
 {
     xParentText = rContent.xParentText;
     nParagraph  = rContent.nParagraph;
@@ -215,7 +210,7 @@ uno::Reference< text::XText > SAL_CALL SvxUnoTextContent::getText()
 }
 
 // text::XTextContent
-void SAL_CALL SvxUnoTextContent::attach( const uno::Reference< text::XTextRange >& xTextRange )
+void SAL_CALL SvxUnoTextContent::attach( const uno::Reference< text::XTextRange >& /*xTextRange*/ )
     throw(lang::IllegalArgumentException, uno::RuntimeException)
 {
 }
@@ -230,7 +225,7 @@ uno::Reference< text::XTextRange > SAL_CALL SvxUnoTextContent::getAnchor() throw
 void SAL_CALL SvxUnoTextContent::dispose()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( bDisposing )
         return; // catched a recursion
@@ -262,7 +257,7 @@ void SAL_CALL SvxUnoTextContent::removeEventListener( const uno::Reference< lang
 uno::Reference< container::XEnumeration > SAL_CALL SvxUnoTextContent::createEnumeration(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return new SvxUnoTextRangeEnumeration( rParentText, nParagraph );
 }
@@ -278,7 +273,7 @@ uno::Type SAL_CALL SvxUnoTextContent::getElementType()
 sal_Bool SAL_CALL SvxUnoTextContent::hasElements()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SvxTextForwarder* pForwarder = GetEditSource() ? GetEditSource()->GetTextForwarder() : NULL;
     if( pForwarder )
@@ -391,7 +386,7 @@ SvxUnoTextRangeEnumeration::~SvxUnoTextRangeEnumeration() throw()
 sal_Bool SAL_CALL SvxUnoTextRangeEnumeration::hasMoreElements()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return pPortions ? nNextPortion < pPortions->Count() : 0;
 }
@@ -399,7 +394,7 @@ sal_Bool SAL_CALL SvxUnoTextRangeEnumeration::hasMoreElements()
 uno::Any SAL_CALL SvxUnoTextRangeEnumeration::nextElement()
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( pPortions == NULL || nNextPortion >= pPortions->Count() )
         throw container::NoSuchElementException();
@@ -412,7 +407,7 @@ uno::Any SAL_CALL SvxUnoTextRangeEnumeration::nextElement()
 
     uno::Reference< text::XTextRange > xRange;
 
-    SvxTextForwarder* pForwarder = rParentText.GetEditSource()->GetTextForwarder();
+    /*SvxTextForwarder* pForwarder =*/ rParentText.GetEditSource()->GetTextForwarder();
 
     SvxUnoTextRange* pRange = new SvxUnoTextRange( rParentText, sal_True );
     xRange = pRange;
@@ -436,8 +431,10 @@ SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextBase& rText ) throw()
 }
 
 SvxUnoTextCursor::SvxUnoTextCursor( const SvxUnoTextCursor& rCursor ) throw()
-:   SvxUnoTextRangeBase(rCursor),
-    xParentText(rCursor.xParentText)
+    : SvxUnoTextRangeBase(rCursor)
+    , XTextCursor(rCursor), XTypeProvider(rCursor)
+    , cppu::OWeakAggObject()
+    , xParentText(rCursor.xParentText)
 {
 }
 
@@ -520,49 +517,49 @@ uno::Sequence< sal_Int8 > SAL_CALL SvxUnoTextCursor::getImplementationId()
 void SAL_CALL SvxUnoTextCursor::collapseToStart()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     CollapseToStart();
 }
 
 void SAL_CALL SvxUnoTextCursor::collapseToEnd()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     CollapseToEnd();
 }
 
 sal_Bool SAL_CALL SvxUnoTextCursor::isCollapsed()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return IsCollapsed();
 }
 
 sal_Bool SAL_CALL SvxUnoTextCursor::goLeft( sal_Int16 nCount, sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return GoLeft( nCount, bExpand );
 }
 
 sal_Bool SAL_CALL SvxUnoTextCursor::goRight( sal_Int16 nCount, sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return GoRight( nCount, bExpand );
 }
 
 void SAL_CALL SvxUnoTextCursor::gotoStart( sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     GotoStart( bExpand );
 }
 
 void SAL_CALL SvxUnoTextCursor::gotoEnd( sal_Bool bExpand )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     GotoEnd( bExpand );
 }
 
@@ -639,3 +636,5 @@ uno::Sequence< OUString > SAL_CALL SvxUnoTextCursor::getSupportedServiceNames() 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

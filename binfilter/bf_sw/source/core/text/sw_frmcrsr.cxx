@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"          // SwPosition
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "pagefrm.hxx"
 
@@ -83,7 +80,7 @@ namespace binfilter {
 /*N*/         if( nOffset < pFrmAtPos->GetOfst() &&
 /*N*/             !pFrmAtPos->IsFollow() )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             xub_StrLen nNew = nOffset;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/     }
 /*N*/   while( pFrm != pFrmAtPos )
@@ -101,7 +98,7 @@ namespace binfilter {
 /*?*/           pFrmAtPos->GetFormatted();
 /*?*/           pFrmAtPos = pFrmAtPos->FindMaster();
 /*N*/       }
-/*N*/       ASSERT( pFrmAtPos, "+GetCharRect: no frame with my rightmargin" );
+/*N*/       OSL_ENSURE( pFrmAtPos, "+GetCharRect: no frame with my rightmargin" );
 /*N*/   }
 /*N*/   return pFrmAtPos ? pFrmAtPos : pFrm;
 /*N*/ }
@@ -153,7 +150,7 @@ namespace binfilter {
 /*N*/ sal_Bool SwTxtFrm::GetCharRect( SwRect& rOrig, const SwPosition &rPos,
 /*N*/                           SwCrsrMoveState *pCMS ) const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::GetCharRect with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::GetCharRect with swapped frame" );
 /*N*/
 /*N*/     if( IsLocked() || IsHiddenNow() )
 /*N*/       return sal_False;
@@ -226,7 +223,7 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/         if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             pFrm->SwitchLTRtoRTL( rOrig );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/
 /*N*/         bRet = sal_True;
@@ -238,7 +235,7 @@ namespace binfilter {
 /*N*/
 /*N*/         SwFrmSwapper aSwapper( pFrm, sal_True );
 /*N*/         if ( bVert )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             nMaxY = pFrm->SwitchVerticalToHorizontal( nMaxY );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/         sal_Bool bGoOn = sal_True;
 /*N*/       xub_StrLen nOffset = rPos.nContent.GetIndex();
@@ -258,17 +255,17 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/             if ( pFrm->IsRightToLeft() )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchLTRtoRTL( rOrig );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchHorizontalToVertical( rOrig );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/             if( pFrm->IsUndersized() && pCMS && !pFrm->GetNext() &&
 /*N*/                 (rOrig.*fnRect->fnGetBottom)() == nUpperMaxY &&
 /*N*/                 pFrm->GetOfst() < nOffset &&
 /*N*/                 !pFrm->IsFollow() && !bNoScroll &&
 /*N*/                 pFrm->GetTxtNode()->GetTxt().Len() != nNextOfst )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               bGoOn = lcl_ChangeOffset( pFrm, nNextOfst );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           else
 /*N*/               bGoOn = sal_False;
 /*N*/       } while ( bGoOn );
@@ -278,7 +275,7 @@ namespace binfilter {
 /*N*/ #ifdef BIDI
 /*N*/             if ( pFrm->IsRightToLeft() )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                  if( pCMS->b2Lines && pCMS->p2Lines)
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/ #endif
 /*N*/
@@ -297,7 +294,7 @@ namespace binfilter {
 /*?*/                 }
 /*?*/                 if( pCMS->b2Lines && pCMS->p2Lines)
 /*?*/                 {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pFrm->SwitchHorizontalToVertical( pCMS->p2Lines->aLine );
+                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*N*/             }
 /*N*/
@@ -306,7 +303,7 @@ namespace binfilter {
 /*N*/     if( bRet )
 /*N*/     {
 /*N*/         SwPageFrm *pPage = pFrm->FindPageFrm();
-/*N*/         ASSERT( pPage, "Text esaped from page?" );
+/*N*/         OSL_ENSURE( pPage, "Text esaped from page?" );
 /*N*/         const SwTwips nOrigTop = (rOrig.*fnRect->fnGetTop)();
 /*N*/         const SwTwips nPageTop = (pPage->Frm().*fnRect->fnGetTop)();
 /*N*/         const SwTwips nPageBott = (pPage->Frm().*fnRect->fnGetBottom)();
@@ -379,7 +376,7 @@ namespace binfilter {
 /*N*/       return sal_True;
 /*N*/   }
 /*N*/   else
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
          return FALSE;
 /*N*/   }
 /*N*/ }
@@ -433,12 +430,12 @@ struct SwFillData
 /*N*/     Point aOldPoint( rPoint );
 /*N*/
 /*N*/     if ( IsVertical() )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/     if ( IsRightToLeft() )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SwitchRTLtoLTR( (Point&)rPoint );
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/
 /*N*/     SwFillData *pFillData = ( pCMS && pCMS->pFill ) ?
@@ -520,21 +517,12 @@ struct SwFillData
 /*N*/           }
 /*N*/       }
 /*N*/   }
-/*N*/     sal_Bool bChgFillData = sal_False;
 /*N*/     if( pFillData && FindPageFrm()->Frm().IsInside( aOldPoint ) )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/     if ( IsVertical() )
-/*N*/     {
-/*N*/         if ( bChgFillData )
-/*N*/             SwitchHorizontalToVertical( pFillData->Fill().aCrsr.Pos() );
 /*N*/         ((SwTxtFrm*)this)->SwapWidthAndHeight();
-/*N*/     }
-/*N*/
-/*N*/     if ( IsRightToLeft() && bChgFillData )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/     }
 /*N*/
 /*N*/     (Point&)rPoint = aOldPoint;
 /*N*/     delete pFillData;
@@ -633,3 +621,5 @@ public:
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

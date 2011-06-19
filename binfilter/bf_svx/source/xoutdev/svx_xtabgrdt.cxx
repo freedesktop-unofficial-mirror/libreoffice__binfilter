@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #ifndef SVX_LIGHT
 
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
 
@@ -51,19 +48,16 @@
 #include "xpool.hxx"
 #include "xoutx.hxx"
 
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <xfillit0.hxx>
-#endif
 
-#ifndef _SVX_XFLGRIT_HXX //autogen
 #include <xflgrit.hxx>
-#endif
 namespace binfilter {
 
 #define GLOBALOVERFLOW
 
 using namespace ::com::sun::star;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 sal_Unicode const pszExtGradient[]  = {'s','o','g'};
 
@@ -111,13 +105,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XGradientTable::Save()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XGradientTable::Create()
 /*N*/ {
 /*N*/   return( FALSE );
@@ -132,7 +119,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XGradientTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XGradientTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -256,31 +243,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XGradientList::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckGradient0, 4 );
-    pStream->WriteByteString(String( pszChckGradient0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XGradientList::Create()
 /*N*/ {
 /*N*/   XubString aStr( SVX_RES( RID_SVXSTR_GRADIENT ) );
@@ -343,7 +305,6 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   pXFSet->GetItemSet().Put(
 /*N*/       XFillGradientItem( pXPool, Get( nIndex )->GetGradient() ) );
-/*N*/ //-/  pXOut->SetFillAttr( *pXFSet );
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/
 /*N*/   // #73550#
@@ -395,7 +356,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   XGradientEntry* pEntry = NULL;
 /*N*/   long        nCheck;
 /*N*/   long        nCount;
-/*N*/   XubString       aName;
+/*N*/   XubString       aLclName;
 /*N*/
 /*N*/   long    nStyle;
 /*N*/   USHORT  nRed;
@@ -419,10 +380,10 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/       for (long nIndex = 0; nIndex < nCount; nIndex++)
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -448,7 +409,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           XGradient aGradient( aStart, aEnd, (XGradientStyle)nStyle, nAngle,
 /*N*/                                (USHORT) nXOfs, (USHORT) nYOfs, (USHORT) nBorder,
 /*N*/                                (USHORT) nStartIntens, (USHORT) nEndIntens );
-/*N*/           pEntry = new XGradientEntry (aGradient, aName);
+/*N*/           pEntry = new XGradientEntry (aGradient, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -457,10 +418,10 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       rIn >> nCount;
 /*N*/       for (long nIndex = 0; nIndex < nCount; nIndex++)
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -486,7 +447,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           XGradient aGradient( aStart, aEnd, (XGradientStyle)nStyle, nAngle,
 /*N*/                                (USHORT) nXOfs, (USHORT) nYOfs, (USHORT) nBorder,
 /*N*/                                (USHORT) nStartIntens, (USHORT) nEndIntens );
-/*N*/           pEntry = new XGradientEntry (aGradient, aName);
+/*N*/           pEntry = new XGradientEntry (aGradient, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -498,10 +459,10 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -532,7 +493,7 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           XGradient aGradient( aStart, aEnd, (XGradientStyle)nStyle, nAngle,
 /*N*/                                (USHORT) nXOfs, (USHORT) nYOfs, (USHORT) nBorder,
 /*N*/                                (USHORT) nStartIntens, (USHORT) nEndIntens );
-/*N*/           pEntry = new XGradientEntry (aGradient, aName);
+/*N*/           pEntry = new XGradientEntry (aGradient, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -541,3 +502,5 @@ char const aChckXML[]       = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

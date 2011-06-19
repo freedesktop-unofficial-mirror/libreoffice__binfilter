@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,19 +32,13 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
 
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -59,16 +54,16 @@ using namespace ::rtl;
 
 /*N*/ SwFieldType* SwMacroFieldType::Copy() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwMacroFieldType* pType = new SwMacroFieldType(pDoc);
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Das Macrofeld selbst
  --------------------------------------------------------------------*/
 
-/*N*/ SwMacroField::SwMacroField(SwMacroFieldType* pType,
+/*N*/ SwMacroField::SwMacroField(SwMacroFieldType* pType3,
 /*N*/                          const String& rLibAndName, const String& rTxt) :
-/*N*/   SwField(pType), aMacro(rLibAndName), aText(rTxt)
+/*N*/   SwField(pType3), aMacro(rLibAndName), aText(rTxt)
 /*N*/ {
 /*N*/ }
 
@@ -154,9 +149,7 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/   return aText;
 /*N*/ }
 
-/*-----------------05.03.98 13:38-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwMacroField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -172,13 +165,11 @@ void SwMacroField::SetPar2(const String& rStr)
 /*N*/       rAny <<= OUString(GetLibName());
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------05.03.98 13:38-------------------
 
---------------------------------------------------*/
 BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     String sTmp;
@@ -195,7 +186,7 @@ BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
         CreateMacroString(aMacro, GetMacroName(), ::binfilter::GetString(rAny, sTmp) );
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return TRUE;
 }
@@ -214,3 +205,5 @@ BOOL SwMacroField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

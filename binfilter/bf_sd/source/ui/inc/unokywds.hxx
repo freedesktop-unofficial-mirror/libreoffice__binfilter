@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,9 @@
 namespace binfilter {
 
 #ifndef SD_DEFINE_KEYWORDS
-#define SD_CONSTASCII_ACTION( n, s ) extern sal_Char __FAR_DATA n[sizeof(s)]
+#define SD_CONSTASCII_ACTION( n, s ) extern sal_Char n[sizeof(s)]
 #else
-#define SD_CONSTASCII_ACTION( n, s ) sal_Char __FAR_DATA n[sizeof(s)] = s
+#define SD_CONSTASCII_ACTION( n, s ) sal_Char n[sizeof(s)] = s
 #endif
 
 #define UNO_PREFIX "com.sun.star."
@@ -214,3 +215,4 @@ SD_CONSTASCII_ACTION( sUNO_View_ZoomOnPage,                     "ZoomOnPage" );
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

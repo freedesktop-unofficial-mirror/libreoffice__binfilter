@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 typedef long (*CFuncPtr)(void*);
 
@@ -44,8 +43,10 @@ public:
     GenLink(): pFunc(0) {}
     GenLink( CFuncPtr pCFunc ): pFunc(pCFunc) {}
     GenLink( const Link& rLink ): aLink(rLink), pFunc(0) {}
-    GenLink( const GenLink& rOrig ):
-        pFunc(rOrig.pFunc), aLink(rOrig.aLink) {}
+    GenLink( const GenLink& rOrig )
+        : aLink(rOrig.aLink)
+        , pFunc(rOrig.pFunc)
+        {}
 
     GenLink& operator = ( const GenLink& rOrig )
         { pFunc = rOrig.pFunc; aLink = rOrig.aLink; return *this; }
@@ -59,3 +60,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

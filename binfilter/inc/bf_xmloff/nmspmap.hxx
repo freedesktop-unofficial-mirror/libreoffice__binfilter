@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,12 @@
 
 #include <limits.h>
 
-#ifndef __SGI_STL_HASH_MAP
-#include <hash_map>
-#endif
+#include <boost/unordered_map.hpp>
 #ifndef __SGI_STL_MAP
 #include <map>
 #endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAK_HXX_
+#include <rtl/ref.hxx>
 #include <cppuhelper/weak.hxx>
-#endif
 namespace binfilter {
 
 const sal_uInt16 XML_NAMESPACE_XMLNS  = (USHRT_MAX-2);
@@ -95,9 +90,9 @@ struct QNamePairEq
     }
 };
 
-typedef ::std::hash_map < QNamePair, ::rtl::OUString, QNamePairHash, QNamePairEq > QNameCache;
-typedef ::std::hash_map < ::rtl::OUString, ::vos::ORef <NameSpaceEntry >, ::rtl::OUStringHash, OUStringEqFunc > NameSpaceHash;
-typedef ::std::map < sal_uInt16, ::vos::ORef < NameSpaceEntry >, uInt32lt > NameSpaceMap;
+typedef ::boost::unordered_map < QNamePair, ::rtl::OUString, QNamePairHash, QNamePairEq > QNameCache;
+typedef ::boost::unordered_map < ::rtl::OUString, ::rtl::Reference <NameSpaceEntry >, ::rtl::OUStringHash, OUStringEqFunc > NameSpaceHash;
+typedef ::std::map < sal_uInt16, ::rtl::Reference < NameSpaceEntry >, uInt32lt > NameSpaceMap;
 
 class SvXMLNamespaceMap
 {
@@ -163,3 +158,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_NMSPMAP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

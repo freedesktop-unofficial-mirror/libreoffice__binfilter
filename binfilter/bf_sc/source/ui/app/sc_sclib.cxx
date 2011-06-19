@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -42,6 +43,7 @@
 #include <bf_sfx2/app.hxx>
 #include <unotools/configitem.hxx>
 #include <comphelper/types.hxx>
+#include <sal/macros.h>
 
 #include <sot/formats.hxx>
 #define SOT_FORMATSTR_ID_STARCALC_30 SOT_FORMATSTR_ID_STARCALC
@@ -59,30 +61,30 @@ namespace binfilter {
 
 //  Filter-Namen (wie in docsh.cxx)
 
-static const sal_Char __FAR_DATA pFilterSc50[]      = "StarCalc 5.0";
-static const sal_Char __FAR_DATA pFilterSc50Temp[]  = "StarCalc 5.0 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterSc40[]      = "StarCalc 4.0";
-static const sal_Char __FAR_DATA pFilterSc40Temp[]  = "StarCalc 4.0 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterSc30[]      = "StarCalc 3.0";
-static const sal_Char __FAR_DATA pFilterSc30Temp[]  = "StarCalc 3.0 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterSc10[]      = "StarCalc 1.0";
-static const sal_Char __FAR_DATA pFilterXML[]       = "StarOffice XML (Calc)";
-static const sal_Char __FAR_DATA pFilterAscii[]     = "Text - txt - csv (StarCalc)";
-static const sal_Char __FAR_DATA pFilterLotus[]     = "Lotus";
-static const sal_Char __FAR_DATA pFilterExcel4[]    = "MS Excel 4.0";
-static const sal_Char __FAR_DATA pFilterEx4Temp[]   = "MS Excel 4.0 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterExcel5[]    = "MS Excel 5.0/95";
-static const sal_Char __FAR_DATA pFilterEx5Temp[]   = "MS Excel 5.0/95 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterExcel95[]   = "MS Excel 95";
-static const sal_Char __FAR_DATA pFilterEx95Temp[]  = "MS Excel 95 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterExcel97[]   = "MS Excel 97";
-static const sal_Char __FAR_DATA pFilterEx97Temp[]  = "MS Excel 97 Vorlage/Template";
-static const sal_Char __FAR_DATA pFilterDBase[]     = "dBase";
-static const sal_Char __FAR_DATA pFilterDif[]       = "DIF";
-static const sal_Char __FAR_DATA pFilterSylk[]      = "SYLK";
-static const sal_Char __FAR_DATA pFilterHtml[]      = "HTML (StarCalc)";
-static const sal_Char __FAR_DATA pFilterHtmlWeb[]   = "calc_HTML_WebQuery";
-static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCalc)";
+static const sal_Char pFilterSc50[]     = "StarCalc 5.0";
+static const sal_Char pFilterSc50Temp[] = "StarCalc 5.0 Vorlage/Template";
+static const sal_Char pFilterSc40[]     = "StarCalc 4.0";
+static const sal_Char pFilterSc40Temp[] = "StarCalc 4.0 Vorlage/Template";
+static const sal_Char pFilterSc30[]     = "StarCalc 3.0";
+static const sal_Char pFilterSc30Temp[] = "StarCalc 3.0 Vorlage/Template";
+static const sal_Char pFilterSc10[]     = "StarCalc 1.0";
+static const sal_Char pFilterXML[]      = "StarOffice XML (Calc)";
+static const sal_Char pFilterAscii[]        = "Text - txt - csv (StarCalc)";
+static const sal_Char pFilterLotus[]        = "Lotus";
+static const sal_Char pFilterExcel4[]   = "MS Excel 4.0";
+static const sal_Char pFilterEx4Temp[]  = "MS Excel 4.0 Vorlage/Template";
+static const sal_Char pFilterExcel5[]   = "MS Excel 5.0/95";
+static const sal_Char pFilterEx5Temp[]  = "MS Excel 5.0/95 Vorlage/Template";
+static const sal_Char pFilterExcel95[]  = "MS Excel 95";
+static const sal_Char pFilterEx95Temp[] = "MS Excel 95 Vorlage/Template";
+static const sal_Char pFilterExcel97[]  = "MS Excel 97";
+static const sal_Char pFilterEx97Temp[] = "MS Excel 97 Vorlage/Template";
+static const sal_Char pFilterDBase[]        = "dBase";
+static const sal_Char pFilterDif[]      = "DIF";
+static const sal_Char pFilterSylk[]     = "SYLK";
+static const sal_Char pFilterHtml[]     = "HTML (StarCalc)";
+static const sal_Char pFilterHtmlWeb[]  = "calc_HTML_WebQuery";
+static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 
 //------------------------------------------------------------------
 
@@ -91,28 +93,29 @@ static const sal_Char __FAR_DATA pFilterRtf[]       = "Rich Text Format (StarCal
 
 /*N*/ class ScLibOptions : public ::utl::ConfigItem
 /*N*/ {
-/*N*/   BOOL        bWK3Flag;
+/*N*/   BOOL    bWK3Flag;
 /*N*/
 /*N*/ public:
-/*N*/               ScLibOptions();
-/*N*/   BOOL        GetWK3Flag() const          { return bWK3Flag; }
-    virtual void                Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
-    virtual void                Commit();
+/*N*/           ScLibOptions();
+/*N*/   BOOL    GetWK3Flag() const  { return bWK3Flag; }
+
+        virtual void    Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
+        virtual void    Commit();
 
 /*N*/ };
 
-void ScLibOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void ScLibOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 void ScLibOptions::Commit() {}
 
 #define CFGPATH_LIBFILTER       "Office.Calc/Filter/Import/Lotus123"
 #define ENTRYSTR_WK3            "WK3"
 
 /*N*/ ScLibOptions::ScLibOptions() :
-/*N*/   ConfigItem( ::rtl::OUString::createFromAscii( CFGPATH_LIBFILTER ) ),
-/*N*/   bWK3Flag( FALSE )
+/*N*/       ConfigItem( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_LIBFILTER )) ),
+/*N*/       bWK3Flag( FALSE )
 /*N*/ {
 /*N*/   ::com::sun::star::uno::Sequence<rtl::OUString> aNames(1);
-/*N*/   aNames[0] = ::rtl::OUString::createFromAscii( ENTRYSTR_WK3 );
+/*N*/   aNames[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM (ENTRYSTR_WK3) );
 /*N*/   ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Any> aValues = GetProperties(aNames);
 /*N*/   if ( aValues.getLength() == 1 && aValues[0].hasValue() )
 /*N*/       bWK3Flag = comphelper::getBOOL( aValues[0] );
@@ -128,43 +131,11 @@ extern "C" { static void SAL_CALL thisModule() {} }
 /*N*/                           String( RTL_CONSTASCII_USTRINGPARAM( DLL_NAME ) ))
 /*N*/ {
 /*N*/   ((SfxObjectFactory&)Factory()).
-/*N*/           SetDocumentServiceName( ::rtl::OUString::createFromAscii(
-/*N*/                   "com.sun.star.sheet.SpreadsheetDocument" ) );
-/*N*/
-/*N*/   const String    aEmptyStr;
-/*N*/                                   // Clipboard-IDs:
-/*N*/   const ULONG     nSc50Format  = SOT_FORMATSTR_ID_STARCALC_50;
-/*N*/
-/*N*/   String aVndCalc = String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(CONTENT_TYPE_STR_APP_VND_CALC));
+/*N*/           SetDocumentServiceName( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+/*N*/                   "com.sun.star.sheet.SpreadsheetDocument" )) );
 /*N*/
 /*N*/   Factory().GetFilterContainer()->SetDetectFilter( ScDLL::DetectFilter );
 /*N*/
-/*N*/   //  5.0 muss mit vnd-Mime-Type registriert werden, aeltere mit dem alten x-starcalc
-/*
-    SFX_OWN_FILTER_REGISTRATION( ScDLL::DetectFilter,
-                        String::CreateFromAscii(pFilterSc50),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("*.sdc")),
-                        SFX_FILTER_OWN | SFX_FILTER_TEMPLATE |
-                        SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-                        nSc50Format,
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("SVsc0.sdc")),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("StarCalc 5.0")),
-                        RID_SCICN_DOCUMENT,
-                        aVndCalc, aEmptyStr );
-
-    SFX_OWN_FILTER_REGISTRATION( ScDLL::DetectFilter,
-                        String::CreateFromAscii(pFilterSc50Temp),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("*.vor")),
-                        SFX_FILTER_OWN | SFX_FILTER_TEMPLATE | SFX_FILTER_TEMPLATEPATH |
-                        SFX_FILTER_IMPORT | SFX_FILTER_EXPORT,
-                        nSc50Format,
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("SVsc1.vor")),
-                        String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM("StarCalc 5.0")),
-                        RID_SCICN_TEMPLATE,
-                        aVndCalc, aEmptyStr );
-*/
-/*N*/   //  alle Im-/Exportfilter werden nur noch per install.ini registriert,
-/*N*/   //  damit sie bei der Installation weggelassen werden koennen.
 /*N*/ }
 
 
@@ -298,14 +269,14 @@ SfxModule* ScModuleDummy::Load()
 /*N*/   return ( nEndFlag == 0x0d );
 /*N*/ }
 
-BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
+BOOL lcl_IsAnyXMLFilter( const SfxFilter* /*pFilter*/ )
 {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( !pFilter )
+    DBG_BF_ASSERT(0, "STRIP");
         return FALSE;
 }
 
-/*N*/ ULONG __EXPORT ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
-/*N*/                                   SfxFilterFlags nMust, SfxFilterFlags nDont )
+/*N*/ ULONG ScDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
+/*N*/                                   SfxFilterFlags /*nMust*/, SfxFilterFlags /*nDont*/ )
 /*N*/ {
 /*N*/   //  #59915# laut MBA darf hier nur ERRCODE_NONE, ERRCODE_ABORT und ERRCODE_FORCEQUIET
 /*N*/   //  zurueckgegeben werden...
@@ -489,19 +460,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/           'I', 'D', ';', 'P',
 /*N*/           M_ENDE };
 /*N*/
-/*N*/ #ifdef SINIX
-/*N*/       const UINT16 nAnzMuster = 9;    // sollte fuer indiz. Zugriff stimmen...
-/*N*/       UINT16 *ppMuster[ nAnzMuster ];         // Arrays mit Suchmustern
-/*N*/       ppMuster[ 0 ] = pLotus;
-/*N*/       ppMuster[ 1 ] = pExcel1;
-/*N*/       ppMuster[ 2 ] = pExcel2;
-/*N*/       ppMuster[ 3 ] = pExcel3;
-/*N*/       ppMuster[ 4 ] = pSc10;
-/*N*/       ppMuster[ 5 ] = pDIF1;
-/*N*/       ppMuster[ 6 ] = pDIF2;
-/*N*/       ppMuster[ 7 ] = pSylk;
-/*N*/       ppMuster[ 8 ] = pLotus2;                // Lotus immer ganz hinten wegen Ini-Eintrag
-/*N*/ #else
 /*N*/       const UINT16 *ppMuster[] =      // Arrays mit Suchmustern
 /*N*/           {
 /*N*/           pLotus,
@@ -514,8 +472,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/           pSylk,
 /*N*/           pLotus2
 /*N*/           };
-/*N*/       const UINT16 nAnzMuster = sizeof(ppMuster) / sizeof(ppMuster[0]);
-/*N*/ #endif
+/*N*/       const UINT16 nAnzMuster = SAL_N_ELEMENTS(ppMuster);
 /*N*/
 /*N*/       const sal_Char* pFilterName[ nAnzMuster ] =     // zugehoerige Filter
 /*N*/           {
@@ -529,8 +486,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/           pFilterSylk,
 /*N*/           pFilterLotus
 /*N*/           };
-/*N*/
-/*N*/       const UINT16 nByteMask = 0xFF;
 /*N*/
 /*N*/       // suchen Sie jetzt!
 /*N*/       // ... realisiert ueber 'Mustererkennung'
@@ -565,7 +520,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/               else if( nMuster & M_DC )
 /*N*/               { //                                             don't care
 /*N*/               }
-/*N*/               else if( nMuster & M_ALT(0) )
+/*N*/               else if( nMuster & (M_ALT(0)) )
 /*N*/               { //                                      alternative Bytes
 /*N*/                   BYTE nAnzAlt = ( BYTE ) nMuster;
 /*N*/                   bSync = FALSE;          // zunaechst unsynchron
@@ -595,7 +550,7 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 /*N*/               }
 /*N*/               else
 /*N*/               { //                                         Tabellenfehler
-/*N*/                   DBG_ERROR( "-ScApplication::DetectFilter(): Fehler in Mustertabelle");
+/*N*/                   OSL_FAIL( "-ScApplication::DetectFilter(): Fehler in Mustertabelle");
 /*N*/               }
 /*N*/
 /*N*/               pSearch++;
@@ -632,14 +587,6 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
         // test for HTML
 
         // #97832#; we don't have a flat xml filter
-/*      if ( aHeader.CompareTo( "<?xml", 5 ) == COMPARE_EQUAL )
-        {
-            //  if XML template is set, don't modify
-            if (!lcl_IsAnyXMLFilter(*ppFilter))
-                *ppFilter = SFX_APP()->GetFilter( ScDocShell::Factory(),
-                                                  String::CreateFromAscii(pFilterXML) );
-            return ERRCODE_NONE;
-        }*/
 
         // dBase cannot safely be recognized - only test if the filter was set
 /*N*/         if ( aPresetFilterName.EqualsAscii(pFilterDBase) && lcl_MayBeDBase( rStr ) )
@@ -651,3 +598,5 @@ BOOL lcl_IsAnyXMLFilter( const SfxFilter* pFilter )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,19 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_SIIMPORT_HXX
 #include "siimport.hxx"
-#endif
 
-#ifndef _SVDORECT_HXX
 #include "svdorect.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
 
-#ifndef _SVX_XFLCLIT_HXX
 #include "xflclit.hxx"
-#endif
 
-#ifndef _SVX_XLNCLIT_HXX
 #include "xlnclit.hxx"
-#endif
 
-#ifndef _XTABLE_HXX
 #include "xtable.hxx"
-#endif
 namespace binfilter {
 
 
@@ -87,6 +74,8 @@ class SiImportRect : public SdrRectObj
 {
 public:
     SiImportRect();
+
+    using SdrRectObj::operator=;
 
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
@@ -138,7 +127,7 @@ public:
 /*N*/ {
 /*N*/   if( pObjFactory->nInventor == SiInventor )
 /*N*/   {
-/*N*/       if( ((pObjFactory->nIdentifier >= OBJ_CHECKBOX) && (pObjFactory->nIdentifier <= OBJ_VSCROLLBAR)) ||
+/*N*/       if( pObjFactory->nIdentifier <= OBJ_VSCROLLBAR ||
 /*N*/           pObjFactory->nIdentifier == OBJ_URLBUTTON )
 /*N*/       {
 /*N*/             switch( pObjFactory->nIdentifier )
@@ -168,3 +157,5 @@ public:
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

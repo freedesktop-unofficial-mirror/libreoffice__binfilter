@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,17 +28,11 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-// #include <math.h>
-
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 #include <bf_svtools/filter.hxx>
 #include "sgffilt.hxx"
 #include "sgfbram.hxx"
 #include "sgvmain.hxx"
-// #include "Debug.c"
 
 namespace binfilter {
 
@@ -994,10 +989,6 @@ void DrawChar(OutputDevice& rOut, UCHAR c, ObjTextType T, PointType Pos, USHORT 
 |*
 |*    TextType::Draw()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 09.08.93
-|*    Letzte Aenderung  JOE 09.08.93
-|*
 *************************************************************************/
 void TextType::Draw(OutputDevice& rOut)
 {
@@ -1296,3 +1287,5 @@ SgfFontOne* SgfFontLst::GetFontDesc(UINT32 ID)
     return LastLn;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

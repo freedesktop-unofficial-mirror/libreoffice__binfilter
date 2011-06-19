@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,29 +32,21 @@
 #include "searchopt.hxx"
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
+#include <sal/macros.h>
 
-#ifndef _COM_SUN_STAR_I18N_TRANSLITERATIONMODULES_HPP_
 #include <com/sun/star/i18n/TransliterationModules.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
 #include <rtl/logfile.hxx>
 
 
-using namespace rtl;
 using namespace utl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::i18n;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -77,7 +70,7 @@ protected:
     using ConfigItem::SetModified;
     void            SetModified( BOOL bVal );
     BOOL            Load();
-    BOOL            Save();
+    BOOL            Save() {return false;}
 
     Sequence< OUString >    GetPropertyNames() const;
 
@@ -96,7 +89,7 @@ public:
 
 
 SvtSearchOptions_Impl::SvtSearchOptions_Impl() :
-    ConfigItem( OUString::createFromAscii( "Office.Common/SearchOptions" ) )
+    ConfigItem( OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Common/SearchOptions" )) )
 {
     RTL_LOGFILE_CONTEXT(aLog, "svtools SvtSearchOptions_Impl::SvtSearchOptions_Impl()");
     nFlags = 0x0003FFFF;    // set all options values to 'true'
@@ -182,7 +175,7 @@ Sequence< OUString > SvtSearchOptions_Impl::GetPropertyNames() const
         "Japanese/IsIgnoreMiddleDot"            // 24
     };
 
-    const int nCount = sizeof( aPropNames ) / sizeof( aPropNames[0] );
+    const int nCount = SAL_N_ELEMENTS( aPropNames );
     Sequence< OUString > aNames( nCount );
     OUString* pNames = aNames.getArray();
     for (INT32 i = 0;  i < nCount;  ++i)
@@ -225,18 +218,18 @@ BOOL SvtSearchOptions_Impl::Load()
                     }
                     else
                     {
-                        DBG_ERROR( "unexpected index" );
+                        OSL_FAIL( "unexpected index" );
                     }
                 }
                 else
                 {
-                    DBG_ERROR( "unexpected type" );
+                    OSL_FAIL( "unexpected type" );
                     bSucc = FALSE;
                 }
             }
             else
             {
-                DBG_ERROR( "value missing" );
+                OSL_FAIL( "value missing" );
                 bSucc = FALSE;
             }
         }
@@ -246,34 +239,6 @@ BOOL SvtSearchOptions_Impl::Load()
     return bSucc;
 }
 
-
-BOOL SvtSearchOptions_Impl::Save()
-{
-    BOOL bSucc = FALSE;
-
-    const Sequence< OUString > aNames = GetPropertyNames();
-    INT32 nProps = aNames.getLength();
-
-    Sequence< Any > aValues( nProps );
-    Any *pValue = aValues.getArray();
-
-    DBG_ASSERT( nProps == MAX_FLAGS_OFFSET + 1,
-            "unexpected size of index" );
-    if (nProps  &&  nProps == MAX_FLAGS_OFFSET + 1)
-    {
-        for (USHORT i = 0;  i < nProps;  ++i)
-            pValue[i] <<= (BOOL) GetFlag(i);
-        bSucc |= PutProperties( aNames, aValues );
-    }
-
-    if (bSucc)
-        SetModified( FALSE );
-
-    return bSucc;
-}
-
-
-//////////////////////////////////////////////////////////////////////
 
 SvtSearchOptions::SvtSearchOptions()
 {
@@ -410,3 +375,5 @@ BOOL SvtSearchOptions::IsIgnoreMiddleDot() const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

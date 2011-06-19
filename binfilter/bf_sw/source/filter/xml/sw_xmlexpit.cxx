@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,96 +29,33 @@
 #include "xmlexpit.hxx"
 
 #include <bf_xmloff/xmluconv.hxx>
-
-
-
-
-
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
 
 #ifndef _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-
-
-#ifndef _HINTIDS_HXX
 #include "hintids.hxx"
-#endif
-
-#ifndef SW_UNOMID_HXX
 #include "unomid.h"
-#endif
 
-
-#ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
-#endif
-
-#ifndef _SVX_ULSPITEM_HXX
 #include <bf_svx/ulspitem.hxx>
-#endif
-
-#ifndef _SVX_SHADITEM_HXX
 #include <bf_svx/shaditem.hxx>
-#endif
-
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
-
-#ifndef _SVX_BRKITEM_HXX
 #include <bf_svx/brkitem.hxx>
-#endif
-
-#ifndef _SVX_KEEPITEM_HXX
 #include <bf_svx/keepitem.hxx>
-#endif
 
-
-#ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
-#endif
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
-
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
-
-#ifndef _FMTLSPLT_HXX
 #include "fmtlsplt.hxx"
-#endif
-
-
-
-
-#ifndef _SW_XMLITHLP_HXX
 #include "xmlithlp.hxx"
-#endif
+
 namespace binfilter {
 
 
@@ -178,7 +116,7 @@ void SvXMLExportItemMapper::exportXML( SvXMLAttributeList& rAttrList,
                                  const SvXMLItemMapEntry& rEntry,
                                  const SvXMLUnitConverter& rUnitConverter,
                                  const SvXMLNamespaceMap& rNamespaceMap,
-                                 sal_uInt16 nFlags,
+                                 sal_uInt16 /*nFlags*/,
                                  const SfxItemSet *pSet ) const
 {
     if( 0 != (rEntry.nMemberId & MID_FLAG_SPECIAL_ITEM_EXPORT) )
@@ -352,38 +290,38 @@ void SvXMLExportItemMapper::exportXML( SvXMLExport& rExport,
 
 /** this method is called for every item that has the
     MID_FLAG_SPECIAL_ITEM_EXPORT flag set */
-void SvXMLExportItemMapper::handleSpecialItem( SvXMLAttributeList& rAttrList,
-                                    const SvXMLItemMapEntry& rEntry,
-                                    const SfxPoolItem& rItem,
-                                    const SvXMLUnitConverter& rUnitConverter,
-                                    const SvXMLNamespaceMap& rNamespaceMap,
-                                    const SfxItemSet* pSet /* = NULL */ ) const
+void SvXMLExportItemMapper::handleSpecialItem( SvXMLAttributeList& /*rAttrList*/,
+                                    const SvXMLItemMapEntry& /*rEntry*/,
+                                    const SfxPoolItem& /*rItem*/,
+                                    const SvXMLUnitConverter& /*rUnitConverter*/,
+                                    const SvXMLNamespaceMap& /*rNamespaceMap*/,
+                                    const SfxItemSet* /*pSet = NULL */ ) const
 {
-    DBG_ERROR( "special item not handled in xml export" );
+    OSL_FAIL( "special item not handled in xml export" );
 }
 
 /** this method is called for every item that has the
     MID_FLAG_NO_ITEM_EXPORT flag set */
-void SvXMLExportItemMapper::handleNoItem( SvXMLAttributeList& rAttrList,
-                               const SvXMLItemMapEntry& rEntry,
-                               const SvXMLUnitConverter& rUnitConverter,
-                               const SvXMLNamespaceMap& rNamespaceMap,
-                               const SfxItemSet& rSet ) const
+void SvXMLExportItemMapper::handleNoItem( SvXMLAttributeList& /*rAttrList*/,
+                               const SvXMLItemMapEntry& /*rEntry*/,
+                               const SvXMLUnitConverter& /*rUnitConverter*/,
+                               const SvXMLNamespaceMap& /*rNamespaceMap*/,
+                               const SfxItemSet& /*rSet*/ ) const
 {
-    DBG_ERROR( "no item not handled in xml export" );
+    OSL_FAIL( "no item not handled in xml export" );
 }
 
 /** this method is called for every item that has the
     MID_FLAG_ELEMENT_EXPORT flag set */
 void SvXMLExportItemMapper::handleElementItem(
-                        SvXMLExport& rExport,
-                        const SvXMLItemMapEntry& rEntry,
-                        const SfxPoolItem& rItem,
-                        const SvXMLUnitConverter& rUnitConverter,
-                        const SfxItemSet& rSet,
-                        sal_uInt16 nFlags ) const
+                        SvXMLExport& /*rExport*/,
+                        const SvXMLItemMapEntry& /*rEntry*/,
+                        const SfxPoolItem& /*rItem*/,
+                        const SvXMLUnitConverter& /*rUnitConverter*/,
+                        const SfxItemSet& /*rSet*/,
+                        sal_uInt16 /*nFlags*/ ) const
 {
-    DBG_ERROR( "element item not handled in xml export" );
+    OSL_FAIL( "element item not handled in xml export" );
 }
 
 
@@ -442,7 +380,7 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
                     break;
 
                 default:
-                    DBG_ERROR( "unknown member id!");
+                    OSL_FAIL( "unknown member id!");
                     bOk = sal_False;
                     break;
             }
@@ -471,7 +409,7 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
                     break;
 
                 default:
-                    DBG_ERROR("unknown MemberId");
+                    OSL_FAIL("unknown MemberId");
             };
 
             bOk = sal_True;
@@ -874,6 +812,8 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
                         aOut.append( GetXMLToken(XML_BOTTOM) );
                         bOk = sal_True;
                         break;
+                    default:
+                        break;
                     }
 
                     if( bOk )
@@ -896,6 +836,8 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
                         case GPOS_RT:
                         case GPOS_RB:
                             aOut.append( GetXMLToken(XML_RIGHT) );
+                            break;
+                        default:
                             break;
                         }
                     }
@@ -1028,7 +970,7 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
         break;
 
         default:
-            DBG_ERROR("GetXMLValue not implemented for this item.");
+            OSL_FAIL("GetXMLValue not implemented for this item.");
             break;
     }
 
@@ -1038,3 +980,5 @@ sal_Bool SvXMLExportItemMapper::QueryXMLValue(
     return bOk;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,28 +27,20 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLBASE64EXPORT_HXX
 #include "XMLBase64Export.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::io;
-using namespace ::rtl;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 #define INPUT_BUFFER_SIZE 54
 #define OUTPUT_BUFFER_SIZE 72
@@ -104,3 +97,5 @@ sal_Bool XMLBase64Export::exportOfficeBinaryDataElement(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

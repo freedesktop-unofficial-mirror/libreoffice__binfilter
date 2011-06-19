@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,22 +32,12 @@
 
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 namespace binfilter {
 
 class SwTOXType;
@@ -96,7 +87,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     SwTOXMark&              operator=( const SwTOXMark& rCopy );
@@ -244,8 +235,6 @@ class SwForm
     String  aPattern[ AUTH_TYPE_END + 1 ];
     String  aTemplate[ AUTH_TYPE_END + 1 ];
     USHORT  nType, nFormMaxLevel;
-    //USHORT    nFirstTabPos; -> Value in tab token
-//  BOOL    bHasFirstTabPos : 1;
     BOOL    bGenerateTabPos : 1;
     BOOL    bIsRelTabPos : 1;
     BOOL    bCommaSeparated : 1;
@@ -354,8 +343,6 @@ enum SwTOOElements
     TOO_CHART       = 0x02,
     TOO_CALC        = 0x08,
     TOO_DRAW_IMPRESS= 0x10,
-//  TOO_IMPRESS     = 0x20,
-
     TOO_OTHER       = 0x80
 };
 
@@ -507,73 +494,73 @@ inline void SwTOXMark::SetAlternativeText(const String& rAlt)
 
 inline void SwTOXMark::SetLevel( USHORT nLvl )
 {
-    ASSERT( !GetTOXType() || GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE( !GetTOXType() || GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
     nLevel = nLvl;
 }
 
 inline void SwTOXMark::SetPrimaryKey( const String& rKey )
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     aPrimaryKey = rKey;
 }
 
 inline void SwTOXMark::SetSecondaryKey( const String& rKey )
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     aSecondaryKey = rKey;
 }
 
 inline void SwTOXMark::SetTextReading( const String& rTxt )
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     aTextReading = rTxt;
 }
 
 inline void SwTOXMark::SetPrimaryKeyReading( const String& rKey )
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     aPrimaryKeyReading = rKey;
 }
 
 inline void SwTOXMark::SetSecondaryKeyReading( const String& rKey )
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     aSecondaryKeyReading = rKey;
 }
 
 inline USHORT SwTOXMark::GetLevel() const
 {
-    ASSERT( !GetTOXType() || GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE( !GetTOXType() || GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
     return nLevel;
 }
 
 inline const String& SwTOXMark::GetPrimaryKey() const
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     return aPrimaryKey;
 }
 
 inline const String& SwTOXMark::GetSecondaryKey() const
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     return aSecondaryKey;
 }
 
 inline const String& SwTOXMark::GetTextReading() const
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     return aTextReading;
 }
 
 inline const String& SwTOXMark::GetPrimaryKeyReading() const
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     return aPrimaryKeyReading;
 }
 
 inline const String& SwTOXMark::GetSecondaryKeyReading() const
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     return aSecondaryKeyReading;
 }
 
@@ -582,25 +569,25 @@ inline const String& SwTOXMark::GetSecondaryKeyReading() const
 //
 inline void SwForm::SetTemplate(USHORT nLevel, const String& rName)
 {
-    ASSERT(nLevel < GetFormMax(), "Index >= FORM_MAX");
+    OSL_ENSURE(nLevel < GetFormMax(), "Index >= FORM_MAX");
     aTemplate[nLevel] = rName;
 }
 
 inline void SwForm::SetPattern(USHORT nLevel, const String& rName)
 {
-    ASSERT(nLevel < GetFormMax(), "Index >= FORM_MAX");
+    OSL_ENSURE(nLevel < GetFormMax(), "Index >= FORM_MAX");
     aPattern[nLevel] = rName;
 }
 
 inline const String& SwForm::GetPattern(USHORT nLevel) const
 {
-    ASSERT(nLevel < GetFormMax(), "Index >= FORM_MAX");
+    OSL_ENSURE(nLevel < GetFormMax(), "Index >= FORM_MAX");
     return aPattern[nLevel];
 }
 
 inline const String& SwForm::GetTemplate(USHORT nLevel) const
 {
-    ASSERT(nLevel < GetFormMax(), "Index >= FORM_MAX");
+    OSL_ENSURE(nLevel < GetFormMax(), "Index >= FORM_MAX");
     return aTemplate[nLevel];
 }
 
@@ -659,21 +646,18 @@ inline TOXTypes SwTOXBase::GetType() const
 
 inline void SwTOXBase::SetLevel(USHORT nLev)
 {
-    ASSERT(GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
     aData.nLevel = nLev;
 }
 
 inline USHORT SwTOXBase::GetLevel() const
 {
-    ASSERT(GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() != TOX_INDEX, "Falscher Feldtyp");
     return aData.nLevel;
 }
 
 inline void SwTOXBase::SetTemplateName(const String& rName)
 {
-//  ASSERT(GetTOXType()->GetType() == TOX_USER, "Falscher Feldtyp");
-//  ASSERT(aData.pTemplateName, "pTemplateName == 0");
-//  (*aData.pTemplateName) = rName;
     DBG_WARNING("SwTOXBase::SetTemplateName obsolete");
     aStyleNames[0] = rName;
 
@@ -681,24 +665,24 @@ inline void SwTOXBase::SetTemplateName(const String& rName)
 
 inline String SwTOXBase::GetTemplateName() const
 {
-//  ASSERT(GetTOXType()->GetType() == TOX_USER, "Falscher Feldtyp");
-//  return *aData.pTemplateName;
     DBG_WARNING("SwTOXBase::GetTemplateName obsolete");
     return aStyleNames[0].GetToken(0, TOX_STYLE_DELIMITER);
 }
 
 inline USHORT SwTOXBase::GetOptions() const
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     return aData.nOptions;
 }
 
 inline void SwTOXBase::SetOptions(USHORT nOpt)
 {
-    ASSERT(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
+    OSL_ENSURE(GetTOXType()->GetType() == TOX_INDEX, "Falscher Feldtyp");
     aData.nOptions = nOpt;
 }
 
 
 } //namespace binfilter
 #endif  // _TOX_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

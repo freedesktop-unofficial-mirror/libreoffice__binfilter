@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,40 +30,31 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX_
 #include "XMLShapePropertySetContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
-#ifndef _XMLOFF_XMLTABI_HXX
 #include "xmltabi.hxx"
-#endif
-#ifndef _XMLOFF_TEXTPRMAP_HXX_
 #include "txtprmap.hxx"
-#endif
 
 #include "sdpropls.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
+
+using rtl::OUString;
 
 //////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( XMLShapePropertySetContext, SvXMLPropertySetContext );
 
 XMLShapePropertySetContext::XMLShapePropertySetContext(
-                 SvXMLImport& rImport, sal_uInt16 nPrfx,
+                 SvXMLImport& rInImport, sal_uInt16 nPrfx,
                  const OUString& rLName,
                  const Reference< xml::sax::XAttributeList > & xAttrList,
                  ::std::vector< XMLPropertyState > &rProps,
                  const UniReference < SvXMLImportPropertyMapper > &rMap ) :
-    SvXMLPropertySetContext( rImport, nPrfx, rLName, xAttrList, rProps, rMap ),
+    SvXMLPropertySetContext( rInImport, nPrfx, rLName, xAttrList, rProps, rMap ),
     mnBulletIndex(-1)
 {
 }
@@ -91,10 +83,10 @@ void XMLShapePropertySetContext::EndElement()
 }
 
 SvXMLImportContext *XMLShapePropertySetContext::CreateChildContext(
-                   sal_uInt16 nPrefix,
+                   sal_uInt16 nInPrefix,
                    const OUString& rLocalName,
                    const Reference< xml::sax::XAttributeList > & xAttrList,
-                   ::std::vector< XMLPropertyState > &rProperties,
+                   ::std::vector< XMLPropertyState > &rInProperties,
                    const XMLPropertyState& rProp )
 {
     SvXMLImportContext *pContext = 0;
@@ -103,20 +95,22 @@ SvXMLImportContext *XMLShapePropertySetContext::CreateChildContext(
     {
     case CTF_NUMBERINGRULES:
         mnBulletIndex = rProp.mnIndex;
-        mxBulletStyle = pContext = new SvxXMLListStyleContext( GetImport(), nPrefix, rLocalName, xAttrList );
+        mxBulletStyle = pContext = new SvxXMLListStyleContext( GetImport(), nInPrefix, rLocalName, xAttrList );
         break;
     case CTF_TABSTOP:
-        pContext = new SvxXMLTabStopImportContext( GetImport(), nPrefix,
+        pContext = new SvxXMLTabStopImportContext( GetImport(), nInPrefix,
                                                    rLocalName, rProp,
-                                                   rProperties );
+                                                   rInProperties );
         break;
     }
 
     if( !pContext )
-        pContext = SvXMLPropertySetContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = SvXMLPropertySetContext::CreateChildContext( nInPrefix, rLocalName,
                                                             xAttrList,
-                                                            rProperties, rProp );
+                                                            rInProperties, rProp );
 
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

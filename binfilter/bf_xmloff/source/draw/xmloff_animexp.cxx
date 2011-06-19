@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,39 +28,26 @@
 
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
 
 #include <list>
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
 
 
-#ifndef _XMLOFF_ANIM_HXX
 #include "anim.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::cppu;
 using namespace ::com::sun::star;
@@ -69,6 +57,9 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::presentation;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 const struct Effect
@@ -198,7 +189,7 @@ void SdXMLImplSetEffect( AnimationEffect eEffect, XMLEffect& eKind, XMLEffectDir
 {
     if( eEffect < AnimationEffect_NONE || eEffect > AnimationEffect_ZOOM_OUT_FROM_CENTER )
     {
-        DBG_ERROR( "unknown animation effect!" );
+        OSL_FAIL( "unknown animation effect!" );
         eEffect = AnimationEffect_NONE;
     }
 
@@ -274,8 +265,8 @@ public:
         msSoundOn( RTL_CONSTASCII_USTRINGPARAM( "SoundOn" ) ),
         msSpeed( RTL_CONSTASCII_USTRINGPARAM( "Speed" ) ),
         msTextEffect( RTL_CONSTASCII_USTRINGPARAM( "TextEffect" ) ),
-        msAnimPath( RTL_CONSTASCII_USTRINGPARAM( "AnimationPath" ) ),
-        msIsAnimation( RTL_CONSTASCII_USTRINGPARAM( "IsAnimation" ) )
+        msIsAnimation( RTL_CONSTASCII_USTRINGPARAM( "IsAnimation" ) ),
+        msAnimPath( RTL_CONSTASCII_USTRINGPARAM( "AnimationPath" ) )
     {}
 };
 
@@ -318,7 +309,7 @@ void XMLAnimationsExporter::prepare( Reference< XShape > xShape )
     }
     catch( Exception e )
     {
-        DBG_ERROR("exception catched while collection animation information!");
+        OSL_FAIL("exception catched while collection animation information!");
     }
 }
 
@@ -352,7 +343,7 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
             xProps->getPropertyValue( mpImpl->msSpeed ) >>= aEffect.meSpeed;
 
 
-            sal_Bool bIsAnimation;
+            sal_Bool bIsAnimation(sal_False);
             xProps->getPropertyValue( mpImpl->msIsAnimation ) >>= bIsAnimation;
             if( bIsAnimation )
             {
@@ -412,8 +403,8 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
                     aEffect.maSoundURL = aEmptyStr;
                 }
 
-                sal_Bool bDimPrev;
-                sal_Bool bDimHide;
+                sal_Bool bDimPrev(sal_False);
+                sal_Bool bDimHide(sal_False);
                 xProps->getPropertyValue( mpImpl->msDimPrev ) >>= bDimPrev;
                 xProps->getPropertyValue( mpImpl->msDimHide ) >>= bDimHide;
                 if( bDimPrev || bDimHide )
@@ -424,7 +415,7 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
                     aEffect.meSpeed = AnimationSpeed_MEDIUM;
                     if( bDimPrev )
                     {
-                        sal_Int32 nColor;
+                        sal_Int32 nColor(0);
                         xProps->getPropertyValue( mpImpl->msDimColor ) >>= nColor;
                         aEffect.maDimColor.SetColor( nColor );
                     }
@@ -443,7 +434,7 @@ void XMLAnimationsExporter::collect( Reference< XShape > xShape )
     }
     catch( Exception e )
     {
-        DBG_ERROR("exception catched while collection animation information!");
+        OSL_FAIL("exception catched while collection animation information!");
     }
 }
 
@@ -475,7 +466,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                 SvXMLUnitConverter::convertColor( sTmp, rEffect.maDimColor );
                 rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_COLOR, sTmp.makeStringAndClear() );
 
-                SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, XML_DIM, sal_True, sal_True );
+                SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_PRESENTATION, XML_DIM, sal_True, sal_True );
             }
             else if( rEffect.meKind == XMLE_PLAY )
             {
@@ -485,7 +476,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                     rExport.AddAttribute( XML_NAMESPACE_PRESENTATION, XML_SPEED, sTmp.makeStringAndClear() );
                 }
 
-                SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, XML_PLAY, sal_True, sal_True );
+                SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_PRESENTATION, XML_PLAY, sal_True, sal_True );
             }
             else
             {
@@ -535,7 +526,7 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                         eLocalName = XML_HIDE_SHAPE;
                 }
 
-                SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, eLocalName, sal_True, sal_True );
+                SvXMLElementExport aInnerElem( rExport, XML_NAMESPACE_PRESENTATION, eLocalName, sal_True, sal_True );
                 if( rEffect.maSoundURL.getLength() != 0 )
                 {
                     rExport.AddAttribute(XML_NAMESPACE_XLINK, XML_HREF, rExport.GetRelativeReference(rEffect.maSoundURL) );
@@ -545,11 +536,11 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
                     if( rEffect.mbPlayFull )
                         rExport.AddAttribute( XML_NAMESPACE_PRESENTATION, XML_PLAY_FULL, XML_TRUE );
 
-                    SvXMLElementExport aElem( rExport, XML_NAMESPACE_PRESENTATION, XML_SOUND, sal_True, sal_True );
+                    SvXMLElementExport aLclElem( rExport, XML_NAMESPACE_PRESENTATION, XML_SOUND, sal_True, sal_True );
                 }
             }
 
-            aIter++;
+            ++aIter;
         }
         while( aIter != aEnd );
     }
@@ -557,3 +548,5 @@ void XMLAnimationsExporter::exportAnimations( SvXMLExport& rExport )
     mpImpl->maEffects.clear();
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

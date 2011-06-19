@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -169,7 +170,7 @@ public:
 
     BOOL            IsDrawAction()                  { return (bInsDraw); }
     void            SetDrawAction(BOOL bFlag)       { bInsDraw = bFlag; }
-    inline UINT16   GetDrawMode(BOOL bBuf = FALSE) const { return eDrawMode; }
+    inline UINT16   GetDrawMode(BOOL /*bBuf*/ = FALSE) const { return eDrawMode; }
     inline void     SetDrawMode(UINT16 eDrwMode)    { eDrawMode = eDrwMode; }
     BOOL            IsFrmAction()                   { return (bInsFrm); }
     inline UINT16   GetBezierMode()                 { return eBezierMode; }
@@ -226,3 +227,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

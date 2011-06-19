@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,6 @@
  *
  ************************************************************************/
 
-// INCLUDE ---------------------------------------------------------------
-
-// System - Includes -----------------------------------------------------
-
-#ifdef PCH
-#endif
-
-
 #include <string.h>
 
 #include "pagepar.hxx"
@@ -56,13 +49,13 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPageTableParam::~ScPageTableParam()
+/*N*/ ScPageTableParam::~ScPageTableParam()
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageTableParam::Reset()
+/*N*/ void ScPageTableParam::Reset()
 /*N*/ {
 /*N*/   bNotes=bGrid=bHeaders=bDrawings=
 /*N*/   bLeftRight=bScaleAll=bScalePageNum=
@@ -96,13 +89,13 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPageAreaParam::~ScPageAreaParam()
+/*N*/ ScPageAreaParam::~ScPageAreaParam()
 /*N*/ {
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScPageAreaParam::Reset()
+/*N*/ void ScPageAreaParam::Reset()
 /*N*/ {
 /*N*/   bPrintArea = bRepeatRow = bRepeatCol = FALSE;
 /*N*/
@@ -117,3 +110,5 @@ namespace binfilter {
 //------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

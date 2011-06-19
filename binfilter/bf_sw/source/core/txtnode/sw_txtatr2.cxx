@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,41 +31,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
-#endif
-#ifndef _TXTATR_HXX //autogen
 #include <txtatr.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // SwCharFmt, SwTxtNode
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>        // SwCharFmt, SwUpdateAttr
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // RES_POOLCHR_INET_...
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>          // SwDoc
-#endif
 namespace binfilter {
 
 
@@ -79,8 +58,8 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/ SwTxtCharFmt::SwTxtCharFmt( const SwFmtCharFmt& rAttr,
-/*N*/                   xub_StrLen nStart, xub_StrLen nEnd )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nEnd ),
+/*N*/                   xub_StrLen nStartIn, xub_StrLen nEndIn )
+/*N*/   : SwTxtAttrEnd( rAttr, nStartIn, nEndIn ),
 /*N*/   pMyTxtNd( 0 )
 /*N*/ {
 /*N*/   ((SwFmtCharFmt&)rAttr).pTxtAttr = this;
@@ -99,7 +78,7 @@ namespace binfilter {
 /*N*/           && (nWhich!=RES_OBJECTDYING)
 /*N*/           && (nWhich!=RES_ATTRSET_CHG)
 /*N*/           && (nWhich!=RES_FMT_CHG) )
-/*N*/       ASSERT(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
+/*N*/       OSL_ENSURE(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
 /*N*/ #endif
 /*N*/
 /*N*/   if( pMyTxtNd )
@@ -125,8 +104,8 @@ namespace binfilter {
  *************************************************************************/
 
 /*N*/ SwTxtINetFmt::SwTxtINetFmt( const SwFmtINetFmt& rAttr,
-/*N*/                           xub_StrLen nStart, xub_StrLen nEnd )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nEnd ),
+/*N*/                           xub_StrLen nStartIn, xub_StrLen nEndIn )
+/*N*/   : SwTxtAttrEnd( rAttr, nStartIn, nEndIn ),
 /*N*/   SwClient( 0 ),
 /*N*/     pMyTxtNd( 0 )
 /*N*/ {
@@ -197,7 +176,7 @@ namespace binfilter {
 /*N*/           && (nWhich!=RES_OBJECTDYING)
 /*N*/           && (nWhich!=RES_ATTRSET_CHG)
 /*N*/           && (nWhich!=RES_FMT_CHG) )
-/*N*/       ASSERT(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
+/*N*/       OSL_ENSURE(!this, "SwTxtCharFmt::Modify(): unbekanntes Modify!");
 /*N*/ #endif
 /*N*/
 /*N*/   if( pMyTxtNd )
@@ -235,3 +214,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

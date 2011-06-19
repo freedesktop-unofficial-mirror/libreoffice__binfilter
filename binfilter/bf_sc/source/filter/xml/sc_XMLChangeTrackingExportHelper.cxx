@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,39 +26,19 @@
  *
  ************************************************************************/
 
-#ifndef _SC_XMLCHANGETRACKINGEXPORTHELPER_HXX
 #include "XMLChangeTrackingExportHelper.hxx"
-#endif
 
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_CHGTRACK_HXX
 #include "chgtrack.hxx"
-#endif
-#ifndef SC_CHGVISET_HXX
 #include "chgviset.hxx"
-#endif
-#ifndef SC_CELL_HXX
 #include "cell.hxx"
-#endif
-#ifndef SC_TEXTSUNO_HXX
 #include "textuno.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 namespace binfilter {
 
 #define SC_CHANGE_ID_PREFIX "ct"
@@ -68,9 +49,9 @@ using namespace ::binfilter::xmloff::token;
 ScChangeTrackingExportHelper::ScChangeTrackingExportHelper(ScXMLExport& rTempExport)
     : rExport(rTempExport),
     pChangeTrack(NULL),
-    sChangeIDPrefix(RTL_CONSTASCII_USTRINGPARAM(SC_CHANGE_ID_PREFIX)),
     pEditTextObj(NULL),
-    pDependings(NULL)
+    pDependings(NULL),
+    sChangeIDPrefix(RTL_CONSTASCII_USTRINGPARAM(SC_CHANGE_ID_PREFIX))
 {
     pChangeTrack = rExport.GetDocument() ? rExport.GetDocument()->GetChangeTrack() : NULL;
     pDependings = new ScChangeActionTable();
@@ -157,6 +138,7 @@ void ScChangeTrackingExportHelper::WriteGenerated(const ScChangeAction* pGenerat
 {
     sal_uInt32 nActionNumber(pGeneratedAction->GetActionNumber());
     DBG_ASSERT(pChangeTrack->IsGenerated(nActionNumber), "a not generated action found");
+    (void)nActionNumber;
     SvXMLElementExport aElemPrev(rExport, XML_NAMESPACE_TABLE, XML_CELL_CONTENT_DELETION, sal_True, sal_True);
     WriteBigRange(pGeneratedAction->GetBigRange(), XML_CELL_ADDRESS);
     String sValue;
@@ -312,9 +294,9 @@ void ScChangeTrackingExportHelper::SetValueAttributes(const double& fValue, cons
         rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_FLOAT);
         ::rtl::OUStringBuffer sBuffer;
         SvXMLUnitConverter::convertDouble(sBuffer, fValue);
-        ::rtl::OUString sValue(sBuffer.makeStringAndClear());
-        if (sValue.getLength())
-            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE, sValue);
+        ::rtl::OUString sLclValue(sBuffer.makeStringAndClear());
+        if (sLclValue.getLength())
+            rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE, sLclValue);
     }
 }
 
@@ -347,7 +329,7 @@ void ScChangeTrackingExportHelper::WriteStringCell(const ScBaseCell* pCell)
         SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TABLE, XML_CHANGE_TRACK_TABLE_CELL, sal_True, sal_True);
         if (sOUString.getLength())
         {
-            SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TEXT, XML_P, sal_True, sal_False);
+            SvXMLElementExport aElemD(rExport, XML_NAMESPACE_TEXT, XML_P, sal_True, sal_False);
             sal_Bool bPrevCharWasSpace(sal_True);
             rExport.GetTextParagraphExport()->exportText(sOUString, bPrevCharWasSpace);
         }
@@ -420,13 +402,13 @@ void ScChangeTrackingExportHelper::WriteFormulaCell(const ScBaseCell* pCell, con
         else
         {
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_VALUE_TYPE, XML_STRING);
-            String sValue;
-            pFormulaCell->GetString(sValue);
-            ::rtl::OUString sOUValue(sValue);
+            String sLclValue;
+            pFormulaCell->GetString(sLclValue);
+            ::rtl::OUString sOUValue(sLclValue);
             SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TABLE, XML_CHANGE_TRACK_TABLE_CELL, sal_True, sal_True);
             if (sOUValue.getLength())
             {
-                SvXMLElementExport aElemC(rExport, XML_NAMESPACE_TEXT, XML_P, sal_True, sal_False);
+                SvXMLElementExport aElemD(rExport, XML_NAMESPACE_TEXT, XML_P, sal_True, sal_False);
                 sal_Bool bPrevCharWasSpace(sal_True);
                 rExport.GetTextParagraphExport()->exportText(sOUValue, bPrevCharWasSpace);
             }
@@ -454,6 +436,8 @@ void ScChangeTrackingExportHelper::WriteCell(const ScBaseCell* pCell, const Stri
                 break;
             case CELLTYPE_FORMULA:
                 WriteFormulaCell(pCell, sValue);
+                break;
+            default:
                 break;
         }
     }
@@ -519,7 +503,7 @@ void ScChangeTrackingExportHelper::AddInsertionAttributes(const ScChangeAction* 
         break;
         default :
         {
-            DBG_ERROR("wrong insertion type");
+            OSL_FAIL("wrong insertion type");
         }
         break;
     }
@@ -549,7 +533,7 @@ void ScChangeTrackingExportHelper::WriteInsertion(ScChangeAction* pAction)
     WriteDependings(pAction);
 }
 
-void ScChangeTrackingExportHelper::AddDeletionAttributes(const ScChangeActionDel* pDelAction, const ScChangeActionDel* pLastAction)
+void ScChangeTrackingExportHelper::AddDeletionAttributes(const ScChangeActionDel* pDelAction, const ScChangeActionDel* /*pLastAction*/)
 {
     sal_Int32 nPosition(0);
     const ScBigRange& rBigRange = pDelAction->GetBigRange();
@@ -579,12 +563,12 @@ void ScChangeTrackingExportHelper::AddDeletionAttributes(const ScChangeActionDel
         {
             rExport.AddAttribute(XML_NAMESPACE_TABLE, XML_TYPE, XML_TABLE);
             nPosition = nStartSheet;
-            //DBG_ERROR("not implemented feature");
+            //OSL_FAIL("not implemented feature");
         }
         break;
         default :
         {
-            DBG_ERROR("wrong deletion type");
+            OSL_FAIL("wrong deletion type");
         }
         break;
     }
@@ -738,7 +722,7 @@ void ScChangeTrackingExportHelper::WorkWithChangeAction(ScChangeAction* pAction)
     else if (pAction->GetType() == SC_CAT_REJECT)
         WriteRejection(pAction);
     else
-        DBG_ERROR("not a writeable type");
+        OSL_FAIL("not a writeable type");
     rExport.CheckAttrList();
 }
 
@@ -795,3 +779,5 @@ void ScChangeTrackingExportHelper::CollectAndWriteChanges()
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

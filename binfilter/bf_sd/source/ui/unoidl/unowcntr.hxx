@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,14 +29,14 @@
 #ifndef _SV_UNOWCNTR_HXX_
 #define _SV_UNOWCNTR_HXX_
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
+#include <vector>
+
 namespace binfilter {
 
 typedef sal_Bool (*weakref_searchfunc)( ::com::sun::star::uno::WeakReference< ::com::sun::star::uno::XInterface > xRef, void* pSearchData );
 
-class WeakRefList;
+typedef ::std::vector< ::com::sun::star::uno::WeakReference< ::com::sun::star::uno::XInterface >* > WeakRefList;
 
 class SvUnoWeakContainer
 {
@@ -58,3 +59,4 @@ public:
 } //namespace binfilter
 #endif // _SV_UNOWCNTR_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

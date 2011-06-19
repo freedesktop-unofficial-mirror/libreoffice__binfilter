@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 namespace com{namespace sun{namespace star{
     namespace lang
         {
@@ -44,17 +41,11 @@ namespace com{namespace sun{namespace star{
 }}}
 namespace binfilter {
 
-//STRIP008 namespace com{namespace sun{namespace star{
-//STRIP008  namespace lang
-//STRIP008      {
-//STRIP008          class XEventListener;
-//STRIP008      }
-//STRIP008 }}}
-/* -----------------22.04.99 11:18-------------------
+/* --------------------------------------------------
  *  Verwaltung der EventListener
  * --------------------------------------------------*/
 typedef ::com::sun::star::uno::Reference< ::com::sun::star::lang::XEventListener > *  XEventListenerPtr;
-SV_DECL_PTRARR(SwEvtLstnrArray, XEventListenerPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(SwEvtLstnrArray, XEventListenerPtr, 4, 4)
 class SwEventListenerContainer
 {
     protected:
@@ -70,3 +61,5 @@ class SwEventListenerContainer
 };
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

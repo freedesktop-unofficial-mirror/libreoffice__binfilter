@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 #ifndef _OWNLIST_HXX
 #define _OWNLIST_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _TOOLS_OWNLIST_HXX //autogen
-#include <tools/ownlist.hxx>
-#endif
+#include <bf_tools/ownlist.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace beans {
@@ -108,3 +101,5 @@ class SvCommandList
 }
 
 #endif // _OWNLIST_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

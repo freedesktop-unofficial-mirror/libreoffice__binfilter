@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,35 +32,23 @@
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
 
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 
 
 
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 #ifndef _ZFORLIST_HXX //autogen
 #ifndef _ZFORLIST_DECLARE_TABLE
 #define _ZFORLIST_DECLARE_TABLE
 #endif
 #include <bf_svtools/zforlist.hxx>
 #endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef _XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
-#endif
 
-#ifndef _XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
-#endif
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 
@@ -72,9 +61,7 @@
 
 #include <bf_svx/fontitem.hxx>
 #include <bf_svx/fhgtitem.hxx>
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 #include "float.h"
 #include "chaxis.hxx"
@@ -164,53 +151,53 @@ namespace binfilter {
 /*N*/       delete mpTextAttr;
 /*N*/ }
 
-/*N*/ ChartAxis::ChartAxis(ChartModel* pModel,long nId,long nUId) :
-/*N*/   mnInnerPos(-1),
-/*N*/   mbInnerPos(FALSE),
-/*N*/   mbCenterText(FALSE),
-/*N*/   mbColText(FALSE),
-/*N*/   mnUId(nUId),
-/*N*/   mbAlternativIdUsed(FALSE),
-/*N*/   mnAlternateId(0),
-/*N*/   mnTickLen(150),
-/*N*/   mnHelpTickLen(100),
-/*N*/   mpAxisList(NULL),
-/*N*/   mpAxisObj(NULL),
-/*N*/   mbSecondary(FALSE),
-/*N*/   mpGridAttr(NULL),
-/*N*/   mpTextAttr(NULL),
-/*N*/   mpNumFormatter(NULL),
-/*N*/   mpModel(pModel),
-/*N*/   mbPercent(FALSE),
-/*N*/   mbRadial(FALSE),
-/*N*/   mpAxisAttr(NULL),
-/*N*/   mnId(nId),
-/*N*/   mbFlippedXY(FALSE),
-/*N*/   mnPosition(0),
-/*N*/   maArea(0,0,0,0),
-/*N*/   mfMin(0.0),
-/*N*/   mfMax(0.0),
-/*N*/   mfStep(0.0),
-/*N*/   mfStepHelp(0.0),
-/*N*/   mfOrigin(0.0),
-/*N*/   mbAutoMin(FALSE),
-/*N*/   mbAutoMax(FALSE),
-/*N*/   mbAutoOrigin(FALSE),
-/*N*/   mbAutoStep(FALSE),
-/*N*/   mbAutoStepHelp(FALSE),
-/*N*/   mbLogarithm(FALSE),
-/*N*/     meTextOrient( CHTXTORIENT_AUTOMATIC ),
-/*N*/   mnTotalSize(0),
-/*N*/   mpTotal(NULL),
-/*N*/   mbTotalActual(FALSE),
-/*N*/   mbTotalAlloc(FALSE),
-/*N*/   mbColStackOK(FALSE),
-/*N*/   mpColStack(NULL),
-/*N*/   mbShowDescr(FALSE),
-/*N*/   mnTicks(CHAXIS_MARK_OUTER),
-/*N*/   mnHelpTicks(0),
-/*N*/   mbPercentCol(TRUE),
-/*N*/   mnMaxTextWidth(-1)
+/*N*/ ChartAxis::ChartAxis(ChartModel* pModel,long nId,long nUId)
+/*N*/   : mbInnerPos(FALSE)
+/*N*/   , mnInnerPos(-1)
+/*N*/   , mbColText(FALSE)
+/*N*/   , mbCenterText(FALSE)
+/*N*/   , mnMaxTextWidth(-1)
+/*N*/   , mnAlternateId(0)
+/*N*/   , mbAlternativIdUsed(FALSE)
+/*N*/   , mbPercentCol(TRUE)
+/*N*/   , mpTotal(NULL)
+/*N*/   , mnTotalSize(0)
+/*N*/   , mbTotalActual(FALSE)
+/*N*/   , mbTotalAlloc(FALSE)
+/*N*/   , mpColStack(NULL)
+/*N*/   , mbColStackOK(FALSE)
+/*N*/   , mnUId(nUId)
+/*N*/   , mbShowDescr(FALSE)
+/*N*/   , mpNumFormatter(NULL)
+/*N*/   , mpAxisList(NULL)
+/*N*/   , mpAxisObj(NULL)
+/*N*/   , mpGridAttr(NULL)
+/*N*/   , mpTextAttr(NULL)
+/*N*/   , mnTicks(CHAXIS_MARK_OUTER)
+/*N*/   , mnHelpTicks(0)
+/*N*/   , mnTickLen(150)
+/*N*/   , mnHelpTickLen(100)
+/*N*/   , mbSecondary(FALSE)
+/*N*/   , mnId(nId)
+/*N*/   , mbFlippedXY(FALSE)
+/*N*/   , mnPosition(0)
+/*N*/   , mbRadial(FALSE)
+/*N*/   , maArea(0,0,0,0)
+/*N*/   , mbPercent(FALSE)
+/*N*/   , mpAxisAttr(NULL)
+/*N*/   , mpModel(pModel)
+/*N*/   , mfMin(0.0)
+/*N*/   , mfMax(0.0)
+/*N*/   , mfStep(0.0)
+/*N*/   , mfStepHelp(0.0)
+/*N*/   , mfOrigin(0.0)
+/*N*/   , mbAutoMin(FALSE)
+/*N*/   , mbAutoMax(FALSE)
+/*N*/   , mbAutoOrigin(FALSE)
+/*N*/   , mbAutoStep(FALSE)
+/*N*/   , mbAutoStepHelp(FALSE)
+/*N*/   , mbLogarithm(FALSE)
+/*N*/   , meTextOrient( CHTXTORIENT_AUTOMATIC )
 /*N*/ {
 /*N*/   mpAxisAttr=new SfxItemSet(mpModel->GetPool(),nAxisWhichPairs);
 /*N*/   SetDefaults();  //attribute fuellen
@@ -508,10 +495,12 @@ namespace binfilter {
 /*N*/                       double fData = GetData(nCol, nRow);//mpModel->GetData(nCol, nRow, mbPercent);
 /*N*/
 /*N*/                       if (fData != DBL_MIN)
+/*N*/                       {
 /*N*/                           if (fData < 0.0)
 /*N*/                               fMinTotal += fData;
 /*N*/                           else if (fData > 0.0)
 /*N*/                               fMaxTotal += fData;
+/*N*/                       }
 /*N*/                   }
 /*N*/               }
 /*N*/
@@ -570,6 +559,7 @@ namespace binfilter {
 /*N*/                       double fData = GetData( nCol, 0 );
 /*N*/
 /*N*/                       if (fData != DBL_MIN)
+/*N*/                       {
 /*N*/                           if (nCol == 0)    //naja, so eigentlich nicht.... aber die X-Achse sollte eh vollständig sein
 /*N*/                           {
 /*N*/                               fMin = fData;
@@ -584,7 +574,8 @@ namespace binfilter {
 /*N*/
 /*N*/                               if (fMax < fData)
 /*N*/                                   fMax = fData;
-/*N*/                          }
+/*N*/                           }
+/*N*/                       }
 /*N*/                   }
 /*N*/               }
 /*N*/               else // y axis
@@ -847,7 +838,7 @@ namespace binfilter {
 /*N*/   while(nLines)       //nLines ist 0 wenn kein CHSTYLE_2D_LINE_STACKEDCOLUMN
 /*N*/   {
 /*?*/       if( IsDataOnAxis( nIndex ))
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 UpdateRowMinMax( nIndex, nColCnt, mbPercent, fMin, fMax );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       nLines--;
 /*?*/       nIndex++;
 /*N*/   }
@@ -948,7 +939,7 @@ namespace binfilter {
 /*?*/                 mfMin = mfMax;
 /*?*/             else
 /*?*/             {
-/*?*/                 DBG_ERROR( "Minimum is greater than Maximum" );
+/*?*/                 OSL_FAIL( "Minimum is greater than Maximum" );
 /*?*/                 double fTemp = mfMin;
 /*?*/
 /*?*/                 mfMin = mfMax;
@@ -1011,8 +1002,8 @@ namespace binfilter {
 /*?*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           if (!mpModel->IsNegativeChart() && (mfMin < 0.0) ||
-/*N*/               mbAutoMin && (mfMin > 0.0)) mfMin = SizeBounds (mfMin, mfMax, FALSE);
+/*N*/           if ((!mpModel->IsNegativeChart() && (mfMin < 0.0)) ||
+/*N*/               (mbAutoMin && (mfMin > 0.0))) mfMin = SizeBounds (mfMin, mfMax, FALSE);
 /*N*/           if (mbAutoMax && (mfMax < 0.0)) mfMax = SizeBounds (mfMin, mfMax, TRUE);
 /*N*/
 /*N*/           if (mfMax - mfMin == 0.0) mfMax = mfMin + 1.0;
@@ -1083,7 +1074,7 @@ namespace binfilter {
 /*N*/           return (maArea.GetWidth() * 4) / 6; //ToDo: Das hier ist doch quark... kein Flipped?:;
 /*N*/           break;
 /*N*/   }
-/*?*/   DBG_ERROR("ChartAxis::GetLenght() implementation error - ZAxis failure");
+/*?*/   OSL_FAIL("ChartAxis::GetLenght() implementation error - ZAxis failure");
 /*?*/   return maArea.GetWidth();
 /*N*/ }
 
@@ -1122,7 +1113,7 @@ namespace binfilter {
 /*N*/       mpAxisAttr->Get(SCHATTR_TEXT_ORIENT)).GetValue();
 /*N*/     //    Determine the size of the texts bounding box.
 /*N*/   if (meTextOrient == CHTXTORIENT_STACKED)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pOutliner->SetText (StackString(aString), pOutliner->GetParagraph (0));
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   else
 /*N*/       pOutliner->SetText(aString, pOutliner->GetParagraph (0));
 /*N*/   pOutliner->SetUpdateMode (TRUE);
@@ -1295,7 +1286,7 @@ namespace binfilter {
 /*N*/             //    zero.
 /*N*/           if ((mfStep<0) || (mfMin+mfStep==mfMin) || (mfMax+mfStep==mfMax))
 /*N*/           {
-/*N*/               DBG_ERROR( "Decrement of <= 0.0 not allowed" );
+/*N*/               OSL_FAIL( "Decrement of <= 0.0 not allowed" );
 /*N*/               mfStep = 1.0;             // to prevent loop
 /*N*/           }
 /*N*/
@@ -1370,7 +1361,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(nLimit < 0.0)
 /*N*/   {
-/*?*/       DBG_ERROR( "negative value for nLimit, check maArea!" );
+/*?*/       OSL_FAIL( "negative value for nLimit, check maArea!" );
 /*?*/       nLimit=1.0;
 /*N*/   }
 /*N*/   nLimit=nLimit/100.0; //Minimum 1 mm Abstand
@@ -1417,7 +1408,7 @@ namespace binfilter {
 /*N*/               return maRefArea.Left() +   (long)(CalcFact(fData) * maRefArea.GetWidth());
 /*N*/
 /*N*/       case CHART_AXIS_Z:
-/*?*/           DBG_ERROR("ChartAxis - no z pos");
+/*?*/           OSL_FAIL("ChartAxis - no z pos");
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
@@ -1432,7 +1423,7 @@ namespace binfilter {
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if(maArea!=maRefArea)
-/*N*/       DBG_TRACE("ChartAxis:: maArea!=maRefArea!!!");
+/*N*/       OSL_TRACE("ChartAxis:: maArea!=maRefArea!!!");
 /*N*/ #endif
 /*N*/   return bRet;
 /*N*/ }
@@ -1471,7 +1462,7 @@ namespace binfilter {
 /*N*/
 /*N*/         if( ::rtl::math::isInf( mfMax ) || ::rtl::math::isInf( mfMin ))
 /*N*/         {
-/*N*/             DBG_ERROR( "maximum or minumum is infinity" );
+/*N*/             OSL_FAIL( "maximum or minumum is infinity" );
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -1635,7 +1626,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if(!mpTextAttr)
 /*N*/   {
-/*?*/       DBG_ERROR("ChartAxis: description uninitialised!!!!");
+/*?*/       OSL_FAIL("ChartAxis: description uninitialised!!!!");
 /*?*/       CreateTextAttr();
 /*N*/   }
 /*N*/
@@ -1928,7 +1919,9 @@ namespace binfilter {
 /*N*/       {
 /*N*/               // dann hat man mehr Platz pro Zeile (eigentlich 2 mal soviel) aber der Platz zwischen den
 /*N*/               // Beschriftungen steht auch noch zur Verfuegung (jeweils 0,2 * nDescrWidth)
-/*?*/           mnMaxTextWidth = 2 * mnMaxTextWidth + 0,4 * nDescrWidth;
+//          mnMaxTextWidth = 2 * mnMaxTextWidth + 0,4 * nDescrWidth;
+/*?*/           //cmc: I thought I'd leave ^^^ in for posterity, behold the , vs . :-)
+/*?*/           mnMaxTextWidth = 2 * mnMaxTextWidth + 0;
 /*?*/               // Man braucht auch 2 mal soviel Platz in unten am Chart.
 /*?*/           if(mbSecondary)
 /*?*/               rRect.Top() += maMaxTextSize.Height() + mnTickLen;
@@ -2395,7 +2388,7 @@ namespace binfilter {
 /*N*/
 /*N*/         if( ::rtl::math::isInf( mfMax ) || ::rtl::math::isInf( mfMin ))
 /*N*/         {
-/*N*/             DBG_ERROR( "maximum or minumum is infinity" );
+/*N*/             OSL_FAIL( "maximum or minumum is infinity" );
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -2465,7 +2458,7 @@ namespace binfilter {
 /*?*/                             fActHelp+=mfStepHelp;
 /*?*/                         }
 /*?*/                         //    If the main grid is drawn then skip the coinciding help grid lines.
-/*?*/                         if ((fActHelp == fAct) && mpMainGridList || mbColText)
+/*?*/                         if (((fActHelp == fAct) && mpMainGridList) || mbColText)
 /*?*/                             fActHelp+=mfStepHelp;
 /*?*/                     }
 /*?*/                 }
@@ -2586,7 +2579,7 @@ namespace binfilter {
 
 
 
-/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* pTransTable )
+/*N*/ BOOL ChartAxis::TranslateMergedNumFormat( SvNumberFormatterIndexTable* /*pTransTable*/ )
 /*N*/ {
 /*N*/   ULONG nFmt, nMrgFmt;
 /*N*/   BOOL bRet =FALSE;
@@ -2595,13 +2588,13 @@ namespace binfilter {
 /*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
 /*N*/   if( nFmt != nMrgFmt )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SetNumFormat( mbPercent, nMrgFmt );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   nFmt = GetNumFormat( ! mbPercent );
 /*N*/   nMrgFmt = mpNumFormatter->GetMergeFmtIndex( nFmt );
 /*N*/   if( nFmt != nMrgFmt )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetNumFormat( ! mbPercent, nMrgFmt );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   return bRet;
 /*N*/ }
@@ -2638,3 +2631,5 @@ namespace binfilter {
 /*N*/     return nResult;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

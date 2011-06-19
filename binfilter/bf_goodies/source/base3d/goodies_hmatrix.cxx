@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include "base3d.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include "matrix3d.hxx"
-#endif
 
 namespace binfilter {
 /*************************************************************************
@@ -690,18 +683,18 @@ void Matrix4D::Ortho(double fLeft, double fRight, double fBottom,
 {
     if(fNear == fFar)
     {
-        DBG_ERROR("Near and far clipping plane in Ortho definition are identical");
+        OSL_FAIL("Near and far clipping plane in Ortho definition are identical");
         fFar = fNear + 1.0;
     }
     if(fLeft == fRight)
     {
-        DBG_ERROR("Left and right in Ortho definition are identical");
+        OSL_FAIL("Left and right in Ortho definition are identical");
         fLeft -= 1.0;
         fRight += 1.0;
     }
     if(fTop == fBottom)
     {
-        DBG_ERROR("Top and bottom in Ortho definition are identical");
+        OSL_FAIL("Top and bottom in Ortho definition are identical");
         fBottom -= 1.0;
         fTop += 1.0;
     }
@@ -976,3 +969,5 @@ SvStream& operator<<(SvStream& rOStream, const Matrix4D& rMatrix4D)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

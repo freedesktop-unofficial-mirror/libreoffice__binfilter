@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,45 +26,23 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_LINEDASH_HPP_
 #include <com/sun/star/drawing/LineDash.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 
 #include <cppuhelper/implbase2.hxx>
 
-#ifndef _XTABLE_HXX
 #include "xtable.hxx"
-#endif
 
-#ifndef _SVX_UNOPOLYHELPER_HXX
 #include "unopolyhelper.hxx"
-#endif
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 #include "unoapi.hxx"
 #include "unoprnms.hxx"
@@ -75,7 +54,6 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
 using namespace ::cppu;
 using namespace ::rtl;
-using namespace ::vos;
 
 class SvxUnoXPropertyTable : public WeakImplHelper2< XNameContainer, XServiceInfo >
 {
@@ -115,12 +93,16 @@ public:
 };
 
 SvxUnoXPropertyTable::SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyTable* pTable ) throw()
-: mpTable( pTable ), mpList( NULL ), mnWhich( nWhich )
+    : mnWhich( nWhich )
+    , mpList( NULL )
+    , mpTable( pTable )
 {
 }
 
 SvxUnoXPropertyTable::SvxUnoXPropertyTable( sal_Int16 nWhich, XPropertyList* pList ) throw()
-: mpTable( NULL ), mpList( pList ), mnWhich( nWhich )
+    : mnWhich( nWhich )
+    , mpList( pList )
+    , mpTable( NULL )
 {
 }
 
@@ -159,7 +141,7 @@ sal_Bool SAL_CALL SvxUnoXPropertyTable::supportsService( const  OUString& Servic
 void SAL_CALL SvxUnoXPropertyTable::insertByName( const  OUString& aName, const  Any& aElement )
     throw( IllegalArgumentException, ElementExistException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( NULL == mpList && NULL == mpTable )
         throw IllegalArgumentException();
@@ -183,7 +165,7 @@ void SAL_CALL SvxUnoXPropertyTable::insertByName( const  OUString& aName, const 
 void SAL_CALL SvxUnoXPropertyTable::removeByName( const  OUString& Name )
     throw( NoSuchElementException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, Name, aInternalName );
@@ -211,7 +193,7 @@ void SAL_CALL SvxUnoXPropertyTable::removeByName( const  OUString& Name )
 void SAL_CALL SvxUnoXPropertyTable::replaceByName( const  OUString& aName, const  Any& aElement )
     throw( IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, aName, aInternalName );
@@ -243,7 +225,7 @@ void SAL_CALL SvxUnoXPropertyTable::replaceByName( const  OUString& aName, const
 Any SAL_CALL SvxUnoXPropertyTable::getByName( const  OUString& aName )
     throw( NoSuchElementException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, aName, aInternalName );
@@ -265,7 +247,7 @@ Any SAL_CALL SvxUnoXPropertyTable::getByName( const  OUString& aName )
 Sequence<  OUString > SAL_CALL SvxUnoXPropertyTable::getElementNames()
     throw( RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const long nCount = getCount();
     Sequence< OUString > aNames( nCount );
@@ -289,7 +271,7 @@ Sequence<  OUString > SAL_CALL SvxUnoXPropertyTable::getElementNames()
 sal_Bool SAL_CALL SvxUnoXPropertyTable::hasByName( const  OUString& aName )
     throw( RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     String aInternalName;
     SvxUnogetInternalNameForItem( mnWhich, aName, aInternalName );
@@ -311,7 +293,7 @@ sal_Bool SAL_CALL SvxUnoXPropertyTable::hasByName( const  OUString& aName )
 sal_Bool SAL_CALL SvxUnoXPropertyTable::hasElements(  )
     throw( RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return getCount() != 0;
 }
@@ -350,7 +332,7 @@ Any SvxUnoXColorTable::getAny( const XPropertyEntry* pEntry ) const throw()
 
 XPropertyEntry* SvxUnoXColorTable::getEntry( const OUString& rName, const Any& rAny ) const throw()
 {
-    sal_Int32 nColor;
+    sal_Int32 nColor = 0;
     if( !(rAny >>= nColor) )
         return NULL;
 
@@ -769,3 +751,5 @@ uno::Sequence<  OUString > SAL_CALL SvxUnoXBitmapTable::getSupportedServiceNames
     return aServices;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

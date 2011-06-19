@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 
 #include <stdio.h>
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 namespace binfilter {
 
 // ================================================================================
@@ -79,7 +76,7 @@ namespace binfilter {
 /*N*/
 /*N*/     if( aResult[ 0 ].hasValue() )
 /*N*/     {
-/*N*/         sal_Int32 nValue;
+/*N*/         sal_Int32 nValue(0);
 /*N*/         aResult[ 0 ] >>= nValue;
 /*N*/         eResult = static_cast< FieldUnit >( nValue );
 /*N*/     }
@@ -87,7 +84,7 @@ namespace binfilter {
 /*N*/     return eResult;
 /*N*/ }
 
-void CalcConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void CalcConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
 void CalcConfigItem::Commit() {}
 
 
@@ -104,11 +101,11 @@ namespace util
 /*N*/ FieldUnit GetMeasureUnit()
 /*N*/ {
 /*N*/     static CalcConfigItem aCfgItem;
-/*N*/     FieldUnit aUnit( aCfgItem.GetMeasureUnit() );
-/*N*/
 /*N*/     return aCfgItem.GetMeasureUnit();
 /*N*/ }
 
 }  // namespace util
 }  // namespace sch
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

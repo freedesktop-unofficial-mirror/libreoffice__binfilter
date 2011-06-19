@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -62,11 +60,11 @@ namespace binfilter {
 //========================================================================
 
 /*N*/ ScStyleSheet::ScStyleSheet( const String&     rName,
-/*N*/                           ScStyleSheetPool&   rPool,
+/*N*/                           ScStyleSheetPool&   rInPool,
 /*N*/                           SfxStyleFamily      eFamily,
-/*N*/                           USHORT              nMask )
+/*N*/                           USHORT              nInMask )
 /*N*/
-/*N*/   :   SfxStyleSheet   ( rName, rPool, eFamily, nMask )
+/*N*/   :   SfxStyleSheet   ( rName, rInPool, eFamily, nInMask )
 /*N*/     , eUsage( UNKNOWN )
 /*N*/ {
 /*N*/ }
@@ -81,7 +79,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScStyleSheet::~ScStyleSheet()
+/*N*/ ScStyleSheet::~ScStyleSheet()
 /*N*/ {
 /*N*/ }
 
@@ -93,7 +91,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScStyleSheet::SetParent( const String& rParentName )
+/*N*/ BOOL ScStyleSheet::SetParent( const String& rParentName )
 /*N*/ {
 /*N*/   BOOL bResult = FALSE;
 /*N*/   String aEffName = rParentName;
@@ -121,7 +119,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxItemSet& __EXPORT ScStyleSheet::GetItemSet()
+/*N*/ SfxItemSet& ScStyleSheet::GetItemSet()
 /*N*/ {
 /*N*/   if ( !pSet )
 /*N*/   {
@@ -133,8 +131,8 @@ namespace binfilter {
 /*N*/                   // deshalb werden an dieser Stelle geeignete
 /*N*/                   // Werte eingestellt. (==Standard-Seitenvorlage)
 /*N*/
-/*N*/                   SfxItemPool& rPool = GetPool().GetPool();
-/*N*/                   pSet = new SfxItemSet( rPool,
+/*N*/                   SfxItemPool& rLclPool = GetPool().GetPool();
+/*N*/                   pSet = new SfxItemSet( rLclPool,
 /*N*/                                          ATTR_BACKGROUND, ATTR_BACKGROUND,
 /*N*/                                          ATTR_BORDER, ATTR_SHADOW,
 /*N*/                                          ATTR_LRSPACE, ATTR_PAGE_NULLVALS,
@@ -153,7 +151,7 @@ namespace binfilter {
 /*N*/                       // Setzen von sinnvollen Default-Werten:
 /*N*/                       //!!! const-Document wegcasten (im Ctor mal bei Gelegenheit aendern)
 /*N*/                       SfxPrinter*     pPrinter = pDoc->GetPrinter();
-/*N*/                       USHORT          nBinCount = pPrinter->GetPaperBinCount();
+/*N*/                       /*USHORT        nBinCount =*/ pPrinter->GetPaperBinCount();
 /*N*/                       SvxPageItem     aPageItem( ATTR_PAGE );
 /*N*/                       // #50536# PaperBin auf Default lassen,
 /*N*/                       // nicht auf aktuelle Drucker-Einstellung umsetzen
@@ -163,7 +161,7 @@ namespace binfilter {
 /*N*/
 /*N*/                       SvxSetItem      aHFSetItem(
 /*N*/                                           (const SvxSetItem&)
-/*N*/                                           rPool.GetDefaultItem(ATTR_PAGE_HEADERSET) );
+/*N*/                                           rLclPool.GetDefaultItem(ATTR_PAGE_HEADERSET) );
 /*N*/
 /*N*/                       SfxItemSet&     rHFSet = aHFSetItem.GetItemSet();
 /*N*/                       SvxSizeItem     aHFSizeItem( // 0,5 cm + Abstand
@@ -208,12 +206,12 @@ namespace binfilter {
 /*M*/                       SvxFrameDirection eDirection = FRMDIR_HORI_LEFT_TOP;
 /*M*/                       pSet->Put( SvxFrameDirectionItem( eDirection ), ATTR_WRITINGDIR );
 /*M*/
-/*N*/                       rPool.SetPoolDefaultItem( aPageItem );
-/*N*/                       rPool.SetPoolDefaultItem( aPaperSizeItem );
-/*N*/                       rPool.SetPoolDefaultItem( aLRSpaceItem );
-/*N*/                       rPool.SetPoolDefaultItem( aULSpaceItem );
-/*N*/                       rPool.SetPoolDefaultItem( SfxUInt16Item( ATTR_PAGE_SCALE, 100 ) );
-/*N*/                       rPool.SetPoolDefaultItem( SfxUInt16Item( ATTR_PAGE_SCALETOPAGES, 0 ) );
+/*N*/                       rLclPool.SetPoolDefaultItem( aPageItem );
+/*N*/                       rLclPool.SetPoolDefaultItem( aPaperSizeItem );
+/*N*/                       rLclPool.SetPoolDefaultItem( aLRSpaceItem );
+/*N*/                       rLclPool.SetPoolDefaultItem( aULSpaceItem );
+/*N*/                       rLclPool.SetPoolDefaultItem( SfxUInt16Item( ATTR_PAGE_SCALE, 100 ) );
+/*N*/                       rLclPool.SetPoolDefaultItem( SfxUInt16Item( ATTR_PAGE_SCALETOPAGES, 0 ) );
 /*N*/                   }
 /*N*/               }
 /*N*/               break;
@@ -233,7 +231,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScStyleSheet::IsUsed() const
+/*N*/ BOOL ScStyleSheet::IsUsed() const
 /*N*/ {
 /*N*/   if ( GetFamily() == SFX_STYLE_FAMILY_PARA )
 /*N*/   {
@@ -252,7 +250,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ void __EXPORT ScStyleSheet::SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void ScStyleSheet::SFX_NOTIFY( SfxBroadcaster& /*rBC*/, const TypeId& rBCType,
 /*N*/                          const SfxHint& rHint, const TypeId& rHintType )
 /*N*/ {
 /*N*/   if ( rHint.ISA(SfxSimpleHint) )
@@ -315,3 +313,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -48,12 +46,8 @@
 #include <ctype.h>
 
 
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _UNOTOOLS_INTLWRAPPER_HXX
 #include <unotools/intlwrapper.hxx>
-#endif
 
 #include "autoform.hxx"
 #include "patattr.hxx"
@@ -66,9 +60,7 @@
 #include "unitconv.hxx"
 #include "globstr.hrc"
 #include "bf_sc.hrc"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
 namespace binfilter {
 // -----------------------------------------------------------------------
@@ -474,14 +466,14 @@ void global_InitAppOptions();
 /*N*/ {
 /*N*/   if (!pPool)
 /*N*/   {
-/*?*/       DBG_ERROR("kein Pool bei ScGlobal::InitTextHeight");
+/*?*/       OSL_FAIL("kein Pool bei ScGlobal::InitTextHeight");
 /*?*/       return;
 /*N*/   }
 /*N*/
 /*N*/   const ScPatternAttr* pPattern = (const ScPatternAttr*)&pPool->GetDefaultItem(ATTR_PATTERN);
 /*N*/   if (!pPattern)
 /*N*/   {
-/*?*/       DBG_ERROR("kein Default-Pattern bei ScGlobal::InitTextHeight");
+/*?*/       OSL_FAIL("kein Default-Pattern bei ScGlobal::InitTextHeight");
 /*?*/       return;
 /*N*/   }
 /*N*/
@@ -724,7 +716,7 @@ void global_InitAppOptions();
 /*N*/ ScFunctionList::ScFunctionList() :
 /*N*/       nMaxFuncNameLen ( 0 )
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScFuncDesc*       pDesc   = NULL;
+/*N*/       DBG_BF_ASSERT(0, "STRIP");
 }
 
 //------------------------------------------------------------------------
@@ -772,7 +764,7 @@ void global_InitAppOptions();
 
 /*N*/ ScFunctionMgr::~ScFunctionMgr()
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i = 0; i < MAX_FUNCCAT; i++)
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ String ColToAlpha( const USHORT nCol )
@@ -791,3 +783,5 @@ void global_InitAppOptions();
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

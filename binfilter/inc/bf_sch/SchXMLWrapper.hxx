@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _SCH_XMLWRP_HXX_
 #define _SCH_XMLWRP_HXX_
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace xml {
         namespace sax {
@@ -54,28 +53,6 @@ namespace com { namespace sun { namespace star {
 }}}
 namespace binfilter {
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace xml {
-//STRIP008      namespace sax {
-//STRIP008          class XParser;
-//STRIP008      }
-//STRIP008  }
-//STRIP008  namespace document {
-//STRIP008      class XGraphicObjectResolver;
-//STRIP008  }
-//STRIP008  namespace frame {
-//STRIP008      class XModel;
-//STRIP008  }
-//STRIP008  namespace task {
-//STRIP008      class XStatusIndicator;
-//STRIP008  }
-//STRIP008  namespace lang {
-//STRIP008      class XMultiServiceFactory;
-//STRIP008  }
-//STRIP008     namespace io {
-//STRIP008         class XActiveDataSource;
-//STRIP008     }
-//STRIP008 }}}
 
 class SchXMLWrapper
 {
@@ -104,3 +81,5 @@ public:
 
 } //namespace binfilter
 #endif  // _SCH_XMLWRP_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,27 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_SV_H
 #include <vcl/sv.h>
-#endif
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
-#ifndef _SV_DOCKWIN_HXX
 #include <vcl/dockwin.hxx>
-#endif
 
-#ifndef _SV_TABPAGE_HXX
 #include <vcl/tabpage.hxx>
-#endif
 
-#ifndef _SV_EXPANDER_HXX
 #include <bf_svtools/expander.hxx>
-#endif
 
-#ifndef _SV_PRIVSPLT_HXX
 #include <bf_svtools/privsplt.hxx>
-#endif
 
 namespace binfilter
 {
@@ -121,3 +110,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

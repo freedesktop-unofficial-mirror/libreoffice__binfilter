@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,12 +32,8 @@
 
 #include <algorithm>
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
 
 #include <bf_svtools/itemset.hxx>
 #include <outliner.hxx>
@@ -104,7 +101,7 @@ static SfxItemSet ImplOutlinerForwarderGetAttribs( const ESelection& rSel, BOOL 
             nFlags = GETATTRIBS_CHARATTRIBS;
             break;
         default:
-            DBG_ERROR("unknown flags for SvxOutlinerForwarder::GetAttribs");
+            OSL_FAIL("unknown flags for SvxOutlinerForwarder::GetAttribs");
         }
         return rEditEngine.GetAttribs( rSel.nStartPara, rSel.nStartPos, rSel.nEndPos, nFlags );
     }
@@ -426,7 +423,7 @@ USHORT SvxOutlinerForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
     return rOutliner.GetLineLen(nPara, nLine);
 }
 
-sal_Bool SvxOutlinerForwarder::QuickFormatDoc( BOOL bFull )
+sal_Bool SvxOutlinerForwarder::QuickFormatDoc( BOOL )
 {
     rOutliner.QuickFormatDoc();
 
@@ -486,7 +483,7 @@ sal_Bool SvxOutlinerForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
     if(bOutlinerText)
         ++nNewDepth;
 
-    if(nNewDepth >= 0 && nNewDepth <= 9)
+    if(nNewDepth <= 9)
     {
         Paragraph* pPara = rOutliner.GetParagraph( nPara );
         if( pPara )
@@ -504,3 +501,5 @@ sal_Bool SvxOutlinerForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
 
 //------------------------------------------------------------------------
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

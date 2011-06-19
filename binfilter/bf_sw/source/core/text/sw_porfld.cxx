@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,32 +31,18 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _PORFTN_HXX
 #include <porftn.hxx>   // SwFtnPortion
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -77,26 +64,30 @@ using namespace ::com::sun::star;
 /*N*/     return pClone;
 /*N*/ }
 
-/*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* pFld )
+/*N*/ void SwFldPortion::TakeNextOffset( const SwFldPortion* /*pFld*/ )
 /*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    ASSERT( pFld, "TakeNextOffset: Missing Source" );
+/*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt )
-/*N*/   : aExpand(rExpand), pFnt(pFnt), nViewWidth(0), nNextOffset(0),
-/*N*/     bFollow( sal_False ), bHasFollow( sal_False )
+/*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt1 )
+/*N*/   : aExpand(rExpand)
+/*N*/   , pFnt(pFnt1)
+/*N*/   , nNextOffset(0)
+/*N*/   , nViewWidth(0)
+/*N*/   , bFollow( sal_False )
+/*N*/   , bHasFollow( sal_False )
 /*N*/ {
 /*N*/   SetWhichPor( POR_FLD );
 /*N*/ }
 
 /*N*/ SwFldPortion::SwFldPortion( const SwFldPortion& rFld )
-/*N*/     : aExpand( rFld.GetExp() ),
-/*N*/       bCenter( rFld.IsCenter() ),
-/*N*/       bFollow( rFld.IsFollow() ),
-/*N*/       bHasFollow( rFld.HasFollow() ),
-/*N*/       bHide( rFld.IsHide() ),
-/*N*/       bLeft( rFld.IsLeft() ),
-/*N*/       nNextOffset( rFld.GetNextOffset() )
+/*N*/     : aExpand( rFld.GetExp() )
+/*N*/     , nNextOffset( rFld.GetNextOffset() )
+/*N*/     , bFollow( rFld.IsFollow() )
+/*N*/     , bLeft( rFld.IsLeft() )
+/*N*/     , bHide( rFld.IsHide() )
+/*N*/     , bCenter( rFld.IsCenter() )
+/*N*/     , bHasFollow( rFld.HasFollow() )
 /*N*/ {
 /*N*/     if ( rFld.HasFont() )
 /*N*/         pFnt = new SwFont( *rFld.GetFont() );
@@ -112,20 +103,8 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*************************************************************************
- *               virtual SwFldPortion::GetViewWidth()
- *************************************************************************/
-
-
-/*************************************************************************
- *                 virtual SwFldPortion::Format()
- *************************************************************************/
-
-// 8653: in keinem Fall nur SetLen(0);
-
-/*************************************************************************
  *   Hilfsklasse SwFldSlot
  **************************************************************************/
-
 class SwFldSlot
 {
     const XubString *pOldTxt;
@@ -222,7 +201,6 @@ public:
 /*N*/       {
 /*N*/           nScript = pBreakIt->xBreak->getScriptType( aTxt, 0 );
 /*N*/           xub_StrLen nChg = 0;
-/*N*/           USHORT nCnt = 0;
 /*N*/           if( i18n::ScriptType::WEAK == nScript )
 /*N*/           {
 /*N*/               nChg =(xub_StrLen)pBreakIt->xBreak->endOfScript(aTxt,0,nScript);
@@ -276,7 +254,7 @@ public:
 /*M*/                  rInf.GetUnderScorePos() > rInf.GetIdx() )
 /*M*/                 rInf.SetUnderScorePos( rInf.GetIdx() );
 /*M*/       }
-/*M*/       BYTE nScriptChg = ScriptChange( rInf, nFullLen );
+/*M*/       ScriptChange( rInf, nFullLen );
 /*M*/       rInf.SetLen( nFullLen );
 /*M*/       if( pFnt )
 /*M*/           pFnt->GoMagic( rInf.GetVsh(), pFnt->GetActual() );
@@ -329,7 +307,7 @@ public:
 /*M*/             xub_StrLen nNextOfst = aExpand.Len() - nRest;
 /*M*/
 /*M*/             if ( IsQuoVadisPortion() )
-/*?*/                { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nNextOfst += ((SwQuoVadisPortion*)this)->GetContTxt().Len();
+/*?*/                { DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/           XubString aNew( aExpand, nNextOfst, STRING_LEN );
 /*M*/           aExpand.Erase( nNextOfst, STRING_LEN );
@@ -355,7 +333,6 @@ public:
 /*M*/           if( aNew.Len() || IsQuoVadisPortion() )
 /*M*/           {
 /*M*/               // sal_True, weil es ein FollowFeld ist
-/*M*/               // SwFont *pFont = new SwFont( rInf.GetFont()->GetFnt() );
 /*M*/               SwFldPortion *pFld = Clone( aNew );
 /*M*/               if( !pFld->GetFont() )
 /*M*/               {
@@ -381,11 +358,6 @@ public:
 /*M*/ }
 
 /*************************************************************************
- *               virtual SwFldPortion::Paint()
- *************************************************************************/
-
-
-/*************************************************************************
  *              virtual SwFldPortion::GetExpTxt()
  *************************************************************************/
 
@@ -401,11 +373,6 @@ public:
 /*N*/ }
 
 /*************************************************************************
- *              virtual SwFldPortion::HandlePortion()
- *************************************************************************/
-
-
-/*************************************************************************
  *                virtual SwFldPortion::GetTxtSize()
  *************************************************************************/
 
@@ -415,15 +382,6 @@ public:
 /*N*/   SwPosSize aSize( SwExpandPortion::GetTxtSize( rInf ) );
 /*N*/   return aSize;
 /*N*/ }
-
-/*************************************************************************
- *                      class SwHiddenPortion
- *************************************************************************/
-
-/*************************************************************************
- *               virtual SwHiddenPortion::Paint()
- *************************************************************************/
-
 
 /*************************************************************************
  *              virtual SwHiddenPortion::GetExpTxt()
@@ -439,9 +397,9 @@ public:
  *                      class SwNumberPortion
  *************************************************************************/
 
-/*N*/ SwNumberPortion::SwNumberPortion( const XubString &rExpand, SwFont *pFnt,
+/*N*/ SwNumberPortion::SwNumberPortion( const XubString &rExpand, SwFont *pFnt2,
 /*N*/                   const sal_Bool bLft, const sal_Bool bCntr, const KSHORT nMinDst )
-/*N*/       : SwFldPortion( rExpand, pFnt ), nFixWidth(0), nMinDist( nMinDst )
+/*N*/       : SwFldPortion( rExpand, pFnt2 ), nFixWidth(0), nMinDist( nMinDst )
 /*N*/ {
 /*N*/   SetWhichPor( POR_NUMBER );
 /*N*/   SetLeft( bLft );
@@ -470,8 +428,7 @@ public:
 /*M*/   rInf.SetNumDone( !rInf.GetRest() );
 /*M*/   if( rInf.IsNumDone() )
 /*M*/   {
-/*M*/ //        SetAscent( rInf.GetAscent() );
-/*M*/         ASSERT( Height() && nAscent, "NumberPortions without Height | Ascent" )
+/*M*/         OSL_ENSURE( Height() && nAscent, "NumberPortions without Height | Ascent" );
 /*M*/
 /*M*/       long nDiff = rInf.Left() - rInf.First() + rInf.ForcedLeftMargin();
 /*M*/       // Ein Vorschlag von Juergen und Volkmar:
@@ -506,22 +463,6 @@ public:
 /*M*/   return bFull;
 /*M*/ }
 
-/*  Ein FormatEOL deutet daraufhin, dass der folgende Text
- *  nicht mit auf die Zeile passte. Damit die Numerierung mitwandert,
- *  wird diese NumberPortion verborgen.
- */
-
-    // This caused trouble with flys anchored as characters.
-    // If one of these is numbered but does not fit to the line,
-    // it calls this function, causing a loop because both the number
-    // portion and the fly portion go to the next line
-//    SetHide( sal_True );
-
-/*************************************************************************
- *               virtual SwNumberPortion::Paint()
- *************************************************************************/
-
-
 
 /*************************************************************************
  *                      class SwBulletPortion
@@ -535,3 +476,5 @@ public:
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

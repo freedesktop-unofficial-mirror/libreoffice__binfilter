@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,12 +33,8 @@
 
 #include "schmod.hxx"
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -58,9 +55,9 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SchDocument_getSupportedServiceNames()
 }
 
 uno::Reference< uno::XInterface > SAL_CALL SchDocument_createInstance(
-                const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception )
+                const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ ) throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SCH_MOD1(), "No StarChart module!" );
@@ -82,3 +79,5 @@ uno::Reference< uno::XInterface > SAL_CALL SchDocument_createInstance(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

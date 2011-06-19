@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,19 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _E3D_POLYGON3D_HXX
 #include "polygn3d.hxx"
-#endif
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
 
-#ifndef _E3D_E3DIOCMPT_HXX
 #include "e3dcmpt.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPolygonObj, E3dCompoundObject);
@@ -335,57 +330,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Wandle das Objekt in ein Gruppenobjekt bestehend aus 6 Polygonen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Give out simple line geometry
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Geometrieerzeugung
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dPolygonObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // call parent
-/*N*/   E3dCompoundObject::WriteData(rOut);
-/*N*/
-/*N*/   E3dIOCompat aCompat(rOut, STREAM_WRITE, 1);
-/*N*/   rOut << BOOL(bLineOnly);
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/
@@ -422,8 +366,10 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dPolygonObj::SetLineOnly(BOOL bNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dPolygonObj::SetLineOnly(BOOL /*bNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

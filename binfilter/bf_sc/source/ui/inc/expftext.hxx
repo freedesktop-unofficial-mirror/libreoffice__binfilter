@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SC_EXPFTEXT_HXX
 #define _SC_EXPFTEXT_HXX
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 namespace binfilter {
 
 class ScExpandedFixedText: public FixedText
@@ -44,3 +43,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
-#endif
 namespace binfilter {
 
 
@@ -81,9 +78,9 @@ namespace binfilter {
 /*N*/ SwPosSection fnSectionEnd     = &aBwrd;
 
 // Travelling in Tabellen
-/*N*/ FASTBOOL GotoPrevTable( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoCurrTable( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoNextTable( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
+/*N*/ bool GotoPrevTable( SwPaM&, SwPosTable, bool bInReadOnly );
+/*N*/ bool GotoCurrTable( SwPaM&, SwPosTable, bool bInReadOnly );
+/*N*/ bool GotoNextTable( SwPaM&, SwPosTable, bool bInReadOnly );
 
 /*N*/ SwWhichTable fnTablePrev = &GotoPrevTable;
 /*N*/ SwWhichTable fnTableCurr = &GotoCurrTable;
@@ -92,10 +89,10 @@ namespace binfilter {
 /*N*/ SwPosTable fnTableEnd = &aBwrd;
 
 // Travelling in Bereichen
-/*N*/ FASTBOOL GotoPrevRegion( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoCurrRegion( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoCurrRegionAndSkip( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
-/*N*/ FASTBOOL GotoNextRegion( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
+/*N*/ bool GotoPrevRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
+/*N*/ bool GotoCurrRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
+/*N*/ bool GotoCurrRegionAndSkip( SwPaM&, SwPosRegion, bool bInReadOnly );
+/*N*/ bool GotoNextRegion( SwPaM&, SwPosRegion, bool bInReadOnly );
 
 /*N*/ SwWhichRegion fnRegionPrev = &GotoPrevRegion;
 /*N*/ SwWhichRegion fnRegionCurr = &GotoCurrRegion;
@@ -138,3 +135,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

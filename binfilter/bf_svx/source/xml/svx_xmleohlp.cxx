@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,29 +28,17 @@
 
 #include <stdio.h>
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
-#endif
 #include <cppuhelper/implbase1.hxx> // helper for implementations
 
 #include <map>
 
-#ifndef _XMLEOHLP_HXX
 #include "xmleohlp.hxx"
-#endif
 namespace binfilter {
 
 // -----------
@@ -79,7 +68,7 @@ class InputStorageWrapper_Impl : public ::cppu::WeakImplHelper1<stario::XInputSt
     TempFile aTempFile;
 
 public:
-    InputStorageWrapper_Impl( SvPersist *pPersist );
+    InputStorageWrapper_Impl( SvPersist * );
     virtual ~InputStorageWrapper_Impl();
 
     virtual sal_Int32   SAL_CALL    readBytes(staruno::Sequence< sal_Int8 >& aData, sal_Int32 nBytesToRead) throw(stario::NotConnectedException, stario::BufferSizeExceededException, staruno::RuntimeException);
@@ -91,7 +80,7 @@ public:
 
 
 /*N*/ InputStorageWrapper_Impl::InputStorageWrapper_Impl(
-/*N*/       SvPersist *pPersist )
+/*N*/       SvPersist * )
 /*N*/ {
 /*N*/   SvStream *pStream = 0;
 /*N*/   aTempFile.EnableKillingFile();
@@ -99,10 +88,8 @@ public:
 /*N*/   SvStorageRef aTempStor = new SvStorage( sal_False, *pStream );
 /*N*/   // the object should not be stored in 5.2 storage since the alien objects are stored in a wrapped way in this case
 /*N*/   aTempStor->SetVersion( SOFFICE_FILEFORMAT_31 );
-/*N*/   if( pPersist->DoSaveAs( aTempStor ) )
-/*N*/   {
-/*N*/       aTempStor->Commit();
-/*N*/   }
+/*N*/   if( false )
+/*N*/   {}
 /*N*/   else
 /*N*/   {
 /*?*/       aTempStor.Clear();
@@ -132,29 +119,29 @@ public:
 /*N*/ }
 
 /*?*/ sal_Int32 SAL_CALL InputStorageWrapper_Impl::readSomeBytes(
-/*?*/       Sequence< sal_Int8 >& aData,
-/*?*/       sal_Int32 nMaxBytesToRead)
+/*?*/       Sequence< sal_Int8 >& /*rData*/,
+/*?*/       sal_Int32 /*nMaxBytesToRead*/)
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
-/*?*/ void SAL_CALL InputStorageWrapper_Impl::skipBytes( sal_Int32 nBytesToSkip )
+/*?*/ void SAL_CALL InputStorageWrapper_Impl::skipBytes( sal_Int32 /*nBytesToSkip*/ )
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*?*/ sal_Int32 SAL_CALL InputStorageWrapper_Impl::available()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 /*?*/ void SAL_CALL InputStorageWrapper_Impl::closeInput()
 /*?*/   throw(NotConnectedException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------------
@@ -224,7 +211,7 @@ public:
 /*?*/ void SAL_CALL OutputStorageWrapper_Impl::flush()
 /*?*/   throw(NotConnectedException, BufferSizeExceededException, RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*N*/ void SAL_CALL OutputStorageWrapper_Impl::closeOutput()
@@ -256,8 +243,8 @@ struct OUStringLess
 /*N*/   maDefaultContainerStorageName( RTL_CONSTASCII_USTRINGPARAM(XML_CONTAINERSTORAGE_NAME) ),
 /*N*/   mpRootStorage( 0 ),
 /*N*/   mpDocPersist( 0 ),
-/*N*/   mpStreamMap( 0 ),
-/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ )
+/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ ),
+/*N*/   mpStreamMap( 0 )
 /*N*/ {
 /*N*/ }
 
@@ -266,8 +253,8 @@ struct OUStringLess
 /*N*/   maDefaultContainerStorageName( RTL_CONSTASCII_USTRINGPARAM(XML_CONTAINERSTORAGE_NAME) ),
 /*N*/   mpRootStorage( 0 ),
 /*N*/   mpDocPersist( 0 ),
-/*N*/   mpStreamMap( 0 ),
-/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ )
+/*N*/   meCreateMode( EMBEDDEDOBJECTHELPER_MODE_READ ),
+/*N*/   mpStreamMap( 0 )
 /*N*/ {
 /*N*/   Init( 0, rDocPersist, eCreateMode );
 /*N*/ }
@@ -281,7 +268,7 @@ struct OUStringLess
 /*N*/   {
 /*?*/       SvXMLEmbeddedObjectHelper_Impl::iterator aIter = mpStreamMap->begin();
 /*?*/       SvXMLEmbeddedObjectHelper_Impl::iterator aEnd = mpStreamMap->end();
-/*?*/       for( aIter; aIter != aEnd; aIter++ )
+/*?*/       for( ; aIter != aEnd; ++aIter )
 /*?*/       {
 /*?*/           if( aIter->second )
 /*?*/           {
@@ -313,7 +300,6 @@ struct OUStringLess
 /*N*/   //           or: #<path>/<object-name>
 /*N*/   //           or: #<object-name>
 /*N*/   // currently, path may only consist of a single directory name
-/*N*/   sal_Bool    bRet = sal_False;
 /*N*/
 /*N*/   if( !rURLStr.getLength() )
 /*N*/       return sal_False;
@@ -365,7 +351,7 @@ struct OUStringLess
 /*N*/
 /*N*/   if( -1 != rContainerStorageName.indexOf( '/' ) )
 /*N*/   {
-/*?*/       DBG_ERROR( "SvXMLEmbeddedObjectHelper: invalid path name" );
+/*?*/       OSL_FAIL( "SvXMLEmbeddedObjectHelper: invalid path name" );
 /*?*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -412,7 +398,7 @@ struct OUStringLess
 /*?*/ SvStorageRef SvXMLEmbeddedObjectHelper::ImplGetObjectStorage(
 /*?*/       const OUString& rContainerStorageName,
 /*?*/       const OUString& rObjectStorageName,
-/*?*/       sal_Bool bUCBStorage )
+/*?*/       sal_Bool /*bUCBStorage*/ )
 /*?*/ {
 /*?*/   SvStorageRef xObjStor;
 /*?*/   SvStorageRef xCntnrStor( ImplGetContainerStorage( rContainerStorageName ) );
@@ -531,7 +517,7 @@ struct OUStringLess
 /*N*/
 /*N*/   // For all unkown class id, the OLE object has to be wrapped by an
 /*N*/   // outplace object.
-/*N*/   SvGlobalName aOutClassId( SO3_OUT_CLASSID ); //STRIP003
+/*N*/   SvGlobalName aOutClassId( SO3_OUT_CLASSID );
 /*N*/   if( SvGlobalName() == aClassId ||
 /*N*/       ( aOutClassId != aClassId &&
 /*N*/         !SvFactory::IsIntern( aClassId, 0 ) ) )
@@ -619,7 +605,7 @@ struct OUStringLess
 /*N*/       SvStorage& rRootStorage,
 /*N*/       SvPersist& rDocPersist,
 /*N*/       SvXMLEmbeddedObjectHelperMode eCreateMode,
-/*N*/       sal_Bool bDirect )
+/*N*/       sal_Bool /*bDirect*/ )
 /*N*/ {
 /*N*/   SvXMLEmbeddedObjectHelper* pThis = new SvXMLEmbeddedObjectHelper;
 /*N*/
@@ -718,25 +704,27 @@ struct OUStringLess
 /*?*/ Sequence< OUString > SAL_CALL SvXMLEmbeddedObjectHelper::getElementNames()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;//STRIP001  MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Sequence< OUString > aSeq; return aSeq;
 /*?*/ }
 
-/*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasByName( const OUString& rURLStr )
+/*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasByName( const OUString& )
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 // XNameAccess
 /*?*/ Type SAL_CALL SvXMLEmbeddedObjectHelper::getElementType()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); Type aType; return aType;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SvXMLEmbeddedObjectHelper::hasElements()
 /*?*/   throw (RuntimeException)
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001    MutexGuard          aGuard( maMutex );
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

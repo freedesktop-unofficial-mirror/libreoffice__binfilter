@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 #ifndef _SC_XMLTRACKEDCHANGESCONTEXT_HXX
 #define _SC_XMLTRACKEDCHANGESCONTEXT_HXX
 
-#ifndef _SC_XMLCHANGETRACKINGIMPORTHELPER_HXX
 #include "XMLChangeTrackingImportHelper.hxx"
-#endif
-#ifndef SC_CHGTRACK_HXX
 #include "chgtrack.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 class ScXMLImport;
@@ -72,3 +65,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

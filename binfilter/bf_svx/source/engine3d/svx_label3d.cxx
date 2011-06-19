@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,18 +27,10 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
-
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
-
-#ifndef _E3D_LABEL3D_HXX
 #include "label3d.hxx"
-#endif
+
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dLabelObj, E3dPointObj);
@@ -67,38 +60,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* virtuelle Methode, die ein 2D-Objekt zurueckgibt, falls moeglich
-|*
-\************************************************************************/
-
-//E3dDisplayObj* E3dLabelObj::MakeViewTransform(Viewport3D& rViewpt,
-//                                            E3dLightList&,
-//                                            E3dDisplayObj* pDispObj)
-//{
-//  aViewPos = rViewpt.GetViewTransform() * GetTransPosition();
-//
-//  // 2D-Position des Labels bestimmen
-//  Point a2DPos = rViewpt.ProjectAndMap(aViewPos);
-//  aViewPos -= rViewpt.GetPRP();
-//
-//  if ( p2DLabelObj )
-//      p2DLabelObj->SetAnchorPos(a2DPos);
-//
-//  if ( pDispObj )
-//  {
-//      pDispObj->Set2DObj(p2DLabelObj);
-//      pDispObj->Set3DObj(this);
-//  }
-//  else
-//      pDispObj = new E3dDisplayObj(this, p2DLabelObj);
-//
-//  SetDisplayObj(pDispObj);
-//
-//  return pDispObj;
-//}
-
-/*************************************************************************
-|*
 |* SdrPage auch an p2DLabelObj setzen
 |*
 \************************************************************************/
@@ -121,44 +82,6 @@ namespace binfilter {
 /*N*/   E3dPointObj::SetModel(pNewModel);
 /*N*/   if ( p2DLabelObj )
 /*N*/       p2DLabelObj->SetModel(pNewModel);
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Anzahl der Handles zurueckgeben
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Handle-Liste fuellen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* In Stream schreiben
-|*
-\************************************************************************/
-
-/*N*/ void E3dLabelObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   E3dPointObj::WriteData(rOut);
-/*N*/
-/*N*/ #ifdef E3D_STREAMING
-/*N*/
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dLabelObj");
-/*N*/ #endif
-/*N*/   DBG_ASSERT(p2DLabelObj, "p2DLabelObj muss vor dem Speichern definiert sein!");
-/*N*/
-/*N*/   rOut << *p2DLabelObj;
-/*N*/ #endif
-/*N*/ #endif    // #ifndef SVX_LIGHT
 /*N*/ }
 
 /*************************************************************************
@@ -198,26 +121,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (singular)
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Get the name of the object (plural)
-|*
-\************************************************************************/
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

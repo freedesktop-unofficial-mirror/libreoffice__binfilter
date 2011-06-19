@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,26 +25,14 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #include "ParseContext.hxx"
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
 #include "dialmgr.hxx"
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
 
 namespace binfilter {
 
@@ -58,7 +47,7 @@ using namespace ::connectivity;
 /*N*/ OSystemParseContext::OSystemParseContext() : IParseContext()
 /*N*/ {
 /*N*/   DBG_CTOR(OSystemParseContext,NULL);
-/*N*/   vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/   SolarMutexGuard aGuard;
 /*N*/   m_aSQLInternationals = ByteString(SVX_RES(RID_STR_SVT_SQL_INTERNATIONAL),RTL_TEXTENCODING_ASCII_US);
 /*N*/ }
 
@@ -70,32 +59,25 @@ using namespace ::connectivity;
 
 //-----------------------------------------------------------------------------
 /*?*/ ::com::sun::star::lang::Locale OSystemParseContext::getPreferredLocale( ) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;//STRIP001
-/*?*/ //STRIP001    return SvtSysLocale().GetLocaleData().getLocale();
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::lang::Locale alocal; return alocal;
 /*?*/ }
 
 //-----------------------------------------------------------------------------
-/*?*/ ::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode _eCode) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String astring; return astring;//STRIP001
+/*?*/ ::rtl::OUString OSystemParseContext::getErrorMessage(ErrorCode) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); String astring; return astring;
 /*?*/ }
 
 //-----------------------------------------------------------------------------
-/*?*/ ::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode _eKey) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;//STRIP001
+/*?*/ ::rtl::OString OSystemParseContext::getIntlKeywordAscii(InternationalKeyCode) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); ByteString aKeyword; return aKeyword;
 /*?*/ }
 
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
-
-//-----------------------------------------------------------------------------
 // -----------------------------------------------------------------------------
-/*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString& rToken) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return KEY_NONE;//STRIP001
+/*?*/ IParseContext::InternationalKeyCode OSystemParseContext::getIntlKeyCode(const ::rtl::OString&) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return KEY_NONE;
 /*?*/ }
 
 
-// =============================================================================
 // =============================================================================
 namespace
 {
@@ -115,8 +97,17 @@ namespace
 /*N*/   OSystemParseContext* getSharedContext(OSystemParseContext* _pContext = NULL,sal_Bool _bSet = sal_False)
 /*N*/   {
 /*N*/       static OSystemParseContext* s_pSharedContext = NULL;
-/*N*/       if ( _pContext && !s_pSharedContext || _bSet )
+/*N*/       if ( _pContext && !s_pSharedContext )
+/*N*/       {
 /*N*/           s_pSharedContext = _pContext;
+/*N*/           return s_pSharedContext;
+/*N*/       }
+/*N*/       if ( _bSet )
+/*N*/       {
+/*N*/               OSystemParseContext* pReturn = _pContext ? _pContext : s_pSharedContext;
+/*N*/           s_pSharedContext = _pContext;
+/*N*/           return pReturn;
+/*N*/       }
 /*N*/       return s_pSharedContext;
     }
     // -----------------------------------------------------------------------------
@@ -141,3 +132,5 @@ namespace
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

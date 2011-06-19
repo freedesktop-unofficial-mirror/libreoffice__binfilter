@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,62 +31,26 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _COLFRM_HXX
 #include <colfrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -93,9 +58,6 @@ namespace binfilter {
 |*  lcl_FindFtnPos()        Sucht die Position des Attributes im FtnArray am
 |*      Dokument, dort stehen die Fussnoten gluecklicherweise nach ihrem
 |*      Index sortiert.
-|*
-|*  Ersterstellung      MA 29. Jun. 93
-|*  Letzte Aenderung    MA 13. Dec. 93
 |*
 |*************************************************************************/
 
@@ -105,29 +67,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   const SwFtnIdxs &rFtnIdxs = pDoc->GetFtnIdxs();
 /*N*/
-/*N*/ #ifdef MA_DEBUG
-/*N*/   //Wenn das Array nicht stimmt haben wir ein Problem, denn viele
-/*N*/   //Ftn-Functions bauen auf dem Array auf.
-/*N*/   for ( USHORT k = 0; k+1 < rFtnIdxs.Count(); ++k )
-/*N*/   {
-/*N*/       SwIndex aIdx1(&pDoc->GetNodes());
-/*N*/       SwIndex aIdx2(&pDoc->GetNodes());
-/*N*/       rFtnIdxs[k]->pFtn->  GetTxtNode().GetIndex(aIdx1);
-/*N*/       rFtnIdxs[k+1]->pFtn->GetTxtNode().GetIndex(aIdx2);
-/*N*/       if ( aIdx1.GetIndex() > aIdx2.GetIndex() )
-/*N*/       {
-/*N*/           ASSERT( !rFtnIdxs.Count(), "FtnIdxs not up to date" );
-/*N*/       }
-/*N*/       else if ( aIdx1.GetIndex() == aIdx2.GetIndex() )
-/*N*/       {
-/*N*/           SwTxtFtn *p1 = rFtnIdxs[k];
-/*N*/           SwTxtFtn *p2 = rFtnIdxs[k+1];
-/*N*/           ASSERT( *p1->GetStart() < *p2->GetStart(),
-/*N*/                   "FtnIdxs not up to date" );
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
-/*N*/
 /*N*/   USHORT nRet;
 /*N*/   SwTxtFtnPtr pBla = (SwTxtFtn*)pAttr;
 /*N*/   if ( rFtnIdxs.Seek_Entry( pBla, &nRet ) )
@@ -136,7 +75,7 @@ namespace binfilter {
 /*?*/           return ULONG(nRet) + ENDNOTE;
 /*N*/       return nRet;
 /*N*/   }
-/*?*/   ASSERT( !pDoc, "FtnPos not found." );
+/*?*/   OSL_ENSURE( !pDoc, "FtnPos not found." );
 /*?*/   return 0;
 /*N*/ }
 
@@ -147,9 +86,6 @@ namespace binfilter {
 |*  setzt pBoss auf den naechsten SwFtnBossFrm, das kann entweder eine Spalte
 |*  oder eine Seite (ohne Spalten) sein. Wenn die Seite dabei gewechselt wird
 |*  enthaelt pPage die neue Seite und die Funktion liefert TRUE.
-|*
-|*  Ersterstellung      AMA 06. Nov. 98
-|*  Letzte Aenderung    AMA 06. Nov. 98
 |*
 |*************************************************************************/
 
@@ -168,7 +104,7 @@ namespace binfilter {
 /*?*/           SwSectionFrm* pSct = rpBoss->FindSctFrm()->GetFollow();
 /*?*/           if( pSct )
 /*?*/           {
-/*?*/               ASSERT( pSct->Lower() && pSct->Lower()->IsColumnFrm(),
+/*?*/               OSL_ENSURE( pSct->Lower() && pSct->Lower()->IsColumnFrm(),
 /*?*/                       "Where's the column?" );
 /*?*/               rpBoss = (SwColumnFrm*)pSct->Lower();
 /*?*/               SwPageFrm* pOld = rpPage;
@@ -199,9 +135,6 @@ namespace binfilter {
 |*  USHORT lcl_ColumnNum( SwFrm* pBoss )
 |*  liefert die Spaltennummer, wenn pBoss eine Spalte ist,
 |*  sonst eine Null (bei Seiten).
-|*
-|*  Ersterstellung      AMA 06. Nov. 98
-|*  Letzte Aenderung    AMA 06. Nov. 98
 |*
 |*************************************************************************/
 
@@ -236,9 +169,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFtnContFrm::SwFtnContFrm()
-|*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 02. Mar. 93
 |*
 |*************************************************************************/
 
@@ -286,8 +216,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame;
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 01. Mar. 93
-|*  Letzte Aenderung    MA 17. Nov. 98
 |*
 |*************************************************************************/
 
@@ -356,9 +284,9 @@ namespace binfilter {
 /*N*/                 SwTwips nPrtHeight = (Prt().*fnRect->fnGetHeight)();
 /*N*/                 if( nPrtHeight < 0 )
 /*N*/               {
-/*?*/                     const SwTwips nDiff = Max( (Prt().*fnRect->fnGetTop)(),
+/*?*/                     const SwTwips nDiff1 = Max( (Prt().*fnRect->fnGetTop)(),
 /*?*/                                                 -nPrtHeight );
-/*?*/                     (Prt().*fnRect->fnSubTop)( nDiff );
+/*?*/                     (Prt().*fnRect->fnSubTop)( nDiff1 );
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -369,12 +297,9 @@ namespace binfilter {
 |*
 |*  SwFtnContFrm::GrowFrm(), ShrinkFrm()
 |*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    AMA 05. Nov. 98
-|*
 |*************************************************************************/
 
-/*N*/ SwTwips SwFtnContFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
+/*N*/ SwTwips SwFtnContFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
 /*N*/   //Keine Pruefung ob FixSize oder nicht, die FtnContainer sind immer bis
 /*N*/   //zur Maximalhoehe variabel.
@@ -384,7 +309,7 @@ namespace binfilter {
 /*N*/   //soviel Platz wie eben moeglich.
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if ( !GetUpper() || !GetUpper()->IsFtnBossFrm() )
-/*?*/   {   ASSERT( !this, "Keine FtnBoss." );
+/*?*/   {   OSL_ENSURE( !this, "Keine FtnBoss." );
 /*?*/       return 0;
 /*N*/   }
 /*N*/ #endif
@@ -398,7 +323,7 @@ namespace binfilter {
 /*N*/   if( IsInSct() )
 /*N*/   {
 /*?*/       SwSectionFrm* pSect = FindSctFrm();
-/*?*/       ASSERT( pSect, "GrowFrm: Missing SectFrm" );
+/*?*/       OSL_ENSURE( pSect, "GrowFrm: Missing SectFrm" );
 /*?*/       // In a section, which has to maximize, a footnotecontainer is allowed
 /*?*/       // to grow, when the section can't grow anymore.
 /*?*/       if( !bTst && !pSect->IsColLocked() &&
@@ -531,9 +456,6 @@ namespace binfilter {
 |*
 |*  SwFtnFrm::SwFtnFrm()
 |*
-|*  Ersterstellung      MA 24. Feb. 93
-|*  Letzte Aenderung    MA 11. Oct. 93
-|*
 |*************************************************************************/
 
 
@@ -551,9 +473,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFtnFrm::InvalidateNxtFtnCnts()
-|*
-|*  Ersterstellung      MA 29. Jun. 93
-|*  Letzte Aenderung    MA 29. Jun. 93
 |*
 |*************************************************************************/
 
@@ -619,9 +538,6 @@ namespace binfilter {
 |*
 |*  SwFtnFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 24. Jul. 95
-|*
 |*************************************************************************/
 
 
@@ -680,19 +596,16 @@ namespace binfilter {
 |*
 |*  SwFtnFrm::Paste()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 23. Feb. 94
-|*
 |*************************************************************************/
 
 
 /*N*/ void SwFtnFrm::Paste(  SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -712,7 +625,7 @@ namespace binfilter {
 /*N*/   //Wenn mein Vorgaenger mein Master ist und/oder wenn mein Nachfolger mein
 /*N*/   //Follow ist so kann ich deren Inhalt uebernehmen und sie vernichten.
 /*N*/   if ( GetPrev() && GetPrev() == GetMaster() )
-/*?*/   {   ASSERT( SwFlowFrm::CastFlowFrm( GetPrev()->GetLower() ),
+/*?*/   {   OSL_ENSURE( SwFlowFrm::CastFlowFrm( GetPrev()->GetLower() ),
 /*?*/               "Fussnote ohne Inhalt?" );
 /*?*/       (SwFlowFrm::CastFlowFrm( GetPrev()->GetLower()))->
 /*?*/           MoveSubTree( this, GetLower() );
@@ -721,7 +634,7 @@ namespace binfilter {
 /*?*/       delete pDel;
 /*N*/   }
 /*N*/   if ( GetNext() && GetNext() == GetFollow() )
-/*?*/   {   ASSERT( SwFlowFrm::CastFlowFrm( GetNext()->GetLower() ),
+/*?*/   {   OSL_ENSURE( SwFlowFrm::CastFlowFrm( GetNext()->GetLower() ),
 /*?*/               "Fussnote ohne Inhalt?" );
 /*?*/       (SwFlowFrm::CastFlowFrm( GetNext()->GetLower()))->MoveSubTree( this );
 /*?*/       SwFrm *pDel = GetNext();
@@ -732,12 +645,12 @@ namespace binfilter {
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
 /*N*/   if ( GetPrev() )
 /*N*/   {
-/*N*/       ASSERT( lcl_FindFtnPos( pDoc, ((SwFtnFrm*)GetPrev())->GetAttr() ) <=
+/*N*/       OSL_ENSURE( lcl_FindFtnPos( pDoc, ((SwFtnFrm*)GetPrev())->GetAttr() ) <=
 /*?*/               lcl_FindFtnPos( pDoc, GetAttr() ), "Prev ist not FtnPrev" );
 /*N*/   }
 /*N*/   if ( GetNext() )
 /*N*/   {
-/*?*/       ASSERT( lcl_FindFtnPos( pDoc, GetAttr() ) <=
+/*?*/       OSL_ENSURE( lcl_FindFtnPos( pDoc, GetAttr() ) <=
 /*?*/               lcl_FindFtnPos( pDoc, ((SwFtnFrm*)GetNext())->GetAttr() ),
 /*?*/               "Next is not FtnNext" );
 /*N*/   }
@@ -752,8 +665,6 @@ namespace binfilter {
 |*  Beschreibung        Liefert das naechste LayoutBlatt in den das
 |*      Frame gemoved werden kann.
 |*      Neue Seiten werden nur dann erzeugt, wenn der Parameter TRUE ist.
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    AMA 09. Nov. 98
 |*
 |*************************************************************************/
 
@@ -765,8 +676,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
 |*      Frame gemoved werden kann.
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    AMA 06. Nov. 98
 |*
 |*************************************************************************/
 
@@ -775,9 +684,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::IsFtnAllowed()
-|*
-|*  Ersterstellung      MA 22. Mar. 94
-|*  Letzte Aenderung    MA 01. Dec. 94
 |*
 |*************************************************************************/
 
@@ -801,9 +707,6 @@ namespace binfilter {
 |*
 |*  SwRootFrm::UpdateFtnNums()
 |*
-|*  Ersterstellung      MA 02. Mar. 93
-|*  Letzte Aenderung    MA 09. Dec. 97
-|*
 |*************************************************************************/
 
 
@@ -812,9 +715,6 @@ namespace binfilter {
 |*
 |*  RemoveFtns()        Entfernen aller Fussnoten (nicht etwa die Referenzen)
 |*                      und Entfernen aller Fussnotenseiten.
-|*
-|*  Ersterstellung      MA 05. Dec. 97
-|*  Letzte Aenderung    AMA 06. Nov. 98
 |*
 |*************************************************************************/
 
@@ -826,7 +726,7 @@ namespace binfilter {
 /*N*/       if ( pCont )
 /*N*/       {
 /*?*/           SwFtnFrm *pFtn = (SwFtnFrm*)pCont->Lower();
-/*?*/           ASSERT( pFtn, "FtnCont ohne Ftn." );
+/*?*/           OSL_ENSURE( pFtn, "FtnCont ohne Ftn." );
 /*?*/           if ( bPageOnly )
 /*?*/               while ( pFtn->GetMaster() )
 /*?*/                   pFtn = pFtn->GetMaster();
@@ -909,9 +809,6 @@ namespace binfilter {
 |*
 |*  SetFtnPageDescs()   Seitenvorlagen der Fussnotenseiten aendern
 |*
-|*  Ersterstellung      MA 11. Dec. 97
-|*  Letzte Aenderung    MA 11. Dec. 97
-|*
 |*************************************************************************/
 
 void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
@@ -930,9 +827,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::MakeFtnCont()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -944,7 +838,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if ( FindFtnCont() )
-/*?*/   {   ASSERT( !this, "Fussnotencontainer bereits vorhanden." );
+/*?*/   {   OSL_ENSURE( !this, "Fussnotencontainer bereits vorhanden." );
 /*?*/       return 0;
 /*N*/   }
 /*N*/ #endif
@@ -959,9 +853,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::FindFtnCont()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -975,10 +866,10 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   if ( pFrm )
 /*N*/   {
 /*N*/       SwFrm *pFtn = pFrm->GetLower();
-/*N*/       ASSERT( pFtn, "Cont ohne Fussnote." );
+/*N*/       OSL_ENSURE( pFtn, "Cont ohne Fussnote." );
 /*N*/       while ( pFtn )
 /*N*/       {
-/*N*/           ASSERT( pFtn->IsFtnFrm(), "Nachbar von Fussnote keine Fussnote." );
+/*N*/           OSL_ENSURE( pFtn->IsFtnFrm(), "Nachbar von Fussnote keine Fussnote." );
 /*N*/           pFtn = pFtn->GetNext();
 /*N*/       }
 /*N*/   }
@@ -990,9 +881,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::FindNearestFtnCont()  Sucht den naechst greifbaren Fussnotencontainer.
-|*
-|*  Ersterstellung      MA 02. Aug. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1026,8 +914,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*  SwFtnBossFrm::FindFirstFtn()
 |*
 |*  Beschreibung        Erste Fussnote des Fussnotenbosses suchen.
-|*  Ersterstellung      MA 26. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 99
 |*
 |*************************************************************************/
 
@@ -1051,9 +937,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   if( pRet )
 /*N*/   {
 /*N*/       pBoss = pRet->GetRef()->FindFtnBossFrm();
-/*N*/       ASSERT( pBoss, "FindFirstFtn: No boss found" );
+/*N*/       OSL_ENSURE( pBoss, "FindFirstFtn: No boss found" );
 /*N*/       if( !pBoss )
-/*?*/           return FALSE; // ´There must be a bug, but no GPF
+/*?*/           return FALSE; // ï¿½There must be a bug, but no GPF
 /*N*/       pPage = pBoss->FindPageFrm();
 /*N*/       nPgNum = pPage->GetPhyPageNum();
 /*N*/       if ( nPgNum == nRefNum )
@@ -1115,8 +1001,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*  SwFtnBossFrm::FindFirstFtn()
 |*
 |*  Beschreibunt        Erste Fussnote zum Cnt suchen.
-|*  Ersterstellung      MA 04. Mar. 93
-|*  Letzte Aenderung    AMA 28. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1158,9 +1042,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::ResetFtn()
 |*
-|*  Ersterstellung      MA 11. May. 95
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1168,7 +1049,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ {
 /*N*/   //Vernichten der Inkarnationen von Fussnoten zum Attribut, wenn sie nicht
 /*N*/   //zu pAssumed gehoeren.
-/*N*/   ASSERT( !pCheck->GetMaster(), "Master not an Master." );
+/*N*/   OSL_ENSURE( !pCheck->GetMaster(), "Master not an Master." );
 /*N*/
 /*N*/   SwNodeIndex aIdx( *pCheck->GetAttr()->GetStartNode(), 1 );
 /*N*/   SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
@@ -1208,9 +1089,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::InsertFtn()
 |*
-|*  Ersterstellung      MA 26. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1244,7 +1122,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/       BOOL bEndnt = pNew->GetAttr()->GetFtn().IsEndNote();
 /*?*/       if( bEndnt )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt* pEndFmt = pMySect->GetEndSectFmt();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -1315,7 +1193,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           //werden.
 /*?*/           pSibling = (SwFtnFrm*)pParent->Lower();
 /*?*/           if ( !pSibling )
-/*?*/           {   ASSERT( !this, "Keinen Platz fuer Fussnote gefunden.");
+/*?*/           {   OSL_ENSURE( !this, "Keinen Platz fuer Fussnote gefunden.");
 /*?*/               return;
 /*?*/           }
 /*?*/           nCmpPos  = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
@@ -1334,7 +1212,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               if ( pSibling->GetNext() )
 /*?*/               {
 /*?*/                   pSibling = (SwFtnFrm*)pSibling->GetNext();
-/*?*/                   ASSERT( !pSibling->GetMaster() || ( ENDNOTE > nStPos &&
+/*?*/                   OSL_ENSURE( !pSibling->GetMaster() || ( ENDNOTE > nStPos &&
 /*?*/                           pSibling->GetAttr()->GetFtn().IsEndNote() ),
 /*?*/                           "InsertFtn: Master expected I" );
 /*?*/               }
@@ -1356,7 +1234,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               if ( pSibling )
 /*?*/               {
 /*?*/                   nCmpPos = ::binfilter::lcl_FindFtnPos( pDoc, pSibling->GetAttr() );
-/*?*/                   ASSERT( nCmpPos > nLastPos, "InsertFtn: Order of FtnFrm's buggy" );
+/*?*/                   OSL_ENSURE( nCmpPos > nLastPos, "InsertFtn: Order of FtnFrm's buggy" );
 /*?*/               }
 /*?*/           }
 /*?*/           // pLastSib ist jetzt die letzte Fussnote vor uns,
@@ -1376,7 +1254,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               pSibling = pLastSib;
 /*?*/               while( pSibling->GetFollow() )
 /*?*/                   pSibling = pSibling->GetFollow();
-/*?*/               ASSERT( !pSibling->GetNext(), "InsertFtn: Who's that guy?" );
+/*?*/               OSL_ENSURE( !pSibling->GetNext(), "InsertFtn: Who's that guy?" );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -1455,7 +1333,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           {
 /*?*/               if( ENDNOTE > nCmpPos || nStPos >= ENDNOTE )
 /*?*/               {
-/*?*/                   ASSERT( FALSE, "InsertFtn: Master expected II" );
+/*?*/                   OSL_ENSURE( FALSE, "InsertFtn: Master expected II" );
 /*?*/                   do
 /*?*/                       pSibling = pSibling->GetMaster();
 /*?*/                   while ( pSibling->GetMaster() );
@@ -1464,16 +1342,13 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           pParent = (SwFtnContFrm*)pSibling->GetUpper();
 /*?*/       }
 /*N*/   }
-/*N*/   ASSERT( pParent, "paste in space?" );
+/*N*/   OSL_ENSURE( pParent, "paste in space?" );
 /*N*/   pNew->Paste( pParent, pSibling );
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::AppendFtn()
-|*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1536,7 +1411,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/                   SwFtnContFrm *pCont = pNxt->FindFtnCont();
 /*?*/                   if ( pCont && pCont->Lower() )
 /*?*/                   {
-/*?*/                       ASSERT( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
+/*?*/                       OSL_ENSURE( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
 /*?*/                       if ( nStPos > ::binfilter::lcl_FindFtnPos( pDoc,
 /*?*/                                       ((SwFtnFrm*)pCont->Lower())->GetAttr()))
 /*?*/                       {
@@ -1579,7 +1454,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/               SwFtnContFrm *pCont = pNxt->FindFtnCont();
 /*?*/               if ( pCont && pCont->Lower() )
 /*?*/               {
-/*?*/                   ASSERT( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
+/*?*/                   OSL_ENSURE( pCont->Lower()->IsFtnFrm(), "Keine Ftn im Container" );
 /*?*/                   if ( nStPos > ::binfilter::lcl_FindFtnPos( pDoc,
 /*?*/                                       ((SwFtnFrm*)pCont->Lower())->GetAttr()))
 /*?*/                   {
@@ -1595,7 +1470,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/
 /*N*/   //Erstmal eine Fussnote und die benoetigten CntntFrms anlegen.
 /*N*/   if ( !pAttr->GetStartNode() )
-/*?*/   {   ASSERT( !this, "Kein Fussnoteninhalt." );
+/*?*/   {   OSL_ENSURE( !this, "Kein Fussnoteninhalt." );
 /*?*/       return;
 /*N*/   }
 /*N*/
@@ -1609,7 +1484,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           SwFtnContFrm* pFtnCont = pSct->FindFtnBossFrm(!bEnd)->FindFtnCont();
 /*?*/           if( pFtnCont )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFtnFrm* pTmp = (SwFtnFrm*)pFtnCont->Lower();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -1624,7 +1499,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   if( bChgPage )
 /*N*/   {
 /*?*/       SwLayoutFrm* pBody = pPage->FindBodyCont();
-/*?*/       ASSERT( pBody, "AppendFtn: NoPageBody?" );
+/*?*/       OSL_ENSURE( pBody, "AppendFtn: NoPageBody?" );
 /*?*/       if( pBody->Lower() && pBody->Lower()->IsColumnFrm() )
 /*?*/           pBoss = (SwFtnBossFrm*)pBody->Lower();
 /*?*/       else
@@ -1659,16 +1534,13 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::FindFtn()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
 /*N*/ SwFtnFrm *SwFtnBossFrm::FindFtn( const SwCntntFrm *pRef, const SwTxtFtn *pAttr )
 /*N*/ {
 /*N*/   //Der einfachste und sicherste Weg geht ueber das Attribut.
-/*N*/   ASSERT( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
+/*N*/   OSL_ENSURE( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
 /*N*/   SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
 /*N*/   SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
 /*N*/   if ( !pNd )
@@ -1706,9 +1578,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::RemoveFtn()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1727,7 +1596,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/       } while ( pFtn );
 /*N*/       if( bPrep && pRef->IsFollow() )
 /*N*/       {
-/*?*/           ASSERT( pRef->IsTxtFrm(), "NoTxtFrm has Footnote?" );
+/*?*/           OSL_ENSURE( pRef->IsTxtFrm(), "NoTxtFrm has Footnote?" );
 /*?*/           SwTxtFrm* pMaster = (SwTxtFrm*)pRef->FindMaster();
 /*?*/           if( !pMaster->IsLocked() )
 /*?*/               pMaster->Prepare( PREP_FTN_GONE );
@@ -1740,9 +1609,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::ChangeFtnRef()
 |*
-|*  Ersterstellung      MA 25. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1751,13 +1617,10 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::CollectFtns()
 |*
-|*  Ersterstellung      MA 24. Jul. 95
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
-/// OD 03.04.2003 #108446# - add parameter <_bCollectOnlyPreviousFtns> in
+/// add parameter <_bCollectOnlyPreviousFtns> in
 /// order to control, if only footnotes, which are positioned before the
 /// footnote boss frame <this> have to be collected.
 
@@ -1766,12 +1629,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::_CollectFtns()
 |*
-|*  Ersterstellung      MA 24. Jul. 95
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
-/// OD 03.04.2003 #108446# - add parameters <_bCollectOnlyPreviousFtns> and
+/// add parameters <_bCollectOnlyPreviousFtns> and
 /// <_pRefFtnBossFrm> in order to control, if only footnotes, which are positioned
 /// before the given reference footnote boss frame have to be collected.
 /// Note: if parameter <_bCollectOnlyPreviousFtns> is true, then parameter
@@ -1782,9 +1642,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::_MoveFtns()
 |*
-|*  Ersterstellung      MA 26. Feb. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1793,9 +1650,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::MoveFtns()
 |*
-|*  Ersterstellung      BP 05. Aug. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
-|*
 |*************************************************************************/
 
 
@@ -1803,9 +1657,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::RearrangeFtns()
-|*
-|*  Ersterstellung      MA 20. Jan. 94
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1851,9 +1702,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/               pCnt->_InvalidateSize();
 /*N*/               pCnt->Prepare( PREP_ADJUST_FRM );
 /*N*/                 SwFtnFrm* pFtnFrm = pCnt->FindFtnFrm();
-/*N*/                 // OD 30.10.2002 #97265# - invalidate position of footnote
-/*N*/                 // frame, if it's below its footnote container, in order to
-/*N*/                 // assure its correct position, probably calculating its previous
+/*N*/                 // invalidate position of footnote frame, if it's below
+/*N*/                 // its footnote container, in order to assure its correct
+/*N*/                 // position, probably calculating its previous
 /*N*/                 // footnote frames.
 /*N*/                 {
 /*N*/                     SWRECTFN( this );
@@ -1904,9 +1755,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/               pCnt = pCnt->FindNext();
 /*N*/               if ( pCnt )
 /*N*/               {
-/*N*/                   SwFtnFrm* pFtn = pCnt->FindFtnFrm();
-/*N*/                   if( pFtn->GetRef()->FindFtnBossFrm(
-/*N*/                       pFtn->GetAttr()->GetFtn().IsEndNote() ) != this )
+/*N*/                   SwFtnFrm* pFtn1 = pCnt->FindFtnFrm();
+/*N*/                   if( pFtn1->GetRef()->FindFtnBossFrm(
+/*N*/                       pFtn1->GetAttr()->GetFtn().IsEndNote() ) != this )
 /*N*/                       bMore = FALSE;
 /*N*/               }
 /*N*/               else
@@ -1933,9 +1784,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwPageFrm::UpdateFtnNum()
-|*
-|*  Ersterstellung      MA 02. Mar. 93
-|*  Letzte Aenderung    AMA 29. Oct. 98
 |*
 |*************************************************************************/
 
@@ -1975,13 +1823,13 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/                       pFtn = (SwFtnFrm*)pFtn->GetNext();
 /*?*/                   else
 /*?*/                   {
-/*?*/                       SwFtnBossFrm* pBoss = pFtn->FindFtnBossFrm( TRUE );
-/*?*/                       SwPageFrm* pPage = pBoss->FindPageFrm();
+/*?*/                       SwFtnBossFrm* pBoss1 = pFtn->FindFtnBossFrm( TRUE );
+/*?*/                       SwPageFrm* pPage = pBoss1->FindPageFrm();
 /*?*/                       pFtn = NULL;
-/*?*/                       lcl_NextFtnBoss( pBoss, pPage, FALSE );
-/*?*/                       if( pBoss )
+/*?*/                       lcl_NextFtnBoss( pBoss1, pPage, FALSE );
+/*?*/                       if( pBoss1 )
 /*?*/                       {
-/*?*/                           SwFtnContFrm *pCont = pBoss->FindNearestFtnCont();
+/*?*/                           SwFtnContFrm *pCont = pBoss1->FindNearestFtnCont();
 /*?*/                           if ( pCont )
 /*?*/                               pFtn = (SwFtnFrm*)pCont->Lower();
 /*?*/                       }
@@ -1998,9 +1846,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  SwFtnBossFrm::SetFtnDeadLine()
-|*
-|*  Ersterstellung      MA 02. Aug. 93
-|*  Letzte Aenderung    MA 16. Nov. 98
 |*
 |*************************************************************************/
 
@@ -2035,9 +1880,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwFtnBossFrm::GetVarSpace()
 |*
-|*  Ersterstellung      MA 03. Apr. 95
-|*  Letzte Aenderung    MA 16. Nov. 98
-|*
 |*************************************************************************/
 /*N*/ SwTwips SwFtnBossFrm::GetVarSpace() const
 /*N*/ {
@@ -2048,7 +1890,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/   // die ganze Seite/Spalte ein.
 /*N*/
 /*N*/   const SwPageFrm* pPg = FindPageFrm();
-/*N*/   ASSERT( pPg, "Footnote lost page" );
+/*N*/   OSL_ENSURE( pPg, "Footnote lost page" );
 /*N*/
 /*N*/   const SwFrm *pBody = FindBodyCont();
 /*N*/   SwTwips nRet;
@@ -2065,7 +1907,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/           // the bottom of the last contentfrm
 /*?*/           if( pSect->IsEndnAtEnd() ) // endnotes allowed?
 /*?*/           {
-/*?*/               ASSERT( !Lower() || !Lower()->GetNext() || Lower()->GetNext()->
+/*?*/               OSL_ENSURE( !Lower() || !Lower()->GetNext() || Lower()->GetNext()->
 /*?*/                       IsFtnContFrm(), "FtnContainer exspected" );
 /*?*/               const SwFtnContFrm* pCont = Lower() ?
 /*?*/                   (SwFtnContFrm*)Lower()->GetNext() : 0;
@@ -2119,12 +1961,9 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*  gibt und die Fussnoten nicht vom Bereich eingesammelt werden, ist ein Adjust..,
 |*  ansonsten ein Grow/Shrink notwendig.
 |*
-|*  Ersterstellung      AMA 09. Dec 98
-|*  Letzte Aenderung    AMA 09. Dec 98
-|*
 |*************************************************************************/
 
-/*N*/ BYTE SwFtnBossFrm::_NeighbourhoodAdjustment( const SwFrm* pFrm ) const
+/*N*/ BYTE SwFtnBossFrm::_NeighbourhoodAdjustment( const SwFrm* /*pFrm*/ ) const
 /*N*/ {
 /*N*/   BYTE nRet = NA_ONLY_ADJUST;
 /*N*/   if( GetUpper() && !GetUpper()->IsPageBodyFrm() )
@@ -2134,18 +1973,18 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/           nRet = NA_GROW_SHRINK;
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( GetUpper()->IsSctFrm(), "NeighbourhoodAdjustment: Unexspected Upper" );
+/*?*/           OSL_ENSURE( GetUpper()->IsSctFrm(), "NeighbourhoodAdjustment: Unexspected Upper" );
 /*?*/           if( !GetNext() && !GetPrev() )
 /*?*/               nRet = NA_GROW_ADJUST; // section with a single column (FtnAtEnd)
 /*?*/           else
 /*?*/           {
 /*?*/               const SwFrm* pTmp = Lower();
-/*?*/               ASSERT( pTmp, "NeighbourhoodAdjustment: Missing Lower()" );
+/*?*/               OSL_ENSURE( pTmp, "NeighbourhoodAdjustment: Missing Lower()" );
 /*?*/               if( !pTmp->GetNext() )
 /*?*/                   nRet = NA_GROW_SHRINK;
 /*?*/               else if( !GetUpper()->IsColLocked() )
 /*?*/                   nRet = NA_ADJUST_GROW;
-/*?*/               ASSERT( !pTmp->GetNext() || pTmp->GetNext()->IsFtnContFrm(),
+/*?*/               OSL_ENSURE( !pTmp->GetNext() || pTmp->GetNext()->IsFtnContFrm(),
 /*?*/                       "NeighbourhoodAdjustment: Who's that guy?" );
 /*?*/           }
 /*N*/       }
@@ -2157,23 +1996,17 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 |*
 |*  SwPageFrm::SetColMaxFtnHeight()
 |*
-|*  Ersterstellung      AMA 29. Oct 98
-|*  Letzte Aenderung    AMA 29. Oct 98
-|*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwLayoutFrm::MoveLowerFtns
 |*
-|*  Ersterstellung      MA 01. Sep. 94
-|*  Letzte Aenderung    MA 05. Sep. 95
-|*
 |*************************************************************************/
 
 
-/*N*/ BOOL SwLayoutFrm::MoveLowerFtns( SwCntntFrm *pStart, SwFtnBossFrm *pOldBoss,
-/*N*/                                SwFtnBossFrm *pNewBoss, const BOOL bFtnNums )
+/*N*/ BOOL SwLayoutFrm::MoveLowerFtns( SwCntntFrm* /*pStart*/, SwFtnBossFrm *pOldBoss,
+/*N*/                                SwFtnBossFrm *pNewBoss, const BOOL /*bFtnNums*/ )
 /*N*/ {
 /*N*/   SwDoc *pDoc = GetFmt()->GetDoc();
 /*N*/   if ( !pDoc->GetFtnIdxs().Count() )
@@ -2187,15 +2020,12 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*?*/   if ( pNewBoss == pOldBoss )
 /*?*/       return FALSE;
 /*?*/
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bMoved = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwLayoutFrm::MoveFtnCntFwd()
-|*
-|*  Ersterstellung      MA 24. Nov. 94
-|*  Letzte Aenderung    MA 15. Jun. 95
 |*
 |*************************************************************************/
 
@@ -2204,9 +2034,6 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*************************************************************************
 |*
 |*  class SwSaveFtnHeight
-|*
-|*  Ersterstellung      MA 19. Jan. 94
-|*  Letzte Aenderung    MA 19. Jan. 94
 |*
 |*************************************************************************/
 
@@ -2231,7 +2058,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 
 
 /*N*/ #ifdef DBG_UTIL
-//JP 15.10.2001: in a non pro version test if the attribute has the same
+// in a non pro version test if the attribute has the same
 //              meaning which his reference is
 
 // Normally, the pRef member and the GetRefFromAttr() result has to be
@@ -2242,7 +2069,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ const SwCntntFrm* SwFtnFrm::GetRef() const
 /*N*/ {
 /*N*/     const SwCntntFrm* pRefAttr = GetRefFromAttr();
-/*N*/     ASSERT( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
+/*N*/     OSL_ENSURE( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
 /*N*/             || pRefAttr->IsAnFollow( pRef ),
 /*N*/             "access to deleted Frame? pRef != pAttr->GetRef()" );
 /*N*/   return pRef;
@@ -2251,7 +2078,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ SwCntntFrm* SwFtnFrm::GetRef()
 /*N*/ {
 /*N*/     const SwCntntFrm* pRefAttr = GetRefFromAttr();
-/*N*/     ASSERT( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
+/*N*/     OSL_ENSURE( pRef == pRefAttr || pRef->IsAnFollow( pRefAttr )
 /*N*/             || pRefAttr->IsAnFollow( pRef ),
 /*N*/             "access to deleted Frame? pRef != pAttr->GetRef()" );
 /*N*/   return pRef;
@@ -2267,7 +2094,7 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 
 /*N*/ SwCntntFrm* SwFtnFrm::GetRefFromAttr()
 /*N*/ {
-/*N*/   ASSERT( pAttr, "invalid Attribute" );
+/*N*/   OSL_ENSURE( pAttr, "invalid Attribute" );
 /*N*/   SwTxtNode& rTNd = (SwTxtNode&)pAttr->GetTxtNode();
 /*N*/   SwPosition aPos( rTNd, SwIndex( &rTNd, *pAttr->GetStart() ));
 /*N*/   SwCntntFrm* pCFrm = rTNd.GetFrm( 0, &aPos, FALSE );
@@ -2275,3 +2102,5 @@ void SwRootFrm::CheckFtnPageDescs( BOOL bEndNote )
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

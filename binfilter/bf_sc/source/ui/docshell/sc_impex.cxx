@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-// System - Includes -----------------------------------------------------
 
 class StarBASIC;
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -41,7 +38,6 @@ class StarBASIC;
 #define GLOBALOVERFLOW
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
 #include <stdio.h>
 #include <ctype.h>
@@ -51,9 +47,7 @@ class StarBASIC;
 #include <bf_svtools/zforlist.hxx>
 #define _SVSTDARR_ULONGS
 #include <sot/formats.hxx>
-#ifndef _COM_SUN_STAR_I18N_CALENDARFIELDINDEX_HPP_
 #include <com/sun/star/i18n/CalendarFieldIndex.hpp>
-#endif
 
 #include "docsh.hxx"
 #include "asciiopt.hxx"
@@ -65,9 +59,7 @@ class StarBASIC;
 #include "globstr.hrc"
 
 
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 //========================================================================
@@ -77,9 +69,9 @@ namespace binfilter {
 
 
 /*N*/ ScImportExport::ScImportExport( ScDocument* p )
-/*N*/   : pDoc( p ), pDocSh( PTR_CAST(ScDocShell,p->GetDocumentShell()) ),
-/*N*/     nSizeLimit( 0 ), bSingle( TRUE ), bAll( TRUE ), bUndo( FALSE ),
-/*N*/     cSep( '\t' ), cStr( '"' ), bFormulas( FALSE ), bIncludeFiltered( TRUE ),
+/*N*/   : pDocSh( PTR_CAST(ScDocShell,p->GetDocumentShell()) ), pDoc( p ),
+/*N*/     nSizeLimit( 0 ), cSep( '\t' ), cStr( '"' ), bFormulas( FALSE ),
+/*N*/     bIncludeFiltered( TRUE ), bAll( TRUE ), bSingle( TRUE ), bUndo( FALSE ),
 /*N*/     bOverflow( FALSE )
 /*N*/ {
 /*N*/   pUndoDoc = NULL;
@@ -121,34 +113,13 @@ namespace binfilter {
 /*N*/   cStr = rOpt.GetTextSep();
 /*N*/ }
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-
 // Vorbereitung fuer Undo: Undo-Dokument erzeugen
-
-
 
 // Nachbereitung Insert: Undo/Redo-Aktionen erzeugen, Invalidate/Repaint
 
 
 
-/////////////////////////////////////////////////////////////////////////////
-
-
-
-
-
-
 // static
-
-
-
-
-
-
-
 
 /*N*/ BOOL ScImportExport::ImportStream( SvStream& rStrm, ULONG nFmt )
 /*N*/ {
@@ -159,29 +130,29 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if( nFmt == SOT_FORMATSTR_ID_SYLK )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( Sylk2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if( nFmt == SOT_FORMATSTR_ID_DIF )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( Dif2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if( nFmt == FORMAT_RTF )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( RTF2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if( nFmt == SOT_FORMATSTR_ID_LINK )
 /*N*/       return TRUE;            // Link-Import?
 /*N*/   if ( nFmt == SOT_FORMATSTR_ID_HTML )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( HTML2Doc( rStrm ) )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/   if ( nFmt == SOT_FORMATSTR_ID_HTML_SIMPLE )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 MSE40HTMLClipFormatObj aMSE40ClpObj;              // needed to skip the header data
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return TRUE;
 /*N*/   }
 /*N*/
@@ -253,18 +224,9 @@ enum DoubledQuoteMode
 /*N*/   return p;
 /*N*/ }
 
-
-
-
-//////////////////////////////////////////////////////////////////////////////
-
-
-
         //
         //  erweiterter Ascii-Import
         //
-
-
 /*M*/ void lcl_PutString( ScDocument* pDoc, USHORT nCol, USHORT nRow, USHORT nTab,
 /*M*/                   const String& rStr, BYTE nColFormat,
 /*M*/                     ::utl::TransliterationWrapper& rTransliteration,
@@ -379,11 +341,11 @@ enum DoubledQuoteMode
 /*M*/                 static const String aSeptCorrect( RTL_CONSTASCII_USTRINGPARAM( "SEPT" ) );
 /*M*/                 static const String aSepShortened( RTL_CONSTASCII_USTRINGPARAM( "SEP" ) );
 /*M*/               uno::Sequence< i18n::CalendarItem > xMonths;
-/*M*/               sal_Int32 i, nLen;
+/*M*/               sal_Int32 i, nLclLen;
 /*M*/               //  first test all month names from local international
 /*M*/               xMonths = rCalendar.getMonths();
-/*M*/               nLen = xMonths.getLength();
-/*M*/               for (i=0; i<nLen && !nMonth; i++)
+/*M*/               nLclLen = xMonths.getLength();
+/*M*/               for (i=0; i<nLclLen && !nMonth; i++)
 /*M*/               {
 /*M*/                     if ( rTransliteration.isEqual( aMStr, xMonths[i].FullName ) ||
 /*M*/                          rTransliteration.isEqual( aMStr, xMonths[i].AbbrevName ) )
@@ -397,11 +359,11 @@ enum DoubledQuoteMode
 /*M*/                     }
 /*M*/               }
 /*M*/               //  if none found, then test english month names
-/*M*/                 if ( !nMonth && pSecondCalendar && pSecondTransliteration )
+/*M*/               if ( !nMonth && pSecondCalendar && pSecondTransliteration )
 /*M*/               {
 /*M*/                   xMonths = pSecondCalendar->getMonths();
-/*M*/                   nLen = xMonths.getLength();
-/*M*/                   for (i=0; i<nLen && !nMonth; i++)
+/*M*/                   nLclLen = xMonths.getLength();
+/*M*/                   for (i=0; i<nLclLen && !nMonth; i++)
 /*M*/                   {
 /*M*/                         if ( pSecondTransliteration->isEqual( aMStr, xMonths[i].FullName ) ||
 /*M*/                              pSecondTransliteration->isEqual( aMStr, xMonths[i].AbbrevName ) )
@@ -472,7 +434,7 @@ enum DoubledQuoteMode
 /*N*/ BOOL ScImportExport::ExtText2Doc( SvStream& rStrm )
 /*N*/ {
 /*N*/   if (!pExtOptions)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 return Text2Doc( rStrm );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   ULONG nOldPos = rStrm.Tell();
 /*N*/   rStrm.Seek( STREAM_SEEK_TO_END );
@@ -535,11 +497,11 @@ enum DoubledQuoteMode
 /*N*/       if ( rStrm.IsEof() )
 /*N*/           break;
 /*N*/
-/*N*/       xub_StrLen nLineLen = aLine.Len();
+/*N*/       aLine.Len();
 /*N*/       USHORT nCol = nStartCol;
 /*N*/       if ( bFixed )               //  Feste Satzlaenge
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for ( i=0; i<nInfoCount; i++ )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else                        //  Nach Trennzeichen suchen
 /*N*/       {
@@ -620,26 +582,6 @@ enum DoubledQuoteMode
 /*N*/   return p;
 /*N*/ }
 
-        //
-        //
-        //
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

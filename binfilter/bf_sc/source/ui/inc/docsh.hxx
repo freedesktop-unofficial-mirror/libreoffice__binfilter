@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,24 +29,16 @@
 #define SC_DOCSHELL_HXX
 
 
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
 
 #include <bf_sfx2/printer.hxx>
 #include <bf_svtools/lstner.hxx>
 
-#ifndef SC_SCDLL_HXX
 #include "scdll.hxx"
-#endif
 
 #include "document.hxx"
 #include "shellids.hxx"
@@ -86,8 +79,8 @@ class ScDocShellModificator;
 
 class ScDocShell: public SfxObjectShell, public SfxInPlaceObject, public SfxListener
 {
-    static const sal_Char __FAR_DATA pStarCalcDoc[];
-    static const sal_Char __FAR_DATA pStyleName[];
+    static const sal_Char pStarCalcDoc[];
+    static const sal_Char pStyleName[];
 
     ScDocument          aDocument;
 
@@ -166,12 +159,7 @@ public:
     virtual BOOL    Load( SvStorage * );
     virtual BOOL    ConvertFrom( SfxMedium &rMedium );
     virtual void    HandsOff();
-    virtual BOOL    Save();
-    virtual BOOL    SaveAs( SvStorage * pNewStor );
-
-    virtual BOOL    SaveCompleted( SvStorage * pNewStor );      // SfxInPlaceObject
-    virtual BOOL    DoSaveCompleted( SfxMedium * pNewStor);     // SfxObjectShell
-
+    virtual BOOL    Save() {return false;}
 
     virtual void    SetVisArea( const Rectangle & rVisArea );
     virtual Rectangle GetVisArea( USHORT nAspect ) const;
@@ -332,3 +320,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

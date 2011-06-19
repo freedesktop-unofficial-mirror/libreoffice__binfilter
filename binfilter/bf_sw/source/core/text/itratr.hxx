@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
-#endif
 
 #include "txttypes.hxx"
 #include "swfont.hxx"
@@ -92,12 +91,23 @@ protected:
     void CtorInit( SwTxtNode& rTxtNode, SwScriptInfo& rScrInf );
 #endif
     inline SwAttrIter()
-        : pFnt(0), pLastOut(0), nChgCnt(0), nPropFont(0), pShell(0), pRedln(0){}
+        : pShell(0)
+        , pFnt(0)
+        , pLastOut(0)
+        , nChgCnt(0)
+        , pRedln(0)
+        , nPropFont(0)
+        {}
 
 public:
     // Konstruktor, Destruktor
     inline SwAttrIter( SwTxtNode& rTxtNode, SwScriptInfo& rScrInf )
-        : pFnt(0), pLastOut(0), nChgCnt(0), nPropFont(0), pShell(0), pRedln(0)
+        : pShell(0)
+        , pFnt(0)
+        , pLastOut(0)
+        , nChgCnt(0)
+        , pRedln(0)
+        , nPropFont(0)
         { CtorInit( rTxtNode, rScrInf ); }
 
     virtual ~SwAttrIter();
@@ -139,3 +149,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

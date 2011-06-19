@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,40 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_TAB_LINE_HXX
 #include <bf_svx/tabline.hxx>
-#endif
-#ifndef _SVDOGRAF_HXX //autogen
 #include <bf_svx/svdograf.hxx>
-#endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SVX_XBTMPIT_HXX //autogen
 #include <bf_svx/xbtmpit.hxx>
-#endif
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 #ifndef _SVX_COLRITEM_HXX //autogen
 #define ITEMID_COLOR       EE_CHAR_COLOR
 #endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include <bf_svx/xflftrit.hxx>
-#endif
-#ifndef _SVX_XFLHTIT_HXX
 #include <bf_svx/xflhtit.hxx>
-#endif
-#ifndef _XTABLE_HXX
 #include <bf_svx/xtable.hxx>
-#endif
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 
 // header for SvxChartTextOrientItem
 #ifndef _SVX_CHRTITEM_HXX
@@ -68,12 +49,8 @@
 
 #endif
 #define ITEMID_FONTHEIGHT  EE_CHAR_FONTHEIGHT
-#ifndef _CHTMODEL_HXX
 #include <globfunc.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 
 
@@ -87,30 +64,13 @@
 #include <bf_svx/sizeitem.hxx>
 #endif
 // header for SAL_STATIC_CAST
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _SVX_XLNEDIT_HXX
 #include <bf_svx/xlnedit.hxx>
-#endif
-
-#ifndef _SVX_XLNSTIT_HXX
 #include <bf_svx/xlnstit.hxx>
-#endif
-
-#ifndef _SVX_XLNDSIT_HXX
 #include <bf_svx/xlndsit.hxx>
-#endif
-
-#ifndef _SVX_XLNCLIT_HXX
 #include <bf_svx/xlnclit.hxx>
-#endif
-
-#ifndef _SVX_XLNWTIT_HXX
 #include <bf_svx/xlnwtit.hxx>
-#endif
-
 
 #include "glob.hrc"
 
@@ -126,42 +86,10 @@ namespace binfilter {
 |* Entscheidung, ob BuildChart notwendig
 |*
 \************************************************************************/
-/*N*/ BOOL ChartModel::IsAttrChangeNeedsBuildChart(const SfxItemSet& rAttr)
+/*N*/ BOOL ChartModel::IsAttrChangeNeedsBuildChart(const SfxItemSet&)
 /*N*/ {
 /*N*/   // BM #60999# rebuild for all EE_CHAR attributes because of possibly red color for negative numbers. sorry :-(
 /*N*/   return TRUE;
-
- /*
-    BOOL bNeedBuild=FALSE;
-
-    SfxWhichIter aWhichIter(rAttr);
-    USHORT nWhich = aWhichIter.FirstWhich();
-    while (nWhich != 0)
-    {
-       if (rAttr.GetItemState(nWhich) == SFX_ITEM_SET)
-       {
-           if(nWhich < XATTR_LINE_FIRST  || nWhich > XATTR_FILL_LAST)
-           {
-
-               switch(nWhich)
-               {
-
-               case EE_CHAR_COLOR:
-               case EE_CHAR_UNDERLINE:
-               case EE_CHAR_STRIKEOUT:
-                   break;
-
-               default:
-
-                   bNeedBuild=TRUE;
-                   break;
-               }
-           }
-       }
-       nWhich = aWhichIter.NextWhich();
-    }
-    return bNeedBuild;
-*/
 /*N*/ }
 
 /*************************************************************************
@@ -184,7 +112,7 @@ namespace binfilter {
 /*?*/       case CHOBJID_DIAGRAM_A_AXIS:
 /*?*/           return pChartAAxis;
 /*N*/   }
-/*?*/   DBG_ERROR("ChartModel::GetAxis() illegal argument (nId=CHOBJID_)");
+/*?*/   OSL_FAIL("ChartModel::GetAxis() illegal argument (nId=CHOBJID_)");
 /*?*/   return pChartYAxis;
 /*N*/ }
 
@@ -218,6 +146,7 @@ namespace binfilter {
 /*N*/         bool bIsFirst = true;
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_X_AXIS ))
+/*N*/         {
 /*N*/             if( bIsFirst )
 /*N*/             {
 /*N*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_X_AXIS ));
@@ -225,8 +154,10 @@ namespace binfilter {
 /*N*/             }
 /*N*/             else
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_X_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_Y_AXIS ))
+/*N*/         {
 /*N*/             if( bIsFirst )
 /*N*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_Y_AXIS ));
@@ -234,8 +165,10 @@ namespace binfilter {
 /*N*/             }
 /*N*/             else
 /*N*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_Y_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || (Is3DChart() && HasAxis( CHOBJID_DIAGRAM_Z_AXIS )))
+/*N*/         {
 /*N*/             if( bIsFirst )
 /*N*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_Z_AXIS ));
@@ -243,8 +176,10 @@ namespace binfilter {
 /*N*/             }
 /*N*/             else
 /*N*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_Z_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_A_AXIS ))
+/*N*/         {
 /*?*/             if( bIsFirst )
 /*?*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_A_AXIS ));
@@ -252,8 +187,10 @@ namespace binfilter {
 /*?*/             }
 /*?*/             else
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_A_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/
 /*N*/         if( ! bOnlyInserted || HasAxis( CHOBJID_DIAGRAM_B_AXIS ))
+/*N*/         {
 /*?*/             if( bIsFirst )
 /*?*/             {
 /*?*/                 pAxisAttr->Set( GetAttr( CHOBJID_DIAGRAM_B_AXIS ));
@@ -261,10 +198,8 @@ namespace binfilter {
 /*?*/             }
 /*?*/             else
 /*?*/                 IntersectSets( GetAttr( CHOBJID_DIAGRAM_B_AXIS ), *pAxisAttr );
+/*N*/         }
 /*N*/   }
-/*N*/
-/*N*/ //     if( bOnlyInserted )
-/*N*/ //         pAxisAttr->ClearItem( SCHATTR_AXIS_SHOWDESCR );
 /*N*/
 /*N*/   return *pAxisAttr;
 /*N*/ }
@@ -309,7 +244,7 @@ namespace binfilter {
 /*N*/                 GetAxisByUID( nAxisUId )->SetAttributes( rAttr );
 /*N*/             }
 /*N*/             else
-/*N*/                 DBG_ERROR( "ChartAxis not found for Object" );
+/*N*/                 OSL_FAIL( "ChartAxis not found for Object" );
 /*N*/
 /*N*/           if(IsAttrChangeNeedsBuildChart(aSet))
 /*N*/              BuildChart(FALSE,nId); //z.B. auch Texte skalieren!
@@ -318,7 +253,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PutAxisAttr(rAttr,bMerge);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
         return FALSE;
 /*N*/   }
 /*N*/ }
@@ -330,7 +265,7 @@ namespace binfilter {
 \************************************************************************/
 /*N*/ void ChartModel::PutDataRowAttrAll(const SfxItemSet& rAttr,BOOL bMerge,BOOL bClearPoints)
 /*N*/ {
-/*N*/   long nCnt=aDataRowAttrList.Count();
+/*N*/   long nCnt=aDataRowAttrList.size();
 /*N*/   while(nCnt--)
 /*N*/       PutDataRowAttr(nCnt,rAttr,bMerge,bClearPoints);
 /*N*/ }
@@ -341,16 +276,16 @@ namespace binfilter {
 /*N*/   CHART_TRACE1( "ChartModel::PutDataRowAttr %smerge", bMerge? "": "NO " );
 /*N*/ //    DBG_ITEMS((SfxItemSet&)rAttr,this);
 /*N*/
-/*N*/     if( aDataRowAttrList.Count() <= (unsigned long)nRow )
+/*N*/     if( aDataRowAttrList.size() <= (unsigned long)nRow )
 /*N*/     {
-/*?*/         DBG_ERROR( "Invalid index to array requested" );
+/*?*/         OSL_FAIL( "Invalid index to array requested" );
 /*?*/         return;
 /*N*/     }
 /*N*/
 /*N*/     if(!bMerge)
-/*?*/       aDataRowAttrList.GetObject(nRow)->ClearItem();
+/*?*/       aDataRowAttrList[ nRow ]->ClearItem();
 /*N*/
-/*N*/   PutItemSetWithNameCreation( *aDataRowAttrList.GetObject( nRow ), rAttr );
+/*N*/   PutItemSetWithNameCreation( *aDataRowAttrList[ nRow ], rAttr );
 /*N*/
 /*N*/   if(bClearPoints && (nRow < GetRowCount()))
 /*N*/   {
@@ -369,15 +304,15 @@ namespace binfilter {
 
 /*N*/ const SfxItemSet& ChartModel::GetDataRowAttr( long nRow ) const
 /*N*/ {
-/*N*/   if( nRow < (long)aDataRowAttrList.Count() )
+/*N*/   if( nRow < (long)aDataRowAttrList.size() )
 /*N*/   {
-/*N*/       SfxItemSet* pSet = aDataRowAttrList.GetObject( nRow );
+/*N*/       SfxItemSet* pSet = aDataRowAttrList[ nRow ];
 /*N*/       DBG_ASSERT( pSet, "Invalid ItemSet" );
 /*N*/       return *pSet;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR( "Requested data row attribute is unavailable" );
+/*N*/       OSL_FAIL( "Requested data row attribute is unavailable" );
 /*N*/
 /*N*/       // return something
 /*?*/       DBG_ASSERT( pChartAttr, "Invalid Chart-ItemSet" );
@@ -484,26 +419,26 @@ namespace binfilter {
 /*?*/               {
 /*?*/                   CHART_TRACE( "creating SVX_SYMBOLTYPE_BRUSHITEM" );
 /*?*/                   const Graphic*  pGraphic = ((const SvxBrushItem *)pPoolItem)->GetGraphic();
-/*?*/                   Size            aSize;
+/*?*/                   Size            aLclSize;
 /*?*/
 /*?*/                   if( pGraphic )
 /*?*/                   {
 /*?*/                       if(!pObj && aDataAttr.GetItemState(SCHATTR_SYMBOL_SIZE,TRUE,&pPoolItem)==SFX_ITEM_SET)
 /*?*/                       {
 /*?*/                           CHART_TRACE( "Size by Item" );
-/*?*/                           aSize=((const SvxSizeItem*)pPoolItem)->GetSize();
+/*?*/                           aLclSize=((const SvxSizeItem*)pPoolItem)->GetSize();
 /*?*/                       }
 /*?*/                       else
 /*?*/                       {
 /*?*/                           CHART_TRACE( "Size by Graphic" );
 /*?*/                           if( pGraphic )
-/*?*/                               aSize = ( OutputDevice::LogicToLogic( pGraphic->GetPrefSize(),
+/*?*/                               aLclSize = ( OutputDevice::LogicToLogic( pGraphic->GetPrefSize(),
 /*?*/                                                                     pGraphic->GetPrefMapMode(),
 /*?*/                                                                     MAP_100TH_MM ));
 /*?*/                       }
 /*?*/
-/*?*/                       Rectangle   aRect(aPoint.X()-aSize.Width()/2,aPoint.Y()-aSize.Height()/2
-/*?*/                                         ,aPoint.X()+aSize.Width()/2,aPoint.Y()+aSize.Height()/2);
+/*?*/                       Rectangle   aRect(aPoint.X()-aLclSize.Width()/2,aPoint.Y()-aLclSize.Height()/2
+/*?*/                                         ,aPoint.X()+aLclSize.Width()/2,aPoint.Y()+aLclSize.Height()/2);
 /*?*/                       pObj      = new SdrGrafObj(*pGraphic);
 /*?*/                       GetPage(0)->NbcInsertObject(pObj,0);
 /*?*/                       pObj->NbcSetSnapRect(aRect);
@@ -527,10 +462,10 @@ namespace binfilter {
 /*N*/
 /*N*/   if(!pObj && aDataAttr.GetItemState(SCHATTR_SYMBOL_SIZE,TRUE,&pPoolItem)==SFX_ITEM_SET)
 /*N*/   {
-/*?*/       Size aSize=((const SvxSizeItem*)pPoolItem)->GetSize();
-/*?*/       nHalfSymbolSizeX = aSize.Width() / 2;
-/*?*/       nHalfSymbolSizeY = aSize.Height() / 2;
-/*?*/       CHART_TRACE2( "reading SCHATTR_SYMBOL_SIZE -> Size = (%ld, %ld)", aSize.Width(), aSize.Height() );
+/*?*/       Size aLclSize=((const SvxSizeItem*)pPoolItem)->GetSize();
+/*?*/       nHalfSymbolSizeX = aLclSize.Width() / 2;
+/*?*/       nHalfSymbolSizeY = aLclSize.Height() / 2;
+/*?*/       CHART_TRACE2( "reading SCHATTR_SYMBOL_SIZE -> Size = (%ld, %ld)", aLclSize.Width(), aLclSize.Height() );
 /*N*/   }
 /*N*/
 /*N*/   if(!pObj) //dann default generieren
@@ -765,7 +700,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void ChartModel::ClearDataPointAttr( long nCol, long nRow, const SfxItemSet& rAttr )
+/*N*/ void ChartModel::ClearDataPointAttr( long nCol, long nRow, const SfxItemSet& /*rAttr*/ )
 /*N*/ {
 /*N*/
 /*N*/   CHART_TRACE( "ChartModel::ClearDataPointAttr" );
@@ -774,9 +709,9 @@ namespace binfilter {
 /*N*/                                ? &aSwitchDataPointAttrList
 /*N*/                                : &aDataPointAttrList;
 /*N*/
-/*N*/   SfxItemSet* pItemSet = pAttrList->GetObject(nCol * GetRowCount() + nRow);
+/*N*/   SfxItemSet* pItemSet = (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/   if (pItemSet != NULL)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ClearDblItems(rAttr,*pItemSet);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 /*************************************************************************
 |*
@@ -793,11 +728,11 @@ namespace binfilter {
 /*N*/                          ? &aSwitchDataPointAttrList
 /*N*/                          : &aDataPointAttrList;
 /*N*/
-/*N*/   SfxItemSet* pItemSet = pAttrList->GetObject(nCol * GetRowCount() + nRow);
+/*N*/   SfxItemSet* pItemSet = (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/   if (pItemSet == NULL)
 /*N*/   {
 /*N*/       pItemSet = new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/       pAttrList->Replace (pItemSet, nCol * GetRowCount() + nRow);
+/*N*/       (*pAttrList)[nCol * GetRowCount() + nRow] = pItemSet;
 /*N*/   }
 /*N*/   if(!bMerge)
 /*?*/       pItemSet->ClearItem();
@@ -816,13 +751,13 @@ namespace binfilter {
 /*N*/ const SfxItemSet& ChartModel::GetDataPointAttr( long nCol, long nRow) const
 /*N*/ {
 /*N*/   long nIdx = nCol * GetRowCount() + nRow;
-/*N*/   ItemSetList& aAttrList = IsDataSwitched()
-/*N*/       ? (class ItemSetList &) aSwitchDataPointAttrList
-/*N*/       : (class ItemSetList &) aDataPointAttrList;
+/*N*/   const ItemSetList* aAttrList = IsDataSwitched()
+/*N*/       ? &aSwitchDataPointAttrList
+/*N*/       : &aDataPointAttrList;
 /*N*/
-/*N*/   if( nIdx < (long)aAttrList.Count() )
+/*N*/   if( nIdx < (long)aAttrList->size() )
 /*N*/   {
-/*N*/       SfxItemSet* pSet = aAttrList.GetObject( nIdx );
+/*N*/       SfxItemSet* pSet = (*aAttrList)[ nIdx ];
 /*N*/       if (pSet == NULL)
 /*N*/           return (GetDataRowAttr(nRow));
 /*N*/       else
@@ -830,7 +765,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ERROR( "Requested data point attribute is unavailable" );
+/*?*/       OSL_FAIL( "Requested data point attribute is unavailable" );
 /*?*/
 /*?*/       // return something
 /*?*/       DBG_ASSERT( pChartAttr, "Invalid Chart-ItemSet" );
@@ -842,12 +777,12 @@ namespace binfilter {
 /*N*/ const SfxItemSet * ChartModel::GetRawDataPointAttr    (long nCol,long nRow) const
 /*N*/ {
 /*N*/   long nIndex = nCol * GetRowCount() + nRow;
-/*N*/   ItemSetList & aAttrList = IsDataSwitched()
-/*N*/       ? (class ItemSetList &) aSwitchDataPointAttrList
-/*N*/       : (class ItemSetList &) aDataPointAttrList;
+/*N*/   const ItemSetList* aAttrList = IsDataSwitched()
+/*N*/       ? &aSwitchDataPointAttrList
+/*N*/       : &aDataPointAttrList;
 /*N*/
-/*N*/   if (nIndex < (long)aAttrList.Count())
-/*N*/       return aAttrList.GetObject (nIndex);
+/*N*/   if (nIndex < (long)aAttrList->size())
+/*N*/       return (*aAttrList)[ nIndex ];
 /*N*/   else
 /*N*/       return NULL;
 /*N*/ }
@@ -860,15 +795,15 @@ namespace binfilter {
 
 /*N*/ SfxItemSet ChartModel::GetFullDataPointAttr( long nCol, long nRow ) const
 /*N*/ {
-/*N*/   ItemSetList* pAttrList = IsDataSwitched()
-/*N*/         ? (class ItemSetList *) & aSwitchDataPointAttrList
-/*N*/         : (class ItemSetList *) & aDataPointAttrList;
+/*N*/   const ItemSetList* pAttrList = IsDataSwitched()
+/*N*/         ? &aSwitchDataPointAttrList
+/*N*/         : &aDataPointAttrList;
 /*N*/
-/*N*/   if( ! IsPieChart())
+/*N*/   if( !IsPieChart())
 /*N*/   {
 /*N*/         // get series' attributes and merge with data-point attributes if available
 /*N*/       SfxItemSet aAttr( GetDataRowAttr( nRow ));
-/*N*/       SfxItemSet *pObj=pAttrList->GetObject( nCol * GetRowCount() + nRow );
+/*N*/       SfxItemSet *pObj= (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/       if( pObj )
 /*N*/             aAttr.Put( *pObj );
 /*N*/       return aAttr;
@@ -894,7 +829,7 @@ namespace binfilter {
 /*N*/     if( ( nCol >= nPieCount ) &&
 /*N*/         pDefaultColors )
 /*N*/     {
-/*?*/         XColorEntry* pColEntry = SAL_STATIC_CAST( XColorEntry*, pDefaultColors->GetObject( nCol % pDefaultColors->Count()));
+/*?*/         XColorEntry* pColEntry = (*pDefaultColors)[ nCol % pDefaultColors->size() ];
 /*?*/         aAttr.Put( XFillColorItem( pColEntry->GetName(), pColEntry->GetColor()));
 /*N*/     }
 /*N*/
@@ -903,8 +838,8 @@ namespace binfilter {
 /*N*/     aAttr.ClearItem( SCHATTR_DATADESCR_SHOW_SYM );
 /*N*/     aAttr.Put( aDescrAttrib );
 /*N*/
-/*N*/     SfxItemSet* pAttr = pAttrList->GetObject( nCol * nSecondDimension );
-/*N*/     if( ( pAttr != NULL ) && pAttr->Count())
+/*N*/     SfxItemSet* pAttr = (*pAttrList)[ nCol * nSecondDimension ];
+/*N*/     if( ( pAttr != NULL ) && pAttr->Count() )
 /*N*/         aAttr.Put( *pAttr );
 /*N*/
 /*N*/     return aAttr;
@@ -919,27 +854,26 @@ namespace binfilter {
 /*N*/ SfxItemSet& ChartModel::MergeDataPointAttr( SfxItemSet& rAttr, long nCol, long nRow ) const
 /*N*/ {
 /*N*/   CHART_TRACE2( "ChartModel::MergeDataPointAttr nCol=%ld, nRow=%ld", nCol, nRow );
-/*N*/   ItemSetList* pAttrList = IsDataSwitched()   //abhaengig vom Charttyp - statt bSwitchData
-/*N*/                                ? (class ItemSetList *) &aSwitchDataPointAttrList
-/*N*/                                : (class ItemSetList *) &aDataPointAttrList;
+/*N*/   const ItemSetList* pAttrList = IsDataSwitched()   //abhaengig vom Charttyp - statt bSwitchData
+/*N*/                           ? &aSwitchDataPointAttrList
+/*N*/                           : &aDataPointAttrList;
 /*N*/
-/*N*/   SfxItemSet *pObj=pAttrList->GetObject(nCol * GetRowCount() + nRow);
+/*N*/   SfxItemSet *pObj = (*pAttrList)[ nCol * GetRowCount() + nRow ];
 /*N*/   if(pObj)
 /*?*/       rAttr.Put(*pObj);
 /*N*/   return rAttr;
 /*N*/ }
 
 
-
 /*N*/ BOOL  ChartModel::IsDataPointAttrSet  (long nCol, long nRow)  const
 /*N*/ {
 /*N*/   UINT32 nIndex = nCol * GetRowCount() + nRow;
-/*N*/   ItemSetList& aAttrList = IsDataSwitched()
-/*N*/       ? (class ItemSetList &) aSwitchDataPointAttrList
-/*N*/       : (class ItemSetList &) aDataPointAttrList;
+/*N*/   const ItemSetList* aAttrList = IsDataSwitched()
+/*N*/                                  ? &aSwitchDataPointAttrList
+/*N*/                                  : &aDataPointAttrList;
 /*N*/
-/*N*/   if (nIndex < static_cast<UINT32>(aAttrList.Count()))
-/*N*/       return aAttrList.GetObject (nIndex) != NULL;
+/*N*/   if (nIndex < static_cast<UINT32>(aAttrList->size()))
+/*N*/       return (*aAttrList)[ nIndex ] != NULL;
 /*N*/   else
 /*N*/       //  Specified data point does not exist.  Therefore an item set does not exist also.
 /*?*/       return false;
@@ -970,7 +904,6 @@ namespace binfilter {
 /*N*/               switch (pObjId->GetObjId())
 /*N*/               {
 /*N*/                   case CHOBJID_LINE :
-/*N*/ //-/                      pObj->SetAttributes(*pAttr, FALSE);
 /*N*/                       pObj->SetItemSetAndBroadcast(*pAttr);
 /*N*/                       break;
 /*N*/
@@ -994,7 +927,7 @@ namespace binfilter {
 /*N*/ void ChartModel::SetTextFromObject( SdrTextObj* pObj,OutlinerParaObject* pTextObject )
 /*N*/ {
 /*N*/   DBG_ASSERT( pObj, "ChartModel::SetTextFromObject: Object is NULL" );
-/*N*/   if( !bAttrAutoStorage && pTextObject // not during BuildChart
+/*N*/   if( (!bAttrAutoStorage && pTextObject) // not during BuildChart
 /*N*/       || !pObj )
 /*N*/       return;
 /*N*/
@@ -1044,7 +977,7 @@ namespace binfilter {
 /*N*/               pItemSet->GetItemState( SCHATTR_TEXT_ORIENT, FALSE, &pPoolItem ) == SFX_ITEM_SET &&
 /*N*/               SAL_STATIC_CAST( const SvxChartTextOrientItem*, pPoolItem )->GetValue() == CHTXTORIENT_STACKED )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aTitle = UnstackString( aTitle );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           if( pStrToChange )
@@ -1056,30 +989,24 @@ namespace binfilter {
 /*N*/ //Achtung! diese Funktion sollte nur für 3-D-Objekte ausgeführt werden,
 /*N*/ //bei z.B. Legendensymbolen führt der Aufruf zu einer Endlos-Schleife !!!!!!!!!!!!!
 /*N*/ //Im BuildChart wird ueber bAttrAutoStorage=FALSE doppelte Ausfuehrung unterbunden
-/*N*/ void ChartModel::StoreObjectsAttributes(SdrObject* pObj,const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
+/*N*/ void ChartModel::StoreObjectsAttributes(SdrObject* pObj,const SfxItemSet& rAttr, bool bReplaceAll)
 /*N*/ {//#52277#
 /*N*/   if(!bAttrAutoStorage)
 /*N*/       return;
 /*N*/   bAttrAutoStorage=FALSE; //Rekursionen verhindern
 /*N*/
-/*N*/   //Eventuell 3D-Materialfarbe in 2D-Füllfarbe konvertieren:
-/*  const SfxPoolItem *pPoolItem;
-    if( SFX_ITEM_SET == rAttr.GetItemState( SID_ATTR_3D_MAT_COLOR, TRUE, &pPoolItem ) )
-    {
-        Color aNew = ( ( const SvxColorItem* ) pPoolItem )->GetValue();
-        ((SfxItemSet&)rAttr).Put(XFillColorItem(String(),aNew));
-    }
-*/
 /*N*/   DBG_ITEMS(((SfxItemSet&)rAttr),this);
 /*N*/
 /*N*/   SchObjectId* pObjId = GetObjectId(*pObj);
 /*N*/   if(!pObjId)
 /*N*/   {
-/*?*/       DBG_ERROR("ChartModel::StoreObjectsAttributes failed, no ObjId");
+/*?*/       OSL_FAIL("ChartModel::StoreObjectsAttributes failed, no ObjId");
 /*N*/   }
 /*N*/   long nId=pObjId->GetObjId();
 /*N*/
+        #if OSL_DEBUG_LEVEL > 0
 /*N*/   CHART_TRACE2( "ChartModel::StoreObjectsAttributes Id=%s %s", GetCHOBJIDName( nId ), bReplaceAll? "ReplaceAll" : "Merge" );
+        #endif
 /*N*/
 /*N*/   switch(nId)
 /*N*/   {
@@ -1087,35 +1014,34 @@ namespace binfilter {
 /*N*/   case CHOBJID_DIAGRAM_SPECIAL_GROUP:
 /*N*/   case CHOBJID_DIAGRAM_ROWGROUP:
 /*N*/   case CHOBJID_LEGEND_SYMBOL_ROW:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_DATA:
 /*?*/   case CHOBJID_LEGEND_SYMBOL_COL:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/       break;
 /*?*/
 /*?*/   case CHOBJID_DIAGRAM_STATISTICS_GROUP :
 /*?*/   case CHOBJID_DIAGRAM_AVERAGEVALUE :
 /*?*/   case CHOBJID_DIAGRAM_REGRESSION :
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/       break;
 /*?*/
 /*N*/   case CHOBJID_DIAGRAM_WALL:
 /*N*/       {
 /*N*/           //Spezialfall, 2.Wand suchen
-/*N*/           ChartScene* pScene=GetScene();
-/*N*/           if(pScene)
+/*N*/           ChartScene* pLclScene=GetScene();
+/*N*/           if(pLclScene)
 /*N*/           {
-/*N*/               SdrObjListIter aIterator(*pScene->GetSubList(), IM_FLAT);
+/*N*/               SdrObjListIter aIterator(*pLclScene->GetSubList(), IM_FLAT);
 /*N*/               while (aIterator.IsMore())
 /*N*/               {
 /*N*/                   SdrObject   *pO   = aIterator.Next();
 /*N*/                   SchObjectId *pI   = GetObjectId(*pO);
 /*N*/                   if(pI && pI->GetObjId()==CHOBJID_DIAGRAM_WALL && pO!=pObj)
-/*N*/ //-/                      pO->SetAttributes(rAttr,FALSE);
 /*N*/                       pO->SetItemSetAndBroadcast(rAttr);
 /*N*/               }
 /*N*/           }
@@ -1194,7 +1120,9 @@ namespace binfilter {
 /*N*/           ZAxisTitle()=rTitle;
 /*N*/           break;
 /*N*/       default:
+                        #if OSL_DEBUG_LEVEL > 0
 /*?*/           CHART_TRACE2( "SetTitle: Title not found by id %ld (%s) ", nId, GetCHOBJIDName( nId ));
+                        #endif
 /*N*/           break;
 /*N*/   }
 /*N*/ }
@@ -1214,7 +1142,9 @@ namespace binfilter {
 /*N*/     case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
 /*N*/         return ZAxisTitle();
 /*N*/     default:
+                  #if OSL_DEBUG_LEVEL > 0
 /*?*/         CHART_TRACE2( "GetTitle: Title not found by id %ld (%s) ", nId, GetCHOBJIDName( nId ));
+                  #endif
 /*?*/         return String();
 /*N*/   }
 /*N*/ }
@@ -1243,65 +1173,24 @@ namespace binfilter {
 /*N*/           SetLegendHasBeenMoved(bMoved);
 /*N*/           break;
 /*N*/       default:
+                        #if OSL_DEBUG_LEVEL > 0
 /*?*/           CHART_TRACE2( "SetHasBeenMoved: Object not found by id %ld (%s) ", nId, GetCHOBJIDName( nId ));
+                        #endif
 /*N*/           break;
 /*N*/   }
 /*N*/ }
 
-/*N*/ SdrObject* ChartModel::GetObjectWithId(const long nId,const long nCol,const long nRow)
+/*N*/ SdrObject* ChartModel::GetObjectWithId(const long nId,const long /*nCol*/,const long /*nRow*/)
 /*N*/ {
 /*N*/   //ToDo: Das hier könnte man auch schöner machen (kein DEEP!)
 /*N*/   SdrObject* pObj=(GetObjWithId ((USHORT)nId,*GetPage(0),0,IM_DEEPWITHGROUPS));
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/   // there is no DBG_ASSERT2
 /*N*/   if( !pObj )
-/*N*/       DBG_ERROR2( "GetObjWithId: Object not found (id=%ld => %s)", nId, GetCHOBJIDName( nId ) );
+/*N*/       OSL_TRACE( "GetObjWithId: Object not found (id=%ld => %s)", nId, GetCHOBJIDName( nId ) );
 /*N*/ #endif
 /*N*/   return pObj;
 /*N*/ }
-
-// GetAttr-Methoden:
-//GetAttr(id) Diese Methode sucht anhand der Id den passenden Model-eigenen AttrSet
-//Achtung! Wenn zu einer ID kein Set existiert, wird *pDummyAttr returned!
-//(ungefährlich, geringer Overhead, wirft daher nur DBG__TRACE)
-//Nicht-Singuläre Objekte können nicht an der ID alleine identifiziert werden,
-//in diesem Fall muss GetAttr(SdrObject*) statt GetAttr(long id) gerufen werden
-// GetAttr(long id, SfxItemSet&) besorgt alle für ein Objekt verfügbaren und
-// gültigen Attribute
-
-/*
-Fehlen evtl. noch in GetAttr(ID):
-
-#define        CHOBJID_DIAGRAM                   13
-#define        CHOBJID_DIAGRAM_X_GRID_MAIN       22
-#define        CHOBJID_DIAGRAM_Y_GRID_MAIN       23
-#define        CHOBJID_DIAGRAM_Z_GRID_MAIN       24
-#define        CHOBJID_DIAGRAM_X_GRID_HELP       25
-#define        CHOBJID_DIAGRAM_Y_GRID_HELP       26
-#define        CHOBJID_DIAGRAM_Z_GRID_HELP       27
-#define        CHOBJID_DIAGRAM_ROWS              29
-#define        CHOBJID_DIAGRAM_ROWSLINE          30
-#define        CHOBJID_DIAGRAM_DESCRGROUP        32
-#define        CHOBJID_DIAGRAM_DESCR_ROW         33
-#define        CHOBJID_DIAGRAM_DESCR_COL         38
-#define        CHOBJID_DIAGRAM_DESCR_SYMBOL      39
-#define        CHOBJID_DIAGRAM_NET               41
-#define        CHOBJID_DIAGRAM_STACKEDGROUP      46
-#define        CHOBJID_DIAGRAM_STATISTICS_GROUP  48
-
-
-  nur GetAttr(pObj):
-#define        CHOBJID_DIAGRAM_AVERAGEVALUE      42
-#define        CHOBJID_DIAGRAM_REGRESSION        45
-#define        CHOBJID_DIAGRAM_ERROR             43
-
-#define        CHOBJID_LEGEND_SYMBOL_ROW         36
-#define        CHOBJID_LEGEND_SYMBOL_COL         37
-#define        CHOBJID_DIAGRAM_DATA              31
-#define        CHOBJID_DIAGRAM_SPECIAL_GROUP     55
-#define        CHOBJID_DIAGRAM_ROWGROUP          28
-
-  */
 
 /*N*/ void ChartModel::SetAttributes(const long nId,const SfxItemSet& rAttr,BOOL bMerge)
 /*N*/ {
@@ -1310,30 +1199,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/
 /*N*/   if(!bMerge)
 /*N*/       rItemSet.ClearItem();
-
-
-    //sobald die member bShow*Descr endlich entfallen, kann das hier alles weg
-/*  if(nId==CHOBJID_DIAGRAM_X_AXIS || nId==CHOBJID_DIAGRAM_Y_AXIS || nId==CHOBJID_DIAGRAM_Z_AXIS)
-    {
-        const SfxPoolItem *pPoolItem=NULL;
-        if( rAttr.GetItemState( SCHATTR_AXIS_SHOWDESCR, FALSE, &pPoolItem ) == SFX_ITEM_SET )
-        {
-            BOOL bShow = ( (const SfxBoolItem*) pPoolItem)->GetValue();
-            switch(nId)
-            {
-                case CHOBJID_DIAGRAM_X_AXIS:
-                    bShowXDescr=bShow;
-                    break;
-                case CHOBJID_DIAGRAM_Y_AXIS:
-                    bShowYDescr=bShow;
-                    break;
-                case CHOBJID_DIAGRAM_Z_AXIS:
-                    bShowZDescr=bShow;
-                    break;
-            }
-        }
-    }*/
-
 
 /*N*/   rItemSet.Put(rAttr);
 /*N*/ }
@@ -1407,17 +1272,12 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/       case CHOBJID_LEGEND:
 /*N*/           return *pLegendAttr;
 /*N*/
-            /*return *pTitleAttr;
-            return *pAxisAttr;
-            return *pGridAttr;
-             return *pChartAttr;*/
-/*N*/
 /*N*/       case CHOBJID_DIAGRAM_REGRESSION:
-/*?*/           return *aRegressAttrList.GetObject(nIndex1);
+/*?*/           return *aRegressAttrList[ nIndex1 ];
 /*N*/       case CHOBJID_DIAGRAM_ERROR:
-/*?*/           return *aErrorAttrList.GetObject(nIndex1);
+/*?*/           return *aErrorAttrList[ nIndex1 ];
 /*N*/       case CHOBJID_DIAGRAM_AVERAGEVALUE:
-/*?*/           return *aAverageAttrList.GetObject(nIndex1);
+/*?*/           return *aAverageAttrList[ nIndex1 ];
 /*N*/
 /*N*/       default:
 /*N*/           CHART_TRACE1( "GetAttr illegal Object Id (%ld), returning dummy", nObjId );
@@ -1434,19 +1294,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/ void ChartModel::GetAttr( const long nObjId, SfxItemSet& rAttr, const long nIndex1 /*=-1*/ )
 /*N*/ {
 /*N*/   CHART_TRACE( "ChartModel::GetAttr( long nObjId, SfxItemSet& rAttr)" );
-/*N*/
-/*N*/ #if 0
-/*N*/   SdrObject* pObj=NULL;
-/*N*/
-/*N*/   //Objektattribute aus der Seite holen
-/*N*/   //aber keine indizierten Objekte auf diese Weise suchen !
-/*N*/   if(nIndex1==-1)
-/*N*/   {
-/*N*/       pObj=(GetObjWithId ((USHORT)nObjId,*GetPage(0),0,IM_DEEPWITHGROUPS));
-/*N*/       if(pObj)
-/*N*/           rAttr.Put(pObj->GetItemSet());
-/*N*/   }
-/*N*/ #endif
 /*N*/
 /*N*/   // items at model (and axis object)
 /*N*/   switch( nObjId )
@@ -1496,7 +1343,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/ {
 /*N*/   BOOL bNeedChanges=TRUE; //noch ungenutzt, zur evtl. Optimierung
 /*N*/
-/*N*/
 /*N*/   //ToDo: optimieren! klappt wegen XChartView so nicht:
 /*N*/   //BOOL bForceBuild=FALSE;
 /*N*/   BOOL bForceBuild=TRUE;
@@ -1508,7 +1354,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/   {
 /*N*/       pObj=(GetObjWithId ((USHORT)nId,*GetPage(0),0,IM_DEEPWITHGROUPS));
 /*N*/      if(pObj)
-/*N*/ //-/          pObj->SetAttributes(rAttr,FALSE);
 /*N*/           pObj->SetItemSetAndBroadcast(rAttr);
 /*N*/   }
 /*N*/
@@ -1522,7 +1367,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/       case CHOBJID_DIAGRAM_B_AXIS:
 /*N*/       case CHOBJID_DIAGRAM_Z_AXIS:
 /*N*/           {
-/*N*/               const SfxPoolItem *pPoolItem;
 /*N*/               if(pObj)
 /*N*/               {
 /*N*/                   ChangeAxisAttr(rAttr,(SdrObjGroup*)pObj);
@@ -1545,6 +1389,7 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/
 /*N*/               }
 /*N*/
+/*N*/               const SfxPoolItem *pPoolItem;
 /*N*/               if( SFX_ITEM_SET == rAttr.GetItemState( SID_TEXTBREAK, TRUE, &pPoolItem ) )
 /*N*/               {
 /*N*/                   switch(nId)
@@ -1565,7 +1410,7 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/           }
 /*N*/           break;
 /*N*/         case CHOBJID_AREA:
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ChangeDiagramAreaAttr( rAttr );
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*?*/             break;
 /*N*/       default:
 /*N*/           GetAttr(nId,nIndex1).Put(rAttr,TRUE);
@@ -1582,67 +1427,6 @@ Fehlen evtl. noch in GetAttr(ID):
 /*N*/
 /*N*/   return bResult;
 /*N*/ }
-/* Anmerkungen zu GetObjectAttr,SetObjectAttr:
-
--  das koennte bei get(????) fehlen:
-        CompareSets (*pYGridMainAttr, *pGridAttr);
-        CompareSets (*pZGridMainAttr, *pGridAttr);
-        CompareSets (*pXGridHelpAttr, *pGridAttr);
-        CompareSets (*pYGridHelpAttr, *pGridAttr);
-        CompareSets (*pZGridHelpAttr, *pGridAttr);
-
--  evtl. sollten default-itemwerte erkannt und wieder entfert werden (SET)
-
-- erweitern auf DataRowPoint!
-
-- Das koennte man mal alles oben hineintun....
-
-#define        CHOBJID_TEXT                       1
-#define        CHOBJID_AREA                       2
-#define        CHOBJID_LINE                       3
-
-
-
-#define        CHOBJID_TITLE_MAIN                11
-#define        CHOBJID_TITLE_SUB                 12
-#define        CHOBJID_DIAGRAM                   13
-
-#define        CHOBJID_DIAGRAM_TITLE_X_AXIS      16
-#define        CHOBJID_DIAGRAM_TITLE_Y_AXIS      17
-#define        CHOBJID_DIAGRAM_TITLE_Z_AXIS      18
-
-
-#define        CHOBJID_DIAGRAM_ROWGROUP          28
-#define        CHOBJID_DIAGRAM_ROWS              29
-#define        CHOBJID_DIAGRAM_ROWSLINE          30
-#define        CHOBJID_DIAGRAM_DATA              31
-#define        CHOBJID_DIAGRAM_DESCRGROUP        32
-#define        CHOBJID_DIAGRAM_DESCR_ROW         33
-#define        CHOBJID_DIAGRAM_DESCR_COL         38
-#define        CHOBJID_DIAGRAM_DESCR_SYMBOL      39
-#define        CHOBJID_LEGEND                    34
-#define        CHOBJID_LEGEND_BACK               35
-#define        CHOBJID_LEGEND_SYMBOL_ROW         36
-#define        CHOBJID_LEGEND_SYMBOL_COL         37
-#define        CHOBJID_DIAGRAM_NET               41
-#define        CHOBJID_DIAGRAM_AVERAGEVALUE      42
-#define        CHOBJID_DIAGRAM_ERROR             43
-#define        CHOBJID_DIAGRAM_REGRESSION        45
-#define        CHOBJID_DIAGRAM_STACKEDGROUP      46
-#define        CHOBJID_DIAGRAM_STATISTICS_GROUP  48
-#define        CHOBJID_DIAGRAM_X_GRID_MAIN_GROUP 49
-#define        CHOBJID_DIAGRAM_Y_GRID_MAIN_GROUP 50
-#define        CHOBJID_DIAGRAM_Z_GRID_MAIN_GROUP 51
-#define        CHOBJID_DIAGRAM_X_GRID_HELP_GROUP 52
-#define        CHOBJID_DIAGRAM_Y_GRID_HELP_GROUP 53
-#define        CHOBJID_DIAGRAM_Z_GRID_HELP_GROUP 54
-#define        CHOBJID_DIAGRAM_SPECIAL_GROUP     55
-
-pYGridMainAttr->Put(rAttr);
-*/
-
-
-
 
 /*N*/ UINT32 ChartModel::GetNumFmt(long nObjId,BOOL bPercent)
 /*N*/ {
@@ -1662,16 +1446,16 @@ pYGridMainAttr->Put(rAttr);
 //               (using the Intersect method of the SfxItemSet)
 /*N*/ void ChartModel::GetDataRowAttrAll( SfxItemSet& rOutAttributes )
 /*N*/ {
-/*N*/     long nListSize = aDataRowAttrList.Count();
+/*N*/     long nListSize = aDataRowAttrList.size();
 /*N*/
 /*N*/     // no itemsets => result stays empty
 /*N*/     if( nListSize == 0 )
 /*N*/         return;
 /*N*/
 /*N*/     // set items of first data row and then intersect with all remaining
-/*N*/     rOutAttributes.Put( *aDataRowAttrList.GetObject( 0 ));
+/*N*/     rOutAttributes.Put( *aDataRowAttrList[ 0 ] );
 /*N*/   for( long nRow = 1; nRow < nListSize; nRow++ )
-/*N*/         rOutAttributes.Intersect( *aDataRowAttrList.GetObject( nRow ));
+/*N*/         rOutAttributes.Intersect( *aDataRowAttrList[ nRow ] );
 /*N*/ }
 
 /*N*/ void ChartModel::SetItemWithNameCreation( SfxItemSet& rDestItemSet, const SfxPoolItem* pNewItem )
@@ -1743,3 +1527,5 @@ pYGridMainAttr->Put(rAttr);
 /*N*/     }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

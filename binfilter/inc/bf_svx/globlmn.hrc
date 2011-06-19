@@ -3150,39 +3150,6 @@
     Text[ he ] = "‮סייר‬";\
 
 
-#define ITEM_INSERT_HYPERLINK_INSERT \
-    Identifier = SID_HYPERLINK_INSERT ; \
-    Command = ".uno:InsertHyperlink" ; \
-    HelpID = SID_HYPERLINK_INSERT ; \
-    Text [ de ] = "H~yperlinkleiste" ; \
-    Text [ en-US ] = "~Hyperlink Bar" ; \
-    Text [ x-comment ] = " ";   \
-    Text[ pt ] = "Barra de ~hiperligações";\
-    Text[ ru ] = "Панель гиперссылки";\
-    Text[ el ] = "Γραμμή υπερ-~σύνδεσης";\
-    Text[ nl ] = "H~yperlinkbalk";\
-    Text[ fr ] = "Barre d'~hyperliens";\
-    Text[ es ] = "Barra de h~iperenlaces";\
-    Text[ fi ] = "~Hyperlinkkirivi";\
-    Text[ ca ] = "Barra d'h~iperenllaços";\
-    Text[ it ] = "Barra degli h~yperlink";\
-    Text[ cs ] = "Hyperlinkový panel";\
-    Text[ sk ] = "~Hyperlinkový panel";\
-    Text[ da ] = "H~yperlinklinje";\
-    Text[ sv ] = "H~yperlänklist";\
-    Text[ pl ] = "Pasek ~hiperłączy";\
-    Text[ pt-BR ] = "Barra de ~Hiperlinks";\
-    Text[ th ] = "แถบเ~ชื่อมโยงหลายมิติ";\
-    Text[ ja ] = "ハイパーリンクバー(~H)";\
-    Text[ ko ] = "하이퍼링크 도구 모음(~H)";\
-    Text[ zh-CN ] = "超链接地址栏(~H)";\
-    Text[ zh-TW ] = "超連結位址欄(~H)";\
-    Text[ tr ] = "Hiperlink çubuğu";\
-    Text[ hi-IN ] = "~हाइपरलिंक पट्टी";\
-    Text[ ar ] = "شريط الارتباطات التشعبية";\
-    Text[ he ] = "‮סרגל Hyperlink‬";\
-
-
 #define ITEM_INSERT_INSERT_GRAPHIC \
     Identifier = SID_INSERT_GRAPHIC ; \
     Command = ".uno:InsertGraphic" ; \
@@ -3790,7 +3757,7 @@
         Identifier = DEFINE_SLOTID_FOR_NUMBER_BULLETS ; \
         HelpID = DEFINE_SLOTID_FOR_NUMBER_BULLETS ; \
         Text [ de ] = "~Nummerierung/Aufz�hlung..." ; \
-        Text [ en-US ] = "~Numbering/Bullets..." ; \
+        Text [ en-US ] = "~Bullets and Numbering..." ; \
         Text [ x-comment ] = " ";\
         Text[ pt ] = "~Marcas/Numeração...";\
         Text[ ru ] = "Нумерация/маркировка...";\
@@ -5512,7 +5479,7 @@
                 };\
             };\
         };\
-        Text [ en-US ] = "Case/Characters";\
+        Text [ en-US ] = "~Change Case";\
         Text [ x-comment ] = "nk03.04.01: hier passt Englisch Uebesetzung besser.";\
         Text[ pt ] = "Caixa/Caracteres";\
         Text[ ru ] = "Регистр";\

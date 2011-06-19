@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,7 @@
  *
  ************************************************************************/
 
-
-#ifdef PCH
-#endif
-
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -66,7 +61,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------
 
-/*N*/ BOOL __EXPORT ScDocShell::InitNew( SvStorage * pStor )
+/*N*/ BOOL ScDocShell::InitNew( SvStorage * pStor )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::InitNew" );
 /*N*/
@@ -134,25 +129,25 @@ using namespace ::com::sun::star;
 /*N*/       PutItem( SvxColorTableItem( OFF_APP()->GetStdColorTable() ) );
 /*N*/   }
 /*N*/
-/*N*/   if ( !aDocument.GetForbiddenCharacters().isValid() ||
+/*N*/   if ( !aDocument.GetForbiddenCharacters().is() ||
 /*N*/           !aDocument.IsValidAsianCompression() || !aDocument.IsValidAsianKerning() )
 /*N*/   {
 /*N*/       //  get settings from SvxAsianConfig
 /*N*/       SvxAsianConfig aAsian( sal_False );
 /*N*/
-/*N*/       if ( !aDocument.GetForbiddenCharacters().isValid() )
+/*N*/       if ( !aDocument.GetForbiddenCharacters().is() )
 /*N*/       {
 /*N*/           // set forbidden characters if necessary
 /*N*/           uno::Sequence<lang::Locale> aLocales = aAsian.GetStartEndCharLocales();
 /*N*/           if (aLocales.getLength())
 /*N*/           {
-/*?*/               vos::ORef<SvxForbiddenCharactersTable> xForbiddenTable =
+/*?*/               rtl::Reference<SvxForbiddenCharactersTable> xForbiddenTable =
 /*?*/                       new SvxForbiddenCharactersTable( aDocument.GetServiceManager() );
 /*?*/
-/*?*/               const lang::Locale* pLocales = aLocales.getConstArray();
+/*?*/               aLocales.getConstArray();
 /*?*/               for (sal_Int32 i = 0; i < aLocales.getLength(); i++)
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 i18n::ForbiddenCharacters aForbidden;
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               aDocument.SetForbiddenCharacters( xForbiddenTable );
@@ -216,13 +211,13 @@ using namespace ::com::sun::star;
 /*N*/   //  Loeschen wie in SvPersist::CleanUp
 /*N*/
 /*N*/   ScDrawLayer* pDrawLayer = aDocument.GetDrawLayer();
-/*N*/   const SvInfoObjectMemberList* pChildList = GetObjectList();
+/*N*/   const SvInfoObjectMemberList* pLclChildList = GetObjectList();
 /*N*/
-/*N*/   if( pChildList && pChildList->Count() )
+/*N*/   if( pLclChildList && pLclChildList->Count() )
 /*N*/   {
-/*N*/       for( ULONG i=0; i<pChildList->Count(); )
+/*N*/       for( ULONG i=0; i<pLclChildList->Count(); )
 /*N*/       {
-/*N*/           SvInfoObjectRef pEle = pChildList->GetObject(i);
+/*N*/           SvInfoObjectRef pEle = pLclChildList->GetObject(i);
 /*N*/           String aObjName = pEle->GetObjName();
 /*N*/           BOOL bFound = FALSE;
 /*N*/           if ( pDrawLayer )
@@ -263,3 +258,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

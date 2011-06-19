@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -52,9 +53,7 @@ class SvxLanguageItem;
 class SvxEmphasisMarkItem;
 class SvxCharReliefItem;
 }//end of namespace binfilter
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 class SfxVoidItem;
 namespace binfilter {
 
@@ -417,3 +416,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _EDITATTR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

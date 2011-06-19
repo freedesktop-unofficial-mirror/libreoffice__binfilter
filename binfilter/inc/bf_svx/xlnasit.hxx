@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SVX_XLNASIT_HXX
 #define _SVX_XLNASIT_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -50,8 +49,10 @@ public:
                                              SfxItemPool* pItemPool);
     virtual SfxPoolItem*    Clone( SfxItemPool* pToPool ) const;
     virtual SfxPoolItem*    Create( SvStream& rStream, USHORT nVersion ) const;
-    virtual SvStream&       Store( SvStream& rStream, USHORT nItemVersion ) const;
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
 };
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

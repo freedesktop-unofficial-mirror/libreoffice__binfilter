@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,9 +36,7 @@
 #include <unotools/textsearch.hxx>
 #include <unotools/collatorwrapper.hxx>
 #include <stdlib.h>
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "scitems.hxx"
 #include "cell.hxx"
@@ -67,7 +63,7 @@ struct ScSortInfo
     DECL_FIXEDMEMPOOL_NEWDEL( ScSortInfo );
 };
 /*N*/ const USHORT nMemPoolSortInfo = (0x8000 - 64) / sizeof(ScSortInfo);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSortInfo, nMemPoolSortInfo, nMemPoolSortInfo )
 
 // END OF STATIC DATA -----------------------------------------------------
 
@@ -83,7 +79,7 @@ struct ScSortInfo
 /*N*/ {
 /*N*/   if ( pSortCollator )
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal() )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -204,6 +200,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 /*?*/               case SC_NOT_EQUAL :
 /*?*/                     bOk = !::rtl::math::approxEqual( nCellVal, rEntry.nVal );
 /*?*/                   break;
+/*?*/               default :
+/*?*/                   break;
 /*N*/           }
 /*N*/       }
 /*N*/       else if ( (rEntry.eOp == SC_EQUAL || rEntry.eOp == SC_NOT_EQUAL)
@@ -285,6 +283,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 /*?*/                             if ( bOk && pbTestEqualCondition && !bTestEqual )
 /*?*/                                 bTestEqual = (nCompare == 0);
 /*?*/                           break;
+/*?*/                       default :
+/*?*/                           break;
 /*?*/                   }
 /*N*/               }
 /*N*/           }
@@ -334,10 +334,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         if ( !IsSortCollatorGlobal()
 
 
 
-/*N*/ BOOL ScTable::CreateQueryParam(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2, ScQueryParam& rQueryParam)
+/*N*/ BOOL ScTable::CreateQueryParam(USHORT, USHORT, USHORT, USHORT, ScQueryParam&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    USHORT i, nCount;
-return FALSE;//STRIP001     return bValid;
+DBG_BF_ASSERT(0, "STRIP");
+return FALSE;
 /*N*/ }
 
 
@@ -393,7 +393,7 @@ return FALSE;//STRIP001     return bValid;
 
 /*N*/ void ScTable::FindConditionalFormat( ULONG nKey, ScRangeList& rList )
 /*N*/ {
-/*N*/   USHORT nStartRow, nEndRow;
+/*N*/   USHORT nStartRow(0), nEndRow(0);
 /*N*/   for (USHORT nCol=0; nCol<=MAXCOL; nCol++)
 /*N*/   {
 /*N*/       ScAttrIterator* pIter = aCol[nCol].CreateAttrIterator( 0, MAXCOL );
@@ -412,3 +412,5 @@ return FALSE;//STRIP001     return bValid;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,90 +30,37 @@
 #pragma hdrstop
 #endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX
+#include <osl/mutex.hxx>
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _CTRLTOOL_HXX
 #include <bf_svtools/ctrltool.hxx>
-#endif
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
 #include <unotools/processfactory.hxx>
-#endif
-#ifndef _SVX_PAPERINF_HXX
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SV_SETTINGS_HXX
 #include <vcl/settings.hxx>
-#endif
-#ifndef _TOOLKIT_AWT_VCLXDEVICE_HXX_
 #include <toolkit/awt/vclxdevice.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
 #include <com/sun/star/beans/PropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORMULA_SYMBOLDESCRIPTOR_HPP_
 #include <com/sun/star/formula/SymbolDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
 #include <com/sun/star/awt/Size.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _COMPHELPER_PROPERTSETINFO_HXX_
 #include <comphelper/propertysetinfo.hxx>
-#endif
 
-#ifndef UNOMODEL_HXX
 #include <unomodel.hxx>
-#endif
-#ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
-#ifndef SYMBOL_HXX
 #include <symbol.hxx>
-#endif
-#ifndef STARMATH_HRC
 #include <starmath.hrc>
-#endif
-#ifndef CONFIG_HXX
 #include <config.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
 namespace binfilter {
-using namespace ::vos;
 using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::std;
@@ -223,10 +171,10 @@ PropertySetInfo * lcl_createModelPropertyInfo ()
         { RTL_CONSTASCII_STRINGPARAM( "FontSansIsItalic"),   HANDLE_CUSTOM_FONT_SANS_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, FNT_SANS},
         { RTL_CONSTASCII_STRINGPARAM( "FontSerifIsBold"),    HANDLE_CUSTOM_FONT_SERIF_WEIGHT    ,  &::getBooleanCppuType(),             PROPERTY_NONE,  FNT_SERIF},
         { RTL_CONSTASCII_STRINGPARAM( "FontSerifIsItalic"),   HANDLE_CUSTOM_FONT_SERIF_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, FNT_SERIF},
-        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsBold"),     HANDLE_FONT_TEXT_WEIGHT    ,  &::getBooleanCppuType(),             PROPERTY_NONE, },
-        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsItalic"),   HANDLE_FONT_TEXT_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, },
-        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsBold"),    HANDLE_FONT_VARIABLES_WEIGHT    ,  &::getBooleanCppuType(),            PROPERTY_NONE, },
-        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsItalic"),   HANDLE_FONT_VARIABLES_POSTURE,  &::getBooleanCppuType(),  PROPERTY_NONE, },
+        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsBold"),     HANDLE_FONT_TEXT_WEIGHT    ,  &::getBooleanCppuType(),             PROPERTY_NONE, 0 },
+        { RTL_CONSTASCII_STRINGPARAM( "FontTextIsItalic"),   HANDLE_FONT_TEXT_POSTURE   ,  &::getBooleanCppuType(),  PROPERTY_NONE, 0 },
+        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsBold"),    HANDLE_FONT_VARIABLES_WEIGHT    ,  &::getBooleanCppuType(),            PROPERTY_NONE, 0 },
+        { RTL_CONSTASCII_STRINGPARAM( "FontVariablesIsItalic"),   HANDLE_FONT_VARIABLES_POSTURE,  &::getBooleanCppuType(),  PROPERTY_NONE, 0 },
         { RTL_CONSTASCII_STRINGPARAM( "Formula"                           ),    HANDLE_FORMULA                             ,        &::getCppuType((const OUString*)0),     PROPERTY_NONE, 0},
         { RTL_CONSTASCII_STRINGPARAM( "IsScaleAllBrackets"              ), HANDLE_IS_SCALE_ALL_BRACKETS              ,      &::getBooleanCppuType(),    PROPERTY_NONE, 0},
         { RTL_CONSTASCII_STRINGPARAM( "IsTextMode"                       ), HANDLE_IS_TEXT_MODE                       ,         &::getBooleanCppuType(),    PROPERTY_NONE, 0},
@@ -276,9 +224,8 @@ SmModel::SmModel( SfxObjectShell *pObjSh )
 SmModel::~SmModel() throw ()
 {
 }
-/*-- 28.03.00 14:18:17---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 uno::Any SAL_CALL SmModel::queryInterface( const uno::Type& rType ) throw(uno::RuntimeException)
 {
     uno::Any aRet =  ::cppu::queryInterface ( rType,
@@ -297,28 +244,25 @@ uno::Any SAL_CALL SmModel::queryInterface( const uno::Type& rType ) throw(uno::R
         aRet = SfxBaseModel::queryInterface ( rType );
     return aRet;
 }
-/*-- 28.03.00 14:18:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void SAL_CALL SmModel::acquire() throw()
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     OWeakObject::acquire();
 }
-/*-- 28.03.00 14:18:18---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 void SAL_CALL SmModel::release() throw()
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     OWeakObject::release();
 }
-/*-- 28.03.00 14:18:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 uno::Sequence< uno::Type > SAL_CALL SmModel::getTypes(  ) throw(uno::RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Sequence< uno::Type > aTypes = SfxBaseModel::getTypes();
     sal_Int32 nLen = aTypes.getLength();
     aTypes.realloc(nLen + 5);
@@ -335,9 +279,8 @@ uno::Sequence< uno::Type > SAL_CALL SmModel::getTypes(  ) throw(uno::RuntimeExce
 
     return aTypes;
 }
-/* -----------------------------28.03.00 14:23--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 const uno::Sequence< sal_Int8 > & SmModel::getUnoTunnelId()
 {
     static osl::Mutex aCreateMutex;
@@ -350,9 +293,8 @@ const uno::Sequence< sal_Int8 > & SmModel::getUnoTunnelId()
         rtl_createUuid( (sal_uInt8*)aSeq.getArray(), 0, sal_True );
     }
     return aSeq;
-} /* -----------------------------28.03.00 14:23--------------------------------
+}
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SmModel::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -364,12 +306,10 @@ sal_Int64 SAL_CALL SmModel::getSomething( const uno::Sequence< sal_Int8 >& rId )
     }
     return 0;
 }
-/*-- 07.01.00 16:32:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 07.01.00 16:33:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 sal_Int16 lcl_AnyToINT16(const uno::Any& rAny)
 {
     uno::TypeClass eType = rAny.getValueType().getTypeClass();
@@ -389,9 +329,8 @@ OUString SmModel::getImplementationName(void) throw( uno::RuntimeException )
 {
     return C2U("SmModel");
 }
-/*-- 07.02.00 13:24:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 sal_Bool SmModel::supportsService(const OUString& rServiceName) throw( uno::RuntimeException )
 {
     return (
@@ -400,12 +339,11 @@ sal_Bool SmModel::supportsService(const OUString& rServiceName) throw( uno::Runt
            );
 
 }
-/*-- 07.02.00 13:24:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 uno::Sequence< OUString > SmModel::getSupportedServiceNames(void) throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Sequence< OUString > aRet(2);
     OUString* pArray = aRet.getArray();
@@ -417,7 +355,7 @@ uno::Sequence< OUString > SmModel::getSupportedServiceNames(void) throw( uno::Ru
 void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* pValues)
     throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     SmDocShell *pDocSh = static_cast < SmDocShell * > (GetObjectShell());
 
@@ -521,7 +459,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
             case HANDLE_RELATIVE_FONT_HEIGHT_OPERATORS     :
             case HANDLE_RELATIVE_FONT_HEIGHT_LIMITS        :
             {
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 *pValues >>= nVal;
                 if(nVal < 1)
                     throw IllegalArgumentException();
@@ -538,7 +476,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
             case HANDLE_ALIGNMENT                          :
             {
                 // SmHorAlign uses the same values as HorizontalAlignment
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 *pValues >>= nVal;
                 if(nVal < 0 || nVal > 2)
                     throw IllegalArgumentException();
@@ -571,7 +509,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
             case HANDLE_TOP_MARGIN                :
             case HANDLE_BOTTOM_MARGIN             :
             {
-                sal_Int16 nVal;
+                sal_Int16 nVal(0);
                 *pValues >>= nVal;
                 if(nVal < 0)
                     throw IllegalArgumentException();
@@ -608,7 +546,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                     sal_uInt32 nSize = aSequence.getLength();
                     SvMemoryStream aStream ( aSequence.getArray(), nSize, STREAM_READ );
                     aStream.Seek ( STREAM_SEEK_TO_BEGIN );
-                    static sal_uInt16 __READONLY_DATA nRange[] =
+                    static sal_uInt16 const nRange[] =
                     {
                         SID_PRINTSIZE,       SID_PRINTSIZE,
                         SID_PRINTZOOM,       SID_PRINTZOOM,
@@ -636,7 +574,7 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                 if ( *pValues >>= aSequence )
                 {
                     sal_uInt32 nSize = aSequence.getLength();
-                    SmSymSetManager &rManager = pDocSh->GetSymSetManager();
+                    /*SmSymSetManager &rManager =*/ pDocSh->GetSymSetManager();
                     SymbolDescriptor *pDescriptor = aSequence.getArray();
                     for (sal_uInt32 i = 0; i < nSize ; i++, pDescriptor++)
                     {
@@ -651,7 +589,6 @@ void SmModel::_setPropertyValues(const PropertyMapEntry** ppEntries, const Any* 
                                         pDescriptor->sSymbolSet );
                         aSymbol.SetExportName ( pDescriptor->sExportName );
                         aSymbol.SetDocSymbol( TRUE );
-                        rManager.AddReplaceSymbol ( aSymbol );
                     }
                 }
                 else
@@ -848,11 +785,11 @@ void SmModel::_getPropertyValues( const PropertyMapEntry **ppEntries, Any *pValu
 //////////////////////////////////////////////////////////////////////
 
 sal_Int32 SAL_CALL SmModel::getRendererCount(
-        const uno::Any& rSelection,
-        const uno::Sequence< beans::PropertyValue >& xOptions )
+        const uno::Any& /*rSelection*/,
+        const uno::Sequence< beans::PropertyValue >& /*xOptions*/ )
     throw (IllegalArgumentException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return 1;
 }
 
@@ -882,11 +819,11 @@ static Size lcl_GuessPaperSize()
 
 uno::Sequence< beans::PropertyValue > SAL_CALL SmModel::getRenderer(
         sal_Int32 nRenderer,
-        const uno::Any& rSelection,
-        const uno::Sequence< beans::PropertyValue >& xOptions )
+        const uno::Any& /*rSelection*/,
+        const uno::Sequence< beans::PropertyValue >& /*xOptions*/ )
     throw (IllegalArgumentException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if (0 != nRenderer)
         throw IllegalArgumentException();
@@ -920,7 +857,7 @@ void SAL_CALL SmModel::render(
         const uno::Sequence< beans::PropertyValue >& rxOptions )
     throw (IllegalArgumentException, RuntimeException)
 {
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if (0 != nRenderer)
         throw IllegalArgumentException();
@@ -953,3 +890,5 @@ void SAL_CALL SmModel::render(
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

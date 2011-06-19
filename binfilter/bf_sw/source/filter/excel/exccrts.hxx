@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -30,9 +31,7 @@
 
 #include "fltglbls.hxx"
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 // ----------------------------------------------- class ColRowSettings --
@@ -214,3 +213,4 @@ class FltTabelle
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

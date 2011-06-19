@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
-#endif
 namespace binfilter {
 
 //... namespace frm .......................................................
@@ -203,14 +200,10 @@ IMPLEMENT_CONSTASCII_USTRING( FRM_SUN_FORMCOMPONENT, "com.sun.star.form.FormComp
 }
 //... namespace frm .......................................................
 }//namespace bifilter
-#ifndef _UNO_LBNAMES_H_
 #include <uno/lbnames.h>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 namespace starregistry  = ::com::sun::star::registry;
 namespace staruno       = ::com::sun::star::uno;
@@ -261,7 +254,7 @@ DECLARE_SERVICE_INFO(OImageControlModel)
 DECLARE_SERVICE_INFO(OGridControlModel)
 
 // some special handling for the FormattedFieldWrapper which can act as FormattedModel or as EditModel
-DECLARE_SERVICE_INFO(OFormattedFieldWrapper)//STRIP008 ;
+DECLARE_SERVICE_INFO(OFormattedFieldWrapper)
     // this is for a service, which is instantiated through the EditModel service name
     // and which acts mostly as Edit (mostly means : if somebody uses XPersistObject::read immediately after
     // the object was instantiated and the stream contains a FormattedModel, it switches permanently to
@@ -310,7 +303,7 @@ void registerClassInfo(
 //.......................................................................................
 #define REGISTER_CLASS_CORE(classImplName) \
     registerClassInfo( \
-        ::rtl::OUString::createFromAscii("com.sun.star.form.") + ::rtl::OUString::createFromAscii(#classImplName), \
+        ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form." )) + ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(#classImplName)), \
         aServices, \
         frm::classImplName##_CreateInstance)
 
@@ -402,8 +395,8 @@ void ensureClassInfos()
     aServices.realloc(3);
     aServices.getArray()[0] = frm::FRM_COMPONENT_FORMATTEDFIELD;
     aServices.getArray()[1] = frm::FRM_SUN_COMPONENT_FORMATTEDFIELD;
-    aServices.getArray()[2] = ::rtl::OUString::createFromAscii("com.sun.star.form.component.DatabaseFormattedField");
-    registerClassInfo(::rtl::OUString::createFromAscii("com.sun.star.comp.forms.OFormattedFieldWrapper_ForcedFormatted"),
+    aServices.getArray()[2] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.component.DatabaseFormattedField" ));
+    registerClassInfo(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms.OFormattedFieldWrapper_ForcedFormatted" )),
         aServices,
         frm::OFormattedFieldWrapper_CreateInstance_ForceFormatted);
 
@@ -450,9 +443,9 @@ void ensureClassInfos()
 //---------------------------------------------------------------------------------------
 void registerServiceProvider(const ::rtl::OUString& _rServiceImplName, const Sequence< ::rtl::OUString >& _rServices, starregistry::XRegistryKey* _pKey)
 {
-    ::rtl::OUString sMainKeyName = ::rtl::OUString::createFromAscii("/");
+    ::rtl::OUString sMainKeyName( RTL_CONSTASCII_USTRINGPARAM( "/" ));
     sMainKeyName += _rServiceImplName;
-    sMainKeyName += ::rtl::OUString::createFromAscii("/UNO/SERVICES");
+    sMainKeyName += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" ));
     Reference<starregistry::XRegistryKey> xNewKey = _pKey->createKey(sMainKeyName);
     OSL_ENSURE(xNewKey.is(), "forms::registerProvider : could not create a registry key !");
     if (!xNewKey.is())
@@ -484,13 +477,13 @@ void SAL_CALL createRegistryInfo_FORMS()
 }
 
 //---------------------------------------------------------------------------------------
-void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvTypeName, uno_Environment** _ppEnv)
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(const sal_Char** _ppEnvTypeName, uno_Environment** /*_ppEnv*/)
 {
     *_ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
 //---------------------------------------------------------------------------------------
-void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFactory* _pServiceManager, void* /*_pRegistryKey*/)
+SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFactory* _pServiceManager, void* /*_pRegistryKey*/)
 {
     if (!_pServiceManager || !_pImplName)
         return NULL;
@@ -514,7 +507,7 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
 
     for (sal_Int32 i=0; i<nClasses; ++i, ++pClasses, ++pServices, ++pFunctionsAsInts)
     {
-        if (rtl_ustr_ascii_compare(*pClasses, _pImplName) == 0)
+        if (rtl_ustr_ascii_compare(pClasses->getStr(), _pImplName) == 0)
         {
             ::cppu::ComponentInstantiation aCurrentCreateFunction =
                 reinterpret_cast< ::cppu::ComponentInstantiation>(*pFunctionsAsInts);
@@ -543,7 +536,7 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
         {
             // let the module look for the component
             Reference< XInterface > xRet;
-            xRet = ::binfilter::frm::OFormsModule::getComponentFactory(//STRIP008           xRet = ::frm::OFormsModule::getComponentFactory(
+            xRet = ::binfilter::frm::OFormsModule::getComponentFactory(
                 ::rtl::OUString::createFromAscii( _pImplName ),
                 static_cast< XMultiServiceFactory* >( _pServiceManager ) );
 
@@ -558,3 +551,5 @@ void* SAL_CALL component_getFactory(const sal_Char* _pImplName, XMultiServiceFac
 
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

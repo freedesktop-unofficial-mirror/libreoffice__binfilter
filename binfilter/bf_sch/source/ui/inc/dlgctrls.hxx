@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 #ifndef SD_DLGCTRLS_HXX
 #define SD_DLGCTRLS_HXX
 
-#ifndef _SV_LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _SV_WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 
 #include "schresid.hxx"
 namespace binfilter {
@@ -57,3 +54,4 @@ public:
 } //namespace binfilter
 #endif // SD_DLGCTRLS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

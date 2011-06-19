@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,34 +31,21 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
-#ifndef _FACTORY_HXX //autogen
 #include <bf_so3/factory.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _ITABENUM_HXX
 #include <itabenum.hxx>
-#endif
-#ifndef _MODCFG_HXX
 #include <modcfg.hxx>
-#endif
 
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 #define GLOB_NAME_CALC      0
@@ -67,9 +55,8 @@ using namespace ::com::sun::star::uno;
 #define GLOB_NAME_CHART     4
 
 /*N*/ SV_IMPL_PTRARR_SORT(InsCapOptArr, InsCaptionOptPtr)
-/* -----------------03.11.98 13:46-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ InsCaptionOpt* InsCaptionOptArr::Find(const SwCapObjType eType, const SvGlobalName *pOleId) const
 /*N*/ {
 /*N*/   for (USHORT i = 0; i < Count(); i++ )
@@ -86,18 +73,15 @@ using namespace ::com::sun::star::uno;
 /*N*/   return 0;
 /*N*/ }
 
-/* -----------------03.11.98 15:05-------------------
- *
- * --------------------------------------------------*/
 
 
-/* -----------------03.11.98 15:05-------------------
- *
- * --------------------------------------------------*/
 
-/*-----------------13.01.97 12.44-------------------
 
---------------------------------------------------*/
+
+
+
+
+
 /*N*/ SwModuleOptions::SwModuleOptions() :
 /*N*/   aInsertConfig(FALSE),
 /*N*/   aWebInsertConfig(TRUE),
@@ -106,9 +90,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   bHideFieldTips(FALSE)
 /*N*/ {
 /*N*/ }
-/* -----------------------------19.01.01 12:26--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ String SwModuleOptions::ConvertWordDelimiter(const String& rDelim, BOOL bFromUI)
 /*N*/ {
 /*N*/   String sReturn;
@@ -148,7 +131,7 @@ using namespace ::com::sun::star::uno;
 /*N*/                               nVal -= 'a' - 10;
 /*N*/                           else
 /*N*/                           {
-/*?*/                               DBG_ERROR( "ungueltiger Hex-Wert" );
+/*?*/                               OSL_FAIL( "ungueltiger Hex-Wert" );
 /*?*/                               bValidData = FALSE;
 /*?*/                               break;
 /*N*/                           }
@@ -195,9 +178,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return sReturn;
 /*N*/ }
-/* -----------------------------10.10.00 16:22--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwRevisionConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -222,9 +204,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-- 10.10.00 16:22:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwRevisionConfig::SwRevisionConfig() :
 /*N*/     ConfigItem(C2U("Office.Writer/Revision"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE)
@@ -241,24 +222,20 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/     Load();
 /*N*/ }
-/*-- 10.10.00 16:22:23---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwRevisionConfig::~SwRevisionConfig()
 /*N*/ {
 /*N*/ }
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
 
-  -----------------------------------------------------------------------*/
 
     void SwRevisionConfig::Commit() {}
-    void SwRevisionConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwRevisionConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 //-----------------------------------------------------------------------------
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ void lcl_ConvertCfgToAttr(sal_Int32 nVal, AuthorCharAttr& rAttr, sal_Bool bDelete = sal_False)
 /*N*/ {
 /*N*/   rAttr.nItemId = rAttr.nAttr = 0;
@@ -297,7 +274,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       {
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
-/*N*/               sal_Int32 nVal;
+                    sal_Int32 nVal(0);
 /*N*/               pValues[nProp] >>= nVal;
 /*N*/               switch(nProp)
 /*N*/               {
@@ -314,9 +291,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------10.10.00 16:22--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwInsertConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -407,15 +383,14 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return bIsWeb ? aWebNames : aNames;
 /*N*/ }
-/*-- 10.10.00 16:22:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwInsertConfig::SwInsertConfig(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Insert") : C2U("Office.Writer/Insert"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
-/*N*/   bIsWeb(bWeb),
 /*N*/   pCapOptions(0),
-/*N*/   pOLEMiscOpt(0)
+/*N*/   pOLEMiscOpt(0),
+/*N*/   bIsWeb(bWeb)
 /*N*/ {
 /*N*/   aGlobalNames[GLOB_NAME_CALC   ] = SvGlobalName(BF_SO3_SC_CLASSID);
 /*N*/   aGlobalNames[GLOB_NAME_IMPRESS] = SvGlobalName(BF_SO3_SIMPRESS_CLASSID);
@@ -429,23 +404,20 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwInsertConfig::Commit() {}
-    void SwInsertConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwInsertConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
-/*-- 10.10.00 16:22:23---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwInsertConfig::~SwInsertConfig()
 /*N*/ {
 /*N*/   delete pCapOptions;
 /*N*/   delete pOLEMiscOpt;
 /*N*/ }
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 //-----------------------------------------------------------------------------
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ void lcl_ReadOpt(InsCaptionOpt& rOpt, const Any* pValues, sal_Int32 nProp, sal_Int32 nOffset)
 /*N*/ {
 /*N*/   switch(nOffset)
@@ -461,7 +433,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       break;//Category
 /*N*/       case 2:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;  pValues[nProp] >>= nTemp;
+                sal_Int32 nTemp(0);  pValues[nProp] >>= nTemp;
 /*N*/           rOpt.SetNumType(nTemp);
 /*N*/       }
 /*N*/       break;//Numbering",
@@ -480,13 +452,13 @@ using namespace ::com::sun::star::uno;
 /*N*/       break;//Delimiter",
 /*N*/       case 5:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;  pValues[nProp] >>= nTemp;
+                sal_Int32 nTemp(0);  pValues[nProp] >>= nTemp;
 /*N*/           rOpt.SetLevel(nTemp);
 /*N*/       }
 /*N*/       break;//Level",
 /*N*/       case 6:
 /*N*/       {
-/*N*/           sal_Int32 nTemp;  pValues[nProp] >>= nTemp;
+                sal_Int32 nTemp(0);  pValues[nProp] >>= nTemp;
 /*N*/           rOpt.SetPos(nTemp);
 /*N*/       }
 /*N*/       break;//Position",
@@ -634,9 +606,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------10.10.00 16:22--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwTableConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   const int nCount = 8;
@@ -657,27 +628,23 @@ using namespace ::com::sun::star::uno;
 /*N*/       pNames[i] = OUString::createFromAscii(aPropNames[i]);
 /*N*/   return aNames;
 /*N*/ }
-/*-- 10.10.00 16:22:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwTableConfig::SwTableConfig(sal_Bool bWeb) :
 /*N*/     ConfigItem(bWeb ? C2U("Office.WriterWeb/Table") : C2U("Office.Writer/Table"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE)
 /*N*/ {
 /*N*/     Load();
 /*N*/ }
-/*-- 10.10.00 16:22:23---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwTableConfig::~SwTableConfig()
 /*N*/ {
 /*N*/ }
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 10.10.00 16:22:56---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwTableConfig::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
@@ -690,7 +657,7 @@ using namespace ::com::sun::star::uno;
 /*N*/       {
 /*N*/           if(pValues[nProp].hasValue())
 /*N*/           {
-/*N*/               sal_Int32 nTemp;
+                    sal_Int32 nTemp(0);
 /*N*/               switch(nProp)
 /*N*/               {
 /*N*/                   case 0 : pValues[nProp] >>= nTemp; nTblHMove = (USHORT)MM100_TO_TWIP(nTemp); break;  //"Shift/Row",
@@ -708,11 +675,10 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwTableConfig::Commit() {}
-    void SwTableConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwTableConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwMiscConfig::SwMiscConfig() :
 /*N*/     ConfigItem(C2U("Office.Writer"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -726,19 +692,17 @@ using namespace ::com::sun::star::uno;
 /*N*/ {
 /*N*/     Load();
 /*N*/ }
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ SwMiscConfig::~SwMiscConfig()
 /*N*/ {
 /*N*/ }
 
     void SwMiscConfig::Commit() {}
-    void SwMiscConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwMiscConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 /*N*/ const Sequence<OUString>& SwMiscConfig::GetPropertyNames()
 /*N*/ {
 /*N*/   static Sequence<OUString> aNames;
@@ -766,12 +730,10 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/*-- 18.01.01 17:02:47---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*-- 18.01.01 17:02:48---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
+
 /*N*/ void SwMiscConfig::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& aNames = GetPropertyNames();
@@ -806,3 +768,5 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

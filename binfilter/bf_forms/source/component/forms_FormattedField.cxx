@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,104 +26,46 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
 #include <com/sun/star/awt/XKeyListener.hpp>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
 
-#ifndef _FORMS_FORMATTEDFIELD_HXX_
 #include "FormattedField.hxx"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
 
-#ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
-#endif
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _NUMUNO_HXX
 #include <bf_svtools/numuno.hxx>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XSUBMIT_HPP_
 #include <com/sun/star/form/XSubmit.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XKEYLISTENER_HPP_
 #include <com/sun/star/awt/XKeyListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
     // needed as long as we use the SolarMutex
-#ifndef _COMPHELPER_STREAMSECTION_HXX_
 #include <comphelper/streamsection.hxx>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
 namespace binfilter {
 
@@ -223,7 +166,7 @@ OFormattedControl::OFormattedControl(const Reference<XMultiServiceFactory>& _rxF
         }
     }
     // Refcount wieder bei 1 fuer den Listener
-    sal_Int32 n = decrement(m_refCount);
+    /*sal_Int32 n =*/ decrement(m_refCount);
 }
 
 //------------------------------------------------------------------------------
@@ -302,7 +245,7 @@ void OFormattedControl::keyPressed(const ::com::sun::star::awt::KeyEvent& e) thr
 }
 
 //------------------------------------------------------------------------------
-void OFormattedControl::keyReleased(const ::com::sun::star::awt::KeyEvent& e) throw ( ::com::sun::star::uno::RuntimeException)
+void OFormattedControl::keyReleased(const ::com::sun::star::awt::KeyEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException)
 {
 }
 
@@ -463,7 +406,7 @@ StringSequence OFormattedModel::getSupportedServiceNames() throw()
     aSupported.realloc(aSupported.getLength() + 2);
 
     ::rtl::OUString*pArray = aSupported.getArray();
-    pArray[aSupported.getLength()-2] = ::rtl::OUString::createFromAscii("com.sun.star.form.component.DatabaseFormattedField");
+    pArray[aSupported.getLength()-2] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.component.DatabaseFormattedField" ));
     pArray[aSupported.getLength()-1] = FRM_SUN_COMPONENT_FORMATTEDFIELD;
     return aSupported;
 }
@@ -537,8 +480,6 @@ void OFormattedModel::fillProperties(
             // then we will overwrite this upon loading, anyway. If it is changed while the form
             // is loaded, then this does no harm, too: The format is preserved (the aggregate cares for this),
             // and upon unloading, we restore the old formatter.
-            //
-            // 84794 - 2002-10-09 - fs@openoffice.org
 
         // TreatAsNumeric nicht transient : wir wollen es an der UI anbinden (ist noetig, um dem EffectiveDefault
         // - der kann Text oder Zahl sein - einen Sinn zu geben)
@@ -546,14 +487,12 @@ void OFormattedModel::fillProperties(
         // same for FormatKey
         // (though the paragraph above for the TreatAsNumeric does not hold anymore - we do not have an UI for this.
         // But we have for the format key ...)
-        // 25.06.2001 - 87862 - frank.schoenheit@sun.com
         ModifyPropertyAttributes(_rAggregateProps, PROPERTY_FORMATKEY, 0, PropertyAttribute::TRANSIENT);
 
         RemoveProperty(_rAggregateProps, PROPERTY_STRICTFORMAT);
             // no strict format property for formatted fields: it does not make sense, 'cause
             // there is no general way to decide which characters/sub strings are allowed during the input of an
             // arbitraryly formatted control
-            // 81441 - 12/07/00 - FS
     FRM_END_PROP_HELPER();
 }
 
@@ -702,7 +641,7 @@ Reference<XNumberFormatsSupplier>  OFormattedModel::calcFormFormatsSupplier() co
 
     if (!xNextParentForm.is())
     {
-        DBG_ERROR("OFormattedModel::calcFormFormatsSupplier : have no ancestor which is a form !");
+        OSL_FAIL("OFormattedModel::calcFormFormatsSupplier : have no ancestor which is a form !");
         return NULL;
     }
 
@@ -740,9 +679,8 @@ void OFormattedModel::loaded(const EventObject& rEvent) throw ( ::com::sun::star
     // property requests and one for our own code. This would need a lot of code rewriting
     // alternative b): The NumberFormatter has to be really threadsafe (with an own mutex), which is
     // the only "clean" solution for me.
-    // FS - 69603 - 02.11.99
 
-    ::vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     OEditBaseModel::loaded(rEvent);
 }
 
@@ -788,7 +726,7 @@ void OFormattedModel::write(const Reference<XObjectOutputStream>& _rxOutStream) 
         ::rtl::OUString         sFormatDescription;
         LanguageType    eFormatLanguage = LANGUAGE_DONTKNOW;
 
-        static const ::rtl::OUString s_aLocaleProp = ::rtl::OUString::createFromAscii("Locale");
+        static const ::rtl::OUString s_aLocaleProp( RTL_CONSTASCII_USTRINGPARAM( "Locale" ));
         Reference<com::sun::star::beans::XPropertySet>  xFormat = xFormats->getByKey(nKey);
         if (hasProperty(s_aLocaleProp, xFormat))
         {
@@ -801,7 +739,7 @@ void OFormattedModel::write(const Reference<XObjectOutputStream>& _rxOutStream) 
             }
         }
 
-        static const ::rtl::OUString s_aFormatStringProp = ::rtl::OUString::createFromAscii("FormatString");
+        static const ::rtl::OUString s_aFormatStringProp( RTL_CONSTASCII_USTRINGPARAM( "FormatString" ));
         if (hasProperty(s_aFormatStringProp, xFormat))
             xFormat->getPropertyValue(s_aFormatStringProp) >>= sFormatDescription;
 
@@ -899,7 +837,7 @@ void OFormattedModel::read(const Reference<XObjectInputStream>& _rxInStream) thr
                 Reference< XDataInputStream > xIn(_rxInStream, UNO_QUERY);
                 OStreamSection aDownCompat(xIn);
 
-                sal_Int16 nSubVersion = _rxInStream->readShort();
+                /*sal_Int16 nSubVersion =*/ _rxInStream->readShort();
 
                 // version 0 and higher : the "effective value" property
                                 Any aEffectiveValue;
@@ -916,7 +854,7 @@ void OFormattedModel::read(const Reference<XObjectInputStream>& _rxInStream) thr
                         case 2:
                             break;
                         case 3:
-                            DBG_ERROR("FmXFormattedModel::read : unknown effective value type !");
+                            OSL_FAIL("FmXFormattedModel::read : unknown effective value type !");
                     }
                 }
 
@@ -936,7 +874,7 @@ void OFormattedModel::read(const Reference<XObjectInputStream>& _rxInStream) thr
         }
         break;
         default :
-            DBG_ERROR("OFormattedModel::read : unknown version !");
+            OSL_FAIL("OFormattedModel::read : unknown version !");
             // dann bleibt das Format des aggregierten Sets, wie es bei der Erzeugung ist : void
             defaultCommonEditProperties();
             break;
@@ -970,3 +908,5 @@ sal_Int16 OFormattedModel::getPersistenceFlags() const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

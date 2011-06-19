@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-
-#ifndef _FORMS_NUMERIC_HXX_
 #include "Numeric.hxx"
-#endif
-
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 
 namespace binfilter {
 
@@ -55,7 +41,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -172,9 +157,6 @@ void ONumericModel::fillProperties(
         Sequence< Property >& _rAggregateProps ) const
 {
     FRM_BEGIN_PROP_HELPER(9)
-        // Value auf transient setzen
-//      ModifyPropertyAttributes(_rAggregateProps, PROPERTY_VALUE, PropertyAttribute::TRANSIENT, 0);
-
         DECL_PROP2(CLASSID,         sal_Int16,          READONLY, TRANSIENT);
         DECL_PROP3(DEFAULT_VALUE,   double,             BOUND, MAYBEDEFAULT, MAYBEVOID);
         DECL_PROP1(NAME,            ::rtl::OUString,    BOUND);
@@ -204,3 +186,5 @@ void ONumericModel::fillProperties(
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

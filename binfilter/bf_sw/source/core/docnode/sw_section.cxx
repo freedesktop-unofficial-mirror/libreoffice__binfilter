@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,102 +33,45 @@
 
 #include <stdlib.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
 
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
-//static const char __FAR_DATA sSectionFmtNm[] = "Section";
 #define sSectionFmtNm aEmptyStr
 
 /*N*/ class SwIntrnlSectRefLink : public SwBaseLink
@@ -158,8 +102,9 @@ namespace binfilter {
 
 /*N*/ SwSection::SwSection( SectionType eTyp, const String& rName,
 /*N*/                   SwSectionFmt* pFmt )
-/*N*/   : SwClient( pFmt ),
-/*N*/   eType( eTyp ), sSectionNm( rName )
+/*N*/   : SwClient( pFmt )
+/*N*/   , sSectionNm( rName )
+/*N*/   , eType( eTyp )
 /*N*/ {
 /*N*/   bHidden = FALSE;
 /*N*/   bHiddenFlag = FALSE;
@@ -170,7 +115,7 @@ namespace binfilter {
 /*N*/   SwSectionPtr pParentSect = GetParent();
 /*N*/   if( pParentSect )
 /*N*/   {
-/*N*/       FASTBOOL bPHFlag = pParentSect->IsHiddenFlag();
+/*N*/       pParentSect->IsHiddenFlag();
 /*N*/       if( pParentSect->IsHiddenFlag() )
 /*?*/           SetHidden( TRUE );
 /*N*/
@@ -261,12 +206,12 @@ namespace binfilter {
 /*N*/ }
 
 
-void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
+void SwSection::_SetHiddenFlag( int bInHidden, int bCondition )
 {
     SwSectionFmt* pFmt = GetFmt();
     if( pFmt )
     {
-        int bHide = bHidden && bCondition;
+        int bHide = bInHidden && bCondition;
 
         if( bHide )                         // die Nodes also "verstecken"
         {
@@ -420,7 +365,7 @@ void SwSection::_SetHiddenFlag( int bHidden, int bCondition )
 /*N*/
 /*N*/   if( bRemake )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 GetFmt()->DelFrms();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdateFtn )
@@ -479,6 +424,10 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/               }
 /*N*/           }
 /*N*/           break;
+            case CONTENT_SECTION:
+            case TOX_HEADER_SECTION:
+            case TOX_CONTENT_SECTION:
+                break;
 /*N*/       }
 /*N*/       ((SwSection*)this)->sLinkFileName = sTmp;
 /*N*/   }
@@ -517,7 +466,7 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/       if( pIdx && &GetDoc()->GetNodes() == &pIdx->GetNodes() &&
 /*N*/           0 != (pSectNd = pIdx->GetNode().GetSectionNode() ))
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSection& rSect = pSectNd->GetSection();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       LockModify();
 /*N*/       ResetAttr( RES_CNTNT );
@@ -534,7 +483,7 @@ void SwSection::SetCondHidden( int bFlag )
 /*N*/       return (SwSectionPtr)aIter.First( TYPE(SwSection) );
 /*N*/   }
 /*N*/
-/*?*/   ASSERT( FALSE, "keine Section als Client." )
+/*?*/   OSL_ENSURE( FALSE, "keine Section als Client." );
 /*?*/   return 0;
 /*N*/ }
 
@@ -693,7 +642,7 @@ void SwSectionFmt::MakeFrms()
 /*?*/       {
 /*?*/           // mein Parent wird vernichtet, dann an den Parent vom Parent
 /*?*/           // umhaengen und wieder aktualisieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*N*/
@@ -703,7 +652,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/           ((SwFmtChg*)pNew)->pChangedFmt->IsA( TYPE( SwSectionFmt )) )
 /*N*/       {
 /*?*/           // mein Parent wird veraendert, muss mich aktualisieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFrmFmt::Modify( pOld, pNew );   //  erst umhaengen !!!
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -714,9 +663,7 @@ void SwSectionFmt::MakeFrms()
 
 
     // alle Sections, die von dieser abgeleitet sind
-/*N*/ USHORT SwSectionFmt::GetChildSections( SwSections& rArr,
-/*N*/                                       SectionSort eSort,
-/*N*/                                       int bAllSections ) const
+/*N*/ USHORT SwSectionFmt::GetChildSections( SwSections& rArr,SectionSort /*eSort*/,int bAllSections ) const
 /*N*/ {
 /*N*/   rArr.Remove( 0, rArr.Count() );
 /*N*/
@@ -738,7 +685,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/
 /*N*/       // noch eine Sortierung erwuenscht ?
 /*N*/       if( 1 < rArr.Count() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     switch( eSort )
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return rArr.Count();
 /*N*/ }
@@ -801,7 +748,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/       {
 /*?*/           // liegt in dem Bereich: also updaten. Aber nur wenns nicht
 /*?*/           // im gleichen File liegt
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String sFName;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -885,7 +832,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/       }
 /*N*/
 /*N*/       if( !pSfxFlt )
-/*N*/           pSfxFlt = SwIoSystem::GetFileFilter( pMed->GetPhysicalName(), aEmptyStr );
+/*N*/           pSfxFlt = SwIoSystem::GetFileFilter(pMed->GetPhysicalName());
 /*N*/
 /*N*/       if( pSfxFlt )
 /*N*/       {
@@ -1108,7 +1055,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/   ::com::sun::star::uno::Sequence< sal_Int8 > aSeq;
 /*N*/   if( pRead && rValue.hasValue() && ( rValue >>= aSeq ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pESh )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/
@@ -1172,7 +1119,7 @@ void SwSectionFmt::MakeFrms()
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       ASSERT( !this, "Was ist das fuer ein Link?" )
+/*?*/       OSL_ENSURE( !this, "Was ist das fuer ein Link?" );
 /*N*/   }
 /*N*/
 /*N*/   switch( eCreateType )
@@ -1184,13 +1131,13 @@ void SwSectionFmt::MakeFrms()
 /*N*/   case CREATE_UPDATE:         // Link connecten und updaten
 /*N*/       pLnk->Update();
 /*N*/       break;
+        case CREATE_NONE:
+            break;
 /*N*/   }
 /*N*/ }
 
 
-
-/*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd,
-/*N*/                                    xub_StrLen nStt, xub_StrLen nEnd ) const
+/*N*/ BOOL SwIntrnlSectRefLink::IsInRange( ULONG nSttNd, ULONG nEndNd, xub_StrLen /*nStt*/, xub_StrLen /*nEnd */) const
 /*N*/ {
 /*N*/   SwStartNode* pSttNd = rSectFmt.GetSectionNode( FALSE );
 /*N*/   return pSttNd &&
@@ -1199,5 +1146,6 @@ void SwSectionFmt::MakeFrms()
 /*N*/ }
 
 
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

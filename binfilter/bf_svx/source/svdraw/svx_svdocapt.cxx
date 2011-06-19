@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 #include "svdocapt.hxx"
 #include "svdattrx.hxx"
@@ -43,9 +40,7 @@
 
 
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,9 +57,9 @@ namespace binfilter {
 /*N*/   long                        nEscAbs;
 /*N*/   long                        nLineLen;
 /*N*/   SdrCaptionEscDir            eEscDir;
-/*N*/   FASTBOOL                    bFitLineLen;
-/*N*/   FASTBOOL                    bEscRel;
-/*N*/   FASTBOOL                    bFixedAngle;
+/*N*/   bool                    bFitLineLen;
+/*N*/   bool                    bEscRel;
+/*N*/   bool                    bFixedAngle;
 /*N*/
 /*N*/ public:
 /*N*/   ImpCaptParams()
@@ -100,7 +95,7 @@ namespace binfilter {
 /*N*/   nY+=rRect.Top();
 /*N*/   Point  aBestPt;
 /*N*/   EscDir eBestDir=LKS;
-/*N*/   FASTBOOL bTryH=eEscDir==SDRCAPT_ESCBESTFIT;
+/*N*/   bool bTryH=eEscDir==SDRCAPT_ESCBESTFIT;
 /*N*/   if (!bTryH) {
 /*N*/       if (eType!=SDRCAPT_TYPE1) {
 /*N*/           bTryH=eEscDir==SDRCAPT_ESCHORIZONTAL;
@@ -108,7 +103,7 @@ namespace binfilter {
 /*N*/           bTryH=eEscDir==SDRCAPT_ESCVERTICAL;
 /*N*/       }
 /*N*/   }
-/*N*/   FASTBOOL bTryV=eEscDir==SDRCAPT_ESCBESTFIT;
+/*N*/   bool bTryV=eEscDir==SDRCAPT_ESCBESTFIT;
 /*N*/   if (!bTryV) {
 /*N*/       if (eType!=SDRCAPT_TYPE1) {
 /*N*/           bTryV=eEscDir==SDRCAPT_ESCVERTICAL;
@@ -120,7 +115,7 @@ namespace binfilter {
 /*N*/   if (bTryH) {
 /*N*/       Point aLft(rRect.Left()-nGap,nY);
 /*N*/       Point aRgt(rRect.Right()+nGap,nY);
-/*N*/       FASTBOOL bLft=(aTl.X()-aLft.X()<aRgt.X()-aTl.X());
+/*N*/       bool bLft=(aTl.X()-aLft.X()<aRgt.X()-aTl.X());
 /*N*/       if (bLft) {
 /*N*/           eBestDir=LKS;
 /*N*/           aBestPt=aLft;
@@ -132,7 +127,7 @@ namespace binfilter {
 /*N*/   if (bTryV) {
 /*?*/       Point aTop(nX,rRect.Top()-nGap);
 /*?*/       Point aBtm(nX,rRect.Bottom()+nGap);
-/*?*/       FASTBOOL bTop=(aTl.Y()-aTop.Y()<aBtm.Y()-aTl.Y());
+/*?*/       bool bTop=(aTl.Y()-aTop.Y()<aBtm.Y()-aTl.Y());
 /*?*/       Point aBest2;
 /*?*/       EscDir eBest2;
 /*?*/       if (bTop) {
@@ -142,7 +137,7 @@ namespace binfilter {
 /*?*/           eBest2=UNT;
 /*?*/           aBest2=aBtm;
 /*?*/       }
-/*?*/       FASTBOOL bTakeIt=eEscDir!=SDRCAPT_ESCBESTFIT;
+/*?*/       bool bTakeIt=eEscDir!=SDRCAPT_ESCBESTFIT;
 /*?*/       if (!bTakeIt) {
 /*?*/           BigInt aHorX(aBestPt.X()-aTl.X()); aHorX*=aHorX;
 /*?*/           BigInt aHorY(aBestPt.Y()-aTl.Y()); aHorY*=aHorY;
@@ -278,10 +273,10 @@ namespace binfilter {
 /*N*/ void SdrCaptionObj::ImpCalcTail(const ImpCaptParams& rPara, Polygon& rPoly, Rectangle& rRect) const
 /*N*/ {
 /*N*/   switch (rPara.eType) {
-/*?*/       case SDRCAPT_TYPE1: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail1(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE2: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail2(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE1: DBG_BF_ASSERT(0, "STRIP"); break;
+/*?*/       case SDRCAPT_TYPE2: DBG_BF_ASSERT(0, "STRIP"); break;
 /*N*/       case SDRCAPT_TYPE3: ImpCalcTail3(rPara,rPoly,rRect); break;
-/*?*/       case SDRCAPT_TYPE4: DBG_BF_ASSERT(0, "STRIP"); break;//STRIP001 ImpCalcTail4(rPara,rPoly,rRect); break;
+/*?*/       case SDRCAPT_TYPE4: DBG_BF_ASSERT(0, "STRIP"); break;
 /*N*/   }
 /*N*/ }
 
@@ -450,67 +445,11 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrCaptionObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrCaptionObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/   ImpRecalcTail();
 /*N*/ }
-
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*?*/ void SdrCaptionObj::PreSave()
-/*?*/ {
-/*?*/   // call parent
-/*?*/   SdrRectObj::PreSave();
-/*?*/
-/*?*/   // prepare SetItems for storage
-/*?*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*?*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*?*/   SdrCaptionSetItem aCaptAttr(rSet.GetPool());
-/*?*/   aCaptAttr.GetItemSet().Put(rSet);
-/*?*/   aCaptAttr.GetItemSet().SetParent(pParent);
-/*?*/   mpObjectItemSet->Put(aCaptAttr);
-/*?*/ }
-
-/*?*/ void SdrCaptionObj::PostSave()
-/*?*/ {
-/*?*/   // call parent
-/*?*/   SdrRectObj::PostSave();
-/*?*/
-/*?*/   // remove SetItems from local itemset
-/*?*/   mpObjectItemSet->ClearItem(SDRATTRSET_CAPTION);
-/*?*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*?*/ void SdrCaptionObj::WriteData(SvStream& rOut) const
-/*?*/ {
-/*?*/   SdrRectObj::WriteData(rOut);
-/*?*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*?*/ #ifdef DBG_UTIL
-/*?*/   aCompat.SetID("SdrCaptionObj");
-/*?*/ #endif
-/*?*/
-/*?*/   rOut << aTailPoly;
-/*?*/   SfxItemPool* pPool = GetItemPool();
-/*?*/
-/*?*/   if(pPool)
-/*?*/   {
-/*?*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*?*/
-/*?*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_CAPTION));
-/*?*/   }
-/*?*/   else
-/*?*/   {
-/*?*/       rOut << UINT16(SFX_ITEMS_NULL);
-/*?*/   }
-/*?*/ }
 
 /*N*/ void SdrCaptionObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
@@ -544,3 +483,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

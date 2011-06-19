@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 
@@ -86,7 +83,7 @@ public:
 
 typedef ScDetOpData* ScDetOpDataPtr;
 
-SV_DECL_PTRARR_DEL(ScDetOpArr_Impl, ScDetOpDataPtr, SC_DETOP_GROW, SC_DETOP_GROW)//STRIP008 ;
+SV_DECL_PTRARR_DEL(ScDetOpArr_Impl, ScDetOpDataPtr, SC_DETOP_GROW, SC_DETOP_GROW)
 
 class ScDetOpList : public ScDetOpArr_Impl
 {
@@ -104,8 +101,7 @@ public:
     void    Append( ScDetOpData* pData );
 
     void    Load( SvStream& rStream );
-    void    Store( SvStream& rStream ) const;
-
+    void  Store( SvStream& ) const {}
     BOOL    HasAddError() const     { return bHasAddError; }
 };
 
@@ -113,3 +109,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

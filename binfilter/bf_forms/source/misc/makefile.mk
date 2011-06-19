@@ -25,25 +25,21 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
 PRJNAME=binfilter
 TARGET=forms_common
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 ENABLE_EXCEPTIONS=TRUE
-#TARGETTYPE=GUI
 
 # --- Settings ----------------------------------
 
 .INCLUDE : settings.mk
 INC+= -I$(PRJ)$/inc$/bf_forms
+
 # --- Types -------------------------------------
 
 INCPRE+=$(SOLARINCDIR)$/offuh

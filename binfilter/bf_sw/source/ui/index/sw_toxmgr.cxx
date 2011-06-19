@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
 
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
 
 #include <tox.hxx>
 
 namespace binfilter {
 
-/*-----------------23.01.98 07:41-------------------
+/*--------------------------------------------------
     Standard - Verzeichnisnamen herausreichen
 --------------------------------------------------*/
 /*N*/ const String& SwTOXBase::GetTOXName(TOXTypes eType)
@@ -53,6 +46,7 @@ namespace binfilter {
 /*N*/   ShellResource* pShellRes = ViewShell::GetShellRes();
 /*N*/   switch(eType)
 /*N*/   {
+/*N*/       default:
 /*N*/       case  TOX_CONTENT      :    pRet = &pShellRes->aTOXContentName;       break;
 /*N*/       case  TOX_INDEX        :    pRet = &pShellRes->aTOXIndexName;         break;
 /*?*/       case  TOX_USER         :    pRet = &pShellRes->aTOXUserName;          break;
@@ -65,3 +59,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

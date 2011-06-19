@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -43,7 +44,7 @@ class SwTxtAttr;
 
 class SwFont;
 
-/*-----------------02.02.01 15:01-------------------
+/*--------------------------------------------------
  * SwMultiCreator is a small structur to create a multiportion.
  * It contains the kind of multiportion and a textattribute
  * or a poolitem.
@@ -68,7 +69,7 @@ struct SwMultiCreator
 #endif
 };
 
-/*-----------------25.10.00 16:19-------------------
+/*--------------------------------------------------
  * A two-line-portion (SwMultiPortion) could have surrounding brackets,
  * in this case the structur SwBracket will be used.
  * --------------------------------------------------*/
@@ -86,7 +87,7 @@ struct SwBracket
     BYTE nPostScript;       // Script of the final character
 };
 
-/*-----------------16.10.00 12:45-------------------
+/*--------------------------------------------------
  * The SwMultiPortion is line portion inside a line portion,
  * it's a group of portions,
  * e.g. a double line portion in a line
@@ -126,10 +127,10 @@ SwMultiPortion( xub_StrLen nEnd ) : pFldRest( 0 ), bTab1( sal_False ),
 public:
      const SwLineLayout& GetRoot() const { return aRoot; }
      SwLineLayout& GetRoot() { return aRoot; }
-    inline sal_Bool HasTabulator() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool HasTabulator() const { return bTab1 || bTab2; }
+    inline sal_Bool HasTabulator() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     inline sal_Bool IsFollowFld() const { return bFollowFld; }
     inline sal_Bool HasFlyInCntnt() const { return bFlyInCntnt; }
-    inline sal_Bool IsDouble() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001   inline sal_Bool IsDouble() const { return bDouble; }
+    inline sal_Bool IsDouble() const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 #ifdef BIDI
     inline sal_Bool IsBidi() const { return bBidi; }
 #endif
@@ -152,3 +153,5 @@ CLASSIO( SwMultiPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "rdswg.hxx"
 #include "swgpar.hxx"
 #include "ndtxt.hxx"
@@ -374,7 +369,7 @@ static void AdjustFrmSize( SwFrmFmt* pFmt )
 
 void SwSwgReader::InTableBox
      (SwTableBoxes& rBoxes, int idx,    // Array und Index
-      SwTableLine* pUpper,              // uebergeordnete Zeile
+      SwTableLine* pUpper1,              // uebergeordnete Zeile
       SwNodeIndex& rPos,
       const SwTable *pTable )           // Start-Index der Section
 {
@@ -419,12 +414,12 @@ void SwSwgReader::InTableBox
     if( r.cur() == SWG_CONTENTS )
     {
         r.undonext();
-        pBox = new SwTableBox( pFmt, rPos, pUpper );
+        pBox = new SwTableBox( pFmt, rPos, pUpper1 );
         long nSaveFrmSizeAdj = nFrmSizeAdj; // Tabellen in FlyFrames
         FillSection( rPos );
         nFrmSizeAdj = nSaveFrmSizeAdj;      // zerstoeren nFrmSizeAdj!
     } else
-        pBox = new SwTableBox( pFmt, nLines, pUpper );
+        pBox = new SwTableBox( pFmt, nLines, pUpper1 );
     rBoxes.C40_INSERT( SwTableBox, pBox, (USHORT)idx );
     while( r.cur() == SWG_COMMENT || r.cur() == SWG_DATA ) r.skipnext();
     // Falls Zeilen vorhanden, diese ausgeben
@@ -441,7 +436,7 @@ void SwSwgReader::InTableBox
 // Einlesen einer Zeile
 
 void SwSwgReader::InTableLine
-    ( SwTableLines& rLines, SwTableBoxPtr pUpper, int idx, SwNodeIndex& rPos,
+    ( SwTableLines& rLines, SwTableBoxPtr pUpper2, int idx, SwNodeIndex& rPos,
       const SwTable *pTable )
 {
     short nFrmFmt, nBoxes;
@@ -453,9 +448,7 @@ void SwSwgReader::InTableLine
     {
         pFmt = (SwTableLineFmt*) InFormat( pDoc->MakeTableLineFmt() );
         RegisterFmt( *pFmt, pTable );
-//      AdjustFrmSize( pFmt );
     }
-    // Frame-Format raussuchen
     // Frame-Format raussuchen
     if( !pFmt )
     {
@@ -478,7 +471,7 @@ void SwSwgReader::InTableLine
         }
     }
     // Default-Werte setzen:
-    SwTableLine* pLine = new SwTableLine( pFmt, nBoxes, pUpper);
+    SwTableLine* pLine = new SwTableLine( pFmt, nBoxes, pUpper2);
     rLines.C40_INSERT( SwTableLine, pLine, (USHORT) idx );
     SwTableBoxes& rBoxes = pLine->GetTabBoxes();
     while( r.cur() == SWG_COMMENT || r.cur() == SWG_DATA ) r.skipnext();
@@ -663,3 +656,5 @@ USHORT SwSwgReader::RegisterSection( const SwNodeIndex& rIdx, USHORT nId )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

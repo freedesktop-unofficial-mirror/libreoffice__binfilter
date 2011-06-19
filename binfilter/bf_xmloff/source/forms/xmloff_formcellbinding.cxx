@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,36 +30,16 @@
 #include "formcellbinding.hxx"
 #endif
 
-#ifndef _COM_SUN_STAR_FORM_BINDING_XBINDABLEVALUE_HPP_
-//#include <drafts/com/sun/star/form/XBindableValue.hpp>
 #include <com/sun/star/form/binding/XBindableValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_BINDING_XLISTENTRYSINK_HPP_
-//#include <drafts/com/sun/star/form/XListEntrySink.hpp>
 #include <com/sun/star/form/binding/XListEntrySink.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_NAMEDVALUE_HPP_
 #include <com/sun/star/beans/NamedValue.hpp>
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 #include <functional>
 #include <algorithm>
@@ -144,7 +125,7 @@ namespace xmloff
     }
 
     //------------------------------------------------------------------------
-    bool FormCellBindingHelper::convertStringAddress( const ::rtl::OUString& _rAddressDescription, CellAddress& /* [out] */ _rAddress, sal_Int16 _nAssumeSheet ) const
+    bool FormCellBindingHelper::convertStringAddress( const ::rtl::OUString& _rAddressDescription, CellAddress& /* [out] */ _rAddress, sal_Int16 /*_nAssumeSheet*/ ) const
     {
         Any aAddress;
         return doConvertAddressRepresentations(
@@ -237,7 +218,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "FormCellBindingHelper::getStringAddressFromCellBinding: caught an exception!" );
+            OSL_FAIL( "FormCellBindingHelper::getStringAddressFromCellBinding: caught an exception!" );
         }
 
         return sAddress;
@@ -266,7 +247,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "FormCellBindingHelper::getStringAddressFromCellListSource: caught an exception!" );
+            OSL_FAIL( "FormCellBindingHelper::getStringAddressFromCellListSource: caught an exception!" );
         }
 
         return sAddress;
@@ -302,7 +283,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "FormCellBindingHelper::isSpreadsheetDocumentWhichSupplies: caught an exception!" );
+            OSL_FAIL( "FormCellBindingHelper::isSpreadsheetDocumentWhichSupplies: caught an exception!" );
         }
 
         return bYesItIs;
@@ -457,7 +438,7 @@ namespace xmloff
             }
             catch ( const Exception& )
             {
-                OSL_ENSURE( sal_False, "FormCellBindingHelper::createDocumentDependentInstance: could not create the binding at the document!" );
+                OSL_FAIL( "FormCellBindingHelper::createDocumentDependentInstance: could not create the binding at the document!" );
             }
         }
         return xReturn;
@@ -488,7 +469,7 @@ namespace xmloff
             }
             catch( const Exception& )
             {
-                OSL_ENSURE( sal_False, "FormCellBindingHelper::doConvertAddressRepresentations: caught an exception!" );
+                OSL_FAIL( "FormCellBindingHelper::doConvertAddressRepresentations: caught an exception!" );
             }
         }
 
@@ -499,3 +480,5 @@ namespace xmloff
 }   // namespace xmloff
 //............................................................................
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

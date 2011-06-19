@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,11 @@
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #define _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include "prhdlfac.hxx"
-#endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
+#include <rtl/ref.hxx>
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
-#ifndef _XMLOFF_CONTROLBORDERHDL_HXX_
 #include "ControlBorderHandler.hxx"
-#endif
 namespace binfilter {
 
 struct SvXMLEnumMapEntry;
@@ -106,3 +97,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

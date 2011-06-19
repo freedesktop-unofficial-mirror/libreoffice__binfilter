@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 
@@ -209,14 +206,16 @@ public:
     // wo es sich geaendert hat
     const SwAttrSet* GetTheChgdSet() const  { return pTheChgdSet; }
 
-    SfxItemState GetItemState( USHORT nWhich, BOOL bSrchInParent = TRUE,
+    SfxItemState GetItemState( USHORT nWhichIn, BOOL bSrchInParent = TRUE,
                                const SfxPoolItem **ppItem = 0 ) const
-    {   return pChgSet->GetItemState( nWhich, bSrchInParent, ppItem ); }
+    {   return pChgSet->GetItemState( nWhichIn, bSrchInParent, ppItem ); }
 
     USHORT Count() const { return pChgSet->Count(); }
-    void ClearItem( USHORT nWhich = 0 )
+    void ClearItem( USHORT nWhichIn = 0 )
 #ifndef DBG_UTIL
-    { pChgSet->ClearItem( nWhich ); }
+    {
+        pChgSet->ClearItem( nWhichIn );
+    }
 #else
         ;
 #endif
@@ -283,3 +282,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

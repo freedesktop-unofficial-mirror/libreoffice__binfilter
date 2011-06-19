@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,18 +32,10 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 class SvStringsISortDtor;
 namespace binfilter {
 
@@ -61,7 +54,7 @@ struct AutoTextGroup
 
 
 typedef AutoTextGroup* AutoTextGroupPtr;
-SV_DECL_PTRARR(AutoTextGroups, AutoTextGroupPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(AutoTextGroups, AutoTextGroupPtr, 4, 4)
 
 class SwGlossaryList : public AutoTimer
 {
@@ -78,3 +71,4 @@ class SwGlossaryList : public AutoTimer
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

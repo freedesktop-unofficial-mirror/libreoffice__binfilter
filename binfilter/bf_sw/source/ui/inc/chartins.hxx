@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,27 +28,17 @@
 #ifndef _CHARTINS_HXX
 #define _CHARTINS_HXX
 
-#ifndef _SFX_CHILDWIN_HXX //autogen
 #include <bf_sfx2/childwin.hxx>
-#endif
 
 #ifdef _CHARTINS_CXX
 
-#ifndef _BASEDLGS_HXX //autogen
 #include <bf_sfx2/basedlgs.hxx>
-#endif
 
-#ifndef _STDCTRL_HXX
 #include <bf_svtools/stdctrl.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
 #include "autoedit.hxx"
 namespace binfilter {
@@ -58,7 +49,7 @@ namespace binfilter {
 
 }//namespace binfilter
 #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwInsertChartChild : public SfxChildWindow
 {
 public:
@@ -73,3 +64,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

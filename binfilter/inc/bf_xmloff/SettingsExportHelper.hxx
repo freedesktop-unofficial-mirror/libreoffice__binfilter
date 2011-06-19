@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 #ifndef _XMLOFF_SETTINGSEXPORTHELPER_HXX
 #define _XMLOFF_SETTINGSEXPORTHELPER_HXX
 
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
 #include <com/sun/star/awt/Rectangle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORMULA_SYMBOLDESCRIPTOR_HPP_
 #include <com/sun/star/formula/SymbolDescriptor.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
 
 namespace com
 {
@@ -98,3 +93,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

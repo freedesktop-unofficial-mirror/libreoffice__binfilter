@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,10 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _BASMGR_HXX //autogen
-#include "bf_basic/basmgr.hxx"
-#endif
-
 #ifdef WIN
 #define _TL_LANG_SPECIAL
 #endif
@@ -36,9 +33,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
 
 #include "appdata.hxx"
 #include "plugobj.hxx"
@@ -61,8 +56,7 @@
 
 namespace binfilter {
 
-DECLARE_LIST( SfxFrameWindowFactoryArray_Impl, SfxFrameWindowFactory* )
-SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)//STRIP008 ;
+SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)
 
 //-------------------------------------------------------------------------
 
@@ -111,3 +105,5 @@ SV_DECL_PTRARR(SfxInitLinkList, Link*, 2, 2)//STRIP008 ;
 /*?*/   pAppData_Impl->pPool = NULL;
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

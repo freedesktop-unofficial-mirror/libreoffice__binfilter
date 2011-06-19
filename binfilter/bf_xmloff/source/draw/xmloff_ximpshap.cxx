@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,92 +31,25 @@
 #endif
 
 #include <tools/debug.hxx>
-
-#ifndef _COM_SUN_STAR_DRAWING_XGLUEPOINTSSUPPLIER_HPP_
 #include <com/sun/star/drawing/XGluePointsSupplier.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_DRAWING_GLUEPOINT2_HPP_
 #include <com/sun/star/drawing/GluePoint2.hpp>
-#endif
-
-
-
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-
-
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include "XMLBase64ImportContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include "XMLShapeStyleContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_CONNECTORTYPE_HPP_
 #include <com/sun/star/drawing/ConnectorType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX3_HPP_
 #include <com/sun/star/drawing/HomogenMatrix3.hpp>
-#endif
-
-
-
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
-#include"xmlnmspe.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLIMAGEMAPCONTEXT_HXX_
+#include "xmlnmspe.hxx"
 #include "XMLImageMapContext.hxx"
-#endif
-
-#ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
-#endif
-
-#ifndef _XMLOFF_EVENTIMP_HXX
 #include "eventimp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTIMPORTCONTEXT_HXX
 #include "XMLEmbeddedObjectImportContext.hxx"
-#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -124,7 +58,7 @@ using namespace ::binfilter::xmloff::token;
 
 SvXMLEnumMapEntry aXML_GlueAlignment_EnumMap[] =
 {
-    { XML_TOP_LEFT,     drawing::Alignment_TOP_LEFT },
+    { XML_TOP_LEFT, drawing::Alignment_TOP_LEFT },
     { XML_TOP,          drawing::Alignment_TOP },
     { XML_TOP_RIGHT,    drawing::Alignment_TOP_RIGHT },
     { XML_LEFT,         drawing::Alignment_LEFT },
@@ -138,8 +72,8 @@ SvXMLEnumMapEntry aXML_GlueAlignment_EnumMap[] =
 
 SvXMLEnumMapEntry aXML_GlueEscapeDirection_EnumMap[] =
 {
-    { XML_AUTO,         drawing::EscapeDirection_SMART },
-    { XML_LEFT,         drawing::EscapeDirection_LEFT },
+    { XML_AUTO,     drawing::EscapeDirection_SMART },
+    { XML_LEFT,     drawing::EscapeDirection_LEFT },
     { XML_RIGHT,        drawing::EscapeDirection_RIGHT },
     { XML_UP,           drawing::EscapeDirection_UP },
     { XML_DOWN,         drawing::EscapeDirection_DOWN },
@@ -168,21 +102,21 @@ static bool ImpIsEmptyURL( const ::rtl::OUString& rURL )
 TYPEINIT1( SdXMLShapeContext, SvXMLImportContext );
 
 SdXMLShapeContext::SdXMLShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SvXMLImportContext( rImport, nPrfx, rLocalName ),
+:   SvXMLImportContext( rInImport, nPrfx, rLocalName ),
     mxShapes( rShapes ),
+    mxAttrList(xAttrList),
     mnStyleFamily(XML_STYLE_FAMILY_SD_GRAPHICS_ID),
     mbIsPlaceholder(FALSE),
     mbIsUserTransformed(FALSE),
-    mxAttrList(xAttrList),
     mnZOrder(-1),
     mnShapeId(-1),
-    maPosition(0, 0),
-    maSize(1, 1)
+    maSize(1, 1),
+    maPosition(0, 0)
 {
 }
 
@@ -218,33 +152,33 @@ SdXMLShapeContext::~SdXMLShapeContext()
 
 //////////////////////////////////////////////////////////////////////////////
 
-SvXMLImportContext *SdXMLShapeContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SdXMLShapeContext::CreateChildContext( USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext * pContext = NULL;
 
-    if( nPrefix == XML_NAMESPACE_OFFICE && IsXMLToken( rLocalName, XML_EVENTS ) )
+    if( nInPrefix == XML_NAMESPACE_OFFICE && IsXMLToken( rLocalName, XML_EVENTS ) )
     {
-        pContext = new SdXMLEventsContext( GetImport(), nPrefix, rLocalName, xAttrList, mxShape );
+        pContext = new SdXMLEventsContext( GetImport(), nInPrefix, rLocalName, xAttrList, mxShape );
     }
-    else if( nPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_GLUE_POINT ) )
+    else if( nInPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_GLUE_POINT ) )
     {
         addGluePoint( xAttrList );
     }
-    else if( nPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_THUMBNAIL ) )
+    else if( nInPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_THUMBNAIL ) )
     {
         // search attributes for xlink:href
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
         for(sal_Int16 i=0; i < nAttrCount; i++)
         {
             OUString sAttrName = xAttrList->getNameByIndex( i );
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-            if( nPrefix == XML_NAMESPACE_XLINK )
+            if( nLclPrefix == XML_NAMESPACE_XLINK )
             {
-                if( IsXMLToken( aLocalName, XML_HREF ) )
+                if( IsXMLToken( aLclLocalName, XML_HREF ) )
                 {
                     maThumbnailURL = xAttrList->getValueByIndex( i );
                     break;
@@ -282,13 +216,13 @@ SvXMLImportContext *SdXMLShapeContext::CreateChildContext( USHORT nPrefix,
         if( mxCursor.is() )
         {
             pContext = GetImport().GetTextImport()->CreateTextChildContext(
-                GetImport(), nPrefix, rLocalName, xAttrList );
+                GetImport(), nInPrefix, rLocalName, xAttrList );
         }
     }
 
     // call parent for content
     if(!pContext)
-        pContext = SvXMLImportContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImportContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -323,28 +257,28 @@ void SdXMLShapeContext::addGluePoint( const uno::Reference< xml::sax::XAttribute
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         const OUString sValue( xAttrList->getValueByIndex( i ) );
 
-        if( nPrefix == XML_NAMESPACE_SVG )
+        if( nLclPrefix == XML_NAMESPACE_SVG )
         {
-            if( IsXMLToken( aLocalName, XML_X ) )
+            if( IsXMLToken( aLclLocalName, XML_X ) )
             {
                 GetImport().GetMM100UnitConverter().convertMeasure(aGluePoint.Position.X, sValue);
             }
-            else if( IsXMLToken( aLocalName, XML_Y ) )
+            else if( IsXMLToken( aLclLocalName, XML_Y ) )
             {
                 GetImport().GetMM100UnitConverter().convertMeasure(aGluePoint.Position.Y, sValue);
             }
         }
-        else if( nPrefix == XML_NAMESPACE_DRAW )
+        else if( nLclPrefix == XML_NAMESPACE_DRAW )
         {
-            if( IsXMLToken( aLocalName, XML_ID ) )
+            if( IsXMLToken( aLclLocalName, XML_ID ) )
             {
                 nId = sValue.toInt32();
             }
-            else if( IsXMLToken( aLocalName, XML_ALIGN ) )
+            else if( IsXMLToken( aLclLocalName, XML_ALIGN ) )
             {
                 USHORT eKind;
                 if( SvXMLUnitConverter::convertEnum( eKind, sValue, aXML_GlueAlignment_EnumMap ) )
@@ -353,7 +287,7 @@ void SdXMLShapeContext::addGluePoint( const uno::Reference< xml::sax::XAttribute
                     aGluePoint.IsRelative = sal_False;
                 }
             }
-            else if( IsXMLToken( aLocalName, XML_ESCAPE_DIRECTION ) )
+            else if( IsXMLToken( aLclLocalName, XML_ESCAPE_DIRECTION ) )
             {
                 USHORT eKind;
                 if( SvXMLUnitConverter::convertEnum( eKind, sValue, aXML_GlueEscapeDirection_EnumMap ) )
@@ -373,13 +307,13 @@ void SdXMLShapeContext::addGluePoint( const uno::Reference< xml::sax::XAttribute
         }
         catch( uno::Exception& )
         {
-            DBG_ERROR( "exception during setting of glue points!");
+            OSL_FAIL( "exception during setting of glue points!");
         }
     }
 }
 //////////////////////////////////////////////////////////////////////////////
 
-void SdXMLShapeContext::StartElement(const uno::Reference< xml::sax::XAttributeList>& xAttrList)
+void SdXMLShapeContext::StartElement(const uno::Reference< xml::sax::XAttributeList>& /*xAttrList*/)
 {
     GetImport().GetShapeImport()->finishShape( mxShape, mxAttrList, mxShapes );
 }
@@ -559,7 +493,6 @@ void SdXMLShapeContext::SetStyle( bool bSupportsStyle /* = true */)
             {
                 try
                 {
-
                     uno::Reference< style::XStyleFamiliesSupplier > xFamiliesSupplier( GetImport().GetModel(), uno::UNO_QUERY );
 
                     if( xFamiliesSupplier.is() )
@@ -567,7 +500,6 @@ void SdXMLShapeContext::SetStyle( bool bSupportsStyle /* = true */)
                         uno::Reference< container::XNameAccess > xFamilies( xFamiliesSupplier->getStyleFamilies() );
                         if( xFamilies.is() )
                         {
-
                             uno::Reference< container::XNameAccess > xFamily;
 
                             if( XML_STYLE_FAMILY_SD_PRESENTATION_ID == mnStyleFamily )
@@ -594,7 +526,7 @@ void SdXMLShapeContext::SetStyle( bool bSupportsStyle /* = true */)
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "could not find style for shape!" );
+                    OSL_FAIL( "could not find style for shape!" );
                 }
             }
 
@@ -609,7 +541,7 @@ void SdXMLShapeContext::SetStyle( bool bSupportsStyle /* = true */)
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "could not find style for shape!" );
+                    OSL_FAIL( "could not find style for shape!" );
                 }
             }
 
@@ -697,9 +629,9 @@ void SdXMLShapeContext::SetThumbnail()
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_DRAW == nPrefix )
+    if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_ZINDEX ) )
         {
@@ -730,7 +662,7 @@ void SdXMLShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUStr
             mnTransform.SetString(rValue, GetImport().GetMM100UnitConverter());
         }
     }
-    else if( XML_NAMESPACE_PRESENTATION == nPrefix )
+    else if( XML_NAMESPACE_PRESENTATION == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_USER_TRANSFORMED ) )
         {
@@ -750,7 +682,7 @@ void SdXMLShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUStr
             mnStyleFamily = XML_STYLE_FAMILY_SD_PRESENTATION_ID;
         }
     }
-    else if( XML_NAMESPACE_SVG == nPrefix )
+    else if( XML_NAMESPACE_SVG == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_X ) )
         {
@@ -784,19 +716,17 @@ sal_Bool SdXMLShapeContext::isPresentationShape() const
            (const_cast<SdXMLShapeContext*>(this))->GetImport().GetShapeImport()->IsPresentationShapesSupported();
 }
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLRectShapeContext, SdXMLShapeContext );
 
 SdXMLRectShapeContext::SdXMLRectShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mnRadius( 0L )
 {
 }
@@ -810,9 +740,9 @@ SdXMLRectShapeContext::~SdXMLRectShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLRectShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLRectShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_DRAW == nPrefix )
+    if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_CORNER_RADIUS ) )
         {
@@ -821,7 +751,7 @@ void SdXMLRectShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::O
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -850,7 +780,7 @@ void SdXMLRectShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "exception during setting of corner radius!");
+                    OSL_FAIL( "exception during setting of corner radius!");
                 }
             }
         }
@@ -858,18 +788,18 @@ void SdXMLRectShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////
+
 
 TYPEINIT1( SdXMLLineShapeContext, SdXMLShapeContext );
 
 SdXMLLineShapeContext::SdXMLLineShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mnX1( 0L ),
     mnY1( 0L ),
     mnX2( 1L ),
@@ -886,9 +816,9 @@ SdXMLLineShapeContext::~SdXMLLineShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLLineShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLLineShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_SVG == nPrefix )
+    if( XML_NAMESPACE_SVG == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_X1 ) )
         {
@@ -912,7 +842,7 @@ void SdXMLLineShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::O
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -979,18 +909,17 @@ void SdXMLLineShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLEllipseShapeContext, SdXMLShapeContext );
 
 SdXMLEllipseShapeContext::SdXMLEllipseShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mnCX( 0L ),
     mnCY( 0L ),
     mnRX( 1L ),
@@ -1010,9 +939,9 @@ SdXMLEllipseShapeContext::~SdXMLEllipseShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLEllipseShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLEllipseShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_SVG == nPrefix )
+    if( XML_NAMESPACE_SVG == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_RX ) )
         {
@@ -1042,7 +971,7 @@ void SdXMLEllipseShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
             return;
         }
     }
-    else if( XML_NAMESPACE_DRAW == nPrefix )
+    else if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_KIND ) )
         {
@@ -1069,7 +998,7 @@ void SdXMLEllipseShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1108,18 +1037,17 @@ void SdXMLEllipseShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLPolygonShapeContext, SdXMLShapeContext );
 
 SdXMLPolygonShapeContext::SdXMLPolygonShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes, sal_Bool bClosed)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mbClosed( bClosed )
 {
 }
@@ -1127,9 +1055,9 @@ SdXMLPolygonShapeContext::SdXMLPolygonShapeContext(
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLPolygonShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLPolygonShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_SVG == nPrefix )
+    if( XML_NAMESPACE_SVG == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_VIEWBOX ) )
         {
@@ -1137,7 +1065,7 @@ void SdXMLPolygonShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
             return;
         }
     }
-    else if( XML_NAMESPACE_DRAW == nPrefix )
+    else if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_POINTS ) )
         {
@@ -1146,7 +1074,7 @@ void SdXMLPolygonShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1197,18 +1125,17 @@ void SdXMLPolygonShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLPathShapeContext, SdXMLShapeContext );
 
 SdXMLPathShapeContext::SdXMLPathShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mbClosed( TRUE )
 {
 }
@@ -1222,9 +1149,9 @@ SdXMLPathShapeContext::~SdXMLPathShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLPathShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLPathShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_SVG == nPrefix )
+    if( XML_NAMESPACE_SVG == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_VIEWBOX ) )
         {
@@ -1238,7 +1165,7 @@ void SdXMLPathShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::O
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1255,7 +1182,7 @@ void SdXMLPathShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
         SdXMLImExSvgDElement aPoints(maD, aViewBox,
             aPosition, aSize, GetImport().GetMM100UnitConverter());
 
-        char* pService;
+        const char* pService;
         // now create shape
         if(aPoints.IsCurve())
         {
@@ -1327,18 +1254,17 @@ void SdXMLPathShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLTextBoxShapeContext, SdXMLShapeContext );
 
 SdXMLTextBoxShapeContext::SdXMLTextBoxShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mnRadius(0)
 {
 }
@@ -1352,9 +1278,9 @@ SdXMLTextBoxShapeContext::~SdXMLTextBoxShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLTextBoxShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLTextBoxShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_DRAW == nPrefix )
+    if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_CORNER_RADIUS ) )
         {
@@ -1363,7 +1289,7 @@ void SdXMLTextBoxShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1373,7 +1299,7 @@ void SdXMLTextBoxShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
     // create textbox shape
     sal_Bool bIsPresShape(FALSE);
 
-    char *pService = NULL;
+    const char *pService = NULL;
 
     if( isPresentationShape() )
     {
@@ -1435,15 +1361,6 @@ void SdXMLTextBoxShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
             }
         }
 
-        // set parameters on shape
-//A AW->CL: Eventually You need to strip scale and translate from the transformation
-//A to reach the same goal again.
-//A     if(!bIsPresShape || mbIsUserTransformed)
-//A     {
-//A         // set pos and size on shape, this should remove binding
-//A         // to pres object on masterpage
-//A         SetSizeAndPosition();
-//A     }
 
         // set pos, size, shear and rotate
         SetTransformation();
@@ -1459,7 +1376,7 @@ void SdXMLTextBoxShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "exception during setting of corner radius!");
+                    OSL_FAIL( "exception during setting of corner radius!");
                 }
             }
         }
@@ -1468,18 +1385,17 @@ void SdXMLTextBoxShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLControlShapeContext, SdXMLShapeContext );
 
 SdXMLControlShapeContext::SdXMLControlShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
 }
 
@@ -1492,9 +1408,9 @@ SdXMLControlShapeContext::~SdXMLControlShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLControlShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLControlShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_FORM == nPrefix )
+    if( XML_NAMESPACE_FORM == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_ID ) )
         {
@@ -1503,7 +1419,7 @@ void SdXMLControlShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 void SdXMLControlShapeContext::StartElement(const uno::Reference< xml::sax::XAttributeList>& xAttrList)
@@ -1541,18 +1457,17 @@ void SdXMLControlShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLConnectorShapeContext, SdXMLShapeContext );
 
 SdXMLConnectorShapeContext::SdXMLConnectorShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     maStart(0,0),
     maEnd(1,1),
     mnType( (USHORT)drawing::ConnectorType_STANDARD ),
@@ -1575,9 +1490,9 @@ SdXMLConnectorShapeContext::~SdXMLConnectorShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLConnectorShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLConnectorShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    switch( nPrefix )
+    switch( nInPrefix )
     {
     case XML_NAMESPACE_DRAW:
     {
@@ -1650,7 +1565,7 @@ void SdXMLConnectorShapeContext::processAttribute( sal_uInt16 nPrefix, const ::r
     }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1718,18 +1633,17 @@ void SdXMLConnectorShapeContext::StartElement(const uno::Reference< xml::sax::XA
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLMeasureShapeContext, SdXMLShapeContext );
 
 SdXMLMeasureShapeContext::SdXMLMeasureShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     maStart(0,0),
     maEnd(1,1)
 {
@@ -1742,9 +1656,9 @@ SdXMLMeasureShapeContext::~SdXMLMeasureShapeContext()
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLMeasureShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLMeasureShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    switch( nPrefix )
+    switch( nInPrefix )
     {
     case XML_NAMESPACE_SVG:
     {
@@ -1771,7 +1685,7 @@ void SdXMLMeasureShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
     }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1831,18 +1745,17 @@ void SdXMLMeasureShapeContext::EndElement()
     while(0);
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLPageShapeContext, SdXMLShapeContext );
 
 SdXMLPageShapeContext::SdXMLPageShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ), mnPageNumber(0)
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ), mnPageNumber(0)
 {
 }
 
@@ -1855,9 +1768,9 @@ SdXMLPageShapeContext::~SdXMLPageShapeContext()
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLPageShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLPageShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_DRAW == nPrefix )
+    if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_PAGE_NUMBER ) )
         {
@@ -1866,7 +1779,7 @@ void SdXMLPageShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::O
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -1926,18 +1839,17 @@ void SdXMLPageShapeContext::StartElement(const uno::Reference< xml::sax::XAttrib
     }
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLCaptionShapeContext, SdXMLShapeContext );
 
 SdXMLCaptionShapeContext::SdXMLCaptionShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     // #86616# for correct edge rounding import mnRadius needs to be initialized
     mnRadius( 0L )
 {
@@ -1979,7 +1891,7 @@ void SdXMLCaptionShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
                 }
                 catch( uno::Exception& )
                 {
-                    DBG_ERROR( "exception during setting of corner radius!");
+                    OSL_FAIL( "exception during setting of corner radius!");
                 }
             }
         }
@@ -1989,9 +1901,9 @@ void SdXMLCaptionShapeContext::StartElement(const uno::Reference< xml::sax::XAtt
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLCaptionShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLCaptionShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_DRAW == nPrefix )
+    if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_CAPTION_POINT_X ) )
         {
@@ -2009,21 +1921,20 @@ void SdXMLCaptionShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl
             return;
         }
     }
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLGraphicObjectShapeContext, SdXMLShapeContext );
 
 SdXMLGraphicObjectShapeContext::SdXMLGraphicObjectShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     maURL()
 {
 }
@@ -2031,9 +1942,9 @@ SdXMLGraphicObjectShapeContext::SdXMLGraphicObjectShapeContext(
 //////////////////////////////////////////////////////////////////////////////
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLGraphicObjectShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLGraphicObjectShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    if( XML_NAMESPACE_XLINK == nPrefix )
+    if( XML_NAMESPACE_XLINK == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_HREF ) )
         {
@@ -2042,7 +1953,7 @@ void SdXMLGraphicObjectShapeContext::processAttribute( sal_uInt16 nPrefix, const
         }
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -2050,7 +1961,7 @@ void SdXMLGraphicObjectShapeContext::processAttribute( sal_uInt16 nPrefix, const
 void SdXMLGraphicObjectShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
 {
     // create graphic object shape
-    char *pService;
+    const char *pService;
 
     if( IsXMLToken( maPresentationClass, XML_GRAPHIC ) && GetImport().GetShapeImport()->IsPresentationShapesSupported() )
     {
@@ -2094,14 +2005,14 @@ void SdXMLGraphicObjectShapeContext::StartElement( const ::com::sun::star::uno::
 
         if(mbIsUserTransformed)
         {
-            uno::Reference< beans::XPropertySet > xProps(mxShape, uno::UNO_QUERY);
-            if(xProps.is())
+            uno::Reference< beans::XPropertySet > xLclProps(mxShape, uno::UNO_QUERY);
+            if(xLclProps.is())
             {
-                uno::Reference< beans::XPropertySetInfo > xPropsInfo( xProps->getPropertySetInfo() );
+                uno::Reference< beans::XPropertySetInfo > xPropsInfo( xLclProps->getPropertySetInfo() );
                 if( xPropsInfo.is() )
                 {
                     if( xPropsInfo->hasPropertyByName(OUString(RTL_CONSTASCII_USTRINGPARAM("IsPlaceholderDependent") )))
-                        xProps->setPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM("IsPlaceholderDependent") ), ::cppu::bool2any( sal_False ) );
+                        xLclProps->setPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM("IsPlaceholderDependent") ), ::cppu::bool2any( sal_False ) );
                 }
             }
         }
@@ -2142,29 +2053,29 @@ void SdXMLGraphicObjectShapeContext::EndElement()
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext* SdXMLGraphicObjectShapeContext::CreateChildContext(
-    USHORT nPrefix, const ::rtl::OUString& rLocalName,
+    USHORT nInPrefix, const ::rtl::OUString& rLocalName,
     const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if ( (XML_NAMESPACE_DRAW == nPrefix) &&
+    if ( (XML_NAMESPACE_DRAW == nInPrefix) &&
          IsXMLToken( rLocalName, XML_IMAGE_MAP ) )
     {
         uno::Reference< beans::XPropertySet > xPropSet(mxShape,uno::UNO_QUERY);
         if (xPropSet.is())
         {
-            pContext = new XMLImageMapContext(GetImport(), nPrefix,
+            pContext = new XMLImageMapContext(GetImport(), nInPrefix,
                                               rLocalName, xPropSet);
         }
     }
-    else if( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    else if( (XML_NAMESPACE_OFFICE == nInPrefix) &&
              xmloff::token::IsXMLToken( rLocalName, xmloff::token::XML_BINARY_DATA ) )
     {
         if( !maURL.getLength() && !mxBase64Stream.is() )
         {
             mxBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( mxBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     mxBase64Stream );
         }
@@ -2172,7 +2083,7 @@ SvXMLImportContext* SdXMLGraphicObjectShapeContext::CreateChildContext(
 
     // delegate to parent class if no context could be created
     if ( NULL == pContext )
-        pContext = SdXMLShapeContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SdXMLShapeContext::CreateChildContext(nInPrefix, rLocalName,
                                                          xAttrList);
 
     return pContext;
@@ -2182,21 +2093,19 @@ SvXMLImportContext* SdXMLGraphicObjectShapeContext::CreateChildContext(
 
 SdXMLGraphicObjectShapeContext::~SdXMLGraphicObjectShapeContext()
 {
-
 }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLChartShapeContext, SdXMLShapeContext );
 
 SdXMLChartShapeContext::SdXMLChartShapeContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+:   SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
     mpChartContext( NULL )
 {
 }
@@ -2286,11 +2195,11 @@ void SdXMLChartShapeContext::Characters( const ::rtl::OUString& rChars )
         mpChartContext->Characters( rChars );
 }
 
-SvXMLImportContext * SdXMLChartShapeContext::CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName,
+SvXMLImportContext * SdXMLChartShapeContext::CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
     if( mpChartContext )
-        return mpChartContext->CreateChildContext( nPrefix, rLocalName, xAttrList );
+        return mpChartContext->CreateChildContext( nInPrefix, rLocalName, xAttrList );
 
     return NULL;
 }
@@ -2299,11 +2208,11 @@ SvXMLImportContext * SdXMLChartShapeContext::CreateChildContext( USHORT nPrefix,
 
 TYPEINIT1( SdXMLObjectShapeContext, SdXMLShapeContext );
 
-SdXMLObjectShapeContext::SdXMLObjectShapeContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SdXMLObjectShapeContext::SdXMLObjectShapeContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
         ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& rShapes)
-: SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+: SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
 }
 
@@ -2311,14 +2220,8 @@ SdXMLObjectShapeContext::~SdXMLObjectShapeContext()
 {
 }
 
-void SdXMLObjectShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
+void SdXMLObjectShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& /*xAttrList*/ )
 {
-    // #96717# in theorie, if we don't have a url we shouldn't even
-    // export this ole shape. But practical its to risky right now
-    // to change this so we better dispose this on load
-    //if( !mbIsPlaceholder && ImpIsEmptyURL(maHref) )
-    //  return;
-
     // #100592# this BugFix prevents that a shape is created. CL
     // is thinking about an alternative.
     // #i13140# Check for more than empty string in maHref, there are
@@ -2327,7 +2230,7 @@ void SdXMLObjectShapeContext::StartElement( const ::com::sun::star::uno::Referen
     if( !(GetImport().getImportFlags() & IMPORT_EMBEDDED) && !mbIsPlaceholder && ImpIsEmptyURL(maHref) )
         return;
 
-    char* pService = "com.sun.star.drawing.OLE2Shape";
+    const char* pService = "com.sun.star.drawing.OLE2Shape";
 
     sal_Bool bIsPresShape = maPresentationClass.getLength() && GetImport().GetShapeImport()->IsPresentationShapesSupported();
 ;
@@ -2412,9 +2315,9 @@ void SdXMLObjectShapeContext::EndElement()
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLObjectShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLObjectShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    switch( nPrefix )
+    switch( nInPrefix )
     {
     case XML_NAMESPACE_DRAW:
         if( IsXMLToken( rLocalName, XML_CLASS_ID ) )
@@ -2432,30 +2335,30 @@ void SdXMLObjectShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl:
         break;
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 SvXMLImportContext* SdXMLObjectShapeContext::CreateChildContext(
-    USHORT nPrefix, const ::rtl::OUString& rLocalName,
+    USHORT nInPrefix, const ::rtl::OUString& rLocalName,
     const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     // #100592#
     SvXMLImportContext* pContext = NULL;
 
-    if((XML_NAMESPACE_OFFICE == nPrefix) && IsXMLToken(rLocalName, XML_BINARY_DATA))
+    if((XML_NAMESPACE_OFFICE == nInPrefix) && IsXMLToken(rLocalName, XML_BINARY_DATA))
     {
         maHref = OUString( RTL_CONSTASCII_USTRINGPARAM( "#Obj12345678" ) );
         mxBase64Stream =    GetImport().ResolveEmbeddedObjectURLFromBase64( maHref );
         if( mxBase64Stream.is() )
-            pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+            pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                 rLocalName, xAttrList,
                                                 mxBase64Stream );
     }
-    else if( ((XML_NAMESPACE_OFFICE == nPrefix) && IsXMLToken(rLocalName, XML_DOCUMENT)) ||
-                ((XML_NAMESPACE_MATH == nPrefix) && IsXMLToken(rLocalName, XML_MATH)) )
+    else if( ((XML_NAMESPACE_OFFICE == nInPrefix) && IsXMLToken(rLocalName, XML_DOCUMENT)) ||
+                ((XML_NAMESPACE_MATH == nInPrefix) && IsXMLToken(rLocalName, XML_MATH)) )
     {
         XMLEmbeddedObjectImportContext *pEContext =
-            new XMLEmbeddedObjectImportContext( GetImport(), nPrefix,
+            new XMLEmbeddedObjectImportContext( GetImport(), nInPrefix,
                                                 rLocalName, xAttrList );
         maCLSID = pEContext->GetFilterCLSID();
         if( maCLSID.getLength() != 0 )
@@ -2476,7 +2379,7 @@ SvXMLImportContext* SdXMLObjectShapeContext::CreateChildContext(
 
     // delegate to parent class if no context could be created
     if(!pContext)
-        pContext = SdXMLShapeContext::CreateChildContext(nPrefix, rLocalName, xAttrList);
+        pContext = SdXMLShapeContext::CreateChildContext(nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }
@@ -2485,11 +2388,11 @@ SvXMLImportContext* SdXMLObjectShapeContext::CreateChildContext(
 
 TYPEINIT1( SdXMLAppletShapeContext, SdXMLShapeContext );
 
-SdXMLAppletShapeContext::SdXMLAppletShapeContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SdXMLAppletShapeContext::SdXMLAppletShapeContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
         ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& rShapes)
-: SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes ),
+: SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes ),
   mbIsScript( sal_False )
 {
 }
@@ -2498,9 +2401,9 @@ SdXMLAppletShapeContext::~SdXMLAppletShapeContext()
 {
 }
 
-void SdXMLAppletShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
+void SdXMLAppletShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& /*xAttrList*/)
 {
-    char* pService = "com.sun.star.drawing.AppletShape";
+    const char* pService = "com.sun.star.drawing.AppletShape";
     AddShape( pService );
 
     if( mxShape.is() )
@@ -2514,9 +2417,9 @@ void SdXMLAppletShapeContext::StartElement( const ::com::sun::star::uno::Referen
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLAppletShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLAppletShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    switch( nPrefix )
+    switch( nInPrefix )
     {
     case XML_NAMESPACE_DRAW:
         if( IsXMLToken( rLocalName, XML_APPLET_NAME ) )
@@ -2544,7 +2447,7 @@ void SdXMLAppletShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl:
         break;
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 void SdXMLAppletShapeContext::EndElement()
@@ -2589,11 +2492,9 @@ void SdXMLAppletShapeContext::EndElement()
     }
 }
 
-SvXMLImportContext * SdXMLAppletShapeContext::CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+SvXMLImportContext * SdXMLAppletShapeContext::CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
-    SvXMLImportContext * pContext = NULL;
-
-    if( nPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_PARAM ) )
+    if( nInPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_PARAM ) )
     {
         OUString aParamName, aParamValue;
         const sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -2601,17 +2502,17 @@ SvXMLImportContext * SdXMLAppletShapeContext::CreateChildContext( USHORT nPrefix
         for(sal_Int16 a(0); a < nAttrCount; a++)
         {
             const OUString& rAttrName = xAttrList->getNameByIndex(a);
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(rAttrName, &aLocalName);
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(rAttrName, &aLclLocalName);
             const OUString aValue( xAttrList->getValueByIndex(a) );
 
-            if( nPrefix == XML_NAMESPACE_DRAW )
+            if( nLclPrefix == XML_NAMESPACE_DRAW )
             {
-                if( IsXMLToken( aLocalName, XML_NAME ) )
+                if( IsXMLToken( aLclLocalName, XML_NAME ) )
                 {
                     aParamName = aValue;
                 }
-                else if( IsXMLToken( aLocalName, XML_VALUE ) )
+                else if( IsXMLToken( aLclLocalName, XML_VALUE ) )
                 {
                     aParamValue = aValue;
                 }
@@ -2628,21 +2529,21 @@ SvXMLImportContext * SdXMLAppletShapeContext::CreateChildContext( USHORT nPrefix
             maParams[nIndex].State = beans::PropertyState_DIRECT_VALUE;
         }
 
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
-    return SdXMLShapeContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+    return SdXMLShapeContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLPluginShapeContext, SdXMLShapeContext );
 
-SdXMLPluginShapeContext::SdXMLPluginShapeContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SdXMLPluginShapeContext::SdXMLPluginShapeContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
         ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& rShapes)
-: SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+: SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
 }
 
@@ -2650,9 +2551,9 @@ SdXMLPluginShapeContext::~SdXMLPluginShapeContext()
 {
 }
 
-void SdXMLPluginShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
+void SdXMLPluginShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& /*xAttrList*/ )
 {
-    char* pService = "com.sun.star.drawing.PluginShape";
+    const char* pService = "com.sun.star.drawing.PluginShape";
     AddShape( pService );
 
     if( mxShape.is() )
@@ -2666,9 +2567,9 @@ void SdXMLPluginShapeContext::StartElement( const ::com::sun::star::uno::Referen
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLPluginShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLPluginShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    switch( nPrefix )
+    switch( nInPrefix )
     {
     case XML_NAMESPACE_DRAW:
         if( IsXMLToken( rLocalName, XML_MIME_TYPE ) )
@@ -2686,7 +2587,7 @@ void SdXMLPluginShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl:
         break;
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 void SdXMLPluginShapeContext::EndElement()
@@ -2718,11 +2619,9 @@ void SdXMLPluginShapeContext::EndElement()
     }
 }
 
-SvXMLImportContext * SdXMLPluginShapeContext::CreateChildContext( USHORT nPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+SvXMLImportContext * SdXMLPluginShapeContext::CreateChildContext( USHORT nInPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
-    SvXMLImportContext * pContext = NULL;
-
-    if( nPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_PARAM ) )
+    if( nInPrefix == XML_NAMESPACE_DRAW && IsXMLToken( rLocalName, XML_PARAM ) )
     {
         OUString aParamName, aParamValue;
         const sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -2730,17 +2629,17 @@ SvXMLImportContext * SdXMLPluginShapeContext::CreateChildContext( USHORT nPrefix
         for(sal_Int16 a(0); a < nAttrCount; a++)
         {
             const OUString& rAttrName = xAttrList->getNameByIndex(a);
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(rAttrName, &aLocalName);
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(rAttrName, &aLclLocalName);
             const OUString aValue( xAttrList->getValueByIndex(a) );
 
-            if( nPrefix == XML_NAMESPACE_DRAW )
+            if( nLclPrefix == XML_NAMESPACE_DRAW )
             {
-                if( IsXMLToken( aLocalName, XML_NAME ) )
+                if( IsXMLToken( aLclLocalName, XML_NAME ) )
                 {
                     aParamName = aValue;
                 }
-                else if( IsXMLToken( aLocalName, XML_VALUE ) )
+                else if( IsXMLToken( aLclLocalName, XML_VALUE ) )
                 {
                     aParamValue = aValue;
                 }
@@ -2757,21 +2656,21 @@ SvXMLImportContext * SdXMLPluginShapeContext::CreateChildContext( USHORT nPrefix
             }
         }
 
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
-    return SdXMLShapeContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+    return SdXMLShapeContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 }
 
 //////////////////////////////////////////////////////////////////////////////
 
 TYPEINIT1( SdXMLFrameShapeContext, SdXMLShapeContext );
 
-SdXMLFrameShapeContext::SdXMLFrameShapeContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+SdXMLFrameShapeContext::SdXMLFrameShapeContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
         ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XShapes >& rShapes)
-: SdXMLShapeContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+: SdXMLShapeContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
 }
 
@@ -2779,9 +2678,9 @@ SdXMLFrameShapeContext::~SdXMLFrameShapeContext()
 {
 }
 
-void SdXMLFrameShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
+void SdXMLFrameShapeContext::StartElement( const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& /*xAttrList*/ )
 {
-    char* pService = "com.sun.star.drawing.FrameShape";
+    const char* pService = "com.sun.star.drawing.FrameShape";
     AddShape( pService );
 
     if( mxShape.is() )
@@ -2816,9 +2715,9 @@ void SdXMLFrameShapeContext::StartElement( const ::com::sun::star::uno::Referenc
 }
 
 // this is called from the parent group for each unparsed attribute in the attribute list
-void SdXMLFrameShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
+void SdXMLFrameShapeContext::processAttribute( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::rtl::OUString& rValue )
 {
-    switch( nPrefix )
+    switch( nInPrefix )
     {
     case XML_NAMESPACE_DRAW:
         if( IsXMLToken( rLocalName, XML_FRAME_NAME ) )
@@ -2836,7 +2735,7 @@ void SdXMLFrameShapeContext::processAttribute( sal_uInt16 nPrefix, const ::rtl::
         break;
     }
 
-    SdXMLShapeContext::processAttribute( nPrefix, rLocalName, rValue );
+    SdXMLShapeContext::processAttribute( nInPrefix, rLocalName, rValue );
 }
 
 void SdXMLFrameShapeContext::EndElement()
@@ -2844,3 +2743,5 @@ void SdXMLFrameShapeContext::EndElement()
     SetThumbnail();
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

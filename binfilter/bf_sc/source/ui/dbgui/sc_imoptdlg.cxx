@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -35,9 +33,7 @@
 #include "imoptdlg.hxx"
 #include "imoptdlg.hrc"
 
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
 
 static const sal_Char pStrFix[] = "FIX";
 
@@ -72,3 +68,5 @@ private:
 /*N*/   aStrFont = ScGlobal::GetCharsetString( nEnc );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

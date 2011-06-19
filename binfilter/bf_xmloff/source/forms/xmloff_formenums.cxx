@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,43 +26,19 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMSUBMITENCODING_HPP_
 #include <com/sun/star/form/FormSubmitEncoding.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMSUBMITMETHOD_HPP_
 #include <com/sun/star/form/FormSubmitMethod.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_NAVIGATIONBARMODE_HPP_
 #include <com/sun/star/form/NavigationBarMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_TABULATORCYCLE_HPP_
 #include <com/sun/star/form/TabulatorCycle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
 #include <com/sun/star/form/FormButtonType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_TEXTALIGN_HPP_
 #include <com/sun/star/awt/TextAlign.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTRELIEF_HPP_
 #include <com/sun/star/awt/FontRelief.hpp>
-#endif
 #include <tools/wintypes.hxx>       // for check states
 namespace binfilter {
 
@@ -216,8 +193,8 @@ namespace xmloff
                         { XML_START,        TextAlign::LEFT },
                         { XML_CENTER,       TextAlign::CENTER },
                         { XML_END,          TextAlign::RIGHT },
-                        { XML_JUSTIFY,      -1 },
-                        { XML_JUSTIFIED,    -1 },
+                        { XML_JUSTIFY,      (sal_uInt16)-1 },
+                        { XML_JUSTIFIED,    (sal_uInt16)-1 },
                         { XML_TOKEN_INVALID, 0 }
                     };
                     rReturn = aTextAlignMap;
@@ -282,6 +259,9 @@ namespace xmloff
                     rReturn = aListLinkageMap;
                 }
                 break;
+
+                default:
+                break;
             }
         }
 
@@ -293,3 +273,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

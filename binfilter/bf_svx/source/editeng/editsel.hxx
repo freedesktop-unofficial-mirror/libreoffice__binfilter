@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _EDITSEL_HXX
 #define _EDITSEL_HXX
 
-#ifndef _SV_SELENG_HXX //autogen
 #include <vcl/seleng.hxx>
-#endif
 namespace binfilter {
 
 class EditView;
@@ -76,3 +75,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _EDITSEL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,13 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
-
 #include <string.h>
-//#include <math.h>
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
 #include "interpre.hxx"
 #include "dociter.hxx"
@@ -474,7 +467,7 @@ void ScInterpreter:: ScKGV()
 /*N*/ {
 /*N*/   if (nMatCount == MAX_ANZ_MAT)
 /*N*/   {
-/*N*/       DBG_ERROR("ScInterpreter::GetNewMat: Matrixueberlauf");
+/*N*/       OSL_FAIL("ScInterpreter::GetNewMat: Matrixueberlauf");
 /*N*/       SetError(errCodeOverflow);
 /*N*/       nMatInd = MAX_ANZ_MAT;
 /*N*/       return NULL;
@@ -769,7 +762,7 @@ void ScInterpreter::MFastTrans(ScMatrix* pA, ScMatrix* pR,
 }
 
 BOOL ScInterpreter::MFastBackSubst(ScMatrix* pA, ScMatrix* pR, USHORT n, BOOL bIsUpper)
-        // Führt Rückwaertsersetzung der Dreickesmatrix Mat a nach Mat r durch
+        // Fï¿½hrt Rï¿½ckwaertsersetzung der Dreickesmatrix Mat a nach Mat r durch
         // 2 Versionen fuer obere (U)  oder untere (L- Unit) Dreiecksmatrizen
 {
     short i, j, k;
@@ -2608,7 +2601,6 @@ void ScInterpreter::ScRGP()
             SetIllegalParameter();
             return;
         }
-        BOOL bVariancesOk = TRUE;
         ScMatrix* pQ = GetNewMat(M+1, M+2, nMatInd10);
         ScMatrix* pE = GetNewMat(M+2, 1, nMatInd12);
         ScMatrix* pV = GetNewMat(M+1, 1, nMatInd13);
@@ -2890,14 +2882,13 @@ void ScInterpreter::ScRKP()
     USHORT nCX, nRX, nCY, nRY, M, N;
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
-    ULONG i;
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
         if (!pMatY->IsValue(i))
         {
             SetIllegalArgument();
             return;
         }
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
     {
         if (pMatY->GetDouble(i) <= 0.0)
         {
@@ -2911,7 +2902,7 @@ void ScInterpreter::ScRKP()
     {
         pMatX->GetDimensions(nCX, nRX);
         ULONG nCountX = (ULONG) nCX * nRX;
-        for (i = 0; i < nCountX; i++)
+        for (ULONG i = 0; i < nCountX; i++)
             if (!pMatX->IsValue(i))
             {
                 SetIllegalArgument();
@@ -3321,11 +3312,10 @@ void ScInterpreter::ScTrend()
         return;
     }
     BYTE nCase;                         // 1 = normal, 2,3 = mehrfach
-    USHORT nCX, nRX, nCY, nRY, M, N;
+    USHORT nCX, nRX, nCY, nRY, M(0), N(0);
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
-    ULONG i;
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
         if (!pMatY->IsValue(i))
         {
             SetIllegalArgument();
@@ -3335,7 +3325,7 @@ void ScInterpreter::ScTrend()
     {
         pMatX->GetDimensions(nCX, nRX);
         ULONG nCountX = (ULONG) nCX * nRX;
-        for (i = 0; i < nCountX; i++)
+        for (ULONG i = 0; i < nCountX; i++)
             if (!pMatX->IsValue(i))
             {
                 SetIllegalArgument();
@@ -3384,7 +3374,7 @@ void ScInterpreter::ScTrend()
             SetIllegalParameter();
             return;
         }
-        for (i = 1; i <= nCountY; i++)
+        for (ULONG i = 1; i <= nCountY; i++)
             pMatX->PutDouble((double)i, i-1);
         nCase = 1;
     }
@@ -3462,7 +3452,7 @@ void ScInterpreter::ScTrend()
                 SetIllegalParameter();
                 return;
             }
-            for (i = 0; i < nCountXN; i++)
+            for (ULONG i = 0; i < nCountXN; i++)
                 pResMat->PutDouble(pMatNewX->GetDouble(i)*m+b, i);
         }
     }
@@ -3673,17 +3663,16 @@ void ScInterpreter::ScGrowth()
         return;
     }
     BYTE nCase;                         // 1 = normal, 2,3 = mehrfach
-    USHORT nCX, nRX, nCY, nRY, M, N;
+    USHORT nCX, nRX, nCY, nRY, M(0), N(0);
     pMatY->GetDimensions(nCY, nRY);
     ULONG nCountY = (ULONG) nCY * nRY;
-    ULONG i;
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
         if (!pMatY->IsValue(i))
         {
             SetIllegalArgument();
             return;
         }
-    for (i = 0; i < nCountY; i++)
+    for (ULONG i = 0; i < nCountY; i++)
     {
         if (pMatY->GetDouble(i) <= 0.0)
         {
@@ -3746,7 +3735,7 @@ void ScInterpreter::ScGrowth()
             SetIllegalParameter();
             return;
         }
-        for (i = 1; i <= nCountY; i++)
+        for (ULONG i = 1; i <= nCountY; i++)
             pMatX->PutDouble((double)i, i-1);
         nCase = 1;
     }
@@ -3824,7 +3813,7 @@ void ScInterpreter::ScGrowth()
                 SetIllegalParameter();
                 return;
             }
-            for (i = 0; i < nCountXN; i++)
+            for (ULONG i = 0; i < nCountXN; i++)
                 pResMat->PutDouble(exp(pMatNewX->GetDouble(i)*m+b), i);
         }
     }
@@ -4065,3 +4054,5 @@ void ScInterpreter::ScGrowth()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

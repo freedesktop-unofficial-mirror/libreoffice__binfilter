@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #endif
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
@@ -75,14 +74,14 @@ DBG_NAME( EditUndo )
 /*N*/   DBG_DTOR( EditUndo, 0 );
 /*N*/ }
 
-/*N*/ USHORT __EXPORT EditUndo::GetId() const
+/*N*/ USHORT EditUndo::GetId() const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditUndo, 0 );
 /*N*/   return nId;
 /*N*/ }
 
 
-/*N*/ XubString __EXPORT EditUndo::GetComment() const
+/*N*/ XubString EditUndo::GetComment() const
 /*N*/ {
 /*N*/   XubString aComment;
 /*N*/   if ( pImpEE )
@@ -96,21 +95,21 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoInsertChars
 // ------------------------------------------------------------------------
-/*N*/ EditUndoInsertChars::EditUndoInsertChars( ImpEditEngine* pImpEE, const EPaM& rEPaM, const XubString& rStr )
-/*N*/                   : EditUndo( EDITUNDO_INSERTCHARS, pImpEE ),
+/*N*/ EditUndoInsertChars::EditUndoInsertChars( ImpEditEngine* pInImpEE, const EPaM& rEPaM, const XubString& rStr )
+/*N*/                   : EditUndo( EDITUNDO_INSERTCHARS, pInImpEE ),
 /*N*/                       aEPaM( rEPaM ), aText( rStr )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertChars::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoInsertChars::Undo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertChars::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoInsertChars::Redo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ BOOL __EXPORT EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
+/*N*/ BOOL EditUndoInsertChars::Merge( SfxUndoAction* pNextAction )
 /*N*/ {
 /*N*/   if ( !pNextAction->ISA( EditUndoInsertChars ) )
 /*N*/       return FALSE;
@@ -128,9 +127,9 @@ DBG_NAME( EditUndo )
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertChars::Repeat()
+/*N*/ void EditUndoInsertChars::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoInsertChars::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoInsertChars::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -143,8 +142,8 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoInsertFeature
 // ------------------------------------------------------------------------
-/*N*/ EditUndoInsertFeature::EditUndoInsertFeature( ImpEditEngine* pImpEE, const EPaM& rEPaM, const SfxPoolItem& rFeature)
-/*N*/                   : EditUndo( EDITUNDO_INSERTFEATURE, pImpEE ), aEPaM( rEPaM )
+/*N*/ EditUndoInsertFeature::EditUndoInsertFeature( ImpEditEngine* pInImpEE, const EPaM& rEPaM, const SfxPoolItem& rFeature)
+/*N*/                   : EditUndo( EDITUNDO_INSERTFEATURE, pInImpEE ), aEPaM( rEPaM )
 /*N*/ {
 /*N*/   pFeature = rFeature.Clone();
 /*N*/   DBG_ASSERT( pFeature, "Feature konnte nicht dupliziert werden: EditUndoInsertFeature" );
@@ -155,17 +154,17 @@ DBG_NAME( EditUndo )
 /*N*/   delete pFeature;
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertFeature::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoInsertFeature::Undo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertFeature::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoInsertFeature::Redo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoInsertFeature::Repeat()
+/*N*/ void EditUndoInsertFeature::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoInsertFeature::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoInsertFeature::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -179,11 +178,11 @@ DBG_NAME( EditUndo )
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
 // ------------------------------------------------------------------------
-/*N*/ EditUndoSetStyleSheet::EditUndoSetStyleSheet( ImpEditEngine* pImpEE, USHORT nP,
+/*N*/ EditUndoSetStyleSheet::EditUndoSetStyleSheet( ImpEditEngine* pInImpEE, USHORT nP,
 /*N*/                       const XubString& rPrevName, SfxStyleFamily ePrevFam,
 /*N*/                       const XubString& rNewName, SfxStyleFamily eNewFam,
 /*N*/                       const SfxItemSet& rPrevParaAttribs )
-/*N*/   : EditUndo( EDITUNDO_STYLESHEET, pImpEE ), aPrevName( rPrevName ), aNewName( rNewName ),
+/*N*/   : EditUndo( EDITUNDO_STYLESHEET, pInImpEE ), aPrevName( rPrevName ), aNewName( rNewName ),
 /*N*/     aPrevParaAttribs( rPrevParaAttribs )
 /*N*/ {
 /*N*/   ePrevFamily = ePrevFam;
@@ -195,24 +194,24 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetStyleSheet::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoSetStyleSheet::Undo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetStyleSheet::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoSetStyleSheet::Redo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetStyleSheet::Repeat()
+/*N*/ void EditUndoSetStyleSheet::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoSetStyleSheet::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
 // EditUndoSetParaAttribs
 // ------------------------------------------------------------------------
-/*N*/ EditUndoSetParaAttribs::EditUndoSetParaAttribs( ImpEditEngine* pImpEE, USHORT nP, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems )
-/*N*/   : EditUndo( EDITUNDO_PARAATTRIBS, pImpEE ),
+/*N*/ EditUndoSetParaAttribs::EditUndoSetParaAttribs( ImpEditEngine* pInImpEE, USHORT nP, const SfxItemSet& rPrevItems, const SfxItemSet& rNewItems )
+/*N*/   : EditUndo( EDITUNDO_PARAATTRIBS, pInImpEE ),
 /*N*/     aPrevItems( rPrevItems ),
 /*N*/     aNewItems(rNewItems )
 /*N*/ {
@@ -223,17 +222,17 @@ DBG_NAME( EditUndo )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetParaAttribs::Undo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoSetParaAttribs::Undo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetParaAttribs::Redo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditUndoSetParaAttribs::Redo()
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void __EXPORT EditUndoSetParaAttribs::Repeat()
+/*N*/ void EditUndoSetParaAttribs::Repeat()
 /*N*/ {
-/*N*/   DBG_ERROR( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
+/*N*/   OSL_FAIL( "EditUndoSetParaAttribs::Repeat nicht implementiert!" );
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -262,3 +261,5 @@ DBG_NAME( EditUndo )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

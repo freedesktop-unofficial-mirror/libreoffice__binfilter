@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,91 +31,48 @@
 #pragma hdrstop
 #endif
 
-#ifndef _BOOKMRK_HXX //autogen
 #include <bookmrk.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen
 #include <doc.hxx>
-#endif
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>
-#endif
-#ifndef _NDHINTS_HXX
 #include <ndhints.hxx>
-#endif
-#ifndef _NDTXT_HXX //autogen
 #include <ndtxt.hxx>
-#endif
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FMTHBSH_HXX
 #include <fmthbsh.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _UNOCLBCK_HXX
 #include <unoclbck.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _UNOREDLINE_HXX
 #include <unoredline.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _UNOIDX_HXX
 #include <unoidx.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 /******************************************************************
  *  SwXTextPortionEnumeration
  ******************************************************************/
-/* -----------------------------13.03.00 12:15--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXTextPortionEnumeration::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXTextPortionEnumeration::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -126,23 +84,17 @@ sal_Int64 SAL_CALL SwXTextPortionEnumeration::getSomething( const uno::Sequence<
     }
     return 0;
 }
-/* -----------------------------06.04.00 16:39--------------------------------
 
- ---------------------------------------------------------------------------*/
 OUString SwXTextPortionEnumeration::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXTextPortionEnumeration");
 }
-/* -----------------------------06.04.00 16:39--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXTextPortionEnumeration::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.text.TextPortionEnumeration") == rServiceName;
 }
-/* -----------------------------06.04.00 16:39--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXTextPortionEnumeration::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -150,9 +102,7 @@ Sequence< OUString > SwXTextPortionEnumeration::getSupportedServiceNames(void) t
     pArray[0] = C2U("com.sun.star.text.TextPortionEnumeration");
     return aRet;
 }
-/*-- 27.01.99 10:44:43---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextPortionEnumeration::SwXTextPortionEnumeration(
     SwPaM& rParaCrsr,
     uno::Reference< XText >  xParentText,
@@ -177,9 +127,7 @@ SwXTextPortionEnumeration::SwXTextPortionEnumeration(
                             aFrameArr, TRUE );
     CreatePortions();
 }
-/*-- 27.01.99 10:44:44---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
 {
     for(sal_uInt16 nFrame = aFrameArr.Count(); nFrame; )
@@ -192,21 +140,17 @@ SwXTextPortionEnumeration::~SwXTextPortionEnumeration()
     SwUnoCrsr* pUnoCrsr = GetCrsr();
     delete pUnoCrsr;
 }
-/*-- 27.01.99 10:44:44---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXTextPortionEnumeration::hasMoreElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return aPortionArr.Count() > 0;
 }
-/*-- 27.01.99 10:44:45---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXTextPortionEnumeration::nextElement(void)
     throw( container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!aPortionArr.Count())
         throw container::NoSuchElementException();
     XTextRangeRefPtr pPortion = aPortionArr.GetObject(0);
@@ -215,9 +159,7 @@ uno::Any SwXTextPortionEnumeration::nextElement(void)
     delete pPortion;
     return aRet;
 }
-/* -----------------------------31.08.00 14:28--------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_InsertRefMarkPortion(
     XTextRangeArr& rArr, SwUnoCrsr* pUnoCrsr, Reference<XText>& rParent, SwTxtAttr* pAttr, BOOL bEnd)
 {
@@ -350,9 +292,7 @@ void lcl_ExportBookmark(
         delete pPtr;
     }
 }
-/* -----------------------------18.12.00 14:51--------------------------------
 
- ---------------------------------------------------------------------------*/
 //-----------------------------------------------------------------------------
 #define REDLINE_PORTION_START_REMOVE 0//removed redlines are visible
 #define REDLINE_PORTION_END_REMOVE   1//removed redlines are visible
@@ -546,7 +486,7 @@ Reference<XTextRange> lcl_ExportHints(SwpHints* pHints,
                     }
                 break;
                 default:
-                    DBG_ERROR("was fuer ein Attribut?");
+                    OSL_FAIL("was fuer ein Attribut?");
             }
 
         }
@@ -564,8 +504,8 @@ Reference<XTextRange> lcl_ExportHints(SwpHints* pHints,
             nCurrentIndex >= (nNextStart = (*pHints->GetStart(nStartIndex)->GetStart())))
             nStartIndex++;
 
-        sal_uInt16 nEndIndex = 0;
-        sal_uInt16 nNextEnd = 0;
+        nEndIndex = 0;
+        nNextEnd = 0;
         while(nEndIndex < pHints->GetEndCount() &&
             nCurrentIndex >= (nNextEnd = (*pHints->GetEnd(nEndIndex)->GetAnyEnd())))
             nEndIndex++;
@@ -660,14 +600,13 @@ void lcl_FillRedlineArray(SwDoc& rDoc,SwUnoCrsr& rUnoCrsr, SwXRedlinePortionArr&
     {
         const SwPosition* pStart = rUnoCrsr.GetPoint();
         const SwNodeIndex nOwnNode = pStart->nNode;
-        SwRedlineMode eRedMode = rDoc.GetRedlineMode();
+        rDoc.GetRedlineMode();
 
         for(USHORT nRed = 0; nRed < nRedTblCount; nRed++)
         {
             const SwRedline* pRedline = rRedTbl[nRed];
             const SwPosition* pRedStart = pRedline->Start();
             const SwNodeIndex nRedNode = pRedStart->nNode;
-            SwRedlineType nType = pRedline->GetType();
             if(nOwnNode == nRedNode)
             {
                 SwXRedlinePortion_ImplPtr pToInsert = new SwXRedlinePortion_Impl(pRedline, TRUE);
@@ -681,9 +620,7 @@ void lcl_FillRedlineArray(SwDoc& rDoc,SwUnoCrsr& rUnoCrsr, SwXRedlinePortionArr&
         }
     }
 }
-/* -----------------------------19.12.00 12:25--------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_ExportRedline(
     SwXRedlinePortionArr& rRedlineArr, ULONG nIndex,
     SwUnoCrsr* pUnoCrsr, Reference<XText> & rParent, XTextRangeArr& rPortionArr)
@@ -703,9 +640,7 @@ void lcl_ExportRedline(
         delete pPtr;
     }
 }
-/* -----------------------------19.12.00 13:09--------------------------------
 
- ---------------------------------------------------------------------------*/
 void lcl_ExportBkmAndRedline(
     SwXBookmarkPortionArr& rBkmArr,
     SwXRedlinePortionArr& rRedlineArr, ULONG nIndex,
@@ -880,7 +815,7 @@ void SwXTextPortionEnumeration::CreatePortions()
                                 bAtEnd = sal_True;
                             }
                             if(nNextIndex < 0)
-                                sal_Bool bMove = pUnoCrsr->MovePara(fnParaCurr, fnParaEnd);
+                                pUnoCrsr->MovePara(fnParaCurr, fnParaEnd);
                             else
                             {
                                 DBG_ASSERT(nNextIndex > nCurrentIndex, "wrong move index");
@@ -895,7 +830,7 @@ void SwXTextPortionEnumeration::CreatePortions()
                 }
                 else
                 {
-                    DBG_ERROR("kein TextNode - was nun?");
+                    OSL_FAIL("kein TextNode - was nun?");
                 }
             }
             if(*pUnoCrsr->GetPoint() < *pUnoCrsr->GetMark())
@@ -948,12 +883,12 @@ void SwXTextPortionEnumeration::CreatePortions()
         }
     }
 }
-/*-- 27.01.99 10:44:45---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwXTextPortionEnumeration::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

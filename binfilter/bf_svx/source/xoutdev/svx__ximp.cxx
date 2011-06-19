@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,10 @@
 #include <algorithm>
 
 #include <stdlib.h>
-//#include <math.h>
 #include <vcl/virdev.hxx>
 #include <vcl/metaact.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xoutx.hxx"
 namespace binfilter {
@@ -149,7 +147,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       else if( eFillStyle == XFILL_GRADIENT )
 /*?*/       {
-/*?*/           GDIMetaFile*    pMtf = pOut->GetConnectMetaFile();
+/*?*/           /*GDIMetaFile* pMtf =*/ pOut->GetConnectMetaFile();
 /*?*/           Gradient        aVCLGradient;
 /*?*/
 /*?*/
@@ -190,17 +188,17 @@ namespace binfilter {
 /*?*/               if( pMtf && !bPrinter )
 /*?*/               {
 /*?*/                   if( !pOut->GetPDFWriter() && XIMP_bDrawRasterOps )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*?*/               else if( bRect || bPrinter )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/
 /*?*/               pOut->Pop();
@@ -220,3 +218,5 @@ namespace binfilter {
 // ------------------------------------------------------------------------
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

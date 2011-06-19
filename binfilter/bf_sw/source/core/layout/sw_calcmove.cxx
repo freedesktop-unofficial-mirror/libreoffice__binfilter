@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 #include "pagefrm.hxx"
 #include "viewsh.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "dflyobj.hxx"
@@ -45,23 +44,13 @@
 #include "txtftn.hxx"
 #include "fmtftn.hxx"
 
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
 
-#ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
-#endif
 
 #include "tabfrm.hxx"
 #include "ftnfrm.hxx"
@@ -82,8 +71,6 @@ namespace binfilter {
 |*  SwCntntFrm::ShouldBwdMoved()
 |*
 |*  Beschreibung        Returnwert sagt, ob der Frm verschoben werden sollte.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -129,7 +116,7 @@ namespace binfilter {
 /*?*/               SwSectionFrm *pSect = pNewUpper->FindSctFrm();
 /*?*/               while( pSect && pSect->IsInFtn() )
 /*?*/                   pSect = pSect->GetUpper()->FindSctFrm();
-/*?*/               ASSERT( pSect, "Escaping footnote" );
+/*?*/               OSL_ENSURE( pSect, "Escaping footnote" );
 /*?*/               if( pSect != pMySect )
 /*?*/                   return FALSE;
 /*?*/           }
@@ -213,8 +200,6 @@ namespace binfilter {
 |*      Ein weiterer Vorteil ist, das eines schoenen Tages das _Prepare und
 |*      damit die Formatierung von Vorgaengern umgangen werden kann.
 |*      So kann evtl. mal 'schnell' an's Dokumentende gesprungen werden.
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 13. Dec. 93
 |*
 |*************************************************************************/
 //Zwei kleine Freundschaften werden hier zu einem Geheimbund.
@@ -237,7 +222,7 @@ namespace binfilter {
 /*N*/   {
 /*M*/       if( !GetUpper()->IsSctFrm() && !GetUpper()->IsFooterFrm() )
 /*N*/           GetUpper()->Calc();
-/*N*/       ASSERT( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
+/*N*/       OSL_ENSURE( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
 /*N*/       if ( !GetUpper() )
 /*?*/           return;
 /*N*/
@@ -275,7 +260,7 @@ namespace binfilter {
 /*N*/       SwFrm *pFrm = GetUpper()->Lower();
 /*N*/       while ( pFrm != this )
 /*N*/       {
-/*N*/           ASSERT( pFrm, ":-( Layoutgeruest wackelig (this not found)." );
+/*N*/           OSL_ENSURE( pFrm, ":-( Layoutgeruest wackelig (this not found)." );
 /*N*/           if ( !pFrm )
 /*?*/               return; //Oioioioi ...
 /*N*/
@@ -291,9 +276,6 @@ namespace binfilter {
 /*N*/                    (SwFlowFrm::CastFlowFrm(pFrm))->IsAnFollow( pThis ) )
 /*?*/                   break;
 /*N*/
-/*N*/ //MA: 24. Mar. 94, Calc wuerde doch nur wieder in ein _Prepare laufen und so
-/*N*/ //die ganze Kette nocheinmal abhuenern.
-/*N*/ //                pFrm->Calc();
 /*N*/               pFrm->MakeAll();
 /*N*/               if( IsSctFrm() && !((SwSectionFrm*)this)->GetSection() )
 /*?*/                   break;
@@ -315,14 +297,14 @@ namespace binfilter {
 /*N*/                   pFrm = pCnt;
 /*N*/           }
 /*N*/       }
-/*N*/       ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech II)." );
+/*N*/       OSL_ENSURE( GetUpper(), "Layoutgeruest wackelig (Upper wech II)." );
 /*N*/       if ( !GetUpper() )
 /*?*/           return;
 /*N*/
 /*M*/       if( !GetUpper()->IsSctFrm() && !GetUpper()->IsFooterFrm() )
 /*N*/           GetUpper()->Calc();
 /*N*/
-/*N*/       ASSERT( GetUpper(), "Layoutgeruest wackelig (Upper wech III)." );
+/*N*/       OSL_ENSURE( GetUpper(), "Layoutgeruest wackelig (Upper wech III)." );
 /*N*/
 /*N*/       if ( bTab && !bOldTabLock )
 /*N*/           ::binfilter::PrepareUnlock( (SwTabFrm*)this );
@@ -335,7 +317,7 @@ namespace binfilter {
 /*M*/   if ( GetUpper() && !GetUpper()->IsFooterFrm() )
 /*N*/   {
 /*N*/       GetUpper()->Calc();
-/*N*/       ASSERT( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
+/*N*/       OSL_ENSURE( GetUpper(), ":-( Layoutgeruest wackelig (Upper wech)." );
 /*N*/       if ( !GetUpper() )
 /*?*/           return;
 /*N*/   }
@@ -354,9 +336,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::MakePos()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 24. May. 93
 |*
 |*************************************************************************/
 
@@ -389,7 +368,7 @@ namespace binfilter {
 /*N*/   if ( !bValidPos )
 /*N*/   {
 /*N*/       bValidPos = TRUE;
-/*N*/       FASTBOOL bUseUpper = FALSE;
+/*N*/       bool bUseUpper = FALSE;
 /*N*/       SwFrm* pPrv = lcl_Prev( this );
 /*N*/         if ( pPrv &&
 /*N*/              ( !pPrv->IsCntntFrm() ||
@@ -438,7 +417,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else if ( GetUpper() )
 /*N*/       {
-/*N*/             /// OD 15.10.2002 #103517# - add safeguard for <SwFooterFrm::Calc()>
+/*N*/             /// add safeguard for <SwFooterFrm::Calc()>
 /*N*/             /// If parent frame is a footer frame and its <ColLocked()>, then
 /*N*/             /// do *not* calculate it.
 /*N*/             /// NOTE: Footer frame is <ColLocked()> during its
@@ -505,9 +484,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 23. Feb. 93
-|*  Letzte Aenderung    MA 20. Jul. 98
 |*
 |*************************************************************************/
 
@@ -621,7 +597,7 @@ namespace binfilter {
 /*N*/                                   nTmp += ((SwSectionFrm*)pCnt)->Undersize();
 /*N*/                               pCnt = pCnt->FindNext();
 /*N*/                           }
-/*N*/                             // OD 29.10.2002 #97265# - consider invalid body frame properties
+/*N*/                             // consider invalid body frame properties
 /*N*/                             if ( pFrm->IsBodyFrm() &&
 /*N*/                                  ( !pFrm->GetValidSizeFlag() ||
 /*N*/                                    !pFrm->GetValidPrtAreaFlag() ) &&
@@ -632,8 +608,8 @@ namespace binfilter {
 /*N*/                             }
 /*N*/                             else
 /*N*/                             {
-/*N*/                                 // OD 30.10.2002 #97265# - assert invalid lower property
-/*N*/                                 ASSERT( !(pFrm->Frm().Height() < pFrm->Prt().Height()),
+/*N*/                                 // assert invalid lower property
+/*N*/                                 OSL_ENSURE( !(pFrm->Frm().Height() < pFrm->Prt().Height()),
 /*N*/                                         "SwPageFrm::MakeAll(): Lower with frame height < printing height" );
 /*N*/                                 nTmp += pFrm->Frm().Height() - pFrm->Prt().Height();
 /*N*/                             }
@@ -681,7 +657,7 @@ namespace binfilter {
 /*N*/   //sein, dass er die breiteste Seite aufnehmen kann.
 /*N*/   if ( GetUpper() )
 /*N*/     {
-/*N*/         ASSERT( GetUpper()->Prt().Width() >= aFrm.Width(), "Rootsize" );
+/*N*/         OSL_ENSURE( GetUpper()->Prt().Width() >= aFrm.Width(), "Rootsize" );
 /*N*/   }
 /*N*/ #endif
 /*N*/ }
@@ -689,9 +665,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::MakeAll()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 28. Nov. 95
 |*
 |*************************************************************************/
 
@@ -765,9 +738,6 @@ namespace binfilter {
 |*
 |*  SwCntntFrm::MakePrtArea()
 |*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 03. Mar. 96
-|*
 |*************************************************************************/
 
 /*N*/ BOOL SwCntntFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
@@ -779,7 +749,7 @@ namespace binfilter {
 /*N*/       bValidPrtArea = TRUE;
 /*N*/
 /*N*/         SWRECTFN( this )
-/*N*/       const FASTBOOL bTxtFrm = IsTxtFrm();
+/*N*/       const bool bTxtFrm = IsTxtFrm();
 /*N*/       SwTwips nUpper = 0;
 /*N*/       if ( bTxtFrm && ((SwTxtFrm*)this)->IsHiddenNow() )
 /*N*/       {
@@ -822,10 +792,10 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   SdrObject *pObj = (*GetDrawObjs())[i];
 /*N*/                   SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
-/*N*/                   const FASTBOOL bFly = pObj->IsWriterFlyFrame();
-/*N*/                   if ( bFly &&
-/*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
-/*N*/                        pFmt->GetFrmSize().GetWidthPercent() )
+/*N*/                   const bool bFly = pObj->IsWriterFlyFrame();
+/*N*/                   if ( ( bFly &&
+/*N*/                        WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width() ) || (
+/*N*/                        pFmt->GetFrmSize().GetWidthPercent() ) )
 /*N*/                       continue;
 /*N*/
 /*N*/                   if ( FLY_IN_CNTNT == pFmt->GetAnchor().GetAnchorId() )
@@ -903,9 +873,6 @@ namespace binfilter {
 |*
 |*  SwCntntFrm::MakeAll()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 16. Dec. 96
-|*
 |*************************************************************************/
 
 #define STOP_FLY_FORMAT 10
@@ -922,8 +889,8 @@ namespace binfilter {
 
 /*N*/ void SwCntntFrm::MakeAll()
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "keinen Upper?" );
-/*N*/   ASSERT( IsTxtFrm(), "MakeAll(), NoTxt" );
+/*N*/   OSL_ENSURE( GetUpper(), "keinen Upper?" );
+/*N*/   OSL_ENSURE( IsTxtFrm(), "MakeAll(), NoTxt" );
 /*N*/
 /*N*/   if ( !IsFollow() && StackHack::IsLocked() )
 /*N*/       return;
@@ -931,13 +898,13 @@ namespace binfilter {
 /*N*/   if ( IsJoinLocked() )
 /*N*/       return;
 /*N*/
-/*N*/     ASSERT( !((SwTxtFrm*)this)->IsSwapped(), "Calculation of a swapped frame" );
+/*N*/     OSL_ENSURE( !((SwTxtFrm*)this)->IsSwapped(), "Calculation of a swapped frame" );
 /*N*/
 /*N*/     StackHack aHack;
 /*N*/
 /*N*/   if ( ((SwTxtFrm*)this)->IsLocked() )
 /*N*/   {
-/*N*/       ASSERT( FALSE, "Format fuer gelockten TxtFrm." );
+/*N*/       OSL_ENSURE( FALSE, "Format fuer gelockten TxtFrm." );
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -952,7 +919,7 @@ namespace binfilter {
 /*N*/       static sal_Bool bWarn = sal_False;
 /*N*/       if( pDoc->InXMLExport() )
 /*N*/       {
-/*N*/           ASSERT( bWarn, "Formatting during XML-export!" );
+/*N*/           OSL_ENSURE( bWarn, "Formatting during XML-export!" );
 /*N*/           bWarn = sal_True;
 /*N*/       }
 /*N*/       else
@@ -1021,7 +988,7 @@ namespace binfilter {
 /*N*/       MoveFwd( bMakePage, FALSE );
 /*N*/   }
 /*N*/
-/*N*/     // OD 08.11.2002 #104840# - check footnote content for forward move.
+/*N*/     // check footnote content for forward move.
 /*N*/     // If a content of a footnote is on a prior page/column as its invalid
 /*N*/     // reference, it can be moved forward.
 /*N*/     if ( bFtn && !bValidPos )
@@ -1029,7 +996,7 @@ namespace binfilter {
 /*N*/         SwFtnFrm* pFtn = FindFtnFrm();
 /*N*/         SwCntntFrm* pRefCnt = pFtn ? pFtn->GetRef() : 0;
 /*N*/         if ( pRefCnt && !pRefCnt->IsValid() )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/     }
 /*N*/
@@ -1051,7 +1018,7 @@ namespace binfilter {
 /*N*/                   //nach dem hin und her fliessen sparen.
 /*N*/                   GetUpper()->ResetCompletePaint();
 /*N*/                   //Der Vorgaenger wurde Invalidiert, das ist jetzt auch obsolete.
-/*N*/                   ASSERT( pPre, "missing old Prev" );
+/*N*/                   OSL_ENSURE( pPre, "missing old Prev" );
 /*N*/                   if( !pPre->IsSctFrm() )
 /*N*/                       ::binfilter::ValidateSz( pPre );
 /*N*/               }
@@ -1115,9 +1082,9 @@ namespace binfilter {
 /*N*/           Format();
 /*N*/       }
 /*N*/
-        // FME 16.07.2003 #i16930# - removed this code because it did not work
+        // #i16930# - removed this code because it did not work
 
-        // OD 04.04.2003 #108446# - react on the situation detected in the text
+        // react on the situation detected in the text
         // formatting - see <SwTxtFrm::FormatAdjust(..)>:
         // text frame has to move forward, because its text formatting stopped,
         // created a follow and detected, that it contains no content.
@@ -1257,8 +1224,8 @@ namespace binfilter {
 /*N*/               }
 /*N*/               if ( pNxt )
 /*N*/               {
-/*N*/                   const FASTBOOL bMoveFwdInvalid = 0 != GetIndNext();
-/*N*/                     const FASTBOOL bNxtNew =
+/*N*/                   const bool bMoveFwdInvalid = 0 != GetIndNext();
+/*N*/                     const bool bNxtNew =
 /*N*/                         ( 0 == (pNxt->Prt().*fnRect->fnGetHeight)() ) &&
 /*N*/                         (!pNxt->IsTxtFrm() ||!((SwTxtFrm*)pNxt)->IsHiddenNow());
 /*N*/                   pNxt->Calc();
@@ -1328,7 +1295,7 @@ namespace binfilter {
 /*N*/                   bFitPromise = TRUE;
 /*N*/                   continue;
 /*N*/               }
-                /* -----------------19.02.99 12:58-------------------
+                /* --------------------------------------------------
                  * Frueher wurde in Rahmen und Bereichen niemals versucht,
                  * durch bMoveOrFit den TxtFrm unter Verzicht auf seine
                  * Attribute (Widows,Keep) doch noch passend zu bekommen.
@@ -1346,7 +1313,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
-/*N*/               ASSERT( FALSE, "+TxtFrm hat WouldFit-Versprechen nicht eingehalten." );
+/*N*/               OSL_ENSURE( FALSE, "+TxtFrm hat WouldFit-Versprechen nicht eingehalten." );
 /*N*/           }
 /*N*/ #endif
 /*N*/       }
@@ -1433,9 +1400,6 @@ namespace binfilter {
 |*
 |*  SwCntntFrm::_WouldFit()
 |*
-|*  Ersterstellung      MA 28. Feb. 95
-|*  Letzte Aenderung    AMA 15. Feb. 99
-|*
 |*************************************************************************/
 
 
@@ -1501,17 +1465,17 @@ namespace binfilter {
 /*N*/   //Seite/Spalte liegt.
 /*N*/   SwFtnFrm* pFtnFrm = 0;
 /*N*/   if ( IsInFtn() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bRet;
 /*N*/   BOOL bSplit = !pNewUpper->Lower();
 /*N*/   SwCntntFrm *pFrm = this;
-/*N*/   const SwFrm *pPrev = pNewUpper->Lower();
-/*N*/   if( pPrev && pPrev->IsFtnFrm() )
-/*N*/       pPrev = ((SwFtnFrm*)pPrev)->Lower();
-/*N*/   while ( pPrev && pPrev->GetNext() )
-/*N*/       pPrev = pPrev->GetNext();
+/*N*/   const SwFrm *pPrev1 = pNewUpper->Lower();
+/*N*/   if( pPrev1 && pPrev1->IsFtnFrm() )
+/*N*/       pPrev1 = ((SwFtnFrm*)pPrev1)->Lower();
+/*N*/   while ( pPrev1 && pPrev1->GetNext() )
+/*N*/       pPrev1 = pPrev1->GetNext();
 /*N*/   do
 /*N*/   {
 /*N*/       if ( bTstMove || IsInFly() || ( IsInSct() &&
@@ -1545,7 +1509,7 @@ namespace binfilter {
 /*N*/                )
 /*N*/           {
 /*N*/               bTstMove = TRUE;
-/*N*/               bRet = ((SwTxtFrm*)pFrm)->TestFormat( pPrev, nSpace, bSplit );
+/*N*/               bRet = ((SwTxtFrm*)pFrm)->TestFormat( pPrev1, nSpace, bSplit );
 /*N*/           }
 /*N*/           else
 /*?*/               bRet = pFrm->WouldFit( nSpace, bSplit );
@@ -1563,9 +1527,9 @@ namespace binfilter {
 /*N*/       if ( bRet && !bTstMove )
 /*N*/       {
 /*N*/           SwTwips nUpper;
-/*N*/           if ( pPrev )
+/*N*/           if ( pPrev1 )
 /*N*/           {
-/*N*/               nUpper = CalcUpperSpace( NULL, pPrev );
+/*N*/               nUpper = CalcUpperSpace( NULL, pPrev1 );
 /*N*/
 /*N*/                 // in balanced columned section frames we do not want the
 /*N*/                 // common border
@@ -1599,12 +1563,12 @@ namespace binfilter {
 /*?*/                 {
 /*?*/                   pFrm = ((SwTxtFrm*)pFrm)->GetFollow();
 /*?*/                 }
-/*?*/                 // OD 11.04.2003 #108824# - If last follow frame of <this> text
+/*?*/                 // If last follow frame of <this> text
 /*?*/                 // frame isn't valid, a formatting of the next content frame
 /*?*/                 // doesn't makes sense. Thus, return TRUE.
 /*?*/                 if ( IsAnFollow( pFrm ) && !pFrm->IsValid() )
 /*?*/                 {
-/*?*/                     ASSERT( false, "Only a warning for task 108824:/n<SwCntntFrm::_WouldFit(..) - follow not valid!" );
+/*?*/                     OSL_FAIL( "Only a warning for task 108824:/n<SwCntntFrm::_WouldFit(..) - follow not valid!" );
 /*?*/                     return TRUE;
 /*?*/                 }
 /*N*/             }
@@ -1624,13 +1588,13 @@ namespace binfilter {
 /*N*/               //er den Absatzabstand bereits berechnet. Er braucht dann nicht
 /*N*/               //teuer kalkuliert werden.
 /*N*/               if( lcl_NotHiddenPrev( pNxt ) )
-/*N*/                   pPrev = 0;
+/*N*/                   pPrev1 = 0;
 /*N*/               else
 /*N*/               {
 /*?*/                   if( pFrm->IsTxtFrm() && ((SwTxtFrm*)pFrm)->IsHiddenNow() )
-/*?*/                       pPrev = lcl_NotHiddenPrev( pFrm );
+/*?*/                       pPrev1 = lcl_NotHiddenPrev( pFrm );
 /*?*/                   else
-/*?*/                       pPrev = pFrm;
+/*?*/                       pPrev1 = pFrm;
 /*N*/               }
 /*N*/               pFrm = (SwCntntFrm*)pNxt;
 /*N*/           }
@@ -1650,3 +1614,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 class SfxBoolItem;
@@ -145,10 +140,12 @@ class SwTblBoxNumFormat;
 class SwTblBoxFormula;
 class SwTblBoxValue;
 
+#ifndef INLINE
 #if defined(MACOSX) && ( __GNUC__ < 3 )
 #define INLINE /* GrP revisit with gcc3 */
 #else
 #define INLINE inline
+#endif
 #endif
 
 class SwAttrPool : public SfxItemPool
@@ -343,3 +340,5 @@ long AttrSetToLineHeight(const SwDoc &rDoc, const SwAttrSet &rSet,
     const OutputDevice &rOut, sal_Int16 nScript);
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

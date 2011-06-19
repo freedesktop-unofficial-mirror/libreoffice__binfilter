@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,36 +28,17 @@
 #ifndef _SVX_FMUNOPGE_HXX
 #define _SVX_FMUNOPGE_HXX
 
-#ifndef _COM_SUN_STAR_SDBC_XDATASOURCE_HPP_
 #include <com/sun/star/sdbc/XDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
+#include <vector>
 
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
 FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
 FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
@@ -68,14 +50,9 @@ class FmFormObj;
 class FmFormPage;
 class SdrObject;
 
-//FORWARD_DECLARE_INTERFACE(uno,Reference)
-//STRIP008 FORWARD_DECLARE_INTERFACE(io,XObjectOutputStream)
-//STRIP008 FORWARD_DECLARE_INTERFACE(io,XObjectInputStream)
-//STRIP008 FORWARD_DECLARE_INTERFACE(container,XIndexContainer)
-
 class SdrObjList;
 
-DECLARE_LIST(FmObjectList, FmFormObj*)//STRIP008 DECLARE_LIST(FmObjectList, FmFormObj*);
+typedef ::std::vector< FmFormObj* > FmObjectList;
 
 //==================================================================
 // FmFormPageImpl
@@ -119,7 +96,7 @@ public:
 
 protected:
     // lesen und schreiben der Objecte
-    void WriteData(SvStream& rOut) const; //
+    void WriteData(SvStream& ) const {}
     void ReadData(const SdrIOHeader& rHead, SvStream& rIn); //
 
     void write(const ::com::sun::star::uno::Reference< ::com::sun::star::io::XObjectOutputStream>& OutStream) const;
@@ -140,3 +117,4 @@ public:
 }//end of namespace binfilter
 #endif // _SVX_FMUNOPGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

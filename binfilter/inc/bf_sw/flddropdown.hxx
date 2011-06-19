@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,8 +36,9 @@
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
-using namespace ::rtl;
 using namespace std;
+
+using rtl::OUString;
 
 /**
     Field type for dropdown boxes.
@@ -227,3 +229,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

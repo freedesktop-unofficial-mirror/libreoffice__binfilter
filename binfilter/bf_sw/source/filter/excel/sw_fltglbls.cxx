@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,8 +41,8 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 FilterGlobals::FilterGlobals( SwDoc& rDoc, const SwPaM& rPam )
-    : aStandard( String::CreateFromAscii("General") ),
-    aTblFmts( 0, 10 )
+    : aTblFmts( 0, 10 )
+    , aStandard( String::CreateFromAscii("General") )
 {
     pD = &rDoc;         // "globaler" Dokument-Pointer
     pPam = new SwPaM( *rPam.GetPoint() );
@@ -151,3 +152,5 @@ void FilterGlobals::InsertAttr( const SfxPoolItem& rItem )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

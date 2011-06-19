@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -45,8 +43,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -152,15 +150,13 @@ using namespace ::com::sun::star::uno;
 /*N*/           rStream >> rOpt.pLRUList[i];
 /*N*/   }
 /*N*/
-/*N*/   // ab 31.10.95: globale benutzerdefinierte Listen einlesen :-/
-/*N*/   //              (kleiner Hack :-/)
+/*N*/   // globale benutzerdefinierte Listen einlesen :-/ (kleiner Hack :-/)
 /*N*/   if ( aHdr.BytesLeft() )
 /*N*/   {
 /*N*/       ScUserList* pUserList = ScGlobal::GetUserList();
 /*N*/       pUserList->Load( rStream );
 /*N*/   }
 /*N*/
-/*N*/   // ab 11.12.95 (304)
 /*N*/   // Zoom-Faktor
 /*N*/   if ( aHdr.BytesLeft() )
 /*N*/   {
@@ -214,27 +210,25 @@ using namespace ::com::sun::star::uno;
 /*N*/           rStream << rOpt.pLRUList[i];
 /*N*/   }
 /*N*/
-/*N*/   // ab 31.10.95: globale benutzerdefinierte Listen speichern
-/*N*/   //              (kleiner Hack :-/)
+/*N*/   // globale benutzerdefinierte Listen speichern (kleiner Hack :-/)
 /*N*/   ScUserList* pUserList = ScGlobal::GetUserList();
 /*N*/   pUserList->Store( rStream );
 /*N*/
-/*N*/   // ab 11.12.95 (304)
 /*N*/   // Zoom-Faktor
 /*N*/   rStream << (USHORT)rOpt.eZoomType;
 /*N*/   rStream << rOpt.nZoom;
 /*N*/
-/*N*/   // ab 23.5.96: Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
+/*N*/   // Funktion fuer Statusbar-Controller, Flag fuer Auto-Eingabe
 /*N*/   rStream << rOpt.nStatusFunc;
 /*N*/   rStream << rOpt.bAutoComplete;
 /*N*/
-/*N*/   // ab 15.3.98: Farben fuer Change-Tracking
+/*N*/   // Farben fuer Change-Tracking
 /*N*/   rStream << rOpt.nTrackContentColor;
 /*N*/   rStream << rOpt.nTrackInsertColor;
 /*N*/   rStream << rOpt.nTrackDeleteColor;
 /*N*/   rStream << rOpt.nTrackMoveColor;
 /*N*/
-/*N*/   // ab 22.6.98: Automatisches Detektiv-Update
+/*N*/   // Automatisches Detektiv-Update
 /*N*/   rStream << rOpt.bDetectiveAuto;
 /*N*/   rStream << (BYTE) rOpt.eLinkMode;
 /*N*/
@@ -374,7 +368,7 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*N*/   //  adjust for metric system
 /*N*/   if (ScOptionsUtil::IsMetricSystem())
-/*N*/       pNames[SCLAYOUTOPT_MEASURE] = OUString::createFromAscii( "Other/MeasureUnit/Metric" );
+/*N*/       pNames[SCLAYOUTOPT_MEASURE] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Other/MeasureUnit/Metric" ));
 /*N*/
 /*N*/   return aNames;
 /*N*/ }
@@ -457,14 +451,14 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ ScAppCfg::ScAppCfg() :
-/*N*/   aLayoutItem( OUString::createFromAscii( CFGPATH_LAYOUT ) ),
-/*N*/   aInputItem( OUString::createFromAscii( CFGPATH_INPUT ) ),
-/*N*/   aRevisionItem( OUString::createFromAscii( CFGPATH_REVISION ) ),
-/*N*/   aContentItem( OUString::createFromAscii( CFGPATH_CONTENT ) ),
-/*N*/   aSortListItem( OUString::createFromAscii( CFGPATH_SORTLIST ) ),
-/*N*/   aMiscItem( OUString::createFromAscii( CFGPATH_MISC ) )
+/*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_LAYOUT )) ),
+/*N*/   aInputItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_INPUT )) ),
+/*N*/   aRevisionItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_REVISION )) ),
+/*N*/   aContentItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_CONTENT )) ),
+/*N*/   aSortListItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_SORTLIST )) ),
+/*N*/   aMiscItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_MISC )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
+/*N*/   sal_Int32 nIntVal = 0;
 /*N*/
 /*N*/   Sequence<OUString> aNames;
 /*N*/   Sequence<Any> aValues;
@@ -638,37 +632,37 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScAppCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Sequence<OUString> aNames = GetLayoutPropertyNames();
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, InputCommitHdl, void *, EMPTYARG )
 /*N*/ {
-         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetInputPropertyNames();
+         DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, RevisionCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetRevisionPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, ContentCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetContentPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, SortListCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetSortListPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScAppCfg, MiscCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetMiscPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -676,3 +670,5 @@ using namespace ::com::sun::star::uno;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

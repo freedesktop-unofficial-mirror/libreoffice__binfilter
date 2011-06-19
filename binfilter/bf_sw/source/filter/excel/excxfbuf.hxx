@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 class SfxItemSet;
 
@@ -129,12 +128,6 @@ class XF_Data
         inline void     SetBorder( CellBorder *pNew );
 
         void            SetBorder( const CellBorder &rNew );
-#if 0
-        void            SetBorder( BYTE nTopLine, BYTE nLeftLine,
-                            BYTE nBottomLine, BYTE nRightLine,
-                            USHORT nTopColor, USHORT nLeftColor,
-                            USHORT nBottomColor, USHORT nRightColor );
-#endif
         const           CellBorder *Border() const { return pBord; }
     };
 
@@ -199,9 +192,6 @@ class XF_Buffer
 
         inline void         NewXF( XF_Data *pD );
 
-        inline void     GetItemSets( USHORT nIndex, const SfxItemSet *pTxtAttr,
-                            const SfxItemSet *pBoxAttr );
-
         sal_uInt32      GetNumFormat( USHORT nIndex );
         void            SetItemSets( USHORT nCol, USHORT nSR, USHORT nER,
                             USHORT nXF );
@@ -219,29 +209,7 @@ inline void XF_Buffer::NewXF( XF_Data *pD )
     if( nCount < nMax )
         ppData[ nCount++ ] = pD;
     }
-
-inline void XF_Buffer::GetItemSets( USHORT nIndex, const SfxItemSet *pTxtAttr,
-                    const SfxItemSet *pBoxAttr )
-    {
-    DBG_ASSERT( nIndex < nCount ,
-        "+XF_Buffer::GetItemSets(): das ist zuviel des Guten!" );
-    if( nIndex >= nCount )
-        {
-        pTxtAttr = pDefTxtAttr;         // nicht im Puffer
-        pBoxAttr = pDefBoxAttr;
-        }
-    else
-        {
-        if( ppTxtAttr[ nIndex ] == NULL )
-            CreateItemSets( nIndex );       // erste Nutzung
-
-        pTxtAttr = ppTxtAttr[ nIndex ];
-        pBoxAttr = ppBoxAttr[ nIndex ];
-        }
-    }
-
-
-
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

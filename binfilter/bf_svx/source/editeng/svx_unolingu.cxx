@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,56 +34,26 @@
 
 #include <cppuhelper/implbase1.hxx> // helper for implementations
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
 #include <com/sun/star/frame/XStorable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
 #include <com/sun/star/lang/XEventListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XAVAILABLELOCALES_HPP_
 #include <com/sun/star/linguistic2/XAvailableLocales.hpp>
-#endif
 #include <comphelper/processfactory.hxx>
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx> // helper for implementations
-#endif
 
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <bf_svtools/lingucfg.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
 
-//#include <bf_linguistic/misc.hxx>
-
-
-#ifndef _SVX_DIALMGR_HXX
 #include <dialmgr.hxx>
-#endif
 #include "dialogs.hrc"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 using namespace ::rtl;
 using namespace ::comphelper;
@@ -213,7 +184,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< lang::Locale > SAL_CALL
 /*N*/         ThesDummy_Impl::getLocales()
 /*N*/             throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< lang::Locale > aa; return aa;
 /*N*/ }
 
 
@@ -243,12 +214,12 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 /*N*/ uno::Sequence< uno::Reference< linguistic2::XMeaning > > SAL_CALL
 /*N*/         ThesDummy_Impl::queryMeanings(
-/*N*/                 const ::rtl::OUString& rTerm,
-/*N*/                 const lang::Locale& rLocale,
-/*N*/                 const beans::PropertyValues& rProperties )
+/*N*/                 const ::rtl::OUString& /*rTerm*/,
+/*N*/                 const lang::Locale& /*rLocale*/,
+/*N*/                 const beans::PropertyValues& /*rProperties*/ )
 /*N*/             throw(lang::IllegalArgumentException,
 /*N*/                   uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Sequence< uno::Reference< linguistic2::XMeaning > > aRes;return aRes;
 /*N*/ }
 
 
@@ -291,21 +262,21 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ void SpellDummy_Impl::GetSpell_Impl()
-/*N*/ { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ { DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 /*N*/ uno::Sequence< sal_Int16 > SAL_CALL
 /*N*/     SpellDummy_Impl::getLanguages()
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >(); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< sal_Int16 >();
 /*N*/ }
 
 
 /*N*/ sal_Bool SAL_CALL
-/*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 nLanguage )
+/*N*/     SpellDummy_Impl::hasLanguage( sal_Int16 /*nLanguage*/ )
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return FALSE;
 /*N*/ }
 
 
@@ -324,11 +295,11 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 /*N*/ uno::Reference< linguistic2::XSpellAlternatives > SAL_CALL
-/*N*/     SpellDummy_Impl::spell( const ::rtl::OUString& rWord, sal_Int16 nLanguage,
-/*N*/             const beans::PropertyValues& rProperties )
+/*N*/     SpellDummy_Impl::spell( const ::rtl::OUString& /*rWord*/, sal_Int16 /*nLanguage*/,
+/*N*/             const beans::PropertyValues& /*rProperties*/ )
 /*N*/         throw(lang::IllegalArgumentException,
 /*N*/               uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); uno::Reference< linguistic2::XSpellAlternatives > xRes; return xRes;
 /*N*/ }
 
 
@@ -402,7 +373,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 /*N*/ uno::Sequence< lang::Locale > SAL_CALL
 /*N*/     HyphDummy_Impl::getLocales()
 /*N*/         throw(uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< lang::Locale >();
 /*N*/ }
 
 
@@ -637,9 +608,7 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 ///////////////////////////////////////////////////////////////////////////
 
 
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATEDWORD_HPP_
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
-#endif
 
 
 
@@ -684,3 +653,5 @@ BOOL SvxLinguConfigUpdate::bUpdated = FALSE;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

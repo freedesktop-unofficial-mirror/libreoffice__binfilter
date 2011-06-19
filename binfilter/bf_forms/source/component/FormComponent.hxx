@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,74 +29,30 @@
 #ifndef _FORMS_FORMCOMPONENT_HXX_
 #define _FORMS_FORMCOMPONENT_HXX_
 
-#ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XBOUNDCONTROL_HPP_
 #include <com/sun/star/form/XBoundControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XBOUNDCOMPONENT_HPP_
 #include <com/sun/star/form/XBoundComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
 #include <com/sun/star/form/XLoadListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XRESET_HPP_
 #include <com/sun/star/form/XReset.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
 #include <com/sun/star/sdbc/XRowSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
 #include <com/sun/star/sdb/XColumn.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOLUMNUPDATE_HPP_
 #include <com/sun/star/sdb/XColumnUpdate.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
-#ifndef _COMPHELPER_GUARDING_HXX_
 #include <comphelper/guarding.hxx>
-#endif
-#ifndef _COMPHELPER_BASIC_IO_HXX_
 #include <comphelper/basicio.hxx>
-#endif
 
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_PROPERTY_HXX_
 #include "property.hxx"
-#endif
-#ifndef _FRM_IDS_HXX_
 #include "ids.hxx"
-#endif
-#ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #include "cloneable.hxx"
-#endif
 namespace binfilter {
 
     using namespace ::comphelper;
@@ -112,7 +69,7 @@ const sal_Int16 FRM_DEFAULT_TABINDEX = 0;
 // macro for quickly implementing XServiceInfo::getImplementationName
 #define IMPLEMENTATION_NAME(ImplName)                                       \
     virtual ::rtl::OUString SAL_CALL getImplementationName(  ) throw(::com::sun::star::uno::RuntimeException) \
-        { return ::rtl::OUString::createFromAscii("com.sun.star.comp.forms.") + ::rtl::OUString::createFromAscii(#ImplName); }
+        { return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms." )) + ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(#ImplName)); }
 
 // macro for overriding the getInfoServive method of OAggregationArrayUsageHelper
 #define IMPLEMENT_INFO_SERVICE()    \
@@ -335,6 +292,7 @@ public:
                 throw (::com::sun::star::lang::IllegalArgumentException);
     virtual void SAL_CALL setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue )
                 throw (::com::sun::star::uno::Exception);
+    using ::cppu::OPropertySetHelper::getFastPropertyValue;
 
 // ::com::sun::star::beans::XPropertyState
     virtual ::com::sun::star::beans::PropertyState getPropertyStateByHandle(sal_Int32 nHandle);
@@ -500,6 +458,7 @@ public:
                 throw (::com::sun::star::lang::IllegalArgumentException);
     virtual void SAL_CALL setFastPropertyValue_NoBroadcast( sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue )
                 throw (::com::sun::star::uno::Exception);
+    using ::cppu::OPropertySetHelper::getFastPropertyValue;
 
 // XEventListener
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& Source) throw (::com::sun::star::uno::RuntimeException);
@@ -526,3 +485,4 @@ private:
 }//end of namespace binfilter
 #endif // _FORMS_FORMCOMPONENT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

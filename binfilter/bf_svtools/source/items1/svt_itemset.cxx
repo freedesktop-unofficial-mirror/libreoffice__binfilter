@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,7 @@
 
 #include <string.h>
 
-#if STLPORT_VERSION>=321
 #include <cstdarg>
-#endif
-
-#ifndef GCC
-#endif
 
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_ULONGS
@@ -57,7 +53,7 @@ namespace binfilter
 // STATIC DATA -----------------------------------------------------------
 
 static const USHORT nInitCount = 10; // einzelne USHORTs => 5 Paare ohne '0'
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
 static ULONG nRangesCopyCount = 0;   // wie oft wurden Ranges kopiert
 #endif
 
@@ -289,7 +285,9 @@ SfxItemSet::SfxItemSet( SfxItemPool& rPool,
 void SfxItemSet::InitRanges_Impl(const USHORT *pWhichPairTable)
 {
     DBG_CHKTHIS(SfxItemSet, 0);
-    DBG_TRACE1("SfxItemSet: Ranges-CopyCount==%ul", ++nRangesCopyCount);
+    #if OSL_DEBUG_LEVEL > 1
+    OSL_TRACE("SfxItemSet: Ranges-CopyCount==%ul", ++nRangesCopyCount);
+    #endif
 
     USHORT nCnt = 0;
     const USHORT* pPtr = pWhichPairTable;
@@ -369,7 +367,9 @@ SfxItemSet::SfxItemSet( const SfxItemSet& rASet ):
             *ppDst = &_pPool->Put( **ppSrc );
 
     // dann noch die Which Ranges kopieren
-    DBG_TRACE1("SfxItemSet: Ranges-CopyCount==%ul", ++nRangesCopyCount);
+    #if OSL_DEBUG_LEVEL > 1
+    OSL_TRACE("SfxItemSet: Ranges-CopyCount==%ul", ++nRangesCopyCount);
+    #endif
     std::ptrdiff_t cnt = pPtr - rASet._pWhichRanges+1;
     _pWhichRanges = new USHORT[ cnt ];
     memcpy( _pWhichRanges, rASet._pWhichRanges, sizeof( USHORT ) * cnt);
@@ -498,7 +498,7 @@ USHORT SfxItemSet::ClearItem( USHORT nWhich )
 
                         // #i32448#
                         // Take care of disabled items, too.
-                        if(!pItemToClear->nWhich)
+                        if(!pItemToClear->m_nWhich)
                         {
                             // item is disabled, delete it
                             delete pItemToClear;
@@ -780,7 +780,7 @@ void SfxItemSet::PutExtended
                             break;
 
                         default:
-                            DBG_ERROR( "invalid Argument for eDontCareAs" );
+                            OSL_FAIL( "invalid Argument for eDontCareAs" );
                     }
                 }
                 else
@@ -805,7 +805,7 @@ void SfxItemSet::PutExtended
                         break;
 
                     default:
-                        DBG_ERROR( "invalid Argument for eDefaultAs" );
+                        OSL_FAIL( "invalid Argument for eDefaultAs" );
                 }
             }
         pPtr += 2;
@@ -915,7 +915,7 @@ const SfxPoolItem* SfxItemSet::GetItem
             return pItem;
 
         // sonst Fehler melden
-        DBG_ERROR( "invalid argument type" );
+        OSL_FAIL( "invalid argument type" );
     }
 
     // kein Item gefunden oder falschen Typ gefunden
@@ -1435,79 +1435,11 @@ USHORT SfxItemSet::GetWhichByPos( USHORT nPos ) const
     return 0;
 }
 
-// -----------------------------------------------------------------------
-
-SvStream &SfxItemSet::Store
-(
-    SvStream&   rStream,        // Zielstream f"ur normale Items
-    FASTBOOL    bDirect         // TRUE: Items direkt speicher, FALSE: Surrogate
-)   const
-
-/*  [Beschreibung]
-
-    Speichert die <SfxItemSet>-Instanz in den angegebenen Stream. Dabei
-    werden die Surrorage der gesetzten <SfxPoolItem>s bzw. ('bDirect==TRUE')
-    die gesetzten Items selbst wie folgt im Stream abgelegt:
-
-            USHORT              (Count) Anzahl der gesetzten Items
-    Count*  _pPool->StoreItem()  siehe <SfxItemPool::StoreItem()const>
-
-
-    [Querverweise]
-
-    <SfxItemSet::Load(SvStream&,BOOL,const SfxItemPool*)>
-*/
-
-{
-    DBG_CHKTHIS(SfxItemSet, DbgCheckItemSet);
-    DBG_ASSERT( _pPool, "Kein Pool" );
-    DBG_ASSERTWARNING( _pPool == _pPool->GetMasterPool(), "kein Master-Pool" );
-
-    // Position des Counts merken, um ggf. zu korrigieren
-    ULONG nCountPos = rStream.Tell();
-    rStream << _nCount;
-
-    // wenn nichts zu speichern ist, auch keinen ItemIter aufsetzen!
-    if ( _nCount )
-    {
-        // mitz"ahlen wieviel Items tats"achlich gespeichert werden
-        USHORT nWrittenCount = 0;  // Anzahl in 'rStream' gestreamter Items
-
-        // "uber alle gesetzten Items iterieren
-        SfxItemIter aIter(*this);
-        for ( const SfxPoolItem *pItem = aIter.FirstItem();
-              pItem;
-              pItem = aIter.NextItem() )
-        {
-            // Item (ggf. als Surrogat) via Pool speichern lassen
-            DBG_ASSERT( !IsInvalidItem(pItem), "can't store invalid items" );
-            if ( !IsInvalidItem(pItem) &&
-                 _pPool->StoreItem( rStream, *pItem, bDirect ) )
-                // Item wurde in 'rStream' gestreamt
-                ++nWrittenCount;
-        };
-
-        // weniger geschrieben als enthalten (z.B. altes Format)
-        if ( nWrittenCount != _nCount )
-        {
-            // tats"achlichen Count im Stream ablegen
-            ULONG nPos = rStream.Tell();
-            rStream.Seek( nCountPos );
-            rStream << nWrittenCount;
-            rStream.Seek( nPos );
-        }
-    }
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SvStream &SfxItemSet::Load
 (
     SvStream&           rStream,    //  Stream, aus dem geladen werden soll
 
-    FASTBOOL            bDirect,    /*  TRUE
+    bool            bDirect,    /*  TRUE
                                         Items werden direkt aus dem Stream
                                         gelesen, nicht "uber Surrogate
 
@@ -1981,73 +1913,6 @@ void SfxItemSet::DisableItem(USHORT nWhich)
 
 // -----------------------------------------------------------------------
 
-#if 0
-BOOL SfxAllItemSet::Remove(USHORT nWhich)
-{
-    DBG_CHKTHIS(SfxAllItemSet, 0);
-    USHORT *pPtr = _pWhichRanges;
-    USHORT nPos = 0;
-    while( *pPtr )
-    {
-        if( *pPtr <= nWhich && nWhich <= *(pPtr+1) )
-        {
-            USHORT *pTmp = pPtr;
-            USHORT nLeft = 0;
-            USHORT nRest = 0;
-            while(*++pTmp){
-                if( nLeft & 1 )
-                    nRest = *pTmp - *(pTmp-1) + 1;
-                ++nLeft;
-            }
-
-            // in diesem Bereich
-            nPos += nWhich - *pPtr;
-            nRest -= nWhich - *pPtr;
-            // 3,3
-            if(*pPtr == nWhich && *(pPtr+1) == nWhich) {
-                memmove(pPtr, pPtr + 2, nLeft * sizeof(USHORT));
-                nFree += 2;
-            }
-                // Anfang
-            else if(*pPtr == nWhich)
-                (*pPtr)++;
-                // Ende
-            else if(*(pPtr+1) == nWhich)
-                (*(pPtr+1))--;
-            else {
-                if(nPos + nRest + 2 > nFree) {
-                    USHORT nOf = pPtr - _pWhichRanges;
-                    _pWhichRanges = IncrSize(_pWhichRanges, nPos + nRest, nInitCount);
-                    nFree += nInitCount;
-                    pPtr = _pWhichRanges + nOf;
-                }
-                memmove(pPtr +2, pPtr, (nLeft+2) * sizeof(USHORT));
-                *++pPtr  = nWhich-1;
-                *++pPtr = nWhich+1;
-                nFree -= 2;
-            }
-            SfxPoolItem* pItem = *( _aItems + nPos );
-            if( pItem )
-            {
-                if(_pPool)
-                    _pPool->Remove(*pItem );
-                else
-                    delete pItem;
-                --_nCount;
-            }
-            memmove(_aItems + nPos +1, _aItems + nPos,
-                    sizeof(SfxPoolItem *) * (nRest - 1));
-            break;          // dann beim Parent suchen
-        }
-        nPos += *(pPtr+1) - *pPtr + 1;
-        pPtr += 2;
-    }
-    return *pPtr? TRUE: FALSE;
-}
-#endif
-
-// -----------------------------------------------------------------------
-
 SfxItemSet *SfxAllItemSet::Clone(BOOL bItems, SfxItemPool *pToPool ) const
 {
     DBG_CHKTHIS(SfxItemSet, DbgCheckItemSet);
@@ -2063,3 +1928,5 @@ SfxItemSet *SfxAllItemSet::Clone(BOOL bItems, SfxItemPool *pToPool ) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -45,8 +43,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 //------------------------------------------------------------------
 
@@ -202,9 +200,9 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 /*N*/ ScInputCfg::ScInputCfg() :
-/*N*/   ConfigItem( OUString::createFromAscii( CFGPATH_INPUT ) )
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_INPUT )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
+/*N*/   sal_Int32 nIntVal = 0;
 /*N*/
 /*N*/   Sequence<OUString> aNames = GetPropertyNames();
 /*N*/   Sequence<Any> aValues = GetProperties(aNames);
@@ -258,10 +256,12 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
 
-void ScInputCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void ScInputCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ ) {}
 void ScInputCfg::Commit() {}
 
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

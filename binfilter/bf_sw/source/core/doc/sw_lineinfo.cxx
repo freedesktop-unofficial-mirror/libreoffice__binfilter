@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "lineinfo.hxx"
@@ -68,7 +67,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ SwLineNumberInfo::SwLineNumberInfo(const SwLineNumberInfo &rCpy ) :
+/*N*/ SwLineNumberInfo::SwLineNumberInfo(const SwLineNumberInfo &rCpy ) : SwClient(),
 /*N*/   aType( rCpy.GetNumType() ),
 /*N*/   aDivider( rCpy.GetDivider() ),
 /*N*/   nPosFromLeft( rCpy.GetPosFromLeft() ),
@@ -119,7 +118,7 @@ namespace binfilter {
 
 /*N*/ void SwLineNumberInfo::SetCharFmt( SwCharFmt *pChFmt )
 /*N*/ {
-/*N*/   ASSERT( pChFmt, "SetCharFmt, 0 is not a valid pointer" );
+/*N*/   OSL_ENSURE( pChFmt, "SetCharFmt, 0 is not a valid pointer" );
 /*N*/   pChFmt->Add( this );
 /*N*/ }
 
@@ -137,3 +136,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

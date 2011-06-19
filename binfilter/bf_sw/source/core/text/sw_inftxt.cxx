@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,79 +33,33 @@
 
 #include <com/sun/star/uno/Sequence.h>
 
-#ifndef _SVTOOLS_LINGUPROPS_HXX_
 #include <bf_svtools/linguprops.hxx>
-#endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <bf_svtools/ctloptions.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_HNGPNCTITEM_HXX
 #include <bf_svx/hngpnctitem.hxx>
-#endif
-#ifndef _SVX_SRIPTSPACEITEM_HXX
 #include <bf_svx/scriptspaceitem.hxx>
-#endif
-#ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _SVX_FORBIDDENRULEITEM_HXX
 #include <bf_svx/forbiddenruleitem.hxx>
-#endif
-#ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>      // SwDoc
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>   // SwFmtDrop
-#endif
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>   // SwTxtInfo
-#endif
-#ifndef _NOTEURL_HXX
 #include <noteurl.hxx>  // SwNoteURL
-#endif
-#ifndef _PORFTN_HXX
 #include <porftn.hxx>   // SwFtnPortion
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _ITRATR_HXX
 #include <itratr.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -127,21 +82,7 @@ using namespace ::com::sun::star::beans;
 #endif
 
 // steht im number.cxx
-extern const sal_Char __FAR_DATA sBulletFntName[];
-
-// OD 24.01.2003 #106593# - no longer needed, included in <frmtool.hxx>
-//extern void MA_FASTCALL SwAlignRect( SwRect &rRect, ViewShell *pSh );
-
-#ifdef DBG_UTIL
-// Test2: WYSIWYG++
-// Test4: WYSIWYG debug
-static sal_Bool bDbgLow = sal_False;
-#endif
-
-#ifdef DBG_UTIL
-
-
-#endif
+extern const sal_Char sBulletFntName[];
 
 /*************************************************************************
  *                      SwLineInfo::SwLineInfo()
@@ -165,7 +106,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/   nTxtStart = pFrm->GetOfst();
 /*N*/   if( !pPara )
 /*N*/   {
-/*?*/       ASSERT( pPara, "+SwTxtInfo::CTOR: missing paragraph information" );
+/*?*/       OSL_ENSURE( pPara, "+SwTxtInfo::CTOR: missing paragraph information" );
 /*?*/       pFrm->Format();
 /*?*/       pPara = pFrm->GetPara();
 /*N*/   }
@@ -190,7 +131,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const OutputDevice *pOut = rInf.GetOut();
 /*N*/     const OutputDevice *pWin = rInf.GetVsh()->GetWin();
 /*N*/     const OutputDevice *pRef = rInf.GetRefDev();
-/*N*/     ASSERT( pOut && pRef, "ChkOutDev: invalid output devices" )
+/*N*/     OSL_ENSURE( pWin && pOut && pRef, "ChkOutDev: invalid output devices" );
 /*N*/ }
 /*N*/ #endif    // PRODUCT
 
@@ -304,8 +245,6 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     // bURLNotify wird gesetzt, wenn MakeGraphic dies vorbereitet
 /*N*/     // TODO: Aufdröseln
 /*N*/     bURLNotify = pNoteURL && !bOnWin;
-/*N*/ //    bURLNotify = pNoteURL && !bOnWin
-/*N*/ //        && (pOut && OUTDEV_PRINTER != pOut->GetOutDevType());
 /*N*/
 /*N*/     SetSnapToGrid( pNd->GetSwAttrSet().GetParaGrid().GetValue() &&
 /*N*/                    pFrm->IsInDocBody() );
@@ -328,7 +267,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/ }
 
 /*N*/ SwTxtSizeInfo::SwTxtSizeInfo( const SwTxtSizeInfo &rNew, const XubString &rTxt,
-/*N*/                             const xub_StrLen nIdx, const xub_StrLen nLen )
+/*N*/                             const xub_StrLen nInIdx, const xub_StrLen nInLen )
 /*N*/   : SwTxtInfo( rNew ),
 /*N*/       pKanaComp(((SwTxtSizeInfo&)rNew).GetpKanaComp()),
 /*N*/     pVsh(((SwTxtSizeInfo&)rNew).GetVsh()),
@@ -339,8 +278,8 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     pFrm( rNew.pFrm ),
 /*N*/     pOpt(&rNew.GetOpt()),
 /*N*/     pTxt(&rTxt),
-/*N*/     nIdx(nIdx),
-/*N*/     nLen(nLen),
+/*N*/     nIdx(nInIdx),
+/*N*/     nLen(nInLen),
 /*N*/       nKanaIdx( rNew.GetKanaIdx() ),
 /*N*/     bOnWin( rNew.OnWin() ),
 /*N*/     bNotEOL( rNew.NotEOL() ),
@@ -368,18 +307,9 @@ static sal_Bool bDbgLow = sal_False;
 
 /*N*/ void SwTxtSizeInfo::SelectFont()
 /*N*/ {
-/*N*/   // 8731: Der Weg muss ueber ChgPhysFnt gehen, sonst geraet
-/*N*/   // der FontMetricCache durcheinander. In diesem Fall steht pLastMet
-/*N*/   // auf dem alten Wert.
-/*N*/   // Falsch: GetOut()->SetFont( GetFont()->GetFnt() );
 /*N*/   GetFont()->Invalidate();
 /*N*/   GetFont()->ChgPhysFnt( pVsh, GetOut() );
 /*N*/ }
-
-/*************************************************************************
- *                      SwTxtSizeInfo::NoteAnimation()
- *************************************************************************/
-
 
 /*************************************************************************
  *                      SwTxtSizeInfo::GetTxtSize()
@@ -388,11 +318,11 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/ SwPosSize SwTxtSizeInfo::GetTxtSize( OutputDevice* pOutDev,
 /*N*/                                      const SwScriptInfo* pSI,
 /*N*/                                      const XubString& rTxt,
-/*N*/                                    const xub_StrLen nIdx,
-/*N*/                                      const xub_StrLen nLen,
+/*N*/                                    const xub_StrLen nIdx2,
+/*N*/                                      const xub_StrLen nLen2,
 /*N*/                                      const USHORT nComp ) const
 /*N*/ {
-/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOutDev, pSI, rTxt, nIdx, nLen );
+/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOutDev, pSI, rTxt, nIdx2, nLen2 );
 /*N*/     aDrawInf.SetFrm( pFrm );
 /*N*/     aDrawInf.SetFont( pFnt );
 /*N*/     aDrawInf.SetSnapToGrid( SnapToGrid() );
@@ -430,11 +360,11 @@ static sal_Bool bDbgLow = sal_False;
  *                      SwTxtSizeInfo::GetTxtSize()
  *************************************************************************/
 
-/*N*/ void SwTxtSizeInfo::GetTxtSize( const SwScriptInfo* pSI, const xub_StrLen nIdx,
-/*N*/                                 const xub_StrLen nLen, const USHORT nComp,
+/*N*/ void SwTxtSizeInfo::GetTxtSize( const SwScriptInfo* pSI, const xub_StrLen nIdx3,
+/*N*/                                 const xub_StrLen nLen3, const USHORT nComp,
 /*N*/                                 USHORT& nMinSize, USHORT& nMaxSizeDiff ) const
 /*N*/ {
-/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, pSI, *pTxt, nIdx, nLen );
+/*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, pSI, *pTxt, nIdx3, nLen3 );
 /*N*/     aDrawInf.SetFrm( pFrm );
 /*N*/     aDrawInf.SetFont( pFnt );
 /*N*/     aDrawInf.SetSnapToGrid( SnapToGrid() );
@@ -460,7 +390,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const SwScriptInfo& rScriptInfo =
 /*N*/                      ( (SwParaPortion*)GetParaPortion() )->GetScriptInfo();
 /*N*/
-/*N*/     ASSERT( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" )
+/*N*/     OSL_ENSURE( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" );
 /*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, &rScriptInfo,
 /*N*/                              *pTxt, GetIdx(), nMaxLen );
 /*N*/     aDrawInf.SetFrm( pFrm );
@@ -484,7 +414,7 @@ static sal_Bool bDbgLow = sal_False;
 /*N*/     const SwScriptInfo& rScriptInfo =
 /*N*/                      ( (SwParaPortion*)GetParaPortion() )->GetScriptInfo();
 /*N*/
-/*N*/     ASSERT( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" )
+/*N*/     OSL_ENSURE( pRef == pOut, "GetTxtBreak is supposed to use the RefDev" );
 /*N*/     SwDrawTextInfo aDrawInf( pVsh, *pOut, &rScriptInfo,
 /*N*/                              *pTxt, GetIdx(), nMaxLen );
 /*N*/     aDrawInf.SetFrm( pFrm );
@@ -517,88 +447,17 @@ static sal_Bool bDbgLow = sal_False;
 
 
 /*N*/ SwTxtPaintInfo::SwTxtPaintInfo( const SwTxtPaintInfo &rInf )
-/*N*/   : SwTxtSizeInfo( rInf ),
-/*N*/     aTxtFly( *rInf.GetTxtFly() ),
-/*N*/     aPos( rInf.GetPos() ),
-/*N*/     aPaintRect( rInf.GetPaintRect() ),
-/*N*/     nSpaceIdx( rInf.GetSpaceIdx() ),
-/*N*/     pSpaceAdd( rInf.GetpSpaceAdd() ),
-/*N*/     pWrongList( rInf.GetpWrongList() ),
-/*N*/       pBrushItem( rInf.GetBrushItem() )
+/*N*/   : SwTxtSizeInfo( rInf )
+/*N*/   , pWrongList( rInf.GetpWrongList() )
+/*N*/   , pSpaceAdd( rInf.GetpSpaceAdd() )
+/*N*/   , pBrushItem( rInf.GetBrushItem() )
+/*N*/   , aTxtFly( *rInf.GetTxtFly() )
+/*N*/   , aPos( rInf.GetPos() )
+/*N*/   , aPaintRect( rInf.GetPaintRect() )
+/*N*/   , nSpaceIdx( rInf.GetSpaceIdx() )
 /*N*/ { }
 
 extern Color aGlobalRetoucheColor;
-
-/*************************************************************************
- *                          lcl_IsDarkBackground
- *
- * Returns if the current background color is dark.
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::_DrawText()
- *************************************************************************/
-
-
-/*************************************************************************
- *                          lcl_CalcRect()
- *************************************************************************/
-
-
-/*************************************************************************
- *                          lcl_DrawSpecial
- *
- * Draws a special portion, e.g., line break portion, tab portion.
- * rPor - The portion
- * rRect - The rectangle surrounding the character
- * pCol     - Specify a color for the character
- * bCenter  - Draw the character centered, otherwise left aligned
- * bRotate  - Rotate the character if character rotation is set
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawRect()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawTab()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawLineBreak()
- *************************************************************************/
-
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawRedArrow()
- *************************************************************************/
-
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawPostIts()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawBackGround()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::DrawViewOpt()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwTxtPaintInfo::_NotifyURL()
- *************************************************************************/
-
 
 /*************************************************************************
  *                  lcl_InitHyphValues()
@@ -629,7 +488,7 @@ extern Color aGlobalRetoucheColor;
 /*?*/       pVal[1].Value <<= nMinTrailing;
 /*?*/   }
 /*?*/   else
-/*?*/       DBG_ERROR( "unxpected size of sequence" );
+/*?*/       OSL_FAIL( "unxpected size of sequence" );
 /*N*/ }
 
 /*************************************************************************
@@ -647,7 +506,7 @@ extern Color aGlobalRetoucheColor;
  *                  SwTxtFormatInfo::InitHyph()
  *************************************************************************/
 
-/*N*/ sal_Bool SwTxtFormatInfo::InitHyph( const sal_Bool bAutoHyph )
+/*N*/ sal_Bool SwTxtFormatInfo::InitHyph( const sal_Bool bAutoHyph1 )
 /*N*/ {
 /*N*/   const SwAttrSet& rAttrSet = GetTxtFrm()->GetTxtNode()->GetSwAttrSet();
 /*N*/   SetHanging( rAttrSet.GetHangingPunctuation().GetValue() );
@@ -655,15 +514,15 @@ extern Color aGlobalRetoucheColor;
 /*N*/   SetForbiddenChars( rAttrSet.GetForbiddenRule().GetValue() );
 /*N*/   const SvxHyphenZoneItem &rAttr = rAttrSet.GetHyphenZone();
 /*N*/   MaxHyph() = rAttr.GetMaxHyphens();
-/*N*/   sal_Bool bAuto = bAutoHyph || rAttr.IsHyphen();
+/*N*/   sal_Bool bAuto = bAutoHyph1 || rAttr.IsHyphen();
 /*N*/   if( bAuto || bInterHyph )
 /*N*/   {
 /*N*/       nHyphStart = nHyphWrdStart = STRING_LEN;
 /*N*/       nHyphWrdLen = 0;
 /*N*/
-/*N*/       INT16 nMinLeading  = Max(rAttr.GetMinLead(), sal_uInt8(2));
-/*N*/       INT16 nMinTrailing = rAttr.GetMinTrail();
-/*N*/       lcl_InitHyphValues( aHyphVals, nMinLeading, nMinTrailing);
+/*N*/       INT16 nMinLeading1  = Max(rAttr.GetMinLead(), sal_uInt8(2));
+/*N*/       INT16 nMinTrailing1 = rAttr.GetMinTrail();
+/*N*/       lcl_InitHyphValues( aHyphVals, nMinLeading1, nMinTrailing1);
 /*N*/   }
 /*N*/   return bAuto;
 /*N*/ }
@@ -724,7 +583,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/
 /*N*/   uno::Reference< XHyphenator > xHyph = ::binfilter::GetHyphenator();
 /*N*/   if (bInterHyph && xHyph.is())
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvxSpellWrapper::CheckHyphLang( xHyph, eTmp );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   if( !xHyph.is() || !xHyph->hasLocale( pBreakIt->GetLocale(eTmp) ) )
 /*N*/       return sal_False;
@@ -760,12 +619,12 @@ extern Color aGlobalRetoucheColor;
 /*N*/     if ( GetTxtFrm()->IsFollow() )
 /*N*/     {
 /*N*/         const SwTxtFrm* pMaster = GetTxtFrm()->FindMaster();
-/*N*/         const SwLinePortion* pPara = pMaster->GetPara();
+/*N*/         const SwLinePortion* pPara1 = pMaster->GetPara();
 /*N*/
 /*N*/         // there is a master for this follow and the master does not have
 /*N*/         // any contents (especially it does not have a number portion)
-/*N*/         bNumDone = ! pPara ||
-/*N*/                    ! ((SwParaPortion*)pPara)->GetFirstPortion()->IsFlyPortion();
+/*N*/         bNumDone = ! pPara1 ||
+/*N*/                    ! ((SwParaPortion*)pPara1)->GetFirstPortion()->IsFlyPortion();
 /*N*/     }
 /*N*/
 /*N*/   pRoot = 0;
@@ -785,7 +644,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/   SetPaintOfst(0);
 /*N*/ }
 
-/*-----------------16.10.00 11:39-------------------
+/*--------------------------------------------------
  * There are a few differences between a copy constructor
  * and the following constructor for multi-line formatting.
  * The root is the first line inside the multi-portion,
@@ -831,12 +690,6 @@ extern Color aGlobalRetoucheColor;
 /*N*/   const xub_Unicode cTabDec = GetLastTab() ? (sal_Unicode)GetTabDecimal() : 0;
 /*N*/   xub_StrLen i = nStart;
 /*N*/
-/*N*/     // Removed for i7288. bSkip used to be passed from SwFldPortion::Format
-/*N*/     // as IsFollow(). Therefore more than one special character was not
-/*N*/     // handled correctly at the beginning of follow fields.
-/*N*/ //    if ( bSkip && i < nEnd )
-/*N*/ //       ++i;
-/*N*/
 /*N*/   for( ; i < nEnd; ++i )
 /*N*/   {
 /*N*/       const xub_Unicode cPos = GetChar( i );
@@ -864,7 +717,7 @@ extern Color aGlobalRetoucheColor;
 /*N*/         default:
 /*N*/           if( cTabDec == cPos )
 /*N*/           {
-/*N*/               ASSERT( cPos, "Unexspected end of string" );
+/*N*/               OSL_ENSURE( cPos, "Unexspected end of string" );
 /*N*/               if( cPos ) // robust
 /*N*/               {
 /*N*/                   cHookChar = cPos;
@@ -1041,16 +894,6 @@ extern Color aGlobalRetoucheColor;
 /*N*/ }
 
 /*************************************************************************
- *                     SwDefFontSave::SwDefFontSave()
- *************************************************************************/
-
-
-/*************************************************************************
- *                     SwDefFontSave::~SwDefFontSave()
- *************************************************************************/
-
-
-/*************************************************************************
  *                  SwTxtFormatInfo::ChgHyph()
  *************************************************************************/
 
@@ -1070,3 +913,5 @@ extern Color aGlobalRetoucheColor;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

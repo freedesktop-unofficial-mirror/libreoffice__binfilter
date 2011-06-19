@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,15 +27,9 @@
  ************************************************************************/
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _DOBJFAC_HXX
+#include <osl/diagnose.h>
 #include <dobjfac.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
 namespace binfilter {
 
 SwObjectFactory aSwObjectFactory;
@@ -50,7 +45,7 @@ SwObjectFactory aSwObjectFactory;
 /*N*/   if ( pObjFactory->nInventor == SWGInventor )
 /*N*/   {
 /*N*/       //Kein switch, derzeit gibt es nur einen.
-/*?*/       ASSERT( pObjFactory->nIdentifier == SwFlyDrawObjIdentifier,
+/*?*/       OSL_ENSURE( pObjFactory->nIdentifier == SwFlyDrawObjIdentifier,
 /*?*/                                       "Falscher Inventor oder identifier." );
 /*?*/       pObjFactory->pNewObj = new SwFlyDrawObj();
 /*N*/   }
@@ -59,3 +54,5 @@ SwObjectFactory aSwObjectFactory;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,115 +26,48 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_EMPHITEM_HXX //autogen
 #include <bf_svx/emphitem.hxx>
-#endif
 
-#ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _TXTATR_HXX //autogen
 #include <txtatr.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
-#endif
-#ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
-#endif
-#ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _USRFLD_HXX
 #include <usrfld.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
 // OD 26.06.2003 #108784#
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
 
 #include <algorithm>
 namespace binfilter {
@@ -228,10 +162,10 @@ using namespace ::com::sun::star::i18n;
 /*?*/           ((SwTxtFtn*)pNew)->SetSeqNo( ((SwFmtFtn&)rAttr).GetTxtFtn()->GetSeqRefNo() );
 /*N*/       break;
 /*?*/   case RES_TXTATR_HARDBLANK:
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtHardBlank( (SwFmtHardBlank&)rNew, nStt );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*?*/     case RES_CHRATR_TWO_LINES:
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxt2Lines( (SvxTwoLinesItem&)rNew, nStt, nEnd );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*N*/   case RES_TXTATR_REFMARK:
 /*N*/       pNew = nStt == nEnd
@@ -243,13 +177,13 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/   case RES_UNKNOWNATR_CONTAINER:
 /*?*/   case RES_TXTATR_UNKNOWN_CONTAINER:
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       pNew = new SwTxtXMLAttrContainer( (SvXMLAttrContainerItem&)rNew,
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       break;
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       pNew = new SwTxtRuby( (SwFmtRuby&)rNew, nStt, nEnd );
 /*N*/       break;
 /*N*/   }
-/*N*/   ASSERT( pNew, "was fuer ein TextAttribut soll hier angelegt werden?" );
+/*N*/   OSL_ENSURE( pNew, "was fuer ein TextAttribut soll hier angelegt werden?" );
 /*N*/   return pNew;
 /*N*/ }
 
@@ -286,9 +220,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/               const SwField* pFld = pAttr->GetFld().GetFld();
 /*N*/
 /*N*/               //JP 06-08-95: DDE-Felder bilden eine Ausnahme
-/*N*/               ASSERT( RES_DDEFLD == pFld->GetTyp()->Which() ||
+/*N*/               OSL_ENSURE( RES_DDEFLD == pFld->GetTyp()->Which() ||
 /*N*/                       this == ((SwTxtFld*)pAttr)->GetpTxtNode(),
-/*N*/                       "Wo steht denn dieses Feld?" )
+/*N*/                       "Wo steht denn dieses Feld?" );
 /*N*/
 /*N*/               // bestimmte Felder mussen am Doc das Calculations-Flag updaten
 /*N*/               switch( pFld->GetTyp()->Which() )
@@ -348,14 +282,13 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return (pNew && Insert( pNew, nMode )) ? pNew : 0;
 /*N*/ }
 
-
 // uebernehme den Pointer auf das Text-Attribut
 
 /*N*/ BOOL SwTxtNode::Insert( SwTxtAttr *pAttr, USHORT nMode )
 /*N*/ {
 /*N*/   BOOL bHiddenPara = FALSE;
 /*N*/
-/*N*/   ASSERT( *pAttr->GetStart() <= Len(), "StartIdx hinter Len!" );
+/*N*/   OSL_ENSURE( *pAttr->GetStart() <= Len(), "StartIdx hinter Len!" );
 /*N*/
 /*N*/   if( !pAttr->GetEnd() )
 /*N*/   {
@@ -413,7 +346,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       if( SETATTR_NOTXTATRCHR & nInsMode )
 /*?*/                       {
 /*?*/                       // loesche das Zeichen aus dem String !
-/*?*/                       ASSERT( ( CH_TXTATR_BREAKWORD ==
+/*?*/                       OSL_ENSURE( ( CH_TXTATR_BREAKWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart() ) ||
 /*?*/                                 CH_TXTATR_INWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart())),
@@ -446,7 +379,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   if( SETATTR_NOTXTATRCHR & nInsMode )
 /*?*/                   {
 /*?*/                       // loesche das Zeichen aus dem String !
-/*?*/                       ASSERT( ( CH_TXTATR_BREAKWORD ==
+/*?*/                       OSL_ENSURE( ( CH_TXTATR_BREAKWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart() ) ||
 /*?*/                                 CH_TXTATR_INWORD ==
 /*?*/                                       aText.GetChar(*pAttr->GetStart())),
@@ -518,7 +451,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ #endif
 /*N*/                       pDoc->GetFtnIdxs().Insert( pTxtFtn );
 /*N*/ #ifdef DBG_UTIL
-/*N*/                   ASSERT( bSuccess, "FtnIdx nicht eingetragen." );
+/*N*/                   OSL_ENSURE( bSuccess, "FtnIdx nicht eingetragen." );
 /*N*/ #endif
 /*N*/               }
 /*N*/               SwNodeIndex aTmpIndex( *this );
@@ -549,7 +482,9 @@ using namespace ::com::sun::star::i18n;
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       ASSERT( *pAttr->GetEnd() <= Len(), "EndIdx hinter Len!" );
+/*N*/   {
+/*N*/       OSL_ENSURE( *pAttr->GetEnd() <= Len(), "EndIdx hinter Len!" );
+/*N*/   }
 /*N*/
 /*N*/   if ( !pSwpHints )
 /*N*/       pSwpHints = new SwpHints();
@@ -567,7 +502,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/       SetCalcVisible();
 /*N*/   return TRUE;
 /*N*/ }
-
 
 /*************************************************************************
  *                      SwTxtNode::Delete()
@@ -660,7 +594,6 @@ using namespace ::com::sun::star::i18n;
  *                      SwTxtNode::DelSoftHyph()
  *************************************************************************/
 
-
 // setze diese Attribute am TextNode. Wird der gesamte Bereich umspannt,
 // dann setze sie nur im AutoAttrSet (SwCntntNode:: SetAttr)
 /*N*/ BOOL SwTxtNode::SetAttr( const SfxItemSet& rSet, xub_StrLen nStt,
@@ -717,7 +650,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/           if( RES_TXTATR_CHARFMT == pItem->Which() &&
 /*N*/               GetDoc()->GetDfltCharFmt()==((SwFmtCharFmt*)pItem)->GetCharFmt())
 /*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 SwIndex aIndex( this, nStt );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -727,7 +660,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   // Attribut ohne Ende, aber Bereich markiert ?
 /*N*/                   if( nEnd != nStt && !pNew->GetEnd() )
 /*N*/                   {
-/*?*/                       ASSERT( !this, "Attribut ohne Ende aber Bereich vorgegeben" );
+/*?*/                       OSL_ENSURE( !this, "Attribut ohne Ende aber Bereich vorgegeben" );
 /*?*/                       DestroyAttr( pNew );        // nicht einfuegen
 /*N*/                   }
 /*N*/                   else if( Insert( pNew, nMode ))
@@ -789,36 +722,10 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   rSet.Put( rCFSet.Get( nWhich ) );
 /*N*/               nWhich = aIter.NextWhich();
 /*N*/           }
-/*N*/ #if 0
-/*N*/           SfxItemSet aTmpSet( *rSet.GetPool(), rSet.GetRanges() );
-/*N*/           aTmpSet.Set( pFmt->GetAttrSet(), TRUE );
- /*
- ????? JP 31.01.95 ???? wie jetzt ???
-             rSet.MergeValues( aTmpSet );
-
-             // jetzt alle zusammen "mergen"
-             rSet.Differentiate( aTmpSet );
- */
-/*N*/           rSet.Put( aTmpSet );
-/*N*/ #endif
 /*N*/       }
 /*N*/   }
 /*N*/
 /*N*/   // aufnehmen als MergeWert (falls noch nicht gesetzt neu setzen!)
-/*N*/ #if 0
- /* wenn mehrere Attribute ueberlappen werden diese gemergt !!
-  z.B
-             1234567890123456789
-               |------------|       Font1
-                  |------|          Font2
-                     ^  ^
-                     |--|       Abfragebereich: -> uneindeutig
- */
-/*N*/   else if( SFX_ITEM_DEFAULT == rSet.GetItemState( rAttr.Which(), FALSE ))
-/*N*/       rSet.Put( rAttr );
-/*N*/   else
-/*N*/       rSet.MergeValue( rAttr );
-/*N*/ #else
  /* wenn mehrere Attribute ueberlappen gewinnt der letze !!
   z.B
              1234567890123456789
@@ -828,7 +735,6 @@ using namespace ::com::sun::star::i18n;
                      |--|       Abfragebereich: -> Gueltig ist Font2
  */
 /*N*/       rSet.Put( rAttr );
-/*N*/ #endif
 /*N*/ }
 
 // erfrage die Attribute vom TextNode ueber den Bereich
@@ -1006,7 +912,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return rSet.Count() ? TRUE : FALSE;
 /*N*/ }
 
-
 /*N*/ void SwTxtNode::FmtToTxtAttr( SwTxtNode* pNd )
 /*N*/ {
 /*N*/   SfxItemSet aThisSet( GetDoc()->GetAttrPool(), aCharFmtSetRange );
@@ -1018,16 +923,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   if( pNd == this )
 /*N*/   {
-/*?*/       if( aThisSet.Count() )
-/*?*/       {
-/*?*/           SfxItemIter aIter( aThisSet );
-/*?*/           const SfxPoolItem* pItem = aIter.GetCurItem();
-/*?*/           while( TRUE )
-/*?*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pSwpHints, *pItem, GetTxt().Len() ) )
-/*?*/           }
-/*?*/       }
-/*N*/
 /*N*/   }
 /*N*/   else
 /*N*/   {
@@ -1040,20 +935,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/       if( aThisSet.Count() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxItemIter aIter( aThisSet );
-/*N*/       }
-/*N*/
-/*N*/       if( aNdSet.Count() )
-/*N*/       {
-/*?*/           SfxItemIter aIter( aNdSet );
-/*?*/           const SfxPoolItem* pItem = aIter.GetCurItem();
-/*?*/           while( TRUE )
-/*?*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( lcl_IsNewAttrInSet( *pNd->pSwpHints, *pItem, pNd->GetTxt().Len() ) )
-/*?*/           }
-/*?*/
-/*?*/           SwFmtChg aTmp1( pNd->GetFmtColl() );
-/*?*/           pNd->SwModify::Modify( &aTmp1, &aTmp1 );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -1128,7 +1010,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return bOldVis != bNewVis;
 /*N*/ }
 
-
 /*************************************************************************
  *                      SwpHints::Resort()
  *************************************************************************/
@@ -1156,7 +1037,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/   return FALSE;
 /*N*/ }
-
 
 /*************************************************************************
  *                      SwpHints::ClearDummies()
@@ -1212,12 +1092,13 @@ using namespace ::com::sun::star::i18n;
  * gleichartiges Attribut endet oder beginnt, welches einen von der beiden
  * Kandidaten umfasst, auch Zeichenvorlage duerfen nicht ueberlappt werden.
  */
-/*-----------------5.9.2001 09:26-------------------
+
+/*
  * And here a smarter version of good old Merge(..)
  * If a SwTxtAttr is given, only the merging between this attribute and the
  * neighbours are checked. This saves time, if no attribute is given (in more
  * complex situations), the whole attribute array is checked as before.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwpHints::Merge( SwTxtNode &rNode, SwTxtAttr* pAttr )
 /*N*/ {
@@ -1235,7 +1116,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/             SwTxtAttr *pPrev;
 /*N*/             SwTxtAttr *pNext;
 /*N*/             USHORT nEndIdx = aHtEnd.C40_GETPOS( SwTxtAttr, pAttr );
-/*N*/             ASSERT( USHRT_MAX != nEndIdx, "Missing end index" );
+/*N*/             OSL_ENSURE( USHRT_MAX != nEndIdx, "Missing end index" );
 /*N*/             if( nEndIdx )
 /*N*/             {
 /*N*/                 // If there's a attribute with same start and which-id,
@@ -1442,7 +1323,6 @@ using namespace ::com::sun::star::i18n;
  * identischen Bereich mit einem inneren Attribut bekaeme.
  */
 
-
 /*************************************************************************
  *                      SwpHints::Insert()
  *************************************************************************/
@@ -1531,7 +1411,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                                   pDoc->InsertFldType( *pFld->GetTyp() );
 /*N*/                       if( pFldType != pFld->GetTyp() )
 /*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtFld* pFmtFld = (SwFmtFld*)&((SwTxtFld*)pHint)
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/                       pFldType->SetSeqRefNo( *(SwSetExpField*)pFld );
 /*N*/                   }
@@ -1547,7 +1427,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   break;
 /*N*/               }
 /*N*/               if( bInsFldType )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->InsDeletedFldType( *pFld->GetTyp() );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           }
 /*N*/       }
 /*N*/       break;
@@ -1560,14 +1440,14 @@ using namespace ::com::sun::star::i18n;
 /*N*/       {
 /*N*/           //search for a refernce with the same name
 /*N*/           SwTxtAttr* pHt;
-/*N*/           xub_StrLen *pHtEnd, *pHintEnd;
+/*N*/           xub_StrLen *pHtEnd2, *pHintEnd;
 /*N*/           for( USHORT n = 0, nEnd = Count(); n < nEnd; ++n )
 /*N*/               if( RES_TXTATR_REFMARK == (pHt = GetHt( n ))->Which() &&
 /*N*/                   pHint->GetAttr() == pHt->GetAttr() &&
-/*N*/                   0 != ( pHtEnd = pHt->GetEnd() ) &&
+/*N*/                   0 != ( pHtEnd2 = pHt->GetEnd() ) &&
 /*N*/                   0 != ( pHintEnd = pHint->GetEnd() ) )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwComparePosition eCmp = ::ComparePosition(
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/       }
 /*N*/       break;
@@ -1577,7 +1457,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   case RES_TXTATR_CJK_RUBY:
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             ((SwTxtRuby*)pHint)->ChgTxtNode( &rNode );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -1616,7 +1496,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   if( *pHtEnd < nHtStart )
 /*N*/   {
-/*?*/       ASSERT( *pHtEnd >= nHtStart,
+/*?*/       OSL_ENSURE( *pHtEnd >= nHtStart,
 /*?*/                   "+SwpHints::Insert: invalid hint, end < start" );
 /*?*/
 /*?*/       // Wir drehen den Quatsch einfach um:
@@ -1684,7 +1564,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       {
 /*?*/                           if( !bOtherFmt )
 /*?*/                           {
-                                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                                 bOtherFmt = !lcl_Included( pOther->Which(),
+                                    DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*?*/                           if( bOtherFmt )
 /*?*/                               nHtEnd = *pOther->GetStart();
@@ -1964,12 +1844,10 @@ using namespace ::com::sun::star::i18n;
 /*N*/ {
 /*N*/   // Attr 2.0: SwpHintsArr::Delete( pTxtHt );
 /*N*/   const USHORT nPos = GetStartOf( pTxtHt );
-/*N*/   ASSERT( USHRT_MAX != nPos, "Attribut nicht im Attribut-Array!" );
+/*N*/   OSL_ENSURE( USHRT_MAX != nPos, "Attribut nicht im Attribut-Array!" );
 /*N*/   if( USHRT_MAX != nPos )
 /*N*/       DeleteAtPos( nPos );
 /*N*/ }
-
-
 
 /*N*/ #ifdef VERTICAL_LAYOUT
 /*N*/ USHORT SwTxtNode::GetLang( const xub_StrLen nBegin, const xub_StrLen nLen,
@@ -2049,7 +1927,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return nRet;
 /*N*/ }
 
-
 /*N*/ sal_Unicode GetCharOfTxtAttr( const SwTxtAttr& rAttr )
 /*N*/ {
 /*N*/   sal_Unicode cRet = CH_TXTATR_BREAKWORD;
@@ -2073,5 +1950,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   return cRet;
 /*N*/ }
 
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

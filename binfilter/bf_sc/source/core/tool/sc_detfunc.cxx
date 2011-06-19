@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,9 +36,7 @@
 #include <bf_svtools/colorcfg.hxx>
 #include <bf_svx/outlobj.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/svdocapt.hxx>
@@ -86,16 +82,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 
 //  maximale Textlaenge (Zeichen), die noch in "kleines" Objekt passt
 #define SC_NOTE_SMALLTEXT   100
-
-//------------------------------------------------------------------------
-
-//-/class ScPublicAttrObj : public SdrAttrObj
-//-/{
-//-/private:
-//-/    ScPublicAttrObj() {}                        // wird nicht angelegt
-//-/public:
-//-/    const XLineAttrSetItem* GetLineAttr()       { return pLineAttr; }
-//-/};
 
 //------------------------------------------------------------------------
 
@@ -285,12 +271,12 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   //  MAXCOL/ROW+1 ist erlaubt fuer Ende von Rahmen
 /*N*/   if (nCol > MAXCOL+1)
 /*N*/   {
-/*N*/       DBG_ERROR("falsche Col in ScDetectiveFunc::GetDrawPos");
+/*N*/       OSL_FAIL("falsche Col in ScDetectiveFunc::GetDrawPos");
 /*N*/       nCol = MAXCOL+1;
 /*N*/   }
 /*N*/   if (nRow > MAXROW+1)
 /*N*/   {
-/*N*/       DBG_ERROR("falsche Row in ScDetectiveFunc::GetDrawPos");
+/*N*/       OSL_FAIL("falsche Row in ScDetectiveFunc::GetDrawPos");
 /*N*/       nRow = MAXROW+1;
 /*N*/   }
 /*N*/
@@ -345,7 +331,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   if (bStartAlien && bEndAlien)
 /*N*/   {
-/*N*/       DBG_ERROR("bStartAlien && bEndAlien");
+/*N*/       OSL_FAIL("bStartAlien && bEndAlien");
 /*N*/       return TRUE;
 /*N*/   }
 /*N*/
@@ -385,19 +371,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/           BOOL bObjEndAlien =
 /*N*/               lcl_IsOtherTab( ((const XLineEndItem&)pObject->GetItem(XATTR_LINEEND)).GetValue() );
 /*N*/
-/*N*/ //-/          BOOL bObjStartAlien = FALSE;
-/*N*/ //-/          BOOL bObjEndAlien = FALSE;
-/*N*/ //-/          const XLineAttrSetItem* pLineAttrs =
-/*N*/ //-/              ((ScPublicAttrObj*)(SdrAttrObj*)pObject)->GetLineAttr();
-/*N*/ //-/          if (pLineAttrs)
-/*N*/ //-/          {
-/*N*/ //-/              const SfxItemSet& rSet = pLineAttrs->GetItemSet();
-/*N*/ //-/              bObjStartAlien = (((const XLineStartItem&)rSet.Get(XATTR_LINESTART)).
-/*N*/ //-/                                      GetValue().GetPointCount() == 4 );
-/*N*/ //-/              bObjEndAlien   = (((const XLineEndItem&)rSet.Get(XATTR_LINEEND)).
-/*N*/ //-/                                      GetValue().GetPointCount() == 4 );
-/*N*/ //-/          }
-/*N*/
 /*N*/           BOOL bStartHit = bStartAlien ? bObjStartAlien :
 /*N*/                               ( !bObjStartAlien && aStartRect.IsInside(pObject->GetPoint(0)) );
 /*N*/           BOOL bEndHit = bEndAlien ? bObjEndAlien :
@@ -428,7 +401,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   BOOL bArea = ( nRefStartCol != nRefEndCol || nRefStartRow != nRefEndRow );
 /*N*/   if (bArea && !bFromOtherTab)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   Point aStartPos = GetDrawPos( nRefStartCol, nRefStartRow, TRUE );
@@ -458,7 +431,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   pArrow->NbcSetLogicRect(Rectangle(aStartPos,aEndPos));  //! noetig ???
 /*N*/
-/*N*/ //-/  pArrow->SetAttributes( rAttrSet, FALSE );
 /*N*/   pArrow->SetItemSetAndBroadcast(rAttrSet);
 /*N*/
 /*N*/   ScDrawLayer::SetAnchor( pArrow, SCA_CELL );
@@ -500,7 +472,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/       SdrRectObj* pBox = new SdrRectObj(Rectangle(aStartCorner,aEndCorner));
 /*N*/
-/*N*/ //-/      pBox->SetAttributes( rData.GetBoxSet(), FALSE );
 /*N*/       pBox->SetItemSetAndBroadcast(rData.GetBoxSet());
 /*N*/
 /*N*/       ScDrawLayer::SetAnchor( pBox, SCA_CELL );
@@ -538,7 +509,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   pArrow->NbcSetLogicRect(Rectangle(aStartPos,aEndPos));  //! noetig ???
 /*N*/
-/*N*/ //-/  pArrow->SetAttributes( rAttrSet, FALSE );
 /*N*/   pArrow->SetItemSetAndBroadcast(rAttrSet);
 /*N*/
 /*N*/   ScDrawLayer::SetAnchor( pArrow, SCA_CELL );
@@ -615,7 +585,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   SdrCircObj* pCircle = new SdrCircObj( OBJ_CIRC, aRect );
 /*N*/   SfxItemSet& rAttrSet = rData.GetCircleSet();
 /*N*/
-/*N*/ //-/  pCircle->SetAttributes( rAttrSet, FALSE );
 /*N*/   pCircle->SetItemSetAndBroadcast(rAttrSet);
 /*N*/
 /*N*/   ScDrawLayer::SetAnchor( pCircle, SCA_CELL );
@@ -696,17 +665,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 
 /*N*/ void ScDetectiveFunc::DeleteBox( USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2 )
 /*N*/ {
-/*  String aStr;
-    aStr += nCol1;
-    aStr += '/';
-    aStr += nRow1;
-    aStr += '/';
-    aStr += nCol2;
-    aStr += '/';
-    aStr += nRow2;
-    InfoBox(0,aStr).Execute();
-*/
-/*N*/
 /*N*/   Point aStartCorner = GetDrawPos( nCol1, nRow1, FALSE );
 /*N*/   Point aEndCorner = GetDrawPos( nCol2+1, nRow2+1, FALSE );
 /*N*/   Rectangle aObjRect;
@@ -1165,6 +1123,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   ScDetectiveData aData( pModel );
 /*N*/
@@ -1188,6 +1147,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   ScDetectiveData aData( pModel );
 /*N*/
@@ -1211,6 +1171,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   ScTripel aPos( nCol, nRow, nTab );
 /*N*/   ScTripel aErrPos;
@@ -1233,6 +1194,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   USHORT nLevelCount = FindSuccLevel( nCol, nRow, nCol, nRow, 0, 0 );
 /*N*/   if ( nLevelCount )
@@ -1249,6 +1211,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/
 /*N*/   SdrPage* pPage = pModel->GetPage(nTab);
 /*N*/   DBG_ASSERT(pPage,"Page ?");
+/*N*/   (void)pPage;
 /*N*/
 /*N*/   USHORT nLevelCount = FindPredLevel( nCol, nRow, 0, 0 );
 /*N*/   if ( nLevelCount )
@@ -1294,7 +1257,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/                   else if ( eWhat == SC_DET_ARROWS )      // DetectiveRefresh
 /*N*/                       bDoThis = !bCaption && !bCircle;    // don't include circles
 /*N*/                   else
-/*N*/                       DBG_ERROR("wat?");
+/*N*/                       OSL_FAIL("wat?");
 /*N*/               }
 /*N*/               if ( bDoThis )
 /*N*/                   ppObj[nDelCount++] = pObject;
@@ -1384,7 +1347,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/ }
 
 /*N*/ SdrObject* ScDetectiveFunc::ShowCommentUser( USHORT nCol, USHORT nRow, const String& rUserText,
-/*N*/                                           const Rectangle& rVisible, BOOL bLeft, BOOL bForce,
+/*N*/                                           const Rectangle& /*rVisible*/, BOOL /*bLeft*/, BOOL bForce,
 /*N*/                                           SdrPage* pDestPage )
 /*N*/ {
 /*N*/   ScDrawLayer* pModel = pDoc->GetDrawLayer();
@@ -1396,7 +1359,7 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   BOOL bFound = pDoc->GetNote( nCol, nRow, nTab, aNote );
 /*N*/   if ( bFound || bForce || rUserText.Len() )
 /*N*/   {
-        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SdrModel* pDestModel = pModel;
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return pObject;
@@ -1469,7 +1432,6 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*?*/
 /*?*/                   SfxItemSet& rAttrSet = aData.GetCaptionSet();
 /*?*/
-/*?*/ //-/                  pCaption->SetAttributes( rAttrSet, FALSE );
 /*?*/                   pCaption->SetItemSetAndBroadcast(rAttrSet);
 /*?*/
 /*?*/                   pCaption->SetSpecialTextBoxShadow();
@@ -1648,11 +1610,11 @@ enum DetInsertResult {              // Return-Werte beim Einfuegen in einen Leve
 /*N*/   return eType;
 /*N*/ }
 
-/*N*/ void ScDetectiveFunc::InsertObject( ScDetectiveObjType eType,
-/*N*/                           const ScAddress& rPosition, const ScRange& rSource,
-/*N*/                           BOOL bRedLine )
+/*N*/ void ScDetectiveFunc::InsertObject( ScDetectiveObjType /*eType*/,
+/*N*/                           const ScAddress& /*rPosition*/, const ScRange& /*rSource*/,
+/*N*/                           BOOL /*bRedLine*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer();
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // static
@@ -1695,3 +1657,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScDrawLayer* pModel = pDoc->GetDrawLayer
 // static
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

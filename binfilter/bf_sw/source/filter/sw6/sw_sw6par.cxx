@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,211 +31,89 @@
 #endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef SVTOOLS_FSTATHELPER_HXX
 #include <bf_svtools/fstathelper.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX //autogen
 #include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_CNTRITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
 
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _CHARATR_HXX
 #include <charatr.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _FLDDAT_HXX
 #include <flddat.hxx>
-#endif
-#ifndef _DBFLD_HXX
 #include <dbfld.hxx>
-#endif
-#ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
-#endif
-#ifndef _LINETYPE_HXX
 #include <linetype.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _FLTINI_HXX
 #include <fltini.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
 
-#ifdef __BORLANDC__
-  #pragma warn -lvc
-#endif
-
-#ifndef _SW6PAR_HXX
 #include <sw6par.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 #include "linetype.hxx"
 namespace binfilter {
-
-#ifdef __BORLANDC__
-  #pragma warn +lvc
-#endif
 
 
 
 // Globals ******************************************************************
 
- static const SwLineType __FAR_DATA aLineTypeArr[] =
+ static const SwLineType aLineTypeArr[] =
  {
  //  In          Out         Dist
-  LIN_0,      LIN_1,      LIN_0, // Einfache Linien
-  LIN_0,      LIN_2,      LIN_0,
-  LIN_0,      LIN_3,      LIN_0,
-  LIN_0,      LIN_5,      LIN_0,
-  LIN_1,      LIN_1,      LIN_2, // Doppelte Linien
-  LIN_2,      LIN_2,      LIN_2, // Doppelte Linien
-  LIN_3,      LIN_3,      LIN_3,
-  LIN_3,      LIN_2,      LIN_2,
-  LIN_2,      LIN_3,      LIN_2,
-  LIN_4,      LIN_3,      LIN_3,
-  LIN_3,      LIN_4,      LIN_3
+  {LIN_0,      LIN_1,      LIN_0}, // Einfache Linien
+  {LIN_0,      LIN_2,      LIN_0},
+  {LIN_0,      LIN_3,      LIN_0},
+  {LIN_0,      LIN_5,      LIN_0},
+  {LIN_1,      LIN_1,      LIN_2}, // Doppelte Linien
+  {LIN_2,      LIN_2,      LIN_2}, // Doppelte Linien
+  {LIN_3,      LIN_3,      LIN_3},
+  {LIN_3,      LIN_2,      LIN_2},
+  {LIN_2,      LIN_3,      LIN_2},
+  {LIN_4,      LIN_3,      LIN_3},
+  {LIN_3,      LIN_4,      LIN_3}
  };
 
 
@@ -3122,13 +3001,6 @@ static const struct Sw6FontMatch
 };
 
 
-
-//using namespace ::com::sun::star;
-//using namespace ::com::sun::star::ucb;
-//using namespace ::com::sun::star::uno;
-//using namespace ::ucb;
-//using namespace ::rtl;
-
 // --- Sw6Layout ---
 
 short Sw6Layout::ZchnZahl(sal_Char Ch1,sal_Char Ch2) const
@@ -3302,6 +3174,8 @@ void Sw6Layout::MerkeNoten(Bereich eNot)
                 break;
             case ANot:
                 pLay->ANotenLink=Tell();
+                break;
+            default:
                 break;
         }
     }
@@ -3600,7 +3474,7 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                 if (TextBefehl("PA",&pCtrl[1]) ||
                     TextBefehl("CP",&pCtrl[1]))
                 {
-                    static sal_Char __READONLY_DATA p[2]={NewPage,'\0'};
+                    static sal_Char const p[2]={NewPage,'\0'};
                     AddHForm(p,rStr.Len(),1);
                 }
                 else
@@ -3686,8 +3560,8 @@ size_t Sw6Layout::PutRest(String &rStr,sal_Char *pCtrl)
                     else if (ScanKreuz("_N",pCtrl,nRet)){}
                     else if (ScanKreuz("_FN",pCtrl,nRet)){}
                     else if (ScanKreuz("_EN",pCtrl,nRet)){}
-                    else if (*pCtrl>='A' && *pCtrl<='Z' ||
-                             *pCtrl>='a' && *pCtrl<='z')
+                    else if ( (*pCtrl>='A' && *pCtrl<='Z') ||
+                             (*pCtrl>='a' && *pCtrl<='z') )
                     {
                         ByteString aFld(pCtrl,p-pCtrl);
                         aFld.Convert( RTL_TEXTENCODING_IBM_850,
@@ -3969,7 +3843,7 @@ BOOL Sw6Layout::LeseLayInfo(BOOL Konv)
         ReadLn(aStg);
         LocA->GliedLay=aStg.ToInt32();                     // Gliederungsebene
         if (LocA->GliedLay!=0 && LocA->
-            GliedLay<=sizeof(Glieder) &&
+            GliedLay<=static_cast<short>(sizeof(Glieder)) &&
             !Glieder[LocA->GliedLay-1])          // Gliederebene schon
         {                                        // mal genutzt worden?
           Glieder[LocA->GliedLay-1]=TRUE;
@@ -4094,7 +3968,7 @@ BOOL Sw6Layout::LeseLayInfo(BOOL Konv)
     return TRUE;
 }
 
-BOOL Sw6Layout::LeseKoFu(BOOL Kopf)
+BOOL Sw6Layout::LeseKoFu(BOOL bKopf)
 // Liesst harte Kopf- oder Fusstexte ein
 {
     short  Idx;
@@ -4102,13 +3976,13 @@ BOOL Sw6Layout::LeseKoFu(BOOL Kopf)
     String Stg;
     KOFU  *LocF;
 
-    pLay->DelLayout(FALSE,Kopf,!Kopf);           // Kopf oder Fusslayout loeschen
+    pLay->DelLayout(FALSE,bKopf,!bKopf);           // Kopf oder Fusslayout loeschen
     ReadLn(Stg);
     Anz=Stg.ToInt32();
     if (!FileOk()) return FALSE;
     for (Idx=0; Idx<Anz; Idx++)
     {
-        if (Kopf)
+        if (bKopf)
         {
             if ((LocF=pLay->HartKopf[Idx]=
                 new(KOFU))==NULL) return FALSE;
@@ -4134,7 +4008,7 @@ BOOL Sw6Layout::LeseKoFu(BOOL Kopf)
 SwTxtFmtColl *Sw6Layout::GetAlay(void)
 // Holt die gerade gueltige FmtColl
 {
-    ASSERT(aSta.nAlay>=0 && aSta.nAlay<pLay->NumAlay,"Ungueltiges Alay");
+    OSL_ENSURE(aSta.nAlay>=0 && aSta.nAlay<pLay->NumAlay,"Ungueltiges Alay");
     return pLay->FileAlay[aSta.nAlay]->pFmtColl;
 }
 
@@ -4156,6 +4030,8 @@ SvxAdjust Sw6Layout::TransAdj(SATZTYP eForm)
             eAdj=SVX_ADJUST_CENTER;
             break;
         case UnformSatz:               // Behandle wie linksbuendig
+            break;
+        default:
             break;
     } // switch
     return eAdj;
@@ -4313,6 +4189,8 @@ void Sw6Layout::InsertTab(USHORT nTab,TABU &rTab,SvxTabStopItem &rTabs,SwTwips n
             break;
         case Tab_D:eAdjust=SVX_TAB_ADJUST_DECIMAL;
             break;
+        default:
+            break;
     } // switch
 
     SvxTabStop aTab(rTab.TabPos-nKor,eAdjust,cDfltDecimalChar,eFill);
@@ -4324,7 +4202,7 @@ void Sw6Layout::InsertTab(USHORT nTab,TABU &rTab,SvxTabStopItem &rTabs,SwTwips n
 }
 
 void Sw6Layout::InsertExtra(SwDoc &rDoc,SwPaM &rPaM,
-     const SwNodeIndex &rWohin,long lFPos,sal_Char *pcAKey)
+     const SwNodeIndex &rWohin,long lFPos,const sal_Char *pcAKey)
 // Fuege einen Sondertext an die Stelle rDoc/rPaM ein.
 // Dazu suche mittels Seek den Text, lese die Absaetze
 // ein und seeke wieder zurueck an die Ausgangsposition
@@ -4500,10 +4378,12 @@ void Sw6Layout::InsertLayouts(SwDoc &rDoc, SwPaM *pPaM)
 {
     short  Idx;         // Index fuer Layouts
 
-    SwFtnInfo aInfo;
-    aInfo=rDoc.GetFtnInfo();                     // Wow: was 'ne Aktion...!
-    aInfo.ePos=FTNPOS_PAGE;                      // GetFntInfo ist const &
-    rDoc.SetFtnInfo(aInfo);
+    {
+        SwFtnInfo aInfo;
+        aInfo=rDoc.GetFtnInfo();                     // Wow: was 'ne Aktion...!
+        aInfo.ePos=FTNPOS_PAGE;                      // GetFntInfo ist const &
+        rDoc.SetFtnInfo(aInfo);
+    }
 
     for (Idx=pLay->NumBlay-1; Idx>=0; Idx--)
     {
@@ -4612,20 +4492,8 @@ JP 29.09.94: zur Zeit keine Zeichen-Vorlage an der Format-Vorlage
         if (pAly->LinRTyp>1)
         {
             ColorData eColor=COL_BLACK;
-//          BrushStyle eBrush=BRUSH_SOLID;
-            switch (pAly->LinRTyp)
-            {
-                case 2:eColor=COL_WHITE; break;
-//              case 3:eBrush=BRUSH_UPDIAG; break;
-//              case 4:eBrush=BRUSH_DOWNDIAG; break;
-//              case 5:eBrush=BRUSH_CROSS; break;
-//              case 6:eBrush=BRUSH_DIAGCROSS; break;
-//              case 7:eBrush=BRUSH_25; break;
-//              case 8:eBrush=BRUSH_50; break;
-//              case 9:eBrush=BRUSH_75; break;
-            } // switch
-//          Brush aBrush=Brush(Color(eColor),eBrush);
-//          aBrush.SetTransparent(FALSE);
+            if (pAly->LinRTyp == 2)
+                eColor=COL_WHITE;
             Color aTmpColor(eColor);
             SvxBrushItem aBack( aTmpColor, RES_BACKGROUND);
             aSet.Put( aBack );
@@ -4744,8 +4612,6 @@ JP 29.09.94: zur Zeit keine Zeichen-Vorlage an der Format-Vorlage
         {   // Fussnoteninfo setzen
             SwPageFtnInfo aInfo(rPg.GetFtnInfo());
 
-//          Pen aPen(aInfo.GetPen());
-//          aPen.SetStyle(pLay->FNotenLin?PEN_SOLID:PEN_NULL);
             if(!pLay->FNotenLin)
                 aInfo.SetLineColor(Color(COL_TRANSPARENT));
 
@@ -4940,7 +4806,7 @@ void Sw6Layout::InsertTOX(SwDoc &rDoc,SwPaM &rPaM,
                     ==(pScd->cDat[0]=='V')))     // befehl addiere aEntry+Bef
                 {
                     aEntry+=String((sal_Char *)&pScd->
-                        cDat[2],pScd->cDat[1]);
+                        cDat[2],pScd->cDat[1],RTL_TEXTENCODING_IBM_850);
                     pScd->cDat[0]='@';           // HForm ungueltig
                 }
             }
@@ -4954,7 +4820,7 @@ void Sw6Layout::InsertTOX(SwDoc &rDoc,SwPaM &rPaM,
     else
     {
         aEntry=String((sal_Char *)&pTmp->            // Einfach nur einen
-            cDat[2],pTmp->cDat[1]);              // neuen Eintrag schreiben
+            cDat[2],pTmp->cDat[1],RTL_TEXTENCODING_IBM_850);              // neuen Eintrag schreiben
     }
     SwTOXMark aMark(rDoc.                        // Mache eine neue TOX-Marke
         GetTOXType(eTyp,nToxID));                // und lasse sie von der
@@ -5366,14 +5232,14 @@ BOOL Sw6Layout::InsertLine(SwDoc &rDoc,SwPaM &rPaM,String &rStg,BOOL bLast)
                             SwHiddenTxtField aFld((SwHiddenTxtFieldType*)
                                 rDoc.GetSysFldType(RES_HIDDENTXTFLD),
                                 FALSE,aEmptyStr,String((sal_Char *)(
-                                pTmp->cDat+2),pTmp->cDat[1]));
+                                pTmp->cDat+2),pTmp->cDat[1],RTL_TEXTENCODING_IBM_850));
                             rDoc.Insert(aPaM,SwFmtFld(aFld));
                         }
                         else
                         {
                             SwDBField aFld((SwDBFieldType*)rDoc.
                                 InsertFldType(SwDBFieldType(&rDoc, String(
-                                (sal_Char *)(pTmp->cDat+2),pTmp->cDat[1]), SwDBData())));
+                                (sal_Char *)(pTmp->cDat+2),pTmp->cDat[1],RTL_TEXTENCODING_IBM_850), SwDBData())));
                             aFld.ChangeFormat(UF_STRING);
                             rDoc.Insert(aPaM,SwFmtFld(aFld));
                         }
@@ -5433,14 +5299,13 @@ BOOL SwSw6Parser::ReadDocInfo(void)
 // Einlesen des DocInfo-Blocks
 // Wird auch gleich ins Doc gegeben
 {
-    BOOL bRet = FALSE, bIsTrans = IsTrans();
+    BOOL bIsTrans = IsTrans();
     SetTrans( TRUE );
 
     short Idx;
     if (ReadLn(pDat->DocInfo.Autor) &&
         ReadLn(pDat->DocInfo.Kateg))
     {
-        bRet = TRUE;
         pDat->DocInfo.Autor=pDat->DocInfo.Autor;
         pDat->DocInfo.Kateg=pDat->DocInfo.Kateg;
 
@@ -5453,10 +5318,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
                 rTmp.EraseTrailingChars();
             }
             else
-            {
-                bRet = FALSE;
                 break;
-            }
         }
         for (Idx=0;Idx<4;Idx++)
         {
@@ -5467,10 +5329,7 @@ BOOL SwSw6Parser::ReadDocInfo(void)
                 rTmp.EraseTrailingChars();
             }
             else
-            {
-                bRet = FALSE;
                 break;
-            }
         }
     }
     SetTrans( bIsTrans );
@@ -5647,9 +5506,10 @@ BOOL SwSw6Parser::CallParser()
 
 SwSw6Parser::SwSw6Parser(SwDoc *pSwDoc,const SwPaM &rSwPaM,
                          SvStream *pIstream,BOOL bNewDoc,
-                         ULONG *pErrno,const String *pFileName):
-        pDoc(pSwDoc),bNew(bNewDoc),
-        Sw6Layout(*pIstream,pErrno,pFileName)
+                         ULONG *pErrno,const String *pFileName)
+    : Sw6Layout(*pIstream,pErrno,pFileName)
+    , pDoc(pSwDoc)
+    , bNew(bNewDoc)
 
 // Konstruktor wie ihn der SWG benoetigt
 {
@@ -5657,10 +5517,8 @@ SwSw6Parser::SwSw6Parser(SwDoc *pSwDoc,const SwPaM &rSwPaM,
     pPaM=new SwPaM( *(rSwPaM.GetPoint() ) );
     SetDocInfo(&pDat->DocInfo);
 
-    SwTxtNode *pTxtNode=0;
-
     // Ist das ein SwPaM auf einen TextNode?
-    if (0==(pTxtNode=pDoc->GetNodes()[pPaM->GetPoint()->nNode]->GetTxtNode()))
+    if (0==pDoc->GetNodes()[pPaM->GetPoint()->nNode]->GetTxtNode())
     {
         // Ist keiner, dann machen wir uns einen
         pDoc->GetNodes().MakeTxtNode(
@@ -5681,7 +5539,6 @@ SwSw6Parser::~SwSw6Parser(void)
 ULONG Sw6Reader::Read( SwDoc &rDoc,SwPaM &rPam,const String &rFileName)
 {
     ULONG nRet = ERR_SWG_READ_ERROR;
-#ifndef COMPACT
 
     if( pStrm )
     {
@@ -5696,12 +5553,12 @@ ULONG Sw6Reader::Read( SwDoc &rDoc,SwPaM &rPam,const String &rFileName)
         pSw6Parser->CallParser();
         delete pSw6Parser;
     }
-    else
-        ASSERT( !this, "SW6-Read ohne Stream" );
-#endif
+
     return nRet;
 }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

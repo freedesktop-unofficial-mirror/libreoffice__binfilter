@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,28 +30,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
 
-#ifndef _SVX_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
 
-#ifndef _SVX_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
 
-#ifndef _SVX_FMDPAGE_HXX
 #include "fmdpage.hxx"
-#endif
 
-#ifndef _SVX_UNOSHAPE_HXX //autogen
 #include "unoshape.hxx"
-#endif
-#ifndef _FM_IMPLEMENTATION_IDS_HXX_
 #include "fmimplids.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ DBG_NAME(SvxFmDrawPage)
@@ -58,7 +47,7 @@ namespace binfilter {
 /*N*/   SvxDrawPage( pInPage )
 /*N*/ {
 /*N*/   DBG_CTOR(SvxFmDrawPage,NULL);
-    /*N*/   m_pHoldImplIdHelper = new ::binfilter::form::OImplementationIdsRef(); //STRIP008 m_pHoldImplIdHelper = new ::form::OImplementationIdsRef();
+    /*N*/   m_pHoldImplIdHelper = new ::binfilter::form::OImplementationIdsRef();
 /*N*/ }
 
 /*N*/ SvxFmDrawPage::~SvxFmDrawPage() throw ()
@@ -68,7 +57,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL SvxFmDrawPage::getImplementationId() throw(::com::sun::star::uno::RuntimeException)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); ::com::sun::star::uno::Sequence< sal_Int8 > a; return a;
 /*N*/ }
 
 /*N*/ ::com::sun::star::uno::Any SAL_CALL SvxFmDrawPage::queryAggregation( const ::com::sun::star::uno::Type& aType ) throw(::com::sun::star::uno::RuntimeException)
@@ -89,7 +78,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ::rtl::OUString aShapeType( xDescr->getShapeType() );
 /*N*/
-/*N*/   if (aShapeType  ==  ::rtl::OUString::createFromAscii("com.sun.star.drawing.ShapeControl"))
+/*N*/   if (aShapeType  ==  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.ShapeControl" )))
 /*?*/       return new FmFormObj(OBJ_FM_CONTROL);
 /*N*/   else
 /*N*/       return SvxDrawPage::_CreateSdrObject( xDescr );
@@ -124,7 +113,7 @@ namespace binfilter {
 /*N*/ {
     /* TODO: DG? Irgendwelche Services?
     ::com::sun::star::uno::Sequence aSeq( SvxDrawPage::getSupportedServiceNames() );
-    addToSequence( aSeq, 1, ::rtl::OUString::createFromAscii("stardiv.form.superservice?") );
+    addToSequence( aSeq, 1, ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "stardiv.form.superservice?" )) );
     return aSeq;
     */
 /*N*/
@@ -133,3 +122,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

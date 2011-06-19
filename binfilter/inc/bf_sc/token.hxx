@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,13 +33,9 @@
 
 #include <string.h>     // memcpy(), don't use memory.h
 
-#ifndef SC_OPCODE_HXX
 #include "opcode.hxx"
-#endif
 
-#ifndef SC_REFDATA_HXX
 #include "refdata.hxx"
-#endif
 namespace binfilter {
 
 
@@ -135,7 +132,7 @@ public:
 
             ScToken*            Clone() const;
 
-            void                Store( SvStream& ) const;
+    void Store( SvStream& ) const {}
 
     virtual BOOL                operator==( const ScToken& rToken ) const;
             BOOL                TextEqual( const ScToken& rToken ) const;
@@ -354,15 +351,21 @@ private:
             String              aExternal;
             BYTE                nByte;
 public:
-                                ScExternalToken( OpCode e, BYTE n, const String& r ) :
-                                    ScToken( e, svExternal ), nByte( n ),
-                                    aExternal( r ) {}
-                                ScExternalToken( OpCode e, const String& r ) :
-                                    ScToken( e, svExternal ), nByte( 0 ),
-                                    aExternal( r ) {}
-                                ScExternalToken( const ScExternalToken& r ) :
-                                    ScToken( r ), nByte( r.nByte ),
-                                    aExternal( r.aExternal ) {}
+                                ScExternalToken( OpCode e, BYTE n, const String& r )
+                                    : ScToken( e, svExternal )
+                                    , aExternal( r )
+                                    , nByte( n )
+                                    {}
+                                ScExternalToken( OpCode e, const String& r )
+                                    : ScToken( e, svExternal )
+                                    , aExternal( r )
+                                    , nByte( 0 )
+                                    {}
+                                ScExternalToken( const ScExternalToken& r )
+                                    : ScToken( r )
+                                    , aExternal( r.aExternal )
+                                    , nByte( r.nByte )
+                                    {}
     virtual const String&       GetExternal() const;
     virtual BYTE                GetByte() const;
     virtual void                SetByte( BYTE n );
@@ -484,3 +487,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

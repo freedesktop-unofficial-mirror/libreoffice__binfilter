@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,28 +30,16 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>           // fuer ViewShell
-#endif
-#ifndef _CSHTYP_HXX
 #include <cshtyp.hxx>           // fuer die CursorShell Typen
-#endif
-#ifndef _CRSTATE_HXX
 #include <crstate.hxx>          // fuer die CursorMove-Staties
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>               //SwTblSearchType
-#endif
 
 #if !defined(DBG_UTIL) && !defined(WIN)
 // fuer die Inline-Methoden
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
 #define CRSR_INLINE inline
 #else
 #define CRSR_INLINE
@@ -96,9 +85,6 @@ class SwTOXMark;
 class SwRedline;
 struct SwPosition;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 
 // enum und struktur, um ueber die Doc-Position Informationen zu erfragen
@@ -252,7 +238,7 @@ private:
                      BOOL bIdleEnd = FALSE );
 
 
-typedef FASTBOOL (SwCursor:: *FNCrsr)();
+typedef bool (SwCursor:: *FNCrsr)();
 
 
 protected:
@@ -290,8 +276,8 @@ public:
     // loesche den aktuellen Cursor und der folgende wird zum Aktuellen
     // TableCursor in normale Cursor verwandeln, Tablemode aufheben
 
-    SwPaM* GetCrsr( FASTBOOL bMakeTblCrsr = TRUE ) const;
-    CRSR_INLINE SwCursor* GetSwCrsr( FASTBOOL bMakeTblCrsr = TRUE ) const;
+    SwPaM* GetCrsr( bool bMakeTblCrsr = TRUE ) const;
+    CRSR_INLINE SwCursor* GetSwCrsr( bool bMakeTblCrsr = TRUE ) const;
     // nur den akt. Cursor returnen
           SwShellCrsr* _GetCrsr()                       { return pCurCrsr; }
     const SwShellCrsr* _GetCrsr() const                 { return pCurCrsr; }
@@ -379,17 +365,17 @@ public:
     // Methoden zum Anzeigen bzw. Verstecken der selektierten Bereiche mit
     // dem sichtbaren Cursor
 
-    FASTBOOL IsOverwriteCrsr() const { return bOverwriteCrsr; }
-    void SetOverwriteCrsr( FASTBOOL bFlag ) { bOverwriteCrsr = bFlag; }
+    bool IsOverwriteCrsr() const { return bOverwriteCrsr; }
+    void SetOverwriteCrsr( bool bFlag ) { bOverwriteCrsr = bFlag; }
 
     // gebe den aktuellen Frame, in dem der Cursor steht, zurueck
     SwCntntFrm *GetCurrFrm( const BOOL bCalcFrm = TRUE ) const;
 
     //TRUE wenn der Crsr wenn der Crsr wegen Readonly gehidet ist,
     //FALSE wenn der arbeitet (trotz Readonly).
-    FASTBOOL IsCrsrReadonly() const;
+    bool IsCrsrReadonly() const;
     // darf der Cursor in ReadOnlyBereiche?
-    FASTBOOL IsReadOnlyAvailable() const { return bSetCrsrInReadOnly; }
+    bool IsReadOnlyAvailable() const { return bSetCrsrInReadOnly; }
 
     // Methoden fuer aFlyMacroLnk
     void        SetFlyMacroLnk( const Link& rLnk ) { aFlyMacroLnk = rLnk; }
@@ -408,17 +394,17 @@ public:
 
     // Abfrage, ob der aktuelle Cursor eine Selektion aufspannt,
     // also, ob Mark gesetzt und SPoint und Mark unterschiedlich sind.
-    FASTBOOL HasSelection() const;
+    bool HasSelection() const;
 
     // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
     // aufgespannt oder nicht der einzigste ist.
-    CRSR_INLINE FASTBOOL IsSelection() const;
+    CRSR_INLINE bool IsSelection() const;
         // returns if multiple cursors are available
-    CRSR_INLINE FASTBOOL IsMultiSelection() const;
+    CRSR_INLINE bool IsMultiSelection() const;
 
     // Abfrage, ob ein kompletter Absatz selektiert wurde
     // Abfrage, ob die Selektion in einem Absatz ist
-    CRSR_INLINE FASTBOOL IsSelOnePara() const;
+    CRSR_INLINE bool IsSelOnePara() const;
 
     //Sollte fuer das Clipboard der WaitPtr geschaltet werden.
 
@@ -430,7 +416,7 @@ public:
      * liefert zurueck, ob der Cursor sich ganz oder teilweise im
      * sichtbaren Bereich befindet.
      */
-    FASTBOOL IsCrsrVisible() const { return VisArea().IsOver( GetCharRect() ); }
+    bool IsCrsrVisible() const { return VisArea().IsOver( GetCharRect() ); }
 
     // aktualisiere den Crsrs, d.H. setze ihn wieder in den Content.
     // Das sollte nur aufgerufen werden, wenn der Cursor z.B. beim
@@ -450,7 +436,7 @@ public:
     CRSR_INLINE const SwTableNode* IsCrsrInTbl( BOOL bIsPtInTbl = TRUE ) const;
     // erfrage die Document - Layout - Position vom akt. Crsr
     CRSR_INLINE Point& GetCrsrDocPos( BOOL bPoint = TRUE ) const;
-    CRSR_INLINE FASTBOOL IsCrsrPtAtEnd() const;
+    CRSR_INLINE bool IsCrsrPtAtEnd() const;
 
     CRSR_INLINE const   SwPaM* GetTblCrs() const;
      CRSR_INLINE        SwPaM* GetTblCrs();
@@ -469,7 +455,7 @@ public:
 
         // ist der Crsr in einer Tabelle und ist die Selection ueber
         // zwei Spalten
-    FASTBOOL IsTableMode() const { return 0 != pTblCrsr; }
+    bool IsTableMode() const { return 0 != pTblCrsr; }
 
         // erfrage den Tabellen Crsr; ausserhalb von Tabellen immer 0
     const SwShellTableCrsr* GetTableCrsr() const { return pTblCrsr; }
@@ -513,12 +499,12 @@ public:
     Region GetCrsrRegion() const;
 
     // gibt es nicht aufgespannte Attribute?
-    FASTBOOL IsGCAttr() const { return bGCAttr; }
+    bool IsGCAttr() const { return bGCAttr; }
     void    ClearGCAttr() { bGCAttr = FALSE; }
     void    UpdateAttr() {  bGCAttr = TRUE; }
 
     // ist das gesamte Dokument geschuetzt/versteckt?? (fuer UI,..)
-    FASTBOOL IsAllProtect() const { return bAllProtect; }
+    bool IsAllProtect() const { return bAllProtect; }
 
 #ifdef SW_CRSR_TIMER
     // setze das Flag am VisCrsr, ob dieser ueber Timer getriggert (TRUE)
@@ -540,9 +526,9 @@ public:
 
         // Attribut selelktieren
 
-    FASTBOOL CheckTblBoxCntnt( const SwPosition* pPos = 0 );
+    bool CheckTblBoxCntnt( const SwPosition* pPos = 0 );
     void ClearTblBoxCntnt();
-    FASTBOOL EndAllTblBoxEdit();
+    bool EndAllTblBoxEdit();
 
     // wird gerufen, wenn eine Tabellenselektion im UpdateCrsr erzeugt wird,
     // ohne das die UI davon etaws weiss
@@ -587,12 +573,12 @@ public:
 #if !defined(DBG_UTIL) && !defined(WIN)
 
 inline SwMoveFnCollection* SwCrsrShell::MakeFindRange(
-            USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
+            USHORT /*nStt*/, USHORT /*nEnd*/, SwPaM* /*pPam*/ ) const
 {
-    DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return pCurCrsr->MakeFindRange( (SwDocPositions)nStt, (SwDocPositions)nEnd, pPam );
+    DBG_BF_ASSERT(0, "STRIP"); return NULL;
 }
 
-inline SwCursor* SwCrsrShell::GetSwCrsr( FASTBOOL bMakeTblCrsr ) const
+inline SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const
 {
     return (SwCursor*)GetCrsr( bMakeTblCrsr );
 }
@@ -601,17 +587,17 @@ inline SwPaM* SwCrsrShell::GetStkCrsr() const { return pCrsrStk; }
 
 
 
-/*N*/ inline FASTBOOL SwCrsrShell::IsSelection() const
+/*N*/ inline bool SwCrsrShell::IsSelection() const
 /*N*/ {
 /*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
 /*N*/           pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
-inline FASTBOOL SwCrsrShell::IsMultiSelection() const
+inline bool SwCrsrShell::IsMultiSelection() const
 {
     return pCurCrsr->GetNext() != pCurCrsr;
 }
 
-inline FASTBOOL SwCrsrShell::IsSelOnePara() const
+inline bool SwCrsrShell::IsSelOnePara() const
 {
     return pCurCrsr == pCurCrsr->GetNext() &&
            pCurCrsr->GetPoint()->nNode == pCurCrsr->GetMark()->nNode;
@@ -622,7 +608,7 @@ inline const SwTableNode* SwCrsrShell::IsCrsrInTbl( BOOL bIsPtInTbl ) const
     return pCurCrsr->GetNode( bIsPtInTbl )->FindTableNode();
 }
 
-inline FASTBOOL SwCrsrShell::IsCrsrPtAtEnd() const
+inline bool SwCrsrShell::IsCrsrPtAtEnd() const
 {
     return pCurCrsr->End() == pCurCrsr->GetPoint();
 }
@@ -653,3 +639,5 @@ inline void SwCrsrShell::UnSetVisCrsr()
 
 } //namespace binfilter
 #endif  // _CRSRSH_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

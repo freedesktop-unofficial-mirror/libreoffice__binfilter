@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_PNTOBJ3D_HXX
 #include <bf_svx/pntobj3d.hxx>
-#endif
+
 namespace binfilter {
-
-/************************************************************************/
-
-class E3dLight;
-
-#ifndef _E3D_LIGHT3D_LIST
-DECLARE_LIST(E3dLightList, E3dLight*)//STRIP008 DECLARE_LIST(E3dLightList, E3dLight*);
-#endif
 
 /*************************************************************************
 |*
@@ -58,11 +50,11 @@ class E3dLight : public E3dPointObj
     double      fIntensity;
     double      fRed, fGreen, fBlue;
 
-    FASTBOOL    bOn             : 1;
-    FASTBOOL    bVisible        : 1;
+    bool    bOn             : 1;
+    bool    bVisible        : 1;
 
  protected:
-    FASTBOOL ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
+    bool ImpCalcLighting(Color& rNewColor, const Color& rPntColor,
                              double fR, double fG, double fB) const;
     // Lichtquellen koennen Unterobjekte nur selbst anlegen
     virtual void Insert3DObj(E3dObject* p3DObj);
@@ -75,9 +67,11 @@ class E3dLight : public E3dPointObj
              double fLightIntensity = 1.0);
     E3dLight();
 
+    using SdrAttrObj::operator=;
+
     virtual UINT16 GetObjIdentifier() const;
 
-    virtual FASTBOOL CalcLighting(Color& rNewColor,
+    virtual bool CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,
                                   const Vector3D& rPntNormal,
                                   const Color& rPntColor);
@@ -90,27 +84,22 @@ class E3dLight : public E3dPointObj
     const Color& GetColor() const { return aColor; }
     virtual void SetColor(const Color& rNewColor);
 
-    FASTBOOL IsOn() const { return bOn; }
+    bool IsOn() const { return bOn; }
 
-    FASTBOOL IsLightObjVisible() const { return bVisible; }
+    bool IsLightObjVisible() const { return bVisible; }
 
     double GetRed() const   { return fRed; }
     double GetGreen() const { return fGreen; }
     double GetBlue() const  { return fBlue; }
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
-
-//-/    virtual void           SetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
-//-/    virtual void           NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
-//-/    virtual void           TakeAttributes(SfxItemSet& rAttr, FASTBOOL bMerge, FASTBOOL bOnlyHardAttr) const;
-//-/    virtual void Collect3DAttributes(SfxItemSet& rAttr) const;
-//-/    virtual void Distribute3DAttributes(const SfxItemSet& rAttr);
-
-    virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void           SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 };
 
 }//end of namespace binfilter
 #endif          // _E3D_LIGHT3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

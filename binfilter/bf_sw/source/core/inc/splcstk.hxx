@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -54,15 +55,10 @@ public:
                                 // an dieser wird spaeter wieder aufgesetzt
     void SetErrPos();           // akt. Cursor auf die Error Position setzen
 
-#if 0
-                            // ??? wird das ueberhaupt benoetigt ???
-                                // fuer die EditShell, damit sie die Cursor
-                                // aus den Loeschbereichen verschieben kann
-    SwPaM* GetCurCrsr() const;
-    SwPosition* GetErrorPos() const { return pErrorPos; }
-#endif
 };
 
 
 } //namespace binfilter
 #endif  // _SPLCSTK_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

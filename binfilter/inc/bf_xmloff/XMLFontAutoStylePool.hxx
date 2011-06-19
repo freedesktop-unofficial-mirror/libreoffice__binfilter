@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
 #define _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 namespace binfilter {
 
 class XMLFontAutoStylePool_Impl;
@@ -78,3 +75,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,75 +26,37 @@
  *
  ************************************************************************/
 
-#define _BINDDATA_CXX "$Revision: 1.4 $"
+#define _BINDDATA_CXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _WILDCARD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
 #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XCONFIGMANAGER_HPP_
 #include <com/sun/star/frame/XConfigManager.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
 #include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REGISTRY_XSIMPLEREGISTRY_HPP_
 #include <com/sun/star/registry/XSimpleRegistry.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UCB_XCONTENT_HPP_
 #include <com/sun/star/ucb/XContent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDPROCESSOR_HPP_
 #include <com/sun/star/ucb/XCommandProcessor.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
 #include <com/sun/star/uno/XInterface.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
 
-#ifndef _BINDING_HXX
 #include <binddata.hxx>
-#endif
-#ifndef _TRANSPRT_HXX
 #include <bf_so3/transprt.hxx>
-#endif
-#ifndef _TRANSUNO_HXX
 #include <transuno.hxx>
-#endif
-#ifndef _SO2DLL_HXX
 #include <bf_so3/so2dll.hxx>
-#endif
 
 using namespace com::sun::star::beans;
 using namespace com::sun::star::frame;
@@ -314,7 +277,7 @@ sal_Bool SvBindingData_Impl::hasHttpCache (void)
     if (!m_xCache.is())
     {
         m_xCache = SvBindingTransport_Impl::createContent (
-            OUString::createFromAscii ("private:httpcache"));
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "private:httpcache" )));
 
         Reference<XCommandProcessor> xProcessor (m_xCache, UNO_QUERY);
         if (xProcessor.is())
@@ -322,9 +285,9 @@ sal_Bool SvBindingData_Impl::hasHttpCache (void)
             Sequence<Property> aProps(3);
             aProps[0].Handle = aProps[1].Handle = aProps[2].Handle = -1;
 
-            aProps[0].Name = OUString::createFromAscii ("ConnectionLimit");
-            aProps[1].Name = OUString::createFromAscii ("SizeLimit");
-            aProps[2].Name = OUString::createFromAscii ("Size");
+            aProps[0].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "ConnectionLimit" ));
+            aProps[1].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "SizeLimit" ));
+            aProps[2].Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "Size" ));
 
             SvBindingTransport_Impl::getProperties (xProcessor, aProps);
         }
@@ -474,7 +437,7 @@ Reference<ifc_type> SvBindingData_Impl::getConfigManager_Impl (void)
         try
         {
             m_xManager = m_xFactory->createInstance (
-                OUString::createFromAscii (INIMANAGER_SERVICE_NAME));
+                OUString(RTL_CONSTASCII_USTRINGPARAM (INIMANAGER_SERVICE_NAME)));
             if (m_xManager.is())
             {
                 readConfigManager_Impl();
@@ -551,13 +514,13 @@ void SvBindingData_Impl::initConfigManager_Impl (void)
         try
         {
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_PROXYTYPE), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_PROXYTYPE)), this);
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_NOPROXY), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_NOPROXY)), this);
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYNAME), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYNAME)), this);
             xConfig->addPropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYPORT), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYPORT)), this);
         }
         catch (Exception)
         {
@@ -576,13 +539,13 @@ void SvBindingData_Impl::dispose (void)
         try
         {
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_PROXYTYPE), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_PROXYTYPE)), this);
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_NOPROXY), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_NOPROXY)), this);
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYNAME), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYNAME)), this);
             xConfig->removePropertyChangeListener (
-                OUString::createFromAscii (STR_KEY_INET_FTPPROXYPORT), this);
+                OUString(RTL_CONSTASCII_USTRINGPARAM (STR_KEY_INET_FTPPROXYPORT)), this);
         }
         catch (Exception)
         {
@@ -591,3 +554,5 @@ void SvBindingData_Impl::dispose (void)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

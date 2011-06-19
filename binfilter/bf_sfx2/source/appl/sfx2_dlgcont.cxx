@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 #include <xmlscript/xmldlg_imexp.hxx>
 
 
-#ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
-#endif
 
 namespace binfilter {
 
@@ -48,8 +47,8 @@ using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star;
 using namespace cppu;
-using namespace rtl;
 using namespace osl;
+using ::rtl::OUString;
 
 
 //============================================================================
@@ -117,7 +116,7 @@ SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
 /*?*/ void SAL_CALL SfxDialogLibraryContainer::writeLibraryElement
 /*?*/ (
 /*?*/   Any aElement,
-/*?*/   const OUString& aElementName,
+/*?*/   const OUString& /*aElementName*/,
 /*?*/   Reference< XOutputStream > xOutput
 /*?*/ )
 /*?*/   throw(Exception)
@@ -144,11 +143,11 @@ SfxDialogLibraryContainer::SfxDialogLibraryContainer( void )
 
 
 /*?*/ Any SAL_CALL SfxDialogLibraryContainer::importLibraryElement
-/*?*/   ( const OUString& aFile, SotStorageStreamRef xElementStream )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;//STRIP001
+/*?*/   ( const OUString& /*aFile*/, SotStorageStreamRef /*xElementStream*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); Any aAny; return aAny;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxDialogLibraryContainer::importFromOldStorage( const ::rtl::OUString& aFile )
+/*?*/ void SAL_CALL SfxDialogLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
 /*?*/ {
 /*?*/     // Nothing to do here, old dialogs cannot be imported
 /*?*/ }
@@ -190,7 +189,7 @@ Sequence< OUString > SfxDialogLibraryContainer::impl_getStaticSupportedServiceNa
     if( bNeedsInit )
     {
         OUString* pSeq = seqServiceNames.getArray();
-        pSeq[0] = OUString::createFromAscii( "com.sun.star.script.DialogLibraryContainer" );
+        pSeq[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.DialogLibraryContainer" ));
         bNeedsInit = sal_False;
     }
     return seqServiceNames;
@@ -204,14 +203,14 @@ OUString SfxDialogLibraryContainer::impl_getStaticImplementationName()
     MutexGuard aGuard( Mutex::getGlobalMutex() );
     if( bNeedsInit )
     {
-        aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.DialogLibraryContainer" );
+        aImplName = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.sfx2.DialogLibraryContainer" ));
         bNeedsInit = sal_False;
     }
     return aImplName;
 }
 
 Reference< XInterface > SAL_CALL SfxDialogLibraryContainer::impl_createInstance
-    ( const Reference< XMultiServiceFactory >& xServiceManager )
+    ( const Reference< XMultiServiceFactory >& /*xServiceManager*/ )
         throw( Exception )
 {
     Reference< XInterface > xRet =
@@ -242,3 +241,5 @@ Reference< XInterface > SAL_CALL SfxDialogLibraryContainer::impl_createInstance
 //============================================================================
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

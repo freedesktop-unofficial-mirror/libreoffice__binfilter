@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,13 +34,9 @@
 //-----------------------------------------------
 // includes
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
 
 #include <bf_svtools/addxmltostorageoptions.hxx>
 #include <cacheoptions.hxx>
@@ -48,12 +45,13 @@
 #include <bf_svtools/defaultoptions.hxx>
 #include <bf_svtools/dynamicmenuoptions.hxx>
 #include <bf_svtools/extendedsecurityoptions.hxx>
-#include <fltrcfg.hxx>
+#include <unotools/configitem.hxx>
 #include <bf_svtools/fontoptions.hxx>
 #include <bf_svtools/historyoptions.hxx>
 #include <bf_svtools/inetoptions.hxx>
 #include <bf_svtools/internaloptions.hxx>
-#include <javaoptions.hxx>
+#include <sal/types.h>
+#include <unotools/configitem.hxx>
 #include <bf_svtools/lingucfg.hxx>
 #include <bf_svtools/localisationoptions.hxx>
 #include <bf_svtools/menuoptions.hxx>
@@ -61,7 +59,7 @@
 #include <bf_svtools/options3d.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/printwarningoptions.hxx>
-#include <regoptions.hxx>
+#include <tools/string.hxx>
 #include <bf_svtools/optionsdlg.hxx>
 #include <bf_svtools/saveopt.hxx>
 #include <searchopt.hxx>
@@ -91,7 +89,7 @@ ItemHolder1::ItemHolder1()
     {
         css::uno::Reference< css::lang::XMultiServiceFactory > xSMGR = ::comphelper::getProcessServiceFactory();
         css::uno::Reference< css::lang::XComponent > xCfg(
-            xSMGR->createInstance(::rtl::OUString::createFromAscii("com.sun.star.configuration.ConfigurationProvider")),
+            xSMGR->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationProvider" ))),
             css::uno::UNO_QUERY);
         if (xCfg.is())
             xCfg->addEventListener(static_cast< css::lang::XEventListener* >(this));
@@ -108,7 +106,7 @@ ItemHolder1::ItemHolder1()
             sMsg += ::rtl::OString(rEx.Message.getStr(),
                         rEx.Message.getLength(),
                         RTL_TEXTENCODING_ASCII_US);
-            OSL_ENSURE(sal_False, sMsg.getStr());
+            OSL_FAIL(sMsg.getStr());
         }
     }
 #else
@@ -309,7 +307,7 @@ void ItemHolder1::impl_newItem(TItemInfo& rItem)
             // ??? TODO
             break;
         default:
-            OSL_ASSERT( "unknown item type" );
+            OSL_FAIL( "unknown item type" );
             break;
     }
 }
@@ -325,3 +323,5 @@ void ItemHolder1::impl_deleteItem(TItemInfo& rItem)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

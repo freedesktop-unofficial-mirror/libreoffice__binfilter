@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,90 +38,36 @@
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_ULONGS
 #endif
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SO2REF_HXX //autogen
 #include <bf_so3/so2ref.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer Expression-Felder
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _DDEFLD_HXX
 #include <ddefld.hxx>
-#endif
-#ifndef _USRFLD_HXX
 #include <usrfld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _DBFLD_HXX
 #include <dbfld.hxx>
-#endif
-#ifndef _FLDDAT_HXX
 #include <flddat.hxx>
-#endif
-#ifndef _CHPFLD_HXX
 #include <chpfld.hxx>
-#endif
-#ifndef _REFFLD_HXX
 #include <reffld.hxx>
-#endif
-#ifndef _FLDDROPDOWN_HXX
 #include <flddropdown.hxx>
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
-#endif
-#ifndef _TXTINET_HXX
 #include <txtinet.hxx>
-#endif
 
-#ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>      // fuer InitFldTypes
-#endif
 namespace binfilter {
 
 
@@ -225,7 +172,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 
 /*N*/ void SwDoc::RemoveFldType(USHORT nFld)
 /*N*/ {
-/*N*/   ASSERT( INIT_FLDTYPES <= nFld,  "keine InitFields loeschen" );
+/*N*/   OSL_ENSURE( INIT_FLDTYPES <= nFld,  "keine InitFields loeschen" );
     /*
       * Abheangige Felder vorhanden -> ErrRaise
      */
@@ -240,7 +187,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       {
 /*N*/       case RES_SETEXPFLD:
 /*N*/       case RES_USERFLD:
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pUpdtFlds->RemoveFldType( *pTmp );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/           // kein break;
 /*N*/       case RES_DDEFLD:
 /*?*/           if( pTmp->GetDepends() && !IsUsed( *pTmp ) )
@@ -258,7 +205,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/
 /*N*/       if( nWhich )
 /*N*/       {
-/*?*/           ASSERT( !pTmp->GetDepends(), "Abhaengige vorh.!" );
+/*?*/           OSL_ENSURE( !pTmp->GetDepends(), "Abhaengige vorh.!" );
 /*?*/           // Feldtype loschen
 /*?*/           delete pTmp;
 /*N*/       }
@@ -318,9 +265,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
  *    Alle sollen neu evaluiert werden.
  */
 
-/*N*/ void SwDoc::UpdateFlds( SfxPoolItem *pNewHt, BOOL bCloseDB )
+/*N*/ void SwDoc::UpdateFlds( SfxPoolItem* /*pNewHt*/, BOOL /*bCloseDB*/ )
 /*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // Modify() fuer jeden Feldtypen rufen,
+/*?*/     DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /******************************************************************************
@@ -342,10 +289,10 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 
 /*N*/ void SwDoc::UpdateTblFlds( SfxPoolItem* pHt )
 /*N*/ {
-/*N*/   ASSERT( !pHt || RES_TABLEFML_UPDATE  == pHt->Which(),
+/*N*/   OSL_ENSURE( !pHt || RES_TABLEFML_UPDATE  == pHt->Which(),
 /*N*/           "Was ist das fuer ein MessageItem?" );
 /*N*/
-/*N*/   SwFieldType* pFldType;
+/*N*/   SwFieldType* pFldType = NULL;
         USHORT i=0;
 /*N*/   for( i = 0; i < pFldTypes->Count(); ++i )
 /*N*/   {
@@ -398,8 +345,10 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/                           // ist es die gesuchte Tabelle ??
 /*?*/                           if( &pTblNd->GetTable() == pUpdtFld->pTbl )
 /*?*/                               // zur relativen Darstellung
-/*?*/                               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFld->ToRelBoxNm( pUpdtFld->pTbl );
+/*?*/                               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/                           break;
+                            default:
+                                break;
 /*?*/                       }
 /*N*/                   }
 /*N*/                   else
@@ -419,7 +368,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
 /*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() )
 /*?*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/
 /*?*/
@@ -472,7 +421,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   SwFrm* pFrm = 0;
 /*N*/                   if( pTblNd->GetIndex() < GetNodes().GetEndOfExtras().GetIndex() )
 /*N*/                   {
-/*N*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // steht im Sonderbereich, wird teuer !!
+/*N*/                       DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/                   if( !pFrm )
 /*N*/                   {
@@ -486,7 +435,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                   pFld->CalcField( aPara );
 /*N*/                   if( aPara.IsStackOverFlow() )
 /*N*/                   {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( aPara.CalcWithStackOverflow() )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   }
 /*N*/                   pCalc->SetCalcError( CALC_NOERR );
 /*N*/               }
@@ -499,7 +448,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       if( 0 != (pItem = GetAttrPool().GetItem( RES_BOXATR_FORMULA, i ) ) &&
 /*N*/           ((SwTblBoxFormula*)pItem)->GetDefinedIn() &&
 /*N*/           !((SwTblBoxFormula*)pItem)->IsValid() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/
 /*N*/   if( pCalc )
@@ -607,7 +556,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/           if( pFirst->IsTxtNode() && pNext->IsTxtNode() &&
 /*N*/               ( pFirst->FindFlyStartNode() || pNext->FindFlyStartNode() ))
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 return ::IsFrameBehind( *(SwTxtNode*)pNext, nCntnt,
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           return pFirstStt->GetIndex() < pNextStt->GetIndex();
 /*N*/       }
@@ -679,6 +628,8 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       case CRSRPOS:
 /*N*/           nRet =  CNTNT.pPos->nContent.GetIndex();
 /*N*/           break;
+            default:
+                break;
 /*N*/       }
 /*N*/   return nRet;
 /*N*/ }
@@ -730,7 +681,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
     Beschreibung:
  --------------------------------------------------------------------*/
 
-/*N*/ void lcl_CalcFld( SwDoc& rDoc, SwCalc& rCalc, const _SetGetExpFld& rSGEFld,
+/*N*/ void lcl_CalcFld( SwDoc& /*rDoc*/, SwCalc& /*rCalc*/, const _SetGetExpFld& rSGEFld,
 /*N*/                       SwNewDBMgr* pMgr )
 /*N*/ {
 /*N*/   const SwTxtFld* pTxtFld = rSGEFld.GetFld();
@@ -742,7 +693,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/
 /*N*/   if( RES_SETEXPFLD == nFldWhich )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSbxValue aValue;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   else if( pMgr )
 /*?*/   {
@@ -841,15 +792,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   // aktuelle Datensatznummer schon vorher einstellen
 /*N*/   SwNewDBMgr* pMgr = GetNewDBMgr();
 /*N*/   pMgr->CloseAll(FALSE);
-/*
-     if(pMgr && pMgr->OpenDB(DBMGR_STD, GetDBDesc(), FALSE))
-     {
-         if(!pMgr->IsInMerge() )
-             pMgr->ToFirstSelectedRecord(DBMGR_STD);
-
-         aCalc.VarChange( sDBNumNm, pMgr->GetCurSelectedRecordId(DBMGR_STD));
-     }
- */
 /*N*/
 /*N*/   String aNew;
 /*N*/   const _SetGetExpFldPtr* ppSortLst = pUpdtFlds->GetSortLst()->GetData();
@@ -860,7 +802,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       {
 /*N*/           //!SECTION
 /*N*/
-/*N*/ //            if( pGFld->IsInBodyTxt() )
 /*N*/               pSect->SetCondHidden( aCalc.Calculate(
 /*N*/                                       pSect->GetCondition() ).GetBool() );
 /*N*/           continue;
@@ -869,7 +810,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       SwTxtFld* pTxtFld = (SwTxtFld*)(*ppSortLst)->GetFld();
 /*N*/       if( !pTxtFld )
 /*N*/       {
-/*N*/           ASSERT( !this, "was ist es denn nun" );
+/*N*/           OSL_ENSURE( !this, "was ist es denn nun" );
 /*N*/           continue;
 /*N*/       }
 /*N*/
@@ -904,21 +845,12 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       break;
 /*N*/       case RES_DBFLD:
 /*N*/       {
-/*N*/           // Feld Evaluieren
-/*N*/           ((SwDBField*)pFld)->Evaluate();
+/*N*/           SwDBData aDBData1(((SwDBField*)pFld)->GetDBData());
 /*N*/
-/*N*/               SwDBData aDBData(((SwDBField*)pFld)->GetDBData());
-/*N*/
-/*N*/             if( pMgr->IsDataSourceOpen(aDBData.sDataSource, aDBData.sCommand, sal_False))
-/*?*/                 {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 aCalc.VarChange( sDBNumNm, pMgr->GetSelectedRecordId(aDBData.sDataSource, aDBData.sCommand, aDBData.nCommandType));
+/*N*/           if( pMgr->IsDataSourceOpen(aDBData1.sDataSource, aDBData1.sCommand, sal_False))
+/*?*/               { DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/           const String& rName = pFld->GetTyp()->GetName();
-/*N*/
-/*N*/           // Wert fuer den Calculator setzen
-/*N*/ //JP 10.02.96: GetValue macht hier doch keinen Sinn
-/*N*/ //            ((SwDBField*)pFld)->GetValue();
-/*N*/
-/*N*/ //!OK         aCalc.VarChange(aName, ((SwDBField*)pFld)->GetValue(aCalc));
 /*N*/
 /*N*/           // Eintrag in den HashTable eintragen
 /*N*/           // Eintrag vorhanden ?
@@ -1010,7 +942,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                       BYTE nLvl = pSFldTyp->GetOutlineLvl();
 /*N*/                       if( MAXLEVEL > nLvl )
 /*N*/                       {
-/*N*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // dann teste, ob die Nummer neu aufsetzen muss
+/*N*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/
@@ -1024,7 +956,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/                       pSFld->SetValue( nErg );
 /*N*/
 /*N*/                       if( pSeqNd )
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSFldTyp->SetChapter( *pSFld, *pSeqNd );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/                   }
 /*N*/               }
 /*N*/           }
@@ -1080,15 +1012,15 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*?*/       else
 /*?*/           ((SwDBNumSetField&)rDBFld).Evaluate(this);
 /*?*/
-/*?*/       SwDBData aDBData( rDBFld.GetDBData(this) );
+/*?*/       SwDBData aDBData2( rDBFld.GetDBData(this) );
 /*?*/
-/*?*/       if( pMgr->OpenDataSource( aDBData.sDataSource, aDBData.sCommand ))
+/*?*/       if( pMgr->OpenDataSource( aDBData2.sDataSource, aDBData2.sCommand ))
 /*?*/           rCalc.VarChange( lcl_GetDBVarName( *this, rDBFld),
 /*?*/                         pMgr->GetSelectedRecordId(aDBData.sDataSource, aDBData.sCommand, aDBData.nCommandType) );
 /*?*/   }
 /*?*/   else
 /*?*/   {
-/*?*/       DBG_ERROR("TODO: what should happen with unnamed DBFields?");
+/*?*/       OSL_FAIL("TODO: what should happen with unnamed DBFields?");
 /*?*/   }
 /*N*/ }
 
@@ -1142,7 +1074,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   pFldTypes->Insert( new SwSetExpFieldType(this,
 /*N*/               SW_RESSTR(STR_POOLCOLL_LABEL_DRAWING), GSE_SEQ),nFldType++);
 /*N*/
-/*N*/   ASSERT( nFldType == INIT_FLDTYPES, "Bad initsize: SwFldTypes" );
+/*N*/   OSL_ENSURE( nFldType == INIT_FLDTYPES, "Bad initsize: SwFldTypes" );
 /*N*/ }
 
 /*N*/ void SwDoc::InsDelFldInFldLst( BOOL bIns, const SwTxtFld& rFld )
@@ -1387,7 +1319,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/     aData.sDataSource = rDBName.GetToken(0, DB_DELIM);
 /*N*/     aData.sCommand = rDBName.GetToken(1, DB_DELIM);
 /*N*/     aData.nCommandType = -1;
-/*N*/     const SwDSParam* pParam = GetNewDBMgr()->CreateDSData(aData);
+/*N*/     GetNewDBMgr()->CreateDSData(aData);
 /*N*/   String* pNew = new String( rDBName );
 /*N*/   rDBNameList.Insert( pNew, rDBNameList.Count() );
 /*N*/ }
@@ -1397,9 +1329,8 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   // teste ggfs. mal, ob die angegbenen Nodes ueberhaupt Felder beinhalten.
 /*N*/   // wenn nicht, braucht das Flag nicht veraendert werden.
 /*N*/   BOOL bFldsFnd = FALSE;
-/*N*/   if( b && pChk && !GetUpdtFlds().IsFieldsDirty() && !IsInDtor()
+/*N*/   if( b && pChk && !GetUpdtFlds().IsFieldsDirty() && !IsInDtor() )
 /*N*/       // ?? was ist mit Undo, da will man es doch auch haben !!
-/*N*/       /*&& &pChk->GetNodes() == &GetNodes()*/ )
 /*N*/   {
 /*N*/       b = FALSE;
 /*N*/       if( !nLen )
@@ -1436,9 +1367,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   GetUpdtFlds().SetFieldsDirty( b );
 /*N*/   return bFldsFnd;
 /*N*/ }
-/* -----------------------------21.12.99 12:55--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
@@ -1491,7 +1420,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/       delete pFldSortLst;
 /*M*/   pFldSortLst = new _SetGetExpFlds( 64, 16 );
 /*M*/
-/*M*/     /// OD 09.08.2002 [#101207#,#101216#,#101778#] - consider and unhide sections
+/*M*/     /// consider and unhide sections
 /*M*/     ///     with hide condition, only in mode GETFLD_ALL (<eGetMode == GETFLD_ALL>)
 /*M*/     ///     notes by OD:
 /*M*/     ///         eGetMode == GETFLD_CALC in call from methods SwDoc::FldsToCalc
@@ -1540,13 +1469,13 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/         for( n = nArrStt; n < aTmpArr.Count(); ++n )
 /*M*/         {
 /*M*/             pSectNd = rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode();
-/*M*/             ASSERT( pSectNd, "Wo ist mein SectionNode" );
+/*M*/             OSL_ENSURE( pSectNd, "Wo ist mein SectionNode" );
 /*M*/             pSectNd->GetSection().SetCondHidden( FALSE );
 /*M*/         }
 /*M*/         for( n = 0; n < nArrStt; ++n )
 /*M*/         {
 /*M*/             pSectNd = rDoc.GetNodes()[ aTmpArr[ n ] ]->GetSectionNode();
-/*M*/             ASSERT( pSectNd, "Wo ist mein SectionNode" );
+/*M*/             OSL_ENSURE( pSectNd, "Wo ist mein SectionNode" );
 /*M*/             pSectNd->GetSection().SetCondHidden( FALSE );
 /*M*/         }
 /*M*/
@@ -1590,18 +1519,13 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/               break;
 /*M*/
 /*M*/           case RES_SETEXPFLD:
-/*M*/                           /// OD 04.10.2002 #102894#
 /*N*/                 /// fields of subtype <string> have also been add
 /*N*/                 /// for calculation (eGetMode == GETFLD_CALC).
 /*N*/                 /// Thus, add fields of subtype <string> in all modes
 /*N*/                 ///     (eGetMode == GETFLD_EXPAND||GETFLD_CALC||GETFLD_ALL)
 /*N*/                 /// and fields of other subtypes only in the modes
 /*N*/                 ///     (eGetMode == GETFLD_CALC||GETFLD_ALL)
-                /* "old" if construct - not deleted for history and code review
-                if( ( GSE_STRING & pFld->GetSubType()
-                    ? GETFLD_EXPAND : GETFLD_CALC )
-                        & eGetMode )
-                */
+
 /*N*/                 if ( !(eGetMode == GETFLD_EXPAND) ||
 /*N*/                      (GSE_STRING & pFld->GetSubType()) )
 /*N*/                 {
@@ -1650,9 +1574,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/           {
 /*N*/               SwDBData aDBData(((SwDBNumSetField*)pFld)->GetDBData(&rDoc));
 /*N*/
-/*N*/               if( bIsDBMgr &&
+/*N*/               if( ( bIsDBMgr &&
 /*N*/                   rDoc.GetNewDBMgr()->OpenDataSource( aDBData.sDataSource, aDBData.sCommand )&&
-/*N*/                   GETFLD_ALL == eGetMode ||
+/*N*/                   GETFLD_ALL == eGetMode ) ||
 /*N*/                   ( GETFLD_CALC & eGetMode &&
 /*N*/                       ((SwDBNumSetField*)pFld)->IsCondValid()))
 /*N*/                   pFormel = &pFld->GetPar1();
@@ -1662,9 +1586,9 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/           {
 /*N*/               SwDBData aDBData(((SwDBNextSetField*)pFld)->GetDBData(&rDoc));
 /*N*/
-/*N*/               if( bIsDBMgr &&
+/*N*/               if( ( bIsDBMgr &&
 /*N*/                   rDoc.GetNewDBMgr()->OpenDataSource( aDBData.sDataSource, aDBData.sCommand )&&
-/*N*/                   GETFLD_ALL == eGetMode ||
+/*N*/                   GETFLD_ALL == eGetMode ) ||
 /*N*/                   ( GETFLD_CALC & eGetMode &&
 /*N*/                       ((SwDBNextSetField*)pFld)->IsCondValid() ))
 /*N*/                   pFormel = &pFld->GetPar1();
@@ -1680,30 +1604,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*M*/   }
 /*M*/   nFldLstGetMode = eGetMode;
 /*M*/   nNodes = rDoc.GetNodes().Count();
-/*M*/
-/*M*/ #ifdef JP_DEBUG
-/*M*/   {
-/*M*/   SvFileStream sOut( "f:\\x.x", STREAM_STD_WRITE );
-/*M*/   sOut.Seek( STREAM_SEEK_TO_END );
-/*M*/   sOut << "------------------" << endl;
-/*M*/   const _SetGetExpFldPtr* pSortLst = pFldSortLst->GetData();
-/*M*/   for( USHORT n = pFldSortLst->Count(); n; --n, ++pSortLst )
-/*M*/   {
-/*M*/       String sStr( (*pSortLst)->GetNode() );
-/*M*/       sStr += "\t, ";
-/*M*/       sStr += (*pSortLst)->GetCntnt();
-/*M*/       sStr += "\tNode: ";
-/*M*/       sStr += (*pSortLst)->GetFld()->GetTxtNode().StartOfSectionIndex();
-/*M*/       sStr += "\tPos: ";
-/*M*/       sStr += *(*pSortLst)->GetFld()->GetStart();
-/*M*/       sStr += "\tType: ";
-/*M*/       sStr += (*pSortLst)->GetFld()->GetFld().GetFld()->GetTyp()->Which();
-/*M*/
-/*M*/       sOut << sStr.GetStr() << endl;
-/*M*/   }
-/*M*/   }
-/*M*/ #endif
-/*M*/   // JP_DEBUG
 /*M*/ }
 
 /*--------------------------------------------------------------------
@@ -1740,7 +1640,7 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/       // einen Index fuers bestimmen vom TextNode anlegen
 /*N*/       SwPosition aPos( rDoc.GetNodes().GetEndOfPostIts() );
 /*N*/ #ifdef DBG_UTIL
-/*N*/       ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
+/*N*/       OSL_ENSURE( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
 /*N*/ #else
 /*N*/       GetBodyTxtNode( rDoc, aPos, *pFrm );
 /*N*/ #endif
@@ -1788,7 +1688,7 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
                 break;
 
 #ifdef DBG_UTIL
-            ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
+            OSL_ENSURE( GetBodyTxtNode( rDoc, aPos, *pFrm ), "wo steht das Feld" );
 #else
             GetBodyTxtNode( rDoc, aPos, *pFrm );
 #endif
@@ -1816,7 +1716,7 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
 /*N*/       sFldName = ((SwSetExpFieldType&)rType).GetName();
 /*N*/       break;
 /*N*/   default:
-/*N*/       ASSERT( !this, "kein gueltiger FeldTyp" );
+/*N*/       OSL_ENSURE( !this, "kein gueltiger FeldTyp" );
 /*N*/   }
 /*N*/
 /*N*/   if( sFldName.Len() )
@@ -1839,7 +1739,9 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
 
 
 /*N*/ SwDocUpdtFld::SwDocUpdtFld()
-/*N*/   : pFldSortLst( 0 ), nFldLstGetMode( 0 ), nFldUpdtPos( LONG_MAX )
+/*N*/   : pFldSortLst( 0 )
+/*N*/   , nFldUpdtPos( LONG_MAX )
+/*N*/   , nFldLstGetMode( 0 )
 /*N*/ {
 /*N*/   bInUpdateFlds = bFldsDirty = FALSE;
 /*N*/   memset( aFldTypeTable, 0, sizeof( aFldTypeTable ) );
@@ -1857,3 +1759,5 @@ void SwDocUpdtFld::GetBodyNode( const SwSectionNode& rSectNd )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

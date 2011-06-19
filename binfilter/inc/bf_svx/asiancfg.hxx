@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,22 +28,14 @@
 #ifndef _SVX_ASIANCFG_HXX
 #define _SVX_ASIANCFG_HXX
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 namespace com{namespace sun{namespace star{
 namespace lang{
     struct Locale;
 }}}}
 namespace binfilter {
 
-//STRIP008 namespace com{namespace sun{namespace star{
-//STRIP008 namespace lang{
-//STRIP008  struct Locale;
-//STRIP008 }}}}
 //-----------------------------------------------------------------------------
 struct SvxAsianConfig_Impl;
 class SvxAsianConfig : public ::utl::ConfigItem
@@ -71,3 +64,4 @@ void Commit();
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

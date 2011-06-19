@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "viewsh.hxx"
@@ -42,59 +41,23 @@
 #include "dcontact.hxx"     // SwContact
 #include "dflyobj.hxx"      // SdrObject
 #include "frmtool.hxx"    // ::DrawGraphic
-#ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
-#endif
-
-#ifdef VERT_DISTANCE
-#include <math.h>
-#endif
-
-
-#ifndef _E3D_OBJ3D_HXX //autogen
+#include <osl/diagnose.h>
 #include <bf_svx/obj3d.hxx>
-#endif
-
-#ifndef _TXTRANGE_HXX //autogen
 #include <bf_svx/txtrange.hxx>
-#endif
-
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
 
-
-
-
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
 
 // #102344#
-#ifndef _SVDOEDGE_HXX
 #include <bf_svx/svdoedge.hxx>
-#endif
 
 #include "itrform2.hxx"   // SwTxtFormatter
 #include "porfly.hxx"     // NewFlyCntPortion
@@ -173,7 +136,7 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 // assert, if no anchor frame found at 'virtual' drawing object
 /*N*/                 // and return anchor frame of 'master' drawing object.
-/*N*/                 ASSERT( false, "<lcl_TheAnchor(..)> - virtual drawing object with no anchor frame!" );
+/*N*/                 OSL_FAIL( "<lcl_TheAnchor(..)> - virtual drawing object with no anchor frame!" );
 /*N*/                 pRet = pDrawContact->GetAnchor();
 /*N*/             }
 /*N*/         }
@@ -183,7 +146,7 @@ namespace binfilter {
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/     ASSERT( pRet, "<lcl_TheAnchor(..)> - no anchor frame found!" );
+/*N*/     OSL_ENSURE( pRet, "<lcl_TheAnchor(..)> - no anchor frame found!" );
 /*N*/
 /*N*/     return *pRet;
 /*N*/ }
@@ -232,8 +195,8 @@ namespace binfilter {
 
 /*N*/ void SwTxtFormatter::CalcUnclipped( SwTwips& rTop, SwTwips& rBottom )
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*N*/             "SwTxtFormatter::CalcUnclipped with unswapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/             "SwTxtFormatter::CalcUnclipped with unswapped frame" );
 /*N*/
 /*N*/   long nFlyAsc, nFlyDesc;
 /*N*/   lcl_MaxAscDescent( pCurr, rTop, rBottom, nFlyAsc, nFlyDesc );
@@ -248,20 +211,20 @@ namespace binfilter {
  * ( hauptsaechlich Korrrektur der X-Position )
  *************************************************************************/
 
-/*N*/ void SwTxtFormatter::UpdatePos( SwLineLayout *pCurr, Point aStart,
+/*N*/ void SwTxtFormatter::UpdatePos( SwLineLayout *pCurr1, Point aStart,
 /*N*/   xub_StrLen nStartIdx, sal_Bool bAllWays ) const
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*N*/             "SwTxtFormatter::UpdatePos with unswapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/             "SwTxtFormatter::UpdatePos with unswapped frame" );
 /*N*/
 /*N*/     if( GetInfo().IsTest() )
 /*N*/       return;
-/*N*/   SwLinePortion *pFirst = pCurr->GetFirstPortion();
+/*N*/   SwLinePortion *pFirst = pCurr1->GetFirstPortion();
 /*N*/   SwLinePortion *pPos = pFirst;
 /*N*/   SwTxtPaintInfo aTmpInf( GetInfo() );
-/*N*/   aTmpInf.SetSpaceAdd( pCurr->GetpSpaceAdd() );
+/*N*/   aTmpInf.SetSpaceAdd( pCurr1->GetpSpaceAdd() );
 /*N*/   aTmpInf.ResetSpaceIdx();
-/*N*/     aTmpInf.SetKanaComp( pCurr->GetpKanaComp() );
+/*N*/     aTmpInf.SetKanaComp( pCurr1->GetpKanaComp() );
 /*N*/     aTmpInf.ResetKanaIdx();
 /*N*/
 /*N*/   // Die Groesse des Frames
@@ -270,11 +233,11 @@ namespace binfilter {
 /*N*/
 /*N*/   long nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc;
 /*N*/   lcl_MaxAscDescent( pPos, nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc );
-/*N*/   KSHORT nTmpHeight = pCurr->GetRealHeight();
-/*N*/   KSHORT nAscent = pCurr->GetAscent() + nTmpHeight - pCurr->Height();
+/*N*/   KSHORT nTmpHeight = pCurr1->GetRealHeight();
+/*N*/   KSHORT nAscent = pCurr1->GetAscent() + nTmpHeight - pCurr1->Height();
 /*N*/   sal_uInt8 nFlags = SETBASE_ULSPACE;
 /*N*/   if( GetMulti() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/   {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/       aTmpInf.Y( aTmpInf.Y() + nAscent );
 /*N*/
@@ -290,13 +253,11 @@ namespace binfilter {
 /*N*/                              nFlyAsc, nFlyDesc, pPos );
 /*N*/           if( pPos->IsGrfNumPortion() )
 /*N*/           {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 if( !nFlyAsc && !nFlyDesc )
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else
 /*N*/           {
 /*N*/                 Point aBase( aTmpInf.GetPos() );
-/*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*N*/                     GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( aBase );
 /*N*/
 /*N*/                 ((SwFlyCntPortion*)pPos)->SetBase( *aTmpInf.GetTxtFrm(),
 /*N*/                     aBase, nTmpAscent, nTmpDescent, nFlyAsc,
@@ -304,7 +265,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       if( pPos->IsMultiPortion() && ((SwMultiPortion*)pPos)->HasFlyInCntnt() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       pPos->Move( aTmpInf );
 /*N*/       pPos = pPos->GetPortion();
 /*N*/   }
@@ -317,8 +278,8 @@ namespace binfilter {
 
 /*N*/ void SwTxtFormatter::AlignFlyInCntBase( long nBaseLine ) const
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || pFrm->IsSwapped(),
-/*N*/             "SwTxtFormatter::AlignFlyInCntBase with unswapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm->IsVertical() || pFrm->IsSwapped(),
+/*N*/             "SwTxtFormatter::AlignFlyInCntBase with unswapped frame" );
 /*N*/
 /*N*/   if( GetInfo().IsTest() )
 /*N*/       return;
@@ -327,7 +288,7 @@ namespace binfilter {
 /*N*/   sal_uInt8 nFlags = SETBASE_NOFLAG;
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nFlags |= SETBASE_ROTATE;
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   long nTmpAscent, nTmpDescent, nFlyAsc, nFlyDesc;
@@ -344,11 +305,7 @@ namespace binfilter {
 /*N*/           else
 /*N*/           {
 /*N*/                 Point aBase;
-/*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*N*/                 {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     nBaseLine = GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( nBaseLine );
-/*N*/                 }
-/*N*/                 else
+/*N*/                 if (!GetInfo().GetTxtFrm()->IsVertical())
 /*N*/                     aBase = Point( ((SwFlyCntPortion*)pPos)->GetRefPoint().X(), nBaseLine );
 /*N*/
 /*N*/                 ((SwFlyCntPortion*)pPos)->SetBase( *GetInfo().GetTxtFrm(), aBase, nTmpAscent, nTmpDescent,
@@ -370,7 +327,7 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFormatter::ChkFlyUnderflow( SwTxtFormatInfo &rInf ) const
 /*N*/ {
-/*N*/     ASSERT( rInf.GetTxtFly()->IsOn(), "SwTxtFormatter::ChkFlyUnderflow: why?" );
+/*N*/     OSL_ENSURE( rInf.GetTxtFly()->IsOn(), "SwTxtFormatter::ChkFlyUnderflow: why?" );
 /*N*/   if( GetCurr() )
 /*N*/   {
 /*N*/       // Erst pruefen wir, ob ueberhaupt ein Fly mit der Zeile ueberlappt.
@@ -379,11 +336,8 @@ namespace binfilter {
 /*N*/       SwRect aLine( GetLeftMargin(), Y(), rInf.RealWidth(), nHeight );
 /*N*/
 /*N*/         SwRect aLineVert( aLine );
-/*N*/         if ( pFrm->IsVertical() )
-/*?*/             pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/         SwRect aInter( rInf.GetTxtFly()->GetFrm( aLineVert ) );
 /*N*/         if ( pFrm->IsVertical() )
-                //STRIP001 /*?*/             pFrm->SwitchVerticalToHorizontal( aInter );
 /*N*/
 /*N*/       if( !aInter.HasArea() )
 /*N*/           return sal_False;
@@ -399,11 +353,9 @@ namespace binfilter {
 /*N*/             aLine.Width( pPos->Width() );
 /*N*/
 /*N*/             aLineVert = aLine;
-/*N*/             if ( pFrm->IsVertical() )
-/*?*/                 pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/             aInter = rInf.GetTxtFly()->GetFrm( aLineVert );
 /*N*/             if ( pFrm->IsVertical() )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 pFrm->SwitchVerticalToHorizontal( aInter );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/             // new flys from below?
 /*N*/           if( !pPos->IsFlyPortion() )
@@ -512,17 +464,15 @@ namespace binfilter {
 /*N*/
 /*N*/     SwRect aLineVert( aLine );
 /*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchLTRtoRTL( aLineVert );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
-/*N*/     if ( pFrm->IsVertical() )
-/*N*/         pFrm->SwitchHorizontalToVertical( aLineVert );
 /*N*/     SwRect aInter( pTxtFly->GetFrm( aLineVert ) );
 /*N*/
 /*N*/     if ( pFrm->IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchRTLtoLTR( aInter );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     if ( pFrm->IsVertical() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         pFrm->SwitchVerticalToHorizontal( aInter );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     if( aInter.IsOver( aLine ) )
 /*N*/   {
@@ -589,10 +539,10 @@ namespace binfilter {
 /*N*/           // ausweichen oder die Oberkante des naechsten Rahmens, den wir
 /*N*/           // beachten muessen. Wir koennen also jetzt getrost bis zu diesem
 /*N*/           // Wert anwachsen, so sparen wir einige Leerzeilen.
-/*N*/             SWRECTFN( pFrm )
+/*N*/             sal_Bool bVert = pFrm->IsVertical();
 /*N*/             long nNextTop = pTxtFly->GetNextTop();
 /*N*/             if ( bVert )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                 nNextTop = pFrm->SwitchVerticalToHorizontal( nNextTop );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/             if( nNextTop > aInter.Bottom() )
 /*N*/           {
 /*N*/                 SwTwips nH = nNextTop - aInter.Top();
@@ -645,7 +595,6 @@ namespace binfilter {
 /*?*/             if ( bVert )
 /*?*/             {
 /*?*/                 Point aPoint( nStartX, 0 );
-/*?*/                 pFrm->SwitchHorizontalToVertical( aPoint );
 /*?*/                 nStartX = aPoint.Y();
 /*?*/             }
 /*?*/
@@ -711,12 +660,10 @@ namespace binfilter {
 /*N*/   sal_uInt8 nMode = IsQuick() ? SETBASE_QUICK : 0;
 /*N*/   if( GetMulti() && GetMulti()->HasRotation() )
 /*N*/   {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nMode |= SETBASE_ROTATE;
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/     Point aTmpBase( aBase );
-/*N*/     if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*?*/         GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( aTmpBase );
 /*N*/
 /*N*/   if( pFly )
 /*N*/   {
@@ -734,8 +681,6 @@ namespace binfilter {
 /*N*/           nMode |= SETBASE_ULSPACE;
 /*N*/           if( !rInf.IsTest() )
 /*N*/                 aTmpBase = aBase;
-/*N*/                 if ( GetInfo().GetTxtFrm()->IsVertical() )
-/*?*/                     GetInfo().GetTxtFrm()->SwitchHorizontalToVertical( aTmpBase );
 /*N*/
 /*N*/                 pRet->SetBase( *rInf.GetTxtFrm(), aTmpBase, nTmpAscent,
 /*N*/                                nTmpDescent, nFlyAsc, nFlyDesc, nMode );
@@ -839,7 +784,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( pCurrFrm )
 /*N*/
-/*N*/   ASSERT( bOn, "IsAnyFrm: Why?" );
+/*N*/   OSL_ENSURE( bOn, "IsAnyFrm: Why?" );
 /*N*/   SwRect aRect( pCurrFrm->Frm().Pos() + pCurrFrm->Prt().Pos(),
 /*N*/       pCurrFrm->Prt().SSize() );
 /*N*/
@@ -860,7 +805,7 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFly::IsAnyObj( const SwRect &rRect ) const
 /*N*/ {
-/*N*/   ASSERT ( bOn, "SwTxtFly::IsAnyObj: Who's knocking?" );
+/*N*/   OSL_ENSURE( bOn, "SwTxtFly::IsAnyObj: Who's knocking?" );
 /*N*/
 /*N*/   SwRect aRect( rRect );
 /*N*/   if ( aRect.IsEmpty() )
@@ -895,30 +840,6 @@ namespace binfilter {
 /*N*/       pMaster = (SwCntntFrm*)pMaster->FindMaster();
 /*N*/   return pMaster;
 /*N*/ }
-
-/*************************************************************************
- *                      SwTxtFly::DrawTextOpaque()
- *
- * IN: dokumentglobal
- * DrawTextOpaque() wird von DrawText() gerufen.
- * Die Clipregions werden so gesetzt, dass nur die Teile ausgegeben werden,
- * die nicht in den Bereichen von FlyFrms liegen, die undurchsichtig und
- * ueber dem aktuellen Frame liegen.
- * Die On-Optimierung uebernimmt DrawText()!
- *************************************************************************/
-
-#define UINT32_MAX 0xFFFFFFFF
-
-
-/*************************************************************************
- *                      SwTxtFly::DrawFlyRect()
- *
- * IN: windowlokal
- * Zwei Feinheiten gilt es zu beachten:
- * 1) DrawRect() oberhalb des ClipRects sind erlaubt !
- * 2) FlyToRect() liefert groessere Werte als die Framedaten !
- *************************************************************************/
-
 
 /*************************************************************************
  *                      SwTxtFly::GetTop()
@@ -1025,7 +946,7 @@ namespace binfilter {
 /*M*/       {
 /*M*/           const SwFmtAnchor& rNewA =
 /*M*/               ((SwContact*)GetUserCall(pNew))->GetFmt()->GetAnchor();
-/*M*/           ASSERT( FLY_IN_CNTNT != rNewA.GetAnchorId(), "Don't call GetTop with a FlyInCntFrm" );
+/*M*/           OSL_ENSURE( FLY_IN_CNTNT != rNewA.GetAnchorId(), "Don't call GetTop with a FlyInCntFrm" );
 /*M*/           if( FLY_PAGE == rNewA.GetAnchorId() )
 /*M*/               return sal_True;  // Seitengebundenen wird immer ausgewichen.
 /*M*/
@@ -1078,8 +999,8 @@ namespace binfilter {
 
 /*N*/ SwFlyList *SwTxtFly::InitFlyList()
 /*N*/ {
-/*N*/   ASSERT( pCurrFrm, "InitFlyList: No Frame, no FlyList" );
-/*N*/     ASSERT( !pFlyList, "InitFlyList: FlyList already initialized" );
+/*N*/   OSL_ENSURE( pCurrFrm, "InitFlyList: No Frame, no FlyList" );
+/*N*/     OSL_ENSURE( !pFlyList, "InitFlyList: FlyList already initialized" );
 /*N*/
 /*N*/     SWAP_IF_SWAPPED( pCurrFrm )
 /*N*/
@@ -1097,7 +1018,7 @@ namespace binfilter {
 /*N*/         SWRECTFN( pCurrFrm )
 /*N*/         const long nRight = (aRect.*fnRect->fnGetRight)() - 1;
 /*N*/         const long nLeft = (aRect.*fnRect->fnGetLeft)() + 1;
-/*N*/       const sal_Bool bFooter = pCurrFrm->IsInFtn();
+/*N*/       pCurrFrm->IsInFtn();
 /*N*/       const sal_Bool bR2L = pCurrFrm->IsRightToLeft();
 /*N*/
 /*N*/       for( MSHORT i = 0; i < nCount; i++ )
@@ -1234,8 +1155,9 @@ namespace binfilter {
  * class SwContourCache
  *************************************************************************/
 
-/*N*/ SwContourCache::SwContourCache() :
-/*N*/   nObjCnt( 0 ), nPntCnt( 0 )
+/*N*/ SwContourCache::SwContourCache()
+/*N*/   : nPntCnt( 0 )
+/*N*/   , nObjCnt( 0 )
 /*N*/ {
 /*N*/   memset( (SdrObject**)pSdrObj, 0, sizeof(pSdrObj) );
 /*N*/   memset( pTextRanger, 0, sizeof(pTextRanger) );
@@ -1249,7 +1171,7 @@ namespace binfilter {
 
 /*?*/ void SwContourCache::ClrObject( MSHORT nPos )
 /*?*/ {
-/*?*/   ASSERT( pTextRanger[ nPos ], "ClrObject: Allready cleared. Good Bye!" );
+/*?*/   OSL_ENSURE( pTextRanger[ nPos ], "ClrObject: Allready cleared. Good Bye!" );
 /*?*/   nPntCnt -= pTextRanger[ nPos ]->GetPointCount();
 /*?*/   delete pTextRanger[ nPos ];
 /*?*/   --nObjCnt;
@@ -1295,15 +1217,13 @@ namespace binfilter {
 /*N*/         const SwRect &rLine, const SwTxtFrm* pFrm, const long nXPos,
 /*N*/         const sal_Bool bRight )
 /*N*/ {
-/*N*/     SWRECTFN( pFrm )
-/*N*/
 /*N*/     SwRect aRet;
 /*N*/   const SwFmt *pFmt =
 /*N*/       ((SwContact*)GetUserCall(pObj))->GetFmt();
 /*N*/   if( pFmt->GetSurround().IsContour() &&
 /*N*/       ( !pObj->IsWriterFlyFrame() ||
-/*N*/         ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower() &&
-/*N*/         ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower()->IsNoTxtFrm() ) )
+/*N*/         (((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower() &&
+/*N*/         ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Lower()->IsNoTxtFrm()) ) )
 /*N*/   {
 /*N*/         aRet = GetBoundRect( pObj );
 /*N*/       if( aRet.IsOver( rLine ) )
@@ -1347,7 +1267,7 @@ namespace binfilter {
 /*N*/           // Vorsicht #37347: Das GetContour() fuehrt zum Laden der Grafik,
 /*N*/           // diese aendert dadurch ggf. ihre Groesse, ruft deshalb ein
 /*N*/           // ClrObject() auf.
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 PolyPolygon aPoly;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1506,10 +1426,10 @@ namespace binfilter {
 /*N*/                     SwRect aFly = FlyToRect( pObj, rRect );
 /*N*/                   if( aFly.IsEmpty() || !aFly.IsOver( rRect ) )
 /*N*/                       continue;
-/*N*/                     if( !bRet ||
+/*N*/                     if( !bRet || (
 /*N*/                         ( !pCurrFrm->IsRightToLeft() &&
 /*N*/                           ( (aFly.*fnRect->fnGetLeft)() <
-/*N*/                             (pRect->*fnRect->fnGetLeft)() ) ||
+/*N*/                             (pRect->*fnRect->fnGetLeft)() ) ) ||
 /*N*/                         ( pCurrFrm->IsRightToLeft() &&
 /*N*/                           ( (aFly.*fnRect->fnGetRight)() >
 /*N*/                             (pRect->*fnRect->fnGetRight)() ) ) ) )
@@ -1559,8 +1479,8 @@ namespace binfilter {
 /*N*/                                 const SwRect &rLine ) const
 /*N*/ {
 /*N*/   // Normalerweise ist der rechte Rand der rechte Rand der Printarea.
-/*N*/     ASSERT( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
-/*N*/             "SwTxtFly::CalcRightMargin with swapped frame" )
+/*N*/     OSL_ENSURE( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
+/*N*/             "SwTxtFly::CalcRightMargin with swapped frame" );
 /*N*/     SWRECTFN( pCurrFrm )
 /*N*/     SwTwips nRight = (pCurrFrm->Frm().*fnRect->fnGetLeft)() +
 /*N*/                      (pCurrFrm->Prt().*fnRect->fnGetRight)() + 1;
@@ -1656,8 +1576,8 @@ namespace binfilter {
 /*N*/ void SwTxtFly::CalcLeftMargin( SwRect &rFly, MSHORT nFlyPos,
 /*N*/                                 const SwRect &rLine ) const
 /*N*/ {
-/*N*/     ASSERT( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
-/*N*/             "SwTxtFly::CalcLeftMargin with swapped frame" )
+/*N*/     OSL_ENSURE( ! pCurrFrm->IsVertical() || ! pCurrFrm->IsSwapped(),
+/*N*/             "SwTxtFly::CalcLeftMargin with swapped frame" );
 /*N*/     SWRECTFN( pCurrFrm )
 /*N*/     SwTwips nLeft = (pCurrFrm->Frm().*fnRect->fnGetLeft)() +
 /*N*/                     (pCurrFrm->Prt().*fnRect->fnGetLeft)();
@@ -1913,7 +1833,7 @@ namespace binfilter {
 /*N*/
 /*N*/     SWAP_IF_SWAPPED( pCurrFrm )
 /*N*/
-/*N*/   ASSERT( bOn, "IsAnyFrm: Why?" );
+/*N*/   OSL_ENSURE( bOn, "IsAnyFrm: Why?" );
 /*N*/
 /*N*/     const sal_Bool bRet = ForEach( rLine, NULL, sal_False );
 /*N*/     UNDO_SWAP( pCurrFrm )
@@ -1923,3 +1843,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

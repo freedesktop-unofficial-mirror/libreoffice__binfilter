@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,35 +31,20 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _DDEFLD_HXX
+#include <osl/diagnose.h>
 #include <ddefld.hxx>
-#endif
-#ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
 
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
-using namespace rtl;
-
+using ::rtl::OUString;
 #ifdef PM2
 #define DDE_TXT_ENCODING    RTL_TEXTENCODING_IBM_850
 #else
@@ -140,7 +126,7 @@ using namespace rtl;
 /*N*/
 /*N*/   if( pDoc && refLink.Is() )
 /*N*/   {
-/*?*/       ASSERT( !nRefCnt, "wie kommen die Referenzen rueber?" );
+/*?*/       OSL_ENSURE( !nRefCnt, "wie kommen die Referenzen rueber?" );
 /*?*/       pDoc->GetLinkManager().Remove( refLink );
 /*N*/   }
 /*N*/
@@ -168,9 +154,7 @@ using namespace rtl;
 /*?*/       pDoc->GetLinkManager().Remove( refLink );
 /*N*/   }
 /*N*/ }
-/* -----------------------------28.08.00 16:23--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const
 {
     BYTE nPart = 0;
@@ -187,15 +171,13 @@ BOOL SwDDEFieldType::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) c
         }
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     if( nPart )
         rVal <<= OUString(GetCmd().GetToken(nPart-1, ::binfilter::cTokenSeperator));
     return TRUE;
 }
-/* -----------------------------28.08.00 16:23--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId )
 {
     BYTE nPart = 0;
@@ -210,7 +192,7 @@ BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId
                                              : ::binfilter::LINKUPDATE_ONCALL );
         break;
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     if( nPart )
     {
@@ -222,11 +204,9 @@ BOOL SwDDEFieldType::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId
     }
     return TRUE;
 }
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ SwDDEField::SwDDEField( SwDDEFieldType* pType )
-/*N*/   : SwField(pType)
+/*N*/ SwDDEField::SwDDEField( SwDDEFieldType* _pType )
+/*N*/   : SwField(_pType)
 /*N*/ {
 /*N*/ }
 
@@ -280,3 +260,5 @@ void SwDDEField::SetPar2(const String& rStr)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_CROSSEDOUTTYPES_HXX
 #include <cdouthdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
 
 
 namespace binfilter {
@@ -83,7 +76,7 @@ sal_Bool XMLCrossedOutPropHdl::importXML( const OUString& rStrImpValue, uno::Any
 sal_Bool XMLCrossedOutPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )
@@ -96,3 +89,5 @@ sal_Bool XMLCrossedOutPropHdl::exportXML( OUString& rStrExpValue, const uno::Any
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

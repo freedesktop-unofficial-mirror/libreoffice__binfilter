@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,56 +32,28 @@
 #endif
 
 
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
 #endif
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
-#endif
-#ifndef _SW3MARKS_HXX
 #include <sw3marks.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
-#endif
-#ifndef _FLYPOS_HXX
 #include <flypos.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -103,9 +76,9 @@ namespace binfilter {
 /*N*/
 /*N*/   // Der aktuelle NumRange eines 3.1/40-Files muss gerettet werden, falls
 /*N*/   // eine Section innerhalb einer Section gelesen wird (z.B. Flys)
-/*N*/   SwNumRule* pOld40Rule;
-/*N*/   SwPaM* pOld40Range;
-/*N*/   BOOL bOldConvertNoNum;
+/*N*/   SwNumRule* pOld40Rule = NULL;
+/*N*/   SwPaM* pOld40Range =NULL;
+/*N*/   BOOL bOldConvertNoNum = 0;
 /*N*/   if( !IsVersion(SWG_LONGIDX) )
 /*N*/   {
 /*N*/       pOld40Rule = pCurNumRule;
@@ -140,7 +113,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwTxtNode* pNd = bNode1 ? pStart->GetTxtNode() : NULL;
 /*N*/   SwTxtNode* pNd1 = pNd;
-/*N*/   ASSERT( !nInsFirstPara || pNd, "Einfuegen in Nicht-Content-Node?" );
+/*N*/   OSL_ENSURE( !nInsFirstPara || pNd, "Einfuegen in Nicht-Content-Node?" );
 /*N*/   SwPosition *pEndPos = 0;
 /*N*/   if( nInsFirstPara && pNd )
 /*N*/   {
@@ -269,7 +242,7 @@ namespace binfilter {
 /*?*/
 /*?*/                   if( SwFlyStartNode != pSttNd->GetStartNodeType() )
 /*?*/                   {
-/*?*/                       ASSERT( !this,
+/*?*/                       OSL_ENSURE( !this,
 /*?*/                               "Verankerung an Frames ist nur fuer Fly-Frames implementiert" );
 /*?*/                       break;
 /*?*/                   }
@@ -340,7 +313,7 @@ namespace binfilter {
 /*N*/   // auf einem End-Node steht, lassen wir den Code erstmal drinne, aber
 /*N*/   // es ist doc recht fraglich, wozu er da ist.
 /*N*/   SwEndNode *pEndNd = pDoc->GetNodes()[ rPos ]->GetEndNode();
-/*N*/   ASSERT( !pEndNd || !pSectSttNd || pEndNd->FindStartNode()==pSectSttNd,
+/*N*/   OSL_ENSURE( !pEndNd || !pSectSttNd || pEndNd->FindStartNode()==pSectSttNd,
 /*N*/           "PaM steht auf EndNode, der nicht zur Section gehoert." );
 /*N*/   if( pEndNd && !pSectSttNd &&
 /*N*/       pEndNd != &pDoc->GetNodes().GetEndOfContent())
@@ -378,14 +351,6 @@ namespace binfilter {
 /*N*/ SwStartNode& Sw3IoImp::InContents()
 /*N*/ {
 /*N*/   // Anlegen einer Section mit einem TextNode
-/*N*/ #if 0
-/*N*/   SwStartNode* pSttNd = pDoc->GetNodes().MakeTextSection(
-/*N*/                               pDoc->GetNodes().EndOfAutotext,
-/*N*/                               (SwStartNodeType)eStartNodeType,
-/*N*/                               (SwTxtFmtColl*) pDoc->GetDfltTxtFmtColl() );
-/*N*/   SwIndex aStart( pSttNd->GetMyIndex() );
-/*N*/   InContents( aStart );
-/*N*/ #endif
 /*N*/ // OPT: Section leer anlegen
 /*N*/   SwNodeIndex aStart( pDoc->GetNodes().GetEndOfAutotext() );
 /*N*/   SwStartNode* pSttNd = pDoc->GetNodes().MakeEmptySection(  aStart,
@@ -444,7 +409,7 @@ namespace binfilter {
 /*N*/   // Der Index zeigt auf den Start-Node, also muessen wir einen
 /*N*/   // bauen, der auf den naechsten Node zeigt
 /*N*/   SwStartNode* pStt = pDoc->GetNodes()[ rStart ]->GetStartNode();
-/*N*/   ASSERT( pStt, "StartNode nicht gefunden" );
+/*N*/   OSL_ENSURE( pStt, "StartNode nicht gefunden" );
 /*N*/   if( pStt )
 /*N*/   {
 /*N*/       // Hole vom Node und vom letzten Node die Position in der Section
@@ -495,15 +460,15 @@ namespace binfilter {
 /*N*/   // Die aktuelle NumRuke muss gerettet werden, falls ein 3.1/40-Export
 /*N*/   // stattfindet und eine Sectioninnerhalb einer Section geschrieben
 /*N*/   // wird (z.B. Flys)
-/*N*/   SwNumRule* pOld40Rule;
+/*N*/   SwNumRule* pOld40Rule = NULL;
 /*N*/   if( IsSw31Or40Export() )
 /*N*/   {
 /*N*/       pOld40Rule = pCurNumRule;
 /*N*/       pCurNumRule = NULL;
 /*N*/   }
 /*N*/
-/*N*/   BOOL bOldExportFlyFrmFmt;
-/*N*/   const SwFlyFrm* pOldExportFlyFrm;
+/*N*/   BOOL bOldExportFlyFrmFmt = FALSE;
+/*N*/   const SwFlyFrm* pOldExportFlyFrm = NULL;
 /*N*/   if( pExportInfo )
 /*N*/   {
 /*N*/       bOldExportFlyFrmFmt = pExportInfo->bFlyFrmFmt;
@@ -566,7 +531,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   ULONG nNodes = 0;
 /*N*/
-/*N*/   ULONG nWords, nChars;
+/*N*/   ULONG nWords = 0, nChars = 0;
 /*N*/   ULONG nRepNodesToWrite = 0;
 /*N*/   SwTxtNode *pLastNode = NULL;
 /*N*/   BOOL bFirstNode = bTopLevel;
@@ -660,7 +625,7 @@ namespace binfilter {
 /*?*/               // kann einfach ignoriert werden
 /*?*/               nNodes--; nCurNode++; break;
 /*?*/           default:
-/*?*/               ASSERT( !this, "Node kann nicht gespeichert werden" );
+/*?*/               OSL_ENSURE( !this, "Node kann nicht gespeichert werden" );
 /*?*/               Error( ERR_SWG_WRITE_ERROR );
 /*?*/               nCurNode = nEndNode;
 /*N*/       }
@@ -798,7 +763,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   const SwSection& rSect = rNd.GetSection();
 /*N*/
-/*N*/   ASSERT( TOX_HEADER_SECTION == rSect.GetType() ||
+/*N*/   OSL_ENSURE( TOX_HEADER_SECTION == rSect.GetType() ||
 /*N*/           TOX_CONTENT_SECTION == rSect.GetType(),
 /*N*/           "Not a TOX section" );
 /*N*/
@@ -854,7 +819,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // The sections start node is counted by OutNodes, but it hasn't been
 /*N*/   // written. That for, the number of nodes must be reduced by one.
-/*N*/   ASSERT( nNodes > 0, "empty TOX section?" );
+/*N*/   OSL_ENSURE( nNodes > 0, "empty TOX section?" );
 /*N*/   return nNodes - 1;
 /*N*/ }
 
@@ -954,3 +919,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 #include <limits.h>
 
-#ifndef _SVX_FRMDIR_HXX
 #include <bf_svx/frmdir.hxx>
-#endif
 namespace binfilter {
 
 // POOLCOLL-IDs:
@@ -58,7 +57,7 @@ namespace binfilter {
 //                                  3 - Absatzformate (?)
 //                                  4 - Grafikformate (?)
 
-// FÅr alle IDs gilt:
+// FÔøΩr alle IDs gilt:
 // Herkunft:                        0 -Pool
 //                                  1 -Benutzer
 // Offset:                          innerhalb der Gruppe
@@ -435,14 +434,8 @@ inline BOOL IsConditionalByPoolId(USHORT nId)
     {
         return RES_POOLCOLL_TEXT == nId;
     }
-// die Id's fuer die Grafik-Formate
-/*enum RES_POOL_GRFFMT_TYPE
-{
-RES_POOLGRF_BEGIN = RES_POOLPAR_END,
-RES_POOLGRF_1 = RES_POOLGRF_BEGIN,
-RES_POOLGRF_END
-};
-*/
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

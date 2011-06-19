@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,13 @@
 #ifndef SC_MISCUNO_HXX
 #define SC_MISCUNO_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 namespace binfilter {
 
 
@@ -76,22 +65,22 @@ sal_Bool SAL_CALL ClassName::supportsService( const ::rtl::OUString& ServiceName
                             const uno::Reference<beans::XPropertyChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
-    { DBG_ERROR("not implemented"); }                                               \
+    { OSL_FAIL("not implemented"); }                                                \
     void SAL_CALL ClassName::removePropertyChangeListener( const ::rtl::OUString&,  \
                             const uno::Reference<beans::XPropertyChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
-    { DBG_ERROR("not implemented"); }                                               \
+    { OSL_FAIL("not implemented"); }                                                \
     void SAL_CALL ClassName::addVetoableChangeListener( const ::rtl::OUString&,     \
                             const uno::Reference<beans::XVetoableChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
-    { DBG_ERROR("not implemented"); }                                               \
+    { OSL_FAIL("not implemented"); }                                                \
     void SAL_CALL ClassName::removeVetoableChangeListener( const ::rtl::OUString&,  \
                             const uno::Reference<beans::XVetoableChangeListener>&)  \
                             throw(beans::UnknownPropertyException,                  \
                             lang::WrappedTargetException, uno::RuntimeException)    \
-    { DBG_ERROR("not implemented"); }
+    { OSL_FAIL("not implemented"); }
 
 
 #define SC_QUERYINTERFACE(x)    \
@@ -308,3 +297,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

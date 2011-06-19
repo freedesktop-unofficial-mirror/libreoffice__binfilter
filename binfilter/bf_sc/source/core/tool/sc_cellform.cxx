@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -127,7 +125,7 @@ const ScFormulaCell* pLastFormulaTreeTop = 0;
 /*N*/                       USHORT nErrCode = pFCell->GetErrCode();
 /*N*/                       if ( nErrCode == errInterpOverflow )
 /*N*/                       {   // maxrecursion ausbuegeln, Err527 Workaround
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = pFCell->GetDocument();
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/
 /*N*/                       // erst nach dem Interpretieren (GetErrCode) das Zahlformat holen:
@@ -217,3 +215,5 @@ const ScFormulaCell* pLastFormulaTreeTop = 0;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

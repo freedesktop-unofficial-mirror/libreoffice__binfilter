@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,14 @@
 #ifndef _XMLOFF_SINGEPROPERTYSETINFOCACHE_HXX
 #define _XMLOFF_SINGEPROPERTYSETINFOCACHE_HXX
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
-#ifndef _XMLOFF_PROPERTYSETINFOHASH_HXX
 #include <bf_xmloff/PropertySetInfoHash.hxx>
-#endif
 namespace binfilter {
 
-typedef ::std::hash_map
+typedef ::boost::unordered_map
 <
     PropertySetInfoKey,
     sal_Bool,
@@ -84,3 +81,5 @@ inline sal_Bool SinglePropertySetInfoCache::hasProperty(
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

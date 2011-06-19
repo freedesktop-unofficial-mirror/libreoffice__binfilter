@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,12 +27,8 @@
  ************************************************************************/
 
 #include "bf_svx/xtable.hxx"
-#ifndef _SVDSURO_HXX //autogen
 #include <bf_svx/svdsuro.hxx>
-#endif
-#ifndef _SVDOPATH_HXX //autogen
 #include <bf_svx/svdopath.hxx>
-#endif
 #include <bf_svtools/urihelper.hxx>
 
 #ifdef _MSC_VER
@@ -44,9 +41,7 @@
 #include "drawdoc.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -60,6 +55,7 @@ using namespace ::com::sun::star;
 
 /*N*/ SdAnimationInfo::SdAnimationInfo(SdDrawDocument* pTheDoc)
 /*N*/              : SdrObjUserData(SdUDInventor, SD_ANIMATIONINFO_ID, 0),
+/*N*/                pDoc                       (pTheDoc),
 /*N*/                pPolygon                   (NULL),
 /*N*/                eEffect                    (presentation::AnimationEffect_NONE),
 /*N*/                eTextEffect                (presentation::AnimationEffect_NONE),
@@ -77,11 +73,10 @@ using namespace ::com::sun::star;
 /*N*/                eSecondSpeed               (presentation::AnimationSpeed_SLOW),
 /*N*/                bSecondSoundOn             (FALSE),
 /*N*/                bSecondPlayFull            (FALSE),
-/*N*/                bInvisibleInPresentation   (FALSE),
 /*N*/                nVerb                      (0),
-/*N*/                pDoc                       (pTheDoc),
-/*N*/                bShow                      (TRUE),
+/*N*/                bInvisibleInPresentation   (FALSE),
 /*N*/                bIsShown                   (TRUE),
+/*N*/                bShow                      (TRUE),
 /*N*/                bDimmed                    (FALSE),
 /*N*/                nPresOrder                 (LIST_APPEND)
 /*N*/ {
@@ -99,6 +94,8 @@ using namespace ::com::sun::star;
 
 /*N*/ SdAnimationInfo::SdAnimationInfo(const SdAnimationInfo& rAnmInfo)
 /*N*/              : SdrObjUserData             (rAnmInfo),
+/*N*/                SfxListener(),
+/*N*/                pDoc                       (NULL),
 /*N*/                pPolygon                   (NULL),
 /*N*/                aStart                     (rAnmInfo.aStart),
 /*N*/                aEnd                       (rAnmInfo.aEnd),
@@ -114,20 +111,19 @@ using namespace ::com::sun::star;
 /*N*/                aSoundFile                 (rAnmInfo.aSoundFile),
 /*N*/                bSoundOn                   (rAnmInfo.bSoundOn),
 /*N*/                bPlayFull                  (rAnmInfo.bPlayFull),
-/*N*/                pPathObj                   (NULL),
 /*N*/                pPathSuro                  (NULL),
+/*N*/                pPathObj                   (NULL),
 /*N*/                eClickAction               (rAnmInfo.eClickAction),
 /*N*/                eSecondEffect              (rAnmInfo.eSecondEffect),
 /*N*/                eSecondSpeed               (rAnmInfo.eSecondSpeed),
+/*N*/                aSecondSoundFile           (rAnmInfo.aSecondSoundFile),
 /*N*/                bSecondSoundOn             (rAnmInfo.bSecondSoundOn),
 /*N*/                bSecondPlayFull            (rAnmInfo.bSecondPlayFull),
-/*N*/                bInvisibleInPresentation   (rAnmInfo.bInvisibleInPresentation),
-/*N*/                nVerb                      (rAnmInfo.nVerb),
 /*N*/                aBookmark                  (rAnmInfo.aBookmark),
-/*N*/                aSecondSoundFile           (rAnmInfo.aSecondSoundFile),
-/*N*/                pDoc                       (NULL),
-/*N*/                bShow                      (rAnmInfo.bShow),
+/*N*/                nVerb                      (rAnmInfo.nVerb),
+/*N*/                bInvisibleInPresentation   (rAnmInfo.bInvisibleInPresentation),
 /*N*/                bIsShown                   (rAnmInfo.bIsShown),
+/*N*/                bShow                      (rAnmInfo.bShow),
 /*N*/                bDimmed                    (rAnmInfo.bDimmed),
 /*N*/                nPresOrder                 (LIST_APPEND)
 /*N*/ {
@@ -150,98 +146,6 @@ using namespace ::com::sun::star;
 /*N*/   delete pPathSuro;
 /*N*/   delete pPolygon;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Clone
-|*
-\************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|* Daten in Stream schreiben
-|*
-\************************************************************************/
-
-/*N*/ void SdAnimationInfo::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/
-/*N*/           // letzter Parameter ist die aktuelle Versionsnummer des Codes
-/*N*/   SdIOCompat aIO(rOut, STREAM_WRITE, 9);
-/*N*/
-/*N*/   if(pPolygon)
-/*N*/   {
-/*N*/       rOut << (UINT16)1;  // es folgt ein Polygon
-/*N*/       rOut << *pPolygon;
-/*N*/   }
-/*N*/   else
-/*N*/       rOut << (UINT16)0;  // kein Polygon
-/*N*/
-/*N*/   rOut << aStart;
-/*N*/   rOut << aEnd;
-/*N*/   rOut << (UINT16)eEffect;
-/*N*/   rOut << (UINT16)eSpeed;
-/*N*/
-/*N*/   rOut << (UINT16)bActive;
-/*N*/   rOut << (UINT16)bDimPrevious;
-/*N*/   rOut << (UINT16)bIsMovie;
-/*N*/
-/*N*/   rOut << aBlueScreen;
-/*N*/   rOut << aDimColor;
-/*N*/
-/*N*/   // #90477# rtl_TextEncoding eSysEnc = ::GetStoreCharSet( gsl_getSystemTextEncoding() );
-/*N*/   rtl_TextEncoding eSysEnc = GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rOut.GetVersion());
-/*N*/
-/*N*/   rOut << (INT16) eSysEnc;
-/*N*/
-/*N*/   rOut.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel( aSoundFile,
-/*N*/                                                  INetURLObject::WAS_ENCODED,
-/*N*/                                                  INetURLObject::DECODE_UNAMBIGUOUS), eSysEnc );
-/*N*/
-/*N*/   rOut << bSoundOn;
-/*N*/   rOut << bPlayFull;
-/*N*/
-/*N*/
-/*N*/   if (pPathObj && pPathObj->IsInserted())
-/*N*/   {
-/*N*/        rOut << (USHORT)1;
-/*N*/        SdrObjSurrogate aSuro(pPathObj);
-/*N*/        rOut << aSuro;
-/*N*/   }
-/*N*/   else
-/*N*/       rOut << (USHORT)0;
-/*N*/
-/*N*/   rOut << (UINT16)eClickAction;
-/*N*/   rOut << (UINT16)eSecondEffect;
-/*N*/   rOut << (UINT16)eSecondSpeed;
-/*N*/
-/*N*/   if (eClickAction == presentation::ClickAction_DOCUMENT || eClickAction == presentation::ClickAction_PROGRAM  ||
-/*N*/       eClickAction == presentation::ClickAction_VANISH   || eClickAction == presentation::ClickAction_SOUND)
-/*N*/   {
-/*N*/       rOut.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel( aBookmark,
-/*N*/                                                      INetURLObject::WAS_ENCODED,
-/*N*/                                                      INetURLObject::DECODE_UNAMBIGUOUS), eSysEnc );
-/*N*/   }
-/*N*/   else
-/*N*/       rOut.WriteByteString( aBookmark, eSysEnc );
-/*N*/
-/*N*/   rOut.WriteByteString( ::binfilter::StaticBaseUrl::AbsToRel(aSecondSoundFile,
-/*N*/                                                 INetURLObject::WAS_ENCODED,
-/*N*/                                                 INetURLObject::DECODE_UNAMBIGUOUS), eSysEnc );
-/*N*/   rOut << (UINT16)bInvisibleInPresentation;
-/*N*/   rOut << (UINT16)nVerb;
-/*N*/
-/*N*/   rOut << bSecondSoundOn;
-/*N*/   rOut << bSecondPlayFull;
-/*N*/
-/*N*/   rOut << bDimHide;
-/*N*/   rOut << (UINT16)eTextEffect;
-/*N*/   rOut << (UINT32)nPresOrder;
-/*N*/ }
-
 
 /*************************************************************************
 |*
@@ -277,7 +181,7 @@ using namespace ::com::sun::star;
 /*N*/   rIn >> aBlueScreen;
 /*N*/   rIn >> aDimColor;
 /*N*/
-/*N*/   rtl_TextEncoding eTextEnc;
+/*N*/   rtl_TextEncoding eTextEnc = RTL_TEXTENCODING_DONTKNOW;
 /*N*/
 /*N*/   // ab hier werden Daten der Versionen > 0 eingelesen
 /*N*/   if (aIO.GetVersion() > 0)
@@ -408,3 +312,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

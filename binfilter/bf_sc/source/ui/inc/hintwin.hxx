@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,13 @@
 #ifndef SC_HINTWIN_HXX
 #define SC_HINTWIN_HXX
 
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
 namespace binfilter {
 
 class ScHintWindow : public Window
 {
 public:
-    ScHintWindow( Window* pParent, const String& rTit, const String& rMsg ):Window( pParent ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;//STRIP001            ScHintWindow( Window* pParent, const String& rTit, const String& rMsg );
+    ScHintWindow( Window* pParent, const String& rTit, const String& rMsg ):Window( pParent ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -44,3 +43,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,14 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 
@@ -55,8 +52,8 @@ class SdrHelpLine {
 public:
     SdrHelpLine(SdrHelpLineKind eNewKind=SDRHELPLINE_POINT): eKind(eNewKind) {}
     SdrHelpLine(SdrHelpLineKind eNewKind, const Point& rNewPos): aPos(rNewPos), eKind(eNewKind) {}
-    FASTBOOL operator==(const SdrHelpLine& rCmp) const { return aPos==rCmp.aPos && eKind==rCmp.eKind; }
-    FASTBOOL operator!=(const SdrHelpLine& rCmp) const { return !operator==(rCmp); }
+    bool operator==(const SdrHelpLine& rCmp) const { return aPos==rCmp.aPos && eKind==rCmp.eKind; }
+    bool operator!=(const SdrHelpLine& rCmp) const { return !operator==(rCmp); }
 
     void            SetKind(SdrHelpLineKind eNewKind) { eKind=eNewKind; }
     SdrHelpLineKind GetKind() const                   { return eKind; }
@@ -100,3 +97,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDHLPLN_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,44 +36,26 @@
 #include <editstt2.hxx>
 #include <editdata.hxx>
 
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
-
-#ifndef _SV_CURSOR_HXX //autogen
 #include <vcl/cursor.hxx>
-#endif
-
 #include <vcl/dndhelp.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_I18N_XBREAKITERATOR_HPP_
 #include <com/sun/star/i18n/XBreakIterator.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HPP_
 #include <com/sun/star/i18n/CharacterIteratorMode.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
+
 #include <bf_svtools/colorcfg.hxx>
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
+
 namespace binfilter {
 class SvtCTLOptions;
 class SvKeyValueIterator;
 class SvUShorts;
 
-DBG_NAMEEX( EditView )//STRIP008
-DBG_NAMEEX( EditEngine )//STRIP008
+DBG_NAMEEX( EditView )
+DBG_NAMEEX( EditEngine )
 
 #define PIMPEE      pImpEditView->pEditEngine->pImpEditEngine
 
@@ -93,7 +76,7 @@ DBG_NAMEEX( EditEngine )//STRIP008
 #define LINE_SEP    0x0A
 
 typedef EENotify* EENotifyPtr;
-SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;    // IMPL is in outliner.cxx, move to EE later and share declaration, or use BlockNotifications from EE directly
+SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )
 
 
 class EditView;
@@ -254,7 +237,7 @@ public:
 //  ----------------------------------------------------------------------
 
 typedef EditView* EditViewPtr;
-SV_DECL_PTRARR( EditViews, EditViewPtr, 0, 1 )//STRIP008 ;
+SV_DECL_PTRARR( EditViews, EditViewPtr, 0, 1 )
 
 class ImpEditEngine : public SfxListener
 {
@@ -365,7 +348,7 @@ private:
     Link                aEndPasteOrDropHdl;
     Link                aModifyHdl;
 
-    vos::ORef<SvxForbiddenCharactersTable>  xForbiddenCharsTable;
+    rtl::Reference<SvxForbiddenCharactersTable> xForbiddenCharsTable;
 
 
     // ================================================================
@@ -665,8 +648,8 @@ public:
     void                SetKernAsianPunctuation( BOOL b );
     BOOL                IsKernAsianPunctuation() const { return bKernAsianPunctuation; }
 
-    vos::ORef<SvxForbiddenCharactersTable>  GetForbiddenCharsTable( BOOL bGetInternal = TRUE ) const;
-    void                SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
+    rtl::Reference<SvxForbiddenCharactersTable> GetForbiddenCharsTable( BOOL bGetInternal = TRUE ) const;
+    void                SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars );
 };
 
 inline EPaM ImpEditEngine::CreateEPaM( const EditPaM& rPaM )
@@ -840,3 +823,4 @@ Point Rotate( const Point& rPoint, short nOrientation, const Point& rOrigin );
 #endif // _IMPEDIT_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

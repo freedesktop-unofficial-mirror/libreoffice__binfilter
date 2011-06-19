@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _CHTSCENE_HXX
 #include "chtscene.hxx"
-#endif
-#ifndef _SCH_DATAPOIN_HXX
 #include "datapoin.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
 #include "schattr.hxx"
 #include "objid.hxx"
@@ -99,7 +94,7 @@ namespace binfilter {
 /*N*/                                          long             nCol,
 /*N*/                                          long             nRow,
 /*N*/                                          SfxItemSet       &rAttr,
-/*N*/                                          BOOL             bIsSimple,
+/*N*/                                          BOOL             /*bIsSimple*/,
 /*N*/                                          double           fMinPos,
 /*N*/                                          double           fOriPos,
 /*N*/                                          double           fMaxPos)
@@ -146,9 +141,9 @@ namespace binfilter {
 /*N*/       a=aPos.X()-fOriPos;
 /*N*/       b=aPos.X()+aSizeVec.X()-fOriPos;
 /*N*/
-/*N*/       double fTmp=aSizeVec.X();
+/*N*/       double fLclTmp=aSizeVec.X();
 /*N*/       aSizeVec.X()=aSizeVec.Y();
-/*N*/       aSizeVec.Y()=fTmp;
+/*N*/       aSizeVec.Y()=fLclTmp;
 /*N*/       aSizeVec.Z()=-aSizeVec.Z(); //90Grad drehen
 /*N*/   }
 /*N*/   else
@@ -182,12 +177,6 @@ namespace binfilter {
 /*N*/
 /*N*/   fRoundedEdge = ((double)((const Svx3DPercentDiagonalItem&)
 /*N*/       rAttr.Get(SDRATTR_3DOBJ_PERCENT_DIAGONAL)).GetValue()) / 200.0;
-/*N*/ //-/  SfxItemState nState = rAttr.GetItemState( SID_ATTR_3D_PERCENT_DIAGONAL, TRUE, &pPoolItem );
-/*N*/ //-/  if( nState == SFX_ITEM_DEFAULT )
-/*N*/ //-/      fRoundedEdge = aDefltAttr3D.GetDefaultPercentDiag();
-/*N*/ //-/  else if( nState == SFX_ITEM_SET && pPoolItem )
-/*N*/ //-/      fRoundedEdge = SAL_STATIC_CAST( double, ( SAL_STATIC_CAST( const SfxUInt16Item*, pPoolItem )->GetValue() ))
-/*N*/ //-/          / 200.0;
 /*N*/
 /*N*/   // always use extra points, so set percent diagonal to 0.4 which is 0% in the UI
 /*N*/   if( fRoundedEdge == 0.0 )
@@ -206,17 +195,17 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   nPolySize = 8;
 /*N*/                   Polygon aPoly( nPolySize );
-/*N*/                   aPoly[0] = Point( aPos.X(),                     aPos.Y() );
+/*N*/                   aPoly[0] = Point(static_cast<long>(aPos.X()),                   static_cast<long>(aPos.Y()));
 /*N*/
-/*N*/                   aPoly[1] = Point( aPos.X() + fBase - fOffset,   aPos.Y() );
-/*N*/                   aPoly[2] = Point( aPos.X() + fBase,             aPos.Y() );
-/*N*/                   aPoly[3] = Point( aPos.X() + fBase,             aPos.Y() + fOffset );
+/*N*/                   aPoly[1] = Point(static_cast<long>(aPos.X() + fBase - fOffset), static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[2] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[3] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y() + fOffset));
 /*N*/
-/*N*/                   aPoly[4] = Point( aPos.X() + fBase,             aPos.Y() + aSizeVec.Y() - fOffset );
-/*N*/                   aPoly[5] = Point( aPos.X() + fBase,             aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[6] = Point( aPos.X() + fBase - fOffset,   aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[4] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffset));
+/*N*/                   aPoly[5] = Point(static_cast<long>(aPos.X() + fBase),           static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[6] = Point(static_cast<long>(aPos.X() + fBase - fOffset), static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
-/*N*/                   aPoly[7] = Point( aPos.X(),                     aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[7] = Point(static_cast<long>(aPos.X()),                   static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
 /*N*/                   aPolyPoly.Insert( aPoly );
 /*N*/               }
@@ -225,10 +214,10 @@ namespace binfilter {
 /*N*/                   nPolySize = 4;
 /*N*/                   Polygon aPoly( nPolySize );
 /*N*/
-/*N*/                   aPoly[0]=Point(aPos.X()         , aPos.Y());
-/*N*/                   aPoly[1]=Point(aPos.X() + fBase , aPos.Y());
-/*N*/                   aPoly[2]=Point(aPos.X() + fBase , aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[3]=Point(aPos.X()         , aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[0]=Point(static_cast<long>(aPos.X()),         static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[1]=Point(static_cast<long>(aPos.X() + fBase), static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[2]=Point(static_cast<long>(aPos.X() + fBase), static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[3]=Point(static_cast<long>(aPos.X()),         static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
 /*N*/                   aPolyPoly.Insert(aPoly);
 /*N*/               }
@@ -236,11 +225,6 @@ namespace binfilter {
 /*N*/               pObj = new SchE3dLatheObj(aDefltAttr3D, aPolyPoly);
 /*N*/                   ((E3dLatheObj*)pObj)->SetItem( Svx3DHorizontalSegmentsItem( nSegs ));
 /*N*/
-/*N*/
-/*N*/               // #67170# just write the necessary attributes
-/*N*/ //-/              SfxItemSet aSegmentAttr(*pItemPool, SID_ATTR_3D_START, SID_ATTR_3D_END,
-/*N*/ //-/                                                  SCHATTR_STYLE_START, SCHATTR_STYLE_END,
-/*N*/ //-/                                                  0);
 /*N*/               SfxItemSet aSegmentAttr(*pItemPool,
 /*N*/                   SDRATTR_3D_FIRST, SDRATTR_3D_LAST,
 /*N*/                   SCHATTR_STYLE_START, SCHATTR_STYLE_END,
@@ -290,25 +274,21 @@ namespace binfilter {
 /*N*/
 /*N*/               if( ! bIsTip )      // skip these points for the tip
 /*N*/               {
-/*N*/                   aPoly[i++] = Point( aPos.X(),                   aPos.Y());
-/*N*/                   aPoly[i++] = Point( aPos.X() + r1 - fOffset,    aPos.Y());
+/*N*/                   aPoly[i++] = Point( static_cast<long>(aPos.X()),                static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[i++] = Point( static_cast<long>(aPos.X() + r1 - fOffset), static_cast<long>(aPos.Y()));
 /*N*/               }
-/*N*/               aPoly[i++] = Point( aPos.X() + r1,                  aPos.Y());
-/*N*/               aPoly[i++] = Point( aPos.X() + r1 + fOffsetX,       aPos.Y() + fOffsetY);
-/*N*/               aPoly[i++] = Point( aPos.X() + r2 - fOffsetX,       aPos.Y() + aSizeVec.Y() - fOffsetY);
-/*N*/               aPoly[i++] = Point( aPos.X() + r2,                  aPos.Y() + aSizeVec.Y());
-/*N*/               aPoly[i++] = Point( aPos.X() + r2 - fOffset,        aPos.Y() + aSizeVec.Y());
-/*N*/               aPoly[i++] = Point( aPos.X(),                       aPos.Y() + aSizeVec.Y());
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r1),            static_cast<long>(aPos.Y()));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r1 + fOffsetX), static_cast<long>(aPos.Y() + fOffsetY));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r2 - fOffsetX), static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffsetY));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r2),            static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X() + r2 - fOffset),  static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/               aPoly[i++] = Point(static_cast<long>(aPos.X()),                 static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
 /*N*/               aPolyPoly.Insert( aPoly );
 /*N*/
 /*N*/               pObj = new SchE3dLatheObj( aDefltAttr3D, aPolyPoly );
 /*N*/                   ((E3dLatheObj*)pObj)->SetItem( Svx3DHorizontalSegmentsItem( nSegs ));
 /*N*/
-/*N*/               // #67170# just write the necessary attributes
-/*N*/ //-/              SfxItemSet aSegmentAttr(*pItemPool, SID_ATTR_3D_START, SID_ATTR_3D_END,
-/*N*/ //-/                                                  SCHATTR_STYLE_START, SCHATTR_STYLE_END,
-/*N*/ //-/                                                  0);
 /*N*/               SfxItemSet aSegmentAttr(*pItemPool,
 /*N*/                   SDRATTR_3D_FIRST,       SDRATTR_3D_LAST,
 /*N*/                   SCHATTR_STYLE_START,    SCHATTR_STYLE_END,
@@ -329,21 +309,21 @@ namespace binfilter {
 /*N*/                   2.0 * fOffset < aSizeVec.Y() )
 /*N*/               {
 /*N*/                   Polygon aPoly( 13 );
-/*N*/                   aPoly[ 0] = Point( aPos.X() + fOffset,                  aPos.Y() );
-/*N*/                   aPoly[ 1] = Point( aPos.X(),                            aPos.Y() );
-/*N*/                   aPoly[ 2] = Point( aPos.X(),                            aPos.Y() + fOffset );
+/*N*/                   aPoly[ 0] = Point(static_cast<long>(aPos.X() + fOffset),                static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[ 1] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[ 2] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y() + fOffset));
 /*N*/
-/*N*/                   aPoly[ 3] = Point( aPos.X(),                            aPos.Y() + aSizeVec.Y() - fOffset );
-/*N*/                   aPoly[ 4] = Point( aPos.X(),                            aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[ 5] = Point( aPos.X() + fOffset,                  aPos.Y() + aSizeVec.Y());
+/*N*/                   aPoly[ 3] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffset));
+/*N*/                   aPoly[ 4] = Point(static_cast<long>(aPos.X()),                          static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[ 5] = Point(static_cast<long>(aPos.X() + fOffset),                static_cast<long>(aPos.Y() + aSizeVec.Y()));
 /*N*/
-/*N*/                   aPoly[ 6] = Point( aPos.X() + aSizeVec.X() - fOffset,   aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[ 7] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[ 8] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() + aSizeVec.Y() - fOffset );
+/*N*/                   aPoly[ 6] = Point(static_cast<long>(aPos.X() + aSizeVec.X() - fOffset), static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[ 7] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[ 8] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y() + aSizeVec.Y() - fOffset));
 /*N*/
-/*N*/                   aPoly[ 9] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() + fOffset );
-/*N*/                   aPoly[10] = Point( aPos.X() + aSizeVec.X(),             aPos.Y() );
-/*N*/                   aPoly[11] = Point( aPos.X() + aSizeVec.X() - fOffset,   aPos.Y() );
+/*N*/                   aPoly[ 9] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y() + fOffset));
+/*N*/                   aPoly[10] = Point(static_cast<long>(aPos.X() + aSizeVec.X()),           static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[11] = Point(static_cast<long>(aPos.X() + aSizeVec.X() - fOffset), static_cast<long>(aPos.Y()));
 /*N*/
 /*N*/                   aPoly[12] = aPoly[ 0];
 /*N*/                   aPolyPoly.Insert( aPoly );
@@ -351,10 +331,10 @@ namespace binfilter {
 /*N*/               else
 /*N*/               {
 /*N*/                   Polygon aPoly(5);
-/*N*/                   aPoly[0]=Point(aPos.X(), aPos.Y());
-/*N*/                   aPoly[1]=Point(aPos.X(), aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[2]=Point(aPos.X() + aSizeVec.X(), aPos.Y() + aSizeVec.Y());
-/*N*/                   aPoly[3]=Point(aPos.X() + aSizeVec.X(), aPos.Y());
+/*N*/                   aPoly[0]=Point(static_cast<long>(aPos.X()),                static_cast<long>(aPos.Y()));
+/*N*/                   aPoly[1]=Point(static_cast<long>(aPos.X()),                static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[2]=Point(static_cast<long>(aPos.X() + aSizeVec.X()), static_cast<long>(aPos.Y() + aSizeVec.Y()));
+/*N*/                   aPoly[3]=Point(static_cast<long>(aPos.X() + aSizeVec.X()), static_cast<long>(aPos.Y()));
 /*N*/                   aPoly[4]=aPoly[0];
 /*N*/
 /*N*/                   aPolyPoly.Insert(aPoly);
@@ -386,7 +366,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   aTransMat.Translate(aDestCenter - aOldCenter);//An die gewuenschte Position schieben
-/*N*/   //aTransMat=pObj->GetTransform()*aTransMat;
 /*N*/   pObj->NbcSetTransform(aTransMat);
 /*N*/
 /*N*/   pObj->SetModel (this);
@@ -447,7 +426,6 @@ namespace binfilter {
 /*N*/   pParent->Insert3DObj (pMyObject);
 /*N*/   pMyObject->SetModel (this);
 /*N*/
-/*N*/ //-/  pMyObject->NbcSetAttributes(*pAttr, FALSE);
 /*N*/   pMyObject->SetItemSet(*pAttr);
 /*N*/
 /*N*/ }
@@ -462,7 +440,6 @@ namespace binfilter {
 /*N*/   pParent->Insert3DObj (pMyObject);
 /*N*/   pMyObject->SetModel (this);
 /*N*/
-/*N*/ //-/  pMyObject->NbcSetAttributes(*pAttr, FALSE);
 /*N*/   pMyObject->SetItemSet(*pAttr);
 /*N*/
 /*N*/ }
@@ -474,11 +451,11 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ ChartScene* ChartModel::CreateScene (const Rectangle &rRect,
-/*N*/                        const Vector3D  &aLightVec,
-/*N*/                        double          fSpotIntensity,
-/*N*/                        Color&          rSpotColor,
-/*N*/                        double          fAmbientIntensity,
-/*N*/                        Color&          rAmbientColor)
+/*N*/                        const Vector3D  &/*aLightVec*/,
+/*N*/                        double          /*fSpotIntensity*/,
+/*N*/                        Color&          /*rSpotColor*/,
+/*N*/                        double          /*fAmbientIntensity*/,
+/*N*/                        Color&          /*rAmbientColor*/)
 /*N*/ {
 /*N*/   ChartScene *pMyScene = new ChartScene (this);
 /*N*/
@@ -491,9 +468,9 @@ namespace binfilter {
 /*N*/ void SchRectObj::NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject)
 /*N*/ {
 /*N*/   SdrRectObj::NbcSetOutlinerParaObject(pTextObject);
-/*N*/   ChartModel* pModel=(ChartModel*)GetModel();
-/*N*/   if(pModel)
-/*N*/       pModel->SetTextFromObject(this,pTextObject);
+/*N*/   ChartModel* pLclModel=(ChartModel*)GetModel();
+/*N*/   if(pLclModel)
+/*N*/       pLclModel->SetTextFromObject(this,pTextObject);
 /*N*/ }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -562,50 +539,12 @@ namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
 
-
-
 /*N*/ void SchE3dObject::SetItemSet(const SfxItemSet& rSet)
 /*N*/ {
 /*N*/   E3dObject::SetItemSet(rSet);
 /*N*/   ImpStoreObjcetsAttr(this);
 /*N*/ }
 
-//////////////////////////////////////////////////////////////////////////////
-
-//-/void SchRectObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
-//-/{
-//-/    SdrRectObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dExtrudeObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
-//-/{
-//-/    E3dExtrudeObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dPolygonObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
-//-/{
-//-/    E3dPolygonObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dLatheObj::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
-//-/{
-//-/    E3dLatheObj::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-//-/void SchE3dObject::NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll)
-//-/{
-//-/    E3dObject::NbcSetAttributes(rAttr,bReplaceAll);
-//-/    ChartModel* pModel=(ChartModel*)GetModel();
-//-/    if(pModel)
-//-/        pModel->StoreObjectsAttributes(this,rAttr,bReplaceAll);
-//-/};
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

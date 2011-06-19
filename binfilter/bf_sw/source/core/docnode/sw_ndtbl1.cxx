@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,35 +32,18 @@
 #endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifdef WTC
-#define private public
-#endif
 
 #include "hintids.hxx"
 
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _CELLFRM_HXX //autogen
 #include <cellfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX //autogen
 #include <tabfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX //autogen
 #include <txtfrm.hxx>
-#endif
 
 #include "doc.hxx"
 #include "viscrs.hxx"
@@ -81,7 +65,7 @@ extern void ClearFEShellTabCols();
 /*N*/ void lcl_GetStartEndCell( const SwCursor& rCrsr,
 /*N*/                       SwLayoutFrm *&prStart, SwLayoutFrm *&prEnd )
 /*N*/ {
-/*N*/   ASSERT( rCrsr.GetCntntNode() && rCrsr.GetCntntNode( FALSE ),
+/*N*/   OSL_ENSURE( rCrsr.GetCntntNode() && rCrsr.GetCntntNode( FALSE ),
 /*N*/           "Tabselection nicht auf Cnt." );
 /*N*/
 /*N*/   Point aPtPos, aMkPos;
@@ -191,7 +175,7 @@ extern void ClearFEShellTabCols();
 /*N*/       // uns erst wieder zur Zelle hochhangeln
 /*N*/       while ( !pCell->IsCellFrm() )
 /*?*/           pCell = pCell->GetUpper();
-/*N*/       ASSERT( pCell, "Frame ist keine Zelle." );
+/*N*/       OSL_ENSURE( pCell, "Frame ist keine Zelle." );
 /*N*/       if ( rUnion.IsOver( pCell->Frm() ) )
 /*N*/           ::binfilter::InsertCell( rArr, (SwCellFrm*)pCell );
 /*N*/       //Dafuer sorgen, dass die Zelle auch verlassen wird (Bereiche)
@@ -384,7 +368,7 @@ extern void ClearFEShellTabCols();
 /*N*/               // Abstand zum Text
 /*N*/               if (aSetBoxInfo.IsValid(VALID_DISTANCE))
 /*N*/               {
-/*N*/                   static USHORT __READONLY_DATA aBorders[] = {
+/*N*/                   static USHORT const aBorders[] = {
 /*N*/                       BOX_LINE_BOTTOM, BOX_LINE_TOP,
 /*N*/                       BOX_LINE_RIGHT, BOX_LINE_LEFT };
 /*N*/                   const USHORT* pBrd = aBorders;
@@ -392,13 +376,13 @@ extern void ClearFEShellTabCols();
 /*N*/                   if( !bDistanceSet )     // bei 1. Durchlauf erstmal setzen
 /*N*/                   {
 /*N*/                       bDistanceSet = TRUE;
-/*N*/                       for( int i = 0; i < 4; ++i, ++pBrd )
+/*N*/                       for( int ii = 0; ii < 4; ++ii, ++pBrd )
 /*N*/                           aSetBox.SetDistance( rBox.GetDistance( *pBrd ),
 /*N*/                                               *pBrd );
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
-/*?*/                       for( int i = 0; i < 4; ++i, ++pBrd )
+/*?*/                       for( int ii = 0; ii < 4; ++ii, ++pBrd )
 /*?*/                           if( aSetBox.GetDistance( *pBrd ) !=
 /*?*/                               rBox.GetDistance( *pBrd ) )
 /*?*/                           {
@@ -416,3 +400,5 @@ extern void ClearFEShellTabCols();
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

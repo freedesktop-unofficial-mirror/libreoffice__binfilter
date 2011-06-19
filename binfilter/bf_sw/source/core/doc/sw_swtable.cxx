@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,72 +31,32 @@
 #pragma hdrstop
 #endif
 
-#ifdef WTC
-#define private public
-#endif
-
 #include <ctype.h>
 #include <float.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>    // fuer SwAttrSetChg
-#endif
 
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
 
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _FRAME_HXX
 #include <frame.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _CELLFRM_HXX
 #include <cellfrm.hxx>
-#endif
-#ifndef _ROWFRM_HXX
 #include <rowfrm.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>
-#endif
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>
-#endif
-#ifndef _HTMLTBL_HXX
 #include <htmltbl.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
-#endif
-#ifndef _TBLRWCL_HXX
 #include <tblrwcl.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1( SwTable, SwClient );
@@ -144,9 +105,6 @@ namespace binfilter {
 |*
 |*  SwTable::SwTable()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 05. May. 93
-|*
 |*************************************************************************/
 /*N*/ SwTable::SwTable( SwTableFmt* pFmt )
 /*N*/   : SwClient( pFmt ),
@@ -157,7 +115,7 @@ namespace binfilter {
 /*N*/   bHeadlineRepeat = TRUE;
 /*N*/
 /*N*/   // default Wert aus den Optionen setzen
-/*N*/   eTblChgMode = (TblChgMode)0;//STRIP001 GetTblChgDefaultMode();
+/*N*/   eTblChgMode = (TblChgMode)0;
 /*N*/ }
 
 /*N*/ SwTable::SwTable( const SwTable& rTable )
@@ -208,9 +166,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTable::Modify()
-|*
-|*  Ersterstellung      JP ??
-|*  Letzte Aenderung    MA 06. May. 93
 |*
 |*************************************************************************/
 /*?*/ inline BOOL FmtInArr( SvPtrarr& rFmtArr, SwFmt* pBoxFmt )
@@ -276,7 +231,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( !IsModifyLocked() )
 /*N*/       {
-/*N*/           ASSERT( pOldSize && pOldSize->Which() == RES_FRM_SIZE &&
+/*N*/           OSL_ENSURE( pOldSize && pOldSize->Which() == RES_FRM_SIZE &&
 /*N*/                   pNewSize && pNewSize->Which() == RES_FRM_SIZE,
 /*N*/                   "Kein Old oder New fuer FmtFrmSize-Modify der SwTable." );
 /*N*/
@@ -297,9 +252,6 @@ namespace binfilter {
 |*
 |*  SwTable::GetTabCols()
 |*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 30. Nov. 95
-|*
 |*************************************************************************/
 
 
@@ -312,10 +264,10 @@ namespace binfilter {
 #endif
 
 
-/*N*/ void SwTable::GetTabCols( SwTabCols &rToFill, const SwTableBox *pStart,
-/*N*/                         FASTBOOL bRefreshHidden, BOOL bCurRowOnly ) const
+/*N*/ void SwTable::GetTabCols( SwTabCols& /*rToFill*/, const SwTableBox* /*pStart*/,
+/*N*/                         bool /*bRefreshHidden*/, BOOL /*bCurRowOnly*/ ) const
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //MA 30. Nov. 95: Opt: wenn bHidden gesetzt ist, wird neu das Hidden
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 #if defined(ALPHA) && defined(_MSC_VER)
@@ -325,9 +277,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTable::SetTabCols()
-|*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 26. Aug. 98
 |*
 |*************************************************************************/
 //Struktur zur Parameteruebergabe
@@ -342,11 +291,8 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*  const SwTableBox* SwTable::GetTblBox( const Strn¡ng& rName ) const
+|*  const SwTableBox* SwTable::GetTblBox( const Strn?ng& rName ) const
 |*      gebe den Pointer auf die benannte Box zurueck.
-|*
-|*  Ersterstellung      JP 30. Jun. 93
-|*  Letzte Aenderung    JP 30. Jun. 93
 |*
 |*************************************************************************/
 /*N*/ USHORT SwTable::_GetBoxNum( String& rStr, BOOL bFirst )
@@ -357,15 +303,15 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // die 1. ist mit Buchstaben addressiert!
 /*N*/       sal_Unicode cChar;
-/*N*/       BOOL bFirst = TRUE;
+/*N*/       BOOL bFirst2 = TRUE;
 /*N*/       while( 0 != ( cChar = rStr.GetChar( nPos )) &&
 /*N*/              ( (cChar >= 'A' && cChar <= 'Z') ||
 /*N*/                (cChar >= 'a' && cChar <= 'z') ) )
 /*N*/       {
 /*N*/           if( (cChar -= 'A') >= 26 )
 /*?*/               cChar -= 'a' - '[';
-/*N*/           if( bFirst )
-/*N*/               bFirst = FALSE;
+/*N*/           if( bFirst2 )
+/*N*/               bFirst2 = FALSE;
 /*N*/           else
 /*?*/               ++nRet;
 /*N*/           nRet = nRet * 52 + cChar;
@@ -426,7 +372,7 @@ namespace binfilter {
     // Box ist ??
 /*N*/   if( pBox && !pBox->GetSttNd() )
 /*N*/   {
-/*?*/       ASSERT( FALSE, "Box ohne Inhalt, suche die naechste !!" );
+/*?*/       OSL_ENSURE( FALSE, "Box ohne Inhalt, suche die naechste !!" );
 /*?*/       // "herunterfallen lassen" bis zur ersten Box
 /*?*/       while( pBox->GetTabLines().Count() )
 /*?*/           pBox = pBox->GetTabLines()[0]->GetTabBoxes()[0];
@@ -488,9 +434,6 @@ namespace binfilter {
 |*
 |*  SwTableLine::SwTableLine()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 09. Mar. 93
-|*
 |*************************************************************************/
 /*N*/ SwTableLine::SwTableLine( SwTableLineFmt *pFmt, USHORT nBoxes,
 /*N*/                           SwTableBox *pUp )
@@ -513,9 +456,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTableLine::ClaimFrmFmt(), ChgFrmFmt()
-|*
-|*  Ersterstellung      MA 03. May. 93
-|*  Letzte Aenderung    MA 07. Feb. 96
 |*
 |*************************************************************************/
 /*N*/ SwFrmFmt* SwTableLine::ClaimFrmFmt()
@@ -581,9 +521,6 @@ namespace binfilter {
 |*
 |*  SwTableBox::SwTableBox()
 |*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 04. May. 93
-|*
 |*************************************************************************/
 /*N*/ SwTableBox::SwTableBox( SwTableBoxFmt* pFmt, USHORT nLines, SwTableLine *pUp )
 /*N*/   : SwClient( 0 ),
@@ -609,26 +546,26 @@ namespace binfilter {
 /*N*/
 /*N*/   // an der Table eintragen
 /*N*/   const SwTableNode* pTblNd = pSttNd->FindTableNode();
-/*N*/   ASSERT( pTblNd, "in welcher Tabelle steht denn die Box?" );
+/*N*/   OSL_ENSURE( pTblNd, "in welcher Tabelle steht denn die Box?" );
 /*N*/   SwTableSortBoxes& rSrtArr = (SwTableSortBoxes&)pTblNd->GetTable().
 /*N*/                               GetTabSortBoxes();
 /*N*/   SwTableBox* p = this;   // error: &this
 /*N*/   rSrtArr.Insert( p );        // eintragen
 /*N*/ }
 
-/*N*/ SwTableBox::SwTableBox( SwTableBoxFmt* pFmt, const SwStartNode& rSttNd, SwTableLine *pUp ) :
-/*N*/   SwClient( 0 ),
-/*N*/   aLines( 0, 0 ),
-/*N*/   pUpper( pUp ),
-/*N*/   pImpl( 0 ),
-/*N*/   pSttNd( &rSttNd )
+/*N*/ SwTableBox::SwTableBox( SwTableBoxFmt* pFmt, const SwStartNode& rSttNd, SwTableLine *pUp )
+/*N*/   : SwClient( 0 )
+/*N*/   , aLines( 0, 0 )
+/*N*/   , pSttNd( &rSttNd )
+/*N*/   , pUpper( pUp )
+/*N*/   , pImpl( 0 )
 /*N*/ {
-/*N*/   SwDoc* pDoc = pFmt->GetDoc();
+/*N*/   pFmt->GetDoc();
 /*N*/   CheckBoxFmt( pFmt )->Add( this );
 /*N*/
 /*N*/   // an der Table eintragen
 /*N*/   const SwTableNode* pTblNd = pSttNd->FindTableNode();
-/*N*/   ASSERT( pTblNd, "in welcher Tabelle steht denn die Box?" );
+/*N*/   OSL_ENSURE( pTblNd, "in welcher Tabelle steht denn die Box?" );
 /*N*/   SwTableSortBoxes& rSrtArr = (SwTableSortBoxes&)pTblNd->GetTable().
 /*N*/                               GetTabSortBoxes();
 /*N*/   SwTableBox* p = this;   // error: &this
@@ -642,7 +579,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       // an der Table austragen
 /*?*/       const SwTableNode* pTblNd = pSttNd->FindTableNode();
-/*?*/       ASSERT( pTblNd, "in welcher Tabelle steht denn die Box?" );
+/*?*/       OSL_ENSURE( pTblNd, "in welcher Tabelle steht denn die Box?" );
 /*?*/       SwTableSortBoxes& rSrtArr = (SwTableSortBoxes&)pTblNd->GetTable().
 /*?*/                                   GetTabSortBoxes();
 /*?*/       SwTableBox *p = this;   // error: &this
@@ -686,9 +623,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTableBox::ClaimFrmFmt(), ChgFrmFmt()
-|*
-|*  Ersterstellung      MA 04. May. 93
-|*  Letzte Aenderung    MA 07. Feb. 96
 |*
 |*************************************************************************/
 /*N*/ SwFrmFmt* SwTableBox::ClaimFrmFmt()
@@ -758,9 +692,6 @@ namespace binfilter {
 |*  String SwTableBox::GetName() const
 |*      gebe den Namen dieser Box zurueck. Dieser wird dynamisch bestimmt
 |*      und ergibt sich aus der Position in den Lines/Boxen/Tabelle
-|*
-|*  Ersterstellung      JP 30. Jun. 93
-|*  Letzte Aenderung    JP 30. Jun. 93
 |*
 |*************************************************************************/
 /*N*/ void lcl_GetTblBoxColStr( USHORT nCol, String& rNm )
@@ -863,7 +794,7 @@ namespace binfilter {
 /*N*/       break;
 /*N*/
 /*N*/   case RES_FINDNEARESTNODE:
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( GetFrmFmt() && ((SwFmtPageDesc&)GetFrmFmt()->GetAttr(
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/       break;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:
@@ -899,13 +830,10 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !IsModifyLocked() && !IsInDocDTOR() )
 /*N*/   {
-/*N*/       const SwTblBoxNumFormat *pNewFmt = 0, *pOldFmt = 0;
-/*N*/       const SwTblBoxFormula *pNewFml = 0, *pOldFml = 0;
-/*N*/       const SwTblBoxValue *pNewVal = 0, *pOldVal = 0;
-/*N*/       double aOldValue = 0;
+/*N*/       const SwTblBoxNumFormat *pNewFmt = 0;
+/*N*/       const SwTblBoxFormula *pNewFml = 0;
+/*N*/       const SwTblBoxValue *pNewVal = 0;
 /*N*/       ULONG nOldFmt = NUMBERFORMAT_TEXT;
-/*N*/
-/*N*/       SwAttrSetChg *pNewChgSet = 0,  *pOldChgSet = 0;
 /*N*/
 /*N*/       switch( pNew ? pNew->Which() : 0 )
 /*N*/       {
@@ -920,7 +848,7 @@ namespace binfilter {
 /*N*/                                   (const SfxPoolItem**)&pNewFml );
 /*N*/               if( SFX_ITEM_SET == rSet.GetItemState( RES_BOXATR_VALUE,
 /*N*/                                   FALSE, (const SfxPoolItem**)&pNewVal ) )
-/*N*/                   aOldValue = ((SwTblBoxValue&)((SwAttrSetChg*)pOld)->
+/*N*/                   ((SwTblBoxValue&)((SwAttrSetChg*)pOld)->
 /*N*/                           GetChgSet()->Get( RES_BOXATR_VALUE )).GetValue();
 /*N*/           }
 /*N*/           break;
@@ -934,7 +862,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       case RES_BOXATR_VALUE:
 /*N*/           pNewVal = (SwTblBoxValue*)pNew;
-/*N*/           aOldValue = ((SwTblBoxValue*)pOld)->GetValue();
+/*N*/           ((SwTblBoxValue*)pOld)->GetValue();
 /*N*/           break;
 /*N*/       }
 /*N*/
@@ -953,7 +881,7 @@ namespace binfilter {
 /*N*/               SwTableBox* pBox = (SwTableBox*)aIter.First( TYPE( SwTableBox ) );
 /*N*/               if( pBox )
 /*N*/               {
-/*?*/                   ASSERT( !aIter.Next(), "keine Box oder mehrere am Format" );
+/*?*/                   OSL_ENSURE( !aIter.Next(), "keine Box oder mehrere am Format" );
 /*?*/
 /*?*/                   ULONG nNewFmt;
 /*?*/                   if( pNewFmt )
@@ -1004,9 +932,9 @@ namespace binfilter {
 /*?*/                   BOOL bNewIsTxtFmt = pNumFmtr->IsTextFormat( nNewFmt ) ||
 /*?*/                                       NUMBERFORMAT_TEXT == nNewFmt;
 /*?*/
-/*?*/                   if( !bNewIsTxtFmt && nOldFmt != nNewFmt || pNewFml )
+/*?*/                   if( (!bNewIsTxtFmt && nOldFmt != nNewFmt) || pNewFml )
 /*?*/                   {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001       BOOL bChgTxt = TRUE;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else if( bNewIsTxtFmt && nOldFmt != nNewFmt )
 /*?*/                   {
@@ -1017,7 +945,7 @@ namespace binfilter {
 /*?*/   //                  UnlockModify();
 /*?*/
 /*?*/
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ChgNumToText( *pBox, nNewFmt );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -1099,7 +1027,7 @@ namespace binfilter {
 /*N*/
 /*N*/           const String& rTxt = pSttNd->GetNodes()[ nNdPos ]->GetTxtNode()->GetTxt();
 /*N*/           if( rTxt != sNewTxt )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ChgTextToNum( *this, sNewTxt, pCol, FALSE );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1107,3 +1035,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

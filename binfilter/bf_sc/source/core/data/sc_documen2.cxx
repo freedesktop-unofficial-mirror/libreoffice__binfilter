@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,48 +26,18 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #define _BIGINT_HXX
 #define _SFXMULTISEL_HXX
-//#define _STACK_HXX
-//#define _QUEUE_HXX
 #define _DYNARR_HXX
 #define _TREELIST_HXX
 #define _CACHESTR_HXX
 #define _NEW_HXX
-//#define _SHL_HXX ***
-//#define _LINK_HXX ***
-//#define _ERRCODE_HXX ***
-//#define _GEN_HXX ***
-//#define _FRACT_HXX ***
-//#define _STRING_HXX ***
-//#define _MTF_HXX ***
-//#define _CONTNR_HXX ***
-//#define _LIST_HXX ***
-//#define _TABLE_HXX ***
 #define _DYNARY_HXX
-//#define _UNQIDX_HXX ***
-//#define _SVMEMPOOL_HXX ***
-//#define _UNQID_HXX ***
-//#define _DEBUG_HXX ***
-//#define _DATE_HXX ***
-//#define _TIME_HXX ***
-//#define _DATETIME_HXX ***
-//#define _INTN_HXX ***
-//#define _WLDCRD_HXX ***
-//#define _FSYS_HXX ***
-//#define _STREAM_HXX ***
 #define _CACHESTR_HXX
-//#define _SV_MULTISEL_HXX
-
-
 
 #define _SV_NOXSOUND
 
@@ -85,7 +56,6 @@
 #define _MOREBUTTON_HXX
 #define _OUTLINER_HXX
 #define _PASSWD_HXX
-//#define _QUEUE_HXX
 #define _RULER_HXX
 #define _SCRWIN_HXX
 #define _SETBRW_HXX
@@ -101,19 +71,14 @@
 #define _STDMENU_HXX
 
 
-//#define _PRNDLG_HXX ***
-//#define _POLY_HXX **
 // TOOLS
 #define _BIGINT_HXX
 #define _SFXMULTISEL_HXX
-//#define _STACK_HXX
-//#define _QUEUE_HXX
 #define _DYNARR_HXX
 #define _TREELIST_HXX
 #define _CACHESTR_HXX
 
 //SV
-//#define _CLIP_HXX
 #define _CONFIG_HXX
 #define _CURSOR_HXX
 #define _FONTDLG_HXX
@@ -122,11 +87,6 @@
 #ifndef OS2
 #define _MENUBTN_HXX
 #endif
-
-//#define _SOBASE_HXX
-//#define _SOSTOR_HXX
-//#define _SOCORE_HXX
-//#define _SOINPL_HXX
 
 #define _SFX_DOCFILE_HXX
 #define _SFX_DOCFILT_HXX
@@ -152,7 +112,6 @@
 #define _SFXMNUITEM_HXX
 #define _SFXMNUMGR_HXX
 #define _SFXMULTISEL_HXX
-//#define _SFXMSG_HXX
 #define _SFXMSGDESCR_HXX
 #define _SFXMSGPOOL_HXX
 #define _SFX_MINFITEM_HXX
@@ -164,19 +123,16 @@
 #define _SFXTBXCTRL_HXX
 #define _SFXTBXMGR_HXX
 
-//#define _SI_HXX
-//#define SI_NODRW
 #define _SI_DLL_HXX
 #define _SIDLL_HXX
 #define _SI_NOITEMS
 #define _SI_NOOTHERFORMS
 #define _SI_NOSBXCONTROLS
 #define _SINOSBXCONTROLS
-#define _SI_NODRW         //
+#define _SI_NODRW
 #define _SI_NOCONTROL
 #define _VCBRW_HXX
 #define _VCTRLS_HXX
-//#define _VCSBX_HXX
 #define _VCONT_HXX
 #define _VDRWOBJ_HXX
 #define _VCATTR_HXX
@@ -185,12 +141,10 @@
 #define _SVBOXITM_HXX
 #define _SVCONTNR_HXX
 #define _SVDIALDLL_HXX
-//#define _SVDATTR_HXX
 #define _SVDRAG_HXX
 #define _SVDXOUT_HXX
 #define _SVDEC_HXX
 #define _SVDIO_HXX
-//#define _SVDLAYER_HXX
 #define _SVINCVW_HXX
 #define _SVRTV_HXX
 #define _SVTABBX_HXX
@@ -224,15 +178,9 @@
 #include <bf_sfx2/objsh.hxx>
 #include <bf_sfx2/printer.hxx>
 #include <bf_svtools/zformat.hxx>
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <bf_svtools/PasswordHelper.hxx>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
-#endif
 
 #include "attrib.hxx"
 #include "patattr.hxx"
@@ -250,7 +198,7 @@
 #include "chartlis.hxx"
 #include "validat.hxx"
 #include "detdata.hxx"
-#include "bf_sc.hrc"                // FID_DATACHANGED
+#include "bf_sc.hrc"                            // FID_DATACHANGED
 #include "chgtrack.hxx"
 #include "chgviset.hxx"
 #include "editutil.hxx"
@@ -258,86 +206,83 @@
 #include "indexmap.hxx"
 #include "scrdata.hxx"
 #include "poolhelp.hxx"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 // STATIC DATA -----------------------------------------------------------
 
 /*N*/ ScDocument::ScDocument( ScDocumentMode    eMode,
 /*N*/                       SfxObjectShell* pDocShell ) :
 /*N*/       xServiceManager( ::legacy_binfilters::getLegacyProcessServiceFactory() ),
-/*N*/       pDrawLayer( NULL ),
-/*N*/       pColorTable( NULL ),
+/*N*/       pEditEngine( NULL ),
 /*N*/       pShell( pDocShell ),
 /*N*/       pPrinter( NULL ),
+/*N*/       pDrawLayer( NULL ),
+/*N*/       pColorTable( NULL ),
+/*N*/       pCondFormList( NULL ),
+/*N*/       pValidationList( NULL ),
+/*N*/       pFormatExchangeList( NULL ),
+/*N*/       pDPCollection( NULL ),
+/*N*/       pLinkManager( NULL ),
+/*N*/       pFormulaTree( NULL ),
+/*N*/       pEOFormulaTree( NULL ),
+/*N*/       pFormulaTrack( NULL ),
+/*N*/       pEOFormulaTrack( NULL ),
+/*N*/       pOtherObjects( NULL ),
+/*N*/       pClipData( NULL ),
+/*N*/       pDetOpList(NULL),
+/*N*/       pChangeTrack( NULL ),
+/*N*/       pUnoBroadcaster( NULL ),
+/*N*/       pChangeViewSettings( NULL ),
+/*N*/       pScriptTypeData( NULL ),
+/*N*/           pCacheFieldEditEngine( NULL ),
+/*N*/       pViewOptions( NULL ),
+/*N*/       pDocOptions( NULL ),
+/*N*/       pExtDocOptions( NULL ),
+/*N*/       pConsolidateDlgData( NULL ),
+/*N*/           pLoadedSymbolStringCellList( NULL ),
+/*N*/       aCurTextWidthCalcPos(MAXCOL,0,0),
+/*N*/       nFormulaCodeInTree(0),
+/*N*/           nXMLImportedFormulaCount( 0 ),
+/*N*/       nInterpretLevel(0),
+/*N*/       nMacroInterpretLevel(0),
+/*N*/       nInterpreterTableOpLevel(0),
+/*N*/       nMaxTableNumber( 0 ),
+/*N*/       nFormulaTrackCount(0),
+/*N*/       nHardRecalcState(0),
+/*N*/       nVisibleTab( 0 ),
+/*N*/       eLinkMode(LM_UNKNOWN),
+/*N*/       bProtected( FALSE ),
 /*N*/       bAutoCalc( eMode == SCDOCMODE_DOCUMENT ),
 /*N*/       bAutoCalcShellDisabled( FALSE ),
 /*N*/       bForcedFormulaPending( FALSE ),
 /*N*/       bCalculatingFormulaTree( FALSE ),
-/*N*/       bIsUndo( eMode == SCDOCMODE_UNDO ),
 /*N*/       bIsClip( eMode == SCDOCMODE_CLIP ),
 /*N*/       bCutMode( FALSE ),
-/*N*/       nMaxTableNumber( 0 ),
-/*N*/       pCondFormList( NULL ),
-/*N*/       pValidationList( NULL ),
-/*N*/       pFormatExchangeList( NULL ),
+/*N*/       bIsUndo( eMode == SCDOCMODE_UNDO ),
 /*N*/       bIsEmbedded( FALSE ),
-/*N*/       bProtected( FALSE ),
-/*N*/       pLinkManager( NULL ),
-/*N*/       pDocOptions( NULL ),
-/*N*/       pViewOptions( NULL ),
-/*N*/       pExtDocOptions( NULL ),
-/*N*/       pConsolidateDlgData( NULL ),
-/*N*/       pFormulaTree( NULL ),
-/*N*/       pEOFormulaTree( NULL ),
-/*N*/       aCurTextWidthCalcPos(MAXCOL,0,0),
-/*N*/ //        bNoSetDirty( TRUE ),
 /*N*/       bNoSetDirty( FALSE ),
-/*N*/       pFormulaTrack( NULL ),
-/*N*/       pEOFormulaTrack( NULL ),
-/*N*/       nFormulaTrackCount(0),
 /*N*/       bInsertingFromOtherDoc( FALSE ),
-            bImportingXML( FALSE ),             // #i41083# this has to be set in ScXMLImport::startDocument
-/*N*/       nHardRecalcState(0),
+                bImportingXML( FALSE ),             // #i41083# this has to be set in ScXMLImport::startDocument
 /*N*/       bCalcingAfterLoad( FALSE ),
 /*N*/       bNoListening( FALSE ),
 /*N*/       bLoadingDone( TRUE ),
-/*N*/       nVisibleTab( 0 ),
 /*N*/       bIdleDisabled( FALSE ),
 /*N*/       bInLinkUpdate( FALSE ),
+/*N*/       bChartListenerCollectionNeedsUpdate( FALSE ),
+/*N*/       bHasForcedFormulas( FALSE ),
+/*N*/       bLostData(FALSE),
+/*N*/       bInDtorClear( FALSE ),
+/*N*/       bExpandRefs( FALSE ),
 /*N*/       bDetectiveDirty( FALSE ),
 /*N*/       nMacroCallMode( SC_MACROCALL_ALLOWED ),
 /*N*/       bHasMacroFunc( FALSE ),
-/*N*/       bChartListenerCollectionNeedsUpdate( FALSE ),
-/*N*/       bHasForcedFormulas( FALSE ),
 /*N*/       nVisSpellState( 0 ),
-/*N*/       pOtherObjects( NULL ),
-/*N*/       pClipData( NULL ),
-/*N*/       nFormulaCodeInTree(0),
-/*N*/       nInterpretLevel(0),
-/*N*/       nMacroInterpretLevel(0),
-/*N*/       nInterpreterTableOpLevel(0),
-/*N*/       bLostData(FALSE),
-/*N*/       pDetOpList(NULL),
-/*N*/       bInDtorClear( FALSE ),
-/*N*/       bExpandRefs( FALSE ),
-/*N*/       pUnoBroadcaster( NULL ),
-/*N*/       pChangeTrack( NULL ),
-/*N*/       pChangeViewSettings( NULL ),
-/*N*/       pEditEngine( NULL ),
-/*N*/       eLinkMode(LM_UNKNOWN),
-/*N*/       pDPCollection( NULL ),
-/*N*/       pScriptTypeData( NULL ),
-/*N*/         nAsianCompression(SC_ASIANCOMPRESSION_INVALID),
-/*N*/         nAsianKerning(SC_ASIANKERNING_INVALID),
-/*N*/         pLoadedSymbolStringCellList( NULL ),
-/*N*/         bPastingDrawFromOtherDoc( FALSE ),
-/*N*/         pCacheFieldEditEngine( NULL ),
-/*N*/         nInDdeLinkUpdate( 0 ),
-/*N*/         nXMLImportedFormulaCount( 0 ),
-/*N*/         bInUnoBroadcast( FALSE ),
-/*N*/         bStyleSheetUsageInvalid( TRUE )
+/*N*/           nAsianCompression(SC_ASIANCOMPRESSION_INVALID),
+/*N*/           nAsianKerning(SC_ASIANKERNING_INVALID),
+/*N*/           bPastingDrawFromOtherDoc( FALSE ),
+/*N*/           nInDdeLinkUpdate( 0 ),
+/*N*/           bInUnoBroadcast( FALSE ),
+/*N*/           bStyleSheetUsageInvalid( TRUE )
 /*N*/ {
 /*N*/   eSrcSet = gsl_getSystemTextEncoding();
 /*N*/   nSrcVer = SC_CURRENT_VERSION;
@@ -407,9 +352,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, pTimer )
+/*N*/  IMPL_LINK( ScDocument, TrackTimeHdl, Timer*, EMPTYARG )
 /*N*/  {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( ScDdeLink::IsInUpdate() )        // nicht verschachteln
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -489,9 +434,9 @@ namespace binfilter {
 /*N*/   // delete the EditEngine before destroying the xPoolHelper
 /*N*/   delete pCacheFieldEditEngine;
 /*N*/
-/*N*/   if ( xPoolHelper.isValid() && !bIsClip )
+/*N*/   if ( xPoolHelper.is() && !bIsClip )
 /*N*/       xPoolHelper->SourceDocumentGone();
-/*N*/   xPoolHelper.unbind();
+/*N*/   xPoolHelper.clear();
 /*N*/
 /*N*/   DeleteColorTable();
 /*N*/   delete pScriptTypeData;
@@ -526,11 +471,6 @@ namespace binfilter {
 /*N*/       pEditEngine->SetForbiddenCharsTable( xForbiddenCharacters );
 /*N*/   }
 /*N*/   return *pEditEngine;
-/*N*/ }
-
-/*N*/ void ScDocument::ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks )
-/*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/ }
 
 /*N*/ void lcl_RefreshPivotData( ScPivotCollection* pColl )
@@ -752,7 +692,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/                   break;
 /*N*/               default:
 /*N*/                   {
-/*N*/                       DBG_ERROR("unbekannter Sub-Record in ScDocument::Load");
+/*N*/                       OSL_FAIL("unbekannter Sub-Record in ScDocument::Load");
 /*N*/                       ScReadHeader aDummyHdr( rStream );
 /*N*/                   }
 /*N*/           }
@@ -764,7 +704,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   else
 /*N*/   {
 /*N*/       //  Assertion nur, wenn kein Passwort gesetzt ist
-/*N*/       DBG_ASSERT( rStream.GetKey().Len(), "Load: SCID_DOCUMENT nicht gefunden" );
+/*N*/       DBG_ASSERT( rStream.GetCryptMaskKey().getLength(), "Load: SCID_DOCUMENT nicht gefunden" );
 /*N*/       bError = TRUE;
 /*N*/   }
 /*N*/
@@ -914,244 +854,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/   return !bError;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::Save( SvStream& rStream, ScProgress* pProgress ) const
-/*N*/ {
-/*N*/   ((ScDocument*)this)->bLoadingDone = FALSE;      // nicht zwischendrin reinpfuschen lassen
-/*N*/
-/*N*/   ((ScDocument*)this)->bLostData = FALSE;         // wird beim Speichern gesetzt
-/*N*/
-/*N*/   ((ScDocument*)this)->nSrcVer = SC_CURRENT_VERSION;
-/*N*/   ((ScDocument*)this)->nSrcMaxRow = MAXROW;
-/*N*/   if ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_31 )
-/*N*/   {
-/*N*/       //  3.1 Export -> nur 8192 Zeilen schreiben, und kompatible Versionsnummer
-/*N*/
-/*N*/       ((ScDocument*)this)->nSrcVer = SC_31_EXPORT_VER;
-/*N*/       ((ScDocument*)this)->nSrcMaxRow = MAXROW_30;
-/*N*/   }
-/*N*/   else if ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 )
-/*N*/   {   //  4.0 Export -> kompatible Versionsnummer
-/*N*/       ((ScDocument*)this)->nSrcVer = SC_40_EXPORT_VER;
-/*N*/   }
-/*N*/
-/*N*/   USHORT i;
-/*N*/   USHORT nOldBufSize = rStream.GetBufferSize();
-/*N*/   rStream.SetBufferSize( 32768 );
-/*N*/
-/*N*/   CharSet eOldSet = rStream.GetStreamCharSet();
-/*N*/     CharSet eStoreCharSet = ::GetSOStoreTextEncoding(
-/*N*/         gsl_getSystemTextEncoding(), (USHORT)rStream.GetVersion() );
-/*N*/     rStream.SetStreamCharSet( eStoreCharSet );
-/*N*/
-/*N*/
-/*N*/       //  Progress-Bar
-/*N*/
-/*N*/   long nSavedDocCells = 0;
-/*N*/ //    ScProgress aProgress( NULL, ScGlobal::GetRscString( STR_SAVE_DOC ), GetWeightedCount() + 1 );
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_NEWDOCUMENT;
-/*N*/       ScWriteHeader aHdr( rStream );
-/*N*/
-/*N*/       //  Flags
-/*N*/
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_DOCFLAGS;
-/*N*/           ScWriteHeader aFlagsHdr( rStream, 18 );         //! ausprobieren
-/*N*/
-/*N*/           // wg. Bug in 312 ScToken::RelToRelAbs mit DoubleRefs bekommt
-/*N*/           // die 312er immer vorgegaukelt, dass es keine RelRefs gaebe,
-/*N*/           // was auch ok ist, da immer absolut gespeichert wird und
-/*N*/           // SR_RELATIVE nie zur Verwendung kam und nicht kommen darf.
-/*N*/           if ( nSrcVer & 0xFF00 )
-/*N*/               rStream << (USHORT) nSrcVer;
-/*N*/               // hoehere Major-Version darf von 312 nicht geladen werden
-/*N*/           else
-/*N*/               rStream << (USHORT) (SC_RELATIVE_REFS - 1);
-/*N*/
-/*N*/           // dummy page style (for compatibility)
-/*N*/           rStream.WriteByteString(
-/*N*/                       String::CreateFromAscii(RTL_CONSTASCII_STRINGPARAM(STRING_STANDARD)),
-/*N*/                       rStream.GetStreamCharSet() );
-/*N*/           rStream << bProtected;                  // Dokument geschuetzt
-/*N*/           String aPass;
-/*N*/           //rStream.WriteByteString( aProtectPass, rStream.GetStreamCharSet() );
-/*N*/           rStream.WriteByteString( aPass, rStream.GetStreamCharSet() );
-/*N*/           rStream << (USHORT) eLanguage;
-/*N*/           rStream << bAutoCalc;
-/*N*/
-/*N*/           rStream << nVisibleTab;
-/*N*/
-/*N*/           // und hier jetzt die echte Versionsnummer
-/*N*/           rStream << (USHORT) nSrcVer;
-/*N*/
-/*N*/           rStream << nSrcMaxRow;                  // Zeilenanzahl
-/*N*/       }
-/*N*/
-/*N*/       //  Zeichensatz
-/*N*/
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_CHARSET;
-/*N*/           ScWriteHeader aSetHdr( rStream, 2 );
-/*N*/           rStream << (BYTE) 0     // dummy, old System::GetGUIType()
-/*N*/                     << (BYTE) eStoreCharSet;
-/*N*/       }
-/*N*/
-/*N*/       //  Link Update Mode
-/*N*/
-/*N*/       if(eLinkMode!=LM_UNKNOWN)
-/*N*/       {
-/*?*/           rStream << (USHORT) SCID_LINKUPMODE;
-/*?*/           ScWriteHeader aSetHdr( rStream, 1 );
-/*?*/           rStream << (BYTE) eLinkMode;
-/*N*/       }
-/*N*/
-/*N*/       rStream << (USHORT) SCID_RANGENAME;
-/*N*/       pRangeName->Store( rStream );
-/*N*/
-/*N*/       rStream << (USHORT) SCID_DBAREAS;
-/*N*/       pDBCollection->Store( rStream );
-/*N*/
-/*N*/       rStream << (USHORT) SCID_DDELINKS;
-/*N*/       SaveDdeLinks( rStream );
-/*N*/
-/*N*/       rStream << (USHORT) SCID_AREALINKS;
-/*N*/       SaveAreaLinks( rStream );
-/*N*/
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_NUMFORMAT;
-/*N*/           ScWriteHeader aNumHeader(rStream);
-/*N*/           xPoolHelper->GetFormTable()->Save(rStream);
-/*N*/       }
-/*N*/
-/*N*/       if ( xColNameRanges->Count() )
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_COLNAMERANGES;
-/*N*/           xColNameRanges->Store( rStream );
-/*N*/       }
-/*N*/       if ( xRowNameRanges->Count() )
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_ROWNAMERANGES;
-/*N*/           xRowNameRanges->Store( rStream );
-/*N*/       }
-/*N*/
-/*N*/       if (pCondFormList)
-/*N*/           pCondFormList->ResetUsed();     // wird beim Speichern der Tabellen gesetzt
-/*N*/       if (pValidationList)
-/*N*/           pValidationList->ResetUsed();   // wird beim Speichern der Tabellen gesetzt
-/*N*/
-/*N*/       //  Tabellen (Daten)
-/*N*/
-/*N*/       for (i=0; i<=MAXTAB; i++)
-/*N*/       {
-/*N*/           if (pTab[i])
-/*N*/           {
-/*N*/               rStream << (USHORT) SCID_TABLE;
-/*N*/               pTab[i]->Save(rStream, nSavedDocCells, pProgress);
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       //  bedingte Formate / Gueltigkeit
-/*N*/       //  beim Speichern der Tabellen ist eingetragen worden,
-/*N*/       //  welche Eintraege benutzt werden
-/*N*/
-/*N*/       if (pCondFormList)
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_CONDFORMATS;
-/*N*/           pCondFormList->Store(rStream);
-/*N*/       }
-/*N*/       if (pValidationList)
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_VALIDATION;
-/*N*/           pValidationList->Store(rStream);
-/*N*/       }
-/*N*/
-/*N*/       //  Liste der Detektiv-Operationen (zum Aktualisieren)
-/*N*/       if (pDetOpList)
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_DETOPLIST;
-/*N*/           pDetOpList->Store(rStream);
-/*N*/       }
-/*N*/
-/*N*/       //  Drawing
-/*N*/
-/*N*/ //        if (pDrawLayer && pDrawLayer->HasObjects())
-/*N*/       //  auch ohne Objekte - wegen ColorTable etc.
-/*N*/
-/*N*/       if (pDrawLayer)
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_DRAWING;
-/*N*/           StoreDrawLayer(rStream);
-/*N*/       }
-/*N*/
-/*N*/       //  Collections
-/*N*/
-/*N*/       //  (new) DataPilot collection must be saved before old Pivot collection
-/*N*/       //  so old data can be skipped by new office
-/*N*/       //  not in 3.0 or 4.0 export to avoid warning messages
-/*N*/
-/*N*/       if ( nSrcVer > SC_40_EXPORT_VER && pDPCollection && pDPCollection->GetCount() )
-/*N*/       {
-/*?*/           rStream << (USHORT) SCID_DATAPILOT;             // new data
-/*?*/           pDPCollection->StoreNew( rStream );
-/*N*/       }
-/*N*/
-/*N*/       rStream << (USHORT) SCID_PIVOT;                     // old data
-/*N*/       if ( pDPCollection && pDPCollection->GetCount() )
-/*N*/           pDPCollection->StoreOld( rStream );
-/*N*/       else
-/*N*/           pPivotCollection->Store( rStream );             // not converted or all empty
-/*N*/
-/*N*/               //  Charts werden hier nicht mehr gespeichert, weil
-/*N*/               //  jedes Chart seine Daten selber speichert
-/*N*/
-/*N*/       DBG_ASSERT(!pChartCollection || !pChartCollection->GetCount(),
-/*N*/                       "wer hat da ein Chart eingetragen?");
-/*N*/
-/*N*/       rStream << (USHORT) SCID_DOCOPTIONS;
-/*N*/       ImplSaveDocOptions(rStream);
-/*N*/
-/*N*/       rStream << (USHORT) SCID_VIEWOPTIONS;
-/*N*/       ImplSaveViewOptions(rStream);
-/*N*/
-/*N*/       //  Job-Setup vom Printer
-/*N*/
-/*N*/       if (pPrinter)
-/*N*/       {
-/*N*/           rStream << (USHORT) SCID_PRINTSETUP;
-/*N*/           ScWriteHeader aJobHeader(rStream);
-/*N*/
-/*N*/           ((ScDocument*)this)->GetPrinter()->Store( rStream );
-/*N*/       }
-/*N*/
-/*N*/       if ( nSrcVer > SC_40_EXPORT_VER )   //  Das folgende nicht bei 3.0 oder 4.0 Export...
-/*N*/       {
-/*N*/           if (pConsolidateDlgData)        //  Einstellungen fuer den Konsolidieren-Dialog
-/*N*/           {
-/*?*/               rStream << (USHORT) SCID_CONSOLIDATA;
-/*?*/               pConsolidateDlgData->Store( rStream );
-/*N*/           }
-/*N*/           if ( pChangeTrack )
-/*N*/           {
-/*N*/               rStream << (USHORT) SCID_CHANGETRACK;
-/*N*/               pChangeTrack->Store( rStream );
-/*N*/           }
-/*N*/           if ( pChangeViewSettings )
-/*N*/           {
-/*N*/               rStream << (USHORT) SCID_CHGVIEWSET;
-/*N*/               pChangeViewSettings->Store( rStream );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   rStream.SetStreamCharSet( eOldSet );
-/*N*/   rStream.SetBufferSize( nOldBufSize );
-/*N*/
-/*N*/   ((ScDocument*)this)->bLoadingDone = TRUE;
-/*N*/
-/*N*/   return ( rStream.GetError() == SVSTREAM_OK );
-/*N*/ }
-
 /*N*/ void ScDocument::SetLostData()
 /*N*/ {
 /*N*/   bLostData = TRUE;
@@ -1257,7 +959,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/
 /*N*/   if (bValid)
 /*N*/   {
-/*N*/       BOOL bOldAutoCalcSrc;
+/*N*/       BOOL bOldAutoCalcSrc = FALSE;
 /*N*/       BOOL bOldAutoCalc = GetAutoCalc();
 /*N*/       SetAutoCalc( FALSE );   // Mehrfachberechnungen vermeiden
 /*N*/       SetNoListening( TRUE );
@@ -1294,16 +996,16 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (bIsClip)
 /*N*/           for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch !!!
 /*N*/           {
 /*?*/               ScRangeData* pSrcData = (*pSrcDoc->pRangeName)[i];
-/*?*/               USHORT nOldIndex = pSrcData->GetIndex();
+/*?*/               /*USHORT nOldIndex =*/ pSrcData->GetIndex();
 /*?*/               BOOL bInUse = FALSE;
 /*?*/               for (USHORT j = 0; !bInUse && (j <= MAXTAB); j++)
 /*?*/               {
 /*?*/                   if (pSrcDoc->pTab[j])
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSrcDoc->pTab[j]->IsRangeNameInUse(0, 0, MAXCOL, MAXROW,
+DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               if (bInUse)
 /*?*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ScRangeData* pData = new ScRangeData( *pSrcData );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
 /*?*/               {
@@ -1315,7 +1017,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                         bInUse = pSr
 /*N*/           {
 /*?*/               // first update all inserted named formulas if they contain other
 /*?*/               // range names and used indices changed
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i < nSrcRangeNames; i++)     //! DB-Bereiche Pivot-Bereiche auch
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           if ( pSrcRangeNames )
 /*?*/               delete [] pSrcRangeNames;
@@ -1331,7 +1033,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i
 /*N*/           if (bIsAbsRef)
 /*N*/           {
 /*N*/               nRetVal += 1;
-/*N*/                   // InfoBox AbsoluteRefs sind möglicherweise nicht mehr korrekt!!
+/*N*/                   // InfoBox AbsoluteRefs sind m?licherweise nicht mehr korrekt!!
 /*N*/           }
 /*N*/           pTab[nDestPos]->CompileAll();
 /*N*/       }
@@ -1391,18 +1093,18 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i
 
 /*N*/ ScFieldEditEngine* ScDocument::CreateFieldEditEngine()
 /*N*/ {
-/*N*/   ScFieldEditEngine* pEditEngine = NULL;
+/*N*/   ScFieldEditEngine* pLclEditEngine = NULL;
 /*N*/   if (!pCacheFieldEditEngine)
 /*N*/   {
-/*N*/       pEditEngine = new ScFieldEditEngine( GetEnginePool(),
+/*N*/       pLclEditEngine = new ScFieldEditEngine( GetEnginePool(),
 /*N*/           GetEditPool(), FALSE );
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       pEditEngine = pCacheFieldEditEngine;
+/*N*/       pLclEditEngine = pCacheFieldEditEngine;
 /*N*/       pCacheFieldEditEngine = NULL;
 /*N*/   }
-/*N*/   return pEditEngine;
+/*N*/   return pLclEditEngine;
 /*N*/ }
 
 /*N*/ void ScDocument::DisposeFieldEditEngine(ScFieldEditEngine*& rpEditEngine)
@@ -1418,3 +1120,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 for (USHORT i = 0; i
 /*N*/ }
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

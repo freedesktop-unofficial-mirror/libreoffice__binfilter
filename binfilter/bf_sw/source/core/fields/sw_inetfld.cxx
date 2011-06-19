@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,14 +33,10 @@
 
 #include "hintids.hxx"
 
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
 
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 #include "doc.hxx"
 #include "inetfld.hxx"
 #include "poolfmt.hxx"
@@ -240,3 +237,5 @@ String SwINetField::GetBookmark() const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

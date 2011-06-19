@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,30 +27,16 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _XMLOFF_XMLASTPL_IMPL_HXX
 #include "impastpl.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 #include "XMLTextListAutoStylePool.hxx"
-#endif
 
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 namespace binfilter {
 
 
@@ -79,12 +66,12 @@ namespace
 }
 
 void SvXMLAutoStylePoolP::exportStyleAttributes(
-        SvXMLAttributeList& rAttrList,
+        SvXMLAttributeList& /*rAttrList*/,
         sal_Int32 nFamily,
         const vector< XMLPropertyState >& rProperties,
         const SvXMLExportPropertyMapper& rPropExp,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/
         ) const
 {
     if ( XML_STYLE_FAMILY_CONTROL_ID == nFamily )
@@ -127,8 +114,8 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
 
                         if (bFoundControlShapeDataStyle)
                         {
-                            DBG_ERROR("SvXMLAutoStylePoolP::exportStyleAttributes: found two properties with the ControlShapeDataStyle context id!");
-                            // already added the attribute for the first occurence
+                            OSL_FAIL("SvXMLAutoStylePoolP::exportStyleAttributes: found two properties with the ControlShapeDataStyle context id!");
+                            // already added the attribute for the first occurrence
                             break;
                         }
 
@@ -142,8 +129,8 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
                     {
                         if (bFoundNumberingRulesName)
                         {
-                            DBG_ERROR("SvXMLAutoStylePoolP::exportStyleAttributes: found two properties with the numbering rules name context id!");
-                            // already added the attribute for the first occurence
+                            OSL_FAIL("SvXMLAutoStylePoolP::exportStyleAttributes: found two properties with the numbering rules name context id!");
+                            // already added the attribute for the first occurrence
                             break;
                         }
 
@@ -166,7 +153,7 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
 
     if( nFamily == XML_STYLE_FAMILY_PAGE_MASTER )
     {
-        for( vector< XMLPropertyState >::const_iterator pProp = rProperties.begin(); pProp != rProperties.end(); pProp++ )
+        for( vector< XMLPropertyState >::const_iterator pProp = rProperties.begin(); pProp != rProperties.end(); ++pProp )
         {
             if (pProp->mnIndex > -1)
             {
@@ -195,12 +182,12 @@ void SvXMLAutoStylePoolP::exportStyleAttributes(
 }
 
 void SvXMLAutoStylePoolP::exportStyleContent(
-        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
+        const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & /*rHandler*/,
         sal_Int32 nFamily,
         const vector< XMLPropertyState >& rProperties,
         const SvXMLExportPropertyMapper& rPropExp,
-        const SvXMLUnitConverter& rUnitConverter,
-        const SvXMLNamespaceMap& rNamespaceMap
+        const SvXMLUnitConverter& /*rUnitConverter*/,
+        const SvXMLNamespaceMap& /*rNamespaceMap*/
         ) const
 {
     if( nFamily == XML_STYLE_FAMILY_PAGE_MASTER )
@@ -357,9 +344,9 @@ OUString SvXMLAutoStylePoolP::Find( sal_Int32 nFamily,
 }
 
 void SvXMLAutoStylePoolP::exportXML( sal_Int32 nFamily,
-    const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & rHandler,
-    const SvXMLUnitConverter& rUnitConverter,
-    const SvXMLNamespaceMap& rNamespaceMap
+    const uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler > & /*rHandler*/,
+    const SvXMLUnitConverter& /*rUnitConverter*/,
+    const SvXMLNamespaceMap& /*rNamespaceMap*/
     ) const
 {
     pImpl->exportXML( nFamily,
@@ -374,3 +361,5 @@ void SvXMLAutoStylePoolP::ClearEntries()
     pImpl->ClearEntries();
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

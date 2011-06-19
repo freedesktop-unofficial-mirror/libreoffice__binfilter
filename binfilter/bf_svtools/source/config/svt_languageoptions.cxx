@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,35 +28,17 @@
 
 #include <bf_svtools/languageoptions.hxx>
 
-#ifndef _SVTOOLS_CJKOPTIONS_HXX
 #include <bf_svtools/cjkoptions.hxx>
-#endif
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <bf_svtools/ctloptions.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
-#include <vcl/svapp.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
+#include <vcl/svapp.hxx>
+#include <osl/mutex.hxx>
 #include <rtl/instance.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
-#endif
 
 using namespace ::com::sun::star;
 // global ----------------------------------------------------------------------
@@ -92,9 +75,7 @@ sal_uInt16 SvtLanguageOptions::GetScriptTypeOfLanguage( sal_uInt16 nLang )
 // -----------------------------------------------------------------------------
 
 
-/*-- 27.10.2005 08:18:01---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SvtSystemLanguageOptions::SvtSystemLanguageOptions() :
     utl::ConfigItem( rtl::OUString( RTL_CONSTASCII_USTRINGPARAM("System/L10N") ))
 {
@@ -108,22 +89,16 @@ SvtSystemLanguageOptions::SvtSystemLanguageOptions() :
         aValues[0]>>= m_sWin16SystemLocale;
     }
 }
-/*-- 27.10.2005 08:18:01---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SvtSystemLanguageOptions::~SvtSystemLanguageOptions()
 {
 }
-/*-- 27.10.2005 08:18:02---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SvtSystemLanguageOptions::Commit()
 {
     //does nothing
 }
-/*-- 27.10.2005 08:36:14---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 LanguageType SvtSystemLanguageOptions::GetWin16SystemLanguage()
 {
     if( m_sWin16SystemLocale.getLength() == 0 )
@@ -134,3 +109,5 @@ LanguageType SvtSystemLanguageOptions::GetWin16SystemLanguage()
     void SvtSystemLanguageOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _TBLRWCL_HXX
+#include <osl/diagnose.h>
 #include <tblrwcl.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
-#endif
 namespace binfilter {
 
 
@@ -249,7 +240,7 @@ BOOL lcl_GC_Line_Border( const SwTableLine*& rpLine, void* pPara )
         const SwTableBox *pBtmBox = &aBottom.GetBox( nSttBtm++, &nBtmPos ),
                          *pTopBox = &aTop.GetBox( nSttTop++, &nTopPos );
         const SfxPoolItem *pBtmItem, *pTopItem;
-        const SvxBorderLine *pBtmLine, *pTopLine;
+        const SvxBorderLine *pBtmLine = NULL, *pTopLine = NULL;
         BOOL bGetTopItem = TRUE, bGetBtmItem = TRUE;
 
         do {
@@ -434,7 +425,7 @@ struct _GCLinePara
 /*N*/           SwTableLines& rLns = *pGCPara->pLns;
 /*N*/           const SwTableLine* pTmp = pLn;
 /*N*/           USHORT nInsPos = rLns.GetPos( pTmp );
-/*N*/           ASSERT( USHRT_MAX != nInsPos, "Line nicht gefunden!" );
+/*N*/           OSL_ENSURE( USHRT_MAX != nInsPos, "Line nicht gefunden!" );
 /*N*/
 /*N*/           SwTableBox* pUpper = pLn->GetUpper();
 /*N*/
@@ -446,7 +437,7 @@ struct _GCLinePara
 /*N*/           const SfxPoolItem* pItem;
 /*N*/           if( SFX_ITEM_SET == pLn->GetFrmFmt()->GetItemState(
 /*N*/                                   RES_BACKGROUND, TRUE, &pItem ))
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           pBox->GetTabLines().Remove( 0, nLen );  // Lines aus Array loeschen
@@ -483,3 +474,5 @@ struct _GCLinePara
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _SWGLOBDOCSH_HXX
 #define _SWGLOBDOCSH_HXX
 
-#ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
-#endif
 #include "docsh.hxx"
 namespace binfilter {
 
@@ -54,3 +53,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

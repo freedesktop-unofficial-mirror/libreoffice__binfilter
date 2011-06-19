@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 #ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #define _XMLOFF_FORMS_OFFICEFORMS_HXX_
 
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #include "formattributes.hxx"
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef XMLOFF_FORMS_LOGGING_HXX
 #include "logging.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLElementExport;
@@ -111,3 +106,4 @@ namespace xmloff
 #endif // _XMLOFF_FORMS_OFFICEFORMS_HXX_
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

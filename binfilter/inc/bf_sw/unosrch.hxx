@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,21 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_UTIL_XPROPERTYREPLACE_HPP_
 #include <com/sun/star/util/XPropertyReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace com{namespace sun{namespace star{namespace util{
     struct SearchOptions;
 }}}}
@@ -59,14 +50,10 @@ class SwXTextDocument;
 class SwSearchProperties_Impl;
 
 
-//STRIP008 namespace com{namespace sun{namespace star{namespace util{
-//STRIP008  struct SearchOptions;
-//STRIP008 }}}}
 
 
-/*-----------------19.12.97 12:58-------------------
 
---------------------------------------------------*/
+
 class SwXTextSearch : public cppu::WeakImplHelper3
 <
     ::com::sun::star::util::XPropertyReplace,
@@ -153,3 +140,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

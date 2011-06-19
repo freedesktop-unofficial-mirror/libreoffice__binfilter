@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,7 +37,7 @@ namespace binfilter {
 
 /** method to set mapping/pixel offset for virtual output device
 
-    OD 12.11.2002 #96272# - method implements two solutions for the mapping of
+    method implements two solutions for the mapping of
     the virtual output device:
     The old solution set the origin of the mapping mode, which will be used in
     the virtual output device. This causes several paint errors, because of the
@@ -72,3 +73,4 @@ void SetMappingForVirtDev(  const Point&    _rNewOrigin,
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

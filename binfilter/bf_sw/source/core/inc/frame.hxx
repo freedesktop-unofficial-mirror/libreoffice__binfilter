@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 #include "swtypes.hxx"  // fuer SwTwips
 #include "swrect.hxx"
 #include "calbck.hxx"   // fuer SwClient
@@ -72,7 +71,6 @@ class SvxBrushItem;
 class SwTxtFtn;
 struct SwPosition;
 struct SwCrsrMoveState;
-// OD 20.05.2003 #108784#
 class SwDrawVirtObj;
 
 //Jeder FrmTyp findet sich hier in einem Bit wieder.
@@ -309,7 +307,7 @@ enum MakePageType
 };
 
 typedef SdrObject* SdrObjectPtr;
-SV_DECL_PTRARR(SwDrawObjs,SdrObjectPtr,1,1)//STRIP008 ;
+SV_DECL_PTRARR(SwDrawObjs,SdrObjectPtr,1,1)
 
 class SwFrm: public SwClient
 {
@@ -333,8 +331,6 @@ class SwFrm: public SwClient
     friend void ValidateSz( SwFrm *pFrm );
         // Implementiert in text/txtftn.cxx, verhindert Ftn-Oszillation
     friend void ValidateTxt( SwFrm *pFrm );
-
-//  friend void CalcAnchorAndKeep( SwFlyFrm * );
 
     friend void MakeNxt( SwFrm *pFrm, SwFrm *pNxt );
 
@@ -476,7 +472,7 @@ public:
 
     void AppendDrawObj( SwDrawContact *pObj );
     void RemoveDrawObj( SwDrawContact *pToRemove );
-        // OD 20.05.2003 #108784# - <AppendDrawObj>/<RemoveDrawObj> for virtual drawing objects
+        // <AppendDrawObj>/<RemoveDrawObj> for virtual drawing objects
     void AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                             SwDrawVirtObj* _pDrawVirtObj );
     void RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
@@ -531,7 +527,7 @@ public:
     BOOL IsFtnAllowed() const;
 
     virtual void  Modify( SfxPoolItem*, SfxPoolItem* );
-    virtual void  Format( const SwBorderAttrs *pAttrs = 0 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void  Format( const SwBorderAttrs *pAttrs = 0 );
+    virtual void  Format( const SwBorderAttrs* pAttrs = 0 ){DBG_BF_ASSERT(0, "STRIP"); (void)pAttrs;}
 
     virtual void  CheckDirection( BOOL bVert );
 
@@ -663,7 +659,7 @@ public:
     void InvalidatePage( const SwPageFrm *pPage = 0 ) const;
 
     virtual BOOL    GetCrsrOfst( SwPosition *, Point&,
-                                 const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 const SwCrsrMoveState* = 0 ) const;
+                                 const SwCrsrMoveState* = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     virtual BOOL    GetCharRect( SwRect &, const SwPosition&,
                                  SwCrsrMoveState* = 0 ) const;
 
@@ -1092,3 +1088,5 @@ inline BOOL SwFrm::IsAccessibleFrm() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

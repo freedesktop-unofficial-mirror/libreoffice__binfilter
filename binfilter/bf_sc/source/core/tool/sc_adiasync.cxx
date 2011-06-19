@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -40,9 +38,7 @@
 #include "document.hxx"
 #include "bf_sc.hrc"        // FID_DATACHANGED
 
-#ifndef _OSL_THREAD_H_
 #include <osl/thread.h>
-#endif
 namespace binfilter {
 
 
@@ -96,7 +92,7 @@ static ScAddInAsync aSeekObj;
 /*N*/   if ( nHandle )
 /*N*/   {
 /*?*/       // im dTor wg. theAddInAsyncTbl.DeleteAndDestroy in ScGlobal::Clear
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFuncData->Unadvice( (double)nHandle );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -148,3 +144,5 @@ static ScAddInAsync aSeekObj;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

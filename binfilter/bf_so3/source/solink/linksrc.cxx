@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,7 +29,6 @@
 
 #include <bf_so3/linksrc.hxx>
 #include "bf_so3/lnkbase.hxx"
-//#include <sot/exchange.hxx>
 #include <com/sun/star/uno/Any.hxx>
 #include <com/sun/star/uno/Sequence.hxx>
 
@@ -388,3 +388,5 @@ String SvLinkSource::Edit( Window *, SvBaseLink * )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

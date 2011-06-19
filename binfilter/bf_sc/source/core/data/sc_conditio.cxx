@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -98,14 +96,14 @@ namespace binfilter {
 /*N*/   aStrVal2(r.aStrVal2),
 /*N*/   bIsStr1(r.bIsStr1),
 /*N*/   bIsStr2(r.bIsStr2),
-/*N*/   bRelRef1(r.bRelRef1),
-/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
+/*N*/   aSrcPos(r.aSrcPos),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(r.pDoc),
-/*N*/   aSrcPos(r.aSrcPos),
+/*N*/   bRelRef1(r.bRelRef1),
+/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   //  ScTokenArray copy ctor erzeugt flache Kopie
@@ -127,14 +125,14 @@ namespace binfilter {
 /*N*/   aStrVal2(r.aStrVal2),
 /*N*/   bIsStr1(r.bIsStr1),
 /*N*/   bIsStr2(r.bIsStr2),
-/*N*/   bRelRef1(r.bRelRef1),
-/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
+/*N*/   aSrcPos(r.aSrcPos),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(pDocument),
-/*N*/   aSrcPos(r.aSrcPos),
+/*N*/   bRelRef1(r.bRelRef1),
+/*N*/   bRelRef2(r.bRelRef2),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   // echte Kopie der Formeln (fuer Ref-Undo)
@@ -158,14 +156,14 @@ namespace binfilter {
 /*N*/   nVal2(0.0),
 /*N*/   bIsStr1(FALSE),
 /*N*/   bIsStr2(FALSE),
-/*N*/   bRelRef1(FALSE),
-/*N*/   bRelRef2(FALSE),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
+/*N*/   aSrcPos(rPos),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(pDocument),
-/*N*/   aSrcPos(rPos),
+/*N*/   bRelRef1(FALSE),
+/*N*/   bRelRef2(FALSE),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   Compile( rExpr1, rExpr2, bCompileEnglish, bCompileXML, FALSE );
@@ -188,13 +186,13 @@ namespace binfilter {
 /*N*/   nVal2(0.0),
 /*N*/   bIsStr1(FALSE),
 /*N*/   bIsStr2(FALSE),
-/*N*/   bRelRef1(FALSE),
-/*N*/   bRelRef2(FALSE),
 /*N*/   pFormula1(NULL),
 /*N*/   pFormula2(NULL),
 /*N*/   pFCell1(NULL),
 /*N*/   pFCell2(NULL),
 /*N*/   pDoc(pDocument),
+/*N*/   bRelRef1(FALSE),
+/*N*/   bRelRef2(FALSE),
 /*N*/   bFirstRun(TRUE)
 /*N*/ {
 /*N*/   USHORT nVer = (USHORT) pDoc->GetSrcVersion();
@@ -251,51 +249,6 @@ namespace binfilter {
 /*N*/   aSrcPos = aPos;
 /*N*/
 /*N*/   //  Formelzellen werden erst bei IsValid angelegt
-/*N*/ }
-
-/*N*/ void ScConditionEntry::StoreCondition(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   //  1) Byte fuer die Operation
-/*N*/   //  2) USHORT fuer Optionen
-/*N*/   //  3) Byte, ob Wert, String oder Formel folgt
-/*N*/   //  4) double, String oder TokenArray
-/*N*/   //  5) je nach Operation 3 und 4 nochmal
-/*N*/   //  vor jedem TokenArray noch die Position als ScAddress
-/*N*/
-/*N*/   rStream << (BYTE) eOp;
-/*N*/   rStream << nOptions;
-/*N*/
-/*N*/   ScConditionValType eType =
-/*N*/           pFormula1 ? SC_VAL_FORMULA : ( bIsStr1 ? SC_VAL_STRING : SC_VAL_VALUE );
-/*N*/   rStream << (BYTE) eType;
-/*N*/   if ( eType == SC_VAL_FORMULA )
-/*N*/   {
-/*N*/       rStream << aSrcPos;
-/*N*/       pFormula1->Store( rStream, aSrcPos );
-/*N*/   }
-/*N*/   else if ( eType == SC_VAL_VALUE )
-/*N*/       rStream << nVal1;
-/*N*/   else
-/*?*/       rStream.WriteByteString( aStrVal1, rStream.GetStreamCharSet() );
-/*N*/
-/*N*/   if ( eOp == SC_COND_BETWEEN || eOp == SC_COND_NOTBETWEEN )
-/*N*/   {
-/*?*/       eType = pFormula2 ? SC_VAL_FORMULA : ( bIsStr2 ? SC_VAL_STRING : SC_VAL_VALUE );
-/*?*/       rStream << (BYTE) eType;
-/*?*/       if ( eType == SC_VAL_FORMULA )
-/*?*/       {
-/*?*/           rStream << aSrcPos;
-/*?*/           pFormula2->Store( rStream, aSrcPos );
-/*?*/       }
-/*?*/       else if ( eType == SC_VAL_VALUE )
-/*?*/           rStream << nVal2;
-/*?*/       else
-/*?*/           rStream.WriteByteString( aStrVal2, rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/
-/*N*/   rHdr.EndEntry();
 /*N*/ }
 
 /*N*/ void ScConditionEntry::Compile( const String& rExpr1, const String& rExpr2,
@@ -688,7 +641,7 @@ namespace binfilter {
 /*N*/           bValid = !::rtl::math::approxEqual( nComp1, 0.0 );
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("unbekannte Operation bei ScConditionEntry");
+/*N*/           OSL_FAIL("unbekannte Operation bei ScConditionEntry");
 /*N*/           break;
 /*N*/   }
 /*N*/   return bValid;
@@ -743,7 +696,7 @@ namespace binfilter {
 /*N*/   if (bVal)
 /*N*/       return IsValid( nArg );
 /*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 return IsValidStr( aArgStr );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 /*N*/ }
 
 /*N*/ String ScConditionEntry::GetExpression( const ScAddress& rCursor, USHORT nIndex,
@@ -794,7 +747,7 @@ namespace binfilter {
 /*N*/           pDoc->GetFormatTable()->GetInputLineString(nVal2, nNumFmt, aRet);
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("GetExpression: falscher Index");
+/*N*/       OSL_FAIL("GetExpression: falscher Index");
 /*N*/
 /*N*/   return aRet;
 /*N*/ }
@@ -880,7 +833,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScConditionEntry::DataChanged( const ScRange* pModified ) const
+/*N*/ void ScConditionEntry::DataChanged( const ScRange* /*pModified*/ ) const
 /*N*/ {
 /*N*/   // nix
 /*N*/ }
@@ -923,18 +876,6 @@ namespace binfilter {
 /*N*/   rStream.ReadByteString( aStyleName, rStream.GetStreamCharSet() );
 /*N*/   rHdr.EndEntry();
 /*N*/ }
-
-/*N*/ void ScCondFormatEntry::Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   //  im Datei-Header sind getrennte Eintraege fuer ScConditionEntry und ScCondFormatEntry
-/*N*/
-/*N*/   StoreCondition( rStream, rHdr );
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/   rStream.WriteByteString( aStyleName, rStream.GetStreamCharSet() );
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
 
 /*N*/ int ScCondFormatEntry::operator== ( const ScCondFormatEntry& r ) const
 /*N*/ {
@@ -1035,24 +976,6 @@ namespace binfilter {
 /*N*/           ppEntries[i]->SetParent(this);
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ void ScConditionalFormat::Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   //  ein Eintrag im Header fuer die ScConditionalFormat-Daten,
-/*N*/   //  je zwei Eintraege fuer jede Bedingung (ScConditionEntry und ScCondFormatEntry)
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << nKey;
-/*N*/   rStream << nEntryCount;
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/
-/*N*/       //  Eintraege speichern
-/*N*/
-/*N*/   for (USHORT i=0; i<nEntryCount; i++)
-/*N*/       ppEntries[i]->Store(rStream, rHdr);
 /*N*/ }
 
 /*N*/ BOOL ScConditionalFormat::EqualEntries( const ScConditionalFormat& r ) const
@@ -1275,6 +1198,7 @@ namespace binfilter {
 //------------------------------------------------------------------------
 
 /*N*/ ScConditionalFormatList::ScConditionalFormatList(const ScConditionalFormatList& rList)
+/*N*/     : ScConditionalFormats_Impl()
 /*N*/ {
 /*N*/   //  fuer Ref-Undo - echte Kopie mit neuen Tokens!
 /*N*/
@@ -1300,27 +1224,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScConditionalFormatList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nCount = Count();
-/*N*/   USHORT nUsed = 0;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ((*this)[i]->IsUsed())
-/*N*/           ++nUsed;
-/*N*/
-/*N*/   rStream << nUsed;       // Anzahl der gespeicherten
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScConditionalFormat* pForm = (*this)[i];
-/*N*/       if (pForm->IsUsed())
-/*N*/           pForm->Store( rStream, aHdr );
-/*N*/   }
-/*N*/ }
-
 /*N*/ ScConditionalFormat* ScConditionalFormatList::GetFormat( sal_uInt32 nKey )
 /*N*/ {
 /*N*/   //! binaer suchen
@@ -1330,7 +1233,7 @@ namespace binfilter {
 /*N*/       if ((*this)[i]->GetKey() == nKey)
 /*N*/           return (*this)[i];
 /*N*/
-/*N*/   DBG_ERROR("ScConditionalFormatList: Eintrag nicht gefunden");
+/*N*/   OSL_FAIL("ScConditionalFormatList: Eintrag nicht gefunden");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -1368,3 +1271,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

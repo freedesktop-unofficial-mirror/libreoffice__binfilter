@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,28 +30,16 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef NF_NFVERSI_HXX
 #include <bf_svtools/nfversi.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #include <bf_svtools/nfkeytab.hxx>
-#endif
 
 // We need ImpSvNumberformatScan for the private SvNumberformat definitions.
 #ifdef _ZFORMAT_CXX
@@ -104,7 +93,7 @@ struct ImpSvNumberformatInfo            // Struct for FormatInfo
 
     void Copy( const ImpSvNumberformatInfo& rNumFor, USHORT nAnz );
     void Load(SvStream& rStream, USHORT nAnz);
-    void Save(SvStream& rStream, USHORT nAnz) const;
+    void Save(SvStream&, USHORT) const {};
 };
 
 // NativeNumber, represent numbers using CJK or other digits if nNum>0,
@@ -147,7 +136,7 @@ public:
     void Enlarge(USHORT nAnz);          // Init of arrays to the right size
     void Load( SvStream& rStream, ImpSvNumberformatScan& rSc,
                 String& rLoadedColorName);
-    void Save( SvStream& rStream ) const;
+    void Save( SvStream& ) const {};
 
     // if pSc is set, it is used to get the Color pointer
     void Copy( const ImpSvNumFor& rNumFor, ImpSvNumberformatScan* pSc );
@@ -238,7 +227,7 @@ public:
 
     NfHackConversion Load( SvStream& rStream, ImpSvNumMultipleReadHeader& rHdr,
         SvNumberFormatter* pConverter, ImpSvNumberInputScan& rISc );
-    void Save( SvStream& rStream, ImpSvNumMultipleWriteHeader& rHdr  ) const;
+    void Save( SvStream&, ImpSvNumMultipleWriteHeader& ) const {};
 
     // Load a string which might contain an Euro symbol,
     // in fact that could be any string used in number formats.
@@ -567,3 +556,5 @@ private:
 }
 
 #endif  // _ZFORMAT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

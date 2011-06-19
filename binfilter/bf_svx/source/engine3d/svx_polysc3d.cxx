@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,9 +27,7 @@
  ************************************************************************/
 
 
-#ifndef _XDEF_HXX //autogen
 #include "xdef.hxx"
-#endif
 
 
 
@@ -41,13 +40,9 @@
 
 
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
 
 
 
@@ -82,57 +77,15 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Die Kontur fuer TextToContour
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objekt als Kontur in das Polygon einfuegen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Paint
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dPolyScene::Paint(ExtOutputDevice& rOut,
-/*N*/   const SdrPaintInfoRec& rInfoRec) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ bool E3dPolyScene::Paint(ExtOutputDevice& /*rOut*/,
+/*N*/   const SdrPaintInfoRec& /*rInfoRec*/) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-
-/*************************************************************************
-|*
-|* Geometrie zeichnen mit clipping Beruecksichtigung
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Zeichenroutine fuer 3D
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Schatten aller Objekte zeichnen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Verminderte Darstellungsqualitaet, zeichne als WireFrame OHNE renderer
-|*
-\************************************************************************/
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

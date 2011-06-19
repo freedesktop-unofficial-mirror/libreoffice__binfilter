@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOGRP_HXX //autogen
 #include <bf_svx/svdogrp.hxx>
-#endif
 
 #include "chtmodel.hxx"
 namespace binfilter {
@@ -68,15 +67,15 @@ public:
     virtual UINT32 GetObjInventor() const;
     virtual UINT16 GetObjIdentifier() const;
 
+    using SdrObjGroup::operator=;
 
-
-    // FG: Damit soll ermöglicht werden dass man Objektgruppen im Chart resizen kann
+    // FG: Damit soll ermï¿½glicht werden dass man Objektgruppen im Chart resizen kann
     void    SetObjInfo(SdrObjTransformInfoRec aMyInfo);
 
     // FG: Um das Verhalten bei einem Resize zu aendern muessen beide Routinen
-    //     überladen werden.
+    //     ï¿½berladen werden.
 
-    // FG: 9.3.1997 Methode von Joe, die Überladen wird um zu Kennzeichnen
+    // FG: 9.3.1997 Methode von Joe, die ï¿½berladen wird um zu Kennzeichnen
     //              ob die Gruppe jemals verschoben worden ist.
     virtual void Move  (const Size& rSiz);
 
@@ -86,6 +85,7 @@ public:
     BOOL GetGroupIsChart() {return (eChartGroupType == DIAGRAM);}
 
 
+    using SdrObjGroup::SetModel;
     void SetModel (ChartModel *pChModel) {pChartmodel = pChModel; SdrObjGroup::SetModel( (SdrModel*) pChModel ); }
 
     void SetAskForLogicRect(BOOL value) {bAskForLogicRect = value;}
@@ -98,3 +98,4 @@ public:
 #endif  // _SCH_SCHGROUP_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,59 +33,25 @@
 
 #include <float.h>
 
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>
-#endif
-#ifndef _CELLFML_HXX
 #include <cellfml.hxx>
-#endif
-#ifndef _CALC_HXX
 #include <calc.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _USRFLD_HXX
 #include <usrfld.hxx>
-#endif
-#ifndef _FLDDAT_HXX
 #include <flddat.hxx>
-#endif
-#ifndef _CELLATR_HXX
 #include <cellatr.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
 namespace binfilter {
 
 const sal_Unicode cRelTrenner = ',';
@@ -102,9 +69,6 @@ const USHORT cMAXSTACKSIZE = 50;
 |*      TextNode. Beginnt dieser mit einer Zahl/Formel, so berechne diese;
 |*      oder mit einem Feld, dann hole den Wert.
 |*      Alle anderen Bedingungen returnen einen Fehler (oder 0 ?)
-|*
-|*  Ersterstellung      JP 30. Jun. 93
-|*  Letzte Aenderung    JP 30. Jun. 93
 |*
 |*************************************************************************/
 
@@ -148,7 +112,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/           if( !((SwTblBoxFormula*)pItem)->IsValid() )
 /*?*/           {
 /*?*/               // dann berechnen
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pTmp = rCalcPara.pTbl;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           else
 /*?*/               nRet = GetFrmFmt()->GetTblBoxValue().GetValue();
@@ -272,8 +236,11 @@ const USHORT cMAXSTACKSIZE = 50;
 // Struktur, die zum TabelleRechnen benoetigt wird
 
 /*N*/ SwTblCalcPara::SwTblCalcPara( SwCalc& rCalculator, const SwTable& rTable )
-/*N*/   : rCalc( rCalculator ), pTbl( &rTable ), nStackCnt( 0 ),
-/*N*/   nMaxSize( cMAXSTACKSIZE ), pLastTblBox( 0 )
+/*N*/   : pLastTblBox( 0 )
+/*N*/   , nStackCnt( 0 )
+/*N*/   , nMaxSize( cMAXSTACKSIZE )
+/*N*/   , rCalc( rCalculator )
+/*N*/   , pTbl( &rTable )
 /*N*/ {
 /*N*/   pBoxStk = new SwTableSortBoxes;
 /*N*/ }
@@ -306,18 +273,14 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   // ein Bereich in dieser Klammer ?
 /*N*/   if( pLastBox )
 /*N*/   {
-/*N*/   //TODOUNICODE: does it work?
-/*N*/ //        pEndBox = (SwTableBox*)(long)(*pLastBox);
-/*N*/       pEndBox = (SwTableBox*)pLastBox->ToInt32();
+/*N*/       pEndBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(pLastBox->ToInt64()));
 /*N*/
 /*N*/       // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/       if( !rTbl.GetTabSortBoxes().Seek_Entry( pEndBox ))
 /*?*/           pEndBox = 0;
 /*N*/       rFirstBox.Erase( 0, pLastBox->Len()+1 );
 /*N*/   }
-/*N*/   //TODOUNICODE: does it work?
-/*N*/ //    pSttBox = (SwTableBox*)(long)rFirstBox;
-/*N*/   pSttBox = (SwTableBox*)rFirstBox.ToInt32();
+/*N*/   pSttBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(rFirstBox.ToInt64()));
 /*N*/   // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/   if( !rTbl.GetTabSortBoxes().Seek_Entry( pSttBox ))
 /*?*/       pSttBox = 0;
@@ -361,8 +324,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   rFirstBox.Erase(0,1);
 /*N*/   if( pLastBox )
 /*N*/   {
-/*N*/ //        pBox = (SwTableBox*)(long)(*pLastBox);
-/*N*/       pBox = (SwTableBox*)pLastBox->ToInt32();
+/*N*/       pBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(pLastBox->ToInt64()));
 /*N*/
 /*N*/       // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/       if( rTbl.GetTabSortBoxes().Seek_Entry( pBox ))
@@ -373,8 +335,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/       rFirstBox.Erase( 0, pLastBox->Len()+1 );
 /*N*/   }
 /*N*/
-/*N*/ //    pBox = (SwTableBox*)(long)rFirstBox;
-/*N*/   pBox = (SwTableBox*)rFirstBox.ToInt32();
+/*N*/   pBox = reinterpret_cast<SwTableBox*>(sal::static_int_cast<sal_IntPtr>(rFirstBox.ToInt64()));
 /*N*/   // ist das ueberhaupt ein gueltiger Pointer ??
 /*N*/   if( rTbl.GetTabSortBoxes().Seek_Entry( pBox ))
 /*N*/       rNewStr += pBox->GetName();
@@ -396,13 +357,13 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   if( pLastBox )
 /*N*/   {
 /*N*/       pBox = rTbl.GetTblBox( *pLastBox );
-/*N*/       rNewStr += String::CreateFromInt32( (long)pBox );
+/*N*/       rNewStr += String::CreateFromInt64( (sal_PtrDiff)pBox );
 /*N*/       rNewStr += ':';
 /*N*/       rFirstBox.Erase( 0, pLastBox->Len()+1 );
 /*N*/   }
 /*N*/
 /*N*/   pBox = rTbl.GetTblBox( rFirstBox );
-/*N*/   rNewStr += String::CreateFromInt32( (long)pBox );
+/*N*/   rNewStr += String::CreateFromInt64( (sal_PtrDiff)pBox );
 /*N*/
 /*N*/   // Kennung fuer Box erhalten
 /*N*/   rNewStr += rFirstBox.GetChar( rFirstBox.Len() - 1 );
@@ -422,7 +383,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   case REL_NAME:
 /*?*/       if( pTbl )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelNmsToBoxNms;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*N*/   case EXTRNL_NAME:
@@ -446,7 +407,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/   case REL_NAME:
 /*?*/       if( pTbl )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 fnFormel = &SwTableFormula::RelBoxNmsToPtr;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*?*/   case INTRNL_NAME:
@@ -515,7 +476,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*?*/                   if( sTblNm != rTbl.GetFrmFmt()->GetName() )
 /*?*/                   {
 /*?*/                       // dann suchen wir uns mal unsere Tabelle:
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwTable* pFnd = FindTable(
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -559,7 +520,7 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/
 /*N*/   SwNodeIndex aIdx( *rBox.GetSttNd() );
 /*N*/   SwCntntNode* pCNd = aIdx.GetNodes().GoNext( &aIdx );
-/*N*/   ASSERT( pCNd, "Box hat keinen TextNode" );
+/*N*/   OSL_ENSURE( pCNd, "Box hat keinen TextNode" );
 /*N*/   Point aPt;      // den im Layout 1. Frame returnen - Tab.Kopfzeile !!
 /*N*/   return pCNd->GetFrm( &aPt, NULL, FALSE );
 /*N*/ }
@@ -615,3 +576,5 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

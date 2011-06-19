@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,23 +28,13 @@
 #ifndef _SVTOOLS_CTLOPTIONS_HXX
 #define _SVTOOLS_CTLOPTIONS_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace binfilter {
 
@@ -98,3 +89,4 @@ public:
 
 #endif // _SVTOOLS_CTLOPTIONS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include "chldwrap.hxx"
 
-#ifndef _BASEDLGS_HXX //autogen
 #include <bf_sfx2/basedlgs.hxx>
-#endif
 namespace binfilter {
 
 class SwChildWinWrapper;
@@ -53,7 +52,7 @@ class SwChildWinWrapper;
 class SwRedlineAcceptChild : public SwChildWinWrapper
 {
 public:
-    SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  SwRedlineAcceptChild(   Window* ,
+    SwRedlineAcceptChild(   Window* pParent,USHORT nId, SfxBindings*, SfxChildWinInfo* ):SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");};
 
     SFX_DECL_CHILDWINDOW( SwRedlineAcceptChild );
 
@@ -64,3 +63,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

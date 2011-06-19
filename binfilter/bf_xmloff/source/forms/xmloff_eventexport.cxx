@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,18 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_EVENTEXPORT_HXX_
 #include "eventexport.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -62,7 +55,6 @@ namespace xmloff
         const ScriptEventDescriptor* pEvents = _rEvents.getConstArray();
         ::rtl::OUString sName;
         ::rtl::OUString sLibrary, sLocalMacroName;
-        sal_Int32 nNameSeparatorPos(-1);
         for (sal_Int32 i=0; i<nEvents; ++i, ++pEvents)
         {
             // the name of the event is build from listener interface and listener method name
@@ -105,10 +97,10 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    void SAL_CALL OEventDescriptorMapper::replaceByName( const ::rtl::OUString& _rNamee, const Any& _rElement ) throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
+    void SAL_CALL OEventDescriptorMapper::replaceByName( const ::rtl::OUString& /*_rNamee*/, const Any& /*_rElement*/ ) throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
     {
         throw IllegalArgumentException(
-            ::rtl::OUString::createFromAscii("replacing is not implemented for this wrapper class."), static_cast< ::cppu::OWeakObject* >(this), 1);
+            ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "replacing is not implemented for this wrapper class." )), static_cast< ::cppu::OWeakObject* >(this), 1);
     }
 
     //---------------------------------------------------------------------
@@ -117,7 +109,7 @@ namespace xmloff
         ConstMapString2PropertyValueSequenceIterator aPos = m_aMappedEvents.find(_rName);
         if (m_aMappedEvents.end() == aPos)
             throw NoSuchElementException(
-                ::rtl::OUString::createFromAscii("There is no element named ") += _rName,
+                ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "There is no element named " )) += _rName,
                 static_cast< ::cppu::OWeakObject* >(this));
 
         return makeAny(aPos->second);
@@ -162,3 +154,5 @@ namespace xmloff
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

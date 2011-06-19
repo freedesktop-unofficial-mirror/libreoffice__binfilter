@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,13 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
-#ifndef _BINTITEM_HXX
 #include <bf_svtools/bintitem.hxx>
-#endif
 
 // STATIC DATA
 namespace binfilter
@@ -68,7 +61,7 @@ SfxBigIntItem::SfxBigIntItem(USHORT which, SvStream &rStream)
     : SfxPoolItem(which)
 {
     DBG_CTOR(SfxBigIntItem, 0);
-    ByteString sTmp;
+    UniString sTmp;
     rStream.ReadByteString(sTmp);
     BigInt aTmp(sTmp);
     aVal = aTmp;
@@ -132,14 +125,6 @@ SfxPoolItem* SfxBigIntItem::Create(SvStream &rStream, USHORT) const
 }
 
 //============================================================================
-SvStream& SfxBigIntItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxBigIntItem, 0);
-    rStream.WriteByteString( aVal.GetByteString() );
-    return rStream;
-}
-
-//============================================================================
 SfxFieldUnit SfxBigIntItem::GetUnit() const
 {
     DBG_CHKTHIS(SfxBigIntItem, 0);
@@ -148,26 +133,28 @@ SfxFieldUnit SfxBigIntItem::GetUnit() const
 
 //============================================================================
 // virtual
-BOOL SfxBigIntItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
+bool SfxBigIntItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
 {
     double aValue = 0.0;
     if ( rVal >>= aValue )
     {
         SetValue( aValue );
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxBigIntItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxBigIntItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
 // virtual
-BOOL SfxBigIntItem::QueryValue( ::com::sun::star::uno::Any& rVal,   BYTE ) const
+bool SfxBigIntItem::QueryValue( ::com::sun::star::uno::Any& rVal,   BYTE ) const
 {
     double aValue = GetValue();
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

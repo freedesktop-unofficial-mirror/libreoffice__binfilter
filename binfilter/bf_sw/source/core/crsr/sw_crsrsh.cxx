@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,63 +32,29 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
 #ifdef BIDI
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
 #endif
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _VIEWIMP_HXX
 #include <viewimp.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _DVIEW_HXX
 #include <dview.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _CALLNK_HXX
 #include <callnk.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _SWGLOBDOCSH_HXX //autogen
 #include <globdoc.hxx>
-#endif
-#ifndef _FMTEIRO_HXX //autogen
 #include <fmteiro.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -150,11 +117,11 @@ using namespace ::com::sun::star::util;
 
 // gebe den aktuellen zurueck
 
-/*N*/ SwPaM* SwCrsrShell::GetCrsr( FASTBOOL bMakeTblCrsr ) const
+/*N*/ SwPaM* SwCrsrShell::GetCrsr( bool /*bMakeTblCrsr*/ ) const
 /*N*/ {
 /*N*/   if( pTblCrsr )
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr->IsCrsrMovedUpdt() )
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return pCurCrsr;
 /*N*/ }
@@ -181,19 +148,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr
 
 /*N*/ void SwCrsrShell::EndAction( const BOOL bIdleEnd )
 /*N*/ {
-/*
-//OS: Wird z.B. eine Basic-Action im Hintergrund ausgefuehrt, geht es so nicht
-    if( !bHasFocus )
-    {
-        // hat die Shell nicht den Focus, dann nur das EndAction an
-        // die ViewShell weitergeben.
-        ViewShell::EndAction( bIdleEnd );
-        return;
-    }
-*/
-
-/*N*/   FASTBOOL bVis = bSVCrsrVis;
-
+/*N*/   bool bVis = bSVCrsrVis;
     // Idle-Formatierung ?
 /*N*/   if( bIdleEnd && Imp()->GetRegion() )
 /*N*/   {
@@ -242,7 +197,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/        if( bMakeTblCrsr && pTblCrsr
 /*?*/           //              der Cursor geupdatet werden; um z.B. den
 /*?*/           //              TabellenCursor zu erzeugen. Im UpdateCrsr wird
 /*?*/           //              das jetzt beruecksichtigt!
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell::CHKRANGE, bIdleEnd );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       return;
 /*N*/   }
@@ -276,14 +231,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*?*/
 /*?*/ void SwCrsrShell::SttCrsrMove()
 /*?*/ {
-/*?*/   ASSERT( nCrsrMove < USHRT_MAX, "To many nested CrsrMoves." );
+/*?*/   OSL_ENSURE( nCrsrMove < USHRT_MAX, "To many nested CrsrMoves." );
 /*?*/   ++nCrsrMove;
 /*?*/   StartAction();
 /*?*/ }
 /*?*/
 /*?*/ void SwCrsrShell::EndCrsrMove( const BOOL bIdleEnd )
 /*?*/ {
-/*?*/   ASSERT( nCrsrMove, "EndCrsrMove() ohne SttCrsrMove()." );
+/*?*/   OSL_ENSURE( nCrsrMove, "EndCrsrMove() ohne SttCrsrMove()." );
 /*?*/   EndAction( bIdleEnd );
 /*?*/   if( !--nCrsrMove )
 /*?*/       bInCMvVisportChgd = FALSE;
@@ -327,7 +282,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/
 /*M*/   // erfrage den Count fuer die Start-/End-Actions und ob die Shell
 /*M*/   // ueberhaupt den Focus hat
-/*M*/ //    if( ActionPend() /*|| !bHasFocus*/ )
 /*M*/   //JP 12.01.98: Bug #46496# - es muss innerhalb einer BasicAction der
 /*M*/   //              Cursor geupdatet werden; um z.B. den TabellenCursor zu
 /*M*/   //              erzeugen. Im EndAction wird jetzt das UpdateCrsr gerufen!
@@ -357,9 +311,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/         pDoc->IsIdxInTbl( pTstCrsr->GetPoint()->nNode ) &&
 /*M*/         ( pTblCrsr ||
 /*M*/           pTstCrsr->GetNode( TRUE )->FindStartNode() !=
-/*M*/           pTstCrsr->GetNode( FALSE )->FindStartNode() ))
-/*M*/       /*|| ( !pTblCrsr && lcl_IsInValueBox( *pTstCrsr, *this ) )*/ )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           pTstCrsr->GetNode( FALSE )->FindStartNode() )) )
+/*M*/   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/
 /*M*/   if( pTblCrsr )
@@ -384,7 +337,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/             pSectNd->GetSection().IsProtectFlag() &&
 /*M*/            ( !pDoc->GetDocShell() ||
 /*M*/              !pDoc->GetDocShell()->IsReadOnly() || bAllProtect )) ) )
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/       if( bChgState )
 /*M*/       {
@@ -392,7 +345,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/           bAllProtect = FALSE;
 /*M*/           if( bWasAllProtect && GetDoc()->GetDocShell() &&
 /*M*/               GetDoc()->GetDocShell()->IsReadOnlyUI() )
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/       }
 /*M*/   }
@@ -435,7 +388,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/
 /*M*/
 /*M*/   SwRect aOld( aCharRect );
-/*M*/   FASTBOOL bFirst = TRUE;
+/*M*/   bool bFirst = TRUE;
 /*M*/   SwCntntFrm *pFrm;
 /*M*/   int nLoopCnt = 100;
 /*M*/
@@ -458,7 +411,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/           }
 /*M*/           else if ( Imp()->IsIdleAction() )
 /*M*/               //Wir stellen sicher, dass anstaendig Formatiert wurde #42224#
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pFrm->PrepareCrsr();
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/           // im geschuetzten Fly? aber bei Rahmenselektion ignorieren
 /*M*/           if( !IsReadOnlyAvailable() && pFrm->IsProtected() &&
@@ -466,7 +419,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/                 !Imp()->GetDrawView()->GetMarkList().GetMarkCount() ) &&
 /*M*/               (!pDoc->GetDocShell() ||
 /*M*/                !pDoc->GetDocShell()->IsReadOnly() || bAllProtect ) )
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/       } while( bAgainst );
 /*M*/
@@ -484,7 +437,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/               pFrm->GetCrsrOfst( pCurCrsr->GetPoint(), rPt, &aTmpState );
 /*N*/ #ifndef VERTICAL_LAYOUT
 /*N*/                 if ( !pFrm->GetCharRect(aCharRect, *pCurCrsr->GetPoint(), &aTmpState) )
-/*N*/                   ASSERT( !this, "GetCharRect failed." );
+/*N*/                   OSL_ENSURE( !this, "GetCharRect failed." );
 /*N*/ #endif
 /*M*/           }
 /*M*/ //            ALIGNRECT( aCharRect );
@@ -512,7 +465,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/       // siehe Bug: 29658
 /*M*/       if( !--nLoopCnt )
 /*M*/       {
-/*M*/           ASSERT( !this, "Endlosschleife? CharRect != OldCharRect ");
+/*M*/           OSL_ENSURE( !this, "Endlosschleife? CharRect != OldCharRect ");
 /*M*/           break;
 /*M*/       }
 /*M*/       aOld = aCharRect;
@@ -556,7 +509,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/   //Nur wenn gescrollt wurde, und wenn keine Selektion existiert.
 /*M*/   if( pFrm && Imp()->IsScrolled() &&
 /*M*/           pCurCrsr->GetNext() == pCurCrsr && !pCurCrsr->HasMark() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 Imp()->RefreshScrolledArea( aCharRect );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*M*/
 /*M*/
 /*M*/   eMvState = MV_NONE;     // Status fuers Crsr-Travelling - GetCrsrOfst
@@ -567,18 +520,19 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/ #ifndef REMOTE_APPSERVER
 /*M*/
 /*M*/     // switch from blinking cursor to read-only-text-selection cursor
+/*M*/     static const long nNoBlinkTime = STYLE_CURSOR_NOBLINKTIME;
 /*M*/     long nBlinkTime = GetOut()->GetSettings().GetStyleSettings().
 /*M*/                       GetCursorBlinkTime();
 /*M*/
 /*M*/     if ( (IsCrsrReadonly() && GetViewOptions()->IsSelectionInReadonly()) ==
-/*M*/         ( nBlinkTime != STYLE_CURSOR_NOBLINKTIME ) )
+/*M*/         ( nBlinkTime != nNoBlinkTime ) )
 /*M*/     {
 /*M*/         // non blinking cursor in read only - text selection mode
 /*M*/         AllSettings aSettings = GetOut()->GetSettings();
 /*M*/         StyleSettings aStyleSettings = aSettings.GetStyleSettings();
-/*M*/         long nNewBlinkTime = nBlinkTime == STYLE_CURSOR_NOBLINKTIME ?
+/*M*/         long nNewBlinkTime = nBlinkTime == nNoBlinkTime ?
 /*M*/                              500 :
-/*M*/                              STYLE_CURSOR_NOBLINKTIME;
+/*M*/                              nNoBlinkTime;
 /*M*/         aStyleSettings.SetCursorBlinkTime( nNewBlinkTime );
 /*M*/         aSettings.SetStyleSettings( aStyleSettings );
 /*M*/         GetOut()->SetSettings( aSettings );
@@ -590,11 +544,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*M*/       pVisCrsr->Show();           // wieder anzeigen
 /*M*/ }
 
-
-
 // erzeuge eine Kopie vom Cursor und speicher diese im Stack
-
-
 
 /*
  *  Loescht einen Cursor (gesteuert durch bOldCrsr)
@@ -605,16 +555,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
  */
 
 
-
 /*
  * Verbinde zwei Cursor miteinander.
  * Loesche vom Stack den obersten und setzen dessen GetMark im Aktuellen.
  */
-
-
-
-
-
 
 
 /*N*/ void SwCrsrShell::ShowCrsrs( BOOL bCrsrVis )
@@ -663,7 +607,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ {
 /*N*/   USHORT nWhich = pOld ? pOld->Which()
 /*N*/                        : pNew ? pNew->Which()
-/*N*/                               : RES_MSG_BEGIN;
+/*N*/                               : sal::static_int_cast<USHORT>(RES_MSG_BEGIN);
 /*N*/   if( bCallChgLnk &&
 /*N*/       ( nWhich < RES_MSG_BEGIN || nWhich >= RES_MSG_END ||
 /*N*/           nWhich == RES_FMT_CHG || nWhich == RES_UPDATE_ATTR ||
@@ -684,7 +628,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 // also, ob GetMark gesetzt und SPoint und GetMark unterschiedlich sind.
 
 
-/*N*/ FASTBOOL SwCrsrShell::HasSelection() const
+/*N*/ bool SwCrsrShell::HasSelection() const
 /*N*/ {
 /*N*/   SwPaM* pCrsr = IsTableMode() ? pTblCrsr : pCurCrsr;
 /*N*/   return( IsTableMode() || ( pCurCrsr->HasMark() &&
@@ -761,7 +705,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 // zeige das akt. selektierte "Object" an
 /*N*/ void SwCrsrShell::MakeSelVisible()
 /*N*/ {
-/*N*/   ASSERT( bHasFocus, "kein Focus aber Cursor sichtbar machen?" );
+/*N*/   OSL_ENSURE( bHasFocus, "kein Focus aber Cursor sichtbar machen?" );
 /*N*/   if( aCrsrHeight.Y() < aCharRect.Height() && aCharRect.Height() > VisArea().Height() )
 /*N*/   {
 /*N*/       SwRect aTmp( aCharRect );
@@ -799,7 +743,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 
 
 
-/*N*/ FASTBOOL SwCrsrShell::IsCrsrReadonly() const
+/*N*/ bool SwCrsrShell::IsCrsrReadonly() const
 /*N*/ {
 /*N*/   if ( GetViewOptions()->IsReadonly() )
 /*N*/   {
@@ -819,7 +763,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 // SwCursor - Methode !!!!
-/*N*/ FASTBOOL SwCursor::IsReadOnlyAvailable() const
+/*N*/ bool SwCursor::IsReadOnlyAvailable() const
 /*N*/ {
 /*N*/   const SwShellCrsr* pShCrsr = *this;
 /*N*/   const SwUnoCrsr* pUnoCrsr = *this;
@@ -830,9 +774,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 
 #if defined(DBG_UTIL) || defined(WIN)
 
-
-
-/*N*/ SwCursor* SwCrsrShell::GetSwCrsr( FASTBOOL bMakeTblCrsr ) const
+/*N*/ SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const
 /*N*/ {
 /*N*/   return (SwCursor*)GetCrsr( bMakeTblCrsr );
 /*N*/ }
@@ -847,13 +789,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
 // aufgespannt oder nicht der einzigste ist.
 
-/*N*/ FASTBOOL SwCrsrShell::IsSelection() const
+/*N*/ bool SwCrsrShell::IsSelection() const
 /*N*/ {
 /*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
 /*N*/           pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
 // returns if multiple cursors are available
-/*N*/ FASTBOOL SwCrsrShell::IsMultiSelection() const
+/*N*/ bool SwCrsrShell::IsMultiSelection() const
 /*N*/ {
 /*N*/     return pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
@@ -865,7 +807,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*N*/ }
 
 
-/*?*/ FASTBOOL SwCrsrShell::IsCrsrPtAtEnd() const
+/*?*/ bool SwCrsrShell::IsCrsrPtAtEnd() const
 /*?*/ {
 /*?*/   return pCurCrsr->End() == pCurCrsr->GetPoint();
 /*?*/ }
@@ -884,17 +826,16 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*?*/ }
 
 
-/*?*/ FASTBOOL SwCrsrShell::IsSelOnePara() const
+/*?*/ bool SwCrsrShell::IsSelOnePara() const
 /*?*/ {
 /*?*/   return pCurCrsr == pCurCrsr->GetNext() &&
 /*?*/          pCurCrsr->GetPoint()->nNode ==
 /*?*/          pCurCrsr->GetMark()->nNode;
 /*?*/ }
 
-/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(
-/*?*/                           USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
+/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(USHORT, USHORT, SwPaM*) const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return pCurCrsr->MakeFindRange( (SwDocPositions)nStt,
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 #endif
 
@@ -969,7 +910,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
 /*?*/         SwNode * pNode = aNodes.GoNext(&aIdx);
 /*?*/         bool bFound = (pNode != NULL);
 /*?*/
-/*?*/         ASSERT(bFound, "no content node found");
+/*?*/         OSL_ENSURE(bFound, "no content node found");
 /*?*/
 /*?*/         if (bFound)
 /*?*/         {
@@ -985,7 +926,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001  /*?*/            UpdateCrsr( SwCrsrShell:
       replaced, remove the table cursor.
     */
 /*N*/     if (pTblCrsr != NULL && bChanged)
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 TblCrsrToCursor();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,25 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _CHXCHART_AXIS_HXX
 #include "ChXChartAxis.hxx"
-#endif
 #include "schattr.hxx"
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
-#ifndef _RTL_USTRING_H_
 #include <rtl/ustring.h>
-#endif
 
 // header for SvxDoubleItem
 #ifndef _SVX_CHRTITEM_HXX
@@ -51,40 +42,27 @@
 #define ITEMID_CHARTTEXTORDER   SCHATTR_TEXT_ORDER
 #define ITEMID_CHARTTEXTORIENT  SCHATTR_TEXT_ORIENT
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 #include "charttyp.hxx"
 // header for SvxUnoTextRangeBase
 // for OWN_ATTR_...
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 // for SID_ATTR_...
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISARRANGEORDERTYPE_HPP_
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
-#endif
 
 #include "chaxis.hxx"
 #include "mapprov.hxx"
 #include "pairs.hxx"
 
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 
 namespace binfilter {
 
-using namespace vos;
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -109,13 +87,13 @@ throw( uno::RuntimeException )
 uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartAxis::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< ::rtl::OUString > aSeq( 4 );
-    aSeq[ 0 ] = ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartAxis" );
-    aSeq[ 1 ] = ::rtl::OUString::createFromAscii( "com.sun.star.drawing.LineProperties" );
-    aSeq[ 2 ] = ::rtl::OUString::createFromAscii( "com.sun.star.style.CharacterProperties" );
-    aSeq[ 3 ] = ::rtl::OUString::createFromAscii( "com.sun.star.xml.UserDefinedAttributeSupplier" );
+    aSeq[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxis" ));
+    aSeq[ 1 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.LineProperties" ));
+    aSeq[ 2 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.style.CharacterProperties" ));
+    aSeq[ 3 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.UserDefinedAttributeSupplier" ));
 
     return aSeq;
 }
@@ -154,7 +132,7 @@ void ChXChartAxis::InitNumberFormatter() throw( uno::RuntimeException )
 // XNumberFormatsSupplier
 uno::Reference< beans::XPropertySet > SAL_CALL ChXChartAxis::getNumberFormatSettings() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     InitNumberFormatter();
 
     return rNumberFormatter.get()->getNumberFormatSettings();
@@ -162,7 +140,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXChartAxis::getNumberFormatSett
 
 uno::Reference< util::XNumberFormats > SAL_CALL ChXChartAxis::getNumberFormats() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     InitNumberFormatter();
 
     return rNumberFormatter.get()->getNumberFormats();
@@ -229,7 +207,7 @@ uno::Sequence< sal_Int8 > SAL_CALL ChXChartAxis::getImplementationId() throw( un
 ::rtl::OUString SAL_CALL ChXChartAxis::getShapeType()
     throw( uno::RuntimeException )
 {
-    return ::rtl::OUString::createFromAscii( "com.sun.star.chart.ChartAxis" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartAxis" ));
 }
 
 // XUnoTunnel
@@ -250,7 +228,7 @@ uno::Any SAL_CALL ChXChartAxis::getPropertyValue( const ::rtl::OUString& Propert
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -304,7 +282,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel && mnWhichId != CHOBJID_ANY )
     {
@@ -389,10 +367,10 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 }
                 else if( nWID != SID_ATTR_NUMBERFORMAT_SOURCE )
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
@@ -407,7 +385,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                         if( ! ( aValue >>= eArrOrder ))
                         {
                             // basic might give us an int instead of the enum type
-                            sal_Int32 nIntVal;
+                            sal_Int32 nIntVal = 0;
                             if( aValue >>= nIntVal )
                             {
                                 eArrOrder = SAL_STATIC_CAST( chart::ChartAxisArrangeOrderType, nIntVal );
@@ -430,7 +408,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     break;
                 case SCHATTR_TEXT_ORIENT:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal = sal_False;
                         if( aValue >>= bVal )
                         {
                             pSet->Put( SvxChartTextOrientItem(
@@ -443,7 +421,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 case SCHATTR_AXIS_AUTO_STEP_MAIN:
                 case SCHATTR_AXIS_AUTO_STEP_HELP:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal(sal_False);
                         aValue >>= bVal;
                         if( ! bVal )
                         {
@@ -468,7 +446,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                     break;
                 case SCHATTR_AXIS_LOGARITHM:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal(sal_False);
                         aValue >>= bVal;
                         if( bVal )
                         {
@@ -500,7 +478,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                         ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
                         if( pAxis )
                             bLog = pAxis->IsLogarithm();
-                        double fVal;
+                        double fVal(0.0);
                         aValue >>= fVal;
                         if( fVal <= bLog? 1.0: 0.0 )
                             throw lang::IllegalArgumentException();
@@ -514,7 +492,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 case SCHATTR_AXIS_MAX:
                     {
                         ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
-                        double fVal;
+                        double fVal(0.0);
                         aValue >>= fVal;
                         if( pAxis &&
                             pAxis->IsLogarithm() && fVal <= 0.0 )
@@ -533,7 +511,7 @@ void SAL_CALL ChXChartAxis::setPropertyValue( const ::rtl::OUString& aPropertyNa
                 case SCHATTR_AXIS_NUMFMTPERCENT:
                     // was mapped from SCHATTR_AXIS_NUMFMT, so don't use standard mechanism
                     {
-                        sal_Int32 nFmt;
+                        sal_Int32 nFmt(0);
                         aValue >>= nFmt;
                         pSet->Put( SfxUInt32Item( nWID, nFmt ));
                     }
@@ -587,7 +565,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             lang::WrappedTargetException,
             uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if (mpModel == NULL || mnWhichId == CHOBJID_ANY)
         return;
@@ -625,12 +603,12 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             //  Get default from the model's item pool.
             if (mpModel->GetItemPool().IsWhich (nWID))
                 aAttributes.Put (mpModel->GetItemPool().GetDefaultItem(nWID));
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
             else if (nWID != SID_ATTR_NUMBERFORMAT_SOURCE)
             {
                 String aTmpString (*pPropertyName);
                 ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                DBG_ERROR2( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                OSL_TRACE( "ChartAxis: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
             }
 #endif
         }
@@ -645,7 +623,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
                     if ( ! ( *pValue >>= eArrOrder ))
                     {
                         // basic might give us an int instead of the enum type
-                        sal_Int32 nIntVal;
+                        sal_Int32 nIntVal = 0;
                         if( *pValue >>= nIntVal )
                             eArrOrder = SAL_STATIC_CAST (chart::ChartAxisArrangeOrderType, nIntVal);
                     }
@@ -671,7 +649,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
 
             case SCHATTR_TEXT_ORIENT:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal = sal_False;
                     if( *pValue >>= bVal )
                     {
                         aAttributes.Put( SvxChartTextOrientItem(
@@ -685,7 +663,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case SCHATTR_AXIS_AUTO_STEP_MAIN:
             case SCHATTR_AXIS_AUTO_STEP_HELP:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal(sal_False);
                     *pValue >>= bVal;
                     if( ! bVal )
                     {
@@ -711,7 +689,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
 
             case SCHATTR_AXIS_LOGARITHM:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal(sal_False);
                     *pValue >>= bVal;
                     if( bVal )
                     {
@@ -743,7 +721,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
                     ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
                     if( pAxis )
                         bLog = pAxis->IsLogarithm();
-                    double fVal;
+                    double fVal(0.0);
                     *pValue >>= fVal;
                     if( fVal <= bLog? 1.0: 0.0 )
                         throw lang::IllegalArgumentException();
@@ -761,7 +739,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case SCHATTR_AXIS_MAX:
                 {
                     ChartAxis* pAxis = mpModel->GetAxis( mnWhichId );
-                    double fVal;
+                    double fVal(0.0);
                     *pValue >>= fVal;
                     if (    pAxis
                         &&  pAxis->IsLogarithm()
@@ -785,7 +763,7 @@ void SAL_CALL ChXChartAxis::setPropertyValues   (
             case SCHATTR_AXIS_NUMFMTPERCENT:
                 // was mapped from SCHATTR_AXIS_NUMFMT, so don't use standard mechanism
                 {
-                    sal_Int32 nFmt;
+                    sal_Int32 nFmt(0);
                     *pValue >>= nFmt;
                     aAttributes.Put( SfxUInt32Item( nWID, nFmt ));
                 }
@@ -838,7 +816,7 @@ Sequence<PropertyState > SAL_CALL ChXChartAxis::getPropertyStates(
         throw( UnknownPropertyException,
                RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyNames.getLength();
     const ::rtl::OUString * pName = aPropertyNames.getConstArray();
@@ -919,3 +897,5 @@ void    ChXChartAxis::GetPropertyValue  (const SfxItemPropertyMap & rProperty,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

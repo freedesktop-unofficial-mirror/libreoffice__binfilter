@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,44 +31,23 @@
 #pragma hdrstop
 #endif
 
-//#include <math.h>
 #ifdef MAC
 #include <stdlib.h>
 #endif
 #include <float.h>
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _VISCRS_HXX
+#include <osl/diagnose.h>
 #include <viscrs.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
 namespace binfilter {
 
 
@@ -87,6 +67,8 @@ using namespace ::com::sun::star;
 /*?*/       case NF_DATETIME_SYSTEM_SHORT_HHMM:
 /*?*/           nLng = LANGUAGE_SYSTEM;
 /*?*/           break;
+            default:
+                break;
 /*N*/       }
 /*N*/   return nLng;
 /*N*/ }
@@ -148,12 +130,12 @@ using namespace ::com::sun::star;
                     Felder sind n-mal vorhanden, Feldtypen nur einmal
  --------------------------------------------------------------------*/
 
-/*N*/ SwField::SwField(SwFieldType* pTyp, sal_uInt32 nFmt, USHORT nLng) :
-/*N*/   nFormat(nFmt),
-/*N*/     nLang(nLng),
-/*N*/     bIsAutomaticLanguage(TRUE)
+/*N*/ SwField::SwField(SwFieldType* pTyp, sal_uInt32 nFmt, USHORT nLng)
+/*N*/   : nLang(nLng)
+/*N*/   , bIsAutomaticLanguage(TRUE)
+/*N*/   , nFormat(nFmt)
 /*N*/ {
-/*N*/   ASSERT( pTyp, "SwField: ungueltiger SwFieldType" );
+/*N*/   OSL_ENSURE( pTyp, "SwField: ungueltiger SwFieldType" );
 /*N*/   pType = pTyp;
 /*N*/ }
 
@@ -168,7 +150,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifdef DBG_UTIL
 /*N*/ USHORT SwField::Which() const
 /*N*/ {
-/*N*/   ASSERT(pType, "Kein Typ vorhanden");
+/*N*/   OSL_ENSURE(pType, "Kein Typ vorhanden");
 /*N*/   return pType->Which();
 /*N*/ }
 /*N*/ #endif
@@ -195,7 +177,7 @@ using namespace ::com::sun::star;
 /*N*/   String sRet;
 /*N*/   if( bName )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nTypeId = GetTypeId();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       sRet = Expand();
@@ -221,21 +203,21 @@ using namespace ::com::sun::star;
 /*N*/   return GetPar2();
 /*N*/ }
 
-void SwField::SetPar1(const String& rStr)
+void SwField::SetPar1(const String& /*rStr*/)
 {}
 
-void SwField::SetPar2(const String& rStr)
+void SwField::SetPar2(const String& /*rStr*/)
  {}
 
 /*N*/ USHORT SwField::GetSubType() const
 /*N*/ {
-/*N*/ //    ASSERT(0, "Sorry Not implemented");
+/*N*/ //    OSL_FAIL("Sorry Not implemented");
 /*N*/   return 0;
 /*N*/ }
 
-void SwField::SetSubType(USHORT nType)
+void SwField::SetSubType(USHORT /*nType*/)
 {
-//  ASSERT(0, "Sorry Not implemented");
+//  OSL_FAIL("Sorry Not implemented");
 }
 
 /*N*/ BOOL  SwField::QueryValue( uno::Any& rVal, BYTE nMId ) const
@@ -250,7 +232,7 @@ void SwField::SetSubType(USHORT nType)
 /*N*/         }
 /*N*/         break;
 /*N*/         default:
-/*N*/             DBG_ERROR("illegal property");
+/*N*/             OSL_FAIL("illegal property");
 /*N*/     }
 /*N*/     return TRUE;
 /*N*/ }
@@ -261,13 +243,13 @@ void SwField::SetSubType(USHORT nType)
 /*N*/     {
 /*N*/         case FIELD_PROP_BOOL4:
 /*N*/         {
-/*N*/             BOOL bFixed;
+/*N*/             BOOL bFixed(0);
 /*N*/             if(rVal >>= bFixed)
 /*N*/                 bIsAutomaticLanguage = !bFixed;
 /*N*/         }
 /*N*/         break;
 /*N*/         default:
-/*N*/             DBG_ERROR("illegal property");
+/*N*/             OSL_FAIL("illegal property");
 /*N*/     }
 /*N*/     return TRUE;
 /*N*/ }
@@ -281,7 +263,7 @@ void SwField::SetSubType(USHORT nType)
 
 SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 {
-    ASSERT( pNewType && pNewType->Which() == pType->Which(),
+    OSL_ENSURE( pNewType && pNewType->Which() == pType->Which(),
             "kein Typ oder ungleiche Typen" );
 
     SwFieldType* pOld = pType;
@@ -301,9 +283,9 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*N*/   nFormat = n;
 /*N*/ }
 
-/*N*/ FASTBOOL SwField::IsFixed() const
+/*N*/ bool SwField::IsFixed() const
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;
+/*N*/   bool bRet = FALSE;
 /*N*/   switch( pType->Which() )
 /*N*/   {
 /*N*/   case RES_FIXDATEFLD:
@@ -360,7 +342,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*?*/         return  String::CreateFromInt32( nNum );
 /*N*/     SvxNumberType aNumber;
 /*N*/
-/*N*/   ASSERT(nFormat != SVX_NUM_NUMBER_NONE, "Falsches Nummern-Format" );
+/*N*/   OSL_ENSURE(nFormat != SVX_NUM_NUMBER_NONE, "Falsches Nummern-Format" );
 /*N*/
 /*N*/   aNumber.SetNumberingType((sal_Int16)nFormat);
 /*N*/   return aNumber.GetNumStr(nNum);
@@ -418,7 +400,7 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
 /*?*/           else
 /*?*/               nFmt = nNewFormat;
 /*?*/       }
-/*?*/       ASSERT(pEntry, "Unbekanntes Zahlenformat!");
+/*?*/       OSL_ENSURE(pEntry, "Unbekanntes Zahlenformat!");
 /*N*/   }
 /*N*/
 /*N*/   if( pFormatter->IsTextFormat( nFmt ) )
@@ -461,8 +443,8 @@ SwFieldType* SwField::ChgTyp( SwFieldType* pNewType )
  --------------------------------------------------------------------*/
 
 /*N*/ SwValueField::SwValueField( SwValueFieldType* pFldType, sal_uInt32 nFmt,
-/*N*/                           USHORT nLang, const double fVal )
-/*N*/   : SwField(pFldType, nFmt, nLang),
+/*N*/                           USHORT nLang1, const double fVal )
+/*N*/   : SwField(pFldType, nFmt, nLang1),
 /*N*/   fValue(fVal)
 /*N*/ {
 /*N*/ }
@@ -493,21 +475,6 @@ SwFieldType* SwValueField::ChgTyp( SwFieldType* pNewType )
 
     return SwField::ChgTyp(pNewType);
 }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Format aendern
- --------------------------------------------------------------------*/
-/*
- Was sollte das denn?
-void SwValueField::ChangeFormat(ULONG n)
-{
-    nFormat = n;
-}
-
-/*--------------------------------------------------------------------
-    Beschreibung: Format in Office-Sprache ermitteln
- --------------------------------------------------------------------*/
-
 
 /*--------------------------------------------------------------------
     Beschreibung: Sprache im Format anpassen
@@ -548,7 +515,7 @@ void SwValueField::ChangeFormat(ULONG n)
 /*N*/               }
 /*N*/               SetFormat( nNewFormat );
 /*N*/           }
-/*N*/           ASSERT(pEntry, "Unbekanntes Zahlenformat!");
+/*N*/           OSL_ENSURE(pEntry, "Unbekanntes Zahlenformat!");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -601,9 +568,9 @@ void SwValueField::ChangeFormat(ULONG n)
 /*N*/   if( nFmt && SAL_MAX_UINT32 != nFmt )
 /*N*/   {
 /*N*/       xub_StrLen nPos = 0;
-/*N*/       double fValue;
-/*N*/       if( SwCalc::Str2Double( rStr, nPos, fValue, GetDoc() ) )
-/*N*/           SwValueField::SetValue( fValue );
+/*N*/       double fValue1;
+/*N*/       if( SwCalc::Str2Double( rStr, nPos, fValue1, GetDoc() ) )
+/*N*/           SwValueField::SetValue( fValue1 );
 /*N*/   }
 /*N*/ }
 
@@ -617,16 +584,16 @@ void SwFormulaField::SetExpandedFormula( const String& rStr )
 
     if (nFmt && nFmt != SAL_MAX_UINT32 && ((SwValueFieldType *)GetTyp())->UseFormat())
     {
-        double fValue;
+        double fValue2;
 
         SvNumberFormatter* pFormatter = GetDoc()->GetNumberFormatter();
 
-        if (pFormatter->IsNumberFormat(rStr, nFmt, fValue))
+        if (pFormatter->IsNumberFormat(rStr, nFmt, fValue2))
         {
-            SwValueField::SetValue(fValue);
+            SwValueField::SetValue(fValue2);
             sFormula.Erase();
 
-            ((SwValueFieldType *)GetTyp())->DoubleToString(sFormula, fValue, nFmt);
+            ((SwValueFieldType *)GetTyp())->DoubleToString(sFormula, fValue2, nFmt);
             return;
         }
     }
@@ -663,3 +630,5 @@ String SwFormulaField::GetExpandedFormula() const
         return GetFormula();
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

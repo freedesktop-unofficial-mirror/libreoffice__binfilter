@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,55 +29,27 @@
 #ifndef _SFX_NAMECONT_HXX
 #define _SFX_NAMECONT_HXX
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER2_HPP_
 #include <com/sun/star/script/XLibraryContainer2.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINERPASSWORD_HPP_
 #include <com/sun/star/script/XLibraryContainerPassword.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINER_HPP_
 #include <com/sun/star/container/XContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HPP_
 #include <com/sun/star/ucb/XSimpleFileAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSTRINGSUBSTITUTION_HPP_
 #include <com/sun/star/util/XStringSubstitution.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMACROEXPANDER_HPP_
 #include <com/sun/star/util/XMacroExpander.hpp>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
-#endif
 #include <cppuhelper/typeprovider.hxx>
 #include <cppuhelper/interfacecontainer.hxx>
 
 #include <bf_so3/svstor.hxx>
-#ifndef _XMLSCRIPT_XMLLIB_IMEXP_HXX_
 #include <xmlscript/xmllib_imexp.hxx>
-#endif
 
 #include <cppuhelper/implbase2.hxx>
 #include <cppuhelper/implbase4.hxx>
@@ -114,7 +87,7 @@ struct eqName_Impl
     }
 };
 
-typedef std::hash_map
+typedef boost::unordered_map
 <
     ::rtl::OUString,
     sal_Int32,
@@ -146,9 +119,9 @@ class NameContainer_Impl : public MutexHolder, public NameContainerHelper
 
 public:
     NameContainer_Impl( const ::com::sun::star::uno::Type& rType )
-        : mType( rType )
+        : mnElementCount( 0 )
+        , mType( rType )
         , mpxEventSource( NULL )
-        , mnElementCount( 0 )
         , maListenerContainer( mMutex )
     {}
 
@@ -528,3 +501,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

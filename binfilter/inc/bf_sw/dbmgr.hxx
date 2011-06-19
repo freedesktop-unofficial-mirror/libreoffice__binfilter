@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,15 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
 #include <com/sun/star/util/Date.hpp>
-#endif
 
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
-#include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
+#include <com/sun/star/uno/Sequence.hxx>
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 namespace com{namespace sun{namespace star{
     namespace sdbc{
@@ -142,12 +129,12 @@ struct SwDSParam : public SwDBData
         const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XResultSet>&    xResSet,
         const ::com::sun::star::uno::Sequence<  ::com::sun::star::uno::Any >&   rSelection) :
         SwDBData(rData),
+        xResultSet(xResSet),
+        aSelection(rSelection),
         bScrollable(TRUE),
         bEndOfDB(FALSE),
         bAfterSelection(FALSE),
-        nSelectionIndex(0),
-        xResultSet(xResSet),
-        aSelection(rSelection)
+        nSelectionIndex(0)
         {}
 
         void CheckEndOfDB()
@@ -279,3 +266,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

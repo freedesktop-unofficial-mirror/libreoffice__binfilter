@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 #ifndef _SDGMOITM_HXX
 #define _SDGMOITM_HXX
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 //------------------
@@ -62,3 +57,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _SDGMOITM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

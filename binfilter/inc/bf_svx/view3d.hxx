@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,18 +32,10 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <bf_svx/svdview.hxx>
-
-#ifndef _SVX_DEF3D_HXX
 #include <bf_svx/def3d.hxx>
-#endif
-
-#ifndef _E3D_DEFLT3D_HXX
 #include <bf_svx/deflt3d.hxx>
-#endif
-
-#ifndef _SVX_VECTOR3D_HXX
 #include <bf_goodies/vector3d.hxx>
-#endif
+
 namespace binfilter {
 
 //************************************************************
@@ -71,7 +64,6 @@ protected:
     MouseEvent                  aMouseEvent;                    // Die Parameter der letzten Events (Mouse, Keyboard)
     Vector3D                    aDefaultTranslation;            // wird das Objekt erstmalig verschoben ?
     Vector3D                    aDefaultLightPos;               // wo ist das gerichtete Licht ?
-//-/    Vector3D                    aDefaultCamPos;                 // nur die Z-Achse (aus dem Bildschirm heraus)
     Color                       aDefaultLightColor;             // dito mit den Farben
     Color                       aDefaultAmbientColor;
 
@@ -82,7 +74,6 @@ protected:
     double                      fDefaultRotateY;
     double                      fDefaultRotateZ;
     double                      fDefaultExtrusionDeepth;        // Extrusionstiefe
-//-/    double                      fDefaultCamFocal;               // Brennweite der Kamera
     double                      fDefaultLightIntensity;         // Intensitaeten der beiden (notwendigen) Licht-
     double                      fDefaultAmbientIntensity;       // quellen
     long                        nHDefaultSegments;              // wieviele HSegmente braucht mein Lathe-Ojekt
@@ -143,16 +134,6 @@ public:
     {
         return aDefaultLightPos;
     }
-
-//-/    const Vector3D &DefaultCamPos () const
-//-/    {
-//-/        return aDefaultCamPos;
-//-/    }
-
-//-/    Vector3D &DefaultCamPos ()
-//-/    {
-//-/        return aDefaultCamPos;
-//-/    }
 
     double &DefaultScaleX ()
     {
@@ -224,16 +205,6 @@ public:
         return fDefaultExtrusionDeepth;
     }
 
-//-/    double &DefaultCamFocal ()
-//-/    {
-//-/        return fDefaultCamFocal;
-//-/    }
-
-//-/    double DefaultCamFocal () const
-//-/    {
-//-/        return fDefaultCamFocal;
-//-/    }
-
     double &DefaultLightIntensity ()
     {
         return fDefaultLightIntensity;
@@ -296,3 +267,5 @@ public:
 
 }//end of namespace binfilter
 #endif          // _E3D_VIEW3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

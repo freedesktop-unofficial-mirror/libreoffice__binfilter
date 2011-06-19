@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,28 +26,17 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLCOLUMNROWGROUPEXPORT_HXX
 #include "XMLColumnRowGroupExport.hxx"
-#endif
-#ifndef SC_XMLEXPRT_HXX
 #include "xmlexprt.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
 #include <algorithm>
 namespace binfilter {
@@ -69,10 +59,10 @@ sal_Bool ScMyColumnRowGroup::operator<(const ScMyColumnRowGroup& rGroup) const
 }
 
 ScMyOpenCloseColumnRowGroup::ScMyOpenCloseColumnRowGroup(ScXMLExport& rTempExport, sal_uInt32 nToken)
-    : rExport(rTempExport),
-    aTableStart(),
-    aTableEnd(),
-    rName(rExport.GetNamespaceMap().GetQNameByKey(XML_NAMESPACE_TABLE, GetXMLToken(XMLTokenEnum(nToken))))
+    : rExport(rTempExport)
+    , rName(rExport.GetNamespaceMap().GetQNameByKey(XML_NAMESPACE_TABLE, GetXMLToken(XMLTokenEnum(nToken))))
+    , aTableStart()
+    , aTableEnd()
 {
 }
 
@@ -108,7 +98,7 @@ sal_Bool ScMyOpenCloseColumnRowGroup::IsGroupStart(const sal_Int32 nField)
             ScMyColumnRowGroupVec::iterator aEnd = aTableStart.end();
             while ( aItr != aEnd && nItrField < nField )
             {
-                aItr++;
+                ++aItr;
                 if ( aItr != aEnd )
                     nItrField = aItr->nField;
             }
@@ -178,7 +168,7 @@ void ScMyOpenCloseColumnRowGroup::CloseGroups(const sal_Int32 nField)
 sal_Int32 ScMyOpenCloseColumnRowGroup::GetLast()
 {
     sal_Int32 maximum(-1);
-    for (ScMyFieldGroupVec::iterator i = aTableEnd.begin(); i != aTableEnd.end(); i++)
+    for (ScMyFieldGroupVec::iterator i = aTableEnd.begin(); i != aTableEnd.end(); ++i)
         if (*i > maximum)
             maximum = *i;
     return maximum;
@@ -191,3 +181,5 @@ void ScMyOpenCloseColumnRowGroup::Sort()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

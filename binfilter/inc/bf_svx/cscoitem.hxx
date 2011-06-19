@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX
 #include <bf_svx/colritem.hxx>
-#endif
 namespace binfilter {
 
 // class SvxCharSetColorItem ---------------------------------------------
@@ -58,7 +55,7 @@ public:
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
 
     inline rtl_TextEncoding&    GetCharSet() { return eFrom; }
     inline rtl_TextEncoding     GetCharSet() const { return eFrom; }
@@ -74,3 +71,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

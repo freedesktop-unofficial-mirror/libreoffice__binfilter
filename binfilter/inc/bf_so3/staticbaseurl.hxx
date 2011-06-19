@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 #ifndef INCLUDED_SO3_INC_BF_XMLOFF_STATICBASEURL_HXX
 #define INCLUDED_SO3_INC_BF_XMLOFF_STATICBASEURL_HXX
 
-#ifndef _SAL_CONFIG_H_
 #include "sal/config.h"
-#endif
 
-#ifndef _RTL_TEXTENC_H
 #include "rtl/textenc.h"
-#endif
-#ifndef _URLOBJ_HXX
 #include "tools/urlobj.hxx"
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class ByteString;
 class String;
@@ -95,3 +88,5 @@ String SmartRelToAbs(
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

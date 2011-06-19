@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,25 +32,15 @@
 //  includes
 //_________________________________________________________________________________________________________________
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace binfilter
 {
@@ -213,3 +204,5 @@ class  SvtSecurityOptions: public Options
 }
 
 #endif  // #ifndef INCLUDED_SVTOOLS_SECURITYOPTIONS_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

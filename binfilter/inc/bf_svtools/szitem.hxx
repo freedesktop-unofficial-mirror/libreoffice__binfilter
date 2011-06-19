@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 
@@ -65,14 +64,14 @@ public:
                                     const ::IntlWrapper * = 0 ) const;
 
     virtual int              operator==( const SfxPoolItem& ) const;
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal,
-                                          BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal,
-                                          BYTE nMemberId = 0 );
+    virtual bool             QueryValue( com::sun::star::uno::Any& rVal,
+                                         BYTE nMemberId = 0 ) const;
+    virtual bool             PutValue( const com::sun::star::uno::Any& rVal,
+                                       BYTE nMemberId = 0 );
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT nItemVersion) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
 
     const Size&             GetValue() const { return aVal; }
     void                    SetValue( const Size& rNewVal ) {
@@ -84,3 +83,4 @@ public:
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

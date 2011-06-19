@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _E3D_GLOBL3D_HXX
 #include "globl3d.hxx"
-#endif
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_DLIGHT3D_HXX
 #include "dlight3d.hxx"
-#endif
 
 namespace binfilter {
 
@@ -104,8 +97,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*?*/ FASTBOOL E3dDistantLight::CalcLighting(Color& rNewColor,
-/*?*/                                       const Vector3D& rPnt,
+/*?*/ bool E3dDistantLight::CalcLighting(Color& rNewColor,
+/*?*/                                       const Vector3D& /*rPnt*/,
 /*?*/                                       const Vector3D& rPntNormal,
 /*?*/                                       const Color& rPntColor)
 /*?*/ {
@@ -143,28 +136,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* sichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dDistantLight::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   E3dLight::WriteData(rOut);
-/*N*/
-/*N*/ #ifdef E3D_STREAMING
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dDistantLight");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aDirection;
-/*N*/ #endif
-/*N*/ #endif    // #ifndef SVX_LIGHT
-/*N*/ }
-
-/*************************************************************************
-|*
 |* laden
 |*
 \************************************************************************/
@@ -193,3 +164,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -69,9 +70,7 @@ public:
 }//end of namespace binfilter
 #ifndef SVX_LIGHT
 
-#ifndef _PLUGIN_HXX
 #include <bf_so3/plugin.hxx>
-#endif
 namespace binfilter {
 class SvxPluginShape : public SvxOle2Shape
 {
@@ -97,9 +96,7 @@ public:
 
 #ifndef SVX_LIGHT
 
-#ifndef _APPLET_HXX
 #include <bf_so3/applet.hxx>
-#endif
 namespace binfilter {
 class SvxAppletShape : public SvxOle2Shape
 {
@@ -144,3 +141,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,23 +27,15 @@
  ************************************************************************/
 
 
-#ifndef _SV_CVTGRF_HXX
 #include <vcl/cvtgrf.hxx>
-#endif
 
 #ifndef SVX_LIGHT
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
 #endif
-#endif
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 #include "xbtmpit.hxx"
 #include "unomid.hxx"
@@ -110,13 +103,13 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoBitmapTable_createInstance( Sdr
 {
     return *new SvxUnoBitmapTable(pModel);
 }
-} //STRIP009 namespace bifilter
+}
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 /** returns a GraphicObject for this URL */
 BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw()
 {
-    const String aURL( rURL ), aPrefix( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX) );
+    const String aURL( rURL ), aPrefix( RTL_CONSTASCII_USTRINGPARAM(UNO_NAME_GRAPHOBJ_URLPREFIX) );
 
     if( aURL.Search( aPrefix ) == 0 )
     {
@@ -146,3 +139,5 @@ BfGraphicObject CreateGraphicObjectFromURL( const ::rtl::OUString &rURL ) throw(
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

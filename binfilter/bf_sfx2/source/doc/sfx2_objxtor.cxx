@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,36 +28,18 @@
 
 #include "arrdecl.hxx"
 
-#ifndef _COM_SUN_STAR_UTIL_XCLOSEABLE_HPP_
 #include <com/sun/star/util/XCloseable.hpp>
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _SV_RESARY_HXX
 #include <tools/resary.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SB_SBSTAR_HXX //autogen
 #include "bf_basic/sbstar.hxx"
-#endif
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -66,15 +49,9 @@
 
 #include "objsh.hxx"
 
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _EHDL_HXX
 #include <bf_svtools/ehdl.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PRINTWARNINGOPTIONS_HXX
 #include <bf_svtools/printwarningoptions.hxx>
-#endif
 
 #include <bf_svtools/urihelper.hxx>
 #include <bf_svtools/pathoptions.hxx>
@@ -92,30 +69,23 @@
 #include "sfxtypes.hxx"
 #include "evntconf.hxx"
 #include "request.hxx"
-#include "docinf.hxx"
 #include "objuno.hxx"
 #include "appdata.hxx"
 #include "appuno.hxx"
 #include "sfxsids.hrc"
 #include "dlgcont.hxx"
 
-#ifndef _BASMGR_HXX
 #include "bf_basic/basmgr.hxx"
-#endif
 
 #include "scriptcont.hxx"
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::script;
 
-#ifndef _UNO_MAPPING_HXX_
 #include <uno/mapping.hxx>
-#endif
 
 //====================================================================
 #include "bf_so3/staticbaseurl.hxx"
@@ -124,7 +94,6 @@ namespace binfilter {
 /*N*/ DBG_NAME(SfxObjectShell)
 
 extern AsynchronLink* pPendingCloser;
-static SfxObjectShell* pWorkingDoc = NULL;
 
 //=========================================================================
 
@@ -144,13 +113,13 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ SfxObjectShell::SfxObjectShell
 /*N*/ (
 /*N*/   SfxObjectCreateMode eMode   /*  Zweck, zu dem die SfxObjectShell
-                                    erzeugt wird:
+                                    erzeugt wird:*/
 /*N*/ )
-/*N*/ : pImp( new SfxObjectShell_Impl ),
-/*N*/   _pFactory( 0 ),
-/*N*/   eCreateMode(eMode),
-/*N*/   pStyleSheetPool(0),
-/*N*/   pMedium(0)
+/*N*/ : pImp( new SfxObjectShell_Impl )
+/*N*/ , pMedium(0)
+/*N*/ , pStyleSheetPool(0)
+/*N*/ , eCreateMode(eMode)
+/*N*/ , _pFactory( 0 )
 /*N*/ {
 /*N*/   DBG_CTOR(SfxObjectShell, 0);
 /*N*/
@@ -365,7 +334,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ sal_uInt16 SfxObjectShell::PrepareClose
 /*N*/ (
 /*N*/   sal_Bool    bUI,        // sal_True: Dialoge etc. erlaubt, sal_False: silent-mode
-/*N*/   sal_Bool    bForBrowsing
+/*N*/   sal_Bool    /*bForBrowsing*/
 /*N*/ )
 /*N*/ {
 /*N*/   if( pImp->bInPrepareClose || pImp->bPreparedForClose )
@@ -400,7 +369,7 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/   if ( bUI && !bClose && IsInformationLost() )
 /*N*/   {
 /*N*/       // minimierte restoren
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxFrame* pTop = pFrame->GetTopFrame();
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   pImp->bPreparedForClose = sal_True;
@@ -418,8 +387,8 @@ static SfxObjectShell* pWorkingDoc = NULL;
 /*N*/ {
 /*N*/     if ( !pImp->bBasicInitialized )
 /*N*/     {
-/*N*/         String aName( GetMedium()->GetName() );
-/*N*/         ((SfxObjectShell*)this)->InitBasicManager_Impl( GetStorage(), aName.Len() ? &aName : NULL );
+/*N*/         String aLclName( GetMedium()->GetName() );
+/*N*/         ((SfxObjectShell*)this)->InitBasicManager_Impl( GetStorage(), aLclName.Len() ? &aLclName : NULL );
 /*N*/     }
 /*N*/   return pImp->pBasicMgr != NULL;
 /*N*/ }
@@ -453,7 +422,7 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
                                (aus <SvPersist::Load()>) bzw. 0, falls es
                                sich um ein neues Dokument handelt
                                (aus <SvPersist::InitNew()>). */
-/*N*/     , const String* pName
+/*N*/     , const String* /*pName*/
 )
 /*  [Beschreibung]
 
@@ -578,24 +547,24 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/
 /*N*/ SEQUENCE< OUSTRING > SfxObjectShell::GetEventNames_Impl()
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( Application::GetSolarMutex() );
+/*N*/     SolarMutexGuard aGuard;
 /*N*/   SEQUENCE < OUSTRING > aSequence( 14 );
         OUSTRING* pNames = aSequence.getArray();
         sal_Int32 i=0;
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnStartApp");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnCloseApp");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnNew");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnLoad");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveAs");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveAsDone");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSave");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnSaveDone");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnPrepareUnload");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnUnload");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnFocus");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnUnfocus");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnPrint");
-        pNames[i++] = ::rtl::OUString::createFromAscii("OnModifyChanged");
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnStartApp" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnCloseApp" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnNew" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnLoad" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSaveAs" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSaveAsDone" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSave" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnSaveDone" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnPrepareUnload" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnUnload" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnFocus" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnUnfocus" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnPrint" ));
+        pNames[i++] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "OnModifyChanged" ));
 /*N*/   return aSequence;
 /*N*/ }
 
@@ -630,12 +599,12 @@ Reference< XLibraryContainer > SfxObjectShell::GetBasicContainer()
 /*N*/ {
 /*N*/   return pImp->xModel;
 /*N*/ }
-/* -----------------------------10.09.2001 15:56------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SfxObjectShell::SetAutoStyleFilterIndex(sal_uInt16 nSet)
 /*N*/ {
 /*N*/     pImp->nStyleFilter = nSet;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

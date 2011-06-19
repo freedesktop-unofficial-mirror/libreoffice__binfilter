@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RCID_H //autogen
 #include <tools/rcid.h>
-#endif
-#ifndef _SV_WRKWIN_HXX
 #include <vcl/wrkwin.hxx>
-#endif
 
 class Timer;
 namespace binfilter {
@@ -168,3 +165,4 @@ public:
 #endif // #ifndef _SFX_SFXTYPES_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

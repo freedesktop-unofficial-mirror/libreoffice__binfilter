@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,27 +33,15 @@
 // header for SvxServiceInfoHelper
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 // header for SvxUnoTextRangeBase
 // for OWN_ATTR_...
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 // for SID_ATTR_...
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
 #include "schattr.hxx"
 
@@ -61,29 +50,15 @@
 #include <bf_svx/brshitem.hxx>
 #endif
 // header for SVX_SYMBOLTYPE_BRUSHITEM
-#ifndef _SVX_TAB_LINE_HXX
 #include <bf_svx/tabline.hxx>
-#endif
-#ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISASSIGN_HPP_
 #include <com/sun/star/chart/ChartAxisAssign.hpp>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
-#ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include <bf_svx/xflbmtit.hxx>
-#endif
 
 // header for SvxChartDataDescrItem
 #ifndef _SVX_CHRTITEM_HXX
@@ -91,14 +66,11 @@
 #endif
 
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 namespace binfilter {
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
-using namespace vos;
 using namespace ::com::sun::star;
 
 ChXDataRow::ChXDataRow( sal_Int32 _Row, ChartModel* _Model ) :
@@ -129,7 +101,7 @@ const uno::Sequence< sal_Int8 > & ChXDataRow::getUnoTunnelId() throw()
 
 uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_Int32 nId ) const
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -140,7 +112,7 @@ uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_I
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return uno::Reference< beans::XPropertySet >();
@@ -150,7 +122,7 @@ uno::Reference< beans::XPropertySet > ChXDataRow::getStatisticsProperties( sal_I
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXDataRow::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -161,7 +133,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     sal_Bool bPropertyUnknown = sal_False;
 
     if( mpModel )
@@ -185,7 +157,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
             else if( nWID == CHATTR_PIE_SEGMENT_OFFSET )        // member of ChartModel rather than property
             {
                 // (not fully supported yet. problem: getPropertyValue)
-                sal_Int32 nVal;
+                sal_Int32 nVal(0);
                 aValue >>= nVal;
                 short nValToSet = (short)(abs( nVal ) % 101);       // cast long->short is ok (range 0..100)
 
@@ -214,7 +186,7 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                     drawing::BitmapMode eMode;
                     if(!(aValue >>= eMode) )
                     {
-                        sal_Int32 nMode;
+                        sal_Int32 nMode = 0;
                         if(!(aValue >>= nMode))
                             break;
 
@@ -252,17 +224,17 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
 
             if( pSet->Count() )
             {
-                sal_Int32 nVal;
+                sal_Int32 nVal(0);
                 switch( nWID )
                 {
                     case SCHATTR_STAT_KIND_ERROR:
@@ -357,8 +329,8 @@ void SAL_CALL ChXDataRow::setPropertyValue( const ::rtl::OUString& aPropertyName
                 if( SCHATTR_DATADESCR_START <= nWID && nWID <= SCHATTR_DATADESCR_END )
                 {
                     SfxItemSet rAttr( mpModel->GetDataRowAttr( mnRow ));
-                    SvxChartDataDescr eNewDataDescr;
-                    BOOL              bNewShowSym;
+                    SvxChartDataDescr eNewDataDescr(CHDESCR_NONE);
+                    BOOL              bNewShowSym(FALSE);
                     const SfxPoolItem *pPoolItem;
 
                     if( rAttr.GetItemState( SCHATTR_DATADESCR_DESCR, TRUE, &pPoolItem ) == SFX_ITEM_SET )
@@ -403,7 +375,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -495,10 +467,10 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( PropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
@@ -535,7 +507,9 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                             break;
                         case CHDESCR_TEXTANDVALUE:
                             nVal = chart::ChartDataCaption::VALUE | chart::ChartDataCaption::TEXT;
-                    // chart::ChartDataCaption::FORMAT (missing)
+                            break;
+                        default:
+                            break;
                     }
                     if( bShowSymbol ) nVal |= chart::ChartDataCaption::SYMBOL;
 
@@ -548,7 +522,7 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                         ((const SvxBrushItem &)(pSet->Get( nWID ))).GetGraphicObject();
                     if( pGraphObj )
                     {
-                        aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                        aURL = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_GRAPHOBJ_URLPREFIX ));
                         aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                     }
                     aAny <<= aURL;
@@ -561,13 +535,13 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             aAny >>= nValue;
                             aAny <<= static_cast< sal_Int16 >( nValue );
                         }
                         else
                         {
-                            DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "getPropertyValue(): wrong Type!" );
                         }
                     }
                 }
@@ -588,29 +562,29 @@ uno::Any SAL_CALL ChXDataRow::getPropertyValue( const ::rtl::OUString& PropertyN
     return aAny;
 }
 
-void SAL_CALL ChXDataRow::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                     const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXDataRow::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                     const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataRow::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                        const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXDataRow::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                        const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataRow::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                     const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDataRow::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                     const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDataRow::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                        const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDataRow::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                        const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -620,7 +594,7 @@ void SAL_CALL ChXDataRow::removeVetoableChangeListener( const ::rtl::OUString& P
 beans::PropertyState SAL_CALL ChXDataRow::getPropertyState( const ::rtl::OUString& PropertyName )
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -681,7 +655,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXDataRow::getPropertyStates(
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const sal_Int32 nCount = aPropertyName.getLength();
     const ::rtl::OUString* pNames = aPropertyName.getConstArray();
@@ -699,7 +673,7 @@ void SAL_CALL ChXDataRow::setPropertyToDefault( const ::rtl::OUString& PropertyN
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -764,13 +738,13 @@ uno::Any SAL_CALL ChXDataRow::getPropertyDefault( const ::rtl::OUString& aProper
             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
             {
-                sal_Int32 nValue;
+                sal_Int32 nValue(0);
                 aAny >>= nValue;
                 aAny <<= static_cast< sal_Int16 >( nValue );
             }
             else
             {
-                DBG_ERROR( "getPropertyDefault(): wrong Type!" );
+                OSL_FAIL( "getPropertyDefault(): wrong Type!" );
             }
         }
     }
@@ -833,3 +807,5 @@ sal_Int64 SAL_CALL ChXDataRow::getSomething( const uno::Sequence< sal_Int8 >& aI
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

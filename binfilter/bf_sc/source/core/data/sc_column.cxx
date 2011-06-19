@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -75,8 +73,8 @@ namespace binfilter {
 /*N*/   nCount( 0 ),
 /*N*/   nLimit( 0 ),
 /*N*/   pItems( NULL ),
-/*N*/   pDocument( NULL ),
-/*N*/   pAttrArray( NULL )
+/*N*/   pAttrArray( NULL ),
+/*N*/   pDocument( NULL )
 /*N*/ {
 /*N*/ }
 
@@ -361,7 +359,7 @@ namespace binfilter {
 /*N*/   rFound = FALSE;
 /*N*/   if (!rMark.IsMultiMarked())
 /*N*/   {
-/*N*/       DBG_ERROR("ScColumn::GetSelectionStyle ohne Selektion");
+/*N*/       OSL_FAIL("ScColumn::GetSelectionStyle ohne Selektion");
 /*N*/       return NULL;
 /*N*/   }
 /*N*/
@@ -463,20 +461,6 @@ namespace binfilter {
 /*N*/   delete pTemp;
 /*N*/
 /*N*/       // alte Version mit SfxItemPoolCache:
-/*N*/ #if 0
-/*?*/   SfxItemPoolCache aCache( pDocument->GetPool(), &rAttr );
-/*?*/
-/*?*/   const ScPatternAttr* pPattern = pAttrArray->GetPattern( nRow );
-/*?*/
-/*?*/   //  TRUE = alten Eintrag behalten
-/*?*/
-/*?*/   ScPatternAttr* pNewPattern = (ScPatternAttr*) &aCache.ApplyTo( *pPattern, TRUE );
-/*?*/   ScDocumentPool::CheckRef( *pPattern );
-/*?*/   ScDocumentPool::CheckRef( *pNewPattern );
-/*?*/
-/*?*/   if (pNewPattern != pPattern)
-/*?*/     pAttrArray->SetPattern( nRow, pNewPattern );
-/*N*/ #endif
 /*N*/ }
 
 #ifdef _MSC_VER
@@ -800,7 +784,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       else
-/*N*/           DBG_ERROR("CopyToColumn: bMarked, aber keine Markierung");
+/*N*/           OSL_FAIL("CopyToColumn: bMarked, aber keine Markierung");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -829,7 +813,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       USHORT i;
 /*N*/       USHORT nBlockCount = 0;
-/*N*/       USHORT nStartIndex, nEndIndex;
+/*N*/       USHORT nStartIndex(0), nEndIndex(0);
 /*N*/       for (i = 0; i < nCount; i++)
 /*N*/           if ((pItems[i].nRow >= nRow1) && (pItems[i].nRow <= nRow2))
 /*N*/           {
@@ -845,12 +829,11 @@ namespace binfilter {
 /*N*/           ScAddress aAdr( rColumn.nCol, 0, rColumn.nTab );
 /*N*/           for (i = nStartIndex; i <= nEndIndex; i++)
 /*N*/           {
-/*N*/               ScBaseCell* pOld = pItems[i].pCell;
 /*N*/               aAdr.SetRow( pItems[i].nRow );
 /*N*/               ScBaseCell* pNew = NULL;
 /*N*/               if (bAsLink)
 /*N*/               {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     pNew = CreateRefCell( rColumn.pDocument, aAdr, i, nFlags );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -947,7 +930,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if (pItems)
 /*N*/   {
-/*N*/       USHORT nStartPos;
+/*N*/       USHORT nStartPos(0);
 /*N*/       USHORT nMoveCount=0;
 /*N*/       USHORT i;
 /*N*/       for (i=0; i < nCount; i++)
@@ -990,8 +973,8 @@ namespace binfilter {
 
 
 /*N*/ void ScColumn::UpdateReference( UpdateRefMode eUpdateRefMode, USHORT nCol1, USHORT nRow1, USHORT nTab1,
-/*N*/            USHORT nCol2, USHORT nRow2, USHORT nTab2, short nDx, short nDy, short nDz,
-/*N*/            ScDocument* pUndoDoc )
+/*N*/            USHORT nCol2, USHORT nRow2, USHORT nTab2, short /*nDx*/, short /*nDy*/, short /*nDz*/,
+/*N*/            ScDocument* /*pUndoDoc*/ )
 /*N*/ {
 /*N*/   if (pItems)
 /*N*/   {
@@ -999,7 +982,7 @@ namespace binfilter {
 /*N*/                       ScAddress( nCol2, nRow2, nTab2 ) );
 /*N*/       if ( eUpdateRefMode == URM_COPY && nRow1 == nRow2 )
 /*N*/       {   // z.B. eine einzelne Zelle aus dem Clipboard eingefuegt
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -1019,7 +1002,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*?*/                     ScBaseCell* pCell = pItems[i].pCell;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((ScFormulaCell*)pCell)->UpdateReference( eUpdateRefMode, aRange, nDx, nDy, nDz, pUndoDoc );
+/*?*/                         DBG_BF_ASSERT(0, "STRIP");
 /*?*/                     }
 /*?*/                 }
 /*?*/             }
@@ -1031,7 +1014,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 /*?*/                     ScBaseCell* pCell = pItems[i].pCell;
 /*?*/                     if( pCell->GetCellType() == CELLTYPE_FORMULA)
 /*?*/                     {
-/*?*/                         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nRow = pItems[i].nRow;
+/*?*/                         DBG_BF_ASSERT(0, "STRIP");
 /*?*/                     }
 /*?*/                 }
 /*?*/             }
@@ -1361,3 +1344,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             USHORT nIndex;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

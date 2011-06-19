@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,45 +33,16 @@
 //_________________________________________________________________________________________________________________
 
 #include <bf_svtools/viewoptions.hxx>
-
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-
-#include <hash_map>
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
+#include <boost/unordered_map.hpp>
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-
-#ifndef UNOTOOLS_CONFIGPATHES_HXX_INCLUDED
 #include <unotools/configpathes.hxx>
-#endif
-
-#ifndef _COMPHELPER_CONFIGURATIONHELPER_HXX_
 #include <comphelper/configurationhelper.hxx>
-#endif
-
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
 #include <unotools/processfactory.hxx>
-#endif
-
 #include <itemholder1.hxx>
 
 namespace binfilter
@@ -133,7 +105,7 @@ namespace css = ::com::sun::star;
         sMsg.appendAscii("Unexpected exception catched. Original message was:\n\""      );                          \
         sMsg.append     (SVTVIEWOPTIONS_LOG_UNEXPECTED_EXCEPTION_PARAM_EXCEPTION.Message);                          \
         sMsg.appendAscii("\""                                                           );                          \
-        OSL_ENSURE(sal_False, ::rtl::OUStringToOString(sMsg.makeStringAndClear(), RTL_TEXTENCODING_UTF8).getStr()); \
+        OSL_FAIL(::rtl::OUStringToOString(sMsg.makeStringAndClear(), RTL_TEXTENCODING_UTF8).getStr()); \
     }
 
 //_________________________________________________________________________________________________________________
@@ -302,7 +274,7 @@ struct IMPL_TStringHashCode
     }
 };
 
-typedef ::std::hash_map< ::rtl::OUString                    ,
+typedef ::boost::unordered_map< ::rtl::OUString                    ,
                          IMPL_TViewData                     ,
                          IMPL_TStringHashCode               ,
                          ::std::equal_to< ::rtl::OUString > > IMPL_TViewHash;
@@ -353,8 +325,6 @@ class SvtViewOptionsBase_Impl
 
     @param          -
     @return         -
-
-    @last change    19.10.2001 07:54
 *//*-*************************************************************************************************************/
 SvtViewOptionsBase_Impl::SvtViewOptionsBase_Impl( const ::rtl::OUString& sList )
         :   m_sListName  ( sList )    // we must know, which view type we must support
@@ -399,8 +369,6 @@ SvtViewOptionsBase_Impl::SvtViewOptionsBase_Impl( const ::rtl::OUString& sList )
 
     @param          -
     @return         -
-
-    @last change    19.10.2001 08:02
 *//*-*************************************************************************************************************/
 SvtViewOptionsBase_Impl::~SvtViewOptionsBase_Impl()
 {
@@ -484,7 +452,7 @@ SvtViewOptions::SvtViewOptions(       EViewType        eType     ,
                                     }
                                 }
                                 break;
-        default             :   OSL_ENSURE( sal_False, "SvtViewOptions::SvtViewOptions()\nThese view type is unknown! All following calls at these instance will do nothing!\n" );
+        default             :   OSL_FAIL( "SvtViewOptions::SvtViewOptions()\nThese view type is unknown! All following calls at these instance will do nothing!\n" );
     }
 }
 
@@ -572,3 +540,5 @@ SvtViewOptions::~SvtViewOptions()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

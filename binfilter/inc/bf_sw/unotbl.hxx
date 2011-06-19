@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,40 +30,18 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATA_HPP_
 #include <com/sun/star/chart/XChartData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLECURSOR_HPP_
 #include <com/sun/star/text/XTextTableCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLE_HPP_
 #include <com/sun/star/text/XTextTable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCELLRANGE_HPP_
 #include <com/sun/star/table/XCellRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEDATA_HPP_
 #include <com/sun/star/sheet/XCellRangeData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XAUTOFORMATTABLE_HPP_
 #include <com/sun/star/table/XAutoFormattable.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE10_HXX_
 #include <cppuhelper/implbase10.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // helper for implementations
-#endif
 namespace binfilter {
 
 class SwTableBoxFmt;
@@ -71,19 +50,17 @@ class SwTableCursor;
 class SwTableBoxFmt;
 class SwTableLine;
 class SwTableCursor;
-/* -----------------------------22.09.00 11:10--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwChartEventListenerContainer : public SwEventListenerContainer
 {
     public:
-        SwChartEventListenerContainer( ::com::sun::star::uno::XInterface* pxParent) :
-            SwEventListenerContainer(pxParent){}
+        SwChartEventListenerContainer( ::com::sun::star::uno::XInterface* pxParentIn) :
+            SwEventListenerContainer(pxParentIn){}
         void ChartDataChanged();
 };
-/* ---------------------------------------------------------------------------
 
- ---------------------------------------------------------------------------*/
+
 typedef
 cppu::WeakImplHelper4
 <
@@ -177,9 +154,8 @@ public:
 
     SwFrmFmt* GetFrmFmt() const { return (SwFrmFmt*)GetRegisteredIn(); }
 };
-/* -----------------27.06.98 15:40-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTextTableRow : public cppu::WeakImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -219,9 +195,8 @@ public:
     const SwTableLine*  GetTblRow() const {return pLine;}
     static SwTableLine* FindLine(SwTable* pTable, SwTableLine* pLine);
 };
-/* -----------------20.07.98 13:03-------------------
- *
- * --------------------------------------------------*/
+
+
 typedef cppu::WeakImplHelper3<
                                 ::com::sun::star::text::XTextTableCursor,
                                 ::com::sun::star::lang::XServiceInfo,
@@ -283,9 +258,8 @@ public:
     SwUnoCrsr*                  GetCrsr();
 };
 
-/*-----------------11.12.97 09:38-------------------
 
---------------------------------------------------*/
+
 struct SwRangeDescriptor
 {
     sal_uInt16 nTop;
@@ -420,9 +394,8 @@ public:
     static SwXTextTable* GetImplementation(::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface> xRef );
 };
 
-/* -----------------27.04.98 16:41-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXCellRange : public cppu::WeakImplHelper7
 <
     ::com::sun::star::table::XCellRange,
@@ -507,9 +480,8 @@ public:
     sal_uInt16      getRowCount(void);
     sal_uInt16      getColumnCount(void);
 };
-/* -----------------03.02.99 07:31-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTableRows : public cppu::WeakImplHelper2
 <
     ::com::sun::star::table::XTableRows,
@@ -556,9 +528,8 @@ public:
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
 
-/* -----------------03.02.99 07:31-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTableColumns : public cppu::WeakImplHelper2
 <
     ::com::sun::star::table::XTableColumns,
@@ -610,3 +581,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

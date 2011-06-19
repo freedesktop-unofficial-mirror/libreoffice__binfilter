@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _CAMERA3D_HXX
 #include <bf_svx/camera3d.hxx>
-#endif
 
-#ifndef _E3D_LIGHT3D_HXX
 #include <bf_svx/light3d.hxx>
-#endif
 
-#ifndef _E3D_LABEL3D_HXX
 #include <bf_svx/label3d.hxx>
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
 
-#ifndef _B3D_B3DTRANS_HXX
 #include <bf_goodies/b3dtrans.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -147,6 +136,8 @@ public:
     TYPEINFO();
     E3dScene();
     virtual ~E3dScene();
+
+    using SdrAttrObj::operator=;
 
     // Perspective: enum ProjectionType { PR_PARALLEL, PR_PERSPECTIVE }
     ProjectionType GetPerspective() const
@@ -244,7 +235,7 @@ public:
     virtual void    RecalcSnapRect();
 
     // Paint MUSS ueberladen werden
-    virtual FASTBOOL Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const = 0;
+    virtual bool Paint(ExtOutputDevice&, const SdrPaintInfoRec&) const = 0;
 
     virtual E3dScene* GetScene() const;
 
@@ -260,17 +251,17 @@ public:
     void SetCamera(const Camera3D& rNewCamera);
     const Camera3D& GetCamera() const { return aCamera; }
 
-    FASTBOOL IsDoubleBuffered() const { return bDoubleBuffered; }
+    bool IsDoubleBuffered() const { return bDoubleBuffered; }
 
     // Clipping auf umschliessendes Rechteck der Szene
     // (Double Buffering ist immer geclipt!)
-    FASTBOOL IsClipping() const { return bClipping; }
+    bool IsClipping() const { return bClipping; }
 
     void CorrectSceneDimensions();
-    FASTBOOL IsFitInSnapRect() const { return bFitInSnapRect; }
+    bool IsFitInSnapRect() const { return bFitInSnapRect; }
 
     void FitSnapRectToBoundVol();
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 
@@ -287,10 +278,10 @@ public:
     virtual void PostItemChange(const sal_uInt16 nWhich);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 
 
@@ -336,3 +327,5 @@ public:
 
 }//end of namespace binfilter
 #endif          // _E3D_SCENE3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

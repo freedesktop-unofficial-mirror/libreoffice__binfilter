@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #include "XMLChartPropertyContext.hxx"
 #include "PropertyMap.hxx"
 
-#ifndef _XMLOFF_SYMBOLIMAGECONTEXT_HXX_
 #include "XMLSymbolImageContext.hxx"
-#endif
 namespace binfilter {
 
 TYPEINIT1( XMLChartPropertyContext, SvXMLImportContext );
@@ -37,13 +36,13 @@ TYPEINIT1( XMLChartPropertyContext, SvXMLImportContext );
 using namespace ::com::sun::star;
 
 XMLChartPropertyContext::XMLChartPropertyContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const ::rtl::OUString& rLName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList,
     ::std::vector< XMLPropertyState >& rProps,
     const UniReference< SvXMLImportPropertyMapper >& rMapper ) :
-        SvXMLPropertySetContext( rImport, nPrfx, rLName, xAttrList, rProps, rMapper )
+        SvXMLPropertySetContext( rInImport, nPrfx, rLName, xAttrList, rProps, rMapper )
 {
 }
 
@@ -51,10 +50,10 @@ XMLChartPropertyContext::~XMLChartPropertyContext()
 {}
 
 SvXMLImportContext* XMLChartPropertyContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList,
-    ::std::vector< XMLPropertyState > &rProperties,
+    ::std::vector< XMLPropertyState > &rInProperties,
     const XMLPropertyState& rProp )
 {
     SvXMLImportContext *pContext = 0;
@@ -62,7 +61,7 @@ SvXMLImportContext* XMLChartPropertyContext::CreateChildContext(
     switch( xMapper->getPropertySetMapper()->GetEntryContextId( rProp.mnIndex ) )
     {
         case XML_SCH_CONTEXT_SPECIAL_SYMBOL_IMAGE:
-            pContext = new XMLSymbolImageContext( GetImport(), nPrefix, rLocalName, rProp, rProperties );
+            pContext = new XMLSymbolImageContext( GetImport(), nInPrefix, rLocalName, rProp, rInProperties );
             break;
     }
 
@@ -70,9 +69,11 @@ SvXMLImportContext* XMLChartPropertyContext::CreateChildContext(
     if( !pContext )
     {
         pContext = SvXMLPropertySetContext::CreateChildContext(
-            nPrefix, rLocalName, xAttrList, rProperties, rProp );
+            nInPrefix, rLocalName, xAttrList, rInProperties, rProp );
     }
 
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

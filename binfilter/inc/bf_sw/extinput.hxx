@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
 class CommandExtTextInputData;
 class Font;
 
@@ -60,3 +59,4 @@ public:
 } //namespace binfilter
 #endif  //_EXTINPUT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

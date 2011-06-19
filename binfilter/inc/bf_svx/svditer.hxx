@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,14 +30,9 @@
 #define _SVDITER_HXX
 
 #include <bf_svtools/bf_solar.h>
-
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
+#include <vector>
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
 namespace binfilter {
 
 class SdrObjList;
@@ -48,11 +44,13 @@ class SdrObject;
 // IM_DEEPNOGROUPS      : Mit rekursivem Abstieg, Next() liefert keine Gruppenobjekte
 enum SdrIterMode { IM_FLAT, IM_DEEPWITHGROUPS, IM_DEEPNOGROUPS};
 
+typedef ::std::vector< SdrObject* > SdrObjectList;
+
 class SdrObjListIter
 {
-    List                        maObjList;
-    sal_uInt32                  mnIndex;
-    BOOL                        mbReverse;
+    SdrObjectList   maObjList;
+    size_t          mnIndex;
+    BOOL            mbReverse;
 
     void ImpProcessObjectList(const SdrObjList& rObjList, SdrIterMode eMode);
 
@@ -60,11 +58,15 @@ public:
     SdrObjListIter(const SdrObjList& rObjList, SdrIterMode eMode = IM_DEEPNOGROUPS, BOOL bReverse = FALSE);
     SdrObjListIter(const SdrObject& rGroup, SdrIterMode eMode = IM_DEEPNOGROUPS, BOOL bReverse = FALSE);
 
-    void Reset() { mnIndex = (mbReverse ? maObjList.Count() : 0L); }
-    BOOL IsMore() const { return (mbReverse ? mnIndex != 0 : ( mnIndex < maObjList.Count())); }
-    SdrObject* Next() { return (SdrObject*)maObjList.GetObject(mbReverse ? --mnIndex : mnIndex++); }
+    void Reset() { mnIndex = (mbReverse ? maObjList.size() : 0L); }
+    BOOL IsMore() const { return (mbReverse ? mnIndex != 0 : ( mnIndex < maObjList.size())); }
+
+    SdrObject* Next() {
+        return IsMore() ? maObjList[ mbReverse ? --mnIndex : mnIndex++ ] : NULL;
+    }
 };
 
 }//end of namespace binfilter
 #endif //_SVDITER_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

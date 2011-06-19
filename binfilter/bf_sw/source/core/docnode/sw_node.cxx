@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,118 +31,39 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
-#endif
 
-#ifndef _FMTANCHR_HXX
 #include <fmtanchr.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FTNFRM_HXX //autogen
 #include <ftnfrm.hxx>
-#endif
-
-#ifndef _HORIORNT_HXX
+#include <osl/diagnose.h>
 #include <horiornt.hxx>
-#endif
-
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _PAGEFRM_HXX //autogen
 #include <pagefrm.hxx>
-#endif
-#ifndef _NODE2LAY_HXX
 #include <node2lay.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 using namespace ::com::sun::star::i18n;
 
 /*N*/ TYPEINIT2( SwCntntNode, SwModify, SwIndexReg )
-
-/*******************************************************************
-|*
-|*  SwNode::GetSectionLevel
-|*
-|*  Beschreibung
-|*      Die Funktion liefert den Sectionlevel an der durch
-|*      aIndex bezeichneten Position.
-|*
-|*      Die Logik ist wie folgt:   ( S -> Start, E -> End, C -> CntntNode)
-|*          Level   0       E
-|*                  1   S  E
-|*                  2    SC
-|*
-|*      alle EndNodes der GrundSection haben den Level 0
-|*      alle StartNodes der GrundSection haben den Level 1
-|*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Aenderung:  JP  11.08.93
-|*      keine Rekursion mehr !!
-|*
-*******************************************************************/
-
-
 
 /*******************************************************************
 |*
@@ -163,17 +85,12 @@ using namespace ::com::sun::star::i18n;
 |*      rWhere bezeichnet die Position innerhalb dieses Arrays,
 |*      an der der Node eingefuegt werden soll
 |*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
-|*
 *******************************************************************/
 
 
 /*N*/ SwNode::SwNode( const SwNodeIndex &rWhere, const BYTE nNdType )
-/*N*/   : pStartOfSection( 0 ), nNodeType( nNdType )
+/*N*/   : nNodeType( nNdType )
+/*N*/   , pStartOfSection( 0 )
 /*N*/ {
 /*N*/   bWrongDirty = bACmplWrdDirty = TRUE;
 /*N*/   bSetNumLSpace = bIgnoreDontExpand = FALSE;
@@ -203,7 +120,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 /*N*/ SwNode::SwNode( SwNodes& rNodes, ULONG nPos, const BYTE nNdType )
-/*N*/   : pStartOfSection( 0 ), nNodeType( nNdType )
+/*N*/   : nNodeType( nNdType )
+/*N*/   , pStartOfSection( 0 )
 /*N*/ {
 /*N*/   bWrongDirty = bACmplWrdDirty = TRUE;
 /*N*/   bSetNumLSpace = bIgnoreDontExpand = FALSE;
@@ -439,11 +357,6 @@ using namespace ::com::sun::star::i18n;
 |*      IN
 |*      rNodes bezeichnet das variable Array, in dem sich der Node
 |*      befindet
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
 |*
 *******************************************************************/
 
@@ -498,12 +411,6 @@ using namespace ::com::sun::star::i18n;
 |*      !!!!!!!!!!!!
 |*      Es wird eine Kopie uebergeben!
 |*
-|*  Ersterstellung
-|*      VER0100 vb 901214
-|*
-|*  Stand
-|*      VER0100 vb 901214
-|*
 *******************************************************************/
 
 
@@ -530,13 +437,10 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ SwCntntNode::SwCntntNode( const SwNodeIndex &rWhere, const BYTE nNdType,
 /*N*/                           SwFmtColl *pColl )
-/*N*/   : SwNode( rWhere, nNdType ),
-/*N*/   pAttrSet( 0 ),
-/*N*/   pCondColl( 0 ),
-/*N*/   SwModify( pColl )    // CrsrsShell, FrameFmt
-/*N*/ #ifdef OLD_INDEX
-/*N*/   ,SwIndexReg(2)
-/*N*/ #endif
+/*N*/   : SwModify( pColl )  // CrsrsShell, FrameFmt
+/*N*/   , SwNode( rWhere, nNdType )
+/*N*/   , pCondColl( 0 )
+/*N*/   , pAttrSet( 0 )
 /*N*/ {
 /*N*/ }
 
@@ -617,7 +521,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/       break;
 /*N*/ //FEATURE::CONDCOLL
 /*N*/   case RES_CONDCOLL_CONDCHG:
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwCondCollCondChg*)pNewValue)->pChangedFmt == GetRegisteredIn() &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       return ;    // nicht an die Basisklasse / Frames weitergeben
 /*N*/ //FEATURE::CONDCOLL
 /*N*/
@@ -722,7 +626,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ SwFmtColl *SwCntntNode::ChgFmtColl( SwFmtColl *pNewColl )
 /*N*/ {
-/*N*/   ASSERT( pNewColl, Collectionpointer ist 0. );
+/*N*/   OSL_ENSURE( pNewColl, "Collectionpointer ist 0." );
 /*N*/   SwFmtColl *pOldColl = GetFmtColl();
 /*N*/   if( pNewColl != pOldColl )
 /*N*/   {
@@ -736,10 +640,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/ //FEATURE::CONDCOLL
 /*N*/       // HACK: hier muss die entsprechend der neuen Vorlage die Bedingungen
 /*N*/       //      neu ueberprueft werden!
-/*N*/       if( TRUE /*pNewColl */ )
-/*N*/       {
-/*N*/           SetCondFmtColl( 0 );
-/*N*/       }
+/*N*/       SetCondFmtColl( 0 );
 /*N*/ //FEATURE::CONDCOLL
 /*N*/
 /*N*/       if( !IsModifyLocked() )
@@ -844,7 +745,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ void SwCntntNode::MakeFrms( SwCntntNode& rNode )
 /*N*/ {
-/*N*/   ASSERT( &rNode != this,
+/*N*/   OSL_ENSURE( &rNode != this,
 /*N*/           "Kein Contentnode oder Copy-Node und neuer Node identisch." );
 /*N*/
 /*N*/   if( !GetDepends() || &rNode == this )   // gibt es ueberhaupt Frames ??
@@ -853,7 +754,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   SwFrm *pFrm, *pNew;
 /*N*/   SwLayoutFrm *pUpper;
 /*N*/   // Frames anlegen fuer Nodes, die vor oder hinter der Tabelle stehen ??
-/*N*/   ASSERT( FindTableNode() == rNode.FindTableNode(), "Table confusion" )
+/*N*/   OSL_ENSURE( FindTableNode() == rNode.FindTableNode(), "Table confusion" );
 /*N*/
 /*N*/   SwNode2Layout aNode2Layout( *this, rNode.GetIndex() );
 /*N*/
@@ -901,12 +802,12 @@ using namespace ::com::sun::star::i18n;
 /*N*/           !pFrm->GetIndPrev() )
 /*N*/       {
 /*?*/           SwFtnFrm *pFtn = pFrm->FindFtnFrm();
-/*?*/           ASSERT( pFtn, "You promised a FtnFrm?" );
+/*?*/           OSL_ENSURE( pFtn, "You promised a FtnFrm?" );
 /*?*/           SwCntntFrm* pCFrm;
 /*?*/           if( !pFtn->GetFollow() && !pFtn->GetMaster() &&
 /*?*/               0 != ( pCFrm = pFtn->GetRefFromAttr()) && pCFrm->IsFollow() )
 /*?*/           {
-/*?*/               ASSERT( pCFrm->IsTxtFrm(), "NoTxtFrm has Footnote?" );
+/*?*/               OSL_ENSURE( pCFrm->IsTxtFrm(), "NoTxtFrm has Footnote?" );
 /*?*/               ((SwTxtFrm*)pCFrm->FindMaster())->Prepare( PREP_FTN_GONE );
 /*?*/           }
 /*N*/       }
@@ -960,11 +861,11 @@ using namespace ::com::sun::star::i18n;
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_GETLOWERNUMLEVEL:
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( IsTxtNode() && ((SwTxtNode*)this)->GetNum() &&
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       break;
 /*?*/
 /*?*/   case RES_FINDNEARESTNODE:
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwFmtPageDesc&)GetAttr( RES_PAGEDESC )).GetPageDesc() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       return TRUE;
 /*?*/
 /*?*/   case RES_CONTENT_VISIBLE:
@@ -985,7 +886,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/   if( !pAttrSet )         // lasse von den entsprechenden Nodes die
 /*N*/       NewAttrSet( GetDoc()->GetAttrPool() );      // AttrSets anlegen
 /*N*/
-/*N*/   ASSERT( pAttrSet, "warum wurde kein AttrSet angelegt?" );
+/*N*/   OSL_ENSURE( pAttrSet, "warum wurde kein AttrSet angelegt?" );
 /*N*/
 /*N*/   if ( IsInCache() )
 /*N*/   {
@@ -1195,7 +1096,7 @@ using namespace ::com::sun::star::i18n;
     // in pIdx kann die 2. Position returnt werden.
 /*N*/ int SwCntntNode::CanJoinPrev( SwNodeIndex* pIdx ) const
 /*N*/ {
-/*N*/   const SwNodes& rNds = GetNodes();
+/*N*/   GetNodes();
 /*N*/   BYTE nNdType = GetNodeType();
 /*N*/   SwNodeIndex aIdx( *this, -1 );
 /*N*/
@@ -1306,6 +1207,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                   break;
 /*?*/               case SwHeaderStartNode:     nCond = PARA_IN_HEADER; break;
 /*?*/               case SwFooterStartNode:     nCond = PARA_IN_FOOTER; break;
+                    case SwNormalStartNode:     break;
 /*N*/               }
 /*N*/           }
 /*N*/
@@ -1394,7 +1296,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 /*N*/ #endif
 
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

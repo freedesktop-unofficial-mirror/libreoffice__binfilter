@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_COLROWBAR_HXX
 #define SC_COLROWBAR_HXX
 
-#ifndef SC_HDRCONT_HXX
 #include "hdrcont.hxx"
-#endif
 
-#ifndef SC_VIEWDATA_HXX
 #include "viewdata.hxx"
-#endif
 namespace binfilter {
 
 class ScHeaderFunctionSet;
@@ -57,19 +54,19 @@ public:
 
     virtual USHORT      GetPos();
     virtual USHORT      GetEntrySize( USHORT nEntryNo );
-    virtual String      GetEntryText( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP");String aStr; return aStr;} //STRIP001 virtual String      GetEntryText( USHORT nEntryNo );
+    virtual String      GetEntryText( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP");String aStr; return aStr;}
 
-    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize );
-    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void       HideEntries( USHORT nStart, USHORT nEnd );
+    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_BF_ASSERT(0, "STRIP");}
 
     virtual void        SetMarking( BOOL bSet );
-    virtual void        SelectWindow(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void      SelectWindow();
-    virtual BOOL        IsDisabled(){DBG_BF_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL       IsDisabled();
-    virtual BOOL        ResizeAllowed(){DBG_BF_ASSERT(0, "STRIP");return FALSE;} //STRIP001 virtual BOOL        ResizeAllowed();
+    virtual void        SelectWindow(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual BOOL        IsDisabled(){DBG_BF_ASSERT(0, "STRIP");return FALSE;}
+    virtual BOOL        ResizeAllowed(){DBG_BF_ASSERT(0, "STRIP");return FALSE;}
 
-    virtual void        DrawInvert( long nDragPos ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void     DrawInvert( long nDragPos );
+    virtual void        DrawInvert( long nDragPos ){DBG_BF_ASSERT(0, "STRIP");}
 
-    virtual String      GetDragHelp( long nVal ){DBG_BF_ASSERT(0, "STRIP"); String aStr; return aStr;}//STRIP001 virtual String     GetDragHelp( long nVal );
+    virtual String      GetDragHelp( long nVal ){DBG_BF_ASSERT(0, "STRIP"); String aStr; return aStr;}
 };
 
 
@@ -87,21 +84,21 @@ public:
 
     virtual USHORT      GetPos();
     virtual USHORT      GetEntrySize( USHORT nEntryNo );
-    virtual String      GetEntryText( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP"); String s; return s;}//STRIP001 virtual String        GetEntryText( USHORT nEntryNo );
+    virtual String      GetEntryText( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP"); String s; return s;}
 
-    virtual USHORT      GetHiddenCount( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP"); return 0;}//STRIP001 virtual USHORT        GetHiddenCount( USHORT nEntryNo );  // nur fuer Zeilen
+    virtual USHORT      GetHiddenCount( USHORT nEntryNo ){DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
-    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize );
-    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void       HideEntries( USHORT nStart, USHORT nEnd );
+    virtual void        SetEntrySize( USHORT nPos, USHORT nNewSize ){DBG_BF_ASSERT(0, "STRIP");}
+    virtual void        HideEntries( USHORT nStart, USHORT nEnd ){DBG_BF_ASSERT(0, "STRIP");}
 
     virtual void        SetMarking( BOOL bSet );
-    virtual void        SelectWindow(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void      SelectWindow();
-    virtual BOOL        IsDisabled(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 virtual BOOL       IsDisabled();
-    virtual BOOL        ResizeAllowed(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 virtual BOOL        ResizeAllowed();
+    virtual void        SelectWindow(){DBG_BF_ASSERT(0, "STRIP");}
+    virtual BOOL        IsDisabled(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    virtual BOOL        ResizeAllowed(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
-    virtual void        DrawInvert( long nDragPos ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 virtual void     DrawInvert( long nDragPos );
+    virtual void        DrawInvert( long nDragPos ){DBG_BF_ASSERT(0, "STRIP");}
 
-    virtual String      GetDragHelp( long nVal ){DBG_BF_ASSERT(0, "STRIP"); String s; return s;}//STRIP001 virtual String       GetDragHelp( long nVal );
+    virtual String      GetDragHelp( long nVal ){DBG_BF_ASSERT(0, "STRIP"); String s; return s;}
 };
 
 
@@ -110,3 +107,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

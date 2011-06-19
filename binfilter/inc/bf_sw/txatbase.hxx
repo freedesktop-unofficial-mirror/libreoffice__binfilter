@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 namespace binfilter {
 
 class SfxItemPool;
@@ -202,7 +197,7 @@ inline const xub_StrLen* SwTxtAttr::GetAnyEnd() const
 
 inline const SfxPoolItem& SwTxtAttr::GetAttr() const
 {
-    ASSERT( pAttr, "wo ist mein Attribut?" );
+    OSL_ENSURE( pAttr, "wo ist mein Attribut?" );
     return *pAttr;
 }
 
@@ -214,219 +209,219 @@ inline void SwTxtAttr::SetDontExpand( BOOL bNew )
 
 inline const SvxFontItem& SwTxtAttr::GetFont() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_FONT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_FONT, "Falsche Abfrage" );
     return (const SvxFontItem&)*pAttr;
 }
 
 inline const SvxPostureItem& SwTxtAttr::GetPosture() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_POSTURE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_POSTURE, "Falsche Abfrage" );
     return (const SvxPostureItem&)*pAttr;
 }
 
 inline const SvxWeightItem& SwTxtAttr::GetWeight() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_WEIGHT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_WEIGHT, "Falsche Abfrage" );
     return (const SvxWeightItem&)*pAttr;
 }
 
 inline const SvxUnderlineItem& SwTxtAttr::GetUnderline() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_UNDERLINE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_UNDERLINE, "Falsche Abfrage" );
     return (const SvxUnderlineItem&)*pAttr;
 }
 
 inline const SvxFontHeightItem& SwTxtAttr::GetFontSize() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_FONTSIZE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_FONTSIZE, "Falsche Abfrage" );
     return (const SvxFontHeightItem&)*pAttr;
 }
 
 inline const SvxPropSizeItem& SwTxtAttr::GetPropSize() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_PROPORTIONALFONTSIZE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_PROPORTIONALFONTSIZE, "Falsche Abfrage" );
     return (const SvxPropSizeItem&)*pAttr;
 }
 
 inline const SvxShadowedItem& SwTxtAttr::GetShadowed() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_SHADOWED, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_SHADOWED, "Falsche Abfrage" );
     return (const SvxShadowedItem&)*pAttr;
 }
 
 inline const SvxAutoKernItem& SwTxtAttr::GetAutoKern() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_AUTOKERN, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_AUTOKERN, "Falsche Abfrage" );
     return (const SvxAutoKernItem&)*pAttr;
 }
 
 inline const SvxWordLineModeItem& SwTxtAttr::GetWordLineMode() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_WORDLINEMODE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_WORDLINEMODE, "Falsche Abfrage" );
     return (const SvxWordLineModeItem&)*pAttr;
 }
 
 inline const SvxContourItem& SwTxtAttr::GetContour() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_CONTOUR, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_CONTOUR, "Falsche Abfrage" );
     return (const SvxContourItem&)*pAttr;
 }
 
 inline const SvxCrossedOutItem& SwTxtAttr::GetCrossedOut() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_CROSSEDOUT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_CROSSEDOUT, "Falsche Abfrage" );
     return (const SvxCrossedOutItem&)*pAttr;
 }
 
 inline const SvxColorItem& SwTxtAttr::GetColor() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_COLOR, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_COLOR, "Falsche Abfrage" );
     return (const SvxColorItem&)*pAttr;
 }
 
 inline const SvxCharSetColorItem& SwTxtAttr::GetCharSetColor() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_CHARSETCOLOR, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_CHARSETCOLOR, "Falsche Abfrage" );
     return (const SvxCharSetColorItem&)*pAttr;
 }
 
 inline const SwFmtCharFmt& SwTxtAttr::GetCharFmt() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_CHARFMT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_CHARFMT, "Falsche Abfrage" );
     return (const SwFmtCharFmt&)*pAttr;
 }
 
 inline const SvxKerningItem& SwTxtAttr::GetKerning() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_KERNING, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_KERNING, "Falsche Abfrage" );
     return (const SvxKerningItem&)*pAttr;
 }
 
 inline const SvxCaseMapItem& SwTxtAttr::GetCaseMap() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_CASEMAP, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_CASEMAP, "Falsche Abfrage" );
     return (const SvxCaseMapItem&)*pAttr;
 }
 
 inline const SvxLanguageItem& SwTxtAttr::GetLanguage() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_LANGUAGE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_LANGUAGE, "Falsche Abfrage" );
     return (const SvxLanguageItem&)*pAttr;
 }
 
 inline const SvxEscapementItem& SwTxtAttr::GetEscapement() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_ESCAPEMENT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_ESCAPEMENT, "Falsche Abfrage" );
     return (const SvxEscapementItem&)*pAttr;
 }
 
 inline const SvxBlinkItem& SwTxtAttr::GetBlink() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_BLINK, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_BLINK, "Falsche Abfrage" );
     return (const SvxBlinkItem&)*pAttr;
 }
 
 inline const SvxBrushItem& SwTxtAttr::GetChrBackground() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_BACKGROUND, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_BACKGROUND, "Falsche Abfrage" );
     return (const SvxBrushItem&)*pAttr;
 }
 
 inline const SvxNoHyphenItem& SwTxtAttr::GetNoHyphenHere() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_NOHYPHEN, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_NOHYPHEN, "Falsche Abfrage" );
     return (const SvxNoHyphenItem&)*pAttr;
 }
 
 inline const SwFmtSoftHyph& SwTxtAttr::GetSoftHyph() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_SOFTHYPH, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_SOFTHYPH, "Falsche Abfrage" );
     return (const SwFmtSoftHyph&)*pAttr;
 }
 
 inline const SwFmtHardBlank& SwTxtAttr::GetHardBlank() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_HARDBLANK, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_HARDBLANK, "Falsche Abfrage" );
     return (const SwFmtHardBlank&)*pAttr;
 }
 
 inline const SwFmtFld& SwTxtAttr::GetFld() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_FIELD, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_FIELD, "Falsche Abfrage" );
     return (const SwFmtFld&)*pAttr;
 }
 
 inline const SwFmtFtn& SwTxtAttr::GetFtn() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_FTN, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_FTN, "Falsche Abfrage" );
     return (const SwFmtFtn&)*pAttr;
 }
 
 inline const SwFmtFlyCnt& SwTxtAttr::GetFlyCnt() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_FLYCNT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_FLYCNT, "Falsche Abfrage" );
     return (const SwFmtFlyCnt&)*pAttr;
 }
 
 inline const SwTOXMark& SwTxtAttr::GetTOXMark() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_TOXMARK, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_TOXMARK, "Falsche Abfrage" );
     return (const SwTOXMark&)*pAttr;
 }
 
 inline const SwFmtRefMark& SwTxtAttr::GetRefMark() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_REFMARK, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_REFMARK, "Falsche Abfrage" );
     return (const SwFmtRefMark&)*pAttr;
 }
 
 inline const SwFmtINetFmt& SwTxtAttr::GetINetFmt() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_INETFMT, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_INETFMT, "Falsche Abfrage" );
     return (const SwFmtINetFmt&)*pAttr;
 }
 
 inline const SvXMLAttrContainerItem& SwTxtAttr::GetXMLAttrContainer() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_UNKNOWNATR_CONTAINER,
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_UNKNOWNATR_CONTAINER,
             "Falsche Abfrage" );
     return (const SvXMLAttrContainerItem&)*pAttr;
 }
 
 inline const SwFmtRuby& SwTxtAttr::GetRuby() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_TXTATR_CJK_RUBY,
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_TXTATR_CJK_RUBY,
             "Falsche Abfrage" );
     return (const SwFmtRuby&)*pAttr;
 }
 inline const SvxTwoLinesItem& SwTxtAttr::Get2Lines() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_TWO_LINES,
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_TWO_LINES,
             "Falsche Abfrage" );
     return (const SvxTwoLinesItem&)*pAttr;
 }
 
 inline const SvxEmphasisMarkItem& SwTxtAttr::GetEmphasisMark() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_EMPHASIS_MARK, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_EMPHASIS_MARK, "Falsche Abfrage" );
     return (const SvxEmphasisMarkItem&)*pAttr;
 }
 
 inline const SvxCharScaleWidthItem& SwTxtAttr::GetCharScaleW() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_SCALEW, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_SCALEW, "Falsche Abfrage" );
     return (const SvxCharScaleWidthItem&)*pAttr;
 }
 
 inline const SvxCharRotateItem& SwTxtAttr::GetCharRotate() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_ROTATE, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_ROTATE, "Falsche Abfrage" );
     return (const SvxCharRotateItem&)*pAttr;
 }
 
 inline const SvxCharReliefItem& SwTxtAttr::GetCharRelief() const
 {
-    ASSERT( pAttr && pAttr->Which() == RES_CHRATR_RELIEF, "Falsche Abfrage" );
+    OSL_ENSURE( pAttr && pAttr->Which() == RES_CHRATR_RELIEF, "Falsche Abfrage" );
     return (const SvxCharReliefItem&)*pAttr;
 }
 
@@ -434,3 +429,5 @@ inline const SvxCharReliefItem& SwTxtAttr::GetCharRelief() const
     // #ifndef _TXATBASE_HXX
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

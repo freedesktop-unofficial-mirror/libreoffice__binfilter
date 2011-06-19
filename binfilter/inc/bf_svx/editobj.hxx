@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,27 +31,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemPool;
 class SfxStyleSheetPool;
 
-DBG_NAMEEX( EE_EditTextObject )//STRIP008
+DBG_NAMEEX( EE_EditTextObject )
 
 class SvxFieldItem;
 class EECharAttribArray;
@@ -67,7 +58,7 @@ protected:
                         EditTextObject( USHORT nWhich );
                         EditTextObject( const EditTextObject& r );
 
-    virtual void        StoreData( SvStream& rOStream ) const;
+    virtual void        StoreData( SvStream& ) const {}
     virtual void        CreateData( SvStream& rIStream );
 
 public:
@@ -87,7 +78,7 @@ public:
 
     virtual EditTextObject* Clone() const = 0;
 
-    BOOL                    Store( SvStream& rOStream ) const;
+    BOOL Store( SvStream& ) const {return FALSE;}
     static EditTextObject*  Create( SvStream& rIStream,
                                 SfxItemPool* pGlobalTextObjectPool = 0 );
 
@@ -122,3 +113,5 @@ public:
 
 }//end of namespace binfilter
 #endif  // _EDITOBJ_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

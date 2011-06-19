@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 namespace binfilter {
 
 class ScBaseCell;
@@ -109,8 +106,6 @@ class ScConditionEntry
 protected:
             ScConditionEntry( SvStream& rStream, ScMultipleReadHeader& rHdr,
                                 ScDocument* pDocument );
-    void    StoreCondition(SvStream& rStream, ScMultipleWriteHeader& rHdr) const;
-
 public:
             ScConditionEntry( ScConditionMode eOper,
                                 const String& rExpr1, const String& rExpr2,
@@ -171,7 +166,7 @@ public:
 
     void            SetParent( ScConditionalFormat* pNew )  { pParent = pNew; }
 
-    void            Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const;
+    void  Store(SvStream&, ScMultipleWriteHeader&) const {}
 
     int             operator== ( const ScCondFormatEntry& r ) const;
 
@@ -204,7 +199,7 @@ public:
     // echte Kopie der Formeln (fuer Ref-Undo / zwischen Dokumenten)
     ScConditionalFormat* Clone(ScDocument* pNewDoc = NULL) const;
 
-    void            Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const;
+    void    Store(SvStream&, ScMultipleWriteHeader&) const {}
 
     void            AddEntry( const ScCondFormatEntry& rNew );
 
@@ -245,7 +240,7 @@ public:
 typedef ScConditionalFormat* ScConditionalFormatPtr;
 
 SV_DECL_PTRARR_SORT(ScConditionalFormats_Impl, ScConditionalFormatPtr,
-                        SC_COND_GROW, SC_COND_GROW)//STRIP008 ;
+                        SC_COND_GROW, SC_COND_GROW)
 
 class ScConditionalFormatList : public ScConditionalFormats_Impl
 {
@@ -260,7 +255,7 @@ public:
     ScConditionalFormat* GetFormat( sal_uInt32 nKey );
 
     void    Load( SvStream& rStream, ScDocument* pDocument );
-    void    Store( SvStream& rStream ) const;
+    void    Store( SvStream& ) const {}
     void    ResetUsed();
 
     void    CompileXML();
@@ -275,3 +270,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVX_XIT_HXX //autogen
 #include <bf_svx/xit.hxx>
-#endif
 
-#ifndef _SVX__XGRADIENT_HXX
 #include <bf_svx/xgrad.hxx>
-#endif
 namespace binfilter {
 
 class SdrModel;
@@ -60,11 +57,11 @@ public:
     virtual int             operator==(const SfxPoolItem& rItem) const;
     virtual SfxPoolItem*    Clone(SfxItemPool* pPool = 0) const;
     virtual SfxPoolItem*    Create(SvStream& rIn, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream& rOut, USHORT nItemVersion ) const;
+    virtual SvStream&       Store(SvStream& rOut, USHORT) const { return rOut; }
     virtual USHORT          GetVersion( USHORT nFileFormatVersion ) const;
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     const XGradient&        GetValue(const XGradientTable* pTable = 0) const;
     void                    SetValue(const XGradient& rNew) { aGradient = rNew; Detach(); }
 
@@ -75,3 +72,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

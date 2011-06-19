@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,60 +25,30 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
+
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-
-#ifndef _SVX_FMOBJ_HXX
 #include "fmobj.hxx"
-#endif
-
-#ifndef _SVX_FMPROP_HRC
 #include "fmprop.hrc"
-#endif
 
-
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
 
-
-
-#ifndef _SVX_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
-
-#ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
-#endif
-
-
-
-#ifndef _SVX_FMRESIDS_HRC
 #include "fmresids.hrc"
-#endif
 
-#ifndef _SVX_FMVIEW_HXX //autogen
 #include <fmview.hxx>
-#endif
 
-#ifndef _SVX_FMGLOB_HXX
 #include "fmglob.hxx"
-#endif
-
-#ifndef _SVX_FMPGEIMP_HXX
 #include "fmpgeimp.hxx"
-#endif
-
-#ifndef _SVX_FMPAGE_HXX
 #include "fmpage.hxx"
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
-using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
+using namespace ::binfilter::svxform;
 
 /*N*/ TYPEINIT1(FmFormObj, SdrUnoObj);
 /*N*/ DBG_NAME(FmFormObj)
@@ -86,8 +57,8 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 //------------------------------------------------------------------
 /*N*/ FmFormObj::FmFormObj(sal_Int32 _nType)
 /*N*/         :SdrUnoObj(String(), sal_False)
-/*N*/         ,nEvent(0)
 /*N*/         ,pTempView(0)
+/*N*/         ,nEvent(0)
 /*N*/         ,nPos(-1)
 /*N*/         ,m_nType(_nType)
 /*N*/ {
@@ -130,7 +101,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/   if (m_xEnvironmentHistory.is())
 /*N*/   {
 /*N*/       // the element in *m_pEnvironmentHistory which is equivalent to my new parent (which (perhaps) has to be created within _pNewPage->GetForms)
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*N*/         // is the right-most element in the tree.
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if (!xNewParent.is())
@@ -150,7 +121,7 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*?*/           }
 /*?*/           if (xSearch.is())   // implies xSearch == xOldForms, which means we're a valid part of our current page forms hierarchy
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 ::com::sun::star::uno::Reference< ::com::sun::star::container::XChild >  xMeAsChild(GetUnoControlModel(), ::com::sun::star::uno::UNO_QUERY);
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -168,9 +139,9 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*?*/           ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexContainer >  xOldParent(xMeAsFormComp->getParent(), ::com::sun::star::uno::UNO_QUERY);
 /*?*/           if (xOldParent.is())
 /*?*/           {
-/*?*/               sal_Int32 nPos = getElementPos(::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess > (xOldParent, ::com::sun::star::uno::UNO_QUERY), xMeAsFormComp);
-/*?*/               if (nPos > -1)
-/*?*/                   xOldParent->removeByIndex(nPos);
+/*?*/               sal_Int32 nLclPos = getElementPos(::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess > (xOldParent, ::com::sun::star::uno::UNO_QUERY), xMeAsFormComp);
+/*?*/               if (nLclPos > -1)
+/*?*/                   xOldParent->removeByIndex(nLclPos);
 /*?*/           }
 /*?*/           // and insert into the new container
 /*?*/           xNewParent->insertByIndex(xNewParent->getCount(), ::com::sun::star::uno::makeAny(xMeAsFormComp));
@@ -184,14 +155,14 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*?*/                   ::com::sun::star::uno::Reference< ::com::sun::star::container::XIndexAccess >  xManagerAsIndex(xEventManager, ::com::sun::star::uno::UNO_QUERY);
 /*?*/                   if (xManagerAsIndex.is())
 /*?*/                   {
-/*?*/                       sal_Int32 nPos = getElementPos(xManagerAsIndex, xMeAsFormComp);
-/*?*/                       DBG_ASSERT(nPos >= 0, "FmFormObj::SetPage : inserted but not present ?");
-/*?*/                       xEventManager->registerScriptEvents(nPos, aNewEvents);
+/*?*/                       sal_Int32 nLclPos = getElementPos(xManagerAsIndex, xMeAsFormComp);
+/*?*/                       DBG_ASSERT(nLclPos >= 0, "FmFormObj::SetPage : inserted but not present ?");
+/*?*/                       xEventManager->registerScriptEvents(nLclPos, aNewEvents);
 /*?*/                   }
 /*?*/               }
 /*?*/               catch(...)
 /*?*/               {
-/*?*/                   DBG_ERROR("FmFormObj::SetPage : could not tranfer script events !");
+/*?*/                   OSL_FAIL("FmFormObj::SetPage : could not tranfer script events !");
 /*?*/               }
 /*?*/
 /*?*/           }
@@ -223,43 +194,13 @@ using namespace ::binfilter::svxform;//STRIP008 using namespace ::svxform;
 /*N*/   return OBJ_FM_CONTROL;
 /*N*/ }
 
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-/*N*/ void FmFormObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   FmFormModel* pModel = (FmFormModel*)GetModel();
-/*N*/   if( pModel && pModel->IsStreamingOldVersion() )
-/*N*/   {
-/*?*/       SdrLayerID nOld = GetLayer();
-/*?*/       ((FmFormObj*)this)->NbcSetLayer( pModel->GetControlExportLayerId( *this ) );
-/*?*/       SdrUnoObj::WriteData( rOut );
-/*?*/       ((FmFormObj*)this)->NbcSetLayer( nOld );
-/*?*/       return;
-/*N*/   }
-/*N*/   SdrUnoObj::WriteData(rOut);
-/*N*/ }
-
-//------------------------------------------------------------------
 /*N*/ void FmFormObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   SdrUnoObj::ReadData(rHead,rIn);
 /*N*/ }
 
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------
-
-//------------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
-
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

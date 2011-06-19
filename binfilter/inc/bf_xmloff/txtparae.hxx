@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,33 +28,15 @@
 #ifndef _XMLOFF_TEXTPARAE_HXX_
 #define _XMLOFF_TEXTPARAE_HXX_
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include <bf_xmloff/xmlexppr.hxx>
-#endif
-#ifndef _XMLOFF_STYLEEXP_HXX
 #include <bf_xmloff/styleexp.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-#ifndef _XMLOFF_SINGEPROPERTYSETINFOCACHE_HXX
 #include <bf_xmloff/SinglePropertySetInfoCache.hxx>
-#endif
 class SvLongs;
 namespace com { namespace sun { namespace star
 {
@@ -78,7 +61,6 @@ class XMLIndexMarkExport;
 class XMLRedlineExport;
 struct XMLPropertyState;
 class MultiPropertySetHelper;
-
 
 namespace xmloff { class OFormLayerXMLExport; }
 
@@ -212,9 +194,6 @@ protected:
     const ::rtl::OUString sRubyCharStyleName;
 
     SinglePropertySetInfoCache aCharStyleNamesPropInfoCache;
-
-//  SvXMLExport& GetExport() { return rExport; }
-//  const SvXMLExport& GetExport() const  { return rExport; }
 
     UniReference < SvXMLExportPropertyMapper > GetParaPropMapper() const
     {
@@ -564,10 +543,10 @@ public:
     void collectTextAutoStyles(
         const ::com::sun::star::uno::Reference <
             ::com::sun::star::text::XText > & rText,
-        sal_Bool bProgress = sal_False,
+        sal_Bool bProgressIn = sal_False,
         sal_Bool bExportParagraph = sal_True )
     {
-        exportText( rText, sal_True, bProgress, bExportParagraph );
+        exportText( rText, sal_True, bProgressIn, bExportParagraph );
     }
 
     void collectTextAutoStyles(
@@ -575,32 +554,34 @@ public:
             ::com::sun::star::text::XText > & rText,
         const ::com::sun::star::uno::Reference <
             ::com::sun::star::text::XTextSection > & rBaseSection,
-        sal_Bool bProgress = sal_False,
+        sal_Bool bProgressIn = sal_False,
         sal_Bool bExportParagraph = sal_True )
     {
-        exportText( rText, rBaseSection, sal_True, bProgress, bExportParagraph );
+        exportText( rText, rBaseSection, sal_True, bProgressIn, bExportParagraph );
     }
 
     // This method prepares the collection of auto styles for frames
     // that are bound to a frame.
-    void collectFramesBoundToFrameAutoStyles( sal_Bool bProgress = sal_False )
+    void collectFramesBoundToFrameAutoStyles()
     {
         collectFrames( sal_True );
     }
+
     // This method prepares the collection of auto styles for frames
     // that are bound to a frame and it collects auto styles
     // for frames bound to a page.
-    void collectFramesBoundToPageOrFrameAutoStyles( sal_Bool bProgress = sal_False )
+    void collectFramesBoundToPageOrFrameAutoStyles( sal_Bool bProgressIn = sal_False )
     {
         collectFrames( sal_False );
-        exportPageFrames( sal_True, bProgress );
+        exportPageFrames( sal_True, bProgressIn );
     }
+
     void collectFramesBoundToFrameAutoStyles(
             const ::com::sun::star::uno::Reference <
                     ::com::sun::star::text::XTextFrame >& rParentTxtFrame,
-            sal_Bool bProgress = sal_False )
+            sal_Bool bProgressIn = sal_False )
     {
-        exportFrameFrames( sal_True, bProgress, &rParentTxtFrame );
+        exportFrameFrames( sal_True, bProgressIn, &rParentTxtFrame );
     }
 
     // This method exports all automatic styles that have been collected.
@@ -614,10 +595,10 @@ public:
     void exportText(
         const ::com::sun::star::uno::Reference <
             ::com::sun::star::text::XText > & rText,
-        sal_Bool bProgress = sal_False,
+        sal_Bool bProgressIn = sal_False,
         sal_Bool bExportParagraph = sal_True)
     {
-        exportText( rText, sal_False, bProgress, bExportParagraph );
+        exportText( rText, sal_False, bProgressIn, bExportParagraph );
     }
 
     void exportText(
@@ -625,22 +606,22 @@ public:
             ::com::sun::star::text::XText > & rText,
         const ::com::sun::star::uno::Reference <
             ::com::sun::star::text::XTextSection > & rBaseSection,
-        sal_Bool bProgress = sal_False,
+        sal_Bool bProgressIn = sal_False,
         sal_Bool bExportParagraph = sal_True)
     {
-        exportText( rText, rBaseSection, sal_False, bProgress, bExportParagraph );
+        exportText( rText, rBaseSection, sal_False, bProgressIn, bExportParagraph );
     }
 
-    void exportFramesBoundToPage( sal_Bool bProgress = sal_False )
+    void exportFramesBoundToPage( sal_Bool bProgressIn = sal_False )
     {
-        exportPageFrames( sal_False, bProgress );
+        exportPageFrames( sal_False, bProgressIn );
     }
     void exportFramesBoundToFrame(
             const ::com::sun::star::uno::Reference <
                     ::com::sun::star::text::XTextFrame >& rParentTxtFrame,
-            sal_Bool bProgress = sal_False )
+            sal_Bool bProgressIn = sal_False )
     {
-        exportFrameFrames( sal_False, bProgress, &rParentTxtFrame );
+        exportFrameFrames( sal_False, bProgressIn, &rParentTxtFrame );
     }
     inline const XMLTextListAutoStylePool& GetListAutoStylePool() const;
 
@@ -680,11 +661,11 @@ inline const XMLTextListAutoStylePool&
 inline void XMLTextParagraphExport::exportTextFrame(
         const ::com::sun::star::uno::Reference <
             ::com::sun::star::text::XTextContent > & rTextContent,
-        sal_Bool bAutoStyles, sal_Bool bProgress,
+        sal_Bool bAutoStyles, sal_Bool bProgressIn,
         const ::com::sun::star::uno::Reference <
             ::com::sun::star::beans::XPropertySet > *pRangePropSet)
 {
-    exportAnyTextFrame( rTextContent, FT_TEXT, bAutoStyles, bProgress,
+    exportAnyTextFrame( rTextContent, FT_TEXT, bAutoStyles, bProgressIn,
                         pRangePropSet );
 }
 
@@ -723,3 +704,5 @@ inline void XMLTextParagraphExport::exportShape(
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

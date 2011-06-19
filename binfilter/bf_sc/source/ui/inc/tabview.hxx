@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef SC_TABVIEW_HXX
 #define SC_TABVIEW_HXX
 
-#ifndef _SV_SCRBAR_HXX //autogen
 #include <vcl/scrbar.hxx>
-#endif
 
-#ifndef _SVX_ZOOMITEM_HXX //autogen
 #include <bf_svx/zoomitem.hxx>
-#endif
 
-#ifndef _IPCLIENT_HXX //autogen
 #include <bf_so3/ipclient.hxx>
-#endif
 
 #include "viewutil.hxx"
 #include "select.hxx"
@@ -272,7 +267,7 @@ public:
 
     SvxZoomType     GetZoomType() const             { return eZoomType; }
     void            SetZoomType( SvxZoomType eNew ) { eZoomType = eNew; }
-    USHORT          CalcZoom( SvxZoomType eType, USHORT nOldZoom ){DBG_BF_ASSERT(0, "STRIP"); return 0; } //STRIP001 USHORT         CalcZoom( SvxZoomType eType, USHORT nOldZoom );
+    USHORT          CalcZoom( SvxZoomType eType, USHORT nOldZoom ){DBG_BF_ASSERT(0, "STRIP"); return 0; }
 
 //  void            CalcZoom( SvxZoomType eType, USHORT& rZoom, USHORT& rCol, USHORT& rRow );
 
@@ -368,3 +363,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

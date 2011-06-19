@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,61 +26,22 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLIMAGEMAPEXPORT_HXX_
 #include "XMLImageMapExport.hxx"
-#endif
 
-
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
 
-
-
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
+
+
 namespace binfilter {
-
-
 
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
@@ -102,8 +64,6 @@ const sal_Char sAPI_ImageMapCircleObject[] = "com.sun.star.image.ImageMapCircleO
 const sal_Char sAPI_ImageMapPolygonObject[] = "com.sun.star.image.ImageMapPolygonObject";
 
 XMLImageMapExport::XMLImageMapExport(SvXMLExport& rExp) :
-    rExport(rExp),
-    bWhiteSpace(sal_True),
     sBoundary(RTL_CONSTASCII_USTRINGPARAM("Boundary")),
     sCenter(RTL_CONSTASCII_USTRINGPARAM("Center")),
     sDescription(RTL_CONSTASCII_USTRINGPARAM("Description")),
@@ -113,13 +73,14 @@ XMLImageMapExport::XMLImageMapExport(SvXMLExport& rExp) :
     sPolygon(RTL_CONSTASCII_USTRINGPARAM("Polygon")),
     sRadius(RTL_CONSTASCII_USTRINGPARAM("Radius")),
     sTarget(RTL_CONSTASCII_USTRINGPARAM("Target")),
-    sURL(RTL_CONSTASCII_USTRINGPARAM("URL"))
+    sURL(RTL_CONSTASCII_USTRINGPARAM("URL")),
+    rExport(rExp),
+    bWhiteSpace(sal_True)
 {
 }
 
 XMLImageMapExport::~XMLImageMapExport()
 {
-
 }
 
 void XMLImageMapExport::Export(
@@ -166,7 +127,7 @@ void XMLImageMapExport::Export(
         }
         // else: container is empty -> nothing to do
     }
-    // else: no container -> nothign to do
+    // else: no container -> nothing to do
 }
 
 
@@ -182,7 +143,6 @@ void XMLImageMapExport::ExportMapEntry(
         Sequence<OUString> sServiceNames =
             xServiceInfo->getSupportedServiceNames();
         sal_Int32 nLength = sServiceNames.getLength();
-        sal_Bool bFound = sal_False;
         for( sal_Int32 i=0; i<nLength; i++ )
         {
             OUString& rName = sServiceNames[i];
@@ -269,6 +229,8 @@ void XMLImageMapExport::ExportMapEntry(
             case XML_AREA_POLYGON:
                 ExportPolygon(rPropertySet);
                 break;
+        default:
+            break;
         }
 
         // write element
@@ -279,13 +241,13 @@ void XMLImageMapExport::ExportMapEntry(
 
         // description property (as <svg:desc> element)
         aAny = rPropertySet->getPropertyValue(sDescription);
-        OUString sDescription;
-        aAny >>= sDescription;
-        if (sDescription.getLength() > 0)
+        OUString sLclDescription;
+        aAny >>= sLclDescription;
+        if (sLclDescription.getLength() > 0)
         {
             SvXMLElementExport aDesc(rExport, XML_NAMESPACE_SVG, XML_DESC,
                                      bWhiteSpace, sal_False);
-            rExport.GetDocHandler()->characters(sDescription);
+            rExport.GetDocHandler()->characters(sLclDescription);
         }
 
         // export events attached to this
@@ -338,7 +300,7 @@ void XMLImageMapExport::ExportCircle(
 
     // radius
     aAny = rPropertySet->getPropertyValue(sRadius);
-    sal_Int32 nRadius;
+    sal_Int32 nRadius(0);
     aAny >>= nRadius;
     rExport.GetMM100UnitConverter().convertMeasure(aBuffer, nRadius);
     rExport.AddAttribute( XML_NAMESPACE_SVG, XML_R,
@@ -401,3 +363,5 @@ void XMLImageMapExport::ExportPolygon(
                           aPoints.GetExportString());
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

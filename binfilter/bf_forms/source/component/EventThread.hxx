@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,25 +30,15 @@
 #define _FRM_EVENT_THREAD_HXX_
 
 #include <com/sun/star/awt/XControl.hpp>
-#include <vos/thread.hxx>
+#include <osl/thread.hxx>
 
 
-#ifndef _OSL_CONDITN_HXX_
 #include <osl/conditn.hxx>
-#endif
-#ifndef _CPPUHELPER_COMPONENT_HXX_
 #include <cppuhelper/component.hxx>
-#endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COMPHELPER_GUARDING_HXX_
 #include <comphelper/guarding.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 namespace binfilter {
     using namespace ::comphelper;
 
@@ -59,7 +50,7 @@ namespace frm
 // ***************************************************************************************************
 // ***************************************************************************************************
 
-typedef ::vos::OThread  OComponentEventThread_TBASE;
+typedef ::osl::Thread   OComponentEventThread_TBASE;
 class OComponentEventThread
             :public OComponentEventThread_TBASE
             ,public ::com::sun::star::lang::XEventListener
@@ -118,8 +109,8 @@ public:
     virtual void SAL_CALL disposing(const ::com::sun::star::lang::EventObject& _rSource ) throw (::com::sun::star::uno::RuntimeException);
 
 /* resolve ambiguity : both OWeakObject and OObject have these memory operators */
-    void * SAL_CALL operator new( size_t size ) throw() { return OThread::operator new(size); }
-    void SAL_CALL operator delete( void * p ) throw() { OThread::operator delete(p); }
+    void * SAL_CALL operator new( size_t size ) throw() { return osl::Thread::operator new(size); }
+    void SAL_CALL operator delete( void * p ) throw() { osl::Thread::operator delete(p); }
 
 private:
     void    implStarted( );
@@ -133,3 +124,4 @@ private:
 }//end of namespace binfilter
 #endif // _FRM_EVENT_THREAD_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,45 +31,21 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XWINDOWLISTENER_HPP_
 #include <com/sun/star/awt/XWindowListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertyChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XIMAGECONSUMER_HPP_
 #include <com/sun/star/awt/XImageConsumer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROLCONTAINER_HPP_
 #include <com/sun/star/awt/XControlContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODECHANGELISTENER_HPP_
 #include <com/sun/star/util/XModeChangeListener.hpp>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _APP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SVDLAYER_HXX
 #include <bf_svx/svdlayer.hxx>
-#endif
-#ifndef _SVDHLPLN_HXX
 #include <bf_svx/svdhlpln.hxx>
-#endif
 
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 class Region;
 class Link;
 class OutputDevice;
@@ -269,8 +246,8 @@ public:
 class SdrPageViewWinList {
     Container aList;
 private:
-    SdrPageViewWinList(const SdrPageViewWinList& rSource): aList(1024,4,4) {}
-    void operator=(const SdrPageViewWinList& rSource)                  {}
+    SdrPageViewWinList(const SdrPageViewWinList& /*rSource*/): aList(1024,4,4) {}
+    void operator=(const SdrPageViewWinList& /*rSource*/)                  {}
 protected:
     SdrPageViewWinRec* GetObject(USHORT i) const { return (SdrPageViewWinRec*)(aList.GetObject(i)); }
 public:
@@ -306,8 +283,8 @@ protected:
     Rectangle     aMarkSnap;  // von
     XPolyPolygon* pDragPoly0; // SdrView
     XPolyPolygon* pDragPoly;  //
-    FASTBOOL      bHasMarked; // verwendet
-    FASTBOOL      bVisible;   // Sichtbar?
+    bool      bHasMarked; // verwendet
+    bool      bVisible;   // Sichtbar?
 
     SetOfByte    aLayerVisi;   // Menge der sichtbaren Layer
     SetOfByte    aLayerLock;   // Menge der nicht editierbaren Layer
@@ -354,7 +331,7 @@ protected:
     void AddWin(OutputDevice* pOutDev1);
     void DelWin(OutputDevice* pOutDev1);
 
-    FASTBOOL IsLayer(const String& rName, const SetOfByte& rBS) const;
+    bool IsLayer(const String& rName, const SetOfByte& rBS) const;
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     void Show();
@@ -371,18 +348,18 @@ public:
     const SdrView& GetView() const                              { return rView; }
     const SdrPageViewWinList& GetWinList() const                { return *pWinList; }
 
-    FASTBOOL IsVisible() const                                  { return bVisible; }
+    bool IsVisible() const                                  { return bVisible; }
     // Invalidiert den gesamten Bereich der Page
     void InvalidateAllWin();
     // rRect bezieht sich auf die Page
-    void InvalidateAllWin(const Rectangle& rRect, FASTBOOL bPlus1Pix=FALSE);
+    void InvalidateAllWin(const Rectangle& rRect, bool bPlus1Pix=FALSE);
     // rReg bezieht sich auf's OutDev, nicht auf die Page
-    void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL){DBG_BF_ASSERT(0, "STRIP");}//STRIP001     void InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode=0, const Link* pPaintProc=NULL);
+    void InitRedraw(OutputDevice*, const Region&, USHORT =0, const Link* =NULL){DBG_BF_ASSERT(0, "STRIP");}
     // rReg bezieht sich auf's OutDev, nicht auf die Page
     // Painten aller Objekte eines Layer der Page ohne MasterPage
     // pOut==NULL -> alle OutputDevices
     // Der Handler in pPaintProc hat folgendes aussehen:
-    // void __EXPORT class::PaintProcHdl(const SdrPaintProcRec& rPaintProcRec);
+    // void class::PaintProcHdl(const SdrPaintProcRec& rPaintProcRec);
 
 
     // MasterPage ueber VirtualDevice Painten
@@ -398,8 +375,8 @@ public:
     // Betretene Gruppe und Liste setzen
     void SetAktGroupAndList(SdrObject* pNewGroup, SdrObjList* pNewList);
 
-    FASTBOOL HasMarkedObj() const                               { return bHasMarked; }
-    void     SetHasMarkedObj(FASTBOOL bOn)                      { bHasMarked=bOn; }
+    bool HasMarkedObj() const                               { return bHasMarked; }
+    void     SetHasMarkedObj(bool bOn)                      { bHasMarked=bOn; }
 
     const Rectangle& MarkBound() const                          { return aMarkBound; }
     const Rectangle& MarkSnap() const                           { return aMarkSnap; }
@@ -407,11 +384,11 @@ public:
     Rectangle&       MarkSnap()                                 { return aMarkSnap; }
 
 
-    FASTBOOL IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
+    bool IsLayerVisible(const String& rName) const              { return IsLayer(rName,aLayerVisi); }
 
-    FASTBOOL IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
+    bool IsLayerLocked(const String& rName) const               { return IsLayer(rName,aLayerLock); }
 
-    FASTBOOL IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
+    bool IsLayerPrintable(const String& rName) const            { return IsLayer(rName,aLayerPrn); }
 
     // PV stellt eine RefPage oder eine SubList eines RefObj dar oder Model ist ReadOnly
 
@@ -436,7 +413,7 @@ public:
     // Liefert TRUE, wenn Layer des Obj sichtbar und nicht gesperrt.
     // Beim Gruppenobjekt muss wenigstens ein Member sichtbar sein,
     // gesperrt sein darf keiner.
-    FASTBOOL IsObjMarkable(SdrObject* pObj) const;
+    bool IsObjMarkable(SdrObject* pObj) const;
 
     // Betreten (Editieren) einer Objektgruppe. Anschliessend liegen alle
     // Memberobjekte der Gruppe im direkten Zugriff. Alle anderen Objekte
@@ -470,3 +447,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDPAGV_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -38,32 +39,16 @@
 #define _FESHVIEW_ONLY_INLINE_NEEDED
 #endif
 
-#ifndef _SVDOPATH_HXX
 #include <bf_svx/svdopath.hxx>
-#endif
-#ifndef _SVDVMARK_HXX //autogen
 #include <bf_svx/svdvmark.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 
-#ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>      // fuer InitFldTypes
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "fesh.hxx"
 #include "doc.hxx"
@@ -112,7 +97,7 @@ namespace binfilter {
 /*N*/   if( Imp()->HasDrawView() &&
 /*N*/       Imp()->GetDrawView()->GetMarkList().GetMarkCount() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 MakeVisible( Imp()->GetDrawView()->GetAllMarkedRect() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else
 /*N*/       SwCrsrShell::MakeSelVisible();
@@ -122,14 +107,14 @@ namespace binfilter {
 /*N*/ void SwFEShell::HideChainMarker()
 /*N*/ {
 /*N*/   if ( pChainFrom )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pChainFrom->Hide();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   if ( pChainTo )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pChainTo->Hide();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ void SwFEShell::SetChainMarker()
 /*N*/ {
-/*N*/   FASTBOOL bDelFrom = TRUE,
+/*N*/   bool bDelFrom = TRUE,
 /*N*/            bDelTo   = TRUE;
 /*N*/   if ( IsFrmSelected() )
 /*N*/   {
@@ -137,10 +122,10 @@ namespace binfilter {
 /*?*/
 /*?*/       XPolygon aPoly(3);
 /*?*/       if ( pFly->GetPrevLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       if ( pFly->GetNextLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/   if ( bDelFrom )
@@ -150,3 +135,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

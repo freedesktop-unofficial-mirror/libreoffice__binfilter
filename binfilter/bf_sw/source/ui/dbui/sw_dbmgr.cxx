@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,211 +32,85 @@
 
 #include <com/sun/star/text/NotePrintMode.hpp>
 
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XCOMPONENTLOADER_HPP_
 #include <com/sun/star/frame/XComponentLoader.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_iXNUMBERFORMATTER_HPP_
 #include <com/sun/star/util/XNumberFormatter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOMPLETEDCONNECTION_HPP_
 #include <com/sun/star/sdb/XCompletedConnection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOMPLETEDEXECUTION_HPP_
 #include <com/sun/star/sdb/XCompletedExecution.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
 #ifndef _COM_SUN_STAR_TEXT_MAILMERGEEVENT_
 #include <com/sun/star/text/MailMergeEvent.hpp>
 #endif
-#ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
-#endif
-#ifndef _LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _MAILENUM_HXX //autogen
-//#include <goodies/mailenum.hxx>
-#endif
 #include <cmdid.h>
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _FLDDAT_HXX
 #include <flddat.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _MODCFG_HXX
 #include <modcfg.hxx>
-#endif
-#ifndef _SWPRTOPT_HXX
 #include <swprtopt.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWWAIT_HXX
 #include <swwait.hxx>
-#endif
-#ifndef _SWUNOHELPER_HXX
 #include <swunohelper.hxx>
-#endif
 
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>
-#endif
 
-#ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XDATASOURCE_HPP_
 #include <com/sun/star/sdbc/XDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
 #include <com/sun/star/sdbc/XRowSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBCX_XTABLESSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XTablesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XQUERIESSUPPLIER_HPP_
 #include <com/sun/star/sdb/XQueriesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
 #include <com/sun/star/sdb/XColumn.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_DATATYPE_HPP_
 #include <com/sun/star/sdbc/DataType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XSTATEMENT_HPP_
 #include <com/sun/star/sdbc/XStatement.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_RESULTSETTYPE_HPP_
 #include <com/sun/star/sdbc/ResultSetType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_UNOMID_HXX
 #include <bf_svx/unomid.hxx>
-#endif
-#ifndef _NUMUNO_HXX
 #include <bf_svtools/numuno.hxx>
-#endif
 
 #include <unomailmerge.hxx>
 
-#ifndef _SFXEVENT_HXX
 #include <bf_sfx2/event.hxx>
-#endif
-#ifndef _SV_MSGBOX_HXX
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _SVX_DATACCESSDESCRIPTOR_HXX_
 #include <bf_svx/dataaccessdescriptor.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <osl/mutex.hxx>
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #include "bf_so3/staticbaseurl.hxx"
+
 namespace binfilter {
 using namespace svx;
 using namespace ::com::sun::star;
@@ -267,9 +142,8 @@ const sal_Char cDataSourceName[] = "DataSourceName";
 const sal_Char cSelection[] = "Selection";
 const sal_Char cActiveConnection[] = "ActiveConnection";
 
-/* -----------------09.12.2002 12:35-----------------
- *
- * --------------------------------------------------*/
+
+
 
 /*N*/ class SwConnectionDisposedListener_Impl : public cppu::WeakImplHelper1
 /*N*/ < ::com::sun::star::lang::XEventListener >
@@ -300,19 +174,18 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
     Beschreibung: CTOR
  --------------------------------------------------------------------*/
 
-/*N*/ SwNewDBMgr::SwNewDBMgr() :
-/*N*/             pImpl(new SwNewDBMgr_Impl(*this)),
-/*N*/             pMergeEvtSrc(NULL),
-/*N*/             bInMerge(FALSE),
-/*N*/             bMergeLock(FALSE),
-/*N*/             bMergeSilent(FALSE),
-/*N*/           nMergeType(DBMGR_INSERT),
-/*N*/           bInitDBFields(FALSE)
+/*N*/ SwNewDBMgr::SwNewDBMgr()
+/*N*/ : nMergeType(DBMGR_INSERT)
+/*N*/ , bInitDBFields(FALSE)
+/*N*/ , bInMerge(FALSE)
+/*N*/ , bMergeSilent(FALSE)
+/*N*/ , bMergeLock(FALSE)
+/*N*/ , pImpl(new SwNewDBMgr_Impl(*this))
+/*N*/ , pMergeEvtSrc(NULL)
 /*N*/ {
 /*N*/ }
-/* -----------------------------18.07.00 08:56--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*M*/ SwNewDBMgr::~SwNewDBMgr()
 /*M*/ {
 /*M*/     for(USHORT nPos = 0; nPos < aDataSourceParams.Count(); nPos++)
@@ -334,9 +207,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/     }
 /*M*/     delete pImpl;
 /*M*/ }
-/* -----------------------------03.07.00 17:12--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*?*/ Reference< sdbc::XConnection> SwNewDBMgr::GetConnection(const String& rDataSource,
 /*?*/                                                   Reference<XDataSource>& rxSource)
 /*?*/ {
@@ -368,7 +240,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/   }
 /*?*/   return xConnection;
 /*?*/ }
-/* -----------------------------06.07.00 14:28--------------------------------
+/* ---------------------------------------------------------------------------
     checks if a desired data source table or query is open
  ---------------------------------------------------------------------------*/
 /*N*/ BOOL    SwNewDBMgr::IsDataSourceOpen(const String& rDataSource,
@@ -392,14 +264,12 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/     }
 /*N*/     return sal_False;
 /*N*/ }
-/* -----------------------------10.07.01 14:28--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ BOOL SwNewDBMgr::ToNextRecord(
-/*N*/     const String& rDataSource, const String& rCommand, sal_Int32 nCommandType)
+/*N*/     const String& rDataSource, const String& rCommand, sal_Int32 /*nCommandType*/)
 /*N*/ {
 /*N*/     SwDSParam* pFound = 0;
-/*N*/     BOOL bRet = TRUE;
 /*N*/     if(pImpl->pMergeData &&
 /*N*/         rDataSource == (String)pImpl->pMergeData->sDataSource &&
 /*N*/         rCommand == (String)pImpl->pMergeData->sCommand)
@@ -414,9 +284,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/     }
 /*N*/     return ToNextRecord(pFound);
 /*N*/ }
-/* -----------------------------10.07.01 14:38--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ BOOL SwNewDBMgr::ToNextRecord(SwDSParam* pParam)
 /*N*/ {
 /*N*/     BOOL bRet = TRUE;
@@ -453,9 +322,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/     return bRet;
 /*N*/ }
 
-/* -----------------------------13.07.00 10:41--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_uInt32    SwNewDBMgr::GetSelectedRecordId()
 /*N*/ {
 /*N*/   sal_uInt32  nRet = 0;
@@ -471,15 +339,13 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
-/* -----------------------------13.07.00 10:58--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32 nSet)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+
+/*N*/ sal_Bool SwNewDBMgr::ToRecordId(sal_Int32)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
-/* -----------------------------17.07.00 14:17--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ BOOL SwNewDBMgr::OpenDataSource(const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType)
 /*N*/ {
 /*?*/     SwDBData aData;
@@ -539,9 +405,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/   }
 /*?*/   return pFound->xResultSet.is();
 /*N*/ }
-/* -----------------------------14.08.2001 10:26------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*?*/ Reference< XConnection> SwNewDBMgr::RegisterConnection(::rtl::OUString& rDataSource)
 /*?*/ {
 /*?*/     SwDSParam* pFound = SwNewDBMgr::FindDSConnection(rDataSource, TRUE);
@@ -561,9 +426,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*?*/   }
 /*?*/     return pFound->xConnection;
 /*?*/ }
-/* -----------------------------17.07.00 15:55--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_uInt32      SwNewDBMgr::GetSelectedRecordId(
 /*N*/     const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType)
 /*N*/ {
@@ -602,7 +466,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   return nRet;
 /*N*/ }
 
-/* -----------------------------17.07.00 14:18--------------------------------
+/* ---------------------------------------------------------------------------
     close all data sources - after fields were updated
  ---------------------------------------------------------------------------*/
 /*N*/ void  SwNewDBMgr::CloseAll(BOOL bIncludingMerge)
@@ -626,9 +490,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/         }
 /*N*/     }
 /*N*/ }
-/* -----------------------------17.07.00 14:54--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDSParam* SwNewDBMgr::FindDSData(const SwDBData& rData, BOOL bCreate)
 /*N*/ {
 /*N*/   SwDSParam* pFound = 0;
@@ -668,9 +531,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   }
 /*N*/   return pFound;
 /*N*/ }
-/* -----------------------------14.08.2001 10:27------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDSParam*  SwNewDBMgr::FindDSConnection(const ::rtl::OUString& rDataSource, BOOL bCreate)
 /*N*/ {
 /*N*/   SwDSParam* pFound = 0;
@@ -702,7 +564,7 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/   return pFound;
 /*N*/ }
 
-/* -----------------------------17.07.00 14:31--------------------------------
+/* ---------------------------------------------------------------------------
     rDBName: <Source> + DB_DELIM + <Table>; + <Statement>
  ---------------------------------------------------------------------------*/
 /*M*/ void    SwNewDBMgr::AddDSData(const SwDBData& rData, long nSelStart, long nSelEnd)
@@ -725,9 +587,8 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/     else
 /*M*/         pFound->aSelection.realloc(0);
 /*M*/ }
-/* -----------------------------17.07.00 14:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*M*/ void    SwNewDBMgr::GetDSSelection(const SwDBData& rData, long& rSelStart, long& rSelEnd)
 /*M*/ {
 /*M*/     SwDSParam* pFound = FindDSData(rData, FALSE);
@@ -739,31 +600,27 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/         pFound->aSelection.getConstArray()[pFound->aSelection.getLength() - 1] >>= rSelEnd;
 /*M*/     }
 /*M*/ }
-/* -----------------------------17.07.00 14:34--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const SwDBData&   SwNewDBMgr::GetAddressDBName()
 /*N*/ {
 /*N*/   return SW_MOD()->GetDBConfig()->GetAddressSource();
 /*N*/ }
-/* -----------------09.12.2002 12:38-----------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SwConnectionDisposedListener_Impl::SwConnectionDisposedListener_Impl(SwNewDBMgr& rMgr) :
 /*N*/     rDBMgr(rMgr)
 /*N*/ {};
-/* -----------------09.12.2002 12:39-----------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ SwConnectionDisposedListener_Impl::~SwConnectionDisposedListener_Impl()
 /*N*/ {};
-/* -----------------09.12.2002 12:39-----------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void SwConnectionDisposedListener_Impl::disposing( const EventObject& rSource )
 /*N*/         throw (RuntimeException)
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard(Application::GetSolarMutex());
+/*N*/     SolarMutexGuard aGuard;
 /*N*/     Reference<XConnection> xSource(rSource.Source, UNO_QUERY);
 /*N*/     for(USHORT nPos = rDBMgr.aDataSourceParams.Count(); nPos; nPos--)
 /*N*/     {
@@ -777,3 +634,5 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

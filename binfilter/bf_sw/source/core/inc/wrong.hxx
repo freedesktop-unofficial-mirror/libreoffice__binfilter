@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -63,7 +64,7 @@ public:
         { if( STRING_LEN == GetBeginInv() ) SetInvalid( nBegin, nEnd );
           else _Invalidate( nBegin, nEnd ); }
     BOOL InvalidateWrong();
-    void Move( xub_StrLen nPos, long nDiff ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void Move( xub_StrLen nPos, long nDiff );
+    void Move( xub_StrLen /*nPos*/, long /*nDiff*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     // Divide the list into two part, the wrong words until nSplitPos will be
     // removed and transferred to a new SwWrongList.
@@ -84,3 +85,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

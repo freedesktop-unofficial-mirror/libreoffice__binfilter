@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,7 +26,6 @@
  *
  ************************************************************************/
 
-/*?*/ // #include "sbcomp.hxx"
 #include "scanner.hxx"
 #include "sbintern.hxx"
 #include "token.hxx"
@@ -38,12 +38,8 @@
 #include <math.h>   // atof()
 #endif
 #include <rtl/math.hxx>
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
 namespace binfilter {
 
@@ -77,18 +73,7 @@ SbiScanner::SbiScanner( const ::rtl::OUString& rBuf, StarBASIC* p ) : aBuf( rBuf
 SbiScanner::~SbiScanner()
 {}
 
-/*?*/ // void SbiScanner::LockColumn()
-/*?*/ // {
-/*?*/ //    if( !nColLock++ )
-/*?*/ //        nSavedCol1 = nCol1;
-/*?*/ // }
-/*?*/ //
-/*?*/ // void SbiScanner::UnlockColumn()
-/*?*/ // {
-/*?*/ //    if( nColLock )
-/*?*/ //        nColLock--;
-/*?*/ // }
-/*?*/ //
+
 void SbiScanner::GenError( SbError code )
 {
     if( GetSbData()->bBlockCompilerError )
@@ -249,7 +234,7 @@ BOOL SbiScanner::NextSym()
         BOOL bBufOverflow = FALSE;
         while( strchr( "0123456789.DEde", *pLine ) && *pLine )
         {
-            // AB 4.1.1996: Buffer voll? -> leer weiter scannen
+            // Buffer full?  Stop scanning
             if( (p-buf) == (BUF_SIZE-1) )
             {
                 bBufOverflow = TRUE;
@@ -271,8 +256,6 @@ BOOL SbiScanner::NextSym()
                 {
                     pLine++; nCol++; continue;
                 }
-//              if( toupper( *pLine ) == 'D' )
-//                  eScanType = SbxDOUBLE;
                 *p++ = 'E'; pLine++; nCol++;
                 // Vorzeichen hinter Exponent?
                 if( *pLine == '+' )
@@ -310,12 +293,6 @@ BOOL SbiScanner::NextSym()
         }
         if( bBufOverflow )
             GenError( SbERR_MATH_OVERFLOW );
-        // zu viele Zahlen fuer SINGLE?
-//      if (ndig > 15 || ncdig > 6)
-//          eScanType = SbxDOUBLE;
-//      else
-//      if( nVal > SbxMAXSNG || nVal < SbxMINSNG )
-//          eScanType = SbxDOUBLE;
 
         // Typkennung?
         SbxDataType t = GetSuffixType( *pLine );
@@ -334,7 +311,6 @@ BOOL SbiScanner::NextSym()
         sal_Unicode cmp1[] = { '0','1','2','3','4','5','6','7','8','9','A','B','C','D','E','F', 0 };
         sal_Unicode cmp2[] = { '0', '1', '2', '3', '4', '5', '6', '7', 0 };
         sal_Unicode *cmp = cmp1;
-        //char *cmp = "0123456789ABCDEF";
         sal_Unicode base = 16;
         sal_Unicode ndig = 8;
         sal_Unicode xch  = *pLine++ & 0xFF; nCol++;
@@ -342,7 +318,6 @@ BOOL SbiScanner::NextSym()
         {
             case 'O':
                 cmp = cmp2; base = 8; ndig = 11; break;
-                //cmp = "01234567"; base = 8; ndig = 11; break;
             case 'H':
                 break;
             default :
@@ -358,11 +333,11 @@ BOOL SbiScanner::NextSym()
             sal_Unicode ch = sal::static_int_cast< sal_Unicode >(
                 toupper( *pLine & 0xFF ) );
             pLine++; nCol++;
-            // AB 4.1.1996: Buffer voll, leer weiter scannen
+
+            // If buffer full, stop scanning.
             if( (p-buf) == (BUF_SIZE-1) )
                 bBufOverflow = TRUE;
             else if( String( cmp ).Search( ch ) != STRING_NOTFOUND )
-            //else if( strchr( cmp, ch ) )
                 *p++ = ch;
             else
             {
@@ -559,3 +534,5 @@ bool LetterTable::isLetterUnicode( sal_Unicode c )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

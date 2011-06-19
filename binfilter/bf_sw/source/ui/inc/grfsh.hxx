@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,11 +36,13 @@ class SwGrfShell: public SwBaseShell
 public:
     SFX_DECL_INTERFACE(SW_GRFSHELL);
 
-    void    ExecAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    ExecAttr(SfxRequest &);
-    void    GetAttrState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  void    GetAttrState(SfxItemSet &);
+    void    ExecAttr(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    GetAttrState(SfxItemSet &){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    SwGrfShell(SwView &rView):SwBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    SwGrfShell(SwView &rView);
+    SwGrfShell(SwView &rView):SwBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -29,9 +30,7 @@
 #ifndef _SV_PRIVSPLT_HXX
 #define _SV_PRIVSPLT_HXX
 
-#ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
-#endif
 
 namespace binfilter
 {
@@ -88,3 +87,5 @@ class SvPrivatSplit : public FixedLine
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,20 +30,18 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "swrect.hxx"
 namespace binfilter {
 
-SV_DECL_VARARR( SwRects, SwRect, 20, 8 )//STRIP008 ;
+SV_DECL_VARARR( SwRects, SwRect, 20, 8 )
 
 class SwRegionRects : public SwRects
 {
     SwRect aOrigin; // die Kopie des StartRects
 
-    inline void InsertRect( const SwRect &rRect, const USHORT nPos, FASTBOOL &rDel);
+    inline void InsertRect( const SwRect &rRect, const USHORT nPos, bool &rDel);
 
 public:
     SwRegionRects( const SwRect& rStartRect, USHORT nInit = 20,
@@ -59,3 +58,5 @@ public:
 
 } //namespace binfilter
 #endif  //_SWREGION_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

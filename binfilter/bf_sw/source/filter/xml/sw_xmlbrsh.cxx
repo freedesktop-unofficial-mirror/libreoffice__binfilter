@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,27 +34,17 @@
 #include "hintids.hxx"
 #include <tools/debug.hxx>
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
 #include <bf_xmloff/xmlimp.hxx>
 #include <bf_xmloff/xmltkmap.hxx>
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include <bf_xmloff/XMLBase64ImportContext.hxx>
-#endif
 
-#ifndef _SVX_UNOMID_HXX
 #include <bf_svx/unomid.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
 #include "xmlbrshi.hxx"
 #include "xmlbrshe.hxx"
@@ -62,10 +53,11 @@
 #include "xmlexpit.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 enum SvXMLTokenMapAttrs
 {
@@ -79,7 +71,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_NGIMG_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aBGImgAttributesAttrTokenMap[] =
+static SvXMLTokenMapEntry aBGImgAttributesAttrTokenMap[] =
 {
     { XML_NAMESPACE_XLINK, XML_HREF,        XML_TOK_BGIMG_HREF      },
     { XML_NAMESPACE_XLINK, XML_TYPE,        XML_TOK_BGIMG_TYPE      },
@@ -103,13 +95,13 @@ void SwXMLBrushItemImportContext::ProcessAttrs(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        switch( aTokenMap.Get( nPrefix, aLocalName ) )
+        switch( aTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_BGIMG_HREF:
             SvXMLImportItemMapper::PutXMLValue(
@@ -138,7 +130,7 @@ void SwXMLBrushItemImportContext::ProcessAttrs(
 }
 
 SvXMLImportContext *SwXMLBrushItemImportContext::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
@@ -149,14 +141,14 @@ SvXMLImportContext *SwXMLBrushItemImportContext::CreateChildContext(
         {
             xBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( xBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     xBase64Stream );
         }
     }
     if( !pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -178,12 +170,12 @@ void SwXMLBrushItemImportContext::EndElement()
 }
 
 SwXMLBrushItemImportContext::SwXMLBrushItemImportContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList >& xAttrList,
         const SvXMLUnitConverter& rUnitConv,
         const SvxBrushItem& rItem ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     pItem( new SvxBrushItem( rItem ) )
 {
     // delete any grephic that is existing
@@ -193,12 +185,12 @@ SwXMLBrushItemImportContext::SwXMLBrushItemImportContext(
 }
 
 SwXMLBrushItemImportContext::SwXMLBrushItemImportContext(
-        SvXMLImport& rImport, sal_uInt16 nPrfx,
+        SvXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         const SvXMLUnitConverter& rUnitConv,
         sal_uInt16 nWhich ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     pItem( new SvxBrushItem( nWhich ) )
 {
     ProcessAttrs( xAttrList, rUnitConv );
@@ -263,3 +255,5 @@ void SwXMLBrushItemExport::exportXML( const SvxBrushItem& rItem )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

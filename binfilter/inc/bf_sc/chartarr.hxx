@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,12 +33,8 @@
 
 // -----------------------------------------------------------------------
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
 class Table;
 namespace binfilter {
 
@@ -148,7 +145,7 @@ public:
     ScChartArray( ScDocument* pDoc, const SchMemChart& rData );
 
     virtual ~ScChartArray();
-    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   DataObject* Clone() const;
+    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}
 
     const ScRangeListRef&   GetRangeList() const { return aRangeListRef; }
     void    SetRangeList( const ScRangeListRef& rNew ) { aRangeListRef = rNew; }
@@ -189,7 +186,7 @@ public:
     ScChartCollection( const ScChartCollection& rColl ):
             Collection( rColl ) {}
 
-    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual   DataObject* Clone() const;
+    virtual DataObject* Clone() const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}
     ScChartArray*       operator[](USHORT nIndex) const
                         { return (ScChartArray*)At(nIndex); }
 
@@ -202,3 +199,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

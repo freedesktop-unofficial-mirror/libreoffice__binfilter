@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,7 +30,6 @@
 #define NF_NFVERSI_HXX
 
 //      file ID's
-
 #define SV_NUMBERFORMATTER_VERSION_SYSTORE      0x0004
 #define SV_NUMBERFORMATTER_VERSION_KEYWORDS     0x0005
 #define SV_NUMBERFORMATTER_VERSION_NEWSTANDARD  0x0006
@@ -67,3 +67,4 @@
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

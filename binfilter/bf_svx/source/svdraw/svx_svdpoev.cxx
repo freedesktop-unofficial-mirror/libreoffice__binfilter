@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -61,7 +62,7 @@ namespace binfilter {
 /*N*/   ImpResetPolyPossibilityFlags();
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
 /*N*/   if (nMarkAnz>0 && !ImpIsFrameHandles()) {
-/*?*/       BOOL bReadOnly=FALSE;
+/*?*/       BOOL bLclReadOnly=FALSE;
 /*?*/       BOOL b1stSmooth=TRUE;
 /*?*/       BOOL b1stSegm=TRUE;
 /*?*/       BOOL bCurve=FALSE;
@@ -123,7 +124,7 @@ namespace binfilter {
 /*?*/               }
 /*?*/           }
 /*?*/       }
-/*?*/       if (bReadOnly) {
+/*?*/       if (bLclReadOnly) {
 /*?*/           bSetMarkedPointsSmoothPossible=FALSE;
 /*?*/           bSetMarkedSegmentsKindPossible=FALSE;
 /*?*/       }
@@ -158,3 +159,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

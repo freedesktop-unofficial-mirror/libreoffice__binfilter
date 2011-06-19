@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 BFPRJ=..
 PRJ=..$/..
 
@@ -36,8 +34,6 @@ PRJNAME=binfilter
 TARGET=bf_sfx
 
 NO_HIDS=TRUE
-
-.INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 
 # --- Settings -----------------------------------------------------
 

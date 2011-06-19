@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,22 +29,14 @@
 #ifndef _SDXMLIMP_HXX
 #define _SDXMLIMP_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATOR_HPP_
 #include <com/sun/star/task/XStatusIndicator.hpp>
-#endif
 namespace binfilter {
 
 ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XDocumentHandler >
@@ -58,3 +51,5 @@ namespace binfilter {
 
 }//end of namespace binfilter
 #endif  //  _SDXMLIMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

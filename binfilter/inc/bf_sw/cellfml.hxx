@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 class SwTable;
@@ -76,7 +75,7 @@ typedef void (SwTableFormula:: *FnScanFormel)( const SwTable&, String&,
     void _MakeFormel( const SwTable&, String&, String&, String* = 0,
                         void* pPara = 0 ) const;
     void _SplitMergeBoxNm( const SwTable&, String&, String&, String* = 0,
-                        void* pPara = 0 ) const{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void* pPara = 0 ) const;
+                        void* = 0 ) const{DBG_BF_ASSERT(0, "STRIP");}
 
     void GetBoxes( const SwTableBox& rStt, const SwTableBox& rEnd,
                     SwSelBoxes& rBoxes ) const;
@@ -145,3 +144,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

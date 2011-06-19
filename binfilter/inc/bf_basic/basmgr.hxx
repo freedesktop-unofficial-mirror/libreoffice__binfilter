@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include "sbstar.hxx"
 
-#ifndef _COM_SUN_STAR_SCRIPT_XLIBRARYCONTAINER_HPP_
 #include <com/sun/star/script/XLibraryContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XSTARBASICACCESS_HPP_
 #include <com/sun/star/script/XStarBasicAccess.hpp>
-#endif
 
 
 class SotStorage;
@@ -203,8 +196,8 @@ public:
     StarBASIC*      GetLib( const String& rName ) const;
     USHORT          GetLibId( const String& rName ) const;
 
-    void            Store( SotStorage& rStorage, const String& rBaseURL );
-    void            Store( SotStorage& rStorage, const String& rBaseURL, BOOL bStoreLibs );
+    void            Store( SotStorage&, const String& ) {}
+    void            Store( SotStorage&, const String&, BOOL ){}
 
     String          GetLibName( USHORT nLib );
 
@@ -244,3 +237,5 @@ void SetAppBasicManager( BasicManager* pBasMgr );
 }
 
 #endif  //_BASMGR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,89 +26,44 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
 #include <tools/debug.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
-#endif
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
 #include "XMLFontStylesContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
-#ifndef _XMLOFF_XMLEVENTIMPORTHELPER_HXX
 #include "XMLEventImportHelper.hxx"
-#endif
-#ifndef _XMLOFF_XMLSTARBASICCONTEXTFACTORY_HXX
 #include "XMLStarBasicContextFactory.hxx"
-#endif
-#ifndef _XMLOFF_XMLSCRIPTCONTEXTFACTORY_HXX
 #include "XMLScriptContextFactory.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
-#endif
 
-#ifndef _COMPHELPER_NAMECONTAINER_HXX_
 #include <comphelper/namecontainer.hxx>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifdef CONV_STAR_FONTS
-#ifndef _VCL_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::osl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::frame;
@@ -118,34 +74,34 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::document;
 using namespace ::binfilter::xmloff::token;
 
-sal_Char __READONLY_DATA sXML_np__office[] = "_office";
-sal_Char __READONLY_DATA sXML_np__style[] = "_style";
-sal_Char __READONLY_DATA sXML_np__text[] = "_text";
-sal_Char __READONLY_DATA sXML_np__table[] = "_table";
-sal_Char __READONLY_DATA sXML_np__draw[] = "_draw";
-sal_Char __READONLY_DATA sXML_np__dr3d[] = "_dr3d";
-sal_Char __READONLY_DATA sXML_np__fo[] = "_fo";
-sal_Char __READONLY_DATA sXML_np__xlink[] = "_xlink";
-sal_Char __READONLY_DATA sXML_np__dc[] = "_dc";
-sal_Char __READONLY_DATA sXML_np__meta[] = "_meta";
-sal_Char __READONLY_DATA sXML_np__number[] = "_number";
-sal_Char __READONLY_DATA sXML_np__svg[] = "_svg";
-sal_Char __READONLY_DATA sXML_np__chart[] = "_chart";
-sal_Char __READONLY_DATA sXML_np__math[] = "_math";
-sal_Char __READONLY_DATA sXML_np__script[] = "_script";
-sal_Char __READONLY_DATA sXML_np__config[] = "_config";
+using rtl::OUString;
 
-sal_Char __READONLY_DATA sXML_np__fo_old[] = "__fo";
-sal_Char __READONLY_DATA sXML_np__xlink_old[] = "__xlink";
-sal_Char __READONLY_DATA sXML_np__office_old[] = "__office";
-sal_Char __READONLY_DATA sXML_np__style_old[] = "__style";
-sal_Char __READONLY_DATA sXML_np__text_old[] = "__text";
-sal_Char __READONLY_DATA sXML_np__table_old[] = "__table";
-sal_Char __READONLY_DATA sXML_np__meta_old[] = "__meta";
+sal_Char const sXML_np__office[] = "_office";
+sal_Char const sXML_np__style[] = "_style";
+sal_Char const sXML_np__text[] = "_text";
+sal_Char const sXML_np__table[] = "_table";
+sal_Char const sXML_np__draw[] = "_draw";
+sal_Char const sXML_np__dr3d[] = "_dr3d";
+sal_Char const sXML_np__fo[] = "_fo";
+sal_Char const sXML_np__xlink[] = "_xlink";
+sal_Char const sXML_np__dc[] = "_dc";
+sal_Char const sXML_np__meta[] = "_meta";
+sal_Char const sXML_np__number[] = "_number";
+sal_Char const sXML_np__svg[] = "_svg";
+sal_Char const sXML_np__chart[] = "_chart";
+sal_Char const sXML_np__math[] = "_math";
+sal_Char const sXML_np__script[] = "_script";
+sal_Char const sXML_np__config[] = "_config";
+
+sal_Char const sXML_np__fo_old[] = "__fo";
+sal_Char const sXML_np__xlink_old[] = "__xlink";
+sal_Char const sXML_np__office_old[] = "__office";
+sal_Char const sXML_np__style_old[] = "__style";
+sal_Char const sXML_np__text_old[] = "__text";
+sal_Char const sXML_np__table_old[] = "__table";
+sal_Char const sXML_np__meta_old[] = "__meta";
 
 #define LOGFILE_AUTHOR "mb93740"
-
-#ifdef CONV_STAR_FONTS
 
 class SvXMLImportEventListener : public ::cppu::WeakImplHelper1<
                             ::com::sun::star::lang::XEventListener >
@@ -171,7 +127,7 @@ SvXMLImportEventListener::~SvXMLImportEventListener()
 }
 
 // XEventListener
-void SAL_CALL SvXMLImportEventListener::disposing( const lang::EventObject& rEventObject )
+void SAL_CALL SvXMLImportEventListener::disposing( const lang::EventObject& /*rEventObject*/ )
     throw(uno::RuntimeException)
 {
     if (pImport)
@@ -198,7 +154,6 @@ public:
             DestroyFontToSubsFontConverter( hMathFontConv );
     }
 };
-#endif
 
 typedef SvXMLImportContext *SvXMLImportContextPtr;
 SV_DECL_PTRARR( SvXMLImportContexts_Impl, SvXMLImportContextPtr, 20, 5 )
@@ -206,7 +161,7 @@ SV_IMPL_PTRARR( SvXMLImportContexts_Impl, SvXMLImportContextPtr )
 
 SvXMLImportContext *SvXMLImport::CreateContext( USHORT nPrefix,
                                          const OUString& rLocalName,
-                                         const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+                                         const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     return new SvXMLImportContext( *this, nPrefix, rLocalName );
 }
@@ -303,23 +258,18 @@ void SvXMLImport::_InitCtor()
 SvXMLImport::SvXMLImport(
     const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& xServiceFactory,
     sal_uInt16 nImportFlags ) throw ()
-:   pImpl( new SvXMLImport_Impl() ),
-    // #110680#
-    mxServiceFactory(xServiceFactory),
-    pNamespaceMap( new SvXMLNamespaceMap ),
-
-    // #110680#
-    // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM ) ),
-    pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM, getServiceFactory() ) ),
-
-    pContexts( new SvXMLImportContexts_Impl ),
-    pNumImport( NULL ),
-    pProgressBarHelper( NULL ),
-    pEventImportHelper( NULL ),
-    pEventListener( NULL ),
-    pXMLErrors( NULL ),
-    mnImportFlags( nImportFlags ),
-    mbIsFormsSupported( sal_True )
+    : pImpl( new SvXMLImport_Impl() )
+    , mxServiceFactory(xServiceFactory)
+    , pNamespaceMap( new SvXMLNamespaceMap )
+    , pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, MAP_100TH_MM, getServiceFactory() ) )
+    , pContexts( new SvXMLImportContexts_Impl )
+    , pNumImport( NULL )
+    , pProgressBarHelper( NULL )
+    , pEventImportHelper( NULL )
+    , pXMLErrors( NULL )
+    , pEventListener( NULL )
+    , mnImportFlags( nImportFlags )
+    , mbIsFormsSupported( sal_True )
 {
     DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
     _InitCtor();
@@ -608,6 +558,8 @@ void SAL_CALL SvXMLImport::endElement( const OUString& rName )
                 "SvXMLImport::endElement: popped context has wrong prefix" );
         DBG_ASSERT( pContext->GetLocalName() == aLocalName,
                 "SvXMLImport::endElement: popped context has wrong lname" );
+#else
+        (void)rName;
 #endif
 
         // Call a EndElement at the current context.
@@ -639,13 +591,13 @@ void SAL_CALL SvXMLImport::characters( const OUString& rChars )
     }
 }
 
-void SAL_CALL SvXMLImport::ignorableWhitespace( const OUString& rWhitespaces )
+void SAL_CALL SvXMLImport::ignorableWhitespace( const OUString& /*rWhitespaces*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
 
-void SAL_CALL SvXMLImport::processingInstruction( const OUString& rTarget,
-                                       const OUString& rData )
+void SAL_CALL SvXMLImport::processingInstruction( const OUString& /*rTarget*/,
+                                       const OUString& /*rData*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
@@ -665,7 +617,7 @@ void SAL_CALL SvXMLImport::endCDATA( void ) throw(uno::RuntimeException)
 {
 }
 
-void SAL_CALL SvXMLImport::comment( const OUString& rComment )
+void SAL_CALL SvXMLImport::comment( const OUString& /*rComment*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
@@ -675,12 +627,12 @@ void SAL_CALL SvXMLImport::allowLineBreak( void )
 {
 }
 
-void SAL_CALL SvXMLImport::unknown( const OUString& sString )
+void SAL_CALL SvXMLImport::unknown( const OUString& /*sString*/ )
     throw(xml::sax::SAXException, uno::RuntimeException)
 {
 }
 
-void SvXMLImport::SetStatisticAttributes(const uno::Reference< xml::sax::XAttributeList > & xAttribs)
+void SvXMLImport::SetStatisticAttributes(const uno::Reference< xml::sax::XAttributeList > & /*xAttribs*/)
 {
     GetProgressBarHelper()->SetRepeat(sal_False);
     GetProgressBarHelper()->SetReference(0);
@@ -710,7 +662,7 @@ void SAL_CALL SvXMLImport::setTargetDocument( const uno::Reference< lang::XCompo
 }
 
 // XFilter
-sal_Bool SAL_CALL SvXMLImport::filter( const uno::Sequence< beans::PropertyValue >& aDescriptor )
+sal_Bool SAL_CALL SvXMLImport::filter( const uno::Sequence< beans::PropertyValue >& /*aDescriptor*/ )
     throw (uno::RuntimeException)
 {
     return sal_False;
@@ -790,7 +742,6 @@ uno::Sequence< OUString > SAL_CALL SvXMLImport::getSupportedServiceNames(  )
     throw(uno::RuntimeException)
 {
     uno::Sequence<OUString> aSeq(2);
-    OUString* pSeq = aSeq.getArray();
     aSeq[0] = OUString(
         RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.ImportFilter"));
     aSeq[1] = OUString(
@@ -1057,11 +1008,11 @@ Reference < XOutputStream > SvXMLImport::ResolveEmbeddedObjectURLFromBase64(
     return xOLEStream;
 }
 
-void SvXMLImport::SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aViewProps)
+void SvXMLImport::SetViewSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& /*aViewProps*/)
 {
 }
 
-void SvXMLImport::SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& aConfigProps)
+void SvXMLImport::SetConfigurationSettings(const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue>& /*aConfigProps*/)
 {
 }
 
@@ -1126,11 +1077,11 @@ void SvXMLImport::AddNumberStyle(sal_Int32 nKey, const OUString& rName)
         }
         catch ( uno::Exception& )
         {
-            DBG_ERROR("Numberformat could not be inserted");
+            OSL_FAIL("Numberformat could not be inserted");
         }
     }
     else
-        DBG_ERROR("not possible to create NameContainer");
+        OSL_FAIL("not possible to create NameContainer");
 }
 
 XMLEventImportHelper& SvXMLImport::GetEventImport()
@@ -1267,7 +1218,6 @@ void SvXMLImport::_CreateDataStylesImport()
 }
 
 
-#ifdef CONV_STAR_FONTS
 sal_Unicode SvXMLImport::ConvStarBatsCharToStarSymbol( sal_Unicode c )
 {
     sal_Unicode cNew = c;
@@ -1303,9 +1253,6 @@ sal_Unicode SvXMLImport::ConvStarMathCharToStarSymbol( sal_Unicode c )
 
     return cNew;
 }
-#endif
-
-
 
 void SvXMLImport::SetError(
     sal_Int32 nId,
@@ -1315,9 +1262,9 @@ void SvXMLImport::SetError(
 {
     // maintain error flags
     if ( ( nId & XMLERROR_FLAG_ERROR ) != 0 )
-        mnErrorFlags |= ERROR_ERROR_OCCURED;
+        mnErrorFlags |= ERROR_ERROR_OCCURRED;
     if ( ( nId & XMLERROR_FLAG_WARNING ) != 0 )
-        mnErrorFlags |= ERROR_WARNING_OCCURED;
+        mnErrorFlags |= ERROR_WARNING_OCCURRED;
     if ( ( nId & XMLERROR_FLAG_SEVERE ) != 0 )
         mnErrorFlags |= ERROR_DO_NOTHING;
 
@@ -1362,3 +1309,5 @@ void SvXMLImport::DisposingModel()
 
 // eof
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

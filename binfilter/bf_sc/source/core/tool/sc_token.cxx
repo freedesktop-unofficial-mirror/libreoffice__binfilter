@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,25 +26,16 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#if STLPORT_VERSION<321
-#include <stddef.h>
-#else
 #include <cstddef>
-#endif
 #include <string.h>
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 #include "compiler.hxx"
 #include "rechead.hxx"
@@ -60,32 +52,32 @@ namespace binfilter {
 
 // ImpTokenIterator wird je Interpreter angelegt, mehrfache auch durch
 // SubCode via ScTokenIterator Push/Pop moeglich
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ImpTokenIterator, 32, 16 )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ImpTokenIterator, 32, 16 )
 
 // Align MemPools on 4k boundaries - 64 bytes (4k is a MUST for OS/2)
 
 // Since RawTokens are temporary for the compiler, don't align on 4k and waste memory.
 // ScRawToken size is FixMembers + MAXSTRLEN ~= 264
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScRawToken, 8, 4 )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScRawToken, 8, 4 )
 // Some ScDoubleRawToken, FixMembers + sizeof(double) ~= 16
 /*N*/ const USHORT nMemPoolDoubleRawToken = 0x0400 / sizeof(ScDoubleRawToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRawToken, nMemPoolDoubleRawToken, nMemPoolDoubleRawToken )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRawToken, nMemPoolDoubleRawToken, nMemPoolDoubleRawToken )
 
 // Need a whole bunch of ScSingleRefToken
 /*N*/ const USHORT nMemPoolSingleRefToken = (0x4000 - 64) / sizeof(ScSingleRefToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSingleRefToken, nMemPoolSingleRefToken, nMemPoolSingleRefToken )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScSingleRefToken, nMemPoolSingleRefToken, nMemPoolSingleRefToken )
 // Need a lot of ScDoubleToken
 /*N*/ const USHORT nMemPoolDoubleToken = (0x3000 - 64) / sizeof(ScDoubleToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleToken, nMemPoolDoubleToken, nMemPoolDoubleToken )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleToken, nMemPoolDoubleToken, nMemPoolDoubleToken )
 // Need a lot of ScByteToken
 /*N*/ const USHORT nMemPoolByteToken = (0x3000 - 64) / sizeof(ScByteToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScByteToken, nMemPoolByteToken, nMemPoolByteToken )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScByteToken, nMemPoolByteToken, nMemPoolByteToken )
 // Need quite a lot of ScDoubleRefToken
 /*N*/ const USHORT nMemPoolDoubleRefToken = (0x2000 - 64) / sizeof(ScDoubleRefToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRefToken, nMemPoolDoubleRefToken, nMemPoolDoubleRefToken )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScDoubleRefToken, nMemPoolDoubleRefToken, nMemPoolDoubleRefToken )
 // Need several ScStringToken
 /*N*/ const USHORT nMemPoolStringToken = (0x1000 - 64) / sizeof(ScStringToken);
-/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScStringToken, nMemPoolStringToken, nMemPoolStringToken )//STRIP008 ;
+/*N*/ IMPL_FIXEDMEMPOOL_NEWDEL( ScStringToken, nMemPoolStringToken, nMemPoolStringToken )
 
 
 // --- helpers --------------------------------------------------------------
@@ -195,6 +187,15 @@ namespace binfilter {
 /*N*/   nRefCnt = 0;
 /*N*/ }
 
+USHORT lcl_ScRawTokenOffset()
+{
+    // offset of cByte in ScRawToken
+    // offsetof(ScRawToken, cByte) gives a warning with gcc, because ScRawToken is no POD
+
+    ScRawToken aToken;
+    return static_cast<USHORT>( reinterpret_cast<char*>(&aToken.cByte) - reinterpret_cast<char*>(&aToken) );
+}
+
 /*N*/ ScRawToken* ScRawToken::Clone() const
 /*N*/ {
 /*N*/   ScRawToken* p;
@@ -207,7 +208,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       USHORT n = offsetof( ScRawToken, cByte );
+/*N*/       static USHORT n = lcl_ScRawTokenOffset();
 /*N*/       switch( eType )
 /*N*/       {
 /*N*/           case svByte:        n++; break;
@@ -453,7 +454,7 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void ScToken::SetByte( BYTE n )
+/*N*/ void ScToken::SetByte( BYTE /*n*/ )
 /*N*/ {
 /*N*/  DBG_ERRORFILE( "ScToken::SetByte: virtual dummy called" );
 /*N*/ }
@@ -506,12 +507,12 @@ namespace binfilter {
 /*N*/   return aDummySingleRef;
 /*N*/  }
 
-/*N*/ void ScToken::CalcAbsIfRel( const ScAddress& rPos )
+/*N*/ void ScToken::CalcAbsIfRel( const ScAddress& /*rPos*/ )
 /*N*/ {
 /*N*/   DBG_ERRORFILE( "ScToken::CalcAbsIfRel: virtual dummy called" );
 /*N*/ }
 
-/*N*/ void ScToken::CalcRelFromAbs( const ScAddress& rPos )
+/*N*/ void ScToken::CalcRelFromAbs( const ScAddress& /*rPos*/ )
 /*N*/ {
 /*N*/   DBG_ERRORFILE( "ScToken::CalcRelFromAbs: virtual dummy called" );
 /*N*/ }
@@ -528,7 +529,7 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/  void ScToken::SetIndex( USHORT n )
+/*N*/  void ScToken::SetIndex( USHORT /*n*/ )
 /*N*/  {
 /*N*/   DBG_ERRORFILE( "ScToken::SetIndex: virtual dummy called" );
 /*N*/  }
@@ -692,6 +693,9 @@ namespace binfilter {
 /*N*/           case svSingleRef:
 /*N*/           case svDoubleRef:
 /*N*/               return t;
+/*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/   return NULL;
@@ -707,6 +711,9 @@ namespace binfilter {
 /*N*/           case svSingleRef:
 /*N*/           case svDoubleRef:
 /*N*/               return t;
+/*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/   return NULL;
@@ -722,6 +729,9 @@ namespace binfilter {
 /*N*/           case svDoubleRef:
 /*N*/           case svIndex:
 /*N*/               return t;
+/*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/   }
 /*N*/   return NULL;
@@ -978,101 +988,6 @@ namespace binfilter {
 /*?*/           DelRPN();
 /*N*/   }
 /*N*/ }
-
-/*N*/ void ScTokenArray::Store( SvStream& rStream, const ScAddress& rPos ) const
-/*N*/ {
-/*N*/   // 0x10 - nRefs
-/*N*/   // 0x20 - nError
-/*N*/   // 0x40 - TokenArray
-/*N*/   // 0x80 - CodeArray
-/*N*/   BYTE cFlags = 0;
-/*N*/   if( nRefs )
-/*N*/       cFlags |= 0x10;
-/*N*/   if( nError )
-/*N*/       cFlags |= 0x20;
-/*N*/   if( nLen )
-/*N*/       cFlags |= 0x40;
-/*N*/   if( nRPN )
-/*N*/       cFlags |= 0x80;
-/*N*/   rStream << cFlags;
-/*N*/   // Hier ggf. Zusatzdaten!
-/*N*/   if ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 )
-/*N*/       rStream << (BYTE) ExportRecalcMode40();
-/*N*/   else
-/*N*/       rStream << (BYTE) nMode;
-/*N*/   if( cFlags & 0x10 )
-/*N*/       rStream << (INT16) nRefs;
-/*N*/   if( cFlags & 0x20 )
-/*N*/       rStream << (UINT16) nError;
-/*N*/   if( cFlags & 0x40 )
-/*N*/   {
-/*N*/       rStream << nLen;
-/*N*/       ScToken** p = pCode;
-/*N*/       for( USHORT i = 0; i < nLen; i++, p++ )
-/*N*/       {
-/*N*/           // gespeichert wurde und wird immer absolut
-/*N*/           switch ( (*p)->GetType() )
-/*N*/           {
-/*N*/               case svSingleRef :
-/*N*/                       (*p)->GetSingleRef().CalcAbsIfRel( rPos );
-/*N*/                   break;
-/*N*/               case svDoubleRef :
-/*N*/                       (*p)->GetDoubleRef().CalcAbsIfRel( rPos );
-/*N*/                   break;
-/*N*/           }
-/*N*/           (*p)->Store( rStream );
-/*N*/       }
-/*N*/   }
-/*N*/   if( cFlags & 0x80 )
-/*N*/   {
-/*N*/       rStream << nRPN;
-/*N*/       ScToken** p = pRPN;
-/*N*/       for( USHORT i = 0; i < nRPN; i++, p++ )
-/*N*/       {
-/*N*/           ScToken* t = *p;
-/*N*/           USHORT nIdx = 0xFFFF;
-/*N*/           if( t->GetRef() > 1 )
-/*N*/           {
-/*N*/               ScToken** p2 = pCode;
-/*N*/               for( USHORT j = 0; j < nLen; j++, p2++ )
-/*N*/               {
-/*N*/                   if( *p2 == t )
-/*N*/                   {
-/*N*/                       nIdx = j; break;
-/*N*/                   }
-/*N*/               }
-/*N*/           }
-/*N*/           // 0xFF      - Token folgt
-/*N*/           // 0x40-0x7F - untere 6 Bits, 1 Byte mit 8 weiteren Bits
-/*N*/           // 0x00-0x3F - Index
-/*N*/           if( nIdx == 0xFFFF )
-/*N*/           {
-/*N*/               // gespeichert wurde und wird immer absolut
-/*N*/               switch ( t->GetType() )
-/*N*/               {
-/*N*/                   case svSingleRef :
-/*N*/                           t->GetSingleRef().CalcAbsIfRel( rPos );
-/*N*/                       break;
-/*?*/                   case svDoubleRef :
-/*?*/                           t->GetDoubleRef().CalcAbsIfRel( rPos );
-/*?*/                       break;
-/*N*/               }
-/*N*/               rStream << (BYTE) 0xFF;
-/*N*/               t->Store( rStream );
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               if( nIdx < 0x40 )
-/*N*/                   rStream << (BYTE) nIdx;
-/*N*/               else
-/*N*/                   rStream << (BYTE) ( ( nIdx & 0x3F ) | 0x40 )
-/*N*/                           << (BYTE) ( nIdx >> 6 );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////
 
 /*N*/ ScTokenArray::ScTokenArray()
 /*N*/ {
@@ -1385,6 +1300,8 @@ namespace binfilter {
 /*N*/                   }
 /*N*/               }
 /*N*/               break;
+/*N*/               default :
+/*N*/               break;
 /*N*/           }
 /*N*/           if ( eOp == ocPush || lcl_IsReference( eOp, t->GetType() )  )
 /*N*/               pStack[sp++] = t;
@@ -1398,7 +1315,7 @@ namespace binfilter {
 /*N*/               sp -= nParams;
 /*N*/               if ( sp < 0 )
 /*N*/               {
-/*N*/                   DBG_ERROR( "ScTokenArray::HasMatrixDoubleRefOps: sp < 0" );
+/*N*/                   OSL_FAIL( "ScTokenArray::HasMatrixDoubleRefOps: sp < 0" );
 /*N*/                   sp = 0;
 /*N*/               }
 /*N*/               pStack[sp++] = pResult;
@@ -1443,7 +1360,7 @@ namespace binfilter {
 /*?*/                   rStream >> nOp;
 /*?*/                   if( nOp > MAXSTRLEN-1 )
 /*?*/                   {
-/*?*/                       DBG_ERROR("Dokument huehnerich");
+/*?*/                       OSL_FAIL("Dokument huehnerich");
 /*?*/                       USHORT nDiff = nOp - (MAXSTRLEN-1);
 /*?*/                       nOp = MAXSTRLEN-1;
 /*?*/                       rStream.Read( c, nOp );
@@ -1493,7 +1410,7 @@ namespace binfilter {
 /*N*/                   aRef.Ref2.OldBoolsToNewFlags( aBools2 );
 /*N*/                   break;
 /*N*/               }
-/*N*/               default: DBG_ERROR("Unknown Stack Variable");
+/*N*/               default: OSL_FAIL("Unknown Stack Variable");
 /*N*/               break;
 /*N*/           }
 /*N*/           break;
@@ -1509,7 +1426,7 @@ namespace binfilter {
 /*?*/           // lieber ein rottes Dokument als stack overwrite
 /*?*/           if( nOp > MAXSTRLEN-2 )
 /*?*/           {
-/*?*/               DBG_ERROR("Dokument huehnerich");
+/*?*/               OSL_FAIL("Dokument huehnerich");
 /*?*/               USHORT nDiff = nOp - (MAXSTRLEN-2);
 /*?*/               nOp = MAXSTRLEN-2;
 /*?*/               rStream.Read( c, nOp );
@@ -1574,16 +1491,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           sal_Char c[ MAXSTRLEN+1 ];
 /*N*/           rStream >> n;
-/*N*/           if( n > MAXSTRLEN-1 )
-/*N*/           {
-/*?*/               DBG_ERRORFILE( "bad string array boundary" );
-/*?*/               USHORT nDiff = n - (MAXSTRLEN-1);
-/*?*/               n = MAXSTRLEN-1;
-/*?*/               rStream.Read( c, n );
-/*?*/               rStream.SeekRel( nDiff );
-/*N*/           }
-/*N*/           else
-/*N*/               rStream.Read( c, n );
+/*N*/           rStream.Read( c, n );
 /*N*/           cStr[ n ] = 0;
 /*N*/           CharSet eSrc = rStream.GetStreamCharSet();
 /*N*/           for ( BYTE j=0; j<n; j++ )
@@ -1594,10 +1502,10 @@ namespace binfilter {
 /*N*/       case svSingleRef:
 /*N*/       case svDoubleRef:
 /*N*/       {
-/*N*/           SingleRefData& r = aRef.Ref1;
-/*N*/           rStream >> r.nCol
-/*N*/                   >> r.nRow
-/*N*/                   >> r.nTab
+/*N*/           SingleRefData& r1 = aRef.Ref1;
+/*N*/           rStream >> r1.nCol
+/*N*/                   >> r1.nRow
+/*N*/                   >> r1.nTab
 /*N*/                   >> n;
 /*N*/           if ( nVer < SC_RELATIVE_REFS )
 /*N*/           {
@@ -1606,18 +1514,18 @@ namespace binfilter {
 /*N*/               aBools.bRelRow = ( ( n >> 2 ) & 0x03 );
 /*N*/               aBools.bRelTab = ( ( n >> 4 ) & 0x03 );
 /*N*/               aBools.bOldFlag3D = ( ( n >> 6 ) & 0x03 );
-/*N*/               r.OldBoolsToNewFlags( aBools );
+/*N*/               r1.OldBoolsToNewFlags( aBools );
 /*N*/           }
 /*N*/           else
-/*N*/               r.CreateFlagsFromLoadByte( n );
+/*N*/               r1.CreateFlagsFromLoadByte( n );
 /*N*/           if( eType == svSingleRef )
-/*N*/               aRef.Ref2 = r;
+/*N*/               aRef.Ref2 = r1;
 /*N*/           else
 /*N*/           {
-/*N*/               SingleRefData& r = aRef.Ref2;
-/*N*/               rStream >> r.nCol
-/*N*/                       >> r.nRow
-/*N*/                       >> r.nTab
+/*N*/               SingleRefData& r2 = aRef.Ref2;
+/*N*/               rStream >> r2.nCol
+/*N*/                       >> r2.nRow
+/*N*/                       >> r2.nTab
 /*N*/                       >> n;
 /*N*/               if ( nVer < SC_RELATIVE_REFS )
 /*N*/               {
@@ -1626,10 +1534,10 @@ namespace binfilter {
 /*N*/                   aBools.bRelRow = ( ( n >> 2 ) & 0x03 );
 /*N*/                   aBools.bRelTab = ( ( n >> 4 ) & 0x03 );
 /*N*/                   aBools.bOldFlag3D = ( ( n >> 6 ) & 0x03 );
-/*N*/                   r.OldBoolsToNewFlags( aBools );
+/*N*/                   r2.OldBoolsToNewFlags( aBools );
 /*N*/               }
 /*N*/               else
-/*N*/                   r.CreateFlagsFromLoadByte( n );
+/*N*/                   r2.CreateFlagsFromLoadByte( n );
 /*N*/           }
 /*N*/           break;
 /*N*/       }
@@ -1668,87 +1576,6 @@ namespace binfilter {
 /*?*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ void ScToken::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   short i;
-/*N*/   rStream << (UINT16) eOp << (BYTE) eType;
-/*N*/   switch( eType )
-/*N*/   {
-/*N*/       case svByte:
-/*N*/           rStream << GetByte();
-/*N*/           break;
-/*N*/       case svDouble:
-/*N*/           rStream << GetDouble();
-/*N*/           break;
-/*N*/       case svExternal:
-/*N*/       {
-/*N*/           ByteString aTmp( GetExternal(), rStream.GetStreamCharSet() );
-/*N*/           aTmp.Erase( 255 );      // old SO5 can't handle more
-/*N*/           rStream << GetByte()
-/*N*/                   << (UINT8) aTmp.Len();
-/*N*/           rStream.Write( aTmp.GetBuffer(), (UINT8) aTmp.Len() );
-/*N*/       }
-/*N*/           break;
-/*N*/       case svString:
-/*N*/       {
-/*N*/           ByteString aTmp( GetString(), rStream.GetStreamCharSet() );
-/*N*/           aTmp.Erase( 255 );      // old SO5 can't handle more
-/*N*/           rStream << (UINT8) aTmp.Len();
-/*N*/           rStream.Write( aTmp.GetBuffer(), (UINT8) aTmp.Len() );
-/*N*/       }
-/*N*/           break;
-/*N*/       case svSingleRef:
-/*N*/       {
-/*N*/           const SingleRefData& r = GetSingleRef();
-/*N*/           BYTE n = r.CreateStoreByteFromFlags();
-/*N*/           rStream << (INT16) r.nCol
-/*N*/                   << (INT16) r.nRow
-/*N*/                   << (INT16) r.nTab
-/*N*/                   << (BYTE) n;
-/*N*/       }
-/*N*/           break;
-/*N*/       case svDoubleRef:
-/*N*/       {
-/*N*/           const ComplRefData& rRef = GetDoubleRef();
-/*N*/           const SingleRefData& r1 = rRef.Ref1;
-/*N*/           BYTE n = r1.CreateStoreByteFromFlags();
-/*N*/           rStream << (INT16) r1.nCol
-/*N*/                   << (INT16) r1.nRow
-/*N*/                   << (INT16) r1.nTab
-/*N*/                   << (BYTE) n;
-/*N*/           const SingleRefData& r2 = rRef.Ref2;
-/*N*/           n = r2.CreateStoreByteFromFlags();
-/*N*/           rStream << (INT16) r2.nCol
-/*N*/                   << (INT16) r2.nRow
-/*N*/                   << (INT16) r2.nTab
-/*N*/                   << (BYTE) n;
-/*N*/       }
-/*N*/           break;
-/*N*/       case svIndex:
-/*N*/           rStream << (UINT16) GetIndex();
-/*N*/           break;
-/*N*/       case svJump:
-/*N*/       {
-/*N*/           short* pJump = GetJump();
-/*N*/           rStream << (BYTE) pJump[ 0 ];
-/*N*/           for( i = 1; i <= pJump[ 0 ]; i++ )
-/*N*/               rStream << (UINT16) pJump[ i ];
-/*N*/       }
-/*N*/           break;
-/*?*/       case svMissing:
-/*?*/       case svErr:
-/*?*/           break;
-/*?*/       default:
-/*?*/       {
-/*?*/           BYTE* pUnknown = GetUnknown();
-/*?*/           if ( pUnknown )
-/*?*/               rStream.Write( pUnknown, pUnknown[ 0 ] );
-/*?*/       }
-/*N*/   }
-/*N*/ }
-
-/*----------------------------------------------------------------------*/
 
 /*N*/ ScTokenIterator::ScTokenIterator( const ScTokenArray& rArr )
 /*N*/ {
@@ -1819,3 +1646,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

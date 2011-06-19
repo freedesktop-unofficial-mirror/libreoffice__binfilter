@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,68 +28,33 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
-
-
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-
-
-
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
-
-
-
-#ifndef _SVX_UNOFILL_HXX_
 #include <unofill.hxx>
-#endif
-
-#ifndef _SVX_UNONRULE_HXX
 #include <unonrule.hxx>
-#endif
-
-#ifndef _SVTOOLS_UNOIMAP_HXX
 #include <bf_svtools/unoimap.hxx>
-#endif
 
-#ifndef _SVX_FMDPAGE_HXX
 #include <fmdpage.hxx>
-#endif
-#ifndef _SVX_FMMODEL_HXX
 #include <fmmodel.hxx>
-#endif
-
-#ifndef _SVX_FMPAGE_HXX
 #include <fmpage.hxx>
-#endif
 
-#ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>
-#endif
-
-#ifndef _SVX_UNOAPI_HXX_
 #include <unoapi.hxx>
-#endif
 
 #include "globl3d.hxx"
 #include "unofield.hxx"
 #include "unomodel.hxx"
 #include "svdobj.hxx"
 #include "unoshape.hxx"
-namespace binfilter {
+#include <boost/unordered_map.hpp>
 
-extern UHashMapEntry pSdrShapeIdentifierMap[];
+namespace binfilter {
 
 //-////////////////////////////////////////////////////////////////////
 
 using namespace ::rtl;
 using namespace ::osl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 //-////////////////////////////////////////////////////////////////////
@@ -161,11 +127,6 @@ sal_Bool SvxUnoDrawMSFactory::createEvent( const SdrModel* pDoc, const SdrHint* 
 
     switch( pSdrHint->GetKind() )
     {
-//              case HINT_LAYERCHG:             // Layerdefinition geaendert
-//              case HINT_LAYERORDERCHG:        // Layerreihenfolge geaendert (Insert/Remove/ChangePos)
-//              case HINT_LAYERSETCHG:          // Layerset geaendert
-//              case HINT_LAYERSETORDERCHG:     // Layersetreihenfolge geaendert (Insert/Remove/ChangePos)
-
         case HINT_PAGECHG:              // Page geaendert
             aEvent.EventName = OUString( RTL_CONSTASCII_USTRINGPARAM( "PageModified" ) );
             pPage = pSdrHint->GetPage();
@@ -186,12 +147,6 @@ sal_Bool SvxUnoDrawMSFactory::createEvent( const SdrModel* pDoc, const SdrHint* 
             aEvent.EventName = OUString( RTL_CONSTASCII_USTRINGPARAM( "ShapeRemoved" ) );
             pObj = pSdrHint->GetObject();
             break;
-//                HINT_DEFAULTTABCHG,   // Default Tabulatorweite geaendert
-//                HINT_DEFFONTHGTCHG,   // Default FontHeight geaendert
-//                HINT_CONTROLINSERTED, // UnoControl wurde eingefuegt
-//                HINT_CONTROLREMOVED,  // UnoControl wurde entfernt
-//                HINT_SWITCHTOPAGE,    // #94278# UNDO/REDO at an object evtl. on another page
-//                HINT_OBJLISTCLEAR     // Is called before an SdrObjList will be cleared
         default:
             return sal_False;
     }
@@ -206,14 +161,14 @@ sal_Bool SvxUnoDrawMSFactory::createEvent( const SdrModel* pDoc, const SdrHint* 
     return sal_True;
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstance( const OUString& ServiceSpecifier )
+uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstance( const OUString& rServiceSpecifier )
     throw( uno::Exception, uno::RuntimeException )
 {
     const OUString aDrawingPrefix( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.drawing.") );
 
-    if( ServiceSpecifier.compareTo( aDrawingPrefix, aDrawingPrefix.getLength() ) == 0 )
+    if( rServiceSpecifier.compareTo( aDrawingPrefix, aDrawingPrefix.getLength() ) == 0 )
     {
-        UINT32 nType = aSdrShapeIdentifierMap.getId( ServiceSpecifier );
+        sal_uInt32 nType = UHashMap::getId( rServiceSpecifier );
         if( nType != UHASHMAP_NOTFOUND )
         {
             UINT16 nT = (UINT16)(nType & ~E3D_INVENTOR_FLAG);
@@ -223,7 +178,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstance( 
         }
     }
 
-    uno::Reference< uno::XInterface > xRet( createTextField( ServiceSpecifier ) );
+    uno::Reference< uno::XInterface > xRet( createTextField( rServiceSpecifier ) );
     if( !xRet.is() )
         throw lang::ServiceNotRegisteredException();
 
@@ -286,7 +241,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createTextField(
     return xRet;
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstanceWithArguments( const OUString& ServiceSpecifier, const uno::Sequence< ::com::sun::star::uno::Any >& Arguments )
+uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstanceWithArguments( const OUString& /*rServiceSpecifier*/, const uno::Sequence< ::com::sun::star::uno::Any >& /*rArguments*/ )
     throw( uno::Exception, uno::RuntimeException )
 {
     throw lang::NoSupportException();
@@ -296,28 +251,7 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawMSFactory::createInstanceWi
 uno::Sequence< OUString > SAL_CALL SvxUnoDrawMSFactory::getAvailableServiceNames()
     throw( uno::RuntimeException )
 {
-    UHashMapEntry* pMap = pSdrShapeIdentifierMap;
-
-    UINT32 nCount = 0;
-    while (pMap->aIdentifier.getLength())
-    {
-        pMap++;
-        nCount++;
-    }
-
-    uno::Sequence< OUString > aSeq( nCount );
-    OUString* pStrings = aSeq.getArray();
-
-    pMap = pSdrShapeIdentifierMap;
-    UINT32 nIdx = 0;
-    while(pMap->aIdentifier.getLength())
-    {
-        pStrings[nIdx] = pMap->aIdentifier;
-        pMap++;
-        nIdx++;
-    }
-
-    return aSeq;
+    return UHashMap::getServiceNames();
 }
 
 uno::Sequence< OUString > SvxUnoDrawMSFactory::concatServiceNames( uno::Sequence< OUString >& rServices1, uno::Sequence< OUString >& rServices2 ) throw()
@@ -437,7 +371,7 @@ sal_Bool SAL_CALL SvxUnoDrawingModel::hasControllersLocked(  )
 uno::Reference< drawing::XDrawPages > SAL_CALL SvxUnoDrawingModel::getDrawPages()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XDrawPages >  xDrawPages( mxDrawPagesAccess );
 
@@ -451,7 +385,7 @@ uno::Reference< drawing::XDrawPages > SAL_CALL SvxUnoDrawingModel::getDrawPages(
 uno::Reference< uno::XInterface > SAL_CALL SvxUnoDrawingModel::createInstance( const OUString& aServiceSpecifier )
     throw(uno::Exception, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     if( 0 == aServiceSpecifier.reverseCompareToAsciiL( RTL_CONSTASCII_STRINGPARAM("com.sun.star.drawing.DashTable") ) )
     {
@@ -647,7 +581,7 @@ uno::Sequence< OUString > SAL_CALL SvxUnoDrawingModel::getSupportedServiceNames(
 }
 
 // XAnyCompareFactory
-uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SvxUnoDrawingModel::createAnyCompareByName( const OUString& PropertyName )
+uno::Reference< ::com::sun::star::ucb::XAnyCompare > SAL_CALL SvxUnoDrawingModel::createAnyCompareByName( const OUString& /*rPropertyName*/ )
     throw(uno::RuntimeException)
 {
     return SvxCreateNumRuleCompare();
@@ -670,7 +604,7 @@ SvxUnoDrawPagesAccess::~SvxUnoDrawPagesAccess() throw()
 sal_Int32 SAL_CALL SvxUnoDrawPagesAccess::getCount()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     sal_Int32 nCount = 0;
 
@@ -683,7 +617,7 @@ sal_Int32 SAL_CALL SvxUnoDrawPagesAccess::getCount()
 uno::Any SAL_CALL SvxUnoDrawPagesAccess::getByIndex( sal_Int32 Index )
     throw(lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -735,7 +669,7 @@ sal_Bool SAL_CALL SvxUnoDrawPagesAccess::hasElements()
 uno::Reference< drawing::XDrawPage > SAL_CALL SvxUnoDrawPagesAccess::insertNewByIndex( sal_Int32 nIndex )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XDrawPage > xDrawPage;
 
@@ -758,7 +692,7 @@ uno::Reference< drawing::XDrawPage > SAL_CALL SvxUnoDrawPagesAccess::insertNewBy
 void SAL_CALL SvxUnoDrawPagesAccess::remove( const uno::Reference< drawing::XDrawPage >& xPage )
         throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     sal_uInt16 nPageCount = mrModel.mpDoc->GetPageCount();
     if( nPageCount > 1 )
@@ -799,3 +733,5 @@ uno::Sequence< OUString > SAL_CALL SvxUnoDrawPagesAccess::getSupportedServiceNam
 
 #endif
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

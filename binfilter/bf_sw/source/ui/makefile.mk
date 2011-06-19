@@ -25,24 +25,18 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
 PRJNAME=binfilter
 TARGET=sw_ui
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 
@@ -67,7 +61,6 @@ LIB1FILES= \
         $(SLB)$/sw_app.lib      \
         $(SLB)$/sw_config.lib   \
         $(SLB)$/sw_dbui.lib     \
-        $(SLB)$/sw_dochdl.lib   \
         $(SLB)$/sw_utlui.lib    \
         $(SLB)$/sw_fldui.lib    \
         $(SLB)$/sw_globdoc.lib  \
@@ -79,7 +72,6 @@ LIB1FILES= \
 .INCLUDE :  target.mk
 
 ################################################################
-
 
 kill:
     @$(RM) $(SLB)$/ui.lst

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -117,17 +118,6 @@ SfxPoolItem* SfxXRangeItem::Create(SvStream &rStream, USHORT) const
     return new SfxXRangeItem( Which(), nVon, nBis );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxXRangeItem::Store(SvStream &rStream, USHORT) const
-{
-    rStream << nFrom;
-    rStream << nTo;
-    return rStream;
-}
-
-//=========================================================================
-
 SfxXRangesItem::SfxXRangesItem()
 :   _pRanges(0)
 {
@@ -207,19 +197,10 @@ SfxPoolItem* SfxXRangesItem::Create( SvStream &rStream, USHORT ) const
     return new SfxXRangesItem( Which(), rStream );
 }
 
-//-------------------------------------------------------------------------
-
-SvStream& SfxXRangesItem::Store( SvStream &rStream, USHORT ) const
-{
-    NUMTYPE nCount = Count_Impl( _pRanges );
-    rStream >> nCount;
-    for ( NUMTYPE n = 0; _pRanges[n]; ++n )
-        rStream >> _pRanges[n];
-    return rStream;
-}
-
 
 #undef NUMTYPE
 #undef SfxXRangeItem
 #undef SfxXRangesItem
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,12 @@
 
 #include <bf_svtools/szitem.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_SIZE_HPP_
 #include <com/sun/star/awt/Size.hpp>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 #include "memberid.hrc"
@@ -132,15 +125,7 @@ SfxPoolItem* SfxSizeItem::Create(SvStream &rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxSizeItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxSizeItem, 0);
-    rStream << aVal;
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-BOOL  SfxSizeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+bool  SfxSizeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
                                BYTE nMemberId ) const
 {
     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
@@ -164,20 +149,20 @@ BOOL  SfxSizeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
             rVal <<= aTmp.getWidth(); break;
         case MID_HEIGHT:
             rVal <<= aTmp.getHeight(); break;
-        default: DBG_ERROR("Wrong MemberId!"); return FALSE;
+        default: OSL_FAIL("Wrong MemberId!"); return false;
     }
 
-    return TRUE;
+    return false;
 }
 
 // -----------------------------------------------------------------------
-BOOL SfxSizeItem::PutValue( const com::sun::star::uno::Any& rVal,
+bool SfxSizeItem::PutValue( const com::sun::star::uno::Any& rVal,
                             BYTE nMemberId )
 {
     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
     nMemberId &= ~CONVERT_TWIPS;
 
-    BOOL bRet = FALSE;
+    bool bRet = false;
     com::sun::star::awt::Size aValue;
     sal_Int32 nVal = 0;
     if ( !nMemberId )
@@ -213,3 +198,5 @@ BOOL SfxSizeItem::PutValue( const com::sun::star::uno::Any& rVal,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

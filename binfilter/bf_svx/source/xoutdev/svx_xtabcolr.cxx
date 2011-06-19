@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,8 @@
 
 #ifndef SVX_LIGHT
 
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 
 #include "xmlxtimp.hxx"
@@ -50,7 +47,8 @@ namespace binfilter {
 #define GLOBALOVERFLOW
 
 using namespace ::com::sun::star;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 sal_Unicode const pszExtColor[]  = {'s','o','c'};
 
@@ -171,39 +169,13 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XColorTable::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckColor0, 4 );
-    pStream->WriteByteString(String( pszChckColor0, 4 ));
-
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XColorTable::Create()
 /*N*/ {
 /*N*/   XubString aStr;
 /*N*/   xub_StrLen nLen;
 /*N*/   ResMgr& rRes = DIALOG_MGR();
 /*N*/
-/*N*/   static USHORT __READONLY_DATA aResId[] =
+/*N*/   static USHORT const aResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_BLACK,
 /*N*/       RID_SVXSTR_BLUE,
@@ -232,7 +204,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   // BM: ifndef VCL part removed (deprecated)
 /*N*/
-/*N*/   static ColorData __READONLY_DATA aColTab[] =
+/*N*/   static ColorData const aColTab[] =
 /*N*/   {
 /*N*/       COL_BLACK,
 /*N*/       COL_BLUE,
@@ -463,7 +435,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XColorTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XColorTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -472,7 +444,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 
 /*N*/ XubString& XColorTable::ConvertName( XubString& rStrName )
 /*N*/ {
-/*N*/   static USHORT __READONLY_DATA aDefResId[] =
+/*N*/   static USHORT const aDefResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_BLUEGREY_DEF,
 /*N*/       RID_SVXSTR_BLACK_DEF,
@@ -501,7 +473,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       RID_SVXSTR_SEABLUE_DEF,
 /*N*/       RID_SVXSTR_COLOR_SUN_DEF
 /*N*/   };
-/*N*/   static USHORT __READONLY_DATA aResId[] =
+/*N*/   static USHORT const aResId[] =
 /*N*/   {
 /*N*/       RID_SVXSTR_BLUEGREY,
 /*N*/       RID_SVXSTR_BLACK,
@@ -533,7 +505,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/   BOOL bFound = FALSE;
 /*N*/
-/*N*/   for( int i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
+/*N*/   for( size_t i=0; i<(sizeof(aDefResId) / sizeof(USHORT)) && !bFound; i++ )
 /*N*/   {
 /*N*/       XubString aStrDefName = SVX_RESSTR( aDefResId[i] );
 /*N*/       if( rStrName.Search( aStrDefName ) == 0 )
@@ -564,7 +536,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/   USHORT       nGreen;
 /*N*/   USHORT       nBlue;
 /*N*/   Color        aColor;
-/*N*/   XubString    aName;
+/*N*/   XubString    aLclName;
 /*N*/
 /*N*/   rIn >> nType;
 /*N*/
@@ -576,9 +548,9 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/       {
 /*N*/           rIn >> nIndex;
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -587,7 +559,7 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/           aColor = Color( (BYTE) ( nRed   >> 8 ),
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
-/*N*/           pEntry = new XColorEntry( aColor, aName);
+/*N*/           pEntry = new XColorEntry( aColor, aLclName);
 /*N*/           Insert (nIndex, pEntry);
 /*N*/       }
 /*N*/   }
@@ -601,11 +573,11 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/
 /*N*/           rIn >> nIndex;
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
-/*N*/           if( aIOC.GetVersion() >= 0 )
+/*N*/           /*if( aIOC.GetVersion() >= 0 )*/
 /*N*/           {
 /*N*/               rIn >> nRed;
 /*N*/               rIn >> nGreen;
@@ -614,14 +586,8 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/                               (BYTE) ( nGreen >> 8 ),
 /*N*/                               (BYTE) ( nBlue  >> 8 ) );
 /*N*/           }
-            /*
-            else if( aIOC.GetVersion() >= 1 )
-            {
-                // lesen neuer Daten ...
-            }
-            */
 /*N*/
-/*N*/           pEntry = new XColorEntry( aColor, aName );
+/*N*/           pEntry = new XColorEntry( aColor, aLclName );
 /*N*/           Insert( nIndex, pEntry );
 /*N*/       }
 /*N*/   }
@@ -629,3 +595,5 @@ static char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };      // = 6.0
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
 namespace binfilter {
 class SfxItemSet;
 
@@ -103,7 +102,7 @@ public:
 
 
     static SfxPrinter*      Create( SvStream &rStream, SfxItemSet *pOptions );
-    SvStream&               Store( SvStream &rStream ) const;
+    SvStream&               Store( SvStream &rStream ) const { return rStream; }
 
 
     const SfxItemSet&       GetOptions() const { return *pOptions; }
@@ -119,3 +118,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

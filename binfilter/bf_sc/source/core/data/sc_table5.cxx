@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -59,7 +57,7 @@ namespace binfilter {
 /*N*/                                   Find( aPageStyle, SFX_STYLE_FAMILY_PAGE );
 /*N*/   if ( !pStyle )
 /*N*/   {
-/*N*/       DBG_ERROR("UpdatePageBreaks: Style nicht gefunden");
+/*N*/       OSL_FAIL("UpdatePageBreaks: Style nicht gefunden");
 /*N*/       return;
 /*N*/   }
 /*N*/   SfxItemSet* pStyleSet = &pStyle->GetItemSet();
@@ -323,6 +321,8 @@ namespace binfilter {
 /*?*/                   case CELLTYPE_FORMULA :
 /*?*/                       ((ScFormulaCell*)pCell)->SetDirty();
 /*?*/                       break;
+/*?*/                   default :
+/*?*/                       break;
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -355,6 +355,8 @@ namespace binfilter {
 /*?*/                       case CELLTYPE_FORMULA :
 /*?*/                           ((ScFormulaCell*)pCell)->SetDirty();
 /*?*/                           break;
+/*?*/                       default:
+/*?*/                               break;
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -367,3 +369,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,38 +36,18 @@
 #include <list>
 #endif
 
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEET_HPP_
 #include <com/sun/star/sheet/XSpreadsheet.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_XCELL_HPP_
 #include <com/sun/star/table/XCell.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSHEETANNOTATION_HPP_
 #include <com/sun/star/sheet/XSheetAnnotation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef SC_DETFUNC_HXX
 #include "detfunc.hxx"
-#endif
-#ifndef SC_DETDATA_HXX
 #include "detdata.hxx"
-#endif
 namespace binfilter {
 
 class   ScHorizontalCellIterator;
@@ -397,3 +378,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 #include "numrule.hxx"
-#ifndef _NDARR_HXX //autogen
 #include "ndarr.hxx"
-#endif
 #include "ndindex.hxx"
 namespace binfilter {
 
@@ -71,3 +70,5 @@ BOOL _NumUpDown( const SwNodePtr& rpNode, void* pPara );
 
 } //namespace binfilter
 #endif  // _NUMPARA_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

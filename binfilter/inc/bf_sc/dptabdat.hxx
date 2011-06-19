@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 class TypedStrCollection;
@@ -123,7 +122,6 @@ public:
                 //! or separate Str and ValueCollection
 
     virtual long                    GetColumnCount() = 0;
-    virtual const TypedStrCollection&   GetColumnEntries(long nColumn) = 0;
     virtual String                  getDimensionName(long nColumn) = 0;
     virtual BOOL                    getIsDataLayoutDimension(long nColumn) = 0;
     virtual BOOL                    IsDateDimension(long nDim) = 0;
@@ -138,3 +136,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

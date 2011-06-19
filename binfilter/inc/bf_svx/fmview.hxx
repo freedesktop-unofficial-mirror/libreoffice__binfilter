@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,16 +33,10 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
-#ifndef _E3D_VIEW3D_HXX
 #include <bf_svx/view3d.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 
 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
@@ -127,3 +122,4 @@ private:
 }//end of namespace binfilter
 #endif          // _FML_FMVIEW_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

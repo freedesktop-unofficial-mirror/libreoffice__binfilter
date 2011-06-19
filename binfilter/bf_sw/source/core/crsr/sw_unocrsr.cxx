@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwUnoCrsrTbl, SwUnoCrsrPtr )
@@ -74,7 +65,7 @@ namespace binfilter {
 /*N*/       if( USHRT_MAX != nDelPos )
 /*N*/           rTbl.Remove( nDelPos );
 /*N*/       else
-/*N*/           ASSERT( !this, "UNO Cursor nicht mehr im Array" );
+/*N*/           OSL_ENSURE( !this, "UNO Cursor nicht mehr im Array" );
 /*N*/   }
 /*N*/
 /*N*/   // den gesamten Ring loeschen!
@@ -88,16 +79,7 @@ namespace binfilter {
 
 /*N*/ SwUnoCrsr::operator SwUnoCrsr* () { return this; }
 
-/*
-
-SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
-{
-    return new SwUnoCrsr( *GetPoint(), pRing );
-}
-
-*/
-
-/*N*/ FASTBOOL SwUnoCrsr::IsSelOvr( int eFlags )
+/*N*/ bool SwUnoCrsr::IsSelOvr( int eFlags )
 /*N*/ {
 /*N*/   if( bRemainInSection )
 /*N*/   {
@@ -189,36 +171,30 @@ SwCursor* SwUnoCrsr::Create( SwPaM* pRing ) const
 
 /*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 while( aTblSel.GetNext() != &aTblSel )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwUnoTableCrsr::operator SwUnoCrsr* ()        { return this; }
 /*N*/ SwUnoTableCrsr::operator SwTableCursor* ()    { return this; }
 /*N*/ SwUnoTableCrsr::operator SwUnoTableCrsr* ()   { return this; }
 
-/*
-SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
-{
-    return SwUnoCrsr::Create( pRing );
-}
-*/
 
-/*N*/ FASTBOOL SwUnoTableCrsr::IsSelOvr( int eFlags )
+/*N*/ bool SwUnoTableCrsr::IsSelOvr( int /*eFlags*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 FASTBOOL bRet = SwUnoCrsr::IsSelOvr( eFlags );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ void SwUnoTableCrsr::MakeBoxSels()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*  */
 
 /*N*/ SwUnoCrsr* SwDoc::CreateUnoCrsr( const SwPosition& rPos, BOOL bTblCrsr )
 /*N*/ {
-/*N*/   SwUnoCrsr* pNew;
+/*N*/   SwUnoCrsr* pNew = NULL;
 /*N*/   if( bTblCrsr )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pNew = new SwUnoTableCrsr( rPos );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   else
 /*N*/       pNew = new SwUnoCrsr( rPos );
 /*N*/
@@ -227,3 +203,5 @@ SwCursor* SwUnoTableCrsr::Create( SwPaM* pRing ) const
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

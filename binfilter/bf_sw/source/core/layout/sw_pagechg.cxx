@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,39 +31,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
 #include <tgrditem.hxx>
 
 #include "viewimp.hxx"
@@ -84,17 +65,12 @@
 #include "flyfrms.hxx"
 #include "frmsh.hxx"
 #include "pagedesc.hxx"
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
 |*
 |*  SwBodyFrm::SwBodyFrm()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 01. Aug. 93
 |*
 |*************************************************************************/
 /*N*/ SwBodyFrm::SwBodyFrm( SwFrmFmt *pFmt ):
@@ -107,11 +83,8 @@ namespace binfilter {
 |*
 |*  SwBodyFrm::Format()
 |*
-|*  Ersterstellung      MA 30. May. 94
-|*  Letzte Aenderung    MA 20. Jan. 99
-|*
 |*************************************************************************/
-/*N*/ void SwBodyFrm::Format( const SwBorderAttrs *pAttrs )
+/*N*/ void SwBodyFrm::Format( const SwBorderAttrs* /*pAttrs*/ )
 /*N*/ {
 /*N*/   //Formatieren des Body ist zu einfach, deshalb bekommt er ein eigenes
 /*N*/   //Format; Umrandungen und dergl. sind hier nicht zu beruecksichtigen.
@@ -186,9 +159,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::SwPageFrm(), ~SwPageFrm()
-|*
-|*  Ersterstellung      MA 20. Oct. 92
-|*  Letzte Aenderung    MA 08. Dec. 97
 |*
 |*************************************************************************/
 /*N*/ SwPageFrm::SwPageFrm( SwFrmFmt *pFmt, SwPageDesc *pPgDsc ) :
@@ -280,7 +250,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/           else if ( pObj->GetUserCall() )
 /*N*/             {
-/*N*/                 // OD 24.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/                 // consider 'virtual' drawing objects
 /*N*/                 if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/                 {
 /*N*/                     SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pObj);
@@ -374,8 +344,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Erzeugt die Spezifischen Flys zur Seite und formatiert
 |*      generischen Cntnt
-|*  Ersterstellung      MA 20. Oct. 92
-|*  Letzte Aenderung    MA 09. Nov. 95
 |*
 |*************************************************************************/
 /*N*/ void MA_FASTCALL lcl_FormatLay( SwLayoutFrm *pLay )
@@ -423,7 +391,7 @@ namespace binfilter {
 /*N*/           pSdrObj = 0;
 /*N*/           if ( bSdrObj  && 0 == (pSdrObj = pFmt->FindSdrObject()) )
 /*N*/           {
-/*N*/               ASSERT( FALSE, "DrawObject not found." );
+/*N*/               OSL_ENSURE( FALSE, "DrawObject not found." );
 /*N*/               pFmt->GetDoc()->DelFrmFmt( pFmt );
 /*N*/               --i;
 /*N*/               continue;
@@ -438,7 +406,7 @@ namespace binfilter {
 /*N*/           SwPageFrm *pPg = pPage->IsEmptyPage() ? (SwPageFrm*)pPage->GetNext() : pPage;
 /*N*/           if ( bSdrObj )
 /*N*/           {
-/*N*/                 // OD 23.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/                 // consider 'virtual' drawing objects
 /*N*/                 if ( pSdrObj->ISA(SwDrawVirtObj) )
 /*N*/                 {
 /*N*/                     SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pSdrObj);
@@ -525,9 +493,6 @@ namespace binfilter {
 |*
 |*  SwPageFrm::Modify()
 |*
-|*  Ersterstellung      MA 20. Oct. 92
-|*  Letzte Aenderung    MA 03. Mar. 96
-|*
 |*************************************************************************/
 /*N*/ void SwPageFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
 /*N*/ {
@@ -590,17 +555,17 @@ namespace binfilter {
 /*N*/           //Abgesehen von den Grossenverhaeltnissen sind noch andere
 /*N*/           //Dinge betroffen.
 /*N*/           //1. Spaltigkeit.
-/*N*/           ASSERT( pOld && pNew, "FMT_CHG Missing Format." );
+/*N*/           OSL_ENSURE( pOld && pNew, "FMT_CHG Missing Format." );
 /*N*/           const SwFmt* pOldFmt = ((SwFmtChg*)pOld)->pChangedFmt;
 /*N*/           const SwFmt* pNewFmt = ((SwFmtChg*)pNew)->pChangedFmt;
-/*N*/           ASSERT( pOldFmt && pNewFmt, "FMT_CHG Missing Format." );
+/*N*/           OSL_ENSURE( pOldFmt && pNewFmt, "FMT_CHG Missing Format." );
 /*N*/
 /*N*/           const SwFmtCol &rOldCol = pOldFmt->GetCol();
 /*N*/           const SwFmtCol &rNewCol = pNewFmt->GetCol();
 /*N*/           if( rOldCol != rNewCol )
 /*N*/           {
 /*N*/               SwLayoutFrm *pB = FindBodyCont();
-/*N*/               ASSERT( pB, "Seite ohne Body." );
+/*N*/               OSL_ENSURE( pB, "Seite ohne Body." );
 /*N*/               pB->ChgColumns( rOldCol, rNewCol );
 /*N*/                 rInvFlags |= 0x20;
 /*N*/           }
@@ -624,7 +589,7 @@ namespace binfilter {
 /*N*/           if ( GetFmt()->GetDoc()->IsBrowseMode() )
 /*N*/           {
 /*N*/                 bValidSize = FALSE;
-/*N*/                 // OD 28.10.2002 #97265# - Don't call <SwPageFrm::MakeAll()>
+/*N*/                 // Don't call <SwPageFrm::MakeAll()>
 /*N*/                 // Calculation of the page is not necessary, because its size is
 /*N*/                 // is invalidated here and further invalidation is done in the
 /*N*/                 // calling method <SwPageFrm::Modify(..)> and probably by calling
@@ -655,7 +620,7 @@ namespace binfilter {
 /*N*/       case RES_COL:
 /*N*/       {
 /*N*/           SwLayoutFrm *pB = FindBodyCont();
-/*N*/           ASSERT( pB, "Seite ohne Body." );
+/*N*/           OSL_ENSURE( pB, "Seite ohne Body." );
 /*N*/           pB->ChgColumns( *(const SwFmtCol*)pOld, *(const SwFmtCol*)pNew );
 /*N*/             rInvFlags |= 0x22;
 /*N*/       }
@@ -673,7 +638,7 @@ namespace binfilter {
 /*N*/             break;
 /*N*/
 /*N*/       case RES_PAGEDESC_FTNINFO:
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //Die derzeit einzig sichere Methode:
+/*N*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           break;
 /*N*/         case RES_FRAMEDIR :
 /*?*/             CheckDirChange();
@@ -701,8 +666,6 @@ namespace binfilter {
 |*                SwPageFrm::GetInfo()
 |*
 |*    Beschreibung      erfragt Informationen
-|*    Ersterstellung    JP 31.03.94
-|*    Letzte Aenderung  JP 31.03.94
 |*
 *************************************************************************/
     // erfrage vom Modify Informationen
@@ -710,9 +673,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::SetPageDesc()
-|*
-|*  Ersterstellung      MA 02. Nov. 94
-|*  Letzte Aenderung    MA 02. Nov. 94
 |*
 |*************************************************************************/
 /*N*/ void  SwPageFrm::SetPageDesc( SwPageDesc *pNew, SwFrmFmt *pFmt )
@@ -737,8 +697,6 @@ namespace binfilter {
 |*          Dokument oder Standard (der 0-te) wenn der erste Absatz keinen
 |*          wuenscht.
 |*     (6.  Im HTML-Mode ist der Pagedesc immer die HTML-Seitenvorlage.)
-|*  Ersterstellung      MA 15. Feb. 93
-|*  Letzte Aenderung    MA 17. Jun. 99
 |*
 |*************************************************************************/
 /*N*/ SwPageDesc *SwPageFrm::FindPageDesc()
@@ -801,15 +759,12 @@ namespace binfilter {
 /*N*/       pRet = (SwPageDesc*)&GetFmt()->GetDoc()->GetPageDesc( 0 );
 /*N*/
 /*N*/
-/*N*/   ASSERT( pRet, "Kein Descriptor gefunden." );
+/*N*/   OSL_ENSURE( pRet, "Kein Descriptor gefunden." );
 /*N*/   return pRet;
 /*N*/ }
 /*************************************************************************
 |*
 |*  SwPageFrm::AdjustRootSize()
-|*
-|*  Ersterstellung      MA 13. Aug. 93
-|*  Letzte Aenderung    MA 25. Jun. 95
 |*
 |*************************************************************************/
 //Wenn der RootFrm seine Groesse aendert muss benachrichtigt werden.
@@ -899,7 +854,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       case CHG_CHGPAGE:
 /*N*/           {
-/*N*/               ASSERT( pOld, "ChgPage ohne OldValue nicht moeglich." );
+/*N*/               OSL_ENSURE( pOld, "ChgPage ohne OldValue nicht moeglich." );
 /*N*/                 if ( pOld->Width() < nFix )
 /*N*/               {
 /*N*/                     if ( nFix > GetUpper()->Prt().Width() )
@@ -913,7 +868,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/
 /*N*/       default:
-/*?*/           ASSERT( FALSE, "Neuer Typ fuer PageChg." );
+/*?*/           OSL_ENSURE( FALSE, "Neuer Typ fuer PageChg." );
 /*N*/   }
 /*N*/
 /*N*/   if ( nDiff > 0 )
@@ -947,9 +902,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::Cut()
-|*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 22. Jun. 95
 |*
 |*************************************************************************/
 /*N*/ inline void SetLastPage( SwPageFrm *pPage )
@@ -1020,17 +972,14 @@ namespace binfilter {
 |*
 |*  SwPageFrm::Paste()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 07. Dec. 94
-|*
 |*************************************************************************/
 /*N*/ void SwPageFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent->IsRootFrm(), "Parent ist keine Root." );
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent->IsRootFrm(), "Parent ist keine Root." );
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -1070,9 +1019,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwPageFrm::PrepareRegisterChg()
-|*
-|*  Ersterstellung      AMA 22. Jul. 96
-|*  Letzte Aenderung    AMA 22. Jul. 96
 |*
 |*************************************************************************/
 /*N*/ void lcl_PrepFlyInCntRegister( SwCntntFrm *pFrm )
@@ -1137,13 +1083,10 @@ namespace binfilter {
 |*      aufgespuehrt werden, so wird versucht die Situation moeglichst
 |*      einfache zu bereinigen.
 |*
-|*  Ersterstellung      MA 10. Feb. 93
-|*  Letzte Aenderung    MA 18. Apr. 96
-|*
 |*************************************************************************/
 /*N*/ void SwFrm::CheckPageDescs( SwPageFrm *pStart, BOOL bNotifyFields )
 /*N*/ {
-/*N*/   ASSERT( pStart, "Keine Startpage." );
+/*N*/   OSL_ENSURE( pStart, "Keine Startpage." );
 /*N*/
 /*N*/   ViewShell *pSh   = pStart->GetShell();
 /*N*/   SwViewImp *pImp  = pSh ? pSh->Imp() : 0;
@@ -1273,7 +1216,7 @@ namespace binfilter {
 /*N*/ #ifdef DBG_UTIL
 /*N*/           else
 /*N*/           {
-/*?*/               ASSERT( FALSE, "CheckPageDescs, missing solution" );
+/*?*/               OSL_ENSURE( FALSE, "CheckPageDescs, missing solution" );
 /*N*/           }
 /*N*/ #endif
 /*N*/       }
@@ -1326,7 +1269,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if ( bEmpty )
 /*N*/           {
-/*?*/               ASSERT( FALSE, "Doppelte Leerseiten." );
+/*?*/               OSL_ENSURE( FALSE, "Doppelte Leerseiten." );
 /*?*/               break;  //Einmal reicht.
 /*N*/           }
 /*N*/           bEmpty = TRUE;
@@ -1338,7 +1281,7 @@ namespace binfilter {
 /*N*/ //moeglich: Ein paar Seiten, auf der ersten 'erste Seite' anwenden,
 /*N*/ //rechte als folge der ersten, linke als folge der rechten, rechte als
 /*N*/ //folge der linken.
-/*N*/ //        ASSERT( pPg->GetPageDesc() == pPg->FindPageDesc(),
+/*N*/ //        OSL_ENSURE( pPg->GetPageDesc() == pPg->FindPageDesc(),
 /*N*/ //                "Seite mit falschem Descriptor." );
 /*N*/
 /*N*/       pPg = (SwPageFrm*)pPg->GetNext();
@@ -1349,10 +1292,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::InsertPage()
-|*
-|*  Beschreibung
-|*  Ersterstellung      MA 10. Feb. 93
-|*  Letzte Aenderung    MA 27. Jul. 93
 |*
 |*************************************************************************/
 /*N*/ SwPageFrm *SwFrm::InsertPage( SwPageFrm *pPrevPage, BOOL bFtn )
@@ -1383,7 +1322,7 @@ namespace binfilter {
 /*N*/   if ( !pDesc )
 /*N*/       pDesc = pPrevPage->GetPageDesc()->GetFollow();
 /*N*/
-/*N*/   ASSERT( pDesc, "Missing PageDesc" );
+/*N*/   OSL_ENSURE( pDesc, "Missing PageDesc" );
 /*N*/   if( !(bWishedOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt()) )
 /*N*/       bWishedOdd = !bWishedOdd;
 /*N*/
@@ -1414,7 +1353,7 @@ namespace binfilter {
 /*N*/           bCheckPages = TRUE;
 /*N*/   }
 /*N*/   pFmt = bWishedOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt();
-/*N*/   ASSERT( pFmt, "Descriptor without format." );
+/*N*/   OSL_ENSURE( pFmt, "Descriptor without format." );
 /*N*/   SwPageFrm *pPage = new SwPageFrm( pFmt, pDesc );
 /*N*/   pPage->Paste( pRoot, pSibling );
 /*N*/   pPage->PreparePage( bFtn );
@@ -1468,12 +1407,9 @@ namespace binfilter {
 |*
 |*  SwRootFrm::GrowFrm()
 |*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 05. May. 94
-|*
 |*************************************************************************/
 
-/*N*/ SwTwips SwRootFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
+/*N*/ SwTwips SwRootFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
 /*N*/   if ( !bTst )
 /*N*/         Frm().SSize().Height() += nDist;
@@ -1483,14 +1419,11 @@ namespace binfilter {
 |*
 |*  SwRootFrm::ShrinkFrm()
 |*
-|*  Ersterstellung      MA 30. Jul. 92
-|*  Letzte Aenderung    MA 05. May. 94
-|*
 |*************************************************************************/
-/*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
+/*N*/ SwTwips SwRootFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL /*bInfo*/ )
 /*N*/ {
-/*N*/   ASSERT( nDist >= 0, "nDist < 0." );
-/*N*/     ASSERT( nDist <= Frm().Height(), "nDist > als aktuelle Groesse." );
+/*N*/   OSL_ENSURE( nDist >= 0, "nDist < 0." );
+/*N*/     OSL_ENSURE( nDist <= Frm().Height(), "nDist > als aktuelle Groesse." );
 /*N*/
 /*N*/   if ( !bTst )
 /*N*/         Frm().SSize().Height() -= nDist;
@@ -1512,9 +1445,6 @@ namespace binfilter {
 |*              - einmal fuer die Endnotenseiten.
 |*              - und einmal fuer die Seiten des Bodytextes.
 |*
-|*  Ersterstellung      MA 20. May. 92
-|*  Letzte Aenderung    MA 10. Jan. 95
-|*
 |*************************************************************************/
 void SwRootFrm::RemoveSuperfluous()
 {
@@ -1535,7 +1465,7 @@ void SwRootFrm::RemoveSuperfluous()
             //Nur weil die Seite Flys hat sind wir noch lange nicht fertig,
             //denn wenn alle Flys an generischem Inhalt haengen, so ist sie
             //trotzdem ueberfluessig (Ueberpruefung auf DocBody sollte reichen).
-            // OD 19.06.2003 #108784# - consider that drawing objects in
+            // consider that drawing objects in
             // header/footer are supported now.
             bool bOnlySuperfluosObjs = true;
             SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
@@ -1545,7 +1475,6 @@ void SwRootFrm::RemoveSuperfluous()
                 if ( pO->IsWriterFlyFrame() )
                 {
                     SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-                    // OD 19.06.2003 #108784# - correction
                     if ( !pFly->GetAnchor()->FindFooterOrHeader() )
                     {
                         bOnlySuperfluosObjs = false;
@@ -1553,7 +1482,7 @@ void SwRootFrm::RemoveSuperfluous()
                 }
                 else
                 {
-                    // OD 19.06.2003 #108784# - determine, if drawing object
+                    // determine, if drawing object
                     // isn't anchored in header/footer frame. If so, drawing
                     // object isn't superfluos.
                     SwFrm* pAnchorFrm = 0L;
@@ -1579,8 +1508,7 @@ void SwRootFrm::RemoveSuperfluous()
             bExistEssentialObjs = !bOnlySuperfluosObjs;
         }
 
-        // OD 19.06.2003 #108784# - optimization: check first, if essential objects
-        // exists.
+        // optimization: check first, if essential objects exists.
         if ( bExistEssentialObjs || pPage->FindFirstBodyCntnt() || pPage->FindFtnCont() )
         {
             if ( pPage->IsFtnPage() )
@@ -1588,7 +1516,7 @@ void SwRootFrm::RemoveSuperfluous()
                 while ( pPage->IsFtnPage() )
                 {
                     pPage = (SwPageFrm*)pPage->GetPrev();
-                    ASSERT( pPage, "Nur noch Endnotenseiten uebrig." );
+                    OSL_ENSURE( pPage, "Nur noch Endnotenseiten uebrig." );
                 }
                 continue;
             }
@@ -1624,9 +1552,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*  Beschreibung        Stellt sicher, dass genuegend Seiten vorhanden
 |*      sind, damit alle Seitengebundenen Rahmen und DrawObject
 |*      untergebracht sind.
-|*
-|*  Ersterstellung      MA 27. Jul. 93
-|*  Letzte Aenderung    MA 24. Apr. 97
 |*
 |*************************************************************************/
 /*N*/ void SwRootFrm::AssertFlyPages()
@@ -1692,10 +1617,10 @@ void SwRootFrm::RemoveSuperfluous()
 /*?*/
 /*?*/           if ( pPage )
 /*?*/           {
-/*?*/               SwPageDesc *pDesc = pPage->FindPageDesc();
+/*?*/               SwPageDesc *pDesc1 = pPage->FindPageDesc();
 /*?*/               bOdd = pPage->OnRightPage();
 /*?*/               if ( pPage->GetFmt() !=
-/*?*/                    (bOdd ? pDesc->GetRightFmt() : pDesc->GetLeftFmt()) )
+/*?*/                    (bOdd ? pDesc1->GetRightFmt() : pDesc1->GetLeftFmt()) )
 /*?*/                   RemoveFtns( pPage, FALSE, TRUE );
 /*?*/           }
 /*N*/       }
@@ -1709,9 +1634,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*  Beschreibung        Stellt sicher, dass ab der uebergebenen Seite
 |*      auf allen Seiten die Seitengebunden Objecte auf der richtigen
 |*      Seite (Seitennummer stehen).
-|*
-|*  Ersterstellung      MA 02. Nov. 94
-|*  Letzte Aenderung    MA 10. Aug. 95
 |*
 |*************************************************************************/
 /*N*/ void SwRootFrm::AssertPageFlys( SwPageFrm *pPage )
@@ -1744,7 +1666,7 @@ void SwRootFrm::RemoveSuperfluous()
 /*?*/ #else
 /*?*/                       const USHORT nCnt = pPage->GetSortedObjs()->Count();
 /*?*/                       pFmt->SwModify::Modify( 0, (SwFmtAnchor*)&rAnch );
-/*?*/                       ASSERT( !pPage->GetSortedObjs() ||
+/*?*/                       OSL_ENSURE( !pPage->GetSortedObjs() ||
 /*?*/                               nCnt != pPage->GetSortedObjs()->Count(),
 /*?*/                               "Kann das Obj nicht umhaengen." );
 /*?*/ #endif
@@ -1761,9 +1683,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*
 |*  SwRootFrm::ChgSize()
 |*
-|*  Ersterstellung      MA 24. Jul. 92
-|*  Letzte Aenderung    MA 13. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::ChgSize( const Size& aNewSize )
 /*N*/ {
@@ -1775,9 +1694,6 @@ void SwRootFrm::RemoveSuperfluous()
 /*************************************************************************
 |*
 |*  SwRootFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 17. Nov. 92
-|*  Letzte Aenderung    MA 19. Apr. 93
 |*
 |*************************************************************************/
 /*N*/ void SwRootFrm::MakeAll()
@@ -1800,9 +1716,6 @@ void SwRootFrm::RemoveSuperfluous()
 |*
 |*  SwRootFrm::ImplInvalidateBrowseWidth()
 |*
-|*  Ersterstellung      MA 08. Jun. 96
-|*  Letzte Aenderung    MA 08. Jun. 96
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::ImplInvalidateBrowseWidth()
 /*N*/ {
@@ -1819,13 +1732,10 @@ void SwRootFrm::RemoveSuperfluous()
 |*
 |*  SwRootFrm::ImplCalcBrowseWidth()
 |*
-|*  Ersterstellung      MA 07. Jun. 96
-|*  Letzte Aenderung    MA 13. Jun. 96
-|*
 |*************************************************************************/
 /*N*/ void SwRootFrm::ImplCalcBrowseWidth()
 /*N*/ {
-/*N*/   ASSERT( GetFmt()->GetDoc()->IsBrowseMode(),
+/*N*/   OSL_ENSURE( GetFmt()->GetDoc()->IsBrowseMode(),
 /*N*/           "CalcBrowseWidth and not in BrowseView" );
 /*N*/
 /*N*/   //Die (minimale) Breite wird von Rahmen, Tabellen und Zeichenobjekten
@@ -1868,16 +1778,19 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                   ((const SwTabFrm *)pFrm)->GetTable()
 /*N*/                                           ->GetHTMLTableLayout();
 /*N*/               if ( pLayoutInfo )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nWidth = Min( nWidth, pLayoutInfo->GetBrowseWidthMin() );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               switch ( rHori.GetHoriOrient() )
 /*N*/               {
 /*?*/                   case HORI_NONE:
-/*?*/                                               // OD 23.01.2003 #106895# - add 1st param to <SwBorderAttrs::CalcRight(..)>
-/*?*/                         nWidth += rAttrs.CalcLeft( pFrm ) + rAttrs.CalcRight( pFrm );
+/*?*/                       // add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*?*/                       nWidth += rAttrs.CalcLeft( pFrm ) + rAttrs.CalcRight( pFrm );
 /*?*/                       break;
 /*?*/                   case HORI_LEFT_AND_WIDTH:
 /*?*/                       nWidth += rAttrs.CalcLeft( pFrm );
+/*?*/                       break;
+/*?*/                   default:
+/*?*/                       break;
 /*N*/               }
 /*N*/               nBrowseWidth = Max( nBrowseWidth, nWidth );
 /*N*/           }
@@ -1888,9 +1801,9 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/           {
 /*N*/               SdrObject *pObj = (*pFrm->GetDrawObjs())[i];
 /*N*/               SwFrmFmt *pFmt = ::binfilter::FindFrmFmt( pObj );
-/*N*/               const FASTBOOL bFly = pObj->IsWriterFlyFrame();
-/*N*/               if ( bFly &&
-/*N*/                    WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()||
+/*N*/               const bool bFly = pObj->IsWriterFlyFrame();
+/*N*/               if ( (bFly &&
+/*N*/                    WEIT_WECH == ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm()->Frm().Width()) ||
 /*N*/                    pFmt->GetFrmSize().GetWidthPercent() )
 /*?*/                   continue;
 /*N*/
@@ -1916,6 +1829,9 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/                               case HORI_LEFT:
 /*?*/                                   if ( PRTAREA == rHori.GetRelationOrient() )
 /*?*/                                       nWidth += pFrm->Prt().Left();
+/*N*/                                   break;
+/*N*/                               default:
+/*N*/                                   break;
 /*N*/                           }
 /*N*/                       }
 /*N*/                       else
@@ -1932,7 +1848,8 @@ void SwRootFrm::RemoveSuperfluous()
 /*N*/ //                        nWidth += rLR.GetLeft() + rLR.GetRight();
 /*N*/                       }
 /*N*/                       break;
-/*N*/                   default:    /* do nothing */;
+/*N*/                   default:
+/*N*/                       break;
 /*N*/               }
 /*N*/               nBrowseWidth = Max( nBrowseWidth, nWidth );
 /*N*/           }
@@ -1944,9 +1861,6 @@ void SwRootFrm::RemoveSuperfluous()
 /*************************************************************************
 |*
 |*  SwRootFrm::StartAllAction()
-|*
-|*  Ersterstellung      MA 08. Mar. 98
-|*  Letzte Aenderung    MA 08. Mar. 98
 |*
 |*************************************************************************/
 
@@ -1990,3 +1904,5 @@ void SwRootFrm::RemoveSuperfluous()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

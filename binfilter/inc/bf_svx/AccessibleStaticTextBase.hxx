@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,13 @@
 
 #include <memory>
 
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLE_HPP_
 #include <com/sun/star/accessibility/XAccessible.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_ACCESSIBILITY_XACCESSIBLETEXT_HPP_
 #include <com/sun/star/accessibility/XAccessibleText.hpp>
-#endif
 
 namespace binfilter {
 
@@ -270,3 +265,5 @@ namespace accessibility
 
 }//end of namespace binfilter
 #endif /* _SVX_ACCESSILE_STATIC_TEXT_BASE_HXX_ */
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

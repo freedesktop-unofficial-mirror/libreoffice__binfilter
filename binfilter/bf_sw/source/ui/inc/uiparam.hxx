@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _UIPARAM_HXX
 #define _UIPARAM_HXX
 
-#ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
 namespace binfilter {
 
 /*--------------------------------------------------------------------
@@ -63,3 +62,5 @@ namespace binfilter {
 
 } //namespace binfilter
 #endif // _UIPARAM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

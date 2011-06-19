@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,35 +28,17 @@
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-#ifndef _SW_XPRINTPREVIEWSETTINGS_HXX_
 #include <SwXPrintPreviewSettings.hxx>
-#endif
-#ifndef _COMPHELPER_CHAINABLEPROPERTYSETINFO_HXX_
 #include <comphelper/ChainablePropertySetInfo.hxx>
-#endif
-#ifndef _PVPRTDAT_HXX
 #include <pvprtdat.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PropertyAttribute_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PropertyAttribute_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -100,9 +83,8 @@ SwXPrintPreviewSettings::SwXPrintPreviewSettings( SwDoc *pDoc)
 , mpDoc( pDoc)
 {
 }
-/*-- 17.12.98 12:54:05---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+
 SwXPrintPreviewSettings::~SwXPrintPreviewSettings()
     throw()
 {
@@ -160,7 +142,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
     {
         case HANDLE_PRINTSET_PREVIEW_LEFT_MARGIN:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rValue >>= nVal;
             nVal = MM100_TO_TWIP( nVal );
             if ( nVal != static_cast < sal_Int32 > (mpPreViewData->GetLeftSpace() ) )
@@ -172,7 +154,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_RIGHT_MARGIN:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rValue >>= nVal;
             nVal = MM100_TO_TWIP( nVal );
             if ( nVal != static_cast < sal_Int32 > (mpPreViewData->GetRightSpace() ) )
@@ -184,7 +166,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_TOP_MARGIN:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rValue >>= nVal;
             nVal = MM100_TO_TWIP( nVal );
             if ( nVal != static_cast < sal_Int32 > ( mpPreViewData->GetTopSpace() ) )
@@ -196,7 +178,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_BOTTOM_MARGIN:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rValue >>= nVal;
             nVal = MM100_TO_TWIP( nVal );
             if ( nVal != static_cast < sal_Int32 > ( mpPreViewData->GetBottomSpace() ) )
@@ -208,7 +190,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_HORIZONTAL_SPACING:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rValue >>= nVal;
             nVal = MM100_TO_TWIP( nVal );
             if ( nVal != static_cast < sal_Int32 > ( mpPreViewData->GetHorzSpace() ) )
@@ -220,7 +202,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_VERTICAL_SPACING:
         {
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
             rValue >>= nVal;
             nVal = MM100_TO_TWIP( nVal );
             if ( nVal != static_cast < sal_Int32 > ( mpPreViewData->GetVertSpace() ) )
@@ -232,7 +214,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_NUM_ROWS:
         {
-            sal_Int8 nVal;
+            sal_Int8 nVal(0);
             rValue >>= nVal;
             if ( nVal != mpPreViewData->GetRow() )
             {
@@ -243,7 +225,7 @@ void SwXPrintPreviewSettings::_setSingleValue( const comphelper::PropertyInfo & 
         break;
         case HANDLE_PRINTSET_PREVIEW_NUM_COLUMNS:
         {
-            sal_Int8 nVal;
+            sal_Int8 nVal(0);
             rValue >>= nVal;
             if ( nVal != mpPreViewData->GetCol() )
             {
@@ -295,42 +277,42 @@ void SwXPrintPreviewSettings::_getSingleValue( const comphelper::PropertyInfo & 
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetLeftSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetLeftSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_RIGHT_MARGIN:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetRightSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetRightSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_TOP_MARGIN:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetTopSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetTopSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_BOTTOM_MARGIN:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetBottomSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetBottomSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_HORIZONTAL_SPACING:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetHorzSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetHorzSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_VERTICAL_SPACING:
         {
             bBool = FALSE;
             if ( mpConstPreViewData )
-                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100 ( mpConstPreViewData->GetVertSpace() ) );
+                rValue <<= static_cast < sal_Int32 > ( TWIP_TO_MM100_UNSIGNED ( mpConstPreViewData->GetVertSpace() ) );
         }
         break;
         case HANDLE_PRINTSET_PREVIEW_NUM_ROWS:
@@ -366,23 +348,20 @@ void SwXPrintPreviewSettings::_postGetValues ()
 {
     mpConstPreViewData = NULL;
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 OUString SwXPrintPreviewSettings::getImplementationName(void) throw( RuntimeException )
 {
     return OUString( RTL_CONSTASCII_USTRINGPARAM ( "SwXPrintPreviewSettings" ) );
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 sal_Bool SwXPrintPreviewSettings::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return rServiceName.equalsAsciiL ( RTL_CONSTASCII_STRINGPARAM ( "com.sun.star.text.PrintPreviewSettings") );
 }
-/* -----------------------------06.04.00 11:02--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 Sequence< OUString > SwXPrintPreviewSettings::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -392,3 +371,5 @@ Sequence< OUString > SwXPrintPreviewSettings::getSupportedServiceNames(void) thr
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

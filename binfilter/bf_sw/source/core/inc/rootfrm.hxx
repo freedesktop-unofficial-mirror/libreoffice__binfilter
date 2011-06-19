@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -176,8 +177,8 @@ public:
     // fuer bestimmte UNO-Aktionen (Tabellencursor) ist es notwendig, dass alle Actions
     // kurzfristig zurueckgesetzt werden. Dazu muss sich jede ViewShell ihren alten Action-zaehler
     // merken
-    void UnoRemoveAllActions(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void UnoRemoveAllActions();
-    void UnoRestoreAllActions(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void UnoRestoreAllActions();
+    void UnoRemoveAllActions(){DBG_BF_ASSERT(0, "STRIP");}
+    void UnoRestoreAllActions(){DBG_BF_ASSERT(0, "STRIP");}
 
     const SdrPage* GetDrawPage() const { return pDrawPage; }
           SdrPage* GetDrawPage()       { return pDrawPage; }
@@ -282,7 +283,6 @@ public:
 
     /** get page frame by phyiscal page number
 
-        OD 14.01.2003 #103492#
         looping through the lowers, which are page frame, in order to find the
         page frame with the given physical page number.
         if no page frame is found, 0 is returned.
@@ -323,3 +323,4 @@ inline  void SwRootFrm::SetVirtPageNum( const BOOL bOf) const
 } //namespace binfilter
 #endif  //_ROOTFRM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

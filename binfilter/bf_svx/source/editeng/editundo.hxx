@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -62,6 +63,8 @@ public:
     virtual void    Redo();
     virtual void    Repeat();
 
+    using SfxUndoAction::Repeat;
+
     virtual BOOL    Merge( SfxUndoAction *pNextAction );
 };
 
@@ -86,11 +89,9 @@ public:
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
-};
 
-// -----------------------------------------------------------------------
-// EditUndoMoveParagraphs
-// ------------------------------------------------------------------------
+    using SfxUndoAction::Repeat;
+};
 
 // -----------------------------------------------------------------------
 // EditUndoSetStyleSheet
@@ -116,6 +117,8 @@ public:
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
+
+    using SfxUndoAction::Repeat;
 };
 
 // -----------------------------------------------------------------------
@@ -135,20 +138,11 @@ public:
     virtual void    Undo();
     virtual void    Redo();
     virtual void    Repeat();
+
+    using SfxUndoAction::Repeat;
 };
-
-// -----------------------------------------------------------------------
-// EditUndoSetAttribs
-// ------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
-// EditUndoTransliteration
-// ------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------
-// EditUndoMarkSelection
-// ------------------------------------------------------------------------
-
 
 }//end of namespace binfilter
 #endif // _EDITUNDO_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

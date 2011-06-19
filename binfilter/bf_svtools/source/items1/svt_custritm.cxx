@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,13 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SVTOOLS_CUSTRITM_HXX
 #include <bf_svtools/custritm.hxx>
-#endif
 
 namespace binfilter
 {
@@ -72,7 +67,7 @@ int CntUnencodedStringItem::operator ==(const SfxPoolItem & rItem) const
 // virtual
 int CntUnencodedStringItem::Compare(SfxPoolItem const & rWith) const
 {
-    DBG_ERROR("CntUnencodedStringItem::Compare(): No international");
+    OSL_FAIL("CntUnencodedStringItem::Compare(): No international");
     DBG_CHKTHIS(CntUnencodedStringItem, 0);
     DBG_ASSERT(rWith.ISA(CntUnencodedStringItem),
                 "CntUnencodedStringItem::Compare(): Bad type");
@@ -118,7 +113,7 @@ CntUnencodedStringItem::GetPresentation(SfxItemPresentation, SfxMapUnit,
 
 //============================================================================
 // virtual
-BOOL CntUnencodedStringItem::QueryValue(com::sun::star::uno::Any& rVal, BYTE)
+bool CntUnencodedStringItem::QueryValue(com::sun::star::uno::Any& rVal, BYTE)
     const
 {
     rVal <<= rtl::OUString(m_aValue);
@@ -127,7 +122,7 @@ BOOL CntUnencodedStringItem::QueryValue(com::sun::star::uno::Any& rVal, BYTE)
 
 //============================================================================
 // virtual
-BOOL CntUnencodedStringItem::PutValue(const com::sun::star::uno::Any& rVal,
+bool CntUnencodedStringItem::PutValue(const com::sun::star::uno::Any& rVal,
                                          BYTE)
 {
     rtl::OUString aTheValue;
@@ -136,7 +131,7 @@ BOOL CntUnencodedStringItem::PutValue(const com::sun::star::uno::Any& rVal,
         m_aValue = UniString(aTheValue);
         return true;
     }
-    DBG_ERROR("CntUnencodedStringItem::PutValue(): Wrong type");
+    OSL_FAIL("CntUnencodedStringItem::PutValue(): Wrong type");
     return false;
 }
 
@@ -149,3 +144,5 @@ SfxPoolItem * CntUnencodedStringItem::Clone(SfxItemPool *) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

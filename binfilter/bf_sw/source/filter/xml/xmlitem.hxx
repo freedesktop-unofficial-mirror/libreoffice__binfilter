@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,12 @@
 #ifndef _XMLITEM_HXX
 #define _XMLITEM_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 #include <limits.h>
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {
@@ -88,3 +85,4 @@ public:
 } //namespace binfilter
 #endif  //  _XMLITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

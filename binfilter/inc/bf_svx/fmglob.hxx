@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 namespace binfilter {
 
 const sal_uInt32 FmFormInventor = sal_uInt32('F')*0x00000001+
@@ -72,3 +69,4 @@ const sal_uInt16 OBJ_FM_FORMATTEDFIELD  =   ::com::sun::star::form::FormComponen
 }//end of namespace binfilter
 #endif      // _FM_FMGLOB_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,41 +31,21 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HDL_
 #include <com/sun/star/frame/XModel.hdl>
-#endif
-#ifndef _SV_PRINT_HXX
 #include <vcl/print.hxx>
-#endif
-#ifndef _FM_FMMODEL_HXX
 #include <bf_svx/fmmodel.hxx>
-#endif
-#ifndef _PRESENTATION_HXX
 #include <bf_sd/pres.hxx>
-#endif
-#ifndef _SVX_PAGEITEM_HXX //autogen
 #include <bf_svx/pageitem.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
 #include <bf_so3/svstor.hxx>
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
 
 // #107844#
-#ifndef _SVDUNDO_HXX
 #include <bf_svx/svdundo.hxx>
-#endif
 class Timer;
 class Graphic;
 class Point;
@@ -190,7 +171,6 @@ protected:
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoModel();
 
 public:
-
     class InsertBookmarkAsPage_PageFunctorBase;
 
                         TYPEINFO();
@@ -198,9 +178,9 @@ public:
                         SdDrawDocument(DocumentType eType, SfxObjectShell* pDocSh);
                         ~SdDrawDocument();
 
-    virtual SdrPage*    AllocPage(FASTBOOL bMasterPage);
+    virtual SdrPage*    AllocPage(bool bMasterPage);
     virtual void        DisposeLoadedModels();
-    virtual void        SetChanged(FASTBOOL bFlag = TRUE);
+    virtual void        SetChanged(bool bFlag = TRUE);
     virtual SvStream*   GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const;
     virtual void        HandsOff();
 
@@ -311,14 +291,13 @@ public:
 
     BOOL                GetHideSpell() const { return bHideSpell; }
 
-
     List*               GetFrameViewList() const { return pFrameViewList; }
     List*               GetCustomShowList(BOOL bCreate = FALSE);
 
     void                SetCustomShow(BOOL bCustShow) { bCustomShow = bCustShow; }
     BOOL                IsCustomShow() const { return bCustomShow; }
 
-    void                NbcSetChanged(FASTBOOL bFlag = TRUE);
+    void                NbcSetChanged(bool bFlag = TRUE);
 
     void                SetTextDefaults() const;
 
@@ -332,21 +311,15 @@ public:
 
     SdIMapInfo*         GetIMapInfo( SdrObject* pObject ) const;
 
-
-
     CharClass*          GetCharClass() const { return mpCharClass; }
 
     void                RestoreLayerNames();
-
     void                UpdateAllLinks();
-
     void                CheckMasterPages();
-
 
     ::com::sun::star::text::WritingMode GetDefaultWritingMode() const;
 
 public:
-
     static SdDrawDocument* pDocLockedInsertingLinks;  // static to prevent recursions while resolving links
 
     friend SvStream&    operator<<(SvStream& rOut, SdDrawDocument& rDoc);
@@ -549,3 +522,5 @@ private:
 
 } //namespace binfilter
 #endif // _DRAWDOC_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

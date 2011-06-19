@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,15 @@
 #include <limits.h>
 
 #include <bf_svtools/bf_solar.h>
-
-#ifndef _SVX_DIALOGS_HRC
 #include "dialogs.hrc"
-#endif
-#ifndef _SVX_PAPERINF_HXX
 #include "paperinf.hxx"
-#endif
 namespace binfilter {
 
 #define SVX_PAPER_OFFSET    3   // Anfang: enum Paper A3 - SvxPaper A0; Diff=3
 
 // STATIC DATA -----------------------------------------------------------
 
-static Size __FAR_DATA aDinTab[] =
+static Size aDinTab[] =
 {
     Size(lA0Width,lA0Height),           // A0
     Size(lA1Width,lA1Height),           // A1
@@ -86,7 +82,7 @@ static Size __FAR_DATA aDinTab[] =
     Size(lJISB6Width, lJISB6Height)        // B6 (JIS)
 };
 
-static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
+static const int nTabSize = SAL_N_ELEMENTS(aDinTab);
 
 // -----------------------------------------------------------------------
 
@@ -179,3 +175,5 @@ static const int nTabSize = sizeof(aDinTab) / sizeof(aDinTab[0]);
 /*N*/   return aSize;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

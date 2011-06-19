@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,53 +27,22 @@
  ************************************************************************/
 
 #include "Grid.hxx"
-#ifndef _FRM_COLUMNS_HXX
 #include "Columns.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTRELIEF_HPP_
 #include <com/sun/star/awt/FontRelief.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
-#endif
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
 
-#ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
-#endif
-
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-
-#ifndef _TOOLKIT_UNOHLP_HXX
 #include <toolkit/helper/vclunohelper.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
 
 namespace binfilter {
 
@@ -118,7 +88,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -153,16 +122,16 @@ OGridControlModel::OGridControlModel(const Reference<XMultiServiceFactory>& _rxF
                     ,m_aSelectListeners(m_aMutex)
                     ,m_aResetListeners(m_aMutex)
                     ,m_aDefaultControl(FRM_CONTROL_GRID)        // use the old control name for compytibility reasons
+                    ,m_nFontRelief(awt::FontRelief::NONE)
+                    ,m_nFontEmphasis(awt::FontEmphasisMark::NONE)
                     ,m_nFontEvent(0)
+                    ,m_nBorder(1)
                     ,m_bEnable(sal_True)
                     ,m_bNavigation(sal_True)
-                    ,m_nBorder(1)
                     ,m_bRecordMarker(sal_True)
                     ,m_bPrintable(sal_True)
                     ,m_bAlwaysShowCursor(sal_False)
                     ,m_bDisplaySynchron(sal_True)
-                    ,m_nFontRelief(awt::FontRelief::NONE)
-                    ,m_nFontEmphasis(awt::FontEmphasisMark::NONE)
 {
     DBG_CTOR(OGridControlModel,NULL);
 
@@ -217,7 +186,7 @@ OGridControlModel::~OGridControlModel()
 IMPLEMENT_DEFAULT_CLONING( OGridControlModel )
 
 //------------------------------------------------------------------------------
-void OGridControlModel::cloneColumns( const OGridControlModel* _pOriginalContainer )
+void OGridControlModel::cloneColumns( const OGridControlModel* )
 {
     try
     {
@@ -248,7 +217,7 @@ void OGridControlModel::cloneColumns( const OGridControlModel* _pOriginalContain
     }
     catch( const Exception& )
     {
-        DBG_ERROR( "OGridControlModel::cloneColumns: caught an exception while cloning the columns!" );
+        OSL_FAIL( "OGridControlModel::cloneColumns: caught an exception while cloning the columns!" );
     }
 }
 
@@ -393,7 +362,7 @@ void OGridControlModel::removeSelectionChangeListener(const Reference< XSelectio
 Reference<XPropertySet> SAL_CALL OGridControlModel::createColumn(const ::rtl::OUString& ColumnType) throw ( :: com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException)
 {
     const Sequence< ::rtl::OUString >& rColumnTypes = frm::getColumnTypes();
-    return createColumn(::binfilter::internal::findPos(ColumnType, rColumnTypes));//STRIP008    return createColumn(::internal::findPos(ColumnType, rColumnTypes));
+    return createColumn(::binfilter::internal::findPos(ColumnType, rColumnTypes));
 }
 
 //------------------------------------------------------------------------------
@@ -413,7 +382,7 @@ Reference<XPropertySet>  OGridControlModel::createColumn(sal_Int32 nTypeId) cons
         case TYPE_TIMEFIELD:        xReturn = new TimeFieldColumn(OControlModel::m_xServiceFactory); break;
         case TYPE_FORMATTEDFIELD:   xReturn = new FormattedFieldColumn(OControlModel::m_xServiceFactory); break;
         default:
-            DBG_ERROR("OGridControlModel::createColumn: Unknown Column");
+            OSL_FAIL("OGridControlModel::createColumn: Unknown Column");
             break;
     }
     return xReturn;
@@ -1020,7 +989,6 @@ OGridColumn* OGridControlModel::getColumnImplementation(const InterfaceRef& _rxI
 void OGridControlModel::gotColumn(const Reference< XInterface >& _rxColumn)
 {
     // if our form is already loaded, tell the column
-    // 18.05.2001 - 86558 - frank.schoenheit@germany.sun.com
     if (m_xParentFormLoadable.is() && m_xParentFormLoadable->isLoaded())
     {
         Reference< XLoadListener > xColumnLoadListener(_rxColumn, UNO_QUERY);
@@ -1375,3 +1343,5 @@ void OGridControlModel::read(const Reference<XObjectInputStream>& _rxInStream) t
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

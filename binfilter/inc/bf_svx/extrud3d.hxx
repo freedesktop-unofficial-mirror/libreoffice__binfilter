@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
-#endif
 
-#ifndef _POLY3D_HXX
 #include <bf_svx/poly3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -75,6 +72,8 @@ public:
     E3dExtrudeObj(E3dDefaultAttributes& rDefault, const XPolyPolygon& rXPP, double fDepth);
     E3dExtrudeObj();
 
+    using SdrAttrObj::operator=;
+
     // PercentDiagonal: 0..100, before 0.0..0.5
     sal_uInt16 GetPercentDiagonal() const
         { return ((const Svx3DPercentDiagonalItem&)GetUnmergedItemSet().Get(SDRATTR_3DOBJ_PERCENT_DIAGONAL)).GetValue(); }
@@ -112,7 +111,7 @@ public:
     virtual void CreateWireframe(Polygon3D& rWirePoly, const Matrix4D* pTf = NULL,
         E3dDragDetail eDetail = E3DDETAIL_DEFAULT);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // TakeObjName...() ist fuer die Anzeige in der UI, z.B. "3 Rahmen selektiert".
@@ -148,3 +147,4 @@ public:
 }//end of namespace binfilter
 #endif          // _E3D_EXTRUD3D_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

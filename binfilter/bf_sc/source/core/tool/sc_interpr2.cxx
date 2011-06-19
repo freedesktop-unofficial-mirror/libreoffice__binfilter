@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,6 +36,7 @@
 #include <bf_svtools/zforlist.hxx>
 #include <string.h>
 #include <math.h>
+#include <sal/macros.h>
 
 #include "interpre.hxx"
 #include "bf_sc.hrc"
@@ -47,6 +46,7 @@
 #include "unitconv.hxx"
 #include "globstr.hrc"
 #include "hints.hxx"
+
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
@@ -860,10 +860,8 @@ void ScInterpreter::ScGDA2()
     double nAbRate = 1.0 - pow(nRest / nWert, 1.0 / nDauer);
     nAbRate = ::rtl::math::approxFloor((nAbRate * 1000.0) + 0.5) / 1000.0;
     double nErsteAbRate = nWert * nAbRate * nMonate / 12.0;
-    double nGda2;
-    if (::rtl::math::approxFloor(nPeriode) == 1)
-        nGda2 = nErsteAbRate;
-    else
+    double nGda2  = nErsteAbRate;
+    if (::rtl::math::approxFloor(nPeriode) != 1)
     {
         double nSummAbRate = nErsteAbRate;
         double nMin = nDauer;
@@ -890,11 +888,7 @@ double ScInterpreter::ScInterVDB(double fWert,double fRest,double fDauer,
 
     double fTerm, fLia;
     double fRestwert = fWert - fRest;
-    double fRestwert1 = fRestwert;
     BOOL bNowLia = FALSE;
-    BOOL bFirstFlag=TRUE;
-    BOOL b2Flag=TRUE;
-    double fAbschlag=0;
 
     double fGda;
     ULONG i;
@@ -1417,10 +1411,10 @@ void ScInterpreter::ScBackSolver()
                 ScRange aVRange( aVAdr, aVAdr );    // fuer SetDirty
                 double nSaveVal;
                 ScPostIt aNote;
-                BOOL bHasNote;
+                BOOL bHasNote = 0;
                 if ( bTempCell )
                 {
-                    if ( bHasNote = (pVCell != NULL) )
+                    if ( ( bHasNote = (pVCell != NULL) ) )
                         bHasNote = pVCell->GetNote( aNote );
                     nSaveVal = 0.0;
                     pVCell = new ScValueCell( nSaveVal );
@@ -1482,10 +1476,12 @@ void ScInterpreter::ScBackSolver()
                         {
                             fs = (fn1 - fn) / (xn1 - xn);
                             if (fabs(fs) < nEps)
+                            {
                                 if (fs < 0.0)
                                     fs = -nEps;
                                 else
                                     fs = nEps;
+                            }
                         }
                         else
                             fs = nEps;
@@ -1726,7 +1722,7 @@ ScDdeLink* lcl_GetDdeLink( SvxLinkManager* pLinkMgr,
 /*N*/       String aTopic = GetString();
 /*N*/       String aAppl  = GetString();
 /*N*/
-/*N*/       if (nMode < SC_DDE_DEFAULT || nMode > SC_DDE_TEXT)
+/*N*/       if (nMode > SC_DDE_TEXT)
 /*N*/           nMode = SC_DDE_DEFAULT;
 /*N*/
 /*N*/       //  temporary documents (ScFunctionAccess) have no DocShell
@@ -1811,7 +1807,7 @@ void ScInterpreter::ScBase()
     BYTE nParamCount = GetByte();
     if ( MustHaveParamCount( nParamCount, 2, 3 ) )
     {
-        static const sal_Unicode __FAR_DATA pDigits[] = {
+        static const sal_Unicode pDigits[] = {
             '0','1','2','3','4','5','6','7','8','9',
             'A','B','C','D','E','F','G','H','I','J','K','L','M',
             'N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
@@ -2026,7 +2022,7 @@ void ScInterpreter::ScRoman()
         {
             static const sal_Unicode pChars[] = { 'M', 'D', 'C', 'L', 'X', 'V', 'I' };
             static const USHORT pValues[] = { 1000, 500, 100, 50, 10, 5, 1 };
-            static const USHORT nMaxIndex = (USHORT)(sizeof(pValues) / sizeof(pValues[0]) - 1);
+            static const USHORT nMaxIndex = (USHORT)(SAL_N_ELEMENTS(pValues) - 1);
 
             String aRoman;
             USHORT nVal = (USHORT) fVal;
@@ -2145,3 +2141,5 @@ void ScInterpreter::ScArabic()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

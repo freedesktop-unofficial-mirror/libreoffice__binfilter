@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,30 +33,15 @@
 
 
 
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
+#include <rtl/ref.hxx>
 
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-
-#ifndef SC_TABLE_HXX
 #include "table.hxx"        // FastGetRowHeight (inline)
-#endif
-
-#ifndef SC_RANGELST_HXX
 #include "rangelst.hxx"
-#endif
-
-#ifndef _SC_BRDCST_HXX
 #include "brdcst.hxx"
-#endif
-
-#ifndef SC_TABOPPARAMS_HXX
 #include "tabopparams.hxx"
-#endif
+
 namespace com { namespace sun { namespace star {
     namespace lang {
         class XMultiServiceFactory;
@@ -141,14 +127,6 @@ class ScImpExpLogMsg;
 struct ScSortParam;
 class ScRefreshTimerControl;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008     namespace lang {
-//STRIP008         class XMultiServiceFactory;
-//STRIP008     }
-//STRIP008     namespace i18n {
-//STRIP008         class XBreakIterator;
-//STRIP008     }
-//STRIP008 } } }
 
 } //namespace binfilter
 
@@ -159,7 +137,7 @@ class SvNumberFormatterIndexTable;
 class Table;
 typedef Table SvNumberFormatterIndexTable;
 #endif*/
-namespace binfilter {//STRIP009
+namespace binfilter {
 #define SC_TAB_APPEND       0xFFFF
 #define SC_DOC_NEW          0xFFFF
 #define REPEAT_NONE         0xFFFF
@@ -324,7 +302,7 @@ friend class ScPivot;
 private:
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > xServiceManager;
 
-    vos::ORef<ScPoolHelper> xPoolHelper;
+    rtl::Reference<ScPoolHelper> xPoolHelper;
 
     ScFieldEditEngine*  pEditEngine;                    // uses pEditPool from xPoolHelper
     SfxObjectShell*     pShell;
@@ -356,7 +334,7 @@ private:
     ScChangeViewSettings* pChangeViewSettings;
     ScScriptTypeData*   pScriptTypeData;
     ScRefreshTimerControl* pRefreshTimerControl;
-    vos::ORef<SvxForbiddenCharactersTable> xForbiddenCharacters;
+    rtl::Reference<SvxForbiddenCharactersTable> xForbiddenCharacters;
 
     ScFieldEditEngine*  pCacheFieldEditEngine;
 
@@ -792,9 +770,6 @@ public:
     BOOL            IsUndo() const                              { return bIsUndo; }
     BOOL            IsClipboard() const                         { return bIsClip; }
     BOOL            IsUndoEnabled() const                       { return !bImportingXML; }
-    void            ResetClip( ScDocument* pSourceDoc, const ScMarkData* pMarks );
-
-
 
     void            DeleteArea(USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2,
                             const ScMarkData& rMark, USHORT nDelFlag);
@@ -886,9 +861,6 @@ public:
     void            ApplySelectionFrame( const ScMarkData& rMark,
                                          const SvxBoxItem* pLineOuter,
                                          const SvxBoxInfoItem* pLineInner );
-
-    void            ClearSelectionItems( const USHORT* pWhich, const ScMarkData& rMark );
-    void            ChangeSelectionIndent( BOOL bIncrement, const ScMarkData& rMark );
 
     ULONG           AddCondFormat( const ScConditionalFormat& rNew );
     void            FindConditionalFormat( ULONG nKey, ScRangeList& rRanges );
@@ -1049,10 +1021,9 @@ public:
     ScRange         GetRange( USHORT nTab, const Rectangle& rMMRect );
 
     BOOL            LoadPool( SvStream& rStream, BOOL bLoadRefCounts );
-    BOOL            SavePool( SvStream& rStream ) const;
 
     BOOL            Load( SvStream& rStream, ScProgress* pProgress );
-    BOOL            Save( SvStream& rStream, ScProgress* pProgress ) const;
+    BOOL            Save( SvStream& , ScProgress* ) const {return false;}
 
     void            UpdStlShtPtrsFrmNms();
 
@@ -1132,8 +1103,8 @@ public:
     ScChangeViewSettings* GetChangeViewSettings() const     { return pChangeViewSettings; }
     void                SetChangeViewSettings(const ScChangeViewSettings& rNew);
 
-    vos::ORef<SvxForbiddenCharactersTable> GetForbiddenCharacters();
-    void            SetForbiddenCharacters( const vos::ORef<SvxForbiddenCharactersTable> xNew );
+    rtl::Reference<SvxForbiddenCharactersTable> GetForbiddenCharacters();
+    void            SetForbiddenCharacters( const rtl::Reference<SvxForbiddenCharactersTable> xNew );
 
     BYTE            GetAsianCompression() const;        // CharacterCompressionType values
     BOOL            IsValidAsianCompression() const;
@@ -1321,14 +1292,12 @@ private: // CLOOK-Impl-Methoden
     void    DeleteDrawLayer();
     void    DeleteColorTable();
     void    LoadDrawLayer(SvStream& rStream);
-    void    StoreDrawLayer(SvStream& rStream) const;
     BOOL    DrawGetPrintArea( ScRange& rRange, BOOL bSetHor, BOOL bSetVer ) const;
 
     void    UpdateDrawPrinter();
     void    UpdateDrawLanguages();
 
     void    LoadDdeLinks(SvStream& rStream);
-    void    SaveDdeLinks(SvStream& rStream) const;
     void    LoadAreaLinks(SvStream& rStream);
     void    SaveAreaLinks(SvStream& rStream) const;
 
@@ -1350,3 +1319,4 @@ inline USHORT ScDocument::FastGetRowHeight( USHORT nRow, USHORT nTab ) const
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

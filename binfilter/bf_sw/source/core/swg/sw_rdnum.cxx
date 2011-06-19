@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,22 +33,14 @@
 
 #include <hintids.hxx>
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"
 #include "rdswg.hxx"
@@ -176,8 +169,8 @@ SwNumRule* SwSwgReader::InNumRule()
     {
         if( aHdr.nVersion < SWG_VER_POOLID3 )
         {
-            static short __READONLY_DATA aOldFI[ 5 ] =  { -227, -397, -567, -737, -936 };
-            static short __READONLY_DATA aOldLft[ 5 ] = { 567, 964, 1474, 567*4, 3204 };
+            static short const aOldFI[ 5 ] =  { -227, -397, -567, -737, -936 };
+            static short const aOldLft[ 5 ] = { 567, 964, 1474, 567*4, 3204 };
 
             // Alte Dokumente: Fehlende Formate nachtragen
             for( i = 0; i < MAXLEVEL; i++ )
@@ -285,7 +278,7 @@ void SwSwgReader::InTxtNumRule()
                 {
                     // Hot fix bei Loechern im Bereich:
                     pNd->UpdateNum( SwNodeNum( nPrevLevel | NO_NUMLEVEL ) );
-                    ASSERT( FALSE, "SW/G-Reader: Luecke im NumRule-Bereich!" );
+                    OSL_ENSURE( FALSE, "SW/G-Reader: Luecke im NumRule-Bereich!" );
                 }
             }
             else
@@ -325,3 +318,5 @@ void SwSwgReader::UpdateRuleRange( USHORT nIdx, SwTxtNode* pNd )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

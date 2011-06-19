@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TXTCMP_HXX //autogen
-#include <bf_svtools/txtcmp.hxx>
-#endif
-#ifndef _PAM_HXX
+#include <unotools/textsearch.hxx>
 #include <pam.hxx>
-#endif
-#ifndef _NODE_HXX
 #include <node.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 class SwpHints;
@@ -55,36 +48,36 @@ void GoStartDoc( SwPosition*);
 void GoEndDoc( SwPosition*);
 void GoStartSection( SwPosition*);
 void GoEndSection( SwPosition*);
-FASTBOOL GoInDoc( SwPaM&, SwMoveFn);
-FASTBOOL GoInSection( SwPaM&, SwMoveFn);
-FASTBOOL GoInNode( SwPaM&, SwMoveFn);
-FASTBOOL GoInCntnt( SwPaM&, SwMoveFn);
-FASTBOOL GoInCntntCells( SwPaM&, SwMoveFn);
+bool GoInDoc( SwPaM&, SwMoveFn);
+bool GoInSection( SwPaM&, SwMoveFn);
+bool GoInNode( SwPaM&, SwMoveFn);
+bool GoInCntnt( SwPaM&, SwMoveFn);
+bool GoInCntntCells( SwPaM&, SwMoveFn);
 const SwTxtAttr* GetFrwrdTxtHint( const SwpHints&, USHORT&, xub_StrLen );
 const SwTxtAttr* GetBkwrdTxtHint( const SwpHints&, USHORT&, xub_StrLen );
 
-FASTBOOL GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode );
-FASTBOOL GoPrevious(SwNode* pNd, SwIndex * pIdx, USHORT nMode );
-SwCntntNode* GoNextNds( SwNodeIndex * pIdx, FASTBOOL );
-SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, FASTBOOL );
+bool GoNext(SwNode* pNd, SwIndex * pIdx, USHORT nMode );
+bool GoPrevious(SwNode* pNd, SwIndex * pIdx, USHORT nMode );
+SwCntntNode* GoNextNds( SwNodeIndex * pIdx, bool );
+SwCntntNode* GoPreviousNds( SwNodeIndex * pIdx, bool );
 
 // --------- Funktionsdefinitionen fuer die SwCrsrShell --------------
 
-FASTBOOL GoPrevPara( SwPaM&, SwPosPara);
-FASTBOOL GoCurrPara( SwPaM&, SwPosPara);
-FASTBOOL GoNextPara( SwPaM&, SwPosPara);
-FASTBOOL GoPrevSection( SwPaM&, SwPosSection);
-FASTBOOL GoCurrSection( SwPaM&, SwPosSection);
-FASTBOOL GoNextSection( SwPaM&, SwPosSection);
+bool GoPrevPara( SwPaM&, SwPosPara);
+bool GoCurrPara( SwPaM&, SwPosPara);
+bool GoNextPara( SwPaM&, SwPosPara);
+bool GoPrevSection( SwPaM&, SwPosSection);
+bool GoCurrSection( SwPaM&, SwPosSection);
+bool GoNextSection( SwPaM&, SwPosSection);
 
 
 // ------------ Typedefiniton fuer Funktionen ----------------------
 
-typedef FASTBOOL (*GoNd)( SwNode*, SwIndex*, USHORT );
-typedef SwCntntNode* (*GoNds)( SwNodeIndex*, FASTBOOL );
+typedef bool (*GoNd)( SwNode*, SwIndex*, USHORT );
+typedef SwCntntNode* (*GoNds)( SwNodeIndex*, bool );
 typedef void (*GoDoc)( SwPosition* );
 typedef void (*GoSection)( SwPosition* );
-typedef FASTBOOL (SwPosition:: *CmpOp)( const SwPosition& ) const;
+typedef bool (SwPosition:: *CmpOp)( const SwPosition& ) const;
 typedef const SwTxtAttr* (*GetHint)( const SwpHints&, USHORT&, xub_StrLen );
 typedef int (::utl::TextSearch:: *SearchTxt)( const String&, xub_StrLen*,
                     xub_StrLen*, ::com::sun::star::util::SearchResult* );
@@ -104,9 +97,11 @@ struct SwMoveFnCollection
 };
 
 // --------- Funktionsdefinitionen fuers Suchen --------------
-SwCntntNode* GetNode( SwPaM&, FASTBOOL&, SwMoveFn, FASTBOOL bInReadOnly = FALSE );
+SwCntntNode* GetNode( SwPaM&, bool&, SwMoveFn, bool bInReadOnly = FALSE );
 
 
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

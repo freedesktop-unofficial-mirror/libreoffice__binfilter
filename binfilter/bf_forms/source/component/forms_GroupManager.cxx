@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_GROUPMANAGER_HXX_
 #include "GroupManager.hxx"
-#endif
-#ifndef _FRM_DATABASEFORM_HXX_
 #include "DatabaseForm.hxx"
-#endif
 
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
@@ -95,27 +90,27 @@ public:
 
 //------------------------------------------------------------------
 OGroupComp::OGroupComp()
-        :m_nTabIndex( 0 )
-        ,m_nPos( -1 )
+    : m_nPos( -1 )
+    , m_nTabIndex( 0 )
 {
 }
 
 //------------------------------------------------------------------
 OGroupComp::OGroupComp(const OGroupComp& _rSource)
-        :m_aName( _rSource.m_aName )
-        ,m_xComponent( _rSource.m_xComponent )
-        ,m_nTabIndex( _rSource.m_nTabIndex )
-        ,m_nPos( _rSource.m_nPos )
-        ,m_xControlModel(_rSource.m_xControlModel)
+    : m_aName( _rSource.m_aName )
+    , m_xComponent( _rSource.m_xComponent )
+    , m_xControlModel(_rSource.m_xControlModel)
+    , m_nPos( _rSource.m_nPos )
+    , m_nTabIndex( _rSource.m_nTabIndex )
 {
 }
 
 //------------------------------------------------------------------
 OGroupComp::OGroupComp(const Reference<XPropertySet>& rxSet, sal_Int32 nInsertPos )
-            :m_xComponent( rxSet )
-            ,m_nTabIndex(0)
-            ,m_nPos( nInsertPos )
-            ,m_xControlModel(rxSet,UNO_QUERY)
+    : m_xComponent( rxSet )
+    , m_xControlModel(rxSet,UNO_QUERY)
+    , m_nPos( nInsertPos )
+    , m_nTabIndex(0)
 {
     if (m_xComponent.is())
     {
@@ -167,10 +162,10 @@ OGroup::OGroup( const ::rtl::OUString& rGroupName )
 #ifdef DBG_UTIL
 //------------------------------------------------------------------
 OGroup::OGroup( const OGroup& _rSource )
-    :m_aGroupName(_rSource.m_aGroupName)
-    ,m_nInsertPos(_rSource.m_nInsertPos)
-    ,m_aCompArray(_rSource.m_aCompArray)
+    :m_aCompArray(_rSource.m_aCompArray)
     ,m_aCompAccArray(_rSource.m_aCompAccArray)
+    ,m_aGroupName(_rSource.m_aGroupName)
+    ,m_nInsertPos(_rSource.m_nInsertPos)
 {
     DBG_CTOR(OGroup,NULL);
 }
@@ -218,12 +213,12 @@ void OGroup::RemoveComponent( const Reference<XPropertySet>& rxElement )
         }
         else
         {
-            DBG_ERROR( "OGroup::RemoveComponent: Component nicht in Gruppe" );
+            OSL_FAIL( "OGroup::RemoveComponent: Component nicht in Gruppe" );
         }
     }
     else
     {
-        DBG_ERROR( "OGroup::RemoveComponent: Component nicht in Gruppe" );
+        OSL_FAIL( "OGroup::RemoveComponent: Component nicht in Gruppe" );
     }
 }
 
@@ -391,7 +386,7 @@ sal_Int32 OGroupManager::getGroupCount()
 //------------------------------------------------------------------
 void OGroupManager::getGroup(sal_Int32 nGroup, Sequence< Reference<XControlModel> >& _rGroup, ::rtl::OUString& _rName)
 {
-    OSL_ENSURE(nGroup >= 0 && nGroup < m_aActiveGroupMap.size(),"OGroupManager::getGroup: Invalid group index!");
+    OSL_ENSURE(nGroup >= 0 && nGroup < static_cast<sal_Int32>(m_aActiveGroupMap.size()),"OGroupManager::getGroup: Invalid group index!");
     OGroupArr::iterator aGroupPos   = m_aActiveGroupMap[nGroup];
     _rName                          = aGroupPos->second.GetGroupName();
     _rGroup                         = aGroupPos->second.GetControlModels();
@@ -466,3 +461,5 @@ void OGroupManager::RemoveElement( const Reference<XPropertySet>& xSet )
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

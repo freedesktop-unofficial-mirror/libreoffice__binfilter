@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,57 +32,20 @@
 #endif
 
 // HINTIDs must be on top; it is required for the macitem.hxx header
-#ifndef _HINTIDS_HXX
 #include "hintids.hxx"
-#endif
-
-#ifndef _UNOEVENT_HXX
 #include "unoevent.hxx"
-#endif
-
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
-#ifndef _UNOFRAME_HXX
+#include <osl/diagnose.h>
 #include "unoframe.hxx"
-#endif
-
-#ifndef _UNOSTYLE_HXX
 #include "unostyle.hxx"
-#endif
-
-#ifndef _SWEVENT_HXX
 #include "swevent.hxx"
-#endif
-
-#ifndef _DOCSTYLE_HXX
 #include "docstyle.hxx"
-#endif
-
-#ifndef _SFX_HRC
 #include <bf_sfx2/sfx.hrc>
-#endif
-
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-
-#ifndef _FMTINFMT_HXX
 #include "fmtinfmt.hxx"
-#endif
-
-#ifndef _SFXMACITEM_HXX
 #include <bf_svtools/macitem.hxx>
-#endif
-
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -107,93 +71,6 @@ const sal_Char sAPI_SwHyperlinkEventDescriptor[] =
                                     "SwHyperlinkEventDescriptor";
 const sal_Char sAPI_SwAutoTextEventDescriptor[] =
                                     "SwAutoTextEventDescriptor";
-
-
-// //
-// // tables of all known events handled by this class
-// //
-
-// // careful: keep aKnownEventIDs and aKnownEventNames in sync!
-
-// const USHORT aKnownEventIDs[] =
-// {
-//  SW_EVENT_OBJECT_SELECT,
-//  SW_EVENT_START_INS_GLOSSARY,
-//  SW_EVENT_END_INS_GLOSSARY,
-//  SW_EVENT_MAIL_MERGE,
-//  SW_EVENT_FRM_KEYINPUT_ALPHA,
-//  SW_EVENT_FRM_KEYINPUT_NOALPHA,
-//  SW_EVENT_FRM_RESIZE,
-//  SW_EVENT_FRM_MOVE,
-//  SW_EVENT_PAGE_COUNT,
-//  SFX_EVENT_MOUSEOVER_OBJECT,
-//  SFX_EVENT_MOUSECLICK_OBJECT,
-//  SFX_EVENT_MOUSEOUT_OBJECT,
-//      SFX_EVENT_OPENDOC,
-//      SFX_EVENT_CLOSEDOC,
-//      SFX_EVENT_STARTAPP,
-//      SFX_EVENT_CLOSEAPP,
-//      SFX_EVENT_CREATEDOC,
-//      SFX_EVENT_SAVEDOC,
-//      SFX_EVENT_SAVEASDOC,
-//      SFX_EVENT_ACTIVATEDOC,
-//      SFX_EVENT_DEACTIVATEDOC,
-//      SFX_EVENT_PRINTDOC,
-//      SFX_EVENT_ONERROR,
-//      SFX_EVENT_LOADFINISHED,
-//      SFX_EVENT_SAVEFINISHED,
-//      SFX_EVENT_MODIFYCHANGED,
-//      SFX_EVENT_PREPARECLOSEDOC,
-//      SFX_EVENT_NEWMESSAGE,
-//      SFX_EVENT_TOGGLEFULLSCREENMODE,
-//      SFX_EVENT_SAVEDOCDONE,
-//      SFX_EVENT_SAVEASDOCDONE,
-//  SVX_EVENT_IMAGE_LOAD,
-//  SVX_EVENT_IMAGE_ABORT,
-//  SVX_EVENT_IMAGE_ERROR,
-//  0
-// };
-
-// const sal_Char* aKnownEventNames[] =
-// {
-//  "OnSelect",                 // SW_EVENT_OBJECT_SELECT
-//  "OnInsertStart",            // SW_EVENT_START_INS_GLOSSARY
-//  "OnInsertDone",             // SW_EVENT_END_INS_GLOSSARY
-//  "OnMailMerge",              // SW_EVENT_MAIL_MERGE
-//  "OnAlphaCharInput",         // SW_EVENT_FRM_KEYINPUT_ALPHA
-//  "OnNonAlphaCharInput",      // SW_EVENT_FRM_KEYINPUT_NOALPHA
-//  "OnResize",                 // SW_EVENT_FRM_RESIZE
-//  "OnMove",                   // SW_EVENT_FRM_MOVE
-//  "PageCountChange",          // SW_EVENT_PAGE_COUNT
-//  "OnMouseOver",              // SFX_EVENT_MOUSEOVER_OBJECT
-//  "OnClick",                  // SFX_EVENT_MOUSECLICK_OBJECT
-//  "OnMouseOut",               // SFX_EVENT_MOUSEOUT_OBJECT
-//  "OnLoad",                   // SFX_EVENT_OPENDOC,
-//  "OnUnload",                 // SFX_EVENT_CLOSEDOC,
-//  "OnStartApp",               // SFX_EVENT_STARTAPP,
-//  "OnCloseApp",               // SFX_EVENT_CLOSEAPP,
-//  "OnNew",                    // SFX_EVENT_CREATEDOC,
-//  "OnSave",                   // SFX_EVENT_SAVEDOC,
-//  "OnSaveAs",                 // SFX_EVENT_SAVEASDOC,
-//  "OnFocus",                  // SFX_EVENT_ACTIVATEDOC,
-//  "OnUnfocus",                // SFX_EVENT_DEACTIVATEDOC,
-//  "OnPrint",                  // SFX_EVENT_PRINTDOC,
-//  "OnError",                  // SFX_EVENT_ONERROR,
-//  "OnLoadFinished",           // SFX_EVENT_LOADFINISHED,
-//  "OnSaveFinished",           // SFX_EVENT_SAVEFINISHED,
-//  "OnModifyChanged",          // SFX_EVENT_MODIFYCHANGED,
-//  "OnPrepareUnload",          // SFX_EVENT_PREPARECLOSEDOC,
-//  "OnNewMail",                // SFX_EVENT_NEWMESSAGE,
-//  "OnToggleFullscreen",       // SFX_EVENT_TOGGLEFULLSCREENMODE,
-//  "OnSaveDone",               // SFX_EVENT_SAVEDOCDONE,
-//  "OnSaveAsDone",             // SFX_EVENT_SAVEASDOCDONE,
-//  "OnLoadError",              // SVX_EVENT_IMAGE_LOAD,
-//  "OnLoadCancel",             // SVX_EVENT_IMAGE_ABORT,
-//  "OnLoadDone",               // SVX_EVENT_IMAGE_ERROR,
-
-//  NULL
-// };
-
 
 //
 // tables of allowed events for specific objects
@@ -272,7 +149,6 @@ const struct SvEventDescription aDocumentEvents[] =
      { SFX_EVENT_OPENDOC,       "OnLoad" },
      { SFX_EVENT_SAVEDOC,       "OnSave" },
      { SFX_EVENT_SAVEASDOC,     "OnSaveAs" },
-// ??? cf. SAVEDOCDONE, SAVEASDOCDONE
      { SFX_EVENT_SAVEFINISHED,  "OnSaveFinished" },
      { SFX_EVENT_CLOSEDOC,      "OnUnload" },
      { SFX_EVENT_ACTIVATEDOC,   "OnFocus" },
@@ -282,18 +158,8 @@ const struct SvEventDescription aDocumentEvents[] =
      { SFX_EVENT_PRINTDOC,      "OnPrint" },
      { SW_EVENT_MAIL_MERGE,     "OnMailMerge" },
      { SW_EVENT_PAGE_COUNT,     "PageCountChange" },
-//  SFX_EVENT_LOADFINISHED,
-//  SFX_EVENT_MODIFYCHANGED,
-//  SFX_EVENT_PREPARECLOSEDOC,
-//  SFX_EVENT_TOGGLEFULLSCREENMODE,
-//  SFX_EVENT_SAVEDOCDONE,
-//  SFX_EVENT_SAVEASDOCDONE,
-
     { 0, NULL }
 };
-
-
-
 
 
 //
@@ -489,3 +355,5 @@ sal_uInt16 SwFrameStyleEventDescriptor::getMacroItemWhich() const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,53 +31,33 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 #include <string.h>
 
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 USHORT SwNumRule::nRefCount = 0;
-SwNumFmt* SwNumRule::aBaseFmts[ RULE_END ][ MAXLEVEL ] = {
-    0, 0, 0, 0, 0,
-    0, 0, 0, 0, 0 };
+SwNumFmt* SwNumRule::aBaseFmts[ RULE_END ][ MAXLEVEL ] =
+{
+    { 0, 0, 0, 0, 0 },
+    { 0, 0, 0, 0, 0 }
+};
 
 Font* SwNumRule::pDefBulletFont = 0;
-sal_Char* SwNumRule::pDefOutlineName = "Outline";
+const char* SwNumRule::pDefOutlineName = "Outline";
 
 USHORT SwNumRule::aDefNumIndents[ MAXLEVEL ] = {
 //cm:   0,5  1,0  1,5  2,0   2,5   3,0   3,5   4,0   4,5   5,0
@@ -84,10 +65,10 @@ USHORT SwNumRule::aDefNumIndents[ MAXLEVEL ] = {
 };
 
 #if defined( UNX ) && defined( GCC )
-extern const sal_Char __FAR_DATA sBulletFntName[];
-const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
+extern const sal_Char sBulletFntName[];
+const sal_Char sBulletFntName[] = "StarSymbol";
 #else
-extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
+extern const sal_Char sBulletFntName[] = "StarSymbol";
 #endif
 
 /*N*/ inline void lcl_SetRuleChgd( SwTxtNode& rNd, BYTE nLevel )
@@ -96,37 +77,31 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/       (~NO_NUMLEVEL & rNd.GetNum()->GetLevel() ) == nLevel )
 /*N*/       rNd.NumRuleChgd();
 /*N*/ }
-/* -----------------------------22.02.01 13:41--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ SwNumFmt::SwNumFmt() :
-/*N*/   SwClient( 0 ),
-/*N*/   SvxNumberFormat(SVX_NUM_ARABIC),
-/*N*/     pVertOrient(new SwFmtVertOrient( 0, VERT_NONE))
+/*N*/ SwNumFmt::SwNumFmt()
+/*N*/   : SvxNumberFormat(SVX_NUM_ARABIC)
+/*N*/   , SwClient( 0 )
+/*N*/   , pVertOrient(new SwFmtVertOrient( 0, VERT_NONE))
 /*N*/ {
 /*N*/ }
-/* -----------------------------22.02.01 13:42--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ SwNumFmt::SwNumFmt( const SwNumFmt& rFmt) :
-/*N*/   SwClient( rFmt.pRegisteredIn ),
-/*N*/   SvxNumberFormat(rFmt),
-/*N*/     pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rFmt.GetVertOrient()))
+/*N*/ SwNumFmt::SwNumFmt(const SwNumFmt& rFmt)
+/*N*/   : SvxNumberFormat(rFmt)
+/*N*/   , SwClient( rFmt.pRegisteredIn )
+/*N*/   , pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rFmt.GetVertOrient()))
 /*N*/ {
-/*N*/   SvxFrameVertOrient eVertOrient = rFmt.GetVertOrient();
+/*N*/   SvxFrameVertOrient eVertOrient2 = rFmt.GetVertOrient();
 /*N*/   SetGraphicBrush( rFmt.GetBrush(), &rFmt.GetGraphicSize(),
-/*N*/                                               &eVertOrient);
+/*N*/                                               &eVertOrient2);
 /*N*/ }
-/* -----------------------------22.02.01 13:58--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt::SwNumFmt(const SvxNumberFormat& rNumFmt, SwDoc* pDoc) :
 /*N*/   SvxNumberFormat(rNumFmt),
 /*N*/     pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rNumFmt.GetVertOrient()))
 /*N*/ {
-/*N*/     SvxFrameVertOrient eVertOrient = rNumFmt.GetVertOrient();
+/*N*/     SvxFrameVertOrient eVertOrient3 = rNumFmt.GetVertOrient();
 /*N*/     SetGraphicBrush( rNumFmt.GetBrush(), &rNumFmt.GetGraphicSize(),
-/*N*/                                               &eVertOrient);
+/*N*/                                               &eVertOrient3);
 /*N*/     const String& rCharStyleName = rNumFmt.SvxNumberFormat::GetCharFmtName();
 /*N*/   if( rCharStyleName.Len() )
 /*N*/   {
@@ -145,22 +120,16 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*?*/       pRegisteredIn->Remove( this );
 
 /*N*/ }
-/* -----------------------------22.02.01 13:42--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt::~SwNumFmt()
 /*N*/ {
 /*N*/   delete pVertOrient;
 /*N*/ }
-/* -----------------------------02.07.01 15:37--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::NotifyGraphicArrived()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-/* -----------------------------23.02.01 09:28--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SwNumFmt& SwNumFmt::operator=( const SwNumFmt& rNumFmt)
 /*N*/ {
 /*N*/   SvxNumberFormat::operator=(rNumFmt);
@@ -170,9 +139,7 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*?*/       pRegisteredIn->Remove( this );
 /*N*/   return *this;
 /*N*/ }
-/* -----------------------------23.02.01 09:28--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ BOOL SwNumFmt::operator==( const SwNumFmt& rNumFmt) const
 /*N*/ {
 /*N*/   BOOL bRet = SvxNumberFormat::operator==(rNumFmt) &&
@@ -180,15 +147,11 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/     return bRet;
 /*N*/ }
 
-/* -----------------------------22.02.01 13:42--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ const Graphic* SwNumFmt::GetGraphic() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
-/* -----------------------------22.02.01 13:44--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::SetCharFmt( SwCharFmt* pChFmt)
 /*N*/ {
 /*N*/   if( pChFmt )
@@ -196,9 +159,7 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/   else if( GetRegisteredIn() )
 /*?*/       pRegisteredIn->Remove( this );
 /*N*/ }
-/* -----------------------------22.02.01 13:45--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::Modify( SfxPoolItem* pOld, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   // dann suche mal in dem Doc nach dem NumRules-Object, in dem dieses
@@ -217,23 +178,17 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/   else
 /*N*/       SwClient::Modify( pOld, pNew );
 /*N*/ }
-/* -----------------------------23.02.01 11:08--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::SetCharFmtName(const String& rSet)
 /*N*/ {
 /*N*/   SvxNumberFormat::SetCharFmtName(rSet);
 /*N*/ }
-/* -----------------------------22.02.01 13:47--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ const String& SwNumFmt::GetCharFmtName() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       return aEmptyStr;
 /*N*/ }
-/* -----------------------------22.02.01 16:05--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void  SwNumFmt::SetGraphicBrush( const SvxBrushItem* pBrushItem, const Size* pSize,
 /*N*/   const SvxFrameVertOrient* pOrient)
 /*N*/ {
@@ -241,22 +196,16 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/         pVertOrient->SetVertOrient( (SwVertOrient)*pOrient );
 /*N*/   SvxNumberFormat::SetGraphicBrush( pBrushItem, pSize, pOrient);
 /*N*/ }
-/* -----------------------------22.02.01 16:05--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient eSet)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void  SwNumFmt::SetVertOrient(SvxFrameVertOrient /*eSet*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-/* -----------------------------22.02.01 16:05--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ SvxFrameVertOrient    SwNumFmt::GetVertOrient() const
 /*N*/ {
 /*N*/     return SvxNumberFormat::GetVertOrient();
 /*N*/ }
-/* -----------------------------22.02.01 13:54--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwNumFmt::UpdateNumNodes( SwDoc* pDoc )
 /*N*/ {
 /*N*/   BOOL bDocIsModified = pDoc->IsModified();
@@ -283,7 +232,7 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/                   {
 /*N*/                       if( pMod->IsA( TYPE( SwFmt )) )
 /*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNumRuleInfo aInfo( rRuleNm );
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                       else if( ((SwTxtNode*)pMod)->GetNodes().IsDocNodes() )
 /*N*/                           lcl_SetRuleChgd( *(SwTxtNode*)pMod, i );
@@ -326,11 +275,9 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/   if( bFnd && !bDocIsModified )
 /*?*/       pDoc->ResetModified();
 /*N*/ }
-/* -----------------------------31.05.01 16:08--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ const SwFmtVertOrient*      SwNumFmt::GetGraphicOrientation() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ BOOL SwNodeNum::operator==( const SwNodeNum& rNum ) const
@@ -344,15 +291,15 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/ }
 
 /*N*/ SwNumRule::SwNumRule( const String& rNm, SwNumRuleType eType, BOOL bAutoFlg )
-/*N*/   : eRuleType( eType ),
-/*N*/   sName( rNm ),
-/*N*/   bAutoRuleFlag( bAutoFlg ),
-/*N*/   bInvalidRuleFlag( TRUE ),
-/*N*/   bContinusNum( FALSE ),
-/*N*/   bAbsSpaces( FALSE ),
-/*N*/   nPoolFmtId( USHRT_MAX ),
-/*N*/   nPoolHelpId( USHRT_MAX ),
-/*N*/   nPoolHlpFileId( UCHAR_MAX )
+/*N*/   : sName( rNm )
+/*N*/   , eRuleType( eType )
+/*N*/   , nPoolFmtId( USHRT_MAX )
+/*N*/   , nPoolHelpId( USHRT_MAX )
+/*N*/   , nPoolHlpFileId( UCHAR_MAX )
+/*N*/   , bAutoRuleFlag( bAutoFlg )
+/*N*/   , bInvalidRuleFlag( TRUE )
+/*N*/   , bContinusNum( FALSE )
+/*N*/   , bAbsSpaces( FALSE )
 /*N*/ {
 /*N*/   if( !nRefCount++ )          // zum erstmal, also initialisiern
 /*N*/   {
@@ -385,19 +332,19 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/       }
 /*N*/   }
 /*N*/   memset( aFmts, 0, sizeof( aFmts ));
-/*N*/   ASSERT( sName.Len(), "NumRule ohne Namen!" );
+/*N*/   OSL_ENSURE( sName.Len(), "NumRule ohne Namen!" );
 /*N*/ }
 
 /*N*/ SwNumRule::SwNumRule( const SwNumRule& rNumRule )
-/*N*/   : eRuleType( rNumRule.eRuleType ),
-/*N*/   sName( rNumRule.sName ),
-/*N*/   bAutoRuleFlag( rNumRule.bAutoRuleFlag ),
-/*N*/   bInvalidRuleFlag( TRUE ),
-/*N*/   bContinusNum( rNumRule.bContinusNum ),
-/*N*/   bAbsSpaces( rNumRule.bAbsSpaces ),
-/*N*/   nPoolFmtId( rNumRule.GetPoolFmtId() ),
-/*N*/   nPoolHelpId( rNumRule.GetPoolHelpId() ),
-/*N*/   nPoolHlpFileId( rNumRule.GetPoolHlpFileId() )
+/*N*/   : sName( rNumRule.sName )
+/*N*/   , eRuleType( rNumRule.eRuleType )
+/*N*/   , nPoolFmtId( rNumRule.GetPoolFmtId() )
+/*N*/   , nPoolHelpId( rNumRule.GetPoolHelpId() )
+/*N*/   , nPoolHlpFileId( rNumRule.GetPoolHlpFileId() )
+/*N*/   , bAutoRuleFlag( rNumRule.bAutoRuleFlag )
+/*N*/   , bInvalidRuleFlag( TRUE )
+/*N*/   , bContinusNum( rNumRule.bContinusNum )
+/*N*/   , bAbsSpaces( rNumRule.bAbsSpaces )
 /*N*/ {
 /*N*/   ++nRefCount;
 /*N*/   memset( aFmts, 0, sizeof( aFmts ));
@@ -597,9 +544,7 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
     // richtigen CharFormaten eines Dokumentes haengen !!
     // (Kopiert die NumFormate und returnt sich selbst)
 
-/* -----------------30.10.98 08:33-------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ void SwNumRule::SetSvxRule(const SvxNumRule& rNumRule, SwDoc* pDoc)
 /*N*/ {
 /*N*/   for( USHORT n = 0; n < MAXLEVEL; ++n )
@@ -616,9 +561,7 @@ extern const sal_Char __FAR_DATA sBulletFntName[] = "StarSymbol";
 /*N*/   bContinusNum = rNumRule.IsContinuousNumbering();
 //!!!   bAbsSpaces = rNumRule.IsAbsSpaces();
 /*N*/ }
-/* -----------------30.10.98 08:33-------------------
- *
- * --------------------------------------------------*/
+
 /*N*/ SvxNumRule SwNumRule::MakeSvxNumRule() const
 /*N*/ {
 /*N*/   SvxNumRule aRule(NUM_CONTINUOUS|NUM_CHAR_TEXT_DISTANCE|NUM_CHAR_STYLE|
@@ -648,3 +591,5 @@ void SwNumRule::SetNumAdjust(SvxAdjust eNumAdjust)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

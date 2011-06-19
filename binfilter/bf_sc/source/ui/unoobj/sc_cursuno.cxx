@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,7 +35,7 @@
 #include "cursuno.hxx"
 #include "docsh.hxx"
 #include "markdata.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "miscuno.hxx"
 namespace binfilter {
 
@@ -114,20 +112,20 @@ uno::Sequence<sal_Int8> SAL_CALL ScCellCursorObj::getImplementationId() throw(un
 
 void SAL_CALL ScCellCursorObj::collapseToCurrentRegion() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
+    aLclRange.Justify();
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aRange.aStart.Col();
-        USHORT nStartRow = aRange.aStart.Row();
-        USHORT nEndCol = aRange.aEnd.Col();
-        USHORT nEndRow = aRange.aEnd.Row();
-        USHORT nTab = aRange.aStart.Tab();
+        USHORT nStartCol = aLclRange.aStart.Col();
+        USHORT nStartRow = aLclRange.aStart.Row();
+        USHORT nEndCol = aLclRange.aEnd.Col();
+        USHORT nEndRow = aLclRange.aEnd.Row();
+        USHORT nTab = aLclRange.aStart.Tab();
 
         pDocSh->GetDocument()->GetDataArea(
                         nTab, nStartCol, nStartRow, nEndCol, nEndRow, TRUE );
@@ -139,13 +137,13 @@ void SAL_CALL ScCellCursorObj::collapseToCurrentRegion() throw(uno::RuntimeExcep
 
 void SAL_CALL ScCellCursorObj::collapseToCurrentArray() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
-    ScAddress aCursor = aRange.aStart;      //  use the start address of the range
+    aLclRange.Justify();
+    ScAddress aCursor = aLclRange.aStart;       //  use the start address of the range
 
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
@@ -164,14 +162,14 @@ void SAL_CALL ScCellCursorObj::collapseToCurrentArray() throw(uno::RuntimeExcept
     // about a exception
     /*if (!bFound)
     {
-        DBG_ERROR("keine Matrix");
+        OSL_FAIL("keine Matrix");
         //! Exception, oder was?
     }*/
 }
 
 void SAL_CALL ScCellCursorObj::collapseToMergedArea() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
@@ -189,7 +187,7 @@ void SAL_CALL ScCellCursorObj::collapseToMergedArea() throw(uno::RuntimeExceptio
 
 void SAL_CALL ScCellCursorObj::expandToEntireColumns() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
     ScRange aNewRange = *rRanges.GetObject(0);
@@ -202,7 +200,7 @@ void SAL_CALL ScCellCursorObj::expandToEntireColumns() throw(uno::RuntimeExcepti
 
 void SAL_CALL ScCellCursorObj::expandToEntireRows() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
     ScRange aNewRange = *rRanges.GetObject(0);
@@ -216,10 +214,10 @@ void SAL_CALL ScCellCursorObj::expandToEntireRows() throw(uno::RuntimeException)
 void SAL_CALL ScCellCursorObj::collapseToSize( sal_Int32 nColumns, sal_Int32 nRows )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if ( nColumns <= 0 || nRows <= 0 )
     {
-        DBG_ERROR("leerer Range geht nicht");
+        OSL_FAIL("leerer Range geht nicht");
         //! und dann?
     }
     else
@@ -252,7 +250,7 @@ void SAL_CALL ScCellCursorObj::collapseToSize( sal_Int32 nColumns, sal_Int32 nRo
 void SAL_CALL ScCellCursorObj::gotoStartOfUsedArea( sal_Bool bExpand )
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
@@ -277,7 +275,7 @@ void SAL_CALL ScCellCursorObj::gotoStartOfUsedArea( sal_Bool bExpand )
 void SAL_CALL ScCellCursorObj::gotoEndOfUsedArea( sal_Bool bExpand )
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
@@ -306,20 +304,20 @@ void SAL_CALL ScCellCursorObj::gotoStart() throw(uno::RuntimeException)
     //  this is similar to collapseToCurrentRegion
     //! something like gotoEdge with 4 possible directions is needed
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
+    aLclRange.Justify();
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aRange.aStart.Col();
-        USHORT nStartRow = aRange.aStart.Row();
-        USHORT nEndCol = aRange.aEnd.Col();
-        USHORT nEndRow = aRange.aEnd.Row();
-        USHORT nTab = aRange.aStart.Tab();
+        USHORT nStartCol = aLclRange.aStart.Col();
+        USHORT nStartRow = aLclRange.aStart.Row();
+        USHORT nEndCol = aLclRange.aEnd.Col();
+        USHORT nEndRow = aLclRange.aEnd.Row();
+        USHORT nTab = aLclRange.aStart.Tab();
 
         pDocSh->GetDocument()->GetDataArea(
                         nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
@@ -334,20 +332,20 @@ void SAL_CALL ScCellCursorObj::gotoEnd() throw(uno::RuntimeException)
     //  this is similar to collapseToCurrentRegion
     //! something like gotoEdge with 4 possible directions is needed
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
+    aLclRange.Justify();
     ScDocShell* pDocSh = GetDocShell();
     if ( pDocSh )
     {
-        USHORT nStartCol = aRange.aStart.Col();
-        USHORT nStartRow = aRange.aStart.Row();
-        USHORT nEndCol = aRange.aEnd.Col();
-        USHORT nEndRow = aRange.aEnd.Row();
-        USHORT nTab = aRange.aStart.Tab();
+        USHORT nStartCol = aLclRange.aStart.Col();
+        USHORT nStartRow = aLclRange.aStart.Row();
+        USHORT nEndCol = aLclRange.aEnd.Col();
+        USHORT nEndRow = aLclRange.aEnd.Row();
+        USHORT nTab = aLclRange.aStart.Tab();
 
         pDocSh->GetDocument()->GetDataArea(
                         nTab, nStartCol, nStartRow, nEndCol, nEndRow, FALSE );
@@ -359,13 +357,13 @@ void SAL_CALL ScCellCursorObj::gotoEnd() throw(uno::RuntimeException)
 
 void SAL_CALL ScCellCursorObj::gotoNext() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
-    ScAddress aCursor = aRange.aStart;      //  bei Block immer den Start nehmen
+    aLclRange.Justify();
+    ScAddress aCursor = aLclRange.aStart;       //  bei Block immer den Start nehmen
 
     ScMarkData aMark;   // not used with bMarked=FALSE
     USHORT nNewX = aCursor.Col();
@@ -381,13 +379,13 @@ void SAL_CALL ScCellCursorObj::gotoNext() throw(uno::RuntimeException)
 
 void SAL_CALL ScCellCursorObj::gotoPrevious() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
+    ScRange aLclRange = *rRanges.GetObject(0);
 
-    aRange.Justify();
-    ScAddress aCursor = aRange.aStart;      //  bei Block immer den Start nehmen
+    aLclRange.Justify();
+    ScAddress aCursor = aLclRange.aStart;       //  bei Block immer den Start nehmen
 
     ScMarkData aMark;   // not used with bMarked=FALSE
     USHORT nNewX = aCursor.Col();
@@ -404,23 +402,23 @@ void SAL_CALL ScCellCursorObj::gotoPrevious() throw(uno::RuntimeException)
 void SAL_CALL ScCellCursorObj::gotoOffset( sal_Int32 nColumnOffset, sal_Int32 nRowOffset )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ScRangeList& rRanges = GetRangeList();
     DBG_ASSERT( rRanges.Count() == 1, "Range? Ranges?" );
-    ScRange aRange = *rRanges.GetObject(0);
-    aRange.Justify();
+    ScRange aLclRange = *rRanges.GetObject(0);
+    aLclRange.Justify();
 
-    if ( aRange.aStart.Col() + nColumnOffset >= 0 &&
-         aRange.aEnd.Col()   + nColumnOffset <= MAXCOL &&
-         aRange.aStart.Row() + nRowOffset    >= 0 &&
-         aRange.aEnd.Row()   + nRowOffset    <= MAXROW )
+    if ( aLclRange.aStart.Col() + nColumnOffset >= 0 &&
+         aLclRange.aEnd.Col()   + nColumnOffset <= MAXCOL &&
+         aLclRange.aStart.Row() + nRowOffset    >= 0 &&
+         aLclRange.aEnd.Row()   + nRowOffset    <= MAXROW )
     {
-        ScRange aNew( (USHORT)(aRange.aStart.Col() + nColumnOffset),
-                      (USHORT)(aRange.aStart.Row() + nRowOffset),
-                      aRange.aStart.Tab(),
-                      (USHORT)(aRange.aEnd.Col() + nColumnOffset),
-                      (USHORT)(aRange.aEnd.Row() + nRowOffset),
-                      aRange.aEnd.Tab() );
+        ScRange aNew( (USHORT)(aLclRange.aStart.Col() + nColumnOffset),
+                      (USHORT)(aLclRange.aStart.Row() + nRowOffset),
+                      aLclRange.aStart.Tab(),
+                      (USHORT)(aLclRange.aEnd.Col() + nColumnOffset),
+                      (USHORT)(aLclRange.aEnd.Row() + nRowOffset),
+                      aLclRange.aEnd.Tab() );
         SetNewRange( aNew );
     }
 }
@@ -430,7 +428,7 @@ void SAL_CALL ScCellCursorObj::gotoOffset( sal_Int32 nColumnOffset, sal_Int32 nR
 uno::Reference<sheet::XSpreadsheet> SAL_CALL ScCellCursorObj::getSpreadsheet()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ScCellRangeObj::getSpreadsheet();
 }
 
@@ -440,7 +438,7 @@ uno::Reference<table::XCell> SAL_CALL ScCellCursorObj::getCellByPosition(
                                         sal_Int32 nColumn, sal_Int32 nRow )
                                 throw(lang::IndexOutOfBoundsException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ScCellRangeObj::getCellByPosition(nColumn,nRow);
 }
 
@@ -448,22 +446,22 @@ uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByPositi
                 sal_Int32 nLeft, sal_Int32 nTop, sal_Int32 nRight, sal_Int32 nBottom )
                                 throw(lang::IndexOutOfBoundsException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ScCellRangeObj::getCellRangeByPosition(nLeft,nTop,nRight,nBottom);
 }
 
 uno::Reference<table::XCellRange> SAL_CALL ScCellCursorObj::getCellRangeByName(
-                        const ::rtl::OUString& aRange ) throw(uno::RuntimeException)
+                        const ::rtl::OUString& rRange ) throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
-    return ScCellRangeObj::getCellRangeByName(aRange);
+    SolarMutexGuard aGuard;
+    return ScCellRangeObj::getCellRangeByName(rRange);
 }
 
 // XServiceInfo
 
 ::rtl::OUString SAL_CALL ScCellCursorObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScCellCursorObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScCellCursorObj" ));
 }
 
 sal_Bool SAL_CALL ScCellCursorObj::supportsService( const ::rtl::OUString& rServiceName )
@@ -486,8 +484,8 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellCursorObj::getSupportedServiceNam
     //  SheetCellCursor should be first (?)
     uno::Sequence< ::rtl::OUString> aTotalSeq( nParentLen + 2 );
     ::rtl::OUString* pTotalArr = aTotalSeq.getArray();
-    pTotalArr[0] = ::rtl::OUString::createFromAscii( SCSHEETCELLCURSOR_SERVICE );
-    pTotalArr[1] = ::rtl::OUString::createFromAscii( SCCELLCURSOR_SERVICE );
+    pTotalArr[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSHEETCELLCURSOR_SERVICE ));
+    pTotalArr[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLCURSOR_SERVICE ));
 
     //  append cell range services
     for (long i=0; i<nParentLen; i++)
@@ -500,3 +498,5 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScCellCursorObj::getSupportedServiceNam
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,8 +38,8 @@
 #include <com/sun/star/uno/XComponentContext.hpp>
 #include <com/sun/star/util/XOfficeInstallationDirectories.hpp>
 #include <ucbhelper/content.hxx>
-#include <vos/ref.hxx>
-#include <vos/refernce.hxx>
+#include <rtl/ref.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/debug.hxx>
 #include <bf_svtools/pathoptions.hxx>
@@ -134,3 +135,4 @@ namespace binfilter
 }   // namespace sfx2
 //.........................................................................
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

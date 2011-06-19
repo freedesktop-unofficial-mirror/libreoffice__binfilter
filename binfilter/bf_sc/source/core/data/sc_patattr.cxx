@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -116,12 +114,12 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/       pName = NULL;
 /*N*/ }
 
-/*N*/ __EXPORT ScPatternAttr::~ScPatternAttr()
+/*N*/ ScPatternAttr::~ScPatternAttr()
 /*N*/ {
 /*N*/   delete pName;
 /*N*/ }
 
-/*N*/ SfxPoolItem* __EXPORT ScPatternAttr::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* ScPatternAttr::Clone( SfxItemPool *pPool ) const
 /*N*/ {
 /*N*/   ScPatternAttr* pPattern = new ScPatternAttr( GetItemSet().Clone(TRUE, pPool) );
 /*N*/
@@ -136,13 +134,13 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   return ( pStr1 ? ( pStr2 ? ( *pStr1 == *pStr2 ) : FALSE ) : ( pStr2 ? FALSE : TRUE ) );
 /*N*/ }
 
-/*N*/ int __EXPORT ScPatternAttr::operator==( const SfxPoolItem& rCmp ) const
+/*N*/ int ScPatternAttr::operator==( const SfxPoolItem& rCmp ) const
 /*N*/ {
 /*N*/   return ( SfxSetItem::operator==(rCmp) &&
 /*N*/            StrCmp( GetStyleName(), ((const ScPatternAttr&)rCmp).GetStyleName() ) );
 /*N*/ }
 
-/*N*/ SfxPoolItem* __EXPORT ScPatternAttr::Create( SvStream& rStream, USHORT nVersion ) const
+/*N*/ SfxPoolItem* ScPatternAttr::Create( SvStream& rStream, USHORT /*nVersion*/ ) const
 /*N*/ {
 /*N*/   String* pStr;
 /*N*/   BOOL    bHasStyle;
@@ -159,34 +157,15 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   else
 /*N*/       pStr = new String( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) );
 /*N*/
-/*N*/   SfxItemSet *pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet *pLclSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                      ATTR_PATTERN_START, ATTR_PATTERN_END );
-/*N*/   pSet->Load( rStream );
+/*N*/   pLclSet->Load( rStream );
 /*N*/
-/*N*/   ScPatternAttr* pPattern = new ScPatternAttr( pSet );
+/*N*/   ScPatternAttr* pPattern = new ScPatternAttr( pLclSet );
 /*N*/
 /*N*/   pPattern->pName = pStr;
 /*N*/
 /*N*/   return pPattern;
-/*N*/ }
-
-/*N*/ SvStream& __EXPORT ScPatternAttr::Store(SvStream& rStream, USHORT nItemVersion) const
-/*N*/ {
-/*N*/   rStream << (BOOL)TRUE;
-/*N*/
-/*N*/   if ( pStyle )
-/*N*/       rStream.WriteByteString( pStyle->GetName(), rStream.GetStreamCharSet() );
-/*N*/   else if ( pName )                   // wenn Style geloescht ist/war
-/*?*/       rStream.WriteByteString( *pName, rStream.GetStreamCharSet() );
-/*N*/   else
-/*N*/       rStream.WriteByteString( ScGlobal::GetRscString(STR_STYLENAME_STANDARD),
-/*N*/                                   rStream.GetStreamCharSet() );
-/*N*/
-/*N*/   rStream << (short)SFX_STYLE_FAMILY_PARA;  // wg. altem Dateiformat
-/*N*/
-/*N*/   GetItemSet().Store( rStream );
-/*N*/
-/*N*/   return rStream;
 /*N*/ }
 
 /*N*/ void ScPatternAttr::GetFont(
@@ -868,7 +847,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ {
 /*N*/   if ( !pSrcStyle || !pDestPool || !pSrcPool )
 /*N*/   {
-/*N*/       DBG_ERROR( "CopyStyleToPool: Invalid Arguments :-/" );
+/*N*/       OSL_FAIL( "CopyStyleToPool: Invalid Arguments :-/" );
 /*N*/       return NULL;
 /*N*/   }
 /*N*/
@@ -1007,7 +986,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ BOOL ScPatternAttr::IsVisible() const
 /*N*/ {
 /*N*/   const SfxItemSet& rSet = GetItemSet();
-/*N*/   const SfxItemPool* pPool = rSet.GetPool();
+/*N*/   /*const SfxItemPool* pPool =*/ rSet.GetPool();
 /*N*/
 /*N*/   const SfxPoolItem* pItem;
 /*N*/   SfxItemState eState;
@@ -1077,7 +1056,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR( "ScPatternAttr::SetStyleSheet( NULL ) :-|" );
+/*N*/       OSL_FAIL( "ScPatternAttr::SetStyleSheet( NULL ) :-|" );
 /*N*/       GetItemSet().SetParent(NULL);
 /*N*/       pStyle = NULL;
 /*N*/   }
@@ -1173,3 +1152,5 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/   return GetItemSet().Get(nWhich);
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

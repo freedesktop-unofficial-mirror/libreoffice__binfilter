@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -36,9 +34,7 @@
 #include "optutil.hxx"
 #include "global.hxx"       // for pSysLocale
 
-#ifndef INCLUDED_SVTOOLS_SYSLOCALE_HXX
 #include <bf_svtools/syslocale.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------
@@ -75,3 +71,5 @@ void  ScLinkConfigItem::Commit()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

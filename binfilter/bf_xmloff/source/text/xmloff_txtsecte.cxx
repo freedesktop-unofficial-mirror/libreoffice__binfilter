@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,53 +26,17 @@
  *
  ************************************************************************/
 
-
-
-
-
 #include <vector>
 
-
-
-
-
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTSECTION_HPP_
 #include <com/sun/star/text/XTextSection.hpp>
-#endif
 
-
-
-
-
-
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLTEXTNUMRULEINFO_HXX
 #include "XMLTextNumRuleInfo.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLSECTIONEXPORT_HXX_
 #include "XMLSectionExport.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLREDLINEEXPORT_HXX
 #include "XMLRedlineExport.hxx"
-#endif
-#ifndef _XMLOFF_MULTIPROPERTYSETHELPER_HXX
 #include "MultiPropertySetHelper.hxx"
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -203,8 +168,8 @@ void XMLTextParagraphExport::exportListAndSectionChange(
                 (aNew != aNewStack.rend()) &&
                 (*aOld) == (*aNew) )
         {
-            aOld++;
-            aNew++;
+            ++aOld;
+            ++aNew;
         }
 
         // close all elements of aOld ...
@@ -220,7 +185,7 @@ void XMLTextParagraphExport::exportListAndSectionChange(
                     pRedlineExport->ExportStartOrEndRedline(*aOldForward,
                                                                 sal_False);
                 pSectionExport->ExportSectionEnd(*aOldForward, bAutoStyles);
-                aOldForward++;
+                ++aOldForward;
             }
             if (aOldForward != aOldStack.end())
             {
@@ -238,7 +203,7 @@ void XMLTextParagraphExport::exportListAndSectionChange(
             if ( !bAutoStyles && (NULL != pRedlineExport) )
                 pRedlineExport->ExportStartOrEndRedline(*aNew, sal_True);
             pSectionExport->ExportSectionStart(*aNew, bAutoStyles);
-            aNew++;
+            ++aNew;
         }
 
         // start new list
@@ -257,3 +222,5 @@ void XMLTextParagraphExport::exportListAndSectionChange(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

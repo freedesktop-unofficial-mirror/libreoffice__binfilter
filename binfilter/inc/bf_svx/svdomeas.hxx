@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -70,7 +69,7 @@ class SdrMeasureObj : public SdrTextObj
 protected:
     Point                       aPt1;
     Point                       aPt2;
-    FASTBOOL                    bTextDirty;
+    bool                    bTextDirty;
 
 protected:
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
@@ -87,6 +86,7 @@ public:
     SdrMeasureObj();
     SdrMeasureObj(const Point& rPt1, const Point& rPt2);
     virtual ~SdrMeasureObj();
+    using SdrTextObj::operator=;
 
     virtual UINT16 GetObjIdentifier() const;
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
@@ -107,19 +107,19 @@ public:
     virtual void NbcSetPoint(const Point& rPnt, USHORT i);
 
 
-    virtual FASTBOOL BegTextEdit(SdrOutliner& rOutl);
+    virtual bool BegTextEdit(SdrOutliner& rOutl);
     virtual void EndTextEdit(SdrOutliner& rOutl);
     virtual const Size& GetTextSize() const;
-    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, FASTBOOL bNoEditText=FALSE,
+    virtual void TakeTextRect( SdrOutliner& rOutliner, Rectangle& rTextRect, bool bNoEditText=FALSE,
         Rectangle* pAnchorRect=NULL, BOOL bLineWidth=TRUE ) const;
     virtual void TakeTextAnchorRect(Rectangle& rAnchorRect) const;
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
     virtual OutlinerParaObject* GetOutlinerParaObject() const;
 
-    virtual FASTBOOL CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
-        FASTBOOL bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
+    virtual bool CalcFieldValue(const SvxFieldItem& rField, USHORT nPara, USHORT nPos,
+        bool bEdit, Color*& rpTxtColor, Color*& rpFldColor, String& rRet) const;
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // ItemSet access
     virtual SfxItemSet* CreateNewItemSet(SfxItemPool& rPool);
@@ -128,10 +128,10 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 };
 
@@ -151,11 +151,11 @@ public:
 //     ?--------------------->?--
 //     ?                      ?8mm
 //     ?                      ?
-//    Pt1ออออออออออออ?       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
-//     ?            ?        ณ___ <- Ueberstand der Masshilfslinie(n)
-//     ?            ศอออออออออ?
+//    Pt1?????????????       Pt2-- <----Bezugskante (von Pt1 nach Pt2)
+//     ?            ?        ?___ <- Ueberstand der Masshilfslinie(n)
+//     ?            ???????????
 //     ?Zu bemassendes Objekt ?
-//     ศอออออออออออออออออออออออ?
+//     ?????????????????????????
 //
 // Attribute:
 // ~~~~~~~~~~
@@ -191,3 +191,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOMEAS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

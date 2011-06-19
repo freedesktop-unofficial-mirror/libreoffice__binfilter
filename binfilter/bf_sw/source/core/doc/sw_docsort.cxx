@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,96 +26,25 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
-#ifndef _DOC_HXX
+#include <osl/diagnose.h>
 #include <doc.hxx>
-#endif
-#if OSL_DEBUG_LEVEL > 1
-//nur zum debugen
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star::lang;
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Ein Sortierelement fuers Sort konstruieren
- --------------------------------------------------------------------*/
-
-
-
-
-
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Operatoren zum Vergleichen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Kleiner-Operator fuers sortieren
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: SortierElemente fuer Text
- --------------------------------------------------------------------*/
-
-
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Key ermitteln
- --------------------------------------------------------------------*/
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Sortier-Elemente fuer Tabellen
- --------------------------------------------------------------------*/
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Schluessel zu einer Zelle ermitteln
- --------------------------------------------------------------------*/
-
-
-
 
 /*--------------------------------------------------------------------
     Beschreibung: Text sortieren im Document
  --------------------------------------------------------------------*/
 
-
-/*N*/ BOOL SwDoc::SortText(const SwPaM& rPaM, const SwSortOptions& rOpt)
+/*N*/ BOOL SwDoc::SortText(const SwPaM& /*rPaM*/, const SwSortOptions& /*rOpt*/)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // pruefen ob Rahmen im Text
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/  return TRUE;
 /*N*/ }
 
@@ -122,75 +52,12 @@ using namespace ::com::sun::star::lang;
     Beschreibung: Tabelle sortieren im Document
  --------------------------------------------------------------------*/
 
-/*N*/ BOOL SwDoc::SortTbl(const SwSelBoxes& rBoxes, const SwSortOptions& rOpt)
+/*N*/ BOOL SwDoc::SortTbl(const SwSelBoxes& /*rBoxes*/, const SwSortOptions& /*rOpt*/)
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // uebers SwDoc fuer Undo !!
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
-/*--------------------------------------------------------------------
-    Beschreibung: Zeilenweise verschieben
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Spaltenweise verschieben
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Eine einzelne Zelle verschieben
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Zweidimensionales Array aus FndBoxes generieren
- --------------------------------------------------------------------*/
-
-
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Alle Lines einer Box muessen gleichviel Boxen haben
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:   Box auf Symmetrie pruefen
-                    Alle Boxen einer Line muessen gleichviele Lines haben
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: max Anzahl der Spalten (Boxes)
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: max Anzahl der Zeilen (Lines)
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: lineares Array aus atomaren FndBoxes erzeugen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
-    Beschreibung: Zugriff auf eine bestimmte Zelle
- --------------------------------------------------------------------*/
-
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

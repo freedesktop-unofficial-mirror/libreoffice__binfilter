@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,74 +34,42 @@
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>       // ASSERT in ~SwTxtFtn()
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      // RemoveFtn()
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _FMTFTNTX_HXX //autogen
 #include <fmtftntx.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
 |*
 |*    class SwFmtFtn
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 09.08.94
-|*    Letzte Aenderung  JP 08.08.94
-|*
 *************************************************************************/
 
 
 /*N*/ SwFmtFtn::SwFmtFtn( BOOL bEN )
-/*N*/   : SfxPoolItem( RES_TXTATR_FTN ),
-/*N*/   nNumber( 0 ),
-/*N*/   pTxtAttr( 0 ),
-/*N*/   bEndNote( bEN )
+/*N*/   : SfxPoolItem( RES_TXTATR_FTN )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , nNumber( 0 )
+/*N*/   , bEndNote( bEN )
 /*N*/ {
 /*N*/ }
 
 
-int SwFmtFtn::operator==( const SfxPoolItem& rAttr ) const
+int SwFmtFtn::operator==( const SfxPoolItem& /*rAttr*/ ) const
 {
-    {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    {DBG_BF_ASSERT(0, "STRIP");} return 0;
 }
 
 
@@ -182,11 +151,11 @@ void SwFmtFtn::SetEndNote( BOOL b )
  *                      class SwTxt/FmtFnt
  *************************************************************************/
 
-/*N*/ SwTxtFtn::SwTxtFtn( const SwFmtFtn& rAttr, xub_StrLen nStart )
-/*N*/   : SwTxtAttr( rAttr, nStart ),
-/*N*/   pMyTxtNd( 0 ),
-/*N*/   pStartNode( 0 ),
-/*N*/   nSeqNo( USHRT_MAX )
+/*N*/ SwTxtFtn::SwTxtFtn( const SwFmtFtn& rAttr, xub_StrLen nStart2 )
+/*N*/   : SwTxtAttr( rAttr, nStart2 )
+/*N*/   , pStartNode( 0 )
+/*N*/   , pMyTxtNd( 0 )
+/*N*/   , nSeqNo( USHRT_MAX )
 /*N*/ {
 /*N*/   ((SwFmtFtn&)rAttr).pTxtAttr = this;
 /*N*/ }
@@ -241,7 +210,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
 /*?*/               // Werden die Nodes nicht geloescht mussen sie bei den Seiten
 /*?*/               // abmeldet (Frms loeschen) werden, denn sonst bleiben sie
 /*?*/               // stehen (Undo loescht sie nicht!)
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               DelFrms();
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       DELETEZ( pStartNode );
 /*N*/
@@ -273,7 +242,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
 /*N*/       rFtn.aNumber = aEmptyStr;
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( pMyTxtNd, "wo ist mein TextNode?" );
+/*N*/   OSL_ENSURE( pMyTxtNd, "wo ist mein TextNode?" );
 /*N*/   SwNodes &rNodes = pMyTxtNd->GetDoc()->GetNodes();
 /*N*/   pMyTxtNd->Modify( 0, &rFtn );
 /*N*/   if( pStartNode )
@@ -329,7 +298,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
  void SwTxtFtn::DelFrms()
  {
     // loesche die Ftn-Frames aus den Seiten
-    ASSERT( pMyTxtNd, "wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "wo ist mein TextNode?" );
     if( !pMyTxtNd )
         return ;
 
@@ -368,7 +337,7 @@ void SwFmtFtn::SetEndNote( BOOL b )
                 SwFtnFrm *pFtn = (SwFtnFrm*)pFrm;
                 while ( pFtn && pFtn->GetMaster() )
                     pFtn = pFtn->GetMaster();
-                ASSERT( pFtn->GetAttr() == this, "Ftn mismatch error." );
+                OSL_ENSURE( pFtn->GetAttr() == this, "Ftn mismatch error." );
 
                 while ( pFtn )
                 {
@@ -466,3 +435,5 @@ void SwFmtFtn::SetEndNote( BOOL b )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

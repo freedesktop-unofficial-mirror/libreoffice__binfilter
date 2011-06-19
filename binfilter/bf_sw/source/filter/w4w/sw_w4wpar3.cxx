@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,86 +34,34 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX //autogen
 #include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX //autogen
 #include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_WIDWITEM_HXX //autogen
 #include <bf_svx/widwitem.hxx>
-#endif
-#ifndef _SVX_ORPHITEM_HXX //autogen
 #include <bf_svx/orphitem.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
-#endif
-#ifndef _DOCUFLD_HXX        // fuer Hidden Text
 #include <docufld.hxx>
-#endif
-#ifndef _FMTFLD_HXX         // fuer Hidden Text
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>      // GET_POOLID_TXTCOLL
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // RES_POOLCOLL_STANDARD
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>           // fuer den Attribut Stack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>           // GetDecimal()
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 
@@ -133,7 +82,9 @@ SV_DECL_PTRARR_SORT( W4WStyleIdTab, W4WStyleIdTabEntryPtr, 0, 1 )
 
 W4WStyleIdTabEntry::W4WStyleIdTabEntry( SwW4WParser& rParser, USHORT nId,
                                         const sal_Unicode* pName )
-    :  nStyleId( nId ), pColl( 0 ), bSetAttributes( TRUE )
+    : pColl( 0 )
+    , nStyleId( nId )
+    , bSetAttributes( TRUE )
 {
     String aName( pName );
 
@@ -215,7 +166,6 @@ void SwW4WParser::Read_StyleBasedOn()           // (SBO)
     if ( !bStyleDef ) return;
 
     if(   !GetNextName() || nError
-//  if( W4WR_TXTERM != GetNextRecord() || nError
         || W4WR_TXTERM != GetDecimal( nStyNo ) ) return;
 
     TranslateDefaultStyle ( nStyNo, nDocType );
@@ -238,7 +188,7 @@ void SwW4WParser::Read_StyleBasedOn()           // (SBO)
             pColl = (*pStyleTab)[ nPos ]->pColl;
     }
     SwTxtFmtColl* pAktColl = GetAktColl();
-    ASSERT( pAktColl, "StyleId ungueltig" );
+    OSL_ENSURE( pAktColl, "StyleId ungueltig" );
 
     // nicht gefunden -> in Liste aufnehmen
     if( pColl == 0 )
@@ -252,9 +202,6 @@ void SwW4WParser::Read_StyleBasedOn()           // (SBO)
         // Abhaengigkeit merken
         pNewStyle->pColl = pAktColl;
         pStyleBaseTab->Insert( pNewStyle );
-//      const W4WStyleIdTabEntry* &rpNewStyle = pNewStyle;
-//      pStyleBaseTab->Insert( rpNewStyle );
-
     }
     else
     {
@@ -286,8 +233,6 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
         W4WStyleIdTabEntry( *this, nAktStyleId, aCharBuffer );
 
     pStyleTab->Insert( pNewStyle );
-//  const W4WStyleIdTabEntry* &rpNewStyle = pNewStyle;
-//  pStyleTab->Insert( rpNewStyle );
 
 //  NOTE3( "[Style Def: %s, Id: %ld]", aCharBuffer, nAktStyleId );
 
@@ -295,13 +240,11 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
     // ignoriere dabei alle Records nach (SEP)
     BYTE c;
     while( !nError )
-//  while( !nError && !pInput->get(c).eof() && W4WR_RED != c )
     {
         c = ReadChar();
         if ( rInp.IsEof() || W4WR_RED == c )
             break;
         rInp.SeekRel( - 1 );
-//      pInput->putback(c);
         if (EOF==GetNextRecord())
             break;
     }
@@ -315,9 +258,6 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
     bTxtInDoc = bOldTxtInDoc;
 
     SwTxtFmtColl* pAktColl = GetAktColl();
-//  if ( 0 == nAktStyleId )     // 0 : Dieser Style ist der Default
-//      pDoc->SetTxtFmtColl( *pCurPaM, pAktColl, FALSE );//!!!???
-
     if ( pStyleBaseTab ){       // Es sind noch Verbindungen herzustellen
         W4WStyleIdTabEntry aEntry( nAktStyleId );
         W4WStyleIdTabEntry* pTmp =  &aEntry;
@@ -331,12 +271,6 @@ void SwW4WParser::Read_StyleTable()     // (SYT)
             pStyleBaseTab->DeleteAndDestroy( nPos );
         }
     }
-//  if( 0 == pNewStyle->pColl->DerivedFrom() )
-//  {
-        // falls kein SBO kam,
-        // wird der neue Style vom Default abgeleitet
-//      pNewStyle->pColl->SetDerivedFrom( 0 );
-//  }
     nAktStyleId = 0;        // Starte normalen Text mit Default-Style
 }
 
@@ -406,46 +340,6 @@ void SwW4WParser::StyleAnfang()
     // anscheinend nur bei WP richtig quotet. Bei WW stimmt's bei OS/2 nicht,
     // bei AMI stimmt's nie
 
-//JP 11.05.00: UNICODE-CHANGE  - stimmt das noch so ??
-#if 0
-    if ( nDocType == 44 || nDocType == 33 )    // Hier stimmen die Umlaute nicht
-    {
-        rtl_TextEncoding eCS = RTL_TEXTENCODING_IBM_437;  // Wandle Umlaute in ALay - Namen
-        if ( nDocType == 44 )
-            eCS = RTL_TEXTENCODING_MS_1252;                     // WinWord hat Ansi-Charset
-        register BYTE ch, ch2;
-        for ( USHORT i=0; i<nChrCnt; i++ )
-        {
-            ch = aCharBuffer[i];
-            if ( ch < 32 || ch > 127 )
-            {
-                ch2 = String::Convert( ch, eCS, eSysCharSet );
-                aCharBuffer[i] = ( ch2 == 0 ) ? ch : ch2;
-            }
-            else if ( nDocType == 33 && ch == '<'          // AMI-Pro-Umlaute
-                    && aCharBuffer[i+1] == '\\' )
-            {
-                ch = aCharBuffer[i+2];
-                switch ( ch )
-                {
-                case 'd':  ch = 0x84; break;
-                case 'v':  ch = 0x94; break;
-                case '|':  ch = 0x81; break;
-                case '_':  ch = 0xe1; break;
-                case 'D':  ch = 0x8e; break;
-                case 'V':  ch = 0x99; break;
-                case '\\': ch = 0x9a; break;
-                default:   ch = 'X' ; break;
-                }
-                ch2 = String::Convert( ch, eCS, eSysCharSet ); // Umlaut in's System
-                aCharBuffer[i] = ch2;
-                for ( USHORT j=i+1; j+3<nChrCnt; j++ )      // loesche Klammern
-                    aCharBuffer[j] = aCharBuffer[j+3];
-                nChrCnt -= 3;
-            }
-        }
-    }   // Ende Umpopelungen
-#endif
 }
 
 
@@ -472,18 +366,10 @@ void SwW4WParser::Read_StyleOn()        // (STY)
 
         if( !pStyleTab )
         {
-            ASSERT( !this, "+keine StyleTabelle definiert" );
+            OSL_ENSURE( !this, "+keine StyleTabelle definiert" );
         }
         else
         {
-        //    pCtrlStck->StealAttr( RES_PARATR_TABSTOP, W4WR_NODE, pCurPaM->GetPoint() );
-        //    pCtrlStck->StealAttr( RES_FLTR_STYLESHEET, W4WR_NODE, pCurPaM->GetPoint() );
-        //    const SwPosition& rPos = *pCurPaM->GetPoint();
-        //    pCtrlStck->SetAttr( rPos, RES_LR_SPACE );
-        //    pCtrlStck->SetAttr( rPos, RES_UL_SPACE );
-        //    pCtrlStck->SetAttr( rPos, RES_CHRATR_FONT );
-        //    pCtrlStck->SetAttr( rPos, RES_CHRATR_FONTSIZE );
-
             SetAttr( SwW4WStyle( nAktStyleId ));
 
             bStyleEndRec = FALSE;
@@ -886,7 +772,6 @@ BOOL SwW4WParser::Read_Analyze_FLO_PDT()// analysieren aller PDTs und ggfs.
                     }
                 }
                  // cleverFrames: vertraute Strukturen zu erkennen
-                const BOOL bOnlyFrames = 0 != (W4WFL_FM_onlyFrames & nIniFMFlags);
                 const BOOL bCleverFrames =
                         (0 == (   (   W4WFL_FM_onlyFrames
                                     | W4WFL_FM_neverFrames )
@@ -1125,8 +1010,6 @@ BOOL SwW4WParser::Read_Analyze_FLO_PDT()// analysieren aller PDTs und ggfs.
                         SwRect& rBodyRect = rBodyInfo.aRect;
                         Point& rUpPos = pHdInfo ? pHdInfo->aRect.Pos()
                                                 : rBodyRect.Pos();
-                        Point& rLoPos = pFtInfo ? pFtInfo->aRect.Pos()
-                                                : rBodyRect.Pos();
 
                         nTop  = (USHORT)rUpPos.Y();
                         nLeft = (USHORT)rUpPos.X();
@@ -1139,7 +1022,6 @@ BOOL SwW4WParser::Read_Analyze_FLO_PDT()// analysieren aller PDTs und ggfs.
                         // Header und Footer definieren
                         SwFrmFmt* pHdFmt = 0;
                         SwFrmFmt* pFtFmt = 0;
-                        W4WRectInfo& rRectInfo = *pRDTInfos->Get( rPDTInfo.nHdRectId );
                         if( pHdInfo )
                         {
                             rFrmFmt.SetAttr( SwFmtHeader( TRUE ));
@@ -1431,8 +1313,6 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
                         SwRect& rBodyRect = rBodyInfo.aRect;
                         Point& rUpPos = pHdInfo ? pHdInfo->aRect.Pos()
                                                 : rBodyRect.Pos();
-                        Point& rLoPos = pFtInfo ? pFtInfo->aRect.Pos()
-                                                : rBodyRect.Pos();
 
                         nTop  = (USHORT)rUpPos.Y();
                         nLeft = (USHORT)rUpPos.X();
@@ -1444,7 +1324,6 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
 
                         SwFrmFmt* pHdFmt = 0;
                         SwFrmFmt* pFtFmt = 0;
-                        W4WRectInfo& rRectInfo = *pRDTInfos->Get( pPDTInfo->nHdRectId );
                         if( pHdInfo )
                         {
                             pHdFmt = (SwFrmFmt*)pPageDesc->GetMaster().GetHeader().GetHeaderFmt();
@@ -1477,3 +1356,5 @@ void SwW4WParser::Read_TextRectangelId()                // TRI
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

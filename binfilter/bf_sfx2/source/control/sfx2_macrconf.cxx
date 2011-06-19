@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -65,10 +66,10 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ SfxMacroInfo::SfxMacroInfo( SfxObjectShell *pDoc ) :
-/*?*/   bAppBasic(pDoc == NULL),
-/*?*/   nSlotId(0),
+/*?*/   pHelpText(0),
 /*?*/   nRefCnt(0),
-/*?*/   pHelpText(0)
+/*?*/   bAppBasic(pDoc == NULL),
+/*?*/   nSlotId(0)
 /*?*/ {}
 
 //==========================================================================
@@ -80,8 +81,8 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 //==========================================================================
 
-/*?*/ sal_Bool SfxMacroInfo::operator==(const SfxMacroInfo& rOther) const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ sal_Bool SfxMacroInfo::operator==(const SfxMacroInfo&) const
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 //==========================================================================
@@ -93,7 +94,7 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 //==========================================================================
 
 /*?*/ String SfxMacroInfo::GetBasicName() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");return String();
 /*?*/ }
 
 //==========================================================================
@@ -177,20 +178,22 @@ SfxMacroConfig* SfxMacroConfig::pMacroConfig = NULL;
 
 //==========================================================================
 
-/*?*/ IMPL_LINK( SfxMacroConfig, CallbackHdl_Impl, SfxMacroConfig*, pConfig )
+/*?*/ IMPL_LINK( SfxMacroConfig, CallbackHdl_Impl, SfxMacroConfig*, EMPTYARG )
 /*?*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pImp->bWaitingForCallback = sal_False;
+    DBG_BF_ASSERT(0, "STRIP");
 /*?*/   return 0;
 /*?*/ }
 
-/*?*/ IMPL_LINK( SfxMacroConfig, EventHdl_Impl, SfxMacroInfo*, pInfo )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ IMPL_LINK( SfxMacroConfig, EventHdl_Impl, SfxMacroInfo*, EMPTYARG )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/   pImp->nEventId = 0;
 /*?*/   return 0;
 /*?*/ }
 
-/*?*/ ErrCode SfxMacroConfig::Call( SbxObject* pVCtrl,
-/*?*/   const String& rCode, BasicManager* pMgr, SbxArray *pArgs, SbxValue *pRet )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ ErrCode SfxMacroConfig::Call(SbxObject*,
+/*?*/   const String&, BasicManager*, SbxArray *, SbxValue *)
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

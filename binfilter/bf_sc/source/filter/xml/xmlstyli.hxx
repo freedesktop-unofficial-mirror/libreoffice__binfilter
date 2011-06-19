@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,36 +29,18 @@
 #ifndef _XMLSTYLI_HXX
 #define _XMLSTYLI_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include <bf_xmloff/xmlimppr.hxx>
-#endif
-#ifndef _XMLTEXTMASTERPAGECONTEXT_HXX
 #include <bf_xmloff/XMLTextMasterPageContext.hxx>
-#endif
-#ifndef _XMLTEXTMASTERSTYLESCONTEXT_HXX
 #include <bf_xmloff/XMLTextMasterStylesContext.hxx>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HPP_
 #include <com/sun/star/sheet/ConditionOperator.hpp>
-#endif
 #include "xmlimprt.hxx"
 namespace binfilter {
 
@@ -310,3 +293,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

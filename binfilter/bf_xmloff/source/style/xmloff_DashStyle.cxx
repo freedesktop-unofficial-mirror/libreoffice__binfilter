@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,43 +26,17 @@
  *
  ************************************************************************/
 
-
-#ifndef _COM_SUN_STAR_DRAWING_LINEDASH_HPP_
 #include <com/sun/star/drawing/LineDash.hpp>
-#endif
 
-#ifndef _XMLOFF_DASHSTYLE_HXX
 #include "DashStyle.hxx"
-#endif
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-
 #include "rtl/ustring.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 
@@ -81,7 +56,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_DASH_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDashStyleAttrTokenMap[] =
+static SvXMLTokenMapEntry aDashStyleAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW, XML_NAME,             XML_TOK_DASH_NAME },
     { XML_NAMESPACE_DRAW, XML_STYLE,            XML_TOK_DASH_STYLE },
@@ -93,7 +68,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDashStyleAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_DashStyle_Enum[] =
+SvXMLEnumMapEntry const pXML_DashStyle_Enum[] =
 {
     { XML_RECT,         drawing::DashStyle_RECT },
     { XML_ROUND,        drawing::DashStyle_ROUND },
@@ -331,3 +306,5 @@ sal_Bool XMLDashStyleExport::exportXML(
 
 #endif // #ifndef SVX_LIGHT
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,11 @@
 #endif
 
 
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 #include "pagefrm.hxx"
 #include "rootfrm.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "txtfrm.hxx"
 #include "doc.hxx"
@@ -50,25 +47,13 @@
 #include "hints.hxx"
 #include "ndtxt.hxx"
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
 #include "tabfrm.hxx"
 #include "flyfrms.hxx"
 #include "sectfrm.hxx"
@@ -77,9 +62,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyAtCntFrm::SwFlyAtCntFrm()
-|*
-|*  Ersterstellung      MA 11. Nov. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
 |*
 |*************************************************************************/
 
@@ -100,9 +82,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyAtCntFrm::Modify()
-|*
-|*  Ersterstellung      MA 08. Feb. 93
-|*  Letzte Aenderung    MA 23. Nov. 94
 |*
 |*************************************************************************/
 
@@ -125,7 +104,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if( pAnch )
 /*N*/   {
-/*N*/       ASSERT( pAnch->GetAnchorId() == GetFmt()->GetAnchor().GetAnchorId(),
+/*N*/       OSL_ENSURE( pAnch->GetAnchorId() == GetFmt()->GetAnchor().GetAnchorId(),
 /*N*/               "Unzulaessiger Wechsel des Ankertyps." );
 /*N*/
 /*N*/       //Abmelden, neuen Anker besorgen und 'dranhaengen.
@@ -150,7 +129,7 @@ namespace binfilter {
 /*N*/       //Richtung. Wenn der neue Anker nicht gefunden wird koennen wir uns
 /*N*/       //immer noch vom Node einen Frame besorgen. Die Change, dass dies dann
 /*N*/       //der richtige ist, ist gut.
-/*N*/       const FASTBOOL bNext = aOldIdx < aNewIdx;
+/*N*/       const bool bNext = aOldIdx < aNewIdx;
 /*N*/       while ( pCntnt && aOldIdx != aNewIdx )
 /*N*/       {
 /*N*/           do
@@ -168,7 +147,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           SwCntntNode *pNode = aNewIdx.GetNode().GetCntntNode();
 /*?*/           pCntnt = pNode->GetFrm( &pOldAnchor->Frm().Pos(), 0, FALSE );
-/*?*/           ASSERT( pCntnt, "Neuen Anker nicht gefunden" );
+/*?*/           OSL_ENSURE( pCntnt, "Neuen Anker nicht gefunden" );
 /*N*/       }
 /*N*/       //Flys haengen niemals an einem Follow sondern immer am
 /*N*/       //Master, den suchen wir uns jetzt.
@@ -214,9 +193,6 @@ namespace binfilter {
 |*      fall das Attribut des Rahmens auf automatische Ausrichtung oben
 |*      eingestellt.
 |*
-|*  Ersterstellung      MA 12. Nov. 92
-|*  Letzte Aenderung    MA 20. Sep. 96
-|*
 |*************************************************************************/
 //Wir brauchen ein Paar Hilfsklassen zur Kontrolle der Ozillation und ein paar
 //Funktionen um die Uebersicht zu gewaehrleisten.
@@ -235,8 +211,8 @@ namespace binfilter {
 /*N*/ public:
 /*N*/   SwOszControl( const SwFlyFrm *pFrm );
 /*N*/   ~SwOszControl();
-/*N*/   FASTBOOL ChkOsz();
-/*N*/   static FASTBOOL IsInProgress( const SwFlyFrm *pFly );
+/*N*/   bool ChkOsz();
+/*N*/   static bool IsInProgress( const SwFlyFrm *pFly );
 /*N*/ };
 /*N*/ const SwFlyFrm *SwOszControl::pStk1 = 0;
 /*N*/ const SwFlyFrm *SwOszControl::pStk2 = 0;
@@ -273,12 +249,12 @@ namespace binfilter {
 /*?*/       SwOszControl::pStk5 = 0;
 /*N*/ }
 
-/*N*/ FASTBOOL IsInProgress( const SwFlyFrm *pFly )
+/*N*/ bool IsInProgress( const SwFlyFrm* /*pFly*/ )
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   return SwOszControl::IsInProgress( pFly );
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SwOszControl::IsInProgress( const SwFlyFrm *pFly )
+/*N*/ bool SwOszControl::IsInProgress( const SwFlyFrm *pFly )
 /*N*/ {
 /*N*/   if ( SwOszControl::pStk1 && !pFly->IsLowerOf( SwOszControl::pStk1 ) )
 /*N*/       return TRUE;
@@ -293,9 +269,9 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SwOszControl::ChkOsz()
+/*N*/ bool SwOszControl::ChkOsz()
 /*N*/ {
-/*N*/   FASTBOOL bRet = TRUE;
+/*N*/   bool bRet = TRUE;
 /*N*/   Point aTmp = pFly->Frm().Pos();
 /*N*/   if( aTmp == Point() )
 /*N*/       aTmp.X() = 1;
@@ -322,9 +298,9 @@ namespace binfilter {
 /*M*/         if( !GetPage() && GetAnchor() && GetAnchor()->IsInFly() )
 /*M*/         {
 /*M*/             SwFlyFrm* pFly = GetAnchor()->FindFlyFrm();
-/*M*/             SwPageFrm *pPage = pFly ? pFly->FindPageFrm() : NULL;
-/*M*/             if( pPage )
-/*M*/                 pPage->SwPageFrm::AppendFly( this );
+/*M*/             SwPageFrm *pPage1 = pFly ? pFly->FindPageFrm() : NULL;
+/*M*/             if( pPage1 )
+/*M*/                 pPage1->SwPageFrm::AppendFly( this );
 /*M*/         }
 /*M*/         if( GetPage() )
 /*M*/         {
@@ -374,8 +350,8 @@ namespace binfilter {
 /*M*/             SwFrm* pFooter = GetAnchor()->FindFooterOrHeader();
 /*M*/             if( pFooter && !pFooter->IsFooterFrm() )
 /*M*/                 pFooter = NULL;
-/*M*/             FASTBOOL bOsz = FALSE;
-/*M*/             FASTBOOL bExtra = Lower() && Lower()->IsColumnFrm();
+/*M*/             bool bOsz = FALSE;
+/*M*/             bool bExtra = Lower() && Lower()->IsColumnFrm();
 /*M*/
 /*M*/             do {
 /*M*/                 SWRECTFN( this )
@@ -458,8 +434,6 @@ namespace binfilter {
 |*      Absatzgebundene Objekte.
 |*      Wird beim Draggen von Absatzgebundenen Objekten zur Ankeranzeige sowie
 |*      fuer Ankerwechsel benoetigt.
-|*  Ersterstellung      MA 22. Jun. 93
-|*  Letzte Aenderung    MA 30. Jan. 95
 |*
 |*************************************************************************/
 
@@ -496,7 +470,7 @@ namespace binfilter {
 /*N*/       // einspaltige Bereiche muessen zu ihrem Upper durchschalten
 /*N*/       while( pUp->IsSctFrm() )
 /*N*/           pUp = pUp->GetUpper();
-/*N*/         SWRECTFN( pUp )
+/*N*/         sal_Bool bVert = pUp->IsVertical();
 /*N*/       //Dem Textflus folgen.
 /*N*/         if ( pUp->Frm().IsInside( rPt ) )
 /*N*/       {
@@ -536,8 +510,8 @@ namespace binfilter {
 /*N*/
 /*N*/           const SwFrm *pPre = pCnt;
 /*N*/           const SwFrm *pLay = pUp->GetLeaf( MAKEPAGE_NONE, TRUE, pCnt );
-/*N*/           SwTwips nFrmTop, nPrtHeight;
-/*N*/           BOOL bSct;
+/*N*/           SwTwips nFrmTop(0), nPrtHeight(0);
+/*N*/           BOOL bSct=FALSE;
 /*N*/           const SwSectionFrm *pSect = pUp->FindSctFrm();
 /*N*/           if( pSect )
 /*N*/           {
@@ -1027,9 +1001,6 @@ namespace binfilter {
 |*
 |*  SwFlyAtCntFrm::SetAbsPos()
 |*
-|*  Ersterstellung      MA 22. Jun. 93
-|*  Letzte Aenderung    MA 11. Sep. 98
-|*
 |*************************************************************************/
 
 
@@ -1078,9 +1049,6 @@ namespace binfilter {
 |*      angegebenen Werten uebereinstimmen, denn diese geben die Entfernung
 |*      'im Textfluss' an.
 |*
-|*  Ersterstellung      MA 19. Nov. 92
-|*  Letzte Aenderung    MA 14. Nov. 96
-|*
 |*************************************************************************/
 
 /*N*/ inline void ValidateSz( SwFrm *pFrm )
@@ -1100,15 +1068,15 @@ namespace binfilter {
 /*M*/
 /*M*/   USHORT nCnt = 0;
 /*M*/
-/*M*/   FASTBOOL bContinue = FALSE;
+/*M*/   bool bContinue = FALSE;
 /*M*/   do
 /*M*/   {   if ( ++nCnt == 10 )
 /*M*/       {
-/*M*/           ASSERT( !nCnt, "DeepCalc: Loop detected1?" );
+/*M*/           OSL_ENSURE( !nCnt, "DeepCalc: Loop detected1?" );
 /*M*/           break;
 /*M*/       }
 /*M*/
-/*M*/       const FASTBOOL bSetComplete = !pFrm->IsValid();
+/*M*/       const bool bSetComplete = !pFrm->IsValid();
 /*M*/       const SwRect aOldFrm( pFrm->Frm() );
 /*M*/       const SwRect aOldPrt( pFrm->Prt() );
 /*M*/
@@ -1233,7 +1201,7 @@ namespace binfilter {
 /*N*/           if ( Frm().Top() < pNewPage->Frm().Top() && pNewPage->GetPrev() )
 /*N*/           {
 /*N*/               pNewPage = (SwPageFrm*)pNewPage->GetPrev();
-/*N*/                 // OD 19.02.2003 #105643# - skip empty page and consider empty
+/*N*/                 // skip empty page and consider empty
 /*N*/                 // page at the beginning of the document.
 /*N*/                 // Assumption about document layout:
 /*N*/                 //      No two empty pages following each other.
@@ -1298,7 +1266,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pMyPage != pNewPage )
 /*N*/   {
-/*N*/       ASSERT( IsLocked(), "AssertPage: Unlocked Frame??" );
+/*N*/       OSL_ENSURE( IsLocked(), "AssertPage: Unlocked Frame??" );
 /*N*/       pMyPage->MoveFly( this, pNewPage );
 /*N*/       if ( bSuperfluous && pMyPage->GetPhyPageNum() > pNewPage->GetPhyPageNum() )
 /*?*/           ((SwRootFrm*)pNewPage->GetUpper())->SetSuperfluous();
@@ -1322,51 +1290,45 @@ namespace binfilter {
 /*N*/ }
 
 // Wer weicht wem aus bzw. welcher Bereich ist "linker"/"rechter" als welcher?
-/*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient eRelO, SwRelationOrient eRelO2,
-/*N*/   BOOL bLeft )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL MA_FASTCALL lcl_Minor( SwRelationOrient /*eRelO*/, SwRelationOrient /*eRelO2*/,
+/*N*/   BOOL /*bLeft*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ void SwFlyAtCntFrm::MakeFlyPos()
 /*N*/ {
-/*N*/     /// OD 02.10.2002 #102646#
 /*N*/     /// if fly frame position is valid, nothing is to do, Thus, return
 /*N*/     if ( bValidPos )
 /*N*/   {
 /*N*/         return;
 /*N*/     }
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and set <pFooter> to footer frame, if fly frame is anchored
 /*N*/     /// at a frame belonging to the footer.
 /*N*/     const SwFrm* pFooter = GetAnchor()->FindFooterOrHeader();
 /*N*/     if( pFooter && !pFooter->IsFooterFrm() )
 /*N*/         pFooter = NULL;
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and set <bBrowse> to TRUE, if document is in browser mode and
 /*N*/     /// fly frame is anchored at the body, but not at frame belonging to a table.
-/*N*/     const FASTBOOL bBrowse = GetAnchor()->IsInDocBody() && !GetAnchor()->IsInTab() ?
+/*N*/     const bool bBrowse = GetAnchor()->IsInDocBody() && !GetAnchor()->IsInTab() ?
 /*N*/                                  GetFmt()->GetDoc()->IsBrowseMode() : FALSE;
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// declare and init <bInvalidatePage> to FALSE, in order to invalidate
 /*N*/     /// page size, if <bInvalidatePage> is set during the calculation of the
 /*N*/     /// fly frame position.
-/*N*/     FASTBOOL bInvalidatePage = FALSE;
+/*N*/     bool bInvalidatePage = FALSE;
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// determine fly frame format and its left/right and its upper/lower spacing.
 /*N*/     SwFlyFrmFmt *pFmt = (SwFlyFrmFmt*)GetFmt();
 /*N*/     const SvxLRSpaceItem &rLR = pFmt->GetLRSpace();
 /*N*/     const SvxULSpaceItem &rUL = pFmt->GetULSpace();
 /*N*/
-/*N*/     /// OD 02.10.2002 #102646# - NOTE
 /*N*/     /// determine, if fly frame has no surrounding.
 /*N*/     const SwFmtSurround& rSurround = pFmt->GetSurround();
-/*N*/     const FASTBOOL bNoSurround =
+/*N*/     const bool bNoSurround =
 /*N*/         rSurround.GetSurround() == SURROUND_NONE;
-/*N*/     const FASTBOOL bWrapThrough =
+/*N*/     const bool bWrapThrough =
 /*N*/         rSurround.GetSurround() == SURROUND_THROUGHT;
 /*N*/
 /*N*/     BOOL bGrow =
@@ -1493,7 +1455,6 @@ namespace binfilter {
 /*N*/       SwTwips nRelDiff = 0;
 /*N*/       if ( aVert.GetVertOrient() == VERT_NONE )
 /*N*/       {
-/*N*/             /// OD 02.10.2002 #102646# - NOTE
 /*N*/             /// local variable <nRel> for calculation of relative vertical
 /*N*/             /// distance to anchor.
 /*N*/           SwTwips nRel;
@@ -1519,7 +1480,6 @@ namespace binfilter {
 /*N*/           }
 /*N*/           else
 /*N*/             {
-/*N*/                 /// OD 02.10.2002 #102646#
 /*N*/                 /// consider that vertical position can be relativ to "margin"
 /*N*/                 /// or to "text area".
 /*N*/                 /// Thus, increase <nRel> by margin height, if position is
@@ -1786,14 +1746,14 @@ namespace binfilter {
 /*N*/
 /*N*/       // Achtung: pPage ist nicht unbedingt ein PageFrm, es kann auch ein
 /*N*/       // SwFlyFrm oder SwCellFrm dahinterstecken
-/*N*/       const SwFrm *pPage = pOrient;
-/*N*/       while( !pPage->IsPageFrm() && !pPage->IsFlyFrm() && !pPage->IsCellFrm() )
+/*N*/       const SwFrm *pPage2 = pOrient;
+/*N*/       while( !pPage2->IsPageFrm() && !pPage2->IsFlyFrm() && !pPage2->IsCellFrm() )
 /*N*/       {
-/*N*/           ASSERT( pPage->GetUpper(), "MakeFlyPos: No Page/FlyFrm Found" );
-/*N*/           pPage = pPage->GetUpper();
+/*N*/           OSL_ENSURE( pPage2->GetUpper(), "MakeFlyPos: No Page/FlyFrm Found" );
+/*N*/           pPage2 = pPage2->GetUpper();
 /*N*/       }
 /*N*/
-/*N*/       const BOOL bEven = !pPage->OnRightPage();
+/*N*/       const BOOL bEven = !pPage2->OnRightPage();
 /*N*/       const BOOL bToggle = aHori.IsPosToggle() && bEven;
 /*N*/       BOOL bTmpToggle = bToggle;
 /*N*/       BOOL bPageRel = FALSE;
@@ -1816,15 +1776,15 @@ namespace binfilter {
 /*N*/           {
 /*N*/               if ( bTmpToggle )    // linker Seitenrand
 /*N*/                 {
-/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage->Frm().*fnRect->fnGetLeft)(),
+/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage2->Frm().*fnRect->fnGetLeft)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
-/*N*/                     nWidth = (pPage->*fnRect->fnGetLeftMargin)();
+/*N*/                     nWidth = (pPage2->*fnRect->fnGetLeftMargin)();
 /*N*/                 }
 /*N*/               else            // rechter Seitenrand
 /*N*/               {
-/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage->*fnRect->fnGetPrtRight)(),
+/*N*/                     nAdd = (*fnRect->fnXDiff)((pPage2->*fnRect->fnGetPrtRight)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
-/*N*/                     nWidth = (pPage->*fnRect->fnGetRightMargin)();
+/*N*/                     nWidth = (pPage2->*fnRect->fnGetRightMargin)();
 /*N*/               }
 /*N*/               bPageRel = TRUE;
 /*N*/               break;
@@ -1859,16 +1819,16 @@ namespace binfilter {
 /*N*/           }
 /*N*/           case REL_PG_PRTAREA:
 /*N*/           {
-/*N*/                 nWidth = (pPage->Prt().*fnRect->fnGetWidth)();
-/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage->*fnRect->fnGetPrtLeft)(),
+/*N*/                 nWidth = (pPage2->Prt().*fnRect->fnGetWidth)();
+/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage2->*fnRect->fnGetPrtLeft)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
 /*N*/               bPageRel = TRUE;
 /*N*/               break;
 /*N*/           }
 /*N*/           case REL_PG_FRAME:
 /*N*/           {
-/*N*/                 nWidth = (pPage->Frm().*fnRect->fnGetWidth)();
-/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage->Frm().*fnRect->fnGetLeft)(),
+/*N*/                 nWidth = (pPage2->Frm().*fnRect->fnGetWidth)();
+/*N*/                 nAdd = (*fnRect->fnXDiff)( (pPage2->Frm().*fnRect->fnGetLeft)(),
 /*N*/                                          (pOrient->Frm().*fnRect->fnGetLeft)());
 /*N*/               bPageRel = TRUE;
 /*N*/               break;
@@ -1933,20 +1893,20 @@ namespace binfilter {
 /*N*/             if( bVert )
 /*N*/             {
 /*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX + aFrm.Height() >
-/*N*/                     pPage->Frm().Bottom() )
-/*N*/                     nRelPosX = pPage->Frm().Bottom() - GetAnchor()->Frm().Top()
+/*N*/                     pPage2->Frm().Bottom() )
+/*N*/                     nRelPosX = pPage2->Frm().Bottom() - GetAnchor()->Frm().Top()
 /*N*/                                   - aFrm.Height();
-/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage->Frm().Top() )
-/*N*/                     nRelPosX = pPage->Frm().Top() - GetAnchor()->Frm().Top();
+/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage2->Frm().Top() )
+/*N*/                     nRelPosX = pPage2->Frm().Top() - GetAnchor()->Frm().Top();
 /*N*/             }
 /*N*/             else
 /*N*/             {
 /*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX + aFrm.Width() >
-/*N*/                     pPage->Frm().Right() )
-/*N*/                     nRelPosX = pPage->Frm().Right() -
+/*N*/                     pPage2->Frm().Right() )
+/*N*/                     nRelPosX = pPage2->Frm().Right() -
 /*N*/                                GetAnchor()->Frm().Left() - aFrm.Width();
-/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage->Frm().Left() )
-/*N*/                     nRelPosX = pPage->Frm().Left() - GetAnchor()->Frm().Left();
+/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage2->Frm().Left() )
+/*N*/                     nRelPosX = pPage2->Frm().Left() - GetAnchor()->Frm().Left();
 /*N*/             }
 /*N*/       }
 /*N*/       else
@@ -1983,11 +1943,11 @@ namespace binfilter {
 /*N*/                                 GetAnchor()->Frm().Top();
 /*N*/
 /*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX + aFrm.Height() >
-/*N*/                     pPage->Frm().Bottom() )
-/*N*/                     nRelPosX = pPage->Frm().Bottom() - GetAnchor()->Frm().Top()
+/*N*/                     pPage2->Frm().Bottom() )
+/*N*/                     nRelPosX = pPage2->Frm().Bottom() - GetAnchor()->Frm().Top()
 /*N*/                                 - aFrm.Height();
-/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage->Frm().Top() )
-/*N*/                     nRelPosX = pPage->Frm().Top() - GetAnchor()->Frm().Top();
+/*N*/                 if( GetAnchor()->Frm().Top() + nRelPosX < pPage2->Frm().Top() )
+/*N*/                     nRelPosX = pPage2->Frm().Top() - GetAnchor()->Frm().Top();
 /*N*/             }
 /*N*/             else
 /*N*/             {
@@ -2005,11 +1965,11 @@ namespace binfilter {
 /*N*/                     nRelPosX += pOrient->Frm().Left() -
 /*N*/                                 GetAnchor()->Frm().Left();
 /*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX + aFrm.Width() >
-/*N*/                     pPage->Frm().Right() )
-/*N*/                     nRelPosX = pPage->Frm().Right() - GetAnchor()->Frm().Left()
+/*N*/                     pPage2->Frm().Right() )
+/*N*/                     nRelPosX = pPage2->Frm().Right() - GetAnchor()->Frm().Left()
 /*N*/                                 - aFrm.Width();
-/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage->Frm().Left() )
-/*N*/                     nRelPosX = pPage->Frm().Left() - GetAnchor()->Frm().Left();
+/*N*/                 if( GetAnchor()->Frm().Left() + nRelPosX < pPage2->Frm().Left() )
+/*N*/                     nRelPosX = pPage2->Frm().Left() - GetAnchor()->Frm().Left();
 /*N*/             }
 /*N*/
 /*N*/           //Es muss allen Rahmen ausgewichen werden, die die selbe
@@ -2029,8 +1989,8 @@ namespace binfilter {
 /*N*/                 }
 /*N*/                 SwRect aTmpFrm( aTmpPos, Frm().SSize() );
 /*N*/               const UINT32 nMyOrd = GetVirtDrawObj()->GetOrdNum();
-/*N*/                 const SwPageFrm *pPage = FindPageFrm();
-/*N*/                 SwOrderIter aIter( pPage, TRUE );
+/*N*/                 const SwPageFrm *pPage3 = FindPageFrm();
+/*N*/                 SwOrderIter aIter( pPage3, TRUE );
 /*N*/               const SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)aIter.Bottom())->GetFlyFrm();
 /*N*/               const SwFrm *pKontext = ::binfilter::FindKontext( GetAnchor(), FRM_COLUMN );
 /*N*/                 ULONG nMyIndex = ((SwTxtFrm*)GetAnchor())->GetTxtNode()->GetIndex();
@@ -2090,8 +2050,8 @@ namespace binfilter {
 /*N*/                                                     nTmp + Frm().Height() +
 /*N*/                                                     GetAnchor()->Frm().Top() +
 /*N*/                                                     rUL.GetLower() <=
-/*N*/                                                     pPage->Frm().Height() +
-/*N*/                                                     pPage->Frm().Top() )
+/*N*/                                                     pPage3->Frm().Height() +
+/*N*/                                                     pPage3->Frm().Top() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2105,7 +2065,7 @@ namespace binfilter {
 /*N*/                                                 if( nTmp < nRelPosX &&
 /*N*/                                                     nTmp - rUL.GetUpper() +
 /*N*/                                                     GetAnchor()->Frm().Top()
-/*N*/                                                     >= pPage->Frm().Top() )
+/*N*/                                                     >= pPage3->Frm().Top() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2130,8 +2090,8 @@ namespace binfilter {
 /*N*/                                                     nTmp + Frm().Width() +
 /*N*/                                                     GetAnchor()->Frm().Left() +
 /*N*/                                                     rLR.GetRight() <=
-/*N*/                                                     pPage->Frm().Width() +
-/*N*/                                                     pPage->Frm().Left() )
+/*N*/                                                     pPage3->Frm().Width() +
+/*N*/                                                     pPage3->Frm().Left() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2145,7 +2105,7 @@ namespace binfilter {
 /*N*/                                                 if( nTmp < nRelPosX &&
 /*N*/                                                     nTmp - rLR.GetLeft() +
 /*N*/                                                     GetAnchor()->Frm().Left()
-/*N*/                                                     >= pPage->Frm().Left() )
+/*N*/                                                     >= pPage3->Frm().Left() )
 /*N*/                                                 {
 /*N*/                                                     nRelPosX = nTmp;
 /*N*/                                                 }
@@ -2194,14 +2154,16 @@ namespace binfilter {
 /*N*/       pFmt->UnlockModify();
 /*N*/
 /*N*/       break;
-/*N*/     } /// OD 02.10.2002 #102646# - End of loop
+/*N*/     }
 /*N*/
 /*N*/     if ( bInvalidatePage )
 /*N*/         FindPageFrm()->InvalidateSize();
 /*N*/     if ( !bValidPos && !GetAnchor()->IsValid() )
 /*N*/     {
-/*N*/ //      ASSERT( StackHack::IsLocked(), "invalid Anchor" );
+/*N*/ //      OSL_ENSURE( StackHack::IsLocked(), "invalid Anchor" );
 /*N*/         bValidPos = TRUE;
 /*N*/     }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

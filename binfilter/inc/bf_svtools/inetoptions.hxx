@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,10 @@
 #ifndef _SVTOOLS_INETOPTIONS_HXX_
 #define _SVTOOLS_INETOPTIONS_HXX_
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace beans {
     class XPropertiesChangeListener;
@@ -90,3 +83,5 @@ private:
 }
 
 #endif // _SVTOOLS_INETOPTIONS_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

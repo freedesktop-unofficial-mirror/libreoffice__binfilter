@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -40,7 +38,7 @@
 #include "docsh.hxx"
 #include "docfunc.hxx"
 #include "hints.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "AccessibleText.hxx"
 namespace binfilter {
 
@@ -197,7 +195,7 @@ ScAnnotationEditSource::ScAnnotationEditSource(ScDocShell* pDocSh, const ScAddre
 
 ScAnnotationEditSource::~ScAnnotationEditSource()
 {
-    ScUnoGuard aGuard;      //  needed for EditEngine dtor
+    SolarMutexGuard aGuard;     //  needed for EditEngine dtor
 
     if (pDocShell)
         pDocShell->GetDocument()->RemoveUnoObject(*this);
@@ -256,12 +254,10 @@ void ScAnnotationEditSource::UpdateData()
     }
 }
 
-void ScAnnotationEditSource::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScAnnotationEditSource::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( ScUpdateRefHint ) )
     {
-        const ScUpdateRefHint& rRef = (const ScUpdateRefHint&)rHint;
-
         //! Ref-Update
     }
     else if ( rHint.ISA( SfxSimpleHint ) )
@@ -279,7 +275,6 @@ void ScAnnotationEditSource::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
     }
 }
 
-//------------------------------------------------------------------------
 
 ScSimpleEditSource::ScSimpleEditSource( SvxTextForwarder* pForw ) :
     pForwarder( pForw )
@@ -308,7 +303,6 @@ void ScSimpleEditSource::UpdateData()
     //  nothing
 }
 
-//------------------------------------------------------------------------
 
 ScAccessibilityEditSource::ScAccessibilityEditSource( ::std::auto_ptr < ScAccessibleTextData > pAccessibleCellTextData )
     : mpAccessibleTextData(pAccessibleCellTextData)
@@ -350,3 +344,5 @@ SfxBroadcaster& ScAccessibilityEditSource::GetBroadcaster() const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

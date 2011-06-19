@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,23 +30,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
-#ifndef _TOOLS_RESMGR_HXX
 #include <tools/resmgr.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _RDIC_HRC
 #include <rcid.hrc>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 extern ResMgr* pSwResMgr;
 // Initialise UI names to 0
@@ -357,7 +348,7 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/ }
 /*N*/ const NameToIdHash & SwStyleNameMapper::getHashTable ( SwGetPoolIdFromName eFlags, sal_Bool bProgName )
 /*N*/ {
-/*N*/   NameToIdHash *pHash;
+/*N*/   NameToIdHash *pHash = NULL;
 /*N*/   const SvStringsDtor *pStrings;
 /*N*/
 /*N*/   switch ( eFlags )
@@ -472,155 +463,6 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/       }
 /*N*/       break;
 /*N*/   }
-/*N*/ #ifdef _NEED_TO_DEBUG_MAPPING
-/*N*/   static sal_Bool bTested = sal_False;
-/*N*/   if ( !bTested )
-/*N*/   {
-/*N*/       bTested = sal_True;
-/*N*/       {
-/*N*/           for ( sal_uInt16 nIndex = 0, nId = RES_POOLCOLL_TEXT_BEGIN ; nId < RES_POOLCOLL_TEXT_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/           for ( nIndex = 0, nId = RES_POOLCOLL_LISTS_BEGIN ; nId < RES_POOLCOLL_LISTS_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/           for ( nIndex = 0, nId = RES_POOLCOLL_EXTRA_BEGIN ; nId < RES_POOLCOLL_EXTRA_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/           for ( nIndex = 0, nId = RES_POOLCOLL_REGISTER_BEGIN ; nId < RES_POOLCOLL_REGISTER_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/           for ( nIndex = 0, nId = RES_POOLCOLL_DOC_BEGIN ; nId < RES_POOLCOLL_DOC_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/           for ( nIndex = 0, nId = RES_POOLCOLL_HTML_BEGIN ; nId < RES_POOLCOLL_HTML_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/       }
-/*N*/       {
-/*N*/           for ( sal_uInt16 nIndex = 0, nId = RES_POOLCHR_NORMAL_BEGIN ; nId < RES_POOLCHR_NORMAL_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/           for ( nIndex = 0, nId = RES_POOLCHR_HTML_BEGIN ; nId < RES_POOLCHR_HTML_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/       }
-/*N*/       {
-/*N*/           for ( sal_uInt16 nIndex=0,nId = RES_POOLFRM_BEGIN ; nId < RES_POOLFRM_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/       }
-/*N*/       {
-/*N*/           for ( sal_uInt16 nIndex=0,nId = RES_POOLPAGE_BEGIN ; nId < RES_POOLPAGE_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/       }
-/*N*/       {
-/*N*/           for ( sal_uInt16 nIndex=0,nId = RES_POOLNUMRULE_BEGIN ; nId < RES_POOLNUMRULE_END ; nId++,nIndex++ )
-/*N*/           {
-/*N*/               String aString, bString;
-/*N*/               FillUIName ( nId, aString );
-/*N*/               bString = GetProgName ( GET_POOLID_TXTCOLL, aString );
-/*N*/               sal_uInt16 nNewId = GetPoolIdFromProgName ( bString, GET_POOLID_TXTCOLL );
-/*N*/               FillProgName ( nNewId, aString );
-/*N*/               bString = GetUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               nNewId = GetPoolIdFromUIName ( aString, GET_POOLID_TXTCOLL );
-/*N*/               if ( nNewId != nId )
-/*N*/                   *((sal_Int32*)0) = 42;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/   return *pHash;
 /*N*/ }
 // This gets the UI Name from the programmatic name
@@ -867,8 +709,8 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/ }
 
 // Get the programmatic Name from the pool ID
-/*N*/ void SwStyleNameMapper::FillProgName ( sal_uInt16 nId, String& rFillName )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwStyleNameMapper::FillProgName ( sal_uInt16 /*nId*/, String& /*rFillName*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 // Get the programmatic Name from the pool ID
 /*N*/ const String& SwStyleNameMapper::GetProgName ( sal_uInt16 nId, const String& rName )
@@ -1142,3 +984,5 @@ const struct SwTableEntry NumRuleProgNameTable [] =
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

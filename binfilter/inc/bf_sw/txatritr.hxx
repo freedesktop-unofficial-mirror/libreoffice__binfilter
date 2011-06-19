@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _TXATRITR_HXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 #include <tools/debug.hxx>
 class String;
 namespace binfilter {
@@ -57,8 +56,8 @@ class SwTxtAttrIterator
     const SfxPoolItem *pParaItem, *pCurItem;
 
 public:
-SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,//STRIP001  SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,
-xub_StrLen nStart = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001                         xub_StrLen nStart = 0 );
+SwTxtAttrIterator( const SwTxtNode& rTxtNd, USHORT nWhichId,
+xub_StrLen nStart = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;
     const SfxPoolItem& GetAttr() const  { return *pCurItem; }
 };
 
@@ -81,3 +80,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

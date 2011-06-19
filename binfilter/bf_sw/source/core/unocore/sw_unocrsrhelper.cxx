@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,147 +33,57 @@
 
 #include <cmdid.h>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOCRSRHELPER_HXX
 #include <unocrsrhelper.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _UNOSTYLE_HXX
 #include <unostyle.hxx>
-#endif
-#ifndef _UNOMAP_HXX
 #include <unomap.hxx>
-#endif
-#ifndef SW_UNOMID_HXX
 #include <unomid.h>
-#endif
-#ifndef _UNOIDX_HXX
 #include <unoidx.hxx>
-#endif
-#ifndef _UNOFIELD_HXX
 #include <unofield.hxx>
-#endif
-#ifndef _UNOTBL_HXX
 #include <unotbl.hxx>
-#endif
-#ifndef _UNOSETT_HXX
 #include <unosett.hxx>
-#endif
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
-#ifndef _UNOFRAME_HXX
 #include <unoframe.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _PAGEDESC_HXX //autogen
 #include <pagedesc.hxx>
-#endif
-#ifndef _DOCSTYLE_HXX //autogen
 #include <docstyle.hxx>
-#endif
-#ifndef _NDTXT_HXX //autogen
 #include <ndtxt.hxx>
-#endif
-#ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _SWDOCSH_HXX //autogen
 #include <docsh.hxx>
-#endif
-#ifndef _SECTION_HXX //autogen
 #include <section.hxx>
-#endif
-#ifndef _SHELLIO_HXX //autogen
 #include <shellio.hxx>
-#endif
-#ifndef _EDIMP_HXX //autogen
 #include <edimp.hxx>
-#endif
-#ifndef _CNTFRM_HXX //autogen
 #include <cntfrm.hxx>
-#endif
-#ifndef _PAGEFRM_HXX //autogen
 #include <pagefrm.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _DOC_HXX //autogen
 #include <doc.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
 #include <fchrfmt.hxx>
-#endif
-#ifndef _SVX_FLSTITEM_HXX //autogen
 #include <bf_svx/flstitem.hxx>
-#endif
-#ifndef _SV_METRIC_HXX
 #include <vcl/metric.hxx>
-#endif
-#ifndef _CTRLTOOL_HXX
 #include <bf_svtools/ctrltool.hxx>
-#endif
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_USHORTSSORT
 #include <bf_svtools/svstdarr.hxx>
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
-#endif
 
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYSTATE_HPP_
 #include <com/sun/star/beans/PropertyState.hpp>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -182,12 +93,13 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::table;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 
 namespace SwUnoCursorHelper
 {
-/* -----------------16.09.98 12:27-------------------
+/* --------------------------------------------------
  *  Lesen spezieller Properties am Cursor
  * --------------------------------------------------*/
 sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
@@ -383,7 +295,6 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
                 {
                     const SwTableNode* pTblNode = pSttNode->FindTableNode();
                     SwFrmFmt* pTableFmt = (SwFrmFmt*)pTblNode->GetTable().GetFrmFmt();
-                    SwTable& rTable = ((SwTableNode*)pSttNode)->GetTable();
                     if(FN_UNO_TEXT_TABLE == pMap->nWID)
                     {
                         Reference< XTextTable >  xTable = SwXTextTables::GetObject(*pTableFmt);
@@ -490,7 +401,6 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
                     nPaMEnd = nTmp;
                 }
                 Sequence< ::rtl::OUString> aCharStyles;
-                USHORT nCharStylesFound = 0;
                 SwpHints* pHints = pTxtNode->GetpSwpHints();
                 for(USHORT nAttr = 0; nAttr < pHints->GetStartCount(); nAttr++ )
                 {
@@ -543,9 +453,7 @@ sal_Bool getCrsrPropertyValue(const SfxItemPropertyMap* pMap
         eState = eNewState;
     return bDone;
 };
-/* -----------------30.06.98 10:30-------------------
- *
- * --------------------------------------------------*/
+
 sal_Int16 IsNodeNumStart(SwPaM& rPam, PropertyState& eState)
 {
     const SwTxtNode* pTxtNd = rPam.GetNode()->GetTxtNode();
@@ -559,9 +467,7 @@ sal_Int16 IsNodeNumStart(SwPaM& rPam, PropertyState& eState)
     return -1;
 }
 
-/* -----------------25.05.98 11:41-------------------
- *
- * --------------------------------------------------*/
+
 void setNumberingProperty(const Any& rValue, SwPaM& rPam)
 {
     Reference<XIndexReplace> xIndexReplace;
@@ -599,10 +505,10 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
                             // CharStyle besorgen und an der chaos::Rule setzen
                             sal_uInt16 nChCount = pDoc->GetCharFmts()->Count();
                             SwCharFmt* pCharFmt = 0;
-                            for(sal_uInt16 i = 0; i< nChCount; i++)
+                            for(sal_uInt16 nCharFmt = 0; nCharFmt < nChCount; nCharFmt++)
                             {
-                                SwCharFmt& rChFmt = *((*(pDoc->GetCharFmts()))[i]);;
-                                if(rChFmt.GetName() == pNewCharStyles[i])
+                                SwCharFmt& rChFmt = *((*(pDoc->GetCharFmts()))[nCharFmt]);;
+                                if(rChFmt.GetName() == pNewCharStyles[nCharFmt])
                                 {
                                     pCharFmt = &rChFmt;
                                     break;
@@ -626,8 +532,8 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
                     //jetzt nochmal fuer Fonts
                     if(pBulletFontNames[i] != SwXNumberingRules::GetInvalidStyle() &&
                         ((pBulletFontNames[i].Len() && !aFmt.GetBulletFont()) ||
-                        pBulletFontNames[i].Len() &&
-                                aFmt.GetBulletFont()->GetName() != pBulletFontNames[i] ))
+                        (pBulletFontNames[i].Len() &&
+                                aFmt.GetBulletFont()->GetName() != pBulletFontNames[i]) ))
                     {
                         const SvxFontListItem* pFontListItem =
                                 (const SvxFontListItem* )pDoc->GetDocShell()
@@ -673,9 +579,7 @@ void setNumberingProperty(const Any& rValue, SwPaM& rPam)
 }
 
 
-/* -----------------25.05.98 11:40-------------------
- *
- * --------------------------------------------------*/
+
 void  getNumberingProperty(SwPaM& rPam, PropertyState& eState, Any * pAny )
 {
     const SwNumRule* pNumRule = rPam.GetDoc()->GetCurrNumRule( *rPam.GetPoint() );
@@ -689,16 +593,14 @@ void  getNumberingProperty(SwPaM& rPam, PropertyState& eState, Any * pAny )
     else
         eState = PropertyState_DEFAULT_VALUE;
 }
-/* -----------------04.07.98 15:15-------------------
- *
- * --------------------------------------------------*/
+
 void GetCurPageStyle(SwPaM& rPaM, String &rString)
 {
     const SwPageFrm* pPage = rPaM.GetCntntNode()->GetFrm()->FindPageFrm();
     if(pPage)
         SwStyleNameMapper::FillProgName( pPage->GetPageDesc()->GetName(), rString, GET_POOLID_PAGEDESC, sal_True );
 }
-/* -----------------30.03.99 10:52-------------------
+/* --------------------------------------------------
  * spezielle Properties am Cursor zuruecksetzen
  * --------------------------------------------------*/
 void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
@@ -741,9 +643,7 @@ void resetCrsrPropertyValue(const SfxItemPropertyMap* pMap, SwPaM& rPam)
         break;
     }
 }
-/* -----------------21.07.98 11:36-------------------
- *
- * --------------------------------------------------*/
+
 void InsertFile(SwUnoCrsr* pUnoCrsr,
     const String& rFileName,
     const String& rFilterName,
@@ -842,3 +742,5 @@ void InsertFile(SwUnoCrsr* pUnoCrsr,
 }//namespace SwUnoCursorHelper
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,27 +29,13 @@
 #ifndef _XMLOFF_FORMLAYEREXPORT_HXX_
 #define _XMLOFF_FORMLAYEREXPORT_HXX_
 
-#ifndef _VOS_REFERNCE_HXX_
-#include <vos/refernce.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
+#include <salhelper/simplereferenceobject.hxx>
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
+#include <rtl/ref.hxx>
 #include <bf_xmloff/xmlexppr.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace awt {
     class XControlModel;
@@ -70,7 +57,7 @@ namespace xmloff
     /** provides functionallity for exporting a complete form layer.
     */
     class OFormLayerXMLExport
-                :public ::vos::OReference
+                :public ::salhelper::SimpleReferenceObject
     {
     protected:
         /// our export context
@@ -196,3 +183,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMLAYEREXPORT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

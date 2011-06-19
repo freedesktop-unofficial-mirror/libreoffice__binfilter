@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _PROPREAD_HXX_
 #include <propread.hxx>
-#endif
 #include "rtl/tencinfo.h"
 #include "rtl/textenc.h"
 namespace binfilter {
@@ -39,13 +38,13 @@ PropItem& PropItem::operator=( PropItem& rPropItem )
     if ( this != &rPropItem )
     {
         Seek( STREAM_SEEK_TO_BEGIN );
-        delete[] SwitchBuffer();
+        delete[] (sal_uInt8*)SwitchBuffer();
 
         mnTextEnc = rPropItem.mnTextEnc;
-        sal_uInt32 nPos = rPropItem.Tell();
+        sal_uInt32 nLclPos = rPropItem.Tell();
         rPropItem.Seek( STREAM_SEEK_TO_END );
         SvMemoryStream::Write( rPropItem.GetData(), rPropItem.Tell() );
-        rPropItem.Seek( nPos );
+        rPropItem.Seek( nLclPos );
     }
     return *this;
 }
@@ -83,3 +82,5 @@ Dictionary& Dictionary::operator=( Dictionary& rDictionary )
     return *this;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

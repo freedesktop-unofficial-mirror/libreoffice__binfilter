@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _CURSOR_HXX //autogen
 #include <vcl/cursor.hxx>
-#endif
 #include "swcrsr.hxx"
 #include "swrect.hxx"
 #include "swregion.hxx"
@@ -73,8 +72,8 @@ public:
     void Show();
     void Hide();
 
-    FASTBOOL IsVisible() const { return bIsVisible; }
-    FASTBOOL IsDragCrsr() const { return bIsDragCrsr; }
+    bool IsVisible() const { return bIsVisible; }
+    bool IsDragCrsr() const { return bIsDragCrsr; }
     void SetDragCrsr( BOOL bFlag = TRUE ) { bIsDragCrsr = bFlag; }
 
 #ifdef SW_CRSR_TIMER
@@ -136,7 +135,7 @@ public:
 
 
 
-    FASTBOOL UpDown( BOOL bUp, USHORT nCnt = 1 );
+    bool UpDown( BOOL bUp, USHORT nCnt = 1 );
 
     // TRUE: an die Position kann der Cursor gesetzt werden
 
@@ -180,3 +179,5 @@ public:
 
 } //namespace binfilter
 #endif  // _VISCRS_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

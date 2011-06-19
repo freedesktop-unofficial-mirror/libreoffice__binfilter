@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,44 +31,22 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
 
 
 
 
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
 namespace binfilter {
 
 /*  */
@@ -124,7 +103,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*?*/           do {
 /*?*/               _PaMCorrAbs1( _pStkCrsr )
@@ -167,15 +146,13 @@ namespace binfilter {
 /*N*/                    const xub_StrLen nOffset,
 /*N*/                    BOOL bMoveCrsr )
 /*N*/ {
-/*N*/   const SwNode* pOldNode = &rOldNode.GetNode();
 /*N*/   SwPosition aNewPos( rNewPos );
 /*N*/
 /*N*/   { // erstmal die Bookmark korrigieren
 /*N*/       register SwBookmarks& rBkmks = *pBookmarkTbl;
-/*N*/       register SwBookmark* pBkmk;
 /*N*/       for( USHORT n = 0; n < rBkmks.Count(); ++n )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt auf der Position ??
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   { // dann die Redlines korrigieren
@@ -183,7 +160,7 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*?*/           // liegt auf der Position ??
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrAbs1( rTbl[ n ] )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -238,7 +215,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*N*/           do {
 /*N*/               _PaMCorrAbs2( _pStkCrsr, aNewPos, nSttNode, nEndNode );
@@ -303,11 +280,10 @@ namespace binfilter {
 /*N*/                    const SwPosition& rNewPos,
 /*N*/                    BOOL bMoveCrsr )
 /*N*/ {
-/*N*/   const ULONG nSttNode = rStartNode.GetIndex();
-/*N*/   const ULONG nEndNode = rEndNode.GetIndex();
+/*N*/   rStartNode.GetIndex();
+/*N*/   rEndNode.GetIndex();
 /*N*/   SwPosition aNewPos( rNewPos );
 /*N*/
-/*N*/ //    if( !DoesUndo() )
 /*N*/       // erstmal die Bookmarks/Redlines korrigieren
 /*N*/       _DelBookmarks( rStartNode, rEndNode );
 /*N*/
@@ -338,7 +314,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*N*/           do {
 /*?*/               _PaMCorrAbs3( _pStkCrsr )
@@ -365,7 +341,7 @@ namespace binfilter {
 /*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -405,7 +381,7 @@ namespace binfilter {
 /*N*/       FOREACHSHELL_START( pShell )
 /*N*/           register SwPaM *_pStkCrsr = PCURSH->GetStkCrsr();
 /*N*/   // Alle ueberfluessigen Crsr sind vom Stack, oder ??
-/*N*/   //      ASSERT( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
+/*N*/   //      OSL_ENSURE( !_pStkCrsr, "Es stehen noch Crsr auf dem CrsrStack" );
 /*N*/           if( _pStkCrsr )
 /*N*/           do {
 /*?*/               _PaMCorrRel1( _pStkCrsr )
@@ -432,7 +408,7 @@ namespace binfilter {
 /*N*/           SwUnoTableCrsr* pUnoTblCrsr = (SwUnoTableCrsr*)*rTbl[ n ];
 /*N*/           if( pUnoTblCrsr )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 FOREACHPAM_START( &pUnoTblCrsr->GetSelRing() )
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -476,7 +452,7 @@ namespace binfilter {
 /*N*/               pBkmk->pPos2->nNode.GetNode().FindTableBoxStartNode() !=
 /*N*/               pBkmk->pPos1->nNode.GetNode().FindTableBoxStartNode() )
 /*N*/           {
-/*N*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( 1 == bChgd )
+/*N*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -485,7 +461,7 @@ namespace binfilter {
 /*N*/       for( USHORT n = 0; n < rTbl.Count(); ++n )
 /*N*/       {
 /*N*/           // liegt auf der Position ??
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _PaMCorrRel1( rTbl[ n ] )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -522,3 +498,5 @@ namespace binfilter {
 
 // <- #102505#
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,7 +38,7 @@
 #include "osl/diagnose.h"
 #include "rtl/ustring.h"
 #include "sal/types.h"
-#include "vos/mutex.hxx"
+#include "osl/mutex.hxx"
 
 namespace binfilter {
 
@@ -59,7 +60,7 @@ void ImeStatusWindow::init()
     if (Application::CanToggleImeStatusWindow())
         try
         {
-            sal_Bool bShow;
+            sal_Bool bShow(sal_False);
             if (getConfig()->getPropertyValue(
                     ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
                                       "ShowStatusWindow")))
@@ -68,7 +69,7 @@ void ImeStatusWindow::init()
         }
         catch (css::uno::Exception &)
         {
-            OSL_ENSURE(false, "com.sun.star.uno.Exception");
+            OSL_FAIL("com.sun.star.uno.Exception");
             // Degrade gracefully and use the VCL-supplied default if no
             // configuration is available.
         }
@@ -86,11 +87,11 @@ ImeStatusWindow::~ImeStatusWindow()
         }
         catch (css::uno::Exception &)
         {
-            OSL_ENSURE(false, "com.sun.star.uno.RuntimeException");
+            OSL_FAIL("com.sun.star.uno.RuntimeException");
         }
 }
 
-void SAL_CALL ImeStatusWindow::disposing(css::lang::EventObject const & rSource)
+void SAL_CALL ImeStatusWindow::disposing(css::lang::EventObject const & /*rSource*/)
     throw (css::uno::RuntimeException)
 {
     osl::MutexGuard aGuard(m_aMutex);
@@ -99,7 +100,7 @@ void SAL_CALL ImeStatusWindow::disposing(css::lang::EventObject const & rSource)
 }
 
 void SAL_CALL
-ImeStatusWindow::propertyChange(css::beans::PropertyChangeEvent const & rEvent)
+ImeStatusWindow::propertyChange(css::beans::PropertyChangeEvent const & /*rEvent*/)
     throw (css::uno::RuntimeException)
 {
 }
@@ -170,3 +171,5 @@ css::uno::Reference< css::beans::XPropertySet > ImeStatusWindow::getConfig()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

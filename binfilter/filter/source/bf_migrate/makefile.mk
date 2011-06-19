@@ -25,19 +25,14 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
 PRJNAME=binfilter
 TARGET=bf_migratefilter
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
-#UNOUCRRDB=$(SOLARBINDIR)$/applicat.rdb
 ENABLE_EXCEPTIONS=TRUE
 USE_DEFFILE=TRUE
 

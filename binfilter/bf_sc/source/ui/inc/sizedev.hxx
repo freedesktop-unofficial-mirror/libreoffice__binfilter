@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef SC_SIZEDEV_HXX
 #define SC_SIZEDEV_HXX
 
-#ifndef _SV_MAPMOD_HXX
 #include <vcl/mapmod.hxx>
-#endif
 class OutputDevice;
 namespace binfilter {
 
@@ -57,3 +56,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _SVX_RLRCITEM_HXX
 #define _SVX_RLRCITEM_HXX
 
-#ifndef _SFXCTRLITEM_HXX
 #include <bf_sfx2/ctrlitem.hxx>
-#endif
 namespace binfilter {
 
 class SvxRuler;
@@ -52,3 +51,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

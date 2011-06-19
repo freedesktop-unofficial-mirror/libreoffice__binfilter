@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 #include "propertyimport.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
-#ifndef _UNOTOOLS_DATETIME_HXX_
 #include <unotools/datetime.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -91,8 +74,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False,
-                    ::rtl::OString("OPropertyImport::CreateChildContext: unknown sub element (only \"properties\" is recognized, but it is ")
+            OSL_FAIL(::rtl::OString("OPropertyImport::CreateChildContext: unknown sub element (only \"properties\" is recognized, but it is ")
                 +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
                 +=  ::rtl::OString(")!"));
             return SvXMLImportContext::CreateChildContext(_nPrefix, _rLocalName, _rxAttrList);
@@ -135,10 +117,11 @@ namespace xmloff
     {
         // ignore them (should be whitespaces only)
         OSL_ENSURE(0 == _rChars.trim().getLength(), "OPropertyImport::Characters: non-whitespace characters!");
+        (void)_rChars;
     }
 
     //---------------------------------------------------------------------
-    void OPropertyImport::handleAttribute(sal_uInt16 _nNamespaceKey, const ::rtl::OUString& _rLocalName, const ::rtl::OUString& _rValue)
+    void OPropertyImport::handleAttribute(sal_uInt16 /*_nNamespaceKey*/, const ::rtl::OUString& _rLocalName, const ::rtl::OUString& _rValue)
     {
         const OAttribute2Property::AttributeAssignment* pProperty = m_rContext.getAttributeMap().getAttributeTranslation(_rLocalName);
         if (pProperty)
@@ -152,7 +135,7 @@ namespace xmloff
             implPushBackPropertyValue( aNewValue );
         }
         else
-            OSL_ENSURE( sal_False, "OPropertyImport::handleAttribute: can't handle attributes which do not describe properties!" );
+            OSL_FAIL( "OPropertyImport::handleAttribute: can't handle attributes which do not describe properties!" );
     }
 
     //---------------------------------------------------------------------
@@ -216,7 +199,7 @@ namespace xmloff
             break;
             case TypeClass_HYPER:
             {
-                OSL_ENSURE(sal_False, "OPropertyImport::convertString: 64-bit integers not implemented yet!");
+                OSL_FAIL("OPropertyImport::convertString: 64-bit integers not implemented yet!");
             }
             break;
             case TypeClass_DOUBLE:
@@ -295,11 +278,11 @@ namespace xmloff
                     }
                 }
                 else
-                    OSL_ENSURE(sal_False, "OPropertyImport::convertString: unsupported property type!");
+                    OSL_FAIL("OPropertyImport::convertString: unsupported property type!");
             }
             break;
             default:
-                OSL_ENSURE(sal_False, "OPropertyImport::convertString: invalid type class!");
+                OSL_FAIL("OPropertyImport::convertString: invalid type class!");
         }
 
         return aReturn;
@@ -345,17 +328,16 @@ namespace xmloff
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OPropertyElementsContext::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-        const Reference< sax::XAttributeList >& _rxAttrList)
+        const Reference< sax::XAttributeList >& /*_rxAttrList*/)
     {
-        static const ::rtl::OUString s_sSinglePropertyElementName = ::rtl::OUString::createFromAscii("property");
+        static const ::rtl::OUString s_sSinglePropertyElementName( RTL_CONSTASCII_USTRINGPARAM( "property" ));
         if (_rLocalName == s_sSinglePropertyElementName)
         {
             return new OSinglePropertyContext(GetImport(), _nPrefix, _rLocalName, m_xPropertyImporter);
         }
         else
         {
-            OSL_ENSURE(sal_False,
-                    ::rtl::OString("OPropertyElementsContext::CreateChildContext: unknown child element (\"")
+            OSL_FAIL(::rtl::OString("OPropertyElementsContext::CreateChildContext: unknown child element (\"")
                 +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
                 +=  ::rtl::OString("\")!"));
             return new SvXMLImportContext(GetImport(), _nPrefix, _rLocalName);
@@ -392,9 +374,9 @@ namespace xmloff
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OSinglePropertyContext::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-            const Reference< sax::XAttributeList >& _rxAttrList)
+            const Reference< sax::XAttributeList >& /*_rxAttrList*/)
     {
-        static const ::rtl::OUString s_sPropertyValueElementName = ::rtl::OUString::createFromAscii("property-value");
+        static const ::rtl::OUString s_sPropertyValueElementName( RTL_CONSTASCII_USTRINGPARAM( "property-value" ));
         if (_rLocalName == s_sPropertyValueElementName)
         {
             OSL_ENSURE(!m_xValueReader.Is(), "OSinglePropertyContext::CreateChildContext: already had a value element!");
@@ -403,8 +385,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False,
-                    ::rtl::OString("OSinglePropertyContext::CreateChildContext: unknown child element (\"")
+            OSL_FAIL(::rtl::OString("OSinglePropertyContext::CreateChildContext: unknown child element (\"")
                 +=  ::rtl::OString(_rLocalName.getStr(), _rLocalName.getLength(), RTL_TEXTENCODING_ASCII_US)
                 +=  ::rtl::OString("\")!"));
             return new SvXMLImportContext(GetImport(), _nPrefix, _rLocalName);
@@ -415,9 +396,9 @@ namespace xmloff
     void OSinglePropertyContext::StartElement(const Reference< sax::XAttributeList >& _rxAttrList)
     {
         ::rtl::OUString sNameAttribute = GetImport().GetNamespaceMap().GetQNameByIndex(
-            GetPrefix(), ::rtl::OUString::createFromAscii("property-name"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "property-name" )));
         ::rtl::OUString sTypeAttribute = GetImport().GetNamespaceMap().GetQNameByIndex(
-            GetPrefix(), ::rtl::OUString::createFromAscii("property-type"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "property-type" )));
 
         // the name of the property
         m_aPropValue.Name = _rxAttrList->getValueByName(sNameAttribute);
@@ -431,12 +412,12 @@ namespace xmloff
         static MapString2Type s_aTypeNameMap;
         if (!s_aTypeNameMap.size())
         {
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("boolean")] = ::getBooleanCppuType();
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("short")]   = ::getCppuType( static_cast< sal_Int16* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("int")]     = ::getCppuType( static_cast< sal_Int32* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("long")]    = ::getCppuType( static_cast< sal_Int64* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("double")]  = ::getCppuType( static_cast< double* >(NULL) );
-            s_aTypeNameMap[::rtl::OUString::createFromAscii("string")]  = ::getCppuType( static_cast< ::rtl::OUString* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "boolean" ))]  = ::getBooleanCppuType();
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "short" ))]    = ::getCppuType( static_cast< sal_Int16* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "int" ))]      = ::getCppuType( static_cast< sal_Int32* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "long" ))] = ::getCppuType( static_cast< sal_Int64* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "double" ))]   = ::getCppuType( static_cast< double* >(NULL) );
+            s_aTypeNameMap[::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "string" ))]   = ::getCppuType( static_cast< ::rtl::OUString* >(NULL) );
         }
 
         const ConstMapString2TypeIterator aTypePos = s_aTypeNameMap.find(sType);
@@ -490,7 +471,7 @@ namespace xmloff
     void OAccumulateCharacters::StartElement(const Reference< sax::XAttributeList >& _rxAttrList)
     {
         ::rtl::OUString sIsVoidAttributeName = GetImport().GetNamespaceMap().GetQNameByIndex(
-            GetPrefix(), ::rtl::OUString::createFromAscii("property-is-void"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "property-is-void" )));
         ::rtl::OUString sIsVoidAttributeValue = _rxAttrList->getValueByName(sIsVoidAttributeName);
 
         if (sIsVoidAttributeValue.getLength())
@@ -516,3 +497,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

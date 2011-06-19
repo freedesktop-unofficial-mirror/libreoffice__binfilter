@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,51 +33,25 @@
 
 #include <stdlib.h>
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 #define _SVSTDARR_STRINGS
 
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>           // LinkManager
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>           // fuer Server-Funktionalitaet
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>          // fuer die Bookmarks
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>          // fuer SwSectionFmt
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>          // fuer SwTable
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 namespace binfilter {
 
 
@@ -93,9 +68,9 @@ struct _FindItem
 };
 
 
-/*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& rpBkmk, void* pArgs )
+/*N*/ BOOL lcl_FindBookmark( const SwBookmarkPtr& /*rpBkmk*/, void* /*pArgs*/ )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   BOOL bRet = TRUE; DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
@@ -171,7 +146,7 @@ struct _FindItem
 /*N*/                                               lcl_FindBookmark, &aPara );
 /*N*/       if( aPara.pBkmk && aPara.pBkmk->GetOtherPos() )
 /*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // gefunden, also Hotlink einrichten
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // sollten wir schon einer sein?
 /*N*/       }
 /*N*/
@@ -195,7 +170,7 @@ struct _FindItem
 /*N*/                                               lcl_FindTable, &aPara );
 /*N*/       if( aPara.pTblNd )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // gefunden, also Hotlink einrichten
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // sollten wir schon einer sein?
 /*?*/       }
 /*?*/       // bis hierhin, also nicht vorhanden
@@ -228,7 +203,7 @@ struct _FindItem
 /*N*/   // sondern auch Rahmen(Text!), Tabellen, Gliederungen:
 /*N*/   if( STRING_NOTFOUND != nPos )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bWeiter = FALSE;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // alte "Mechanik"
@@ -265,3 +240,5 @@ struct _FindItem
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -52,9 +50,8 @@
 #include "editable.hxx"
 namespace binfilter {
 
-// -----------------------------------------------------------------
 
-/*N*/ BOOL ScDBDocFunc::AddDBRange( const String& rName, const ScRange& rRange, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::AddDBRange( const String& rName, const ScRange& rRange, BOOL /*bApi*/ )
 /*N*/ {
 /*N*/
 /*N*/   ScDocShellModificator aModificator( rDocShell );
@@ -81,7 +78,7 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 /*N*/
-/*N*/ BOOL ScDBDocFunc::DeleteDBRange( const String& rName, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::DeleteDBRange( const String& rName, BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -104,7 +101,7 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDBDocFunc::RenameDBRange( const String& rOld, const String& rNew, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::RenameDBRange( const String& rOld, const String& rNew, BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -128,7 +125,7 @@ namespace binfilter {
 /*N*/       BOOL bInserted = pDocColl->Insert( pNewData );
 /*N*/       if (!bInserted)                             // Fehler -> alten Zustand wiederherstellen
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete pNewData;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pDoc->CompileDBFormula( FALSE );            // CompileFormulaString
 /*N*/
@@ -145,7 +142,7 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-/*N*/ BOOL ScDBDocFunc::ModifyDBData( const ScDBData& rNewData, BOOL bApi )
+/*N*/ BOOL ScDBDocFunc::ModifyDBData( const ScDBData& rNewData, BOOL /*bApi*/)
 /*N*/ {
 /*N*/   BOOL bDone = FALSE;
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
@@ -175,7 +172,6 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::RepeatDB( const String& rDBName, BOOL bRecord, BOOL bApi )
 /*N*/ {
@@ -205,7 +201,6 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( bQuery || bSort || bSubTotal )
 /*N*/       {
-/*N*/           BOOL bQuerySize = FALSE;
 /*N*/           ScRange aOldQuery;
 /*N*/           ScRange aNewQuery;
 /*N*/           if (bQuery && !aQueryParam.bInplace)
@@ -213,10 +208,7 @@ namespace binfilter {
 /*N*/               ScDBData* pDest = pDoc->GetDBAtCursor( aQueryParam.nDestCol, aQueryParam.nDestRow,
 /*N*/                                                       aQueryParam.nDestTab, TRUE );
 /*N*/               if (pDest && pDest->IsDoSize())
-/*N*/               {
 /*N*/                   pDest->GetArea( aOldQuery );
-/*N*/                   bQuerySize = TRUE;
-/*N*/               }
 /*N*/           }
 /*N*/
 /*N*/           USHORT nTab;
@@ -227,9 +219,6 @@ namespace binfilter {
 /*N*/           pDBData->GetArea( nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/
 /*N*/           ScDocument* pUndoDoc = NULL;
-/*N*/           ScOutlineTable* pUndoTab = NULL;
-/*N*/           ScRangeName* pUndoRange = NULL;
-/*N*/           ScDBCollection* pUndoDB = NULL;
 /*N*/
 /*N*/           if (bRecord)
 /*N*/           {
@@ -238,7 +227,7 @@ namespace binfilter {
 /*N*/               ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
 /*N*/               if (pTable)
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoTab = new ScOutlineTable( *pTable );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else
 /*N*/                   pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, TRUE );
@@ -248,14 +237,6 @@ namespace binfilter {
 /*N*/
 /*N*/               //  alle Formeln wegen Referenzen
 /*N*/               pDoc->CopyToDocument( 0,0,0, MAXCOL,MAXROW,nTabCount-1, IDF_FORMULA, FALSE, pUndoDoc );
-/*N*/
-/*N*/               //  DB- und andere Bereiche
-/*N*/               ScRangeName* pDocRange = pDoc->GetRangeName();
-/*N*/               if (pDocRange->GetCount())
-/*N*/                   pUndoRange = new ScRangeName( *pDocRange );
-/*N*/               ScDBCollection* pDocDB = pDoc->GetDBCollection();
-/*N*/               if (pDocDB->GetCount())
-/*N*/                   pUndoDB = new ScDBCollection( *pDocDB );
 /*N*/           }
 /*N*/
 /*N*/           if (bSort && bSubTotal)
@@ -293,7 +274,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if (bRecord)
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nDummy;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/           rDocShell.PostPaint( 0,0,nTab, MAXCOL,MAXROW,nTab,
@@ -307,7 +288,6 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::Sort( USHORT nTab, const ScSortParam& rSortParam,
 /*N*/                           BOOL bRecord, BOOL bPaint, BOOL bApi )
@@ -317,13 +297,12 @@ namespace binfilter {
 /*N*/   ScDocument* pDoc = rDocShell.GetDocument();
 /*N*/   if (bRecord && !pDoc->IsUndoEnabled())
 /*N*/       bRecord = FALSE;
-/*N*/   USHORT nSrcTab = nTab;
 /*N*/
 /*N*/   ScDBData* pDBData = pDoc->GetDBAtArea( nTab, rSortParam.nCol1, rSortParam.nRow1,
 /*N*/                                                   rSortParam.nCol2, rSortParam.nRow2 );
 /*N*/   if (!pDBData)
 /*N*/   {
-/*N*/       DBG_ERROR( "Sort: keine DBData" );
+/*N*/       OSL_FAIL( "Sort: keine DBData" );
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -336,7 +315,7 @@ namespace binfilter {
 /*N*/   ScSortParam aLocalParam( rSortParam );
 /*N*/   if ( bCopy )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aLocalParam.MoveToDest();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   ScEditableTester aTester( pDoc, nTab, aLocalParam.nCol1,aLocalParam.nRow1,
@@ -383,19 +362,13 @@ namespace binfilter {
 /*N*/   {
 /*?*/       //  Referenzen ausserhalb des Bereichs werden nicht veraendert !
 /*?*/
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pUndoDoc = new ScDocument( SCDOCMODE_UNDO );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( bCopy )
 /*N*/   {
 /*N*/       if (pDestData)
 /*N*/           pDoc->DeleteAreaTab(aOldDest, IDF_CONTENTS);            // Zielbereich vorher loeschen
-/*N*/
-/*N*/       ScRange aSource( rSortParam.nCol1,rSortParam.nRow1,nSrcTab,
-/*N*/                           rSortParam.nCol2,rSortParam.nRow2,nSrcTab );
-/*N*/       ScAddress aDest( rSortParam.nDestCol, rSortParam.nDestRow, rSortParam.nDestTab );
-/*N*/
-/*N*/       rDocShell.GetDocFunc().MoveBlock( aSource, aDest, FALSE, FALSE, FALSE, TRUE );
 /*N*/   }
 /*N*/
 /*N*/   // #105780# don't call ScDocument::Sort with an empty SortParam (may be empty here if bCopy is set)
@@ -445,7 +418,7 @@ namespace binfilter {
 /*N*/           pNewData->SetByRow( aLocalParam.bByRow );
 /*N*/       }
 /*N*/       else
-/*N*/           DBG_ERROR("Zielbereich nicht da");
+/*N*/           OSL_FAIL("Zielbereich nicht da");
 /*N*/   }
 /*N*/
 /*N*/   ScRange aDirtyRange( aLocalParam.nCol1, aLocalParam.nRow1, nTab,
@@ -483,7 +456,6 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::Query( USHORT nTab, const ScQueryParam& rQueryParam,
 /*N*/                       const ScRange* pAdvSource, BOOL bRecord, BOOL bApi )
@@ -497,7 +469,7 @@ namespace binfilter {
 /*N*/                                                   rQueryParam.nCol2, rQueryParam.nRow2 );
 /*N*/   if (!pDBData)
 /*N*/   {
-/*N*/       DBG_ERROR( "Query: keine DBData" );
+/*N*/       OSL_FAIL( "Query: keine DBData" );
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -534,7 +506,7 @@ namespace binfilter {
 /*N*/   USHORT nDestTab = nTab;
 /*N*/   if ( bCopy )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aLocalParam.MoveToDest();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   //      ausfuehren
@@ -553,7 +525,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bRecord )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ScRange* pOld = 0;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   ScDocument* pAttribDoc = NULL;
@@ -687,7 +659,7 @@ namespace binfilter {
 /*N*/           //  und Verwechslung mit dem Query-Param am Quellbereich (#37187#)
 /*N*/       }
 /*N*/       else
-/*N*/           DBG_ERROR("Zielbereich nicht da");
+/*N*/           OSL_FAIL("Zielbereich nicht da");
 /*N*/   }
 /*N*/
 /*N*/   if (!bCopy)
@@ -721,10 +693,9 @@ namespace binfilter {
 /*N*/   return TRUE;
 /*N*/ }
 
-// -----------------------------------------------------------------
 
 /*N*/ BOOL ScDBDocFunc::DoSubTotals( USHORT nTab, const ScSubTotalParam& rParam,
-/*N*/                               const ScSortParam* pForceNewSort, BOOL bRecord, BOOL bApi )
+/*N*/                               const ScSortParam* /*pForceNewSort*/, BOOL bRecord, BOOL bApi )
 /*N*/ {
 /*N*/   //! auch fuer ScDBFunc::DoSubTotals benutzen!
 /*N*/   //  dann bleibt aussen:
@@ -741,7 +712,7 @@ namespace binfilter {
 /*N*/                                               rParam.nCol2, rParam.nRow2 );
 /*N*/   if (!pDBData)
 /*N*/   {
-/*N*/       DBG_ERROR( "SubTotals: keine DBData" );
+/*N*/       OSL_FAIL( "SubTotals: keine DBData" );
 /*N*/       return FALSE;
 /*N*/   }
 /*N*/
@@ -762,9 +733,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   BOOL bOk = TRUE;
-/*N*/   BOOL bDelete = FALSE;
 /*N*/   if (rParam.bReplace)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 if (pDoc->TestRemoveSubTotals( nTab, rParam ))
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   if (bOk)
 /*N*/   {
@@ -773,9 +743,6 @@ namespace binfilter {
 /*N*/
 /*N*/       ScSubTotalParam aNewParam( rParam );        // Bereichsende wird veraendert
 /*N*/       ScDocument*     pUndoDoc = NULL;
-/*N*/       ScOutlineTable* pUndoTab = NULL;
-/*N*/       ScRangeName*    pUndoRange = NULL;
-/*N*/       ScDBCollection* pUndoDB = NULL;
 /*N*/       USHORT          nTabCount = 0;              // fuer Referenz-Undo
 /*N*/
 /*N*/       if (bRecord)                                        // alte Daten sichern
@@ -787,7 +754,7 @@ namespace binfilter {
 /*N*/           ScOutlineTable* pTable = pDoc->GetOutlineTable( nTab );
 /*N*/           if (pTable)
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pUndoTab = new ScOutlineTable( *pTable );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           else
 /*N*/               pUndoDoc->InitUndo( pDoc, nTab, nTab, FALSE, bOldFilter );
@@ -799,28 +766,19 @@ namespace binfilter {
 /*N*/           //  alle Formeln wegen Referenzen
 /*N*/           pDoc->CopyToDocument( 0,0,0, MAXCOL,MAXROW,nTabCount-1,
 /*N*/                                       IDF_FORMULA, FALSE, pUndoDoc );
-/*N*/
-/*N*/           //  DB- und andere Bereiche
-/*N*/           ScRangeName* pDocRange = pDoc->GetRangeName();
-/*N*/           if (pDocRange->GetCount())
-/*N*/               pUndoRange = new ScRangeName( *pDocRange );
-/*N*/           ScDBCollection* pDocDB = pDoc->GetDBCollection();
-/*N*/           if (pDocDB->GetCount())
-/*N*/               pUndoDB = new ScDBCollection( *pDocDB );
 /*N*/       }
 /*N*/
-/*N*/ //        pDoc->SetOutlineTable( nTab, NULL );
 /*N*/       ScOutlineTable* pOut = pDoc->GetOutlineTable( nTab );
 /*N*/       if (pOut)
-/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pOut->GetRowArray()->RemoveAll();        // nur Zeilen-Outlines loeschen
+/*?*/       {   DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/       if (rParam.bReplace)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pDoc->RemoveSubTotals( nTab, aNewParam );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       BOOL bSuccess = TRUE;
 /*N*/       if (bDo)
 /*N*/       {
 /*?*/           // Sortieren
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rParam.bDoSort || pForceNewSort )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       ScRange aDirtyRange( aNewParam.nCol1, aNewParam.nRow1, nTab,
 /*N*/           aNewParam.nCol2, aNewParam.nRow2, nTab );
@@ -828,8 +786,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if (bRecord)
 /*N*/       {
-/*N*/ //            ScDBData* pUndoDBData = pDBData ? new ScDBData( *pDBData ) : NULL;
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rDocShell.GetUndoManager()->AddUndoAction(
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if (!bSuccess)
@@ -853,8 +810,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-//==================================================================
-
 /*N*/ BOOL ScDBDocFunc::DataPilotUpdate( ScDPObject* pOldObj, const ScDPObject* pNewObj,
 /*N*/                                       BOOL bRecord, BOOL bApi )
 /*N*/ {
@@ -862,7 +817,6 @@ namespace binfilter {
 /*N*/   WaitObject aWait( rDocShell.GetDialogParent() );
 /*N*/
 /*N*/   BOOL bDone = FALSE;
-/*N*/   BOOL bUndoSelf = FALSE;
 /*N*/   USHORT nErrId = 0;
 /*N*/
 /*N*/   ScDocument* pOldUndoDoc = NULL;
@@ -948,7 +902,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/               else
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pNewObj->WriteSourceDataTo( *pOldObj );       // copy source data
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/
 /*N*/               pDestObj = pOldObj;
@@ -961,7 +915,7 @@ namespace binfilter {
 /*N*/               pDestObj->SetAlive(TRUE);
 /*N*/               if ( !pDoc->GetDPCollection()->Insert(pDestObj) )
 /*N*/               {
-/*N*/                   DBG_ERROR("cannot insert DPObject");
+/*N*/                   OSL_FAIL("cannot insert DPObject");
 /*N*/                   DELETEZ( pDestObj );
 /*N*/               }
 /*N*/           }
@@ -970,7 +924,7 @@ namespace binfilter {
 /*N*/               // #78541# create new database connection for "refresh"
 /*N*/               // (and re-read column entry collections)
 /*N*/               // so all changes take effect
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( pNewObj == pOldObj && pDestObj->IsImportData() )
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/       // else nothing (no old, no new)
@@ -978,7 +932,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( bRecord && bDone )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SfxUndoAction* pAction = new ScUndoDataPilot( &rDocShell,
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete pOldUndoDoc;     // if not used for undo
@@ -994,3 +948,5 @@ namespace binfilter {
 /*N*/   return bDone;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

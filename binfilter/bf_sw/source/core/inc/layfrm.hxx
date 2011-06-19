@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -138,8 +139,7 @@ public:
     /** method to check relative position of layout frame to
         a given layout frame.
 
-        OD 08.11.2002 - refactoring of pseudo-local method <lcl_Apres(..)> in
-        <txtftn.cxx> for #104840#.
+        refactoring of pseudo-local method <lcl_Apres(..)> in <txtftn.cxx>
 
         @param _aCheckRefLayFrm
         constant reference of an instance of class <SwLayoutFrm> which
@@ -181,3 +181,5 @@ inline BOOL SwFrm::IsPageBodyFrm() const
 
 } //namespace binfilter
 #endif  //_LAYFRM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

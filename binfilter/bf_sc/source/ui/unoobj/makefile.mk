@@ -25,7 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -38,9 +37,7 @@ ENABLE_EXCEPTIONS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-.INCLUDE :  scpre.mk
 .INCLUDE :  settings.mk
-.INCLUDE :  sc.mk
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sc
 # --- Files --------------------------------------------------------
@@ -70,10 +67,8 @@ SLOFILES =  \
         $(SLO)$/sc_afmtuno.obj \
         $(SLO)$/sc_fmtuno.obj \
         $(SLO)$/sc_linkuno.obj \
-        $(SLO)$/sc_targuno.obj \
         $(SLO)$/sc_convuno.obj \
         $(SLO)$/sc_editsrc.obj \
-        $(SLO)$/sc_unoguard.obj \
         $(SLO)$/sc_confuno.obj \
         $(SLO)$/sc_filtuno.obj \
         $(SLO)$/sc_unodoc.obj

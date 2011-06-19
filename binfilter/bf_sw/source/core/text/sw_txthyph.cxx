@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,18 +33,10 @@
 
 
 
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>  // SwViewOptions
-#endif
-#ifndef _PORHYPH_HXX
 #include <porhyph.hxx>  //
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx> //
-#endif
-#ifndef _GUESS_HXX
 #include <guess.hxx>    //
-#endif
 namespace binfilter {
 
 #ifdef DBG_UTIL
@@ -88,7 +81,7 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ sal_Bool SwTxtPortion::CreateHyphen( SwTxtFormatInfo &rInf, SwTxtGuess &rGuess )
 /*N*/ {
-/*N*/   ASSERT( !pPortion, "SwTxtPortion::Hyphenate: another portion, another planet..." );
+/*N*/   OSL_ENSURE( !pPortion, "SwTxtPortion::Hyphenate: another portion, another planet..." );
 /*N*/   if( rInf.IsHyphForbud() ||
 /*N*/       pPortion || // robust
 /*N*/       // Mehrzeilige Felder duerfen nicht interaktiv getrennt werden.
@@ -102,7 +95,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   // first case: hyphenated word has alternative spelling
 /*N*/   if ( xHyphWord.is() && xHyphWord->isAlternativeSpelling() ) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxAlternativeSpelling aAltSpell;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   } else {
 /*N*/       // second case: no alternative spelling
 /*N*/       SwHyphPortion aHyphPor;
@@ -160,7 +153,7 @@ using namespace ::com::sun::star::i18n;
  *              virtual SwHyphPortion::GetExpTxt()
  *************************************************************************/
 
-/*N*/ sal_Bool SwHyphPortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwHyphPortion::GetExpTxt( const SwTxtSizeInfo &/*rInf*/, XubString &rTxt ) const
 /*N*/ {
 /*N*/   rTxt = '-';
 /*N*/   return sal_True;
@@ -358,3 +351,5 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

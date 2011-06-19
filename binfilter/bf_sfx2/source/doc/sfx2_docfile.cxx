@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,118 +33,44 @@
 #include <com/sun/star/uno/Reference.h>
 #include <com/sun/star/ucb/XContent.hpp>
 
-#ifndef _COM_SUN_STAR_UCB_INTERACTIVEIOEXCEPTION_HPP_
 #include <com/sun/star/ucb/InteractiveIOException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_UNSUPPORTEDDATASINKEXCEPTION_HPP_
 #include <com/sun/star/ucb/UnsupportedDataSinkException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_COMMANDFAILEDEXCEPTION_HPP_
 #include <com/sun/star/ucb/CommandFailedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_COMMANDABORTEDEXCEPTION_HPP_
 #include <com/sun/star/ucb/CommandAbortedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
 #include <com/sun/star/ucb/XCommandEnvironment.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XPROGRESSHANDLER_HPP_
 #include <com/sun/star/ucb/XProgressHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDINFO_HPP_
 #include <com/sun/star/ucb/XCommandInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XARCHIVER_HPP_
 #include <com/sun/star/util/XArchiver.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSTREAMLISTENER_HPP_
 #include <com/sun/star/io/XStreamListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XSIMPLEFILEACCESS_HPP_
 #include <com/sun/star/ucb/XSimpleFileAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UCB_INSERTCOMMANDARGUMENT_HPP_
 #include <com/sun/star/ucb/InsertCommandArgument.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UCB_NAMECLASH_HPP_
 #include <com/sun/star/ucb/NameClash.hpp>
-#endif
-#ifndef  _COM_SUN_STAR_UCB_TRANSFERINFO_HPP_
 #include <com/sun/star/ucb/TransferInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_OPENCOMMANDARGUMENT2_HPP_
 #include <com/sun/star/ucb/OpenCommandArgument2.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_OPENMODE_HPP_
 #include <com/sun/star/ucb/OpenMode.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _ZCODEC_HXX
 #include <tools/zcodec.hxx>
-#endif
-#ifndef _CACHESTR_HXX //autogen
 #include <tools/cachestr.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef  _UNOTOOLS_STREAMHELPER_HXX_
 #include <unotools/streamhelper.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 #include <bf_svtools/lckbitem.hxx>
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 
 #define _SVSTDARR_ULONGS
 #define _SVSTDARR_STRINGSDTOR
@@ -188,9 +115,7 @@ using namespace ::com::sun::star::io;
 
 #include "xmlversion.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 #define MAX_REDIRECT 5
@@ -199,15 +124,15 @@ namespace binfilter {
 /*N*/ {
 /*N*/     ULONG           m_nAcquireCount;
 /*N*/     SfxMedium*      m_pMedium;
-/*N*/     ::vos::OMutex   m_aMutex;
+/*N*/     ::osl::Mutex    m_aMutex;
 /*N*/ public:
 /*N*/                     SfxLockBytesHandler_Impl( SfxMedium* pMedium )
-/*N*/                         : m_pMedium( pMedium )
-/*N*/                         , m_nAcquireCount( 0 )
+/*N*/                         : m_nAcquireCount( 0 )
+/*N*/                         , m_pMedium( pMedium )
 /*N*/                     {}
 /*N*/
 /*N*/     virtual void    Handle( ::utl::UcbLockBytesHandler::LoadHandlerItem nWhich, ::utl::UcbLockBytesRef xLockBytes );
-/*N*/     ::vos::OMutex&  GetMutex()
+/*N*/     ::osl::Mutex&   GetMutex()
 /*N*/                     { return m_aMutex; }
 /*N*/     void            ReleaseMedium()
 /*N*/                     { m_pMedium = NULL; }
@@ -217,7 +142,7 @@ namespace binfilter {
 
 /*N*/ void SfxLockBytesHandler_Impl::Handle( ::utl::UcbLockBytesHandler::LoadHandlerItem nWhich, ::utl::UcbLockBytesRef xLockBytes )
 /*N*/ {
-/*N*/     ::vos::OGuard aGuard( m_aMutex );
+/*N*/     ::osl::MutexGuard aGuard( m_aMutex );
 /*N*/     if ( IsActive() && xLockBytes.Is()&& m_pMedium )
 /*N*/     {
 /*N*/         switch( nWhich )
@@ -275,9 +200,9 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& xRequest )
+/*N*/ void SAL_CALL SfxMediumHandler_Impl::handle( const ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionRequest >& /*xRequest*/ )
 /*N*/         throw( ::com::sun::star::uno::RuntimeException )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*?*/ String ConvertDateTime_Impl(const SfxStamp &rTime, const LocaleDataWrapper& rWrapper);
@@ -309,7 +234,7 @@ namespace binfilter {
 
 
 //----------------------------------------------------------------
-/*N*/ void SfxPoolCancelManager::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void SfxPoolCancelManager::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& /*rHint*/ )
 /*N*/ {
 /*N*/     if( !GetCancellableCount() ) SetManager( 0 );
 /*N*/     else if( !GetManager() )
@@ -411,7 +336,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SfxMedium::DataAvailable_Impl()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SfxMedium::Cancel_Impl()
@@ -437,19 +362,28 @@ namespace binfilter {
 //------------------------------------------------------------------
 /*N*/ SfxMedium_Impl::SfxMedium_Impl( SfxMedium* pAntiImplP )
 /*N*/  :
-/*N*/     SvCompatWeakBase( pAntiImplP ),
-/*N*/     bUpdatePickList(sal_True), bIsTemp( sal_False ), pOrigFilter( 0 ),
-/*N*/     bUsesCache(sal_True), pCancellable( 0 ),
-/*N*/     nPrio( 99 ), aExpireTime( Date() + 10, Time() ),
-/*N*/     bForceSynchron( sal_False ), bStreamReady( sal_False ), bIsStorage( sal_False ),
-/*N*/     pAntiImpl( pAntiImplP ),
-/*N*/     bDontCreateCancellable( sal_False ), pTempDir( NULL ), bIsDiskSpannedJAR( sal_False ),
-/*N*/     bDownloadDone( sal_True ), bDontCallDoneLinkOnSharingError( sal_False ),nFileVersion( 0 ),
-/*N*/   pTempFile( NULL ),
-/*N*/   nLastStorageError( 0 ),
-/*N*/   bIsCharsetInitialized( sal_False ),
+/*N*/   SvCompatWeakBase( pAntiImplP ),
+/*N*/   bUpdatePickList(sal_True), bIsTemp( sal_False ),
+/*N*/   bUsesCache(sal_True),
+/*N*/   bForceSynchron( sal_False ),
+/*N*/   bDontCreateCancellable( sal_False ),
+/*N*/   bDownloadDone( sal_True ),
+/*N*/   bDontCallDoneLinkOnSharingError( sal_False ),
+/*N*/   bStreamReady( sal_False ),
+/*N*/   bIsStorage( sal_False ),
 /*N*/   bUseInteractionHandler( sal_True ),
 /*N*/   bAllowDefaultIntHdl( sal_False ),
+/*N*/   bIsDiskSpannedJAR( sal_False ),
+/*N*/   bIsCharsetInitialized( sal_False ),
+/*N*/   nPrio( 99 ),
+/*N*/   pCancellable( 0 ),
+/*N*/   pAntiImpl( pAntiImplP ),
+/*N*/   nFileVersion( 0 ),
+/*N*/   pOrigFilter( 0 ),
+/*N*/   aExpireTime( Date() + 10, Time() ),
+/*N*/   pTempDir( NULL ),
+/*N*/   pTempFile( NULL ),
+/*N*/   nLastStorageError( 0 ),
 /*N*/   m_bRemoveBackup( sal_False )
 /*N*/ {
 /*N*/     aHandler = new SfxLockBytesHandler_Impl( pAntiImpl );
@@ -475,19 +409,6 @@ namespace binfilter {
 /*N*/     if ( pTempDir )
 /*?*/         delete pTempDir;
 /*N*/ }
-
-//================================================================
-
-/*?*/ #define IMPL_CTOR()                         \
-/*?*/      eError( SVSTREAM_OK ),                 \
-/*?*/                                             \
-/*?*/      bDirect( sal_False ),                  \
-/*?*/      bTriedStorage( sal_False ),            \
-/*?*/      bSetFilter( sal_False ),               \
-/*?*/                                             \
-/*?*/      nStorOpenMode( SFX_STREAM_READWRITE ), \
-/*?*/      pInStream(0),                          \
-/*?*/      pOutStream( 0 )
 
 //------------------------------------------------------------------
 /*N*/ void SfxMedium::ResetError()
@@ -754,7 +675,7 @@ namespace binfilter {
 /*?*/       String aURL;
 #ifdef DBG_UTIL
 /*?*/       if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aURL ) )
-/*?*/           DBG_ERROR("Physical name not convertable!");
+/*?*/           OSL_FAIL("Physical name not convertable!");
 #endif
 /*?*/         pImp->bIsStorage = SotStorage::IsStorageFile( aURL );
 /*?*/         if ( !pImp->bIsStorage )
@@ -772,7 +693,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::TryStorage()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
@@ -804,7 +725,7 @@ namespace binfilter {
 /*N*/         // open storage with the URL of the tempfile
 /*N*/       if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aStorageName ) )
 /*N*/       {
-/*?*/           DBG_ERROR("Physical name not convertable!");
+/*?*/           OSL_FAIL("Physical name not convertable!");
 /*N*/       }
 /*N*/         CloseOutStream();
 /*N*/         aStorage = new SvStorage( bUCBStorage, aStorageName, nStorOpenMode, bDirect ? 0 : STORAGE_TRANSACTED );
@@ -815,7 +736,7 @@ namespace binfilter {
 /*N*/         {
 /*N*/             if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aStorageName ) )
 /*N*/           {
-/*?*/                 DBG_ERROR("Physical name not convertable!");
+/*?*/                 OSL_FAIL("Physical name not convertable!");
 /*N*/           }
 /*N*/         }
 /*N*/         else
@@ -873,12 +794,6 @@ namespace binfilter {
 /*N*/               {
 /*N*/                   if( SotStorage::IsStorageFile( pInStream ) )
 /*N*/                   {
-/*N*/               /*      if ( IsReadOnly() && ::utl::LocalFileHelper::IsLocalFile( aLogicName ) )
-                         {
-                             CreateTempFile();
-                             aStorage = new SvStorage( bUCBStorage, aName, nStorOpenMode, bDirect ? 0 : STORAGE_TRANSACTED );
-                         }
-                         else */
 /*N*/                       {
 /*N*/                           if ( bUCBStorage && !UCBStorage::IsStorageFile( pInStream ) )
 /*N*/                               return NULL;
@@ -910,11 +825,6 @@ namespace binfilter {
 /*N*/
 /*N*/     if ( aStorage->GetError() == SVSTREAM_OK )
 /*N*/         GetVersionList();
-/*N*/
-/*N*/     // ???? wird das noch gebraucht?
-/*N*/ //  GetMedium_Impl();
-/*N*/ //  if ( !aStorage.Is() )
-/*N*/ //      CreateFileStream();
 /*N*/
 /*N*/     SFX_ITEMSET_ARG( pSet, pVersion, SfxInt16Item, SID_VERSION, sal_False);
 /*N*/
@@ -1080,11 +990,6 @@ namespace binfilter {
 /*N*/                               rOutStream->writeBytes ( aSequence );
 /*N*/                       }
 /*N*/                       while ( nRead == nBufferSize );
-/*N*/
-/*N*/                       // remove temporary file
-/*N*/                       // pImp->pTempFile->EnableKillingFile( sal_True );
-/*N*/                       // delete pImp->pTempFile;
-/*N*/                       // pImp->pTempFile = NULL;
 /*N*/                   }
 /*N*/                   catch( Exception& )
 /*N*/                   {}
@@ -1092,7 +997,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/           else
 /*N*/           {
-/*N*/               DBG_ERROR( "Illegal Output stream parameter!\n" );
+/*N*/               OSL_FAIL( "Illegal Output stream parameter!\n" );
 /*N*/               SetError( ERRCODE_IO_GENERAL );
 /*N*/           }
 /*N*/
@@ -1101,7 +1006,7 @@ namespace binfilter {
 /*N*/
 /*N*/           return;
 /*N*/       }
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); return;//STRIP001
+/*N*/ DBG_BF_ASSERT(0, "STRIP"); return;
 /*?*/     }
 /*N*/ }
 
@@ -1113,7 +1018,7 @@ namespace binfilter {
 #ifdef DBG_UTIL
 /*?*/       if ( pImp->m_aBackupURL.getLength() )
 /*?*/           if ( !::utl::UCBContentHelper::Kill( pImp->m_aBackupURL ) )
-/*?*/               DBG_ERROR("Couldn't remove backup file!");
+/*?*/               OSL_FAIL("Couldn't remove backup file!");
 #endif
 /*?*/       pImp->m_bRemoveBackup = sal_False;
 /*N*/   }
@@ -1132,7 +1037,7 @@ namespace binfilter {
 /*N*/
 /*N*/         ::utl::UcbLockBytesHandler* pHandler = pImp->aHandler;
 /*N*/         INetProtocol eProt = GetURLObject().GetProtocol();
-/*N*/         if ( eProt != INET_PROT_HTTP && eProt != INET_PROT_FTP || aName.Len() )
+/*N*/         if ( (eProt != INET_PROT_HTTP && eProt != INET_PROT_FTP) || aName.Len() )
 /*N*/             pHandler = NULL;
 /*N*/         BOOL bSynchron = pImp->bForceSynchron || ! pImp->aDoneLink.IsSet();
 /*N*/         SFX_ITEMSET_ARG( pSet, pStreamItem, SfxUnoAnyItem, SID_INPUTSTREAM, sal_False);
@@ -1143,7 +1048,7 @@ namespace binfilter {
 /*?*/                 try
 /*?*/                 {
 /*?*/                     Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("IsReadOnly" )) );
-/*?*/                     BOOL bReadonly;
+/*?*/                     BOOL bReadonly( false );
 /*?*/                     if ( ( aAny >>= bReadonly ) && bReadonly )
 /*?*/                     {
 /*?*/                         GetItemSet()->Put( SfxBoolItem(SID_DOC_READONLY, sal_True));
@@ -1185,7 +1090,7 @@ namespace binfilter {
 /*?*/               if ( pContentTypeItem )
 /*?*/                   aMimeType = pContentTypeItem->GetValue();
 /*?*/               else
-/*?*/                   aMimeType = ::rtl::OUString::createFromAscii( "application/x-www-form-urlencoded" );
+/*?*/                   aMimeType = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "application/x-www-form-urlencoded" ));
 /*?*/
 /*?*/               Reference < XInputStream > xPostData;
 /*?*/               if ( pPostDataItem )
@@ -1218,8 +1123,8 @@ namespace binfilter {
 /*N*/                 pImp->bDontCallDoneLinkOnSharingError = sal_False;
 /*N*/                 Done_Impl( ERRCODE_IO_NOTEXISTS );
 /*N*/             }
-/*N*/             else if ( pImp->xLockBytes->GetError() == ERRCODE_IO_ACCESSDENIED && bIsWritable && bAllowReadOnlyMode ||
-/*N*/                     pImp->xLockBytes->GetError() == ERRCODE_IO_NOTSUPPORTED && bIsWritable )
+/*N*/             else if ( (pImp->xLockBytes->GetError() == ERRCODE_IO_ACCESSDENIED && bIsWritable && bAllowReadOnlyMode) ||
+/*N*/                     (pImp->xLockBytes->GetError() == ERRCODE_IO_NOTSUPPORTED && bIsWritable) )
 /*N*/             {
 /*?*/                 if ( pImp->xLockBytes->GetError() == ERRCODE_IO_ACCESSDENIED )
 /*?*/                 {
@@ -1285,22 +1190,20 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetUpdatePickList(sal_Bool bVal)
 /*N*/ {
 /*N*/     if(!pImp)
 /*?*/         pImp = new SfxMedium_Impl( this );
 /*N*/     pImp->bUpdatePickList = bVal;
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ void SfxMedium::SetDoneLink( const Link& rLink )
 /*N*/ {
 /*N*/     pImp->aDoneLink = rLink;
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetDataAvailableLink( const Link& rLink )
 /*N*/ {
 /*N*/     pImp->aAvailableLink = rLink;
@@ -1342,7 +1245,7 @@ namespace binfilter {
 /*N*/         INetProtocol eProt = aUrl.GetProtocol();
 /*N*/         if ( eProt == INET_PROT_NOT_VALID )
 /*N*/         {
-/*?*/             DBG_ERROR ( "Unknown protocol!" );
+/*?*/             OSL_FAIL( "Unknown protocol!" );
 /*N*/         }
 /*N*/         else
 /*N*/         {
@@ -1366,7 +1269,7 @@ namespace binfilter {
 /*N*/           || !aLogicName.CompareToAscii( "private:stream", 14 ) == COMPARE_EQUAL ) )
 /*N*/   {
 /*?*/       pSet->ClearItem( SID_OUTPUTSTREAM );
-/*?*/       DBG_ERROR( "Unexpected Output stream parameter!\n" );
+/*?*/       OSL_FAIL( "Unexpected Output stream parameter!\n" );
 /*N*/   }
 /*N*/
 /*N*/     SetIsRemote_Impl();
@@ -1374,25 +1277,30 @@ namespace binfilter {
 
 //------------------------------------------------------------------
 /*N*/ SfxMedium::SfxMedium()
-/*N*/ :   IMPL_CTOR(),
+/*N*/ :
+/*?*/     eError( SVSTREAM_OK ),
+/*?*/     bDirect( sal_False ),
 /*N*/     bRoot( sal_False ),
+/*?*/     bSetFilter( sal_False ),
+/*?*/     bTriedStorage( sal_False ),
+/*?*/     nStorOpenMode( SFX_STREAM_READWRITE ),
 /*N*/     pURLObj(0),
-/*N*/
+/*?*/     pInStream(0),
+/*?*/     pOutStream( 0 ),
+/*N*/     pFilter(0),
 /*N*/     pSet(0),
-/*N*/     pImp(new SfxMedium_Impl( this )),
-/*N*/     pFilter(0)
+/*N*/     pImp(new SfxMedium_Impl( this ))
 /*N*/ {
 /*N*/     Init_Impl();
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ void SfxMedium::UseInteractionHandler( BOOL bUse )
 /*N*/ {
 /*N*/     pImp->bAllowDefaultIntHdl = bUse;
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ ::com::sun::star::uno::Reference< ::com::sun::star::task::XInteractionHandler >
 /*N*/ SfxMedium::GetInteractionHandler()
 /*N*/ {
@@ -1429,20 +1337,19 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetFilter( const SfxObjectFactory& rFact, const String & rFilter )
 /*N*/ {
 /*N*/     SetFilter(  rFact.GetFilterContainer()->GetFilter(rFilter) );
 /*N*/ }
-//----------------------------------------------------------------
 
-/*N*/ void SfxMedium::SetFilter( const SfxFilter* pFilterP, sal_Bool bResetOrig )
+//----------------------------------------------------------------
+/*N*/ void SfxMedium::SetFilter( const SfxFilter* pFilterP, sal_Bool /*bResetOrig*/ )
 /*N*/ {
 /*N*/     pFilter = pFilterP;
 /*N*/     pImp->nFileVersion = 0;
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ void SfxMedium::Close()
 /*N*/ {
 /*N*/     if ( aStorage.Is() )
@@ -1482,8 +1389,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
-
 /*N*/ void SfxMedium::SetIsRemote_Impl()
 /*N*/ {
 /*N*/     INetURLObject aObj( GetName() );
@@ -1495,7 +1400,6 @@ namespace binfilter {
 /*N*/         case INET_PROT_POP3:
 /*N*/         case INET_PROT_NEWS:
 /*N*/         case INET_PROT_IMAP:
-/*N*/ //        case INET_PROT_OUT:
 /*N*/         case INET_PROT_VIM:
 /*N*/             bRemote = TRUE; break;
 /*N*/         default:
@@ -1509,9 +1413,6 @@ namespace binfilter {
 /*N*/         nStorOpenMode |= STREAM_READ;
 /*N*/ }
 
-
-
-
 //----------------------------------------------------------------
 /*N*/ const String& SfxMedium::GetOrigURL() const
 /*N*/ {
@@ -1519,14 +1420,9 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
-/*N*/ void SfxMedium::SetPhysicalName_Impl( const String& rNameP )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxMedium::SetPhysicalName_Impl( const String& /*rNameP*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-//----------------------------------------------------------------
-
-//------------------------------------------------------------------
 
 //------------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsTemporary() const
@@ -1535,7 +1431,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ void SfxMedium::ReOpen()
 /*N*/ {
 /*N*/     BOOL bUseInteractionHandler = pImp->bUseInteractionHandler;
@@ -1556,28 +1451,40 @@ namespace binfilter {
 /*N*/ (
 /*N*/     const String &rName, StreamMode nOpenMode,  sal_Bool bDirectP,
 /*N*/     const SfxFilter *pFlt, SfxItemSet *pInSet
-/*N*/ )
-/*N*/ :   IMPL_CTOR(),
+/*N*/ ) :
+/*?*/     eError( SVSTREAM_OK ),
+/*?*/     bDirect( sal_False ),
 /*N*/     bRoot( sal_False ),
-/*N*/     pFilter(pFlt),
+/*?*/     bSetFilter( sal_False ),
+/*?*/     bTriedStorage( sal_False ),
+/*?*/     nStorOpenMode( SFX_STREAM_READWRITE ),
 /*N*/     pURLObj(0),
-/*N*/     pImp(new SfxMedium_Impl( this )),
-/*N*/     pSet( pInSet )
+/*?*/     pInStream(0),
+/*?*/     pOutStream( 0 ),
+/*N*/     pFilter(pFlt),
+/*N*/     pSet( pInSet ),
+/*N*/     pImp(new SfxMedium_Impl( this ))
 /*N*/ {
 /*N*/     aLogicName = rName;
 /*N*/     nStorOpenMode = nOpenMode;
 /*N*/     bDirect = bDirectP;
 /*N*/     Init_Impl();
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ SfxMedium::SfxMedium( SvStorage *pStorage, sal_Bool bRootP )
-/*N*/ :   IMPL_CTOR(),
-/*N*/     bRoot( bRootP ),
-/*N*/     aStorage(pStorage),
-/*N*/     pURLObj(0),
-/*N*/     pImp( new SfxMedium_Impl( this )),
-/*N*/     pSet(0)
+/*?*/ : eError( SVSTREAM_OK )
+/*?*/ , bDirect( sal_False )
+/*N*/ , bRoot( bRootP )
+/*?*/ , bSetFilter( sal_False )
+/*?*/ , bTriedStorage( sal_False )
+/*?*/ , nStorOpenMode( SFX_STREAM_READWRITE )
+/*N*/ , pURLObj(0)
+/*?*/ , pInStream(0)
+/*?*/ , pOutStream( 0 )
+/*N*/ , aStorage(pStorage)
+/*N*/ , pSet(0)
+/*N*/ , pImp( new SfxMedium_Impl( this ))
 /*N*/ {
 /*N*/     SfxApplication* pApp = SFX_APP();
 /*N*/     sal_uInt32 nFormat = pStorage->GetFormat();
@@ -1585,7 +1492,7 @@ namespace binfilter {
 /*N*/     {
 /*N*/ #ifdef DBG_UTIL
 /*N*/         if( aLogicName.Len() )
-/*N*/             DBG_ERROR( "Unbekanntes StorageFormat, versuche eigenes Format" );
+/*N*/             OSL_FAIL( "Unbekanntes StorageFormat, versuche eigenes Format" );
 /*N*/ #endif
 /*N*/         pFilter = SfxObjectFactory::GetDefaultFactory().GetFilterContainer()->
 /*N*/             GetFilter( 0 );
@@ -1600,14 +1507,13 @@ namespace binfilter {
 /*STRIP003*/ pApp->GetFilterMatcher().GetFilter4Content( *this, &pFilter );  // #91292# PowerPoint does not support an OleComp stream,
 /*STRIP003*/ if ( !pFilter )                                                 // so GetFilter4ClipBoardId is not able to detect the format,
 /*STRIP003*/ {                                                               // for such cases we try to get the filter by GetFilter4Content
-/*STRIP003*/    DBG_ERROR( "No Filter for storage found!" );
+/*STRIP003*/    OSL_FAIL( "No Filter for storage found!" );
 /*STRIP003*/    pFilter = SfxObjectFactory::GetDefaultFactory().GetFilterContainer()->GetFilter( 0 );
 /*STRIP003*/ }
 /*N*/     }
 /*N*/ }
 
 //------------------------------------------------------------------
-
 /*N*/ SfxMedium::~SfxMedium()
 /*N*/ {
 /*N*/     /* Attention
@@ -1616,7 +1522,7 @@ namespace binfilter {
         => further the help will be empty then ... #100490#
      */
 /*N*/     //CancelTransfers();
-/*N*/     ::vos::OClearableGuard aGuard( pImp->aHandler->GetMutex() );
+/*N*/     ::osl::ClearableMutexGuard aGuard( pImp->aHandler->GetMutex() );
 /*N*/     pImp->aHandler->ReleaseMedium();
 /*N*/     aGuard.clear();
 /*N*/
@@ -1629,10 +1535,10 @@ namespace binfilter {
 /*N*/     {
 /*N*/         String aTemp;
 /*N*/         if ( !::utl::LocalFileHelper::ConvertPhysicalNameToURL( aName, aTemp ))
-/*N*/           DBG_ERROR("Physical name not convertable!");
+/*N*/           OSL_FAIL("Physical name not convertable!");
 /*N*/
 /*N*/         if ( !::utl::UCBContentHelper::Kill( aTemp ) )
-/*N*/           DBG_ERROR("Couldn't remove temporary file!");
+/*N*/           OSL_FAIL("Couldn't remove temporary file!");
 /*N*/     }
 /*N*/     #endif
 /*N*/
@@ -1641,8 +1547,8 @@ namespace binfilter {
 /*N*/     delete pURLObj;
 /*N*/     delete pImp;
 /*N*/ }
-//------------------------------------------------------------------
 
+//------------------------------------------------------------------
 /*N*/ const INetURLObject& SfxMedium::GetURLObject() const
 /*N*/ {
 /*N*/     if( !pURLObj )
@@ -1657,77 +1563,36 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
-//----------------------------------------------------------------
-
-/*N*/ sal_uInt32 SfxMedium::GetMIMEAndRedirect( String &rName )
+/*N*/ sal_uInt32 SfxMedium::GetMIMEAndRedirect( String & /*rName*/ )
 /*N*/ {
-/* dv !!!! not needed any longer ?
-    INetProtocol eProt = GetURLObject().GetProtocol();
-    if( eProt == INET_PROT_FTP && SvBinding::ShouldUseFtpProxy( GetURLObject().GetMainURL( INetURLObject::NO_DECODE ) ) )
-    {
-        Any aAny( UCB_Helper::GetProperty( GetContent(), WID_FLAG_IS_FOLDER ) );
-        sal_Bool bIsFolder = FALSE;
-        if ( ( aAny >>= bIsFolder ) && bIsFolder )
-            return ERRCODE_NONE;
-    }
-
-    GetMedium_Impl();
-    if( !eError && pImp->xBinding.Is() )
-    {
-        eError = pImp->xBinding->GetMimeType( rName );
-
-        // Wir koennen keine Parameter wie CharSets usw.
-        rName = rName.GetToken( 0, ';' );
-        if( !eError )
-        {
-            if( !pImp->aPreRedirectionURL.Len() )
-                pImp->aPreRedirectionURL = aLogicName;
-            SetName( pImp->xBinding->GetRedirectedURL() );
-        }
-        pImp->aExpireTime = pImp->xBinding->GetExpireDateTime();
-    }
-    return eError;
-*/
 /*N*/     return 0;
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetUsesCache( sal_Bool bUse )
 /*N*/ {
 /*N*/     pImp->bUsesCache = bUse;
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::UsesCache() const
 /*N*/ {
 /*N*/     return pImp->bUsesCache;
 /*N*/ }
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetReferer( const String& rRefer )
 /*N*/ {
 /*N*/     pImp->aReferer = rRefer;
 /*N*/ }
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetTransferPriority( sal_uInt16 nPrio )
 /*N*/ {
 /*N*/     pImp->nPrio = nPrio;
 /*N*/ }
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
-
-//----------------------------------------------------------------
-
-//----------------------------------------------------------------
-
 /*N*/ void SfxMedium::ForceSynchronStream_Impl( sal_Bool bForce )
 /*N*/ {
 /*N*/     if( pInStream )
@@ -1767,7 +1632,6 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ SfxItemSet* SfxMedium::GetItemSet() const
 /*N*/ {
 /*N*/     if( !pSet ) ((SfxMedium*)this)->pSet =
@@ -1787,11 +1651,11 @@ namespace binfilter {
 /*?*/
 /*?*/           try
 /*?*/           {
-/*?*/               Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString::createFromAscii( "MediaType" ) );
+/*?*/               Any aAny = pImp->aContent.getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "MediaType" )) );
 /*?*/               ::rtl::OUString aContentType;
 /*?*/               aAny >>= aContentType;
 /*?*/
-/*?*/               pImp->xAttributes->Append( SvKeyValue( ::rtl::OUString::createFromAscii( "content-type" ), aContentType ) );
+/*?*/               pImp->xAttributes->Append( SvKeyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "content-type" )), aContentType ) );
 /*?*/           }
 /*?*/           catch ( ::com::sun::star::uno::Exception& )
 /*?*/           {
@@ -1801,8 +1665,8 @@ namespace binfilter {
 /*N*/
 /*N*/     return pImp->xAttributes;
 /*N*/ }
-//----------------------------------------------------------------
 
+//----------------------------------------------------------------
 /*N*/ SvCompatWeakHdl* SfxMedium::GetHdl()
 /*N*/ {
 /*N*/     return pImp->GetHdl();
@@ -1814,7 +1678,6 @@ namespace binfilter {
 /*N*/ }
 
 //----------------------------------------------------------------
-
 /*N*/ void SfxMedium::SetDontCreateCancellable( )
 /*N*/ {
 /*N*/     pImp->bDontCreateCancellable = sal_True;
@@ -1859,20 +1722,10 @@ namespace binfilter {
 /*N*/     return pImp->pVersions;
 /*N*/ }
 
-
-
-
-
-
-
 //----------------------------------------------------------------
 /*N*/ sal_Bool SfxMedium::IsReadOnly()
 /*N*/ {
 /*N*/     sal_Bool bReadOnly = !( GetOpenMode() & STREAM_WRITE );
-/*(dv)  if ( bReadOnly && pURLObj && CntAnchor::IsViewURL( pURLObj->GetMainURL( INetURLObject::NO_DECODE ) ) )
-        // Chaos-Storages sind niemals als readonly anzusehen!
-        return sal_False;
-*/
 /*N*/     if ( !bReadOnly )
 /*N*/     {
 /*N*/         // logisch readonly ge"offnet
@@ -1883,8 +1736,6 @@ namespace binfilter {
 /*N*/
 /*N*/     return bReadOnly;
 /*N*/ }
-
-//----------------------------------------------------------------
 
 //----------------------------------------------------------------
 /*N*/ void SfxMedium::CreateTempFile()
@@ -1960,41 +1811,36 @@ namespace binfilter {
 
 /*?*/ SvStream& SfxVersionTableDtor::Read( SvStream& rStrm )
 /*?*/ {
-/*?*/     sal_uInt16 nCount = 0, nVersion = 0;
+/*?*/     sal_uInt16 nLclCount = 0, nVersion = 0;
 /*?*/
 /*?*/     rStrm >> nVersion;
-/*?*/     rStrm >> nCount;
+/*?*/     rStrm >> nLclCount;
 /*?*/
-/*?*/     for( sal_uInt16 i=0; i<nCount; ++i )
+/*?*/     for( sal_uInt16 i=0; i<nLclCount; ++i )
 /*?*/     {
 /*?*/         SfxVersionInfo *pNew = new SfxVersionInfo;
 /*?*/         rStrm.ReadByteString( pNew->aComment, RTL_TEXTENCODING_UTF8 );
 /*?*/         rStrm.ReadByteString( pNew->aName, RTL_TEXTENCODING_UTF8 );
 /*?*/         pNew->aCreateStamp.Load( rStrm );
-/*?*/         Insert( pNew, LIST_APPEND );
+/*?*/         maList.push_back( pNew );
 /*?*/     }
 /*?*/
 /*?*/     return rStrm;
 /*?*/ }
 
-/*N*/ void SfxVersionTableDtor::DelDtor()
-/*N*/ {
-/*N*/     SfxVersionInfo* pTmp = First();
-/*N*/     while( pTmp )
-/*N*/     {
-/*?*/         delete pTmp;
-/*?*/         pTmp = Next();
-/*N*/     }
-/*N*/     Clear();
-/*N*/ }
-
+void SfxVersionTableDtor::DelDtor()
+{
+    for ( size_t i = 0, n = maList.size(); i < n; ++i )
+        delete maList[ i ];
+    maList.clear();
+}
 
 //----------------------------------------------------------------
-//----------------------------------------------------------------
-//----------------------------------------------------------------
-/*?*/ SfxVersionInfo::SfxVersionInfo()
-/*?*/ {
-/*?*/ }
+SfxVersionInfo::SfxVersionInfo()
+{
+}
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

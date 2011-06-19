@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include "graphicobject.hxx"
-#endif
 
 namespace binfilter {
     BfGraphicAttr::BfGraphicAttr() : GraphicAttr() {}
@@ -41,7 +40,6 @@ namespace binfilter {
     ULONG BfGraphicObject::GetReleaseFromCache() const { return GraphicObject::GetReleaseFromCache(); }
     SvStream* BfGraphicObject::GetSwapStream() const { return GraphicObject::GetSwapStream(); }
     void BfGraphicObject::Load( SvStream& rSt ) { GraphicObject::Load(rSt); }
-    void BfGraphicObject::Save( SvStream& rSt ) { GraphicObject::Save(rSt); }
     void BfGraphicObject::Assign( const SvDataCopyStream& rSt ) { GraphicObject::Assign(rSt); }
     BfGraphicObject::BfGraphicObject( const GraphicManager* pMgr ) : GraphicObject(pMgr) {}
     BfGraphicObject::BfGraphicObject( const Graphic& rGraphic, const GraphicManager* pMgr ) : GraphicObject(rGraphic, pMgr) {}
@@ -76,3 +74,5 @@ namespace binfilter {
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

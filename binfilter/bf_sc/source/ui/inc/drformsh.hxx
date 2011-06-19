@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef DRFORMSH_HXX
 #define DRFORMSH_HXX
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include "shellids.hxx"
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>
-#endif
 
 class ScViewData;
 
@@ -52,7 +47,7 @@ public:
 
     SFX_DECL_INTERFACE(SCID_FORM_SHELL);
 
-    ScDrawFormShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDrawFormShell(ScViewData* pData);
+    ScDrawFormShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}
 
 //  void        Execute(SfxRequest &);
 //  void        GetState(SfxItemSet &);
@@ -60,3 +55,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

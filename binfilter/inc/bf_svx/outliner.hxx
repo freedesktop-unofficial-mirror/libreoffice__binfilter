@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,49 +31,27 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _EDITDATA_HXX //autogen
 #include <bf_svx/editdata.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
 
 #include <tools/rtti.hxx>   // wegen typedef TypeId
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 #include <bf_svx/svxfont.hxx>
 
 namespace com { namespace sun { namespace star { namespace linguistic2 {
     class XSpellChecker1;
     class XHyphenator;
 }}}}
+
 class SvStream;
 class Window;
 class KeyEvent;
@@ -81,6 +60,7 @@ class Pointer;
 class MapMode;
 class OutputDevice;
 class PolyPolygon;
+
 namespace binfilter {
 
 class SvKeyValueIterator;
@@ -107,18 +87,6 @@ class SvxNumberFormat;
 class SvxLRSpaceItem;
 class EditEngine;
 class SvxForbiddenCharactersTable;
-
-//STRIP008 #ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
-//STRIP008 #include <com/sun/star/uno/Reference.h>
-//STRIP008 #endif
-//STRIP008
-//STRIP008 #include <vos/ref.hxx>
-//STRIP008 #include <bf_svx/svxfont.hxx>
-//STRIP008
-//STRIP008 namespace com { namespace sun { namespace star { namespace linguistic2 {
-//STRIP008  class XSpellChecker1;
-//STRIP008  class XHyphenator;
-//STRIP008 }}}}
 
 // nur interner Gebrauch!
 #define PARAFLAG_DROPTARGET         0x1000
@@ -234,26 +202,14 @@ private:
     };
     MouseTarget OLD_ePrevMouseTarget;
 
-#ifdef _OUTLINER_CXX
-
-
-
-
-
-#endif
-
 public:
     virtual     ~OutlinerView();
 
     EditView&   GetEditView() const { return *pEditView; }
 
-
-
-
     Outliner*   GetOutliner() const { return pOwner; }
 
     Window*     GetWindow() const;
-
 
     Rectangle   GetOutputArea() const;
 
@@ -267,15 +223,8 @@ public:
 
     ESelection  GetSelection();
 
-
     void        SetSelection( const ESelection& );
 };
-
-#if _SOLAR__PRIVATE
-DECLARE_LIST(ViewList,OutlinerView*)
-#else
-typedef List ViewList;
-#endif
 
 class DrawPortionInfo
 {
@@ -286,10 +235,10 @@ public:
     USHORT          nTextStart;
     USHORT          nTextLen;
 
+    const SvxFont&  rFont;
+
     USHORT          nPara;
     xub_StrLen      nIndex;
-
-    const SvxFont&  rFont;
 
     const sal_Int32*     pDXArray;
 
@@ -402,7 +351,6 @@ class Outliner
     OutlinerEditEng*    pEditEngine;
 
     ParagraphList*      pParaList;
-    ViewList            aViewList;
 
     Paragraph*          pHdlParagraph;
     Link                aDrawPortionHdl;
@@ -532,8 +480,6 @@ public:
     Paragraph*      GetParagraph( ULONG nAbsPos ) const;
 
     BOOL            HasParent( Paragraph* pParagraph ) const;
-//  Paragraph*      GetParagraph( Paragraph* pParent, ULONG nRelPos ) const;
-//  ULONG           GetRelPos( Paragraph* pParent, Paragraph* pPara ) const;
     ULONG           GetAbsPos( Paragraph* pPara );
 
     USHORT          GetDepth( USHORT nPara ) const;
@@ -592,7 +538,6 @@ public:
 
     Link            GetStatusEventHdl() const;
 
-
     const Size&     GetPaperSize() const;
     void            SetPaperSize( const Size& rSize );
 
@@ -607,12 +552,9 @@ public:
 
     void            SetDefTab( USHORT nTab );
 
-
-
     BOOL            IsForceAutoColor() const;
 
     EBulletInfo     GetBulletInfo( USHORT nPara );
-
 
     void            StripPortions();
 
@@ -623,7 +565,6 @@ public:
 
     Size            CalcTextSize();
 
-
     void                SetStyleSheetPool( SfxStyleSheetPool* pSPool );
     SfxStyleSheetPool*  GetStyleSheetPool();
 
@@ -632,7 +573,6 @@ public:
 
     void            SetParaAttribs( ULONG nPara, const SfxItemSet&, bool bApiCall = false );
     SfxItemSet      GetParaAttribs( ULONG nPara );
-
 
     // gibt ein Array mit den Bulletbreiten der n Einrueckebenen
     // zurueck. Letzter Wert muss -1 sein. Wird vom Outliner geloescht.
@@ -672,14 +612,12 @@ public:
     void            SetHyphenator( ::com::sun::star::uno::Reference<
                         ::com::sun::star::linguistic2::XHyphenator >& xHyph );
 
-    void            SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
+    void            SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars );
 
     // Depricated
     void            SetDefaultLanguage( LanguageType eLang );
 
-
     // Depricated
-
 
     void            SetEditTextObjectPool( SfxItemPool* pPool );
     SfxItemPool*    GetEditTextObjectPool() const;
@@ -712,3 +650,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

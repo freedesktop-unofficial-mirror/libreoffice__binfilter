@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,39 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
 
 #include <list>
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
 
@@ -67,13 +54,15 @@
 #endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 ///////////////////////////////////////////////////////////////////////////////
 //
@@ -220,7 +209,7 @@ public:
 
 // ----------------------------------------------------------------------------
 
-typedef ::std::hash_map
+typedef ::boost::unordered_map
 <
     PropertySetInfoKey,
     FilterPropertiesInfo_Impl *,
@@ -250,8 +239,8 @@ FilterPropertiesInfos_Impl::~FilterPropertiesInfos_Impl ()
 // ----------------------------------------------------------------------------
 
 FilterPropertiesInfo_Impl::FilterPropertiesInfo_Impl() :
-    aPropInfos(),
     nCount(0),
+    aPropInfos(),
     pApiNames( 0 )
 {
     aLastItr = aPropInfos.begin();
@@ -422,7 +411,6 @@ void FilterPropertiesInfo_Impl::FillPropertyStateArray(
             for(sal_uInt32 i = 0; i < nCount; i++ )
             {
                 // The value is stored in the PropertySet itself, add to list.
-                sal_Bool bGotValue = sal_False;
                 XMLPropertyState aNewProperty( -1 );
                 aNewProperty.maValue = *pValues;
                 for( ::std::list<sal_uInt32>::iterator aIndexItr =
@@ -493,9 +481,9 @@ void FilterPropertiesInfo_Impl::FillPropertyStateArray(
 //
 
 SvXMLExportPropertyMapper::SvXMLExportPropertyMapper(
-        const UniReference< XMLPropertySetMapper >& rMapper ) :
-    maPropMapper( rMapper ),
-    pCache( 0 )
+        const UniReference< XMLPropertySetMapper >& rMapper )
+    : pCache( 0 )
+    , maPropMapper( rMapper )
 {
 }
 
@@ -609,7 +597,7 @@ vector< XMLPropertyState > SvXMLExportPropertyMapper::_Filter(
         }
         else
         {
-            OSL_ENSURE(sal_False, "here is no TypeProvider or the ImplId is wrong");
+            OSL_FAIL("here is no TypeProvider or the ImplId is wrong");
             bDelInfo = sal_True;
         }
     }
@@ -630,7 +618,7 @@ vector< XMLPropertyState > SvXMLExportPropertyMapper::_Filter(
     }
 
     // Call centext-filter
-    if( aPropStateArray.size() > 0 )
+    if( !aPropStateArray.empty() )
         ContextFilter( aPropStateArray, xPropSet );
 
     // Have to do if we change from a vector to a list or something like that
@@ -826,7 +814,7 @@ void SvXMLExportPropertyMapper::_exportXML(
         const XMLPropertyState& rProperty,
         const SvXMLUnitConverter& rUnitConverter,
         const SvXMLNamespaceMap& rNamespaceMap,
-        sal_uInt16 nFlags,
+        sal_uInt16 /*nFlags*/,
         const ::std::vector< XMLPropertyState > *pProperties,
         sal_uInt32 nIdx ) const
 {
@@ -946,3 +934,5 @@ void SvXMLExportPropertyMapper::exportElementItems(
         rExport.IgnorableWhitespace();
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

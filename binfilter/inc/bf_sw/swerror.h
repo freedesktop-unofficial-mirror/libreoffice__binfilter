@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -110,12 +111,12 @@
 
 #ifndef __RSC
 
-inline FASTBOOL IsWarning( ULONG nErr )
+inline bool IsWarning( ULONG nErr )
 {
     return 0 != ( nErr & ERRCODE_WARNING_MASK & nErr );
 }
 
-inline FASTBOOL IsError( ULONG nErr )
+inline bool IsError( ULONG nErr )
 {
     return nErr && 0 == ( ERRCODE_WARNING_MASK & nErr );
 }
@@ -125,3 +126,4 @@ inline FASTBOOL IsError( ULONG nErr )
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

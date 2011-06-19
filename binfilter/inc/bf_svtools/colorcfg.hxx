@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,28 +28,14 @@
 #ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #define INCLUDED_SVTOOLS_COLORCFG_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 
 //-----------------------------------------------------------------------------
@@ -98,9 +85,8 @@ enum ColorConfigEntry
     BASICERROR   ,
     ColorConfigEntryCount
 };
-/* -----------------------------22.03.2002 15:36------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class ColorConfig_Impl;
 struct ColorConfigValue
 {
@@ -111,9 +97,8 @@ struct ColorConfigValue
     sal_Bool operator !=(const ColorConfigValue& rCmp) const
         { return nColor != rCmp.nColor || bIsVisible != rCmp.bIsVisible;}
 };
-/* -----------------------------22.03.2002 15:36------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class  ColorConfig:
     public Options, public SfxBroadcaster, public SfxListener
 {
@@ -135,3 +120,4 @@ public:
 }
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,18 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-// INCLUDE ---------------------------------------------------------------
 
-#ifndef _VOS_MODULE_HXX_
-#include <vos/module.hxx>
-#endif
+#include <osl/module.hxx>
 
 #include "adiasync.hxx"
 #include <tools/debug.hxx>
 namespace binfilter {
 
-using namespace ::vos;
 
-//------------------------------------------------------------------------
 
 extern "C" {
 
@@ -83,15 +76,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 
 }
 
-#if defined(OS2) && defined(BLC)
-#define GETFUNCTIONCOUNT        "_GetFunctionCount"
-#define GETFUNCTIONDATA         "_GetFunctionData"
-#define SETLANGUAGE             "_SetLanguage"
-#define GETPARAMDESC            "_GetParameterDescription"
-#define ISASYNC                 "_IsAsync"
-#define ADVICE                  "_Advice"
-#define UNADVICE                "_Unadvice"
-#else // Pascal oder extern "C"
 #define GETFUNCTIONCOUNT        "GetFunctionCount"
 #define GETFUNCTIONDATA         "GetFunctionData"
 #define SETLANGUAGE             "SetLanguage"
@@ -99,17 +83,14 @@ typedef void (CALLTYPE* FARPROC) ( void );
 #define ISASYNC                 "IsAsync"
 #define ADVICE                  "Advice"
 #define UNADVICE                "Unadvice"
-#endif
 
 #define LIBFUNCNAME( name ) \
     (String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( name ) ))
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
 /*N*/ FuncData::FuncData(const String& rIName) :
 /*N*/   pModuleData     (NULL),
 /*N*/   aInternalName   (rIName),
-/*N*/ //  aFuncName     (""),
 /*N*/   nNumber         (0),
 /*N*/   nParamCount     (0),
 /*N*/   eAsyncType      (NONE)
@@ -121,9 +102,8 @@ typedef void (CALLTYPE* FARPROC) ( void );
 //------------------------------------------------------------------------
 
 
-//------------------------------------------------------------------------
 
-/*N*/ FuncData::FuncData(const FuncData& rData) :
+/*N*/ FuncData::FuncData(const FuncData& rData) : DataObject(rData),
 /*N*/   pModuleData     (rData.pModuleData),
 /*N*/   aInternalName   (rData.aInternalName),
 /*N*/   aFuncName       (rData.aFuncName),
@@ -135,14 +115,11 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/       eParamType[i] = rData.eParamType[i];
 /*N*/ }
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
 
-/*N*/ short FuncCollection::Compare(DataObject* pKey1, DataObject* pKey2) const
+/*N*/ short FuncCollection::Compare(DataObject*, DataObject*) const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001 return (short) ScGlobal::pTransliteration->compareString(
+            DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ BOOL FuncCollection::SearchFunc( const String& rName, USHORT& rIndex ) const
 /*N*/ {
@@ -150,24 +127,22 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/   return Search( &aDataObj, rIndex );
 /*N*/ }
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-/*N*/ class ModuleData : public DataObject
-/*N*/ {
-/*N*/ friend class ModuleCollection;
-/*N*/   String      aName;
-/*N*/   OModule*    pInstance;
-/*N*/ public:
-/*N*/   ModuleData(const String& rStr, OModule* pInst) : aName (rStr), pInstance (pInst) {}
-/*N*/   ModuleData(const ModuleData& rData) : aName (rData.aName) {pInstance = new OModule(aName);}
-/*N*/   ~ModuleData() { delete pInstance; }
-/*N*/   virtual DataObject* Clone() const { return new ModuleData(*this); }
-/*N*/
-/*N*/   const   String&         GetName() const { return aName; }
-/*N*/           OModule*        GetInstance() const { return pInstance; }
-/*N*/           void            FreeInstance() { delete pInstance; pInstance = 0; }
-/*N*/ };
+class ModuleData : public DataObject
+{
+    friend class ModuleCollection;
+    String      aName;
+    osl::Module* pInstance;
+public:
+    ModuleData(const String& rStr, osl::Module* pInst) : aName (rStr), pInstance (pInst) {}
+    ModuleData(const ModuleData& rData) : DataObject(rData), aName (rData.aName) {pInstance = new osl::Module(aName);}
+    ~ModuleData() { delete pInstance; }
+    virtual DataObject* Clone() const { return new ModuleData(*this); }
 
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+    const   String&         GetName() const { return aName; }
+    osl::Module*            GetInstance() const { return pInstance; }
+    void            FreeInstance() { delete pInstance; pInstance = 0; }
+};
+
 /*N*/ class ModuleCollection : public SortedCollection
 /*N*/ {
 /*N*/ public:
@@ -176,7 +151,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/
 /*N*/   virtual DataObject*     Clone() const { return new ModuleCollection(*this); }
 /*N*/           ModuleData*     operator[]( const USHORT nIndex) const {return (ModuleData*)At(nIndex);}
-    virtual short           Compare(DataObject* pKey1, DataObject* pKey2) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short          Compare(DataObject* pKey1, DataObject* pKey2) const;
+    virtual short Compare(DataObject*, DataObject*) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
 /*N*/ };
 
 /*N*/ #ifdef _MSC_VER
@@ -189,16 +164,6 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/ #pragma code_seg()
 /*N*/ #endif
 
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
-
-
-//------------------------------------------------------------------------
 
 /*N*/ void ExitExternalFunc()
 /*N*/ {
@@ -210,12 +175,11 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/   }
 /*N*/ }
 
-//------------------------------------------------------------------------
 
 /*N*/ BOOL FuncData::Call(void** ppParam)
 /*N*/ {
 /*N*/   BOOL bRet = FALSE;
-/*N*/   OModule* pLib = pModuleData->GetInstance();
+        osl::Module* pLib = pModuleData->GetInstance();
 /*N*/   FARPROC fProc = (FARPROC)pLib->getSymbol(aFuncName);
 /*N*/   if (fProc != NULL)
 /*N*/   {
@@ -305,17 +269,7 @@ typedef void (CALLTYPE* FARPROC) ( void );
 /*N*/   return bRet;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

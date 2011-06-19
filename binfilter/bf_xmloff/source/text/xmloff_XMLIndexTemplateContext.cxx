@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,61 +26,23 @@
  *
  ************************************************************************/
 
-
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 #include "XMLIndexSpanEntryContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXTABSTOPENTRYCONTEXT_HXX_
 #include "XMLIndexTabStopEntryContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYENTRYCONTEXT_HXX_
 #include "XMLIndexBibliographyEntryContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXCHAPTERINFOENTRYCONTEXT_HXX_
 #include "XMLIndexChapterInfoEntryContext.hxx"
-#endif
 
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-
-
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
+
 namespace binfilter {
 
-
 using namespace ::std;
-//using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
 using ::rtl::OUString;
@@ -108,7 +71,7 @@ const sal_Char sAPI_TokenBibliographyDataField[] =
 TYPEINIT1( XMLIndexTemplateContext, SvXMLImportContext);
 
 XMLIndexTemplateContext::XMLIndexTemplateContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     Reference<XPropertySet> & rPropSet,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
@@ -116,16 +79,16 @@ XMLIndexTemplateContext::XMLIndexTemplateContext(
     enum XMLTokenEnum eLevelAttrName,
     const sal_Char** pLevelStylePropMap,
     const sal_Bool* pAllowedTokenTypes) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        rPropertySet(rPropSet),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         sStyleName(),
+        pOutlineLevelNameMap(pLevelNameMap),
+        eOutlineLevelAttrName(eLevelAttrName),
+        pOutlineLevelStylePropMap(pLevelStylePropMap),
+        pAllowedTokenTypesMap(pAllowedTokenTypes),
         nOutlineLevel(1),   // all indices have level 1 (0 is for header)
         bStyleNameOK(sal_False),
         bOutlineLevelOK(sal_False),
-        eOutlineLevelAttrName(eLevelAttrName),
-        pOutlineLevelNameMap(pLevelNameMap),
-        pOutlineLevelStylePropMap(pLevelStylePropMap),
-        pAllowedTokenTypesMap(pAllowedTokenTypes),
+        rPropertySet(rPropSet),
         sTokenEntryNumber(RTL_CONSTASCII_USTRINGPARAM(sAPI_TokenEntryNumber)),
         sTokenEntryText(RTL_CONSTASCII_USTRINGPARAM(sAPI_TokenEntryText)),
         sTokenTabStop(RTL_CONSTASCII_USTRINGPARAM(sAPI_TokenTabStop)),
@@ -138,19 +101,19 @@ XMLIndexTemplateContext::XMLIndexTemplateContext(
             sAPI_TokenHyperlinkEnd)),
         sTokenBibliographyDataField(RTL_CONSTASCII_USTRINGPARAM(
             sAPI_TokenBibliographyDataField)),
-        sLevelFormat(RTL_CONSTASCII_USTRINGPARAM("LevelFormat")),
-        sParaStyleLevel(RTL_CONSTASCII_USTRINGPARAM("ParaStyleLevel")),
+        sCharacterStyleName(RTL_CONSTASCII_USTRINGPARAM("CharacterStyleName")),
+        sTokenType(RTL_CONSTASCII_USTRINGPARAM("TokenType")),
+        sText(RTL_CONSTASCII_USTRINGPARAM("Text")),
         sTabStopRightAligned(RTL_CONSTASCII_USTRINGPARAM(
             "TabStopRightAligned")),
         sTabStopPosition(RTL_CONSTASCII_USTRINGPARAM("TabStopPosition")),
         sTabStopFillCharacter(RTL_CONSTASCII_USTRINGPARAM(
             "TabStopFillCharacter")),
-        sCharacterStyleName(RTL_CONSTASCII_USTRINGPARAM("CharacterStyleName")),
-        sTokenType(RTL_CONSTASCII_USTRINGPARAM("TokenType")),
-        sText(RTL_CONSTASCII_USTRINGPARAM("Text")),
         sBibliographyDataField(RTL_CONSTASCII_USTRINGPARAM(
             "BibliographyDataField")),
-        sChapterFormat(RTL_CONSTASCII_USTRINGPARAM("ChapterFormat"))
+        sChapterFormat(RTL_CONSTASCII_USTRINGPARAM("ChapterFormat")),
+        sLevelFormat(RTL_CONSTASCII_USTRINGPARAM("LevelFormat")),
+        sParaStyleLevel(RTL_CONSTASCII_USTRINGPARAM("ParaStyleLevel"))
 {
     DBG_ASSERT( ((XML_TOKEN_INVALID != eLevelAttrName) &&  (NULL != pLevelNameMap))
                 || ((XML_TOKEN_INVALID == eLevelAttrName) &&  (NULL == pLevelNameMap)),
@@ -186,10 +149,10 @@ void XMLIndexTemplateContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if (XML_NAMESPACE_TEXT == nPrefix)
+        if (XML_NAMESPACE_TEXT == nLclPrefix)
         {
             if ( IsXMLToken( sLocalName, XML_STYLE_NAME ) )
             {
@@ -290,13 +253,13 @@ SvXMLEnumMapEntry aTemplateTokenTypeMap[] =
 };
 
 SvXMLImportContext *XMLIndexTemplateContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if (XML_NAMESPACE_TEXT == nPrefix)
+    if (XML_NAMESPACE_TEXT == nInPrefix)
     {
         sal_uInt16 nToken;
         if (SvXMLUnitConverter::convertEnum(nToken, rLocalName,
@@ -310,51 +273,51 @@ SvXMLImportContext *XMLIndexTemplateContext::CreateChildContext(
                     case XML_TOK_INDEX_TYPE_ENTRY_TEXT:
                         pContext = new XMLIndexSimpleEntryContext(
                             GetImport(), sTokenEntryText, *this,
-                            nPrefix, rLocalName);
+                            nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_PAGE_NUMBER:
                         pContext = new XMLIndexSimpleEntryContext(
                             GetImport(), sTokenPageNumber, *this,
-                            nPrefix, rLocalName);
+                            nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_LINK_START:
                         pContext = new XMLIndexSimpleEntryContext(
                             GetImport(), sTokenHyperlinkStart, *this,
-                            nPrefix, rLocalName);
+                            nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_LINK_END:
                         pContext = new XMLIndexSimpleEntryContext(
                             GetImport(), sTokenHyperlinkEnd, *this,
-                            nPrefix, rLocalName);
+                            nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_TEXT:
                         pContext = new XMLIndexSpanEntryContext(
-                            GetImport(), *this, nPrefix, rLocalName);
+                            GetImport(), *this, nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_TAB_STOP:
                         pContext = new XMLIndexTabStopEntryContext(
-                            GetImport(), *this, nPrefix, rLocalName);
+                            GetImport(), *this, nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_CHAPTER_NUMBER:
                         pContext = new XMLIndexSimpleEntryContext(
                             GetImport(), sTokenEntryNumber, *this,
-                            nPrefix, rLocalName);
+                            nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_BIBLIOGRAPHY:
                         pContext = new XMLIndexBibliographyEntryContext(
-                            GetImport(), *this, nPrefix, rLocalName);
+                            GetImport(), *this, nInPrefix, rLocalName);
                         break;
 
                     case XML_TOK_INDEX_TYPE_CHAPTER:
                         pContext = new XMLIndexChapterInfoEntryContext(
-                            GetImport(), *this, nPrefix, rLocalName);
+                            GetImport(), *this, nInPrefix, rLocalName);
                         break;
 
                     default:
@@ -368,7 +331,7 @@ SvXMLImportContext *XMLIndexTemplateContext::CreateChildContext(
     // ignore unknown
     if (NULL == pContext)
     {
-        return SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        return SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                       xAttrList);
     }
 
@@ -396,7 +359,7 @@ const SvXMLEnumMapEntry aLevelNameTOCMap[] =
     { XML_8, 8 },
     { XML_9, 9 },
     { XML_10, 10 },
-    { XML_TOKEN_INVALID, NULL }
+    { XML_TOKEN_INVALID, 0 }
 };
 
 const sal_Char* aLevelStylePropNameTOCMap[] =
@@ -538,3 +501,5 @@ const sal_Bool aAllowedTokenTypesTable[] =
 };
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

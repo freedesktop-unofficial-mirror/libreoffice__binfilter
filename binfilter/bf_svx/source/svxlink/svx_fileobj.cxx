@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,21 +34,11 @@
 #endif
 
 
-#ifndef _SOT_FORMATS_HXX
 #include <sot/formats.hxx>
-#endif
-#ifndef _LNKBASE_HXX
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_PROGRESS_HXX
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX
 #include <bf_sfx2/interno.hxx>
-#endif
 
 #include "fileobj.hxx"
 #include "linkmgr.hxx"
@@ -83,7 +74,7 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ SvFileObject::SvFileObject()
-/*N*/   : nType( FILETYPE_TEXT ), pDownLoadData( 0 )
+/*N*/   : pDownLoadData( 0 ), nType( FILETYPE_TEXT )
 /*N*/ {
 /*N*/   bLoadAgain = bMedUseCache = TRUE;
 /*N*/   bSynchron = bLoadError = bWaitForData = bDataReady = bNativFormat =
@@ -120,7 +111,7 @@ using namespace ::com::sun::star::uno;
 /*N*/
 /*
 ===========================================================================
-JP 28.02.96: noch eine Baustelle:
+noch eine Baustelle:
                 Idee: hier das Medium und die DocShell anlegen, Doc laden
                       und ueber OLE-SS (GetObj(...)) den Bereich als
                       PseudoObject erfragen. Dieses mit den Daten oder
@@ -161,7 +152,6 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/           {
 /*?*/               Graphic aGrf;
 /*?*/
-/*?*/               //JP 15.07.98: Bug 52959
 /*?*/               //      falls das Nativformat doch erwuenscht ist, muss am
 /*?*/               //      Ende das Flag zurueckgesetzt werden.
 /*?*/ // wird einzig und allein im sw/ndgrf.cxx benutzt, wenn der Link vom
@@ -236,7 +226,7 @@ JP 28.02.96: noch eine Baustelle:
 /*?*/                   break;
 /*?*/
 /*?*/               default:
-/*?*/                   if( aGrf.GetGDIMetaFile().GetActionCount() )
+/*?*/                   if( aGrf.GetGDIMetaFile().GetActionSize() )
 /*?*/                   {
 /*?*/                       GDIMetaFile aMeta( aGrf.GetGDIMetaFile() );
 /*?*/                       aMeta.Write( aMemStm );
@@ -481,6 +471,7 @@ JP 28.02.96: noch eine Baustelle:
 
 /*?*/ IMPL_STATIC_LINK( SvFileObject, DelMedium_Impl, SfxMediumRef*, pDelMed )
 /*?*/ {
+/*?*/   (void)pThis;
 /*?*/   delete pDelMed;
 /*?*/   return 0;
 /*?*/ }
@@ -584,3 +575,5 @@ JP 28.02.96: noch eine Baustelle:
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SBXCLASS_HXX //autogen
 #include "sbx.hxx"
-#endif
-#ifndef _SBX_SBXOBJECT_HXX //autogen
-#include <sbxobj.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX
+#include <bf_basic/sbxobj.hxx>
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 #include "sbdef.hxx"
 #include "sberrors.hxx"
@@ -86,7 +79,7 @@ private:
     BOOL            RTError( SbError, const String& rMsg, xub_StrLen, xub_StrLen, xub_StrLen );
 #endif
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 
 protected:
 
@@ -174,3 +167,4 @@ SV_DECL_IMPL_REF(StarBASIC)
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

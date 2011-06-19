@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_SHADOWEDTYPES_HXX
 #include "shdwdhdl.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 
 // --
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <xmltoken.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -55,7 +50,7 @@ XMLShadowedPropHdl::~XMLShadowedPropHdl()
     // nothing to do
 }
 
-sal_Bool XMLShadowedPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLShadowedPropHdl::importXML( const OUString& rStrImpValue, Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
 
@@ -66,10 +61,10 @@ sal_Bool XMLShadowedPropHdl::importXML( const OUString& rStrImpValue, Any& rValu
     return bRet;
 }
 
-sal_Bool XMLShadowedPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLShadowedPropHdl::exportXML( OUString& rStrExpValue, const Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
 
     if (rValue >>= bValue)
     {
@@ -88,3 +83,5 @@ sal_Bool XMLShadowedPropHdl::exportXML( OUString& rStrExpValue, const Any& rValu
     return bRet;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

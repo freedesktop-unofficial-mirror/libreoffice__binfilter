@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #include <vcl/sound.hxx>
 #include "sbx.hxx"
-#include "sbxbase.hxx"
 #include "sbxres.hxx"
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 namespace binfilter {
 
@@ -47,8 +43,6 @@ static const char* pNameProp;               // Name-Property
 static const char* pParentProp;             // Parent-Property
 
 static USHORT nNameHash = 0, nParentHash = 0;
-
-/////////////////////////////////////////////////////////////////////////
 
 /////////////////////////////////////////////////////////////////////////
 
@@ -430,20 +424,6 @@ SbxObject* SbxObject::MakeObject( const XubString& rName, const XubString& rClas
         SbxVariable* pRes = pObjs->Find( rName, SbxCLASS_OBJECT );
         if( pRes )
         {
-/* Wegen haeufiger Probleme (z.B. #67000) erstmal ganz raus
-#ifdef DBG_UTIL
-            if( pRes->GetHashCode() != nNameHash
-             && pRes->GetHashCode() != nParentHash )
-            {
-                XubString aMsg( "SBX-Objekt \"" );
-                aMsg += pRes->GetName();
-                aMsg += "\"\n in Objekt \"";
-                aMsg += GetName();
-                aMsg += "\" bereits vorhanden";
-                DbgError( (const char*)aMsg.GetStr() );
-            }
-#endif
-*/
             return PTR_CAST(SbxObject,pRes);
         }
     }
@@ -481,20 +461,6 @@ void SbxObject::Insert( SbxVariable* pVar )
                 if( pOld == pVar )
                     return;
 
-/* Wegen haeufiger Probleme (z.B. #67000) erstmal ganz raus
-#ifdef DBG_UTIL
-                if( pOld->GetHashCode() != nNameHash
-                 && pOld->GetHashCode() != nParentHash )
-                {
-                    XubString aMsg( "SBX-Element \"" );
-                    aMsg += pVar->GetName();
-                    aMsg += "\"\n in Objekt \"";
-                    aMsg += GetName();
-                    aMsg += "\" bereits vorhanden";
-                    DbgError( (const char*)aMsg.GetStr() );
-                }
-#endif
-*/
                 EndListening( pOld->GetBroadcaster(), TRUE );
                 if( pVar->GetClass() == SbxCLASS_PROPERTY )
                 {
@@ -654,40 +620,13 @@ BOOL SbxObject::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbxObject::StoreData( SvStream& rStrm ) const
-{
-    if( !SbxVariable::StoreData( rStrm ) )
-        return FALSE;
-    XubString aDfltProp;
-    if( pDfltProp )
-        aDfltProp = pDfltProp->GetName();
-    rStrm.WriteByteString( aClassName, RTL_TEXTENCODING_ASCII_US );
-    rStrm.WriteByteString( aDfltProp, RTL_TEXTENCODING_ASCII_US );
-    ULONG nPos = rStrm.Tell();
-    rStrm << (UINT32) 0L;
-    if( !StorePrivateData( rStrm ) )
-        return FALSE;
-    ULONG nNew = rStrm.Tell();
-    rStrm.Seek( nPos );
-    rStrm << (UINT32) ( nNew - nPos );
-    rStrm.Seek( nNew );
-    if( !pMethods->Store( rStrm ) )
-        return FALSE;
-    if( !pProps->Store( rStrm ) )
-        return FALSE;
-    if( !pObjs->Store( rStrm ) )
-        return FALSE;
-    ((SbxObject*) this)->SetModified( FALSE );
-    return TRUE;
-}
-
 XubString SbxObject::GenerateSource( const XubString &rLinePrefix,
                                   const SbxObject* )
 {
     // Properties in einem String einsammeln
     XubString aSource;
     SbxArrayRef xProps( GetProperties() );
-    FASTBOOL bLineFeed = FALSE;
+    bool bLineFeed = FALSE;
     for ( USHORT nProp = 0; nProp < xProps->Count(); ++nProp )
     {
         SbxPropertyRef xProp = (SbxProperty*) xProps->Get(nProp);
@@ -925,3 +864,5 @@ SbxClassType SbxProperty::GetClass() const
     return SbxCLASS_PROPERTY;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

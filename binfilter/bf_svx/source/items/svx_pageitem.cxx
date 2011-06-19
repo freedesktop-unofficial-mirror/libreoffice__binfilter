@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,21 +37,15 @@
 #define  ITEMID_PAGE        0
 #define  ITEMID_SETITEM     0
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 #include "pageitem.hxx"
 #include "itemtype.hxx"
 #include <unomid.hxx>
 
-#ifndef _COM_SUN_STAR_STYLE_PAGESTYLELAYOUT_HPP_
 #include <com/sun/star/style/PageStyleLayout.hpp>
-#endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -90,7 +83,7 @@ using namespace ::com::sun::star;
     Beschreibung: Clonen
  --------------------------------------------------------------------*/
 
-/*N*/ SfxPoolItem* SvxPageItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxPageItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxPageItem( *this );
 /*N*/ }
@@ -125,9 +118,9 @@ using namespace ::com::sun::star;
 
 
 //------------------------------------------------------------------------
-/*N*/ sal_Bool SvxPageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxPageItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
@@ -151,7 +144,7 @@ using namespace ::com::sun::star;
 /*N*/               case SVX_PAGE_ALL   : eRet = style::PageStyleLayout_ALL;       break;
 /*N*/               case SVX_PAGE_MIRROR: eRet = style::PageStyleLayout_MIRRORED; break;
 /*N*/               default:
-/*N*/                   DBG_ERROR("was fuer ein Layout ist das?");
+/*N*/                   OSL_FAIL("was fuer ein Layout ist das?");
 /*N*/                   return sal_False;
 /*N*/           }
 /*N*/           rVal <<= eRet;
@@ -162,13 +155,13 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 //------------------------------------------------------------------------
-/*N*/ sal_Bool SvxPageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxPageItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   switch( nMemberId )
 /*N*/   {
 /*N*/       case MID_PAGE_NUMTYPE:
 /*N*/       {
-/*N*/           sal_Int32 nValue;
+/*N*/           sal_Int32 nValue = 0;
 /*N*/           if(!(rVal >>= nValue))
 /*N*/               return sal_False;
 /*N*/
@@ -183,7 +176,7 @@ using namespace ::com::sun::star;
 /*N*/           style::PageStyleLayout eLayout;
 /*N*/           if(!(rVal >>= eLayout))
 /*N*/           {
-/*N*/               sal_Int32 nValue;
+/*N*/               sal_Int32 nValue = 0;
 /*?*/               if(!(rVal >>= nValue))
 /*?*/                   return sal_False;
 /*?*/               eLayout = (style::PageStyleLayout)nValue;
@@ -195,7 +188,8 @@ using namespace ::com::sun::star;
 /*N*/               case style::PageStyleLayout_RIGHT   : eUse |= SVX_PAGE_RIGHT; break;
 /*?*/               case style::PageStyleLayout_ALL     : eUse |= SVX_PAGE_ALL  ; break;
 /*N*/               case style::PageStyleLayout_MIRRORED: eUse |= SVX_PAGE_MIRROR;break;
-/*N*/           }
+                    default: break;
+                }
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -226,17 +220,6 @@ using namespace ::com::sun::star;
 /*N*/   return pPage;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ SvStream& SvxPageItem::Store( SvStream &rStrm, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   // UNICODE: rStrm << aDescName;
-/*N*/   rStrm.WriteByteString(aDescName);
-/*N*/
-/*N*/   rStrm << (BYTE)eNumType << bLandscape << eUse;
-/*N*/   return rStrm;
-/*N*/ }
-
 /*--------------------------------------------------------------------
     Beschreibung:   HeaderFooterSet
  --------------------------------------------------------------------*/
@@ -254,7 +237,7 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ SfxPoolItem* SvxSetItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxSetItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxSetItem(*this);
 /*N*/ }
@@ -262,22 +245,17 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 
-/*N*/ SfxPoolItem* SvxSetItem::Create(SvStream &rStrm, USHORT nVersion) const
+/*N*/ SfxPoolItem* SvxSetItem::Create(SvStream &rStrm, USHORT /*nVersion*/) const
 /*N*/ {
-/*N*/   SfxItemSet* pSet = new SfxItemSet( *GetItemSet().GetPool(),
+/*N*/   SfxItemSet* _pSet = new SfxItemSet( *GetItemSet().GetPool(),
 /*N*/                                      GetItemSet().GetRanges() );
 /*N*/
-/*N*/   pSet->Load( rStrm );
+/*N*/   _pSet->Load( rStrm );
 /*N*/
-/*N*/   return new SvxSetItem( Which(), *pSet );
-/*N*/ }
-
-/*N*/ SvStream& SvxSetItem::Store(SvStream &rStrm, USHORT nItemVersion) const
-/*N*/ {
-/*N*/   GetItemSet().Store( rStrm, nItemVersion );
-/*N*/
-/*N*/   return rStrm;
+/*N*/   return new SvxSetItem( Which(), *_pSet );
 /*N*/ }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

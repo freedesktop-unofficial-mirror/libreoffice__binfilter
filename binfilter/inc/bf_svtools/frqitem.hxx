@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 
-#ifndef _DATETIME_HXX //autogen
 #include <tools/datetime.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 #include <bf_svtools/poolitem.hxx>
 
@@ -155,7 +148,7 @@ public:
     using SfxPoolItem::Compare;
     virtual int             Compare( const SfxPoolItem &rWith )         const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT nItemVersion )    const;
-    virtual SvStream&       Store( SvStream&, USHORT nItemVersion )     const;
+    virtual SvStream& Store( SvStream& rStream, USHORT ) const { return rStream; }
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 )             const;
     virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
                                 SfxMapUnit eCoreMetric, SfxMapUnit ePresMetric, XubString &rText,
@@ -187,3 +180,4 @@ public:
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

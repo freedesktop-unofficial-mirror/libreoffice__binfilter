@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,32 +30,16 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX //autogen fuer DECLARE_TABLE
 #include <tools/table.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SWRECT_HXX //autogen
 #include <swrect.hxx>
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>           // SwSelBoxes
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>          // numerierte Listen
-#endif
 
 class String;
 class Graphic;
@@ -247,19 +232,19 @@ struct W4WPDTInfo
     BOOL    bPageWidthUnknown   :1;// Page Margin rechts noch nicht eingestellt
     BOOL    bPageHeightUnknown  :1;//             unten
     W4WPDTInfo()
-       :nPageType(    1 ),
-        nPageSubType( 0 ),
-        nRects(       0 ),
-        pIds(         0 ),
-        nBodyRectId(  USHRT_MAX ),
-        nHdRectId(    USHRT_MAX ),
-        nFtRectId(    USHRT_MAX ),
-        nSwPdId(      USHRT_MAX )
-        {
-            bSwPdUsed           = FALSE;
-            bPageWidthUnknown   = TRUE;
-            bPageHeightUnknown  = TRUE;
-        }
+       : pIds(0)
+       , nPageType(1)
+       , nPageSubType(0)
+       , nRects(0)
+       , nSwPdId(USHRT_MAX)
+       , nBodyRectId(USHRT_MAX)
+       , nHdRectId(USHRT_MAX)
+       , nFtRectId(USHRT_MAX)
+    {
+        bSwPdUsed           = FALSE;
+        bPageWidthUnknown   = TRUE;
+        bPageHeightUnknown  = TRUE;
+    }
     ~W4WPDTInfo(){ delete pIds; }
     BOOL PageSizeKnown(){ return 0 == (   bPageWidthUnknown
                                         | bPageHeightUnknown ); }
@@ -275,10 +260,10 @@ struct W4WFLOInfo
     long    nRects;
     BOOL    bFlowUsed:1;
     W4WFLOInfo()
-       :nFlowId( 0 ),
-        nRects(  0 ),
-        pIds(    0 )
-        { bFlowUsed = FALSE; }
+       : pIds(0)
+       , nFlowId(0)
+       , nRects(0)
+    { bFlowUsed = FALSE; }
     ~W4WFLOInfo(){ delete pIds; }
 };
 typedef W4WFLOInfo* W4WFLOInfo_Ptr;
@@ -403,7 +388,7 @@ class SwW4WParser
     long nRecNo;                // Befehlszaehler zum besseren Debuggen
     long nRSMLeft;              // Merke RSM-Werte bis zum naechsten Seitenwechsel
     long nRSMRight;
-    long nRSMwpwParaLeft;       // Merke RSM-Werte fÅr WPWin - Absatz-Raender
+    long nRSMwpwParaLeft;       // Merke RSM-Werte fÔøΩr WPWin - Absatz-Raender
     long nRSMwpwParaRight;
 
     // Hilfs-Varis zur Umrechnung
@@ -862,8 +847,11 @@ struct W4WStyleIdTabEntry
     W4WStyleIdTabEntry( SwW4WParser& rParser, USHORT nId,
                         const sal_Unicode* pName );
         // ctor fuers suchen !!
-    W4WStyleIdTabEntry( USHORT nSeekId ) :  nStyleId( nSeekId ), pColl(0),
-                                            bSetAttributes( TRUE ) {}
+    W4WStyleIdTabEntry( USHORT nSeekId )
+        : pColl(0)
+        , nStyleId( nSeekId )
+        , bSetAttributes( TRUE )
+    {}
 
     inline BOOL operator==( const W4WStyleIdTabEntry&) const;
     inline BOOL operator<( const W4WStyleIdTabEntry&) const;
@@ -874,3 +862,5 @@ typedef W4WStyleIdTabEntry* W4WStyleIdTabEntryPtr;
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

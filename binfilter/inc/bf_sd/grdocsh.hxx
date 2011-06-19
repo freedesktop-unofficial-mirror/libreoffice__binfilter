@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,28 +31,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 
-#ifndef _SD_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _SDMOD_HXX
 #include "sdmod.hxx"
-#endif
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
 namespace binfilter {
 
 
@@ -86,3 +73,4 @@ SV_IMPL_REF (SdGraphicDocShell)
 } //namespace binfilter
 #endif          // _SD_GRDOCSH_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

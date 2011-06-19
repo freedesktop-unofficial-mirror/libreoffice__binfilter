@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,18 +35,10 @@
 #include <com/sun/star/uno/XInterface.hpp>
 #include <com/sun/star/presentation/FadeEffect.hpp>
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _FM_FMPAGE_HXX //autogen
 #include <bf_svx/fmpage.hxx>
-#endif
-#ifndef _SD_FADEDEF_H
 #include <bf_sd/fadedef.h>
-#endif
-#ifndef _SD_DIADEF_H
 #include <bf_sd/diadef.h>
-#endif
 #ifndef _PRESENTATION
 #include <bf_sd/pres.hxx>
 #endif
@@ -188,7 +181,7 @@ public:
                          const Rectangle& rOldBoundRect);
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
 #endif
     virtual void ReadData(const SdrIOHeader& rHead, SvStream& rIn);
 
@@ -228,3 +221,4 @@ public:
 } //namespace binfilter
 #endif     // _SDPAGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

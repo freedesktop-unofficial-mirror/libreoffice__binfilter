@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,36 +35,20 @@
 
 #include <stdio.h>
 
-#ifndef _TOOLS_RESID_HXX
 #include <tools/resid.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _LINKMGR_HXX
 #include <bf_so3/linkmgr.hxx>
-#endif
 
 #ifndef _SVSTDARR_USHORTS_DECL
 #define _SVSTDARR_USHORTS
 #endif
 
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "sw3imp.hxx"
@@ -76,9 +61,7 @@
 #include "usrfld.hxx"
 #include "dbfld.hxx"
 #include "txtfld.hxx"
-#ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
-#endif
 #include "ndtxt.hxx"
 
 #include "poolfmt.hxx"      // fuer InSetExpField
@@ -86,7 +69,7 @@
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-#if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MWERKS__) && !defined(WTC) && !defined(__MINGW32__) && !defined(OS2)
+#if !defined(UNX) && !defined(MSC) && !defined(PPC) && !defined(CSET) && !defined(__MINGW32__) && !defined(OS2)
 
 #define FIELDFNTAB_SIZE 37
 #if FIELDFNTAB_SIZE != RES_FIELDS_END - RES_FIELDS_BEGIN
@@ -97,131 +80,124 @@ namespace binfilter {
 
 #define SWG_AUTHORITY_ENTRY_LCL 'E'
 
-sal_Char __FAR_DATA sSW3IO_FixedField[] = "FixedExport";
-sal_Char __FAR_DATA sSW3IO_AuthorityField[] = "AuthorityExport";
+sal_Char sSW3IO_FixedField[] = "FixedExport";
+sal_Char sSW3IO_AuthorityField[] = "AuthorityExport";
 /* #108791# */
-sal_Char __FAR_DATA sSW3IO_DropDownField[] = "DropDownExport";
+sal_Char sSW3IO_DropDownField[] = "DropDownExport";
 
 struct OldFormats
 {
     NfIndexTableOffset  eFormatIdx;
-    USHORT              nOldFormat;
+    USHORT      nOldFormat;
 };
 
 static OldFormats aOldDateFmt40[] =
 {
     // Datumsfelder:
-    NF_DATE_SYSTEM_SHORT,           DFF_SSYS,       // Kurzes Systemdatum
-    NF_DATE_SYSTEM_LONG,            DFF_LSYS,       // Langes Systemdatum
-    NF_DATE_SYS_DDMMYY,             DFF_DMY,        // 06.10.64
-    NF_DATE_SYS_DDMMYYYY,           DFF_DMYY,       // 06.10.1964
-    NF_DATE_SYS_DMMMYY,             DFF_DMMY,       // 06. Okt 64
-    NF_DATE_SYS_DMMMYYYY,           DFF_DMMYY,      // 06. Okt 1964
-    NF_DATE_DIN_DMMMMYYYY,          DFF_DMMMYY,     // 06. Oktober 1964
-    NF_DATE_DIN_DMMMMYYYY,          DFF_DMMMY,      // 06. Oktober 64
-    NF_DATE_SYS_NNDMMMYY,           DFF_DDMMY,      // Di, 06. Okt 64
-    NF_DATE_SYS_NNDMMMMYYYY,        DFF_DDMMMY,     // Di, 06. Oktober 64
-    NF_DATE_SYS_NNDMMMMYYYY,        DFF_DDMMMYY,    // Di, 06. Oktober 1964
-    NF_DATE_SYS_NNNNDMMMMYYYY,      DFF_DDDMMMYY,   // Dienstag, 06. Oktober 1964
-    NF_DATE_SYS_NNNNDMMMMYYYY,      DFF_DDDMMMY,    // Dienstag, 06. Oktober 64
-    NF_DATE_SYS_MMYY,               DFF_MY,         // 10.64
-    NF_DATE_DIN_MMDD,               DFF_MD,         // 10-06
-    NF_DATE_DIN_YYMMDD,             DFF_YMD,        // 64-10-06
-    NF_DATE_DIN_YYYYMMDD,           DFF_YYMD,       // 1964-10-06
-
-    NF_NUMERIC_START,               0               // Tabellenende
+    { NF_DATE_SYSTEM_SHORT,         DFF_SSYS },        // Kurzes Systemdatum
+    { NF_DATE_SYSTEM_LONG,          DFF_LSYS },        // Langes Systemdatum
+    { NF_DATE_SYS_DDMMYY,           DFF_DMY },         // 06.10.64
+    { NF_DATE_SYS_DDMMYYYY,         DFF_DMYY },        // 06.10.1964
+    { NF_DATE_SYS_DMMMYY,           DFF_DMMY },        // 06. Okt 64
+    { NF_DATE_SYS_DMMMYYYY,         DFF_DMMYY },       // 06. Okt 1964
+    { NF_DATE_DIN_DMMMMYYYY,        DFF_DMMMYY },      // 06. Oktober 1964
+    { NF_DATE_DIN_DMMMMYYYY,        DFF_DMMMY },       // 06. Oktober 64
+    { NF_DATE_SYS_NNDMMMYY,         DFF_DDMMY },       // Di, 06. Okt 64
+    { NF_DATE_SYS_NNDMMMMYYYY,      DFF_DDMMMY },      // Di, 06. Oktober 64
+    { NF_DATE_SYS_NNDMMMMYYYY,      DFF_DDMMMYY },     // Di, 06. Oktober 1964
+    { NF_DATE_SYS_NNNNDMMMMYYYY,    DFF_DDDMMMYY },    // Dienstag, 06. Oktober 1964
+    { NF_DATE_SYS_NNNNDMMMMYYYY,    DFF_DDDMMMY },     // Dienstag, 06. Oktober 64
+    { NF_DATE_SYS_MMYY,             DFF_MY },          // 10.64
+    { NF_DATE_DIN_MMDD,             DFF_MD },          // 10-06
+    { NF_DATE_DIN_YYMMDD,           DFF_YMD },         // 64-10-06
+    { NF_DATE_DIN_YYYYMMDD,         DFF_YYMD },        // 1964-10-06
+    { NF_NUMERIC_START,             0 }                // Tabellenende
 };
 
 static OldFormats aOldDateFmt30[] =
 {
     // Datumsfelder:
-    NF_DATE_SYSTEM_SHORT,           DFF_SSYS,       // Kurzes Systemdatum
-    NF_DATE_SYSTEM_LONG,            DFF_LSYS,       // Langes Systemdatum
-    NF_DATE_SYS_DDMMYY,             DFF_DMY,        // 06.10.64
-    NF_DATE_SYS_DDMMYYYY,           DFF_DMYY,       // 06.10.1964
-    NF_DATE_SYS_DMMMYY,             DFF_DMMY,       // 06. Okt 64
-    NF_DATE_SYS_DMMMYYYY,           4 /*DFF_DMMYY*/,    // 06. Okt 1964
-    NF_DATE_DIN_DMMMMYYYY,          5 /*DFF_DMMMYY*/,   // 06. Oktober 1964
-    NF_DATE_DIN_DMMMMYYYY,          5 /*DFF_DMMMY*/,    // 06. Oktober 64
-    NF_DATE_SYS_NNDMMMMYYYY,        6 /*DFF_DDMMMYY*/,  // Di, 06. Oktober 1964
-    NF_DATE_SYS_NNDMMMYY,           6 /*DFF_DDMMY*/,    // Di, 06. Okt 64
-    NF_DATE_SYS_NNDMMMMYYYY,        6 /*DFF_DDMMMY*/,   // Di, 06. Oktober 64
-    NF_DATE_SYS_NNNNDMMMMYYYY,      7 /*DFF_DDDMMMYY*/, // Dienstag, 06. Oktober 1964
-    NF_DATE_SYS_NNNNDMMMMYYYY,      7 /*DFF_DDDMMMY*/,  // Dienstag, 06. Oktober 64
-    NF_DATE_SYS_MMYY,               2 /*DFF_MY*/,       // 10.64
-    NF_DATE_DIN_MMDD,               DFF_MD,         // 10-06
-    NF_DATE_DIN_YYMMDD,             DFF_YMD,        // 64-10-06
-    NF_DATE_DIN_YYYYMMDD,           DFF_YYMD,       // 1964-10-06
-
-    NF_NUMERIC_START,               0               // Tabellenende
+    { NF_DATE_SYSTEM_SHORT,         DFF_SSYS },             // Kurzes Systemdatum
+    { NF_DATE_SYSTEM_LONG,          DFF_LSYS },             // Langes Systemdatum
+    { NF_DATE_SYS_DDMMYY,           DFF_DMY },              // 06.10.64
+    { NF_DATE_SYS_DDMMYYYY,         DFF_DMYY },             // 06.10.1964
+    { NF_DATE_SYS_DMMMYY,           DFF_DMMY },             // 06. Okt 64
+    { NF_DATE_SYS_DMMMYYYY,         4 /*DFF_DMMYY*/ },      // 06. Okt 1964
+    { NF_DATE_DIN_DMMMMYYYY,        5 /*DFF_DMMMYY*/ },     // 06. Oktober 1964
+    { NF_DATE_DIN_DMMMMYYYY,        5 /*DFF_DMMMY*/ },      // 06. Oktober 64
+    { NF_DATE_SYS_NNDMMMMYYYY,      6 /*DFF_DDMMMYY*/ },    // Di, 06. Oktober 1964
+    { NF_DATE_SYS_NNDMMMYY,         6 /*DFF_DDMMY*/ },      // Di, 06. Okt 64
+    { NF_DATE_SYS_NNDMMMMYYYY,      6 /*DFF_DDMMMY*/ },     // Di, 06. Oktober 64
+    { NF_DATE_SYS_NNNNDMMMMYYYY,    7 /*DFF_DDDMMMYY*/ },   // Dienstag, 06. Oktober 1964
+    { NF_DATE_SYS_NNNNDMMMMYYYY,    7 /*DFF_DDDMMMY*/ },    // Dienstag, 06. Oktober 64
+    { NF_DATE_SYS_MMYY,             2 /*DFF_MY*/ },         // 10.64
+    { NF_DATE_DIN_MMDD,             DFF_MD },               // 10-06
+    { NF_DATE_DIN_YYMMDD,           DFF_YMD },              // 64-10-06
+    { NF_DATE_DIN_YYYYMMDD,         DFF_YYMD },             // 1964-10-06
+    { NF_NUMERIC_START,             0 }                     // Tabellenende
 };
 
 static OldFormats aOldTimeFmt[] =
 {
     // Zeitfelder:
-    NF_TIME_HHMMSS,                 TF_SYSTEM,      // Systemzeit
-    NF_TIME_HHMM,                   TF_SSMM_24,     // 23:25
-    NF_TIME_HHMMAMPM,               TF_SSMM_12,     // 11:25 PM
-
-    NF_NUMERIC_START,               0               // Tabellenende
+    { NF_TIME_HHMMSS,      TF_SYSTEM },    // Systemzeit
+    { NF_TIME_HHMM,        TF_SSMM_24 },   // 23:25
+    { NF_TIME_HHMMAMPM,    TF_SSMM_12 },   // 11:25 PM
+    { NF_NUMERIC_START,    0 }             // Tabellenende
 };
 
 static OldFormats aOldGetSetExpFmt40[] =
 {
-    NF_TEXT,                        VVF_CMD,        // Kommando anzeigen
-    NF_TEXT,                        VVF_INVISIBLE,  // unsichtbar
-    NF_PERCENT_INT,                 VVF_XXP,        // 1234%
-    NF_PERCENT_DEC2,                VVF_XX_XXP,     // 1.234,56%
-    NF_TEXT,                        VVF_CLEAR,      // ???
-
-    NF_NUMBER_SYSTEM,               VVF_SYS,        // Zahlenformat aus der
-                                                    // Systemeinstellung
-    NF_NUMBER_INT,                  VVF_X,          // 1234
-    NF_NUMBER_DEC2,                 VVF_X_X,        // 1234,5
-    NF_NUMBER_DEC2,                 VVF_X_XX,       // 1245,56
-    NF_NUMBER_1000DEC2,             VVF_XX_XX,      // 1.234,56
-    NF_NUMBER_1000DEC2,             VVF_XX_X,       // 1.234,5
-    NF_NUMBER_1000DEC2,             VVF_XX_XXX,     // 1.234,567
-    NF_CURRENCY_1000DEC2,           VVF_SYS_CUR,    // W„hrungsformat aus der
-                                                    // Systemeinstellung
-                                                    // (1.234,00 DM)
-    NF_CURRENCY_1000INT,            VVF_X_CUR,      // 1234 DM
-    NF_CURRENCY_1000DEC2,           VVF_XX_XX_CUR,  // 1234,56 DM 1234,00 DM
-    NF_CURRENCY_1000DEC2_DASHED,    VVF_XX_X0_CUR,  // 1234,56 DM 1234,-- DM
-    NF_CURRENCY_1000INT,            VVF_CUR_X,      // DM 1234
-    NF_CURRENCY_1000DEC2,           VVF_CUR_XX_XX,  // DM 1234,56 DM 1234,00
-    NF_CURRENCY_1000DEC2_DASHED,    VVF_CUR_XX_X0,  // DM 1234,56 DM 1234,--
-
-    NF_NUMERIC_START,               0               // Tabellenende
+    {NF_TEXT,                        VVF_CMD },          // Kommando anzeigen
+    {NF_TEXT,                        VVF_INVISIBLE },    // unsichtbar
+    {NF_PERCENT_INT,                 VVF_XXP },          // 1234%
+    {NF_PERCENT_DEC2,                VVF_XX_XXP },       // 1.234,56%
+    {NF_TEXT,                        VVF_CLEAR },        // ???
+    {NF_NUMBER_SYSTEM,               VVF_SYS },          // Zahlenformat aus der
+                                                         // Systemeinstellung
+    {NF_NUMBER_INT,                  VVF_X },            // 1234
+    {NF_NUMBER_DEC2,                 VVF_X_X },          // 1234,5
+    {NF_NUMBER_DEC2,                 VVF_X_XX },         // 1245,56
+    {NF_NUMBER_1000DEC2,             VVF_XX_XX },        // 1.234,56
+    {NF_NUMBER_1000DEC2,             VVF_XX_X },         // 1.234,5
+    {NF_NUMBER_1000DEC2,             VVF_XX_XXX },       // 1.234,567
+    {NF_CURRENCY_1000DEC2,           VVF_SYS_CUR },      // currency format from the
+                                                         // system setup
+                                                         // (1.234,00 DM)
+    {NF_CURRENCY_1000INT,            VVF_X_CUR },        // 1234 DM
+    {NF_CURRENCY_1000DEC2,           VVF_XX_XX_CUR },    // 1234,56 DM 1234,00 DM
+    {NF_CURRENCY_1000DEC2_DASHED,    VVF_XX_X0_CUR },    // 1234,56 DM 1234,-- DM
+    {NF_CURRENCY_1000INT,            VVF_CUR_X },        // DM 1234
+    {NF_CURRENCY_1000DEC2,           VVF_CUR_XX_XX },    // DM 1234,56 DM 1234,00
+    {NF_CURRENCY_1000DEC2_DASHED,    VVF_CUR_XX_X0 },    // DM 1234,56 DM 1234,--
+    {NF_NUMERIC_START,               0 }                 // Tabellenende
 };
 
 static OldFormats aOldGetSetExpFmt30[] =
 {
-    NF_TEXT,                        VVF_CMD,        // Kommando anzeigen
-    NF_TEXT,                        VVF_INVISIBLE,  // unsichtbar
-    NF_PERCENT_INT,                 VVF_XXP,        // 1234%
-    NF_PERCENT_DEC2,                VVF_XX_XXP,     // 1.234,56%
-    NF_TEXT,                        VVF_CLEAR,      // ???
-
-    NF_NUMBER_SYSTEM,               0x0020,         // Zahlenformat aus der
-                                                    // Systemeinstellung
-    NF_NUMBER_INT,                  0x0080,         // 1234
-    NF_NUMBER_1000DEC2,             0x0100,         // 1.234,56
-    NF_NUMBER_DEC2,                 0x0100,         // 1234,5
-    NF_NUMBER_DEC2,                 0x0100,         // 1245,56
-    NF_NUMBER_1000DEC2,             0x0100,         // 1.234,5
-    NF_NUMBER_1000DEC2,             0x0100,         // 1.234,567
-    NF_CURRENCY_1000DEC2,           0x0200,         // W„hrungsformat aus der
-                                                    // Systemeinstellung
-                                                    // (1.234,00 DM)
-    NF_CURRENCY_1000INT,            0x1000,         // 1234 DM
-    NF_CURRENCY_1000DEC2,           0x1000,         // 1234,56 DM 1234,00 DM
-    NF_CURRENCY_1000DEC2_DASHED,    0x1000,         // 1234,56 DM 1234,-- DM
-    NF_CURRENCY_1000INT,            0x1000,         // DM 1234
-    NF_CURRENCY_1000DEC2,           0x1000,         // DM 1234,56 DM 1234,00
-    NF_CURRENCY_1000DEC2_DASHED,    0x1000,         // DM 1234,56 DM 1234,--
-
-    NF_NUMERIC_START,               0               // Tabellenende
+    {NF_TEXT,                         VVF_CMD },          // Kommando anzeigen
+    {NF_TEXT,                         VVF_INVISIBLE },    // unsichtbar
+    {NF_PERCENT_INT,                  VVF_XXP },          // 1234%
+    {NF_PERCENT_DEC2,                 VVF_XX_XXP },       // 1.234,56%
+    {NF_TEXT,                         VVF_CLEAR },        // ???
+    {NF_NUMBER_SYSTEM,                0x0020 },           // Zahlenformat aus der
+                                                          // Systemeinstellung
+    { NF_NUMBER_INT,                  0x0080 },           // 1234
+    { NF_NUMBER_1000DEC2,             0x0100 },           // 1.234,56
+    { NF_NUMBER_DEC2,                 0x0100 },           // 1234,5
+    { NF_NUMBER_DEC2,                 0x0100 },           // 1245,56
+    { NF_NUMBER_1000DEC2,             0x0100 },           // 1.234,5
+    { NF_NUMBER_1000DEC2,             0x0100 },           // 1.234,567
+    { NF_CURRENCY_1000DEC2,           0x0200 },           // currency format from
+                                                          // system setup
+                                                          // (1.234,00 DM)
+    { NF_CURRENCY_1000INT,            0x1000 },           // 1234 DM
+    { NF_CURRENCY_1000DEC2,           0x1000 },           // 1234,56 DM 1234,00 DM
+    { NF_CURRENCY_1000DEC2_DASHED,    0x1000 },           // 1234,56 DM 1234,-- DM
+    { NF_CURRENCY_1000INT,            0x1000 },           // DM 1234
+    { NF_CURRENCY_1000DEC2,           0x1000 },           // DM 1234,56 DM 1234,00
+    { NF_CURRENCY_1000DEC2_DASHED,    0x1000 },           // DM 1234,56 DM 1234,--
+    { NF_NUMERIC_START,               0 }                 // Tabellenende
 };
 
 /*N*/ void sw3io_ConvertFromOldField( SwDoc& rDoc, USHORT& rWhich,
@@ -289,7 +265,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/                   // uns voruebergehend mal im Subtyp, sofern es
 /*N*/                   // ueberhaupt als entsprechendes Format in Frage kommt.
 /*N*/                   if( RES_SETEXPFLD==rWhich &&
-/*N*/                       rFmt >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
 /*N*/                       rFmt <= (USHORT)SVX_NUM_BITMAP )
 /*N*/                   {
 /*N*/                       rSubType = (USHORT)rFmt;
@@ -534,8 +509,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   }
 /*N*/ }
 
-/*  */
-
 /*N*/ SwUserFieldType* lcl_sw3io_InUserFieldType40( Sw3IoImp& rIo )
 /*N*/ {
 /*N*/   String aName, aContent, aValue;
@@ -683,8 +656,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   rIo.pStrm->WriteByteString( s8 );
 /*N*/ }
 
-/*  */
-
 /*N*/ SwSetExpFieldType* lcl_sw3io_InSetExpFieldType( Sw3IoImp& rIo )
 /*N*/ {
 /*N*/   UINT16 nType;
@@ -745,8 +716,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   }
 /*N*/ }
 
-/*  */
-
 SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 {
     SwAuthorityFieldType* pFldType = (SwAuthorityFieldType*) rIo.pDoc->
@@ -770,7 +739,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         pFldType->SetSortByDocument( (cFlags & 0x20) != 0);
     }
 
-    ASSERT( !rIo.pAuthorityMap, "authority map is already existing" );
+    OSL_ENSURE( !rIo.pAuthorityMap, "authority map is already existing" );
     if( nCount > 0 )
         rIo.pAuthorityMap = new SvUShorts;
 
@@ -792,7 +761,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         }
 
         USHORT nNewPos = pFldType->AppendField( aEntry );
-        ASSERT( !rIo.bNormal || rIo.bInsert || nNewPos == i,
+        OSL_ENSURE( !rIo.bNormal || rIo.bInsert || nNewPos == i,
                 "unexpected authority entry position" );
         rIo.pAuthorityMap->Insert( nNewPos, rIo.pAuthorityMap->Count() );
 
@@ -857,8 +826,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*?*/                   << (UINT16)pKey->eField;
 /*?*/   }
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InDBField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                               USHORT nSubType, UINT32& rFmt )
@@ -955,9 +922,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       String aExpand;
-/*N*/       rIo.InString( *rIo.pStrm, aExpand );
-/*N*/       pFld->InitContent( aExpand );
+/*N*/       String aExpand2;
+/*N*/       rIo.InString( *rIo.pStrm, aExpand2 );
+/*N*/       pFld->InitContent( aExpand2 );
 /*N*/   }
 /*N*/
 /*N*/   return pFld;
@@ -1021,8 +988,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   }
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InFileNameField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& rFmt )
 /*N*/ {
@@ -1070,8 +1035,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return new SwDBNameField( (SwDBNameFieldType *)pType, aData );
 /*N*/ }
 
-
-
 /*N*/ void lcl_sw3io_OutDBNameField( Sw3IoImp& rIo, SwField* pFld )
 /*N*/ {
 /*N*/   if( !rIo.IsSw31Export() )
@@ -1084,9 +1047,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   }
 /*N*/ }
 
-/*  */
-
-/*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, UINT32& )
 /*N*/ { //SW40.SDW
 /*N*/   SwDateTimeField* pFld =
@@ -1096,9 +1057,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*  */
-
-/*N*/ SwField* lcl_sw3io_InTimeField40( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InTimeField40( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                 USHORT nSubType, UINT32& )
 /*N*/ {
             SwDateTimeField* pFld =
@@ -1107,8 +1066,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
             return pFld;
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InPageNumberField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                       USHORT, UINT32& rFmt )
@@ -1174,9 +1131,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, ((SwPageNumberField*)pFld)->GetUserString() );
 /*N*/ }
 
-
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InUserField40( Sw3IoImp& rIo, SwFieldType *pType,
 /*N*/                                 USHORT nSubType, UINT32& rFmt )
 /*N*/ {
@@ -1234,8 +1188,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/                   ((SwUserField*)pFld)->GetTyp()->GetName(), USHRT_MAX );
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InGetRefField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& rFmt )
 /*N*/ {
@@ -1246,18 +1198,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.InString( *rIo.pStrm, aExpand );
 /*N*/   if( rIo.IsVersion( SWG_FMTGETREFFLD, SWG_EXPORT31 ) )
 /*N*/   {
-/*N*/ #if 0
-/*N*/ // JP 05.11.96: es gab mal ein Zwischenversion der Felder, wo Seqence-Refs
-/*N*/ //                ueber eine 255 unterschieden wurden
-/*N*/       xub_StrLen nPos = aName.Search( (sal_Unicode)0xff );
-/*N*/       if( nPos != STRING_NOTFOUND )
-/*N*/       {
-/*N*/           nSeqNo = (aName.Cut( nPos )).Copy( 1 );
-/*N*/           *rIo.pStrm >> nFmt;
-/*N*/           nSubType = REF_SEQUENCEFLD;
-/*N*/       }
-/*N*/       else
-/*N*/ #endif
 /*N*/       *rIo.pStrm >> nFmt16 >> nSubType >> nSeqNo;
 /*N*/       rFmt = nFmt16;
 /*N*/   }
@@ -1310,8 +1250,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->Expand() );
 /*N*/   *rIo.pStrm << (UINT16)((SwGetRefField*)pFld)->GetSeqNo();
 /*N*/ }
-
-/*  */
 
 /*N*/ void lcl_sw3io_ChkHiddenExp( String& rCond ) //SW40.SDW
 /*N*/ {
@@ -1457,8 +1395,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );   // condition
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InPostItField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT, UINT32& )
 /*N*/ {
@@ -1477,8 +1413,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         rIo.OutString( *rIo.pStrm, pFld->GetPar1() );    // Author
         rIo.OutString( *rIo.pStrm, pFld->GetPar2() );     // Text
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InDateTimeField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT nSubType, UINT32& )
@@ -1507,8 +1441,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/               << (INT32)((SwDateTimeField*)pFld)->GetOffset();
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InFixDateField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& )
 /*N*/ {
@@ -1527,8 +1459,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/     *rIo.pStrm << (INT32) ((SwDateTimeField*)pFld)->GetDate(TRUE).GetDate();
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InFixTimeField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& )
 /*N*/ {
@@ -1545,8 +1475,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ {
             *rIo.pStrm << (INT32)((SwDateTimeField*)pFld)->GetTime(TRUE).GetTime();
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InAuthorField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT, UINT32& )
@@ -1569,8 +1497,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ {
 /*N*/   rIo.OutString( *rIo.pStrm, ((SwAuthorField *)pFld)->GetContent() );
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InChapterField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                  USHORT, UINT32& )
@@ -1596,8 +1522,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   *rIo.pStrm << cLvl;
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InDocStatField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& rFmt )
 /*N*/ {
@@ -1606,7 +1530,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return new SwDocStatField( (SwDocStatFieldType*)pType, nSubType, rFmt );
 /*N*/ }
 /*N*/
-/*N*/ SwField* lcl_sw3io_InDocStatField( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InDocStatField( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                  USHORT nSubType, UINT32& rFmt )
 /*N*/ {
 /*N*/   return new SwDocStatField( (SwDocStatFieldType*)pType, nSubType, rFmt );
@@ -1618,8 +1542,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/ }
 
 // Im 5.0-Format bleibt nix, was geschrieben werden muesste.
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InDDEField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                              USHORT, UINT32& )
@@ -1683,8 +1605,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );// PromptText
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InMacroField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                USHORT, UINT32& )
 /*N*/ {
@@ -1700,8 +1620,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InTblField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                              USHORT nSubType, UINT32& )
@@ -1736,8 +1654,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   if( rIo.IsSw31Or40Export() )
 /*N*/       *rIo.pStrm << (UINT16) ((SwTblField*)pFld)->GetSubType();
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField *lcl_sw3io_InGetExpField40( Sw3IoImp& rIo, SwFieldType *pType,
 /*N*/                                   USHORT nSubType, UINT32& rFmt )
@@ -1837,8 +1753,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   // Hack: fuer Seq-Felder wurde das Original-Format im Subtyp uebergeben,
 /*N*/   // aber nur, wenn es auch als entsprechendes Format in Frage kommt.
 /*N*/   // (SUB_VISIBLE und SUB_CMD sind disjunkt).
-/*N*/   if( nSubType >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
-/*N*/       nSubType <= (USHORT)SVX_NUM_BITMAP )
+/*N*/   if( nSubType <= (USHORT)SVX_NUM_BITMAP )
 /*N*/   {
 /*N*/       if( GSE_SEQ & nType )
 /*N*/           rFmt = nSubType;
@@ -1914,7 +1829,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/
 /*N*/   if( cFlags & 0x20 )
 /*N*/   {
-/*N*/       ASSERT( GSE_SEQ & ((SwSetExpFieldType *)pType)->GetType(),
+/*N*/       OSL_ENSURE( GSE_SEQ & ((SwSetExpFieldType *)pType)->GetType(),
 /*N*/               "Kein Sequence-Number-Feld" );
 /*N*/
 /*N*/       pFld->SetValue( nSeqVal );
@@ -1988,8 +1903,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       rIo.OutString( *rIo.pStrm, ((SwSetExpField *)pFld)->GetExpStr() );
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InHiddenParaField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
 /*N*/ {
@@ -2007,8 +1920,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   *rIo.pStrm << (BYTE)((SwHiddenParaField*)pFld)->IsHidden();
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InDocInfoField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT nSubType, UINT32& rFmt )
@@ -2081,15 +1992,11 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       *rIo.pStrm << ((SwDocInfoField*)pFld)->GetValue();
 /*N*/ }
 
-/*  */
-
-/*N*/ SwField* lcl_sw3io_InTemplNameField( Sw3IoImp& rIo, SwFieldType* pType,
+/*N*/ SwField* lcl_sw3io_InTemplNameField( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& rFmt )
 /*N*/ {
 /*N*/   return new SwTemplNameField( (SwTemplNameFieldType*)pType, rFmt );
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InDBNextSetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& )
@@ -2123,8 +2030,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       *rIo.pStrm << (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
 /*N*/   }
 /*N*/ }
-
-/*  */
 
 // der 3.1-Writer hat beim Einlesen Condition und Number vertauscht.
 // Deshalb exportieren wir diese beiden Werte vertauscht und lesen sie
@@ -2181,8 +2086,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   }
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InDBSetNumberField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                      USHORT, UINT32& )
 /*N*/ {
@@ -2216,8 +2119,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/       *rIo.pStrm<< (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
 /*N*/   }
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InExtUserField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& )
@@ -2264,8 +2165,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, ((SwExtUserField *)pFld)->GetContent() );
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InRefPageSetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
 /*N*/ {
@@ -2280,8 +2179,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         *rIo.pStrm << (INT16)((SwRefPageSetField*)pFld)->GetOffset()
                    << (BYTE)((SwRefPageSetField*)pFld)->IsOn();
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InRefPageGetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
@@ -2298,11 +2195,9 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         rIo.OutString( *rIo.pStrm, ((SwRefPageGetField*)pFld)->GetText() );
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField *lcl_sw3io_InINetField31( Sw3IoImp& rIo, SwFieldType *, USHORT, UINT32& )
 /*N*/ {
-/*N*/   ASSERT( !(rIo.pFmtINetFmt || rIo.aINetFldText.Len()),
+/*N*/   OSL_ENSURE( !(rIo.pFmtINetFmt || rIo.aINetFldText.Len()),
 /*N*/           "Da sind noch Rest-Infos vom INet-Feld!" );
 /*N*/
 /*N*/   String aURL, aText;
@@ -2339,8 +2234,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return 0;
 /*N*/ }
 
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InJumpEditField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& )
 /*N*/ {
@@ -2356,8 +2249,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
 /*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
 /*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InScriptField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& )
@@ -2407,10 +2298,8 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
 /*N*/ void lcl_sw3io_OutScriptField40( Sw3IoImp& rIo, SwField* pFld )
 /*N*/ {
-        ASSERT( !rIo.IsSw31Export(),
+        OSL_ENSURE( !rIo.IsSw31Export(),
                 "Wer will denn da ein Script-Feld exportieren" );
-
-        BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
 
         String aCode;
         if( ((SwScriptField*)pFld)->IsCodeURL() )
@@ -2427,7 +2316,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
 /*N*/ void lcl_sw3io_OutScriptField( Sw3IoImp& rIo, SwField* pFld )
 /*N*/ {
-        ASSERT( !rIo.IsSw31Export(),
+        OSL_ENSURE( !rIo.IsSw31Export(),
                 "Wer will denn da ein Script-Feld exportieren" );
 
         BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
@@ -2460,7 +2349,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 
         SwField *pFld = 0;
         SwFieldType* pType = rIo.pDoc->GetFldType( RES_AUTHORITY, aEmptyStr );
-        ASSERT( pType, "missing authority field type" );
+        OSL_ENSURE( pType, "missing authority field type" );
         if( pType )
         {
             long nHandle = ((SwAuthorityFieldType *)pType)->GetHandle( nPos );
@@ -2477,10 +2366,7 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
                         << (UINT16)((SwAuthorityField *)pFld)->GetHandlePosition();
 /*N*/ }
 
-/*  */
-
 //////////////////////////////////////////////////////////////////////////////
-
 // Die Beta-1-Version hatte noch eine eigene Kapselung fuer das Feld.
 // Da dieser Inhalt als Teil eines SWG_ATTRIBUTE-Records vorkommt,ist
 // dies reine Platzverschwendung und wurde geknickt.
@@ -2579,10 +2465,10 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 
 /*N*/ SwField* Sw3IoImp::InField()
 /*N*/ {
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aInFieldFnTbl) / sizeof(Sw3InFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aInFieldFnTbl40) / sizeof(Sw3InFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
 /*N*/
@@ -2631,7 +2517,7 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*N*/   Sw3InFieldFn pFn =
 /*N*/       (nWhich < RES_FIELDS_END) ? pFnTbl[nWhich-RES_FIELDS_BEGIN] : 0;
 /*N*/
-/*N*/   ASSERT( pFn, "unbekannte Feld-Which-Id" );
+/*N*/   OSL_ENSURE( pFn, "unbekannte Feld-Which-Id" );
 /*N*/   if( pFn )
 /*N*/       pFld = (*pFn)( *this, pType, nSubType, nFldFmt );
 /*N*/   else
@@ -2809,15 +2695,15 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 
 /*N*/ void Sw3IoImp::OutField( const SwFmtFld& rAttr )
 /*N*/ {
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aOutFieldFnTbl) / sizeof(Sw3OutFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
-/*N*/   ASSERT( RES_FIELDS_END-RES_FIELDS_BEGIN ==
+/*N*/   OSL_ENSURE( RES_FIELDS_END-RES_FIELDS_BEGIN ==
 /*N*/                       sizeof(aOutFieldFnTbl40) / sizeof(Sw3OutFieldFn),
 /*N*/           "Neues Feld? Und tschuess..." );
 /*N*/
 /*N*/   const SwField* pFld = rAttr.GetFld();
-/*N*/   ASSERT( pFld, "SWG-Writer: SwAttrFld-Hint ohne Inhalt!" );
+/*N*/   OSL_ENSURE( pFld, "SWG-Writer: SwAttrFld-Hint ohne Inhalt!" );
 /*N*/   if( !pFld )
 /*N*/       return;
 /*N*/
@@ -3053,7 +2939,7 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 /*N*/                                           (SwAuthorityFieldType *)&rType );
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT( !this, "Unbekannter Feldtyp" );
+/*N*/           OSL_ENSURE( !this, "Unbekannter Feldtyp" );
 /*N*/           CloseRec( SWG_FIELDTYPE );
 /*N*/           Error();
 /*N*/           return FALSE;
@@ -3063,3 +2949,5 @@ static Sw3OutFieldFn aOutFieldFnTbl[] =
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

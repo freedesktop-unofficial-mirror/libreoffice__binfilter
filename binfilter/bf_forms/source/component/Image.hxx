@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,36 +29,18 @@
 #ifndef _FRM_IMAGE_HXX_
 #define _FRM_IMAGE_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 
-#ifndef _FRM_EVENT_THREAD_HXX_
 #include "EventThread.hxx"
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
-#endif
-#ifndef _PRODUCE_HXX
 #include "imgprod.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
 #include <com/sun/star/form/XImageProducerSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
 #include <com/sun/star/form/FormButtonType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XAPPROVEACTIONBROADCASTER_HPP_
 #include <com/sun/star/form/XApproveActionBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 namespace binfilter {
 
 
@@ -145,6 +128,9 @@ public:
     virtual void SAL_CALL removeConsumer( const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageConsumer >& xConsumer ) throw (::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL startProduction(  ) throw (::com::sun::star::uno::RuntimeException);
 
+    using OControlModel::disposing;
+    using OPropertySetHelper::getFastPropertyValue;
+
 protected:
     void implConstruct();
 
@@ -198,6 +184,8 @@ public:
 // ::com::sun::star::beans::XPropertyChangeListener
     virtual void SAL_CALL propertyChange( const ::com::sun::star::beans::PropertyChangeEvent& ) throw(::com::sun::star::uno::RuntimeException);
 
+    using OControl::disposing;
+
 protected:
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel >  getXModel(const InterfaceRef& xIface) const;
 
@@ -239,3 +227,4 @@ public:
 }//end of namespace binfilter
 #endif // _FRM_IMAGE_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,11 @@
 #ifndef _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
 #define _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XEXTENDEDDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XExtendedDocumentHandler.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
 namespace binfilter {
 
 class XMLEmbeddedObjectExportFilter : public ::cppu::WeakImplHelper3<
@@ -100,3 +93,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

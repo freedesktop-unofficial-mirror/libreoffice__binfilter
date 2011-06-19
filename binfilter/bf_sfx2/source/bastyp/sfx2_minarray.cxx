@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -150,8 +151,8 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ BOOL SfxPtrArr::Replace( void* aOldElem, void* aNewElem )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ BOOL SfxPtrArr::Replace( void* /*aOldElem*/, void* /*aNewElem*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -187,3 +188,5 @@ namespace binfilter {
 /*N*/   nUnused -= 1;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

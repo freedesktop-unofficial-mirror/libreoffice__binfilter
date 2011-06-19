@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 class SvStream;
 
@@ -72,7 +67,7 @@ public:
 
     virtual SfxPoolItem*     Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*     Create(SvStream &, USHORT nItemVersion) const;
-    virtual SvStream&        Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     const Point&             GetValue() const { return aVal; }
             void             SetValue( const Point& rNewVal ) {
@@ -80,12 +75,14 @@ public:
                                  aVal = rNewVal;
                              }
 
-    virtual BOOL             QueryValue( com::sun::star::uno::Any& rVal,
+    virtual bool             QueryValue( com::sun::star::uno::Any& rVal,
                                           BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const com::sun::star::uno::Any& rVal,
+    virtual bool             PutValue( const com::sun::star::uno::Any& rVal,
                                           BYTE nMemberId = 0 );
 };
 
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

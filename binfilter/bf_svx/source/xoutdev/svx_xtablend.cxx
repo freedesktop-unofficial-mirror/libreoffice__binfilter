@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,37 +29,19 @@
 // include ---------------------------------------------------------------
 
 #ifndef SVX_LIGHT
-
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
-
 #endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
-
-#ifndef _SV_APP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
-
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 #include "dialogs.hrc"
 #include "dialmgr.hxx"
@@ -68,43 +51,22 @@
 #include "xpool.hxx"
 #include "xoutx.hxx"
 
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <xfillit0.hxx>
-#endif
-
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
-#endif
-
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include <xlnstwit.hxx>
-#endif
-
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include <xlnedwit.hxx>
-#endif
-
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <xlnclit.hxx>
-#endif
-
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <xlineit0.hxx>
-#endif
-
-#ifndef _SVX_XLNSTIT_HXX //autogen
 #include <xlnstit.hxx>
-#endif
-
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include <xlnedit.hxx>
-#endif
+
 namespace binfilter {
 
 #define GLOBALOVERFLOW
 
 using namespace ::com::sun::star;
-using namespace rtl;
+
+using ::rtl::OUString;
 
 sal_Unicode const pszExtLineEnd[]   = {'s','o','e'};
 
@@ -148,13 +110,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XLineEndTable::Save()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XLineEndTable::Create()
 /*N*/ {
 /*N*/   return( FALSE );
@@ -162,7 +117,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XLineEndTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XLineEndTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -294,30 +249,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XLineEndList::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckLineEnd0, 4 );
-    pStream->WriteByteString(String( pszChckLineEnd0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XLineEndList::Create()
 /*N*/ {
 /*N*/   XPolygon aTriangle(3);
@@ -399,10 +330,8 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       aVDSize = pVD->GetOutputSize();
 /*N*/
 /*N*/   pXLSet->GetItemSet().Put( XLineStyleItem( XLINE_NONE ) );
-/*N*/ //-/  pXOut->SetLineAttr( *pXLSet );
 /*N*/
 /*N*/   pXOut->SetLineAttr( pXLSet->GetItemSet() );
-/*N*/ //-/  pXOut->SetFillAttr( *pXFSet );
 /*N*/
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/   pXOut->DrawRect( Rectangle( aZero, aVDSize ) );
@@ -411,7 +340,6 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/   pXLSet->GetItemSet().Put( XLineStartItem( String(), Get( nIndex )->GetLineEnd() ) );
 /*N*/   pXLSet->GetItemSet().Put( XLineEndItem( String(), Get( nIndex )->GetLineEnd() ) );
 /*N*/
-/*N*/ //-/  pXOut->SetLineAttr( *pXLSet );
 /*N*/   pXOut->SetLineAttr( pXLSet->GetItemSet() );
 /*N*/
 /*N*/   pXOut->DrawLine( Point( 0, aVDSize.Height() / 2 ),
@@ -463,7 +391,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/   XLineEndEntry* pEntry = NULL;
 /*N*/   long    nVersion;
 /*N*/   long    nCount;
-/*N*/   XubString   aName;
+/*N*/   XubString   aLclName;
 /*N*/   long    nFlags;
 /*N*/
 /*N*/   rIn >> nVersion;
@@ -473,10 +401,10 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       nCount = nVersion;
 /*N*/       for( long nI = 0; nI < nCount; nI++ )
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           USHORT nPoints;
 /*N*/           sal_uInt32 nTemp;
 /*N*/           Point  aPoint;
@@ -490,7 +418,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/               pXPoly->Insert(nPoint, aPoint, (XPolyFlags)nFlags);
 /*N*/           }
 /*N*/
-/*N*/           pEntry = new XLineEndEntry( *pXPoly, aName );
+/*N*/           pEntry = new XLineEndEntry( *pXPoly, aLclName );
 /*N*/           Insert( pEntry, nI );
 /*N*/       }
 /*N*/   }
@@ -499,14 +427,14 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/       rIn >> nCount;
 /*N*/       for( long nI = 0; nI < nCount; nI++ )
 /*N*/       {
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XPolygon* pXPoly = new XPolygon;
 /*N*/           rIn >> *pXPoly;
 /*N*/
-/*N*/           pEntry = new XLineEndEntry( *pXPoly, aName );
+/*N*/           pEntry = new XLineEndEntry( *pXPoly, aLclName );
 /*N*/           Insert( pEntry, nI );
 /*N*/       }
 /*N*/   }
@@ -518,9 +446,9 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
-/*N*/           aName = ConvertName( aName );
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/
 /*N*/           XPolygon aXPoly;
 /*N*/           rIn >> aXPoly;
@@ -530,7 +458,7 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 /*N*/               // lesen neuer Daten ...
 /*N*/           }
 /*N*/
-/*N*/           pEntry = new XLineEndEntry( aXPoly, aName );
+/*N*/           pEntry = new XLineEndEntry( aXPoly, aLclName );
 /*N*/           Insert( pEntry, nI );
 /*N*/       }
 /*N*/   }
@@ -540,3 +468,5 @@ static char const aChckXML[]   = { '<', '?', 'x', 'm', 'l' };       // = 6.0
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

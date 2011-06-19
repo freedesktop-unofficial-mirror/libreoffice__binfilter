@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef SC_INPUTHDL_HXX
 #define SC_INPUTHDL_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 class Timer;
 class KeyEvent;
 namespace binfilter {
@@ -150,7 +145,7 @@ public:
 
 
 
-    void            ViewShellGone(ScTabViewShell* pViewSh){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void         ViewShellGone(ScTabViewShell* pViewSh);
+    void            ViewShellGone(ScTabViewShell* pViewSh){DBG_BF_ASSERT(0, "STRIP");};
     void            SetRefViewShell(ScTabViewShell* pRefVsh) {pRefViewSh=pRefVsh;}
 
 
@@ -237,3 +232,4 @@ private:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 class SwNodeIndex;
@@ -80,10 +79,11 @@ public:
 
 inline const SwTxtNode& SwTxtFtn::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtFtn:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtFtn:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

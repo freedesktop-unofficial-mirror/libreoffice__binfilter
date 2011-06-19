@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_LIGHT3D_HXX
 #include "light3d.hxx"
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -59,8 +58,10 @@ class E3dPointLight : public E3dLight
 
     virtual ~E3dPointLight();
 
+    using SdrAttrObj::operator=;
 
-    virtual FASTBOOL CalcLighting(Color& rNewColor,
+
+    virtual bool CalcLighting(Color& rNewColor,
                                   const Vector3D& rPnt,
                                   const Vector3D& rPntNormal,
                                   const Color& rPntColor);
@@ -70,3 +71,5 @@ class E3dPointLight : public E3dLight
 
 }//end of namespace binfilter
 #endif          // _E3D_PLIGHT3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,70 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_CONNECTORTYPE_HPP_
 #include <com/sun/star/drawing/ConnectorType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_XCONTROLSHAPE_HPP_
 #include <com/sun/star/drawing/XControlShape.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX3_HPP_
 #include <com/sun/star/drawing/HomogenMatrix3.hpp>
-#endif
 
-#ifndef _XMLOFF_ANIM_HXX
 #include "anim.hxx"
-#endif
-
-
-#ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
-#endif
-
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLIMAGEMAPEXPORT_HXX_
 #include "XMLImageMapExport.hxx"
-#endif
-
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
-#endif
-
-
 
 #include "xmlnmspe.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -217,7 +173,7 @@ sal_Bool XMLShapeExport::ImpExportPresentationAttributes( const uno::Reference< 
     {
         uno::Reference< beans::XPropertySetInfo > xPropSetInfo( xPropSet->getPropertySetInfo() );
 
-        sal_Bool bTemp;
+        sal_Bool bTemp(sal_False);
 
         // is empty pes shape?
         if( xPropSetInfo.is() && xPropSetInfo->hasPropertyByName(OUString(RTL_CONSTASCII_USTRINGPARAM("IsEmptyPresentationObject"))))
@@ -250,13 +206,9 @@ void XMLShapeExport::ImpExportText( const uno::Reference< drawing::XShape >& xSh
 }//end of namespace binfilter
 //////////////////////////////////////////////////////////////////////////////
 
-#ifndef _COM_SUN_STAR_PRESENTATION_CLICKACTION_HPP_
 #include <com/sun/star/presentation/ClickAction.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 #define FOUND_CLICKACTION   0x0001
 #define FOUND_BOOKMARK      0x0002
 #define FOUND_EFFECT        0x0004
@@ -296,8 +248,8 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
         presentation::AnimationEffect eEffect;
         presentation::AnimationSpeed eSpeed;
         OUString aStrSoundURL;
-        sal_Bool bPlayFull;
-        sal_Int32 nVerb;
+        sal_Bool bPlayFull(sal_False);
+        sal_Int32 nVerb(0);
         OUString aStrMacro;
         OUString aStrLibrary;
         OUString aStrBookmark;
@@ -389,7 +341,7 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
             case presentation::ClickAction_VANISH:          eStrAction = XML_FADE_OUT; break;
             case presentation::ClickAction_SOUND:           eStrAction = XML_SOUND; break;
             default:
-                DBG_ERROR( "unknown presentation::ClickAction found!" );
+                OSL_FAIL( "unknown presentation::ClickAction found!" );
                 eStrAction = XML_UNKNOWN;
             }
 
@@ -407,7 +359,7 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
 
                     SdXMLImplSetEffect( eEffect, eKind, eDirection, nStartScale, bIn );
 
-                    if( eEffect != EK_none )
+                    if( eKind != EK_none )
                     {
                         SvXMLUnitConverter::convertEnum( msBuffer, eKind, aXML_AnimationEffect_EnumMap );
                         rExport.AddAttribute( XML_NAMESPACE_PRESENTATION, XML_EFFECT, msBuffer.makeStringAndClear() );
@@ -496,7 +448,7 @@ void XMLShapeExport::ImpExportEvents( const uno::Reference< drawing::XShape >& x
 
 //////////////////////////////////////////////////////////////////////////////
 
-void XMLShapeExport::ImpExportGroupShape( const uno::Reference< drawing::XShape >& xShape, XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+void XMLShapeExport::ImpExportGroupShape( const uno::Reference< drawing::XShape >& xShape, XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     uno::Reference< drawing::XShapes > xShapes(xShape, uno::UNO_QUERY);
     if(xShapes.is() && xShapes->getCount())
@@ -567,6 +519,7 @@ void XMLShapeExport::ImpExportTextBoxShape(
                 bIsPresShape = TRUE;
                 break;
             }
+            default: break;
         }
 
         // Transformation
@@ -600,7 +553,7 @@ void XMLShapeExport::ImpExportTextBoxShape(
 
 void XMLShapeExport::ImpExportRectangleShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -632,7 +585,7 @@ void XMLShapeExport::ImpExportRectangleShape(
 
 void XMLShapeExport::ImpExportLineShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -741,7 +694,7 @@ void XMLShapeExport::ImpExportLineShape(
 
 void XMLShapeExport::ImpExportEllipseShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -760,8 +713,8 @@ void XMLShapeExport::ImpExportEllipseShape(
         if( eKind != drawing::CircleKind_FULL )
         {
             OUStringBuffer sStringBuffer;
-            sal_Int32 nStartAngle;
-            sal_Int32 nEndAngle;
+            sal_Int32 nStartAngle(0);
+            sal_Int32 nEndAngle(0);
             xPropSet->getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM("CircleStartAngle")) ) >>= nStartAngle;
             xPropSet->getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM("CircleEndAngle")) ) >>= nEndAngle;
 
@@ -982,7 +935,7 @@ void XMLShapeExport::ImpExportGraphicObjectShape(
             {
                 if( aStr[ 0 ] == '#' )
                 {
-                    aStreamURL = OUString::createFromAscii( "vnd.sun.star.Package:" );
+                    aStreamURL = OUString( RTL_CONSTASCII_USTRINGPARAM( "vnd.sun.star.Package:" ));
                     aStreamURL = aStreamURL.concat( aStr.copy( 1, aStr.getLength() - 1 ) );
                 }
 
@@ -1061,7 +1014,7 @@ void XMLShapeExport::ImpExportSpreadsheetShape(
 
 void XMLShapeExport::ImpExportControlShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1090,7 +1043,7 @@ void XMLShapeExport::ImpExportControlShape(
 
 void XMLShapeExport::ImpExportConnectorShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
 {
     uno::Reference< beans::XPropertySet > xProps( xShape, uno::UNO_QUERY );
 
@@ -1197,7 +1150,7 @@ void XMLShapeExport::ImpExportConnectorShape(
         rExport.AddAttribute(XML_NAMESPACE_DRAW, XML_START_SHAPE, OUString::valueOf( nShapeId ));
 
         aAny = xProps->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("StartGluePointIndex")) );
-        sal_Int32 nGluePointId;
+        sal_Int32 nGluePointId = 0;
         if( aAny >>= nGluePointId )
         {
             if( nGluePointId != -1 )
@@ -1216,7 +1169,7 @@ void XMLShapeExport::ImpExportConnectorShape(
         rExport.AddAttribute(XML_NAMESPACE_DRAW, XML_END_SHAPE, OUString::valueOf( nShapeId ));
 
         aAny = xProps->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("EndGluePointIndex")) );
-        sal_Int32 nGluePointId;
+        sal_Int32 nGluePointId = 0;
         if( aAny >>= nGluePointId )
         {
             if( nGluePointId != -1 )
@@ -1239,7 +1192,7 @@ void XMLShapeExport::ImpExportConnectorShape(
 
 void XMLShapeExport::ImpExportMeasureShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
 {
     uno::Reference< beans::XPropertySet > xProps( xShape, uno::UNO_QUERY );
 
@@ -1336,7 +1289,7 @@ void XMLShapeExport::ImpExportOLE2Shape(
             bIsEmptyPresObj = ImpExportPresentationAttributes( xPropSet, GetXMLToken(XML_PRESENTATION_TABLE) );
 
         OUString sClassId;
-        sal_Bool bInternal;
+        sal_Bool bInternal(sal_False);
         xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("IsInternal"))) >>= bInternal;
 
         sal_Bool bExportEmbedded(0 != (rExport.getExportFlags() & EXPORT_EMBEDDED));
@@ -1448,7 +1401,7 @@ void XMLShapeExport::ImpExportPageShape(
 
 void XMLShapeExport::ImpExportCaptionShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1488,7 +1441,7 @@ void XMLShapeExport::ImpExportCaptionShape(
 
 void XMLShapeExport::ImpExportFrameShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1519,7 +1472,7 @@ void XMLShapeExport::ImpExportFrameShape(
 
 void XMLShapeExport::ImpExportAppletShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1545,7 +1498,7 @@ void XMLShapeExport::ImpExportAppletShape(
         rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_CODE, aStr );
 
         // export draw:may-script
-        sal_Bool bIsScript;
+        sal_Bool bIsScript(sal_False);
         xPropSet->getPropertyValue( OUString( RTL_CONSTASCII_USTRINGPARAM( "AppletIsScript" ) ) ) >>= bIsScript;
         rExport.AddAttribute( XML_NAMESPACE_DRAW, XML_MAY_SCRIPT, bIsScript ? XML_TRUE : XML_FALSE );
 
@@ -1571,7 +1524,7 @@ void XMLShapeExport::ImpExportAppletShape(
 
 void XMLShapeExport::ImpExportPluginShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
+    XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, ::com::sun::star::awt::Point* pRefPoint)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -1611,3 +1564,5 @@ void XMLShapeExport::ImpExportPluginShape(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

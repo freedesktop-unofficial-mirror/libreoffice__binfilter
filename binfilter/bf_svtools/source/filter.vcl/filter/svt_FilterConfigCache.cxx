@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -108,7 +109,7 @@ sal_Bool FilterConfigCache::FilterConfigCacheEntry::CreateFilterName( const OUSt
             if ( sFilterName.EqualsIgnoreCaseAscii( *pPtr ) )
                 bIsPixelFormat = sal_True;
         }
-        String aTemp( OUString::createFromAscii( SVLIBRARY( "?" ) ) );
+        String aTemp( OUString(RTL_CONSTASCII_USTRINGPARAM( SVLIBRARY( "?" )) ) );
         xub_StrLen nIndex = aTemp.Search( (sal_Unicode)'?' );
         aTemp.Replace( nIndex, 1, sFilterName );
         sFilterName = aTemp;
@@ -152,7 +153,7 @@ Reference< XInterface > openConfig(const char* sPackage)
     {
         // get access to config API (not to file!)
         Reference< XMultiServiceFactory > xConfigProvider( xSMGR->createInstance(
-            OUString::createFromAscii("com.sun.star.configuration.ConfigurationProvider")), UNO_QUERY);
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationProvider" ))), UNO_QUERY);
 
         if (xConfigProvider.is())
         {
@@ -160,16 +161,16 @@ Reference< XInterface > openConfig(const char* sPackage)
             PropertyValue   aParam    ;
 
             // define cfg path for open
-            aParam.Name = OUString::createFromAscii("nodepath");
+            aParam.Name = OUString( RTL_CONSTASCII_USTRINGPARAM( "nodepath" ));
             if (TYPEPKG.equalsIgnoreAsciiCaseAscii(sPackage))
-                aParam.Value <<= OUString::createFromAscii("/org.openoffice.TypeDetection.Types/Types");
+                aParam.Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "/org.openoffice.TypeDetection.Types/Types" ));
             if (FILTERPKG.equalsIgnoreAsciiCaseAscii(sPackage))
-                aParam.Value <<= OUString::createFromAscii("/org.openoffice.TypeDetection.GraphicFilter/Filters");
+                aParam.Value <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "/org.openoffice.TypeDetection.GraphicFilter/Filters" ));
             lParams[0] = makeAny(aParam);
 
             // get access to file
             xCfg = xConfigProvider->createInstanceWithArguments(
-                OUString::createFromAscii("com.sun.star.configuration.ConfigurationAccess"), lParams);
+                OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.configuration.ConfigurationAccess" )), lParams);
         }
     }
     catch(const RuntimeException&)
@@ -613,3 +614,5 @@ sal_Bool FilterConfigCache::IsExportPixelFormat( sal_uInt16 nFormat )
 
 // ------------------------------------------------------------------------
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

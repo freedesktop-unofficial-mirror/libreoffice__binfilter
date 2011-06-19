@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,84 +32,38 @@
 #endif
 
 #include <hintids.hxx>
-#ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCSTAT_HXX //autogen
 #include <docstat.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _LAYCACHE_HXX
 #include <laycache.hxx>
-#endif
-#ifndef _LAYHELP_HXX
 #include <layhelp.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _TABFRM_HXX
 #include <tabfrm.hxx>
-#endif
-#ifndef _ROWFRM_HXX
 #include <rowfrm.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX //autogen
 #include <dflyobj.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _FLYFRM_HXX //autogen
 #include <flyfrm.hxx>
-#endif
 
 #include <set>
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwPageFlyCache, SwFlyCachePtr )
 
-/*-----------------28.5.2001 10:06------------------
+/*
  *  Reading and writing of the layout cache.
  *  The layout cache is not necessary, but it improves
  *  the performance and reduces the text flow during
@@ -117,7 +72,7 @@ namespace binfilter {
  *  at the top of every page, so it's possible to create
  *  the right count of pages and to distribute the document content
  *  to this pages before the formatting starts.
- *--------------------------------------------------*/
+ */
 
 /*N*/ void SwLayoutCache::Read( SvStream &rStream )
 /*N*/ {
@@ -199,7 +154,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/         }
 /*N*/       default:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aIo.SkipRec();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           break;
 /*N*/       }
 /*N*/   }
@@ -208,7 +163,7 @@ namespace binfilter {
 /*N*/   return !aIo.HasError();
 /*N*/ }
 
-/*-----------------28.5.2001 10:19------------------
+/*
  * SwLayoutCache::Write(..)
  * writes the index (more precise: the difference between
  * the index and the first index of the document content)
@@ -218,7 +173,7 @@ namespace binfilter {
  * number is stored, too.
  * The position, size and page number of the text frames
  * are stored, too
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwLayoutCache::Write( SvStream &rStream, const SwDoc& rDoc )
 /*N*/ {
@@ -287,7 +242,7 @@ namespace binfilter {
 /*N*/                                     pSub = pSub->GetNext();
 /*N*/                                 }
 /*N*/                                 pTab = pTab->GetFollow();
-/*N*/                                 ASSERT( pTab, "Table follow without master" );
+/*N*/                                 OSL_ENSURE( pTab, "Table follow without master" );
 /*N*/                             }
 /*N*/                         }
 /*N*/                         do
@@ -325,7 +280,7 @@ namespace binfilter {
 /*N*/                                     SwPageFrm *pTabPage = pTab->FindPageFrm();
 /*N*/                                     if( pTabPage != pPage )
 /*N*/                                     {
-/*N*/                                         ASSERT( pPage->GetPhyPageNum() <
+/*N*/                                         OSL_ENSURE( pPage->GetPhyPageNum() <
 /*N*/                                                 pTabPage->GetPhyPageNum(),
 /*N*/                                                 "Looping Tableframes" );
 /*N*/                                         pPage = pTabPage;
@@ -392,15 +347,15 @@ namespace binfilter {
 
 /*N*/ SwLayoutCache::~SwLayoutCache()
 /*N*/ {
-/*N*/     ASSERT( !nLockCount, "Deleting a locked SwLayoutCache!?" );
+/*N*/     OSL_ENSURE( !nLockCount, "Deleting a locked SwLayoutCache!?" );
 /*N*/     delete pImpl;
 /*N*/ }
 
-/*-----------------28.5.2001 10:47------------------
+/*
  * SwActualSection,
  *  a help class to create not nested section frames
  *  for nested sections.
- * --------------------------------------------------*/
+ */
 
 /*N*/ SwActualSection::SwActualSection( SwActualSection *pUp,
 /*N*/                                 SwSectionFrm    *pSect,
@@ -417,14 +372,14 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*-----------------28.5.2001 11:09------------------
+/*
  * SwLayHelper
  *  is the helper class, which utilizes the layout cache information
  *  to distribute the document content to the rigth pages.
  * It's used by the _InsertCnt(..)-function.
  * If there's no layout cache, the distibution to the pages is more
  * a guess, but a guess with statistical background.
- * --------------------------------------------------*/
+ */
 
 /*N*/ SwLayHelper::SwLayHelper( SwDoc *pD, SwFrm* &rpF, SwFrm* &rpP, SwPageFrm* &rpPg,
 /*N*/             SwLayoutFrm* &rpL, SwActualSection* &rpA, BOOL &rB,
@@ -461,16 +416,16 @@ namespace binfilter {
 /*N*/ {
 /*N*/     if( pImpl )
 /*N*/     {
-/*?*/         ASSERT( pDoc && pDoc->GetLayoutCache(), "Missing layoutcache" );
+/*?*/         OSL_ENSURE( pDoc && pDoc->GetLayoutCache(), "Missing layoutcache" );
 /*?*/         pDoc->GetLayoutCache()->UnlockImpl();
 /*N*/     }
 /*N*/ }
 
-/*-----------------23.5.2001 16:40------------------
+/*
  * SwLayHelper::CalcPageCount() does not really calculate the page count,
  * it returns the page count value from the layout cache, if available,
  * otherwise it estimates the page count.
- * --------------------------------------------------*/
+ */
 
 /*N*/ ULONG SwLayHelper::CalcPageCount()
 /*N*/ {
@@ -530,7 +485,7 @@ namespace binfilter {
 /*N*/     return nPgCount;
 /*N*/ }
 
-/*-----------------23.5.2001 16:44------------------
+/*
  * SwLayHelper::CheckInsertPage()
  * inserts a page and return TRUE, if
  * - the break after flag is set
@@ -539,11 +494,11 @@ namespace binfilter {
  *
  * The break after flag is set, if the actual content
  * wants a break after.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwLayHelper::CheckInsertPage()
 /*N*/ {
-/*N*/   FASTBOOL bEnd = 0 == rpPage->GetNext();
+/*N*/   bool bEnd = 0 == rpPage->GetNext();
 /*N*/     const SwAttrSet *pAttr = rpFrm->GetAttrSet();
 /*N*/   const SvxFmtBreakItem &rBrk = pAttr->GetBreak();
 /*N*/   const SwFmtPageDesc &rDesc = pAttr->GetPageDesc();
@@ -577,18 +532,18 @@ namespace binfilter {
 /*N*/                        bOdd, bInsertEmpty, FALSE, rpPage->GetNext() );
 /*N*/       if ( bEnd )
 /*N*/       {
-/*N*/           ASSERT( rpPage->GetNext(), "Keine neue Seite?" );
+/*N*/           OSL_ENSURE( rpPage->GetNext(), "Keine neue Seite?" );
 /*N*/           do
 /*N*/           {   rpPage = (SwPageFrm*)rpPage->GetNext();
 /*N*/           } while ( rpPage->GetNext() );
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( rpPage->GetNext(), "Keine neue Seite?" );
+/*?*/           OSL_ENSURE( rpPage->GetNext(), "Keine neue Seite?" );
 /*?*/           rpPage = (SwPageFrm*)rpPage->GetNext();
 /*?*/           if ( rpPage->IsEmptyPage() )
 /*?*/           {
-/*?*/               ASSERT( rpPage->GetNext(), "Keine neue Seite?" );
+/*?*/               OSL_ENSURE( rpPage->GetNext(), "Keine neue Seite?" );
 /*?*/               rpPage = (SwPageFrm*)rpPage->GetNext();
 /*?*/           }
 /*N*/       }
@@ -600,7 +555,7 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*-----------------28.5.2001 11:31------------------
+/*
  * SwLayHelper::CheckInsert
  *  is the entry point for the _InsertCnt-function.
  *  The document content index is checked either it is
@@ -608,15 +563,15 @@ namespace binfilter {
  *  cause the maximal estimation of content per page is reached.
  *  A really big table or long paragraph may contains more than
  *  one page, in this case the needed count of pages will inserted.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwLayHelper::CheckInsert( ULONG nNodeIndex )
 /*N*/ {
 /*N*/     BOOL bRet = FALSE;
 /*N*/     BOOL bLongTab = FALSE;
-/*N*/     ULONG nMaxRowPerPage;
+/*N*/     ULONG nMaxRowPerPage(0);
 /*N*/     nNodeIndex -= nStartOfContent;
-/*N*/     USHORT nRows;
+/*N*/     USHORT nRows = 0;
 /*N*/     if( rpFrm->IsTabFrm() )
 /*N*/     {
 /*N*/         //Inside a table counts every row as a paragraph
@@ -630,7 +585,7 @@ namespace binfilter {
 /*N*/         nParagraphCnt += nRows;
 /*N*/         if( !pImpl && nParagraphCnt > nMaxParaPerPage + 10 )
 /*N*/         {
-/*N*/             // OD 09.04.2003 #108698# - improve heuristics:
+/*N*/             // improve heuristics:
 /*N*/             // Assume that a table, which has more than three times the quantity
 /*N*/             // of maximal paragraphs per page rows, consists of rows, which have
 /*N*/             // the height of a normal paragraph. Thus, allow as much rows per page
@@ -668,7 +623,7 @@ namespace binfilter {
 /*N*/     ULONG nBreakIndex = ( pImpl && nIndex < pImpl->Count() ) ?
 /*N*/                         pImpl->GetBreakIndex(nIndex) : 0xffff;
 /*N*/ #endif
-/*N*/     // OD 09.04.2003 #108698# - always split a big tables.
+/*N*/     // always split a big tables.
 /*N*/     if ( !bFirst ||
 /*N*/          ( rpFrm->IsTabFrm() && bLongTab )
 /*N*/        )
@@ -706,7 +661,7 @@ namespace binfilter {
 /*N*/                 if( nOfst < STRING_LEN )
 /*N*/                 {
 /*N*/                     sal_Bool bSplit = sal_False;
-/*N*/                     sal_Bool bRepeat;
+/*N*/                     sal_Bool bRepeat = sal_False;
 /*N*/                     if( !bLongTab && rpFrm->IsTxtFrm() &&
 /*N*/                         SW_LAYCACHE_IO_REC_PARA == nType &&
 /*N*/                         nOfst<((SwTxtFrm*)rpFrm)->GetTxtNode()->GetTxt().Len() )
@@ -837,12 +792,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/ };
 
- /*-----------------28.6.2001 14:40------------------
+ /*
   * SwLayHelper::_CheckFlyCache(..)
   * If a new page is inserted, the last page is analysed.
   * If there are text frames with default position, the fly cache
   * is checked, if these frames are stored in the cache.
-  * --------------------------------------------------*/
+  */
 
 /*N*/ void SwLayHelper::_CheckFlyCache( SwPageFrm* pPage )
 /*N*/ {
@@ -855,60 +810,6 @@ namespace binfilter {
 /*N*/         SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
 /*N*/         USHORT nPgNum = pPage->GetPhyPageNum();
 
-/*
-
-        //
-        // NOTE: This code assumes that all objects have already been
-        // inserted into the drawing layout, so that the cached objects
-        // can be identified by their ordnum. Unfortunately this function
-        // is called with page n if page n+1 has been inserted. Thus
-        // not all the objects have been inserted and the ordnums cannot
-        // be used to identify the objects.
-        //
-
-        for ( USHORT i = 0; i < rObjs.Count(); ++i )  // check objects
-        {
-            SdrObject *pO = rObjs[i];
-            if ( pO->IsWriterFlyFrame() )  // a text frame?
-            {
-                SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
-                if( pFly->Frm().Left() == WEIT_WECH && pFly->GetAnchor() &&
-                    !pFly->GetAnchor()->FindFooterOrHeader() )
-                {   // Only frame with default position and not in header/footer
-                    const SwContact *pC = (SwContact*)GetUserCall(pO);
-                    if( pC )
-                    {
-                        ULONG nOrdNum = pO->GetOrdNum(); // the Id
-                        SwFlyCache* pFlyC;
-                        while( nFlyIdx < nFlyCount && ( pFlyC = pImpl->
-                               GetFlyCache(nFlyIdx) )->nPageNum < nPgNum)
-                            ++nFlyIdx;
-                        if( nFlyIdx < nFlyCount &&
-                            pFlyC->nPageNum == nPgNum )
-                        {
-                            USHORT nIdx = nFlyIdx;
-                            while( nIdx < nFlyCount && ( pFlyC = pImpl->
-                                   GetFlyCache( nIdx ) )->nPageNum == nPgNum &&
-                                   pFlyC->nOrdNum != nOrdNum )
-                                ++nIdx;
-                            if( nIdx < nFlyCount && pFlyC->nPageNum == nPgNum &&
-                                pFlyC->nOrdNum == nOrdNum )
-                            {   // we get the stored information
-                                pFly->Frm().Pos().X() = pFlyC->Left() +
-                                                        pPage->Frm().Left();
-                                pFly->Frm().Pos().Y() = pFlyC->Top() +
-                                                        pPage->Frm().Top();
-                                pFly->Frm().Width( pFlyC->Width() );
-                                pFly->Frm().Height( pFlyC->Height() );
-                            }
-                        }
-                    }
-                }
-            }
-        }
- */
-
-        //
         // NOTE: Here we do not use the absolute ordnums but
         // relative ordnums for the objects on this page.
 
@@ -958,20 +859,20 @@ namespace binfilter {
 /*N*/
 /*N*/             while ( aFlyCacheSetIt != aFlyCacheSet.end() )
 /*N*/             {
-/*N*/                 const SwFlyCache* pFlyC = *aFlyCacheSetIt;
+/*N*/                 const SwFlyCache* pFlyC1 = *aFlyCacheSetIt;
 /*N*/                 SwFlyFrm* pFly = ((SwVirtFlyDrawObj*)*aFlySetIt)->GetFlyFrm();
 /*N*/
 /*N*/                 if ( pFly->Frm().Left() == WEIT_WECH )
 /*N*/                 {
 /*N*/                     // we get the stored information
-/*N*/                     pFly->Frm().Pos().X() = pFlyC->Left() +
+/*N*/                     pFly->Frm().Pos().X() = pFlyC1->Left() +
 /*N*/                                             pPage->Frm().Left();
-/*N*/                     pFly->Frm().Pos().Y() = pFlyC->Top() +
+/*N*/                     pFly->Frm().Pos().Y() = pFlyC1->Top() +
 /*N*/                                             pPage->Frm().Top();
 /*N*/                     if ( pImpl->IsUseFlyCache() )
 /*N*/                     {
-/*N*/                         pFly->Frm().Width( pFlyC->Width() );
-/*N*/                         pFly->Frm().Height( pFlyC->Height() );
+/*N*/                         pFly->Frm().Width( pFlyC1->Width() );
+/*N*/                         pFly->Frm().Height( pFlyC1->Height() );
 /*N*/                     }
 /*N*/                 }
 /*N*/
@@ -982,14 +883,14 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-/*-----------------28.6.2001 14:48------------------
+/*
  * SwLayHelper::CheckPageFlyCache(..)
  * looks for the given text frame in the fly cache and sets
  * the position and size, if possible.
  * The fly cache is sorted by pages and we start searching with the given page.
  * If we found the page number in the fly cache, we set
  * the rpPage parameter to the right page, if possible.
- * --------------------------------------------------*/
+ */
 
 /*N*/ BOOL SwLayHelper::CheckPageFlyCache( SwPageFrm* &rpPage, SwFlyFrm* pFly )
 /*N*/ {
@@ -1039,8 +940,6 @@ namespace binfilter {
 /*N*/     return bRet;
 /*N*/ }
 
-// -----------------------------------------------------------------------------
-
 /*N*/ SwLayCacheIoImpl::SwLayCacheIoImpl( SvStream& rStrm, BOOL bWrtMd ) :
 /*N*/   pStream( &rStrm ),
 /*N*/   nMajorVersion(SW_LAYCACHE_IO_VERSION_MAJOR),
@@ -1061,7 +960,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bRes = TRUE;
 /*N*/   UINT16 nLvl = aRecTypes.Count();
-/*N*/   ASSERT( nLvl == aRecSizes.Count(), "OpenRec: Level" );
+/*N*/   OSL_ENSURE( nLvl == aRecSizes.Count(), "OpenRec: Level" );
 /*N*/   UINT32 nPos = pStream->Tell();
 /*N*/   if( bWriteMode )
 /*N*/   {
@@ -1080,8 +979,8 @@ namespace binfilter {
 /*N*/       if( !nVal || cRecTyp != cType ||
 /*N*/           pStream->GetErrorCode() != SVSTREAM_OK || pStream->IsEof() )
 /*N*/       {
-/*?*/           ASSERT( nVal, "OpenRec: Record-Header is 0" );
-/*?*/           ASSERT( cRecTyp == cType,
+/*?*/           OSL_ENSURE( nVal, "OpenRec: Record-Header is 0" );
+/*?*/           OSL_ENSURE( cRecTyp == cType,
 /*?*/                   "OpenRec: Wrong Record Type" );
 /*?*/           aRecTypes[nLvl] = 0;
 /*?*/           aRecSizes[nLvl] = pStream->Tell();
@@ -1098,12 +997,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   BOOL bRes = TRUE;
 /*N*/   UINT16 nLvl = aRecTypes.Count();
-/*N*/   ASSERT( nLvl == aRecSizes.Count(), "CloseRec: wrong Level" );
-/*N*/   ASSERT( nLvl, "CloseRec: no levels" );
+/*N*/   OSL_ENSURE( nLvl == aRecSizes.Count(), "CloseRec: wrong Level" );
+/*N*/   OSL_ENSURE( nLvl, "CloseRec: no levels" );
 /*N*/   if( nLvl )
 /*N*/   {
 /*N*/       nLvl--;
-/*N*/       ASSERT( cType == aRecTypes[nLvl],
+/*N*/       OSL_ENSURE( cType == aRecTypes[nLvl],
 /*N*/               "CloseRec: Wrong Block-Header" );
 /*N*/       UINT32 nPos = pStream->Tell();
 /*N*/       if( bWriteMode )
@@ -1120,7 +1019,7 @@ namespace binfilter {
 /*N*/       else
 /*N*/       {
 /*N*/           UINT32 n = aRecSizes[nLvl];
-/*N*/           ASSERT( n >= nPos, "CloseRec: to much data read" );
+/*N*/           OSL_ENSURE( n >= nPos, "CloseRec: to much data read" );
 /*N*/           if( n != nPos )
 /*N*/           {
 /*?*/               pStream->Seek( n );
@@ -1176,7 +1075,7 @@ namespace binfilter {
 
 /*N*/ BYTE SwLayCacheIoImpl::OpenFlagRec()
 /*N*/ {
-/*N*/   ASSERT( !bWriteMode, "OpenFlagRec illegal in write  mode" );
+/*N*/   OSL_ENSURE( !bWriteMode, "OpenFlagRec illegal in write  mode" );
 /*N*/   BYTE cFlags;
 /*N*/   *pStream >> cFlags;
 /*N*/   nFlagRecEnd = pStream->Tell() + ( cFlags & 0x0F );
@@ -1185,9 +1084,9 @@ namespace binfilter {
 
 /*N*/ void SwLayCacheIoImpl::OpenFlagRec( BYTE nFlags, BYTE nLen )
 /*N*/ {
-/*N*/   ASSERT( bWriteMode, "OpenFlagRec illegal in read  mode" );
-/*N*/   ASSERT( (nFlags & 0xF0) == 0, "illegal flags set" );
-/*N*/   ASSERT( nLen < 16, "wrong flag record length" );
+/*N*/   OSL_ENSURE( bWriteMode, "OpenFlagRec illegal in read  mode" );
+/*N*/   OSL_ENSURE( (nFlags & 0xF0) == 0, "illegal flags set" );
+/*N*/   OSL_ENSURE( nLen < 16, "wrong flag record length" );
 /*N*/   BYTE cFlags = (nFlags << 4) + nLen;
 /*N*/   *pStream << cFlags;
 /*N*/   nFlagRecEnd = pStream->Tell() + nLen;
@@ -1197,13 +1096,15 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( bWriteMode )
 /*N*/   {
-/*N*/       ASSERT( pStream->Tell() == nFlagRecEnd, "Wrong amount of data written" );
+/*N*/       OSL_ENSURE( pStream->Tell() == nFlagRecEnd, "Wrong amount of data written" );
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( pStream->Tell() <= nFlagRecEnd, "To many data read" );
+/*N*/       OSL_ENSURE( pStream->Tell() <= nFlagRecEnd, "To many data read" );
 /*N*/       if( pStream->Tell() != nFlagRecEnd )
 /*?*/           pStream->Seek( nFlagRecEnd );
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -52,19 +53,19 @@ extern SwPosPage fnPageStart, fnPageEnd;
 
 // Richtungsparameter fuer MovePara ( wird in SwPaM initialisiert )
 typedef SwMoveFnCollection* SwPosPara;
-typedef FASTBOOL (*SwWhichPara)( SwPaM&, SwPosPara );
+typedef bool (*SwWhichPara)( SwPaM&, SwPosPara );
 extern SwWhichPara fnParaPrev, fnParaCurr, fnParaNext;
 extern SwPosPara fnParaStart, fnParaEnd;
 
 // Richtungsparameter fuer MoveSection
 typedef SwMoveFnCollection* SwPosSection;
-typedef FASTBOOL (*SwWhichSection)( SwPaM&, SwPosSection );
+typedef bool (*SwWhichSection)( SwPaM&, SwPosSection );
 extern SwWhichSection fnSectionPrev, fnSectionCurr, fnSectionNext;
 extern SwPosSection fnSectionStart, fnSectionEnd;
 
 // Richtungsparameter fuer MoveTable
 typedef SwMoveFnCollection* SwPosTable;
-typedef FASTBOOL (*SwWhichTable)( SwPaM&, SwPosTable, FASTBOOL bInReadOnly );
+typedef bool (*SwWhichTable)( SwPaM&, SwPosTable, bool bInReadOnly );
 extern SwWhichTable fnTablePrev, fnTableCurr, fnTableNext;
 extern SwPosTable fnTableStart, fnTableEnd;
 
@@ -76,7 +77,7 @@ extern SwPosColumn fnColumnStart, fnColumnEnd;
 
 // Richtungsparameter fuer MoveRegion   (Bereiche!)
 typedef SwMoveFnCollection* SwPosRegion;
-typedef FASTBOOL (*SwWhichRegion)( SwPaM&, SwPosRegion, FASTBOOL bInReadOnly );
+typedef bool (*SwWhichRegion)( SwPaM&, SwPosRegion, bool bInReadOnly );
 extern SwWhichRegion fnRegionPrev, fnRegionCurr, fnRegionNext, fnRegionCurrAndSkip;
 extern SwPosRegion fnRegionStart, fnRegionEnd;
 
@@ -112,3 +113,5 @@ enum SwDocPositions
 
 } //namespace binfilter
 #endif  // _CSHTYP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

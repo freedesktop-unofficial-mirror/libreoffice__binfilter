@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 #define _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
 namespace binfilter {
 
 class XMLChartStyleContext : public XMLPropStyleContext
@@ -68,3 +67,5 @@ public:
 
 }//end of namespace binfilter
 #endif  // _XMLOFF_XMLCHARTSTYLECONTEXT_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

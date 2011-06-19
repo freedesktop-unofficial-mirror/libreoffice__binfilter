@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _B3D_B3DCOLOR_HXX
 #include "b3dcolor.hxx"
-#endif
 
 namespace binfilter {
 /*************************************************************************
@@ -258,3 +257,5 @@ B3dColor B3dColor::operator* (const double fVal) const
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

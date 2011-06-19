@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 #ifndef _SC_XMLTABLEMASTERPAGEEXPORT_HXX
 #define _SC_XMLTABLEMASTERPAGEEXPORT_HXX
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTMASTERPAGEEXPORT_HXX
 #include <bf_xmloff/XMLTextMasterPageExport.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XHEADERFOOTERCONTENT_HPP_
 #include <com/sun/star/sheet/XHeaderFooterContent.hpp>
-#endif
 
 #include "xmlexprt.hxx"
 namespace binfilter {
@@ -76,3 +69,4 @@ public:
 } //namespace binfilter
 #endif  //  _XMLOFF_XMLTABLEMASTERPAGEEXPORT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

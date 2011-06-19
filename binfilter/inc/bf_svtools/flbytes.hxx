@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {
@@ -120,3 +117,5 @@ SV_DECL_IMPL_REF(SvSyncLockBytes);
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

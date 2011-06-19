@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,57 +28,14 @@
 
 #define ITEMID_COLOR 0
 
-
-
-
-
-
-
-
-
-
-
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
-#endif
 
-
-#ifndef _XTABLE_HXX
 #include "xtable.hxx"
-#endif
-
-
-#ifndef _SVX_DIALOGS_HRC
 #include "dialogs.hrc"
-#endif
-
-
-
-
-
-
-
-
-
-
-#ifndef _E3D_POLYSC3D_HXX
 #include "polysc3d.hxx"
-#endif
-
-
-#ifndef _E3D_VIEW3D_HXX
 #include "view3d.hxx"
-#endif
-
-
-
-
-
-
 
 namespace binfilter {
 
@@ -167,50 +125,6 @@ long DistPoint2Line (Point u,
 
 /*************************************************************************
 |*
-|* Zeige eine Hilfsfigur
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Verdecke eine Hilfsfigur
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Zeige eine Hilfsfigur
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Koennen die selektierten Objekte aufgebrochen werden?
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Selektierte Lathe-Objekte aufbrechen
-|*
-\************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|* Szenen mischen
-|*
-\************************************************************************/
-// Wird bisher noch nirgenswo (weder im Draw oder Chart) aufgerufen
-
-
-/*************************************************************************
-|*
 |* Possibilities, hauptsaechlich gruppieren/ungruppieren
 |*
 \************************************************************************/
@@ -247,12 +161,10 @@ long DistPoint2Line (Point u,
 /*?*/           bGrpEnterPossible = FALSE;
 /*N*/   }
 
-//  bGroupPossible
-//  bCombinePossible
-//  bUnGroupPossible
-//  bGrpEnterPossible
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

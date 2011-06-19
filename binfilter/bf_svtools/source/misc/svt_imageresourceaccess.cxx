@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,37 +29,19 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef SVTOOLS_SOURCE_MISC_IMAGERESOURCEACCESS_HXX
 #include "imageresourceaccess.hxx"
-#endif
 
 /** === begin UNO includes === **/
-#ifndef _COM_SUN_STAR_IO_NOTCONNECTEDEXCEPTION_HPP_
 #include <com/sun/star/io/NotConnectedException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSEEKABLE_HPP_
 #include <com/sun/star/io/XSeekable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_GRAPHIC_XGRAPHICPROVIDER_HPP_
 #include <com/sun/star/graphic/XGraphicProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XSTREAM_HPP_
 #include <com/sun/star/io/XStream.hpp>
-#endif
 /** === end UNO includes === **/
 
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
 //........................................................................
 namespace binfilter
@@ -204,7 +187,7 @@ namespace binfilter
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "ImageResourceAccess::getImageStream: caught an exception!" );
+            OSL_FAIL( "ImageResourceAccess::getImageStream: caught an exception!" );
         }
 
         return pReturn;
@@ -213,3 +196,4 @@ namespace binfilter
 }
 //........................................................................
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

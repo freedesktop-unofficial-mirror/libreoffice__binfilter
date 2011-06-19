@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,16 +37,14 @@
 
 #include "utlui.hrc"
 #include "attrdesc.hrc"
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 
 // Breitenangaben der Fussnotenlinien, mit TabPage abstimmen
-static const USHORT __FAR_DATA nFtnLines[] = {
+static const USHORT nFtnLines[] = {
     0,
     10,
     50,
@@ -76,7 +75,7 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 /*N*/ }
 
 
-/*N*/ SfxPoolItem*  SwPageFtnInfoItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem*  SwPageFtnInfoItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwPageFtnInfoItem( *this );
 /*N*/ }
@@ -89,16 +88,13 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 /*N*/ }
 
 
-/* -----------------------------26.04.01 12:25--------------------------------
-
- ---------------------------------------------------------------------------*/
-/*N*/ BOOL SwPageFtnInfoItem::QueryValue( Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwPageFtnInfoItem::QueryValue( Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bRet = sal_True;
+/*N*/     bool bRet = true;
 /*N*/     switch(nMemberId & ~CONVERT_TWIPS)
 /*N*/     {
 /*N*/         case MID_FTN_HEIGHT        :     rVal <<= (sal_Int32)TWIP_TO_MM100(aFtnInfo.GetHeight());break;
-/*N*/         case MID_LINE_WEIGHT       :     rVal <<= (sal_Int16)TWIP_TO_MM100(aFtnInfo.GetLineWidth());break;
+/*N*/         case MID_LINE_WEIGHT       :     rVal <<= (sal_Int16)TWIP_TO_MM100_UNSIGNED(aFtnInfo.GetLineWidth());break;
 /*N*/         case MID_LINE_COLOR        :     rVal <<= (sal_Int32)aFtnInfo.GetLineColor().GetColor();break;
 /*N*/         case MID_LINE_RELWIDTH     :
 /*N*/         {
@@ -111,17 +107,15 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 /*N*/         case MID_LINE_TEXT_DIST    :     rVal <<= (sal_Int32)TWIP_TO_MM100(aFtnInfo.GetTopDist());break;
 /*N*/         case MID_LINE_FOOTNOTE_DIST:     rVal <<= (sal_Int32)TWIP_TO_MM100(aFtnInfo.GetBottomDist());break;
 /*N*/         default:
-/*N*/             bRet = sal_False;
+/*N*/             bRet = false;
 /*N*/     }
 /*N*/     return bRet;
 /*N*/ }
-/* -----------------------------26.04.01 12:26--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ BOOL SwPageFtnInfoItem::PutValue(const Any& rVal, BYTE nMemberId)
+/*N*/ bool SwPageFtnInfoItem::PutValue(const Any& rVal, BYTE nMemberId)
 /*N*/ {
-/*N*/     sal_Int32 nSet32;
-/*N*/     sal_Bool bRet = sal_True;
+/*N*/     sal_Int32 nSet32(0);
+/*N*/     bool bRet = true;
 /*N*/     switch(nMemberId  & ~CONVERT_TWIPS)
 /*N*/     {
 /*N*/         case MID_LINE_COLOR        :
@@ -147,33 +141,33 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 /*N*/         break;
 /*N*/         case MID_LINE_WEIGHT       :
 /*N*/         {
-/*N*/             sal_Int16 nSet; rVal >>= nSet;
+/*N*/             sal_Int16 nSet(0); rVal >>= nSet;
 /*N*/             if(nSet >= 0)
 /*N*/                 aFtnInfo.SetLineWidth(MM100_TO_TWIP(nSet));
 /*N*/             else
-/*N*/                 bRet = sal_False;
+/*N*/                 bRet = false;
 /*N*/         }
 /*N*/         break;
 /*N*/         case MID_LINE_RELWIDTH     :
 /*N*/         {
-/*N*/             sal_Int8 nSet; rVal >>= nSet;
+/*N*/             sal_Int8 nSet(0); rVal >>= nSet;
 /*N*/             if(nSet < 0)
-/*N*/                 bRet = sal_False;
+/*N*/                 bRet = false;
 /*N*/             else
 /*N*/                 aFtnInfo.SetWidth(Fraction(nSet, 100));
 /*N*/         }
 /*N*/         break;
 /*N*/         case MID_LINE_ADJUST       :
 /*N*/         {
-/*N*/             sal_Int16 nSet; rVal >>= nSet;
+/*N*/             sal_Int16 nSet(0); rVal >>= nSet;
 /*N*/             if(nSet >= 0 && nSet < 3) //com::sun::star::text::HorizontalAdjust
 /*N*/                 aFtnInfo.SetAdj((SwFtnAdj)nSet);
 /*N*/             else
-/*N*/                 bRet = sal_False;
+/*N*/                 bRet = false;
 /*N*/         }
 /*N*/         break;
 /*N*/         default:
-/*N*/             bRet = sal_False;
+/*N*/             bRet = false;
 /*N*/     }
 /*N*/     return bRet;
 /*N*/ }
@@ -181,40 +175,12 @@ static const USHORT __FAR_DATA nFtnLines[] = {
 
 /*--------------------------------------------------------------------
     Beschreibung: Copy-Konstruktor
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
     Beschreibung: Clonen
- --------------------------------------------------------------------*/
-
-
-
-/*--------------------------------------------------------------------
     Beschreibung:
- --------------------------------------------------------------------*/
 
-
-
-
-/*-----------------12.11.97 12:55-------------------------------
- SwUINumRuleItem fuer die NumTabPages der FormatNumRule/Stylisten
+    SwUINumRuleItem fuer die NumTabPages der FormatNumRule/Stylisten
 ---------------------------------------------------------------*/
 
-
-
-
-
-
-
-/* -----------------17.06.98 17:43-------------------
- *
- * --------------------------------------------------*/
-/* -----------------17.06.98 17:44-------------------
- *
- * --------------------------------------------------*/
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

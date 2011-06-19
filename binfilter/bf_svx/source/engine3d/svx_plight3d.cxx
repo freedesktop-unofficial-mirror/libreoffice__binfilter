@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 
 
 
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
 
-#ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(E3dPointLight, E3dLight);
@@ -75,7 +72,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ FASTBOOL E3dPointLight::CalcLighting(Color& rNewColor,
+/*N*/ bool E3dPointLight::CalcLighting(Color& rNewColor,
 /*N*/                                    const Vector3D& rPnt,
 /*N*/                                    const Vector3D& rPntNormal,
 /*N*/                                    const Color& rPntColor)
@@ -132,3 +129,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

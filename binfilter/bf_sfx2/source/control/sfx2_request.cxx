@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,7 +41,7 @@ namespace binfilter {
 /*N*/ (
 /*N*/   const SfxItemSet* pArgs,
 /*N*/   USHORT          nSlotId,    // Slot-Id oder Which-Id des Parameters
-/*N*/   FASTBOOL        bDeep,      // FALSE: nicht in Parent-ItemSets suchen
+/*N*/   bool        bDeep,      // FALSE: nicht in Parent-ItemSets suchen
 /*N*/   TypeId          aType       // != 0:  RTTI Pruefung mit Assertion
 /*N*/ )
 /*N*/ {
@@ -59,7 +60,7 @@ namespace binfilter {
 /*N*/               return pItem;
 /*N*/
 /*N*/           // Item da aber falsch => Programmierfehler
-/*N*/           DBG_ERROR(  "invalid argument type" );
+/*N*/           OSL_FAIL(  "invalid argument type" );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -67,3 +68,4 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 }
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

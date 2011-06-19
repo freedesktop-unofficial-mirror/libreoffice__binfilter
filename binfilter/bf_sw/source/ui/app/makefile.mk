@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -44,9 +42,6 @@ NO_HIDS=TRUE
 
 INC+= -I$(PRJ)$/inc$/bf_sw
 RSCUPDVER=$(RSCREVISION)(SV$(UPD)$(UPDMINOR))
-
-#IMGLST_SRS=$(SRS)$/app.srs
-#BMP_IN=$(PRJ)$/win/imglst
 
 # --- Files --------------------------------------------------------
 
@@ -78,7 +73,6 @@ EXCEPTIONSFILES= \
 DEPOBJFILES= \
     $(SLO)$/sw_swlib.obj \
     $(SLO)$/sw_swcomlib.obj
-
 
 # --- Targets ------------------------------------------------------
 

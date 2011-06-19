@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,38 +31,20 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _POINTR_HXX //autogen
 #include <vcl/pointr.hxx>
-#endif
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
-//#ifndef _B2D_MPNT_HXX
-//#include <bf_goodies/b2dmpnt.hxx>
-//#endif
-
-//#ifndef _B2D_MLINE_HXX
-//#include <bf_goodies/b2dmline.hxx>
-//#endif
-
-//#ifndef _B2D_MBMP_HXX
-//#include <bf_goodies/b2dmbmp.hxx>
-//#endif
-
-#include <bf_svx/xpoly.hxx>
 #include <bf_svx/svdoedge.hxx>
+
 class VirtualDevice;
 class OutputDevice;
 class Region;
 class Window;
-namespace binfilter {
 
+namespace binfilter {
 
 class SdrHdlList;
 class SdrObject;
@@ -156,8 +139,8 @@ class SdrHdl
 public:
     virtual ~SdrHdl();
 
-    SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }//STRIP001    SdrHdlKind GetKind() const { return eKind; }
-    SdrObject* GetObj() const {DBG_BF_ASSERT(0, "STRIP"); return NULL;  }//STRIP001     SdrObject* GetObj() const { return pObj;  }
+    SdrHdlKind GetKind() const { DBG_BF_ASSERT(0, "STRIP"); return HDL_MOVE; }
+    SdrObject* GetObj() const {DBG_BF_ASSERT(0, "STRIP"); return NULL;  }
 };
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -245,3 +228,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDHDL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

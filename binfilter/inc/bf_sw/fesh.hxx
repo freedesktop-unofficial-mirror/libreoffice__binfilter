@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,20 +30,12 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
-#endif
-#ifndef _FLYENUM_HXX
 #include <flyenum.hxx>
-#endif
 
 // OD 25.06.2003 #108784#
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 
 #include <vector>
 class Color;
@@ -258,7 +251,7 @@ public:
     //Mit BreakCreate wird der Vorgang abgebrochen, dann ist kein Objekt
     //mehr selektiert.
 
-    // Funktionen fÅr Rubberbox, um Draw-Objekte zu selektieren
+    // Funktionen fÔøΩr Rubberbox, um Draw-Objekte zu selektieren
 
     //Gruppe erzeugen, aufloesen, nix bei Rahmenselektion.
                                 //Es koennen noch immer Gruppen dabei sein.
@@ -313,3 +306,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

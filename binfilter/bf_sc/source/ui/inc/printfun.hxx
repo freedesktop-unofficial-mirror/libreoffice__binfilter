@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 #define SC_PRINTFUN_HXX
 
 
-#ifndef SC_PAGEPAR_HXX
 #include "pagepar.hxx"
-#endif
 
-#ifndef SC_EDITUTIL_HXX
 #include "editutil.hxx"
-#endif
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
 class MultiSelection;
 namespace binfilter {
 
@@ -250,8 +245,6 @@ public:
 
     void            ResetBreaks( USHORT nTab );
 
-    BOOL            GetLastSourceRange( ScRange& rRange ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 BOOL           GetLastSourceRange( ScRange& rRange ) const;
-
 #ifdef _PRINTFUN_CXX
 private:
     void            Construct( const ScPrintOptions* pOptions );
@@ -284,3 +277,4 @@ private:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

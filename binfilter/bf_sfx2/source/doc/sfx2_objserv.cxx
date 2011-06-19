@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -38,7 +39,6 @@
 #include "request.hxx"
 #include "docfile.hxx"
 #include "app.hxx"
-#include "docinf.hxx"
 #include "objshimp.hxx"
 #include "interno.hxx"
 #include "docfac.hxx"
@@ -83,7 +83,7 @@ AsynchronLink* pPendingCloser = 0;
 
 
 
-/*N*/ long SfxObjectShellClose_Impl( void* pObj, void* pArg )
+/*N*/ long SfxObjectShellClose_Impl( void* /*pObj*/, void* pArg )
 /*N*/ {
 /*N*/   SfxObjectShell *pObjSh = (SfxObjectShell*) pArg;
 /*N*/   if ( pObjSh->Get_Impl()->bHiddenLockedByAPI )
@@ -99,7 +99,7 @@ AsynchronLink* pPendingCloser = 0;
 
 /*N*/ sal_Bool SfxObjectShell::APISaveAs_Impl
 /*N*/ (
-/*N*/  const String& aFileName,
+/*N*/   const String& rFileName,
 /*N*/  SfxItemSet*   aParams
 /*N*/ )
 /*N*/ {
@@ -124,7 +124,7 @@ AsynchronLink* pPendingCloser = 0;
 /*N*/          sal_uInt16 nActFilt = 0;
 /*N*/          const SfxFilter* pFilt = GetFactory().GetFilter( 0 ); for( ;
 /*N*/               pFilt && ( !pFilt->CanExport()
-/*N*/                || !bSaveTo && !pFilt->CanImport() // SaveAs case
+/*N*/                 || (!bSaveTo && !pFilt->CanImport()) // SaveAs case
 /*N*/                || pFilt->IsInternal() );
 /*N*/               pFilt = GetFactory().GetFilter( ++nActFilt ) );
 /*N*/
@@ -147,7 +147,7 @@ AsynchronLink* pPendingCloser = 0;
 /*N*/          if ( bCopyTo )
 /*N*/              aSavedInfo = GetDocInfo();
 /*N*/
-/*N*/          bOk = CommonSaveAs_Impl( INetURLObject(aFileName), aFilterName,
+/*N*/           bOk = CommonSaveAs_Impl( INetURLObject(rFileName), aFilterName,
 /*N*/              aParams );
 /*N*/
 /*N*/          if ( bCopyTo )
@@ -165,3 +165,5 @@ AsynchronLink* pPendingCloser = 0;
 /*N*/  return bOk;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,13 +33,9 @@
 #define SCH_AXIS_ID_Y 2
 #define SCH_AXIS_ID_Z 3
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _SVDITER_HXX //autogen
 #include <bf_svx/svditer.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -57,7 +54,7 @@ public:
 
     virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     long &AxisId ()
@@ -82,3 +79,4 @@ public:
 #endif  // _SCH_OBJID_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

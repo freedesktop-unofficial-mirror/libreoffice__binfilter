@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef SC_SCATTR_HXX
 #include "attrib.hxx"
-#endif
 class Rectangle;
 namespace binfilter {
 
@@ -153,7 +152,7 @@ public:
 
     void    DeleteHardAttr( USHORT nStartRow, USHORT nEndRow );
 
-    void    Save( SvStream& rStream ) const;
+    void    Save( SvStream& ) const {}
     void    Load( SvStream& rStream );
     void    ConvertFontsAfterLoad();     // old binary file format
 };
@@ -209,3 +208,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

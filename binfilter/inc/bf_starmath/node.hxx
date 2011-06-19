@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _DYNARY_HXX //autogen
 #include <tools/dynary.hxx>
-#endif
 
 #include "parse.hxx"
 #include "types.hxx"
@@ -67,7 +66,7 @@ extern SmFormat *pActiveFormat;
 class SmDocShell;
 
 class SmNode;
-DECLARE_DYNARRAY(SmNodeArray, SmNode *)//STRIP008 ;
+DECLARE_DYNARRAY(SmNodeArray, SmNode *)
 
 ////////////////////////////////////////////////////////////////////////////////
 
@@ -179,7 +178,7 @@ public:
 
 class SmStructureNode;
 
-DECLARE_DYNARRAY(SmStructureNodeArray, SmStructureNode *)//STRIP008 ;
+DECLARE_DYNARRAY(SmStructureNodeArray, SmStructureNode *)
 
 class SmStructureNode : public SmNode
 {
@@ -204,7 +203,7 @@ public:
                                 SmNode *pThird = NULL);
             void SetSubNodes(const SmNodeArray &rNodeArray);
 
-     virtual SmStructureNode & operator = ( const SmStructureNode &rNode );
+     SmStructureNode & operator = ( const SmStructureNode &rNode );
 
 };
 
@@ -325,8 +324,8 @@ public:
 class SmSpecialNode : public SmTextNode
 {
 protected:
-    SmSpecialNode(SmNodeType eNodeType, const SmToken &rNodeToken, USHORT nFontDesc)
-    :   SmTextNode(eNodeType, rNodeToken, nFontDesc)
+    SmSpecialNode(SmNodeType eNodeType, const SmToken &rNodeToken, USHORT nFontDescIn)
+    :   SmTextNode(eNodeType, rNodeToken, nFontDescIn)
     {}
 
 public:
@@ -421,7 +420,7 @@ public:
 class SmErrorNode : public SmMathSymbolNode
 {
 public:
-    SmErrorNode(SmParseError eError, const SmToken &rNodeToken)
+    SmErrorNode(SmParseError /*eError*/, const SmToken &rNodeToken)
     :   SmMathSymbolNode(NERROR, rNodeToken)
     {
         SetText((xub_Unicode) MS_ERROR);
@@ -814,3 +813,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

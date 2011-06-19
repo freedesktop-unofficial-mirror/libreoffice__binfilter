@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,23 +35,15 @@
 #include "svdsuro.hxx"
 #include "svdstr.hrc"    // Objektname
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
-#endif
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 
@@ -76,14 +69,14 @@ namespace binfilter {
 /*N*/   bAutoCorner=FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObjConnection::TakeGluePoint(SdrGluePoint& rGP, FASTBOOL bSetAbsPos) const
+/*N*/ bool SdrObjConnection::TakeGluePoint(SdrGluePoint& rGP, bool bSetAbsPos) const
 /*N*/ {
-/*N*/   FASTBOOL bRet=FALSE;
+/*N*/   bool bRet=FALSE;
 /*N*/   if (pObj!=NULL) { // Ein Obj muss schon angedockt sein!
 /*N*/       if (bAutoVertex) {
 /*N*/           rGP=pObj->GetVertexGluePoint(nConId);
 /*N*/           bRet=TRUE;
-/*N*/       } else if (bAutoCorner) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       } else if (bAutoCorner) {DBG_BF_ASSERT(0, "STRIP");
 /*?*/       } else {
 /*?*/           const SdrGluePointList* pGPL=pObj->GetGluePointList();
 /*N*/           if (pGPL!=NULL) {
@@ -162,7 +155,7 @@ namespace binfilter {
 /*N*/   rIn>>nReserve;
 /*N*/ }
 
-/*N*/ void SdrObjConnection::AfterRead(const SdrObject* pEdgeObj)
+/*N*/ void SdrObjConnection::AfterRead(const SdrObject* /*pEdgeObj*/)
 /*N*/ {
 /*N*/   if (pSuro!=NULL) {
 /*N*/       pObj=pSuro->GetObject();
@@ -195,10 +188,10 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrEdgeInfoRec::ImpIsHorzLine(SdrEdgeLineCode eLineCode, const XPolygon& rXP) const
+/*N*/ bool SdrEdgeInfoRec::ImpIsHorzLine(SdrEdgeLineCode eLineCode, const XPolygon& rXP) const
 /*N*/ {
 /*N*/   USHORT nIdx=ImpGetPolyIdx(eLineCode,rXP);
-/*N*/   FASTBOOL bHorz=nAngle1==0 || nAngle1==18000;
+/*N*/   bool bHorz=nAngle1==0 || nAngle1==18000;
 /*N*/   if (eLineCode==OBJ2LINE2 || eLineCode==OBJ2LINE3) {
 /*N*/       nIdx=rXP.GetPointCount()-nIdx; // #36314#
 /*N*/       bHorz=nAngle2==0 || nAngle2==18000; // #52000#
@@ -276,7 +269,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // #109007#
 /*N*/   // Default is to allow default connects
-/*N*/   mbSuppressDefaultConnect = (FASTBOOL)sal_False;
+/*N*/   mbSuppressDefaultConnect = (bool)sal_False;
 /*N*/ }
 /*N*/
 /*N*/ SdrEdgeObj::~SdrEdgeObj()
@@ -319,7 +312,7 @@ namespace binfilter {
 /*N*/
 /*N*/ ////////////////////////////////////////////////////////////////////////////////////////////////////
 /*N*/
-/*N*/ void SdrEdgeObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrEdgeObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SdrTextObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/   ImpSetAttrToEdgeInfo(); // Werte vom Pool nach aEdgeInfo kopieren
@@ -540,7 +533,7 @@ namespace binfilter {
 /*N*/   aR.Top()   -=nMyTol;
 /*N*/   aR.Bottom()+=nMyTol;
 /*N*/
-/*N*/   FASTBOOL bHit=FALSE;
+/*N*/   bool bHit=FALSE;
 /*N*/
 /*N*/   Polygon aPoly=XOutCreatePolygon(*pEdgeTrack,NULL);
 /*N*/   bHit=IsRectTouchesLine(aPoly,aR);
@@ -548,7 +541,7 @@ namespace binfilter {
 /*N*/   return bHit ? (SdrObject*)this : NULL;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrEdgeObj::IsNode() const
+/*N*/ bool SdrEdgeObj::IsNode() const
 /*N*/ {
 /*N*/   return TRUE;
 /*N*/ }
@@ -584,7 +577,7 @@ namespace binfilter {
 
 
 
-/*N*/ void SdrEdgeObj::ConnectToNode(FASTBOOL bTail1, SdrObject* pObj)
+/*N*/ void SdrEdgeObj::ConnectToNode(bool bTail1, SdrObject* pObj)
 /*N*/ {
 /*N*/   SdrObjConnection& rCon=GetConnection(bTail1);
 /*N*/   DisconnectFromNode(bTail1);
@@ -595,7 +588,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrEdgeObj::DisconnectFromNode(FASTBOOL bTail1)
+/*N*/ void SdrEdgeObj::DisconnectFromNode(bool bTail1)
 /*N*/ {
 /*N*/   SdrObjConnection& rCon=GetConnection(bTail1);
 /*N*/   if (rCon.pObj!=NULL) {
@@ -604,7 +597,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ SdrObject* SdrEdgeObj::GetConnectedNode(FASTBOOL bTail1) const
+/*N*/ SdrObject* SdrEdgeObj::GetConnectedNode(bool bTail1) const
 /*N*/ {
 /*N*/   SdrObject* pObj=GetConnection(bTail1).pObj;
 /*N*/   if (pObj!=NULL && (pObj->GetPage()!=pPage || !pObj->IsInserted())) pObj=NULL;
@@ -612,7 +605,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SdrEdgeObj::ImpSetTailPoint(FASTBOOL bTail1, const Point& rPt)
+/*N*/ void SdrEdgeObj::ImpSetTailPoint(bool bTail1, const Point& rPt)
 /*N*/ {
 /*N*/   USHORT nPtAnz=pEdgeTrack->GetPointCount();
 /*N*/   if (nPtAnz==0) {
@@ -650,11 +643,11 @@ namespace binfilter {
 /*N*/   long dyo=rPt.Y()-aR.Top();
 /*N*/   long dxr=aR.Right()-rPt.X();
 /*N*/   long dyu=aR.Bottom()-rPt.Y();
-/*N*/   FASTBOOL bxMitt=Abs(dxl-dxr)<2;
-/*N*/   FASTBOOL byMitt=Abs(dyo-dyu)<2;
+/*N*/   bool bxMitt=Abs(dxl-dxr)<2;
+/*N*/   bool byMitt=Abs(dyo-dyu)<2;
 /*N*/   long dx=Min(dxl,dxr);
 /*N*/   long dy=Min(dyo,dyu);
-/*N*/   FASTBOOL bDiag=Abs(dx-dy)<2;
+/*N*/   bool bDiag=Abs(dx-dy)<2;
 /*N*/   if (bxMitt && byMitt) return SDRESC_ALL; // In der Mitte
 /*N*/   if (bDiag) {  // diagonal
 /*?*/       USHORT nRet=0;
@@ -685,12 +678,10 @@ namespace binfilter {
 /*N*/ {
 /*N*/   XPolygon aXP;
 /*N*/   aXP.Insert(XPOLY_APPEND,rStPt,XPOLY_NORMAL);
-/*N*/   FASTBOOL bRts=nEscAngle==0;
-/*N*/   FASTBOOL bObn=nEscAngle==9000;
-/*N*/   FASTBOOL bLks=nEscAngle==18000;
-/*N*/   FASTBOOL bUnt=nEscAngle==27000;
-/*N*/   FASTBOOL bHor=bLks || bRts;
-/*N*/   FASTBOOL bVer=bObn || bUnt;
+/*N*/   bool bRts=nEscAngle==0;
+/*N*/   bool bObn=nEscAngle==9000;
+/*N*/   bool bLks=nEscAngle==18000;
+/*N*/   bool bUnt=nEscAngle==27000;
 /*N*/
 /*N*/   Point aP1(rStPt); // erstmal den Pflichtabstand
 /*N*/   if (bLks) aP1.X()=rRect.Left();
@@ -698,7 +689,7 @@ namespace binfilter {
 /*N*/   if (bObn) aP1.Y()=rRect.Top();
 /*N*/   if (bUnt) aP1.Y()=rRect.Bottom();
 /*N*/
-/*N*/   FASTBOOL bFinish=FALSE;
+/*N*/   bool bFinish=FALSE;
 /*N*/   if (!bFinish) {
 /*N*/       Point aP2(aP1); // Und nun den Pflichtabstand ggf. bis auf Meetinghoehe erweitern
 /*N*/       if (bLks && rMeeting.X()<=aP2.X()) aP2.X()=rMeeting.X();
@@ -739,7 +730,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if (aXP.GetPointCount()>4) {
-/*N*/       DBG_ERROR("SdrEdgeObj::ImpCalcObjToCenter(): Polygon hat mehr als 4 Punkte!");
+/*N*/       OSL_FAIL("SdrEdgeObj::ImpCalcObjToCenter(): Polygon hat mehr als 4 Punkte!");
 /*N*/   }
 /*N*/ #endif
 /*N*/   return aXP;
@@ -766,8 +757,8 @@ namespace binfilter {
 /*?*/           aPt2=aOutRect.BottomRight();
 /*?*/       }
 /*N*/   }
-/*N*/   FASTBOOL bCon1=rCon1.pObj!=NULL && rCon1.pObj->GetPage()==pPage && rCon1.pObj->IsInserted();
-/*N*/   FASTBOOL bCon2=rCon2.pObj!=NULL && rCon2.pObj->GetPage()==pPage && rCon2.pObj->IsInserted();
+/*N*/   bool bCon1=rCon1.pObj!=NULL && rCon1.pObj->GetPage()==pPage && rCon1.pObj->IsInserted();
+/*N*/   bool bCon2=rCon2.pObj!=NULL && rCon2.pObj->GetPage()==pPage && rCon2.pObj->IsInserted();
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/
 /*N*/   if (bCon1) {
@@ -815,8 +806,8 @@ namespace binfilter {
 /*N*/   XPolygon aBestXP;
 /*N*/   ULONG nBestQual=0xFFFFFFFF;
 /*N*/   SdrEdgeInfoRec aBestInfo;
-/*N*/   FASTBOOL bAuto1=bCon1 && rCon1.bBestVertex;
-/*N*/   FASTBOOL bAuto2=bCon2 && rCon2.bBestVertex;
+/*N*/   bool bAuto1=bCon1 && rCon1.bBestVertex;
+/*N*/   bool bAuto2=bCon2 && rCon2.bBestVertex;
 /*N*/   if (bAuto1) rCon1.bAutoVertex=TRUE;
 /*N*/   if (bAuto2) rCon2.bAutoVertex=TRUE;
 /*N*/   USHORT nBestAuto1=0;
@@ -869,19 +860,19 @@ namespace binfilter {
 /*N*/   ULONG* pnQuality, SdrEdgeInfoRec* pInfo) const
 /*N*/ {
 /*N*/   SdrEdgeKind eKind=((SdrEdgeKindItem&)(GetItem(SDRATTR_EDGEKIND))).GetValue();
-/*N*/   FASTBOOL bRts1=nAngle1==0;
-/*N*/   FASTBOOL bObn1=nAngle1==9000;
-/*N*/   FASTBOOL bLks1=nAngle1==18000;
-/*N*/   FASTBOOL bUnt1=nAngle1==27000;
-/*N*/   FASTBOOL bHor1=bLks1 || bRts1;
-/*N*/   FASTBOOL bVer1=bObn1 || bUnt1;
-/*N*/   FASTBOOL bRts2=nAngle2==0;
-/*N*/   FASTBOOL bObn2=nAngle2==9000;
-/*N*/   FASTBOOL bLks2=nAngle2==18000;
-/*N*/   FASTBOOL bUnt2=nAngle2==27000;
-/*N*/   FASTBOOL bHor2=bLks2 || bRts2;
-/*N*/   FASTBOOL bVer2=bObn2 || bUnt2;
-/*N*/   FASTBOOL bInfo=pInfo!=NULL;
+/*N*/   bool bRts1=nAngle1==0;
+/*N*/   bool bObn1=nAngle1==9000;
+/*N*/   bool bLks1=nAngle1==18000;
+/*N*/   bool bUnt1=nAngle1==27000;
+/*N*/   bool bHor1=bLks1 || bRts1;
+/*N*/   bool bVer1=bObn1 || bUnt1;
+/*N*/   bool bRts2=nAngle2==0;
+/*N*/   bool bObn2=nAngle2==9000;
+/*N*/   bool bLks2=nAngle2==18000;
+/*N*/   bool bUnt2=nAngle2==27000;
+/*N*/   bool bHor2=bLks2 || bRts2;
+/*N*/   bool bVer2=bObn2 || bUnt2;
+/*N*/   bool bInfo=pInfo!=NULL;
 /*N*/   if (bInfo) {
 /*N*/       pInfo->cOrthoForm=0;
 /*N*/       pInfo->nAngle1=nAngle1;
@@ -897,8 +888,6 @@ namespace binfilter {
 /*N*/   Rectangle aBewareRect1(rBewareRect1);
 /*N*/   Rectangle aBewareRect2(rBewareRect2);
 /*N*/   Point aMeeting((aPt1.X()+aPt2.X()+1)/2,(aPt1.Y()+aPt2.Y()+1)/2);
-/*N*/   FASTBOOL bMeetingXMid=TRUE;
-/*N*/   FASTBOOL bMeetingYMid=TRUE;
 /*N*/   if (eKind==SDREDGE_ONELINE) {
 /*?*/       XPolygon aXP(2);
 /*?*/       aXP[0]=rPt1;
@@ -927,8 +916,6 @@ namespace binfilter {
 /*?*/               nQ+=Abs(aXP[3].X()-aXP[2].X())+Abs(aXP[3].Y()-aXP[2].Y());
 /*?*/           *pnQuality=nQ;
 /*?*/       }
-/*?*/       USHORT n1=1;
-/*?*/       USHORT n2=1;
 /*?*/       if (bInfo) {
 /*?*/           pInfo->nObj1Lines=2;
 /*?*/           pInfo->nObj2Lines=2;
@@ -946,7 +933,6 @@ namespace binfilter {
 /*?*/       return aXP;
 /*N*/   }
 /*N*/   USHORT nIntersections=0;
-/*N*/   FASTBOOL bForceMeeting=FALSE; // Muss die Linie durch den MeetingPoint laufen?
 /*N*/   {
 /*N*/       Point aC1(aBewareRect1.Center());
 /*N*/       Point aC2(aBewareRect2.Center());
@@ -984,9 +970,7 @@ namespace binfilter {
 /*N*/       long nXMax=Max(aBewareRect1.Right(),aBewareRect2.Right());
 /*N*/       long nYMin=Min(aBewareRect1.Top(),aBewareRect2.Top());
 /*N*/       long nYMax=Max(aBewareRect1.Bottom(),aBewareRect2.Bottom());
-/*N*/       FASTBOOL bBoundOverlap=aBoundRect1.Right()>aBoundRect2.Left() && aBoundRect1.Left()<aBoundRect2.Right() &&
-/*N*/                              aBoundRect1.Bottom()>aBoundRect2.Top() && aBoundRect1.Top()<aBoundRect2.Bottom();
-/*N*/       FASTBOOL bBewareOverlap=aBewareRect1.Right()>aBewareRect2.Left() && aBewareRect1.Left()<aBewareRect2.Right() &&
+/*N*/       bool bBewareOverlap=aBewareRect1.Right()>aBewareRect2.Left() && aBewareRect1.Left()<aBewareRect2.Right() &&
 /*N*/                               aBewareRect1.Bottom()>aBewareRect2.Top() && aBewareRect1.Top()<aBewareRect2.Bottom();
 /*N*/       unsigned nMainCase=3;
 /*N*/       if (nAngle1==nAngle2) nMainCase=1;
@@ -995,29 +979,24 @@ namespace binfilter {
 /*N*/           if (bVer1) aMeeting.X()=(aPt1.X()+aPt2.X()+1)/2; // ist hier besser, als der
 /*N*/           if (bHor1) aMeeting.Y()=(aPt1.Y()+aPt2.Y()+1)/2; // Mittelpunkt des Freiraums
 /*N*/           // bX1Ok bedeutet, dass die Vertikale, die aus Obj1 austritt, keinen Konflikt mit Obj2 bildet, ...
-/*N*/           FASTBOOL bX1Ok=aPt1.X()<=aBewareRect2.Left() || aPt1.X()>=aBewareRect2.Right();
-/*N*/           FASTBOOL bX2Ok=aPt2.X()<=aBewareRect1.Left() || aPt2.X()>=aBewareRect1.Right();
-/*N*/           FASTBOOL bY1Ok=aPt1.Y()<=aBewareRect2.Top() || aPt1.Y()>=aBewareRect2.Bottom();
-/*N*/           FASTBOOL bY2Ok=aPt2.Y()<=aBewareRect1.Top() || aPt2.Y()>=aBewareRect1.Bottom();
+/*N*/           bool bX1Ok=aPt1.X()<=aBewareRect2.Left() || aPt1.X()>=aBewareRect2.Right();
+/*N*/           bool bX2Ok=aPt2.X()<=aBewareRect1.Left() || aPt2.X()>=aBewareRect1.Right();
+/*N*/           bool bY1Ok=aPt1.Y()<=aBewareRect2.Top() || aPt1.Y()>=aBewareRect2.Bottom();
+/*N*/           bool bY2Ok=aPt2.Y()<=aBewareRect1.Top() || aPt2.Y()>=aBewareRect1.Bottom();
 /*N*/           if (bLks1 && (bY1Ok || aBewareRect1.Left()<aBewareRect2.Right()) && (bY2Ok || aBewareRect2.Left()<aBewareRect1.Right())) {
 /*N*/               aMeeting.X()=nXMin;
-/*N*/               bMeetingXMid=FALSE;
 /*N*/           }
 /*N*/           if (bRts1 && (bY1Ok || aBewareRect1.Right()>aBewareRect2.Left()) && (bY2Ok || aBewareRect2.Right()>aBewareRect1.Left())) {
 /*N*/               aMeeting.X()=nXMax;
-/*N*/               bMeetingXMid=FALSE;
 /*N*/           }
 /*N*/           if (bObn1 && (bX1Ok || aBewareRect1.Top()<aBewareRect2.Bottom()) && (bX2Ok || aBewareRect2.Top()<aBewareRect1.Bottom())) {
 /*N*/               aMeeting.Y()=nYMin;
-/*N*/               bMeetingYMid=FALSE;
 /*N*/           }
 /*N*/           if (bUnt1 && (bX1Ok || aBewareRect1.Bottom()>aBewareRect2.Top()) && (bX2Ok || aBewareRect2.Bottom()>aBewareRect1.Top())) {
 /*N*/               aMeeting.Y()=nYMax;
-/*N*/               bMeetingYMid=FALSE;
 /*N*/           }
 /*N*/       } else if (nMainCase==2) {
 /*N*/           // Fall 2:
-/*N*/           bForceMeeting=TRUE;
 /*N*/           if (bHor1) { // beide waagerecht
 /*N*/               // 9 Moeglichkeiten:                   ???
 /*N*/               //   2.1 Gegenueber, Ueberschneidung   ???
@@ -1057,8 +1036,8 @@ namespace binfilter {
 /*N*/                       // Ueberschneidung der BewareRects ohne Ueberschneidung der
 /*N*/                       // Boundrects wenn die Linienaustritte sonst das BewareRect
 /*N*/                       // des jeweils anderen Objekts verletzen wuerden.
-/*N*/                       FASTBOOL bCase29Direct=FALSE;
-/*N*/                       FASTBOOL bCase29=aBewR1.Right()>aBewR2.Left();
+/*N*/                       bool bCase29Direct=FALSE;
+/*N*/                       bool bCase29=aBewR1.Right()>aBewR2.Left();
 /*N*/                       if (aBndR1.Right()<=aBndR2.Left()) { // Fall 2.9 und keine Boundrectueberschneidung
 /*?*/                           if ((aPt1.Y()>aBewareRect2.Top() && aPt1.Y()<aBewareRect2.Bottom()) ||
 /*?*/                               (aPt2.Y()>aBewareRect1.Top() && aPt2.Y()<aBewareRect1.Bottom())) {
@@ -1066,22 +1045,20 @@ namespace binfilter {
 /*N*/                           }
 /*N*/                       }
 /*N*/                       if (!bCase29Direct) {
-/*N*/                           FASTBOOL bObenLang=Abs(nYMin-aMeeting.Y())<=Abs(nYMax-aMeeting.Y());
+/*N*/                           bool bObenLang=Abs(nYMin-aMeeting.Y())<=Abs(nYMax-aMeeting.Y());
 /*N*/                           if (bObenLang) {
 /*N*/                               aMeeting.Y()=nYMin;
 /*N*/                           } else {
 /*?*/                               aMeeting.Y()=nYMax;
 /*N*/                           }
-/*N*/                           bMeetingYMid=FALSE;
 /*N*/                           if (bCase29) {
 /*N*/                               // und nun noch dafuer sorgen, dass das
 /*N*/                               // umzingelte Obj nicht durchquert wird
-/*N*/                               if (aBewR1.Center().Y()<aBewR2.Center().Y() != bObenLang) {
+/*N*/                               if ((aBewR1.Center().Y()<aBewR2.Center().Y()) != bObenLang) {
 /*N*/                                   aMeeting.X()=aBewR2.Right();
 /*N*/                               } else {
 /*N*/                                   aMeeting.X()=aBewR1.Left();
 /*N*/                               }
-/*N*/                               bMeetingXMid=FALSE;
 /*N*/                           }
 /*N*/                       } else {
 /*N*/                           // Direkte Verbindung (3-Linien Z-Verbindung), da
@@ -1117,8 +1094,8 @@ namespace binfilter {
 /*N*/                       // Ueberschneidung der BewareRects ohne Ueberschneidung der
 /*N*/                       // Boundrects wenn die Linienaustritte sonst das BewareRect
 /*N*/                       // des jeweils anderen Objekts verletzen wuerden.
-/*N*/                       FASTBOOL bCase29Direct=FALSE;
-/*N*/                       FASTBOOL bCase29=aBewR1.Bottom()>aBewR2.Top();
+/*N*/                       bool bCase29Direct=FALSE;
+/*N*/                       bool bCase29=aBewR1.Bottom()>aBewR2.Top();
 /*N*/                       if (aBndR1.Bottom()<=aBndR2.Top()) { // Fall 2.9 und keine Boundrectueberschneidung
 /*N*/                           if ((aPt1.X()>aBewareRect2.Left() && aPt1.X()<aBewareRect2.Right()) ||
 /*N*/                               (aPt2.X()>aBewareRect1.Left() && aPt2.X()<aBewareRect1.Right())) {
@@ -1126,22 +1103,20 @@ namespace binfilter {
 /*N*/                           }
 /*N*/                       }
 /*N*/                       if (!bCase29Direct) {
-/*N*/                           FASTBOOL bLinksLang=Abs(nXMin-aMeeting.X())<=Abs(nXMax-aMeeting.X());
+/*N*/                           bool bLinksLang=Abs(nXMin-aMeeting.X())<=Abs(nXMax-aMeeting.X());
 /*N*/                           if (bLinksLang) {
 /*N*/                               aMeeting.X()=nXMin;
 /*N*/                           } else {
 /*N*/                               aMeeting.X()=nXMax;
 /*N*/                           }
-/*N*/                           bMeetingXMid=FALSE;
 /*N*/                           if (bCase29) {
 /*N*/                               // und nun noch dafuer sorgen, dass das
 /*N*/                               // umzingelte Obj nicht durchquert wird
-/*N*/                               if (aBewR1.Center().X()<aBewR2.Center().X() != bLinksLang) {
+/*N*/                               if ((aBewR1.Center().X()<aBewR2.Center().X()) != bLinksLang) {
 /*N*/                                   aMeeting.Y()=aBewR2.Bottom();
 /*N*/                               } else {
 /*N*/                                   aMeeting.Y()=aBewR1.Top();
 /*N*/                               }
-/*N*/                               bMeetingYMid=FALSE;
 /*N*/                           }
 /*N*/                       } else {
 /*N*/                           // Direkte Verbindung (3-Linien Z-Verbindung), da
@@ -1212,9 +1187,6 @@ namespace binfilter {
 /*N*/               (((bRts2 && aTmpR2.Right ()<=aPt1.X()) || (bLks2 && aTmpR2.Left()>=aPt1.X())) &&
 /*N*/                ((bUnt1 && aTmpR1.Bottom()<=aPt2.Y()) || (bObn1 && aTmpR1.Top ()>=aPt2.Y())))) {
 /*N*/               // Fall 3.2 trifft zu: Verbindung mit lediglich 2 Linien
-/*N*/               bForceMeeting=TRUE;
-/*N*/               bMeetingXMid=FALSE;
-/*N*/               bMeetingYMid=FALSE;
 /*N*/               if (bHor1) {
 /*N*/                   aMeeting.X()=aPt2.X();
 /*N*/                   aMeeting.Y()=aPt1.Y();
@@ -1234,11 +1206,10 @@ namespace binfilter {
 /*N*/                       ((bUnt1 && aBewareRect1.Bottom()>aBewareRect2.Top   ()) ||
 /*N*/                        (bObn1 && aBewareRect1.Top   ()<aBewareRect2.Bottom())))) {
 /*N*/               // Fall 3.3
-/*N*/               bForceMeeting=TRUE;
-/*N*/               if (bRts1 || bRts2) { aMeeting.X()=nXMax; bMeetingXMid=FALSE; }
-/*N*/               if (bLks1 || bLks2) { aMeeting.X()=nXMin; bMeetingXMid=FALSE; }
-/*N*/               if (bUnt1 || bUnt2) { aMeeting.Y()=nYMax; bMeetingYMid=FALSE; }
-/*N*/               if (bObn1 || bObn2) { aMeeting.Y()=nYMin; bMeetingYMid=FALSE; }
+/*N*/               if (bRts1 || bRts2) { aMeeting.X()=nXMax; }
+/*N*/               if (bLks1 || bLks2) { aMeeting.X()=nXMin; }
+/*N*/               if (bUnt1 || bUnt2) { aMeeting.Y()=nYMax; }
+/*N*/               if (bObn1 || bObn2) { aMeeting.Y()=nYMin; }
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -1253,15 +1224,13 @@ namespace binfilter {
 /*N*/   }
 /*N*/   Point aEP1(aXP1[nXP1Anz-1]);
 /*N*/   Point aEP2(aXP2[nXP2Anz-1]);
-/*N*/   FASTBOOL bInsMeetingPoint=aEP1.X()!=aEP2.X() && aEP1.Y()!=aEP2.Y();
-/*N*/   FASTBOOL bHorzE1=aEP1.Y()==aXP1[nXP1Anz-2].Y(); // letzte Linie von XP1 horizontal?
-/*N*/   FASTBOOL bHorzE2=aEP2.Y()==aXP2[nXP2Anz-2].Y(); // letzte Linie von XP2 horizontal?
-/*N*/   if (aEP1==aEP2 && (bHorzE1 && bHorzE2 && aEP1.Y()==aEP2.Y()) || (!bHorzE1 && !bHorzE2 && aEP1.X()==aEP2.X())) {
+/*N*/   bool bInsMeetingPoint=aEP1.X()!=aEP2.X() && aEP1.Y()!=aEP2.Y();
+/*N*/   bool bHorzE1=aEP1.Y()==aXP1[nXP1Anz-2].Y(); // letzte Linie von XP1 horizontal?
+/*N*/   bool bHorzE2=aEP2.Y()==aXP2[nXP2Anz-2].Y(); // letzte Linie von XP2 horizontal?
+/*N*/   if (aEP1==aEP2 && ((bHorzE1 && bHorzE2 && aEP1.Y()==aEP2.Y()) || (!bHorzE1 && !bHorzE2 && aEP1.X()==aEP2.X()))) {
 /*N*/       // Sonderbehandlung fuer 'I'-Verbinder
 /*N*/       nXP1Anz--; aXP1.Remove(nXP1Anz,1);
 /*N*/       nXP2Anz--; aXP2.Remove(nXP2Anz,1);
-/*N*/       bMeetingXMid=FALSE;
-/*N*/       bMeetingYMid=FALSE;
 /*N*/   }
 /*N*/   if (bInsMeetingPoint) {
 /*N*/       aXP1.Insert(XPOLY_APPEND,aMeeting,XPOLY_NORMAL);
@@ -1301,8 +1270,6 @@ namespace binfilter {
 /*N*/       else if (nPntAnz==4) { // Z oder U
 /*N*/           if (nAngle1==nAngle2) cForm='U';
 /*N*/           else cForm='Z';
-/*N*/       } else if (nPntAnz==4) { // ?? ??
-/*N*/           // ...                 -?    -?
 /*N*/       } else if (nPntAnz==6) { // S oder C oder ...
 /*N*/           if (nAngle1!=nAngle2) {
 /*N*/               // Fuer Typ S hat Linie2 dieselbe Richtung wie Linie4.
@@ -1312,10 +1279,10 @@ namespace binfilter {
 /*N*/               Point aP3(aXP1[3]);
 /*N*/               Point aP4(aXP1[4]);
 /*N*/               if (aP1.Y()==aP2.Y()) { // beide Linien Horz
-/*N*/                   if (aP1.X()<aP2.X()==aP3.X()<aP4.X()) cForm='S';
+/*N*/                   if ((aP1.X()<aP2.X())==(aP3.X()<aP4.X())) cForm='S';
 /*N*/                   else cForm='C';
 /*N*/               } else { // sonst beide Linien Vert
-/*N*/                   if (aP1.Y()<aP2.Y()==aP3.Y()<aP4.Y()) cForm='S';
+/*N*/                   if ((aP1.Y()<aP2.Y())==(aP3.Y()<aP4.Y())) cForm='S';
 /*N*/                   else cForm='C';
 /*N*/               }
 /*N*/           } else cForm='4'; // sonst der 3. Fall mit 5 Linien
@@ -1341,14 +1308,14 @@ namespace binfilter {
 /*N*/   if (pnQuality!=NULL) {
 /*N*/       ULONG nQual=0;
 /*N*/       ULONG nQual0=nQual; // Ueberlaeufe vorbeugen
-/*N*/       FASTBOOL bOverflow=FALSE;
+/*N*/       bool bOverflow=FALSE;
 /*N*/       Point aPt0(aXP1[0]);
 /*N*/       for (USHORT nPntNum=1; nPntNum<nPntAnz; nPntNum++) {
-/*N*/           Point aPt1(aXP1[nPntNum]);
-/*N*/           nQual+=Abs(aPt1.X()-aPt0.X())+Abs(aPt1.Y()-aPt0.Y());
+/*N*/           Point aLclPt1(aXP1[nPntNum]);
+/*N*/           nQual+=Abs(aLclPt1.X()-aPt0.X())+Abs(aLclPt1.Y()-aPt0.Y());
 /*N*/           if (nQual<nQual0) bOverflow=TRUE;
 /*N*/           nQual0=nQual;
-/*N*/           aPt0=aPt1;
+/*N*/           aPt0=aLclPt1;
 /*N*/       }
 /*N*/
 /*N*/       USHORT nTmp=nPntAnz;
@@ -1390,11 +1357,11 @@ namespace binfilter {
 /*N*/       aBewareRect2=rBewareRect2;
 /*N*/
 /*N*/       for (USHORT i=0; i<nPntAnz; i++) {
-/*N*/           Point aPt1(aXP1[i]);
-/*N*/           FASTBOOL b1=aPt1.X()>aBewareRect1.Left() && aPt1.X()<aBewareRect1.Right() &&
-/*N*/                       aPt1.Y()>aBewareRect1.Top() && aPt1.Y()<aBewareRect1.Bottom();
-/*N*/           FASTBOOL b2=aPt1.X()>aBewareRect2.Left() && aPt1.X()<aBewareRect2.Right() &&
-/*N*/                       aPt1.Y()>aBewareRect2.Top() && aPt1.Y()<aBewareRect2.Bottom();
+/*N*/           Point aLclPt1(aXP1[i]);
+/*N*/           bool b1=aLclPt1.X()>aBewareRect1.Left() && aLclPt1.X()<aBewareRect1.Right() &&
+/*N*/                       aLclPt1.Y()>aBewareRect1.Top() && aLclPt1.Y()<aBewareRect1.Bottom();
+/*N*/           bool b2=aLclPt1.X()>aBewareRect2.Left() && aLclPt1.X()<aBewareRect2.Right() &&
+/*N*/                       aLclPt1.Y()>aBewareRect2.Top() && aLclPt1.Y()<aBewareRect2.Bottom();
 /*N*/           USHORT nInt0=nIntersections;
 /*N*/           if (i==0 || i==nPntAnz-1) {
 /*N*/               if (b1 && b2) nIntersections++;
@@ -1404,23 +1371,23 @@ namespace binfilter {
 /*N*/           }
 /*N*/           // und nun noch auf Ueberschneidungen checken
 /*N*/           if (i>0 && nInt0==nIntersections) {
-/*N*/               if (aPt0.Y()==aPt1.Y()) { // Horizontale Linie
+/*N*/               if (aPt0.Y()==aLclPt1.Y()) { // Horizontale Linie
 /*N*/                   if (aPt0.Y()>aBewareRect1.Top() && aPt0.Y()<aBewareRect1.Bottom() &&
-/*N*/                       ((aPt0.X()<=aBewareRect1.Left() && aPt1.X()>=aBewareRect1.Right()) ||
-/*N*/                        (aPt1.X()<=aBewareRect1.Left() && aPt0.X()>=aBewareRect1.Right()))) nIntersections++;
+/*N*/                       ((aPt0.X()<=aBewareRect1.Left() && aLclPt1.X()>=aBewareRect1.Right()) ||
+/*N*/                        (aLclPt1.X()<=aBewareRect1.Left() && aPt0.X()>=aBewareRect1.Right()))) nIntersections++;
 /*N*/                   if (aPt0.Y()>aBewareRect2.Top() && aPt0.Y()<aBewareRect2.Bottom() &&
-/*N*/                       ((aPt0.X()<=aBewareRect2.Left() && aPt1.X()>=aBewareRect2.Right()) ||
-/*N*/                        (aPt1.X()<=aBewareRect2.Left() && aPt0.X()>=aBewareRect2.Right()))) nIntersections++;
+/*N*/                       ((aPt0.X()<=aBewareRect2.Left() && aLclPt1.X()>=aBewareRect2.Right()) ||
+/*N*/                        (aLclPt1.X()<=aBewareRect2.Left() && aPt0.X()>=aBewareRect2.Right()))) nIntersections++;
 /*N*/               } else { // Vertikale Linie
 /*N*/                   if (aPt0.X()>aBewareRect1.Left() && aPt0.X()<aBewareRect1.Right() &&
-/*N*/                       ((aPt0.Y()<=aBewareRect1.Top() && aPt1.Y()>=aBewareRect1.Bottom()) ||
-/*N*/                        (aPt1.Y()<=aBewareRect1.Top() && aPt0.Y()>=aBewareRect1.Bottom()))) nIntersections++;
+/*N*/                       ((aPt0.Y()<=aBewareRect1.Top() && aLclPt1.Y()>=aBewareRect1.Bottom()) ||
+/*N*/                        (aLclPt1.Y()<=aBewareRect1.Top() && aPt0.Y()>=aBewareRect1.Bottom()))) nIntersections++;
 /*N*/                   if (aPt0.X()>aBewareRect2.Left() && aPt0.X()<aBewareRect2.Right() &&
-/*N*/                       ((aPt0.Y()<=aBewareRect2.Top() && aPt1.Y()>=aBewareRect2.Bottom()) ||
-/*N*/                        (aPt1.Y()<=aBewareRect2.Top() && aPt0.Y()>=aBewareRect2.Bottom()))) nIntersections++;
+/*N*/                       ((aPt0.Y()<=aBewareRect2.Top() && aLclPt1.Y()>=aBewareRect2.Bottom()) ||
+/*N*/                        (aLclPt1.Y()<=aBewareRect2.Top() && aPt0.Y()>=aBewareRect2.Bottom()))) nIntersections++;
 /*N*/               }
 /*N*/           }
-/*N*/           aPt0=aPt1;
+/*N*/           aPt0=aLclPt1;
 /*N*/       }
 /*N*/       if (nPntAnz<=1) nIntersections++;
 /*N*/       nQual0=nQual;
@@ -1520,27 +1487,27 @@ namespace binfilter {
 /*?*/               // Vor und hinter dem Mittelpunkt jeweils
 /*?*/               // noch einen Kontrollpunkt einfuegen
 /*?*/               Point aCenter(aXP1[2]);
-/*?*/               long dx1=aCenter.X()-aXP1[1].X();
-/*?*/               long dy1=aCenter.Y()-aXP1[1].Y();
-/*?*/               long dx2=aCenter.X()-aXP1[3].X();
-/*?*/               long dy2=aCenter.Y()-aXP1[3].Y();
+/*?*/               long lcldx1=aCenter.X()-aXP1[1].X();
+/*?*/               long lcldy1=aCenter.Y()-aXP1[1].Y();
+/*?*/               long lcldx2=aCenter.X()-aXP1[3].X();
+/*?*/               long lcldy2=aCenter.Y()-aXP1[3].Y();
 /*?*/               aXP1.Insert(2,aCenter,XPOLY_CONTROL);
 /*?*/               aXP1.SetFlags(3,XPOLY_SYMMTR);
 /*?*/               aXP1.Insert(4,aCenter,XPOLY_CONTROL);
-/*?*/               aXP1[2].X()-=dx1/2;
-/*?*/               aXP1[2].Y()-=dy1/2;
-/*?*/               aXP1[3].X()-=(dx1+dx2)/4;
-/*?*/               aXP1[3].Y()-=(dy1+dy2)/4;
-/*?*/               aXP1[4].X()-=dx2/2;
-/*?*/               aXP1[4].Y()-=dy2/2;
+/*?*/               aXP1[2].X()-=lcldx1/2;
+/*?*/               aXP1[2].Y()-=lcldy1/2;
+/*?*/               aXP1[3].X()-=(lcldx1+lcldx2)/4;
+/*?*/               aXP1[3].Y()-=(lcldy1+lcldy2)/4;
+/*?*/               aXP1[4].X()-=lcldx2/2;
+/*?*/               aXP1[4].Y()-=lcldy2/2;
 /*?*/           }
 /*?*/           if (nPntAnz==6) {
-/*?*/               Point aPt1(aXP1[2]);
-/*?*/               Point aPt2(aXP1[3]);
-/*?*/               aXP1.Insert(2,aPt1,XPOLY_CONTROL);
-/*?*/               aXP1.Insert(5,aPt2,XPOLY_CONTROL);
-/*?*/               long dx=aPt1.X()-aPt2.X();
-/*?*/               long dy=aPt1.Y()-aPt2.Y();
+/*?*/               Point aLclPt1(aXP1[2]);
+/*?*/               Point aLclPt2(aXP1[3]);
+/*?*/               aXP1.Insert(2,aLclPt1,XPOLY_CONTROL);
+/*?*/               aXP1.Insert(5,aLclPt2,XPOLY_CONTROL);
+/*?*/               long dx=aLclPt1.X()-aLclPt2.X();
+/*?*/               long dy=aLclPt1.Y()-aLclPt2.Y();
 /*?*/               aXP1[3].X()-=dx/2;
 /*?*/               aXP1[3].Y()-=dy/2;
 /*?*/               aXP1.SetFlags(3,XPOLY_SYMMTR);
@@ -1564,12 +1531,12 @@ Mit 2 Linien (Typ 'L'): -?
 Mit 3 Linien (Typ 'U'):  -? (Typ 'Z'):  ?
                          -?            -?
 Mit 4 Linien: 1 ist nicht plausibel, 3 ist=2 (90deg Drehung). Verbleibt 2,4
-     ?? ڿ  �  ڿ                               ڿ  ??
+     ?? ڿ  ?  ڿ                               ڿ  ??
     -?  -?  -? -?                             -?   -?
 Mit 5 Linien: nicht plausibel sind 1,2,4,5. 7 ist identisch mit 3 (Richtungsumkehr)
               Bleibt also 3,6 und 8.              '4'  'S'  'C'
        ?   ?            -?  ?  ??                 ?
-     ?? ?? ??  ??  �  � -????        ?? �  ??
+     ?? ?? ??  ??  ?  ? -????        ?? ?  ??
     -?  -?  -?? -??  -? -? --???       -?? -? ??
 Insgesamt sind also 9 Grundtypen zu unterscheiden die den 400 Konstellationen
 aus Objektposition und Austrittswinkeln zuzuordnen sind.
@@ -1587,14 +1554,14 @@ je Objekt variiert von 0-3:
 'C':  n  0-3  0-3   = 1+U+1
 */
 
-/*N*/ void __EXPORT SdrEdgeObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
+/*N*/ void SdrEdgeObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId&, const SfxHint& rHint, const TypeId&)
 /*N*/ {
 /*N*/   SfxSimpleHint* pSimple=PTR_CAST(SfxSimpleHint,&rHint);
 /*N*/   ULONG nId=pSimple==0 ? 0 : pSimple->GetId();
-/*N*/   FASTBOOL bDataChg=nId==SFX_HINT_DATACHANGED;
-/*N*/   FASTBOOL bDying=nId==SFX_HINT_DYING;
-/*N*/   FASTBOOL bObj1=aCon1.pObj!=NULL && aCon1.pObj->GetBroadcaster()==&rBC;
-/*N*/   FASTBOOL bObj2=aCon2.pObj!=NULL && aCon2.pObj->GetBroadcaster()==&rBC;
+/*N*/   bool bDataChg=nId==SFX_HINT_DATACHANGED;
+/*N*/   bool bDying=nId==SFX_HINT_DYING;
+/*N*/   bool bObj1=aCon1.pObj!=NULL && aCon1.pObj->GetBroadcaster()==&rBC;
+/*N*/   bool bObj2=aCon2.pObj!=NULL && aCon2.pObj->GetBroadcaster()==&rBC;
 /*N*/   if (bDying && (bObj1 || bObj2)) {
 /*N*/       // #35605# Dying vorher abfangen, damit AttrObj nicht
 /*N*/       // wg. vermeintlicher Vorlagenaenderung rumbroadcastet
@@ -1707,91 +1674,17 @@ je Objekt variiert von 0-3:
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
-/*N*/ void SdrEdgeObj::NbcSetPoint(const Point& rPnt, USHORT i)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrEdgeObj::NbcSetPoint(const Point&, USHORT)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   // ToDo: Umconnekten fehlt noch
 /*N*/ }
 
-
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrEdgeObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrEdgeSetItem aEdgeAttr(rSet.GetPool());
-/*N*/   aEdgeAttr.GetItemSet().Put(rSet);
-/*N*/   aEdgeAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aEdgeAttr);
-/*N*/ }
-
-/*N*/ void SdrEdgeObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrTextObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_EDGE);
-/*N*/ }
-/*N*/
-/*N*/ ////////////////////////////////////////////////////////////////////////////////////////////////////
-/*N*/
-/*N*/ void SdrEdgeObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrEdgeObj");
-/*N*/ #endif
-/*N*/
-/*N*/   {
-/*N*/       SdrDownCompat aTrackCompat(rOut,STREAM_WRITE); // ab V11 eingepackt
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aTrackCompat.SetID("SdrEdgeObj(EdgeTrack)");
-/*N*/ #endif
-/*N*/       rOut << *pEdgeTrack;
-/*N*/   }
-/*N*/
-/*N*/   aCon1.Write(rOut, this); // Die Connections haben
-/*N*/   aCon2.Write(rOut, this); // ihren eigenen Header
-/*N*/
-/*N*/   SfxItemPool* pPool = GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_EDGE));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rOut << UINT16(SFX_ITEMS_NULL);
-/*N*/   }
-/*N*/
-/*N*/   rOut << aEdgeInfo;
-/*N*/ }
-/*N*/
 /*N*/ void SdrEdgeObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;
 /*N*/   SdrTextObj::ReadData(rHead,rIn);
 /*N*/   if (rHead.GetVersion()<2) { // frueher war EdgeObj von PathObj abgeleitet
-/*N*/       DBG_ERROR("SdrEdgeObj::ReadData(): Dateiversion<2 wird nicht mehr unterstuetzt");
+/*N*/       OSL_FAIL("SdrEdgeObj::ReadData(): Dateiversion<2 wird nicht mehr unterstuetzt");
 /*N*/       rIn.SetError(SVSTREAM_WRONGVERSION); // Format-Fehler, File zu alt
 /*N*/       return;
 /*N*/   }
@@ -1819,7 +1712,7 @@ je Objekt variiert von 0-3:
 /*N*/
 /*N*/   if(aCompat.GetBytesLeft() > 0)
 /*N*/   {
-/*N*/       // ab 10-08-1996 (noch Vers 12) Items fuer Verbinder
+/*N*/       // Items fuer Verbinder
 /*N*/       SfxItemPool* pPool = GetItemPool();
 /*N*/       if(pPool)
 /*N*/       {
@@ -1837,7 +1730,7 @@ je Objekt variiert von 0-3:
 /*N*/
 /*N*/   if(aCompat.GetBytesLeft() > 0)
 /*N*/   {
-/*N*/       // ab 14-01-1997 (noch Vers 12) EdgeInfoRec
+/*N*/       // EdgeInfoRec
 /*N*/       rIn >> aEdgeInfo;
 /*N*/   }
 /*N*/ }
@@ -1850,7 +1743,7 @@ je Objekt variiert von 0-3:
 /*N*/   if (aCon1.pObj!=NULL) aCon1.pObj->AddListener(*this);
 /*N*/   if (aCon2.pObj!=NULL) aCon2.pObj->AddListener(*this);
 /*N*/
-/*N*/   // #84026# always recalculate edgetrack after load
+/*N*/   // always recalculate edgetrack after load
 /*N*/   bEdgeTrackDirty=TRUE;
 /*N*/ }
 /*N*/
@@ -1950,3 +1843,5 @@ je Objekt variiert von 0-3:
 
 // eof
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

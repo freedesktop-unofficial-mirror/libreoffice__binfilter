@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,42 +31,18 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <swtypes.hxx>
-#ifndef _CALBCK_HXX //autogen
 #include <calbck.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCOLUMNS_HPP_
 #include <com/sun/star/text/XTextColumns.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 struct SfxItemPropertyMap;
 
@@ -78,9 +55,8 @@ class SwNumRule;
 /******************************************************************************
  *
  ******************************************************************************/
-/* -----------------04.05.98 12:28-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXFootnoteProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -112,9 +88,8 @@ public:
     void            Invalidate() {pDoc = 0;}
 };
 
-/* -----------------04.05.98 12:28-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXEndnoteProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -146,9 +121,8 @@ public:
     void            Invalidate() {pDoc = 0;}
 };
 
-/* -----------------04.05.98 12:28-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXLineNumberingProperties : public cppu::WeakAggImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -180,9 +154,8 @@ public:
     void            Invalidate() {pDoc = 0;}
 };
 
-/* -----------------25.05.98 08:21-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXNumberingRules : public cppu::WeakAggImplHelper5
 <
     ::com::sun::star::container::XIndexReplace,
@@ -260,9 +233,8 @@ public:
     void    Invalidate()    {pDocShell = 0;}
     const String&           GetCreatedNumRuleName() const{return sCreatedNumRuleName; }
 };
-/*-----------------12.02.98 08:27-------------------
 
---------------------------------------------------*/
+
 class SwXChapterNumbering : public SwXNumberingRules
 {
 protected:
@@ -280,9 +252,8 @@ public:
 
 };
 
-/* -----------------27.05.98 15:44-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXTextColumns : public cppu::WeakAggImplHelper4
 <
 
@@ -292,7 +263,7 @@ class SwXTextColumns : public cppu::WeakAggImplHelper4
     ::com::sun::star::lang::XServiceInfo
 >
 {
-    sal_uInt32                  nReference;
+    sal_Int32                   nReference;
     ::com::sun::star::uno::Sequence< ::com::sun::star::text::TextColumn>    aTextColumns;
     sal_Bool                    bIsAutomaticWidth;
     sal_Int32                   nAutoDistance;
@@ -351,3 +322,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

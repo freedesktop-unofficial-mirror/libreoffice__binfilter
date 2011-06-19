@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include "swtypes.hxx"
 #include "porexp.hxx"
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
 namespace binfilter {
 
 class SwFont;
@@ -117,8 +116,8 @@ public:
 class SwHiddenPortion : public SwFldPortion
 {
 public:
-    inline SwHiddenPortion( const XubString &rExpand, SwFont *pFnt = 0 )
-         : SwFldPortion( rExpand, pFnt )
+    inline SwHiddenPortion( const XubString &rExpand, SwFont* _pFnt = 0 )
+         : SwFldPortion( rExpand, _pFnt )
         { SetLen(1); SetWhichPor( POR_HIDDEN ); }
     virtual sal_Bool GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const;
 
@@ -164,11 +163,12 @@ public:
 class SwGrfNumPortion : public SwNumberPortion
 {
 public:
-SwGrfNumPortion( SwFrm *pFrm, const SvxBrushItem* pGrfBrush,//STRIP001  SwGrfNumPortion( SwFrm *pFrm, const SvxBrushItem* pGrfBrush,
-const SwFmtVertOrient* pGrfOrient, const Size& rGrfSize,//STRIP001      const SwFmtVertOrient* pGrfOrient, const Size& rGrfSize,
-const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst ):SwNumberPortion( aEmptyStr, NULL, bLeft, bCenter, nMinDst ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001        const sal_Bool bLeft, const sal_Bool bCenter, const KSHORT nMinDst );
-void SetBase( long nLnAscent, long nLnDescent,//STRIP001    void SetBase( long nLnAscent, long nLnDescent,
-long nFlyAscent, long nFlyDescent ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         long nFlyAscent, long nFlyDescent );
+    SwGrfNumPortion( SwFrm* /*pFrm*/, const SvxBrushItem* /*pGrfBrush*/,
+                     const SwFmtVertOrient* /*pGrfOrient*/, const Size& /*rGrfSize*/,
+                     const sal_Bool bLeft1, const sal_Bool bCenter1, const KSHORT nMinDst ):SwNumberPortion( aEmptyStr, NULL, bLeft1, bCenter1, nMinDst )
+                     {DBG_BF_ASSERT(0, "STRIP");} ;
+void SetBase( long /*nLnAscent*/, long /*nLnDescent*/,
+              long /*nFlyAscent*/, long /*nFlyDescent*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
     OUTPUT_OPERATOR
 };
 
@@ -180,3 +180,5 @@ CLASSIO( SwGrfNumPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

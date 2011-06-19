@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pagefrm.hxx"
 #include "cntfrm.hxx"
 #include "pam.hxx"
 
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
 #include "pageiter.hxx"
 #include "txtfrm.hxx"
 namespace binfilter {
@@ -110,3 +107,5 @@ BOOL SwPageIter::GetPosition( SwPosition &rPos ) const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -46,6 +47,7 @@
 #include <bf_svtools/bf_prewin.h>
 #include <ddeml.h>
 #include <bf_svtools/bf_postwin.h>
+#include <bf_svtools/svdde.hxx>
 #include "ddewrap.hxx"
 
 /*
@@ -60,15 +62,8 @@ extern "C"
 
 #endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
 
 namespace binfilter
 {
@@ -106,12 +101,12 @@ public:
     static HDDEDATA CALLBACK InfCallback
            ( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );
 #else
-#if defined ( MTW ) || ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
-    static HDDEDATA CALLBACK __EXPORT CliCallback
+#if ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
+    static HDDEDATA CALLBACK CliCallback
            ( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );
-    static HDDEDATA CALLBACK __EXPORT SvrCallback
+    static HDDEDATA CALLBACK SvrCallback
            ( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );
-    static HDDEDATA CALLBACK __EXPORT InfCallback
+    static HDDEDATA CALLBACK InfCallback
            ( WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD );
 #else
     static HDDEDATA CALLBACK _export CliCallback
@@ -189,3 +184,5 @@ void ImpDeinitInstData();
 }
 
 #endif // _DDEIMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

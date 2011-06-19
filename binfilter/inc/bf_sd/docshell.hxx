@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,27 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 #include <sot/factory.hxx>
 #include <bf_so3/factory.hxx>
 
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _SDMOD_HXX
 #include "sdmod.hxx"
-#endif
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
 class SvStream;
 
 namespace binfilter {
@@ -104,10 +93,7 @@ public:
     virtual BOOL            InitNew( SvStorage * );
     virtual BOOL            Load( SvStorage * );
     virtual void            HandsOff();
-    virtual BOOL            Save();
-    virtual BOOL            SaveAs( SvStorage * pNewStor );
-    virtual BOOL            SaveAsOwnFormat( SfxMedium& rMedium );
-    virtual BOOL            SaveCompleted( SvStorage * pNewStor );
+    virtual BOOL            Save() {return false;}
     virtual void            SetVisArea(const Rectangle& rRect);
     virtual Rectangle       GetVisArea(USHORT nAspect) const;
     virtual Printer*        GetDocumentPrinter();
@@ -159,3 +145,5 @@ SV_IMPL_REF (SdDrawDocShell)
 
 } //namespace binfilter
 #endif // _SD_DOCSHELL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

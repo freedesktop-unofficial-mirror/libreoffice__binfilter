@@ -25,7 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
 PRJ=..$/..
 BFPRJ=..
 
@@ -75,8 +74,8 @@ SHL1STDLIBS+=       \
     $(CPPUHELPERLIB)	\
     $(COMPHELPERLIB)	\
     $(UCBHELPERLIB)	\
-    $(VOSLIB)		\
     $(SALLIB)		\
+    $(SALHELPERLIB)		\
     $(TOOLSLIB)		\
     $(I18NISOLANGLIB)   \
     $(UNOTOOLSLIB)  \

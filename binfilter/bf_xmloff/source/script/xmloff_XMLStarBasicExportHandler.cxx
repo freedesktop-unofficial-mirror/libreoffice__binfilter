@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSTARBASICEXPORTHANDLER_HXX
 #include "XMLStarBasicExportHandler.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 namespace binfilter {
 
 
@@ -51,10 +46,10 @@ using ::com::sun::star::beans::PropertyValue;
 
 XMLStarBasicExportHandler::XMLStarBasicExportHandler() :
     sStarBasic(RTL_CONSTASCII_USTRINGPARAM("StarBasic")),
-    sStarOffice(RTL_CONSTASCII_USTRINGPARAM("StarOffice")),
-    sApplication(RTL_CONSTASCII_USTRINGPARAM("application")),
     sLibrary(RTL_CONSTASCII_USTRINGPARAM("Library")),
-    sMacroName(RTL_CONSTASCII_USTRINGPARAM("MacroName"))
+    sMacroName(RTL_CONSTASCII_USTRINGPARAM("MacroName")),
+    sStarOffice(RTL_CONSTASCII_USTRINGPARAM("StarOffice")),
+    sApplication(RTL_CONSTASCII_USTRINGPARAM("application"))
 {
 }
 
@@ -96,3 +91,5 @@ void XMLStarBasicExportHandler::Export(
                                    bUseWhitespace, sal_False);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,55 +31,25 @@
 #pragma hdrstop
 #endif
 
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_COLLATOROPTIONS_HPP_
 #include <com/sun/star/i18n/CollatorOptions.hpp>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
 
-#ifndef _TXTFLD_HXX
 #include <txtfld.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
-#endif
-#ifndef _FMTFLD_HXX
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXMSRT_HXX
 #include <txmsrt.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
-#endif
-#ifndef _TOXWRAP_HXX
 #include <toxwrap.hxx>
-#endif
 
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
 namespace binfilter {
 
 extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, xub_StrLen nMySttPos,
@@ -165,8 +136,13 @@ SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
                                     const SwTxtTOXMark* pMark,
                                     const SwTOXInternational* pInter,
                                     const ::com::sun::star::lang::Locale* pLocale )
-    : pTxtMark( pMark ), pTOXNd( 0 ), nPos( 0 ), nType( nTyp ),
-    pTOXIntl( pInter ), bValidTxt( FALSE ), nCntPos( 0 )
+    : pTOXNd( 0 )
+    , pTxtMark( pMark )
+    , pTOXIntl( pInter )
+    , nPos( 0 )
+    , nCntPos( 0 )
+    , nType( nTyp )
+    , bValidTxt( FALSE )
 {
     if ( pLocale )
         aLocale = *pLocale;
@@ -199,7 +175,7 @@ SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
                     SwPosition aPos( *pNd );
                     const SwDoc& rDoc = *pNd->GetDoc();
 #ifdef DBG_UTIL
-                    ASSERT( GetBodyTxtNode( rDoc, aPos, *pFrm ),
+                    OSL_ENSURE( GetBodyTxtNode( rDoc, aPos, *pFrm ),
                             "wo steht der Absatz" );
 #else
                     GetBodyTxtNode( rDoc, aPos, *pFrm );
@@ -210,6 +186,8 @@ SwTOXSortTabBase::SwTOXSortTabBase( TOXSortType nTyp, const SwCntntNode* pNd,
             }
             else
                 nCntPos = n;
+            break;
+        default:
             break;
         }
     }
@@ -412,9 +390,7 @@ BOOL SwTOXSortTabBase::operator<( const SwTOXSortTabBase& rCmp )
 
 
 
-/*-- 15.09.99 14:28:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 
 SwTOXAuthority::SwTOXAuthority( const SwCntntNode& rNd,
                 SwFmtFld& rField, const SwTOXInternational& rIntl ) :
@@ -439,18 +415,14 @@ USHORT SwTOXAuthority::GetLevel() const
         nRet = 0;
     return nRet;
  }
-/*-- 15.09.99 14:28:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-void SwTOXAuthority::_GetText( String& rTxt, String& rTxtReading )
+void SwTOXAuthority::_GetText( String& rTxt, String& /*rTxtReading*/ )
 {
     //
     rTxt = m_rField.GetFld()->Expand();
 }
 
-/* -----------------21.09.99 12:50-------------------
 
- --------------------------------------------------*/
 void    SwTOXAuthority::FillText( SwTxtNode& rNd,
                         const SwIndex& rInsPos, USHORT nAuthField ) const
 {
@@ -477,18 +449,14 @@ void    SwTOXAuthority::FillText( SwTxtNode& rNd,
         sText = (pField->GetFieldText((ToxAuthorityField) nAuthField));
     rNd.Insert( sText, rInsPos );
 }
-/* -----------------14.10.99 09:35-------------------
 
- --------------------------------------------------*/
 BOOL    SwTOXAuthority::operator==( const SwTOXSortTabBase& rCmp)
 {
     return nType == rCmp.nType &&
             ((SwAuthorityField*)m_rField.GetFld())->GetHandle() ==
                 ((SwAuthorityField*)((SwTOXAuthority&)rCmp).m_rField.GetFld())->GetHandle();
 }
-/* -----------------21.10.99 09:52-------------------
 
- --------------------------------------------------*/
 BOOL    SwTOXAuthority::operator<( const SwTOXSortTabBase& rBase)
 {
     BOOL bRet = FALSE;
@@ -525,3 +493,5 @@ BOOL    SwTOXAuthority::operator<( const SwTOXSortTabBase& rBase)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

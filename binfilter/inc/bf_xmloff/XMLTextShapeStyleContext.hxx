@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX_
 #define _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #include <bf_xmloff/XMLShapeStyleContext.hxx>
-#endif
 namespace binfilter {
 
 class XMLTextShapeStyleContext : public XMLShapeStyleContext
@@ -72,3 +71,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

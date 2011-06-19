@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,55 +32,20 @@
 #endif
 
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
-
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _CNTFRM_HXX
+#include <osl/diagnose.h>
 #include <cntfrm.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
 namespace binfilter {
 
 
@@ -114,7 +80,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwBookmark *pBM;
 /*N*/   if( MARK == eMark )
-/*?*/    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001    pBM = new SwMark( *rPaM.GetPoint(), rCode, rName, rShortName );
+/*?*/    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else if( BOOKMARK == eMark )
 /*N*/   {
 /*N*/       pBM = new SwBookmark(*rPaM.GetPoint(), rCode, rName, rShortName);
@@ -151,7 +117,7 @@ namespace binfilter {
 /*N*/
 /*N*/   SwServerObject* pServObj = pBM->GetObject();
 /*N*/   if( pServObj )          // dann aus der Liste entfernen
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     GetLinkManager().RemoveServer( pServObj );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   delete pBM;
 /*N*/ }
@@ -165,7 +131,7 @@ namespace binfilter {
 
 /*N*/ USHORT SwDoc::FindBookmark( const String& rName )
 /*N*/ {
-/*N*/   ASSERT( rName.Len(), "wo ist der Name?" );
+/*N*/   OSL_ENSURE( rName.Len(), "wo ist der Name?" );
 /*N*/   for( USHORT n = pBookmarkTbl->Count(); n ; )
 /*N*/       if( rName.Equals( (*pBookmarkTbl)[ --n ]->GetName() ) )
 /*N*/           return n;
@@ -194,13 +160,13 @@ namespace binfilter {
 /*N*/{
 /*?*/   if( bBkmrk )
 /*?*/   {
-/*?*/       USHORT nCount = pBookmarkTbl->Count();
+/*?*/       pBookmarkTbl->Count();
 /*?*/       USHORT i = 0;
 /*?*/       do {
 /*?*/           if(!(*pBookmarkTbl)[i]->IsBookMark())
-/*?*/               nPos++;
+/*?*/               ++nPos;
 /*?*/
-/*?*/           i++;
+/*?*/           ++i;
 /*?*/       }
 /*?*/       while( i < nPos || !(*pBookmarkTbl)[nPos]->IsBookMark() );
 /*?*/   }
@@ -210,21 +176,21 @@ namespace binfilter {
 
     // erzeugt einen eindeutigen Namen. Der Name selbst muss vorgegeben
     // werden, es wird dann bei gleichen Namen nur durchnumeriert.
-/*N*/ void SwDoc::MakeUniqueBookmarkName( String& rNm )
+/*N*/ void SwDoc::MakeUniqueBookmarkName( String& /*rNm*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( rNm.Len(), "es sollte ein Name vorgegeben werden!" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*  */
 
 /*N*/ SaveBookmark::SaveBookmark( int eType, const SwBookmark& rBkmk,
-/*N*/                           const SwNodeIndex & rMvPos,
-/*N*/                           const SwIndex* pIdx )
+/*N*/                           const SwNodeIndex& /*rMvPos*/,
+/*N*/                           const SwIndex* /*pIdx*/ )
 /*N*/   : aName( rBkmk.GetName() ), aShortName( rBkmk.GetShortName() ),
 /*N*/   aCode( rBkmk.GetKeyCode() ), eBkmkType( (SaveBookmarkType)eType ),
 /*N*/   eOrigBkmType(rBkmk.GetType())
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nNode1 = rBkmk.GetPos().nNode.GetIndex();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -353,7 +319,6 @@ namespace binfilter {
 /*N*/   for( nCnt = 0; nCnt < rTbl.Count(); ++nCnt )
 /*N*/   {
 /*N*/       // liegt auf der Position ??
-/*N*/       int eType = BKMK_POS_NONE;
 /*N*/       SwRedline* pRedl = rTbl[ nCnt ];
 /*N*/
 /*N*/       SwPosition *pRStt = &pRedl->GetBound(TRUE),
@@ -591,7 +556,7 @@ namespace binfilter {
 /*N*/                           aSave.SetType( 0x2000 );
 /*N*/                           aSave.SetContent( pAPos->nContent.GetIndex() );
 /*N*/
-/*N*/                           ASSERT( nNode == pAPos->nNode.GetIndex(),
+/*N*/                           OSL_ENSURE( nNode == pAPos->nNode.GetIndex(),
 /*N*/                                   "_SaveCntntIdx: Wrong Node-Index" );
 /*N*/                           if( FLY_AUTO_CNTNT == rAnchor.GetAnchorId() )
 /*N*/                           {
@@ -608,7 +573,7 @@ namespace binfilter {
 /*N*/                                  pFmt != (*pDoc->GetSpzFrmFmts())[
 /*N*/                                            aSave.DecCount() ] )
 /*N*/                               ; // nothing
-/*N*/                           ASSERT( pFmt == (*pDoc->GetSpzFrmFmts())[
+/*N*/                           OSL_ENSURE( pFmt == (*pDoc->GetSpzFrmFmts())[
 /*N*/                                                   aSave.GetCount() ],
 /*N*/                                   "_SaveCntntIdx: Lost FrameFormat" );
 /*N*/                           aSave.Add( rSaveArr );
@@ -843,3 +808,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

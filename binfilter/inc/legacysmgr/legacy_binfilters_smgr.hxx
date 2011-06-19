@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 #ifndef _LEGACYBINFILTERSMGR_HXX
 #define _LEGACYBINFILTERSMGR_HXX
 
@@ -14,13 +15,11 @@ namespace legacy_binfilters
 
 extern "C"
 {
-//==================================================================================================
 void SAL_CALL legacy_component_getImplementationEnvironment(
     sal_Char const ** ppEnvTypeName, uno_Environment ** ppEnv );
-//==================================================================================================
-sal_Bool SAL_CALL legacysmgr_component_writeInfo(
-    ::com::sun::star::lang::XMultiServiceFactory * smgr, ::com::sun::star::registry::XRegistryKey * key );
 void * SAL_CALL legacysmgr_component_getFactory(
     sal_Char const * implName, ::com::sun::star::lang::XMultiServiceFactory * smgr, ::com::sun::star::registry::XRegistryKey * key );
 }
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

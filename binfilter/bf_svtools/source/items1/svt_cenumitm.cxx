@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SVTOOLS_CENUMITM_HXX
 #include <bf_svtools/cenumitm.hxx>
-#endif
 
-#ifndef _SFX_WHASSERT_HXX
 #include <whassert.hxx>
-#endif
 
 #include <comphelper/extract.hxx>
 
@@ -82,7 +75,7 @@ SfxEnumItemInterface::GetPresentation(SfxItemPresentation, SfxMapUnit,
 
 //============================================================================
 // virtual
-BOOL SfxEnumItemInterface::QueryValue(::com::sun::star::uno::Any& rVal, BYTE)
+bool SfxEnumItemInterface::QueryValue(::com::sun::star::uno::Any& rVal, BYTE)
     const
 {
     rVal <<= sal_Int32(GetEnumValue());
@@ -91,7 +84,7 @@ BOOL SfxEnumItemInterface::QueryValue(::com::sun::star::uno::Any& rVal, BYTE)
 
 //============================================================================
 // virtual
-BOOL SfxEnumItemInterface::PutValue(const ::com::sun::star::uno::Any& rVal,
+bool SfxEnumItemInterface::PutValue(const ::com::sun::star::uno::Any& rVal,
                                     BYTE)
 {
     sal_Int32 nTheValue = 0;
@@ -101,7 +94,7 @@ BOOL SfxEnumItemInterface::PutValue(const ::com::sun::star::uno::Any& rVal,
         SetEnumValue(USHORT(nTheValue));
         return true;
     }
-    DBG_ERROR("SfxEnumItemInterface::PutValue(): Wrong type");
+    OSL_FAIL("SfxEnumItemInterface::PutValue(): Wrong type");
     return false;
 }
 
@@ -175,14 +168,6 @@ TYPEINIT1(CntEnumItem, SfxEnumItemInterface)
 
 //============================================================================
 // virtual
-SvStream & CntEnumItem::Store(SvStream & rStream, USHORT) const
-{
-    rStream << m_nValue;
-    return rStream;
-}
-
-//============================================================================
-// virtual
 USHORT CntEnumItem::GetEnumValue() const
 {
     return GetValue();
@@ -245,7 +230,7 @@ SfxItemPresentation CntBoolItem::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL CntBoolItem::QueryValue(com::sun::star::uno::Any& rVal, BYTE) const
+bool CntBoolItem::QueryValue(com::sun::star::uno::Any& rVal, BYTE) const
 {
     rVal <<= sal_Bool(m_bValue);
     return true;
@@ -253,7 +238,7 @@ BOOL CntBoolItem::QueryValue(com::sun::star::uno::Any& rVal, BYTE) const
 
 //============================================================================
 // virtual
-BOOL CntBoolItem::PutValue(const com::sun::star::uno::Any& rVal, BYTE)
+bool CntBoolItem::PutValue(const com::sun::star::uno::Any& rVal, BYTE)
 {
     sal_Bool bTheValue = sal_Bool();
     if (rVal >>= bTheValue)
@@ -261,7 +246,7 @@ BOOL CntBoolItem::PutValue(const com::sun::star::uno::Any& rVal, BYTE)
         m_bValue = bTheValue;
         return true;
     }
-    DBG_ERROR("CntBoolItem::PutValue(): Wrong type");
+    OSL_FAIL("CntBoolItem::PutValue(): Wrong type");
     return false;
 }
 
@@ -270,14 +255,6 @@ BOOL CntBoolItem::PutValue(const com::sun::star::uno::Any& rVal, BYTE)
 SfxPoolItem * CntBoolItem::Create(SvStream & rStream, USHORT) const
 {
     return new CntBoolItem(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntBoolItem::Store(SvStream & rStream, USHORT) const
-{
-    rStream << m_bValue;
-    return rStream;
 }
 
 //============================================================================
@@ -305,3 +282,5 @@ UniString CntBoolItem::GetValueTextByVal(BOOL bTheValue) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

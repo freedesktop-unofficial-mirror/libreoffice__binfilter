@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,104 +33,45 @@
 
 #include <hintids.hxx>
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFOSUPPLIER_HPP_
 #include <com/sun/star/document/XDocumentInfoSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
 #include <com/sun/star/text/XTextDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLMETAI_HXX
 #include <bf_xmloff/xmlmetai.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLMETAE_HXX
 #include <bf_xmloff/xmlmetae.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _DOCSTAT_HXX
 #include "docstat.hxx"
-#endif
-#ifndef _SWDOCSH_HXX
 #include "docsh.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_PROGRESSBARHELPER_HXX
 #include <bf_xmloff/ProgressBarHelper.hxx>
-#endif
-#ifndef _XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
-// ---------------------------------------------------------------------
-
-#if 0
-class SwXMLMetaContext_Impl : public SfxXMLMetaContext
-{
-public:
-    SwXMLMetaContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
-            const OUString& rLName,
-            const Reference< document::XDocumentInfo > & rInfo ) :
-        SfxXMLMetaContext( rImport, nPrfx, rLName, rInfo )
-    {}
-
-    virtual void SetDocLanguage( LanguageType eLang );
-};
-
-void SwXMLMetaContext_Impl::SetDocLanguage( LanguageType eLang )
-{
-    SwDoc& rDoc = ((SwXMLImport&)GetImport()).GetDoc();
-
-    rDoc.SetDefault( SvxLanguageItem( eLang, RES_CHRATR_LANGUAGE ) );
-}
-#endif
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 // ---------------------------------------------------------------------
 
@@ -166,7 +108,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_META_STAT_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aMetaStatAttrTokenMap[] =
+static SvXMLTokenMapEntry aMetaStatAttrTokenMap[] =
 {
     { XML_NAMESPACE_META, XML_TABLE_COUNT,      XML_TOK_META_STAT_TABLE },
     { XML_NAMESPACE_META, XML_IMAGE_COUNT,      XML_TOK_META_STAT_IMAGE },
@@ -187,10 +129,10 @@ void SwXMLImport::SetStatisticAttributes(
 
     Reference<XUnoTunnel> xCrsrTunnel( GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                         OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
     SwDocStat aDocStat( pDoc->GetDocStat() );
 
@@ -272,13 +214,13 @@ void SwXMLExport::_ExportMeta()
         Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
         Reference < XText > xText = xTextDoc->getText();
         Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-        ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+        OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
         if( !xTextTunnel.is() )
             return;
 
         SwXText *pText = (SwXText *)xTextTunnel->getSomething(
                                             SwXText::getUnoTunnelId() );
-        ASSERT( pText, "SwXText missing" );
+        OSL_ENSURE( pText, "SwXText missing" );
         if( !pText )
             return;
 
@@ -320,3 +262,5 @@ void SwXMLExport::_ExportMeta()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,25 +32,13 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _NDARR_HXX
 #include <ndarr.hxx>
-#endif
-#ifndef _NDTYP_HXX
 #include <ndtyp.hxx>
-#endif
-#ifndef _INDEX_HXX
 #include <index.hxx>
-#endif
-#ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
-#endif
 namespace binfilter {
 class SvUShorts;
 class SwCntntFrm;
@@ -665,3 +654,5 @@ inline const SfxPoolItem& SwCntntNode::GetAttr( USHORT nWhich,
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

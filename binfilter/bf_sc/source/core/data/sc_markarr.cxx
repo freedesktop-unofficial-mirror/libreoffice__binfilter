@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -135,7 +133,7 @@ namespace binfilter {
 
 /*N*/ void ScMarkArray::SetMarkArea( USHORT nStartRow, USHORT nEndRow, BOOL bMarked )
 /*N*/ {
-/*N*/   if ((nStartRow >= 0 && nStartRow <= MAXROW) && (nEndRow >= 0 && nEndRow <= MAXROW))
+/*N*/   if ((nStartRow <= MAXROW) && (nEndRow <= MAXROW))
 /*N*/   {
 /*N*/       if ((nStartRow == 0) && (nEndRow == MAXROW))
 /*N*/       {
@@ -410,3 +408,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

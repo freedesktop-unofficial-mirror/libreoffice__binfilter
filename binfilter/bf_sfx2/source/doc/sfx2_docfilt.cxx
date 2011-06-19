@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,11 +29,10 @@
 // INCLUDE ---------------------------------------------------------------
 
 #ifdef SOLARIS
-// HACK: prevent conflict between STLPORT and Workshop headers on Solaris 8
 #include <ctime>
 #endif
 
-#include <string> // HACK: prevent conflict between STLPORT and Workshop headers
+#include <string>
 
 
 #ifdef _MSC_VER
@@ -58,17 +58,17 @@ namespace binfilter {
 /*N*/                      const String &rMimeType,
 /*N*/                      const SfxFilterContainer* pContainerP,
 /*N*/                      const String &rUsrDat ):
-/*N*/   lFormat(lFmt),
-/*N*/   nFormatType(nType),
+/*N*/   aName( rName ),
 /*N*/   aWildCard(rWildCard, ';'),
+/*N*/   lFormat(lFmt),
 /*N*/   aMacType(rMacTyp),
 /*N*/   aTypeName(rTypNm),
-/*N*/   nDocIcon(nIcon),
 /*N*/   aUserData(rUsrDat),
-/*N*/   aName( rName ),
+/*N*/   nFormatType(nType),
+/*N*/   nDocIcon(nIcon),
+/*N*/   pContainer( pContainerP ),
 /*N*/   aMimeType( rMimeType ),
-/*N*/   aFilterName( rName ),
-/*N*/   pContainer( pContainerP )
+/*N*/   aFilterName( rName )
 /*N*/ {
 /*N*/   InitMembers_Impl();
 /*N*/   pContainer = pContainerP;
@@ -135,9 +135,11 @@ namespace binfilter {
 
 /*N*/ String SfxFilter::GetFilterNameWithPrefix() const
 /*N*/ {
-/*N*/     String aName = pContainer->GetName();
-/*N*/   aName += DEFINE_CONST_UNICODE( ": " );
-/*N*/   aName += aFilterName;
-/*N*/     return aName;
+/*N*/     String aLclName = pContainer->GetName();
+/*N*/     aLclName += DEFINE_CONST_UNICODE( ": " );
+/*N*/     aLclName += aFilterName;
+/*N*/     return aLclName;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

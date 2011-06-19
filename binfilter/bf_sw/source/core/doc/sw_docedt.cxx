@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,60 +26,30 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <string.h>         // fuer strchr()
-
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>       // Strukturen zum Sichern beim Move/Delete
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
 #include "comcore.hrc"
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
 #include "editsh.hxx"
 namespace binfilter {
 
@@ -86,22 +57,10 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::linguistic2;
 using namespace ::rtl;
 using namespace ::com::sun::star::i18n;
-//using namespace ::utl;
 
 #define S2U(rString) OUString::createFromAscii(rString)
 
-
-
 SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
-
-
-
-// -----------------------------------------------------------------
-
-
-
-
-// -----------------------------------------------------------------
 
 // loesche und verschiebe alle "Fly's am Absatz", die in der SSelection
 // liegen. Steht am SPoint ein Fly, wird dieser auf den Mark verschoben.
@@ -125,7 +84,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               ? rMkNdIdx < pAPos->nNode && pAPos->nNode <= rPtNdIdx
 /*N*/               : rPtNdIdx <= pAPos->nNode && pAPos->nNode < rMkNdIdx ))
 /*N*/       {
-/*N*/           ASSERT( rAnch.GetAnchorId() != FLY_AUTO_CNTNT, "FLY-AUTO-Baustelle!" );
+/*N*/           OSL_ENSURE( rAnch.GetAnchorId() != FLY_AUTO_CNTNT, "FLY-AUTO-Baustelle!" );
 /*N*/           // nur den Anker verchieben ??
 /*N*/           if( rPtNdIdx == pAPos->nNode )
 /*N*/           {
@@ -152,17 +111,11 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/               }
 /*N*/
 /*N*/               pDoc->DelLayoutFmt( pFmt );
-/*N*/ //                i++;    // keinen auslassen
 /*N*/           }
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-// ------------------------------------------------------------------------
 
 /*N*/ _SaveRedlEndPosForRestore::_SaveRedlEndPosForRestore( const SwNodeIndex& rInsIdx )
 /*N*/   : pSavArr( 0 ), pSavIdx( 0 )
@@ -214,7 +167,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 // Der uebergebene Node steht irgendwo in der gewuenschten Section
 /*N*/ void SwDoc::DeleteSection( SwNode *pNode )
 /*N*/ {
-/*N*/   ASSERT( pNode, "Kein Node uebergeben." );
+/*N*/   OSL_ENSURE( pNode, "Kein Node uebergeben." );
 /*N*/   SwStartNode* pSttNd = pNode->IsStartNode() ? (SwStartNode*)pNode
 /*N*/                                              : pNode->StartOfSectionNode();
 /*N*/   SwNodeIndex aSttIdx( *pSttNd ), aEndIdx( *pNode->EndOfSectionNode() );
@@ -233,8 +186,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/   GetNodes().DelNodes( aSttIdx, aEndIdx.GetIndex() - aSttIdx.GetIndex() + 1 );
 /*N*/ }
 
-
-
 /*************************************************************************
 |*                SwDoc::Insert(char)
 |*    Beschreibung      Zeichen einfuegen
@@ -246,12 +197,11 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( pACEWord )                  // Aufnahme in die Autokorrektur
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pACEWord->IsDeleted() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   SwTxtNode *pNode = rPos.nNode.GetNode().GetTxtNode();
 /*N*/   if(!pNode)
 /*?*/       return sal_False;
-/*N*/   sal_Bool bInsOneChar = sal_True;
 /*N*/
 /*N*/   SwDataChanged aTmp( rRg, 0 );
 /*N*/
@@ -260,7 +210,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPaM aPam( rPos.nNode, rPos.nContent.GetIndex() - 1,
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SetModified();
@@ -272,12 +222,6 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 |*                SwDoc::Overwrite(char)
 |*    Beschreibung      Zeichen ueberschreiben
 *************************************************************************/
-
-
-
-
-
-
 
 /* #107318# Convert list of ranges of whichIds to a corresponding list
     of whichIds*/
@@ -366,7 +310,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/               // verschiebe noch alle Bookmarks/TOXMarks
 /*N*/               if( aBkmkArr.Count() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ::_RestoreCntntIdx( pDoc, aBkmkArr, aIdx.GetIndex() );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               // falls der uebergebene PaM nicht im Crsr-Ring steht,
 /*N*/               // gesondert behandeln (z.B. Aufruf aus dem Auto-Format)
@@ -379,7 +323,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/           pDoc->GetNodes().Delete( aOldIdx, 1 );
 /*N*/       }
 /*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -388,7 +332,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/ {
 /*N*/   if( IsRedlineOn() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   sal_uInt16 nUndoSize = 0;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   sal_Bool bJoinTxt, bJoinPrev;
@@ -422,7 +366,7 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*N*/
 /*N*/   if( pACEWord )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   // ggfs. das gesicherte Word fuer die Ausnahme
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   {
@@ -540,26 +484,16 @@ SV_IMPL_PTRARR( SaveBookmarks, SaveBookmark* )
 /*?*/   } while( sal_False );
 /*?*/
 /*?*/   if( !IsIgnoreRedline() && GetRedlineTbl().Count() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     ::com::pressRedlines();
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/   SetModified();
 /*?*/
 /*?*/   return sal_True;
 /*N*/ }
 
-
-
-
-
-
-
 // liefert sal_True zurueck, wenn es weitergehen soll.
-
-
-
-
-/*N*/ sal_Bool SwDoc::Replace( SwPaM& rPam, const String& rStr, sal_Bool bRegExpRplc )
+/*N*/ sal_Bool SwDoc::Replace( SwPaM& /*rPam*/, const String& /*rStr*/, sal_Bool /*bRegExpRplc*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() == *rPam.GetMark() )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return sal_True;
 /*N*/ }
 
@@ -579,9 +513,6 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*N*/       rEnd.nNode.GetIndex() + 1 == aNodes.Count() )
 /*N*/       return sal_False;
 /*N*/
-/*N*/   // harte SeitenUmbrueche am nachfolgenden Node verschieben
-/*N*/   sal_Bool bSavePageBreak = sal_False, bSavePageDesc = sal_False;
-/*N*/
     /* #i9185# This whould lead to a segmentation fault if not catched
        above. */
 /*N*/   ULONG nNextNd = rEnd.nNode.GetIndex() + 1;
@@ -590,11 +521,6 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*N*/   if( pTblNd && pNd->IsCntntNode() )
 /*N*/   {
 /*?*/       SwFrmFmt* pTableFmt = pTblNd->GetTable().GetFrmFmt();
-/*?*/ //JP 24.08.98: will man wirklich den PageDesc/Break vom
-/*?*/ //                nachfolgen Absatz ueberbuegeln?
-/*?*/ //        const SwAttrSet& rAttrSet = pTableFmt->GetAttrSet();
-/*?*/ //        if( SFX_ITEM_SET != rAttrSet.GetItemState( RES_PAGEDESC ) &&
-/*?*/ //            SFX_ITEM_SET != rAttrSet.GetItemState( RES_BREAK ))
 /*?*/       {
 /*?*/           const SfxPoolItem *pItem;
 /*?*/           const SfxItemSet* pSet = ((SwCntntNode*)pNd)->GetpSwAttrSet();
@@ -602,14 +528,12 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*?*/               sal_False, &pItem ) )
 /*?*/           {
 /*?*/               pTableFmt->SetAttr( *pItem );
-/*?*/               bSavePageDesc = sal_True;
 /*?*/           }
 /*?*/
 /*?*/           if( pSet && SFX_ITEM_SET == pSet->GetItemState( RES_BREAK,
 /*?*/               sal_False, &pItem ) )
 /*?*/           {
 /*?*/               pTableFmt->SetAttr( *pItem );
-/*?*/               bSavePageBreak = sal_True;
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -626,7 +550,7 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*N*/           rPam.Exchange();
 /*N*/           if( !rPam.Move( fnMoveBackward, fnGoNode ))
 /*N*/           {
-/*N*/               ASSERT( sal_False, "kein Node mehr vorhanden" );
+/*N*/               OSL_FAIL( "kein Node mehr vorhanden" );
 /*N*/               return sal_False;
 /*N*/           }
 /*N*/       }
@@ -662,9 +586,8 @@ DBG_BF_ASSERT(0, "STRIP");  //STRIP001  if( !rPam.HasMark() || *rPam.GetPoint() 
 /*N*/   return sal_True;
 /*N*/ }
 
-
 #define MAX_REDLINE_COUNT   250
-// -----------------------------------------------------------------------------
-// -----------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

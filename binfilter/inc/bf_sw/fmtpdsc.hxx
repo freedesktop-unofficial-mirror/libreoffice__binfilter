@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 
@@ -53,10 +52,10 @@ class SwFmtPageDesc : public SfxPoolItem, public SwClient
     // Auto-Flag setzen zu koennen !!
     friend BOOL InsAttr( SwDoc*, const SwPaM &, const SfxItemSet&, USHORT,
                         SwHistory* );
-    USHORT nNumOffset;          // Seitennummer Offset
-    USHORT nDescNameIdx;        // SW3-Reader: Stringpool-Index des Vorlagennamens
     SwModify* pDefinedIn;       // Verweis auf das Objekt, in dem das
                                 // Attribut gesetzt wurde (CntntNode/Format)
+    USHORT nNumOffset;          // Seitennummer Offset
+    USHORT nDescNameIdx;        // SW3-Reader: Stringpool-Index des Vorlagennamens
 
 public:
     SwFmtPageDesc( const SwPageDesc *pDesc = 0 );
@@ -70,10 +69,10 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual void Modify( SfxPoolItem *pOld, SfxPoolItem *pNew );
 
@@ -93,15 +92,13 @@ public:
 };
 
 
-#if !(defined(MACOSX) && ( __GNUC__ < 3 ))
-// GrP moved to gcc_outl.cxx; revisit with gcc3
 inline const SwFmtPageDesc &SwAttrSet::GetPageDesc(BOOL bInP) const
     { return (const SwFmtPageDesc&)Get( RES_PAGEDESC,bInP); }
 
 inline const SwFmtPageDesc &SwFmt::GetPageDesc(BOOL bInP) const
     { return aSet.GetPageDesc(bInP); }
-#endif
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

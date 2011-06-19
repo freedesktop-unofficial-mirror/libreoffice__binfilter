@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SDGGAITM_HXX
 #define _SDGGAITM_HXX
 
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 //----------------------
@@ -52,9 +49,11 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = NULL ) const;
     virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 };
 
 }//end of namespace binfilter
 #endif // _SDGGAITM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

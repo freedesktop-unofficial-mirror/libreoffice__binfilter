@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,42 +32,29 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX //autogen
-#include <errhdl.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
 
 /*N*/ SwBookmark::SwBookmark(const SwPosition& aPos, const KeyCode& rCode,
 /*N*/                       const String& rName, const String& rShortName )
-/*N*/   : SwModify( 0 ),
-/*N*/   aStartMacro( aEmptyStr, aEmptyStr ),
-/*N*/   aEndMacro  ( aEmptyStr, aEmptyStr ),
-/*N*/   aCode(rCode),
-/*N*/   aName(rName),
-/*N*/   aShortName(rShortName),
-/*N*/   pPos2( 0 ),
-/*N*/   eMarkType( BOOKMARK )
+/*N*/   : SwModify( 0 )
+/*N*/   , pPos2( 0 )
+/*N*/   , aStartMacro( aEmptyStr, aEmptyStr )
+/*N*/   , aEndMacro  ( aEmptyStr, aEmptyStr )
+/*N*/   , aName(rName)
+/*N*/   , aShortName(rShortName)
+/*N*/   , aCode(rCode)
+/*N*/   , eMarkType( BOOKMARK )
 /*N*/ {
 /*N*/   pPos1 = new SwPosition(aPos);
 /*N*/ }
@@ -80,7 +68,7 @@ namespace binfilter {
 /*N*/   // Clipboard ausgetragen werden. Wird automatisch ueber DataChanged
 /*N*/   // ausgeloest.
 /*N*/   if( refObj.Is() )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   delete pPos1;
@@ -114,3 +102,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

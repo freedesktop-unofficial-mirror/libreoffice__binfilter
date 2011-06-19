@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,9 +36,7 @@
 
 #include "sfxuno.hxx"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 //*****************************************************************************************************************
@@ -69,8 +68,6 @@ using namespace ::com::sun::star;
     @onerror        We show some assertions in non product version.
                     Otherwise we do nothing!
     @threadsafe     yes
-
-    @last_change    17.10.2001 10:27
 *//*-*************************************************************************************************************/
 /*N*/ SfxFilterListener::SfxFilterListener( const ::rtl::OUString&    sFactory   ,
 /*N*/                                             SfxFilterContainer* pContainer )
@@ -130,14 +127,16 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*?*/ SfxFilterListener::~SfxFilterListener()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxFilterListener::flushed( const lang::EventObject& aSource ) throw( uno::RuntimeException )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ void SAL_CALL SfxFilterListener::flushed( const lang::EventObject& /*aSource*/ ) throw( uno::RuntimeException )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxFilterListener::disposing( const lang::EventObject& aSource ) throw( uno::RuntimeException )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/ void SAL_CALL SfxFilterListener::disposing( const lang::EventObject& /*aSource*/ ) throw( uno::RuntimeException )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

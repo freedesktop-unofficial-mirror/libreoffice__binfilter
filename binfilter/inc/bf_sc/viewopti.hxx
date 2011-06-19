@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVX_OPTGRID_HXX //autogen
 #include <bf_svx/optgrid.hxx>
-#endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef SC_OPTUTIL_HXX
 #include "optutil.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 //==================================================================
@@ -136,7 +129,7 @@ public:
 
     friend SvStream&        operator>> ( SvStream& rStream, ScViewOptions& rOpt );
 
-    void                    Save(SvStream& rStream, BOOL bConfig = FALSE) const;
+    void                    Save(SvStream&, BOOL = FALSE) const {}
 
 private:
     BOOL            aOptArr     [MAX_OPT];
@@ -187,3 +180,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

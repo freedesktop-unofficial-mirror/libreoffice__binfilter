@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,38 +28,22 @@
 
 #include <set>
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
-#ifndef _SVX_UNOAPI_HXX_
 #include "unoapi.hxx"
-#endif
 
-#ifndef _SVX_XMLCNITM_HXX
 #include "xmlcnitm.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::comphelper;
@@ -176,7 +161,7 @@ sal_Bool NamespaceIteratorImpl::next( OUString& rPrefix, OUString& rURL )
     // we need the next namespace item
     mpCurrentAttr = NULL;
 
-    const SfxPoolItem* pItem;
+    const SfxPoolItem* pItem = NULL;
     // look for the next available item in the current pool
     while( (mnItem < mnItemCount) && ( NULL == (pItem = mpPool->GetItem( *mpWhichId, mnItem ) ) ) )
         mnItem++;
@@ -314,7 +299,7 @@ OUString SAL_CALL NamespaceMap::getImplementationName(  )
     return NamespaceMap_getImplementationName();
 }
 
-sal_Bool SAL_CALL NamespaceMap::supportsService( const OUString& ServiceName )
+sal_Bool SAL_CALL NamespaceMap::supportsService( const OUString& /*rServiceName*/ )
     throw(RuntimeException)
 {
     return sal_True;
@@ -327,3 +312,5 @@ Sequence< OUString > SAL_CALL NamespaceMap::getSupportedServiceNames(  )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

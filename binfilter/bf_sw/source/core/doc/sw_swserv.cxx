@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,42 +31,20 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>
-#endif
-#ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
 
-#ifndef _SWERROR_H
 #include <swerror.h>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_REF( SwServerObject )
@@ -74,19 +53,10 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
 /*N*/ BOOL SwServerObject::IsLinkInServer( const SwBaseLink* pChkLnk ) const
 /*N*/ {
 /*N*/   ULONG nSttNd = 0, nEndNd = 0;
-/*N*/   xub_StrLen nStt, nEnd;
+/*N*/   xub_StrLen nStt = 0, nEnd = 0;
 /*N*/   const SwNode* pNd = 0;
 /*N*/   const SwNodes* pNds = 0;
 /*N*/
@@ -160,26 +130,27 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/ if( !pChkLnk )
-/*N*/   //  *((int*)&eType) = eSave;
 /*?*/   ((SwServerObject*)this)->eType = eSave;
 /*N*/   }
 /*N*/
 /*N*/   return FALSE;
 /*N*/ }
 
-/*  */
-
-
 /*N*/ SwDataChanged::SwDataChanged( const SwPaM& rPam, USHORT nTyp )
-/*N*/   : pPam( &rPam ), nType( nTyp ), pDoc( rPam.GetDoc() ), pPos( 0 )
+/*N*/   : pPam( &rPam )
+/*N*/   , pPos( 0 )
+/*N*/   , pDoc( rPam.GetDoc() )
+/*N*/   , nType( nTyp )
 /*N*/ {
 /*N*/   nNode = rPam.GetPoint()->nNode.GetIndex();
 /*N*/   nCntnt = rPam.GetPoint()->nContent.GetIndex();
 /*N*/ }
 
-
-/*N*/ SwDataChanged::SwDataChanged( SwDoc* pDoc, const SwPosition& rPos, USHORT nTyp )
-/*N*/   : pPam( 0 ), nType( nTyp ), pDoc( pDoc ), pPos( &rPos )
+/*N*/ SwDataChanged::SwDataChanged( SwDoc* pDoc2, const SwPosition& rPos, USHORT nTyp )
+/*N*/   : pPam( 0 )
+/*N*/   , pPos( &rPos )
+/*N*/   , pDoc( pDoc2 )
+/*N*/   , nType( nTyp )
 /*N*/ {
 /*N*/   nNode = rPos.nNode.GetIndex();
 /*N*/   nCntnt = rPos.nContent.GetIndex();
@@ -200,7 +171,7 @@ namespace binfilter {
 /*N*/           // noch jemand am Object interessiert ?
 /*?*/           if( refObj->HasDataLinks() && refObj->ISA( SwServerObject ))
 /*?*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwServerObject& rObj = *(SwServerObject*)&refObj;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/
 /*?*/           // sollte jetzt gar keine Verbindung mehr bestehen
@@ -215,7 +186,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

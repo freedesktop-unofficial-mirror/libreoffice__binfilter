@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_INTERFACE_CONTAINER_HXX_
 #include "InterfaceContainer.hxx"
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
-#ifndef _FRM_IDS_HXX_
 #include "ids.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -95,6 +88,8 @@ public:
 // ::com::sun::star::container::XChild
     virtual ::comphelper::InterfaceRef SAL_CALL getParent() throw(::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL setParent(const ::comphelper::InterfaceRef& Parent) throw(::com::sun::star::lang::NoSupportException, ::com::sun::star::uno::RuntimeException);
+
+    using OInterfaceContainer::disposing;
 };
 
 //.........................................................................
@@ -102,3 +97,4 @@ public:
 //.........................................................................
 }//end of namespace binfilter
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _FORMS_EDITBASE_HXX_
 #define _FORMS_EDITBASE_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 
 namespace binfilter {
 
@@ -99,6 +98,8 @@ protected:
     virtual sal_Int16 getPersistenceFlags() const;
         // derived classes may use this if they want this base class to write additinal version flags
         // (one of the PF_.... constants). After ::read they may ask for that flags with getLastReadVersion
+
+    using OPropertySetHelper::getFastPropertyValue;
 };
 
 //.........................................................................
@@ -108,3 +109,4 @@ protected:
 }//end of namespace binfilter
 #endif // _FORMS_EDITBASE_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

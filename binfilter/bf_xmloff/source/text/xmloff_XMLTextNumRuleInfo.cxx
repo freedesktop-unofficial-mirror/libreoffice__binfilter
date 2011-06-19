@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,22 +27,12 @@
  ************************************************************************/
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLTEXTNUMRULEINFO_HXX
 #include "XMLTextNumRuleInfo.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -135,7 +126,7 @@ void XMLTextNumRuleInfo::Set(
 
             if( rProp.Name == sNumberingType )
             {
-                sal_Int16 nType;
+                sal_Int16 nType(0);
                 rProp.Value >>= nType;
                 if( NumberingType::CHAR_SPECIAL != nType &&
                     NumberingType::BITMAP != nType )
@@ -152,3 +143,5 @@ void XMLTextNumRuleInfo::Set(
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

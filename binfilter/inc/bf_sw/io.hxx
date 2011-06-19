@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -39,39 +40,12 @@
 #endif
 
 #include <fcntl.h>
-
 #include <sys/types.h>
 #include <sys/stat.h>
-
-
-#ifndef _KEYCOD_HXX //autogen
 #include <vcl/keycod.hxx>
-#endif
-
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-namespace binfilter {
 
-/*$
-class BinaryFile {
-    int fd;
-public:
-    enum IO_OpenMode {
-        BF_READ = O_RDONLY,
-        BF_WRITE = O_RDWR,
-        BF_CREATE = O_CREAT,
-        BF_TRUNC = O_TRUNC
-    };
-        // ctor oeffnet File im BinearMode, dtor schliesst es
-    BinaryFile(const String &, int eOpenMode);
-    ~BinaryFile();
-    BOOL Ok() const {
-        return -1 != fd;
-    }
-    operator int() const { return fd; }
-};
-*/
+namespace binfilter {
 
 class SwIOin {
 private:
@@ -181,3 +155,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

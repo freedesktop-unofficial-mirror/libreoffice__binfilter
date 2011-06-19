@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _LINKSRC_HXX
 #include <bf_so3/linksrc.hxx>
-#endif
 namespace binfilter {
 
 class SwBookmark;
@@ -89,3 +88,4 @@ SV_DECL_REF( SwServerObject )
 } //namespace binfilter
 #endif  // _SWSERV_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

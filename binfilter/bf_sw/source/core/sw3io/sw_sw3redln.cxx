@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,20 +33,14 @@
 
 #ifndef _DOC_HXX //autogen
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include <doc.hxx>
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _REDLINE_HXX //autogen
 #include <redline.hxx>
-#endif
 
 
 #include "sw3marks.hxx"
@@ -102,7 +97,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       OpenRec( SWG_REDLINEDATA_LCL );
 /*N*/
-/*N*/       BYTE cDFlags = OpenFlagRec();
+/*N*/       OpenFlagRec();
 /*N*/
 /*N*/       BYTE cType;
 /*N*/       UINT16 nStrIdx;
@@ -111,10 +106,10 @@ namespace binfilter {
 /*N*/               >> nStrIdx;
 /*N*/       CloseFlagRec();
 /*N*/
-/*N*/       UINT32 nDate, nTime;
+/*N*/       UINT32 nDate2, nTime2;
 /*N*/       String aComment;
-/*N*/       *pStrm  >> nDate
-/*N*/               >> nTime;
+/*N*/       *pStrm  >> nDate2
+/*N*/               >> nTime2;
 /*N*/       InString( *pStrm, aComment );
 /*N*/
 /*N*/       // Das oberste Element des Stack wurde als letztes geschrieben.
@@ -125,7 +120,7 @@ namespace binfilter {
 /*N*/           nAuthorIdx = pDoc->GetRedlineAuthor();
 /*N*/
 /*N*/       pData = new SwRedlineData( (SwRedlineType)cType, nAuthorIdx,
-/*N*/                                  DateTime( nDate, nTime ), aComment,
+/*N*/                                  DateTime( nDate2, nTime2 ), aComment,
 /*N*/                                  pData );
 /*N*/
 /*N*/       CloseRec( SWG_REDLINEDATA_LCL );
@@ -133,7 +128,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // Der PaM ist erstmal egal und wird erst spaeter gesetzt
 /*N*/   SwPosition aDummyPos( pDoc->GetNodes().GetEndOfExtras() );
-/*N*/   BOOL bVisible = (cFlags & 0x10) != 0;
 /*N*/   SwRedline *pRedline =
 /*N*/       new SwRedline( pData, aDummyPos, (cFlags & 0x10) != 0,
 /*N*/                      (cFlags & 0x20) != 0, (cFlags & 0x40) != 0 );
@@ -150,7 +144,7 @@ namespace binfilter {
 
 void Sw3IoImp::OutRedline( const SwRedline& rRedline )
 {
-    ASSERT( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
+    OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
 
     OpenRec( SWG_REDLINE_LCL );
 
@@ -217,21 +211,21 @@ void Sw3IoImp::OutRedline( const SwRedline& rRedline )
 
 /*N*/ void Sw3IoImp::OutRedlines( BOOL bPageStyles )
 /*N*/ {
-/*N*/   ASSERT( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
+/*N*/   OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
 /*N*/
 /*N*/   if( !pRedlines )
 /*N*/       return;
 /*N*/
-/*?*/   ASSERT( !bBlock, "In Textbausteinen darf es keine Redlines geben!" );
+/*?*/   OSL_ENSURE( !bBlock, "In Textbausteinen darf es keine Redlines geben!" );
 /*?*/
 /*?*/   USHORT nArrLen = pRedlines->Count();
 /*?*/   if( nArrLen && bPageStyles )
 /*?*/   {
-/*?*/       ASSERT( nCntntRedlineStart <= nArrLen,
+/*?*/       OSL_ENSURE( nCntntRedlineStart <= nArrLen,
 /*?*/               "Mehr Redlines in Page-Styles als ueberhaupt vorhanden?" );
 /*?*/       nArrLen = nCntntRedlineStart;
 /*?*/   }
-/*?*/   ASSERT( bPageStyles || nCntntRedlineStart==0,
+/*?*/   OSL_ENSURE( bPageStyles || nCntntRedlineStart==0,
 /*?*/           "Wieso sind da noch Bookmarks aus Seitenvorlagen?" );
 /*?*/   if( !nArrLen )
 /*?*/       return;
@@ -259,23 +253,18 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
     // unbenutzte Content-Position.
     const SwNode& rNode = rNdIdx.GetNode();
     if( rNode.IsCntntNode() )
-    {
-        if( nCntntIdx > STRING_MAXLEN52 )
-            return STRING_MAXLEN52;
-        else
-            return nCntntIdx;
-    }
+        return nCntntIdx;
 
     if( rNode.IsStartNode() )
         return 0;
 
-    ASSERT( rNode.IsEndNode(), "Was ist denn das fuer ein Node?" );
+    OSL_ENSURE( rNode.IsEndNode(), "Was ist denn das fuer ein Node?" );
     return USHRT_MAX;
 }
 
 /*N*/ void Sw3IoImp::CollectRedlines( SwPaM* pPaM, BOOL bPageOnly )
 /*N*/ {
-/*N*/   ASSERT( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
+/*N*/   OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
 /*N*/
 /*N*/   delete pRedlines;
 /*N*/   pRedlines = new Sw3Redlines;
@@ -295,17 +284,9 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/       if( !pRedline->GetContentIdx() && *pPos == *pEndPos )
 /*?*/       {
 /*?*/           // "Leere" Redlines werden nicht gespeichert!
-/*?*/           ASSERT( !this, "Redline in leer" );
+/*?*/           OSL_ENSURE( !this, "Redline in leer" );
 /*?*/           continue;
 /*?*/       }
-/*?*/
-/*?*/       // If the redline is within one node and starts behind the
-/*?*/       // last position that is possible within the 5.2 version,
-/*?*/       // it will be ignored.
-/*?*/       if( pPos->nContent.GetIndex() > STRING_MAXLEN52 &&
-/*?*/           pPos->nNode.GetIndex() == pEndPos->nNode.GetIndex() &&
-/*?*/           pEndPos->nContent.GetIndex() > STRING_MAXLEN52 )
-/*?*/           continue;
 /*?*/
 /*?*/       if( pDoc->IsInHeaderFooter( pPos->nNode ) )
 /*?*/       {
@@ -336,7 +317,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       return;
 /*N*/   }
 /*N*/
-/*?*/   ASSERT( !bBlock, "In Textbausteinen darf es keine Redlines geben!" );
+/*?*/   OSL_ENSURE( !bBlock, "In Textbausteinen darf es keine Redlines geben!" );
 /*?*/
 /*?*/   Sw3Mark aMark;
 /*?*/   USHORT nArrLen = pRedlines->Count();
@@ -361,7 +342,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/               ? POS_INSIDE
 /*?*/               : ComparePosition( *pStart, *pEnd, *pPaMStart, *pPaMEnd );
 /*?*/
-/*?*/       ASSERT( POS_BEFORE != eCmp && POS_BEHIND != eCmp &&
+/*?*/       OSL_ENSURE( POS_BEFORE != eCmp && POS_BEHIND != eCmp &&
 /*?*/               POS_COLLIDE_END != eCmp && POS_COLLIDE_START != eCmp,
 /*?*/               "Redline mit ungeultigem Bereich" );
 /*?*/
@@ -410,7 +391,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/   *pStrm >> nId >> nNodeOff;
 /*N*/   CloseFlagRec();
 /*N*/
-/*N*/   ASSERT( pRedlines && nId < pRedlines->Count(), "Ungueltige Redline-Id" );
+/*N*/   OSL_ENSURE( pRedlines && nId < pRedlines->Count(), "Ungueltige Redline-Id" );
 /*N*/   if( !pRedlines || nId >= pRedlines->Count() )
 /*N*/   {
 /*N*/       Error();
@@ -426,7 +407,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       // Unbekannter oder noch nicht implementierter Redline-Typ:
 /*N*/       // Da ist es besser, wir ignorieren sie, denn wir koennen ja
 /*N*/       // sowieso nichts damit anfangen.
-/*N*/       ASSERT( !pRedline, "nicht implementierter Redline-Typ" );
+/*N*/       OSL_ENSURE( !pRedline, "nicht implementierter Redline-Typ" );
 /*N*/       Warning();
 /*N*/       CloseRec( SWG_NODEREDLINE );
 /*N*/       return;
@@ -452,8 +433,8 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/   // haben, in den wir an der uebergeben Position einfuegen.
 /*N*/   if( nInsFirstPara )
 /*N*/   {
-/*N*/       ASSERT( rNode.IsCntntNode(), "Content-Node beim Einf. erwartet" );
-/*N*/       ASSERT( USHRT_MAX==nNodeOff, "End-Node-Position beim Einf. erwartet" );
+/*N*/       OSL_ENSURE( rNode.IsCntntNode(), "Content-Node beim Einf. erwartet" );
+/*N*/       OSL_ENSURE( USHRT_MAX==nNodeOff, "End-Node-Position beim Einf. erwartet" );
 /*N*/       nNodeOff = 0;   // Im IsCntntNode-Zweig gibts so die richtige Pos.
 /*N*/   }
 /*N*/
@@ -464,8 +445,8 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       pPos->nNode = rNodeIdx;
 /*N*/       xub_StrLen nLen = rNode.GetCntntNode()->Len();
 /*N*/       xub_StrLen nIdx = static_cast< xub_StrLen >( nNodeOff+nCntntOff );
-/*N*/       ASSERT( nIdx>=0 && nIdx<=nLen, "ungueltiger Cntnt-Offset" );
-/*N*/       if( nIdx<0 || nIdx > nLen )
+/*N*/       OSL_ENSURE( nIdx<=nLen, "ungueltiger Cntnt-Offset" );
+/*N*/       if( nIdx > nLen )
 /*N*/       {
 /*N*/           bInvalid = sal_True;
 /*N*/       }
@@ -476,7 +457,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( rNode.IsStartNode(), "Start-Node erwartet" );
+/*N*/       OSL_ENSURE( rNode.IsStartNode(), "Start-Node erwartet" );
 /*N*/       if( USHRT_MAX==nNodeOff )
 /*N*/       {
 /*N*/           pPos->nNode = rNode.EndOfSectionIndex();
@@ -485,7 +466,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       {
 /*N*/           pPos->nNode = rNodeIdx;
 /*N*/
-/*N*/           ASSERT( 0==nNodeOff,
+/*N*/           OSL_ENSURE( 0==nNodeOff,
 /*N*/                   "ungeueltige Content-Position fuer Start-Node" );
 /*N*/           if( 0 != nNodeOff )
 /*N*/               Warning();
@@ -510,7 +491,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/                   // der soll ja geloescht werden.
 /*N*/                   pPos->nNode--;
 /*N*/                   SwCntntNode *pCNd = pPos->nNode.GetNode().GetCntntNode();
-/*N*/                   ASSERT( pCNd, "Kein Content-Node trotz DelLastPara" );
+/*N*/                   OSL_ENSURE( pCNd, "Kein Content-Node trotz DelLastPara" );
 /*N*/                   if( pCNd )
 /*N*/                       pPos->nContent.Assign( pCNd, pCNd->Len() );
 /*N*/                   else
@@ -547,7 +528,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/           pRedline->SetContentIdx( &aStart );
 /*N*/           if( pSttNd->EndOfSectionIndex() - aStart.GetIndex() == 1 )
 /*N*/               bInvalid = sal_True;
-/*N*/           ASSERT( !bInvalid, "empty redline section imported" );
+/*N*/           OSL_ENSURE( !bInvalid, "empty redline section imported" );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -579,7 +560,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/               if( !bInvalid && bHasMark && pTestEnd != 0 )
 /*N*/                   bInvalid = *pTestEnd > *pStt && *pTestEnd < *pEnd;
 /*N*/
-/*N*/               ASSERT( !bInvalid, "overlapping redline" );
+/*N*/               OSL_ENSURE( !bInvalid, "overlapping redline" );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -601,7 +582,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/           // table;
 /*N*/
 /*N*/           sal_uInt16 nPos = rRedlineTbl.GetPos( pRedline );
-/*N*/           ASSERT( USHRT_MAX != nPos, "inserted invalid redline not found" );
+/*N*/           OSL_ENSURE( USHRT_MAX != nPos, "inserted invalid redline not found" );
 /*N*/           if( USHRT_MAX != nPos )
 /*N*/               const_cast< SwRedlineTbl& >(rRedlineTbl).Remove( nPos );
 /*N*/       }
@@ -620,7 +601,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 
 /*N*/ void Sw3IoImp::OutNodeRedlines( ULONG nIdx )
 /*N*/ {
-/*N*/   ASSERT( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
+/*N*/   OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
 /*N*/
 /*N*/   if( pRedlineMarks )
 /*N*/   {
@@ -629,7 +610,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/           Sw3Mark *pMark = (*pRedlineMarks)[ nPos ];
 /*?*/           if( pMark->GetNodePos() == nIdx )
 /*?*/           {
-/*?*/               ASSERT( pMark->GetId() < pRedlines->Count(),
+/*?*/               OSL_ENSURE( pMark->GetId() < pRedlines->Count(),
 /*?*/                       "ungeuletige Redline-Id" );
 /*?*/               Sw3MarkType eMarkType = pMark->GetType();
 /*?*/               SwRedline *pRedline = (*pRedlines)[pMark->GetId()];
@@ -644,16 +625,13 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*?*/                   cFlags |= 0x20;
 /*?*/
 /*?*/               xub_StrLen nOffs = pMark->GetNodeOff();
-/*?*/               if( pDoc->GetNodes()[nIdx]->IsCntntNode() &&
-/*?*/                   nOffs > STRING_MAXLEN52 )
-/*?*/                   nOffs = STRING_MAXLEN52;
 /*?*/               *pStrm  << (BYTE)  cFlags
 /*?*/                       << (UINT16)pMark->GetId()
 /*?*/                       << (UINT16)nOffs;
 /*?*/
 /*?*/               if( pContentIdx )
 /*?*/               {
-/*?*/                   ASSERT( pContentIdx->GetNode().EndOfSectionIndex() -
+/*?*/                   OSL_ENSURE( pContentIdx->GetNode().EndOfSectionIndex() -
 /*?*/                           pContentIdx->GetIndex(),
 /*?*/                           "empty redline section exported" );
 /*?*/                   OutContents( *pContentIdx );
@@ -746,7 +724,7 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 /*N*/       for( i=0; i<nCount; ++i )
 /*N*/       {
 /*N*/           SwRedline *pRedline = (*pRedlines)[i];
-/*N*/           ASSERT( REDLINE_DELETE == pRedline->GetType() &&
+/*N*/           OSL_ENSURE( REDLINE_DELETE == pRedline->GetType() &&
 /*N*/                   !pRedline->GetContentIdx(), "wrong redline type" );
 /*N*/           SwRedlineMode eOld = pDoc->GetRedlineMode();
 /*N*/           pDoc->SetRedlineMode_intern( eOld & ~(REDLINE_ON | REDLINE_IGNORE) );
@@ -787,3 +765,5 @@ xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -35,9 +33,7 @@
 #include "pageuno.hxx"
 #include "shapeuno.hxx"
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter {
 
@@ -45,8 +41,8 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-ScPageObj::ScPageObj( SdrPage* pPage ) :
-    SvxFmDrawPage( pPage )
+ScPageObj::ScPageObj( SdrPage* pInPage ) :
+    SvxFmDrawPage( pInPage )
 {
 }
 
@@ -85,3 +81,5 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScPageObj::getSupportedServiceNames()
     return aRet;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

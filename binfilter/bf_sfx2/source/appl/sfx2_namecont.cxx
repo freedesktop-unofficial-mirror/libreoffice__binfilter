@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,42 +26,24 @@
  *
  ************************************************************************/
 
-
-
-#ifndef _RTL_URI_HXX_
 #include <rtl/uri.hxx>
-#endif
-
 
 #include "namecont.hxx"
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/sfxecode.hxx>
 #include <bf_svtools/ehdl.hxx>
 #include "bf_basic/basmgr.hxx"
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_DEPLOYMENTEXCEPTION_HPP_
 #include <com/sun/star/uno/DeploymentException.hpp>
-#endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 
 using namespace ::com::sun::star::container;
@@ -74,8 +57,11 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star;
 using namespace cppu;
-using namespace rtl;
 using namespace osl;
+
+using ::rtl::OUString;
+using ::rtl::Uri;
+using ::rtl::OUStringToOString;
 
 
 //============================================================================
@@ -215,9 +201,9 @@ namespace SfxContainer_Impl
 /*N*/   }
 /*N*/ }
 
-/*?*/ void NameContainer_Impl::removeByName( const OUString& Name )
+/*?*/ void NameContainer_Impl::removeByName( const OUString& /*Name*/ )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 
 
@@ -258,17 +244,17 @@ namespace SfxContainer_Impl
 /*N*/   mxMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
 /*N*/   if( !mxMSF.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't get ProcessServiceFactory\n" );
+/*N*/       OSL_FAIL( "### couln't get ProcessServiceFactory\n" );
 /*N*/   }
 /*N*/
 /*N*/   mxSFI = Reference< XSimpleFileAccess >( mxMSF->createInstance
-/*N*/       ( OUString::createFromAscii( "com.sun.star.ucb.SimpleFileAccess" ) ), UNO_QUERY );
+/*N*/       ( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.ucb.SimpleFileAccess" )) ), UNO_QUERY );
 /*N*/   if( !mxSFI.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create SimpleFileAccess component\n" );
+/*N*/       OSL_FAIL( "### couln't create SimpleFileAccess component\n" );
 /*N*/   }
     mxStringSubstitution = Reference< XStringSubstitution >( mxMSF->createInstance
-        ( OUString::createFromAscii( "com.sun.star.util.PathSubstitution" ) ), UNO_QUERY );
+        ( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.PathSubstitution" )) ), UNO_QUERY );
     OSL_ENSURE( mxStringSubstitution.is(), "### couln't create PathSubstitution component\n" );
 /*N*/ }
 
@@ -368,7 +354,7 @@ namespace SfxContainer_Impl
 /*N*/       OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
 /*N*/   if( !xParser.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax parser component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax parser component\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -495,12 +481,12 @@ namespace SfxContainer_Impl
 /*N*/             }
 /*N*/             catch ( xml::sax::SAXException& e )
 /*N*/             {
-/*N*/                 OSL_ENSURE( 0, OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
+/*N*/                 OSL_FAIL( OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
 /*N*/                 return sal_False;
 /*N*/             }
 /*N*/             catch ( io::IOException& e )
 /*N*/             {
-/*N*/                 OSL_ENSURE( 0, OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
+/*N*/                 OSL_FAIL( OUStringToOString( e.Message, RTL_TEXTENCODING_ASCII_US ).getStr() );
 /*N*/                 return sal_False;
 /*N*/             }
 /*N*/
@@ -577,7 +563,7 @@ namespace SfxContainer_Impl
 /*?*/                       xLibraryStor = xLibrariesStor->OpenSotStorage( rLib.aName, STREAM_READ | STREAM_NOCREATE );
 /*?*/                       if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
 /*?*/                       {
-/*?*/                           OSL_ENSURE( 0, "### couln't open sub storage for library\n" );
+/*?*/                           OSL_FAIL( "### couln't open sub storage for library\n" );
 /*?*/                           xLibraryStor = NULL;
 /*N*/                       }
 /*N*/                   }
@@ -589,7 +575,7 @@ namespace SfxContainer_Impl
 /*N*/                       sal_Bool bLoaded = implLoadLibraryIndexFile( pImplLib, rLib, xLibraryStor, aIndexFileName );
 /*N*/                       if( bLoaded && aLibName != rLib.aName )
 /*N*/                       {
-/*N*/                           OSL_ENSURE( 0, "Different library names in library"
+/*N*/                           OSL_FAIL( "Different library names in library"
 /*N*/                               " container and library info files!\n" );
 /*N*/                       }
 /*N*/                   }
@@ -599,8 +585,8 @@ namespace SfxContainer_Impl
 /*N*/                   // Write new index file immediately because otherwise
 /*N*/                   // the library elements will be lost when storing into
 /*N*/                   // the new info format
-                        SotStorageRef xStorage;
-                        implStoreLibraryIndexFile( pImplLib, rLib, xStorage );
+                        SotStorageRef xLclStorage;
+                        implStoreLibraryIndexFile( pImplLib, rLib, xLclStorage );
 /*N*/               }
 /*N*/
 /*N*/               implImportLibDescriptor( pImplLib, rLib );
@@ -641,7 +627,6 @@ namespace SfxContainer_Impl
 /*N*/
 /*N*/       INetURLObject aUserBasic60InetObj = aUserBasic60InetObj_1;
 /*N*/         String aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
-/*N*/       bool bSecondTime = false;
 /*N*/       if( mxSFI->isFolder( aFolder60 ) )
 /*N*/       {
 /*?*/           // #110101 Check if Standard folder exists and is complete
@@ -687,12 +672,11 @@ namespace SfxContainer_Impl
 /*?*/       }
 /*N*/       else
 /*?*/       {
-/*?*/           bSecondTime = true;
 /*?*/           aUserBasic60InetObj = aUserBasic60InetObj_2;
 /*?*/           aFolder60 = aUserBasic60InetObj.GetMainURL( INetURLObject::NO_DECODE );
 /*N*/       }
 /*N*/       if( mxSFI->isFolder( aFolder60 ) )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/         {
 /*?*/         }
 /*N*/     }
 /*N*/
@@ -739,14 +723,14 @@ namespace SfxContainer_Impl
 // Storing with password encryption
 
 // Empty implementation, avoids unneccesary implementation in dlgcont.cxx
-/*?*/ sal_Bool SfxLibraryContainer_Impl::implStorePasswordLibrary( SfxLibrary_Impl* pLib,
-/*?*/     const OUString& aName, SotStorageRef xStorage )
+/*?*/ sal_Bool SfxLibraryContainer_Impl::implStorePasswordLibrary( SfxLibrary_Impl* /*pLib*/,
+/*?*/     const OUString& /*aName*/, SotStorageRef /*xStorage*/ )
 /*?*/ {
 /*?*/     return sal_False;
 /*?*/ }
 
 /*?*/ sal_Bool SfxLibraryContainer_Impl::implLoadPasswordLibrary
-/*?*/     ( SfxLibrary_Impl* pLib, const OUString& Name, sal_Bool bVerifyPasswordOnly )
+/*?*/     ( SfxLibrary_Impl* /*pLib*/, const OUString& /*Name*/, sal_Bool /*bVerifyPasswordOnly*/ )
 /*?*/         throw(WrappedTargetException, RuntimeException)
 /*?*/ {
 /*?*/     return sal_True;
@@ -888,7 +872,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
             OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
     if( !xHandler.is() )
     {
-        OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
+        OSL_FAIL( "### couln't create sax-writer component\n" );
         return;
     }
 
@@ -944,7 +928,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
     }
     if( !xOut.is() )
     {
-        OSL_ENSURE( 0, "### couln't open output stream\n" );
+        OSL_FAIL( "### couln't open output stream\n" );
         return;
     }
 
@@ -965,7 +949,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/       OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
 /*N*/   if( !xParser.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax parser component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax parser component\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -995,31 +979,28 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   else
 /*N*/   {
 /*N*/       // Create Input stream
-/*N*/         String aLibInfoPath;
+/*N*/       String aLclLibInfoPath;
 /*N*/
-/*N*/         if( pLib )
-/*N*/         {
-/*N*/             createAppLibraryFolder( pLib, rLib.aName );
-/*N*/             aLibInfoPath = pLib->maLibInfoFileURL;
-/*N*/         }
-/*N*/         else
-/*?*/             aLibInfoPath = aIndexFileName;
+/*N*/       if( pLib )
+/*N*/       {
+/*N*/           createAppLibraryFolder( pLib, rLib.aName );
+/*N*/           aLclLibInfoPath = pLib->maLibInfoFileURL;
+/*N*/       }
+/*N*/       else
+/*?*/           aLclLibInfoPath = aIndexFileName;
 /*N*/
 /*N*/       try
 /*N*/       {
-/*N*/           xInput = mxSFI->openFileRead( aLibInfoPath );
+/*N*/           xInput = mxSFI->openFileRead( aLclLibInfoPath );
 /*N*/       }
 /*N*/       catch( Exception& )
 /*N*/       {
 /*N*/             xInput.clear();
-//*N*/          SfxErrorContext aEc( ERRCTX_SFX_LOADBASIC, aLibInfoPath );
-//*N*/             ULONG nErrorCode = ERRCODE_IO_GENERAL;
-//*N*/             ErrorHandler::HandleError( nErrorCode );
 /*N*/       }
 /*N*/   }
 /*N*/   if( !xInput.is() )
 /*N*/   {
-/*N*/       // OSL_ENSURE( 0, "### couln't open input stream\n" );
+/*N*/       // OSL_FAIL( "### couln't open input stream\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -1035,13 +1016,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   }
 /*N*/   catch( Exception& e )
 /*N*/   {
-/*N*/       // throw WrappedTargetException( OUString::createFromAscii( "parsing error!\n" ),
-/*N*/       //                              Reference< XInterface >(),
-/*N*/       //                              makeAny( e ) );
-/*N*/       OSL_ENSURE( 0, "Parsing error\n" );
-//*N*/      SfxErrorContext aEc( ERRCTX_SFX_LOADBASIC, aLibInfoPath );
-//*N*/         ULONG nErrorCode = ERRCODE_IO_GENERAL;
-//*N*/         ErrorHandler::HandleError( nErrorCode );
+/*N*/       OSL_FAIL( "Parsing error\n" );
 /*N*/       return sal_False;
 /*N*/   }
 /*N*/
@@ -1133,7 +1108,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*?*/       xLibrariesStor = xStorage->OpenUCBStorage( maLibrariesDir, STREAM_WRITE );
 /*?*/       if( !xLibrariesStor.Is() || xLibrariesStor->GetError() != ERRCODE_NONE )
 /*?*/       {
-/*?*/           OSL_ENSURE( 0, "### couln't create libraries sub storage\n" );
+/*?*/           OSL_FAIL( "### couln't create libraries sub storage\n" );
 /*?*/           return;
 /*?*/       }
 /*?*/
@@ -1164,7 +1139,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/             // Can we copy the storage?
             if( !mbOldInfoFormat && !pImplLib->mbModified && xSourceLibrariesStor.Is() )
             {
-                BOOL bRet = xSourceLibrariesStor->CopyTo
+                /*BOOL bRet =*/ xSourceLibrariesStor->CopyTo
                     ( rLib.aName, xLibrariesStor, rLib.aName );
             }
             else
@@ -1175,7 +1150,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
                     xLibraryStor = xLibrariesStor->OpenUCBStorage( rLib.aName, STREAM_WRITE );
                     if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
                     {
-                        OSL_ENSURE( 0, "### couln't create sub storage for library\n" );
+                        OSL_FAIL( "### couln't create sub storage for library\n" );
                         return;
                     }
                 }
@@ -1217,7 +1192,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/           OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
 /*N*/   if( !xHandler.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax-writer component\n" );
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -1273,7 +1248,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   }
 /*N*/   if( !xOut.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't open output stream\n" );
+/*N*/       OSL_FAIL( "### couln't open output stream\n" );
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -1362,7 +1337,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/     OUString aInitFileName;
 /*N*/     SotStorageRef xDummyStor;
 /*N*/     ::xmlscript::LibDescriptor aLibDesc;
-/*N*/     sal_Bool bReadIndexFile = implLoadLibraryIndexFile( pNewLib, aLibDesc, xDummyStor, aInitFileName );
+/*N*/     /*sal_Bool bReadIndexFile =*/ implLoadLibraryIndexFile( pNewLib, aLibDesc, xDummyStor, aInitFileName );
 /*N*/     implImportLibDescriptor( pNewLib, aLibDesc );
 /*N*/
 /*N*/   Reference< XNameAccess > xRet = static_cast< XNameAccess* >( pNewLib );
@@ -1373,9 +1348,9 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*N*/   return xRet;
 /*N*/ }
 
-/*?*/ void SAL_CALL SfxLibraryContainer_Impl::removeLibrary( const OUString& Name )
+/*?*/ void SAL_CALL SfxLibraryContainer_Impl::removeLibrary( const OUString& /*Name*/ )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 
 /*N*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLoaded( const OUString& Name )
@@ -1420,7 +1395,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*?*/           }
 /*?*/           if( !xLibraryStor.Is() || xLibraryStor->GetError() != ERRCODE_NONE )
 /*?*/           {
-/*?*/               OSL_ENSURE( 0, "### couln't open sub storage for library\n" );
+/*?*/               OSL_FAIL( "### couln't open sub storage for library\n" );
 /*?*/               return;
 /*?*/           }
 /*N*/       }
@@ -1450,7 +1425,7 @@ void SfxLibraryContainer_Impl::implStoreLibraryIndexFile( SfxLibrary_Impl* pLib,
 /*?*/
 /*?*/               if( !xElementStream.Is() || xElementStream->GetError() != ERRCODE_NONE )
 /*?*/               {
-/*?*/                   OSL_ENSURE( 0, "### couln't open library element stream\n" );
+/*?*/                   OSL_FAIL( "### couln't open library element stream\n" );
 /*?*/                   return;
 /*N*/               }
 /*N*/           }
@@ -1489,9 +1464,9 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryLink( const OUString& Name 
     return bRet;
 }
 
-/*?*/ OUString SAL_CALL SfxLibraryContainer_Impl::getLibraryLinkURL( const OUString& Name )
+/*?*/ OUString SAL_CALL SfxLibraryContainer_Impl::getLibraryLinkURL( const OUString& /*Name*/ )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); OUString aRetStr;return aRetStr;//STRIP001
+/*?*/ { OUString aRetStr;   return aRetStr;
 /*?*/ }
 
 sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& Name )
@@ -1502,38 +1477,38 @@ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryReadOnly( const OUString& N
     return bRet;
 }
 
-/*?*/ void SAL_CALL SfxLibraryContainer_Impl::setLibraryReadOnly( const OUString& Name, sal_Bool bReadOnly )
+/*?*/ void SAL_CALL SfxLibraryContainer_Impl::setLibraryReadOnly( const OUString& /*Name*/, sal_Bool /*bReadOnly*/ )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxLibraryContainer_Impl::renameLibrary( const OUString& Name, const OUString& NewName )
+/*?*/ void SAL_CALL SfxLibraryContainer_Impl::renameLibrary( const OUString& /*Name*/, const OUString& /*NewName*/ )
 /*?*/     throw (NoSuchElementException, ElementExistException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {
 /*?*/ }
 
 
 // Methods XLibraryContainerPassword
-/*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordProtected( const OUString& Name )
+/*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordProtected( const OUString& /*Name*/ )
 /*?*/     throw (NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ { return sal_False;
 /*?*/ }
 
-/*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordVerified( const OUString& Name )
+/*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::isLibraryPasswordVerified( const OUString& /*Name*/ )
 /*?*/     throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
+/*?*/ { return sal_False;
 /*?*/ }
 
 /*?*/ sal_Bool SAL_CALL SfxLibraryContainer_Impl::verifyLibraryPassword
-/*?*/     ( const OUString& Name, const OUString& Password )
+/*?*/     ( const OUString& /*Name*/, const OUString& /*Password*/ )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
+/*?*/ { return sal_False;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword( const OUString& Name,
-/*?*/     const OUString& OldPassword, const OUString& NewPassword )
+/*?*/ void SAL_CALL SfxLibraryContainer_Impl::changeLibraryPassword( const OUString& /*Name*/,
+/*?*/     const OUString& /*OldPassword*/, const OUString& /*NewPassword*/ )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
+/*?*/ {
 /*?*/ }
 
 // Methods XContainer
@@ -1721,9 +1696,9 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*N*/ }
 
 // Methods XNameReplace
-/*?*/ void SfxLibrary_Impl::replaceByName( const OUString& aName, const Any& aElement )
+/*?*/ void SfxLibrary_Impl::replaceByName( const OUString& /*aName*/, const Any& /*aElement*/ )
 /*?*/   throw(IllegalArgumentException, NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 
 
@@ -1738,9 +1713,9 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*N*/   mbModified = sal_True;
 /*N*/ }
 
-/*?*/ void SfxLibrary_Impl::removeByName( const OUString& Name )
+/*?*/ void SfxLibrary_Impl::removeByName( const OUString& /*Name*/ )
 /*?*/   throw(NoSuchElementException, WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {
 /*?*/ }
 
 // XTypeProvider
@@ -1748,7 +1723,6 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*?*/   throw( RuntimeException )
 /*?*/ {
     static OTypeCollection * s_pTypes_NameContainer = 0;
-    static OTypeCollection * s_pTypes_NameAccess = 0;
     {
         if( !s_pTypes_NameContainer )
         {
@@ -1772,7 +1746,6 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 /*?*/   throw( RuntimeException )
 /*?*/ {
     static OImplementationId * s_pId_NameContainer = 0;
-    static OImplementationId * s_pId_NameAccess = 0;
     {
         if( !s_pId_NameContainer )
         {
@@ -1808,3 +1781,5 @@ Any SfxLibrary_Impl::getByName( const OUString& aName )
 //============================================================================
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

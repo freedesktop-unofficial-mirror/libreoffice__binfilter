@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #define SC_FIELDWND_HXX
 
 
-#ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 namespace binfilter {
 
 #define MAX_LABELS  256
@@ -212,3 +209,5 @@ public:
 
 } //namespace binfilter
 #endif // SC_FIELDWND_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

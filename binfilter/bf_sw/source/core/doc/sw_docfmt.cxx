@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,97 +35,43 @@
 #define _SVSTDARR_USHORTSSORT
 #define _SVSTDARR_USHORTS
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SO2REF_HXX //autogen
 #include <bf_so3/so2ref.hxx>
-#endif
-#ifndef _SFXAPP_HXX
 #include <bf_sfx2/app.hxx>
-#endif
-#ifndef _SFX_MISCCFG_HXX
 #include <bf_sfx2/misccfg.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
-#endif
 #ifndef _ZFORLIST_HXX //autogen
 #define _ZFORLIST_DECLARE_TABLE
 #include <bf_svtools/zforlist.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwHyphenBug (in SetDefault)
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>           // servieren: Veraenderungen erkennen
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX
 #include <swtblfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _REFFLD_HXX //autogen
 #include <reffld.hxx>
-#endif
-#ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star::i18n;
 using namespace ::com::sun::star::lang;
@@ -161,15 +108,23 @@ struct ParaRstFmt
 
     ParaRstFmt( const SwPosition* pStt, const SwPosition* pEnd,
             USHORT nWhch = 0, const SfxItemSet* pSet = 0 )
-        : pSttNd( pStt ), pEndNd( pEnd ), nWhich( nWhch ),
-            pDelSet( pSet ), bResetAll( TRUE ), pFmtColl( 0 ),
-            bInclRefToxMark( FALSE )
+        : pFmtColl( 0 )
+        , pSttNd( pStt )
+        , pEndNd( pEnd )
+        , pDelSet( pSet )
+        , nWhich( nWhch )
+        , bResetAll( TRUE )
+        , bInclRefToxMark( FALSE )
     {}
 
     ParaRstFmt(  )
-        : pSttNd( 0 ), pEndNd( 0 ), nWhich( 0 ),
-        pDelSet( 0 ), bResetAll( TRUE ), pFmtColl( 0 ),
-        bInclRefToxMark( FALSE )
+        : pFmtColl( 0 )
+        , pSttNd( 0 )
+        , pEndNd( 0 )
+        , pDelSet( 0 )
+        , nWhich( 0 )
+        , bResetAll( TRUE )
+        , bInclRefToxMark( FALSE )
     {}
 };
 
@@ -217,7 +172,7 @@ struct ParaRstFmt
 /*N*/                           0 );
 /*N*/       SwAttrSet* pSet = pNode->GetpSwAttrSet();
 /*N*/
-/*N*/       USHORT __READONLY_DATA aSavIds[ 3 ] = { RES_PAGEDESC, RES_BREAK,
+/*N*/       USHORT const aSavIds[ 3 ] = { RES_PAGEDESC, RES_BREAK,
 /*N*/                                               RES_PARATR_NUMRULE };
 /*N*/
 /*N*/       const SfxPoolItem* pItem;
@@ -286,7 +241,6 @@ struct ParaRstFmt
 /*M*/                       const SvUShortsSort* pAttrs )
 /*M*/ {
 /*M*/   SwPaM* pPam = (SwPaM*)&rRg;
-/*M*/   BOOL bStopAttr = FALSE;
 /*M*/   if( !bTxtAttr && pAttrs && pAttrs->Count() &&
 /*M*/       RES_TXTATR_END > (*pAttrs)[ 0 ] )
 /*M*/       bTxtAttr = TRUE;
@@ -301,7 +255,7 @@ struct ParaRstFmt
 /*M*/
 /*M*/       SwIndex& rSt = pPam->GetPoint()->nContent;
 /*M*/       USHORT nMkPos = 0, nPtPos = rSt.GetIndex();
-/*M*/       const String& rStr = pTxtNd->GetTxt();
+/*M*/       pTxtNd->GetTxt();
 /*M*/
 /*M*/       // JP 22.08.96: Sonderfall: steht der Crsr in einem URL-Attribut
 /*M*/       //              dann wird dessen Bereich genommen
@@ -314,7 +268,7 @@ struct ParaRstFmt
 /*M*/           nPtPos = *pURLAttr->GetEnd();
 /*M*/       }
 /*M*/       else
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       rSt = nMkPos;
@@ -327,7 +281,7 @@ struct ParaRstFmt
 /*M*/   const SwPosition *pStt = pPam->Start(), *pEnd = pPam->End();
 /*M*/   ParaRstFmt aPara( pStt, pEnd );
 /*M*/
-/*N*/     USHORT __FAR_DATA aResetableSetRange[] = {
+/*N*/     USHORT aResetableSetRange[] = {
 /*N*/         RES_FRMATR_BEGIN, RES_FRMATR_END-1,
 /*N*/         RES_CHRATR_BEGIN, RES_CHRATR_END-1,
 /*N*/         RES_PARATR_BEGIN, RES_PARATR_END-1,
@@ -353,7 +307,7 @@ struct ParaRstFmt
 /*M*/   SwNodeIndex aTmpStt( pStt->nNode );
 /*M*/   SwNodeIndex aTmpEnd( pEnd->nNode );
 /*M*/   if( pStt->nContent.GetIndex() )     // nur ein Teil
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/   if( pEnd->nContent.GetIndex() == pEnd->nNode.GetNode().GetCntntNode()->Len() )
 /*M*/       // dann spaeter aufsetzen und alle CharFmtAttr -> TxtFmtAttr
@@ -451,7 +405,7 @@ struct ParaRstFmt
 /*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
 /*N*/                   pDoc->GetRedlineTbl().Count() ))
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( pStt->nNode, pStt->nContent.GetIndex()-1,
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -478,7 +432,7 @@ struct ParaRstFmt
 /*N*/               if( pDoc->IsRedlineOn() || (!pDoc->IsIgnoreRedline() &&
 /*N*/                    pDoc->GetRedlineTbl().Count() ) )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // wurde Text-Inhalt eingefuegt? (RefMark/TOXMarks ohne Ende)
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -560,7 +514,7 @@ struct ParaRstFmt
 /*N*/
 /*N*/       if( pNode->IsTxtNode() && aCharSet.Count() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwTxtNode* pTxtNd = (SwTxtNode*)pNode;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if( aOtherSet.Count() )
 /*N*/       {
@@ -572,7 +526,7 @@ struct ParaRstFmt
 /*N*/
 /*N*/   if( pDoc->IsRedlineOn() && aCharSet.Count() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pUndo )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
     /* jetzt wenn Bereich */
@@ -657,11 +611,10 @@ struct ParaRstFmt
 /*N*/   const SfxPoolItem* pChrFmtItem = 0;
 /*N*/   aCharSet.GetItemState( RES_TXTATR_CHARFMT, FALSE, &pChrFmtItem );
 /*N*/ #endif
-/*N*/   BOOL bCreateSwpHints =
 /*N*/       SFX_ITEM_SET == aCharSet.GetItemState( RES_TXTATR_CHARFMT, FALSE ) ||
 /*N*/       SFX_ITEM_SET == aCharSet.GetItemState( RES_TXTATR_INETFMT, FALSE );
 /*N*/
-/*N*/   for(; aSt < aEnd; aSt++ )
+/*N*/   for(; aSt < aEnd; ++aSt )
 /*N*/   {
 /*N*/       pNode = aSt.GetNode().GetCntntNode();
 /*N*/       if( !pNode )
@@ -690,29 +643,6 @@ struct ParaRstFmt
 /*N*/   aSet.Put( rHt );
 /*N*/   bRet = InsAttr( this, rRg, aSet, nFlags );
 
-/*  if( INSATTR_DONTEXPAND & nFlags )
-    {
-        USHORT nWhich = rHt.Which();
-        const SwPosition* pPos = rRg.End();
-        SwTxtNode* pTxtNd = GetNodes()[ pPos->nNode ]->GetTxtNode();
-        SwpHints* pHts;
-        if( pTxtNd && 0 != ( pHts = pTxtNd->GetpSwpHints()) )
-        {
-            USHORT nPos = pHts->GetEndCount();
-            while( nPos )
-            {
-                SwTxtAttr *pTmp = pHts->GetEnd( --nPos );
-                USHORT *pEnd = pTmp->GetEnd();
-                if( !pEnd || *pEnd > nEnd )
-                    continue;
-                if( nEnd != *pEnd )
-                    nPos = 0;
-                else if( nWhich == pTmp->Which() )
-                    pTmp->SetDontExpand( TRUE );
-            }
-        }
-    }
-*/
 /*N*/   if( bRet )
 /*N*/       SetModified();
 /*N*/   return bRet;
@@ -847,10 +777,10 @@ struct ParaRstFmt
 /*N*/
 /*N*/   if( aNew.Count() && aCallMod.GetDepends() )
 /*N*/   {
-/*N*/       const SfxPoolItem* pItem;
+/*N*/       const SfxPoolItem* pItem2;
 /*N*/       if( ( SFX_ITEM_SET ==
-/*N*/                 aNew.GetItemState( RES_PARATR_TABSTOP, FALSE, &pItem ) ) &&
-/*N*/           ((SvxTabStopItem*)pItem)->Count() )
+/*N*/                 aNew.GetItemState( RES_PARATR_TABSTOP, FALSE, &pItem2 ) ) &&
+/*N*/           ((SvxTabStopItem*)pItem2)->Count() )
 /*N*/       {
 /*N*/           // TabStop-Aenderungen behandeln wir erstmal anders:
 /*N*/           // dann aender bei allen TabStop die dafault's auf den neuen Wert
@@ -858,15 +788,15 @@ struct ParaRstFmt
 /*N*/           //              damit nicht in allen Sets die gleiche Berechnung
 /*N*/           //              auf dem gleichen TabStop (gepoolt!) vorgenommen
 /*N*/           //              wird. Als Modify wird ein FmtChg verschickt.
-/*N*/           SwTwips nNewWidth = (*(SvxTabStopItem*)pItem)[ 0 ].GetTabPos(),
+/*N*/           SwTwips nNewWidth = (*(SvxTabStopItem*)pItem2)[ 0 ].GetTabPos(),
 /*N*/                   nOldWidth = ((SvxTabStopItem&)aOld.Get(RES_PARATR_TABSTOP))[ 0 ].GetTabPos();
 /*N*/
 /*N*/           int bChg = FALSE;
 /*N*/           USHORT nMaxItems = GetAttrPool().GetItemCount( RES_PARATR_TABSTOP );
 /*N*/           for( USHORT n = 0; n < nMaxItems; ++n )
-/*N*/               if( 0 != (pItem = GetAttrPool().GetItem( RES_PARATR_TABSTOP, n ) ))
+/*N*/               if( 0 != (pItem2 = GetAttrPool().GetItem( RES_PARATR_TABSTOP, n ) ))
 /*N*/                   bChg |= lcl_SetNewDefTabStops( nOldWidth, nNewWidth,
-/*N*/                                               *(SvxTabStopItem*)pItem );
+/*N*/                                               *(SvxTabStopItem*)pItem2 );
 /*N*/
 /*N*/           aNew.ClearItem( RES_PARATR_TABSTOP );
 /*N*/           aOld.ClearItem( RES_PARATR_TABSTOP );
@@ -912,7 +842,7 @@ void SwDoc::DelCharFmt(USHORT nFmt)
 void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 {
     USHORT nFmt = pCharFmtTbl->GetPos( pFmt );
-    ASSERT( USHRT_MAX != nFmt, "Fmt not found," );
+    OSL_ENSURE( USHRT_MAX != nFmt, "Fmt not found," );
     DelCharFmt( nFmt );
 }
 
@@ -920,7 +850,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ {
 /*N*/   if( pFmt->ISA( SwTableBoxFmt ) || pFmt->ISA( SwTableLineFmt ))
 /*N*/   {
-/*?*/       ASSERT( !this, "Format steht nicht mehr im DocArray, "
+/*?*/       OSL_ENSURE( !this, "Format steht nicht mehr im DocArray, "
 /*?*/                      "kann per delete geloescht werden" );
 /*?*/       delete pFmt;
 /*N*/   }
@@ -934,7 +864,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/       else
 /*N*/       {
 /*N*/           nPos = GetSpzFrmFmts()->GetPos( pFmt );
-/*N*/           ASSERT( nPos != USHRT_MAX, "FrmFmt not found." );
+/*N*/           OSL_ENSURE( nPos != USHRT_MAX, "FrmFmt not found." );
 /*N*/           if( USHRT_MAX != nPos )
 /*N*/               GetSpzFrmFmts()->DeleteAndDestroy( nPos );
 /*N*/       }
@@ -944,7 +874,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ void SwDoc::DelTblFrmFmt( SwTableFmt *pFmt )
 /*N*/ {
 /*N*/   USHORT nPos = pTblFrmFmtTbl->GetPos( pFmt );
-/*N*/   ASSERT( USHRT_MAX != nPos, "Fmt not found," );
+/*N*/   OSL_ENSURE( USHRT_MAX != nPos, "Fmt not found," );
 /*N*/   pTblFrmFmtTbl->DeleteAndDestroy( nPos );
 /*N*/ }
 
@@ -970,9 +900,9 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ }
 
 
-/*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL bUsed) const
+/*N*/ USHORT SwDoc::GetTblFrmFmtCount(BOOL /*bUsed*/) const
 /*N*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    USHORT nCount = pTblFrmFmtTbl->Count();
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
@@ -1187,7 +1117,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 //FEATURE::CONDCOLL
 /*?*/   if( RES_CONDTXTFMTCOLL == rColl.Which() )
 /*?*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pNewColl = new SwConditionTxtFmtColl( GetAttrPool(), rColl.GetName(),
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   else
 /*?*/ //FEATURE::CONDCOLL
@@ -1247,7 +1177,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*?*/       pParent = CopyGrfColl( *(SwGrfFmtColl*)rColl.DerivedFrom() );
 /*?*/
 /*?*/   // falls nicht, so kopiere sie
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pNewColl = MakeGrfFmtColl( rColl.GetName(), pParent );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*?*/   // noch die Attribute kopieren
 /*?*/   pNewColl->CopyAttrs( rColl );
@@ -1300,7 +1230,7 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::_CreateNumberFormatter" );
 /*N*/
-/*N*/   ASSERT( !pNumberFormatter, "ist doch schon vorhanden" );
+/*N*/   OSL_ENSURE( !pNumberFormatter, "ist doch schon vorhanden" );
 /*N*/
 /*N*/
 /*N*/   LanguageType eLang = LANGUAGE_SYSTEM; //System::GetLanguage();
@@ -1337,3 +1267,5 @@ void SwDoc::DelCharFmt( SwCharFmt *pFmt )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

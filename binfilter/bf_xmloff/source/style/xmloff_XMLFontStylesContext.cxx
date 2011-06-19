@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,32 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP
 #include <com/sun/star/awt/FontFamily.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP
 #include <com/sun/star/awt/FontPitch.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include "maptype.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX
 #include "XMLFontStylesContext.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
@@ -59,6 +45,8 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::awt;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 
 #define XML_STYLE_FAMILY_FONT 1
@@ -74,7 +62,7 @@ enum XMLFontStyleAttrTokens
     XML_TOK_FONT_STYLE_ATTR_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aFontStyleAttrTokenMap[] =
+static SvXMLTokenMapEntry aFontStyleAttrTokenMap[] =
 {
     { XML_NAMESPACE_FO, XML_FONT_FAMILY,
             XML_TOK_FONT_STYLE_ATTR_FAMILY },
@@ -109,7 +97,7 @@ public:
 
     TYPEINFO();
 
-    XMLFontStyleContext_Impl( SvXMLImport& rImport, sal_uInt16 nPrfx,
+    XMLFontStyleContext_Impl( SvXMLImport& rInImport, sal_uInt16 nPrfx,
             const ::rtl::OUString& rLName,
             const ::com::sun::star::uno::Reference<
                 ::com::sun::star::xml::sax::XAttributeList > & xAttrList,
@@ -130,11 +118,11 @@ public:
 
 TYPEINIT1( XMLFontStyleContext_Impl, SvXMLStyleContext );
 
-XMLFontStyleContext_Impl::XMLFontStyleContext_Impl( SvXMLImport& rImport,
+XMLFontStyleContext_Impl::XMLFontStyleContext_Impl( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         XMLFontStylesContext& rStyles ) :
-    SvXMLStyleContext( rImport, nPrfx, rLName, xAttrList, XML_STYLE_FAMILY_FONT ),
+    SvXMLStyleContext( rInImport, nPrfx, rLName, xAttrList, XML_STYLE_FAMILY_FONT ),
     xStyles( &rStyles )
 {
     OUString sEmpty;
@@ -224,21 +212,21 @@ void XMLFontStyleContext_Impl::FillProperties(
 }
 
 SvXMLStyleContext *XMLFontStylesContext::CreateStyleChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const ::rtl::OUString& rLocalName,
         const ::com::sun::star::uno::Reference<
             ::com::sun::star::xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLStyleContext *pStyle;
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_FONT_DECL ) )
     {
-        pStyle = new XMLFontStyleContext_Impl( GetImport(), nPrefix,
+        pStyle = new XMLFontStyleContext_Impl( GetImport(), nInPrefix,
                                                rLocalName, xAttrList, *this );
     }
     else
     {
-        pStyle = SvXMLStylesContext::CreateStyleChildContext( nPrefix,
+        pStyle = SvXMLStylesContext::CreateStyleChildContext( nInPrefix,
                                                rLocalName, xAttrList );
     }
 
@@ -247,17 +235,17 @@ SvXMLStyleContext *XMLFontStylesContext::CreateStyleChildContext(
 
 TYPEINIT1( XMLFontStylesContext, SvXMLStylesContext );
 
-XMLFontStylesContext::XMLFontStylesContext( SvXMLImport& rImport,
+XMLFontStylesContext::XMLFontStylesContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         rtl_TextEncoding eDfltEnc ) :
-    SvXMLStylesContext( rImport, nPrfx, rLName, xAttrList ),
-    eDfltEncoding( eDfltEnc ),
+    SvXMLStylesContext( rInImport, nPrfx, rLName, xAttrList ),
     pFamilyNameHdl( new XMLFontFamilyNamePropHdl ),
     pFamilyHdl( new XMLFontFamilyPropHdl ),
     pPitchHdl( new XMLFontPitchPropHdl ),
     pEncHdl( new XMLFontEncodingPropHdl ),
-    pFontStyleAttrTokenMap( new SvXMLTokenMap(aFontStyleAttrTokenMap) )
+    pFontStyleAttrTokenMap( new SvXMLTokenMap(aFontStyleAttrTokenMap) ),
+    eDfltEncoding( eDfltEnc )
 {
 }
 
@@ -287,3 +275,5 @@ sal_Bool XMLFontStylesContext::FillProperties( const OUString& rName,
     return 0 != pFontStyle;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

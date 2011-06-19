@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _XMLOFF_XMLREG_HXX
 
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 namespace binfilter {
 
 /**
@@ -45,3 +44,4 @@ sal_Bool XMLRegisterServices( ::com::sun::star::uno::Reference< ::com::sun::star
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLREG_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

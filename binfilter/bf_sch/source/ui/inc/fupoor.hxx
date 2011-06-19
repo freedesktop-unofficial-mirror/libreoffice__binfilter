@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,9 +35,7 @@
 // #define ChartModel SchChartDocument
 //------------------------------------------------------------------
 
-#ifndef _SV_DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
 #include "objid.hxx"
 namespace binfilter {
@@ -104,3 +103,4 @@ public:
 #endif  // _SCH_FUPOOR_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 namespace binfilter {
 
@@ -50,20 +45,15 @@ namespace binfilter {
 // Parameter fuer das Suchen vom FormatCollections
 
 
-
-
-
-
 // Suchen nach Format-Collections
 
 
-/*M*/ ULONG SwCursor::Find( const SwTxtFmtColl& rFmtColl,
-/*M*/                     SwDocPositions nStart, SwDocPositions nEnde, BOOL& bCancel,
-/*M*/                   FindRanges eFndRngs, const SwTxtFmtColl* pReplFmtColl )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP");return 0;//STRIP001
-/*M*/   // OLE-Benachrichtigung abschalten !!
+/*M*/ ULONG SwCursor::Find( const SwTxtFmtColl& /*rFmtColl*/,
+/*M*/       SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/, BOOL& /*bCancel*/,
+/*M*/       FindRanges /*eFndRngs*/, const SwTxtFmtColl* /*pReplFmtColl*/ )
+/*M*/ {
+        DBG_BF_ASSERT(0, "STRIP");return 0; // OLE-Benachrichtigung abschalten !!
 /*M*/ }
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

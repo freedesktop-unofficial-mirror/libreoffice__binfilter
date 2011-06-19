@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SVX_UNOMOD_HXX
 #define SVX_UNOMOD_HXX
 
-#ifndef _COM_SUN_STAR_DOCUMENT_EVENTOBJECT_HPP_
 #include <com/sun/star/document/EventObject.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 namespace binfilter {
 
 class SdrHint;
@@ -66,3 +63,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

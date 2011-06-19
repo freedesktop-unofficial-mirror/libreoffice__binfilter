@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include "xmltkmap.hxx"
-#endif
 
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
 
 class SvXMLTokenMapEntry_Impl
 {
@@ -131,3 +124,5 @@ sal_uInt16 SvXMLTokenMap::Get( sal_uInt16 nKeyPrefix,
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

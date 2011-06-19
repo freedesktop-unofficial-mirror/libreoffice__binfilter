@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,17 +28,11 @@
 
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLPERCENTORMEASUREPROPERTYHANDLER_HXX
 #include "XMLPercentOrMeasurePropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -85,7 +80,7 @@ sal_Bool XMLPercentOrMeasurePropertyHandler::exportXML(
 {
       OUStringBuffer aOut;
 
-    sal_Int32 nValue;
+    sal_Int32 nValue = 0;
     if( !(rValue >>= nValue ) )
         return sal_False;
 
@@ -102,3 +97,5 @@ sal_Bool XMLPercentOrMeasurePropertyHandler::exportXML(
     return sal_True;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

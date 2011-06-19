@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,16 +33,10 @@
 
 #include "hintids.hxx"
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
 
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
 #include "txtcfg.hxx"
 #include "portab.hxx"
@@ -105,7 +100,8 @@ namespace binfilter {
 /*N*/   if( nTabPos < rInf.X() )
 /*N*/       nTabPos = rInf.X();
 /*N*/
-/*N*/   xub_Unicode cFill, cDec;
+/*N*/   xub_Unicode cFill = 0;
+/*N*/   xub_Unicode cDec = 0;
 /*N*/   SvxTabAdjust eAdj;
 /*N*/
 /*N*/   KSHORT nNewTabPos;
@@ -124,18 +120,17 @@ namespace binfilter {
 /*N*/
 /*N*/       const SwTwips nLinePos = GetLeftMargin();
 /*N*/       const SwTwips nLineTab = nLinePos + nTabPos;
-/*N*/         SwTwips nRight = Right();
+/*N*/         SwTwips nMyRight = Right();
 /*N*/
 /*N*/         if ( pFrm->IsVertical() )
 /*N*/         {
-/*N*/             Point aRightTop( nRight, pFrm->Frm().Top() );
-/*N*/             pFrm->SwitchHorizontalToVertical( aRightTop );
-/*N*/             nRight = aRightTop.Y();
+/*N*/             Point aRightTop( nMyRight, pFrm->Frm().Top() );
+/*N*/             nMyRight = aRightTop.Y();
 /*N*/         }
 /*N*/
 /*N*/       SwTwips nNextPos;
 /*N*/       const SvxTabStop* pTabStop =
-/*N*/           aLineInf.GetTabStop( nLineTab, nTabLeft, nRight );
+/*N*/           aLineInf.GetTabStop( nLineTab, nTabLeft, nMyRight );
 /*N*/       if( pTabStop )
 /*N*/       {
 /*N*/           cFill = ' ' != pTabStop->GetFill() ? pTabStop->GetFill() : 0;
@@ -186,7 +181,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       nNextPos += nTabLeft;
 /*N*/       nNextPos -= nLinePos;
-/*N*/       ASSERT( nNextPos >= 0, "GetTabStop: Don't go back!" );
+/*N*/       OSL_ENSURE( nNextPos >= 0, "GetTabStop: Don't go back!" );
 /*N*/       nNewTabPos = KSHORT(nNextPos);
 /*N*/   }
 /*N*/
@@ -209,7 +204,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       default:
 /*N*/       {
-/*N*/           ASSERT( SVX_TAB_ADJUST_LEFT == eAdj || SVX_TAB_ADJUST_DEFAULT == eAdj,
+/*N*/           OSL_ENSURE( SVX_TAB_ADJUST_LEFT == eAdj || SVX_TAB_ADJUST_DEFAULT == eAdj,
 /*N*/                   "+SwTxtFormatter::NewTabPortion: unknown adjustment" );
 /*N*/           pTabPor = new SwTabLeftPortion( nNewTabPos, cFill );
 /*N*/           break;
@@ -231,14 +226,14 @@ namespace binfilter {
 // Die Basisklasse wird erstmal ohne alles initialisiert.
 
 
-/*N*/ SwTabPortion::SwTabPortion( const KSHORT nTabPos, const xub_Unicode cFill )
-/*N*/   : SwFixPortion( 0, 0 ), nTabPos(nTabPos), cFill(cFill)
+/*N*/ SwTabPortion::SwTabPortion( const KSHORT nTabPosition, const xub_Unicode cFillChar )
+/*N*/   : SwFixPortion( 0, 0 ), nTabPos(nTabPosition), cFill(cFillChar)
 /*N*/ {
 /*N*/   nLineLength = 1;
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if( IsFilled() )
 /*N*/   {
-/*N*/       ASSERT( ' ' != cFill, "SwTabPortion::CTOR: blanks ?!" );
+/*N*/       OSL_ENSURE( ' ' != cFill, "SwTabPortion::CTOR: blanks ?!" );
 /*N*/   }
 /*N*/ #endif
 /*N*/   SetWhichPor( POR_TAB );
@@ -280,7 +275,7 @@ namespace binfilter {
 
 /*M*/ sal_Bool SwTabPortion::PreFormat( SwTxtFormatInfo &rInf )
 /*M*/ {
-/*M*/   ASSERT( rInf.X() <= GetTabPos(), "SwTabPortion::PreFormat: rush hour" );
+/*M*/   OSL_ENSURE( rInf.X() <= GetTabPos(), "SwTabPortion::PreFormat: rush hour" );
 /*M*/
 /*M*/   // Hier lassen wir uns nieder...
 /*M*/   Fix( rInf.X() );
@@ -319,7 +314,7 @@ namespace binfilter {
 /*M*/               bFull = rInf.Width() <= rInf.X() + PrtWidth();
 /*M*/               break;
 /*M*/           }
-/*M*/           default: ASSERT( !this, "SwTabPortion::PreFormat: unknown adjustment" );
+/*M*/           default: OSL_ENSURE( !this, "SwTabPortion::PreFormat: unknown adjustment" );
 /*M*/       }
 /*M*/   }
 /*M*/
@@ -370,7 +365,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   const MSHORT nWhich = GetWhichPor();
-/*N*/   ASSERT( POR_TABLEFT != nWhich, "SwTabPortion::PostFormat: already formatted" );
+/*N*/   OSL_ENSURE( POR_TABLEFT != nWhich, "SwTabPortion::PostFormat: already formatted" );
 /*N*/   const KSHORT nDiffWidth = nRight - Fix();
 /*N*/
 /*N*/   if( POR_TABCENTER == nWhich )
@@ -419,3 +414,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

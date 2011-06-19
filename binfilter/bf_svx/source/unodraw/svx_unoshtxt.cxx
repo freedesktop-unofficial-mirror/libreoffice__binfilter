@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,49 +30,26 @@
 #pragma hdrstop
 #endif
 
-
-//#include <tools/debug.hxx>
-//#include <editeng.hxx>
-
 #include <unoshtxt.hxx>
 #include <unoedhlp.hxx>
 
-
-
-
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _SVDOUTL_HXX //autogen
 #include <svdoutl.hxx>
-#endif
-#ifndef _SVDVIEW_HXX
 #include <svdview.hxx>
-#endif
-#ifndef _SVX_UNOVIWOU_HXX
 #include <unoviwou.hxx>
-#endif
-#ifndef _OUTLOBJ_HXX
 #include "outlobj.hxx"
-#endif
 #include "svdpage.hxx"
 #include "editeng.hxx"
-#ifndef _EDITOBJ_HXX
 #include "editobj.hxx"
-#endif
 
 #include "unotext.hxx"
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XLINGUSERVICEMANAGER_HPP_
 #include <com/sun/star/linguistic2/XLinguServiceManager.hpp>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 
 
 using namespace ::osl;
-using namespace ::vos;
 using namespace ::rtl;
 
 namespace css = ::com::sun::star;
@@ -238,7 +216,7 @@ void SAL_CALL SvxTextEditSourceImpl::release()
 
 //------------------------------------------------------------------------
 
-void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SvxTextEditSourceImpl::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
     const SvxViewHint* pViewHint = PTR_CAST( SvxViewHint, &rHint );
@@ -249,6 +227,8 @@ void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         {
             case SVX_HINT_VIEWCHANGED:
                 Broadcast( *pViewHint );
+                break;
+            default:
                 break;
         }
     }
@@ -351,6 +331,8 @@ void SvxTextEditSourceImpl::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
                         mpTextForwarder = NULL;
                     }
                 }
+                break;
+            default:
                 break;
         }
     }
@@ -846,7 +828,7 @@ Point SvxTextEditSourceImpl::PixelToLogic( const Point& rPoint, const MapMode& r
     return Point();
 }
 
-IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, aNotify)
+IMPL_LINK(SvxTextEditSourceImpl, NotifyHdl, EENotify*, EMPTYARG)
 {
     return 0;
 }
@@ -874,7 +856,7 @@ SvxTextEditSource::SvxTextEditSource( SvxTextEditSourceImpl* pImpl )
 //------------------------------------------------------------------------
 SvxTextEditSource::~SvxTextEditSource()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     mpImpl->release();
 }
@@ -998,3 +980,5 @@ sal_Bool SvxTextEditSource::hasLevels( const SdrObject* pObject )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,24 +29,14 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SAL_TYPES_H_
 #include "sal/types.h"
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include "rtl/ustring.hxx"
-#endif
 
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 namespace css = com::sun::star;
 using css::uno::Reference;
@@ -89,7 +80,7 @@ SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (
         {
             Sequence< OUString > aServiceNames(1);
             aServiceNames.getArray()[0] =
-                OUString::createFromAscii( "com.sun.star.util.NumberFormatsSupplier" );
+                OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatsSupplier" ));
 
             xFactory = ::cppu::createSingleFactory(
                 reinterpret_cast< css::lang::XMultiServiceFactory* >(_pServiceManager),
@@ -103,7 +94,7 @@ SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (
         {
             Sequence< OUString > aServiceNames(1);
             aServiceNames.getArray()[0] =
-                OUString::createFromAscii( "com.sun.star.util.NumberFormatter" );
+                OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.NumberFormatter" ));
 
             xFactory = ::cppu::createSingleFactory(
                 reinterpret_cast< css::lang::XMultiServiceFactory* >(_pServiceManager),
@@ -122,3 +113,4 @@ SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory (
 
 }   // "C"
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

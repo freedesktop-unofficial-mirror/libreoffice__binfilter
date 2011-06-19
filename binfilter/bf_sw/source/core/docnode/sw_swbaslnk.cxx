@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,69 +35,31 @@
 
 #include <hintids.hxx>
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>        // fuer die EventIds
-#endif
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
-#endif
-#ifndef _SWSERV_HXX
 #include <swserv.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ BOOL SetGrfFlySize( const Size& rGrfSz, const Size& rFrmSz, SwGrfNode* pGrfNd );
@@ -138,7 +101,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !pCntntNode )
 /*N*/   {
-/*?*/       ASSERT(!this, "DataChanged ohne ContentNode" );
+/*?*/       OSL_ENSURE(!this, "DataChanged ohne ContentNode" );
 /*?*/       return ;
 /*N*/   }
 /*N*/
@@ -169,16 +132,16 @@ namespace binfilter {
 /*?*/           SwFrmFmt* pFmt;
 /*?*/           if( nEvent && 0 != ( pFmt = pCntntNode->GetFlyFmt() ))
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCallMouseEvent aCallEvent;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*?*/       return;         // das wars!
 /*N*/   }
 /*N*/
-/*N*/   FASTBOOL bUpdate = FALSE;
-/*N*/   FASTBOOL bGraphicArrived = FALSE;
-/*N*/   FASTBOOL bGraphicPieceArrived = FALSE;
-/*N*/   FASTBOOL bDontNotify = FALSE;
+/*N*/   bool bUpdate = FALSE;
+/*N*/   bool bGraphicArrived = FALSE;
+/*N*/   bool bGraphicPieceArrived = FALSE;
+/*N*/   bool bDontNotify = FALSE;
 /*N*/   Size aGrfSz, aFrmFmtSz;
 /*N*/
 /*N*/   if( pCntntNode->IsGrfNode() )
@@ -337,7 +300,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SwBaseLink::IsShowQuickDrawBmp() const
+/*N*/ bool SwBaseLink::IsShowQuickDrawBmp() const
 /*N*/ {
 /*N*/   return pCntntNode && pCntntNode->IsGrfNode() &&
 /*N*/ #ifdef NEW_GRFOBJ
@@ -405,12 +368,12 @@ namespace binfilter {
 /*?*/                   0 != (pANd = pDoc->GetNodes()[pAPos->nNode]) &&
 /*?*/                   0 != (pTblNd = pANd->FindTableNode()) )
 /*?*/               {
-/*?*/                   BOOL bLastGrf = !pTblNd->GetTable().DecGrfsThatResize();
+/*?*/                   pTblNd->GetTable().DecGrfsThatResize();
 /*?*/                   SwHTMLTableLayout *pLayout =
 /*?*/                       pTblNd->GetTable().GetHTMLTableLayout();
 /*?*/                   if( pLayout )
 /*?*/                   {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nBrowseWidth =
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/               }
 /*?*/           }
@@ -426,11 +389,11 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwBaseLink::SwapIn( BOOL bWaitForData, BOOL bNativFormat )
+/*N*/ bool SwBaseLink::SwapIn( BOOL bWaitForData, BOOL bNativFormat )
 /*N*/ {
 /*N*/   bSwapIn = TRUE;
 /*N*/
-/*N*/   FASTBOOL bRes;
+/*N*/   bool bRes;
 /*N*/
 /*N*/   if( !GetObj() && ( bNativFormat || ( !IsSynchron() && bWaitForData ) ))
 /*N*/   {
@@ -460,7 +423,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( bWaitForData && !GetObj() )
 /*N*/       {
-/*?*/           ASSERT( !this, "das SvxFileObject wurde in einem GetData geloescht!" );
+/*?*/           OSL_ENSURE( !this, "das SvxFileObject wurde in einem GetData geloescht!" );
 /*?*/           bRes = FALSE;
 /*N*/       }
 /*N*/       else if( 0 != ( bRes = aValue.hasValue() ) )
@@ -511,3 +474,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

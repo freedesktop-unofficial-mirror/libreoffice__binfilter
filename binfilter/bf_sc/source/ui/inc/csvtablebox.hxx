@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,22 +31,12 @@
 #ifndef _SC_CSVTABLEBOX_HXX
 #define _SC_CSVTABLEBOX_HXX
 
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
-#ifndef _SV_SCRBAR_HXX
 #include <vcl/scrbar.hxx>
-#endif
 
-#ifndef _SC_CSVCONTROL_HXX
 #include "csvcontrol.hxx"
-#endif
-#ifndef _SC_CSVRULER_HXX
 #include "csvruler.hxx"
-#endif
-#ifndef _SC_CSVGRID_HXX
 #include "csvgrid.hxx"
-#endif
 class ListBox;
 namespace binfilter {
 
@@ -54,3 +45,4 @@ class ScAsciiOptions;
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

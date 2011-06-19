@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_FORMDATA_HXX
 #define SC_FORMDATA_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _SV_GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 
 
@@ -43,8 +40,8 @@ namespace binfilter {
 class ScFormEditData
 {
 public:
-                        ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                         ScFormEditData();
-                        ~ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                        ~ScFormEditData();
+                        ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");}
+                        ~ScFormEditData(){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -52,3 +49,4 @@ public:
 } //namespace binfilter
 #endif // SC_CRNRDLG_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

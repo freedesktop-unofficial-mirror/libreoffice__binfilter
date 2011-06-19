@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SC_ADIASYNC_HXX
 #define _SC_ADIASYNC_HXX
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
 #include "callform.hxx"
 class String;
@@ -43,12 +42,12 @@ void CALLTYPE ScAddInAsyncCallBack( double& nHandle, void* pData );
 
 class ScAddInAsync;
 typedef ScAddInAsync* ScAddInAsyncPtr;
-SV_DECL_PTRARR_SORT( ScAddInAsyncs, ScAddInAsyncPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_SORT( ScAddInAsyncs, ScAddInAsyncPtr, 4, 4 )
 extern ScAddInAsyncs theAddInAsyncTbl;  // in adiasync.cxx
 
 class ScDocument;
 typedef ScDocument* ScAddInDocPtr;
-SV_DECL_PTRARR_SORT( ScAddInDocs, ScAddInDocPtr, 1, 1 )//STRIP008 ;
+SV_DECL_PTRARR_SORT( ScAddInDocs, ScAddInDocPtr, 1, 1 )
 
 
 class ScAddInAsync : public SfxBroadcaster
@@ -92,3 +91,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

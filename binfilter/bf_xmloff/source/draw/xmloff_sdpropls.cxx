@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,158 +30,45 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPAREFACTORY_HPP_
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXREPLACE_HPP_
 #include <com/sun/star/container/XIndexReplace.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_LINESTYLE_HPP_
 #include <com/sun/star/drawing/LineStyle.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_HPP_
 #include <com/sun/star/drawing/LineJoint.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
 #include <com/sun/star/drawing/FillStyle.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_PRESENTATION_ANIMATIONSPEED_HPP_
 #include <com/sun/star/presentation/AnimationSpeed.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_PRESENTATION_FADEEFFECT_HPP_
 #include <com/sun/star/presentation/FadeEffect.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_CONNECTORTYPE_HPP_
 #include <com/sun/star/drawing/ConnectorType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_RECTANGLEPOINT_HPP_
 #include <com/sun/star/drawing/RectanglePoint.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_BitmapMode_HPP_
 #include <com/sun/star/drawing/BitmapMode.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
-
-#ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include <EnumPropertyHdl.hxx>
-#endif
-
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include <NamedBoolPropertyHdl.hxx>
-#endif
-
-#ifndef _XMLOFF_PROPERTYHANDLER_NUMRULE_HXX
 #include "numithdl.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 #include "XMLBitmapRepeatOffsetPropertyHandler.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLFILLBITMAPSIZEPROPERTYHANDLER_HXX
 #include "XMLFillBitmapSizePropertyHandler.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLBITMAPLOGICALSIZEPROPERTYHANDLER_HXX
 #include "XMLBitmapLogicalSizePropertyHandler.hxx"
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONKIND_HPP_
 #include <com/sun/star/drawing/TextAnimationKind.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONDIRECTION_HPP_
 #include <com/sun/star/drawing/TextAnimationDirection.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTHORIZONTALADJUST_HPP_
 #include <com/sun/star/drawing/TextHorizontalAdjust.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTVERTICALADJUST_HPP_
 #include <com/sun/star/drawing/TextVerticalAdjust.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTFITTOSIZETYPE_HPP_
 #include <com/sun/star/drawing/TextFitToSizeType.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTHORZPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextHorzPos.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTVERTPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextVertPos.hpp>
-#endif
-
-#ifndef _XMLOFF_CONTROLBORDERHDL_HXX_
 #include "ControlBorderHandler.hxx"
-#endif
-
-
-#ifndef _SDPROPLS_HXX
 #include "sdpropls.hxx"
-#endif
-
-#ifndef _PROPIMP0_HXX
 #include "propimp0.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <xmlnmspe.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_NORMALSKIND_HPP_
 #include <com/sun/star/drawing/NormalsKind.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREPROJECTIONMODE_HPP_
 #include <com/sun/star/drawing/TextureProjectionMode.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREKIND_HPP_
 #include <com/sun/star/drawing/TextureKind.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREMODE_HPP_
 #include <com/sun/star/drawing/TextureMode.hpp>
-#endif
-
-#ifndef _XMLOFF_TEXTPRMAP_HXX_
 #include "txtprmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLCLIPPROPERTYHANDLER_HXX
 #include "XMLClipPropertyHandler.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLISPERCENTAGEPROPERTYHANDLER_HXX
 #include "XMLIsPercentagePropertyHandler.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLPERCENTORMEASUREPROPERTYHANDLER_HXX
 #include "XMLPercentOrMeasurePropertyHandler.hxx"
-#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -188,6 +76,7 @@ using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
 
 #define MAP(name,prefix,token,type,context)  { name, sizeof(name)-1, prefix, token, type, context }
+#define MAP_ENTRY_END { 0,0,0,xmloff::token::XML_TOKEN_INVALID,0,0 }
 
 //////////////////////////////////////////////////////////////////////////////
 // entry list for graphic properties
@@ -382,7 +271,7 @@ const XMLPropertyMapEntry aXMLSDProperties[] =
     // misc object properties
     MAP( "MoveProtect",                 XML_NAMESPACE_DRAW, XML_MOVE_PROTECT,               XML_TYPE_BOOL, CTF_SD_MOVE_PROTECT ),
     MAP( "SizeProtect",                 XML_NAMESPACE_DRAW, XML_SIZE_PROTECT,               XML_TYPE_BOOL, CTF_SD_SIZE_PROTECT ),
-    { 0L }
+    MAP_ENTRY_END
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -421,7 +310,7 @@ const XMLPropertyMapEntry aXMLSDPresPageProps[] =
     MAP( "FillBitmapOffsetX",           XML_NAMESPACE_DRAW, XML_TILE_REPEAT_OFFSET,     XML_SD_TYPE_BITMAPREPOFFSETX|MID_FLAG_MULTI_PROPERTY, CTF_REPEAT_OFFSET_X ),
     MAP( "FillBitmapOffsetY",           XML_NAMESPACE_DRAW, XML_TILE_REPEAT_OFFSET, XML_SD_TYPE_BITMAPREPOFFSETY|MID_FLAG_MULTI_PROPERTY, CTF_REPEAT_OFFSET_Y ),
 
-    { 0L }
+    MAP_ENTRY_END
 };
 
 //////////////////////////////////////////////////////////////////////////////
@@ -623,7 +512,7 @@ SvXMLEnumMapEntry aXML_WritingMode_EnumMap[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_TextAnimation_Enum[] =
+SvXMLEnumMapEntry const pXML_TextAnimation_Enum[] =
 {
     { XML_NONE,         drawing::TextAnimationKind_NONE },
     { XML_BLINKING,     drawing::TextAnimationKind_BLINK }, // will be filtered
@@ -633,7 +522,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_TextAnimation_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_TextAnimation_Blinking_Enum[] =
+SvXMLEnumMapEntry const pXML_TextAnimation_Blinking_Enum[] =
 {
     { XML_FALSE,        drawing::TextAnimationKind_NONE },
     { XML_TRUE,         drawing::TextAnimationKind_BLINK },
@@ -643,7 +532,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_TextAnimation_Blinking_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_TextAnimationDirection_Enum[] =
+SvXMLEnumMapEntry const pXML_TextAnimationDirection_Enum[] =
 {
     { XML_LEFT,         drawing::TextAnimationDirection_LEFT },
     { XML_RIGHT,        drawing::TextAnimationDirection_RIGHT },    // will be filtered
@@ -652,7 +541,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_TextAnimationDirection_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_TextAlign_Enum[] =
+SvXMLEnumMapEntry const pXML_TextAlign_Enum[] =
 {
     { XML_LEFT,         drawing::TextHorizontalAdjust_LEFT },
     { XML_CENTER,       drawing::TextHorizontalAdjust_CENTER },
@@ -661,7 +550,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_TextAlign_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_VerticalAlign_Enum[] =
+SvXMLEnumMapEntry const pXML_VerticalAlign_Enum[] =
 {
     { XML_TOP,          drawing::TextVerticalAdjust_TOP },
     { XML_MIDDLE,       drawing::TextVerticalAdjust_CENTER },
@@ -670,16 +559,16 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_VerticalAlign_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_FitToSize_Enum[] =
+SvXMLEnumMapEntry const pXML_FitToSize_Enum[] =
 {
     { XML_FALSE,        drawing::TextFitToSizeType_NONE },
     { XML_TRUE,         drawing::TextFitToSizeType_PROPORTIONAL },
     { XML_TRUE,         drawing::TextFitToSizeType_ALLLINES },
-    { XML_TRUE,         drawing::TextFitToSizeType_RESIZEATTR },
+    { XML_TRUE,         drawing::TextFitToSizeType_AUTOFIT },
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_MeasureUnit_Enum[] =
+SvXMLEnumMapEntry const pXML_MeasureUnit_Enum[] =
 {
     { XML_AUTOMATIC,    0 },
     { XML_UNIT_MM,      1 },
@@ -694,7 +583,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_MeasureUnit_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Measure_HAlign_Enum[] =
+SvXMLEnumMapEntry const pXML_Measure_HAlign_Enum[] =
 {
     { XML_AUTOMATIC,        drawing::MeasureTextHorzPos_AUTO },
     { XML_LEFT_OUTSIDE,     drawing::MeasureTextHorzPos_LEFTOUTSIDE },
@@ -703,7 +592,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Measure_HAlign_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Measure_VAlign_Enum[] =
+SvXMLEnumMapEntry const pXML_Measure_VAlign_Enum[] =
 {
     { XML_AUTOMATIC,    drawing::MeasureTextVertPos_AUTO },
     { XML_ABOVE,        drawing::MeasureTextVertPos_EAST },
@@ -713,7 +602,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Measure_VAlign_Enum[] =
 };
 
 // #FontWork#
-SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Style_Enum[] =
+SvXMLEnumMapEntry const pXML_Fontwork_Style_Enum[] =
 {
     { XML_ROTATE,       0 }, //XFT_ROTATE,
     { XML_UPRIGHT,      1 }, //XFT_UPRIGHT,
@@ -723,7 +612,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Style_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Adjust_Enum[] =
+SvXMLEnumMapEntry const pXML_Fontwork_Adjust_Enum[] =
 {
     { XML_LEFT,         0 }, //XFT_LEFT,
     { XML_RIGHT,        1 }, //XFT_RIGHT,
@@ -732,7 +621,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Adjust_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Shadow_Enum[] =
+SvXMLEnumMapEntry const pXML_Fontwork_Shadow_Enum[] =
 {
     { XML_NORMAL,       0 }, //XFTSHADOW_NORMAL,
     { XML_SLANT,        1 }, //XFTSHADOW_SLANT,
@@ -740,7 +629,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Shadow_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Form_Enum[] =
+SvXMLEnumMapEntry const pXML_Fontwork_Form_Enum[] =
 {
     { XML_NONE,             0 }, //XFTFORM_NONE,
     { XML_TOPCIRCLE,        1 }, //XFTFORM_TOPCIRC,
@@ -758,7 +647,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Fontwork_Form_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Caption_Esc_Dir_Enum[] =
+SvXMLEnumMapEntry const pXML_Caption_Esc_Dir_Enum[] =
 {
     { XML_HORIZONTAL,       0 }, //SDRCAPT_ESCHORIZONTAL,
     { XML_VERTICAL,         1 }, //SDRCAPT_ESCVERTICAL,
@@ -766,7 +655,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Caption_Esc_Dir_Enum[] =
     { XML_TOKEN_INVALID,0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Caption_Type_Enum[] =
+SvXMLEnumMapEntry const pXML_Caption_Type_Enum[] =
 {
     { XML_STRAIGHT_LINE,            0 }, //SDRCAPT_TYPE1,
     { XML_ANGLED_LINE,              1 }, //SDRCAPT_TYPE2,
@@ -1044,10 +933,10 @@ XMLShapeExportPropertyMapper::XMLShapeExportPropertyMapper( const UniReference< 
         mpListAutoPool( pListAutoPool ),
         mrExport( rExport ),
         maNumRuleExp( rExport ),
+        mbIsInAutoStyles( sal_True ),
         msCDATA( GetXMLToken(XML_CDATA)),
         msTrue( GetXMLToken(XML_TRUE)),
-        msFalse( GetXMLToken(XML_FALSE)),
-        mbIsInAutoStyles( sal_True )
+        msFalse( GetXMLToken(XML_FALSE))
 {
 }
 
@@ -1190,7 +1079,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
                 break;
             case CTF_SD_MOVE_PROTECT:
                 {
-                    sal_Bool bProtected;
+                    sal_Bool bProtected(sal_False);
                     property->maValue >>= bProtected;
                     if( !bProtected )
                         property->mnIndex = -1;
@@ -1198,7 +1087,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
                 break;
             case CTF_SD_SIZE_PROTECT:
                 {
-                    sal_Bool bProtected;
+                    sal_Bool bProtected(sal_False);
                     property->maValue >>= bProtected;
                     if( !bProtected )
                         property->mnIndex = -1;
@@ -1213,7 +1102,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
     // do not export visual area for internal ole objects
     if( pOLEIsInternal )
     {
-        sal_Bool bInternal;
+        sal_Bool bInternal sal_False;
         if( (pOLEIsInternal->maValue >>= bInternal) && bInternal )
         {
             if( pOLEVisAreaLeft ) pOLEVisAreaLeft->mnIndex = -1;
@@ -1240,7 +1129,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
 
     if( pRepeatOffsetX && pRepeatOffsetY )
     {
-        sal_Int32 nOffset;
+        sal_Int32 nOffset = 0;
         if( ( pRepeatOffsetX->maValue >>= nOffset ) && ( nOffset == 0 ) )
             pRepeatOffsetX->mnIndex = -1;
         else
@@ -1250,7 +1139,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
     if(pFontWorkStyle)
     {
         // #FontWork#
-        sal_Int32 nStyle;
+        sal_Int32 nStyle = 0;
 
         if(pFontWorkStyle->maValue >>= nStyle)
         {
@@ -1287,7 +1176,7 @@ void XMLShapeExportPropertyMapper::ContextFilter(
 
     if( pCaptionIsEscRel )
     {
-        sal_Bool bIsRel;
+        sal_Bool bIsRel(sal_False);
         pCaptionIsEscRel->maValue >>= bIsRel;
 
         if( bIsRel )
@@ -1413,7 +1302,7 @@ void XMLPageExportPropertyMapper::ContextFilter(
                 break;
             case CTF_PAGE_VISIBLE:
                 {
-                    sal_Bool bVisible;
+                    sal_Bool bVisible(sal_False);
                     (*property).maValue >>= bVisible;
                     if( bVisible )
                         (*property).mnIndex = -1;
@@ -1427,7 +1316,7 @@ void XMLPageExportPropertyMapper::ContextFilter(
 
     if( pRepeatOffsetX && pRepeatOffsetY )
     {
-        sal_Int32 nOffset;
+        sal_Int32 nOffset = 0;
         if( ( pRepeatOffsetX->maValue >>= nOffset ) && ( nOffset == 0 ) )
             pRepeatOffsetX->mnIndex = -1;
         else
@@ -1482,3 +1371,5 @@ void XMLPageExportPropertyMapper::handleElementItem(
 #endif // #ifndef SVX_LIGHT
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

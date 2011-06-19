@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,17 @@
 #ifndef _XIMPSTYLE_HXX
 #define _XIMPSTYLE_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
 
-#ifndef _XIMPPAGE_HXX
 #include "ximppage.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_PAPERORIENTATION_HPP_
 #include <com/sun/star/view/PaperOrientation.hpp>
-#endif
+#include <vector>
+
 namespace binfilter {
 
 class SvNumberFormatter;
@@ -145,7 +138,7 @@ public:
     const ::rtl::OUString& GetPageMasterName() const { return msPageMasterName; }
     const ::rtl::OUString& GetName() const { return msName; }
 };
-DECLARE_LIST(ImpMasterPageList, SdXMLMasterPageContext*)//STRIP008 ;
+typedef ::std::vector< SdXMLMasterPageContext* > ImpMasterPageList;
 
 //////////////////////////////////////////////////////////////////////////////
 // presentation:placeholder context
@@ -175,7 +168,7 @@ public:
     sal_Int32 GetWidth() const { return mnWidth; }
     sal_Int32 GetHeight() const { return mnHeight; }
 };
-DECLARE_LIST(ImpPlaceholderList, SdXMLPresentationPlaceholderContext*)//STRIP008 ;
+typedef ::std::vector< SdXMLPresentationPlaceholderContext* > ImpPlaceholderList;
 
 //////////////////////////////////////////////////////////////////////////////
 // style:presentation-page-layout context
@@ -291,3 +284,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XIMPSTYLE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

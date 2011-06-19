@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,42 +29,21 @@
 #define ITEMID_COLOR            SID_ATTR_3D_LIGHTCOLOR
 
 #include "svdstr.hrc"
-
-#ifndef _SVDITER_HXX
 #include "svditer.hxx"
-#endif
-
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
 #if defined( UNX ) || defined( ICC )
 #include <stdlib.h>
 #endif
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _E3D_PLIGHT3D_HXX
 #include "plight3d.hxx"
-#endif
-
-#ifndef _E3D_DLIGHT3D_HXX
 #include "dlight3d.hxx"
-#endif
-
-#ifndef _SVDTRANS_HXX
 #include "svdtrans.hxx"
-#endif
-
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
 
 #include "scene3d.hxx"
 
@@ -82,13 +62,13 @@ namespace binfilter {
 /*N*/ E3dScene::E3dScene()
 /*N*/ : E3dObject(),
 /*N*/   aCamera(Vector3D(0,0,4), Vector3D()),
-/*N*/   bDoubleBuffered(FALSE),
-/*N*/   bClipping(FALSE),
 /*N*/   nSaveStatus (0),
 /*N*/   nRestStatus (0),
-/*N*/   bFitInSnapRect(TRUE),
 /*N*/   aPaintTime(),
 /*N*/   nDisplayQuality(255),
+/*N*/   bDoubleBuffered(FALSE),
+/*N*/   bClipping(FALSE),
+/*N*/   bFitInSnapRect(TRUE),
 /*N*/   bDrawOnlySelected(FALSE)
 /*N*/ {
 /*N*/   // Defaults setzen
@@ -236,7 +216,7 @@ namespace binfilter {
 /*N*/   GetCameraSet().SetViewportRectangle((Rectangle&)rCam.GetDeviceWindow());
 /*N*/
 /*N*/   // E3dLabel-Objekte muessen neu an die Projektion angepasst werden
-/*N*/   if ( aLabelList.Count() > 0 )
+/*N*/   if ( !aLabelList.empty() )
 /*N*/   {
 /*N*/       SetBoundVolInvalid();
 /*N*/       SetRectsDirty();
@@ -258,7 +238,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( p3DObj->ISA(E3dLabelObj) )
 /*N*/   {
-/*N*/       aLabelList.Insert((E3dLabelObj*) p3DObj, LIST_APPEND);
+/*N*/       aLabelList.push_back( (E3dLabelObj*) p3DObj );
 /*N*/   }
 /*N*/
 /*N*/   // falls Unterobjekte vorhanden sind, auch diese pruefen
@@ -272,7 +252,7 @@ namespace binfilter {
 /*N*/
 /*N*/           if ( pObj->ISA(E3dLabelObj) )
 /*N*/           {
-/*N*/               aLabelList.Insert((E3dLabelObj*) pObj, LIST_APPEND);
+/*N*/               aLabelList.push_back( (E3dLabelObj*) pObj );
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -337,7 +317,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   // Labels behandeln
-/*N*/   ULONG nLabelCnt = aLabelList.Count();
+/*N*/   size_t nLabelCnt = aLabelList.size();
 /*N*/   if ( nLabelCnt > 0 )
 /*N*/   {
 /*N*/       // Vorlaeufige Projektion bestimmen und Transformation in
@@ -372,9 +352,9 @@ namespace binfilter {
 /*N*/       Matrix4D aMatViewToWorld(aMatWorldToView);
 /*N*/       aMatViewToWorld.Invert();
 /*N*/
-/*N*/       for (ULONG i = 0; i < nLabelCnt; i++)
+/*N*/       for (size_t i = 0; i < nLabelCnt; i++)
 /*N*/       {
-/*N*/           E3dLabelObj* p3DObj = aLabelList.GetObject(i);
+/*N*/           E3dLabelObj* p3DObj = aLabelList[ i ];
 /*N*/           const SdrObject* pObj = p3DObj->Get2DLabelObj();
 /*N*/
 /*N*/           // View- Abmessungen des Labels holen
@@ -453,91 +433,6 @@ namespace binfilter {
 /*N*/   // Maximas fuer Abbildung verwenden
 /*N*/   rSet.SetDeviceVolume(aVolume, FALSE);
 /*N*/   rSet.SetViewportRectangle(aBound);
-/*N*/ }
-
-/*************************************************************************
-|*
-|* sichern mit neuer Methode und zukunftskompatibilitaet
-|* Die Zahl 3560 ist die Major-Update-Nummer * 10 zu der die Umstellung
-|* erfolgte. Dies ist leider das korrekte Verhalten, die 3d-Engine hat keine
-|* eigene Versionsnummer sondern ist an die der Drawing-Engine gekoppelt.
-|* Probleme gibt es immer dann wenn einen neue Version ein altes Format
-|* schreiben soll: Hier wird von der Drawing-Engine trotzdem die neue Nummer
-|* verwendet.
-|*
-\************************************************************************/
-
-/*N*/ void E3dScene::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3830)
-/*N*/   {
-/*N*/       // Hier die Lichtobjekte erzeugen, um im alten Format schreiben zu koennen
-/*N*/       ((E3dScene*)(this))->CreateLightObjectsFromLightGroup();
-/*N*/   }
-/*N*/
-/*N*/   // Schreiben
-/*N*/   E3dObject::WriteData(rOut);
-/*N*/
-/*N*/   if(nVersion < 3830)
-/*N*/   {
-/*N*/       // Lichtobjekte wieder wegnehmen
-/*N*/       ((E3dScene*)(this))->RemoveLightObjects();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/ #ifdef E3D_STREAMING
-/*N*/       SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aCompat.SetID("B3dLightGroup");
-/*N*/ #endif
-/*N*/       // LightGroup schreiben
-/*N*/       aLightGroup.WriteData(rOut);
-/*N*/
-/*N*/ #endif
-/*N*/   }
-/*N*/
-/*N*/ #ifdef E3D_STREAMING
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dScene");
-/*N*/ #endif
-/*N*/
-/*N*/   DBG_ASSERT (rOut.GetVersion(),"3d-Engine: Keine Version am Stream gesetzt!");
-/*N*/   if (rOut.GetVersion() < 3560) // FG: Das ist der Zeitpunkt der Umstellung
-/*N*/   {
-/*N*/       rOut << aCamera;
-/*N*/   }
-/*N*/   if (rOut.GetVersion() >= 3560)
-/*N*/   {
-/*N*/       aCamera.WriteData(rOut);
-/*N*/   }
-/*N*/
-/*N*/   rOut << BOOL(bDoubleBuffered);
-/*N*/   rOut << BOOL(bClipping);
-/*N*/   rOut << BOOL(bFitInSnapRect);
-/*N*/   rOut << nSortingMode;
-/*N*/
-/*N*/   // neu ab 377:
-/*N*/   Vector3D aPlaneDirection = GetShadowPlaneDirection();
-/*N*/   rOut << aPlaneDirection;
-/*N*/
-/*N*/   // neu ab 383:
-/*N*/   rOut << (BOOL)bDither;
-/*N*/
-/*N*/   // neu ab 384:
-/*N*/   sal_uInt16 nShadeMode = GetShadeMode();
-/*N*/   if(nShadeMode == 0)
-/*N*/       rOut << (sal_uInt16)Base3DFlat;
-/*N*/   else if(nShadeMode == 1)
-/*N*/       rOut << (sal_uInt16)Base3DPhong;
-/*N*/   else
-/*N*/       rOut << (sal_uInt16)Base3DSmooth;
-/*N*/   rOut << (BOOL)(nShadeMode > 2);
-/*N*/
-/*N*/ #endif
-/*N*/ #endif    // #ifndef SVX_LIGHT
 /*N*/ }
 
 /*************************************************************************
@@ -736,8 +631,8 @@ namespace binfilter {
 /*N*/ void E3dScene::RebuildLists()
 /*N*/ {
 /*N*/   // zuerst loeschen
-/*N*/   aLabelList.Clear();
-/*N*/   SdrLayerID nLayerID = GetLayer();
+/*N*/   aLabelList.clear();
+/*N*/   SdrLayerID nLclLayerID = GetLayer();
 /*N*/
 /*N*/   SdrObjListIter a3DIterator(*pSub, IM_FLAT);
 /*N*/
@@ -745,7 +640,7 @@ namespace binfilter {
 /*N*/   while ( a3DIterator.IsMore() )
 /*N*/   {
 /*N*/       E3dObject* p3DObj = (E3dObject*) a3DIterator.Next();
-/*N*/       p3DObj->NbcSetLayer(nLayerID);
+/*N*/       p3DObj->NbcSetLayer(nLclLayerID);
 /*N*/       NewObjectInserted(p3DObj);
 /*N*/   }
 /*N*/
@@ -823,7 +718,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dScene::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void E3dScene::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   E3dObjList* pOL = pSub;
 /*N*/   ULONG nObjCnt = pOL->GetObjCount();
@@ -1397,31 +1292,6 @@ namespace binfilter {
 /*N*/       pSub->GetObj(a)->ItemSetChanged( rSet );
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void E3dScene::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   E3dObject::PreSave();
-/*N*/
-/*N*/   // set at all contained objects
-/*N*/   sal_uInt32 nCount(pSub->GetObjCount());
-/*N*/   for(sal_uInt32 a(0); a < nCount; a++)
-/*N*/       pSub->GetObj(a)->PreSave();
-/*N*/ }
-
-/*N*/ void E3dScene::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   E3dObject::PostSave();
-/*N*/
-/*N*/   // set at all contained objects
-/*N*/   sal_uInt32 nCount(pSub->GetObjCount());
-/*N*/   for(sal_uInt32 a(0); a < nCount; a++)
-/*N*/       pSub->GetObj(a)->PostSave();
-/*N*/ }
-
 /*************************************************************************
 |*
 |* ItemPool fuer dieses Objekt wechseln
@@ -1458,3 +1328,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

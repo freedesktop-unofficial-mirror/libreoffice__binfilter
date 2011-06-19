@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,27 +28,13 @@
 #ifndef _SD_UNOCPRES_HXX
 #define _SD_UNOCPRES_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_H_
 #include <cppuhelper/interfacecontainer.h>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 
 #include <cppuhelper/implbase5.hxx>
 #include <comphelper/servicehelper.hxx>
@@ -120,19 +107,15 @@ public:
 
 // --------------------------------------------------------------------------
 }
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
 
 #include <cppuhelper/implbase3.hxx>
 
 #include "unomodel.hxx"
 #include "drawdoc.hxx"
 class List;
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 class SdXCustomPresentationAccess : public ::cppu::WeakImplHelper3< ::com::sun::star::container::XNameContainer,
                                                                     ::com::sun::star::lang::XSingleServiceFactory,
@@ -187,3 +170,4 @@ inline List * SdXCustomPresentationAccess::GetCustomShowList() const throw()
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

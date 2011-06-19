@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,35 +31,23 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <lspcitem.hxx>
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-#ifndef _DATE_HXX //autogen
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TIME_HXX //autogen
 #include <tools/time.hxx>
-#endif
 
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
@@ -78,22 +67,16 @@
 
 
 
-#ifndef _VCL_CMDEVT_H
 #include <vcl/cmdevt.h>
-#endif
 
 #ifndef SVX_LIGHT
 #endif
 
 
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_CHARACTERCOMPRESSIONTYPE_HPP_
 #include <com/sun/star/text/CharacterCompressionType.hpp>
-#endif
 
 
 
@@ -108,26 +91,13 @@ String& EditUndoRemoveChars::GetStr() { return aText; }
 
 using namespace ::com::sun::star;
 
-/*N*/ USHORT lcl_CalcExtraSpace( ParaPortion* pPortion, const SvxLineSpacingItem& rLSItem )
+/*N*/ USHORT lcl_CalcExtraSpace( const SvxLineSpacingItem& rLSItem )
 /*N*/ {
 /*N*/   USHORT nExtra = 0;
-    /* if ( ( rLSItem.GetInterLineSpaceRule() == SVX_INTER_LINE_SPACE_PROP )
-            && ( rLSItem.GetPropLineSpace() != 100 ) )
-    {
-        // ULONG nH = pPortion->GetNode()->GetCharAttribs().GetDefFont().GetSize().Height();
-        ULONG nH = pPortion->GetLines().GetObject( 0 )->GetHeight();
-        long n = nH * rLSItem.GetPropLineSpace();
-        n /= 100;
-        n -= nH;    // nur den Abstand
-        if ( n > 0 )
-            nExtra = (USHORT)n;
-    }
-    else */
 /*N*/   if ( rLSItem.GetInterLineSpaceRule() == SVX_INTER_LINE_SPACE_FIX )
 /*N*/   {
 /*?*/       nExtra = rLSItem.GetInterLineSpace();
 /*N*/   }
-/*N*/
 /*N*/   return nExtra;
 /*N*/ }
 
@@ -136,12 +106,12 @@ using namespace ::com::sun::star;
 //  ----------------------------------------------------------------------
 
 /*N*/ ImpEditEngine::ImpEditEngine( EditEngine* pEE, SfxItemPool* pItemPool ) :
-/*N*/   aEditDoc( pItemPool ),
 /*N*/   aPaperSize( 0x7FFFFFFF, 0x7FFFFFFF ),
-/*N*/   aMaxAutoPaperSize( 0x7FFFFFFF, 0x7FFFFFFF ),
 /*N*/   aMinAutoPaperSize( 0x0, 0x0 ),
-/*N*/   aGroupChars( RTL_CONSTASCII_USTRINGPARAM( "{}()[]" ) ),
-/*N*/   aWordDelimiters( RTL_CONSTASCII_USTRINGPARAM( "  .,;:-'`'?!_=\"{}()[]\0xFF" ) )
+/*N*/   aMaxAutoPaperSize( 0x7FFFFFFF, 0x7FFFFFFF ),
+/*N*/   aEditDoc( pItemPool ),
+/*N*/   aWordDelimiters( RTL_CONSTASCII_USTRINGPARAM( "  .,;:-'`'?!_=\"{}()[]\0xFF" ) ),
+/*N*/   aGroupChars( RTL_CONSTASCII_USTRINGPARAM( "{}()[]" ) )
 /*N*/ {
 /*N*/   pEditEngine         = pEE;
 /*N*/   pRefDev             = NULL;
@@ -434,7 +404,7 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   // Leere Attribute loeschen, aber nur, wenn Absatz nicht leer!
 /*N*/   if ( pPrevNode->GetCharAttribs().HasEmptyAttribs() && pPrevNode->Len() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pPrevNode->GetCharAttribs().DeleteEmptyAttribs( aEditDoc.GetItemPool() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 /*N*/ void ImpEditEngine::TextModified()
@@ -443,7 +413,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTMODIFIED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
@@ -495,8 +465,8 @@ using namespace ::com::sun::star;
 /*N*/   EditPaM aNewPaM( rPaM );
 /*N*/   if ( aNewPaM.GetIndex() < nMax )
 /*N*/   {
-/*N*/       uno::Reference < i18n::XBreakIterator > xBI = ImplGetBreakIterator();
-/*N*/       i18n::Boundary aBoundary = xBI->nextWord( *aNewPaM.GetNode(), aNewPaM.GetIndex(), GetLocale( aNewPaM ), nWordType );
+/*N*/       uno::Reference < i18n::XBreakIterator > xLclBI = ImplGetBreakIterator();
+/*N*/       i18n::Boundary aBoundary = xLclBI->nextWord( *aNewPaM.GetNode(), aNewPaM.GetIndex(), GetLocale( aNewPaM ), nWordType );
 /*N*/       aNewPaM.SetIndex( (USHORT)aBoundary.startPos );
 /*N*/   }
 /*N*/   // not 'else', maybe the index reached nMax now...
@@ -520,11 +490,11 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   EditSelection aNewSel( rCurSel );
 /*N*/   EditPaM aPaM( rCurSel.Max() );
-/*N*/   uno::Reference < i18n::XBreakIterator > xBI = ImplGetBreakIterator();
-/*N*/   sal_Int16 nType = xBI->getWordType( *aPaM.GetNode(), aPaM.GetIndex(), GetLocale( aPaM ) );
+/*N*/   uno::Reference < i18n::XBreakIterator > xLclBI = ImplGetBreakIterator();
+/*N*/   sal_Int16 nType = xLclBI->getWordType( *aPaM.GetNode(), aPaM.GetIndex(), GetLocale( aPaM ) );
 /*N*/   if ( nType == i18n::WordType::ANY_WORD )
 /*N*/   {
-/*N*/       i18n::Boundary aBoundary = xBI->getWordBoundary( *aPaM.GetNode(), aPaM.GetIndex(), GetLocale( aPaM ), nWordType, sal_True );
+/*N*/       i18n::Boundary aBoundary = xLclBI->getWordBoundary( *aPaM.GetNode(), aPaM.GetIndex(), GetLocale( aPaM ), nWordType, sal_True );
 /*N*/       // don't select when curser at end of word
 /*N*/       if ( ( aBoundary.endPos > aPaM.GetIndex() ) &&
 /*N*/            ( bAcceptStartOfWord || ( aBoundary.startPos < aPaM.GetIndex() ) ) )
@@ -549,7 +519,7 @@ using namespace ::com::sun::star;
 /*N*/   ContentNode* pNode = pParaPortion->GetNode();
 /*N*/   if ( pNode->Len() )
 /*N*/   {
-/*N*/       uno::Reference < i18n::XBreakIterator > xBI = ImplGetBreakIterator();
+/*N*/       uno::Reference < i18n::XBreakIterator > xLclBI = ImplGetBreakIterator();
 /*N*/
 /*N*/       String aText( *pNode );
 /*N*/
@@ -562,11 +532,11 @@ using namespace ::com::sun::star;
 /*N*/           if ( aFldText.getLength() )
 /*N*/           {
 /*N*/               aText.SetChar( pField->GetStart(), aFldText.getStr()[0] );
-/*N*/               short nFldScriptType = xBI->getScriptType( aFldText, 0 );
+/*N*/               short nFldScriptType = xLclBI->getScriptType( aFldText, 0 );
 /*N*/
 /*N*/               for ( USHORT nCharInField = 1; nCharInField < aFldText.getLength(); nCharInField++ )
 /*N*/               {
-/*N*/                   short nTmpType = xBI->getScriptType( aFldText, nCharInField );
+/*N*/                   short nTmpType = xLclBI->getScriptType( aFldText, nCharInField );
 /*N*/
 /*N*/                   // First char from field wins...
 /*N*/                   if ( nFldScriptType == i18n::ScriptType::WEAK )
@@ -591,15 +561,15 @@ using namespace ::com::sun::star;
 /*N*/       USHORT nTextLen = (USHORT)aOUText.getLength();
 /*N*/
 /*N*/       long nPos = 0;
-/*N*/       short nScriptType = xBI->getScriptType( aOUText, nPos );
+/*N*/       short nScriptType = xLclBI->getScriptType( aOUText, nPos );
 /*N*/       rTypes.Insert( ScriptTypePosInfo( nScriptType, (USHORT)nPos, nTextLen ), rTypes.Count() );
-/*N*/       nPos = xBI->endOfScript( aOUText, nPos, nScriptType );
+/*N*/       nPos = xLclBI->endOfScript( aOUText, nPos, nScriptType );
 /*N*/       while ( ( nPos != (-1) ) && ( nPos < nTextLen ) )
 /*N*/       {
 /*N*/           rTypes[rTypes.Count()-1].nEndPos = (USHORT)nPos;
 /*N*/
-/*N*/             nScriptType = xBI->getScriptType( aOUText, nPos );
-/*N*/           long nEndPos = xBI->endOfScript( aOUText, nPos, nScriptType );
+/*N*/             nScriptType = xLclBI->getScriptType( aOUText, nPos );
+/*N*/           long nEndPos = xLclBI->endOfScript( aOUText, nPos, nScriptType );
 /*N*/
 /*N*/             // #96850# Handle blanks as weak, remove if BreakIterator returns WEAK for spaces.
 /*N*/           if ( ( nScriptType == i18n::ScriptType::LATIN ) && ( aOUText.getStr()[ nPos ] == 0x20 ) )
@@ -845,7 +815,6 @@ using namespace ::com::sun::star;
 /*N*/       if ( !pParaPortion->aWritingDirectionInfos.Count() )
 /*N*/           InitWritingDirections( nPara );
 /*N*/
-/*N*/         BYTE nType = 0;
 /*N*/       WritingDirectionInfos& rDirInfos = pParaPortion->aWritingDirectionInfos;
 /*N*/       for ( USHORT n = 0; n < rDirInfos.Count(); n++ )
 /*N*/       {
@@ -887,7 +856,7 @@ using namespace ::com::sun::star;
 //  Textaenderung
 //  ----------------------------------------------------------------------
 
-/*N*/ void ImpEditEngine::ImpRemoveChars( const EditPaM& rPaM, USHORT nChars, EditUndoRemoveChars* pCurUndo )
+/*N*/ void ImpEditEngine::ImpRemoveChars( const EditPaM& rPaM, USHORT nChars, EditUndoRemoveChars* /*pCurUndo*/ )
 /*N*/ {
 /*N*/   aEditDoc.RemoveChars( rPaM, nChars );
 /*N*/   TextModified();
@@ -908,7 +877,7 @@ using namespace ::com::sun::star;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if ( IsUndoEnabled() && !IsInUndo() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 InsertUndo( new EditUndoConnectParas( this,
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -983,7 +952,7 @@ using namespace ::com::sun::star;
 /*N*/   for ( ULONG z = nStartNode+1; z < nEndNode; z++ )
 /*N*/   {
 /*?*/       // Immer nStartNode+1, wegen Remove()!
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpRemoveParagraph( nStartNode+1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( aStartPaM.GetNode() != aEndPaM.GetNode() )
@@ -1193,7 +1162,6 @@ using namespace ::com::sun::star;
 /*N*/       ContentNode* pNode = GetEditDoc().GetObject( nPara );
 /*N*/       DBG_ASSERT( pNode, "NULL-Pointer im Doc" );
 /*N*/       CharAttribArray& rAttribs = pNode->GetCharAttribs().GetAttribs();
-/*N*/       USHORT nAttrs = rAttribs.Count();
 /*N*/       for ( USHORT nAttr = 0; nAttr < rAttribs.Count(); nAttr++ )
 /*N*/       {
 /*N*/           EditCharAttrib* pAttr = rAttribs[nAttr];
@@ -1303,8 +1271,6 @@ using namespace ::com::sun::star;
 /*N*/   // Ueber alle Absaetze...
 /*N*/   // --------------------------------------------------
 /*N*/   USHORT nParas = GetParaPortions().Count();
-/*N*/   USHORT nBiggestPara = 0;
-/*N*/   USHORT nBiggestLine = 0;
 /*N*/   for ( USHORT nPara = 0; nPara < nParas; nPara++ )
 /*N*/   {
 /*N*/       ParaPortion* pPortion = GetParaPortions().GetObject( nPara );
@@ -1685,7 +1651,7 @@ using namespace ::com::sun::star;
 /*N*/   if ( nCurIndex && ( nCurIndex == pLine->GetEnd() ) &&
 /*N*/        ( pLine != pPortion->GetLines().GetObject( pPortion->GetLines().Count()-1) ) )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aPaM = CursorLeft( aPaM, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   return aPaM;
@@ -1776,11 +1742,11 @@ using namespace ::com::sun::star;
 /*N*/                     USHORT nScriptType = GetScriptType( aPaM );
 /*N*/                     if ( nScriptType == i18n::ScriptType::COMPLEX )
 /*N*/                     {
-/*?*/                       uno::Reference < i18n::XBreakIterator > xBI = ImplGetBreakIterator();
+/*?*/                       uno::Reference < i18n::XBreakIterator > xLclBI = ImplGetBreakIterator();
 /*?*/                       sal_Int32 nCount = 1;
 /*?*/                         lang::Locale aLocale = GetLocale( aPaM );
-/*?*/                         USHORT nRight = (USHORT)xBI->nextCharacters( *pParaPortion->GetNode(), nChar, aLocale, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL, nCount, nCount );
-/*?*/                         USHORT nLeft = (USHORT)xBI->previousCharacters( *pParaPortion->GetNode(), nRight, aLocale, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL, nCount, nCount );
+/*?*/                         USHORT nRight = (USHORT)xLclBI->nextCharacters( *pParaPortion->GetNode(), nChar, aLocale, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL, nCount, nCount );
+/*?*/                         USHORT nLeft = (USHORT)xLclBI->previousCharacters( *pParaPortion->GetNode(), nRight, aLocale, ::com::sun::star::i18n::CharacterIteratorMode::SKIPCELL, nCount, nCount );
 /*?*/                         if ( ( nLeft != nChar ) && ( nRight != nChar ) )
 /*?*/                         {
 /*?*/                             nChar = ( Abs( nRight - nChar ) < Abs( nLeft - nChar ) ) ? nRight : nLeft;
@@ -1963,7 +1929,7 @@ using namespace ::com::sun::star;
 /*N*/               // Nur Writer3: Nicht aufaddieren, sondern Mindestabstand.
 /*N*/
 /*N*/               // Pruefen, ob Abstand durch LineSpacing > Upper:
-/*N*/               USHORT nExtraSpace = GetYValue( lcl_CalcExtraSpace( pPortion, rLSItem ) );
+/*N*/               USHORT nExtraSpace = GetYValue( lcl_CalcExtraSpace( rLSItem ) );
 /*N*/               if ( nExtraSpace > pPortion->nFirstLineOffset )
 /*N*/               {
 /*?*/                   // Absatz wird 'groesser':
@@ -1993,7 +1959,7 @@ using namespace ::com::sun::star;
 /*N*/               // Dieser Wert steckt nicht in der Hoehe der PrevPortion.
 /*N*/               if ( !pPrev->IsInvalid() )
 /*N*/               {
-/*N*/                   nExtraSpace = GetYValue( lcl_CalcExtraSpace( pPrev, rPrevLSItem ) );
+/*N*/                   nExtraSpace = GetYValue( lcl_CalcExtraSpace( rPrevLSItem ) );
 /*N*/                   if ( nExtraSpace > nPrevLower )
 /*N*/                   {
 /*?*/                       USHORT nMoreLower = nExtraSpace - nPrevLower;
@@ -2034,15 +2000,15 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> ImpEditEngine::GetForbiddenCharsTable( BOOL bGetInternal ) const
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> ImpEditEngine::GetForbiddenCharsTable( BOOL bGetInternal ) const
 /*N*/ {
-/*N*/   vos::ORef<SvxForbiddenCharactersTable> xF = xForbiddenCharsTable;
-/*N*/   if ( !xF.isValid() && bGetInternal )
+/*N*/   rtl::Reference<SvxForbiddenCharactersTable> xF = xForbiddenCharsTable;
+/*N*/   if ( !xF.is() && bGetInternal )
 /*N*/       xF = EE_DLL()->GetGlobalData()->GetForbiddenCharsTable();
 /*N*/   return xF;
 /*N*/ }
 
-/*N*/ void ImpEditEngine::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void ImpEditEngine::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   EE_DLL()->GetGlobalData()->SetForbiddenCharsTable( xForbiddenChars );
 /*N*/ }
@@ -2097,3 +2063,5 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

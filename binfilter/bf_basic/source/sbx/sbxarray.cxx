@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #include "sbx.hxx"
 #include <vector>
 using namespace std;
@@ -315,7 +314,6 @@ void SbxArray::Remove( SbxVariable* pVar )
         for( UINT32 i = 0; i < pData->size(); i++ )
         {
             SbxVariableRef* pRef = (*pData)[i];
-            // SbxVariableRef* pRef = pData->GetObject( i );
             if( *pRef == pVar )
             {
                 Remove32( i ); break;
@@ -382,7 +380,7 @@ SbxVariable* SbxArray::FindUserData( UINT32 nData )
             {
                 p = pVar;
                 p->ResetFlag( SBX_EXTFOUND );
-                break;  // JSM 06.10.95
+                break;
             }
             // Haben wir ein Array/Objekt mit Extended Search?
             else if( pVar->IsSet( SBX_EXTSEARCH ) )
@@ -500,33 +498,6 @@ BOOL SbxArray::LoadData( SvStream& rStrm, USHORT nVer )
         bRes = LoadPrivateData( rStrm, nVer );
     nFlags = f;
     return bRes;
-}
-
-BOOL SbxArray::StoreData( SvStream& rStrm ) const
-{
-    UINT32 nElem = 0;
-    UINT32 n;
-    // Welche Elemente sind ueberhaupt definiert?
-    for( n = 0; n < pData->size(); n++ )
-    {
-        SbxVariableRef* pRef = (*pData)[n];
-        SbxVariable* p = *pRef;
-        if( p && !( p->GetFlags() & SBX_DONTSTORE ) )
-            nElem++;
-    }
-    rStrm << (UINT16) nElem;
-    for( n = 0; n < pData->size(); n++ )
-    {
-        SbxVariableRef* pRef = (*pData)[n];
-        SbxVariable* p = *pRef;
-        if( p && !( p->GetFlags() & SBX_DONTSTORE ) )
-        {
-            rStrm << (UINT16) n;
-            if( !p->Store( rStrm ) )
-                return FALSE;
-        }
-    }
-    return StorePrivateData( rStrm );
 }
 
 // #100883 Method to set method directly to parameter array
@@ -768,16 +739,7 @@ BOOL SbxDimArray::LoadData( SvStream& rStrm, USHORT nVer )
     return SbxArray::LoadData( rStrm, nVer );
 }
 
-BOOL SbxDimArray::StoreData( SvStream& rStrm ) const
-{
-    rStrm << (INT16) nDim;
-    for( short i = 0; i < nDim; i++ )
-    {
-        short lb, ub;
-        GetDim( i, lb, ub );
-        rStrm << (INT16) lb << (INT16) ub;
-    }
-    return SbxArray::StoreData( rStrm );
-}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

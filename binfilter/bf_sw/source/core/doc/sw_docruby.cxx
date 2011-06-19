@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,29 +34,15 @@
 #include <string.h>         // fuer strchr()
 
 
-#ifndef _COM_SUN_STAR_I18N_UNICODETYPE_HDL
 #include <com/sun/star/i18n/UnicodeType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _RUBYLIST_HXX
 #include <rubylist.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwRubyList, SwRubyListEntryPtr )
@@ -66,3 +53,5 @@ using namespace ::com::sun::star::i18n;
 /*N*/{
 /*N*/}
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

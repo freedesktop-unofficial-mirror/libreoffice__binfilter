@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,13 @@
 #ifndef _XMLOFF_FORMS_LAYERIMPORT_HXX_
 #define _XMLOFF_FORMS_LAYERIMPORT_HXX_
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 #include <com/sun/star/container/XNameContainer.hpp>
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
+#include <rtl/ref.hxx>
 #include "formattributes.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
 #include "eventimport.hxx"
-#endif
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLImport;
@@ -55,7 +44,7 @@ class XMLPropertyHandlerFactory;
 class SvXMLImportPropertyMapper;
 class XMLPropStyleContext;
 
-SV_DECL_REF( SvXMLStylesContext ) //STRIP007;
+SV_DECL_REF( SvXMLStylesContext )
     // unfortunately, we can't put this into our namespace, as the macro expands to (amongst others) a forward
     // declaration of the class name, which then would be in the namespace, too
 
@@ -107,8 +96,8 @@ namespace xmloff
 
     protected:
         // style handling
-        ::vos::ORef< XMLPropertyHandlerFactory >    m_xPropertyHandlerFactory;
-        ::vos::ORef< SvXMLImportPropertyMapper >    m_xImportMapper;
+        ::rtl::Reference< XMLPropertyHandlerFactory >   m_xPropertyHandlerFactory;
+        ::rtl::Reference< SvXMLImportPropertyMapper >   m_xImportMapper;
 
         DECLARE_STL_USTRINGACCESS_MAP( ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >, MapString2PropertySet );
         DECLARE_STL_MAP( ::com::sun::star::uno::Reference< ::com::sun::star::drawing::XDrawPage >, MapString2PropertySet, ODrawPageCompare, MapDrawPage2Map);
@@ -163,7 +152,7 @@ namespace xmloff
 
         /** retrieves the property mapper form form related auto styles.
         */
-        ::vos::ORef< SvXMLImportPropertyMapper > getStylePropertyMapper() const;
+        ::rtl::Reference< SvXMLImportPropertyMapper > getStylePropertyMapper() const;
 
         /** start importing the forms of the given page
         */
@@ -225,3 +214,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_LAYERIMPORT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

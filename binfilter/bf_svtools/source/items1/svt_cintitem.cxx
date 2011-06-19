@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
-#ifndef _SVTOOLS_CINTITEM_HXX
 #include <bf_svtools/cintitem.hxx>
-#endif
 
 namespace binfilter
 {
@@ -91,26 +86,26 @@ SfxItemPresentation CntByteItem::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL CntByteItem::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
+bool CntByteItem::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
 {
     sal_Int8 nValue = m_nValue;
     rVal <<= nValue;
-    return TRUE;
+    return true;
 }
 
 //============================================================================
 // virtual
-BOOL CntByteItem::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
+bool CntByteItem::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
 {
     sal_Int8 nValue = sal_Int8();
     if (rVal >>= nValue)
     {
         m_nValue = nValue;
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "CntByteItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "CntByteItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
@@ -121,15 +116,6 @@ SfxPoolItem * CntByteItem::Create(SvStream & rStream, USHORT) const
     short nTheValue = 0;
     rStream >> nTheValue;
     return new CntByteItem(Which(), BYTE(nTheValue));
-}
-
-//============================================================================
-// virtual
-SvStream & CntByteItem::Store(SvStream & rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntByteItem, 0);
-    rStream << short(m_nValue);
-    return rStream;
 }
 
 //============================================================================
@@ -226,27 +212,27 @@ SfxItemPresentation CntUInt16Item::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL CntUInt16Item::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
+bool CntUInt16Item::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
 {
     sal_Int32 nValue = m_nValue;
     rVal <<= nValue;
-    return TRUE;
+    return true;
 }
 
 //============================================================================
 // virtual
-BOOL CntUInt16Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
+bool CntUInt16Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
 {
     sal_Int32 nValue = 0;
     if (rVal >>= nValue)
     {
         DBG_ASSERT( nValue <= USHRT_MAX, "Overflow in UInt16 value!");
         m_nValue = (sal_uInt16)nValue;
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "CntUInt16Item::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "CntUInt16Item::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
@@ -255,15 +241,6 @@ SfxPoolItem * CntUInt16Item::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(CntUInt16Item, 0);
     return new CntUInt16Item(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntUInt16Item::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntUInt16Item, 0);
-    rStream << USHORT(m_nValue);
-    return rStream;
 }
 
 //============================================================================
@@ -358,26 +335,26 @@ SfxItemPresentation CntInt32Item::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL CntInt32Item::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
+bool CntInt32Item::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
 {
     sal_Int32 nValue = m_nValue;
     rVal <<= nValue;
-    return TRUE;
+    return true;
 }
 
 //============================================================================
 // virtual
-BOOL CntInt32Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
+bool CntInt32Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
 {
     sal_Int32 nValue = 0;
     if (rVal >>= nValue)
     {
         m_nValue = nValue;
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "CntInt32Item::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "CntInt32Item::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
@@ -386,15 +363,6 @@ SfxPoolItem * CntInt32Item::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(CntInt32Item, 0);
     return new CntInt32Item(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntInt32Item::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntInt32Item, 0);
-    rStream << long(m_nValue);
-    return rStream;
 }
 
 //============================================================================
@@ -491,28 +459,28 @@ SfxItemPresentation CntUInt32Item::GetPresentation(SfxItemPresentation,
 
 //============================================================================
 // virtual
-BOOL CntUInt32Item::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
+bool CntUInt32Item::QueryValue(com::sun::star::uno::Any& rVal,BYTE) const
 {
     sal_Int32 nValue = m_nValue;
     DBG_ASSERT( nValue>=0, "Overflow in UInt32 value!");
     rVal <<= nValue;
-    return TRUE;
+    return true;
 }
 
 //============================================================================
 // virtual
-BOOL CntUInt32Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
+bool CntUInt32Item::PutValue(const com::sun::star::uno::Any& rVal,BYTE)
 {
     sal_Int32 nValue = 0;
     if (rVal >>= nValue)
     {
         DBG_ASSERT( nValue>=0, "Overflow in UInt32 value!");
         m_nValue = nValue;
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "CntUInt32Item::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "CntUInt32Item::PutValue - Wrong type!" );
+    return false;
 }
 
 //============================================================================
@@ -521,15 +489,6 @@ SfxPoolItem * CntUInt32Item::Create(SvStream & rStream, USHORT) const
 {
     DBG_CHKTHIS(CntUInt32Item, 0);
     return new CntUInt32Item(Which(), rStream);
-}
-
-//============================================================================
-// virtual
-SvStream & CntUInt32Item::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(CntUInt32Item, 0);
-    rStream << static_cast<sal_uInt32>(m_nValue);
-    return rStream;
 }
 
 //============================================================================
@@ -565,3 +524,5 @@ SfxFieldUnit CntUInt32Item::GetUnit() const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

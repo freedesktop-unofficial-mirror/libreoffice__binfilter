@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -32,16 +33,10 @@
 
 #include <limits.h>     // USHRT_MAX
 
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
 class OutputDevice;
 class Printer;
 namespace binfilter {
@@ -117,3 +112,4 @@ public:
 }//end of namespace binfilter
 #endif // #ifndef   _SVX_SVXFONT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

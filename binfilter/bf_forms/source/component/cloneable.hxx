@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #define FORMS_COMPONENT_CLONEABLE_HXX
 
-#ifndef _COM_SUN_STAR_UNO_XAGGREGATION_HPP_
 #include <com/sun/star/uno/XAggregation.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -57,3 +56,4 @@ namespace frm
 }//end of namespace binfilter
 #endif // FORMS_COMPONENT_CLONEABLE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 #define _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
 namespace binfilter {
 
 struct XMLPropertyMapEntry;
@@ -72,3 +69,4 @@ namespace xmloff
 #endif // _XMLOFF_FORMS_CONTROLPROPERTYMAP_HXX_
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

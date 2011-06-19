@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,11 @@
 #define _DOCTXM_HXX
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
 class  SvUShorts;
 class  SvStringsDtor;
 class  SvPtrarr;
@@ -55,7 +48,7 @@ struct SwTOXSortTabBase;
 
 typedef SwTOXSortTabBase* SwTOXSortTabBasePtr;
 
-SV_DECL_PTRARR(SwTOXSortTabBases, SwTOXSortTabBasePtr, 0, 5 )//STRIP008 ;
+SV_DECL_PTRARR(SwTOXSortTabBases, SwTOXSortTabBasePtr, 0, 5 )
 
 /*--------------------------------------------------------------------
      Beschreibung: Ring der speziellen Verzeichnisse
@@ -72,7 +65,7 @@ class SwTOXBaseSection : public SwTOXBase, public SwSection
     // Alpha-Trennzeichen bei der Generierung einfuegen
 
     // Textrumpf generieren
-    // OD 18.03.2003 #106329# - add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
+    // add parameter <_TOXSectNdIdx> and <_pDefaultPageDesc>
 
     // Seitennummerplatzhalter gegen aktuelle Nummern austauschen
 
@@ -84,7 +77,7 @@ public:
     SwTOXBaseSection( const SwTOXBase& rBase );
     virtual ~SwTOXBaseSection();
 
-    // OD 19.03.2003 #106329# - add parameter <_bNewTOX> in order to distinguish
+    // add parameter <_bNewTOX> in order to distinguish
     // between the creation of a new table-of-content or an update of
     // a table-of-content. Default value: false
     void Update( const SfxItemSet* pAttr = 0,
@@ -93,9 +86,7 @@ public:
     TYPEINFO();                         // fuers rtti
 
 };
-/* -----------------02.09.99 07:52-------------------
 
- --------------------------------------------------*/
 struct SwDefTOXBase_Impl
 {
     SwTOXBase* pContBase;
@@ -130,3 +121,5 @@ struct SwDefTOXBase_Impl
 
 } //namespace binfilter
 #endif  // _DOCTXM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

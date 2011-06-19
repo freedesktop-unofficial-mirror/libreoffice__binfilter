@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,17 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include <bf_sfx2/objsh.hxx>
+#include <vcl/svapp.hxx>
 
 
 #include "addinlis.hxx"
 #include "miscuno.hxx"      // SC_IMPL_SERVICE_INFO
 #include "document.hxx"
-#include "unoguard.hxx"
 #include "bf_sc.hrc"
 namespace binfilter {
 
@@ -136,23 +134,9 @@ using namespace ::com::sun::star;
 /*N*/ void SAL_CALL ScAddInListener::modified( const ::com::sun::star::sheet::ResultEvent& aEvent )
 /*N*/                               throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
-/*N*/   ScUnoGuard aGuard;          //! or generate a UserEvent
+/*N*/   SolarMutexGuard aGuard;         //! or generate a UserEvent
 /*N*/
 /*N*/   aResult = aEvent.Value;     // store result
-/*N*/
-/*N*/   if ( !HasListeners() )
-/*N*/   {
-/*N*/       //! remove from list and removeListener, as in RemoveDocument ???
-/*N*/
-/*N*/ #if 0
-/*N*/       //! this will crash if called before first StartListening !!!
-/*N*/       aAllListeners.Remove( this );
-/*N*/       if ( xVolRes.is() )
-/*N*/           xVolRes->removeResultListener( this );
-/*N*/       release();  // Ref for aAllListeners - this may be deleted here
-/*N*/       return;
-/*N*/ #endif
-/*N*/   }
 /*N*/
 /*N*/   //  notify document of changes
 /*N*/
@@ -171,7 +155,7 @@ using namespace ::com::sun::star;
 
 // XEventListener
 
-/*N*/ void SAL_CALL ScAddInListener::disposing( const ::com::sun::star::lang::EventObject& Source )
+/*N*/ void SAL_CALL ScAddInListener::disposing( const ::com::sun::star::lang::EventObject& /*Source*/ )
 /*N*/                               throw(::com::sun::star::uno::RuntimeException)
 /*N*/ {
 /*N*/   // hold a ref so this is not deleted at removeResultListener
@@ -190,3 +174,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

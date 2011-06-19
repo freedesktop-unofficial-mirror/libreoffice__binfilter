@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,32 +28,33 @@
 #ifndef _SFX_ARRDECL_HXX
 #define _SFX_ARRDECL_HXX
 
-#include <tools/list.hxx>
+#include <vector>
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 #include "bf_sfx2/minarray.hxx"
 namespace binfilter {
 
 class SfxObjectShell;
-SV_DECL_PTRARR( SfxObjectShellArr_Impl, SfxObjectShell*, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR( SfxObjectShellArr_Impl, SfxObjectShell*, 4, 4 )
 
 class SfxObjectFactory;
 typedef SfxObjectFactory* SfxObjectFactoryPtr;
-SV_DECL_PTRARR( SfxObjectFactoryArr_Impl, SfxObjectFactoryPtr, 3, 3 )//STRIP008 ;
+SV_DECL_PTRARR( SfxObjectFactoryArr_Impl, SfxObjectFactoryPtr, 3, 3 )
 
 class SfxModule;
-SV_DECL_PTRARR( SfxModuleArr_Impl, SfxModule*, 2, 2 )//STRIP008 ;
+SV_DECL_PTRARR( SfxModuleArr_Impl, SfxModule*, 2, 2 )
 
 class SfxFilter;
-DECL_PTRARRAY( SfxFilterArr_Impl, SfxFilter*, 4, 4 )//STRIP008 ;
+DECL_PTRARRAY( SfxFilterArr_Impl, SfxFilter*, 4, 4 )
 
-DECLARE_LIST( SfxFilterList_Impl, SfxFilter* )//STRIP008 DECLARE_LIST( SfxFilterList_Impl, SfxFilter* );
+typedef ::std::vector<  SfxFilter* > SfxFilterList_Impl;
 
 class SfxSlot;
 typedef SfxSlot* SfxSlotPtr;
-SV_DECL_PTRARR( SfxSlotArr_Impl, SfxSlotPtr, 20, 20 )//STRIP008 ;
+SV_DECL_PTRARR( SfxSlotArr_Impl, SfxSlotPtr, 20, 20 )
 
-}//end of namespace binfilter
+}
+
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

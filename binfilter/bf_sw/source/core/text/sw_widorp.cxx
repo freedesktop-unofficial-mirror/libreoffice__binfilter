@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,27 +37,13 @@
 #ifdef DBG_UTIL
 #endif
 
-#ifndef _SVX_ORPHITEM_HXX //autogen
 #include <bf_svx/orphitem.hxx>
-#endif
-#ifndef _SVX_WIDWITEM_HXX //autogen
 #include <bf_svx/widwitem.hxx>
-#endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX //autogen
 #include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
 
 #include "txtcfg.hxx"
 #include "widorp.hxx"
@@ -73,7 +60,7 @@ namespace binfilter {
 // Ein Follow, der auf der selben Seite steht, wie sein Master ist nasty.
 /*N*/ inline sal_Bool IsNastyFollow( const SwTxtFrm *pFrm )
 /*N*/ {
-/*N*/   ASSERT( !pFrm->IsFollow() || !pFrm->GetPrev() ||
+/*N*/   OSL_ENSURE( !pFrm->IsFollow() || !pFrm->GetPrev() ||
 /*N*/           ((const SwTxtFrm*)pFrm->GetPrev())->GetFollow() == pFrm,
 /*N*/           "IsNastyFollow: Was ist denn hier los?" );
 /*N*/   return  pFrm->IsFollow() && pFrm->GetPrev();
@@ -83,30 +70,31 @@ namespace binfilter {
  *                  SwTxtFrmBreak::SwTxtFrmBreak()
  *************************************************************************/
 
-/*N*/ SwTxtFrmBreak::SwTxtFrmBreak( SwTxtFrm *pFrm, const SwTwips nRst )
-/*N*/     : pFrm(pFrm), nRstHeight(nRst)
+/*N*/ SwTxtFrmBreak::SwTxtFrmBreak( SwTxtFrm *pFrm1, const SwTwips nRst )
+/*N*/     : nRstHeight(nRst)
+/*N*/     , pFrm(pFrm1)
 /*N*/ {
-/*N*/     SWAP_IF_SWAPPED( pFrm )
-/*N*/     SWRECTFN( pFrm )
-/*N*/     nOrigin = (pFrm->*fnRect->fnGetPrtTop)();
+/*N*/     SWAP_IF_SWAPPED( pFrm1 )
+/*N*/     SWRECTFN( pFrm1 )
+/*N*/     nOrigin = (pFrm1->*fnRect->fnGetPrtTop)();
 /*N*/     SwSectionFrm* pSct;
-/*N*/   bKeep = !pFrm->IsMoveable() || IsNastyFollow( pFrm ) ||
-/*N*/           ( pFrm->IsInSct() && (pSct=pFrm->FindSctFrm())->Lower()->IsColumnFrm()
-/*N*/             && !pSct->MoveAllowed( pFrm ) ) ||
-/*N*/           !pFrm->GetTxtNode()->GetSwAttrSet().GetSplit().GetValue() ||
-/*N*/           pFrm->GetTxtNode()->GetSwAttrSet().GetKeep().GetValue();
+/*N*/   bKeep = !pFrm1->IsMoveable() || IsNastyFollow( pFrm1 ) ||
+/*N*/           ( pFrm1->IsInSct() && (pSct=pFrm1->FindSctFrm())->Lower()->IsColumnFrm()
+/*N*/             && !pSct->MoveAllowed( pFrm1 ) ) ||
+/*N*/           !pFrm1->GetTxtNode()->GetSwAttrSet().GetSplit().GetValue() ||
+/*N*/           pFrm1->GetTxtNode()->GetSwAttrSet().GetKeep().GetValue();
 /*N*/   bBreak = sal_False;
 /*N*/
-/*N*/   if( !nRstHeight && !pFrm->IsFollow() && pFrm->IsInFtn() && pFrm->HasPara() )
+/*N*/   if( !nRstHeight && !pFrm1->IsFollow() && pFrm1->IsInFtn() && pFrm1->HasPara() )
 /*N*/   {
-/*N*/       nRstHeight = pFrm->GetFtnFrmHeight();
-/*N*/         nRstHeight += (pFrm->Prt().*fnRect->fnGetHeight)() -
-/*N*/                       (pFrm->Frm().*fnRect->fnGetHeight)();
+/*N*/       nRstHeight = pFrm1->GetFtnFrmHeight();
+/*N*/         nRstHeight += (pFrm1->Prt().*fnRect->fnGetHeight)() -
+/*N*/                       (pFrm1->Frm().*fnRect->fnGetHeight)();
 /*N*/       if( nRstHeight < 0 )
 /*N*/           nRstHeight = 0;
 /*N*/   }
 /*N*/
-/*N*/     UNDO_SWAP( pFrm )
+/*N*/     UNDO_SWAP( pFrm1 )
 /*N*/ }
 
 /* BP 18.6.93: Widows.
@@ -145,9 +133,9 @@ namespace binfilter {
 /*N*/     SWRECTFN( pFrm )
 /*N*/     // nOrigin is an absolut value, rLine referes to the swapped situation.
 /*N*/
-/*N*/     SwTwips nTmpY;
+/*N*/     SwTwips nTmpY(0);
 /*N*/     if ( pFrm->IsVertical() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( rLine.Y() + rLine.GetLineHeight() );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
 /*N*/         nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
@@ -231,74 +219,53 @@ namespace binfilter {
 /*N*/   return bBreak;
 /*N*/ }
 
-
-/*MA ehemals fuer COMPACT
-// WouldFit() liefert sal_True, wenn der Absatz ganz oder teilweise passen wuerde
-
-sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
-{
-    rLine.Bottom();
-    if( IsInside( rLine ) )
-        return sal_True;
-
-    rLine.Top();
-    // Suche die erste Trennmoeglichkeit ...
-    while( !IsBreakNow( rLine ) )
-    {
-        DBG_LOOP;
-        if( !rLine.NextLine() )
-            return sal_False;
-    }
-    return sal_True;
-}
-*/
-
 /*************************************************************************
  *                  WidowsAndOrphans::WidowsAndOrphans()
  *************************************************************************/
 
-/*N*/ WidowsAndOrphans::WidowsAndOrphans( SwTxtFrm *pFrm, const SwTwips nRst,
+/*N*/ WidowsAndOrphans::WidowsAndOrphans( SwTxtFrm *pFrm2, const SwTwips nRst,
 /*N*/   sal_Bool bChkKeep   )
-/*N*/   : SwTxtFrmBreak( pFrm, nRst ), nOrphLines( 0 ), nWidLines( 0 )
+/*N*/   : SwTxtFrmBreak( pFrm2, nRst )
+/*N*/   , nWidLines( 0 )
+/*N*/   , nOrphLines( 0 )
 /*N*/ {
-/*N*/     SWAP_IF_SWAPPED( pFrm )
-/*N*/     SWRECTFN( pFrm )
+/*N*/     SWAP_IF_SWAPPED( pFrm2 )
 /*N*/
 /*N*/   if( bKeep )
 /*N*/   {
 /*N*/       // 5652: bei Absaetzen, die zusammengehalten werden sollen und
 /*N*/       // groesser sind als die Seite wird bKeep aufgehoben.
-/*N*/       if( bChkKeep && !pFrm->GetPrev() && !pFrm->IsInFtn() &&
-/*N*/           pFrm->IsMoveable() &&
-/*N*/           ( !pFrm->IsInSct() || pFrm->FindSctFrm()->MoveAllowed(pFrm) ) )
+/*N*/       if( bChkKeep && !pFrm2->GetPrev() && !pFrm2->IsInFtn() &&
+/*N*/           pFrm2->IsMoveable() &&
+/*N*/           ( !pFrm2->IsInSct() || pFrm2->FindSctFrm()->MoveAllowed(pFrm2) ) )
 /*N*/           bKeep = sal_False;
 /*N*/       //Auch bei gesetztem Keep muessen Orphans beachtet werden,
 /*N*/       //z.B. bei verketteten Rahmen erhaelt ein Follow im letzten Rahmen ein Keep,
 /*N*/       //da er nicht (vorwaerts) Moveable ist,
 /*N*/       //er darf aber trotzdem vom Master Zeilen anfordern wg. der Orphanregel.
-/*N*/       if( pFrm->IsFollow() )
-/*N*/           nWidLines = pFrm->GetTxtNode()->GetSwAttrSet().GetWidows().GetValue();
+/*N*/       if( pFrm2->IsFollow() )
+/*N*/           nWidLines = pFrm2->GetTxtNode()->GetSwAttrSet().GetWidows().GetValue();
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       const SwAttrSet& rSet = pFrm->GetTxtNode()->GetSwAttrSet();
+/*N*/       const SwAttrSet& rSet = pFrm2->GetTxtNode()->GetSwAttrSet();
 /*N*/       const SvxOrphansItem  &rOrph = rSet.GetOrphans();
 /*N*/       if ( rOrph.GetValue() > 1 )
 /*N*/           nOrphLines = rOrph.GetValue();
-/*N*/       if ( pFrm->IsFollow() )
+/*N*/       if ( pFrm2->IsFollow() )
 /*N*/           nWidLines = rSet.GetWidows().GetValue();
 /*N*/
 /*N*/   }
-/*N*/   if( pFrm->IsInFtn() && !pFrm->GetIndPrev() &&
+/*N*/   if( pFrm2->IsInFtn() && !pFrm2->GetIndPrev() &&
 /*N*/       ( bKeep || nWidLines || nOrphLines ) )
 /*N*/   {
 /*N*/       // Innerhalb von Fussnoten gibt es gute Gruende, das Keep-Attribut und
 /*N*/       // die Widows/Orphans abzuschalten.
-/*?*/       SwFtnFrm *pFtn = pFrm->FindFtnFrm();
+/*?*/       SwFtnFrm *pFtn = pFrm2->FindFtnFrm();
 /*?*/       sal_Bool bFt = !pFtn->GetAttr()->GetFtn().IsEndNote();
 /*?*/       if( !pFtn->GetPrev() &&
 /*?*/           pFtn->FindFtnBossFrm( bFt ) != pFtn->GetRef()->FindFtnBossFrm( bFt )
-/*?*/           && ( !pFrm->IsInSct() || pFrm->FindSctFrm()->MoveAllowed(pFrm) ) )
+/*?*/           && ( !pFrm2->IsInSct() || pFrm2->FindSctFrm()->MoveAllowed(pFrm2) ) )
 /*?*/       {
 /*?*/           bKeep = sal_False;
 /*?*/           nOrphLines = 0;
@@ -306,7 +273,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*?*/       }
 /*N*/   }
 /*N*/
-/*N*/     UNDO_SWAP( pFrm )
+/*N*/     UNDO_SWAP( pFrm2 )
 /*N*/ }
 
 /*************************************************************************
@@ -370,40 +337,40 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
  *  d.h. der Absatz _zusammengehalten_ werden soll !
  */
 
-/*N*/ sal_Bool WidowsAndOrphans::FindWidows( SwTxtFrm *pFrm, SwTxtMargin &rLine )
+/*N*/ sal_Bool WidowsAndOrphans::FindWidows( SwTxtFrm *pFrm4, SwTxtMargin &rLine )
 /*N*/ {
-/*N*/     ASSERT( ! pFrm->IsVertical() || ! pFrm->IsSwapped(),
-/*N*/             "WidowsAndOrphans::FindWidows with swapped frame" )
+/*N*/     OSL_ENSURE( ! pFrm4->IsVertical() || ! pFrm4->IsSwapped(),
+/*N*/             "WidowsAndOrphans::FindWidows with swapped frame" );
 /*N*/
-/*N*/   if( !nWidLines || !pFrm->IsFollow() )
+/*N*/   if( !nWidLines || !pFrm4->IsFollow() )
 /*N*/       return sal_False;
 /*N*/
 /*N*/   rLine.Bottom();
 /*N*/
 /*N*/   // Wir koennen noch was abzwacken
-/*N*/   SwTxtFrm *pMaster = pFrm->FindMaster();
-/*N*/   ASSERT(pMaster, "+WidowsAndOrphans::FindWidows: Widows in a master?");
+/*N*/   SwTxtFrm *pMaster = pFrm4->FindMaster();
+/*N*/   OSL_ENSURE(pMaster, "+WidowsAndOrphans::FindWidows: Widows in a master?");
 /*N*/   if( !pMaster )
 /*N*/       return sal_False;
 /*N*/
 /*N*/   // 5156: Wenn die erste Zeile des Follows nicht passt, wird der Master
 /*N*/   // wohl voll mit Dummies sein. In diesem Fall waere ein PREP_WIDOWS fatal.
-/*N*/   if( pMaster->GetOfst() == pFrm->GetOfst() )
+/*N*/   if( pMaster->GetOfst() == pFrm4->GetOfst() )
 /*N*/       return sal_False;
 /*N*/
 /*N*/   // Resthoehe des Masters
-/*N*/     SWRECTFN( pFrm )
+/*N*/     SWRECTFN( pFrm4 )
 /*N*/
-/*N*/     const SwTwips nDocPrtTop = (pFrm->*fnRect->fnGetPrtTop)();
-/*N*/     SwTwips nOldHeight;
+/*N*/     const SwTwips nDocPrtTop = (pFrm4->*fnRect->fnGetPrtTop)();
+/*N*/     SwTwips nOldHeight(0);
 /*N*/     SwTwips nTmpY = rLine.Y() + rLine.GetLineHeight();
 /*N*/
 /*N*/     if ( bVert )
 /*N*/     {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nTmpY = pFrm->SwitchHorizontalToVertical( nTmpY );
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/     else
-/*N*/         nOldHeight = (pFrm->Prt().*fnRect->fnGetHeight)();
+/*N*/         nOldHeight = (pFrm4->Prt().*fnRect->fnGetHeight)();
 /*N*/
 /*N*/     const SwTwips nChg = (*fnRect->fnYDiff)( nTmpY, nDocPrtTop + nOldHeight );
 /*N*/
@@ -415,16 +382,16 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/       // Zeilen entgegenzunehmen, die er vor Kurzem gezwungen war an den
 /*N*/       // Follow abzugeben: Prepare(Need); diese Abfrage unterhalb von nChg!
 /*N*/       // (0W, 2O, 2M, 2F) + 1F = 3M, 2F
-/*N*/       if( rLine.GetLineNr() > nWidLines && pFrm->IsJustWidow() )
+/*N*/       if( rLine.GetLineNr() > nWidLines && pFrm4->IsJustWidow() )
 /*N*/       {
 /*?*/           // Wenn der Master gelockt ist, so hat er vermutlich gerade erst
 /*?*/           // eine Zeile an uns abgegeben, diese geben nicht zurueck, nur
 /*?*/           // weil bei uns daraus mehrere geworden sind (z.B. durch Rahmen).
 /*?*/             if( !pMaster->IsLocked() && pMaster->GetUpper() )
 /*?*/             {
-/*?*/                 const SwTwips nRstHeight = (pMaster->Frm().*fnRect->fnBottomDist)
+/*?*/                 const SwTwips nRstHeight1 = (pMaster->Frm().*fnRect->fnBottomDist)
 /*?*/                             ( (pMaster->GetUpper()->*fnRect->fnGetPrtBottom)() );
-/*?*/                 if ( nRstHeight >=
+/*?*/                 if ( nRstHeight1 >=
 /*?*/                      SwTwips(rLine.GetInfo().GetParaPortion()->Height() ) )
 /*?*/                 {
 /*?*/                     pMaster->Prepare( PREP_ADJUST_FRM );
@@ -433,7 +400,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*?*/                 }
 /*?*/             }
 /*?*/
-/*?*/           pFrm->SetJustWidow( sal_False );
+/*?*/           pFrm4->SetJustWidow( sal_False );
 /*N*/       }
 /*N*/       return sal_False;
 /*N*/               }
@@ -446,14 +413,14 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 
 /*N*/     if( 0 > nChg && !pMaster->IsLocked() && pMaster->GetUpper() )
 /*N*/     {
-/*N*/         SwTwips nRstHeight = (pMaster->Frm().*fnRect->fnBottomDist)
+/*N*/         SwTwips nRstHeight2 = (pMaster->Frm().*fnRect->fnBottomDist)
 /*N*/                              ( (pMaster->GetUpper()->*fnRect->fnGetPrtBottom)() );
-/*N*/         if( nRstHeight >= SwTwips(rLine.GetInfo().GetParaPortion()->Height() ) )
+/*N*/         if( nRstHeight2 >= SwTwips(rLine.GetInfo().GetParaPortion()->Height() ) )
 /*N*/         {
 /*N*/             pMaster->Prepare( PREP_ADJUST_FRM );
 /*N*/             pMaster->_InvalidateSize();
 /*N*/             pMaster->InvalidatePage();
-/*N*/             pFrm->SetJustWidow( sal_False );
+/*N*/             pFrm4->SetJustWidow( sal_False );
 /*N*/             return sal_False;
 /*N*/         }
 /*N*/   }
@@ -494,7 +461,7 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/     // IsInside() takes care for itself
 /*N*/
 /*N*/   // Wir erwarten, dass rLine auf der letzten Zeile steht!!
-/*N*/   ASSERT( !rLine.GetNext(), "WouldFit: aLine::Bottom missed!" );
+/*N*/   OSL_ENSURE( !rLine.GetNext(), "WouldFit: aLine::Bottom missed!" );
 /*N*/   MSHORT nLineCnt = rLine.GetLineNr();
 /*N*/
 /*N*/   // Erstmal die Orphansregel und den Initialenwunsch erfuellen ...
@@ -546,3 +513,5 @@ sal_Bool SwTxtFrmBreak::WouldFit( SwTxtMargin &rLine )
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

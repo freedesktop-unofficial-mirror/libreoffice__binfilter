@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
-#endif
 namespace binfilter {
 
 
@@ -50,22 +47,22 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SwFmtRefMark::SwFmtRefMark( const XubString& rName )
-/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK ),
-/*N*/   aRefName( rName ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , aRefName( rName )
 /*N*/ {
 /*N*/ }
 
 /*N*/ SwFmtRefMark::SwFmtRefMark( const SwFmtRefMark& rAttr )
-/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK ),
-/*N*/   aRefName( rAttr.aRefName ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   : SfxPoolItem( RES_TXTATR_REFMARK )
+/*N*/   , pTxtAttr( 0 )
+/*N*/   , aRefName( rAttr.aRefName )
 /*N*/ {
 /*N*/ }
 
-int SwFmtRefMark::operator==( const SfxPoolItem& rAttr ) const
+int SwFmtRefMark::operator==( const SfxPoolItem& /*rAttr*/ ) const
 {
-    {DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    {DBG_BF_ASSERT(0, "STRIP");} return 0;
 }
 
 /*N*/ SfxPoolItem* SwFmtRefMark::Clone( SfxItemPool* ) const
@@ -80,10 +77,10 @@ int SwFmtRefMark::operator==( const SfxPoolItem& rAttr ) const
 // Attribut fuer Inhalts-/Positions-Referenzen im Text
 
 /*N*/ SwTxtRefMark::SwTxtRefMark( const SwFmtRefMark& rAttr,
-/*N*/                   xub_StrLen nStart, xub_StrLen* pEnde )
-/*N*/   : SwTxtAttrEnd( rAttr, nStart, nStart ),
-/*N*/   pEnd( 0 ),
-/*N*/   pMyTxtNd( 0 )
+/*N*/                   xub_StrLen nStart2, xub_StrLen* pEnde )
+/*N*/   : SwTxtAttrEnd( rAttr, nStart2, nStart2 )
+/*N*/   , pMyTxtNd( 0 )
+/*N*/   , pEnd( 0 )
 /*N*/ {
 /*N*/   ((SwFmtRefMark&)rAttr).pTxtAttr = this;
 /*N*/   if( pEnde )
@@ -102,3 +99,5 @@ int SwFmtRefMark::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

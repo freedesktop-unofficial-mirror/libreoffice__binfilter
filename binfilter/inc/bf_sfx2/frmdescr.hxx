@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -30,21 +31,11 @@
 
 #include <bf_sfx2/sfxsids.hrc>
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SV_GEN_HXX
 #include <tools/gen.hxx>
-#endif
 class SvStream;
 class SvStrings;
 class Wallpaper;
@@ -55,7 +46,7 @@ struct SfxFrameDescriptor_Impl;
 struct SfxFrameSetDescriptor_Impl;
 class SfxFrameDescriptor;
 typedef SfxFrameDescriptor* SfxFrameDescriptorPtr;
-SV_DECL_PTRARR(SfxFramesArr, SfxFrameDescriptorPtr, 4, 2)//STRIP008 ;
+SV_DECL_PTRARR(SfxFramesArr, SfxFrameDescriptorPtr, 4, 2)
 
 //===========================================================================
 // Die SfxFrame...descriptoren bauen eine rekursive Struktur auf, die
@@ -254,23 +245,24 @@ private:
     SfxFrameProperties( SfxFrameProperties& ) {}
 public:
                                         SfxFrameProperties()
-                                            : pFrame( 0 ),
-                                              lMarginWidth( SIZE_NOT_SET ),
-                                              lMarginHeight( SIZE_NOT_SET ),
-                                              lSize( 1L ),
-                                              lSetSize( 1L ),
-                                              lFrameSpacing( SPACING_NOT_SET ),
-                                              lInheritedFrameSpacing( SPACING_NOT_SET ),
-                                              eScroll( ScrollingAuto ),
-                                              eSizeSelector( SIZE_REL ),
-                                              eSetSizeSelector( SIZE_REL ),
-                                              bHasBorder( TRUE ),
-                                              bHasBorderInherited( TRUE ),
-                                              bBorderSet( TRUE ),
-                                              bResizable( TRUE ),
-                                              bSetResizable( TRUE ),
-                                              bIsRootSet( FALSE ),
-                                              bIsInColSet( FALSE ) {}
+                                            : lMarginWidth( SIZE_NOT_SET )
+                                            , lMarginHeight( SIZE_NOT_SET )
+                                            , lSize( 1L )
+                                            , lSetSize( 1L )
+                                            , lFrameSpacing( SPACING_NOT_SET )
+                                            , lInheritedFrameSpacing( SPACING_NOT_SET )
+                                            , eScroll( ScrollingAuto )
+                                            , eSizeSelector( SIZE_REL )
+                                            , eSetSizeSelector( SIZE_REL )
+                                            , bHasBorder( TRUE )
+                                            , bBorderSet( TRUE )
+                                            , bResizable( TRUE )
+                                            , bSetResizable( TRUE )
+                                            , bIsRootSet( FALSE )
+                                            , bIsInColSet( FALSE )
+                                            , bHasBorderInherited( TRUE )
+                                            , pFrame( 0 )
+                                            {}
 
                                         ~SfxFrameProperties() { delete pFrame; }
 
@@ -305,9 +297,6 @@ public:
                                             UniString &rText, const ::IntlWrapper * = 0 ) const;
 
     virtual SfxPoolItem*                Clone( SfxItemPool *pPool = 0 ) const;
-    //virtual SfxPoolItem*              Create(SvStream &, USHORT) const;
-    //virtual SvStream&                 Store(SvStream &, USHORT nItemVersion ) const;
-    //virtual USHORT                        GetVersion( USHORT nFileFormatVersion ) const;
 
     const SfxFrameProperties&           GetProperties() const
                                         { return aProperties; }
@@ -318,3 +307,4 @@ public:
 }//end of namespace binfilter
 #endif // #ifndef _SFX_FRMDESCRHXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

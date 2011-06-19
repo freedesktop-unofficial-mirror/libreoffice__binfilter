@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 
-#ifndef _SVDPAGV_HXX //autogen
 #include <bf_svx/svdpagv.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 
 /// OD 29.08.2002 #102450#
 /// include <bf_svx/svdoutl.hxx>
@@ -51,9 +44,7 @@
 #ifdef DBG_UTIL
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "fesh.hxx"
 #include "doc.hxx"
@@ -68,9 +59,6 @@ namespace binfilter {
 |*
 |*  SwSaveHdl
 |*
-|*  Ersterstellung      MA 14. Feb. 95
-|*  Letzte Aenderung    MA 02. Jun. 98
-|*
 |*************************************************************************/
 
 
@@ -79,9 +67,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::StartAction(), EndAction()
-|*
-|*  Ersterstellung      MA 14. Feb. 95
-|*  Letzte Aenderung    MA 14. Sep. 98
 |*
 |*************************************************************************/
 
@@ -116,9 +101,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::LockPaint(), UnlockPaint()
 |*
-|*  Ersterstellung      MA 11. Jun. 96
-|*  Letzte Aenderung    MA 11. Jun. 96
-|*
 |*************************************************************************/
 
 
@@ -130,9 +112,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::PaintLayer(), PaintDispatcher()
-|*
-|*  Ersterstellung      MA 20. Dec. 94
-|*  Letzte Aenderung    AMA 04. Jun. 98
 |*
 |*************************************************************************/
 // OD 29.08.2002 #102450#
@@ -149,9 +128,6 @@ namespace binfilter {
 |*
 |*  SwViewImp::PaintFlyChilds()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 02. Aug. 95
-|*
 |*************************************************************************/
 
 
@@ -159,9 +135,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::IsDragPossible()
-|*
-|*  Ersterstellung      MA 19. Jan. 93
-|*  Letzte Aenderung    MA 16. Jan. 95
 |*
 |*************************************************************************/
 
@@ -173,9 +146,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwViewImp::NotifySizeChg()
-|*
-|*  Ersterstellung      MA 23. Jun. 93
-|*  Letzte Aenderung    MA 05. Oct. 98
 |*
 |*************************************************************************/
 
@@ -200,7 +170,7 @@ namespace binfilter {
 /*N*/   if ( !bCheckDrawObjs )
 /*N*/       return;
 /*N*/
-/*N*/   ASSERT( pSh->GetDoc()->GetDrawModel(), "NotifySizeChg without DrawModel" );
+/*N*/   OSL_ENSURE( pSh->GetDoc()->GetDrawModel(), "NotifySizeChg without DrawModel" );
 /*N*/   SdrPage* pPage = pSh->GetDoc()->GetDrawModel()->GetPage( 0 );
 /*N*/   const ULONG nObjs = pPage->GetObjCount();
 /*N*/   for( ULONG nObj = 0; nObj < nObjs; ++nObj )
@@ -257,3 +227,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

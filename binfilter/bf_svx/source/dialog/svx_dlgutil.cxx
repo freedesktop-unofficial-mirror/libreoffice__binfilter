@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,8 +35,8 @@
 #include "dlgutil.hxx"
 namespace binfilter {
 
-/*N*/ FieldUnit GetModuleFieldUnit( const SfxItemSet* pSet )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ FieldUnit GetModuleFieldUnit( const SfxItemSet* /*pSet*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   FieldUnit eUnit = FUNIT_INCH;
 /*N*/   return eUnit;
 /*N*/ }
@@ -63,6 +64,7 @@ namespace binfilter {
 /*?*/       case SFX_MAPUNIT_10TH_MM:   nTmp *= 10;  break;
 /*?*/       case SFX_MAPUNIT_MM:                     break;
 /*?*/       case SFX_MAPUNIT_CM:        nTmp /= 10;  break;
+        default: break;
 /*N*/   }
 /*N*/
 /*N*/   nTmp *= 20;
@@ -73,9 +75,9 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*?*/ long ItemToControl( long nIn, SfxMapUnit eItem, SfxFieldUnit eCtrl )
+/*?*/ long ItemToControl( long, SfxMapUnit, SfxFieldUnit )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     long nOut = 0;
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -101,6 +103,7 @@ namespace binfilter {
 /*?*/       case SFX_MAPUNIT_10TH_MM:   nRet /= 10;  break;
 /*?*/       case SFX_MAPUNIT_MM:                     break;
 /*?*/       case SFX_MAPUNIT_CM:        nRet *= 10;  break;
+        default: break;
 /*N*/   }
 /*N*/
 /*N*/   // ggf. aufrunden
@@ -117,3 +120,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

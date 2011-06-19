@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _BMPACC_HXX
 #include <vcl/bmpacc.hxx>
-#endif
 
 namespace binfilter
 {
@@ -102,3 +99,5 @@ BOOL ImportXBM( SvStream& rStream, Graphic& rGraphic );
 }
 
 #endif // _XBMREAD_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

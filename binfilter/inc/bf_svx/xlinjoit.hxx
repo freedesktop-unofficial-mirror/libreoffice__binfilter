@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SVX_XLINJOIT_HXX
 #define _SVX_XLINJOIT_HXX
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
-#endif
 namespace binfilter {
 
 //---------------------
@@ -51,8 +48,8 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream& rIn, USHORT nVer ) const;
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual USHORT          GetValueCount() const;
     XLineJoint              GetValue() const { return (XLineJoint) SfxEnumItem::GetValue(); }
@@ -60,3 +57,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _SVX_XLINJOIT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

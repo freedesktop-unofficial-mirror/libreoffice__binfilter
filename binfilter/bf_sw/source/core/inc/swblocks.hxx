@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
 /*N*/#include <tools/debug.hxx> //addded for stripping
 class SvxMacroTableDtor;
 namespace binfilter {
@@ -52,7 +51,7 @@ class SwImpBlocks
 protected:
     String aFile;                       // physikalischer Dateiname
     String aName;                       // logischer Name der Datei
-    SwImpBlocks( const String&, BOOL = FALSE ){DBG_ASSERT(0, "STRIP")}; //STRIP001 ;
+    SwImpBlocks( const String&, BOOL = FALSE ){DBG_ASSERT(0, "STRIP")};
 public:
     const String& GetFileName() const {return aFile;}   // phys. Dateinamen liefern
 };
@@ -67,7 +66,7 @@ class Sw3TextBlocks : public SwImpBlocks
 {
 
 public:
-    Sw3TextBlocks( const String& rFile): SwImpBlocks( rFile ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   Sw3TextBlocks( const String& );
+    Sw3TextBlocks( const String& rFile): SwImpBlocks( rFile ){DBG_BF_ASSERT(0, "STRIP");} ;
 
 
 
@@ -79,3 +78,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

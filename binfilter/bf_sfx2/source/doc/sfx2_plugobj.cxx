@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _IPWIN_HXX //autogen
 #include <bf_so3/ipwin.hxx>
-#endif
 
-#ifndef _PLUGPOOL_HXX //autogen
 #include <bf_svtools/plugpool.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -354,3 +351,5 @@ SfxPluginObjectFactoryPtr* SfxPluginObject::GetFactoryPtr()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

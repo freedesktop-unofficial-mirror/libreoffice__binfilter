@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>     // SwTxtAttr/SwTxtAttrEnd
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtNode;    // fuer SwTxtFld
@@ -69,9 +66,7 @@ public:
 
 // ATT_HARDBLANK ******************************
 
-
 // ATT_XNLCONTAINERITEM ******************************
-
 
 // ******************************
 
@@ -79,21 +74,23 @@ class SwTxtRuby : public SwTxtAttrEnd, public SwClient
 {
 
 public:
-    SwTxtRuby( const SwFmtRuby& rAttr, xub_StrLen nStart, xub_StrLen nEnd ): SwTxtAttrEnd( (SfxPoolItem &)rAttr, nStart, nEnd ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     SwTxtRuby( const SwFmtRuby& rAttr, xub_StrLen nStart, xub_StrLen nEnd );
+    SwTxtRuby( const SwFmtRuby& rAttr, xub_StrLen nStartIn, xub_StrLen nEndIn ):
+                         SwTxtAttrEnd( (SfxPoolItem &)rAttr, nStartIn, nEndIn )
+    { DBG_BF_ASSERT(0, "STRIP"); };
 
 };
 
 // ******************************
 
-
 // --------------- Inline Implementierungen ------------------------
 
 inline const SwTxtNode& SwTxtCharFmt::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtCharFmt:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtCharFmt:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 
-
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

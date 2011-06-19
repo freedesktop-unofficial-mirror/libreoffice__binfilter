@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -29,24 +30,12 @@
 #define _SWFONT_HXX
 
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _TOOLS_COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _TOOLS_STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVX_SVXFONT_HXX //autogen
 #include <bf_svx/svxfont.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>     // SwDrawTextInfo
-#endif
 namespace binfilter {
 
 class SfxItemSet;
@@ -802,7 +791,7 @@ public:
 
     SwFont& GetFont()
     {
-        ASSERT( pFnt, "No underline font" )
+        OSL_ENSURE( pFnt, "No underline font" );
         return *pFnt;
     }
     const Point& GetPos() const { return aPos; }
@@ -868,3 +857,4 @@ inline void SvStatistics::PrintOn( SvStream &rOS ) const //$ ostream
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef _POREXP_HXX
 #include <porexp.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -185,7 +182,7 @@ namespace binfilter {
  *              virtual SwBlankPortion::GetExpTxt()
  *************************************************************************/
 
-/*N*/ sal_Bool SwBlankPortion::GetExpTxt( const SwTxtSizeInfo &rInf, XubString &rTxt ) const
+/*N*/ sal_Bool SwBlankPortion::GetExpTxt( const SwTxtSizeInfo & /*rInf*/, XubString &rTxt ) const
 /*N*/ {
 /*N*/   rTxt = cChar;
 /*N*/   return sal_True;
@@ -214,3 +211,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
 class CharClass;
 namespace binfilter {
 
@@ -196,3 +193,5 @@ public:
 
 } //namespace binfilter
 #endif // _TXMSRT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

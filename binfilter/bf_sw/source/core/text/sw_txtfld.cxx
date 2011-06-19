@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,21 +32,13 @@
 #endif
 
 
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 
 #include "viewsh.hxx"   // NewFldPortion, GetDoc()
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"      // NewFldPortion, GetSysFldType()
 #include "rootfrm.hxx"  // Info ueber virt. PageNumber
@@ -114,7 +107,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       case RES_SCRIPTFLD:
 /*N*/       case RES_POSTITFLD:
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           pRet = new SwPostItsPortion( RES_SCRIPTFLD == pFld->GetTyp()->Which() );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           break;
 /*?*/
 /*?*/       case RES_COMBINED_CHARS:
@@ -123,7 +116,7 @@ namespace binfilter {
 /*?*/               if( bName )
 /*?*/                   pRet = new SwFldPortion( sStr );
 /*?*/               else
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   pRet = new SwCombinedPortion( sStr );
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*?*/           break;
 /*N*/
@@ -178,12 +171,12 @@ namespace binfilter {
 /*N*/               SwGetExpField* pExpFld = (SwGetExpField*)pFld;
                         /*N*/               if( !::binfilter::lcl_IsInBody( pFrame ) )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pExpFld->ChgBodyTxtFlag( sal_False );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else if( !pExpFld->IsInBodyTxt() )
 /*N*/               {
 /*N*/                   // war vorher anders, also erst expandieren, dann umsetzen!!
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pExpFld->ChangeExpansion( *pFrame, *((SwTxtFld*)pHint) );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
@@ -215,7 +208,7 @@ namespace binfilter {
 /*N*/       }
 /*?*/       case RES_REFPAGEGETFLD:
 /*?*/           if( !bName && pSh && !pSh->Imp()->IsUpdateExpFlds() )
-                        /*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ((SwRefPageGetField*)pFld)->ChangeExpansion( pFrame, (SwTxtFld*)pHint );
+                        /*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           pRet = new SwFldPortion( pFld->GetCntnt( bName ) );
 /*?*/           break;
 /*N*/
@@ -297,7 +290,7 @@ namespace binfilter {
 /*?*/       }
 /*?*/       case RES_TXTATR_HARDBLANK :
 /*?*/       {
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           pRet = new SwBlankPortion( ((SwTxtHardBlank*)pHint)->GetChar() );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       }
 /*N*/       case RES_TXTATR_FIELD :
 /*N*/       {
@@ -305,7 +298,7 @@ namespace binfilter {
 /*N*/           break;
 /*N*/       }
 /*?*/       case RES_TXTATR_REFMARK :
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       case RES_TXTATR_TOXMARK :
 /*N*/       {
 /*N*/           pRet = new SwIsoToxPortion;
@@ -360,10 +353,8 @@ namespace binfilter {
 /*?*/           pRet = new SwGrfNumPortion( (SwFrm*)GetTxtFrm(),rNumFmt.GetBrush(),
 /*?*/               rNumFmt.GetGraphicOrientation(), rNumFmt.GetGraphicSize(),
 /*?*/               bLeft, bCenter, nMinDist );
-/*?*/           long nTmpA = rInf.GetLast()->GetAscent();
-/*?*/           long nTmpD = rInf.GetLast()->Height() - nTmpA;
 /*?*/           if( !rInf.IsTest() )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               ((SwGrfNumPortion*)pRet)->SetBase( nTmpA, nTmpD, nTmpA, nTmpD );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -431,9 +422,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   return pRet;
 /*N*/ }
-/* -----------------26.06.2003 13:54-----------------
 
- --------------------------------------------------*/
 void SwTxtFld::NotifyContentChange(SwFmtFld& rFmtFld)
 {
     //if not in undo section notify the change
@@ -443,3 +432,5 @@ void SwTxtFld::NotifyContentChange(SwFmtFld& rFmtFld)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

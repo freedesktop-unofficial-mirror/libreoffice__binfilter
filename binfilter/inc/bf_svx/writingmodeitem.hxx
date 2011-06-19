@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
 
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 namespace binfilter {
 
 // class SvxWritingModeItem ----------------------------------------------
@@ -59,10 +54,11 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
 
 
-    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                                 BYTE nMemberId ) const;
 };
 
 }//end of namespace binfilter
 #endif // #ifndef _SVX_WRITINGMODEITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

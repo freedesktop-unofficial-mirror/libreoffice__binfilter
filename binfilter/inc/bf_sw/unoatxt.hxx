@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,43 +30,19 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_TEXT_XAUTOTEXTCONTAINER_HPP_
 #include <com/sun/star/text/XAutoTextContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE6_HXX_
 #include <cppuhelper/implbase6.hxx> // helper for implementations
-#endif
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwGlossaries;
 class SwDoc;
 class SwDocShell;
@@ -74,15 +51,13 @@ class SwXBodyText;
 
 #ifndef SW_DECL_SWDOCSHELL_DEFINED
 #define SW_DECL_SWDOCSHELL_DEFINED
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 namespace binfilter {
 SV_DECL_REF( SwDocShell )
 } //namespace binfilter
 #endif
 
-namespace binfilter {//STRIP009
+namespace binfilter {
 /******************************************************************************
  *
  ******************************************************************************/
@@ -129,9 +104,8 @@ public:
 
 };
 
-/* -----------------26.05.98 15:55-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXAutoTextGroup : public cppu::WeakImplHelper6
 <
     ::com::sun::star::text::XAutoTextGroup,
@@ -200,9 +174,8 @@ public:
     void    Invalidate();
 };
 
-/* -----------------17.06.98 12:03-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXAutoTextEntry
         :public SfxListener
         ,public cppu::WeakImplHelper5
@@ -327,3 +300,5 @@ protected:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

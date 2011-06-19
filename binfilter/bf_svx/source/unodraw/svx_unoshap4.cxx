@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,46 +28,32 @@
 
 #define _SVX_USE_UNOGLOBALS_
 
-#ifndef _SVDOOLE2_HXX
 #include "svdoole2.hxx"
-#endif
 
 #include <bf_so3/outplace.hxx>
 
 #ifndef SVX_LIGHT
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 #ifndef _SFX_FRMDESCRHXX
 #include <bf_sfx2/frmdescr.hxx>
 #endif
 #endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
-
-#ifndef _SVX_SHAPEIMPL_HXX
 #include "shapeimpl.hxx"
-#endif
 
 #include "unoshprp.hxx"
 
 #include "svdstr.hrc"
 
-#ifndef _FRAMEOBJ_HXX
 #include <bf_sfx2/frameobj.hxx>
-#endif
 
 namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////
 
 using namespace ::osl;
-using namespace ::vos;
 using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::com::sun::star::uno;
@@ -88,14 +75,14 @@ SvxOle2Shape::~SvxOle2Shape() throw()
 ::com::sun::star::uno::Any SAL_CALL SvxOle2Shape::queryAggregation( const ::com::sun::star::uno::Type & rType ) throw(::com::sun::star::uno::RuntimeException)
 {
     Any aAny;
-    SvxShape::queryAggregation( rType, aAny );
+    SvxShape::tryQueryAggregation( rType, aAny );
     return aAny;
 }
 
 //XPropertySet
 void SAL_CALL SvxOle2Shape::setPropertyValue( const OUString& aPropertyName, const Any& aValue )    throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     if( aPropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "CLSID" ) ) )
     {
@@ -192,7 +179,7 @@ void SAL_CALL SvxOle2Shape::setPropertyValue( const OUString& aPropertyName, con
 
 Any SAL_CALL SvxOle2Shape::getPropertyValue( const OUString& PropertyName ) throw( UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     if( PropertyName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM( "ThumbnailGraphicURL" ) ) )
     {
@@ -278,7 +265,7 @@ sal_Bool SvxOle2Shape::createObject( const SvGlobalName &aClassName )
     sal_Bool            bOk = sal_False;
     String              aPersistName;
     OUString            aTmpStr;
-    Any                 aAny( getPropertyValue( OUString::createFromAscii( UNO_NAME_OLE2_PERSISTNAME ) ) );
+    Any                 aAny( getPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_OLE2_PERSISTNAME )) ) );
 
     if( aAny >>= aTmpStr )
         aPersistName = aTmpStr;
@@ -321,7 +308,7 @@ sal_Bool SvxOle2Shape::createObject( const SvGlobalName &aClassName )
     if( bOk )
     {
         aAny <<= ( aTmpStr = aPersistName );
-        setPropertyValue( OUString::createFromAscii( UNO_NAME_OLE2_PERSISTNAME ), aAny );
+        setPropertyValue( OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_OLE2_PERSISTNAME )), aAny );
     }
 
     static_cast< SdrOle2Obj* >( pObj )->SetObjRef( aIPObj );
@@ -394,7 +381,7 @@ SvxAppletShape::~SvxAppletShape() throw()
 void SvxAppletShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw ()
 {
     SvxShape::Create( pNewObj, pNewPage );
-    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID ); //STRIP003
+    const SvGlobalName aAppletClassId( SO3_APPLET_CLASSID );
     createObject(aAppletClassId);
     SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.AppletShape" ) ) );
 }
@@ -402,7 +389,7 @@ void SvxAppletShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw (
 //XPropertySet
 void SAL_CALL SvxAppletShape::setPropertyValue( const OUString& aPropertyName, const Any& aValue )  throw( UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     sal_Bool bOwn = sal_False;
 
@@ -468,7 +455,7 @@ void SAL_CALL SvxAppletShape::setPropertyValue( const OUString& aPropertyName, c
                     break;
                 case OWN_ATTR_APPLET_ISSCRIPT:
                     {
-                        sal_Bool bScript;
+                        sal_Bool bScript = sal_False;
                         if( aValue >>= bScript )
                         {
                             xApplet->SetMayScript( bScript );
@@ -505,7 +492,7 @@ void SAL_CALL SvxAppletShape::setPropertyValue( const OUString& aPropertyName, c
 
 Any SAL_CALL SvxAppletShape::getPropertyValue( const OUString& PropertyName ) throw( UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = aPropSet.getPropertyMapEntry(PropertyName);
 
@@ -560,7 +547,7 @@ SvxPluginShape::~SvxPluginShape() throw()
 void SvxPluginShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw ()
 {
     SvxShape::Create( pNewObj, pNewPage );
-    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID ); //STRIP003
+    const SvGlobalName aPluginClassId( SO3_PLUGIN_CLASSID );
     createObject(aPluginClassId);
     SetShapeType( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.PluginShape" ) ) );
 }
@@ -569,7 +556,7 @@ void SvxPluginShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw (
 void SAL_CALL SvxPluginShape::setPropertyValue( const OUString& aPropertyName, const Any& aValue )
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     sal_Bool bOwn = sal_False;
 
@@ -650,7 +637,7 @@ void SAL_CALL SvxPluginShape::setPropertyValue( const OUString& aPropertyName, c
 
 Any SAL_CALL SvxPluginShape::getPropertyValue( const OUString& PropertyName ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = aPropSet.getPropertyMapEntry(PropertyName);
 
@@ -716,7 +703,7 @@ void SvxFrameShape::Create( SdrObject* pNewObj, SvxDrawPage* pNewPage ) throw ()
 void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, const Any& aValue )
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     sal_Bool bOwn = sal_False;
 
@@ -765,7 +752,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
                     break;
                 case OWN_ATTR_FRAME_ISAUTOSCROLL:
                     {
-                        sal_Bool bScroll;
+                        sal_Bool bScroll = sal_False;;
                         if( !aValue.hasValue() )
                         {
                             pDescriptor->SetScrollingMode( ScrollingAuto );
@@ -782,7 +769,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
                     break;
                 case OWN_ATTR_FRAME_ISBORDER:
                     {
-                        sal_Bool bBorder;
+                        sal_Bool bBorder = sal_False;
                         if( aValue >>= bBorder )
                         {
                             pDescriptor->SetFrameBorder( bBorder );
@@ -794,7 +781,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
 
                 case OWN_ATTR_FRAME_MARGIN_WIDTH:
                     {
-                        sal_Int32 nMargin;
+                        sal_Int32 nMargin = 0;
                         if( aValue >>= nMargin )
                         {
                             const Size aNewMargin( nMargin, pDescriptor->GetMargin().Height() );
@@ -806,7 +793,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
                     break;
                 case OWN_ATTR_FRAME_MARGIN_HEIGHT:
                     {
-                        sal_Int32 nMargin;
+                        sal_Int32 nMargin = 0;
                         if( aValue >>= nMargin )
                         {
                             const Size aNewMargin( pDescriptor->GetMargin().Width(), nMargin );
@@ -845,7 +832,7 @@ void SAL_CALL SvxFrameShape::setPropertyValue( const OUString& aPropertyName, co
 
 Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    ::SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = aPropSet.getPropertyMapEntry(PropertyName);
 
@@ -858,8 +845,8 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
             DBG_ASSERT( xFrame.Is(), "wrong ole object inside frame" );
             if( !xFrame.Is() )
             {
-                Any aAny;
-                return aAny;
+                Any aLclAny;
+                return aLclAny;
             }
 
             const SfxFrameDescriptor *pDescriptor = xFrame->GetFrameDescriptor();
@@ -874,8 +861,8 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
                 case OWN_ATTR_FRAME_ISAUTOSCROLL:
                     if( pDescriptor->GetScrollingMode() == ScrollingAuto )
                     {
-                        Any aAny;
-                        return aAny;
+                        Any aLclAny;
+                        return aLclAny;
                     }
                     else
                     {
@@ -897,3 +884,5 @@ Any SAL_CALL SvxFrameShape::getPropertyValue( const OUString& PropertyName ) thr
 
 #endif
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

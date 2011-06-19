@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,21 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONSOURCEIMPORTCONTEXT_HXX_
 #include "XMLSectionSourceImportContext.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_SECTIONFILELINK_HPP_
 #include <com/sun/star/text/SectionFileLink.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace binfilter {
 
@@ -69,11 +58,11 @@ using namespace ::binfilter::xmloff::token;
 TYPEINIT1(XMLSectionSourceImportContext, SvXMLImportContext);
 
 XMLSectionSourceImportContext::XMLSectionSourceImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rSectPropSet) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rSectionPropertySet(rSectPropSet)
 {
 }
@@ -89,7 +78,7 @@ enum XMLSectionSourceToken
     XML_TOK_SECTION_TEXT_SECTION_NAME
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSectionSourceTokenMap[] =
+static SvXMLTokenMapEntry aSectionSourceTokenMap[] =
 {
     { XML_NAMESPACE_XLINK, XML_HREF, XML_TOK_SECTION_XLINK_HREF },
     { XML_NAMESPACE_TEXT, XML_FILTER_NAME, XML_TOK_SECTION_TEXT_FILTER_NAME },
@@ -111,11 +100,11 @@ void XMLSectionSourceImportContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        switch (aTokenMap.Get(nPrefix, sLocalName))
+        switch (aTokenMap.Get(nLclPrefix, sLocalName))
         {
             case XML_TOK_SECTION_XLINK_HREF:
                 sURL = xAttrList->getValueByIndex(nAttr);
@@ -163,11 +152,13 @@ void XMLSectionSourceImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLSectionSourceImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
-    const Reference<XAttributeList> & xAttrList )
+    const Reference<XAttributeList> & /*xAttrList*/ )
 {
     // ignore -> default context
-    return new SvXMLImportContext(GetImport(), nPrefix, rLocalName);
+    return new SvXMLImportContext(GetImport(), nInPrefix, rLocalName);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,9 @@
 #ifndef _PORLAY_HXX
 #define _PORLAY_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _FRACT_HXX
 #include <tools/fract.hxx>
-#endif
-#ifndef _DRAWFONT_HXX
 #include <drawfont.hxx>
-#endif
 
 #include "swrect.hxx"   // SwRepaint
 #include "portxt.hxx"
@@ -331,8 +326,11 @@ inline void SwLineLayout::ResetFlags()
 }
 
 inline SwLineLayout::SwLineLayout()
-    : pNext( 0 ), nRealHeight( 0 ), pSpaceAdd( 0 ), pKanaComp( 0 ),
-      bUnderscore( sal_False )
+    : pNext( 0 )
+    , pSpaceAdd( 0 )
+    , pKanaComp( 0 )
+    , nRealHeight( 0 )
+    , bUnderscore( sal_False )
 {
     ResetFlags();
     SetWhichPor( POR_LAY );
@@ -374,3 +372,5 @@ CLASSIO( SwParaPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

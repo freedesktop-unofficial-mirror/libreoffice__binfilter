@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifndef _CHTMODEL_HXX
 #define _CHTMODEL_HXX
 
@@ -37,85 +37,33 @@
 // Bei Umstellungen alle Files nach SIG_CHARTMODELDEFSCHDOC durchsuchen
 // #define ChartModel SchChartDocument
 //------------------------------------------------------------------
-//STRIP008 class SdrObjGroup;
-//STRIP008 class SdrRectObj;
-//STRIP008
-//STRIP008 class SchModelData;
-
-#ifndef _E3D_POLYGON3D_HXX //autogen
 #include <bf_svx/polygn3d.hxx>
-#endif
-#ifndef _E3D_EXTRUD3D_HXX //autogen
 #include <bf_svx/extrud3d.hxx>
-#endif
-#ifndef _E3D_OBJ3D_HXX
 #include "bf_svx/obj3d.hxx"
-#endif
-
-#ifndef _POLY3D_HXX
 #include "bf_svx/poly3d.hxx"
-#endif
-
-#ifndef _VIEWPT3D_HXX //autogen
 #include <bf_svx/viewpt3d.hxx>
-#endif
-
-#ifndef _SV_FIELD_HXX //autogen
-#include <vcl/field.hxx>
-#endif
-#ifndef _SVDTRANS_HXX //autogen
 #include <bf_svx/svdtrans.hxx>
-#endif
-#ifndef _GEN_HXX //autogen
-#include <tools/gen.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
-#include <tools/color.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
-#include <tools/string.hxx>
-#endif
-#ifndef _OUTLINER_HXX //autogen
 #include <bf_svx/svdoutl.hxx>
-#endif
-#ifndef _SCH_ADJUST_HXX //autogen
-#include "adjust.hxx"
-#endif
-#ifndef _SVDOTEXT_HXX //autogen
+#include <bf_svx/xtable.hxx>
 #include <bf_svx/svdotext.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
+#include <vcl/field.hxx>
+#include <tools/gen.hxx>
+#include <tools/color.hxx>
+#include <tools/string.hxx>
+#include "adjust.hxx"
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _DEFINES_HXX
 #include "defines.hxx"
-#endif
 #include "chartbar.hxx"
 
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
-#endif
+#include <vector>
+
 class Vector3D;
 
 namespace binfilter {
@@ -142,8 +90,9 @@ class E3dLabelObj;
 struct DataDescription;
 class SchRectObj;
 
-DECLARE_LIST(ItemSetList, SfxItemSet*)//STRIP008 DECLARE_LIST(ItemSetList, SfxItemSet*);
-DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 DECLARE_LIST(DescrList, E3dLabelObj*);
+typedef ::std::vector< SfxItemSet* > ItemSetList;
+typedef ::std::vector< E3dLabelObj* > DescrList;
+typedef ::std::vector< XColorEntry* > XColorEntryList;
 
 #define VERTICAL_LINE aLine[0].Y() = rRect.Bottom(); aLine[1].Y() = rRect.Top();
 #define HORIZONTAL_LINE aLine[0].X() = rRect.Left(); aLine[1].X() = rRect.Right();
@@ -195,11 +144,11 @@ DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 DECLARE_LIST(DescrList, E3dLabel
 #define CHART_AXIS_SECONDARY_Y  4
 #define CHART_AXIS_SECONDARY_X  5
 
-#define CHART_TRACE(  w )           DBG_TRACE1( "SCH(%lx):" #w, (long)this )
-#define CHART_TRACE1( w,a )         DBG_TRACE2( "SCH(%lx):" #w, (long)this, a )
-#define CHART_TRACE2( w,a,b )       DBG_TRACE3( "SCH(%lx):" #w, (long)this, a,b )
-#define CHART_TRACE3( w,a,b,c )     DBG_TRACE4( "SCH(%lx):" #w, (long)this, a,b,c )
-#define CHART_TRACE4( w,a,b,c,d )   DBG_TRACE5( "SCH(%lx):" #w, (long)this, a,b,c,d )
+#define CHART_TRACE(  w )           OSL_TRACE( "SCH(%lx):" #w, (long)this )
+#define CHART_TRACE1( w,a )         OSL_TRACE( "SCH(%lx):" #w, (long)this, a )
+#define CHART_TRACE2( w,a,b )       OSL_TRACE( "SCH(%lx):" #w, (long)this, a,b )
+#define CHART_TRACE3( w,a,b,c )     OSL_TRACE( "SCH(%lx):" #w, (long)this, a,b,c )
+#define CHART_TRACE4( w,a,b,c,d )   OSL_TRACE( "SCH(%lx):" #w, (long)this, a,b,c,d )
 
 class ChartModel : public SdrModel
 {
@@ -207,14 +156,13 @@ public:
     // -------
     // methods
     // -------
-
                         ChartModel( const String& rPalettePath, SfxObjectShell* pDocSh );
     virtual            ~ChartModel();
 
     // SdrModel
-    virtual void        SetChanged( FASTBOOL bFlag = TRUE );
+    virtual void        SetChanged( bool bFlag = TRUE );
     virtual SdrModel *  AllocModel() const;
-    virtual SdrPage  *  AllocPage( FASTBOOL bMasterPage );
+    virtual SdrPage  *  AllocPage( bool bMasterPage );
 
     void                NewOrLoadCompleted( USHORT eMode );
     void                AdjustPrinter();
@@ -260,7 +208,7 @@ public:
 
     BOOL                IsReal3D()const
                             { return (Is3DChart() /*&& !IsPieChart()*/); }
-    BOOL                HasBarConnectors( long nRow ) const
+    BOOL                HasBarConnectors( long /*nRow*/ ) const
                             { return (BOOL)(m_nDefaultColorSet&CHSPECIAL_TRACELINES); }
     inline void         SetBarConnectors( BOOL bOn, long nRow );
 
@@ -334,7 +282,7 @@ public:
 
     void                StoreObjectsAttributes( SdrObject*         pObj,
                                                 const SfxItemSet&  rAttr,
-                                                FASTBOOL           bReplaceAll );      // #52277#
+                                                bool           bReplaceAll );      // #52277#
 
     void                GetAttr( const long nObjId, SfxItemSet& rAttr, const long nIndex1 = -1 );
     SfxItemSet&         GetAttr( const long nObjId, const long nIndex1 = -1) const;
@@ -400,7 +348,6 @@ public:
     /// returns TRUE, if change requires BuildChart - currently always TRUE !
     BOOL                IsAttrChangeNeedsBuildChart( const SfxItemSet& rAttr );
 
-
     BOOL                SetBaseType( long nBaseType );
 
     // chart features (see chtmode7.cxx)
@@ -426,8 +373,6 @@ public:
     BOOL                IsNegativeChart( SvxChartStyle* pStyle = NULL ) const;
     BOOL                IsSignedChart( SvxChartStyle* pStyle = NULL )   const;
     BOOL                IsXYChart( SvxChartStyle* pStyle = NULL )       const;
-
-
 
 
     SfxItemPool&        GetPool()                 { return *pItemPool; }
@@ -509,8 +454,6 @@ public:
 
     ChartScene *        GetScene();
 
-
-
     BOOL                ChangeStatistics( const SfxItemSet &  rNewAttr );
 
     void                SetShowLegend( BOOL bNewShow );
@@ -525,69 +468,43 @@ public:
     inline BOOL &       IsCopied ();
     inline BOOL         IsCopied() const;
 
-
-
-
-
-
-
-
     int &               Granularity();
 
     SvxChartStyle &     ChartStyle();
     SvxChartStyle       ChartStyle() const;
 
-
     long                PieSegOfs( long nCol ) const;
 
     BOOL &              ShowMainTitle();
-
     String &            MainTitle ();
 
     BOOL &              ShowSubTitle();
-
     String &            SubTitle();
 
     BOOL &              ShowXAxisTitle();
-
     String &            XAxisTitle();
 
     BOOL &              ShowYAxisTitle();
-
     String &            YAxisTitle();
 
     BOOL &              ShowZAxisTitle();
-
     String &            ZAxisTitle();
 
     BOOL &              ShowXGridMain();
-
     BOOL &              ShowXGridHelp();
-
     BOOL &              ShowYGridMain();
-
     BOOL &              ShowYGridHelp();
-
     BOOL &              ShowZGridMain();
-
     BOOL &              ShowZGridHelp();
-
-
 
     BOOL &              ReadError ();
 
-
     Size &              InitialSize();
-
-
-
 
     int &               SplineDepth()                   { return nSplineDepth; }
 
     String &            ColText( long nCol );
-
     String &            RowText( long nRow );
-
 
     long                GetAxisUID( long nRow );
 
@@ -768,7 +685,6 @@ private:
     // -------
     // members
     // -------
-
     ChartBarDescriptor  aBarY1;
     ChartBarDescriptor  aBarY2;
 
@@ -822,7 +738,7 @@ private:
     SvxChartStyle       eOldChartStyle;
     int                 eChartLinePoints[ LINE_POINT_COUNT ];
 
-    List*               pDefaultColors;
+    XColorEntryList*    pDefaultColors;
 
     BOOL                bTextScalable;
     BOOL                bIsCopied;
@@ -928,7 +844,6 @@ private:
     ItemSetList         aTmpDataPointAttrList;
     ItemSetList         aTmpSwitchDataPointAttrList;
 
-
     SvxChartDataDescr   eDataDescr;
     BOOL                bShowSym;
     BOOL                bSwitchData;
@@ -1024,14 +939,12 @@ private:
     // -------
     // methods
     // -------
-
     bool                UsesSourceFormat( long nAxisUID, SfxItemSet** pItemSetPointer = NULL );
 
     USHORT              GetRegressStrId( long nRow );
     void                ResizeText( SfxItemSet *pTextAttr, Size aPageSize, BOOL bResizePage=TRUE );
 
     void                DeleteObject( SdrObject* pObj );
-
 
     void                               SetTextAttr( SdrTextObj       &rTextObj,
                                                     const SfxItemSet &rAttr,
@@ -1140,9 +1053,6 @@ private:
     void                SetAxisAttributes( const SfxItemSet *  pAttr,
                                            const SdrObjGroup * pAxisObj );
 
-
-
-
     void                Dirty2D( long               nRowCnt,
                                  long               nCol,
                                  SdrObjList **      pDescrLists,
@@ -1150,20 +1060,9 @@ private:
                                  DataDescription *  pDescription );
 
 
-    /// this method shouldn't be used because it is not axis-oriented (why does it exist then?)
-
     /// this one is axis-oriented (whatever that means)
-
     void                CreateDefaultColors();
     void                DestroyDefaultColors();
-
-
-
-
-    // ChangeDataRowAttr sub methods
-
-    // ChangeDataPointAttr sub methods
-
 
     // BuildChart sub methods
     void                CreateRectsAndTitles( long whatTitle );
@@ -1179,7 +1078,6 @@ private:
                                       const long        nXOfs,
                                       const long        nYOfs,
                                       USHORT &          rIndex );
-
 
     void                LogBookAttrData();
     void                SetDefAttrRow( SfxItemSet* pDataRowAttr, const long i );
@@ -1218,7 +1116,7 @@ private:
 // inline methods
 // ==============
 
-inline void         ChartModel::SetBarConnectors( BOOL bOn, long nRow )
+inline void         ChartModel::SetBarConnectors( BOOL bOn, long /*nRow*/ )
 {
     m_nDefaultColorSet = bOn
         ? m_nDefaultColorSet|CHSPECIAL_TRACELINES
@@ -1335,3 +1233,4 @@ inline void ChartModel::SetDiagramRectangle( const Rectangle &rNewRect, bool bSt
 } //namespace binfilter
 #endif // _CHTMODEL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

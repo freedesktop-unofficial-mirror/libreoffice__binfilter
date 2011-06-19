@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "layfrm.hxx"
 #include "flowfrm.hxx"
@@ -62,7 +61,7 @@ class SwSectionFrm: public SwLayoutFrm, public SwFlowFrm
     void CalcEndAtEndFlag();
 protected:
     virtual void MakeAll();
-    virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 virtual BOOL ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat );
+    virtual BOOL ShouldBwdMoved( SwLayoutFrm *, BOOL, BOOL & ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     virtual void Format( const SwBorderAttrs *pAttrs = 0 );
 public:
     SwSectionFrm( SwSection & );                 //Inhalt wird nicht erzeugt!
@@ -153,3 +152,5 @@ inline const SwCntntFrm *SwSectionFrm::FindLastCntnt( BYTE nMode ) const
 
 } //namespace binfilter
 #endif  //_SECTFRM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

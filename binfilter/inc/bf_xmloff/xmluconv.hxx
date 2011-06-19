@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,35 +33,21 @@
 
 #include <limits.h>
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
 #include <tools/mapunit.hxx>
 
-#ifndef _XMLOFF_XMLEMENT_HXX
 #include <bf_xmloff/xmlement.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATE_HPP_
 #include <com/sun/star/util/Date.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
 // #110680#
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 namespace rtl
 {
@@ -373,3 +360,5 @@ inline MapUnit SvXMLUnitConverter::getXMLMeasureUnit() const
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLUCONV_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

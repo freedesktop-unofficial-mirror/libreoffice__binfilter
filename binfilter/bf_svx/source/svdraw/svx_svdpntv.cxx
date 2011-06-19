@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_POSSIZE_HPP_
 #include <com/sun/star/awt/PosSize.hpp>
-#endif
 
 #include "svdpagv.hxx"
 #include "svdpage.hxx"
@@ -40,34 +37,15 @@
 #include "svdograf.hxx"
 #include "svdouno.hxx"
 
-
-
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-
-
-
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 
-
-
-
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 
 using namespace ::rtl;
 using namespace ::com::sun::star;
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -79,144 +57,20 @@ using namespace ::com::sun::star;
 /*N*/   pOut=NULL;
 /*N*/ }
 
-
-
-/*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,pTim)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK(FrameAnimator,Hdl,AutoTimer*,EMPTYARG)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//#define   TEST_IAO
-
 /*N*/ SdrViewWinRec::SdrViewWinRec(OutputDevice* pW)
 /*N*/ : pWin(pW),
-/*N*/ //    pVDev(NULL),
-//STRIP012/*N*/     pIAOManager(NULL),
 /*N*/   bXorVisible(FALSE)
 /*N*/ {
-/*N*/   // is it a window?
-/*N*/   if(pW && pW->GetOutDevType() == OUTDEV_WINDOW)
-/*N*/   {
-/*N*/       // create B2dIAOManager for this window
-//STRIP012/*N*/         pIAOManager = new B2dIAOManager((Window*)pW);
-//STRIP012#ifdef TEST_IAO
-//STRIP012/*?*/         if(pIAOManager)
-//STRIP012/*?*/         {
-//STRIP012/*?*/             // create some demo shapes
-//STRIP012/*?*/             B2dIAOLine* pLine;
-//STRIP012/*?*/             B2dIAOMarker* pMarker;
-//STRIP012/*?*/             B2dIAOBitmapObj* pBitmap;
-//STRIP012/*?*/             B2dIAOTriangle* pTriangle;
-//STRIP012/*?*/
-//STRIP012/*?*/             static BOOL bCreateLines = FALSE;
-//STRIP012/*?*/             static BOOL bCreateMarkers = FALSE;
-//STRIP012/*?*/             static BOOL bCreateField = FALSE;
-//STRIP012/*?*/             static BOOL bCreateSingleMarker = FALSE;
-//STRIP012/*?*/             static BOOL bCreateBitmap = FALSE;
-//STRIP012/*?*/             static BOOL bCreateBitmapField = FALSE;
-//STRIP012/*?*/             static BOOL bCreateTriangle = FALSE;
-//STRIP012/*?*/
-//STRIP012/*?*/             if(bCreateLines)
-//STRIP012/*?*/             {
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, Point(5000, 5200), Point(5000, 7000));
-//STRIP012/*?*/                 pLine->SetBaseColor(Color(COL_CYAN));
-//STRIP012/*?*/                 pLine = new B2dIAOLineStriped(pIAOManager, Point(5100, 5200), Point(5100, 7000));
-//STRIP012/*?*/                 pLine->SetBaseColor(Color(COL_BLUE));
-//STRIP012/*?*/                 B2dIAOLineTwoColor* p2Line = new B2dIAOLineTwoColor(pIAOManager, Point(5200, 5200), Point(5200, 7000));
-//STRIP012/*?*/                 p2Line->SetBaseColor(Color(COL_YELLOW));
-//STRIP012/*?*/                 p2Line->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/                 B2dIAOLineTwoColorAnim* p3Line = new B2dIAOLineTwoColorAnim(pIAOManager, Point(5300, 5200), Point(5300, 7000));
-//STRIP012/*?*/                 p3Line->SetBaseColor(Color(COL_YELLOW));
-//STRIP012/*?*/                 p3Line->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/             }
-//STRIP012/*?*/
-//STRIP012/*?*/             if(bCreateMarkers)
-//STRIP012/*?*/             {
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5000), B2D_IAO_MARKER_POINT);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTRED));
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5100, 5000), B2D_IAO_MARKER_PLUS);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5200, 5000), B2D_IAO_MARKER_CROSS);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTBLUE));
-//STRIP012/*?*/
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5100), B2D_IAO_MARKER_RECT_5X5);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5100, 5100), B2D_IAO_MARKER_RECT_7X7);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5200, 5100), B2D_IAO_MARKER_RECT_9X9);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/             }
-//STRIP012/*?*/
-//STRIP012/*?*/             if(bCreateField || bCreateBitmapField)
-//STRIP012/*?*/             {
-//STRIP012/*?*/                 static UINT16 nNumX = 10;
-//STRIP012/*?*/                 static UINT16 nNumY = 10;
-//STRIP012/*?*/                 static UINT16 nStart = 2000;
-//STRIP012/*?*/                 static UINT16 nEnd = 16000;
-//STRIP012/*?*/
-//STRIP012/*?*/                 for(UINT16 a=nStart;a<nEnd;a+=(nEnd-nStart)/nNumX)
-//STRIP012/*?*/                 {
-//STRIP012/*?*/                     for(UINT16 b=nStart;b<nEnd;b+=(nEnd-nStart)/nNumY)
-//STRIP012/*?*/                     {
-//STRIP012/*?*/                         if(bCreateField)
-//STRIP012/*?*/                         {
-//STRIP012/*?*/                             pMarker = new B2dIAOMarker(pIAOManager, Point(a, b), B2D_IAO_MARKER_RECT_7X7);
-//STRIP012/*?*/                             pMarker->SetBaseColor(Color(
-//STRIP012/*?*/                                 (((a-nStart)*256L)/(nEnd-nStart)),
-//STRIP012/*?*/                                 (((b-nStart)*256L)/(nEnd-nStart)),
-//STRIP012/*?*/                                 0x80));
-//STRIP012/*?*/                             pMarker->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/                         }
-//STRIP012/*?*/                         if(bCreateBitmapField)
-//STRIP012/*?*/                         {
-//STRIP012/*?*/                             Bitmap aBitmap(Size(10, 10), 8);
-//STRIP012/*?*/                             pBitmap = new B2dIAOBitmapObj(pIAOManager, Point(a, b), aBitmap);
-//STRIP012/*?*/                         }
-//STRIP012/*?*/                     }
-//STRIP012/*?*/                 }
-//STRIP012/*?*/             }
-//STRIP012/*?*/             if(bCreateSingleMarker)
-//STRIP012/*?*/             {
-//STRIP012/*?*/                 pMarker = new B2dIAOMarker(pIAOManager, Point(5000, 5000), B2D_IAO_MARKER_RECT_7X7);
-//STRIP012/*?*/                 pMarker->SetBaseColor(Color(COL_LIGHTGREEN));
-//STRIP012/*?*/                 pMarker->Set2ndColor(Color(COL_BLACK));
-//STRIP012/*?*/             }
-//STRIP012/*?*/             if(bCreateBitmap)
-//STRIP012/*?*/             {
-//STRIP012/*?*/                 Bitmap aBitmap(Size(10, 10), 8);
-//STRIP012/*?*/                 pBitmap = new B2dIAOBitmapObj(pIAOManager, Point(6000, 6000), aBitmap);
-//STRIP012/*?*/             }
-//STRIP012/*?*/             if(bCreateTriangle)
-//STRIP012/*?*/             {
-//STRIP012/*?*/                 pTriangle = new B2dIAOTriangle(pIAOManager, Point(5000, 5000), Point(7000, 5000), Point(6000, 7000), Color(COL_YELLOW));
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->GetBasePosition(), pTriangle->Get2ndPosition());
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get2ndPosition(), pTriangle->Get3rdPosition());
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get3rdPosition(), pTriangle->GetBasePosition());
-//STRIP012/*?*/
-//STRIP012/*?*/                 pTriangle = new B2dIAOBitmapTriangle(pIAOManager, Point(8000, 5000), Point(10000, 5000), Point(9000, 7000), Color(COL_RED));
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->GetBasePosition(), pTriangle->Get2ndPosition());
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get2ndPosition(), pTriangle->Get3rdPosition());
-//STRIP012/*?*/                 pLine = new B2dIAOLine(pIAOManager, pTriangle->Get3rdPosition(), pTriangle->GetBasePosition());
-//STRIP012/*?*/             }
-//STRIP012/*?*/         }
-//STRIP012#endif
-/*N*/   }
 /*N*/ }
 
 /*N*/ SdrViewWinRec::~SdrViewWinRec()
 /*N*/ {
-/*N*/ //    if (pVDev!=NULL)
-/*N*/ //        delete pVDev;
-/*N*/
-/*N*/   // cleanup IAOManager for this window
-//STRIP012/*N*/     if(pIAOManager)
-//STRIP012/*N*/         delete pIAOManager;
-//STRIP012/*N*/     pIAOManager = NULL;
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -248,20 +102,6 @@ using namespace ::com::sun::star;
 /*N*/     SfxSimpleHint( _nId )
 /*N*/ {
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@@   @@@@  @@ @@  @@ @@@@@@  @@ @@ @@ @@@@@ @@   @@
-//  @@  @@ @@  @@ @@ @@@ @@   @@    @@ @@ @@ @@    @@   @@
-//  @@  @@ @@  @@ @@ @@@@@@   @@    @@ @@ @@ @@    @@ @ @@
-//  @@@@@  @@@@@@ @@ @@@@@@   @@    @@@@@ @@ @@@@  @@@@@@@
-//  @@     @@  @@ @@ @@ @@@   @@     @@@  @@ @@    @@@@@@@
-//  @@     @@  @@ @@ @@  @@   @@     @@@  @@ @@    @@@ @@@
-//  @@     @@  @@ @@ @@  @@   @@      @   @@ @@@@@ @@   @@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ TYPEINIT2(SdrPaintView,SfxListener,SfxRepeatTarget);
 
@@ -379,7 +219,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   if (pItemBrowser!=NULL) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   delete pItemBrowser;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
@@ -391,7 +231,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrPaintView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrPaintView::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   BOOL bObjChg=!bSomeObjChgdFlag; // TRUE= auswerten fuer ComeBack-Timer
 /*N*/   BOOL bMaster=pMasterBmp!=NULL;  // TRUE= auswerten fuer MasterPagePaintCache
@@ -441,7 +281,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpComeBackHdl,Timer*,pTimer)
+/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpComeBackHdl,Timer*,EMPTYARG)
 /*N*/ {
 /*N*/   if (bSomeObjChgdFlag) {
 /*N*/       bSomeObjChgdFlag=FALSE;
@@ -454,14 +294,12 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-/*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* pObj )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}//STRIP001
+/*?*/ void SdrPaintView::ImpAsyncPaintDone( const SdrObject* /*pObj*/ )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");}
 /*?*/ }
 
-/*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,pTimer)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ IMPL_LINK(SdrPaintView,ImpAfterPaintHdl,Timer*,EMPTYARG)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -489,18 +327,18 @@ using namespace ::com::sun::star;
 /*?*/       pPV->ModelHasChanged();
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,pTimer)
+/*N*/ IMPL_LINK_INLINE_START(SdrPaintView,ImpUserMarkerAnimatorHdl,AutoTimer*,EMPTYARG)
 /*N*/ {
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pUM->DoAnimateOneStep();
+/*N*/       if (pUM->IsAnimate() && pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   return 0;
 /*N*/ }
@@ -538,23 +376,20 @@ using namespace ::com::sun::star;
 /*N*/   return IsEncirclement();
 /*N*/ }
 
-
-
-
 /*N*/ void SdrPaintView::BrkAction()
 /*N*/ {
 /*N*/   BrkEncirclement();
 /*N*/ }
 
 
-/*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* pOut, const Region* pRegion) const
+/*N*/ void SdrPaintView::ToggleShownXor(OutputDevice* /*pOut*/, const Region* /*pRegion*/) const
 /*N*/ {
-/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsEncirclement() && aDragStat.IsShown()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   USHORT nAnz=ImpGetUserMarkerCount();
 /*N*/   for (USHORT nNum=0; nNum<nAnz; nNum++) {
 /*N*/       SdrViewUserMarker* pUM=ImpGetUserMarker(nNum);
-/*N*/       if (pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pUM->Draw(pOut,FALSE,!bRestoreColors); // den 3. Parameter hier noch richtig setzen !!!!!
+/*N*/       if (pUM->IsVisible()) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/ }
 
@@ -562,12 +397,9 @@ using namespace ::com::sun::star;
 
 /*N*/ void SdrPaintView::BrkEncirclement()
 /*N*/ {
-/*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (IsEncirclement()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
-
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -632,7 +464,7 @@ using namespace ::com::sun::star;
 /*N*/ void SdrPaintView::ClearAll()
 /*N*/ {
 /*N*/   for( void* p = aAsyncPaintList.First(); p; p = aAsyncPaintList.Next() )
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 delete (ImpAsyncStruct*) p;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   aAsyncPaintList.Clear();
 /*N*/   ClearPageViews();
@@ -648,7 +480,7 @@ using namespace ::com::sun::star;
 /*N*/       if (!bPageTwice) pTmpPV=GetPageView(pPage); // Evtl. jede Seite nur einmal!
 /*N*/       if (pTmpPV==NULL) {
 /*N*/           USHORT nPos=GetHiddenPV(pPage);   // War die schon mal da?
-/*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (nPos<GetPageHideCount()) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           } else {
 /*N*/               pPV=new SdrPageView(pPage,rOffs,*((SdrView*)this));
 /*N*/           }
@@ -687,7 +519,6 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 
-
 /*N*/ SdrPageView* SdrPaintView::GetPageView(const SdrPage* pPage) const
 /*N*/ {
 /*N*/   if (pPage==NULL) return NULL;
@@ -700,10 +531,6 @@ using namespace ::com::sun::star;
 /*N*/   if (bWeiter) return NULL;
 /*N*/   else return pPV;
 /*N*/ }
-
-
-
-
 
 /*N*/ USHORT SdrPaintView::GetHiddenPV(const SdrPage* pPage) const
 /*N*/ {
@@ -729,7 +556,7 @@ using namespace ::com::sun::star;
 /*?*/       GetPageViewPvNum(i)->AddWin(pWin1);
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->ForceParent();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
 /*N*/ }
 
@@ -743,18 +570,18 @@ using namespace ::com::sun::star;
 /*N*/       aWinList.Delete(nPos);
 /*N*/   }
 /*N*/ #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->ForceParent();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/ }
 
-/*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT nNum )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();//STRIP001
+/*N*/ Rectangle SdrPaintView::GetVisibleArea( USHORT )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return Rectangle();
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrPaintView::InitRedraw(OutputDevice* pOut, const Region& rReg, USHORT nPaintMode)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrPaintView::InitRedraw(OutputDevice*, const Region&, USHORT)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrPaintView::GlueInvalidate() const
@@ -858,7 +685,7 @@ using namespace ::com::sun::star;
 /*?*/       }
 /*N*/   }
 #ifndef SVX_LIGHT
-/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 pItemBrowser->SetDirty();
+/*N*/   if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP"); }
 #endif
 /*N*/ }
 
@@ -899,17 +726,14 @@ using namespace ::com::sun::star;
 /*N*/   } {
 /*N*/       SdrNamedSubRecord aSubRecord(rOut,STREAM_WRITE,SdrInventor,SDRIORECNAME_VIEWAKTLAYER);
 /*N*/
-/*N*/       // UNICODE: rOut << aAktLayer;
 /*N*/       rOut.WriteByteString(aAktLayer);
-/*N*/
-/*N*/       // UNICODE: rOut << aMeasureLayer;
 /*N*/       rOut.WriteByteString(aMeasureLayer);
 /*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ BOOL SdrPaintView::ReadRecord(const SdrIOHeader& rViewHead,
+/*N*/ BOOL SdrPaintView::ReadRecord(const SdrIOHeader& /*rViewHead*/,
 /*N*/   const SdrNamedSubRecord& rSubHead,
 /*N*/   SvStream& rIn)
 /*N*/ {
@@ -926,7 +750,7 @@ using namespace ::com::sun::star;
 /*N*/                           aPagV.Insert(pPV,CONTAINER_APPEND);
 /*N*/                       } else aPagHide.Insert(pPV,CONTAINER_APPEND);
 /*N*/                   } else {
-/*N*/                       DBG_ERROR("SdrPaintView::ReadRecord(): Seite der PageView nicht gefunden");
+/*N*/                       OSL_FAIL("SdrPaintView::ReadRecord(): Seite der PageView nicht gefunden");
 /*N*/                       delete pPV;
 /*N*/                   }
 /*N*/               }
@@ -957,12 +781,10 @@ using namespace ::com::sun::star;
 /*N*/           }
 /*N*/           case SDRIORECNAME_VIEWAKTLAYER:
 /*N*/           {
-/*N*/               // UNICODE: rIn >> aAktLayer;
 /*N*/               rIn.ReadByteString(aAktLayer);
 /*N*/
 /*N*/               if(rSubHead.GetBytesLeft() > 0)
 /*N*/               {
-/*N*/                   // UNICODE: rIn >> aMeasureLayer;
 /*N*/                   rIn.ReadByteString(aMeasureLayer);
 /*N*/               }
 /*N*/               break;
@@ -1002,3 +824,5 @@ using namespace ::com::sun::star;
 
 // eof
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

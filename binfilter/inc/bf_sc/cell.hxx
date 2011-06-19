@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,17 +33,11 @@
 
 #include <stddef.h>
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef SC_COMPILER_HXX
 #include "compiler.hxx"
-#endif
 
 
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
 namespace binfilter {
 
 class SfxBroadcaster;
@@ -151,7 +146,7 @@ public:
     void            SetValue( const double& rValue );
     double          GetValue() const;
 
-    void            Save( SvStream& rStream ) const;
+    void            Save( SvStream& ) const {}
 };
 
 
@@ -178,7 +173,7 @@ public:
     void            SetString( const String& rString );
     void            GetString( String& rString ) const;
 
-    void            Save( SvStream& rStream, FontToSubsFontConverter hConv = 0 ) const;
+    void            Save( SvStream& , FontToSubsFontConverter = 0 ) const {}
                     // convert symbol font after loading binary format
     void            ConvertFont( FontToSubsFontConverter hConv );
 };
@@ -218,7 +213,7 @@ public:
 
     const EditTextObject* GetData() const   { return pData; }
 
-    void            Save( SvStream& rStream ) const;
+    void            Save( SvStream& ) const {}
 };
 
 enum ScMatrixMode {
@@ -290,7 +285,7 @@ public:
     void            GetEnglishFormula( String& rFormula, BOOL bCompileXML = FALSE ) const;
     void            GetEnglishFormula( ::rtl::OUStringBuffer& rBuffer, BOOL bCompileXML = FALSE ) const;
 
-    void            Save( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+    void            Save( SvStream&, ScMultipleWriteHeader& ) const {}
 
     void            SetDirty();
     inline void     SetDirtyVar() { bDirty = TRUE; }
@@ -401,22 +396,26 @@ public:
                     ScNoteCell( SvStream& rStream, USHORT nVer );
     ScBaseCell*     Clone() const;
 
-    void            Save( SvStream& rStream ) const;
+    void            Save( SvStream& ) const {}
 };
 
 
 //      ScBaseCell
 
-inline ScBaseCell::ScBaseCell( CellType eNewType ) :
-    eCellType( eNewType ),
-    pNote( NULL ),
-    pBroadcaster( NULL ), nTextWidth( TEXTWIDTH_DIRTY ), nScriptType( SC_SCRIPTTYPE_UNKNOWN )
+inline ScBaseCell::ScBaseCell( CellType eNewType )
+    : pNote( NULL )
+    , pBroadcaster( NULL )
+    , nTextWidth( TEXTWIDTH_DIRTY )
+    , eCellType( eNewType )
+    , nScriptType( SC_SCRIPTTYPE_UNKNOWN )
 {
 }
 
-inline ScBaseCell::ScBaseCell( const ScBaseCell& rBaseCell ) :
-    eCellType( rBaseCell.eCellType ),
-    pBroadcaster( NULL ), nTextWidth( rBaseCell.nTextWidth ), nScriptType( SC_SCRIPTTYPE_UNKNOWN )
+inline ScBaseCell::ScBaseCell( const ScBaseCell& rBaseCell )
+    : pBroadcaster( NULL )
+    , nTextWidth( rBaseCell.nTextWidth )
+    , eCellType( rBaseCell.eCellType )
+    , nScriptType( SC_SCRIPTTYPE_UNKNOWN )
 {
     if (rBaseCell.pNote)
         pNote = new ScPostIt( *rBaseCell.pNote );
@@ -569,3 +568,4 @@ inline ScBaseCell* ScNoteCell::Clone() const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

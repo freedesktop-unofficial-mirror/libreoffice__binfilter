@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -57,7 +56,7 @@ public:
                             ScOutlineEntry( const ScOutlineEntry& rEntry );
                             ScOutlineEntry( SvStream& rStream, ScMultipleReadHeader& rHdr );
 
-    void                    Store( SvStream& rStream, ScMultipleWriteHeader& rHdr );
+    void   Store( SvStream&, ScMultipleWriteHeader& ) {}
     virtual DataObject*     Clone() const;
     USHORT                  GetStart() const    { return nStart; }
 /*N*/   USHORT                  GetSize() const     { return nSize; }
@@ -115,7 +114,7 @@ public:
     BOOL                    ManualAction( USHORT nStartPos, USHORT nEndPos,
                                             BOOL bShow, BYTE* pHiddenFlags );
      void                   Load( SvStream& rStream );
-    void                    Store( SvStream& rStream );
+    void Store( SvStream& ) {}
 };
 
 
@@ -141,7 +140,7 @@ public:
 /*N*/   void                    InsertRow( USHORT nStartRow, USHORT nSize );
 /*N*/   BOOL                    DeleteRow( USHORT nStartRow, USHORT nSize );
     void                    Load( SvStream& rStream );
-     void                   Store( SvStream& rStream );
+     void Store( SvStream& ) {}
 };
 
 
@@ -166,3 +165,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,64 +36,28 @@
 #include "itrform2.hxx"
 #include "redlnitr.hxx" // SwRedlineItr
 #include "porfly.hxx"   // SwFlyCntPortion
-#ifndef _PORRST_HXX
 #include <porrst.hxx>       // SwHangingPortion
-#endif
-#ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 #ifdef BIDI
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
 #endif
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::i18n::ScriptType;
 
 #ifdef BIDI
 #include <unicode/ubidi.h>
-namespace binfilter {
-
-/*************************************************************************
- *                 lcl_IsLigature
- *
- * Checks if cCh + cNectCh builds a ligature (used for Kashidas)
- *************************************************************************/
-
-
-/*************************************************************************
- *                 lcl_ConnectToPrev
- *
- * Checks if cCh is connectable to cPrevCh (used for Kashidas)
- *************************************************************************/
-
-
 #endif
-
+namespace binfilter {
 
 /*************************************************************************
  *                 SwLineLayout::~SwLineLayout()
@@ -139,11 +104,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   // mit Skope aufrufen, sonst Rekursion !
 /*N*/   return pPortion->SwLinePortion::Insert( pIns );
 /*N*/ }
-
-/*************************************************************************
- *                virtual SwLineLayout::Append()
- *************************************************************************/
-
 
 /*************************************************************************
  *                virtual SwLineLayout::Format()
@@ -228,9 +188,9 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/ {
 /*N*/   const KSHORT nLineWidth = rInf.RealWidth();
 /*N*/
-/*N*/   KSHORT nFlyAscent;
-/*N*/   KSHORT nFlyHeight;
-/*N*/   KSHORT nFlyDescent;
+/*N*/   KSHORT nFlyAscent(0);
+/*N*/   KSHORT nFlyHeight(0);
+/*N*/   KSHORT nFlyDescent(0);
 /*N*/   sal_Bool bOnlyPostIts = sal_True;
 /*N*/   SetHanging( sal_False );
 /*N*/
@@ -265,7 +225,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/           while( pPos )
 /*N*/           {
 ///*N*/                 DBG_LOOP;
-/*N*/               ASSERT( POR_LIN != pPos->GetWhichPor(),
+/*N*/               OSL_ENSURE( POR_LIN != pPos->GetWhichPor(),
 /*N*/                       "SwLineLayout::CalcLine: don't use SwLinePortions !" );
 /*N*/               // Null-Portions werden eliminiert. Sie koennen entstehen,
 /*N*/               // wenn zwei FlyFrms ueberlappen.
@@ -294,7 +254,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/               KSHORT nPosAscent = pPos->GetAscent();
 /*N*/               AddPrtWidth( pPos->Width() );
 /*N*/
-/*N*/               ASSERT( nPosHeight >= nPosAscent,
+/*N*/               OSL_ENSURE( nPosHeight >= nPosAscent,
 /*N*/                       "SwLineLayout::CalcLine: bad ascent or height" );
 /*N*/               if( pPos->IsHangingPortion() )
 /*N*/               {
@@ -419,10 +379,9 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   // Robust:
 /*N*/   if( nLineWidth < Width() )
 /*N*/       Width( nLineWidth );
-/*N*/   ASSERT( nLineWidth >= Width(), "SwLineLayout::CalcLine: line is bursting" );
+/*N*/   OSL_ENSURE( nLineWidth >= Width(), "SwLineLayout::CalcLine: line is bursting" );
 /*N*/   SetDummy( bTmpDummy );
-/*N*/   SetRedline( rLine.GetRedln() &&
-/*N*/       rLine.GetRedln()->CheckLine( rLine.GetStart(), rLine.GetEnd() ) );
+/*N*/   SetRedline( sal_False );
 /*N*/ }
 
 /*************************************************************************
@@ -458,7 +417,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 
 /*N*/ BYTE WhichFont( xub_StrLen nIdx, const String* pTxt, const SwScriptInfo* pSI )
 /*N*/ {
-/*N*/     ASSERT( pTxt || pSI,"How should I determine the script type?" );
+/*N*/     OSL_ENSURE( pTxt || pSI,"How should I determine the script type?" );
 /*N*/     USHORT nScript;
 /*N*/
 /*N*/     // First we try to use our SwScriptInfo
@@ -474,7 +433,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*?*/         case i18n::ScriptType::COMPLEX : return SW_CTL;
 /*?*/     }
 /*?*/
-/*?*/     ASSERT( sal_False, "Somebody tells lies about the script type!" );
+/*?*/     OSL_FAIL( "Somebody tells lies about the script type!" );
 /*?*/     return SW_LATIN;
 /*N*/ }
 
@@ -529,7 +488,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/         // if change position = 0 we do not use any data from the arrays
 /*N*/         // because by deleting all characters of the first group at the beginning
 /*N*/         // of a paragraph nScript is set to a wrong value
-/*N*/         ASSERT( CountScriptChg(), "Where're my changes of script?" );
+/*N*/         OSL_ENSURE( CountScriptChg(), "Where're my changes of script?" );
 /*N*/       while( nCnt < CountScriptChg() )
 /*N*/       {
 /*N*/           if ( nChg <= GetScriptChg( nCnt ) )
@@ -622,12 +581,8 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/     // get the start of the last kashida group
-/*N*/     USHORT nLastKashida = nChg;
 /*N*/     if( nCntKash && i18n::ScriptType::COMPLEX == nScript )
-/*N*/     {
 /*N*/         --nCntKash;
-/*N*/         nLastKashida = GetKashida( nCntKash );
-/*N*/     }
 /*N*/
 /*N*/     // remove invalid entries from kashida array
 /*N*/     aKashida.Remove( nCntKash, aKashida.Count() - nCntKash );
@@ -653,7 +608,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/         nScript = (BYTE)GetI18NScriptTypeOfLanguage( (USHORT)GetAppLanguage() );
 /*N*/
-/*N*/         ASSERT( i18n::ScriptType::LATIN == nScript ||
+/*N*/         OSL_ENSURE( i18n::ScriptType::LATIN == nScript ||
 /*N*/                 i18n::ScriptType::ASIAN == nScript ||
 /*N*/                 i18n::ScriptType::COMPLEX == nScript, "Wrong default language" );
 /*N*/
@@ -675,14 +630,14 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/     if ( WEAK == nScript )
 /*N*/         return;
 /*N*/
-/*N*/     ASSERT( WEAK != (BYTE)pBreakIt->xBreak->getScriptType( rTxt, nChg ),
+/*N*/     OSL_ENSURE( WEAK != (BYTE)pBreakIt->xBreak->getScriptType( rTxt, nChg ),
 /*N*/             "Oh my god, it's weak again" );
 /*N*/
 /*N*/     do
 /*N*/   {
-/*N*/         ASSERT( i18n::ScriptType::WEAK != nScript,
+/*N*/         OSL_ENSURE( i18n::ScriptType::WEAK != nScript,
 /*N*/                 "Inserting WEAK into SwScriptInfo structure" );
-/*N*/         ASSERT( STRING_LEN != nChg, "65K? Strange length of script section" );
+/*N*/         OSL_ENSURE( STRING_LEN != nChg, "65K? Strange length of script section" );
 /*N*/
 /*N*/         nChg = (xub_StrLen)pBreakIt->xBreak->endOfScript( rTxt, nChg, nScript );
 /*N*/
@@ -767,7 +722,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/ #ifdef BIDI
 /*N*/         // we search for connecting opportunities (kashida)
 /*N*/         else if ( bAdjustBlock && i18n::ScriptType::COMPLEX == nScript )
-/*N*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/ #endif
 /*N*/
@@ -776,10 +731,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/         nScript = (BYTE)pBreakIt->xBreak->getScriptType( rTxt, nChg );
 /*N*/         nLastCompression = nChg;
-/*N*/ #ifdef BIDI
-/*N*/         nLastKashida = nChg;
-/*N*/ #endif
-/*N*/
 /*N*/     } while ( TRUE );
 /*N*/
 /*N*/ #ifdef DBG_UTIL
@@ -796,7 +747,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/         }
 /*N*/         nTmpKashidaPos = nCurrKashidaPos;
 /*N*/     }
-/*N*/     ASSERT( ! bWrongKash, "Kashida array contains wrong data" )
+/*N*/     OSL_ENSURE( ! bWrongKash, "Kashida array contains wrong data" );
 /*N*/ #endif
 /*N*/
 /*N*/     // remove invalid entries from direction information arrays
@@ -806,8 +757,6 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/     // Perform Unicode Bidi Algorithm for text direction information
 /*N*/     nCnt = 0;
-/*N*/     sal_Bool bLatin = sal_False;
-/*N*/     sal_Bool bAsian = sal_False;
 /*N*/     sal_Bool bComplex = sal_False;
 /*N*/
 /*N*/     while( nCnt < CountScriptChg() )
@@ -816,16 +765,13 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/         switch ( nScript )
 /*N*/         {
 /*N*/         case i18n::ScriptType::LATIN:
-/*N*/             bLatin = sal_True;
-/*N*/             break;
 /*N*/         case i18n::ScriptType::ASIAN:
-/*N*/             bAsian = sal_True;
 /*N*/             break;
 /*N*/         case i18n::ScriptType::COMPLEX:
 /*N*/             bComplex = sal_True;
 /*N*/             break;
 /*N*/         default:
-/*N*/             ASSERT( ! rTxt.Len(), "Wrong script found" )
+/*N*/             OSL_ENSURE( ! rTxt.Len(), "Wrong script found" );
 /*N*/         }
 /*N*/     }
 /*N*/
@@ -982,8 +928,8 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/                              const USHORT nCompress, const USHORT nFontHeight,
 /*N*/                              Point* pPoint ) const
 /*N*/ {
-/*N*/   ASSERT( nCompress, "Compression without compression?!" );
-/*N*/   ASSERT( nLen, "Compression without text?!" );
+/*N*/   OSL_ENSURE( nCompress, "Compression without compression?!" );
+/*N*/   OSL_ENSURE( nLen, "Compression without text?!" );
 /*N*/     USHORT nCompCount = CountCompChg();
 /*N*/
 /*N*/     // In asian typography, there are full width and half width characters.
@@ -1017,7 +963,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   do
 /*N*/   {
 /*N*/         USHORT nType = GetCompType( nCompIdx );
-/*N*/         ASSERT( nType == CompType( nIdx ), "Gimme the right type!" );
+/*N*/         OSL_ENSURE( nType == CompType( nIdx ), "Gimme the right type!" );
 /*N*/       nCompLen += nIdx;
 /*N*/       if( nCompLen > nLen )
 /*N*/           nCompLen = nLen;
@@ -1031,7 +977,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/         {
 /*N*/             while( nIdx < nCompLen )
 /*N*/             {
-/*N*/                 ASSERT( SwScriptInfo::NONE != nType, "None compression?!" );
+/*N*/                 OSL_ENSURE( SwScriptInfo::NONE != nType, "None compression?!" );
 /*N*/
 /*N*/                 // nLast is width of current character
 /*N*/                 nLast -= pKernArray[ nI ];
@@ -1065,17 +1011,17 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/
 /*N*/         if( nIdx < nLen )
 /*N*/       {
-/*N*/           xub_StrLen nChg;
+/*N*/           xub_StrLen nChg1;
 /*N*/           if( ++nCompIdx < nCompCount )
 /*N*/           {
-/*N*/                 nChg = GetCompStart( nCompIdx );
-/*N*/               if( nChg > nLen )
-/*N*/                   nChg = nLen;
+/*N*/                 nChg1 = GetCompStart( nCompIdx );
+/*N*/               if( nChg1 > nLen )
+/*N*/                   nChg1 = nLen;
 /*N*/                 nCompLen = GetCompLen( nCompIdx );
 /*N*/           }
 /*N*/           else
-/*N*/               nChg = nLen;
-/*N*/           while( nIdx < nChg )
+/*N*/               nChg1 = nLen;
+/*N*/           while( nIdx < nChg1 )
 /*N*/           {
 /*N*/               nLast = pKernArray[ nI ];
 /*N*/               pKernArray[ nI++ ] -= nSub;
@@ -1151,7 +1097,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*N*/   SetPortion( pNextPortion );
 /*N*/ }
 
-/*-----------------16.11.00 11:04-------------------
+/*--------------------------------------------------
  * HangingMargin()
  * looks for hanging punctuation portions in the paragraph
  * and return the maximum right offset of them.
@@ -1184,7 +1130,7 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 
 /*N*/ SwTwips SwTxtFrm::HangingMargin() const
 /*N*/ {
-/*N*/   ASSERT( HasPara(), "Don't call me without a paraportion" );
+/*N*/   OSL_ENSURE( HasPara(), "Don't call me without a paraportion" );
 /*N*/   if( !GetPara()->IsMargin() )
 /*N*/       return 0;
 /*?*/   const SwLineLayout* pLine = GetPara();
@@ -1201,3 +1147,5 @@ SwLinePortion *SwLineLayout::Insert( SwLinePortion *pIns )
 /*?*/   return nRet;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

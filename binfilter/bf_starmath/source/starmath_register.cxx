@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
 #include "smdll.hxx"
 #include "document.hxx"
 
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
 
 namespace binfilter {
 
@@ -105,16 +98,16 @@ extern Reference< XInterface > SAL_CALL
 
 extern "C" {
 
-void SAL_CALL component_getImplementationEnvironment(
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(
         const  sal_Char**   ppEnvironmentTypeName,
-        uno_Environment**   ppEnvironment           )
+        uno_Environment**   /*ppEnvironment*/           )
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME ;
 }
 
-void* SAL_CALL component_getFactory( const sal_Char* pImplementationName,
+SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory( const sal_Char* pImplementationName,
                                      void* pServiceManager,
-                                     void* pRegistryKey )
+                                     void* /*pRegistryKey*/ )
 {
     // Set default return value for this operation - if it failed.
     void* pReturn = NULL ;
@@ -210,3 +203,5 @@ void* SAL_CALL component_getFactory( const sal_Char* pImplementationName,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

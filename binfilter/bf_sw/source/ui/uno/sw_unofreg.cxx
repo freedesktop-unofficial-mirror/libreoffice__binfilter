@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,24 +28,19 @@
 
 #include <string.h>
 
-#ifndef _COM_SUN_STAR_REGISTRY_XREGISTRYKEY_HPP_
 #include <com/sun/star/registry/XRegistryKey.hpp>
-#endif
 
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
 
 #include <cppuhelper/factory.hxx>
 #include <uno/lbnames.h>
-#ifndef _SWXFILTEROPTIONS_HXX
 #include <SwXFilterOptions.hxx>
-#endif
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::lang;
+
+using ::rtl::OUString;
 
 // writer documents
 extern uno::Sequence< OUString > SAL_CALL SwTextDocument_getSupportedServiceNames() throw();
@@ -103,16 +99,16 @@ extern "C"
 {
 #endif
 
-void SAL_CALL component_getImplementationEnvironment(
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(
         const sal_Char ** ppEnvTypeName,
-        uno_Environment ** ppEnv )
+        uno_Environment ** /*ppEnv*/ )
 {
     *ppEnvTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
-void * SAL_CALL component_getFactory( const sal_Char * pImplName,
+SAL_DLLPUBLIC_EXPORT void * SAL_CALL component_getFactory( const sal_Char * pImplName,
                                       void * pServiceManager,
-                                      void * pRegistryKey )
+                                      void * /*pRegistryKey*/ )
 {
     void * pRet = 0;
     if( pServiceManager )
@@ -257,3 +253,5 @@ void * SAL_CALL component_getFactory( const sal_Char * pImplName,
 }
 #endif
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

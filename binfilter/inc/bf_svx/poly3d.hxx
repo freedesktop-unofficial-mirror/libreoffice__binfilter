@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _VOLUME3D_HXX
 #include <bf_svx/volume3d.hxx>
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include <bf_goodies/base3d.hxx>
-#endif
 class SvStream;
 class Polygon;
 class PolyPolygon;
@@ -290,3 +287,4 @@ public:
 }//end of namespace binfilter
 #endif      // _POLY3D_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

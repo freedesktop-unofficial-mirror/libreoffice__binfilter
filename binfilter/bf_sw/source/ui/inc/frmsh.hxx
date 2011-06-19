@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,12 +37,14 @@ class SwFrameShell: public SwBaseShell
 public:
     SFX_DECL_INTERFACE(SW_FRAMESHELL);
 
-    SwFrameShell(SwView &rView):SwBaseShell( rView ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001            SwFrameShell(SwView &rView);
+    SwFrameShell(SwView &rView):SwBaseShell( rView ){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    void    ExecFrameStyle(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001    void    ExecFrameStyle(SfxRequest& rReq);
-    void    GetLineStyleState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void    GetLineStyleState(SfxItemSet &rSet);
-    void    StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   void    StateInsert(SfxItemSet &rSet);
+    void    ExecFrameStyle(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    GetLineStyleState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;
+    void    StateInsert(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} ;
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

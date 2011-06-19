@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
 #include <unotools/intlwrapper.hxx>
 
@@ -43,9 +42,7 @@
 
 #include <bf_svtools/svtools.hrc>
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 namespace binfilter
 {
@@ -110,18 +107,6 @@ SfxPoolItem* SfxCrawlStatusItem::Create( SvStream& rStream, USHORT ) const
 
 // -----------------------------------------------------------------------
 
-SvStream& SfxCrawlStatusItem::Store( SvStream& rStream, USHORT ) const
-{
-    DBG_CHKTHIS( SfxCrawlStatusItem, 0 );
-
-    USHORT nStatus = (USHORT)eStatus;
-    rStream << (USHORT) nStatus;
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SfxCrawlStatusItem::Clone( SfxItemPool* ) const
 {
     DBG_CHKTHIS( SfxCrawlStatusItem, 0 );
@@ -136,26 +121,28 @@ SfxItemPresentation SfxCrawlStatusItem::GetPresentation( SfxItemPresentation, Sf
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxCrawlStatusItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
+bool SfxCrawlStatusItem::PutValue( const com::sun::star::uno::Any& rVal,BYTE )
 {
     sal_Int16 aValue = sal_Int16();
     if ( rVal >>= aValue )
     {
         SetStatus( static_cast< CrawlStatus >( aValue ) );
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxCrawlStatusItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxCrawlStatusItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxCrawlStatusItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool SfxCrawlStatusItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     sal_Int16 aValue = sal::static_int_cast< sal_Int16 >(GetStatus());
     rVal <<= aValue;
-    return TRUE;
+    return true;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

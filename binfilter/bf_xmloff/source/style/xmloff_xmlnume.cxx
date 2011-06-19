@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,69 +27,34 @@
  ************************************************************************/
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLER_FONTTYPES_HXX
 #include "fonthdl.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
-#endif
 
 
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
 #include <com/sun/star/awt/XBitmap.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTDESCRIPTOR_HPP_
 #include <com/sun/star/awt/FontDescriptor.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XCHAPTERNUMBERINGSUPPLIER_HPP_
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLTEXTLISTAUTOSTYLEPOOL_HXX
 #include "XMLTextListAutoStylePool.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
@@ -97,25 +63,28 @@ using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::binfilter::xmloff::token;
 
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_SYMBOL_TEXT_DISTANCE[] = "SymbolTextDistance";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_PARENT_NUMBERING[] = "ParentNumbering";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_CHAR_STYLE_NAME[] = "CharStyleName";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_BULLET_CHAR[] = "BulletChar";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_BULLET_RELSIZE[] = "BulletRelSize";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_BULLET_COLOR[] = "BulletColor";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_GRAPHIC_BITMAP[] = "GraphicBitmap";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_GRAPHIC_SIZE[] = "GraphicSize";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_VERT_ORIENT[] = "VertOrient";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_NUMBERINGTYPE[] = "NumberingType";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_PREFIX[] = "Prefix";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_SUFFIX[] = "Suffix";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_ADJUST[] = "Adjust";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_LEFT_MARGIN[] = "LeftMargin";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_FIRST_LINE_OFFSET[] =
+using rtl::OUString;
+using rtl::OUStringBuffer;
+
+static sal_Char const XML_UNO_NAME_NRULE_SYMBOL_TEXT_DISTANCE[] = "SymbolTextDistance";
+static sal_Char const XML_UNO_NAME_NRULE_PARENT_NUMBERING[] = "ParentNumbering";
+static sal_Char const XML_UNO_NAME_NRULE_CHAR_STYLE_NAME[] = "CharStyleName";
+static sal_Char const XML_UNO_NAME_NRULE_BULLET_CHAR[] = "BulletChar";
+static sal_Char const XML_UNO_NAME_NRULE_BULLET_RELSIZE[] = "BulletRelSize";
+static sal_Char const XML_UNO_NAME_NRULE_BULLET_COLOR[] = "BulletColor";
+static sal_Char const XML_UNO_NAME_NRULE_GRAPHIC_BITMAP[] = "GraphicBitmap";
+static sal_Char const XML_UNO_NAME_NRULE_GRAPHIC_SIZE[] = "GraphicSize";
+static sal_Char const XML_UNO_NAME_NRULE_VERT_ORIENT[] = "VertOrient";
+static sal_Char const XML_UNO_NAME_NRULE_NUMBERINGTYPE[] = "NumberingType";
+static sal_Char const XML_UNO_NAME_NRULE_PREFIX[] = "Prefix";
+static sal_Char const XML_UNO_NAME_NRULE_SUFFIX[] = "Suffix";
+static sal_Char const XML_UNO_NAME_NRULE_ADJUST[] = "Adjust";
+static sal_Char const XML_UNO_NAME_NRULE_LEFT_MARGIN[] = "LeftMargin";
+static sal_Char const XML_UNO_NAME_NRULE_FIRST_LINE_OFFSET[] =
     "FirstLineOffset";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_BULLET_FONT[] = "BulletFont";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_GRAPHICURL[] = "GraphicURL";
-static sal_Char __READONLY_DATA XML_UNO_NAME_NRULE_START_WITH[] = "StartWith";
+static sal_Char const XML_UNO_NAME_NRULE_BULLET_FONT[] = "BulletFont";
+static sal_Char const XML_UNO_NAME_NRULE_GRAPHICURL[] = "GraphicURL";
+static sal_Char const XML_UNO_NAME_NRULE_START_WITH[] = "StartWith";
 
 void SvxXMLNumRuleExport::exportLevelStyles( const uno::Reference< ::com::sun::star::container::XIndexReplace > & xNumRule,
                                              sal_Bool bOutline )
@@ -191,7 +160,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
         }
         else if( rProp.Name.equalsAsciiL( XML_UNO_NAME_NRULE_ADJUST, sizeof(XML_UNO_NAME_NRULE_ADJUST)-1 ) )
         {
-            sal_Int16 nValue;
+            sal_Int16 nValue(0);
             rProp.Value >>= nValue;
             eAdjust = nValue;
         }
@@ -257,7 +226,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
         }
         else if( rProp.Name.equalsAsciiL( XML_UNO_NAME_NRULE_VERT_ORIENT, sizeof(XML_UNO_NAME_NRULE_VERT_ORIENT)-1 ) )
         {
-            sal_Int16 nValue;
+            sal_Int16 nValue(0);
             rProp.Value >>= nValue;
             eImageVertOrient = nValue;
         }
@@ -418,15 +387,15 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
                 else
                 {
                     Any aAny;
-                    OUString sTmp;
+                    OUString sInnerTmp;
 
                     const SvXMLUnitConverter& rUnitConv =
                         GetExport().GetMM100UnitConverter();
                     XMLFontFamilyNamePropHdl aFamilyNameHdl;
                     aAny <<= sBulletFontName;
-                    if( aFamilyNameHdl.exportXML( sTmp, aAny, rUnitConv ) )
+                    if( aFamilyNameHdl.exportXML( sInnerTmp, aAny, rUnitConv ) )
                         GetExport().AddAttribute( XML_NAMESPACE_FO,
-                                                  XML_FONT_FAMILY, sTmp );
+                                                  XML_FONT_FAMILY, sInnerTmp );
 
                     if( sBulletFontStyleName.getLength() )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
@@ -435,22 +404,22 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
 
                     XMLFontFamilyPropHdl aFamilyHdl;
                     aAny <<= (sal_Int16)eBulletFontFamily;
-                    if( aFamilyHdl.exportXML( sTmp, aAny, rUnitConv  ) )
+                    if( aFamilyHdl.exportXML( sInnerTmp, aAny, rUnitConv  ) )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
                                                   XML_FONT_FAMILY_GENERIC,
-                                                  sTmp );
+                                                  sInnerTmp );
 
                     XMLFontPitchPropHdl aPitchHdl;
                     aAny <<= (sal_Int16)eBulletFontPitch;
-                    if( aPitchHdl.exportXML( sTmp, aAny, rUnitConv  ) )
+                    if( aPitchHdl.exportXML( sInnerTmp, aAny, rUnitConv  ) )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
-                                                  XML_FONT_PITCH, sTmp );
+                                                  XML_FONT_PITCH, sInnerTmp );
 
                     XMLFontEncodingPropHdl aEncHdl;
                     aAny <<= (sal_Int16)eBulletFontEncoding;
-                    if( aEncHdl.exportXML( sTmp, aAny, rUnitConv  ) )
+                    if( aEncHdl.exportXML( sInnerTmp, aAny, rUnitConv  ) )
                         GetExport().AddAttribute( XML_NAMESPACE_STYLE,
-                                                  XML_FONT_CHARSET, sTmp );
+                                                  XML_FONT_CHARSET, sInnerTmp );
                 }
             }
         }
@@ -546,7 +515,7 @@ void SvxXMLNumRuleExport::exportLevelStyle( INT32 nLevel,
 
         if( GetExport().GetAttrList().getLength() > 0 )
         {
-            SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE,
+            SvXMLElementExport aInnerElem( GetExport(), XML_NAMESPACE_STYLE,
                                       XML_PROPERTIES, sal_True, sal_True );
         }
         if( NumberingType::BITMAP == eType && sImageURL.getLength() )
@@ -711,3 +680,5 @@ void SvxXMLNumRuleExport::exportStyles( sal_Bool bUsed,
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

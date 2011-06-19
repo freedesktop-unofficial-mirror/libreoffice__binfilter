@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,31 +29,19 @@
 #include "SchXMLChartContext.hxx"
 #include "contexts.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include "xmlstyle.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XCHARTDATAARRAY_HPP_
 #include <com/sun/star/chart/XChartDataArray.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
-#endif
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
 
 /* ----------------------------------------
    TokenMaps for distinguishing different
@@ -63,7 +52,7 @@ using namespace ::binfilter::xmloff::token;
 // element maps
 // ----------------------------------------
 
-static __FAR_DATA SvXMLTokenMapEntry aDocElemTokenMap[] =
+static SvXMLTokenMapEntry aDocElemTokenMap[] =
 {
     { XML_NAMESPACE_OFFICE, XML_AUTOMATIC_STYLES,   XML_TOK_DOC_AUTOSTYLES  },
     { XML_NAMESPACE_OFFICE, XML_STYLES,             XML_TOK_DOC_STYLES  },
@@ -72,7 +61,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDocElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableElemTokenMap[] =
+static SvXMLTokenMapEntry aTableElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE,  XML_TABLE_HEADER_COLUMNS,   XML_TOK_TABLE_HEADER_COLS   },
     { XML_NAMESPACE_TABLE,  XML_TABLE_COLUMNS,          XML_TOK_TABLE_COLUMNS       },
@@ -83,7 +72,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aChartElemTokenMap[] =
+static SvXMLTokenMapEntry aChartElemTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_PLOT_AREA,              XML_TOK_CHART_PLOT_AREA     },
     { XML_NAMESPACE_CHART,  XML_TITLE,                  XML_TOK_CHART_TITLE         },
@@ -93,7 +82,7 @@ static __FAR_DATA SvXMLTokenMapEntry aChartElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPlotAreaElemTokenMap[] =
+static SvXMLTokenMapEntry aPlotAreaElemTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_AXIS,                   XML_TOK_PA_AXIS             },
     { XML_NAMESPACE_CHART,  XML_SERIES,                 XML_TOK_PA_SERIES           },
@@ -107,7 +96,7 @@ static __FAR_DATA SvXMLTokenMapEntry aPlotAreaElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSeriesElemTokenMap[] =
+static SvXMLTokenMapEntry aSeriesElemTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_DATA_POINT,       XML_TOK_SERIES_DATA_POINT       },
     { XML_NAMESPACE_CHART,  XML_DOMAIN,           XML_TOK_SERIES_DOMAIN           },
@@ -121,7 +110,7 @@ static __FAR_DATA SvXMLTokenMapEntry aSeriesElemTokenMap[] =
 // attribute maps
 // ----------------------------------------
 
-static __FAR_DATA SvXMLTokenMapEntry aChartAttrTokenMap[] =
+static SvXMLTokenMapEntry aChartAttrTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_CLASS,                  XML_TOK_CHART_CLASS         },
     { XML_NAMESPACE_SVG,    XML_WIDTH,                  XML_TOK_CHART_WIDTH         },
@@ -133,7 +122,7 @@ static __FAR_DATA SvXMLTokenMapEntry aChartAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aPlotAreaAttrTokenMap[] =
+static SvXMLTokenMapEntry aPlotAreaAttrTokenMap[] =
 {
     { XML_NAMESPACE_SVG,    XML_X,                      XML_TOK_PA_X                 },
     { XML_NAMESPACE_SVG,    XML_Y,                      XML_TOK_PA_Y                 },
@@ -147,7 +136,7 @@ static __FAR_DATA SvXMLTokenMapEntry aPlotAreaAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aAxisAttrTokenMap[] =
+static SvXMLTokenMapEntry aAxisAttrTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_CLASS,                  XML_TOK_AXIS_CLASS          },
     { XML_NAMESPACE_CHART,  XML_NAME,                   XML_TOK_AXIS_NAME           },
@@ -155,7 +144,7 @@ static __FAR_DATA SvXMLTokenMapEntry aAxisAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aLegendAttrTokenMap[] =
+static SvXMLTokenMapEntry aLegendAttrTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_LEGEND_POSITION,        XML_TOK_LEGEND_POSITION     },
     { XML_NAMESPACE_SVG,    XML_X,                      XML_TOK_LEGEND_X            },
@@ -164,14 +153,14 @@ static __FAR_DATA SvXMLTokenMapEntry aLegendAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aCellAttrTokenMap[] =
+static SvXMLTokenMapEntry aCellAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE,  XML_VALUE_TYPE,             XML_TOK_CELL_VAL_TYPE       },
     { XML_NAMESPACE_TABLE,  XML_VALUE,                  XML_TOK_CELL_VALUE          },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSeriesAttrTokenMap[] =
+static SvXMLTokenMapEntry aSeriesAttrTokenMap[] =
 {
     { XML_NAMESPACE_CHART,  XML_VALUES_CELL_RANGE_ADDRESS,  XML_TOK_SERIES_CELL_RANGE    },
     { XML_NAMESPACE_CHART,  XML_LABEL_CELL_ADDRESS,         XML_TOK_SERIES_LABEL_ADDRESS },
@@ -236,7 +225,7 @@ SvXMLImportContext* SchXMLImportHelper::CreateChartContext(
     SvXMLImport& rImport,
     sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName,
     const uno::Reference< frame::XModel > xChartModel,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
     SvXMLImportContext* pContext = 0;
 
@@ -248,7 +237,7 @@ SvXMLImportContext* SchXMLImportHelper::CreateChartContext(
     }
     else
     {
-        DBG_ERROR( "No valid XChartDocument given as XModel" );
+        OSL_FAIL( "No valid XChartDocument given as XModel" );
         pContext = new SvXMLImportContext( rImport, nPrefix, rLocalName );
     }
 
@@ -350,7 +339,7 @@ void SchXMLImportHelper::ResizeChartData( sal_Int32 nSeries, sal_Int32 nDataPoin
         if( xDiaProp.is())
         {
             chart::ChartDataRowSource eRowSource;
-            xDiaProp->getPropertyValue( ::rtl::OUString::createFromAscii( "DataRowSource" )) >>= eRowSource;
+            xDiaProp->getPropertyValue( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DataRowSource" ))) >>= eRowSource;
             bDataInColumns = ( eRowSource == chart::ChartDataRowSource_COLUMNS );
 
             // the chart core treats donut chart with interchanged rows/columns
@@ -559,7 +548,9 @@ OUString SAL_CALL SchXMLImport::getImplementationName() throw( uno::RuntimeExcep
         case IMPORT_SETTINGS:
         // there is no settings component in chart
         default:
-            return OUString::createFromAscii( "SchXMLImport" );
+            return OUString( RTL_CONSTASCII_USTRINGPARAM( "SchXMLImport" ));
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

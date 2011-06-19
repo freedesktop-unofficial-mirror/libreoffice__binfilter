@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,10 @@
 #define _SWRECT_HXX
 
 #include <bf_svtools/bf_solar.h>
+#include <osl/diagnose.h>
 
-#include "errhdl.hxx"
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -323,7 +322,7 @@ inline SwRect &SwRect::operator-=( const Size &rSz )
 //--------------------------- Sonstiges
 inline Rectangle SwRect::SVRect() const
 {
-    ASSERT( nWidth && nHeight, "SVRect() ohne Widht oder Height" );
+    OSL_ENSURE( nWidth && nHeight, "SVRect() ohne Widht oder Height" );
     return Rectangle( nX, nY,
                       nX + nWidth - 1,      //Right()
                       nY + nHeight - 1 );   //Bottom()
@@ -380,14 +379,16 @@ inline SwRect::SwRect( const Point& rLT, const Point& rRB ) :
     nHeight( rRB.Y() - rLT.Y() + 1 )
 {
 }
-inline SwRect::SwRect( long X, long Y, long Width, long Height ) :
+inline SwRect::SwRect( long X, long Y, long WidthIn, long HeightIn ) :
     nX( X ),
     nY( Y ),
-    nWidth ( Width ),
-    nHeight( Height )
+    nWidth ( WidthIn ),
+    nHeight( HeightIn )
 {
 }
 
 
 } //namespace binfilter
 #endif  //_SWRECT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

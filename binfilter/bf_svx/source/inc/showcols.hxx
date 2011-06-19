@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,15 @@
 #ifndef _SVX_SHOWCOLS_HXX
 #define _SVX_SHOWCOLS_HXX
 
-#ifndef _SV_DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
-#ifndef _SV_LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 namespace binfilter {
 
 //==========================================================================
@@ -75,3 +66,4 @@ protected:
 }//end of namespace binfilter
 #endif // _SVX_SHOWCOLS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

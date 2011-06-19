@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,19 +29,11 @@
 // include ---------------------------------------------------------------
 
 #ifndef SVX_LIGHT
-
-#ifndef _SVX_XPROPERTYTABLE_HXX
 #include "XPropertyTable.hxx"
-#endif
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include "xmlxtimp.hxx"
-
 #endif
 
 #include <tools/urlobj.hxx>
@@ -55,17 +48,10 @@
 #include "xoutx.hxx"
 #include "dlgutil.hxx"
 
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include <xflhtit.hxx>
-#endif
-
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
-#endif
-
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <xfillit0.hxx>
-#endif
+
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -117,13 +103,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XHatchTable::Save()
-/*N*/ {
-/*N*/   return( FALSE );
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XHatchTable::Create()
 /*N*/ {
 /*N*/   return( FALSE );
@@ -138,7 +117,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /************************************************************************/
 
-/*N*/ Bitmap* XHatchTable::CreateBitmapForUI( long nIndex, BOOL bDelete )
+/*N*/ Bitmap* XHatchTable::CreateBitmapForUI( long /*nIndex*/, BOOL /*bDelete*/ )
 /*N*/ {
 /*N*/   return( NULL );
 /*N*/ }
@@ -262,30 +241,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 /************************************************************************/
 
-/*N*/ BOOL XHatchList::Save()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return false;
-/*
-    SfxMedium aMedium( aURL.GetMainURL( INetURLObject::NO_DECODE ), STREAM_WRITE | STREAM_TRUNC, TRUE );
-    aMedium.IsRemote();
-
-    SvStream* pStream = aMedium.GetOutStream();
-    if( !pStream )
-        return( FALSE );
-
-    // UNICODE: *pStream << String( pszChckHatch0, 4 );
-    pStream->WriteByteString(String( pszChckHatch0, 4 ));
-
-    ImpStore( *pStream );
-
-    aMedium.Close();
-    aMedium.Commit();
-
-    return( aMedium.GetError() == 0 );
-*/
-/*N*/ }
-
-/************************************************************************/
-
 /*N*/ BOOL XHatchList::Create()
 /*N*/ {
 /*N*/   XubString aStr( SVX_RES( RID_SVXSTR_HATCH ) );
@@ -343,10 +298,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/       DBG_ASSERT( pVD, "XHatchList: Konnte kein XFillAttrSetItem erzeugen!" );
 /*N*/   }
 /*N*/
-/*N*/   if( Application::GetSettings().GetStyleSettings().GetHighContrastMode() != 0 )
-/*N*/       pVD->SetDrawMode( OUTPUT_DRAWMODE_CONTRAST );
-/*N*/   else
-/*N*/       pVD->SetDrawMode( OUTPUT_DRAWMODE_COLOR );
+/*N*/   pVD->SetDrawMode( OUTPUT_DRAWMODE_COLOR );
 /*N*/
 /*N*/   // Damit die Schraffuren mit Rahmen angezeigt werden:
 /*N*/   // MapMode-Aenderungen (100th mm <--> Pixel)
@@ -356,7 +308,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   pXFSet->GetItemSet().Put( XFillStyleItem( XFILL_SOLID ) );
 /*N*/   pXFSet->GetItemSet().Put( XFillColorItem( String(), RGB_Color( COL_WHITE ) ) );
 /*N*/
-/*N*/ //-/  pXOut->SetFillAttr( *pXFSet );
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/
 /*N*/   // #73550#
@@ -373,7 +324,6 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   pXFSet->GetItemSet().Put( XFillStyleItem( XFILL_HATCH ) );
 /*N*/   pXFSet->GetItemSet().Put( XFillHatchItem( String(), Get( nIndex )->GetHatch() ) );
 
-//-/    pXOut->SetFillAttr( *pXFSet );
 /*N*/   pXOut->SetFillAttr( pXFSet->GetItemSet() );
 /*N*/
 /*N*/   pXOut->DrawRect( Rectangle( aZero, aVDSize ) );
@@ -422,7 +372,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/
 /*N*/   XHatchEntry* pEntry = NULL;
 /*N*/   long        nCount;
-/*N*/   XubString       aName;
+/*N*/   XubString       aLclName;
 /*N*/
 /*N*/   long        nStyle;
 /*N*/   USHORT      nRed;
@@ -438,10 +388,10 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/   {
 /*N*/       for( long nIndex = 0; nIndex < nCount; nIndex++ )
 /*N*/       {
-/*N*/           // UNICODE:rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE:rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -453,7 +403,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
 /*N*/           XHatch aHatch(aColor, (XHatchStyle)nStyle, nDistance, nAngle);
-/*N*/           pEntry = new XHatchEntry (aHatch, aName);
+/*N*/           pEntry = new XHatchEntry (aHatch, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -466,10 +416,10 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/           // Versionsverwaltung
 /*N*/           XIOCompat aIOC( rIn, STREAM_READ );
 /*N*/
-/*N*/           // UNICODE: rIn >> aName;
-/*N*/           rIn.ReadByteString(aName);
+/*N*/           // UNICODE: rIn >> aLclName;
+/*N*/           rIn.ReadByteString(aLclName);
 /*N*/
-/*N*/           aName = ConvertName( aName );
+/*N*/           aLclName = ConvertName( aLclName );
 /*N*/           rIn >> nStyle;
 /*N*/           rIn >> nRed;
 /*N*/           rIn >> nGreen;
@@ -486,7 +436,7 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 /*N*/                           (BYTE) ( nGreen >> 8 ),
 /*N*/                           (BYTE) ( nBlue  >> 8 ) );
 /*N*/           XHatch aHatch(aColor, (XHatchStyle)nStyle, nDistance, nAngle);
-/*N*/           pEntry = new XHatchEntry (aHatch, aName);
+/*N*/           pEntry = new XHatchEntry (aHatch, aLclName);
 /*N*/           Insert (pEntry, nIndex);
 /*N*/       }
 /*N*/   }
@@ -496,3 +446,5 @@ char const aChckXML[]    = { '<', '?', 'x', 'm', 'l' };     // = 6.0
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,6 +30,7 @@
 #include <unotools/streamwrap.hxx>
 #include <unotools/tempfile.hxx>
 #include <cppuhelper/implbase1.hxx> // helper for implementations
+#include <sal/macros.h>
 
 #include "impgrf.hxx"
 #include "xmlgrhlp.hxx"
@@ -38,10 +40,11 @@ namespace binfilter {
 // - Defines -
 // -----------
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::io;
+
+using ::rtl::OUString;
 
 #define XML_GRAPHICSTORAGE_NAME     "Pictures"
 #define XML_PACKAGE_URL_BASE        "vnd.sun.star.Package:"
@@ -154,32 +157,32 @@ public:
 
 // -----------------------------------------------------------------------------
 
-/*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::readSomeBytes( Sequence< sal_Int8 >& rData, sal_Int32 nMaxBytesToRead )
+/*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::readSomeBytes( Sequence< sal_Int8 >& /*rData*/, sal_Int32 /*nMaxBytesToRead*/ )
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------------
 
-/*?*/ void SAL_CALL SvXMLGraphicInputStream::skipBytes( sal_Int32 nBytesToSkip )
+/*?*/ void SAL_CALL SvXMLGraphicInputStream::skipBytes( sal_Int32 /*nBytesToSkip*/ )
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------------
 
 /*?*/ sal_Int32 SAL_CALL SvXMLGraphicInputStream::available() throw( NotConnectedException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // -----------------------------------------------------------------------------
 
 /*?*/ void SAL_CALL SvXMLGraphicInputStream::closeInput() throw( NotConnectedException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // ----------------------------
@@ -254,7 +257,7 @@ public:
 /*?*/ void SAL_CALL SvXMLGraphicOutputStream::flush()
 /*?*/     throw( NotConnectedException, BufferSizeExceededException, IOException, RuntimeException )
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001     if( !mxStmWrapper.is() )
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------------
@@ -356,7 +359,7 @@ public:
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR( "SvXMLGraphicHelper::ImplInsertGraphicURL: invalid scheme" );
+/*N*/           OSL_FAIL( "SvXMLGraphicHelper::ImplInsertGraphicURL: invalid scheme" );
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -432,7 +435,7 @@ public:
 /*N*/     {
 /*N*/         const ByteString aExt( rFileName.Copy( rFileName.Len() - 3 ), RTL_TEXTENCODING_ASCII_US );
 /*N*/
-/*N*/         for( long i = 0, nCount = sizeof( aMapper ) / sizeof( aMapper[ 0 ] ); ( i < nCount ) && !aMimeType.Len(); i++ )
+/*N*/         for( long i = 0, nCount = SAL_N_ELEMENTS( aMapper ); ( i < nCount ) && !aMimeType.Len(); i++ )
 /*N*/             if( aExt == aMapper[ i ].pExt )
 /*N*/                 aMimeType = String( aMapper[ i ].pMimeType, RTL_TEXTENCODING_ASCII_US );
 /*N*/     }
@@ -482,7 +485,7 @@ public:
 /*N*/               xStm->SetProperty( String( RTL_CONSTASCII_USTRINGPARAM( "MediaType" ) ), aAny );
 /*N*/             }
 /*N*/
-/*N*/             const sal_Bool bCompressed = ( ( 0 == aMimeType.getLength() ) || ( aMimeType == OUString::createFromAscii( "image/tiff" ) ) );
+/*N*/             const sal_Bool bCompressed = ( ( 0 == aMimeType.getLength() ) || ( aMimeType == OUString( RTL_CONSTASCII_USTRINGPARAM( "image/tiff" )) ) );
 /*N*/             aAny <<= bCompressed;
 /*N*/             xStm->SetProperty( String( RTL_CONSTASCII_USTRINGPARAM( "Compressed" ) ), aAny );
 /*N*/
@@ -782,7 +785,7 @@ public:
 /*N*/
 /*N*/                 if( aId.getLength() )
 /*N*/                 {
-/*N*/                     aRet = OUString::createFromAscii( XML_GRAPHICOBJECT_URL_BASE );
+/*N*/                     aRet = OUString(RTL_CONSTASCII_USTRINGPARAM( XML_GRAPHICOBJECT_URL_BASE ));
 /*N*/                     aRet += aId;
 /*N*/                 }
 /*N*/             }
@@ -792,3 +795,5 @@ public:
 /*N*/     return aRet;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

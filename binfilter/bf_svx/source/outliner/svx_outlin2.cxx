@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,7 +41,7 @@
 #include <outleeng.hxx>
 namespace binfilter {
 
-DBG_NAMEEX(Outliner)//STRIP008
+DBG_NAMEEX(Outliner)
 
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::linguistic2;
@@ -116,7 +117,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/     pEditEngine->aOutlinerNotifyHdl = rLink;
 /*N*/
 /*N*/     if ( rLink.IsSet() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pEditEngine->SetNotifyHdl( LINK( this, Outliner, EditEngineNotifyHdl ) );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     else
 /*N*/       pEditEngine->SetNotifyHdl( Link() );
 /*N*/
@@ -303,7 +304,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->GetEditTextObjectPool();
 /*N*/ }
 
-/*N*/ void Outliner::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void Outliner::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   DBG_CHKTHIS(Outliner,0);
 /*N*/   pEditEngine->SetForbiddenCharsTable( xForbiddenChars );
@@ -456,3 +457,5 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   return pEditEngine->IsForceAutoColor();
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

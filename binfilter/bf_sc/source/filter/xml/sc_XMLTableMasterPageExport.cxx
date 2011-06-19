@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,29 +26,24 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
 
 
 
-#ifndef _SC_XMLTABLEMASTERPAGEEXPORT_HXX
 #include "XMLTableMasterPageExport.hxx"
-#endif
 
 #include "unonames.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::beans;
 using namespace xmloff::token;
+
+using rtl::OUString;
 
 XMLTableMasterPageExport::XMLTableMasterPageExport( ScXMLExport& rExp ) :
         XMLTextMasterPageExport ( rExp )
@@ -92,7 +88,7 @@ void XMLTableMasterPageExport::exportHeaderFooter(const ::com::sun::star::uno::R
             if( !bDisplay )
                 GetExport().AddAttribute( XML_NAMESPACE_STYLE,
                                                 XML_DISPLAY, XML_FALSE );
-            SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_STYLE,
+            SvXMLElementExport aScopedElem( GetExport(), XML_NAMESPACE_STYLE,
                                       aName, sal_True, sal_True );
             if (sCenter.getLength() && !sLeft.getLength() && !sRight.getLength())
                 exportHeaderFooterContent( xCenter, sal_False, sal_False );
@@ -195,3 +191,5 @@ void XMLTableMasterPageExport::exportMasterPageContent(
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

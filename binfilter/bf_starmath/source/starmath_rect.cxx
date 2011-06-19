@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
 
 #include "rect.hxx"
@@ -48,7 +45,7 @@ namespace binfilter {
 // '\0' terminiertes Array mit Zeichen, die im StarMath Font als Buchstaben
 // betrachtet werden sollen, (um im Gegensatz zu den anderen Operatoren
 // und Symbolen ein "normales"(ungecliptes) SmRect zu erhalten).
-static xub_Unicode __READONLY_DATA aMathAlpha[] =
+static xub_Unicode const aMathAlpha[] =
 {
     MS_ALEPH,               MS_IM,                  MS_RE,
     MS_WP,                  xub_Unicode(0xE070),    MS_EMPTYSET,
@@ -194,6 +191,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/   Rectangle  aGlyphRect;
 /*N*/   BOOL       bSuccess = SmGetGlyphBoundRect(rDev, rText, aGlyphRect);
 /*N*/   DBG_ASSERT(bSuccess, "Sm : Ooops... (fehlt evtl. der Font?)");
+/*N*/   (void)bSuccess;
 /*N*/
 /*N*/   nItalicLeftSpace  = GetLeft() - aGlyphRect.Left() + nBorderWidth;
 /*N*/   nItalicRightSpace = aGlyphRect.Right() - GetRight() + nBorderWidth;
@@ -233,7 +231,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 
 
 /*N*/ void SmRect::Init(const OutputDevice &rDev, const SmFormat *pFormat,
-/*N*/                   const XubString &rText, USHORT nBorderWidth)
+/*N*/                   const XubString &rText, USHORT nInBorderWidth)
 /*N*/   // get rectangle fitting for drawing 'rText' on OutputDevice 'rDev'
 /*N*/ {
 /*N*/   SmRectCache *pRectCache = SM_MOD1()->GetRectCache();
@@ -247,7 +245,7 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*?*/       *this = *pResult;
 /*N*/   else
 /*N*/   {   // build rectangle and put it in cache
-/*N*/       BuildRect(rDev, pFormat, rText, nBorderWidth);
+/*N*/       BuildRect(rDev, pFormat, rText, nInBorderWidth);
 /*N*/       pResult = pRectCache->Add(aKey, *this);
 /*N*/   }
 /*N*/   DBG_ASSERT(pResult, "Sm : NULL pointer");
@@ -255,12 +253,12 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 
 
 /*N*/ SmRect::SmRect(const OutputDevice &rDev, const SmFormat *pFormat,
-/*N*/                const XubString &rText, long nBorderWidth)
+/*N*/                const XubString &rText, long nInBorderWidth)
 /*N*/ {
-/*N*/     DBG_ASSERT( nBorderWidth >= 0, "BorderWidth negativ" );
-/*N*/     if (nBorderWidth < 0)
-/*N*/         nBorderWidth = 0;
-/*N*/     Init(rDev, pFormat, rText, (USHORT) nBorderWidth);
+/*N*/     DBG_ASSERT( nInBorderWidth >= 0, "BorderWidth negativ" );
+/*N*/     if (nInBorderWidth < 0)
+/*N*/         nInBorderWidth = 0;
+/*N*/     Init(rDev, pFormat, rText, (USHORT) nInBorderWidth);
 /*N*/ }
 
 
@@ -556,96 +554,6 @@ static xub_Unicode __READONLY_DATA aMathAlpha[] =
 /*N*/   return *this;
 /*N*/ }
 
-
-//SmRect & SmRect::ExtendBy(const Point &rPoint)
-//    // extend current rectangle to include 'rPoint'.
-//    // The effect should be similar to
-//    //      "ExtendBy(rRect, RCP_THIS, (BOOL) TRUE)"
-//    // where 'rRect' is a SmRect of size and width 1 with no italic spaces
-//    // (as by "SmRect (1, 1)") and position at 'rPoint'.
-//{
-//    // get some values used for italic spaces adaption
-//    // ! (need to be done before changing current SmRect) !
-//    long  nL = Min(GetItalicLeft(),  rPoint.X()),
-//          nR = Max(GetItalicRight(), rPoint.X());
-//
-//    // this is the adaption of rectangle union
-//    if (rPoint.X() < GetLeft())
-//        SetLeft(rPoint.X());
-//    if (rPoint.X() > GetRight())
-//        SetRight(rPoint.X());
-//    if (rPoint.Y() < GetTop())
-//        SetTop(rPoint.Y());
-//    if (rPoint.Y() > GetBottom())
-//        SetBottom(rPoint.Y());
-//
-//    SetItalicSpaces(GetLeft() - nL, nR - GetRight());
-//
-//    return *this;
-//}
-
-
-//long SmRect::OrientedDist(const Point &rPoint) const
-//    // return oriented distance of rPoint to the current rectangle,
-//    // especially the return value is <= 0 iff the point is inside the
-//    // rectangle.
-//    // For simplicity the maximum-norm is used.
-//{
-//    BOOL  bIsInside = IsInsideItalicRect(rPoint);
-//
-//    // build reference point to define the distance
-//    Point  aRef;
-//    if (bIsInside)
-//    {   Point  aIC (GetItalicCenterX(), GetCenterY());
-//
-//        aRef.X() = rPoint.X() >= aIC.X() ? GetItalicRight() : GetItalicLeft();
-//        aRef.Y() = rPoint.Y() >= aIC.Y() ? GetBottom() : GetTop();
-//    }
-//    else
-//    {
-//        // x-coordinate
-//        if (rPoint.X() > GetItalicRight())
-//            aRef.X() = GetItalicRight();
-//        else if (rPoint.X() < GetItalicLeft())
-//            aRef.X() = GetItalicLeft();
-//        else
-//            aRef.X() = rPoint.X();
-//        // y-coordinate
-//        if (rPoint.Y() > GetBottom())
-//            aRef.Y() = GetBottom();
-//        else if (rPoint.Y() < GetTop())
-//            aRef.Y() = GetTop();
-//        else
-//            aRef.Y() = rPoint.Y();
-//    }
-//
-//    // build distance vector
-//    Point  aDist (aRef - rPoint);
-//
-//    long nAbsX = labs(aDist.X()),
-//         nAbsY = labs(aDist.Y());
-//
-//    return bIsInside ? - Min(nAbsX, nAbsY) : Max (nAbsX, nAbsY);
-//}
-
-
-//BOOL SmRect::IsInsideRect(const Point &rPoint) const
-//{
-//    return     rPoint.Y() >= GetTop()
-//           &&  rPoint.Y() <= GetBottom()
-//           &&  rPoint.X() >= GetLeft()
-//           &&  rPoint.X() <= GetRight();
-//}
-
-
-//BOOL SmRect::IsInsideItalicRect(const Point &rPoint) const
-//{
-//    return     rPoint.Y() >= GetTop()
-//           &&  rPoint.Y() <= GetBottom()
-//           &&  rPoint.X() >= GetItalicLeft()
-//           &&  rPoint.X() <= GetItalicRight();
-//}
-
 SmRect SmRect::AsGlyphRect() const
 {
     SmRect aRect (*this);
@@ -653,18 +561,6 @@ SmRect SmRect::AsGlyphRect() const
     aRect.SetBottom(nGlyphBottom);
     return aRect;
 }
-
-
-// forward declaration
-
-
-
-
-////////////////////////////////////////
-// misc functions
-//
-
-
 
 
 /*N*/ BOOL SmGetGlyphBoundRect(const OutputDevice &rDev,
@@ -742,3 +638,5 @@ SmRect SmRect::AsGlyphRect() const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -94,8 +95,8 @@ namespace binfilter {
 /*N*/               break;
 /*N*/
 /*N*/           case SCH_LIGHTFACTOR_ID:
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pObjFactory->pNewData = new SchLightFactor;
-/*?*/               DBG_ERROR("SCH_LIGHTFACTOR_ID no longer available");
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
+/*?*/               OSL_FAIL("SCH_LIGHTFACTOR_ID no longer available");
 /*?*/               break;
 /*N*/
 /*N*/           case SCH_AXIS_ID :
@@ -109,3 +110,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

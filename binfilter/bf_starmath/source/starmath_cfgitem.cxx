@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
+#include <sal/macros.h>
 
 #include "cfgitem.hxx"
 
@@ -39,10 +39,11 @@
 #include "format.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
+
+using ::rtl::OUString;
 
 #define A2OU(x)        ::rtl::OUString::createFromAscii( x )
 
@@ -77,7 +78,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       pNames[i] = A2OU( *ppPropName );
 /*N*/   }
-/*N*/   //aNames.realloc( i );
 /*N*/   return aNames;
 /*N*/ }
 
@@ -103,7 +103,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       pNames[i] = A2OU( *ppPropName );
 /*N*/   }
-/*N*/   //aNames.realloc( i );
 /*N*/   return aNames;
 /*N*/ }
 
@@ -116,7 +115,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     "Print/Frame",
 /*N*/     "Print/Size",
 /*N*/     "Print/ZoomFactor",
-/*N*/     //"Misc/NoSymbolsWarning",
 /*N*/     "Misc/IgnoreSpacesRight",
 /*N*/     "View/ToolboxVisible",
 /*N*/     "View/AutoRedraw",
@@ -183,7 +181,6 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       pNames[i] = A2OU( *ppPropName );
 /*N*/   }
-/*N*/   //aNames.realloc( i );
 /*N*/   return aNames;
 /*N*/ }
 
@@ -191,14 +188,14 @@ static const char* aRootName = "Office.Math";
 
 /*N*/ Sequence< OUString > SmMathConfigItem::GetFormatPropertyNames()
 /*N*/ {
-/*N*/     USHORT nCnt = sizeof(aFormatPropNames) / sizeof(aFormatPropNames[0]);
+/*N*/     USHORT nCnt = SAL_N_ELEMENTS(aFormatPropNames);
 /*N*/     return lcl_GetPropertyNames( aFormatPropNames, nCnt );
 /*N*/ }
 
 
 /*N*/ Sequence< OUString > SmMathConfigItem::GetOtherPropertyNames()
 /*N*/ {
-/*N*/     USHORT nCnt = sizeof(aMathPropNames) / sizeof(aMathPropNames[0]);
+/*N*/     USHORT nCnt = SAL_N_ELEMENTS(aMathPropNames);
 /*N*/     return lcl_GetPropertyNames( aMathPropNames, nCnt );
 /*N*/ }
 
@@ -215,7 +212,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     BOOL            bToolboxVisible;
 /*N*/     BOOL            bAutoRedraw;
 /*N*/     BOOL            bFormulaCursor;
-/*N*/     //BOOL            bNoSymbolsWarning;
 /*N*/
 /*N*/     SmCfgOther();
 /*N*/ };
@@ -228,7 +224,7 @@ static const char* aRootName = "Office.Math";
 /*N*/     bPrintTitle         = bPrintFormulaText   =
 /*N*/     bPrintFrame         = bIgnoreSpacesRight  =
 /*N*/     bToolboxVisible     = bAutoRedraw         =
-/*N*/     bFormulaCursor      = /*bNoSymbolsWarning   =*/ TRUE;
+/*N*/     bFormulaCursor      = TRUE;
 /*N*/ }
 
 /////////////////////////////////////////////////////////////////
@@ -243,11 +239,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     nWeight     = WEIGHT_DONTKNOW;
 /*N*/     nItalic     = ITALIC_NONE;
 /*N*/ }
-
-
-// /*N*/ SmFontFormat::SmFontFormat( const Font &rFont )
-// /*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-// /*N*/ }
 
 
 /*N*/ const Font SmFontFormat::GetFont() const
@@ -280,8 +271,6 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-
-
 /*N*/ void SmFontFormatList::AddFontFormat( const String &rFntFmtId,
 /*N*/         const SmFontFormat &rFntFmt )
 /*N*/ {
@@ -294,8 +283,6 @@ static const char* aRootName = "Office.Math";
 /*N*/         SetModified( TRUE );
 /*N*/     }
 /*N*/ }
-
-
 
 
 /*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( const String &rFntFmtId ) const
@@ -312,23 +299,6 @@ static const char* aRootName = "Office.Math";
 /*N*/
 /*N*/     return pRes;
 /*N*/ }
-
-
-
-// /*N*/ const SmFontFormat * SmFontFormatList::GetFontFormat( USHORT nPos ) const
-// /*N*/ {
-// /*N*/     SmFontFormat *pRes = 0;
-// /*N*/     if (nPos < aEntries.Count())
-// /*N*/         pRes = &aEntries[ nPos ].aFntFmt;
-// /*N*/     return pRes;
-// /*N*/ }
-
-
-
-
-
-
-
 
 
 /////////////////////////////////////////////////////////////////
@@ -400,13 +370,12 @@ static const char* aRootName = "Office.Math";
 /*N*/   {
 /*N*/       const Any * pValue = aValues.getConstArray();
 /*N*/         Font        aFont;
-/*N*/         sal_Unicode cChar;
+/*N*/         sal_Unicode cChar(0);
 /*N*/         String      aSet;
-/*N*/         BOOL        bPredefined;
+/*N*/         BOOL        bPredefined(FALSE);
 /*N*/
 /*N*/         OUString    aTmpStr;
 /*N*/         INT32       nTmp32 = 0;
-/*N*/         INT16       nTmp16 = 0;
 /*N*/         BOOL        bTmp = FALSE;
 /*N*/
 /*N*/         BOOL bOK = TRUE;
@@ -459,7 +428,7 @@ static const char* aRootName = "Office.Math";
 /*N*/         }
 /*N*/         else
 /*N*/         {
-/*N*/             DBG_ERROR( "symbol read error" );
+/*N*/             OSL_FAIL( "symbol read error" );
 /*N*/         }
 /*N*/   }
 /*N*/
@@ -485,15 +454,6 @@ static const char* aRootName = "Office.Math";
 /*N*/       pSymbols[i] = ReadSymbol( aCfg, pNode[i], A2OU( SYMBOL_LIST ) );
 /*N*/   }
 /*N*/ }
-
-
-/*N*/ void SmMathConfig::Save()
-/*N*/ {
-/*N*/     SaveOther();
-/*N*/     SaveFormat();
-/*N*/     SaveFontFormatList();
-/*N*/ }
-
 
 /*N*/ USHORT SmMathConfig::GetSymbolCount() const
 /*N*/ {
@@ -531,7 +491,7 @@ static const char* aRootName = "Office.Math";
 /*N*/     if (!pFontFormatList)
 /*N*/         pFontFormatList = new SmFontFormatList;
 /*N*/     else
-/*?*/     {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pFontFormatList->Clear();
+/*?*/     {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ) );
 /*N*/
@@ -616,6 +576,7 @@ static const char* aRootName = "Office.Math";
 /*N*/       ++pValue;
 /*N*/
 /*N*/         DBG_ASSERT( bOK, "read FontFormat failed" );
+/*N*/         (void)bOK;
 /*N*/   }
 /*N*/
 /*N*/     return aRes;
@@ -643,9 +604,10 @@ static const char* aRootName = "Office.Math";
 /*?*/     OUString aDelim( OUString::valueOf( (sal_Unicode) '/' ) );
 /*?*/     for (USHORT i = 0;  i < nCount;  ++i)
 /*?*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 String aFntFmtId( rFntFmtList.GetFontFormatId( i ) );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*?*/     }
 /*?*/     DBG_ASSERT( pVal - pValues == nCount * nSymbolProps, "properties missing" );
+/*?*/     (void)pVal;
 /*?*/     aCfg.ReplaceSetProperties( A2OU( FONT_FORMAT_LIST ) , aValues );
 /*?*/
 /*?*/     rFntFmtList.SetModified( FALSE );
@@ -670,8 +632,8 @@ static const char* aRootName = "Office.Math";
 /*N*/         const Any *pValues = aValues.getConstArray();
 /*N*/         const Any *pVal = pValues;
 /*N*/
-/*N*/         INT16   nTmp16;
-/*N*/         BOOL    bTmp;
+/*N*/         INT16   nTmp16( 0 );
+/*N*/         BOOL    bTmp( 0 );
 /*N*/
 /*N*/         // Print/Title
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= bTmp))
@@ -692,11 +654,6 @@ static const char* aRootName = "Office.Math";
 /*N*/         // Print/ZoomFactor
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= nTmp16))
 /*N*/             pOther->nPrintZoomFactor = nTmp16;
-/*        ++pVal;
-        // Misc/NoSymbolsWarning
-        if (pVal->hasValue()  &&  (*pVal >>= bTmp))
-            pOther->bNoSymbolsWarning = bTmp;
-*/
 /*N*/         ++pVal;
 /*N*/         // Misc/IgnoreSpacesRight
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= bTmp))
@@ -745,9 +702,6 @@ static const char* aRootName = "Office.Math";
 /*?*/     *pValue++ <<= (INT16) pOther->ePrintSize;
 /*?*/     // Print/ZoomFactor
 /*?*/     *pValue++ <<= (INT16) pOther->nPrintZoomFactor;
-/*    // Misc/NoSymbolsWarning
-    *pValue++ <<= (BOOL) pOther->bNoSymbolsWarning;
-*/
 /*?*/     // Misc/IgnoreSpacesRight
 /*?*/     *pValue++ <<= (BOOL) pOther->bIgnoreSpacesRight;
 /*?*/     // View/ToolboxVisible
@@ -780,8 +734,8 @@ static const char* aRootName = "Office.Math";
 /*N*/         const Any *pVal = pValues;
 /*N*/
 /*N*/         OUString    aTmpStr;
-/*N*/         INT16       nTmp16;
-/*N*/         BOOL        bTmp;
+/*N*/         INT16       nTmp16( 0 );
+/*N*/         BOOL        bTmp( 0 );
 /*N*/
 /*N*/         // StandardFormat/Textmode
 /*N*/         if (pVal->hasValue()  &&  (*pVal >>= bTmp))
@@ -885,7 +839,7 @@ static const char* aRootName = "Office.Math";
 /*?*/
 /*?*/         if (!pFormat->IsDefaultFont( i ))
 /*?*/         {
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SmFontFormat aFntFmt( pFormat->GetFont( i ) );
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*?*/         }
 /*?*/
 /*?*/         *pValue++ <<= aFntFmtId;
@@ -968,7 +922,7 @@ static const char* aRootName = "Office.Math";
 /*N*/ }
 
 
-    void SmMathConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SmMathConfigItem::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
     void SmMathConfigItem::Commit() {}
 
 
@@ -983,12 +937,14 @@ static const char* aRootName = "Office.Math";
 /*N*/     return pOther->bAutoRedraw;
 /*N*/ }
 
-/*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, p )
+/*N*/ IMPL_LINK( SmMathConfig, TimeOut, Timer *, EMPTYARG )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Save();
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /////////////////////////////////////////////////////////////////
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

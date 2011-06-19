@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,24 +29,20 @@
 #ifndef _SC_BCASLOT_HXX
 #define _SC_BCASLOT_HXX
 
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "global.hxx"
 #include "brdcst.hxx"
 namespace binfilter {
 
 class ScBroadcastArea;
-class ScBroadcastAreaList;
+typedef ::std::vector< ScBroadcastArea* > ScBroadcastAreaList;
 
 #define BCA_INITGROWSIZE 16
 typedef ScBroadcastArea* ScBroadcastAreaPtr;
 SV_DECL_PTRARR_SORT( ScBroadcastAreas, ScBroadcastAreaPtr,
-    BCA_INITGROWSIZE, BCA_INITGROWSIZE )//STRIP008 ;
+    BCA_INITGROWSIZE, BCA_INITGROWSIZE )
 
 // wird in einem nach Objekten sortierten SV_PTRARR_SORT benutzt
 class ScBroadcastArea : public ScRange, public SfxBroadcaster
@@ -157,3 +154,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

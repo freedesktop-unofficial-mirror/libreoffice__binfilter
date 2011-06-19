@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,18 +28,10 @@
 
 #include <stdio.h>
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_LAYEREXPORT_HXX_
 #include "layerexport.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _XMLOFF_FORMS_OFFICEFORMS_HXX_
 #include "officeforms.hxx"
-#endif
 namespace binfilter {
 
 
@@ -100,7 +93,7 @@ namespace xmloff
         }
         catch(Exception&)
         {
-            OSL_ENSURE(sal_False, "OFormLayerXMLExport::examine: could not examine the draw page!");
+            OSL_FAIL("OFormLayerXMLExport::examine: could not examine the draw page!");
         }
     }
 
@@ -149,3 +142,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

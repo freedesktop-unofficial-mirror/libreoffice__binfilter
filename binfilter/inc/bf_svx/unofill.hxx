@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SVX_UNOFILL_HXX_
 #define _SVX_UNOFILL_HXX_
 
-#ifndef _COM_SUN_STAR_UNO_XINTERFACE_HPP_
 #include <com/sun/star/uno/XInterface.hpp>
-#endif
 namespace binfilter {
 
 class SdrModel;
@@ -44,3 +43,5 @@ class SdrModel;
 
 }//end of namespace binfilter
 #endif // _SVX_UNOFILL_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

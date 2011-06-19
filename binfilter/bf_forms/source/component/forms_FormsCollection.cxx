@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,17 +28,11 @@
 
 #include "FormsCollection.hxx"
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -111,7 +106,7 @@ Any SAL_CALL OFormsCollection::queryAggregation(const Type& _rType) throw(Runtim
 //------------------------------------------------------------------------------
 ::rtl::OUString SAL_CALL OFormsCollection::getImplementationName() throw(RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii("com.sun.star.comp.forms.OFormsCollection");
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.forms.OFormsCollection" ));
 }
 
 //------------------------------------------------------------------------------
@@ -131,7 +126,7 @@ StringSequence SAL_CALL OFormsCollection::getSupportedServiceNames() throw(Runti
     StringSequence aReturn(2);
 
     aReturn.getArray()[0] = FRM_SUN_FORMS_COLLECTION;
-    aReturn.getArray()[1] = ::rtl::OUString::createFromAscii("com.sun.star.form.FormComponents");
+    aReturn.getArray()[1] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.FormComponents" ));
 
     return aReturn;
 }
@@ -167,3 +162,5 @@ InterfaceRef  OFormsCollection::getParent() throw( RuntimeException )
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

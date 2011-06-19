@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,18 +27,12 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 #include "XMLBitmapRepeatOffsetPropertyHandler.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -63,7 +58,7 @@ XMLBitmapRepeatOffsetPropertyHandler::~XMLBitmapRepeatOffsetPropertyHandler()
 sal_Bool XMLBitmapRepeatOffsetPropertyHandler::importXML(
     const OUString& rStrImpValue,
     Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     SvXMLTokenEnumerator aTokenEnum( rStrImpValue );
     OUString aToken;
@@ -90,11 +85,11 @@ sal_Bool XMLBitmapRepeatOffsetPropertyHandler::importXML(
 sal_Bool XMLBitmapRepeatOffsetPropertyHandler::exportXML(
     OUString& rStrExpValue,
     const Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     OUStringBuffer aOut;
 
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if( rValue >>= nValue )
     {
         SvXMLUnitConverter::convertPercent( aOut, nValue );
@@ -109,3 +104,5 @@ sal_Bool XMLBitmapRepeatOffsetPropertyHandler::exportXML(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

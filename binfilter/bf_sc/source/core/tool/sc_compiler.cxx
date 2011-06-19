@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -41,12 +39,8 @@
 #include <bf_svtools/zforlist.hxx>
 #include <tools/rcid.h>
 #include <bf_svtools/bf_solar.h>
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -92,7 +86,7 @@ namespace binfilter {
 /*N*/   BOOL bTemp;
 /*N*/ };
 
-/*N*/ static sal_Char* pInternal[ 5 ] = { "GAME", "SPEW", "TTT", "STARCALCTEAM", "ANTWORT" };
+/*N*/ static const sal_Char* pInternal[ 5 ] = { "GAME", "SPEW", "TTT", "STARCALCTEAM", "ANTWORT" };
 
 
 /////////////////////////////////////////////////////////////////////////
@@ -156,11 +150,6 @@ namespace binfilter {
 /*N*/       case ocNominal:
 /*N*/         case ocPercentSign:
 /*N*/           return NUMBERFORMAT_PERCENT;
-/*N*/ //        case ocSum:
-/*N*/ //        case ocSumSQ:
-/*N*/ //        case ocProduct:
-/*N*/ //        case ocAverage:
-/*N*/ //            return -1;
 /*N*/       default:
 /*N*/           return NUMBERFORMAT_NUMBER;
 /*N*/   }
@@ -436,10 +425,6 @@ namespace binfilter {
 /*N*/   if (bCompileXML)
 /*N*/       rBuffer.append(sal_Unicode('['));
 /*N*/   ComplRefData aRef( rRef );
-/*N*/   // falls abs/rel nicht separat: Relativ- in Abs-Referenzen wandeln!
-/*N*/ //    AdjustReference( aRef.Ref1 );
-/*N*/ //    if( !bSingleRef )
-/*N*/ //        AdjustReference( aRef.Ref2 );
 /*N*/   aRef.Ref1.CalcAbsIfRel( aPos );
 /*N*/   if( !bSingleRef )
 /*N*/       aRef.Ref2.CalcAbsIfRel( aPos );
@@ -580,7 +565,6 @@ namespace binfilter {
 /*N*/   const sal_Unicode* pSrc = pStart + nSrcPos;
 /*N*/   BOOL bi18n = FALSE;
 /*N*/   sal_Unicode c = *pSrc;
-/*N*/   sal_Unicode cLast = 0;
 /*N*/   BOOL bQuote = FALSE;
 /*N*/   ScanState eState = ssGetChar;
 /*N*/   xub_StrLen nSpaces = 0;
@@ -692,8 +676,9 @@ namespace binfilter {
 /*N*/               if( nMask & SC_COMPILER_C_STRING_SEP )
 /*N*/                   eState = ssStop;
 /*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
-/*N*/       cLast = c;
 /*N*/       c = *pSrc;
 /*N*/   }
 /*N*/   if ( bi18n )
@@ -829,8 +814,6 @@ namespace binfilter {
 /*N*/   double fVal;
 /*N*/   sal_uInt32 nIndex = ( pSymbolTable == pSymbolTableEnglish ?
 /*N*/       pDoc->GetFormatTable()->GetStandardIndex( LANGUAGE_ENGLISH_US ) : 0 );
-/*N*/ //    ULONG nIndex = 0;
-/*N*/ ////  ULONG nIndex = pDoc->GetFormatTable()->GetStandardIndex(ScGlobal::eLnge);
 /*N*/   if (pDoc->GetFormatTable()->IsNumberFormat( rSym, nIndex, fVal ) )
 /*N*/   {
 /*N*/       USHORT nType = pDoc->GetFormatTable()->GetType(nIndex);
@@ -1097,6 +1080,8 @@ namespace binfilter {
 /*?*/                           case CELLTYPE_EDIT:
 /*?*/                               ((ScEditCell*)pCell)->GetString( aStr );
 /*?*/                           break;
+/*?*/                           default:
+/*?*/                           break;
 /*?*/                       }
 /*?*/                         if ( ScGlobal::pTransliteration->isEqual( aStr, aName ) )
 /*?*/                       {
@@ -1118,7 +1103,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if ( !bInList && pDoc->GetDocOptions().IsLookUpColRowNames() )
 /*N*/   {   // in der aktuellen Tabelle suchen
-/*N*/       long nDistance, nMax;
+/*N*/       long nDistance(0), nMax(0);
 /*N*/       long nMyCol = (long) aPos.Col();
 /*N*/       long nMyRow = (long) aPos.Row();
 /*N*/       BOOL bTwo = FALSE;
@@ -1150,6 +1135,8 @@ namespace binfilter {
 /*N*/                   break;
 /*N*/                   case CELLTYPE_EDIT:
 /*N*/                       ((ScEditCell*)pCell)->GetString( aStr );
+/*N*/                   break;
+/*N*/                   default:
 /*N*/                   break;
 /*N*/               }
 /*N*/                 if ( ScGlobal::pTransliteration->isEqual( aStr, aName ) )
@@ -1309,12 +1296,12 @@ namespace binfilter {
 /*N*/       {
 /*N*/           String aSymbol( aCorrectedSymbol );
 /*N*/           String aDoc;
-/*N*/           xub_StrLen nPos;
+/*N*/           xub_StrLen nLclPos;
 /*N*/           if ( aSymbol.GetChar(0) == '\''
-/*N*/             && ((nPos = aSymbol.SearchAscii( "'#" )) != STRING_NOTFOUND) )
+/*N*/             && ((nLclPos = aSymbol.SearchAscii( "'#" )) != STRING_NOTFOUND) )
 /*N*/           {   // 'Doc'# abspalten, kann d:\... und sonstwas sein
-/*N*/               aDoc = aSymbol.Copy( 0, nPos + 2 );
-/*N*/               aSymbol.Erase( 0, nPos + 2 );
+/*N*/               aDoc = aSymbol.Copy( 0, nLclPos + 2 );
+/*N*/               aSymbol.Erase( 0, nLclPos + 2 );
 /*N*/           }
 /*N*/           xub_StrLen nRefs = aSymbol.GetTokenCount( ':' );
 /*N*/           BOOL bColons;
@@ -1397,13 +1384,13 @@ namespace binfilter {
 /*N*/               for ( int j=0; j<nRefs; j++ )
 /*N*/               {
 /*N*/                   xub_StrLen nTmp = 0;
-/*N*/                   xub_StrLen nPos = STRING_NOTFOUND;
+/*N*/                   xub_StrLen nLclPosB = STRING_NOTFOUND;
 /*N*/                   while ( (nTmp = aRef[j].Search( '.', nTmp )) != STRING_NOTFOUND )
-/*N*/                       nPos = nTmp++;      // der letzte zaehlt
-/*N*/                   if ( nPos != STRING_NOTFOUND )
+/*N*/                       nLclPosB = nTmp++;      // der letzte zaehlt
+/*N*/                   if ( nLclPosB != STRING_NOTFOUND )
 /*N*/                   {
-/*N*/                       aTab[j] = aRef[j].Copy( 0, nPos + 1 );  // mit '.'
-/*N*/                       aRef[j].Erase( 0, nPos + 1 );
+/*N*/                       aTab[j] = aRef[j].Copy( 0, nLclPosB + 1 );  // mit '.'
+/*N*/                       aRef[j].Erase( 0, nLclPosB + 1 );
 /*N*/                   }
 /*N*/                   String aOld( aRef[j] );
 /*N*/                   String aStr2;
@@ -1709,8 +1696,8 @@ namespace binfilter {
 /*N*/               // kurz: wenn kein eigenstaendiger Ausdruck
 /*N*/               ScToken* p1 = pArr->PeekPrevNoSpaces();
 /*N*/               ScToken* p2 = pArr->PeekNextNoSpaces();
-/*N*/               OpCode eOp1 = (p1 ? p1->GetOpCode() : ocSep);
-/*N*/               OpCode eOp2 = (p2 ? p2->GetOpCode() : ocSep);
+/*N*/               OpCode eOp1 = (p1 ? p1->GetOpCode() : static_cast<OpCode>(ocSep));
+/*N*/               OpCode eOp2 = (p2 ? p2->GetOpCode() : static_cast<OpCode>(ocSep));
 /*N*/               BOOL bBorder1 = (eOp1 == ocSep || eOp1 == ocOpen);
 /*N*/               BOOL bBorder2 = (eOp2 == ocSep || eOp2 == ocClose);
 /*N*/               BOOL bAddPair = !(bBorder1 && bBorder2);
@@ -1875,8 +1862,8 @@ namespace binfilter {
 /*N*/               ScToken* p1 = pArr->PeekPrevNoSpaces();
 /*N*/               ScToken* p2 = pArr->PeekNextNoSpaces();
 /*N*/               // Anfang/Ende einer Formel => Single
-/*N*/               OpCode eOp1 = p1 ? p1->GetOpCode() : ocAdd;
-/*N*/               OpCode eOp2 = p2 ? p2->GetOpCode() : ocAdd;
+/*N*/               OpCode eOp1 = p1 ? p1->GetOpCode() : static_cast<OpCode>(ocAdd);
+/*N*/               OpCode eOp2 = p2 ? p2->GetOpCode() : static_cast<OpCode>(ocAdd);
 /*N*/               if ( eOp1 != ocColRowName && eOp1 != ocIntersect
 /*N*/                   && eOp2 != ocColRowName && eOp2 != ocIntersect )
 /*N*/               {
@@ -1976,15 +1963,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else if( pToken->GetType() == svSingleRef )
 /*N*/   {
-/*N*/ //        if (!pDoc->HasTable( pToken->aRef.Ref1.nTab ) )
-/*N*/ //            SetError(errNoRef);
 /*N*/       pArr->nRefs++;
 /*N*/   }
 /*N*/   else if( pToken->GetType() == svDoubleRef )
 /*N*/   {
-/*N*/ //        if (!pDoc->HasTable( pToken->aRef.Ref1.nTab ) ||
-/*N*/ //            !pDoc->HasTable( pToken->aRef.Ref2.nTab ))
-/*N*/ //            SetError(errNoRef);
 /*N*/       pArr->nRefs++;
 /*N*/   }
 /*N*/   return TRUE;
@@ -2077,6 +2059,8 @@ namespace binfilter {
 /*?*/                                   aCorrectedSymbol = c;
 /*?*/                                   bCorrected = TRUE;
 /*?*/                               }
+/*?*/                           break;
+/*?*/                           default:
 /*?*/                           break;
 /*?*/                       }
 /*?*/                   }
@@ -2230,6 +2214,8 @@ namespace binfilter {
 /*N*/               case ocGetActTime:
 /*N*/                   pArr->SetRecalcModeAlways();
 /*N*/               break;
+/*N*/               default:
+/*N*/               break;
 /*N*/           }
 /*N*/           pFacToken = pToken;
 /*N*/           eOp = NextToken();
@@ -2256,6 +2242,8 @@ namespace binfilter {
 /*N*/             {
 /*N*/                 case ocFormula:
 /*?*/                     pArr->SetRecalcModeAlways();
+/*N*/                 break;
+/*N*/                 default:
 /*N*/                 break;
 /*N*/             }
 /*N*/           pFacToken = pToken;
@@ -2387,6 +2375,8 @@ namespace binfilter {
 /*?*/               case ocRow :
 /*?*/                 case ocCell :   // CELL needs recalc on move for some possible type values
 /*?*/                   pArr->SetRecalcModeOnRefMove();
+/*?*/               break;
+/*?*/               default:
 /*?*/               break;
 /*N*/           }
 /*N*/       }
@@ -2808,7 +2798,7 @@ namespace binfilter {
 /*N*/   return pRangeData;
 /*N*/ }
 
-/*N*/  ScRangeData* ScCompiler::UpdateDeleteTab(USHORT nTable, BOOL bIsMove, BOOL bIsName,
+/*N*/  ScRangeData* ScCompiler::UpdateDeleteTab(USHORT nTable, BOOL /*bIsMove*/, BOOL bIsName,
 /*N*/                                BOOL& rChanged)
 /*N*/  {
 /*N*/   ScRangeData* pRangeData = NULL;
@@ -2997,21 +2987,21 @@ namespace binfilter {
 /*N*/   return pRangeData;
 /*N*/  }
 
-/*N*/  ScToken* ScCompiler::CreateStringFromToken( String& rFormula, ScToken* pToken,
+/*N*/  ScToken* ScCompiler::CreateStringFromToken( String& rFormula, ScToken* pInToken,
 /*N*/       BOOL bAllowArrAdvance )
 /*N*/  {
 /*N*/      ::rtl::OUStringBuffer aBuffer;
-/*N*/      ScToken* p = CreateStringFromToken( aBuffer, pToken, bAllowArrAdvance );
+/*N*/      ScToken* p = CreateStringFromToken( aBuffer, pInToken, bAllowArrAdvance );
 /*N*/      rFormula += aBuffer;
 /*N*/      return p;
 /*N*/  }
 
-/*N*/ ScToken* ScCompiler::CreateStringFromToken( ::rtl::OUStringBuffer& rBuffer, ScToken* pToken,
+/*N*/ ScToken* ScCompiler::CreateStringFromToken( ::rtl::OUStringBuffer& rBuffer, ScToken* pInToken,
 /*N*/       BOOL bAllowArrAdvance )
 /*N*/ {
 /*N*/   BOOL bNext = TRUE;
 /*N*/   BOOL bSpaces = FALSE;
-/*N*/   ScToken* t = pToken;
+/*N*/   ScToken* t = pInToken;
 /*N*/   OpCode eOp = t->GetOpCode();
 /*N*/   if( eOp >= ocAnd && eOp <= ocOr )
 /*N*/   {
@@ -3040,7 +3030,7 @@ namespace binfilter {
 /*N*/       rBuffer.append(pSymbolTable[eOp]);
 /*N*/   else
 /*N*/   {
-/*?*/       DBG_ERROR("Unbekannter OpCode");
+/*?*/       OSL_FAIL("Unbekannter OpCode");
 /*?*/       rBuffer.append(ScGlobal::GetRscString(STR_NO_NAME_REF));
 /*N*/   }
 /*N*/   if( bNext ) switch( t->GetType() )
@@ -3146,6 +3136,8 @@ namespace binfilter {
 /*N*/  /*?*/                        aBuffer.append(pDBData->GetName());
 /*?*/               }
 /*?*/               break;
+/*?*/               default:
+/*?*/               break;
 /*?*/           }
 /*N*/           if ( aBuffer.getLength() )
 /*N*/               rBuffer.append(aBuffer);
@@ -3158,7 +3150,7 @@ namespace binfilter {
 /*N*/           //  show translated name of StarOne AddIns
 /*N*/           String aAddIn( t->GetExternal() );
 /*N*/           if ( pSymbolTable != pSymbolTableEnglish )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001   ScGlobal::GetAddInCollection()->LocalizeString( aAddIn );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           rBuffer.append(aAddIn);
 /*N*/       }
 /*N*/           break;
@@ -3168,7 +3160,7 @@ namespace binfilter {
 /*N*/       case svMissing:
 /*N*/           break;      // Opcodes
 /*N*/       default:
-/*N*/           DBG_ERROR("ScCompiler:: GetStringFromToken errUnknownVariable");
+/*N*/           OSL_FAIL("ScCompiler:: GetStringFromToken errUnknownVariable");
 /*N*/   }                                           // of switch
 /*N*/   if( bSpaces )
 /*?*/       rBuffer.append(sal_Unicode(' '));
@@ -3178,7 +3170,7 @@ namespace binfilter {
 /*N*/           t = pArr->Next();
 /*N*/       return t;
 /*N*/   }
-/*N*/   return pToken;
+/*N*/   return pInToken;
 /*N*/ }
 
 /*N*/ void ScCompiler::CreateStringFromTokenArray( String& rFormula )
@@ -3242,3 +3234,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

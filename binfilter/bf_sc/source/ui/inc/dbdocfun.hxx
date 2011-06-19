@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 class String;
 namespace binfilter {
@@ -58,7 +57,7 @@ namespace com { namespace sun { namespace star {
         class XResultSet;
     }
 } } }
-namespace binfilter {//STRIP009
+namespace binfilter {
 // ---------------------------------------------------------------------------
 
 class ScDBDocFunc
@@ -103,3 +102,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

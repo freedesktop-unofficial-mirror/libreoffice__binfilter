@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,35 +26,20 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 //___________________________________________________________________
 
-#ifndef _SC_XMLCONSOLIDATIONCONTEXT_HXX
 #include "XMLConsolidationContext.hxx"
-#endif
 
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
-#ifndef SC_RANGEUTL_HXX
 #include "rangeutl.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -64,16 +50,16 @@ using namespace xmloff::token;
 //___________________________________________________________________
 
 ScXMLConsolidationContext::ScXMLConsolidationContext(
-        ScXMLImport& rImport,
+        ScXMLImport& rInImport,
         USHORT nPrfx,
         const OUString& rLName,
         const uno::Reference< xml::sax::XAttributeList >& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     eFunction( SUBTOTAL_FUNC_NONE ),
     bLinkToSource( sal_False ),
     bTargetAddr(sal_False)
 {
-    rImport.LockSolarMutex();
+    rInImport.LockSolarMutex();
     if( !xAttrList.is() ) return;
 
     sal_Int16               nAttrCount      = xAttrList->getLength();
@@ -83,10 +69,10 @@ ScXMLConsolidationContext::ScXMLConsolidationContext(
     {
         OUString sAttrName  = xAttrList->getNameByIndex( nIndex );
         OUString sValue     = xAttrList->getValueByIndex( nIndex );
-        OUString aLocalName;
-        USHORT nPrefix      = GetScImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        USHORT nLclPrefix       = GetScImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_CONSOLIDATION_ATTR_FUNCTION:
                 eFunction = ScXMLConverter::GetSubTotalFuncFromString( sValue );
@@ -116,11 +102,11 @@ ScXMLConsolidationContext::~ScXMLConsolidationContext()
 }
 
 SvXMLImportContext *ScXMLConsolidationContext::CreateChildContext(
-        USHORT nPrefix,
+        USHORT nInPrefix,
         const OUString& rLName,
-        const uno::Reference< xml::sax::XAttributeList>& xAttrList )
+        const uno::Reference< xml::sax::XAttributeList>& /*xAttrList*/ )
 {
-    return new SvXMLImportContext( GetImport(), nPrefix, rLName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 }
 
 void ScXMLConsolidationContext::EndElement()
@@ -133,7 +119,6 @@ void ScXMLConsolidationContext::EndElement()
         aConsParam.nTab = aTargetAddr.Tab();
         aConsParam.eFunction = eFunction;
 
-        sal_Bool bError = sal_False;
         USHORT nCount = (USHORT) Min( ScXMLConverter::GetTokenCount( sSourceList ), (sal_Int32)0xFFFF );
         ScArea** ppAreas = nCount ? new ScArea*[ nCount ] : NULL;
         if( ppAreas )
@@ -146,7 +131,7 @@ void ScXMLConsolidationContext::EndElement()
                 if ( !ScXMLConverter::GetAreaFromString(
                     *ppAreas[ nIndex ], sSourceList, GetScImport().GetDocument(), nOffset ) )
                 {
-                    bError = sal_True;      //! handle error
+                    //! handle error
                 }
             }
 
@@ -176,3 +161,5 @@ void ScXMLConsolidationContext::EndElement()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

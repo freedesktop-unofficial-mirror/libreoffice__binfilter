@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,151 +31,70 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
 #include <com/sun/star/text/XTextDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXT_HPP_
 #include <com/sun/star/text/XText.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
 #include <com/sun/star/uno/RuntimeException.hpp>
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVDPAGE_HXX
 #include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
 #include <bf_svx/xmlgrhlp.hxx>
 #endif
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
-#ifndef _SVDDEF_HXX
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
-#ifndef _XMLOFF_PROGRESSBARHELPER_HXX
 #include <bf_xmloff/ProgressBarHelper.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX //autogen wg. SwPaM
 #include <pam.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
-#ifndef _SWMODULE_HXX //autogen wg. SW_MOD
 #include <swmodule.hxx>
-#endif
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _DOCSTAT_HXX
 #include <docstat.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 
-#ifndef _XMLTEXTE_HXX
 #include <xmltexte.hxx>
-#endif
-#ifndef _XMLEXP_HXX
 #include <xmlexp.hxx>
-#endif
 
 #ifndef _COMPHELPER_PROCESSFACTORYHXX_
 #include <comphelper/processfactory.hxx>
 #endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
 
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include <bf_svx/forbiddencharacterstable.hxx>
-#endif
 
-#ifndef _FORBIDDEN_CHARACTERS_ENUM_HXX
 #include <ForbiddenCharactersEnum.hxx>
-#endif
 
 // for locking SolarMutex: svapp + mutex
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <osl/mutex.hxx>
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::xml::sax;
@@ -187,6 +107,9 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::form;
 using namespace ::com::sun::star::i18n;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 #ifdef XML_CORE_API
 void SwXMLExport::SetCurPaM( SwPaM& rPaM, sal_Bool bWhole, sal_Bool bTabOnly )
@@ -291,22 +214,22 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
     Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
     Reference < XText > xText = xTextDoc->getText();
     Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-    ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
     if( !xTextTunnel.is() )
         return ERR_SWG_WRITE_ERROR;
 
     // from here, we use core interfaces -> lock Solar-Mutex (#91949#)
-    vos::OGuard aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     SwXText *pText = (SwXText *)xTextTunnel->getSomething(
                                         SwXText::getUnoTunnelId() );
-    ASSERT( pText, "SwXText missing" );
+    OSL_ENSURE( pText, "SwXText missing" );
     if( !pText )
         return ERR_SWG_WRITE_ERROR;
 
     SwDoc *pDoc = pText->GetDoc();
 
-    sal_Bool bExtended = sal_False;
+    sal_Bool bLclExtended = sal_False;
     if( (getExportFlags() & (EXPORT_FONTDECLS|EXPORT_STYLES|
                              EXPORT_MASTERSTYLES|EXPORT_CONTENT)) != 0 )
     {
@@ -331,7 +254,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
                 {
                     const SvXMLAttrContainerItem *pUnknown =
                                 PTR_CAST( SvXMLAttrContainerItem, pItem );
-                    ASSERT( pUnknown, "illegal attribute container item" );
+                    OSL_ENSURE( pUnknown, "illegal attribute container item" );
                     if( pUnknown && (pUnknown->GetAttrCount() > 0) )
                     {
                         sal_uInt16 nIdx = pUnknown->GetFirstNamespaceIndex();
@@ -344,7 +267,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
                                                 XML_NAMESPACE_UNKNOWN );
                             nIdx = pUnknown->GetNextNamespaceIndex( nIdx );
                         }
-                        bExtended = sal_True;
+                        bLclExtended = sal_True;
                     }
                 }
             }
@@ -359,7 +282,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
         pTwipUnitConv->setXMLMeasureUnit( eUnit );
     }
 
-    SetExtended( bExtended );
+    SetExtended( bLclExtended );
 
     SwDocStat aDocStat( pDoc->GetDocStat() );
     if( (getExportFlags() & EXPORT_META) != 0 )
@@ -433,8 +356,8 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
     if( !GetGraphicResolver().is() )
     {
         pGraphicResolver = SvXMLGraphicHelper::Create( GRAPHICHELPER_MODE_WRITE );
-        Reference< XGraphicObjectResolver > xGraphicResolver( pGraphicResolver );
-        SetGraphicResolver( xGraphicResolver );
+        Reference< XGraphicObjectResolver > xLclGraphicResolver( pGraphicResolver );
+        SetGraphicResolver( xLclGraphicResolver );
     }
 
     SvXMLEmbeddedObjectHelper *pEmbeddedResolver = 0;
@@ -446,8 +369,8 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
             pEmbeddedResolver = SvXMLEmbeddedObjectHelper::Create(
                                             *pPersist,
                                             EMBEDDEDOBJECTHELPER_MODE_WRITE );
-            Reference< XEmbeddedObjectResolver > xEmbeddedResolver( pEmbeddedResolver );
-            SetEmbeddedResolver( xEmbeddedResolver );
+            Reference< XEmbeddedObjectResolver > xLclEmbeddedResolver( pEmbeddedResolver );
+            SetEmbeddedResolver( xLclEmbeddedResolver );
         }
     }
 
@@ -492,7 +415,7 @@ sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
     if( pEmbeddedResolver )
         SvXMLEmbeddedObjectHelper::Destroy( pEmbeddedResolver );
 
-    ASSERT( !pTableLines, "there are table columns infos left" );
+    OSL_ENSURE( !pTableLines, "there are table columns infos left" );
 
     return nRet;
 }
@@ -515,7 +438,7 @@ XMLShapeExport* SwXMLExport::CreateShapeExport()
     return pShapeExport;
 }
 
-__EXPORT SwXMLExport::~SwXMLExport()
+SwXMLExport::~SwXMLExport()
 {
     _FinitItemExport();
 }
@@ -532,7 +455,7 @@ void SwXMLExport::GetViewSettings(Sequence<PropertyValue>& aProps)
 {
     Reference< XMultiServiceFactory > xServiceFactory =
             ::legacy_binfilters::getLegacyProcessServiceFactory();
-    ASSERT( xServiceFactory.is(),
+    OSL_ENSURE( xServiceFactory.is(),
             "XMLReader::Read: got no service manager" );
     if( !xServiceFactory.is() )
         return;
@@ -546,19 +469,6 @@ void SwXMLExport::GetViewSettings(Sequence<PropertyValue>& aProps)
             (OUString( RTL_CONSTASCII_USTRINGPARAM ("com.sun.star.document.IndexedPropertyValues") ) ), UNO_QUERY);
     if (xBox.is() )
     {
-#if 0
-        Any aAny;
-        sal_Int32 i=0;
-        for ( SfxViewFrame *pFrame = SfxViewFrame::GetFirst();
-                pFrame;
-                i++, pFrame = SfxViewFrame::GetNext(*pFrame ) )
-        {
-            Sequence < PropertyValue > aSequence;
-            pFrame->GetViewShell()->WriteUserDataSequence( aSequence, sal_False );
-            aAny <<= aSequence;
-            xBox->insertByIndex(i, aAny);
-        }
-#endif
         pValue[nIndex].Name = OUString( RTL_CONSTASCII_USTRINGPARAM ( "Views") );
         pValue[nIndex++].Value <<= Reference < XIndexAccess > ( xBox, UNO_QUERY );
     }
@@ -571,12 +481,12 @@ void SwXMLExport::GetViewSettings(Sequence<PropertyValue>& aProps)
         Reference < XTextDocument > xTextDoc( GetModel(), UNO_QUERY );
         xText = xTextDoc->getText();
         Reference<XUnoTunnel> xTextTunnel( xText, UNO_QUERY);
-        ASSERT( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
+        OSL_ENSURE( xTextTunnel.is(), "missing XUnoTunnel for Cursor" );
         if( xTextTunnel.is() )
         {
             pText = (SwXText *)xTextTunnel->getSomething(
                                                 SwXText::getUnoTunnelId() );
-            ASSERT( pText, "SwXText missing" );
+            OSL_ENSURE( pText, "SwXText missing" );
         }
     }
 
@@ -591,7 +501,7 @@ void SwXMLExport::GetViewSettings(Sequence<PropertyValue>& aProps)
         pDoc->GetDocShell()->SfxInPlaceObject::GetVisArea();
     sal_Bool bTwip = pDoc->GetDocShell()->SfxInPlaceObject::GetMapUnit ( ) == MAP_TWIP;
 
-    ASSERT( bTwip || ( pDoc->GetDocShell()->SfxInPlaceObject::GetMapUnit() == MAP_100TH_MM ),
+    OSL_ENSURE( bTwip || ( pDoc->GetDocShell()->SfxInPlaceObject::GetMapUnit() == MAP_100TH_MM ),
         "Map unit for visible area is neither in TWIPS nor in 100th mm!" );
 
     pValue[nIndex].Name = OUString( RTL_CONSTASCII_USTRINGPARAM ( "ViewAreaTop") );
@@ -687,7 +597,7 @@ void SwXMLExport::_ExportContent()
         Any aAny = xPropSet->getPropertyValue( sTwoDigitYear );
         aAny <<= (sal_Int16)1930;
 
-        sal_Int16 nYear;
+        sal_Int16 nYear(0);
         aAny >>= nYear;
         if (nYear != 1930 )
         {
@@ -909,7 +819,7 @@ void SwXMLExport::ExportCurPaM( sal_Bool bExportWholePaM )
         aNextNumInfo.Set( *pNd );
         ExportListChange( aPrevNumInfo, aNextNumInfo );
 
-        ASSERT( !(pNd->IsGrfNode() || pNd->IsOLENode()),
+        OSL_ENSURE( !(pNd->IsGrfNode() || pNd->IsOLENode()),
                 "SwXMLExport::exportCurPaM: grf or OLE node unexpected" );
         if( pNd->IsTxtNode() )
         {
@@ -948,3 +858,5 @@ void SwXMLExport::ExportCurPaM( sal_Bool bExportWholePaM )
 }
 #endif
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

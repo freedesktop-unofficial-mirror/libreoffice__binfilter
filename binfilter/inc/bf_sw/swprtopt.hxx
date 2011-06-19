@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_MULTISEL_HXX //autogen
 #include <tools/multisel.hxx>
-#endif
-#ifndef _SW_PRINTDATA_HXX
 #include <printdata.hxx>
-#endif
 namespace binfilter {
 
 #define POSTITS_NONE    0
@@ -49,18 +46,18 @@ class SwPrtOptions : public SwPrintData
     String sJobName;
 
 public:
-    SwPrtOptions( const String& rJobName ) : aOffset( Point(0,0) ),
-        nMergeCnt( 0 ), nMergeAct( 0 ), sJobName( rJobName ),
-        nJobNo( 1 ),  bCollate(FALSE), bPrintSelection (FALSE),
-        bJobStartet(FALSE)
+    SwPrtOptions( const String& rJobName )
+        : nJobNo( 1 )
+        , sJobName( rJobName )
+        , aOffset( Point(0,0) )
+        , nMergeCnt( 0 )
+        , nMergeAct( 0 )
+        , bCollate(FALSE)
+        , bPrintSelection (FALSE)
+        , bJobStartet(FALSE)
     {}
 
     const String& GetJobName() const    { return sJobName; }
-
-#if defined(TCPP)
-    // seit neuestem (SV 223) kann der keinen mehr generieren
-    inline  SwPrtOptions(const SwPrtOptions& rNew) {*this = rNew;}
-#endif
 
     MultiSelection  aMulti;
     Point  aOffset;
@@ -97,3 +94,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

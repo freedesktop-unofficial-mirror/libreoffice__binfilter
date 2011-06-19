@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #endif
 
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
 #ifndef _ZFORLIST_HXX
 #ifndef _ZFORLIST_DECLARE_TABLE
@@ -43,37 +42,21 @@
 
 
 
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
 
-#ifndef _SCHATTR_HXX
 #include "schattr.hxx"
-#endif
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SCH_STLPOOL_HXX
 #include "stlpool.hxx"
-#endif
-#ifndef _SCH_SCHIOCMP_HXX
 #include "schiocmp.hxx"
-#endif
-#ifndef _SCH_SCHRESID_HXX
 #include "schresid.hxx"
-#endif
-#ifndef _SCH_DOCSHELL_HXX
 #include "docshell.hxx"
-#endif
 
 #ifdef ITEMID_FONT
 #undef ITEMID_FONT
@@ -101,9 +84,7 @@
 
 #include "memchrt.hxx"
 
-#ifndef _SFXITEMPOOL_HXX
 #include <bf_svtools/itempool.hxx>
-#endif
 
 namespace binfilter {
 
@@ -118,7 +99,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 /*N*/ SdrModel* ChartModel::AllocModel() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************
@@ -130,7 +111,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SdrPage* ChartModel::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* ChartModel::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   return new SdrPage(*this, bMasterPage);
 /*N*/ }
@@ -174,14 +155,14 @@ namespace binfilter {
 /*?*/                               SID_PRINTER_NOTFOUND_WARN,
 /*?*/                               SID_PRINTER_NOTFOUND_WARN, 0);
 /*?*/               pSet->Put(aItem);
-/*?*/               SfxPrinter* pPrinter = new SfxPrinter(pSet);
+/*?*/               SfxPrinter* pLclPrinter = new SfxPrinter(pSet);
 /*?*/
-/*?*/               MapMode aMapMode = pPrinter->GetMapMode();
+/*?*/               MapMode aMapMode = pLclPrinter->GetMapMode();
 /*?*/               aMapMode.SetMapUnit(MAP_100TH_MM);
-/*?*/               pPrinter->SetMapMode(aMapMode);
+/*?*/               pLclPrinter->SetMapMode(aMapMode);
 /*?*/
-/*?*/               pPrinter->Store(rOut);
-/*?*/               delete pPrinter;
+/*?*/               pLclPrinter->Store(rOut);
+/*?*/               delete pLclPrinter;
 /*?*/               //delete pSet; bloss nicht! Killt der Printer gleich mit!
 /*N*/           }
 /*N*/       }
@@ -298,7 +279,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void ChartModel::SetChanged(FASTBOOL bFlag)
+/*N*/ void ChartModel::SetChanged(bool bFlag)
 /*N*/ {
 /*N*/   if (pDocShell)
 /*N*/   {
@@ -470,3 +451,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

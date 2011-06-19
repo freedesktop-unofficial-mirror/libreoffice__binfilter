@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -43,8 +44,8 @@ namespace binfilter
 HDDEDATA CALLBACK DdeInternal::InfCallback(
                 WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD )
 #else
-#if defined ( MTW ) || ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
-HDDEDATA CALLBACK __EXPORT DdeInternal::InfCallback(
+#if ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
+HDDEDATA CALLBACK DdeInternal::InfCallback(
                 WORD, WORD, HCONV, HSZ, HSZ, HDDEDATA, DWORD, DWORD )
 #else
 HDDEDATA CALLBACK _export DdeInternal::InfCallback(
@@ -56,3 +57,5 @@ HDDEDATA CALLBACK _export DdeInternal::InfCallback(
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

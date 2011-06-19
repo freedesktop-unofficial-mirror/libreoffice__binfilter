@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-
-#ifndef _SVDSOB_HXX //autogen
 #include <bf_svx/svdsob.hxx>
-#endif
-
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer typedef SdrLayerID
-#endif
+
 namespace binfilter {
 
 class SdrModel;
@@ -71,7 +62,7 @@ public:
     // Einem SdrLayer kann man sagen dass er ein (der) Standardlayer sein soll.
     // Es wird dann laenderspeziefisch der passende Name gesetzt. SetName()
     // setzt das Flag "StandardLayer" ggf. zurueck auf "Userdefined".
-    FASTBOOL      IsStandardLayer() const                     { return nType==1; }
+    bool      IsStandardLayer() const                     { return nType==1; }
     friend SvStream& operator>>(SvStream& rIn, SdrLayer& rLayer);
     friend SvStream& operator<<(SvStream& rOut, const SdrLayer& rLayer);
 };
@@ -88,7 +79,6 @@ class SdrLayerSet {
 friend class SdrLayerAdmin;
 friend class SdrView;
 protected:
-    //SdrLayerAdmin& rAd; // Admin, um Layernamen herauszufinden, ...
     String    aName;
     SetOfByte aMember;
     SetOfByte aExclude;
@@ -99,8 +89,6 @@ public:
     SdrLayerSet(): pModel(NULL) {}
     SdrLayerSet(const String& rNewName): aName(rNewName), pModel(NULL) {}
     void            SetModel(SdrModel* pNewModel)          { pModel=pNewModel; }
-//    void            AddAll()                               { aMember.SetAll(); }
-//    void            ExcludeAll()                           { aExclude.SetAll(); }
     friend SvStream& operator>>(SvStream& rIn, SdrLayerSet& rSet);
     friend SvStream& operator<<(SvStream& rOut, const SdrLayerSet& rSet);
 };
@@ -112,7 +100,6 @@ class SdrLayerAdmin {
 friend class SdrView;
 friend class SdrModel;
 friend class SdrPage;
-//friend class MyScr; // debug
 protected:
     Container      aLayer;
     Container      aLSets;
@@ -126,7 +113,7 @@ protected:
     // vergeben.
     SdrLayerID           GetUniqueLayerID() const;
     // Broadcasting ueber's Model und setzen des Modified-Flags
-    void                 Broadcast(FASTBOOL bLayerSet) const;
+    void                 Broadcast(bool bLayerSet) const;
 public:
     SdrLayerAdmin(SdrLayerAdmin* pNewParent=NULL);
     SdrLayerAdmin(const SdrLayerAdmin& rSrcLayerAdmin);
@@ -149,9 +136,9 @@ public:
     const SdrLayer*    GetLayer(USHORT i) const                                      { return (SdrLayer*)(aLayer.GetObject(i)); }
 
 
-    SdrLayer*          GetLayer(const String& rName, FASTBOOL bInherited)            { return (SdrLayer*)(((const SdrLayerAdmin*)this)->GetLayer(rName,bInherited)); }
-    const SdrLayer*    GetLayer(const String& rName, FASTBOOL bInherited) const;
-          SdrLayerID   GetLayerID(const String& rName, FASTBOOL bInherited) const;
+    SdrLayer*          GetLayer(const String& rName, bool bInherited)            { return (SdrLayer*)(((const SdrLayerAdmin*)this)->GetLayer(rName,bInherited)); }
+    const SdrLayer*    GetLayer(const String& rName, bool bInherited) const;
+          SdrLayerID   GetLayerID(const String& rName, bool bInherited) const;
           SdrLayer*    GetLayerPerID(USHORT nID)                                     { return (SdrLayer*)(((const SdrLayerAdmin*)this)->GetLayerPerID(nID)); }
     const SdrLayer*    GetLayerPerID(USHORT nID) const;
 
@@ -188,10 +175,11 @@ bInherited:
     TRUE: Wird der Layer/LayerSet nicht gefunden, so wird im Parent-LayerAdmin
           nachgesehen, ob es dort einen entsprechende Definition gibt.
     FALSE: Es wird nur dieser LayerAdmin durchsucht.
-    Jeder LayerAdmin einer Seite hat einen Parent-LayerAdmin, nämlich den des
+    Jeder LayerAdmin einer Seite hat einen Parent-LayerAdmin, nï¿½mlich den des
     Model. Das Model selbst hat keinen Parent.
 */
 
 }//end of namespace binfilter
 #endif //_SVDLAYER_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

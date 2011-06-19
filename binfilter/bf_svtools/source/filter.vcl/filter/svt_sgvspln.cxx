@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,17 +33,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
 
 #if defined( WIN ) && defined( MSC )
 #pragma code_seg( "SVTOOLS_FILTER2", "SVTOOLS_CODE" )
 #pragma optimize( "", off )
-#endif
-
-#if defined( PM2 ) && defined( __BORLANDC__ )
-#pragma option -Od
 #endif
 
 namespace binfilter
@@ -464,8 +459,6 @@ USHORT ZyklTriDiagGS(BOOL rep, USHORT n, double* lower, double* diag,
 |*
 |*    Beschreibung      Berechnet die Koeffizienten eines natuerlichen
 |*                      kubischen Polynomsplines mit n Stuetzstellen.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -572,8 +565,6 @@ USHORT NaturalSpline(USHORT n, double* x, double* y,
 |*
 |*    Beschreibung      Berechnet die Koeffizienten eines periodischen
 |*                      kubischen Polynomsplines mit n Stuetzstellen.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -651,8 +642,6 @@ USHORT PeriodicSpline(USHORT n, double* x, double* y,
 |*    Beschreibung      Berechnet die Koeffizienten eines parametrischen
 |*                      natuerlichen oder periodischen kubischen
 |*                      Polynomsplines mit n Stuetzstellen.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -663,7 +652,7 @@ USHORT ParaSpline(USHORT n, double* x, double* y, BYTE MargCond,
                   double* bx, double* cx, double* dx,
                   double* by, double* cy, double* dy)
 {
-    USHORT Error,Marg;
+    USHORT Error;
     USHORT i;
     double deltX,deltY,delt,
            alphX = 0,alphY = 0,
@@ -681,9 +670,8 @@ USHORT ParaSpline(USHORT n, double* x, double* y, BYTE MargCond,
         }
     }
     switch (MargCond) {
-        case 0: Marg=0; break;
+        case 0: break;
         case 1: case 2: {
-            Marg=MargCond;
             alphX=Marg01; betX=MargN1;
             alphY=Marg02; betY=MargN2;
         } break;
@@ -692,7 +680,6 @@ USHORT ParaSpline(USHORT n, double* x, double* y, BYTE MargCond,
             if (y[n]!=y[0]) return 4;
         } break;
         case 4: {
-            Marg=1;
             if (abs(Marg01)>=MAXROOT) {
                 alphX=0.0;
                 alphY=sign(1.0,y[1]-y[0]);
@@ -739,8 +726,6 @@ USHORT ParaSpline(USHORT n, double* x, double* y, BYTE MargCond,
 |*                      ist Speicher fuer die Koeffizientenarrays
 |*                      allokiert, der dann spaeter vom Aufrufer mittels
 |*                      delete freizugeben ist.
-|*    Ersterstellung    JOE 17-08.93
-|*    Letzte Aenderung  JOE 17-08.93
 |*
 *************************************************************************/
 
@@ -749,7 +734,7 @@ BOOL CalcSpline(Polygon& rPoly, BOOL Periodic, USHORT& n,
                 double*& cx, double*& cy, double*& dx, double*& dy, double*& T)
 {
     BYTE   Marg;
-    double Marg01,Marg02;
+    double Marg01;
     double MargN1,MargN2;
     USHORT i;
     Point  P0(-32768,-32768);
@@ -788,7 +773,6 @@ BOOL CalcSpline(Polygon& rPoly, BOOL Periodic, USHORT& n,
     T =new double[n+1];
 
     Marg01=0.0;
-    Marg02=0.0;
     MargN1=0.0;
     MargN2=0.0;
     if (n>0) n--; // n Korregieren (Anzahl der Teilpolynome)
@@ -828,8 +812,6 @@ BOOL CalcSpline(Polygon& rPoly, BOOL Periodic, USHORT& n,
 |*                      Fall hat das Polygon 0, im 2. Fall PolyMax Punkte.
 |*                      Um Koordinatenueberlaeufe zu vermeiden werden diese
 |*                      auf +/-32000 begrenzt.
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL Spline2Poly(Polygon& rSpln, BOOL Periodic, Polygon& rPoly)
@@ -900,3 +882,5 @@ BOOL Spline2Poly(Polygon& rSpln, BOOL Periodic, Polygon& rPoly)
     return FALSE;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

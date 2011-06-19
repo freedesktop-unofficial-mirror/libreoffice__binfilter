@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 
 #include <bf_svtools/zformat.hxx>
 #include <bf_svtools/numuno.hxx>
-#ifndef INCLUDED_SVTOOLS_NFSYMBOL_HXX
 #include <bf_svtools/nfsymbol.hxx>
-#endif
 #include <i18npool/mslangid.hxx>
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
-
-// #110680#
-//#include <comphelper/processfactory.hxx>
-
 
 #include "xmlnmspe.hxx"
 #include "xmluconv.hxx"
@@ -49,9 +44,7 @@
 #include <bf_svtools/svstdarr.hxx>
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 #include <set>
 namespace binfilter {
@@ -115,7 +108,7 @@ struct SvXMLEmbeddedTextEntry
 };
 
 typedef SvXMLEmbeddedTextEntry* SvXMLEmbeddedTextEntryPtr;
-SV_DECL_PTRARR_DEL( SvXMLEmbeddedTextEntryArr, SvXMLEmbeddedTextEntryPtr, 4, 4 )//STRIP007 ;
+SV_DECL_PTRARR_DEL( SvXMLEmbeddedTextEntryArr, SvXMLEmbeddedTextEntryPtr, 4, 4 )
 
 //-------------------------------------------------------------------------
 
@@ -149,13 +142,13 @@ void SvXMLNumUsedList_Impl::SetUsed( sal_uInt32 nKey )
 
 sal_Bool SvXMLNumUsedList_Impl::IsUsed( sal_uInt32 nKey ) const
 {
-    SvXMLuInt32Set::iterator aItr = aUsed.find(nKey);
+    SvXMLuInt32Set::const_iterator aItr = aUsed.find(nKey);
     return (aItr != aUsed.end());
 }
 
 sal_Bool SvXMLNumUsedList_Impl::IsWasUsed( sal_uInt32 nKey ) const
 {
-    SvXMLuInt32Set::iterator aItr = aWasUsed.find(nKey);
+    SvXMLuInt32Set::const_iterator aItr = aWasUsed.find(nKey);
     return (aItr != aWasUsed.end());
 }
 
@@ -234,12 +227,12 @@ void SvXMLNumUsedList_Impl::SetWasUsed(const uno::Sequence<sal_Int32>& rWasUsed)
 
 SvXMLNumFmtExport::SvXMLNumFmtExport(
             SvXMLExport& rExp,
-            const uno::Reference< util::XNumberFormatsSupplier >& rSupp ) :
-    rExport( rExp ),
-    pFormatter( NULL ),
-    pCharClass( NULL ),
-    pLocaleData( NULL ),
-    sPrefix( OUString::createFromAscii( "N" ) )
+            const uno::Reference< util::XNumberFormatsSupplier >& rSupp )
+    : rExport( rExp )
+    , sPrefix( OUString( RTL_CONSTASCII_USTRINGPARAM( "N" )) )
+    , pFormatter( NULL )
+    , pCharClass( NULL )
+    , pLocaleData( NULL )
 {
     //  supplier must be SvNumberFormatsSupplierObj
     SvNumberFormatsSupplierObj* pObj =
@@ -272,12 +265,12 @@ SvXMLNumFmtExport::SvXMLNumFmtExport(
                        SvXMLExport& rExp,
                        const ::com::sun::star::uno::Reference<
                         ::com::sun::star::util::XNumberFormatsSupplier >& rSupp,
-                       const ::rtl::OUString& rPrefix ) :
-    rExport( rExp ),
-    pFormatter( NULL ),
-    pCharClass( NULL ),
-    pLocaleData( NULL ),
-    sPrefix( rPrefix )
+                       const ::rtl::OUString& rPrefix )
+    : rExport( rExp )
+    , sPrefix( rPrefix )
+    , pFormatter( NULL )
+    , pCharClass( NULL )
+    , pLocaleData( NULL )
 {
     //  supplier must be SvNumberFormatsSupplierObj
     SvNumberFormatsSupplierObj* pObj =
@@ -737,7 +730,7 @@ void SvXMLNumFmtExport::WriteMapElement_Impl( sal_Int32 nOp, double fLimit,
             case NUMBERFORMAT_OP_GT: aCondStr.append( (sal_Unicode) '>' );  break;
             case NUMBERFORMAT_OP_GE: aCondStr.appendAscii( ">=" );          break;
             default:
-                DBG_ERROR("unknown operator");
+                OSL_FAIL("unknown operator");
         }
         ::rtl::math::doubleToUStringBuffer( aCondStr, fLimit,
                 rtl_math_StringFormat_Automatic, rtl_math_DecimalPlaces_Max,
@@ -1609,6 +1602,7 @@ void SvXMLNumFmtExport::ExportPart_Impl( const SvNumberformat& rFormat, sal_uInt
                 case NUMBERFORMAT_OP_LE: eOp3 = NUMBERFORMAT_OP_GT; break;
                 case NUMBERFORMAT_OP_GT: eOp3 = NUMBERFORMAT_OP_LE; break;
                 case NUMBERFORMAT_OP_GE: eOp3 = NUMBERFORMAT_OP_LT; break;
+                default: break;
             }
 
             if ( fLimit1 == fLimit2 &&
@@ -1672,11 +1666,10 @@ void SvXMLNumFmtExport::Export( sal_Bool bIsAutoStyle )
         return;                         // no formatter -> no entries
 
     sal_uInt32 nKey;
-    const SvNumberformat* pFormat = NULL;
     sal_Bool bNext(pUsedList->GetFirstUsed(nKey));
     while(bNext)
     {
-        pFormat = pFormatter->GetEntry(nKey);
+        const SvNumberformat* pFormat = pFormatter->GetEntry(nKey);
         if(pFormat)
             ExportFormat_Impl( *pFormat, nKey );
         bNext = pUsedList->GetNextUsed(nKey);
@@ -1696,14 +1689,14 @@ void SvXMLNumFmtExport::Export( sal_Bool bIsAutoStyle )
             SvNumberformat* pFormat = rTable.First();
             while (pFormat)
             {
-                sal_uInt32 nKey(rTable.GetCurKey());
-                if (!pUsedList->IsUsed(nKey))
+                sal_uInt32 nLclKey(rTable.GetCurKey());
+                if (!pUsedList->IsUsed(nLclKey))
                 {
                     DBG_ASSERT((pFormat->GetType() & NUMBERFORMAT_DEFINED) != 0, "a not user defined numberformat found");
                     //  user-defined and used formats are exported
-                    ExportFormat_Impl( *pFormat, nKey );
+                    ExportFormat_Impl( *pFormat, nLclKey );
                     // if it is a user-defined Format it will be added else nothing will hapen
-                    pUsedList->SetUsed(nKey);
+                    pUsedList->SetUsed(nLclKey);
                 }
 
                 pFormat = rTable.Next();
@@ -1719,7 +1712,7 @@ OUString SvXMLNumFmtExport::GetStyleName( sal_uInt32 nKey )
         return lcl_CreateStyleName( nKey, 0, sal_True, sPrefix );
     else
     {
-        DBG_ERROR("There is no written Data-Style");
+        OSL_FAIL("There is no written Data-Style");
         return ::rtl::OUString();
     }
 }
@@ -1729,7 +1722,7 @@ void SvXMLNumFmtExport::SetUsed( sal_uInt32 nKey )
     if (pFormatter->GetEntry(nKey))
         pUsedList->SetUsed( nKey );
     else
-        DBG_ERROR("no existing Numberformat found with this key");
+        OSL_FAIL("no existing Numberformat found with this key");
 }
 
 void SvXMLNumFmtExport::GetWasUsed(uno::Sequence<sal_Int32>& rWasUsed)
@@ -1788,3 +1781,5 @@ sal_uInt32 SvXMLNumFmtExport::ForceSystemLanguage( sal_uInt32 nKey )
     return nRet;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

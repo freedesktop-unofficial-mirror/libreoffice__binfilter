@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -42,9 +40,7 @@
 // INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "globstr.hrc"
 #include "rangeutl.hxx"
@@ -154,7 +150,7 @@ namespace binfilter {
 /*N*/       // Strings vergleichen:
 /*N*/
 /*N*/       if (pUserData)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     nResult = pUserData->ICompare(rData1.aStrValue, rData2.aStrValue);
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       else
 /*N*/       {
 /*N*/             nResult = (short) ScGlobal::pTransliteration->compareString(
@@ -228,20 +224,6 @@ namespace binfilter {
 /*N*/   return bSuccess;
 /*N*/ }
 
-/*N*/ BOOL ScPivotCollection::Store(SvStream& rStream) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << nCount;
-/*N*/
-/*N*/   for (USHORT i=0; i<nCount && bSuccess; i++)
-/*?*/       bSuccess = ((const ScPivot*)At(i))->Store( rStream, aHdr );
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
 /*N*/ void ScPivotCollection::UpdateReference(UpdateRefMode eUpdateRefMode,
 /*N*/                               USHORT nCol1, USHORT nRow1, USHORT nTab1,
 /*N*/                               USHORT nCol2, USHORT nRow2, USHORT nTab2,
@@ -291,3 +273,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

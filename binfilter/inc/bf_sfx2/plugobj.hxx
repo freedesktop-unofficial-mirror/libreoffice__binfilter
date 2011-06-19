@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _PLUGIN_HXX //autogen
 #include <bf_so3/plugin.hxx>
-#endif
 #include "bf_sfx2/app.hxx"
 
 namespace binfilter {
@@ -62,6 +61,7 @@ class SfxPluginObject : public SvPlugInObject
 #endif
 
 protected:
+    using SvPlugInObject::FillClass;
     virtual void            FillClass( SvGlobalName * pClassName,
                                ULONG * pFormat,
                                String * pAppName,
@@ -91,3 +91,5 @@ SO2_DECL_IMPL_REF(SfxPluginObject)
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

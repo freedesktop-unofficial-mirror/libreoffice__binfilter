@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,73 +32,33 @@
 #endif
 
 
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
 
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _NODE2LAY_HXX
 #include <node2lay.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
-#ifndef _FMTFTNTX_HXX
 #include <fmtftntx.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
 
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
 namespace binfilter {
 
-/*N*/ int lcl_IsInSameTblBox( SwNodes& rNds, const SwNode& rNd,
+/*N*/ int lcl_IsInSameTblBox( SwNodes& /*rNds*/, const SwNode& rNd,
 /*N*/                           const SwNodeIndex& rIdx2 )
 /*N*/ {
 /*N*/   const SwTableNode* pTblNd = rNd.FindTableNode();
@@ -130,7 +91,7 @@ namespace binfilter {
 /*N*/   if( rRange.HasMark() &&
 /*N*/       0 == ( nRegionRet = IsInsRegionAvailable( rRange, &pPrvNd ) ))
 /*N*/   {
-/*?*/       ASSERT( !this, "Selection ueber verschiedene Sections" );
+/*?*/       OSL_ENSURE( !this, "Selection ueber verschiedene Sections" );
 /*?*/       return 0;
 /*N*/   }
 /*N*/
@@ -138,7 +99,7 @@ namespace binfilter {
 /*N*/   // koennen wir zur Zeit nicht !!!!
 /*N*/   if( rNew.IsHidden() && rRange.HasMark() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwPosition *pStt = rRange.Start(), *pEnd = rRange.End();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   SwSectionFmt* pFmt = MakeSectionFmt( 0 );
@@ -156,7 +117,7 @@ namespace binfilter {
 /*N*/                   *pEndPos = (SwPosition*)rRange.End();
 /*N*/       if( pPrvNd && 3 == nRegionRet )
 /*N*/       {
-/*?*/           ASSERT( pPrvNd, "der SectionNode fehlt" );
+/*?*/           OSL_ENSURE( pPrvNd, "der SectionNode fehlt" );
 /*?*/           SwNodeIndex aStt( pSttPos->nNode ), aEnd( pEndPos->nNode, +1 );
 /*?*/           while( pPrvNd != aStt.GetNode().FindStartNode() )
 /*?*/               aStt--;
@@ -239,14 +200,14 @@ namespace binfilter {
 /*N*/
 /*N*/   if( IsRedlineOn() || (!IsIgnoreRedline() && pRedlineTbl->Count() ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwPaM aPam( *pNewSectNode->EndOfSectionNode(), *pNewSectNode, 1 );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   // ist eine Condition gesetzt
 /*N*/   if( rNew.IsHidden() && rNew.GetCondition().Len() )
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   BOOL bUpdateFtn = FALSE;
@@ -346,7 +307,6 @@ namespace binfilter {
 /*?*/                       aIdx++;
 /*?*/                   } while( aIdx.GetNode().IsEndNode() &&
 /*?*/                               0 != aIdx.GetNode().FindSectionNode() );
-/*?*/ //                    if( !aIdx.GetNode().IsEndNode() )
 /*?*/                   {
 /*?*/                       nRet = 2;
 /*?*/                       if( ppSttNd )
@@ -474,10 +434,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SwSectionFmt* pFmt = (*pSectionFmtTbl)[ nPos ];
 /*N*/   SwSection* pSection = pFmt->GetSection();
-/*N*/     /// OD 04.10.2002 #102894#
-/*N*/     /// remember hidden condition flag of SwSection before changes
-/*N*/     bool bOldCondHidden = pSection->IsCondHidden() ? true : false;
-/*N*/
 /*N*/   if( *pSection == rSect )
 /*N*/   {
 /*N*/       // die Attribute ueberpruefen
@@ -516,7 +472,7 @@ namespace binfilter {
 /*N*/       if( rSect.IsHidden() && 0 != (pIdx = pFmt->GetCntnt().GetCntntIdx() )
 /*N*/           && 0 != (pSectNd = pIdx->GetNode().GetSectionNode() ) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::lcl_CheckEmptyLayFrm( GetNodes(), (SwSection&)rSect,
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -536,13 +492,12 @@ namespace binfilter {
 /*N*/   else
 /*N*/       sSectName.Erase();
 /*N*/
-/*N*/     /// OD 04.10.2002 #102894# - NOTE
 /*N*/     /// In SwSection::operator=(..) class member bCondHiddenFlag is always set to TRUE.
 /*N*/     /// IMHO this have to be changed, but I can't estimate the consequences:
 /*N*/     /// Either it is set to TRUE using corresponding method <SwSection.SetCondHidden(..)>,
 /*N*/     /// or it is set to the value of SwSection which is assigned to it.
 /*N*/     /// Discussion with AMA results that the adjustment to the assignment operator
-/*N*/     /// could be very risky -> see notes in bug #102894#.
+/*N*/     /// could be very risky.
 /*N*/   *pSection = rSect;
 /*N*/
 /*N*/   if( pAttr )
@@ -555,7 +510,7 @@ namespace binfilter {
 /*N*/   if( pSection->IsHidden() && pSection->GetCondition().Len() )
 /*N*/   {
 /*?*/       // dann berechne bis zu dieser Position
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *this );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bUpdate )
@@ -570,7 +525,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/* -----------------19.02.99 09:31-------------------
+/* --------------------------------------------------
  * LockFrms wurde im InsertSection genutzt, um zu verhindern, dass
  * SectionFrms durch das DelFrms zerstoert werden. Dies ist durch
  * den Destroy-Listen-Mechanismus ueberfluessig geworden.
@@ -688,7 +643,6 @@ namespace binfilter {
 /*N*/       else
 /*?*/           new SwTxtNode( aInsPos, (SwTxtFmtColl*)GetDoc()->GetDfltTxtFmtColl() );
 /*N*/   }
-/*N*/   SwEndNode* pEndNd = new SwEndNode( aInsPos, *pSectNd );
 /*N*/
 /*N*/   pSectNd->GetSection() = rSection;
 /*N*/   SwSectionFmt* pSectFmt = pSectNd->GetSection().GetFmt();
@@ -817,7 +771,7 @@ namespace binfilter {
 /*N*/               pLast = aIter++;
 /*N*/       }
 /*N*/   }
-/*N*/   SwDoc* pDoc = GetDoc();
+/*N*/   GetDoc();
 /*N*/
 /*N*/   SwSectionFmt* pFmt = pSection->GetFmt();
 /*N*/   if( pFmt )
@@ -836,7 +790,7 @@ namespace binfilter {
 // neuen VerzeichnisSections. Der geht ueber in den Besitz des Nodes!
 /*N*/ void SwSectionNode::SetNewSection( SwSection* pNewSection )
 /*N*/ {
-/*N*/   ASSERT( pNewSection, "ohne Pointer geht hier nichts" );
+/*N*/   OSL_ENSURE( pNewSection, "ohne Pointer geht hier nichts" );
 /*N*/   if( pNewSection )
 /*N*/   {
 /*N*/       SwNode2Layout aN2L( *this );
@@ -870,7 +824,7 @@ namespace binfilter {
 
 /*N*/ void SwSectionNode::MakeFrms( SwNodeIndex* pIdxBehind, SwNodeIndex* pEndIdx )
 /*N*/ {
-/*N*/   ASSERT( pIdxBehind, "kein Index" );
+/*N*/   OSL_ENSURE( pIdxBehind, "kein Index" );
 /*N*/   SwNodes& rNds = GetNodes();
 /*N*/   SwDoc* pDoc = rNds.GetDoc();
 /*N*/
@@ -931,7 +885,7 @@ namespace binfilter {
 /*N*/   String aName( aId );
 /*N*/   xub_StrLen nNmLen = aName.Len();
 /*N*/
-/*N*/   USHORT nNum, nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
+/*N*/   USHORT nNum(0), nTmp, nFlagSize = ( pSectionFmtTbl->Count() / 8 ) +2;
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/
@@ -975,3 +929,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

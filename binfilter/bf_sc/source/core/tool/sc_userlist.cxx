@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -40,9 +38,7 @@
 #include "global.hxx"
 #include "userlist.hxx"
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 namespace binfilter {
 
 // STATIC DATA -----------------------------------------------------------
@@ -74,13 +70,13 @@ namespace binfilter {
 /*N*/   InitTokens();
 /*N*/ }
 
-/*N*/ ScUserListData::ScUserListData(const ScUserListData& rData) :
+/*N*/ ScUserListData::ScUserListData(const ScUserListData& rData) : DataObject(rData),
 /*N*/   aStr(rData.aStr)
 /*N*/ {
 /*N*/   InitTokens();
 /*N*/ }
 
-/*N*/ __EXPORT ScUserListData::~ScUserListData()
+/*N*/ ScUserListData::~ScUserListData()
 /*N*/ {
 /*N*/   delete[] pSubStrings;
 /*N*/   delete[] pUpperSub;
@@ -91,14 +87,6 @@ namespace binfilter {
 /*N*/   rStream.ReadByteString( aStr, rStream.GetStreamCharSet() );
 /*N*/   InitTokens();
 /*N*/ }
-
-/*N*/ BOOL ScUserListData::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream.WriteByteString( aStr, rStream.GetStreamCharSet() );
-/*N*/   return TRUE;
-/*N*/ }
-
-
 
 /*N*/ BOOL ScUserListData::GetSubIndex(const String& rSubStr, USHORT& rIndex) const
 /*N*/ {
@@ -143,8 +131,8 @@ namespace binfilter {
 /*N*/         {
 /*N*/             String sDayShort, sDayLong;
 /*N*/             sal_Int32 i;
-/*N*/             sal_Int32 nCount = xCal.getLength() - 1;
-/*N*/             for (i = 0; i < nCount; i++)
+/*N*/             sal_Int32 nLclCount = xCal.getLength() - 1;
+/*N*/             for (i = 0; i < nLclCount; i++)
 /*N*/             {
 /*N*/                 sDayShort += String( xCal[i].AbbrevName );
 /*N*/                 sDayShort += cDelimiter;
@@ -165,8 +153,8 @@ namespace binfilter {
 /*N*/         {
 /*N*/             String sMonthShort, sMonthLong;
 /*N*/             sal_Int32 i;
-/*N*/             sal_Int32 nCount = xCal.getLength() - 1;
-/*N*/             for (i = 0; i < nCount; i++)
+/*N*/             sal_Int32 nLclCount = xCal.getLength() - 1;
+/*N*/             for (i = 0; i < nLclCount; i++)
 /*N*/             {
 /*N*/                 sMonthShort += String( xCal[i].AbbrevName );
 /*N*/                 sMonthShort += cDelimiter;
@@ -200,18 +188,6 @@ namespace binfilter {
 /*N*/   return bSuccess;
 /*N*/ }
 
-/*N*/ BOOL ScUserList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   BOOL bSuccess = TRUE;
-/*N*/
-/*N*/   rStream << nCount;
-/*N*/
-/*N*/   for ( USHORT i=0; i<nCount && bSuccess; i++ )
-/*N*/       bSuccess = ((const ScUserListData*)At(i))->Store( rStream );
-/*N*/
-/*N*/   return bSuccess;
-/*N*/ }
-
 /*N*/ DataObject* ScUserList::Clone() const
 /*N*/ {
 /*N*/   return ( new ScUserList( *this ) );
@@ -241,3 +217,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

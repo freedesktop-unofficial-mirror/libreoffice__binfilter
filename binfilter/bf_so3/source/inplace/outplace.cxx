@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -50,7 +51,7 @@
 #include "insdlg.hxx"
 #include "bf_so3/outplace.hxx"
 #include <viscache.hxx>
-#include <vos/module.hxx>
+#include <osl/module.hxx>
 #include <sot/formats.hxx>
 #include <bf_svtools/filter.hxx>
 #include <comphelper/classids.hxx>
@@ -59,13 +60,11 @@
 #include <unotools/ucbstreamhelper.hxx>
 #include <bf_svtools/wmf.hxx>
 
-using namespace vos;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::datatransfer;
 
 namespace binfilter {
 
-static UINT32 nUniqueId = 1;
 #ifdef WNT
 static BOOL bOleInited = FALSE;
 inline void InitOle()
@@ -280,7 +279,7 @@ void Impl_OlePres::Write( SvStream & rStm )
     }
     else
     {
-        DBG_ERROR( "unknown format" );
+        OSL_FAIL( "unknown format" );
     }
     ULONG nEndPos = rStm.Tell();
     rStm.Seek( nPos );
@@ -635,7 +634,7 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
     io.dwFlags=IOF_SELECTCREATENEW | IOF_DISABLELINK;
     io.clsid = rName.GetCLSID();
 
-    OModule aOleDlgLib;
+    osl::Module aOleDlgLib;
     if( !aOleDlgLib.load( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "oledlg" ) ) ) )
         return &xRet;
 
@@ -720,7 +719,8 @@ SvInPlaceObjectRef SvOutPlaceObject::InsertObject
 
 
 //=========================================================================
-struct SvObjectServerListHolder {
+struct SO3_DLLPRIVATE SvObjectServerListHolder
+{
     ::binfilter::SvObjectServerList mObjList;
     SvObjectServerListHolder() { mObjList.FillInsertObjects(); }
 };
@@ -1314,241 +1314,11 @@ BOOL SvOutPlaceObject::Load
 }
 
 //=========================================================================
-BOOL SvOutPlaceObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SvOutPlaceObject::InitNew>
-    oder <SvOutPlaceObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-{
-    if( SvInPlaceObject::Save() )
-    {
-        SvStorage * pStor = pImpl->xWorkingStg;
-        SvStorageStreamRef xStm;
-        xStm = pStor->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                    STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( pStor->GetVersion() );
-        xStm->SetBufferSize( 128 );
-
-        // write Length
-        *xStm << (UINT16)(2 + 5 );
-#ifdef WNT
-        if( pImpl->pSO_Cont )
-        {
-            WIN_BOOL fSetExtent;
-            pImpl->pSO_Cont->GetInfo( pImpl->dwAspect, fSetExtent );
-            pImpl->bSetExtent = fSetExtent;
-
-            pImpl->pSO_Cont->Save( pStor );
-        }
-#endif
-        *xStm << pImpl->dwAspect;
-        *xStm << sal::static_int_cast< BOOL >(pImpl->bSetExtent);
-
-        if( pStor->GetVersion() <= SOFFICE_FILEFORMAT_40 )
-        {
-            SotStorageStreamRef xOleObjStm =
-                pImpl->xWorkingStg->OpenSotStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ),
-                                                    STREAM_STD_READ );
-            if( xOleObjStm->GetError() )
-                return FALSE;
-
-            SvCacheStream aStm;
-            aStm << *xOleObjStm;
-            aStm.Seek( 0 );
-            SotStorageRef xOleObjStor = new SotStorage( aStm );
-            if( xOleObjStor->GetError() )
-                return FALSE;
-
-            // delete all storage entries
-            SvStorageInfoList aList;
-            pStor->FillInfoList( &aList );
-            for( UINT32 i = 0; i < aList.Count(); i++ )
-            {
-                // workaround a bug in our storage implementation
-                String aTmpName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Temp-Delete" ) ) );
-                aTmpName += String::CreateFromInt32( nUniqueId++ );
-                pStor->Rename( aList[i].GetName(), aTmpName );
-                pStor->Remove( aTmpName );
-
-                //pStor->Remove( aList[i].GetName() );
-            }
-            xOleObjStor->CopyTo( GetStorage() );
-        }
-
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
-BOOL SvOutPlaceObject::SaveAs
-(
-    SvStorage *pStor    /* Storage, in den der Inhalt des Objekte
-                           geschrieben wird */
-)
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in pStor geschrieben.
-
-    [Anmerkung]
-
-    Der Storage wird nicht behalten.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::SaveAs>
-*/
-{
-    if( SvInPlaceObject::SaveAs( pStor ) )
-    {
-        if( pStor->GetVersion() <= SOFFICE_FILEFORMAT_40 || pStor->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-        {
-#ifdef WNT
-            if( pImpl->pSO_Cont )
-                pImpl->pSO_Cont->Save( pImpl->xWorkingStg );
-#endif
-            SotStorageStreamRef xOleObjStm =
-                pImpl->xWorkingStg->OpenSotStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ),
-                                                    STREAM_STD_READ );
-            if( xOleObjStm->GetError() )
-                return FALSE;
-
-            SvCacheStream aStm;
-            aStm << *xOleObjStm;
-            aStm.Seek( 0 );
-            SotStorageRef xOleObjStor = new SotStorage( aStm );
-            if( xOleObjStor->GetError() )
-                return FALSE;
-
-            // delete all storage entries
-            SvStorageInfoList aList;
-            pStor->FillInfoList( &aList );
-            for( UINT32 i = 0; i < aList.Count(); i++ )
-            {
-                // workaround a bug in our storage implementation
-                String aTmpName( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Temp-Delete" ) ) );
-                aTmpName += String::CreateFromInt32( nUniqueId++ );
-                pStor->Rename( aList[i].GetName(), aTmpName );
-                pStor->Remove( aTmpName );
-
-                //pStor->Remove( aList[i].GetName() );
-            }
-            xOleObjStor->CopyTo( pStor );
-            return pStor->GetError() == ERRCODE_NONE;
-        }
-        else
-        {
-            SvStorageStreamRef xStm;
-            xStm = pStor->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                    STREAM_STD_WRITE | STREAM_TRUNC );
-            xStm->SetVersion( pStor->GetVersion() );
-            xStm->SetBufferSize( 128 );
-
-            // write Length
-            *xStm << (UINT16)(2 + 5 );
-#ifdef WNT
-            if( pImpl->pSO_Cont )
-            {
-                WIN_BOOL fSetExtent;
-                pImpl->pSO_Cont->GetInfo( pImpl->dwAspect, fSetExtent );
-                pImpl->bSetExtent = fSetExtent;
-
-                pImpl->pSO_Cont->Save( pStor );
-            }
-            else
-#endif
-            {
-                pImpl->xWorkingStg->CopyTo( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ),
-                                    pStor, String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ) );
-            }
-            *xStm << pImpl->dwAspect;
-            *xStm << pImpl->bSetExtent;
-
-            return xStm->GetError() == ERRCODE_NONE;
-        }
-    }
-    return FALSE;
-}
-
-//=========================================================================
 void    SvOutPlaceObject::HandsOff()
 {
     if( HasStorage() && pImpl->xWorkingStg == GetStorage() )
         pImpl->xWorkingStg.Clear();
     SvInPlaceObject::HandsOff();
-}
-
-//=========================================================================
-BOOL    SvOutPlaceObject::SaveCompleted( SvStorage * pStor )
-{
-    BOOL bResult = TRUE;
-
-    if( pStor )
-    {
-        if( !pImpl->xWorkingStg.Is() )
-        {
-            pImpl->xWorkingStg = pStor;
-            BOOL bNewVersion = pStor->IsStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ) );
-            if( bNewVersion )
-            {
-                SvStorageStreamRef xStm;
-                xStm = pImpl->xWorkingStg->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ), STREAM_STD_READ );
-                xStm->SetVersion( pImpl->xWorkingStg->GetVersion() );
-                xStm->SetBufferSize( 8192 );
-
-                // nicht vorhandener Stream ist kein Fehler
-                if( xStm->GetError() != SVSTREAM_FILE_NOT_FOUND )
-                {
-                    UINT16 nLen;
-                    *xStm >> nLen;
-                    *xStm >> pImpl->dwAspect;
-                    BOOL b;
-                    *xStm >> b;
-                    pImpl->bSetExtent = b;
-
-                    if( pStor->GetVersion() <= SOFFICE_FILEFORMAT_40  || pStor->GetVersion() >= SOFFICE_FILEFORMAT_60 )
-                    {
-                        pImpl->xWorkingStg = new SvStorage( FALSE, String(), STREAM_STD_READWRITE, STORAGE_DELETEONRELEASE );
-                        pStor->CopyTo( pImpl->xWorkingStg );
-                    }
-
-                    bResult = ( xStm->GetError() == ERRCODE_NONE );
-                }
-            }
-            else
-                bResult = MakeWorkStorageWrap_Impl( pStor );
-        }
-        else if( !IsHandsOff() )
-         {
-            BOOL bNewVersion = pStor->IsStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "Ole-Object" ) ) );
-             if( bNewVersion )
-                // Full storage in 5.0 or newer format
-                pImpl->xWorkingStg = pStor;
-            else
-                bResult = MakeWorkStorageWrap_Impl( pStor );
-        }
-    }
-
-    return SvInPlaceObject::SaveCompleted( pStor ) && bResult;
 }
 
 BOOL    SvOutPlaceObject::MakeWorkStorageWrap_Impl( SvStorage * pStor )
@@ -1711,3 +1481,5 @@ void SvOutPlaceObject::DrawObject
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

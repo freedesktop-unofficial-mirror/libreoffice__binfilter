@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,19 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include "XMLBase64ImportContext.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::io;
+
+using rtl::OUString;
 
 //-----------------------------------------------------------------------------
 
@@ -52,10 +46,10 @@ TYPEINIT1( XMLBase64ImportContext, SvXMLImportContext );
 
 
 XMLBase64ImportContext::XMLBase64ImportContext(
-        SvXMLImport& rImport, USHORT nPrfx, const OUString& rLName,
-        const Reference< XAttributeList >& xAttrList,
+        SvXMLImport& rInImport, USHORT nPrfx, const OUString& rLName,
+        const Reference< XAttributeList >& /*xAttrList*/,
         const Reference< XOutputStream >& rOut ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xOut( rOut )
 {
 }
@@ -76,7 +70,7 @@ void XMLBase64ImportContext::Characters( const ::rtl::OUString& rChars )
     if( sTrimmedChars.getLength() )
     {
         OUString sChars;
-        if( sBase64CharsLeft )
+        if( sBase64CharsLeft.getLength() )
         {
             sChars = sBase64CharsLeft;
             sChars += sTrimmedChars;
@@ -97,3 +91,5 @@ void XMLBase64ImportContext::Characters( const ::rtl::OUString& rChars )
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

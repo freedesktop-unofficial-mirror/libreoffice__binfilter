@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,68 +31,28 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_TEXT_RELORIENTATION_HPP_
 #include <com/sun/star/text/RelOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
 #include <com/sun/star/text/HorizontalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_DOCUMENTSTATISTIC_HPP_
 #include <com/sun/star/text/DocumentStatistic.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATION_HPP_
 #include <com/sun/star/text/HoriOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_HORIORIENTATIONFORMAT_HPP_
 #include <com/sun/star/text/HoriOrientationFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_NOTEPRINTMODE_HPP_
 #include <com/sun/star/text/NotePrintMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
 #include <com/sun/star/text/SizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATIONFORMAT_HPP_
 #include <com/sun/star/text/VertOrientationFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
 #include <com/sun/star/text/WrapTextMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
 #include <com/sun/star/text/GraphicCrop.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTGRAPHICOBJECTSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextGraphicObjectsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_COLORMODE_HPP_
 #include <com/sun/star/drawing/ColorMode.hpp>
-#endif
 
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX
 #include <bf_goodies/graphicobject.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _GRFATR_HXX
 #include <grfatr.hxx>
-#endif
-#ifndef _SWUNOHELPER_HXX
 #include <swunohelper.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
-#ifndef _ERRHDL_HXX //autogen
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -131,10 +92,10 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/                  nEnum == RES_MIRROR_GRF_BOTH;
 /*N*/           return bEnum;
 /*N*/ }
-/*N*/ BOOL SwMirrorGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwMirrorGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/   sal_Bool bRet = sal_True,
-/*N*/        bVal;
+    /*N*/   bool bRet = true;
+/*N*/   sal_Bool bVal;
 /*N*/   // Vertikal und Horizontal sind mal getauscht worden!
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
@@ -150,16 +111,16 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/                  GetValue() == RES_MIRROR_GRF_BOTH;
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT( !this, "unknown MemberId" );
+/*N*/           OSL_ENSURE( !this, "unknown MemberId" );
 /*N*/           bRet = sal_False;
 /*N*/   }
 /*N*/   rVal.setValue( &bVal, ::getBooleanCppuType() );
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ BOOL SwMirrorGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwMirrorGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/   sal_Bool bRet = sal_True;
+/*N*/   bool bRet = true;
 /*N*/   sal_Bool bVal = *(sal_Bool*)rVal.getValue();
 /*N*/   // Vertikal und Horizontal sind mal getauscht worden!
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -199,8 +160,8 @@ sal_uInt16 SwMirrorGrf::GetValueCount() const
 /*N*/           }
 /*N*/           break;
 /*N*/       default:
-/*N*/           ASSERT( !this, "unknown MemberId" );
-/*N*/           bRet = sal_False;
+/*N*/           OSL_ENSURE( !this, "unknown MemberId" );
+/*N*/           bRet = false;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -238,68 +199,68 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/ }
 
 
-/*N*/ BOOL SwRotationGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwRotationGrf::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
 /*N*/     rVal <<= (sal_Int16)GetValue();
-/*N*/     return TRUE;
+/*N*/     return true;
 /*N*/ }
 
-/*N*/ BOOL SwRotationGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwRotationGrf::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/     // SfxUInt16Item::QueryValue returns sal_Int32 in Any now... (srx642w)
 /*N*/     // where we still want this to be a sal_Int16
-/*N*/     sal_Int16 nValue;
+/*N*/   sal_Int16 nValue = 0;
 /*N*/   if (rVal >>= nValue)
 /*N*/   {
-/*N*/         // UINT16 argument needed
-/*N*/         SetValue( (UINT16) nValue );
-/*N*/       return TRUE;
+/*N*/       // UINT16 argument needed
+/*N*/       SetValue( (UINT16) nValue );
+/*N*/       return true;
 /*N*/   }
 /*N*/
-/*N*/     DBG_ERROR( "SwRotationGrf::PutValue - Wrong type!" );
-/*N*/   return FALSE;
+/*N*/   OSL_FAIL( "SwRotationGrf::PutValue - Wrong type!" );
+/*N*/   return true;
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwLuminanceGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwLuminanceGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwLuminanceGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwContrastGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwContrastGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwContrastGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwChannelRGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwChannelRGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwChannelRGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwChannelGGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwChannelGGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwChannelGGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwChannelBGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwChannelBGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwChannelBGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwGammaGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwGammaGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwGammaGrf( *this );
 /*N*/ }
@@ -310,90 +271,91 @@ SwCropGrf::SwCropGrf(sal_Int32 nL, sal_Int32 nR, sal_Int32 nT, sal_Int32 nB )
 /*N*/       nValue == ((SwGammaGrf&)rCmp).GetValue();
 /*N*/ }
 
-/*N*/ BOOL SwGammaGrf::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwGammaGrf::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   rVal <<= nValue;
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL SwGammaGrf::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwGammaGrf::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   return rVal >>= nValue;
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwInvertGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwInvertGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwInvertGrf( *this );
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwTransparencyGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwTransparencyGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwTransparencyGrf( *this );
 /*N*/ }
 // ------------------------------------------------------------------
-/*N*/ BOOL SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
-/*N*/                                       BYTE nMemberId  ) const
+/*N*/ bool SwTransparencyGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/                                       BYTE /*nMemberId*/  ) const
 /*N*/ {
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
 /*N*/   sal_Int16 nRet = GetValue();
 /*N*/     DBG_ASSERT( 0 <= nRet && nRet <= 100, "value out of range" );
 /*N*/     rVal <<= nRet;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 // ------------------------------------------------------------------
-/*N*/ BOOL SwTransparencyGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
-/*N*/                                       BYTE nMemberId  )
+/*N*/ bool SwTransparencyGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/                                       BYTE /*nMemberId*/  )
 /*N*/ {
 /*N*/   //temporary conversion until this is a SfxInt16Item!
 /*N*/   DBG_ASSERT(ISA(SfxByteItem),"Put/QueryValue should be removed!");
-/*N*/   sal_Int16 nVal;
+/*N*/   sal_Int16 nVal = 0;
 /*N*/   if(!(rVal >>= nVal) || nVal < -100 || nVal > 100)
 /*N*/       return FALSE;
 /*N*/     if(nVal < 0)
 /*N*/     {
 /*N*/         // for compatibility with old documents
-/*N*/         // OD 05.11.2002 #104308# - introduce rounding as for SO 6.0 PP2
-/*N*/         // introduced by fix of #104293#.
+/*N*/         // introduce rounding as for SO 6.0 PP2
 /*N*/         nVal = ( ( nVal * 128 ) - (99/2) ) / 100;
 /*N*/         nVal += 128;
 /*N*/     }
 /*N*/     DBG_ASSERT( 0 <= nVal && nVal <= 100, "value out of range" );
 /*N*/   SetValue(nVal);
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
 // ------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SwDrawModeGrf::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SwDrawModeGrf::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SwDrawModeGrf( *this );
 /*N*/ }
 
 
-/*N*/ BOOL SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
-/*N*/                               BYTE nMemberId ) const
+/*N*/ bool SwDrawModeGrf::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/                               BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   drawing::ColorMode eRet = (drawing::ColorMode)GetEnumValue();
 /*N*/   rVal <<= eRet;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ BOOL SwDrawModeGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
-/*N*/                               BYTE nMemberId  )
+/*N*/ bool SwDrawModeGrf::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/                               BYTE /*nMemberId*/  )
 /*N*/ {
 /*N*/   sal_Int32 eVal = SWUnoHelper::GetEnumAsInt32( rVal );
 /*N*/   if(eVal >= 0 && eVal <= GRAPHICDRAWMODE_WATERMARK)
 /*N*/   {
 /*N*/       SetEnumValue((USHORT)eVal);
-/*N*/       return TRUE;
+/*N*/       return true;
 /*N*/   }
-/*N*/   return FALSE;
+/*N*/   return false;
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

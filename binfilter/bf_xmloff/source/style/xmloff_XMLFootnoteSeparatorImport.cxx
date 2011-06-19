@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,53 +26,24 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLFOOTNOTESEPARATORIMPORT_HXX
 #include "XMLFootnoteSeparatorImport.hxx"
-#endif
 
 #include "rtl/ustring.hxx"
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-
-
-#ifndef _COM_SUN_STAR_TEXT_HORIZONTALADJUST_HPP_
 #include <com/sun/star/text/HorizontalAdjust.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-
 #include <vector>
+
 namespace binfilter {
 
 
@@ -89,13 +61,13 @@ TYPEINIT1(XMLFootnoteSeparatorImport, SvXMLImportContext);
 
 
 XMLFootnoteSeparatorImport::XMLFootnoteSeparatorImport(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     vector<XMLPropertyState> & rProps,
     const UniReference<XMLPropertySetMapper> & rMapperRef,
     sal_Int32 nIndex) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         rProperties(rProps),
         rMapper(rMapperRef),
         nPropIndex(nIndex)
@@ -131,14 +103,14 @@ void XMLFootnoteSeparatorImport::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sAttrValue = xAttrList->getValueByIndex(nAttr);
 
         sal_Int32 nTmp;
 
-        if (XML_NAMESPACE_STYLE == nPrefix)
+        if (XML_NAMESPACE_STYLE == nLclPrefix)
         {
             if (IsXMLToken( sLocalName, XML_WIDTH ))
             {
@@ -217,3 +189,5 @@ void XMLFootnoteSeparatorImport::StartElement(
     rProperties.push_back(aLineWeight);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

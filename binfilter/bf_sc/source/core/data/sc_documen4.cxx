@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -127,7 +125,7 @@ namespace binfilter {
 /*N*/   if (i == MAXTAB + 1)
 /*N*/   {
 /*N*/       Sound::Beep();
-/*N*/       DBG_ERROR("ScDocument::InsertMatrixFormula Keine Tabelle markiert");
+/*N*/       OSL_FAIL("ScDocument::InsertMatrixFormula Keine Tabelle markiert");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -145,7 +143,7 @@ namespace binfilter {
 /*N*/           if (i == nTab1)
 /*N*/               pTab[i]->PutCell(nCol1, nRow1, pCell);
 /*N*/           else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCol1, nRow1, pCell->Clone(this, ScAddress( nCol1, nRow1, i)));
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -208,7 +206,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCo
 
 /*N*/ void ScDocument::CompileDBFormula()
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (USHORT i=0; i<=MAXTAB; i++)
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void ScDocument::CompileDBFormula( BOOL bCreateFormulaString )
@@ -222,7 +220,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pTab[i]->PutCell(nCo
 /*N*/ void ScDocument::CompileNameFormula( BOOL bCreateFormulaString )
 /*N*/ {
 /*N*/   if ( pCondFormList )
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();    // nach ScNameDlg noetig
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/
 /*N*/   for (USHORT i=0; i<=MAXTAB; i++)
 /*N*/   {
@@ -243,7 +241,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();
 /*N*/   if (nTab<=MAXTAB && pTab[nTab])
 /*N*/       pTab[nTab]->DoColResize( nCol1, nCol2, nAdd );
 /*N*/   else
-/*N*/       DBG_ERROR("DoColResize: falsche Tabelle");
+/*N*/       OSL_FAIL("DoColResize: falsche Tabelle");
 /*N*/ }
 
 /*N*/ void ScDocument::InvalidateTableArea()
@@ -303,6 +301,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();
 /*N*/               else
 /*N*/                   aData.bError = TRUE;
 /*N*/               break;
+/*N*/           default:
+/*N*/               break;
 /*N*/       }
 /*N*/
 /*N*/   if (aData.bError)
@@ -311,10 +311,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         pCondFormList->CompileAll();
 /*N*/   return !aData.bError;
 /*N*/ }
 
-/*N*/ double ScDocument::RoundValueAsShown( double fVal, ULONG nFormat )
+/*N*/ double ScDocument::RoundValueAsShown( double , ULONG )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   short nType;
-        return 0;//STRIP001 return fVal;
+DBG_BF_ASSERT(0, "STRIP");
+        return 0;
 }
 
 //
@@ -407,7 +407,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   short nType;
 /*N*/       if (pCondFormList)
 /*N*/           return pCondFormList->GetFormat( nIndex );
 /*N*/       else
-/*N*/           DBG_ERROR("pCondFormList ist 0");
+/*N*/           OSL_FAIL("pCondFormList ist 0");
 /*N*/   }
 /*N*/
 /*N*/   return NULL;
@@ -499,3 +499,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   short nType;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

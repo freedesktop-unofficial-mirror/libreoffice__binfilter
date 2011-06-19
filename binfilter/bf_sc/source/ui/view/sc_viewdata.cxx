@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,8 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -50,7 +49,6 @@
 #include "editutil.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
-#include "tabcont.hxx"
 
 #include "ViewSettingsSequenceDefines.hxx"
 
@@ -64,22 +62,21 @@ using namespace ::com::sun::star;
 
 #define TAG_TABBARWIDTH "tw:"
 
-static BOOL bMoveArea = FALSE;              //! Member?
 USHORT nEditAdjust = SVX_ADJUST_LEFT;       //! Member !!!
 
 //==================================================================
 
 /*N*/ ScViewDataTable::ScViewDataTable() :
-/*N*/               nCurX( 0 ),
-/*N*/               nCurY( 0 ),
-/*N*/               bOldCurValid( FALSE ),
-/*N*/               eHSplitMode( SC_SPLIT_NONE ),
-/*N*/               eVSplitMode( SC_SPLIT_NONE ),
 /*N*/               nHSplitPos( 0 ),
 /*N*/               nVSplitPos( 0 ),
+/*N*/               eHSplitMode( SC_SPLIT_NONE ),
+/*N*/               eVSplitMode( SC_SPLIT_NONE ),
+/*N*/               eWhichActive( SC_SPLIT_BOTTOMLEFT ),
 /*N*/               nFixPosX( 0 ),
 /*N*/               nFixPosY( 0 ),
-/*N*/               eWhichActive( SC_SPLIT_BOTTOMLEFT )
+/*N*/               nCurX( 0 ),
+/*N*/               nCurY( 0 ),
+/*N*/               bOldCurValid( FALSE )
 /*N*/ {
 /*N*/   nPosX[0]=nPosX[1]=
 /*N*/   nPosY[0]=nPosY[1]=0;
@@ -213,25 +210,23 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 
 /*N*/ ScViewData::ScViewData( ScDocShell* pDocSh )
 /*N*/   :   pDocShell   ( pDocSh ),
-//      pViewShell  ( pViewSh ),
 /*N*/       pDoc        ( NULL ),
-//      pView       ( pViewSh ),
 /*N*/       pOptions    ( new ScViewOptions ),
-/*N*/       nTabNo      ( 0 ),
-/*N*/       nRefTabNo   ( 0 ),
+/*N*/       pSpellingView ( NULL ),
+/*N*/       aLogicMode  ( MAP_100TH_MM ),
 /*N*/       aZoomX      ( 1,1 ),
 /*N*/       aZoomY      ( 1,1 ),
 /*N*/       aPageZoomX  ( 3,5 ),                    // Page-Default: 60%
 /*N*/       aPageZoomY  ( 3,5 ),
-/*N*/       aLogicMode  ( MAP_100TH_MM ),
-/*N*/       bIsRefMode  ( FALSE ),
 /*N*/       eRefType    ( SC_REFTYPE_NONE ),
-/*N*/       nFillMode   ( SC_FILL_NONE ),
-/*N*/       bDelMarkValid( FALSE ),
+/*N*/       nTabNo      ( 0 ),
+/*N*/       nRefTabNo   ( 0 ),
 /*N*/       bActive     ( TRUE ),                   //! wie initialisieren?
+/*N*/       bIsRefMode  ( FALSE ),
+/*N*/       bDelMarkValid( FALSE ),
+/*N*/       nFillMode   ( SC_FILL_NONE ),
 /*N*/       bPagebreak  ( FALSE ),
-            nTabBarWidth( 0 ),     // #116578#
-/*N*/       pSpellingView ( NULL )
+            nTabBarWidth( 0 )
 /*N*/ {
 /*N*/   SetGridMode     ( TRUE );
 /*N*/   SetSyntaxMode   ( FALSE );
@@ -286,7 +281,7 @@ void ScViewDataTable::ReadUserDataSequence(const uno::Sequence <beans::PropertyV
 /*N*/   else if (pDocShell)
 /*?*/       return pDocShell->GetDocument();
 /*N*/
-/*N*/   DBG_ERROR("kein Document an ViewData");
+/*N*/   OSL_FAIL("kein Document an ViewData");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -330,7 +325,7 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 {
     if (nNewTab>MAXTAB)
     {
-        DBG_ERROR("falsche Tabellennummer");
+        OSL_FAIL("falsche Tabellennummer");
         return;
     }
 
@@ -379,7 +374,7 @@ void ScViewData::SetTabNo( USHORT nNewTab )
 /*N*/
 /*N*/   if ( pDoc && pDoc->HasDetectiveObjects(nTabNo) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nEndCol = 0;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -474,7 +469,7 @@ void ScViewData::ReadUserData(const String& rData)
     {
         //  #45208# beim Reload in der Seitenansicht sind evtl. die Preview-UserData
         //  stehengelassen worden. Den Zoom von der Preview will man hier nicht...
-        DBG_ERROR("ReadUserData: das sind nicht meine Daten");
+        OSL_FAIL("ReadUserData: das sind nicht meine Daten");
         return;
     }
 
@@ -574,7 +569,7 @@ void ScViewData::ReadUserData(const String& rData)
             {
                 //  dann wieder auf Default (unten links)
                 pTabData[nPos]->eWhichActive = SC_SPLIT_BOTTOMLEFT;
-                DBG_ERROR("SplitPos musste korrigiert werden");
+                OSL_FAIL("SplitPos musste korrigiert werden");
             }
         }
         ++nPos;
@@ -615,9 +610,9 @@ void ScViewData::ReadUserData(const String& rData)
 /*N*/                   {
 /*N*/                       uno::Sequence <beans::PropertyValue> aTableViewSettings;
 /*N*/                       pTabData[nTab]->WriteUserDataSequence(aTableViewSettings);
-/*N*/                       String sName;
-/*N*/                       GetDocument()->GetName( nTab, sName );
-/*N*/                       ::rtl::OUString sOUName(sName);
+/*N*/                       String _sName;
+/*N*/                       GetDocument()->GetName( nTab, _sName );
+/*N*/                       ::rtl::OUString sOUName(_sName);
 /*N*/                       uno::Any aAny;
 /*N*/                       aAny <<= aTableViewSettings;
 /*N*/                         try
@@ -703,7 +698,6 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
 {
     sal_Int32 nCount(rSettings.getLength());
     sal_Int32 nTemp32(0);
-    sal_Int16 nTemp16(0);
     sal_Bool bPageMode(sal_False);
     for (sal_Int32 i = 0; i < nCount; i++)
     {
@@ -715,13 +709,13 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
             if ((rSettings[i].Value >>= xNameContainer) && xNameContainer->hasElements())
             {
                 uno::Sequence< ::rtl::OUString > aNames(xNameContainer->getElementNames());
-                for (sal_Int32 i = 0; i < aNames.getLength(); i++)
+                for (sal_Int32 j = 0; j < aNames.getLength(); j++)
                 {
-                    String sTabName(aNames[i]);
+                    String sTabName(aNames[j]);
                     sal_uInt16 nTab(0);
                     if (GetDocument()->GetTable(sTabName, nTab))
                     {
-                        uno::Any aAny = xNameContainer->getByName(aNames[i]);
+                        uno::Any aAny = xNameContainer->getByName(aNames[j]);
                         uno::Sequence<beans::PropertyValue> aTabSettings;
                         if (aAny >>= aTabSettings)
                         {
@@ -734,10 +728,10 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
         }
         else if (sName.compareToAscii(SC_ACTIVETABLE) == 0)
         {
-            ::rtl::OUString sName;
-            if(rSettings[i].Value >>= sName)
+            ::rtl::OUString sLclName;
+            if(rSettings[i].Value >>= sLclName)
             {
-                String sTabName(sName);
+                String sTabName(sLclName);
                 sal_uInt16 nTab(0);
                 if (GetDocument()->GetTable(sTabName, nTab))
                     nTabNo = nTab;
@@ -778,7 +772,7 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
             pOptions->SetOption(VOPT_GRID, ScUnoHelpFunctions::GetBoolFromAny( rSettings[i].Value ) );
         else if ( sName.compareToAscii( SC_UNO_GRIDCOLOR ) == 0 )
         {
-            sal_Int64 nColor;
+            sal_Int64 nColor = 0;
             if (rSettings[i].Value >>= nColor)
             {
                 String aColorName;
@@ -819,3 +813,5 @@ void ScViewData::ReadUserDataSequence(const uno::Sequence <beans::PropertyValue>
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

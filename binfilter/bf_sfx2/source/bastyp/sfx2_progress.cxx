@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 #include "progress.hxx"
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -108,7 +107,7 @@ inline ULONG Get10ThSec()
 //#endif
 // -----------------------------------------------------------------------
 
-/*N*/ void SfxProgress_Impl::Enable_Impl( BOOL bEnable )
+/*N*/ void SfxProgress_Impl::Enable_Impl( BOOL /*bEnable*/ )
 /*N*/ {
 /*N*/   SfxObjectShell* pDoc = bAllDocs ? NULL : (SfxObjectShell*) xObjSh;
 /*N*/
@@ -116,7 +115,7 @@ inline ULONG Get10ThSec()
 /*N*/   {
 /*N*/   }
 /*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->LockDispatcher( !bEnable );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -156,9 +155,9 @@ inline ULONG Get10ThSec()
     Fortschritts-Anzeige angezeigt.
 */
 
-/*N*/ : nVal(0),
-/*N*/   bSuspended(TRUE),
-/*N*/   pImp( new SfxProgress_Impl( rText ) )
+/*N*/ : pImp( new SfxProgress_Impl( rText ) )
+/*N*/ , nVal(0)
+/*N*/ , bSuspended(TRUE)
 /*N*/ {
 /*N*/   pImp->bRunning = TRUE;
 /*N*/   pImp->bAllowRescheduling = Application::IsInExecute();;
@@ -180,7 +179,7 @@ inline ULONG Get10ThSec()
 /*N*/   if ( pObjSh )
 /*N*/       pObjSh->SetProgress_Impl(this);
 /*N*/   else if( !pImp->pActiveProgress )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SFX_APP()->SetProgress_Impl(this);
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   Resume();
 /*N*/ }
 
@@ -202,7 +201,6 @@ inline ULONG Get10ThSec()
 /*N*/
 /*N*/   if( pImp->bIsStatusText == TRUE )
 /*?*/       GetpApp()->HideStatusText( );
-/*N*/     SfxObjectShell* pDoc = pImp->xObjSh;
 /*N*/   delete pImp;
 /*N*/ }
 
@@ -232,7 +230,7 @@ inline ULONG Get10ThSec()
 /*N*/   if ( pImp->xObjSh.Is() )
 /*N*/       pImp->xObjSh->SetProgress_Impl(0);
 /*N*/   else
-/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SFX_APP()->SetProgress_Impl(0);
+/*?*/         {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   if ( pImp->bLocked )
 /*N*/         pImp->Enable_Impl(TRUE);
 /*N*/ }
@@ -241,7 +239,7 @@ inline ULONG Get10ThSec()
 
 /*?*/ void SfxProgress::SetText
 /*?*/ (
-/*?*/   const String&   rText   /*  neuer Text */
+/*?*/   const String&   /*rText*/   /*  neuer Text */
 /*?*/ )
 
 /*  [Beschreibung]
@@ -250,28 +248,8 @@ inline ULONG Get10ThSec()
     angezeigt wird.
 */
 
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
-
-// -----------------------------------------------------------------------
-
-
-
-// -----------------------------------------------------------------------
-
-// muss in AppDaten
-static ULONG nLastTime = 0;
-
-
-// -----------------------------------------------------------------------
-
-/*N*/ IMPL_STATIC_LINK( SfxProgress, DefaultBindingProgress, SvProgressArg*, pArg )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return 0;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 
 // -----------------------------------------------------------------------
 
@@ -304,7 +282,6 @@ static ULONG nLastTime = 0;
 /*N*/   if( pImp->pActiveProgress ) return TRUE;
 /*N*/
 /*N*/   // neuen Wert "ubernehmen
-/*N*/   BOOL bOver=FALSE;
 /*N*/   nVal = nNewVal;
 /*N*/
 /*N*/   // neuer Range?
@@ -313,7 +290,6 @@ static ULONG nLastTime = 0;
 /*?*/       DBG( DbgOutf( "SfxProgress: range changed from %lu to %lu",
 /*?*/                     pImp->nMax, nNewRange ) );
 /*?*/       pImp->nMax = nNewRange;
-/*?*/       bOver = TRUE;
 /*N*/   }
 /*N*/
 /*N*/     if ( !pImp->xStatusInd.is() )
@@ -492,3 +468,5 @@ static ULONG nLastTime = 0;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

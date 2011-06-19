@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,36 +33,20 @@
 
 #include "dcontact.hxx" // SwDrawContact
 #include "dflyobj.hxx"  // SwVirtFlyDrawObj
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"      // SwPosition
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "frmfmt.hxx"   // SwFrmFmt
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 #include "flyfrms.hxx"
 #include "txatbase.hxx" // SwTxtAttr
 #include "porfly.hxx"
@@ -80,7 +65,7 @@ namespace binfilter {
  *************************************************************************/
 /*N*/ sal_Bool SwFlyPortion::Format( SwTxtFormatInfo &rInf )
 /*N*/ {
-/*N*/   ASSERT( Fix() >= rInf.X(), "SwFlyPortion::Format: rush hour" );
+/*N*/   OSL_ENSURE( Fix() >= rInf.X(), "SwFlyPortion::Format: rush hour" );
 /*N*/   // 8537: Tabs muessen expandiert werden.
 /*N*/   if( rInf.GetLastTab() )
 /*?*/       ((SwLinePortion*)rInf.GetLastTab())->FormatEOL( rInf );
@@ -115,7 +100,7 @@ namespace binfilter {
 /*N*/ #endif
 /*N*/   if( !Width() )
 /*N*/   {
-/*N*/       ASSERT( Width(), "+SwFlyPortion::Format: a fly is a fly is a fly" );
+/*N*/       OSL_ENSURE( Width(), "+SwFlyPortion::Format: a fly is a fly is a fly" );
 /*N*/       Width(1);
 /*N*/   }
 /*N*/
@@ -249,7 +234,7 @@ namespace binfilter {
 /*N*/ xub_StrLen SwTxtFrm::CalcFlyPos( SwFrmFmt* pSearch )
 /*N*/ {
 /*N*/   SwpHints* pHints = GetTxtNode()->GetpSwpHints();
-/*N*/   ASSERT( pHints, "CalcFlyPos: Why me?" );
+/*N*/   OSL_ENSURE( pHints, "CalcFlyPos: Why me?" );
 /*N*/   if( !pHints )
 /*N*/       return STRING_LEN;
 /*N*/   SwTxtAttr* pFound = NULL;
@@ -263,7 +248,7 @@ namespace binfilter {
 /*N*/               pFound = pHt;
 /*N*/       }
 /*N*/   }
-/*N*/   ASSERT( pHints, "CalcFlyPos: Not Found!" );
+/*N*/   OSL_ENSURE( pHints, "CalcFlyPos: Not Found!" );
 /*N*/   if( !pFound )
 /*N*/       return STRING_LEN;
 /*N*/   return *pFound->GetStart();
@@ -288,7 +273,7 @@ namespace binfilter {
 /*N*/   bMax( sal_False ),
 /*N*/   nAlign( 0 )
 /*N*/ {
-/*N*/   ASSERT( pFly, "SwFlyCntPortion::SwFlyCntPortion: no SwFlyInCntFrm!" );
+/*N*/   OSL_ENSURE( pFly, "SwFlyCntPortion::SwFlyCntPortion: no SwFlyInCntFrm!" );
 /*N*/   nLineLength = 1;
 /*N*/   nFlags |= SETBASE_ULSPACE | SETBASE_INIT;
 /*N*/     SetBase( rFrm, rBase, nLnAscent, nLnDescent, nFlyAsc, nFlyDesc, nFlags );
@@ -304,7 +289,7 @@ namespace binfilter {
 /*N*/   bMax( sal_False ),
 /*N*/   nAlign( 0 )
 /*N*/ {
-/*N*/   ASSERT( pDrawContact, "SwFlyCntPortion::SwFlyCntPortion: no SwDrawContact!" );
+/*N*/   OSL_ENSURE( pDrawContact, "SwFlyCntPortion::SwFlyCntPortion: no SwDrawContact!" );
 /*N*/   if( !pDrawContact->GetAnchor() )
 /*N*/   {
 /*N*/       if( nFlags & SETBASE_QUICK )
@@ -358,7 +343,7 @@ namespace binfilter {
 /*N*/   //Die vertikale Position wird berechnet, die relative horizontale
 /*N*/   //Position ist stets 0.
 /*N*/
-/*N*/   SdrObject *pSdrObj;
+/*N*/   SdrObject *pSdrObj = NULL;
 /*N*/   SwRect aBoundRect;
 /*N*/   long nOldWidth;
 /*N*/   if( bDraw )
@@ -368,7 +353,7 @@ namespace binfilter {
 /*N*/         pSdrObj = GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm );
 /*N*/         if ( !pSdrObj )
 /*N*/         {
-/*N*/             ASSERT( false, "SwFlyCntPortion::SetBase(..) - No drawing object found by <GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm )>" );
+/*N*/             OSL_FAIL( "SwFlyCntPortion::SetBase(..) - No drawing object found by <GetDrawContact()->GetDrawObjectByAnchorFrm( rFrm )>" );
 /*N*/             pSdrObj = GetDrawContact()->GetMaster();
 /*N*/         }
 /*N*/       aBoundRect = pSdrObj->GetBoundRect();
@@ -529,8 +514,6 @@ namespace binfilter {
 /*N*/                 rFrm.SwitchLTRtoRTL( aAnchorBase );
 /*N*/                 aAnchorBase.X() -= nOldWidth;
 /*N*/             }
-/*N*/             if ( rFrm.IsVertical() )
-/*N*/                 rFrm.SwitchHorizontalToVertical( aAnchorBase );
 /*N*/
 /*N*/             // OD 20.06.2003 #108784# - consider 'virtual' drawing objects
 /*N*/             if ( pSdrObj->ISA(SwDrawVirtObj) )
@@ -574,9 +557,6 @@ namespace binfilter {
 /*N*/                 GetDrawContact()->MoveOffsetOfVirtObjs( Size( -aDiff.X(), -aDiff.Y() ) );
 /*N*/             }
 /*N*/         }
-/*N*/
-/*N*/         if ( rFrm.IsVertical() )
-/*N*/             rFrm.SwitchHorizontalToVertical( aBase );
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -588,7 +568,6 @@ namespace binfilter {
 /*N*/         }
 /*N*/         if ( rFrm.IsVertical() )
 /*N*/         {
-/*N*/             rFrm.SwitchHorizontalToVertical( aBase );
 /*N*/             aRelAttr = Point( -nRelPos, 0 );
 /*N*/             aRelPos = Point( -aRelPos.Y(), aRelPos.X() );
 /*N*/         }
@@ -608,7 +587,7 @@ namespace binfilter {
 /*N*/               aBoundRect.Height( aBoundRect.Height() + rULSpace.GetLower() );
 /*N*/           }
 /*N*/       }
-/*N*/         ASSERT( (GetFlyFrm()->Frm().*fnRect->fnGetHeight)(),
+/*N*/         OSL_ENSURE( (GetFlyFrm()->Frm().*fnRect->fnGetHeight)(),
 /*N*/           "SwFlyCntPortion::SetBase: flyfrm has an invalid height" );
 /*N*/   }
 /*N*/   aRef = aBase;
@@ -650,3 +629,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

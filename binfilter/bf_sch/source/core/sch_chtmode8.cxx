@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -105,7 +106,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/
 /*N*/
 /*N*/       case CHSTYLE_2D_XY :
-/*N*/           DBG_TRACE("ChartModel::HasSymbols:Achtung, neuer Typ, ungetestet");
+/*N*/           OSL_TRACE("ChartModel::HasSymbols:Achtung, neuer Typ, ungetestet");
 /*N*/
 /*N*/       case CHSTYLE_2D_LINESYMBOLS:
 /*N*/       case CHSTYLE_2D_STACKEDLINESYM:
@@ -351,7 +352,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ChartModel::IsArea(long nRow)
+/*N*/ BOOL ChartModel::IsArea(long /*nRow*/)
 /*N*/ {
 /*N*/   switch( eChartStyle )
 /*N*/   {
@@ -584,7 +585,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*?*/           return CHTYPE_ADDIN;
 /*N*/
 /*N*/       default:
-/*?*/           DBG_ERROR( "Invalid Chart style given!" );
+/*?*/           OSL_FAIL( "Invalid Chart style given!" );
 /*?*/           return CHTYPE_INVALID;
 /*N*/   }
 /*N*/ }
@@ -627,7 +628,7 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*?*/           eNewStyle = CHSTYLE_ADDIN;
 /*?*/           break;
 /*?*/       default:
-/*?*/           DBG_ERROR( "ChartModel::SetBaseType: Invalid Type!" );
+/*?*/           OSL_FAIL( "ChartModel::SetBaseType: Invalid Type!" );
 /*?*/           break;
 /*N*/   }
 /*N*/
@@ -642,3 +643,5 @@ CHSTYLE_2D_LINE_STACKEDCOLUMN Column+1_Line - x - - - - - x x - - - */
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

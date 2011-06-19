@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -62,7 +59,7 @@ public:
     // Kontstruktion des Pools als MasterPool
     XOutdevItemPool(USHORT nAttrStart = XATTR_START,
                     USHORT nAttrEnd = XATTR_END,
-                    FASTBOOL bLoadRefCounts = TRUE);
+                    bool bLoadRefCounts = TRUE);
 
     // Damit meine SetItems mit dem MasterPool konstruiert werden koennen.
     // Der SdrItemPool wird dabei automatisch als Secondary an den
@@ -71,7 +68,7 @@ public:
     XOutdevItemPool(SfxItemPool* pMaster,
                     USHORT nAttrStart = XATTR_START,
                     USHORT nAttrEnd = XATTR_END,
-                    FASTBOOL bLoadRefCounts = TRUE);
+                    bool bLoadRefCounts = TRUE);
 
     XOutdevItemPool(const XOutdevItemPool& rPool);
 
@@ -82,3 +79,5 @@ public:
 
 }//end of namespace binfilter
 #endif      // _XPOOL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_UNDERLINETYPES_HXX
 #include <undlihdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP
 #include <com/sun/star/awt/FontUnderline.hpp>
-#endif
 
 namespace binfilter {
 
@@ -50,7 +43,7 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::awt;
 using namespace ::binfilter::xmloff::token;
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Underline_Enum[] =
+SvXMLEnumMapEntry const pXML_Underline_Enum[] =
 {
     { XML_UNDERLINE_NONE,               FontUnderline::NONE },
     { XML_UNDERLINE_SINGLE,             FontUnderline::SINGLE },
@@ -97,7 +90,7 @@ sal_Bool XMLUnderlinePropHdl::importXML( const OUString& rStrImpValue, uno::Any&
 sal_Bool XMLUnderlinePropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nValue;
+    sal_Int16 nValue(0);
     OUStringBuffer aOut;
 
     if( rValue >>= nValue )
@@ -111,3 +104,5 @@ sal_Bool XMLUnderlinePropHdl::exportXML( OUString& rStrExpValue, const uno::Any&
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

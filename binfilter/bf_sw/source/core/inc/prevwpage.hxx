@@ -1,16 +1,15 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 #ifndef _PREVIEWPAGES_HXX
 #define _PREVIEWPAGES_HXX
 
 // classes <Point>, <Size> and <Rectangle>
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
 namespace binfilter {
 class SwPageFrm;
 
 /** data structure for a preview page in the current preview layout
 
-    OD 12.12.2002 #103492# - struct <PrevwPage>
+    struct <PrevwPage>
 
     @author OD
 */
@@ -38,3 +37,5 @@ inline PrevwPage::PrevwPage()
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

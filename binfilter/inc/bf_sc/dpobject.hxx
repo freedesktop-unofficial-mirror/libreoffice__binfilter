@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XDIMENSIONSSUPPLIER_HPP_
 #include <com/sun/star/sheet/XDimensionsSupplier.hpp>
-#endif
 class Rectangle;
 class SvStream;
 namespace binfilter {
@@ -142,10 +137,6 @@ public:
     void                SetTag(const String& rNew);
     const String&       GetTag() const                  { return aTableTag; }
 
-
-
-    BOOL                StoreOld(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
-    BOOL                StoreNew(SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
     BOOL                LoadNew(SvStream& rStream, ScMultipleReadHeader& rHdr );
     BOOL                FillOldParam(ScPivotParam& rParam, BOOL bForFile) const;
     void                InitFromOldPivot(const ScPivot& rOld, ScDocument* pDoc, BOOL bSetSource);
@@ -178,8 +169,6 @@ public:
 
     ScDPObject* operator[](USHORT nIndex) const {return (ScDPObject*)At(nIndex);}
 
-    BOOL        StoreOld( SvStream& rStream ) const;
-    BOOL        StoreNew( SvStream& rStream ) const;
     BOOL        LoadNew( SvStream& rStream );
 
     void        ConvertOldTables( ScPivotCollection& rOldColl );
@@ -195,3 +184,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

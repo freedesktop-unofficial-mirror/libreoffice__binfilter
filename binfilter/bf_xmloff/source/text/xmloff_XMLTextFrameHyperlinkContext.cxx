@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,43 +26,32 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLTEXTFRAMECONTEXT_HXX
 #include "XMLTextFrameContext.hxx"
-#endif
-#ifndef _XMLTEXTFRAMEHYPERLINKCONTEXT_HXX
 #include "XMLTextFrameHyperlinkContext.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::beans;
 using namespace ::binfilter::xmloff::token;
 
+using rtl::OUString;
+
 TYPEINIT1( XMLTextFrameHyperlinkContext, SvXMLImportContext );
 
 XMLTextFrameHyperlinkContext::XMLTextFrameHyperlinkContext(
-        SvXMLImport& rImport,
+        SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
         TextContentAnchorType eATyp,
            Reference < XTextContent> *pTxtCntnt,
         TextContentAnchorType *pAnchrType ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     eAnchorType( eATyp ),
     pTextContent( pTxtCntnt ),
     pAnchorType( pAnchrType ),
@@ -77,11 +67,11 @@ XMLTextFrameHyperlinkContext::XMLTextFrameHyperlinkContext(
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
-        switch( rTokenMap.Get( nPrefix, aLocalName ) )
+                                                            &aLclLocalName );
+        switch( rTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
         case XML_TOK_TEXT_HYPERLINK_HREF:
             sHRef = GetImport().GetAbsoluteReference( rValue );
@@ -98,7 +88,7 @@ XMLTextFrameHyperlinkContext::XMLTextFrameHyperlinkContext(
         case XML_TOK_TEXT_HYPERLINK_SERVER_MAP:
             {
                 sal_Bool bTmp;
-                if( rImport.GetMM100UnitConverter().convertBool( bTmp,
+                if( rInImport.GetMM100UnitConverter().convertBool( bTmp,
                                                                   rValue ) )
                 {
                     bMap = bTmp;
@@ -128,14 +118,14 @@ void XMLTextFrameHyperlinkContext::EndElement()
 }
 
 SvXMLImportContext *XMLTextFrameHyperlinkContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
     XMLTextFrameContext *pTextFrameContext = 0;
 
-    if( XML_NAMESPACE_DRAW == nPrefix )
+    if( XML_NAMESPACE_DRAW == nInPrefix )
     {
         sal_uInt16 nFrameType = USHRT_MAX;
         if( IsXMLToken( rLocalName, XML_TEXT_BOX ) )
@@ -154,7 +144,7 @@ SvXMLImportContext *XMLTextFrameHyperlinkContext::CreateChildContext(
             nFrameType = XML_TEXT_FRAME_FLOATING_FRAME;
 
         if( USHRT_MAX != nFrameType )
-            pTextFrameContext = new XMLTextFrameContext( GetImport(), nPrefix,
+            pTextFrameContext = new XMLTextFrameContext( GetImport(), nInPrefix,
                                                 rLocalName, xAttrList,
                                                 eAnchorType,
                                                 nFrameType );
@@ -170,7 +160,7 @@ SvXMLImportContext *XMLTextFrameHyperlinkContext::CreateChildContext(
         pContext = pTextFrameContext;
     }
     else
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -178,3 +168,5 @@ SvXMLImportContext *XMLTextFrameHyperlinkContext::CreateChildContext(
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

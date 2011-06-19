@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXDISPATCH_HXX //autogen
 #include <bf_sfx2/dispatch.hxx>
-#endif
 
-#ifndef _SFXDOCKWIN_HXX
 #include <bf_sfx2/dockwin.hxx>
-#endif
 
 #include <bf_svx/f3dchild.hxx>
 
@@ -50,14 +47,16 @@ namespace binfilter {
 |* Ableitung vom SfxChildWindow als "Behaelter" fuer Effekte
 |*
 \************************************************************************/
-/*N*/ __EXPORT Svx3DChildWindow::Svx3DChildWindow( Window* pParent,
+/*N*/ Svx3DChildWindow::Svx3DChildWindow( Window* pParent,
 /*N*/                                                        USHORT nId,
 /*N*/                                                        SfxBindings* pBindings,
 /*N*/                                                        SfxChildWinInfo* pInfo ) :
 /*N*/   SfxChildWindow( pParent, nId )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   Svx3DWin* pWin = new Svx3DWin( pBindings, this, pParent );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

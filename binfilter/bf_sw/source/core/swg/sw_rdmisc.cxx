@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,69 +26,31 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _JOBSET_HXX //autogen
 #include <vcl/jobset.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _DOCSTAT_HXX //autogen
 #include <docstat.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _RDSWG_HXX
 #include <rdswg.hxx>
-#endif
-#ifndef _SWGPAR_HXX
 #include <swgpar.hxx>       // SWGRD_xxx-Flags
-#endif
-#ifndef _FRMIDS_HXX
 #include <frmids.hxx>
-#endif
-#ifndef _FLYPOS_HXX
 #include <flypos.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // Zeichen-Konversion
-#endif
 namespace binfilter {
-
-//using namespace ::com::sun::star;
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -158,10 +121,10 @@ namespace binfilter {
 
  void SwSwgReader::InFlyFrames( const SwNodeIndex* pNdIdx )
  {
-    USHORT nFrm;
-    r >> nFrm;
+    USHORT nFrm1;
+    r >> nFrm1;
     r.next();
-    for( USHORT i = 0; i < nFrm && r.good(); i++)
+    for( USHORT i = 0; i < nFrm1 && r.good(); i++)
         InFlyFrame( pNdIdx );
 
  }
@@ -204,8 +167,6 @@ namespace binfilter {
         r.Strm() >> bDfltPrn >> aJobSetup;
 
         pDoc->SetJobsetup( aJobSetup );
- //JP 25.04.95: das Flag gibts nicht mehr:
- //     pDoc->UseDfltPrt( (BOOL)bDfltPrn );
         r.skipnext();
     }
  }
@@ -252,7 +213,6 @@ namespace binfilter {
             case SWGINF_END:
                 return;
             case SWGINF_LAYOUTPR: {
- //JP 25.04.95: SetLayoutPrtName gibts nicht mehr
                 ParseText();
                 } break;
             default:
@@ -289,9 +249,6 @@ namespace binfilter {
     BYTE cStyle, cTransparent;
     r >> cStyle >> cTransparent;
 
- // Brush aBr( (BrushStyle) cStyle );
- // aBr.SetTransparent( BOOL( cTransparent ) );
- // aBr.SetColor( InColor() );
     Color aCol(InColor());
     Color aTmpFillColor(InColor());
 
@@ -498,38 +455,37 @@ namespace binfilter {
 
  BOOL SwSwgReader::LoadDocInfo( SfxDocumentInfo& rInfo )
  {
-    FileHeader aFile;
+    FileHeader aFile1;
     long pos0 = r.tell();
 
-    memset( &aFile, 0, sizeof aFile );
-    r.get( &aFile, 4 );
+    memset( &aFile1, 0, sizeof aFile1 );
+    r.get( &aFile1, 4 );
     // Die Signatur sollte schon stimmen!!!
     // Aber bitte nur die ersten drei Zeichen, um nicht abwaertskompatible
     // Versionen erkennen zu koennen.
-    if( memcmp( ( const void*) &aFile.nSignature, SWG_SIGNATURE, 3 ) )
+    if( memcmp( ( const void*) &aFile1.nSignature, SWG_SIGNATURE, 3 ) )
         return FALSE;
     r.long4();
-    r >> aFile.nVersion
-      >> aFile.nFlags
-      >> aFile.nFree1
-      >> aFile.nDocInfo;
-    r.get( aFile.cPasswd, 16 );
+    r >> aFile1.nVersion
+      >> aFile1.nFlags
+      >> aFile1.nFree1
+      >> aFile1.nDocInfo;
+    r.get( aFile1.cPasswd, 16 );
     r.long3();
- // rInfo.SetPasswd( BOOL( ( aFile.nFlags & SWGF_HAS_PASSWD ) != 0 ) );
-    rInfo.SetPortableGraphics( BOOL( ( aFile.nFlags & SWGF_PORT_GRAF ) != 0 ) );
+    rInfo.SetPortableGraphics( BOOL( ( aFile1.nFlags & SWGF_PORT_GRAF ) != 0 ) );
 
     // Passwort in Stream eintragen
-    if( aFile.nFlags & SWGF_HAS_PASSWD )
-        r.copypasswd( aFile.cPasswd );
+    if( aFile1.nFlags & SWGF_HAS_PASSWD )
+        r.copypasswd( aFile1.cPasswd );
     // Die statische DocInfo lesen
     // Hot fix fuer Bug #4955 (Textbausteine mit geloeschten Bereichen)
-    if( !aFile.nDocInfo ) aFile.nDocInfo = 0x5B;
-    if( aFile.nVersion >= SWG_VER_FMTNAME )
+    if( !aFile1.nDocInfo ) aFile1.nDocInfo = 0x5B;
+    if( aFile1.nVersion >= SWG_VER_FMTNAME )
     {
-        r.seek( aFile.nDocInfo - 4 );
+        r.seek( aFile1.nDocInfo - 4 );
         InStaticDocInfo( rInfo );
     }
-    if( aFile.nVersion >= SWG_VER_DOCINFO )
+    if( aFile1.nVersion >= SWG_VER_DOCINFO )
     {
         r.seek( pos0 + 32 /* sizeof( FileHeader ) in Datei */ );
         InDynamicDocInfo( rInfo );
@@ -538,3 +494,5 @@ namespace binfilter {
     return BOOL( r.good() );
  }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

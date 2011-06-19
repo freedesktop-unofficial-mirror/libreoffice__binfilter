@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,34 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_METAEXPORTCOMPONENT_HXX
 #include "MetaExportComponent.hxx"
-#endif
 
-
-
-
-
-
-
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-
-#ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
-#endif
 
 namespace binfilter {
 
@@ -71,7 +51,7 @@ XMLMetaExportComponent::~XMLMetaExportComponent()
 {
 }
 
-sal_uInt32 XMLMetaExportComponent::exportDoc( enum XMLTokenEnum eClass )
+sal_uInt32 XMLMetaExportComponent::exportDoc( enum XMLTokenEnum )
 {
     GetDocHandler()->startDocument();
     {
@@ -129,3 +109,5 @@ uno::Reference< uno::XInterface > SAL_CALL XMLMetaExportComponent_createInstance
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

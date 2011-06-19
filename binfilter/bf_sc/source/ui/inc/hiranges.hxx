@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,11 +29,9 @@
 #ifndef SC_HIRANGES_HXX
 #define SC_HIRANGES_HXX
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
 
-#include <tools/debug.hxx> //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 //==================================================================
 
@@ -41,7 +40,7 @@ class ScHighlightRanges
 {
 
 public:
-            ScHighlightRanges(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScHighlightRanges();
+            ScHighlightRanges(){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -50,3 +49,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

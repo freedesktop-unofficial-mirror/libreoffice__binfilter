@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,103 +27,45 @@
  ************************************************************************/
 
 
-#ifndef FORMS_COMPONENT_FILTER_HXX
 #include "Filter.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCHECKBOX_HPP_
 #include <com/sun/star/awt/XCheckBox.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XRADIOBUTTON_HPP_
 #include <com/sun/star/awt/XRadioButton.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XLISTBOX_HPP_
 #include <com/sun/star/awt/XListBox.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCOMBOBOX_HPP_
 #include <com/sun/star/awt/XComboBox.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_VCLWINDOWPEERATTRIBUTE_HPP_
 #include <com/sun/star/awt/VclWindowPeerAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XROWSET_HPP_
 #include <com/sun/star/sdbc/XRowSet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBCX_XTABLESSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XTablesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDDB_XCOLUMNSSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XCOLUMN_HPP_
 #include <com/sun/star/sdb/XColumn.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UI_DIALOGS_XEXECUTABLEDIALOG_HPP_
 #include <com/sun/star/ui/dialogs/XExecutableDialog.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_NAMEDVALUE_HPP_
 #include <com/sun/star/beans/NamedValue.hpp>
-#endif
 
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
-#endif
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
-#ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
-#endif
-#ifndef _TOOLKIT_HELPER_VCLUNOHELPER_HXX_
 #include <toolkit/helper/vclunohelper.hxx>
-#endif
 #include <tools/wintypes.hxx>
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VCL_STDTEXT_HXX
 #include <vcl/stdtext.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
-#ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
-#endif
 namespace binfilter {
 
 //--------------------------------------------------------------------------
 extern "C" void SAL_CALL createRegistryInfo_OFilterControl()
 {
-    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::OFilterControl > aAutoRegistration;//STRIP008    static ::frm::OMultiInstanceAutoRegistration< ::frm::OFilterControl > aAutoRegistration;
+    static ::binfilter::frm::OMultiInstanceAutoRegistration< ::binfilter::frm::OFilterControl > aAutoRegistration;
 }
 
 //.........................................................................
@@ -150,12 +93,12 @@ namespace frm
     //---------------------------------------------------------------------
     OFilterControl::OFilterControl( const Reference< XMultiServiceFactory >& _rxORB )
         :m_aTextListeners( *this )
-        ,m_bFilterList( sal_False )
-        ,m_bMultiLine( sal_False )
-        ,m_nControlClass( FormComponentType::TEXTFIELD )
-        ,m_bFilterListFilled( sal_False )
         ,m_xORB( _rxORB )
         ,m_aParser( _rxORB )
+        ,m_nControlClass( FormComponentType::TEXTFIELD )
+        ,m_bFilterList( sal_False )
+        ,m_bMultiLine( sal_False )
+        ,m_bFilterListFilled( sal_False )
     {
     }
 
@@ -164,13 +107,13 @@ namespace frm
     {
         if ( !m_xField.is() )
         {
-            OSL_ENSURE( sal_False, "OFilterControl::ensureInitialized: improperly initialized: no field!" );
+            OSL_FAIL( "OFilterControl::ensureInitialized: improperly initialized: no field!" );
             return sal_False;
         }
 
         if ( !m_xMetaData.is() )
         {
-            OSL_ENSURE( sal_False, "OFilterControl::ensureInitialized: improperly initialized: no database meta data!" );
+            OSL_FAIL( "OFilterControl::ensureInitialized: improperly initialized: no database meta data!" );
             return sal_False;
         }
 
@@ -190,7 +133,7 @@ namespace frm
         }
         if ( !m_xFormatter.is() )
         {
-            OSL_ENSURE( sal_False, "OFilterControl::ensureInitialized: no number formatter!" );
+            OSL_FAIL( "OFilterControl::ensureInitialized: no number formatter!" );
             // no fallback anymore
             return sal_False;
         }
@@ -215,22 +158,22 @@ namespace frm
         switch (m_nControlClass)
         {
             case FormComponentType::RADIOBUTTON:
-                aServiceName = ::rtl::OUString::createFromAscii("radiobutton");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "radiobutton" ));
                 break;
             case FormComponentType::CHECKBOX:
-                aServiceName = ::rtl::OUString::createFromAscii("checkbox");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "checkbox" ));
                 break;
             case FormComponentType::COMBOBOX:
-                aServiceName = ::rtl::OUString::createFromAscii("combobox");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "combobox" ));
                 break;
             case FormComponentType::LISTBOX:
-                aServiceName = ::rtl::OUString::createFromAscii("listbox");
+                aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "listbox" ));
                 break;
             default:
                 if (m_bMultiLine)
-                    aServiceName = ::rtl::OUString::createFromAscii("MultiLineEdit");
+                    aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "MultiLineEdit" ));
                 else
-                    aServiceName = ::rtl::OUString::createFromAscii("Edit");
+                    aServiceName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Edit" ));
         }
         return aServiceName;
     }
@@ -301,7 +244,6 @@ namespace frm
         }
 
         // filter controls are _never_ readonly
-        // #107013# - 2002-02-03 - fs@openoffice.org
         Reference< XPropertySet > xModel( getModel(), UNO_QUERY );
         OSL_ENSURE( xModel.is(), "OFilterControl::createPeer: no model!" );
         Reference< XPropertySetInfo > xModelPSI;
@@ -351,10 +293,10 @@ namespace frm
                 switch (rEvent.Selected)
                 {
                     case STATE_CHECK:
-                        aText = ::rtl::OUString::createFromAscii("1");
+                        aText = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "1" ));
                         break;
                     case STATE_NOCHECK:
-                        aText = ::rtl::OUString::createFromAscii("0");
+                        aText = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "0" ));
                         break;
                 }
             }   break;
@@ -392,7 +334,7 @@ namespace frm
 
     // XFocusListener
     //---------------------------------------------------------------------
-    void SAL_CALL OFilterControl::focusGained(const FocusEvent& e)  throw( RuntimeException  )
+    void SAL_CALL OFilterControl::focusGained(const FocusEvent& )  throw( RuntimeException  )
     {
         OSL_ENSURE( false, "OFilterControl::focusGained: dead code!?" );
     }
@@ -400,8 +342,8 @@ namespace frm
     //---------------------------------------------------------------------
     sal_Bool SAL_CALL OFilterControl::commit() throw(RuntimeException)
     {
-        OSL_ENSURE( false, "OFilterControl::commit: dead code!?" );
-        return sal_True;
+        OSL_FAIL( "OFilterControl::commit: dead code!" );
+        return sal_False;
     }
 
     // XTextComponent
@@ -432,9 +374,9 @@ namespace frm
                 if (xVclWindow.is())
                 {
                     Any aValue;
-                    if (aText.equals(::rtl::OUString::createFromAscii("1")))
+                    if (aText.equals(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "1" ))))
                         aValue <<= (sal_Int32)STATE_CHECK;
-                    else if (aText.compareTo(::rtl::OUString::createFromAscii("0")) == 0)
+                    else if (aText.compareTo(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "0" ))) == 0)
                         aValue <<= (sal_Int32)STATE_NOCHECK;
                     else
                         aValue <<= (sal_Int32)STATE_DONTKNOW;
@@ -581,7 +523,7 @@ namespace frm
             }
             else
             {
-                DBG_ERROR( "OFilterControl::initialize: unrecognized argument!" );
+                OSL_FAIL( "OFilterControl::initialize: unrecognized argument!" );
                 continue;
             }
 
@@ -603,7 +545,7 @@ namespace frm
                 Reference< XPropertySet > xControlModel;
                 if ( !(*pValue >>= xControlModel ) || !xControlModel.is() )
                 {
-                    OSL_ENSURE( sal_False, "OFilterControl::initialize: invalid control model argument!" );
+                    OSL_FAIL( "OFilterControl::initialize: invalid control model argument!" );
                     continue;
                 }
 
@@ -701,3 +643,5 @@ namespace frm
 }   // namespace frm
 //.........................................................................
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

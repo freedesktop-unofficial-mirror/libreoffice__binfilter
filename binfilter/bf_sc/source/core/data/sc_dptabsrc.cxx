@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,13 @@
 #include <tools/debug.hxx>
 #include <rtl/math.hxx>
 #include <bf_svtools/itemprop.hxx>
+#include <vcl/svapp.hxx>
 
 #include "dptabsrc.hxx"
 #include "dptabdat.hxx"
 #include "global.hxx"
 #include "collect.hxx"
 #include "datauno.hxx"      // ScDataUnoConversion
-#include "unoguard.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
 #include "dptabres.hxx"
@@ -42,12 +43,8 @@
 #include <com/sun/star/beans/PropertyAttribute.hpp>
 #include <com/sun/star/sheet/DataPilotFieldOrientation.hpp>
 
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CALENDARDISPLAYINDEX_HPP_
 #include <com/sun/star/i18n/CalendarDisplayIndex.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -95,17 +92,17 @@ using namespace ::com::sun::star;
 /*N*/   nRowDimCount( 0 ),
 /*N*/   nDataDimCount( 0 ),
 /*N*/   nPageDimCount( 0 ),
+/*N*/   bColumnGrand( TRUE ),       // default is true
+/*N*/   bRowGrand( TRUE ),
+/*N*/   bIgnoreEmptyRows( FALSE ),
+/*N*/   bRepeatIfEmpty( FALSE ),
 /*N*/   nDupCount( 0 ),
-/*N*/   bResultOverflow( FALSE ),
 /*N*/   pResData( NULL ),
 /*N*/   pColResRoot( NULL ),
 /*N*/   pRowResRoot( NULL ),
 /*N*/   pColResults( NULL ),
 /*N*/   pRowResults( NULL ),
-/*N*/   bColumnGrand( TRUE ),       // default is true
-/*N*/   bRowGrand( TRUE ),
-/*N*/   bIgnoreEmptyRows( FALSE ),
-/*N*/   bRepeatIfEmpty( FALSE )
+/*N*/   bResultOverflow( FALSE )
 /*N*/ {
 /*N*/   pData->SetEmptyFlags( bIgnoreEmptyRows, bRepeatIfEmpty );
 /*N*/ }
@@ -284,29 +281,29 @@ using namespace ::com::sun::star;
 /*?*/       }
 /*?*/   }
 /*?*/
-/*?*/   DBG_ERROR("GetSourceDim: wrong dim");
+/*?*/   OSL_FAIL("GetSourceDim: wrong dim");
 /*?*/   return nDim;
 /*N*/ }
 
 /*?*/ uno::Sequence< uno::Sequence<sheet::DataResult> > SAL_CALL ScDPSource::getResults()
 /*?*/                                                           throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Sequence< uno::Sequence<sheet::DataResult> >(0);
 /*?*/ }
 
 /*?*/ void SAL_CALL ScDPSource::refresh() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SAL_CALL ScDPSource::addRefreshListener( const uno::Reference<util::XRefreshListener >& l )
+/*?*/ void SAL_CALL ScDPSource::addRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");   //! exception?
+/*?*/   OSL_FAIL("not implemented");    //! exception?
 /*?*/ }
 
-/*?*/ void SAL_CALL ScDPSource::removeRefreshListener( const uno::Reference<util::XRefreshListener >& l )
+/*?*/ void SAL_CALL ScDPSource::removeRefreshListener( const uno::Reference<util::XRefreshListener >& )
 /*?*/                                               throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");   //! exception?
+/*?*/   OSL_FAIL("not implemented");    //! exception?
 /*?*/ }
 
 
@@ -363,7 +360,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPSource::getPropertySetInfo()
 /*?*/                                                       throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0);
 /*?*/ }
 
 /*N*/ void SAL_CALL ScDPSource::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
@@ -382,7 +379,7 @@ using namespace ::com::sun::star;
 /*N*/       setRepeatIfEmpty( lcl_GetBoolFromAny( aValue ) );
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/ }
@@ -402,10 +399,10 @@ using namespace ::com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_REPEATIF ) )
 /*N*/       lcl_SetBoolInAny( aRet, getRepeatIfEmpty() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_DATADESC ) )             // read-only
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aRet <<= ::rtl::OUString( getDataDescription() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/   return aRet;
@@ -609,7 +606,7 @@ using namespace ::com::sun::star;
 
 
 /*?*/ uno::Reference<util::XCloneable> SAL_CALL ScDPDimension::createClone() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<util::XCloneable>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<util::XCloneable>(0);
 /*?*/ }
 
 
@@ -617,7 +614,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPDimension::getPropertySetInfo()
 /*?*/                                                       throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<beans::XPropertySetInfo>(0);
 /*?*/ }
 
 /*N*/ void SAL_CALL ScDPDimension::setPropertyValue( const ::rtl::OUString& aPropertyName, const uno::Any& aValue )
@@ -628,13 +625,13 @@ using namespace ::com::sun::star;
 /*N*/   String aNameStr = aPropertyName;
 /*N*/   if ( aNameStr.EqualsAscii( SC_UNO_POSITION ) )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 INT32 nInt;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_USEDHIER ) )
 /*N*/   {
 /*?*/       INT32 nInt;
 /*?*/       if (aValue >>= nInt)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     setUsedHierarchy( nInt );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ORIENTAT ) )
 /*N*/   {
@@ -650,7 +647,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/ }
@@ -678,7 +675,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ISDATALA ) )                 // read-only properties
 /*N*/       lcl_SetBoolInAny( aRet, getIsDataLayoutDimension() );
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_NUMBERFO ) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aRet <<= (sal_Int32) pSource->GetData()->GetNumberFormat(
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_ORIGINAL ) )
 /*N*/   {
 /*N*/       uno::Reference<container::XNamed> xOriginal;
@@ -688,7 +685,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/   return aRet;
@@ -860,9 +857,9 @@ using namespace ::com::sun::star;
 /*N*/   return aRet;
 /*N*/ }
 
-/*?*/ void SAL_CALL ScDPHierarchy::setName( const ::rtl::OUString& rNewName ) throw(uno::RuntimeException)
+/*?*/ void SAL_CALL ScDPHierarchy::setName( const ::rtl::OUString& ) throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");       //! exception?
+/*?*/   OSL_FAIL("not implemented");        //! exception?
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -886,7 +883,7 @@ using namespace ::com::sun::star;
 /*?*/           case SC_DAPI_HIERARCHY_QUARTER: nLevCount = SC_DAPI_QUARTER_LEVELS; break;
 /*?*/           case SC_DAPI_HIERARCHY_WEEK:    nLevCount = SC_DAPI_WEEK_LEVELS;    break;
 /*?*/           default:
-/*?*/               DBG_ERROR("wrong hierarchy");
+/*?*/               OSL_FAIL("wrong hierarchy");
 /*?*/               nLevCount = 0;
 /*?*/       }
 /*N*/   }
@@ -1004,16 +1001,16 @@ using namespace ::com::sun::star;
 /*N*/   //! release pSource
 /*N*/
 /*N*/   if ( pMembers )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pMembers->release();    // ref-counted
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ }
 
 
 /*?*/ uno::Reference<container::XNameAccess> SAL_CALL ScDPLevel::getMembers() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<container::XNameAccess>(0); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return uno::Reference<container::XNameAccess>(0);
 /*?*/ }
 
 /*?*/ uno::Sequence<sheet::MemberResult> SAL_CALL ScDPLevel::getResults() throw(uno::RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/   return uno::Sequence<sheet::MemberResult>(0);       //! Error?
 /*?*/ }
 
@@ -1064,9 +1061,9 @@ using namespace ::com::sun::star;
 /*N*/   return pSource->GetData()->getDimensionName( nSrcDim );     // (original) dimension name
 /*N*/ }
 
-/*?*/ void SAL_CALL ScDPLevel::setName( const ::rtl::OUString& rNewName ) throw(uno::RuntimeException)
+/*?*/ void SAL_CALL ScDPLevel::setName( const ::rtl::OUString& ) throw(uno::RuntimeException)
 /*?*/ {
-/*?*/   DBG_ERROR("not implemented");       //! exception?
+/*?*/   OSL_FAIL("not implemented");        //! exception?
 /*?*/ }
 
 /*N*/ uno::Sequence<sheet::GeneralFunction> ScDPLevel::getSubTotals() const
@@ -1092,13 +1089,13 @@ using namespace ::com::sun::star;
 /*N*/ uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDPLevel::getPropertySetInfo()
 /*N*/                                                       throw(uno::RuntimeException)
 /*N*/ {
-/*N*/   ScUnoGuard aGuard;
+/*N*/   SolarMutexGuard aGuard;
 /*N*/
 /*N*/   static SfxItemPropertyMap aDPLevelMap_Impl[] =
 /*N*/   {
 /*N*/       {MAP_CHAR_LEN(SC_UNO_SHOWEMPT), 0,  &getBooleanCppuType(),                                   0, 0 },
 /*N*/       {MAP_CHAR_LEN(SC_UNO_SUBTOTAL), 0,  &getCppuType((uno::Sequence<sheet::GeneralFunction>*)0), 0, 0 },
-/*N*/       {0,0,0,0}
+/*N*/       {0,0,0,0,0,0}
 /*N*/   };
 /*N*/   static uno::Reference<beans::XPropertySetInfo> aRef =
 /*N*/       new SfxItemPropertySetInfo( aDPLevelMap_Impl );
@@ -1117,11 +1114,11 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*?*/       uno::Sequence<sheet::GeneralFunction> aSeq;
 /*?*/       if ( aValue >>= aSeq )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     setSubTotals( aSeq );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/ }
@@ -1133,7 +1130,7 @@ using namespace ::com::sun::star;
 /*N*/   uno::Any aRet;
 /*N*/   String aNameStr = aPropertyName;
 /*N*/   if ( aNameStr.EqualsAscii( SC_UNO_SHOWEMPT ) )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     lcl_SetBoolInAny( aRet, getShowEmpty() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   else if ( aNameStr.EqualsAscii( SC_UNO_SUBTOTAL ) )
 /*N*/   {
 /*N*/       uno::Sequence<sheet::GeneralFunction> aSeq = getSubTotals();        //! avoid extra copy?
@@ -1141,7 +1138,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       DBG_ERROR("unknown property");
+/*N*/       OSL_FAIL("unknown property");
 /*N*/       //! THROW( UnknownPropertyException() );
 /*N*/   }
 /*N*/   return aRet;
@@ -1150,3 +1147,5 @@ using namespace ::com::sun::star;
 /*N*/ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScDPLevel )
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

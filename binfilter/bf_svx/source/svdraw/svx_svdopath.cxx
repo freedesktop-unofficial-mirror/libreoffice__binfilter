@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,7 +32,6 @@
 #include "xoutx.hxx"
 #include "svdtouch.hxx"
 #include "svdio.hxx"
-//#include "svdosmrt.hxx"
 #include "svdview.hxx"  // fuer MovCreate bei Freihandlinien
 #include "svdstr.hrc"   // Objektname
 
@@ -41,17 +41,11 @@
 
 
 
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>     // FRound
-#endif
 
-#ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
-#endif
 
-#ifndef _B2D_MATRIX3D_HXX
 #include <bf_goodies/matrix3d.hxx>
-#endif
 
 namespace binfilter {
 
@@ -115,12 +109,12 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/ }
 
-/*N*/ FASTBOOL SdrPathObj::FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum,
-/*N*/                            USHORT& rPointNum, FASTBOOL bAllPoints) const
+/*N*/ bool SdrPathObj::FindPolyPnt(USHORT nAbsPnt, USHORT& rPolyNum,
+/*N*/                            USHORT& rPointNum, bool bAllPoints) const
 /*N*/ {
 /*N*/   USHORT nPolyCnt=aPathPolygon.Count();
 /*N*/   USHORT nPoly=0;
-/*N*/   FASTBOOL bClosed=IsClosed();
+/*N*/   bool bClosed=IsClosed();
 /*N*/   nAbsPnt+=1;
 /*N*/
 /*N*/   while (nPoly<nPolyCnt) {
@@ -169,8 +163,8 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/
 /*N*/   USHORT nPolyAnz=aPathPolygon.Count();
 /*N*/   USHORT nPoly1PointAnz=nPolyAnz==0 ? 0 : aPathPolygon[0].GetPointCount();
-/*N*/   FASTBOOL bHasCtrl=FALSE;
-/*N*/   FASTBOOL bHasLine=FALSE; // gemischt wird jedoch z.Zt. nicht in eKind festgehalten
+/*N*/   bool bHasCtrl=FALSE;
+/*N*/   bool bHasLine=FALSE; // gemischt wird jedoch z.Zt. nicht in eKind festgehalten
 /*N*/   for (USHORT nPolyNum=0; nPolyNum<nPolyAnz && (!bHasCtrl || !bHasLine); nPolyNum++) {
 /*N*/       const XPolygon& rPoly=aPathPolygon[nPolyNum];
 /*N*/       USHORT nPointAnz=rPoly.GetPointCount();
@@ -185,12 +179,14 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           case OBJ_FREELINE: eKind=OBJ_PLIN; break;
 /*N*/           case OBJ_PATHFILL: eKind=OBJ_POLY; break;
 /*N*/           case OBJ_FREEFILL: eKind=OBJ_POLY; break;
+                default: break;
 /*N*/       }
 /*N*/   } else {
 /*N*/       switch (eKind) {
 /*N*/           case OBJ_LINE: eKind=OBJ_PATHLINE; break;
 /*N*/           case OBJ_PLIN: eKind=OBJ_PATHLINE; break;
 /*N*/           case OBJ_POLY: eKind=OBJ_PATHFILL; break;
+                default: break;
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -255,7 +251,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   ImpAddTextToBoundRect();
 /*N*/ }
 
-/*N*/ FASTBOOL SdrPathObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
+/*N*/ bool SdrPathObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
 /*N*/ {
 /*N*/   // Hidden objects on masterpages, draw nothing
 /*N*/   if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
@@ -309,7 +305,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/
 /*?*/       // new shadow line drawing
 /*?*/       if( pLineGeometry.get() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           // draw the line geometry
 /*?*/       }
 /*N*/   }
@@ -338,12 +334,12 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/         }
 /*N*/     }
 /*N*/
-/*N*/   FASTBOOL bOk=TRUE;
+/*N*/   bool bOk=TRUE;
 /*N*/   if (HasText()) {
 /*?*/       bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
 /*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bOk=PaintGluePoints(rXOut,rInfoRec);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bOk;
@@ -353,7 +349,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/ {
 /*N*/   if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
 /*N*/   INT32 nMyTol=nTol;
-/*N*/   FASTBOOL bFilled=IsClosed() && (bTextFrame || HasFill());
+/*N*/   bool bFilled=IsClosed() && (bTextFrame || HasFill());
 /*N*/
 /*N*/   INT32 nWdt=ImpGetLineWdt()/2; // Halbe Strichstaerke
 /*N*/   if (nWdt>nMyTol) nMyTol=nWdt; // Bei dicker Linie keine Toleranz noetig
@@ -363,7 +359,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   aR.Top()   -=nMyTol;
 /*N*/   aR.Bottom()+=nMyTol;
 /*N*/
-/*N*/   FASTBOOL bHit=FALSE;
+/*N*/   bool bHit=FALSE;
 /*N*/   unsigned nPolyAnz=aPathPolygon.Count();
 /*N*/   if (bFilled) {
 /*N*/       PolyPolygon aPP;
@@ -392,7 +388,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ void SdrPathObj::TakeXorPoly(XPolyPolygon& rXPolyPoly, FASTBOOL bDetail) const
+/*N*/ void SdrPathObj::TakeXorPoly(XPolyPolygon& rXPolyPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   rXPolyPoly=aPathPolygon;
 /*N*/ }
@@ -410,7 +406,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*?*/ inline USHORT GetPrevPnt(USHORT nPnt, USHORT nPntMax, FASTBOOL bClosed)
+/*?*/ inline USHORT GetPrevPnt(USHORT nPnt, USHORT nPntMax, bool bClosed)
 /*?*/ {
 /*?*/   if (nPnt>0) {
 /*?*/       nPnt--;
@@ -421,7 +417,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*?*/   return nPnt;
 /*?*/ }
 
-/*?*/ inline USHORT GetNextPnt(USHORT nPnt, USHORT nPntMax, FASTBOOL bClosed)
+/*?*/ inline USHORT GetNextPnt(USHORT nPnt, USHORT nPntMax, bool bClosed)
 /*?*/ {
 /*?*/   nPnt++;
 /*?*/   if (nPnt>nPntMax || (bClosed && nPnt>=nPntMax)) nPnt=0;
@@ -474,7 +470,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   RotateXPoly(aPathPolygon,rRef,sn,cs);
 /*N*/ }
 
-/*N*/ void SdrPathObj::NbcShear(const Point& rRefPnt, long nAngle, double fTan, FASTBOOL bVShear)
+/*N*/ void SdrPathObj::NbcShear(const Point& rRefPnt, long nAngle, double fTan, bool bVShear)
 /*N*/ {
 /*N*/   SdrTextObj::NbcShear(rRefPnt,nAngle,fTan,bVShear);
 /*N*/   ShearXPoly(aPathPolygon,rRefPnt,fTan,bVShear);
@@ -524,7 +520,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 
 
-/*N*/ FASTBOOL SdrPathObj::IsPolyObj() const
+/*N*/ bool SdrPathObj::IsPolyObj() const
 /*N*/ {
 /*N*/   return TRUE;
 /*N*/ }
@@ -595,23 +591,6 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/   SdrPathObjGeoData& rPGeo = (SdrPathObjGeoData&) rGeo;
 /*N*/   rPGeo.aPathPolygon=aPathPolygon;
 /*N*/   rPGeo.eKind=eKind;
-/*N*/ }
-
-
-/*N*/ void SdrPathObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrPathObj");
-/*N*/ #endif
-/*N*/   {
-/*N*/       SdrDownCompat aPathCompat(rOut,STREAM_WRITE); // ab V11 eingepackt
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aPathCompat.SetID("SdrPathObj(PathPolygon)");
-/*N*/ #endif
-/*N*/       rOut<<aPathPolygon;
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SdrPathObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
@@ -685,7 +664,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/                   aPathPolygon[nPolyNum][nPointAnz]=aStartPt;
 /*N*/               }
 /*N*/           } else {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aPathPolygon.Remove(nPolyNum); // leere Polygone raus
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/
 /*N*/       }
@@ -822,7 +801,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           }
 /*N*/           default:
 /*N*/           {
-/*N*/               DBG_ERROR("TRGetBaseGeometry: Missing unit translation to 100th mm!");
+/*N*/               OSL_FAIL("TRGetBaseGeometry: Missing unit translation to 100th mm!");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -893,7 +872,7 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 /*N*/           }
 /*N*/           default:
 /*N*/           {
-/*N*/               DBG_ERROR("TRSetBaseGeometry: Missing unit translation to PoolMetric!");
+/*N*/               OSL_FAIL("TRSetBaseGeometry: Missing unit translation to PoolMetric!");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -981,3 +960,5 @@ inline double ImplMMToTwips(double fVal) { return (fVal * (72.0 / 127.0)); }
 
 // EOF
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

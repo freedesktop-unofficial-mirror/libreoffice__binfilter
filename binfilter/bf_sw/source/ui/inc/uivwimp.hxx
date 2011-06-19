@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,27 +28,15 @@
 #ifndef _UIVWIMP_HXX
 #define _UIVWIMP_HXX
 
-#ifndef _SWVIEW_HXX //autogen
 #include <view.hxx>
-#endif
 
 #include <bf_sfx2/objsh.hxx>
 
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HPP_
 #include <com/sun/star/view/XSelectionSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DATATRANSFER_CLIPBOARD_XCLIPBOARDLISTENER_HPP_
 #include <com/sun/star/datatransfer/clipboard/XClipboardListener.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx> // helper for implementations
-#endif
-#ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 namespace com{ namespace sun{ namespace star {
     namespace frame {
         class XDispatchProviderInterceptor;
@@ -95,3 +84,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

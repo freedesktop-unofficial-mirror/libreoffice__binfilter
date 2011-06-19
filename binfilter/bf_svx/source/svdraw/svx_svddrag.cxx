@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _SVDDRAG_HXX //autogen
 #include "svddrag.hxx"
-#endif
 namespace binfilter {
 
-/*N*/ void SdrDragStat::Clear(FASTBOOL bLeaveOne)
+/*N*/ void SdrDragStat::Clear(bool bLeaveOne)
 /*N*/ {
 /*N*/   void* pP=aPnts.First();
 /*N*/   while (pP!=NULL) {
 /*N*/       delete (Point*)pP;
 /*N*/       pP=aPnts.Next();
 /*N*/   }
-/*N*/   if (pUser!=NULL) delete pUser;
-/*N*/   pUser=NULL;
 /*N*/   aPnts.Clear();
 /*N*/   if (bLeaveOne) {
 /*N*/       aPnts.Insert(new Point,CONTAINER_APPEND);
@@ -76,3 +73,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

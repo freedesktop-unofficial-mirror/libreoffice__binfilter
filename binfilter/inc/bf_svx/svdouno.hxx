@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_AWT_XCONTROLMODEL_HPP_
 #include <com/sun/star/awt/XControlModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XCONTROL_HPP_
 #include <com/sun/star/awt/XControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -77,6 +70,7 @@ public:
 
     SdrUnoObj(const String& rModelName, BOOL bOwnsModel = TRUE);
     virtual ~SdrUnoObj();
+    using SdrRectObj::operator=;
 
     virtual void SetPage(SdrPage* pNewPage);
     virtual void SetModel(SdrModel* pModel);
@@ -89,7 +83,7 @@ public:
     virtual void NbcSetLogicRect(const Rectangle& rRect);
     virtual void NbcSetLayer(SdrLayerID nLayer);
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 
@@ -105,3 +99,4 @@ public:
 }//end of namespace binfilter
 #endif          // _SVDOUNO_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

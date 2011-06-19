@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 #include "xtable.hxx"
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 #include "xpool.hxx"
@@ -82,28 +81,28 @@ static USHORT nVersion4Map[141];
 \************************************************************************/
 
 
-/*N*/ XOutdevItemPool::XOutdevItemPool(USHORT nAttrStart, USHORT nAttrEnd, FASTBOOL bLoadRefCounts):
+/*N*/ XOutdevItemPool::XOutdevItemPool(USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
 /*N*/   SfxItemPool(String("XOutdevItemPool", gsl_getSystemTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
 /*N*/ {
 /*N*/   Ctor(NULL,nAttrStart,nAttrEnd);
 /*N*/ }
 
 
-/*N*/ XOutdevItemPool::XOutdevItemPool(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd, FASTBOOL bLoadRefCounts):
+/*N*/ XOutdevItemPool::XOutdevItemPool(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEnd, bool bLoadRefCounts):
 /*N*/   SfxItemPool(String("XOutdevItemPool", gsl_getSystemTextEncoding()), nAttrStart, nAttrEnd, NULL, NULL, bLoadRefCounts)
 /*N*/ {
-/*N*/   Ctor(pMaster,nAttrStart,nAttrEnd);
+/*N*/   Ctor(pInMaster,nAttrStart,nAttrEnd);
 /*N*/ }
 
 
-/*N*/ void XOutdevItemPool::Ctor(SfxItemPool* pMaster, USHORT nAttrStart, USHORT nAttrEnd)
+/*N*/ void XOutdevItemPool::Ctor(SfxItemPool* pInMaster, USHORT nAttrStart, USHORT nAttrEnd)
 /*N*/ {
 /*N*/   // Mich als Secondary an den MasterPool (Joe)
-/*N*/   if (pMaster==NULL) {
-/*N*/       pMaster=this;
+/*N*/   if (pInMaster==NULL) {
+/*N*/       pInMaster=this;
 /*N*/   } else {
 /*N*/       // Ich ganz hinten dran
-/*N*/       SfxItemPool* pParent=pMaster;
+/*N*/       SfxItemPool* pParent=pInMaster;
 /*N*/       while (pParent->GetSecondaryPool()!=NULL) {
 /*?*/           pParent=pParent->GetSecondaryPool();
 /*N*/       }
@@ -118,7 +117,7 @@ static USHORT nVersion4Map[141];
 /*N*/
 /*N*/   USHORT i;
 /*N*/
-/*N*/   // Am 27-06-1995 hat Elmar 13 neue Whiches fuer XATTR_FORMTXT bei Which 1021
+/*N*/   // hat Elmar 13 neue Whiches fuer XATTR_FORMTXT bei Which 1021
 /*N*/   // eingebaut.
 /*N*/   // Alles was zu diesem Zeitpunkt >1021 war verschiebt sich also um
 /*N*/   // 13 Positionen nach hinten.
@@ -133,7 +132,7 @@ static USHORT nVersion4Map[141];
 /*N*/   }
 /*N*/   SetVersionMap(1,1000,1039,nVersion1Map);
 /*N*/
-/*N*/   // Am 09-11-1995 haben dann wiederum Kai Ahrens 14 und Joe 44 (also beide
+/*N*/   // haben dann wiederum Kai Ahrens 14 und Joe 44 (also beide
 /*N*/   // insgesamt 58) neue Whiches an verschiedenen Stellen spendiert (siehe
 /*N*/   // auch die Beschreibung in svx\inc\SvdAttr.HXX).
 /*N*/
@@ -161,8 +160,7 @@ static USHORT nVersion4Map[141];
 /*N*/   SetVersionMap(2,1000,1065,nVersion2Map);
 /*N*/
 /*N*/
-/*N*/   // Am 29-02-1996 hat KA 17 neue Whiches
-/*N*/   // fuer das XOut spendiert
+/*N*/   // hat KA 17 neue Whiches fuer das XOut spendiert
 /*N*/
 /*N*/   for (i=1000; i<=1029; i++) {
 /*N*/       nVersion3Map[i-1000]=i;
@@ -173,7 +171,7 @@ static USHORT nVersion4Map[141];
 /*N*/   SetVersionMap(3,1000,1123,nVersion3Map);
 /*N*/
 /*N*/
-/*N*/   // Am 10-08-1996 hat Joe 45 neue Items in SvDraw eingebaut
+/*N*/   // hat Joe 45 neue Items in SvDraw eingebaut
 /*N*/   // fuer Bemassung, Verbinder und Laufschrift
 /*N*/
 /*N*/   for (i=1000; i<=1126; i++) {
@@ -274,11 +272,11 @@ static USHORT nVersion4Map[141];
 /*N*/   ppPoolDefaults[XATTR_FTRESERVED_LAST    -XATTR_START] = new SfxVoidItem(XATTR_FTRESERVED_LAST);
 /*N*/
 /*N*/   // SetItems erzeugen
-/*N*/   pSet=new SfxItemSet(*pMaster, XATTR_LINE_FIRST, XATTR_LINE_LAST);
+/*N*/   pSet=new SfxItemSet(*pInMaster, XATTR_LINE_FIRST, XATTR_LINE_LAST);
 /*N*/   ppPoolDefaults[XATTRSET_LINE - XATTR_START] = new XLineAttrSetItem(pSet);
-/*N*/   pSet=new SfxItemSet(*pMaster, XATTR_FILL_FIRST, XATTR_FILL_LAST);
+/*N*/   pSet=new SfxItemSet(*pInMaster, XATTR_FILL_FIRST, XATTR_FILL_LAST);
 /*N*/   ppPoolDefaults[XATTRSET_FILL - XATTR_START] = new XFillAttrSetItem(pSet);
-/*N*/   pSet=new SfxItemSet(*pMaster, XATTR_TEXT_FIRST, XATTR_TEXT_LAST);
+/*N*/   pSet=new SfxItemSet(*pInMaster, XATTR_TEXT_FIRST, XATTR_TEXT_LAST);
 /*N*/   ppPoolDefaults[XATTRSET_TEXT - XATTR_START] = new XTextAttrSetItem(pSet);
 /*N*/
 /*N*/   // ItemInfos
@@ -384,3 +382,5 @@ static USHORT nVersion4Map[141];
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

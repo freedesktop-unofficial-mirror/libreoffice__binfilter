@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,30 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLLINENUMBERINGSEPARATORIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingSeparatorImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 
@@ -63,11 +52,11 @@ using ::binfilter::xmloff::token::XML_INCREMENT;
 TYPEINIT1( XMLLineNumberingSeparatorImportContext, SvXMLImportContext );
 
 XMLLineNumberingSeparatorImportContext::XMLLineNumberingSeparatorImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     XMLLineNumberingImportContext& rLineNumbering) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rLineNumberingContext(rLineNumbering)
 {
 }
@@ -83,10 +72,10 @@ void XMLLineNumberingSeparatorImportContext::StartElement(
     for(sal_Int16 i=0; i<nLength; i++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
-        if ( (nPrefix == XML_NAMESPACE_TEXT) &&
+        if ( (nLclPrefix == XML_NAMESPACE_TEXT) &&
              IsXMLToken(sLocalName, XML_INCREMENT) )
         {
             sal_Int32 nTmp;
@@ -112,3 +101,5 @@ void XMLLineNumberingSeparatorImportContext::EndElement()
     rLineNumberingContext.SetSeparatorText(sSeparatorBuf.makeStringAndClear());
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

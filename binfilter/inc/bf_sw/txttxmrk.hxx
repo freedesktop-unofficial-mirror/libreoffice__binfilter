@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _TXTTXMRK_HXX
 #define _TXTTXMRK_HXX
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtNode;
@@ -60,10 +59,11 @@ public:
 
 inline const SwTxtNode& SwTxtTOXMark::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtTOXMark:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtTOXMark:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

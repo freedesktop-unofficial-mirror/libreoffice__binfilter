@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -28,9 +29,7 @@
 
 #ifdef SOLAR_JAVA
 
-#ifndef _SFXSFXJS_HXX
 #include <bf_sfx2/sfxjs.hxx>
-#endif
 namespace binfilter {
 
 class VCControl;
@@ -631,3 +630,5 @@ class ImpSjJScriptFormObject : public SjJScriptFormObject
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

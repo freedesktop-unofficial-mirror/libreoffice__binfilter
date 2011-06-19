@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #ifndef _FLDITEM_HXX
 #ifndef ITEMID_FIELD
-#ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>  /* das include wird wg. EE_FEATURE_FIELD benoetigt */
-#endif
 #define ITEMID_FIELD EE_FEATURE_FIELD  /* wird fuer #include <bf_svx/flditem.hxx> benoetigt */
 #endif
 #include <bf_svx/flditem.hxx>
@@ -69,3 +68,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDFIELD_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

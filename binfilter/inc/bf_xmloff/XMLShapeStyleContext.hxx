@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 #define _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
 
-#ifndef _XMLOFF_FAMILIES_HXX_
 #include <bf_xmloff/families.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLImport;
@@ -79,3 +76,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLSHAPESTYLECONTEXT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

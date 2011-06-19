@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,20 +31,12 @@
 #ifndef _SC_CSVCONTROL_HXX
 #define _SC_CSVCONTROL_HXX
 
-#ifndef _SV_CTRL_HXX
 #include <vcl/ctrl.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef _SC_CSVSPLITS_HXX
 #include "csvsplits.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 namespace binfilter {
 
 
@@ -52,7 +45,7 @@ class ScAccessibleCsvControl;
 namespace com { namespace sun { namespace star { namespace accessibility {
     class XAccessible;
 } } } }
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 // ============================================================================
 
@@ -319,3 +312,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

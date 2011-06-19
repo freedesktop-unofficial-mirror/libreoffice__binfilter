@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,13 @@
  *
  ************************************************************************/
 #include <limits.h>
-#ifndef _BIGINT_HXX //autogen wg. BigInt
 #include <tools/bigint.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -162,6 +153,7 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
             break;
         }
         break;
+    default: break;
     }
 
 
@@ -184,7 +176,7 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
         }
         else
         {
-            BigInt nBigFac( nFac );
+            nBigFac = nFac;
             BigInt nBig10( 10 );
             rOut.append( (sal_Int32)(nBigVal / nBigFac) );
             if( !(nBigVal % nBigFac).IsZero() )
@@ -224,81 +216,6 @@ void SvXMLExportHelper::AddLength( sal_Int32 nValue, MapUnit eValueUnit,
 
     if( eUnit != XML_TOKEN_INVALID )
         rOut.append( GetXMLToken(eUnit) );
-#if 0
-    enum XMLTokenEnum eUnit;
-    long nFac = 1;
-    switch( eOutUnit )
-    {
-    case MAP_100TH_MM:
-        nFac *= 10L;
-    case MAP_10TH_MM:
-        nFac *= 10L;
-        eOutUnit = MAP_MM;
-    case MAP_MM:
-        // 0.01mm
-        nFac *= 100L;
-        eUnit = XML_UNIT_MM;
-        break;
-
-    case MAP_CM:
-#ifdef EXACT_VALUES
-        // 0.001cm
-        nFac *= 1000L;
-#else
-        // 0.01cm
-        nFac *= 100L;
-#endif
-        eUnit = XML_UNIT_CM;
-        break;
-
-    case MAP_TWIP:
-    case MAP_POINT:
-#ifdef EXACT_VALUES
-        // 0.01pt
-        nFac *= 100L;
-#else
-        // 0.1pt
-        nFac *= 10L;
-#endif
-        eUnit = XML_UNIT_PT;
-        break;
-
-    case MAP_1000TH_INCH:
-        nFac *= 10L;
-    case MAP_100TH_INCH:
-        nFac *= 10L;
-    case MAP_10TH_INCH:
-        nFac *= 10L;
-    case MAP_INCH:
-    default:
-        eOutUnit = MAP_INCH;
-#ifdef EXACT_VALUES
-        // 0.0001in
-        nFac *= 10000L;
-#else
-        // 0.01in
-        nFac *= 100L;
-#endif
-        eUnit = XML_UNIT_INCH;
-        break;
-    }
-
-    if( eValueUnit != eOutUnit )
-        nValue = OutputDevice::LogicToLogic( nValue, eValueUnit, eOutUnit );
-
-    rOut.append( nValue / nFac );
-    if( nFac > 1 && (nValue % nFac) != 0 )
-    {
-        rOut.append( sal_Unicode('.') );
-        while( nFac > 1 && (nValue % nFac) != 0 )
-        {
-            nFac /= 10L;
-            rOut.append( (nValue / nFac) % 10L );
-        }
-    }
-
-    rOut.append( GetXMLToken(eUnit) );
-#endif
 
 }
 
@@ -430,6 +347,7 @@ double SvXMLExportHelper::GetConversionFactor(::rtl::OUStringBuffer& rUnit,
                 }
                 break;
             }
+            default: break;
         }
 
         if(eUnit != XML_TOKEN_INVALID)
@@ -534,3 +452,5 @@ MapUnit SvXMLExportHelper::GetUnitFromString(const ::rtl::OUString& rString, Map
     return eRetUnit;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

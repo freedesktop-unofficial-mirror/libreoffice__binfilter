@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #include <limits.h>
 class SvStream;
@@ -114,7 +113,7 @@ friend class StrCollection;
     String aStr;
 public:
                         StrData(const String& rStr) : aStr(rStr) {}
-                        StrData(const StrData& rData) :aStr(rData.aStr) {}
+                        StrData(const StrData& rData) : DataObject(rData), aStr(rData.aStr) {}
     virtual DataObject* Clone() const;
     const String&       GetString() const { return aStr; }
     // SetString nur, wenn StrData nicht in StrCollection ist! !!!
@@ -138,7 +137,7 @@ public:
     virtual short       Compare(DataObject* pKey1, DataObject* pKey2) const;
 
 /*N*/           void        Load( SvStream& );
-/*N*/           void        Store( SvStream& ) const;
+/*N*/   void  Store( SvStream& ) const {}
 };
 
 //------------------------------------------------------------------------
@@ -158,7 +157,8 @@ public:
                             BOOL bAllStrings );
 
             TypedStrData( const TypedStrData& rCpy )
-                : aStrValue(rCpy.aStrValue),
+                : DataObject(rCpy),
+                  aStrValue(rCpy.aStrValue),
                   nValue(rCpy.nValue),
                   nStrType(rCpy.nStrType) {}
 
@@ -197,3 +197,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,7 +30,6 @@
 
 #include <bf_svtools/bf_solar.h>
 
-//ASDBG #ifndef _SFXMINARRAY_HXX
 namespace binfilter {
 
 #define DECL_OBJSTACK( ARR, T, nI, nG ) \
@@ -64,7 +64,6 @@ T ARR::Pop() \
     Remove( Count()-1, 1 ); \
     return aRet; \
 }
-//STRIP008 the following "DECL_PTRARRAY( ARR##arr_, T, nI, nG );\" should be "DECL_PTRARRAY( ARR##arr_, T, nI, nG )\"
 #define DECL_PTRSTACK( ARR, T, nI, nG ) \
 DECL_PTRARRAY( ARR##arr_, T, nI, nG ) \
 class ARR: private ARR##arr_ \
@@ -100,3 +99,4 @@ public: \
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

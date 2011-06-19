@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,27 +30,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
 
-
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 
 // #100617# FRound
-#ifndef _SV_SALBTYPE_HXX
 #include <vcl/salbtype.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -63,7 +53,7 @@ using namespace ::com::sun::star;
 //////////////////////////////////////////////////////////////////////////////
 // Predeclarations
 
-void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos, const sal_Int32 nLen);
+void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos);
 void Imp_CalcVectorValues(Vector2D& aVec1, Vector2D& aVec2, sal_Bool& bSameLength, sal_Bool& bSameDirection);
 
 //////////////////////////////////////////////////////////////////////////////
@@ -147,7 +137,7 @@ void Imp_SkipNumberAndSpacesAndCommas(const OUString& rStr, sal_Int32& rPos,
 void Imp_SkipDoubleAndSpacesAndCommas(const OUString& rStr, sal_Int32& rPos,
     const sal_Int32 nLen)
 {
-    Imp_SkipDouble(rStr, rPos, nLen);
+    Imp_SkipDouble(rStr, rPos);
     Imp_SkipSpacesAndCommas(rStr, rPos, nLen);
 }
 
@@ -171,7 +161,7 @@ void Imp_PutNumberCharWithSpace(OUString& rStr, const SvXMLUnitConverter& rConv,
 //////////////////////////////////////////////////////////////////////////////
 // parsing help functions for double numbers
 
-void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos, const sal_Int32 nLen)
+void Imp_SkipDouble(const OUString& rStr, sal_Int32& rPos)
 {
     sal_Unicode aChar(rStr[rPos]);
 
@@ -333,20 +323,21 @@ struct ImpSdXMLExpTransObj2DMatrix : public ImpSdXMLExpTransObj2DBase
 
 void SdXMLImExTransform2D::EmptyList()
 {
-    while(maList.Count())
+    for ( size_t i = maList.size(); i > 0; )
     {
-        ImpSdXMLExpTransObj2DBase* pObj = maList.Remove(maList.Count() - 1);
+        ImpSdXMLExpTransObj2DBase* pObj = maList[ --i ];
         switch(pObj->mnType)
         {
-            case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE     : delete (ImpSdXMLExpTransObj2DRotate*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_SCALE      : delete (ImpSdXMLExpTransObj2DScale*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_TRANSLATE  : delete (ImpSdXMLExpTransObj2DTranslate*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX      : delete (ImpSdXMLExpTransObj2DSkewX*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY      : delete (ImpSdXMLExpTransObj2DSkewY*)pObj; break;
-            case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX     : delete (ImpSdXMLExpTransObj2DMatrix*)pObj; break;
-            default : DBG_ERROR("SdXMLImExTransform2D: impossible entry!"); break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE    : delete (ImpSdXMLExpTransObj2DRotate*)pObj;    break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_SCALE     : delete (ImpSdXMLExpTransObj2DScale*)pObj;     break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_TRANSLATE : delete (ImpSdXMLExpTransObj2DTranslate*)pObj; break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX     : delete (ImpSdXMLExpTransObj2DSkewX*)pObj;     break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY     : delete (ImpSdXMLExpTransObj2DSkewY*)pObj;     break;
+        case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX    : delete (ImpSdXMLExpTransObj2DMatrix*)pObj;    break;
+        default : OSL_FAIL("SdXMLImExTransform2D: impossible entry!"); break;
         }
     }
+    maList.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -355,19 +346,19 @@ void SdXMLImExTransform2D::EmptyList()
 void SdXMLImExTransform2D::AddRotate(double fNew)
 {
     if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DRotate(fNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj2DRotate(fNew) );
 }
 
 void SdXMLImExTransform2D::AddTranslate(const Vector2D& rNew)
 {
     if(rNew.X() != 0.0 || rNew.Y() != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DTranslate(rNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj2DTranslate(rNew) );
 }
 
 void SdXMLImExTransform2D::AddSkewX(double fNew)
 {
     if(fNew != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj2DSkewX(fNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj2DSkewX(fNew) );
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -378,21 +369,21 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
     OUString aClosingBrace(sal_Unicode(')'));
     OUString aEmptySpace(sal_Unicode(' '));
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for( size_t a = 0; a < maList.size(); a++ )
     {
-        ImpSdXMLExpTransObj2DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj2DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE :
             {
-                aNewString += OUString::createFromAscii("rotate (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotate (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DRotate*)pObj)->mfRotate);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_SCALE      :
             {
-                aNewString += OUString::createFromAscii("scale (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "scale (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DScale*)pObj)->maScale.X());
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DScale*)pObj)->maScale.Y());
@@ -401,7 +392,7 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_TRANSLATE  :
             {
-                aNewString += OUString::createFromAscii("translate (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "translate (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DTranslate*)pObj)->maTranslate.X(), TRUE);
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DTranslate*)pObj)->maTranslate.Y(), TRUE);
@@ -410,21 +401,21 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_SKEWX      :
             {
-                aNewString += OUString::createFromAscii("skewX (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "skewX (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DSkewX*)pObj)->mfSkewX);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_SKEWY      :
             {
-                aNewString += OUString::createFromAscii("skewY (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "skewY (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DSkewY*)pObj)->mfSkewY);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ2D_MATRIX :
             {
-                aNewString += OUString::createFromAscii("matrix (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix (" ));
 
                 // a
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj2DMatrix*)pObj)->maMatrix[0][0]);
@@ -452,11 +443,11 @@ const OUString& SdXMLImExTransform2D::GetExportString(const SvXMLUnitConverter& 
                 aNewString += aClosingBrace;
                 break;
             }
-            default : DBG_ERROR("SdXMLImExTransform2D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform2D: impossible entry!"); break;
         }
 
         // if not the last entry, add one space to next tag
-        if(a+1 != maList.Count())
+        if( a+1 != maList.size() )
             aNewString += aEmptySpace;
     }
 
@@ -479,12 +470,12 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
         const OUString aStr(msString.getStr(), (sal_uInt16)msString.getLength());
         const sal_Int32 nLen(aStr.getLength());
 
-        const OUString aString_rotate(OUString::createFromAscii("rotate"));
-        const OUString aString_scale(OUString::createFromAscii("scale"));
-        const OUString aString_translate(OUString::createFromAscii("translate"));
-        const OUString aString_skewX(OUString::createFromAscii("skewX"));
-        const OUString aString_skewY(OUString::createFromAscii("skewY"));
-        const OUString aString_matrix(OUString::createFromAscii("matrix"));
+        const OUString aString_rotate(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotate" )));
+        const OUString aString_scale(OUString( RTL_CONSTASCII_USTRINGPARAM( "scale" )));
+        const OUString aString_translate(OUString( RTL_CONSTASCII_USTRINGPARAM( "translate" )));
+        const OUString aString_skewX(OUString( RTL_CONSTASCII_USTRINGPARAM( "skewX" )));
+        const OUString aString_skewY(OUString( RTL_CONSTASCII_USTRINGPARAM( "skewY" )));
+        const OUString aString_matrix(OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix" )));
 
         sal_Int32 nPos(0);
 
@@ -503,7 +494,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DRotate(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DRotate(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -517,7 +508,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Y() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Y());
 
                     if(aValue.X() != 1.0 || aValue.Y() != 1.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DScale(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DScale(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -531,7 +522,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Y() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Y(), TRUE);
 
                     if(aValue.X() != 0.0 || aValue.Y() != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DTranslate(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DTranslate(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -542,7 +533,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DSkewX(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DSkewX(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -553,7 +544,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj2DSkewY(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj2DSkewY(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -588,7 +579,7 @@ void SdXMLImExTransform2D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue[1][2] = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue[1][2], TRUE);
                     Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
 
-                    maList.Insert(new ImpSdXMLExpTransObj2DMatrix(aValue), LIST_APPEND);
+                    maList.push_back( new ImpSdXMLExpTransObj2DMatrix(aValue) );
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
                 else
@@ -602,9 +593,9 @@ void SdXMLImExTransform2D::GetFullTransform(Matrix3D& rFullTrans)
 {
     rFullTrans.Identity();
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for( size_t a = 0; a < maList.size(); a++ )
     {
-        ImpSdXMLExpTransObj2DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj2DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ2D_ROTATE     :
@@ -626,7 +617,7 @@ void SdXMLImExTransform2D::GetFullTransform(Matrix3D& rFullTrans)
                 rFullTrans *= ((ImpSdXMLExpTransObj2DMatrix*)pObj)->maMatrix;
                 break;
             default :
-                DBG_ERROR("SdXMLImExTransform2D: impossible entry!");
+                OSL_FAIL("SdXMLImExTransform2D: impossible entry!");
                 break;
         }
     }
@@ -699,9 +690,9 @@ struct ImpSdXMLExpTransObj3DMatrix : public ImpSdXMLExpTransObj3DBase
 
 void SdXMLImExTransform3D::EmptyList()
 {
-    while(maList.Count())
+    for ( size_t i = maList.size(); i > 0; )
     {
-        ImpSdXMLExpTransObj3DBase* pObj = maList.Remove(maList.Count() - 1);
+        ImpSdXMLExpTransObj3DBase* pObj = maList[ --i ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   : delete (ImpSdXMLExpTransObj3DRotateX*)pObj; break;
@@ -710,9 +701,10 @@ void SdXMLImExTransform3D::EmptyList()
             case IMP_SDXMLEXP_TRANSOBJ3D_SCALE      : delete (ImpSdXMLExpTransObj3DScale*)pObj; break;
             case IMP_SDXMLEXP_TRANSOBJ3D_TRANSLATE  : delete (ImpSdXMLExpTransObj3DTranslate*)pObj; break;
             case IMP_SDXMLEXP_TRANSOBJ3D_MATRIX     : delete (ImpSdXMLExpTransObj3DMatrix*)pObj; break;
-            default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform3D: impossible entry!"); break;
         }
     }
+    maList.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -724,7 +716,7 @@ void SdXMLImExTransform3D::AddMatrix(const Matrix4D& rNew)
         || rNew[0][1] != 0.0 || rNew[0][2] != 0.0 || rNew[0][3] != 0.0
         || rNew[1][0] != 0.0 || rNew[1][2] != 0.0 || rNew[1][3] != 0.0
         || rNew[2][0] != 0.0 || rNew[2][1] != 0.0 || rNew[2][3] != 0.0)
-        maList.Insert(new ImpSdXMLExpTransObj3DMatrix(rNew), LIST_APPEND);
+        maList.push_back( new ImpSdXMLExpTransObj3DMatrix(rNew) );
 }
 
 void SdXMLImExTransform3D::AddHomogenMatrix(const drawing::HomogenMatrix& xHomMat)
@@ -755,35 +747,35 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
     OUString aClosingBrace(sal_Unicode(')'));
     OUString aEmptySpace(sal_Unicode(' '));
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for( size_t a = 0; a < maList.size(); a++)
     {
-        ImpSdXMLExpTransObj3DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj3DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   :
             {
-                aNewString += OUString::createFromAscii("rotatex (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatex (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DRotateX*)pObj)->mfRotateX);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_Y   :
             {
-                aNewString += OUString::createFromAscii("rotatey (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatey (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DRotateY*)pObj)->mfRotateY);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_Z   :
             {
-                aNewString += OUString::createFromAscii("rotatez (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatez (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DRotateZ*)pObj)->mfRotateZ);
                 aNewString += aClosingBrace;
                 break;
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_SCALE      :
             {
-                aNewString += OUString::createFromAscii("scale (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "scale (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DScale*)pObj)->maScale.X());
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DScale*)pObj)->maScale.Y());
@@ -794,7 +786,7 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_TRANSLATE  :
             {
-                aNewString += OUString::createFromAscii("translate (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "translate (" ));
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DTranslate*)pObj)->maTranslate.X(), TRUE);
                 aNewString += aEmptySpace;
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DTranslate*)pObj)->maTranslate.Y(), TRUE);
@@ -805,7 +797,7 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
             }
             case IMP_SDXMLEXP_TRANSOBJ3D_MATRIX :
             {
-                aNewString += OUString::createFromAscii("matrix (");
+                aNewString += OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix (" ));
 
                 // a
                 Imp_PutDoubleChar(aNewString, rConv, ((ImpSdXMLExpTransObj3DMatrix*)pObj)->maMatrix[0][0]);
@@ -857,11 +849,11 @@ const OUString& SdXMLImExTransform3D::GetExportString(const SvXMLUnitConverter& 
                 aNewString += aClosingBrace;
                 break;
             }
-            default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform3D: impossible entry!"); break;
         }
 
         // if not the last entry, add one space to next tag
-        if(a+1 != maList.Count())
+        if(a+1 != maList.size())
             aNewString += aEmptySpace;
     }
 
@@ -890,12 +882,12 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
         const OUString aStr(msString.getStr(), (sal_uInt16)msString.getLength());
         const sal_Int32 nLen(aStr.getLength());
 
-        const OUString aString_rotatex(OUString::createFromAscii("rotatex"));
-        const OUString aString_rotatey(OUString::createFromAscii("rotatey"));
-        const OUString aString_rotatez(OUString::createFromAscii("rotatez"));
-        const OUString aString_scale(OUString::createFromAscii("scale"));
-        const OUString aString_translate(OUString::createFromAscii("translate"));
-        const OUString aString_matrix(OUString::createFromAscii("matrix"));
+        const OUString aString_rotatex(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatex" )));
+        const OUString aString_rotatey(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatey" )));
+        const OUString aString_rotatez(OUString( RTL_CONSTASCII_USTRINGPARAM( "rotatez" )));
+        const OUString aString_scale(OUString( RTL_CONSTASCII_USTRINGPARAM( "scale" )));
+        const OUString aString_translate(OUString( RTL_CONSTASCII_USTRINGPARAM( "translate" )));
+        const OUString aString_matrix(OUString( RTL_CONSTASCII_USTRINGPARAM( "matrix" )));
 
         sal_Int32 nPos(0);
 
@@ -915,7 +907,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DRotateX(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DRotateX(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -927,7 +919,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DRotateY(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DRotateY(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -939,7 +931,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     Imp_SkipSpacesAndOpeningBraces(aStr, nPos, nLen);
                     fValue = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, fValue);
                     if(fValue != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DRotateZ(fValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DRotateZ(fValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -956,7 +948,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Z() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Z());
 
                     if(aValue.X() != 1.0 || aValue.Y() != 1.0 || aValue.Z() != 1.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DScale(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DScale(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -973,7 +965,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue.Z() = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue.Z(), TRUE);
 
                     if(aValue.X() != 0.0 || aValue.Y() != 0.0 || aValue.Z() != 0.0)
-                        maList.Insert(new ImpSdXMLExpTransObj3DTranslate(aValue), LIST_APPEND);
+                        maList.push_back( new ImpSdXMLExpTransObj3DTranslate(aValue) );
 
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
@@ -1032,7 +1024,7 @@ void SdXMLImExTransform3D::SetString(const OUString& rNew, const SvXMLUnitConver
                     aValue[2][3] = Imp_GetDoubleChar(aStr, nPos, nLen, rConv, aValue[2][3], TRUE);
                     Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
 
-                    maList.Insert(new ImpSdXMLExpTransObj3DMatrix(aValue), LIST_APPEND);
+                    maList.push_back( new ImpSdXMLExpTransObj3DMatrix(aValue) );
                     Imp_SkipSpacesAndClosingBraces(aStr, nPos, nLen);
                 }
                 else
@@ -1082,9 +1074,9 @@ void SdXMLImExTransform3D::GetFullTransform(Matrix4D& rFullTrans)
 {
     rFullTrans.Identity();
 
-    for(sal_uInt32 a(0L); a < maList.Count(); a++)
+    for(size_t a = 0; a < maList.size(); a++)
     {
-        ImpSdXMLExpTransObj3DBase* pObj = maList.GetObject(a);
+        ImpSdXMLExpTransObj3DBase* pObj = maList[ a ];
         switch(pObj->mnType)
         {
             case IMP_SDXMLEXP_TRANSOBJ3D_ROTATE_X   :
@@ -1099,7 +1091,7 @@ void SdXMLImExTransform3D::GetFullTransform(Matrix4D& rFullTrans)
                 rFullTrans.Translate(((ImpSdXMLExpTransObj3DTranslate*)pObj)->maTranslate); break;
             case IMP_SDXMLEXP_TRANSOBJ3D_MATRIX     :
                 rFullTrans *= ((ImpSdXMLExpTransObj3DMatrix*)pObj)->maMatrix; break;
-            default : DBG_ERROR("SdXMLImExTransform3D: impossible entry!"); break;
+            default : OSL_FAIL("SdXMLImExTransform3D: impossible entry!"); break;
         }
     }
 }
@@ -1117,11 +1109,11 @@ SdXMLImExViewBox::SdXMLImExViewBox(sal_Int32 nX, sal_Int32 nY, sal_Int32 nW, sal
 
 // #100617# Asked vincent hardy: svg:viewBox values may be double precision.
 SdXMLImExViewBox::SdXMLImExViewBox(const OUString& rNew, const SvXMLUnitConverter& rConv)
-:   mnX( 0L ),
-    mnY( 0L ),
-    mnW( 1000L ),
-    mnH( 1000L ),
-    msString(rNew)
+    : msString(rNew)
+    , mnX( 0L )
+    , mnY( 0L )
+    , mnW( 1000L )
+    , mnH( 1000L )
 {
     if(msString.getLength())
     {
@@ -1268,13 +1260,13 @@ SdXMLImExPointsElement::SdXMLImExPointsElement(const OUString& rNew,
     while(nPos < nLen)
     {
         // skip number, #100617# be prepared for doubles
-        Imp_SkipDouble(aStr, nPos, nLen);
+        Imp_SkipDouble(aStr, nPos);
 
         // skip spaces and commas
         Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
 
         // skip number, #100617# be prepared for doubles
-        Imp_SkipDouble(aStr, nPos, nLen);
+        Imp_SkipDouble(aStr, nPos);
 
         // skip spaces and commas
         Imp_SkipSpacesAndCommas(aStr, nPos, nLen);
@@ -1423,7 +1415,7 @@ void SdXMLImExSvgDElement::AddPolygon(
     {
         // append polygon to string
         OUString aNewString;
-        sal_Unicode aLastCommand;
+        sal_Unicode aLastCommand(0);
         awt::Point* pPointArray = pPoints->getArray();
 
         // are the flags used at all? If not forget about them
@@ -2190,6 +2182,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
     }
 
     DBG_ASSERT(!bEllipticalArc, "XMLIMP: non-interpreted tags in svg:d element!");
+    (void)bEllipticalArc;
 
     if(nNumPolys)
     {
@@ -2362,7 +2355,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 case 'A' :
                 case 'a' :
                 {
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
                     nPos++;
                     Imp_SkipSpaces(aStr, nPos, nLen);
 
@@ -2382,7 +2375,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 default:
                 {
                     nPos++;
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
                     break;
                 }
             }
@@ -2823,7 +2816,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 case 'A' :
                 case 'a' :
                 {
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (elliptical arc)!");
                     nPos++;
                     Imp_SkipSpaces(aStr, nPos, nLen);
 
@@ -2843,7 +2836,7 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                 default:
                 {
                     nPos++;
-                    DBG_ERROR("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
+                    OSL_FAIL("XMLIMP: non-interpreted tags in svg:d element (unknown)!");
                     break;
                 }
             }
@@ -2875,36 +2868,36 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
             for(sal_Int32 a(0); a < nOuterCnt; a++)
             {
                 // get Polygon pointers
-                awt::Point* pInnerSequence = pOuterSequence->getArray();
-                drawing::PolygonFlags* pInnerFlags = pOuterFlags->getArray();
+                awt::Point* pLclInnerSequence = pOuterSequence->getArray();
+                drawing::PolygonFlags* pLclInnerFlags = pOuterFlags->getArray();
                 sal_Int32 nInnerCnt(pOuterSequence->getLength());
 
                 while( nInnerCnt >= 2
-                    && ((pInnerSequence + (nInnerCnt - 2))->X == (pInnerSequence + (nInnerCnt - 1))->X)
-                    && ((pInnerSequence + (nInnerCnt - 2))->Y == (pInnerSequence + (nInnerCnt - 1))->Y)
-                    && drawing::PolygonFlags_CONTROL != *(pInnerFlags + (nInnerCnt - 2)))
+                    && ((pLclInnerSequence + (nInnerCnt - 2))->X == (pLclInnerSequence + (nInnerCnt - 1))->X)
+                    && ((pLclInnerSequence + (nInnerCnt - 2))->Y == (pLclInnerSequence + (nInnerCnt - 1))->Y)
+                    && drawing::PolygonFlags_CONTROL != *(pLclInnerFlags + (nInnerCnt - 2)))
                 {
                     // remove last point from array
                     pOuterSequence->realloc(nInnerCnt - 1);
                     pOuterFlags->realloc(nInnerCnt - 1);
 
                     // get new pointers
-                    pInnerSequence = pOuterSequence->getArray();
-                    pInnerFlags = pOuterFlags->getArray();
+                    pLclInnerSequence = pOuterSequence->getArray();
+                    pLclInnerFlags = pOuterFlags->getArray();
                     nInnerCnt = pOuterSequence->getLength();
                 }
 
                 // now evtl. correct the last curve flags
                 if(nInnerCnt >= 4)
                 {
-                    if( pInnerSequence->X == (pInnerSequence + (nInnerCnt - 1))->X
-                        && pInnerSequence->Y == (pInnerSequence + (nInnerCnt - 1))->Y
-                        && drawing::PolygonFlags_CONTROL == *(pInnerFlags + 1)
-                        && drawing::PolygonFlags_CONTROL == *(pInnerFlags + (nInnerCnt - 2)))
+                    if( pLclInnerSequence->X == (pLclInnerSequence + (nInnerCnt - 1))->X
+                        && pLclInnerSequence->Y == (pLclInnerSequence + (nInnerCnt - 1))->Y
+                        && drawing::PolygonFlags_CONTROL == *(pLclInnerFlags + 1)
+                        && drawing::PolygonFlags_CONTROL == *(pLclInnerFlags + (nInnerCnt - 2)))
                     {
-                        awt::Point aPrev = *(pInnerSequence + (nInnerCnt - 2));
-                        awt::Point aCurr = *pInnerSequence;
-                        awt::Point aNext = *(pInnerSequence + 1);
+                        awt::Point aPrev = *(pLclInnerSequence + (nInnerCnt - 2));
+                        awt::Point aCurr = *pLclInnerSequence;
+                        awt::Point aNext = *(pLclInnerSequence + 1);
                         Vector2D aVec1(aPrev.X - aCurr.X, aPrev.Y - aCurr.Y);
                         Vector2D aVec2(aNext.X - aCurr.X, aNext.Y - aCurr.Y);
                         sal_Bool bSameLength(FALSE);
@@ -2919,21 +2912,21 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
                             if(bSameLength)
                             {
                                 // set to PolygonFlags_SYMMETRIC
-                                *pInnerFlags = drawing::PolygonFlags_SYMMETRIC;
-                                *(pInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SYMMETRIC;
+                                *pLclInnerFlags = drawing::PolygonFlags_SYMMETRIC;
+                                *(pLclInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SYMMETRIC;
                             }
                             else
                             {
                                 // set to PolygonFlags_SMOOTH
-                                *pInnerFlags = drawing::PolygonFlags_SMOOTH;
-                                *(pInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SMOOTH;
+                                *pLclInnerFlags = drawing::PolygonFlags_SMOOTH;
+                                *(pLclInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_SMOOTH;
                             }
                         }
                         else
                         {
                             // set to PolygonFlags_NORMAL
-                            *pInnerFlags = drawing::PolygonFlags_NORMAL;
-                            *(pInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_NORMAL;
+                            *pLclInnerFlags = drawing::PolygonFlags_NORMAL;
+                            *(pLclInnerFlags + (nInnerCnt - 1)) = drawing::PolygonFlags_NORMAL;
                         }
                     }
                 }
@@ -2948,3 +2941,5 @@ SdXMLImExSvgDElement::SdXMLImExSvgDElement(const OUString& rNew,
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

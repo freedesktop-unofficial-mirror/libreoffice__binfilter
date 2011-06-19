@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -42,8 +40,9 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 //------------------------------------------------------------------------
 
@@ -77,17 +76,17 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
 //------------------------------------------------------------------------
 
-/*N*/ ScDocOptions::ScDocOptions( const ScDocOptions& rCpy )
-/*N*/       :   bIsIgnoreCase( rCpy.bIsIgnoreCase ),
-/*N*/           bIsIter( rCpy.bIsIter ),
-/*N*/           nIterCount( rCpy.nIterCount ),
+/*N*/ ScDocOptions::ScDocOptions( const ScDocOptions& rCpy ) :
 /*N*/           fIterEps( rCpy.fIterEps ),
+/*N*/           nIterCount( rCpy.nIterCount ),
 /*N*/           nPrecStandardFormat( rCpy.nPrecStandardFormat ),
 /*N*/           nDay( rCpy.nDay ),
 /*N*/           nMonth( rCpy.nMonth ),
 /*N*/           nYear( rCpy.nYear ),
 /*N*/           nYear2000( rCpy.nYear2000 ),
 /*N*/           nTabDistance( rCpy.nTabDistance ),
+/*N*/               bIsIgnoreCase( rCpy.bIsIgnoreCase ),
+/*N*/           bIsIter( rCpy.bIsIter ),
 /*N*/           bCalcAsShown( rCpy.bCalcAsShown ),
 /*N*/           bMatchWholeCell( rCpy.bMatchWholeCell ),
 /*N*/           bDoAutoSpell( rCpy.bDoAutoSpell ),
@@ -103,39 +102,6 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/ }
 
 //------------------------------------------------------------------------
-
-/*N*/ void ScDocOptions::Save(SvStream& rStream, BOOL bConfig) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream, 28 );
-/*N*/
-/*N*/   rStream << bIsIgnoreCase;
-/*N*/   rStream << bIsIter;
-/*N*/   rStream << nIterCount;
-/*N*/   rStream << fIterEps;
-/*N*/   rStream << nPrecStandardFormat;
-/*N*/   rStream << nDay;
-/*N*/   rStream << nMonth;
-/*N*/   rStream << nYear;
-/*N*/   rStream << nTabDistance;
-/*N*/   rStream << bCalcAsShown;
-/*N*/   rStream << bMatchWholeCell;
-/*N*/   rStream << bDoAutoSpell;
-/*N*/   rStream << bLookUpColRowNames;
-/*N*/
-/*N*/   if ( bConfig || rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )      // nicht bei 4.0 Export
-/*N*/   {
-/*N*/       if ( !bConfig && 1901 <= nYear2000 && nYear2000 <= 1999 )
-/*N*/       {   // fuer SO5 auf altes Format zweistellig abbilden
-/*N*/           rStream << (USHORT) (nYear2000 - 1901);
-/*N*/       }
-/*N*/       else
-/*N*/       {   // neues Format vierstellig, beliebiges Jahrhundert
-/*N*/           // erzeugt in SO5 vor src513e ein Warning beim Laden
-/*N*/           rStream << (USHORT) 29;     // Dummy, alter SO5 Default
-/*N*/           rStream << nYear2000;       // echter Wert
-/*N*/       }
-/*N*/   }
-/*N*/ }
 
 /*N*/ void ScDocOptions::Load(SvStream& rStream)
 /*N*/ {
@@ -171,8 +137,7 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/       bLookUpColRowNames = TRUE;
 /*N*/   if ( aHdr.BytesLeft() )
 /*N*/   {
-/*N*/       rStream >> nYear2000;       // SO5 ab 24.06.98
-/*N*/       // SO51 ab src513e
+/*N*/       rStream >> nYear2000;
 /*N*/       if ( aHdr.BytesLeft() )
 /*N*/           rStream >> nYear2000;   // der echte Wert
 /*N*/       else
@@ -288,17 +253,17 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 /*N*/
 /*N*/   //  adjust for metric system
 /*N*/   if (ScOptionsUtil::IsMetricSystem())
-/*N*/       pNames[SCDOCLAYOUTOPT_TABSTOP] = OUString::createFromAscii( "TabStop/Metric" );
+/*N*/       pNames[SCDOCLAYOUTOPT_TABSTOP] = OUString( RTL_CONSTASCII_USTRINGPARAM( "TabStop/Metric" ));
 /*N*/
 /*N*/   return aNames;
 /*N*/ }
 
 /*N*/ ScDocCfg::ScDocCfg() :
-/*N*/   aCalcItem( OUString::createFromAscii( CFGPATH_CALC ) ),
-/*N*/   aLayoutItem( OUString::createFromAscii( CFGPATH_DOCLAYOUT ) )
+/*N*/   aCalcItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_CALC )) ),
+/*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_DOCLAYOUT )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
-/*N*/   double fDoubleVal;
+/*N*/   sal_Int32 nIntVal = 0;
+/*N*/   double fDoubleVal = 0.0;
 /*N*/
 /*N*/   Sequence<OUString> aNames;
 /*N*/   Sequence<Any> aValues;
@@ -394,13 +359,13 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
 /*N*/ IMPL_LINK( ScDocCfg, CalcCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetCalcPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScDocCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetLayoutPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
@@ -408,3 +373,5 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

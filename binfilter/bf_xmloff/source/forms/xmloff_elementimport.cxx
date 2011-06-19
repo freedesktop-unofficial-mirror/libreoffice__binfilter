@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,43 +28,19 @@
 
 #include <algorithm>
 
-#ifndef _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 #include "elementimport.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #include "strings.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_ATTRIBLISTMERGE_HXX_
 #include "attriblistmerge.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef XMLOFF_FORMSTYLES_HXX
 #include "formstyles.hxx"
-#endif
-#ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
-#endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XCLONEABLE_HPP_
 #include <com/sun/star/util/XCloneable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 
 #include <algorithm>
 namespace binfilter {
@@ -141,10 +118,10 @@ namespace xmloff
     OElementImport::OElementImport(IFormsImportContext& _rImport, IEventAttacherManager& _rEventManager, sal_uInt16 _nPrefix, const ::rtl::OUString& _rName,
             const Reference< XNameContainer >& _rxParentContainer)
         :OPropertyImport(_rImport, _nPrefix, _rName)
-        ,m_xParentContainer(_rxParentContainer)
         ,m_rFormImport(_rImport)
         ,m_rEventManager(_rEventManager)
         ,m_pStyleElement( NULL )
+        ,m_xParentContainer(_rxParentContainer)
     {
         OSL_ENSURE(m_xParentContainer.is(), "OElementImport::OElementImport: invalid parent container!");
     }
@@ -165,7 +142,7 @@ namespace xmloff
     SvXMLImportContext* OElementImport::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
         const Reference< sax::XAttributeList >& _rxAttrList)
     {
-        static const ::rtl::OUString s_sEventTagName = ::rtl::OUString::createFromAscii("events");
+        static const ::rtl::OUString s_sEventTagName( RTL_CONSTASCII_USTRINGPARAM( "events" ));
         if ((s_sEventTagName == _rLocalName) && (XML_NAMESPACE_OFFICE == _nPrefix))
             return new OFormEventsImportContext(m_rFormImport.getGlobalContext(), _nPrefix, _rLocalName, *this);
 
@@ -234,7 +211,7 @@ namespace xmloff
             }
             catch(Exception&)
             {
-                OSL_ENSURE(sal_False, "OElementImport::EndElement: could not set the properties (using the XMultiPropertySet)!");
+                OSL_FAIL("OElementImport::EndElement: could not set the properties (using the XMultiPropertySet)!");
             }
         }
 
@@ -253,8 +230,7 @@ namespace xmloff
                 }
                 catch(Exception&)
                 {
-                    OSL_ENSURE(sal_False,
-                            ::rtl::OString("OElementImport::EndElement: could not set the property \"")
+                    OSL_FAIL(::rtl::OString("OElementImport::EndElement: could not set the property \"")
                         +=  ::rtl::OString(aPropValues->Name.getStr(), aPropValues->Name.getLength(), RTL_TEXTENCODING_ASCII_US)
                         +=  ::rtl::OString("\"!"));
                 }
@@ -275,7 +251,7 @@ namespace xmloff
         // insert the element into the parent container
         if (!m_sName.getLength())
         {
-            OSL_ENSURE(sal_False, "OElementImport::EndElement: did not find a name attribute!");
+            OSL_FAIL("OElementImport::EndElement: did not find a name attribute!");
             m_sName = implGetDefaultName();
         }
 
@@ -289,7 +265,7 @@ namespace xmloff
         // no optimization here. If this method gets called, the XML stream did not contain a name for the
         // element, which is a heavy error. So in this case we don't care for performance
         Sequence< ::rtl::OUString > aNames = m_xParentContainer->getElementNames();
-        static const ::rtl::OUString sUnnamedName = ::rtl::OUString::createFromAscii("unnamed");
+        static const ::rtl::OUString sUnnamedName( RTL_CONSTASCII_USTRINGPARAM( "unnamed" ));
 
         ::rtl::OUString sReturn;
         const ::rtl::OUString* pNames = NULL;
@@ -312,7 +288,7 @@ namespace xmloff
                 continue;
             return sReturn;
         }
-        OSL_ENSURE(sal_False, "OElementImport::implGetDefaultName: did not find a free name!");
+        OSL_FAIL("OElementImport::implGetDefaultName: did not find a free name!");
         return sUnnamedName;
     }
 
@@ -360,7 +336,7 @@ namespace xmloff
             xReturn = Reference< XPropertySet >(xPure, UNO_QUERY);
         }
         else
-            OSL_ENSURE(sal_False, "OElementImport::createElement: no service name to create an element!");
+            OSL_FAIL("OElementImport::createElement: no service name to create an element!");
 
         return xReturn;
     }
@@ -474,7 +450,7 @@ namespace xmloff
             Reference< XPropertySetInfo > xPropsInfo = m_xElement->getPropertySetInfo();
             if (!xPropsInfo.is())
             {
-                OSL_ENSURE(sal_False, "OControlImport::StartElement: no PropertySetInfo!");
+                OSL_FAIL("OControlImport::StartElement: no PropertySetInfo!");
                 return;
             }
 
@@ -606,7 +582,6 @@ namespace xmloff
         // In case the Text is not part of the property sequence (or occurs _before_
         // the DefaultText, which can happen for other value/default-value property names),
         // this means that the Text (the value property) is incorrectly imported.
-        // #102475# - 04.09.2002 - fs@openoffice.org
 
         sal_Bool bRestoreValuePropertyValue = sal_False;
         Any aValuePropertyValue;
@@ -619,7 +594,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OControlImport::EndElement: caught an exception while retrieving the class id!" );
+            OSL_FAIL( "OControlImport::EndElement: caught an exception while retrieving the class id!" );
         }
 
         const sal_Char* pValueProperty = NULL;
@@ -655,7 +630,7 @@ namespace xmloff
                 }
                 catch( const Exception& )
                 {
-                    OSL_ENSURE( sal_False, "OControlImport::EndElement: caught an exception while retrieving the current value property!" );
+                    OSL_FAIL( "OControlImport::EndElement: caught an exception while retrieving the current value property!" );
                 }
             }
         }
@@ -672,7 +647,7 @@ namespace xmloff
             }
             catch( const Exception& )
             {
-                OSL_ENSURE( sal_False, "OControlImport::EndElement: caught an exception while restoring the value property!" );
+                OSL_FAIL( "OControlImport::EndElement: caught an exception while restoring the value property!" );
             }
         }
 
@@ -692,7 +667,6 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    //added by BerryJia for fixing bug102407 2002-11-5
     Reference< XPropertySet > OControlImport::createElement()
     {
         Reference<XPropertySet> xPropSet = OElementImport::createElement();
@@ -714,7 +688,7 @@ namespace xmloff
     OReferredControlImport::OReferredControlImport(
             IFormsImportContext& _rImport, IEventAttacherManager& _rEventManager, sal_uInt16 _nPrefix, const ::rtl::OUString& _rName,
             const Reference< XNameContainer >& _rxParentContainer,
-            OControlElement::ElementType _eType)
+            OControlElement::ElementType /*_eType*/)
         :OControlImport(_rImport, _rEventManager, _nPrefix, _rName, _rxParentContainer)
     {
     }
@@ -921,12 +895,12 @@ namespace xmloff
             const Reference< sax::XAttributeList >& _rxAttrList)
     {
         // is it the "option" sub tag of a listbox ?
-        static const ::rtl::OUString s_sOptionElementName = ::rtl::OUString::createFromAscii("option");
+        static const ::rtl::OUString s_sOptionElementName( RTL_CONSTASCII_USTRINGPARAM( "option" ));
         if (s_sOptionElementName == _rLocalName)
             return new OListOptionImport(GetImport(), _nPrefix, _rLocalName, this);
 
         // is it the "item" sub tag of a combobox ?
-        static const ::rtl::OUString s_sItemElementName = ::rtl::OUString::createFromAscii("item");
+        static const ::rtl::OUString s_sItemElementName( RTL_CONSTASCII_USTRINGPARAM( "item" ));
         if (s_sItemElementName == _rLocalName)
             return new OComboItemImport(GetImport(), _nPrefix, _rLocalName, this);
 
@@ -1132,9 +1106,9 @@ namespace xmloff
     {
         // the label and the value
         const ::rtl::OUString sLabelAttribute = GetImport().GetNamespaceMap().GetQNameByKey(
-            GetPrefix(), ::rtl::OUString::createFromAscii("label"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "label" )));
         const ::rtl::OUString sValueAttribute = GetImport().GetNamespaceMap().GetQNameByKey(
-            GetPrefix(), ::rtl::OUString::createFromAscii("value"));
+            GetPrefix(), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "value" )));
 
         // -------------------
         // the label attribute
@@ -1213,15 +1187,15 @@ namespace xmloff
     OControlWrapperImport::OControlWrapperImport(IFormsImportContext& _rImport, IEventAttacherManager& _rEventManager, sal_uInt16 _nPrefix, const ::rtl::OUString& _rName,
             const Reference< XNameContainer >& _rxParentContainer)
         :SvXMLImportContext(_rImport.getGlobalContext(), _nPrefix, _rName)
-        ,m_rFormImport(_rImport)
         ,m_xParentContainer(_rxParentContainer)
+        ,m_rFormImport(_rImport)
         ,m_rEventManager(_rEventManager)
     {
     }
 
     //---------------------------------------------------------------------
     SvXMLImportContext* OControlWrapperImport::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
-        const Reference< sax::XAttributeList >& _rxAttrList)
+        const Reference< sax::XAttributeList >& /*_rxAttrList*/)
     {
         OControlImport* pReturn = implCreateChildContext(_nPrefix, _rLocalName, OElementNameMap::getElementType(_rLocalName));
         if (pReturn)
@@ -1359,7 +1333,7 @@ namespace xmloff
     SvXMLImportContext* OFormImport::CreateChildContext(sal_uInt16 _nPrefix, const ::rtl::OUString& _rLocalName,
         const Reference< sax::XAttributeList >& _rxAttrList)
     {
-        static const ::rtl::OUString s_sFormElementName = ::rtl::OUString::createFromAscii("form");
+        static const ::rtl::OUString s_sFormElementName( RTL_CONSTASCII_USTRINGPARAM( "form" ));
         if (s_sFormElementName.equals(_rLocalName))
             return new OFormImport(m_rFormImport, *this, _nPrefix, _rLocalName, m_xMeAsContainer);
 
@@ -1460,7 +1434,7 @@ namespace xmloff
         }
         else
         {
-            OSL_ENSURE(sal_False, "OFormImport::implTranslateStringListProperty: invalid value (empty)!");
+            OSL_FAIL("OFormImport::implTranslateStringListProperty: invalid value (empty)!");
         }
 
         aProp.Value <<= aList;
@@ -1474,3 +1448,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

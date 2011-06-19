@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HDL_
 #include <com/sun/star/awt/Rectangle.hdl>
-#endif
 
-#ifndef _XMLOFF_XMLRECTANGLEMEMBERSHANDLER_HXX
 #include "XMLRectangleMembersHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include "xmltypes.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -138,3 +129,5 @@ sal_Bool XMLRectangleMembersHdl::exportXML(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

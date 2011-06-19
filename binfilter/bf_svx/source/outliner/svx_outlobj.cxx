@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,9 +36,7 @@
 #include <outlobj.hxx>
 #include <outleeng.hxx>
 
-#ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
-#endif
 
 
 
@@ -98,18 +97,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   DBG_CHKTHIS(OutlinerParaObject,0);
 /*N*/   return pText->ChangeStyleSheets( rOldName, eOldFamily, rNewName, eNewFamily );
-/*N*/ }
-
-/*N*/ void OutlinerParaObject::Store(SvStream& rStream ) const
-/*N*/ {
-/*N*/   rStream << nCount;
-/*N*/   rStream << (sal_uInt32) 0x42345678;
-/*N*/   pText->Store( rStream );
-/*N*/
-/*N*/   for( USHORT nPos=0; nPos < nCount; nPos++ )
-/*N*/       rStream << pDepthArr[ nPos ];
-/*N*/
-/*N*/   rStream << bIsEditDoc;
 /*N*/ }
 
 /*N*/ OutlinerParaObject* OutlinerParaObject::Create( SvStream& rStream, SfxItemPool* pTextObjectPool )
@@ -186,9 +173,9 @@ namespace binfilter {
 /*N*/               nCurPara++;
 /*N*/               if( nCount )
 /*N*/               {
-/*N*/                   sal_uInt32 nSync = 0;
-/*N*/                   rStream >> nSync;
-/*N*/                   DBG_ASSERT(nSync==nSyncRef,"Stream out of sync");
+/*N*/                   sal_uInt32 nLclSync = 0;
+/*N*/                   rStream >> nLclSync;
+/*N*/                   DBG_ASSERT(nLclSync==nSyncRef,"Stream out of sync");
 /*N*/               }
 /*N*/           }
 /*N*/           if( nVersion == 3 )
@@ -255,3 +242,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

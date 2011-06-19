@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,9 +37,7 @@
 
 class SdrObjFactory;
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 namespace binfilter {
 
 class E3dObjFactory
@@ -52,3 +51,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _OBJFAC3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #define _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include <bf_xmloff/prstylei.hxx>
-#endif
 
 namespace com { namespace sun { namespace star { namespace container
 {
@@ -63,3 +62,4 @@ public:
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,12 @@
 #ifndef _OUTLEENG_HXX
 #define _OUTLEENG_HXX
 
-#ifndef _OUTLINER_HXX
 #include <outliner.hxx>
-#endif
-#ifndef _EDITENG_HXX
 #include <editeng.hxx>
-#endif
 namespace binfilter {
 
 typedef EENotify* EENotifyPtr;
-SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( NotifyList, EENotifyPtr, 1, 1 )
 
 class OutlinerEditEng : public EditEngine
 {
@@ -70,3 +67,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

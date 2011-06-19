@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,26 +27,16 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_LINESPACETYPES_HXX
 #include <lspachdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_STYLE_LINESPACING_HPP_
 #include <com/sun/star/style/LineSpacing.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_LINESPACINGMODE_HPP_
 #include <com/sun/star/style/LineSpacingMode.hpp>
-#endif
 
 namespace binfilter {
 
@@ -204,3 +195,5 @@ sal_Bool XMLLineSpacingHdl::exportXML( OUString& rStrExpValue, const uno::Any& r
     return rStrExpValue.getLength() != 0;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,23 +30,12 @@
 #define _SVDUNDO_HXX
 
 #include <bf_svtools/bf_solar.h>
-
-#ifndef _UNDO_HXX //autogen
 #include <bf_svtools/undo.hxx>
-#endif
-
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
-
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer enum RepeatFuncts
-#endif
 #include <tools/debug.hxx>
+
 namespace binfilter {
 class SfxItemSet;
 class SfxStyleSheet;
@@ -139,16 +129,6 @@ protected:
 };
 
 //************************************************************
-//   SdrUndoAttrObj
-//
-// Aenderung der Objektattribute.
-// Action direkt vor dem Setzen der neuen Attribute konstruieren.
-// Auch fuer StyleSheets
-//
-//************************************************************
-
-
-//************************************************************
 //   SdrUndoMoveObj
 //
 // Blosses verschieben eines Objektes.
@@ -197,7 +177,7 @@ public:
 //************************************************************
 
 class SdrUndoObjList : public SdrUndoObj {
-    FASTBOOL                    bOwner;
+    bool                    bOwner;
 
 protected:
     SdrObjList*                 pObjList;
@@ -208,7 +188,7 @@ protected:
     // statt. Im Dtor wird das Obj deleted, wenn bOwner==TRUE
 
 protected:
-    SdrUndoObjList(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE);
+    SdrUndoObjList(SdrObject& rNewObj, bool bOrdNumDirect=FALSE);
     virtual ~SdrUndoObjList();
 
     void SetView(SdrView* pView1, SdrPageView* pPageView1) { pView=pView1; pPageView=pPageView1; }
@@ -227,7 +207,7 @@ protected:
 class SdrUndoRemoveObj : public SdrUndoObjList
 {
 public:
-    SdrUndoRemoveObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
+    SdrUndoRemoveObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
     : SdrUndoObjList(rNewObj,bOrdNumDirect) {}
 
 };
@@ -244,7 +224,7 @@ public:
 class SdrUndoInsertObj : public SdrUndoObjList
 {
 public:
-    SdrUndoInsertObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
+    SdrUndoInsertObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
     :   SdrUndoObjList(rNewObj,bOrdNumDirect) {}
 };
 
@@ -259,41 +239,10 @@ public:
 class SdrUndoDelObj : public SdrUndoRemoveObj
 {
 public:
-    SdrUndoDelObj(SdrObject& rNewObj, FASTBOOL bOrdNumDirect=FALSE)
-    :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) {DBG_ASSERT(0, "STRIP");}//STRIP001         :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) { SetOwner(TRUE); }
+    SdrUndoDelObj(SdrObject& rNewObj, bool bOrdNumDirect=FALSE)
+    :   SdrUndoRemoveObj(rNewObj,bOrdNumDirect) {DBG_ASSERT(0, "STRIP");}
 
 };
-
-//************************************************************
-//   SdrUndoNewObj
-//
-// Einfuegen eines neuen Objektes.
-// Action nach dem einfuegen in die ObjList konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoReplaceObj
-//
-// Austausch eines Objektes.
-// Action vor dem Replace an der ObjList konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoCopyObj
-//
-// Kopieren eines Objekts
-// Action nach dem einfuegen in die ObjList konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoObjOrdNum
-//************************************************************
 
 
 //////////////////////////////////////////////////////////////////////////////
@@ -311,67 +260,6 @@ public:
     virtual void Undo();
     virtual void Redo();
 };
-
-//************************************************************
-//   SdrUndoObjSetText
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@     @@@@  @@  @@ @@@@@ @@@@@
-//  @@    @@  @@ @@  @@ @@    @@  @@
-//  @@    @@  @@ @@  @@ @@    @@  @@
-//  @@    @@@@@@  @@@@  @@@@  @@@@@
-//  @@    @@  @@   @@   @@    @@  @@
-//  @@    @@  @@   @@   @@    @@  @@
-//  @@@@@ @@  @@   @@   @@@@@ @@  @@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//************************************************************
-//   SdrUndoLayer
-//
-// Abstrakte Basisklasse fuer alle UndoActions die mit SdrLayer zu tun haben.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoNewLayer
-//
-// Einfuegen eines neuen Layer. Action nach dem Einfuegen konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoDelLayer
-//
-// Loeschen eines Layer. Action vor dem Remove konstruieren
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoMoveLayer
-//
-// Verschieben eines Layer. Action vor dem Verschieben konstruieren.
-//
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@@@@   @@@@   @@@@  @@@@@  @@@@
-//  @@  @@ @@  @@ @@  @@ @@    @@  @@
-//  @@  @@ @@  @@ @@     @@    @@
-//  @@@@@  @@@@@@ @@ @@@ @@@@   @@@@
-//  @@     @@  @@ @@  @@ @@        @@
-//  @@     @@  @@ @@  @@ @@    @@  @@
-//  @@     @@  @@  @@@@@ @@@@@  @@@@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 //************************************************************
 //   SdrUndoPage
@@ -405,21 +293,12 @@ protected:
 
     // Bei einem Undo/Redo findet moeglicherweise Uebereignung der Page
     // statt. Im Dtor wird die Page deleted, wenn bItsMine==TRUE
-    FASTBOOL                    bItsMine;
+    bool                    bItsMine;
 
 protected:
     SdrUndoPageList(SdrPage& rNewPg);
     virtual ~SdrUndoPageList();
 };
-
-//************************************************************
-//   SdrUndoDelPage
-//
-// Loeschen einer Page.
-// Action vor dem entfernen aus der List konstruieren.
-//
-//************************************************************
-
 
 //************************************************************
 //   SdrUndoNewPage
@@ -435,84 +314,8 @@ public:
     SdrUndoNewPage(SdrPage& rNewPg): SdrUndoPageList(rNewPg) {}
 };
 
-//************************************************************
-//   SdrUndoCopyPage
-//
-// Kopieren einer Page
-// Action nach dem einfuegen in die Liste konstruieren.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoSetPageNum
-//
-// Verschieben der Page innerhalb der Liste
-// Action vor dem Verschieben der Page konstruieren.
-//
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-//
-//  @@   @@  @@@@   @@@@  @@@@@@ @@@@@ @@@@@   @@@@@   @@@@   @@@@  @@@@@  @@@@
-//  @@@ @@@ @@  @@ @@  @@   @@   @@    @@  @@  @@  @@ @@  @@ @@  @@ @@    @@  @@
-//  @@@@@@@ @@  @@ @@       @@   @@    @@  @@  @@  @@ @@  @@ @@     @@    @@
-//  @@@@@@@ @@@@@@  @@@@    @@   @@@@  @@@@@   @@@@@  @@@@@@ @@ @@@ @@@@   @@@@
-//  @@ @ @@ @@  @@     @@   @@   @@    @@  @@  @@     @@  @@ @@  @@ @@        @@
-//  @@   @@ @@  @@ @@  @@   @@   @@    @@  @@  @@     @@  @@ @@  @@ @@    @@  @@
-//  @@   @@ @@  @@  @@@@    @@   @@@@@ @@  @@  @@     @@  @@  @@@@@ @@@@@  @@@@
-//
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//************************************************************
-//   SdrUndoPageMasterPage
-//
-// Abstrakte Basisklasse fuer alle UndoActions die mit
-// MasterPage-Beziehungen zu tun haben.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageInsertMasterPage
-//
-// Setzen einer MasterPage an einer Zeichenseite.
-// Action nach dem Einfuegen des MasterPageDescriptors erzeugen.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageRemoveMasterPage
-//
-// Entfernen einer MasterPage von einer Zeichenseite.
-// Action vor dem Entfernen des MasterPageDescriptors erzeugen.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageMoveMasterPage
-//
-// Verschieben einer MasterPage an einer Zeichenseite (Aendern
-// der Reihenfolge der MasterPageDescriptorList).
-// Action vor dem Umsortieren des MasterPageDescriptors erzeugen.
-//
-//************************************************************
-
-
-//************************************************************
-//   SdrUndoPageChangeMasterPage
-//
-// Aenderung des MasterPageDescriptors (z.B. Aendern der VisibleLayer).
-// Action vor der Aenderung am MasterPageDescriptor erzeugen.
-//
-//************************************************************
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }//end of namespace binfilter
 #endif //_SVDUNDO_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

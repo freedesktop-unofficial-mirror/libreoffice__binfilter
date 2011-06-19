@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,30 +31,19 @@
 
 #include <tools/link.hxx>
 #include <tools/string.hxx>
-#include <tools/list.hxx>
 
-#ifndef _COM_SUN_STAR_AWT_IMAGESTATUS_HPP_
 #include <com/sun/star/awt/ImageStatus.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XIMAGECONSUMER_HPP_
 #include <com/sun/star/awt/XImageConsumer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XIMAGEPRODUCER_HPP_
 #include <com/sun/star/awt/XImageProducer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XINITIALIZATION_HPP_
 #include <com/sun/star/lang/XInitialization.hpp>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
+#include <vector>
 
 
 // -----------------
 // - ImageProducer -
 // -----------------
-
 
 
 class SvStream;
@@ -76,7 +66,7 @@ class ImageProducer :   public ::com::sun::star::awt::XImageProducer,
 private:
 
     ::rtl::OUString maURL;
-    List            maConsList;
+    std::vector< ::com::sun::star::uno::Reference< ::com::sun::star::awt::XImageConsumer > * > maConsList;
     Graphic*        mpGraphic;
     SvStream*       mpStm;
     binfilter::GraphicFilter*   mpFilter;
@@ -134,3 +124,5 @@ public:
 };
 
 #endif // _PRODUCE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

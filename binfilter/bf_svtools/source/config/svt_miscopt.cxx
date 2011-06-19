@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,39 +28,16 @@
 
 #include <bf_svtools/bf_solar.h>
 #include <bf_svtools/miscopt.hxx>
-
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
-#ifndef _WLDCRD_HXX
 #include <tools/wldcrd.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 #include "itemholder2.hxx"
@@ -103,8 +81,6 @@ namespace binfilter
 
 #define VCL_TOOLBOX_STYLE_FLAT              ((USHORT)0x0004) // from <vcl/toolbox.hxx>
 
-DECLARE_LIST( LinkList, Link * )
-
 //_________________________________________________________________________________________________________________
 //  private declarations!
 //_________________________________________________________________________________________________________________
@@ -116,7 +92,6 @@ class SvtMiscOptions_Impl : public ConfigItem
     //-------------------------------------------------------------------------------------------------------------
 
     private:
-    LinkList    aList;
     sal_Bool    m_bUseSystemFileDialog;
     sal_Bool    m_bIsUseSystemFileDialogRO;
     sal_Bool    m_bPluginsEnabled;
@@ -328,7 +303,7 @@ SvtMiscOptions_Impl::SvtMiscOptions_Impl()
             {
                 if( !(seqValues[nProperty] >>= m_bPluginsEnabled) )
                 {
-                    DBG_ERROR("Wrong type of \"Misc\\PluginsEnabled\"!" );
+                    OSL_FAIL("Wrong type of \"Misc\\PluginsEnabled\"!" );
                 }
                 m_bIsPluginsEnabledRO = seqRO[nProperty];
                 break;
@@ -338,7 +313,7 @@ SvtMiscOptions_Impl::SvtMiscOptions_Impl()
             {
                 if( !(seqValues[nProperty] >>= m_nSymbolsSize) )
                 {
-                    DBG_ERROR("Wrong type of \"Misc\\SymbolSet\"!" );
+                    OSL_FAIL("Wrong type of \"Misc\\SymbolSet\"!" );
                 }
                 m_bIsSymbolsSizeRO = seqRO[nProperty];
                 break;
@@ -348,7 +323,7 @@ SvtMiscOptions_Impl::SvtMiscOptions_Impl()
             {
                 if( !(seqValues[nProperty] >>= m_nToolboxStyle) )
                 {
-                    DBG_ERROR("Wrong type of \"Misc\\ToolboxStyle\"!" );
+                    OSL_FAIL("Wrong type of \"Misc\\ToolboxStyle\"!" );
                 }
                 m_bIsToolboxStyleRO = seqRO[nProperty];
                 break;
@@ -358,7 +333,7 @@ SvtMiscOptions_Impl::SvtMiscOptions_Impl()
             {
                 if( !(seqValues[nProperty] >>= m_bUseSystemFileDialog) )
                 {
-                    DBG_ERROR("Wrong type of \"Misc\\UseSystemFileDialog\"!" );
+                    OSL_FAIL("Wrong type of \"Misc\\UseSystemFileDialog\"!" );
                 }
                 m_bIsUseSystemFileDialogRO = seqRO[nProperty];
                 break;
@@ -371,7 +346,7 @@ SvtMiscOptions_Impl::SvtMiscOptions_Impl()
                     SetSymbolsStyleName( aSymbolsStyle );
                 else
                 {
-                    DBG_ERROR("Wrong type of \"Misc\\SymbolStyle\"!" );
+                    OSL_FAIL("Wrong type of \"Misc\\SymbolStyle\"!" );
                 }
                 m_bIsSymbolsStyleRO = seqRO[nProperty];
                 break;
@@ -394,14 +369,9 @@ SvtMiscOptions_Impl::~SvtMiscOptions_Impl()
     {
         Commit();
     }
-
-    for ( USHORT n=0; n<aList.Count(); )
-        delete aList.Remove(n);
 }
 
-/*-- 25.02.2005 13:22:04---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 static int lcl_MapPropertyName( const ::rtl::OUString rCompare,
                 const uno::Sequence< ::rtl::OUString>& aInternalPropertyNames)
 {
@@ -435,28 +405,28 @@ void SvtMiscOptions_Impl::Load( const Sequence< OUString >& rPropertyNames )
             case PROPERTYHANDLE_PLUGINSENABLED      :   {
                                                             if( !(seqValues[nProperty] >>= m_bPluginsEnabled) )
                                                             {
-                                                                DBG_ERROR("Wrong type of \"Misc\\PluginsEnabled\"!" );
+                                                                OSL_FAIL("Wrong type of \"Misc\\PluginsEnabled\"!" );
                                                             }
                                                         }
                                                     break;
             case PROPERTYHANDLE_SYMBOLSET           :   {
                                                             if( !(seqValues[nProperty] >>= m_nSymbolsSize) )
                                                             {
-                                                                DBG_ERROR("Wrong type of \"Misc\\SymbolSet\"!" );
+                                                                OSL_FAIL("Wrong type of \"Misc\\SymbolSet\"!" );
                                                             }
                                                         }
                                                     break;
             case PROPERTYHANDLE_TOOLBOXSTYLE        :   {
                                                             if( !(seqValues[nProperty] >>= m_nToolboxStyle) )
                                                             {
-                                                                DBG_ERROR("Wrong type of \"Misc\\ToolboxStyle\"!" );
+                                                                OSL_FAIL("Wrong type of \"Misc\\ToolboxStyle\"!" );
                                                             }
                                                         }
                                                     break;
             case PROPERTYHANDLE_USESYSTEMFILEDIALOG      :   {
                                                             if( !(seqValues[nProperty] >>= m_bUseSystemFileDialog) )
                                                             {
-                                                                DBG_ERROR("Wrong type of \"Misc\\UseSystemFileDialog\"!" );
+                                                                OSL_FAIL("Wrong type of \"Misc\\UseSystemFileDialog\"!" );
                                                             }
                                                         }
                                                     break;
@@ -466,7 +436,7 @@ void SvtMiscOptions_Impl::Load( const Sequence< OUString >& rPropertyNames )
                                                                 SetSymbolsStyleName( aSymbolsStyle );
                                                             else
                                                             {
-                                                                DBG_ERROR("Wrong type of \"Misc\\SymbolStyle\"!" );
+                                                                OSL_FAIL("Wrong type of \"Misc\\SymbolStyle\"!" );
                                                             }
                                                         }
                                                     break;
@@ -476,8 +446,6 @@ void SvtMiscOptions_Impl::Load( const Sequence< OUString >& rPropertyNames )
 
 void SvtMiscOptions_Impl::CallListeners()
 {
-    for ( USHORT n = 0; n < aList.Count(); ++n )
-        aList.GetObject(n)->Call( this );
 }
 
 sal_Int16 SvtMiscOptions_Impl::GetSymbolsStyle() const
@@ -665,3 +633,5 @@ Mutex & SvtMiscOptions::GetInitMutex()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

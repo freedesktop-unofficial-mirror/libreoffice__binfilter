@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 
 
-#ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -55,7 +48,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 SdUnoGraphicStyle::SdUnoGraphicStyle( SdXImpressDocument* pModel /* = NULL */,
@@ -147,7 +139,7 @@ void SdUnoGraphicStyle::create( SdXImpressDocument* pModel, SfxStyleSheetBase* p
 OUString SAL_CALL SdUnoGraphicStyle::getName(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     OUString aName;
     if( mpStyleSheet )
@@ -165,7 +157,7 @@ OUString SAL_CALL SdUnoGraphicStyle::getName(  )
 void SAL_CALL SdUnoGraphicStyle::setName( const OUString& aName )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpStyleSheet )
     {
@@ -197,11 +189,11 @@ void SAL_CALL SdUnoGraphicStyle::setPropertyValue( const ::rtl::OUString& aPrope
 
 uno::Any SAL_CALL SdUnoGraphicStyle::getPropertyValue( const ::rtl::OUString& PropertyName ) throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
-    static OUString aStyleName( OUString::createFromAscii( UNO_NAME_STYLE_FAMILY ) );
+    static OUString aStyleName( RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_STYLE_FAMILY ) );
     if( PropertyName == aStyleName )
     {
         uno::Any aAny;
-        aAny <<= OUString::createFromAscii( "graphic" );
+        aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "graphic" ));
         return aAny;
     }
     else
@@ -234,7 +226,7 @@ void SAL_CALL SdUnoGraphicStyle::removeVetoableChangeListener( const ::rtl::OUSt
 OUString SAL_CALL SdUnoGraphicStyle::getParentStyle(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     OUString aName;
     if( mpStyleSheet )
@@ -252,7 +244,7 @@ OUString SAL_CALL SdUnoGraphicStyle::getParentStyle(  )
 void SAL_CALL SdUnoGraphicStyle::setParentStyle( const OUString& aParentStyle )
     throw(container::NoSuchElementException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpStyleSheet )
     {
@@ -280,3 +272,5 @@ OUString SAL_CALL SdUnoGraphicStyle::getImplementationName()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

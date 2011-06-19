@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
 
-#ifndef _HINTS_HXX //autogen
 #include <hints.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTCLBL_HXX
 #include <fmtclbl.hxx>
-#endif
 #include "sectfrm.hxx"
 #include "section.hxx"      // SwSection
 #include "frmtool.hxx"      // StackHack
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"          // SwDoc
 #include "pagefrm.hxx"      // SwPageFrm
@@ -64,15 +53,9 @@
 #include "ftnfrm.hxx"       // SwFtnFrm
 #include "dbg_lay.hxx"
 #include "frmsh.hxx"
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _FMTFTNTX_HXX //autogen
 #include <fmtftntx.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR_SORT( SwDestroyList, SwSectionFrmPtr )
@@ -80,9 +63,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::SwSectionFrm(), ~SwSectionFrm()
-|*
-|*  Ersterstellung      AMA 26. Nov. 97
-|*  Letzte Aenderung    AMA 26. Nov. 97
 |*
 |*************************************************************************/
 /*N*/ SwSectionFrm::SwSectionFrm( SwSection &rSect ) :
@@ -136,7 +116,7 @@ namespace binfilter {
 //       frame and its insert in the layout.
 /*N*/ void SwSectionFrm::Init()
 /*N*/ {
-/*N*/     ASSERT( GetUpper(), "SwSectionFrm::Init before insertion?!" );
+/*N*/     OSL_ENSURE( GetUpper(), "SwSectionFrm::Init before insertion?!" );
 /*N*/     SWRECTFN( this )
 /*N*/     long nWidth = (GetUpper()->Prt().*fnRect->fnGetWidth)();
 /*N*/     (Frm().*fnRect->fnSetWidth)( nWidth );
@@ -192,14 +172,11 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::FindSectionMaster()
 |*
-|*  Ersterstellung      AMA 17. Dec. 97
-|*  Letzte Aenderung    AMA 17. Dec. 97
-|*
 |*************************************************************************/
 
 /*N*/ SwSectionFrm *SwSectionFrm::FindSectionMaster()
 /*N*/ {
-/*N*/   ASSERT( IsFollow(), "FindSectionMaster: !IsFollow" );
+/*N*/   OSL_ENSURE( IsFollow(), "FindSectionMaster: !IsFollow" );
 /*N*/   SwClientIter aIter( *(pSection->GetFmt()) );
 /*N*/   SwClient *pLast = aIter.GoStart();
 /*N*/   while ( pLast )
@@ -220,15 +197,12 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::DelEmpty()
 |*
-|*  Ersterstellung      AMA 17. Dec. 97
-|*  Letzte Aenderung    AMA 17. Dec. 97
-|*
 |*************************************************************************/
 /*N*/ void SwSectionFrm::DelEmpty( BOOL bRemove )
 /*N*/ {
 /*N*/   if( IsColLocked() )
 /*N*/   {
-/*N*/       ASSERT( !bRemove, "Don't delete locked SectionFrms" );
+/*N*/       OSL_ENSURE( !bRemove, "Don't delete locked SectionFrms" );
 /*N*/       return;
 /*N*/   }
 /*N*/   SwFrm* pUp = GetUpper();
@@ -270,9 +244,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::Cut()
 |*
-|*  Ersterstellung      AMA 02. Dec. 97
-|*  Letzte Aenderung    AMA 02. Dec. 97
-|*
 |*************************************************************************/
 /*N*/ void SwSectionFrm::Cut()
 /*N*/ {
@@ -281,7 +252,7 @@ namespace binfilter {
 
 /*N*/ void SwSectionFrm::_Cut( BOOL bRemove )
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "Cut ohne Upper()." );
+/*N*/   OSL_ENSURE( GetUpper(), "Cut ohne Upper()." );
 /*N*/
 /*N*/   PROTOCOL( this, PROT_CUT, 0, GetUpper() )
 /*N*/
@@ -359,9 +330,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::Paste()
 |*
-|*  Ersterstellung      AMA 04. Dec. 97
-|*  Letzte Aenderung    AMA 04. Dec. 97
-|*
 |*************************************************************************/
 
 
@@ -375,18 +343,12 @@ namespace binfilter {
 |*  Zunaechst werden uebergeordnete Bereiche immer aufgebrochen,
 |*  spaeter koennte man es einstellbar machen.
 |*
-|*  Ersterstellung      AMA 12. Dec. 97
-|*  Letzte Aenderung    AMA 12. Dec. 97
-|*
 |*************************************************************************/
 
 
 /*************************************************************************
 |*
 |*  SwSectionFrm::MergeNext()
-|*
-|*  Ersterstellung      AMA 04. Dec. 97
-|*  Letzte Aenderung    AMA 04. Dec. 97
 |*
 |*  Verschmilzt zwei SectionFrms, falls es sich um den
 |*  gleichen Bereich handelt.
@@ -434,9 +396,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::SplitSect()
 |*
-|*  Ersterstellung      AMA 29. Apr. 99
-|*  Letzte Aenderung    AMA 29. Apr. 99
-|*
 |*  Zerteilt einen SectionFrm in zwei Teile, der zweite Teil beginnt mit dem
 |*  uebergebenen Frame.
 |*  Benoetigt wird dies beim Einfuegen eines inneren Bereichs, weil innerhalb
@@ -449,9 +408,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::MoveCntntAndDelete()
-|*
-|*  Ersterstellung      AMA 29. Jan 99
-|*  Letzte Aenderung    AMA 29. Jan 99
 |*
 |*  MoveCntnt wird zur Zerstoerung eines SectionFrms wg. Aufhebung oder
 |*  Verstecken des Bereichs gerufen, um den Inhalt umzuhaengen.
@@ -470,10 +426,10 @@ namespace binfilter {
 
 /*N*/ void SwSectionFrm::MoveCntntAndDelete( SwSectionFrm* pDel, BOOL bSave )
 /*N*/ {
-/*N*/   BOOL bSize = pDel->Lower() && pDel->Lower()->IsColumnFrm();
+/*N*/   pDel->Lower() && pDel->Lower()->IsColumnFrm();
 /*N*/   SwFrm* pPrv = pDel->GetPrev();
 /*N*/   SwLayoutFrm* pUp = pDel->GetUpper();
-/*N*/     // OD 27.03.2003 #i12711# - initialize local pointer variables.
+/*N*/     // #i12711# - initialize local pointer variables.
 /*N*/     SwSectionFrm* pPrvSct = NULL;
 /*N*/     SwSectionFrm* pNxtSct = NULL;
 /*N*/     SwSectionFmt* pParent = static_cast<SwSectionFmt*>(pDel->GetFmt())->GetParent();
@@ -490,7 +446,7 @@ namespace binfilter {
 /*N*/   // einen anderen SectionFrm aufgebrochen, dies muss geprueft werden,
 /*N*/   // dazu besorgen wir uns zunaechst den vorhergehende und den nach-
 /*N*/   // folgenden CntntFrm, mal sehen, ob diese in SectionFrms liegen.
-/*N*/     // OD 27.03.2003 #i12711# - check, if previous and next section belonging
+/*N*/     // #i12711# - check, if previous and next section belonging
 /*N*/     // together and can be joined, *not* only if deleted section contains content.
 /*N*/     if ( pParent )
 /*N*/     {
@@ -506,10 +462,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/   // Jetzt wird der Inhalt beseite gestellt und der Frame zerstoert
 /*N*/   SwFrm *pSave = bSave ? ::binfilter::SaveCntnt( pDel ) : NULL;
-/*N*/   BOOL bOldFtn = TRUE;
 /*N*/   if( pSave && pUp->IsFtnFrm() )
 /*N*/   {
-/*N*/       bOldFtn = ((SwFtnFrm*)pUp)->IsColLocked();
 /*N*/       ((SwFtnFrm*)pUp)->ColLock();
 /*N*/   }
 /*N*/   pDel->DelEmpty( TRUE );
@@ -561,12 +515,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/   // Der Inhalt wird eingefuegt..
 /*N*/   if( pSave )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   // jetzt koennen eventuell zwei Teile des uebergeordneten Bereich verschmelzen
 /*N*/   if( pPrvSct && !pPrvSct->IsJoinLocked() )
 /*N*/   {
-/*N*/       ASSERT( pNxtSct, "MoveCntnt: No Merge" );
+/*N*/       OSL_ENSURE( pNxtSct, "MoveCntnt: No Merge" );
 /*N*/       pPrvSct->MergeNext( pNxtSct );
 /*N*/   }
 /*N*/ }
@@ -577,7 +531,7 @@ namespace binfilter {
 /*N*/       return;
 /*N*/   if( !pSection ) // Durch DelEmpty
 /*N*/   {
-/*?*/       ASSERT( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ), "SectionFrm without Section" );
+/*?*/       OSL_ENSURE( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ), "SectionFrm without Section" );
 /*?*/       if( !bValidPos )
 /*?*/       {
 /*?*/             if( GetUpper() )
@@ -652,7 +606,7 @@ namespace binfilter {
 /*N*/   SwSectionFrm *pSect = this;
 /*N*/   if( nMode )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwSectionFmt *pFmt = IsEndnAtEnd() ? GetEndSectFmt() :
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   BOOL bFtnFound = nMode == FINDMODE_ENDNOTE;
 /*N*/   do
@@ -668,16 +622,13 @@ namespace binfilter {
 /*N*/   return pRet;
 /*N*/ }
 
-/*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& rMinDiff ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/ BOOL SwSectionFrm::CalcMinDiff( SwTwips& /*rMinDiff*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*************************************************************************
  *
  *  SwSectionFrm::CollectEndnotes(  )
- *
- *  Ersterstellung      AMA 03. Nov 99
- *  Letzte Aenderung    AMA 03. Nov 99
  *
  *  CollectEndnotes looks for endnotes in the sectionfrm and his follows,
  *  the endnotes will cut off the layout and put into the array.
@@ -728,7 +679,6 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/// OD 18.09.2002 #100522#
 /// perform calculation of content, only if height has changed.
 /*N*/ void SwSectionFrm::_CheckClipping( BOOL bGrow, BOOL bMaximize )
 /*N*/ {
@@ -756,7 +706,7 @@ namespace binfilter {
 /*N*/                  (Prt().*fnRect->fnGetTop)() > (Frm().*fnRect->fnGetHeight)() );
 /*N*/     if( !bCalc && !bGrow && IsAnyNoteAtEnd() && !IsInFtn() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwSectionFrm *pSect = this;
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if( bCalc )
 /*N*/   {
@@ -774,7 +724,6 @@ namespace binfilter {
 /*N*/             nTop = nDiff;
 /*N*/         (this->*fnRect->fnSetYMargins)( nTop, 0 );
 
-        /// OD 18.09.2002 #100522#
         /// Determine, if height has changed.
         /// Note: In vertical layout the height equals the width value.
 /*N*/         bool bHeightChanged = bVert ?
@@ -783,7 +732,6 @@ namespace binfilter {
 /*N*/       // Wir haben zu guter Letzt noch einmal die Hoehe geaendert,
 /*N*/       // dann wird das innere Layout (Columns) kalkuliert und
 /*N*/       // der Inhalt ebenfalls.
-        /// OD 18.09.2002 #100522#
         /// calculate content, only if height has changed.
 /*N*/         if( bHeightChanged && Lower() )
 /*N*/       {
@@ -806,7 +754,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( IsJoinLocked() || IsColLocked() )
 /*N*/       return;
-/*N*/   // ASSERT( pFollow, "SimpleFormat: Follow required" );
+/*N*/   // OSL_ENSURE( pFollow, "SimpleFormat: Follow required" );
 /*N*/   LockJoin();
 /*N*/     SWRECTFN( this )
 /*N*/     if( GetPrev() || GetUpper() )
@@ -815,8 +763,8 @@ namespace binfilter {
 /*N*/       bValidPos = TRUE;
 /*N*/   }
 /*N*/     SwTwips nDeadLine = (GetUpper()->*fnRect->fnGetPrtBottom)();
-    // OD 22.10.2002 #97265# - call always method <lcl_ColumnRefresh(..)>, in
-    // order to get calculated lowers, not only if there space left in its upper.
+    // call always method <lcl_ColumnRefresh(..)>, in order to get
+    // calculated lowers, not only if there space left in its upper.
 /*N*/     if( (Frm().*fnRect->fnBottomDist)( nDeadLine ) > 0 )
 /*N*/   {
 /*N*/       const Size aOldSz( Prt().SSize() );
@@ -836,8 +784,6 @@ namespace binfilter {
 |*  SwSectionFrm::Format()
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea.
-|*  Ersterstellung      AMA 03. Dec. 97
-|*  Letzte Aenderung    MA 09. Oct. 98
 |*
 |*************************************************************************/
 
@@ -845,7 +791,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !pSection ) // Durch DelEmpty
 /*N*/   {
-/*N*/       ASSERT( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ),
+/*N*/       OSL_ENSURE( GetFmt()->GetDoc()->GetRootFrm()->IsInDelList( this ),
 /*N*/                "SectionFrm without Section" );
 /*N*/       bValidSize = bValidPos = bValidPrtArea = TRUE;
 /*N*/       return;
@@ -898,12 +844,12 @@ namespace binfilter {
 /*N*/             long nWidth = (GetUpper()->Prt().*fnRect->fnGetWidth)();
 /*N*/             (aFrm.*fnRect->fnSetWidth)( nWidth );
 /*N*/
-/*N*/             // #109700# LRSpace for sections
+/*N*/             // LRSpace for sections
 /*N*/             const SvxLRSpaceItem& rLRSpace = GetFmt()->GetLRSpace();
 /*N*/             (aPrt.*fnRect->fnSetWidth)( nWidth - rLRSpace.GetLeft() -
 /*N*/                                         rLRSpace.GetRight() );
 /*N*/
-/*N*/             /// OD 15.10.2002 #103517# - allow grow in online layout
+/*N*/             /// allow grow in online layout
 /*N*/             /// Thus, set <..IsBrowseMode()> as parameter <bGrow> on calling
 /*N*/             /// method <_CheckClipping(..)>.
 /*N*/             _CheckClipping( GetFmt()->GetDoc()->IsBrowseMode(), bMaximize );
@@ -1041,8 +987,6 @@ namespace binfilter {
 |*  Beschreibung        Liefert das naechste Layoutblatt in das der Frame
 |*      gemoved werden kann.
 |*      Neue Seiten werden nur dann erzeugt, wenn der Parameter TRUE ist.
-|*  Ersterstellung      AMA 07. Jan. 98
-|*  Letzte Aenderung    AMA 07. Jan. 98
 |*
 |*************************************************************************/
 
@@ -1070,7 +1014,7 @@ namespace binfilter {
 /*N*/ //    SwSectionFrm *pSect = GetUpper()->FindSctFrm();
 /*N*/   SwSectionFrm *pSect = FindSctFrm();
 /*N*/   BOOL bWrongPage = FALSE;
-/*N*/   ASSERT( pSect, "GetNextSctLeaf: Missing SectionFrm" );
+/*N*/   OSL_ENSURE( pSect, "GetNextSctLeaf: Missing SectionFrm" );
 /*N*/
 /*N*/   // Hier eine Abkuerzung fuer Bereiche mit Follows,
 /*N*/   // dieser kann akzeptiert werden, wenn keine Spalten oder Seiten (ausser Dummyseiten)
@@ -1236,7 +1180,7 @@ namespace binfilter {
 /*N*/                       pNxt = (SwSectionFrm*)pTmp;
 /*N*/                   else
 /*N*/                   {
-/*?*/                       ASSERT( pTmp->IsTabFrm(), "GetNextSctLeaf: Wrong Type" );
+/*?*/                       OSL_ENSURE( pTmp->IsTabFrm(), "GetNextSctLeaf: Wrong Type" );
 /*?*/                       pNxt = (SwTabFrm*)pTmp;
 /*N*/                   }
 /*N*/                   while( !pNxtCntnt && 0 != ( pTmp = pTmp->GetNext() ) )
@@ -1275,13 +1219,11 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
 |*      Frame gemoved werden kann.
-|*  Ersterstellung      AMA 07. Jan. 98
-|*  Letzte Aenderung    AMA 07. Jan. 98
 |*
 |*************************************************************************/
 
 
-/*N*/ SwLayoutFrm *SwFrm::GetPrevSctLeaf( MakePageType eMakeFtn )
+/*N*/ SwLayoutFrm *SwFrm::GetPrevSctLeaf( MakePageType /*eMakeFtn*/ )
 /*N*/ {
 /*N*/   PROTOCOL_ENTER( this, PROT_LEAF, ACT_PREV_SECT, GetUpper()->FindSctFrm() )
 /*N*/
@@ -1326,7 +1268,7 @@ namespace binfilter {
 /*N*/   // nur ein Spaltenwechsel erfolgen, eine der oberen Abkuerzungen haette
 /*N*/   // zuschlagen muessen, ebenso wenn der Bereich einen pPrev hat.
 /*N*/   // Jetzt ziehen wir sogar eine leere Spalte in Betracht...
-/*N*/   ASSERT( FindSctFrm(), "GetNextSctLeaf: Missing SectionFrm" );
+/*N*/   OSL_ENSURE( FindSctFrm(), "GetNextSctLeaf: Missing SectionFrm" );
 /*N*/   if( ( IsInTab() && !IsTabFrm() ) || FindFooterOrHeader() )
 /*?*/       return pCol;
 /*N*/
@@ -1356,7 +1298,7 @@ namespace binfilter {
             // If there is a pLayLeaf has a lower pLayLeaf is the frame we are looking for.
             // Exception: pLayLeaf->Lower() is a zombie section frame
 /*N*/             const SwFrm* pTmp = pLayLeaf->Lower();
-/*N*/             // OD 11.04.2003 #108824# - consider, that the zombie section frame
+/*N*/             // consider, that the zombie section frame
 /*N*/             // can have frame below it in the found layout leaf.
 /*N*/             // Thus, skipping zombie section frame, if possible.
 /*N*/             while ( pTmp && pTmp->IsSctFrm() &&
@@ -1432,17 +1374,17 @@ namespace binfilter {
 /*N*/         {
 /*?*/             // In existent section columns we're looking for the last not empty
 /*?*/             // column.
-/*?*/             SwLayoutFrm *pTmp = pLayLeaf;
-/*?*/           while( pLayLeaf->GetUpper()->GetNext() )
+/*?*/             SwLayoutFrm *pTmp1 = pLayLeaf;
+/*?*/             while( pLayLeaf->GetUpper()->GetNext() )
 /*?*/             {
 /*?*/               pLayLeaf = (SwLayoutFrm*)((SwLayoutFrm*)pLayLeaf->GetUpper()->GetNext())->Lower();
 /*?*/                 if( pLayLeaf->Lower() )
-/*?*/                     pTmp = pLayLeaf;
+/*?*/                     pTmp1 = pLayLeaf;
 /*?*/             }
 /*?*/             // If we skipped an empty column, we've to set the jump-flag
-/*?*/             if( pLayLeaf != pTmp )
+/*?*/             if( pLayLeaf != pTmp1 )
 /*?*/             {
-/*?*/                 pLayLeaf = pTmp;
+/*?*/                 pLayLeaf = pTmp1;
 /*?*/                 SwFlowFrm::SetMoveBwdJump( TRUE );
 /*?*/             }
 /*N*/       }
@@ -1484,9 +1426,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::_Grow(), _Shrink()
-|*
-|*  Ersterstellung      AMA 14. Jan. 98
-|*  Letzte Aenderung    AMA 14. Jan. 98
 |*
 |*************************************************************************/
 
@@ -1629,7 +1568,6 @@ namespace binfilter {
 /*N*/                 long nPrtHeight = (Prt().*fnRect->fnGetHeight)() - nDist;
 /*N*/                 (Prt().*fnRect->fnSetHeight)( nPrtHeight );
 
-/*N*/                 SwTwips nReal = 0;
 /*N*/                 // We do not allow a section frame to shrink the its upper
 /*N*/                 // footer frame. This is because in the calculation of a
 /*N*/                 // footer frame, the content of the section frame is _not_
@@ -1645,7 +1583,7 @@ namespace binfilter {
 /*N*/                 // would cause the top of the section frame to overlap with the
 /*N*/                 // fly frame again, this would result in a perfect loop.
 /*N*/                 if( !GetUpper()->IsFooterFrm() )
-/*N*/                     nReal = GetUpper()->Shrink( nDist, bTst );
+/*N*/                     GetUpper()->Shrink( nDist, bTst );
 /*N*/
 /*N*/               if( Lower() && Lower()->IsColumnFrm() && Lower()->GetNext() )
 /*N*/               {
@@ -1678,9 +1616,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwSectionFrm::MoveAllowed()
-|*
-|*  Ersterstellung      MA 08. Oct. 98
-|*  Letzte Aenderung    MA 08. Oct. 98
 |*
 |*  Wann sind Frms innerhalb eines SectionFrms moveable?
 |*  Wenn sie noch nicht in der letzten Spalte des SectionFrms sind,
@@ -1752,7 +1687,7 @@ namespace binfilter {
 /*N*/ SwFrm* SwFrm::_GetIndPrev()
 /*N*/ {
 /*N*/   SwFrm *pRet = NULL;
-/*N*/   ASSERT( !pPrev && IsInSct(), "Why?" );
+/*N*/   OSL_ENSURE( !pPrev && IsInSct(), "Why?" );
 /*N*/   SwFrm* pSct = GetUpper();
 /*N*/   if( !pSct )
 /*?*/       return NULL;
@@ -1764,8 +1699,8 @@ namespace binfilter {
 /*?*/       SwFrm* pCol = GetUpper()->GetUpper()->GetPrev();
 /*?*/       while( pCol )
 /*?*/       {
-/*?*/           ASSERT( pCol->IsColumnFrm(), "GetIndPrev(): ColumnFrm expected" );
-/*?*/           ASSERT( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
+/*?*/           OSL_ENSURE( pCol->IsColumnFrm(), "GetIndPrev(): ColumnFrm expected" );
+/*?*/           OSL_ENSURE( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
 /*?*/                   "GetIndPrev(): Where's the body?");
 /*?*/           if( ((SwLayoutFrm*)((SwLayoutFrm*)pCol)->Lower())->Lower() )
 /*?*/               return NULL;
@@ -1781,7 +1716,7 @@ namespace binfilter {
 
 /*N*/ SwFrm* SwFrm::_GetIndNext()
 /*N*/ {
-/*N*/   ASSERT( !pNext && IsInSct(), "Why?" );
+/*N*/   OSL_ENSURE( !pNext && IsInSct(), "Why?" );
 /*N*/   SwFrm* pSct = GetUpper();
 /*N*/   if( !pSct )
 /*?*/       return NULL;
@@ -1793,8 +1728,8 @@ namespace binfilter {
 /*?*/       SwFrm* pCol = GetUpper()->GetUpper()->GetNext();
 /*?*/       while( pCol )
 /*?*/       {
-/*?*/           ASSERT( pCol->IsColumnFrm(), "GetIndNext(): ColumnFrm expected" );
-/*?*/           ASSERT( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
+/*?*/           OSL_ENSURE( pCol->IsColumnFrm(), "GetIndNext(): ColumnFrm expected" );
+/*?*/           OSL_ENSURE( pCol->GetLower() && pCol->GetLower()->IsBodyFrm(),
 /*?*/                   "GetIndNext(): Where's the body?");
 /*?*/           if( ((SwLayoutFrm*)((SwLayoutFrm*)pCol)->Lower())->Lower() )
 /*?*/               return NULL;
@@ -1849,9 +1784,6 @@ namespace binfilter {
 |*
 |*  SwSectionFrm::Modify()
 |*
-|*  Ersterstellung      MA 08. Oct. 98
-|*  Letzte Aenderung    MA 08. Oct. 98
-|*
 |*************************************************************************/
 
 /*N*/ void SwSectionFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -1899,14 +1831,14 @@ namespace binfilter {
 /*N*/   {   // Mehrspaltigkeit in Fussnoten unterdruecken...
 /*N*/       case RES_FMT_CHG:
 /*N*/       {
-/*?*/           const SwFmtCol& rNewCol = GetFmt()->GetCol();
+/*?*/           GetFmt()->GetCol();
 /*?*/           if( !IsInFtn() )
 /*?*/           {
-/*?*/               //Dummer Fall. Bei der Zuweisung einer Vorlage k”nnen wir uns
+/*?*/               //Dummer Fall. Bei der Zuweisung einer Vorlage kï¿½nnen wir uns
 /*?*/               //nicht auf das alte Spaltenattribut verlassen. Da diese
 /*?*/               //wenigstens anzahlgemass fuer ChgColumns vorliegen muessen,
 /*?*/               //bleibt uns nur einen temporaeres Attribut zu basteln.
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtCol aCol;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           rInvFlags |= 0x01;
 /*?*/           bClear = FALSE;
@@ -1938,7 +1870,7 @@ namespace binfilter {
 /*?*/       case RES_END_AT_TXTEND:
 /*?*/           if( !IsInFtn() )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOld = IsEndnAtEnd();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/           break;
 /*?*/       case RES_COLUMNBALANCE:
@@ -1951,7 +1883,7 @@ namespace binfilter {
 /*?*/             break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           { DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           { DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/           break;
 /*M*/
@@ -1972,7 +1904,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*-----------------09.06.99 14:58-------------------
+/*--------------------------------------------------
  * SwSectionFrm::ToMaximize(..): A follow or a ftncontainer at the end of the
  * page causes a maximal Size of the sectionframe.
  * --------------------------------------------------*/
@@ -1997,12 +1929,12 @@ namespace binfilter {
 /*?*/   BOOL bRet = FALSE;
 /*?*/   while( pCont && !bRet )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pCont->FindFootNote() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   return bRet;
 /*N*/ }
 
-/*-----------------09.06.99 15:07-------------------
+/*--------------------------------------------------
  * BOOL SwSectionFrm::ContainsFtnCont()
  * checks every Column for FtnContFrms.
  * --------------------------------------------------*/
@@ -2013,8 +1945,8 @@ namespace binfilter {
 /*N*/   const SwLayoutFrm* pLay;
 /*N*/   if( pCont )
 /*N*/   {
-/*?*/       pLay = pCont->FindFtnBossFrm( NULL );
-/*?*/       ASSERT( IsAnLower( pLay ), "ConatainsFtnCont: Wrong FtnContainer" );
+/*?*/       pLay = pCont->FindFtnBossFrm(0);
+/*?*/       OSL_ENSURE( IsAnLower( pLay ), "ConatainsFtnCont: Wrong FtnContainer" );
 /*?*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/   }
 /*N*/   else if( Lower() && Lower()->IsColumnFrm() )
@@ -2025,11 +1957,11 @@ namespace binfilter {
 /*N*/   {
 /*?*/       if( pLay->Lower() && pLay->Lower()->GetNext() )
 /*?*/       {
-/*?*/           ASSERT( pLay->Lower()->GetNext()->IsFtnContFrm(),
+/*?*/           OSL_ENSURE( pLay->Lower()->GetNext()->IsFtnContFrm(),
 /*?*/                   "ToMaximize: Unexspected Frame" );
 /*?*/           pRet = (SwFtnContFrm*)pLay->Lower()->GetNext();
 /*?*/       }
-/*?*/       ASSERT( !pLay->GetNext() || pLay->GetNext()->IsLayoutFrm(),
+/*?*/       OSL_ENSURE( !pLay->GetNext() || pLay->GetNext()->IsLayoutFrm(),
 /*?*/               "ToMaximize: ColFrm exspected" );
 /*?*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/   }
@@ -2047,7 +1979,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*-----------------18.03.99 10:37-------------------
+/*--------------------------------------------------
  * SwSectionFrm::Undersize() liefert den Betrag, um den der Bereich gern
  * groesser waere, wenn in ihm Undersized TxtFrms liegen, ansonsten Null.
  * Das Undersized-Flag wird ggf. korrigiert.
@@ -2065,7 +1997,7 @@ namespace binfilter {
 /*N*/   return nRet;
 /*N*/ }
 
-/// OD 01.04.2003 #108446# - determine next frame for footnote/endnote formatting
+/// determine next frame for footnote/endnote formatting
 /// before format of current one, because current one can move backward.
 /// After moving backward to a previous page method <FindNext()> will return
 /// the text frame presenting the first page footnote, if it exists. Thus, the
@@ -2083,7 +2015,7 @@ namespace binfilter {
 /*?*/           SwFtnFrm* pFtn = pFrm->FindFtnFrm();
 /*?*/           if( pFtn )
 /*?*/               pFtn->Calc();
-/*?*/             // OD 01.04.2003 #108446# - determine next frame before format current frame.
+/*?*/             // determine next frame before format current frame.
 /*?*/             SwFrm* pNextFrm = 0;
 /*?*/             {
 /*?*/                 if( pFrm->IsSctFrm() )
@@ -2101,8 +2033,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/* -----------------09.02.99 14:26-------------------
- * Wenn ein SectionFrm leerlaeuft, z.B. weil sein Inhalt die Seite/Spalte wechselt,
+/* Wenn ein SectionFrm leerlaeuft, z.B. weil sein Inhalt die Seite/Spalte wechselt,
  * so wird er nicht sofort zerstoert (es koennte noch jemand auf dem Stack einen Pointer
  * auf ihn halten), sondern er traegt sich in eine Liste am RootFrm ein, die spaeter
  * abgearbeitet wird (in LayAction::Action u.a.). Seine Groesse wird auf Null gesetzt und
@@ -2112,7 +2043,7 @@ namespace binfilter {
  * Mit InsertEmptySct nimmt der RootFrm einen SectionFrm in die Liste auf,
  * mit RemoveFromList kann ein SectionFrm wieder aus der Liste entfernt werden (Dtor),
  * mit DeleteEmptySct wird die Liste abgearbeitet und die SectionFrms zerstoert
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwRootFrm::InsertEmptySct( SwSectionFrm* pDel )
 /*N*/ {
@@ -2125,12 +2056,12 @@ namespace binfilter {
 
 /*N*/ void SwRootFrm::_DeleteEmptySct()
 /*N*/ {
-/*N*/   ASSERT( pDestroy, "Keine Liste, keine Kekse" );
+/*N*/   OSL_ENSURE( pDestroy, "Keine Liste, keine Kekse" );
 /*N*/   while( pDestroy->Count() )
 /*N*/   {
 /*N*/       SwSectionFrm* pSect = (*pDestroy)[0];
 /*N*/       pDestroy->Remove( USHORT(0) );
-/*N*/       ASSERT( !pSect->IsColLocked() && !pSect->IsJoinLocked(),
+/*N*/       OSL_ENSURE( !pSect->IsColLocked() && !pSect->IsJoinLocked(),
 /*N*/               "DeleteEmptySct: Locked SectionFrm" );
 /*N*/       if( !pSect->Frm().HasArea() && !pSect->ContainsCntnt() )
 /*N*/       {
@@ -2150,13 +2081,13 @@ namespace binfilter {
 /*N*/           }
 /*N*/       }
 /*N*/       else
-/*?*/           ASSERT( pSect->GetSection(), "DeleteEmptySct: Halbtoter SectionFrm?!" );
+/*?*/           OSL_ENSURE( pSect->GetSection(), "DeleteEmptySct: Halbtoter SectionFrm?!" );
 /*N*/   }
 /*N*/ }
 
 /*N*/ void SwRootFrm::_RemoveFromList( SwSectionFrm* pSct )
 /*N*/ {
-/*N*/   ASSERT( pDestroy, "Where's my list?" );
+/*N*/   OSL_ENSURE( pDestroy, "Where's my list?" );
 /*N*/   USHORT nPos;
 /*N*/   if( pDestroy->Seek_Entry( pSct, &nPos ) )
 /*?*/       pDestroy->Remove( nPos );
@@ -2172,3 +2103,5 @@ namespace binfilter {
 
 /*N*/ #endif
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

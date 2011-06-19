@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _PAM_HXX //autogen
 #include <pam.hxx>
-#endif
-#ifndef _TBLSEL_HXX //autogen
 #include <tblsel.hxx>
-#endif
-#ifndef _CSHTYP_HXX //autogen
 #include <cshtyp.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
 } } } }
@@ -52,9 +47,6 @@ class SwUnoCrsr;
 class SwUnoTableCrsr;
 struct _SwCursor_SavePos;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 
 // ein Basis-Struktur fuer die Parameter der Find-Methoden
@@ -65,7 +57,7 @@ const int FIND_NO_RING      = 2;
 
 struct SwFindParas
 {
-    virtual int Find( SwPaM*, SwMoveFn, const SwPaM*, FASTBOOL ) = 0;
+    virtual int Find( SwPaM*, SwMoveFn, const SwPaM*, bool ) = 0;
     virtual int IsReplaceMode() const = 0;
 };
 
@@ -126,19 +118,19 @@ public:
                 FindRanges = FND_IN_BODY,
                 const SwTxtFmtColl* pReplFmt = 0 );
 
-    ULONG Find( const SfxItemSet& rSet, FASTBOOL bNoCollections,
+    ULONG Find( const SfxItemSet& rSet, bool bNoCollections,
                 SwDocPositions nStart, SwDocPositions nEnde,
                 BOOL& bCancel,
                 FindRanges = FND_IN_BODY,
                 const ::com::sun::star::util::SearchOptions* pSearchOpt = 0,
                 const SfxItemSet* rReplSet = 0 );
 
-    FASTBOOL IsStartWord()const;
-    FASTBOOL IsEndWord() const;
-    FASTBOOL GoStartWord();
-    FASTBOOL GoEndWord();
-    FASTBOOL GoNextWord();
-    FASTBOOL GoPrevWord();
+    bool IsStartWord()const;
+    bool IsEndWord() const;
+    bool GoStartWord();
+    bool GoEndWord();
+    bool GoNextWord();
+    bool GoPrevWord();
 
     enum SentenceMoveType
     {
@@ -147,48 +139,48 @@ public:
         START_SENT,
         END_SENT
     };
-     FASTBOOL GoSentence(SentenceMoveType eMoveType);
-    FASTBOOL GoNextSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(NEXT_SENT);}
-    FASTBOOL GoPrevSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}//STRIP001 return GoSentence(PREV_SENT);}
+     bool GoSentence(SentenceMoveType eMoveType);
+    bool GoNextSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool GoPrevSentence(){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
-    FASTBOOL LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode, BOOL bAllowVisual,
+    bool LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode, BOOL bAllowVisual,
                         BOOL bInsertCrsr );
-    FASTBOOL UpDown( BOOL bUp, USHORT nCnt = 1,
+    bool UpDown( BOOL bUp, USHORT nCnt = 1,
                     Point* pPt = 0, long nUpDownX = 0 );
 
-    FASTBOOL Left( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
+    bool Left( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
                                     { return LeftRight( TRUE, nCnt, nMode, bAllowVisual, FALSE ); }
-    FASTBOOL Right( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
+    bool Right( USHORT nCnt, USHORT nMode, BOOL bAllowVisual = FALSE )
                                     { return LeftRight( FALSE, nCnt, nMode, bAllowVisual, FALSE ); }
-    FASTBOOL Up( USHORT nCnt = 1 )      { return UpDown( TRUE, nCnt ); }
-    FASTBOOL Down( USHORT nCnt = 1 )    { return UpDown( FALSE, nCnt ); }
-    FASTBOOL LeftMargin()               { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( TRUE ); }
-    FASTBOOL RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return LeftRightMargin( FALSE ); }
-    FASTBOOL SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( TRUE ); }
-    FASTBOOL EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return SttEndDoc( FALSE ); }
-    FASTBOOL GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( TRUE, nCnt ); }
-    FASTBOOL GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 { return GoPrevNextCell( FALSE, nCnt ); }
-    FASTBOOL GotoTblBox( const String& rName );
+    bool Up( USHORT nCnt = 1 )      { return UpDown( TRUE, nCnt ); }
+    bool Down( USHORT nCnt = 1 )    { return UpDown( FALSE, nCnt ); }
+    bool LeftMargin()               { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool RightMargin()              { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool SttDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool EndDoc()                   { DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    bool GoNextCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
+    bool GoPrevCell( USHORT nCnt = 1 )  { DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; return FALSE;}
+    bool GotoTblBox( const String& rName );
 
-    FASTBOOL MovePara( SwWhichPara, SwPosPara );
-    FASTBOOL MoveSection( SwWhichSection, SwPosSection );
-    FASTBOOL MoveTable( SwWhichTable, SwPosTable );
+    bool MovePara( SwWhichPara, SwPosPara );
+    bool MoveSection( SwWhichSection, SwPosSection );
+    bool MoveTable( SwWhichTable, SwPosTable );
 
 
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
-    virtual FASTBOOL IsSelOvr( int eFlags =
+    virtual bool IsSelOvr( int eFlags =
                                 ( SELOVER_CHECKNODESSECTION |
                                   SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
-    virtual FASTBOOL IsInProtectTable( FASTBOOL bMove = FALSE,
-                                        FASTBOOL bChgCrsr = TRUE );
+    virtual bool IsInProtectTable( bool bMove = FALSE,
+                                        bool bChgCrsr = TRUE );
 
 
     // TRUE: an die Position kann der Cursor gesetzt werden
-    virtual FASTBOOL IsAtValidPos( BOOL bPoint = TRUE ) const;
+    virtual bool IsAtValidPos( BOOL bPoint = TRUE ) const;
 
     // darf der Cursor in ReadOnlyBereiche?
-    FASTBOOL IsReadOnlyAvailable() const;
+    bool IsReadOnlyAvailable() const;
 
     BYTE GetCrsrBidiLevel() const { return nCursorBidiLevel; }
     void SetCrsrBidiLevel( BYTE nNewLevel ) { nCursorBidiLevel = nNewLevel; }
@@ -276,3 +268,4 @@ inline SwCursor::operator const SwUnoTableCrsr* () const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

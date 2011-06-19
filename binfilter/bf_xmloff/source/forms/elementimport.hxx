@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,36 +29,16 @@
 #ifndef _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 #define _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 
-#ifndef _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 #include "propertyimport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CONTROLELEMENT_HXX_
 #include "controlelement.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_VALUEPROPERTIES_HXX_
 #include "valueproperties.hxx"
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XGRIDCOLUMNFACTORY_HPP_
 #include <com/sun/star/form/XGridColumnFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _XMLOFF_FORMS_EVENTIMPORT_HXX_
 #include "eventimport.hxx"
-#endif
-#ifndef XMLOFF_FORMS_LOGGING_HXX
 #include "logging.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -257,7 +238,6 @@ namespace xmloff
         virtual void doRegisterCellValueBinding( const ::rtl::OUString& _rBoundCellAddress );
 
     protected:
-        //added by BerryJia for fixing bug102407 2002-11-5
         // OElementImport overridables
         virtual ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >
                         createElement();
@@ -675,3 +655,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_ELEMENTIMPORT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

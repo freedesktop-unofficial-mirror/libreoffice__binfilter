@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,120 +27,55 @@
  ************************************************************************/
 
 #include <rtl/uuid.h>
-#ifndef _TOOLS_DEBUG_HXX //autogen wg. DBG_ASSERT
 #include <tools/debug.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XBINARYSTREAMRESOLVER_HPP_
 #include <com/sun/star/document/XBinaryStreamResolver.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_SAXINVALIDCHARACTEREXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXInvalidCharacterException.hpp>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLMETAE_HXX
 #include "xmlmetae.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSTARBASICEXPORTHANDLER_HXX
 #include "XMLStarBasicExportHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLSCRIPTEXPORTHANDLER_HXX
 #include "XMLScriptExportHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_SETTINGSEXPORTHELPER_HXX
 #include "SettingsExportHelper.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XVIEWDATASUPPLIER_HPP_
 #include <com/sun/star/document/XViewDataSupplier.hpp>
-#endif
 
-#ifndef _XMLOFF_GRADIENTSTYLE_HXX
 #include <GradientStyle.hxx>
-#endif
-#ifndef _XMLOFF_HATCHSTYLE_HXX
 #include <HatchStyle.hxx>
-#endif
-#ifndef _XMLOFF_IMAGESTYLE_HXX
 #include <ImageStyle.hxx>
-#endif
-#ifndef _XMLOFF_TRANSGRADIENTSTYLE_HXX
 #include <TransGradientStyle.hxx>
-#endif
-#ifndef _XMLOFF_MARKERSTYLE_HXX
 #include <MarkerStyle.hxx>
-#endif
-#ifndef _XMLOFF_DASHSTYLE_HXX
 #include <DashStyle.hxx>
-#endif
-#ifndef _XMLOFF_XMLFONTAUTOSTYLEPOOL_HXX
-#include "XMLFontAutoStylePool"
-#endif
-#ifndef _XMLOFF_XMLIMAGEMAPEXPORT_HXX_
+#include <bf_xmloff/XMLFontAutoStylePool.hxx>
 #include "XMLImageMapExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLBASE64EXPORT_HXX_
 #include "XMLBase64Export.hxx"
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX_
 #include "xmlerror.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_SERVICENOTREGISTEREDEXCEPTION_HPP_
 #include <com/sun/star/lang/ServiceNotRegisteredException.hpp>
-#endif
-#ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
 #include "XMLFilterServiceNames.h"
-#endif
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
 #include "XMLEmbeddedObjectExportFilter.hxx"
-#endif
-#ifndef _XMLOFF_XMLBASICEXPORTFILTER_HXX
 #include "XMLBasicExportFilter.hxx"
-#endif
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::osl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -152,7 +88,10 @@ using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star::io;
 using namespace ::binfilter::xmloff::token;
 
-sal_Char __READONLY_DATA sXML_1_0[] = "1.0";
+using rtl::OUString;
+using rtl::OUStringBuffer;
+
+sal_Char const sXML_1_0[] = "1.0";
 
 #define LOGFILE_AUTHOR "mb93740"
 
@@ -214,7 +153,7 @@ SvXMLExportEventListener::~SvXMLExportEventListener()
 }
 
 // XEventListener
-void SAL_CALL SvXMLExportEventListener::disposing( const lang::EventObject& rEventObject )
+void SAL_CALL SvXMLExportEventListener::disposing( const lang::EventObject& /*rEventObject*/ )
     throw(uno::RuntimeException)
 {
     if (pExport)
@@ -292,25 +231,25 @@ SvXMLExport::SvXMLExport(
 :   pImpl( 0 ),
     // #110680#
     mxServiceFactory(xServiceFactory),
-    meClass( eClass ),
-    sWS( GetXMLToken(XML_WS) ),
+    pAttrList( new SvXMLAttributeList ),
     pNamespaceMap( new SvXMLNamespaceMap ),
 
     // #110680#
     // pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, eDfltUnit ) ),
     pUnitConv( new SvXMLUnitConverter( MAP_100TH_MM, eDfltUnit, getServiceFactory() ) ),
 
-    pAttrList( new SvXMLAttributeList ),
-    bExtended( sal_False ),
     pNumExport(0L),
     pProgressBarHelper( NULL ),
     pEventExport( NULL ),
     pImageMapExport( NULL ),
-    pEventListener( NULL ),
     pXMLErrors( NULL ),
-    bSaveLinkedSections(sal_True),
+    pEventListener( NULL ),
+    bExtended( sal_False ),
+    meClass( eClass ),
     mnExportFlags( nExportFlags ),
-    mnErrorFlags( ERROR_NO )
+    mnErrorFlags( ERROR_NO ),
+    sWS( GetXMLToken(XML_WS) ),
+    bSaveLinkedSections(sal_True)
 {
     DBG_ASSERT( mxServiceFactory.is(), "got no service manager" );
     _InitCtor();
@@ -443,7 +382,7 @@ void SAL_CALL SvXMLExport::setSourceDocument( const uno::Reference< lang::XCompo
                     sal_Int32 nIndex;
                     OUString aURL;
 
-                    for( nIndex = 0; nIndex < nCount; nIndex++, *pPrefix++ )
+                    for( nIndex = 0; nIndex < nCount; nIndex++, pPrefix++ )
                     {
                         if( xNamespaceMap->getByName( *pPrefix ) >>= aURL )
                             _GetNamespaceMap().Add( *pPrefix, aURL, XML_NAMESPACE_UNKNOWN );
@@ -564,8 +503,8 @@ sal_Bool SAL_CALL SvXMLExport::filter( const uno::Sequence< beans::PropertyValue
                   aSeq, e.Message, NULL );
     }
 
-    // return true only if no error occured
-    return (GetErrorFlags() & (ERROR_DO_NOTHING|ERROR_ERROR_OCCURED)) == 0;
+    // return true only if no error occurred
+    return (GetErrorFlags() & (ERROR_DO_NOTHING|ERROR_ERROR_OCCURRED)) == 0;
 }
 
 void SAL_CALL SvXMLExport::cancel() throw(uno::RuntimeException)
@@ -581,7 +520,7 @@ void SAL_CALL SvXMLExport::cancel() throw(uno::RuntimeException)
     return sFilterName;
 }
 
-void SAL_CALL SvXMLExport::setName( const ::rtl::OUString& aName )
+void SAL_CALL SvXMLExport::setName( const ::rtl::OUString& /*aName*/ )
     throw (::com::sun::star::uno::RuntimeException)
 {
     // do nothing, because it is not possible to set the FilterName
@@ -610,7 +549,6 @@ uno::Sequence< OUString > SAL_CALL SvXMLExport::getSupportedServiceNames(  )
     throw(uno::RuntimeException)
 {
     uno::Sequence<OUString> aSeq(2);
-    OUString* pSeq = aSeq.getArray();
     aSeq[0] = OUString(
         RTL_CONSTASCII_USTRINGPARAM("com.sun.star.document.ExportFilter"));
     aSeq[1] = OUString(
@@ -722,7 +660,7 @@ void SvXMLExport::ImplExportSettings()
     }
 }
 
-void SvXMLExport::ImplExportStyles( sal_Bool bUsed )
+void SvXMLExport::ImplExportStyles( sal_Bool /*bUsed*/ )
 {
     CheckAttrList();
 
@@ -736,54 +674,22 @@ void SvXMLExport::ImplExportStyles( sal_Bool bUsed )
     }
 }
 
-void SvXMLExport::ImplExportAutoStyles( sal_Bool bUsed )
+void SvXMLExport::ImplExportAutoStyles( sal_Bool /*bUsed*/ )
 {
-//  AddAttributeASCII( XML_NAMESPACE_NONE, XML_ID, XML_AUTO_STYLES_ID );
-    {
-        // <style:automatic-styles>
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE,
-                                  XML_AUTOMATIC_STYLES, sal_True, sal_True );
+    // <style:automatic-styles>
+    SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_AUTOMATIC_STYLES,
+       sal_True, sal_True );
 
-#if 0
-        AddAttribute( XML_NAMESPACE_XLINK, XML_TYPE, XML_SIMPLE );
-        AddAttribute( XML_NAMESPACE_XLINK, XML_HREF, XML_STYLES_HREF );
-        AddAttribute( XML_NAMESPACE_XLINK, XML_ACTUATE, XML_ONLOAD );
-        AddAttribute( XML_NAMESPACE_XLINK, XML_ROLE,
-                         pNamespaceMap->GetQNameByKey( XML_NAMESPACE_OFFICE,
-                                               GetXMLToken(XML_STYLESHEET)) );
-        {
-            // <style:use-styles>
-            SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE,
-                                      XML_USE_STYLES, sal_True, sal_True );
-        }
-#endif
-        _ExportAutoStyles();
-    }
+    _ExportAutoStyles();
 }
 
-void SvXMLExport::ImplExportMasterStyles( sal_Bool bUsed )
+void SvXMLExport::ImplExportMasterStyles( sal_Bool /*bUsed*/ )
 {
-    {
-        // <style:master-styles>
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_MASTER_STYLES,
-                                sal_True, sal_True );
+    // <style:master-styles>
+    SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_MASTER_STYLES,
+                               sal_True, sal_True );
 
-        _ExportMasterStyles();
-    }
-
-#if 0
-    AddAttribute( XML_NAMESPACE_XLINK, XML_TYPE, XML_SIMPLE );
-    AddAttribute( XML_NAMESPACE_XLINK, XML_HREF, XML_AUTO_STYLES_HREF );
-    AddAttribute( XML_NAMESPACE_XLINK, XML_ACTUATE, XML_ONLOAD );
-    AddAttribute( XML_NAMESPACE_XLINK, XML_ROLE,
-                  pNamespaceMap->GetQNameByKey( XML_NAMESPACE_OFFICE,
-                                                GetXMLToken(XML_STYLESHEET) ) );
-    {
-        // <style:use-styles>
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE,
-                                  XML_USE_STYLES, sal_True, sal_True );
-    }
-#endif
+    _ExportMasterStyles();
 }
 
 void SvXMLExport::ImplExportContent()
@@ -1015,7 +921,7 @@ void SvXMLExport::_ExportScripts()
     {
         ::rtl::OUString aValue( RTL_CONSTASCII_USTRINGPARAM( "Basic" ) );
         AddAttribute( XML_NAMESPACE_SCRIPT, XML_LANGUAGE, aValue );
-        SvXMLElementExport aElem( *this, XML_NAMESPACE_OFFICE, XML_SCRIPT_DATA, sal_True, sal_True );
+        SvXMLElementExport aLclElem( *this, XML_NAMESPACE_OFFICE, XML_SCRIPT_DATA, sal_True, sal_True );
 
         Reference< document::XExporter > xExporter;
         Reference< lang::XMultiServiceFactory > xMSF( getServiceFactory() );
@@ -1056,7 +962,7 @@ void SvXMLExport::_ExportFontDecls()
         mxFontAutoStylePool->exportXML();
 }
 
-void SvXMLExport::_ExportStyles( sal_Bool bUsed )
+void SvXMLExport::_ExportStyles( sal_Bool /*bUsed*/ )
 {
     uno::Reference< lang::XMultiServiceFactory > xFact( GetModel(), uno::UNO_QUERY );
     if( xFact.is())
@@ -1284,15 +1190,15 @@ xmloff::OFormLayerXMLExport* SvXMLExport::CreateFormExport()
     return new xmloff::OFormLayerXMLExport(*this);
 }
 
-void SvXMLExport::GetViewSettings(uno::Sequence<beans::PropertyValue>& aProps)
+void SvXMLExport::GetViewSettings(uno::Sequence<beans::PropertyValue>& /*aProps*/)
 {
 }
 
-void SvXMLExport::GetConfigurationSettings(uno::Sequence<beans::PropertyValue>& aProps)
+void SvXMLExport::GetConfigurationSettings(uno::Sequence<beans::PropertyValue>& /*aProps*/)
 {
 }
 
-void SvXMLExport::addDataStyle(const sal_Int32 nNumberFormat, sal_Bool bTimeFormat )
+void SvXMLExport::addDataStyle(const sal_Int32 nNumberFormat, sal_Bool /*bTimeFormat*/ )
 {
     if(pNumExport)
         pNumExport->SetUsed(nNumberFormat);
@@ -1313,7 +1219,7 @@ void SvXMLExport::exportAutoDataStyles()
         mxFormExport->exportAutoControlNumberStyles();
 }
 
-OUString SvXMLExport::getDataStyleName(const sal_Int32 nNumberFormat, sal_Bool bTimeFormat ) const
+OUString SvXMLExport::getDataStyleName(const sal_Int32 nNumberFormat, sal_Bool /*bTimeFormat*/ ) const
 {
     OUString sTemp;
     if(pNumExport)
@@ -1699,14 +1605,14 @@ void SvXMLExport::SetError(
     const Reference<XLocator>& rLocator )
 {
     // allow multi-threaded access to the cancel() method
-    static ::vos::OMutex aMutex;
-    ::vos::OGuard aGuard(aMutex);
+    static ::osl::Mutex aMutex;
+    ::osl::MutexGuard aGuard(aMutex);
 
     // maintain error flags
     if ( ( nId & XMLERROR_FLAG_ERROR ) != 0 )
-        mnErrorFlags |= ERROR_ERROR_OCCURED;
+        mnErrorFlags |= ERROR_ERROR_OCCURRED;
     if ( ( nId & XMLERROR_FLAG_WARNING ) != 0 )
-        mnErrorFlags |= ERROR_WARNING_OCCURED;
+        mnErrorFlags |= ERROR_WARNING_OCCURRED;
     if ( ( nId & XMLERROR_FLAG_SEVERE ) != 0 )
         mnErrorFlags |= ERROR_DO_NOTHING;
 
@@ -1823,3 +1729,5 @@ SvXMLElementExport::~SvXMLElementExport()
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

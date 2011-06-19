@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,13 @@
 
 #include "FormComponent.hxx"
 
-#ifndef _PRODUCE_HXX
 #include "imgprod.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
 #include <com/sun/star/form/XImageProducerSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XMOUSELISTENER_HPP_
 #include <com/sun/star/awt/XMouseListener.hpp>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 namespace binfilter {
 
     using namespace ::comphelper;
@@ -134,6 +125,10 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
+
+    using OBoundControlModel::disposing;
+    using OPropertySetHelper::getFastPropertyValue;
+
     IMPLEMENT_INFO_SERVICE()
 
 protected:
@@ -168,13 +163,15 @@ public:
     virtual StringSequence SAL_CALL getSupportedServiceNames() throw();
 
 // ::com::sun::star::awt::XMouseListener
-    virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException);
-    virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
-    virtual void SAL_CALL mouseEntered(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
-    virtual void SAL_CALL mouseExited(const ::com::sun::star::awt::MouseEvent& e) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mousePressed(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException);
+    virtual void SAL_CALL mouseReleased(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mouseEntered(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
+    virtual void SAL_CALL mouseExited(const ::com::sun::star::awt::MouseEvent& /*e*/) throw ( ::com::sun::star::uno::RuntimeException) { }
 
 // ::com::sun::star::awt::XControl
     virtual void SAL_CALL createPeer(const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XToolkit>& _rToolkit, const ::com::sun::star::uno::Reference< ::com::sun::star::awt::XWindowPeer>& _rParent) throw(::com::sun::star::uno::RuntimeException);
+
+    using OControl::disposing;
 
 private:
     void    implClearGraphics();
@@ -188,3 +185,4 @@ private:
 }//end of namespace binfilter
 #endif // _FRM_IMAGE_CONTROL_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

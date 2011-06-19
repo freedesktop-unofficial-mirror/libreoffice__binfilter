@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,15 @@
 #define _SFX_CANCEL_CXX
 #include <bf_svtools/cancel.hxx>
 
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <tools/debug.hxx>
 
 #include <bf_svtools/smplhint.hxx>
 #include <bf_svtools/cnclhint.hxx>
 
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
-namespace { struct lclMutex : public rtl::Static< ::vos::OMutex, lclMutex >{}; }
+namespace { struct lclMutex : public rtl::Static< ::osl::Mutex, lclMutex >{}; }
 
 namespace binfilter
 {
@@ -72,7 +71,7 @@ BOOL SfxCancelManager::CanCancel() const
 */
 
 {
-    ::vos::OGuard aGuard( lclMutex::get() );
+    ::osl::MutexGuard aGuard( lclMutex::get() );
     return _aJobs.Count() > 0 || ( _pParent && _pParent->CanCancel() );
 }
 
@@ -87,7 +86,7 @@ void SfxCancelManager::Cancel( BOOL bDeep )
 */
 
 {
-    ::vos::OGuard aGuard( lclMutex::get() );
+    ::osl::MutexGuard aGuard( lclMutex::get() );
     SfxCancelManagerWeak xWeak( this );
     for ( USHORT n = _aJobs.Count(); n-- && xWeak.Is(); )
         if ( n < _aJobs.Count() )
@@ -111,12 +110,12 @@ void SfxCancelManager::InsertCancellable( SfxCancellable *pJob )
 #ifdef GPF_ON_EMPTY_TITLE
     if ( !pJob->GetTitle() )
     {
-        DBG_ERROR( "SfxCancellable: empty titles not allowed (Vermummungsverbot)" )
+        OSL_FAIL( "SfxCancellable: empty titles not allowed (Vermummungsverbot)" )
         *(int*)0 = 0;
     }
 #endif
 
-    ::vos::OClearableGuard aGuard( lclMutex::get() );
+    ::osl::ClearableMutexGuard aGuard( lclMutex::get() );
     _aJobs.C40_INSERT( SfxCancellable, pJob, _aJobs.Count() );
 
     aGuard.clear();
@@ -137,7 +136,7 @@ void SfxCancelManager::RemoveCancellable( SfxCancellable *pJob )
 */
 
 {
-    ::vos::OClearableGuard aGuard( lclMutex::get() );
+    ::osl::ClearableMutexGuard aGuard( lclMutex::get() );
     const SfxCancellable *pTmp = pJob;
     USHORT nPos = _aJobs.GetPos( pTmp );
     if ( nPos != 0xFFFF )
@@ -206,3 +205,5 @@ SfxCancelHint::SfxCancelHint( SfxCancellable* pJob, USHORT _nAction )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

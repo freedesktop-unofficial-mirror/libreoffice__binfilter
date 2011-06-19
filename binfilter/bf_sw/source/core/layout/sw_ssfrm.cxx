@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,65 +31,29 @@
 #pragma hdrstop
 #endif
 
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // ClearPara()
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
 
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifndef _HINTS_HXX
 #include <hints.hxx>        //fuer SwFmtChg
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
 #include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
 namespace binfilter {
 
     // No inline cause we need the function pointers
@@ -247,11 +212,11 @@ namespace binfilter {
 /*N*/     Prt().Width( Frm().Width() - nLeft - nRight );
 /*N*/ }
 
-/*-----------------11.9.2001 11:11------------------
+/*
  * SwFrm::CheckDirChange(..)
  * checks the layout direction and
  * invalidates the lower frames rekursivly, if necessary.
- * --------------------------------------------------*/
+ */
 
 /*N*/ void SwFrm::CheckDirChange()
 /*N*/ {
@@ -262,14 +227,14 @@ namespace binfilter {
 /*N*/     SetInvalidR2L( TRUE );
 /*N*/     BOOL bChg = bOldR2L != IsRightToLeft();
 /*N*/     if( ( IsVertical() != bOldVert ) || bChg || IsReverse() != bOldRev )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
-/*-----------------13.9.2002 11:11------------------
+/*
  * SwFrm::GetAnchorPos(..)
  * returns the position for anchors based on frame direction
- * --------------------------------------------------*/
+ */
 
 /*N*/ Point SwFrm::GetFrmAnchorPos( sal_Bool bIgnoreFlysAnchoredAtThisFrame ) const
 /*N*/ {
@@ -295,9 +260,6 @@ namespace binfilter {
 |*
 |*  SwFrm::~SwFrm()
 |*
-|*  Ersterstellung      MA 02. Mar. 94
-|*  Letzte Aenderung    MA 25. Jun. 95
-|*
 |*************************************************************************/
 
 
@@ -314,7 +276,7 @@ namespace binfilter {
 /*?*/           ViewShell *pVSh = pRootFrm->GetCurrShell();
 /*?*/           if( pVSh && pVSh->Imp() )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ASSERT( !GetLower(), "Lowers should be dispose already!" );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -328,7 +290,7 @@ namespace binfilter {
 /*N*/           if ( pObj->IsWriterFlyFrame() )
 /*N*/               delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/             else
-/*N*/             // OD 23.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/             // consider 'virtual' drawing objects
 /*N*/             {
 /*N*/                 if ( pObj->GetUserCall() )
 /*N*/                 {
@@ -341,7 +303,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/   // JP 15.10.2001: for detection of access to deleted frames
+/*N*/   // for detection of access to deleted frames
 /*N*/   pDrawObjs = (SwDrawObjs*)0x33333333;
 /*N*/ #endif
 /*N*/ }
@@ -349,8 +311,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwLayoutFrm::SetFrmFmt()
-|*    Ersterstellung    MA 22. Apr. 93
-|*    Letzte Aenderung  MA 02. Nov. 94
 |*
 |*************************************************************************/
 
@@ -369,9 +329,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwCntntFrm::SwCntntFrm(), ~SwCntntFrm()
-|*
-|*    Ersterstellung    AK 15-Feb-1991
-|*    Letzte Aenderung  MA 25. Apr. 95
 |*
 |*************************************************************************/
 
@@ -402,9 +359,8 @@ namespace binfilter {
 /*?*/             SwTxtNode *pTxtNd = ((SwTxtFrm*)this)->GetTxtNode();
 /*?*/             const SwFtnIdxs &rFtnIdxs = pCNd->GetDoc()->GetFtnIdxs();
 /*?*/             USHORT nPos;
-/*?*/             ULONG nIndex = pCNd->GetIndex();
+/*?*/             pCNd->GetIndex();
 /*?*/             rFtnIdxs.SeekEntry( *pTxtNd, &nPos );
-/*?*/             SwTxtFtn* pTxtFtn;
 /*?*/             if( nPos < rFtnIdxs.Count() )
 /*?*/             {
 /*?*/                 while( nPos && pTxtNd == &(rFtnIdxs[ nPos ]->GetTxtNode()) )
@@ -414,7 +370,7 @@ namespace binfilter {
 /*?*/             }
 /*?*/             while( nPos < rFtnIdxs.Count() )
 /*?*/             {
-/*?*/                 DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pTxtFtn = rFtnIdxs[ nPos ];
+/*?*/                 DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*N*/         }
 /*N*/   }
@@ -425,9 +381,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::~SwLayoutFrm
-|*
-|*  Ersterstellung      AK 28-Feb-1991
-|*  Letzte Aenderung    MA 11. Jan. 95
 |*
 |*************************************************************************/
 
@@ -454,7 +407,7 @@ namespace binfilter {
 /*N*/                   delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/               else if ( pObj->GetUserCall() )
 /*N*/                 {
-/*N*/                     // OD 19.06.2003 #108784# - adjustments for drawing objects
+/*N*/                     // adjustments for drawing objects
 /*N*/                     // in header/footer.
 /*N*/                     ((SwDrawContact*)pObj->GetUserCall())->DisconnectObjFromLayout( pObj );
 /*N*/                 }
@@ -479,7 +432,7 @@ namespace binfilter {
 /*N*/               delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/           else if ( pObj->GetUserCall() )
 /*N*/             {
-/*N*/                 // OD 19.06.2003 #108784# - adjustments for drawing objects
+/*N*/                 // adjustments for drawing objects
 /*N*/                 // in header/footer.
 /*N*/                 ((SwDrawContact*)pObj->GetUserCall())->DisconnectObjFromLayout( pObj );
 /*N*/             }
@@ -503,9 +456,6 @@ namespace binfilter {
 |*
 |*  SwFrm::PaintArea()
 |*
-|*  Created     AMA 08/22/2000
-|*  Last change AMA 08/23/2000
-|*
 |*  The paintarea is the area, in which the content of a frame is allowed
 |*  to be displayed. This region could be larger than the printarea (Prt())
 |*  of the upper, it includes e.g. often the margin of the page.
@@ -515,7 +465,7 @@ namespace binfilter {
 /*N*/ const SwRect SwFrm::PaintArea() const
 /*N*/ {
 /*N*/   SwRect aRect( Frm() );
-/*N*/     const FASTBOOL bVert = IsVertical();
+/*N*/     const bool bVert = IsVertical();
 /*N*/     SwRectFn fnRect = bVert ? fnRectVert : fnRectHori;
 /*N*/     long nRight = (aRect.*fnRect->fnGetRight)();
 /*N*/     long nLeft  = (aRect.*fnRect->fnGetLeft)();
@@ -526,7 +476,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/         long nTmpRight = (pTmp->Frm().*fnRect->fnGetRight)();
 /*N*/         long nTmpLeft = (pTmp->Frm().*fnRect->fnGetLeft)();
-/*N*/       ASSERT( pTmp, "PaintArea lost in time and space" );
+/*N*/       OSL_ENSURE( pTmp, "PaintArea lost in time and space" );
 /*N*/       if( pTmp->IsPageFrm() || pTmp->IsFlyFrm() ||
 /*N*/           pTmp->IsCellFrm() || pTmp->IsRowFrm() || //nobody leaves a table!
 /*N*/           pTmp->IsRootFrm() )
@@ -590,9 +540,6 @@ namespace binfilter {
 |*
 |*  SwFrm::UnionFrm()
 |*
-|*  Created     AMA 08/22/2000
-|*  Last change AMA 08/23/2000
-|*
 |*  The unionframe is the framearea (Frm()) of a frame expanded by the
 |*  printarea, if there's a negative margin at the left or right side.
 |*
@@ -652,3 +599,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

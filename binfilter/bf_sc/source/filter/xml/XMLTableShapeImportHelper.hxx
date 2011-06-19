@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #define _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 
-#ifndef _XMLOFF_SHAPEIMPORT_HXX_
 #include <bf_xmloff/shapeimport.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLImport;
@@ -61,3 +58,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

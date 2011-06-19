@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 #include "swrect.hxx"
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
 namespace binfilter {
 
 class SwStripe
@@ -57,7 +54,7 @@ public:
         { return nY == rTst.nY && nHeight == rTst.nHeight; }
 };
 
-SV_DECL_VARARR( SwStripeArr, SwStripe, 1, 4 )//STRIP008 ;
+SV_DECL_VARARR( SwStripeArr, SwStripe, 1, 4 )
 
 class SwStripes : public SwStripeArr, public SwStripe
 {
@@ -133,7 +130,7 @@ public:
 };
 
 typedef SwScrollArea* SwScrollAreaPtr;
-SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2)//STRIP008 ;
+SV_DECL_PTRARR_SORT(SScrAreas,SwScrollAreaPtr,1,2)
 
 class SwScrollAreas : public SScrAreas
 {
@@ -143,3 +140,5 @@ public:
 
 } //namespace binfilter
 #endif //_SCRRECT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,14 +27,11 @@
  ************************************************************************/
 
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 #include "bf_so3/linkmgr.hxx"
 
 #include <vcl/msgbox.hxx>
 #include "bf_so3/lnkbase.hxx"
-//#include <bf_so3/linksrc.hxx>
 #include "impldde.hxx"
 #include "svuidlg.hrc"
 #include <bf_so3/iface.hxx>
@@ -323,3 +321,4 @@ void MakeLnkName( String& rName, const String* pType, const String& rFile,
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef SC_DOCUMENT_HXX
 #include "document.hxx"
-#endif
 namespace binfilter {
 
 
@@ -48,13 +47,13 @@ class ScBigAddress
     INT32   nTab;
 
 public:
-            ScBigAddress() : nCol(0), nRow(0), nTab(0) {}
+            ScBigAddress() : nRow(0), nCol(0), nTab(0) {}
             ScBigAddress( INT32 nColP, INT32 nRowP, INT32 nTabP )
-                : nCol( nColP ), nRow( nRowP ), nTab( nTabP ) {}
+                : nRow( nRowP ), nCol( nColP ), nTab( nTabP ) {}
             ScBigAddress( const ScBigAddress& r )
-                : nCol( r.nCol ), nRow( r.nRow ), nTab( r.nTab ) {}
+                : nRow( r.nRow ), nCol( r.nCol ), nTab( r.nTab ) {}
             ScBigAddress( const ScAddress& r )
-                : nCol( r.Col() ), nRow( r.Row() ), nTab( r.Tab() ) {}
+                : nRow( r.Row() ), nCol( r.Col() ), nTab( r.Tab() ) {}
 
     INT32   Col() const { return nCol; }
     INT32   Row() const { return nRow; }
@@ -274,3 +273,5 @@ inline SvStream& operator>> ( SvStream& rStream, ScBigRange& rRange )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

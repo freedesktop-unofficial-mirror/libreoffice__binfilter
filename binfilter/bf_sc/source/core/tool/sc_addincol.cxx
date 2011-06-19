@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,7 +30,6 @@
 #include <tools/debug.hxx>
 #include <i18npool/mslangid.hxx>
 #include <vcl/svapp.hxx>
-#include <vos/xception.hxx>
 #include <bf_sfx2/objsh.hxx>
 #include <unotools/charclass.hxx>
 
@@ -52,9 +52,7 @@
 #include "scmatrix.hxx"
 #include "addinlis.hxx"
 #include "scfuncs.hrc"
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -69,7 +67,7 @@ using namespace ::com::sun::star;
 
 #define SC_FUNCGROUP_COUNT  ID_FUNCTION_GRP_ADDINS
 
-static const sal_Char* __FAR_DATA aFuncNames[SC_FUNCGROUP_COUNT] =
+static const sal_Char* aFuncNames[SC_FUNCGROUP_COUNT] =
     {
         //  array index = ID - 1 (ID starts at 1)
         //  all upper case
@@ -152,16 +150,16 @@ public:
 /*N*/                                         long nAC, const ScAddInArgDesc* pAD,
 /*N*/                                         long nCP ) :
 /*N*/     aOriginalName( rNam ),
-/*N*/     aUpperName( rNam ),
 /*N*/     aLocalName( rLoc ),
+/*N*/     aUpperName( rNam ),
 /*N*/     aUpperLocal( rLoc ),
 /*N*/     aDescription( rDesc ),
-/*N*/     nCategory( nCat ),
-/*N*/     nHelpId( nHelp ),
 /*N*/     xFunction( rFunc ),
 /*N*/     aObject( rO ),
 /*N*/     nArgCount( nAC ),
 /*N*/     nCallerPos( nCP ),
+/*N*/     nCategory( nCat ),
+/*N*/     nHelpId( nHelp ),
 /*N*/     bCompInitialized( FALSE )
 /*N*/ {
 /*N*/     if ( nArgCount )
@@ -203,11 +201,11 @@ public:
 /*N*/         case uno::TypeClass_FLOAT:
 /*N*/         case uno::TypeClass_DOUBLE:
 /*N*/             rAny >>= rOut;
-/*N*/             bRet = TRUE;
 /*N*/             break;
+              default:
+                  rOut = 0.0;
+                  break;
 /*N*/     }
-/*N*/     if (!bRet)
-/*N*/         rOut = 0.0;
 /*N*/     return bRet;
 /*N*/ }
 
@@ -246,7 +244,7 @@ public:
 /*N*/     {
 /*N*/         uno::Reference<container::XEnumeration> xEnum =
 /*N*/                         xEnAc->createContentEnumeration(
-/*N*/                             ::rtl::OUString::createFromAscii(SCADDINSUPPLIER_SERVICE) );
+/*N*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SCADDINSUPPLIER_SERVICE)) );
 /*N*/         if ( xEnum.is() )
 /*N*/         {
 /*N*/             //  loop through all AddIns
@@ -409,8 +407,8 @@ public:
 /*N*/         if ( xManager.is() )
 /*N*/         {
 /*N*/             uno::Reference<beans::XIntrospection> xIntro(
-/*N*/                                     xManager->createInstance(::rtl::OUString::createFromAscii(
-/*N*/                                         "com.sun.star.beans.Introspection" )),
+/*N*/                                     xManager->createInstance(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(
+/*N*/                                         "com.sun.star.beans.Introspection" ))),
 /*N*/                                     uno::UNO_QUERY );
 /*N*/             if ( xIntro.is() )
 /*N*/             {
@@ -529,7 +527,7 @@ public:
 /*N*/                                         }
 /*N*/                                         catch(uno::Exception&)
 /*N*/                                         {
-/*N*/                                             aLocalU = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                             aLocalU = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                         }
 /*N*/                                         String aLocalName = String( aLocalU );
 /*N*/
@@ -541,7 +539,7 @@ public:
 /*N*/                                         }
 /*N*/                                         catch(uno::Exception&)
 /*N*/                                         {
-/*N*/                                             aDescU = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                             aDescU = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                         }
 /*N*/                                         String aDescription = String( aDescU );
 /*N*/
@@ -566,7 +564,7 @@ public:
 /*N*/                                                     }
 /*N*/                                                     catch(uno::Exception&)
 /*N*/                                                     {
-/*N*/                                                         aArgName = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                                         aArgName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                                     }
 /*N*/                                                     ::rtl::OUString aArgDesc;
 /*N*/                                                     try
@@ -576,7 +574,7 @@ public:
 /*N*/                                                     }
 /*N*/                                                     catch(uno::Exception&)
 /*N*/                                                     {
-/*N*/                                                         aArgName = ::rtl::OUString::createFromAscii( "###" );
+/*N*/                                                         aArgName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "###" ));
 /*N*/                                                     }
 /*N*/
 /*N*/                                                     BOOL bOptional =
@@ -643,13 +641,6 @@ public:
 /*N*/         if ( iLook != pLocalHashMap->end() )
 /*?*/             return iLook->second->GetOriginalName();
 /*N*/
-/*N*/ #if 0
-/*N*/         //  after that, scan international names (really?)
-/*N*/
-/*N*/         iLook = pNameHashMap->find( rUpperName );
-/*N*/         if ( iLook != pNameHashMap->end() )
-/*N*/             return iLook->second->GetOriginalName();
-/*N*/ #endif
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -693,11 +684,11 @@ public:
 
 /*N*/ ScUnoAddInCall::ScUnoAddInCall( ScUnoAddInCollection& rColl, const String& rName,
 /*N*/                                 long nParamCount ) :
+/*N*/     bValidCount( FALSE ),
 /*N*/     nErrCode( errNoCode ),      // before function was called
 /*N*/     bHasString( TRUE ),
 /*N*/     fValue( 0.0 ),
-/*N*/     pMatrix( NULL ),
-/*N*/     bValidCount( FALSE )
+/*N*/     pMatrix( NULL )
 /*N*/ {
 /*N*/   pFuncData = rColl.GetFuncData( rName );
 /*N*/     DBG_ASSERT( pFuncData, "Function Data missing" );
@@ -705,13 +696,12 @@ public:
 /*N*/     {
 /*N*/         long nDescCount = pFuncData->GetArgumentCount();
 /*N*/         const ScAddInArgDesc* pArgs = pFuncData->GetArguments();
-/*N*/         long nVarCount = 0;
 /*N*/
 /*N*/         //  is aVarArg sequence needed?
 /*N*/         if ( nParamCount >= nDescCount && nDescCount > 0 &&
 /*N*/              pArgs[nDescCount-1].eType == SC_ADDINARG_VARARGS )
 /*N*/         {
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001             long nVarCount = nParamCount - ( nDescCount - 1 );  // size of last argument
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/         }
 /*N*/         else if ( nParamCount <= nDescCount )
 /*N*/         {
@@ -788,12 +778,12 @@ public:
 /*N*/             if ( nVarPos < aVarArg.getLength() )
 /*N*/                 aVarArg.getArray()[nVarPos] = rValue;
 /*N*/             else
-/*N*/                 DBG_ERROR("wrong argument number");
+/*N*/                 OSL_FAIL("wrong argument number");
 /*N*/         }
 /*N*/         else if ( nPos < aArgs.getLength() )
 /*N*/             aArgs.getArray()[nPos] = rValue;
 /*N*/         else
-/*N*/             DBG_ERROR("wrong argument number");
+/*N*/             OSL_FAIL("wrong argument number");
 /*N*/     }
 /*N*/ }
 
@@ -822,7 +812,7 @@ public:
 /*N*/         long nCallPos = pFuncData->GetCallerPos();
 /*N*/         if (nCallPos>nUserLen)                          // should not happen
 /*N*/         {
-/*N*/             DBG_ERROR("wrong CallPos");
+/*N*/             OSL_FAIL("wrong CallPos");
 /*N*/             nCallPos = nUserLen;
 /*N*/         }
 /*N*/
@@ -872,12 +862,6 @@ public:
 /*N*/         {
 /*N*/             nErrCode = errIllegalArgument;
 /*N*/         }
-/*N*/ #if 0
-/*N*/         catch(FloatingPointException&)
-/*N*/         {
-/*N*/             nErrCode = errIllegalFPOperation;
-/*N*/         }
-/*N*/ #endif
 /*N*/       catch(reflection::InvocationTargetException& rWrapped)
 /*N*/       {
 /*N*/           if ( rWrapped.TargetException.getValueType().equals(
@@ -1117,3 +1101,5 @@ public:
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

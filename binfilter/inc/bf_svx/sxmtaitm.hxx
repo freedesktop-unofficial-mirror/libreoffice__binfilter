@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 
-#ifndef _SDANGITM_HXX
 #include <bf_svx/sdangitm.hxx>
-#endif
 namespace binfilter {
 
 // Den Text automatisch zurechtdrehen (Automatisches UpsideDown).
@@ -47,7 +42,7 @@ namespace binfilter {
 // den Text bei TRUE nochmal.
 class SdrMeasureTextAutoAngleItem: public SdrYesNoItem {
 public:
-    SdrMeasureTextAutoAngleItem(FASTBOOL bOn=TRUE): SdrYesNoItem(SDRATTR_MEASURETEXTAUTOANGLE,bOn) {}
+    SdrMeasureTextAutoAngleItem(bool bOn=TRUE): SdrYesNoItem(SDRATTR_MEASURETEXTAUTOANGLE,bOn) {}
     SdrMeasureTextAutoAngleItem(SvStream& rIn): SdrYesNoItem(SDRATTR_MEASURETEXTAUTOANGLE,rIn) {}
 };
 
@@ -61,3 +56,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

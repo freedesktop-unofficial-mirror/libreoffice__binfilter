@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,12 +27,12 @@
  ************************************************************************/
 
 #include "sbx.hxx"
-/*?*/ // #include "sbcomp.hxx"
 #include "image.hxx"
 #include "buffer.hxx"
 #include "opcodes.hxx"
 #include "codegen.hxx"
 #include <limits>
+#include <algorithm>
 
 namespace binfilter {
 
@@ -127,10 +128,7 @@ public:
         T result = 0 ;
         static const S max = std::numeric_limits< S >::max();
         result = m_nNumOp0 + ( ( sizeof(S) + 1 ) * m_nNumSingleParams ) + ( (( sizeof(S) * 2 )+ 1 )  * m_nNumDoubleParams );
-        if ( result > max )
-            return max;
-
-        return static_cast<S>(result);
+        return std::min(static_cast<T>(max), result);
     }
    virtual bool processParams(){ return false; }
 };
@@ -228,3 +226,5 @@ template class PCodeBuffConvertor<UINT16, UINT32 >;
 template class PCodeBuffConvertor<UINT32, UINT16>;
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

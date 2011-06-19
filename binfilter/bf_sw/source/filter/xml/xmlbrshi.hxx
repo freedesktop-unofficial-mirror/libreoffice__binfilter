@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,14 +29,12 @@
 #ifndef _XMLBRSHI_HXX
 #define _XMLBRSHI_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
-#include "xmlictxt.hxx"
-#endif
+#include "bf_xmloff/xmlictxt.hxx"
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star {
     namespace io { class XOutputStream; }
 } } }
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SvXMLImport;
 class SvXMLUnitConverter;
 class SvxBrushItem;
@@ -87,3 +86,4 @@ public:
 } //namespace binfilter
 #endif  //  _XMLBRSHI_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

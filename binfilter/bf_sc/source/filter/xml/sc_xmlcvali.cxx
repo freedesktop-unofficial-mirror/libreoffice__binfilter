@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,21 +35,13 @@
 #include "xmlcvali.hxx"
 #include "xmlimprt.hxx"
 #include "xmlconti.hxx"
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
 
 #include <bf_xmloff/nmspmap.hxx>
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include <bf_xmloff/XMLEventsImportContext.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -193,12 +183,12 @@ public:
 
 //------------------------------------------------------------------
 
-ScXMLContentValidationsContext::ScXMLContentValidationsContext( ScXMLImport& rImport,
+ScXMLContentValidationsContext::ScXMLContentValidationsContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
-                                      ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+                                      ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/) :
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
     // here are no attributes
 }
@@ -207,7 +197,7 @@ ScXMLContentValidationsContext::~ScXMLContentValidationsContext()
 {
 }
 
-SvXMLImportContext *ScXMLContentValidationsContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLContentValidationsContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -215,15 +205,15 @@ SvXMLImportContext *ScXMLContentValidationsContext::CreateChildContext( USHORT n
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetContentValidationsElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_CONTENT_VALIDATION:
-            pContext = new ScXMLContentValidationContext( GetScImport(), nPrefix, rLName, xAttrList);
+            pContext = new ScXMLContentValidationContext( GetScImport(), nInPrefix, rLName, xAttrList);
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -232,20 +222,20 @@ void ScXMLContentValidationsContext::EndElement()
 {
 }
 
-ScXMLContentValidationContext::ScXMLContentValidationContext( ScXMLImport& rImport,
+ScXMLContentValidationContext::ScXMLContentValidationContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sName(),
     sHelpTitle(),
     sHelpMessage(),
     sErrorTitle(),
     sErrorMessage(),
     sErrorMessageType(),
-    sCondition(),
     sBaseCellAddress(),
+    sCondition(),
     bAllowEmptyCell(sal_True),
     bDisplayHelp(sal_False),
     bDisplayError(sal_False)
@@ -255,12 +245,12 @@ ScXMLContentValidationContext::ScXMLContentValidationContext( ScXMLImport& rImpo
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_CONTENT_VALIDATION_NAME:
                 sName = sValue;
@@ -283,7 +273,7 @@ ScXMLContentValidationContext::~ScXMLContentValidationContext()
 {
 }
 
-SvXMLImportContext *ScXMLContentValidationContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLContentValidationContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -291,21 +281,21 @@ SvXMLImportContext *ScXMLContentValidationContext::CreateChildContext( USHORT nP
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetContentValidationElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_CONTENT_VALIDATION_ELEM_HELP_MESSAGE:
-            pContext = new ScXMLHelpMessageContext( GetScImport(), nPrefix, rLName, xAttrList, this);
+            pContext = new ScXMLHelpMessageContext( GetScImport(), nInPrefix, rLName, xAttrList, this);
         break;
         case XML_TOK_CONTENT_VALIDATION_ELEM_ERROR_MESSAGE:
-            pContext = new ScXMLErrorMessageContext( GetScImport(), nPrefix, rLName, xAttrList, this);
+            pContext = new ScXMLErrorMessageContext( GetScImport(), nInPrefix, rLName, xAttrList, this);
         break;
         case XML_TOK_CONTENT_VALIDATION_ELEM_ERROR_MACRO:
-            pContext = new ScXMLErrorMacroContext( GetScImport(), nPrefix, rLName, xAttrList, this);
+            pContext = new ScXMLErrorMacroContext( GetScImport(), nInPrefix, rLName, xAttrList, this);
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -348,8 +338,8 @@ void ScXMLContentValidationContext::GetCondition(const ::rtl::OUString& sTempCon
         ::com::sun::star::sheet::ValidationType& aValidationType,
         ::com::sun::star::sheet::ConditionOperator& aOperator)
 {
-    ::rtl::OUString sCondition = sTempCondition;
-    if (sCondition.getLength())
+    ::rtl::OUString sLclCondition = sTempCondition;
+    if (sLclCondition.getLength())
     {
         // ToDo: erase all blanks in the condition, but not in formulas or strings
         ::rtl::OUString scell_content(RTL_CONSTASCII_USTRINGPARAM("cell_content"));
@@ -364,9 +354,9 @@ void ScXMLContentValidationContext::GetCondition(const ::rtl::OUString& sTempCon
         ::rtl::OUString scell_content_text_length_is_not_between(RTL_CONSTASCII_USTRINGPARAM("cell-content-text-length-is-not-between"));
         sal_Int32 i = 0;
         sal_Bool bAnd(sal_True);
-        while (sCondition[i] != '(' && i < sCondition.getLength())
+        while (sLclCondition[i] != '(' && i < sLclCondition.getLength())
             i++;
-        if (sCondition[i] == '(')
+        if (sLclCondition[i] == '(')
         {
             if (i != scell_content_text_length.getLength() &&
                 i != scell_content_text_length_is_between.getLength() &&
@@ -374,7 +364,7 @@ void ScXMLContentValidationContext::GetCondition(const ::rtl::OUString& sTempCon
             {
                 if (i == scell_content_is_time.getLength())
                 {
-                    ::rtl::OUString sTemp = sCondition.copy(0, i);
+                    ::rtl::OUString sTemp = sLclCondition.copy(0, i);
                     if (sTemp == scell_content_is_time)
                         aValidationType = sheet::ValidationType_TIME;
                     else
@@ -384,29 +374,29 @@ void ScXMLContentValidationContext::GetCondition(const ::rtl::OUString& sTempCon
                     aValidationType = sheet::ValidationType_WHOLE;
                 else if (i == scell_content_is_decimal_number.getLength())
                     aValidationType = sheet::ValidationType_DECIMAL;
-                sCondition = sCondition.copy(i + 2);
-                ::rtl::OUString sTemp = sCondition.copy(0, 5);
+                sLclCondition = sLclCondition.copy(i + 2);
+                ::rtl::OUString sTemp = sLclCondition.copy(0, 5);
                 if (sTemp.compareToAscii(" and ") == 0)
-                    sCondition = sCondition.copy(5);
+                    sLclCondition = sLclCondition.copy(5);
                 else
                     bAnd = sal_False;
             }
-            if (sCondition.getLength() && bAnd)
+            if (sLclCondition.getLength() && bAnd)
             {
                 i = 0;
-                while (sCondition[i] != '(' && i < sCondition.getLength())
+                while (sLclCondition[i] != '(' && i < sLclCondition.getLength())
                     i++;
-                if (sCondition[i] == '(')
+                if (sLclCondition[i] == '(')
                 {
-                    sCondition = sCondition.copy(i + 1);
+                    sLclCondition = sLclCondition.copy(i + 1);
                     if (i == scell_content_is_between.getLength() ||
                         i == scell_content_text_length_is_between.getLength())
                     {
                         if (i == scell_content_text_length_is_between.getLength())
                             aValidationType = sheet::ValidationType_TEXT_LEN;
                         aOperator = sheet::ConditionOperator_BETWEEN;
-                        sCondition = sCondition.copy(0, sCondition.getLength() - 1);
-                        SetFormulas(sCondition, sFormula1, sFormula2);
+                        sLclCondition = sLclCondition.copy(0, sLclCondition.getLength() - 1);
+                        SetFormulas(sLclCondition, sFormula1, sFormula2);
                     }
                     else if (i == scell_content_is_not_between.getLength() ||
                         i == scell_content_text_length_is_not_between.getLength())
@@ -414,59 +404,59 @@ void ScXMLContentValidationContext::GetCondition(const ::rtl::OUString& sTempCon
                         if (i == scell_content_text_length_is_not_between.getLength())
                             aValidationType = sheet::ValidationType_TEXT_LEN;
                         aOperator = sheet::ConditionOperator_NOT_BETWEEN;
-                        sCondition = sCondition.copy(0, sCondition.getLength() - 1);
-                        SetFormulas(sCondition, sFormula1, sFormula2);
+                        sLclCondition = sLclCondition.copy(0, sLclCondition.getLength() - 1);
+                        SetFormulas(sLclCondition, sFormula1, sFormula2);
                     }
                     else if (i == scell_content.getLength() ||
                         i == scell_content_text_length.getLength())
                     {
                         if (i == scell_content_text_length.getLength())
                             aValidationType = sheet::ValidationType_TEXT_LEN;
-                        sCondition = sCondition.copy(1);
-                        switch (sCondition[0])
+                        sLclCondition = sLclCondition.copy(1);
+                        switch (sLclCondition[0])
                         {
                             case '<' :
                             {
-                                if (sCondition[1] == '=')
+                                if (sLclCondition[1] == '=')
                                 {
                                     aOperator = sheet::ConditionOperator_LESS_EQUAL;
-                                    sCondition = sCondition.copy(2);
+                                    sLclCondition = sLclCondition.copy(2);
                                 }
                                 else
                                 {
                                     aOperator = sheet::ConditionOperator_LESS;
-                                    sCondition = sCondition.copy(1);
+                                    sLclCondition = sLclCondition.copy(1);
                                 }
                             }
                             break;
                             case '>' :
                             {
-                                if (sCondition[1] == '=')
+                                if (sLclCondition[1] == '=')
                                 {
                                     aOperator = sheet::ConditionOperator_GREATER_EQUAL;
-                                    sCondition = sCondition.copy(2);
+                                    sLclCondition = sLclCondition.copy(2);
                                 }
                                 else
                                 {
                                     aOperator = sheet::ConditionOperator_GREATER;
-                                    sCondition = sCondition.copy(1);
+                                    sLclCondition = sLclCondition.copy(1);
                                 }
                             }
                             break;
                             case '=' :
                             {
                                 aOperator = sheet::ConditionOperator_EQUAL;
-                                sCondition = sCondition.copy(1);
+                                sLclCondition = sLclCondition.copy(1);
                             }
                             break;
                             case '!' :
                             {
                                 aOperator = sheet::ConditionOperator_NOT_EQUAL;
-                                sCondition = sCondition.copy(1);
+                                sLclCondition = sLclCondition.copy(1);
                             }
                             break;
                         }
-                        sFormula1 = sCondition;
+                        sFormula1 = sLclCondition;
                     }
                 }
             }
@@ -477,7 +467,6 @@ void ScXMLContentValidationContext::GetCondition(const ::rtl::OUString& sTempCon
 void ScXMLContentValidationContext::EndElement()
 {
     ScMyImportValidation aValidation;
-    sal_Int32 nOffset(0);
     aValidation.sName = sName;
     aValidation.sBaseCellAddress = sBaseCellAddress;
     aValidation.sImputTitle = sHelpTitle;
@@ -512,20 +501,20 @@ void ScXMLContentValidationContext::SetErrorMessage(const ::rtl::OUString& sTitl
     bDisplayError = bDisplay;
 }
 
-void ScXMLContentValidationContext::SetErrorMacro(const ::rtl::OUString& sName, const sal_Bool bExecute)
+void ScXMLContentValidationContext::SetErrorMacro(const ::rtl::OUString& sInName, const sal_Bool bExecute)
 {
-    sErrorTitle = sName;
+    sErrorTitle = sInName;
     sErrorMessageType = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("macro"));
     bDisplayError = bExecute;
 }
 
-ScXMLHelpMessageContext::ScXMLHelpMessageContext( ScXMLImport& rImport,
+ScXMLHelpMessageContext::ScXMLHelpMessageContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       ScXMLContentValidationContext* pTempValidationContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sTitle(),
     sMessage(),
     nParagraphCount(0),
@@ -537,12 +526,12 @@ ScXMLHelpMessageContext::ScXMLHelpMessageContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_HELP_MESSAGE_ATTR_TITLE:
                 sTitle = sValue;
@@ -558,7 +547,7 @@ ScXMLHelpMessageContext::~ScXMLHelpMessageContext()
 {
 }
 
-SvXMLImportContext *ScXMLHelpMessageContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLHelpMessageContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -566,20 +555,20 @@ SvXMLImportContext *ScXMLHelpMessageContext::CreateChildContext( USHORT nPrefix,
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetContentValidationMessageElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_P:
         {
             if(nParagraphCount)
                 sMessage.append(static_cast<sal_Unicode>('\n'));
             nParagraphCount++;
-            pContext = new ScXMLContentContext( GetScImport(), nPrefix, rLName, xAttrList, sMessage);
+            pContext = new ScXMLContentContext( GetScImport(), nInPrefix, rLName, xAttrList, sMessage);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -589,13 +578,13 @@ void ScXMLHelpMessageContext::EndElement()
     pValidationContext->SetHelpMessage(sTitle, sMessage.makeStringAndClear(), bDisplay);
 }
 
-ScXMLErrorMessageContext::ScXMLErrorMessageContext( ScXMLImport& rImport,
+ScXMLErrorMessageContext::ScXMLErrorMessageContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       ScXMLContentValidationContext* pTempValidationContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sTitle(),
     sMessage(),
     sMessageType(),
@@ -608,12 +597,12 @@ ScXMLErrorMessageContext::ScXMLErrorMessageContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_ERROR_MESSAGE_ATTR_TITLE:
                 sTitle = sValue;
@@ -632,7 +621,7 @@ ScXMLErrorMessageContext::~ScXMLErrorMessageContext()
 {
 }
 
-SvXMLImportContext *ScXMLErrorMessageContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLErrorMessageContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
                                           ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
@@ -640,20 +629,20 @@ SvXMLImportContext *ScXMLErrorMessageContext::CreateChildContext( USHORT nPrefix
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetContentValidationMessageElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLName ) )
+    switch( rTokenMap.Get( nInPrefix, rLName ) )
     {
         case XML_TOK_P:
         {
             if(nParagraphCount)
                 sMessage.append(static_cast<sal_Unicode>('\n'));
             nParagraphCount++;
-            pContext = new ScXMLContentContext( GetScImport(), nPrefix, rLName, xAttrList, sMessage);
+            pContext = new ScXMLContentContext( GetScImport(), nInPrefix, rLName, xAttrList, sMessage);
         }
         break;
     }
 
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -663,13 +652,13 @@ void ScXMLErrorMessageContext::EndElement()
     pValidationContext->SetErrorMessage(sTitle, sMessage.makeStringAndClear(), sMessageType, bDisplay);
 }
 
-ScXMLErrorMacroContext::ScXMLErrorMacroContext( ScXMLImport& rImport,
+ScXMLErrorMacroContext::ScXMLErrorMacroContext( ScXMLImport& rInImport,
                                       USHORT nPrfx,
                                       const ::rtl::OUString& rLName,
                                       const ::com::sun::star::uno::Reference<
                                       ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
                                       ScXMLContentValidationContext* pTempValidationContext) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     sName(),
     bExecute(sal_False)
 {
@@ -679,12 +668,12 @@ ScXMLErrorMacroContext::ScXMLErrorMacroContext( ScXMLImport& rImport,
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        USHORT nPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        USHORT nLclPrefix = GetScImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        switch( rAttrTokenMap.Get( nPrefix, aLocalName ) )
+        switch( rAttrTokenMap.Get( nLclPrefix, aLclLocalName ) )
         {
             case XML_TOK_ERROR_MACRO_ATTR_NAME:
                 sName = sValue;
@@ -700,21 +689,21 @@ ScXMLErrorMacroContext::~ScXMLErrorMacroContext()
 {
 }
 
-SvXMLImportContext *ScXMLErrorMacroContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLErrorMacroContext::CreateChildContext( USHORT nInPrefix,
                                             const ::rtl::OUString& rLName,
                                             const ::com::sun::star::uno::Reference<
-                                          ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
+                                          ::com::sun::star::xml::sax::XAttributeList>& /*xAttrList*/ )
 {
     SvXMLImportContext *pContext = NULL;
 
-    if ((nPrefix == XML_NAMESPACE_SCRIPT) && IsXMLToken(rLName, XML_EVENTS))
+    if ((nInPrefix == XML_NAMESPACE_SCRIPT) && IsXMLToken(rLName, XML_EVENTS))
     {
         DBG_ASSERT(!sName.getLength(), "here is something wrong in the file");
-        pContext = new XMLEventsImportContext(GetImport(), nPrefix, rLName);
+        pContext = new XMLEventsImportContext(GetImport(), nInPrefix, rLName);
         xEventContext = pContext;
     }
     if (!pContext)
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLName );
 
     return pContext;
 }
@@ -729,7 +718,6 @@ void ScXMLErrorMacroContext::EndElement()
         uno::Sequence<beans::PropertyValue> aValues;
         pEvents->GetEventSequence( sOnError, aValues );
 
-        const beans::PropertyValue* pValues = aValues.getConstArray();
         sal_Int32 nLength = aValues.getLength();
         for( sal_Int32 i = 0; i < nLength; i++ )
         {
@@ -746,3 +734,5 @@ void ScXMLErrorMacroContext::EndElement()
     pValidationContext->SetErrorMacro(sName, bExecute);
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

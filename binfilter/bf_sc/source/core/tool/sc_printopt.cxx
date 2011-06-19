@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,8 +35,8 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 // -----------------------------------------------------------------------
 
@@ -88,15 +86,16 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ ScPrintCfg::ScPrintCfg() :
-/*N*/   ConfigItem( OUString::createFromAscii( CFGPATH_PRINT ) )
+/*N*/   ConfigItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_PRINT )) )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-void ScPrintCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames )
+void ScPrintCfg::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*aPropertyNames*/ )
 {
 }
+
 void ScPrintCfg::Commit()
 {
 }
@@ -105,3 +104,5 @@ void ScPrintCfg::Commit()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

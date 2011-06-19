@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,11 @@
 #ifndef _XMLOFF_PRSTYLEI_HXX_
 #define _XMLOFF_PRSTYLEI_HXX_
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
-#endif
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
-#ifndef _XMLOFF_XMLSTYLE_HXX_
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace beans { class XPropertySet; }
 } } }
@@ -106,3 +103,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,11 @@
  *
  ************************************************************************/
 
-//#include <math.h>
 #include <stdlib.h>
 #include <vcl/svapp.hxx>
 #include <bf_svtools/itemset.hxx>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xattr.hxx"
 #include "xoutx.hxx"
@@ -63,10 +61,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::XOutputDevice()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
 |*
 *************************************************************************/
 
@@ -129,10 +123,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::~XOutputDevice()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ XOutputDevice::~XOutputDevice()
@@ -147,10 +137,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawLine()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  02.02.94 ESO
 |*
 *************************************************************************/
 
@@ -167,18 +153,12 @@ namespace binfilter {
 |*
 |*    XOutputDevice::DrawXPolyLine()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.11.94 ESO
-|*
 *************************************************************************/
 
 /*N*/ void XOutputDevice::DrawXPolyLine( const XPolygon& rXPoly )
 /*N*/ {
 /*N*/   if ( rXPoly.GetPointCount() > 0 )
 /*N*/   {
-/*N*/         // #100127# Too much hassle below this method
-/*N*/       // const Polygon aPoly( XOutCreatePolygonBezier(rXPoly, pOut) );
 /*N*/       const Polygon aPoly( XOutCreatePolygon(rXPoly, pOut) );
 /*N*/       DrawLinePolygon(aPoly, FALSE);
 /*N*/   }
@@ -187,10 +167,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawRect()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.11.94 ESO
 |*
 *************************************************************************/
 
@@ -208,10 +184,6 @@ namespace binfilter {
 |*
 |*    XOutputDevice::DrawEllipse()
 |*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  08.11.94
-|*
 *************************************************************************/
 
 /*N*/ void XOutputDevice::DrawEllipse( const Rectangle& rRect )
@@ -226,10 +198,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawArc()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
 |*
 *************************************************************************/
 
@@ -246,10 +214,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawPie()
-|*
-|*    Beschreibung
-|*    Ersterstellung    09.11.94
-|*    Letzte Aenderung  09.11.94
 |*
 *************************************************************************/
 
@@ -268,8 +232,6 @@ namespace binfilter {
 |*    XOutputDevice::DrawXPolygon()
 |*
 |*    Beschreibung      Polygon mit Linien- und Fuellstilen zeichnen
-|*    Ersterstellung    28.11.94 ESO
-|*    Letzte Aenderung  29.11.94 ESO
 |*
 \************************************************************************/
 
@@ -277,8 +239,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if ( rXPoly.GetPointCount() > 0 )
 /*N*/   {
-/*N*/         // #100127# Too much hassle below this method
-/*N*/       // const Polygon aPoly( XOutCreatePolygonBezier(rXPoly, pOut) );
 /*N*/       const Polygon aPoly( XOutCreatePolygon(rXPoly, pOut) );
 /*N*/
 /*N*/       DrawFillPolyPolygon( aPoly );
@@ -289,10 +249,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    XOutputDevice::DrawXPolyPolygon()
-|*
-|*    Beschreibung
-|*    Ersterstellung    08.11.94
-|*    Letzte Aenderung  29.11.94 ESO
 |*
 *************************************************************************/
 
@@ -306,8 +262,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if( rXPolyPoly[i].GetPointCount() > 0 )
 /*N*/         {
-/*N*/             // #100127# Too much hassle below this method
-/*N*/           // aPolyPoly.Insert(XOutCreatePolygonBezier(rXPolyPoly[i], pOut));
 /*N*/           aPolyPoly.Insert(XOutCreatePolygon(rXPolyPoly[i], pOut));
 /*N*/         }
 /*N*/   }
@@ -329,8 +283,6 @@ namespace binfilter {
 |*
 |*    Polygon fuer Linienanfang bzw. -ende initialisieren; gibt die
 |*    Entfernung vom Polygon-Fixpunkt zum Linienansatz zurueck
-|*    Ersterstellung    16.01.95 ESO
-|*    Letzte Aenderung  28.07.95 SOH
 |*
 \************************************************************************/
 
@@ -363,16 +315,12 @@ namespace binfilter {
 |*    XOutputDevice::SetLineAttr()
 |*
 |*    Linienattribute aus ItemSet auslesen und am OutputDevice setzen
-|*    Ersterstellung    17.11.94 ESO
-|*    Letzte Aenderung  09.10.95 ESO
 |*
 \************************************************************************/
 
-//-/void XOutputDevice::SetLineAttr(const XLineAttrSetItem& rAttr)
 /*N*/ void XOutputDevice::SetLineAttr(const SfxItemSet& rSet)
 /*N*/ {
-/*N*/ //-/  const SfxItemSet&   rSet = rAttr.GetItemSet();
-/*N*/   const BOOL          bPureMtf = ( pOut->GetOutDevType() != OUTDEV_PRINTER ) && ( pOut->GetConnectMetaFile() != NULL );
+/*N*/   const BOOL bPureMtf = ( pOut->GetOutDevType() != OUTDEV_PRINTER ) && ( pOut->GetConnectMetaFile() != NULL );
 /*N*/
 /*N*/   aLineColor = ITEMVALUE( rSet, XATTR_LINECOLOR, XLineColorItem );
 /*N*/   nLineTransparence = ITEMVALUE( rSet, XATTR_LINETRANSPARENCE, XLineTransparenceItem );
@@ -442,7 +390,6 @@ namespace binfilter {
 /*N*/               // wir dieses bei der Laengenberechn. beruecks.,
 /*N*/               // um gleiche Ergebnisse zu bekommen; die hoehere
 /*N*/               // Genauigkeit im Mtf bezieht sich nur auf die Breite
-/*N*/               // (KA 29.09.96)
 /*N*/               const long nFactor = nMinLength * ( bPureMtf ? MTF_DIVISOR : 1 );
 /*N*/
 /*N*/               nDotLen = nDotLen * nFactor / 100;
@@ -550,15 +497,11 @@ namespace binfilter {
 |*    XOutputDevice::SetFillAttr()
 |*
 |*    Fuellattribute aus ItemSet auslesen und am OutputDevice setzen
-|*    Ersterstellung    17.11.94 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
-//-/void XOutputDevice::SetFillAttr(const XFillAttrSetItem& rAttr)
 /*N*/ void XOutputDevice::SetFillAttr(const SfxItemSet& rSet)
 /*N*/ {
-/*N*/ //-/  const SfxItemSet&                   rSet = rAttr.GetItemSet();
 /*N*/   const XFillFloatTransparenceItem&   rFloatTransItem =  (const XFillFloatTransparenceItem&) rSet.Get( XATTR_FILLFLOATTRANSPARENCE );
 /*N*/
 /*N*/   eFillStyle = bIgnoreFillAttr ? XFILL_NONE : ITEMVALUE( rSet, XATTR_FILLSTYLE, XFillStyleItem );
@@ -690,28 +633,21 @@ namespace binfilter {
 |*    XOutputDevice::SetTextAttr()
 |*
 |*    Textattribute aus ItemSet auslesen und am OutputDevice setzen
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  27.06.95 ESO
 |*
 \************************************************************************/
 
-//-/void XOutputDevice::SetTextAttr(const XTextAttrSetItem& rAttr)
 /*N*/ void XOutputDevice::SetTextAttr(const SfxItemSet& rSet)
 /*N*/ {
-/*N*/ //-/  const SfxItemSet& rSet = rAttr.GetItemSet();
-/*N*/
 /*N*/   eFormTextStyle = ITEMVALUE( rSet, XATTR_FORMTXTSTYLE, XFormTextStyleItem );
 /*N*/   eFormTextAdjust = ITEMVALUE( rSet, XATTR_FORMTXTADJUST, XFormTextAdjustItem );
 /*N*/   nFormTextDistance = ITEMVALUE( rSet, XATTR_FORMTXTDISTANCE, XFormTextDistanceItem );
 /*N*/   nFormTextStart = ITEMVALUE( rSet, XATTR_FORMTXTSTART, XFormTextStartItem );
 /*N*/   bFormTextMirror = ITEMVALUE( rSet, XATTR_FORMTXTMIRROR, XFormTextMirrorItem );
 /*N*/
-/*N*/   // Neu ab 27.06.95 ESO
 /*N*/   bFormTextOutline = ITEMVALUE( rSet, XATTR_FORMTXTOUTLINE, XFormTextOutlineItem );
 /*N*/   eFormTextShadow = ITEMVALUE( rSet, XATTR_FORMTXTSHADOW, XFormTextShadowItem );
 /*N*/   aFormTextShdwColor = ITEMVALUE( rSet, XATTR_FORMTXTSHDWCOLOR, XFormTextShadowColorItem );
 /*N*/
-/*N*/   // Neu ab 09.11.95 KA
 /*N*/   nFormTextShdwTransp = ITEMVALUE( rSet, XATTR_FORMTXTSHDWTRANSP, XFormTextShadowTranspItem );
 /*N*/   nFormTextShdwXVal = ITEMVALUE( rSet, XATTR_FORMTXTSHDWXVAL, XFormTextShadowXValItem );
 /*N*/   nFormTextShdwYVal = ITEMVALUE( rSet, XATTR_FORMTXTSHDWYVAL, XFormTextShadowYValItem );
@@ -721,61 +657,11 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|*    XOutputDevice::OverridePen()
-|*
-|*    StarView-Pen temporaer ueberschreiben, wenn SetLineAttr zu
-|*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
-|*    die Attribute mit SetLineAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
-|*
-\************************************************************************/
-
-//#ifndef NOOLDSV
-//
-///*N*/ void XOutputDevice::OverridePen(const Pen& rPen)
-///*N*/ {
-///*N*/     nLineWidth = 0;
-///*N*/     bHair = TRUE;
-///*N*/     bLineStart = FALSE;
-///*N*/     bLineEnd = FALSE;
-///*N*/     eLineStyle = ( rPen.GetStyle() == PEN_NULL  ) ? XLINE_NONE : XLINE_SOLID;
-///*N*/     pOut->SetLineColor( rPen.GetColor() );
-///*N*/ }
-//
-//#endif
-
-/*************************************************************************
-|*
-|*    XOutputDevice::OverrideFillInBrush()
-|*
-|*    StarView-Brush temporaer ueberschreiben, wenn SetFillAttr zu
-|*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
-|*    die Attribute mit SetFillAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
-|*
-\************************************************************************/
-
-//#ifndef NOOLDSV
-//
-///*N*/ void XOutputDevice::OverrideFillInBrush( const Brush& rBrush )
-///*N*/ {
-///*N*/     eFillStyle = ( rBrush.GetStyle() == BRUSH_NULL ) ?  XFILL_NONE : XFILL_SOLID;
-///*N*/     pOut->SetFillColor( rBrush.GetColor() );
-///*N*/ }
-//
-//#endif
-
-/*************************************************************************
-|*
 |*    XOutputDevice:OverrideLineColor()
 |*
 |*    StarView-Linecolor temporaer ueberschreiben, wenn SetLineAttr zu
 |*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
 |*    die Attribute mit SetLineAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
@@ -796,8 +682,6 @@ namespace binfilter {
 |*    StarView-Brush temporaer ueberschreiben, wenn SetFillAttr zu
 |*    zeitkritisch ist. !ACHTUNG! Vor weiteren XOut-Ausgaben muessen
 |*    die Attribute mit SetFillAttr neu gesetzt werden
-|*    Ersterstellung    26.06.95 ESO
-|*    Letzte Aenderung  26.06.95 ESO
 |*
 \************************************************************************/
 
@@ -807,3 +691,5 @@ namespace binfilter {
 /*N*/   pOut->SetFillColor( rColor );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

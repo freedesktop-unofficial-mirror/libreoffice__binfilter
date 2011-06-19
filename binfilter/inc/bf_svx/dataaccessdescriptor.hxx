@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SVX_DATACCESSDESCRIPTOR_HXX_
 #define _SVX_DATACCESSDESCRIPTOR_HXX_
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 #include <tools/debug.hxx>
 namespace binfilter {
 //........................................................................
@@ -72,19 +69,19 @@ namespace svx
     class ODataAccessDescriptor
     {
     public:
-        ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
-        ODataAccessDescriptor( const ODataAccessDescriptor& _rSource ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
-        ODataAccessDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& _rValues ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ;
-        ODataAccessDescriptor( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP"); }
+        ODataAccessDescriptor( const ODataAccessDescriptor& /*_rSource*/ ){DBG_BF_ASSERT(0, "STRIP");}
+        ODataAccessDescriptor( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet >& /*_rValues*/ ){DBG_BF_ASSERT(0, "STRIP");}
+        ODataAccessDescriptor( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& /*_rValues*/ ){DBG_BF_ASSERT(0, "STRIP"); }
 
         // allows to construct a descriptor from an Any containing either an XPropertySet or a property value sequence
-        ODataAccessDescriptor( const ::com::sun::star::uno::Any& _rValues ){DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ;
+        ODataAccessDescriptor( const ::com::sun::star::uno::Any& /*_rValues*/ ){DBG_BF_ASSERT(0, "STRIP"); }
 
 
-        ~ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001
+        ~ODataAccessDescriptor(){DBG_BF_ASSERT(0, "STRIP");}
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >
-            createPropertyValueSequence(){DBG_BF_ASSERT(0, "STRIP");return ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >();} //STRIP001 ;
-        ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty _eWhich ){DBG_BF_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}//STRIP001 ;
+            createPropertyValueSequence(){DBG_BF_ASSERT(0, "STRIP");return ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >();}
+        ::com::sun::star::uno::Any& operator [] ( DataAccessDescriptorProperty /*_eWhich*/ ){DBG_BF_ASSERT(0, "STRIP"); static ::com::sun::star::uno::Any aDummy; return aDummy;}
     };
 
 //........................................................................
@@ -94,3 +91,4 @@ namespace svx
 }//end of namespace binfilter
 #endif // _SVX_DATACCESSDESCRIPTOR_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

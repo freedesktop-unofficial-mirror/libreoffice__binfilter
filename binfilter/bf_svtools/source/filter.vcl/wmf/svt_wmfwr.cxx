@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,11 @@
 
 #include <vcl/salbtype.hxx>
 #include "wmfwr.hxx"
-#ifndef _SV_FONTCVT_HXX
 #include <unotools/fontcvt.hxx>
-#endif
-#ifndef _RTL_CRC_H_
 #include <rtl/crc.h>
-#endif
-#ifndef _RTL_TENCINFO_H
 #include <rtl/tencinfo.h>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 #include <vcl/metric.hxx>
 
@@ -280,9 +271,9 @@ void WMFWriter::MayCallback()
 
 void WMFWriter::CountActionsAndBitmaps( const GDIMetaFile & rMTF )
 {
-    ULONG nAction, nActionCount;
+    size_t nAction, nActionCount;
 
-    nActionCount = rMTF.GetActionCount();
+    nActionCount = rMTF.GetActionSize();
 
     for ( nAction=0; nAction<nActionCount; nAction++ )
     {
@@ -1087,12 +1078,12 @@ void WMFWriter::SetAllAttr()
 
 void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
 {
-    ULONG       nA, nACount;
+    size_t      nA, nACount;
     MetaAction* pMA;
 
     if( bStatus )
     {
-        nACount = rMTF.GetActionCount();
+        nACount = rMTF.GetActionSize();
 
         WMFRecord_SetStretchBltMode();
 
@@ -1581,8 +1572,8 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
                     const MetaEPSAction* pA = (const MetaEPSAction*)pMA;
                     const GDIMetaFile aGDIMetaFile( pA->GetSubstitute() );
 
-                    INT32 nCount = aGDIMetaFile.GetActionCount();
-                    for ( INT32 i = 0; i < nCount; i++ )
+                    size_t nCount = aGDIMetaFile.GetActionSize();
+                    for ( size_t i = 0; i < nCount; i++ )
                     {
                         const MetaAction* pMetaAct = aGDIMetaFile.GetAction( i );
                         if ( pMetaAct->GetType() == META_BMPSCALE_ACTION )
@@ -1646,7 +1637,7 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
                 case META_MASKSCALE_ACTION:
                 case META_MASKSCALEPART_ACTION:
                 {
-                    DBG_ERROR( "Unsupported action: MetaMask...Action!" );
+                    OSL_FAIL( "Unsupported action: MetaMask...Action!" );
                 }
                 break;
 
@@ -1655,13 +1646,13 @@ void WMFWriter::WriteRecords( const GDIMetaFile & rMTF )
 
                 case META_ISECTREGIONCLIPREGION_ACTION:
                 {
-                    DBG_ERROR( "Unsupported action: MetaISectRegionClipRegionAction!" );
+                    OSL_FAIL( "Unsupported action: MetaISectRegionClipRegionAction!" );
                 }
                 break;
 
                 case META_MOVECLIPREGION_ACTION:
                 {
-                    DBG_ERROR( "Unsupported action: MetaMoveClipRegionAction!" );
+                    OSL_FAIL( "Unsupported action: MetaMoveClipRegionAction!" );
                 }
                 break;
           }
@@ -1883,3 +1874,5 @@ USHORT WMFWriter::CalcSaveTargetMapMode(MapMode& rMapMode,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

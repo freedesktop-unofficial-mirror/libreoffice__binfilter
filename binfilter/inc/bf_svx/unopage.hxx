@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,41 +28,19 @@
 #ifndef _SVX_UNOWPAGE_HXX
 #define _SVX_UNOWPAGE_HXX
 
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGE_HPP_
 #include <com/sun/star/drawing/XDrawPage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPEGROUPER_HPP_
 #include <com/sun/star/drawing/XShapeGrouper.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPECOMBINER_HPP_
 #include <com/sun/star/drawing/XShapeCombiner.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPEBINDER_HPP_
 #include <com/sun/star/drawing/XShapeBinder.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAKAGG_HXX_
 #include <cppuhelper/weakagg.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
 #include <cppuhelper/implbase4.hxx>
 #include <comphelper/servicehelper.hxx>
@@ -160,3 +139,4 @@ class SvxDrawPage : public ::cppu::WeakAggImplHelper4< ::com::sun::star::drawing
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

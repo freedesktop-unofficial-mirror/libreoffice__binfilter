@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,13 +32,9 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
 namespace binfilter {
 
 /*  Immer:
@@ -61,7 +58,7 @@ const long nReadOnlyScrollOfst = 10;
 ------------------------------------------------------------------------*/
 
 
-/*N*/ BOOL SwWrtShell::PopCrsr(BOOL bUpdate, BOOL bSelect)
+/*N*/ BOOL SwWrtShell::PopCrsr(BOOL bUpdate, BOOL)
 /*N*/ {
 /*N*/   if( 0 == pCrsrStack)
 /*N*/       return FALSE;
@@ -75,14 +72,14 @@ const long nReadOnlyScrollOfst = 10;
 /*?*/       aTmpArea.Pos().Y() -= pCrsrStack->lOffset;
 /*?*/       if( aTmpArea.IsInside( pCrsrStack->aDocPos ) )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bSelect )
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/           // Falls eine Verschiebung zwischen dem sichtbaren Bereich
 /*?*/           // und der gemerkten Cursorpositionen auftritt, werden
 /*?*/           // alle gemerkten Positionen weggeschmissen
 /*?*/       else
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _ResetCursorStack();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return FALSE;
 /*?*/       }
 /*?*/   }
@@ -98,3 +95,5 @@ const long nReadOnlyScrollOfst = 10;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

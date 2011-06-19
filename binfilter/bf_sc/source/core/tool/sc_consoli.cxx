@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -46,39 +44,6 @@ namespace binfilter {
 
 #define SC_CONS_NOTFOUND    0xFFFF
 
-// STATIC DATA -----------------------------------------------------------
-
-/*  Strings bei Gelegenheit ganz raus...
-static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTotalFunc
-        0,                                  //  none
-        STR_PIVOTFUNC_AVG,
-        STR_PIVOTFUNC_COUNT,
-        STR_PIVOTFUNC_COUNT2,
-        STR_PIVOTFUNC_MAX,
-        STR_PIVOTFUNC_MIN,
-        STR_PIVOTFUNC_PROD,
-        STR_PIVOTFUNC_STDDEV,
-        STR_PIVOTFUNC_STDDEV2,
-        STR_PIVOTFUNC_SUM,
-        STR_PIVOTFUNC_VAR,
-        STR_PIVOTFUNC_VAR2 };
-*/
-
-/*N*/ static OpCode eOpCodeTable[] = {          //  Reihenfolge wie bei enum ScSubTotalFunc
-/*N*/       ocBad,                              //  none
-/*N*/       ocAverage,
-/*N*/       ocCount,
-/*N*/       ocCount2,
-/*N*/       ocMax,
-/*N*/       ocMin,
-/*N*/       ocProduct,
-/*N*/       ocStDev,
-/*N*/       ocStDevP,
-/*N*/       ocSum,
-/*N*/       ocVar,
-/*N*/       ocVarP };
-
-// -----------------------------------------------------------------------
 
 /*N*/ void lcl_AddString( String**& pData, USHORT& nCount, const String& rInsert )
 /*N*/ {
@@ -102,14 +67,14 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/   bRowByName(FALSE),
 /*N*/   bSubTitles(FALSE),
 /*N*/   nColCount(0),
-/*N*/   ppColHeaders(NULL),
 /*N*/   nRowCount(0),
-/*N*/   ppRowHeaders(NULL),
-/*N*/   ppCount(NULL),
+/*N*/   ppUsed(NULL),
 /*N*/   ppSum(NULL),
+/*N*/   ppCount(NULL),
 /*N*/   ppSumSqr(NULL),
 /*N*/   ppRefs(NULL),
-/*N*/   ppUsed(NULL),
+/*N*/   ppColHeaders(NULL),
+/*N*/   ppRowHeaders(NULL),
 /*N*/   nDataCount(0),
 /*N*/   nTitleCount(0),
 /*N*/   ppTitles(NULL),
@@ -126,9 +91,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ #define DELETEARR(ppArray,nCount) \
 /*N*/ {                                 \
-/*N*/   USHORT i;                       \
 /*N*/   if (ppArray)                    \
-/*N*/       for(i=0; i<nCount; i++)     \
+/*N*/       for(USHORT i=0; i<nCount; i++)      \
 /*N*/           delete[] ppArray[i];    \
 /*N*/   delete[] ppArray;               \
 /*N*/   ppArray = NULL;                 \
@@ -136,9 +100,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/ #define DELETESTR(ppArray,nCount) \
 /*N*/ {                                 \
-/*N*/   USHORT i;                       \
 /*N*/   if (ppArray)                    \
-/*N*/       for(i=0; i<nCount; i++)     \
+/*N*/       for(USHORT i=0; i<nCount; i++)      \
 /*N*/           delete ppArray[i];      \
 /*N*/   delete[] ppArray;               \
 /*N*/   ppArray = NULL;                 \
@@ -146,10 +109,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ void ScConsData::DeleteData()
 /*N*/ {
-/*N*/   USHORT i;
-/*N*/
 /*N*/   if (ppRefs)
-/*N*/       for (i=0; i<nColCount; i++)
+/*N*/       for (USHORT i=0; i<nColCount; i++)
 /*N*/       {
 /*N*/           for (USHORT j=0; j<nRowCount; j++)
 /*N*/               if (ppUsed[i][j])
@@ -401,7 +362,7 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/           break;
 /*N*/       default:
 /*N*/       {
-/*N*/           DBG_ERROR("unbekannte Funktion bei Consoli::CalcData");
+/*N*/           OSL_FAIL("unbekannte Funktion bei Consoli::CalcData");
 /*N*/           fCount = -MAXDOUBLE;
 /*N*/       }
 /*N*/           break;
@@ -502,14 +463,14 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/   //      Daten
 /*N*/
-/*N*/   BOOL bAnyCell = ( eFunction == SUBTOTAL_FUNC_CNT2 );
+/*N*/   ( eFunction == SUBTOTAL_FUNC_CNT2 );
 /*N*/   for (nCol=nCol1; nCol<=nCol2; nCol++)
 /*N*/   {
 /*N*/       USHORT nArrX = nCol-nCol1;
 /*N*/       if (bColByName) nArrX = pDestCols[nArrX];
 /*N*/       if (nArrX != SC_CONS_NOTFOUND)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 for (nRow=nRow1; nRow<=nRow2; nRow++)
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -522,12 +483,8 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 /*N*/ void ScConsData::OutputToDocument( ScDocument* pDestDoc, USHORT nCol, USHORT nRow, USHORT nTab )
 /*N*/ {
-/*N*/   OpCode eOpCode = eOpCodeTable[eFunction];
-/*N*/
 /*N*/   USHORT nArrX;
 /*N*/   USHORT nArrY;
-/*N*/   USHORT nCount;
-/*N*/   USHORT nPos;
 /*N*/   USHORT i;
 /*N*/
 /*N*/   //  Ecke links oben
@@ -593,7 +550,7 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 /*N*/
 /*N*/           if (nNeeded)
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pDestDoc->InsertRow( 0,nTab, MAXCOL,nTab, nRow+nArrY, nNeeded );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/   }
@@ -604,3 +561,5 @@ static USHORT nFuncRes[] = {                //  Reihenfolge wie bei enum ScSubTo
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

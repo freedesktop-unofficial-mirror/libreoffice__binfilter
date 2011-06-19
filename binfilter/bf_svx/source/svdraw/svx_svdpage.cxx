@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,13 @@
 #define _IPOBJ_HXX
 #endif
 
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
-#ifndef _SVDVIEW_HXX
 #include "svdview.hxx"
-#endif
 #include <string.h>
 #ifndef _STRING_H
 #define _STRING_H
 #endif
-#ifndef _IPOBJ_HXX //autogen
 #include <bf_so3/ipobj.hxx>
-#endif
 
 #include "svdetc.hxx"
 #include "svdio.hxx"
@@ -58,9 +53,7 @@
 #endif
 
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 
@@ -103,8 +96,8 @@ using namespace ::com::sun::star;
 /*N*/   Clear(); // Containerinhalt loeschen!
 /*N*/ }
 
-/*N*/ void SdrObjList::operator=(const SdrObjList& rSrcList)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrObjList::operator=(const SdrObjList& /*rSrcList*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SdrObjList::CopyObjects(const SdrObjList& rSrcList)
@@ -131,7 +124,7 @@ using namespace ::com::sun::star;
 /*N*/   // Aehnliche Implementation an folgenden Stellen:
 /*N*/   //    void SdrObjList::CopyObjects(const SdrObjList& rSrcList)
 /*N*/   //    SdrModel* SdrExchangeView::GetMarkedObjModel() const
-/*N*/   //    FASTBOOL SdrExchangeView::Paste(const SdrModel& rMod,...)
+/*N*/   //    bool SdrExchangeView::Paste(const SdrModel& rMod,...)
 /*N*/   //    void SdrEditView::CopyMarked()
 /*N*/   if (nCloneErrCnt==0) {
 /*N*/       for (no=0; no<nAnz; no++) {
@@ -152,7 +145,7 @@ using namespace ::com::sun::star;
 /*?*/                           if (pDstNode1!=NULL) { // Sonst grober Fehler!
 /*?*/                               pDstEdge->ConnectToNode(TRUE,pDstNode1);
 /*?*/                           } else {
-/*?*/                               DBG_ERROR("SdrObjList::operator=(): pDstNode1==NULL!");
+/*?*/                               OSL_FAIL("SdrObjList::operator=(): pDstNode1==NULL!");
 /*?*/                           }
 /*?*/                       }
 /*?*/                       if (pSrcNode2!=NULL) {
@@ -161,11 +154,11 @@ using namespace ::com::sun::star;
 /*?*/                           if (pDstNode2!=NULL) { // Node war sonst wohl nicht markiert
 /*?*/                               pDstEdge->ConnectToNode(FALSE,pDstNode2);
 /*?*/                           } else {
-/*?*/                               DBG_ERROR("SdrObjList::operator=(): pDstNode2==NULL!");
+/*?*/                               OSL_FAIL("SdrObjList::operator=(): pDstNode2==NULL!");
 /*?*/                           }
 /*?*/                       }
 /*?*/                   } else {
-/*?*/                       DBG_ERROR("SdrObjList::operator=(): pDstEdge==NULL!");
+/*?*/                       OSL_FAIL("SdrObjList::operator=(): pDstEdge==NULL!");
 /*?*/                   }
 /*?*/               }
 /*N*/           }
@@ -187,7 +180,7 @@ using namespace ::com::sun::star;
 /*?*/
 /*?*/       aStr += " Objektverbindungen werden nicht mitkopiert.";
 /*?*/
-/*?*/       DBG_ERROR(aStr.GetBuffer());
+/*?*/       OSL_FAIL(aStr.GetBuffer());
 /*?*/ #endif
 /*N*/   }
 /*N*/ }
@@ -287,7 +280,7 @@ using namespace ::com::sun::star;
 /*N*/   if (pUpList!=NULL) pUpList->SetRectsDirty();
 /*N*/ }
 
-/*N*/ void SdrObjList::NbcInsertObject(SdrObject* pObj, ULONG nPos, const SdrInsertReason* pReason)
+/*N*/ void SdrObjList::NbcInsertObject(SdrObject* pObj, ULONG nPos, const SdrInsertReason* /*pReason*/)
 /*N*/ {
 /*N*/   DBG_ASSERT(pObj!=NULL,"SdrObjList::NbcInsertObject(NULL)");
 /*N*/   if (pObj!=NULL) {
@@ -355,8 +348,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG nObjNum)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001
+/*N*/ SdrObject* SdrObjList::NbcRemoveObject(ULONG /*nObjNum*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 /*N*/ SdrObject* SdrObjList::RemoveObject(ULONG nObjNum)
@@ -452,10 +445,6 @@ using namespace ::com::sun::star;
 /*N*/   DBG_ASSERT(pObj!=NULL,"SdrObjList::SetObjectOrdNum: Object nicht gefunden");
 /*N*/   if (pObj!=NULL) {
 /*N*/       DBG_ASSERT(pObj->IsInserted(),"SdrObjList::SetObjectOrdNum: ZObjekt hat keinen Inserted-Status");
-        /*if (pModel!=NULL) {
-            // Hier muss ein anderer Broadcast her!
-            if (pObj->GetPage()!=NULL) pModel->Broadcast(SdrHint(*pObj));
-        }*/
 /*N*/       aList.Remove(nOldObjNum);
 /*N*/       aList.Insert(pObj,nNewObjNum);
 /*N*/       pObj->SetOrdNum(nNewObjNum);
@@ -487,7 +476,7 @@ using namespace ::com::sun::star;
 /*N*/   return aOutRect;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors) const
+/*N*/ bool SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, bool bRestoreColors) const
 /*N*/ {
 /*N*/   BOOL bOk(TRUE);
 /*N*/   BOOL bWasNotActive = rInfoRec.bNotActive;
@@ -542,20 +531,20 @@ using namespace ::com::sun::star;
 /*N*/   return bOk;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors, USHORT nImpMode) const
+/*N*/ bool SdrObjList::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, bool bRestoreColors, USHORT nImpMode) const
 /*N*/ {
-/*N*/   FASTBOOL bOk=TRUE;
-/*N*/   FASTBOOL bBrk=FALSE;
+/*N*/   bool bOk=TRUE;
+/*N*/   bool bBrk=FALSE;
 /*N*/   ULONG nObjAnz=GetObjCount();
 /*N*/   if (nObjAnz==0) return TRUE;
 /*N*/   USHORT nEvent=rInfoRec.nBrkEvent;
 /*N*/   const SetOfByte* pVisiLayer=&rInfoRec.aPaintLayer;
-/*N*/   FASTBOOL bPrinter=rInfoRec.bPrinter;
+/*N*/   bool bPrinter=rInfoRec.bPrinter;
 /*N*/   OutputDevice* pOut=rXOut.GetOutDev();
 /*N*/   Rectangle aCheckRect(rInfoRec.aCheckRect);
-/*N*/   FASTBOOL bDrawAll=aCheckRect.IsEmpty();
+/*N*/   bool bDrawAll=aCheckRect.IsEmpty();
 /*N*/   ImpSdrHdcMerk aHDCMerk(*pOut,SDRHDC_SAVEPENANDBRUSHANDFONT,bRestoreColors);
-/*N*/   FASTBOOL bColorsDirty=FALSE;
+/*N*/   bool bColorsDirty=FALSE;
 /*N*/   if (bDrawAll || aCheckRect.IsOver(GetAllObjBoundRect())) {
 /*N*/       Application* pAppPtr=NULL;
 /*N*/       if (nEvent!=0) pAppPtr=GetpApp();
@@ -604,12 +593,12 @@ using namespace ::com::sun::star;
 /*N*/       for (USHORT nCycle = 1; nCycle <= nPaintCycles; nCycle++)
 /*N*/       {
 /*N*/           USHORT      nPaintImpMode = nImpMode;
-/*N*/           FASTBOOL    bNormal = ( nPaintImpMode == IMP_PAGEPAINT_NORMAL );
-/*N*/           FASTBOOL    bCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_CACHE );
-/*N*/           FASTBOOL    bBGCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_BG_CACHE );
-/*N*/           FASTBOOL    bCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_CACHE );
-/*N*/           FASTBOOL    bBGCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_BG_CACHE );
-/*N*/           FASTBOOL    bPaintFlag = ( bNormal || bCachePrepare || bBGCachePrepare );
+/*N*/           bool    bNormal = ( nPaintImpMode == IMP_PAGEPAINT_NORMAL );
+/*N*/           bool    bCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_CACHE );
+/*N*/           bool    bBGCachePrepare = ( nPaintImpMode == IMP_PAGEPAINT_PREPARE_BG_CACHE );
+/*N*/           bool    bCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_CACHE );
+/*N*/           bool    bBGCachePaint = ( nPaintImpMode == IMP_PAGEPAINT_PAINT_BG_CACHE );
+/*N*/           bool    bPaintFlag = ( bNormal || bCachePrepare || bBGCachePrepare );
 /*N*/
 /*N*/           if( nCycle == 2 )
 /*N*/           {
@@ -694,7 +683,7 @@ using namespace ::com::sun::star;
 /*N*/                       if( bPaintFlag )
 /*N*/                       {
 /*N*/                           if( pObj->IsNeedColorRestore() )
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                           }
 /*N*/                           else
 /*N*/                               bColorsDirty=TRUE; // andere aendern die Farben
@@ -708,53 +697,6 @@ using namespace ::com::sun::star;
 /*N*/                           else
 /*N*/                           {
 /*N*/                               bOk=pObj->Paint(rXOut,rInfoRec);
-
-//////////////////////////////////////////////////////////////////////////////
-//
-//  Vector2D aTRScale;
-//  double fTRShear;
-//  double fTRRotate;
-//  Vector2D aTRTranslate;
-//  Matrix3D aOrigMat;
-//  XPolyPolygon aTRPolyPolygon;
-//
-//  BOOL bIsPath = pObj->TRGetBaseGeometry(aOrigMat, aTRPolyPolygon);
-//  aOrigMat.DecomposeAndCorrect(aTRScale, fTRShear, fTRRotate, aTRTranslate);
-//  Vector2D aVectorTranslate;
-//  aVectorTranslate.X() = FRound(aTRTranslate.X());
-//  aVectorTranslate.Y() = FRound(aTRTranslate.Y());
-//
-//  Point aPoint(aVectorTranslate.X(), aVectorTranslate.Y());
-//  Rectangle aTRBaseRect(
-//      aPoint,
-//      Size(FRound(aTRScale.X()), FRound(aTRScale.Y())));
-//
-//  Color aLineColorMerk(rXOut.GetOutDev()->GetLineColor());
-//  Color aFillColorMerk(rXOut.GetOutDev()->GetFillColor());
-//  rXOut.GetOutDev()->SetFillColor();
-//
-//  rXOut.GetOutDev()->SetLineColor(COL_BLACK);
-//  rXOut.GetOutDev()->DrawRect(aTRBaseRect);
-//
-//  if(bIsPath)
-//  {
-//      rXOut.GetOutDev()->SetLineColor(COL_LIGHTRED);
-//      XPolyPolygon aTRPoPo(aTRPolyPolygon);
-//      aTRPoPo.Move(aTRBaseRect.Left(), aTRBaseRect.Top());
-//      sal_uInt16 nCount(aTRPoPo.Count());
-//      for(sal_uInt16 a(0); a < nCount; a++)
-//          rXOut.GetOutDev()->DrawPolygon(XOutCreatePolygon(aTRPoPo[a], rXOut.GetOutDev()));
-//  }
-//
-//  rXOut.GetOutDev()->SetLineColor(aLineColorMerk);
-//  rXOut.GetOutDev()->SetFillColor(aFillColorMerk);
-//
-//  static BOOL bDoTestSetAllGeometry(FALSE);
-//  if(bDoTestSetAllGeometry)
-//      pObj->TRSetBaseGeometry(aOrigMat, aTRPolyPolygon);
-//
-//
-//////////////////////////////////////////////////////////////////////////////
 /*N*/                           }
 /*N*/
 /*N*/                           // nach dem ersten Objekt bei reinem Hintergrundcache
@@ -867,27 +809,6 @@ using namespace ::com::sun::star;
 /*N*/   return nCnt;
 /*N*/ }
 
-
-
-/*N*/ void SdrObjList::Save(SvStream& rOut) const
-/*N*/ {
-/*N*/   FASTBOOL bNotPersist=pPage!=NULL && pPage->IsObjectsNotPersistent();
-/*N*/   FASTBOOL bNoOLE=pModel!=NULL && pModel->IsStreamingSdrModel();
-/*N*/   if (!bNotPersist) {
-/*N*/       SdrObjListIter aIter(*this,IM_FLAT);
-/*N*/       while (aIter.IsMore()) {
-/*N*/           SdrObject* pObj=aIter.Next();
-/*N*/           FASTBOOL bThisObjNot=pObj->IsNotPersistent();
-/*N*/           if (!bThisObjNot && bNoOLE && pObj->ISA(SdrOle2Obj)) {
-/*N*/               bThisObjNot=TRUE;
-/*N*/           }
-/*N*/           if (!bThisObjNot) rOut<<*pObj;
-/*N*/           if (pModel!=NULL) pModel->IncProgress();
-/*N*/       }
-/*N*/   }
-/*N*/   SdrIOHeader(rOut,STREAM_WRITE,SdrIOEndeID); // Endemarke
-/*N*/ }
-
 /*N*/ void SdrObjList::Load(SvStream& rIn, SdrPage& rPage)
 /*N*/ {
 /*N*/   Clear();
@@ -896,7 +817,7 @@ using namespace ::com::sun::star;
 /*N*/       return;
 /*N*/
 /*N*/   SdrInsertReason aReason(SDRREASON_STREAMING);
-/*N*/   FASTBOOL        bEnde=FALSE;
+/*N*/   bool        bEnde=FALSE;
 /*N*/
 /*N*/   while( rIn.GetError()==0 && !rIn.IsEof() && !bEnde )
 /*N*/   {
@@ -958,7 +879,7 @@ using namespace ::com::sun::star;
 /*?*/                                       Graphic aGraphic;
 /*?*/
 /*?*/                                       xSimStm->SetBufferSize( 32768 );
-/*?*/                                       xSimStm->SetKey( xSimStorage->GetKey() );
+/*?*/                                       xSimStm->SetCryptMaskKey( xSimStorage->GetKey() );
 /*?*/                                       *xSimStm >> aGraphic;
 /*?*/                                       xSimStm->SetBufferSize( 0 );
 /*?*/
@@ -1006,7 +927,7 @@ using namespace ::com::sun::star;
 /*?*/               aStr += ", BlockSize: ";
 /*?*/               aStr += ByteString::CreateFromInt32( aHead.GetBlockSize() );
 /*?*/
-/*?*/               DBG_ERROR(aStr.GetBuffer());
+/*?*/               OSL_FAIL(aStr.GetBuffer());
 /*?*/ #endif
 /*?*/
 /*?*/ #ifdef SVX_LIGHT
@@ -1040,11 +961,11 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*?*/ void SdrObjList::FlattenGroups()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
-/*?*/ void SdrObjList::UnGroupObj( ULONG nObjNum )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ void SdrObjList::UnGroupObj( ULONG /*nObjNum*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -1107,14 +1028,14 @@ using namespace ::com::sun::star;
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrPageGridFrameList::Clear()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ TYPEINIT1(SdrPage,SdrObjList);
 
-/*N*/ SdrPage::SdrPage(SdrModel& rNewModel, FASTBOOL bMasterPage):
+/*N*/ SdrPage::SdrPage(SdrModel& rNewModel, bool bMasterPage):
 /*N*/   SdrObjList(&rNewModel,this),
 /*N*/   pBackgroundObj( NULL )
 /*N*/ {
@@ -1149,10 +1070,6 @@ using namespace ::com::sun::star;
 /*N*/   delete pLayerAdmin;
 /*N*/ }
 
-
-
-
-
 /*N*/ void SdrPage::SetSize(const Size& aSiz)
 /*N*/ {
 /*N*/   nWdt=aSiz.Width();
@@ -1171,8 +1088,8 @@ using namespace ::com::sun::star;
 /*N*/   return nWdt;
 /*N*/ }
 
-/*N*/ void SdrPage::SetOrientation(Orientation eOri)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrPage::SetOrientation(Orientation /*eOri*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1238,13 +1155,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   return nBordLwr;
 /*N*/ }
-
-// #i3694#
-// This GetOffset() method is not needed anymore, it even leads to errors.
-//Point SdrPage::GetOffset() const
-//{
-//  return Point();
-//}
 
 /*N*/ void SdrPage::SetModel(SdrModel* pNewModel)
 /*N*/ {
@@ -1377,15 +1287,6 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ void SdrPage::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;
@@ -1424,7 +1325,7 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/   }
 /*N*/
-/*N*/   FASTBOOL bEnde=FALSE;
+/*N*/   bool bEnde=FALSE;
 /*N*/   while (rIn.GetError()==0 && !rIn.IsEof() && !bEnde) {
 /*N*/       SdrIOHeaderLookAhead aHead(rIn);   // Layerdefinitionen lesen
 /*N*/       if (aHead.IsID(SdrIOLayrID)) {
@@ -1501,45 +1402,6 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrPage::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrPage");
-/*N*/ #endif
-/*N*/   rOut.Write(SdrIOJoeMagic,4); // damit ich meine eigenen SubRecords erkenne (ab V11)
-/*N*/   { // MiscellaneousData ab V11 eingepackt
-/*N*/       SdrDownCompat aPageMiscCompat(rOut,STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aPageMiscCompat.SetID("SdrPage(Miscellaneous)");
-/*N*/ #endif
-/*N*/       rOut<<nWdt;
-/*N*/       rOut<<nHgt;
-/*N*/       rOut<<nBordLft;
-/*N*/       rOut<<nBordUpp;
-/*N*/       rOut<<nBordRgt;
-/*N*/       rOut<<nBordLwr;
-/*N*/       USHORT n=0;
-/*N*/       rOut<<n; //rPg.aName;
-/*N*/   }
-/*N*/
-/*N*/   USHORT i; // Lokale Layerdefinitionen der Seite
-/*N*/   for (i=0; i<pLayerAdmin->GetLayerCount(); i++) {
-/*?*/       rOut<<*pLayerAdmin->GetLayer(i);
-/*N*/   }
-/*N*/   for (i=0; i<pLayerAdmin->GetLayerSetCount(); i++) {
-/*?*/       rOut<<*pLayerAdmin->GetLayerSet(i);
-/*N*/   }
-/*N*/
-/*N*/   rOut<<aMasters;
-/*N*/   SdrObjList::Save(rOut);
-/*N*/
-/*N*/   BOOL bBackgroundObj = pBackgroundObj ? TRUE : FALSE;
-/*N*/   rOut << bBackgroundObj;
-/*N*/   if( pBackgroundObj )
-/*N*/       rOut << *pBackgroundObj;
-/*N*/ }
-
 /*N*/ SvStream& operator>>(SvStream& rIn, SdrPage& rPg)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return rIn;
@@ -1572,7 +1434,7 @@ using namespace ::com::sun::star;
 /*N*/   delete pBackgroundObj, pBackgroundObj = pObj;
 /*N*/ }
 
-/*N*/ void SdrPage::SetInserted( FASTBOOL bIns )
+/*N*/ void SdrPage::SetInserted( bool bIns )
 /*N*/ {
 /*N*/   if( bInserted != bIns )
 /*N*/   {
@@ -1628,7 +1490,7 @@ using namespace ::com::sun::star;
 
 
 /** returns an averaged background color of this page */
-/*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* pView ) const
+/*N*/ Color SdrPage::GetBackgroundColor( SdrPageView* /*pView*/ ) const
 /*N*/ {DBG_BF_ASSERT(0, "STRIP"); Color aColor; return aColor;
 /*N*/ }
 
@@ -1638,3 +1500,5 @@ using namespace ::com::sun::star;
 /*N*/   return GetBackgroundColor( NULL );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

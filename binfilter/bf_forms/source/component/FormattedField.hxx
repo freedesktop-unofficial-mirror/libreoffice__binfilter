@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,23 +29,13 @@
 #ifndef _FORMS_FORMATTEDFIELD_HXX_
 #define _FORMS_FORMATTEDFIELD_HXX_
 
-#ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_MULTIPLEX_HXX_
 #include <comphelper/propmultiplex.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef FORMS_ERRORBROADCASTER_HXX
 #include "errorbroadcaster.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -141,6 +132,10 @@ namespace frm
             ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
             ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
             ) const;
+
+        using OBoundControlModel::disposing;
+        using OPropertySetHelper::getFastPropertyValue;
+
         IMPLEMENT_INFO_SERVICE()
 
     // XPropertyChangeListener
@@ -188,6 +183,8 @@ namespace frm
     // ::com::sun::star::awt::XControl
         virtual void SAL_CALL setDesignMode(sal_Bool bOn) throw ( ::com::sun::star::uno::RuntimeException);
 
+        using OControl::disposing;
+
     private:
         DECL_LINK( OnKeyPressed, void* );
     };
@@ -199,3 +196,4 @@ namespace frm
 }//end of namespace binfilter
 #endif // _FORMS_FORMATTEDFIELD_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

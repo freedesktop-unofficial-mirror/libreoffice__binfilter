@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _SFX_MACROCONF_HXX
 #define _SFX_MACROCONF_HXX
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>      // SvUShorts
 #include <bf_sfx2/evntconf.hxx>
@@ -50,7 +49,7 @@ struct SfxMacroConfig_Impl;
 
 typedef SfxMacroInfo* SfxMacroInfoPtr;
 #if _SOLAR__PRIVATE
-SV_DECL_PTRARR(SfxMacroInfoArr_Impl, SfxMacroInfoPtr, 5, 5)//STRIP008 ;
+SV_DECL_PTRARR(SfxMacroInfoArr_Impl, SfxMacroInfoPtr, 5, 5)
 #else
 class SfxMacroInfoArr_Impl;
 #endif
@@ -93,10 +92,6 @@ public:
                         { return pSlot; }
 };
 
-//ASDBG obsolete >= 582
-//ASDBG class ::com::sun::star::uno::Reference< ::com::sun::star::script::XEngine > ;
-//ASDBG class ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > ;
-
 class SfxMacroConfig
 {
 friend class SfxEventConfiguration;
@@ -111,9 +106,6 @@ public:
 
     static ErrCode          Call( SbxObject*, const String&, BasicManager*,
                                 SbxArray *pArgs=NULL, SbxValue *pRet=NULL );
-//ASDBG obsolete >= 582
-//ASDBG     static void CallStarScript( const ::com::sun::star::uno::Reference< ::com::sun::star::script::XEngine > & rxEngine, const String & rCode,
-//ASDBG     const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > & rSource, void *pArgs, void *pRet );
     static SbMethod*        GetMethod_Impl( const String&, BasicManager* );
 
 #if _SOLAR__PRIVATE
@@ -125,3 +117,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

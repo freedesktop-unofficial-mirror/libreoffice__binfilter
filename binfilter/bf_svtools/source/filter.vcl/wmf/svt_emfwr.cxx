@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -816,7 +817,7 @@ void EMFWriter::ImplWriteTextRecord( const Point& rPos, const String rText, cons
 
 void EMFWriter::ImplWrite( const GDIMetaFile& rMtf )
 {
-    for( ULONG j = 0, nActionCount = rMtf.GetActionCount(); j < nActionCount; j++ )
+    for( size_t j = 0, nActionCount = rMtf.GetActionSize(); j < nActionCount; j++ )
     {
         const MetaAction*   pAction = rMtf.GetAction( j );
         const USHORT        nType = pAction->GetType();
@@ -1043,7 +1044,7 @@ void EMFWriter::ImplWrite( const GDIMetaFile& rMtf )
                 const MetaEPSAction*    pA = (const MetaEPSAction*) pAction;
                 const GDIMetaFile       aSubstitute( pA->GetSubstitute() );
 
-                for( ULONG i = 0, nCount = aSubstitute.GetActionCount(); i < nCount; i++ )
+                for( size_t i = 0, nCount = aSubstitute.GetActionSize(); i < nCount; i++ )
                 {
                     const MetaAction* pSubstAct = aSubstitute.GetAction( i );
                     if( pSubstAct->GetType() == META_BMPSCALE_ACTION )
@@ -1281,9 +1282,11 @@ void EMFWriter::ImplWrite( const GDIMetaFile& rMtf )
             break;
 
             default:
-                DBG_ERROR( ( ByteString( "EMFWriter::ImplWriteActions: unsupported MetaAction #" ) += ByteString::CreateFromInt32( nType ) ).GetBuffer() );
+                OSL_FAIL( ( ByteString( "EMFWriter::ImplWriteActions: unsupported MetaAction #" ) += ByteString::CreateFromInt32( nType ) ).GetBuffer() );
             break;
         }
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

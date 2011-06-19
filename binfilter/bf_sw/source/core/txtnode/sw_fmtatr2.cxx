@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,51 +33,25 @@
 
 #include "unomid.h"
 
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _TXTATR_HXX //autogen
 #include <txtatr.hxx>
-#endif
-#ifndef _FMTRUBY_HXX
 #include <fmtruby.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
 
-#ifndef _UNOEVENT_HXX
 #include <unoevent.hxx>     // SwHyperlinkEventDescriptor
-#endif
-#ifndef _COM_SUN_STAR_TEXT_RUBYADJUST_HDL_
 #include <com/sun/star/text/RubyAdjust.hdl>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -85,9 +60,6 @@ using namespace ::rtl;
 /*************************************************************************
 |*
 |*    class SwFmtCharFmt
-|*    Beschreibung
-|*    Ersterstellung    JP 23.11.90
-|*    Letzte Aenderung  JP 09.08.94
 |*
 *************************************************************************/
 
@@ -117,7 +89,7 @@ using namespace ::rtl;
 
 /*N*/ int SwFmtCharFmt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return GetCharFmt() == ((SwFmtCharFmt&)rAttr).GetCharFmt();
 /*N*/ }
 
@@ -138,28 +110,26 @@ using namespace ::rtl;
 /*N*/ {
 /*N*/   return pTxtAttr ? pTxtAttr->GetInfo( rInfo ) : FALSE;
 /*N*/ }
-/*N*/ BOOL SwFmtCharFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+
+/*N*/ bool SwFmtCharFmt::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   String sCharFmtName;
 /*N*/   if(GetCharFmt())
 /*N*/       SwStyleNameMapper::FillProgName(GetCharFmt()->GetName(), sCharFmtName,  GET_POOLID_CHRFMT, sal_True );
 /*N*/   rVal <<= OUString( sCharFmtName );
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
 
 /*************************************************************************
 |*
 |*    class SwFmtINetFmt
-|*    Beschreibung
-|*    Ersterstellung    AMA 02.08.96
-|*    Letzte Aenderung  AMA 02.08.96
 |*
 *************************************************************************/
 
 /*N*/ SwFmtINetFmt::SwFmtINetFmt()
 /*N*/   : SfxPoolItem( RES_TXTATR_INETFMT ),
-/*N*/   pTxtAttr( 0 ),
 /*N*/   pMacroTbl( 0 ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nINetId( 0 ),
 /*N*/   nVisitedId( 0 )
 /*N*/ {}
@@ -168,8 +138,8 @@ using namespace ::rtl;
 /*N*/   : SfxPoolItem( RES_TXTATR_INETFMT ),
 /*N*/   aURL( rURL ),
 /*N*/   aTargetFrame( rTarget ),
-/*N*/   pTxtAttr( 0 ),
 /*N*/   pMacroTbl( 0 ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nINetId( 0 ),
 /*N*/   nVisitedId( 0 )
 /*N*/ {
@@ -180,12 +150,12 @@ using namespace ::rtl;
 /*N*/ SwFmtINetFmt::SwFmtINetFmt( const SwFmtINetFmt& rAttr )
 /*N*/   : SfxPoolItem( RES_TXTATR_INETFMT ),
 /*N*/   aURL( rAttr.GetValue() ),
-/*N*/   aName( rAttr.aName ),
 /*N*/   aTargetFrame( rAttr.aTargetFrame ),
 /*N*/   aINetFmt( rAttr.aINetFmt ),
 /*N*/   aVisitedFmt( rAttr.aVisitedFmt ),
-/*N*/   pTxtAttr( 0 ),
+/*N*/   aName( rAttr.aName ),
 /*N*/   pMacroTbl( 0 ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nINetId( rAttr.nINetId ),
 /*N*/   nVisitedId( rAttr.nVisitedId )
 /*N*/ {
@@ -204,7 +174,7 @@ using namespace ::rtl;
 
 /*N*/ int SwFmtINetFmt::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   BOOL bRet = SfxPoolItem::operator==( (SfxPoolItem&) rAttr )
 /*N*/               && aURL == ((SwFmtINetFmt&)rAttr).aURL
 /*N*/               && aName == ((SwFmtINetFmt&)rAttr).aName
@@ -282,9 +252,9 @@ using namespace ::rtl;
 
 
 
-/*N*/ BOOL SwFmtINetFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwFmtINetFmt::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
+/*N*/   bool bRet = true;
 /*N*/   XubString sVal;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch(nMemberId)
@@ -326,14 +296,14 @@ using namespace ::rtl;
 /*N*/       }
 /*N*/       break;
 /*N*/       default:
-/*N*/           bRet = FALSE;
+/*N*/           bRet = false;
 /*N*/   }
 /*N*/   rVal <<= OUString(sVal);
 /*N*/   return bRet;
 /*N*/ }
-/*N*/ BOOL SwFmtINetFmt::PutValue( const uno::Any& rVal, BYTE nMemberId  )
+/*N*/ bool SwFmtINetFmt::PutValue( const uno::Any& rVal, BYTE nMemberId  )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
+/*N*/   bool bRet = TRUE;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/
 /*N*/   // all properties except HyperlinkEvents are of type string, hence
@@ -355,14 +325,14 @@ using namespace ::rtl;
 /*?*/       else
 /*?*/       {
 /*?*/           // wrong type!
-/*?*/           bRet = FALSE;
+/*?*/           bRet = false;
 /*?*/       }
 /*N*/   }
 /*N*/   else
 /*N*/   {
 /*N*/       // all string properties:
 /*N*/       if(rVal.getValueType() != ::getCppuType((::rtl::OUString*)0))
-/*N*/           return FALSE;
+/*N*/           return false;
 /*N*/       XubString sVal = *(::rtl::OUString*)rVal.getValue();
 /*N*/       switch(nMemberId)
 /*N*/       {
@@ -393,7 +363,7 @@ using namespace ::rtl;
 /*?*/           }
 /*?*/           break;
 /*?*/           default:
-/*?*/               bRet = FALSE;
+/*?*/               bRet = false;
 /*N*/       }
 /*N*/   }
 /*N*/   return bRet;
@@ -407,9 +377,10 @@ using namespace ::rtl;
 /*N*/ SwFmtRuby::SwFmtRuby( const String& rRubyTxt )
 /*N*/   : SfxPoolItem( RES_TXTATR_CJK_RUBY ),
 /*N*/   sRubyTxt( rRubyTxt ),
+/*N*/   pTxtAttr( 0 ),
 /*N*/   nCharFmtId( 0 ),
-/*N*/   nPosition( 0 ), nAdjustment( 0 ),
-/*N*/   pTxtAttr( 0 )
+/*N*/   nPosition( 0 ),
+/*N*/   nAdjustment( 0 )
 /*N*/ {
 /*N*/ }
 
@@ -417,9 +388,10 @@ using namespace ::rtl;
 /*?*/   : SfxPoolItem( RES_TXTATR_CJK_RUBY ),
 /*?*/   sRubyTxt( rAttr.sRubyTxt ),
 /*?*/   sCharFmtName( rAttr.sCharFmtName ),
+/*?*/   pTxtAttr( 0 ),
 /*?*/   nCharFmtId( rAttr.nCharFmtId),
-/*?*/   nPosition( rAttr.nPosition ), nAdjustment( rAttr.nAdjustment ),
-/*?*/   pTxtAttr( 0 )
+/*?*/   nPosition( rAttr.nPosition ),
+/*?*/   nAdjustment( rAttr.nAdjustment )
 /*?*/ {
 /*?*/ }
 
@@ -440,7 +412,7 @@ using namespace ::rtl;
 
 int SwFmtRuby::operator==( const SfxPoolItem& rAttr ) const
 {
-    ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+    OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
     return sRubyTxt == ((SwFmtRuby&)rAttr).sRubyTxt &&
            sCharFmtName == ((SwFmtRuby&)rAttr).sCharFmtName &&
            nCharFmtId == ((SwFmtRuby&)rAttr).nCharFmtId &&
@@ -453,10 +425,10 @@ SfxPoolItem* SwFmtRuby::Clone( SfxItemPool* ) const
     return new SwFmtRuby( *this );
 }
 
-BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
+bool SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
                             BYTE nMemberId ) const
 {
-    BOOL bRet = TRUE;
+    bool bRet = true;
     nMemberId &= ~CONVERT_TWIPS;
     switch( nMemberId )
     {
@@ -476,14 +448,14 @@ BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
         }
         break;
         default:
-            bRet = FALSE;
+            bRet = false;
     }
     return bRet;
 }
-/*N*/ BOOL SwFmtRuby::PutValue( const ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SwFmtRuby::PutValue( const ::com::sun::star::uno::Any& rVal,
 /*N*/                           BYTE nMemberId  )
 /*N*/ {
-/*N*/   BOOL bRet = TRUE;
+/*N*/   bool bRet = TRUE;
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch( nMemberId )
 /*N*/   {
@@ -496,7 +468,7 @@ BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/       break;
 /*N*/       case MID_RUBY_ADJUST:
 /*N*/       {
-/*N*/           sal_Int16 nSet; rVal >>= nSet;
+/*N*/           sal_Int16 nSet(0); rVal >>= nSet;
 /*N*/           if(nSet >= 0 && nSet <= ::com::sun::star::text::RubyAdjust_INDENT_BLOCK)
 /*N*/               nAdjustment = nSet;
 /*N*/           else
@@ -522,9 +494,11 @@ BOOL SwFmtRuby::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/         }
 /*N*/         break;
 /*N*/       default:
-/*N*/           bRet = FALSE;
+/*N*/           bRet = false;
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

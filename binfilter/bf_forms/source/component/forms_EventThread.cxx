@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_EVENT_THREAD_HXX_
 #include "EventThread.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -142,7 +139,8 @@ void OComponentEventThread::addEvent( const EventObject* _pEvt,
 }
 
 //---------------------------------------------------------------------
-//--- 22.08.01 15:48:15 -----------------------------------------------
+
+
 
 void OComponentEventThread::implStarted( )
 {
@@ -150,7 +148,8 @@ void OComponentEventThread::implStarted( )
 }
 
 //---------------------------------------------------------------------
-//--- 22.08.01 15:48:16 -----------------------------------------------
+
+
 
 void OComponentEventThread::implTerminated( )
 {
@@ -158,17 +157,20 @@ void OComponentEventThread::implTerminated( )
 }
 
 //---------------------------------------------------------------------
-//--- 22.08.01 15:47:31 -----------------------------------------------
+
+
 
 void SAL_CALL OComponentEventThread::kill()
 {
-    OComponentEventThread_TBASE::kill();
+    OComponentEventThread_TBASE::terminate();
+    OComponentEventThread_TBASE::join();
 
     implTerminated( );
 }
 
 //---------------------------------------------------------------------
-//--- 22.08.01 15:47:33 -----------------------------------------------
+
+
 
 void SAL_CALL OComponentEventThread::onTerminated()
 {
@@ -237,3 +239,5 @@ void OComponentEventThread::run()
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

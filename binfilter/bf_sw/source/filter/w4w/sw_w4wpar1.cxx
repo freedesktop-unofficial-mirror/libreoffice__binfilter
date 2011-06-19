@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,193 +35,73 @@
 #include <string.h>
 #include <stdio.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _SVX_PAPERINF_HXX
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_PBINITEM_HXX //autogen
 #include <bf_svx/pbinitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX //autogen
 #include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
 
-#ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>
-#endif
-#ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
-#endif
-#ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>          // fuer SwPam
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>      // MAX_ASCII_PARA
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _DOCUFLD_HXX
 #include <docufld.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // RES_POOLCOLL_STANDARD
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>          // fuer den Attribut Stack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>
-#endif
-#ifndef _W4WFLT_HXX
 #include <w4wflt.hxx>           // fuer den W4W Parser
-#endif
-#ifndef _FLTINI_HXX
 #include <fltini.hxx>
-#endif
-#ifndef _SWFLTOPT_HXX
 #include <swfltopt.hxx>
-#endif
-#ifndef _FLDDAT_HXX
 #include <flddat.hxx>           // class SwDateTimeField
-#endif
-#ifndef _SWUNOHELPER_HXX
 #include <swunohelper.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
+#include <sal/macros.h>
+
 #include <swerror.h>
-#endif
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>          // ...SetPercent()
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
-#endif
 namespace binfilter {
 
 #define HOR_SICHER 100      // Horizontale Bereiche werden mindestens so
@@ -229,7 +110,7 @@ namespace binfilter {
 #define MOGEL_WW6       // Bei WW6 werden PGW und SFL ignoriert, da falsch
 
 
-#define CHARBUF_SIZE (sizeof( aCharBuffer )/sizeof( aCharBuffer[0]))
+#define CHARBUF_SIZE (SAL_N_ELEMENTS( aCharBuffer ))
 
 // #define bInsertMode FALSE
 
@@ -264,9 +145,7 @@ static USHORT GetBitCnt( register ULONG n )
 #**************************************************************************/
 
 extern "C" {
-#if defined(PM2) && defined(ZTC)
-    #define COMPRECORD_MODIFIER __CLIB
-#elif defined( WNT ) && defined( _CRTAPI1 )
+#if defined( WNT ) && defined( _CRTAPI1 )
 // nur beim MSC von den NT Disks ist _CRTAPI1 definiert, nicht bei VC++
     #define COMPRECORD_MODIFIER _CRTAPI1
 #elif defined( WNT )
@@ -289,145 +168,144 @@ extern "C" {
 
 static BOOL bSortRecordTab = FALSE;
 static W4WRecord aRecordTab[] = {
-    'A', 'F', 'R',  &SwW4WParser::Read_BeginFlushRight,
-    'A', 'P', 'F',  &SwW4WParser::Read_EndAbsPosObj,
-    'A', 'P', 'O',  &SwW4WParser::Read_BeginAbsPosObj,
-    'B', 'B', 'T',  &SwW4WParser::Read_BeginBold,
-    'B', 'C', 'L',  &SwW4WParser::Read_BeginColoredText,
-    'B', 'C', 'M',  &SwW4WParser::Read_BeginColumnMode,
-    'B', 'C', 'O',  &SwW4WParser::Read_BeginTabCell,
-    'B', 'C', 'S',  &SwW4WParser::Read_BeginSmallCaps,
-    'B', 'C', 'U',  &SwW4WParser::Read_BeginUpperCaps,
-    'B', 'D', 'U',  &SwW4WParser::Read_BeginDoubleUnderline,
-    'B', 'H', 'P',  &SwW4WParser::Read_BeginHyphen,
-    'B', 'H', 'T',  &SwW4WParser::Read_BeginHiddenText,
-    'B', 'M', 'T',  &SwW4WParser::Read_BeginMarkedText,
-    'B', 'R', 'J',  &SwW4WParser::Read_BeginRightJustify,
-    'B', 'R', 'O',  &SwW4WParser::Read_BeginTabRow,
-    'B', 'S', 'O',  &SwW4WParser::Read_BeginStrikeOut,
-    'B', 'S', 'P',  &SwW4WParser::Read_BeginShadow,
+    {{'A', 'F', 'R'},  &SwW4WParser::Read_BeginFlushRight},
+    {{'A', 'P', 'F'},  &SwW4WParser::Read_EndAbsPosObj},
+    {{'A', 'P', 'O'},  &SwW4WParser::Read_BeginAbsPosObj},
+    {{'B', 'B', 'T'},  &SwW4WParser::Read_BeginBold},
+    {{'B', 'C', 'L'},  &SwW4WParser::Read_BeginColoredText},
+    {{'B', 'C', 'M'},  &SwW4WParser::Read_BeginColumnMode},
+    {{'B', 'C', 'O'},  &SwW4WParser::Read_BeginTabCell},
+    {{'B', 'C', 'S'},  &SwW4WParser::Read_BeginSmallCaps},
+    {{'B', 'C', 'U'},  &SwW4WParser::Read_BeginUpperCaps},
+    {{'B', 'D', 'U'},  &SwW4WParser::Read_BeginDoubleUnderline},
+    {{'B', 'H', 'P'},  &SwW4WParser::Read_BeginHyphen},
+    {{'B', 'H', 'T'},  &SwW4WParser::Read_BeginHiddenText},
+    {{'B', 'M', 'T'},  &SwW4WParser::Read_BeginMarkedText},
+    {{'B', 'R', 'J'},  &SwW4WParser::Read_BeginRightJustify},
+    {{'B', 'R', 'O'},  &SwW4WParser::Read_BeginTabRow},
+    {{'B', 'S', 'O'},  &SwW4WParser::Read_BeginStrikeOut},
+    {{'B', 'S', 'P'},  &SwW4WParser::Read_BeginShadow},
 
-    'B', 'T', 'F',  &SwW4WParser::Read_BeginTextFlow,           // FrameMaker
+    {{'B', 'T', 'F'},  &SwW4WParser::Read_BeginTextFlow},           // FrameMaker
 
-    'B', 'U', 'L',  &SwW4WParser::Read_BeginUnderline,
-    'C', 'D', 'S',  &SwW4WParser::Read_ColumnsDefinition,
-    'C', 'M', 'T',  &SwW4WParser::Read_CommentLine,
-    'C', 'T', 'X',  &SwW4WParser::Read_BeginCenterText,
-    'D', 'I', 'D',  &SwW4WParser::Read_DefineDocumentType,
-    'D', 'T', 'B',  &SwW4WParser::Read_Tab,
-    'D', 'T', 'F',  &SwW4WParser::Read_DateTime,
-    'E', 'A', 'T',  &SwW4WParser::Read_EndFlushRight,
-    'E', 'B', 'S',  &SwW4WParser::Read_EndSubScript,
-    'E', 'B', 'T',  &SwW4WParser::Read_EndBold,
-    'E', 'C', 'L',  &SwW4WParser::Read_EndColoredText,
-    'E', 'C', 'M',  &SwW4WParser::Read_EndColumnMode,
-    'E', 'C', 'S',  &SwW4WParser::Read_EndSmallCaps,
-    'E', 'C', 'T',  &SwW4WParser::Read_EndCenterText,
-    'E', 'C', 'U',  &SwW4WParser::Read_EndUpperCaps,
-    'E', 'D', 'U',  &SwW4WParser::Read_EndDoubleUnderline,
-    'E', 'F', 'N',  &SwW4WParser::Read_FootNoteEnd,
-    'E', 'F', 'T',  &SwW4WParser::Read_FootNoteEnd,
-    'E', 'H', 'P',  &SwW4WParser::Read_EndHyphen,
-    'E', 'H', 'T',  &SwW4WParser::Read_EndHiddenText,
-    'E', 'K', 'R',  &SwW4WParser::Read_EndKerning,
-    'E', 'M', 'T',  &SwW4WParser::Read_EndMarkedText,
-    'E', 'P', 'N',  &SwW4WParser::Read_EndOfParaNum,
-    'E', 'P', 'S',  &SwW4WParser::Read_EndSuperScript,
-    'E', 'R', 'J',  &SwW4WParser::Read_EndRightJustify,
-    'E', 'S', 'O',  &SwW4WParser::Read_EndStrikeOut,
-    'E', 'S', 'P',  &SwW4WParser::Read_EndShadow,
+    {{'B', 'U', 'L'},  &SwW4WParser::Read_BeginUnderline},
+    {{'C', 'D', 'S'},  &SwW4WParser::Read_ColumnsDefinition},
+    {{'C', 'M', 'T'},  &SwW4WParser::Read_CommentLine},
+    {{'C', 'T', 'X'},  &SwW4WParser::Read_BeginCenterText},
+    {{'D', 'I', 'D'},  &SwW4WParser::Read_DefineDocumentType},
+    {{'D', 'T', 'B'},  &SwW4WParser::Read_Tab},
+    {{'D', 'T', 'F'},  &SwW4WParser::Read_DateTime},
+    {{'E', 'A', 'T'},  &SwW4WParser::Read_EndFlushRight},
+    {{'E', 'B', 'S'},  &SwW4WParser::Read_EndSubScript},
+    {{'E', 'B', 'T'},  &SwW4WParser::Read_EndBold},
+    {{'E', 'C', 'L'},  &SwW4WParser::Read_EndColoredText},
+    {{'E', 'C', 'M'},  &SwW4WParser::Read_EndColumnMode},
+    {{'E', 'C', 'S'},  &SwW4WParser::Read_EndSmallCaps},
+    {{'E', 'C', 'T'},  &SwW4WParser::Read_EndCenterText},
+    {{'E', 'C', 'U'},  &SwW4WParser::Read_EndUpperCaps},
+    {{'E', 'D', 'U'},  &SwW4WParser::Read_EndDoubleUnderline},
+    {{'E', 'F', 'N'},  &SwW4WParser::Read_FootNoteEnd},
+    {{'E', 'F', 'T'},  &SwW4WParser::Read_FootNoteEnd},
+    {{'E', 'H', 'P'},  &SwW4WParser::Read_EndHyphen},
+    {{'E', 'H', 'T'},  &SwW4WParser::Read_EndHiddenText},
+    {{'E', 'K', 'R'},  &SwW4WParser::Read_EndKerning},
+    {{'E', 'M', 'T'},  &SwW4WParser::Read_EndMarkedText},
+    {{'E', 'P', 'N'},  &SwW4WParser::Read_EndOfParaNum},
+    {{'E', 'P', 'S'},  &SwW4WParser::Read_EndSuperScript},
+    {{'E', 'R', 'J'},  &SwW4WParser::Read_EndRightJustify},
+    {{'E', 'S', 'O'},  &SwW4WParser::Read_EndStrikeOut},
+    {{'E', 'S', 'P'},  &SwW4WParser::Read_EndShadow},
 
-    'E', 'T', 'F',  &SwW4WParser::Read_EndTextFlow,             // FrameMaker
+    {{'E', 'T', 'F'},  &SwW4WParser::Read_EndTextFlow},             // FrameMaker
 
-    'E', 'U', 'L',  &SwW4WParser::Read_EndUnderline,
-    'F', 'B', 'M',  &SwW4WParser::Read_FooterBottomMargin,
-//  'F', 'D', 'T',  &SwW4WParser::Read_FontDefTable,            // ueberfluessig
+    {{'E', 'U', 'L'},  &SwW4WParser::Read_EndUnderline},
+    {{'F', 'B', 'M'},  &SwW4WParser::Read_FooterBottomMargin},
 
-    'F', 'L', 'O',  &SwW4WParser::Read_Flow,                    // FrameMaker
+    {{'F', 'L', 'O'},  &SwW4WParser::Read_Flow},                    // FrameMaker
 
-    'F', 'M', ' ',  &SwW4WParser::Read_FooterMargin,
-    'F', 'N', 'I',  &SwW4WParser::Read_FootNoteInfo,
-    'F', 'N', 'T',  &SwW4WParser::Read_FootNoteStart1,
-    'F', 'T', 'N',  &SwW4WParser::Read_FootNoteStart2,
-    'H', 'C', 'B',  &SwW4WParser::Read_ColumnBreak,
-    'H', 'E', 'X',  &SwW4WParser::Read_Hex,
-    'H', 'H', 'C',  &SwW4WParser::Read_HardHyphen,
-    'H', 'H', 'L',  &SwW4WParser::Read_HardHyphen,
-    'H', 'H', 'P',  &SwW4WParser::Read_HardHyphen,
-    'H', 'F', '1',  &SwW4WParser::Read_FooterStart,
-    'H', 'F', '2',  &SwW4WParser::Read_HeaderStart,
-    'H', 'F', 'X',  &SwW4WParser::Read_HeadFootEnd,
+    {{'F', 'M', ' '},  &SwW4WParser::Read_FooterMargin},
+    {{'F', 'N', 'I'},  &SwW4WParser::Read_FootNoteInfo},
+    {{'F', 'N', 'T'},  &SwW4WParser::Read_FootNoteStart1},
+    {{'F', 'T', 'N'},  &SwW4WParser::Read_FootNoteStart2},
+    {{'H', 'C', 'B'},  &SwW4WParser::Read_ColumnBreak},
+    {{'H', 'E', 'X'},  &SwW4WParser::Read_Hex},
+    {{'H', 'H', 'C'},  &SwW4WParser::Read_HardHyphen},
+    {{'H', 'H', 'L'},  &SwW4WParser::Read_HardHyphen},
+    {{'H', 'H', 'P'},  &SwW4WParser::Read_HardHyphen},
+    {{'H', 'F', '1'},  &SwW4WParser::Read_FooterStart},
+    {{'H', 'F', '2'},  &SwW4WParser::Read_HeaderStart},
+    {{'H', 'F', 'X'},  &SwW4WParser::Read_HeadFootEnd},
 
-    'H', 'M', ' ',  &SwW4WParser::Read_HeadingMargin,
-    'H', 'T', 'M',  &SwW4WParser::Read_HeaderTopMargin,
-    'H', 'N', 'L',  &SwW4WParser::Read_HardNewLine,
-    'H', 'N', 'P',  &SwW4WParser::Read_HardNewPage,
-    'H', 'S', 'P',  &SwW4WParser::Read_HardSpace,
+    {{'H', 'M', ' '},  &SwW4WParser::Read_HeadingMargin},
+    {{'H', 'T', 'M'},  &SwW4WParser::Read_HeaderTopMargin},
+    {{'H', 'N', 'L'},  &SwW4WParser::Read_HardNewLine},
+    {{'H', 'N', 'P'},  &SwW4WParser::Read_HardNewPage},
+    {{'H', 'S', 'P'},  &SwW4WParser::Read_HardSpace},
 
-    'I', 'G', 'R',  &SwW4WParser::Read_IncludeGraphic,
-    'I', 'P', 'S',  &SwW4WParser::Read_IndentPara,
-    'I', 'T', 'F',  &SwW4WParser::Read_EndItalic,
-    'I', 'T', 'O',  &SwW4WParser::Read_BeginItalic,
-    'K', 'E', 'P',  &SwW4WParser::Read_Split,
-    'K', 'E', 'R',  &SwW4WParser::Read_BeginKerning,
-    'L', 'M', 'R',  &SwW4WParser::Read_SetLeftMarginRelease,
-    'N', 'B', 'R',  &SwW4WParser::Read_NonBreakSpace,
-    'N', 'L', 'N',  &SwW4WParser::Read_NewLineInPara,
-    'N', 'T', 'B',  &SwW4WParser::Read_NewTabTable,
-    'P', 'B', 'C',  &SwW4WParser::Read_ParaBorder,
-    'P', 'C', 'T',  &SwW4WParser::Read_Picture,
-    'P', 'D', 'S',  &SwW4WParser::Read_PictureDef,
+    {{'I', 'G', 'R'},  &SwW4WParser::Read_IncludeGraphic},
+    {{'I', 'P', 'S'},  &SwW4WParser::Read_IndentPara},
+    {{'I', 'T', 'F'},  &SwW4WParser::Read_EndItalic},
+    {{'I', 'T', 'O'},  &SwW4WParser::Read_BeginItalic},
+    {{'K', 'E', 'P'},  &SwW4WParser::Read_Split},
+    {{'K', 'E', 'R'},  &SwW4WParser::Read_BeginKerning},
+    {{'L', 'M', 'R'},  &SwW4WParser::Read_SetLeftMarginRelease},
+    {{'N', 'B', 'R'},  &SwW4WParser::Read_NonBreakSpace},
+    {{'N', 'L', 'N'},  &SwW4WParser::Read_NewLineInPara},
+    {{'N', 'T', 'B'},  &SwW4WParser::Read_NewTabTable},
+    {{'P', 'B', 'C'},  &SwW4WParser::Read_ParaBorder},
+    {{'P', 'C', 'T'},  &SwW4WParser::Read_Picture},
+    {{'P', 'D', 'S'},  &SwW4WParser::Read_PictureDef},
 
-    'P', 'D', 'T',  &SwW4WParser::Read_PageDefinitionTable,     // FrameMaker
+    {{'P', 'D', 'T'},  &SwW4WParser::Read_PageDefinitionTable},     // FrameMaker
 
-    'P', 'G', 'N',  &SwW4WParser::Read_ParagraphNumber,
-    'P', 'G', 'W',  &SwW4WParser::Read_PageWidth,
-    'P', 'L', 'N',  &SwW4WParser::Read_PrintLastPageNo,
-    'P', 'N', 'D',  &SwW4WParser::Read_ParaNumberDef,
-    'P', 'O', 'R',  &SwW4WParser::Read_PageOrient,
-    'P', 'P', 'N',  &SwW4WParser::Read_PrintPageNo,
+    {{'P', 'G', 'N'},  &SwW4WParser::Read_ParagraphNumber},
+    {{'P', 'G', 'W'},  &SwW4WParser::Read_PageWidth},
+    {{'P', 'L', 'N'},  &SwW4WParser::Read_PrintLastPageNo},
+    {{'P', 'N', 'D'},  &SwW4WParser::Read_ParaNumberDef},
+    {{'P', 'O', 'R'},  &SwW4WParser::Read_PageOrient},
+    {{'P', 'P', 'N'},  &SwW4WParser::Read_PrintPageNo},
 
-    'R', 'D', 'T',  &SwW4WParser::Read_RectangleDefinitionTable,// FrameMaker
+    {{'R', 'D', 'T'},  &SwW4WParser::Read_RectangleDefinitionTable},// FrameMaker
 
-    'R', 'M', 'I',  &SwW4WParser::Read_SetRightMarginIndent,
-    'R', 'S', 'M',  &SwW4WParser::Read_ReSetLeftRightMargin,
-    'R', 'S', 'P',  &SwW4WParser::Read_ReSetLineSpacing,
-    'R', 'U', 'L',  &SwW4WParser::Read_Ruler,
-    'S', 'A', 'F',  &SwW4WParser::Read_SetSpaceAfter,
-    'S', 'B', 'O',  &SwW4WParser::Read_StyleBasedOn,
-    'S', 'B', 'F',  &SwW4WParser::Read_SetSpaceBefore,
-    'S', 'B', 'P',  &SwW4WParser::Read_SetBottomMarginOfPage,
-    'S', 'B', 'S',  &SwW4WParser::Read_BeginSubScript,
-    'S', 'C', 'B',  &SwW4WParser::Read_ColumnBreak,
-    'S', 'E', 'P',  &SwW4WParser::Read_Separator,
-    'S', 'F', 'B',  &SwW4WParser::Read_SetTray,     //!!! konnte noch nicht getestet
+    {{'R', 'M', 'I'},  &SwW4WParser::Read_SetRightMarginIndent},
+    {{'R', 'S', 'M'},  &SwW4WParser::Read_ReSetLeftRightMargin},
+    {{'R', 'S', 'P'},  &SwW4WParser::Read_ReSetLineSpacing},
+    {{'R', 'U', 'L'},  &SwW4WParser::Read_Ruler},
+    {{'S', 'A', 'F'},  &SwW4WParser::Read_SetSpaceAfter},
+    {{'S', 'B', 'O'},  &SwW4WParser::Read_StyleBasedOn},
+    {{'S', 'B', 'F'},  &SwW4WParser::Read_SetSpaceBefore},
+    {{'S', 'B', 'P'},  &SwW4WParser::Read_SetBottomMarginOfPage},
+    {{'S', 'B', 'S'},  &SwW4WParser::Read_BeginSubScript},
+    {{'S', 'C', 'B'},  &SwW4WParser::Read_ColumnBreak},
+    {{'S', 'E', 'P'},  &SwW4WParser::Read_Separator},
+    {{'S', 'F', 'B'},  &SwW4WParser::Read_SetTray},     //!!! konnte noch nicht getestet
                                                     // werden, da W4W den Befehl anscheinend
                                                     // vergisst.
-    'S', 'F', 'L',  &SwW4WParser::Read_SetFormLenght,
-    'S', 'H', 'C',  &SwW4WParser::Read_SoftHyphen,
-    'S', 'H', 'L',  &SwW4WParser::Read_SoftHyphen,
-    'S', 'H', 'P',  &SwW4WParser::Read_SoftHyphen,
-    'S', 'L', 'G',  &SwW4WParser::Read_LangGroup,
-    'S', 'N', 'L',  &SwW4WParser::Read_SoftNewLine,
-    'S', 'N', 'P',  &SwW4WParser::Read_SoftNewPage,
-    'S', 'P', 'F',  &SwW4WParser::Read_SetPitchAndOrFont,
-    'S', 'P', 'N',  &SwW4WParser::Read_SetPageNumber,
-    'S', 'P', 'S',  &SwW4WParser::Read_BeginSuperScript,
-    'S', 'T', 'E',  &SwW4WParser::Read_StyleEnd,
-    'S', 'T', 'F',  &SwW4WParser::Read_StyleOff,
-    'S', 'T', 'M',  &SwW4WParser::Read_SetTempLeftRightMargin,
-    'S', 'T', 'P',  &SwW4WParser::Read_SetTopMarginOfPage,
-    'S', 'U', 'M',  &SwW4WParser::Read_SetUnderlineMode,
-    'S', 'T', 'Y',  &SwW4WParser::Read_StyleOn,
-    'S', 'Y', 'T',  &SwW4WParser::Read_StyleTable,
-    'T', 'A', 'B',  &SwW4WParser::Read_Tab,
+    {{'S', 'F', 'L'},  &SwW4WParser::Read_SetFormLenght},
+    {{'S', 'H', 'C'},  &SwW4WParser::Read_SoftHyphen},
+    {{'S', 'H', 'L'},  &SwW4WParser::Read_SoftHyphen},
+    {{'S', 'H', 'P'},  &SwW4WParser::Read_SoftHyphen},
+    {{'S', 'L', 'G'},  &SwW4WParser::Read_LangGroup},
+    {{'S', 'N', 'L'},  &SwW4WParser::Read_SoftNewLine},
+    {{'S', 'N', 'P'},  &SwW4WParser::Read_SoftNewPage},
+    {{'S', 'P', 'F'},  &SwW4WParser::Read_SetPitchAndOrFont},
+    {{'S', 'P', 'N'},  &SwW4WParser::Read_SetPageNumber},
+    {{'S', 'P', 'S'},  &SwW4WParser::Read_BeginSuperScript},
+    {{'S', 'T', 'E'},  &SwW4WParser::Read_StyleEnd},
+    {{'S', 'T', 'F'},  &SwW4WParser::Read_StyleOff},
+    {{'S', 'T', 'M'},  &SwW4WParser::Read_SetTempLeftRightMargin},
+    {{'S', 'T', 'P'},  &SwW4WParser::Read_SetTopMarginOfPage},
+    {{'S', 'U', 'M'},  &SwW4WParser::Read_SetUnderlineMode},
+    {{'S', 'T', 'Y'},  &SwW4WParser::Read_StyleOn},
+    {{'S', 'Y', 'T'},  &SwW4WParser::Read_StyleTable},
+    {{'T', 'A', 'B'},  &SwW4WParser::Read_Tab},
 
-    'T', 'R', 'I',  &SwW4WParser::Read_TextRectangelId,         // FrameMaker
+    {{'T', 'R', 'I'},  &SwW4WParser::Read_TextRectangelId},         // FrameMaker
 
-    'U', 'C', 'S',  &SwW4WParser::Read_UpperCharSet,
-    'W', 'O', 'N',  &SwW4WParser::Read_WidowOrphOn,
-    'W', 'O', 'Y',  &SwW4WParser::Read_WidowOrphOff,
-    'X', 'C', 'S',  &SwW4WParser::Read_ExtendCharSet
+    {{'U', 'C', 'S'},  &SwW4WParser::Read_UpperCharSet},
+    {{'W', 'O', 'N'},  &SwW4WParser::Read_WidowOrphOn},
+    {{'W', 'O', 'Y'},  &SwW4WParser::Read_WidowOrphOff},
+    {{'X', 'C', 'S'},  &SwW4WParser::Read_ExtendCharSet}
 };
 
 
@@ -659,8 +537,7 @@ void SwW4WParser::Read_SetTray()        // (SFB)
 
     if( bStyleDef ) return;
 
-    if( GetDecimal( nOldTray ) && !nError
-        && W4WR_TXTERM != GetDecimal( nTray ) || nError )
+    if ( (GetDecimal(nOldTray) && !nError && W4WR_TXTERM != GetDecimal(nTray)) || nError )
         return;
 
     pPageDesc->GetMaster().SetAttr( SvxPaperBinItem( RES_PAPER_BIN, (BYTE)nTray));
@@ -685,8 +562,10 @@ SV_DECL_PTRARR_SORT( W4WStyleIdTab, W4WStyleIdTabEntryPtr, 0, 4 )
 
 SwW4WParser::SwW4WParser( const SwPaM & rPaM, SvStream& rIstream,
                         BOOL bNewDoc, USHORT nFilterNo, const String& rVers )
-    : pCurPaM( (SwPaM*)&rPaM ), bNew( bNewDoc ), rVersion( rVers ),
-    rInp( rIstream )
+    : rVersion( rVers )
+    , pCurPaM( (SwPaM*)&rPaM )
+    , rInp( rIstream )
+    , bNew( bNewDoc )
 {
     pDoc = rPaM.GetDoc();
     rInp.Seek( STREAM_SEEK_TO_END );
@@ -694,7 +573,7 @@ SwW4WParser::SwW4WParser( const SwPaM & rPaM, SvStream& rIstream,
     nW4WFileSize = rInp.Tell();   // W4W-Datei ist
     if( !nW4WFileSize )
     {
-        ASSERT( !this, "SvStream::seek doesn't work correct" );
+        OSL_ENSURE( !this, "SvStream::seek doesn't work correct" );
         nW4WFileSize = 1;
     }
     rInp.Seek( STREAM_SEEK_TO_BEGIN );
@@ -1003,7 +882,7 @@ BOOL SwW4WParser::CallParser()
 void SwW4WParser::DeleteZStk( W4WCtrlStack*& rpStk )
 {
     Flush();
-    ASSERT(rpStk, "W4W-ControlStack bereits geloescht");
+    OSL_ENSURE(rpStk, "W4W-ControlStack bereits geloescht");
     const SwPosition& rPos = *pCurPaM->GetPoint();
     pCtrlStck->SetAttr( rPos, 0, FALSE );
     pCtrlStck->SetAttr( rPos, 0, FALSE );
@@ -1208,9 +1087,9 @@ BOOL SwW4WParser::GetString( String& rString, const int nEndCode1, const int nEn
 
 BYTE SwW4WParser::GetDeciByte( BYTE& rByteVal )
 {
-    register BYTE n;
-    register BOOL Ok = FALSE;
-    BYTE nCode;
+    BYTE n = 0;
+    BOOL Ok = FALSE;
+    BYTE nCode = 0;
 
     while( this )
     {
@@ -1240,9 +1119,9 @@ BYTE SwW4WParser::GetDeciByte( BYTE& rByteVal )
 
 BYTE SwW4WParser::GetHexByte( BYTE& rHexVal )
 {
-    register unsigned int c1 = 0;   // shorts sind schneller als char (WIN)
-    register unsigned int c2 = 0;
-    register unsigned int nRet;
+    unsigned int c1 = 0;    // shorts sind schneller als char (WIN)
+    unsigned int c2 = 0;
+    unsigned int nRet = 0;
 
     rHexVal = 0;
 
@@ -1402,7 +1281,7 @@ void SwW4WParser::Flush()
         {
             UpdatePageMarginSettings( CALLED_BY_FLUSH_OR_HNL );
         }
-        if ( nParaLen >= MAX_ASCII_PARA - CHARBUF_SIZE - 100 )
+        if ( nParaLen >= static_cast<long>(MAX_ASCII_PARA - CHARBUF_SIZE - 100) )
         {
             sal_Unicode* pBuf = aCharBuffer;
             for( ; 0 != *pBuf; ++pBuf )
@@ -1458,7 +1337,7 @@ void SwW4WParser::Read_UpperCharSet()           // (UCS)
         bWasXCS = FALSE;        // nach einem XCS ueberlesen
         return;
     }
-    BYTE c, cRet;
+    BYTE c, cRet(0);
     while( !nError && W4WR_RED != ( cRet = GetHexByte( c )) )
         if( cRet == W4WR_TXTERM )
         {
@@ -1700,8 +1579,7 @@ void SwW4WParser::Read_HardNewLine()            // (HNL)
 
     BYTE c = ReadChar();
 
-    if(    (0   == c)
-        || (EOF == c) )
+    if ( (0 == c) || (static_cast<BYTE>(EOF) == c) )
     {
         nError = ERR_CHAR;  // falsches Zeichen oder EOF
         return;
@@ -1758,9 +1636,9 @@ void SwW4WParser::Read_HardNewLine()            // (HNL)
             // wenn kein Style hart gesetzt ist
             // Override Style "Tabellenkopf", "Tabelleninhalt"
             // mit vorher gueltigem Style
-            const SwPosition& rPos = *pCurPaM->GetPoint();
-            pCtrlStck->NewAttr( rPos,  SwW4WStyle( nTabStyleId ) );
-            pCtrlStck->SetAttr( rPos, RES_FLTR_STYLESHEET );
+            const SwPosition& rLclPos = *pCurPaM->GetPoint();
+            pCtrlStck->NewAttr( rLclPos,  SwW4WStyle( nTabStyleId ) );
+            pCtrlStck->SetAttr( rLclPos, RES_FLTR_STYLESHEET );
         }
         ActivateTxtFlags();
 
@@ -1930,10 +1808,10 @@ void SwW4WParser::Read_DateTime()           // (DTF)
             pFormatter->PutandConvertEntry( *pLast, nCheckPos, nType, nKey,
                                             LANGUAGE_GERMAN,
                                             /*nLang*/LANGUAGE_SYSTEM );
-            SwDateTimeField aFld( (SwDateTimeFieldType*)
+            SwDateTimeField aLclFld( (SwDateTimeFieldType*)
                         pDoc->GetSysFldType( RES_DATETIMEFLD ),
                         &sTime == pLast ? TIMEFLD : DATEFLD, nKey );
-            pDoc->Insert( *pCurPaM, SwFmtFld( aFld ) );
+            pDoc->Insert( *pCurPaM, SwFmtFld( aLclFld ) );
         }
     }
 }
@@ -1983,7 +1861,7 @@ const SfxPoolItem* SwW4WParser::GetFmtAttr( USHORT nWhich )
     if( bStyleDef )
     {
         SwTxtFmtColl* pAktColl = GetAktColl();
-        ASSERT( pAktColl, "StyleId ungueltig" );
+        OSL_ENSURE( pAktColl, "StyleId ungueltig" );
 
         return &pAktColl->GetAttr( nWhich );
     }
@@ -1997,7 +1875,7 @@ void SwW4WParser::SetAttr( const SfxPoolItem& rAttr )
     {
         BOOL bSetAttr;
         SwTxtFmtColl* pAktColl = GetAktColl( &bSetAttr );
-        ASSERT( pAktColl, "StyleId ungueltig" );
+        OSL_ENSURE( pAktColl, "StyleId ungueltig" );
         if( bSetAttr )
             pAktColl->SetAttr( rAttr );
     }
@@ -2455,7 +2333,7 @@ void SwW4WParser::Read_NewTabTable()        // (NTB)
 
     SvxTabStopItem aTabStops( 0, 0 );
     USHORT nTabPos = 0;
-    static SvxTabAdjust __READONLY_DATA aAdjustArr[ 4 ] =
+    static SvxTabAdjust const aAdjustArr[ 4 ] =
         {   SVX_TAB_ADJUST_LEFT, SVX_TAB_ADJUST_CENTER,
             SVX_TAB_ADJUST_RIGHT, SVX_TAB_ADJUST_DECIMAL };
     USHORT nTmp;
@@ -2673,8 +2551,6 @@ void SwW4WParser::Read_SetPitchAndOrFont()      // (SPF)
             SvxFontItem aFont( ((SvxFontItem&)pDoc->GetAttrPool().GetDefaultItem(
                                 RES_CHRATR_FONT ) ));
 
-            FontFamily eFamily = FAMILY_DONTKNOW;
-
             if( sFntNm.Len() )
             {
 #if defined( WIN ) || defined ( WNT )
@@ -2706,9 +2582,6 @@ void SwW4WParser::Read_SetPitchAndOrFont()      // (SPF)
                 else if ( sFntNm.EqualsAscii( "Courier New" ))
                     sFntNm.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "Courier" ));
 #endif // MAC
-
-                if ( sFntNm.EqualsAscii( "Script" ))
-                    eFamily = FAMILY_SCRIPT;
             }
 
             switch( nOptProp )
@@ -3232,21 +3105,6 @@ void SwW4WParser::Read_SetLeftMarginRelease()           // (LMR)
     }
     SetAttr( aLR );
 
-#if 0
-    // MIB 16.5.2001: A default tab at pos 0 isn't required since 1996.
-    if( nDocType == 33 && bStyleDef && !bIsTab )
-    {
-                    // AmiPro hat nicht so irrsinnig viele Tabs im Metafile,
-                    // so dass die dort eingebaute Mimik zum Setzen eines
-                    // Default-Tabs an die Pos 0 ( fuer 1.Zeile < LRand )
-                    // nicht ausreicht.
-
-        SvxTabStopItem aTabStops( 0, 0 );
-        aTabStops.Insert( SvxTabStop( 0, SVX_TAB_ADJUST_DEFAULT ) );
-        SetAttr( aTabStops );
-        bIsTab = TRUE;
-    }
-#endif
 }
                 // fuer IPS und RSM waehrend StyleDefinition
                 // und fuer RSM bei WordPerfekt f. Win 6,7,8
@@ -3411,16 +3269,10 @@ void SwW4WParser::AdjustTempVar1( long& rHeight,
     long nMin = (nIniHdFtSiz ? nIniHdFtSiz : MM50) * 3 / 2;
     if( rHeight < nMin )
         rHeight = nMin;
-#if 0
-// why get the page upper / lower the half of the header/footer height?
-    rPgDelta   = rHeight  / 2;
-    rHdFtDelta = rPgDelta / 2;
-#else
     // then the half height for the header/footer and the other half
     // height get half the page and the header/footer distance
     rHdFtDelta = rPgDelta  = rHeight / 4;
     rHeight -= rPgDelta;
-#endif
 }
 
 
@@ -3543,7 +3395,7 @@ void SwW4WParser::SetPageDescVSpaces( SwPageDesc& rPageDesc,
                                 aUL.SetUpper( USHORT( nPgUpper ) );
                             break;
         default:            // was wollen wir denn hier ???
-                            ASSERT( !this, "eCalledByWhom has undefined value" );
+                            OSL_ENSURE( !this, "eCalledByWhom has undefined value" );
                             break;
         }
         rPageFmt.SetAttr( aUL );
@@ -3794,7 +3646,7 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
 {
     if( pStrm || pStg )
     {
-        ASSERT( !this,
+        OSL_ENSURE( !this,
         "W4W-Reader darf nur mit einem Medium aufgerufen werden" );
         return ERR_SWG_READ_ERROR;
     }
@@ -3808,7 +3660,7 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
 
     String aTmpFile;
     String sFileName( pMedium->GetPhysicalName() );
-    ASSERT( sFileName.Len(),
+    OSL_ENSURE( sFileName.Len(),
         "W4W-Reader hat keinen Dateinamen uebergeben bekommen" );
     if( !GetFilter() || !sFileName.Len() )
         return ERR_SWG_READ_ERROR;
@@ -3823,8 +3675,8 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
 
         // den Stream kommt mit dem internen Format oeffnen
         SfxMedium aMedium( aTmpFile, STREAM_READ, TRUE );
-        SvStream* pStrm = aMedium.GetInStream();
-        if( pStrm && SVSTREAM_OK == pStrm->GetError() )
+        SvStream* pLclStrm = aMedium.GetInStream();
+        if( pLclStrm && SVSTREAM_OK == pLclStrm->GetError() )
         {
             if( !bInsertMode )
             {
@@ -3832,7 +3684,7 @@ ULONG W4WReader::Read( SwDoc &rDoc, SwPaM &rPam, const String & )
                 Reader::ResetFrmFmts( rDoc );
             }
 
-            SwW4WParser *pParser = new SwW4WParser( rPam, *pStrm,
+            SwW4WParser *pParser = new SwW4WParser( rPam, *pLclStrm,
                             !bInsertMode, GetFilter(), GetVersion() );
             if( !pParser->CallParser() )
 // !! hier muss der interne Fehler noch auf den SWG-Fehler gemappt werden !!
@@ -3875,3 +3727,5 @@ void W4WReader::SetFltName( const String& rFltName )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

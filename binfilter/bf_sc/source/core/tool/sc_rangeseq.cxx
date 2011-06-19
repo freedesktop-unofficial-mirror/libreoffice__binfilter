@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -247,7 +245,7 @@ using namespace ::com::sun::star;
 /*N*/   else if ( eType == CELLTYPE_FORMULA )
 /*N*/       return ((ScFormulaCell&)rCell).GetValue();      // called only if result is value
 /*N*/
-/*N*/   DBG_ERROR( "GetValueFromCell: wrong type" );
+/*N*/   OSL_FAIL( "GetValueFromCell: wrong type" );
 /*N*/   return 0;
 /*N*/ }
 
@@ -340,3 +338,5 @@ using namespace ::com::sun::star;
 //------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

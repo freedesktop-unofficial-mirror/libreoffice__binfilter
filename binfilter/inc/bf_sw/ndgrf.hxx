@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
-#ifndef _BF_GOODIES_GRAPHICOBJECT_HXX //autogen
 #include <bf_goodies/graphicobject.hxx>
-#endif
-#ifndef _NDNOTXT_HXX
 #include <ndnotxt.hxx>
-#endif
 namespace binfilter {
 
 class SvStorage;
@@ -58,7 +53,6 @@ class SwGrfNode: public SwNoTxtNode
     BfGraphicObject aGrfObj;
     ::binfilter::SvBaseLinkRef refLink;     // falls Grafik nur als Link, dann Pointer gesetzt
     Size nGrfSize;
-//  String aStrmName;           // SW3: Name des Storage-Streams fuer Embedded
     String aNewStrmName;        // SW3/XML: new stream name (either SW3 stream
                                 // name or package url)
     String aLowResGrf;          // HTML: LowRes Grafik (Ersatzdarstellung bis
@@ -90,7 +84,7 @@ class SwGrfNode: public SwNoTxtNode
                SwAttrSet* pAutoAttr = 0 );
 
     void InsertLink( const String& rGrfName, const String& rFltName );
-    BOOL ImportGraphic( SvStream& rStrm ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001  BOOL ImportGraphic( SvStream& rStrm );
+    BOOL ImportGraphic( SvStream& ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
     BOOL HasStreamName() const { return aGrfObj.HasUserData(); }
     BOOL GetStreamStorageNames( String& rStrmName, String& rStgName ) const;
 
@@ -150,7 +144,7 @@ public:
     void SetNewStreamName( const String& r ) { aNewStrmName = r; }
     void SaveCompleted( BOOL bClear );
     // is this node selected by any shell?
-    BOOL IsSelected() const{DBG_BF_ASSERT(0, "STRIP");return FALSE;} ;//STRIP001    BOOL IsSelected() const;
+    BOOL IsSelected() const{DBG_BF_ASSERT(0, "STRIP");return FALSE;} ;
 #endif
 
         // Der Grafik sagen, dass sich der Node im Undobereich befindet
@@ -203,3 +197,5 @@ inline BOOL SwGrfNode::IsLinkedDDE() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

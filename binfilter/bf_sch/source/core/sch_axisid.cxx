@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,22 +32,12 @@
 
 #include "axisid.hxx"
 #include "glob.hxx"
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 /*************************************************************************
 |*
 |* Objekt-Id ermitteln;
 |* Liefert -1, wenn das Objekt keine Id hat
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Objekt mit Id suchen;
-|* liefert NULL, wenn kein Objekt gefunden wurde.
 |*
 \************************************************************************/
 
@@ -77,35 +68,14 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Kopier-Konstruktor
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Kopie erzeugen
 |*
 \************************************************************************/
 
-/*N*/ SdrObjUserData* SchAxisId::Clone(SdrObject *pObj) const
+/*N*/ SdrObjUserData* SchAxisId::Clone(SdrObject *) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchAxisId (*this);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Daten in Stream schreiben
-|*
-\************************************************************************/
-
-/*N*/ void SchAxisId::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/
-/*N*/   rOut << nAxisId;
-/*N*/ }
-
 
 /*************************************************************************
 |*
@@ -123,3 +93,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

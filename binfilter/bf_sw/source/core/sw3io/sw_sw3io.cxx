@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,19 +32,13 @@
 #endif
 #include <stdio.h>
 #define _SVSTDARR_USHORTS
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"
 #include "rootfrm.hxx"
@@ -125,7 +120,7 @@ namespace binfilter {
 /*N*/           pImp->pDoc->PrtOLENotify( TRUE );
 /*N*/       }
 /*N*/
-/*N*/       // unbenutzte OLE-Objekte l”schen, falls ein 3.0-Dok
+/*N*/       // unbenutzte OLE-Objekte l?schen, falls ein 3.0-Dok
 /*N*/       // geladen wird
 /*N*/       if( pImp->nVersion<=SWG_SHORTFIELDS &&
 /*N*/           pImp->bNormal && !pImp->bBlock && !pImp->bInsert && !pImp->nRes  )
@@ -160,13 +155,6 @@ namespace binfilter {
 // neu geoeffnet werden.
 
 
- BOOL Sw3Io::SaveCompleted( SvStorage* pNew )
- {
-    OSL_ASSERT("method removed");
-  return TRUE;
- }
-
-
 /*N*/  SvStorage* Sw3Io::GetStorage()
 /*N*/  {
 /*N*/   if( !pImp->pRoot.Is() )
@@ -197,13 +185,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // Man nehme die Adresse von cBuf auf dem Stack als Anfangswert
 /*N*/   // aber nur ein einziges mal (bug fix 20976)
-/*N*/ #ifdef SINIX
-/*N*/   static ULONG nId = 0;
-/*N*/   if ( ! nId )
-/*N*/       nId = (ULONG) cBuf;
-/*N*/ #else
 /*N*/   static ULONG nId = (ULONG) cBuf;
-/*N*/ #endif
 /*N*/
 /*N*/   nId++;
 /*N*/   for( ;; )
@@ -221,3 +203,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

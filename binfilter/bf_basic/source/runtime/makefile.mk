@@ -41,42 +41,8 @@ INC+= -I$(PRJ)$/inc$/bf_basic
 # --- Allgemein -----------------------------------------------------------
 
 SLOFILES=	\
-    $(SLO)$/basrdll.obj	\
-
-#	$(SLO)$/inputbox.obj	\
-    $(SLO)$/runtime.obj	\
-    $(SLO)$/step0.obj	\
-    $(SLO)$/step1.obj	\
-    $(SLO)$/step2.obj	\
-    $(SLO)$/iosys.obj	\
-    $(SLO)$/stdobj.obj	\
-    $(SLO)$/stdobj1.obj	\
-    $(SLO)$/methods.obj	\
-    $(SLO)$/methods1.obj	\
-    $(SLO)$/props.obj	\
-    $(SLO)$/ddectrl.obj	\
-    $(SLO)$/dllmgr.obj
-
-.IF "$(GUI)$(CPU)" == "WINI"
-#SLOFILES+=	$(SLO)$/win.obj
-.ENDIF
-
-.IF "$(GUI)$(CPU)" == "WNTI"
-#SLOFILES+=	$(SLO)$/wnt.obj
-.ENDIF
-
-.IF "$(GUI)$(CPU)" == "OS2I"
-#SLOFILES+= $(SLO)$/os2.obj
-.ENDIF
-
-#EXCEPTIONSFILES=$(SLO)$/step0.obj	\
-        $(SLO)$/step2.obj	\
-        $(SLO)$/methods.obj	\
-        $(SLO)$/methods1.obj	\
-        $(SLO)$/iosys.obj	\
-        $(SLO)$/runtime.obj
+    $(SLO)$/basrdll.obj
 
 # --- Targets -------------------------------------------------------------
 
 .INCLUDE :  target.mk
-

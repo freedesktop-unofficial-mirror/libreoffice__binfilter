@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _SORTOPT_HXX
 #include <sortopt.hxx>
-#endif
 #include <tools/debug.hxx>
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
@@ -67,9 +64,6 @@ class DropEvent;
 struct ChartSelectionInfo;
 class SfxStringListItem;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 
 class SwWrtShell: public SwFEShell
@@ -126,7 +120,7 @@ public:
     BOOL    IsExtSel() const { return bSelWrd || bSelLn; }
 
     //Basiscursortravelling
-typedef FASTBOOL (SwWrtShell:: *FNSimpleMove)();
+typedef bool (SwWrtShell:: *FNSimpleMove)();
 
     //setzen des Cursors; merken der alten Position fuer Zurueckblaettern.
     DECL_LINK( ExecFlyMac, void * );
@@ -217,11 +211,12 @@ private:
         BOOL        bAdd,
                     bExt,
                     bIns;
-        ModeStack(ModeStack *pNextMode, BOOL _bIns, BOOL _bExt, BOOL _bAdd):
-            pNext(pNextMode),
-            bIns(_bIns),
-            bExt(_bExt),
-            bAdd(_bAdd) {}
+        ModeStack(ModeStack *pNextMode, BOOL _bIns, BOOL _bExt, BOOL _bAdd)
+            : pNext(pNextMode)
+            , bAdd(_bAdd)
+            , bExt(_bExt)
+            , bIns(_bIns)
+        {}
     } *pModeStack;
 
     // Cursor bei PageUp / -Down mitnehmen
@@ -242,7 +237,7 @@ private:
 
         CrsrStack( BOOL bValid, BOOL bFrmSel, const Point &rDocPos,
                     SwTwips lOff, CrsrStack *pN )
-            : aDocPos(rDocPos), lOffset(lOff), pNext(pN)
+            : aDocPos(rDocPos), pNext(pN), lOffset(lOff)
         {
             bValidCurPos = bValid;
             bIsFrmSel = bFrmSel;
@@ -304,7 +299,7 @@ private:
  inline void SwWrtShell::ResetCursorStack()
  {
      if ( HasCrsrStack() )
-    {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _ResetCursorStack();
+    {DBG_BF_ASSERT(0, "STRIP"); }
  }
 
 inline void SwWrtShell::SelTblCells(const Link &rLink, BOOL bMark )
@@ -324,3 +319,5 @@ inline BOOL SwWrtShell::IsInClickToEdit() const { return bIsInClickToEdit; }
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

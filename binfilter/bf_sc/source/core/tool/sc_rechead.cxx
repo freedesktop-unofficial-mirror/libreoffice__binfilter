@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -70,7 +68,7 @@ namespace binfilter {
 /*N*/   if (nReadEnd <= nDataEnd)
 /*N*/       return nDataEnd-nReadEnd;
 /*N*/
-/*N*/   DBG_ERROR("Fehler bei ScReadHeader::BytesLeft");
+/*N*/   OSL_FAIL("Fehler bei ScReadHeader::BytesLeft");
 /*N*/   return 0;
 /*N*/ }
 
@@ -114,7 +112,7 @@ namespace binfilter {
 /*N*/   rStream >> nID;
 /*N*/   if (nID != SCID_SIZES)
 /*N*/   {
-/*N*/       DBG_ERROR("SCID_SIZES nicht gefunden");
+/*N*/       OSL_FAIL("SCID_SIZES nicht gefunden");
 /*N*/       if ( rStream.GetError() == SVSTREAM_OK )
 /*N*/           rStream.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/
@@ -179,7 +177,7 @@ namespace binfilter {
 /*N*/   if (nReadEnd <= nEntryEnd)
 /*N*/       return nEntryEnd-nReadEnd;
 /*N*/
-/*N*/   DBG_ERROR("Fehler bei ScMultipleReadHeader::BytesLeft");
+/*N*/   OSL_FAIL("Fehler bei ScMultipleReadHeader::BytesLeft");
 /*N*/   return 0;
 /*N*/ }
 
@@ -231,3 +229,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

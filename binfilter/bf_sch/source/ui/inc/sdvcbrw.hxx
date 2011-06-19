@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef _SDVCBRW_HXX
 #define _SDVCBRW_HXX
 /*
-#ifndef _SVX_VCBRW_HXX //autogen
 #include <bf_svx/vcbrw.hxx>
-#endif
 */
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 namespace binfilter {
 
 class SdrView;
@@ -72,3 +67,5 @@ public:
 
 } //namespace binfilter
 #endif      // _SDVCBRW_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

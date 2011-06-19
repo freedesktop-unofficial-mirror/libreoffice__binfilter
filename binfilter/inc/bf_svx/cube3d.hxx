@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -72,10 +71,12 @@ public:
     TYPEINFO();
     E3dCubeObj();
 
+    using SdrAttrObj::operator=;
+
     virtual UINT16 GetObjIdentifier() const;
     virtual SdrObject* DoConvertToPolyObj(BOOL bBezier) const;
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // Geometrieerzeugung
@@ -100,3 +101,5 @@ public:
 
 }//end of namespace binfilter
 #endif          // _E3D_CUBE3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

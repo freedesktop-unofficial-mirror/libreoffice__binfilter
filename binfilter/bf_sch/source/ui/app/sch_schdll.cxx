@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -47,7 +48,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void __EXPORT SchDLL::Init()
+/*N*/ void SchDLL::Init()
 /*N*/ {
 /*N*/   // called directly after loading the DLL
 /*N*/   // do whatever you want, you may use Sd-DLL too
@@ -72,7 +73,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void __EXPORT SchDLL::Exit()
+/*N*/ void SchDLL::Exit()
 /*N*/ {
 /*N*/   // the SchModule must be destroyed
 /*N*/   SchModuleDummy** ppShlPtr = (SchModuleDummy**) GetAppData(BF_SHL_SCH);
@@ -81,8 +82,8 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ extern_c void __LOADONCALLAPI SchSetTransparent( SvInPlaceObjectRef aIPObj, BOOL bTransp )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ extern_c void __LOADONCALLAPI SchSetTransparent( SvInPlaceObjectRef, BOOL )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
@@ -92,7 +93,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ extern_c void __LOADONCALLAPI SchUpdate( SvInPlaceObjectRef aIPObj,
-/*N*/                                        SchMemChart* pData, OutputDevice* pOut )
+/*N*/                                        SchMemChart* pData, OutputDevice* /*pOut*/ )
 /*N*/ {
 /*N*/   SchChartDocShellRef aSchChartDocShellRef = &aIPObj;
 /*N*/
@@ -100,7 +101,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       if( !pData )
-/*N*/           DBG_TRACE( "SchUpdate was called without MemChart" );
+/*N*/           OSL_TRACE( "SchUpdate was called without MemChart" );
 /*N*/ #endif
 /*N*/       ChartModel& rDoc = aSchChartDocShellRef->GetDoc();
 /*N*/
@@ -153,7 +154,7 @@ namespace binfilter {
 /*N*/       rDoc.PutAttr(rAttr);
 /*N*/
 /*N*/       if( pOut )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     aSchChartDocShellRef->UpdateChart(pOut);
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       else
 /*N*/           rDoc.BuildChart(TRUE);
 /*N*/   }
@@ -198,7 +199,7 @@ namespace binfilter {
 
 /*N*/ extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartNone ()
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 return new SchMemChart;
+/*N*/   DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 /*************************************************************************
@@ -218,9 +219,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartCopy (const SchMemChart &rMemChart)
+/*N*/ extern_c SchMemChart* __LOADONCALLAPI SchNewMemChartCopy (const SchMemChart &)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchMemChart (rMemChart);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************
@@ -229,8 +230,8 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ extern_c ChartModel* __LOADONCALLAPI SchGetModel (SvInPlaceObjectRef aIPObj)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ extern_c ChartModel* __LOADONCALLAPI SchGetModel (SvInPlaceObjectRef)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchGetDefaultForColumnText(
@@ -251,22 +252,19 @@ namespace binfilter {
 /*N*/   rMemChart.ConvertChartRangeForWriter( bOldToNew );
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchConvertChartRangeForCalc(
-/*N*/                           SchMemChart& rMemChart, BOOL bOldToNew )
+/*N*/ extern_c void __LOADONCALLAPI SchConvertChartRangeForCalc( SchMemChart&, BOOL )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.ConvertChartRangeForCalc( bOldToNew );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartResetTranslation(
-/*N*/                           SchMemChart& rMemChart, long *pTable,long nCnt )
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartResetTranslation( SchMemChart&, long *,long )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.ResetTranslation( pTable, nCnt );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartUpdateTranslation(
-/*N*/                           SchMemChart& rMemChart, long *pTable, long nCnt )
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartUpdateTranslation( SchMemChart&, long *, long )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.UpdateTranslation( pTable, nCnt );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ extern_c void __LOADONCALLAPI SchMemChartInsertCols( SchMemChart& rMemChart,
@@ -275,34 +273,31 @@ namespace binfilter {
 /*N*/   rMemChart.InsertCols( nAtCol, nCount );
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartRemoveCols( SchMemChart& rMemChart,
-/*N*/                                               short nAtCol, short nCount)
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartRemoveCols( SchMemChart&, short, short)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.RemoveCols( nAtCol, nCount );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartInsertRows( SchMemChart& rMemChart,
-/*N*/                                               short nAtRow, short nCount)
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartInsertRows( SchMemChart& rMemChart, short nAtRow, short nCount)
 /*N*/ {
 /*N*/   rMemChart.InsertRows( nAtRow, nCount );
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartRemoveRows( SchMemChart& rMemChart,
-/*N*/                                               short nAtRow, short nCount)
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartRemoveRows( SchMemChart&, short, short)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.RemoveRows( nAtRow, nCount );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartSwapCols( SchMemChart& rMemChart,
-/*N*/                                               int nAtCol1, int nAtCol2)
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartSwapCols( SchMemChart&, int, int)
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapCols( nAtCol1, nAtCol2 );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ extern_c void __LOADONCALLAPI SchMemChartSwapRows( SchMemChart& rMemChart,
-/*N*/                                               int nAtRow1,int nAtRow2)
+/*N*/ extern_c void __LOADONCALLAPI SchMemChartSwapRows( SchMemChart&, int, int )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 rMemChart.SwapRows( nAtRow1, nAtRow2 );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

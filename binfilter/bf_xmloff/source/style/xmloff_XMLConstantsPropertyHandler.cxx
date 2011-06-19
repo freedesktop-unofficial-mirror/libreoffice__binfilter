@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -82,7 +75,7 @@ sal_Bool XMLConstantsPropertyHandler::exportXML(
 
     sal_Bool bRet = false;
 
-    sal_Int32 nEnum;
+    sal_Int32 nEnum(0);
 
     if( rValue.hasValue() && (rValue.getValueTypeClass() == TypeClass_ENUM))
     {
@@ -106,15 +99,17 @@ sal_Bool XMLConstantsPropertyHandler::exportXML(
         }
         else
         {
-            DBG_ERROR("XMLConstantsPropertyHandler::exportXML() constant is out of range for implementation using sal_uInt16");
+            OSL_FAIL("XMLConstantsPropertyHandler::exportXML() constant is out of range for implementation using sal_uInt16");
         }
     }
     else
     {
-        DBG_ERROR("XMLConstantsPropertyHandler::exportXML() could not convert any to sal_Int32");
+        OSL_FAIL("XMLConstantsPropertyHandler::exportXML() could not convert any to sal_Int32");
     }
 
     return bRet;
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

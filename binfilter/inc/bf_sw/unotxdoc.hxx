@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,129 +30,47 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _SFX_OBJUNO_HXX
 #include <bf_sfx2/sfxbasemodel.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUES_HPP_
 #include <com/sun/star/beans/PropertyValues.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XLINKTARGETSUPPLIER_HPP_
 #include <com/sun/star/document/XLinkTargetSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XREDLINESSUPPLIER_HPP_
 #include <com/sun/star/document/XRedlinesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XFOOTNOTESSUPPLIER_HPP_
 #include <com/sun/star/text/XFootnotesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XENDNOTESSUPPLIER_HPP_
 #include <com/sun/star/text/XEndnotesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XENDNOTESSETTINGSSUPPLIER_HPP_
 #include <com/sun/star/text/XEndnotesSettingsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTSECTIONSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextSectionsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XLINENUMBERINGPROPERTIES_HPP_
 #include <com/sun/star/text/XLineNumberingProperties.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XCHAPTERNUMBERINGSUPPLIER_HPP_
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XPAGEPRINTABLE_HPP_
 #include <com/sun/star/text/XPagePrintable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTGRAPHICOBJECTSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextGraphicObjectsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTTABLESSUPPLIER_HPP_
 #include <com/sun/star/text/XTextTablesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XDOCUMENTINDEXESSUPPLIER_HPP_
 #include <com/sun/star/text/XDocumentIndexesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XBOOKMARKSSUPPLIER_HPP_
 #include <com/sun/star/text/XBookmarksSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
 #include <com/sun/star/text/XTextDocument.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTEMBEDDEDOBJECTSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextEmbeddedObjectsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XREFERENCEMARKSSUPPLIER_HPP_
 #include <com/sun/star/text/XReferenceMarksSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFRAMESSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFramesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREPLACEABLE_HPP_
 #include <com/sun/star/util/XReplaceable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREPLACEDESCRIPTOR_HPP_
 #include <com/sun/star/util/XReplaceDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XREFRESHABLE_HPP_
 #include <com/sun/star/util/XRefreshable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XLINKUPDATE_HPP_
 #include <com/sun/star/util/XLinkUpdate.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XRENDERABLE_HPP_
 #include <com/sun/star/view/XRenderable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XFORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/XForbiddenCharacters.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
-#ifndef _SVX_FMDMOD_HXX
 #include <bf_svx/fmdmod.hxx>
-#endif
-#ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
-#endif
-#ifndef _CPPUHELPER_WEAK_HXX_
 #include <cppuhelper/weak.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx> // helper for implementations
-#endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx> // helper for implementations
-#endif
-#ifndef _REFRESH_LISTENER_CONTAINER_HXX_
 #include <RefreshListenerContainer.hxx>
-#endif
 
 #if !(defined(MACOSX) && ( __GNUC__ < 3 ))
 // GrP Mac OS X internal compiler error; revisit with gcc3
@@ -168,13 +87,9 @@ public Ifc13, public Ifc14, public Ifc15, public Ifc16, public Ifc17, public Ifc
 public Ifc19, public Ifc20, public Ifc21, public Ifc22, public Ifc23 , public Ifc24, \
 public Ifc25, public Ifc26, public Ifc27
 
-#ifndef _CPPUHELPER_IMPLBASE_EX_HXX_
 #include <cppuhelper/implbase_ex.hxx>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE_EX_PRE_HXX_
 #include <cppuhelper/implbase_ex_pre.hxx>
-#endif
 #define __IFC_EX_TYPE_INIT27( class_cast ) \
     __IFC_EX_TYPE_INIT( class_cast, 1 ), __IFC_EX_TYPE_INIT( class_cast, 2 ), \
     __IFC_EX_TYPE_INIT( class_cast, 3 ), __IFC_EX_TYPE_INIT( class_cast, 4 ), \
@@ -190,9 +105,7 @@ public Ifc25, public Ifc26, public Ifc27
     __IFC_EX_TYPE_INIT( class_cast, 23 ), __IFC_EX_TYPE_INIT( class_cast, 24 ), \
     __IFC_EX_TYPE_INIT( class_cast, 25 ), __IFC_EX_TYPE_INIT( class_cast, 26 ), \
     __IFC_EX_TYPE_INIT( class_cast, 27 )
-#ifndef _CPPUHELPER_IMPLBASE_EX_POST_HXX_
 #include <cppuhelper/implbase_ex_post.hxx>
-#endif
 __DEF_IMPLHELPER_EX( 27 )
 
 #endif
@@ -208,7 +121,7 @@ class SwUnoCrsr;
 class SwXDocumentPropertyHelper;
 
 typedef UnoActionContext* UnoActionContextPtr;
-SV_DECL_PTRARR(ActionContextArr, UnoActionContextPtr, 4, 4)//STRIP008 ;
+SV_DECL_PTRARR(ActionContextArr, UnoActionContextPtr, 4, 4)
 
 /******************************************************************************
  *
@@ -618,6 +531,9 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue > SAL_CALL getRenderer( sal_Int32 nRenderer, const ::com::sun::star::uno::Any& aSelection, const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& xOptions ) throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
     virtual void SAL_CALL render( sal_Int32 nRenderer, const ::com::sun::star::uno::Any& aSelection, const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >& xOptions ) throw (::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::uno::RuntimeException);
 
+    using SfxBaseModel::addEventListener;
+    using SfxBaseModel::removeEventListener;
+
     //
     void                        Invalidate();
     void                        Reactivate(SwDocShell* pNewDocShell);
@@ -638,9 +554,8 @@ public:
     void SAL_CALL operator delete( void * ) throw();
 
 };
-/* -----------------25.10.99 11:02-------------------
 
- --------------------------------------------------*/
+
 class SwXLinkTargetSupplier : public cppu::WeakImplHelper2
 <
     ::com::sun::star::container::XNameAccess,
@@ -677,9 +592,8 @@ public:
     //
     void    Invalidate() {pxDoc = 0;}
 };
-/* -----------------26.10.99 09:05-------------------
 
- --------------------------------------------------*/
+
 class SwXLinkNameAccessWrapper : public cppu::WeakImplHelper4
 <
     ::com::sun::star::beans::XPropertySet,
@@ -730,9 +644,8 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 
 };
-/* -----------------26.10.99 15:46-------------------
 
- --------------------------------------------------*/
+
 class SwXOutlineTarget : public cppu::WeakImplHelper2
 <
     ::com::sun::star::beans::XPropertySet,
@@ -762,7 +675,7 @@ public:
 };
 } //namespace binfilter
 #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 class SwXDocumentPropertyHelper : public SvxUnoForbiddenCharsTable
 {
     ::com::sun::star::uno::Reference < ::com::sun::star::uno::XInterface > xDashTable;
@@ -781,3 +694,5 @@ public:
     void Invalidate();
 };
 }//namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

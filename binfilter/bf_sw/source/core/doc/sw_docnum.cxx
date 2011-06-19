@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,52 +31,24 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
-#ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ inline BYTE GetUpperLvlChg( BYTE nCurLvl, BYTE nLevel, USHORT nMask )
@@ -190,7 +163,7 @@ namespace binfilter {
 /*N*/   for( n = 0; n < rArr.Count(); ++n )
 /*N*/   {
 /*N*/       SwTxtNode* pNd = rArr[ n ]->GetTxtNode();
-/*N*/       ASSERT( pNd, "was ist das fuer ein Node?" );
+/*N*/       OSL_ENSURE( pNd, "was ist das fuer ein Node?" );
 /*N*/       if( ( 1 << (pNd->GetTxtColl()->GetOutlineLevel() & ~NO_NUMLEVEL )
 /*N*/           & nChgFmtLevel ))
 /*?*/           pNd->NumRuleChgd();
@@ -271,11 +244,11 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void lcl_ChgNumRule( SwDoc& rDoc, const SwNumRule& rRule, SwHistory* pHist,
+/*N*/ void lcl_ChgNumRule( SwDoc& rDoc, const SwNumRule& rRule, SwHistory* /*pHist*/,
 /*N*/                       SwNumRuleInfo* pRuleInfo = 0 )
 /*N*/ {
 /*N*/   SwNumRule* pOld = rDoc.FindNumRulePtr( rRule.GetName() );
-/*N*/   ASSERT( pOld, "ohne die alte NumRule geht gar nichts" );
+/*N*/   OSL_ENSURE( pOld, "ohne die alte NumRule geht gar nichts" );
 /*N*/
 /*N*/   USHORT nChkLevel = 0, nChgFmtLevel = 0, nMask = 1;
 /*N*/
@@ -354,7 +327,7 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ void SwDoc::SetNumRule( const SwPaM& rPam, const SwNumRule& rRule,
-/*N*/                       sal_Bool bSetAbsLSpace, sal_Bool bCalledFromShell )
+/*N*/                       sal_Bool /*bSetAbsLSpace*/, sal_Bool bCalledFromShell )
 /*N*/ {
 /*N*/   ULONG nPamPos = rPam.Start()->nNode.GetIndex();
 /*N*/   BOOL bSetItem = TRUE;
@@ -385,7 +358,7 @@ namespace binfilter {
 /*N*/
 /*N*/     }
 /*N*/   else if( rRule.IsAutoRule() && !(*pNew == rRule) )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bSetItem )
@@ -397,9 +370,9 @@ namespace binfilter {
 /*N*/   SetModified();
 /*N*/ }
 
-/*N*/ void SwDoc::SetNumRuleStart( const SwPosition& rPos, BOOL bFlag )
+/*N*/ void SwDoc::SetNumRuleStart( const SwPosition& /*rPos*/, BOOL /*bFlag*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode().GetTxtNode();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwDoc::SetNodeNumStart( const SwPosition& rPos, USHORT nStt )
@@ -443,7 +416,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::StopNumRuleAnimations( OutputDevice* pOut )
+/*N*/ void SwDoc::StopNumRuleAnimations( OutputDevice* /*pOut*/ )
 /*N*/ {
 /*N*/   for( USHORT n = GetNumRuleTbl().Count(); n; )
 /*N*/   {
@@ -459,16 +432,16 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/           for( SwFrm* pFrm = (SwFrm*)aIter.First( TYPE(SwFrm) );
 /*N*/                   pFrm; pFrm = (SwFrm*)aIter.Next() )
 /*N*/               if( ((SwTxtFrm*)pFrm)->HasAnimation() )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ((SwTxtFrm*)pFrm)->StopAnimation( pOut );
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
 
 
-/*N*/ BOOL SwDoc::DelNumRules( const SwPaM& rPam )
+/*N*/ BOOL SwDoc::DelNumRules( const SwPaM& /*rPam*/ )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 ULONG nStt = rPam.GetPoint()->nNode.GetIndex(),
+    DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
@@ -553,19 +526,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   for( USHORT n = pNumRuleTbl->Count(); n; )
 /*N*/       if( (*pNumRuleTbl)[ --n ]->GetName() == rName )
 /*N*/           return n;
-/*
-//JP 20.11.97: sollte man im Find neue Rule anlegen??
-                erstmal nicht
-    USHORT nPoolId = GetPoolId( rName, GET_POOLID_NUMRULE );
-    if( USHRT_MAX != nPoolId )
-    {
-        SwDoc* pThis = (SwDoc*)this;
-        SwNumRule* pR = pThis->GetNumRuleFromPool( nPoolId );
-        for( n = pNumRuleTbl->Count(); n; )
-            if( (*pNumRuleTbl)[ --n ] == pR )
-                 return n;
-    }
-*/
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
@@ -574,17 +534,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/   for( USHORT n = pNumRuleTbl->Count(); n; )
 /*N*/       if( (*pNumRuleTbl)[ --n ]->GetName() == rName )
 /*N*/           return (*pNumRuleTbl)[ n ];
-/*N*/
-/*
-//JP 20.11.97: sollte man im Find neue Rule anlegen??
-                 erstmal nicht
-    USHORT nPoolId = GetPoolId( rName, GET_POOLID_NUMRULE );
-     if( USHRT_MAX != nPoolId )
-    {
-         SwDoc* pThis = (SwDoc*)this;
-        return pThis->GetNumRuleFromPool( nPoolId );
-    }
-*/
 /*N*/   return 0;
 /*N*/ }
 
@@ -629,7 +578,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*?*/       aName = SW_RESSTR( STR_NUMRULE_DEFNAME );
 /*N*/   }
 /*N*/
-/*N*/   USHORT nNum, nTmp, nFlagSize = ( pNumRuleTbl->Count() / 8 ) +2;
+/*N*/   USHORT nNum = 0, nTmp = 0, nFlagSize = ( pNumRuleTbl->Count() / 8 ) +2;
 /*N*/   BYTE* pSetFlags = new BYTE[ nFlagSize ];
 /*N*/   memset( pSetFlags, 0, nFlagSize );
 /*N*/
@@ -739,7 +688,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/               const SwNodeNum* pPrevNdNum = pPrev->GetNum();
 /*N*/               if( pPrevNdNum->GetLevel() & NO_NUMLEVEL )
 /*N*/               {
-/*N*/                     // OD 10.12.2002 #106111# - use correct search level
+/*N*/                     // use correct search level
 /*N*/                     BYTE nSrchLvl = GetRealLevel( pStt->GetNum()->GetLevel() );
 /*N*/                   pPrevNdNum = 0;
 /*N*/                   ULONG nArrPos = nUpdPos-1;
@@ -775,7 +724,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/               }
 /*N*/           }
 /*N*/           nInitLevels = 0;
-/*N*/             // OD 10.12.2002 #106111# - sublevels have to be restarted.
+/*N*/             // sublevels have to be restarted.
 /*N*/             for ( int nSubLvl = GetRealLevel( aNum.GetLevel() ) + 1; nSubLvl < MAXLEVEL; ++nSubLvl)
 /*N*/                 nInitLevels |= ( 1 << nSubLvl );
 /*N*/           nNumVal = aNum.GetLevelVal()[ GetRealLevel( aNum.GetLevel() ) ];
@@ -796,15 +745,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/           }
 /*N*/
 /*N*/           BYTE nLevel = aNum.GetLevel();
-/*N*/           BYTE nNdOldLvl = MAXLEVEL;
 /*N*/           if( pStt->GetNum() )
 /*N*/           {
-/*N*/               if( NO_NUMBERING != pStt->GetNum()->GetLevel() )
-/*N*/                   nNdOldLvl = nLevel = pStt->GetNum()->GetLevel();
 /*N*/               if( pStt->GetNum()->IsStart() )
 /*N*/               {
 /*?*/                   aNum.SetStart( TRUE );
-/*?*/                     // OD 10.12.2002 #106111# - correct reset of level numbers
+/*?*/                     // correct reset of level numbers
 /*?*/                     for ( int nSubLvl = nLevel; nSubLvl < MAXLEVEL; ++nSubLvl)
 /*?*/                         aNum.GetLevelVal()[ nSubLvl ] = 0;
 /*?*/                   if( pRule->IsContinusNum() )
@@ -818,8 +764,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/                           else if( USHRT_MAX != pStt->GetNum()->GetSetValue() )
 /*N*/               {
 /*N*/                   aNum.SetSetValue( nNumVal = pStt->GetNum()->GetSetValue() );
-/*N*/                     // OD 10.12.2002 #106111# - init <nInitLevels> for continues
-/*N*/                     // numbering.
+/*N*/                     // init <nInitLevels> for continues numbering.
 /*N*/                     if( pRule->IsContinusNum() )
 /*N*/                         nInitLevels |= 1;
 /*N*/               }
@@ -856,7 +801,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/                                      SVX_NUM_NUMBER_NONE == pNumFmt->GetNumberingType() )))
 /*?*/                       ++nNumVal;
 /*?*/                   aNum.GetLevelVal()[ nLevel ] = nNumVal;
-/*?*/                     // OD 10.12.2002 #106111# - reset <nInitLevels>
+/*?*/                     // reset <nInitLevels>
 /*?*/                     nInitLevels &= ~1;
 /*N*/               }
 /*N*/               else
@@ -892,8 +837,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/               nInitLevels &= ~( 1 << nLevel );
 /*N*/               aNum.SetLevel( nLevel );
 /*N*/
-/*N*/                 // OD 10.12.2002 #106111# - reset numbers of all sublevels and
-/*N*/                 // note in <nInitLevels> that numbering of all sublevels have
+/*N*/                 // reset numbers of all sublevels and note in
+/*N*/                 // <nInitLevels> that numbering of all sublevels have
 /*N*/                 // to be restarted.
 /*N*/                 for ( int nSubLvl = nLevel+1; nSubLvl < MAXLEVEL; ++nSubLvl)
 /*N*/                 {
@@ -905,52 +850,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*N*/           }
 /*N*/
 /*N*/ //FEATURE::CONDCOLL
-/*N*/           BOOL bCheck = TRUE;
 /*N*/           if( RES_CONDTXTFMTCOLL == pStt->GetFmtColl()->Which() )
 /*N*/           {
-/*N*/ //                SwFmtColl* pChgColl = pStt->GetCondFmtColl();
 /*N*/               pStt->ChkCondColl();
-/*
-//JP 19.11.97:
-// setzen der bedingten Vorlage aendert nichts an den Einzuegen, die bleiben
-// als harte vorhanden
-                if( pStt->GetCondFmtColl() )
-                {
-                    // es gab eine Aenderung -> harte Einzuege entfernen
-                    if( pChgColl != pStt->GetCondFmtColl() )
-                        pStt->ResetAttr( RES_LR_SPACE );
-                    bCheck = FALSE;
                 }
-*/
-            }
 /*N*/           else if( !pOutlNd && NO_NUMBERING !=
 /*N*/                   ((SwTxtFmtColl*)pStt->GetFmtColl())->GetOutlineLevel() )
 /*N*/               pOutlNd = pStt;
 /*N*/
-/*N*/ //FEATURE::CONDCOLL
-/*N*/
-/*N*/ #ifndef NUM_RELSPACE
-/*N*/           // hat sich eine Level - Aenderung ergeben, so setze jetzt die
-/*N*/           // gueltigen Einzuege
-/*N*/           if( bCheck && ( nLevel != nNdOldLvl || pStt->IsSetNumLSpace())
-/*N*/               && GetRealLevel( nLevel ) < MAXLEVEL )
-/*N*/           {
-/*N*/               SvxLRSpaceItem aLR( ((SvxLRSpaceItem&)pStt->SwCntntNode::GetAttr(
-/*N*/                                   RES_LR_SPACE )) );
-/*N*/
-/*N*/               const SwNumFmt& rNFmt = pRule->Get( GetRealLevel( nLevel ));
-/*N*/
-/*N*/               // ohne Nummer immer ohne FirstLineOffset!!!!
-/*N*/               short nFOfst = rNFmt.GetFirstLineOffset();
-/*N*/               if( nLevel & NO_NUMLEVEL ) nFOfst = 0;
-/*N*/               aLR.SetTxtFirstLineOfstValue( nFOfst );
-/*N*/               aLR.SetTxtLeft( rNFmt.GetAbsLSpace() );
-/*N*/
-/*N*/               pStt->SwCntntNode::SetAttr( aLR );
-/*N*/           }
-/*N*/           // Flag immer loeschen!
-/*N*/           pStt->SetNumLSpace( FALSE );
-/*N*/ #endif
 /*N*/           aNum.SetStart( FALSE );
 /*N*/           aNum.SetSetValue( USHRT_MAX );
 /*N*/       }
@@ -958,7 +865,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 /*?*/           GetNodes().UpdtOutlineIdx( *pOutlNd );
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( pRule, "die NumRule sollte schon vorhanden sein!" );
+/*N*/   OSL_ENSURE( pRule, "die NumRule sollte schon vorhanden sein!" );
 /*N*/   if( pRule )
 /*N*/       pRule->SetInvalidRule( FALSE );
 /*N*/ }
@@ -966,3 +873,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwTxtNode* pTxtNd = rPos.nNode.GetNode()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

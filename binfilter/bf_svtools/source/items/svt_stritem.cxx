@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
 
 namespace binfilter
 {
@@ -64,17 +63,11 @@ SfxPoolItem * SfxStringItem::Create(SvStream & rStream, USHORT) const
 
 //============================================================================
 // virtual
-SvStream & SfxStringItem::Store(SvStream & rStream, USHORT) const
-{
-    writeByteString(rStream, GetValue());
-    return rStream;
-}
-
-//============================================================================
-// virtual
 SfxPoolItem * SfxStringItem::Clone(SfxItemPool *) const
 {
     return new SfxStringItem(*this);
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

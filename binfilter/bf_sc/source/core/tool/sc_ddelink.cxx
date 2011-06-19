@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -64,12 +62,12 @@ namespace binfilter {
 /*N*/   aTopic( rT ),
 /*N*/   aItem( rI ),
 /*N*/   nMode( nM ),
-/*N*/   pResult( NULL ),
-/*N*/   bNeedUpdate( FALSE )
+/*N*/   bNeedUpdate( FALSE ),
+/*N*/   pResult( NULL )
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScDdeLink::~ScDdeLink()
+/*N*/ ScDdeLink::~ScDdeLink()
 /*N*/ {
 /*N*/   // Verbindung aufheben
 /*N*/
@@ -79,8 +77,8 @@ namespace binfilter {
 /*N*/ ScDdeLink::ScDdeLink( ScDocument* pD, SvStream& rStream, ScMultipleReadHeader& rHdr ) :
 /*N*/   ::binfilter::SvBaseLink(::binfilter::LINKUPDATE_ALWAYS,FORMAT_STRING),
 /*N*/   pDoc( pD ),
-/*N*/   pResult( NULL ),
-/*N*/   bNeedUpdate( FALSE )
+/*N*/   bNeedUpdate( FALSE ),
+/*N*/   pResult( NULL )
 /*N*/ {
 /*N*/   rHdr.StartEntry();
 /*N*/
@@ -102,33 +100,10 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void ScDdeLink::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const
+/*N*/ void ScDdeLink::DataChanged( const String& /*rMimeType*/,
+/*N*/                               const ::com::sun::star::uno::Any & /*rValue*/ )
 /*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rtl_TextEncoding eCharSet = rStream.GetStreamCharSet();
-/*N*/   rStream.WriteByteString( aAppl, eCharSet );
-/*N*/   rStream.WriteByteString( aTopic, eCharSet );
-/*N*/   rStream.WriteByteString( aItem, eCharSet );
-/*N*/
-/*N*/   BOOL bHasValue = ( pResult != NULL );
-/*N*/   rStream << bHasValue;
-/*N*/   if (bHasValue)
-/*N*/       pResult->Store( rStream );
-/*N*/
-/*N*/   if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )      // nicht bei 4.0 Export
-/*N*/       rStream << nMode;                                   // seit 388b
-/*N*/
-/*N*/   //  Links mit Mode != SC_DDE_DEFAULT werden bei 4.0 Export komplett weggelassen
-/*N*/   //  (aus ScDocument::SaveDdeLinks)
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
-/*N*/ void __EXPORT ScDdeLink::DataChanged( const String& rMimeType,
-/*N*/                               const ::com::sun::star::uno::Any & rValue )
-/*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //    wir koennen nur Strings...
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -152,3 +127,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

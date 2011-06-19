@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,18 +30,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX //autogen
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 
@@ -78,9 +71,9 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 
     inline BYTE GetLines() const { return nLines; }
@@ -123,7 +116,7 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT ) const;
-    virtual SvStream&       Store( SvStream&, USHORT nIVer ) const;
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 };
 
@@ -161,11 +154,11 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create( SvStream&, USHORT ) const;
-    virtual SvStream&       Store( SvStream&, USHORT nIVer ) const;
-    virtual USHORT           GetVersion( USHORT nFFVer ) const;
+    virtual SvStream&       Store( SvStream& rStream, USHORT ) const { return rStream; }
+    virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId );
 
     // erfrage und setze den Modify-Pointer
     inline const SwModify* GetDefinedIn() const { return pDefinedIn; }
@@ -278,3 +271,5 @@ inline const SwParaConnectBorderItem &SwFmt::GetParaConnectBorder(BOOL bInP) con
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

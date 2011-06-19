@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,14 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace rtl { class OUString; }
 namespace binfilter {
 class SvXMLNamespaceMap;
 class SvXMLAttrContainerData;
-//STRIP008 namespace rtl { class OUString; }
 
 //============================================================================
 
@@ -58,8 +56,8 @@ public:
 
     virtual sal_uInt16 GetVersion( sal_uInt16 nFileFormatVersion ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     virtual SfxPoolItem *Clone( SfxItemPool * = 0) const
     { return new SvXMLAttrContainerItem( *this ); }
@@ -86,3 +84,4 @@ public:
 }//end of namespace binfilter
 #endif //  _SVX_XMLCNITM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

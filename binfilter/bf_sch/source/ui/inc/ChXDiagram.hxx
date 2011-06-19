@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,64 +29,27 @@
 #ifndef _CHART_DIAGRAM_HXX
 #define _CHART_DIAGRAM_HXX
 
-#ifndef _CPPUHELPER_IMPLBASE_HXX_
 #include <cppuhelper/implbase.hxx>
-#endif
-//#include <cppuhelper/implbase12.hxx>  // helper for implementations
 
-#ifndef _COM_SUN_STAR_CHART_XDIAGRAM_HPP_
 #include <com/sun/star/chart/XDiagram.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XTWOAXISXSUPPLIER_HPP_
 #include <com/sun/star/chart/XTwoAxisXSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XTWOAXISYSUPPLIER_HPP_
 #include <com/sun/star/chart/XTwoAxisYSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XAXISZSUPPLIER_HPP_
 #include <com/sun/star/chart/XAxisZSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_XSTATISTICDISPLAY_HPP_
 #include <com/sun/star/chart/XStatisticDisplay.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_X3DDISPLAY_HPP_
 #include <com/sun/star/chart/X3DDisplay.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSTATES_HPP_
 #include <com/sun/star/beans/XMultiPropertyStates.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_INDEXOUTOFBOUNDSEXCEPTION_HPP_
 #include <com/sun/star/lang/IndexOutOfBoundsException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XCOMPONENT_HPP_
 #include <com/sun/star/lang/XComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
 #include <com/sun/star/lang/XEventListener.hpp>
-#endif
-#ifndef _CPPUHELPER_INTERFACECONTAINER_HXX_
 #include <cppuhelper/interfacecontainer.hxx>
-#endif
 
 // header for class SvxItemPropertySet
-#ifndef _SVX_UNOIPSET_HXX_
 #include <bf_svx/unoipset.hxx>
-#endif
 namespace binfilter {
 
 class ChartModel;
@@ -231,7 +195,7 @@ namespace cppu {
 }
 
 #endif
-namespace binfilter {//STRIP009
+namespace binfilter {
     class ChXDiagram : public ::cppu::WeakImplHelper14
  <
     ::com::sun::star::chart::XDiagram,
@@ -507,3 +471,4 @@ private:
 } //namespace binfilter
 #endif  // _CHART_DIAGRAM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

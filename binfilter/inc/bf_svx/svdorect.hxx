@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOTEXT_HXX
 #include <bf_svx/svdotext.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -64,15 +63,15 @@ class SdrRectObj : public SdrTextObj
 
 protected:
     XPolygon*                   pXPoly;
-    FASTBOOL                    bXPolyIsLine;  // TRUE: pXPoly muss als PolyLine angesehen werden.
+    bool                    bXPolyIsLine;  // TRUE: pXPoly muss als PolyLine angesehen werden.
 
 protected:
     // Liefert TRUE, wenn das Painten ein XPolygon erfordert.
-    FASTBOOL PaintNeedsXPoly(long nEckRad) const;
+    bool PaintNeedsXPoly(long nEckRad) const;
 
 protected:
-    XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nRad1, FASTBOOL bContour=FALSE) const;
-    SdrObject* ImpCheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer, FASTBOOL bForceFilled, FASTBOOL bForceTol=FALSE) const;
+    XPolygon ImpCalcXPoly(const Rectangle& rRect1, long nRad1, bool bContour=FALSE) const;
+    SdrObject* ImpCheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer, bool bForceFilled, bool bForceTol=FALSE) const;
 
     //void PaintIt(ExtOutputDevice& rOut, _BOOL bDown) const;
     void SetXPolyDirty();
@@ -102,7 +101,7 @@ public:
     virtual UINT16 GetObjIdentifier() const;
     virtual void RecalcBoundRect();
     virtual void TakeUnrotatedSnapRect(Rectangle& rRect) const;
-    virtual FASTBOOL Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const;
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
 
 
@@ -110,7 +109,8 @@ public:
     virtual void RecalcSnapRect();
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
-    virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
+    virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
+    using SdrObject::TakeContour;
     virtual void TakeContour(XPolyPolygon& rPoly) const;
 
 
@@ -120,13 +120,13 @@ public:
     virtual void NbcMove(const Size& rSiz);
     virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
-    virtual void NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+    virtual void NbcShear(const Point& rRef, long nWink, double tn, bool bVShear);
 
 
     virtual SdrGluePoint GetVertexGluePoint(USHORT nNum) const;
 
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
@@ -134,9 +134,10 @@ public:
     // private support routines for ItemSet access. NULL pointer means clear item.
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 };
 
 }//end of namespace binfilter
 #endif //_SVDORECT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

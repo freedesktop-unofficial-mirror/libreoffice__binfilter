@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -34,21 +35,11 @@
 //Ableitungen der 3D-Objekte, um #52277# zu beheben.
 //Ueberladen der NbcSetAttributes um Attr abzufangen und in das ChartModel zu leiten
 
-#ifndef _E3D_EXTRUD3D_HXX //autogen
 #include <bf_svx/extrud3d.hxx>
-#endif
-#ifndef _E3D_POLYGON3D_HXX //autogen
 #include <bf_svx/polygn3d.hxx>
-#endif
-#ifndef _E3D_DEFLT3D_HXX //autogen
 #include <bf_svx/deflt3d.hxx>
-#endif
-#ifndef _SVDORECT_HXX //autogen
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _E3D_LATHE3D_HXX //autogen
 #include <bf_svx/lathe3d.hxx>
-#endif
 #define CHART_SHAPE3D_IGNORE  -2 //intern! (GetChartShapeStyle()!)
 #define CHART_SHAPE3D_ANY     -1 //undefinierter Typ (GetChartShapeStyle()!)
 #define CHART_SHAPE3D_SQUARE   0
@@ -67,7 +58,8 @@ public:
     SchE3dLatheObj()
         :E3dLatheObj(){};
 
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
+    using SdrAttrObj::operator=;
+
     virtual void SetItem(const SfxPoolItem& rItem);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
@@ -84,7 +76,8 @@ public:
     SchE3dExtrudeObj()
         :E3dExtrudeObj(){};
 
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
+    using SdrAttrObj::operator=;
+
     virtual void SetItem(const SfxPoolItem& rItem);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
@@ -106,7 +99,8 @@ public:
 
     SchE3dPolygonObj() : E3dPolygonObj(){};
 
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
+    using SdrAttrObj::operator=;
+
     virtual void SetItem(const SfxPoolItem& rItem);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
@@ -119,7 +113,8 @@ class SchE3dObject : public E3dObject
      SchE3dObject()
          :E3dObject(){};
 
-//-/     virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
+    using SdrAttrObj::operator=;
+
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 class SchRectObj : public SdrRectObj
@@ -129,8 +124,9 @@ public:
         :SdrRectObj(eNewTextKind,rRect){};
     SchRectObj(const Rectangle& rRect): SdrRectObj(rRect){};
 
+    using SdrRectObj::operator=;
+
     virtual void NbcSetOutlinerParaObject(OutlinerParaObject* pTextObject);
-//-/    virtual void NbcSetAttributes(const SfxItemSet& rAttr, FASTBOOL bReplaceAll);
     virtual void SetItemSet(const SfxItemSet& rSet);
 };
 
@@ -140,3 +136,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,11 +26,6 @@
  *
  ************************************************************************/
 
-// include ---------------------------------------------------------------
-
-//#ifndef _SV_SYSTEM_HXX
-//#include <vcl/system.hxx>
-//#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -41,9 +37,7 @@
 #include "bulitem.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 namespace binfilter {
 
 #define BULITEM_VERSION     ((USHORT)2)
@@ -224,14 +218,14 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxBulletItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxBulletItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   return new SvxBulletItem( *this );
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxBulletItem::Create( SvStream& rStrm, USHORT nVersion ) const
+/*N*/ SfxPoolItem* SvxBulletItem::Create( SvStream& rStrm, USHORT /*nVersion*/ ) const
 /*N*/ {
 /*N*/   return new SvxBulletItem( rStrm, Which() );
 /*N*/ }
@@ -260,7 +254,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ USHORT SvxBulletItem::GetVersion( USHORT nVersion ) const
+/*N*/ USHORT SvxBulletItem::GetVersion( USHORT /*nVersion*/ ) const
 /*N*/ {
 /*N*/   return BULITEM_VERSION;
 /*N*/ }
@@ -307,82 +301,7 @@ namespace binfilter {
 /*N*/   return 1;
 /*N*/ }
 
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxBulletItem::Store( SvStream& rStrm, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   // Korrektur bei leerer Bitmap
-/*N*/   if( ( nStyle == BS_BMP ) &&
-/*N*/         ( !pGraphicObject || ( GRAPHIC_NONE == pGraphicObject->GetType() ) || ( GRAPHIC_DEFAULT == pGraphicObject->GetType() ) ) )
-/*N*/   {
-/*?*/         if( pGraphicObject )
-/*?*/         {
-/*?*/             delete( const_cast< SvxBulletItem* >( this )->pGraphicObject );
-/*?*/             const_cast< SvxBulletItem* >( this )->pGraphicObject = NULL;
-/*?*/         }
-/*?*/
-/*?*/         const_cast< SvxBulletItem* >( this )->nStyle = BS_NONE;
-/*N*/   }
-/*N*/
-/*N*/   rStrm << nStyle;
-/*N*/
-/*N*/   if( nStyle != BS_BMP )
-/*N*/       StoreFont( rStrm, aFont );
-/*N*/   else
-/*N*/   {
-/*?*/       ULONG nStart = rStrm.Tell();
-/*?*/
-/*?*/       // Kleine Vorab-Schaetzung der Groesse...
-/*?*/       USHORT nFac = ( rStrm.GetCompressMode() != COMPRESSMODE_NONE ) ? 3 : 1;
-/*?*/       const Bitmap aBmp( pGraphicObject->GetGraphic().GetBitmap() );
-/*?*/       ULONG nBytes = aBmp.GetSizeBytes();
-/*?*/       if ( nBytes < ULONG(0xFF00*nFac) )
-/*?*/           rStrm << aBmp;
-/*?*/
-/*?*/       ULONG nEnd = rStrm.Tell();
-/*?*/       // #67581# Item darf mit Overhead nicht mehr als 64K schreiben,
-/*?*/       // sonst platzt der SfxMultiRecord
-/*?*/       // Dann lieber auf die Bitmap verzichten, ist nur fuer Outliner
-/*?*/       // und auch nur fuer <= 5.0 wichtig.
-/*?*/       // Beim Einlesen merkt der Stream-Operator der Bitmap, dass dort keine steht.
-/*?*/       // Hiermit funktioniert jetzt der Fall das die grosse Bitmap aus einem anderen
-/*?*/       // Fileformat entstanden ist, welches keine 64K belegt, aber wenn eine
-/*?*/       // Bitmap > 64K verwendet wird, hat das SvxNumBulletItem beim Laden ein Problem,
-/*?*/       // stuerzt aber nicht ab.
-/*?*/
-/*?*/       if ( (nEnd-nStart) > 0xFF00 )
-/*?*/           rStrm.Seek( nStart );
-/*N*/   }
-/*N*/   rStrm << nWidth;
-/*N*/   rStrm << nStart;
-/*N*/   rStrm << nJustify;
-/*N*/   rStrm << (char)ByteString::ConvertFromUnicode( cSymbol, aFont.GetCharSet() );
-/*N*/   rStrm << nScale;
-/*N*/
-/*N*/   // UNICODE: rStrm << aPrevText;
-/*N*/   rStrm.WriteByteString(aPrevText);
-/*N*/
-/*N*/   // UNICODE: rStrm << aFollowText;
-/*N*/   rStrm.WriteByteString(aFollowText);
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

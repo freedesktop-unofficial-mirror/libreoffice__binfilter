@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,8 +26,6 @@
  *
  ************************************************************************/
 
-
-// #define _SOLAR__PRIVATE 1
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -36,10 +35,7 @@
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 
-
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 #include <editeng.hxx>
@@ -48,54 +44,23 @@
 #include <eerdll.hxx>
 #include <editeng.hrc>
 
-
-
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
-
-
 
 #include <flditem.hxx>
 
 #include "lrspitem.hxx"
 
-
-//#ifndef _SV_SYSTEM_HXX
-//#include <vcl/system.hxx>
-//#endif
-
 #include <numitem.hxx>
 #include <bulitem.hxx>
 
-
-
-
-
-#if OSL_DEBUG_LEVEL > 1
-#endif
 namespace binfilter {
 
-// Spaeter -> TOOLS\STRING.H (fuer Grep: WS_TARGET)
-
-//using namespace ::rtl;
-//using namespace ::utl;
 using namespace ::com::sun::star;
-//using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::uno;
-//using namespace ::com::sun::star::lang;
-//using namespace ::com::sun::star::beans;
-//using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::linguistic2;
 
-
-
 /*N*/ DBG_NAME( EditEngine )
-/*N*/ DBG_NAMEEX( EditView )//STRIP008 ;
-
-#if (OSL_DEBUG_LEVEL > 1) || defined ( DBG_UTIL )
-/*N*/ static sal_Bool bDebugPaint = sal_False;
-#endif
+/*N*/ DBG_NAMEEX( EditView )
 
 SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 
@@ -272,7 +237,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   {
 /*N*/       for ( sal_uInt16 nView = 0; nView < pImpEditEngine->aEditViews.Count(); nView++ )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditView* pView = pImpEditEngine->aEditViews[nView];
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if ( bAutoPageSize || pImpEditEngine->IsFormatted() )
@@ -280,13 +245,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           // Aendern der Breite hat bei AutoPageSize keine Wirkung, da durch
 /*N*/           // Textbreite bestimmt.
 /*N*/           // Optimierung erst nach Vobis-Auslieferung aktivieren...
-/*N*/ //            if ( !bAutoPageSize )
-/*N*/               pImpEditEngine->FormatFullDoc();
-/*N*/ //            else
-/*N*/ //            {
-/*N*/ //                pImpEditEngine->FormatDoc();            // PageSize, falls Aenderung
-/*N*/ //                pImpEditEngine->CheckAutoPageSize();    // Falls nichts formatiert wurde
-/*N*/ //            }
+/*N*/           pImpEditEngine->FormatFullDoc();
 /*N*/
 /*N*/           pImpEditEngine->UpdateViews( pImpEditEngine->GetActiveView() );
 /*N*/
@@ -395,12 +354,12 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return pImpEditEngine->GetLineCount( nParagraph );
 /*N*/ }
 
-/*N*/ sal_uInt16 EditEngine::GetLineLen( sal_uInt16 nParagraph, sal_uInt16 nLine ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ sal_uInt16 EditEngine::GetLineLen( sal_uInt16, sal_uInt16 ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*?*/ sal_uInt32 EditEngine::GetLineHeight( sal_uInt16 nParagraph, sal_uInt16 nLine )
-/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} return 0;//STRIP001
+/*?*/ sal_uInt32 EditEngine::GetLineHeight( sal_uInt16, sal_uInt16 )
+/*?*/ {{DBG_BF_ASSERT(0, "STRIP");} return 0;
 /*?*/ }
 
 /*N*/ sal_uInt16 EditEngine::GetFirstLineOffset( sal_uInt16 nParagraph )
@@ -412,8 +371,8 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return ( pPortion ? pPortion->GetFirstLineOffset() : 0 );
 /*N*/ }
 
-/*N*/ sal_uInt32 EditEngine::GetTextHeight( sal_uInt16 nParagraph ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001
+/*N*/ sal_uInt32 EditEngine::GetTextHeight( sal_uInt16 ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
@@ -641,8 +600,8 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/     return pImpEditEngine->GetParaAttrib( nPara, nWhich );
 /*N*/ }
 
-/*N*/ void EditEngine::GetCharAttribs( sal_uInt16 nPara, EECharAttribArray& rLst ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void EditEngine::GetCharAttribs( sal_uInt16, EECharAttribArray& ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SfxItemSet EditEngine::GetAttribs( const ESelection& rSel, BOOL bOnlyHardAttrib )
@@ -934,23 +893,17 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 
-
-
-
-
-
 /*N*/ void EditEngine::EraseVirtualDevice()
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   pImpEditEngine->EraseVirtualDevice();
 /*N*/ }
 
-/*N*/ void EditEngine::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void EditEngine::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   pImpEditEngine->SetForbiddenCharsTable( xForbiddenChars );
 /*N*/ }
-
 
 
 /*N*/ void EditEngine::SetDefaultLanguage( LanguageType eLang )
@@ -958,10 +911,6 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   pImpEditEngine->SetDefaultLanguage( eLang );
 /*N*/ }
-
-
-
-
 
 
 /*N*/ void EditEngine::SetGlobalCharStretching( sal_uInt16 nX, sal_uInt16 nY )
@@ -1063,7 +1012,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/
 /*N*/   // #109151# Check against index, not paragraph
 /*N*/     if ( pNode && ( rPos.nIndex < pNode->Len() ) )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/     return aBounds;
 /*N*/ }
@@ -1101,60 +1050,60 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 // =====================================================================
 // ======================   Virtuelle Methoden   =======================
 // =====================================================================
-/*N*/ void __EXPORT EditEngine::DrawingText( const Point&, const XubString&, USHORT nTextStart, USHORT nTextLen, const sal_Int32*, const SvxFont&, sal_uInt16 nPara, sal_uInt16 nIndex, BYTE nRightToLeft )
+/*N*/ void EditEngine::DrawingText( const Point&, const XubString&, USHORT, USHORT, const sal_Int32*, const SvxFont&, sal_uInt16, sal_uInt16, BYTE )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
+/*N*/ void EditEngine::PaintingFirstLine( sal_uInt16, const Point&, long, const Point&, short, OutputDevice* )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::ParagraphInserted( sal_uInt16 nPara )
-/*N*/ {
-/*N*/   DBG_CHKTHIS( EditEngine, 0 );
-/*N*/
-/*N*/     if ( GetNotifyHdl().IsSet() )
-/*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHINSERTED );
-/*N*/     }
-/*N*/ }
-
-/*N*/ void __EXPORT EditEngine::ParagraphDeleted( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphInserted( sal_uInt16 )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_PARAGRAPHREMOVED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
-/*N*/ sal_Bool __EXPORT EditEngine::FormattingParagraph( sal_uInt16 )
+/*N*/ void EditEngine::ParagraphDeleted( sal_uInt16 )
+/*N*/ {
+/*N*/   DBG_CHKTHIS( EditEngine, 0 );
+/*N*/
+/*N*/     if ( GetNotifyHdl().IsSet() )
+/*N*/     {
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
+/*N*/     }
+/*N*/ }
+
+/*N*/ sal_Bool EditEngine::FormattingParagraph( sal_uInt16 )
 /*N*/ {
 /*N*/   // return sal_True, wenn die Attribute geaendert wurden...
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   return sal_False;
 /*N*/ }
 
-/*N*/ void __EXPORT EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
+/*N*/ void EditEngine::ParaAttribsChanged( sal_uInt16 /* nParagraph */ )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/ }
 
 
-/*N*/ void __EXPORT EditEngine::ParagraphHeightChanged( sal_uInt16 nPara )
+/*N*/ void EditEngine::ParagraphHeightChanged( sal_uInt16 )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/
 /*N*/     if ( GetNotifyHdl().IsSet() )
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EENotify aNotify( EE_NOTIFY_TEXTHEIGHTCHANGED );
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/ }
 
-/*N*/ XubString __EXPORT EditEngine::GetUndoComment( sal_uInt16 nId ) const
+/*N*/ XubString EditEngine::GetUndoComment( sal_uInt16 nId ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   XubString aComment;
@@ -1207,12 +1156,12 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/   return aComment;
 /*N*/ }
 
-/*N*/ Rectangle EditEngine::GetBulletArea( sal_uInt16 nPara )
+/*N*/ Rectangle EditEngine::GetBulletArea( sal_uInt16 )
 /*N*/ {
 /*N*/   return Rectangle( Point(), Point() );
 /*N*/ }
 
-/*N*/ XubString __EXPORT EditEngine::CalcFieldValue( const SvxFieldItem& rField, sal_uInt16, sal_uInt16, Color*&, Color*& )
+/*N*/ XubString EditEngine::CalcFieldValue( const SvxFieldItem&, sal_uInt16, sal_uInt16, Color*&, Color*& )
 /*N*/ {
 /*N*/   DBG_CHKTHIS( EditEngine, 0 );
 /*N*/   return ' ';
@@ -1315,7 +1264,7 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/           }
 /*N*/           else if( eNumType == SVX_NUM_BITMAP )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SvxBrushItem aBItem( Graphic( pOldBullet->GetBitmap() ), GPOS_NONE );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -1360,3 +1309,5 @@ SV_IMPL_VARARR( EECharAttribArray, EECharAttrib );
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

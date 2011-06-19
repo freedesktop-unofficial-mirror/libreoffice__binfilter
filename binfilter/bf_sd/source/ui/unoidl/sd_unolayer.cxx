@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -54,7 +55,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 #define WID_LAYER_LOCKED    1
@@ -70,7 +70,7 @@ const SfxItemPropertyMap* ImplGetSdLayerPropertyMap()
         { MAP_CHAR_LEN(UNO_NAME_LAYER_PRINTABLE),   WID_LAYER_PRINTABLE,&::getBooleanCppuType(),            0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_LAYER_VISIBLE),     WID_LAYER_VISIBLE,  &::getBooleanCppuType(),            0, 0 },
         { MAP_CHAR_LEN(UNO_NAME_LAYER_NAME),        WID_LAYER_NAME,     &::getCppuType((const OUString*)0), 0, 0 },
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
     };
 
     return aSdLayerPropertyMap_Impl;
@@ -135,9 +135,10 @@ OUString SdLayer::convertToExternalName( const String& rName )
 
 /** */
 SdLayer::SdLayer( SdLayerManager* pLayerManager_, SdrLayer* pSdrLayer_ ) throw()
-: aPropSet(ImplGetSdLayerPropertyMap()),
-  pLayerManager(pLayerManager_), pLayer(pSdrLayer_),
-  mxLayerManager(pLayerManager_)
+    : pLayerManager(pLayerManager_)
+    , mxLayerManager(pLayerManager_)
+    , pLayer(pSdrLayer_)
+    , aPropSet(ImplGetSdLayerPropertyMap())
 {
 }
 
@@ -171,14 +172,14 @@ uno::Sequence< OUString > SAL_CALL SdLayer::getSupportedServiceNames()
 uno::Reference< beans::XPropertySetInfo > SAL_CALL SdLayer::getPropertySetInfo(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return aPropSet.getPropertySetInfo();
 }
 
 void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pLayer == NULL || pLayerManager == NULL)
         throw uno::RuntimeException();
@@ -189,7 +190,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
     {
     case WID_LAYER_LOCKED:
     {
-        sal_Bool bValue;
+        sal_Bool bValue(sal_False);
         if(!sd::any2bool( aValue, bValue ))
             throw lang::IllegalArgumentException();
         set( LOCKED, bValue );
@@ -197,7 +198,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
     }
     case WID_LAYER_PRINTABLE:
     {
-        sal_Bool bValue;
+        sal_Bool bValue(sal_False);
         if(!sd::any2bool( aValue, bValue ))
             throw lang::IllegalArgumentException();
         set( PRINTABLE, bValue );
@@ -205,7 +206,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
     }
     case WID_LAYER_VISIBLE:
     {
-        sal_Bool bValue;
+        sal_Bool bValue(sal_False);
         if(!sd::any2bool( aValue, bValue ))
             throw lang::IllegalArgumentException();
         set( VISIBLE, bValue );
@@ -229,7 +230,7 @@ void SAL_CALL SdLayer::setPropertyValue( const OUString& aPropertyName, const un
 uno::Any SAL_CALL SdLayer::getPropertyValue( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(pLayer == NULL || pLayerManager == NULL)
         throw uno::RuntimeException();
@@ -263,10 +264,10 @@ uno::Any SAL_CALL SdLayer::getPropertyValue( const OUString& PropertyName )
     return aValue;
 }
 
-void SAL_CALL SdLayer::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdLayer::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdLayer::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdLayer::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::addPropertyChangeListener( const OUString&/* aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdLayer::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
 
 /** */
 sal_Bool SdLayer::get( LayerAttribute what ) throw()
@@ -342,7 +343,7 @@ uno::Reference<uno::XInterface> SAL_CALL SdLayer::getParent (void)
 }
 
 
-void SAL_CALL SdLayer::setParent (const uno::Reference<uno::XInterface >& rxParent)
+void SAL_CALL SdLayer::setParent (const uno::Reference<uno::XInterface >& /*rxParent*/)
     throw (::com::sun::star::lang::NoSupportException,
         ::com::sun::star::uno::RuntimeException)
 {
@@ -421,7 +422,7 @@ uno::Sequence< OUString > SAL_CALL SdLayerManager::getSupportedServiceNames()
 uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::insertNewByIndex( sal_Int32 nIndex )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XLayer > xLayer;
 
@@ -449,14 +450,14 @@ uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::insertNewByIndex( sal
     return xLayer;
 }
 
-void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& xLayer ) throw(container::NoSuchElementException, uno::RuntimeException)
+void SAL_CALL SdLayerManager::remove( const uno::Reference< drawing::XLayer >& /*xLayer*/ ) throw(container::NoSuchElementException, uno::RuntimeException)
 {
 }
 
 void SAL_CALL SdLayerManager::attachShapeToLayer( const uno::Reference< drawing::XShape >& xShape, const uno::Reference< drawing::XLayer >& xLayer )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(rModel.pDoc==NULL)
         return;
@@ -477,7 +478,7 @@ void SAL_CALL SdLayerManager::attachShapeToLayer( const uno::Reference< drawing:
 
 uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::getLayerForShape( const uno::Reference< drawing::XShape >& xShape ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XLayer >  xLayer;
 
@@ -499,7 +500,7 @@ uno::Reference< drawing::XLayer > SAL_CALL SdLayerManager::getLayerForShape( con
 sal_Int32 SAL_CALL SdLayerManager::getCount()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( rModel.pDoc )
     {
@@ -513,7 +514,7 @@ sal_Int32 SAL_CALL SdLayerManager::getCount()
 uno::Any SAL_CALL SdLayerManager::getByIndex( sal_Int32 nLayer )
     throw(lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( nLayer >= getCount() || nLayer < 0 )
         throw lang::IndexOutOfBoundsException();
@@ -534,7 +535,7 @@ uno::Any SAL_CALL SdLayerManager::getByIndex( sal_Int32 nLayer )
 uno::Any SAL_CALL SdLayerManager::getByName( const OUString& aName )
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Reference< drawing::XLayer >  xLayer;
 
@@ -559,7 +560,7 @@ uno::Any SAL_CALL SdLayerManager::getByName( const OUString& aName )
 uno::Sequence< OUString > SAL_CALL SdLayerManager::getElementNames()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrLayerAdmin& rLayerAdmin = rModel.pDoc->GetLayerAdmin();
     const sal_uInt16 nLayerCount = rLayerAdmin.GetLayerCount();
@@ -581,7 +582,7 @@ uno::Sequence< OUString > SAL_CALL SdLayerManager::getElementNames()
 
 sal_Bool SAL_CALL SdLayerManager::hasByName( const OUString& aName ) throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrLayerAdmin& rLayerAdmin = rModel.pDoc->GetLayerAdmin();
 
@@ -653,3 +654,5 @@ uno::Reference<drawing::XLayer> SdLayerManager::GetLayer (SdrLayer* pLayer)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

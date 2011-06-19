@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,101 +33,32 @@
 #include "svdpool.hxx"
 #include "svdocapt.hxx"
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
 
-
-
-
-#ifndef _SVX_XLNSTWIT_HXX //autogen
 #include "xlnstwit.hxx"
-#endif
-
-#ifndef _SVX_XLNEDWIT_HXX //autogen
 #include "xlnedwit.hxx"
-#endif
 
-
-
-
-
-
-
-#ifndef _EEITEMID_HXX
 #include <eeitemid.hxx>
-#endif
-
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-
-
-
-//#include <charscaleitem.hxx>
-
-#ifndef _SVX_XLNSTCIT_HXX //autogen
 #include <xlnstcit.hxx>
-#endif
-
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
-
-
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-
-
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
-#endif
-
-
-#ifndef _SVX_XFLTRIT_HXX //autogen
 #include <xfltrit.hxx>
-#endif
-
-#ifndef _SVX_XLNEDCIT_HXX //autogen
 #include <xlnedcit.hxx>
-#endif
-
-#ifndef _SVX_ADJITEM_HXX
 #include <adjitem.hxx>
-#endif
 
-#ifndef _SVX_XFLBCKIT_HXX
 #include "xflbckit.hxx"
-#endif
-
-
-#ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
-#endif
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
-#endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
-#endif
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include "xflhtit.hxx"
-#endif
-#ifndef _SVX_XLNSTIT_HXX
 #include "xlnstit.hxx"
-#endif
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
+
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -325,10 +257,10 @@ namespace binfilter {
 /*N*/       DBG_ASSERT(pModel, "SdrAttrObj::ReadData(): pModel=NULL, StyleSheet kann nicht gesetzt werden!");
 /*N*/       if(pModel)
 /*N*/       {
-/*N*/           SfxStyleSheetBasePool *pPool = pModel->GetStyleSheetPool();
-/*N*/           if(pPool)
+/*N*/           SfxStyleSheetBasePool *pLclPool = pModel->GetStyleSheetPool();
+/*N*/           if(pLclPool)
 /*N*/           {
-/*N*/               SfxStyleSheet *pTmpStyleSheet = (SfxStyleSheet*)pPool->Find(aStyleSheetName, eFamily);
+/*N*/               SfxStyleSheet *pTmpStyleSheet = (SfxStyleSheet*)pLclPool->Find(aStyleSheetName, eFamily);
 /*N*/               DBG_ASSERT(pTmpStyleSheet, "SdrAttrObj::ReadData(): StyleSheet nicht gefunden");
 /*N*/
 /*N*/               if(pTmpStyleSheet)
@@ -337,115 +269,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrAttrObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/
-/*N*/   XLineAttrSetItem aLineAttr(rSet.GetPool());
-/*N*/   aLineAttr.GetItemSet().Put(rSet);
-/*N*/   aLineAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aLineAttr);
-/*N*/
-/*N*/   XFillAttrSetItem aFillAttr(rSet.GetPool());
-/*N*/   aFillAttr.GetItemSet().Put(rSet);
-/*N*/   aFillAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aFillAttr);
-/*N*/
-/*N*/   XTextAttrSetItem aTextAttr(rSet.GetPool());
-/*N*/   aTextAttr.GetItemSet().Put(rSet);
-/*N*/   aTextAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aTextAttr);
-/*N*/
-/*N*/   SdrShadowSetItem aShadAttr(rSet.GetPool());
-/*N*/   aShadAttr.GetItemSet().Put(rSet);
-/*N*/   aShadAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aShadAttr);
-/*N*/
-/*N*/   SdrOutlinerSetItem aOutlAttr(rSet.GetPool());
-/*N*/   aOutlAttr.GetItemSet().Put(rSet);
-/*N*/   aOutlAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aOutlAttr);
-/*N*/
-/*N*/   SdrMiscSetItem aMiscAttr(rSet.GetPool());
-/*N*/   aMiscAttr.GetItemSet().Put(rSet);
-/*N*/   aMiscAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aMiscAttr);
-/*N*/ }
-
-/*N*/ void SdrAttrObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   ((SdrAttrObj*)this)->ImpForceItemSet();
-/*N*/   mpObjectItemSet->ClearItem(XATTRSET_LINE);
-/*N*/   mpObjectItemSet->ClearItem(XATTRSET_FILL);
-/*N*/   mpObjectItemSet->ClearItem(XATTRSET_TEXT);
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_SHADOW);
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_OUTLINER);
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_MISC);
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrAttrObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrObject::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrAttrObj");
-/*N*/ #endif
-/*N*/   SfxItemPool* pPool = GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(XATTRSET_LINE));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(XATTRSET_FILL));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(XATTRSET_TEXT));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_SHADOW));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_OUTLINER));
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_MISC));
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*?*/       rOut << sal_uInt16(SFX_ITEMS_NULL);
-/*N*/   }
-
-    // StyleSheet-Pointer als Name, Familie abspeichern
-    // wenn kein StyleSheet vorhanden: leeren String speichern
-/*N*/   if(GetStyleSheet())
-/*N*/   {
-/*N*/       // UNICODE: rOut << pStyleSheet->GetName();
-/*N*/       rOut.WriteByteString(GetStyleSheet()->GetName());
-/*N*/       rOut << (sal_uInt16)(int)(GetStyleSheet()->GetFamily());
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // UNICODE: rOut << String();
-/*N*/       rOut.WriteByteString(String());
-/*N*/   }
-/*N*/ }
-
 
 /*N*/ void SdrAttrObj::SetModel(SdrModel* pNewModel)
 /*N*/ {
@@ -463,56 +286,13 @@ namespace binfilter {
 /*N*/
 /*N*/       // fuer ein bereits "lebendes" Model die Attribute von einem Pool in den anderen schieben
 /*N*/       if(pOldModel)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       // Jedes Objekt bekommt initial den DefaultStyleSheet
 /*N*/       // des Model, falls noch kein StyleSheet gesetzt.
 /*N*/       if(mpObjectItemSet && !GetStyleSheet() && pModel && !pModel->IsLoading())
 /*N*/           NbcSetStyleSheet(pModel->GetDefaultStyleSheet(), TRUE);
-
-/* this code was removed because NbcSetStyleSheet called with TRUE does not
-   alter the hard attributes. So they don't need to be restored, a useless
-   process that cost us up to 20% for xml import. Also there is a memory
-   leek with aSet.Put( *pItem->Clone() );
-        {
-            SfxStyleSheet* pDefSS = pModel->GetDefaultStyleSheet();
-
-            if(pDefSS)
-            {
-                SfxItemPool* pPool = GetItemPool();
-                if ( pPool )
-                {
-                    // Take hard attributes
-                    SfxItemSet aSet(*pPool,
-                        SDRATTR_START,SDRATTR_NOTPERSIST_FIRST-1,
-                        SDRATTR_NOTPERSIST_LAST+1, SDRATTR_END,
-                        EE_ITEMS_START,EE_ITEMS_END,
-                        0,0);
-
-                    const SfxItemSet& rItemSet = GetItemSet();
-
-                    SfxWhichIter aIter( rItemSet );
-                    sal_uInt16 nWhich( aIter.FirstWhich() );
-                    const SfxPoolItem* pItem = NULL;
-
-                    while( nWhich )
-                    {
-                        if( SFX_ITEM_SET == rItemSet.GetItemState( nWhich, FALSE, &pItem ) )
-                            aSet.Put( *pItem->Clone() );
-                        nWhich = aIter.NextWhich();
-                    }
-                    // Set the StyleSheet
-                    NbcSetStyleSheet(pDefSS, TRUE);
-
-                    // Set the hard attributes
-                    SetItemSet( aSet );
-                  }
-                else
-                    NbcSetStyleSheet(pDefSS, TRUE);
-            }
-        }
-*/
 /*N*/   }
 /*N*/ }
 
@@ -638,7 +418,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrAttrObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType,
+/*N*/ void SdrAttrObj::SFX_NOTIFY(SfxBroadcaster& /*rBC*/, const TypeId& /*rBCType*/,
 /*N*/   const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SfxSimpleHint *pSimple = PTR_CAST(SfxSimpleHint, &rHint);
@@ -722,7 +502,7 @@ namespace binfilter {
 /*N*/   mpStyleSheet = NULL;
 /*N*/ }
 
-/*N*/ void SdrAttrObj::AddStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrAttrObj::AddStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   // old StyleSheet is deleted
 /*N*/   DBG_ASSERT(!mpStyleSheet, "Old style sheet not deleted before setting new one (?)");
@@ -758,7 +538,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrAttrObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrAttrObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   RemoveStyleSheet();
 /*N*/   AddStyleSheet(pNewStyleSheet, bDontRemoveHardAttr);
@@ -766,7 +546,7 @@ namespace binfilter {
 /*N*/   SetRectsDirty(TRUE);
 /*N*/ }
 
-/*N*/ void SdrAttrObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrAttrObj::SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   Rectangle aBoundRect0;
 /*N*/
@@ -881,7 +661,7 @@ namespace binfilter {
 //////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ FASTBOOL SdrAttrObj::ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const
+/*N*/ bool SdrAttrObj::ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const
 /*N*/ {
 /*N*/   const SfxItemSet& rSet = GetItemSet();
 /*N*/
@@ -918,26 +698,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SdrAttrObj::ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const
+/*N*/ bool SdrAttrObj::ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const
 /*N*/ {
 /*N*/   BOOL bShadOn=((SdrShadowItem&)(rSet.Get(SDRATTR_SHADOW))).GetValue();
 /*N*/
 /*N*/   if(bShadOn)
 /*?*/   {
-// LineAttr for shadow no longer necessary, lines and line shadows are drawn in Paint()
-// routines individually (grep for CreateLinePoly())
-//
-//          if (pLineAttr!=NULL) {
-//              XLineAttrSetItem aL(*pLineAttr);
-//              aL.GetItemSet().Put(XLineColorItem(String(),aShadCol));
-//              aL.GetItemSet().Put(XLineTransparenceItem(nTransp));
-//              rXOut.SetLineAttr(aL);
-//          }
-
-// #103692# Caller must now handle noFill case
-//      if(!bNoFill)
-//      {
-
 /*?*/         const SdrShadowColorItem& rShadColItem = ((const SdrShadowColorItem&)(rSet.Get(SDRATTR_SHADOWCOLOR)));
 /*?*/         Color aShadCol(rShadColItem.GetValue());
 /*?*/         sal_uInt16 nTransp = ((const SdrShadowTransparenceItem&)(rSet.Get(SDRATTR_SHADOWTRANSPARENCE))).GetValue();
@@ -1023,80 +789,7 @@ namespace binfilter {
 /*N*/   return ((XLineStyleItem&)(GetItem(XATTR_LINESTYLE))).GetValue()!=XLINE_NONE;
 /*N*/ }
 
-// #94547# Have to re-activate more performant, but corrected version.
-// This is necessary since SetItemSet() of the old implementation calls
-// ItemSetChanged() which replaces in textobjects all text items which
-// is wrong behaviour for BurnInStyleSheet.
-
-// #91695# back to corrected old version. Have to check new version again for later builds.
-//void SdrAttrObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-//{
-//  SfxItemPool* pPool = GetItemPool();
-//  if ( pPool && mpStyleSheet )
-//  {
-//      // Get StyleSheet attributes
-//      SfxItemSet aSet(*pPool,
-//          SDRATTR_START, SDRATTR_NOTPERSIST_FIRST-1,
-//          SDRATTR_NOTPERSIST_LAST+1, SDRATTR_END,
-//          EE_ITEMS_START,EE_ITEMS_END,
-//          0,0);
-//
-//      SfxWhichIter aIter( mpStyleSheet->GetItemSet() );
-//      sal_uInt16 nWhich( aIter.FirstWhich() );
-//      const SfxPoolItem* pItem = NULL;
-//
-//      while( nWhich )
-//      {
-//          if( SFX_ITEM_SET == mpStyleSheet->GetItemSet().GetItemState(nWhich, TRUE, &pItem) )
-//              aSet.Put( *pItem );
-//
-//          nWhich = aIter.NextWhich();
-//      }
-//
-//      SfxWhichIter aHardAttrIter( GetItemSet() );
-//      nWhich = aHardAttrIter.FirstWhich();
-//
-//      while( nWhich )
-//      {
-//          if( SFX_ITEM_SET == GetItemSet().GetItemState(nWhich, FALSE, &pItem) )
-//              aSet.Put( *pItem );
-//
-//          nWhich = aHardAttrIter.NextWhich();
-//      }
-//
-//      // Set StyleSheet attributes as hard attributes
-//      SetItemSet( aSet );
-//      }
-//}
-
-/*
-void SdrAttrObj::BurnInStyleSheetAttributes( BOOL bPseudoSheetsOnly )
-{
-    // #89025# Added more performant implementation
-    if(mpStyleSheet)
-    {
-        const SfxItemSet& rSet = mpStyleSheet->GetItemSet();
-        SfxWhichIter aIter(rSet);
-        sal_uInt16 nWhich(aIter.FirstWhich());
-        const SfxPoolItem *pItem = NULL;
-
-        ImpForceItemSet();
-        const SfxItemSet* pParentSet = mpObjectItemSet->GetParent();
-        if(pParentSet != 0L)
-            mpObjectItemSet->SetParent(0L);
-
-        while(nWhich)
-        {
-            if(SFX_ITEM_SET == rSet.GetItemState(nWhich, TRUE, &pItem))
-                mpObjectItemSet->Put(*pItem);
-            nWhich = aIter.NextWhich();
-        }
-
-        if(pParentSet != 0L)
-            mpObjectItemSet->SetParent(pParentSet);
-    }
-}
-*/
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

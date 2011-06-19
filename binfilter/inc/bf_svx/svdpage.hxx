@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,27 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SV_BITMAP_HXX
 #include <vcl/bitmap.hxx>
-#endif
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
-#ifndef _GDIMTF_HXX //autogen
 #include <vcl/gdimtf.hxx>
-#endif
 
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
-#ifndef _SVDLAYER_HXX
 #include <bf_svx/svdlayer.hxx>
-#endif
 class Color;
 namespace binfilter {
 
@@ -121,8 +110,8 @@ friend class SdrEditView;
     Rectangle   aOutRect;
     Rectangle   aSnapRect;
     SdrObjListKind eListKind;
-    FASTBOOL    bObjOrdNumsDirty;
-    FASTBOOL    bRectsDirty;
+    bool    bObjOrdNumsDirty;
+    bool    bRectsDirty;
 protected:
     virtual void RecalcRects();
 public:
@@ -150,7 +139,7 @@ public:
     virtual void      SetModel(SdrModel* pNewModel);
     // Neuberechnung der Objekt-Ordnungsnummern
     void     RecalcObjOrdNums();
-    FASTBOOL IsObjOrdNumsDirty() const        { return bObjOrdNumsDirty; }
+    bool IsObjOrdNumsDirty() const        { return bObjOrdNumsDirty; }
     virtual void NbcInsertObject(SdrObject* pObj, ULONG nPos=CONTAINER_APPEND
                                  , const SdrInsertReason* pReason=NULL
                                                                       );
@@ -180,8 +169,8 @@ public:
     // Liefert TRUE wenn Paint korrekt beendet wurde. Wenn rInfoRec.nBrkEvent=0
     // ist sollte die Methode immer TRUE liefern.
     // -> Unterbrechbarer Redraw ist eh' noch nicht implementiert.
-    FASTBOOL Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors=FALSE) const;
-    FASTBOOL Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, FASTBOOL bRestoreColors, USHORT nImpMode) const;
+    bool Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, bool bRestoreColors=FALSE) const;
+    bool Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec, bool bRestoreColors, USHORT nImpMode) const;
     // HitTest auf alle Objekte der Liste
 
     // Alle Textobjekte neu formatieren, z.B. bei Druckerwechsel
@@ -219,7 +208,7 @@ public:
     // Speicher laden.
 
 
-    void    Save(SvStream& rOut) const;
+    void    Save(SvStream&) const {}
     void    Load(SvStream& rIn, SdrPage& rPage);
     // AfterRead wird gerufen, nachdem das gesamte Model eingestreamt
     // worden ist. Damit ist ein PostProcessing moeglich um beispielsweise
@@ -263,8 +252,8 @@ class SdrMasterPageDescriptor {
     SetOfByte aVisLayers;
 public:
     SdrMasterPageDescriptor(USHORT nPageNum=0): nPgNum(nPageNum) { aVisLayers.SetAll(); }
-    FASTBOOL         operator==(const SdrMasterPageDescriptor& rCmp) const { return nPgNum==rCmp.nPgNum && aVisLayers==rCmp.aVisLayers; }
-    FASTBOOL         operator!=(const SdrMasterPageDescriptor& rCmp) const { return !operator==(rCmp); }
+    bool         operator==(const SdrMasterPageDescriptor& rCmp) const { return nPgNum==rCmp.nPgNum && aVisLayers==rCmp.aVisLayers; }
+    bool         operator!=(const SdrMasterPageDescriptor& rCmp) const { return !operator==(rCmp); }
     USHORT           GetPageNum() const                          { return nPgNum; }
     void             SetPageNum(USHORT nNum)                     { nPgNum=nNum; }
     const SetOfByte& GetVisibleLayers() const                    { return aVisLayers; }
@@ -283,8 +272,8 @@ public:
     SdrMasterPageDescriptorList(const SdrMasterPageDescriptorList& rSrcList): aList(1024,4,4) { *this=rSrcList; }
     ~SdrMasterPageDescriptorList()                                         { Clear(); }
     void     Clear();
-    FASTBOOL operator==(const SdrMasterPageDescriptorList& rCmpList) const;
-    FASTBOOL operator!=(const SdrMasterPageDescriptorList& rCmpList) const   { return !operator==(rCmpList); }
+    bool operator==(const SdrMasterPageDescriptorList& rCmpList) const;
+    bool operator!=(const SdrMasterPageDescriptorList& rCmpList) const   { return !operator==(rCmpList); }
     USHORT   GetCount() const                                                { return USHORT(aList.Count()); }
     void     Insert(USHORT nPgNum, USHORT nPos=0xFFFF)                       { aList.Insert(new SdrMasterPageDescriptor(nPgNum),nPos); }
     void     Insert(const SdrMasterPageDescriptor& rMPD, USHORT nPos=0xFFFF) { aList.Insert(new SdrMasterPageDescriptor(rMPD),nPos); }
@@ -312,8 +301,8 @@ public:
 class SdrPageGridFrameList {
     Container aList;
 private:
-    SdrPageGridFrameList(const SdrPageGridFrameList& rSrcList): aList(1024,4,4) {}
-    void           operator=(const SdrPageGridFrameList& rSrcList)              {}
+    SdrPageGridFrameList(const SdrPageGridFrameList& /*rSrcList*/): aList(1024,4,4) {}
+    void           operator=(const SdrPageGridFrameList& /*rSrcList*/)              {}
 protected:
     SdrPageGridFrame* GetObject(USHORT i) const { return (SdrPageGridFrame*)(aList.GetObject(i)); }
 public:
@@ -351,8 +340,8 @@ friend class ChXChartDocument;
     ::com::sun::star::uno::WeakReference< ::com::sun::star::uno::XInterface > mxUnoPage;
 
     // #108867# used by GetFillColor
-    FASTBOOL ImplGetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
-                              FASTBOOL bLayerSorted, Color& rCol, FASTBOOL bSkipBackgroundShape) const;
+    bool ImplGetFillColor(const Point& rPnt, const SetOfByte& rVisLayers,
+                              bool bLayerSorted, Color& rCol, bool bSkipBackgroundShape) const;
 
 protected:
     //SdrModel& rModel;
@@ -363,10 +352,10 @@ protected:
     SdrMasterPageDescriptorList aMasters; // Das sind meine MasterPages (Seitennummern)
     SetOfByte  aPrefVisiLayers;
     USHORT     nPageNum;
-    FASTBOOL   bMaster;  // TRUE: Ich bin eine Stammseite
-    FASTBOOL   bInserted;
-    FASTBOOL   bObjectsNotPersistent;
-    FASTBOOL   bSwappingLocked;
+    bool   bMaster;  // TRUE: Ich bin eine Stammseite
+    bool   bInserted;
+    bool   bObjectsNotPersistent;
+    bool   bSwappingLocked;
 
     virtual ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > createUnoPage();
 
@@ -377,14 +366,14 @@ protected:
 #endif // __PRIVATE
 public:
     TYPEINFO();
-    SdrPage(SdrModel& rNewModel, FASTBOOL bMasterPage=FALSE);
+    SdrPage(SdrModel& rNewModel, bool bMasterPage=FALSE);
     // Copy-Ctor und Zuweisungeoperator sind nicht getestet!
     SdrPage(const SdrPage& rSrcPage);
     virtual ~SdrPage();
     // pModel, pPage, pUpList, pOwnerObj und bInserted werden Zuweisungeoperator nicht veraendert!
-            FASTBOOL IsMasterPage() const       { return bMaster; }
-            void SetInserted(FASTBOOL bJa=TRUE);
-            FASTBOOL IsInserted() const         { return bInserted; }
+            bool IsMasterPage() const       { return bMaster; }
+            void SetInserted(bool bJa=TRUE);
+            bool IsInserted() const         { return bInserted; }
     virtual void SetChanged();
             void   SetPageNum(USHORT nNum) { nPageNum=nNum; }; // wird vom Model gesetzt!
             USHORT GetPageNum() const;
@@ -448,16 +437,16 @@ public:
     // fuer's Raster im Writer, auch fuer AlignObjects wenn 1 Objekt markiert ist
     // wenn pRect!=NULL, dann die Seiten, die von diesem Rect intersected werden
     // ansonsten die sichtbaren Seiten.
-    FASTBOOL IsObjectsNotPersistent() const          { return bObjectsNotPersistent; }
-    void     SetObjectsNotPersistent(FASTBOOL b)     { bObjectsNotPersistent=b; }
+    bool IsObjectsNotPersistent() const          { return bObjectsNotPersistent; }
+    void     SetObjectsNotPersistent(bool b)     { bObjectsNotPersistent=b; }
     // Durch Setzen dieses Flags, kann das Auslagern (Swappen) von
     // Teilen der Page (z.B. Grafiken) unterbunden werden.
     // Es werden hierdurch jedoch nicht automatisch alle ausgelagerten
     // Teile nachgeladen, dies geschieht erst bei konkretem Bedarf oder
     // durch Aufruf von SwapInAll().
     // Fuer die MasterPage(s) der Page muss dies ggf. separat gemacht werden.
-    FASTBOOL IsSwappingLocked() const                { return bSwappingLocked; }
-    void     SetSwappingLocked(FASTBOOL bLock)       { bSwappingLocked=bLock; }
+    bool IsSwappingLocked() const                { return bSwappingLocked; }
+    void     SetSwappingLocked(bool bLock)       { bSwappingLocked=bLock; }
 
     SdrObject* GetBackgroundObj() const { return pBackgroundObj; }
     void       SetBackgroundObj( SdrObject* pObj );
@@ -467,7 +456,7 @@ public:
     // Ausserdem muss man sich in diesem Fall von SdrModel ableiten und die
     // vMethode AllocPage() ueberladen, damit das Model beim reinstreamen die
     // richtige Page erzeugen kann.
-    virtual void  WriteData(SvStream& rOut) const;
+    virtual void  WriteData(SvStream& ) const {}
     virtual void  ReadData(const SdrIOHeader& rHead, SvStream& rIn);
     friend SvStream& operator<<(SvStream& rOut, const SdrPage& rPg);
     friend SvStream& operator>>(SvStream& rIn, SdrPage& rPg);
@@ -487,3 +476,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDPAGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

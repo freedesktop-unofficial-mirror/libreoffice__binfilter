@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,21 +29,11 @@
 #ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #define _XMLOFF_FORMS_CALLBACKS_HXX_
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
 #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
+#include <rtl/ref.hxx>
 namespace binfilter {
 
 class SvXMLImport;
@@ -64,7 +55,7 @@ namespace xmloff
     {
     public:
         virtual SvXMLExport&                                getGlobalContext() = 0;
-        virtual ::vos::ORef< SvXMLExportPropertyMapper >    getStylePropertyMapper() = 0;
+        virtual ::rtl::Reference< SvXMLExportPropertyMapper >   getStylePropertyMapper() = 0;
 
         /** steps through a collection and exports all children of this collection
         */
@@ -173,3 +164,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_CALLBACKS_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

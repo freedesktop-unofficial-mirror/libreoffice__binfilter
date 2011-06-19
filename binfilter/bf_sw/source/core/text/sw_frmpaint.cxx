@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,31 +31,23 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
 
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
 
-#ifndef _ITRPAINT_HXX
 #include <itrpaint.hxx>     // SwTxtPainter
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 namespace binfilter {
 
 
 // steht im number.cxx
-extern const sal_Char __FAR_DATA sBulletFntName[];
+extern const sal_Char sBulletFntName[];
 
-extern FASTBOOL bOneBeepOnly;
+extern bool bOneBeepOnly;
 
 sal_Bool bInitFont = sal_True;
 
@@ -80,7 +73,7 @@ sal_Bool bInitFont = sal_True;
 /*N*/ #endif
 /*N*/
 /*N*/   // finger layout
-/*N*/   ASSERT( GetValidPosFlag(), "+SwTxtFrm::Paint: no Calc()" );
+/*N*/   OSL_ENSURE( GetValidPosFlag(), "+SwTxtFrm::Paint: no Calc()" );
 /*N*/
 /*N*/   SwRect aRet( Prt() );
 /*N*/   if ( IsEmpty() || !HasPara() )
@@ -102,10 +95,8 @@ sal_Bool bInitFont = sal_True;
 /*N*/
 /*N*/ #ifdef BIDI
 /*N*/         if ( IsRightToLeft() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             SwitchLTRtoRTL( aRet );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/ #endif
-/*N*/         if ( IsVertical() )
-/*N*/             SwitchHorizontalToVertical( aRet );
 /*N*/   }
 /*N*/   ResetRepaint();
 /*N*/
@@ -123,3 +114,5 @@ sal_Bool bInitFont = sal_True;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SCHATTR_HXX
 #define _SCHATTR_HXX
 
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
 
 #include "chattr.hxx"
 namespace binfilter {
@@ -196,3 +195,4 @@ namespace binfilter {
 #endif // _SCHATTR_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

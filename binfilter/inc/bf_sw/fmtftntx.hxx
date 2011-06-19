@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,18 +30,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
 namespace binfilter {
 
 
@@ -66,28 +59,23 @@ protected:
         : SfxEnumItem( nWhich, ePos ), nOffset( 0 )
     {}
     SwFmtFtnEndAtTxtEnd( const SwFmtFtnEndAtTxtEnd& rAttr )
-        : SfxEnumItem( rAttr ), nOffset( rAttr.nOffset ), aFmt( rAttr.aFmt ),
-        sPrefix( rAttr.sPrefix ), sSuffix( rAttr.sSuffix )
+        : SfxEnumItem( rAttr )
+        , sPrefix( rAttr.sPrefix )
+        , sSuffix( rAttr.sSuffix )
+        , aFmt( rAttr.aFmt )
+        , nOffset( rAttr.nOffset )
     {}
 
 public:
-    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual USHORT           GetValueCount() const;
+    virtual USHORT          GetValueCount() const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer ) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
 
     virtual int             operator==( const SfxPoolItem& ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
-
-// will be used at time??
-//  void                    FillVariable( SbxVariable &rVar,
-//                                        SfxMapUnit eCoreMetric,
-//                                        SfxMapUnit eUserMetric ) const;
-//  virtual SfxArgumentError SetVariable( const SbxVariable &rVal,
-//                                        SfxMapUnit eCoreMetric,
-//                                        SfxMapUnit eUserMetric );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     inline BOOL IsAtEnd() const { return FTNEND_ATPGORDOCEND != GetValue(); }
 
@@ -147,3 +135,4 @@ inline const SwFmtEndAtTxtEnd &SwFmt::GetEndAtTxtEnd(BOOL bInP) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

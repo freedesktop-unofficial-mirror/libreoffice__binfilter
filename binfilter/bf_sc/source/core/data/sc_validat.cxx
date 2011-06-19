@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -135,37 +133,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ void ScValidationData::Store(SvStream& rStream, ScMultipleWriteHeader& rHdr) const
-/*N*/ {
-/*N*/   //  im Datei-Header sind getrennte Eintraege fuer ScConditionEntry und ScValidationData
-/*N*/
-/*N*/   StoreCondition( rStream, rHdr );
-/*N*/
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   //  1) Key
-/*N*/   //  2) eDataMode
-/*N*/   //  3) bShowInput
-/*N*/   //  4) aInputTitle
-/*N*/   //  5) aInputMessage
-/*N*/   //  6) bShowError
-/*N*/   //  7) aErrorTitle
-/*N*/   //  8) aErrorMessage
-/*N*/   //  9) eErrorStyle
-/*N*/
-/*N*/   rStream << nKey;
-/*N*/   rStream << (USHORT) eDataMode;
-/*N*/   rStream << bShowInput;
-/*N*/   rStream.WriteByteString( aInputTitle, rStream.GetStreamCharSet() );
-/*N*/   rStream.WriteByteString( aInputMessage, rStream.GetStreamCharSet() );
-/*N*/   rStream << bShowError;
-/*N*/   rStream.WriteByteString( aErrorTitle, rStream.GetStreamCharSet() );
-/*N*/   rStream.WriteByteString( aErrorMessage, rStream.GetStreamCharSet() );
-/*N*/   rStream << (USHORT) eErrorStyle;
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
 /*N*/ BOOL ScValidationData::IsEmpty() const
 /*N*/ {
 /*N*/   String aEmpty;
@@ -223,14 +190,15 @@ namespace binfilter {
 /*N*/   return bShowError;
 /*N*/ }
 
-/*N*/ BOOL ScValidationData::IsDataValid( ScBaseCell* pCell, const ScAddress& rPos ) const
+/*N*/ BOOL ScValidationData::IsDataValid( ScBaseCell* /*pCell*/, const ScAddress& /*rPos*/ ) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 double nVal = 0.0;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
 /*N*/ ScValidationDataList::ScValidationDataList(const ScValidationDataList& rList)
+/*N*/     : ScValidationEntries_Impl()
 /*N*/ {
 /*N*/   //  fuer Ref-Undo - echte Kopie mit neuen Tokens!
 /*N*/
@@ -251,7 +219,7 @@ namespace binfilter {
 /*N*/       if ((*this)[i]->GetKey() == nKey)
 /*N*/           return (*this)[i];
 /*N*/
-/*N*/   DBG_ERROR("ScValidationDataList: Eintrag nicht gefunden");
+/*N*/   OSL_FAIL("ScValidationDataList: Eintrag nicht gefunden");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -266,27 +234,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       ScValidationData* pNew = new ScValidationData( rStream, aHdr, pDocument );
 /*N*/       InsertNew( pNew );
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ScValidationDataList::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   USHORT nCount = Count();
-/*N*/   USHORT nUsed = 0;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ((*this)[i]->IsUsed())
-/*N*/           ++nUsed;
-/*N*/
-/*N*/   rStream << nUsed;       // Anzahl der gespeicherten
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       const ScValidationData* pForm = (*this)[i];
-/*N*/       if (pForm->IsUsed())
-/*N*/           pForm->Store( rStream, aHdr );
 /*N*/   }
 /*N*/ }
 
@@ -310,3 +257,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

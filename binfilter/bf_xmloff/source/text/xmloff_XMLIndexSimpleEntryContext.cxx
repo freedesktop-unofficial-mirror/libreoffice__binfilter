@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,34 +26,14 @@
  *
  ************************************************************************/
 
-
-#ifndef _XMLOFF_XMLINDEXSIMPLEENTRYCONTEXT_HXX_
 #include "XMLIndexSimpleEntryContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
 
 namespace binfilter {
-
-
-//using namespace ::com::sun::star::text;
 
 using ::rtl::OUString;
 using ::com::sun::star::beans::PropertyValue;
@@ -70,16 +51,16 @@ const sal_Char sAPI_CharacterStyleName[] = "CharacterStyleName";
 TYPEINIT1( XMLIndexSimpleEntryContext, SvXMLImportContext);
 
 XMLIndexSimpleEntryContext::XMLIndexSimpleEntryContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     const OUString& rEntry,
     XMLIndexTemplateContext& rTemplate,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        rTemplateContext(rTemplate),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rEntryType(rEntry),
         sCharStyleName(),
         bCharStyleNameOK(sal_False),
+        rTemplateContext(rTemplate),
         nValues(1)
 {
 }
@@ -96,10 +77,10 @@ void XMLIndexSimpleEntryContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
-        if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+        if ( (XML_NAMESPACE_TEXT == nLclPrefix) &&
              IsXMLToken(sLocalName, XML_STYLE_NAME) )
         {
             sCharStyleName = xAttrList->getValueByIndex(nAttr);
@@ -148,3 +129,5 @@ void XMLIndexSimpleEntryContext::FillPropertyValues(
 
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

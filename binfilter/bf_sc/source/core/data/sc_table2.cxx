@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,12 +35,8 @@
 #include "scitems.hxx"
 #include <tools/urlobj.hxx>
 #include <math.h>
-#ifndef _SVTOOLS_PASSWORDHELPER_HXX
 #include <bf_svtools/PasswordHelper.hxx>
-#endif
-#ifndef _UNOTOOLS_TRANSLITERATIONWRAPPER_HXX
 #include <unotools/transliterationwrapper.hxx>
-#endif
 
 #include "patattr.hxx"
 #include "docpool.hxx"
@@ -77,7 +71,7 @@ void lcl_SaveRange( SvStream& rStream, ScRange* pRange );
 /*N*/
 /*N*/   if (pOutlineTable)
 /*N*/   {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->GetColArray()->GetDepth();
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if (pNewOutline)
@@ -373,7 +367,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->G
 /*N*/                   pDestTab->pColFlags[i] = pColFlags[i];
 /*N*/                   //! Aenderungen zusammenfassen?
 /*N*/                   if (bChange)
-/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( i, 0, nTab, i, MAXROW, nTab ));
+/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               }
 /*N*/
 /*N*/           if (nCol1==0 && nCol2==MAXCOL && pRowHeight && pDestTab->pRowHeight)
@@ -385,7 +379,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->G
 /*N*/                   pDestTab->pRowFlags[i]  = pRowFlags[i];
 /*N*/                   //! Aenderungen zusammenfassen?
 /*N*/                   if (bChange)
-/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, i, nTab, MAXCOL, i, nTab ));
+/*?*/                   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               }
 /*N*/
 /*N*/           pDestTab->SetOutlineTable( pOutlineTable );     // auch nur wenn bColRowFlags
@@ -439,7 +433,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         nOldSizeX = pOutlineTable->G
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, pCell );
 /*N*/       else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -451,7 +445,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow 
 /*N*/       if (pCell)
 /*N*/           aCol[nCol].Insert( nRow, nFormatIndex, pCell );
 /*N*/       else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -461,14 +455,14 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aCol[nCol].Delete( nRow 
 /*N*/   if (pCell)
 /*N*/       aCol[rPos.Col()].Insert( rPos.Row(), pCell );
 /*N*/   else
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPos.Row() );
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::SetString( USHORT nCol, USHORT nRow, USHORT nTab, const String& rString )
+/*N*/ BOOL ScTable::SetString( USHORT nCol, USHORT nRow, USHORT nInTab, const String& rString )
 /*N*/ {
 /*N*/   if (ValidColRow(nCol,nRow))
-/*N*/       return aCol[nCol].SetString( nRow, nTab, rString );
+/*N*/       return aCol[nCol].SetString( nRow, nInTab, rString );
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }
@@ -505,9 +499,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/       rString.Erase();
 /*N*/ }
 
-/*N*/ double ScTable::GetValue( USHORT nCol, USHORT nRow )
+/*N*/ double ScTable::GetValue( USHORT, USHORT )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;//STRIP001 if (ValidColRow( nCol, nRow ))
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0.0;
 /*N*/ }
 
 /*N*/ BOOL ScTable::GetNote( USHORT nCol, USHORT nRow, ScPostIt& rNote)
@@ -536,7 +530,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/   if (ValidColRow( nCol, nRow ))
 /*N*/       return aCol[nCol].GetCell( nRow );
 /*N*/
-/*N*/   DBG_ERROR("GetCell ausserhalb");
+/*N*/   OSL_FAIL("GetCell ausserhalb");
 /*N*/   return NULL;
 /*N*/ }
 
@@ -586,9 +580,9 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/ }
 
 
-/*N*/ void ScTable::SetDirty( const ScRange& rRange )
+/*N*/ void ScTable::SetDirty( const ScRange& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bOldAutoCalc = pDocument->GetAutoCalc();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -840,7 +834,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/       bIsEditable = FALSE;
 /*N*/   else if ( bProtected )
     {
-{DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/        bIsEditable = !HasAttribSelection( rMark, HASATTR_PROTECTED );
+{DBG_BF_ASSERT(0, "STRIP");}
         bIsEditable = FALSE;
     }
 /*N*/   else
@@ -874,7 +868,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/   if (nLockCount)
 /*N*/       --nLockCount;
 /*N*/   else
-/*N*/       DBG_ERROR("UnlockTable ohne LockTable");
+/*N*/       OSL_FAIL("UnlockTable ohne LockTable");
 /*N*/ }
 
 
@@ -893,17 +887,17 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         aCol[rPos.Col()].Delete( rPo
 /*N*/ }
 
 
-/*N*/ void ScTable::MergeBlockFrame( SvxBoxItem* pLineOuter, SvxBoxInfoItem* pLineInner, ScLineFlags& rFlags,
-/*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow ) const
+/*N*/ void ScTable::MergeBlockFrame( SvxBoxItem*, SvxBoxInfoItem*, ScLineFlags&,
+/*N*/                   USHORT, USHORT, USHORT, USHORT ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
-/*N*/ void ScTable::ApplyBlockFrame( const SvxBoxItem* pLineOuter, const SvxBoxInfoItem* pLineInner,
-/*N*/                   USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow )
+/*N*/ void ScTable::ApplyBlockFrame( const SvxBoxItem*, const SvxBoxInfoItem*,
+/*N*/                   USHORT, USHORT, USHORT, USHORT )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, nStartRow) && ValidColRow(nEndCol, nEndRow))
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -1013,8 +1007,8 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/
 /*N*/   BOOL bFound = FALSE;
 /*N*/   USHORT i;
-/*N*/   USHORT nStart;
-/*N*/   USHORT nEnd;
+/*N*/   USHORT nStart(0);
+/*N*/   USHORT nEnd(0);
 /*N*/   for (i=0; i<=MAXROW; i++)
 /*N*/   {
 /*N*/       if (pUsed[i])
@@ -1080,7 +1074,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   {
 /*N*/       if (!nNewWidth)
 /*N*/       {
-/*N*/ //            DBG_ERROR("Spaltenbreite 0 in SetColWidth");
+/*N*/ //            OSL_FAIL("Spaltenbreite 0 in SetColWidth");
 /*N*/           nNewWidth = STD_COL_WIDTH;
 /*N*/       }
 /*N*/
@@ -1096,7 +1090,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Spaltennummer oder keine Breiten");
+/*N*/       OSL_FAIL("Falsche Spaltennummer oder keine Breiten");
 /*N*/ }
 
 
@@ -1106,7 +1100,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   {
 /*N*/       if (!nNewHeight)
 /*N*/       {
-/*?*/           DBG_ERROR("Zeilenhoehe 0 in SetRowHeight");
+/*?*/           OSL_FAIL("Zeilenhoehe 0 in SetRowHeight");
 /*?*/           nNewHeight = ScGlobal::nStdRowHeight;
 /*N*/       }
 /*N*/
@@ -1122,12 +1116,12 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Hoehen");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Hoehen");
 /*N*/ }
 
 
 /*N*/ BOOL ScTable::SetRowHeightRange( USHORT nStartRow, USHORT nEndRow, USHORT nNewHeight,
-/*N*/                                   double nPPTX,double nPPTY )
+/*N*/                                   double /*nPPTX*/,double nPPTY )
 /*N*/ {
 /*N*/   BOOL bChanged = FALSE;
 /*N*/   if (VALIDROW(nStartRow) && VALIDROW(nEndRow) && pRowHeight)
@@ -1135,7 +1129,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/       nRecalcLvl++;
 /*N*/       if (!nNewHeight)
 /*N*/       {
-/*?*/           DBG_ERROR("Zeilenhoehe 0 in SetRowHeight");
+/*?*/           OSL_FAIL("Zeilenhoehe 0 in SetRowHeight");
 /*?*/           nNewHeight = ScGlobal::nStdRowHeight;
 /*N*/       }
 /*N*/
@@ -1196,7 +1190,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/           SetDrawPageSize();
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Hoehen");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Hoehen");
 /*N*/
 /*N*/   return bChanged;
 /*N*/ }
@@ -1215,7 +1209,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/               pRowFlags[nRow] &= ~CR_MANUALSIZE;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Zeilenflags");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Zeilenflags");
 /*N*/ }
 
 
@@ -1318,11 +1312,11 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/
 /*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
 /*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pCharts->SetRangeDirty(ScRange( nCol, 0, nTab, nCol, MAXROW, nTab ));
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Spaltennummer oder keine Flags");
+/*N*/       OSL_FAIL("Falsche Spaltennummer oder keine Flags");
 /*N*/ }
 
 
@@ -1367,7 +1361,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/       {
 /*N*/           ScChartListenerCollection* pCharts = pDocument->GetChartListenerCollection();
 /*N*/           if ( pCharts && pCharts->GetCount() )
-/*?*/               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pCharts->SetRangeDirty(ScRange( 0, nStartRow, nTab, MAXCOL, nEndRow, nTab ));
+/*?*/               {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/
 /*N*/       nStartRow = nEndRow + 1;
@@ -1382,7 +1376,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   if (VALIDROW(nRow) && pRowFlags)
 /*N*/       return ( pRowFlags[nRow] & CR_FILTERED ) != 0;
 /*N*/
-/*N*/   DBG_ERROR("Falsche Zeilennummer oder keine Flags");
+/*N*/   OSL_FAIL("Falsche Zeilennummer oder keine Flags");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -1394,7 +1388,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/   if (VALIDROW(nRow) && pRowFlags)
 /*N*/       pRowFlags[nRow] = nNewFlags;
 /*N*/   else
-/*N*/       DBG_ERROR("Falsche Zeilennummer oder keine Flags");
+/*N*/       OSL_FAIL("Falsche Zeilennummer oder keine Flags");
 /*N*/ }
 
 
@@ -1448,10 +1442,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::UpdateOutlineCol( USHORT nStartCol, USHORT nEndCol, BOOL bShow )
+/*N*/ BOOL ScTable::UpdateOutlineCol( USHORT /*nStartCol*/, USHORT /*nEndCol*/, BOOL /*bShow*/ )
 /*N*/ {
 /*N*/   if (pOutlineTable && pColFlags)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 return pOutlineTable->GetColArray()->ManualAction( nStartCol, nEndCol, bShow, pColFlags );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 /*N*/   else
 /*N*/       return FALSE;
 /*N*/ }
@@ -1610,7 +1604,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/
 /*N*/                       if ( !pStylePool->Find( aPageStyle, SFX_STYLE_FAMILY_PAGE ) )
 /*N*/                       {
-/*N*/                           DBG_TRACE( "PageStyle not found. Using Standard." );
+/*N*/                           OSL_TRACE( "PageStyle not found. Using Standard." );
 /*N*/                           aPageStyle = ScGlobal::GetRscString(STR_STYLENAME_STANDARD);
 /*N*/                       }
 /*N*/                   }
@@ -1694,7 +1688,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/               break;
 /*N*/           default:
 /*N*/               {
-/*N*/                   DBG_ERROR("unbekannter Sub-Record in ScTable::Load");
+/*N*/                   OSL_FAIL("unbekannter Sub-Record in ScTable::Load");
 /*N*/                   ScReadHeader aDummyHeader( rStream );
 /*N*/               }
 /*N*/       }
@@ -1772,158 +1766,6 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/ }
 
 
-/*N*/ BOOL ScTable::Save( SvStream& rStream, long& rSavedDocCells, ScProgress* pProgress ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/   USHORT i;
-/*N*/
-/*N*/   //  Spalten (Daten)
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLUMNS;
-/*N*/       ScMultipleWriteHeader aColHdr( rStream );
-/*N*/
-/*N*/       for (i=0; i<=MAXCOL; i++)
-/*N*/       {
-/*N*/           const ScColumn* pCol = &aCol[ i ];
-/*N*/           if( !pCol->IsEmptyData() || pCol->NoteCount() || !pCol->IsEmptyAttr())
-/*N*/           {
-/*N*/               rStream << (BYTE) i;
-/*N*/               aCol[i].Save(rStream, aColHdr);
-/*N*/               rSavedDocCells += aCol[i].GetWeightedCount();
-/*N*/               if (pProgress)
-/*N*/                   pProgress->SetState( rSavedDocCells );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  Spalten-/Zeilenflags
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_COLROWFLAGS;
-/*N*/       ScWriteHeader aFlagsHdr( rStream );
-/*N*/
-/*N*/       USHORT nSaveMaxRow = pDocument->GetSrcMaxRow();
-/*N*/
-/*N*/       lcl_SaveValue( rStream, pColWidth, MAXCOL );
-/*N*/       lcl_SaveFlags( rStream, pColFlags, MAXCOL );
-/*N*/       lcl_SaveValue( rStream, pRowHeight,nSaveMaxRow );
-/*N*/       lcl_SaveFlags( rStream, pRowFlags, nSaveMaxRow );
-/*N*/
-/*N*/       //  wenn dabei weniger Zeilenhoehen als vorhanden gespeichert wurden,
-/*N*/       //  gibt das noch keine Warnung wegen Datenverlust.
-/*N*/   }
-/*N*/
-/*N*/   BOOL bRelURL = FALSE;
-/*N*/   String aLinkDocSaveName( aLinkDoc );
-/*N*/   String aSaveName( aName );
-/*N*/   if ( nLinkMode )
-/*N*/   {
-/*N*/       aLinkDocSaveName = ::binfilter::StaticBaseUrl::AbsToRel( aLinkDocSaveName );
-/*N*/       aLinkDocSaveName = INetURLObject::decode( aLinkDocSaveName,
-/*N*/           INET_HEX_ESCAPE, INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/         if ( ScGlobal::pTransliteration->isEqual( aLinkDocSaveName,
-/*N*/                 INetURLObject::decode( aLinkDoc, INET_HEX_ESCAPE,
-/*N*/                 INetURLObject::DECODE_UNAMBIGUOUS ) ) )
-/*N*/       {
-/*N*/           aSaveName = INetURLObject::decode( aSaveName,
-/*N*/               INET_HEX_ESCAPE, INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           bRelURL = TRUE;
-/*N*/           // Reference to external sheet, only the sheet name is stored
-/*N*/           // instead of the absolute DocTabName, will be reconcatenated upon
-/*N*/           // load time.
-/*N*/           if ( nLinkMode == SC_LINK_VALUE )
-/*N*/               aSaveName = aLinkTab;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  einzelne Einstellungen
-/*N*/
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_TABOPTIONS;
-/*N*/       ScWriteHeader aFlagsHdr( rStream );
-/*N*/
-/*N*/       rStream.WriteByteString( aSaveName, rStream.GetStreamCharSet() );
-/*N*/
-/*N*/       rStream << bScenario;
-/*N*/       rStream.WriteByteString( aComment, rStream.GetStreamCharSet() );
-/*N*/
-/*N*/       rStream << bProtected;
-/*N*/       String aPass;
-/*N*/       //rStream.WriteByteString( aProtectPass, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aPass, rStream.GetStreamCharSet() );
-/*N*/
-/*N*/       BOOL bOutline = ( pOutlineTable != NULL );
-/*N*/       rStream << bOutline;
-/*N*/       if (bOutline)
-/*N*/           pOutlineTable->Store( rStream );
-/*N*/
-/*N*/       rStream.WriteByteString( aPageStyle, rStream.GetStreamCharSet() );
-/*N*/
-/*N*/       if ( pPrintRanges && nPrintRangeCount == 1 )        // kompatibel zu alten Versionen
-/*N*/           lcl_SaveRange( rStream, pPrintRanges );         // (nur wenn genau ein Bereich)
-/*N*/       else
-/*N*/           lcl_SaveRange( rStream, NULL );
-/*N*/       lcl_SaveRange( rStream, pRepeatColRange );
-/*N*/       lcl_SaveRange( rStream, pRepeatRowRange );
-/*N*/
-/*N*/       rStream << bVisible;
-/*N*/
-/*N*/       if ( pPrintRanges && nPrintRangeCount>1 )           // einzelner Bereich schon oben
-/*N*/       {
-/*?*/           rStream << nPrintRangeCount;                    // ab Version 314c
-/*?*/           if ( nPrintRangeCount > 1 )
-/*?*/               for ( i=0; i<nPrintRangeCount; i++)
-/*?*/                   rStream << pPrintRanges[i];
-/*N*/       }
-/*N*/       else
-/*N*/           rStream << (USHORT) 0;
-/*N*/
-/*N*/       if( rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )  // erweiterte Szenario-Flags ab 5.0
-/*N*/       {
-/*N*/           rStream << aScenarioColor;
-/*N*/           rStream << nScenarioFlags;
-/*N*/           rStream << bActiveScenario;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  Verknuepfung
-/*N*/
-/*N*/   if (nLinkMode)
-/*N*/   {
-/*N*/       rStream << (USHORT) SCID_TABLINK;
-/*N*/       ScWriteHeader aLinkHdr( rStream );
-/*N*/
-/*N*/       //  Hack, um verknuepfte Tabellen mit der 3.1 laden zu koennen (#35242#)
-/*N*/       //  bei 3.1 Export Filter von "StarCalc 4.0" auf "StarCalc 3.0" umsetzen
-/*N*/       //  (4.0 Dateien koennen vom Calc 3.1 gelesen werden)
-/*N*/       String aSaveFlt = aLinkFlt;
-/*N*/       if ( rStream.GetVersion() == SOFFICE_FILEFORMAT_31 && aSaveFlt.EqualsAscii("StarCalc 4.0") )
-/*?*/           aSaveFlt.AssignAscii(RTL_CONSTASCII_STRINGPARAM("StarCalc 3.0"));
-/*N*/
-/*N*/       rStream << nLinkMode;
-/*N*/       rStream.WriteByteString( aLinkDocSaveName, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aSaveFlt, rStream.GetStreamCharSet() );
-/*N*/       rStream.WriteByteString( aLinkTab, rStream.GetStreamCharSet() );
-/*N*/       rStream << bRelURL;
-/*N*/       rStream.WriteByteString( aLinkOpt, rStream.GetStreamCharSet() );
-/*N*/   }
-/*N*/
-/*N*/   return TRUE;
-/*N*/ }
-
-
-                                    //  CopyData - fuer Query in anderen Bereich
-
-
-
-
-
-
-
 // Berechnen der Groesse der Tabelle und setzen der Groesse an der DrawPage
 
 /*N*/ void ScTable::SetDrawPageSize()
@@ -1953,7 +1795,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/               n += *pHeight;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("GetRowOffset: Daten fehlen");
+/*N*/       OSL_FAIL("GetRowOffset: Daten fehlen");
 /*N*/   return n;
 /*N*/ }
 
@@ -1971,8 +1813,10 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if (ValidColRow(nStartCol, n
 /*N*/               n += *pWidth;
 /*N*/   }
 /*N*/   else
-/*N*/       DBG_ERROR("GetColumnOffset: Daten fehlen");
+/*N*/       OSL_FAIL("GetColumnOffset: Daten fehlen");
 /*N*/   return n;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

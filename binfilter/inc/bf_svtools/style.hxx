@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,37 +31,20 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX //autogen
 #include <bf_svtools/brdcst.hxx>
-#endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _SFX_STYLE_HRC
 #include <bf_svtools/style.hrc>
-#endif
+
+#include <vector>
 
 class SvStream;
 
@@ -69,17 +53,16 @@ namespace binfilter
 
 class SfxItemSet;
 class SfxItemPool;
-
 class SfxStyleSheetBasePool;
 
 
 /*=========================================================================
 
 Jeder, der an Intanzen der Klassen SfxStyleSheetBasePool oder am
-SfxStyleSheetBase strukturelle �nderungen vornimmt, mu� diese �ber
-<SfxStyleSheetBasePool::GetBroadcaster()> broadcasten. Daf�r Gibt es die
+SfxStyleSheetBase strukturelle ?nderungen vornimmt, mu? diese ?ber
+<SfxStyleSheetBasePool::GetBroadcaster()> broadcasten. Daf?r Gibt es die
 Klasse <SfxStyleSheetHint>, die eine Action-Id und einen Pointer auf einen
-<SfxStyleSheetBase> erh�lt. Die Actions sind:
+<SfxStyleSheetBase> erh?lt. Die Actions sind:
 
 #define SFX_STYLESHEET_CREATED      // neu
 #define SFX_STYLESHEET_MODIFIED     // ver"andert
@@ -133,7 +116,7 @@ protected:
     SfxStyleSheetBase( const SfxStyleSheetBase& );
     virtual ~SfxStyleSheetBase();
     virtual void Load( SvStream&, USHORT );
-    virtual void Store( SvStream& );
+    virtual void Store( SvStream& ) {}
 
 public:
     TYPEINFO();
@@ -168,7 +151,7 @@ public:
 
 //=========================================================================
 
-DECLARE_LIST( SfxStyles, SfxStyleSheetBase* )
+typedef ::std::vector< SfxStyleSheetBase* > SfxStyles;
 
 //=========================================================================
 
@@ -288,7 +271,7 @@ public:
     SfxStyleFamily              GetSearchFamily() const  { return nSearchFamily; }
 
     BOOL                        Load( SvStream& );
-    BOOL                        Store( SvStream&, BOOL bUsed = TRUE );
+    BOOL Store( SvStream&, BOOL /*bUsed*/ = TRUE ) {return FALSE;}
 };
 
 //=========================================================================
@@ -385,3 +368,4 @@ public:
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

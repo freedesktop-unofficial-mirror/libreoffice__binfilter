@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef SC_POOLHELP_HXX
 #define SC_POOLHELP_HXX
 
-#ifndef _VOS_REFERNCE_HXX_
-#include <vos/refernce.hxx>
-#endif
+#include <salhelper/simplereferenceobject.hxx>
 
 namespace binfilter {
 
@@ -41,7 +40,7 @@ class ScDocumentPool;
 class ScStyleSheetPool;
 
 
-class ScPoolHelper : public vos::OReference
+class ScPoolHelper : public salhelper::SimpleReferenceObject
 {
 private:
     ScDocumentPool*     pDocPool;
@@ -68,3 +67,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

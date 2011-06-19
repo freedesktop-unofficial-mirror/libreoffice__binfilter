@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 class Graphic;
 class SvStream;
 class Bitmap;
@@ -80,7 +79,7 @@ class SwW4WGraf
     short ReadW4WGrafVect( long nTyp, long nWidth, long nHeight );
     short ReadGrafFile( long nTyp, long nWidth, long nHeight );
 
-    BOOL  CheckW4WVector();       // enth„lt die W4W-Grafik Vektordaten ? (Joe)
+    BOOL  CheckW4WVector();       // enthï¿½lt die W4W-Grafik Vektordaten ? (Joe)
 
     sal_Char ReadChar()     { sal_Char c = 0; rInp.Read( &c, 1 ); return c; }
 
@@ -92,3 +91,5 @@ public:
 };
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #define _SFXMODULE_HXX  // intern
 #define _SFXMOD_HXX     // extern
 
-#ifndef _SFX_SHELL_HXX
 #include <bf_sfx2/shell.hxx>
-#endif
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 class ResMgr;
 
@@ -96,3 +93,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

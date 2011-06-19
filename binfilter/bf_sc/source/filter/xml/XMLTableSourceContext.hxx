@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _SC_XMLTABLESOURCECONTEXT_HXX
 #define _SC_XMLTABLESOURCECONTEXT_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_SHEETLINKMODE_HPP_
 #include <com/sun/star/sheet/SheetLinkMode.hpp>
-#endif
 namespace binfilter {
 
 class ScXMLImport;
@@ -68,3 +65,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

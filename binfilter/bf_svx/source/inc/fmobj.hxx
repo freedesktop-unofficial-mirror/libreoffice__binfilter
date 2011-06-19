@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,16 +28,10 @@
 #ifndef _SVX_FMOBJ_HXX
 #define _SVX_FMOBJ_HXX
 
-#ifndef _SVDOUNO_HXX
 #include "svdouno.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
 #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 namespace binfilter {
 
 class FmFormView;
@@ -82,6 +77,7 @@ protected:
 
 public:
     virtual ~FmFormObj();
+    using SdrRectObj::operator=;
     virtual void SetPage(SdrPage* pNewPage);
 
     virtual sal_uInt32 GetObjInventor() const;
@@ -95,7 +91,7 @@ public:
     sal_Int32   getType() const;
 
 protected:
-    virtual void     WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void     ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     DECL_LINK(OnCreate, void* );
@@ -105,3 +101,4 @@ protected:
 }//end of namespace binfilter
 #endif // _FM_FMOBJ_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

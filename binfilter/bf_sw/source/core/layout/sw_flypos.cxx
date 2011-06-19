@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
 #include "flypos.hxx"
 #include "frmfmt.hxx"
 #include "dcontact.hxx"
@@ -62,7 +55,8 @@ namespace binfilter {
 
 /*N*/ SwPosFlyFrm::SwPosFlyFrm( const SwNodeIndex& rIdx, const SwFrmFmt* pFmt,
 /*N*/                           USHORT nArrPos )
-/*N*/   : pNdIdx( (SwNodeIndex*) &rIdx ), pFrmFmt( pFmt )
+/*N*/   : pFrmFmt( pFmt )
+/*N*/   , pNdIdx( (SwNodeIndex*) &rIdx )
 /*N*/ {
 /*N*/   BOOL bFnd = FALSE;
 /*N*/   const SwFmtAnchor& rAnchor = pFmt->GetAnchor();
@@ -101,7 +95,7 @@ namespace binfilter {
 /*?*/       delete pNdIdx;
 /*N*/ }
 
-/*N*/ BOOL SwPosFlyFrm::operator==( const SwPosFlyFrm& rPosFly )
+/*N*/ BOOL SwPosFlyFrm::operator==( const SwPosFlyFrm& )
 /*N*/ {
 /*N*/   return FALSE;   // FlyFrames koennen auf der gleichen Position stehen
 /*N*/ }
@@ -119,3 +113,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

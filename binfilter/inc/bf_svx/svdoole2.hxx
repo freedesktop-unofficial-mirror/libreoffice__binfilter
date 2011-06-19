@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _SVDORECT_HXX
 #include <bf_svx/svdorect.hxx>
-#endif
-#ifndef _GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _GDIMTF_HXX //autogen
 #include <vcl/gdimtf.hxx>
-#endif
 
 #include <bf_so3/svstor.hxx>
 
@@ -87,9 +80,10 @@ protected:
 public:
     TYPEINFO();
 
-    SdrOle2Obj(FASTBOOL bFrame_=FALSE);
-    SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, FASTBOOL bFrame_=FALSE);
+    SdrOle2Obj(bool bFrame_=FALSE);
+    SdrOle2Obj(const SvInPlaceObjectRef& rNewObjRef, const String& rNewObjName, const Rectangle& rNewRect, bool bFrame_=FALSE);
     virtual ~SdrOle2Obj();
+    using SdrRectObj::operator=;
 
     // Ein OLE-Zeichenobjekt kann eine StarView-Grafik beinhalten.
     // Diese wird angezeigt, wenn das OLE-Objekt leer ist.
@@ -108,7 +102,7 @@ public:
     // spaeter wieder abfragen kann (SD braucht das fuer Praesentationsobjekte).
     void SetProgName(const String& rNam) { aProgName=rNam; }
     const String& GetProgName() const { return aProgName; }
-    FASTBOOL IsEmpty() const;
+    bool IsEmpty() const;
     void SetObjRef(const SvInPlaceObjectRef& rNewObjRef);
     const SvInPlaceObjectRef& GetObjRef() const;
 
@@ -134,10 +128,10 @@ public:
     virtual void NbcSetLogicRect(const Rectangle& rRect);
 
     // fuer Import:
-    FASTBOOL HasGDIMetaFile() const;
+    bool HasGDIMetaFile() const;
     const GDIMetaFile* GetGDIMetaFile() const;
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     BOOL Unload();
@@ -154,3 +148,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOOLE2_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

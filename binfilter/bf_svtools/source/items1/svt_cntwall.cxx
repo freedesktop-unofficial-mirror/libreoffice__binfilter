@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 #include <tools/string.hxx>
 #include <tools/stream.hxx>
 
-#ifndef _VCOMPAT_HXX
 #include <tools/vcompat.hxx>
-#endif
 
 #include <bf_svtools/cntwall.hxx>
 
@@ -128,21 +127,6 @@ SfxPoolItem* CntWallpaperItem::Create( SvStream& rStream, USHORT nVersion) const
     return new CntWallpaperItem( Which(), rStream, nVersion );
 }
 
-// -----------------------------------------------------------------------
-SvStream& CntWallpaperItem::Store( SvStream& rStream, USHORT ) const
-{
-    rStream << CNTWALLPAPERITEM_STREAM_MAGIC;
-    writeUnicodeString(rStream, _aURL);
-    // !!! Color stream operators do not work - they discard any
-    // transparency info !!!
-    // ??? Why the hell Color::Write(...) isn't const ???
-    SAL_CONST_CAST( CntWallpaperItem*, this )->_nColor.Write( rStream, TRUE );
-    rStream << _nStyle;
-
-    return rStream;
-}
-
-// -----------------------------------------------------------------------
 SfxPoolItem* CntWallpaperItem::Clone( SfxItemPool* ) const
 {
     return new CntWallpaperItem( *this );
@@ -150,19 +134,21 @@ SfxPoolItem* CntWallpaperItem::Clone( SfxItemPool* ) const
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL CntWallpaperItem::QueryValue( com::sun::star::uno::Any&,BYTE ) const
+bool CntWallpaperItem::QueryValue( com::sun::star::uno::Any&,BYTE ) const
 {
-    DBG_ERROR("Not implemented!");
-    return FALSE;
+    OSL_FAIL("Not implemented!");
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL CntWallpaperItem::PutValue( const com::sun::star::uno::Any&,BYTE )
+bool CntWallpaperItem::PutValue( const com::sun::star::uno::Any&,BYTE )
 {
-    DBG_ERROR("Not implemented!");
-    return FALSE;
+    OSL_FAIL("Not implemented!");
+    return false;
 }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

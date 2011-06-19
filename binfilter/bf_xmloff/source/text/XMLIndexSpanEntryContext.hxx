@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,15 @@
 #ifndef _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 #define _XMLOFF_XMLINDEXSPANENTRYCONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLINDEXSIMPLEENTRYCONTEXT_HXX_
 #include "XMLIndexSimpleEntryContext.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
 namespace com { namespace sun { namespace star {
     namespace xml { namespace sax { class XAttributeList; } }
@@ -86,3 +77,5 @@ protected:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

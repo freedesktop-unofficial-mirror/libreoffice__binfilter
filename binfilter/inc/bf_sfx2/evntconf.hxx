@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,12 +32,8 @@
 
 #if _SOLAR__PRIVATE
 
-#ifndef _FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
-#ifndef _SV_BUTTON_HXX
 #include <vcl/button.hxx>
-#endif
 
 #endif
 
@@ -74,7 +71,7 @@ struct SfxEvent_Impl
     {}
 };
 
-SV_DECL_PTRARR(SfxEventArr_Impl, SfxEvent_Impl*, 5, 5)//STRIP008 ;
+SV_DECL_PTRARR(SfxEventArr_Impl, SfxEvent_Impl*, 5, 5)
 
 // -----------------------------------------------------------------------
 
@@ -158,7 +155,7 @@ public:
 
     void                    Init( SfxConfigManager* );
     virtual int             Load(SotStorage&);
-    virtual BOOL            Store(SotStorage&);
+    virtual BOOL            Store(SotStorage&) {return FALSE;}
     virtual String          GetStreamName() const;
     virtual void            UseDefault();
     void                    ConfigureEvent( USHORT nPos, SvxMacro* );
@@ -168,3 +165,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

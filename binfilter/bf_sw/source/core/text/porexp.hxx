@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -84,7 +85,7 @@ public:
 class SwPostItsPortion : public SwExpandPortion
 {
 public:
-    SwPostItsPortion( sal_Bool bScrpt ){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 //STRIP001          SwPostItsPortion( sal_Bool bScrpt );
+    SwPostItsPortion( sal_Bool /*bScrpt*/ ){DBG_BF_ASSERT(0, "STRIP");};
     OUTPUT_OPERATOR
 };
 
@@ -95,3 +96,5 @@ CLASSIO( SwBlankPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

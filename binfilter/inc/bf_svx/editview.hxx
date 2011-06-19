@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,13 +32,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 class Window;
 class Pointer;
 class Cursor;
@@ -60,13 +57,9 @@ class SvxFieldItem;
 class DropEvent;
 class CommandEvent;
 }//end of namespace binfilter //namespace binfilter
-#ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace com {
 namespace sun {
@@ -117,3 +110,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _MyEDITVIEW_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

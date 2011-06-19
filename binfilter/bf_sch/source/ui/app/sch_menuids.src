@@ -28,20 +28,6 @@
 
 
 #include "app.hrc"
- //#include <dialogs.hrc>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 #define MN_ROW_POSITION \

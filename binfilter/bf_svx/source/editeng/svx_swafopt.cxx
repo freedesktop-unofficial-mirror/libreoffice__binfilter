@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SV_KEYCODES_HXX //autogen
 #include <vcl/keycodes.hxx>
-#endif
 
 #include "swafopt.hxx"
 namespace binfilter {
@@ -101,3 +100,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

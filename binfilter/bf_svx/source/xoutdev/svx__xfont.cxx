@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,81 +30,22 @@
 #include <vcl/virdev.hxx>
 #include <math.h>
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
 #include "xoutx.hxx"
-
-// #101498#
-#ifndef _OUTLINER_HXX
 #include "outliner.hxx"
-#endif
 
-
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-
-#ifndef _COM_SUN_STAR_I18N_XBREAKITERATOR_HPP_
 #include <com/sun/star/i18n/XBreakIterator.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_I18N_CHARACTERITERATORMODE_HDL_
 #include <com/sun/star/i18n/CharacterIteratorMode.hdl>
-#endif
 
-#ifndef _UNO_LINGU_HXX
 #include "unolingu.hxx"
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::i18n;
-
-/*************************************************************************
-|*
-|*    XOutGetCharOutline()
-|*
-|*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
-|*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
-|*    zurueckgegeben
-|*    Ersterstellung    12.01.95 ESO
-|*    Letzte Aenderung  09.05.95 ESO
-|*
-*************************************************************************/
-
-// #102382# Remove XOutGetCharOutline
-// #100318# deprecated, use XOutGetTextOutline
-//XPolyPolygon XOutGetCharOutline( USHORT nChar, OutputDevice& rOut, BOOL bOptimizeSize )
-//{
-//  PolyPolygon aPolyPoly;
-//
-//  //if( !rOut.GetGlyphOutline( (xub_Unicode) nChar, aPolyPoly, bOptimizeSize ) && rOut.GetOutDevType() == OUTDEV_PRINTER )
-//  // #97492#
-//  String aGlyphString((xub_Unicode) nChar);
-//
-//  if( !rOut.GetTextOutline(aPolyPoly, aGlyphString) && OUTDEV_PRINTER == rOut.GetOutDevType())
-//  {
-//      VirtualDevice aVDev;
-//      aVDev.SetMapMode( rOut.GetMapMode() );
-//      aVDev.SetFont( rOut.GetFont() );
-//      aVDev.SetTextAlign( rOut.GetTextAlign() );
-//      // #97492#
-//      //aVDev.GetGlyphOutline( (xub_Unicode) nChar, aPolyPoly, FALSE );
-//      aVDev.GetTextOutline(aPolyPoly, aGlyphString);
-//  }
-//
-//  // #97492# since GetTextOutline(...) is base line oriented, the
-//  // polygon needs to be moved one line height
-//  aPolyPoly.Move(0, rOut.GetFontMetric().GetAscent());
-//
-//  return XPolyPolygon( aPolyPoly );
-//}
 
 // #100318# new for XOutGetCharOutline
 // #102382# new interface for XOutGetTextOutline to support PolyPolyVector
@@ -162,9 +104,6 @@ using namespace ::com::sun::star::i18n;
 |*              und endend hinter dem letzten Zeichen; es muﬂ also
 |*              rText.Len()-1 long-Werte enthalten
 |*
-|*
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
 
@@ -236,7 +175,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/
 /*N*/   Reference < ::com::sun::star::i18n::XBreakIterator > xBreak;
 /*N*/   Reference < XMultiServiceFactory > xMSF = ::legacy_binfilters::getLegacyProcessServiceFactory();
-/*N*/   Reference < XInterface > xInterface = xMSF->createInstance(::rtl::OUString::createFromAscii("com.sun.star.i18n.BreakIterator"));
+/*N*/   Reference < XInterface > xInterface = xMSF->createInstance(::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.i18n.BreakIterator" )));
 /*N*/   ::com::sun::star::lang::Locale aFontLocale = SvxCreateLocale(pInfo->rFont.GetLanguage());
 /*N*/
 /*N*/   if(xInterface.is())
@@ -485,7 +424,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                   // #101145# Do create outline polygons more efficient
 /*N*/                   // #102382# new interface supporting PolyPolyVector
 /*N*/                   PolyPolyVector aPolyPolyVector;
-/*N*/                   sal_Bool bOkay(ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar, nCnt));
+/*N*/                   ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar, nCnt);
 /*N*/
 /*N*/                   // #102382# iterate over single PolyPolygons
 /*N*/                   for(sal_uInt32 a(0); a < aPolyPolyVector.size(); a++)
@@ -531,7 +470,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       aFont.SetOrientation(nAngle);
 /*?*/                       pOut->SetFont(aFont);
 /*?*/                       if(bDraw)
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*N*/                   }
 /*N*/                   else
@@ -543,7 +482,7 @@ using namespace ::com::sun::star::i18n;
 /*N*/                       pOut->SetFont(aFont);
 /*N*/                       if(bDraw)
 /*N*/                       {
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpDrawTextArray(pOut, aPos, pInfo, (long*)pDXArray, nChar, nCnt);
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/                   }
 /*N*/               }
@@ -584,7 +523,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                       // #108756#
 /*?*/                       // Here the wrong index was called for the ImpXOutGetTextOutlines(...)
 /*?*/                       // call. nChar needs to be added here to index the different characters.
-/*?*/                       sal_Bool bOkay(ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar + i, nNextGlyphLen));
+/*?*/                       ImpXOutGetTextOutlines(aPolyPolyVector, pOut, pInfo, nChar + i, nNextGlyphLen);
 /*?*/
 /*?*/                       // #102382# iterate over single PolyPolygons
 /*?*/                       for(sal_uInt32 a(0); a < aPolyPolyVector.size(); a++)
@@ -592,13 +531,13 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           PolyPolygon aPolyPoly(aPolyPolyVector[a]);
 /*?*/
 /*?*/                           if(aPolyPoly.Count() > 0 && aPolyPoly[0].GetSize() > 0)
-/*?*/                           {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                           }
 /*?*/                       }
 /*?*/                   }
 /*?*/
 /*?*/                   if ( eFormTextStyle == XFT_SLANTY )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
@@ -625,7 +564,7 @@ using namespace ::com::sun::star::i18n;
 /*?*/                           DrawXPolyPolygon(aChar);
 /*?*/                       else
 /*?*/                       {
-/*?*/                       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   ImpDrawTextArray(pOut, aPolyPos, pInfo, (long*)pDXArray, nChar + i, nNextGlyphLen);
+/*?*/                       DBG_BF_ASSERT(0, "STRIP");
 /*?*/                       }
 /*?*/                   }
 /*?*/
@@ -691,10 +630,6 @@ using namespace ::com::sun::star::i18n;
 /*N*/   }
 /*N*/ }
 
-/*************************************************************************
-|*
-*************************************************************************/
-
 // #101498# changed interface due to bidi requirements
 /*N*/ sal_Int32 XOutputDevice::DrawFormText(DrawPortionInfo* pInfo, const Polygon& rPoly,
 /*N*/   sal_Int32 nAbsStart, sal_Bool bToLastPoint, sal_Bool bDraw)
@@ -712,3 +647,5 @@ using namespace ::com::sun::star::i18n;
 
 // eof
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

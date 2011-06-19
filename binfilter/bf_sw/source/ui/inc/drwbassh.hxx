@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,11 +42,11 @@ class SwDrawBaseShell: public SwBaseShell
 {
 
 public:
-    SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwDrawBaseShell(SwView &rShell);
+    SwDrawBaseShell(SwView &rShell):SwBaseShell( rShell ){DBG_BF_ASSERT(0, "STRIP");}
 
     SFX_DECL_INTERFACE(SW_DRAWBASESHELL);
 
-    void        DisableState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     DisableState(SfxItemSet &rSet)               { Disable(rSet);}
+    void        DisableState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");};
 
 
 };
@@ -53,3 +54,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

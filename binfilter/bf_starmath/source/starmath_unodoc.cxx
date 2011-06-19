@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,12 @@
 #include <tools/string.hxx>
 #include <bf_sfx2/docfac.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 #include "smmod.hxx"
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -59,9 +54,9 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SmDocument_getSupportedServiceNames() 
 }
 
 uno::Reference< uno::XInterface > SAL_CALL SmDocument_createInstance(
-                const uno::Reference< lang::XMultiServiceFactory > & rSMgr ) throw( uno::Exception )
+                const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ ) throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SM_MOD(), "No StarMath module!" );
@@ -83,3 +78,5 @@ uno::Reference< uno::XInterface > SAL_CALL SmDocument_createInstance(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

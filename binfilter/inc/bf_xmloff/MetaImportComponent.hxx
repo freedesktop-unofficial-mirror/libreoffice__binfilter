@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 #ifndef _XMLOFF_METAIMPORTCOMPONENT_HXX
 #define _XMLOFF_METAIMPORTCOMPONENT_HXX
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XDOCUMENTINFO_HPP_
 #include <com/sun/star/document/XDocumentInfo.hpp>
-#endif
 namespace binfilter {
 
 class XMLMetaImportComponent : public SvXMLImport
@@ -88,3 +83,4 @@ protected:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -39,9 +37,7 @@
 
 #include "scmatrix.hxx"
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------------
@@ -125,54 +121,6 @@ namespace binfilter {
 /*N*/                   pMat[i].pS = NULL;
 /*N*/           }
 /*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ScMatrix::Store(SvStream& rStream) const
-/*N*/ {
-/*N*/   ULONG nCount = (ULONG) nAnzCol * nAnzRow;
-/*N*/   // Don't store matrix with more than USHORT max elements, old versions
-/*N*/   // might get confused in loops for(USHORT i=0; i<nC*nR; i++)
-/*N*/   if ( !pMat || nCount > ((USHORT)(~0)) )
-/*N*/   {
-/*N*/       DBG_ASSERT( pMat, "ScMatrix::Store: pMat == NULL" );
-/*N*/       // We can't store a 0 dimension because old versions rely on some
-/*N*/       // matrix being present, e.g. DDE link results, and old versions didn't
-/*N*/       // create a matrix if dimension was 0. Store an error result.
-/*N*/       rStream << (USHORT) 1;
-/*N*/       rStream << (USHORT) 1;
-/*N*/       rStream << (BYTE) CELLTYPE_VALUE;
-/*N*/       double fVal;
-/*N*/       ::rtl::math::setNan( &fVal );
-/*N*/       rStream << fVal;
-/*N*/       return;
-/*N*/   }
-/*N*/
-/*N*/   rStream << nAnzCol;
-/*N*/   rStream << nAnzRow;
-/*N*/
-/*N*/   String aMatStr;
-/*N*/   rtl_TextEncoding eCharSet = rStream.GetStreamCharSet();
-/*N*/   for (ULONG i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       BYTE nType = CELLTYPE_VALUE;
-/*N*/       if ( bIsString && bIsString[i] )
-/*N*/       {
-/*N*/           if ( pMat[i].pS )
-/*N*/               aMatStr = *pMat[i].pS;
-/*N*/           else
-/*N*/               aMatStr.Erase();
-/*N*/
-/*N*/           if ( bIsString[i] == SC_MATVAL_STRING )
-/*N*/               nType = CELLTYPE_STRING;
-/*N*/           else
-/*N*/               nType = CELLTYPE_NONE;
-/*N*/       }
-/*N*/       rStream << nType;
-/*N*/       if ( nType == CELLTYPE_VALUE )
-/*N*/           rStream << pMat[i].fVal;
-/*N*/       else if ( nType == CELLTYPE_STRING )
-/*N*/           rStream.WriteByteString( aMatStr, eCharSet );
 /*N*/   }
 /*N*/ }
 
@@ -565,3 +513,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,43 +26,28 @@
  *
  ************************************************************************/
 
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-//#ifndef _SV_SYSTEM_HXX
-//#include <vcl/system.hxx>
-//#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #define _SVX_FLDITEM_CXX
 
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
-#endif
 
 #define ITEMID_FIELD    0
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
 #include "flditem.hxx"
 #include "adritem.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -98,30 +84,29 @@ namespace binfilter {
 /*N*/ int SvxFieldData::operator==( const SvxFieldData& rFld ) const
 /*N*/ {
 /*N*/   DBG_ASSERT( Type() == rFld.Type(), "==: Verschiedene Typen" );
+/*N*/   (void)rFld;
 /*N*/   return TRUE;    // Basicklasse immer gleich.
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxFieldData::Load( SvPersistStream & rStm )
+/*N*/ void SvxFieldData::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxFieldData::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxFieldData::Save( SvPersistStream & /*rStm*/ ) {}
 
 
 /*?*/ MetaAction* SvxFieldData::createBeginComment() const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new MetaCommentAction( "FIELD_SEQ_BEGIN" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 /*?*/ MetaAction* SvxFieldData::createEndComment() const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001    return new MetaCommentAction( "FIELD_SEQ_END" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -177,27 +162,6 @@ namespace binfilter {
 /*?*/       aPStrm.ResetError();    // Eigentlich einen Code, dass nicht alle Attr gelesen wurden...
 /*N*/
 /*N*/   return new SvxFieldItem( pData, Which() );
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ SvStream& SvxFieldItem::Store( SvStream& rStrm, USHORT nItemVersion ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( pField, "SvxFieldItem::Store: Feld?!" );
-/*N*/   SvPersistStream aPStrm( GetClassManager(), &rStrm );
-/*N*/   // Das ResetError in der obigen Create-Methode gab es in 3.1 noch nicht,
-/*N*/   // deshalb duerfen beim 3.x-Export neuere Items nicht gespeichert werden!
-/*N*/   if ( ( rStrm.GetVersion() <= SOFFICE_FILEFORMAT_31 ) && pField &&
-/*N*/           pField->GetClassId() == 50 /* SdrMeasureField */ )
-/*N*/   {
-/*N*/       // SvxFieldData reicht nicht, weil auch nicht am ClassMgr angemeldet
-/*?*/       SvxURLField aDummyData;
-/*?*/       aPStrm << &aDummyData;
-/*N*/   }
-/*N*/   else
-/*N*/       aPStrm << pField;
-/*N*/
-/*N*/   return rStrm;
 /*N*/ }
 
 // -----------------------------------------------------------------------
@@ -277,12 +241,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxDateField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   rStm << nFixDate;
-/*N*/   rStm << (USHORT)eType;
-/*N*/   rStm << (USHORT)eFormat;
-/*N*/ }
+/*N*/ void SvxDateField::Save( SvPersistStream & ) {}
 
 // -----------------------------------------------------------------------
 
@@ -377,29 +336,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ void SvxURLField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   // Relatives Speichern der URL
-/*N*/   String aTmpURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL );
-/*N*/
-/*N*/   rStm << (USHORT)eFormat;
-/*N*/
-/*N*/   // UNICODE: rStm << aTmpURL;
-/*N*/   rStm.WriteByteString(aTmpURL);
-/*N*/
-/*N*/   // UNICODE: rStm << aRepresentation;
-/*N*/   rStm.WriteByteString(aRepresentation);
-/*N*/
-/*N*/   rStm << FRAME_MARKER;
-/*N*/
-/*N*/   // UNICODE: rStm << aTargetFrame;
-/*N*/   rStm.WriteByteString(aTargetFrame);
-/*N*/
-/*N*/   rStm << CHARSET_MARKER;
-/*N*/
-/*N*/   // #90477# rStm << (USHORT)GetStoreCharSet(gsl_getSystemTextEncoding(), rStm.GetVersion());
-/*N*/   rStm << (USHORT)GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rStm.GetVersion());
-/*N*/ }
+/*N*/ void SvxURLField::Save( SvPersistStream & ) {}
 
 
 // =================================================================
@@ -408,106 +345,96 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PERSIST1( SvxPageField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxPageField::Clone() const
+/*N*/ SvxFieldData* SvxPageField::Clone() const
 /*N*/ {
 /*N*/   return new SvxPageField;        // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxPageField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxPageField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxPageField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPageField::Load( SvPersistStream & rStm )
+/*N*/ void SvxPageField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPageField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxPageField::Save( SvPersistStream & /*rStm*/ ) {}
 
 
 
 /*N*/ SV_IMPL_PERSIST1( SvxPagesField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxPagesField::Clone() const
+/*N*/ SvxFieldData* SvxPagesField::Clone() const
 /*N*/ {
 /*N*/   return new SvxPagesField;   // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxPagesField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxPagesField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxPagesField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPagesField::Load( SvPersistStream & rStm )
+/*N*/ void SvxPagesField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxPagesField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxPagesField::Save( SvPersistStream & /*rStm*/ ) {}
 
 /*N*/ SV_IMPL_PERSIST1( SvxTimeField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxTimeField::Clone() const
+/*N*/ SvxFieldData* SvxTimeField::Clone() const
 /*N*/ {
 /*N*/   return new SvxTimeField;    // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxTimeField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxTimeField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxTimeField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTimeField::Load( SvPersistStream & rStm )
+/*N*/ void SvxTimeField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTimeField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxTimeField::Save( SvPersistStream & /*rStm*/ ) {}
 
 
 /*N*/ SV_IMPL_PERSIST1( SvxFileField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxFileField::Clone() const
+/*N*/ SvxFieldData* SvxFileField::Clone() const
 /*N*/ {
 /*N*/   return new SvxFileField;    // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxFileField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxFileField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxFileField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxFileField::Load( SvPersistStream & rStm )
+/*N*/ void SvxFileField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxFileField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxFileField::Save( SvPersistStream & /*rStm*/ ) {}
 
 /*N*/ SV_IMPL_PERSIST1( SvxTableField, SvxFieldData );
 
-/*N*/ SvxFieldData* __EXPORT SvxTableField::Clone() const
+/*N*/ SvxFieldData* SvxTableField::Clone() const
 /*N*/ {
 /*N*/   return new SvxTableField;   // leer
 /*N*/ }
 
-/*N*/ int __EXPORT SvxTableField::operator==( const SvxFieldData& rCmp ) const
+/*N*/ int SvxTableField::operator==( const SvxFieldData& rCmp ) const
 /*N*/ {
 /*N*/   return ( rCmp.Type() == TYPE(SvxTableField) );
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTableField::Load( SvPersistStream & rStm )
+/*N*/ void SvxTableField::Load( SvPersistStream & /*rStm*/ )
 /*N*/ {
 /*N*/ }
 
-/*N*/ void __EXPORT SvxTableField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/ }
+/*N*/ void SvxTableField::Save( SvPersistStream & /*rStm*/ ) {}
 
 //----------------------------------------------------------------------------
 //      SvxExtTimeField
@@ -569,12 +496,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxExtTimeField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   rStm << nFixTime;
-/*N*/   rStm << (USHORT) eType;
-/*N*/   rStm << (USHORT) eFormat;
-/*N*/ }
+/*N*/ void SvxExtTimeField::Save( SvPersistStream & ) {}
 
 //----------------------------------------------------------------------------
 
@@ -639,14 +561,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxExtFileField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   // UNICODE: rStm << aFile;
-/*N*/   rStm.WriteByteString(aFile);
-/*N*/
-/*N*/   rStm << (USHORT) eType;
-/*N*/   rStm << (USHORT) eFormat;
-/*N*/ }
+/*N*/ void SvxExtFileField::Save( SvPersistStream & ) {}
 
 //----------------------------------------------------------------------------
 
@@ -722,20 +637,7 @@ namespace binfilter {
 
 //----------------------------------------------------------------------------
 
-/*N*/ void SvxAuthorField::Save( SvPersistStream & rStm )
-/*N*/ {
-/*N*/   // UNICODE: rStm << aName;
-/*N*/   rStm.WriteByteString(aName);
-/*N*/
-/*N*/   // UNICODE: rStm << aFirstName;
-/*N*/   rStm.WriteByteString(aFirstName);
-/*N*/
-/*N*/   // UNICODE: rStm << aShortName;
-/*N*/   rStm.WriteByteString(aShortName);
-/*N*/
-/*N*/   rStm << (USHORT) eType;
-/*N*/   rStm << (USHORT) eFormat;
-/*N*/ }
+/*N*/ void SvxAuthorField::Save( SvPersistStream & ) {}
 
 //----------------------------------------------------------------------------
 
@@ -769,3 +671,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

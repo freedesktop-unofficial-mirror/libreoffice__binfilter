@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PAGEMASTERPROPHDLFACTORY_HXX
 #include "PageMasterPropHdlFactory.hxx"
-#endif
 
-#ifndef _XMLOFF_PROPERTYHANDLER_BASICTYPES_HXX
 #include "xmlbahdl.hxx"
-#endif
-#ifndef _XMLOFF_NAMEDBOOLPROPERTYHANDLER_HXX
 #include "NamedBoolPropertyHdl.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTCOLUMNSPPROPERTYHANDLER_HXX
 #include "XMLTextColumnsPropertyHandler.hxx"
-#endif
-#ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
-#endif
 
-#ifndef _XMLOFF_PAGEMASTERPROPHDL_HXX_
 #include "PageMasterPropHdl.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_TEXTGRIDMODE_HPP_
 #include <com/sun/star/text/TextGridMode.hpp>
-#endif
 namespace binfilter {
 
 
@@ -159,3 +144,5 @@ const XMLPropertyHandler* XMLPageMasterPropHdlFactory::GetPropertyHandler( sal_I
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

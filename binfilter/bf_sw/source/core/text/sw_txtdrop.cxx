@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,46 +33,20 @@
 #endif
 
 
-#ifndef _SV_METRIC_HXX //autogen
 #include <vcl/metric.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
-#endif
-#ifndef _PORDROP_HXX
 #include <pordrop.hxx>
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _CHARATR_HXX
 #include <charatr.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
@@ -93,16 +68,16 @@ using namespace ::com::sun::star;
  *************************************************************************/
 
 /*N*/ SwDropPortion::SwDropPortion( const MSHORT nLineCnt,
-/*N*/                               const KSHORT nDropHeight,
-/*N*/                               const KSHORT nDropDescent,
-/*N*/                               const KSHORT nDistance )
-/*N*/   : pPart( 0 ),
-/*N*/     nLines( nLineCnt ),
-/*N*/   nDropHeight(nDropHeight),
-/*N*/   nDropDescent(nDropDescent),
-/*N*/   nDistance(nDistance),
-/*N*/   nX(0),
-/*N*/   nFix(0)
+/*N*/                               const KSHORT nDropHeight1,
+/*N*/                               const KSHORT nDropDescent1,
+/*N*/                               const KSHORT nDistance1 )
+/*N*/   : pPart( 0 )
+/*N*/   , nLines( nLineCnt )
+/*N*/   , nDropHeight(nDropHeight1)
+/*N*/   , nDropDescent(nDropDescent1)
+/*N*/   , nDistance(nDistance1)
+/*N*/   , nFix(0)
+/*N*/   , nX(0)
 /*N*/ {
 /*N*/     SetWhichPor( POR_DROP );
 /*N*/ }
@@ -237,7 +212,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       if( !Next() )
 /*N*/       {
-/*N*/           ASSERT( !this, "SwTxtFormatter::_CalcDropHeight: left Toulouse" );
+/*N*/           OSL_ENSURE( !this, "SwTxtFormatter::_CalcDropHeight: left Toulouse" );
 /*N*/           break;
 /*N*/       }
 /*N*/   }
@@ -255,7 +230,7 @@ using namespace ::com::sun::star;
 
 /*N*/ void SwTxtFormatter::GuessDropHeight( const MSHORT nLines )
 /*N*/ {
-/*N*/   ASSERT( nLines, "GuessDropHeight: Give me more Lines!" );
+/*N*/   OSL_ENSURE( nLines, "GuessDropHeight: Give me more Lines!" );
 /*N*/   KSHORT nAscent = 0;
 /*N*/   KSHORT nHeight = 0;
 /*N*/   SetDropLines( nLines );
@@ -316,8 +291,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/
 /*N*/     // build DropPortionParts:
-/*N*/     ASSERT( ! rInf.GetIdx(), "Drop Portion not at 0 position!" );
-/*N*/     xub_StrLen nIdx = rInf.GetIdx();
+/*N*/     OSL_ENSURE( ! rInf.GetIdx(), "Drop Portion not at 0 position!" );
 /*N*/     xub_StrLen nNextChg = 0;
 /*N*/     const SwCharFmt* pFmt = pDropFmt->GetCharFmt();
 /*N*/     SwDropPortionPart* pCurrPart = 0;
@@ -343,16 +317,16 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/         // find next attribute change / script change
-/*N*/         const xub_StrLen nIdx = nNextChg;
+/*N*/         const xub_StrLen nIdx2 = nNextChg;
 /*N*/         xub_StrLen nNextAttr = Min( GetNextAttr(), rInf.GetTxt().Len() );
-/*N*/         nNextChg = pScriptInfo->NextScriptChg( nIdx );
+/*N*/         nNextChg = pScriptInfo->NextScriptChg( nIdx2 );
 /*N*/         if( nNextChg > nNextAttr )
 /*N*/             nNextChg = nNextAttr;
 /*N*/         if ( nNextChg > nPorLen )
 /*N*/             nNextChg = nPorLen;
 /*N*/
 /*N*/         SwDropPortionPart* pPart =
-/*N*/                 new SwDropPortionPart( *pTmpFnt, nNextChg - nIdx );
+/*N*/                 new SwDropPortionPart( *pTmpFnt, nNextChg - nIdx2 );
 /*N*/
 /*N*/         if ( ! pCurrPart )
 /*N*/             pDropPor->SetPart( pPart );
@@ -367,3 +341,5 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

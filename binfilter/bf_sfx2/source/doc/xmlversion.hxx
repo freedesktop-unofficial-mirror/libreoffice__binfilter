@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,22 +28,11 @@
 #ifndef _SFX_XMLVERSION_HXX
 #define _SFX_XMLVERSION_HXX
 
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 
-
-//#ifndef _XMLOFF_XMLITMAP_HXX
-//#include <bf_xmloff/xmlitmap.hxx>
-//#endif
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
 
 
 
@@ -133,3 +123,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

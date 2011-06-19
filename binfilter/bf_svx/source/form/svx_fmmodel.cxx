@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 
 #ifndef SVX_LIGHT
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
 #else
 class SfxObjectShell;
 #endif
@@ -38,17 +37,11 @@ class SfxObjectShell;
 #pragma hdrstop
 #endif
 
-#ifndef _FM_FMMODEL_HXX
 #include "fmmodel.hxx"
-#endif
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 
-#ifndef _FM_PAGE_HXX
 #include "fmpage.hxx"
-#endif
 
 #include "svdobj.hxx"
 
@@ -82,9 +75,9 @@ struct FmFormModelImplData
 \************************************************************************/
 /*N*/ FmFormModel::FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers)
 /*N*/           :SdrModel(rPath, pPool, pPers)
+/*N*/           ,m_pImpl(NULL)
 /*N*/           ,pObjShell(0)
 /*N*/           ,bStreamingOldVersion(sal_False)
-/*N*/           ,m_pImpl(NULL)
 /*N*/           ,m_bOpenInDesignMode(sal_False)
 /*N*/           ,m_bAutoControlFocus(sal_False)
 /*N*/ {
@@ -106,7 +99,7 @@ struct FmFormModelImplData
 |*
 \************************************************************************/
 /*N*/ FmFormModel::FmFormModel(const XubString& rPath, SfxItemPool* pPool, SvPersist* pPers,
-/*N*/                        FASTBOOL bUseExtColorTable)
+/*N*/                        bool bUseExtColorTable)
 /*N*/           :SdrModel(rPath, pPool, pPers, bUseExtColorTable, LOADREFCOUNTS)
 /*N*/           ,pObjShell(0)
 /*N*/           ,bStreamingOldVersion(sal_False)
@@ -129,65 +122,6 @@ struct FmFormModelImplData
 /*N*/       SetObjectShell(NULL);
 /*N*/   delete m_pImpl;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Copy-Ctor
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|* Operator=
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|* Operator==
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Erzeugt eine neue Seite
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|* WriteData
-|*
-\************************************************************************/
-
-/*N*/ void FmFormModel::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/
-/*N*/   if( rOut.GetVersion() < SOFFICE_FILEFORMAT_50 )
-/*N*/       ((FmFormModel*)this)->bStreamingOldVersion = sal_True;
-/*N*/
-/*N*/   SdrModel::WriteData( rOut );
-/*N*/
-/*N*/   //////////////////////////////////////////////////////////////////////
-/*N*/   // Speichern der Option OpenInDesignMode
-/*N*/   if (!bStreamingOldVersion)
-/*N*/   {
-/*N*/       SdrDownCompat aModelFormatCompat(rOut,STREAM_WRITE);
-/*N*/
-/*N*/       sal_uInt8 nTemp = m_bOpenInDesignMode;
-/*N*/       rOut << nTemp;
-/*N*/
-/*N*/       nTemp = m_bAutoControlFocus;
-/*N*/       rOut << nTemp;
-/*N*/   }
-/*N*/
-/*N*/   ((FmFormModel*)this)->bStreamingOldVersion = sal_False;
-/*N*/
-/*N*/ #endif
-/*N*/ }
-
 
 /*************************************************************************
 |*
@@ -255,8 +189,7 @@ struct FmFormModelImplData
 /*N*/       // I the decision is to do this "small hack" here (which I don't consider really
 /*N*/       // bad).
 /*N*/       //
-/*N*/       // 2002-01-10 - #i3235# - fs@openoffice.org
-/*N*/       //
+/*N*/       // #i3235#
 /*N*/   }
 /*N*/ #endif
 /*N*/ }
@@ -266,8 +199,8 @@ struct FmFormModelImplData
 |* MovePage
 |*
 \************************************************************************/
-/*?*/ void FmFormModel::MovePage( USHORT nPgNum, USHORT nNewPos )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*?*/ void FmFormModel::MovePage( USHORT, USHORT )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*************************************************************************
@@ -389,3 +322,5 @@ struct FmFormModelImplData
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

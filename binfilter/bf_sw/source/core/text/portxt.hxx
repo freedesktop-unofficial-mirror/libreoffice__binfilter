@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 #else
 #include <new.h>    //fuer size_t, FIXEDMEM aus tools
 #endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
 #include "porlin.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping
@@ -54,7 +53,7 @@ class SwTxtPortion : public SwLinePortion
 public:
     inline SwTxtPortion(){ SetWhichPor( POR_TXT ); }
     SwTxtPortion( const SwLinePortion &rPortion );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");}; //STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& /*rInf*/ ) const{DBG_BF_ASSERT(0, "STRIP");};
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     virtual void FormatEOL( SwTxtFormatInfo &rInf );
     virtual SwPosSize GetTxtSize( const SwTxtSizeInfo &rInfo ) const;
@@ -83,7 +82,7 @@ public:
     inline KSHORT GetBlankWidth( ) const { return nBlankWidth; }
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
     virtual SwLinePortion *Compress();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& /*rInf*/ ) const{DBG_BF_ASSERT(0, "STRIP");} ;
 
     // Accessibility: pass information about this portion to the PortionHandler
 
@@ -97,3 +96,5 @@ CLASSIO( SwHolePortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

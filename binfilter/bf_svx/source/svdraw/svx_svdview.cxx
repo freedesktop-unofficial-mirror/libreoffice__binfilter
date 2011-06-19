@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _EEITEM_HXX //autogen
 #include <eeitem.hxx>
-#endif
 
 #include "svdio.hxx"
 #include "svdstr.hrc"   // Namen aus der Resource
@@ -40,17 +39,13 @@
 #define ITEMID_FIELD EE_FEATURE_FIELD  /* wird fuer #include <flditem.hxx> benoetigt */
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
 #include "flditem.hxx"  // fuer URLField
 #include "svdoutl.hxx"
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 namespace binfilter {
 
 /*N*/ TYPEINIT1(SdrView,SdrCreateView);
@@ -117,10 +112,8 @@ namespace binfilter {
 #define MODKEY_DeepBackw bShift /* MarkNextObj rueckwaerts */
 
 } //namespace binfilter
-#ifndef _OUTLOBJ_HXX
 #include "outlobj.hxx"
-#endif
-namespace binfilter {//STRIP009
+namespace binfilter {
 
 /*N*/ void SdrView::UnmarkAll()
 /*N*/ {
@@ -130,10 +123,10 @@ namespace binfilter {//STRIP009
 /*?*/       eSel.nStartPos=eSel.nEndPos;
 /*?*/       GetTextEditOutlinerView()->SetSelection(eSel);
 /*?*/ #ifndef SVX_LIGHT
-/*?*/       if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pItemBrowser->SetDirty();
+/*?*/       if (pItemBrowser!=NULL) {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/ #endif
 /*N*/   } else if (HasMarkedGluePoints()) UnmarkAllGluePoints();
-/*N*/   else if (HasMarkedPoints()) {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 UnmarkAllPoints(); // ! Marked statt Markable !
+/*N*/   else if (HasMarkedPoints()) {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/   else UnmarkAllObj();
 /*N*/ }
 
@@ -145,7 +138,7 @@ namespace binfilter {//STRIP009
 
 
 /*N*/ void SdrView::DeleteMarked()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -235,3 +228,5 @@ namespace binfilter {//STRIP009
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

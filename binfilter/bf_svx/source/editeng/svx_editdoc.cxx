@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 #include <tstpitem.hxx>
 #include <fontitem.hxx>
@@ -55,23 +52,17 @@
 #include <emphitem.hxx>
 #include <charreliefitem.hxx>
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 #include <editdoc.hxx>
 #include <eerdll.hxx>
 #include <eerdll2.hxx>
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include <tools/shl.hxx>
 
-#ifndef _COM_SUN_STAR_TEXT_SCRIPTTYPE_HPP_
 #include <com/sun/star/i18n/ScriptType.hpp>
-#endif
 
 #include <stdlib.h> // qsort
 namespace binfilter {
@@ -394,7 +385,7 @@ using namespace ::com::sun::star;
 /*N*/       break;
 /*N*/       default:
 /*N*/       {
-/*N*/           DBG_ERROR( "Ungueltiges Attribut!" );
+/*N*/           OSL_FAIL( "Ungueltiges Attribut!" );
 /*N*/       }
 /*N*/   }
 /*N*/   return pNew;
@@ -735,7 +726,7 @@ using namespace ::com::sun::star;
 /*N*/       DBG_ASSERT( ( pAttrib->GetEnd() <= Len() ), "Expand: Attrib groesser als Absatz!" );
 /*N*/       if ( pAttrib->IsEmpty() )
 /*N*/       {
-/*?*/           DBG_ERROR( "Leeres Attribut nach ExpandAttribs?" );
+/*?*/           OSL_FAIL( "Leeres Attribut nach ExpandAttribs?" );
 /*?*/           bResort = TRUE;
 /*?*/           aCharAttribList.GetAttribs().Remove( nAttr );
 /*?*/           rItemPool.Remove( *pAttrib->GetItem() );
@@ -1212,7 +1203,7 @@ using namespace ::com::sun::star;
 /*N*/       nLen += nNodes * nSepSize;
 /*N*/   if ( nLen > 0xFFFb / sizeof(xub_Unicode) )
 /*N*/   {
-/*?*/       DBG_ERROR( "Text zu gross fuer String" );
+/*?*/       OSL_FAIL( "Text zu gross fuer String" );
 /*?*/       return XubString();
 /*N*/   }
 /*N*/   xub_Unicode* pStr = new xub_Unicode[nLen+1];
@@ -1273,7 +1264,7 @@ using namespace ::com::sun::star;
 /*N*/               case EE_FEATURE_FIELD:  if ( bResolveFields )
 /*N*/                                           aStr += ((EditCharAttribField*)pNextFeature)->GetFieldValue();
 /*N*/               break;
-/*N*/               default:    DBG_ERROR( "Was fuer ein Feature ?" );
+/*N*/               default:    OSL_FAIL( "Was fuer ein Feature ?" );
 /*N*/           }
 /*N*/           pNextFeature = pNode->GetCharAttribs().FindFeature( ++nEnd );
 /*N*/       }
@@ -1289,7 +1280,7 @@ using namespace ::com::sun::star;
 /*N*/   {
 /*N*/       ContentNode* pNode = GetObject( nNode );
 /*N*/       nLen += pNode->Len();
-/*N*/       // Felder k”nnen laenger sein als der Platzhalter im Node.
+/*N*/       // Felder k?nnen laenger sein als der Platzhalter im Node.
 /*N*/       const CharAttribArray& rAttrs = pNode->GetCharAttribs().GetAttribs();
 /*N*/       for ( USHORT nAttr = rAttrs.Count(); nAttr; )
 /*N*/       {
@@ -1737,12 +1728,10 @@ using namespace ::com::sun::star;
 /*N*/           {
 /*N*/               // pItem = pAttr->GetItem();
 /*N*/               // s.o.
-                /*-----------------31.05.95 16:01-------------------
-                 Ist falsch, wenn das gleiche Attribut sofort wieder
+                /* Ist falsch, wenn das gleiche Attribut sofort wieder
                  eingestellt wird!
                  => Sollte am besten nicht vorkommen, also gleich beim
-                    Setzen von Attributen richtig machen!
-                --------------------------------------------------*/
+                    Setzen von Attributen richtig machen! */
 /*?*/               rCurSet.InvalidateItem( pAttr->GetItem()->Which() );
 /*N*/           }
 /*N*/
@@ -1800,7 +1789,6 @@ using namespace ::com::sun::star;
 /*N*/ // optimieren: binaere Suche ? !
 /*N*/ // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 /*N*/
-/*N*/   // MT: 26.11.98
 /*N*/   // Vielleicht aber auch einfach nur rueckwaerts iterieren:
 /*N*/   // Der haeufigste und kritischste Fall: Attribute kommen bereits
 /*N*/   // sortiert an (InsertBinTextObject!)
@@ -1977,24 +1965,6 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/ }
 
-/*N*/ SvStream& EditEngineItemPool::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   // Bei einem 3.1-Export muess ein Hack eingebaut werden, da BUG im
-/*N*/   // SfxItemSet::Load, aber nicht nachtraeglich in 3.1 fixbar.
-/*N*/
-/*N*/   // Der eingestellte Range muss nach Store erhalten bleiben, weil dann
-/*N*/   // erst die ItemSets gespeichert werden...
-/*N*/
-/*N*/   long nVersion = rStream.GetVersion();
-/*N*/   BOOL b31Format = ( nVersion && ( nVersion <= SOFFICE_FILEFORMAT_31 ) )
-/*N*/                       ? TRUE : FALSE;
-/*N*/
-/*N*/   EditEngineItemPool* pThis = (EditEngineItemPool*)this;
-/*N*/   if ( b31Format )
-/*N*/       pThis->SetStoringRange( 3997, 4022 );
-/*N*/   else
-/*N*/       pThis->SetStoringRange( EE_ITEMS_START, EE_ITEMS_END );
-/*N*/
-/*N*/   return SfxItemPool::Store( rStream );
-/*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

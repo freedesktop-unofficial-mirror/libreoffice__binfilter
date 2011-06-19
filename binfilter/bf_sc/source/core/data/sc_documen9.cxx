@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -97,7 +95,7 @@ namespace binfilter {
 /*?*/           SdrObjListIter aIter( *pOldPage, IM_FLAT );
 /*?*/           SdrObject* pOldObject = aIter.Next();
 /*?*/           while (pOldObject)
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -108,8 +106,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pDocShell && !pShell)
 /*N*/       pShell = pDocShell;
-/*N*/
-/*N*/ //    DBG_ASSERT(pShell,"InitDrawLayer ohne Shell");
 /*N*/
 /*N*/   if (!pDrawLayer)
 /*N*/   {
@@ -135,16 +131,11 @@ namespace binfilter {
 /*N*/           pDrawLayer->ScAddPage( nTab );      // always add page, with or without the table
 /*N*/           if (pTab[nTab])
 /*N*/           {
-/*N*/               String aName;
-/*N*/               pTab[nTab]->GetName(aName);
-/*N*/               pDrawLayer->ScRenamePage( nTab, aName );
+/*N*/               String aLclName;
+/*N*/               pTab[nTab]->GetName(aLclName);
+/*N*/               pDrawLayer->ScRenamePage( nTab, aLclName );
 /*N*/
 /*N*/               pTab[nTab]->SetDrawPageSize();  // #54782# sofort die richtige Groesse
-/*N*/ #if 0
-/*N*/               ULONG nx = (ULONG) ((double) (MAXCOL+1) * STD_COL_WIDTH           * HMM_PER_TWIPS );
-/*N*/               ULONG ny = (ULONG) ((double) (MAXROW+1) * ScGlobal::nStdRowHeight * HMM_PER_TWIPS );
-/*N*/               pDrawLayer->SetPageSize( nTab, Size( nx, ny ) );
-/*N*/ #endif
 /*N*/           }
 /*N*/       }
 /*N*/
@@ -233,7 +224,7 @@ namespace binfilter {
 /*?*/       //  Manchmal sind beim Kopieren/Verschieben/Undo von Tabellen zuviele
 /*?*/       //  (leere) Pages in der Tabelle stehengeblieben. Weg damit!
 /*?*/
-/*?*/       DBG_ERROR("zuviele Draw-Pages in der Datei");
+/*?*/       OSL_FAIL("zuviele Draw-Pages in der Datei");
 /*?*/
 /*?*/       for (USHORT i=nTableCount; i<nPageCount; i++)
 /*?*/           pDrawLayer->DeletePage(nTableCount);
@@ -254,26 +245,10 @@ namespace binfilter {
 /*N*/           if ( pObject->ISA(SdrUnoObj) && pObject->GetLayer() != SC_LAYER_CONTROLS )
 /*N*/           {
 /*?*/               pObject->NbcSetLayer(SC_LAYER_CONTROLS);
-/*?*/               DBG_ERROR("Control war auf falschem Layer");
+/*?*/               OSL_FAIL("Control war auf falschem Layer");
 /*N*/           }
 /*N*/           pObject = aIter.Next();
 /*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*N*/ void ScDocument::StoreDrawLayer(SvStream& rStream) const
-/*N*/ {
-/*N*/   if (pDrawLayer)
-/*N*/   {
-/*N*/       //  SetSavePortable wird mit VCL nicht mehr gebraucht
-/*N*/       //BOOL bIndep = SFX_APP()->GetOptions().IsIndepGrfFmt();
-/*N*/       //pDrawLayer->SetSavePortable( bIndep );
-/*N*/
-/*N*/       pDrawLayer->SetSaveCompressed( FALSE );
-/*N*/       pDrawLayer->SetSaveNative( FALSE );
-/*N*/
-/*N*/       pDrawLayer->GetItemPool().SetFileFormatVersion( (USHORT)rStream.GetVersion() );
-/*N*/       pDrawLayer->Store(rStream);
 /*N*/   }
 /*N*/ }
 
@@ -370,11 +345,11 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL ScDocument::IsPrintEmpty( USHORT nTab, USHORT nStartCol, USHORT nStartRow,
-/*N*/                               USHORT nEndCol, USHORT nEndRow, BOOL bLeftIsEmpty,
-/*N*/                               ScRange* pLastRange, Rectangle* pLastMM ) const
+/*N*/ BOOL ScDocument::IsPrintEmpty( USHORT, USHORT, USHORT,
+/*N*/                               USHORT, USHORT, BOOL,
+/*N*/                               ScRange*, Rectangle* ) const
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (!IsBlockEmpty( nTab, nStartCol, nStartRow, nEndCol, nEndRow ))
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
@@ -470,12 +445,12 @@ namespace binfilter {
 /*N*/       pDrawLayer->EnableAdjust(!bImportingXML);
 /*N*/ }
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> ScDocument::GetForbiddenCharacters()
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> ScDocument::GetForbiddenCharacters()
 /*N*/ {
 /*N*/   return xForbiddenCharacters;
 /*N*/ }
 
-/*N*/ void ScDocument::SetForbiddenCharacters( const vos::ORef<SvxForbiddenCharactersTable> xNew )
+/*N*/ void ScDocument::SetForbiddenCharacters( const rtl::Reference<SvxForbiddenCharactersTable> xNew )
 /*N*/ {
 /*N*/   xForbiddenCharacters = xNew;
 /*N*/   if ( pEditEngine )
@@ -529,3 +504,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

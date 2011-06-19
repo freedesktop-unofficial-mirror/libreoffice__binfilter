@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,52 +31,28 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SCHDLL0_HXX //autogen
 #include "schdll0.hxx"
-#endif
 
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
-#ifndef _SVX_FLSTITEM_HXX //autogen
 #include <bf_svx/flstitem.hxx>
-#endif
 
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SCHDLL0_HXX //autogen
 #include <schdll0.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
 
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
 
-#ifndef _CHTMODEL_HXX
 #include "chtmodel.hxx"
-#endif
 
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 #include "glob.hxx"
 
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACHANGEEVENT_HPP_
 #include <com/sun/star/chart/ChartDataChangeEvent.hpp>
-#endif
 namespace binfilter {
 
 #ifndef SO2_DECL_SVSTORAGESTREAM_DEFINED
@@ -112,7 +89,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
     void Construct() throw();
 
      // #61907# bei deaktivierung des InPlaceEdit evtl. gebufferte neue Daten
-    // übernehmen
+    // ?bernehmen
  protected:
 
  public:
@@ -126,9 +103,7 @@ class SchChartDocShell: public SfxObjectShell, public SfxInPlaceObject
 
     virtual BOOL InitNew(SvStorage*) throw();
     virtual BOOL Load(SvStorage*) throw();
-    virtual BOOL Save() throw();
-    virtual BOOL SaveAs(SvStorage* pNewStor) throw();
-    virtual BOOL SaveCompleted(SvStorage* pNewStor) throw();
+    virtual BOOL Save() throw() {return false;}
 
     virtual Rectangle GetVisArea(USHORT nAspect) const throw();
     virtual void SetVisArea(const Rectangle& rRect) throw();
@@ -180,3 +155,5 @@ SO2_DECL_IMPL_REF(SchChartDocShell)
 
 } //namespace binfilter
 #endif      // _SCH_DOCSHELL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

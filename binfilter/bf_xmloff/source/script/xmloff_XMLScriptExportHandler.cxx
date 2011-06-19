@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSCRIPTEXPORTHANDLER_HXX
 #include "XMLScriptExportHandler.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 namespace binfilter {
 
 
@@ -83,3 +78,5 @@ void XMLScriptExportHandler::Export(
                                    bUseWhitespace, sal_False);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,29 +30,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _SFXSIDS_HRC //autogen
 #include <bf_sfx2/sfxsids.hrc>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXITEMPOOL_HXX //autogen
 #include <bf_svtools/itempool.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 
 
-#ifndef CONFIG_HXX
 #include "config.hxx"
-#endif
-#ifndef _STARMATH_HRC
 #include "starmath.hrc"
-#endif
 namespace binfilter {
 
 /////////////////////////////////////////////////////////////////
@@ -89,3 +76,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

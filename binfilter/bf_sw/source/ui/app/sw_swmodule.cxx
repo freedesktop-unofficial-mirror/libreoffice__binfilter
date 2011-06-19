@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,123 +27,53 @@
  ************************************************************************/
 
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _UIPARAM_HXX
 #include <uiparam.hxx>
-#endif
-#ifndef _SWERROR_H
 #include <swerror.h>
-#endif
 
-#ifndef _SV_WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _EHDL_HXX //autogen
 #include <bf_svtools/ehdl.hxx>
-#endif
 #ifndef _SVSTDARR_STRINGSDTOR
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCANNER_XSCANNERMANAGER_HPP_
 #include <com/sun/star/scanner/XScannerManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XSET_HPP_
 #include <com/sun/star/container/XSet.hpp>
-#endif
-#ifndef _CPPUHELPER_FACTORY_HXX_
 #include <cppuhelper/factory.hxx>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _SWEVENT_HXX
 #include <swevent.hxx>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _DOBJFAC_HXX
 #include <dobjfac.hxx>
-#endif
-#ifndef _INIT_HXX
 #include <init.hxx>
-#endif
-#ifndef _SWWDOCSH_HXX //autogen
 #include <wdocsh.hxx>
-#endif
-#ifndef _SWGLOBDOCSH_HXX //autogen
 #include <globdoc.hxx>
-#endif
-#ifndef _USRPREF_HXX //autogen
 #include <usrpref.hxx>
-#endif
-#ifndef _UINUMS_HXX //autogen
 #include <uinums.hxx>
-#endif
-#ifndef _PRTOPT_HXX //autogen
 #include <prtopt.hxx>
-#endif
-#ifndef _MODOPT_HXX //autogen
 #include <modcfg.hxx>
-#endif
-#ifndef _FONTCFG_HXX //autogen
 #include <fontcfg.hxx>
-#endif
-#ifndef _SFX_EVENTCONF_HXX
 #include <bf_sfx2/evntconf.hxx>
-#endif
-#ifndef _SFX_APPUNO_HXX //autogen
 #include <bf_sfx2/appuno.hxx>
-#endif
-#ifndef _SWATRSET_HXX //autogen
 #include <swatrset.hxx>
-#endif
-#ifndef _DLELSTNR_HXX_
 #include <dlelstnr.hxx>
-#endif
-#ifndef _BARCFG_HXX
 #include <barcfg.hxx>
-#endif
 // OD 14.02.2003 #107424#
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <bf_svtools/colorcfg.hxx>
-#endif
 
 #include "glshell.hxx"
 
 #include <bf_svtools/moduleoptions.hxx>
 
 #include <app.hrc>
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 ResMgr *pSwResMgr = 0;
 sal_Bool    bNoInterrupt    = sal_False;
@@ -177,20 +108,20 @@ using namespace ::rtl;
 /*N*/ SwModule::SwModule( SvFactory* pFact,
 /*N*/                   SvFactory* pWebFact,
 /*N*/                   SvFactory* pGlobalFact )
-/*N*/   : SwModuleDummy( SFX_APP()->CreateResManager( "bf_sw" ), sal_False, pFact,  //STRIP005
+/*N*/   : SwModuleDummy( SFX_APP()->CreateResManager( "bf_sw" ), sal_False, pFact,
 /*N*/                    pWebFact, pGlobalFact ),
 /*N*/   pModuleConfig(0),
-/*N*/   pView(0),
-/*N*/   pChapterNumRules(0),
-/*N*/   pStdFontConfig(0),
+/*N*/   pUsrPref(0),
+/*N*/   pWebUsrPref(0),
 /*N*/   pPrtOpt(0),
 /*N*/   pWebPrtOpt(0),
-/*N*/   pWebUsrPref(0),
-/*N*/   pUsrPref(0),
+/*N*/   pChapterNumRules(0),
+/*N*/   pStdFontConfig(0),
 /*N*/   pDBConfig(0),
-/*N*/     pColorConfig(0),
-/*N*/     pCTLOptions(0),
+/*N*/   pColorConfig(0),
+/*N*/   pCTLOptions(0),
 /*N*/   pAttrPool(0),
+/*N*/   pView(0),
 /*N*/   bAuthorInitialised(sal_False),
 /*N*/   bEmbeddedLoadSave( sal_False )
 /*N*/ {
@@ -216,7 +147,7 @@ using namespace ::rtl;
 /*N*/   if( xMgr.is() )
 /*N*/   {
 /*N*/       m_xScannerManager = Reference< XScannerManager >(
-/*N*/                       xMgr->createInstance( OUString::createFromAscii( "com.sun.star.scanner.ScannerManager" ) ),
+/*N*/                       xMgr->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.scanner.ScannerManager" )) ),
 /*N*/                       UNO_QUERY );
 /*N*/
 /*N*/ //        if( m_xScannerManager.is() )
@@ -268,18 +199,16 @@ using namespace ::rtl;
 /*N*/   return (this);
 /*N*/ }
 
-/* -----------------20.04.99 10:46-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void  SwModule::InitAttrPool()
 /*N*/ {
 /*N*/   DBG_ASSERT(!pAttrPool, "Pool ist schon da!");
 /*N*/   pAttrPool = new SwAttrPool(0);
 /*N*/   SetPool(pAttrPool);
 /*N*/ }
-/* -----------------20.04.99 10:46-------------------
- *
- * --------------------------------------------------*/
+
+
 /*N*/ void  SwModule::RemoveAttrPool()
 /*N*/ {
 /*N*/   SetPool(0);
@@ -287,3 +216,5 @@ using namespace ::rtl;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

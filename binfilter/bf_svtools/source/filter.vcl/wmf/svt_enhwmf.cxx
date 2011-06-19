@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 
 #include "winmtf.hxx"
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter
 {
@@ -181,7 +180,7 @@ SvStream& operator>>( SvStream& rIn, XForm& rXForm )
 {
     if ( sizeof( float ) != 4 )
     {
-        DBG_ERROR( "EnhWMFReader::sizeof( float ) != 4" );
+        OSL_FAIL( "EnhWMFReader::sizeof( float ) != 4" );
         rXForm = XForm();
     }
     else
@@ -1297,3 +1296,5 @@ EnhWMFReader::~EnhWMFReader()
 };
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

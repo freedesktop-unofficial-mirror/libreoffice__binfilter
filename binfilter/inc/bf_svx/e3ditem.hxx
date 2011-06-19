@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SVXE3DITEM_HXX
 #define _SVXE3DITEM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _VECTOR3D_HXX
 #include <bf_goodies/vector3d.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -41,7 +38,7 @@ namespace binfilter {
 #define _SVXVECT3DITEM_HXX
 
 
-DBG_NAMEEX(SvxVector3DItem)//STRIP008
+DBG_NAMEEX(SvxVector3DItem)
 
 class SvxVector3DItem: public SfxPoolItem
 {
@@ -58,10 +55,10 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVersion) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
 
-    virtual sal_Bool             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual sal_Bool             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     const Vector3D&         GetValue() const { return aVal; }
             void            SetValue( const Vector3D& rNewVal ) {
@@ -77,3 +74,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

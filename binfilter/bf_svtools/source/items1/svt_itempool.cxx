@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,8 +31,6 @@
 
 #include <string.h>
 #include <stdio.h>
-#ifndef GCC
-#endif
 
 #include <bf_svtools/itempool.hxx>
 #include "whassert.hxx"
@@ -70,7 +69,7 @@ const SfxPoolItem* SfxItemPool::GetPoolDefaultItem( USHORT nWhich ) const
 
 // -----------------------------------------------------------------------
 
-inline FASTBOOL SfxItemPool::IsItemFlag_Impl( USHORT nPos, USHORT nFlag ) const
+inline bool SfxItemPool::IsItemFlag_Impl( USHORT nPos, USHORT nFlag ) const
 {
     USHORT nItemFlag = pItemInfos[nPos]._nFlags;
     return nFlag == (nItemFlag & nFlag);
@@ -78,7 +77,7 @@ inline FASTBOOL SfxItemPool::IsItemFlag_Impl( USHORT nPos, USHORT nFlag ) const
 
 // -----------------------------------------------------------------------
 
-FASTBOOL SfxItemPool::IsItemFlag( USHORT nWhich, USHORT nFlag ) const
+bool SfxItemPool::IsItemFlag( USHORT nWhich, USHORT nFlag ) const
 {
     for ( const SfxItemPool *pPool = this; pPool; pPool = pPool->pSecondary )
     {
@@ -106,7 +105,7 @@ SfxItemPool::SfxItemPool
 #ifndef TF_POOLABLE
     USHORT*             pSlotIdArray,   /* Zuordnung von Slot-Ids zu Which-Ids */
 #endif
-    FASTBOOL            bLoadRefCounts  /* Ref-Counts mitladen oder auf 1 setzen */
+    bool            bLoadRefCounts  /* Ref-Counts mitladen oder auf 1 setzen */
 )
 
 /*  [Beschreibung]
@@ -318,8 +317,7 @@ void SfxItemPool::ReleaseDefaults
     DBG_ASSERT( ppStaticDefaults, "keine Arme keine Kekse" );
     ReleaseDefaults( ppStaticDefaults, nEnd - nStart + 1, bDelete );
 
-    // KSO (22.10.98): ppStaticDefaults zeigt auf geloeschten Speicher,
-    // wenn bDelete == TRUE.
+    // ppStaticDefaults zeigt auf geloeschten Speicher, wenn bDelete == TRUE.
     if ( bDelete )
         ppStaticDefaults = 0;
 }
@@ -414,7 +412,7 @@ void SfxItemPool::SetSecondaryPool( SfxItemPool *pPool )
                         for( USHORT i = (*ppItemArr)->Count(); i; ++ppHtArr, --i )
                             if ( !(*ppHtArr) )
                             {
-                                DBG_ERROR( "old secondary pool must be empty" );
+                                OSL_FAIL( "old secondary pool must be empty" );
                                 bOK = FALSE;
                                 break;
                             }
@@ -530,7 +528,7 @@ void SfxItemPool::Delete()
                 nArrCnt;
                 --nArrCnt, ++ppItemArr, ++ppDefaultItem, ++ppStaticDefaultItem )
         {
-            // KSO (22.10.98): *ppStaticDefaultItem kann im dtor einer
+            // *ppStaticDefaultItem kann im dtor einer
             // von SfxItemPool abgeleiteten Klasse bereits geloescht worden
             // sein! -> CHAOS Itempool
             if ( *ppStaticDefaultItem && (*ppStaticDefaultItem)->ISA(SfxSetItem) )
@@ -668,7 +666,7 @@ const SfxPoolItem& SfxItemPool::Put( const SfxPoolItem& rItem, USHORT nWhich )
     {
         if ( pSecondary )
             return pSecondary->Put( rItem, nWhich );
-        DBG_ERROR( "unknown Which-Id - cannot put item" );
+        OSL_FAIL( "unknown Which-Id - cannot put item" );
     }
 
     // SID oder nicht poolable (neue Definition)?
@@ -797,7 +795,7 @@ void SfxItemPool::Remove( const SfxPoolItem& rItem )
             pSecondary->Remove( rItem );
             return;
         }
-        DBG_ERROR( "unknown Which-Id - cannot remove item" );
+        OSL_FAIL( "unknown Which-Id - cannot remove item" );
     }
 
     // SID oder nicht poolable (neue Definition)?
@@ -1082,3 +1080,5 @@ void SfxItemPool::SetFileFormatVersion( USHORT nFileFormatVersion )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

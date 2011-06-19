@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef SC_NAMECREA_HXX
 #define SC_NAMECREA_HXX
 
-#ifndef _SV_DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
-#ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 namespace binfilter {
 
 
@@ -67,3 +62,5 @@ public:
 
 } //namespace binfilter
 #endif //SC_NAMECREA_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

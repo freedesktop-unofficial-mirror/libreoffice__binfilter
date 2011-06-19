@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,75 +33,35 @@
 
 #define _SVX_HLNKITEM_CXX
 
-#ifndef _SVX_SVXIDS_HRC
 #include <svxids.hrc>
-#endif
-
-#ifndef _MEMBERID_HRC
-#include <memberid.hrc>
-#endif
-
+#include <bf_svtools/memberid.hrc>
 
 #include "hlnkitem.hxx"
+
 namespace binfilter {
 
 // -----------------------------------------------------------------------
 
-/*N*/ TYPEINIT1_AUTOFACTORY(SvxHyperlinkItem, SfxPoolItem);
+TYPEINIT1_AUTOFACTORY(SvxHyperlinkItem, SfxPoolItem);
 
 // class SvxHyperlinkItem ------------------------------------------------
 
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
 #define HYPERLINKFF_MARKER  0x599401FE
 
+SfxPoolItem* SvxHyperlinkItem::Clone( SfxItemPool* ) const
+{
+    DBG_BF_ASSERT(0, "STRIP"); return NULL;
+}
 
 /*--------------------------------------------------------------------
     Beschreibung:
  --------------------------------------------------------------------*/
 
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ SfxPoolItem* SvxHyperlinkItem::Clone( SfxItemPool* ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001     return new SvxHyperlinkItem( *this );
-/*?*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-/*?*/ int SvxHyperlinkItem::operator==( const SfxPoolItem& rAttr ) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 //STRIP001     DBG_ASSERT( SfxPoolItem::operator==(rAttr), "unterschiedliche Typen" );
-/*?*/ }
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
-
-
-
+int SvxHyperlinkItem::operator==( const SfxPoolItem& /*rAttr*/ ) const
+{
+    DBG_BF_ASSERT(0, "STRIP"); return 0;
+}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

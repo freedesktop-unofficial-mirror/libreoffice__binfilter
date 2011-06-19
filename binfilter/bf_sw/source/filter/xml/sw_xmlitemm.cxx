@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,20 +33,12 @@
 
 #include <hintids.hxx>
 
-#ifndef _SVX_UNOMID_HXX
 #include <bf_svx/unomid.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
 namespace binfilter {
 
 using namespace ::binfilter::xmloff::token;
@@ -294,3 +287,5 @@ SvXMLItemMapEntry aXMLTableCellItemMap[] =
     M_END
 };
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

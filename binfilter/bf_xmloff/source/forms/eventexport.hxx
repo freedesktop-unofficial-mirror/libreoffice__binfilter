@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,10 @@
 #ifndef _XMLOFF_FORMS_EVENTEXPORT_HXX_
 #define _XMLOFF_FORMS_EVENTEXPORT_HXX_
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
 #include <com/sun/star/container/XNameReplace.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
 #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -92,3 +85,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_EVENTEXPORT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

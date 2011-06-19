@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,9 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
-// INCLUDE ---------------------------------------------------------------
 
 
 #include "olinefun.hxx"
@@ -43,49 +39,50 @@
 namespace binfilter {
 
 
-//========================================================================
 
-/*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::MakeOutline( const ScRange& /*rRange*/, BOOL /*bColumns*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScOutlineDocFunc::RemoveOutline( const ScRange& rRange, BOOL bColumns, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::RemoveOutline( const ScRange& /*rRange*/, BOOL /*bColumns*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScOutlineDocFunc::RemoveAllOutlines( USHORT nTab, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::RemoveAllOutlines( USHORT /*nTab*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bSuccess = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScOutlineDocFunc::AutoOutline( const ScRange& rRange, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::AutoOutline( const ScRange& /*rRange*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 USHORT nStartCol = rRange.aStart.Col();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScOutlineDocFunc::SelectLevel( USHORT nTab, BOOL bColumns, USHORT nLevel,
-/*N*/                                   BOOL bRecord, BOOL bPaint, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::SelectLevel( USHORT /*nTab*/, BOOL /*bColumns*/, USHORT /*nLevel*/,
+/*N*/                                   BOOL /*bRecord*/, BOOL /*bPaint*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocument* pDoc = rDocShell.GetDocument();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
 //------------------------------------------------------------------------
 
-/*N*/ BOOL ScOutlineDocFunc::ShowMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::ShowMarkedOutlines( const ScRange& /*rRange*/, BOOL /*bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScOutlineDocFunc::HideMarkedOutlines( const ScRange& rRange, BOOL bRecord, BOOL bApi )
+/*N*/ BOOL ScOutlineDocFunc::HideMarkedOutlines( const ScRange& /*rRange*/, BOOL/* bRecord*/, BOOL /*bApi*/ )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001 BOOL bDone = FALSE;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

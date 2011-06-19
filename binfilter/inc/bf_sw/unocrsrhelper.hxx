@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #define _UNOCRSRHELPER_HXX
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
 namespace binfilter {
 
 class SfxItemSet;
@@ -47,9 +44,8 @@ namespace com{ namespace sun{ namespace star{
         class Any;
     }
 }}}
-/* -----------------------------14.12.00 15:06--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 namespace SwUnoCursorHelper
 {
     sal_Bool                    getCrsrPropertyValue(const SfxItemPropertyMap* pMap
@@ -86,7 +82,9 @@ namespace SwUnoCursorHelper
                                     SwPaM& rPam,
                                     ::com::sun::star::beans::PropertyState& eState);
 
-} //STRIP008 ;
+}
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

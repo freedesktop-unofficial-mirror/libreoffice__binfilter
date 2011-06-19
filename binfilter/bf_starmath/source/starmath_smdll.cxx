@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,17 +30,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef DOCUMENT_HXX
 #include <document.hxx>
-#endif
 
-#ifndef _STARMATH_HRC
 #include <starmath.hrc>
-#endif
 namespace binfilter {
 
 BOOL SmDLL::bInitialized = FALSE;
@@ -70,8 +65,7 @@ BOOL SmDLL::bInitialized = FALSE;
 /*N*/
 /*N*/   String aResDll(C2S("sm"));
 /*N*/
-/*N*/   SfxModule *p = SM_MOD1();
-/*N*/   SmModule *pp = (SmModule *) p;
+/*N*/   /*SfxModule *p =*/ SM_MOD1();
 /*N*/
 }
 
@@ -92,3 +86,5 @@ BOOL SmDLL::bInitialized = FALSE;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

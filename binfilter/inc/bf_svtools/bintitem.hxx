@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,9 @@
 #define _BINTITEM_HXX
 
 #include <bf_svtools/bf_solar.h>
-
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-
-#ifndef _BIGINT_HXX
 #include <tools/bigint.hxx>
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
 #include <bf_svtools/poolitem.hxx>
 
 class SvStream;
@@ -75,11 +66,11 @@ public:
     virtual int Compare(const SfxPoolItem &rWith) const;
     virtual SfxPoolItem* Clone(SfxItemPool *pPool = 0) const;
     virtual SfxPoolItem* Create(SvStream &, USHORT nVersion) const;
-    virtual SvStream& Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
 
-    virtual BOOL PutValue  ( const com::sun::star::uno::Any& rVal,
+    virtual bool PutValue  ( const com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 );
-    virtual BOOL QueryValue( com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 ) const;
 
     virtual SfxFieldUnit GetUnit() const;    // FUNIT_NONE
@@ -96,3 +87,4 @@ public:
 
 #endif /* _BINTITEM_HXX */
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

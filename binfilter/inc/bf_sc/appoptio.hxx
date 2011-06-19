@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,25 +33,15 @@
 
 
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _SVX_ZOOMITEM_HXX //autogen
 #include <bf_svx/zoomitem.hxx>
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef SC_OPTUTIL_HXX
 #include "optutil.hxx"
-#endif
 namespace binfilter {
 
 
@@ -152,12 +143,11 @@ class ScAppCfg : public ScAppOptions
     ::com::sun::star::uno::Sequence<rtl::OUString> GetMiscPropertyNames();
 
 public:
-            ScAppCfg();
-
-    void    SetOptions( const ScAppOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001   void    SetOptions( const ScAppOptions& rNew );
+    ScAppCfg();
 };
 
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

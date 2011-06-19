@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,54 +32,18 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <memory>
-
-#ifndef _CPPUHELPER_WEAKREF_HXX_
 #include <cppuhelper/weakref.hxx>
-#endif
-
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
-
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-
-#ifndef _SV_TIMER_HXX
 #include <vcl/timer.hxx>
-#endif
-
-#ifndef _SVDSOB_HXX //autogen
 #include <bf_svx/svdsob.hxx>
-#endif
-
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx> // fuer SdrLayerID
-#endif
-
-#ifndef _SVDGLUE_HXX
 #include <bf_svx/svdglue.hxx> // Klebepunkte
-#endif
-
-#ifndef _SVX_XDASH_HXX
 #include <bf_svx/xdash.hxx>
-#endif
-
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
-
-#ifndef _POLY3D_HXX
 #include <bf_svx/poly3d.hxx>
-#endif
-
-#ifndef _XENUM_HXX
 #include <bf_svx/xenum.hxx>
-#endif
-
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
 class Pointer;
 class AutoTimer;
@@ -96,9 +61,7 @@ class SfxPoolItem;
 //************************************************************
 //   Vorausdeklarationen
 //************************************************************
-
 class ExtOutputDevice;
-//class ImpSdrMtfAnimator;
 class OutlinerParaObject;
 class SdrOutliner;
 class SdrDragStat;
@@ -119,14 +82,12 @@ class SdrVirtObj;
 class XFillAttrSetItem;
 class XLineAttrSetItem;
 class XPolyPolygon;
-class XPolygon;
 class XTextAttrSetItem;
 class SdrLineGeometry;
 
 //************************************************************
 //   Defines
 //************************************************************
-
 enum SdrObjKind {OBJ_NONE       = 0,  // Abstraktes Objekt (SdrObject)
                  OBJ_GRUP       = 1,  // Objektgruppe
                  OBJ_LINE       = 2,  // Strecke
@@ -194,7 +155,6 @@ enum SdrUserCallType {SDRUSERCALL_MOVEONLY,         // Nur verschoben, Groesse u
 //************************************************************
 //   Hilfsklasse SdrObjUserCall
 //************************************************************
-
 class SdrObjUserCall
 {
 public:
@@ -206,7 +166,6 @@ public:
 //************************************************************
 //   Hilfsklasse SdrObjMacroHitRec
 //************************************************************
-
 class SdrObjMacroHitRec
 {
 public:
@@ -216,7 +175,7 @@ public:
     const SetOfByte*            pVisiLayer;
     const SdrPageView*          pPageView;
     USHORT                      nTol;
-    FASTBOOL                    bDown;
+    bool                    bDown;
 
 public:
     SdrObjMacroHitRec()
@@ -247,8 +206,8 @@ protected:
 
 private:
     void operator=(const SdrObjUserData& rData);        // nicht implementiert
-    FASTBOOL operator==(const SdrObjUserData& rData) const; // nicht implementiert
-    FASTBOOL operator!=(const SdrObjUserData& rData) const; // nicht implementiert
+    bool operator==(const SdrObjUserData& rData) const; // nicht implementiert
+    bool operator!=(const SdrObjUserData& rData) const; // nicht implementiert
 
 public:
     TYPEINFO();
@@ -268,14 +227,14 @@ public:
     virtual SdrObjUserData* Clone(SdrObject* pObj1) const = 0; // #i71039# NULL -> 0
     UINT32  GetInventor() const { return nInventor; }
     UINT16  GetId() const { return nIdentifier; }
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     // z.B. fuer die Wiederherstellung von Surrogaten.
     // Siehe auch SdrObject::AfterRead().
     virtual void AfterRead();
 
-    virtual FASTBOOL HasMacro (const SdrObject* pObj) const;
+    virtual bool HasMacro (const SdrObject* pObj) const;
 };
 
 //************************************************************
@@ -303,7 +262,7 @@ public:
 //************************************************************
 //   Hilfsklasse SdrObjGeoData
 //
-// Alle geometrischen Daten eines beliebigen Objektes zur Übergabe an's Undo/Redo
+// Alle geometrischen Daten eines beliebigen Objektes zur ?ergabe an's Undo/Redo
 //
 //************************************************************
 
@@ -330,7 +289,6 @@ public:
 // Bitsack fuer DrawObjekte
 //
 //************************************************************
-
 class SdrObjPlusData
 {
     friend class                SdrObject;
@@ -339,7 +297,6 @@ public:
     SfxBroadcaster*             pBroadcast;    // Broadcaster, falls dieses Obj referenziert wird (bVirtObj=TRUE). Auch fuer Konnektoren etc.
     SdrObjUserDataList*         pUserDataList; // applikationsspeziefische Daten
     SdrGluePointList*           pGluePoints;   // Klebepunkte zum Ankleben von Objektverbindern
-//  ImpSdrMtfAnimator*          pAnimator;     // Fuer Laufschrift und blinkenden Text
     AutoTimer*                  pAutoTimer;
     XubString                   aObjName;      // Jedes Objekt soll nun einen Namen haben
 
@@ -359,7 +316,6 @@ public:
 // gibt Auskunft ueber verschiedene Eigenschaften eines ZObjects
 //
 //************************************************************
-
 class SdrObjTransformInfoRec
 {
 public:
@@ -412,7 +368,6 @@ public:
 //************************************************************
 //   Hilfsklasse SdrObjTransformInfoRec
 //************************************************************
-
 class SdrPaintInfoRec
 {
 public:
@@ -463,18 +418,9 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//   @@@@  @@@@@  @@@@@@ @@@@@  @@@@  @@@@@@
-//  @@  @@ @@  @@     @@ @@    @@  @@   @@
-//  @@  @@ @@  @@     @@ @@    @@       @@
-//  @@  @@ @@@@@      @@ @@@@  @@       @@
-//  @@  @@ @@  @@     @@ @@    @@       @@
-//  @@  @@ @@  @@ @@  @@ @@    @@  @@   @@
-//   @@@@  @@@@@   @@@@  @@@@@  @@@@    @@
-//
 // Abstraktes DrawObject
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
 class SdrObject: public SfxListener
 {
     friend class                SdrObjListIter;
@@ -542,15 +488,12 @@ protected:
     SdrObjUserData* ImpGetMacroUserData() const;
 
     // Fuer GetDragComment
-
     void ImpForcePlusData() { if (pPlusData==NULL) pPlusData=NewPlusData(); }
-//  ImpSdrMtfAnimator* ImpGetMtfAnimator() const { return pPlusData!=NULL ? pPlusData->pAnimator : NULL; }
-
 
     // bNotMyself=TRUE bedeutet: Nur die ObjList auf Dirty setzen, nicht mich.
     // Wird z.B. benoetigt fuer NbcMove, denn da movt man SnapRect und aOutRect
     // i.d.R. gleich mit um die Neuberechnung zu sparen.
-    virtual void SetRectsDirty(FASTBOOL bNotMyself=FALSE);
+    virtual void SetRectsDirty(bool bNotMyself=FALSE);
 
     // ueberladen, wenn man sich von SdrObjPlusData abgeleitet hat:
     virtual SdrObjPlusData* NewPlusData() const;
@@ -612,7 +555,7 @@ public:
     // support for HTMLName
 
     // Fuer Gruppenobjekte
-    FASTBOOL IsGroupObject() const { return GetSubList()!=NULL; }
+    bool IsGroupObject() const { return GetSubList()!=NULL; }
     virtual SdrObjList* GetSubList() const;
     SdrObject* GetUpGroup() const;
 
@@ -657,7 +600,7 @@ public:
     // Invalidiert wurde. rDirtyRect kann groesser sein als das Objekt selbst.
     // Wird ein leeres Rectangle uebergeben, so soll stattdessen ein unendlich
     // grosses Rechteck gelten.
-    virtual FASTBOOL Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const;
+    virtual bool Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const;
 
     /** Line geometry creation and output (used during Paint())
 
@@ -719,8 +662,8 @@ public:
     // mit unterschiedlichen Layerzuordnungen beinhalten koennen.
     virtual SdrObject* CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
     SdrObject* CheckHit(const Point& rPnt, USHORT nTol) const { return CheckHit(rPnt,nTol,NULL); }
-    FASTBOOL IsHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckHit(rPnt,nTol,pVisiLayer)!=NULL; }
-    FASTBOOL IsHit(const Point& rPnt, USHORT nTol) const { return CheckHit(rPnt,nTol,NULL)!=NULL; }
+    bool IsHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckHit(rPnt,nTol,pVisiLayer)!=NULL; }
+    bool IsHit(const Point& rPnt, USHORT nTol) const { return CheckHit(rPnt,nTol,NULL)!=NULL; }
 
     // Clone() soll eine komplette Kopie des Objektes erzeugen.
     virtual SdrObject* Clone() const;
@@ -732,7 +675,7 @@ public:
     // Das Xor-Polygon wird von der View zu Draggen des Objektes benoetigt.
     // Alle XPolygone innerhalb des XPolyPolygon werden als PolyLine interpretiert.
     // Moechte man ein XPolygon, so muss man es explizit schliessen.
-    virtual void TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const;
+    virtual void TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const;
 
     // Die Kontur fuer TextToContour
     virtual void TakeContour(XPolyPolygon& rPoly) const;
@@ -789,12 +732,12 @@ public:
 /*N*/   virtual void NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
 /*N*/   virtual void NbcRotate(const Point& rRef, long nWink, double sn, double cs);
 /*N*/   virtual void NbcMirror(const Point& rRef1, const Point& rRef2);
-/*N*/   virtual void NbcShear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+/*N*/   virtual void NbcShear (const Point& rRef, long nWink, double tn, bool bVShear);
 
     virtual void Move  (const Size& rSiz);
     virtual void Resize(const Point& rRef, const Fraction& xFact, const Fraction& yFact);
     virtual void Rotate(const Point& rRef, long nWink, double sn, double cs);
-    virtual void Shear (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+    virtual void Shear (const Point& rRef, long nWink, double tn, bool bVShear);
 
     // Die relative Position eines Zeichenobjektes ist die Entfernung der
     // linken oberen Eche des logisch umschliessenden Rechtecks (SnapRect)
@@ -823,7 +766,7 @@ public:
 
     // Drehwinkel und Shear
     virtual long GetRotateAngle() const;
-    virtual long GetShearAngle(FASTBOOL bVertical=FALSE) const;
+    virtual long GetShearAngle(bool bVertical=FALSE) const;
 
     // Zum Fangen von/auf ausgezeichneten Punkten eines Obj (Polygonpunkte,
     // Kreismittelpunkt, ...)
@@ -834,7 +777,7 @@ public:
     // als Mehrfachselektion verschoben und gedreht, ...
     // Nur solche Objekte koennen PlusHandles haben (z.B. die Gewichte an den
     // Bezierkurven.
-    virtual FASTBOOL IsPolyObj() const;
+    virtual bool IsPolyObj() const;
     virtual USHORT GetPointCount() const;
     virtual const Point& GetPoint(USHORT i) const;
     virtual void SetPoint(const Point& rPnt, USHORT i);
@@ -900,28 +843,28 @@ public:
     virtual void PostItemChange(const sal_uInt16 nWhich);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
     // NotPersistAttr fuer Layer, ObjName, geometrische Transformationen, ...
-    void TakeNotPersistAttr(SfxItemSet& rAttr, FASTBOOL bMerge) const;
+    void TakeNotPersistAttr(SfxItemSet& rAttr, bool bMerge) const;
     void ApplyNotPersistAttr(const SfxItemSet& rAttr);
 
     // bDontRemoveHardAttr=FALSE: alle in der Vorlage gesetzten Attribute werden am
     // Zeichenobjekt auf Default gesetzt; TRUE: alle harten Attribute bleiben erhalten.
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
     virtual SfxStyleSheet* GetStyleSheet() const;
 
     // TextEdit
-    virtual FASTBOOL HasTextEdit() const;
+    virtual bool HasTextEdit() const;
     virtual SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const;
     SdrObject* CheckTextEditHit(const Point& rPnt, USHORT nTol) const { return CheckTextEditHit(rPnt,nTol,NULL); }
-    FASTBOOL IsTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckTextEditHit(rPnt,nTol,pVisiLayer)!=NULL; }
-    FASTBOOL IsTextEditHit(const Point& rPnt, USHORT nTol) const { return CheckTextEditHit(rPnt,nTol,NULL)!=NULL; }
+    bool IsTextEditHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const { return CheckTextEditHit(rPnt,nTol,pVisiLayer)!=NULL; }
+    bool IsTextEditHit(const Point& rPnt, USHORT nTol) const { return CheckTextEditHit(rPnt,nTol,NULL)!=NULL; }
 
     // Return==TRUE: TextEditMode gestartet
-    virtual FASTBOOL BegTextEdit(SdrOutliner& rOutl);
+    virtual bool BegTextEdit(SdrOutliner& rOutl);
     virtual void EndTextEdit(SdrOutliner& rOutl);
 
     // Text wird im Format des Outliners gehalten
@@ -937,7 +880,7 @@ public:
     virtual void RestartAnimation(SdrPageView* pPageView) const;
 
     // Macrofaehigkeit, z.B. ein Rechteck als PushButton.
-    virtual FASTBOOL HasMacro() const;
+    virtual bool HasMacro() const;
 
     // Konnektoren. (siehe auch Dokumentation in SvdoEdge.HXX, SdrEdgeObj
     //               sowie SvdGlue.HXX und SvdGlEV.HXX)
@@ -956,7 +899,7 @@ public:
     // Beim Verschieben/Resizen der Kante wird dagegen die Verbindung
     // geloesst.
     // Objekt ist ein Knoten?
-    virtual FASTBOOL IsNode() const;
+    virtual bool IsNode() const;
 
     // Automatische Klebepunkte:
     // je 4 Scheitelpunkt- und Eckpositionen muss ein Knotenobjekt liefern
@@ -972,10 +915,10 @@ public:
     virtual SdrGluePointList* ForceGluePointList();
 
     // Temporaer zu setzen fuer Transformationen am Bezugsobjekt
-    void SetGlueReallyAbsolute(FASTBOOL bOn);
+    void SetGlueReallyAbsolute(bool bOn);
     void NbcRotateGluePoints(const Point& rRef, long nWink, double sn, double cs);
     void NbcMirrorGluePoints(const Point& rRef1, const Point& rRef2);
-    void NbcShearGluePoints (const Point& rRef, long nWink, double tn, FASTBOOL bVShear);
+    void NbcShearGluePoints (const Point& rRef, long nWink, double tn, bool bVShear);
 
     // Objekt ist eine Kante?
 
@@ -983,8 +926,8 @@ public:
 
     // bTail1=TRUE: Linienanfang, sonst LinienEnde
     // pObj=NULL: Disconnect
-    virtual void ConnectToNode(FASTBOOL bTail1, SdrObject* pObj);
-    virtual void DisconnectFromNode(FASTBOOL bTail1);
+    virtual void ConnectToNode(bool bTail1, SdrObject* pObj);
+    virtual void DisconnectFromNode(bool bTail1);
 
     // Wenn ein Objekt in der Lage ist, sich in ein Polygon oder in eine
     // Bezierkurve (oder beides) zu verwandeln, dann sollten die folgenden
@@ -1018,7 +961,7 @@ public:
     //   WriteData() auf. Zum Schluss wird noch das vorerst auf 0 initiallisierte
     //   Feld nByteAnz des SdrObjIOHeader gefuellt. Die geerbte Methode WriteData
     //   ist in ueberlagerten Methoden stets am Anfang zu rufen.
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
 
     // Lesen aus einem Stream: Zunaest wird der SdrIOHeader von einem Reader am
     //   SdrModel gelesen (Read und SeekBack). Der Reader versucht dann eine
@@ -1039,37 +982,37 @@ public:
     friend SvStream& operator>>(SvStream& rIn, SdrObject& rObj);
 
     // TRUE: Referenz auf ein Obj
-    FASTBOOL IsVirtualObj() const { return bVirtObj; }
+    bool IsVirtualObj() const { return bVirtObj; }
 
     // TRUE=Obj kann warsch. gefuellt werden; FALSE=Obj kann warsch. Linienenden haben.
     // ungueltig, wenn es sich um ein GroupObj handelt.
-    FASTBOOL IsClosedObj() const { return bClosedObj; }
-    FASTBOOL IsWriterFlyFrame() const { return bWriterFlyFrame; }
-    FASTBOOL IsEdgeObj() const { return bIsEdge; }
-    FASTBOOL Is3DObj() const { return bIs3DObj; }
-    FASTBOOL IsUnoObj() const { return bIsUnoObj; }
-    FASTBOOL IsMasterCachable() const { return !bNotMasterCachable; }
-    FASTBOOL ShareLock() { FASTBOOL r=!bNetLock; bNetLock=TRUE; return r; }
+    bool IsClosedObj() const { return bClosedObj; }
+    bool IsWriterFlyFrame() const { return bWriterFlyFrame; }
+    bool IsEdgeObj() const { return bIsEdge; }
+    bool Is3DObj() const { return bIs3DObj; }
+    bool IsUnoObj() const { return bIsUnoObj; }
+    bool IsMasterCachable() const { return !bNotMasterCachable; }
+    bool ShareLock() { bool r=!bNetLock; bNetLock=TRUE; return r; }
     void ShareUnlock() { bNetLock=FALSE; }
-    FASTBOOL IsShareLock() const { return bNetLock; }
-    void SetMarkProtect(FASTBOOL bProt) { bMarkProt=bProt; }
-    FASTBOOL IsMarkProtect() const { return bMarkProt; }
-    void SetInserted(FASTBOOL bIns);
-    FASTBOOL IsInserted() const { return bInserted; }
-    void SetGrouped(FASTBOOL bGrp) { bGrouped=bGrp; }
-    FASTBOOL IsGrouped() const { return bGrouped; }
-    void SetMoveProtect(FASTBOOL bProt);
-    FASTBOOL IsMoveProtect() const { return bMovProt; }
-    void SetResizeProtect(FASTBOOL bProt);
-    FASTBOOL IsResizeProtect() const { return bSizProt; }
-    void SetPrintable(FASTBOOL bPrn);
-    FASTBOOL IsPrintable() const { return !bNoPrint; }
-    void SetEmptyPresObj(FASTBOOL bEpt) { bEmptyPresObj=bEpt; }
-    FASTBOOL IsEmptyPresObj() const { return bEmptyPresObj; }
-    FASTBOOL IsNotPersistent() const { return bNotPersistent; }
-    FASTBOOL IsNeedColorRestore() const { return bNeedColorRestore; }
-    void SetNotVisibleAsMaster(FASTBOOL bFlg) { bNotVisibleAsMaster=bFlg; }
-    FASTBOOL IsNotVisibleAsMaster() const { return bNotVisibleAsMaster; }
+    bool IsShareLock() const { return bNetLock; }
+    void SetMarkProtect(bool bProt) { bMarkProt=bProt; }
+    bool IsMarkProtect() const { return bMarkProt; }
+    void SetInserted(bool bIns);
+    bool IsInserted() const { return bInserted; }
+    void SetGrouped(bool bGrp) { bGrouped=bGrp; }
+    bool IsGrouped() const { return bGrouped; }
+    void SetMoveProtect(bool bProt);
+    bool IsMoveProtect() const { return bMovProt; }
+    void SetResizeProtect(bool bProt);
+    bool IsResizeProtect() const { return bSizProt; }
+    void SetPrintable(bool bPrn);
+    bool IsPrintable() const { return !bNoPrint; }
+    void SetEmptyPresObj(bool bEpt) { bEmptyPresObj=bEpt; }
+    bool IsEmptyPresObj() const { return bEmptyPresObj; }
+    bool IsNotPersistent() const { return bNotPersistent; }
+    bool IsNeedColorRestore() const { return bNeedColorRestore; }
+    void SetNotVisibleAsMaster(bool bFlg) { bNotVisibleAsMaster=bFlg; }
+    bool IsNotVisibleAsMaster() const { return bNotVisibleAsMaster; }
 
     // applikationsspeziefische Daten
     USHORT GetUserDataCount() const;
@@ -1101,7 +1044,7 @@ public:
     // setting the UNO representation is allowed for the UNO representation itself only!
     void setUnoShape(
         const ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface >& _rxUnoShape,
-        GrantXShapeAccess aGrant
+        GrantXShapeAccess /*aGrant*/
     )
     {
         mxUnoShape = _rxUnoShape;
@@ -1168,3 +1111,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOBJ_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

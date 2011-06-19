@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,9 @@
 
 #define ITEMID_GRF_CROP         0
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVX_GRFCROP_HXX
 #include <grfcrop.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
 #include <com/sun/star/text/GraphicCrop.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -111,21 +106,7 @@ USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
 /*N*/ }
 
 
-/*N*/ SvStream& SvxGrfCrop::Store( SvStream& rStrm, USHORT nVersion ) const
-/*N*/ {
-/*N*/   INT32 left = GetLeft(), right = GetRight(),
-/*N*/           top = GetTop(), bottom = GetBottom();
-/*N*/   if( GRFCROP_VERSION_SWDEFAULT == nVersion )
-/*N*/       top = -top, bottom = -bottom, left = -left, right = -right;
-/*N*/
-/*N*/   rStrm << top << left << right << bottom;
-/*N*/
-/*N*/   return rStrm;
-/*N*/ }
-
-
-
-/*N*/ BOOL SvxGrfCrop::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxGrfCrop::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -145,17 +126,17 @@ USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
 /*N*/
 /*N*/
 /*N*/   rVal <<= aRet;
-/*N*/   return   sal_True;
+/*N*/   return   true;
 /*N*/ }
 
-/*N*/ BOOL SvxGrfCrop::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxGrfCrop::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   text::GraphicCrop aVal;
 /*N*/
 /*N*/   if(!(rVal >>= aVal))
-/*N*/       return sal_False;
+/*N*/       return false;
 /*N*/     if( bConvert )
 /*N*/   {
 /*N*/      aVal.Right   = MM100_TO_TWIP(aVal.Right );
@@ -168,7 +149,7 @@ USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
 /*N*/   nRight  = aVal.Right ;
 /*N*/   nTop    = aVal.Top   ;
 /*N*/   nBottom = aVal.Bottom;
-/*N*/   return  sal_True;
+/*N*/   return  true;
 /*N*/ }
 
 
@@ -176,3 +157,5 @@ USHORT SvxGrfCrop::GetVersion( USHORT nFFVer ) const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

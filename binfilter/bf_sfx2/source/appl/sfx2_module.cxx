@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -45,7 +46,7 @@ static SfxModuleArr_Impl* pModules=0;
 /*N*/ TYPEINIT1(SfxModule, SfxShell);
 
 /*?*/ BOOL SfxModule::QueryUnload()
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 /*?*/ SfxModule* SfxModule::Load()
@@ -113,3 +114,5 @@ static SfxModuleArr_Impl* pModules=0;
 /*N*/     return *pModules;
 /*N*/ };
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

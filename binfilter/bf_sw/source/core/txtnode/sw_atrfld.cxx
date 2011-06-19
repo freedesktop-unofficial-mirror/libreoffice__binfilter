@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,12 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"          // Update fuer UserFields
 
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
 #include "reffld.hxx"
 #include "ddefld.hxx"
 #include "usrfld.hxx"
@@ -120,9 +115,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
+int SwFmtFld::operator==( const SfxPoolItem& /*rAttr*/ ) const
 {
-        DBG_BF_ASSERT(0, "STRIP"); return 0; //STRIP001     ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+        DBG_BF_ASSERT(0, "STRIP"); return 0;
 }
 
 /*N*/ SfxPoolItem* SwFmtFld::Clone( SfxItemPool* ) const
@@ -136,7 +131,7 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 /*N*/       return;
 /*N*/
 /*N*/   SwTxtNode* pTxtNd = (SwTxtNode*)&pTxtAttr->GetTxtNode();
-/*N*/   ASSERT( pTxtNd, "wo ist denn mein Node?" );
+/*N*/   OSL_ENSURE( pTxtNd, "wo ist denn mein Node?" );
 /*N*/   if( pNew )
 /*N*/   {
 /*N*/       switch( pNew->Which() )
@@ -181,7 +176,7 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 /*?*/       SwUserFieldType* pType = (SwUserFieldType*)GetFld()->GetTyp();
 /*?*/       if(!pType->IsValid())
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwCalc aCalc( *pTxtNd->GetDoc() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/   pTxtAttr->Expand();
@@ -213,13 +208,11 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 |*                SwTxtFld::SwTxtFld()
 |*
 |*    Beschreibung      Attribut fuer automatischen Text, Ctor
-|*    Ersterstellung    BP 30.04.92
-|*    Letzte Aenderung  JP 15.08.94
 |*
 *************************************************************************/
 
-/*N*/ SwTxtFld::SwTxtFld( const SwFmtFld& rAttr, xub_StrLen nStart )
-/*N*/   : SwTxtAttr( rAttr, nStart ),
+/*N*/ SwTxtFld::SwTxtFld( const SwFmtFld& rAttr, xub_StrLen nStart2 )
+/*N*/   : SwTxtAttr( rAttr, nStart2 ),
 /*N*/   aExpand( rAttr.GetFld()->Expand() ),
 /*N*/   pMyTxtNd( 0 )
 /*N*/ {
@@ -235,15 +228,13 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 |*                SwTxtFld::Expand()
 |*
 |*    Beschreibung      exandiert das Feld und tauscht den Text im Node
-|*    Ersterstellung    BP 30.04.92
-|*    Letzte Aenderung  JP 15.08.94
 |*
 *************************************************************************/
 
 /*N*/ void SwTxtFld::Expand()
 /*N*/ {
 /*N*/   // Wenn das expandierte Feld sich nicht veraendert hat, wird returnt
-/*N*/   ASSERT( pMyTxtNd, "wo ist denn mein Node?" );
+/*N*/   OSL_ENSURE( pMyTxtNd, "wo ist denn mein Node?" );
 /*N*/
 /*N*/   const SwField* pFld = GetFld().GetFld();
 /*N*/   XubString aNewExpand( pFld->Expand() );
@@ -279,3 +270,5 @@ int SwFmtFld::operator==( const SfxPoolItem& rAttr ) const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

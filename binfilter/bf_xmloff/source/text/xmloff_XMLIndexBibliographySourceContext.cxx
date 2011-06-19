@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,24 +27,18 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYSOURCECONTEXT_HXX_
 #include "XMLIndexBibliographySourceContext.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
@@ -65,11 +60,11 @@ TYPEINIT1(XMLIndexBibliographySourceContext, XMLIndexSourceBaseContext);
 
 
 XMLIndexBibliographySourceContext::XMLIndexBibliographySourceContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropSet) :
-        XMLIndexSourceBaseContext(rImport, nPrfx, rLocalName,
+        XMLIndexSourceBaseContext(rInImport, nPrfx, rLocalName,
                                   rPropSet, sal_False)
 {
 }
@@ -79,8 +74,8 @@ XMLIndexBibliographySourceContext::~XMLIndexBibliographySourceContext()
 }
 
 void XMLIndexBibliographySourceContext::ProcessAttribute(
-    enum IndexSourceParamEnum eParam,
-    const OUString& rValue)
+    enum IndexSourceParamEnum /*eParam*/,
+    const OUString& /*rValue*/)
 {
     // We have no attributes. Who wants attributes, anyway?
 }
@@ -93,15 +88,15 @@ void XMLIndexBibliographySourceContext::EndElement()
 
 
 SvXMLImportContext* XMLIndexBibliographySourceContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( ( XML_NAMESPACE_TEXT == nPrefix ) &&
+    if ( ( XML_NAMESPACE_TEXT == nInPrefix ) &&
          ( IsXMLToken( rLocalName, XML_BIBLIOGRAPHY_ENTRY_TEMPLATE ) ) )
     {
         return new XMLIndexTemplateContext(GetImport(), rIndexPropertySet,
-                                           nPrefix, rLocalName,
+                                           nInPrefix, rLocalName,
                                            aLevelNameBibliographyMap,
                                            XML_BIBLIOGRAPHY_TYPE,
                                            aLevelStylePropNameBibliographyMap,
@@ -109,10 +104,12 @@ SvXMLImportContext* XMLIndexBibliographySourceContext::CreateChildContext(
     }
     else
     {
-        return XMLIndexSourceBaseContext::CreateChildContext(nPrefix,
+        return XMLIndexSourceBaseContext::CreateChildContext(nInPrefix,
                                                              rLocalName,
                                                              xAttrList);
     }
 
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

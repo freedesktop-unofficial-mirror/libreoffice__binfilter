@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _FORMS_EDIT_HXX_
 #define _FORMS_EDIT_HXX_
 
-#ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -95,6 +94,10 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
+
+    using OBoundControlModel::disposing;
+    using OPropertySetHelper::getFastPropertyValue;
+
     IMPLEMENT_INFO_SERVICE()
 
 protected:
@@ -161,3 +164,4 @@ private:
 }//end of namespace binfilter
 #endif // _FORMS_EDIT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

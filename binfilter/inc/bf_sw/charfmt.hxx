@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _CHARFMT_HXX
 #define _CHARFMT_HXX
 
-#ifndef _FORMAT_HXX
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 class SwCharFmt : public SwFmt
@@ -55,3 +54,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

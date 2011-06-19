@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,14 +34,10 @@
 #include <tools/stream.hxx>
 #include <tools/debug.hxx>
 #include <vcl/outdev.hxx>
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 #include <bf_svtools/filter.hxx>
 #include "FilterConfigCache.hxx"
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
 
 #define DATA_SIZE           640
 
@@ -1324,3 +1321,5 @@ String GraphicDescriptor::GetImportFormatShortName( sal_uInt16 nFormat )
     return String( aKeyName, RTL_TEXTENCODING_ASCII_US );
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

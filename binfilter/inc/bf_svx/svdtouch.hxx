@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -42,14 +43,15 @@ namespace binfilter {
 class XPolygon;
 class XPolyPolygon;
 
-FASTBOOL IsPointInsidePoly(const Polygon& rPoly, const Point& rHit);
+bool IsPointInsidePoly(const Polygon& rPoly, const Point& rHit);
 
-FASTBOOL IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit);
+bool IsRectTouchesPoly(const PolyPolygon& rPoly, const Rectangle& rHit);
 
-FASTBOOL IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit);
+bool IsRectTouchesLine(const Polygon& rLine, const Rectangle& rHit);
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 }//end of namespace binfilter
 #endif //_SVDTOUCH_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

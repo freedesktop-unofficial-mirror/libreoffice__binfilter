@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,129 +33,49 @@
 
 #include <hintids.hxx>
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_XINPUTSEQUENCECHECKER_HPP_
 #include <com/sun/star/i18n/InputSequenceCheckMode.hpp>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <bf_svtools/ctloptions.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
 
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
-#endif
-#ifndef _TXTTXMRK_HXX //autogen
 #include <txttxmrk.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _FTNIDX_HXX //autogen
 #include <ftnidx.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>                // fuer SwFmtChg in ChgTxtColl
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>               // fuer SwTblField
-#endif
-#ifndef _MVSAVE_HXX
 #include <mvsave.hxx>
-#endif
-#ifndef _SWCACHE_HXX
 #include <swcache.hxx>
-#endif
-#ifndef _WRONG_HXX
 #include <wrong.hxx>                // fuer die WrongList des OnlineSpellings
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _DOCTXM_HXX
 #include <doctxm.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
-#ifndef _CHECKIT_HXX
 #include <checkit.hxx>
-#endif
 namespace binfilter {
 
 
@@ -179,7 +100,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                                SwTxtFmtColl *pColl,
 /*N*/                                SwAttrSet* pAutoAttr )
 /*N*/ {
-/*N*/   ASSERT( pColl, "Collectionpointer ist 0." );
+/*N*/   OSL_ENSURE( pColl, "Collectionpointer ist 0." );
 /*N*/
 /*N*/   SwTxtNode *pNode = new SwTxtNode( rWhere, pColl, pAutoAttr );
 /*N*/
@@ -206,11 +127,11 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       switch( ( pNd = (*this)[aTmp] )->GetNodeType() )
 /*N*/       {
 /*?*/       case ND_TABLENODE:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwTableNode*)pNd)->MakeFrms( aIdx );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return pNode;
 /*?*/
 /*?*/       case ND_SECTIONNODE:
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( ((SwSectionNode*)pNd)->GetSection().IsHidden() ||
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/           return pNode;
 /*N*/
 /*N*/       case ND_TEXTNODE:
@@ -345,13 +266,13 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                   pFrm = (SwCntntFrm*)aNew.First( TYPE(SwCntntFrm) );
 /*N*/ //JP 11.07.00: the assert's shows incorrect an error when nodes are converted
 /*N*/ //                to a table. Then no layout exist!
-/*N*/ //                    ASSERT( pFrm, "lcl_ChangeFtnRef: No TxtFrm" );
-/*N*/ //                    ASSERT( pFrm && !aNew.Next(),"lcl_ChangeFtnRef: Doublefault");
+/*N*/ //                    OSL_ENSURE( pFrm, "lcl_ChangeFtnRef: No TxtFrm" );
+/*N*/ //                    OSL_ENSURE( pFrm && !aNew.Next(),"lcl_ChangeFtnRef: Doublefault");
 /*N*/                   if( !pFrm )
 /*N*/                       return;
 /*N*/               }
 /*N*/               SwTxtFtn *pAttr = (SwTxtFtn*)pHt;
-/*N*/               ASSERT( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
+/*N*/               OSL_ENSURE( pAttr->GetStartNode(), "FtnAtr ohne StartNode." );
 /*N*/               SwNodeIndex aIdx( *pAttr->GetStartNode(), 1 );
 /*N*/               SwCntntNode *pNd = aIdx.GetNode().GetCntntNode();
 /*N*/               if ( !pNd )
@@ -363,7 +284,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/               SwCntntFrm* pCntnt = (SwCntntFrm*)aIter.First(TYPE(SwCntntFrm));
 /*N*/               if( pCntnt )
 /*N*/               {
-/*N*/                   ASSERT( pCntnt->FindRootFrm() == pFrm->FindRootFrm(),
+/*N*/                   OSL_ENSURE( pCntnt->FindRootFrm() == pFrm->FindRootFrm(),
 /*N*/                           "lcl_ChangeFtnRef: Layout double?" );
 /*N*/                   SwFtnFrm *pFtn = pCntnt->FindFtnFrm();
 /*N*/                   if( pFtn && pFtn->GetAttr() == pAttr )
@@ -382,8 +303,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ #ifdef DBG_UTIL
 /*N*/                   while( 0 != (pCntnt = (SwCntntFrm*)aIter.Next()) )
 /*N*/                   {
-/*N*/                       SwFtnFrm *pFtn = pCntnt->FindFtnFrm();
-/*N*/                       ASSERT( !pFtn || pFtn->GetRef() == pFrm,
+/*N*/                       SwFtnFrm *pLclFtn = pCntnt->FindFtnFrm();
+/*N*/                       OSL_ENSURE( !pLclFtn || pLclFtn->GetRef() == pFrm,
 /*N*/                               "lcl_ChangeFtnRef: Who's that guy?" );
 /*N*/                   }
 /*N*/ #endif
@@ -433,7 +354,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       Cut( pNode, aIdx, nSplitPos );
 /*?*/
 /*?*/       if( GetWrong() )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/             pNode->SetWrong( GetWrong()->SplitList( nSplitPos ) );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/
 /*?*/       SetWrongDirty( TRUE );
 /*?*/
@@ -471,10 +392,10 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       }
 /*?*/
 /*?*/       SwClientIter aIter( *this );
-/*?*/       SwClient* pLast = aIter.GoStart();
-/*?*/       if( pLast )
+/*?*/       SwClient* pLclLast = aIter.GoStart();
+/*?*/       if( pLclLast )
 /*?*/           do
-/*?*/           {   SwCntntFrm *pFrm = PTR_CAST( SwCntntFrm, pLast );
+/*?*/           {   SwCntntFrm *pFrm = PTR_CAST( SwCntntFrm, pLclLast );
 /*?*/               if ( pFrm )
 /*?*/               {
 /*?*/                   pNode->Add( pFrm );
@@ -482,7 +403,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/                       ((SwTxtFrm*)pFrm)->GetOfst() )
 /*?*/                       ((SwTxtFrm*)pFrm)->SetOfst( 0 );
 /*?*/               }
-/*?*/           } while( 0 != ( pLast = aIter++ ));
+/*?*/           } while( 0 != ( pLclLast = aIter++ ));
 /*?*/
 /*?*/       if ( IsInCache() )
 /*?*/       {
@@ -492,7 +413,9 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/
 /*?*/       UnlockModify(); // Benachrichtigungen wieder freischalten
 /*?*/
+/*?*/ #ifdef ACCESSIBLE_LAYOUT
 /*?*/       const SwRootFrm *pRootFrm;
+/*?*/ #endif
 /*?*/       // If there is an accessible layout we must call modify even
 /*?*/       // with length zero, because we have to notify about the changed
 /*?*/       // text node.
@@ -518,7 +441,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/           }
 /*?*/       }
 /*?*/       if( pSwpHints )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           MoveTxtAttr_To_AttrSet();
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/       pNode->MakeFrms( *this );       // neue Frames anlegen.
 /*?*/       lcl_ChangeFtnRef( *this );
 /*N*/   }
@@ -536,12 +459,12 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       //              Attribute loeschen
 /*N*/       if( pSwpHints )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwTxtAttr* pHt;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/         if( pList )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pNode->SetWrong( pList->SplitList( nSplitPos ) );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/
 /*N*/       if ( GetDepends() )
@@ -577,14 +500,14 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         SwWrongList *pList = GetWrong();
 /*N*/         if( pList )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( pTxtNode->GetWrong(), nOldLen );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         else
 /*N*/         {
 /*N*/             pList = pTxtNode->GetWrong();
 /*N*/             if( pList )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP");//STRIP001 /*?*/                 pList->Move( 0, nOldLen );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/         }
 /*N*/       { // wg. SwIndex
@@ -604,7 +527,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       InvalidateNumRule();
 /*N*/   }
 /*N*/   else
-/*N*/       ASSERT( FALSE, "kein TxtNode." );
+/*N*/       OSL_ENSURE( FALSE, "kein TxtNode." );
 /*N*/
 /*N*/   return this;
 /*N*/ }
@@ -623,14 +546,14 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/         SwWrongList *pList = pTxtNode->GetWrong();
 /*N*/         if( pList )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             pList->JoinList( GetWrong(), Len() );
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         else
 /*N*/         {
 /*N*/             pList = GetWrong();
 /*N*/             if( pList )
 /*N*/             {
-                    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                 pList->Move( 0, nLen );
+                    DBG_BF_ASSERT(0, "STRIP");
 /*N*/             }
 /*N*/         }
 /*N*/       { // wg. SwIndex
@@ -650,7 +573,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       InvalidateNumRule();
 /*N*/   }
 /*N*/   else
-/*N*/       ASSERT( FALSE, "kein TxtNode." );
+/*N*/       OSL_ENSURE( FALSE, "kein TxtNode." );
 /*N*/
 /*N*/   return this;
 /*N*/ }
@@ -658,7 +581,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 // erzeugt einen AttrSet mit Bereichen fuer Frame-/Para/Char-Attributen
 /*N*/ void SwTxtNode::NewAttrSet( SwAttrPool& rPool )
 /*N*/ {
-/*N*/   ASSERT( !pAttrSet, "AttrSet ist doch gesetzt" );
+/*N*/   OSL_ENSURE( !pAttrSet, "AttrSet ist doch gesetzt" );
 /*N*/   pAttrSet = new SwAttrSet( rPool, aTxtNodeSetRange );
 /*N*/ //FEATURE::CONDCOLL
 /*N*/ //    pAttrSet->SetParent( &GetFmtColl()->GetAttrSet() );
@@ -923,8 +846,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 
 /*N*/ SwFmtColl* SwTxtNode::ChgFmtColl( SwFmtColl *pNewColl )
 /*N*/ {
-/*N*/   ASSERT( pNewColl,"ChgFmtColl: Collectionpointer ist 0." );
-/*N*/   ASSERT( HAS_BASE( SwTxtFmtColl, pNewColl ),
+/*N*/   OSL_ENSURE( pNewColl,"ChgFmtColl: Collectionpointer ist 0." );
+/*N*/   OSL_ENSURE( HAS_BASE( SwTxtFmtColl, pNewColl ),
 /*N*/               "ChgFmtColl: ist kein Text-Collectionpointer." );
 /*N*/
 /*N*/   SwTxtFmtColl *pOldColl = GetTxtColl();
@@ -940,7 +863,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                                       const SwTxtFmtColl *pNewColl)
 /*N*/ {
 /*N*/   SwDoc* pDoc = GetDoc();
-/*N*/   ASSERT( pDoc, "Kein Doc?" );
+/*N*/   OSL_ENSURE( pDoc, "Kein Doc?" );
 /*N*/   // erfrage die OutlineLevel und update gegebenenfalls das Nodes-Array,
 /*N*/   // falls sich die Level geaendert haben !
 /*N*/   const BYTE nOldLevel = pOldColl ? pOldColl->GetOutlineLevel():NO_NUMBERING;
@@ -1049,13 +972,13 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ void lcl_CopyHint( const USHORT nWhich, const SwTxtAttr *pHt,
 /*N*/                   SwTxtAttr *pNewHt, SwDoc* pOtherDoc, SwTxtNode *pDest )
 /*N*/ {
-/*N*/   ASSERT( nWhich == pHt->Which(), "Falsche Hint-Id" );
+/*N*/   OSL_ENSURE( nWhich == pHt->Which(), "Falsche Hint-Id" );
 /*N*/   switch( nWhich )
 /*N*/   {
 /*N*/       // Wenn wir es mit einem Fussnoten-Attribut zu tun haben,
 /*N*/       // muessen wir natuerlich auch den Fussnotenbereich kopieren.
 /*N*/       case RES_TXTATR_FTN :
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           ((SwTxtFtn*)pHt)->CopyFtn( (SwTxtFtn*)pNewHt );
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           break;
 /*N*/
 /*N*/       // Beim Kopieren von Feldern in andere Dokumente
@@ -1066,7 +989,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/           {
 /*N*/               const SwFmtFld& rFld = pHt->GetFld();
 /*N*/               if( pOtherDoc )
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   ((SwTxtFld*)pHt)->CopyFld( (SwTxtFld*)pNewHt );
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/               // Tabellenformel ??
 /*N*/               if( RES_TABLEFLD == rFld.GetFld()->GetTyp()->Which()
@@ -1115,7 +1038,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/               const SwDoc* pDoc;
 /*?*/               if( 0!=( pDoc = ((SwTxtINetFmt*)pHt)->GetTxtNode().GetDoc() ) )
 /*?*/               {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     const SwCharFmts* pCharFmts = pDoc->GetCharFmts();
+                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/           //JP 24.04.98: Bug 49753 - ein TextNode muss am Attribut
@@ -1445,8 +1368,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*M*/ SwTxtNode& SwTxtNode::Insert( const XubString &rStr,
 /*M*/                             const SwIndex &rIdx, const USHORT nMode )
 /*M*/ {
-/*M*/   ASSERT( rIdx <= aText.Len(), "Array ueberindiziert." );
-/*M*/   ASSERT( (ULONG)aText.Len() + (ULONG)rStr.Len() <= STRING_LEN,
+/*M*/   OSL_ENSURE( rIdx <= aText.Len(), "Array ueberindiziert." );
+/*M*/   OSL_ENSURE( (ULONG)aText.Len() + (ULONG)rStr.Len() <= STRING_LEN,
 /*M*/           "STRING_LEN ueberschritten." );
 /*M*/
 /*M*/   xub_StrLen aPos = rIdx.GetIndex();
@@ -1603,8 +1526,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 |*  SwTxtNode::Cut()
 |*
 |*  Beschreibung        text.doc
-|*  Ersterstellung      VB 20.03.91
-|*  Letzte Aenderung    JP 11.08.94
 |*
 *************************************************************************/
 
@@ -1731,22 +1652,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*?*/       if( bUpdate )
 /*?*/           // Update aller Indizies
 /*?*/           Update( rDestStart, nLen );
-/*?*/ #ifdef CUTNOEXPAND
-/*?*/       else
-/*?*/           // wird am Ende eingefuegt, nur die Attribut-Indizies verschieben
-/*?*/           if( 0 < nLen && 0 < nInitSize && pSwpHints )
-/*?*/           {
-/*?*/               // siehe nach, ob an der Einfuegeposition das Ende eines
-/*?*/               // Attributes stand. Ist es kein Feld, muss es expandiert werden !!!
-/*?*/               for( n = 0; n < pSwpHints->Count(); n++ )
-/*?*/               {
-/*?*/                   pHt = pSwpHints->GetHt(n);
-/*?*/                   if( 0 != ( pEndIdx = pHt->GetEnd() ) &&
-/*?*/                       *pEndIdx == nInitSize )
-/*?*/                       *pEndIdx += nLen;
-/*?*/               }
-/*?*/           }
-/*?*/ #endif
 /*?*/       CHECK_SWPHINTS(this);
 /*?*/
 /*?*/       Update( rStart, nLen, TRUE );
@@ -1782,22 +1687,6 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/       if( bUpdate )
 /*N*/           // Update aller Indizies
 /*N*/           pDest->Update( rDestStart, nLen);
-/*N*/ #ifdef CUTNOEXPAND
-/*N*/       else
-/*N*/           // wird am Ende eingefuegt, nur die Attribut-Indizies verschieben
-/*N*/           if( 0 < nLen && 0 < nInitSize && pDest->pSwpHints )
-/*N*/           {
-/*N*/               // siehe nach, ob an der Einfuegeposition das Ende eines
-/*N*/               // Attributes stand. Ist es kein Feld, muss es expandiert werden !!!
-/*N*/               for( USHORT n = 0; n < pDest->pSwpHints->Count(); n++ )
-/*N*/               {
-/*N*/                   pHt = pDest->pSwpHints->GetHt(n);
-/*N*/                   if( 0 != ( pEndIdx = pHt->GetEnd() ) &&
-/*N*/                       *pEndIdx == nInitSize )
-/*N*/                       *pEndIdx += nLen;
-/*N*/               }
-/*N*/           }
-/*N*/ #endif
 /*N*/       CHECK_SWPHINTS(pDest);
 /*N*/
 /*N*/       USHORT nEnd = rStart.GetIndex() + nLen;
@@ -1939,7 +1828,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ SwTxtNode& SwTxtNode::Erase(const SwIndex &rIdx, xub_StrLen nCount,
 /*N*/                           const USHORT nMode )
 /*N*/ {
-/*N*/   ASSERT( rIdx <= aText.Len(), "Array ueberindiziert." );
+/*N*/   OSL_ENSURE( rIdx <= aText.Len(), "Array ueberindiziert." );
 /*N*/
 /*N*/   const xub_StrLen nCnt = STRING_LEN == nCount
 /*N*/                     ? aText.Len() - rIdx.GetIndex() : nCount;
@@ -2249,7 +2138,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 
 /*N*/ long SwTxtNode::GetLeftMarginWithNum( BOOL bTxtLeft ) const
 /*N*/ {
-/*N*/   long nOffset;
+/*N*/   long nLclOffset;
 /*N*/   const SwNodeNum* pNum;
 /*N*/   const SwNumRule* pRule;
 /*N*/   if( (( 0 != ( pNum = GetNum() ) &&
@@ -2259,23 +2148,23 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/           pNum->GetLevel() < NO_NUM )
 /*N*/   {
 /*N*/       const SwNumFmt& rFmt = pRule->Get( GetRealLevel( pNum->GetLevel() ) );
-/*N*/       nOffset = rFmt.GetAbsLSpace();
+/*N*/       nLclOffset = rFmt.GetAbsLSpace();
 /*N*/
 /*N*/       if( !bTxtLeft )
 /*N*/       {
 /*N*/           if( 0 > rFmt.GetFirstLineOffset() &&
-/*N*/               nOffset > -rFmt.GetFirstLineOffset() )
-/*N*/               nOffset += rFmt.GetFirstLineOffset();
+/*N*/               nLclOffset > -rFmt.GetFirstLineOffset() )
+/*N*/               nLclOffset += rFmt.GetFirstLineOffset();
 /*N*/           else
-/*N*/               nOffset = 0;
+/*N*/               nLclOffset = 0;
 /*N*/       }
 /*N*/
 /*N*/       if( pRule->IsAbsSpaces() )
-/*N*/           nOffset -= GetSwAttrSet().GetLRSpace().GetLeft();
+/*N*/           nLclOffset -= GetSwAttrSet().GetLRSpace().GetLeft();
 /*N*/   }
 /*N*/   else
-/*N*/       nOffset = 0;
-/*N*/   return nOffset;
+/*N*/       nLclOffset = 0;
+/*N*/   return nLclOffset;
 /*N*/ }
 
 /*N*/ BOOL SwTxtNode::GetFirstLineOfsWithNum( short& rFLOffset ) const
@@ -2329,7 +2218,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/                       ++rTxtStt;
 /*N*/                       break;
 /*N*/                   case RES_TXTATR_HARDBLANK:
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       rTxt.SetChar( nPos, ((SwTxtHardBlank*)pAttr)->GetChar() );
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                       break;
 /*N*/                   case RES_TXTATR_FTN:
 /*N*/                       rTxt.Erase( nPos, 1 );
@@ -2389,7 +2278,7 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ void SwTxtNode::Replace( const SwIndex& rStart, xub_Unicode cCh )
 /*N*/ {
 /*N*/
-/*N*/   ASSERT( rStart.GetIndex() < aText.Len(), "ausserhalb des Strings" );
+/*N*/   OSL_ENSURE( rStart.GetIndex() < aText.Len(), "ausserhalb des Strings" );
 /*N*/   SwTxtAttr* pHt;
 /*N*/   if( ( CH_TXTATR_BREAKWORD == aText.GetChar( rStart.GetIndex() ) ||
 /*N*/         CH_TXTATR_INWORD == aText.GetChar( rStart.GetIndex() )) &&
@@ -2430,3 +2319,5 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
-#ifndef _SVX_TAB_LINE_HXX //autogen
 #include <bf_svx/tabline.hxx>
-#endif
 #include "chtmodel.hxx"
 namespace binfilter {
 
@@ -55,13 +50,13 @@ class ChartType
 
     BOOL bHasVolume;
     BOOL bHasUpDown;
-    //Dies ist (noch) ein Booltyp, 0=keins, 1= default.später kann einmal mit Typ=2,3,...
+    //Dies ist (noch) ein Booltyp, 0=keins, 1= default.spï¿½ter kann einmal mit Typ=2,3,...
     //ein bestimmtes Symbol an einer Datenreihe gesetzt werden
     INT32 nSymbolType;
     INT32 nShapeType;
 
     long nSplineType;
-    long nSpecialType; //nur fuer Kompatiblität! diese Typen sind derzeit inkonsistent
+    long nSpecialType; //nur fuer Kompatiblitï¿½t! diese Typen sind derzeit inkonsistent
     long nBaseType;
 
     void Init();
@@ -123,3 +118,5 @@ public:
 };
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

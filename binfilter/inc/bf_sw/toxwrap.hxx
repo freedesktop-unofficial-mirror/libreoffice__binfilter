@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,16 +30,10 @@
 #define _TOXWRAP_HXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 
-#ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
-#endif
 namespace com { namespace sun { namespace star {
 namespace i18n {
     class XExtendedIndexEntrySupplier;
@@ -76,3 +71,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

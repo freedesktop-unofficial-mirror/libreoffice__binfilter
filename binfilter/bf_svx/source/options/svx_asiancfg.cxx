@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,22 @@
  *
  ************************************************************************/
 
-#ifndef _SVX_ASIANCFG_HXX
 #include <asiancfg.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 //-----------------------------------------------------------------------------
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
+
+using ::rtl::OUString;
 
 #define C2U(cChar) OUString::createFromAscii(cChar)
 /*N*/ const sal_Char sStartEndCharacters[] = "StartEndCharacters";
@@ -67,7 +57,7 @@ using namespace ::com::sun::star::lang;
 /*N*/ };
 //-----------------------------------------------------------------------------
 /*N*/ typedef SvxForbiddenStruct_Impl* SvxForbiddenStruct_ImplPtr;
-/*N*/ SV_DECL_PTRARR_DEL(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr, 2, 2)//STRIP008 ;
+/*N*/ SV_DECL_PTRARR_DEL(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr, 2, 2)
 /*N*/ SV_IMPL_PTRARR(SvxForbiddenStructArr, SvxForbiddenStruct_ImplPtr);
 //-----------------------------------------------------------------------------
 /*N*/ struct SvxAsianConfig_Impl
@@ -81,9 +71,8 @@ using namespace ::com::sun::star::lang;
 /*N*/       bKerningWesternTextOnly(sal_True),
 /*N*/       nCharDistanceCompression(0) {}
 /*N*/ };
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ Sequence<OUString> lcl_GetPropertyNames()
 /*N*/ {
 /*N*/   Sequence<OUString> aNames(2);
@@ -101,16 +90,14 @@ using namespace ::com::sun::star::lang;
 /*N*/       EnableNotification(lcl_GetPropertyNames());
 /*N*/   Load();
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SvxAsianConfig::~SvxAsianConfig()
 /*N*/ {
 /*N*/   delete pImpl;
 /*N*/ }
-/* -----------------------------17.01.01 09:57--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ void SvxAsianConfig::Load()
 /*N*/ {
 /*N*/   Sequence<Any> aValues = GetProperties(lcl_GetPropertyNames());
@@ -152,23 +139,20 @@ using namespace ::com::sun::star::lang;
 /*?*/       pImpl->aForbiddenArr.Insert(pInsert, pImpl->aForbiddenArr.Count());
 /*N*/   }
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_Bool  SvxAsianConfig::IsKerningWesternTextOnly() const
 /*N*/ {
 /*N*/   return pImpl->bKerningWesternTextOnly;
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ sal_Int16 SvxAsianConfig::GetCharDistanceCompression() const
 /*N*/ {
 /*N*/   return pImpl->nCharDistanceCompression;
 /*N*/ }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ uno::Sequence<lang::Locale> SvxAsianConfig::GetStartEndCharLocales()
 /*N*/ {
 /*N*/   Sequence<Locale> aRet(pImpl->aForbiddenArr.Count());
@@ -180,7 +164,8 @@ using namespace ::com::sun::star::lang;
 /*N*/   return aRet;
 /*N*/ }
 
-void SvxAsianConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SvxAsianConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
 void SvxAsianConfig::Commit() {}
 }
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

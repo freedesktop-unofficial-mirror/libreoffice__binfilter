@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,53 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
-//#include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HPP_
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
 
-
-
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
-//#include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLSMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
-//#include "txtprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUME_HXX
 #include "xmlnume.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLSECTIONEXPORT_HXX
 #include "XMLSectionExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLLINENUMBERINGEXPORT_HXX_
 #include "XMLLineNumberingExport.hxx"
-#endif
+
 namespace binfilter {
 
-#ifndef _XMLOFF_STYLEEXP_HXX
-//#include "styleexp.hxx"
-#endif
-
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 void XMLTextParagraphExport::exportStyleAttributes(
         const ::com::sun::star::uno::Reference<
@@ -84,7 +57,7 @@ void XMLTextParagraphExport::exportStyleAttributes(
     if( xPropSetInfo->hasPropertyByName( sCategory ) )
     {
         aAny = xPropSet->getPropertyValue( sCategory );
-        sal_Int16 nCategory;
+        sal_Int16 nCategory(0);
         aAny >>= nCategory;
         enum XMLTokenEnum eValue = XML_TOKEN_INVALID;
         if( -1 != nCategory )
@@ -179,3 +152,5 @@ void XMLTextParagraphExport::exportTextStyles( sal_Bool bUsed, sal_Bool bProg )
     bProgress = bOldProg;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

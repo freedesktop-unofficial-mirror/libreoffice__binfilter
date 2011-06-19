@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,8 @@
 #ifndef _XMLOFF_TXTIMPPR_HXX
 #define _XMLOFF_TXTIMPPR_HXX
 
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include "xmlimppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 namespace binfilter {
 
 class XMLFontStylesContext;
@@ -84,3 +81,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLIMPPR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

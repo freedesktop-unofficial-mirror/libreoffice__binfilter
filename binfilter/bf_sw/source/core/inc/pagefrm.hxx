@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,15 +32,11 @@
 
 
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
 #include "ftnboss.hxx"
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 namespace binfilter {
 
 class SvPtrarr;
@@ -55,7 +52,7 @@ class SwDrawContact;
 class SwAttrSetChg;
 
 
-SV_DECL_PTRARR_SORT(SwSortDrawObjs,SdrObjectPtr,1,2)//STRIP008 ;
+SV_DECL_PTRARR_SORT(SwSortDrawObjs,SdrObjectPtr,1,2)
 
 enum SwPageChg
 {
@@ -94,7 +91,7 @@ class SwPageFrm: public SwFtnBossFrm
     BOOL bHasGrid           :1; // Grid for Asian layout
 #endif
 
-    // OD 12.02.2003 #i9719#, #105645#
+    // #i9719#
     static const sal_Int8 mnBorderPxWidth;
     static const sal_Int8 mnShadowPxWidth;
 
@@ -109,7 +106,7 @@ class SwPageFrm: public SwFtnBossFrm
 
     /** determine rectangle for page border
 
-        OD 12.02.2003 for #i9719# and #105645#
+        #i9719#
 
         @author OD
 
@@ -132,7 +129,7 @@ class SwPageFrm: public SwFtnBossFrm
 
     /** determine rectangle for right page shadow
 
-        OD 12.02.2003 for #i9719# and #105645#
+        #i9719#
 
         @author OD
 
@@ -155,7 +152,7 @@ class SwPageFrm: public SwFtnBossFrm
 
     /** determine rectangle for bottom page shadow
 
-        OD 12.02.2003 for #i9719# and #105645#
+        #i9719#
 
         @author OD
 
@@ -195,7 +192,7 @@ public:
 
     void AppendDrawObj( SwDrawContact *pNew );
     void RemoveDrawObj( SwDrawContact *pToRemove );
-        // OD 20.05.2003 #108784# - <AppendDrawObj>/<RemoveDrawObj> for virtual drawing objects
+        // <AppendDrawObj>/<RemoveDrawObj> for virtual drawing objects
     void AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                             SwDrawVirtObj* _pDrawVirtObj );
     void RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
@@ -285,9 +282,8 @@ public:
     BOOL IsInvalidSpelling() const { return bInvalidSpelling; }
     BOOL IsInvalidAutoCompleteWords() const { return bInvalidAutoCmplWrds; }
 
-    /** SwPageFrm::GetDrawBackgrdColor - for #102450#
+    /** SwPageFrm::GetDrawBackgrdColor
 
-        29.08.2002:
         determine the color, that is respectively will be drawn as background
         for the page frame.
 
@@ -299,7 +295,6 @@ public:
 
     /** paint margin area of a page
 
-        OD 20.11.2002 for #104598#:
         implement paint of margin area; margin area will be painted for a
         view shell with a window and if the document is not in online layout.
 
@@ -318,7 +313,7 @@ public:
 
     /** paint page border and shadow
 
-        OD 12.02.2003 for #i9719# and #105645#
+        #i9719#
         implement paint of page border and shadow
 
         @author OD
@@ -436,3 +431,5 @@ inline BOOL SwPageFrm::IsInvalidFly() const
 
 } //namespace binfilter
 #endif  //_PAGEFRM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

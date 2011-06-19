@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,31 +32,21 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
 namespace binfilter {
 
 #define STREAM_STGREAD  ( STREAM_READ | STREAM_SHARE_DENYWRITE | STREAM_NOCREATE )
 #define STREAM_STGWRITE ( STREAM_READ | STREAM_WRITE | STREAM_SHARE_DENYWRITE )
 
-sal_Char __FAR_DATA N_BLOCKINFO[] = "AutotextInfo";
+sal_Char N_BLOCKINFO[] = "AutotextInfo";
 
 
 /*************************************************************************
@@ -103,7 +94,7 @@ sal_Char __FAR_DATA N_BLOCKINFO[] = "AutotextInfo";
 /*N*/   // Haben wir schon einen Persist?
 /*N*/   if( pDoc->GetPersist() )
 /*N*/       return TRUE;
-        DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 /*?*/    pPersist = new Sw3Persist;
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 // ggf. eine SvPersist-Instanz freigeben
@@ -114,3 +105,5 @@ sal_Char __FAR_DATA N_BLOCKINFO[] = "AutotextInfo";
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

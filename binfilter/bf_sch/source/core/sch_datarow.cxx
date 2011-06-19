@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 
 #include "datarow.hxx"
 #include "glob.hxx"
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 /*************************************************************************
 |*
@@ -111,33 +110,13 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Kopier-Konstruktor
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Kopie erzeugen
 |*
 \************************************************************************/
 
-/*N*/ SdrObjUserData* SchDataRow::Clone(SdrObject *pObj) const
+/*N*/ SdrObjUserData* SchDataRow::Clone(SdrObject *) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchDataRow(*this);
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Daten in Stream schreiben
-|*
-\************************************************************************/
-
-/*N*/ void SchDataRow::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/
-/*N*/   rOut << (INT16)nRow;
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*************************************************************************
@@ -158,3 +137,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

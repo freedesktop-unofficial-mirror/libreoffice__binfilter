@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,68 +32,32 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>      // ChangeFtnRef
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>      // SwVirtFlyDrawObj
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>       // SwFtnFrm
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>      // SwViewOptions
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>       // ViewShell
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _FLYFRMS_HXX
 #include <flyfrms.hxx>
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _TXTCFG_HXX
 #include <txtcfg.hxx>
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>     // SwTxtFormatter
-#endif
-#ifndef _WIDORP_HXX
 #include <widorp.hxx>       // Widows and Orphans
-#endif
-#ifndef _TXTCACHE_HXX
 #include <txtcache.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>      // SwSectionFrm
-#endif
 
 namespace binfilter {
 
-extern FASTBOOL IsInProgress( const SwFlyFrm *pFly );
+extern bool IsInProgress( const SwFlyFrm *pFly );
 
 class FormatLevel
 {
@@ -113,8 +78,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ {
 /*N*/     if ( ( ! pFrm->IsVertical() &&
 /*N*/              pFrm->Frm().Width() == pFrm->GetUpper()->Prt().Width() ) ||
-/*N*/              pFrm->IsVertical() &&
-/*N*/              pFrm->Frm().Height() == pFrm->GetUpper()->Prt().Height() )
+/*N*/          (   pFrm->IsVertical() &&
+/*N*/              pFrm->Frm().Height() == pFrm->GetUpper()->Prt().Height() ) )
 /*N*/       pFrm->bValidSize = sal_True;
 /*
     pFrm->bValidPrtArea = sal_True;
@@ -161,7 +126,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   ValidateTxt( this );
 /*N*/
 /*N*/   //MA: mindestens das MustFit-Flag muessen wir retten!
-/*N*/   ASSERT( HasPara(), "ResetPreps(), missing ParaPortion." );
+/*N*/   OSL_ENSURE( HasPara(), "ResetPreps(), missing ParaPortion." );
 /*N*/   SwParaPortion *pPara = GetPara();
 /*N*/   const sal_Bool bMustFit = pPara->IsPrepMustFit();
 /*N*/   ResetPreps();
@@ -238,17 +203,17 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ {
 /*N*/     SWAP_IF_SWAPPED( this )
 /*N*/
-/*N*/     ASSERT( HasFollow(), "CalcFollow: missing Follow." );
+/*N*/     OSL_ENSURE( HasFollow(), "CalcFollow: missing Follow." );
 /*N*/
-/*N*/   SwTxtFrm *pFollow = GetFollow();
+/*N*/   SwTxtFrm *pFollow1 = GetFollow();
 /*N*/
 /*N*/   SwParaPortion *pPara = GetPara();
 /*N*/   sal_Bool bFollowFld = pPara ? pPara->IsFollowField() : sal_False;
 /*N*/
-/*N*/     if( !pFollow->GetOfst() || pFollow->GetOfst() != nTxtOfst ||
-/*N*/         bFollowFld || pFollow->IsFieldFollow() ||
-/*N*/         ( pFollow->IsVertical() && !pFollow->Prt().Width() ) ||
-/*N*/         ( ! pFollow->IsVertical() && !pFollow->Prt().Height() ) )
+/*N*/     if( !pFollow1->GetOfst() || pFollow1->GetOfst() != nTxtOfst ||
+/*N*/         bFollowFld || pFollow1->IsFieldFollow() ||
+/*N*/         ( pFollow1->IsVertical() && !pFollow1->Prt().Width() ) ||
+/*N*/         ( ! pFollow1->IsVertical() && !pFollow1->Prt().Height() ) )
 /*N*/   {
 /*N*/ #ifdef DBG_UTIL
 /*N*/       const SwFrm *pOldUp = GetUpper();
@@ -259,8 +224,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/         SwTwips nMyPos = (Frm().*fnRect->fnGetTop)();
 /*N*/
 /*N*/       const SwPageFrm *pPage = 0;
-/*N*/       sal_Bool  bOldInvaCntnt,
-/*N*/             bOldInvaLayout;
+/*N*/       sal_Bool  bOldInvaCntnt = sal_False,
+/*N*/             bOldInvaLayout = sal_False;
 /*N*/       if ( !IsInFly() && GetNext() )
 /*N*/       {
 /*N*/           pPage = FindPageFrm();
@@ -269,9 +234,9 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/           bOldInvaLayout = pPage->IsInvalidLayout();
 /*N*/       }
 /*N*/
-/*N*/       pFollow->_SetOfst( nTxtOfst );
-/*N*/       pFollow->SetFieldFollow( bFollowFld );
-/*N*/       if( HasFtn() || pFollow->HasFtn() )
+/*N*/       pFollow1->_SetOfst( nTxtOfst );
+/*N*/       pFollow1->SetFieldFollow( bFollowFld );
+/*N*/       if( HasFtn() || pFollow1->HasFtn() )
 /*N*/       {
 /*?*/           ValidateFrm();
 /*?*/           ValidateBodyFrm();
@@ -285,8 +250,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       //Der Fussnotenbereich darf sich keinesfalls vergrossern.
 /*N*/       SwSaveFtnHeight aSave( FindFtnBossFrm( sal_True ), LONG_MAX );
 /*N*/
-/*N*/         pFollow->CalcFtnFlag();
-/*N*/       if ( !pFollow->GetNext() && !pFollow->HasFtn() )
+/*N*/         pFollow1->CalcFtnFlag();
+/*N*/       if ( !pFollow1->GetNext() && !pFollow1->HasFtn() )
 /*N*/             nOldBottom = bVert ? 0 : LONG_MAX;
 /*N*/
 /*N*/       while( sal_True )
@@ -298,7 +263,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               // werden, da das FormatWidthCols() nicht funktioniert, wenn
 /*N*/               // es aus dem MakeAll des _gelockten_ Follows heraus gerufen
 /*N*/               // wird.
-/*N*/               SwSectionFrm* pSct = pFollow->FindSctFrm();
+/*N*/               SwSectionFrm* pSct = pFollow1->FindSctFrm();
 /*N*/               if( pSct && !pSct->IsAnLower( this ) )
 /*N*/               {
 /*?*/                   if( pSct->GetFollow() )
@@ -315,7 +280,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/                     // Thus, forbid intrinsic format of follow.
 /*N*/                     {
 /*N*/                         bool bIsFollowInColumn = false;
-/*N*/                         SwFrm* pFollowUpper = pFollow->GetUpper();
+/*N*/                         SwFrm* pFollowUpper = pFollow1->GetUpper();
 /*N*/                         while ( pFollowUpper )
 /*N*/                         {
 /*N*/                             if ( pFollowUpper->IsColumnFrm() )
@@ -332,27 +297,27 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/                         }
 /*N*/                         if ( bIsFollowInColumn )
 /*N*/                         {
-/*N*/                             pFollow->ForbidFollowFormat();
+/*N*/                             pFollow1->ForbidFollowFormat();
 /*N*/                         }
 /*N*/                     }
 /*N*/
-/*N*/               pFollow->Calc();
+/*N*/               pFollow1->Calc();
 /*N*/               // Der Follow merkt anhand seiner Frm().Height(), dass was schief
 /*N*/               // gelaufen ist.
-/*N*/               ASSERT( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: cheesy follow" );
-/*N*/               if( pFollow->GetPrev() )
+/*N*/               OSL_ENSURE( !pFollow1->GetPrev(), "SwTxtFrm::CalcFollow: cheesy follow" );
+/*N*/               if( pFollow1->GetPrev() )
 /*N*/               {
-/*?*/                   pFollow->Prepare( PREP_CLEAR );
-/*?*/                   pFollow->Calc();
-/*?*/                   ASSERT( !pFollow->GetPrev(), "SwTxtFrm::CalcFollow: very cheesy follow" );
+/*?*/                   pFollow1->Prepare( PREP_CLEAR );
+/*?*/                   pFollow1->Calc();
+/*?*/                   OSL_ENSURE( !pFollow1->GetPrev(), "SwTxtFrm::CalcFollow: very cheesy follow" );
 /*N*/                     }
 /*N*/
 /*N*/                     // OD 14.03.2003 #i11760# - reset control flag for follow format.
-/*N*/                     pFollow->AllowFollowFormat();
+/*N*/                     pFollow1->AllowFollowFormat();
 /*N*/               }
 /*N*/
 /*N*/               //Sicherstellen, dass der Follow gepaintet wird.
-/*N*/               pFollow->SetCompletePaint();
+/*N*/               pFollow1->SetCompletePaint();
 /*N*/           }
 /*N*/
 /*N*/           pPara = GetPara();
@@ -364,7 +329,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               break;
 /*N*/       }
 /*N*/
-/*N*/       if( HasFtn() || pFollow->HasFtn() )
+/*N*/       if( HasFtn() || pFollow1->HasFtn() )
 /*N*/       {
 /*?*/           ValidateBodyFrm();
 /*?*/           ValidateFrm();
@@ -384,7 +349,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       }
 /*N*/
 /*N*/ #ifdef DBG_UTIL
-/*N*/       ASSERT( pOldUp == GetUpper(), "SwTxtFrm::CalcFollow: heavy follow" );
+/*N*/       OSL_ENSURE( pOldUp == GetUpper(), "SwTxtFrm::CalcFollow: heavy follow" );
 /*N*/ #endif
 /*N*/
 /*N*/         const long nRemaining =
@@ -486,7 +451,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/         SwTwips nRstHeight;
 /*N*/         if ( IsVertical() )
 /*N*/         {
-/*?*/             ASSERT( ! IsSwapped(),"Swapped frame while calculating nRstHeight" );
+/*?*/             OSL_ENSURE( ! IsSwapped(),"Swapped frame while calculating nRstHeight" );
 /*?*/             nRstHeight = Frm().Left() + Frm().Width() -
 /*?*/                          ( GetUpper()->Frm().Left() + GetUpper()->Prt().Left() );
 /*N*/         }
@@ -502,7 +467,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/             long nAdd = (*fnRect->fnYDiff)( (GetUpper()->Lower()->Frm().*fnRect->fnGetTop)(),
 /*N*/                                             (GetUpper()->*fnRect->fnGetPrtTop)() );
-/*N*/             ASSERT( nAdd >= 0, "Ey" );
+/*N*/             OSL_ENSURE( nAdd >= 0, "Ey" );
 /*N*/           nRstHeight += nAdd;
 /*N*/       }
 /*N*/
@@ -578,7 +543,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/           if( ((SwTxtFrm*)GetFollow())->IsLocked() )
 /*N*/           {
-/*?*/               ASSERT( sal_False, "+SwTxtFrm::JoinFrm: Follow ist locked." );
+/*?*/               OSL_FAIL( "+SwTxtFrm::JoinFrm: Follow ist locked." );
 /*?*/                 UNDO_SWAP( this )
 /*?*/                 return;
 /*N*/           }
@@ -628,7 +593,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ SwCntntFrm *SwTxtFrm::JoinFrm()
 /*N*/ {
-/*N*/   ASSERT( GetFollow(), "+SwTxtFrm::JoinFrm: no follow" );
+/*N*/   OSL_ENSURE( GetFollow(), "+SwTxtFrm::JoinFrm: no follow" );
 /*N*/   SwTxtFrm  *pFoll = GetFollow();
 /*N*/
 /*N*/   SwTxtFrm *pNxt = pFoll->GetFollow();
@@ -641,14 +606,12 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/       const SwpHints *pHints = pFoll->GetTxtNode()->GetpSwpHints();
 /*?*/       if( pHints )
 /*?*/       {
-/*?*/           SwFtnBossFrm *pFtnBoss = 0;
-/*?*/           SwFtnBossFrm *pEndBoss = 0;
 /*?*/           for( MSHORT i = 0; i < pHints->Count(); ++i )
 /*?*/           {
 /*?*/               const SwTxtAttr *pHt = (*pHints)[i];
 /*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nStart )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pHt->GetFtn().IsEndNote() )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -659,7 +622,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/               pFoll->GetValidSizeFlag() )
 /*N*/     {
 /*N*/       pFoll->CalcFtnFlag();
-/*N*/       ASSERT( !pFoll->HasFtn(), "Missing FtnFlag." );
+/*N*/       OSL_ENSURE( !pFoll->HasFtn(), "Missing FtnFlag." );
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -697,14 +660,12 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/       const SwpHints *pHints = GetTxtNode()->GetpSwpHints();
 /*?*/       if( pHints )
 /*?*/       {
-/*?*/           SwFtnBossFrm *pFtnBoss = 0;
-/*?*/           SwFtnBossFrm *pEndBoss = 0;
 /*?*/           for( MSHORT i = 0; i < pHints->Count(); ++i )
 /*?*/           {
 /*?*/               const SwTxtAttr *pHt = (*pHints)[i];
 /*?*/               if( RES_TXTATR_FTN==pHt->Which() && *pHt->GetStart()>=nTxtPos )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( pHt->GetFtn().IsEndNote() )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*?*/       }
@@ -714,7 +675,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   else
 /*N*/   {
 /*N*/       CalcFtnFlag( nTxtPos-1 );
-/*N*/       ASSERT( !HasFtn(), "Missing FtnFlag." );
+/*N*/       OSL_ENSURE( !HasFtn(), "Missing FtnFlag." );
 /*N*/   }
 /*N*/ #endif
 /*N*/
@@ -738,12 +699,6 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ void SwTxtFrm::_SetOfst( const xub_StrLen nNewOfst )
 /*N*/ {
-/*N*/ #ifdef DBGTXT
-/*N*/   // Es gibt tatsaechlich einen Sonderfall, in dem ein SetOfst(0)
-/*N*/   // zulaessig ist: bug 3496
-/*N*/   ASSERT( nNewOfst, "!SwTxtFrm::SetOfst: missing JoinFrm()." );
-/*N*/ #endif
-/*N*/
 /*N*/   // Die Invalidierung unseres Follows ist nicht noetig.
 /*N*/   // Wir sind ein Follow, werden gleich formatiert und
 /*N*/   // rufen von dort aus das SetOfst() !
@@ -765,7 +720,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ sal_Bool SwTxtFrm::CalcPreps()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(), "SwTxtFrm::CalcPreps with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(), "SwTxtFrm::CalcPreps with swapped frame" );
 /*N*/     SWRECTFN( this );
 /*N*/
 /*N*/     SwParaPortion *pPara = GetPara();
@@ -788,7 +743,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       {
 /*N*/           if( !GetFollow() )
 /*N*/           {
-/*?*/               ASSERT( GetFollow(), "+SwTxtFrm::CalcPreps: no credits" );
+/*?*/               OSL_ENSURE( GetFollow(), "+SwTxtFrm::CalcPreps: no credits" );
 /*?*/               return sal_False;
 /*N*/           }
 /*N*/
@@ -824,7 +779,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*?*/                 ASSERT( nChgHeight < (Prt().*fnRect->fnGetHeight)(),
+/*?*/                 OSL_ENSURE( nChgHeight < (Prt().*fnRect->fnGetHeight)(),
 /*?*/                       "+SwTxtFrm::CalcPrep: wanna shrink" );
 /*?*/
 /*?*/                 nChgHeight = (Prt().*fnRect->fnGetHeight)() - nChgHeight;
@@ -836,7 +791,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/
 /*?*/                 if ( bVert )
 /*?*/                 {
-                        DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/                     SwRect aRepaint( Frm().Pos() + Prt().Pos(), Prt().SSize() );
+                        DBG_BF_ASSERT(0, "STRIP");
 /*?*/                 }
 /*?*/                 else
 /*?*/                     rRepaint.Chg( Frm().Pos() + Prt().Pos(), Prt().SSize() );
@@ -1026,7 +981,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {   // Wenn wir Zeilen abgeben, darf kein Join auf den Folows gerufen werden,
 /*N*/       // im Gegenteil, es muss ggf. sogar ein Follow erzeugt werden.
 /*N*/       // Dies muss auch geschehen, wenn die Textmasse komplett im Master
-/*N*/       // bleibt, denn es könnte ja ein harter Zeilenumbruch noch eine weitere
+/*N*/       // bleibt, denn es k?nnte ja ein harter Zeilenumbruch noch eine weitere
 /*N*/       // Zeile (ohne Textmassse) notwendig machen!
 /*N*/       nEnd = rLine.GetEnd();
 /*N*/       if( GetFollow() )
@@ -1068,7 +1023,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/            nBodyHeight < ( IsVertical() ?
 /*N*/                            pBodyFrm->Frm().Width() :
 /*N*/                            pBodyFrm->Frm().Height() ) )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           rLine.MakeDummyLine();
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/
 /*N*/   // In AdjustFrm() stellen wir uns selbst per Grow/Shrink ein,
@@ -1154,7 +1109,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ sal_Bool SwTxtFrm::FormatLine( SwTxtFormatter &rLine, const sal_Bool bPrev )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || IsSwapped(),
 /*N*/             "SwTxtFrm::FormatLine( rLine, bPrev) with unswapped frame" );
 /*N*/   SwParaPortion *pPara = rLine.GetInfo().GetParaPortion();
 /*N*/   // Nach rLine.FormatLine() haelt nStart den neuen Wert,
@@ -1174,9 +1129,9 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/
 /*N*/   const xub_StrLen nNewStart = rLine.FormatLine( rLine.GetStart() );
 /*N*/
-/*N*/     ASSERT( Frm().Pos().Y() + Prt().Pos().Y() == rLine.GetFirstPos(),
+/*N*/     OSL_ENSURE( Frm().Pos().Y() + Prt().Pos().Y() == rLine.GetFirstPos(),
 /*N*/           "SwTxtFrm::FormatLine: frame leaves orbit." );
-/*N*/   ASSERT( rLine.GetCurr()->Height(),
+/*N*/   OSL_ENSURE( rLine.GetCurr()->Height(),
 /*N*/           "SwTxtFrm::FormatLine: line height is zero" );
 /*N*/
 /*N*/   // Das aktuelle Zeilenumbruchobjekt.
@@ -1313,7 +1268,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/ void SwTxtFrm::_Format( SwTxtFormatter &rLine, SwTxtFormatInfo &rInf,
 /*N*/                       const sal_Bool bAdjust )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || IsSwapped(),"SwTxtFrm::_Format with unswapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || IsSwapped(),"SwTxtFrm::_Format with unswapped frame" );
 /*N*/
 /*N*/     SwParaPortion *pPara = rLine.GetInfo().GetParaPortion();
 /*N*/   rLine.SetUnclipped( sal_False );
@@ -1456,7 +1411,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       const SwLineLayout* pLine;
 /*N*/       {
 /*?*/           SwTxtFrm *pMaster = FindMaster();
-/*?*/           ASSERT( pMaster, "SwTxtFrm::Format: homeless follow" );
+/*?*/           OSL_ENSURE( pMaster, "SwTxtFrm::Format: homeless follow" );
 /*?*/           if( !pMaster->HasPara() )
 /*?*/               pMaster->GetFormatted();
 /*?*/           SwTxtSizeInfo aInf( pMaster );
@@ -1622,7 +1577,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ void SwTxtFrm::FormatOnceMore( SwTxtFormatter &rLine, SwTxtFormatInfo &rInf )
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || IsSwapped(),
 /*N*/             "A frame is not swapped in SwTxtFrm::FormatOnceMore" );
 /*N*/
 /*N*/   SwParaPortion *pPara = rLine.GetInfo().GetParaPortion();
@@ -1637,9 +1592,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   sal_uInt8 nGo    = 0;
 /*N*/   while( bGoOn )
 /*N*/   {
-/*N*/ #ifdef DBGTXT
-/*N*/       aDbstream << "OnceMore!" << endl;
-/*N*/ #endif
 /*N*/       ++nGo;
 /*N*/       rInf.Init();
 /*N*/       rLine.Top();
@@ -1675,8 +1627,8 @@ MSHORT FormatLevel::nLevel = 0;
 /*?*/               rLine.CtorInit( this, &rInf );
 /*?*/               rLine.SetDropLines( 1 );
 /*?*/               rLine.CalcDropHeight( 1 );
-/*?*/               SwCharRange aRange( 0, rInf.GetTxt().Len() );
-/*?*/               *(pPara->GetReformat()) = aRange;
+/*?*/               SwCharRange aRange1( 0, rInf.GetTxt().Len() );
+/*?*/               *(pPara->GetReformat()) = aRange1;
 /*?*/               _Format( rLine, rInf, sal_True );
 /*?*/               // 8047: Wir painten alles...
 /*?*/               SetCompletePaint();
@@ -1715,7 +1667,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/       pPara->SetPrepMustFit( bMustFit );
 /*N*/   }
 /*N*/
-/*N*/     ASSERT( ! IsSwapped(), "A frame is swapped before _Format" );
+/*N*/     OSL_ENSURE( ! IsSwapped(), "A frame is swapped before _Format" );
 /*N*/
 /*N*/     if ( IsVertical() )
 /*?*/         SwapWidthAndHeight();
@@ -1731,14 +1683,14 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/     if ( IsVertical() )
 /*?*/         SwapWidthAndHeight();
 /*N*/
-/*N*/     ASSERT( ! IsSwapped(), "A frame is swapped after _Format" );
+/*N*/     OSL_ENSURE( ! IsSwapped(), "A frame is swapped after _Format" );
 /*N*/
 /*N*/     if( 1 < aLine.GetDropLines() )
 /*N*/   {
 /*N*/       if( SVX_ADJUST_LEFT != aLine.GetAdjust() &&
 /*N*/           SVX_ADJUST_BLOCK != aLine.GetAdjust() )
 /*N*/       {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             aLine.CalcDropAdjust();
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       if( aLine.IsPaintDrop() )
@@ -1778,25 +1730,6 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/       int i = GetFrmId();
 /*M*/   }
 /*M*/ #endif
-/*M*/ #endif
-/*M*/
-/*M*/ #ifdef DEBUG_FTN
-/*M*/   //Fussnote darf nicht auf einer Seite vor ihrer Referenz stehen.
-/*M*/   if( IsInFtn() )
-/*M*/   {
-/*M*/       const SwFtnFrm *pFtn = (SwFtnFrm*)GetUpper();
-/*M*/       const SwPageFrm *pFtnPage = pFtn->GetRef()->FindPageFrm();
-/*M*/       const MSHORT nFtnPageNr = pFtnPage->GetPhyPageNum();
-/*M*/       if( !IsLocked() )
-/*M*/       {
-/*M*/           if( nFtnPageNr > nDbgPageNr )
-/*M*/           {
-/*M*/               SwTxtFrmLocker aLock(this);
-/*M*/               ASSERT( nFtnPageNr <= nDbgPageNr, "!Ftn steht vor der Referenz." );
-/*M*/               MSHORT i = 0;
-/*M*/           }
-/*M*/       }
-/*M*/   }
 /*M*/ #endif
 /*M*/
 /*M*/   MSHORT nRepeat = 0;
@@ -1899,7 +1832,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                      IsFollow() )
 /*M*/           {
 /*M*/               SwTxtFrm *pMaster = FindMaster();
-/*M*/               ASSERT( pMaster, "SwTxtFrm::Format: homeless follow" );
+/*M*/               OSL_ENSURE( pMaster, "SwTxtFrm::Format: homeless follow" );
 /*M*/                 if( pMaster )
 /*M*/                   pMaster->Prepare( PREP_FOLLOW_FOLLOWS );
 /*M*/                 SwTwips nMaxY = (GetUpper()->*fnRect->fnGetPrtBottom)();
@@ -1916,7 +1849,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/
 /*M*/               const sal_Bool bOrphan = IsWidow();
 /*M*/                 const SwFtnBossFrm* pFtnBoss = HasFtn() ? FindFtnBossFrm() : 0;
-/*M*/                 SwTwips nFtnHeight;
+/*M*/                 SwTwips nFtnHeight(0);
 /*M*/                 if( pFtnBoss )
 /*M*/                 {
 /*M*/                     const SwFtnContFrm* pCont = pFtnBoss->FindFtnCont();
@@ -1972,7 +1905,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*M*/                       {
 /*M*/                           SwFlyFrm *pFly = ((SwVirtFlyDrawObj*)pO)->GetFlyFrm();
 /*M*/                           if( pFly->IsAutoPos() && !::binfilter::IsInProgress( pFly ) )
-/*M*/                           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/                           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                           }
 /*M*/                       }
 /*M*/                   }
@@ -2033,7 +1966,7 @@ MSHORT FormatLevel::nLevel = 0;
 
 /*N*/ sal_Bool SwTxtFrm::FormatQuick()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),
 /*N*/             "SwTxtFrm::FormatQuick with swapped frame" );
 /*N*/
 ///*N*/     DBG_LOOP;
@@ -2084,7 +2017,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {   //DBG_LOOP;
 /*N*/       nStart = aLine.FormatLine( nStart );
 /*N*/       if( aInf.IsNewLine() || (!aInf.IsStop() && nStart < nEnd) )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/           aLine.Insert( new SwLineLayout() );
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   } while( aLine.Next() );
 /*N*/
 /*N*/     // Last exit: die Hoehen muessen uebereinstimmen.
@@ -2096,7 +2029,7 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/ //    Achtung: Durch FormatLevel==12 kann diese Situation auftreten, don't panic!
-/*?*/ //        ASSERT( nNewHeight == nOldHeight, "!FormatQuick: rosebud" );
+/*?*/ //        OSL_ENSURE( nNewHeight == nOldHeight, "!FormatQuick: rosebud" );
 /*?*/ #endif
 /*?*/       xub_StrLen nStrt = GetOfst();
 /*?*/       _InvalidateRange( SwCharRange( nStrt, nEnd - nStrt) );
@@ -2119,3 +2052,5 @@ MSHORT FormatLevel::nLevel = 0;
 /*N*/   return sal_True;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

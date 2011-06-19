@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -51,6 +50,7 @@ public:
     TYPEINFO();
     SdrPageObj(USHORT nNewPageNum=0);
     ~SdrPageObj();
+    using SdrObject::operator=;
 
     virtual void SetModel(SdrModel* pNewModel);
     USHORT GetPageNum() const { return nPageNum; }
@@ -66,7 +66,7 @@ public:
     virtual const Rectangle& GetLogicRect() const;
     virtual void NbcSetSnapRect(const Rectangle& rRect);
     virtual void NbcSetLogicRect(const Rectangle& rRect);
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
     // ItemSet access
@@ -81,3 +81,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOPAGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

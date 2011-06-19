@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,7 +26,6 @@
  *
  ************************************************************************/
 
-//#include <math.h>
 #include <stdlib.h>
 #include "xpool.hxx"
 #include "svdpool.hxx"
@@ -36,29 +36,13 @@
 #include "svdview.hxx" // das
 #include "svdstr.hrc"   // Objektname
 
-#ifndef _SVX_XFLCLIT_HXX //autogen
 #include <xflclit.hxx>
-#endif
-
-#ifndef _SVX_XLNCLIT_HXX //autogen
 #include <xlnclit.hxx>
-#endif
-
-#ifndef _SVX_XLNWTIT_HXX //autogen
 #include <xlnwtit.hxx>
-#endif
 
-#ifndef _SVX_RECTENUM_HXX
 #include "rectenum.hxx"
-#endif
-
-#ifndef _SVX_SVDOIMP_HXX
 #include "svdoimp.hxx"
-#endif
-
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 namespace binfilter {
 
@@ -116,13 +100,13 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SdrRectObj::PaintNeedsXPoly(long nEckRad) const
+/*N*/ bool SdrRectObj::PaintNeedsXPoly(long nEckRad) const
 /*N*/ {
-/*N*/   FASTBOOL bNeed=aGeo.nDrehWink!=0 || aGeo.nShearWink!=0 || nEckRad!=0;
+/*N*/   bool bNeed=aGeo.nDrehWink!=0 || aGeo.nShearWink!=0 || nEckRad!=0;
 /*N*/   return bNeed;
 /*N*/ }
 
-/*N*/ XPolygon SdrRectObj::ImpCalcXPoly(const Rectangle& rRect1, long nRad1, FASTBOOL bContour) const
+/*N*/ XPolygon SdrRectObj::ImpCalcXPoly(const Rectangle& rRect1, long nRad1, bool bContour) const
 /*N*/ {
 /*N*/   bContour=TRUE; // am 14.1.97 wg. Umstellung TakeContour ueber Mtf und Paint. Joe.
 /*N*/   XPolygon aXPoly(rRect1,nRad1,nRad1);
@@ -203,7 +187,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ FASTBOOL SdrRectObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
+/*N*/ bool SdrRectObj::Paint(ExtOutputDevice& rXOut, const SdrPaintInfoRec& rInfoRec) const
 /*N*/ {
 /*N*/   // Hidden objects on masterpages, draw nothing
 /*N*/   if((rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE) && bNotVisibleAsMaster)
@@ -211,8 +195,8 @@ namespace binfilter {
 /*N*/
 /*N*/   // Im Graustufenmodus/Kontrastmodus soll die Hintergrundseite NICHT angezeigt werden
 /*N*/   ULONG nMode = rXOut.GetOutDev()->GetDrawMode();
-/*N*/   FASTBOOL bGrayscaleMode = ( nMode == (DRAWMODE_GRAYLINE | DRAWMODE_GRAYFILL | DRAWMODE_BLACKTEXT | DRAWMODE_GRAYBITMAP | DRAWMODE_GRAYGRADIENT ) );
-/*N*/   FASTBOOL bSettingsMode = ( nMode == (DRAWMODE_SETTINGSLINE | DRAWMODE_SETTINGSFILL | DRAWMODE_SETTINGSTEXT | DRAWMODE_SETTINGSGRADIENT ) );
+/*N*/   bool bGrayscaleMode = ( nMode == (DRAWMODE_GRAYLINE | DRAWMODE_GRAYFILL | DRAWMODE_BLACKTEXT | DRAWMODE_GRAYBITMAP | DRAWMODE_GRAYGRADIENT ) );
+/*N*/   bool bSettingsMode = ( nMode == (DRAWMODE_SETTINGSLINE | DRAWMODE_SETTINGSFILL | DRAWMODE_SETTINGSTEXT | DRAWMODE_SETTINGSGRADIENT ) );
 /*N*/
 /*N*/     if( ( bGrayscaleMode || bSettingsMode ) && pPage && pPage->IsMasterPage() )
 /*N*/   {
@@ -242,7 +226,7 @@ namespace binfilter {
 /*?*/       ((SdrRectObj*)this)->ImpCheckShear();
 /*?*/       ((SdrRectObj*)this)->SetRectsDirty();
 /*N*/   }
-/*N*/   FASTBOOL bOk=TRUE;
+/*N*/   bool bOk=TRUE;
 /*N*/   BOOL bHideContour(IsHideContour());
 /*N*/   sal_Int32 nEckRad(GetEckenradius());
 /*N*/   BOOL bIsFillDraft(0 != (rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTFILL));
@@ -295,7 +279,7 @@ namespace binfilter {
 /*?*/       if( pLineGeometry.get() )
 /*?*/       {
 /*?*/           // draw the line geometry
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ImpDrawShadowLineGeometry(rXOut, rSet, *pLineGeometry);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 
@@ -329,20 +313,20 @@ namespace binfilter {
 /*?*/       bOk=SdrTextObj::Paint(rXOut,rInfoRec);
 /*N*/   }
 /*N*/   if (bOk && (rInfoRec.nPaintMode & SDRPAINTMODE_GLUEPOINTS) !=0) {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bOk=PaintGluePoints(rXOut,rInfoRec);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return bOk;
 /*N*/ }
 
-/*N*/ SdrObject* SdrRectObj::ImpCheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer, FASTBOOL bForceFilled, FASTBOOL bForceTol) const
+/*N*/ SdrObject* SdrRectObj::ImpCheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer, bool bForceFilled, bool bForceTol) const
 /*N*/ {
 /*N*/   if (pVisiLayer!=NULL && !pVisiLayer->IsSet(nLayerId)) return NULL;
 /*N*/   INT32 nMyTol=nTol;
-/*N*/   FASTBOOL bFilled=bForceFilled || HasFill();
-/*N*/   FASTBOOL bPickThrough=pModel!=NULL && pModel->IsPickThroughTransparentTextFrames();
+/*N*/   bool bFilled=bForceFilled || HasFill();
+/*N*/   bool bPickThrough=pModel!=NULL && pModel->IsPickThroughTransparentTextFrames();
 /*N*/   if (bTextFrame && !bPickThrough) bFilled=TRUE;
-/*N*/   FASTBOOL bLine=HasLine();
+/*N*/   bool bLine=HasLine();
 /*N*/
 /*N*/   INT32 nWdt=bLine ? ImpGetLineWdt()/2 :0; // Halbe Strichstaerke
 /*N*/   long nBoundWdt=aRect.GetWidth()-1;
@@ -387,7 +371,7 @@ namespace binfilter {
 /*N*/           }
 /*N*/       } while (nCnt++==0 && ImpGetShadowDist(nXShad,nYShad));
 /*N*/   }
-/*N*/   FASTBOOL bCheckText=TRUE;
+/*N*/   bool bCheckText=TRUE;
 /*N*/   if (bCheckText && HasText() && (!bTextFrame || bPickThrough)) {
 /*N*/       return SdrTextObj::CheckHit(rPnt,nTol,pVisiLayer);
 /*N*/   }
@@ -406,7 +390,7 @@ namespace binfilter {
 /*N*/   SdrTextObj::operator=(rObj);
 /*N*/ }
 
-/*N*/ void SdrRectObj::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
+/*N*/ void SdrRectObj::TakeXorPoly(XPolyPolygon& rPoly, bool /*bDetail*/) const
 /*N*/ {
 /*N*/   rPoly=XPolyPolygon(ImpCalcXPoly(aRect,GetEckenradius()));
 /*N*/ }
@@ -473,7 +457,7 @@ namespace binfilter {
 /*N*/   SetXPolyDirty();
 /*N*/ }
 
-/*N*/ void SdrRectObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+/*N*/ void SdrRectObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
 /*N*/   SdrTextObj::NbcShear(rRef,nWink,tn,bVShear);
 /*N*/   SetXPolyDirty();
@@ -524,7 +508,7 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrRectObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrRectObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SdrTextObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/   SetXPolyDirty(); // wg. Eckenradius
@@ -551,15 +535,6 @@ namespace binfilter {
 /*?*/   if (rRGeo.nEckRad!=nAltRad) NbcSetEckenradius(rRGeo.nEckRad);
 /*?*/   SetXPolyDirty();
 /*?*/ }
-
-/*N*/ void SdrRectObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   SdrTextObj::WriteData(rOut);
-/*N*/   SdrDownCompat aCompat(rOut,STREAM_WRITE); // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrRectObj");
-/*N*/ #endif
-/*N*/ }
 
 /*N*/ void SdrRectObj::ReadData(const SdrObjIOHeader& rHead, SvStream& rIn)
 /*N*/ {
@@ -594,3 +569,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,28 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 namespace binfilter {
 
@@ -65,8 +56,8 @@ using ::binfilter::xmloff::token::XML_EVENTS;
 
 XMLEventExport::XMLEventExport(SvXMLExport& rExp,
                          const XMLEventNameTranslation* pTranslationTable) :
-    rExport(rExp),
-    sEventType(RTL_CONSTASCII_USTRINGPARAM("EventType"))
+    sEventType(RTL_CONSTASCII_USTRINGPARAM("EventType")),
+    rExport(rExp)
 {
     AddTranslationTable(pTranslationTable);
 }
@@ -78,7 +69,7 @@ XMLEventExport::~XMLEventExport()
     for( HandlerMap::iterator aIter =
              aHandlerMap.begin();
          aIter != aEnd;
-         aIter++ )
+         ++aIter )
     {
         delete aIter->second;
     }
@@ -164,7 +155,7 @@ void XMLEventExport::Export( Reference<XNameAccess> & rAccess,
         else
         {
             // don't proceed further
-            DBG_ERROR("Unknown event name.");
+            OSL_FAIL("Unknown event name.");
         }
     }
 
@@ -200,7 +191,7 @@ void XMLEventExport::ExportSingleEvent(
     else
     {
         // unknown name!
-        DBG_ERROR("unknown event name");
+        OSL_FAIL("unknown event name");
     }
 }
 
@@ -242,7 +233,7 @@ void XMLEventExport::ExportEvent(
             {
                 if (! sType.equalsAsciiL("None", sizeof("None")-1))
                 {
-                    DBG_ERROR("unknown event type returned by API");
+                    OSL_FAIL("unknown event type returned by API");
                     // unknown type -> error (ignore)
                 }
                 // else: we ignore None fields
@@ -315,3 +306,5 @@ const XMLEventNameTranslation aStandardEventTable[] =
     { NULL, NULL }
 };
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

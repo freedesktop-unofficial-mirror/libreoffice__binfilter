@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 #include <bf_svtools/filerec.hxx>
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter
 {
@@ -79,7 +78,7 @@ SV_IMPL_VARARR( SfxUINT32s, UINT32 );
 
 UINT32 SfxMiniRecordWriter::Close
 (
-    FASTBOOL    bSeekToEndOfRec     /*  TRUE (default)
+    bool    bSeekToEndOfRec     /*  TRUE (default)
                                         Der Stream wird an das Ende des Records
                                         positioniert.
 
@@ -123,26 +122,9 @@ UINT32 SfxMiniRecordWriter::Close
             _pStream->Seek( nEndPos );
 
         // Header wurde JETZT geschrieben
-        _bHeaderOk = TRUE;
+        _bHeaderOk = true;
         return nEndPos;
     }
-#ifdef DBG_UTIL
-    // mu\s Fix-Size-Record gepr"uft werden?
-    else if ( SFX_BOOL_DONTCARE == _bHeaderOk )
-    {
-        // Header auslesen, um Soll-Gr"o\se zu bestimmen
-        UINT32 nEndPos = _pStream->Tell();
-        _pStream->Seek( _nStartPos );
-        UINT32 nHeader;
-        *_pStream >> nHeader;
-        _pStream->Seek( nEndPos );
-
-        // Soll-Gr"o\se mit Ist-Gr"o\se vergleichen
-        DBG_ASSERT( nEndPos - SFX_REC_OFS(nHeader) == _nStartPos + sizeof(UINT32),
-                    "fixed record size incorrect" );
-        DbgOutf( "SfxFileRec: written record until %ul", nEndPos );
-    }
-#endif
 
     // Record war bereits geschlossen
     return 0;
@@ -150,7 +132,7 @@ UINT32 SfxMiniRecordWriter::Close
 
 //=========================================================================
 
-FASTBOOL SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )
+bool SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )
 
 /*  [Beschreibung]
 
@@ -162,7 +144,7 @@ FASTBOOL SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )
 */
 
 {
-    FASTBOOL bRet = TRUE;
+    bool bRet = true;
 
     // Record-Ende und Pre-Tag aus dem Header ermitteln
     _nEofRec = _pStream->Tell() + SFX_REC_OFS(nHeader);
@@ -172,7 +154,7 @@ FASTBOOL SfxMiniRecordReader::SetHeader_Impl( UINT32 nHeader )
     if ( _nPreTag == SFX_REC_PRETAG_EOR )
     {
         _pStream->SetError( ERRCODE_IO_WRONGFORMAT );
-        bRet = FALSE;
+        bRet = false;
     }
     return bRet;
 }
@@ -312,7 +294,7 @@ SfxSingleRecordWriter::SfxSingleRecordWriter
 
 //=========================================================================
 
-inline FASTBOOL SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
+inline bool SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
 
 /*  [Beschreibung]
 
@@ -323,7 +305,7 @@ inline FASTBOOL SfxSingleRecordReader::ReadHeader_Impl( USHORT nTypes )
 */
 
 {
-    FASTBOOL bRet;
+    bool bRet;
 
     // Basisklassen-Header einlesen
     UINT32 nHeader=0;
@@ -363,7 +345,7 @@ SfxSingleRecordReader::SfxSingleRecordReader( SvStream *pStream, USHORT nTag )
 
 //-------------------------------------------------------------------------
 
-FASTBOOL SfxSingleRecordReader::FindHeader_Impl
+bool SfxSingleRecordReader::FindHeader_Impl
 (
     UINT16      nTypes,     // arithm. Veroderung erlaubter Record-Typen
     UINT16      nTag        // zu findende Record-Art-Kennung
@@ -450,7 +432,7 @@ SfxMultiFixRecordWriter::SfxMultiFixRecordWriter
 
 //=========================================================================
 
-UINT32 SfxMultiFixRecordWriter::Close( FASTBOOL bSeekToEndOfRec )
+UINT32 SfxMultiFixRecordWriter::Close( bool bSeekToEndOfRec )
 
 //  siehe <SfxMiniRecordWriter>
 
@@ -575,7 +557,7 @@ void SfxMultiVarRecordWriter::NewContent()
 
 //-------------------------------------------------------------------------
 
-UINT32 SfxMultiVarRecordWriter::Close( FASTBOOL bSeekToEndOfRec )
+UINT32 SfxMultiVarRecordWriter::Close( bool bSeekToEndOfRec )
 
 // siehe <SfxMiniRecordWriter>
 
@@ -648,7 +630,7 @@ void SfxMultiMixRecordWriter::NewContent
 
 //=========================================================================
 
-FASTBOOL SfxMultiRecordReader::ReadHeader_Impl()
+bool SfxMultiRecordReader::ReadHeader_Impl()
 
 /*  [Beschreibung]
 
@@ -674,12 +656,13 @@ FASTBOOL SfxMultiRecordReader::ReadHeader_Impl()
         else
             _pStream->Seek( _nContentSize );
         _pContentOfs = new UINT32[_nContentCount];
+        memset(_pContentOfs, 0, _nContentCount*sizeof(UINT32));
         //! darf man jetzt so einr"ucken
         #if defined(OSL_LITENDIAN)
-            _pStream->Read( _pContentOfs, sizeof(UINT32)*_nContentCount );
+        _pStream->Read( _pContentOfs, sizeof(UINT32)*_nContentCount );
         #else
-            for ( USHORT n = 0; n < _nContentCount; ++n )
-                *_pStream >> _pContentOfs[n];
+        for ( USHORT n = 0; n < _nContentCount; ++n )
+            *_pStream >> _pContentOfs[n];
         #endif
         _pStream->Seek( nContentPos );
     }
@@ -691,7 +674,10 @@ FASTBOOL SfxMultiRecordReader::ReadHeader_Impl()
 //-------------------------------------------------------------------------
 
 SfxMultiRecordReader::SfxMultiRecordReader( SvStream *pStream, UINT16 nTag )
-:   _nContentNo(0)
+    : _pContentOfs(0)
+    , _nContentSize(0)
+    , _nContentCount(0)
+    , _nContentNo(0)
 {
     // Position im Stream merken, um im Fehlerfall zur"uck-seeken zu k"onnen
     _nStartPos = pStream->Tell();
@@ -719,7 +705,7 @@ SfxMultiRecordReader::~SfxMultiRecordReader()
 
 //-------------------------------------------------------------------------
 
-FASTBOOL SfxMultiRecordReader::GetContent()
+bool SfxMultiRecordReader::GetContent()
 
 /*  [Beschreibung]
 
@@ -744,11 +730,11 @@ FASTBOOL SfxMultiRecordReader::GetContent()
         UINT32 nNewPos = _nStartPos + nOffset;
         DBG_ASSERT( nNewPos >= _pStream->Tell(), "SfxMultiRecordReader::GetContent() - New position before current, to much data red!" );
 
-        // #99366#: correct stream pos in every case;
+        // correct stream pos in every case;
         // the if clause was added by MT  a long time ago,
         // maybe to 'repair' other corrupt documents; but this
         // gives errors when writing with 5.1 and reading with current
-        // versions, so we decided to remove the if clause (KA-05/17/2002)
+        // versions, so we decided to remove the if clause
         // if ( nNewPos > _pStream->Tell() )
         _pStream->Seek( nNewPos );
 
@@ -771,3 +757,5 @@ FASTBOOL SfxMultiRecordReader::GetContent()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

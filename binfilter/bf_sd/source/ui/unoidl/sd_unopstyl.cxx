@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,43 +28,27 @@
 
 
 
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 
 #include <bf_svx/unoshprp.hxx>
 
 
-#ifndef _SD_STLSHEET_HXX
 #include "stlsheet.hxx"
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include <bf_svx/xflbmtit.hxx>
-#endif
 
 #include <bf_svx/unoshape.hxx>
-#ifndef _SVX_XIT_HXX
 #include <bf_svx/xit.hxx>
-#endif
 
-#ifndef _SD_STLPOOL_HXX
 #include "stlpool.hxx"
-#endif
 
 #include <unopsfm.hxx>
 #include <unopstyl.hxx>
@@ -74,7 +59,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 #define WID_STYLE_DISPNAME  7998
@@ -97,7 +81,7 @@ const SfxItemPropertyMap* ImplGetFullPropertyMap()
         TEXT_PROPERTIES
         CONNECTOR_PROPERTIES
         SPECIAL_DIMENSIONING_PROPERTIES
-        {0,0,0,0,0}
+        {0,0,0,0,0,0}
     };
 
     return aFullPropertyMap_Impl;
@@ -106,12 +90,12 @@ const SfxItemPropertyMap* ImplGetFullPropertyMap()
 //UNO3_GETIMPLEMENTATION_IMPL( SdUnoPseudoStyle );
 
 SdUnoPseudoStyle::SdUnoPseudoStyle( SdXImpressDocument* pModel, SfxStyleSheetBase* pStyleSheet ) throw()
-: mxModel( pModel ),
-  mpModel( pModel ),
-  mpPage( NULL ),
-  mpStyleSheet( pStyleSheet ),
+: mpStyleSheet( pStyleSheet ),
   meObject( PO_TITLE ),
-  maPropSet( ImplGetFullPropertyMap() )
+  maPropSet( ImplGetFullPropertyMap() ),
+  mpPage( NULL ),
+  mpModel( pModel ),
+  mxModel( pModel )
 {
     if( mpStyleSheet )
         StartListening( mpStyleSheet->GetPool() );
@@ -119,12 +103,12 @@ SdUnoPseudoStyle::SdUnoPseudoStyle( SdXImpressDocument* pModel, SfxStyleSheetBas
 
 SdUnoPseudoStyle::SdUnoPseudoStyle( SdXImpressDocument* pModel, SdPage* pPage,
                                     SfxStyleSheetBase* pStyleSheet, PresentationObjects eObject ) throw()
-: mpModel( pModel ),
-  mxModel( pModel ),
-  mpPage( pPage ),
-  mpStyleSheet( pStyleSheet ),
+: mpStyleSheet( pStyleSheet ),
   meObject( eObject ),
-  maPropSet( (eObject >= PO_OUTLINE_2 && eObject <= PO_OUTLINE_9) ? &ImplGetFullPropertyMap()[1] : ImplGetFullPropertyMap() )
+  maPropSet( (eObject >= PO_OUTLINE_2 && eObject <= PO_OUTLINE_9) ? &ImplGetFullPropertyMap()[1] : ImplGetFullPropertyMap() ),
+  mpPage( pPage ),
+  mpModel( pModel ),
+  mxModel( pModel )
 {
     if( mpStyleSheet )
         StartListening( mpStyleSheet->GetPool() );
@@ -167,7 +151,7 @@ sal_Int64 SAL_CALL SdUnoPseudoStyle::getSomething( const ::com::sun::star::uno::
     }
     else
     {
-        return NULL;
+        return 0;
     }
 }
 
@@ -208,7 +192,7 @@ uno::Sequence< OUString > SAL_CALL SdUnoPseudoStyle::getSupportedServiceNames()
 OUString SAL_CALL SdUnoPseudoStyle::getName(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( isValid() )
         return SdUnoPseudoStyleFamily::getExternalStyleName( mpStyleSheet->GetName() );
@@ -216,7 +200,7 @@ OUString SAL_CALL SdUnoPseudoStyle::getName(  )
     return OUString();
 }
 
-void SAL_CALL SdUnoPseudoStyle::setName( const OUString& aName )
+void SAL_CALL SdUnoPseudoStyle::setName( const OUString& /*aName*/ )
     throw(uno::RuntimeException)
 {
 }
@@ -225,14 +209,14 @@ void SAL_CALL SdUnoPseudoStyle::setName( const OUString& aName )
 sal_Bool SAL_CALL SdUnoPseudoStyle::isUserDefined(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return mpStyleSheet && mpStyleSheet->IsUserDefined();
 }
 
 sal_Bool SAL_CALL SdUnoPseudoStyle::isInUse(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     return mpStyleSheet && mpStyleSheet->IsUsed();
 }
@@ -240,7 +224,7 @@ sal_Bool SAL_CALL SdUnoPseudoStyle::isInUse(  )
 OUString SAL_CALL SdUnoPseudoStyle::getParentStyle(  )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     OUString aName;
     if( isValid() )
@@ -249,7 +233,7 @@ OUString SAL_CALL SdUnoPseudoStyle::getParentStyle(  )
     return aName;
 }
 
-void SAL_CALL SdUnoPseudoStyle::setParentStyle( const OUString& aParentStyle )
+void SAL_CALL SdUnoPseudoStyle::setParentStyle( const OUString& /*aParentStyle*/ )
     throw(container::NoSuchElementException, uno::RuntimeException)
 {
 }
@@ -264,7 +248,7 @@ uno::Reference< beans::XPropertySetInfo > SAL_CALL SdUnoPseudoStyle::getProperty
 void SAL_CALL SdUnoPseudoStyle::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( aPropertyName );
 
@@ -352,7 +336,7 @@ void SAL_CALL SdUnoPseudoStyle::setPropertyValue( const OUString& aPropertyName,
 
 uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyName ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( PropertyName );
@@ -367,7 +351,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyNa
         {
             if( pMap->nWID == WID_STYLE_FAMILY )
             {
-                aAny <<= OUString::createFromAscii( "presentation" );
+                aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "presentation" ));
             }
             else if( pMap->nWID == WID_STYLE_DISPNAME )
             {
@@ -432,28 +416,28 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyValue( const OUString& PropertyNa
             // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
             if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
             {
-                sal_Int32 nValue;
+                sal_Int32 nValue(0);
                 aAny >>= nValue;
                 aAny <<= (sal_Int16)nValue;
             }
             else
             {
-                DBG_ERROR("SvxShape::GetAnyForItem() Returnvalue has wrong Type!" );
+                OSL_FAIL("SvxShape::GetAnyForItem() Returnvalue has wrong Type!" );
             }
         }
     }
     return aAny;
 }
 
-void SAL_CALL SdUnoPseudoStyle::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPseudoStyle::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPseudoStyle::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPseudoStyle::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::addPropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPseudoStyle::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
 
 // XPropertyState
 beans::PropertyState SAL_CALL SdUnoPseudoStyle::getPropertyState( const OUString& PropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( PropertyName );
 
@@ -537,7 +521,7 @@ beans::PropertyState SAL_CALL SdUnoPseudoStyle::getPropertyState( const OUString
 
 uno::Sequence< beans::PropertyState > SAL_CALL SdUnoPseudoStyle::getPropertyStates( const uno::Sequence< OUString >& aPropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = aPropertyName.getLength();
     const OUString* pNames = aPropertyName.getConstArray();
@@ -553,7 +537,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL SdUnoPseudoStyle::getPropertyStat
 
 void SAL_CALL SdUnoPseudoStyle::setPropertyToDefault( const OUString& PropertyName ) throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( PropertyName );
@@ -582,7 +566,7 @@ void SAL_CALL SdUnoPseudoStyle::setPropertyToDefault( const OUString& PropertyNa
 
 uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyDefault( const OUString& aPropertyName ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( aPropertyName );
@@ -592,7 +576,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyDefault( const OUString& aPropert
 
     if( pMap->nWID == WID_STYLE_FAMILY )
     {
-        aAny <<= OUString::createFromAscii( "presentation" );
+        aAny <<= OUString( RTL_CONSTASCII_USTRINGPARAM( "presentation" ));
     }
     else if( pMap->nWID == SDRATTR_TEXTDIRECTION )
     {
@@ -615,7 +599,7 @@ uno::Any SAL_CALL SdUnoPseudoStyle::getPropertyDefault( const OUString& aPropert
 }
 
 /** detect if the StyleSheetPool dies or if this instances style sheet is erased */
-void SdUnoPseudoStyle::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SdUnoPseudoStyle::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     sal_Bool bGoneDead = sal_False;
 
@@ -649,3 +633,5 @@ const SfxItemPropertyMap* SdUnoPseudoStyle::getPropertyMapEntry( const OUString&
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

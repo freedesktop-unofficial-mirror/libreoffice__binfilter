@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,8 +36,7 @@ namespace binfilter {
 
 class ValueFormBuffer;
 
-#if defined(BLC) || defined(MAC)
-// BLC will es auf jeden Fall hier
+#if defined(MAC)
 typedef void                ( ValueFormBuffer::*Fkt_rString )( String & );
 typedef sal_uInt32          ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
 #endif
@@ -44,7 +44,7 @@ typedef sal_uInt32          ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
 class ValueFormBuffer
     {
     private:
-#if !defined(BLC) && !defined(MAC)
+#if !defined(MAC)
 // MSC will es auf jeden Fall hier
         typedef void        ( ValueFormBuffer::*Fkt_rString )( String & );
         typedef sal_uInt32  ( ValueFormBuffer::*Fkt_USHORT )( USHORT );
@@ -96,3 +96,4 @@ inline ULONG ValueFormBuffer::GetValueFormat( USHORT nExcIndex )
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

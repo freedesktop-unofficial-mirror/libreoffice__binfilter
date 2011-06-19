@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,50 +29,26 @@
 #include "mapprov.hxx"
 #include "schattr.hxx"
 
-#ifndef _SCH_APP_HRC
 #include "app.hrc"          // for SID_TEXTBREAK
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>    // for SID_ATTR_NUMBERFORMAT_SOURCE
-#endif
 
 // for SdrObject
 // for SdrObjList
 // for SdrObjListIter
 // header for E3dExtrudeObj
 // for SVX_UNOEDIT_CHAR_PROPERTIES, SVX_UNOEDIT_FONT_PROPERTIES
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HPP_
 #include <com/sun/star/chart/ChartErrorIndicatorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORCATEGORY_HPP_
 #include <com/sun/star/chart/ChartErrorCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTREGRESSIONCURVETYPE_HPP_
 #include <com/sun/star/chart/ChartRegressionCurveType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISARRANGEORDERTYPE_HPP_
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -155,7 +132,7 @@ SchUnoPropertyMapProvider aSchMapProvider;
 #define SCH_ALIEN_PROPERTIES \
     { MAP_CHAR_LEN( UNONAME_USER_DEF_ATTR ), SCHATTR_USER_DEFINED_ATTR, &::getCppuType((uno::Reference< container::XNameContainer >*)0), 0, 0 }
 
-#define SCH_MAP_END { 0,0,0,0,0 }
+#define SCH_MAP_END { 0,0,0,0,0,0 }
 
 // ---------------
 // map definitions
@@ -220,7 +197,7 @@ SfxItemPropertyMap* SchUnoPropertyMapProvider::CopyMap( const SfxItemPropertyMap
     return pNewMap;
 }
 
-SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartModel *pModel )
+SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartModel * /*pModel*/ )
 {
     // ---------------
     // map definitions
@@ -388,7 +365,7 @@ SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartM
     // ------------
 
     if( nPropertyId >= CHMAP_END )
-        DBG_ERROR2( "Invalid Id %d (>=%d)", nPropertyId, CHMAP_END );
+        OSL_TRACE( "Invalid Id %d (>=%d)", nPropertyId, CHMAP_END );
 
     if( ! pMapArr[ nPropertyId ] )
     {
@@ -434,3 +411,5 @@ SfxItemPropertyMap* SchUnoPropertyMapProvider::GetMap( short nPropertyId, ChartM
     return pMapArr[ nPropertyId ];
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

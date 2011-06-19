@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 #if !(defined _SVSTDARR_STRINGS_DECL && defined _SVSTDARR_BYTESTRINGS_DECL && \
       defined _SVSTDARR_USHORTS_DECL && defined _SVSTDARR_XUB_STRLEN_DECL && \
@@ -44,125 +43,50 @@
 #define _SVSTDARR_BOOLS
 #endif
 
-#ifndef _IMAP_HXX //autogen
 #include <bf_svtools/imap.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTURL_HXX //autogen
 #include <fmturl.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _CHARATR_HXX
 #include <charatr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>
-#endif
-#ifndef _SW3IMP_HXX
 #include <sw3imp.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _CRYPTER_HXX
 #include <crypter.hxx>
-#endif
-#ifndef _WRONG_HXX
 #include <wrong.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _FMTHBSH_HXX
 #include <fmthbsh.hxx>
-#endif
-// OD 27.06.2003 #108784#
 
 // Export
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -234,7 +158,7 @@ public:
 /*N*/       if( !pFly->IsDefault() )
 /*N*/       {
 /*N*/           BYTE cType = SWG_FLYFMT;
-/*N*/             // OD 27.06.2003 #108784# - do *not* export drawing objects in header/footer
+/*N*/             // do *not* export drawing objects in header/footer
 /*N*/             bool bExport = true;
 /*N*/             if( RES_DRAWFRMFMT == pFly->Which() )
 /*N*/             {
@@ -260,7 +184,7 @@ public:
 void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
                                      xub_StrLen nEnd, USHORT nCount )
 {
-   ASSERT( pExportInfo, "Wo sind die Export-Informationen???" );
+   OSL_ENSURE( pExportInfo, "Wo sind die Export-Informationen???" );
    if( !pExportInfo || !nCount )
        return;
 
@@ -296,7 +220,7 @@ void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
 /*N*/   {
 /*N*/       hBatsFontConv = CreateFontToSubsFontConverter( sStarSymbol,
 /*N*/                FONTTOSUBSFONT_EXPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-/*N*/       ASSERT( hBatsFontConv, "Got no symbol font converter" );
+/*N*/       OSL_ENSURE( hBatsFontConv, "Got no symbol font converter" );
 /*N*/   }
 /*N*/   if( hBatsFontConv )
 /*N*/   {
@@ -313,7 +237,7 @@ void Sw3IoImp::ExportNodeDrawFrmFmts( const SwTxtNode& rNd, xub_StrLen nStart,
 /*N*/   {
 /*N*/       hBatsFontConv = CreateFontToSubsFontConverter( sStarBats,
 /*N*/                FONTTOSUBSFONT_IMPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-/*N*/       ASSERT( hBatsFontConv, "Got no symbol font converter" );
+/*N*/       OSL_ENSURE( hBatsFontConv, "Got no symbol font converter" );
 /*N*/   }
 /*N*/   if( hBatsFontConv )
 /*N*/   {
@@ -330,7 +254,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
     {
         hMathFontConv = CreateFontToSubsFontConverter( sStarMath,
                  FONTTOSUBSFONT_IMPORT|FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-        ASSERT( hMathFontConv, "Got no symbol font converter" );
+        OSL_ENSURE( hMathFontConv, "Got no symbol font converter" );
     }
     if( hMathFontConv )
     {
@@ -543,7 +467,7 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/           for( xub_StrLen nPos = nStart; nPos < nEnd; nPos++ )
 /*N*/           {
 /*N*/               sal_Char c = rText8.GetChar( nPos );
-/*N*/               sal_Unicode cNew;
+/*N*/               sal_Unicode cNew(0);
 /*N*/               if( '\xff' == c )
 /*N*/               {
 /*N*/                   if( 0 != ( pTAttr = lcl_sw3io_hasTxtAttr(
@@ -591,10 +515,10 @@ sal_Unicode Sw3IoImp::ConvStarMathCharToStarSymbol( sal_Char c )
 /*N*/ }
 
 typedef const SvxFontItem *SvxFontItemPtr;
-SV_DECL_PTRARR( SvxFontItems, SvxFontItemPtr, 5, 5 )//STRIP008 ;
+SV_DECL_PTRARR( SvxFontItems, SvxFontItemPtr, 5, 5 )
 
 typedef SwTxtAttr *SwTxtAttrPtr;
-SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
+SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 
 /*N*/ void Sw3IoImp::ConvertText( ByteString& rText8, String& rText,
 /*N*/                           xub_StrLen nOffset, SwTxtNode& rNd,
@@ -725,24 +649,24 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   String& rNdText = (String &)rNd.GetTxt();
 /*N*/       String aText;
 /*N*/       ByteString aText8( rText8 );
-/*N*/       SvxFontItem aFontItem( rFont );
+/*N*/       SvxFontItem aFontItem1 ( rFont );
 /*N*/       if( pConvToSymbolFmts &&
-/*N*/           lcl_sw3io_isStarSymbolFontItem( aFontItem ) )
+/*N*/           lcl_sw3io_isStarSymbolFontItem( aFontItem1 ) )
 /*N*/       {
 /*?*/           BYTE nFlags = pConvToSymbolFmts->GetFlags( rNd.GetFmtColl() );
 /*?*/           if( (SW3IO_CONV_FROM_BATS & nFlags) != 0 )
 /*?*/           {
-/*?*/               aFontItem.GetFamilyName() = sStarBats;
-/*?*/               aFontItem.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
+/*?*/               aFontItem1.GetFamilyName() = sStarBats;
+/*?*/               aFontItem1.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
 /*?*/           }
 /*?*/           else if( (SW3IO_CONV_FROM_MATH & nFlags) != 0 )
 /*?*/           {
-/*?*/               aFontItem.GetFamilyName() = sStarMath;
-/*?*/               aFontItem.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
+/*?*/               aFontItem1.GetFamilyName() = sStarMath;
+/*?*/               aFontItem1.GetCharSet() = RTL_TEXTENCODING_SYMBOL;
 /*?*/           }
 /*N*/       }
 /*N*/       ConvertText( aText8, aText, nOffset, rNd,
-/*N*/                              eSrcSet, aFontItem, 0, FALSE );
+/*N*/                              eSrcSet, aFontItem1, 0, FALSE );
 /*N*/       rNdText.Replace( nOffset, aText.Len(), aText );
 /*N*/       if( bNdSym &&
 /*N*/           SFX_ITEM_SET == rNd.GetSwAttrSet().GetItemState( RES_CHRATR_FONT,
@@ -751,12 +675,12 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/             rFont.GetFamilyName().EqualsIgnoreCaseAscii( sStarMath ) ) )
 /*N*/       {
 /*?*/           const Font& rSymbolFont = SwNumRule::GetDefBulletFont();
-/*?*/           SvxFontItem aFontItem( rSymbolFont.GetFamily(),
+/*?*/           SvxFontItem aFontItem2( rSymbolFont.GetFamily(),
 /*?*/                                  rSymbolFont.GetName(),
 /*?*/                                  rSymbolFont.GetStyleName(),
 /*?*/                                  rSymbolFont.GetPitch(),
 /*?*/                                  rSymbolFont.GetCharSet() );
-/*?*/           ((SwCntntNode&)rNd).SetAttr( aFontItem );
+/*?*/           ((SwCntntNode&)rNd).SetAttr( aFontItem2 );
 /*N*/       }
 /*N*/
 /*N*/   if( pEncs )
@@ -875,7 +799,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/                   InAttrSet( aTmpSet );
 /*?*/                   if( aTmpSet.Count() )
 /*?*/                   {
-/*?*/                       ASSERT( nOffsetL>=0,
+/*?*/                       OSL_ENSURE( nOffsetL>=0,
 /*?*/                               "Offset darf hier nicht negativ sein" );
 /*?*/                       if( 2 == nInsFirstPara )
 /*?*/                           pNd->SetAttr( aTmpSet, 0, aText.Len() );
@@ -954,7 +878,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               break;
 /*N*/           }
 /*N*/           case SWG_ATTRIBUTE:
-/*N*/               ASSERT( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
+/*N*/               OSL_ENSURE( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
 /*N*/               InTxtAttr( *pNd, aText8, (xub_StrLen)nOffsetL, &pINetFldTexts,
 /*N*/                          &pINetFldPoss, &pErasePoss,
 /*N*/                          &pCharSetColorEncs, &pCharSetColorPoss );
@@ -974,7 +898,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               }
 /*N*/               break;
 /*N*/           case SWG_MARK:
-/*N*/               ASSERT( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
+/*N*/               OSL_ENSURE( nOffsetL>=0, "Offset darf hier nicht negativ sein" );
 /*N*/               InNodeMark( rPos, (xub_StrLen)nOffsetL );
 /*N*/               break;
 /*N*/
@@ -1042,17 +966,6 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       {
 /*N*/           // MAXLEVEL war im 3.1/4.0-SW 5 und kann sich nichr mehr aendern,
 /*N*/           // deshalb baruchen wir es nicht zu beachten.
-/*N*/ #if 0
-/*N*/           if( cNumLevel != NO_NUM && GetRealLevel(cNumLevel) >= MAXLEVEL )
-/*N*/           {
-/*N*/               // die Numerierungs-Ebene ist zu hoch => die hoecht moegliche
-/*N*/               // setzen
-/*N*/               BYTE cTmp = MAXLEVEL-1;
-/*N*/               if( cNumLevel & NO_NUMLEVEL )
-/*N*/                   cTmp |= NO_NUMLEVEL;
-/*N*/               cNumLevel = cTmp;
-/*N*/           }
-/*N*/ #endif
 /*N*/           pNd->UpdateNum( SwNodeNum( cNumLevel ) );
 /*N*/       }
 /*N*/       else
@@ -1190,7 +1103,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/
 /*N*/   if( pINetFldTexts )
 /*N*/   {
-/*N*/       ASSERT( pINetFldPoss, "INet-Feld-Texte ohne Positionen???" );
+/*N*/       OSL_ENSURE( pINetFldPoss, "INet-Feld-Texte ohne Positionen???" );
 /*N*/
 /*N*/       // Es mussen noch Texte von Internet-Feldern eingefuegt werden
 /*N*/
@@ -1237,7 +1150,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/       {
 /*?*/           xub_StrLen nPos = (*pErasePoss)[--i];
 /*?*/
-/*?*/           ASSERT( CH_TXTATR_BREAKWORD == pNd->GetTxt().GetChar( nPos ) ||
+/*?*/           OSL_ENSURE( CH_TXTATR_BREAKWORD == pNd->GetTxt().GetChar( nPos ) ||
 /*?*/                   CH_TXTATR_INWORD == pNd->GetTxt().GetChar( nPos ),
 /*?*/                   "Es sollten nur 0xff geloescht werden" );
 /*?*/
@@ -1302,7 +1215,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/ void sw3io_countwords( const String& rDelimWrd, const String& rStr,
 /*N*/                       ULONG &rWords, ULONG &rChars )
 /*N*/ {
-/*N*/   FASTBOOL bInWord = FALSE;
+/*N*/   bool bInWord = FALSE;
 /*N*/   USHORT nSpChars = 0;
 /*N*/
 /*N*/   for( xub_StrLen nPos = 0; nPos < rStr.Len(); nPos++ )
@@ -1456,7 +1369,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       {
 /*N*/           // Der Hint liegt zumindest teilweise im Text
 /*N*/           const SfxPoolItem& rAttr = pHt->GetAttr();
-/*N*/           BOOL bInsert = FALSE, bSplit = FALSE;
+/*N*/           BOOL bInsert1 = FALSE, bSplit = FALSE;
 /*N*/
 /*N*/           USHORT nWhich = rAttr.Which();
 /*N*/           switch( nWhich )
@@ -1471,13 +1384,13 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/                       // das SwFmtINetFmt ist auf dem Top-Level
 /*N*/                       nINetFmtStart = nHtStart;
 /*N*/                       nINetFmtEnd = nHtEnd;
-/*N*/                       bInsert = TRUE;
+/*N*/                       bInsert1 = TRUE;
 /*N*/                   }
 /*N*/                   else
 /*N*/                   {
 /*N*/                       // die SwFmtINetFmt-Attribute sind geschachtelt,
 /*N*/                       // das auessere muss gesplittet werden
-/*N*/                       ASSERT( nHtEnd <= nINetFmtEnd,
+/*N*/                       OSL_ENSURE( nHtEnd <= nINetFmtEnd,
 /*N*/                               "Seit wann koennen sich gleiche Attribute ueberlappen?" );
 /*N*/                       bSplit = TRUE;
 /*N*/                   }
@@ -1488,7 +1401,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               // laut AMA werden alle anderen Attribute an den Grenzen
 /*N*/               // von SwFmtINetFmt-Attributen aufgespannt. Wenn das mal
 /*N*/               // doch nicht der Fall ist, gibt's einen
-/*N*/               ASSERT( nHtStart >= nINetFmtEnd || nHtEnd <= nINetFmtEnd,
+/*N*/               OSL_ENSURE( nHtStart >= nINetFmtEnd || nHtEnd <= nINetFmtEnd,
 /*N*/                       "Ein Attribut ueberlappt sich mit einen SwFmtINetFmt" );
 /*N*/
 /*N*/               // Attribute im inneren eines SwFmtINetFmt werden ignoriert,
@@ -1499,7 +1412,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               {
 /*N*/                   // das Attribut beginnt erst hinter einen SwFmtINetFmt
 /*N*/                   // oder spannt exakt den gleichen Bereich auf
-/*N*/                   bInsert = TRUE;
+/*N*/                   bInsert1 = TRUE;
 /*N*/               }
 /*N*/               else if( RES_TXTATR_NOEND_BEGIN <= nWhich &&
 /*N*/                        RES_TXTATR_NOEND_END > nWhich )
@@ -1510,7 +1423,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/               break;
 /*N*/           }
 /*N*/
-/*N*/           if( bInsert )
+/*N*/           if( bInsert1 )
 /*N*/           {
 /*N*/               // das Item als letztes an seiner Start-Position beginnen,
 /*N*/               // aber in jedem Fall vor einem SwFmtINetFmt
@@ -1535,7 +1448,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/                   nAPos--;
 /*?*/
 /*?*/               // es muss ein Attribut geben, das zuvor geoffent wurde
-/*?*/               ASSERT( nAPos, "kein Attribut gefunden" );
+/*?*/               OSL_ENSURE( nAPos, "kein Attribut gefunden" );
 /*?*/               if( !nAPos )
 /*?*/                   continue;
 /*?*/               nAPos--;
@@ -1546,9 +1459,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/               if( RES_TXTATR_NOEND_BEGIN <= pLastItem->Which() &&
 /*?*/                   RES_TXTATR_NOEND_END > pLastItem->Which())
 /*?*/               {
-/*?*/                   ASSERT( bHtEnd, "zwei Hints ohne Ende an gleicher Pos.?" );
+/*?*/                   OSL_ENSURE( bHtEnd, "zwei Hints ohne Ende an gleicher Pos.?" );
 /*?*/                   // es muss dann aber an der aktuellen Position beginnen
-/*?*/                   ASSERT( pInfo->aItemStarts[nAPos]==nHtStart,
+/*?*/                   OSL_ENSURE( pInfo->aItemStarts[nAPos]==nHtStart,
 /*?*/                           "Text-Attribut ohne Ende an falscher Position" );
 /*?*/                   if( pInfo->aItemStarts[nAPos]==nHtStart )
 /*?*/                       continue;
@@ -1559,14 +1472,14 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*?*/                       continue;
 /*?*/
 /*?*/                   nAPos++;
-/*?*/                   ASSERT( nAPos<pInfo->aItems.Count(),
+/*?*/                   OSL_ENSURE( nAPos<pInfo->aItems.Count(),
 /*?*/                           "Wo ist das SwFmtINetFmt geblieben?" );
 /*?*/                   pLastItem = pInfo->aItems[nAPos];
 /*?*/               }
 /*?*/
 /*?*/               // muss ein SwFmtINetFmt-Attribut sein!
 /*?*/               xub_StrLen nLastEnd = pInfo->aItemEnds[nAPos];
-/*?*/               ASSERT( RES_TXTATR_INETFMT==pLastItem->Which(),
+/*?*/               OSL_ENSURE( RES_TXTATR_INETFMT==pLastItem->Which(),
 /*?*/                       "das umgebende Item muesste ein SwFmtINetFmt sein!!" );
 /*?*/               if( !RES_TXTATR_INETFMT==pLastItem->Which() )
 /*?*/                   continue;
@@ -1724,11 +1637,11 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 // SWG_WRONGLIST Liste falscher Worte (opt)
 
 /*N*/ void Sw3IoImp::OutTxtNode
-/*N*/ ( SwCntntNode & rNode, xub_StrLen nStart, xub_StrLen nEnd, ULONG nPosIdx )
+/*N*/ ( SwCntntNode & rNode, xub_StrLen nStart, xub_StrLen nEnd1, ULONG nPosIdx )
 /*N*/ {
 /*N*/   SwTxtNode *pNd  = &((SwTxtNode&) rNode );
 /*N*/   const SwFmtColl* pColl = &pNd->GetAnyFmtColl();
-/*N*/   ASSERT( pColl != pDoc->GetDfltTxtFmtColl(),
+/*N*/   OSL_ENSURE( pColl != pDoc->GetDfltTxtFmtColl(),
 /*N*/           "the default text format collection isn't allowed on a node" );
 /*N*/   BOOL bNewNumRule = FALSE;
 /*N*/   // 0x0L: Laenge der Daten
@@ -1744,9 +1657,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/ #ifdef DBG_UTIL
 /*N*/   {
 /*N*/       const SwNumRule* pNumRule = pNd->GetNumRule();
-/*N*/       ASSERT( pNumRule ? pNdNum!=0 : TRUE,
+/*N*/       OSL_ENSURE( pNumRule ? pNdNum!=0 : TRUE,
 /*N*/               "Node hat NumRule aber kein NodeNum" );
-/*N*/       ASSERT( pNdNum ? pNumRule!=0 : TRUE,
+/*N*/       OSL_ENSURE( pNdNum ? pNumRule!=0 : TRUE,
 /*N*/               "Node hat NodeNum aber keine NumRule" );
 /*N*/   }
 /*N*/ #endif
@@ -1910,24 +1823,24 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   }
 /*N*/ #endif
 /*N*/
-/*N*/   if( (nEnd == STRING_LEN ? pNd->GetTxt().Len() : nEnd) > STRING_MAXLEN52 )
-/*N*/       nEnd = STRING_MAXLEN52;
+/*N*/   if( (nEnd1 == STRING_LEN ? pNd->GetTxt().Len() : nEnd1) > STRING_MAXLEN52 )
+/*N*/       nEnd1 = STRING_MAXLEN52;
 /*N*/
 /*N*/   SwInsHardBlankSoftHyph aHBSH;
 /*N*/
 /*N*/   String aText;
 /*N*/   Sw3ExportTxtAttrs *pExpInfo = IsSw31Export()
-/*N*/           ? ExportTxtNode( *pNd, nStart, nEnd, eSrcSet, aHBSH )
+/*N*/           ? ExportTxtNode( *pNd, nStart, nEnd1, eSrcSet, aHBSH )
 /*N*/           : 0;
 /*N*/
 /*N*/   ByteString aText8;
 /*N*/   if( !pExpInfo )
 /*N*/   {
 /*N*/       aText = pNd->GetTxt();
-/*N*/       if( nEnd == STRING_LEN || nEnd < nStart )
-/*N*/           nEnd = aText.Len();
-/*N*/       else if ( nEnd != aText.Len() )
-/*?*/           aText.Erase( nEnd );
+/*N*/       if( nEnd1 == STRING_LEN || nEnd1 < nStart )
+/*N*/           nEnd1 = aText.Len();
+/*N*/       else if ( nEnd1 != aText.Len() )
+/*?*/           aText.Erase( nEnd1 );
 /*N*/       if( nStart )
 /*?*/           aText.Erase( 0, nStart );
 /*N*/       const SvxFontItem& rFont = pNd->GetSwAttrSet().GetFont();
@@ -1955,15 +1868,15 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   // noch die zeichengebunden Zeichen-Objekte als abstzgebundene Objekte
 /*N*/   OutNodeFlyFrames( nPosIdx );
 /*N*/   if( pExpInfo && pExpInfo->nDrawFrmFmts )
-            ExportNodeDrawFrmFmts( *pNd, nStart, nEnd, pExpInfo->nDrawFrmFmts );
+            ExportNodeDrawFrmFmts( *pNd, nStart, nEnd1, pExpInfo->nDrawFrmFmts );
 /*N*/
 /*N*/   // Beim SW31-Export evtl. die "umgebauten" Hints ausgeben, sonst die
 /*N*/   // Original-Hints
 /*N*/   if( pExpInfo )
-/*N*/       ExportTxtAttrs( pExpInfo, nStart, nEnd );
+/*N*/       ExportTxtAttrs( pExpInfo, nStart, nEnd1 );
 /*N*/   else if( ((SwTxtNode&)rNode).HasHints() )
-/*N*/       OutTxtAttrs( *pNd, nStart, nEnd );
-/*N*/   aHBSH.OutAttr( *this, nStart, nEnd );
+/*N*/       OutTxtAttrs( *pNd, nStart, nEnd1 );
+/*N*/   aHBSH.OutAttr( *this, nStart, nEnd1 );
 /*N*/
 /*N*/   // Evtl. noch die neue Numerierungsregel (3.1/4.0) oder die
 /*N*/   // SwNodeNum-Struktor (5.0 ff) ausgeben
@@ -1986,16 +1899,11 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/       // der Header
 /*N*/       cFlags = 0x04;  // 4 Bytes Daten
 /*N*/       xub_StrLen nBegin = pWrong->GetBeginInv();
-/*N*/       if( nBegin > STRING_MAXLEN52 )
-/*N*/           nBegin = STRING_MAXLEN52;
-/*N*/
-/*N*/       xub_StrLen nEnd = pWrong->GetEndInv();
-/*N*/       if( nEnd > STRING_MAXLEN52 )
-/*N*/           nEnd = STRING_MAXLEN52;
+/*N*/       xub_StrLen nEnd2 = pWrong->GetEndInv();
 /*N*/
 /*N*/       *pStrm << cFlags
 /*N*/              << (UINT16)nBegin
-/*N*/              << (UINT16)nEnd;
+/*N*/              << (UINT16)nEnd2;
 /*N*/
 /*N*/       // nun die eigentliche Liste
 /*N*/       OpenValuePos16( 0 );
@@ -2068,9 +1976,9 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   {
 /*N*/       if( bDrawFmtSkipped )
 /*N*/       {
-/*N*/           ASSERT( bInsIntoHdrFtr,
+/*N*/           OSL_ENSURE( bInsIntoHdrFtr,
 /*?*/                   "Draw-Formate durften nur in Kopf-/Fusszeilen geloecht werden" );
-/*?*/           ASSERT( CH_TXTATR_BREAKWORD == rNd.GetTxt().GetChar(nStart) ||
+/*?*/           OSL_ENSURE( CH_TXTATR_BREAKWORD == rNd.GetTxt().GetChar(nStart) ||
 /*?*/                   CH_TXTATR_INWORD == rNd.GetTxt().GetChar(nStart),
 /*?*/                   "Wo ist das 0xff des Draw-Formats?" );
 /*?*/
@@ -2157,7 +2065,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/           if( '\xff' != rText8.GetChar(nStart-nOffset) )
 /*N*/           {
 /*N*/               nWhich = 0;
-/*N*/               ASSERT( !this, "TextAttribut ohne Ende ohne 0xFF" );
+/*N*/               OSL_ENSURE( !this, "TextAttribut ohne Ende ohne 0xFF" );
 /*N*/           }
 /*N*/           else
 /*N*/           {
@@ -2171,7 +2079,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/                       if( pAttr )
 /*N*/                       {
 /*N*/                           nWhich = 0;
-/*N*/                           ASSERT( !this, "TOXMark ohne Ende doppelt" );
+/*N*/                           OSL_ENSURE( !this, "TOXMark ohne Ende doppelt" );
 /*N*/                       }
 /*N*/                   }
 /*N*/                   break;
@@ -2369,7 +2277,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/                   pPicStrm = pPicStg->OpenStream
 /*N*/                       ( aGrfName, STREAM_READ | STREAM_SHARE_DENYWRITE );
 /*N*/               aGrfName.Erase();   // Ist ja gar kein Grafikname!
-/*N*/               ASSERT( pPicStrm.Is() && pPicStrm->GetError() == SVSTREAM_OK, "Grafik nicht gefunden" );
+/*N*/               OSL_ENSURE( pPicStrm.Is() && pPicStrm->GetError() == SVSTREAM_OK, "Grafik nicht gefunden" );
 /*N*/               if( pPicStrm.Is() && pPicStrm->GetError() == SVSTREAM_OK )
 /*N*/               {
 /*N*/                   // Wenn kein DocFileName gesetzt ist, wird eine TmpFile
@@ -2525,7 +2433,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/   {
 /*N*/       // Suche die richtige Info
 /*N*/       xObjInfo = xSrcDoc->Find( aObjName );
-/*N*/       ASSERT( xObjInfo.Is(), "Keine Objektinfo zum Einfuegen gefunden" );
+/*N*/       OSL_ENSURE( xObjInfo.Is(), "Keine Objektinfo zum Einfuegen gefunden" );
 /*N*/   }
 /*N*/
 /*N*/   if( xObjInfo.Is() )
@@ -2545,7 +2453,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )//STRIP008 ;
 /*N*/           {
 /*N*/               Graphic aGraphic;
 /*N*/               xSimStm->SetBufferSize( 32768 );
-/*N*/               xSimStm->SetKey( xSimStg->GetKey() );
+/*N*/               xSimStm->SetCryptMaskKey( xSimStg->GetKey() );
 /*N*/               *xSimStm >> aGraphic;
 /*N*/               xSimStm->SetBufferSize( 0 );
 /*N*/
@@ -2865,3 +2773,5 @@ void Sw3IoImp::OutContour( const PolyPolygon& rPoly )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

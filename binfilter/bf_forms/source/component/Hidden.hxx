@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _FORMS_HIDDEN_HXX_
 #define _FORMS_HIDDEN_HXX_
 
-#ifndef _FORMS_FORMCOMPONENT_HXX_
 #include "FormComponent.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -77,6 +76,9 @@ public:
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rProps,
         ::com::sun::star::uno::Sequence< ::com::sun::star::beans::Property >& /* [out] */ _rAggregateProps
         ) const;
+
+    using OPropertySetHelper::getFastPropertyValue;
+
     IMPLEMENT_INFO_SERVICE()
 
 protected:
@@ -90,3 +92,4 @@ protected:
 }//end of namespace binfilter
 //.........................................................................
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

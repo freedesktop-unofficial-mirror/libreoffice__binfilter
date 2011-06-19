@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,21 +36,11 @@
 #define _SD_DLL             // fuer SD_MOD()
 #include "sddll.hxx"        // fuer SdModuleDummy
 #endif
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _PRESENTATION_HXX
 #include "pres.hxx"
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
 class SvFactory;
 class OutputDevice;
 
@@ -59,7 +50,7 @@ class SfxErrorHandler;
 class SvNumberFormatter;
 class SdOptions;
 class BasicIDE;
-class SdAppLinkHdl; //STRIP008 ;
+class SdAppLinkHdl;
 class SvxErrorHandler;
 class EditFieldInfo;
 class SdDrawDocShell;
@@ -131,3 +122,4 @@ public:
 } //namespace binfilter
 #endif                                 // _SDMOD_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

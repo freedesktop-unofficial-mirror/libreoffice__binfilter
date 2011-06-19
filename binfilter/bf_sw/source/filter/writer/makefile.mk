@@ -25,36 +25,26 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
 PRJNAME=binfilter
 TARGET=sw_writer
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 CXXFILES = \
-        sw_writer.cxx \
-        sw_wrt_fn.cxx \
         sw_wrtswtbl.cxx
 
 SLOFILES =  \
-        $(SLO)$/sw_writer.obj \
-        $(SLO)$/sw_wrt_fn.obj \
         $(SLO)$/sw_wrtswtbl.obj
 
 # --- Tagets -------------------------------------------------------

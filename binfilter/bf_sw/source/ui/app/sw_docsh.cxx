@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,126 +31,55 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SFXSTRITEM_HXX
 #include <bf_svtools/stritem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
 
 #include <bf_sfx2/app.hxx>
 
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVXLINKMGR_HXX
 #include <bf_svx/linkmgr.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
-//#ifndef _SB_SBJSMOD_HXX //autogen
-//#include "bf_basic/sbjsmod.hxx"
-//#endif
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _SWWAIT_HXX
 #include <swwait.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>        // Verbindung zur Core
-#endif
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _GLOBDOC_HXX
 #include <globdoc.hxx>
-#endif
-#ifndef _USRPREF_HXX
 #include <usrpref.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>      // I/O
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>        // I/O, Hausformat
-#endif
-#ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _SWBASLNK_HXX
 #include <swbaslnk.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>        // Fehlermeldungen
-#endif
-#ifndef _HELPID_H
 #include <helpid.h>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>          //
-#endif
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
-#ifndef _APP_HRC
 #include <app.hrc>
-#endif
 
 #include <bf_svtools/moduleoptions.hxx>
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 namespace binfilter {
 using namespace ::com::sun::star::uno;
@@ -165,8 +95,7 @@ using namespace ::com::sun::star::container;
 /*N*/                           String * pLongUserName,
 /*N*/                           String * pUserName,
 /*N*/                           long nFileFormat=SOFFICE_FILEFORMAT_CURRENT ) const;
-/*N*/   virtual BOOL Save();
-/*N*/   virtual BOOL SaveCompleted( SvStorage * );
+/*N*/   virtual BOOL Save() {return false;}
 /*N*/ public:
 /*N*/   SwTmpPersist( SwDocShell& rDSh ) : pDShell( &rDSh ) {}
 /*N*/};
@@ -214,7 +143,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         }
         return 0;
     }
-    String aFileName( rMedium.GetName() );
+    String aLclFileName( rMedium.GetName() );
     SwRead pRead = SwIoSystem::GetReader( pFlt->GetUserData() );
     if( !pRead )
         return 0;
@@ -223,10 +152,10 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         ? SW_STORAGE_READER & pRead->GetReaderType()
         : SW_STREAM_READER & pRead->GetReaderType() )
     {
-        *ppRdr = pPaM ? new SwReader( rMedium, aFileName, *pPaM ) :
+        *ppRdr = pPaM ? new SwReader( rMedium, aLclFileName, *pPaM ) :
             pCrsrShell ?
-                new SwReader( rMedium, aFileName, *pCrsrShell->GetCrsr() )
-                    : new SwReader( rMedium, aFileName, pDoc );
+                new SwReader( rMedium, aLclFileName, *pCrsrShell->GetCrsr() )
+                    : new SwReader( rMedium, aLclFileName, pDoc );
     }
     else
         return 0;
@@ -245,9 +174,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         if (!(*ppRdr)->CheckPasswd( aPasswd, *pRead ))
         {
                 delete *ppRdr;
- //JP: SFX-Aenderung - kein close rufen
- //            if( !rMedium.IsStorage() )
- //                rMedium.CloseInStream();
             return 0;
         }
     }
@@ -259,13 +185,13 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
         if(pSet && SFX_ITEM_SET == pSet->GetItemState(SID_PASSWORD, TRUE, &pItem))
         {
             DBG_ASSERT(pItem->IsA( TYPE(SfxStringItem) ), "Fehler Parametertype");
-            ByteString aPasswd( ((const SfxStringItem *)pItem)->GetValue(),
+            ByteString aLclPasswd( ((const SfxStringItem *)pItem)->GetValue(),
                                 gsl_getSystemTextEncoding() );
-            aStor->SetKey( aPasswd );
+            aStor->SetKey( aLclPasswd );
         }
         // Fuer's Dokument-Einfuegen noch die FF-Version, wenn's der
         // eigene Filter ist.
-        ASSERT( pRead != ReadSw3 || /*pRead != ReadXML ||*/ pFlt->GetVersion(),
+        DBG_ASSERT(pRead != ReadSw3 || /*pRead != ReadXML ||*/ pFlt->GetVersion(),
                 "Am Filter ist keine FF-Version gesetzt" );
         if( (pRead == ReadSw3 /*|| pRead == ReadXML*/) && pFlt->GetVersion() )
             aStor->SetVersion( (long)pFlt->GetVersion() );
@@ -334,7 +260,7 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 
     AddLink();
 
-    ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+    OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
     pBasePool = new SwDocStyleSheetPool( *pDoc,
                         SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
     UpdateFontList();
@@ -356,200 +282,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
  }
 
 /*--------------------------------------------------------------------
-    Beschreibung: Sichern des Default-Formats, Stg vorhanden
- --------------------------------------------------------------------*/
-
-
-/*?*/ BOOL SwDocShell::Save()
-/*?*/ {
-/*?*/    RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::Save" );
- /*?*/  sal_Bool bXML = pIo->GetStorage()->GetVersion() >= SOFFICE_FILEFORMAT_60;
- /*?*/
- /*?*/  CalcLayoutForOLEObjects();  // format for OLE objets
-
- /*?*/  ULONG nErr = ERR_SWG_WRITE_ERROR, nVBWarning = ERRCODE_NONE;
- /*?*/  if( SfxInPlaceObject::Save() )
- /*?*/  {
- /*?*/      switch( GetCreateMode() )
- /*?*/      {
- /*?*/      case SFX_CREATE_MODE_INTERNAL:
- /*?*/          nErr = 0;
- /*?*/          break;
- /*?*/
- /*?*/      case SFX_CREATE_MODE_ORGANIZER:
- /*?*/          if( bXML )
- /*?*/          {
- /*?*/              WriterRef xWrt;
-/*?*/               ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
- /*?*/              xWrt->SetOrganizerMode( TRUE );
- /*?*/              SwWriter aWrt( *pIo->GetStorage(), *pDoc );
- /*?*/              nErr = aWrt.Write( xWrt );
- /*?*/              xWrt->SetOrganizerMode( FALSE );
- /*?*/          }
- /*?*/          else
- /*?*/              nErr = pIo->SaveStyles();
- /*?*/          break;
- /*?*/
- /*?*/      case SFX_CREATE_MODE_EMBEDDED:
- /*?*/          // SfxProgress unterdruecken, wenn man Embedded ist
- /*?*/          SW_MOD()->SetEmbeddedLoadSave( TRUE );
- /*?*/          // kein break;
- /*?*/
- /*?*/      case SFX_CREATE_MODE_STANDARD:
- /*?*/      case SFX_CREATE_MODE_PREVIEW:
- /*?*/      default:
- /*?*/          {
- /*?*/              // TabellenBox Edit beenden!
- /*?*/              if( pWrtShell )
- /*?*/                  pWrtShell->EndAllTblBoxEdit();
- /*?*/
- /*?*/              WriterRef xWrt;
- /*?*/              if( bXML )
- /*?*/              {
-/*?*/                   ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
- /*?*/              }
- /*?*/              else
- /*?*/              {
-/*?*/                   ::binfilter::GetSw3Writer( aEmptyStr, xWrt );
- /*?*/                  ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, FALSE );
- /*?*/              }
- /*?*/
- /*?*/                 BOOL bLockedView;
- /*?*/                 if ( pWrtShell )
- /*?*/                 {
- /*?*/                     bLockedView = pWrtShell->IsViewLocked();
- /*?*/                     pWrtShell->LockView( TRUE );    //lock visible section
- /*?*/                 }
- /*?*/
- /*?*/              SwWriter aWrt( *pIo->GetStorage(), *pDoc );
- /*?*/              nErr = aWrt.Write( xWrt );
- /*?*/
- /*?*/                 if ( pWrtShell )
- /*?*/                     pWrtShell->LockView( bLockedView );
- /*?*/          }
- /*?*/          break;
- /*?*/      }
- /*?*/      SW_MOD()->SetEmbeddedLoadSave( FALSE );
- /*?*/  }
- /*?*/  SetError( nErr ? nErr : nVBWarning );
- /*?*/
- /*?*/  return !IsError( nErr );
-/*?*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Sichern im Defaultformat
- --------------------------------------------------------------------*/
-
-
-/*N*/ BOOL SwDocShell::SaveAs( SvStorage * pStor )
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SaveAs" );
-/*N*/   sal_Bool bXML = pStor->GetVersion() >= SOFFICE_FILEFORMAT_60;
-/*N*/
-/*N*/   if( pDoc->IsGlobalDoc() && !pDoc->IsGlblDocSaveLinks() )
-/*N*/       RemoveOLEObjects();
-/*N*/
-/*N*/   {
-/*N*/       // Task 75666 - is the Document imported by our Microsoft-Filters?
-/*N*/       const SfxFilter* pOldFilter = GetMedium()->GetFilter();
-/*N*/       if( pOldFilter &&
-/*N*/           ( pOldFilter->GetUserData().EqualsAscii( FILTER_WW8 ) ||
-/*N*/             pOldFilter->GetUserData().EqualsAscii( "CWW6" ) ||
-/*N*/             pOldFilter->GetUserData().EqualsAscii( "WW6" ) ||
-/*N*/             pOldFilter->GetUserData().EqualsAscii( "WW1" ) ))
-/*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // when saving it in our own fileformat, then remove the template
-/*?*/           // name from the docinfo.
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   CalcLayoutForOLEObjects();  // format for OLE objets
-/*N*/
-/*N*/   ULONG nErr = ERR_SWG_WRITE_ERROR, nVBWarning = ERRCODE_NONE;
-/*N*/   if( SfxInPlaceObject::SaveAs( pStor ) )
-/*N*/   {
-/*N*/       if( GetDoc()->IsGlobalDoc() && !ISA( SwGlobalDocShell ) )
-/*N*/       {
-/*?*/           // This is to set the correct class id if SaveAs is
-/*?*/           // called from SwDoc::SplitDoc to save a normal doc as
-/*?*/           // global doc. In this case, SaveAs is called at a
-/*?*/           // normal doc shell, therefore, SfxInplaceObject::SaveAs
-/*?*/           // will set the wrong class id.
-/*?*/           SvGlobalName aClassName;
-/*?*/           ULONG nClipFormat;
-/*?*/           String aAppName, aLongUserName, aUserName;
-/*?*/           SfxObjectShellRef xDocSh =
-/*?*/               new SwGlobalDocShell( SFX_CREATE_MODE_INTERNAL );
-/*?*/           xDocSh->FillClass( &aClassName, &nClipFormat, &aAppName,
-/*?*/                               &aLongUserName, &aUserName,
-/*?*/                               pStor->GetVersion() );
-/*?*/           pStor->SetClass( aClassName, nClipFormat, aUserName );
-/*N*/       }
-
-/*N*/       if( pDoc->ContainsMSVBasic() )
-/*N*/       {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SvxImportMSVBasic aTmp( *this, *pIo->GetStorage() );
-/*N*/       }
-
-/*N*/       if( !bXML && !ISA( SwGlobalDocShell ) && !ISA( SwWebDocShell ) &&
-/*N*/           SFX_CREATE_MODE_EMBEDDED != GetCreateMode() )
-/*N*/           AddXMLAsZipToTheStorage( *pStor );
-
-        // TabellenBox Edit beenden!
-/*N*/       if( pWrtShell )
-/*N*/           pWrtShell->EndAllTblBoxEdit();
-
-        // Modified-Flag merken und erhalten ohne den Link zu Callen
-        // (fuer OLE; nach Anweisung von MM)
-/*N*/       BOOL bIsModified = pDoc->IsModified();
-/*N*/       Link aOldOLELnk( pDoc->GetOle2Link() );
-/*N*/       pDoc->SetOle2Link( Link() );
-
-            // SfxProgress unterdruecken, wenn man Embedded ist
-/*N*/       SW_MOD()->SetEmbeddedLoadSave(
-/*N*/                           SFX_CREATE_MODE_EMBEDDED == GetCreateMode() );
-/*N*/
-/*N*/       WriterRef xWrt;
-/*N*/       if( bXML )
-/*N*/       {
-/*?*/           ::binfilter::GetXMLWriter( aEmptyStr, xWrt );
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           ::binfilter::GetSw3Writer( aEmptyStr, xWrt );
-/*N*/           ((Sw3Writer*)&xWrt)->SetSw3Io( pIo, TRUE );
-/*N*/       }
-
-/*N*/         BOOL bLockedView;
-/*N*/         if ( pWrtShell )
-/*N*/         {
-/*N*/             bLockedView = pWrtShell->IsViewLocked();
-/*N*/             pWrtShell->LockView( TRUE );    //lock visible section
-/*N*/         }
-/*N*/
-/*N*/       SwWriter aWrt( *pStor, *pDoc );
-/*N*/       nErr = aWrt.Write( xWrt );
-/*N*/
-/*N*/         if ( pWrtShell )
-/*N*/             pWrtShell->LockView( bLockedView );
-/*N*/
-/*N*/       if( bIsModified )
-/*N*/           pDoc->SetModified();
-/*N*/       pDoc->SetOle2Link( aOldOLELnk );
-/*N*/
-/*N*/       SW_MOD()->SetEmbeddedLoadSave( FALSE );
-/*N*/   }
-/*N*/   SetError( nErr ? nErr : nVBWarning );
-/*N*/
-/*N*/   return !IsError( nErr );
-/*N*/ }
-
-/*--------------------------------------------------------------------
-    Beschreibung: Sichern aller Formate
- --------------------------------------------------------------------*/
-
-
-/*--------------------------------------------------------------------
     Beschreibung:   Haende weg
  --------------------------------------------------------------------*/
 
@@ -560,53 +292,10 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   SfxInPlaceObject::HandsOff();
 /*N*/ }
 
-/*--------------------------------------------------------------------
-    Beschreibung: ??? noch nicht zu aktivieren, muss TRUE liefern
- --------------------------------------------------------------------*/
-
-
-/*N*/ BOOL SwDocShell::SaveCompleted( SvStorage * pStor )
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SaveCompleted" );
-/*N*/   BOOL bRet = SfxInPlaceObject::SaveCompleted( pStor );
-/*N*/   if( bRet )
-/*N*/   {
-/*N*/       // erst hier entscheiden, ob das Speichern geklappt hat oder nicht
-/*N*/       if( IsModified() )
-/*?*/           pDoc->SetModified();
-/*N*/       else
-/*N*/           pDoc->ResetModified();
-/*N*/
-/*N*/       bRet = pIo->SaveCompleted( pStor );
-/*N*/   }
-
-/*N*/   if( xOLEChildList.Is() )
-/*N*/   {
-/*N*/       BOOL bResetModified = IsEnableSetModified();
-/*N*/       if( bResetModified )
-/*N*/           EnableSetModified( FALSE );
-/*N*/
-/*N*/       SvPersist* pPersist = this;
-/*N*/       const SvInfoObjectMemberList* pInfList = xOLEChildList->GetObjectList();
-/*N*/
-/*N*/       for( ULONG n = pInfList->Count(); n; )
-/*N*/       {
-/*N*/           SvInfoObjectRef aRef( pInfList->GetObject( --n ));
-/*N*/           pPersist->Move( &aRef, aRef->GetStorageName() );
-/*N*/       }
-/*N*/
-/*N*/       xOLEChildList.Clear();
-/*N*/       if( bResetModified )
-/*N*/           EnableSetModified( TRUE );
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Draw()-Overload fuer OLE2 (Sfx)
  --------------------------------------------------------------------*/
-
-
 
 /*N*/ void SwDocShell::SetVisArea( const Rectangle &rRect )
 /*N*/ {
@@ -672,11 +361,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   return SfxInPlaceObject::GetMiscStatus() |
 /*N*/          SVOBJ_MISCSTATUS_RESIZEONPRINTERCHANGE;
 /*N*/ }
-
-
-/*--------------------------------------------------------------------
-    Beschreibung:
- --------------------------------------------------------------------*/
 
 /*N*/ IMPL_LINK( SwDocShell, Ole2ModifiedHdl, void *, p )
 /*N*/ {
@@ -898,17 +582,15 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------12.02.01 12:08--------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ Sequence< OUString >  SwDocShell::GetEventNames()
 /*N*/ {
 /*N*/   Sequence< OUString > aRet = SfxObjectShell::GetEventNames();
 /*N*/   sal_Int32 nLen = aRet.getLength();
 /*N*/   aRet.realloc(nLen + 2);
 /*N*/   OUString* pNames = aRet.getArray();
-/*N*/   pNames[nLen++] = OUString::createFromAscii("OnMailMerge");
-/*N*/   pNames[nLen] = OUString::createFromAscii("OnPageCountChange");
+/*N*/   pNames[nLen++] = OUString( RTL_CONSTASCII_USTRINGPARAM( "OnMailMerge" ));
+/*N*/   pNames[nLen] = OUString( RTL_CONSTASCII_USTRINGPARAM( "OnPageCountChange" ));
 /*N*/   return aRet;
 /*N*/ }
 /*N*/ void SwTmpPersist::FillClass( SvGlobalName * pClassName,
@@ -922,20 +604,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/                                   pLongUserName, pUserName, nFileFormat );
 /*N*/ }
 
-/*N*/ BOOL SwTmpPersist::Save()
-/*N*/{
-/*N*/   if( SaveChilds() )
-/*N*/       return SvPersist::Save();
-/*N*/   return FALSE;
-/*N*/}
-
-/*N*/ BOOL SwTmpPersist::SaveCompleted( SvStorage * pStor )
-/*N*/{
-/*N*/   if( SaveCompletedChilds( pStor ) )
-/*N*/       return SvPersist::SaveCompleted( pStor );
-/*N*/   return FALSE;
-/*N*/}
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

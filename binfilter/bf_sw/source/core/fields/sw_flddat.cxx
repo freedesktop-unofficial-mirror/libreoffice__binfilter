@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,26 +33,14 @@
 
 #include <math.h>
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _FLDDAT_HXX
 #include <flddat.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -59,8 +48,8 @@ using namespace ::com::sun::star;
     Beschreibung: Datum/Zeit-Typ
  ---------------------------------------------------*/
 
-/*N*/ SwDateTimeFieldType::SwDateTimeFieldType(SwDoc* pDoc)
-/*N*/   : SwValueFieldType( pDoc, RES_DATETIMEFLD )
+/*N*/ SwDateTimeFieldType::SwDateTimeFieldType(SwDoc* pDoc1)
+/*N*/   : SwValueFieldType( pDoc1, RES_DATETIMEFLD )
 /*N*/ {}
 
 /*--------------------------------------------------------------------
@@ -69,15 +58,15 @@ using namespace ::com::sun::star;
 
 /*N*/ SwFieldType* SwDateTimeFieldType::Copy() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldType *pTmp = new SwDateTimeFieldType(GetDoc());
+DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 /*--------------------------------------------------------------------
     Beschreibung: Datum/Zeit-Feld
  --------------------------------------------------------------------*/
 
-/*N*/ SwDateTimeField::SwDateTimeField(SwDateTimeFieldType* pType, USHORT nSub, ULONG nFmt, USHORT nLng)
-/*N*/   : SwValueField(pType, nFmt, nLng, 0.0),
+/*N*/ SwDateTimeField::SwDateTimeField(SwDateTimeFieldType* pType1, USHORT nSub, ULONG nFmt, USHORT nLng)
+/*N*/   : SwValueField(pType1, nFmt, nLng, 0.0),
 /*N*/   nSubType(nSub),
 /*N*/   nOffset(0)
 /*N*/ {
@@ -231,9 +220,7 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldT
 /*N*/     return (Time)aDT;
 /*N*/ }
 
-/*-----------------04.03.98 11:05-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDateTimeField::QueryValue( uno::Any& rVal, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -277,13 +264,11 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldT
 /*N*/     }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------04.03.98 11:05-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwDateTimeField::PutValue( const uno::Any& rVal, BYTE nMId )
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
-/*N*/   sal_Int32 nTmp;
+/*N*/   sal_Int32 nTmp(0);
 /*N*/   switch( nMId )
 /*N*/   {
 /*N*/   case FIELD_PROP_BOOL1:
@@ -327,3 +312,5 @@ DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 //STRIP001    SwDateTimeFieldT
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

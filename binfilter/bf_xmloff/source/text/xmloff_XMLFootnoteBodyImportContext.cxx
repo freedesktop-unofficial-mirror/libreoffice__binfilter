@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,16 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLFOOTNOTEBODYIMPORTCONTEXT_HXX_
 #include "XMLFootnoteBodyImportContext.hxx"
-#endif
 
 #include "rtl/ustring.hxx"
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
 
@@ -50,28 +47,30 @@ using ::com::sun::star::xml::sax::XAttributeList;
 TYPEINIT1( XMLFootnoteBodyImportContext, SvXMLImportContext );
 
 XMLFootnoteBodyImportContext::XMLFootnoteBodyImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName)
+        SvXMLImportContext(rInImport, nPrfx, rLocalName)
 {
 }
 
 SvXMLImportContext* XMLFootnoteBodyImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     // return text context
     SvXMLImportContext *pContext =
         GetImport().GetTextImport()->CreateTextChildContext(GetImport(),
-                                                       nPrefix,
+                                                       nInPrefix,
                                                        rLocalName,
                                                        xAttrList,
                                                        XML_TEXT_TYPE_FOOTNOTE);
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

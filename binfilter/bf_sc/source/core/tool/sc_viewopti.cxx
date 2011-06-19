@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -42,8 +40,9 @@
 namespace binfilter {
 
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+
+using ::rtl::OUString;
 
 //------------------------------------------------------------------
 
@@ -173,7 +172,7 @@ using namespace ::com::sun::star::uno;
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScViewOptions::~ScViewOptions()
+/*N*/ ScViewOptions::~ScViewOptions()
 /*N*/ {
 /*N*/ }
 
@@ -300,67 +299,6 @@ using namespace ::com::sun::star::uno;
 /*N*/   return rStream;
 /*N*/ }
 
-//------------------------------------------------------------------------
-
-/*N*/ void ScViewOptions::Save(SvStream& rStream, BOOL bConfig) const
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/
-/*N*/   ScWriteHeader aHdr( rStream, 68 );
-/*N*/
-/*N*/   for ( i=0; i<=VOPT_GRID; i++ )          // kompatibel bleiben -> nur bis VOPT_GRID
-/*N*/       rStream << aOptArr[i];
-/*N*/
-/*N*/   for ( i=0; i<MAX_TYPE; i++ )
-/*N*/       rStream << (BYTE)aModeArr[i];
-/*N*/
-/*N*/   rStream << aGridCol;
-/*N*/   rStream.WriteByteString( aGridColName, rStream.GetStreamCharSet() );
-/*N*/   rStream << aOptArr[VOPT_HELPLINES];
-/*N*/   rStream << aGridOpt;
-/*N*/   rStream << bHideAutoSpell;
-/*N*/   rStream << aOptArr[VOPT_ANCHOR];
-/*N*/   rStream << aOptArr[VOPT_PAGEBREAKS];
-/*N*/   rStream << aOptArr[VOPT_SOLIDHANDLES];
-/*N*/
-/*N*/   if ( bConfig || rStream.GetVersion() > SOFFICE_FILEFORMAT_40 )      // nicht bei 4.0 Export
-/*N*/   {
-/*N*/       rStream << aOptArr[VOPT_CLIPMARKS];
-/*N*/
-/*N*/       //  big handles are not saved in 5.0-documents to avoid warning messages
-/*N*/       //! save to files after 5.0 !!!
-/*N*/
-/*N*/       if ( bConfig )
-/*N*/           rStream << aOptArr[VOPT_BIGHANDLES];
-/*N*/   }
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-
-//========================================================================
-//      ScTpViewItem - Daten fuer die ViewOptions-TabPage
-//========================================================================
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
-//------------------------------------------------------------------------
-
-
 //==================================================================
 //  Config Item containing view options
 //==================================================================
@@ -477,10 +415,10 @@ using namespace ::com::sun::star::uno;
 /*N*/   //  adjust for metric system
 /*N*/   if (ScOptionsUtil::IsMetricSystem())
 /*N*/   {
-/*N*/       pNames[SCGRIDOPT_RESOLU_X] = OUString::createFromAscii( "Resolution/XAxis/Metric" );
-/*N*/       pNames[SCGRIDOPT_RESOLU_Y] = OUString::createFromAscii( "Resolution/YAxis/Metric" );
-/*N*/       pNames[SCGRIDOPT_OPTION_X] = OUString::createFromAscii( "Option/XAxis/Metric" );
-/*N*/       pNames[SCGRIDOPT_OPTION_Y] = OUString::createFromAscii( "Option/YAxis/Metric" );
+/*N*/       pNames[SCGRIDOPT_RESOLU_X] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Resolution/XAxis/Metric" ));
+/*N*/       pNames[SCGRIDOPT_RESOLU_Y] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Resolution/YAxis/Metric" ));
+/*N*/       pNames[SCGRIDOPT_OPTION_X] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Option/XAxis/Metric" ));
+/*N*/       pNames[SCGRIDOPT_OPTION_Y] = OUString( RTL_CONSTASCII_USTRINGPARAM( "Option/YAxis/Metric" ));
 /*N*/   }
 /*N*/
 /*N*/   return aNames;
@@ -488,11 +426,11 @@ using namespace ::com::sun::star::uno;
 
 
 /*N*/ ScViewCfg::ScViewCfg() :
-/*N*/   aLayoutItem( OUString::createFromAscii( CFGPATH_LAYOUT ) ),
-/*N*/   aDisplayItem( OUString::createFromAscii( CFGPATH_DISPLAY ) ),
-/*N*/   aGridItem( OUString::createFromAscii( CFGPATH_GRID ) )
+/*N*/   aLayoutItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_LAYOUT )) ),
+/*N*/   aDisplayItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_DISPLAY )) ),
+/*N*/   aGridItem( OUString(RTL_CONSTASCII_USTRINGPARAM( CFGPATH_GRID )) )
 /*N*/ {
-/*N*/   sal_Int32 nIntVal;
+/*N*/   sal_Int32 nIntVal = 0;
 /*N*/
 /*N*/   Sequence<OUString> aNames = GetLayoutPropertyNames();
 /*N*/   Sequence<Any> aValues = aLayoutItem.GetProperties(aNames);
@@ -654,22 +592,24 @@ using namespace ::com::sun::star::uno;
 
 /*N*/ IMPL_LINK( ScViewCfg, LayoutCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetLayoutPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScViewCfg, DisplayCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 Sequence<OUString> aNames = GetDisplayPropertyNames();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 /*N*/ IMPL_LINK( ScViewCfg, GridCommitHdl, void *, EMPTYARG )
 /*N*/ {
-    DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ScGridOptions& rGrid = GetGridOptions();
+    DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

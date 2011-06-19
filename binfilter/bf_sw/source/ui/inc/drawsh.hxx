@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -39,16 +40,18 @@ class SwDrawShell: public SwDrawBaseShell
 public:
     SFX_DECL_INTERFACE(SW_DRAWSHELL);
 
-    SwDrawShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001 SwDrawShell(SwView &rView);
+    SwDrawShell(SwView &rView):SwDrawBaseShell(rView){DBG_BF_ASSERT(0, "STRIP");} ;
 
-    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      Execute(SfxRequest &);
-    void        ExecDrawDlg(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void      ExecDrawDlg(SfxRequest& rReq);
-    void        ExecDrawAttrArgs(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecDrawAttrArgs(SfxRequest& rReq);
-    void        GetDrawAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     GetDrawAttrState(SfxItemSet &rSet);
+    void        Execute(SfxRequest &){DBG_BF_ASSERT(0, "STRIP");};
+    void        ExecDrawDlg(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");};
+    void        ExecDrawAttrArgs(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");};
+    void        GetDrawAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");};
 
-    void        ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     ExecFormText(SfxRequest& rReq);
-    void        GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");}; //STRIP001 void     GetFormTextState(SfxItemSet& rSet);
+    void        ExecFormText(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");};
+    void        GetFormTextState(SfxItemSet& rSet){DBG_BF_ASSERT(0, "STRIP");};
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

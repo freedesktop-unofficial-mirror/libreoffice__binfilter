@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>      // fuer aNodes
-#endif
 namespace binfilter {
 
 
@@ -72,3 +67,5 @@ void SwEditShell::SetDefault( const SfxItemSet& rSet )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

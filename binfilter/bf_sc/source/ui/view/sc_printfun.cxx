@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,9 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
-// INCLUDE ---------------------------------------------------------------
 
 #include "scitems.hxx"
 #define ITEMID_FIELD EE_FEATURE_FIELD
@@ -47,24 +43,14 @@
 #include <bf_svx/sizeitem.hxx>
 #include <bf_svx/ulspitem.hxx>
 #include <bf_sfx2/printer.hxx>
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
 
 #ifdef MAC
 #define RGBColor MAC_RGBColor
 #undef RGBColor
 #else
 #endif
-
-
-//#if defined( WIN ) || defined( WNT )
-//#include <svwin.h>
-//#endif
-
 
 #include "docsh.hxx"
 #include "stlpool.hxx"
@@ -97,7 +83,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pHidden)
 /*N*/   {
-/*N*/       DBG_ERROR("SetPagesX nicht nach SetHidden");
+/*N*/       OSL_FAIL("SetPagesX nicht nach SetHidden");
 /*N*/       delete[] pHidden;
 /*N*/       pHidden = NULL;
 /*N*/   }
@@ -144,7 +130,7 @@ namespace binfilter {
 /*M*/       pParamSet = &pStyleSheet->GetItemSet();
 /*M*/   else
 /*M*/   {
-/*M*/       DBG_ERROR("Seitenvorlage nicht gefunden" );
+/*M*/       OSL_FAIL("Seitenvorlage nicht gefunden" );
 /*M*/       pParamSet = NULL;
 /*M*/   }
 /*M*/
@@ -171,13 +157,13 @@ namespace binfilter {
 /*N*/       nPageStart          ( nPage ),
 /*N*/       nDocPages           ( nDocP ),
 /*N*/       pUserArea           ( pArea ),
-/*N*/       pPageData           ( pData ),
-/*N*/       nTotalPages         ( 0 ),
-/*N*/       nTabPages           ( 0 ),
 /*N*/       bState              ( FALSE ),
+/*N*/       bSourceRangeValid   ( FALSE ),
 /*N*/       bPrintCurrentTable  ( FALSE ),
 /*N*/       bMultiArea          ( FALSE ),
-/*N*/       bSourceRangeValid   ( FALSE )
+/*N*/       nTabPages           ( 0 ),
+/*N*/       nTotalPages         ( 0 ),
+/*N*/       pPageData           ( pData )
 /*N*/ {
 /*N*/   pDev = pPrinter;
 /*N*/   aSrcOffset = pPrinter->PixelToLogic( pPrinter->GetPageOffsetPixel(), MAP_100TH_MM );
@@ -278,9 +264,9 @@ namespace binfilter {
 /*N*/       if ( bChangeCol && bChangeRow )
 /*?*/           bFound = pDoc->GetPrintArea( nPrintTab, nEndCol, nEndRow, bNotes );
 /*N*/       else if ( bChangeCol )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 bFound = pDoc->GetPrintAreaHor( nPrintTab, nStartRow, nEndRow, nEndCol, bNotes );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       else if ( bChangeRow )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP");}//STRIP001 bFound = pDoc->GetPrintAreaVer( nPrintTab, nStartCol, nEndCol, nEndRow, bNotes );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/       if (!bFound)
 /*N*/           return FALSE;   // leer
@@ -405,7 +391,7 @@ namespace binfilter {
 /*N*/   aPageSize = ((const SvxSizeItem&) pParamSet->Get(ATTR_PAGE_SIZE)).GetSize();
 /*N*/   if ( !aPageSize.Width() || !aPageSize.Height() )
 /*N*/   {
-/*?*/       DBG_ERROR("PageSize Null ?!?!?");
+/*?*/       OSL_FAIL("PageSize Null ?!?!?");
 /*?*/       aPageSize = SvxPaperInfo::GetPaperSize( SVX_PAPER_A4 );
 /*N*/   }
 /*N*/
@@ -765,11 +751,11 @@ namespace binfilter {
 /*?*/               CalcZoom(i);
 /*?*/               if ( aTableParam.bSkipEmpty )
 /*?*/                   for (nY=0; nY<nPagesY; nY++)
-                            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                       nPages += pPageRows[nY].CountVisible();
+                            {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/               else
 /*?*/                   nPages += ((long) nPagesX) * nPagesY;
 /*?*/               if ( pPageData )
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   FillPageData();
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/           }
 /*N*/       }
 /*N*/       else
@@ -777,11 +763,11 @@ namespace binfilter {
 /*N*/           CalcZoom(RANGENO_NORANGE);                      // Zoom berechnen
 /*N*/           if ( aTableParam.bSkipEmpty )
 /*?*/               for (nY=0; nY<nPagesY; nY++)
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   nPages += pPageRows[nY].CountVisible();
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           else
 /*N*/               nPages += ((long) nPagesX) * nPagesY;
 /*N*/           if ( pPageData )
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               FillPageData();
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       }
 /*N*/       return nPages;
 /*N*/   }
@@ -846,10 +832,9 @@ namespace binfilter {
 /*?*/   }
 /*?*/
 /*?*/   long nPages = 0;
-/*?*/   long nNoteNr = 0;
 /*?*/   long nNoteAdd;
 /*?*/   do
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); nNoteAdd=0;//STRIP001
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); nNoteAdd=0;
 /*?*/   }
 /*?*/   while (nNoteAdd);
 /*?*/
@@ -1048,7 +1033,7 @@ namespace binfilter {
 /*N*/               pPageRows[nPagesY].SetEndRow( i-1 );
 /*N*/               pPageRows[nPagesY].SetPagesX( nPagesX );
 /*N*/               if (aTableParam.bSkipEmpty)
-                        {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/                   lcl_SetHidden( pDoc, nPrintTab, pPageRows[nPagesY], nStartCol, pPageEndX );
+                        {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/               ++nPagesY;
 /*N*/           }
 /*N*/
@@ -1070,10 +1055,12 @@ namespace binfilter {
 /*N*/           pPageRows[nPagesY].SetEndRow( nEndRow );
 /*N*/           pPageRows[nPagesY].SetPagesX( nPagesX );
 /*N*/           if (aTableParam.bSkipEmpty)
-                    {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/               lcl_SetHidden( pDoc, nPrintTab, pPageRows[nPagesY], nStartCol, pPageEndX );
+                    {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/           ++nPagesY;
 /*N*/       }
 /*N*/   }
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

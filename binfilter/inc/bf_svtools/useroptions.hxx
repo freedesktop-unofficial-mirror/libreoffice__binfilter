@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,28 +28,14 @@
 #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 #define INCLUDED_SVTOOLS_USEROPTIONS_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace binfilter
 {
@@ -114,3 +101,4 @@ public:
 
 #endif // #ifndef INCLUDED_SVTOOLS_USEROPTIONS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

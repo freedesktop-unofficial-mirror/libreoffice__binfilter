@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,14 +28,10 @@
 
 #include "sbx.hxx"
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 
 #define _TLBIGINT_INT64
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
 #include "sbxvar.hxx"
 #include "sbxconv.hxx"
@@ -327,7 +324,6 @@ static String ImpCurrencyToString( const SbxINT64 &r )
 {
     BigInt a10000 = 10000;
 
-    //return GetpApp()->GetAppInternational().GetCurr( BigInt( r ), 4 );
     BigInt aInt( SbxINT64Converter::SbxINT64_2_BigInt( r ) );
     aInt.Abs();
     BigInt aFrac = aInt;
@@ -398,3 +394,5 @@ SbxUINT64 ImpDoubleToUINT64( double d )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

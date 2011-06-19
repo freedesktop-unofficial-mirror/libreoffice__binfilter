@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,33 +27,12 @@
  ************************************************************************/
 
 #include "svdstr.hrc"
-
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
-
-#ifndef _SVDITER_HXX
 #include "svditer.hxx"
-#endif
-
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
-
-
-
-#ifndef _E3D_POLYOB3D_HXX
 #include "polyob3d.hxx"
-#endif
-
-#ifndef _E3D_SPHERE3D_HXX
 #include "sphere3d.hxx"
-#endif
-
-
-#ifndef _SVX_SVXIDS_HRC
 #include "svxids.hrc"
-#endif
 
 namespace binfilter {
 
@@ -68,7 +48,7 @@ namespace binfilter {
 //     laden von Dokumenten. Hier braucht man keinen CreateSphere-Aufruf, denn die wirkliche
 //     Anzahl Segmente ist ja noch nicht bekannt. Dies war bis zum 10.2.97 ein (kleines)
 //     Speicherleck.
-/*N*/ E3dSphereObj::E3dSphereObj(int dummy) // den Parameter braucht es um unterscheiden zu koennen, welcher
+/*N*/ E3dSphereObj::E3dSphereObj(int /*dummy*/) // den Parameter braucht es um unterscheiden zu koennen, welcher
 /*N*/ {                                     // der beiden Konstruktoren gemeint ist. Der obige halt per Default
 /*N*/   // Defaults setzen
 /*N*/   E3dDefaultAttributes aDefault;
@@ -290,154 +270,13 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Identifier zurueckgeben
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
-|* Wireframe erzeugen
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Wandle das Objekt in ein Gruppenobjekt bestehend aus n Polygonen
 |*
 \************************************************************************/
 
-/*N*/ SdrObject *E3dSphereObj::DoConvertToPolyObj(BOOL bBezier) const
+/*N*/ SdrObject *E3dSphereObj::DoConvertToPolyObj(BOOL /*bBezier*/) const
 /*N*/ {
 /*N*/   return NULL;
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Objektdaten in Stream speichern
-|*
-\************************************************************************/
-
-/*N*/ void E3dSphereObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/ #ifndef SVX_LIGHT
-/*N*/   long nVersion = rOut.GetVersion(); // Build_Nr * 10 z.B. 3810
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Alte Geometrie erzeugen, um die E3dPolyObj's zu haben
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry(TRUE);
-/*N*/   }
-/*N*/
-/*N*/   // call parent
-/*N*/   SdrAttrObj::WriteData(rOut);
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dSphereObj");
-/*N*/ #endif
-/*N*/
-/*N*/   if (rOut.GetVersion() < 3560) // FG: kleiner als die Final Beta der Version 4.0
-/*N*/   {
-/*N*/       pSub->Save(rOut);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       // [FG] Jetzt wird die Kindliste abgeklapptert, allerdings weiss ich im Gegensatz zu
-/*N*/       // Joe dass es nur E3dPolyObj - Kindobjekte sein koennen.
-/*N*/       // Jedes dieser Objekte frage ich ob es eigene Attribute enthaelt.  Falls OwnStyle ()
-/*N*/       // true liefert, werde ich das Polygon nicht wegspeichern.
-/*N*/
-/*N*/       SdrObjListIter aIter(*pSub,IM_FLAT);
-/*N*/       while (aIter.IsMore()) {
-/*N*/           E3dPolyObj* pObj=(E3dPolyObj *) aIter.Next();
-/*N*/           if ((!pObj->IsNotPersistent()) && (pObj->OwnAttrs() || pObj->OwnStyle()))
-/*N*/           {
-/*N*/               rOut<<*pObj;
-/*N*/           }
-/*N*/           if (pSub->GetModel()!=NULL) pSub->GetModel()->IncProgress();
-/*N*/       }
-/*N*/       SdrIOHeader(rOut,STREAM_WRITE,SdrIOEndeID); // Endemarke
-/*N*/   }
-/*N*/
-/*N*/   // Daß hier gehört zum E3dObject (ohne Basisklassen);
-/*N*/   if (rOut.GetVersion() < 3560)
-/*N*/   {
-/*N*/       rOut << aLocalBoundVol;
-/*N*/
-/*N*/       Old_Matrix3D aMat3D;
-/*N*/       aMat3D = aTfMatrix;
-/*N*/       rOut << aMat3D;
-/*N*/
-/*N*/       rOut << nLogicalGroup;
-/*N*/       rOut << nObjTreeLevel;
-/*N*/       rOut << nPartOfParent;
-/*N*/       rOut << UINT16(eDragDetail);
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       E3dObject::WriteOnlyOwnMembers(rOut);
-/*N*/   }
-/*N*/   // Das gehört zu E3dSphere
-/*N*/   rOut << GetHorizontalSegments();
-/*N*/
-/*N*/   rOut << GetVerticalSegments();
-/*N*/
-/*N*/   rOut << aCenter;
-/*N*/   rOut << aSize;
-/*N*/
-/*N*/   // Das hier ist ein Merkmal eines Compound-Objektes
-/*N*/   rOut << GetDoubleSided();
-/*N*/
-/*N*/   // Ab Version 395 (8.6.98): Parameter aus dem Objekt
-/*N*/   // E3dCompoundObject. Da irgendwann mal jemand die Ableitungs-
-/*N*/   // hierarchie beim FileFormat unterbrochen hat, wurden diese Attribute
-/*N*/   // bisher NOCH NIE gespeichert (Grrr). Diese Stelle muss nun natuerlich
-/*N*/   // auch IMMER MITGEPFLEGT werden, wenn sich Parameter in
-/*N*/   // E3dCompoundObject oder E3dObject aendern.
-/*N*/   rOut << GetDoubleSided();
-/*N*/
-/*N*/   rOut << BOOL(bCreateNormals);
-/*N*/   rOut << BOOL(bCreateTexture);
-/*N*/
-/*N*/   sal_uInt16 nVal = GetNormalsKind();
-/*N*/   rOut << BOOL(nVal > 0);
-/*N*/   rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/   nVal = GetTextureProjectionX();
-/*N*/   rOut << BOOL(nVal > 0);
-/*N*/   rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/   nVal = GetTextureProjectionY();
-/*N*/   rOut << BOOL(nVal > 0);
-/*N*/   rOut << BOOL(nVal > 1);
-/*N*/
-/*N*/   rOut << BOOL(GetShadow3D());
-/*N*/
-/*N*/   rOut << GetMaterialAmbientColor();
-/*N*/   rOut << GetMaterialColor();
-/*N*/   rOut << GetMaterialSpecular();
-/*N*/   rOut << GetMaterialEmission();
-/*N*/   rOut << GetMaterialSpecularIntensity();
-/*N*/
-/*N*/   aBackMaterial.WriteData(rOut);
-/*N*/
-/*N*/   rOut << (UINT16)GetTextureKind();
-/*N*/
-/*N*/   rOut << (UINT16)GetTextureMode();
-/*N*/
-/*N*/   rOut << BOOL(GetNormalsInvert());
-/*N*/
-/*N*/   // neu ab 534: (hat noch gefehlt)
-/*N*/   rOut << BOOL(GetTextureFilter());
-/*N*/
-/*N*/   if(nVersion < 3800)
-/*N*/   {
-/*N*/       // Geometrie neu erzeugen, um E3dPolyObj's wieder loszuwerden
-/*N*/       ((E3dCompoundObject*)this)->ReCreateGeometry();
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 /*************************************************************************
@@ -446,7 +285,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void E3dSphereObj::ReadData31(const SdrObjIOHeader& rHead, SvStream& rIn)
+/*N*/ void E3dSphereObj::ReadData31(const SdrObjIOHeader& /*rHead*/, SvStream& rIn)
 /*N*/ {
 /*N*/   SdrDownCompat aCompat(rIn, STREAM_READ);
 /*N*/ #ifdef DBG_UTIL
@@ -639,7 +478,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           DBG_ERROR("AW: Kugel laden: nicht vorgesehener Fall");
+/*N*/           OSL_FAIL("AW: Kugel laden: nicht vorgesehener Fall");
 /*N*/       }
 /*N*/       pLoadedE3dPolyObjs->Clear();
 /*N*/       delete pLoadedE3dPolyObjs;
@@ -651,23 +490,16 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Zuweisungsoperator
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Lokale Parameter setzen mit Geometrieneuerzeugung
 |*
 \************************************************************************/
 
-/*N*/ void E3dSphereObj::SetCenter(const Vector3D& rNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dSphereObj::SetCenter(const Vector3D& /*rNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void E3dSphereObj::SetSize(const Vector3D& rNew)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void E3dSphereObj::SetSize(const Vector3D& /*rNew*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -710,3 +542,5 @@ namespace binfilter {
 
 // EOF
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

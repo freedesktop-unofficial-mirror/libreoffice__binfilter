@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -43,7 +41,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ static SfxItemInfo __READONLY_DATA aMsgItemInfos[] =
+/*N*/ static SfxItemInfo const aMsgItemInfos[] =
 /*N*/ {
 /*N*/   { 0,                         SFX_ITEM_POOLABLE },   // SCITEM_STRING
 /*N*/   { 0,                         SFX_ITEM_POOLABLE },   // SCITEM_SEARCHDATA - nicht mehr benutzt !!!
@@ -97,7 +95,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ __EXPORT ScMessagePool::~ScMessagePool()
+/*N*/ ScMessagePool::~ScMessagePool()
 /*N*/ {
 /*N*/   Delete();
 /*N*/   SetSecondaryPool( NULL );       // before deleting defaults (accesses defaults)
@@ -111,7 +109,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ SfxMapUnit __EXPORT ScMessagePool::GetMetric( USHORT nWhich ) const
+/*N*/ SfxMapUnit ScMessagePool::GetMetric( USHORT nWhich ) const
 /*N*/ {
 /*N*/   //  eigene Attribute: Twips, alles andere 1/100 mm
 /*N*/
@@ -126,3 +124,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

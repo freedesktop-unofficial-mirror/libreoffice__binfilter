@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,36 +31,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
+#include <sal/macros.h>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>          // fuer GetAttrPool
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _HINTS_HXX
+#include <osl/diagnose.h>
 #include <hints.hxx>
-#endif
-#ifndef _NODE_HXX
 #include <node.hxx>
-#endif
 namespace binfilter {
 
 
@@ -225,7 +209,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/
-/*N*/   for( int nC = 0, nArrLen = sizeof(aFontSizeArr) / sizeof( aFontSizeArr[0]);
+/*N*/   for( int nC = 0, nArrLen = SAL_N_ELEMENTS(aFontSizeArr);
 /*N*/           nC < nArrLen; ++nC )
 /*N*/   {
 /*N*/       SvxFontHeightItem *pFSize = aFontSizeArr[ nC ], *pOldFSize;
@@ -289,9 +273,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/  int SwCollCondition::operator==( const SwCollCondition& rCmp ) const
+/*N*/  int SwCollCondition::operator==( const SwCollCondition& /*rCmp*/ ) const
 /*N*/  {
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
@@ -326,9 +310,9 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  int nRet = 0;
 /*N*/ }
 
 
-/*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& rCond )
+/*N*/ void SwConditionTxtFmtColl::InsertCondition( const SwCollCondition& /*rCond*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for( USHORT n = 0; n < aCondColls.Count(); ++n )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -340,3 +324,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    for( USHORT n = 0; n < aCond
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,21 +37,13 @@ class SdClipboard;
 class SdBasic;
 class BasicIDE;
 
-#ifndef _SCH_GLOB_HXX
 #include <glob.hxx>
-#endif
 
-#ifndef _SFXNEW_HXX //autogen
 #include <bf_sfx2/new.hxx>
-#endif
 
-#ifndef _SVXERR_HXX //autogen
 #include <bf_svx/svxerr.hxx>
-#endif
 
-#ifndef _SFXAPP_HXX //autogen
 #include <bf_sfx2/app.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -80,3 +73,4 @@ public:
 } //namespace binfilter
 #endif      // _SCH_APP_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

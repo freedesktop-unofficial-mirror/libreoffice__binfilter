@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 #define GRFCROP_VERSION_SWDEFAULT       0
@@ -55,10 +54,10 @@ public:
 //  virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
 //  virtual USHORT              GetVersion( USHORT nFileVersion ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&           Store(SvStream &, USHORT nIVer) const;
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
+    virtual bool                QueryValue( ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal,
+    virtual bool                PutValue( const ::com::sun::star::uno::Any& rVal,
                                         BYTE nMemberId = 0 );
 
     void SetLeft( sal_Int32 nVal )      { nLeft = nVal; }
@@ -81,3 +80,5 @@ public:
 
 }//end of namespace binfilter
 #endif  // _GRFATR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

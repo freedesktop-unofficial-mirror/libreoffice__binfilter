@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SVDOUTL_HXX
 #define _SVDOUTL_HXX
 
-#ifndef _OUTLINER_HXX //autogen
 #include <bf_svx/outliner.hxx>
-#endif
 namespace binfilter {
 
 class SdrTextObj;
@@ -57,3 +56,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOUTL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

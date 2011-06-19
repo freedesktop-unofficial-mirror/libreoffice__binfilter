@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTTI_HXX
 #include <rtti.hxx>
-#endif
 
 #if _SOLAR__PRIVATE
 #include <bf_svtools/poolitem.hxx>
@@ -63,10 +62,11 @@ public:
     virtual
     virtual SfxPoolItem*        Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*        Create(SvStream &, USHORT nItemVersion) const;
-    virtual SvStream&           Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &, USHORT nItemVersion ) const {}
 };
 
 }
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

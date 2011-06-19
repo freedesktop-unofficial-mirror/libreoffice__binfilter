@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 #include "schattr.hxx"
 #ifndef _SVX_BRSHITEM_HXX
@@ -37,16 +36,12 @@
 #include <bf_svx/brshitem.hxx>
 #endif
 // header for CreateGraphicObjectFromURL
-#ifndef _SVX_UNOAPI_HXX_
 #include <bf_svx/unoapi.hxx>
-#endif
 // header for SvxChartDataDescrItem
 #ifndef _SVX_CHRTITEM_HXX
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
 
@@ -66,52 +61,26 @@
 #include "chtscene.hxx"
 #include "docshell.hxx"
 
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
 // for OWN_ATTR_...
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 // for SID_ATTR_...
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 // header for any2enum
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORCATEGORY_HPP_
 #include <com/sun/star/chart/ChartErrorCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HPP_
 #include <com/sun/star/chart/ChartErrorIndicatorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTREGRESSIONCURVETYPE_HPP_
 #include <com/sun/star/chart/ChartRegressionCurveType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 #include "pairs.hxx"
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 
 namespace
 {
@@ -133,11 +102,11 @@ namespace
 
 namespace binfilter {
 
-using namespace ::vos;
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
+
+using rtl::OUString;
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
@@ -195,9 +164,9 @@ inline  void    add_listener    (uno::Reference<uno::XInterface> xObject, ChXDia
 }
 
 ChXDiagram::ChXDiagram( SchChartDocShell* pDocShell, sal_Bool bPreInit ) :
+        mnBaseType( -1 ),
         mpModel( NULL ),
         maPropSet( aSchMapProvider.GetMap( CHMAP_CHART, NULL )),
-        mnBaseType( -1 ),
         maListenerList (maMutex)
 {
     if( bPreInit )
@@ -212,7 +181,7 @@ ChXDiagram::~ChXDiagram() {}
 // bKeepModel = sal_True => try to keep model. If model is invalid take the one from DocShell
 sal_Bool ChXDiagram::SetDocShell( SchChartDocShell* pDocShell, sal_Bool bKeepModel ) throw()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     sal_Bool bModelKept = sal_False;
 
     if( pDocShell )
@@ -226,7 +195,7 @@ sal_Bool ChXDiagram::SetDocShell( SchChartDocShell* pDocShell, sal_Bool bKeepMod
                 pDocShell->SetModelPtr( pModel );
                 if( ! pModel->SetObjectShell( pDocShell ))
                 {
-                    DBG_ERROR( "Couldn't set docshell" );
+                    OSL_FAIL( "Couldn't set docshell" );
                 }
 
                 delete mpModel;
@@ -326,6 +295,9 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                         break;
                     case CHDESCR_TEXTANDVALUE:
                         nVal = chart::ChartDataCaption::VALUE | chart::ChartDataCaption::TEXT;
+                        break;
+                    default:
+                        break;
                 }
                 if( bShowSymbol ) nVal |= chart::ChartDataCaption::SYMBOL;
 
@@ -340,7 +312,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                     ((const SvxBrushItem &)(aSet.Get( SCHATTR_SYMBOL_BRUSH ))).GetGraphicObject();
                 if( pGraphObj )
                 {
-                    aURL = ::rtl::OUString::createFromAscii( UNO_NAME_GRAPHOBJ_URLPREFIX );
+                    aURL = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( UNO_NAME_GRAPHOBJ_URLPREFIX ));
                     aURL += ::rtl::OUString::createFromAscii( pGraphObj->GetUniqueID().GetBuffer());
                 }
                 aAny <<= aURL;
@@ -355,20 +327,20 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                 // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                 if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     aAny >>= nValue;
                     aAny <<= static_cast< sal_Int16 >( nValue );
                 }
                 else if( ( *pMap->pType == ::getCppuType((const sal_uInt16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                 {
-                    sal_Int32 nValue;
+                    sal_Int32 nValue(0);
                     aAny >>= nValue;
                     aAny <<= static_cast< sal_uInt16 >( nValue );
                 }
                 else
                 {
                     OSL_TRACE( "GetAnyByItem(): wrong Type!" );
-                    DBG_ERROR( "GetAnyByItem(): wrong Type!" );
+                    OSL_FAIL( "GetAnyByItem(): wrong Type!" );
                 }
             }
     }
@@ -385,7 +357,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
         return maServiceName;
     }
 
-      OGuard aGuard( Application::GetSolarMutex() );
+      SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -419,14 +391,14 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
                 break;
             case CHTYPE_ADDIN :
                 // when we get here we know that maServiceName.getLength() == 0
-                DBG_ERROR( "Addin with empty name !" );
+                OSL_FAIL( "Addin with empty name !" );
                 break;
         }
         return maServiceName;
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
     return SCH_ASCII_TO_OU( "UnknownChartType" );
 }
@@ -434,7 +406,7 @@ uno::Any ChXDiagram::GetAnyByItem( SfxItemSet& aSet, const SfxItemPropertyMap* p
 uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties( sal_Int32 Row )
     throw( uno::RuntimeException, lang::IndexOutOfBoundsException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -454,7 +426,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties(
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return uno::Reference< beans::XPropertySet >();
@@ -463,7 +435,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataRowProperties(
 uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointProperties( sal_Int32 Column, sal_Int32 Row )
     throw( uno::RuntimeException, lang::IndexOutOfBoundsException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -478,7 +450,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
         {
             ::rtl::OUString aMessage( RTL_CONSTASCII_USTRINGPARAM( "DataPointProperties: Invalid Index (col, row): " ));
             aMessage += ::rtl::OUString::valueOf( Column );
-            aMessage += ::rtl::OUString::createFromAscii( ", " );
+            aMessage += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( ", " ));
             aMessage += ::rtl::OUString::valueOf( Row );
             lang::IndexOutOfBoundsException aEx( aMessage, (::cppu::OWeakObject*)this );
             throw aEx;
@@ -486,7 +458,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return uno::Reference< beans::XPropertySet >();
@@ -495,7 +467,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getDataPointPropertie
 // XShape ( ::XDiagram)
 awt::Size SAL_CALL ChXDiagram::getSize() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -510,7 +482,7 @@ void SAL_CALL ChXDiagram::setSize( const awt::Size& aSize )
     throw( uno::RuntimeException,
            beans::PropertyVetoException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     if( mpModel )
     {
         Rectangle aRect = mpModel->GetChartRect();
@@ -527,13 +499,13 @@ void SAL_CALL ChXDiagram::setSize( const awt::Size& aSize )
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 }
 
 awt::Point SAL_CALL ChXDiagram::getPosition() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     if( mpModel )
     {
         Point aPoint = mpModel->GetChartRect().TopLeft();
@@ -541,14 +513,14 @@ awt::Point SAL_CALL ChXDiagram::getPosition() throw( uno::RuntimeException )
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
     return awt::Point( 0, 0 );
 }
 
 void SAL_CALL ChXDiagram::setPosition( const awt::Point& aPosition ) throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -566,7 +538,7 @@ void SAL_CALL ChXDiagram::setPosition( const awt::Point& aPosition ) throw( uno:
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 }
 
@@ -788,7 +760,7 @@ uno::Reference< beans::XPropertySet > SAL_CALL ChXDiagram::getWall() throw( ::co
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXDiagram::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -806,7 +778,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                lang::WrappedTargetException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( mpModel )
     {
@@ -818,7 +790,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                 throw PropertyVetoException();
 
             USHORT nWID = pMap->nWID;
-            sal_Int32 nVal;
+            sal_Int32 nVal(0);
 
             SfxItemSet* pSet;
             switch( nWID )
@@ -909,28 +881,6 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                                 aSceneTAR.maMat = pScene->GetTransform();
                                 aSceneTAR.maRect = pScene->GetSnapRect();
 
-//                                  // rescue object transformations
-//                                  SdrObjListIter aIter(*pScene->GetSubList(), IM_DEEPWITHGROUPS);
-//                                  List aObjTrans;
-//                                  while(aIter.IsMore())
-//                                  {
-//                                      E3dObject* p3DObj = (E3dObject*)aIter.Next();
-//                                      Matrix4D* pNew = new Matrix4D;
-//                                      *pNew = p3DObj->GetTransform();
-//                                      aObjTrans.Insert(pNew, LIST_APPEND);
-//                                  }
-
-                                // reset object transformations
-//                                  aIter.Reset();
-//                                  while(aIter.IsMore())
-//                                  {
-//                                      E3dObject* p3DObj = (E3dObject*)aIter.Next();
-//                                      p3DObj->NbcResetTransform();
-//                                  }
-
-                                // reset scene transformation and make a complete recalc
-//                                  pScene->NbcResetTransform();
-
                                 // fill old camera from new parameters
                                 Camera3D aCam(pScene->GetCamera());
                                 const Volume3D& rVolume = pScene->GetBoundVolume();
@@ -952,17 +902,6 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                                 // set at scene
                                 pScene->SetCamera(aCam);
-
-                                // set object transformations again at objects
-//                                  aIter.Reset();
-//                                  sal_uInt32 nIndex(0L);
-//                                  while(aIter.IsMore())
-//                                  {
-//                                      E3dObject* p3DObj = (E3dObject*)aIter.Next();
-//                                      Matrix4D* pMat = (Matrix4D*)aObjTrans.GetObject(nIndex++);
-//                                      p3DObj->NbcSetTransform(*pMat);
-//                                      delete pMat;
-//                                  }
 
                                 // set scene transformation again at scene
                                 pScene->NbcSetTransform(aSceneTAR.maMat);
@@ -991,10 +930,10 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( aPropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
@@ -1034,29 +973,29 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                     case SCHATTR_DATADESCR_DESCR:
                         {
                             // symbol
-                            sal_Int32 nVal;
-                            aValue >>= nVal;
+                            sal_Int32 nLclVal(0);
+                            aValue >>= nLclVal;
                             pSet->Put( SfxBoolItem( SCHATTR_DATADESCR_SHOW_SYM,
-                                                    ((nVal & chart::ChartDataCaption::SYMBOL) != 0)) );
+                                                    ((nLclVal & chart::ChartDataCaption::SYMBOL) != 0)) );
 
                             // display text, percent or both or value
                             SvxChartDataDescr eDescr = CHDESCR_NONE;
-                            if( nVal & chart::ChartDataCaption::TEXT )
+                            if( nLclVal & chart::ChartDataCaption::TEXT )
                             {
-                                if( nVal & chart::ChartDataCaption::PERCENT )
+                                if( nLclVal & chart::ChartDataCaption::PERCENT )
                                     eDescr = CHDESCR_TEXTANDPERCENT;
-                                else if( (nVal & chart::ChartDataCaption::VALUE) )
+                                else if( (nLclVal & chart::ChartDataCaption::VALUE) )
                                     eDescr = CHDESCR_TEXTANDVALUE;
                                 else
                                     eDescr = CHDESCR_TEXT;
                             }
-                            else if( (nVal & chart::ChartDataCaption::VALUE) )
+                            else if( (nLclVal & chart::ChartDataCaption::VALUE) )
                             {
                                 eDescr = CHDESCR_VALUE;
                             }
                             else
                             {
-                                if( (nVal & chart::ChartDataCaption::PERCENT) )
+                                if( (nLclVal & chart::ChartDataCaption::PERCENT) )
                                     eDescr = CHDESCR_PERCENT;
                             }
 
@@ -1086,7 +1025,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
                     case SCHATTR_STYLE_STACKED:
                     case SCHATTR_STYLE_PERCENT:
                         {
-                            sal_Bool bSet;
+                            sal_Bool bSet(sal_False);
                             aValue >>= bSet;
                             if( bSet )
                             {
@@ -1108,7 +1047,7 @@ void SAL_CALL ChXDiagram::setPropertyValue( const ::rtl::OUString& aPropertyName
 
                     case SCHATTR_STYLE_DEEP:
                         {
-                            sal_Bool bSet;
+                            sal_Bool bSet(sal_False);
                             aValue >>= bSet;
 
                             // if deep is turned on, 3d must also be set
@@ -1174,7 +1113,7 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
            uno::RuntimeException )
 {
     RTL_LOGFILE_CONTEXT (context, "sch (af119097) ::ChXDiagram::getPropertyValue");
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
 
@@ -1289,10 +1228,10 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( PropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
@@ -1311,34 +1250,34 @@ uno::Any SAL_CALL ChXDiagram::getPropertyValue( const ::rtl::OUString& PropertyN
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
     return aAny;
 }
 
-void SAL_CALL ChXDiagram::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                     const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXDiagram::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                     const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDiagram::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                        const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXDiagram::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                        const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDiagram::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                     const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDiagram::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                     const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXDiagram::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                        const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXDiagram::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                        const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -1368,15 +1307,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
     throw (RuntimeException)
 {
     RTL_LOGFILE_CONTEXT (context, "sch (af119097) ::ChXDiagram::getPropertyValues");
-#if 0
-    uno::Sequence<uno::Any> aResult (aPropertyNames.getLength());
-
-    for (sal_Int32 i=0; i<aPropertyNames.getLength(); i++)
-        aResult[i] = getPropertyValue (aPropertyNames[i]);
-
-    return aResult;
-#else
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     //  This sequence is filled with the requested values for the given property names.
     Sequence<Any> aResult (aPropertyNames.getLength());
@@ -1402,7 +1333,6 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
         CHATTR_TMP_START, CHATTR_TMP_END,
         0);
 
-    //  if( nWID == SCHATTR_SYMBOL_BRUSH )
     mpModel->GetDataRowAttrAll (aAttributes);
     //  else
     ChartType aType (mpModel);
@@ -1477,6 +1407,7 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     pScene = lcl_GetScene( mpModel );
                 }
                 if (pScene != NULL)
+                {
                     if (nWID == OWN_ATTR_3D_VALUE_TRANSFORM_MATRIX)
                     {
                         const Matrix4D& aMtx = pScene->GetFullTransform();
@@ -1512,11 +1443,13 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     }
                     else
                         bTryAgain = TRUE;
+                }
             }
         }
 
         //  Step3
         if (bTryAgain)
+        {
             if (aAttributes.GetItemState (nWID, sal_False) == SFX_ITEM_SET)
             {
                 *pPropertyValue = GetAnyByItem (aAttributes, pProperty);
@@ -1532,22 +1465,13 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
                     sMessage += OUString (
                         RTL_CONSTASCII_USTRINGPARAM (" is not known in :ChXDiagram::getPropertyValues"));
                 }
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                 ByteString sName = ByteString(String(*pPropertyName), RTL_TEXTENCODING_ASCII_US);
-                DBG_ERROR2 ("Diagram: Property %s has an invalid ID (%d)",
+                OSL_TRACE("Diagram: Property %s has an invalid ID (%d)",
                     sName.GetBuffer(), nWID);
 #endif
             }
-
-#if 0
-        //  Compare to result of original getPropertyValue.
-        //  Used only for debugging.
-        if (*pPropertyValue != getPropertyValue (*pPropertyName))
-        {
-            DBG_ERROR1 ("ChXDiagram::getPropertyValues : values differ for nWID %d",
-                nWID);
         }
-#endif
 
         //  Advance to the next property, property name and value.
         pPropertyName++;
@@ -1560,20 +1484,19 @@ Sequence<Any> SAL_CALL  ChXDiagram::getPropertyValues (
             static_cast< ::cppu::OWeakObject*>(this));
 
     return aResult;
-#endif
 }
 
 
 void SAL_CALL   ChXDiagram::addPropertiesChangeListener (
-    const Sequence<OUString >&                          aPropertyNames,
-    const Reference<beans::XPropertiesChangeListener >& xListener)
+    const Sequence<OUString >& /*aPropertyNames*/,
+    const Reference<beans::XPropertiesChangeListener >& /*xListener*/)
     throw (RuntimeException)
 {
     //  Not implemented.
 }
 
 void SAL_CALL   ChXDiagram::removePropertiesChangeListener (
-    const Reference<beans::XPropertiesChangeListener>&  xListener)
+    const Reference<beans::XPropertiesChangeListener>& /*xListener*/)
     throw (RuntimeException)
 {
     //  Not implemented.
@@ -1581,8 +1504,8 @@ void SAL_CALL   ChXDiagram::removePropertiesChangeListener (
 
 
 void SAL_CALL   ChXDiagram::firePropertiesChangeEvent (
-    const Sequence<OUString >&                          aPropertyNames,
-    const Reference<beans::XPropertiesChangeListener >& xListener)
+    const Sequence<OUString >& /*aPropertyNames*/,
+    const Reference<beans::XPropertiesChangeListener >& /*xListener*/)
     throw (RuntimeException)
 {
     //  Not implemented.
@@ -1638,7 +1561,7 @@ beans::PropertyState SAL_CALL ChXDiagram::getPropertyState( const ::rtl::OUStrin
 
                 default:
                     {
-                        OGuard aGuard( Application::GetSolarMutex() );
+                        SolarMutexGuard aGuard;
 
                         SfxItemSet aSet( mpModel->GetItemPool(), pMap->nWID, pMap->nWID );
                         ChartType aType( mpModel );
@@ -1665,7 +1588,7 @@ void SAL_CALL ChXDiagram::setPropertyToDefault( const ::rtl::OUString& PropertyN
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -1738,23 +1661,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
     throw (beans::UnknownPropertyException,
             uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
-
-#if 0
-    //  Old implementation.
-
-    const sal_Int32 nCount = aPropertyName.getLength();
-    const ::rtl::OUString* pNames = aPropertyName.getConstArray();
-
-    uno::Sequence< beans::PropertyState > aRet( nCount );
-    beans::PropertyState* pState = aRet.getArray();
-
-    for( sal_Int32 nIdx = 0; nIdx < nCount; nIdx++ )
-        pState[ nIdx ] = getPropertyState( pNames[ nIdx ] );
-
-    return aRet;
-
-#else
+    SolarMutexGuard aGuard;
 
     //  New implementation.
 
@@ -1771,8 +1678,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
 
     //  Get the models attributes.
     ChartType aType (mpModel);
-//  SfxItemSet aAttributes (mpModel->GetItemPool(),
-//      mpModel->GetAttr (mnWhichId, mnIndex).GetRanges());
+
     //  This needs still a bit of work.  What is the best set of which id ranges?
     SfxItemSet aAttributes (mpModel->GetItemPool(),
         CHART_ROW_WHICHPAIRS,
@@ -1851,7 +1757,7 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
                         //  to first process as many properties as possible.
                         //  All unknown properties following the first one
                         //  are ignored.
-                        DBG_ERROR1 ("nWID %d not in property set", nWID);
+                        OSL_TRACE("nWID %d not in property set", nWID);
                         if (sErrorMessage.getLength() == 0)
                         {
                             sErrorMessage = OUString (
@@ -1870,14 +1776,13 @@ Sequence<PropertyState> SAL_CALL ChXDiagram::getPropertyStates (
             static_cast< ::cppu::OWeakObject*>(this));
 
     return aPropertyStates;
-#endif
 }
 
 
 void SAL_CALL   ChXDiagram::setAllPropertiesToDefault (void)
     throw (RuntimeException)
 {
-    DBG_ERROR ("ChXChartObject::setAllPropertiesToDefault");
+    OSL_FAIL("ChXChartObject::setAllPropertiesToDefault");
 }
 
 
@@ -1947,10 +1852,6 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
                     "com.sun.star.chart.StackableDiagram",
                     "com.sun.star.chart.Dim3DDiagram",
                     "com.sun.star.chart.ChartAxisZSupplier" );
-                // Note: the required properties and interfaces and therefore the
-                // service itself is always available
-//                  if( mpModel->Is3DChart() )
-//                      SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.ChartAxisZSupplier" );
                 break;
             case CHTYPE_AREA:
                 SvxServiceInfoHelper::addToSequence(
@@ -1964,10 +1865,6 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
                     "com.sun.star.chart.StackableDiagram",
                     "com.sun.star.chart.Dim3DDiagram",
                     "com.sun.star.chart.ChartAxisZSupplier" );
-                // Note: the required properties and interfaces and therefore the
-                // service itself is always available
-//                  if( mpModel->Is3DChart() )
-//                      SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.ChartAxisZSupplier" );
             break;
             case CHTYPE_DONUT :
                 SvxServiceInfoHelper::addToSequence( aSeq, 1, "com.sun.star.chart.DonutDiagram" );
@@ -1985,10 +1882,6 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
                     "com.sun.star.chart.StackableDiagram",
                     "com.sun.star.chart.Dim3DDiagram",
                     "com.sun.star.chart.ChartAxisZSupplier" );
-                // Note: the required properties and interfaces and therefore the
-                // service itself is always available
-//                  if( mpModel->Is3DChart() )
-//                      SvxServiceInfoHelper::addToSequence(aSeq, 1, "com.sun.star.chart.ChartAxisZSupplier" );
                 break;
             case CHTYPE_CIRCLE :
                 SvxServiceInfoHelper::addToSequence(
@@ -2028,7 +1921,7 @@ uno::Sequence< ::rtl::OUString > SAL_CALL ChXDiagram::getSupportedServiceNames()
     }
     else
     {
-        DBG_ERROR( "No Model" );
+        OSL_FAIL( "No Model" );
     }
 
     return aSeq;
@@ -2049,7 +1942,7 @@ sal_Int64 SAL_CALL ChXDiagram::getSomething( const uno::Sequence< sal_Int8 >& aI
 // XComponent
 void SAL_CALL ChXDiagram::dispose() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const int   nMemberListSize = 19;
     const uno::Reference<uno::XInterface> xMemberList[nMemberListSize] = {
@@ -2172,3 +2065,5 @@ void    ChXDiagram::AdvanceToName   (const SfxItemPropertyMap *& pProperty,
 
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

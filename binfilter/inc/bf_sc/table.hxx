@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,22 +31,12 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef SC_COLUMN_HXX
 #include "column.hxx"
-#endif
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"
-#endif
 
 namespace utl {
     class SearchParam;
@@ -451,7 +442,7 @@ public:
     void        RemoveManualBreaks();
 
     BOOL        Load( SvStream& rStream, USHORT nVersion, ScProgress* pProgress );
-    BOOL        Save( SvStream& rStream, long& rSavedDocCells, ScProgress* pProgress ) const;
+    BOOL        Save( SvStream&, long&, ScProgress* ) const {return false;}
 
     BOOL        ValidQuery(USHORT nRow, const ScQueryParam& rQueryParam,
                     BOOL* pSpecial = NULL, ScBaseCell* pCell = NULL,
@@ -502,3 +493,4 @@ private:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
 
 
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPHDLFACTORY_HXX
 #include "PageMasterPropHdlFactory.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -62,3 +57,5 @@ XMLPageMasterPropSetMapper::~XMLPageMasterPropSetMapper()
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

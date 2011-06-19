@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_STYLE_GRAPHICLOCATION_HPP_
 #include <com/sun/star/style/GraphicLocation.hpp>
-#endif
 
 #include <xmlnmspe.hxx>
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLBACKGROUNDIMAGEEXPORT_HXX
 #include "XMLBackgroundImageExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -101,6 +94,8 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
         case GraphicLocation_RIGHT_BOTTOM:
             aOut.append( GetXMLToken(XML_BOTTOM) );
             break;
+        default:
+            break;
         }
 
         if( aOut.getLength() )
@@ -123,6 +118,8 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
             case GraphicLocation_RIGHT_TOP:
             case GraphicLocation_RIGHT_BOTTOM:
                 aOut.append( GetXMLToken(XML_RIGHT) );
+                break;
+            default:
                 break;
             }
         }
@@ -153,13 +150,13 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
 
         if( pTransparency )
         {
-            sal_Int8 nTransparency;
+            sal_Int8 nTransparency(0);
             if( (*pTransparency) >>= nTransparency )
             {
-                OUStringBuffer aOut;
-                SvXMLUnitConverter::convertPercent( aOut, nTransparency );
+                OUStringBuffer aLclOut;
+                SvXMLUnitConverter::convertPercent( aLclOut, nTransparency );
                 GetExport().AddAttribute( XML_NAMESPACE_DRAW, XML_TRANSPARENCY,
-                                          aOut.makeStringAndClear() );
+                                          aLclOut.makeStringAndClear() );
             }
         }
     }
@@ -174,3 +171,5 @@ void XMLBackgroundImageExport::exportXML( const Any& rURL,
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

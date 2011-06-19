@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,11 +26,6 @@
  *
  ************************************************************************/
 
-// System - Includes -----------------------------------------------------
-
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -54,7 +50,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScOutlineEntry::ScOutlineEntry( const ScOutlineEntry& rEntry ) :
+/*N*/ ScOutlineEntry::ScOutlineEntry( const ScOutlineEntry& rEntry ) : DataObject(rEntry),
 /*N*/   nStart  ( rEntry.nStart ),
 /*N*/   nSize   ( rEntry.nSize ),
 /*N*/   bHidden ( rEntry.bHidden ),
@@ -74,18 +70,6 @@ namespace binfilter {
 /*N*/   rHdr.EndEntry();
 /*N*/ }
 
-/*N*/ void ScOutlineEntry::Store( SvStream& rStream, ScMultipleWriteHeader& rHdr )
-/*N*/ {
-/*N*/   rHdr.StartEntry();
-/*N*/
-/*N*/   rStream << nStart;
-/*N*/   rStream << nSize;
-/*N*/   rStream << bHidden;
-/*N*/   rStream << bVisible;
-/*N*/
-/*N*/   rHdr.EndEntry();
-/*N*/ }
-
 /*N*/ DataObject* ScOutlineEntry::Clone() const
 /*N*/ {
 /*N*/   return new ScOutlineEntry( *this );
@@ -96,7 +80,7 @@ namespace binfilter {
 /*N*/   short nNewPos = ((short) nStart) + nDelta;
 /*N*/   if (nNewPos<0)
 /*N*/   {
-/*N*/       DBG_ERROR("OutlineEntry < 0");
+/*N*/       OSL_FAIL("OutlineEntry < 0");
 /*N*/       nNewPos = 0;
 /*N*/   }
 /*N*/   nStart = (USHORT) nNewPos;
@@ -107,7 +91,7 @@ namespace binfilter {
 /*N*/   if (nNewSize)
 /*N*/       nSize = nNewSize;
 /*N*/   else
-/*N*/       DBG_ERROR("ScOutlineEntry Size == 0");
+/*N*/       OSL_FAIL("ScOutlineEntry Size == 0");
 /*N*/ }
 
 /*N*/ void ScOutlineEntry::SetPosSize( USHORT nNewPos, USHORT nNewSize )
@@ -276,35 +260,6 @@ namespace binfilter {
 /*N*/       rSizeChanged = TRUE;
 /*N*/   }
 /*N*/
-/*          nicht zusammenfassen!
-
-    //  zusammenfassen
-
-    USHORT nCount = aCollections[nLevel].GetCount();
-    USHORT nIndex;
-    bFound = FALSE;
-    for ( nIndex=0; nIndex<nCount && !bFound; nIndex++ )
-    {
-        if ( ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetEnd() + 1 == nStartCol )
-        {
-            nStartCol = ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetStart();
-            aCollections[nLevel].AtFree(nIndex);
-            nCount = aCollections[nLevel].GetCount();       // Daten geaendert
-            bFound = TRUE;
-        }
-    }
-
-    bFound = FALSE;
-    for ( nIndex=0; nIndex<nCount && !bFound; nIndex++ )
-    {
-        if ( ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetStart() == nEndCol + 1 )
-        {
-            nEndCol = ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->GetEnd();
-            aCollections[nLevel].AtFree(nIndex);
-            bFound = TRUE;
-        }
-    }
-*/
 /*N*/   ScOutlineEntry* pNewEntry = new ScOutlineEntry( nStartCol, nEndCol+1-nStartCol, bHidden );
 /*N*/   pNewEntry->SetVisible( bVisible );
 /*N*/   aCollections[nLevel].Insert( pNewEntry );
@@ -483,7 +438,7 @@ namespace binfilter {
 /*?*/               BOOL bToggle = ( bShow != bAllHidden );
 /*?*/               if ( bToggle )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pEntry->SetHidden( !bShow );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*N*/       }
@@ -508,22 +463,6 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*N*/ void ScOutlineArray::Store( SvStream& rStream )
-/*N*/ {
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/
-/*N*/   rStream << nDepth;
-/*N*/   for (USHORT nLevel=0; nLevel<nDepth; nLevel++)
-/*N*/   {
-/*N*/       USHORT nCount = aCollections[nLevel].GetCount();
-/*N*/       rStream << nCount;
-/*N*/       for (USHORT nIndex=0; nIndex<nCount; nIndex++)
-/*N*/           ((ScOutlineEntry*) aCollections[nLevel].At(nIndex))->Store( rStream, aHdr );
-/*N*/   }
-/*N*/ }
-
-//------------------------------------------------------------------------
 
 /*N*/ ScOutlineTable::ScOutlineTable()
 /*N*/ {
@@ -573,14 +512,6 @@ namespace binfilter {
 /*N*/   aRowOutline.Load( rStream );
 /*N*/ }
 
-/*N*/ void ScOutlineTable::Store( SvStream& rStream )
-/*N*/ {
-/*N*/   aColOutline.Store( rStream );
-/*N*/   aRowOutline.Store( rStream );
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ ScSubOutlineIterator::ScSubOutlineIterator( ScOutlineArray* pOutlineArray ) :
 /*N*/       pArray( pOutlineArray ),
 /*N*/       nStart( 0 ),
@@ -622,12 +553,12 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (nSubLevel >= nDepth)
 /*N*/   {
-/*N*/       DBG_ERROR("ScSubOutlineIterator::DeleteLast nach Ende");
+/*N*/       OSL_FAIL("ScSubOutlineIterator::DeleteLast nach Ende");
 /*N*/       return;
 /*N*/   }
 /*N*/   if (nSubEntry == 0)
 /*N*/   {
-/*N*/       DBG_ERROR("ScSubOutlineIterator::DeleteLast vor GetNext");
+/*N*/       OSL_FAIL("ScSubOutlineIterator::DeleteLast vor GetNext");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -637,3 +568,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

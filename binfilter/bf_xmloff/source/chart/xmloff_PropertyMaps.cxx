@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,32 +36,16 @@
 
 #include "XMLChartPropertySetMapper.hxx"
 
-#ifndef _XMLOFF_ENUMPROPERTYHANDLER_HXX
 #include "EnumPropertyHdl.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLERRORINDICATORPROPERTYHDL_HXX_
 #include "XMLErrorIndicatorPropertyHdl.hxx"
-#endif
-#ifndef _XMLTEXTORIENTATIONHDL_HXX_
 #include "XMLTextOrientationHdl.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISMARKS_HPP_
 #include <com/sun/star/chart/ChartAxisMarks.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATACAPTION_HPP_
 #include <com/sun/star/chart/ChartDataCaption.hpp>
-#endif
 
 // header for any2enum
 namespace binfilter {
@@ -184,23 +169,23 @@ void XMLChartExportPropertyMapper::ContextFilter(
             // if Auto... is set the corresponding properties mustn't be exported
             case XML_SCH_CONTEXT_MIN:
                 bCheckAuto = sal_True;
-                aAutoPropName = ::rtl::OUString::createFromAscii( "AutoMin" );
+                aAutoPropName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AutoMin" ));
                 break;
             case XML_SCH_CONTEXT_MAX:
                 bCheckAuto = sal_True;
-                aAutoPropName = ::rtl::OUString::createFromAscii( "AutoMax" );
+                aAutoPropName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AutoMax" ));
                 break;
             case XML_SCH_CONTEXT_STEP_MAIN:
                 bCheckAuto = sal_True;
-                aAutoPropName = ::rtl::OUString::createFromAscii( "AutoStepMain" );
+                aAutoPropName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AutoStepMain" ));
                 break;
             case XML_SCH_CONTEXT_STEP_HELP:
                 bCheckAuto = sal_True;
-                aAutoPropName = ::rtl::OUString::createFromAscii( "AutoStepHelp" );
+                aAutoPropName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AutoStepHelp" ));
                 break;
             case XML_SCH_CONTEXT_ORIGIN:
                 bCheckAuto = sal_True;
-                aAutoPropName = ::rtl::OUString::createFromAscii( "AutoOrigin" );
+                aAutoPropName = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "AutoOrigin" ));
                 break;
 
             // the following property is deprecated
@@ -215,7 +200,7 @@ void XMLChartExportPropertyMapper::ContextFilter(
             {
                 try
                 {
-                    sal_Bool bAuto;
+                    sal_Bool bAuto(sal_False);
                     uno::Any aAny = rPropSet->getPropertyValue( aAutoPropName );
                     aAny >>= bAuto;
                     if( bAuto )
@@ -388,9 +373,9 @@ void XMLChartExportPropertyMapper::handleSpecialItem(
 // ----------------------------------------
 
 XMLChartImportPropertyMapper::XMLChartImportPropertyMapper( const UniReference< XMLPropertySetMapper >& rMapper,
-                                                            const SvXMLImport& rImport ) :
-        SvXMLImportPropertyMapper( rMapper, const_cast< SvXMLImport & >( rImport )),
-        mrImport( const_cast< SvXMLImport & > ( rImport ))
+                                                            const SvXMLImport& rInImport ) :
+        SvXMLImportPropertyMapper( rMapper, const_cast< SvXMLImport & >( rInImport )),
+        mrImport( const_cast< SvXMLImport & > ( rInImport ))
 {
     // chain shape mapper for drawing properties
 
@@ -522,7 +507,9 @@ sal_Bool XMLChartImportPropertyMapper::handleSpecialItem(
     return bRet;
 }
 
-void XMLChartImportPropertyMapper::finished( ::std::vector< XMLPropertyState >& rProperties, sal_Int32 nStartIndex, sal_Int32 nEndIndex ) const
+void XMLChartImportPropertyMapper::finished( ::std::vector< XMLPropertyState >& , sal_Int32 , sal_Int32 ) const
 {
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _UNODEFAULTS_HXX
 #define _UNODEFAULTS_HXX
 
-#ifndef _SVX_UNOPOOL_HXX_
 #include <bf_svx/unopool.hxx>
-#endif
 namespace binfilter {
 
 class SwDoc;
@@ -50,3 +49,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 class SwFrm;
 class SwTxtNode;
 
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 namespace binfilter {
 
 enum SwChapterFormat
@@ -96,3 +95,5 @@ inline const String& SwChapterField::GetTitle() const { return sTitle; }
 
 } //namespace binfilter
 #endif // _CHPFLD_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

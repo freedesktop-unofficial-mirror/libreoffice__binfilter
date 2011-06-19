@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 
-#ifndef _SV_TOOLBOX_HXX
 #include <vcl/toolbox.hxx>
-#endif
-#ifndef _STDCTRL_HXX
 #include <bf_svtools/stdctrl.hxx>
-#endif
-#ifndef _IMAGEBTN_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 class PopupMenu;
 namespace binfilter {
 
@@ -174,9 +167,8 @@ public:
 
 
 };
-/* -----------------26.11.2002 09:25-----------------
- *
- * --------------------------------------------------*/
+
+
 class SwPreviewZoomControl : public SfxToolBoxControl
 {
 public:
@@ -192,3 +184,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

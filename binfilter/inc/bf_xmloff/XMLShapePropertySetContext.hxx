@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX
 
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 class XMLShapePropertySetContext : public SvXMLPropertySetContext
@@ -53,6 +52,7 @@ public:
 
     virtual void EndElement();
 
+    using SvXMLPropertySetContext::CreateChildContext;
     virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
                                    const ::rtl::OUString& rLocalName,
                                    const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList,
@@ -62,3 +62,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

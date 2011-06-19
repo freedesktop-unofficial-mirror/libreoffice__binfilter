@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
 
 #include <bf_svtools/stritem.hxx>
 
@@ -72,7 +71,7 @@ public:
     const String&   GetWord() const { return aWord; }
 
     BOOL            Load( SvStream& rStrm );
-    BOOL            Save( SvStream& rStrm ) const;
+    BOOL            Save( SvStream& ) const {return false;}
 };
 
 const BYTE MAXDOCUSERKEYS  = 4;
@@ -122,7 +121,7 @@ private:
 
     USHORT  nUserDataSize;
     USHORT  nDocNo;         // schon mal rein: Dokumentnummer, was immer das sein mag
-    void*   pUserData;      // Benutzer Daten, z.B. Doc-Statistik
+    char*   pUserData;      // Benutzer Daten, z.B. Doc-Statistik
     long    lTime;
 
     SfxDocumentInfo_Impl*   pImp;
@@ -132,7 +131,7 @@ private:
 
 protected:
     virtual BOOL Load( SvStream& );
-    virtual BOOL Save( SvStream& ) const;
+    virtual BOOL Save( SvStream& ) const {return false;}
 
 public:
     SfxDocumentInfo( const SfxDocumentInfo& );
@@ -143,7 +142,7 @@ public:
     int operator==( const SfxDocumentInfo& ) const;
 
     BOOL Load( SvStorage* );
-    BOOL Save( SvStorage* ) const;
+    BOOL Save( SvStorage* ) const {return false;}
     BOOL SavePropertySet( SvStorage* ) const;
 
     void SetReloadURL( const String& rString );
@@ -249,8 +248,8 @@ class SfxDocumentInfoItem : public SfxStringItem
 {
 private:
     SfxDocumentInfo         aDocInfo;
-    FASTBOOL                bHasTemplate;
-    FASTBOOL                bOwnFormat;
+    bool                bHasTemplate;
+    bool                bOwnFormat;
 
 public:
     TYPEINFO();
@@ -260,3 +259,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

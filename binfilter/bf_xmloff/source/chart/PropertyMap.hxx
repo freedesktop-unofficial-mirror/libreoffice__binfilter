@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,43 +28,19 @@
 #ifndef _PROPERTYMAP_HXX_
 #define _PROPERTYMAP_HXX_
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include "maptype.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include "xmltypes.hxx"
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include "contextid.hxx"
-#endif
-#ifndef _XMLOFF_XMLEMENT_HXX
 #include "xmlement.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CHART_CHARTAXISARRANGEORDERTYPE_HPP_
 #include <com/sun/star/chart/ChartAxisArrangeOrderType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORCATEGORY_HPP_
 #include <com/sun/star/chart/ChartErrorCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTERRORINDICATORTYPE_HPP_
 #include <com/sun/star/chart/ChartErrorIndicatorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTREGRESSIONCURVETYPE_HPP_
 #include <com/sun/star/chart/ChartRegressionCurveType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTSOLIDTYPE_HPP_
 #include <com/sun/star/chart/ChartSolidType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTDATAROWSOURCE_HPP_
 #include <com/sun/star/chart/ChartDataRowSource.hpp>
-#endif
 namespace binfilter {
 
 // custom types
@@ -99,10 +76,10 @@ namespace binfilter {
 #define XML_SCH_CONTEXT_SPECIAL_SYMBOL_IMAGE_NAME   ( XML_SCH_CTF_START + 22 )
 #define XML_SCH_CONTEXT_SPECIAL_SYMBOL_IMAGE        ( XML_SCH_CTF_START + 23 )
 
-#define MAP_ENTRY( a, ns, nm, t ) { a, sizeof(a)-1, XML_NAMESPACE_##ns, xmloff::token::nm, t }
+#define MAP_ENTRY( a, ns, nm, t ) { a, sizeof(a)-1, XML_NAMESPACE_##ns, xmloff::token::nm, t, 0 }
 #define MAP_CONTEXT( a, ns, nm, t, c ) { a, sizeof(a)-1, XML_NAMESPACE_##ns, xmloff::token::nm, t, XML_SCH_CONTEXT_##c }
 #define MAP_SPECIAL( a, ns, nm, t, c ) { a, sizeof(a)-1, XML_NAMESPACE_##ns, xmloff::token::nm, t | MID_FLAG_SPECIAL_ITEM, XML_SCH_CONTEXT_SPECIAL_##c }
-#define MAP_ENTRY_END { 0,0,0,xmloff::token::XML_TOKEN_INVALID,0 }
+#define MAP_ENTRY_END { 0,0,0,xmloff::token::XML_TOKEN_INVALID,0,0 }
 
 // ---------------------------------------------------------
 // PropertyMap for Chart properties drawing- and
@@ -244,3 +221,5 @@ SvXMLEnumMapEntry aXMLChartDataRowSourceTypeEnumMap[] =
 
 }//end of namespace binfilter
 #endif  // _PROPERTYMAP_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

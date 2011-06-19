@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,152 +35,56 @@
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
 #include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX
 #include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _URLOBJ_HXX  //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>              // fuer SwPam
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NODE_HXX
 #include <node.hxx>             // SwTableNode
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _FMTCOL_HXX
 #include <fmtcol.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _FTNINFO_HXX
 #include <ftninfo.hxx>          // SwFtnInfo
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>          // GetTabLines(), ...
-#endif
-#ifndef _GRFATR_HXX
 #include <grfatr.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>           // fuer den Attribut Stack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>
-#endif
-#ifndef _W4WGRAF_HXX
 #include <w4wgraf.hxx>
-#endif
-#ifndef _TBLSEL_HXX
 #include <tblsel.hxx>           // SwSelBoxes
-#endif
-#ifndef _VIEWSH_HXX     // for the pagedescname from the ShellRes
 #include <viewsh.hxx>
-#endif
-#ifndef _SHELLRES_HXX   // for the pagedescname from the ShellRes
 #include <shellres.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -198,12 +103,12 @@ namespace binfilter {
 #define DEFAULT_TAB_CELL_DISTANCE 42    // Default: 0.7 mm Abstand
 
 
-SV_DECL_PTRARR_DEL(W4WTabBorders, UShortPtr, 64, 64)//STRIP008 ;
+SV_DECL_PTRARR_DEL(W4WTabBorders, UShortPtr, 64, 64)
 SV_IMPL_PTRARR(    W4WTabBorders, UShortPtr        );
 
 typedef SwSelBoxes_SAR* SwSelBoxes_SARPtr;
 
-SV_DECL_PTRARR_DEL(W4WMergeGroups, SwSelBoxes_SARPtr, 16,16)//STRIP008 ;
+SV_DECL_PTRARR_DEL(W4WMergeGroups, SwSelBoxes_SARPtr, 16,16)
 SV_IMPL_PTRARR(    W4WMergeGroups, SwSelBoxes_SARPtr       );
 
 inline const SwNodeIndex & PtNd( const SwPaM * pPam )
@@ -289,7 +194,7 @@ void SwW4WParser::Read_BeginMarkedText()    // (BMT)
             if( (USHRT_MAX != nAktStyleId) && (TOX_CONTENT == eTox) )
             {
                 SwTxtFmtColl* pAktColl = GetAktColl();
-                ASSERT( pAktColl, "StyleId ungueltig" );
+                OSL_ENSURE( pAktColl, "StyleId ungueltig" );
 
                 const SwTxtFmtColls* pDocTxtFmtColls = pDoc->GetTxtFmtColls();
 
@@ -402,7 +307,7 @@ void SwW4WParser::Read_ParagraphNumber()            // (PGN)
                         nActNumLevel = nLevel  -1;
 
                     SwTxtNode* pTxtNode = pCurPaM->GetNode()->GetTxtNode();
-                    ASSERT( pTxtNode, "Kein Text-Node an PaM-Position" );
+                    OSL_ENSURE( pTxtNode, "Kein Text-Node an PaM-Position" );
 
                     pTxtNode->SwCntntNode::SetAttr(
                         SwNumRuleItem( pActNumRule->GetName() ) );
@@ -509,7 +414,7 @@ void SwW4WParser::Read_ParaNumberDef()              // (PND)
     BYTE nW4WAttachPrev;    // g
 
     USHORT nStartNo;    // Start-Nr. fuer den Writer
-    BYTE nUpperLevel;   // aktuelle Anzeigetiefe fuer den Writer
+    BYTE nUpperLevel(0); // aktuelle Anzeigetiefe fuer den Writer
     SvxExtNumType eType;        // Writer-Num-Typ
 
     BOOL bError = TRUE;
@@ -551,7 +456,7 @@ void SwW4WParser::Read_ParaNumberDef()              // (PND)
         case 5: eType = SVX_NUM_ROMAN_UPPER;        break;
         default:
             // pruefen auf Werte groesser 5
-            ASSERT( !nW4WType, "Value of nW4WType is not supported" );
+            OSL_ENSURE( !nW4WType, "Value of nW4WType is not supported" );
             // sonst default-Wert
             eType = SVX_NUM_ARABIC;
             break;
@@ -800,12 +705,12 @@ SwFlyFrmFmt* SwW4WParser::MakeTxtFly( RndStdIds eAnchor,
     return pFlyFmt;
 }
 
-void SwW4WParser::FlySecur( BOOL bAlignCol,
+void SwW4WParser::FlySecur( BOOL /*bAlignCol*/,
                             long& rXPos, long& rYPos,
                             long& rWidthTw, long& rHeightTw,
                             RndStdIds& rAnchor,
-                            long* pTop, long* pLeft, long* pBot,
-                            long* pRight, USHORT nBorderCode )
+                            long* /*pTop*/, long* /*pLeft*/, long* /*pBot*/,
+                            long* /*pRight*/, USHORT nBorderCode )
 {
     if ( rYPos < 0 )
         rYPos = 0;
@@ -815,6 +720,8 @@ void SwW4WParser::FlySecur( BOOL bAlignCol,
         {
         case FLY_IN_CNTNT:  rAnchor = FLY_AT_CNTNT; break;
         case FLY_PAGE:      rXPos = 0;              break;
+        default:
+            break;
         }
     }
 
@@ -1061,8 +968,8 @@ void SwW4WParser::Read_BeginAbsPosObj()             // (APO)
         static const RndStdIds nAnchorTab[]={ FLY_AT_CNTNT,     // Absatz
                                               FLY_PAGE,         // Seite
                                               FLY_IN_CNTNT };   // Buchstabe
-        if ( nAnchor >= sizeof(nAnchorTab)/sizeof(RndStdIds)) nAnchor = 0;
-
+        if (nAnchor >= static_cast<long>(SAL_N_ELEMENTS(nAnchorTab)))
+            nAnchor = 0;
         RndStdIds eAnchor = nAnchorTab[ nAnchor ];
 
         if ( ( nIniFlags & W4WFL_NO_FLY_IN_CNTNT )
@@ -1085,12 +992,13 @@ void SwW4WParser::Read_BeginAbsPosObj()             // (APO)
         static const SwVertOrient nVAlignTab[]={ VERT_NONE, VERT_TOP,
                                                 VERT_CENTER, VERT_BOTTOM,
                                                 VERT_NONE };
-        if ( nVAlign >= sizeof(nVAlignTab)/sizeof(SwVertOrient)) nVAlign = 0;
+        if (nVAlign >= static_cast<long>(SAL_N_ELEMENTS(nVAlignTab)))
+            nVAlign = 0;
         SwVertOrient eVAlign = nVAlignTab[ nVAlign ];
 
         static const SwHoriOrient nHAlignTab[]={ HORI_LEFT, HORI_RIGHT,
                                                   HORI_CENTER, HORI_NONE};
-        if ( nHAlign >= sizeof(nHAlignTab)/sizeof(SwHoriOrient))
+        if (nHAlign >= static_cast<long>(SAL_N_ELEMENTS(nHAlignTab)))
             nHAlign = 3;
         SwHoriOrient eHAlign = nHAlignTab[ nHAlign ];
 
@@ -1315,7 +1223,7 @@ void SwW4WParser::Read_BeginAbsPosObj()             // (APO)
             SwPosition aTmpPos( *pCurPaM->GetPoint() );
 
             const SwFmtCntnt& rCntnt = pFlyFmt->GetCntnt();
-            ASSERT( rCntnt.GetCntntIdx(), "Kein Inhalt vorbereitet." );
+            OSL_ENSURE( rCntnt.GetCntntIdx(), "Kein Inhalt vorbereitet." );
             PtNd( pCurPaM ) = rCntnt.GetCntntIdx()->GetIndex() + 1;
             SwCntntNode *pNode = pCurPaM->GetCntntNode();
             PtCnt( pCurPaM ).Assign( pNode, 0 );
@@ -1377,19 +1285,19 @@ USHORT SwW4WParser::Read_SetBorder( USHORT nBor, SvxBoxItem& rFmtBox )
 // zumindest bei WP und WW2 nicht, d.h. "extra thick" und "hairline"
 // wird nie benutzt. Ich habe die Tabelle jetzt auf WW2 optimiert.
 
-    static USHORT __READONLY_DATA nOutTab[] = {         // Aussenlinie :
+    static USHORT const nOutTab[] = {       // Aussenlinie :
         DEF_LINE_WIDTH_0, DEF_LINE_WIDTH_1,             // none, single
         DEF_DOUBLE_LINE1_OUT, DEF_LINE_WIDTH_0,         // double, dashed
         DEF_LINE_WIDTH_0, DEF_LINE_WIDTH_3,             // dotted, sick
         DEF_LINE_WIDTH_4, DEF_LINE_WIDTH_0 };           // extra thick, hairline
 
-    static USHORT __READONLY_DATA nInTab[] = {          // Innenlinie,
+    static USHORT const nInTab[] = {            // Innenlinie,
         0, 0, DEF_DOUBLE_LINE1_IN, 0, 0, 0, 0, 0 };     // Index siehe nOutTab
 
-    static USHORT __READONLY_DATA nDistTab[] = {        // Abstand der Linien
+    static USHORT const nDistTab[] = {      // Abstand der Linien
         0, 0, DEF_DOUBLE_LINE1_DIST, 0, 0, 0, 0, 0 };   // Index siehe nOutTab
 
-    static USHORT __READONLY_DATA nLinePlace[] = {      // Art der Linien
+    static USHORT const nLinePlace[] = {        // Art der Linien
                         BOX_LINE_RIGHT,
                         BOX_LINE_BOTTOM,
                         BOX_LINE_LEFT,
@@ -1652,7 +1560,7 @@ void SwW4WParser::Adjust_pTabDefs() // Aufrufe siehe .<CDS> und .<BRO>
     pTabDefs[nTabCols].nLeftTw = pTabDefs[0].nLeftTw + nTabWidthTw;
 
     long nWidthTw;      // Groesse der aktuellen Zelle
-    long nMittel;       // zur Erkennung, ob alle Zellen gleich gross
+    long nMittel=0;     // zur Erkennung, ob alle Zellen gleich gross
 
     for (i=0; i<(int)nTabCols; i++)
     {
@@ -1740,7 +1648,7 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
     long nLastDist  = 0;
     long nLastWidth = 0;
 
-    for( int i=0; bEqual, i<(int)nCols; i++ )
+    for( int i=0; i<(int)nCols; i++ )
     {
         // Spalten-Breite
         long nActWidth = pActTabDefs[ i ].nRightTw - pActTabDefs[ i ].nLeftTw;
@@ -1759,26 +1667,13 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
     }
     nAveDist /= (nCols - 1);
 
-    // ULONG nNettoWidth = pActTabDefs[ nCols-1 ].nRightTw - pActTabDefs[ 0 ].nLeftTw;
-
-
-
-    // Zwischen-Linie
-    /*
-        aCol.SetLineAdj( COLADJ_TOP );
-        aCol.SetLineHeight( 100 );
-        aCol.SetLinePen( Pen( Color( COL_BLACK ), 1, PEN_SOLID ) );
-    */
-
-
-
     if( bEqual )   // alle Spalten gleich ?
         aCol.Init( (USHORT)nCols, (USHORT)nAveDist, (USHORT)nNettoWidth );
     else
     {
         aCol.Init( (USHORT)nCols, (USHORT)nAveDist, USHRT_MAX );
         // Spalten unterschiedlich breit: fein, das kann der Writer inzwischen!
-        USHORT nWishWidth = 0, nLeftDist = 0, nRightDist = 0;
+        USHORT nWishWidth = 0, nLeftDist = 0;
         USHORT i;
         for( i = 0; i < nCols; i++ )
         {
@@ -1788,19 +1683,17 @@ void SetCols( SwFrmFmt &rFmt, long nCols, W4W_ColdT* pActTabDefs, long nNettoWid
             long nWidth = pActTabDefs[ i ].nRightTw - pActTabDefs[ i ].nLeftTw;
             if( i < nCols-1 )
             {
-                long nRightDist = pActTabDefs[ i ].nRightTw - pActTabDefs[ i+1 ].nLeftTw;
-                nRightDist = nWidth / 2;
-                pCol->SetRight( (USHORT)nRightDist );
+                long nLclRightDist = pActTabDefs[ i ].nRightTw - pActTabDefs[ i+1 ].nLeftTw;
+                nLclRightDist = nWidth / 2;
+                pCol->SetRight( (USHORT)nLclRightDist );
             }
-            else
-                nRightDist = 0; // letzte Spalte hat keinen Zwischenraum mehr
 
             pCol->SetWishWidth( nWidth + nLeftDist + pCol->GetRight() );
 
             // aufsummierte Spaltenbreiten ergeben Gesamtbreite
             nWishWidth += pCol->GetWishWidth();
             // Halber Abstand ist an naechster Spalte noch zu setzen
-            nLeftDist = nRightDist;
+            nLeftDist = 0;
         }
         aCol.SetWishWidth( nWishWidth );
     }
@@ -1979,31 +1872,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
 
                     ULONG nWidth = USHRT_MAX;
                     aCol.Init( USHORT( nCols ), USHORT( nAveDist ), USHORT( nWidth ) );
-                    /*
-                    spaeter nachruesten: unterschiedliche Spaltenbreiten und -Abstaende
 
-                    if( nCols == ( aColumns.Count() / 2 ) )
-                    {
-                        for( USHORT n = 0, i = 0; n < aColumns.Count(); n += 2, ++i )
-                        {
-                            SwColumn* pCol = aCol.GetColumns()[ i ];
-                            ULONG nTmp = aColumns[ n ];
-                            nTmp *= USHRT_MAX;
-                            nTmp /= nWidth;
-                            pCol->SetWishWidth( USHORT(nTmp) );
-            /*
-                JP 07.07.95: der Dialog kennt nur eine Breite fuer alle Spalten
-                             darum hier nicht weiter beachten
-                            nTmp = aColumns[ n+1 ];
-                            if( nTmp )
-                                pCol->SetRight( USHORT(nTmp) );
-                            else
-                                pCol->SetRight( 0 );
-                            pCol->SetLeft( 0 );
-            *
-                        }
-                    }
-                    */
                     pActFlySection->SetAttr( aCol );
                 }
                 else
@@ -2029,7 +1898,7 @@ void SwW4WParser::Read_ColumnsDefinition()      // (CDS)
                     // PaM in Node der Section setzen
                     const SwSectionNode* pSectionNode =
                         pNewSection->GetFmt()->GetSectionNode();
-                    ASSERT( pSectionNode, "Kein Inhalt vorbereitet." );
+                    OSL_ENSURE( pSectionNode, "Kein Inhalt vorbereitet." );
                     pCurPaM->GetPoint()->nNode =
                         pSectionNode->GetIndex()+1;
                     pCurPaM->GetPoint()->nContent.Assign(
@@ -2070,12 +1939,14 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
     if( pCurPaM->GetPoint()->nContent.GetIndex() != 0 )
         pDoc->SplitNode( *pCurPaM->GetPoint() );
 
+    BOOL bOldIsTxtInPgDesc;
+
     if( bBCMStep2 && pDoc->IsIdxInTbl( pCurPaM->GetPoint()->nNode ) )
     {
         // Tabellen-Daten IN einer anderen Tabelle als Rohtext lesen
         Flush();
         BOOL bOldIsColMode = bIsColMode;
-        BOOL bOldIsTxtInPgDesc = bIsTxtInPgDesc;
+        bOldIsTxtInPgDesc = bIsTxtInPgDesc;
         bIsColMode         = TRUE;
         nTablInTablDepth++;
         while(     !nError
@@ -2105,7 +1976,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
     */
     ULONG nOldPos       = rInp.Tell();      // merke FilePos
     BOOL bOldTxtInDoc   = bTxtInDoc;
-    BOOL bOldIsTxtInPgDesc = bIsTxtInPgDesc;
+    bOldIsTxtInPgDesc = bIsTxtInPgDesc;
     BOOL bOldNoExec     = bNoExec;
     BYTE nOldErr        = nError;
     if( !pTabBorders )
@@ -2162,10 +2033,10 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
         {
             // Hilfsvaris zum uebersichtlicheren Zugriff auf Zeilen-Arrays
             USHORT* aThisRow  = (*pTabBorders)[ iR   ];
-            USHORT* aAboveRow;
+            USHORT* aAboveRow = 0;
             if( iR > 0 )
                 aAboveRow = (*pTabBorders)[ iR-1 ];
-            USHORT* aBelowRow;
+            USHORT* aBelowRow(NULL);
             if( iR < nTabRows-1 )
                 aBelowRow = (*pTabBorders)[ iR+1 ];
 
@@ -2321,7 +2192,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                     ->GetTabSortBoxes()[ 0 ]
                     ->GetSttNd()
                     ->FindTableNode() );
-        ASSERT( pTblNd, "wo ist mein TabellenNode" );
+        OSL_ENSURE( pTblNd, "wo ist mein TabellenNode" );
 
         // lokale Variable zum bequemeren Zugriff
         SwTable& rTable = pTblNd->GetTable();
@@ -2363,7 +2234,7 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
             und lies dabei den Tabellen-Inhalt in rTable ein
         */
         bWasCellAfterCBreak = FALSE;
-        BOOL bOldIsTxtInPgDesc = bIsTxtInPgDesc;
+        bOldIsTxtInPgDesc = bIsTxtInPgDesc;
         bBCMStep2 = TRUE;
         while (    !nError
                 && bIsColMode
@@ -2424,9 +2295,9 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                             const SwTableBox* pBox  = (*pActMGroup)[ 1 ];
                             SwTableLine* pLine = (SwTableLine*)pBox->GetUpper();
                             USHORT nPos = pLine->GetTabBoxes().GetPos( pBox );
-                            ASSERT( USHRT_MAX != nPos, "GetPos fehlgeschlagen");
+                            OSL_ENSURE( USHRT_MAX != nPos, "GetPos fehlgeschlagen");
                             SwStartNode* pSttNd = (SwStartNode*)pBox->GetSttNd();
-                            ASSERT( pSttNd, "Box ohne Start-Node ?!");
+                            OSL_ENSURE( pSttNd, "Box ohne Start-Node ?!");
 
                             pTargetBox->ChgFrmFmt(
                                 (SwTableBoxFmt*)pBox->GetFrmFmt() );
@@ -2437,13 +2308,12 @@ void SwW4WParser::Read_BeginColumnMode()        // (BCM)
                             // dann die pTargetBox einfuegen
                             pLine->GetTabBoxes().C40_INSERT( SwTableBox, pTargetBox, nPos );
 
-//                          pLine->GetTabBoxes().Insert( pTargetBox, nPos );
                             // dann die Nodes loeschen!!
                             pDoc->DeleteSection( pSttNd );
                         }
                         break;
                     default:            // was wollen wir denn hier ???
-                        ASSERT( !this, "CheckMergeSel() with undefined return value" );
+                        OSL_ENSURE( !this, "CheckMergeSel() with undefined return value" );
                         break;
                     }
                 }
@@ -2530,7 +2400,7 @@ void SwW4WParser::SetPamInCell( USHORT nRow, USHORT nCol, BOOL bSetPaM )
     // Start-Node der akt. Box holen
     const SwNode* pSttNd = pTabBox->GetSttNd();
 
-    ASSERT(pSttNd, "Probleme beim Aufbau der Tabelle");
+    OSL_ENSURE(pSttNd, "Probleme beim Aufbau der Tabelle");
 
     // JETZT den PaM-Point auf den Start-Node der Box setzen
     if (bSetPaM)
@@ -2658,7 +2528,7 @@ SwTableBox* SwW4WParser::UpdateTableMergeGroup( SwSelBoxes_SAR* pActGroup,
         else
         {
             USHORT nMGrIdx = pTabDefs[ nCol ].nMergeGroupIdx;
-            ASSERT( nMGrIdx < pMergeGroups->Count(),
+            OSL_ENSURE( nMGrIdx < pMergeGroups->Count(),
                     "Merge Group Idx zu gross" );
             pTheMergeGroup = (*pMergeGroups)[ nMGrIdx ];
         }
@@ -2806,7 +2676,6 @@ void SwW4WParser::Read_BeginTabCell()           // (BCO)    Header eines Feldes
                 pActMGroup = new SwSelBoxes_SAR( BYTE(nCellSpan * nRowSpan));
 
                 pMergeGroups->Insert( pActMGroup, pMergeGroups->Count() );
-//              pMergeGroups->Insert( pActMGroup, pMergeGroups->Count() );
 
                 // 3. Index dieser Merge-Gruppe und Anzahl der betroffenen
                 //    Zeilen in allen betroffenen Spalten vermerken
@@ -2859,7 +2728,7 @@ void SwW4WParser::Read_BeginTabCell()           // (BCO)    Header eines Feldes
                 const SwNode* pEndNd =
                         pTargetBox->GetSttNd()->EndOfSectionNode();
 
-                ASSERT(pEndNd, "Gruppen-TargetBox ohne Start-Node ?");
+                OSL_ENSURE(pEndNd, "Gruppen-TargetBox ohne Start-Node ?");
 
                 PtNd( pCurPaM ) = pEndNd->GetIndex();
 
@@ -2970,30 +2839,8 @@ void SwW4WParser::Read_ColumnBreak()            // (HCB, SCB)
             pCtrlStck->NewAttr( rPos,  SwW4WStyle( nTabStyleId ) );
             pCtrlStck->SetAttr( rPos, RES_FLTR_STYLESHEET );
         }
-        /*
-        const Color aCol( COL_LIGHTRED );
-        const Brush aBrush( aCol );
-        const SvxBrushItem aBack( aBrush, RES_BACKGROUND );
-        pTabBox->GetFrmFmt()->SetAttr( aBack );
-
-#ifdef TEST_BOX
-        String sHlp = "forgotten Box now inserted\n\nat Row #";
-        sHlp += nTabRow;
-        sHlp += " Col #";
-        sHlp += nLastProcessedCol;
-        InfoBox(0, sHlp).Execute();
-#endif
-        */
     }
     ActivateTxtFlags();                 // .<HCB> gilt als 'Text ist aufgetreten'
-
-    /*
-    BOOL bOldTxtInPgD = bIsTxtInPgDesc;
-
-
-    if( bHeadFootDef )
-        bIsTxtInPgDesc = bOldTxtInPgD;  // beruecksichtige, dass es auch Tabellen in Hd/Ft geben kann!
-    */
 
     bIsTxtInPara        = FALSE;
     bIsSTMInPara        = FALSE;
@@ -3192,10 +3039,10 @@ void SwW4WParser::Read_FootNoteStart(char nType, BYTE   nNoLow,
 
     SwTxtNode* pTxt = pCurPaM->GetNode()->GetTxtNode();
     SwTxtAttr* pFN = pTxt->GetTxtAttr( pCurPaM->GetPoint()->nContent, RES_TXTATR_FTN );
-    ASSERT(pFN, "Probleme beim Anlegen des Fussnoten-Textes");
+    OSL_ENSURE(pFN, "Probleme beim Anlegen des Fussnoten-Textes");
 
     const SwNodeIndex* pSttIdx = ((SwTxtFtn*)pFN)->GetStartNode();
-    ASSERT(pSttIdx, "Probleme beim Anlegen des Fussnoten-Textes");
+    OSL_ENSURE(pSttIdx, "Probleme beim Anlegen des Fussnoten-Textes");
 
     PtNd( pCurPaM ) = pSttIdx->GetIndex() + 1;
     PtCnt( pCurPaM ).Assign( pCurPaM->GetCntntNode(), 0 );
@@ -3270,7 +3117,7 @@ void SwW4WParser::SetFtnInfoIntoDoc(BOOL bEndNote,
                                     String& rPrefixTxt,
                                     String& rSuffixTxt )
 {
-    static SvxExtNumType __READONLY_DATA aNumArr[]
+    static SvxExtNumType const aNumArr[]
             = { SVX_NUM_ARABIC, SVX_NUM_ARABIC, SVX_NUM_CHARS_LOWER_LETTER, SVX_NUM_CHARS_UPPER_LETTER,
                 SVX_NUM_ROMAN_LOWER,        SVX_NUM_ROMAN_UPPER };
     if( bEndNote )
@@ -3343,17 +3190,6 @@ void SwW4WParser::Read_FootNoteInfo()           // (FNI)
 
 void SwW4WParser::UpdateCacheVars()
 {
-#if 0
-    const SwFrmFmt &rFmt = pPageDesc->GetMaster();
-    ASSERT( pPageDesc->GetMaster().GetFrmSize().GetFixSize() != LONG_MAX ,
-            "Seitenbreite (Master) falsch" );
-    ASSERT( pPageDesc->GetLeft().GetFrmSize().GetFixSize() != LONG_MAX ,
-            "Seitenbreite (Left) falsch" );
-    ASSERT( pPageDesc->GetMaster().GetFrmSize().GetVarSize() != LONG_MAX ,
-            "Seitenlaenge (Master) falsch" );
-    ASSERT( pPageDesc->GetLeft().GetFrmSize().GetVarSize() != LONG_MAX ,
-            "Seitenlaenge (Left) falsch" );
-#else
     SwFrmFmt *pFmt = &pPageDesc->GetLeft();
     SwFmtFrmSize aSz( pFmt->GetFrmSize() );
     BOOL bSet = FALSE;
@@ -3392,7 +3228,6 @@ void SwW4WParser::UpdateCacheVars()
     if( bSet )
         pFmt->SetAttr( aSz );
 
-#endif
     const SvxLRSpaceItem& rPageLR = pFmt->GetLRSpace();
     nPgLeft       = (USHORT)(rPageLR.GetTxtLeft() + nLeftMgnCorr);
     nPgRightDelta = (USHORT)( rPageLR.GetRight() );
@@ -3431,7 +3266,7 @@ SwFrmFmt* lcl_GetMasterLeft( SwPageDesc& rPgDsc, USHORT nType )
     case W4W_ODD:     pFmt = &rPgDsc.GetMaster();
                       break;
     }
-    ASSERT( 0 != pFmt, "header/footer ohne entsprechendes Format im PgDesc" );
+    OSL_ENSURE( 0 != pFmt, "header/footer ohne entsprechendes Format im PgDesc" );
 
     return pFmt;
 }
@@ -3462,7 +3297,7 @@ BOOL SwW4WParser::ContinueHdFtDefinition( BOOL bFollow,
     UseOnPage   eOldHdFtShare = PD_NONE;
 
     BOOL    bDoTheHeader  = ( W4W_HEADER == (nHdFtType & W4W_MASK3) );
-    ASSERT( bDoTheHeader != ( W4W_FOOTER == (nHdFtType & W4W_MASK3) ),
+    OSL_ENSURE( bDoTheHeader != ( W4W_FOOTER == (nHdFtType & W4W_MASK3) ),
             "Hier muss Header ODER Footer definiert werden" );
 
     // something special:
@@ -3739,12 +3574,6 @@ void SwW4WParser::Read_HdFtDefinition( BOOL bHeader )
         && GetDecimal( nPos )       && !nError
         && GetDecimal( nLinePos )   && !nError )
     {
-        long nHdFtUl = nLinePos * 240;      // Grundlage: Zeilenabstand 6 LPI
-                                            // stimmt so zumindest fuer WW2
-        // was tun wir mit diesem Wert?
-        // vielleicht sollten wir nHdFtUl
-        // ggfs. in nNewValueHTM umwandeln ???
-
         // gibt es die optionale Angabe ?
         long nOptNew1, nOptNew2;
         if( W4WR_TXTERM == GetDecimal( nOptNew1 ) && !nError &&
@@ -4073,3 +3902,5 @@ SwPageDesc* SwW4WParser::CreatePageDesc( USHORT eCreateMode )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

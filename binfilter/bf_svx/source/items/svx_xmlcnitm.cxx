@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,27 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_ATTRIBUTEDATA_HPP_
 #include <com/sun/star/xml/AttributeData.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLCNIMP_HXX
 #include <bf_xmloff/xmlcnimp.hxx>
-#endif
-#ifndef _XMLOFF_XMLCNITM_HXX
 #include <bf_xmloff/unoatrcn.hxx>
-#endif
 #include "xmlcnitm.hxx"
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::xml;
+
+using rtl::OUString;
 
 // ------------------------------------------------------------------------
 
@@ -78,21 +72,21 @@ using namespace ::com::sun::star::xml;
 
 
 
-/*N*/ USHORT SvXMLAttrContainerItem::GetVersion( USHORT nFileFormatVersion ) const
+/*N*/ USHORT SvXMLAttrContainerItem::GetVersion( USHORT /*nFileFormatVersion*/ ) const
 /*N*/ {
 /*N*/   // This item should never be stored
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
-/*N*/ BOOL  SvXMLAttrContainerItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool  SvXMLAttrContainerItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   Reference<XNameContainer> xContainer =
 /*N*/       new SvUnoAttributeContainer( new SvXMLAttrContainerData( *pImpl ) );
 /*N*/
 /*N*/   rVal.setValue( &xContainer, ::getCppuType((Reference<XNameContainer>*)0) );
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
-/*N*/ BOOL SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvXMLAttrContainerItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*NBFF*/{
 /*NBFF*/    Reference<XInterface> xRef;
 /*NBFF*/    SvUnoAttributeContainer* pContainer = NULL;
@@ -118,7 +112,7 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/        {
 /*NBFF*/            Reference<XNameContainer> xContainer( xRef, UNO_QUERY );
 /*NBFF*/            if( !xContainer.is() )
-/*NBFF*/                return FALSE;
+/*NBFF*/                return false;
 /*NBFF*/
 /*NBFF*/            const Sequence< OUString > aNameSequence( xContainer->getElementNames() );
 /*NBFF*/            const OUString* pNames = aNameSequence.getConstArray();
@@ -132,10 +126,10 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/
 /*NBFF*/                aAny = xContainer->getByName( aName );
 /*NBFF*/                if( aAny.getValue() == NULL || aAny.getValueType() != ::getCppuType((AttributeData*)0) )
-/*NBFF*/                    return FALSE;
+/*NBFF*/                    return false;
 /*NBFF*/
 /*NBFF*/                pData = (AttributeData*)aAny.getValue();
-/*NBFF*/                USHORT pos = aName.indexOf( sal_Unicode(':') );
+/*NBFF*/                sal_Int32 pos = aName.indexOf( sal_Unicode(':') );
 /*NBFF*/                if( pos != -1 )
 /*NBFF*/                {
 /*NBFF*/                    const OUString aPrefix( aName.copy( 0, pos ));
@@ -163,7 +157,7 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/            {
 /*NBFF*/                delete pImpl;
 /*NBFF*/                pImpl = pNewImpl;
-/*NBFF*/                return FALSE;
+/*NBFF*/                return false;
 /*NBFF*/            }
 /*NBFF*/            else
 /*NBFF*/            {
@@ -173,10 +167,10 @@ using namespace ::com::sun::star::xml;
 /*NBFF*/        catch(...)
 /*NBFF*/        {
 /*NBFF*/            delete pNewImpl;
-/*NBFF*/            return FALSE;
+/*NBFF*/            return false;
 /*NBFF*/        }
 /*NBFF*/    }
-/*NBFF*/    return TRUE;
+/*NBFF*/    return true;
 /*N*/ }
 
 
@@ -220,21 +214,28 @@ using namespace ::com::sun::star::xml;
 
 
 /*N*/ USHORT SvXMLAttrContainerItem::GetFirstNamespaceIndex() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*N*/ USHORT SvXMLAttrContainerItem::GetNextNamespaceIndex( USHORT nIdx ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ USHORT SvXMLAttrContainerItem::GetNextNamespaceIndex( USHORT /*nIdx*/ ) const
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
-/*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT i ) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return  OUString::createFromAscii (""); //STRIP001
-/*N*/ }
-
-/*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT i ) const
+/*N*/ const OUString& SvXMLAttrContainerItem::GetNamespace( USHORT /*i*/ ) const
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP"); return ::rtl::OUString::createFromAscii ("");//STRIP001 /*N*/    return pImpl->GetPrefix( i );
+/*N*/     DBG_BF_ASSERT(0, "STRIP");
+/*N*/     static OUString aStripped;
+/*N*/     return aStripped;
+/*N*/ }
+
+/*N*/ const OUString& SvXMLAttrContainerItem::GetPrefix( USHORT /*i*/ ) const
+/*N*/ {
+/*N*/     DBG_BF_ASSERT(0, "STRIP");
+/*N*/     static OUString aStripped;
+/*N*/     return aStripped;
 /*N*/ }
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,38 +29,18 @@
 
 #include <comphelper/propertysetinfo.hxx>
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SVX_UNOPOOL_HXX_
 #include "unopool.hxx"
-#endif
-#ifndef _SVDMODEL_HXX
 #include "svdmodel.hxx"
-#endif
-#ifndef _SVDOBJ_HXX
 #include "svdobj.hxx"
-#endif
-#ifndef _SVX_UNOSHPRP_HXX
 #include "unoshprp.hxx"
-#endif
-#ifndef _SVX_XFLBSTIT_HXX
 #include "xflbstit.hxx"
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include "xflbmtit.hxx"
-#endif
-#ifndef _SVDETC_HXX
 #include "svdetc.hxx"
-#endif
-#ifndef _MyEDITENG_HXX
 #include "editeng.hxx"
-#endif
 
 #include "unoapi.hxx"
 #include <memory>
@@ -69,8 +50,9 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::beans;
-using namespace ::rtl;
 using namespace ::cppu;
+
+using rtl::OUString;
 
 SvxUnoDrawPool::SvxUnoDrawPool( SdrModel* pModel, sal_Int32 nServiceId ) throw()
 : PropertySetHelper( SvxPropertySetInfoPool::getOrCreate( nServiceId ) ), mpModel( pModel )
@@ -189,7 +171,7 @@ void SvxUnoDrawPool::putAny( SfxItemPool* pPool, const comphelper::PropertyMapEn
                 drawing::BitmapMode eMode;
                 if(!(aValue >>= eMode) )
                 {
-                    sal_Int32 nMode;
+                    sal_Int32 nMode = 0;
                     if(!(aValue >>= nMode))
                         throw IllegalArgumentException();
 
@@ -207,10 +189,10 @@ void SvxUnoDrawPool::putAny( SfxItemPool* pPool, const comphelper::PropertyMapEn
         {
             ::std::auto_ptr<SfxPoolItem> pNewItem( pPool->GetDefaultItem( nWhich ).Clone() );
 
-            const SfxMapUnit eMapUnit = pPool ? pPool->GetMetric(nWhich) : SFX_MAPUNIT_100TH_MM;
+            const SfxMapUnit eLclMapUnit = pPool ? pPool->GetMetric(nWhich) : SFX_MAPUNIT_100TH_MM;
 
             BYTE nMemberId = pEntry->mnMemberId & (~SFX_METRIC_ITEM);
-            if( eMapUnit == SFX_MAPUNIT_100TH_MM )
+            if( eLclMapUnit == SFX_MAPUNIT_100TH_MM )
                 nMemberId &= (~CONVERT_TWIPS);
 
             if( !pNewItem->PutValue( aValue, nMemberId ) )
@@ -224,7 +206,7 @@ void SvxUnoDrawPool::putAny( SfxItemPool* pPool, const comphelper::PropertyMapEn
 void SvxUnoDrawPool::_setPropertyValues( const comphelper::PropertyMapEntry** ppEntries, const Any* pValues )
     throw(UnknownPropertyException, PropertyVetoException, IllegalArgumentException, WrappedTargetException )
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SfxItemPool* pPool = getModelPool( sal_False );
 
@@ -239,7 +221,7 @@ void SvxUnoDrawPool::_setPropertyValues( const comphelper::PropertyMapEntry** pp
 void SvxUnoDrawPool::_getPropertyValues( const comphelper::PropertyMapEntry** ppEntries, Any* pValue )
     throw(UnknownPropertyException, WrappedTargetException )
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SfxItemPool* pPool = getModelPool( sal_True );
 
@@ -254,7 +236,7 @@ void SvxUnoDrawPool::_getPropertyValues( const comphelper::PropertyMapEntry** pp
 void SvxUnoDrawPool::_getPropertyStates( const comphelper::PropertyMapEntry** ppEntries, PropertyState* pStates )
     throw(UnknownPropertyException )
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SfxItemPool* pPool = getModelPool( sal_True );
 
@@ -309,7 +291,7 @@ void SvxUnoDrawPool::_getPropertyStates( const comphelper::PropertyMapEntry** pp
 void SvxUnoDrawPool::_setPropertyToDefault( const comphelper::PropertyMapEntry* pEntry )
     throw(UnknownPropertyException )
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SfxItemPool* pPool = getModelPool( sal_True );
 
@@ -320,7 +302,7 @@ void SvxUnoDrawPool::_setPropertyToDefault( const comphelper::PropertyMapEntry* 
 Any SvxUnoDrawPool::_getPropertyDefault( const comphelper::PropertyMapEntry* pEntry )
     throw(UnknownPropertyException, WrappedTargetException )
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     Any aAny;
     getAny( mpDefaultsPool, pEntry, aAny );
@@ -385,7 +367,7 @@ uno::Sequence< uno::Type > SAL_CALL SvxUnoDrawPool::getTypes()
 uno::Sequence< sal_Int8 > SAL_CALL SvxUnoDrawPool::getImplementationId()
     throw (uno::RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     static uno::Sequence< sal_Int8 > aId;
     if( aId.getLength() == 0 )
@@ -423,3 +405,5 @@ Sequence< OUString > SAL_CALL SvxUnoDrawPool::getSupportedServiceNames(  )
     return aSNS;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

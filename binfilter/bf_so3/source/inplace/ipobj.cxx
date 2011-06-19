@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,7 +34,6 @@
 #include "bf_so3/ipclient.hxx"
 #include <svuidlg.hrc>
 #include "bf_so3/ipwin.hxx"
-#include <ipmenu.hxx>
 #include <bf_so3/ipenv.hxx>
 #include "bf_so3/soerr.hxx"
 #include "bf_so3/outplace.hxx"
@@ -65,7 +65,7 @@ void SvInPlaceObject::TestMemberObjRef( BOOL bFree )
     {
         ByteString aTest = "\t\tGetIPClient() == ";
         aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetIPClient() ) );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -80,7 +80,7 @@ void SvInPlaceObject::TestMemberInvariant( BOOL bPrint )
         {
             ByteString aTest( "\t\tSvInPlaceEnvironment == " );
             aTest.Append( ByteString::CreateFromInt32( (ULONG)pIPEnv ) );
-            DBG_TRACE( aTest.GetBuffer() );
+            OSL_TRACE( "%s", aTest.GetBuffer() );
         }
     }
 #else
@@ -108,8 +108,6 @@ SvInPlaceObject::SvInPlaceObject()
 
 SvInPlaceObject::~SvInPlaceObject()
 {
-    DBG_ASSERT( LIST_ENTRY_NOTFOUND == GetIPActiveObjectList().GetPos( this ),
-                "ip-object in ip-object-list" );
 }
 
 
@@ -123,19 +121,6 @@ void SvInPlaceObject::SetIPEnv( SvInPlaceEnvironment * pFrm )
     DBG_ASSERTWARNING( pIPEnv || pFrm, "already NULL" );
     DBG_ASSERT( !pIPEnv || !pFrm, "IPEnv exist" );
     pIPEnv = pFrm;
-}
-
-/************************************************************************
-|*    SvInPlaceObject::GetIPActiveObjectList()
-|*
-|*    Beschreibung
-*************************************************************************/
-SvInPlaceObjectList & SvInPlaceObject::GetIPActiveObjectList()
-{
-    SoDll * pSoApp = SOAPP;
-    if( !pSoApp->pIPActiveObjectList )
-        pSoApp->pIPActiveObjectList = new SvInPlaceObjectList();
-    return *pSoApp->pIPActiveObjectList;
 }
 
 /*************************************************************************
@@ -156,16 +141,6 @@ ErrCode SvInPlaceObject::Verb
         return SvEmbeddedObject::Verb( nVerb, pCl, pWin, pWorkRectPixel );
 
     ErrCode nRet = ERRCODE_NONE;
-    /*
-    BOOL bGroesseNachTreten = TRUE;
-    switch ( nVerb )
-    {
-        case SVVERB_OPEN:
-        case SVVERB_HIDE:
-            bGroesseNachTreten = FALSE;
-            break;
-    }
-    */
 
     if( Owner() )
     {
@@ -197,11 +172,6 @@ ErrCode SvInPlaceObject::Verb
     {
         nRet = SvEmbeddedObject::Verb( nVerb, pCl, pWin, pWorkRectPixel );
     }
-    /*
-    if( bRet && bGroesseNachTreten && pWorkRectPixel
-      && GetProtocol().IsInPlaceActive() )
-        pICl->GetEnv()->RequestObjAreaPixel( *pWorkRectPixel );
-    */
     return nRet;
 }
 
@@ -317,11 +287,6 @@ void SvInPlaceObject::InPlaceActivate
         }
     }
 
-    if( Owner() && !bActivate )
-    { // Client-Items aus OleMenu entfernen
-        if( pIPEnv )
-            pIPEnv->ReleaseClientMenu();
-    }
     if( !bActivate && pIPEnv )
     {
         if( bDeleteIPEnv )
@@ -360,11 +325,6 @@ ErrCode SvInPlaceObject::DoUIActivate( BOOL bActivate )
 *************************************************************************/
 void SvInPlaceObject::UIActivate( BOOL bActivate )
 {
-    if( Owner() )
-    {
-        if( bActivate )
-            pIPEnv->MergeMenus();
-    }
     // bei !bActivate siehe IPClient::UIActivate
     if( bActivate )
         pIPEnv->ShowIPObj( bActivate );
@@ -402,21 +362,6 @@ void SvInPlaceObject::DocWinActivate( BOOL bActivate )
 *************************************************************************/
 BOOL SvInPlaceObject::DoMergePalette()
 {
-    /*if( GetClient()->Owner() )
-    {
-        WorkWindow * pWW = pIPEnv->GetContainerEnv()->GetDocWin();
-        if( pWW )
-        {
-            Palette aPal = pWW->GetPalette();
-            return MergePalette( aPal );
-        }
-        else
-        {
-            pWW = pIPEnv->GetContainerEnv()->GetTopWin();
-            Palette aPal = pWW->GetPalette();
-            return MergePalette( aPal );
-        }
-    }*/
     return FALSE;
 }
 
@@ -505,3 +450,5 @@ void SvDeathObject::Draw
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,8 +36,6 @@ namespace binfilter {
 |*  SwFrm::GetShell()
 |*
 |*  Beschreibung        Liefert die aktuelle Shell, ggf. auch NULL.
-|*  Ersterstellung      MA 14. Aug. 92
-|*  Letzte Aenderung    MA 18. Feb. 99
 |*
 |*************************************************************************/
 
@@ -51,3 +50,5 @@ inline ViewShell * SwFrm::GetShell() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

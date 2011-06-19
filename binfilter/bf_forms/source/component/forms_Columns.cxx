@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,51 +26,23 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_COLUMNS_HXX
 #include "Columns.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_PROPERTY_HXX_
 #include "property.hxx"
-#endif
-#ifndef _FRM_IDS_HXX_
 #include "ids.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
-#ifndef _COMPHELPER_BASIC_IO_HXX_
 #include <comphelper/basicio.hxx>
-#endif
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
 namespace binfilter {
 
@@ -129,8 +102,8 @@ const StringSequence& getColumnTypes()
 //------------------------------------------------------------------------------
 sal_Int32 getColumnTypeByModelName(const ::rtl::OUString& aModelName)
 {
-    const ::rtl::OUString aModelPrefix = ::rtl::OUString::createFromAscii("com.sun.star.form.component.");
-    const ::rtl::OUString aCompatibleModelPrefix = ::rtl::OUString::createFromAscii("stardiv.one.form.component.");
+    const ::rtl::OUString aModelPrefix( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.form.component." ));
+    const ::rtl::OUString aCompatibleModelPrefix( RTL_CONSTASCII_USTRINGPARAM( "stardiv.one.form.component." ));
 
     sal_Int32 nTypeId = -1;
     if (aModelName == FRM_COMPONENT_EDIT)
@@ -138,16 +111,17 @@ sal_Int32 getColumnTypeByModelName(const ::rtl::OUString& aModelName)
     else
     {
         sal_Int32 nPrefixPos = aModelName.indexOf(aModelPrefix);
-        sal_Int32 nCampatiblePrefixPos = aModelName.indexOf(aCompatibleModelPrefix);
-        DBG_ASSERT( (nPrefixPos != -1) ||   (nCampatiblePrefixPos != -1),
+        sal_Int32 nCompatiblePrefixPos = aModelName.indexOf(aCompatibleModelPrefix);
+        DBG_ASSERT( (nPrefixPos != -1) || (nCompatiblePrefixPos != -1),
                 "::getColumnTypeByModelName() : wrong servivce !");
+        (void)nCompatiblePrefixPos;
 
         ::rtl::OUString aColumnType = (nPrefixPos != -1)
             ? aModelName.copy(aModelPrefix.getLength())
             : aModelName.copy(aCompatibleModelPrefix.getLength());
 
         const StringSequence& rColumnTypes = getColumnTypes();
-        nTypeId = ::binfilter::internal::findPos(aColumnType, rColumnTypes);//STRIP008         nTypeId = ::internal::findPos(aColumnType, rColumnTypes);
+        nTypeId = ::binfilter::internal::findPos(aColumnType, rColumnTypes);
     }
     return nTypeId;
 }
@@ -233,8 +207,8 @@ DBG_NAME(OGridColumn)
 OGridColumn::OGridColumn(const Reference<XMultiServiceFactory>& _rxFactory, const ::rtl::OUString& _sModelName)
     :OGridColumn_BASE(m_aMutex)
     ,OPropertySetAggregationHelper(OGridColumn_BASE::rBHelper)
-    ,m_aModelName(_sModelName)
     ,m_aHidden( makeAny( sal_False ) )
+    ,m_aModelName(_sModelName)
 {
     DBG_CTOR(OGridColumn,NULL);
 
@@ -380,14 +354,14 @@ void OGridColumn::setOwnProperties(Sequence<Property>& aDescriptor)
 //------------------------------------------------------------------------------
 Reference<XPropertySetInfo> SAL_CALL OGridColumn::getPropertySetInfo() throw(RuntimeException)
 {
-    DBG_ERROR("OGridColumn::getPropertySetInfo() : Dummy Called");
+    OSL_FAIL("OGridColumn::getPropertySetInfo() : Dummy Called");
     return Reference<XPropertySetInfo> ();
 }
 
 //------------------------------------------------------------------------------
 ::cppu::IPropertyArrayHelper& OGridColumn::getInfoHelper()
 {
-    DBG_ERROR("OGridColumn::getInfoHelper() : Dummy Called");
+    OSL_FAIL("OGridColumn::getInfoHelper() : Dummy Called");
 
     Sequence<Property> aDescriptor, aAggProperties;
     static OPropertyArrayAggregationHelper aDescAry(aDescriptor, aAggProperties);
@@ -439,7 +413,7 @@ sal_Bool OGridColumn::convertFastPropertyValue( Any& rConvertedValue, Any& rOldV
             }
             catch(starlang::IllegalArgumentException&)
             {
-                OSL_ENSURE(0,"OGridColumn::convertFastPropertyValue: TextAlign must be casted to sal_Int16!");
+                OSL_FAIL("OGridColumn::convertFastPropertyValue: TextAlign must be casted to sal_Int16!");
                 throw;
             }
             break;
@@ -604,7 +578,7 @@ void SAL_CALL OGridColumn::read(const Reference<XObjectInputStream>& _rxInStream
     }
 
     // 2. Lesen des Versionsnummer
-    sal_uInt16 nVersion = _rxInStream->readShort();
+    /*sal_uInt16 nVersion =*/ _rxInStream->readShort();
     sal_uInt16 nAnyMask = _rxInStream->readShort();
 
     if (nAnyMask & WIDTH)
@@ -651,3 +625,5 @@ IMPL_COLUMN(FormattedFieldColumn,   FRM_SUN_COMPONENT_FORMATTEDFIELD,   sal_Fals
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

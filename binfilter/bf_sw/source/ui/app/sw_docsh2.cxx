@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,185 +29,71 @@
 
 #define ITEMID_COLOR_TABLE      SID_COLOR_TABLE
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
-#ifndef _WRKWIN_HXX //autogen
 #include <vcl/wrkwin.hxx>
-#endif
-#ifndef _MSGBOX_HXX //autogen
 #include <vcl/msgbox.hxx>
-#endif
-#ifndef _LCKBITEM_HXX
 #include <bf_svtools/lckbitem.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
-#ifndef _ZFORMAT_HXX //autogen
 #include <bf_svtools/zformat.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_PATHOPTIONS_HXX
 #include <bf_svtools/pathoptions.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFX_DINFDLG_HXX //autogen
-#include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SFX_EVENTCONF_HXX //autogen
 #include <bf_sfx2/evntconf.hxx>
-#endif
-#ifndef _SFXECODE_HXX //autogen
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_DRAWITEM_HXX //autogen
 #include <bf_svx/drawitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
 
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
 
-#ifndef _SB_SBSTAR_HXX //autogen
 #include "bf_basic/sbstar.hxx"
-#endif
-#ifndef _BASMGR_HXX //autogen
 #include "bf_basic/basmgr.hxx"
-#endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
-#ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
-#endif
-#ifndef _SWEVENT_HXX //autogen
 #include <swevent.hxx>
-#endif
 
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>        // Dokumenterzeugung
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _GLOBDOC_HXX
 #include <globdoc.hxx>
-#endif
-#ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _USRPREF_HXX
 #include <usrpref.hxx>
-#endif
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
-#endif
-#ifndef _ACMPLWRD_HXX
 #include <acmplwrd.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _SWWAIT_HXX
 #include <swwait.hxx>
-#endif
 
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _GLOBALS_H
 #include <globals.h>
-#endif
-#ifndef _HELPID_H
 #include <helpid.h>
-#endif
-#ifndef _APP_HRC
 #include <app.hrc>
-#endif
-#ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>
-#endif
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
 
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 
 #include <sw3io.hxx>
 #include "bf_so3/staticbaseurl.hxx"
@@ -228,7 +115,7 @@ using namespace ::rtl;
 /*N*/   if( !pDoc )
 /*N*/   {
 /*N*/ //MA: Kommt bei der OLE-Registration vor!
-/*N*/ //        ASSERT( !this, "DocShell ist nicht richtig initialisiert!" );
+/*N*/ //        OSL_ENSURE( !this, "DocShell ist nicht richtig initialisiert!" );
 /*N*/       return ;
 /*N*/   }
 /*N*/
@@ -249,7 +136,7 @@ using namespace ::rtl;
 /*N*/
 /*N*/   if( nAction )
 /*N*/   {
-/*N*/       BOOL bUnlockView;
+/*N*/       BOOL bUnlockView(false);
 /*N*/       if( pWrtShell )
 /*N*/       {
 /*N*/           bUnlockView = !pWrtShell->IsViewLocked();
@@ -276,9 +163,9 @@ using namespace ::rtl;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& rInfo )
+/*N*/ void SwDoc::SetInfo( const SfxDocumentInfo& /*rInfo*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwDocShell::FillClass( SvGlobalName * pClassName,
@@ -343,7 +230,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/
 /*N*/       if( bSet )
 /*N*/       {
-/*N*/           BOOL bOld = pDoc->IsModified();
+/*N*/           pDoc->IsModified();
 /*N*/           pDoc->SetModified();
 /*N*/       }
 /*N*/       else
@@ -354,11 +241,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if( pDocShell )
 /*N*/   Broadcast(SfxSimpleHint(SFX_HINT_DOCCHANGED));
 /*N*/ }
 
-/*N*/ULONG SwDocShell::LoadStylesFromFile( const String& rURL,
-/*N*/                   SwgReaderOption& rOpt, BOOL bUnoCall )
+/*N*/ULONG SwDocShell::LoadStylesFromFile( const String& /*rURL*/,
+/*N*/                   SwgReaderOption& /*rOpt*/, BOOL /*bUnoCall*/ )
 /*N*/{
-/*N*/   ULONG nErr = 0;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   ULONG nErr = 0;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return nErr;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

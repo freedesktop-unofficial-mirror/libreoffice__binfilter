@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,44 +32,20 @@
 #endif
 
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _CALLNK_HXX
 #include <callnk.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
 namespace binfilter {
 
 
@@ -210,7 +187,7 @@ namespace binfilter {
 /*M*/       0 != ( pFlyFrm = pFrm->FindFlyFrm() ) && !rShell.IsTableMode() )
 /*M*/   {
 /*M*/       const SwNodeIndex* pIndex = pFlyFrm->GetFmt()->GetCntnt().GetCntntIdx();
-/*M*/       ASSERT( pIndex, "Fly ohne Cntnt" );
+/*M*/       OSL_ENSURE( pIndex, "Fly ohne Cntnt" );
 /*M*/       const SwNode& rStNd = pIndex->GetNode();
 /*M*/
 /*M*/       if( rStNd.EndOfSectionNode()->StartOfSectionIndex() > nNode ||
@@ -234,48 +211,6 @@ namespace binfilter {
 /*?*/   return 0;
 /*N*/ }
 
-/*---------------------------------------------------------------------*/
-
-
-//SwChgLinkFlag::SwChgLinkFlag( SwCrsrShell& rShell )
-//    : rCrsrShell( rShell ), bOldFlag( rShell.bCallChgLnk ), nLeftFrmPos( 0 )
-//{
-//    rCrsrShell.bCallChgLnk = FALSE;
-//    if( bOldFlag && !rCrsrShell.pTblCrsr )
-//    {
-//        SwNode* pNd = rCrsrShell.pCurCrsr->GetNode();
-//        if( ND_TEXTNODE & pNd->GetNodeType() )
-//            nLeftFrmPos = SwCallLink::GetFrm( (SwTxtNode&)*pNd,
-//                    rCrsrShell.pCurCrsr->GetPoint()->nContent.GetIndex(),
-//                    !rCrsrShell.ActionPend() );
-//    }
-//}
-
-
-//SwChgLinkFlag::~SwChgLinkFlag()
-//{
-//    rCrsrShell.bCallChgLnk = bOldFlag;
-//    if( bOldFlag && !rCrsrShell.pTblCrsr )
-//    {
-//        // die Spalten Ueberwachung brauchen wir immer!!!
-//        SwNode* pNd = rCrsrShell.pCurCrsr->GetNode();
-//        if( ND_TEXTNODE & pNd->GetNodeType() &&
-//            nLeftFrmPos != SwCallLink::GetFrm( (SwTxtNode&)*pNd,
-//                    rCrsrShell.pCurCrsr->GetPoint()->nContent.GetIndex(),
-//                    !rCrsrShell.ActionPend() ))
-//        {
-//            /* immer, wenn zwischen Frames gesprungen wird, gelten
-//             * neue Attribute. Es muesste also festgestellt werden, welche
-//             * Attribute jetzt gelten; das kann gleich der Handler machen.
-//             * Diesen direkt rufen !!!
-//             */
-//            rCrsrShell.aChgLnk.Call( &rCrsrShell );
-//            rCrsrShell.bChgCallFlag = FALSE;        // Flag zuruecksetzen
-//        }
-//    }
-//}
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

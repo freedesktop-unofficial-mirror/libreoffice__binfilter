@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,44 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_FRAME_XSTORABLE_HPP_
 #include <com/sun/star/frame/XStorable.hpp>
-#endif
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
-#ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
-#endif
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLFILTERSERVICENAMES_H
 #include "XMLFilterServiceNames.h"
-#endif
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTIMPORTCONTEXT_HXX
 #include "XMLEmbeddedObjectImportContext.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::util;
 using namespace ::com::sun::star::beans;
@@ -71,6 +48,8 @@ using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 struct XMLServiceMapEntry_Impl
 {
@@ -123,10 +102,10 @@ public:
 TYPEINIT1( XMLEmbeddedObjectImportContext_Impl, SvXMLImportContext );
 
 XMLEmbeddedObjectImportContext_Impl::XMLEmbeddedObjectImportContext_Impl(
-        SvXMLImport& rImport, USHORT nPrfx,
+        SvXMLImport& rInImport, USHORT nPrfx,
         const OUString& rLName,
         const Reference< XDocumentHandler >& rHandler ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     xHandler( rHandler )
 {
 }
@@ -136,12 +115,12 @@ XMLEmbeddedObjectImportContext_Impl::~XMLEmbeddedObjectImportContext_Impl()
 }
 
 SvXMLImportContext *XMLEmbeddedObjectImportContext_Impl::CreateChildContext(
-        USHORT nPrefix,
+        USHORT nInPrefix,
         const OUString& rLocalName,
-        const Reference< XAttributeList >& xAttrList )
+        const Reference< XAttributeList >& /*xAttrList*/ )
 {
     return new XMLEmbeddedObjectImportContext_Impl( GetImport(),
-                                                    nPrefix, rLocalName,
+                                                    nInPrefix, rLocalName,
                                                     xHandler );
 }
 
@@ -196,9 +175,9 @@ sal_Bool XMLEmbeddedObjectImportContext::SetComponent(
 }
 
 XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
-        SvXMLImport& rImport, USHORT nPrfx, const OUString& rLName,
+        SvXMLImport& rInImport, USHORT nPrfx, const OUString& rLName,
         const Reference< XAttributeList >& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     // #i55761#
     bNeedToUnlockControllers(false)
 {
@@ -219,10 +198,10 @@ XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
         for( sal_Int16 i=0; i < nAttrCount; i++ )
         {
             const OUString& rAttrName = xAttrList->getNameByIndex( i );
-            OUString aLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName, &aLocalName );
-            if( nPrefix == XML_NAMESPACE_OFFICE &&
-                IsXMLToken( aLocalName, XML_CLASS ) )
+            OUString aLclLocalName;
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,  &aLclLocalName );
+            if( nLclPrefix == XML_NAMESPACE_OFFICE &&
+                IsXMLToken( aLclLocalName, XML_CLASS ) )
             {
                 sClass = xAttrList->getValueByIndex( i );
                 break;
@@ -248,6 +227,7 @@ XMLEmbeddedObjectImportContext::XMLEmbeddedObjectImportContext(
                     case XML_DRAWING:       aName = SvGlobalName(SO3_SDRAW_CLASSID); break;
                     case XML_PRESENTATION:  aName = SvGlobalName(SO3_SIMPRESS_CLASSID); break;
                     case XML_CHART:         aName = SvGlobalName(SO3_SCH_CLASSID); break;
+                    default: break;
                     }
 
                     break;
@@ -265,15 +245,15 @@ XMLEmbeddedObjectImportContext::~XMLEmbeddedObjectImportContext()
 }
 
 SvXMLImportContext *XMLEmbeddedObjectImportContext::CreateChildContext(
-        USHORT nPrefix, const OUString& rLocalName,
-        const Reference< XAttributeList >& xAttrList )
+        USHORT nInPrefix, const OUString& rLocalName,
+        const Reference< XAttributeList >& /*xAttrList*/ )
 {
     if( xHandler.is() )
         return new XMLEmbeddedObjectImportContext_Impl( GetImport(),
-                                                        nPrefix, rLocalName,
+                                                        nInPrefix, rLocalName,
                                                         xHandler );
     else
-        return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 void XMLEmbeddedObjectImportContext::StartElement(
@@ -334,26 +314,6 @@ void XMLEmbeddedObjectImportContext::EndElement()
                                   aSeq );
             }
         }
-#if 0
-        // reset modifies state for the object since it has been imported
-        // completly and therfor hasn't been modified.
-        Reference < XModifiable > xModifiable( xComp, UNO_QUERY );
-        if( xModifiable.is() )
-        {
-            try
-            {
-                xModifiable->setModified( sal_False );
-            }
-            catch( ::com::sun::star::beans::PropertyVetoException& e )
-            {
-                Sequence<OUString> aSeq( 0 );
-                GetImport().SetError( XMLERROR_FLAG_WARNING |
-                                  XMLERROR_API,
-                                  aSeq );
-            }
-        }
-#endif
-
     }
 }
 
@@ -364,3 +324,5 @@ void XMLEmbeddedObjectImportContext::Characters( const ::rtl::OUString& rChars )
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 #define _XMLITMPR_HXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
 
-#ifndef _XMLITMAP_HXX
 #include "xmlitmap.hxx"
-#endif
 
 #define XML_EXPORT_FLAG_DEFAULTS    0x0001      // export also default items
 #define XML_EXPORT_FLAG_DEEP        0x0002      // export also items from
@@ -140,3 +137,5 @@ SvXMLExportItemMapper::setMapEntries( SvXMLItemMapEntriesRef rMapEntries )
 
 } //namespace binfilter
 #endif  //  _XMLITMPR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

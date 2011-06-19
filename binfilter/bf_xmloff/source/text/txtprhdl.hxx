@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _XMLOFF_TEXTPRHDL_HXX_
 
 
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include "prhdlfac.hxx"
-#endif
 namespace binfilter {
 
 class XMLTextPropertyHandlerFactory_Impl;
@@ -50,3 +49,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

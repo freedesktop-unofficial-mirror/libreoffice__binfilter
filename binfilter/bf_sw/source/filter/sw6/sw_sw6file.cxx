@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,7 +31,7 @@
 #endif
 
 #include <string.h>
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 
 #include "sw6file.hxx"
 namespace binfilter {
@@ -170,7 +171,7 @@ BOOL Sw6File::FlushPhys(short nAnz, BUFFR &rBuf)
 {
     if (rBuf.nIdx+nAnz>=rBuf.nMax)
     {
-        ASSERT(rBuf.nIdx<=rBuf.nMax,"Sw6-Datei ist wohl defekt");
+        OSL_ENSURE(rBuf.nIdx<=rBuf.nMax,"Sw6-Datei ist wohl defekt");
 
         if (rBuf.nMax<rBuf.nIdx)
         {
@@ -361,8 +362,8 @@ BOOL Sw6File::ReadLn(String &rStr)
     rStr.Erase();                       // String ist leer
     while (FileOk())                    // Solange kein Fehler auftrat
     {
-        register BYTE *p = (BYTE *)&aBuf.pBuf[aBuf.nIdx], *pStt = p;
-        while (*p>'#' || *p>=' ' && *p<'#')
+        BYTE *p = (BYTE *)&aBuf.pBuf[aBuf.nIdx], *pStt = p;
+        while (*p>'#' || (*p>=' ' && *p<'#'))
             p++;
 
         xub_StrLen nAsc = p - pStt;
@@ -437,3 +438,5 @@ Sw6File::~Sw6File(void)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

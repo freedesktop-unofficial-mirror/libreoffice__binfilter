@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -90,7 +88,7 @@ namespace binfilter {
 
 // ATTR_FONT_TWOLINES (not used) was changed to ATTR_USERDEF (not saved in binary format) in 641c
 
-/*N*/ static SfxItemInfo __READONLY_DATA  aItemInfos[] =
+/*N*/ static SfxItemInfo const  aItemInfos[] =
 /*N*/ {
 /*N*/   { SID_ATTR_CHAR_FONT,           SFX_ITEM_POOLABLE },    // ATTR_FONT
 /*N*/   { SID_ATTR_CHAR_FONTHEIGHT,     SFX_ITEM_POOLABLE },    // ATTR_FONT_HEIGHT
@@ -351,7 +349,7 @@ namespace binfilter {
 /*N*/   SetVersionMap( 9, 100, 182, pVersionMap9 );
 /*N*/ }
 
-/*N*/ __EXPORT ScDocumentPool::~ScDocumentPool()
+/*N*/ ScDocumentPool::~ScDocumentPool()
 /*N*/ {
 /*N*/   Delete();
 /*N*/
@@ -534,7 +532,7 @@ namespace binfilter {
 //  wird (Assertions).
 //
 
-/*N*/ const SfxPoolItem& __EXPORT ScDocumentPool::Put( const SfxPoolItem& rItem, USHORT nWhich )
+/*N*/ const SfxPoolItem& ScDocumentPool::Put( const SfxPoolItem& rItem, USHORT nWhich )
 /*N*/ {
 /*N*/   if ( rItem.Which() != ATTR_PATTERN )                // nur Pattern ist special
 /*N*/       return SfxItemPool::Put( rItem, nWhich );
@@ -549,7 +547,7 @@ namespace binfilter {
 /*N*/   return rNew;
 /*N*/ }
 
-/*N*/ void __EXPORT ScDocumentPool::Remove( const SfxPoolItem& rItem )
+/*N*/ void ScDocumentPool::Remove( const SfxPoolItem& rItem )
 /*N*/ {
 /*N*/   if ( rItem.Which() == ATTR_PATTERN )                // nur Pattern ist special
 /*N*/   {
@@ -558,7 +556,7 @@ namespace binfilter {
 /*N*/       {
 /*?*/           if ( nRef != (ULONG) SC_SAFE_POOLREF )
 /*?*/           {
-/*?*/               DBG_ERROR("Wer fummelt da an meinen Ref-Counts herum");
+/*?*/               OSL_FAIL("Wer fummelt da an meinen Ref-Counts herum");
 /*?*/               SetRefCount( (SfxPoolItem&)rItem, (ULONG) SC_SAFE_POOLREF );
 /*?*/           }
 /*?*/           return;                 // nicht herunterzaehlen
@@ -605,3 +603,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

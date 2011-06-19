@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 #include "pagedesc.hxx"
 #include "cmdid.h"
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 class IntlWrapper;
 namespace binfilter {
 class SwNumRule;
@@ -55,8 +54,8 @@ public:
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual int             operator==( const SfxPoolItem& ) const;
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     SwPageFtnInfo& GetPageFtnInfo()             { return aFtnInfo; }
     const SwPageFtnInfo& GetPageFtnInfo() const { return aFtnInfo; }
@@ -76,10 +75,11 @@ public:
 
 
 
-/* -----------------17.06.98 17:40-------------------
- *
- * --------------------------------------------------*/
+
+
 
 
 } //namespace binfilter
 #endif // _UIITEMS_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

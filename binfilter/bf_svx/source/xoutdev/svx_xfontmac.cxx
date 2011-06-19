@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -49,11 +50,8 @@
 #include <mac_end.h>
 #endif
 
-#ifndef _SV_HXX
 #include <sv.hxx>
-#endif
 
-#include "xpoly.hxx"
 #include "xattr.hxx"
 #include "xoutx.hxx"
 
@@ -66,8 +64,6 @@ namespace binfilter {
 |*    HasGX()
 |*
 |*    Prueft, ob GX installiert ist
-|*    Ersterstellung    05.02.95 DV
-|*    Letzte Aenderung  05.02.95 DV
 |*
 *************************************************************************/
 BOOL HasGX()
@@ -96,9 +92,6 @@ BOOL HasGX()
 |*
 |*    Uebertraegt die Fontattribute uas dem OutputDevice
 |*    in das Text Objekt
-|*
-|*    Ersterstellung    05.02.95 DV
-|*    Letzte Aenderung  05.02.95 DV
 |*
 *************************************************************************/
 
@@ -156,8 +149,6 @@ void SetUpFontData( OutputDevice &rOut, gxShape aTextShape )
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    03.02.95 DV
-|*    Letzte Aenderung  27.06.95 DV
 |*
 *************************************************************************/
 
@@ -364,16 +355,13 @@ XPolyPolygon XOutGetCharOutlineGX(USHORT nChar, OutputDevice& rOut,
 |*    Hilfsfunktionen fuer XOutGetCharOutlineQD gefunden in einem
 |*    Artikel zu Develop 8, 1995
 |*
-|*    Ersterstellung    28.11.95 KH
-|*    Letzte Aenderung  28.11.95 KH
-|*
 *************************************************************************/
 
 inline long PostFontError(long error)
 {
 #ifdef DBG_UTIL
     if (error)
-        DBG_ERROR("FontError");
+        OSL_FAIL("FontError");
 #endif
     return error;
 }
@@ -404,7 +392,7 @@ Handle GetNamedSfntHandle(const String& rName, short styleWord)
                 return hSfnt;
         }
     }
-    DBG_ERROR("GetNamedSfntHandle : Font NotFound");
+    OSL_FAIL("GetNamedSfntHandle : Font NotFound");
     return 0;
 }
 
@@ -950,8 +938,6 @@ void ScaleGlyphOutline(GlyphOutline* out, Fixed xScale, Fixed yScale)
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    28.11.95 KH
-|*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
 
@@ -1004,7 +990,7 @@ XPolyPolygon XOutGetCharOutlineQD(USHORT nChar, OutputDevice& rOut,
     gxPaths* pPathData = OutlineToPaths( &out );
 
     // Im Outline steht jetzt wieviele contouren wir haben
-    // so gro§ muuss alos unser Ergebnis sein
+    // so groï¿½ muuss alos unser Ergebnis sein
     XPolyPolygon aXPolyPoly( out.contourCount );    // Unser XPolyPolygon
 
     long* pCurPath = ((long*)pPathData) + 1;    // pCurPath zeigt jetzt auf das erste
@@ -1155,8 +1141,6 @@ XPolyPolygon XOutGetCharOutlineQD(USHORT nChar, OutputDevice& rOut,
 |*    Ein Zeichen eines Outlinefonts in ein Bezier-PolyPolygon umwandeln
 |*    Wenn keine Umwandlung moeglich ist, wird ein leeres PolyPolygon
 |*    zurueckgegeben
-|*    Ersterstellung    03.02.95 DV
-|*    Letzte Aenderung  28.11.95 KH
 |*
 *************************************************************************/
 
@@ -1203,12 +1187,9 @@ XPolyPolygon XOutGetCharOutline(USHORT nChar, OutputDevice& rOut,
 |*
 |*    pDXArray: wenn vorhanden, enthaelt dieses Array die horizontalen
 |*              Positionen der einzelnen Zeichen, beginnend beim ersten
-|*              und endend hinter dem letzten Zeichen; es muß also
+|*              und endend hinter dem letzten Zeichen; es muï¿½ also
 |*              rText.Len()-1 long-Werte enthalten
 |*
-|*
-|*    Ersterstellung    02.02.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
 
@@ -1418,8 +1399,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
 
             aPos.X() -= (long) (fDx * nLen / fLen + fXDist);
             aPos.Y() -= (long) (fDy * nLen / fLen + fYDist);
-//          aPos.X() -= (long) ((fDx * nLen - fDy * nFormTextDistance) / fLen);
-//          aPos.Y() -= (long) ((fDy * nLen + fDx * nFormTextDistance) / fLen);
 
             // BoundRect-Approximation
             nXMin = Min(nXMin, aPos.X() - nMaxCharExtent);
@@ -1480,7 +1459,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
                     pOut->SetFont(aFont);
                     if ( bDraw )
                         pOut->DrawTextArray(aPos, rText, pDXArray, nChar, nCnt);
-//                      pOut->DrawText(aPos, rText, nChar, nCnt);
                 }
             }
             else
@@ -1562,7 +1540,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
                         else
                             pOut->DrawTextArray(aPolyPos, rText, pDXArray,
                                                 nChar+i, 1);
-//                          pOut->DrawText(aPolyPos, rText, nChar+i, 1);
                     }
                 }
             }
@@ -1593,9 +1570,6 @@ long XOutputDevice::ImpDrawFormText(const String& rText, const Polygon& rPoly,
 |*    XOutputDevice::DrawFormTextShadow(String, Polygon, Font, nAbsStart)
 |*
 |*    Schatten fuer FormText ausgeben
-|*
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
 |*
 *************************************************************************/
 
@@ -1630,9 +1604,6 @@ void XOutputDevice::DrawFormTextShadow(const String& rText,
 |*
 |*    Einen String entlang eines Polygons ausgeben
 |*
-|*    Ersterstellung    28.06.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
-|*
 *************************************************************************/
 
 long XOutputDevice::DrawFormText(const String& rText, const Polygon& rPoly,
@@ -1656,9 +1627,6 @@ long XOutputDevice::DrawFormText(const String& rText, const Polygon& rPoly,
 |*
 |*    Einen String entlang eines Bezier-Polygons ausgeben
 |*
-|*    Ersterstellung    03.02.95 ESO
-|*    Letzte Aenderung  11.10.95 ESO
-|*
 *************************************************************************/
 
 long XOutputDevice::DrawFormText(const String& rText, const XPolygon& rXPoly,
@@ -1679,3 +1647,5 @@ long XOutputDevice::DrawFormText(const String& rText, const XPolygon& rXPoly,
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

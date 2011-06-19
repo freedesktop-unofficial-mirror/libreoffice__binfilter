@@ -37,7 +37,6 @@ TARGET=so3_ole
 .INCLUDE :  settings.mk
 .INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
-
 # --- Files --------------------------------------------------------
 
 CXXFILES=   \
@@ -63,6 +62,3 @@ SLOFILES=   \
 
 
 .INCLUDE :  target.mk
-
-.INCLUDE :  $(SUBPRJ)$/util$/target.pmk
-

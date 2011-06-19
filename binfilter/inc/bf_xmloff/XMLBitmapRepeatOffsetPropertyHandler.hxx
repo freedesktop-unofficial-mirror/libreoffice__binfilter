@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 #define _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
 
-#ifndef _XMLOFF_PROPERTYHANDLERBASE_HXX
 #include "xmlprhdl.hxx"
-#endif
 namespace binfilter {
 
 struct SvXMLEnumMapEntry;
@@ -67,3 +66,5 @@ public:
 
 }//end of namespace binfilter
 #endif      // _XMLOFF_XMLBITMAPREPEATOFFSETPROPERTYHANDLER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -66,7 +67,7 @@ using namespace ::com::sun::star;
 /*N*/     if ( !pScriptTypeData->xBreakIter.is() )
 /*N*/     {
 /*N*/         uno::Reference< uno::XInterface > xInterface = xServiceManager->createInstance(
-/*N*/                             ::rtl::OUString::createFromAscii( SC_BREAKITER_SERVICE ) );
+/*N*/                             ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_BREAKITER_SERVICE )) );
 /*N*/         pScriptTypeData->xBreakIter = uno::Reference< i18n::XBreakIterator >( xInterface, uno::UNO_QUERY );
 /*N*/       DBG_ASSERT( pScriptTypeData->xBreakIter.is(), "can't get BreakIterator" );
 /*N*/   }
@@ -162,3 +163,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #include <utility>
 #include <algorithm>
 
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
 
 
 
@@ -213,7 +212,7 @@ SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) 
                     if( pRet )
                     {
                         pRet->SetVersion( xPictureStorage->GetVersion() );
-                        pRet->SetKey( xPictureStorage->GetKey() );
+                        pRet->SetCryptMaskKey( xPictureStorage->GetKey() );
                     }
                 }
             }
@@ -229,11 +228,12 @@ SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) 
                 {
                     BOOL bOK = pStor->Rename(pStarDrawDoc, pStarDrawDoc3);
                     DBG_ASSERT(bOK, "Umbenennung des Streams gescheitert");
+                    (void)bOK;
                 }
 
                 SotStorageStreamRef docStream = pStor->OpenSotStream( pStarDrawDoc3, STREAM_READ );
                 docStream->SetVersion( pStor->GetVersion() );
-                docStream->SetKey( pStor->GetKey() );
+                docStream->SetCryptMaskKey( pStor->GetKey() );
 
                 // cast away const (should be regarded logical constness)
                 ((SdDrawDocument*)this)->xDocStream = docStream;
@@ -306,3 +306,5 @@ void SdDrawDocument::RemoveDuplicateMasterPages()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

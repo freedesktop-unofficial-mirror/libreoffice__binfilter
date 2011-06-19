@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _UNQID_HXX //autogen
 #include <tools/unqid.hxx>
-#endif
-#ifndef _IFACE_HXX
 #include <bf_so3/iface.hxx>
-#endif
-#ifndef _OWNLIST_HXX
 #include <bf_svtools/ownlist.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class  Menu;
 
@@ -165,3 +158,4 @@ SO2_IMPL_REF( SvPseudoObject )
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

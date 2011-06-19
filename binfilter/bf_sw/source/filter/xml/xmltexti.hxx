@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 #ifndef _XMLTEXTI_HXX
 #define _XMLTEXTI_HXX
 
-#ifndef _XMLOFF_TXTIMP_HXX
 #include <bf_xmloff/txtimp.hxx>
-#endif
-#ifndef _XMLOFF_FUNCTIONAL_HXX
 #include <bf_xmloff/functional.hxx>
-#endif
 
-#ifndef _PLUGIN_HXX //autogen
 #include <bf_so3/plugin.hxx>
-#endif
 
-#ifndef _FRAMEOBJ_HXX //autogen
 #include <bf_sfx2/frameobj.hxx>
-#endif
 class SvPlugInObjectRef;
 namespace binfilter {
 class SvXMLImport;
@@ -138,3 +131,4 @@ public:
 } //namespace binfilter
 #endif  //  _XMLTEXTI_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

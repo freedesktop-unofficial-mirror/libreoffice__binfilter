@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,33 +28,13 @@
 
 #include "svdetc.hxx"
 #include "svdmrkv.hxx"
-
-
-
-
-
-
-
 #include "svdstr.hrc"
-
 
 // #105678#
 namespace binfilter {
 
 /*N*/ SdrHdl::~SdrHdl()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ class ImpSdrHdlListSorter: public ContainerSorter {
-/*N*/ public:
-/*N*/     ImpSdrHdlListSorter(Container& rNewCont): ContainerSorter(rNewCont) {}
-/*N*/     virtual int Compare(const void* pElem1, const void* pElem2) const;
-/*N*/ };
-
-/*N*/ int ImpSdrHdlListSorter::Compare(const void* pElem1, const void* pElem2) const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -62,7 +43,7 @@ namespace binfilter {
 /*N*/ class ImplHdlListData
 /*N*/ {
 /*N*/ public:
-/*N*/   sal_uInt32                  mnFocusIndex;
+/*N*/   ULONG                   mnFocusIndex;
 /*N*/   SdrMarkView*                pView;
 /*N*/
 /*N*/   ImplHdlListData(SdrMarkView* pV): mnFocusIndex(CONTAINER_ENTRY_NOTFOUND), pView(pV) {}
@@ -85,7 +66,7 @@ struct ImplHdlAndIndex
 
 /*N*/ SdrHdl* SdrHdlList::GetFocusHdl() const
 /*N*/ {
-/*N*/   if(pImpl->mnFocusIndex != CONTAINER_ENTRY_NOTFOUND && pImpl->mnFocusIndex < GetHdlCount())
+/*N*/   if (pImpl->mnFocusIndex != CONTAINER_ENTRY_NOTFOUND && pImpl->mnFocusIndex < GetHdlCount())
 /*?*/       return GetHdl(pImpl->mnFocusIndex);
 /*N*/   else
 /*?*/       return 0L;
@@ -94,10 +75,8 @@ struct ImplHdlAndIndex
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ SdrHdlList::SdrHdlList(SdrMarkView* pV)
-/*N*/ : aList(1024,32,32),
-/*N*/   pImpl(new ImplHdlListData(pV))
-/*N*/   //#97016# II
-/*N*/   //pView(pV)
+/*N*/ : pImpl(new ImplHdlListData(pV))
+/*N*/ , aList(1024,32,32)
 /*N*/ {
 /*N*/   nHdlSize = 3;
 /*N*/   bRotateShear = FALSE;
@@ -109,10 +88,8 @@ struct ImplHdlAndIndex
 /*N*/ SdrHdlList::~SdrHdlList()
 /*N*/ {
 /*N*/   Clear();
-/*N*/   //#97016# II
 /*N*/   delete pImpl;
 /*N*/ }
-
 
 
 /*N*/ void SdrHdlList::SetRotateShear(BOOL bOn)
@@ -134,7 +111,7 @@ struct ImplHdlAndIndex
 /*N*/
 /*N*/       // propagate change to IAOs
 /*N*/       for(UINT32 i=0; i<GetHdlCount(); i++)
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -143,13 +120,9 @@ struct ImplHdlAndIndex
 /*N*/ void SdrHdlList::Clear()
 /*N*/ {
 /*N*/   for (ULONG i=0; i<GetHdlCount(); i++)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   aList.Clear();
-/*N*/
-/*N*/   // immediately remove from display
-//STRIP012/*N*/     if(pImpl->pView)
-//STRIP012/*N*/         pImpl->pView->RefreshAllIAOManagers();
 /*N*/
 /*N*/   bRotateShear=FALSE;
 /*N*/   bDistortShear=FALSE;
@@ -157,18 +130,8 @@ struct ImplHdlAndIndex
 
 /*N*/ void SdrHdlList::Sort()
 /*N*/ {
-/*N*/   // #97016# II: remember current focused handle
-/*N*/   SdrHdl* pPrev = GetFocusHdl();
-/*N*/
-/*N*/     ImpSdrHdlListSorter aSort(aList);
-/*N*/     aSort.DoSort();
-
-    // #97016# II: get now and compare
-/*N*/   SdrHdl* pNow = GetFocusHdl();
-/*N*/
-/*N*/   if(pPrev != pNow)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   }
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,42 +31,20 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _REDLINE_HXX
 #include <redline.hxx>
-#endif
-#ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
 namespace binfilter {
 
 #ifndef DBG_UTIL
@@ -87,12 +66,12 @@ namespace binfilter {
 /*N*/
 /*N*/         // verify valid redline positions
 /*N*/       for( USHORT i = 0; i < rTbl.Count(); ++i )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 lcl_CheckPam( rTbl[ i ] );
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/         for( USHORT j = 0; j < rTbl.Count(); ++j )
 /*N*/         {
 /*N*/             // check for empty redlines
-/*N*/             ASSERT( ( *(rTbl[j]->GetPoint()) != *(rTbl[j]->GetMark()) ) ||
+/*N*/             OSL_ENSURE( ( *(rTbl[j]->GetPoint()) != *(rTbl[j]->GetMark()) ) ||
 /*N*/                     ( rTbl[j]->GetContentIdx() != NULL ),
 /*N*/                     "redline table corrupted: empty redline" );
 /*N*/       }
@@ -104,11 +83,11 @@ namespace binfilter {
 /*?*/             const SwRedline* pCurrent = rTbl[ n ];
 /*?*/
 /*?*/             // check redline sorting
-/*?*/             ASSERT( *pPrev->Start() <= *pCurrent->Start(),
+/*?*/             OSL_ENSURE( *pPrev->Start() <= *pCurrent->Start(),
 /*?*/                     "redline table corrupted: not sorted correctly" );
 /*?*/
 /*?*/             // check for overlapping redlines
-/*?*/             ASSERT( *pPrev->End() <= *pCurrent->Start(),
+/*?*/             OSL_ENSURE( *pPrev->End() <= *pCurrent->Start(),
 /*?*/                     "redline table corrupted: overlapping redlines" );
 /*N*/       }
 /*N*/   }
@@ -138,7 +117,7 @@ namespace binfilter {
 /*N*/               pFnc = &SwRedline::Hide;
 /*N*/               break;
 /*N*/           case REDLINE_SHOW_DELETE:
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFnc = &SwRedline::ShowOriginal;
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/               break;
 /*N*/
 /*N*/           default:
@@ -187,16 +166,13 @@ Verhalten von Delete-Redline:
                                           ueberlappt
 */
 
-/*N*/ BOOL SwDoc::AppendRedline( SwRedline* pNewRedl, BOOL bCallDelete )
+/*N*/ BOOL SwDoc::AppendRedline( SwRedline* /*pNewRedl*/, BOOL /*bCallDelete*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( this )
+DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-
-
-
-/*N*/ BOOL SwDoc::DeleteRedline( const SwPaM& rRange, BOOL bSaveInUndo,
-/*N*/                           USHORT nDelType )
+/*N*/ BOOL SwDoc::DeleteRedline( const SwPaM& rRange, BOOL /*bSaveInUndo*/,
+/*N*/                           USHORT /*nDelType*/ )
 /*N*/ {
 /*N*/   if( REDLINE_IGNOREDELETE_REDLINES & eRedlineMode ||
 /*N*/       !rRange.HasMark() || *rRange.GetMark() == *rRange.GetPoint() )
@@ -204,14 +180,14 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/
 /*N*/   BOOL bChg = FALSE;
 /*N*/
-/*N*/   const SwPosition* pStt = rRange.Start(),
-/*N*/                   * pEnd = pStt == rRange.GetPoint() ? rRange.GetMark()
-/*N*/                                                      : rRange.GetPoint();
+/*N*/   const SwPosition* pStt = rRange.Start();
+/*N*/   pStt == rRange.GetPoint() ? rRange.GetMark() : rRange.GetPoint();
+
 /*N*/   USHORT n = 0;
 /*N*/   GetRedline( *pStt, &n );
 /*N*/   for( ; n < pRedlineTbl->Count() ; ++n )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwRedline* pRedl = (*pRedlineTbl)[ n ];
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if( bChg )
@@ -228,23 +204,23 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 //STRIP001   _CHECK_REDLINE( 
 /*N*/ }
 
 
-/*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT nType ) const
+/*N*/ USHORT SwDoc::GetRedlinePos( const SwNode& rNd, USHORT /*nType*/ ) const
 /*N*/ {
-/*N*/   const ULONG nNdIdx = rNd.GetIndex();
+/*N*/   rNd.GetIndex();
 /*N*/   for( USHORT n = 0; n < pRedlineTbl->Count() ; ++n )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   const SwRedline* pTmp = (*pRedlineTbl)[ n ];
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
-/*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& rPos,
+/*N*/ const SwRedline* SwDoc::GetRedline( const SwPosition& /*rPos*/,
 /*N*/                                   USHORT* pFndPos ) const
 /*N*/ {
-/*N*/   register USHORT nO = pRedlineTbl->Count(), nM, nU = 0;
+/*N*/   register USHORT nO = pRedlineTbl->Count(), nU = 0;
 /*N*/   if( nO > 0 )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   nO--;
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if( pFndPos )
 /*N*/       *pFndPos = nU;
@@ -255,20 +231,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
                         BOOL bCallDelete,
                         const SwPosition* pSttRng,
                         const SwPosition* pEndRng);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Kommentar am Redline setzen
 
@@ -309,7 +271,7 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/       bRet = InsertWithValidRanges( p );
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( !this, "Redline: falscher Bereich" );
+/*N*/       OSL_ENSURE( !this, "Redline: falscher Bereich" );
 /*N*/   }
 /*N*/   return bRet;
 /*N*/ }
@@ -351,7 +313,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/           GoEndSection( pNew->GetPoint() );
 /*N*/           if( *pNew->GetPoint() > *pEnd )
 /*N*/           {
-/*N*/               BOOL bWeiter = TRUE;
 /*N*/               pC = 0;
 /*N*/               if( aNewStt.nNode != pEnd->nNode )
 /*N*/                   do {
@@ -423,9 +384,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 // Mit dem Lookahead kann die Suche eingeschraenkt werden. 0 oder
 // USHRT_MAX suchen im gesamten Array.
 
-
-
-
 /*  */
 
 /*?*/SwRedlineExtraData::~SwRedlineExtraData()
@@ -442,10 +400,13 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*  */
 
 /*?*/SwRedlineData::SwRedlineData( const SwRedlineData& rCpy, BOOL bCpyNext )
-/*?*/   : nAuthor( rCpy.nAuthor ), eType( rCpy.eType ), aStamp( rCpy.aStamp ),
-/*?*/   sComment( rCpy.sComment ), nSeqNo( rCpy.nSeqNo ),
-/*?*/   pExtraData( rCpy.pExtraData ? rCpy.pExtraData->CreateNew() : 0 ),
-/*?*/   pNext( (bCpyNext && rCpy.pNext) ? new SwRedlineData( *rCpy.pNext ) : 0 )
+/*?*/   : pNext( (bCpyNext && rCpy.pNext) ? new SwRedlineData( *rCpy.pNext ) : 0 )
+/*?*/   , pExtraData( rCpy.pExtraData ? rCpy.pExtraData->CreateNew() : 0 )
+/*?*/   , sComment( rCpy.sComment )
+/*?*/   , aStamp( rCpy.aStamp )
+/*?*/   , eType( rCpy.eType )
+/*?*/   , nAuthor( rCpy.nAuthor )
+/*?*/   , nSeqNo( rCpy.nSeqNo )
 /*?*/{
 /*?*/}
 
@@ -453,8 +414,13 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/SwRedlineData::SwRedlineData( SwRedlineType eT, USHORT nAut, const DateTime& rDT,
 /*?*/                  const String& rCmnt, SwRedlineData *pNxt,
 /*?*/                  SwRedlineExtraData* pData )
-/*?*/   : eType( eT ), pNext( pNxt ), nAuthor( nAut ), aStamp( rDT ),
-/*?*/     sComment( rCmnt ), pExtraData( pData ), nSeqNo( 0 )
+/*?*/   : pNext( pNxt )
+/*?*/   , pExtraData( pData )
+/*?*/   , sComment( rCmnt )
+/*?*/   , aStamp( rDT )
+/*?*/   , eType( eT )
+/*?*/   , nAuthor( nAut )
+/*?*/   , nSeqNo( 0 )
 /*?*/{
 /*?*/}
 
@@ -467,18 +433,18 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*  */
 
 /*?*/SwRedline::SwRedline( const SwRedlineData& rData, const SwPosition& rPos )
-/*?*/   : SwPaM( rPos ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( rData ))
+/*?*/   : SwPaM( rPos )
+/*?*/   , pRedlineData( new SwRedlineData( rData ))
+/*?*/   , pCntntSect( 0 )
 /*?*/{
 /*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
 /*?*/   bIsVisible = TRUE;
 /*?*/}
 
 /*?*/SwRedline::SwRedline( const SwRedline& rCpy )
-/*?*/   : SwPaM( *rCpy.GetMark(), *rCpy.GetPoint() ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( *rCpy.pRedlineData ))
+/*?*/   : SwPaM( *rCpy.GetMark(), *rCpy.GetPoint() )
+/*?*/   , pRedlineData( new SwRedlineData( *rCpy.pRedlineData ))
+/*?*/   , pCntntSect( 0 )
 /*?*/{
 /*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
 /*?*/   bIsVisible = TRUE;
@@ -505,9 +471,8 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/               * pMkNd = &GetMark()->nNode.GetNode();
 /*N*/   if( pPtNd->FindStartNode() == pMkNd->FindStartNode() &&
 /*N*/       !pPtNd->FindStartNode()->IsTableNode() &&
-/*N*/       // JP 18.5.2001: Bug 87222 - invalid if points on the end of content
-/*N*/         // DVO 25.03.2002: #96530# end-of-content only invalid if no content
-/*N*/         //                 index exists
+/*N*/         // invalid if points on the end of content
+/*N*/         // end-of-content only invalid if no content index exists
 /*N*/       ( pPtNd != pMkNd || GetContentIdx() != NULL ||
 /*N*/           pPtNd != &pPtNd->GetNodes().GetEndOfContent() )
 /*N*/       )
@@ -516,12 +481,12 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/ }
 
 
-/*N*/ void SwRedline::Show( USHORT nLoop )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwRedline::Show( USHORT /*nLoop*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SwRedline::Hide( USHORT nLoop )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwRedline::Hide( USHORT /*nLoop*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
@@ -533,20 +498,11 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
  * text node nNdIdx
  *************************************************************************/
 
-
-
-
-
-
-
 // fuers Undo
-/*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* pIdx )
+/*N*/ void SwRedline::SetContentIdx( const SwNodeIndex* /*pIdx*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( pIdx && !pCntntSect )
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-
-
-
 
 USHORT SwRedline::GetStackCount() const
 {
@@ -562,7 +518,7 @@ USHORT SwRedline::GetStackCount() const
         SwRedlineData* pCur;
 /*?*/   for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
 /*?*/       pCur = pCur->pNext;
-/*?*/   ASSERT( !nPos, "Pos angabe ist zu gross" );
+/*?*/   OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
 /*?*/   return SW_MOD()->GetRedlineAuthor(pCur->nAuthor);
 /*?*/}
 
@@ -570,7 +526,7 @@ const DateTime& SwRedline::GetTimeStamp( USHORT nPos ) const
 {
     SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
-    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
     return pCur->aStamp;
 }
 
@@ -578,7 +534,7 @@ SwRedlineType SwRedline::GetRealType( USHORT nPos ) const
 {
     SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
-    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
     return pCur->eType;
 }
 
@@ -586,7 +542,7 @@ const String& SwRedline::GetComment( USHORT nPos ) const
 {
     SwRedlineData* pCur; for( pCur = pRedlineData; nPos && pCur->pNext; --nPos )
         pCur = pCur->pNext;
-    ASSERT( !nPos, "Pos angabe ist zu gross" );
+    OSL_ENSURE( !nPos, "Pos angabe ist zu gross" );
     return pCur->sComment;
 }
 
@@ -608,3 +564,5 @@ const String& SwRedline::GetComment( USHORT nPos ) const
 /*N*/     return nResult;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

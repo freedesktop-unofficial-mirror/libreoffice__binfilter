@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 #include "layfrm.hxx"
 #include "flowfrm.hxx"
 namespace binfilter {
@@ -42,7 +41,7 @@ class SwAttrSetChg;
 
 class SwTabFrm: public SwLayoutFrm, public SwFlowFrm
 {
-    // OD 14.03.2003 #i11760# - adjustment, because of method signature change
+    // #i11760# - adjustment, because of method signature change
     //darf mit den Flags spielen.
     friend void CalcCntnt( SwLayoutFrm *pLay, bool bNoColl, bool bNoCalcFollow );
 
@@ -158,3 +157,5 @@ inline SwTabFrm *SwTabFrm::FindMaster()
 
 } //namespace binfilter
 #endif  //_TABFRM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

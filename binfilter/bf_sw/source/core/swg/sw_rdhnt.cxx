@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,204 +33,76 @@
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
-#ifndef _SVX_WRLMITEM_HXX //autogen
 #include <bf_svx/wrlmitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_PROTITEM_HXX //autogen
 #include <bf_svx/protitem.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
 #include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_PRNTITEM_HXX //autogen
 #include <bf_svx/prntitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_PBINITEM_HXX //autogen
 #include <bf_svx/pbinitem.hxx>
-#endif
-#ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_SHADITEM_HXX //autogen
 #include <bf_svx/shaditem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_ORPHITEM_HXX //autogen
 #include <bf_svx/orphitem.hxx>
-#endif
-#ifndef _SVX_WIDWITEM_HXX //autogen
 #include <bf_svx/widwitem.hxx>
-#endif
-#ifndef _SVX_SPLTITEM_HXX //autogen
 #include <bf_svx/spltitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_NHYPITEM_HXX //autogen
 #include <bf_svx/nhypitem.hxx>
-#endif
-#ifndef _SVX_PRSZITEM_HXX //autogen
 #include <bf_svx/prszitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_ESCPITEM_HXX //autogen
 #include <bf_svx/escpitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_CMAPITEM_HXX //autogen
 #include <bf_svx/cmapitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_KERNITEM_HXX //autogen
 #include <bf_svx/kernitem.hxx>
-#endif
-#ifndef _SVX_CNTRITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>      //fuer MIN_BORDER_DIST
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _FMTHBSH_HXX //autogen
 #include <fmthbsh.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTFORDR_HXX //autogen
 #include <fmtfordr.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _RDSWG_HXX
 #include <rdswg.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _GRFATR_HXX
 #include <grfatr.hxx>
-#endif
-#ifndef _OLDHNTID_HXX
 #include <oldhntid.hxx>
-#endif
-#ifndef _SWGIDS_HXX
 #include <swgids.hxx>
-#endif
-#ifndef _TOX_HXX
 #include <tox.hxx>
-#endif
 namespace binfilter {
 
 
@@ -467,7 +340,7 @@ static USHORT InSWG_SwNoHyphenHere
 }
 
 static USHORT InSWG_SwSoftHyphen
-( SwSwgReader& rPar, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen nEnd )
+( SwSwgReader& /*rPar*/, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen /*nEnd*/ )
 {
     if( !pSet )
         pNd->Insert( CHAR_SOFTHYPHEN, SwIndex( pNd, nBgn ));
@@ -475,7 +348,7 @@ static USHORT InSWG_SwSoftHyphen
 }
 
 static USHORT InSWG_SwHardBlank
-( SwSwgReader& rPar, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen nEnd )
+( SwSwgReader& /*rPar*/, SfxItemSet* pSet, SwTxtNode* pNd, xub_StrLen nBgn, xub_StrLen /*nEnd*/ )
 {
     if( !pSet )
         pNd->Insert( CHAR_HARDBLANK, SwIndex( pNd, nBgn ));
@@ -599,7 +472,7 @@ static USHORT InSWG_SwTOXMark
             if( aMark.IsAlternativeText() &&
                 pNd->GetTxtAttr( nBgn, aMark.Which() ) )
             {
-                ASSERT( !aMark.IsAlternativeText(),
+                OSL_ENSURE( !aMark.IsAlternativeText(),
                         "several TOXMark without end at same position" );
                 return 0;
             }
@@ -754,8 +627,8 @@ static USHORT InSWG_SwDropCaps
     aAttr.GetWholeWord() = FALSE;
     if( nFmt != IDX_NO_VALUE )
     {
-        SwCharFmt* pSet = (SwCharFmt*) rPar.FindFmt( nFmt, SWG_CHARFMT );
-        aAttr.SetCharFmt( pSet );
+        SwCharFmt* pSet1 = (SwCharFmt*) rPar.FindFmt( nFmt, SWG_CHARFMT );
+        aAttr.SetCharFmt( pSet1 );
     }
     pSet->Put( aAttr );
     return aAttr.Which();
@@ -786,11 +659,11 @@ static USHORT InSWG_SwBox
         if( !bDone )
         {
             USHORT red, green, blue;
-            short nOutline, nInline, nDistance;
+            short nOutline, nInline, nDistance2;
             rPar.r >> red >> green >> blue;
-            rPar.r >> nOutline >> nInline >> nDistance;
+            rPar.r >> nOutline >> nInline >> nDistance2;
             Color aClr( red, green, blue );
-            SvxBorderLine aBorder( &aClr, nOutline, nInline, nDistance );
+            SvxBorderLine aBorder( &aClr, nOutline, nInline, nDistance2 );
             switch( ch )
             {
                 case SWG_TOP:    aAttr.SetLine( &aBorder, BOX_LINE_TOP ); break;
@@ -895,7 +768,7 @@ static USHORT InSWG_SwFmtCol
     USHORT nMax = ( nWishWidth == LONG_MAX )
                 ? USHRT_MAX
                 : (USHORT) nWishWidth;
-    ASSERT( nWishWidth == LONG_MAX || nWishWidth <= 65535L, "WishWidth zu gross" );
+    OSL_ENSURE( nWishWidth == LONG_MAX || nWishWidth <= 65535L, "WishWidth zu gross" );
     long nFactor = nWishWidth / nMax;
     SwFmtCol aAttr;
     USHORT nLineWidth;
@@ -907,11 +780,11 @@ static USHORT InSWG_SwFmtCol
     {
         for( USHORT i = 0; i < nCol; i++ )
         {
-            long nWishWidth;
+            long nWishWidth3;
             USHORT nLeft, nUpper, nRight, nLower;
-            rPar.r >> nWishWidth >> nLeft >> nUpper >> nRight >> nLower;
+            rPar.r >> nWishWidth3 >> nLeft >> nUpper >> nRight >> nLower;
             SwColumn* pCol = new SwColumn;
-            pCol->SetWishWidth( (USHORT) ( nWishWidth / nFactor ) );
+            pCol->SetWishWidth( (USHORT) ( nWishWidth3 / nFactor ) );
             pCol->SetLeft( nLeft );
             pCol->SetUpper( nUpper );
             pCol->SetRight( nRight );
@@ -1189,7 +1062,7 @@ static USHORT InSWG_SwFmtAnchor
         case  1: cType = FLY_PAGE;      break;
         case 14: cType = FLY_AT_CNTNT;  break;
         case 15: cType = FLY_IN_CNTNT;  break;
-        default: ASSERT( FALSE, "ungueltige AnchorId." );
+        default: OSL_ENSURE( FALSE, "ungueltige AnchorId." );
     }
 
     SwFmtAnchor aAttr( (RndStdIds) cType, nPage + rPar.nPage1 );
@@ -1239,7 +1112,7 @@ xub_StrLen InSWG_Nothing( SwSwgReader&, SfxItemSet*, SwTxtNode*, xub_StrLen, xub
 
 typedef USHORT ( *SwHintFn )( SwSwgReader&, SfxItemSet*, SwTxtNode*, xub_StrLen, xub_StrLen );
 
-SwHintFn __READONLY_DATA aChrInAttrs[] =
+SwHintFn const aChrInAttrs[] =
 {
 /* OLDRES_CHRATR_CASEMAP    */          InSWG_SvxCaseMapItem,
 /* OLDRES_CHRATR_CHARWIDTH */           InSWG_Nothing,
@@ -1267,7 +1140,7 @@ SwHintFn __READONLY_DATA aChrInAttrs[] =
 /* OLDRES_CHRATR_HARDBLANK          */  InSWG_SwHardBlank,
 };
 
-SwHintFn __READONLY_DATA aFontInAttrs[] =
+SwHintFn const aFontInAttrs[] =
 {
 /* OLDRES_TXTATR_CHARWIDTH */           InSWG_Nothing,
 /* OLDRES_TXTATR_COLOR */               InSWG_SwColor,
@@ -1286,7 +1159,7 @@ SwHintFn __READONLY_DATA aFontInAttrs[] =
 /* OLDRES_TXTATR_CHARFMT    */          InSWG_SwCharFmt,
 };
 
-SwHintFn __READONLY_DATA aEtcInAttrs[] =
+SwHintFn const aEtcInAttrs[] =
 {
 /* OLDRES_TXTATR_WRITINGDIRECTION   */  InSWG_Nothing,
 /* OLDRES_TXTATR_KERNING    */          InSWG_SwKerning,
@@ -1306,7 +1179,7 @@ SwHintFn __READONLY_DATA aEtcInAttrs[] =
 };
 
 
-static SwHintFn __READONLY_DATA aParInAttrs[] =
+static SwHintFn const aParInAttrs[] =
 {
 /* OLDRES_PARATR_LINESPACING    */      InSWG_SwLineSpacing,
 /* OLDRES_PARATR_FIRSTLINEOFFSET    */  InSWG_Nothing,      // nicht mehr da
@@ -1319,7 +1192,7 @@ static SwHintFn __READONLY_DATA aParInAttrs[] =
 /* OLDRES_PARATR_DROP       */          InSWG_SwDropCaps,
 };
 
-static SwHintFn __READONLY_DATA aAddInAttrs[] =
+static SwHintFn const aAddInAttrs[] =
 {
 /* OLDRES_ADD_POSTIT    */              InSWG_Nothing,
 /* OLDRES_ADD_INSERTS   */              InSWG_Nothing,
@@ -1327,7 +1200,7 @@ static SwHintFn __READONLY_DATA aAddInAttrs[] =
 /* OLDRES_ADD_OTHERCONTENT */           InSWG_Nothing,
 };
 
-static SwHintFn __READONLY_DATA aFrmInAttrs[] =
+static SwHintFn const aFrmInAttrs[] =
 {
 /* OLDRES_FILL_ORDER    */              InSWG_SwFmtFillOrder,
 /* OLDRES_FRM_SIZE */                   InSWG_SwFmtFrmSize,
@@ -1358,7 +1231,7 @@ static SwHintFn __READONLY_DATA aFrmInAttrs[] =
 /* OLDRES_COL */                        InSWG_SwFmtCol
 };
 
-static SwHintFn __READONLY_DATA aGrfInAttrs[] =
+static SwHintFn const aGrfInAttrs[] =
 {
 /* OLDRES_GRFATR_GRFSIZE    */          InSWG_Nothing,
 /* OLDRES_GRFATR_MIRRORGRF */           InSWG_SwMirrorGrf,
@@ -1367,7 +1240,7 @@ static SwHintFn __READONLY_DATA aGrfInAttrs[] =
 /* OLDRES_GRFATR_CROPGRF    */          InSWG_SwCropGrf
 };
 
-#if defined GCC || defined HPUX
+#if defined GCC
 struct HintFns
 #else
 static struct HintFns
@@ -1376,11 +1249,11 @@ static struct HintFns
     const SwHintFn* pHintTab;
     short     nHintId1;
 }
-#if defined GCC || defined HPUX
+#if defined GCC
 ;
-static __READONLY_DATA HintFns aHintFns[] =
+static const HintFns aHintFns[] =
 #else
-__READONLY_DATA aHintFns[] =
+const aHintFns[] =
 #endif
 {
     { aChrInAttrs,  OLDRES_CHRATR_BEGIN },
@@ -1393,7 +1266,7 @@ __READONLY_DATA aHintFns[] =
 
 };
 
-static USHORT __READONLY_DATA nAttrSizes[] =
+static USHORT const nAttrSizes[] =
 {
     OLDRES_CHRATR_END + 1 - OLDRES_CHRATR_BEGIN,
     OLDFONT_TXTATR_END - OLDFONT_TXTATR_BEGIN,
@@ -1474,3 +1347,5 @@ USHORT SwSwgReader::InHint( SwTxtNode& rNd, xub_StrLen nBeg, xub_StrLen nEnd )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

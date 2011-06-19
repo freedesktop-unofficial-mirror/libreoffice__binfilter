@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -54,8 +55,6 @@ class Sw3Io
     friend class Sw3Writer;
 
     ULONG Load( SvStorage*, SwPaM* = NULL );
-    ULONG Save( SwPaM* = NULL, BOOL = TRUE );
-    ULONG SaveAs( SvStorage*, SwPaM* = NULL, BOOL = TRUE );
 
 public:
     Sw3Io( SwDoc& );
@@ -65,7 +64,6 @@ public:
 
      SvStorage* GetStorage();
     void  HandsOff();
-    BOOL  SaveCompleted( SvStorage* );
 
      ULONG SaveStyles();
     // Erzeugen eines eindeutigen Streamnamens im gegebenen Storage
@@ -76,3 +74,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

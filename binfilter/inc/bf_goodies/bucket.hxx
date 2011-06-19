@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
 namespace binfilter {
 
@@ -179,7 +178,7 @@ namespace binfilter {
     } \
     TheClassName& TheClassName##TheExtension::operator[] (UINT32 nPos) { \
         if(nPos >= nCount) { \
-            DBG_ERROR("Access to Bucket out of range!"); \
+            OSL_FAIL("Access to Bucket out of range!"); \
             return *((TheClassName*)aMemArray[0]); \
         } \
         return *((TheClassName*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift))); \
@@ -189,3 +188,5 @@ namespace binfilter {
 }//end of namespace binfilter
 
 #endif          // _B3D_BUCKET_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

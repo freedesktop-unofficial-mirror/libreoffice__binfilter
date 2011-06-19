@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,29 +29,15 @@
 #ifndef _FRM_COLUMNS_HXX
 #define _FRM_COLUMNS_HXX
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 #include "strings.hxx"
 
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XOBJECTINPUTSTREAM_HPP_
 #include <com/sun/star/io/XObjectInputStream.hpp>
-#endif
-#ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
-#endif
-#ifndef _COMPHELPER_BROADCASTHELPER_HXX_
 #include <comphelper/broadcasthelper.hxx>
-#endif
-#ifndef FORMS_COMPONENT_CLONEABLE_HXX
 #include "cloneable.hxx"
-#endif
 namespace binfilter {
 
     using namespace ::comphelper;
@@ -124,6 +111,8 @@ public:
                                           sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue )
                                         throw(::com::sun::star::lang::IllegalArgumentException);
     virtual void SAL_CALL setFastPropertyValue_NoBroadcast(sal_Int32 nHandle, const ::com::sun::star::uno::Any& rValue) throw (::com::sun::star::uno::Exception);
+
+    using OPropertySetAggregationHelper::getFastPropertyValue;
 
 // ::com::sun::star::beans::XPropertyState
     virtual ::com::sun::star::beans::PropertyState getPropertyStateByHandle(sal_Int32 nHandle);
@@ -232,3 +221,4 @@ DECL_COLUMN(FormattedFieldColumn)
 
 //.........................................................................
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

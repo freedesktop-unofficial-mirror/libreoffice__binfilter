@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define _UITOOL_HXX
 
 #include <tools/wintypes.hxx>
-#ifndef _SV_FIELD_HXX
 #include <vcl/field.hxx>
-#endif
 
 /*N*/ #include <tools/debug.hxx> //for stripping
 class Printer;
@@ -61,3 +60,5 @@ void PageDescToItemSet( const SwPageDesc& rPageDesc, SfxItemSet& rSet);
 
 } //namespace binfilter
 #endif // _UITOOL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

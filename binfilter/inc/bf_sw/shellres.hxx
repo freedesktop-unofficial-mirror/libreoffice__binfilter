@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 
 
-#ifndef _BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
 
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_STRINGSDTOR
@@ -110,3 +109,5 @@ inline const SvStringsDtor& ShellResource::GetAutoFmtNameLst() const
 
 } //namespace binfilter
 #endif //_SHELLRES_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

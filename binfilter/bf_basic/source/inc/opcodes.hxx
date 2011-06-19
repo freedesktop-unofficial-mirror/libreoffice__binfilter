@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,10 +30,6 @@
 #define _OPCODES_HXX
 
 #include "sbintern.hxx"
-
-#ifdef MTW
-#undef _NUMBER
-#endif
 
 // Ein Opcode ist entweder 1, 3 oder 5 Bytes lang, je nach numerischen
 // Wert des Opcodes (s.u.).
@@ -163,3 +160,5 @@ enum SbiOpcode {
 
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

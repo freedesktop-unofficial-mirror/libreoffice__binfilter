@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMLAYERIMPORT_HXX_
 #include "formlayerimport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_LAYERIMPORT_HXX_
 #include "layerimport.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -63,7 +60,7 @@ namespace xmloff
     }
 
     //---------------------------------------------------------------------
-    ::vos::ORef< SvXMLImportPropertyMapper > OFormLayerXMLImport::getStylePropertyMapper() const
+    ::rtl::Reference< SvXMLImportPropertyMapper > OFormLayerXMLImport::getStylePropertyMapper() const
     {
         return m_pImpl->getStylePropertyMapper();
     }
@@ -133,3 +130,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

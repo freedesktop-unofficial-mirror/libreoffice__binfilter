@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,34 +31,16 @@
 #pragma hdrstop
 #endif
 
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
-#ifndef _EDTWIN_HXX
 #include <edtwin.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
 
-#ifndef _UTLUI_HRC
 #include <utlui.hrc>
-#endif
-#ifndef _INITUI_HRC
 #include <initui.hrc>
-#endif
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>
-#endif
-#ifndef _AUTHFLD_HXX
 #include <authfld.hxx>
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include "swtypes.hxx"
-#endif
 namespace binfilter {
 
 #define C2S(cChar) UniString::CreateFromAscii(cChar)
@@ -81,8 +64,8 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 
 /*N*/ ShellResource::ShellResource()
 /*N*/   : Resource( SW_RES(RID_SW_SHELLRES) ),
-/*N*/   aPostItPage( SW_RES( STR_POSTIT_PAGE ) ),
 /*N*/   aPostItAuthor( SW_RES( STR_POSTIT_AUTHOR ) ),
+/*N*/   aPostItPage( SW_RES( STR_POSTIT_PAGE ) ),
 /*N*/   aPostItLine( SW_RES( STR_POSTIT_LINE ) ),
 /*N*/   aCalc_Syntax( SW_RES( STR_CALC_SYNTAX ) ),
 /*N*/   aCalc_ZeroDiv( SW_RES( STR_CALC_ZERODIV ) ),
@@ -105,10 +88,10 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 /*N*/   aTOXObjectsName(        SW_RES(STR_TOX_OBJ)),
 /*N*/   aTOXTablesName(         SW_RES(STR_TOX_TBL)),
 /*N*/   aTOXAuthoritiesName(    SW_RES(STR_TOX_AUTH)),
+/*N*/   pAutoFmtNameLst( 0 ),
 /*N*/   sPageDescFirstName(     SW_RES(STR_PAGEDESC_FIRSTNAME)),
 /*N*/   sPageDescFollowName(    SW_RES(STR_PAGEDESC_FOLLOWNAME)),
-/*N*/   sPageDescName(          SW_RES(STR_PAGEDESC_NAME)),
-/*N*/   pAutoFmtNameLst( 0 )
+/*N*/   sPageDescName(          SW_RES(STR_PAGEDESC_NAME))
 /*N*/ {
 /*N*/   const USHORT nCount = FLD_DOCINFO_END - FLD_DOCINFO_BEGIN;
 /*N*/
@@ -153,3 +136,5 @@ SvStringsDtor*  pAuthFieldTypeList = 0;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

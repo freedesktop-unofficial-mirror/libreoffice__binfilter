@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,21 +32,15 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "frmtool.hxx"
 #include "frmfmt.hxx"
 #include "hints.hxx"
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "txtfrm.hxx"       //fuer IsLocked()
 #include "flyfrms.hxx"
 namespace binfilter {
@@ -56,9 +51,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyInCntFrm::SwFlyInCntFrm(), ~SwFlyInCntFrm()
-|*
-|*  Ersterstellung      MA 01. Dec. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
 |*
 |*************************************************************************/
 /*N*/ SwFlyInCntFrm::SwFlyInCntFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
@@ -88,14 +80,11 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::SetRefPoint(),
 |*
-|*  Ersterstellung      MA 01. Dec. 92
-|*  Letzte Aenderung    MA 06. Aug. 95
-|*
 |*************************************************************************/
 /*M*/ void SwFlyInCntFrm::SetRefPoint( const Point& rPoint, const Point& rRelAttr,
 /*M*/   const Point& rRelPos )
 /*M*/ {
-/*M*/   ASSERT( rPoint != aRef || rRelAttr != aRelPos, "SetRefPoint: no change" );
+/*M*/   OSL_ENSURE( rPoint != aRef || rRelAttr != aRelPos, "SetRefPoint: no change" );
 /*M*/     SwFlyNotify *pNotify = NULL;
 /*M*/     // No notify at a locked fly frame, if a fly frame is locked, there's
 /*M*/     // already a SwFlyNotify object on the stack (MakeAll).
@@ -135,9 +124,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyInCntFrm::Modify()
-|*
-|*  Ersterstellung      MA 16. Dec. 92
-|*  Letzte Aenderung    MA 02. Sep. 93
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
@@ -184,8 +170,6 @@ namespace binfilter {
 |*  SwFlyInCntFrm::Format()
 |*
 |*  Beschreibung:       Hier wird der Inhalt initial mit Formatiert.
-|*  Ersterstellung      MA 16. Dec. 92
-|*  Letzte Aenderung    MA 19. May. 93
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::Format( const SwBorderAttrs *pAttrs )
@@ -209,8 +193,6 @@ namespace binfilter {
 |*  Beschreibung        Im Unterschied zu anderen Frms wird hier nur die
 |*      die RelPos berechnet. Die absolute Position wird ausschliesslich
 |*      per SetAbsPos errechnet.
-|*  Ersterstellung      MA 03. Dec. 92
-|*  Letzte Aenderung    MA 12. Apr. 96
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::MakeFlyPos()
@@ -227,7 +209,8 @@ namespace binfilter {
 /*N*/       //Und ggf. noch die aktuellen Werte im Format updaten, dabei darf
 /*N*/       //zu diesem Zeitpunkt natuerlich kein Modify verschickt werden.
 /*N*/ #ifdef VERTICAL_LAYOUT
-/*N*/         SWRECTFN( GetAnchor() )
+/*N*/         sal_Bool bVert = GetAnchor()->IsVertical();
+/*N*/         sal_Bool bRev = GetAnchor()->IsReverse();
 /*N*/         SwTwips nOld = rVert.GetPos();
 /*N*/         SwTwips nAct = bVert ? -aRelPos.X() : aRelPos.Y();
 /*N*/         if( bRev )
@@ -253,9 +236,6 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::NotifyBackground()
 |*
-|*  Ersterstellung      MA 03. Dec. 92
-|*  Letzte Aenderung    MA 26. Aug. 93
-|*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::NotifyBackground( SwPageFrm *, const SwRect& rRect,
 /*N*/                                      PrepareHint eHint)
@@ -270,9 +250,6 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::GetRelPos()
 |*
-|*  Ersterstellung      MA 04. Dec. 92
-|*  Letzte Aenderung    MA 04. Dec. 92
-|*
 |*************************************************************************/
 /*N*/ const Point &SwFlyInCntFrm::GetRelPos() const
 /*N*/ {
@@ -284,24 +261,18 @@ namespace binfilter {
 |*
 |*  SwFlyInCntFrm::RegistFlys()
 |*
-|*  Ersterstellung      MA 26. Nov. 93
-|*  Letzte Aenderung    MA 26. Nov. 93
-|*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::RegistFlys()
 /*N*/ {
 /*N*/   // vgl. SwRowFrm::RegistFlys()
 /*N*/   SwPageFrm *pPage = FindPageFrm();
-/*N*/   ASSERT( pPage, "Flys ohne Seite anmelden?" );
+/*N*/   OSL_ENSURE( pPage, "Flys ohne Seite anmelden?" );
 /*N*/   ::binfilter::RegistFlys( pPage, this );
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwFlyInCntFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 18. Feb. 94
-|*  Letzte Aenderung    MA 13. Jun. 96
 |*
 |*************************************************************************/
 /*N*/ void SwFlyInCntFrm::MakeAll()
@@ -315,7 +286,7 @@ namespace binfilter {
 /*N*/   const SwFlyNotify aNotify( this );
 /*N*/   SwBorderAttrAccess aAccess( SwFrm::GetCache(), this );
 /*N*/   const SwBorderAttrs &rAttrs = *aAccess.Get();
-/*N*/   const Size &rSz = rAttrs.GetSize();
+/*N*/   rAttrs.GetSize();
 /*N*/   const SwFmtFrmSize &rFrmSz = GetFmt()->GetFrmSize();
 /*N*/
 /*N*/   if ( IsClipped() )
@@ -363,3 +334,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

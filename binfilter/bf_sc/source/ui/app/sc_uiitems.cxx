@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -101,7 +102,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScSortItem::~ScSortItem()
+/*N*/ ScSortItem::~ScSortItem()
 /*N*/ {
 /*N*/ }
 
@@ -122,8 +123,8 @@ namespace binfilter {
 /*N*/                         ScViewData*           ptrViewData,
 /*N*/                         const ScQueryParam*   pQueryData ) :
 /*N*/       SfxPoolItem ( nWhich ),
-/*N*/       bIsAdvanced ( FALSE ),
-/*N*/       pViewData   ( ptrViewData )
+/*N*/       pViewData   ( ptrViewData ),
+/*N*/       bIsAdvanced ( FALSE )
 /*N*/ {
 /*N*/   if ( pQueryData ) theQueryData = *pQueryData;
 /*N*/ }
@@ -132,14 +133,14 @@ namespace binfilter {
 
 /*N*/ ScQueryItem::ScQueryItem( const ScQueryItem& rItem ) :
 /*N*/       SfxPoolItem ( rItem ),
-/*N*/       bIsAdvanced ( rItem.bIsAdvanced ),
-/*N*/       aAdvSource  ( rItem.aAdvSource ),
 /*N*/       pViewData   ( rItem.pViewData ),
-/*N*/       theQueryData( rItem.theQueryData )
+/*N*/       theQueryData( rItem.theQueryData ),
+/*N*/       bIsAdvanced ( rItem.bIsAdvanced ),
+/*N*/       aAdvSource  ( rItem.aAdvSource )
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScQueryItem::~ScQueryItem()
+/*N*/ ScQueryItem::~ScQueryItem()
 /*N*/ {
 /*N*/ }
 
@@ -178,7 +179,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ __EXPORT ScSubTotalItem::~ScSubTotalItem()
+/*N*/ ScSubTotalItem::~ScSubTotalItem()
 /*N*/ {
 /*N*/ }
 
@@ -212,7 +213,7 @@ namespace binfilter {
 /*N*/       pUserList = NULL;
 /*N*/ }
 
-/*N*/ __EXPORT ScUserListItem::~ScUserListItem()
+/*N*/ ScUserListItem::~ScUserListItem()
 /*N*/ {
 /*N*/   delete pUserList;
 /*N*/ }
@@ -252,7 +253,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScConsolidateItem::~ScConsolidateItem()
+/*N*/ ScConsolidateItem::~ScConsolidateItem()
 /*N*/ {
 /*N*/ }
 
@@ -296,7 +297,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScPivotItem::~ScPivotItem()
+/*N*/ ScPivotItem::~ScPivotItem()
 /*N*/ {
 /*N*/   delete pSaveData;
 /*N*/ }
@@ -332,7 +333,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScSolveItem::~ScSolveItem()
+/*N*/ ScSolveItem::~ScSolveItem()
 /*N*/ {
 /*N*/ }
 
@@ -345,3 +346,5 @@ namespace binfilter {
 //------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

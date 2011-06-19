@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,20 +30,12 @@
 #define _FLTCALL_HXX
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
 #include <vcl/field.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _FILTER_CONFIG_ITEM_HXX_
 #include <bf_svtools/FilterConfigItem.hxx>
-#endif
 
 class FilterConfigItem;
 class SvStream;
@@ -88,3 +81,5 @@ typedef BOOL ( *PFilterDlgCall )( FltCallDialogParameter& );
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

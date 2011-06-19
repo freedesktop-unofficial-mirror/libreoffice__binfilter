@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,74 +33,32 @@
 
 #include <hintids.hxx>
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
-#ifndef _FCHRFMT_HXX
 #include <fchrfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX
 #include <charfmt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _FMTPDSC_HXX
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTTSPLT_HXX
 #include "fmtlsplt.hxx"
-#endif
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
-#ifndef _UNOMID_H
 #include <unomid.h>
-#endif
-#ifndef _UNOSTYLE_HXX
 #include "unostyle.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
 
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -111,7 +70,7 @@ using namespace ::binfilter::xmloff::token;
 
 sal_Bool SwFmtDrop::equalsXML( const SfxPoolItem& rItem ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -120,7 +79,7 @@ sal_Bool SwFmtDrop::equalsXML( const SfxPoolItem& rItem ) const
 sal_Bool SwRegisterItem::importXML( const OUString& rValue, sal_uInt16,
                                     const SvXMLUnitConverter& rUnitConverter )
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_False;
 }
 
@@ -128,7 +87,7 @@ sal_Bool SwRegisterItem::exportXML(
         OUString& rValue, sal_uInt16,
         const SvXMLUnitConverter& rUnitConverter ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -136,7 +95,7 @@ sal_Bool SwRegisterItem::exportXML(
 
 sal_Bool SwNumRuleItem::equalsXML( const SfxPoolItem& rItem ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -188,7 +147,7 @@ sal_Bool SwFmtPageDesc::equalsXML( const SfxPoolItem& rItem ) const
 sal_Bool SwFmtCharFmt::exportXML( OUString& rValue, sal_uInt16,
                               const SvXMLUnitConverter& ) const
 {
-    ASSERT( !this, "obsolete implementation!" );
+    OSL_ENSURE( !this, "obsolete implementation!" );
     return sal_True;
 }
 
@@ -219,7 +178,7 @@ sal_Bool SwFmtLayoutSplit::exportXML(
 
 // ---------------------------------------------------------------------
 
-static __FAR_DATA struct SvXMLEnumMapEntry aXMLTableAlignMap[] =
+static struct SvXMLEnumMapEntry aXMLTableAlignMap[] =
 {
     { XML_LEFT,             HORI_LEFT           },
     { XML_LEFT,             HORI_LEFT_AND_WIDTH },
@@ -256,7 +215,7 @@ sal_Bool SwFmtHoriOrient::exportXML(
 
 // ---------------------------------------------------------------------
 
-static __FAR_DATA SvXMLEnumMapEntry aXMLTableVAlignMap[] =
+static SvXMLEnumMapEntry aXMLTableVAlignMap[] =
 {
     { XML_TOP,                  VERT_TOP        },
     { XML_MIDDLE,               VERT_CENTER     },
@@ -413,3 +372,5 @@ sal_Bool SwFmtFrmSize::exportXML(
     return bRet;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

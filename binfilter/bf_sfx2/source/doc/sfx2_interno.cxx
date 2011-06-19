@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #define _SFX_INTERNO_CXX
 
 
-#ifndef _SVTOOLS_IMGDEF_HXX
 #include <bf_svtools/imgdef.hxx>
-#endif
 
 #include "request.hxx"
 #include "docfac.hxx"
@@ -50,7 +49,7 @@ namespace binfilter {
 /*N*/ SV_IMPL_FACTORY(SfxInPlaceObjectFactory){}};
 /*N*/ TYPEINIT1(SfxInPlaceObjectFactory,SvFactory);
 /*N*/ SO2_IMPL_CLASS1(SfxInPlaceObject,SfxInPlaceObjectFactory,SvInPlaceObject,
-/*N*/         SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4E))//STRIP002 SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4D))
+/*N*/         SvGlobalName(0x3C8A87D0L,0x9B53,0x11d3,0x9E,0xCE,0x00,0x50,0x04,0xD7,0x6C,0x4E))
 /*?*/ void SfxInPlaceObject::TestMemberObjRef(BOOL){}
 /*?*/ void SfxInPlaceObject::TestMemberInvariant(BOOL){}
 /*?*/ ::IUnknown* SfxInPlaceObject::GetMemberInterface( const SvGlobalName & ){ return 0L; }
@@ -62,8 +61,8 @@ namespace binfilter {
 /*N*/   bDisableViewScaling = FALSE;
 /*N*/   pNote = 0;
 /*N*/
-/*N*/     SvVerbList* pVerbs = new SvVerbList;
-/*N*/     SetVerbList( pVerbs, TRUE );
+/*N*/     SvVerbList* pLclVerbs = new SvVerbList;
+/*N*/     SetVerbList( pLclVerbs, TRUE );
 /*N*/ }
 
 /*N*/ void SfxInPlaceObject::SetShell( SfxObjectShell *pObjSh )
@@ -157,44 +156,9 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ BOOL SfxInPlaceObject::Save()
-/*N*/ {
-/*N*/   if( !SaveChilds() )
-/*N*/       return FALSE;
-/*N*/   if( SvInPlaceObject::Save() )
-/*N*/         return pObjShell->SfxObjectShell::Save();
-/*N*/   return FALSE;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ BOOL SfxInPlaceObject::SaveAs( SvStorage * pNewStor )
-/*N*/ {
-/*N*/   if( !SaveAsChilds( pNewStor ) )
-/*N*/       return FALSE;
-/*N*/     if( SvInPlaceObject::SaveAs( pNewStor ) )
-/*N*/         return pObjShell->SfxObjectShell::SaveAs(pNewStor);
-/*N*/   return FALSE;
-/*N*/ }
-
-//--------------------------------------------------------------------
-
 /*N*/ void SfxInPlaceObject::HandsOff()
 /*N*/ {
 /*N*/   SvInPlaceObject::HandsOff();
-/*N*/ }
-
-//--------------------------------------------------------------------
-
-/*N*/ BOOL SfxInPlaceObject::SaveCompleted( SvStorage * pStor )
-/*N*/ {
-/*N*/   if( !SaveCompletedChilds( pStor ) )
-/*N*/       return FALSE;
-/*N*/   if( SvInPlaceObject::SaveCompleted( pStor ) )
-/*N*/   {
-/*N*/       return TRUE;
-/*N*/   }
-/*N*/   return FALSE;
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -220,15 +184,15 @@ namespace binfilter {
 
 //--------------------------------------------------------------------
 
-/*N*/ ErrCode SfxInPlaceObject::Verb( long nVerb, SvEmbeddedClient *pCaller,
-/*N*/                               Window *pWindow, const Rectangle* pRect)
+/*N*/ ErrCode SfxInPlaceObject::Verb( long /*nVerb*/, SvEmbeddedClient * /*pCaller*/,
+/*N*/                               Window * /*pWindow*/, const Rectangle* /*pRect*/)
 /*N*/ {
          return FALSE;
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*?*/ BOOL SfxInPlaceObject::Verb( long nVerb, const Rectangle* pRect )
+/*?*/ BOOL SfxInPlaceObject::Verb( long /*nVerb*/, const Rectangle* /*pRect*/ )
 /*?*/ {
 /*?*/   return (BOOL)DoEmbed( TRUE );
 /*?*/ }
@@ -242,20 +206,20 @@ namespace binfilter {
 
 //-------------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL bActivate )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxInPlaceObject::InPlaceActivate( BOOL /*bActivate*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::Embed( BOOL bEmbed )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxInPlaceObject::Embed( BOOL /*bEmbed*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
 
-/*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & rDocName )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SfxInPlaceObject::DocumentNameChanged( const String & /*rDocName*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //--------------------------------------------------------------------
@@ -270,3 +234,5 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

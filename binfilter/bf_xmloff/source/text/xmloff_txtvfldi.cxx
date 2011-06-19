@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,53 +31,17 @@
  *  export of all variable related text fields (and database display field)
  */
 
-#ifndef _XMLOFF_TXTVFLDI_HXX
 #include "txtvfldi.hxx"
-#endif
-
-
-
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_I18NMAP_HXX
 #include "i18nmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-
-#ifndef _COM_SUN_STAR_TEXT_SETVARIABLETYPE_HPP_
 #include <com/sun/star/text/SetVariableType.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_TEXT_XDEPENDENTTEXTFIELD_HPP_
 #include <com/sun/star/text/XDependentTextField.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFIELDSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFieldsSupplier.hpp>
-#endif
-
-
-
-
 
 #include "rtl/ustring.hxx"
 
@@ -117,13 +82,15 @@ static const sal_Char sAPI_sequence_value[]     = "SequenceValue";
 static const sal_Char sAPI_is_fixed_language[] = "IsFixedLanguage";
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 
 
@@ -134,19 +101,23 @@ using namespace ::binfilter::xmloff::token;
 TYPEINIT1( XMLVarFieldImportContext, XMLTextFieldImportContext );
 
 XMLVarFieldImportContext::XMLVarFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     const sal_Char* pServiceName, sal_uInt16 nPrfx,
     const OUString& rLocalName,
     sal_Bool bName, sal_Bool bFormula, sal_Bool bFormulaDefault,
-    sal_Bool bDescription, sal_Bool bVisible, sal_Bool bDisplayFormula,
+    sal_Bool bDescription, sal_Bool bVisible, sal_Bool bIsDisplayFormula,
     sal_Bool bType, sal_Bool bStyle, sal_Bool bValue) :
-//STRIP013  ,sal_Bool bPresentation) :
-        XMLTextFieldImportContext(rImport, rHlp, pServiceName,
+        XMLTextFieldImportContext(rInImport, rHlp, pServiceName,
                                   nPrfx, rLocalName),
+        sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
+        sPropertyHint(RTL_CONSTASCII_USTRINGPARAM(sAPI_hint)),
+        sPropertyIsVisible(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_visible)),
+        sPropertyIsDisplayFormula(RTL_CONSTASCII_USTRINGPARAM(
+            sAPI_is_show_formula)),
         sName(),
         sFormula(),
         sDescription(),
-        aValueHelper(rImport, rHlp, bType, bStyle, bValue, sal_False),
+        aValueHelper(rInImport, rHlp, bType, bStyle, bValue, sal_False),
         bDisplayFormula(sal_False),
         bDisplayNone(sal_False),
         bNameOK(sal_False),
@@ -158,15 +129,7 @@ XMLVarFieldImportContext::XMLVarFieldImportContext(
         bSetFormulaDefault(bFormulaDefault),
         bSetDescription(bDescription),
         bSetVisible(bVisible),
-        bSetDisplayFormula(bDisplayFormula),
-//STRIP013      bSetPresentation(bPresentation),
-        sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
-        sPropertyHint(RTL_CONSTASCII_USTRINGPARAM(sAPI_hint)),
-        sPropertyIsVisible(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_visible)),
-        sPropertyIsDisplayFormula(RTL_CONSTASCII_USTRINGPARAM(
-            sAPI_is_show_formula))
-//STRIP013      ,sPropertyCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM(
-//STRIP013          sAPI_current_presentation))
+        bSetDisplayFormula(bIsDisplayFormula)
 {
 }
 
@@ -304,18 +267,17 @@ void XMLVarFieldImportContext::PrepareField(
 TYPEINIT1( XMLSetVarFieldImportContext, XMLVarFieldImportContext );
 
 XMLSetVarFieldImportContext::XMLSetVarFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     const sal_Char* pServiceName, sal_uInt16 nPrfx,
     const OUString& rLocalName, VarType eVarType,
     sal_Bool bName, sal_Bool bFormula, sal_Bool bFormulaDefault,
-    sal_Bool bDescription, sal_Bool bVisible, sal_Bool bDisplayFormula,
+    sal_Bool bDescription, sal_Bool bVisible, sal_Bool bInDisplayFormula,
     sal_Bool bType, sal_Bool bStyle, sal_Bool bValue) :
-//STRIP013  ,sal_Bool bPresentation) :
-        XMLVarFieldImportContext(rImport, rHlp, pServiceName,
+        XMLVarFieldImportContext(rInImport, rHlp, pServiceName,
                                  nPrfx, rLocalName,
                                  bName, bFormula, bFormulaDefault,
-                                 bDescription, bVisible, bDisplayFormula,
-                                 bType, bStyle, bValue), //STRIP013, bPresentation),
+                                 bDescription, bVisible, bInDisplayFormula,
+                                 bType, bStyle, bValue),
         eFieldType(eVarType)
 {
 }
@@ -388,22 +350,21 @@ sal_Bool XMLSetVarFieldImportContext::FindFieldMaster(
 TYPEINIT1( XMLSequenceFieldImportContext, XMLSetVarFieldImportContext );
 
 XMLSequenceFieldImportContext::XMLSequenceFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& rLocalName) :
-        XMLSetVarFieldImportContext(rImport, rHlp, sAPI_set_expression,
+        XMLSetVarFieldImportContext(rInImport, rHlp, sAPI_set_expression,
                                     nPrfx, rLocalName, VarTypeSequence,
                                     // name, formula
                                     sal_True, sal_True, sal_True,
                                     sal_False, sal_False, sal_False,
                                     sal_False, sal_False, sal_False),
-//STRIP013                                  , sal_True),
+        sPropertyNumberFormat(RTL_CONSTASCII_USTRINGPARAM(sAPI_number_format)),
+        sPropertySequenceValue(
+            RTL_CONSTASCII_USTRINGPARAM(sAPI_sequence_value)),
         sNumFormat(OUString::valueOf(sal_Unicode('1'))),
         sNumFormatSync(GetXMLToken(XML_FALSE)),
         sRefName(),
-        bRefNameOK(sal_False),
-        sPropertyNumberFormat(RTL_CONSTASCII_USTRINGPARAM(sAPI_number_format)),
-        sPropertySequenceValue(
-            RTL_CONSTASCII_USTRINGPARAM(sAPI_sequence_value))
+        bRefNameOK(sal_False)
 {
 }
 
@@ -437,7 +398,7 @@ void XMLSequenceFieldImportContext::PrepareField(
     XMLSetVarFieldImportContext::PrepareField(xPropertySet);
 
     // set format
-    sal_Int16 nNumType = NumberingType::ARABIC;nNumType;
+    sal_Int16 nNumType = NumberingType::ARABIC;
     GetImport().GetMM100UnitConverter().convertNumFormat( nNumType, sNumFormat, sNumFormatSync );
     Any aAny;
     aAny <<= nNumType;
@@ -447,7 +408,7 @@ void XMLSequenceFieldImportContext::PrepareField(
     if (bRefNameOK)
     {
         aAny = xPropertySet->getPropertyValue(sPropertySequenceValue);
-        sal_Int16 nValue;
+        sal_Int16 nValue(0);
         aAny >>= nValue;
         GetImportHelper().InsertSequenceID(sRefName, GetName(), nValue);
     }
@@ -462,9 +423,9 @@ void XMLSequenceFieldImportContext::PrepareField(
 TYPEINIT1( XMLVariableSetFieldImportContext, XMLSetVarFieldImportContext );
 
 XMLVariableSetFieldImportContext::XMLVariableSetFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& rLocalName) :
-        XMLSetVarFieldImportContext(rImport, rHlp, sAPI_set_expression,
+        XMLSetVarFieldImportContext(rInImport, rHlp, sAPI_set_expression,
                                     nPrfx, rLocalName, VarTypeSimple,
                                     // name, formula, value&type, style,
                                     // display none
@@ -497,9 +458,9 @@ void XMLVariableSetFieldImportContext::PrepareField(
 TYPEINIT1( XMLVariableInputFieldImportContext, XMLSetVarFieldImportContext );
 
 XMLVariableInputFieldImportContext::XMLVariableInputFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        XMLSetVarFieldImportContext(rImport, rHlp, sAPI_set_expression,
+        XMLSetVarFieldImportContext(rInImport, rHlp, sAPI_set_expression,
                                     nPrfx, rLocalName, VarTypeSimple,
                                     // name, description, display none/formula,
                                     // value&type, style, formula
@@ -538,9 +499,9 @@ void XMLVariableInputFieldImportContext::PrepareField(
 TYPEINIT1( XMLUserFieldImportContext, XMLSetVarFieldImportContext );
 
 XMLUserFieldImportContext::XMLUserFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& rLocalName) :
-        XMLSetVarFieldImportContext(rImport, rHlp, sAPI_user, nPrfx,
+        XMLSetVarFieldImportContext(rInImport, rHlp, sAPI_user, nPrfx,
                                     rLocalName, VarTypeUserField,
                                     // name, display none/formula, style
                                     sal_True, sal_False, sal_False,
@@ -560,9 +521,9 @@ TYPEINIT1( XMLUserFieldInputImportContext, XMLVarFieldImportContext );
 
 // bug: doesn't work (SO API lacking)
 XMLUserFieldInputImportContext::XMLUserFieldInputImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        XMLVarFieldImportContext(rImport, rHlp, sAPI_input_user,
+        XMLVarFieldImportContext(rInImport, rHlp, sAPI_input_user,
                                  nPrfx, rLocalName,
                                  // name, description, style
                                  sal_True, sal_False, sal_False,
@@ -591,9 +552,9 @@ void XMLUserFieldInputImportContext::PrepareField(
 TYPEINIT1( XMLVariableGetFieldImportContext, XMLVarFieldImportContext );
 
 XMLVariableGetFieldImportContext::XMLVariableGetFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& rLocalName) :
-        XMLVarFieldImportContext(rImport, rHlp, sAPI_get_expression,
+        XMLVarFieldImportContext(rInImport, rHlp, sAPI_get_expression,
                                  nPrfx, rLocalName,
                                  // name, style, display formula
                                  sal_True, sal_False, sal_False,
@@ -629,9 +590,9 @@ void XMLVariableGetFieldImportContext::PrepareField(
 TYPEINIT1( XMLExpressionFieldImportContext, XMLVarFieldImportContext );
 
 XMLExpressionFieldImportContext::XMLExpressionFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& rLocalName) :
-        XMLVarFieldImportContext(rImport, rHlp, sAPI_get_expression,
+        XMLVarFieldImportContext(rInImport, rHlp, sAPI_get_expression,
                                  nPrfx, rLocalName,
                                  // formula, type, style, display formula
                                  sal_False, sal_True, sal_True,
@@ -665,9 +626,9 @@ void XMLExpressionFieldImportContext::PrepareField(
 TYPEINIT1( XMLTextInputFieldImportContext, XMLVarFieldImportContext );
 
 XMLTextInputFieldImportContext::XMLTextInputFieldImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& sLocalName) :
-        XMLVarFieldImportContext(rImport, rHlp, sAPI_input,
+        XMLVarFieldImportContext(rInImport, rHlp, sAPI_input,
                                  nPrfx, sLocalName,
                                  // description
                                  sal_False, sal_False, sal_False,
@@ -697,16 +658,14 @@ void XMLTextInputFieldImportContext::PrepareField(
 TYPEINIT1( XMLTableFormulaImportContext, XMLTextFieldImportContext );
 
 XMLTableFormulaImportContext::XMLTableFormulaImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        XMLTextFieldImportContext(rImport, rHlp, sAPI_table_formula,
+        XMLTextFieldImportContext(rInImport, rHlp, sAPI_table_formula,
                                   nPrfx, rLocalName),
         sPropertyIsShowFormula(RTL_CONSTASCII_USTRINGPARAM("IsShowFormula")),
-//STRIP013        sPropertyCurrentPresentation(
-//STRIP013            RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
-        aValueHelper(rImport, rHlp, sal_False, sal_True, sal_False, sal_True),
+        aValueHelper(rInImport, rHlp, sal_False, sal_True, sal_False, sal_True),
         sFormula(),
         bIsShowFormula(sal_False)
 {
@@ -782,22 +741,22 @@ void XMLTableFormulaImportContext::PrepareField(
 TYPEINIT1( XMLVariableDeclsImportContext, SvXMLImportContext );
 
 XMLVariableDeclsImportContext::XMLVariableDeclsImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
     const OUString& rLocalName, enum VarType eVarType) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        rImportHelper(rHlp),
-        eVarDeclsContextType(eVarType)
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
+        eVarDeclsContextType(eVarType),
+        rImportHelper(rHlp)
 {
 }
 
 SvXMLImportContext* XMLVariableDeclsImportContext::CreateChildContext(
-    sal_uInt16 nPrefix, const OUString& rLocalName,
+    sal_uInt16 nInPrefix, const OUString& rLocalName,
     const Reference<xml::sax::XAttributeList> & xAttrList )
 {
     enum XMLTokenEnum eElementName;
     SvXMLImportContext* pImportContext = NULL;
 
-    if( XML_NAMESPACE_TEXT == nPrefix )
+    if( XML_NAMESPACE_TEXT == nInPrefix )
     {
         switch (eVarDeclsContextType)
         {
@@ -811,20 +770,22 @@ SvXMLImportContext* XMLVariableDeclsImportContext::CreateChildContext(
                 eElementName = XML_USER_FIELD_DECL;
                 break;
             default:
-                DBG_ERROR("unknown field type!");
+                OSL_FAIL("unknown field type!");
+                eElementName = XML_SEQUENCE_DECL;
+                break;
         }
 
         if( IsXMLToken( rLocalName, eElementName ) )
         {
             pImportContext = new XMLVariableDeclImportContext(
-                GetImport(), rImportHelper, nPrefix, rLocalName, xAttrList,
+                GetImport(), rImportHelper, nInPrefix, rLocalName, xAttrList,
                 eVarDeclsContextType);
         }
     }
 
     // if no context was created, use default context
     if (NULL == pImportContext) {
-        pImportContext = SvXMLImportContext::CreateChildContext(nPrefix,
+        pImportContext = SvXMLImportContext::CreateChildContext(nInPrefix,
                                                                 rLocalName,
                                                                 xAttrList);
     }
@@ -841,21 +802,21 @@ SvXMLImportContext* XMLVariableDeclsImportContext::CreateChildContext(
 TYPEINIT1( XMLVariableDeclImportContext, SvXMLImportContext );
 
 XMLVariableDeclImportContext::XMLVariableDeclImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp,
     sal_uInt16 nPrfx, const OUString& rLocalName,
     const Reference<xml::sax::XAttributeList> & xAttrList,
     enum VarType eVarType) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        nNumLevel(-1), cSeparationChar('.'),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         // bug?? which properties for userfield/userfieldmaster
-        aValueHelper(rImport, rHlp, sal_True, sal_False, sal_True, sal_False),
         sPropertyName(RTL_CONSTASCII_USTRINGPARAM(sAPI_name)),
         sPropertySubType(RTL_CONSTASCII_USTRINGPARAM(sAPI_sub_type)),
         sPropertyNumberingLevel(RTL_CONSTASCII_USTRINGPARAM(
             sAPI_chapter_numbering_level)),
         sPropertyNumberingSeparator(RTL_CONSTASCII_USTRINGPARAM(
             sAPI_numbering_separator)),
-        sPropertyIsExpression(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_expression))
+        sPropertyIsExpression(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_expression)),
+        aValueHelper(rInImport, rHlp, sal_True, sal_False, sal_True, sal_False),
+        nNumLevel(-1), cSeparationChar('.')
 {
     if ( (XML_NAMESPACE_TEXT == nPrfx) &&
          ( ( IsXMLToken( rLocalName, XML_SEQUENCE_DECL )) ||
@@ -869,11 +830,11 @@ XMLVariableDeclImportContext::XMLVariableDeclImportContext(
         for(sal_Int16 i=0; i<nLength; i++) {
 
             OUString sLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
                 GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
             sal_uInt16 nToken = rHlp.
-                GetTextFieldAttrTokenMap().Get(nPrefix, sLocalName);
+                GetTextFieldAttrTokenMap().Get(nLclPrefix, sLocalName);
 
             switch (nToken)
             {
@@ -946,7 +907,7 @@ XMLVariableDeclImportContext::XMLVariableDeclImportContext(
                 break;
             }
             default:
-                DBG_ERROR("unkown varfield type");
+                OSL_FAIL("unkown varfield type");
             } // switch
         } // else: no field master found/constructed
     } // else: no sequence-decl
@@ -955,7 +916,7 @@ XMLVariableDeclImportContext::XMLVariableDeclImportContext(
 
 
 sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
-    Reference<XPropertySet> & xMaster, SvXMLImport& rImport,
+    Reference<XPropertySet> & xMaster, SvXMLImport& rInImport,
     XMLTextImportHelper& rImportHelper,
     const OUString& sVarName, enum VarType eVarType)
 {
@@ -966,7 +927,7 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
     OUString sName = rImportHelper.GetRenameMap().Get(eVarType, sVarName);
 
     // get text fields supplier and field masters
-    Reference<XTextFieldsSupplier> xTextFieldsSupp(rImport.GetModel(),
+    Reference<XTextFieldsSupplier> xTextFieldsSupp(rInImport.GetModel(),
                                                    UNO_QUERY);
     Reference<container::XNameAccess> xFieldMasterNameAccess(
         xTextFieldsSupp->getTextFieldMasters(), UNO_QUERY);
@@ -994,7 +955,7 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
             // sPropertySubType
             OUString::createFromAscii(sAPI_sub_type)
             );
-        sal_Int16 nType;
+        sal_Int16 nType(0);
         aAny >>= nType;
 
         enum VarType eFMVarType =
@@ -1017,7 +978,7 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
             rImportHelper.GetRenameMap().Add(eVarType, sName, sNew);
 
             // call FindFieldMaster recursively to create new master
-            return FindFieldMaster(xMaster, rImport, rImportHelper,
+            return FindFieldMaster(xMaster, rInImport, rImportHelper,
                                    sNew, eVarType);
         }
     } else if (xFieldMasterNameAccess->hasByName(sUserServiceName)) {
@@ -1041,7 +1002,7 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
             rImportHelper.GetRenameMap().Add(eVarType, sName, sNew);
 
             // call FindFieldMaster recursively to create new master
-            return FindFieldMaster(xMaster, rImport, rImportHelper,
+            return FindFieldMaster(xMaster, rInImport, rImportHelper,
                                    sNew, eVarType);
         }
     } else {
@@ -1049,7 +1010,7 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
 
         // import -> model is MultiServiceFactory -> createInstance
         Reference<lang::XMultiServiceFactory>
-            xFactory(rImport.GetModel(),UNO_QUERY);
+            xFactory(rInImport.GetModel(),UNO_QUERY);
         if( xFactory.is() ) {
 
             OUStringBuffer sService;
@@ -1103,23 +1064,21 @@ sal_Bool XMLVariableDeclImportContext::FindFieldMaster(
 TYPEINIT1( XMLDatabaseDisplayImportContext, XMLDatabaseFieldImportContext );
 
 XMLDatabaseDisplayImportContext::XMLDatabaseDisplayImportContext(
-    SvXMLImport& rImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
+    SvXMLImport& rInImport, XMLTextImportHelper& rHlp, sal_uInt16 nPrfx,
     const OUString& rLocalName) :
-        XMLDatabaseFieldImportContext(rImport, rHlp, sAPI_database,
+        XMLDatabaseFieldImportContext(rInImport, rHlp, sAPI_database,
                                       nPrfx, rLocalName, false),
-        aValueHelper(rImport, rHlp, sal_False, sal_True, sal_False, sal_False),
-        sColumnName(),
-        bColumnOK(sal_False),
         sPropertyColumnName(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_data_column_name)),
         sPropertyDatabaseFormat(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_is_data_base_format)),
-//STRIP013      sPropertyCurrentPresentation(
-//STRIP013          RTL_CONSTASCII_USTRINGPARAM(sAPI_current_presentation)),
         sPropertyIsVisible(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_is_visible)),
-        bDisplayOK( sal_False ),
-        bDisplay( sal_True )
+        aValueHelper(rInImport, rHlp, sal_False, sal_True, sal_False, sal_False),
+        sColumnName(),
+        bColumnOK(sal_False),
+        bDisplay( sal_True ),
+        bDisplayOK( sal_False )
 {
 }
 
@@ -1202,10 +1161,10 @@ void XMLDatabaseDisplayImportContext::EndElement()
                         GetImportHelper().InsertTextContent(xTextContent);
 
                         // prepare field: format from database?
-                        Any aAny;
+                        Any aLclAny;
                         sal_Bool bTmp = !aValueHelper.IsFormatOK();
-                        aAny.setValue( &bTmp, ::getBooleanCppuType() );
-                        xField->setPropertyValue(sPropertyDatabaseFormat,aAny);
+                        aLclAny.setValue( &bTmp, ::getBooleanCppuType() );
+                        xField->setPropertyValue(sPropertyDatabaseFormat,aLclAny);
 
                         // value, value-type and format done by value helper
                         aValueHelper.PrepareField(xField);
@@ -1213,22 +1172,9 @@ void XMLDatabaseDisplayImportContext::EndElement()
                         // visibility
                         if( bDisplayOK )
                         {
-                            aAny.setValue( &bDisplay, ::getBooleanCppuType() );
-                            xField->setPropertyValue(sPropertyIsVisible, aAny);
+                            aLclAny.setValue( &bDisplay, ::getBooleanCppuType() );
+                            xField->setPropertyValue(sPropertyIsVisible, aLclAny);
                         }
-
-//STRIP013                      // #111880#-4
-//STRIP013                      // The API for binfilter does not have this property, so test it first
-//STRIP013                      // before using it to not throw exceptions
-//STRIP013                      Reference<XPropertySetInfo> xPropertySetInfo(xField->getPropertySetInfo());
-//STRIP013
-//STRIP013                      if (xPropertySetInfo->hasPropertyByName(sPropertyCurrentPresentation))
-//STRIP013                      {
-//STRIP013                          // set presentation
-//STRIP013                          aAny <<= GetContent();
-//STRIP013                          xField->setPropertyValue(sPropertyCurrentPresentation,
-//STRIP013                                                   aAny);
-//STRIP013                      }
 
                         // success!
                         return;
@@ -1259,7 +1205,7 @@ enum ValueType
     XML_VALUE_TYPE_BOOLEAN
 };
 
-static SvXMLEnumMapEntry __READONLY_DATA aValueTypeMap[] =
+static SvXMLEnumMapEntry const aValueTypeMap[] =
 {
     { XML_FLOAT,        XML_VALUE_TYPE_FLOAT },
     { XML_CURRENCY,     XML_VALUE_TYPE_CURRENCY },
@@ -1275,29 +1221,29 @@ XMLValueImportHelper::XMLValueImportHelper(
     SvXMLImport& rImprt,
     XMLTextImportHelper& rHlp,
     sal_Bool bType, sal_Bool bStyle, sal_Bool bValue, sal_Bool bFormula) :
+        sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
+        sPropertyValue(RTL_CONSTASCII_USTRINGPARAM(sAPI_value)),
+        sPropertyNumberFormat(RTL_CONSTASCII_USTRINGPARAM(sAPI_number_format)),
+        sPropertyIsFixedLanguage(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed_language)),
         rImport(rImprt),
         rHelper(rHlp),
+        sValue(),
+        fValue(0.0),
+        nFormatKey(0),
+        sDefault(),
+        bIsDefaultLanguage(sal_True),
+        bStringType(sal_False),
+        bFormatOK(sal_False),
         bTypeOK(sal_False),
         bStringValueOK(sal_False),
         bFloatValueOK(sal_False),
-        bFormatOK(sal_False),
         bFormulaOK(sal_False),
         bSetType(bType),
         bSetValue(bValue),
         bSetStyle(bStyle),
         bSetFormula(bFormula),
-        bStringType(sal_False),
         bStringDefault(sal_True),
-        bFormulaDefault(sal_True),
-        bIsDefaultLanguage(sal_True),
-        sValue(),
-        fValue(0.0),
-        nFormatKey(0),
-        sDefault(),
-        sPropertyContent(RTL_CONSTASCII_USTRINGPARAM(sAPI_content)),
-        sPropertyValue(RTL_CONSTASCII_USTRINGPARAM(sAPI_value)),
-        sPropertyNumberFormat(RTL_CONSTASCII_USTRINGPARAM(sAPI_number_format)),
-        sPropertyIsFixedLanguage(RTL_CONSTASCII_USTRINGPARAM(sAPI_is_fixed_language))
+        bFormulaDefault(sal_True)
 {
 }
 
@@ -1333,7 +1279,7 @@ void XMLValueImportHelper::ProcessAttribute(
                         break;
 
                     default:
-                        DBG_ERROR("unknown value type");
+                        OSL_FAIL("unknown value type");
                         bTypeOK = sal_False;
                 }
             }
@@ -1466,3 +1412,5 @@ void XMLValueImportHelper::PrepareField(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

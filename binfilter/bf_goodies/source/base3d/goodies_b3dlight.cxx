@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DLIGHT_HXX
 #include "b3dlight.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 
@@ -153,34 +150,6 @@ void B3dLight::Init()
     bIsDirectionalSource = TRUE;
     bIsSpot = FALSE;
     bIsAmbient = FALSE;
-}
-
-void B3dLight::WriteData(SvStream& rOut) const
-{
-    rOut << aAmbient;
-    rOut << aDiffuse;
-    rOut << aSpecular;
-
-    rOut << aPosition;
-    rOut << aPositionEye;
-    rOut << aSpotDirection;
-    rOut << aSpotDirectionEye;
-    rOut << nSpotExponent;
-
-    rOut << fSpotCutoff;
-    rOut << fCosSpotCutoff;
-    rOut << fConstantAttenuation;
-    rOut << fLinearAttenuation;
-    rOut << fQuadraticAttenuation;
-
-    rOut << (BOOL)bIsFirstLight;
-    rOut << (BOOL)bIsEnabled;
-    rOut << (BOOL)bIsDirectionalSource;
-    rOut << (BOOL)bIsSpot;
-    rOut << (BOOL)bIsAmbient;
-    rOut << (BOOL)bIsDiffuse;
-    rOut << (BOOL)bIsSpecular;
-    rOut << (BOOL)bLinearOrQuadratic;
 }
 
 void B3dLight::ReadData(SvStream& rIn)
@@ -337,7 +306,7 @@ void B3dLightGroup::SetIntensity(const Color rNew,
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -354,7 +323,7 @@ const Color B3dLightGroup::GetIntensity(Base3DMaterialValue eMat,
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum].GetIntensity(eMat);
@@ -375,7 +344,7 @@ void B3dLightGroup::SetPosition(const Vector3D& rNew, Base3DLightNumber eNum)
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -394,7 +363,7 @@ void B3dLightGroup::SetDirection(const Vector3D& rNew, Base3DLightNumber eNum)
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -410,7 +379,7 @@ const Vector3D& B3dLightGroup::GetDirection(Base3DLightNumber eNum)
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum].GetPosition();
@@ -430,7 +399,7 @@ void B3dLightGroup::Enable(BOOL bNew, Base3DLightNumber eNum)
     }
 #ifdef DBG_UTIL
     else
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
 }
 
@@ -446,7 +415,7 @@ BOOL B3dLightGroup::IsEnabled(Base3DLightNumber eNum)
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum].IsEnabled();
@@ -464,25 +433,10 @@ B3dLight& B3dLightGroup::GetLightObject(Base3DLightNumber eNum)
     {
         eNum = Base3DLight0;
 #ifdef DBG_UTIL
-        DBG_ERROR("Access to Light out of range");
+        OSL_FAIL("Access to Light out of range");
 #endif
     }
     return aLight[eNum];
-}
-
-void B3dLightGroup::WriteData(SvStream& rOut) const
-{
-    for(UINT16 a=0;a<BASE3D_MAX_NUMBER_LIGHTS;a++)
-    {
-        B3dLight& rLight = ((B3dLightGroup*)(this))->GetLightObject((Base3DLightNumber)(Base3DLight0 + a));
-        rLight.WriteData(rOut);
-    }
-
-    rOut << aGlobalAmbientLight;
-
-    rOut << (BOOL)bLightingEnabled;
-    rOut << (BOOL)bLocalViewer;
-    rOut << (BOOL)bModelTwoSide;
 }
 
 void B3dLightGroup::ReadData(SvStream& rIn)
@@ -505,3 +459,5 @@ void B3dLightGroup::ReadData(SvStream& rIn)
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

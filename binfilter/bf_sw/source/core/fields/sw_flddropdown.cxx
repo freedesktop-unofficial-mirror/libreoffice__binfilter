@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,10 @@
 
 #include <algorithm>
 #include <bf_svtools/poolitem.hxx>
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 #include <flddropdown.hxx>
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 static String aEmptyString;
 
 SwDropDownFieldType::SwDropDownFieldType()
@@ -123,7 +122,7 @@ Sequence<OUString> SwDropDownField::GetItemSequence() const
     int i = 0;
     vector<String>::const_iterator aIt;
 
-    for (aIt = aValues.begin(); aIt != aValues.end(); aIt++)
+    for (aIt = aValues.begin(); aIt != aValues.end(); ++aIt)
     {
         pSeq[i] = ::rtl::OUString(*aIt);
 
@@ -179,7 +178,7 @@ BOOL SwDropDownField::QueryValue(Any &rVal, BYTE nMId)
         break;
 
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return sal_True;
 }
@@ -217,8 +216,10 @@ BOOL SwDropDownField::PutValue(const Any &rVal,
         break;
 
     default:
-        DBG_ERROR("illegal property");
+        OSL_FAIL("illegal property");
     }
     return sal_True;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

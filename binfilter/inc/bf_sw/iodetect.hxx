@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,22 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-
-
-
 #ifdef IS_SW_DLL
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
 #endif
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 class Reader;
-
-typedef void (*FnGetWriter)( const String&, WriterRef& );
 
 struct SwIoDetect
 {
@@ -61,23 +53,20 @@ struct SwIoDetect
 
 #ifdef IS_SW_DLL
     Reader* pReader;
-    FnGetWriter fnGetWriter;
     BOOL bDelReader;
 
    inline Reader* GetReader() const { return pReader; }
-    inline void GetWriter( const String& rNm, WriterRef& xWrt ) const
-        { if( fnGetWriter ) (*fnGetWriter)(rNm,xWrt); else xWrt = WriterRef(0); }
 #endif
 
-    const sal_Char* IsReader(const sal_Char* pHeader, ULONG nLen,
+    const sal_Char* IsReader(const sal_Char* pHeader, ULONG nInLen,
         const String &rFileName) const;
 };
 
 
 #ifdef IS_SW_DLL
-#define SwIoEntry(sNm, cCharLen, pWrt, bDel)    sNm, cCharLen, 0, pWrt, bDel
+#define SwIoEntry(sNm, cCharLen,  bDel) sNm, cCharLen, 0,  bDel
 #else
-#define SwIoEntry(sNm, cCharLen, pWrt, bDel)    sNm, cCharLen
+#define SwIoEntry(sNm, cCharLen, bDel)  sNm, cCharLen
 #endif
 
 #ifdef DEBUG_SH
@@ -116,12 +105,7 @@ struct SwIoDetect
 #endif
 
 
-const USHORT MAXFILTER =
-#if !( !defined(DBG_UTIL) || defined(PM2))
-#endif
-#ifdef DEBUG_SH
-#endif
-    14;//STRIP001     21;
+const USHORT MAXFILTER = 13;
 
 #define FORAMTNAME_SW4      "StarWriter 4.0"
 #define FORAMTNAME_SW3      "StarWriter 3.0"
@@ -129,71 +113,56 @@ const USHORT MAXFILTER =
 
 
 #define IO_DETECT_IMPL1 \
-sal_Char __FAR_DATA FILTER_SWG[]    = "SWG";                             \
-sal_Char __FAR_DATA FILTER_SW3[]    = "CSW3";                            \
-sal_Char __FAR_DATA FILTER_SW4[]    = "CSW4";                            \
-sal_Char __FAR_DATA FILTER_SW5[]    = "CSW5";                            \
-sal_Char __FAR_DATA FILTER_BAS[]    = "BAS";                             \
-sal_Char __FAR_DATA FILTER_RTF[]    = "RTF";                             \
-sal_Char __FAR_DATA FILTER_W4W[]    = "W4W";                             \
-sal_Char __FAR_DATA FILTER_SWGV[]   = "SWGV";                            \
-sal_Char __FAR_DATA FILTER_SW3V[]   = "CSW3V";                           \
-sal_Char __FAR_DATA FILTER_SW4V[]   = "CSW4V";                           \
-sal_Char __FAR_DATA FILTER_SW5V[]   = "CSW5V";                           \
-sal_Char __FAR_DATA FILTER_SWW4V[]  = "CSW4VWEB";                        \
-sal_Char __FAR_DATA FILTER_SWW5V[]  = "CSW5VWEB";                        \
-sal_Char __FAR_DATA sSwg1[]         = "SWG1";                            \
-sal_Char __FAR_DATA sRtfWH[]        = "WH_RTF";                          \
-sal_Char __FAR_DATA sCExcel[]       = "CEXCEL";                          \
-sal_Char __FAR_DATA sExcel[]        = "EXCEL";                           \
-sal_Char __FAR_DATA sLotusD[]       = "LOTUSD";                          \
-sal_Char __FAR_DATA sLotusW[]       = "LOTUSW";                          \
-sal_Char __FAR_DATA sHTML[]         = "HTML";                            \
-sal_Char __FAR_DATA sWW1[]          = "WW1";                             \
-sal_Char __FAR_DATA sWW5[]          = "WW6";                             \
-sal_Char __FAR_DATA sWW6[]          = "CWW6";                            \
-sal_Char __FAR_DATA FILTER_WW8[]    = "CWW8";                            \
-sal_Char __FAR_DATA FILTER_TEXT_DLG[] = "TEXT_DLG";                      \
-sal_Char __FAR_DATA FILTER_TEXT[]   = "TEXT";                            \
-sal_Char __FAR_DATA sW4W_Int[]      = "W4_INT";                          \
-sal_Char __FAR_DATA sDebug[]        = "DEBUG";                           \
-sal_Char __FAR_DATA sUndo[]         = "UNDO";                            \
-sal_Char __FAR_DATA FILTER_XML[]    = "CXML";                            \
-sal_Char __FAR_DATA FILTER_XMLV[]   = "CXMLV";                           \
-sal_Char __FAR_DATA FILTER_XMLVW[]  = "CXMLVWEB";                        \
-sal_Char __FAR_DATA sSwDos[]        = "SW6";                                \
-                                                                            \
-                                                                            \
-SwIoDetect aReaderWriter[ MAXFILTER ] = {                                   \
-/*  0*/ SwIoEntry(FILTER_SW5,       4,          &::binfilter::GetSw3Writer,     TRUE),  \
-/*  1*/ SwIoEntry(FILTER_SW4,       4,          &::binfilter::GetSw3Writer,     FALSE), \
-/*  2*/ SwIoEntry(FILTER_SW3,       4,          &::binfilter::GetSw3Writer,     FALSE), \
-/*  3*/ SwIoEntry(FILTER_SWG,       STRING_LEN, 0,                  TRUE),  \
-/*  4*/ SwIoEntry(FILTER_SWGV,      4,          0,                  FALSE), \
-/*  5 SwIoEntry(FILTER_RTF,         STRING_LEN, &::GetRTFWriter,    TRUE),  */\
-/*  6*/ SwIoEntry(sSwDos,           STRING_LEN,  0,                  TRUE),  \
-/*  7*/ SwIoEntry(FILTER_BAS,       STRING_LEN, &::binfilter::GetASCWriter,     FALSE), \
-/*  8 SwIoEntry(sWW6,               STRING_LEN, &::GetWW8Writer,    TRUE),  */\
-/*  9 SwIoEntry(FILTER_WW8,     STRING_LEN, &::GetWW8Writer,    FALSE), */\
-/* 10*/ SwIoEntry(FILTER_W4W,        3,          &::binfilter::GetW4WWriter,    TRUE),  \
-/* 11 SwIoEntry(sRtfWH,             STRING_LEN, &::GetRTFWriter,    FALSE), */\
-/* 12*/ SwIoEntry(sCExcel,           5,          0,                  TRUE),  \
-/* 13*/ SwIoEntry(sExcel,            4,          0,                  FALSE), \
-/* 14*/ SwIoEntry(sLotusD,           5,          0,                  TRUE),  \
-/* 15 SwIoEntry(sHTML,          4,          &::GetHTMLWriter,   TRUE),  */\
-/* 16 SwIoEntry(sWW1,           STRING_LEN, 0,                  TRUE),  */\
-/* 17 SwIoEntry(sWW5,               STRING_LEN, 0,                  FALSE), */\
-/* 18*/ SwIoEntry(sSwg1,            4,          0,                  FALSE), \
-/* 19*/ SwIoEntry(FILTER_XML,       4,          &::binfilter::GetXMLWriter, TRUE)  \
-                                                                            \
-/* opt DEB_SH_SwIoEntry(sW4W_Int, STRING_LEN, 0,                    TRUE)   */\
-/* opt DEB_DBWRT_SwIoEntry(sDebug,STRING_LEN, &::GetDebugWriter,    FALSE)  */\
-/* opt DEB_DBWRT_SwIoEntry(sUndo,   STRING_LEN, &::GetUndoWriter,   FALSE)  */\
-                                                                          , \
-/*last*/ SwIoEntry(FILTER_TEXT,     4,          &::binfilter::GetASCWriter,     TRUE)   \
-};                                                                          \
-
-
+sal_Char FILTER_SWG[]   = "SWG";                             \
+sal_Char FILTER_SW3[]   = "CSW3";                            \
+sal_Char FILTER_SW4[]   = "CSW4";                            \
+sal_Char FILTER_SW5[]   = "CSW5";                            \
+sal_Char FILTER_BAS[]   = "BAS";                             \
+sal_Char FILTER_RTF[]   = "RTF";                             \
+sal_Char FILTER_W4W[]   = "W4W";                             \
+sal_Char FILTER_SWGV[]  = "SWGV";                            \
+sal_Char FILTER_SW3V[]  = "CSW3V";                           \
+sal_Char FILTER_SW4V[]  = "CSW4V";                           \
+sal_Char FILTER_SW5V[]  = "CSW5V";                           \
+sal_Char FILTER_SWW4V[] = "CSW4VWEB";                        \
+sal_Char FILTER_SWW5V[] = "CSW5VWEB";                        \
+sal_Char sSwg1[]         = "SWG1";                           \
+sal_Char sRtfWH[]       = "WH_RTF";                          \
+sal_Char sCExcel[]      = "CEXCEL";                          \
+sal_Char sExcel[]       = "EXCEL";                           \
+sal_Char sLotusD[]      = "LOTUSD";                          \
+sal_Char sLotusW[]      = "LOTUSW";                          \
+sal_Char sHTML[]        = "HTML";                            \
+sal_Char sWW1[]             = "WW1";                         \
+sal_Char sWW5[]         = "WW6";                             \
+sal_Char sWW6[]         = "CWW6";                            \
+sal_Char FILTER_WW8[]   = "CWW8";                            \
+sal_Char FILTER_TEXT_DLG[] = "TEXT_DLG";                     \
+sal_Char FILTER_TEXT[]  = "TEXT";                            \
+sal_Char sW4W_Int[]         = "W4_INT";                      \
+sal_Char sDebug[]       = "DEBUG";                           \
+sal_Char sUndo[]        = "UNDO";                            \
+sal_Char FILTER_XML[]   = "CXML";                            \
+sal_Char FILTER_XMLV[]  = "CXMLV";                           \
+sal_Char FILTER_XMLVW[]     = "CXMLVWEB";                    \
+sal_Char sSwDos[]       = "SW6";                               \
+                                                               \
+                                                               \
+SwIoDetect aReaderWriter[ MAXFILTER ] = {                      \
+    {/* 0*/ SwIoEntry(FILTER_SW5,     4,            TRUE)},    \
+    {/* 1*/ SwIoEntry(FILTER_SW4,     4,            FALSE)},   \
+    {/* 2*/ SwIoEntry(FILTER_SW3,     4,            FALSE)},   \
+    {/* 3*/ SwIoEntry(FILTER_SWG,     STRING_LEN,   TRUE)},    \
+    {/* 4*/ SwIoEntry(FILTER_SWGV,    4,            FALSE)},   \
+    {/* 5*/ SwIoEntry(sSwDos,         STRING_LEN,   TRUE)},    \
+    {/* 6*/ SwIoEntry(FILTER_BAS,     STRING_LEN,   FALSE)},   \
+    {/* 7*/ SwIoEntry(FILTER_W4W,     3,            TRUE)},    \
+    {/* 8*/ SwIoEntry(sCExcel,        5,            TRUE)},    \
+    {/* 9*/ SwIoEntry(sExcel,         4,            FALSE)},   \
+    {/*10*/ SwIoEntry(sLotusD,        5,            TRUE)},    \
+    {/*11*/ SwIoEntry(sSwg1,          4,            FALSE)},   \
+    {/*12*/ SwIoEntry(FILTER_TEXT,    4,            TRUE)}     \
+};
 
 // Filter erkennung
 struct W1_FIB
@@ -208,7 +177,6 @@ struct W1_FIB
     USHORT nFibGet()    { return SVBT16ToShort(nFib); }
     USHORT wIdentGet()  { return SVBT16ToShort(wIdent); }
     USHORT fFlagsGet()  { return SVBT16ToShort(fFlags); }
-    // SVBT16 fComplex :1;//        0004 when 1, file is in complex, fast-saved format.
     BOOL fComplexGet() { return ((fFlagsGet() >> 2) & 1); }
 };
 #if OSL_DEBUG_LEVEL > 1
@@ -226,7 +194,7 @@ struct W1_FIB
 #endif
 
 #define IO_DETECT_IMPL2 \
-const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nLen, \
+const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nInLen, \
     const String &rFileName) const              \
 {                                                                           \
     int bRet = FALSE;                                                       \
@@ -264,14 +232,14 @@ const sal_Char* SwIoDetect::IsReader(const sal_Char* pHeader, ULONG nLen, \
     }                                                                       \
     else if( sSwDos == pName )                                              \
     {                                                                       \
-        sal_Char __READONLY_DATA sSw6_FormatStt[] =         ".\\\\\\ WRITER ";  \
-        sal_Char __READONLY_DATA sSw6_FormatEnd[] =         " \\\\\\";          \
+        sal_Char const sSw6_FormatStt[] =         ".\\\\\\ WRITER ";  \
+        sal_Char const sSw6_FormatEnd[] =         " \\\\\\";          \
                                                                             \
         bRet = 0 == strncmp( sSw6_FormatStt, pHeader, 12 ) &&               \
                   0 == strncmp( sSw6_FormatEnd, pHeader + 12 + 1, 4 );          \
     }                                                                       \
     else if (FILTER_TEXT == pName) \
-        bRet = SwIoSystem::IsDetectableText(pHeader, nLen); \
+        bRet = SwIoSystem::IsDetectableText(pHeader, nInLen); \
     else if (FILTER_W4W == pName) \
     bRet = SwIoSystem::IsDetectableW4W(rFileName); \
     return bRet ? pName : 0;                                       \
@@ -327,7 +295,7 @@ const SfxFilter* SwIoSystem::GetFilterOfFormat( const String& rFmtNm,           
     return 0;                                                                         \
 }                                                                                     \
                                                                                       \
-FASTBOOL SwIoSystem::IsValidStgFilter( SvStorage& rStg, const SfxFilter& rFilter )    \
+bool SwIoSystem::IsValidStgFilter( SvStorage& rStg, const SfxFilter& rFilter )    \
 {                                                                                     \
     ULONG nStgFmtId = rStg.GetFormat();                                               \
     /*#i8409# We cannot trust the clipboard id anymore :-(*/ \
@@ -373,10 +341,10 @@ FASTBOOL SwIoSystem::IsValidStgFilter( SvStorage& rStg, const SfxFilter& rFilter
                                                                                       \
     /* Feststellen ob das File in dem entsprechenden Format vorliegt. */              \
     /* Z.z werden nur unsere eigene Filter unterstuetzt               */              \
-FASTBOOL SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,        \
+bool SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,        \
                                     const SfxFilter** ppFilter )                      \
 {                                                                                     \
-    FASTBOOL bRet = FALSE;                                                            \
+    bool bRet = FALSE;                                                            \
     const SfxFilter* pFltr;                                                           \
     const SfxFactoryFilterContainer& rFltContainer = IsDocShellRegistered()           \
             ? *SwDocShell::Factory().GetFilterContainer()                             \
@@ -439,10 +407,7 @@ FASTBOOL SwIoSystem::IsFileFilter( SfxMedium& rMedium, const String& rFmtName,  
 /* Es wird versucht, eine dem Filter entsprechende Byte-Folge zu finden.  */ \
 /* Wird kein entsprechender gefunden, wird zur Zeit der ASCII-Reader      */ \
 /* returnt !! Der Returnwert ist der interne Filtername!                  */ \
-/* rPrefFltName ist der interne Name des Filters, den der Benutzer im     */ \
-/* Open-Dialog eingestellt hat.                                           */ \
 const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
-                                             const String& rPrefFltName,      \
                                              SfxMedium* pMedium )             \
 {                                                                            \
     SfxFactoryFilterContainer* pFCntnr = IsDocShellRegistered()              \
@@ -487,7 +452,7 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
     }                                                                        \
                                                                              \
     sal_Char aBuffer[ 4098 ];                                                \
-    ULONG nBytesRead;                                                        \
+    ULONG nBytesRead(0);                                                     \
     if( pMedium )                                                            \
     {                                                                        \
         SvStream* pIStrm = pMedium->GetInStream();                           \
@@ -524,13 +489,13 @@ const SfxFilter* SwIoSystem::GetFileFilter( const String& rFileName,         \
     /* nie erkannt und es wird auch der ASCII-Filter returnt.             */ \
     /* !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!*/ \
     {                                                                        \
-        const SfxFilter* pFilter;                                            \
+        const SfxFilter* pLclFilter;                                         \
         const sal_Char* pNm;                                                 \
         for( USHORT n = 0; n < MAXFILTER; ++n )                              \
             if( 0 != ( pNm = aReaderWriter[n].IsReader(aBuffer, nBytesRead, rFileName)) &&        \
-                0 != ( pFilter =  SwIoSystem::GetFilterOfFormat(             \
+                0 != ( pLclFilter =  SwIoSystem::GetFilterOfFormat(          \
                                 String::CreateFromAscii(pNm), pFCntnr )))    \
-                return pFilter;                                              \
+                return pLclFilter;                                           \
     }                                                                        \
                                                                              \
     /* Ok, bis jetzt kein Filter gefunden, also befrage mal die */           \
@@ -594,7 +559,7 @@ bool SwIoSystem::IsDetectableText(const sal_Char* pBuf, ULONG &rLen, \
         rLen-=nHead;\
     }\
 \
-    bool bCR = false, bLF = false, bNoNormalChar = false, \
+    bool bCR = false, bLF = false, \
         bIsBareUnicode = false;\
 \
     if (eCharSet != RTL_TEXTENCODING_DONTKNOW)\
@@ -680,8 +645,6 @@ bool SwIoSystem::IsDetectableText(const sal_Char* pBuf, ULONG &rLen, \
                 case 0x9:\
                     break;\
                 default:\
-                    if (0x20 > (BYTE)*pBuf)\
-                        bNoNormalChar = true;\
                     break;\
             }\
         }\
@@ -705,9 +668,9 @@ bool SwIoSystem::IsDetectableText(const sal_Char* pBuf, ULONG &rLen, \
 }\
 \
 \
-const SfxFilter* SwIoSystem::GetTextFilter( const sal_Char* pBuf, ULONG nLen)\
+const SfxFilter* SwIoSystem::GetTextFilter( const sal_Char* pBuf, ULONG nInLen)\
 {                                                                            \
-    bool bAuto = IsDetectableText(pBuf, nLen); \
+    bool bAuto = IsDetectableText(pBuf, nInLen); \
     const sal_Char* pNm = bAuto ? FILTER_TEXT : FILTER_TEXT_DLG; \
     return SwIoSystem::GetFilterOfFormat( String::CreateFromAscii(pNm), 0 ); \
 } \
@@ -727,3 +690,5 @@ bool SwIoSystem::IsDetectableW4W(const String& rFileName) \
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

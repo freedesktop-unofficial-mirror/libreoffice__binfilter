@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,126 +31,48 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_PAPERINF_HXX //autogen
 #include <bf_svx/paperinf.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include "bf_svx/frmdiritem.hxx"
-#endif
-#ifndef _URLOBJ_HXX //autogen
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FTNINFO_HXX //autogen
 #include <ftninfo.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _VISCRS_HXX
+#include <osl/diagnose.h>
 #include <viscrs.hxx>
-#endif
-#ifndef _FESH_HXX //autogen
 #include <fesh.hxx>
-#endif
-#ifndef _NDOLE_HXX //autogen
 #include <ndole.hxx>
-#endif
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>  //Fuer DelPageDesc
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>  //Fuer DelPageDesc
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _FMTFTN_HXX
 #include <fmtftn.hxx>
-#endif
-#ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
-#endif
-#ifndef _FNTCACHE_HXX
 #include <fntcache.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
-#ifndef _GETMETRICVAL_HXX
 #include <GetMetricVal.hxx>
-#endif
 
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -191,10 +114,6 @@ namespace binfilter {
 /*N*/       //werden die SV'ler noch eine Methode anbieten.
 /*N*/       const Size aPhysSize( SvxPaperInfo::GetPaperSize( (Printer*)pPrt ));
 /*N*/
-/*N*/       //if ( aPhysSize.Width() <= 0 )
-/*N*/       //  aPhysSize.Width() = lA4Width;
-/*N*/       //if ( aPhysSize.Height() <= 0 )
-/*N*/       //  aPhysSize.Height() = lA4Height;
 /*N*/       aFrmSize.SetSize( aPhysSize );
 /*N*/
 /*N*/       //Raender
@@ -205,7 +124,7 @@ namespace binfilter {
 /*N*/       //Raender haben eine defaultmaessige Mindestgroesse.
 /*N*/       //wenn der Drucker einen groesseren Rand vorgibt, so
 /*N*/       //ist mir dass auch recht.
-/*N*/       // MIB 06/25/2002, #99397#: The HTML page desc had A4 as page size
+/*N*/       // The HTML page desc had A4 as page size
 /*N*/       // always. This has been changed to take the page size from the printer.
 /*N*/       // Unfortunately, the margins of the HTML page desc are smaller than
 /*N*/       // the margins used here in general, so one extra case is required.
@@ -263,9 +182,6 @@ namespace binfilter {
 |*
 |*  SwDoc::ChgPageDesc()
 |*
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    MA 01. Mar. 95
-|*
 |*************************************************************************/
 
 /*N*/ void lcl_DescSetAttr( const SwFrmFmt &rSource, SwFrmFmt &rDest,
@@ -277,7 +193,7 @@ namespace binfilter {
 /*N*/ // funktioniert nicht richtig, wenn man unterschiedliche WhichRanges hat.
 /*N*/ /////////////// !!!!!!!!!!!!!!!!
 /*N*/   //Die interressanten Attribute uebernehmen.
-/*N*/   USHORT __READONLY_DATA aIdArr[] = { RES_FRM_SIZE, RES_UL_SPACE,
+/*N*/   USHORT const aIdArr[] = { RES_FRM_SIZE, RES_UL_SPACE,
 /*N*/                                       RES_BACKGROUND, RES_SHADOW,
 /*N*/                                       RES_COL, RES_COL,
 /*N*/                                       RES_FRAMEDIR, RES_FRAMEDIR,
@@ -309,7 +225,7 @@ namespace binfilter {
 
 /*N*/ void SwDoc::ChgPageDesc( USHORT i, const SwPageDesc &rChged )
 /*N*/ {
-/*N*/   ASSERT( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
+/*N*/   OSL_ENSURE( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
 /*N*/
 /*N*/   SwPageDesc *pDesc = aPageDescs[i];
 /*N*/
@@ -511,12 +427,10 @@ namespace binfilter {
 |*
 |*  Beschreibung        Alle Descriptoren, deren Follow auf den zu loeschenden
 |*      zeigen muessen angepasst werden.
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    JP 04.09.95
 |*
 |*************************************************************************/
 
-void lcl_RemoveFrms( SwFrmFmt& rFmt, FASTBOOL& rbFtnsRemoved )
+void lcl_RemoveFrms( SwFrmFmt& rFmt, bool& rbFtnsRemoved )
 {
     SwClientIter aIter( rFmt );
     SwFrm *pFrm;
@@ -538,8 +452,8 @@ void lcl_RemoveFrms( SwFrmFmt& rFmt, FASTBOOL& rbFtnsRemoved )
 
 void SwDoc::DelPageDesc( USHORT i )
 {
-    ASSERT( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
-    ASSERT( i != 0, "Default Pagedesc loeschen is nicht." );
+    OSL_ENSURE( i < aPageDescs.Count(), "PageDescs ueberindiziert." );
+    OSL_ENSURE( i != 0, "Default Pagedesc loeschen is nicht." );
     if ( i == 0 )
         return;
 
@@ -561,7 +475,7 @@ void SwDoc::DelPageDesc( USHORT i )
                     ((SwFmt*)pMod)->SetAttr( aDfltDesc );
                 else
                 {
-                    ASSERT( !this, "was ist das fuer ein Mofify-Obj?" );
+                    OSL_ENSURE( !this, "was ist das fuer ein Mofify-Obj?" );
                     aPageDescs[0]->Add( pLast );
                 }
             }
@@ -602,7 +516,7 @@ void SwDoc::DelPageDesc( USHORT i )
         // Wenn wir auf Endnotenseiten stossen, schmeissen wir alle Fussnoten weg,
         // anders kann die Reihenfolge der Seiten (FollowsPageDescs usw.)
         // nicht garantiert werden.
-        FASTBOOL bFtnsRemoved = FALSE;
+        bool bFtnsRemoved = FALSE;
 
         ::binfilter::lcl_RemoveFrms( pDel->GetMaster(), bFtnsRemoved );
         ::binfilter::lcl_RemoveFrms( pDel->GetLeft(), bFtnsRemoved );
@@ -618,9 +532,6 @@ void SwDoc::DelPageDesc( USHORT i )
 /*************************************************************************
 |*
 |*  SwDoc::MakePageDesc()
-|*
-|*  Ersterstellung      MA 25. Jan. 93
-|*  Letzte Aenderung    MA 20. Aug. 93
 |*
 |*************************************************************************/
 
@@ -680,9 +591,6 @@ void SwDoc::DelPageDesc( USHORT i )
 
 /******************************************************************************
  *  Methode     :   void SwDoc::SetPrt( SfxPrinter *pP )
- *  Beschreibung:
- *  Erstellt    :   OK 27.10.94 10:20
- *  Aenderung   :   MA 26. Mar. 98
  ******************************************************************************/
 
 /*N*/ void SwDoc::PrtDataChanged()
@@ -821,11 +729,11 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*?*/                   aName = pOLENd->GetOLEObj().GetOleRef()->GetClassName();
 /*N*/
 /*N*/               BOOL bFound = FALSE;
-/*N*/               for ( USHORT i = 0;
-/*N*/                     i < pGlobalOLEExcludeList->Count() && !bFound;
-/*N*/                     ++i )
+/*N*/               for ( USHORT ii = 0;
+/*N*/                     ii < pGlobalOLEExcludeList->Count() && !bFound;
+/*N*/                     ++ii )
 /*N*/               {
-/*N*/                   bFound = *(SvGlobalName*)(*pGlobalOLEExcludeList)[i] ==
+/*N*/                   bFound = *(SvGlobalName*)(*pGlobalOLEExcludeList)[ii] ==
 /*N*/                                   aName;
 /*N*/               }
 /*N*/               if ( bFound )
@@ -859,7 +767,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SwDoc::SetVirDev( VirtualDevice* pVd, sal_Bool bCallVirDevDataChanged )
+/*N*/ void SwDoc::SetVirDev( VirtualDevice* pVd, sal_Bool /*bCallVirDevDataChanged*/ )
 /*N*/ {
 /*N*/     if ( (ULONG)pVirDev != (ULONG)pVd )
 /*N*/     {
@@ -870,7 +778,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 
 /*N*/ void SwDoc::SetPrt( SfxPrinter *pP, sal_Bool bCallPrtDataChanged )
 /*N*/ {
-/*N*/   ASSERT( pP, "Kein Drucker!" );
+/*N*/   OSL_ENSURE( pP, "Kein Drucker!" );
 /*N*/
 /*N*/   const BOOL bInitPageDesc = pPrt == 0;
 /*N*/
@@ -879,7 +787,7 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/       delete pPrt;
 /*N*/       pPrt = pP;
 /*N*/   }
-/*N*/     // OD 05.03.2003 #107870# - first adjust page description, before trigger formatting.
+/*N*/     // first adjust page description, before trigger formatting.
 /*N*/     if( bInitPageDesc )
 /*N*/     {
 /*N*/         // JP 17.04.97: Bug 38924 - falls noch kein Drucker gesetzt war
@@ -915,27 +823,8 @@ extern SvPtrarr *pGlobalOLEExcludeList;
 /*N*/
 /*N*/ }
 
-/*
- *  Kleiner Hack;
- *
-const SwPageDesc& SwDoc::GetPageDesc( USHORT i ) const
-{
-    if( !i && !aPageDescs.Count() )            // noch keiner vorhanden?
-        ((SwDoc*)this)->InitPageDescs();        //Default PageDescriptor
-    return *aPageDescs[i];
-}
 
-SwPageDesc& SwDoc::_GetPageDesc( USHORT i ) const
-{
-    if( !i && !aPageDescs.Count() )         // noch keiner vorhanden?
-        ((SwDoc*)this)->InitPageDescs();        //Default PageDescriptor
-    return *aPageDescs[i];
-}
-*/
-
-
-
-/*N*/ IMPL_LINK( SwDoc, DoUpdateModifiedOLE, Timer *, pTimer )
+/*N*/ IMPL_LINK( SwDoc, DoUpdateModifiedOLE, Timer *, EMPTYARG )
 /*N*/ {
 /*N*/   SwFEShell* pSh = (SwFEShell*)GetEditShell();
 /*N*/   if( pSh )
@@ -1001,3 +890,5 @@ SwPageDesc& SwDoc::_GetPageDesc( USHORT i ) const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

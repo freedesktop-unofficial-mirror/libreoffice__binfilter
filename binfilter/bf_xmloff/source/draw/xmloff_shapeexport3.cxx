@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,54 +26,21 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_HMATRIX_HXX
 #include <bf_goodies/hmatrix.hxx>
-#endif
 
-
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_PROJECTIONMODE_HPP_
 #include <com/sun/star/drawing/ProjectionMode.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_SHADEMODE_HPP_
 #include <com/sun/star/drawing/ShadeMode.hpp>
-#endif
 
-
-
-#ifndef _COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HPP_
 #include <com/sun/star/drawing/CameraGeometry.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_DOUBLESEQUENCE_HPP_
 #include <com/sun/star/drawing/DoubleSequence.hpp>
-#endif
 
-
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
-
-
 #include "xmlnmspe.hxx"
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -88,7 +56,7 @@ inline sal_Int32 FRound( double fVal )
 
 //////////////////////////////////////////////////////////////////////////////
 
-void XMLShapeExport::ImpExport3DSceneShape( const uno::Reference< drawing::XShape >& xShape, XmlShapeType eShapeType, sal_Int32 nFeatures, awt::Point* pRefPoint)
+void XMLShapeExport::ImpExport3DSceneShape( const uno::Reference< drawing::XShape >& xShape, XmlShapeType /*eShapeType*/, sal_Int32 nFeatures, awt::Point* pRefPoint)
 {
     uno::Reference< drawing::XShapes > xShapes(xShape, uno::UNO_QUERY);
     if(xShapes.is() && xShapes->getCount())
@@ -134,7 +102,7 @@ void XMLShapeExport::ImpExport3DSceneShape( const uno::Reference< drawing::XShap
 
 void XMLShapeExport::ImpExport3DShape(
     const uno::Reference< drawing::XShape >& xShape,
-    XmlShapeType eShapeType, sal_Int32 nFeatures /* = SEF_DEFAULT */, awt::Point* pRefPoint /* = NULL */)
+    XmlShapeType eShapeType, sal_Int32 /* nFeatures*/ /* = SEF_DEFAULT */, awt::Point* /*pRefPoint*/ /* = NULL */)
 {
     const uno::Reference< beans::XPropertySet > xPropSet(xShape, uno::UNO_QUERY);
     if(xPropSet.is())
@@ -230,12 +198,12 @@ void XMLShapeExport::ImpExport3DShape(
             case XmlShapeTypeDraw3DExtrudeObject:
             {
                 // write special 3DLathe/3DExtrude attributes
-                uno::Any aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DPolyPolygon3D")));
+                uno::Any aLclAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DPolyPolygon3D")));
                 drawing::PolyPolygonShape3D xPolyPolygon3D;
-                aAny >>= xPolyPolygon3D;
+                aLclAny >>= xPolyPolygon3D;
 
                 // look for maximal values
-                double fXMin, fXMax, fYMin, fYMax;
+                double fXMin(0.0), fXMax(0.0), fYMin(0.0), fYMax(0.0);
                 BOOL bInit(FALSE);
                 sal_Int32 nOuterSequenceCount(xPolyPolygon3D.SequenceX.getLength());
                 drawing::DoubleSequence* pInnerSequenceX = xPolyPolygon3D.SequenceX.getArray();
@@ -337,6 +305,8 @@ void XMLShapeExport::ImpExport3DShape(
                 }
                 break;
             }
+            default:
+                break;
         }
     }
 }
@@ -399,7 +369,7 @@ void XMLShapeExport::export3DSceneAttributes( const ::com::sun::star::uno::Refer
 
     // distance
     aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DSceneDistance")));
-    sal_Int32 nDistance;
+    sal_Int32 nDistance(0);
     aAny >>= nDistance;
     rExport.GetMM100UnitConverter().convertMeasure(sStringBuffer, nDistance);
     aStr = sStringBuffer.makeStringAndClear();
@@ -407,7 +377,7 @@ void XMLShapeExport::export3DSceneAttributes( const ::com::sun::star::uno::Refer
 
     // focalLength
     aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DSceneFocalLength")));
-    sal_Int32 nFocalLength;
+    sal_Int32 nFocalLength(0);
     aAny >>= nFocalLength;
     rExport.GetMM100UnitConverter().convertMeasure(sStringBuffer, nFocalLength);
     aStr = sStringBuffer.makeStringAndClear();
@@ -415,7 +385,7 @@ void XMLShapeExport::export3DSceneAttributes( const ::com::sun::star::uno::Refer
 
     // shadowSlant
     aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DSceneShadowSlant")));
-    sal_Int16 nShadowSlant;
+    sal_Int16 nShadowSlant(0);
     aAny >>= nShadowSlant;
     rExport.GetMM100UnitConverter().convertNumber(sStringBuffer, (sal_Int32)nShadowSlant);
     aStr = sStringBuffer.makeStringAndClear();
@@ -444,7 +414,7 @@ void XMLShapeExport::export3DSceneAttributes( const ::com::sun::star::uno::Refer
 
     // ambientColor
     aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DSceneAmbientColor")));
-    sal_Int32 aColTemp;
+    sal_Int32 aColTemp(0);
     Color aAmbientColor;
     aAny >>= aColTemp; aAmbientColor.SetColor(aColTemp);
     rExport.GetMM100UnitConverter().convertColor(sStringBuffer, aAmbientColor);
@@ -453,7 +423,7 @@ void XMLShapeExport::export3DSceneAttributes( const ::com::sun::star::uno::Refer
 
     // lightingMode
     aAny = xPropSet->getPropertyValue(OUString(RTL_CONSTASCII_USTRINGPARAM("D3DSceneTwoSidedLighting")));
-    sal_Bool bTwoSidedLighting;
+    sal_Bool bTwoSidedLighting(sal_False);
     aAny >>= bTwoSidedLighting;
     rExport.GetMM100UnitConverter().convertBool(sStringBuffer, bTwoSidedLighting);
     aStr = sStringBuffer.makeStringAndClear();
@@ -473,11 +443,11 @@ void XMLShapeExport::export3DLamps( const ::com::sun::star::uno::Reference< ::co
 
     OUString aPropName;
     OUString aIndexStr;
-    sal_Int32 aColTemp;
+    sal_Int32 aColTemp(0);
     Color aLightColor;
     Vector3D aLightDirection;
     drawing::Direction3D xLightDir;
-    sal_Bool bLightOnOff;
+    sal_Bool bLightOnOff(sal_False);
     for(sal_Int32 nLamp = 1; nLamp <= 8; nLamp++)
     {
         aIndexStr = OUString::valueOf( nLamp );
@@ -519,3 +489,5 @@ void XMLShapeExport::export3DLamps( const ::com::sun::star::uno::Reference< ::co
 
 //////////////////////////////////////////////////////////////////////////////
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

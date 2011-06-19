@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -47,7 +48,7 @@
 #include <list>
 
 #include <rtl/uuid.h>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
 
 #include "unoevent.hxx"
@@ -389,7 +390,7 @@ uno::Sequence< uno::Type > SAL_CALL SvUnoImageMapObject::getTypes()
 uno::Sequence< sal_Int8 > SAL_CALL SvUnoImageMapObject::getImplementationId()
     throw (uno::RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     static uno::Sequence< sal_Int8 > aId;
     if( aId.getLength() == 0 )
@@ -491,7 +492,7 @@ void SvUnoImageMapObject::_setPropertyValues( const PropertyMapEntry** ppEntries
             bOk = *pValues >>= maPolygon;
             break;
         default:
-            DBG_ERROR( "SvUnoImageMapObject::_setPropertyValues: unexpected property handle" );
+            OSL_FAIL( "SvUnoImageMapObject::_setPropertyValues: unexpected property handle" );
             break;
         }
 
@@ -541,7 +542,7 @@ void SvUnoImageMapObject::_getPropertyValues( const PropertyMapEntry** ppEntries
             *pValues <<= maPolygon;
             break;
         default:
-            DBG_ERROR( "SvUnoImageMapObject::_getPropertyValues: unexpected property handle" );
+            OSL_FAIL( "SvUnoImageMapObject::_getPropertyValues: unexpected property handle" );
             break;
         }
 
@@ -659,7 +660,7 @@ void SAL_CALL SvUnoImageMap::insertByIndex( sal_Int32 Index, const Any& Element 
     {
         std::list< SvUnoImageMapObject* >::iterator aIter = maObjectList.begin();
         for( sal_Int32 n = 0; n < Index; n++ )
-            aIter++;
+            ++aIter;
 
         maObjectList.insert( aIter, pObject );
     }
@@ -680,7 +681,7 @@ void SAL_CALL SvUnoImageMap::removeByIndex( sal_Int32 Index ) throw(IndexOutOfBo
     {
         std::list< SvUnoImageMapObject* >::iterator aIter = maObjectList.begin();
         for( sal_Int32 n = 0; n < Index; n++ )
-            aIter++;
+            ++aIter;
 
         (*aIter)->release();
         maObjectList.erase( aIter );
@@ -697,7 +698,7 @@ void SAL_CALL SvUnoImageMap::replaceByIndex( sal_Int32 Index, const Any& Element
 
     std::list< SvUnoImageMapObject* >::iterator aIter = maObjectList.begin();
     for( sal_Int32 n = 0; n < Index; n++ )
-        aIter++;
+        ++aIter;
 
     (*aIter)->release();
     *aIter = pObject;
@@ -718,7 +719,7 @@ Any SAL_CALL SvUnoImageMap::getByIndex( sal_Int32 Index ) throw(IndexOutOfBounds
 
     std::list< SvUnoImageMapObject* >::iterator aIter = maObjectList.begin();
     for( sal_Int32 n = 0; n < Index; n++ )
-        aIter++;
+        ++aIter;
 
     Reference< XPropertySet > xObj( *aIter );
     return makeAny( xObj );
@@ -732,7 +733,7 @@ Type SAL_CALL SvUnoImageMap::getElementType(  ) throw(RuntimeException)
 
 sal_Bool SAL_CALL SvUnoImageMap::hasElements(  ) throw(RuntimeException)
 {
-    return maObjectList.size() != 0;
+    return (!maObjectList.empty());
 }
 
 // XSerivceInfo
@@ -777,7 +778,7 @@ sal_Bool SvUnoImageMap::fillImageMap( ImageMap& rMap ) const
         rMap.InsertIMapObject( *pNewMapObject );
         delete pNewMapObject;
 
-        aIter++;
+        ++aIter;
     }
 
     return sal_True;
@@ -821,3 +822,5 @@ sal_Bool SvUnoImageMap_fillImageMap( Reference< XInterface > xImageMap, ImageMap
     return pUnoImageMap->fillImageMap( rMap );
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

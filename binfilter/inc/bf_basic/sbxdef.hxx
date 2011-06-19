@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 #ifndef __RSC
 #include <bf_svtools/bf_solar.h>
-#ifndef _ERRCODE_HXX
 #include "tools/errcode.hxx"
-#endif
 
 #ifndef _SBX_CLASS_TYPE
 #define _SBX_CLASS_TYPE
@@ -203,15 +202,15 @@ typedef ULONG SbxError;         // Alten Typ erhalten
 #define ERRCODE_SBX_NO_OLE                      (20UL | ERRCODE_AREA_SBX | \
                                                 ERRCODE_CLASS_ACCESS)           // Kein OLE-Objekt
 #define ERRCODE_SBX_BAD_METHOD                  (21UL | ERRCODE_AREA_SBX | \
-                                                ERRCODE_CLASS_RUNTIME)          // Methode nicht unterstÅtzt
+                                                ERRCODE_CLASS_RUNTIME)          // Methode nicht unterstÔøΩtzt
 #define ERRCODE_SBX_OLE_ERROR                   (22UL | ERRCODE_AREA_SBX | \
                                                 ERRCODE_CLASS_RUNTIME)          // OLE Automation-Fehler
 #define ERRCODE_SBX_BAD_ACTION                  (23UL | ERRCODE_AREA_SBX | \
-                                                ERRCODE_CLASS_NOTSUPPORTED)     // Aktion nicht unterstÅtzt
+                                                ERRCODE_CLASS_NOTSUPPORTED)     // Aktion nicht unterstÔøΩtzt
 #define ERRCODE_SBX_NO_NAMED_ARGS               (24UL | ERRCODE_AREA_SBX | \
                                                 ERRCODE_CLASS_RUNTIME)          // Keine benannten Argumente
 #define ERRCODE_SBX_BAD_LOCALE                  (25UL | ERRCODE_AREA_SBX | \
-                                                ERRCODE_CLASS_NOTSUPPORTED)     // Laenderspezifische Einstellungen nicht unterstÅtzt
+                                                ERRCODE_CLASS_NOTSUPPORTED)     // Laenderspezifische Einstellungen nicht unterstÔøΩtzt
 #define ERRCODE_SBX_NAMED_NOT_FOUND             (26UL | ERRCODE_AREA_SBX | \
                                                 ERRCODE_CLASS_RUNTIME)          // Unbekanntes benanntes Argument
 #define ERRCODE_SBX_NOT_OPTIONAL                (27UL | ERRCODE_AREA_SBX | \
@@ -268,7 +267,7 @@ enum SbxError {                 // Ergebnis einer Rechenoperation/Konversion
     SbxERR_BOUNDS = 9,          // Array-Index ungueltig
     SbxERR_ZERODIV = 11,        // Division durch Null
     SbxERR_CONVERSION = 13,     // falscher Datentyp
-    SbxERR_BAD_PARAMETER = 14,  // ungÅltiger Parameter
+    SbxERR_BAD_PARAMETER = 14,  // ungÔøΩltiger Parameter
     SbxERR_PROC_UNDEFINED = 35, // BASIC-Sub oder Function undefiniert
     SbxERR_ERROR = 51,          // andere Fehler
                                 // Objektbezogene Fehler
@@ -283,15 +282,15 @@ enum SbxError {                 // Ergebnis einer Rechenoperation/Konversion
     SbxERR_NO_METHOD = 423,     // Property oder Methode unbekannt
     SbxERR_INVALID_USAGE_OBJECT=425,// Falsche Verwendung eines Objekts
     SbxERR_NO_OLE = 430,        // Kein OLE-Objekt
-    SbxERR_BAD_METHOD = 438,    // Methode nicht unterstÅtzt
+    SbxERR_BAD_METHOD = 438,    // Methode nicht unterstÔøΩtzt
     SbxERR_OLE_ERROR = 440,     // OLE Automation-Fehler
-    SbxERR_BAD_ACTION = 445,    // Aktion nicht unterstÅtzt
+    SbxERR_BAD_ACTION = 445,    // Aktion nicht unterstÔøΩtzt
     SbxERR_NO_NAMED_ARGS = 446, // Keine benannten Argumente
-    SbxERR_BAD_LOCALE = 447,    // Laenderspezifische Einstellungen nicht unterstÅtzt
+    SbxERR_BAD_LOCALE = 447,    // Laenderspezifische Einstellungen nicht unterstÔøΩtzt
     SbxERR_NAMED_NOT_FOUND = 448,// Unbekanntes benanntes Argument
     SbxERR_NOT_OPTIONAL = 449,  // Argument nicht optional
     SbxERR_WRONG_ARGS = 450,    // Falsche Zahl von Argumenten
-    SbxERR_NOT_A_COLL = 451     // Objekt enthÑlt keine Elemente
+    SbxERR_NOT_A_COLL = 451     // Objekt enthÔøΩlt keine Elemente
 };
 */
 
@@ -385,3 +384,5 @@ enum SbxBOOL { SbxFALSE = 0, SbxTRUE = -1 };
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

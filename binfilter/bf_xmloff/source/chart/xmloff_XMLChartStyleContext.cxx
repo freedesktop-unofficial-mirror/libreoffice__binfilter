@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,15 +27,9 @@
  ************************************************************************/
 #include "XMLChartStyleContext.hxx"
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
 #include "families.hxx"
-#endif
 
 #include "XMLChartPropertyContext.hxx"
 namespace binfilter {
@@ -67,12 +62,12 @@ void XMLChartStyleContext::SetAttribute(
 
 // CTOR
 XMLChartStyleContext::XMLChartStyleContext(
-    SvXMLImport& rImport, sal_uInt16 nPrfx,
+    SvXMLImport& rInImport, sal_uInt16 nPrfx,
     const ::rtl::OUString& rLName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList,
-    SvXMLStylesContext& rStyles, sal_uInt16 nFamily ) :
+    SvXMLStylesContext& rStyles, sal_uInt16 nInFamily ) :
 
-        XMLPropStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles, nFamily ),
+        XMLPropStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles, nInFamily ),
         mrStyles( rStyles )
 {}
 
@@ -100,27 +95,29 @@ void XMLChartStyleContext::FillPropertySet(
 }
 
 SvXMLImportContext *XMLChartStyleContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const ::rtl::OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, ::binfilter::xmloff::token::XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
             GetStyles()->GetImportPropertyMapper( GetFamily() );
         if( xImpPrMap.is() )
             pContext = new XMLChartPropertyContext(
-                GetImport(), nPrefix, rLocalName, xAttrList,
+                GetImport(), nInPrefix, rLocalName, xAttrList,
                 GetProperties(), xImpPrMap );
     }
 
     if( !pContext )
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

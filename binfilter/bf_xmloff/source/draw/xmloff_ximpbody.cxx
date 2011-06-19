@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,50 +30,22 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XIMPBODY_HXX
 #include "ximpbody.hxx"
-#endif
-
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
-
-#ifndef _XIMPNOTES_HXX
 #include "ximpnote.hxx"
-#endif
 
-
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGES_HPP_
 #include <com/sun/star/drawing/XDrawPages.hpp>
-#endif
-
-
-#ifndef _COM_SUN_STAR_PRESENTATION_XPRESENTATIONPAGE_HPP_
 #include <com/sun/star/presentation/XPresentationPage.hpp>
-#endif
 
-#ifndef _XIMPSTYLE_HXX
 #include "ximpstyl.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XMASTERPAGETARGET_HPP_
 #include <com/sun/star/drawing/XMasterPageTarget.hpp>
-#endif
 
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-
-
-#ifndef _XMLOFF_XIMPSHOW_HXX
 #include "ximpshow.hxx"
-#endif
 
-#ifndef _XMLOFF_PROPERTYSETMERGER_HXX_
 #include "PropertySetMerger.hxx"
-#endif
+
 namespace binfilter {
 
 using namespace ::rtl;
@@ -80,11 +53,11 @@ using namespace ::com::sun::star;
 
 //////////////////////////////////////////////////////////////////////////////
 
-SdXMLDrawPageContext::SdXMLDrawPageContext( SdXMLImport& rImport,
+SdXMLDrawPageContext::SdXMLDrawPageContext( SdXMLImport& rInImport,
     USHORT nPrfx, const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLGenericPageContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+:   SdXMLGenericPageContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
     sal_Int32 nPageId = -1;
 
@@ -93,12 +66,12 @@ SdXMLDrawPageContext::SdXMLDrawPageContext( SdXMLImport& rImport,
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        USHORT nPrefix = GetSdImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        USHORT nLclPrefix = GetSdImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetSdImport().GetDrawPageAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_DRAWPAGE_NAME:
             {
@@ -141,7 +114,7 @@ SdXMLDrawPageContext::SdXMLDrawPageContext( SdXMLImport& rImport,
 
     // set an id?
     if( nPageId != -1 && xDrawPage.is() )
-        rImport.setDrawPageId( nPageId, xDrawPage );
+        rInImport.setDrawPageId( nPageId, xDrawPage );
 
     // set PageName?
     if(maName.getLength())
@@ -163,10 +136,10 @@ SdXMLDrawPageContext::SdXMLDrawPageContext( SdXMLImport& rImport,
         // compare the wanted masterpage-name with the existing masterpages
         // which were loaded and created in the styles section loading.
         uno::Reference< drawing::XDrawPages > xMasterPages(GetSdImport().GetLocalMasterPages(), uno::UNO_QUERY);
-        uno::Reference < drawing::XMasterPageTarget > xDrawPage(rShapes, uno::UNO_QUERY);
+        uno::Reference < drawing::XMasterPageTarget > xLclDrawPage(rShapes, uno::UNO_QUERY);
         uno::Reference< drawing::XDrawPage > xMasterPage;
 
-        if(xDrawPage.is() && xMasterPages.is())
+        if(xLclDrawPage.is() && xMasterPages.is())
         {
             sal_Bool bDone(FALSE);
 
@@ -184,7 +157,7 @@ SdXMLDrawPageContext::SdXMLDrawPageContext( SdXMLImport& rImport,
 
                         if(sMasterPageName.getLength() && sMasterPageName.equals(maMasterPageName))
                         {
-                            xDrawPage->setMasterPage(xMasterPage);
+                            xLclDrawPage->setMasterPage(xMasterPage);
                             bDone = TRUE;
                         }
                     }
@@ -291,7 +264,7 @@ SdXMLDrawPageContext::~SdXMLDrawPageContext()
 
 //////////////////////////////////////////////////////////////////////////////
 
-SvXMLImportContext *SdXMLDrawPageContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SdXMLDrawPageContext::CreateChildContext( USHORT nInPrefix,
     const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList )
 {
@@ -299,7 +272,7 @@ SvXMLImportContext *SdXMLDrawPageContext::CreateChildContext( USHORT nPrefix,
     const SvXMLTokenMap& rTokenMap = GetSdImport().GetDrawPageElemTokenMap();
 
     // some special objects inside draw:page context
-    switch(rTokenMap.Get(nPrefix, rLocalName))
+    switch(rTokenMap.Get(nInPrefix, rLocalName))
     {
         case XML_TOK_DRAWPAGE_NOTES:
         {
@@ -316,7 +289,7 @@ SvXMLImportContext *SdXMLDrawPageContext::CreateChildContext( USHORT nPrefix,
                         if(xNewShapes.is())
                         {
                             // presentation:notes inside draw:page context
-                            pContext = new SdXMLNotesContext( GetSdImport(), nPrefix, rLocalName, xAttrList, xNewShapes);
+                            pContext = new SdXMLNotesContext( GetSdImport(), nInPrefix, rLocalName, xAttrList, xNewShapes);
                         }
                     }
                 }
@@ -326,7 +299,7 @@ SvXMLImportContext *SdXMLDrawPageContext::CreateChildContext( USHORT nPrefix,
 
     // call parent when no own context was created
     if(!pContext)
-        pContext = SdXMLGenericPageContext::CreateChildContext(nPrefix, rLocalName, xAttrList);
+        pContext = SdXMLGenericPageContext::CreateChildContext(nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }
@@ -340,9 +313,9 @@ void SdXMLDrawPageContext::EndElement()
 //////////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////////
 
-SdXMLBodyContext::SdXMLBodyContext( SdXMLImport& rImport,
+SdXMLBodyContext::SdXMLBodyContext( SdXMLImport& rInImport,
     USHORT nPrfx, const OUString& rLocalName )
-:   SvXMLImportContext( rImport, nPrfx, rLocalName )
+:   SvXMLImportContext( rInImport, nPrfx, rLocalName )
 {
 }
 
@@ -355,14 +328,14 @@ SdXMLBodyContext::~SdXMLBodyContext()
 //////////////////////////////////////////////////////////////////////////////
 
 SvXMLImportContext *SdXMLBodyContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0L;
     const SvXMLTokenMap& rTokenMap = GetSdImport().GetBodyElemTokenMap();
 
-    switch(rTokenMap.Get(nPrefix, rLocalName))
+    switch(rTokenMap.Get(nInPrefix, rLocalName))
     {
         case XML_TOK_BODY_PAGE:
         {
@@ -394,7 +367,7 @@ SvXMLImportContext *SdXMLBodyContext::CreateChildContext(
                     if(xNewShapes.is())
                     {
                         // draw:page inside office:body context
-                        pContext = new SdXMLDrawPageContext(GetSdImport(), nPrefix, rLocalName, xAttrList,
+                        pContext = new SdXMLDrawPageContext(GetSdImport(), nInPrefix, rLocalName, xAttrList,
                             xNewShapes);
                     }
                 }
@@ -403,14 +376,16 @@ SvXMLImportContext *SdXMLBodyContext::CreateChildContext(
         }
         case XML_TOK_BODY_SETTINGS:
         {
-            pContext = new SdXMLShowsContext( GetSdImport(), nPrefix, rLocalName, xAttrList );
+            pContext = new SdXMLShowsContext( GetSdImport(), nInPrefix, rLocalName, xAttrList );
         }
     }
 
     // call parent when no own context was created
     if(!pContext)
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName, xAttrList);
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

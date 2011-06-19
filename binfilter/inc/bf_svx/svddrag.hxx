@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _CONTNR_HXX //autogen
 #include <tools/contnr.hxx>
-#endif
 
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
 
 namespace binfilter {
 // Statushalter fuer objektspeziefisches Draggen. Damit das Model
@@ -69,11 +66,11 @@ protected:
     Point     aReservePoint4;
     Rectangle aReserveRect1;
     Rectangle aReserveRect2;
-    FASTBOOL  bEndDragChangesAttributes;
-    FASTBOOL  bEndDragChangesGeoAndAttributes;
-    FASTBOOL  bMouseIsUp;
-    FASTBOOL  aReserveBool3;
-    FASTBOOL  aReserveBool4;
+    bool  bEndDragChangesAttributes;
+    bool  bEndDragChangesGeoAndAttributes;
+    bool  bMouseIsUp;
+    bool  aReserveBool3;
+    bool  aReserveBool4;
     long      aReserveLong1;
     long      aReserveLong2;
     long      aReserveLong3;
@@ -83,26 +80,24 @@ protected:
     void*     aReservePtr3;
     void*     aReservePtr4;
 
-    FASTBOOL  bShown;    // Xor sichrbar?
+    bool  bShown;    // Xor sichrbar?
     USHORT    nMinMov;   // Soviel muss erstmal minimal bewegt werden
-    FASTBOOL  bMinMoved; // MinMove durchbrochen?
+    bool  bMinMoved; // MinMove durchbrochen?
 
-    FASTBOOL  bHorFixed; // nur Vertikal draggen
-    FASTBOOL  bVerFixed; // nur Horizontal draggen
-    FASTBOOL  bWantNoSnap; // TRUE=Fuer die Entscheidung ob fuer pObj->MovCreate() NoSnapPos verwendet
+    bool  bHorFixed; // nur Vertikal draggen
+    bool  bVerFixed; // nur Horizontal draggen
+    bool  bWantNoSnap; // TRUE=Fuer die Entscheidung ob fuer pObj->MovCreate() NoSnapPos verwendet
                           // werden soll. Entsprechend wird auch NoSnapPos in den Buffer geschrieben.
-    FASTBOOL  bOrtho4;
-    FASTBOOL  bOrtho8;
+    bool  bOrtho4;
+    bool  bOrtho8;
 
     SdrDragMethod* pDragMethod;
 
 protected:
-    void Clear(FASTBOOL bLeaveOne);
+    void Clear(bool bLeaveOne);
     Point& Pnt(ULONG nNum)                           { return *((Point*)aPnts.GetObject(nNum)); }
 public:
-    void*    pUser;     // Userdata
-public:
-    SdrDragStat(): aPnts(1024,16,16)                 { pUser=NULL; Reset(); }
+    SdrDragStat(): aPnts(1024,16,16)                 { Reset(); }
     ~SdrDragStat()                                   { Clear(FALSE); }
     void         Reset();
     SdrView*     GetView() const                     { return pView; }
@@ -127,45 +122,43 @@ public:
     Point&       Ref2()                              { return aRef2;  }
     const        SdrHdl* GetHdl() const              { return pHdl;   }
     void         SetHdl(SdrHdl* pH)                  { pHdl=pH;       }
-    void*        GetUser() const                     { return pUser;  }
-    void         SetUser(void* pU)                   { pUser=pU;      }
-    FASTBOOL     IsShown() const                     { return bShown; }
-    void         SetShown(FASTBOOL bOn)              { bShown=bOn; }
+    bool     IsShown() const                     { return bShown; }
+    void         SetShown(bool bOn)              { bShown=bOn; }
 
-    FASTBOOL     IsMinMoved() const                  { return bMinMoved; }
+    bool     IsMinMoved() const                  { return bMinMoved; }
     void         SetMinMoved()                       { bMinMoved=TRUE; }
     void         ResetMinMoved()                     { bMinMoved=FALSE; }
     void         SetMinMove(USHORT nDist)            { nMinMov=nDist; if (nMinMov<1) nMinMov=1; }
     USHORT       GetMinMove() const                  { return nMinMov; }
 
-    FASTBOOL     IsHorFixed() const                  { return bHorFixed; }
-    void         SetHorFixed(FASTBOOL bOn)           { bHorFixed=bOn; }
-    FASTBOOL     IsVerFixed() const                  { return bVerFixed; }
-    void         SetVerFixed(FASTBOOL bOn)           { bVerFixed=bOn; }
+    bool     IsHorFixed() const                  { return bHorFixed; }
+    void         SetHorFixed(bool bOn)           { bHorFixed=bOn; }
+    bool     IsVerFixed() const                  { return bVerFixed; }
+    void         SetVerFixed(bool bOn)           { bVerFixed=bOn; }
 
     // Hier kann das Obj sagen: "Ich will keinen Koordinatenfang!"
     // z.B. fuer den Winkel des Kreisbogen...
-    FASTBOOL     IsNoSnap() const                     { return bWantNoSnap; }
-    void         SetNoSnap(FASTBOOL bOn=TRUE)         { bWantNoSnap=bOn; }
+    bool     IsNoSnap() const                     { return bWantNoSnap; }
+    void         SetNoSnap(bool bOn=TRUE)         { bWantNoSnap=bOn; }
 
     // Und hier kann das Obj sagen welches Ortho (wenn ueberhaupt eins)
     // sinnvoll auf ihm angewendet werden kann.
     // Ortho4 bedeutet Ortho in 4 Richtungen (fuer Rect und Cirt)
-    FASTBOOL     IsOrtho4Possible() const             { return bOrtho4; }
-    void         SetOrtho4Possible(FASTBOOL bOn=TRUE) { bOrtho4=bOn; }
+    bool     IsOrtho4Possible() const             { return bOrtho4; }
+    void         SetOrtho4Possible(bool bOn=TRUE) { bOrtho4=bOn; }
     // Ortho8 bedeutet Ortho in 8 Richtungen (fuer Linien)
-    FASTBOOL     IsOrtho8Possible() const             { return bOrtho8; }
-    void         SetOrtho8Possible(FASTBOOL bOn=TRUE) { bOrtho8=bOn; }
+    bool     IsOrtho8Possible() const             { return bOrtho8; }
+    void         SetOrtho8Possible(bool bOn=TRUE) { bOrtho8=bOn; }
 
     // Wird vom gedraggten Objekt gesetzt
-    FASTBOOL     IsEndDragChangesAttributes() const   { return bEndDragChangesAttributes; }
-    void         SetEndDragChangesAttributes(FASTBOOL bOn) { bEndDragChangesAttributes=bOn; }
-    FASTBOOL     IsEndDragChangesGeoAndAttributes() const   { return bEndDragChangesGeoAndAttributes; }
-    void         SetEndDragChangesGeoAndAttributes(FASTBOOL bOn) { bEndDragChangesGeoAndAttributes=bOn; }
+    bool     IsEndDragChangesAttributes() const   { return bEndDragChangesAttributes; }
+    void         SetEndDragChangesAttributes(bool bOn) { bEndDragChangesAttributes=bOn; }
+    bool     IsEndDragChangesGeoAndAttributes() const   { return bEndDragChangesGeoAndAttributes; }
+    void         SetEndDragChangesGeoAndAttributes(bool bOn) { bEndDragChangesGeoAndAttributes=bOn; }
 
     // Wird von der View gesetzt und kann vom Obj ausgewertet werden
-    FASTBOOL     IsMouseDown() const                  { return !bMouseIsUp; }
-    void         SetMouseDown(FASTBOOL bDown)         { bMouseIsUp=!bDown; }
+    bool     IsMouseDown() const                  { return !bMouseIsUp; }
+    void         SetMouseDown(bool bDown)         { bMouseIsUp=!bDown; }
 
     long  GetDX() const                     { return GetNow().X()-GetPrev().X(); }
     long  GetDY() const                     { return GetNow().Y()-GetPrev().Y(); }
@@ -182,3 +175,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDDRAG_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

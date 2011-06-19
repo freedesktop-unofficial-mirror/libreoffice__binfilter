@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,7 +26,6 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -34,110 +34,44 @@
 #include <cmdid.h>
 
 #include <unomid.h>
-#ifndef _UNODRAW_HXX
 #include <unodraw.hxx>
-#endif
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _UNOFRAME_HXX
 #include <unoframe.hxx>
-#endif
-#ifndef _UNOPRNMS_HXX
 #include <unoprnms.hxx>
-#endif
-#ifndef _SVX_UNOPRNMS_HXX
 #include <bf_svx/unoprnms.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen
 #include <doc.hxx>
-#endif
-#ifndef _SWDOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _UNOMAP_HXX
 #include <unomap.hxx>
-#endif
-#ifndef _UNOPORT_HXX
 #include <unoport.hxx>
-#endif
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _NDTXT_HXX //autogen
 #include <ndtxt.hxx>
-#endif
-#ifndef _SVDVIEW_HXX //autogen
 #include <bf_svx/svdview.hxx>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _SVX_FMGLOB_HXX
 #include <bf_svx/fmglob.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _ROOTFRM_HXX //autogen
 #include <rootfrm.hxx>
-#endif
 
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _CRSTATE_HXX //autogen
 #include <crstate.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
+#include <osl/mutex.hxx>
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _E3D_SCENE3D_HXX
 #include <bf_svx/scene3d.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XDRAWPAGESUPPLIER_HPP_
 #include <com/sun/star/drawing/XDrawPageSupplier.hpp>
-#endif
-#ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
-#endif
 namespace binfilter {
 
 
@@ -148,15 +82,13 @@ using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::drawing;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 DECLARE_STL_USTRINGACCESS_MAP( Sequence< sal_Int8 > *,  SwShapeImplementationIdMap );
 
 static SwShapeImplementationIdMap aImplementationIdMap;
 
-/* -----------------22.01.99 13:19-------------------
- *
- * --------------------------------------------------*/
 class SwShapeDescriptor_Impl
 {
     SwFmtHoriOrient*    pHOrient;
@@ -245,70 +177,47 @@ public:
     void RemoveLRSpace(){DELETEZ(pLRSpace);}
     void SetOpaque(sal_Bool bSet){bOpaque = bSet;}
 };
+
 /****************************************************************************
     class SwFmDrawPage
 ****************************************************************************/
-
-/* -----------------28.01.99 12:03-------------------
- *
- * --------------------------------------------------*/
-SwFmDrawPage::SwFmDrawPage( SdrPage* pPage ) :
-    SvxFmDrawPage( pPage ), pPageView(0)
+SwFmDrawPage::SwFmDrawPage( SdrPage* pInPage ) :
+    SvxFmDrawPage( pInPage ), pPageView(0)
 {
 }
 
-/*-- 22.01.99 11:13:07---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SwFmDrawPage::~SwFmDrawPage() throw ()
 {
     RemovePageView();
 }
-/*-- 22.01.99 11:13:07---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 const SdrMarkList&  SwFmDrawPage::PreGroup(const uno::Reference< drawing::XShapes > & xShapes)
 {
     _SelectObjectsInView( xShapes, GetPageView() );
     const SdrMarkList& rMarkList = pView->GetMarkList();
     return rMarkList;
 }
-/*-- 22.01.99 11:13:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwFmDrawPage::PreUnGroup(const uno::Reference< drawing::XShapeGroup >  xShapeGroup)
 {
     uno::Reference< drawing::XShape >  xShape(xShapeGroup, UNO_QUERY);
     _SelectObjectInView( xShape, GetPageView() );
 }
-/*-- 22.01.99 11:13:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-/*void  SwFmDrawPage::PostGroup()
-{
-    pView->GroupMarked();
-}
-/*-- 22.01.99 11:13:08---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SdrPageView*    SwFmDrawPage::GetPageView()
 {
     if(!pPageView)
         pPageView = pView->ShowPage( pPage, Point() );
     return pPageView;
 }
-/*-- 22.01.99 11:13:08---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwFmDrawPage::RemovePageView()
 {
     if(pPageView && pView)
         pView->HidePage( pPageView );
     pPageView = 0;
 }
-/*-- 22.01.99 11:13:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< uno::XInterface >   SwFmDrawPage::GetInterface( SdrObject* pObj )
 {
     uno::Reference< XInterface >  xShape;
@@ -326,17 +235,12 @@ uno::Reference< uno::XInterface >   SwFmDrawPage::GetInterface( SdrObject* pObj 
     }
     return xShape;
 }
-/*-- 22.01.99 11:13:09---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SdrObject* SwFmDrawPage::_CreateSdrObject( const uno::Reference< drawing::XShape > & xShape ) throw ()
 {
     //TODO: stimmt das so - kann die Methode weg?
     return SvxFmDrawPage::_CreateSdrObject( xShape );
 }
-/*-- 22.01.99 11:13:09---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 
 uno::Reference< drawing::XShape >  SwFmDrawPage::_CreateShape( SdrObject *pObj ) const throw ()
 {
@@ -346,7 +250,7 @@ uno::Reference< drawing::XShape >  SwFmDrawPage::_CreateShape( SdrObject *pObj )
         SwFlyDrawContact* pFlyContact = (SwFlyDrawContact*)pObj->GetUserCall();
         if(pFlyContact)
         {
-            FlyCntType eType;
+            FlyCntType eType(FLYCNTTYPE_ALL);
             SwFrmFmt* pFlyFmt = pFlyContact->GetFmt();
             SwDoc* pDoc = pFlyFmt->GetDoc();
             const SwNodeIndex* pIdx;
@@ -370,8 +274,7 @@ uno::Reference< drawing::XShape >  SwFmDrawPage::_CreateShape( SdrObject *pObj )
      }
     else
     {
-        // own block - temporary object has to be destroyed before
-        // the delegator is set #81670#
+        // own block - temporary object has to be destroyed before the delegator is set
         {
             xRet = SvxFmDrawPage::_CreateShape( pObj );
         }
@@ -399,23 +302,16 @@ uno::Reference< drawing::XShape >  SwFmDrawPage::_CreateShape( SdrObject *pObj )
 /****************************************************************************
     class SwXDrawPage
 ****************************************************************************/
-/* -----------------------------06.04.00 13:14--------------------------------
-
- ---------------------------------------------------------------------------*/
 OUString SwXDrawPage::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXDrawPage");
 }
-/* -----------------------------06.04.00 13:14--------------------------------
 
- ---------------------------------------------------------------------------*/
 BOOL SwXDrawPage::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     return C2U("com.sun.star.drawing.GenericDrawPage") == rServiceName;
 }
-/* -----------------------------06.04.00 13:14--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< OUString > SwXDrawPage::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aRet(1);
@@ -423,17 +319,13 @@ Sequence< OUString > SwXDrawPage::getSupportedServiceNames(void) throw( RuntimeE
     pArray[0] = C2U("com.sun.star.drawing.GenericDrawPage");
     return aRet;
 }
-/*-- 22.01.99 11:22:25---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXDrawPage::SwXDrawPage(SwDoc* pDc) :
     pDoc(pDc),
     pDrawPage(0)
 {
 }
-/*-- 22.01.99 11:22:25---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwXDrawPage::~SwXDrawPage()
 {
     if(xPageAgg.is())
@@ -442,9 +334,7 @@ SwXDrawPage::~SwXDrawPage()
         xPageAgg->setDelegator(xInt);
     }
 }
-/* -----------------------------15.06.00 15:00--------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXDrawPage::queryInterface( const Type& aType ) throw(RuntimeException)
 {
     Any aRet = SwXDrawPageBaseClass::queryInterface(aType);
@@ -454,9 +344,7 @@ Any SwXDrawPage::queryInterface( const Type& aType ) throw(RuntimeException)
     }
     return aRet;
 }
-/* -----------------------------15.06.00 15:01--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< Type > SwXDrawPage::getTypes(  ) throw(RuntimeException)
 {
     Sequence< uno::Type > aPageTypes = SwXDrawPageBaseClass::getTypes();
@@ -475,12 +363,10 @@ Sequence< Type > SwXDrawPage::getTypes(  ) throw(RuntimeException)
     pPageTypes[nIndex] = ::getCppuType((Reference< ::com::sun::star::form::XFormsSupplier>*)0);
     return aPageTypes;
 }
-/*-- 22.01.99 11:33:44---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXDrawPage::getCount(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
@@ -491,13 +377,11 @@ sal_Int32 SwXDrawPage::getCount(void) throw( uno::RuntimeException )
         return pDrawPage->getCount();
     }
 }
-/*-- 22.01.99 11:33:46---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXDrawPage::getByIndex(sal_Int32 nIndex)
         throw( IndexOutOfBoundsException, WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
@@ -511,19 +395,15 @@ uno::Any SwXDrawPage::getByIndex(sal_Int32 nIndex)
     }
     return uno::Any();
 }
-/* -----------------22.01.99 13:13-------------------
- *
- * --------------------------------------------------*/
+
 uno::Type  SwXDrawPage::getElementType(void) throw( uno::RuntimeException )
 {
     return ::getCppuType((const uno::Reference<drawing::XShape>*)0);
 }
-/* -----------------22.01.99 13:13-------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXDrawPage::hasElements(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(!pDoc->GetDrawModel())
@@ -532,13 +412,10 @@ sal_Bool SwXDrawPage::hasElements(void) throw( uno::RuntimeException )
         return ((SwXDrawPage*)this)->GetSvxPage()->hasElements();
 }
 
-/* -----------------22.01.99 12:42-------------------
- *
- * --------------------------------------------------*/
 void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
     throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     uno::Reference< XUnoTunnel > xShapeTunnel(xShape, uno::UNO_QUERY);
@@ -610,8 +487,7 @@ void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
 
     pSvxShape->setPosition(aMM100Pos);
     SdrObject* pObj = pSvxShape->GetSdrObject();
-    // OD 25.06.2003 #108784# - set layer of new drawing object to corresponding
-    // invisible layer.
+    // set layer of new drawing object to corresponding invisible layer.
     if(FmFormInventor != pObj->GetObjInventor())
         pObj->SetLayer( bOpaque ? pDoc->GetInvisibleHeavenId() : pDoc->GetInvisibleHellId() );
     else
@@ -669,23 +545,19 @@ void SwXDrawPage::add(const uno::Reference< drawing::XShape > & xShape)
     delete pPam;
     delete pInternalPam;
 }
-/* -----------------22.01.99 12:42-------------------
- *
- * --------------------------------------------------*/
+
 void SwXDrawPage::remove(const uno::Reference< drawing::XShape > & xShape) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     Reference<lang::XComponent> xComp(xShape, UNO_QUERY);
     xComp->dispose();
 }
-/* -----------------17.02.99 10:38-------------------
- *
- * --------------------------------------------------*/
+
 uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference< drawing::XShapes > & xShapes) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc || !xShapes.is())
         throw uno::RuntimeException();
     uno::Reference< drawing::XShapeGroup >  xRet;
@@ -729,12 +601,10 @@ uno::Reference< drawing::XShapeGroup >  SwXDrawPage::group(const uno::Reference<
     }
     return xRet;
 }
-/* -----------------17.02.99 10:38-------------------
- *
- * --------------------------------------------------*/
+
 void SwXDrawPage::ungroup(const uno::Reference< drawing::XShapeGroup > & xShapeGroup) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     if(!pDoc)
         throw uno::RuntimeException();
     if(xPageAgg.is())
@@ -752,14 +622,12 @@ void SwXDrawPage::ungroup(const uno::Reference< drawing::XShapeGroup > & xShapeG
         pPage->RemovePageView();
     }
 }
-/* -----------------05.05.98 17:05-------------------
- *
- * --------------------------------------------------*/
+
 SwFmDrawPage*   SwXDrawPage::GetSvxPage()
 {
     if(!xPageAgg.is() && pDoc)
     {
-        vos::OGuard  aGuard(Application::GetSolarMutex());
+        SolarMutexGuard aGuard;
         SdrModel* pModel = pDoc->MakeDrawModel();
         SdrPage* pPage = pModel->GetPage( 0 );
 
@@ -777,21 +645,18 @@ SwFmDrawPage*   SwXDrawPage::GetSvxPage()
     }
     return pDrawPage;
 }
-/****************************************************************************
 
+/****************************************************************************
+ SwXShape
 ****************************************************************************/
 TYPEINIT1(SwXShape, SwClient);
-/* -----------------------------10.03.00 18:02--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & SwXShape::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------10.03.00 18:04--------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Int64 SAL_CALL SwXShape::getSomething( const uno::Sequence< sal_Int8 >& rId )
     throw(uno::RuntimeException)
 {
@@ -816,14 +681,12 @@ sal_Int64 SAL_CALL SwXShape::getSomething( const uno::Sequence< sal_Int8 >& rId 
     }
     return 0;
 }
-/* -----------------01.02.99 11:38-------------------
- *
- * --------------------------------------------------*/
+
 SwXShape::SwXShape(uno::Reference< uno::XInterface > & xShape) :
     aPropSet(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_SHAPE)),
     _pMap(aSwMapProvider.GetPropertyMap(PROPERTY_MAP_TEXT_SHAPE)),
-    pImpl(new SwShapeDescriptor_Impl),
     pImplementationId(0),
+    pImpl(new SwShapeDescriptor_Impl),
     m_bDescriptor(sal_True)
 {
     if(xShape.is())  // default Ctor
@@ -856,9 +719,6 @@ SwXShape::SwXShape(uno::Reference< uno::XInterface > & xShape) :
     }
 }
 
-/*-- 22.01.99 11:42:26---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SwXShape::~SwXShape()
 {
     if (xShapeAgg.is())
@@ -868,9 +728,7 @@ SwXShape::~SwXShape()
     }
     delete pImpl;
 }
-/* -----------------------------16.06.00 12:21--------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXShape::queryInterface( const uno::Type& aType ) throw(RuntimeException)
 {
     Any aRet = SwXShapeBaseClass::queryInterface(aType);
@@ -878,9 +736,7 @@ Any SwXShape::queryInterface( const uno::Type& aType ) throw(RuntimeException)
         aRet = xShapeAgg->queryAggregation(aType);
     return aRet;
 }
-/* -----------------------------16.06.00 12:21--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< Type > SwXShape::getTypes(  ) throw(RuntimeException)
 {
     Sequence< uno::Type > aRet = SwXShapeBaseClass::getTypes();
@@ -904,12 +760,10 @@ Sequence< Type > SwXShape::getTypes(  ) throw(RuntimeException)
     }
     return aRet;
 }
-/* -----------------------------04.04.01 07:37--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< sal_Int8 > SwXShape::getImplementationId(  ) throw(RuntimeException)
 {
-    vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     // do we need to compute the implementation id for this instance?
     if( !pImplementationId && xShapeAgg.is())
     {
@@ -940,7 +794,7 @@ Sequence< sal_Int8 > SwXShape::getImplementationId(  ) throw(RuntimeException)
     }
     if( NULL == pImplementationId )
     {
-        DBG_ERROR( "Could not create an implementation id for a SwXShape!" );
+        OSL_FAIL( "Could not create an implementation id for a SwXShape!" );
         return Sequence< sal_Int8 > ();
     }
     else
@@ -948,12 +802,10 @@ Sequence< sal_Int8 > SwXShape::getImplementationId(  ) throw(RuntimeException)
         return *pImplementationId;
     }
 }
-/*-- 22.01.99 11:42:26---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Reference< XPropertySetInfo >  SwXShape::getPropertySetInfo(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Reference< XPropertySetInfo >  aRet;
     if(xShapeAgg.is())
     {
@@ -972,14 +824,12 @@ uno::Reference< XPropertySetInfo >  SwXShape::getPropertySetInfo(void) throw( un
         aRet = new SfxItemPropertySetInfo( _pMap );
     return aRet;
 }
-/*-- 22.01.99 11:42:27---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& aValue)
     throw( UnknownPropertyException, PropertyVetoException,
         IllegalArgumentException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     const SfxItemPropertyMap*   pMap = SfxItemPropertyMap::GetByName(
                                                 _pMap, rPropertyName);
@@ -1007,15 +857,15 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                             pFrame->GetFrmFmt()->GetDoc() == pDoc)
                         {
                             UnoActionContext aCtx(pDoc);
-                            SfxItemSet aSet( pDoc->GetAttrPool(),
+                            SfxItemSet aLclSet( pDoc->GetAttrPool(),
                                         RES_FRMATR_BEGIN, RES_FRMATR_END - 1 );
-                            aSet.SetParent(&pFmt->GetAttrSet());
-                            SwFmtAnchor aAnchor = (const SwFmtAnchor&)aSet.Get(pMap->nWID);
+                            aLclSet.SetParent(&pFmt->GetAttrSet());
+                            SwFmtAnchor aAnchor = (const SwFmtAnchor&)aLclSet.Get(pMap->nWID);
                             SwPosition aPos(*pFrame->GetFrmFmt()->GetCntnt().GetCntntIdx());
                             aAnchor.SetAnchor(&aPos);
                             aAnchor.SetType(FLY_AT_FLY);
-                            aSet.Put(aAnchor);
-                            pFmt->SetAttr(aSet);
+                            aLclSet.Put(aAnchor);
+                            pFmt->SetAttr(aLclSet);
                             bDone = sal_True;
                         }
                     }
@@ -1029,8 +879,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                     if(pSvxShape)
                     {
                         SdrObject* pObj = pSvxShape->GetSdrObject();
-                        // OD 25.06.2003 #108784# - set layer of new drawing
-                        // object to corresponding invisible layer.
+                        // set layer of new drawing object to corresponding invisible layer.
                         bool bIsVisible = pDoc->IsVisibleLayerId( pObj->GetLayer() );
                         if(FmFormInventor != pObj->GetObjInventor())
                         {
@@ -1055,7 +904,7 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
                         SdrMarkList aList;
                         SdrMark aMark(pObj);
                         aList.InsertEntry(aMark);
-                        sal_Int32 nAnchor;
+                        sal_Int32 nAnchor(0);
                         cppu::enum2int( nAnchor, aValue );
                         pDoc->ChgAnchor( aList, nAnchor,
                                                 sal_False, sal_True );
@@ -1131,13 +980,11 @@ void SwXShape::setPropertyValue(const OUString& rPropertyName, const uno::Any& a
         }
     }
 }
-/*-- 22.01.99 11:42:27---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
     throw( UnknownPropertyException, WrappedTargetException, uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     uno::Any aRet;
     SwFrmFmt*   pFmt = GetFrmFmt();
     if(xShapeAgg.is())
@@ -1155,7 +1002,7 @@ uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
                     if(pSvxShape)
                     {
                         SdrObject* pObj = pSvxShape->GetSdrObject();
-                        // OD 02.07.2003 #108784# - consider invisible layers
+                        // consider invisible layers
                         sal_Bool bOpaque =
                             ( pObj->GetLayer() != pFmt->GetDoc()->GetHellId() &&
                               pObj->GetLayer() != pFmt->GetDoc()->GetInvisibleHellId() );
@@ -1232,27 +1079,23 @@ uno::Any SwXShape::getPropertyValue(const OUString& rPropertyName)
     }
     return aRet;
 }
-/* -----------------------------02.11.00 09:41--------------------------------
 
- ---------------------------------------------------------------------------*/
 PropertyState SwXShape::getPropertyState( const OUString& rPropertyName )
     throw(beans::UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Sequence< OUString > aNames(1);
     OUString* pStrings = aNames.getArray();
     pStrings[0] = rPropertyName;
     Sequence< PropertyState > aStates = getPropertyStates(aNames);
     return aStates.getConstArray()[0];
 }
-/* -----------------------------02.11.00 09:41--------------------------------
 
- ---------------------------------------------------------------------------*/
 Sequence< PropertyState > SwXShape::getPropertyStates(
     const Sequence< OUString >& aPropertyNames )
         throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     Sequence< PropertyState > aRet(aPropertyNames.getLength());
     if(xShapeAgg.is())
@@ -1289,7 +1132,7 @@ Sequence< PropertyState > SwXShape::getPropertyStates(
                     const SwAttrSet& rSet = pFmt->GetAttrSet();
                     SfxItemState eItemState = rSet.GetItemState(pMap->nWID, FALSE);
 
-                    //special handling for #88835#: vertical orientation should only be
+                    //vertical orientation should only be
                     //exported if the anchor type is FLY_AUTO_CNTNT
                     if(RES_VERT_ORIENT == pMap->nWID && SFX_ITEM_SET == eItemState)
                     {
@@ -1354,13 +1197,11 @@ Sequence< PropertyState > SwXShape::getPropertyStates(
         throw RuntimeException();
     return aRet;
 }
-/* -----------------------------02.11.00 09:41--------------------------------
 
- ---------------------------------------------------------------------------*/
 void SwXShape::setPropertyToDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     if(xShapeAgg.is())
     {
@@ -1407,13 +1248,11 @@ void SwXShape::setPropertyToDefault( const OUString& rPropertyName )
     else
         throw RuntimeException();
 }
-/* -----------------------------02.11.00 09:41--------------------------------
 
- ---------------------------------------------------------------------------*/
 Any SwXShape::getPropertyDefault( const OUString& rPropertyName )
     throw(UnknownPropertyException, WrappedTargetException, RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt*   pFmt = GetFrmFmt();
     Any aRet;
     if(xShapeAgg.is())
@@ -1445,51 +1284,44 @@ Any SwXShape::getPropertyDefault( const OUString& rPropertyName )
         throw RuntimeException();
     return aRet;
 }
-/*-- 22.01.99 11:42:27---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-void SwXShape::addPropertyChangeListener(const OUString& PropertyName, const Reference< XPropertyChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
-{
-    DBG_WARNING("not implemented");
-}
-/*-- 22.01.99 11:42:27---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
-void SwXShape::removePropertyChangeListener(
-    const OUString& PropertyName,
-    const Reference< XPropertyChangeListener > & aListener)
+void SwXShape::addPropertyChangeListener(const OUString& /*PropertyName*/,
+        const Reference< XPropertyChangeListener > & /*aListener*/)
     throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 22.01.99 11:42:28---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-void SwXShape::addVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXShape::removePropertyChangeListener(
+        const OUString& /*PropertyName*/,const Reference< XPropertyChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 22.01.99 11:42:28---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-void SwXShape::removeVetoableChangeListener(const OUString& PropertyName, const Reference< XVetoableChangeListener > & aListener) throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+void SwXShape::addVetoableChangeListener(
+        const OUString& /*PropertyName*/, const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
 {
     DBG_WARNING("not implemented");
 }
-/*-- 22.01.99 11:42:28---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+void SwXShape::removeVetoableChangeListener(const OUString& /*PropertyName*/,
+        const Reference< XVetoableChangeListener > & /*aListener*/)
+    throw( UnknownPropertyException, WrappedTargetException, RuntimeException )
+{
+    DBG_WARNING("not implemented");
+}
+
 void SwXShape::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew)
 {
     ClientModify(this, pOld, pNew);
 }
-/* -----------------14.04.99 13:02-------------------
- *
- * --------------------------------------------------*/
+
 void SwXShape::attach(const Reference< XTextRange > & xTextRange)
     throw( IllegalArgumentException, RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     // get access to SwDoc
     // (see also SwXTextRange::XTextRangeToSwPaM)
@@ -1543,12 +1375,10 @@ void SwXShape::attach(const Reference< XTextRange > & xTextRange)
         }
     }
 }
-/* -----------------14.04.99 13:02-------------------
- *
- * --------------------------------------------------*/
+
 Reference< XTextRange >  SwXShape::getAnchor(void) throw( RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference< XTextRange >  aRef;
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pFmt)
@@ -1567,24 +1397,20 @@ Reference< XTextRange >  SwXShape::getAnchor(void) throw( RuntimeException )
         aRef = pImpl->GetTextRange();
     return aRef;
 }
-/* -----------------14.04.99 13:02-------------------
- *
- * --------------------------------------------------*/
+
 void SwXShape::dispose(void) throw( RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pFmt)
     {
-        // OD 10.07.2003 #110742# - determine correct <SdrObject>
+        // determine correct <SdrObject>
         SdrObject* pObj = pFmt->FindSdrObject();
-        // OD 10.07.2003 #110742# - safety assertion:
-        // <pObj> must be the same as <pFmt->FindSdrObject()>, if <pObj> isn't
-        // a 'virtual' drawing object.
-        ASSERT( !pObj->ISA(SwDrawVirtObj) || pObj == pFmt->FindSdrObject(),
+        // safety assertion: <pObj> must be the same as <pFmt->FindSdrObject()>,
+        // if <pObj> isn't a 'virtual' drawing object.
+        OSL_ENSURE( !pObj->ISA(SwDrawVirtObj) || pObj == pFmt->FindSdrObject(),
                 "<SwXShape::dispose(..) - different 'master' drawing objects!!" );
-        // OD 10.07.2003 #110742# - perform delete of draw frame format *not*
-        // for 'virtual' drawing objects.
+        // perform delete of draw frame format *not* for 'virtual' drawing objects.
         if(pObj && pObj->IsInserted())
         {
             if( pFmt->GetAnchor().GetAnchorId() == FLY_IN_CNTNT )
@@ -1607,9 +1433,7 @@ void SwXShape::dispose(void) throw( RuntimeException )
             xComp->dispose();
     }
 }
-/* -----------------14.04.99 13:02-------------------
- *
- * --------------------------------------------------*/
+
 void SwXShape::addEventListener(const Reference< XEventListener > & aListener) throw( RuntimeException )
 {
     Reference< XUnoTunnel > xShapeTunnel(xShapeAgg, UNO_QUERY);
@@ -1617,25 +1441,19 @@ void SwXShape::addEventListener(const Reference< XEventListener > & aListener) t
     if(pSvxShape)
          pSvxShape->addEventListener(aListener);
 }
-/* -----------------14.04.99 13:02-------------------
- *
- * --------------------------------------------------*/
+
 void SwXShape::removeEventListener(const Reference< XEventListener > & aListener) throw( RuntimeException )
 {
     SvxShape* pSvxShape = GetSvxShape();
     if(pSvxShape)
         pSvxShape->removeEventListener(aListener);
 }
-/* -----------------03.06.99 08:53-------------------
- *
- * --------------------------------------------------*/
+
 OUString SwXShape::getImplementationName(void) throw( RuntimeException )
 {
     return C2U("SwXShape");
 }
-/* -----------------03.06.99 08:53-------------------
- *
- * --------------------------------------------------*/
+
 sal_Bool SwXShape::supportsService(const OUString& rServiceName) throw( RuntimeException )
 {
     sal_Bool bRet = sal_False;
@@ -1649,9 +1467,7 @@ sal_Bool SwXShape::supportsService(const OUString& rServiceName) throw( RuntimeE
     }
     return bRet;
 }
-/* -----------------03.06.99 08:53-------------------
- *
- * --------------------------------------------------*/
+
 Sequence< OUString > SwXShape::getSupportedServiceNames(void) throw( RuntimeException )
 {
     Sequence< OUString > aSeq;
@@ -1669,9 +1485,7 @@ Sequence< OUString > SwXShape::getSupportedServiceNames(void) throw( RuntimeExce
     }
     return aSeq;
 }
-/* -----------------------------15.03.00 14:54--------------------------------
 
- ---------------------------------------------------------------------------*/
 SvxShape*   SwXShape::GetSvxShape()
 {
     SvxShape* pSvxShape = 0;
@@ -1683,9 +1497,10 @@ SvxShape*   SwXShape::GetSvxShape()
     }
     return pSvxShape;
 }
-/*-- 31.05.01 09:59:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
+/****************************************************************************
+ SwXGroupShape
+****************************************************************************/
 SwXGroupShape::SwXGroupShape(Reference< XInterface > & xShape) :
         SwXShape(xShape)
 {
@@ -1695,15 +1510,10 @@ SwXGroupShape::SwXGroupShape(Reference< XInterface > & xShape) :
 #endif
 }
 
-/*-- 31.05.01 09:59:19---------------------------------------------------
-
-  -----------------------------------------------------------------------*/
 SwXGroupShape::~SwXGroupShape()
 {
 }
-/*-- 31.05.01 09:59:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXGroupShape::queryInterface( const uno::Type& rType ) throw(RuntimeException)
 {
     Any aRet;
@@ -1713,31 +1523,24 @@ Any SwXGroupShape::queryInterface( const uno::Type& rType ) throw(RuntimeExcepti
         aRet = SwXShape::queryInterface(rType);
     return aRet;
 }
-/*-- 31.05.01 09:59:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXGroupShape::acquire(  ) throw()
 {
     SwXShape::acquire();
 }
-/*-- 31.05.01 09:59:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXGroupShape::release(  ) throw()
 {
     SwXShape::release();
 }
-/*-- 31.05.01 09:59:19---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     SvxShape* pSvxShape = GetSvxShape();
     SwFrmFmt* pFmt = GetFrmFmt();
     if(pSvxShape && pFmt)
     {
-        sal_Bool bOk = FALSE;
         Reference<XShapes> xShapes;
         if( xShapeAgg.is() )
         {
@@ -1763,8 +1566,7 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
                 if(pObj)
                 {
                     SwDoc* pDoc = pFmt->GetDoc();
-                    // OD 25.06.2003 #108784# - set layer of new drawing
-                    // object to corresponding invisible layer.
+                    // set layer of new drawing object to corresponding invisible layer.
                     if( FmFormInventor != pObj->GetObjInventor())
                     {
                         pObj->SetLayer( pSwShape->pImpl->GetOpaque()
@@ -1779,21 +1581,18 @@ void SwXGroupShape::add( const Reference< XShape >& xShape ) throw (RuntimeExcep
             }
             pSwShape->m_bDescriptor = sal_False;
             //add the group member to the format of the group
-            SwFrmFmt* pFmt = ::binfilter::FindFrmFmt( pSvxShape->GetSdrObject() );
-            if(pFmt)
-                pFmt->Add(pSwShape);
+            SwFrmFmt* pLclFmt = ::binfilter::FindFrmFmt( pSvxShape->GetSdrObject() );
+            if(pLclFmt)
+                pLclFmt->Add(pSwShape);
         }
     }
     else
         throw RuntimeException();
 }
-/*-- 31.05.01 09:59:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void SwXGroupShape::remove( const Reference< XShape >& xShape ) throw (RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
-    sal_Bool bOk = FALSE;
+    SolarMutexGuard aGuard;
     Reference<XShapes> xShapes;
     if( xShapeAgg.is() )
     {
@@ -1805,13 +1604,10 @@ void SwXGroupShape::remove( const Reference< XShape >& xShape ) throw (RuntimeEx
         throw RuntimeException();
     xShapes->remove(xShape);
 }
-/*-- 31.05.01 09:59:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Int32 SwXGroupShape::getCount(void) throw( uno::RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
-    sal_Int32 nRet = 0;
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {
@@ -1823,12 +1619,10 @@ sal_Int32 SwXGroupShape::getCount(void) throw( uno::RuntimeException )
         throw RuntimeException();
     return xAcc->getCount();
 }
-/*-- 31.05.01 09:59:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 Any SwXGroupShape::getByIndex(sal_Int32 nIndex) throw( IndexOutOfBoundsException, WrappedTargetException, RuntimeException )
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {
@@ -1840,12 +1634,10 @@ Any SwXGroupShape::getByIndex(sal_Int32 nIndex) throw( IndexOutOfBoundsException
         throw RuntimeException();
     return xAcc->getByIndex(nIndex);
 }
-/*-- 31.05.01 09:59:20---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 uno::Type SwXGroupShape::getElementType(  ) throw(RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {
@@ -1857,12 +1649,10 @@ uno::Type SwXGroupShape::getElementType(  ) throw(RuntimeException)
         throw RuntimeException();
     return xAcc->getElementType();
 }
-/*-- 31.05.01 09:59:22---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool SwXGroupShape::hasElements(  ) throw(RuntimeException)
 {
-    vos::OGuard  aGuard(Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     Reference<XIndexAccess> xAcc;
     if( xShapeAgg.is() )
     {
@@ -1876,3 +1666,5 @@ sal_Bool SwXGroupShape::hasElements(  ) throw(RuntimeException)
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

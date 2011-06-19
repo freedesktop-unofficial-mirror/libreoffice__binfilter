@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #define INCLUDED_SVTOOLS_OPTIONS_HXX
 
-#ifndef _SAL_CONFIG_H_
 #include "sal/config.h"
-#endif
 
 namespace binfilter
 {
@@ -52,3 +51,5 @@ private:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

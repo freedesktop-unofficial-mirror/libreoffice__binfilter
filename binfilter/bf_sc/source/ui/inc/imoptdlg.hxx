@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,33 +29,19 @@
 #ifndef SC_IMOPTDLG_HXX
 #define SC_IMOPTDLG_HXX
 
-#ifndef _SV_DIALOG_HXX //autogen
 #include <vcl/dialog.hxx>
-#endif
 
-#ifndef _SV_FIXED_HXX //autogen
 #include <vcl/fixed.hxx>
-#endif
 
-#ifndef _SV_COMBOBOX_HXX //autogen
 #include <vcl/combobox.hxx>
-#endif
 
-#ifndef _SV_LSTBOX_HXX //autogen
 #include <vcl/lstbox.hxx>
-#endif
 
-#ifndef _SV_BUTTON_HXX //autogen
 #include <vcl/button.hxx>
-#endif
 
-#ifndef _SVX_TXENCBOX_HXX
 #include <bf_svx/txencbox.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 //===================================================================
@@ -122,3 +109,4 @@ public:
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

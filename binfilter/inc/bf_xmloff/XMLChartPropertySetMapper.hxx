@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,21 +28,11 @@
 #ifndef _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
 #define _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
 
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include "uniref.hxx"
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include "xmlexppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMPPR_HXX
 #include "xmlimppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 namespace rtl { class OUString; }
 namespace binfilter {
@@ -134,3 +125,5 @@ public:
 
 }//end of namespace binfilter
 #endif  // _XMLOFF_CHARTPROPERTYSETMAPPER_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

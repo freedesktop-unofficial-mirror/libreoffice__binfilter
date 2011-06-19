@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 #include <tools/link.hxx>
+#include <osl/mutex.hxx>
 
 class Timer;
-
-namespace vos
-{
-    class OMutex;
-}
 
 namespace binfilter {
 
@@ -48,7 +45,7 @@ class AsynchronLink
     BOOL   _bInCall;
     BOOL*  _pDeleted;
     void*  _pArg;
-    vos::OMutex* _pMutex;
+    osl::Mutex* _pMutex;
 
     DECL_STATIC_LINK( AsynchronLink, HandleCall, void* );
     void Call_Impl( void* pArg );
@@ -73,3 +70,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

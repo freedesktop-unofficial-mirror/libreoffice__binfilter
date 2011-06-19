@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef SC_STLPOOL_HXX
 #define SC_STLPOOL_HXX
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
 namespace binfilter {
 
 
@@ -68,6 +67,7 @@ public:
     void                ConvertFontsAfterLoad();     // old binary file format
 
 protected:
+    using SfxStyleSheetPool::Create;
     virtual SfxStyleSheetBase* Create( const String&    rName,
                                        SfxStyleFamily   eFamily,
                                        USHORT           nMask);
@@ -82,3 +82,4 @@ private:
 } //namespace binfilter
 #endif     // SC_STLPOOL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

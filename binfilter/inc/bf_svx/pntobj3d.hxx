@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -47,7 +46,7 @@ class E3dPointObj : public E3dObject
     Vector3D    aPosition;
     Vector3D    aTransPos;
 
-    FASTBOOL    bTransPosValid  : 1;
+    bool    bTransPosValid  : 1;
 
     virtual void SetTransformChanged();
 
@@ -56,15 +55,19 @@ class E3dPointObj : public E3dObject
     E3dPointObj(const Vector3D& rPos);
     E3dPointObj();
 
+    using SdrAttrObj::operator=;
+
 
     virtual void SetPosition(const Vector3D& rNewPos);
     const Vector3D& GetPosition() const { return aPosition; }
     const Vector3D& GetTransPosition();
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 };
 
 }//end of namespace binfilter
 #endif          // _E3D_PNTOBJ3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

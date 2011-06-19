@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,10 +29,7 @@
 #include <ctype.h>
 #include <stdio.h>
 
-//#define REMOTE_VERSION
-
 #include "bf_so3/applet.hxx"
-#include <tools/list.hxx>
 #include <tools/urlobj.hxx>
 #include <tools/debug.hxx>
 #include "insdlg.hxx"
@@ -193,7 +191,6 @@ SvAppletEnvironment::~SvAppletEnvironment()
     SetEditWin( NULL );
     delete pAppletWin;
     DeleteWindows();
-    DeleteObjMenu();
 }
 
 //=========================================================================
@@ -484,38 +481,30 @@ ErrCode SvAppletObject::Verb
 
     ErrCode nRet = ERRCODE_SO_GENERALERROR;
 
-/*
-    nRet = SjWrapper::CheckJavaEnvironment();
-    BOOL bJavaOk = TRUE;
-    bJavaOk = SjWrapper::IsJavaRuntimeOk();
-    if( !ERRCODE_TOERROR( nRet ) && bJavaOk )
-*/
+    switch( nVerb )
     {
-        switch( nVerb )
+        case SVVERB_PROPS:
         {
-            case SVVERB_PROPS:
-            {
-                DBG_ERROR( "non-working code!" );
-                // TODO: dead corpses
-                nRet = 0;
-                break;
-            }
-            case SVVERB_SHOW:
-                break;
-
-            case SVVERB_IPACTIVATE:
-                break;
-
-            case 0L:
-                nRet = GetProtocol().IPProtocol();
-                break;
-            case SVVERB_HIDE:
-                nRet = DoInPlaceActivate( FALSE );
-                break;
-            default:
-                nRet = ERRCODE_SO_GENERALERROR;
-                break;
+            OSL_FAIL( "non-working code!" );
+            // TODO: dead corpses
+            nRet = 0;
+            break;
         }
+        case SVVERB_SHOW:
+            break;
+
+        case SVVERB_IPACTIVATE:
+            break;
+
+        case 0L:
+            nRet = GetProtocol().IPProtocol();
+            break;
+        case SVVERB_HIDE:
+            nRet = DoInPlaceActivate( FALSE );
+            break;
+        default:
+            nRet = ERRCODE_SO_GENERALERROR;
+            break;
     }
     return nRet;
 }
@@ -650,89 +639,6 @@ BOOL SvAppletObject::Load
 }
 
 //=========================================================================
-BOOL SvAppletObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SvAppletObject::InitNew>
-    oder <SvAppletObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-{
-    if( SvInPlaceObject::Save() )
-    {
-        SvStorageStreamRef xStm;
-        xStm = GetStorage()->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                            STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( GetStorage()->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)APPLET_VERS;
-        *xStm << pImpl->aCmdList;
-        xStm->WriteByteString( pImpl->aClass, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aName, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aCodeBase, RTL_TEXTENCODING_ASCII_US );
-        *xStm << pImpl->bMayScript;
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
-BOOL SvAppletObject::SaveAs
-(
-    SvStorage *pStor    /* Storage, in den der Inhalt des Objekte
-                           geschrieben wird */
-)
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in pStor geschrieben.
-
-    [Anmerkung]
-
-    Der Storage wird nicht behalten.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::SaveAs>
-*/
-{
-    if( SvInPlaceObject::SaveAs( pStor ) )
-    {
-        SvStorageStreamRef xStm;
-        xStm = pStor->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ), STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( pStor->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)APPLET_VERS;
-        *xStm << pImpl->aCmdList;
-        xStm->WriteByteString( pImpl->aClass, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aName, RTL_TEXTENCODING_ASCII_US );
-        xStm->WriteByteString( pImpl->aCodeBase, RTL_TEXTENCODING_ASCII_US );
-        *xStm << pImpl->bMayScript;
-
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
 void SvAppletObject::HandsOff()
 /*  [Beschreibung]
 
@@ -745,32 +651,6 @@ void SvAppletObject::HandsOff()
 */
 {
     SvInPlaceObject::HandsOff();
-}
-
-//=========================================================================
-BOOL SvAppletObject::SaveCompleted
-(
-    SvStorage * pStor   /* Storage auf dem das Objekt arbeitet. Der kann
-                           auch NULL sein. Dies Bedeutet, es wird auf
-                           dem alten Storage weiter gearbeitet */
-)
-/*  [Beschreibung]
-
-    Nach dem Aufruf dieser Methode ist das Verhalten des Objektes
-    wieder definiert.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, es kann auf dem neuen Storage gearbeitet werden.
-                    FALSE, es kann nicht auf dem neuen Storage gearbeitet
-                    werden
-
-    [Querverweise]
-
-    <SvPersist::SaveCompleted>
-*/
-{
-    return SvInPlaceObject::SaveCompleted( pStor );
 }
 
 //=========================================================================
@@ -816,7 +696,6 @@ BOOL SvAppletObject::IsLink() const
     <SvPseudoObject::IsLink()>
 */
 {
-    //return TRUE;
     return FALSE;
 }
 
@@ -968,3 +847,5 @@ BOOL SvAppletObject::IsMayScript() const
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

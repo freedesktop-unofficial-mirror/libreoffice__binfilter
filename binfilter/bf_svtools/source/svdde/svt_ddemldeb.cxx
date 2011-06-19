@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -54,7 +55,6 @@ void ImpAddHSZ( HSZ hszString, String& rStr )
 
 void ImpWriteDdeStatus(char* aFilename, char* pAppContext)
 {
-    char aBuf[ 128 ];
     USHORT nCtr;
     HWND* pAppPtr;
     ImpHCONV* pConvPtr;
@@ -189,7 +189,6 @@ void ImpWriteDdeStatus(char* aFilename, char* pAppContext)
 
 void ImpWriteDdeData(char* aFilename, DDESTRUCT* pData)
 {
-    char aBuf[ 128 ];
     USHORT nCtr;
     SvFileStream aStrm(aFilename, STREAM_READWRITE );
     aStrm.Seek( STREAM_SEEK_TO_END );
@@ -233,16 +232,6 @@ APIRET MyDosAllocSharedMem(void** ppBaseAddress, char* pszName, unsigned long ul
     unsigned long ulFlags, char* pContextStr )
 {
     APIRET nRet = DosAllocSharedMem(ppBaseAddress,pszName,ulObjectSize,ulFlags );
-#if 0 && defined(OV_DEBUG) && defined(LOGFILE)
-    String aStr("DosAllocSharedMem:");
-    aStr += pContextStr;
-    aStr += ": ";
-    aStr += ulObjectSize;
-    aStr += " (";
-    aStr += (ULONG)*((char**)ppBaseAddress);
-    aStr += ')';
-    ImpWriteLogFile("\\ddeml.mem", (char*)aStr.GetStr() );
-#endif
     return nRet;
 }
 
@@ -250,16 +239,6 @@ APIRET MyDosAllocMem(void** ppBaseAddress, unsigned long ulObjectSize,
     unsigned long ulFlags, char* pContextStr )
 {
     APIRET nRet = DosAllocMem(ppBaseAddress, ulObjectSize,ulFlags );
-#if 0 && defined(OV_DEBUG) && defined(LOGFILE)
-    String aStr("DosAllocMem:");
-    aStr += pContextStr;
-    aStr += ": ";
-    aStr += ulObjectSize;
-    aStr += " (";
-    aStr += (ULONG)*((char**)ppBaseAddress);
-    aStr += ')';
-    ImpWriteLogFile("\\ddeml.mem", (char*)aStr.GetStr() );
-#endif
     return nRet;
 }
 
@@ -267,14 +246,9 @@ APIRET MyDosAllocMem(void** ppBaseAddress, unsigned long ulObjectSize,
 APIRET MyDosFreeMem( void* pBaseAddress, char* pContextStr )
 {
     APIRET nRet = DosFreeMem( pBaseAddress );
-#if 0 && defined(OV_DEBUG) && defined(LOGFILE)
-    String aStr("DosFreeMem:");
-    aStr += pContextStr;
-    aStr += ": ";
-    aStr += (ULONG)pBaseAddress;
-    ImpWriteLogFile("\\ddeml.mem", (char*)aStr.GetStr());
-#endif
     return nRet;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

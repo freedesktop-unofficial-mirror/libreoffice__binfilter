@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _XMLOFF_NUMBERSTYLESIMPORT_HXX
 #define _XMLOFF_NUMBERSTYLESIMPORT_HXX
 
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include "xmlnumfi.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -84,3 +81,4 @@ public:
 }//end of namespace binfilter
 #endif  //  _XMLOFF_NUMBERSTYLESIMPORT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

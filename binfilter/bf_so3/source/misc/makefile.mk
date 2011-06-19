@@ -37,12 +37,10 @@ TARGET=so3_misc
 .INCLUDE :  settings.mk
 .INCLUDE :  $(SUBPRJ)$/util$/makefile.pmk
 
-
 # --- Files --------------------------------------------------------
 
 CXXFILES=      factory.cxx                                          \
                iface.cxx                                            \
-               soerr.cxx
 
 .IF "$(GUI)"!="UNX"
 CXXFILES+=     so2dll.cxx
@@ -51,8 +49,7 @@ CXXFILES+=     so2dll.cxx
 
 SLOFILES=                                                           \
                         $(SLO)$/factory.obj                          \
-                        $(SLO)$/iface.obj                            \
-                        $(SLO)$/soerr.obj
+                        $(SLO)$/iface.obj
 
 .IF "$(GUI)"!="UNX"
 SLOFILES+=				$(SLO)$/so2dll.obj 
@@ -64,7 +61,4 @@ EXCEPTIONSFILES= \
 
 # --- Tagets -------------------------------------------------------
 
-
 .INCLUDE :  target.mk
-
-.INCLUDE :  $(SUBPRJ)$/util$/target.pmk

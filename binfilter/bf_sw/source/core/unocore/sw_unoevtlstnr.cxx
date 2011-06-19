@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _UNOEVTLSTNR_HXX
 #include <unoevtlstnr.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_EVENTOBJECT_HPP_
 #include <com/sun/star/lang/EventObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XEVENTLISTENER_HPP_
 #include <com/sun/star/lang/XEventListener.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -50,22 +43,16 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::uno;
 
-/* -----------------22.04.99 11:24-------------------
- *
- * --------------------------------------------------*/
+
 SV_IMPL_PTRARR(SwEvtLstnrArray, XEventListenerPtr);
 
-/*-- 22.04.99 11:24:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
-SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxParent) :
+SwEventListenerContainer::SwEventListenerContainer( uno::XInterface* pxInParent) :
     pListenerArr(0),
-    pxParent(pxParent)
+    pxParent(pxInParent)
 {
 }
-/*-- 22.04.99 11:24:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 SwEventListenerContainer::~SwEventListenerContainer()
 {
     if(pListenerArr && pListenerArr->Count())
@@ -74,9 +61,7 @@ SwEventListenerContainer::~SwEventListenerContainer()
     }
     delete pListenerArr;
 }
-/*-- 22.04.99 11:24:59---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwEventListenerContainer::AddListener(const uno::Reference< lang::XEventListener > & rxListener)
 {
     if(!pListenerArr)
@@ -85,9 +70,7 @@ void    SwEventListenerContainer::AddListener(const uno::Reference< lang::XEvent
     *pInsert = rxListener;
     pListenerArr->Insert(pInsert, pListenerArr->Count());
 }
-/*-- 22.04.99 11:25:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 sal_Bool    SwEventListenerContainer::RemoveListener(const uno::Reference< lang::XEventListener > & rxListener)
 {
     if(!pListenerArr)
@@ -109,9 +92,7 @@ sal_Bool    SwEventListenerContainer::RemoveListener(const uno::Reference< lang:
     }
     return sal_False;
 }
-/*-- 22.04.99 11:25:00---------------------------------------------------
 
-  -----------------------------------------------------------------------*/
 void    SwEventListenerContainer::Disposing()
 {
     if(!pListenerArr)
@@ -128,3 +109,5 @@ void    SwEventListenerContainer::Disposing()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

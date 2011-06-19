@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 #define _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 enum PageContextType
@@ -56,6 +55,7 @@ public:
 
     virtual ~PagePropertySetContext();
 
+    using SvXMLPropertySetContext::CreateChildContext;
     virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
                                    const ::rtl::OUString& rLocalName,
                                    const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList >& xAttrList,
@@ -66,3 +66,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

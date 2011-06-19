@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,10 @@
 #ifndef _SD_IMAPINFO_HXX
 #define _SD_IMAPINFO_HXX
 
-#ifndef _SD_SDIOCMPT_HXX
 #include "sdiocmpt.hxx"
-#endif
-#ifndef _SD_GLOB_HXX
 #include "glob.hxx"
-#endif
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _IMAP_HXX //autogen
 #include <bf_svtools/imap.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -57,50 +50,30 @@ class SdIMapInfo : public SdrObjUserData, public SfxListener
 
 public:
                     SdIMapInfo() :
-                        SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ) {};
+                        SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ),
+                        SfxListener() {}
 
                     SdIMapInfo( const ImageMap& rImageMap ) :
                         SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ),
-                        aImageMap( rImageMap ) {};
+                        SfxListener(),
+                        aImageMap( rImageMap ) {}
 
                     SdIMapInfo( const SdIMapInfo& rIMapInfo ) :
                         SdrObjUserData( SdUDInventor, SD_IMAPINFO_ID, 0 ),
-                        aImageMap( rIMapInfo.aImageMap ) {};
+                        SfxListener(),
+                        aImageMap( rIMapInfo.aImageMap ) {}
 
     virtual         ~SdIMapInfo() {};
 
-    virtual SdrObjUserData* Clone( SdrObject* pObj ) const { return new SdIMapInfo( *this ); }
+    virtual SdrObjUserData* Clone( SdrObject* /*pObj*/ ) const { return new SdIMapInfo( *this ); }
 
-    virtual void WriteData( SvStream& rOStm );
+    virtual void WriteData( SvStream& ) {}
     virtual void ReadData( SvStream& rIStm );
 
     void            SetImageMap( const ImageMap& rIMap ) { aImageMap = rIMap; }
     const ImageMap& GetImageMap() const { return aImageMap; }
 };
 
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-inline void SdIMapInfo::WriteData( SvStream& rOStm )
-{
-    SdrObjUserData::WriteData( rOStm );
-
-    SdIOCompat aIO( rOStm, STREAM_WRITE, 1 );
-
-    aImageMap.Write(
-        rOStm, ::binfilter::StaticBaseUrl::GetBaseURL(INetURLObject::NO_DECODE));
-}
-
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
 
 inline void SdIMapInfo::ReadData( SvStream& rIStm )
 {
@@ -117,3 +90,4 @@ inline void SdIMapInfo::ReadData( SvStream& rIStm )
 #endif      // _SD_IMAPINFO_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

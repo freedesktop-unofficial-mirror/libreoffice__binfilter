@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,13 +32,9 @@
 
 #include <stdlib.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "swtypes.hxx"
 #include "swerror.h"
@@ -452,3 +449,5 @@ public:
 
 } //namespace binfilter
 #endif // _SW6FILE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

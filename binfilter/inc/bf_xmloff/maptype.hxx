@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 namespace binfilter {
 
 ///////////////////////////////////////////////////////////////////////////
@@ -78,3 +75,5 @@ struct XMLPropertyState
 
 }//end of namespace binfilter
 #endif // _XMLOFF_PROPMAPPINGTYPES_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

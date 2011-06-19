@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 
@@ -339,18 +338,13 @@ start:
         case SbxBYREF | SbxSALUINT64:
             *p->puInt64 = ImpDoubleToSalUInt64( (double) n ); break;
         case SbxBYREF | SbxCURRENCY:
-            double d;
             if( n > SbxMAXCURR )
             {
-                SbxBase::SetError( SbxERR_OVERFLOW ); d = SbxMAXCURR;
+                SbxBase::SetError( SbxERR_OVERFLOW );
             }
             else if( n < SbxMINCURR )
             {
-                SbxBase::SetError( SbxERR_OVERFLOW ); d = SbxMINCURR;
-            }
-            else
-            {
-                d = n;
+                SbxBase::SetError( SbxERR_OVERFLOW );
             }
             *p->pLong64 = ImpDoubleToCurrency( n ); break;
 
@@ -360,3 +354,5 @@ start:
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

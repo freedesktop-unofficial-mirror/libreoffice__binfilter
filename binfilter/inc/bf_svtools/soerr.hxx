@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _SOERR_HXX
 #define _SOERR_HXX
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 
 // Fehler Codes
 #define RID_SO_ERROR_HANDLER    32000
@@ -81,3 +80,4 @@
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

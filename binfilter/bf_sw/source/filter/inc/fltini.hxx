@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 namespace binfilter {
 
 class SwNumRuleTbl;
@@ -94,34 +91,12 @@ public:
 };
 
 
-
-
-// die speziellen Writer
-
-#if 0
-/*?*/ WriterRef GetW4WWriter( const String& );
-WriterRef GetStgWriter( const String& );
-WriterRef GetWWWriter( const String& );
-/*?*/ WriterRef GetWW8Writer( const String& );
-#if !( !defined(DBG_UTIL) || defined(MAC) || defined(PM2) )
-/*?*/ WriterRef GetDebugWriter( const String& );
-/*?*/ WriterRef GetUndoWriter( const String& );
-#endif
-#else
-/*?*/ void GetW4WWriter( const String&, WriterRef& );
-void GetStgWriter( const String&, WriterRef& );
-void GetWWWriter( const String&, WriterRef& );
-#if !( !defined(DBG_UTIL) || defined(MAC) || defined(PM2) )
-#endif
-#endif
-
-
-// JP 17.03.99 - 63049
 // Umsetzen der LRSpaces im aktuell importierten Doc. Die Fremd-Filter
 // liefern immer absolute Werte fuer die Ebenen einer NumRule. Wir
 // verarbeiten jetzt aber relative Werte bezogen auf das LR-Space-Item.
 // Das hat zur Folge, das bei allen Absaetzen die EInzuege der NumRule vom
 // Absatz-Einzug abgezogen werden muss.
+
 class SwRelNumRuleSpaces
 {
     SwNumRuleTbl* pNumRuleTbl;  // Liste aller benannten NumRules
@@ -153,3 +128,5 @@ void    CalculateFlySize( SfxItemSet& rFlySet, SwNodeIndex& rAnchor,
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

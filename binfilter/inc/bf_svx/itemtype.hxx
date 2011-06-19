@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,30 +32,16 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SVXITEMS_HRC
 #include <bf_svx/svxitems.hrc>
-#endif
 
 // forward ---------------------------------------------------------------
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TOOLS_RESID_HXX //autogen
 #include <tools/resid.hxx>
-#endif
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
-#ifndef _SVX_DIALMGR_HXX //autogen
 #include <bf_svx/dialmgr.hxx>
-#endif
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SHL_HXX //autogen
 #include <tools/shl.hxx>
-#endif
 class Color;
 class IntlWrapper;
 namespace binfilter {
@@ -94,3 +81,4 @@ inline long Scale( long nVal, long nMult, long nDiv )
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

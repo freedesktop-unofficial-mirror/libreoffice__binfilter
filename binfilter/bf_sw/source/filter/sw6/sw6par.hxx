@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,13 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
 
 
-#ifndef _TOXE_HXX
 #include <toxe.hxx>
-#endif
-#ifndef _SW6FILE_HXX
 #include <sw6file.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;
@@ -141,7 +132,7 @@ private:
 
     void   InsertTOX(SwDoc &rDoc,SwPaM &rPaM,USHORT nLen,HFORM *pTmp,TOXTypes eTyp);
     void   InsertTab(USHORT nTab,TABU &rTab,SvxTabStopItem &rTabs,SwTwips nKor);
-    void   InsertExtra(SwDoc &rDoc,SwPaM &rPaM,const SwNodeIndex &rWohin,long lFPos,sal_Char *pcAKey=NULL);
+    void   InsertExtra(SwDoc &rDoc,SwPaM &rPaM,const SwNodeIndex &rWohin,long lFPos,const sal_Char *pcAKey=NULL);
     BOOL   InsertNote(SwDoc &rDoc,SwPaM &rPaM,USHORT nNote,BOOL bFuss);
     void   InsertAttr(SwDoc &rDoc,SwPaM &rPaM,ATTRBITS eAttr,BOOL bEin,SwTwips nSiz);
     void   InsertAForm(SwDoc &rDoc,SwPaM &rPaM,BYTE  *pCtrl);
@@ -197,11 +188,7 @@ struct DATEIDESC {
 // einige Forward-Deklaratioen
 class SwPaM;
 class SwDoc;
-#ifdef __MWERKS__
-class SwSw6Parser : public Sw6Layout // Fehler im MWerks-Compiler, sorry
-#else
 class SwSw6Parser:private Sw6Layout
-#endif
 {
 
 private:
@@ -224,3 +211,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -49,16 +50,16 @@ class SdrViewIter {
     const SdrPage*   pPage;
     const SdrObject* pObject;
     SdrView*   pAktView;
-    FASTBOOL   bNoMasterPage;
+    bool   bNoMasterPage;
     USHORT     nListenerNum;
     USHORT     nPageViewNum;
     USHORT     nOutDevNum;
 private:
     void          ImpInitVars();
     SdrView*      ImpFindView();
-    FASTBOOL      ImpCheckPageView(SdrPageView* pPV) const;
+    bool      ImpCheckPageView(SdrPageView* pPV) const;
 public:
-    SdrViewIter(const SdrObject* pObject, FASTBOOL bNoMasterPage=FALSE);
+    SdrViewIter(const SdrObject* pObject, bool bNoMasterPage=FALSE);
     SdrView*      FirstView();
     SdrView*      NextView();
 };
@@ -103,3 +104,4 @@ Es wird nicht berueksichtigt:
 }//end of namespace binfilter
 #endif //_SVDVITER_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

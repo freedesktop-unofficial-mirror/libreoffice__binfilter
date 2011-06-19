@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,17 +27,11 @@
  ************************************************************************/
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SD_UNOKYWDS_HXX_
 #include <unokywds.hxx>
-#endif
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
@@ -56,7 +51,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 static struct StyleNameMapping_t
@@ -156,7 +150,7 @@ uno::Sequence< OUString > SAL_CALL SdUnoPseudoStyleFamily::getSupportedServiceNa
 uno::Any SAL_CALL SdUnoPseudoStyleFamily::getByName( const OUString& aName )
     throw(container::NoSuchElementException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( 0 == aName.getLength() )
         throw container::NoSuchElementException();
@@ -177,7 +171,7 @@ uno::Any SAL_CALL SdUnoPseudoStyleFamily::getByName( const OUString& aName )
 uno::Sequence< OUString > SAL_CALL SdUnoPseudoStyleFamily::getElementNames()
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< OUString > aNameSequence( nPseudoStyleCount );
     OUString* pNamesSeq = aNameSequence.getArray();
@@ -195,7 +189,7 @@ uno::Sequence< OUString > SAL_CALL SdUnoPseudoStyleFamily::getElementNames()
 sal_Bool SAL_CALL SdUnoPseudoStyleFamily::hasByName( const OUString& aName )
     throw(uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( aName.getLength() )
     {
@@ -238,7 +232,7 @@ sal_Int32 SAL_CALL SdUnoPseudoStyleFamily::getCount()
 uno::Any SAL_CALL SdUnoPseudoStyleFamily::getByIndex( sal_Int32 Index )
     throw(lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( !isValid() || Index < 0 || Index >= nPseudoStyleCount )
         throw lang::IndexOutOfBoundsException();
@@ -363,6 +357,8 @@ void SdUnoPseudoStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
         case HINT_MODELCLEARED:
             bGoneDead = sal_True;
             break;
+        default:
+            break;
         }
     }
 
@@ -375,3 +371,5 @@ void SdUnoPseudoStyleFamily::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,86 +26,28 @@
  *
  ************************************************************************/
 
-
-#ifndef _XMLOFF_XMLINDEXTOCCONTEXT_HXX_
 #include "XMLIndexTOCContext.hxx"
-#endif
 
-
-
-
-
-
-#ifndef _COM_SUN_STAR_TEXT_XRELATIVETEXTCONTENTINSERT_HPP_
 #include <com/sun/star/text/XRelativeTextContentInsert.hpp>
-#endif
 
-
-#ifndef _XMLOFF_XMLINDEXTOCSOURCECONTEXT_HXX_
 #include "XMLIndexTOCSourceContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXOBJECTSOURCECONTEXT_HXX_
 #include "XMLIndexObjectSourceContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXALPHABETICALSOURCECONTEXT_HXX_
 #include "XMLIndexAlphabeticalSourceContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXUSERSOURCECONTEXT_HXX_
 #include "XMLIndexUserSourceContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYSOURCECONTEXT_HXX_
 #include "XMLIndexBibliographySourceContext.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLINDEXILLUSTRATIONSOURCECONTEXT_HXX_
 #include "XMLIndexIllustrationSourceContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLINDEXBODYCONTEXT_HXX_
 #include "XMLIndexBodyContext.hxx"
-#endif
 
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLKYWD_HXX
 #include "xmlkywd.hxx"
-#endif
-
-
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
+
 namespace binfilter {
 
 
@@ -144,7 +87,7 @@ static const sal_Char* aIndexSourceElementMap[] =
     sXML_illustration_index_source
 };
 
-SvXMLEnumMapEntry __READONLY_DATA aIndexTypeMap[] =
+SvXMLEnumMapEntry const aIndexTypeMap[] =
 {
     { XML_TABLE_OF_CONTENT,     TEXT_INDEX_TOC },
     { XML_ALPHABETICAL_INDEX,   TEXT_INDEX_ALPHABETICAL },
@@ -158,16 +101,16 @@ SvXMLEnumMapEntry __READONLY_DATA aIndexTypeMap[] =
 
 
 XMLIndexTOCContext::XMLIndexTOCContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
-        pSourceElementName(NULL),
-        bValid(sal_False),
-        xBodyContextRef(),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         sTitle(RTL_CONSTASCII_USTRINGPARAM("Title")),
         sIsProtected(RTL_CONSTASCII_USTRINGPARAM("IsProtected")),
-        sName(RTL_CONSTASCII_USTRINGPARAM("Name"))
+        sName(RTL_CONSTASCII_USTRINGPARAM("Name")),
+        pSourceElementName(NULL),
+        bValid(sal_False),
+        xBodyContextRef()
 {
     if (XML_NAMESPACE_TEXT == nPrfx)
     {
@@ -175,7 +118,6 @@ XMLIndexTOCContext::XMLIndexTOCContext(
         if (SvXMLUnitConverter::convertEnum(nTmp, rLocalName, aIndexTypeMap))
         {
             // check for array index:
-            DBG_ASSERT(nTmp >= 0, "index too low");
             DBG_ASSERT(nTmp < (sizeof(aIndexServiceMap)/sizeof(sal_Char*)),
                        "index too high");
             DBG_ASSERT(sizeof(aIndexServiceMap) ==
@@ -225,7 +167,7 @@ void XMLIndexTOCContext::StartElement(
 #else
                 OUString sMarker(RTL_CONSTASCII_USTRINGPARAM("Y"));
 #endif
-                UniReference<XMLTextImportHelper> rImport =
+                UniReference<XMLTextImportHelper> rLclImport =
                     GetImport().GetTextImport();
 
                 // a) insert index
@@ -250,8 +192,8 @@ void XMLIndexTOCContext::StartElement(
                 }
 
                 // b) insert marker and move cursor
-                rImport->InsertString(sMarker);
-                rImport->GetCursor()->goLeft(2, sal_False);
+                rLclImport->InsertString(sMarker);
+                rLclImport->GetCursor()->goLeft(2, sal_False);
             }
         }
 
@@ -270,10 +212,10 @@ void XMLIndexTOCContext::StartElement(
         for(sal_Int16 nAttr = 0; nAttr < nCount; nAttr++)
         {
             OUString sLocalName;
-            sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+            sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
                 GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                                   &sLocalName );
-            if ( XML_NAMESPACE_TEXT == nPrefix)
+            if ( XML_NAMESPACE_TEXT == nLclPrefix)
             {
                 if ( IsXMLToken( sLocalName, XML_STYLE_NAME ) )
                 {
@@ -343,7 +285,7 @@ void XMLIndexTOCContext::EndElement()
 }
 
 SvXMLImportContext* XMLIndexTOCContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
@@ -351,11 +293,11 @@ SvXMLImportContext* XMLIndexTOCContext::CreateChildContext(
 
     if (bValid)
     {
-        if (XML_NAMESPACE_TEXT == nPrefix)
+        if (XML_NAMESPACE_TEXT == nInPrefix)
         {
             if ( IsXMLToken( rLocalName, XML_INDEX_BODY ) )
             {
-                pContext = new XMLIndexBodyContext(GetImport(), nPrefix,
+                pContext = new XMLIndexBodyContext(GetImport(), nInPrefix,
                                                    rLocalName);
                 if ( !xBodyContextRef.Is() ||
                      !((XMLIndexBodyContext*)&xBodyContextRef)->HasContent() )
@@ -370,41 +312,41 @@ SvXMLImportContext* XMLIndexTOCContext::CreateChildContext(
                 {
                     case TEXT_INDEX_TOC:
                         pContext = new XMLIndexTOCSourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     case TEXT_INDEX_OBJECT:
                         pContext = new XMLIndexObjectSourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     case TEXT_INDEX_ALPHABETICAL:
                         pContext = new XMLIndexAlphabeticalSourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     case TEXT_INDEX_USER:
                         pContext = new XMLIndexUserSourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     case TEXT_INDEX_BIBLIOGRAPHY:
                         pContext = new XMLIndexBibliographySourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     case TEXT_INDEX_TABLE:
                         pContext = new XMLIndexTableSourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     case TEXT_INDEX_ILLUSTRATION:
                         pContext = new XMLIndexIllustrationSourceContext(
-                            GetImport(), nPrefix, rLocalName, xTOCPropertySet);
+                            GetImport(), nInPrefix, rLocalName, xTOCPropertySet);
                         break;
 
                     default:
-                        DBG_ERROR("index type not implemented");
+                        OSL_FAIL("index type not implemented");
                         break;
                 }
             }
@@ -417,10 +359,12 @@ SvXMLImportContext* XMLIndexTOCContext::CreateChildContext(
     // default: ignore
     if (pContext == NULL)
     {
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                           xAttrList);
     }
 
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

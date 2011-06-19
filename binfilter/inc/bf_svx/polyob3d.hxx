@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
-#endif
-#ifndef _POLY3D_HXX
 #include <bf_svx/poly3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -60,22 +57,23 @@ class E3dPolyObj : public E3dObject
     // [FG]: Zwecks schreiben des Formates der 3.1 Version
     //       Diese Funktionen werden nur von ReadData31 und WriteData31
     //       aufgerufen.
-    void WriteData31(SvStream& rOut) const;
+    void WriteData31(SvStream& ) const {}
     void ReadData31(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 public:
     TYPEINFO();
-    E3dPolyObj(const PolyPolygon3D& rPoly3D, FASTBOOL bDblSided = FALSE,
-                                             FASTBOOL bLight = TRUE);
+    E3dPolyObj(const PolyPolygon3D& rPoly3D, bool bDblSided = FALSE,
+                                             bool bLight = TRUE);
     E3dPolyObj(const PolyPolygon3D& rPoly3D, const PolyPolygon3D& rVector3D,
-                                             FASTBOOL bDblSided = FALSE,
-                                             FASTBOOL bLight = TRUE);
+                                             bool bDblSided = FALSE,
+                                             bool bLight = TRUE);
     E3dPolyObj(const PolyPolygon3D& rPoly3D, const PolyPolygon3D& rVector3D,
                                              const PolyPolygon3D& rNormal3D,
-                                             FASTBOOL bDblSided = FALSE,
-                                             FASTBOOL bLight = TRUE);
+                                             bool bDblSided = FALSE,
+                                             bool bLight = TRUE);
     E3dPolyObj(const Vector3D& rP1, const Vector3D& rP2);
     E3dPolyObj();
+    using SdrAttrObj::operator=;
     virtual ~E3dPolyObj();
 
     virtual UINT16  GetObjIdentifier() const;
@@ -92,7 +90,7 @@ public:
 
     virtual const   Rectangle& GetBoundRect() const;
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 
@@ -102,6 +100,7 @@ public:
     virtual void          RestGeoData(const SdrObjGeoData &rGeo);
     virtual void          SetPage(SdrPage *pNewPage);
     virtual void          SetModel(SdrModel *pNewModel);
+    using SdrObject::GetLayer;
     virtual SdrLayerID    GetLayer() const;
     virtual void          NbcSetLayer(SdrLayerID nLayer);
     virtual SfxStyleSheet *GetStyleSheet() const;
@@ -122,3 +121,5 @@ public:
 
 }//end of namespace binfilter
 #endif          // _E3D_POLYOB3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

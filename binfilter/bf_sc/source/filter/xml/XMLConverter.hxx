@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,40 +29,20 @@
 #ifndef _SC_XMLCONVERTER_HXX
 #define _SC_XMLCONVERTER_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef SC_DETFUNC_HXX
 #include "detfunc.hxx"
-#endif
-#ifndef SC_DETDATA_HXX
 #include "detdata.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_DATAPILOTFIELDORIENTATION_HPP_
 #include <com/sun/star/sheet/DataPilotFieldOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_GENERALFUNCTION_HPP_
 #include <com/sun/star/sheet/GeneralFunction.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 class DateTime;
 namespace binfilter {
 
@@ -101,8 +82,7 @@ public:
     static void         GetTokenByOffset(
                             ::rtl::OUString& rToken,
                             const ::rtl::OUString& rString,
-                            sal_Int32& nOffset,
-                            sal_Unicode cQuote = '\'' );
+                            sal_Int32& nOffset);
 
     static ScDocument*  GetScDocument(
                             ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel > xModel );
@@ -250,3 +230,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

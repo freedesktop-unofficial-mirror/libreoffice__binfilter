@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,27 +27,17 @@
  ************************************************************************/
 
 
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 
 #include <rtl/uuid.h>
 #include <rtl/memory.h>
 
-#ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include <bf_svx/xflbmtit.hxx>
-#endif
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
 
 #include "unopback.hxx"
 #include "drawdoc.hxx"
@@ -54,7 +45,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 const SfxItemPropertyMap* ImplGetPageBackgroundPropertyMap()
@@ -62,7 +52,7 @@ const SfxItemPropertyMap* ImplGetPageBackgroundPropertyMap()
     static const SfxItemPropertyMap aPageBackgroundPropertyMap_Impl[] =
     {
         FILL_PROPERTIES
-        {0,0,0,0,0}
+        {0,0,0,0,0,0}
     };
 
     return aPageBackgroundPropertyMap_Impl;
@@ -105,7 +95,7 @@ SdUnoPageBackground::~SdUnoPageBackground() throw()
         delete mpSet;
 }
 
-void SdUnoPageBackground::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void SdUnoPageBackground::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     const SdrHint* pSdrHint = PTR_CAST( SdrHint, &rHint );
 
@@ -189,7 +179,7 @@ uno::Reference< beans::XPropertySetInfo > SAL_CALL SdUnoPageBackground::getPrope
 void SAL_CALL SdUnoPageBackground::setPropertyValue( const OUString& aPropertyName, const uno::Any& aValue )
     throw(beans::UnknownPropertyException, beans::PropertyVetoException, lang::IllegalArgumentException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry( aPropertyName );
 
@@ -246,7 +236,7 @@ void SAL_CALL SdUnoPageBackground::setPropertyValue( const OUString& aPropertyNa
 uno::Any SAL_CALL SdUnoPageBackground::getPropertyValue( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aAny;
     const SfxItemPropertyMap* pMap = getPropertyMapEntry(PropertyName);
@@ -296,16 +286,16 @@ uno::Any SAL_CALL SdUnoPageBackground::getPropertyValue( const OUString& Propert
     return aAny;
 }
 
-void SAL_CALL SdUnoPageBackground::addPropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& xListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPageBackground::removePropertyChangeListener( const OUString& aPropertyName, const uno::Reference< beans::XPropertyChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPageBackground::addVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
-void SAL_CALL SdUnoPageBackground::removeVetoableChangeListener( const OUString& PropertyName, const uno::Reference< beans::XVetoableChangeListener >& aListener ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPageBackground::addPropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPageBackground::removePropertyChangeListener( const OUString& /*aPropertyName*/, const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPageBackground::addVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
+void SAL_CALL SdUnoPageBackground::removeVetoableChangeListener( const OUString& /*PropertyName*/, const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ ) throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException) {}
 
 // XPropertyState
 beans::PropertyState SAL_CALL SdUnoPageBackground::getPropertyState( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry(PropertyName);
 
@@ -352,7 +342,7 @@ beans::PropertyState SAL_CALL SdUnoPageBackground::getPropertyState( const OUStr
 uno::Sequence< beans::PropertyState > SAL_CALL SdUnoPageBackground::getPropertyStates( const uno::Sequence< OUString >& aPropertyName )
     throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = aPropertyName.getLength();
     const OUString* pNames = aPropertyName.getConstArray();
@@ -369,7 +359,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL SdUnoPageBackground::getPropertyS
 void SAL_CALL SdUnoPageBackground::setPropertyToDefault( const OUString& PropertyName )
     throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry(PropertyName);
 
@@ -393,7 +383,7 @@ void SAL_CALL SdUnoPageBackground::setPropertyToDefault( const OUString& Propert
 uno::Any SAL_CALL SdUnoPageBackground::getPropertyDefault( const OUString& aPropertyName )
     throw(beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = getPropertyMapEntry(aPropertyName);
     if( pMap == NULL || mpSet == NULL )
@@ -433,3 +423,5 @@ const SfxItemPropertyMap* SdUnoPageBackground::getPropertyMapEntry( const OUStri
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

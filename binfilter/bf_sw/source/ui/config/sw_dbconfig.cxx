@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
 namespace binfilter {
 using namespace utl;
-using namespace rtl;
 using namespace ::com::sun::star::uno;
+using ::rtl::OUString;
 
 /*N*/ #define C2U(cChar) OUString::createFromAscii(cChar)
 /*--------------------------------------------------------------------
@@ -75,9 +68,8 @@ using namespace ::com::sun::star::uno;
 /*N*/   }
 /*N*/   return aNames;
 /*N*/ }
-/* -----------------------------06.09.00 16:44--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDBConfig::SwDBConfig() :
 /*N*/     ConfigItem(C2U("Office.DataAccess"),
 /*N*/         CONFIG_MODE_DELAYED_UPDATE|CONFIG_MODE_RELEASE_TREE),
@@ -85,17 +77,15 @@ using namespace ::com::sun::star::uno;
 /*N*/     pBibImpl(0)
 /*N*/ {
 /*N*/ };
-/* -----------------------------06.09.00 16:50--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ SwDBConfig::~SwDBConfig()
 /*N*/ {
 /*N*/     delete pAdrImpl;
 /*N*/     delete pBibImpl;
 /*N*/ }
-/* -----------------------------20.02.01 12:32--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ void SwDBConfig::Load()
 /*N*/ {
 /*N*/   const Sequence<OUString>& rNames = GetPropertyNames();
@@ -126,9 +116,8 @@ using namespace ::com::sun::star::uno;
 /*N*/       }
 /*N*/   }
 /*N*/ }
-/* -----------------------------20.02.01 12:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ const SwDBData& SwDBConfig::GetAddressSource()
 /*N*/ {
 /*N*/     if(!pAdrImpl)
@@ -137,6 +126,8 @@ using namespace ::com::sun::star::uno;
 /*N*/ }
 
     void SwDBConfig::Commit() {}
-    void SwDBConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+    void SwDBConfig::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& ) {}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

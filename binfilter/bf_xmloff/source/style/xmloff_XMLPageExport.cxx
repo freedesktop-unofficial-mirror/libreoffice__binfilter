@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,50 +27,31 @@
  ************************************************************************/
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPHDLFACTORY_HXX
 #include "PageMasterPropHdlFactory.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPMAPPER_HXX
 #include "PageMasterPropMapper.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTEREXPORTPROPMAPPER_HXX
 #include "PageMasterExportPropMapper.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::beans;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 
 //______________________________________________________________________________
@@ -107,8 +89,8 @@ void XMLPageExport::collectPageMasterAutoStyle(
 }
 
 void XMLPageExport::exportMasterPageContent(
-                const Reference < XPropertySet > & rPropSet,
-                sal_Bool bAutoStyles )
+                const Reference < XPropertySet > & /*rPropSet*/,
+                sal_Bool /*bAutoStyles*/ )
 {
 
 }
@@ -247,3 +229,5 @@ void XMLPageExport::exportAutoStyles()
         );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

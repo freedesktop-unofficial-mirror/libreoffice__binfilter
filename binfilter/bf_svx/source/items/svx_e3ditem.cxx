@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
 #include <com/sun/star/drawing/Direction3D.hpp>
-#endif
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -53,7 +50,7 @@ using namespace ::com::sun::star;
 
 /*?*/ SvxVector3DItem::SvxVector3DItem()
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/   DBG_CTOR(SvxVector3DItem, 0);
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 // -----------------------------------------------------------------------
@@ -88,7 +85,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxVector3DItem::Clone( SfxItemPool *pPool ) const
+/*N*/ SfxPoolItem* SvxVector3DItem::Clone( SfxItemPool* /*pPool*/ ) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
 /*N*/   return new SvxVector3DItem( *this );
@@ -96,7 +93,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SfxPoolItem* SvxVector3DItem::Create(SvStream &rStream, USHORT nVersion) const
+/*N*/ SfxPoolItem* SvxVector3DItem::Create(SvStream &rStream, USHORT /*nVersion*/) const
 /*N*/ {
 /*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
 /*N*/   Vector3D aStr;
@@ -106,19 +103,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ SvStream& SvxVector3DItem::Store(SvStream &rStream, USHORT nItemVersion) const
-/*N*/ {
-/*N*/   DBG_CHKTHIS(SvxVector3DItem, 0);
-/*N*/
-/*N*/   // ## if (nItemVersion)
-/*N*/   rStream << aVal;
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
-/*N*/ sal_Bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxVector3DItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;
 /*N*/
@@ -133,7 +118,7 @@ using namespace ::com::sun::star;
 
 // -----------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxVector3DItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxVector3DItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   drawing::Direction3D aDirection;
 /*N*/   if(!(rVal >>= aDirection))
@@ -154,3 +139,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

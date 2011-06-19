@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,29 +25,15 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef _SFXDEFS_HXX //autogen
 #include <bf_sfx2/sfxdefs.hxx>
-#endif
-#ifndef _XDEF_HXX //autogen
 #include <bf_svx/xdef.hxx>
-#endif
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _TOOLS_RESMGR_HXX //autogen
 #include <tools/resmgr.hxx>
-#endif
 
 
 
@@ -186,3 +173,5 @@ const USHORT nStatWhichPairs[]=
 
 
 } //namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

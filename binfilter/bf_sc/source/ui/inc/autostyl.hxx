@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,7 +29,7 @@
 #ifndef SC_AUTOSTYL_HXX
 #define SC_AUTOSTYL_HXX
 
-#include <tools/debug.hxx> //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 class ScDocShell;
 class ScRange;
@@ -37,7 +38,7 @@ class ScAutoStyleList
 {
 
 public:
-            ScAutoStyleList(ScDocShell* pShell){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScAutoStyleList(ScDocShell* pShell);
+            ScAutoStyleList(ScDocShell* /*pShell*/){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -45,3 +46,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

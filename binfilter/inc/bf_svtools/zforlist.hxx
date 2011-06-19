@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,43 +30,19 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_NUMBERFORMATCODE_HPP_
 #include <com/sun/star/i18n/NumberFormatCode.hpp>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_ONDEMAND_HXX
 #include <bf_svtools/ondemand.hxx>
-#endif
-#ifndef _LINK_HXX
 #include <tools/link.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_NFKEYTAB_HXX
 #include <bf_svtools/nfkeytab.hxx>
-#endif
 
 class Date;
 class SvStream;
@@ -237,9 +214,8 @@ enum NfEvalDateFormat
 };
 
 
-//#if 0 // _SOLAR__PRIVATE
 #define _ZFORLIST_DECLARE_TABLE
-//#endif
+
 #ifdef _ZFORLIST_DECLARE_TABLE
 DECLARE_TABLE (SvNumberFormatTable, SvNumberformat*)
 DECLARE_TABLE (SvNumberFormatterIndexTable, sal_uInt32*)
@@ -268,12 +244,10 @@ class  NfCurrencyEntry
 
 private:
 
-//#if 0 // _SOLAR__PRIVATE
                         // nDecimalFormat := 0, 1, 2
                         // #,##0 or #,##0.00 or #,##0.-- are assigned
     void                Impl_BuildFormatStringNumChars( String&,
                             const LocaleDataWrapper&, USHORT nDecimalFormat ) const;
-//#endif    // __PRIVATE
 
 public:
 
@@ -399,7 +373,7 @@ public:
         @return
             <TRUE/> if string new and ok and inserted.
              <FALSE/> if string already exists or an unresolvable parse error
-             occured, in which case nCheckPos is the error position within rString.
+             occurred, in which case nCheckPos is the error position within rString.
             If the error occurs at position 0 or rString is empty nCheckPos
             will be 1, so an error in the string is always indicated by
              nCheckPos not being zero.
@@ -478,7 +452,7 @@ public:
     /// Load all formats from a stream
     BOOL Load( SvStream& rStream );
     /// Save all formats to a stream
-    BOOL Save( SvStream& rStream ) const;
+    BOOL Save( SvStream& ) const {return false;}
 
     /// Get additional info of a format index, e.g. for dialog box
     void GetFormatSpecialInfo(sal_uInt32 nFormat, BOOL& bThousand, BOOL& IsRed,
@@ -911,3 +885,5 @@ inline USHORT SvNumberFormatter::ExpandTwoDigitYear(
 }
 
 #endif  // _ZFORLIST_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

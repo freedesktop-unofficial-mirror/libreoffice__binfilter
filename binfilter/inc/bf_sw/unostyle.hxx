@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,51 +30,21 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _UNOCOLL_HXX
 #include <unocoll.hxx>
-#endif
-#ifndef _UNOMAP_HXX
 #include <unomap.hxx>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLE_HPP_
 #include <com/sun/star/style/XStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLELOADER_HPP_
 #include <com/sun/star/style/XStyleLoader.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSTATES_HPP_
 #include <com/sun/star/beans/XMultiPropertyStates.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE7_HXX_
 #include <cppuhelper/implbase7.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 struct SfxItemPropertyMap;
 
@@ -85,9 +56,8 @@ class SwStartNode;
 /******************************************************************************
  *
  ******************************************************************************/
-/*-----------------12.02.98 08:27-------------------
 
---------------------------------------------------*/
+
 class SwXStyleFamilies :  public cppu::WeakImplHelper4
 <
     ::com::sun::star::container::XIndexAccess,
@@ -134,9 +104,8 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 };
 
-/* -----------------26.05.98 10:56-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXStyleFamily : public cppu::WeakImplHelper3
 <
     ::com::sun::star::container::XNameContainer,
@@ -181,9 +150,8 @@ public:
     virtual BOOL SAL_CALL supportsService(const ::rtl::OUString& ServiceName) throw( ::com::sun::star::uno::RuntimeException );
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL getSupportedServiceNames(void) throw( ::com::sun::star::uno::RuntimeException );
 };
-/* -----------------20.05.98 09:51-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXStyle : public cppu::WeakImplHelper7
 <
     ::com::sun::star::style::XStyle,
@@ -297,9 +265,8 @@ public:
     SwDoc*                GetDoc() const { return m_pDoc; }
     virtual void    Modify( SfxPoolItem *pOld, SfxPoolItem *pNew);
 };
-/* -----------------------------15.12.00 14:25--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 class SwXFrameStyle : public SwXStyle,
                         public ::com::sun::star::document::XEventsSupplier
 {
@@ -321,9 +288,8 @@ public:
 
     friend class SwFrameStyleEventDescriptor;
 };
-/* -----------------24.08.98 16:04-------------------
- *
- * --------------------------------------------------*/
+
+
 class SwXPageStyle : public SwXStyle
 {
     SwDocShell*     pDocShell;
@@ -345,3 +311,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

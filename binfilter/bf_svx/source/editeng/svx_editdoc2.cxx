@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,23 +32,15 @@
 #endif
 
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
 
-#ifndef _SV_OUTDEV_HXX
 #include <vcl/outdev.hxx>
-#endif
 
 
 
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
 
@@ -123,12 +116,12 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/             }
 /*N*/       }
 /*N*/   }
-/*?*/   DBG_ERROR( "FindPortion: Nicht gefunden!" );
+/*?*/   OSL_FAIL( "FindPortion: Nicht gefunden!" );
 /*?*/   return ( Count() - 1 );
 /*N*/ }
 
 /*N*/ ExtraPortionInfo::~ExtraPortionInfo()
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // -------------------------------------------------------------------------
@@ -192,18 +185,12 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/ //    aExtraCharInfos.Remove( 0, aExtraCharInfos.Count() );
 /*N*/ }
 
-/*N*/ void ParaPortion::MarkSelectionInvalid( USHORT nStart, USHORT nEnd )
+/*N*/ void ParaPortion::MarkSelectionInvalid( USHORT nStart, USHORT /*nEnd*/ )
 /*N*/ {
 /*N*/   if ( bInvalid == FALSE )
-/*N*/   {
 /*N*/       nInvalidPosStart = nStart;
-/*N*/ //        nInvalidPosEnd = nEnd;
-/*N*/   }
 /*N*/   else
-/*N*/   {
 /*N*/       nInvalidPosStart = Min( nInvalidPosStart, nStart );
-/*N*/ //        nInvalidPosEnd = pNode->Len();
-/*N*/   }
 /*N*/   nInvalidDiff = 0;
 /*N*/   bInvalid = TRUE;
 /*N*/   bSimple = FALSE;
@@ -295,7 +282,7 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 /*N*/           return nHeight;
 /*?*/       nHeight += pTmpPortion->GetHeight();
 /*?*/   }
-/*?*/   DBG_ERROR( "GetYOffset: Portion nicht gefunden" );
+/*?*/   OSL_FAIL( "GetYOffset: Portion nicht gefunden" );
 /*?*/   return nHeight;
 /*N*/ }
 
@@ -315,32 +302,30 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 
 
 
-/*N*/ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit eSourceUnit, MapUnit eDestUnit )
+/*N*/ void ConvertItem( SfxPoolItem& rPoolItem, MapUnit, MapUnit )
 /*N*/ {
-/*N*/   DBG_ASSERT( eSourceUnit != eDestUnit, "ConvertItem - Why?!" );
-/*N*/
 /*N*/   switch ( rPoolItem.Which() )
 /*N*/   {
 /*N*/       case EE_PARA_LRSPACE:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_ULSPACE:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_SBL:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_PARA_TABS:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/       case EE_CHAR_FONTHEIGHT:
 /*N*/       case EE_CHAR_FONTHEIGHT_CJK:
 /*N*/       case EE_CHAR_FONTHEIGHT_CTL:
-/*N*/       {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       break;
 /*N*/   }
@@ -348,3 +333,5 @@ BOOL EditStyleSheet::HasStyleAsAnyParent( SfxStyleSheet& rStyle )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

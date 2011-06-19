@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,9 +27,7 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLELEMENTPROPERTYCONTEXT_HXX
 #include "XMLElementPropertyContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -37,14 +36,14 @@ using namespace ::rtl;
 TYPEINIT1( XMLElementPropertyContext , SvXMLImportContext );
 
 XMLElementPropertyContext::XMLElementPropertyContext (
-                                SvXMLImport& rImport, sal_uInt16 nPrfx,
+                                SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                 const OUString& rLName,
                                 const XMLPropertyState& rProp,
                                  ::std::vector< XMLPropertyState > &rProps ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
-    aProp( rProp ),
-      rProperties( rProps ),
-    bInsert( sal_False )
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
+    bInsert( sal_False ),
+    rProperties( rProps ),
+    aProp( rProp )
 {
 }
 
@@ -60,3 +59,5 @@ void XMLElementPropertyContext::EndElement( )
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

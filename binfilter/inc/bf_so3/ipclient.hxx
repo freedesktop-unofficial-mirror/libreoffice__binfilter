@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 
 #include <bf_so3/client.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************
 *************************************************************************/
@@ -108,3 +107,5 @@ SV_IMPL_REF_LIST(SvInPlaceClient,SvInPlaceClient*)
 }
 
 #endif // _IPCLIENT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

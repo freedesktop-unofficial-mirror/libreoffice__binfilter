@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,21 +27,12 @@
  ************************************************************************/
 
 #define _TLBIGINT_INT64
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 #include <math.h>
-
-// AB 29.10.99 Unicode
-#ifndef _USE_NO_NAMESPACE
-using namespace rtl;
-#endif
 
 namespace binfilter {
 
@@ -777,7 +769,7 @@ BOOL SbxValue::Put( const SbxValues& rVal )
                         {
                             if ( p != this )
                             {
-                                DBG_ERROR( "TheRealValue" );
+                                OSL_FAIL( "TheRealValue" );
                             }
                             HACK(nicht bei Parent-Prop - sonst CyclicRef)
                             SbxVariable *pThisVar = PTR_CAST(SbxVariable, this);
@@ -1082,8 +1074,6 @@ BOOL SbxValue::Compute( SbxOperator eOp, const SbxValue& rOp )
                     || GetType() == SbxCURRENCY
                     || GetType() == SbxULONG )
                     aL.eType = aR.eType = GetType();
-//              else if( GetType() == SbxDouble || GetType() == SbxSingle )
-//                  aL.eType = aR.eType = SbxLONG64;
                 else
                     aL.eType = aR.eType = SbxLONG;
             }
@@ -1091,9 +1081,6 @@ BOOL SbxValue::Compute( SbxOperator eOp, const SbxValue& rOp )
                      || GetType() == SbxULONG64 || eOpType == SbxULONG64
                      || GetType() == SbxLONG64 || eOpType == SbxLONG64 )
                 aL.eType = aR.eType = SbxLONG64;
-//          else if( GetType() == SbxDouble || rOP.GetType() == SbxDouble
-//                   || GetType() == SbxSingle || rOP.GetType() == SbxSingle )
-//              aL.eType = aR.eType = SbxLONG64;
             else
                 aL.eType = aR.eType = SbxLONG;
 
@@ -1386,7 +1373,7 @@ BOOL SbxValue::Compare( SbxOperator eOp, const SbxValue& rOp ) const
                     SetError( SbxERR_NOTIMP );
             }
         }
-        // AB 19.12.95: Wenn SbxSINGLE beteiligt, auf SINGLE konvertieren,
+        // Wenn SbxSINGLE beteiligt, auf SINGLE konvertieren,
         //              sonst gibt es numerische Fehler
         else if( GetType() == SbxSINGLE || rOp.GetType() == SbxSINGLE )
         {
@@ -1534,7 +1521,7 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
             if( aVal.Len() )
                 aData.pString = new XubString( aVal );
             else
-                aData.pString = NULL; // JSM 22.09.1995
+                aData.pString = NULL;
             break;
         }
         case SbxERROR:
@@ -1612,105 +1599,7 @@ BOOL SbxValue::LoadData( SvStream& r, USHORT )
     return TRUE;
 }
 
-BOOL SbxValue::StoreData( SvStream& r ) const
-{
-    UINT16 nType = sal::static_int_cast< UINT16 >(aData.eType);
-    r << nType;
-    switch( nType & 0x0FFF )
-    {
-        case SbxBOOL:
-        case SbxINTEGER:
-            r << aData.nInteger; break;
-        case SbxLONG:
-            r << aData.nLong; break;
-        case SbxDATE:
-            // #49935: Als double speichern, sonst Fehler beim Einlesen
-            ((SbxValue*)this)->aData.eType = (SbxDataType)( ( nType & 0xF000 ) | SbxDOUBLE );
-            r.WriteByteString( GetCoreString(), RTL_TEXTENCODING_ASCII_US );
-            ((SbxValue*)this)->aData.eType = (SbxDataType)nType;
-            break;
-        case SbxSINGLE:
-        case SbxDOUBLE:
-            r.WriteByteString( GetCoreString(), RTL_TEXTENCODING_ASCII_US );
-            break;
-        case SbxULONG64:
-        {
-            r << aData.nULong64.nHigh << aData.nULong64.nLow;
-            break;
-        }
-        case SbxLONG64:
-        case SbxCURRENCY:
-        {
-            r << aData.nLong64.nHigh << aData.nLong64.nLow;
-            break;
-        }
-        case SbxSTRING:
-            if( aData.pString )
-            {
-                r.WriteByteString( *aData.pString, RTL_TEXTENCODING_ASCII_US );
-            }
-            else
-            {
-                String aEmpty;
-                r.WriteByteString( aEmpty, RTL_TEXTENCODING_ASCII_US );
-            }
-            break;
-        case SbxERROR:
-        case SbxUSHORT:
-            r << aData.nUShort; break;
-        case SbxOBJECT:
-            // sich selbst als Objektptr speichern geht nicht!
-            if( aData.pObj )
-            {
-                if( PTR_CAST(SbxValue,aData.pObj) != this )
-                {
-                    r << (BYTE) 1;
-                    return aData.pObj->Store( r );
-                }
-                else
-                    r << (BYTE) 2;
-            }
-            else
-                r << (BYTE) 0;
-            break;
-        case SbxCHAR:
-        {
-            char c = sal::static_int_cast< char >(aData.nChar);
-            r << c;
-            break;
-        }
-        case SbxBYTE:
-            r << aData.nByte; break;
-        case SbxULONG:
-            r << aData.nULong; break;
-        case SbxINT:
-        {
-            BYTE n = SAL_TYPES_SIZEOFINT;
-            r << n << (sal_Int32)aData.nInt;
-            break;
-        }
-        case SbxUINT:
-        {
-            BYTE n = SAL_TYPES_SIZEOFINT;
-            r << n << (sal_uInt32)aData.nUInt;
-            break;
-        }
-        case SbxEMPTY:
-        case SbxNULL:
-        case SbxVOID:
-            break;
-        case SbxDATAOBJECT:
-            r << aData.nLong;
-            break;
-        // #78919 For backwards compatibility
-        case SbxWSTRING:
-        case SbxWCHAR:
-            break;
-        default:
-            DBG_ASSERT( !this, "Speichern eines nicht unterstuetzten Datentyps" );
-            return FALSE;
-    }
-    return TRUE;
-}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

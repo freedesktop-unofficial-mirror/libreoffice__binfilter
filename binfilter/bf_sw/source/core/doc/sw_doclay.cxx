@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,112 +32,46 @@
 #endif
 
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SFX_PROGRESS_HXX //autogen
 #include <bf_sfx2/progress.hxx>
-#endif
-#ifndef _SVDMODEL_HXX //autogen
 #include <bf_svx/svdmodel.hxx>
-#endif
-#ifndef _SVX_FMGLOB_HXX
 #include <bf_svx/fmglob.hxx>
-#endif
-#ifndef _SVDOUNO_HXX //autogen
 #include <bf_svx/svdouno.hxx>
-#endif
-#ifndef _SVX_FMPAGE_HXX
 #include <bf_svx/fmpage.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTFLCNT_HXX //autogen
 #include <fmtflcnt.hxx>
-#endif
-#ifndef _FRMCNCT_HXX //autogen
 #include <fmtcnct.hxx>
-#endif
-#ifndef _TXTFLCNT_HXX //autogen
 #include <txtflcnt.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer Expression-Felder
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _FESH_HXX
 #include <fesh.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>      // PoolVorlagen-Id's
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FLDUPDE_HXX
 #include <fldupde.hxx>
-#endif
-#ifndef _TXTFTN_HXX
 #include <txtftn.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
 
-#ifndef _COMCORE_HRC
 #include <comcore.hrc>      // STR-ResId's
-#endif
 
 // #i11176#
-#ifndef _UNOFRAME_HXX
 #include <unoframe.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -164,12 +99,10 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*      entsprechende Formate-Array gestellt.
 |*      Wenn bereits ein passendes Format existiert, so wird dies
 |*      zurueckgeliefert.
-|*  Ersterstellung      MA 22. Sep. 92
-|*  Letzte Aenderung    JP 08.05.98
 |*
 |*************************************************************************/
 
-/*N*/ SwFrmFmt *SwDoc::MakeLayoutFmt( RndStdIds eRequest, SwFrmFmt* pFrmFmt,
+/*N*/ SwFrmFmt *SwDoc::MakeLayoutFmt( RndStdIds eRequest, SwFrmFmt* /*pFrmFmt*/,
 /*N*/                               const SfxItemSet* pSet )
 /*N*/ {
 /*N*/   SwFrmFmt *pFmt = 0;
@@ -225,7 +158,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/   case RND_DRAW_OBJECT:
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pFmt = MakeDrawFrmFmt( aEmptyStr, GetDfltFrmFmt() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       break;
 /*?*/
@@ -235,13 +168,13 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*?*/   case FLY_AT_FLY:
 /*?*/   case FLY_AT_CNTNT:
 /*?*/   case FLY_IN_CNTNT:
-/*?*/       ASSERT( !this,
+/*?*/       OSL_ENSURE( !this,
 /*?*/               "neue Schnittstelle benutzen: SwDoc::MakeFlySection!" );
 /*?*/       break;
 /*?*/ #endif
 /*?*/
 /*?*/   default:
-/*?*/       ASSERT( !this,
+/*?*/       OSL_ENSURE( !this,
 /*?*/               "Layoutformat mit ungueltigem Request angefordert." );
 /*?*/
 /*N*/   }
@@ -253,8 +186,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*
 |*  Beschreibung        Loescht das angegebene Format, der Inhalt wird mit
 |*      geloescht.
-|*  Ersterstellung      MA 23. Sep. 92
-|*  Letzte Aenderung    MA 05. Feb. 93
 |*
 |*************************************************************************/
 
@@ -266,11 +197,11 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/   if ( rChain.GetPrev() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwFmtChain aChain( rChain.GetPrev()->GetChain() );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if ( rChain.GetNext() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwFmtChain aChain( rChain.GetNext()->GetChain() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   const SwNodeIndex* pCntIdx = pFmt->GetCntnt().GetCntntIdx();
@@ -300,7 +231,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   //Frms vernichten.
 /*N*/   pFmt->DelFrms();
 
-/*N*/   const sal_uInt16 nWh = pFmt->Which();
+/*N*/   pFmt->Which();
 /*N*/   {
 /*N*/       //Inhalt Loeschen.
 /*N*/       if( pCntIdx )
@@ -349,9 +280,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*                          Vom chaos::Anchor-Attribut wird die Position immer
 |*                          auf 0 gesetzt !!!
 |*
-|*  Ersterstellung      BP 18.12.92
-|*  Letzte Aenderung    MA 17. Jul. 96
-|*
 |*************************************************************************/
 
 /*N*/ SwFrmFmt *SwDoc::CopyLayoutFmt( const SwFrmFmt& rSource,
@@ -360,7 +288,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/ {
 /*N*/     const bool bFly = RES_FLYFRMFMT == rSource.Which();
 /*N*/     const bool bDraw = RES_DRAWFRMFMT == rSource.Which();
-/*N*/     ASSERT( bFly || bDraw, "this method only works for fly or draw" );
+/*N*/     OSL_ENSURE( bFly || bDraw, "this method only works for fly or draw" );
 /*N*/
 /*N*/   SwDoc* pSrcDoc = (SwDoc*)rSource.GetDoc();
 /*N*/
@@ -462,7 +390,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       ASSERT( RES_DRAWFRMFMT == rSource.Which(), "Weder Fly noch Draw." );
+/*N*/       OSL_ENSURE( RES_DRAWFRMFMT == rSource.Which(), "Weder Fly noch Draw." );
 /*N*/       SwDrawContact *pContact = (SwDrawContact *)rSource.FindContactObj();
 /*N*/
 /*N*/       pContact = new SwDrawContact( (SwDrawFrmFmt*)pDest,
@@ -471,8 +399,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/
 /*N*/       if( pDest->GetAnchor() == rNewAnchor )
 /*N*/         {
-/*N*/             // OD 03.07.2003 #108784# - do *not* connect to layout, if
-/*N*/             // a <MakeFrms> will not be called.
+/*N*/             // do *not* connect to layout, if a <MakeFrms> will not be called.
 /*N*/             if ( bMakeFrms )
 /*N*/             {
 /*N*/                 pContact->ConnectToLayout( &rNewAnchor );
@@ -511,10 +438,10 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   {
 /*?*/       // bei Controls muss der Name erhalten bleiben
 /*?*/       uno::Reference< awt::XControlModel >  xModel = ((SdrUnoObj*)pObj)->GetUnoControlModel();
-/*?*/       sal_Bool bModel = xModel.is();
+/*?*/       xModel.is();
 /*?*/       uno::Any aVal;
 /*?*/       uno::Reference< beans::XPropertySet >  xSet(xModel, uno::UNO_QUERY);
-/*?*/       OUString sName( ::rtl::OUString::createFromAscii("Name") );
+/*?*/       OUString sName( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Name" )) );
 /*?*/       if( xSet.is() )
 /*?*/           aVal = xSet->getPropertyValue( sName );
 /*?*/       if( bInsInPage )
@@ -525,8 +452,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   else if( bInsInPage )
 /*N*/       pPg->InsertObject( pObj );
 /*N*/
-/*N*/     // OD 02.07.2003 #108784# - for drawing objects: set layer of cloned object
-/*N*/     // to invisible layer
+/*N*/     // for drawing objects: set layer of cloned object to invisible layer
 /*N*/     SdrLayerID nLayerIdForClone = rObj.GetLayer();
 /*N*/     if ( !pObj->ISA(SwFlyDrawObj) &&
 /*N*/          !pObj->ISA(SwVirtFlyDrawObj) &&
@@ -592,10 +518,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   if( !pAnchor ||
 /*N*/       (FLY_PAGE != pAnchor->GetAnchorId() &&
 /*N*/         //Nur Page und nicht:
-/*N*/ //          FLY_AT_CNTNT == pAnchor->GetAnchorId() ||
-/*N*/ //          FLY_IN_CNTNT == pAnchor->GetAnchorId() ||
-/*N*/ //          FLY_AT_FLY == pAnchor->GetAnchorId() ||
-/*N*/ //          FLY_AUTO_CNTNT == pAnchor->GetAnchorId() ) &&
 /*N*/       !pAnchor->GetCntntAnchor() ))
 /*N*/   {
 /*N*/       // dann setze ihn, wird im Undo gebraucht
@@ -615,8 +537,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/           eAnchorId = aAnch.GetAnchorId();
 /*N*/           if ( FLY_PAGE != eAnchorId )
 /*N*/           //Nur Page und nicht:
-/*N*/ //            if( FLY_AT_CNTNT == eAnchorId || FLY_IN_CNTNT == eAnchorId ||
-/*N*/ //                FLY_AT_FLY == eAnchorId || FLY_AUTO_CNTNT == eAnchorId )
 /*N*/               aAnch.SetAnchor( &rAnchPos );
 /*N*/       }
 /*N*/       pFmt->SetAttr( aAnch );
@@ -735,9 +655,6 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/   // Anker noch nicht gesetzt ?
 /*N*/   // DrawObjecte duerfen niemals in Kopf-/Fusszeilen landen.
 /*N*/   sal_Bool bIsAtCntnt = FLY_PAGE != eAnchorId;
-/*N*/ //                      FLY_AT_CNTNT == eAnchorId || FLY_IN_CNTNT == eAnchorId ||
-/*N*/ //                      FLY_AT_FLY == eAnchorId || FLY_AUTO_CNTNT == eAnchorId;
-/*N*/
 /*N*/   const SwNodeIndex* pChkIdx = 0;
 /*N*/   if( !pAnchor )
 /*N*/     {
@@ -750,7 +667,7 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 /*N*/                   : &rRg.GetPoint()->nNode;
 /*N*/     }
 /*N*/
-/*N*/     // OD 24.06.2003 #108784# - allow drawing objects in header/footer, but
+/*N*/     // allow drawing objects in header/footer, but
 /*N*/     // control objects aren't allowed in header/footer.
 /*N*/     if( pChkIdx &&
 /*N*/         ::binfilter::CheckControlLayer( &rDrawObj ) &&
@@ -803,23 +720,9 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
 |*
 |*  SwDoc::GetAllFlyFmts
 |*
-|*  Ersterstellung      MA 14. Jul. 93
-|*  Letzte Aenderung    MD 23. Feb. 95
-|*
 |*************************************************************************/
 
-/*sal_Bool TstFlyRange( const SwPaM* pPam, sal_uInt32 nFlyPos )
-{
-    sal_Bool bOk = sal_False;
-    const SwPaM* pTmp = pPam;
-    do {
-        bOk = pTmp->Start()->nNode.GetIndex() < nFlyPos &&
-                pTmp->End()->nNode.GetIndex() > nFlyPos;
-    } while( !bOk && pPam != ( pTmp = (const SwPaM*)pTmp->GetNext() ));
-    return bOk;
-}
-*/
-/* -----------------------------04.04.00 10:55--------------------------------
+/* ---------------------------------------------------------------------------
     paragraph frames - o.k. if the PaM includes the paragraph from the beginning
                        to the beginning of the next paragraph at least
     frames at character - o.k. if the pam start at least at the same position
@@ -827,18 +730,15 @@ static bool lcl_IsItemSet(const SwCntntNode & rNode, USHORT which)
  ---------------------------------------------------------------------------*/
 
 
-/*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& rPosFlyFmts,
-/*N*/                          const SwPaM* pCmpRange, sal_Bool bDrawAlso ) const
+/*N*/ void SwDoc::GetAllFlyFmts( SwPosFlyFrms& /*rPosFlyFmts*/,
+/*N*/                          const SwPaM* /*pCmpRange*/, sal_Bool /*bDrawAlso*/ ) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwDoc::InsertLabel()
-|*
-|*  Ersterstellung      MA 11. Feb. 94
-|*  Letzte Aenderung    MA 12. Nov. 97
 |*
 |*************************************************************************/
 
@@ -854,29 +754,13 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
    Otherwise the new set will not be changed.
 */
 
-
-
-
-/*************************************************************************
-|*
-|*  SwDoc::InsertDrawLabel()
-|*
-|*  Ersterstellung      MIB 7. Dez. 98
-|*  Letzte Aenderung    MIB 7. Dez. 98
-|*
-|*************************************************************************/
-
-
 /*************************************************************************
 |*
 |*  SwDoc::DoIdleJobs()
 |*
-|*  Ersterstellung      OK 30.03.94
-|*  Letzte Aenderung    MA 09. Jun. 95
-|*
 |*************************************************************************/
 
-/*N*/ IMPL_LINK( SwDoc, DoIdleJobs, Timer *, pTimer )
+/*N*/ IMPL_LINK( SwDoc, DoIdleJobs, Timer *, EMPTYARG )
 /*N*/ {
 /*N*/ #ifdef TIMELOG
 /*N*/   static ::rtl::Logfile* pModLogFile = 0;
@@ -1184,7 +1068,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*N*/       }
 /*N*/       if( n >= GetSpzFrmFmts()->Count() )
 /*N*/       {
-/*N*/           ASSERT( bInReading, "Fly-Section aber kein Format gefunden" );
+/*N*/           OSL_ENSURE( bInReading, "Fly-Section aber kein Format gefunden" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/   }
@@ -1194,3 +1078,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SwPosFlyFrm *pFPos = 0;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

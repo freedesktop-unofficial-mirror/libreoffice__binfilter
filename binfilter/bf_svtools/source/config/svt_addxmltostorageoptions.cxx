@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,6 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
@@ -37,26 +35,15 @@
 #include <bf_svtools/bf_solar.h>
 #include <bf_svtools/addxmltostorageoptions.hxx>
 
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _TOOLS_STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
+#include <sal/macros.h>
 #include "itemholder1.hxx"
 
 //_________________________________________________________________________________________________________________
@@ -222,7 +209,7 @@ Sequence< OUString > SvtAddXMLToStorageOptions_Impl::GetPropertyNames()
         "Draw"
     };
 
-    const sal_uInt16 nCnt = sizeof(pProperties) / sizeof( pProperties[0] );
+    const sal_uInt16 nCnt = SAL_N_ELEMENTS(pProperties);
     Sequence<OUString> aNames( nCnt );
     OUString* pNames = aNames.getArray();
     for( sal_uInt16 n = 0; n < nCnt; ++n )
@@ -310,3 +297,5 @@ Mutex& SvtAddXMLToStorageOptions::GetOwnStaticMutex()
     return *pMutex;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

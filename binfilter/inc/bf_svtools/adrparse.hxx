@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _ADRPARSE_HXX
 #define _ADRPARSE_HXX
 
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
+#include <vector>
 
 namespace binfilter {
 
@@ -50,7 +47,7 @@ struct SvAddressEntry_Impl
 };
 
 //============================================================================
-DECLARE_LIST(SvAddressList_Impl, SvAddressEntry_Impl *)
+typedef ::std::vector< SvAddressEntry_Impl* > SvAddressList_Impl;
 
 //============================================================================
 class  SvAddressParser
@@ -66,27 +63,25 @@ public:
 
     ~SvAddressParser();
 
-    sal_Int32 Count() const { return m_bHasFirst ? m_aRest.Count() + 1 : 0; }
+    sal_Int32 Count() const { return m_bHasFirst ? m_aRest.size() + 1 : 0; }
 
     inline UniString const & GetEmailAddress(sal_Int32 nIndex) const;
 
     inline UniString const &GetRealName(sal_Int32 nIndex) const;
 };
 
-inline UniString const & SvAddressParser::GetEmailAddress(sal_Int32 nIndex)
-    const
+inline UniString const & SvAddressParser::GetEmailAddress(sal_Int32 nIndex) const
 {
-    return nIndex == 0 ? m_aFirst.m_aAddrSpec :
-                         m_aRest.GetObject(nIndex - 1)->m_aAddrSpec;
+    return nIndex == 0 ? m_aFirst.m_aAddrSpec : m_aRest[ nIndex - 1 ]->m_aAddrSpec;
 }
 
 inline UniString const & SvAddressParser::GetRealName(sal_Int32 nIndex) const
 {
-    return nIndex == 0 ? m_aFirst.m_aRealName :
-                         m_aRest.GetObject(nIndex - 1)->m_aRealName;
+    return nIndex == 0 ? m_aFirst.m_aRealName : m_aRest[ nIndex - 1 ]->m_aRealName;
 }
 
 }
 
 #endif // _ADRPARSE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

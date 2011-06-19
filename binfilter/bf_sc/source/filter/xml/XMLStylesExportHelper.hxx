@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,24 +36,12 @@
 #include <list>
 #endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_H_
 #include <com/sun/star/uno/Any.h>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLRANGEADDRESS_HPP_
 #include <com/sun/star/table/CellRangeAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLADDRESS_HPP_
 #include <com/sun/star/table/CellAddress.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_CONDITIONOPERATOR_HPP_
 #include <com/sun/star/sheet/ConditionOperator.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONALERTSTYLE_HPP_
 #include <com/sun/star/sheet/ValidationAlertStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_VALIDATIONTYPE_HPP_
 #include <com/sun/star/sheet/ValidationType.hpp>
-#endif
 namespace binfilter {
 
 class ScDocument;
@@ -125,8 +114,11 @@ struct ScMyDefaultStyle
     sal_Int32   nRepeat;
     sal_Bool    bIsAutoStyle;
 
-    ScMyDefaultStyle() : nIndex(-1), bIsAutoStyle(sal_True),
-        nRepeat(1) {}
+    ScMyDefaultStyle()
+        : nIndex(-1)
+        , nRepeat(1)
+        , bIsAutoStyle(sal_True)
+    {}
 };
 
 typedef std::vector<ScMyDefaultStyle> ScMyDefaultStyleList;
@@ -307,3 +299,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,41 +31,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC //autogen
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CRSTATE_HXX
 #include <crstate.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <bf_svtools/colorcfg.hxx>
-#endif
-#ifndef _AUTHRATR_HXX
 #include "authratr.hxx"
-#endif
 namespace binfilter {
 
 
@@ -100,85 +79,26 @@ namespace binfilter {
 #define MIN_TABWIDTH        120
 #define MIN_TABHEIGHT       200
 
-static const char __FAR_DATA aPostItStr[] = "  ";
-
-/*************************************************************************
- *                    SwViewOption::IsEqualFlags()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    class SwPxlToTwips
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwPxlToTwips::CTOR
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwPxlToTwips::DTOR
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwPxlToTwips::DrawLine
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwViewOption::DrawRect()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwViewOption::DrawRectPrinter()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwViewOption::PaintTab()
- *************************************************************************/
-/*************************************************************************
- *                    SwViewOption::GetLineBreakWidth()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwViewOption::PaintLineBreak()
- *************************************************************************/
-/*************************************************************************
- *                    SwViewOption::GetPostItsWidth()
- *************************************************************************/
-
-
-/*************************************************************************
- *                    SwViewOption::PaintPostIts()
- *************************************************************************/
-
-
+static const char aPostItStr[] = "  ";
 
 /*************************************************************************
 |*
 |*  ViewOption::ViewOption()
 |*
-|*  Letzte Aenderung    MA 04. Aug. 93
-|*
 |*************************************************************************/
 
-/*M*/ SwViewOption::SwViewOption() :
-/*M*/   nZoom( 100 ),
-/*M*/   nPagePrevRow( 1 ),
-/*M*/   nPagePrevCol( 2 ),
-/*M*/   eZoom( 0 ),
-/*M*/   nTblDest(TBL_DEST_CELL),
-/*M*/   bReadonly(FALSE),
-/*M*/     bSelectionInReadonly(FALSE),
-/*M*/   aRetoucheColor( COL_TRANSPARENT ),
-/*M*/   nShdwCrsrFillMode( FILL_TAB ),
-/*M*/     bStarOneSetting(FALSE),
-/*M*/     bIsPagePreview(FALSE)
+/*M*/ SwViewOption::SwViewOption()
+/*M*/ : aRetoucheColor( COL_TRANSPARENT )
+/*M*/ , nPagePrevRow( 1 )
+/*M*/ , nPagePrevCol( 2 )
+/*M*/ , nShdwCrsrFillMode( FILL_TAB )
+/*M*/ , bReadonly(FALSE)
+/*M*/ , bStarOneSetting(FALSE)
+/*M*/ , bIsPagePreview(FALSE)
+/*M*/ , bSelectionInReadonly(FALSE)
+/*M*/ , nZoom( 100 )
+/*M*/ , eZoom( 0 )
+/*M*/ , nTblDest(TBL_DEST_CELL)
 /*M*/ {
 /*M*/   // Initialisierung ist jetzt etwas einfacher
 /*M*/   // alle Bits auf 0
@@ -284,8 +204,6 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 |*
 |*  ViewOption::Init()
 |*
-|*  Letzte Aenderung    MA 04. Aug. 93
-|*
 |*************************************************************************/
 
 /*N*/ void SwViewOption::Init( Window *pWin )
@@ -297,9 +215,6 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/ }
 
 /*************************************************************************/
-/*
-/*************************************************************************/
-
 /*N*/ AuthorCharAttr::AuthorCharAttr() :
 /*N*/   nItemId (SID_ATTR_CHAR_UNDERLINE),
 /*N*/   nAttr   (UNDERLINE_SINGLE),
@@ -307,22 +222,18 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/ {
 /*N*/ }
 
-/*-----------------07.01.97 13.50-------------------
 
---------------------------------------------------*/
-
+/*************************************************************************/
 /*N*/ USHORT        GetHtmlMode(const SwDocShell* pShell)
 /*N*/ {
 /*N*/   USHORT nRet = 0;
 /*N*/   if(!pShell || PTR_CAST(SwWebDocShell, pShell))
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   return nRet;
 /*N*/ }
 
-/* -----------------------------23.04.2002 17:41------------------------------
-
- ---------------------------------------------------------------------------*/
+/*************************************************************************/
 /*N*/ void SwViewOption::ApplyColorConfigValues(const ColorConfig& rConfig )
 /*N*/ {
 /*N*/     aDocColor.SetColor(rConfig.GetColorValue(DOCCOLOR).nColor);
@@ -383,18 +294,18 @@ static const char __FAR_DATA aPostItStr[] = "  ";
 /*N*/
 /*N*/     aScriptIndicatorColor.SetColor(rConfig.GetColorValue(WRITERSCRIPTINDICATOR).nColor);
 /*N*/ }
-/* -----------------------------23.04.2002 17:48------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 nFlag, BOOL bSet, BOOL bSaveInConfig )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*************************************************************************/
+/*N*/ void SwViewOption::SetAppearanceFlag(sal_Int32 /*nFlag*/, BOOL /*bSet*/, BOOL /*bSaveInConfig*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
-/* -----------------------------24.04.2002 10:42------------------------------
 
- ---------------------------------------------------------------------------*/
+/*************************************************************************/
 /*N*/ BOOL SwViewOption::IsAppearanceFlag(sal_Int32 nFlag)
 /*N*/ {
 /*N*/     return 0 != (nAppearanceFlags & nFlag);
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

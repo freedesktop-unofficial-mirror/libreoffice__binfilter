@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SDYNITM_HXX
 #include <bf_svx/sdynitm.hxx>
-#endif
 namespace binfilter {
 
 //------------------------------
@@ -43,9 +40,11 @@ namespace binfilter {
 //------------------------------
 class SdrObjPrintableItem: public SdrYesNoItem {
 public:
-    SdrObjPrintableItem(FASTBOOL bOn=FALSE): SdrYesNoItem(SDRATTR_OBJPRINTABLE,bOn) {}
+    SdrObjPrintableItem(bool bOn=FALSE): SdrYesNoItem(SDRATTR_OBJPRINTABLE,bOn) {}
     SdrObjPrintableItem(SvStream& rIn): SdrYesNoItem(SDRATTR_OBJPRINTABLE,rIn) {}
 };
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,22 +30,14 @@
 #define  _WRTSWTBL_HXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _ORNTENUM_HXX
 #include <orntenum.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 class Color;
-namespace binfilter {
 
+namespace binfilter {
 
 class SwTableBox;
 class SwTableBoxes;
@@ -68,49 +61,26 @@ class SvxBorderLine;
 #define ROW_DFLT_HEIGHT (2*ROWFUZZY)+1
 
 
-//-----------------------------------------------------------------------
-
-
-
-
-//-----------------------------------------------------------------------
-
-
-
-
-
-
-//-----------------------------------------------------------------------
-
 class SwWriteTableCol
 {
     USHORT nPos;                        // End Position der Spalte
-
     USHORT nWidthOpt;
-
     BOOL bRelWidthOpt : 1;
     BOOL bOutWidth : 1;                 // Spaltenbreite ausgeben?
 
 public:
     BOOL bLeftBorder : 1;               // Welche Umrandungen sind da?
     BOOL bRightBorder : 1;
-
     SwWriteTableCol( USHORT nPosition );
-
-    USHORT GetPos() const                       { return nPos; }
-
-    void SetLeftBorder( BOOL bBorder )          { bLeftBorder = bBorder; }
+    USHORT GetPos() const                                       { return nPos; }
+    void SetLeftBorder( BOOL bBorder )                          { bLeftBorder = bBorder; }
     BOOL HasLeftBorder() const                  { return bLeftBorder; }
-
-    void SetRightBorder( BOOL bBorder )         { bRightBorder = bBorder; }
+    void SetRightBorder( BOOL bBorder )                         { bRightBorder = bBorder; }
     BOOL HasRightBorder() const                 { return bRightBorder; }
-
     void SetOutWidth( BOOL bSet )               { bOutWidth = bSet; }
     BOOL GetOutWidth() const                    { return bOutWidth; }
-
     inline int operator==( const SwWriteTableCol& rCol ) const;
     inline int operator<( const SwWriteTableCol& rCol ) const;
-
     void SetWidthOpt( USHORT nWidth, BOOL bRel )
     {
         nWidthOpt = nWidth; bRelWidthOpt = bRel;
@@ -133,35 +103,17 @@ inline int SwWriteTableCol::operator<( const SwWriteTableCol& rCol ) const
     return nPos < rCol.nPos - COLFUZZY;
 }
 
-
-typedef SwWriteTableCol *SwWriteTableColPtr;
+typedef SwWriteTableCol* SwWriteTableColPtr;
 SV_DECL_PTRARR_SORT_DEL( SwWriteTableCols, SwWriteTableColPtr, 5, 5 )
-
-//-----------------------------------------------------------------------
 
 class SwWriteTable
 {
-
-
-
-
-
-
-
-
-public:
-    static long GetBoxWidth( const SwTableBox *pBox );
-
-
-
-
-
-
+    public:
+        static long GetBoxWidth( const SwTableBox *pBox );
 };
-
-
 
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

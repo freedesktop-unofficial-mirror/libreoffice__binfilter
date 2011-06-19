@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,39 +26,23 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLCHANGEDREGIONIMPORTCONTEXT_HXX
 #include "XMLChangedRegionImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLCHANGEELEMENTIMPORTCONTEXT_HXX
 #include "XMLChangeElementImportContext.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 
@@ -74,10 +59,10 @@ using ::com::sun::star::xml::sax::XAttributeList;
 TYPEINIT1(XMLChangedRegionImportContext, SvXMLImportContext);
 
 XMLChangedRegionImportContext::XMLChangedRegionImportContext(
-    SvXMLImport& rImport,
-    sal_uInt16 nPrefix,
+    SvXMLImport& rInImport,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName) :
-        SvXMLImportContext(rImport, nPrefix, rLocalName),
+        SvXMLImportContext(rInImport, nInPrefix, rLocalName),
         bMergeLastPara(sal_True)
 {
 }
@@ -94,12 +79,12 @@ void XMLChangedRegionImportContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
         const OUString sValue = xAttrList->getValueByIndex(nAttr);
-        if ( XML_NAMESPACE_TEXT == nPrefix )
+        if ( XML_NAMESPACE_TEXT == nLclPrefix )
         {
             if( IsXMLToken( sLocalName, XML_ID ) )
             {
@@ -118,13 +103,13 @@ void XMLChangedRegionImportContext::StartElement(
 }
 
 SvXMLImportContext* XMLChangedRegionImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList)
 {
     SvXMLImportContext* pContext = NULL;
 
-    if (XML_NAMESPACE_TEXT == nPrefix)
+    if (XML_NAMESPACE_TEXT == nInPrefix)
     {
         if ( IsXMLToken( rLocalName, XML_INSERTION ) ||
              IsXMLToken( rLocalName, XML_DELETION ) ||
@@ -132,7 +117,7 @@ SvXMLImportContext* XMLChangedRegionImportContext::CreateChildContext(
         {
             // create XMLChangeElementImportContext for all kinds of changes
             pContext = new XMLChangeElementImportContext(
-               GetImport(), nPrefix, rLocalName,
+               GetImport(), nInPrefix, rLocalName,
                IsXMLToken( rLocalName, XML_DELETION ),
                *this);
         }
@@ -141,14 +126,14 @@ SvXMLImportContext* XMLChangedRegionImportContext::CreateChildContext(
 
     if (NULL == pContext)
     {
-        pContext = SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        pContext = SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                           xAttrList);
 
         // was it a text element? If not, use default!
         if (NULL == pContext)
         {
             pContext = SvXMLImportContext::CreateChildContext(
-                nPrefix, rLocalName, xAttrList);
+                nInPrefix, rLocalName, xAttrList);
         }
     }
 
@@ -208,3 +193,5 @@ void XMLChangedRegionImportContext::UseRedlineText()
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

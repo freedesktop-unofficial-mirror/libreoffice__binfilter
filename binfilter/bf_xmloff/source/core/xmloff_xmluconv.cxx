@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,67 +26,43 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLEHELP_HXX
 #include "xmlehelp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <xmluconv.hxx>
-#endif
 
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
 
 #ifndef _TOOLS_DATE_HXX
 #include <tools/date.hxx>
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 #endif
 
 #include <tools/fldunit.hxx>
 
-// #110680#
-//#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
-//#include <comphelper/processfactory.hxx>
-//#endif
-
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XNUMBERINGTYPEINFO_HPP_
 #include <com/sun/star/text/XNumberingTypeInfo.hpp>
-#endif
 
-#ifndef _SVX_VECTOR3D_HXX
 #include <bf_goodies/vector3d.hxx>
-#endif
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::style;
 using namespace ::binfilter::xmloff::token;
+using ::rtl::OUString;
+using ::rtl::OUStringBuffer;
 
 const sal_Int8 XML_MAXDIGITSCOUNT_TIME = 11;
 const sal_Int8 XML_MAXDIGITSCOUNT_DATETIME = 6;
@@ -96,12 +73,6 @@ OUString SvXMLUnitConverter::msXML_false;
 
 void SvXMLUnitConverter::createNumTypeInfo() const
 {
-    // #110680#
-    //Reference< lang::XMultiServiceFactory > xServiceFactory =
-    //        comphelper::getProcessServiceFactory();
-    //OSL_ENSURE( xServiceFactory.is(),
-    //        "XMLUnitConverter: got no service factory" );
-
     if( mxServiceFactory.is() )
     {
         ((SvXMLUnitConverter *)this)->xNumTypeInfo =
@@ -617,7 +588,7 @@ void SvXMLUnitConverter::convertNumber( OUStringBuffer& rBuffer,
 /** convert string to number with optional min and max values */
 sal_Bool SvXMLUnitConverter::convertNumber( sal_Int32& rValue,
                                         const OUString& rString,
-                                        sal_Int32 nMin, sal_Int32 nMax )
+                                        sal_Int32 /*nMin*/, sal_Int32 /*nMax*/ )
 {
     sal_Bool bNeg = sal_False;
     rValue = 0;
@@ -918,7 +889,7 @@ sal_Bool SvXMLUnitConverter::convertTime( double& fTime,
             {
                 //! how many days is a year or month?
 
-                DBG_ERROR("years or months in duration: not implemented");
+                OSL_FAIL("years or months in duration: not implemented");
                 bSuccess = sal_False;
             }
             else
@@ -1023,10 +994,10 @@ void SvXMLUnitConverter::convertDateTime( ::rtl::OUStringBuffer& rBuffer,
         fCount = 0.0;
     sal_Int16 nCount = sal_Int16(fCount);
     sal_Bool bHasTime(sal_False);
-    double fHoursValue;
-    double fMinsValue;
-    double fSecsValue;
-    double f100SecsValue;
+    double fHoursValue(0.0);
+    double fMinsValue(0.0);
+    double fSecsValue(0.0);
+    double f100SecsValue(0.0);
     if (fValue > 0.0)
     {
         bHasTime = sal_True;
@@ -1342,7 +1313,7 @@ sal_Bool SvXMLUnitConverter::convertDateTime( ::com::sun::star::util::DateTime& 
         rDateTime.Hours = (sal_uInt16)nHour;
         rDateTime.Minutes = (sal_uInt16)nMin;
         rDateTime.Seconds = (sal_uInt16)nSec;
-        rDateTime.HundredthSeconds = sDoubleStr.toDouble() * 100;
+        rDateTime.HundredthSeconds = static_cast<sal_uInt16>(sDoubleStr.toDouble() * 100);
     }
     return bSuccess;
 }
@@ -1582,7 +1553,10 @@ void SvXMLUnitConverter::encodeBase64( ::rtl::OUStringBuffer& aStrBuffer, const 
 
 void SvXMLUnitConverter::decodeBase64(uno::Sequence<sal_Int8>& aBuffer, const ::rtl::OUString& sBuffer)
 {
-    sal_Int32 nCharsDecoded = decodeBase64SomeChars( aBuffer, sBuffer );
+#if OSL_DEBUG_LEVEL > 0
+    sal_Int32 nCharsDecoded =
+#endif
+        decodeBase64SomeChars( aBuffer, sBuffer );
     OSL_ENSURE( nCharsDecoded == sBuffer.getLength(),
                 "some bytes left in base64 decoding!" );
 }
@@ -1722,7 +1696,6 @@ void SvXMLUnitConverter::convertNumFormat( OUStringBuffer& rBuffer,
                            sal_Int16 nType ) const
 {
     enum XMLTokenEnum eFormat = XML_TOKEN_INVALID;
-    sal_Bool bExt = sal_False;
     switch( nType )
     {
     case NumberingType::CHARS_UPPER_LETTER:     eFormat = XML_A_UPCASE; break;
@@ -1740,7 +1713,6 @@ void SvXMLUnitConverter::convertNumFormat( OUStringBuffer& rBuffer,
         DBG_ASSERT( eFormat != XML_TOKEN_INVALID, "invalid number format" );
         break;
     default:
-        bExt = sal_True;
         break;
     }
 
@@ -1830,3 +1802,5 @@ void SvXMLUnitConverter::convertPropertySet(uno::Reference<beans::XPropertySet>&
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

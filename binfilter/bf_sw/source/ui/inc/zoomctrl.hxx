@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _ZOOMCTRL_HXX
 #define _ZOOMCTRL_HXX
 
-#ifndef _SVX_ZOOMCTRL_HXX //autogen
 #include <bf_svx/zoomctrl.hxx>
-#endif
 namespace binfilter {
 
 class SwZoomControl : public SvxZoomStatusBarControl
@@ -52,3 +51,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

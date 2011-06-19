@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XOUTX_HXX
 #include <xoutx.hxx>
-#endif
 
 #include "txtrange.hxx"
 #include <math.h>
@@ -43,10 +42,6 @@ namespace binfilter {
 |*
 |*    TextRanger::TextRanger()
 |*
-|*    Beschreibung
-|*    Ersterstellung    20.01.97
-|*    Letzte Aenderung  20.01.97 AMA
-|*
 *************************************************************************/
 
 #ifdef WIN
@@ -55,10 +50,18 @@ namespace binfilter {
 
 /*N*/ TextRanger::TextRanger( const XPolyPolygon& rXPoly, const XPolyPolygon* pXLine,
 /*N*/   USHORT nCacheSz, USHORT nLft, USHORT nRght, BOOL bSimpl, BOOL bInnr,
-/*N*/   BOOL bVert ) :
-/*N*/   pBound( NULL ), nCacheSize( nCacheSz ), nCacheIdx( 0 ), nPointCount( 0 ),
-/*N*/   nLeft( nLft ), nRight( nRght ), nUpper( 0 ), nLower( 0 ),
-/*N*/   bSimple( bSimpl ), bInner( bInnr ), bVertical( bVert )
+/*N*/   BOOL bVert )
+/*N*/   : pBound( NULL )
+/*N*/   , nCacheSize( nCacheSz )
+/*N*/   , nCacheIdx( 0 )
+/*N*/   , nRight( nRght )
+/*N*/   , nLeft( nLft )
+/*N*/   , nUpper( 0 )
+/*N*/   , nLower( 0 )
+/*N*/   , nPointCount( 0 )
+/*N*/   , bSimple( bSimpl )
+/*N*/   , bInner( bInnr )
+/*N*/   , bVertical( bVert )
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
 /*N*/   bFlag3 = bFlag4 = bFlag5 = bFlag6 = bFlag7 = FALSE;
@@ -88,24 +91,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/       pLine = NULL;
-/*N*/
-/*N*/ #if 0
-/*N*/   ULONG nPolyPtr = (ULONG)&rXPoly;
-/*N*/   String aDbgFile( "d:\\" );
-/*N*/   aDbgFile += nPolyPtr;
-/*N*/   aDbgFile += ".pol";
-/*N*/   SvFileStream aStream( aDbgFile, STREAM_WRITE|STREAM_TRUNC );
-/*N*/   aStream << "pPoly: " << String( (ULONG)pPoly ).GetStr();
-/*N*/   for ( USHORT nPoly = 0; nPoly < pPoly->Count(); nPoly++ )
-/*N*/   {
-/*N*/       const Polygon& rPoly = pPoly->GetObject( nPoly );
-/*N*/       for ( USHORT n = 0; n < rPoly.GetSize(); n++ )
-/*N*/       {
-/*N*/           const Point& rPoint = rPoly.GetPoint( n );
-/*N*/           aStream << String( rPoint.X() ).GetStr() << ", " << String( rPoint.Y() ).GetStr()  << endl;
-/*N*/       }
-/*N*/   }
-/*N*/ #endif
 /*N*/ }
 
 #ifdef WIN
@@ -115,10 +100,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    TextRanger::~TextRanger()
-|*
-|*    Beschreibung
-|*    Ersterstellung    20.01.97
-|*    Letzte Aenderung  20.01.97 AMA
 |*
 *************************************************************************/
 
@@ -132,20 +113,15 @@ namespace binfilter {
 /*N*/   delete pLine;
 /*N*/ }
 
-/*-----------------17.11.00 09:49-------------------
- * TextRanger::SetVertical(..)
+/* TextRanger::SetVertical(..)
  * If there's is a change in the writing direction,
  * the cache has to be cleared.
- * --------------------------------------------------*/
+ */
 
 
 /*************************************************************************
 |*
 |*    SvxBoundArgs
-|*
-|*    Beschreibung
-|*    Ersterstellung    20.01.97
-|*    Letzte Aenderung  20.01.97 AMA
 |*
 *************************************************************************/
 
@@ -233,14 +209,13 @@ namespace binfilter {
 /*N*/       NotePoint( Cut( nTop, rLst, rNxt ) );
 /*N*/   if( rLst.X() != rNxt.X() && rLst.Y() != rNxt.Y() )
 /*N*/   {
-/*N*/       long nYps;
 /*N*/       if( nLowDiff && ( ( nCut & 1 ) || nLast == 1 || nNext == 1 ) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nBottom, nLower );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       if( nUpDiff && ( ( nCut & 2 ) || nLast == 2 || nNext == 2 ) )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 nYps = CalcMax( rLst, rNxt, nTop, nUpper );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -327,7 +302,7 @@ namespace binfilter {
 /*N*/               // Der erste Punkt des Polygons liegt innerhalb der Zeile.
 /*N*/               if( nLast )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bMultiple || !nAct )
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               else
 /*N*/               {
@@ -383,9 +358,9 @@ namespace binfilter {
 /*N*/                       if( !nNext )
 /*N*/                           NotePoint( A(rNext) );
 /*N*/                       else if( nNext & 1 )
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     NoteFarPoint( A(rNext), nLower-B(rNext), nLowDiff );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                       else
-/*?*/                       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     NoteFarPoint( A(rNext), B(rNext)-nUpper, nUpDiff );
+/*?*/                       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/                   }
 /*N*/                   nLast = nNext;
 /*N*/                   if( ++nIdx == nCount && !IsClosed() )
@@ -445,20 +420,20 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( bDelete )
 /*N*/           {
-/*N*/               USHORT nNext = 2;
+/*N*/               USHORT nLclNext = 2;
 /*N*/               while( nBoolIdx < nCount && !aBoolArr[ nBoolIdx++ ] &&
 /*N*/                      (!bInner || nBoolIdx < nCount ) )
-/*N*/                   nNext += 2;
-/*N*/               pLongArr->Remove( nLongIdx, nNext );
-/*N*/               nNext /= 2;
-/*N*/               nBoolIdx -= nNext;
-/*N*/               nCount -= nNext;
-/*N*/               aBoolArr.Remove( nBoolIdx, nNext );
+/*N*/                   nLclNext += 2;
+/*N*/               pLongArr->Remove( nLongIdx, nLclNext );
+/*N*/               nLclNext /= 2;
+/*N*/               nBoolIdx -= nLclNext;
+/*N*/               nCount -= nLclNext;
+/*N*/               aBoolArr.Remove( nBoolIdx, nLclNext );
 /*N*/               if( nBoolIdx )
 /*N*/                   aBoolArr[ nBoolIdx - 1 ] = FALSE;
 /*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/               else
-/*N*/                   ++nNext;
+/*N*/                   ++nLclNext;
 /*N*/ #endif
 /*N*/           }
 /*N*/           bDelete = nBoolIdx < nCount && aBoolArr[ nBoolIdx ];
@@ -660,3 +635,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

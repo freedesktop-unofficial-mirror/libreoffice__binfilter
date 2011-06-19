@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -53,13 +54,9 @@
 #include "svdograf.hxx"
 #include "sdgcpitm.hxx"
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
 
-#ifndef _XOUTX_HXX
 #include "xoutx.hxx"
-#endif
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
@@ -190,8 +187,8 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ SdrGrafObj::SdrGrafObj():
-/*N*/   bMirrored       ( FALSE ),
-/*N*/   pGraphicLink    ( NULL )
+/*N*/   pGraphicLink    ( NULL ),
+/*N*/   bMirrored       ( FALSE )
 /*N*/ {
 /*N*/   pGraphic = new BfGraphicObject;
 /*N*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
@@ -203,8 +200,8 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*?*/ SdrGrafObj::SdrGrafObj( const Graphic& rGrf ):
-/*?*/   bMirrored       ( FALSE ),
-/*?*/   pGraphicLink    ( NULL )
+/*?*/   pGraphicLink    ( NULL ),
+/*?*/   bMirrored       ( FALSE )
 /*?*/ {
 /*?*/   pGraphic = new BfGraphicObject( rGrf );
 /*?*/   pGraphic->SetSwapStreamHdl( LINK( this, SdrGrafObj, ImpSwapHdl ), 20000 );
@@ -290,7 +287,7 @@ namespace binfilter {
 // -----------------------------------------------------------------------------
 
 /*N*/ String SdrGrafObj::GetGrafStreamURL() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;//STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); String aString; return aString;
 /*N*/ }
 
 // -----------------------------------------------------------------------------
@@ -457,7 +454,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void SdrGrafObj::ImpPaintReplacement(OutputDevice* pOutDev, const XubString& rText, const Bitmap* pBmp, FASTBOOL bFill) const
+/*N*/ void SdrGrafObj::ImpPaintReplacement(OutputDevice* pOutDev, const XubString& rText, const Bitmap* pBmp, bool bFill) const
 /*N*/ {
 /*N*/     Size aPixelSize( 1, 1 );
 /*N*/     Size aBmpSize;
@@ -580,8 +577,8 @@ namespace binfilter {
 /*N*/       Color                   a3DShadowColor( rStyleSettings.GetShadowColor() );
 /*N*/       long                    nHWink=NormAngle360( aGeo.nDrehWink );
 /*N*/       long                    nVWink=NormAngle360( aGeo.nDrehWink-aGeo.nShearWink );
-/*N*/       FASTBOOL                bHorzChg=nHWink>13500 && nHWink<=31500;
-/*N*/       FASTBOOL                bVertChg=nVWink>4500 && nVWink<=22500;
+/*N*/       bool                bHorzChg=nHWink>13500 && nHWink<=31500;
+/*N*/       bool                bVertChg=nVWink>4500 && nVWink<=22500;
 /*N*/
 /*N*/       pOutDev->SetLineColor( bHorzChg ? a3DShadowColor : a3DLightColor);
 /*N*/       pOutDev->DrawLine( aPoly2[0], aPoly2[1] );
@@ -676,7 +673,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ FASTBOOL SdrGrafObj::Paint( ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec ) const
+/*N*/ bool SdrGrafObj::Paint( ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec ) const
 /*N*/ {
 /*N*/   // Hidden objects on masterpages, draw nothing
 /*N*/   if( ( ( rInfoRec.nPaintMode & SDRPAINTMODE_MASTERPAGE ) && bNotVisibleAsMaster ) ||
@@ -685,28 +682,26 @@ namespace binfilter {
 /*?*/       return TRUE;
 /*N*/   }
 /*N*/
-/*N*/   FASTBOOL        bDraft = ( 0 != ( rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTGRAF ) );
-/*N*/   FASTBOOL        bSwappedOut = pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE );
-/*N*/   FASTBOOL        bLoading = FALSE;
+/*N*/   bool        bDraft = ( 0 != ( rInfoRec.nPaintMode & SDRPAINTMODE_DRAFTGRAF ) );
+/*N*/   bool        bSwappedOut = pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE );
+/*N*/   bool        bLoading = FALSE;
 /*N*/   OutputDevice*   pOutDev = rOut.GetOutDev();
-/*N*/   GDIMetaFile*    pRecMetaFile = pOutDev->GetConnectMetaFile();
-/*N*/   FASTBOOL        bMtfRecording = ( pRecMetaFile && pRecMetaFile->IsRecord() && !pRecMetaFile->IsPause() );
+/*N*/   /*GDIMetaFile*  pRecMetaFile =*/ pOutDev->GetConnectMetaFile();
 /*N*/   const SdrView*  pView = ( rInfoRec.pPV ? &rInfoRec.pPV->GetView() : NULL );
 /*N*/
 /*N*/   if( bSwappedOut && !bDraft )
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   if( pGraphic->IsSwappedOut() || ( pGraphic->GetType() == GRAPHIC_NONE ) || ( pGraphic->GetType() == GRAPHIC_DEFAULT ) )
 /*?*/       bDraft=TRUE;
 /*N*/
-/*N*/   long          nDrehWink = aGeo.nDrehWink, nShearWink = aGeo.nShearWink;
-/*N*/   FASTBOOL      bRotate = ( nDrehWink != 0 && nDrehWink != 18000 );
-/*N*/   FASTBOOL      bShear = ( nShearWink != 0 );
-/*N*/   FASTBOOL      bRota180 = nDrehWink == 18000;
+/*N*/   long          nDrehWink = aGeo.nDrehWink;
+/*N*/   bool      bRotate = ( nDrehWink != 0 && nDrehWink != 18000 );
+/*N*/   bool      bRota180 = nDrehWink == 18000;
 /*N*/   USHORT        nMirrorCase = ( bRota180 ? ( bMirrored ? 3 : 4 ) : ( bMirrored ? 2 : 1 ) );   //  4 | 3   H&V gespiegelt | nur Vertikal
-/*N*/   FASTBOOL      bHMirr = ( ( 2 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    // ---+---  ---------------+-----------------
-/*N*/   FASTBOOL      bVMirr = ( ( 3 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    //  2 | 1   nur Horizontal | nicht gespiegelt
+/*N*/   bool      bHMirr = ( ( 2 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    // ---+---  ---------------+-----------------
+/*N*/   bool      bVMirr = ( ( 3 == nMirrorCase ) || ( 4 == nMirrorCase ) );                    //  2 | 1   nur Horizontal | nicht gespiegelt
 /*N*/
 /*N*/   if( !bEmptyPresObj && !bDraft )
 /*N*/   {
@@ -730,7 +725,7 @@ namespace binfilter {
 /*?*/           if( pGraphic->IsAnimated() )
 /*?*/           {
 /*?*/               SdrAnimationMode    eAnimMode = SDR_ANIMATION_ANIMATE;
-/*?*/               FASTBOOL            bEnable = TRUE;
+/*?*/               bool            bEnable = TRUE;
 /*?*/
 /*?*/               if( pView )
 /*?*/               {
@@ -738,14 +733,14 @@ namespace binfilter {
 /*?*/                   bEnable = ( eAnimMode != SDR_ANIMATION_DISABLE );
 /*?*/
 /*?*/                   if( bEnable )
-/*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }//STRIP001
+/*?*/                   {{DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/                   }
 /*?*/               }
 /*?*/
 /*?*/               if( bEnable )
 /*?*/               {
 /*?*/                   if( eAnimMode == SDR_ANIMATION_ANIMATE )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }
 /*?*/                   else if( eAnimMode == SDR_ANIMATION_DONT_ANIMATE )
 /*?*/                       pGraphic->Draw( pOutDev, aLogPos, aLogSize, &aAttr, nGraphicManagerDrawMode );
@@ -797,10 +792,10 @@ namespace binfilter {
 /*N*/   {
 /*N*/       XubString   aText;
 /*N*/       Bitmap*     pBmp = NULL;
-/*N*/       FASTBOOL    bFill = FALSE;
+/*N*/       bool    bFill = FALSE;
 /*N*/
 /*N*/       if( bEmptyPresObj )
-/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 bFill = !ImpPaintEmptyPres( pOutDev );
+/*?*/           {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/       // und nun noch einen grauen Rahmen drum herum, Text rein, ...
 /*N*/       if( !bEmptyPresObj )
@@ -814,7 +809,7 @@ namespace binfilter {
 /*N*/               if( bLoading )
 /*N*/               {
 /*?*/                   aText.AppendAscii(" ...");
-/*?*/                   //FASTBOOL bNoName=aText.Len()==0;
+/*?*/                   //bool bNoName=aText.Len()==0;
 /*?*/                   //if (!bNoName) aText.Insert(' ',0);
 /*?*/                   //else aText.Insert("...",0);
 /*?*/                   //aText.Insert("Loading",0);
@@ -869,7 +864,7 @@ namespace binfilter {
 /*N*/ #else
 /*N*/   if( rGraf.aFileName.Len() )
 /*N*/ #endif
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 SetGraphicLink( aFileName, aFilterName );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/
 /*N*/   ImpSetAttrToGrafInfo();
 /*N*/ }
@@ -889,8 +884,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrRectObj::NbcResize( rRef, xFact, yFact );
 /*N*/
-/*N*/   FASTBOOL bMirrX = xFact.GetNumerator() < 0;
-/*N*/   FASTBOOL bMirrY = yFact.GetNumerator() < 0;
+/*N*/   bool bMirrX = xFact.GetNumerator() < 0;
+/*N*/   bool bMirrY = yFact.GetNumerator() < 0;
 /*N*/
 /*N*/   if( bMirrX != bMirrY )
 /*?*/       bMirrored = !bMirrored;
@@ -920,7 +915,6 @@ namespace binfilter {
 
 /*N*/ void SdrGrafObj::NbcSetLogicRect( const Rectangle& rRect)
 /*N*/ {
-/*N*/   FASTBOOL bChg=rRect.GetSize()!=aRect.GetSize();
 /*N*/   SdrRectObj::NbcSetLogicRect(rRect);
 /*N*/ }
 
@@ -947,8 +941,8 @@ namespace binfilter {
 
 /*N*/ void SdrGrafObj::SetPage( SdrPage* pNewPage )
 /*N*/ {
-/*N*/   FASTBOOL bRemove = pNewPage == NULL && pPage != NULL;
-/*N*/   FASTBOOL bInsert = pNewPage != NULL && pPage == NULL;
+/*N*/   bool bRemove = pNewPage == NULL && pPage != NULL;
+/*N*/   bool bInsert = pNewPage != NULL && pPage == NULL;
 /*N*/
 /*N*/   if( bRemove )
 /*N*/   {
@@ -963,14 +957,14 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetPage( pNewPage );
 /*N*/
 /*N*/   if(aFileName.Len() && bInsert)
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
 
 // -----------------------------------------------------------------------------
 
 /*N*/ void SdrGrafObj::SetModel( SdrModel* pNewModel )
 /*N*/ {
-/*N*/   FASTBOOL bChg = pNewModel != pModel;
+/*N*/   bool bChg = pNewModel != pModel;
 /*N*/
 /*N*/   if( bChg )
 /*N*/   {
@@ -989,123 +983,8 @@ namespace binfilter {
 /*N*/   SdrRectObj::SetModel(pNewModel);
 /*N*/
 /*N*/   if( bChg && aFileName.Len() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 ImpLinkAnmeldung();
+/*?*/       {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-// pre- and postprocessing for objects for saving
-
-/*N*/ void SdrGrafObj::PreSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PreSave();
-/*N*/
-/*N*/   // prepare SetItems for storage
-/*N*/   const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/   const SfxItemSet* pParent = GetStyleSheet() ? &GetStyleSheet()->GetItemSet() : 0L;
-/*N*/   SdrGrafSetItem aGrafAttr(rSet.GetPool());
-/*N*/   aGrafAttr.GetItemSet().Put(rSet);
-/*N*/   aGrafAttr.GetItemSet().SetParent(pParent);
-/*N*/   mpObjectItemSet->Put(aGrafAttr);
-/*N*/ }
-
-/*N*/ void SdrGrafObj::PostSave()
-/*N*/ {
-/*N*/   // call parent
-/*N*/   SdrRectObj::PostSave();
-/*N*/
-/*N*/   // remove SetItems from local itemset
-/*N*/   mpObjectItemSet->ClearItem(SDRATTRSET_GRAF);
-/*N*/ }
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-/*N*/ void SdrGrafObj::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   ForceSwapIn();
-/*N*/   SdrRectObj::WriteData( rOut );
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat( rOut, STREAM_WRITE );
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID( "SdrGrafObj" );
-/*N*/ #endif
-/*N*/
-/*N*/   GraphicType eType( pGraphic->GetType() );
-/*N*/   BOOL        bHasGraphic( !aFileName.Len() && eType != GRAPHIC_NONE );
-/*N*/
-/*N*/   // dieses Flag wird ab V11 rausgeschrieben
-/*N*/   rOut << bHasGraphic;
-/*N*/
-/*N*/   if(bHasGraphic)
-/*N*/   {
-/*N*/       // Graphik ist nicht gelinkt: ggf. komprimiert speichern:
-/*N*/       // seit V11 eingapackt
-/*N*/       SdrDownCompat aGrafCompat(rOut, STREAM_WRITE);
-/*N*/       BOOL bZCompr(pModel && pModel->IsSaveCompressed() && eType == GRAPHIC_BITMAP);
-/*N*/       BOOL bNCompr(pModel && pModel->IsSaveNative());
-/*N*/       const UINT16 nOldComprMode(rOut.GetCompressMode());
-/*N*/       UINT16 nNewComprMode(nOldComprMode);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aGrafCompat.SetID( "SdrGrafObj(Graphic)" );
-/*N*/ #endif
-/*N*/
-/*N*/       if(pModel->IsSwapGraphics() && (pModel->GetSwapGraphicsMode() & SDR_SWAPGRAPHICSMODE_DOC))
-/*N*/       {
-/*N*/           ((SdrGrafObj*)this)->pGraphic->SetUserData();
-/*N*/           ((SdrGrafObj*)this)->nGrafStreamPos = rOut.Tell();
-/*N*/       }
-/*N*/
-/*N*/       if(bZCompr)
-/*N*/           nNewComprMode |= COMPRESSMODE_ZBITMAP;
-/*N*/
-/*N*/       if(bNCompr)
-/*N*/           nNewComprMode |= COMPRESSMODE_NATIVE;
-/*N*/
-/*N*/       rOut.SetCompressMode( nNewComprMode );
-/*N*/       rOut << pGraphic->GetGraphic();
-/*N*/       rOut.SetCompressMode( nOldComprMode );
-/*N*/   }
-/*N*/
-/*N*/   rOut << aCropRect;
-/*N*/   rOut << BOOL(bMirrored);
-/*N*/
-/*N*/   rOut.WriteByteString(aName);
-/*N*/
-/*N*/   String aRelFileName;
-/*N*/
-/*N*/   if( aFileName.Len() )
-/*N*/   {
-/*?*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
-/*?*/                                               INetURLObject::WAS_ENCODED,
-/*?*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/   }
-/*N*/
-/*N*/   rOut.WriteByteString( aRelFileName );
-/*N*/
-/*N*/   // UNICODE: rOut << aFilterName;
-/*N*/   rOut.WriteByteString(aFilterName);
-/*N*/
-/*N*/   // ab V11
-/*N*/   rOut << (BOOL)( aFileName.Len() != 0 );
-/*N*/
-/*N*/   SfxItemPool* pPool = GetItemPool();
-/*N*/
-/*N*/   if(pPool)
-/*N*/   {
-/*N*/       const SfxItemSet& rSet = GetUnmergedItemSet();
-/*N*/
-/*N*/       pPool->StoreSurrogate(rOut, &rSet.Get(SDRATTRSET_GRAF));
-/*N*/   }
-/*N*/   else
-/*?*/       rOut << UINT16( SFX_ITEMS_NULL );
-/*N*/
-/*N*/   ForceSwapOut();
-/*N*/ }
-
-// -----------------------------------------------------------------------------
 
 /*N*/ void SdrGrafObj::ReadDataTilV10( const SdrObjIOHeader& rHead, SvStream& rIn )
 /*N*/ {
@@ -1149,7 +1028,7 @@ namespace binfilter {
 /*?*/           if( pIStm )
 /*?*/           {
 /*?*/               GraphicFilter*  pFilter = GetGrfFilter();
-/*?*/               USHORT          nError = pFilter->ImportGraphic( aGraphic, aFileURLStr, *pIStm );
+/*?*/               /*USHORT nError =*/ pFilter->ImportGraphic( aGraphic, aFileURLStr, *pIStm );
 /*?*/
 /*?*/               SetGraphicLink( aFileURLStr, aFilterName );
 /*?*/
@@ -1157,7 +1036,7 @@ namespace binfilter {
 /*?*/           }
 /*?*/       }
 /*?*/ #else
-/*?*/       DBG_ERROR("SdrGrafObj::ReadDataTilV10(): SVX_LIGHT kann keine Graphic-Links");
+/*?*/       OSL_FAIL("SdrGrafObj::ReadDataTilV10(): SVX_LIGHT kann keine Graphic-Links");
 /*?*/ #endif
 /*N*/   }
 /*N*/   else if( nError != 0 )
@@ -1182,7 +1061,7 @@ namespace binfilter {
 /*N*/   SdrRectObj::ReadData( rHead, rIn );
 /*N*/
 /*N*/   SdrDownCompat   aCompat( rIn, STREAM_READ );
-/*N*/   FASTBOOL        bDelayedLoad = ( pModel != NULL ) && pModel->IsSwapGraphics();
+/*N*/   bool        bDelayedLoad = ( pModel != NULL ) && pModel->IsSwapGraphics();
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*N*/   aCompat.SetID("SdrGrafObj");
@@ -1358,7 +1237,7 @@ namespace binfilter {
 
 // -----------------------------------------------------------------------------
 
-/*N*/ void SdrGrafObj::NbcSetStyleSheet( SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr )
+/*N*/ void SdrGrafObj::NbcSetStyleSheet( SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr )
 /*N*/ {
 /*N*/   SetXPolyDirty();
 /*N*/   SdrRectObj::NbcSetStyleSheet( pNewStyleSheet, bDontRemoveHardAttr );
@@ -1605,3 +1484,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

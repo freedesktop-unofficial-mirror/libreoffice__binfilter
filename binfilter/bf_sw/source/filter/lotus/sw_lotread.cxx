@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 #include "fltglbls.hxx"
 #include "lotpar.hxx"
@@ -44,7 +43,6 @@ void SwLotusParser::Parse( void )
 {
     USHORT nOpcode, nLen;
     enum { SearchBof, SearchDim, InWKS, InWK1, Ende } eAkt;
-    BOOL bInTab = TRUE;
 
     eAkt = SearchBof;
     while( eAkt != Ende )
@@ -107,7 +105,7 @@ void SwLotusParser::Parse( void )
             break;
 
         default:
-            DBG_ERROR( "-SwLotusParser::Read(): Unbekannter Zustand!" );
+            OSL_FAIL( "-SwLotusParser::Read(): Unbekannter Zustand!" );
         }
         ClearBytesLeft();
     }
@@ -115,3 +113,5 @@ void SwLotusParser::Parse( void )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

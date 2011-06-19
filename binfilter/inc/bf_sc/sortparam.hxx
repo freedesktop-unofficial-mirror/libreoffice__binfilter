@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_SORTPARAM_HXX
 #define SC_SORTPARAM_HXX
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 #include <bf_svtools/bf_solar.h>
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 namespace binfilter {
 
 
@@ -78,3 +75,5 @@ struct ScSortParam
 
 } //namespace binfilter
 #endif // SC_SORTPARAM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

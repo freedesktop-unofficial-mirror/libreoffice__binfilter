@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,49 +29,18 @@
 #ifndef _XIMPSHAPE_HXX
 #define _XIMPSHAPE_HXX
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_DOCUMENT_XACTIONLOCKABLE_HPP_
 #include <com/sun/star/document/XActionLockable.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_CONTAINER_XIDENTIFIERCONTAINER_HPP_
 #include <com/sun/star/container/XIdentifierContainer.hpp>
-#endif
-
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCURSOR_HPP_
 #include <com/sun/star/text/XTextCursor.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_AWT_POINT_HPP_
 #include <com/sun/star/awt/Point.hpp>
-#endif
-
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-
-#ifndef _XEXPTRANSFORM_HXX
 #include "xexptran.hxx"
-#endif
+
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -577,3 +547,5 @@ public:
 };
 }//end of namespace binfilter
 #endif  //  _XIMPSHAPE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

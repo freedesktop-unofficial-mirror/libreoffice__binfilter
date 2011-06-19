@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>
-#endif
 namespace binfilter {
 
 class SfxPoolItem;
@@ -132,3 +131,4 @@ public:
 } //namespace binfilter
 #endif // _REFFLD_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,12 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include "refreshtimer.hxx"
-#include <tools/debug.hxx>//STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 
 /*N*/ ScRefreshTimerProtector::ScRefreshTimerProtector( ScRefreshTimerControl * const * pp )
@@ -44,7 +42,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       (*ppControl)->SetAllowRefresh( FALSE );
 /*N*/       // wait for any running refresh in another thread to finnish
-/*N*/       ::vos::OGuard aGuard( (*ppControl)->GetMutex() );
+/*N*/       ::osl::MutexGuard aGuard( (*ppControl)->GetMutex() );
 /*N*/   }
 /*N*/ }
 
@@ -57,11 +55,13 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void ScRefreshTimer::SetRefreshDelay( ULONG nSeconds )
+/*N*/ void ScRefreshTimer::SetRefreshDelay( ULONG /*nSeconds*/ )
 /*N*/ {
-/*N*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bActive = IsActive();
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,24 +30,12 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef SW_SWDLL_HXX
 #include <swdll.hxx>
-#endif
-#ifndef _SHELLID_HXX
 #include <shellid.hxx>
-#endif
 
 #include <bf_svtools/lstner.hxx>
 
@@ -106,8 +95,6 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
     virtual BOOL            LoadFrom(SvStorage* pStor);
     virtual BOOL            ConvertFrom( SfxMedium &rMedium );
     virtual void            HandsOff();
-    virtual BOOL            SaveAs(SvStorage * pNewStor );
-    virtual BOOL            SaveCompleted(SvStorage * pNewStor );
 
     // DocInfo dem Doc melden
     //
@@ -158,9 +145,7 @@ public:
     // DocumentInfo neu setzen
 
     // globaler IO
-    virtual BOOL            Save();
-    inline BOOL                 SaveAsChilds( SvStorage *pStor );
-    inline BOOL                 SaveCompletedChilds( SvStorage *pStor );
+    virtual BOOL            Save() {return false;}
 
     // fuer VorlagenPI
     virtual SfxStyleSheetBasePool*  GetStyleSheetPool();
@@ -223,14 +208,7 @@ public:
     virtual ::com::sun::star::uno::Sequence< ::rtl::OUString >  GetEventNames();
 };
 
-inline BOOL SwDocShell::SaveAsChilds( SvStorage *pStor )
-{
-    return SfxInPlaceObject::SaveAsChilds( pStor );
-}
-
-inline BOOL SwDocShell::SaveCompletedChilds( SvStorage *pStor )
-{
-    return SfxInPlaceObject::SaveCompletedChilds( pStor );
-}
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

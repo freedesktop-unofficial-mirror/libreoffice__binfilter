@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,11 +33,9 @@
 #include <limits.h>
 #include <string.h>
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
+
 namespace binfilter {
-//#include "typecast.hxx"
 
 #if defined (ALPHA) && defined (UNX)
 #define DEL_ARRAY( X )
@@ -361,8 +360,8 @@ inline void*& SfxPtrArr::operator [] (USHORT nPos)
 class ARR: public SfxPtrArr\
 {\
 public:\
-   ARR( BYTE nIni=nI, BYTE nGrow=nG ):\
-       SfxPtrArr(nIni,nGrow) \
+   ARR( BYTE nIni=nI, BYTE nGrowSize=nG ):\
+       SfxPtrArr(nIni,nGrowSize) \
    {}\
    ARR( const ARR& rOrig ):\
        SfxPtrArr(rOrig) \
@@ -397,8 +396,8 @@ public:\
 class ARR: public ByteArr\
 {\
 public:\
-        ARR( BYTE nIni=nI, BYTE nGrow=nG ):\
-            ByteArr(nIni,nGrow) \
+        ARR( BYTE nIni=nI, BYTE nGrowSize=nG ):\
+            ByteArr(nIni,nGrowSize) \
         {}\
         ARR( const ARR& rOrig ):\
             ByteArr(rOrig) \
@@ -429,3 +428,5 @@ public:\
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

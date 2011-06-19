@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,47 +26,22 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_TEXTPRMAP_HXX_
 #include "txtprmap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
 #include <com/sun/star/text/SizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRAPTEXTMODE_HPP_
 #include <com/sun/star/text/WrapTextMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_TEXTCONTENTANCHORTYPE_HPP
 #include <com/sun/star/text/TextContentAnchorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP
 #include <com/sun/star/awt/FontFamily.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP
 #include <com/sun/star/awt/FontPitch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTUNDERLINE_HPP
 #include <com/sun/star/awt/FontUnderline.hpp>
-#endif
-#ifndef _XMLOFF_TXTEXPPR_HXX
 #include "txtexppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLSECTIONFOOTNOTECONFIGEXPORT_HXX
 #include "XMLSectionFootnoteConfigExport.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
@@ -73,8 +49,10 @@ using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::awt;
 
+using rtl::OUString;
+
 void XMLTextExportPropertySetMapper::handleElementItem(
-        SvXMLExport& rExport,
+        SvXMLExport& rExp,
         const XMLPropertyState& rProperty,
         sal_uInt16 nFlags,
         const ::std::vector< XMLPropertyState > *pProperties,
@@ -139,19 +117,19 @@ void XMLTextExportPropertySetMapper::handleElementItem(
         break;
 
     case CTF_SECTION_FOOTNOTE_END:
-        XMLSectionFootnoteConfigExport::exportXML(rExport, sal_False,
+        XMLSectionFootnoteConfigExport::exportXML(rExp, sal_False,
                                                   pProperties, nIdx,
                                                   getPropertySetMapper());
         break;
 
     case CTF_SECTION_ENDNOTE_END:
-        XMLSectionFootnoteConfigExport::exportXML(rExport, sal_True,
+        XMLSectionFootnoteConfigExport::exportXML(rExp, sal_True,
                                                   pProperties, nIdx,
                                                   getPropertySetMapper());
         break;
 
     default:
-        SvXMLExportPropertyMapper::handleElementItem( rExport, rProperty, nFlags, pProperties, nIdx );
+        SvXMLExportPropertyMapper::handleElementItem( rExp, rProperty, nFlags, pProperties, nIdx );
         break;
     }
 }
@@ -210,8 +188,8 @@ XMLTextExportPropertySetMapper::XMLTextExportPropertySetMapper(
     SvXMLExportPropertyMapper( rMapper ),
     rExport( rExp ),
     bDropWholeWord( sal_False ),
-    maTabStopExport( rExp ),
     maDropCapExport( rExp ),
+    maTabStopExport( rExp ),
     maTextColumnsExport( rExp ),
     maBackgroundImageExport( rExp )
 {
@@ -241,7 +219,7 @@ void XMLTextExportPropertySetMapper::ContextFontFilter(
     if( pFontStyleNameState && (pFontStyleNameState->maValue >>= sTmp ) )
         sStyleName = sTmp;
 
-    sal_Int16 nTmp;
+    sal_Int16 nTmp(0);
     if( pFontFamilyState && (pFontFamilyState->maValue >>= nTmp ) )
         nFamily = nTmp;
     if( pFontPitchState && (pFontPitchState->maValue >>= nTmp ) )
@@ -288,7 +266,7 @@ void XMLTextExportPropertySetMapper::ContextFontHeightFilter(
 {
     if( pCharPropHeightState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pCharPropHeightState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -303,7 +281,7 @@ void XMLTextExportPropertySetMapper::ContextFontHeightFilter(
     }
     if( pCharDiffHeightState )
     {
-        float nTemp;
+        float nTemp = 0;
         pCharDiffHeightState->maValue >>= nTemp;
         if( nTemp == 0. )
         {
@@ -553,7 +531,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
         sal_Bool bClear = !pUnderlineState;
         if( !bClear )
         {
-            sal_Int16 nUnderline;
+            sal_Int16 nUnderline = 0;
             pUnderlineState->maValue >>= nUnderline;
             bClear = FontUnderline::NONE == nUnderline;
         }
@@ -568,7 +546,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaLeftMarginState && pParaLeftMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaLeftMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -585,7 +563,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaRightMarginState && pParaRightMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaRightMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -601,7 +579,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaFirstLineState && pParaFirstLineRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaFirstLineRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -617,7 +595,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaTopMarginState && pParaTopMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaTopMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -634,7 +612,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pParaBottomMarginState && pParaBottomMarginRelState )
     {
-        sal_Int32 nTemp;
+        sal_Int32 nTemp = 0;
         pParaBottomMarginRelState->maValue >>= nTemp;
         if( nTemp == 100 )
         {
@@ -692,7 +670,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
     {
         if( pLeftBorderDistanceState && pRightBorderDistanceState && pTopBorderDistanceState && pBottomBorderDistanceState )
         {
-            sal_Int32 aLeft, aRight, aTop, aBottom;
+            sal_Int32 aLeft = 0, aRight = 0, aTop = 0, aBottom = 0;
 
             pLeftBorderDistanceState->maValue >>= aLeft;
             pRightBorderDistanceState->maValue >>= aRight;
@@ -770,7 +748,7 @@ void XMLTextExportPropertySetMapper::ContextFilter(
 
     if( pHeightMinAbsState )
     {
-        sal_Int16 nRel;
+        sal_Int16 nRel(0);
         if( (SizeType::MIN != nSizeType) ||
             ( pHeightMinRelState &&
               ( !(pHeightMinRelState->maValue >>= nRel) || nRel > 0 ) ) )
@@ -792,7 +770,6 @@ void XMLTextExportPropertySetMapper::ContextFilter(
         pWrapState->maValue >>= eVal;
         switch( eVal )
         {
-        // --> OD 2006-06-02 #b6432057#
         // merge fix #i32592# into binfilter module
         case WrapTextMode_NONE:
             // no wrapping: disable para-only and contour
@@ -804,7 +781,8 @@ void XMLTextExportPropertySetMapper::ContextFilter(
             if( pWrapContourState )
                 pWrapContourState->mnIndex = -1;
             break;
-        // <--
+        default:
+            break;
         }
         if( pWrapContourModeState  &&
             (!pWrapContourState ||
@@ -855,3 +833,5 @@ void XMLTextExportPropertySetMapper::ContextFilter(
     SvXMLExportPropertyMapper::ContextFilter(rProperties,rPropSet);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,27 +31,15 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_MEMBERRESULT_HPP_
 #include <com/sun/star/sheet/MemberResult.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_DATARESULT_HPP_
 #include <com/sun/star/sheet/DataResult.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // enum ScSubTotalFunc
-#endif
 namespace binfilter {
 
 
@@ -92,13 +81,8 @@ struct ScDPItemData;
 class ScDPResultData
 {
 public:
-    ScDPResultData( ScDPSource* pSrc ) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScDPResultData( ScDPSource* pSrc );      //! Ref
-                        ~ScDPResultData(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultData();
-
-
-
-
-
+    ScDPResultData( ScDPSource* /*pSrc*/ ) {DBG_BF_ASSERT(0, "STRIP");}
+    ~ScDPResultData(){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -106,10 +90,10 @@ class ScDPResultMember
 {
 
 public:
-                        ScDPResultMember( ScDPResultData* pData, ScDPDimension* pDim,
-                                            ScDPLevel* pLev, ScDPMember* pDesc,
-                                            BOOL bForceSub ) {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 BOOL bForceSub );  //! Ref
-                        ~ScDPResultMember(){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ~ScDPResultMember();
+                        ScDPResultMember( ScDPResultData*, ScDPDimension*,
+                                            ScDPLevel*, ScDPMember*,
+                                            BOOL ) {DBG_BF_ASSERT(0, "STRIP");}
+                        ~ScDPResultMember(){DBG_BF_ASSERT(0, "STRIP");}
 
 
 
@@ -160,3 +144,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

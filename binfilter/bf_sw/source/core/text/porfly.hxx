@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -48,7 +49,7 @@ public:
         : SwFixPortion(rFlyRect), nBlankWidth( 0 ) { SetWhichPor( POR_FLY ); }
     inline KSHORT GetBlankWidth( ) const { return nBlankWidth; }
     inline void SetBlankWidth( const KSHORT nNew ) { nBlankWidth = nNew; }
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} //STRIP001   virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& /*rInf*/ ) const{DBG_BF_ASSERT(0, "STRIP");}
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     OUTPUT_OPERATOR
 };
@@ -99,7 +100,7 @@ public:
                   long nFlyDescent, sal_uInt8 nFlags );
     const SwFrmFmt *GetFrmFmt() const;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001  virtual void Paint( const SwTxtPaintInfo &rInf ) const;
+    virtual void Paint( const SwTxtPaintInfo& /*rInf*/ ) const{DBG_BF_ASSERT(0, "STRIP");} ;
     OUTPUT_OPERATOR
 };
 
@@ -109,3 +110,5 @@ CLASSIO( SwFlyCntPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

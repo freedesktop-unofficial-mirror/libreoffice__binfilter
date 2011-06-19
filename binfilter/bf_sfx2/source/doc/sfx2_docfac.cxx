@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_REGISTRY_MERGECONFLICTEXCEPTION_HPP_
 #include <com/sun/star/registry/MergeConflictException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REGISTRY_XSIMPLEREGISTRY_HPP_
 #include <com/sun/star/registry/XSimpleRegistry.hpp>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
-#ifndef _EMBOBJ_HXX //autogen
 #include <bf_so3/embobj.hxx>
-#endif
 
-#ifndef _CONFIG_HXX
 #include <tools/config.hxx>
-#endif
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_svtools/moduleoptions.hxx>
 #include <tools/urlobj.hxx>
@@ -69,7 +60,7 @@ namespace binfilter {
 
 //========================================================================
 
-DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
+DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 )
 
 //========================================================================
 
@@ -201,15 +192,14 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   CreateInstanceType      funcCIT
 /*N*/ )
 /*N*/ :   SvFactory( rName, rClassName, funcCIT ),
-/*N*/   fnCreate( 0 ),
 /*N*/   nId( 0 ),
-/*N*/ //  pIniMgr( 0 ),
+/*N*/   fnCreate( 0 ),
 /*N*/   pShortName( 0 ),
 /*N*/   pImpl( new SfxObjectFactory_Impl )
 /*N*/ {
-/*N*/   DBG_CTOR(SfxObjectFactory, 0);
+/*N*/     DBG_CTOR(SfxObjectFactory, 0);
 /*N*/
-/*N*/   SfxApplication* pApp = SFX_APP();
+/*N*/     /*SfxApplication* pApp =*/ SFX_APP();
 /*N*/     RegisterObjectFactory_Impl(*this);
 /*N*/ }
 
@@ -259,7 +249,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/ }
 
 /*?*/ const SfxObjectFactory* SfxObjectFactory::GetFactory( const String& rFactoryURL )
-/*?*/ { // #dochnoetig# DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*?*/ { // #dochnoetig# DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/   const SfxObjectFactory* pFactory = 0;
 /*N*/   String aFact( rFactoryURL );
 /*N*/   String aPrefix( DEFINE_CONST_UNICODE( "private:factory/" ) );
@@ -271,7 +261,7 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/   // Etwaige Parameter abschneiden
 /*N*/   aFact.Erase( nPos, aFact.Len() );
 /*N*/
-/*N*/   SfxApplication *pApp = SFX_APP();
+/*N*/   /*SfxApplication *pApp =*/ SFX_APP();
 /*N*/
 /*N*/   // "swriter4" durch "swriter" ersetzen, zum Vergleichen uppercase verwenden
 /*N*/   WildCard aSearchedFac( aFact.EraseAllChars('4').ToUpperAscii() );
@@ -330,3 +320,5 @@ DECL_PTRARRAY( SfxViewFactoryArr_Impl, SfxViewFactory*, 2, 2 ) //STRIP008;
 /*N*/     return *pObjFac;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

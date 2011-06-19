@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,12 +26,8 @@
  *
  ************************************************************************/
 
-#ifndef _SOT_CLSIDS_HXX
 #include <sot/clsids.hxx>
-#endif
-#ifndef _IPWIN_HXX //autogen
 #include <bf_so3/ipwin.hxx>
-#endif
 
 
 #ifdef _MSC_VER
@@ -43,13 +40,9 @@
 
 #include <appdata.hxx>
 
-#ifndef _SFXAPP_HXX
 #include "app.hxx"
-#endif
 
-#ifndef _SFX_OBJSH_HXX
 #include "objsh.hxx"
-#endif
 
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
@@ -134,108 +127,9 @@ namespace binfilter {
 /*?*/   delete pImpl;
 /*?*/ }
 
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Wenn die Daten sich "andern, muss das Modify-Flag gesetzt werden.
-    Ausserdem m"ussen alle angemeldeten Advises benachrichtigt werden.
-    In Abh"angigkeit des Parameters wird angezeigt, dass sich auch
-    die View und das Mtf ge"andert hat.
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Mit dieser Methode werden Informationen "uber das Objekt angefordert.
-    Wird das Objekt gesichert, dann werden diese Informationen in den
-    Storage geschrieben.
-
-    [Anmerkung]
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Die Verbindung zum Client wird ge"offnet oder geschlossen.
-
-    [Querverweise]
-
-    <SvEmbeddedObject::Open()>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Das Objekt wird InPlace aktiviert oder deaktiviert.
-
-    [Querverweise]
-
-    <SvInPlaceObject::InPlaceActivate()>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Es wird Versucht ein Applet zu starten. Es gibt nur die M"oglichkeit
-    InPlace zu aktivieren. Deshalb sind auch nur die Verben gestattet,
-    die dies ausl"osen.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, es wurde InPlace aktiviert.
-                    FALSE, es wurde nicht InPLace aktiviert.
-
-    [Querverweise]
-
-    <SvPseudoObject::Verb>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Der sichtbare Ausschnitt beginnt immer an der Position (0, 0).
-*/
-
-
-//=========================================================================
-// aus PlugIn
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Ein Ausgabe ist nicht m"oglich und auch nicht n"otig.
-    und als Unterschrift der URL ausgegeben,
-
-    [Querverweise]
-
-    <SvEmbeddedObject::Draw>
-*/
-
-//=========================================================================
-/*  [Beschreibung]
-
-    Nach dem Konstruktor muss diese Methode oder Load gerufen werden,
-    um das Objekt zu initialisieren.
-    <SvPersist::InitNew>
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, Initialisierung hat geklappt.
-                    FALSE, Initialisierung hat nicht geklappt, das Objekt
-                    muss sofort freigegeben werden.
-
-    [Querverweise]
-
-*/
-
-//=========================================================================
-/*N*/ static const char * pDocName = "FloatingFrame";
-#define nVersion 3
-
 /*N*/ BOOL SfxFrameObject::Load
 /*N*/ (
-/*N*/   SvStorage * pStor   /* Storage aus dem das Objekt geladen wird. */
+/*N*/   SvStorage * /*pStor*/   /* Storage aus dem das Objekt geladen wird. */
 /*N*/ )
 /*  [Beschreibung]
 
@@ -252,58 +146,7 @@ namespace binfilter {
 
     <SvPersist::Load>
 */
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return FALSE;
-/*N*/ }
-
-//=========================================================================
-/*N*/ BOOL SfxFrameObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SfxFrameObject::InitNew>
-    oder <SfxFrameObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/   return FALSE;
-/*N*/ }
-
-//=========================================================================
-/*N*/ BOOL SfxFrameObject::SaveAs
-/*N*/ (
-/*N*/   SvStorage *pStor    /* Storage, in den der Inhalt des Objekte
-                           geschrieben wird */
-/*N*/ )
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in pStor geschrieben.
-
-    [Anmerkung]
-
-    Der Storage wird nicht behalten.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::SaveAs>
-*/
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
@@ -319,30 +162,7 @@ namespace binfilter {
 */
 
 //=========================================================================
-/*N*/ BOOL SfxFrameObject::SaveCompleted
-/*N*/ (
-/*N*/   SvStorage * pStor   /* Storage auf dem das Objekt arbeitet. Der kann
-                           auch NULL sein. Dies Bedeutet, es wird auf
-                           dem alten Storage weiter gearbeitet */
-/*N*/ )
-/*  [Beschreibung]
 
-    Nach dem Aufruf dieser Methode ist das Verhalten des Objektes
-    wieder definiert.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, es kann auf dem neuen Storage gearbeitet werden.
-                    FALSE, es kann nicht auf dem neuen Storage gearbeitet
-                    werden
-
-    [Querverweise]
-
-    <SvPersist::SaveCompleted>
-*/
-/*N*/ {
-/*N*/   return SvInPlaceObject::SaveCompleted( pStor );
-/*N*/ }
 
 //=========================================================================
 /*  [Beschreibung]
@@ -375,12 +195,12 @@ namespace binfilter {
     <SvPseudoObject::IsLink()>
 */
 
-/*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor *pD )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ void SfxFrameObject::SetFrameDescriptor( const SfxFrameDescriptor * /*pD*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 /*?*/ const SfxFrameDescriptor* SfxFrameObject::GetFrameDescriptor() const
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }
 
 
@@ -391,3 +211,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

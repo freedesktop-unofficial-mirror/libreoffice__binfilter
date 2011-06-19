@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,25 +30,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _NODE_HXX
 #include <node.hxx>
-#endif
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _NDHINTS_HXX
 #include <ndhints.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 namespace com { namespace sun { namespace star { namespace uno {
     template < class > class Sequence;
 }}}}
 class OutputDevice;
 namespace utl {
     class TransliterationWrapper;
-}//STRIP008 ;
+}
 namespace binfilter {
 
 
@@ -71,9 +64,6 @@ class SwNodeNum;
 #define INS_EMPTYEXPAND     0x0001 // leere Hints beim Einfuegen aufspannen
 #define INS_NOHINTEXPAND    0x0002 // Hints an der InsPos nicht aufspannen
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace uno {
-//STRIP008     template < class > class Sequence;
-//STRIP008 }}}}
 
 // --------------------
 // SwTxtNode
@@ -303,12 +293,12 @@ public:
 
 inline SwpHints &SwTxtNode::GetSwpHints()
 {
-    ASSERT_ID( pSwpHints, ERR_NOHINTS);
+    OSL_ASSERT( pSwpHints );
     return *pSwpHints;
 }
 inline const SwpHints &SwTxtNode::GetSwpHints() const
 {
-    ASSERT_ID( pSwpHints, ERR_NOHINTS);
+    OSL_ASSERT( pSwpHints );
     return *pSwpHints;
 }
 
@@ -349,3 +339,5 @@ inline void SwTxtNode::Cut(SwTxtNode *pDest, const SwIndex &rDestStart,
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

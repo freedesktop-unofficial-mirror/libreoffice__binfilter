@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,41 +26,21 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_FONTFAMILY_HPP_
 #include <com/sun/star/awt/FontFamily.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTPITCH_HPP_
 #include <com/sun/star/awt/FontPitch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_BORDERLINE_HPP_
 #include <com/sun/star/table/BorderLine.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_VERTORIENTATION_HPP_
 #include <com/sun/star/text/VertOrientation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_SIZETYPE_HPP_
 #include <com/sun/star/text/SizeType.hpp>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
 #include "XMLFontStylesContext.hxx"
-#endif
 
-#ifndef _XMLOFF_TEXTPRMAP_HXX_
 #include "txtprmap.hxx"
-#endif
 
-#ifndef _XMLOFF_TXTIMPPR_HXX
 #include "txtimppr.hxx"
-#endif
 namespace binfilter {
 
 #define XML_LINE_LEFT 0
@@ -132,7 +113,6 @@ sal_Bool XMLTextImportPropertyMapper::handleSpecialItem(
         }
         break;
 
-#ifdef CONV_STAR_FONTS
     // If we want to do StarMath/StarSymbol font conversion, then we'll
     // want these special items to be treated just like regular ones...
     // For the Writer, we'll catch and convert them in _FillPropertySet;
@@ -144,7 +124,6 @@ sal_Bool XMLTextImportPropertyMapper::handleSpecialItem(
         bRet = getPropertySetMapper()->importXML( rValue, rProperty,
                                                   rUnitConverter );
         break;
-#endif
 
     default:
         bRet = SvXMLImportPropertyMapper::handleSpecialItem( rProperty,
@@ -157,9 +136,9 @@ sal_Bool XMLTextImportPropertyMapper::handleSpecialItem(
 
 XMLTextImportPropertyMapper::XMLTextImportPropertyMapper(
             const UniReference< XMLPropertySetMapper >& rMapper,
-            SvXMLImport& rImport,
+            SvXMLImport& rInImport,
             XMLFontStylesContext *pFontDecls ) :
-    SvXMLImportPropertyMapper( rMapper, rImport ),
+    SvXMLImportPropertyMapper( rMapper, rInImport ),
     nSizeTypeIndex( -2 ),
     xFontDecls( pFontDecls )
 {
@@ -281,7 +260,7 @@ void XMLTextImportPropertyMapper::FontDefaultsCheck(
 
 void XMLTextImportPropertyMapper::finished(
             ::std::vector< XMLPropertyState >& rProperties,
-            sal_Int32 nStartIndex, sal_Int32 nEndIndex ) const
+            sal_Int32 /*nStartIndex*/, sal_Int32 /*nEndIndex*/ ) const
 {
     sal_Bool bHasAnyHeight = sal_False;
     sal_Bool bHasAnyMinHeight = sal_False;
@@ -321,7 +300,6 @@ void XMLTextImportPropertyMapper::finished(
     XMLPropertyState* pNewBorders[4] = { 0, 0, 0, 0 };
     XMLPropertyState* pAllBorderWidth = 0;
     XMLPropertyState* pBorderWidths[4] = { 0, 0, 0, 0 };
-    XMLPropertyState* pAnchorType = 0;
     XMLPropertyState* pVertOrient = 0;
     XMLPropertyState* pVertOrientRelAsChar = 0;
     XMLPropertyState* pBackTransparency = NULL; // transparency in %
@@ -367,7 +345,7 @@ void XMLTextImportPropertyMapper::finished(
         case CTF_RIGHTBORDERWIDTH:      pBorderWidths[XML_LINE_RIGHT] = &(*property); break;
         case CTF_TOPBORDERWIDTH:        pBorderWidths[XML_LINE_TOP] = &(*property); break;
         case CTF_BOTTOMBORDERWIDTH:     pBorderWidths[XML_LINE_BOTTOM] = &(*property); break;
-        case CTF_ANCHORTYPE:            pAnchorType = &(*property); break;
+        case CTF_ANCHORTYPE:            break;
         case CTF_VERTICALPOS:           pVertOrient = &(*&(*property)); break;
         case CTF_VERTICALREL_ASCHAR:    pVertOrientRelAsChar = &(*property); break;
 
@@ -517,9 +495,9 @@ void XMLTextImportPropertyMapper::finished(
 
     if( pVertOrient && pVertOrientRelAsChar )
     {
-        sal_Int16 nVertOrient;
+        sal_Int16 nVertOrient(0);
         pVertOrient->maValue >>= nVertOrient;
-        sal_Int16 nVertOrientRel;
+        sal_Int16 nVertOrientRel(0);
         pVertOrientRelAsChar->maValue >>= nVertOrientRel;
         switch( nVertOrient )
         {
@@ -670,13 +648,13 @@ void XMLTextImportPropertyMapper::finished(
             const_cast < XMLTextImportPropertyMapper * > ( this )
                 ->nSizeTypeIndex  = -1;
             sal_Int32 nCount = getPropertySetMapper()->GetEntryCount();
-            for( sal_Int32 i=0; i < nCount; i++ )
+            for( sal_Int32 j=0; j < nCount; j++ )
             {
                 if( CTF_SIZETYPE == getPropertySetMapper()
-                        ->GetEntryContextId( i ) )
+                        ->GetEntryContextId( j ) )
                 {
                     const_cast < XMLTextImportPropertyMapper * > ( this )
-                        ->nSizeTypeIndex = i;
+                        ->nSizeTypeIndex = j;
                     break;
                 }
             }
@@ -699,3 +677,5 @@ void XMLTextImportPropertyMapper::finished(
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

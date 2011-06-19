@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -68,7 +69,7 @@ namespace binfilter {
 /*N*/       if (bTextFrame && (pModel==NULL || !pModel->IsPasteResize())) { // #51139#
 /*N*/           if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/           if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           NbcAdjustTextFrameWidthAndHeight();
 /*N*/       }
@@ -95,7 +96,7 @@ namespace binfilter {
 /*N*/   if (bTextFrame) {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
-/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
@@ -107,7 +108,7 @@ namespace binfilter {
 /*N*/   return aGeo.nDrehWink;
 /*N*/ }
 
-/*N*/ long SdrTextObj::GetShearAngle(FASTBOOL bVertical) const
+/*N*/ long SdrTextObj::GetShearAngle(bool /*bVertical*/) const
 /*N*/ {
 /*N*/   return (aGeo.nDrehWink==0 || aGeo.nDrehWink==18000) ? aGeo.nShearWink : 0;
 /*N*/ }
@@ -122,14 +123,14 @@ namespace binfilter {
 
 /*N*/ void SdrTextObj::NbcResize(const Point& rRef, const Fraction& xFact, const Fraction& yFact)
 /*N*/ {
-/*N*/   FASTBOOL bNoShearMerk=aGeo.nShearWink==0;
-/*N*/   FASTBOOL bRota90Merk=bNoShearMerk && aGeo.nDrehWink % 9000 ==0;
+/*N*/   bool bNoShearMerk=aGeo.nShearWink==0;
+/*N*/   bool bRota90Merk=bNoShearMerk && aGeo.nDrehWink % 9000 ==0;
 /*N*/   long nHDist=GetTextLeftDistance()+GetTextRightDistance();
 /*N*/   long nVDist=GetTextUpperDistance()+GetTextLowerDistance();
 /*N*/   long nTWdt0=aRect.GetWidth ()-1-nHDist; if (nTWdt0<0) nTWdt0=0;
 /*N*/   long nTHgt0=aRect.GetHeight()-1-nVDist; if (nTHgt0<0) nTHgt0=0;
-/*N*/   FASTBOOL bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
-/*N*/   FASTBOOL bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
+/*N*/   bool bXMirr=(xFact.GetNumerator()<0) != (xFact.GetDenominator()<0);
+/*N*/   bool bYMirr=(yFact.GetNumerator()<0) != (yFact.GetDenominator()<0);
 /*N*/   if (bXMirr || bYMirr) {
 /*N*/       Point aRef1(GetSnapRect().Center());
 /*N*/       if (bXMirr) {
@@ -187,7 +188,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/   if (bRota90Merk) {
-/*N*/       FASTBOOL bRota90=aGeo.nDrehWink % 9000 ==0;
+/*N*/       bool bRota90=aGeo.nDrehWink % 9000 ==0;
 /*N*/       if (!bRota90) { // Scheinbar Rundungsfehler: Korregieren
 /*N*/           long a=NormAngle360(aGeo.nDrehWink);
 /*N*/           if (a<4500) a=0;
@@ -211,7 +212,7 @@ namespace binfilter {
 /*N*/       if (nTWdt0!=nTWdt1 && IsAutoGrowWidth() ) NbcSetMinTextFrameWidth(nTWdt1);
 /*N*/       if (nTHgt0!=nTHgt1 && IsAutoGrowHeight()) NbcSetMinTextFrameHeight(nTHgt1);
 /*N*/       if (GetFitToSize()==SDRTEXTFIT_RESIZEATTR) {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 NbcResizeTextAttributes(Fraction(nTWdt1,nTWdt0),Fraction(nTHgt1,nTHgt0));
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/       NbcAdjustTextFrameWidthAndHeight();
 /*N*/   }
@@ -243,7 +244,7 @@ namespace binfilter {
 /*N*/   SetGlueReallyAbsolute(FALSE);
 /*N*/ }
 
-/*N*/ void SdrTextObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+/*N*/ void SdrTextObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 /*N*/ {
 /*N*/   SetGlueReallyAbsolute(TRUE);
 /*N*/
@@ -268,7 +269,7 @@ namespace binfilter {
 
 
 
-/*N*/ void SdrTextObj::ImpConvertSetAttrAndLayer(SdrObject* pObj, FASTBOOL bNoSetAttr) const
+/*N*/ void SdrTextObj::ImpConvertSetAttrAndLayer(SdrObject* pObj, bool bNoSetAttr) const
 /*N*/ {
 /*N*/   if (pObj!=NULL) {
 /*N*/       pObj->ImpSetAnchorPos(aAnchor);
@@ -287,7 +288,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ SdrObject* SdrTextObj::ImpConvertMakeObj(const XPolyPolygon& rXPP, FASTBOOL bClosed, FASTBOOL bBezier, FASTBOOL bNoSetAttr) const
+/*N*/ SdrObject* SdrTextObj::ImpConvertMakeObj(const XPolyPolygon& rXPP, bool bClosed, bool bBezier, bool bNoSetAttr) const
 /*N*/ {
 /*N*/   SdrObjKind ePathKind=bClosed?OBJ_PATHFILL:OBJ_PATHLINE;
 /*N*/   XPolyPolygon aXPP(rXPP);
@@ -299,7 +300,7 @@ namespace binfilter {
 /*N*/           if (nAnz>0) {
 /*N*/               USHORT nMax=USHORT(nAnz-1);
 /*N*/               Point aPnt(rXP[0]);
-/*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               if (aPnt!=rXP[nMax]) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -321,16 +322,18 @@ namespace binfilter {
 /*N*/       ePathKind=bClosed?OBJ_POLY:OBJ_PLIN;
 /*N*/   }
 /*N*/   SdrPathObj* pPathObj=new SdrPathObj(ePathKind,aXPP);
-/*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bBezier) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   ImpConvertSetAttrAndLayer(pPathObj,bNoSetAttr);
 /*N*/   return pPathObj;
 /*N*/ }
 
-/*N*/ SdrObject* SdrTextObj::ImpConvertAddText(SdrObject* pObj, FASTBOOL bBezier) const
+/*N*/ SdrObject* SdrTextObj::ImpConvertAddText(SdrObject* pObj, bool /*bBezier*/) const
 /*N*/ {
 /*N*/   if (!ImpCanConvTextToCurve()) return pObj;
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;//STRIP001 SdrObject* pText=ImpConvertObj(!bBezier);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return pObj;
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,17 +28,11 @@
 #ifndef _SXMUITM_HXX
 #define _SXMUITM_HXX
 
-#ifndef _SV_FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 
-#ifndef _SVDDEF_HXX //autogen
 #include <bf_svx/svddef.hxx>
-#endif
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 namespace binfilter {
 
 // Vorgabe einer Masseinheit. Der Zahlenwert wird in diese Einheit umgerechnet
@@ -57,3 +52,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

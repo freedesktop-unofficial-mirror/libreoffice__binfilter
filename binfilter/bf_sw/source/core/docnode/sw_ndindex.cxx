@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,8 +31,7 @@
 #pragma hdrstop
 #endif
 
-#include "errhdl.hxx"           // fuers ASSERT
-#include "error.h"              // fuers ASSERT
+#include <osl/diagnose.h>
 #include "ndindex.hxx"
 namespace binfilter {
 
@@ -151,3 +151,5 @@ int SwNodeIndex::nSerial = 0;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

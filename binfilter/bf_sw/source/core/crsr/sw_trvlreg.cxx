@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,43 +31,39 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _CRSRSH_HXX
 #include <crsrsh.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
 namespace binfilter {
 
 
 
-/*N*/ FASTBOOL GotoPrevRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GotoPrevRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                       bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GotoNextRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GotoNextRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                       bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GotoCurrRegion( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                       FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001
+/*N*/ bool GotoCurrRegion( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                       bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 
-/*N*/ FASTBOOL GotoCurrRegionAndSkip( SwPaM& rCurCrsr, SwPosRegion fnPosRegion,
-/*N*/                               FASTBOOL bInReadOnly )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ bool GotoCurrRegionAndSkip( SwPaM& /*rCurCrsr*/, SwPosRegion /*fnPosRegion*/,
+/*N*/                               bool /*bInReadOnly*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

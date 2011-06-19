@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 
 
-#ifndef _COMPHELPER_PROPERTY_AGGREGATION_HXX_
 #include <comphelper/propagg.hxx>
-#endif
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 namespace binfilter {
 
     using namespace ::comphelper;
@@ -209,3 +206,4 @@ pProps[nPos++] = com::sun::star::beans::Property(PROPERTY_##varname, PROPERTY_ID
 }//end of namespace binfilter
 #endif // _FRM_PROPERTY_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

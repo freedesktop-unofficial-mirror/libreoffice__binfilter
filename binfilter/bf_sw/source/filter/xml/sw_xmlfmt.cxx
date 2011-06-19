@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,124 +31,56 @@
 #pragma hdrstop
 #endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
 
 #ifndef _SVSTDARR_STRINGSSORT_DECL
 #define _SVSTDARR_STRINGSSORT
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
 
-#ifndef _FORMAT_HXX //autogen wg. SwFmt
 #include <format.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTCOL_HXX //autogen wg. SwTxtFmtColl
 #include <fmtcol.hxx>
-#endif
-#ifndef _HINTS_HXX //autogen wg. SwFmtChg
 #include <hints.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
 
-#ifndef _POOLFMT_HXX //autogen wg. RES_POOL_CHRFMT_TYPE
 #include <poolfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen wg. SwCharFmt
 #include <charfmt.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen wg. SwFrmFmt
 #include <frmfmt.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
 #include "docary.hxx"
-#ifndef _UNOSTYLE_HXX
 #include "unostyle.hxx"
-#endif
-#ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
-#endif
-#ifndef _PAGEDESC_HXX
 #include "pagedesc.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include <bf_xmloff/i18nmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLITEM_HXX
 #include "xmlitem.hxx"
-#endif
-#ifndef _XMLOFF_XMLSTYLE_HXX
 #include <bf_xmloff/xmlstyle.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
-#ifndef _XMLOFF_TXTSTYLI_HXX
 #include <bf_xmloff/txtstyli.hxx>
-#endif
-#ifndef _XMLOFF_TXTIMP_HXX
 #include <bf_xmloff/txtimp.hxx>
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX
 #include <bf_xmloff/families.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTMASTERSTYLESCONTEXT_HXX
 #include <bf_xmloff/XMLTextMasterStylesContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLTEXTSHAPESTYLECONTEXT_HXX
 #include <bf_xmloff/XMLTextShapeStyleContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #include <bf_xmloff/XMLGraphicsDefaultStyle.hxx>
-#endif
 
-#ifndef _NUMRULE_HXX
 #include <numrule.hxx>
-#endif
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLTBLI_HXX
 #include "xmltbli.hxx"
-#endif
-#ifndef _CELLATR_HXX
 #include "cellatr.hxx"
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 
@@ -156,8 +89,10 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::style;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
-using namespace ::rtl;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
+using rtl::OUStringBuffer;
 
 class SwXMLConditionParser_Impl
 {
@@ -233,10 +168,10 @@ inline sal_Bool SwXMLConditionParser_Impl::MatchNumber( sal_uInt32& rNumber )
 
 SwXMLConditionParser_Impl::SwXMLConditionParser_Impl( const OUString& rInp ) :
     sInput( rInp ),
-    nPos( 0 ),
-    nLength( rInp.getLength() ),
     nCondition( 0 ),
-    nSubCondition( 0 )
+    nSubCondition( 0 ),
+    nPos( 0 ),
+    nLength( rInp.getLength() )
 {
     OUString sFunc;
     sal_Bool bHasSub = sal_False;
@@ -306,7 +241,7 @@ class SwXMLConditionContext_Impl : public SvXMLImportContext
 public:
 
     SwXMLConditionContext_Impl(
-            SvXMLImport& rImport, sal_uInt16 nPrfx,
+            SvXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
     virtual ~SwXMLConditionContext_Impl();
@@ -319,10 +254,10 @@ public:
 };
 
 SwXMLConditionContext_Impl::SwXMLConditionContext_Impl(
-            SvXMLImport& rImport, sal_uInt16 nPrfx,
+            SvXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName ),
+    SvXMLImportContext( rInImport, nPrfx, rLName ),
     nCondition( 0 ),
     nSubCondition( 0 )
 {
@@ -330,16 +265,16 @@ SwXMLConditionContext_Impl::SwXMLConditionContext_Impl(
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         const OUString& rAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix =
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix =
             GetImport().GetNamespaceMap().GetKeyByAttrName( rAttrName,
-                                                            &aLocalName );
+                                                            &aLclLocalName );
         const OUString& rValue = xAttrList->getValueByIndex( i );
 
         // TODO: use a map here
-        if( XML_NAMESPACE_STYLE == nPrefix )
+        if( XML_NAMESPACE_STYLE == nLclPrefix )
         {
-            if( IsXMLToken( aLocalName, XML_CONDITION ) )
+            if( IsXMLToken( aLclLocalName, XML_CONDITION ) )
             {
                 SwXMLConditionParser_Impl aCondParser( rValue );
                 if( aCondParser.IsValid() )
@@ -348,7 +283,7 @@ SwXMLConditionContext_Impl::SwXMLConditionContext_Impl(
                     nSubCondition = aCondParser.GetSubCondition();
                 }
             }
-            else if( IsXMLToken( aLocalName, XML_APPLY_STYLE_NAME ) )
+            else if( IsXMLToken( aLclLocalName, XML_APPLY_STYLE_NAME ) )
             {
                 sApplyStyle = rValue;
             }
@@ -363,7 +298,7 @@ SwXMLConditionContext_Impl::~SwXMLConditionContext_Impl()
 // ---------------------------------------------------------------------
 
 typedef SwXMLConditionContext_Impl *SwXMLConditionContextPtr;
-SV_DECL_PTRARR( SwXMLConditions_Impl, SwXMLConditionContextPtr, 5, 2 )//STRIP008 ;
+SV_DECL_PTRARR( SwXMLConditions_Impl, SwXMLConditionContextPtr, 5, 2 )
 
 class SwXMLTextStyleContext_Impl : public XMLTextStyleContext
 {
@@ -377,15 +312,15 @@ public:
 
     TYPEINFO();
 
-    SwXMLTextStyleContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
+    SwXMLTextStyleContext_Impl( SwXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
-            sal_uInt16 nFamily,
+            sal_uInt16 nInFamily,
             SvXMLStylesContext& rStyles );
     virtual ~SwXMLTextStyleContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext(
-            sal_uInt16 nPrefix,
+            sal_uInt16 nInPrefix,
             const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
@@ -420,12 +355,12 @@ Reference < XStyle > SwXMLTextStyleContext_Impl::Create()
     return xNewStyle;
 }
 
-SwXMLTextStyleContext_Impl::SwXMLTextStyleContext_Impl( SwXMLImport& rImport,
+SwXMLTextStyleContext_Impl::SwXMLTextStyleContext_Impl( SwXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
-        sal_uInt16 nFamily,
+        sal_uInt16 nInFamily,
         SvXMLStylesContext& rStyles ) :
-    XMLTextStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles, nFamily ),
+    XMLTextStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles, nInFamily ),
     pConditions( 0 )
 {
 }
@@ -445,16 +380,16 @@ SwXMLTextStyleContext_Impl::~SwXMLTextStyleContext_Impl()
 }
 
 SvXMLImportContext *SwXMLTextStyleContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix && IsXMLToken( rLocalName, XML_MAP ) )
+    if( XML_NAMESPACE_STYLE == nInPrefix && IsXMLToken( rLocalName, XML_MAP ) )
     {
         SwXMLConditionContext_Impl *pCond =
-            new SwXMLConditionContext_Impl( GetImport(), nPrefix,
+            new SwXMLConditionContext_Impl( GetImport(), nInPrefix,
                                             rLocalName, xAttrList );
         if( pCond->IsValid() )
         {
@@ -467,7 +402,7 @@ SvXMLImportContext *SwXMLTextStyleContext_Impl::CreateChildContext(
     }
 
     if( !pContext )
-        pContext = XMLTextStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLTextStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -480,12 +415,12 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
     if( !pConditions || XML_STYLE_FAMILY_TEXT_PARAGRAPH != GetFamily() )
         return;
 
-    Reference < XStyle > xStyle = GetStyle();
-    if( !xStyle.is() )
+    Reference < XStyle > xLclStyle = GetStyle();
+    if( !xLclStyle.is() )
         return;
 
     const SwXStyle* pStyle = 0;
-    Reference<XUnoTunnel> xStyleTunnel( xStyle, UNO_QUERY);
+    Reference<XUnoTunnel> xStyleTunnel( xLclStyle, UNO_QUERY);
     if( xStyleTunnel.is() )
     {
         pStyle = (SwXStyle*)xStyleTunnel->getSomething(
@@ -497,7 +432,7 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
     const SwDoc *pDoc = pStyle->GetDoc();
 
     SwTxtFmtColl *pColl = pDoc->FindTxtFmtCollByName( pStyle->GetStyleName() );
-    ASSERT( pColl, "Text collection not found" );
+    OSL_ENSURE( pColl, "Text collection not found" );
     if( !pColl || RES_CONDTXTFMTCOLL != pColl->Which() )
         return;
 
@@ -513,7 +448,7 @@ void SwXMLTextStyleContext_Impl::Finish( sal_Bool bOverwrite )
                                       sal_True);
         sName = aString;
         SwTxtFmtColl* pCondColl = pDoc->FindTxtFmtCollByName( sName );
-        ASSERT( pCondColl,
+        OSL_ENSURE( pCondColl,
             "SwXMLItemSetStyleContext_Impl::ConnectConditions: cond coll missing" );
         if( pCondColl )
         {
@@ -538,7 +473,7 @@ class SwXMLItemSetStyleContext_Impl : public SvXMLStyleContext
     sal_Bool                bDataStyleIsResolved;
 
     SvXMLImportContext *CreateItemSetContext(
-            sal_uInt16 nPrefix,
+            sal_uInt16 nInPrefix,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList);
 
@@ -557,14 +492,14 @@ public:
     TYPEINFO();
 
     SwXMLItemSetStyleContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName,
             const Reference< xml::sax::XAttributeList > & xAttrList,
-            sal_uInt16 nFamily);
+            sal_uInt16 nInFamily);
     virtual ~SwXMLItemSetStyleContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext(
-            sal_uInt16 nPrefix,
+            sal_uInt16 nInPrefix,
             const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
@@ -613,20 +548,20 @@ void SwXMLItemSetStyleContext_Impl::SetAttribute( sal_uInt16 nPrefixKey,
 }
 
 SvXMLImportContext *SwXMLItemSetStyleContext_Impl::CreateItemSetContext(
-        sal_uInt16 nPrefix, const OUString& rLName,
+        sal_uInt16 nInPrefix, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
-    ASSERT( !pItemSet,
+    OSL_ENSURE( !pItemSet,
             "SwXMLItemSetStyleContext_Impl::CreateItemSetContext: item set exists" );
 
     SvXMLImportContext *pContext = 0;
 
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                         OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SfxItemPool& rItemPool = pTxtCrsr->GetDoc()->GetAttrPool();
     switch( GetFamily() )
     {
@@ -643,13 +578,13 @@ SvXMLImportContext *SwXMLItemSetStyleContext_Impl::CreateItemSetContext(
         pItemSet = new SfxItemSet( rItemPool, aTableBoxSetRange );
         break;
     default:
-        ASSERT( !this,
+        OSL_ENSURE( !this,
         "SwXMLItemSetStyleContext_Impl::CreateItemSetContext: unknown family" );
         break;
     }
     if( pItemSet )
         pContext = GetSwImport().CreateTableItemImportContext(
-                                nPrefix, rLName, xAttrList, GetFamily(),
+                                nInPrefix, rLName, xAttrList, GetFamily(),
                                 *pItemSet );
     if( !pContext )
     {
@@ -662,15 +597,15 @@ SvXMLImportContext *SwXMLItemSetStyleContext_Impl::CreateItemSetContext(
 
 TYPEINIT1( SwXMLItemSetStyleContext_Impl, SvXMLStyleContext );
 
-SwXMLItemSetStyleContext_Impl::SwXMLItemSetStyleContext_Impl( SwXMLImport& rImport,
+SwXMLItemSetStyleContext_Impl::SwXMLItemSetStyleContext_Impl( SwXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
-        sal_uInt16 nFamily ) :
-    SvXMLStyleContext( rImport, nPrfx, rLName, xAttrList, nFamily ),
+        sal_uInt16 nInFamily ) :
+    SvXMLStyleContext( rInImport, nPrfx, rLName, xAttrList, nInFamily ),
     pItemSet( 0 ),
+    sDataStyleName(),
     bHasMasterPageName( sal_False ),
     bPageDescConnected( sal_False ),
-    sDataStyleName(),
     bDataStyleIsResolved( sal_True )
 {
 }
@@ -681,22 +616,22 @@ SwXMLItemSetStyleContext_Impl::~SwXMLItemSetStyleContext_Impl()
 }
 
 SvXMLImportContext *SwXMLItemSetStyleContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix )
+    if( XML_NAMESPACE_STYLE == nInPrefix )
     {
         if( IsXMLToken( rLocalName, XML_PROPERTIES ) )
         {
-            pContext = CreateItemSetContext( nPrefix, rLocalName, xAttrList );
+            pContext = CreateItemSetContext( nInPrefix, rLocalName, xAttrList );
         }
     }
 
     if( !pContext )
-        pContext = SvXMLStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = SvXMLStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -710,10 +645,10 @@ void SwXMLItemSetStyleContext_Impl::ConnectPageDesc()
 
     Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                        UNO_QUERY);
-    ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+    OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
     OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                         OTextCursorHelper::getUnoTunnelId() );
-    ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+    OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
     SwDoc *pDoc = pTxtCrsr->GetDoc();
 
     String sName;
@@ -761,8 +696,6 @@ void SwXMLItemSetStyleContext_Impl::ConnectPageDesc()
 
 sal_Bool SwXMLItemSetStyleContext_Impl::ResolveDataStyleName()
 {
-    sal_Bool bTmp = bDataStyleIsResolved;
-
     // resolve, if not already done
     if (! bDataStyleIsResolved)
     {
@@ -777,10 +710,10 @@ sal_Bool SwXMLItemSetStyleContext_Impl::ResolveDataStyleName()
             {
                 Reference<XUnoTunnel> xCrsrTunnel( GetImport().GetTextImport()->GetCursor(),
                                                    UNO_QUERY);
-                ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+                OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
                 OTextCursorHelper *pTxtCrsr = (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                                     OTextCursorHelper::getUnoTunnelId() );
-                ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+                OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
                 SwDoc *pDoc = pTxtCrsr->GetDoc();
 
                 SfxItemPool& rItemPool = pDoc->GetAttrPool();
@@ -815,20 +748,20 @@ class SwXMLStylesContext_Impl : public SvXMLStylesContext
 
 protected:
 
-    virtual SvXMLStyleContext *CreateStyleStyleChildContext( sal_uInt16 nFamily,
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+    virtual SvXMLStyleContext *CreateStyleStyleChildContext( sal_uInt16 nInFamily,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList );
     virtual SvXMLStyleContext *CreateDefaultStyleStyleChildContext(
-        sal_uInt16 nFamily, sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInFamily, sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList );
     // HACK
     virtual UniReference < SvXMLImportPropertyMapper > GetImportPropertyMapper(
-                        sal_uInt16 nFamily ) const;
+                        sal_uInt16 nInFamily ) const;
 
     virtual ::com::sun::star::uno::Reference <
                     ::com::sun::star::container::XNameContainer >
-        GetStylesContainer( sal_uInt16 nFamily ) const;
-    virtual ::rtl::OUString GetServiceName( sal_uInt16 nFamily ) const;
+        GetStylesContainer( sal_uInt16 nInFamily ) const;
+    virtual ::rtl::OUString GetServiceName( sal_uInt16 nInFamily ) const;
     // HACK
 
 public:
@@ -836,13 +769,13 @@ public:
     TYPEINFO();
 
     SwXMLStylesContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName ,
             const Reference< xml::sax::XAttributeList > & xAttrList,
             sal_Bool bAuto );
     virtual ~SwXMLStylesContext_Impl();
 
-    virtual sal_Bool InsertStyleFamily( sal_uInt16 nFamily ) const;
+    virtual sal_Bool InsertStyleFamily( sal_uInt16 nInFamily ) const;
 
     virtual void EndElement();
 };
@@ -856,33 +789,33 @@ inline SwXMLItemSetStyleContext_Impl *SwXMLStylesContext_Impl::GetSwStyle(
 }
 
 SvXMLStyleContext *SwXMLStylesContext_Impl::CreateStyleStyleChildContext(
-        sal_uInt16 nFamily, sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInFamily, sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLStyleContext *pStyle = 0;
 
-    switch( nFamily )
+    switch( nInFamily )
     {
     case XML_STYLE_FAMILY_TEXT_PARAGRAPH:
-        pStyle = new SwXMLTextStyleContext_Impl( GetSwImport(), nPrefix,
-                            rLocalName, xAttrList, nFamily, *this );
+        pStyle = new SwXMLTextStyleContext_Impl( GetSwImport(), nInPrefix,
+                            rLocalName, xAttrList, nInFamily, *this );
         break;
     case XML_STYLE_FAMILY_TABLE_TABLE:
     case XML_STYLE_FAMILY_TABLE_COLUMN:
     case XML_STYLE_FAMILY_TABLE_ROW:
     case XML_STYLE_FAMILY_TABLE_CELL:
-        pStyle = new SwXMLItemSetStyleContext_Impl( GetSwImport(), nPrefix,
-                            rLocalName, xAttrList, nFamily  );
+        pStyle = new SwXMLItemSetStyleContext_Impl( GetSwImport(), nInPrefix,
+                            rLocalName, xAttrList, nInFamily  );
         break;
     case XML_STYLE_FAMILY_SD_GRAPHICS_ID:
         // As long as there are no element items, we can use the text
         // style class.
-        pStyle = new XMLTextShapeStyleContext( GetImport(), nPrefix,
-                            rLocalName, xAttrList, *this, nFamily );
+        pStyle = new XMLTextShapeStyleContext( GetImport(), nInPrefix,
+                            rLocalName, xAttrList, *this, nInFamily );
         break;
     default:
-        pStyle = SvXMLStylesContext::CreateStyleStyleChildContext( nFamily,
-                                                                   nPrefix,
+        pStyle = SvXMLStylesContext::CreateStyleStyleChildContext( nInFamily,
+                                                                   nInPrefix,
                                                               rLocalName,
                                                               xAttrList );
         break;
@@ -892,26 +825,26 @@ SvXMLStyleContext *SwXMLStylesContext_Impl::CreateStyleStyleChildContext(
 }
 
 SvXMLStyleContext *SwXMLStylesContext_Impl::CreateDefaultStyleStyleChildContext(
-        sal_uInt16 nFamily, sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInFamily, sal_uInt16 nInPrefix, const OUString& rLocalName,
         const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLStyleContext *pStyle = 0;
 
-    switch( nFamily )
+    switch( nInFamily )
     {
     case XML_STYLE_FAMILY_TEXT_PARAGRAPH:
-        pStyle = new XMLTextStyleContext( GetImport(), nPrefix, rLocalName,
-                                          xAttrList, *this, nFamily,
+        pStyle = new XMLTextStyleContext( GetImport(), nInPrefix, rLocalName,
+                                          xAttrList, *this, nInFamily,
                                           sal_True );
         break;
     case XML_STYLE_FAMILY_SD_GRAPHICS_ID:
         // There are no writer specific defaults for graphic styles!
-        pStyle = new XMLGraphicsDefaultStyle( GetImport(), nPrefix,
+        pStyle = new XMLGraphicsDefaultStyle( GetImport(), nInPrefix,
                             rLocalName, xAttrList, *this );
         break;
     default:
-        pStyle = SvXMLStylesContext::CreateDefaultStyleStyleChildContext( nFamily,
-                                                                   nPrefix,
+        pStyle = SvXMLStylesContext::CreateDefaultStyleStyleChildContext( nInFamily,
+                                                                   nInPrefix,
                                                               rLocalName,
                                                               xAttrList );
         break;
@@ -922,10 +855,10 @@ SvXMLStyleContext *SwXMLStylesContext_Impl::CreateDefaultStyleStyleChildContext(
 
 
 SwXMLStylesContext_Impl::SwXMLStylesContext_Impl(
-        SwXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName,
+        SwXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< xml::sax::XAttributeList > & xAttrList,
         sal_Bool bAuto ) :
-    SvXMLStylesContext( rImport, nPrfx, rLName, xAttrList ),
+    SvXMLStylesContext( rInImport, nPrfx, rLName, xAttrList ),
     bAutoStyles( bAuto )
 {
 }
@@ -934,13 +867,13 @@ SwXMLStylesContext_Impl::~SwXMLStylesContext_Impl()
 {
 }
 
-sal_Bool SwXMLStylesContext_Impl::InsertStyleFamily( sal_uInt16 nFamily ) const
+sal_Bool SwXMLStylesContext_Impl::InsertStyleFamily( sal_uInt16 nInFamily ) const
 {
     const SwXMLImport& rSwImport = GetSwImport();
     sal_uInt16 nStyleFamilyMask = rSwImport.GetStyleFamilyMask();
 
     sal_Bool bIns = sal_True;
-    switch( nFamily )
+    switch( nInFamily )
     {
     case XML_STYLE_FAMILY_TEXT_PARAGRAPH:
         bIns = (nStyleFamilyMask & SFX_STYLE_FAMILY_PARA) != 0;
@@ -963,7 +896,7 @@ sal_Bool SwXMLStylesContext_Impl::InsertStyleFamily( sal_uInt16 nFamily ) const
                  rSwImport.IsBlockMode());
         break;
     default:
-        bIns = SvXMLStylesContext::InsertStyleFamily( nFamily );
+        bIns = SvXMLStylesContext::InsertStyleFamily( nInFamily );
         break;
     }
 
@@ -971,37 +904,37 @@ sal_Bool SwXMLStylesContext_Impl::InsertStyleFamily( sal_uInt16 nFamily ) const
 }
 
 UniReference < SvXMLImportPropertyMapper > SwXMLStylesContext_Impl::GetImportPropertyMapper(
-                        sal_uInt16 nFamily ) const
+                        sal_uInt16 nInFamily ) const
 {
     UniReference < SvXMLImportPropertyMapper > xMapper;
-//  if( XML_STYLE_FAMILY_SD_GRAPHICS_ID == nFamily )
+//  if( XML_STYLE_FAMILY_SD_GRAPHICS_ID == nInFamily )
 //      xMapper = ((SvXMLImport *)&GetImport())->GetTextImport()
 //                   ->GetFrameImportPropertySetMapper();
 //  else
-        xMapper = SvXMLStylesContext::GetImportPropertyMapper( nFamily );
+        xMapper = SvXMLStylesContext::GetImportPropertyMapper( nInFamily );
 
     return xMapper;
 }
 
 Reference < XNameContainer > SwXMLStylesContext_Impl::GetStylesContainer(
-                                                sal_uInt16 nFamily ) const
+                                                sal_uInt16 nInFamily ) const
 {
     Reference < XNameContainer > xStyles;
-    if( XML_STYLE_FAMILY_SD_GRAPHICS_ID == nFamily )
+    if( XML_STYLE_FAMILY_SD_GRAPHICS_ID == nInFamily )
         xStyles = ((SvXMLImport *)&GetImport())->GetTextImport()->GetFrameStyles();
     else
-        xStyles = SvXMLStylesContext::GetStylesContainer( nFamily );
+        xStyles = SvXMLStylesContext::GetStylesContainer( nInFamily );
 
     return xStyles;
 }
 
-OUString SwXMLStylesContext_Impl::GetServiceName( sal_uInt16 nFamily ) const
+OUString SwXMLStylesContext_Impl::GetServiceName( sal_uInt16 nInFamily ) const
 {
     String sServiceName;
-    if( XML_STYLE_FAMILY_SD_GRAPHICS_ID == nFamily )
+    if( XML_STYLE_FAMILY_SD_GRAPHICS_ID == nInFamily )
         sServiceName = OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.style.FrameStyle") );
     else
-        sServiceName = SvXMLStylesContext::GetServiceName( nFamily );
+        sServiceName = SvXMLStylesContext::GetServiceName( nInFamily );
 
     return sServiceName;
 }
@@ -1016,7 +949,7 @@ void SwXMLStylesContext_Impl::EndElement()
 class SwXMLMasterStylesContext_Impl : public XMLTextMasterStylesContext
 {
 protected:
-    virtual sal_Bool InsertStyleFamily( sal_uInt16 nFamily ) const;
+    virtual sal_Bool InsertStyleFamily( sal_uInt16 nInFamily ) const;
 
     SwXMLImport& GetSwImport() { return (SwXMLImport&)GetImport(); }
     const SwXMLImport& GetSwImport() const
@@ -1027,7 +960,7 @@ public:
     TYPEINFO();
 
     SwXMLMasterStylesContext_Impl(
-            SwXMLImport& rImport, sal_uInt16 nPrfx,
+            SwXMLImport& rInImport, sal_uInt16 nPrfx,
             const OUString& rLName ,
             const Reference< xml::sax::XAttributeList > & xAttrList );
     virtual ~SwXMLMasterStylesContext_Impl();
@@ -1037,10 +970,10 @@ public:
 TYPEINIT1( SwXMLMasterStylesContext_Impl, XMLTextMasterStylesContext );
 
 SwXMLMasterStylesContext_Impl::SwXMLMasterStylesContext_Impl(
-        SwXMLImport& rImport, sal_uInt16 nPrfx,
+        SwXMLImport& rInImport, sal_uInt16 nPrfx,
         const OUString& rLName ,
         const Reference< xml::sax::XAttributeList > & xAttrList ) :
-    XMLTextMasterStylesContext( rImport, nPrfx, rLName, xAttrList )
+    XMLTextMasterStylesContext( rInImport, nPrfx, rLName, xAttrList )
 {
 }
 
@@ -1048,16 +981,16 @@ SwXMLMasterStylesContext_Impl::~SwXMLMasterStylesContext_Impl()
 {
 }
 
-sal_Bool SwXMLMasterStylesContext_Impl::InsertStyleFamily( sal_uInt16 nFamily ) const
+sal_Bool SwXMLMasterStylesContext_Impl::InsertStyleFamily( sal_uInt16 nInFamily ) const
 {
     sal_Bool bIns;
 
     const SwXMLImport& rSwImport = GetSwImport();
     sal_uInt16 nStyleFamilyMask = rSwImport.GetStyleFamilyMask();
-    if( XML_STYLE_FAMILY_MASTER_PAGE == nFamily )
+    if( XML_STYLE_FAMILY_MASTER_PAGE == nInFamily )
         bIns = (nStyleFamilyMask & SFX_STYLE_FAMILY_PAGE) != 0;
     else
-        bIns = XMLTextMasterStylesContext::InsertStyleFamily( nFamily );
+        bIns = XMLTextMasterStylesContext::InsertStyleFamily( nInFamily );
 
     return bIns;
 }
@@ -1115,14 +1048,14 @@ void SwXMLImport::UpdateTxtCollConditions( SwDoc *pDoc )
     {
         Reference<XUnoTunnel> xCrsrTunnel( GetTextImport()->GetCursor(),
                                               UNO_QUERY);
-        ASSERT( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
+        OSL_ENSURE( xCrsrTunnel.is(), "missing XUnoTunnel for Cursor" );
         OTextCursorHelper *pTxtCrsr =
                 (OTextCursorHelper*)xCrsrTunnel->getSomething(
                                             OTextCursorHelper::getUnoTunnelId() );
-        ASSERT( pTxtCrsr, "SwXTextCursor missing" );
+        OSL_ENSURE( pTxtCrsr, "SwXTextCursor missing" );
         pDoc = pTxtCrsr->GetDoc();
 
-        ASSERT( pDoc, "document missing" );
+        OSL_ENSURE( pDoc, "document missing" );
     }
 
     const SwTxtFmtColls& rColls = *pDoc->GetTxtFmtColls();
@@ -1158,7 +1091,7 @@ void SwXMLImport::UpdateTxtCollConditions( SwDoc *pDoc )
 }
 
 sal_Bool SwXMLImport::FindAutomaticStyle(
-        sal_uInt16 nFamily,
+        sal_uInt16 nInFamily,
         const OUString& rName,
         const SfxItemSet **ppItemSet,
         OUString *pParent ) const
@@ -1168,7 +1101,7 @@ sal_Bool SwXMLImport::FindAutomaticStyle(
     {
         pStyle = PTR_CAST( SwXMLItemSetStyleContext_Impl,
               GetAutoStyles()->
-                    FindStyleChildContext( nFamily, rName,
+                    FindStyleChildContext( nInFamily, rName,
                                            sal_True ) );
         if( pStyle )
         {
@@ -1197,3 +1130,5 @@ sal_Bool SwXMLImport::FindAutomaticStyle(
     return pStyle != 0;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

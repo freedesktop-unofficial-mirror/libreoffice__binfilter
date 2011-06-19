@@ -42,7 +42,6 @@ TARGET=so3_dialog
 
 SLOFILES=\
         $(SLO)$/insdlg.obj		\
-        $(SLO)$/ipmenu.obj		\
         $(SLO)$/plfilter.obj	\
         $(SLO)$/ipwin.obj
 
@@ -54,6 +53,3 @@ EXCEPTIONSFILES= \
 # --- Targets -------------------------------------------------------
 
 .INCLUDE :  target.mk
-
-.INCLUDE :  $(SUBPRJ)$/util$/target.pmk
-

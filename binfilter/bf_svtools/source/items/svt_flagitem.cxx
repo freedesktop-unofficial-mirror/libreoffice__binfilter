@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/flagitem.hxx>
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {
@@ -74,15 +71,6 @@ SfxFlagItem::SfxFlagItem( const SfxFlagItem& rItem ) :
     nVal( rItem.nVal )
 {
     DBG_CTOR(SfxFlagItem, 0);
-}
-
-// -----------------------------------------------------------------------
-
-SvStream& SfxFlagItem::Store(SvStream &rStream, USHORT) const
-{
-    DBG_CHKTHIS(SfxFlagItem, 0);
-    rStream << nVal;
-    return rStream;
 }
 
 // -----------------------------------------------------------------------
@@ -148,3 +136,5 @@ SfxPoolItem* SfxFlagItem::Clone(SfxItemPool *) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,42 +31,14 @@
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
-#ifndef INCLUDED_SVLDLLAPI_H
-
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_NAMEDVALUE_HPP_
 #include <com/sun/star/beans/NamedValue.hpp>
-#endif
-
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
 namespace binfilter
 {
@@ -144,34 +117,11 @@ enum EViewType
 
     @implements     -
     @base           -
-
     @devstatus      ready to use
 *//*-*************************************************************************************************************/
 
 class  SvtViewOptions: public Options
 {
-    /*
-    #ifdef TF_OLDVIEW
-    public:
-        void                                                                        GetPosition     (       sal_Int32&                                                                  nX              ,
-                                                                                                            sal_Int32&                                                                  nY              ) const;
-        void                                                                        SetPosition     (       sal_Int32                                                                   nX              ,
-                                                                                                            sal_Int32                                                                   nY              );
-        void                                                                        GetSize         (       sal_Int32&                                                                  nWidth          ,
-                                                                                                            sal_Int32&                                                                  nHeight         ) const;
-        void                                                                        SetSize         (       sal_Int32                                                                   nWidth          ,
-                                                                                                            sal_Int32                                                                   nHeight         );
-        ::rtl::OUString                                                             GetUserData     (                                                                                                   ) const;
-        void                                                                        SetUserData     ( const ::rtl::OUString&                                                            sData           );
-        static ::com::sun::star::uno::Sequence< ::rtl::OUString >                   SeperateUserData( const ::rtl::OUString&                                                            sData           ,
-                                                                                                            sal_Unicode                                                                 cSeperator=';'  );
-        static ::rtl::OUString                                                      GenerateUserData( const ::com::sun::star::uno::Sequence< ::rtl::OUString >&                         seqData         ,
-                                                                                                            sal_Unicode                                                                 cSeperator=';'  );
-        ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >   GetAnyData      (                                                                                                   ) const;
-        void                                                                        SetAnyData      ( const ::com::sun::star::uno::Sequence< ::com::sun::star::beans::PropertyValue >&  lData           );
-    #endif
-    */
-
     //-------------------------------------------------------------------------------------------------------------
     //  public methods
     //-------------------------------------------------------------------------------------------------------------
@@ -187,9 +137,7 @@ class  SvtViewOptions: public Options
             @descr      This will de-/initialize an instance with default values.
                         You must give us the basic type of your view and a name which specify right entry
                         in dynamical configuration list. If entry not exist, we create a new one!
-
             @seealso    enum EViewType
-
             @param      "eType" specify type of your view and is used to use right data container!
             @param      "sViewName" specify the name of your view and is the key name in data list too.
             @return     -
@@ -212,12 +160,9 @@ class  SvtViewOptions: public Options
             @descr      These class is threadsafe.
                         We create a static mutex only for one time and use it to protect our refcount and container
                         member!
-
             @seealso    -
-
             @param      -
             @return     A reference to a static mutex member.
-
             @onerror    -
         *//*-*****************************************************************************************************/
 
@@ -259,3 +204,5 @@ class  SvtViewOptions: public Options
 }
 
 #endif  // #ifndef INCLUDED_SVTOOLS_VIEWOPTIONS_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

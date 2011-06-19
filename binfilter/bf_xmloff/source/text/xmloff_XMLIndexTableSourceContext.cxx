@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,34 +27,24 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXTABLESOURCECONTEXT_HXX_
 #include "XMLIndexTableSourceContext.hxx"
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELD_PART_HPP
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 namespace binfilter {
@@ -77,11 +68,11 @@ TYPEINIT1(XMLIndexTableSourceContext, XMLIndexSourceBaseContext);
 
 
 XMLIndexTableSourceContext::XMLIndexTableSourceContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropSet) :
-        XMLIndexSourceBaseContext(rImport, nPrfx, rLocalName,
+        XMLIndexSourceBaseContext(rInImport, nPrfx, rLocalName,
                                   rPropSet, sal_False),
         sCreateFromLabels(RTL_CONSTASCII_USTRINGPARAM(sAPI_CreateFromLabels)),
         sLabelCategory(RTL_CONSTASCII_USTRINGPARAM(sAPI_LabelCategory)),
@@ -96,7 +87,7 @@ XMLIndexTableSourceContext::~XMLIndexTableSourceContext()
 {
 }
 
-static SvXMLEnumMapEntry __READONLY_DATA lcl_aReferenceTypeTokenMap[] =
+static SvXMLEnumMapEntry const lcl_aReferenceTypeTokenMap[] =
 {
 
     { XML_TEXT,                 ReferenceFieldPart::TEXT },
@@ -173,15 +164,15 @@ void XMLIndexTableSourceContext::EndElement()
 
 
 SvXMLImportContext* XMLIndexTableSourceContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( ( XML_NAMESPACE_TEXT == nPrefix ) &&
+    if ( ( XML_NAMESPACE_TEXT == nInPrefix ) &&
          ( IsXMLToken( rLocalName, XML_TABLE_INDEX_ENTRY_TEMPLATE ) ) )
     {
         return new XMLIndexTemplateContext(GetImport(), rIndexPropertySet,
-                                           nPrefix, rLocalName,
+                                           nInPrefix, rLocalName,
                                            aLevelNameTableMap,
                                            XML_TOKEN_INVALID, // no outline-level attr
                                            aLevelStylePropNameTableMap,
@@ -189,10 +180,12 @@ SvXMLImportContext* XMLIndexTableSourceContext::CreateChildContext(
     }
     else
     {
-        return XMLIndexSourceBaseContext::CreateChildContext(nPrefix,
+        return XMLIndexSourceBaseContext::CreateChildContext(nInPrefix,
                                                              rLocalName,
                                                              xAttrList);
     }
 
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

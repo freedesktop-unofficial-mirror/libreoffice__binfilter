@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,37 +30,21 @@
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SV_GDIMTF_HXX
 #include <vcl/gdimtf.hxx>
-#endif
-#ifndef _IPOBJ_HXX
 #include <bf_so3/ipobj.hxx>
-#endif
 
 #include <tools/poly.hxx>
 #include <vcl/outdev.hxx>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>            // fuer SwFmtChg
-#endif
 namespace binfilter {
 
 
@@ -89,7 +74,7 @@ namespace binfilter {
 // fuer Frame- und Grafik-Attributen
 /*N*/ void SwNoTxtNode::NewAttrSet( SwAttrPool& rPool )
 /*N*/ {
-/*N*/   ASSERT( !pAttrSet, "AttrSet ist doch gesetzt" );
+/*N*/   OSL_ENSURE( !pAttrSet, "AttrSet ist doch gesetzt" );
 /*N*/   pAttrSet = new SwAttrSet( rPool, aNoTxtNodeSetRange );
 /*N*/   pAttrSet->SetParent( &GetFmtColl()->GetAttrSet() );
 /*N*/ }
@@ -120,7 +105,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if( !bContourMapModeValid )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   return pContour;
@@ -138,7 +123,7 @@ namespace binfilter {
 /*?*/   {
 /*?*/       const MapMode aGrfMap( GetGraphic().GetPrefMapMode() );
  /*?*/      const MapMode aContourMap( MAP_100TH_MM );
- /*?*/      ASSERT( aGrfMap.GetMapUnit() != MAP_PIXEL ||
+ /*?*/      OSL_ENSURE( aGrfMap.GetMapUnit() != MAP_PIXEL ||
  /*?*/              aGrfMap == MapMode( MAP_PIXEL ),
  /*?*/                  "scale factor for pixel unsupported" );
  /*?*/      if( aGrfMap.GetMapUnit() != MAP_PIXEL &&
@@ -189,7 +174,7 @@ Graphic SwNoTxtNode::GetGraphic() const
     }
     else
     {
-        ASSERT( GetOLENode(), "new type of Node?" );
+        OSL_ENSURE( GetOLENode(), "new type of Node?" );
         SvInPlaceObjectRef xObj( ((SwOLENode*)this)->GetOLEObj().GetOleRef() );
         GDIMetaFile aMtf;
         aRet = xObj->GetGDIMetaFile( aMtf );
@@ -214,3 +199,5 @@ Graphic SwNoTxtNode::GetGraphic() const
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

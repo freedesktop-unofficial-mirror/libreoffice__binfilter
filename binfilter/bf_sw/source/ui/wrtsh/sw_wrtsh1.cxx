@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,58 +31,26 @@
 #pragma hdrstop
 #endif
 
-
-//#if STLPORT_VERSION>=321
-//#include <math.h> // prevent conflict between exception and std::exception
-//#endif
-
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVDVIEW_HXX //autogen
 #include <bf_svx/svdview.hxx>
-#endif
-#ifndef _IPENV_HXX //autogen
 #include <bf_so3/ipenv.hxx>
-#endif
 
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _VISCRS_HXX //autogen wg. SwSelPaintRects
 #include <viscrs.hxx>
-#endif
-#ifndef _SWDTFLVR_HXX
-#include <swdtflvr.hxx>
-#endif
-#ifndef _SWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _WRTSH_HRC
 #include <wrtsh.hrc>
-#endif
 namespace binfilter {
 
-/*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef xObj,
-/*N*/                            const SwRect *pFlyPrtRect,
-/*N*/                            const SwRect *pFlyFrmRect )
+/*N*/ void SwWrtShell::CalcAndSetScale( SvEmbeddedObjectRef, const SwRect *, const SwRect * )
 /*N*/ {
-            DBG_ERROR("Split!");
+            OSL_FAIL("Split!");
 /*N*/ }
 
     void SwWrtShell::ConnectObj( SvInPlaceObjectRef, const SwRect &, const SwRect & )
@@ -98,3 +67,5 @@ namespace binfilter {
         while(PopCrsr(FALSE));
     }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

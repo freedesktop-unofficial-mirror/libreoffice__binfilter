@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _FORMS_EDITBASE_HXX_
 #include "EditBase.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
 
-#ifndef _COM_SUN_STAR_IO_XMARKABLESTREAM_HPP_
 #include <com/sun/star/io/XMarkableStream.hpp>
-#endif
-
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 namespace binfilter {
 
@@ -51,7 +41,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -69,9 +58,9 @@ DBG_NAME( OEditBaseModel )
 OEditBaseModel::OEditBaseModel( const Reference< XMultiServiceFactory >& _rxFactory, const ::rtl::OUString& rUnoControlModelName,
         const ::rtl::OUString& rDefault, const sal_Bool _bSetDelegator )
     :OBoundControlModel( _rxFactory, rUnoControlModelName, rDefault, sal_True, _bSetDelegator )
-    ,m_bFilterProposal(sal_False)
-    ,m_bEmptyIsNull(sal_True)
     ,m_nLastReadVersion(0)
+    ,m_bEmptyIsNull(sal_True)
+    ,m_bFilterProposal(sal_False)
 {
     DBG_CTOR( OEditBaseModel, NULL );
 }
@@ -167,7 +156,7 @@ void OEditBaseModel::read(const Reference<XObjectInputStream>& _rxInStream) thro
     sal_Bool bHandleCommonProps = (nVersion & PF_HANDLE_COMMON_PROPS) != 0;
     nVersion = nVersion & ~PF_SPECIAL_FLAGS;
 
-    sal_uInt16 nOld     = _rxInStream->readShort();
+    /*sal_uInt16 nOld =*/ _rxInStream->readShort();
     _rxInStream >> m_aDefaultText;
 
     if (nVersion >= 0x0003)
@@ -419,3 +408,5 @@ Any OEditBaseModel::getPropertyDefaultByHandle( sal_Int32 nHandle ) const
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

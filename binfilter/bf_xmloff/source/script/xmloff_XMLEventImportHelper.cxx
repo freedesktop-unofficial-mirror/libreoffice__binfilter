@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLEVENTIMPORTHELPER_HXX
 #include "XMLEventImportHelper.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLERROR_HXX
 #include "xmlerror.hxx"
-#endif
 namespace binfilter {
 
 using ::rtl::OUString;
@@ -63,7 +56,7 @@ XMLEventImportHelper::~XMLEventImportHelper()
     FactoryMap::iterator aEnd = aFactoryMap.end();
     for(FactoryMap::iterator aIter = aFactoryMap.begin();
         aIter != aEnd;
-        aIter++ )
+        ++aIter )
     {
         delete aIter->second;
     }
@@ -173,3 +166,5 @@ SvXMLImportContext* XMLEventImportHelper::CreateContext(
     return pContext;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

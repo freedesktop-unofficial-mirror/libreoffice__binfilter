@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,55 +35,31 @@
 
 #include "swerror.h"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"
 #include "ndtxt.hxx"
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
 
-#ifndef _SV_FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX //autogen
 #include <tools/tenccvt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
 #include "sw3imp.hxx"
 #include "ftninfo.hxx"
 #include "pagedesc.hxx"
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////
@@ -386,15 +363,15 @@ namespace binfilter {
 /*?*/
 /*?*/           if( rFmt.GetBrush() )
 /*?*/           {
-/*?*/               USHORT nVersion = rFmt.GetBrush()->GetVersion( (USHORT)pStrm->GetVersion() );
-/*?*/               *pStrm << nVersion;
-/*?*/               rFmt.GetBrush()->Store( *pStrm, nVersion );
+/*?*/               USHORT nVersion2 = rFmt.GetBrush()->GetVersion( (USHORT)pStrm->GetVersion() );
+/*?*/               *pStrm << nVersion2;
+/*?*/               rFmt.GetBrush()->Store( *pStrm, nVersion2 );
 /*?*/           }
 /*?*/           if( rFmt.GetGraphicOrientation() )
 /*?*/           {
-/*?*/               USHORT nVersion = rFmt.GetGraphicOrientation()->GetVersion( (USHORT)pStrm->GetVersion() );
-/*?*/               *pStrm << nVersion;
-/*?*/               rFmt.GetGraphicOrientation()->Store( *pStrm, nVersion );
+/*?*/               USHORT nVersion3 = rFmt.GetGraphicOrientation()->GetVersion( (USHORT)pStrm->GetVersion() );
+/*?*/               *pStrm << nVersion3;
+/*?*/               rFmt.GetGraphicOrientation()->Store( *pStrm, nVersion3 );
 /*?*/           }
 /*N*/       }
 /*N*/   }
@@ -519,10 +496,6 @@ namespace binfilter {
 /*N*/
 /*N*/   // falls es nicht unterstuetzte Formate koennte man sie ueberlesen.
 /*N*/   // Da danach aber nicht sinnvolles kommt, lassen wir das erstmal
-/*N*/ #if 0
-/*N*/   for( i = nKnownFmt; Good() && i < nFmt; i++ )
-/*N*/       SkipRec();
-/*N*/ #endif
 /*N*/
 /*N*/ #ifdef NUM_RELSPACE
 /*N*/   if( SWG_OUTLINE == cType && !IsVersion(SWG_NUMRELSPACE) )
@@ -533,9 +506,9 @@ namespace binfilter {
 /*N*/
 /*N*/       const SwTxtFmtColls *pColls = pDoc->GetTxtFmtColls();
 /*N*/       USHORT nArrLen = pColls->Count();
-/*N*/       for( USHORT i=0; i<nArrLen; i++ )
+/*N*/       for( USHORT ii=0; ii<nArrLen; ii++ )
 /*N*/       {
-/*N*/           SwTxtFmtColl* pColl = (*pColls)[i];
+/*N*/           SwTxtFmtColl* pColl = (*pColls)[ii];
 /*N*/           BYTE nLevel = pColl->GetOutlineLevel();
 /*N*/           if( NO_NUMBERING != nLevel )
 /*N*/           {
@@ -652,7 +625,7 @@ namespace binfilter {
 /*N*/   CloseFlagRec();
 /*N*/
 /*N*/   const SwNumRule *pOutline = pDoc->GetOutlineNumRule();
-/*N*/   ASSERT( pOutline, "Wo ist die Outline-NumRule?" );
+/*N*/   OSL_ENSURE( pOutline, "Wo ist die Outline-NumRule?" );
 /*N*/
 /*N*/   // Hier stehen jetzt die Original-linken-Abstaende der Outline-NumRule.
 /*N*/   for( BYTE i=0; i<nFmts; i++ )
@@ -664,7 +637,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( pOutline && nLevel < MAXLEVEL )
 /*N*/       {
-/*N*/           ASSERT( pOutline->GetNumFmt(nLevel), "Format nicht gesetzt?" );
+/*N*/           OSL_ENSURE( pOutline->GetNumFmt(nLevel), "Format nicht gesetzt?" );
 /*N*/           short nFirstLineOffset = pOutline->Get(nLevel).GetFirstLineOffset();
 /*N*/           pDoc->SetOutlineLSpace( nLevel, nFirstLineOffset, nAbsLSpace );
 /*N*/       }
@@ -779,9 +752,9 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/               // Im 5.0-Format wird der linke Abstand der Vorlage auf
 /*N*/               // den Wert der NumRule addiert und der Original-Wert
 /*N*/               // getrennt gespeichert.
-/*N*/               ASSERT( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
-/*N*/               ASSERT( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
-/*N*/               ASSERT( bOutline, "Doch keine Kapitel-Numerierung?" );
+/*N*/               OSL_ENSURE( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
+/*N*/               OSL_ENSURE( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
+/*N*/               OSL_ENSURE( bOutline, "Doch keine Kapitel-Numerierung?" );
 /*N*/               const SvxLRSpaceItem& rLRSpace = ppTxtColls[i]->GetLRSpace();
 /*N*/               if( rLRSpace.GetTxtLeft() > 0 )
 /*N*/               {
@@ -801,7 +774,7 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/               }
 /*N*/           }
 /*N*/           else if( bOutline && IsSw31Or40Export() &&
-/*N*/                    (pFmt->GetAbsLSpace() > 0U ||
+/*N*/                    (pFmt->GetAbsLSpace() > 0 ||
 /*N*/                     pFmt->GetFirstLineOffset() != 0) )
 /*N*/           {
 /*N*/               // Im 3.1- oder 4.0-Format gab es noch keinen linken Abstand
@@ -833,8 +806,8 @@ typedef const SwTxtFmtColl *Sw3TxtFmtCollPtrConst;
 /*N*/ #ifdef NUM_RELSPACE
 /*N*/   if( ppTxtColls && nAbsLSpaceChanged > 0 )
 /*N*/   {
-/*N*/       ASSERT( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
-/*N*/       ASSERT( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
+/*N*/       OSL_ENSURE( !IsSw31Or40Export(), "Doch 3.1/4.0-Export?" );
+/*N*/       OSL_ENSURE( !rRule.IsAbsSpaces(), "Doch absolute Abstaende?" );
 /*N*/
 /*N*/       OpenRec( SWG_OUTLINEEXT );
 /*N*/       *pStrm  << (BYTE)0x01
@@ -861,11 +834,11 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
     rDst.SetPoolHlpFileId( rSrc.GetPoolHlpFileId() );
     rDst.SetContinusNum( rSrc.IsContinusNum() );
 
-    ASSERT( rDst.GetPoolFmtId() == rSrc.GetPoolFmtId(),
+    OSL_ENSURE( rDst.GetPoolFmtId() == rSrc.GetPoolFmtId(),
             "NumRule-PoolIds sind unterschiedlich" );
-    ASSERT( rDst.IsAutoRule() == rSrc.IsAutoRule(),
+    OSL_ENSURE( rDst.IsAutoRule() == rSrc.IsAutoRule(),
             "NumRule-Auto-Flags sind unterschiedlich" );
-    ASSERT( rDst.GetName() == rSrc.GetName(),
+    OSL_ENSURE( rDst.GetName() == rSrc.GetName(),
             "NumRule-Namen sind unterschiedlich" );
 
     rDst.SetInvalidRule( TRUE );
@@ -966,7 +939,7 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/
 /*N*/                   if( bInsertRule )
 /*N*/                   {
-/*N*/                       ASSERT( !pDoc->FindNumRulePtr( pRule->GetName() ),
+/*N*/                       OSL_ENSURE( !pDoc->FindNumRulePtr( pRule->GetName() ),
 /*N*/                               "NumRule existiert bereits" );
 /*N*/                       pDoc->MakeNumRule( pRule->GetName(), pRule );
 /*N*/                   }
@@ -980,28 +953,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/                   pRule = InNumRule( cType );
 /*N*/                   if( pRule )
 /*N*/                   {
-/*N*/ #if 0
-/*N*/                       if( nVersion < SWG_DELETEOLE )
-/*N*/                       {
-/*N*/                           //JP 18.01.96: Alle Ueberschriften sind normalerweise
-/*N*/                           //  ohne Kapitelnummer. Darum hier explizit abschalten
-/*N*/                           //  weil das Default jetzt wieder auf AN ist.
-/*N*/                           // und UeberschirftBasis ohne Einrueckung!
-/*N*/                           SwTxtFmtColl* pCol = pDoc->GetTxtCollFromPool(
-/*N*/                                               RES_POOLCOLL_HEADLINE_BASE );
-/*N*/                           pCol->ResetAttr( RES_LR_SPACE );
-/*N*/
-/*N*/                           for( short i = 0; i < MAXLEVEL; i++ )
-/*N*/                           {
-/*N*/                               if( !pRule->GetNumFmt( i ) )
-/*N*/                               {
-/*N*/                                   SwNumFmt aFmt( pRule->Get( i ) );
-/*N*/                                   aFmt.eType = NUMBER_NONE;
-/*N*/                                   pRule->Set( i, aFmt );
-/*N*/                               }
-/*N*/                           }
-/*N*/                       }
-/*N*/ #endif
 /*N*/                       pDoc->SetOutlineNumRule( *pRule );
 /*N*/                   }
 /*N*/                   delete pRule;
@@ -1519,3 +1470,5 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,72 +35,30 @@
 
 #define _SVSTDARR_STRINGSDTOR
 
-#ifndef _SFXEVENT_HXX //autogen
 #include <bf_sfx2/event.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_COLORCFG_HXX
 #include <bf_svtools/colorcfg.hxx>
-#endif
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
-#ifndef _SFX_WHITER_HXX //autogen
 #include <bf_svtools/whiter.hxx>
-#endif
-#ifndef _SFXISETHINT_HXX //autogen
 #include <bf_svtools/isethint.hxx>
-#endif
-#ifndef _SVTOOLS_CTLOPTIONS_HXX
 #include <bf_svtools/ctloptions.hxx>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _WRTSH_HXX
 #include <wrtsh.hxx>
-#endif
-#ifndef _CMDID_H
 #include <cmdid.h>          // Funktion-Ids
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _GLOBALS_H
 #include <globals.h>        // globale Konstanten z.B.
-#endif
-#ifndef _APP_HRC
 #include <app.hrc>
-#endif
-#ifndef _USRPREF_HXX //autogen
 #include <usrpref.hxx>
-#endif
-#ifndef _PRTOPT_HXX //autogen
 #include <prtopt.hxx>
-#endif
-#ifndef _MODOPT_HXX //autogen
 #include <modcfg.hxx>
-#endif
-#ifndef _FONTCFG_HXX //autogen
 #include <fontcfg.hxx>
-#endif
-#ifndef _BARCFG_HXX
 #include <barcfg.hxx>
-#endif
-#ifndef _UINUMS_HXX //autogen
 #include <uinums.hxx>
-#endif
-#ifndef _DBCONFIG_HXX
 #include <dbconfig.hxx>
-#endif
 
 #include <bf_sfx2/app.hxx>
 #include <bf_svx/svxids.hrc>
@@ -110,16 +69,14 @@ using namespace ::com::sun::star;
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
 
-#ifndef _CFGID_H
 #include <cfgid.h>
-#endif
 
 #include <shells.hrc>
 #include "bf_so3/staticbaseurl.hxx"
 
 namespace binfilter {
 
-/*M*/ void SwModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*M*/ void SwModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*M*/ {
 /*M*/   if( rHint.ISA( SfxEventHint ) )
 /*M*/   {
@@ -130,19 +87,11 @@ namespace binfilter {
 /*M*/           SwWrtShell* pWrtSh = pDocSh ? pDocSh->GetWrtShell() : 0;
 /*M*/           switch( rEvHint.GetEventId() )
 /*M*/           {
-/*          MA 07. Mar. 96: UpdateInputFlds() nur noch bei Dokument neu.
-                                (Und bei Einfuegen Textbaust.)
-                case SFX_EVENT_OPENDOC:
-                // dann am aktuellen Dokument die Input-Fedler updaten
-                if( pWrtSh )
-                    pWrtSh->UpdateInputFlds();
-                break;
-*/
 /*M*/           case SFX_EVENT_CREATEDOC:
 /*M*/               // alle FIX-Date/Time Felder auf akt. setzen
 /*M*/               if( pWrtSh )
 /*M*/               {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pWrtSh->SetFixFields();
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*M*/               }
 /*M*/               break;
 /*M*/           }
@@ -152,7 +101,7 @@ namespace binfilter {
 /*M*/   {
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().GetItemState(SID_ATTR_PATHNAME))
 /*M*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ::GetGlossaries()->UpdateGlosPath( sal_False );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*M*/       }
 /*M*/
 /*M*/       if( SFX_ITEM_SET == ((SfxItemSetHint&)rHint).GetItemSet().
@@ -164,7 +113,7 @@ namespace binfilter {
 /*M*/         ULONG nHintId = ((SfxSimpleHint&)rHint).GetId();
 /*M*/         if(SFX_HINT_COLORS_CHANGED == nHintId ||
 /*N*/            SFX_HINT_ACCESSIBILITY_CHANGED == nHintId )
-/*M*/         {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/         {DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         else if( SFX_HINT_CTL_SETTINGS_CHANGED == nHintId )
 /*N*/         {
@@ -201,18 +150,13 @@ namespace binfilter {
 /*M*/   }
 /*M*/ }
 
-/* -----------------------------20.02.01 12:43--------------------------------
-
- ---------------------------------------------------------------------------*/
 /*N*/ SwDBConfig*   SwModule::GetDBConfig()
 /*N*/ {
 /*N*/   if(!pDBConfig)
 /*N*/       pDBConfig = new SwDBConfig;
 /*N*/   return pDBConfig;
 /*N*/ }
-/* -----------------------------11.04.2002 15:27------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ ColorConfig& SwModule::GetColorConfig()
 /*N*/ {
 /*N*/     if(!pColorConfig)
@@ -233,9 +177,7 @@ SvtCTLOptions& SwModule::GetCTLOptions()
     }
     return *pCTLOptions;
 }
-/*-----------------30.01.97 08.30-------------------
 
---------------------------------------------------*/
 /*N*/ const SwMasterUsrPref *SwModule::GetUsrPref(sal_Bool bWeb) const
 /*N*/ {
 /*N*/   SwModule* pNonConstModule = (SwModule*)this;
@@ -254,3 +196,5 @@ SvtCTLOptions& SwModule::GetCTLOptions()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

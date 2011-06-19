@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,94 +32,38 @@
 
 #include "hintids.hxx"
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
-#ifndef _SVX_FMGLOB_HXX
 #include <bf_svx/fmglob.hxx>
-#endif
-#ifndef _SVDOGRP_HXX //autogen
 #include <bf_svx/svdogrp.hxx>
-#endif
-#ifndef _SVDVITER_HXX
 #include <bf_svx/svdviter.hxx>
-#endif
-#ifndef _SVDVIEW_HXX
 #include <bf_svx/svdview.hxx>
-#endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _VIEWIMP_HXX //autogen
 #include <viewimp.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _ROOTFRM_HXX
 #include <rootfrm.hxx>
-#endif
-#ifndef _FRMTOOL_HXX
 #include <frmtool.hxx>  // Notify_Background
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _DFLYOBJ_HXX
 #include <dflyobj.hxx>
-#endif
-#ifndef _DCONTACT_HXX
 #include <dcontact.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
 
-// #108784#
-#ifndef _XOUTX_HXX
 #include <bf_svx/xoutx.hxx>
-#endif
 
-// OD 18.06.2003 #108784#
 #include <algorithm>
 namespace binfilter {
 
@@ -227,9 +172,6 @@ namespace binfilter {
 |*
 |*  SwContact, Ctor und Dtor
 |*
-|*  Ersterstellung      AMA 27.Sep.96 18:13
-|*  Letzte Aenderung    AMA 27.Sep.96
-|*
 |*************************************************************************/
 
 /*N*/ SwContact::SwContact( SwFrmFmt *pToRegisterIn, SdrObject *pObj ) :
@@ -250,8 +192,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-// OD 13.05.2003 #108784# - copied inline-implementation of <GetMaster()> and
-// <SetMaster()>
+// copied inline-implementation of <GetMaster()> and <SetMaster()>
 /*N*/ const SdrObject* SwContact::GetMaster() const
 /*N*/ {
 /*N*/     return pMasterObj;
@@ -269,12 +210,9 @@ namespace binfilter {
 |*
 |*  SwFlyDrawContact, Ctor und Dtor
 |*
-|*  Ersterstellung      OK 23.11.94 18:13
-|*  Letzte Aenderung    MA 06. Apr. 95
-|*
 |*************************************************************************/
 
-/*N*/ SwFlyDrawContact::SwFlyDrawContact( SwFlyFrmFmt *pToRegisterIn, SdrModel *pMod ) :
+/*N*/ SwFlyDrawContact::SwFlyDrawContact( SwFlyFrmFmt *pToRegisterIn, SdrModel* /*pMod*/ ) :
 /*N*/   SwContact( pToRegisterIn )
 /*N*/ {
 /*N*/   SetMaster( new SwFlyDrawObj() );
@@ -285,9 +223,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyDrawContact::CreateNewRef()
-|*
-|*  Ersterstellung      MA 14. Dec. 94
-|*  Letzte Aenderung    MA 24. Apr. 95
 |*
 |*************************************************************************/
 
@@ -314,21 +249,15 @@ namespace binfilter {
 |*
 |*  SwFlyDrawContact::Modify()
 |*
-|*  Ersterstellung      OK 08.11.94 10:21
-|*  Letzte Aenderung    MA 06. Dec. 94
-|*
 |*************************************************************************/
 
-/*N*/ void SwFlyDrawContact::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
+/*N*/ void SwFlyDrawContact::Modify( SfxPoolItem* /*pOld*/, SfxPoolItem* /*pNew*/ )
 /*N*/ {
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwDrawContact, Ctor+Dtor
-|*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 22. Jul. 98
 |*
 |*************************************************************************/
 /*N*/ bool CheckControlLayer( const SdrObject *pObj )
@@ -357,7 +286,7 @@ namespace binfilter {
 /*N*/   //Gruppenobjekte, wenn diese Controls enthalten.
 /*N*/     if ( ::binfilter::CheckControlLayer( pObj ) )
 /*N*/     {
-/*N*/         // OD 25.06.2003 #108784# - set layer of object to corresponding invisible layer.
+/*N*/         // set layer of object to corresponding invisible layer.
 /*N*/         pObj->SetLayer( pToRegisterIn->GetDoc()->GetInvisibleControlsId() );
 /*N*/     }
 /*N*/ }
@@ -366,14 +295,14 @@ namespace binfilter {
 /*N*/ {
 /*N*/     DisconnectFromLayout();
 /*N*/
-/*N*/     // OD 25.06.2003 #108784# - remove 'master' from drawing page
+/*N*/     // remove 'master' from drawing page
 /*N*/     RemoveMasterFromDrawPage();
 /*N*/
 /*N*/     // remove and destroy 'virtual' drawing objects.
 /*N*/     RemoveAllVirtObjs();
 /*N*/ }
 
-// OD 23.06.2003 #108784# - method to create a new 'virtual' drawing object.
+// method to create a new 'virtual' drawing object.
 /*N*/ SwDrawVirtObj* SwDrawContact::CreateVirtObj()
 /*N*/ {
 /*N*/     // determine 'master'
@@ -388,7 +317,7 @@ namespace binfilter {
 /*N*/     return pNewDrawVirtObj;
 /*N*/ }
 
-// OD 23.06.2003 #108784# - destroys a given 'virtual' drawing object.
+// destroys a given 'virtual' drawing object.
 // side effect: 'virtual' drawing object is removed from data structure
 //              <maDrawVirtObjs>.
 /*N*/ void SwDrawContact::DestroyVirtObj( SwDrawVirtObj* _pVirtObj )
@@ -400,7 +329,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/ }
 
-// OD 16.05.2003 #108784# - add a 'virtual' drawing object to drawing page.
+// add a 'virtual' drawing object to drawing page.
 // Use an already created one, which isn't used, or create a new one.
 /*N*/ SwDrawVirtObj* SwDrawContact::AddVirtObj()
 /*N*/ {
@@ -426,7 +355,7 @@ namespace binfilter {
 /*N*/     return pAddedDrawVirtObj;
 /*N*/ }
 
-// OD 16.05.2003 #108784# - remove 'virtual' drawing objects and destroy them.
+// remove 'virtual' drawing objects and destroy them.
 /*N*/ void SwDrawContact::RemoveAllVirtObjs()
 /*N*/ {
 /*N*/     for ( std::list<SwDrawVirtObj*>::iterator aDrawVirtObjsIter = maDrawVirtObjs.begin();
@@ -442,20 +371,20 @@ namespace binfilter {
 /*N*/     maDrawVirtObjs.clear();
 /*N*/ }
 
-// OD 16.05.2003 #108784# - overload <SwContact::SetMaster(..)> in order to
+// overload <SwContact::SetMaster(..)> in order to
 // assert, if the 'master' drawing object is replaced.
-// OD 10.07.2003 #110742# - replace of master object correctly handled, if
+// replace of master object correctly handled, if
 // handled by method <SwDrawContact::ChangeMasterObject(..)>. Thus, assert
 // only, if a debug level is given.
 /*N*/ void SwDrawContact::SetMaster( SdrObject* pNew )
 /*N*/ {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/     ASSERT( !pNew, "debug notification - master replaced!" );
+/*N*/     OSL_ENSURE( !pNew, "debug notification - master replaced!" );
 /*N*/ #endif
 /*N*/     SwContact::SetMaster( pNew );
 /*N*/ }
 
-// OD 19.06.2003 #108784# - get drawing object ('master' or 'virtual') by frame.
+// get drawing object ('master' or 'virtual') by frame.
 /*N*/ SdrObject* SwDrawContact::GetDrawObjectByAnchorFrm( const SwFrm& _rAnchorFrm )
 /*N*/ {
 /*N*/     SdrObject* pRetDrawObj = 0L;
@@ -483,9 +412,6 @@ namespace binfilter {
 |*
 |*  SwDrawContact::Changed
 |*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 29. May. 96
-|*
 |*************************************************************************/
 
 /*N*/ void lcl_Notify( SwDrawContact* pThis, const Rectangle* pOldBoundRect )
@@ -494,7 +420,7 @@ namespace binfilter {
 /*N*/   if( pAnch )
 /*N*/   {
 /*N*/       SwPageFrm *pPage = pAnch->FindPageFrm();
-/*N*/       ASSERT( GetUserCall(pThis->GetMaster()) == pThis, "Wrong Master" );
+/*N*/       OSL_ENSURE( GetUserCall(pThis->GetMaster()) == pThis, "Wrong Master" );
 /*N*/       if( pOldBoundRect && pPage )
 /*N*/       {
 /*N*/           SwRect aOldRect( *pOldBoundRect );
@@ -512,12 +438,11 @@ namespace binfilter {
 /*N*/       }
 /*N*/       ClrContourCache( pThis->GetMaster() );
 /*N*/
-/*N*/         // OD 03.07.2003 #108784# - notify background of all 'virtual' drawing objects
+/*N*/         // snotify background of all 'virtual' drawing objects
 /*N*/         pThis->NotifyBackgrdOfAllVirtObjs( pOldBoundRect );
 /*N*/   }
 /*N*/ }
 
-// OD 03.07.2003 #108784#
 /*N*/ void SwDrawContact::NotifyBackgrdOfAllVirtObjs( const Rectangle* pOldBoundRect )
 /*N*/ {
 /*N*/     for ( std::list<SwDrawVirtObj*>::iterator aDrawVirtObjIter = maDrawVirtObjs.begin();
@@ -527,13 +452,13 @@ namespace binfilter {
 /*N*/         SwDrawVirtObj* pDrawVirtObj = (*aDrawVirtObjIter);
 /*N*/         if ( pDrawVirtObj->GetAnchorFrm() )
 /*N*/         {
-/*N*/             SwPageFrm* pPage = pDrawVirtObj->GetAnchorFrm()->FindPageFrm();
-/*N*/             if( pOldBoundRect && pPage )
+/*N*/             SwPageFrm* pPage2 = pDrawVirtObj->GetAnchorFrm()->FindPageFrm();
+/*N*/             if( pOldBoundRect && pPage2 )
 /*N*/             {
 /*N*/                 SwRect aOldRect( *pOldBoundRect );
 /*N*/                 aOldRect.Pos() += pDrawVirtObj->GetOffset();
 /*N*/                 if( aOldRect.HasArea() )
-/*N*/                     Notify_Background( pDrawVirtObj ,pPage,
+/*N*/                     Notify_Background( pDrawVirtObj ,pPage2,
 /*N*/                                        aOldRect, PREP_FLY_LEAVE,TRUE);
 /*N*/             }
 /*N*/             SwRect aRect( pDrawVirtObj->GetBoundRect() );
@@ -589,7 +514,7 @@ namespace binfilter {
 /*N*/                               const Rectangle* pOldBoundRect )
 /*N*/ {
 /*N*/   BOOL bInCntnt = FLY_IN_CNTNT == GetFmt()->GetAnchor().GetAnchorId();
-/*N*/     /// OD 05.08.2002 #100843# - do *not* notify, if document is destructing
+/*N*/     /// do *not* notify, if document is destructing
 /*N*/     BOOL bNotify = !bInCntnt &&
 /*N*/                    !(GetFmt()->GetDoc()->IsInDtor()) &&
 /*N*/                    ( SURROUND_THROUGHT != GetFmt()->GetSurround().GetSurround() );
@@ -669,6 +594,8 @@ namespace binfilter {
 /*N*/           if( bNotify )
 /*N*/               lcl_Notify( this, pOldBoundRect );
 /*N*/           break;
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/ }
 
@@ -676,12 +603,9 @@ namespace binfilter {
 |*
 |*  SwDrawContact::Modify()
 |*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 03. Dec. 95
-|*
 |*************************************************************************/
 
-/*N*/ void SwDrawContact::Modify( SfxPoolItem *pOld, SfxPoolItem *pNew )
+/*N*/ void SwDrawContact::Modify( SfxPoolItem* /*pOld*/, SfxPoolItem* pNew )
 /*N*/ {
 /*N*/   //Es kommen immer Sets herein.
 /*N*/   //MA 03. Dec. 95: Falsch es kommen nicht immer Sets herein
@@ -758,15 +682,11 @@ namespace binfilter {
 |*
 |*  SwDrawContact::DisconnectFromLayout()
 |*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 25. Mar. 99
-|*
 |*************************************************************************/
 
 void SwDrawContact::DisconnectFromLayout( bool _bMoveMasterToInvisibleLayer )
 {
-    // OD 16.05.2003 #108784# - remove 'virtual' drawing objects from writer
-    // layout and from drawing page
+    // remove 'virtual' drawing objects from writer layout and from drawing page
     for ( std::list<SwDrawVirtObj*>::iterator aDisconnectIter = maDrawVirtObjs.begin();
           aDisconnectIter != maDrawVirtObjs.end();
           ++aDisconnectIter )
@@ -790,9 +710,8 @@ void SwDrawContact::DisconnectFromLayout( bool _bMoveMasterToInvisibleLayer )
             pView->MarkObj( GetMaster(), pView->GetPageViewPvNum(0), TRUE );
         }
 
-        // OD 25.06.2003 #108784# - Instead of removing 'master' object from
-        // drawing page, move the 'master' drawing object into the corresponding
-        // invisible layer.
+        // Instead of removing 'master' object from drawing page, move
+        // the 'master' drawing object into the corresponding invisible layer.
         {
             //((SwFrmFmt*)pRegisteredIn)->GetDoc()->GetDrawModel()->GetPage(0)->
             //                            RemoveObject( GetMaster()->GetOrdNum() );
@@ -807,8 +726,7 @@ void SwDrawContact::DisconnectFromLayout( bool _bMoveMasterToInvisibleLayer )
     }
 }
 
-// OD 26.06.2003 #108784# - method to remove 'master' drawing object
-// from drawing page.
+// method to remove 'master' drawing object from drawing page.
 void SwDrawContact::RemoveMasterFromDrawPage()
 {
     if ( GetMaster() )
@@ -822,8 +740,7 @@ void SwDrawContact::RemoveMasterFromDrawPage()
     }
 }
 
-// OD 19.06.2003 #108784# - disconnect for a dedicated drawing object -
-// could be 'master' or 'virtual'.
+// disconnect for a dedicated drawing object - could be 'master' or 'virtual'.
 // a 'master' drawing object will disconnect a 'virtual' drawing object
 // in order to take its place.
 /*N*/ void SwDrawContact::DisconnectObjFromLayout( SdrObject* _pDrawObj )
@@ -881,9 +798,6 @@ void SwDrawContact::RemoveMasterFromDrawPage()
 |*
 |*  SwDrawContact::ConnectToLayout()
 |*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 25. Mar. 99
-|*
 |*************************************************************************/
 
 void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
@@ -896,7 +810,7 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
         return;
     }
 
-    // OD 16.05.2003 #108784# - remove 'virtual' drawing objects from writer
+    // remove 'virtual' drawing objects from writer
     // layout and from drawing page, and remove 'master' drawing object from
     // writer layout - 'master' object will remain in drawing page.
     DisconnectFromLayout( false );
@@ -913,17 +827,17 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
         case FLY_PAGE:
             {
                 USHORT nPgNum = pAnch->GetPageNum();
-                SwPageFrm *pPage = static_cast<SwPageFrm*>(pRoot->Lower());
+                SwPageFrm *pPage3 = static_cast<SwPageFrm*>(pRoot->Lower());
 
-                for ( USHORT i = 1; i < nPgNum && pPage; ++i )
+                for ( USHORT i = 1; i < nPgNum && pPage3; ++i )
                 {
-                    pPage = static_cast<SwPageFrm*>(pPage->GetNext());
+                    pPage3 = static_cast<SwPageFrm*>(pPage3->GetNext());
                 }
 
-                if ( pPage )
+                if ( pPage3 )
                 {
                     bSetAnchorPos = false;
-                    pPage->SwFrm::AppendDrawObj( this );
+                    pPage3->SwFrm::AppendDrawObj( this );
                 }
                 else
                     //Sieht doof aus, ist aber erlaubt (vlg. SwFEShell::SetPageObjsNewPage)
@@ -940,9 +854,8 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                 {
                     ClrContourCache( GetMaster() );
                 }
-                // OD 16.05.2003 #108784# - support drawing objects in header/footer,
-                // but not control objects:
-                // anchor at first found frame the 'master' object and
+                // support drawing objects in header/footer, but not control
+                // objects: anchor at first found frame the 'master' object and
                 // at the following frames 'virtual' drawing objects.
                 // Note: method is similar to <SwFlyFrmFmt::MakeFrms(..)>
                 SwModify *pModify = 0;
@@ -1000,13 +913,13 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
 
                         if ( !pAnchorFrmOfMaster )
                         {
-                            // OD 02.07.2003 #108784# - check, if 'master' drawing
+                            // check, if 'master' drawing
                             // objects is inserted into drawing page. If not,
                             // assert and insert 'master' drawing object.
                             if ( !GetMaster()->IsInserted() )
                             {
-                                // OD 25.06.2003 #108784# - debug assert
-                                ASSERT( false, "<SwDrawContact::ConnectToLayout(..)> - master drawing object not inserted!?" );
+                                // debug assert
+                                OSL_FAIL( "<SwDrawContact::ConnectToLayout(..)> - master drawing object not inserted!?" );
 
                                 pDrawFrmFmt->GetDoc()->GetDrawModel()->GetPage(0)->
                                     InsertObject( GetMaster(), GetMaster()->GetOrdNumDirect() );
@@ -1037,73 +950,15 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
                 }
             }
             break;
-/*
-        case FLY_AT_FLY:
-            {
-                if( pAnch->GetCntntAnchor() ) // LAYER_IMPL
-                {
-                    SwFrm *pAnchor = 0;
-                    //Erst einmal ueber den Inhalt suchen, weil konstant schnell. Kann
-                    //Bei verketteten Rahmen aber auch schief gehen, weil dann evtl.
-                    //niemals ein Frame zu dem Inhalt existiert. Dann muss leider noch
-                    //die Suche vom StartNode zum FrameFormat sein.
-                    SwNodeIndex aIdx( pAnch->GetCntntAnchor()->nNode );
-                    SwCntntNode *pCNd = pFmt->GetDoc()->GetNodes().GoNext( &aIdx );
-                    if ( pCNd && 0 != (pAnchor = pCNd->GetFrm( 0, 0, FALSE ) ) )
-                        pAnchor = pAnchor->FindFlyFrm();
-                    else
-                    {
-                        const SwNodeIndex &rIdx = pAnch->GetCntntAnchor()->nNode;
-                        SwSpzFrmFmts& rFmts = *pFmt->GetDoc()->GetSpzFrmFmts();
-                        for( USHORT i = 0; i < rFmts.Count(); ++i )
-                        {
-                            SwFrmFmt *pFmt = rFmts[i];
-                            SwFlyFrmFmt* pFlyFmt;
-                            if( 0 != (pFlyFmt = PTR_CAST( SwFlyFrmFmt, pFmt )) &&
-                                pFlyFmt->GetCntnt().GetCntntIdx() && //#57390#, Reader
-                                rIdx == *pFlyFmt->GetCntnt().GetCntntIdx() )
-                            {
-                                pAnchor = pFlyFmt->GetFrm( 0, FALSE );
-                                break;
-                            }
-                        }
-                    }
-                    if ( pAnchor )  //Kann sein, dass der Anker noch nicht existiert
-                    {
-                        pAnchor->FindFlyFrm()->AppendDrawObj( this );
-                        bSetAnchorPos = false;
-                    }
-                }
-            }
+        default:
             break;
-*/
-/*
-        case FLY_IN_CNTNT:
-            {
-                ClrContourCache( GetMaster() );
-                SwCntntNode *pNode = GetFmt()->GetDoc()->
-                        GetNodes()[pAnch->GetCntntAnchor()->nNode]->GetCntntNode();
-                SwCntntFrm *pCntnt = pNode->GetFrm( 0, 0, FALSE );
-                if ( pCntnt )
-                {
-                    //Kann sein, dass der Anker noch nicht existiert
-                    pCntnt->AppendDrawObj( this );
-                    pCntnt->InvalidatePrt();
-                }
-                bSetAnchorPos = false;
-            }
-            break;
-*/
-#ifdef DBG_UTIL
-        default:    ASSERT( FALSE, "Unknown Anchor." );
-#endif
     }
     if ( GetAnchor() )
     {
         if( bSetAnchorPos )
         {
             GetMaster()->SetAnchorPos( GetAnchor()->GetFrmAnchorPos( ::binfilter::HasWrap( GetMaster() ) ) );
-    }
+        }
         if ( !pDrawFrmFmt->GetDoc()->IsVisibleLayerId( GetMaster()->GetLayer() ) )
         {
             SdrLayerID nVisibleLayerId =
@@ -1113,7 +968,7 @@ void SwDrawContact::ConnectToLayout( const SwFmtAnchor* pAnch )
     }
 }
 
-// OD 20.06.2003 #108784# - method in order to correct relative positioning of
+// method in order to correct relative positioning of
 // 'virtual' drawing objects, e.g. caused by a <NbcSetAnchorPos(..)> at the
 // 'master' drawing object.
 void SwDrawContact::CorrectRelativePosOfVirtObjs()
@@ -1127,8 +982,8 @@ void SwDrawContact::CorrectRelativePosOfVirtObjs()
     }
 }
 
-// OD 20.06.2003 #108784# - correct in-direct movements of the 'virtual'
-// drawing objects, e.g. caused by a <NbcMove(..)> at the 'master' drawing object
+// correct in-direct movements of the 'virtual' drawing objects,
+// e.g. caused by a <NbcMove(..)> at the 'master' drawing object
 void SwDrawContact::MoveOffsetOfVirtObjs( const Size& _rMoveSize )
 {
     for ( std::list<SwDrawVirtObj*>::iterator aDrawVirtObjIter = maDrawVirtObjs.begin();
@@ -1140,7 +995,7 @@ void SwDrawContact::MoveOffsetOfVirtObjs( const Size& _rMoveSize )
     }
 }
 
-// OD 26.06.2003 #108784# - invalidate anchor frames of 'virtual' drawing objects.
+// invalidate anchor frames of 'virtual' drawing objects.
 // Needed for, e.g., 'as character' anchored drawing objects and a change of the
 // 'master' drawing object.
 void SwDrawContact::InvalidateAnchorOfVirtObjs()
@@ -1161,9 +1016,6 @@ void SwDrawContact::InvalidateAnchorOfVirtObjs()
 |*
 |*  SwDrawContact::FindPage(), ChkPage()
 |*
-|*  Ersterstellung      MA 21. Mar. 95
-|*  Letzte Aenderung    MA 19. Jul. 96
-|*
 |*************************************************************************/
 
 SwPageFrm* SwDrawContact::FindPage( const SwRect &rRect )
@@ -1182,9 +1034,8 @@ void SwDrawContact::ChkPage()
         pPage : FindPage( GetMaster()->GetBoundRect() );
     if ( pPage != pPg )
     {
-        // OD 27.06.2003 #108784# - if drawing object is anchor in header/footer
-        // a change of the page is a dramatic change. Thus, completely re-connect
-        // to the layout
+        // if drawing object is anchor in header/footer a change of the page
+        // is a dramatic change. Thus, completely re-connect to the layout
         if ( pAnchor && pAnchor->FindFooterOrHeader() )
         {
             ConnectToLayout();
@@ -1203,12 +1054,9 @@ void SwDrawContact::ChkPage()
 |*
 |*  SwDrawContact::ChangeMasterObject()
 |*
-|*  Ersterstellung      MA 07. Aug. 95
-|*  Letzte Aenderung    MA 20. Apr. 99
-|*
 |*************************************************************************/
 
-// OD 10.07.2003 #110742# - Important note:
+// Important note:
 // method is called by method <SwDPage::ReplaceObject(..)>, which called its
 // corresponding superclass method <FmFormPage::ReplaceObject(..)>.
 // Note: 'master' drawing object *has* to be connected to layout (GetAnchor()
@@ -1217,14 +1065,11 @@ void SwDrawContact::ChkPage()
 // =============================================================================
 /** implementation of class <SwDrawVirtObj>
 
-    OD 14.05.2003 #108784#
-
     @author OD
 */
 
 TYPEINIT1(SwDrawVirtObj,SdrVirtObj);
 
-// #108784#
 // implemetation of SwDrawVirtObj
 SwDrawVirtObj::SwDrawVirtObj( SdrObject&        _rNewObj,
                               SwDrawContact&    _rDrawContact )
@@ -1248,9 +1093,9 @@ const Point SwDrawVirtObj::GetOffset() const
     return maOffset;
 }
 
-void SwDrawVirtObj::operator=( const SdrObject& rObj )
+void SwDrawVirtObj::operator=( const SdrObject& /*rObj*/ )
 {
-DBG_BF_ASSERT(0, "STRIP");//STRIP001
+DBG_BF_ASSERT(0, "STRIP");
 }
 
 SdrObject* SwDrawVirtObj::Clone() const
@@ -1336,7 +1181,7 @@ bool SwDrawVirtObj::IsConnected() const
     return bRetVal;
 }
 
-// OD 19.06.2003 #108784# - adjust the relative postion of the 'virtual'
+// adjust the relative postion of the 'virtual'
 // drawing object to the reference object
 void SwDrawVirtObj::AdjustRelativePosToReference()
 {
@@ -1349,7 +1194,6 @@ void SwDrawVirtObj::AdjustRelativePosToReference()
     }
 }
 
-// #108784#
 // All AnchorPos influencing methods which shall not change the
 // original object positions.
 
@@ -1385,9 +1229,9 @@ void SwDrawVirtObj::RecalcBoundRect()
     aOutRect += maOffset;
 }
 
-FASTBOOL SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const
+bool SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInfoRec) const
 {
-    FASTBOOL bRet;
+    bool bRet = FALSE;
 
     Point aOfs(rOut.GetOffset());
     rOut.SetOffset(aOfs + maOffset);
@@ -1410,12 +1254,12 @@ FASTBOOL SwDrawVirtObj::Paint(ExtOutputDevice& rOut, const SdrPaintInfoRec& rInf
 SdrObject* SwDrawVirtObj::CheckHit(const Point& rPnt, USHORT nTol, const SetOfByte* pVisiLayer) const
 {
     Point aPnt(rPnt - maOffset);
-    FASTBOOL bRet = rRefObj.CheckHit(aPnt, nTol, pVisiLayer) != NULL;
+    bool bRet = rRefObj.CheckHit(aPnt, nTol, pVisiLayer) != NULL;
 
     return bRet ? (SdrObject*)this : NULL;
 }
 
-void SwDrawVirtObj::TakeXorPoly(XPolyPolygon& rPoly, FASTBOOL bDetail) const
+void SwDrawVirtObj::TakeXorPoly(XPolyPolygon& rPoly, bool bDetail) const
 {
     rRefObj.TakeXorPoly(rPoly, bDetail);
     rPoly.Move(maOffset.X(), maOffset.Y());
@@ -1427,12 +1271,12 @@ void SwDrawVirtObj::TakeContour(XPolyPolygon& rPoly) const
     rPoly.Move(maOffset.X(), maOffset.Y());
 }
 
-SdrHdl* SwDrawVirtObj::GetHdl(USHORT nHdlNum) const
-{DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
+SdrHdl* SwDrawVirtObj::GetHdl(USHORT /*nHdlNum*/) const
+{DBG_BF_ASSERT(0, "STRIP");return NULL;
 }
 
-SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& rHdl, USHORT nPlNum) const
-{DBG_BF_ASSERT(0, "STRIP");return NULL;//STRIP001
+SdrHdl* SwDrawVirtObj::GetPlusHdl(const SdrHdl& /*rHdl*/, USHORT /*nPlNum*/) const
+{DBG_BF_ASSERT(0, "STRIP");return NULL;
 }
 
 void SwDrawVirtObj::NbcMove(const Size& rSiz)
@@ -1459,7 +1303,7 @@ void SwDrawVirtObj::NbcMirror(const Point& rRef1, const Point& rRef2)
     SetRectsDirty();
 }
 
-void SwDrawVirtObj::NbcShear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+void SwDrawVirtObj::NbcShear(const Point& rRef, long nWink, double tn, bool bVShear)
 {
     rRefObj.NbcShear(rRef - maOffset, nWink, tn, bVShear);
     SetRectsDirty();
@@ -1495,11 +1339,11 @@ void SwDrawVirtObj::Rotate(const Point& rRef, long nWink, double sn, double cs)
     }
 }
 
-void SwDrawVirtObj::Mirror(const Point& rRef1, const Point& rRef2)
-{DBG_BF_ASSERT(0, "STRIP");//STRIP001
+void SwDrawVirtObj::Mirror(const Point& /*rRef1*/, const Point& /*rRef2*/)
+{DBG_BF_ASSERT(0, "STRIP");
 }
 
-void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, FASTBOOL bVShear)
+void SwDrawVirtObj::Shear(const Point& rRef, long nWink, double tn, bool bVShear)
 {
     if(nWink)
     {
@@ -1568,8 +1412,8 @@ void SwDrawVirtObj::NbcSetLogicRect(const Rectangle& rRect)
     SetRectsDirty();
 }
 
-Point SwDrawVirtObj::GetSnapPoint(USHORT i) const
-{DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;//STRIP001
+Point SwDrawVirtObj::GetSnapPoint(USHORT /*i*/) const
+{DBG_BF_ASSERT(0, "STRIP");Point ap; return ap;
 }
 
 const Point& SwDrawVirtObj::GetPoint(USHORT i) const
@@ -1589,14 +1433,13 @@ void SwDrawVirtObj::NbcSetPoint(const Point& rPnt, USHORT i)
 }
 
 // #108784#
-FASTBOOL SwDrawVirtObj::HasTextEdit() const
+bool SwDrawVirtObj::HasTextEdit() const
 {
     return rRefObj.HasTextEdit();
 }
 
-// OD 18.06.2003 #108784# - overloaded 'layer' methods for 'virtual' drawing
-// object to assure, that layer of 'virtual' object is the layer of the referenced
-// object.
+// overloaded 'layer' methods for 'virtual' drawin object to assure,
+// that layer of 'virtual' object is the layer of the referenced object.
 // NOTE: member <
 SdrLayerID SwDrawVirtObj::GetLayer() const
 {
@@ -1619,3 +1462,5 @@ void SwDrawVirtObj::SetLayer(SdrLayerID nLayer)
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

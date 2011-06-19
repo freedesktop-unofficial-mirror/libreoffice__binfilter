@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,24 +31,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _FLDBAS_HXX
 #include <fldbas.hxx>           // UpdateFlds der KapitelNummerierung
-#endif
 namespace binfilter {
 
 
@@ -59,8 +50,7 @@ namespace binfilter {
 /*N*/   SwNodeNum aNum;
 /*N*/   const SwNodes& rNds;
 /*N*/   BYTE nMin, nNewLevel;
-/*N*/     // OD 21.11.2002 #100043# - array to remember, which level numbering
-/*N*/     // has to be started.
+/*N*/     // array to remember, which level numbering has to be started.
 /*N*/     bool aStartLevel[ MAXLEVEL ];
 /*N*/
 /*N*/   _OutlinePara( const SwNodes& rNodes, USHORT nSttPos, BYTE nOld, BYTE nNew );
@@ -75,7 +65,7 @@ namespace binfilter {
 /*N*/   register USHORT nO = Count(), nM, nU = 0;
 /*N*/   if( nO > 0 )
 /*N*/   {
-/*N*/ //JP 17.03.98: aufgrund des Bug 48592 - wo unter anderem nach Undo/Redo
+/*N*/ // aufgrund des Bug 48592 - wo unter anderem nach Undo/Redo
 /*N*/ //                Nodes aus dem falschen NodesArray im OutlineArray standen,
 /*N*/ //                jetzt mal einen Check eingebaut.
 /*N*/ #ifdef DBG_UTIL
@@ -84,7 +74,7 @@ namespace binfilter {
 /*N*/               if( &(*this)[ n-1 ]->GetNodes() !=
 /*N*/                   &(*this)[ n ]->GetNodes() )
 /*N*/               {
-/*?*/                   ASSERT( !this, "Node im falschen Outline-Array" );
+/*?*/                   OSL_ENSURE( !this, "Node im falschen Outline-Array" );
 /*N*/               }
 /*N*/       }
 /*N*/ #endif
@@ -119,12 +109,12 @@ namespace binfilter {
 
 /*N*/ _OutlinePara::_OutlinePara( const SwNodes& rNodes, USHORT nSttPos,
 /*N*/                           BYTE nOld, BYTE nNew )
-/*N*/   : rNds( rNodes ),
-/*N*/     aNum( NO_NUM > nNew ? nNew : 0 ),
-/*N*/   nMin( Min( nOld, nNew )),
-/*N*/     nNewLevel( nNew )
+/*N*/   : aNum( NO_NUM > nNew ? nNew : 0 )
+/*N*/   , rNds( rNodes )
+/*N*/   , nMin( Min( nOld, nNew ))
+/*N*/   , nNewLevel( nNew )
 /*N*/ {
-/*N*/     // OD 25.11.2002 #100043# - init <aStartLevel[]> with defaults, only valid
+/*N*/     // init <aStartLevel[]> with defaults, only valid
 /*N*/     // if update of outline numbering started at first outline numbering node.
 /*N*/     for ( int i = 0; i < MAXLEVEL; ++i)
 /*N*/         aStartLevel[i] = true;
@@ -181,8 +171,7 @@ namespace binfilter {
 /*N*/           memset( aNum.GetLevelVal() + (aNum.GetLevel()+1), 0,
 /*N*/                   (MAXLEVEL - (aNum.GetLevel()+1)) * sizeof(aNum.GetLevelVal()[0]) );
 /*N*/         }
-/*N*/         // OD 22.11.2002 #100043# - init array <aStartLevel[]>, not starting at
-/*N*/         // first outline numbering node.
+/*N*/         // init array <aStartLevel[]>, not starting at first outline numbering node.
 /*N*/         aStartLevel[ pNum->GetLevel() ] = false;
 /*N*/         USHORT nHighestLevelFound = pNum->GetLevel();
 /*N*/         while ( pNum->GetLevel() > 0 && nSttPos-- )
@@ -235,14 +224,14 @@ namespace binfilter {
 /*N*/       }
 /*N*/ #endif
 /*N*/
-/*N*/         // OD 21.11.2002 #100043# - determine, if level numbering has to be started.
-/*N*/         // OD 09.12.2002 #106070# - correct outline numbering, even for the
-/*N*/         // first heading. Thus, state of <aStartLevel[]> always has to be
+/*N*/         // determine, if level numbering has to be started.
+/*N*/         // correct outline numbering, even for the first heading.
+/*N*/         // Thus, state of <aStartLevel[]> always has to be
 /*N*/         // consulted, not only on level change.
 /*N*/         if( aStartLevel[ nLevel ] )
 /*N*/       {
 /*N*/           nSetValue= pOutlRule->Get( nLevel ).GetStart();
-/*N*/             // OD 21.11.2002 #100043# - reset <aStartLevel[nLevel]>
+/*N*/             // reset <aStartLevel[nLevel]>
 /*N*/             aStartLevel[ nLevel ] = false;
 /*N*/       }
 /*N*/       else
@@ -254,7 +243,7 @@ namespace binfilter {
 /*N*/         {
 /*N*/           memset( aNum.GetLevelVal() + (nLevel+1), 0,
 /*N*/                   (MAXLEVEL - ( nLevel+1 )) * sizeof(aNum.GetLevelVal()[0]) );
-/*N*/             // OD 22.11.2002 #100043# - all next level numberings have to be started.
+/*N*/             // all next level numberings have to be started.
 /*N*/             for ( int i = nLevel+1; i < MAXLEVEL; ++i)
 /*N*/                 aStartLevel[i] = true;
 /*N*/         }
@@ -277,7 +266,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   _OutlinePara* pOutlPara = (_OutlinePara*)pPara;
 /*N*/   SwTxtNode* pTxtNd = rpNd->GetTxtNode();
-/*N*/   ASSERT( pTxtNd, "kein TextNode als OutlineNode !" );
+/*N*/   OSL_ENSURE( pTxtNd, "kein TextNode als OutlineNode !" );
 /*N*/
 /*N*/   return pOutlPara->UpdateOutline( *pTxtNd );
 /*N*/ }
@@ -295,7 +284,7 @@ namespace binfilter {
 /*N*/   if( NO_NUMBERING == nOldLevel )         // neuen Level einfuegen
 /*N*/   {
 /*N*/       // nicht vorhanden, also einfuegen
-/*N*/       ASSERT( !bSeekIdx, "Der Node ist schon als OutlineNode vorhanden" );
+/*N*/       OSL_ENSURE( !bSeekIdx, "Der Node ist schon als OutlineNode vorhanden" );
 /*N*/
 /*N*/       //JP 12.03.99: 63293 - Nodes vom RedlineBereich NIE aufnehmen
 /*N*/       ULONG nNd = rNd.GetIndex();
@@ -376,3 +365,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

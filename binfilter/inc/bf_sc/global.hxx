@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,15 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace com { namespace sun { namespace star { namespace lang {
     struct Locale;
 }}}}
@@ -74,31 +69,16 @@ extern "C" {
 
 #endif
 
-#if 0
 // I18N doesn't get this right, can't specify more than one to ignore
 #define SC_COLLATOR_IGNORES ( \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_CASE | \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_KANA | \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_WIDTH )
-#else
-#define SC_COLLATOR_IGNORES ( \
     ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_CASE )
-#endif
-#if 0
+
+
 // #107998# Don't ignore Width and Kana. The issue was mainly with AutoInput,
 // but affects also comparison of names in general.
 #define SC_TRANSLITERATION_IGNORECASE ( \
-    ::com::sun::star::i18n::TransliterationModules_IGNORE_CASE | \
-    ::com::sun::star::i18n::TransliterationModules_IGNORE_KANA | \
-    ::com::sun::star::i18n::TransliterationModules_IGNORE_WIDTH )
-#define SC_TRANSLITERATION_CASESENSE ( \
-    ::com::sun::star::i18n::TransliterationModules_IGNORE_KANA | \
-    ::com::sun::star::i18n::TransliterationModules_IGNORE_WIDTH )
-#else
-#define SC_TRANSLITERATION_IGNORECASE ( \
     ::com::sun::star::i18n::TransliterationModules_IGNORE_CASE )
 #define SC_TRANSLITERATION_CASESENSE 0
-#endif
 
 
 //------------------------------------------------------------------------
@@ -142,29 +122,54 @@ struct LabelData;
                                         // Oberhalb dieser Grenze liegen
                                         // die Indizes fuer DBBereiche
 
-#define VALIDROW(nRow)                  (nRow>=0 && nRow<=MAXROW)
-#define VALIDCOL(nCol)                  (nCol>=0 && nCol<=MAXCOL)
-#define VALIDTAB(nTab)                  (nTab>=0 && nTab<=MAXTAB)
-#define VALIDCOLROW(nCol,nRow)          (VALIDCOL(nCol) && VALIDROW(nRow))
-#define VALIDCOLROWTAB(nCol,nRow,nTab)  (VALIDCOL(nCol) && VALIDROW(nRow) && VALIDTAB(nTab))
+inline bool ValidRow(short nRow)
+{
+    return (nRow>=0 && nRow<=MAXROW);
+}
 
-inline BOOL ValidColRow(USHORT nCol, USHORT nRow)
+inline bool ValidRow(USHORT nRow)
+{
+    return (nRow<=MAXROW);
+}
+
+#define VALIDROW(nRow) (ValidRow(nRow))
+
+inline bool ValidCol(short nCol)
+{
+    return (nCol>=0 && nCol<=MAXCOL);
+}
+
+inline bool ValidCOL(USHORT nCol)
+{
+    return (nCol<=MAXCOL);
+}
+
+#define VALIDCOL(nCol) (ValidCol(nCol))
+
+inline bool ValidTab(short nTab)
+{
+    return (nTab>=0 && nTab<=MAXTAB);
+}
+
+inline bool ValidTab(USHORT nTab)
+{
+    return (nTab<=MAXTAB);
+}
+
+#define VALIDTAB(nTab) (ValidTab(nTab))
+
+#define VALIDCOLROW(nCol,nRow) (VALIDCOL(nCol) && VALIDROW(nRow))
+#define VALIDCOLROWTAB(nCol,nRow,nTab) (VALIDCOL(nCol) && VALIDROW(nRow) && VALIDTAB(nTab))
+
+inline bool ValidColRow(USHORT nCol, USHORT nRow)
 {
     return nCol <= MAXCOL && nRow <= MAXROW;
 }
 
-inline BOOL ValidColRowTab(USHORT nCol, USHORT nRow, USHORT nTab)
+inline bool ValidColRowTab(USHORT nCol, USHORT nRow, USHORT nTab)
 {
     return nCol <= MAXCOL && nRow <= MAXROW && nTab <= MAXTAB;
 }
-
-/*
-#ifdef OS2
-#define PIXEL_PER_INCH      72.0
-#else
-#define PIXEL_PER_INCH      96.0
-#endif
-*/
 
 #define PIXEL_PER_INCH      96.0
 
@@ -501,12 +506,6 @@ class EditTextObject;
 class SfxObjectShell;
 class ScUnitConverter;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace lang {
-//STRIP008  struct Locale;
-//STRIP008 }}}}
-//STRIP008 namespace utl {
-//STRIP008     class TransliterationWrapper;
-//STRIP008 }
 
 #ifndef _SCALC_EXE
 class ScGlobal
@@ -1312,7 +1311,7 @@ namespace utl
     class SearchParam;
     class TextSearch;
 }
-namespace binfilter {//STRIP009
+namespace binfilter {
 struct ScQueryEntry
 {
     BOOL            bDoQuery;
@@ -1337,7 +1336,7 @@ struct ScQueryEntry
     BOOL            operator==( const ScQueryEntry& r ) const;
 
     void            Load(SvStream& rStream);
-    void            Store(SvStream& rStream) const;
+    void Store(SvStream&) const {}
 };
 
 struct ScQueryParam
@@ -1378,7 +1377,7 @@ public:
      void           FillInExcelSyntax(String& aCellStr, USHORT nIndex);
 
     void            Load(SvStream& rStream);
-    void            Store(SvStream& rStream) const;
+    void Store(SvStream&) const {}
 };
 
 // -----------------------------------------------------------------------
@@ -1436,7 +1435,7 @@ struct ScConsolidateParam
     void                SetAreas        ( ScArea* const* ppAreas, USHORT nCount );
 
     void            Load( SvStream& rStream );
-    void            Store( SvStream& rStream ) const;
+    void Store( SvStream& ) const {}
 };
 
 // -----------------------------------------------------------------------
@@ -1536,3 +1535,5 @@ struct ScTabOpParam
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

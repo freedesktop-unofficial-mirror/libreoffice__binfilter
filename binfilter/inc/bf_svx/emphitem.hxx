@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _VCL_VCLENUM_HXX
 #include <vcl/vclenum.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 namespace rtl
 {
@@ -64,12 +59,12 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
 
-    virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal,
                                             BYTE nMemberId = 0 ) const;
-    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal,
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal,
                                             BYTE nMemberId = 0 );
 
     inline SvxEmphasisMarkItem& operator=(const SvxEmphasisMarkItem& rItem )
@@ -88,3 +83,4 @@ public:
 }//end of namespace binfilter
 #endif // #ifndef _SVX_EMPHITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

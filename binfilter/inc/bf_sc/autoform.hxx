@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -48,64 +49,26 @@ JP 20.07.95:
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 **************************************************************************/
 
-#ifndef SC_ITEMS_HXX
 #include "scitems.hxx"
-#endif
-#ifndef _SVX_ADJITEM_HXX
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_ALGITEM_HXX
 #include <bf_svx/algitem.hxx>
-#endif
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_ITEM_HXX
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_ROTMODIT_HXX
 #include <bf_svx/rotmodit.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
-#ifndef _ZFORAUTO_HXX_
 #include "zforauto.hxx"
-#endif
 
 namespace binfilter {
 
@@ -219,7 +182,7 @@ public:
      void    SetRotateMode( const SvxRotateModeItem& rRotateMode )   { aRotateMode.SetValue( rRotateMode.GetValue() ); }
 
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions, USHORT nVer );
-    BOOL                        Save( SvStream& rStream );
+    BOOL                        Save( SvStream& ) {return false;}
 
 #ifdef READ_OLDVERS
     BOOL                        LoadOld( SvStream& rStream, const ScAfVersions& rVersions );
@@ -274,7 +237,7 @@ public:
     const SfxPoolItem*          GetItem( USHORT nIndex, USHORT nWhich ) const;
     void                        PutItem( USHORT nIndex, const SfxPoolItem& rItem );
     BOOL                        Load( SvStream& rStream, const ScAfVersions& rVersions );
-    BOOL                        Save( SvStream& rStream );
+    BOOL                        Save( SvStream& ) {return false;}
 
 #ifdef READ_OLDVERS
     BOOL                        LoadOld( SvStream& rStream, const ScAfVersions& rVersions );
@@ -292,9 +255,9 @@ public:
     virtual                     ~ScAutoFormat();
     virtual                     DataObject*         Clone() const { return new ScAutoFormat( *this ); }
                                 ScAutoFormatData*   operator[]( const USHORT nIndex ) const {return (ScAutoFormatData*)At( nIndex );}
-    virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 virtual short               Compare( DataObject* pKey1, DataObject* pKey2 ) const;
+    virtual short               Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}
     BOOL                        Load();
-    BOOL                        Save();
+    BOOL                        Save() {return false;}
     void                        SetSaveLater( BOOL bSet );
     BOOL                        IsSaveLater() const         { return bSaveLater; }
 };
@@ -303,3 +266,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

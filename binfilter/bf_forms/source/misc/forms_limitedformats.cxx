@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,24 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _FORMS_LIMITED_FORMATS_HXX_
 #include "limitedformats.hxx"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _COMPHELPER_TYPES_HXX_
 #include <comphelper/types.hxx>
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -74,8 +63,8 @@ namespace frm
     //---------------------------------------------------------------------
     static const Locale& getLocale(LocaleType _eType)
     {
-        static const Locale s_aEnglishUS( ::rtl::OUString::createFromAscii("en"), ::rtl::OUString::createFromAscii("us"), ::rtl::OUString() );
-        static const Locale s_aGerman( ::rtl::OUString::createFromAscii("de"), ::rtl::OUString::createFromAscii("DE"), ::rtl::OUString() );
+        static const Locale s_aEnglishUS( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "en" )), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "us" )), ::rtl::OUString() );
+        static const Locale s_aGerman( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "de" )), ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DE" )), ::rtl::OUString() );
         static const ::rtl::OUString s_sEmptyString;
         static const Locale s_aSystem( s_sEmptyString, s_sEmptyString, s_sEmptyString );
 
@@ -91,7 +80,7 @@ namespace frm
                 return s_aSystem;
         }
 
-        OSL_ENSURE(sal_False, "getLocale: invalid enum value!");
+        OSL_FAIL("getLocale: invalid enum value!");
         return s_aSystem;
     }
 
@@ -115,7 +104,7 @@ namespace frm
                     { "HH:MM:SS", -1, ltEnglishUS },
                     { "HH:MM AM/PM", -1, ltEnglishUS },
                     { "HH:MM:SS AM/PM", -1, ltEnglishUS },
-                    { NULL, -1 }
+                    { NULL, -1, ltSystem }
                 };
                 // don't switch this table here to const. The compiler could be tempted to really place this
                 // in a non-writeable segment, but we want to fill in the format keys later ....
@@ -140,13 +129,13 @@ namespace frm
                     { "JJ-MM-TT", -1, ltGerman },
                     { "JJJJ-MM-TT", -1, ltGerman },
 
-                    { NULL, -1 }
+                    { NULL, -1, ltSystem }
                 };
                 return s_aFormats;
             }
         }
 
-        OSL_ENSURE(sal_False, "lcl_getFormatTable: invalid id!");
+        OSL_FAIL("lcl_getFormatTable: invalid id!");
         return NULL;
     }
 
@@ -155,8 +144,8 @@ namespace frm
     //=====================================================================
     //---------------------------------------------------------------------
     OLimitedFormats::OLimitedFormats(const Reference< XMultiServiceFactory >& _rxORB, const sal_Int16 _nClassId)
-        :m_nTableId(_nClassId)
-        ,m_nFormatEnumPropertyHandle(-1)
+        :m_nFormatEnumPropertyHandle(-1)
+        ,m_nTableId(_nClassId)
     {
         OSL_ENSURE(_rxORB.is(), "OLimitedFormats::OLimitedFormats: invalid service factory!");
         acquireSupplier(_rxORB);
@@ -210,7 +199,7 @@ namespace frm
                             }
                             catch(const Exception&)
                             {
-                                OSL_ENSURE(sal_False, "OLimitedFormats::ensureTableInitialized: adding the key to the formats collection failed!");
+                                OSL_FAIL("OLimitedFormats::ensureTableInitialized: adding the key to the formats collection failed!");
                             }
 #endif
                         }
@@ -254,7 +243,7 @@ namespace frm
             }
             catch(const Exception&)
             {
-                OSL_ENSURE(sal_False, "OLimitedFormats::setAggregateSet: invalid handle!");
+                OSL_FAIL("OLimitedFormats::setAggregateSet: invalid handle!");
             }
         }
 #endif
@@ -353,7 +342,7 @@ namespace frm
 
             if (!bFoundIt)
             {   // somebody gave us an format which we can't translate
-                ::rtl::OUString sMessage = ::rtl::OUString::createFromAscii("This control supports only a very limited number of formats.");
+                ::rtl::OUString sMessage( RTL_CONSTASCII_USTRINGPARAM( "This control supports only a very limited number of formats." ));
                 throw IllegalArgumentException(sMessage, NULL, 2);
             }
 
@@ -413,3 +402,5 @@ namespace frm
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

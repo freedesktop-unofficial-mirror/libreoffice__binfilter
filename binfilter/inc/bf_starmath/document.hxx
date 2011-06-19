@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,37 +32,17 @@
 
 #define SMDLL   1
 
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _SOT_SOTREF_HXX //autogen
 #include <sot/sotref.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _SFX_INTERNO_HXX //autogen
 #include <bf_sfx2/interno.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SFX_OBJFAC_HXX //autogen
 #include <bf_sfx2/docfac.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
 
-#ifndef _FORMAT_HXX
 #include "format.hxx"
-#endif
-#ifndef PARSE_HXX
 #include "parse.hxx"
-#endif
-#ifndef SMMOD_HXX
 #include "smmod.hxx"
-#endif
 class Printer;
 namespace binfilter {
 
@@ -167,9 +148,7 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
     virtual BOOL        InitNew(SvStorage *);
     virtual BOOL        Load(SvStorage *);
             void        ImplSave(  SvStorageStreamRef xStrm  );
-    virtual BOOL        Save();
-    virtual BOOL        SaveAs( SvStorage *pNewStor );
-    virtual BOOL        SaveCompleted( SvStorage *pNewStor );
+    virtual BOOL        Save() {return false;}
     virtual void        HandsOff();
 
     Printer             *GetPrt();
@@ -235,3 +214,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

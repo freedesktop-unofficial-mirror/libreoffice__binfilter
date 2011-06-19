@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 
 #include "misccfg.hxx"
 
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include <rtl/logfile.hxx>
 
@@ -43,8 +40,9 @@
 #define DEF_INCH    2540L
 #define DEF_RELTWIP 1440L
 
-using namespace rtl;
 using namespace com::sun::star::uno;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -64,16 +62,14 @@ SfxMiscCfg::SfxMiscCfg() :
 
     Load();
 }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 SfxMiscCfg::~SfxMiscCfg()
 {
 }
 
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 const Sequence<OUString>& SfxMiscCfg::GetPropertyNames()
 {
     static Sequence<OUString> aNames;
@@ -94,9 +90,8 @@ const Sequence<OUString>& SfxMiscCfg::GetPropertyNames()
     }
     return aNames;
 }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxMiscCfg::Load()
 {
     const Sequence<OUString>& aNames = GetPropertyNames();
@@ -121,16 +116,14 @@ void SfxMiscCfg::Load()
         }
     }
 }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxMiscCfg::Notify( const com::sun::star::uno::Sequence<rtl::OUString>& )
 {
     Load();
 }
-/* -----------------------------02.03.01 15:31--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 void SfxMiscCfg::Commit()
 {
     const Sequence<OUString>& aNames = GetPropertyNames();
@@ -152,3 +145,5 @@ void SfxMiscCfg::Commit()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

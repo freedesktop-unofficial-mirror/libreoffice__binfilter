@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,13 +41,8 @@
 |*
 |*  SwRect::SwRect()
 |*
-|*  Ersterstellung      MA 02. Feb. 93
-|*  Letzte Aenderung    MA 05. Sep. 93
-|*
 |*************************************************************************/
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 /*N*/ SwRect::SwRect( const Rectangle &rRect ) :
 /*N*/   nX( rRect.Left() ),
@@ -61,9 +57,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Center()
-|*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 27. Jan. 93
 |*
 |*************************************************************************/
 /*N*/ Point SwRect::Center() const
@@ -82,9 +75,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Union()
-|*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 27. Jan. 93
 |*
 |*************************************************************************/
 
@@ -107,9 +97,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Intersection(), _Intersection()
-|*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 05. Sep. 93
 |*
 |*************************************************************************/
 
@@ -163,9 +150,6 @@ namespace binfilter {
 |*
 |*  SwRect::IsInside()
 |*
-|*  Ersterstellung      MA 27. Jan. 93
-|*  Letzte Aenderung    MA 27. Jan. 93
-|*
 |*************************************************************************/
 
 
@@ -191,16 +175,13 @@ namespace binfilter {
 /*N*/          && (Right() >= rPoint.X())
 /*N*/          && (Bottom()>= rPoint.Y());
 /*N*/ }
-/* -----------------------------11.04.00 15:46--------------------------------
+/* ---------------------------------------------------------------------------
     mouse moving of table borders
  ---------------------------------------------------------------------------*/
 
 /*************************************************************************
 |*
 |*  SwRect::IsOver()
-|*
-|*  Ersterstellung      MA 25. Feb. 94
-|*  Letzte Aenderung    MA 27. Jun. 96
 |*
 |*************************************************************************/
 
@@ -217,9 +198,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRect::Justify()
-|*
-|*  Ersterstellung      MA 10. Oct. 94
-|*  Letzte Aenderung    MA 23. Oct. 96
 |*
 |*************************************************************************/
 
@@ -308,12 +286,14 @@ namespace binfilter {
 
 
 
-/*N*/ SvStream &operator<<( SvStream &rStream, const SwRect &rRect )
+/*N*/ SvStream &operator<<( SvStream &rStream, const SwRect & )
 /*N*/ {
-/*N*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    rStream << '[' << rRect.Top()   << '/' << rRect.Left()
+/*N*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return rStream;
 /*N*/ }
 #endif
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

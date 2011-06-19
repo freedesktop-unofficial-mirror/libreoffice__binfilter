@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define SC_INPUTOPT_HXX
 
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
@@ -101,11 +100,10 @@ public:
 
     virtual void                Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames );
     virtual void                Commit();
-
-    void            SetOptions( const ScInputOptions& rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001     void            SetOptions( const ScInputOptions& rNew );
 };
 
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,33 +29,15 @@
 #ifndef _SC_XMLSTYLE_HXX
 #define _SC_XMLSTYLE_HXX
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_XMLASTPLP_HXX
 #include <bf_xmloff/xmlaustp.hxx>
-#endif
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include <bf_xmloff/xmltypes.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include <bf_xmloff/xmlprmap.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
-#endif
-#ifndef _XMLOFF_STYLEEXP_HXX_
 #include <bf_xmloff/styleexp.hxx>
-#endif
-#ifndef _XMLOFF_XMLEXPPR_HXX
 #include <bf_xmloff/xmlexppr.hxx>
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include <bf_xmloff/contextid.hxx>
-#endif
 namespace binfilter {
-
-using namespace ::rtl;
 
 extern const XMLPropertyMapEntry aXMLScCellStylesProperties[];
 extern const XMLPropertyMapEntry aXMLScColumnStylesProperties[];
@@ -333,7 +316,7 @@ class XmlScPropHdl_IsEqual : public XMLPropertyHandler
 {
 public:
     virtual ~XmlScPropHdl_IsEqual() {}
-    virtual sal_Bool equals( const ::com::sun::star::uno::Any& r1, const ::com::sun::star::uno::Any& r2 ) const { return sal_True; }
+    virtual sal_Bool equals( const ::com::sun::star::uno::Any& , const ::com::sun::star::uno::Any& ) const { return sal_True; }
     virtual sal_Bool importXML( const ::rtl::OUString& rStrImpValue, ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const;
     virtual sal_Bool exportXML( ::rtl::OUString& rStrExpValue, const ::com::sun::star::uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const;
 };
@@ -349,3 +332,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

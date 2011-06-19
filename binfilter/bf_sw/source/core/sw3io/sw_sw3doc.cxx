@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,29 +32,15 @@
 
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
-#ifndef _SFXECODE_HXX //autogen
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _TOOLS_TENCCVT_HXX //autogen
 #include <tools/tenccvt.hxx>
-#endif
-#ifndef _SWMODULE_HXX //autogen
 #include <swmodule.hxx>
-#endif
 
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "swrect.hxx"
@@ -224,29 +211,6 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/                   SwNumRule* pRule = InNumRule( cType );
 /*N*/                   if( pRule )
 /*N*/                   {
-/*N*/ //JP 10.03.96: und wieder alles zurueck
-/*N*/ #if 0
-/*N*/                       if( nVersion < SWG_DELETEOLE )
-/*N*/                       {
-/*N*/                           //JP 18.01.96: Alle Ueberschriften sind normalerweise
-/*N*/                           //  ohne Kapitelnummer. Darum hier explizit abschalten
-/*N*/                           //  weil das Default jetzt wieder auf AN ist.
-/*N*/                           // und UeberschirftBasis ohne Einrueckung!
-/*N*/                           SwTxtFmtColl* pCol = pDoc->GetTxtCollFromPool(
-/*N*/                                               RES_POOLCOLL_HEADLINE_BASE );
-/*N*/                           pCol->ResetAttr( RES_LR_SPACE );
-/*N*/
-/*N*/                           for( short i = 0; i < MAXLEVEL; i++ )
-/*N*/                           {
-/*N*/                               if( !pRule->GetNumFmt( i ) )
-/*N*/                               {
-/*N*/                                   SwNumFmt aFmt( pRule->Get( i ) );
-/*N*/                                   aFmt.eType = NUMBER_NONE;
-/*N*/                                   pRule->Set( i, aFmt );
-/*N*/                               }
-/*N*/                           }
-/*N*/                       }
-/*N*/ #endif
 /*N*/                       pDoc->SetOutlineNumRule( *pRule );
 /*N*/                   }
 /*N*/                   delete pRule;
@@ -299,7 +263,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/                   SkipRec();
 /*N*/               break;
 /*N*/           case SWG_TOXDESCS:
-/*N*/               ASSERT( IsVersion(SWG_NEWTOX),
+/*N*/               OSL_ENSURE( IsVersion(SWG_NEWTOX),
 /*N*/                       "new tox descs within a old doc" );
 /*N*/               InTOXs();
 /*N*/               break;
@@ -671,7 +635,7 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/   // 4.0-Storages mit 5.0-Streams.
 /*N*/ #ifdef DBG_UTIL
 /*N*/   if( !bBlock )
-/*N*/       ASSERT( ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_31 &&
+/*N*/       OSL_ENSURE( ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_31 &&
 /*N*/                 nVersion >= SWG_MAJORVERSION_30 &&
 /*N*/                 nVersion < SWG_MAJORVERSION_40 ) ||
 /*N*/               ( pRoot->GetVersion() == SOFFICE_FILEFORMAT_40 &&
@@ -729,12 +693,12 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/       break;
 /*N*/   }
 /*N*/
-/*N*/   ASSERT( !nRecSzPos || !IsSw31Or40Export(),
+/*N*/   OSL_ENSURE( !nRecSzPos || !IsSw31Or40Export(),
 /*N*/           "Lange Records gibt's erst ab der 5.0" );
-/*N*/   ASSERT( GetSOStoreTextEncoding( gsl_getSystemTextEncoding(),
+/*N*/   OSL_ENSURE( GetSOStoreTextEncoding( gsl_getSystemTextEncoding(),
 /*N*/                                   pStrm->GetVersion() ) == eSrcSet,
 /*N*/           "wrong encoding while writing" );
-/*N*/   ASSERT( pStrm->GetStreamCharSet() == eSrcSet,
+/*N*/   OSL_ENSURE( pStrm->GetStreamCharSet() == eSrcSet,
 /*N*/           "wrong encoding at stream while writing" );
 /*N*/
 /*N*/   OutputMode( TRUE );
@@ -779,3 +743,5 @@ void Sw3IoImp::OutRecordSizesPos( ULONG nRecSzPos )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

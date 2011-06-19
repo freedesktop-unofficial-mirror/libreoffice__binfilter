@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 // ATT_SOFTHYPH ******************************
@@ -44,12 +43,12 @@ public:
     SwFmtSoftHyph();
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001    virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL; }; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual int operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool* /*pPool = 0*/ ) const{DBG_BF_ASSERT(0, "STRIP");return NULL; };
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
-    inline SwFmtSoftHyph& operator=(const SwFmtSoftHyph& rSH) {
+    inline SwFmtSoftHyph& operator=(const SwFmtSoftHyph& /*rSH*/) {
             return *this;
         }
 };
@@ -64,10 +63,10 @@ public:
     SwFmtHardBlank( sal_Unicode cCh, BOOL bCheck = TRUE );
 
     // "pure virtual Methoden" vom SfxPoolItem
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001    virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001  virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool* /*pPool = 0*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     virtual USHORT           GetVersion( USHORT nFFVer ) const;
 
@@ -80,3 +79,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -42,14 +40,14 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-vos::ORef<SvxForbiddenCharactersTable> lcl_GetForbidden( ScDocShell* pDocSh )
+rtl::Reference<SvxForbiddenCharactersTable> lcl_GetForbidden( ScDocShell* pDocSh )
 {
-    vos::ORef<SvxForbiddenCharactersTable> xRet;
+    rtl::Reference<SvxForbiddenCharactersTable> xRet;
     if ( pDocSh )
     {
         ScDocument* pDoc = pDocSh->GetDocument();
         xRet = pDoc->GetForbiddenCharacters();
-        if ( !xRet.isValid() )
+        if ( !xRet.is() )
         {
             //  create an empty SvxForbiddenCharactersTable for SvxUnoForbiddenCharsTable,
             //  so changes can be stored.
@@ -75,7 +73,7 @@ ScForbiddenCharsObj::~ScForbiddenCharsObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScForbiddenCharsObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScForbiddenCharsObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA( SfxSimpleHint ) &&
             ((const SfxSimpleHint&)rHint).GetId() == SFX_HINT_DYING )
@@ -95,3 +93,5 @@ void ScForbiddenCharsObj::onChange()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

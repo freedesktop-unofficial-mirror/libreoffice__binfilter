@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
 
 #include <com/sun/star/uno/Sequence.hxx>
 #include <com/sun/star/beans/PropertyValue.hpp>
@@ -61,8 +58,8 @@ public:
                                       SfxObjectShell *pObj = 0  )
                         :   nEventId(nId),
                             pObjShell(pObj),
-                            _bAddToHistory(FALSE),
-                            _aArgs( rArgs )
+                            _aArgs( rArgs ),
+                            _bAddToHistory(FALSE)
                         {}
                         SfxEventHint( USHORT nId, SfxObjectShell *pObj = 0 )
                         :   nEventId(nId),
@@ -97,8 +94,8 @@ public:
                                       SfxObjectShell *pObj = 0  )
                         :   _aEventName( rName ),
                             _pObjShell( pObj),
-                            _bAddToHistory( FALSE ),
-                            _aArgs( rArgs )
+                            _aArgs( rArgs ),
+                            _bAddToHistory( FALSE )
                         {}
 
                         SfxNamedHint( const String& rName,
@@ -142,3 +139,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

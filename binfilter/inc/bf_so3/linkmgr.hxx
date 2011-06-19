@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _LINKSRC_HXX
 #include <bf_so3/linksrc.hxx>
-#endif
-#ifndef _TOOLS_STRING_HXX
 #include <tools/string.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace binfilter
 {
@@ -133,3 +126,4 @@ void SO3_DLLPUBLIC MakeLnkName( String& rName,
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

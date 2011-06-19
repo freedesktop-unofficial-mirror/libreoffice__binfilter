@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,37 +31,18 @@
 #include "svdio.hxx"
 #include "svdoole2.hxx"
 
-
 #include "svdstr.hrc"
-
-// #105722#
-#ifndef _SVDOPATH_HXX
 #include "svdopath.hxx"
-#endif
-
-// #i13033#
-#ifndef _E3D_SCENE3D_HXX
 #include "scene3d.hxx"
-#endif
 
-// OD 30.06.2003 #108784#
-#ifndef _SVDOVIRT_HXX
 #include <svdovirt.hxx>
-#endif
+
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-////////////////////////////////////////////////////////////////////////////////////////////////////
 //
-//  @@   @@  @@@@  @@@@@  @@  @@  @@ @@ @@ @@@@@ @@   @@
-//  @@@ @@@ @@  @@ @@  @@ @@  @@  @@ @@ @@ @@    @@   @@
-//  @@@@@@@ @@  @@ @@  @@ @@ @@   @@ @@ @@ @@    @@ @ @@
-//  @@@@@@@ @@@@@@ @@@@@  @@@@    @@@@@ @@ @@@@  @@@@@@@
-//  @@ @ @@ @@  @@ @@  @@ @@ @@    @@@  @@ @@    @@@@@@@
-//  @@   @@ @@  @@ @@  @@ @@  @@   @@@  @@ @@    @@@ @@@
-//  @@   @@ @@  @@ @@  @@ @@  @@    @   @@ @@@@@ @@   @@
+// MARKVIEW
 //
-////////////////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 /*N*/ void SdrMarkView::ImpClearVars()
@@ -89,7 +71,6 @@ namespace binfilter {
 /*N*/   bHdlHidden=FALSE;
 /*N*/   bMrkPntDirty=FALSE;
 /*N*/   bMarkHdlWhenTextEdit=FALSE;
-/*N*/ //    bSolidHdlBackgroundInvalid=FALSE;
 /*N*/   bMarkableObjCountDirty=FALSE; // noch nicht implementiert
 /*N*/   nMarkableObjCount=0;          // noch nicht implementiert
 /*N*/ }
@@ -102,7 +83,7 @@ namespace binfilter {
 /*N*/   StartListening(*pModel1);
 /*N*/ }
 
-/*N*/ void __EXPORT SdrMarkView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrMarkView::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SdrHint* pSdrHint=PTR_CAST(SdrHint,&rHint);
 /*N*/   if (pSdrHint!=NULL) {
@@ -152,20 +133,8 @@ namespace binfilter {
 /*N*/   SdrView* pV=(SdrView*)this;
 /*N*/   if (pV!=NULL && !pV->IsDragObj() && !pV->IsInsObjPoint()) { // an dieser Stelle habe ich ein ziemliches Problem !!!
 /*N*/       AdjustMarkHdl();
-//        if (!IsSolidMarkHdl()) {
-//            if (!bHdlShown) {
-//                // Ein wenig unsauber ...
-//                if ((bMarkHdlWhenTextEdit || !pV->IsTextEdit()) &&  // evtl. keine Handles bei TextEdit
-//                    !(pV->IsDragHdlHide() && pV->IsDragObj() && // Ggf. keine Handles beim Draggen
-//                      aDragStat.IsMinMoved() && !IS_TYPE(SdrDragMovHdl,pV->GetDragMethod()))) {
-//                    ShowMarkHdl(NULL);
-//                }
-//            }
-//        }
     }
 /*N*/ }
-
-
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -173,9 +142,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   return SdrSnapView::IsAction() || bMarking || bMarkingPoints || bMarkingGluePoints;
 /*N*/ }
-
-
-
 
 /*N*/ void SdrMarkView::BrkAction()
 /*N*/ {
@@ -190,13 +156,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   SdrSnapView::ToggleShownXor(pOut,pRegion);
 /*N*/   if ((bMarking || bMarkingPoints || bMarkingGluePoints) && aDragStat.IsShown()) {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DrawMarkObjOrPoints(pOut);
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-//    if (bHdlShown) {
-//        DrawMarkHdl(pOut,FALSE);
-//    } else if (bRefHdlShownOnly) {
-//        DrawMarkHdl(pOut,BOOL(2)); HACK(nur die Ref-Hdls painten)
-//    }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -234,178 +195,52 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 /*N*/ void SdrMarkView::BrkMarkObj()
 /*N*/ {
-/*N*/   if (bMarking) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bMarking) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 /*N*/ void SdrMarkView::BrkMarkPoints()
 /*N*/ {
-/*N*/   if (bMarkingPoints) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bMarkingPoints) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
 
 /*N*/ void SdrMarkView::BrkMarkGluePoints()
 /*N*/ {
-/*N*/   if (bMarkingGluePoints) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (bMarkingGluePoints) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-//void SdrMarkView::DrawMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl) const
-//{
-//    if (bHdlHidden) return;
-////    if (IsSolidMarkHdl())
-//      bNoRefHdl=FALSE; // geht leider erstmal nicht anders
-//    BOOL bOnlyRefs=USHORT(bNoRefHdl)==2; HACK(nur die Ref-Hdls painten)
-//    USHORT nWinAnz=GetWinCount();
-//    USHORT nWinNum=0;
-//    do {
-//        OutputDevice* pO=pOut;
-//        if (pO==NULL) {
-//            pO=GetWin(nWinNum);
-//            nWinNum++;
-//        }
-//        if (pO!=NULL) {
-//            if (!bInsPolyPoint && !bNoRefHdl && !bOnlyRefs) {
-//                aHdl.DrawAll(*pO);
-//            } else {
-//                ULONG nHdlAnz=aHdl.GetHdlCount();
-//                for (ULONG nHdlNum=0; nHdlNum<nHdlAnz; nHdlNum++) {
-//                    SdrHdl* pHdl=aHdl.GetHdl(nHdlNum);
-//                    SdrHdlKind eKind=pHdl->GetKind();
-//                    USHORT nPtNum=pHdl->GetObjHdlNum();
-//                    const SdrObject* pObj=pHdl->GetObj();
-//                    if ((!bInsPolyPoint || nPtNum!=nInsPointNum || pObj==NULL || pObj!=pMarkedObj) &&
-//                        (!bNoRefHdl || (eKind!=HDL_REF1 && eKind!=HDL_REF2 && eKind!=HDL_MIRX))!=bOnlyRefs) {
-//                        pHdl->Draw(*pO);
-//                    }
-//                }
-//            }
-//        }
-//    } while (pOut==NULL && nWinNum<nWinAnz);
-//}
-
-/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* pOut, const Region* pRegion, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::ImpShowMarkHdl(OutputDevice* /*pOut*/, const Region* /*pRegion*/, BOOL /*bNoRefHdl*/)
 /*N*/ {
-//    if (IsSolidMarkHdl())
-/*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
-/*N*/   if (!bHdlShown) {
-//        if (aHdl.IsSolidHdl()) {
-//            USHORT nAnz=pOut==NULL ? aWinList.GetCount() : 1;
-//            for (USHORT i=0; i<nAnz; i++) {
-//                USHORT nWinNum=pOut==NULL ? i : aWinList.Find(pOut);
-//                if (nWinNum!=SDRVIEWWIN_NOTFOUND) {
-//                    if (aWinList[nWinNum].pVDev==NULL) {
-//                        aWinList[nWinNum].pVDev=new VirtualDevice;
-//                    }
-//                    aHdl.SaveBackground(*aWinList[nWinNum].pWin,*aWinList[nWinNum].pVDev,pRegion);
-//                    bSolidHdlBackgroundInvalid=FALSE;
-//                }
-//            }
-//        }
-//        DrawMarkHdl(pOut,bRefHdlShownOnly);
-/*N*/       bRefHdlShownOnly=FALSE;
-/*N*/       bHdlShown=TRUE;
-
-        // refresh IAOs
-//      RefreshAllIAOManagers();
-/*N*/   }
 /*N*/ }
 
 /*N*/ void SdrMarkView::ShowMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)
 /*N*/ {
-//    if (IsSolidMarkHdl())
 /*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
 /*N*/   ImpShowMarkHdl(pOut,NULL,bNoRefHdl);
-
-    // refresh IAOs
-//STRIP012/*N*/     RefreshAllIAOManagers();
 /*N*/ }
 
 
-/*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* pOut, BOOL bNoRefHdl)
+/*N*/ void SdrMarkView::HideMarkHdl(OutputDevice* /*pOut*/, BOOL bNoRefHdl)
 /*N*/ {
-//    if (IsSolidMarkHdl())
 /*N*/       bNoRefHdl=FALSE; // geht leider erstmal nicht anders
 /*N*/   if (bHdlShown) {
-/*N*/       if (!bHdlHidden) { // #37331#
-            // Optimierung geht nicht, weil diverse Handles trotz SolidHdl doch noch XOR gapainted werden
-//          DrawMarkHdl(pOut,bNoRefHdl);
-//            if (aHdl.IsSolidHdl()) {
-//                BOOL bInvalidate=IsMarkHdlBackgroundInvalid();
-//                USHORT nAnz=pOut==NULL ? aWinList.GetCount() : 1;
-//                for (USHORT i=0; i<nAnz; i++) {
-//                    USHORT nWinNum=pOut==NULL ? i : aWinList.Find(pOut);
-//                    if (nWinNum!=SDRVIEWWIN_NOTFOUND) {
-//                        SdrViewWinRec& rWRec=GetWinRec(nWinNum);
-//                        if (rWRec.pVDev!=NULL) {
-//                            OutputDevice* pOut=rWRec.pWin;
-//                            if (bInvalidate) { // fuer den Writer in einigen Faellen Invalidieren
-//                                if (pOut->GetOutDevType()==OUTDEV_WINDOW) {
-//                                    aHdl.Invalidate(*(Window*)pOut);
-//                                }
-//                            } else {
-//                                if (bNoRefHdl) {
-//                                    ULONG nHdlAnz=aHdl.GetHdlCount();
-//                                    for (ULONG nHdlNum=0; nHdlNum<nHdlAnz; nHdlNum++) {
-//                                        SdrHdl* pHdl=aHdl.GetHdl(nHdlNum);
-//                                        SdrHdlKind eKind=pHdl->GetKind();
-//                                        USHORT nPtNum=pHdl->GetObjHdlNum();
-//                                        if (eKind!=HDL_REF1 && eKind!=HDL_REF2 && eKind!=HDL_MIRX) {
-//                                            aHdl.RestoreBackground(*pOut,*rWRec.pVDev,(USHORT)nHdlNum);
-//                                        }
-//                                    }
-//                                } else {
-//                                    aHdl.RestoreBackground(*pOut,*rWRec.pVDev);
-//                                }
-//                            }
-//                        }
-//                    }
-//                }
-//            }
-/*N*/       }
 /*N*/       bRefHdlShownOnly=bNoRefHdl;
 /*N*/       bHdlShown=FALSE;
 /*N*/   }
-//    bSolidHdlBackgroundInvalid=FALSE;
-
-    // refresh IAOs
-//  RefreshAllIAOManagers();
 /*N*/ }
 
-/*N*/ void SdrMarkView::SetMarkHdlHidden(BOOL bOn)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrMarkView::SetMarkHdlHidden(BOOL /*bOn*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ BOOL SdrMarkView::ImpIsFrameHandles() const
@@ -413,7 +248,7 @@ namespace binfilter {
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
 /*N*/   BOOL bFrmHdl=nMarkAnz>nFrameHandlesLimit || bForceFrameHandles;
 /*N*/   BOOL bStdDrag=eDragMode==SDRDRAG_MOVE;
-/*N*/   if (nMarkAnz==1 && bStdDrag && bFrmHdl) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (nMarkAnz==1 && bStdDrag && bFrmHdl) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   if (!bStdDrag && !bFrmHdl) {
 /*?*/       // Grundsaetzlich erstmal alle anderen Dragmodi nur mit FrameHandles
@@ -429,7 +264,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/   if (!bFrmHdl) {
 /*N*/       // FrameHandles, wenn wenigstens 1 Obj kein SpecialDrag kann
-/*N*/       for (ULONG nMarkNum=0; nMarkNum<nMarkAnz && !bFrmHdl; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       for (ULONG nMarkNum=0; nMarkNum<nMarkAnz && !bFrmHdl; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/   return bFrmHdl;
@@ -440,9 +275,6 @@ namespace binfilter {
 /*N*/   // #105722# remember old focus handle values to search for it again
 /*N*/   const SdrHdl* pSaveOldFocusHdl = aHdl.GetFocusHdl();
 /*N*/   sal_Bool bSaveOldFocus(sal_False);
-/*N*/   sal_uInt16 nSavePolyNum, nSavePointNum;
-/*N*/   SdrHdlKind eSaveKind;
-/*N*/   SdrObject* pSaveObj;
 /*N*/
 /*N*/   if(pSaveOldFocusHdl
 /*N*/       && pSaveOldFocusHdl->GetObj()
@@ -457,7 +289,6 @@ namespace binfilter {
 /*N*/   pMarkedObj=NULL;
 /*N*/   pMarkedPV=NULL;
 /*N*/   ULONG nMarkAnz=aMark.GetMarkCount();
-/*N*/   BOOL bStdDrag=eDragMode==SDRDRAG_MOVE;
 /*N*/   if (nMarkAnz==1) {
 /*?*/       pMarkedObj=aMark.GetMark(0)->GetObj();
 /*N*/   }
@@ -474,15 +305,15 @@ namespace binfilter {
 /*N*/   if (bFrmHdl) {
 /*N*/       Rectangle aRect(GetMarkedObjRect());
 /*N*/       if (!aRect.IsEmpty()) { // sonst nix gefunden
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 BOOL bWdt0=aRect.Left()==aRect.Right();
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   } else {
 /*N*/       for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SdrMark* pM=aMark.GetMark(nMarkNum);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       } // for nMarkNum
 /*N*/   } // if bFrmHdl else
 /*N*/   // GluePoint-Handles
-/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   for (ULONG nMarkNum=0; nMarkNum<nMarkAnz; nMarkNum++) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
     // Drehpunkt/Spiegelachse
@@ -496,7 +327,7 @@ namespace binfilter {
 /*N*/
 /*N*/   // #105722# try to restore focus handle index from remembered values
 /*N*/   if(bSaveOldFocus)
-/*N*/   {DBG_BF_ASSERT(0, "STRIP");//STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
@@ -505,47 +336,15 @@ namespace binfilter {
 /*N*/   // add custom handles (used by other apps, e.g. AnchorPos)
 /*N*/ }
 
-/*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode eMode)
+/*N*/ void SdrMarkView::AddDragModeHdl(SdrDragMode /*eMode*/)
 /*N*/ {
-/*N*/   switch(eMode)
-/*N*/   {
-/*?*/       case SDRDRAG_ROTATE:
-/*?*/       {
-/*?*/           // add rotation center
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001   SdrHdl* pHdl = new SdrHdl(aRef1, HDL_REF1);
-/*?*/
-/*?*/
-/*?*/           break;
-/*?*/       }
-/*?*/       case SDRDRAG_MIRROR:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/
-/*?*/           break;
-/*?*/       }
-/*?*/       case SDRDRAG_TRANSPARENCE:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/           break;
-/*?*/       }
-/*?*/       case SDRDRAG_GRADIENT:
-/*?*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*?*/           break;
-/*N*/       }
-/*N*/   }
 /*N*/ }
-
-
 
 
 /*N*/ void SdrMarkView::CheckMarked()
 /*N*/ {
-/*N*/   for (ULONG nm=aMark.GetMarkCount(); nm>0;) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   for (ULONG nm=aMark.GetMarkCount(); nm>0;) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
-
-    // #67670# When this leads to a change, MarkListHasChanged()
-    // had been called before. Calling MarkListHasChanged() again
-    // could lead to problems in sfx, see BUG description.
-    //  if(bChg)
-    //      MarkListHasChanged();
 
     // #97995# at least reset the remembered BoundRect to prevent handle
     // generation if bForceFrameHandles is TRUE.
@@ -595,16 +394,15 @@ namespace binfilter {
 /*N*/ {
 /*N*/   if (pObj!=NULL && pPV!=NULL && IsObjMarkable(pObj, pPV)) {
 /*N*/       BrkAction();
-/*N*/       if (!bUnmark) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
-/*N*/       } else {
+/*N*/       if (bUnmark)
+            {
 /*N*/           ULONG nPos=aMark.FindObject(pObj);
-/*N*/           if (nPos!=CONTAINER_ENTRY_NOTFOUND) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           if (nPos!=CONTAINER_ENTRY_NOTFOUND) {
 /*N*/           }
 /*N*/       }
 /*N*/       if (!bImpNoSetMarkHdl) {
 /*N*/           MarkListHasChanged();
 /*N*/           AdjustMarkHdl(TRUE);
-/*N*/ //            if (!IsSolidMarkHdl() || !bSomeObjChgdFlag) {
 /*N*/           if (!bSomeObjChgdFlag) {
 /*N*/               // ShowMarkHdl kommt sonst mit dem AfterPaintTimer
 /*N*/               ShowMarkHdl(NULL);
@@ -630,7 +428,6 @@ namespace binfilter {
 /*N*/       return NULL;
 /*N*/   }
 /*N*/   BOOL bCheckIfMarkable=(nOptions & SDRSEARCH_TESTMARKABLE)!=0;
-/*N*/   BOOL bBack=(nOptions & SDRSEARCH_BACKWARD)!=0;
 /*N*/   BOOL bDeep=(nOptions & SDRSEARCH_DEEP)!=0;
 /*N*/   BOOL bOLE=pObj->ISA(SdrOle2Obj);
 /*N*/   SdrObject* pRet=NULL;
@@ -648,8 +445,7 @@ namespace binfilter {
 /*N*/           SdrObjList* pOL=pObj->GetSubList();
 /*N*/           if (pOL!=NULL && pOL->GetObjCount()!=0) {
 /*N*/               SdrObject* pTmpObj;
-/*N*/                 // OD 30.06.2003 #108784# - adjustment hit point for virtual
-/*N*/                 // objects.
+/*N*/                 // adjustment hit point for virtual objects.
 /*N*/                 Point aPnt( rPnt );
 /*N*/                 if ( pObj->ISA(SdrVirtObj) )
 /*N*/                 {
@@ -720,9 +516,6 @@ namespace binfilter {
 /*N*/   if(bRestraintPaint && bVis)
 /*N*/   {
 /*?*/       ShowMarkHdl(NULL);
-/*N*/
-/*N*/       // refresh IAOs
-//STRIP012/*N*/ //--/       RefreshAllIAOManagers();
 /*N*/   }
 /*N*/ }
 
@@ -747,20 +540,6 @@ namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
-// #i13033#
-// Helper method for building the transitive hull of all selected
-// objects
-
-
-////////////////////////////////////////////////////////////////////////////////////////////////////
-
 /*N*/ void SdrMarkView::MarkListHasChanged()
 /*N*/ {
 /*N*/   aMark.SetNameDirty();
@@ -775,10 +554,10 @@ namespace binfilter {
 /*N*/   bMarkedObjRectDirty=TRUE;
 /*N*/   bMarkedPointsRectsDirty=TRUE;
 /*N*/ #ifndef SVX_LIGHT
-/*?*/   if (pItemBrowser!=NULL) DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pItemBrowser->SetDirty();
+/*?*/   if (pItemBrowser!=NULL) DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/   BOOL bOneEdgeMarked=FALSE;
-/*N*/   if (aMark.GetMarkCount()==1) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (aMark.GetMarkCount()==1) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   ImpSetGlueVisible4(bOneEdgeMarked);
 /*N*/ }
@@ -902,3 +681,5 @@ namespace binfilter {
 // PaintHandlers->InitRedraw() sind auch die SolidHandles sichtbar.
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

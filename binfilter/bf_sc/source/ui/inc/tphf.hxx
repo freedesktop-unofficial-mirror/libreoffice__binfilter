@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #define SC_TPHF_HXX
 
 
-#ifndef _SVX_HDFT_HXX //autogen
 #include <bf_svx/hdft2.hxx>
-#endif
 namespace binfilter {
 
 class ScStyleDlg;
@@ -101,3 +100,4 @@ private:
 } //namespace binfilter
 #endif // SC_TPHF_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

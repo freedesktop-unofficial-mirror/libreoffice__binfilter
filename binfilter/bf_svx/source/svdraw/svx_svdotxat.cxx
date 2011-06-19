@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,51 +32,22 @@
 #include "svdocapt.hxx" // fuer SetDirty bei NbcAdjustTextFrameWidthAndHeight
 #include "writingmodeitem.hxx"
 #include "eeitem.hxx"
-
-
-#ifndef _SVX_ITEMDATA_HXX
 #include "itemdata.hxx"
-#endif
 
-
-
-
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
-
-
-#ifndef _OUTLOBJ_HXX //autogen
 #include <outlobj.hxx>
-#endif
 
-
-#ifndef _EEITEM_HXX //autogen
 #include "eeitem.hxx"
-#endif
 
-#ifndef _EDITOBJ_HXX //autogen
 #include <editobj.hxx>
-#endif
 
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include "fhgtitem.hxx"
-#endif
 
 #include <charscaleitem.hxx>
-
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
 
 #define ITEMID_LRSPACE          EE_PARA_LRSPACE
-
-
-
 
 namespace binfilter {
 
@@ -93,7 +65,7 @@ namespace binfilter {
 //
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void __EXPORT SdrTextObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
+/*N*/ void SdrTextObj::SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType)
 /*N*/ {
 /*N*/   SdrAttrObj::SFX_NOTIFY(rBC,rBCType,rHint,rHintType);
 /*N*/   if (pOutlinerParaObject!=NULL)
@@ -135,7 +107,7 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void SdrTextObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr)
+/*N*/ void SdrTextObj::NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr)
 /*N*/ {
 /*N*/   SdrAttrObj::NbcSetStyleSheet(pNewStyleSheet,bDontRemoveHardAttr);
 /*N*/
@@ -147,7 +119,7 @@ namespace binfilter {
 /*N*/       USHORT nParaCount=(USHORT)rOutliner.GetParagraphCount();
 /*N*/       if (nParaCount!=0)
 /*N*/       {
-/*N*/           SfxItemSet* pTempSet;
+/*N*/           SfxItemSet* pTempSet(NULL);
 /*N*/           for (USHORT nPara=0; nPara<nParaCount; nPara++)
 /*N*/           {
 /*N*/               // since setting the stylesheet removes all para attributes
@@ -290,7 +262,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if(nParaCount)
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ESelection aSelection( 0, 0, EE_PARA_ALL, EE_PARA_ALL);
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -300,18 +272,18 @@ namespace binfilter {
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
-/*N*/ FASTBOOL SdrTextObj::AdjustTextFrameWidthAndHeight(Rectangle& rR, FASTBOOL bHgt, FASTBOOL bWdt) const
+/*N*/ bool SdrTextObj::AdjustTextFrameWidthAndHeight(Rectangle& rR, bool bHgt, bool bWdt) const
 /*N*/ {
 /*N*/   if (bTextFrame && pModel!=NULL && !rR.IsEmpty()) {
 /*N*/       SdrFitToSizeType eFit=GetFitToSize();
-/*N*/       FASTBOOL bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
-/*N*/       FASTBOOL bWdtGrow=bWdt && IsAutoGrowWidth();
-/*N*/       FASTBOOL bHgtGrow=bHgt && IsAutoGrowHeight();
+/*N*/       bool bFitToSize=(eFit==SDRTEXTFIT_PROPORTIONAL || eFit==SDRTEXTFIT_ALLLINES);
+/*N*/       bool bWdtGrow=bWdt && IsAutoGrowWidth();
+/*N*/       bool bHgtGrow=bHgt && IsAutoGrowHeight();
 /*N*/       SdrTextAniKind eAniKind=GetTextAniKind();
 /*N*/       SdrTextAniDirection eAniDir=GetTextAniDirection();
-/*N*/       FASTBOOL bScroll=eAniKind==SDRTEXTANI_SCROLL || eAniKind==SDRTEXTANI_ALTERNATE || eAniKind==SDRTEXTANI_SLIDE;
-/*N*/       FASTBOOL bHScroll=bScroll && (eAniDir==SDRTEXTANI_LEFT || eAniDir==SDRTEXTANI_RIGHT);
-/*N*/       FASTBOOL bVScroll=bScroll && (eAniDir==SDRTEXTANI_UP || eAniDir==SDRTEXTANI_DOWN);
+/*N*/       bool bScroll=eAniKind==SDRTEXTANI_SCROLL || eAniKind==SDRTEXTANI_ALTERNATE || eAniKind==SDRTEXTANI_SLIDE;
+/*N*/       bool bHScroll=bScroll && (eAniDir==SDRTEXTANI_LEFT || eAniDir==SDRTEXTANI_RIGHT);
+/*N*/       bool bVScroll=bScroll && (eAniDir==SDRTEXTANI_UP || eAniDir==SDRTEXTANI_DOWN);
 /*N*/       if (!bFitToSize && (bWdtGrow || bHgtGrow)) {
 /*N*/           Rectangle aR0(rR);
 /*N*/           long nHgt=0,nMinHgt=0,nMaxHgt=0;
@@ -355,9 +327,9 @@ namespace binfilter {
 /*N*/           {
 /*?*/               pEdtOutl->SetMaxAutoPaperSize(aSiz);
 /*?*/               if (bWdtGrow) {
-/*?*/                   Size aSiz(pEdtOutl->CalcTextSize());
-/*?*/                   nWdt=aSiz.Width()+1; // lieber etwas Tolleranz
-/*?*/                   if (bHgtGrow) nHgt=aSiz.Height()+1; // lieber etwas Tolleranz
+/*?*/                   Size aLclSiz(pEdtOutl->CalcTextSize());
+/*?*/                   nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
+/*?*/                   if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
 /*?*/               } else {
 /*?*/                   nHgt=pEdtOutl->GetTextHeight()+1; // lieber etwas Tolleranz
 /*?*/               }
@@ -369,9 +341,9 @@ namespace binfilter {
 /*N*/               // bPortionInfoChecked usw einbauen
 /*N*/               if (pOutlinerParaObject!=NULL) rOutliner.SetText(*pOutlinerParaObject);
 /*N*/               if (bWdtGrow) {
-/*N*/                   Size aSiz(rOutliner.CalcTextSize());
-/*N*/                   nWdt=aSiz.Width()+1; // lieber etwas Tolleranz
-/*N*/                   if (bHgtGrow) nHgt=aSiz.Height()+1; // lieber etwas Tolleranz
+/*N*/                   Size aLclSiz(rOutliner.CalcTextSize());
+/*N*/                   nWdt=aLclSiz.Width()+1; // lieber etwas Tolleranz
+/*N*/                   if (bHgtGrow) nHgt=aLclSiz.Height()+1; // lieber etwas Tolleranz
 /*N*/               } else {
 /*N*/                   nHgt=rOutliner.GetTextHeight()+1; // lieber etwas Tolleranz
 /*N*/               }
@@ -425,9 +397,9 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SdrTextObj::NbcAdjustTextFrameWidthAndHeight(FASTBOOL bHgt, FASTBOOL bWdt)
+/*N*/ bool SdrTextObj::NbcAdjustTextFrameWidthAndHeight(bool bHgt, bool bWdt)
 /*N*/ {
-/*N*/   FASTBOOL bRet=AdjustTextFrameWidthAndHeight(aRect,bHgt,bWdt);
+/*N*/   bool bRet=AdjustTextFrameWidthAndHeight(aRect,bHgt,bWdt);
 /*N*/   if (bRet) {
 /*N*/       SetRectsDirty();
 /*N*/       if (HAS_BASE(SdrRectObj,this)) { // mal wieder 'nen Hack
@@ -533,3 +505,5 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

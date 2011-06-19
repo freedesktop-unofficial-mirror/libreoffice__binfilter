@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,61 +36,11 @@
 #include "docsh.hxx"
 #include "ndtxt.hxx"
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
 #include "numpara.hxx"
 #include "number.hxx"
 
-
-
-#ifdef JP_DEBUG
-
-#ifndef _SVWINDOW_HXX
-#include <svwindow.hxx>
-#endif
-namespace binfilter {
-
-class GrfWindow : public WorkWindow, public Timer
-{
-    Graphic aGrf;
-    Size aSz;
-    virtual void Timeout();
-    virtual void Paint( const Rectangle& );
-public:
-    GrfWindow( const Graphic& rGrf );
-    virtual ~GrfWindow();
-};
-
-GrfWindow::GrfWindow( const Graphic& rGrf )
-    : WorkWindow( GetpApp()->GetAppWindow() ), aGrf( rGrf )
-{
-    SetTimeout( 10000 );
-
-    aSz = ::GetGraphicSizeTwip( &rGrf );
-    SetMapMode( MapMode( MAP_TWIP ));
-    SetPosSizePixel( Point( 100, 0 ), LogicToPixel( aSz ));
-    Show();
-    Invalidate();
-    Update();
-    Start();
-}
-SEXPORT GrfWindow::~GrfWindow()
-{
-}
-void SEXPORT GrfWindow::Timeout()
-{
-    delete this;
-}
-void SEXPORT GrfWindow::Paint( const Rectangle& )
-{
-    aGrf.Draw( this, Point(0,0), PixelToLogic( GetSizePixel() ) );
-}
-
-#endif
 
 // waehrend des Nummerierens ist das Undo am Doc abgeschaltet !!!
 
@@ -155,7 +106,7 @@ void _NumPara::_Init()
                 rNumSection.aStart.GetIndex() <= aIdx.GetIndex() )
             pTxtNd = rNds[ aIdx ]->GetTxtNode();
 
-        ASSERT( pTxtNd, "NumSection ohne Start-TextNode? " );
+        OSL_ENSURE( pTxtNd, "NumSection ohne Start-TextNode? " );
         aNum = pTxtNd->GetpSwpHints()->GetNum();
         aNum.pRules = rNumSection.pRules;
         if( NO_NUM == aNum.nMyLevel || NO_NUMLEVEL & aNum.nMyLevel )
@@ -292,3 +243,5 @@ void _NumPara::UpdateNum( SwTxtNode& rTxtNd )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

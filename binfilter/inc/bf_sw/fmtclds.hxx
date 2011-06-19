@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _FORMAT_HXX //autogen
 #include <format.hxx>
-#endif
 namespace binfilter {
 
 //Der ColumnDescriptor --------------------------
@@ -69,7 +66,7 @@ public:
 };
 
 typedef SwColumn* SwColumnPtr;
-SV_DECL_PTRARR_DEL( SwColumns, SwColumnPtr, 0, 2 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwColumns, SwColumnPtr, 0, 2 )
 
 enum SwColLineAdj
 {
@@ -81,7 +78,6 @@ enum SwColLineAdj
 
 class SwFmtCol : public SfxPoolItem
 {
-//  Pen      aPen;          //Pen fuer die Linine zwischen den Spalten
     ULONG   nLineWidth;     //width of the separator line
     Color   aLineColor;     //color of the separator line
 
@@ -114,15 +110,14 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
-    virtual BOOL             QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
-    virtual BOOL             PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
+    virtual bool            QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 ) const;
+    virtual bool            PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId = 0 );
 
     const SwColumns &GetColumns() const { return aColumns; }
           SwColumns &GetColumns()       { return aColumns; }
     USHORT           GetNumCols() const { return aColumns.Count(); }
-//  const Pen&       GetLinePen() const { return aPen; }
     ULONG           GetLineWidth() const  { return nLineWidth;}
     const Color&    GetLineColor() const { return aLineColor;}
 
@@ -136,8 +131,7 @@ public:
     //Return die kleinste Breite wenn bMin True ist.
     USHORT GetGutterWidth( BOOL bMin = FALSE ) const;
 
-//  void SetLinePen( const Pen& rNew )  { aPen = rNew; }
-    void SetLineWidth(ULONG nWidth)         { nLineWidth = nWidth;}
+    void SetLineWidth(ULONG nWidth_)        { nLineWidth = nWidth_;}
     void SetLineColor(const Color& rCol )   { aLineColor = rCol;}
     void SetLineHeight( BYTE nNew )     { nLineHeight = nNew; }
     void SetLineAdj( SwColLineAdj eNew ){ eAdj = eNew; }
@@ -179,3 +173,4 @@ inline const SwFmtCol &SwFmt::GetCol(BOOL bInP) const
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

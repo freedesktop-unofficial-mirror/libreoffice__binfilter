@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -79,7 +77,8 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ Collection::Collection(const Collection& rCollection)
-/*N*/   :   nCount ( 0 ),
+/*N*/   :   DataObject(rCollection),
+/*N*/       nCount ( 0 ),
 /*N*/       nLimit ( 0 ),
 /*N*/       nDelta ( 0 ),
 /*N*/       pItems ( NULL )
@@ -197,7 +196,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   Collection::Clone() const
 /*N*/ {
-        DBG_BF_ASSERT(0, "STRIP"); return NULL; //STRIP001  return new Collection(*this);
+        DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -295,7 +294,7 @@ namespace binfilter {
 
 /*N*/ DataObject*   StrCollection::Clone() const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001   return new StrCollection(*this);
+            DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -315,18 +314,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       rStream.ReadByteString( aStr, eSet );
 /*N*/       pItems[i] = new StrData( aStr );
-/*N*/   }
-/*N*/ }
-
-/*N*/ void StrCollection::Store( SvStream& rStream ) const
-/*N*/ {
-/*N*/   ScWriteHeader aHdr( rStream );
-/*N*/   BOOL bDups = IsDups();
-/*N*/   rStream << bDups << nCount << nLimit << nDelta;
-/*N*/   rtl_TextEncoding eSet = rStream.GetStreamCharSet();
-/*N*/   for ( USHORT i=0; i<nCount; i++ )
-/*N*/   {
-/*N*/       rStream.WriteByteString( ((StrData*)pItems[i])->GetString(), eSet );
 /*N*/   }
 /*N*/ }
 
@@ -358,10 +345,10 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ short TypedStrCollection::Compare( DataObject* pKey1, DataObject* pKey2 ) const
+/*N*/ short TypedStrCollection::Compare( DataObject* /*pKey1*/, DataObject* /*pKey2*/ ) const
 /*N*/ {
 /*N*/   short nResult = 0;
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( pKey1 && pKey2 )
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/ return nResult;
 /*N*/ }
 
@@ -372,3 +359,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if ( pKey1 && pKey2 )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

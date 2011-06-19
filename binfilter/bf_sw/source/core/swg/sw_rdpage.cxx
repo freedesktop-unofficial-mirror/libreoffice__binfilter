@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,25 +31,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
 
 #include "rdswg.hxx"
 #include "pagedesc.hxx"
 #include "swgpar.hxx"       // SWGRD_XXX
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -235,7 +228,7 @@ void SwSwgReader::InPageDesc( short nIdx )
                     nIdx = n; break;
                 }
             }
-            ASSERT( n < nArrLen, "Pool-PageDesc nicht gefunden" );
+            OSL_ENSURE( n < nArrLen, "Pool-PageDesc nicht gefunden" );
         }
     } else {
         // Keine Poolvorlage:
@@ -391,3 +384,5 @@ void SwSwgReader::InPageDescs()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

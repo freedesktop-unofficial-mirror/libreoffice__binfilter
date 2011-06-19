@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,9 +37,7 @@
 #define _SVSTDARR_XUB_STRLEN
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -232,9 +231,11 @@ class SwFlyCache : public SwRect // position and size
 public:
     ULONG nOrdNum;      // Id to recognize text frames
     USHORT nPageNum;    // page number
-    SwFlyCache( USHORT nP, ULONG nO, long nX, long nY, long nW, long nH ) :
-        SwRect( nX, nY, nW, nH ), nOrdNum( nO ), nPageNum( nP ){}
+    SwFlyCache( USHORT nP, ULONG nO, long nX1, long nY1, long nW, long nH ) :
+        SwRect( nX1, nY1, nW, nH ), nOrdNum( nO ), nPageNum( nP ){}
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,30 +33,19 @@
 
 #include "cntfrm.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "doc.hxx"
 
 #include "hintids.hxx"
 
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
 
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTFORDR_HXX //autogen
 #include <fmtfordr.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
 #include "frmtool.hxx"
 #include "colfrm.hxx"
 #include "pagefrm.hxx"
@@ -71,9 +61,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwColumnFrm::SwColumnFrm()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    AMA 30. Oct 98
 |*
 |*************************************************************************/
 /*N*/ SwColumnFrm::SwColumnFrm( SwFrmFmt *pFmt ):
@@ -102,21 +89,18 @@ namespace binfilter {
 |*
 |*  SwLayoutFrm::ChgColumns()
 |*
-|*  Ersterstellung      MA 11. Feb. 93
-|*  Letzte Aenderung    MA 12. Oct. 98
-|*
 |*************************************************************************/
 
 /*N*/ void MA_FASTCALL lcl_RemoveColumns( SwLayoutFrm *pCont, USHORT nCnt )
 /*N*/ {
-/*N*/   ASSERT( pCont && pCont->Lower() && pCont->Lower()->IsColumnFrm(),
+/*N*/   OSL_ENSURE( pCont && pCont->Lower() && pCont->Lower()->IsColumnFrm(),
 /*N*/           "Keine Spalten zu entfernen." );
 /*N*/
 /*N*/   SwColumnFrm *pColumn = (SwColumnFrm*)pCont->Lower();
 /*N*/   ::binfilter::lcl_RemoveFtns( pColumn, TRUE, TRUE );
 /*N*/   while ( pColumn->GetNext() )
 /*N*/   {
-/*N*/       ASSERT( pColumn->GetNext()->IsColumnFrm(),
+/*N*/       OSL_ENSURE( pColumn->GetNext()->IsColumnFrm(),
 /*N*/               "Nachbar von ColFrm kein ColFrm." );
 /*N*/       pColumn = (SwColumnFrm*)pColumn->GetNext();
 /*N*/   }
@@ -192,9 +176,9 @@ namespace binfilter {
 /*N*/       }
 /*N*/       for ( USHORT i = 0; i < nCount; ++i )
 /*N*/       {
-/*N*/           SwColumnFrm *pTmp = new SwColumnFrm( pNeighbourCol->GetFmt() );
-/*N*/           pTmp->SetMaxFtnHeight( nMax );
-/*N*/           pTmp->InsertBefore( pCont, NULL );
+/*N*/           SwColumnFrm *pTmp1 = new SwColumnFrm( pNeighbourCol->GetFmt() );
+/*N*/           pTmp1->SetMaxFtnHeight( nMax );
+/*N*/           pTmp1->InsertBefore( pCont, NULL );
 /*N*/           pNeighbourCol = (SwLayoutFrm*)pNeighbourCol->GetNext();
 /*N*/       }
 /*N*/   }
@@ -215,7 +199,7 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-/*-----------------21.09.99 15:42-------------------
+/*--------------------------------------------------
  * ChgColumns() adds or removes columns from a layoutframe.
  * Normally, a layoutframe with a column attribut of 1 or 0 columns contains
  * no columnframe. However, a sectionframe with "footnotes at the end" needs
@@ -253,7 +237,7 @@ namespace binfilter {
 /*N*/   if( nOldNum != nNewNum || bChgFtn )
 /*N*/   {
 /*N*/       SwDoc *pDoc = GetFmt()->GetDoc();
-/*N*/       ASSERT( pDoc, "FrmFmt gibt kein Dokument her." );
+/*N*/       OSL_ENSURE( pDoc, "FrmFmt gibt kein Dokument her." );
 /*N*/       // SaveCntnt wuerde auch den Inhalt der Fussnotencontainer aufsaugen
 /*N*/       // und im normalen Textfluss unterbringen.
 /*N*/       if( IsPageBodyFrm() )
@@ -319,7 +303,7 @@ namespace binfilter {
 /*N*/   //unnuetzte Aktionen beim Einstellen zur Folge haben.
 /*N*/   if ( pSave )
 /*N*/   {
-/*N*/       ASSERT( Lower() && Lower()->IsLayoutFrm() &&
+/*N*/       OSL_ENSURE( Lower() && Lower()->IsLayoutFrm() &&
 /*N*/               ((SwLayoutFrm*)Lower())->Lower() &&
 /*N*/               ((SwLayoutFrm*)Lower())->Lower()->IsLayoutFrm(),
 /*N*/               "Gesucht: Spaltenbody (Tod oder Lebend)." );   // ColumnFrms jetzt mit BodyFrm
@@ -330,9 +314,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwLayoutFrm::AdjustColumns()
-|*
-|*  Ersterstellung      MA 19. Jan. 99
-|*  Letzte Aenderung    MA 19. Jan. 99
 |*
 |*************************************************************************/
 
@@ -345,7 +326,7 @@ namespace binfilter {
 /*?*/       return;
 /*N*/   }
 /*N*/
-/*N*/     const FASTBOOL bVert = IsVertical();
+/*N*/     const bool bVert = IsVertical();
 /*N*/     SwRectFn fnRect = bVert ? fnRectVert : fnRectHori;
 /*N*/
 /*N*/   //Ist ein Pointer da, oder sollen wir die Attribute einstellen,
@@ -491,3 +472,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

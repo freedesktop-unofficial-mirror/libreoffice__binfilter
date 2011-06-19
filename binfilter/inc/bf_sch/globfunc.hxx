@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,25 +32,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_LABEL3D_HXX //autogen
 #include <bf_svx/label3d.hxx>
-#endif
 
 #include "schgroup.hxx"
 #include "objid.hxx"
 #include "datapoin.hxx"
 #include "datarow.hxx"
 #include "objadj.hxx"
-#ifndef _SVX_CHRTITEM_HXX //autogen
 #include <bf_svx/chrtitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 #include <vector>
 namespace binfilter {
@@ -57,12 +50,10 @@ namespace binfilter {
 //Item-Debugging
 #ifdef DBG_UTIL
     class ChartModel;
-    extern void Dbg_DebugItems(SfxItemSet& rSet,ChartModel* pModel,long num = 32);
+    extern void Dbg_DebugItems(SfxItemSet& rSet,ChartModel* pModel);
     #define DBG_ITEMS(a,b) Dbg_DebugItems(a,b)
-    #define DBG_ITEMSX(a,b,c) Dbg_DebugItems(a,b,c)
 #else
     #define DBG_ITEMS(a,b)
-    #define DBG_ITEMSX(a,b,c)
 #endif
 
 //hunderstel Grad (centi-degrees)in Rad
@@ -244,3 +235,4 @@ namespace   sch {
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

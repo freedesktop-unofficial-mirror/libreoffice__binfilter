@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 #include "pagefrm.hxx"
 #include "viewsh.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "viewimp.hxx"
@@ -49,38 +48,18 @@
 
 #include <ftnidx.hxx>
 
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
 
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
-#ifndef _FMTTSPLT_HXX //autogen
 #include <fmtlsplt.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "tabfrm.hxx"
 #include "rowfrm.hxx"
 #include "cellfrm.hxx"
@@ -98,9 +77,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::SwTabFrm(), ~SwTabFrm()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 /*N*/ SwTabFrm::SwTabFrm( SwTable &rTab ):
 /*N*/   SwLayoutFrm( rTab.GetFrmFmt() ),
@@ -114,14 +90,14 @@ namespace binfilter {
 /*N*/
 /*N*/   //Gleich die Zeilen erzeugen und einfuegen.
 /*N*/   const SwTableLines &rLines = rTab.GetTabLines();
-/*N*/   SwFrm *pPrev = 0;
+/*N*/   SwFrm *pPrev1 = 0;
 /*N*/   for ( USHORT i = 0; i < rLines.Count(); ++i )
 /*N*/   {
 /*N*/       SwRowFrm *pNew = new SwRowFrm( *rLines[i] );
 /*N*/       if( pNew->Lower() )
 /*N*/       {
-/*N*/           pNew->InsertBehind( this, pPrev );
-/*N*/           pPrev = pNew;
+/*N*/           pNew->InsertBehind( this, pPrev1 );
+/*N*/           pPrev1 = pNew;
 /*N*/       }
 /*N*/       else
 /*?*/           delete pNew;
@@ -151,22 +127,16 @@ namespace binfilter {
 |*
 |*  SwTabFrm::JoinAndDelFollows()
 |*
-|*  Ersterstellung      MA 30. May. 96
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwTabFrm::RegistFlys()
 |*
-|*  Ersterstellung      MA 08. Jul. 93
-|*  Letzte Aenderung    MA 27. Jan. 99
-|*
 |*************************************************************************/
 /*N*/ void SwTabFrm::RegistFlys()
 /*N*/ {
-/*N*/   ASSERT( Lower() && Lower()->IsRowFrm(), "Keine Zeilen." );
+/*N*/   OSL_ENSURE( Lower() && Lower()->IsRowFrm(), "Keine Zeilen." );
 /*N*/
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   if ( pPage )
@@ -183,14 +153,11 @@ namespace binfilter {
 |*
 |*  SwTabFrm::Split(), Join()
 |*
-|*  Ersterstellung      MA 03. Jun. 93
-|*  Letzte Aenderung    MA 03. Sep. 96
-|*
 |*************************************************************************/
 /*N*/ SwTwips SwTabFrm::Split( const SwTwips nCutPos )
 /*N*/ {
 /*N*/     SWRECTFN( this )
-/*N*/     ASSERT( bVert ? nCutPos >= Frm().Left()
+/*N*/     OSL_ENSURE( bVert ? nCutPos >= Frm().Left()
 /*N*/             && nCutPos <= Frm().Left() + Frm().Width() :
 /*N*/             nCutPos >= Frm().Top() && nCutPos <= Frm().Bottom(),
 /*N*/             "SplitLine out of table." );
@@ -226,7 +193,7 @@ namespace binfilter {
 /*N*/   if ( !pRow )
 /*N*/   {
 /*?*/ #if OSL_DEBUG_LEVEL > 1
-/*?*/       ASSERT( FALSE, "Tablesplit out of rows?" );
+/*?*/       OSL_ENSURE( FALSE, "Tablesplit out of rows?" );
 /*?*/ #endif
 /*?*/       pRow = Lower();
 /*?*/       while ( pRow && pRow->GetNext() )
@@ -235,7 +202,7 @@ namespace binfilter {
 /*N*/
 /*N*/   //Wenn es bereits einen Follow gibt so geht's dort hinein andernfalls
 /*N*/   //muss eben einer erzeugt werden.
-/*N*/   FASTBOOL bNewFollow;
+/*N*/   bool bNewFollow;
 /*N*/   SwTabFrm *pFoll;
 /*N*/   if ( GetFollow() )
 /*N*/   {
@@ -250,7 +217,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if( bRepeat )
 /*N*/       {   //Ueberschrift wiederholen.
-/*N*/           ASSERT( GetTable()->GetTabLines()[0], "Table ohne Zeilen?" );
+/*N*/           OSL_ENSURE( GetTable()->GetTabLines()[0], "Table ohne Zeilen?" );
 /*N*/           bDontCreateObjects = TRUE;              //frmtool
 /*N*/           SwRowFrm *pHeadline = new SwRowFrm(
 /*N*/                                   *GetTable()->GetTabLines()[0] );
@@ -309,7 +276,7 @@ namespace binfilter {
 /*N*/           pRow = pNxt;
 /*N*/       }
 /*N*/   }
-/*N*/     ASSERT( !bNewFollow || !(pFoll->Frm().*fnRect->fnGetHeight)(),
+/*N*/     OSL_ENSURE( !bNewFollow || !(pFoll->Frm().*fnRect->fnGetHeight)(),
 /*N*/             "Dont care about Performance");
 /*N*/     Shrink( nRet );
 /*N*/   return nRet;
@@ -356,9 +323,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwTabFrm::MakeAll()
-|*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 10. Apr. 97
 |*
 |*************************************************************************/
 /*N*/ void MA_FASTCALL SwInvalidatePositions( SwFrm *pFrm, long nBottom )
@@ -534,10 +498,9 @@ namespace binfilter {
 /*N*/
 /*N*/   //Wenn mein direkter Nachbar gleichzeitig mein Follow ist
 /*N*/   //verleibe ich mir das Teil ein.
-/*N*/     // OD 09.04.2003 #108698# - join all follows, which are placed on the
-/*N*/     // same page/column.
-/*N*/     // OD 29.04.2003 #109213# - join follow, only if join for the follow
-/*N*/     // is not locked. Otherwise, join will not be performed and this loop
+/*N*/     // join all follows, which are placed on the same page/column.
+/*N*/     // join follow, only if join for the follow is not locked.
+/*N*/     // Otherwise, join will not be performed and this loop
 /*N*/     // will be endless.
 /*N*/     while ( GetNext() && GetNext() == GetFollow() &&
 /*N*/             !GetFollow()->IsJoinLocked()
@@ -547,7 +510,7 @@ namespace binfilter {
 /*N*/     }
 /*N*/
 /*N*/   if ( bResizeHTMLTable ) //Optimiertes Zusammenspiel mit Grow/Shrink des Inhaltes
-/*N*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/
@@ -604,7 +567,7 @@ namespace binfilter {
 /*N*/           {
 /*N*/               SwHTMLTableLayout *pLayout = GetTable()->GetHTMLTableLayout();
 /*N*/               if( pLayout )
-/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/
 /*N*/               bValidPrtArea = FALSE;
@@ -644,7 +607,7 @@ namespace binfilter {
 /*N*/           if ( /*!bOptLower &&*/ pLayout &&
 /*N*/                  ((Prt().*fnRect->fnGetWidth)() != nOldPrtWidth ||
 /*N*/                   (Frm().*fnRect->fnGetWidth)() != nOldFrmWidth) )
-/*N*/             {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/             {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/             if ( !bOptLower && aOldPrtPos != (Prt().*fnRect->fnGetPos)() )
 /*N*/               aNotify.SetLowersComplete( FALSE );
@@ -672,7 +635,7 @@ namespace binfilter {
 /*N*/                           BOOL bDummy;
 /*N*/                           SwFtnBossFrm *pOldBoss = bFtnsInDoc ?
 /*N*/                               FindFtnBossFrm( TRUE ) : 0;
-/*N*/                           const FASTBOOL bOldPrev = GetPrev() != 0;
+/*N*/                           const bool bOldPrev = GetPrev() != 0;
 /*N*/                           if ( MoveBwd( bDummy ) )
 /*N*/                           {
 /*N*/                                 SWREFRESHFN( this )
@@ -684,10 +647,10 @@ namespace binfilter {
 /*N*/                               MakePos();
 /*N*/                                 if( nOldTop != (Frm().*fnRect->fnGetTop)() )
 /*N*/                               {
-/*N*/                                   SwHTMLTableLayout *pLayout =
+/*N*/                                   SwHTMLTableLayout *pLayout1 =
 /*N*/                                       GetTable()->GetHTMLTableLayout();
-/*N*/                                   if( pLayout )
-/*N*/                                   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/                                   if( pLayout1 )
+/*N*/                                   {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                                   }
 /*N*/                               }
 /*N*/
@@ -763,7 +726,7 @@ namespace binfilter {
 /*N*/                       SwHTMLTableLayout *pLayout =
 /*N*/                           GetTable()->GetHTMLTableLayout();
 /*N*/                       if( pLayout )
-/*N*/                       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/                       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/                       }
 /*N*/
 /*N*/                       bValidPrtArea = FALSE;
@@ -793,7 +756,7 @@ namespace binfilter {
 /*N*/
 /*N*/         // check, if calculation of table frame is ready.
 /*N*/
-/*N*/         /// OD 23.10.2002 #103517# - Local variable <nDistanceToUpperPrtBottom>
+/*N*/         /// Local variable <nDistanceToUpperPrtBottom>
 /*N*/         ///     Introduce local variable and init it with the distance from the
 /*N*/         ///     table frame bottom to the bottom of the upper printing area.
 /*N*/         /// Note: negative values denotes the situation that table frame doesn't
@@ -801,7 +764,7 @@ namespace binfilter {
 /*N*/         SwTwips nDistanceToUpperPrtBottom =
 /*N*/                 (Frm().*fnRect->fnBottomDist)( (GetUpper()->*fnRect->fnGetPrtBottom)());
 /*N*/
-/*N*/         /// OD 23.10.2002 #103517# - In online layout try to grow upper of table
+/*N*/         /// In online layout try to grow upper of table
 /*N*/         /// frame, if table frame doesn't fit in its upper.
 /*N*/         if ( nDistanceToUpperPrtBottom < 0 &&
 /*N*/              GetFmt()->GetDoc()->IsBrowseMode() )
@@ -816,7 +779,6 @@ namespace binfilter {
 /*N*/
 /*N*/         if( nDistanceToUpperPrtBottom >= 0)
 /*N*/       {
-/*N*/             // OD 23.10.2002 - translate german commentary
 /*N*/             // If there is space left in the upper printing area, join as for trial
 /*N*/             // at least one further row of an existing follow.
 /*N*/           if ( !bSplit && GetFollow() )
@@ -838,7 +800,7 @@ namespace binfilter {
 /*N*/                       const BOOL bMoveFtns = bFtnsInDoc && pRow &&
 /*N*/                                              !GetFollow()->IsJoinLocked();
 /*N*/
-/*N*/                       SwFtnBossFrm *pOldBoss;
+/*N*/                       SwFtnBossFrm *pOldBoss = NULL;
 /*N*/                       if ( bMoveFtns )
 /*N*/                           pOldBoss = pRow->FindFtnBossFrm( TRUE );
 /*N*/
@@ -962,7 +924,7 @@ namespace binfilter {
 /*N*/                   //Follow gleich gueltig gemacht werden.
 /*N*/                   if ( GetFollow() )
 /*N*/                   {
-/*N*/                         SWRECTFN( GetFollow() )
+/*N*/                         SWRECTFNX( GetFollow() )
 /*N*/
 /*N*/                         static BYTE nStack = 0;
 /*N*/                         if ( !StackHack::IsLocked() && nStack < 4 )
@@ -976,7 +938,7 @@ namespace binfilter {
 /*N*/                             pAttrs = pAccess->Get();
 /*N*/                           ((SwTabFrm*)GetFollow())->SetLowersFormatted(FALSE);
 /*N*/                           ::binfilter::lcl_CalcLayout((SwLayoutFrm*)GetFollow()->Lower(),
-/*N*/                               (GetFollow()->GetUpper()->Frm().*fnRect->fnGetBottom)() );
+/*N*/                               (GetFollow()->GetUpper()->Frm().*fnRectX->fnGetBottom)() );
 /*N*/                           if ( !GetFollow()->GetFollow() )
 /*N*/                           {
 /*N*/                               SwFrm *pNxt = ((SwFrm*)GetFollow())->FindNext();
@@ -1060,8 +1022,6 @@ namespace binfilter {
 |*
 |*  Beschreibung:       Berechnet die Offsets, die durch FlyFrames
 |*                      entstehen.
-|*  Ersterstellung      MA/MIB 14. Apr. 99
-|*  Letzte Aenderung
 |*
 |*************************************************************************/
 /*N*/ BOOL SwTabFrm::CalcFlyOffsets( SwTwips& rUpper,
@@ -1089,7 +1049,7 @@ namespace binfilter {
 /*N*/               const SwRect aFlyRect = pFly->AddSpacesToFrm();
 /*N*/                 if ( WEIT_WECH != (pFly->Frm().*fnRect->fnGetTop)() &&
 /*N*/                    pFly->IsFlyAtCntFrm() && aFlyRect.IsOver( aRect ) &&
-                     // OD 25.02.2003 #i9040# - use '<=' instead of '<'
+                     // #i9040# - use '<=' instead of '<'
 /*N*/                    (*fnRect->fnYDiff)(
 /*N*/                             (pFly->GetAnchor()->Frm().*fnRect->fnGetBottom)(),
 /*N*/                             (Frm().*fnRect->fnGetTop)() ) <= 0 &&
@@ -1145,13 +1105,11 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 18. Jun. 97
 |*
 |*************************************************************************/
 /*M*/ void SwTabFrm::Format( const SwBorderAttrs *pAttrs )
 /*M*/ {
-/*M*/   ASSERT( pAttrs, "TabFrm::Format, pAttrs ist 0." );
+/*M*/   OSL_ENSURE( pAttrs, "TabFrm::Format, pAttrs ist 0." );
 /*M*/
 /*M*/     SWRECTFN( this )
 /*M*/   if ( !bValidSize )
@@ -1195,7 +1153,7 @@ namespace binfilter {
 /*N*/         const SwTwips nOldHeight = (Prt().*fnRect->fnGetHeight)();
 /*N*/         const SwTwips nMax = (aFrm.*fnRect->fnGetWidth)();
 /*N*/
-/*N*/         // OD 14.03.2003 #i9040# - adjust variable names.
+/*N*/         // #i9040# - adjust variable names.
 /*N*/         const SwTwips nLeftLine  = pAttrs->CalcLeftLine();
 /*N*/         const SwTwips nRightLine = pAttrs->CalcRightLine();
 /*N*/
@@ -1203,12 +1161,12 @@ namespace binfilter {
 /*M*/       //'drinsteckt bezieht sie sich auf die Umgebung. Ist es der Body, so
 /*M*/       //bezieht sie sich in der BrowseView auf die Bildschirmbreite.
 /*M*/       const SwFmtFrmSize &rSz = GetFmt()->GetFrmSize();
-/*N*/         // OD 14.03.2003 #i9040# - adjust variable name.
+/*N*/         // #i9040# - adjust variable name.
 /*N*/         const SwTwips nWishedTableWidth = CalcRel( rSz, TRUE );
 /*M*/
 /*M*/       BOOL bCheckBrowseWidth = FALSE;
 /*M*/
-/*N*/         // OD 14.03.2003 #i9040# - insert new variables for left/right spacing.
+/*N*/         // #i9040# - insert new variables for left/right spacing.
 /*N*/         SwTwips nLeftSpacing  = 0;
 /*N*/         SwTwips nRightSpacing = 0;
 /*N*/         switch ( GetFmt()->GetHoriOrient().GetHoriOrient() )
@@ -1217,7 +1175,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                     // left indent:
 /*N*/                     nLeftSpacing = nLeftLine + nLeftOffset;
-/*N*/                     // OD 06.03.2003 #i9040# - correct calculation of right indent:
+/*N*/                     // #i9040# - correct calculation of right indent:
 /*N*/                     // - Consider right indent given by right line attributes.
 /*N*/                     // - Consider negative right indent.
 /*N*/                     // wished right indent determined by wished table width and
@@ -1248,7 +1206,7 @@ namespace binfilter {
 /*N*/               {
 /*N*/                     // right indent:
 /*N*/                     nRightSpacing = nRightLine + nRightOffset;
-/*N*/                     // OD 06.03.2003 #i9040# - correct calculation of left indent:
+/*N*/                     // #i9040# - correct calculation of left indent:
 /*N*/                     // - Consider left indent given by left line attributes.
 /*N*/                     // - Consider negative left indent.
 /*N*/                     // wished left indent determined by wished table width and
@@ -1277,8 +1235,7 @@ namespace binfilter {
 /*N*/               break;
 /*N*/           case HORI_CENTER:
 /*N*/               {
-/*N*/                     // OD 07.03.2003 #i9040# - consider left/right line attribute.
-/*N*/                     // OD 10.03.2003 #i9040# -
+/*N*/                     // #i9040# - consider left/right line attribute.
 /*N*/                     const SwTwips nCenterSpacing = ( nMax - nWishedTableWidth ) / 2;
 /*N*/                     nLeftSpacing = nLeftLine +
 /*N*/                                    ( (nLeftOffset > 0) ?
@@ -1305,23 +1262,23 @@ namespace binfilter {
 /*N*/                     nLeftSpacing = pAttrs->CalcLeft( this );
 /*N*/                   if( nLeftOffset )
 /*N*/                   {
-/*N*/                         // OD 07.03.2003 #i9040# - surround fly frames only, if
+/*N*/                         // #i9040# - surround fly frames only, if
 /*N*/                         // they overlap with the table.
 /*N*/                         // Thus, take maximun of left spacing and left offset.
-/*N*/                         // OD 10.03.2003 #i9040# - consider left line attribute.
+/*N*/                         // #i9040# - consider left line attribute.
 /*N*/                         nLeftSpacing = Max( nLeftSpacing, ( nLeftOffset + nLeftLine ) );
 /*N*/                   }
-/*N*/                     // OD 23.01.2003 #106895# - add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*N*/                     // add 1st param to <SwBorderAttrs::CalcRight(..)>
 /*N*/                     nRightSpacing = pAttrs->CalcRight( this );
 /*N*/                   if( nRightOffset )
 /*N*/                   {
-/*N*/                         // OD 07.03.2003 #i9040# - surround fly frames only, if
+/*N*/                         // #i9040# - surround fly frames only, if
 /*N*/                         // they overlap with the table.
 /*N*/                         // Thus, take maximun of right spacing and right offset.
-/*N*/                         // OD 10.03.2003 #i9040# - consider right line attribute.
+/*N*/                         // #i9040# - consider right line attribute.
 /*N*/                         nRightSpacing = Max( nRightSpacing, ( nRightOffset + nRightLine ) );
 /*N*/                   }
-/*N*/                     // OD 10.03.2003 #i9040# - do not hold wished table width.
+/*N*/                     // #i9040# - do not hold wished table width.
                     /*
                     if ( !pAttrs->GetLRSpace().GetRight() )
                         nRight = Max( nRight, nMax - (nWish + nLeft + nRight));
@@ -1331,18 +1288,18 @@ namespace binfilter {
 /*N*/           case HORI_LEFT_AND_WIDTH:
 /*N*/                 {
 /*N*/                   //Linker Rand und die Breite zaehlen (Word-Spezialitaet)
-/*N*/                     // OD 10.03.2003 #i9040# - no width alignment in online mode.
+/*N*/                     // #i9040# - no width alignment in online mode.
 /*N*/                     //bCheckBrowseWidth = TRUE;
 /*N*/                     nLeftSpacing = pAttrs->CalcLeft( this );
 /*N*/                   if( nLeftOffset )
 /*N*/                   {
-/*N*/                         // OD 10.03.2003 #i9040# - surround fly frames only, if
+/*N*/                         // #i9040# - surround fly frames only, if
 /*N*/                         // they overlap with the table.
 /*N*/                         // Thus, take maximun of right spacing and right offset.
-/*N*/                         // OD 10.03.2003 #i9040# - consider left line attribute.
+/*N*/                         // #i9040# - consider left line attribute.
 /*N*/                         nLeftSpacing = Max( nLeftSpacing, ( pAttrs->CalcLeftLine() + nLeftOffset ) );
 /*N*/                   }
-/*N*/                     // OD 10.03.2003 #i9040# - consider right and left line attribute.
+/*N*/                     // #i9040# - consider right and left line attribute.
 /*N*/                     const SwTwips nWishRight =
 /*N*/                             nMax - (nLeftSpacing-pAttrs->CalcLeftLine()) - nWishedTableWidth;
 /*N*/                     nRightSpacing = nRightLine +
@@ -1352,7 +1309,7 @@ namespace binfilter {
 /*N*/                 }
 /*N*/               break;
 /*N*/           default:
-/*N*/               ASSERT( FALSE, "Ungueltige orientation fuer Table." );
+/*N*/               OSL_ENSURE( FALSE, "Ungueltige orientation fuer Table." );
 /*N*/       }
 /*N*/         (this->*fnRect->fnSetYMargins)( nUpper, nLower );
 /*N*/         if( (nMax - MINLAY) < (nLeftSpacing + nRightSpacing) )
@@ -1405,9 +1362,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::GrowFrm()
 |*
-|*  Ersterstellung      MA 12. Mar. 93
-|*  Letzte Aenderung    MA 23. Sep. 96
-|*
 |*************************************************************************/
 /*N*/ SwTwips SwTabFrm::GrowFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
@@ -1442,11 +1396,11 @@ namespace binfilter {
 /*N*/           if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/               pRootFrm->GetCurrShell() )
 /*N*/           {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( this, aOldFrm );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/         }
 /*N*/       else
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/
 /*N*/       SwPageFrm *pPage = FindPageFrm();
@@ -1469,9 +1423,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwTabFrm::Modify()
-|*
-|*    Ersterstellung    MA 14. Mar. 93
-|*    Letzte Aenderung  MA 06. Dec. 96
 |*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -1625,9 +1576,6 @@ namespace binfilter {
 |*
 |*    SwTabFrm::GetInfo()
 |*
-|*    Ersterstellung    MA 06. Dec. 96
-|*    Letzte Aenderung  MA 26. Jun. 98
-|*
 |*************************************************************************/
 /*N*/ BOOL SwTabFrm::GetInfo( SfxPoolItem &rHnt ) const
 /*N*/ {
@@ -1659,9 +1607,6 @@ namespace binfilter {
 |*
 |*    SwTabFrm::FindLastCntnt()
 |*
-|*    Ersterstellung    MA 13. Apr. 93
-|*    Letzte Aenderung  MA 15. May. 98
-|*
 |*************************************************************************/
 /*N*/ SwCntntFrm *SwTabFrm::FindLastCntnt()
 /*N*/ {
@@ -1689,8 +1634,8 @@ namespace binfilter {
 /*?*/           {
 /*?*/ #ifdef DBG_UTIL
 /*?*/               SwSectionFrm* pSect = pRet->FindSctFrm();
-/*?*/               ASSERT( pSect, "Wo kommt denn die Spalte her?")
-/*?*/               ASSERT( IsAnLower( pSect ), "Gespaltene Zelle?" );
+/*?*/               OSL_ENSURE( pSect, "Wo kommt denn die Spalte her?");
+/*?*/               OSL_ENSURE( IsAnLower( pSect ), "Gespaltene Zelle?" );
 /*?*/ #endif
 /*?*/               return pRet->FindSctFrm()->FindLastCntnt();
 /*?*/           }
@@ -1698,22 +1643,19 @@ namespace binfilter {
 /*?*/                       //der Tabelle (z.B. Undo TextToTable).
 /*N*/       }
 /*N*/   }
-/*N*/ //    ASSERT( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
+/*N*/ //    OSL_ENSURE( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
 /*N*/   if ( pRet ) //#50235#
 /*N*/       while ( pRet->GetNext() )
 /*N*/           pRet = pRet->GetNext();
 /*N*/   if( pRet->IsSctFrm() )
 /*?*/       pRet = ((SwSectionFrm*)pRet)->FindLastCntnt();
-/*N*/   ASSERT( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
+/*N*/   OSL_ENSURE( pRet && pRet->IsCntntFrm(), "Letzter Lower von Tab kein Cnt." );
 /*N*/   return (SwCntntFrm*)pRet;
 /*N*/ }
 
 /*************************************************************************
 |*
 |*  SwTabFrm::GetLeaf()
-|*
-|*  Ersterstellung      MA 19. Mar. 93
-|*  Letzte Aenderung    MA 25. Apr. 95
 |*
 |*************************************************************************/
 /*N*/ SwLayoutFrm *SwTabFrm::GetLeaf( MakePageType eMakePage, BOOL bFwd )
@@ -1737,8 +1679,6 @@ namespace binfilter {
 |*  SwTabFrm::ShouldBwdMoved()
 |*
 |*  Beschreibung        Returnwert sagt ob der Frm verschoben werden sollte
-|*  Ersterstellung      MA 10. Jul. 95
-|*  Letzte Aenderung    MA 04. Mar. 97
 |*
 |*************************************************************************/
 /*N*/ BOOL SwTabFrm::ShouldBwdMoved( SwLayoutFrm *pNewUpper, BOOL bHead, BOOL &rReformat )
@@ -1820,13 +1760,10 @@ namespace binfilter {
 |*
 |*  SwTabFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 09. Sep. 98
-|*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Cut()
 /*N*/ {
-/*N*/   ASSERT( GetUpper(), "Cut ohne Upper()." );
+/*N*/   OSL_ENSURE( GetUpper(), "Cut ohne Upper()." );
 /*N*/
 /*N*/   SwPageFrm *pPage = FindPageFrm();
 /*N*/   InvalidatePage( pPage );
@@ -1884,7 +1821,7 @@ namespace binfilter {
 /*N*/   Remove();
 /*N*/   if ( pUp )
 /*N*/   {
-/*N*/       ASSERT( !pUp->IsFtnFrm(), "Tabelle in Fussnote." );
+/*N*/       OSL_ENSURE( !pUp->IsFtnFrm(), "Tabelle in Fussnote." );
 /*N*/       SwSectionFrm *pSct = 0;
 /*N*/       if( !pUp->Lower() && pUp->IsInSct() &&
 /*N*/           !(pSct = pUp->FindSctFrm())->ContainsCntnt() )
@@ -1897,20 +1834,20 @@ namespace binfilter {
 /*N*/       }
 /*N*/         else if( (Frm().*fnRect->fnGetHeight)() )
 /*N*/         {
-/*N*/             // OD 24.02.2003 #104992# - unlock section the table frame was in.
+/*N*/             // unlock section the table frame was in.
 /*N*/             // Otherwise, the section will not shrink.
 /*N*/             // The section will be locked in this situation, if table is
 /*N*/             // converted to text and the table was the only content in the
 /*N*/             // section beside a footnote.
 /*N*/             // Note: lock state will be restored.
-/*N*/             bool bOldLock;
+/*N*/             bool bOldLock = false;
 /*N*/             if ( pSct )
 /*N*/             {
 /*N*/                 bOldLock = pSct->IsColLocked() ? true : false;
 /*N*/                 pSct->ColUnlock();
 /*N*/             }
 /*N*/             pUp->Shrink( Frm().Height() PHEIGHT );
-/*N*/             // OD 24.02.2003 #104992# - restore section lock state.
+/*N*/             // restore section lock state.
 /*N*/             if ( pSct )
 /*N*/             {
 /*N*/                 if ( bOldLock )
@@ -1929,17 +1866,14 @@ namespace binfilter {
 |*
 |*  SwTabFrm::Paste()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 09. Sep. 98
-|*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Paste( SwFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent fuer Paste." );
-/*N*/   ASSERT( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
-/*N*/   ASSERT( pParent != this, "Bin selbst der Parent." );
-/*N*/   ASSERT( pSibling != this, "Bin mein eigener Nachbar." );
-/*N*/   ASSERT( !GetPrev() && !GetNext() && !GetUpper(),
+/*N*/   OSL_ENSURE( pParent, "Kein Parent fuer Paste." );
+/*N*/   OSL_ENSURE( pParent->IsLayoutFrm(), "Parent ist CntntFrm." );
+/*N*/   OSL_ENSURE( pParent != this, "Bin selbst der Parent." );
+/*N*/   OSL_ENSURE( pSibling != this, "Bin mein eigener Nachbar." );
+/*N*/   OSL_ENSURE( !GetPrev() && !GetNext() && !GetUpper(),
 /*N*/           "Bin noch irgendwo angemeldet." );
 /*N*/
 /*N*/   //In den Baum einhaengen.
@@ -1998,9 +1932,6 @@ namespace binfilter {
 |*
 |*  SwTabFrm::Prepare()
 |*
-|*  Created        AMA 01/10/02
-|*  Last Change    AMA 01/10/02
-|*
 |*************************************************************************/
 /*N*/ void SwTabFrm::Prepare( const PrepareHint eHint, const void *, BOOL )
 /*N*/ {
@@ -2012,9 +1943,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::SwRowFrm(), ~SwRowFrm()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 /*N*/ SwRowFrm::SwRowFrm( const SwTableLine &rLine ):
 /*N*/   SwLayoutFrm( rLine.GetFrmFmt() ),
@@ -2024,12 +1952,12 @@ namespace binfilter {
 /*N*/
 /*N*/   //Gleich die Boxen erzeugen und einfuegen.
 /*N*/   const SwTableBoxes &rBoxes = rLine.GetTabBoxes();
-/*N*/   SwFrm *pPrev = 0;
+/*N*/   SwFrm *pPrev1 = 0;
 /*N*/   for ( USHORT i = 0; i < rBoxes.Count(); ++i )
 /*N*/   {
 /*N*/       SwCellFrm *pNew = new SwCellFrm( *rBoxes[i] );
-/*N*/       pNew->InsertBehind( this, pPrev );
-/*N*/       pPrev = pNew;
+/*N*/       pNew->InsertBehind( this, pPrev1 );
+/*N*/       pPrev1 = pNew;
 /*N*/   }
 /*N*/ }
 
@@ -2048,9 +1976,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::RegistFlys()
 |*
-|*  Ersterstellung      MA 08. Jul. 93
-|*  Letzte Aenderung    MA 08. Jul. 93
-|*
 |*************************************************************************/
 /*N*/ void SwRowFrm::RegistFlys( SwPageFrm *pPage )
 /*N*/ {
@@ -2060,9 +1985,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwRowFrm::Modify()
-|*
-|*    Ersterstellung    MA 12. Nov. 97
-|*    Letzte Aenderung  MA 12. Nov. 97
 |*
 |*************************************************************************/
 /*N*/ void SwRowFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -2095,9 +2017,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::MakeAll()
 |*
-|*  Ersterstellung      MA 01. Mar. 94
-|*  Letzte Aenderung    MA 01. Mar. 94
-|*
 |*************************************************************************/
 /*N*/ void SwRowFrm::MakeAll()
 /*N*/ {
@@ -2109,9 +2028,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwRowFrm::Format()
-|*
-|*  Ersterstellung      MA 13. Mar. 93
-|*  Letzte Aenderung    MA 20. Jun. 96
 |*
 |*************************************************************************/
 /*M*/ long MA_FASTCALL CalcHeightWidthFlys( const SwFrm *pFrm )
@@ -2228,7 +2144,7 @@ namespace binfilter {
 /*N*/ void SwRowFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
 /*N*/     SWRECTFN( this )
-/*N*/   ASSERT( pAttrs, "SwRowFrm::Format ohne Attrs." );
+/*N*/   OSL_ENSURE( pAttrs, "SwRowFrm::Format ohne Attrs." );
 /*N*/
 /*N*/     const BOOL bFix = BFIXHEIGHT;
 /*N*/
@@ -2251,7 +2167,7 @@ namespace binfilter {
 /*N*/         if ( HasFixSize() )
 /*N*/       {
 /*N*/           const SwFmtFrmSize &rFrmSize = GetFmt()->GetFrmSize();
-/*N*/           ASSERT( rFrmSize.GetSize().Height() > 0, "Hat ihn" );
+/*N*/           OSL_ENSURE( rFrmSize.GetSize().Height() > 0, "Hat ihn" );
 /*N*/       }
 /*N*/ #endif
 /*N*/         const SwTwips nDiff = (Frm().*fnRect->fnGetHeight)() - (HasFixSize() ?
@@ -2290,9 +2206,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::AdjustCells()
 |*
-|*  Ersterstellung      MA 10. Aug. 93
-|*  Letzte Aenderung    MA 16. Dec. 96
-|*
 |*************************************************************************/
 /*N*/ void SwRowFrm::AdjustCells( const SwTwips nHeight, const BOOL bHeight )
 /*N*/ {
@@ -2313,7 +2226,7 @@ namespace binfilter {
 /*N*/               if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/                   pRootFrm->GetCurrShell() )
 /*N*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->MoveAccessibleFrm( pFrm, aOldFrm );
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/               pFrm->_InvalidatePrt();
 /*N*/           }
@@ -2334,17 +2247,11 @@ namespace binfilter {
 |*
 |*  SwRowFrm::Cut()
 |*
-|*  Ersterstellung      MA 12. Nov. 97
-|*  Letzte Aenderung    MA 12. Nov. 97
-|*
 |*************************************************************************/
 
 /*************************************************************************
 |*
 |*  SwRowFrm::GrowFrm()
-|*
-|*  Ersterstellung      MA 15. Mar. 93
-|*  Letzte Aenderung    MA 05. May. 94
 |*
 |*************************************************************************/
 
@@ -2367,9 +2274,6 @@ namespace binfilter {
 |*
 |*  SwRowFrm::ShrinkFrm()
 |*
-|*  Ersterstellung      MA 15. Mar. 93
-|*  Letzte Aenderung    MA 20. Jun. 96
-|*
 |*************************************************************************/
 /*N*/ SwTwips SwRowFrm::ShrinkFrm( SwTwips nDist, BOOL bTst, BOOL bInfo )
 /*N*/ {
@@ -2390,8 +2294,8 @@ namespace binfilter {
 /*N*/       const SwFmtFrmSize &rSz = GetFmt()->GetFrmSize();
 /*N*/         SwTwips nMinHeight = rSz.GetSizeType() == ATT_MIN_SIZE ?
 /*N*/                              rSz.GetHeight() : 0;
-/*N*/         SwLayoutFrm *pCell = (SwLayoutFrm*)Lower();
-/*N*/         if( nMinHeight < (Frm().*fnRect->fnGetHeight)() )
+/*N*/       (SwLayoutFrm*)Lower();
+/*N*/       if( nMinHeight < (Frm().*fnRect->fnGetHeight)() )
 /*N*/       {
 /*N*/           SwLayoutFrm *pCell = (SwLayoutFrm*)Lower();
 /*N*/           while ( pCell )
@@ -2467,9 +2371,6 @@ namespace binfilter {
 |*
 |*  SwCellFrm::SwCellFrm(), ~SwCellFrm()
 |*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 30. May. 96
-|*
 |*************************************************************************/
 /*N*/ SwCellFrm::SwCellFrm( const SwTableBox &rBox ) :
 /*N*/   SwLayoutFrm( rBox.GetFrmFmt() ),
@@ -2487,12 +2388,12 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {   const SwTableLines &rLines = rBox.GetTabLines();
-/*N*/       SwFrm *pPrev = 0;
+/*N*/       SwFrm *pPrev2 = 0;
 /*N*/       for ( USHORT i = 0; i < rLines.Count(); ++i )
 /*N*/       {
 /*N*/           SwRowFrm *pNew = new SwRowFrm( *rLines[i] );
-/*N*/           pNew->InsertBehind( this, pPrev );
-/*N*/           pPrev = pNew;
+/*N*/           pNew->InsertBehind( this, pPrev2 );
+/*N*/           pPrev2 = pNew;
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -2508,7 +2409,7 @@ namespace binfilter {
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() &&
 /*N*/           pRootFrm->GetCurrShell() )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pRootFrm->GetCurrShell()->Imp()->DisposeAccessibleFrm( this, sal_True );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pMod->Remove( this );           // austragen,
 /*N*/         pMod->Remove( this );           // austragen,
@@ -2520,9 +2421,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwCellFrm::Format()
-|*
-|*  Ersterstellung      MA 09. Mar. 93
-|*  Letzte Aenderung    MA 29. Jan. 98
 |*
 |*************************************************************************/
 /*N*/ BOOL lcl_ArrangeLowers( SwLayoutFrm *pLay, long lYStart, BOOL bInva )
@@ -2582,8 +2480,7 @@ namespace binfilter {
 /*N*/                   }
 /*N*/                   else
 /*N*/                     {
-/*N*/                         // OD 30.06.2003 #108784# - consider 'virtual' drawing
-/*N*/                         // objects.
+/*N*/                         // consider 'virtual' drawing objects.
 /*N*/                         if ( pO->ISA(SwDrawVirtObj) )
 /*N*/                         {
 /*N*/                             SwDrawVirtObj* pDrawVirtObj = static_cast<SwDrawVirtObj*>(pO);
@@ -2593,7 +2490,7 @@ namespace binfilter {
 /*N*/                         else
 /*N*/                         {
 /*N*/                             pO->SetAnchorPos( pFrm->GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
-/*N*/                             // OD 30.06.2003 #108784# - correct relative position
+/*N*/                             // correct relative position
 /*N*/                             // of 'virtual' drawing objects.
 /*N*/                             SwDrawContact* pDrawContact =
 /*N*/                                 static_cast<SwDrawContact*>(pO->GetUserCall());
@@ -2617,7 +2514,7 @@ namespace binfilter {
 
 /*N*/ void SwCellFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
-/*N*/   ASSERT( pAttrs, "CellFrm::Format, pAttrs ist 0." );
+/*N*/   OSL_ENSURE( pAttrs, "CellFrm::Format, pAttrs ist 0." );
 /*N*/     SWRECTFN( this )
 /*N*/   if ( !bValidPrtArea )
 /*N*/   {
@@ -2625,7 +2522,7 @@ namespace binfilter {
 /*N*/
 /*N*/         //Position einstellen.
 /*N*/         long nLeftSpace = pAttrs->CalcLeft( this );
-/*N*/         // OD 23.01.2003 #106895# - add 1st param to <SwBorderAttrs::CalcRight(..)>
+/*N*/         // add 1st param to <SwBorderAttrs::CalcRight(..)>
 /*N*/         long nRightSpace = pAttrs->CalcRight( this );
 /*N*/         (this->*fnRect->fnSetXMargins)( nLeftSpace, nRightSpace );
 /*N*/         long nTopSpace = pAttrs->CalcTop();
@@ -2654,9 +2551,9 @@ namespace binfilter {
 /*N*/           SwTwips nWish = pTab->GetFmt()->GetFrmSize().GetWidth();
 /*N*/           nWidth = pAttrs->GetSize().Width();
 /*N*/
-/*N*/           ASSERT( nWish, "Tabelle ohne Breite?" );
-/*N*/           ASSERT( nWidth <= nWish, "Zelle breiter als Tabelle." );
-/*N*/           ASSERT( nWidth > 0, "Box without width" );
+/*N*/           OSL_ENSURE( nWish, "Tabelle ohne Breite?" );
+/*N*/           OSL_ENSURE( nWidth <= nWish, "Zelle breiter als Tabelle." );
+/*N*/           OSL_ENSURE( nWidth > 0, "Box without width" );
 /*N*/
 /*N*/             long nPrtWidth = (pTab->Prt().*fnRect->fnGetWidth)();
 /*N*/             if ( nWish != nPrtWidth )
@@ -2667,7 +2564,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           ASSERT( pAttrs->GetSize().Width() > 0, "Box without width" );
+/*N*/           OSL_ENSURE( pAttrs->GetSize().Width() > 0, "Box without width" );
 /*N*/             nWidth = (GetUpper()->Prt().*fnRect->fnGetWidth)();
 /*N*/           SwFrm *pPre = GetUpper()->Lower();
 /*N*/           while ( pPre != this )
@@ -2710,7 +2607,7 @@ namespace binfilter {
 /*N*/       if ( !Lower()->IsCntntFrm() && !Lower()->IsSctFrm() )
 /*N*/       {
 /*N*/           //ASSERT fuer HTML-Import!
-/*N*/           ASSERT( !this, "VAlign an Zelle ohne Inhalt" );
+/*N*/           OSL_ENSURE( !this, "VAlign an Zelle ohne Inhalt" );
 /*N*/           return;
 /*N*/       }
 /*N*/       BOOL bVertDir = TRUE;
@@ -2765,6 +2662,7 @@ namespace binfilter {
 /*N*/                   {
 /*N*/                       case VERT_CENTER:   lTopOfst = nDiff / 2; break;
 /*N*/                       case VERT_BOTTOM:   lTopOfst = nDiff;     break;
+/*N*/                       default: break;
 /*N*/                   };
 /*N*/               }
 /*N*/                 long nTmp = (*fnRect->fnYInc)(
@@ -2788,9 +2686,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwCellFrm::Modify()
-|*
-|*    Ersterstellung    MA 20. Dec. 96
-|*    Letzte Aenderung  MA 20. Dec. 96
 |*
 |*************************************************************************/
 /*N*/ void SwCellFrm::Modify( SfxPoolItem * pOld, SfxPoolItem * pNew )
@@ -2823,9 +2718,11 @@ namespace binfilter {
 /*M*/   if( (bAttrSetChg &&
 /*M*/        SFX_ITEM_SET == ((SwAttrSetChg*)pNew)->GetChgSet()->GetItemState( RES_PROTECT, FALSE )) ||
 /*M*/       RES_PROTECT == pNew->Which() )
-/*M*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/   }
 /*M*/
 /*N*/   SwLayoutFrm::Modify( pOld, pNew );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

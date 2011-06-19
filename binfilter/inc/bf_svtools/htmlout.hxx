@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,12 @@
 #ifndef _HTMLOUT_HXX
 #define _HTMLOUT_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTL_TEXTENC_H
 #include <rtl/textenc.h>
-#endif
-#ifndef _SFXMACITEM_HXX //autogen
 #include <bf_svtools/macitem.hxx>
-#endif
 
 class Color;
 class String;
@@ -65,10 +60,11 @@ struct HTMLOutFuncs
 #if defined(MAC) || defined(UNX)
     static const sal_Char sNewLine;     // nur \012 oder \015
 #else
-    static const sal_Char __FAR_DATA sNewLine[];    // \015\012
+    static const sal_Char sNewLine[];   // \015\012
 #endif
 };
 }
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef _SVX_FMEXCH_HXX
 #define _SVX_FMEXCH_HXX
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _TRANSFER_HXX
 #include <bf_svtools/transfer.hxx>
-#endif
 
 class SvTreeListBox;
 namespace binfilter {
@@ -123,3 +120,4 @@ namespace svxform
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

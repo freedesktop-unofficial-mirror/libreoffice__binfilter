@@ -123,7 +123,6 @@ bf 	binfilter\bf_sw\source\core\bastyp                  nmake   -   all bf_sw_ba
 bf	binfilter\bf_sw\source\ui\app						nmake	-	all	bf_sw_app NULL
 bf	binfilter\bf_sw\source\ui\config					nmake	-	all	bf_sw_conf NULL
 bf	binfilter\bf_sw\source\ui\dbui						nmake	-	all	bf_sw_dbui NULL
-bf	binfilter\bf_sw\source\ui\dochdl					nmake	-	all	bf_sw_dchdl NULL
 bf	binfilter\bf_sw\source\ui\fldui						nmake	-	all	bf_sw_fldui NULL
 bf	binfilter\bf_sw\source\ui\globdoc					nmake	-	all	bf_sw_globd NULL
 bf	binfilter\bf_sw\source\ui\index						nmake	-	all	bf_sw_index NULL
@@ -139,7 +138,6 @@ bf	binfilter\bf_sw\source\core\doc						nmake	-	all	bf_sw_doc NULL
 bf	binfilter\bf_sw\source\core\docnode					nmake	-	all	bf_sw_dcnd NULL
 bf	binfilter\bf_sw\source\core\draw					nmake	-	all	bf_sw_draw NULL
 bf	binfilter\bf_sw\source\core\edit					nmake	-	all	bf_sw_edit NULL
-bf	binfilter\bf_sw\source\core\except					nmake	-	all	bf_sw_excpt NULL
 bf	binfilter\bf_sw\source\core\fields					nmake	-	all	bf_sw_fld NULL
 bf	binfilter\bf_sw\source\core\frmedt					nmake	-	all	bf_sw_frmed NULL
 bf	binfilter\bf_sw\source\core\graphic					nmake	-	all	bf_sw_grph NULL
@@ -161,8 +159,8 @@ bf  binfilter\bf_sw\source\filter\lotus                 nmake   -   all bf_sw_lo
 bf  binfilter\bf_sw\source\filter\excel                 nmake   -   all bf_sw_excel  NULL
 bf  binfilter\bf_sw\source\filter\w4w                   nmake   -   all bf_sw_w4w    NULL
 bf  binfilter\bf_sw\source\filter\sw6                   nmake   -   all bf_sw_sw6    NULL
-bf  binfilter\bf_sw\source\ui                           nmake   -   all bf_sw_ui bf_sw_app  bf_sw_conf bf_sw_dbui bf_sw_dchdl bf_sw_fldui bf_sw_globd bf_sw_index bf_sw_misc bf_sw_shell bf_sw_uiuno bf_sw_utlui bf_sw_web bf_sw_wrtsh NULL
-bf      binfilter\bf_sw\source\core                                                     nmake   -   all bf_sw_core bf_sw_attr bf_sw_bast bf_sw_crsr bf_sw_dcnd bf_sw_doc bf_sw_draw bf_sw_edit bf_sw_excpt bf_sw_fld bf_sw_frmed bf_sw_grph bf_sw_layo bf_sw_ole bf_sw_para bf_sw_sw3io bf_sw_swg bf_sw_text bf_sw_tox bf_sw_txtnd bf_sw_uco bf_sw_view NULL
+bf  binfilter\bf_sw\source\ui                           nmake   -   all bf_sw_ui bf_sw_app  bf_sw_conf bf_sw_dbui bf_sw_fldui bf_sw_globd bf_sw_index bf_sw_misc bf_sw_shell bf_sw_uiuno bf_sw_utlui bf_sw_web bf_sw_wrtsh NULL
+bf      binfilter\bf_sw\source\core                                                     nmake   -   all bf_sw_core bf_sw_attr bf_sw_bast bf_sw_crsr bf_sw_dcnd bf_sw_doc bf_sw_draw bf_sw_edit bf_sw_fld bf_sw_frmed bf_sw_grph bf_sw_layo bf_sw_ole bf_sw_para bf_sw_sw3io bf_sw_swg bf_sw_text bf_sw_tox bf_sw_txtnd bf_sw_uco bf_sw_view NULL
 bf  binfilter\bf_sw\source\filter                       nmake   -   all bf_sw_flt bf_sw_ascii bf_sw_bsflt  bf_sw_wrtr bf_sw_xml bf_sw_lotus bf_sw_excel bf_sw_w4w bf_sw_sw6 NULL
 bf  binfilter\bf_sw\util                                nmake   -   all bf_sw_util bf_sw_core bf_sw_flt bf_sw_ui bf_sd_util bf_sb_util bf_so3_util NULL
 bf  binfilter\filter\source\bf_offwrp                   nmake   -   all bf_offwrp bf_sf_detect bf_fm_util bf_sh_util bf_sw_util bf_sb_util bf_so3_util NULL

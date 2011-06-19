@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #include "SchXMLAutoStylePoolP.hxx"
 #include "PropertyMap.hxx"
 
-#ifndef SCH_XMLEXPORT_HXX_
 #include "SchXMLExport.hxx"
-#endif
 namespace binfilter {
 
 using ::binfilter::xmloff::token::GetXMLToken;
@@ -62,7 +61,7 @@ void SchXMLAutoStylePoolP::exportStyleAttributes(
     if( nFamily == XML_STYLE_FAMILY_SCH_CHART_ID )
     {
         ::std::vector< XMLPropertyState >::const_iterator iter = rProperties.begin();
-        for( iter; (iter != rProperties.end()); iter++ )
+        for( ; (iter != rProperties.end()); ++iter )
         {
             UniReference< XMLPropertySetMapper > aPropMapper =
                 mrSchXMLExport.GetPropertySetMapper();
@@ -87,3 +86,5 @@ void SchXMLAutoStylePoolP::exportStyleAttributes(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

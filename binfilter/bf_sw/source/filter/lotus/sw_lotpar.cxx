@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,27 +31,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _DOC_HXX
+#include <osl/diagnose.h>
 #include <doc.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _FLTGLBLS_HXX
 #include <fltglbls.hxx>
-#endif
-#ifndef _FLTINI_HXX
 #include <fltini.hxx>
-#endif
-#ifndef _LOTPAR_HXX
 #include <lotpar.hxx>
-#endif
-#ifndef _SWFLTOPT_HXX
 #include <swfltopt.hxx>
-#endif
 namespace binfilter {
 
 LotGlob *pLotGlob = NULL;
@@ -135,7 +122,7 @@ ULONG LotusReader::Read( SwDoc &rDoc, SwPaM &rPam,
     ULONG nRet;
     if( !pStrm )
     {
-        ASSERT( FALSE, "Lotus-Read ohne Stream" );
+        OSL_ENSURE( FALSE, "Lotus-Read ohne Stream" );
         nRet = ERR_SWG_READ_ERROR;
     }
     else
@@ -152,3 +139,5 @@ ULONG LotusReader::Read( SwDoc &rDoc, SwPaM &rPam,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,12 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef _SVTOOLS_INETOPTIONS_HXX_
 #include <bf_svtools/inetoptions.hxx>
-#endif
 
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include "rtl/instance.hxx"
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _WILDCARD_HXX
 #include <tools/wldcrd.hxx>
-#endif
 
 #include <algorithm>
 #include <map>
@@ -49,54 +42,22 @@
 #include <vector>
 #include <utility>
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYCHANGEEVENT_HPP_
 #include <com/sun/star/beans/PropertyChangeEvent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTIESCHANGELISTENER_HPP_
 #include <com/sun/star/beans/XPropertiesChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SYSTEM_XPROXYSETTINGS_HPP_
 #include <com/sun/star/system/XProxySettings.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_EXCEPTION_HPP_
 #include <com/sun/star/uno/Exception.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_RUNTIMEEXCEPTION_HPP_
 #include <com/sun/star/uno/RuntimeException.hpp>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _RTL_USTRING_H_
 #include <rtl/ustring.h>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _UNOTOOLS_PROCESSFACTORY_HXX_
 #include <unotools/processfactory.hxx>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _SALHELPER_REFOBJ_HXX_
 #include <salhelper/refobj.hxx>
-#endif
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 
@@ -276,7 +237,7 @@ SvtInetOptions::Impl::notifyListeners(
             {
                 aEvents.realloc(nCount);
                 aNotifications.
-                    push_back(std::make_pair< List::value_type::first_type,
+                    push_back(std::pair< List::value_type::first_type,
                                               List::value_type::second_type >(
                                   aIt->first, aEvents));
             }
@@ -309,8 +270,7 @@ SvtInetOptions::Impl::Impl():
     for (sal_Int32 i = 0; i < ENTRY_COUNT; ++i)
         aKeys[i] = m_aEntries[i].m_aName;
     if (!EnableNotification(aKeys))
-        OSL_ENSURE(false,
-                   "SvtInetOptions::Impl::Impl(): Bad EnableNotifications()");
+        OSL_FAIL("SvtInetOptions::Impl::Impl(): Bad EnableNotifications()");
 }
 
 //============================================================================
@@ -352,3 +312,5 @@ SvtInetOptions::~SvtInetOptions()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

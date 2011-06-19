@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
 
-#ifndef _COMPHELPER_PROPERTSETINFO_HXX_
 #include <comphelper/propertysetinfo.hxx>
-#endif
 
-#ifndef _EEITEM_HXX
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _SVX_UNOPOOL_HXX_
 #include <bf_svx/unopool.hxx>
-#endif
 
 #include "drawdoc.hxx"
 namespace binfilter {
@@ -48,7 +41,6 @@ using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::beans;
-using namespace ::rtl;
 using namespace ::cppu;
 using namespace ::comphelper;
 
@@ -109,3 +101,5 @@ Reference< XInterface > SdUnoCreatePool( SdDrawDocument* pDrawModel )
     return (uno::XAggregation*)new SdUnoDrawPool( pDrawModel );
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

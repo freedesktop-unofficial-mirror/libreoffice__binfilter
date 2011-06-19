@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,22 +27,12 @@
  ************************************************************************/
 #ifndef MATHML_HXX
 #define MATHML_HXX
-#ifndef _SDXMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _SDXMLEXP_HXX
 #include <bf_xmloff/xmlexp.hxx>
-#endif
-#ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 #include <bf_xmloff/DocumentSettingsContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include <bf_xmloff/xmltoken.hxx>
-#endif
 
-#ifndef NODE_HXX
 #include <node.hxx>
-#endif
 namespace com { namespace sun { namespace star {
     namespace io {
         class XInputStream;
@@ -54,12 +45,6 @@ namespace binfilter {
 class SvStorage;
 class SfxMedium;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008  namespace io {
-//STRIP008      class XInputStream;
-//STRIP008      class XOutputStream; }
-//STRIP008      namespace beans { XPropertySet; }
-//STRIP008 } } }
 
 
 class SmXMLWrapper
@@ -432,3 +417,5 @@ private:
 };
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

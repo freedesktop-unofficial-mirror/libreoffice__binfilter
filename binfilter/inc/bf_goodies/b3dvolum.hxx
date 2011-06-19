@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,17 +32,13 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SVX_VECTOR3D_HXX
 #include "vector3d.hxx"
-#endif
 
 #ifndef _INC_FLOAT
 #include <float.h>
 #endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 /*************************************************************************
 |*
@@ -54,7 +51,7 @@ class Vol3DPointIterator;
 
 class B3dVolume
 {
-// friend class binfilter::Vol3DPointIterator; //STRIP008
+// friend class binfilter::Vol3DPointIterator;
  friend class Vol3DPointIterator;
  protected:
     Vector3D aMinVec;
@@ -88,3 +85,5 @@ class B3dVolume
 
 
 #endif          // _B3D_VOLUM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

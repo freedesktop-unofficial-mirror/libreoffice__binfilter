@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #ifdef WIN
 
-#ifndef _SVWIN_H
 #include <svwin.h>
-#endif
 
-#ifndef _SYSDEP_HXX
 #include <sysdep.hxx>
-#endif
 
 namespace binfilter
 {
@@ -51,8 +48,6 @@ static HINSTANCE hDLLInst = 0;      // HANDLE der DLL
 |*    LibMain()
 |*
 |*    Beschreibung       Initialisierungsfunktion der DLL
-|*    Ersterstellung     TH 05.05.93
-|*    Letzte Aenderung   TH 05.05.93
 |*
 ***************************************************************************/
 
@@ -73,8 +68,6 @@ extern "C" int CALLBACK LibMain( HINSTANCE hDLL, WORD, WORD nHeap, LPSTR )
 |*    WEP()
 |*
 |*    Beschreibung      DLL-Deinitialisierung
-|*    Ersterstellung     TH 05.05.93
-|*    Letzte Aenderung   TH 05.05.93
 |*
 ***************************************************************************/
 
@@ -86,3 +79,5 @@ extern "C" int CALLBACK WEP( int )
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,18 +26,9 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
-
-
-// INCLUDE ---------------------------------------------------------------
-//#if STLPORT_VERSION>=321
-//#include <math.h>     // prevent conflict between exception and std::exception
-//#endif
 
 #define ITEMID_FIELD EE_FEATURE_FIELD
 
@@ -64,9 +56,7 @@
 #include "tablink.hxx"      // ScDocumentLoader statics
 #include "docoptio.hxx"
 
-#ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
-#endif
 namespace binfilter {
 
 //------------------------------------------------------------------
@@ -88,30 +78,18 @@ namespace binfilter {
 #define SC_PREVIEW_SIZE_Y   12400
 
 
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
-
-/*N*/ void ScDocShell::DoRecalc( BOOL bApi )
+/*N*/ void ScDocShell::DoRecalc( BOOL /*bApi*/ )
 /*N*/ {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScInputHandler* pHdl = SC_MOD()->GetInputHdl(pSh);
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void ScDocShell::DoHardRecalc( BOOL bApi )
+/*N*/ void ScDocShell::DoHardRecalc( BOOL /*bApi*/ )
 /*N*/ {
 /*N*/   aDocument.CalcAll();
 /*N*/   GetDocFunc().DetectiveRefresh();    // erzeugt eigenes Undo
 /*N*/   PostPaintGridAll();
 /*N*/ }
 
-//------------------------------------------------------------------
-
-
-//------------------------------------------------------------------
 
 /*N*/ void ScDocShell::NotifyStyle( const SfxStyleSheetHint& rHint )
 /*N*/ {
@@ -124,7 +102,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       if ( nId == SFX_STYLESHEET_MODIFIED )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScDocShellModificator aModificator( *this );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/
@@ -158,7 +136,7 @@ namespace binfilter {
 /*?*/
 /*?*/       if (bWarn && !bApi)
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ScWaitCursorOff aWaitOff( GetDialogParent() );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*N*/   }
 /*N*/
@@ -167,7 +145,7 @@ namespace binfilter {
 
 
 
-/*N*/ Rectangle __EXPORT ScDocShell::GetVisArea( USHORT nAspect ) const
+/*N*/ Rectangle ScDocShell::GetVisArea( USHORT nAspect ) const
 /*N*/ {
 /*N*/   SfxObjectCreateMode eShellMode = GetCreateMode();
 /*N*/   if ( eShellMode == SFX_CREATE_MODE_ORGANIZER )
@@ -212,17 +190,10 @@ namespace binfilter {
 /*N*/ }
 
 
-
-
-
-//------------------------------------------------------------------
-
 /*N*/ ScViewData* ScDocShell::GetViewData()
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
-
-//------------------------------------------------------------------
 
 /*N*/ USHORT ScDocShell::GetCurTab()
 /*N*/ {
@@ -235,3 +206,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

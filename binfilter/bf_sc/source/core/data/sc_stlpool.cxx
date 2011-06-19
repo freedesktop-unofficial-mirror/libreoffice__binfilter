@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -45,17 +43,11 @@
 
 
 
-#ifndef _SVX_ITEMDATA_HXX
 #include <bf_svx/itemdata.hxx>
-#endif
 
-#ifndef _DATE_HXX
 #include <tools/date.hxx>
-#endif
 
-#ifndef _TOOLS_TIME_HXX
 #include <tools/time.hxx>
-#endif
 
 #include <bf_svx/flditem.hxx>
 #include <bf_svx/fontitem.hxx>
@@ -80,9 +72,9 @@ namespace binfilter {
 
 //========================================================================
 
-/*N*/ ScStyleSheetPool::ScStyleSheetPool( SfxItemPool&  rPool,
+/*N*/ ScStyleSheetPool::ScStyleSheetPool( SfxItemPool&  rInPool,
 /*N*/                                   ScDocument*     pDocument )
-/*N*/   :   SfxStyleSheetPool( rPool ),
+/*N*/   :   SfxStyleSheetPool( rInPool ),
 /*N*/       pActualStyleSheet( NULL ),
 /*N*/       pDoc( pDocument ),
 /*N*/       pForceStdName( NULL )
@@ -91,7 +83,7 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ __EXPORT ScStyleSheetPool::~ScStyleSheetPool()
+/*N*/ ScStyleSheetPool::~ScStyleSheetPool()
 /*N*/ {
 /*N*/ }
 
@@ -122,9 +114,9 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( rName.EqualsAscii(STRING_STANDARD) && Find( rName, eFam ) != NULL )
 /*N*/   {
-/*?*/       DBG_ERROR("renaming additional default style");
-/*?*/       long nCount = aStyles.Count();
-/*?*/       for ( long nAdd = 1; nAdd <= nCount; nAdd++ )
+/*?*/       OSL_FAIL("renaming additional default style");
+/*?*/       size_t nCount = aStyles.size();
+/*?*/       for ( size_t nAdd = 1; nAdd <= nCount; nAdd++ )
 /*?*/       {
 /*?*/           String aNewName = ScGlobal::GetRscString(STR_STYLENAME_STANDARD);
 /*?*/           aNewName += String::CreateFromInt32( nAdd );
@@ -138,12 +130,12 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxStyleSheetBase* __EXPORT ScStyleSheetPool::Create(
+/*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create(
 /*N*/                                           const String&   rName,
 /*N*/                                           SfxStyleFamily  eFamily,
-/*N*/                                           USHORT          nMask )
+/*N*/                                           USHORT          nInMask )
 /*N*/ {
-/*N*/   ScStyleSheet* pSheet = new ScStyleSheet( rName, *this, eFamily, nMask );
+/*N*/   ScStyleSheet* pSheet = new ScStyleSheet( rName, *this, eFamily, nInMask );
 /*N*/   if ( eFamily == SFX_STYLE_FAMILY_PARA && ScGlobal::GetRscString(STR_STYLENAME_STANDARD) != rName )
 /*N*/       pSheet->SetParent( ScGlobal::GetRscString(STR_STYLENAME_STANDARD) );
 /*N*/
@@ -152,9 +144,9 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ SfxStyleSheetBase* __EXPORT ScStyleSheetPool::Create( const SfxStyleSheetBase& rStyle )
+/*N*/ SfxStyleSheetBase* ScStyleSheetPool::Create( const SfxStyleSheetBase& )
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 DBG_ASSERT( rStyle.ISA(ScStyleSheet), "Invalid StyleSheet-class! :-/" );
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -445,10 +437,10 @@ namespace binfilter {
 /*N*/   //  Standard-Styles den richtigen Namen in der Programm-Sprache geben
 /*N*/
 /*N*/   String aHelpFile;
-/*N*/   ULONG nCount = aStyles.Count();
-/*N*/   for (ULONG n=0; n<nCount; n++)
+/*N*/   size_t nCount = aStyles.size();
+/*N*/   for (size_t n=0; n<nCount; n++)
 /*N*/   {
-/*N*/       SfxStyleSheetBase* pStyle = aStyles.GetObject(n);
+/*N*/       SfxStyleSheetBase* pStyle = aStyles[ n ];
 /*N*/       if (!pStyle->IsUserDefined())
 /*N*/       {
 /*N*/           String aOldName     = pStyle->GetName();
@@ -478,7 +470,7 @@ namespace binfilter {
 /*N*/
 /*N*/               if ( aNewName.Len() && aNewName != aOldName && !Find( aNewName, eFam ) )
 /*N*/               {
-/*N*/                   DBG_TRACE( "Renaming style..." );
+/*N*/                   OSL_TRACE( "Renaming style..." );
 /*N*/
 /*N*/                   pStyle->SetName( aNewName );    // setzt auch Parents um
 /*N*/
@@ -580,3 +572,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -39,7 +37,6 @@
 
 namespace binfilter {
 
-//------------------------------------------------------------------
 
 /*N*/ ScEditableTester::ScEditableTester() :
 /*N*/   bIsEditable( TRUE ),
@@ -65,20 +62,18 @@ namespace binfilter {
 /*N*/   TestSelectedBlock( pDoc, nStartCol, nStartRow, nEndCol, nEndRow, rMark );
 /*N*/ }
 
-/*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, const ScRange& rRange ) :
+/*N*/ ScEditableTester::ScEditableTester( ScDocument* /*pDoc*/, const ScRange& /*rRange*/ ) :
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
 /*N*/ }
 
-/*N*/ ScEditableTester::ScEditableTester( ScDocument* pDoc, const ScMarkData& rMark ) :
+/*N*/ ScEditableTester::ScEditableTester( ScDocument* /*pDoc*/, const ScMarkData& /*rMark*/ ) :
 /*N*/   bIsEditable( TRUE ),
 /*N*/   bOnlyMatrix( TRUE )
 /*N*/ {
 /*N*/ }
 
-
-//------------------------------------------------------------------
 
 /*N*/ void ScEditableTester::TestBlock( ScDocument* pDoc, USHORT nTab,
 /*N*/                       USHORT nStartCol, USHORT nStartRow, USHORT nEndCol, USHORT nEndRow )
@@ -105,11 +100,6 @@ namespace binfilter {
 /*N*/           TestBlock( pDoc, nTab, nStartCol, nStartRow, nEndCol, nEndRow );
 /*N*/ }
 
-
-
-
-//------------------------------------------------------------------
-
 /*N*/ USHORT ScEditableTester::GetMessageId() const
 /*N*/ {
 /*N*/   if (bIsEditable)
@@ -121,3 +111,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

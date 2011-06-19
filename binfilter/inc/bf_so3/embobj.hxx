@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,14 +36,10 @@
 #include <bf_so3/protocol.hxx>
 #include <bf_so3/svstor.hxx>
 #include <com/sun/star/uno/Reference.hxx>
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
 #include <bf_svtools/ownlist.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class Printer;
 
@@ -90,8 +87,7 @@ protected:
     SvEditObjectProtocol    aProt;           // Referenz auf das Protokoll
                     ~SvEmbeddedObject();
     virtual BOOL    Load( SvStorage * );
-    virtual BOOL    Save();
-    virtual BOOL    SaveAs( SvStorage * pNewStg );
+    virtual BOOL    Save() {return false;}
     virtual void    LoadContent( SvStream & rStm, BOOL bOwner_ );
     virtual void    SaveContent( SvStream & rStm, BOOL bOwner_ );
     virtual void    Connect( BOOL bConnect );
@@ -235,3 +231,5 @@ public:
 }
 
 #endif // _EMBOBJ_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

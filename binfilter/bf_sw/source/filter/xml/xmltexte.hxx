@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _XMLTEXTE_HXX
 #define _XMLTEXTE_HXX
 
-#ifndef _XMLOFF_TEXTPARAE_HXX_
 #include <bf_xmloff/txtparae.hxx>
-#endif
-#ifndef _GLOBNAME_HXX
 #include <tools/globname.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace style {
                 class XStyle; } } } }
 namespace binfilter {
@@ -92,3 +89,5 @@ public:
 
 } //namespace binfilter
 #endif  //  _XMLTEXTE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

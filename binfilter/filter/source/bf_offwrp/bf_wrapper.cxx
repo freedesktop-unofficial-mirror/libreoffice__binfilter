@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _BF_WRAPPER_HXX
 #include <bf_wrapper.hxx>
-#endif
 
 #include <bf_offmgr/app.hxx>
 #include <bf_sw/swdll.hxx>
@@ -36,15 +35,13 @@
 #include <bf_sch/schdll.hxx>
 #include <bf_starmath/smdll.hxx>
 #include <bf_svx/svdetc.hxx>
-#include <bf_svx/itemdata.hxx> //STRIP002
+#include <bf_svx/itemdata.hxx>
 #include <framework/imageproducer.hxx>
 
-#ifndef INCLUDED_SVTOOLS_MODULEOPTIONS_HXX
 #include <bf_svtools/moduleoptions.hxx>
-#endif
 
 // #i30187#
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 
 namespace binfilter {
 
@@ -72,7 +69,7 @@ Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Referen
         if ( 0L == pOfficeWrapper )
         {
             // #i30187#
-            ::vos::OGuard aGuard( Application::GetSolarMutex() );
+            SolarMutexGuard aGuard;
 
             return (XComponent*) ( new bf_OfficeWrapper( rSMgr ) );
         }
@@ -81,18 +78,18 @@ Reference< XInterface >  SAL_CALL bf_OfficeWrapper_CreateInstance( const Referen
     return (XComponent*)0;
 }
 
-//added by jmeng for i31251 begin
-extern "C"{
+extern "C"
+{
+    //added for #i31251#
     void legcy_setBinfilterInitState(void);
 }
-//added by jmeng for i31251 end
-bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xFactory )
-:   aListeners( aMutex ),
-    pApp( new OfficeApplication )
+
+bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& )
+    : pApp( new OfficeApplication )
+    , aListeners( aMutex )
 {
     SvtModuleOptions aMOpt;
 
-    //  if ( aMOpt.IsModuleInstalled( SvtModuleOptions::E_SWRITER ) )
     {
         pSwDLL  = new SwDLL;
         SwDLL::LibInit();
@@ -121,12 +118,11 @@ bf_OfficeWrapper::bf_OfficeWrapper( const Reference < XMultiServiceFactory >& xF
         pSmDLL = new SmDLL;
         SmDLL::LibInit();
     }
-    //added by jmeng for i31251 begin
+    //added i#31251#
     legcy_setBinfilterInitState();
-    //added by jmeng for i31251 end
 }
 
-void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& aArguments ) throw( Exception )
+void SAL_CALL bf_OfficeWrapper::initialize( const Sequence< Any >& ) throw( Exception )
 {
 }
 
@@ -148,7 +144,6 @@ bf_OfficeWrapper::~bf_OfficeWrapper()
             DELETEZ( pSmDLL );
         }
 
-        //  if ( aMOpt.IsModuleInstalled( SvtModuleOptions::E_SWRITER ) )
         {
             SwDLL::LibExit();
             DELETEZ( pSwDLL );
@@ -173,14 +168,6 @@ bf_OfficeWrapper::~bf_OfficeWrapper()
 
     (*(SdrGlobalData**)GetAppData(BF_SHL_SVD))=0;
     (*(SvxGlobalItemData**)GetAppData(BF_SHL_ITEM))=0;
-
-    SotData_Impl * pSotData = SOTDATA();
-    SotFactory * pFact = pSotData->pFactoryList->First();
-
-    while( pFact )
-    {
-        pFact = pSotData->pFactoryList->Next();
-    }
 }
 
 void SAL_CALL bf_OfficeWrapper::dispose() throw ( RuntimeException )
@@ -203,17 +190,17 @@ void SAL_CALL bf_OfficeWrapper::removeEventListener( const Reference< XEventList
 extern "C"
 {
 
-void SAL_CALL component_getImplementationEnvironment(
+SAL_DLLPUBLIC_EXPORT void SAL_CALL component_getImplementationEnvironment(
     const sal_Char** ppEnvironmentTypeName,
-    uno_Environment** ppEnvironment)
+    uno_Environment** /*ppEnvironment*/)
 {
     *ppEnvironmentTypeName = CPPU_CURRENT_LANGUAGE_BINDING_NAME;
 }
 
-void* SAL_CALL component_getFactory(
+SAL_DLLPUBLIC_EXPORT void* SAL_CALL component_getFactory(
     const sal_Char* pImplementationName,
     void* pServiceManager,
-    void* pRegistryKey)
+    void* /*pRegistryKey*/)
 {
     // Set default return value for this operation - if it failed.
     void* pReturn = NULL;
@@ -247,3 +234,5 @@ void* SAL_CALL component_getFactory(
 
 // eof
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

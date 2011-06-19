@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _TXTFLD_HXX
 #define _TXTFLD_HXX
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 namespace binfilter {
 
 class SwTxtNode;
@@ -57,7 +56,7 @@ public:
 
 inline const SwTxtNode& SwTxtFld::GetTxtNode() const
 {
-    ASSERT( pMyTxtNd, "SwTxtFld:: wo ist mein TextNode?" );
+    OSL_ENSURE( pMyTxtNd, "SwTxtFld:: wo ist mein TextNode?" );
     return *pMyTxtNd;
 }
 
@@ -70,3 +69,4 @@ inline void SwTxtFld::ExpandAlways()
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

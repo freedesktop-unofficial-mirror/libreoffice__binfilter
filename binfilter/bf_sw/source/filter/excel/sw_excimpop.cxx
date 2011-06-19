@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,21 +32,15 @@
 
 #include <stdio.h>
 
-#ifndef _COLOR_HXX //autogen
 #include <tools/color.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
 #include "exlpar.hxx"
 #include "exccrts.hxx"
 #include "excxfbuf.hxx"
 #include "excfntbf.hxx"
 #include "excvfbff.hxx"
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 const sal_Char *SwExcelParser::pBuildInName[] = {
@@ -1507,3 +1502,5 @@ void SwExcelParser::Row34()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

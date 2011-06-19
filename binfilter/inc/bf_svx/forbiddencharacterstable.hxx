@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 
-#include <vos/refernce.hxx>
+#include <salhelper/simplereferenceobject.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_HXX_
 #include <com/sun/star/uno/Reference.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_FORBIDDENCHARACTERS_HPP_
 #include <com/sun/star/i18n/ForbiddenCharacters.hpp>
-#endif
 namespace com {
 namespace sun {
 namespace star {
@@ -51,12 +46,6 @@ namespace lang {
 }}}}
 namespace binfilter {
 
-//STRIP008 namespace com {
-//STRIP008 namespace sun {
-//STRIP008 namespace star {
-//STRIP008 namespace lang {
-//STRIP008  class XMultiServiceFactory;
-//STRIP008 }}}}
 
 struct ForbiddenCharactersInfo
 {
@@ -66,7 +55,7 @@ struct ForbiddenCharactersInfo
 
 DECLARE_TABLE( SvxForbiddenCharactersTableImpl, ForbiddenCharactersInfo* )
 
-class SvxForbiddenCharactersTable : public SvxForbiddenCharactersTableImpl, public vos::OReference
+class SvxForbiddenCharactersTable : public SvxForbiddenCharactersTableImpl, public salhelper::SimpleReferenceObject
 {
 private:
     ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory > mxMSF;
@@ -83,3 +72,4 @@ public:
 }//end of namespace binfilter
 #endif // _FORBIDDENCHARACTERSTABLE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

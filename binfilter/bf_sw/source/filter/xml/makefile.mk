@@ -25,24 +25,18 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
 PRJNAME=binfilter
 TARGET=sw_xml
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
-#.INCLUDE :  $(PRJ)$/inc$/swpre.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/swpre.mk
 .INCLUDE :  settings.mk
-#.INCLUDE :  $(PRJ)$/inc$/sw.mk
 .INCLUDE :  $(PRJ)$/inc$/bf_sw$/sw.mk
 INC+= -I$(PRJ)$/inc$/bf_sw
 .IF "$(mydebug)" != ""
@@ -54,7 +48,6 @@ CDEFS=$(CDEFS) -Dmydebug
 CXXFILES = \
         sw_swxml.cxx      \
         sw_xmlimp.cxx      \
-        sw_wrtxml.cxx      \
         sw_xmlexp.cxx      \
         sw_xmltext.cxx      \
         sw_xmltexte.cxx      \
@@ -79,7 +72,6 @@ CXXFILES = \
 SLOFILES =  \
         $(SLO)$/sw_swxml.obj \
         $(SLO)$/sw_xmlimp.obj \
-        $(SLO)$/sw_wrtxml.obj \
         $(SLO)$/sw_xmlexp.obj \
         $(SLO)$/sw_xmltext.obj \
         $(SLO)$/sw_xmltexte.obj \
@@ -105,7 +97,6 @@ SLOFILES =  \
 EXCEPTIONSFILES= \
         $(SLO)$/sw_swxml.obj \
         $(SLO)$/sw_xmlimp.obj \
-        $(SLO)$/sw_wrtxml.obj \
         $(SLO)$/sw_xmlexp.obj \
         $(SLO)$/sw_xmltext.obj \
         $(SLO)$/sw_xmltexti.obj \

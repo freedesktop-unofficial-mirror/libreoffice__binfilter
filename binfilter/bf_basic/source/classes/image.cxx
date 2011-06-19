@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 #include <tools/tenccvt.hxx>
 #include "sbx.hxx"
 #include "sb.hxx"
@@ -81,7 +80,7 @@ void SbiImage::Clear()
 
 /**************************************************************************
 *
-*   Service-Routinen fuer das Laden und Speichern
+*   Service routes for saving and loading
 *
 **************************************************************************/
 
@@ -158,18 +157,15 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
         {
             case B_NAME:
                 r.ReadByteString( aName, eCharSet );
-                //r >> aName;
                 break;
             case B_COMMENT:
                 r.ReadByteString( aComment, eCharSet );
-                //r >> aComment;
                 break;
             case B_SOURCE:
             {
                 String aTmp;
                 r.ReadByteString( aTmp, eCharSet );
                 aOUSource = aTmp;
-                //r >> aSource;
                 break;
             }
 #ifdef EXTENDED_BINARY_MODULES
@@ -250,135 +246,6 @@ BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
     }
 done:
     r.Seek( nLast );
-    //if( eCharSet != ::GetSystemCharSet() )
-        //ConvertStrings();
-    if( !SbiGood( r ) )
-        bError = TRUE;
-    return BOOL( !bError );
-}
-
-BOOL SbiImage::Save( SvStream& r, UINT32 nVer )
-{
-    bool bLegacy = ( nVer < B_EXT_IMG_VERSION );
-
-    // detect if old code exceeds legacy limits
-    // if so, then disallow save
-    if ( bLegacy && ExceedsLegacyLimits() )
-    {
-        SbiImage aEmptyImg;
-        aEmptyImg.aName = aName;
-        aEmptyImg.Save( r, B_LEGACYVERSION );
-        return TRUE;
-    }
-    // Erst mal der Header:
-    ULONG nStart = SbiOpenRecord( r, B_MODULE, 1 );
-    ULONG nPos;
-
-    eCharSet = GetSOStoreTextEncoding( eCharSet );
-    if ( bLegacy )
-        r << (INT32) B_LEGACYVERSION;
-    else
-        r << (INT32) B_CURVERSION;
-    r  << (INT32) eCharSet
-      << (INT32) nDimBase
-      << (INT16) nFlags
-      << (INT16) 0
-      << (INT32) 0
-      << (INT32) 0;
-
-    // Name?
-    if( aName.Len() && SbiGood( r ) )
-    {
-        nPos = SbiOpenRecord( r, B_NAME, 1 );
-        r.WriteByteString( aName, eCharSet );
-        //r << aName;
-        SbiCloseRecord( r, nPos );
-    }
-    // Kommentar?
-    if( aComment.Len() && SbiGood( r ) )
-    {
-        nPos = SbiOpenRecord( r, B_COMMENT, 1 );
-        r.WriteByteString( aComment, eCharSet );
-        //r << aComment;
-        SbiCloseRecord( r, nPos );
-    }
-    // Source?
-    if( aOUSource.getLength() && SbiGood( r ) )
-    {
-        nPos = SbiOpenRecord( r, B_SOURCE, 1 );
-        String aTmp;
-        sal_Int32 nLen = aOUSource.getLength();
-        const sal_Int32 nMaxUnitSize = STRING_MAXLEN - 1;
-        if( nLen > STRING_MAXLEN )
-            aTmp = aOUSource.copy( 0, nMaxUnitSize );
-        else
-            aTmp = aOUSource;
-        r.WriteByteString( aTmp, eCharSet );
-        //r << aSource;
-        SbiCloseRecord( r, nPos );
-
-#ifdef EXTENDED_BINARY_MODULES
-        if( nLen > STRING_MAXLEN )
-        {
-            sal_Int32 nRemainingLen = nLen - nMaxUnitSize;
-            UINT16 nUnitCount = UINT16( (nRemainingLen + nMaxUnitSize - 1) / nMaxUnitSize );
-            nPos = SbiOpenRecord( r, B_EXTSOURCE, nUnitCount );
-            for( UINT16 i = 0 ; i < nUnitCount ; i++ )
-            {
-                sal_Int32 nCopyLen =
-                    (nRemainingLen > nMaxUnitSize) ? nMaxUnitSize : nRemainingLen;
-                String aTmp2 = aOUSource.copy( (i+1) * nMaxUnitSize, nCopyLen );
-                nRemainingLen -= nCopyLen;
-                r.WriteByteString( aTmp2, eCharSet );
-            }
-            SbiCloseRecord( r, nPos );
-        }
-#endif
-    }
-    // Binaere Daten?
-    if( pCode && SbiGood( r ) )
-    {
-        nPos = SbiOpenRecord( r, B_PCODE, 1 );
-        if ( bLegacy )
-        {
-            ReleaseLegacyBuffer(); // release any previously held buffer
-            PCodeBuffConvertor< UINT32, UINT16 > aNewToLegacy( (BYTE*)pCode, nCodeSize );
-            aNewToLegacy.convert();
-            pLegacyPCode = (char*)aNewToLegacy.GetBuffer();
-            nLegacyCodeSize = aNewToLegacy.GetSize();
-                r.Write( pLegacyPCode, nLegacyCodeSize );
-        }
-        else
-            r.Write( pCode, nCodeSize );
-        SbiCloseRecord( r, nPos );
-    }
-    // String-Pool?
-    if( nStrings )
-    {
-        nPos = SbiOpenRecord( r, B_STRINGPOOL, nStrings );
-        // Fuer jeden String:
-        //  UINT32 Offset des Strings im Stringblock
-        short i;
-
-        for( i = 0; i < nStrings && SbiGood( r ); i++ )
-            r << (UINT32) pStringOff[ i ];
-
-        // Danach der String-Block
-        char* pByteStrings = new char[ nStringSize ];
-        for( i = 0; i < nStrings; i++ )
-        {
-            USHORT nOff = (USHORT) pStringOff[ i ];
-            ByteString aStr( pStrings + nOff, eCharSet );
-            memcpy( pByteStrings + nOff, aStr.GetBuffer(), (aStr.Len() + 1) * sizeof( char ) );
-        }
-        r << (UINT32) nStringSize;
-        r.Write( pByteStrings, nStringSize );
-
-        delete[] pByteStrings;
-        SbiCloseRecord( r, nPos );
-    }
-    // Und die Gesamtlaenge setzen
-    SbiCloseRecord( r, nStart );
     if( !SbiGood( r ) )
         bError = TRUE;
     return BOOL( !bError );
@@ -447,3 +314,5 @@ SbiImage::ExceedsLegacyLimits()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,39 +28,21 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
 #include <bf_svtools/compatibility.hxx>
-
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
 #ifndef __SGI_STL_VECTOR
 #include <vector>
 #endif
 
 #include <itemholder1.hxx>
-
 #include <algorithm>
 
 //_________________________________________________________________________________________________________________
@@ -628,3 +611,5 @@ Mutex& SvtCompatibilityOptions::GetOwnStaticMutex()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,27 +30,17 @@
 #pragma hdrstop
 #endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _PROPIMP0_HXX
 #include "propimp0.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <xmluconv.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -73,7 +64,7 @@ XMLDurationPropertyHdl::~XMLDurationPropertyHdl()
 sal_Bool XMLDurationPropertyHdl::importXML(
     const OUString& rStrImpValue,
     ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     util::DateTime aTime;
     SvXMLUnitConverter::convertTime( aTime,  rStrImpValue );
@@ -87,9 +78,9 @@ sal_Bool XMLDurationPropertyHdl::importXML(
 sal_Bool XMLDurationPropertyHdl::exportXML(
     OUString& rStrExpValue,
     const ::com::sun::star::uno::Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Int32 nVal;
+    sal_Int32 nVal = 0;
 
     if(rValue >>= nVal)
     {
@@ -145,7 +136,7 @@ sal_Bool XMLOpacityPropertyHdl::exportXML(
     const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_uInt16 nVal;
+    sal_uInt16 nVal = 0;
 
     if( rValue >>= nVal )
     {
@@ -202,7 +193,7 @@ sal_Bool XMLTextAnimationStepPropertyHdl::exportXML(
     const SvXMLUnitConverter& rUnitConverter ) const
 {
     sal_Bool bRet = sal_False;
-    sal_Int16 nVal;
+    sal_Int16 nVal = 0;
 
     if( rValue >>= nVal )
     {
@@ -228,3 +219,5 @@ sal_Bool XMLTextAnimationStepPropertyHdl::exportXML(
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

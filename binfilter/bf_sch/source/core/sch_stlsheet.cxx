@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,22 +30,14 @@
 #pragma hdrstop
 #endif
 
-#ifndef _EEITEM_HXX //autogen
 #include <bf_svx/eeitem.hxx>
-#endif
 
-#ifndef _XDEF_HXX //autogen
 #include <bf_svx/xdef.hxx>
-#endif
 
 
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXSMPLHINT_HXX //autogen
 #include <bf_svtools/smplhint.hxx>
-#endif
 
 #include "stlsheet.hxx"
 namespace binfilter {
@@ -58,9 +51,9 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ SchStyleSheet::SchStyleSheet(const String& rName, SfxStyleSheetBasePool& rPool,
-/*N*/                            SfxStyleFamily eFamily, USHORT nMask) :
-/*N*/   SfxStyleSheet(rName, rPool, eFamily, nMask)
+/*N*/ SchStyleSheet::SchStyleSheet(const String& rName, SfxStyleSheetBasePool& rInPool,
+/*N*/                            SfxStyleFamily eFamily, USHORT nInMask) :
+/*N*/   SfxStyleSheet(rName, rInPool, eFamily, nInMask)
 /*N*/ {
 /*N*/ }
 
@@ -80,17 +73,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void SchStyleSheet::Load (SvStream& rIn, USHORT nVersion)
-/*N*/ {
-/*N*/ }
-
-/*************************************************************************
-|*
-|* Store
-|*
-\************************************************************************/
-
-/*N*/ void SchStyleSheet::Store(SvStream& rOut)
+/*N*/ void SchStyleSheet::Load (SvStream&, USHORT)
 /*N*/ {
 /*N*/ }
 
@@ -166,3 +149,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

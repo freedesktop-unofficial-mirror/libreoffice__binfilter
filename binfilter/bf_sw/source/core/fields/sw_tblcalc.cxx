@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,35 +31,19 @@
 #pragma hdrstop
 #endif
 
-#ifndef _CNTFRM_HXX
 #include <cntfrm.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>   // fuer _SetGetExpFld
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
 namespace binfilter {
 
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
@@ -90,10 +75,10 @@ using namespace ::rtl;
 
 
 
-/*N*/ SwTblField::SwTblField( SwTblFieldType* pType, const String& rFormel,
+/*N*/ SwTblField::SwTblField( SwTblFieldType* pInType, const String& rFormel,
 /*N*/                       USHORT nType, ULONG nFmt )
-/*N*/   : SwValueField( pType, nFmt ), SwTableFormula( rFormel ),
-/*N*/   nSubType(nType), sExpand( '0' )
+/*N*/   : SwValueField( pInType, nFmt ), SwTableFormula( rFormel ),
+/*N*/   sExpand( '0' ), nSubType(nType)
 /*N*/ {
 /*N*/ }
 
@@ -210,9 +195,7 @@ void SwTblField::SetPar2(const String& rStr)
 }
 
 
-/*-----------------04.03.98 10:33-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwTblField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -245,9 +228,7 @@ void SwTblField::SetPar2(const String& rStr)
 /*N*/   }
 /*N*/     return bRet;
 /*N*/ }
-/*-----------------04.03.98 10:33-------------------
 
---------------------------------------------------*/
 BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
 {
     nMId &= ~CONVERT_TWIPS;
@@ -269,7 +250,7 @@ BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
         break;
     case FIELD_PROP_FORMAT:
         {
-            sal_Int32 nTmp;
+            sal_Int32 nTmp(0);
             rAny >>= nTmp;
             SetFormat(nTmp);
         }
@@ -284,3 +265,5 @@ BOOL SwTblField::PutValue( const uno::Any& rAny, BYTE nMId )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

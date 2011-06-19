@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,22 +29,12 @@
 #ifndef _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 #define _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #include "formattributes.hxx"
-#endif
-#ifndef _VOS_REF_HXX_
-#include <vos/ref.hxx>
-#endif
+#include <rtl/ref.hxx>
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct Time;
     struct Date;
@@ -242,3 +233,4 @@ namespace xmloff
 #endif // _XMLOFF_FORMS_PROPERTYIMPORT_HXX_
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

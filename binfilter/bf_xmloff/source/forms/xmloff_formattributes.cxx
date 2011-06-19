@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,18 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMATTRIBUTES_HXX_
 #include "formattributes.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -80,7 +73,7 @@ namespace xmloff
             case CCA_TITLE:             return "title";
             case CCA_VALUE:             return "value";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getCommonControlAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getCommonControlAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -124,7 +117,7 @@ namespace xmloff
             case faOrder:           return "order";
             case faTabbingCycle:    return "tab-cycle";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getFormAttributeName: invalid id!");
+                OSL_FAIL("OAttributeMetaData::getFormAttributeName: invalid id!");
         }
         return "";
     }
@@ -152,7 +145,7 @@ namespace xmloff
             case DA_LIST_SOURCE:        return "list-source";
             case DA_LIST_SOURCE_TYPE:   return "list-source-type";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getDatabaseAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getDatabaseAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -173,13 +166,13 @@ namespace xmloff
             case BA_LIST_LINKING_TYPE: return "list-linkage-type";
             case BA_LIST_CELL_RANGE:   return "source-cell-range";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getBindingAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getBindingAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
 
     //---------------------------------------------------------------------
-    sal_uInt16 OAttributeMetaData::getBindingAttributeNamespace(sal_Int32 _nId)
+    sal_uInt16 OAttributeMetaData::getBindingAttributeNamespace(sal_Int32 /*_nId*/)
     {
         // nothing special here
         return XML_NAMESPACE_FORM;
@@ -203,7 +196,7 @@ namespace xmloff
             case SCA_STATE:                 return "state";
             case SCA_COLUMN_STYLE_NAME:     return "column-style-name";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getSpecialAttributeName: invalid id (maybe you or-ed two flags?)!");
+                OSL_FAIL("OAttributeMetaData::getSpecialAttributeName: invalid id (maybe you or-ed two flags?)!");
         }
         return "";
     }
@@ -223,7 +216,7 @@ namespace xmloff
             case ofaAutomaticFocus:     return "automatic-focus";
             case ofaApplyDesignMode:    return "apply-design-mode";
             default:
-                OSL_ENSURE(sal_False, "OAttributeMetaData::getOfficeFormsAttributeName: invalid id!");
+                OSL_FAIL("OAttributeMetaData::getOfficeFormsAttributeName: invalid id!");
         }
         return "";
     }
@@ -306,7 +299,7 @@ namespace xmloff
     //---------------------------------------------------------------------
     OAttribute2Property::AttributeAssignment& OAttribute2Property::implAdd(
             const sal_Char* _pAttributeName, const ::rtl::OUString& _rPropertyName,
-            const ::com::sun::star::uno::Type& _rType, const ::rtl::OUString& _rDefaultString)
+            const ::com::sun::star::uno::Type& _rType, const ::rtl::OUString& /*_rDefaultString*/)
     {
         OSL_ENSURE(m_aKnownProperties.end() == m_aKnownProperties.find(::rtl::OUString::createFromAscii(_pAttributeName)),
             "OAttribute2Property::implAdd: already have this attribute!");
@@ -327,3 +320,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

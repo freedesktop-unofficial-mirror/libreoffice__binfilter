@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -49,16 +50,13 @@
 #include <tools/contnr.hxx>
 #include <vcl/sv.h>
 #include <tools/ref.hxx>
-#include <tools/list.hxx>
 #include <tools/link.hxx>
 #include <tools/lang.hxx>
 #include <bf_sfx2/sfx.hrc>
 #include <bf_svtools/memberid.hrc>
 #include <bf_sfx2/sfxsids.hrc>
 #include <bf_svtools/cntwids.hrc>
-//#include <vcl/resid.hxx>
 #include <tools/resid.hxx>
-//#include <vcl/rc.hxx>
 #include <tools/rc.hxx>
 #include <tools/resmgr.hxx>
 #include <tools/gen.hxx>
@@ -78,7 +76,6 @@
 #include <sot/object.hxx>
 #include <sot/sotdata.hxx>
 #include <sot/factory.hxx>
-#include <tools/ownlist.hxx>
 #include <vcl/font.hxx>
 #include <vcl/wall.hxx>
 #include <vcl/settings.hxx>
@@ -92,7 +89,6 @@
 #include <tools/errinf.hxx>
 #include <tools/errcode.hxx>
 #include <tools/stream.hxx>
-//#include <vcl/color.hxx>
 #include <vcl/window.hxx>
 #include <global.hxx>
 #include <vcl/syswin.hxx>
@@ -104,7 +100,6 @@
 #include <bf_svtools/args.hxx>
 #include <vcl/image.hxx>
 #include <vcl/timer.hxx>
-#include <tools/unqidx.hxx>
 #include <vcl/symbol.hxx>
 #include <vcl/fixed.hxx>
 #include <bf_svtools/brdcst.hxx>
@@ -129,7 +124,6 @@
 #include <vcl/field.hxx>
 #include <vcl/spinfld.hxx>
 #include <vcl/combobox.hxx>
-#include <tools/pstm.hxx>
 #include <bf_svtools/eitem.hxx>
 #include <bf_svtools/itempool.hxx>
 #include <bf_so3/so2ref.hxx>
@@ -149,7 +143,6 @@
 #include <vcl/apptypes.hxx>
 #include <viewopti.hxx>
 #include <viewdata.hxx>
-//#include <vcl/resid.hxx>
 #include <bf_sfx2/viewsh.hxx>
 #include <bf_sfx2/clientsh.hxx>
 #include <document.hxx>
@@ -182,10 +175,10 @@
 #include <target.hxx>
 #include <tabvwsh.hxx>
 #include <bf_svtools/inethist.hxx>
-#include <bf_svtools/inetdef.hxx>
+#include <tools/inetdef.hxx>
 #include <bf_sfx2/sfxdefs.hxx>
 #include <bf_svtools/cancel.hxx>
-#include <bf_svtools/inetmsg.hxx>
+#include <tools/inetmsg.hxx>
 #include <bf_sfx2/app.hxx>
 #include <tools/urlobj.hxx>
 #include <scdll.hxx>
@@ -244,7 +237,6 @@
 #include <vcl/print.hxx>
 #include <vcl/floatwin.hxx>
 #include <vcl/wrkwin.hxx>
-//#include <vcl/system.hxx>
 #include <bf_sfx2/childwin.hxx>
 #include <bf_sfx2/chalign.hxx>
 #include <bf_sfx2/dispatch.hxx>
@@ -352,3 +344,4 @@
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

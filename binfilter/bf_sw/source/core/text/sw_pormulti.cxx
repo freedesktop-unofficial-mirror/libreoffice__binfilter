@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,46 +31,24 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _SVX_TWOLINESITEM_HXX
 #include <bf_svx/twolinesitem.hxx>
-#endif
-#ifndef _SVX_CHARROTATEITEM_HXX
 #include <bf_svx/charrotateitem.hxx>
-#endif
 
 #ifdef BIDI
 #endif
 
-#ifndef _CHARFMT_HXX    // SwCharFmt
 #include <charfmt.hxx>
-#endif
-#ifndef _TXTINET_HXX    // SwTxtINetFmt
 #include <txtinet.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _PORMULTI_HXX
 #include <pormulti.hxx>     // SwMultiPortion
-#endif
-#ifndef _ITRFORM2_HXX
 #include <itrform2.hxx>     // SwTxtFormatter
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _PORFLD_HXX
 #include <porfld.hxx>       // SwFldPortion
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -77,7 +56,7 @@ extern sal_Bool IsUnderlineBreak( const SwLinePortion& rPor, const SwFont& rFnt 
 extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
                        const SwScriptInfo* pSI );
 
-/*-----------------10.10.00 15:23-------------------
+/*--------------------------------------------------
  *  class SwMultiPortion
  *
  * A SwMultiPortion is not a simple portion,
@@ -88,7 +67,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------13.10.00 16:21-------------------
+/*--------------------------------------------------
  * Summarize the internal lines to calculate the (external) size.
  * The internal line has to calculate first.
  * --------------------------------------------------*/
@@ -103,19 +82,19 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *************************************************************************/
 
 
-/*-----------------01.11.00 14:21-------------------
+/*--------------------------------------------------
  * SwMultiPortion::ActualizeTabulator()
  * sets the tabulator-flag, if there's any tabulator-portion inside.
  * --------------------------------------------------*/
 
 
-/*-----------------16.02.01 12:07-------------------
+/*--------------------------------------------------
  * SwRotatedPortion::SwRotatedPortion(..)
  * --------------------------------------------------*/
 
 
 
-/*-----------------01.11.00 14:22-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::SwDoubleLinePortion(..)
  * This constructor is for the continuation of a doubleline portion
  * in the next line.
@@ -124,7 +103,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------01.11.00 14:22-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::SwDoubleLinePortion(..)
  * This constructor uses the textattribut to get the right brackets.
  * The textattribut could be a 2-line-attribute or a character- or
@@ -133,7 +112,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------25.10.00 09:51-------------------
+/*--------------------------------------------------
  * SwMultiPortion::PaintBracket paints the wished bracket,
  * if the multiportion has surrounding brackets.
  * The X-position of the SwTxtPaintInfo will be modified:
@@ -142,13 +121,13 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------25.10.00 16:26-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::SetBrackets creates the bracket-structur
  * and fills it, if not both characters are 0x00.
  * --------------------------------------------------*/
 
 
-/*-----------------25.10.00 16:29-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::FormatBrackets
  * calculates the size of the brackets => pBracket,
  * reduces the nMaxWidth-parameter ( minus bracket-width )
@@ -156,7 +135,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------26.10.00 10:36-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::CalcBlanks
  * calculates the number of blanks in each line and
  * the difference of the width of the two lines.
@@ -165,7 +144,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------01.11.00 14:29-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::ChangeSpaceAdd(..)
  * merges the spaces for text adjustment from the inner and outer part.
  * Inside the doubleline portion the wider line has no spaceadd-array, the
@@ -175,14 +154,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * space arrays.
  * --------------------------------------------------*/
 
-/*-----------------01.11.00 14:29-------------------
+/*--------------------------------------------------
  * SwDoubleLinePortion::ResetSpaceAdd(..)
  * cancels the manipulation from SwDoubleLinePortion::ChangeSpaceAdd(..)
  * --------------------------------------------------*/
 
 
 #ifdef BIDI
-/*-----------------13.11.00 14:50-------------------
+/*--------------------------------------------------
  * SwRubyPortion::SwRubyPortion(..)
  * constructs a ruby portion, i.e. an additional text is displayed
  * beside the main text, e.g. phonetic characters.
@@ -191,14 +170,14 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 #endif
 
-/*-----------------13.11.00 14:50-------------------
+/*--------------------------------------------------
  * SwRubyPortion::SwRubyPortion(..)
  * constructs a ruby portion, i.e. an additional text is displayed
  * beside the main text, e.g. phonetic characters.
  * --------------------------------------------------*/
 
 
-/*-----------------13.11.00 14:56-------------------
+/*--------------------------------------------------
  * SwRubyPortion::_Adjust(..)
  * In ruby portion there are different alignments for
  * the ruby text and the main text.
@@ -212,7 +191,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------08.11.00 14:14-------------------
+/*--------------------------------------------------
  * CalcRubyOffset()
  * has to change the nRubyOffset, if there's a fieldportion
  * in the phonetic line.
@@ -221,7 +200,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 
-/*-----------------13.10.00 16:22-------------------
+/*--------------------------------------------------
  * SwTxtSizeInfo::GetMultiCreator(..)
  * If we (e.g. the position rPos) are inside a two-line-attribute or
  * a ruby-attribute, the attribute will be returned in a SwMultiCreator-struct,
@@ -234,7 +213,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * with different brackets interrupts another 2-line-attribute.
  * --------------------------------------------------*/
 
-/*-----------------13.11.00 15:38-------------------
+/*--------------------------------------------------
  * lcl_Has2Lines(..)
  * is a little help function for GetMultiCreator(..)
  * It extracts the 2-line-format from a 2-line-attribute or a character style.
@@ -282,7 +261,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   return sal_False;
 /*N*/ }
 
-/*-----------------16.02.01 16:39-------------------
+/*--------------------------------------------------
  * lcl_HasRotation(..)
  * is a little help function for GetMultiCreator(..)
  * It extracts the charrotation from a charrotate-attribute or a character style.
@@ -342,7 +321,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/     BYTE nCurrLevel;
 /*N*/     if ( pMulti )
 /*N*/     {
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/         ASSERT( pMulti->IsBidi(), "Nested MultiPortion is not BidiPortion" )
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/     }
 /*N*/     else
 /*N*/         // no nested bidi portion required
@@ -723,7 +702,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   return NULL;
 /*N*/ }
 
-/*-----------------01.11.00 14:52-------------------
+/*--------------------------------------------------
  * SwSpaceManipulator
  * is a little helper class to manage the spaceadd-arrays of the text adjustment
  * during a PaintMultiPortion.
@@ -737,7 +716,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------13.10.00 16:24-------------------
+/*--------------------------------------------------
  * SwTxtPainter::PaintMultiPortion manages the paint for a SwMultiPortion.
  * External, for the calling function, it seems to be a normal Paint-function,
  * internal it is like a SwTxtFrm::Paint with multiple DrawTextLines
@@ -761,7 +740,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  *---------------------------------------------------------------------------*/
 
 
-/*-----------------08.11.00 09:29-------------------
+/*--------------------------------------------------
  * SwTxtFormatter::MakeRestPortion(..)
  * When a fieldportion at the end of line breaks and needs a following
  * fieldportion in the next line, then the "restportion" of the formatinfo
@@ -778,20 +757,20 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
  * --------------------------------------------------*/
 
 /*N*/ SwLinePortion* SwTxtFormatter::MakeRestPortion( const SwLineLayout* pLine,
-/*N*/   xub_StrLen nPos )
+/*N*/   xub_StrLen nPos1 )
 /*N*/ {
-/*N*/   if( !nPos )
+/*N*/   if( !nPos1 )
 /*N*/       return NULL;
-/*N*/   xub_StrLen nMultiPos = nPos - pLine->GetLen();
+/*N*/   xub_StrLen nMultiPos = nPos1 - pLine->GetLen();
 /*N*/   const SwMultiPortion *pTmpMulti = NULL;
-/*N*/   const SwMultiPortion *pMulti = NULL;
+/*N*/   const SwMultiPortion *pMulti1 = NULL;
 /*N*/   const SwLinePortion* pPor = pLine->GetFirstPortion();
 /*N*/   SwFldPortion *pFld = NULL;
 /*N*/   while( pPor )
 /*N*/   {
 /*N*/       if( pPor->GetLen() )
 /*N*/       {
-/*N*/           if( !pMulti )
+/*N*/           if( !pMulti1 )
 /*N*/           {
 /*N*/               nMultiPos += pPor->GetLen();
 /*N*/               pTmpMulti = NULL;
@@ -799,17 +778,17 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       }
 /*N*/       if( pPor->InFldGrp() )
 /*N*/       {
-/*?*/           if( !pMulti )
+/*?*/           if( !pMulti1 )
 /*?*/               pTmpMulti = NULL;
 /*?*/           pFld = (SwFldPortion*)pPor;
 /*N*/       }
 /*N*/       else if( pPor->IsMultiPortion() )
 /*N*/       {
 /*?*/ #ifdef BIDI
-/*?*/             ASSERT( !pMulti || pMulti->IsBidi(),
+/*?*/             OSL_ENSURE( !pMulti1 || pMulti1->IsBidi(),
 /*?*/                     "Nested multiportions are forbidden." );
 /*?*/ #else
-/*?*/           ASSERT( !pMulti, "Nested multiportions are forbidden." );
+/*?*/           OSL_ENSURE( !pMulti1, "Nested multiportions are forbidden." );
 /*?*/ #endif
 /*?*/
 /*?*/           pFld = NULL;
@@ -821,7 +800,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/       // If we are already in a multiportion, we could change to the
 /*N*/       // next line
 /*N*/       if( !pPor && pTmpMulti )
-                {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*N*/       {
+                {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   }
 /*N*/   if( pFld && !pFld->HasFollow() )
 /*N*/       pFld = NULL;
@@ -829,7 +808,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   SwLinePortion *pRest = NULL;
 /*N*/   if( pFld )
 /*N*/   {
-/*?*/       const SwTxtAttr *pHint = GetAttr( nPos - 1 );
+/*?*/       const SwTxtAttr *pHint = GetAttr( nPos1 - 1 );
 /*?*/       if( pHint && pHint->Which() == RES_TXTATR_FIELD )
 /*?*/       {
 /*?*/           pRest = NewFldPortion( GetInfo(), pHint );
@@ -842,7 +821,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*?*/           }
 /*?*/       }
 /*N*/   }
-/*N*/   if( !pMulti )
+/*N*/   if( !pMulti1 )
 /*N*/       return pRest;
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/   return pRest;
@@ -850,10 +829,12 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 
-/*-----------------23.10.00 10:47-------------------
+/*--------------------------------------------------
  * SwTxtCursorSave notes the start and current line of a SwTxtCursor,
  * sets them to the values for GetCrsrOfst inside a multiportion
  * and restores them in the destructor.
  * --------------------------------------------------*/
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

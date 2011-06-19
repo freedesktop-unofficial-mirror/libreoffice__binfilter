@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -233,13 +234,6 @@ SfxItemPresentation SvxMacroItem::GetPresentation
 
 // -----------------------------------------------------------------------
 
-SvStream& SvxMacroItem::Store( SvStream& rStrm , USHORT ) const
-{
-    return aMacroTable.Write( rStrm );
-}
-
-// -----------------------------------------------------------------------
-
 SfxPoolItem* SvxMacroItem::Create( SvStream& rStrm, USHORT nVersion ) const
 {
     SvxMacroItem* pAttr = new SvxMacroItem( Which() );
@@ -270,3 +264,5 @@ USHORT SvxMacroItem::GetVersion( USHORT nFileFormatVersion ) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

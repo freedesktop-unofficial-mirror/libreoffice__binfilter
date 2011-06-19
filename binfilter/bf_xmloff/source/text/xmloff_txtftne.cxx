@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,56 +36,31 @@
  * - endnote configuration elements
  */
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
 
 
 
 
-#ifndef _COM_SUN_STAR_TEXT_XFOOTNOTE_HPP_
 #include <com/sun/star/text/XFootnote.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_XFOOTNOTESSUPPLIER_HPP_
 #include <com/sun/star/text/XFootnotesSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_XENDNOTESSUPPLIER_HPP_
 #include <com/sun/star/text/XEndnotesSupplier.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TEXT_FOOTNOTENUMBERING_HPP_
 #include <com/sun/star/text/FootnoteNumbering.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEREPLACE_HPP_
 #include <com/sun/star/container/XNameReplace.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTCHARSTYLENAMESELEMENTEXPORT_HXX
 #include "XMLTextCharStyleNamesElementExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
@@ -93,11 +69,14 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::container;
 using namespace ::binfilter::xmloff::token;
 
+using rtl::OUString;
+using rtl::OUStringBuffer;
+
 
 void XMLTextParagraphExport::exportTextFootnote(
     const Reference<XPropertySet> & rPropSet,
-    const OUString& sText,
-    sal_Bool bAutoStyles, sal_Bool bProgress )
+    const OUString& sInText,
+    sal_Bool bAutoStyles, sal_Bool bInProgress )
 {
     // get footnote and associated text
     Any aAny;
@@ -116,8 +95,8 @@ void XMLTextParagraphExport::exportTextFootnote(
         Add( XML_STYLE_FAMILY_TEXT_TEXT, rPropSet );
 
         // handle formatting within footnote
-        exportTextFootnoteHelper(xFootnote, xText, sText,
-                                 bAutoStyles, bIsEndnote, bProgress );
+        exportTextFootnoteHelper(xFootnote, xText, sInText,
+                                 bAutoStyles, bIsEndnote, bInProgress );
     }
     else
     {
@@ -127,7 +106,6 @@ void XMLTextParagraphExport::exportTextFootnote(
         sal_Bool bIsUICharStyle = sal_False;
         OUString sStyle = FindTextStyleAndHyperlink( rPropSet, bHasHyperlink,
                                                      bIsUICharStyle );
-        sal_Bool bHasStyle = (sStyle.getLength() > 0);
         // export hyperlink (if we have one)
         Reference < XPropertySetInfo > xPropSetInfo;
         if( bHasHyperlink )
@@ -148,9 +126,9 @@ void XMLTextParagraphExport::exportTextFootnote(
                 "HyperLinkEvents"));
             if (xPropSetInfo->hasPropertyByName(sHyperLinkEvents))
             {
-                Any aAny = rPropSet->getPropertyValue(sHyperLinkEvents);
+                Any aLclAny = rPropSet->getPropertyValue(sHyperLinkEvents);
                 Reference<XNameReplace> xName;
-                aAny >>= xName;
+                aLclAny >>= xName;
                 GetExport().GetEventExport().Export(xName, sal_False);
             }
         }
@@ -167,13 +145,13 @@ void XMLTextParagraphExport::exportTextFootnote(
                                           sStyle );
                 SvXMLElementExport aElem( GetExport(), XML_NAMESPACE_TEXT,
                                           XML_SPAN, sal_False, sal_False );
-                exportTextFootnoteHelper(xFootnote, xText, sText,
-                                         bAutoStyles, bIsEndnote, bProgress );
+                exportTextFootnoteHelper(xFootnote, xText, sInText,
+                                         bAutoStyles, bIsEndnote, bInProgress );
             }
             else
             {
-                exportTextFootnoteHelper(xFootnote, xText, sText,
-                                         bAutoStyles, bIsEndnote, bProgress );
+                exportTextFootnoteHelper(xFootnote, xText, sInText,
+                                         bAutoStyles, bIsEndnote, bInProgress );
             }
         }
     }
@@ -183,21 +161,21 @@ void XMLTextParagraphExport::exportTextFootnote(
 void XMLTextParagraphExport::exportTextFootnoteHelper(
     const Reference<XFootnote> & rFootnote,
     const Reference<XText> & rText,
-    const OUString& sText,
+    const OUString& sInText,
     sal_Bool bAutoStyles,
     sal_Bool bIsEndnote,
-    sal_Bool bProgress )
+    sal_Bool bInProgress )
 {
     if (bAutoStyles)
     {
-        exportText(rText, bAutoStyles, bProgress, sal_True );
+        exportText(rText, bAutoStyles, bInProgress, sal_True );
     }
     else
     {
         // export reference Id (for reference fields)
         Reference<XPropertySet> xPropSet(rFootnote, UNO_QUERY);
         Any aAny = xPropSet->getPropertyValue(sReferenceId);
-        sal_Int32 nNumber;
+        sal_Int32 nNumber(0);
         aAny >>= nNumber;
         OUStringBuffer aBuf;
         aBuf.appendAscii("ftn");
@@ -222,7 +200,7 @@ void XMLTextParagraphExport::exportTextFootnoteHelper(
                                      (bIsEndnote ? XML_ENDNOTE_CITATION :
                                                    XML_FOOTNOTE_CITATION),
                                      sal_False, sal_False);
-            GetExport().Characters(sText);
+            GetExport().Characters(sInText);
         }
 
         {
@@ -230,7 +208,7 @@ void XMLTextParagraphExport::exportTextFootnoteHelper(
                                      (bIsEndnote ? XML_ENDNOTE_BODY :
                                                    XML_FOOTNOTE_BODY),
                                      sal_False, sal_False);
-            exportText(rText, bAutoStyles, bProgress, sal_True );
+            exportText(rText, bAutoStyles, bInProgress, sal_True );
         }
     }
 }
@@ -309,7 +287,7 @@ void XMLTextParagraphExport::exportTextFootnoteConfigurationHelper(
     // numbering style
     OUStringBuffer sBuffer;
     aAny = rFootnoteConfig->getPropertyValue(sNumberingType);
-    sal_Int16 nNumbering;
+    sal_Int16 nNumbering(0);
     aAny >>= nNumbering;
     GetExport().GetMM100UnitConverter().convertNumFormat( sBuffer, nNumbering);
     GetExport().AddAttribute(XML_NAMESPACE_STYLE, XML_NUM_FORMAT,
@@ -323,7 +301,7 @@ void XMLTextParagraphExport::exportTextFootnoteConfigurationHelper(
 
     // StartAt / start-value
     aAny = rFootnoteConfig->getPropertyValue(sStartAt);
-    sal_Int16 nOffset;
+    sal_Int16 nOffset(0);
     aAny >>= nOffset;
     SvXMLUnitConverter::convertNumber(sBuffer, (sal_Int32)nOffset);
     GetExport().AddAttribute(XML_NAMESPACE_TEXT, XML_START_VALUE,
@@ -340,7 +318,7 @@ void XMLTextParagraphExport::exportTextFootnoteConfigurationHelper(
                                         XML_DOCUMENT : XML_PAGE ) );
 
         aAny = rFootnoteConfig->getPropertyValue(sFootnoteCounting);
-        sal_Int16 nTmp;
+        sal_Int16 nTmp(0);
         aAny >>= nTmp;
         enum XMLTokenEnum eElement;
         switch (nTmp)
@@ -397,3 +375,5 @@ void XMLTextParagraphExport::exportTextFootnoteConfigurationHelper(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

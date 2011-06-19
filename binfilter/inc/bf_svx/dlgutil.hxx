@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,55 +29,23 @@
 #define _SVX_DLGUTIL_HXX
 
 // include ---------------------------------------------------------------
-#ifndef _FIELD_HXX
 #include <vcl/field.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX //autogen
 #include <bf_svtools/intitem.hxx>
-#endif
 namespace binfilter {
-
-// macro -----------------------------------------------------------------
-
-// typedef ---------------------------------------------------------------
-
 
 // Functions -------------------------------------------------------------
 
-// HM- und LanguageStrings aus der Resource laden
-
 // FieldUnit im MetricField oder -Box umsetzen
-
 FieldUnit GetModuleFieldUnit( const SfxItemSet* pSet = NULL );
 
 // Metriken umrechnen
 long        CalcToUnit( float nIn, SfxMapUnit eUnit );
 long        CalcToPoint( long nIn, SfxMapUnit eUnit, USHORT nFaktor );
-
 long        ItemToControl( long nIn, SfxMapUnit eItem, SfxFieldUnit eCtrl );
 
-
-
-
-// to Twips
-
-// to CM
-
-// to MM
-
-// to Inch
-
-// to Point
-
-// To Pica
-
-// generische Wandlung
-
-// replacement of the SfxIniManager
-
 #define OUTPUT_DRAWMODE_COLOR       (DRAWMODE_DEFAULT)
-#define OUTPUT_DRAWMODE_CONTRAST    (DRAWMODE_SETTINGSLINE | DRAWMODE_SETTINGSFILL | DRAWMODE_SETTINGSTEXT | DRAWMODE_SETTINGSGRADIENT)
 
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

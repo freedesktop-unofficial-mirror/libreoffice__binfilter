@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,30 +31,11 @@
 #pragma hdrstop
 #endif
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
-
-
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _HINTS_HXX
+#include <osl/diagnose.h>
 #include <hints.hxx>
-#endif
-#ifndef _SWERROR_H
-#include <error.h>
-#endif
 namespace binfilter {
 
 
@@ -109,43 +91,46 @@ namespace binfilter {
 
 
 
-/*N*/ SwDocPosUpdate::SwDocPosUpdate( const SwTwips nDocPos )
-/*N*/   : SwMsgPoolItem( RES_DOCPOS_UPDATE ),
-/*N*/   nDocPos(nDocPos)
+/*N*/ SwDocPosUpdate::SwDocPosUpdate( const SwTwips nInDocPos )
+/*N*/   : SwMsgPoolItem( RES_DOCPOS_UPDATE )
+/*N*/   , nDocPos(nInDocPos)
 /*N*/ {}
 
 
 
 // SwTableFmlUpdate wird verschickt, wenn sich die Tabelle neu berechnen soll
 /*N*/ SwTableFmlUpdate::SwTableFmlUpdate( const SwTable* pNewTbl )
-/*N*/   : SwMsgPoolItem( RES_TABLEFML_UPDATE ),
-/*N*/   pTbl( pNewTbl ), pHistory( 0 ), eFlags( TBL_CALC ),
-/*N*/   nSplitLine( USHRT_MAX )
+/*N*/   : SwMsgPoolItem( RES_TABLEFML_UPDATE )
+/*N*/   , pTbl( pNewTbl )
+/*N*/   , pHistory( 0 )
+/*N*/   , nSplitLine( USHRT_MAX )
+/*N*/   , eFlags( TBL_CALC )
 /*N*/ {
 /*N*/   DATA.pDelTbl = 0;
 /*N*/   bModified = bBehindSplitLine = FALSE;
-/*N*/   ASSERT( pTbl, "es muss ein Table-Pointer gesetzt werden!" );
+/*N*/   OSL_ENSURE( pTbl, "es muss ein Table-Pointer gesetzt werden!" );
 /*N*/ }
 
 
 /*N*/ SwAutoFmtGetDocNode::SwAutoFmtGetDocNode( const SwNodes* pNds )
-/*N*/   : SwMsgPoolItem( RES_AUTOFMT_DOCNODE ),
-/*N*/   pCntntNode( 0 ), pNodes( pNds )
+/*N*/   : SwMsgPoolItem( RES_AUTOFMT_DOCNODE )
+/*N*/   , pCntntNode( 0 )
+/*N*/   , pNodes( pNds )
 /*N*/ {}
 
 
 /*N*/ SwAttrSetChg::SwAttrSetChg( const SwAttrSet& rTheSet, SwAttrSet& rSet )
-/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG ),
-/*N*/   pTheChgdSet( &rTheSet ),
-/*N*/   pChgSet( &rSet ),
-/*N*/   bDelSet( FALSE )
+/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG )
+/*N*/   , bDelSet( FALSE )
+/*N*/   , pChgSet( &rSet )
+/*N*/   , pTheChgdSet( &rTheSet )
 /*N*/ {}
 
 
 /*N*/ SwAttrSetChg::SwAttrSetChg( const SwAttrSetChg& rChgSet )
-/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG ),
-/*N*/   pTheChgdSet( rChgSet.pTheChgdSet ),
-/*N*/   bDelSet( TRUE )
+/*N*/   : SwMsgPoolItem( RES_ATTRSET_CHG )
+/*N*/   , bDelSet( TRUE )
+/*N*/   , pTheChgdSet( rChgSet.pTheChgdSet )
 /*N*/ {
 /*N*/   pChgSet = new SwAttrSet( *rChgSet.pChgSet );
 /*N*/ }
@@ -162,7 +147,7 @@ namespace binfilter {
 
 /*N*/ void SwAttrSetChg::ClearItem( USHORT nWhich )
 /*N*/ {
-/*N*/   ASSERT( bDelSet, "der Set darf nicht veraendert werden!" );
+/*N*/   OSL_ENSURE( bDelSet, "der Set darf nicht veraendert werden!" );
 /*N*/   pChgSet->ClearItem( nWhich );
 /*N*/ }
 
@@ -177,14 +162,14 @@ namespace binfilter {
 // "Overhead" vom SfxPoolItem
 /*N*/ int SwMsgPoolItem::operator==( const SfxPoolItem& ) const
 /*N*/ {
-/*N*/   ASSERT( FALSE, "SwMsgPoolItem kennt kein ==" );
+/*N*/   OSL_ENSURE( FALSE, "SwMsgPoolItem kennt kein ==" );
 /*N*/   return 0;
 /*N*/ }
 
 
 /*N*/ SfxPoolItem* SwMsgPoolItem::Clone( SfxItemPool* ) const
 /*N*/ {
-/*N*/   ASSERT( FALSE, "SwMsgPoolItem kennt kein Clone" );
+/*N*/   OSL_ENSURE( FALSE, "SwMsgPoolItem kennt kein Clone" );
 /*N*/   return 0;
 /*N*/ }
 
@@ -199,11 +184,10 @@ namespace binfilter {
 
 /*N*/ const SfxPoolItem* GetDfltAttr( USHORT nWhich )
 /*N*/ {
-/*N*/   ASSERT_ID( nWhich < POOLATTR_END && nWhich >= POOLATTR_BEGIN,
-/*N*/              ERR_OUTOFSCOPE );
+/*N*/   OSL_ASSERT( nWhich < POOLATTR_END && nWhich >= POOLATTR_BEGIN );
 /*N*/
 /*N*/   SfxPoolItem *pHt = aAttrTab[ nWhich - POOLATTR_BEGIN ];
-/*N*/   ASSERT( pHt, "GetDfltFmtAttr(): Dflt == 0" );
+/*N*/   OSL_ENSURE( pHt, "GetDfltFmtAttr(): Dflt == 0" );
 /*N*/   return pHt;
 /*N*/ }
 
@@ -310,3 +294,5 @@ namespace binfilter {
 /*N*/   return nRet;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

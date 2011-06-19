@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -994,6 +992,8 @@ short ScInterpreter::IsString()
                     case CELLTYPE_FORMULA :
                         nRes = !((ScFormulaCell*)pCell)->IsValue();
                         break;
+                    default :
+                        break;
                 }
             }
         }
@@ -1023,7 +1023,7 @@ void ScInterpreter::ScIsNonString()
 }
 
 
-void ScInterpreter::ScIsLogical(UINT16 aOldNumType)
+void ScInterpreter::ScIsLogical(UINT16 /*aOldNumType*/)
 {
     short nRes = 0;
     switch ( GetStackType() )
@@ -1148,7 +1148,7 @@ void ScInterpreter::ScCell()
             SetIllegalParameter();
         else
         {
-            String          aResult;
+            String          aLclResult;
             ScBaseCell*     pCell = GetCell( aCellPos );
 
             aInfoType.ToUpperAscii();
@@ -1169,8 +1169,8 @@ void ScInterpreter::ScCell()
             else if( aInfoType.EqualsAscii( "ADDRESS" ) )
             {   // address formatted as [['FILENAME'#]$TABLE.]$COL$ROW
                 USHORT nFlags = (aCellPos.Tab() == aPos.Tab()) ? (SCA_ABS) : (SCA_ABS_3D);
-                aCellPos.Format( aResult, nFlags, pDok );
-                PushString( aResult );
+                aCellPos.Format( aLclResult, nFlags, pDok );
+                PushString( aLclResult );
             }
             else if( aInfoType.EqualsAscii( "FILENAME" ) )
             {   // file name and table name: 'FILENAME'#$TABLE
@@ -1178,31 +1178,31 @@ void ScInterpreter::ScCell()
                 if( nTab < pDok->GetTableCount() )
                 {
                     if( pDok->GetLinkMode( nTab ) == SC_LINK_VALUE )
-                        pDok->GetName( nTab, aResult );
+                        pDok->GetName( nTab, aLclResult );
                     else
                     {
                         SfxObjectShell* pShell = pDok->GetDocumentShell();
                         if( pShell && pShell->GetMedium() )
                         {
-                            aResult = (sal_Unicode) '\'';
-                            aResult += pShell->GetMedium()->GetName();
-                            aResult.AppendAscii( "'#$" );
+                            aLclResult = (sal_Unicode) '\'';
+                            aLclResult += pShell->GetMedium()->GetName();
+                            aLclResult.AppendAscii( "'#$" );
                             String aTabName;
                             pDok->GetName( nTab, aTabName );
-                            aResult += aTabName;
+                            aLclResult += aTabName;
                         }
                     }
                 }
-                PushString( aResult );
+                PushString( aLclResult );
             }
             else if( aInfoType.EqualsAscii( "COORD" ) )
             {   // address, lotus 1-2-3 formatted: $TABLE:$COL$ROW
-                ScAddress( aCellPos.Tab(), 0, 0 ).Format( aResult, (SCA_COL_ABSOLUTE|SCA_VALID_COL) );
-                aResult += ':';
+                ScAddress( aCellPos.Tab(), 0, 0 ).Format( aLclResult, (SCA_COL_ABSOLUTE|SCA_VALID_COL) );
+                aLclResult += ':';
                 String aCellStr;
                 aCellPos.Format( aCellStr, (SCA_COL_ABSOLUTE|SCA_VALID_COL|SCA_ROW_ABSOLUTE|SCA_VALID_ROW) );
-                aResult += aCellStr;
-                PushString( aResult );
+                aLclResult += aCellStr;
+                PushString( aLclResult );
             }
 
 // *** CELL PROPERTIES ***
@@ -1210,8 +1210,8 @@ void ScInterpreter::ScCell()
             {   // contents of the cell, no formatting
                 if( pCell && pCell->HasStringData() )
                 {
-                    GetCellString( aResult, pCell );
-                    PushString( aResult );
+                    GetCellString( aLclResult, pCell );
+                    PushString( aLclResult );
                 }
                 else
                     PushDouble( GetCellValue( aCellPos, pCell ) );
@@ -1219,10 +1219,10 @@ void ScInterpreter::ScCell()
             else if( aInfoType.EqualsAscii( "TYPE" ) )
             {   // b = blank; l = string (label); v = otherwise (value)
                 if( HasCellStringData( pCell ) )
-                    aResult = 'l';
+                    aLclResult = 'l';
                 else
-                    aResult = HasCellValueData( pCell ) ? 'v' : 'b';
-                PushString( aResult );
+                    aLclResult = HasCellValueData( pCell ) ? 'v' : 'b';
+                PushString( aLclResult );
             }
             else if( aInfoType.EqualsAscii( "WIDTH" ) )
             {   // column width (rounded off as count of zero characters in standard font and size)
@@ -1251,13 +1251,13 @@ void ScInterpreter::ScCell()
                     {
                         case SVX_HOR_JUSTIFY_STANDARD:
                         case SVX_HOR_JUSTIFY_LEFT:
-                        case SVX_HOR_JUSTIFY_BLOCK:     aResult = '\''; break;
-                        case SVX_HOR_JUSTIFY_CENTER:    aResult = '^';  break;
-                        case SVX_HOR_JUSTIFY_RIGHT:     aResult = '"';  break;
-                        case SVX_HOR_JUSTIFY_REPEAT:    aResult = '\\'; break;
+                        case SVX_HOR_JUSTIFY_BLOCK:     aLclResult = '\'';  break;
+                        case SVX_HOR_JUSTIFY_CENTER:    aLclResult = '^';   break;
+                        case SVX_HOR_JUSTIFY_RIGHT:     aLclResult = '"';   break;
+                        case SVX_HOR_JUSTIFY_REPEAT:    aLclResult = '\\';  break;
                     }
                 }
-                PushString( aResult );
+                PushString( aLclResult );
             }
             else if( aInfoType.EqualsAscii( "PROTECT" ) )
             {   // 1 = cell locked
@@ -1277,10 +1277,10 @@ void ScInterpreter::ScCell()
 
                 switch( pFormatter->GetType( nFormat ) )
                 {
-                    case NUMBERFORMAT_NUMBER:       aResult = (bThousand ? ',' : 'F');  break;
-                    case NUMBERFORMAT_CURRENCY:     aResult = 'C';                      break;
-                    case NUMBERFORMAT_SCIENTIFIC:   aResult = 'S';                      break;
-                    case NUMBERFORMAT_PERCENT:      aResult = 'P';                      break;
+                    case NUMBERFORMAT_NUMBER:       aLclResult = (bThousand ? ',' : 'F');   break;
+                    case NUMBERFORMAT_CURRENCY:     aLclResult = 'C';                       break;
+                    case NUMBERFORMAT_SCIENTIFIC:   aLclResult = 'S';                       break;
+                    case NUMBERFORMAT_PERCENT:      aLclResult = 'P';                       break;
                     default:
                     {
                         bAppendPrec = FALSE;
@@ -1293,29 +1293,29 @@ void ScInterpreter::ScCell()
                             case NF_DATE_SYS_DMMMYYYY:
                             case NF_DATE_DIN_DMMMYYYY:
                             case NF_DATE_SYS_DMMMMYYYY:
-                            case NF_DATE_DIN_DMMMMYYYY: aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D1" ) );  break;
-                            case NF_DATE_SYS_DDMMM:     aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D2" ) );  break;
-                            case NF_DATE_SYS_MMYY:      aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D3" ) );  break;
+                            case NF_DATE_DIN_DMMMMYYYY: aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D1" ) );   break;
+                            case NF_DATE_SYS_DDMMM:     aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D2" ) );   break;
+                            case NF_DATE_SYS_MMYY:      aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D3" ) );   break;
                             case NF_DATETIME_SYSTEM_SHORT_HHMM:
                             case NF_DATETIME_SYS_DDMMYYYY_HHMMSS:
-                                                        aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D4" ) );  break;
-                            case NF_DATE_DIN_MMDD:      aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D5" ) );  break;
-                            case NF_TIME_HHMMSSAMPM:    aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D6" ) );  break;
-                            case NF_TIME_HHMMAMPM:      aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D7" ) );  break;
-                            case NF_TIME_HHMMSS:        aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D8" ) );  break;
-                            case NF_TIME_HHMM:          aResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D9" ) );  break;
-                            default:                    aResult = 'G';
+                                                        aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D4" ) );   break;
+                            case NF_DATE_DIN_MMDD:      aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D5" ) );   break;
+                            case NF_TIME_HHMMSSAMPM:    aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D6" ) );   break;
+                            case NF_TIME_HHMMAMPM:      aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D7" ) );   break;
+                            case NF_TIME_HHMMSS:        aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D8" ) );   break;
+                            case NF_TIME_HHMM:          aLclResult.AssignAscii( RTL_CONSTASCII_STRINGPARAM( "D9" ) );   break;
+                            default:                    aLclResult = 'G';
                         }
                     }
                 }
                 if( bAppendPrec )
-                    aResult += String::CreateFromInt32( nPrec );
+                    aLclResult += String::CreateFromInt32( nPrec );
                 const SvNumberformat* pFormat = pFormatter->GetEntry( nFormat );
                 if( lcl_FormatHasNegColor( pFormat ) )
-                    aResult += '-';
+                    aLclResult += '-';
                 if( lcl_FormatHasOpenPar( pFormat ) )
-                    aResult.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "()" ) );
-                PushString( aResult );
+                    aLclResult.AppendAscii( RTL_CONSTASCII_STRINGPARAM( "()" ) );
+                PushString( aLclResult );
             }
             else if( aInfoType.EqualsAscii( "COLOR" ) )
             {   // 1 = negative values are colored, otherwise 0
@@ -1386,6 +1386,8 @@ void ScInterpreter::ScIsValue()
                         break;
                     case CELLTYPE_FORMULA :
                         nRes = ((ScFormulaCell*)pCell)->IsValue();
+                        break;
+                    default :
                         break;
                 }
             }
@@ -1732,6 +1734,8 @@ void ScInterpreter::ScT()
                     case CELLTYPE_FORMULA :
                         bValue = ((ScFormulaCell*)pCell)->IsValue();
                         break;
+                    default :
+                        break;
                 }
             }
             if ( bValue )
@@ -1877,22 +1881,22 @@ void ScInterpreter::ScChar()
 /*?*/                   pMat->GetDimensions(nC, nR);
 /*?*/                   if (pMat->IsNumeric())
 /*?*/                   {
-/*?*/                       for (USHORT i = 0; i < nC; i++)
+/*?*/                       for (USHORT k = 0; k < nC; k++)
 /*?*/                           for (USHORT j = 0; j < nR; j++)
 /*?*/                           {
-/*?*/                               nVal = pMat->GetDouble(i,j);
+/*?*/                               nVal = pMat->GetDouble(k,j);
 /*?*/                               if (nMin > nVal) nMin = nVal;
 /*?*/                           }
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
-/*?*/                       for (USHORT i = 0; i < nC; i++)
+/*?*/                       for (USHORT k = 0; k < nC; k++)
 /*?*/                       {
 /*?*/                           for (USHORT j = 0; j < nR; j++)
 /*?*/                           {
-/*?*/                               if (!pMat->IsString(i,j))
+/*?*/                               if (!pMat->IsString(k,j))
 /*?*/                               {
-/*?*/                                   nVal = pMat->GetDouble(i,j);
+/*?*/                                   nVal = pMat->GetDouble(k,j);
 /*?*/                                   if (nMin > nVal) nMin = nVal;
 /*?*/                               }
 /*?*/                               else if ( bTextAsZero )
@@ -1997,22 +2001,22 @@ void ScInterpreter::ScChar()
 /*?*/                   pMat->GetDimensions(nC, nR);
 /*?*/                   if (pMat->IsNumeric())
 /*?*/                   {
-/*?*/                       for (USHORT i = 0; i < nC; i++)
+/*?*/                       for (USHORT k = 0; k < nC; k++)
 /*?*/                           for (USHORT j = 0; j < nR; j++)
 /*?*/                           {
-/*?*/                               nVal = pMat->GetDouble(i,j);
+/*?*/                               nVal = pMat->GetDouble(k,j);
 /*?*/                               if (nMax < nVal) nMax = nVal;
 /*?*/                           }
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
-/*?*/                       for (USHORT i = 0; i < nC; i++)
+/*?*/                       for (USHORT k = 0; k < nC; k++)
 /*?*/                       {
 /*?*/                           for (USHORT j = 0; j < nR; j++)
 /*?*/                           {
-/*?*/                               if (!pMat->IsString(i,j))
+/*?*/                               if (!pMat->IsString(k,j))
 /*?*/                               {
-/*?*/                                   nVal = pMat->GetDouble(i,j);
+/*?*/                                   nVal = pMat->GetDouble(k,j);
 /*?*/                                   if (nMax < nVal) nMax = nVal;
 /*?*/                               }
 /*?*/                               else if ( bTextAsZero )
@@ -2125,6 +2129,7 @@ void ScInterpreter::ScChar()
 /*?*/                       break;
 /*?*/                   case ifSUMSQ:   fRes += fVal * fVal; break;
 /*?*/                   case ifPRODUCT: fRes *= fVal; break;
+/*?*/                   default: break;
 /*?*/               }
 /*?*/               nFuncFmtType = NUMBERFORMAT_NUMBER;
 /*?*/               break;
@@ -2159,6 +2164,7 @@ void ScInterpreter::ScChar()
 /*?*/                               break;
 /*?*/                           case ifSUMSQ:   fRes += fVal * fVal; break;
 /*?*/                           case ifPRODUCT: fRes *= fVal; break;
+/*?*/                           default: break;
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else if ( bTextAsZero && pCell->HasStringData() )
@@ -2178,7 +2184,7 @@ void ScInterpreter::ScChar()
 /*N*/               {
 /*N*/                   ScBaseCell* pCell;
 /*N*/                   ScCellIterator aIter( pDok, aRange, glSubTotal );
-/*N*/                   if (pCell = aIter.GetFirst())
+/*N*/                   if ((pCell = aIter.GetFirst()))
 /*N*/                   {
 /*N*/                       do
 /*N*/                       {
@@ -2186,7 +2192,7 @@ void ScInterpreter::ScChar()
 /*N*/                           if( eType != CELLTYPE_NONE && eType != CELLTYPE_NOTE )
 /*N*/                               nCount++;
 /*N*/                       }
-/*N*/                       while ( pCell = aIter.GetNext());
+/*N*/                       while ((pCell = aIter.GetNext()));
 /*N*/                   }
 /*N*/               }
 /*N*/               else
@@ -2258,14 +2264,14 @@ void ScInterpreter::ScChar()
 /*?*/                       nCount += (ULONG) nC * nR;
 /*?*/                   else
 /*?*/                   {
-/*?*/                       for (USHORT i = 0; i < nC; i++)
+/*?*/                       for (USHORT k = 0; k < nC; k++)
 /*?*/                       {
 /*?*/                           for (USHORT j = 0; j < nR; j++)
 /*?*/                           {
-/*?*/                               if (!pMat->IsString(i,j))
+/*?*/                               if (!pMat->IsString(k,j))
 /*?*/                               {
 /*?*/                                   nCount++;
-/*?*/                                   fVal = pMat->GetDouble(i,j);
+/*?*/                                   fVal = pMat->GetDouble(k,j);
 /*?*/                                   switch( eFunc )
 /*?*/                                   {
 /*?*/                                       case ifAVERAGE:
@@ -2280,6 +2286,7 @@ void ScInterpreter::ScChar()
 /*?*/                                           break;
 /*?*/                                       case ifSUMSQ:   fRes += fVal * fVal; break;
 /*?*/                                       case ifPRODUCT: fRes *= fVal; break;
+/*?*/                                       default: break;
 /*?*/                                   }
 /*?*/                               }
 /*?*/                               else if ( bTextAsZero )
@@ -2307,6 +2314,7 @@ void ScInterpreter::ScChar()
 /*N*/       case ifCOUNT2:
 /*N*/       case ifCOUNT:   fRes  = nCount; break;
 /*N*/       case ifPRODUCT: if ( !nCount ) fRes = 0.0; break;
+/*N*/       default: break;
 /*N*/   }
 /*N*/   // Bei Summen etc. macht ein BOOL-Ergebnis keinen Sinn
 /*N*/   // und Anzahl ist immer Number (#38345#)
@@ -2356,14 +2364,13 @@ void ScInterpreter::ScCount()
 /*N*/               BOOL bTextAsZero )
 /*N*/ {
 /*N*/   BYTE nParamCount = GetByte();
-/*N*/   USHORT i;
 /*N*/   double fSum    = 0.0;
 /*N*/   double fSumSqr = 0.0;
 /*N*/   double fVal;
 /*N*/   rValCount = 0.0;
 /*N*/   ScAddress aAdr;
 /*N*/   ScRange aRange;
-/*N*/   for (i = 0; i < nParamCount; i++)
+/*N*/   for (USHORT i = 0; i < nParamCount; i++)
 /*N*/   {
 /*N*/       switch (GetStackType())
 /*N*/       {
@@ -2414,13 +2421,13 @@ void ScInterpreter::ScCount()
 /*?*/               {
 /*?*/                   USHORT nC, nR;
 /*?*/                   pMat->GetDimensions(nC, nR);
-/*?*/                   for (USHORT i = 0; i < nC; i++)
+/*?*/                   for (USHORT k = 0; k < nC; k++)
 /*?*/                   {
 /*?*/                       for (USHORT j = 0; j < nR; j++)
 /*?*/                       {
-/*?*/                           if (!pMat->IsString(i,j))
+/*?*/                           if (!pMat->IsString(k,j))
 /*?*/                           {
-/*?*/                               fVal= pMat->GetDouble(i,j);
+/*?*/                               fVal= pMat->GetDouble(k,j);
 /*?*/                               fSum += fVal;
 /*?*/                               fSumSqr += fVal * fVal;
 /*?*/                               rValCount++;
@@ -2844,7 +2851,7 @@ void ScInterpreter::ScTable()
 /*N*/           }
 /*N*/           if ( rEntry.bQueryByString )
 /*N*/                  rParam.bRegExp = MayBeRegExp( *rEntry.pStr, pDok );
-/*N*/           USHORT nDelta, nR, nC;
+/*N*/           USHORT nDelta(0), nR, nC;
 /*N*/              if (nCol1 == nCol2)
 /*N*/              {                                           // search row in column
 /*N*/               rParam.nRow2 = nRow2;
@@ -2948,14 +2955,14 @@ void ScInterpreter::ScCountEmptyCells()
                 ScBaseCell* pCell;
                 ScCellIterator aDocIter(pDok, nCol1, nRow1, nTab1,
                                               nCol2, nRow2, nTab2, glSubTotal);
-                if (pCell = aDocIter.GetFirst())
+                if ((pCell = aDocIter.GetFirst()))
                 {
                     do
                     {
                         if ((eCellType = pCell->GetCellType()) != CELLTYPE_NONE
                                 && eCellType != CELLTYPE_NOTE)
                             nCount++;
-                    } while ( pCell = aDocIter.GetNext() );
+                    } while (( pCell = aDocIter.GetNext() ));
                 }
             }
             break;
@@ -2971,7 +2978,7 @@ void ScInterpreter::ScCountEmptyCells()
      if ( MustHaveParamCount( GetByte(), 2 ) )
      {
          String rString;
-         double fVal;
+         double fVal(0.0);
          BOOL bIsString = TRUE;
          switch ( GetStackType() )
          {
@@ -3131,7 +3138,7 @@ void ScInterpreter::ScCountEmptyCells()
              }
          }
          String rString;
-         double fVal;
+         double fVal(0.0);
          BOOL bIsString = TRUE;
          switch ( GetStackType() )
          {
@@ -3306,7 +3313,7 @@ void ScInterpreter::ScCountEmptyCells()
     USHORT nCol4 = 0;
     USHORT nRow4 = 0;
     USHORT nTab4 = 0;
-     USHORT nDelta;
+    USHORT nDelta = 0;
 
      // param 3: data range
      if ( nParamCount == 3 )
@@ -3379,17 +3386,17 @@ void ScInterpreter::ScCountEmptyCells()
          return;
      }
      BOOL bSpMatrix, bSpVector;
-     USHORT nMatCount, nVecCount;
+     USHORT nLclMatCount, nVecCount;
      if (pMat1 == NULL)
      {
          if (nRow1 == nRow2)
          {
-             nMatCount = nCol2 - nCol1 + 1;
+             nLclMatCount = nCol2 - nCol1 + 1;
              bSpMatrix = FALSE;
          }
          else
          {
-             nMatCount = nRow2 - nRow1 + 1;
+             nLclMatCount = nRow2 - nRow1 + 1;
              bSpMatrix = TRUE;
          }
      }
@@ -3397,18 +3404,18 @@ void ScInterpreter::ScCountEmptyCells()
      {
          if (nR1 == 1)
          {
-             nMatCount = nC1;
+             nLclMatCount = nC1;
              bSpMatrix = FALSE;
          }
          else
          {
-             nMatCount = nR1;
+             nLclMatCount = nR1;
              bSpMatrix = TRUE;
          }
      }
      if ( nParamCount < 3 )
      {
-         nVecCount = nMatCount;
+         nVecCount = nLclMatCount;
          bSpVector = bSpMatrix;
      }
      else if (pMat3 == NULL)
@@ -3437,7 +3444,7 @@ void ScInterpreter::ScCountEmptyCells()
              bSpVector = TRUE;
          }
      }
-     if (nGlobalError == 0 && nVecCount == nMatCount)
+     if (nGlobalError == 0 && nVecCount == nLclMatCount)
      {
          String sStr;
          ScQueryParam rParam;
@@ -3520,7 +3527,7 @@ void ScInterpreter::ScCountEmptyCells()
                  sal_Int32 nRes;
                  String aParamStr = *rEntry.pStr;
                  USHORT i = 0;
-                 for ( i = 0; i < nMatCount; i++)
+                 for ( i = 0; i < nLclMatCount; i++)
                  {
                      if (!pMat1->IsValue(i))
                      {
@@ -3532,10 +3539,10 @@ void ScInterpreter::ScCountEmptyCells()
                              nDelta = i;
                          }
                          else if (nRes == COMPARE_LESS)
-                             i = nMatCount+1;
+                             i = nLclMatCount+1;
                      }
                  }
-                 if (i == nMatCount+2 && !bFound)
+                 if (i == nLclMatCount+2 && !bFound)
                  {
                      SetNV();
                      return;
@@ -3548,7 +3555,7 @@ void ScInterpreter::ScCountEmptyCells()
                  BOOL bFound = FALSE;
                  double fVal1;
                  USHORT i = 0;
-                 for ( i = 0; i < nMatCount; i++)
+                 for ( i = 0; i < nLclMatCount; i++)
                  {
                      if (pMat1->IsValue(i))
                          fVal1 = pMat1->GetDouble(i);
@@ -3560,9 +3567,9 @@ void ScInterpreter::ScCountEmptyCells()
                          nDelta = i;
                      }
                      else if (fVal1 > rEntry.nVal)
-                         i = nMatCount+1;
+                         i = nLclMatCount+1;
                  }
-                 if (i == nMatCount+2 && !bFound)
+                 if (i == nLclMatCount+2 && !bFound)
                  {
                      SetNV();
                      return;
@@ -3777,7 +3784,7 @@ void ScInterpreter::ScCountEmptyCells()
                  rParam.bRegExp = MayBeRegExp( *rEntry.pStr, pDok );
              if (pMat)
              {
-                 USHORT nMatCount = nC;
+                 USHORT nLclMatCount = nC;
                  short nDelta = -1;
                  if (rEntry.bQueryByString)
                  {
@@ -3788,13 +3795,13 @@ void ScInterpreter::ScCountEmptyCells()
                      USHORT i;
                      if ( bSorted )
                      {
-                         for (i = 0; i < nMatCount; i++)
+                         for (i = 0; i < nLclMatCount; i++)
                          {
                              if (pMat->IsString(i, 0))
                              {
                                  if ( ScGlobal::pTransliteration->isEqual(
                                          pMat->GetString(i,0), aParamStr ) )
-                                     i = nMatCount+1;
+                                     i = nLclMatCount+1;
                                  else
                                      nDelta = i;
                              }
@@ -3804,7 +3811,7 @@ void ScInterpreter::ScCountEmptyCells()
                      }
                      else
                      {
-                         for (i = 0; i < nMatCount; i++)
+                         for (i = 0; i < nLclMatCount; i++)
                          {
                              if (pMat->IsString(i, 0))
                              {
@@ -3812,7 +3819,7 @@ void ScInterpreter::ScCountEmptyCells()
                                          pMat->GetString(i,0), aParamStr ) )
                                  {
                                      nDelta = i;
-                                     i = nMatCount + 1;
+                                     i = nLclMatCount + 1;
                                  }
                              }
                          }
@@ -3824,7 +3831,7 @@ void ScInterpreter::ScCountEmptyCells()
                      USHORT i;
                      if ( bSorted )
                      {
-                         for (i = 0; i < nMatCount; i++)
+                         for (i = 0; i < nLclMatCount; i++)
                          {
                              if (!pMat->IsString(i, 0))
                                  fVal1 = pMat->GetDouble(i,0);
@@ -3833,12 +3840,12 @@ void ScInterpreter::ScCountEmptyCells()
                              if (fVal1 <= rEntry.nVal)
                                  nDelta = i;
                              else
-                                 i = nMatCount+1;
+                                 i = nLclMatCount+1;
                          }
                      }
                      else
                      {
-                         for (i = 0; i < nMatCount; i++)
+                         for (i = 0; i < nLclMatCount; i++)
                          {
                              if (!pMat->IsString(i, 0))
                                  fVal1 = pMat->GetDouble(i,0);
@@ -3847,7 +3854,7 @@ void ScInterpreter::ScCountEmptyCells()
                              if (fVal1 == rEntry.nVal)
                              {
                                  nDelta = i;
-                                 i = nMatCount + 1;
+                                 i = nLclMatCount + 1;
                              }
                          }
                      }
@@ -3866,7 +3873,7 @@ void ScInterpreter::ScCountEmptyCells()
              {
                  rEntry.nField = nCol1;
                  BOOL bFound = FALSE;
-                 USHORT nC;
+                 USHORT nLclC;
                  if ( bSorted )
                      rEntry.eOp = SC_LESS_EQUAL;
                  ScQueryCellIterator aCellIter(pDok, nTab1, rParam, FALSE);
@@ -3874,23 +3881,23 @@ void ScInterpreter::ScCountEmptyCells()
                  aCellIter.SetAdvanceQueryParamEntryField( TRUE );
                  if ( bSorted )
                  {
-                     USHORT nR;
-                     bFound = aCellIter.FindEqualOrSortedLastInRange( nC, nR );
+                     USHORT nLclR;
+                     bFound = aCellIter.FindEqualOrSortedLastInRange( nLclC, nLclR );
                  }
                  else if ( aCellIter.GetFirst() )
                  {
                      bFound = TRUE;
-                     nC = aCellIter.GetCol();
+                     nLclC = aCellIter.GetCol();
                      if ( bSorted )
                      {
                          while ( aCellIter.GetNext() )
-                             nC = aCellIter.GetCol();
+                             nLclC = aCellIter.GetCol();
                      }
                  }
                  if ( bFound )
                  {
                      ScBaseCell* pCell;
-                     ScAddress aAdr( nC, nZIndex, nTab1 );
+                     ScAddress aAdr( nLclC, nZIndex, nTab1 );
                      if ( HasCellValueData( pCell = GetCell( aAdr ) ) )
                          PushDouble(GetCellValue( aAdr, pCell ));
                      else
@@ -4031,7 +4038,7 @@ void ScInterpreter::ScCountEmptyCells()
 /*N*/                 rParam.bRegExp = MayBeRegExp( *rEntry.pStr, pDok );
 /*N*/           if (pMat)
 /*N*/           {
-/*?*/               USHORT nMatCount = nR;
+/*?*/               USHORT nLclMatCount = nR;
 /*?*/               short nDelta = -1;
 /*?*/               if (rEntry.bQueryByString)
 /*?*/               {
@@ -4042,13 +4049,13 @@ void ScInterpreter::ScCountEmptyCells()
 /*?*/                   USHORT i;
 /*?*/                   if ( bSorted )
 /*?*/                   {
-/*?*/                       for (i = 0; i < nMatCount; i++)
+/*?*/                       for (i = 0; i < nLclMatCount; i++)
 /*?*/                       {
 /*?*/                           if (pMat->IsString(0, i))
 /*?*/                           {
 /*?*/                                 if ( ScGlobal::pTransliteration->isEqual(
 /*?*/                                         pMat->GetString(0,i), aParamStr ) )
-/*?*/                                   i = nMatCount+1;
+/*?*/                                   i = nLclMatCount+1;
 /*?*/                               else
 /*?*/                                   nDelta = i;
 /*?*/                           }
@@ -4058,7 +4065,7 @@ void ScInterpreter::ScCountEmptyCells()
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
-/*?*/                       for (i = 0; i < nMatCount; i++)
+/*?*/                       for (i = 0; i < nLclMatCount; i++)
 /*?*/                       {
 /*?*/                           if (pMat->IsString(0, i))
 /*?*/                           {
@@ -4066,7 +4073,7 @@ void ScInterpreter::ScCountEmptyCells()
 /*?*/                                         pMat->GetString(0,i), aParamStr ) )
 /*?*/                               {
 /*?*/                                   nDelta = i;
-/*?*/                                   i = nMatCount + 1;
+/*?*/                                   i = nLclMatCount + 1;
 /*?*/                               }
 /*?*/                           }
 /*?*/                       }
@@ -4078,7 +4085,7 @@ void ScInterpreter::ScCountEmptyCells()
 /*?*/                   USHORT i;
 /*?*/                   if ( bSorted )
 /*?*/                   {
-/*?*/                       for (i = 0; i < nMatCount; i++)
+/*?*/                       for (i = 0; i < nLclMatCount; i++)
 /*?*/                       {
 /*?*/                           if (!pMat->IsString(0, i))
 /*?*/                               fVal1 = pMat->GetDouble(0, i);
@@ -4087,12 +4094,12 @@ void ScInterpreter::ScCountEmptyCells()
 /*?*/                           if (fVal1 <= rEntry.nVal)
 /*?*/                               nDelta = i;
 /*?*/                           else
-/*?*/                               i = nMatCount+1;
+/*?*/                               i = nLclMatCount+1;
 /*?*/                       }
 /*?*/                   }
 /*?*/                   else
 /*?*/                   {
-/*?*/                       for (i = 0; i < nMatCount; i++)
+/*?*/                       for (i = 0; i < nLclMatCount; i++)
 /*?*/                       {
 /*?*/                           if (!pMat->IsString(0, i))
 /*?*/                               fVal1 = pMat->GetDouble(0, i);
@@ -4101,7 +4108,7 @@ void ScInterpreter::ScCountEmptyCells()
 /*?*/                           if (fVal1 == rEntry.nVal)
 /*?*/                           {
 /*?*/                               nDelta = i;
-/*?*/                               i = nMatCount + 1;
+/*?*/                               i = nLclMatCount + 1;
 /*?*/                           }
 /*?*/                       }
 /*?*/                   }
@@ -4120,29 +4127,29 @@ void ScInterpreter::ScCountEmptyCells()
 /*N*/           {
 /*N*/               rEntry.nField = nCol1;
 /*N*/                 BOOL bFound = FALSE;
-/*N*/                 USHORT nR;
+/*N*/                 USHORT nLclR;
 /*N*/                 if ( bSorted )
 /*N*/                     rEntry.eOp = SC_LESS_EQUAL;
 /*N*/                 ScQueryCellIterator aCellIter(pDok, nTab1, rParam, FALSE);
 /*N*/                 if ( bSorted )
 /*N*/                 {
-/*N*/                     USHORT nC;
-/*N*/                     bFound = aCellIter.FindEqualOrSortedLastInRange( nC, nR );
+/*N*/                     USHORT nLclC;
+/*N*/                     bFound = aCellIter.FindEqualOrSortedLastInRange( nLclC, nLclR );
 /*N*/                 }
 /*N*/                 else if ( aCellIter.GetFirst() )
 /*N*/                 {
 /*N*/                     bFound = TRUE;
-/*N*/                     nR = aCellIter.GetRow();
+/*N*/                     nLclR = aCellIter.GetRow();
 /*N*/                     if ( bSorted )
 /*N*/                     {
 /*?*/                         while (aCellIter.GetNext())
-/*?*/                             nR = aCellIter.GetRow();
+/*?*/                             nLclR = aCellIter.GetRow();
 /*N*/                     }
 /*N*/                 }
 /*N*/                 if ( bFound )
 /*N*/                 {
 /*N*/                     ScBaseCell* pCell;
-/*N*/                     ScAddress aAdr( nSpIndex, nR, nTab1 );
+/*N*/                     ScAddress aAdr( nSpIndex, nLclR, nTab1 );
 /*N*/                     if ( HasCellValueData( pCell = GetCell( aAdr ) ) )
 /*N*/                         PushDouble(GetCellValue( aAdr, pCell ));
 /*N*/                     else
@@ -4388,6 +4395,7 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
                  case ifPRODUCT:    nErg = 1; break;
                  case ifMAX:        nErg = MINDOUBLE; break;
                  case ifMIN:        nErg = MAXDOUBLE; break;
+                 default: break;
              }
              do
              {
@@ -4408,6 +4416,7 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
                      case ifPRODUCT:    nErg *= nVal; break;
                      case ifMAX:        if( nVal > nErg ) nErg = nVal; break;
                      case ifMIN:        if( nVal < nErg ) nErg = nVal; break;
+                     default: break;
                  }
              }
              while ( aValIter.GetNext(nVal, nErr) && !nErr );
@@ -4421,6 +4430,7 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
          case ifCOUNT:  nErg = nCount; break;
          case ifSUM:        nErg = ::rtl::math::approxAdd( nErg, fMem ); break;
          case ifAVERAGE:    nErg = ::rtl::math::approxAdd( nErg, fMem ) / nCount; break;
+         default: break;
      }
      PushDouble( nErg );
  }
@@ -4593,19 +4603,6 @@ BOOL ScInterpreter::GetDBParams(USHORT& rTab, ScQueryParam& rParam,
 void ScInterpreter::ScIndirect()
 {
     BYTE nParamCount = GetByte();
-/*
-    if (nParamCount == 2)
-    {
-        double fBool = GetDouble();
-        if (fBool == 0.0)                           // nur TRUE erlaubt!!
-        {
-            SetIllegalParameter();
-            return;
-        }
-        else
-            nParamCount = 1;
-    }
-*/
     if ( MustHaveParamCount( nParamCount, 1 )  )
     {
         USHORT nTab = aPos.Tab();
@@ -4674,7 +4671,7 @@ void ScInterpreter::ScOffset()
     BYTE nParamCount = GetByte();
     if ( MustHaveParamCount( nParamCount, 3, 5 ) )
     {
-        short nColNew, nRowNew, nColPlus, nRowPlus;
+        short nColNew(0), nRowNew(0), nColPlus, nRowPlus;
         if (nParamCount == 5)
             nColNew = (short) ::rtl::math::approxFloor(GetDouble());
         if (nParamCount >= 4)
@@ -5417,7 +5414,7 @@ void ScInterpreter::ScConcat()
 /*N*/   static const sal_Unicode cre[] = { '.','*','+','?','[',']','^','$','\\','<','>','(',')','|', 0 };
 /*N*/   const sal_Unicode* p1 = rStr.GetBuffer();
 /*N*/   sal_Unicode c1;
-/*N*/   while ( c1 = *p1++ )
+/*N*/   while (( c1 = *p1++ ))
 /*N*/   {
 /*N*/       const sal_Unicode* p2 = cre;
 /*N*/       while ( *p2 )
@@ -5430,3 +5427,5 @@ void ScInterpreter::ScConcat()
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

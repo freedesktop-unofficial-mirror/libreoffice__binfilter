@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,8 @@
 #ifndef SC_OUTPUT_HXX
 #define SC_OUTPUT_HXX
 
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 class Rectangle;
 class Font;
 class OutputDevice;
@@ -150,7 +144,7 @@ private:
 
 
 
-    void            DrawRotatedFrame( const Color* pForceColor ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void            DrawRotatedFrame( const Color* pForceColor );       // pixel
+    void            DrawRotatedFrame( const Color* pForceColor ){DBG_BF_ASSERT(0, "STRIP");}
 
 public:
                     ScOutputData( OutputDevice* pNewDev, ScOutputType eNewType,
@@ -214,3 +208,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

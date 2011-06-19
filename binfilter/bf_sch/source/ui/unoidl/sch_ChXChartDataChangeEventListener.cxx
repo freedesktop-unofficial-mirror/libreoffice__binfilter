@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,8 @@
  *
  ************************************************************************/
 
-// header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-// header for class OGuard
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
 #include "ChXChartDataChangeEventListener.hxx"
 #include "ChXChartDocument.hxx"
@@ -42,12 +37,10 @@ namespace binfilter {
 #define SCH_ASCII_TO_OU( s )  ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( s ) )
 #endif
 
-// using namespace osl;
-using namespace rtl;
-using namespace vos;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
 ChXChartDataChangeEventListener::ChXChartDataChangeEventListener()
 {
@@ -56,14 +49,14 @@ ChXChartDataChangeEventListener::ChXChartDataChangeEventListener()
 
 void ChXChartDataChangeEventListener::SetOwner( ChXChartDocument* pXDoc ) throw()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     mpXDoc = pXDoc;
 }
 
 void ChXChartDataChangeEventListener::Reset() throw()
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     mpXDoc = NULL;
 }
 
@@ -71,13 +64,13 @@ void ChXChartDataChangeEventListener::Reset() throw()
 void SAL_CALL ChXChartDataChangeEventListener::chartDataChanged( const chart::ChartDataChangeEvent& aEvent )
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
     if( mpXDoc )
         mpXDoc->RefreshData( aEvent );
 }
 
 // XEventListener
-void SAL_CALL ChXChartDataChangeEventListener::disposing( const lang::EventObject& Source ) throw( uno::RuntimeException )
+void SAL_CALL ChXChartDataChangeEventListener::disposing( const lang::EventObject& /*Source*/ ) throw( uno::RuntimeException )
 {
     Reset();
 }
@@ -102,10 +95,12 @@ sal_Bool SAL_CALL ChXChartDataChangeEventListener::supportsService( const OUStri
 uno::Sequence< ::rtl::OUString > SAL_CALL ChXChartDataChangeEventListener::getSupportedServiceNames()
     throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Sequence< OUString > aServSeq( 0 );
     return aServSeq;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

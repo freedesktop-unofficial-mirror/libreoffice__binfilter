@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,87 +26,37 @@
  *
  ************************************************************************/
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
 
-#ifndef _FORMS_LISTBOX_HXX_
 #include "ListBox.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HXX_
 #include "frm_resource.hxx"
-#endif
-#ifndef _FRM_RESOURCE_HRC_
 #include "frm_resource.hrc"
-#endif
-#ifndef _FORMS_BASELISTBOX_HXX_
 #include "BaseListBox.hxx"
-#endif
-#ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
-#endif
-#ifndef _COMPHELPER_NUMBERS_HXX_
 #include <comphelper/numbers.hxx>
-#endif
-#ifndef _DBHELPER_DBCONVERSION_HXX_
 #include <connectivity/dbconversion.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATTYPES_HPP_
 #include <com/sun/star/util/XNumberFormatTypes.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XSQLQUERYCOMPOSERFACTORY_HPP_
 #include <com/sun/star/sdb/XSQLQueryComposerFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XQUERIESSUPPLIER_HPP_
 #include <com/sun/star/sdb/XQueriesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XLISTBOX_HPP_
 #include <com/sun/star/awt/XListBox.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XWINDOW_HPP_
 #include <com/sun/star/awt/XWindow.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDBC_XCONNECTION_HPP_
 #include <com/sun/star/sdbc/XConnection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _CONNECTIVITY_DBTOOLS_HXX_
 #include <connectivity/dbtools.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SDBCX_XCOLUMNSSUPPLIER_HPP_
 #include <com/sun/star/sdbcx/XColumnsSupplier.hpp>
-#endif
 
 namespace binfilter {
 
@@ -154,8 +105,8 @@ OListBoxModel::OListBoxModel(const Reference<XMultiServiceFactory>& _rxFactory)
                                     // use the old control name for compytibility reasons
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_aRefreshListeners(m_aMutex)
-    ,m_bBoundComponent(sal_False)
     ,m_nNULLPos(-1)
+    ,m_bBoundComponent(sal_False)
 {
     DBG_CTOR(OListBoxModel,NULL);
 
@@ -172,8 +123,8 @@ OListBoxModel::OListBoxModel( const OListBoxModel* _pOriginal, const Reference<X
     :OBoundControlModel( _pOriginal, _rxFactory )
     ,OErrorBroadcaster( OComponentHelper::rBHelper )
     ,m_aRefreshListeners( m_aMutex )
-    ,m_bBoundComponent(sal_False)
     ,m_nNULLPos(-1)
+    ,m_bBoundComponent(sal_False)
 {
     DBG_CTOR(OListBoxModel,NULL);
     m_eListSourceType = _pOriginal->m_eListSourceType;
@@ -339,7 +290,6 @@ void OListBoxModel::setFastPropertyValue_NoBroadcast(sal_Int32 _nHandle, const A
             {   // release our mutex once (it's acquired in the calling method !), as setting aggregate properties
                 // may cause any uno controls belonging to us to lock the solar mutex, which is potentially dangerous with
                 // our own mutex locked
-                // FS - 72451 - 31.01.00
                 MutexRelease aRelease(m_aMutex);
                 m_xAggregateFastSet->setFastPropertyValue(OListBoxModel::nSelectHandle, _rValue);
             }
@@ -455,7 +405,7 @@ void SAL_CALL OListBoxModel::write(const Reference<stario::XObjectOutputStream>&
 
     if ((nAnyMask & BOUNDCOLUMN) == BOUNDCOLUMN)
     {
-        sal_Int16 nBoundColumn;
+        sal_Int16 nBoundColumn(0);
         m_aBoundColumn >>= nBoundColumn;
         _rxOutStream << nBoundColumn;
     }
@@ -480,7 +430,7 @@ void SAL_CALL OListBoxModel::read(const Reference<stario::XObjectInputStream>& _
 
     if (nVersion > 0x0004)
     {
-        DBG_ERROR("OListBoxModel::read : invalid (means unknown) version !");
+        OSL_FAIL("OListBoxModel::read : invalid (means unknown) version !");
         m_aListSourceSeq.realloc(0);
         m_aBoundColumn <<= (sal_Int16)0;
         m_aValueSeq.realloc(0);
@@ -607,7 +557,7 @@ StringSequence OListBoxModel::GetCurValueSeq() const
         if (nSelCount > 1)
         {
             // Einfach- oder Mehrfach-Selektion
-            sal_Bool bMultiSel;
+            sal_Bool bMultiSel(sal_False);
             const_cast<OListBoxModel*>(this)->OPropertySetAggregationHelper::getFastPropertyValue(PROPERTY_ID_MULTISELECTION) >>= bMultiSel;
             if (bMultiSel)
                 nSelCount = 1;
@@ -712,7 +662,7 @@ StringSequence SAL_CALL OListBoxControl::getSupportedServiceNames() throw(Runtim
 
 // XFocusListener
 //------------------------------------------------------------------------------
-void SAL_CALL OListBoxControl::focusGained(const FocusEvent& _rEvent) throw(RuntimeException)
+void SAL_CALL OListBoxControl::focusGained(const FocusEvent& /*_rEvent*/) throw(RuntimeException)
 {
     ::osl::MutexGuard aGuard(m_aMutex);
     if (m_aChangeListeners.getLength()) // only if there are listeners
@@ -727,14 +677,14 @@ void SAL_CALL OListBoxControl::focusGained(const FocusEvent& _rEvent) throw(Runt
 }
 
 //------------------------------------------------------------------------------
-void SAL_CALL OListBoxControl::focusLost(const FocusEvent& _rEvent) throw(RuntimeException)
+void SAL_CALL OListBoxControl::focusLost(const FocusEvent& /*_rEvent*/) throw(RuntimeException)
 {
     m_aCurrentSelection.clear();
 }
 
 // XItemListener
 //------------------------------------------------------------------------------
-void SAL_CALL OListBoxControl::itemStateChanged(const ItemEvent& _rEvent) throw(RuntimeException)
+void SAL_CALL OListBoxControl::itemStateChanged(const ItemEvent& /*_rEvent*/) throw(RuntimeException)
 {
    // call the changelistener delayed
    ::osl::ClearableMutexGuard aGuard(m_aMutex);
@@ -817,7 +767,7 @@ void OListBoxControl::disposing()
 }
 
 //------------------------------------------------------------------------------
-IMPL_LINK(OListBoxControl, OnTimeout, void*, EMPTYTAG)
+IMPL_LINK(OListBoxControl, OnTimeout, void*, EMPTYARG)
 {
     EventObject aEvt(static_cast< XWeak*>(this));
     m_aChangeListeners.notifyEach(&XChangeListener::changed, aEvt);
@@ -829,3 +779,5 @@ IMPL_LINK(OListBoxControl, OnTimeout, void*, EMPTYTAG)
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

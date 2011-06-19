@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,18 +28,10 @@
 #ifndef SVT_QUERYFOLDER_HXX
 #define SVT_QUERYFOLDER_HXX
 
-#ifndef _SV_FIXED_HXX
 #include <vcl/fixed.hxx>
-#endif
-#ifndef _SV_BUTTON_HXX
 #include <vcl/button.hxx>
-#endif
-#ifndef _SV_EDIT_HXX
 #include <vcl/edit.hxx>
-#endif
-#ifndef _SV_DIALOG_HXX
 #include <vcl/dialog.hxx>
-#endif
 
 //-------------------------------------------------------------------------
 namespace binfilter
@@ -70,3 +63,5 @@ public:
 
 }
 #endif // SVT_QUERYFOLDER_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

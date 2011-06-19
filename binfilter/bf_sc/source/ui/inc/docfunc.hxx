@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_DOCFUNC_HXX
 #define SC_DOCFUNC_HXX
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class SfxUndoAction;
@@ -71,12 +68,11 @@ public:
 
     BOOL            DetectiveAddPred(const ScAddress& rPos);
     BOOL            DetectiveDelPred(const ScAddress& rPos);
-    BOOL            DetectiveAddSucc(const ScAddress& rPos);
     BOOL            DetectiveDelSucc(const ScAddress& rPos);
     BOOL            DetectiveAddError(const ScAddress& rPos);
     BOOL            DetectiveMarkInvalid(USHORT nTab);
     BOOL            DetectiveDelAll(USHORT nTab);
-    BOOL            DetectiveRefresh(BOOL bAutomatic = FALSE);
+    BOOL            DetectiveRefresh();
 
     BOOL            DeleteContents( const ScMarkData& rMark, USHORT nFlags,
                                     BOOL bRecord, BOOL bApi );
@@ -99,16 +95,8 @@ public:
     BOOL            ApplyStyle( const ScMarkData& rMark, const String& rStyleName,
                                     BOOL bRecord, BOOL bApi );
 
-    BOOL            InsertCells( const ScRange& rRange, InsCellCmd eCmd, BOOL bRecord, BOOL bApi,
-                                    BOOL bPartOfPaste = FALSE );
-    BOOL            DeleteCells( const ScRange& rRange, DelCellCmd eCmd, BOOL bRecord, BOOL bApi );
-
-    BOOL            MoveBlock( const ScRange& rSource, const ScAddress& rDestPos,
-                                BOOL bCut, BOOL bRecord, BOOL bPaint, BOOL bApi );
-
     BOOL            InsertTable( USHORT nTab, const String& rName, BOOL bRecord, BOOL bApi );
     BOOL            RenameTable( USHORT nTab, const String& rName, BOOL bRecord, BOOL bApi );
-    BOOL            DeleteTable( USHORT nTab, BOOL bRecord, BOOL bApi );
 
     BOOL            SetTableVisible( USHORT nTab, BOOL bVisible, BOOL bApi );
 
@@ -116,10 +104,8 @@ public:
                                     USHORT nTab, ScSizeMode eMode, USHORT nSizeTwips,
                                     BOOL bRecord, BOOL bApi );
 
-    BOOL            InsertPageBreak( BOOL bColumn, const ScAddress& rPos,
-                                    BOOL bRecord, BOOL bSetModified, BOOL bApi );
     BOOL            RemovePageBreak( BOOL bColumn, const ScAddress& rPos,
-                                    BOOL bRecord, BOOL bSetModified, BOOL bApi );
+                                    BOOL bRecord, BOOL bSetModified );
 
     BOOL            Protect( USHORT nTab, const String& rPassword, BOOL bApi );
     BOOL            Unprotect( USHORT nTab, const String& rPassword, BOOL bApi );
@@ -132,24 +118,10 @@ public:
     BOOL            EnterMatrix( const ScRange& rRange, const ScMarkData* pTabMark,
                                     const String& rString, BOOL bApi, BOOL bEnglish );
 
-    BOOL            TabOp( const ScRange& rRange, const ScMarkData* pTabMark,
-                            const ScTabOpParam& rParam, BOOL bRecord, BOOL bApi );
-
-    BOOL            FillSeries( const ScRange& rRange, const ScMarkData* pTabMark,
-                                FillDir eDir, FillCmd eCmd, FillDateCmd eDateCmd,
-                                double fStart, double fStep, double fMax,
-                                BOOL bRecord, BOOL bApi );
-                    // FillAuto: rRange wird von Source-Range auf Dest-Range angepasst
-    BOOL            FillAuto( ScRange& rRange, const ScMarkData* pTabMark,
-                                FillDir eDir, USHORT nCount, BOOL bRecord, BOOL bApi );
-
-
     BOOL            MergeCells( const ScRange& rRange, BOOL bContents,
                                 BOOL bRecord, BOOL bApi );
-    BOOL            UnmergeCells( const ScRange& rRange, BOOL bRecord, BOOL bApi );
 
-
-    BOOL            ModifyRangeNames( const ScRangeName& rNewRanges, BOOL bApi );
+    BOOL            ModifyRangeNames( const ScRangeName& rNewRanges );
 
     BOOL            CreateNames( const ScRange& rRange, USHORT nFlags, BOOL bApi );
     BOOL            InsertNameList( const ScAddress& rStartPos, BOOL bApi );
@@ -157,7 +129,7 @@ public:
     BOOL            InsertAreaLink( const String& rFile, const String& rFilter,
                                     const String& rOptions, const String& rSource,
                                     const ScRange& rDestRange, ULONG nRefresh,
-                                    BOOL bFitBlock, BOOL bApi );
+                                    BOOL bFitBlock );
 };
 
 
@@ -165,3 +137,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

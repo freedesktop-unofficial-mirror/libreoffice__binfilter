@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,14 +31,11 @@
 
 
 #include <bf_so3/iface.hxx>
-#include <sot/agg.hxx>
 #include <bf_svtools/ownlist.hxx>
 
 #include "bf_so3/soerr.hxx"
 
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
 namespace binfilter {
 
@@ -86,13 +84,13 @@ void SvObject::TestMemberInvariant( BOOL /*bPrint*/ )
     {
         ByteString aTest( "\t\tpClient == " );
         aTest += ByteString::CreateFromInt32( (ULONG)pClient );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
     if( Owner() && pService )
     {
         ByteString aTest( "\t\tpService == " );
         aTest += ByteString::CreateFromInt32( (ULONG)pService );
-        DBG_TRACE( aTest.GetBuffer() );
+        OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 #endif
 }
@@ -113,10 +111,6 @@ SvObject::SvObject()
 |*
 |*    SvObject::~SvObject()
 |*
-|*    Beschreibung
-|*    Ersterstellung    MM 05.06.94
-|*    Letzte Aenderung  MM 05.06.94
-|*
 *************************************************************************/
 SvObject::~SvObject()
 {
@@ -125,10 +119,6 @@ SvObject::~SvObject()
 /*************************************************************************
 |*
 |*    SvObject::ReleaseRef()
-|*
-|*    Beschreibung
-|*    Ersterstellung    MM 05.06.94
-|*    Letzte Aenderung  MM 05.06.94
 |*
 *************************************************************************/
 UINT32 SvObject::ReleaseRef()
@@ -140,7 +130,7 @@ UINT32 SvObject::ReleaseRef()
         aStr += ByteString::CreateFromInt32( GetRefCount() );
         aStr += ", ExtCount == ";
         aStr += ByteString::CreateFromInt32( nExtCount );
-        DBG_ERROR( aStr.GetBuffer() );
+        OSL_FAIL( aStr.GetBuffer() );
     }
 #endif
     return SotObject::ReleaseRef();
@@ -203,3 +193,5 @@ Rectangle GetSvRect( const RECT & rRect )
 #endif
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

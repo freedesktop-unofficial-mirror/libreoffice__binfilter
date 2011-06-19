@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,41 +32,19 @@
 #pragma hdrstop
 #endif
 
-//#include <vcl/system.hxx>
-
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-#ifndef _EEITEMID_HXX
 #include "eeitemid.hxx"
-#endif
 
-
-
-
-
-#ifndef _SV_WINDOW_HXX
 #include <vcl/window.hxx>
-#endif
 
 #include <impedit.hxx>
-
-
 
 #include "lrspitem.hxx"
 #include "langitem.hxx"
 
 #include <rtl/tencinfo.h>
 
-
-
-#ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
-#endif
-
-
-
-
 
 namespace binfilter {
 using namespace ::com::sun::star;
@@ -255,7 +234,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/           nCount = pParaPortion->GetLines().Count();
 /*?*/           for ( n = 0; n < nCount; n++ )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pParaPortion->GetLines()[n];
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/ #ifdef DBG_UTIL
 /*?*/           USHORT nTest, nTPLen = 0, nTxtLen = 0;
@@ -274,7 +253,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ {
 /*N*/   // Da Setzen eines TextObject ist nicht Undo-faehig!
 /*N*/   ResetUndoManager();
-/*N*/   sal_Bool bUpdate = GetUpdateMode();
+/*N*/   sal_Bool bLclUpdate = GetUpdateMode();
 /*N*/   sal_Bool bUndo = IsUndoEnabled();
 /*N*/
 /*N*/   SetText( XubString() );
@@ -289,7 +268,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/ #ifndef SVX_LIGHT
 /*N*/   DBG_ASSERT( !HasUndoManager() || !GetUndoManager().GetUndoActionCount(), "Woher kommt das Undo in SetText ?!" );
 /*N*/ #endif
-/*N*/   SetUpdateMode( bUpdate );
+/*N*/   SetUpdateMode( bLclUpdate );
 /*N*/   EnableUndo( bUndo );
 /*N*/ }
 
@@ -313,7 +292,6 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   EditSelection aSel( aPaM, aPaM );
 /*N*/
 /*N*/   sal_Bool bUsePortionInfo = sal_False;
-/*N*/   sal_Bool bFields = sal_False;
 /*N*/   XParaPortionList* pPortionInfo = rTextObject.GetPortionInfo();
 /*N*/
 /*N*/   if ( pPortionInfo && ( (long)pPortionInfo->GetPaperWidth() == aPaperSize.Width() )
@@ -326,7 +304,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/   }
 /*N*/
 /*N*/   sal_Bool bConvertItems = sal_False;
-/*N*/   MapUnit eSourceUnit, eDestUnit;
+/*N*/   MapUnit eSourceUnit = MapUnit(), eDestUnit = MapUnit();
 /*N*/   if ( rTextObject.HasMetric() )
 /*N*/   {
 /*N*/       eSourceUnit = (MapUnit)rTextObject.GetMetric();
@@ -420,7 +398,7 @@ using namespace ::com::sun::star::linguistic2;
 /*N*/               if ( !bConvertItems )
 /*N*/                   SetParaAttribs( aEditDoc.GetPos( aPaM.GetNode() ), pC->GetParaAttribs() );
 /*N*/               else
-/*N*/               {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/               {DBG_BF_ASSERT(0, "STRIP");
 /*N*/               }
 /*N*/             }
 /*N*/           if ( bNewContent && bUsePortionInfo )
@@ -437,11 +415,11 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               // Die TextPortions
 /*?*/               pParaPortion->GetTextPortions().Reset();
 /*?*/               sal_uInt16 nCount = pXP->aTextPortions.Count();
-/*?*/               for ( sal_uInt16 n = 0; n < nCount; n++ )
+/*?*/               for ( sal_uInt16 k = 0; k < nCount; k++ )
 /*?*/               {
-/*?*/                   TextPortion* pTextPortion = pXP->aTextPortions[n];
+/*?*/                   TextPortion* pTextPortion = pXP->aTextPortions[k];
 /*?*/                   TextPortion* pNew = new TextPortion( *pTextPortion );
-/*?*/                   pParaPortion->GetTextPortions().Insert( pNew, n );
+/*?*/                   pParaPortion->GetTextPortions().Insert( pNew, k );
 /*?*/               }
 /*?*/
 /*?*/               // Die Zeilen
@@ -449,7 +427,7 @@ using namespace ::com::sun::star::linguistic2;
 /*?*/               nCount = pXP->aLines.Count();
 /*?*/               for ( sal_uInt16 m = 0; m < nCount; m++ )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 EditLine* pLine = pXP->aLines[m];
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/ #ifdef DBG_UTIL
 /*?*/               USHORT nTest, nTPLen = 0, nTxtLen = 0;
@@ -550,3 +528,5 @@ using namespace ::com::sun::star::linguistic2;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

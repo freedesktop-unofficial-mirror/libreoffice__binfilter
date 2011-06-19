@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 namespace binfilter {
 
 class SwCrsrShell;
@@ -80,8 +77,8 @@ void GetTblSel( const SwLayoutFrm* pStart, const SwLayoutFrm* pEnd,
 BOOL GetAutoSumSel( const SwCrsrShell&, SwCellFrms& );
 
 // teste, ob die Selektion ausgeglichen ist
-SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)//STRIP008 ;
-SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50)//STRIP008 ;
+SV_DECL_PTRARR( SwChartBoxes, SwTableBoxPtr, 16, 16)
+SV_DECL_PTRARR_DEL( SwChartLines, SwChartBoxes*, 25, 50)
 
 BOOL ChkChartSel( const SwNode& rSttNd, const SwNode& rEndNd,
                     SwChartLines* pGetCLines = 0 );
@@ -209,11 +206,11 @@ struct _FndPara
     const SwSelBoxes& rBoxes;
 
     _FndPara( const SwSelBoxes& rBxs, _FndBox* pFB )
-        : rBoxes( rBxs ), pFndBox( pFB ) {}
+        : pFndBox( pFB ), rBoxes( rBxs ) {}
     _FndPara( const _FndPara& rPara, _FndBox* pFB )
-        : rBoxes(rPara.rBoxes), pFndLine(rPara.pFndLine), pFndBox(pFB) {}
+        : pFndBox(pFB), pFndLine(rPara.pFndLine), rBoxes(rPara.rBoxes) {}
     _FndPara( const _FndPara& rPara, _FndLine* pFL )
-        : rBoxes(rPara.rBoxes), pFndLine(pFL), pFndBox(rPara.pFndBox) {}
+        : pFndBox(rPara.pFndBox), pFndLine(pFL), rBoxes(rPara.rBoxes) {}
 };
 
 BOOL _FndBoxCopyCol( const SwTableBox*& rpBox, void* pPara );
@@ -222,3 +219,5 @@ BOOL _FndLineCopyCol( const SwTableLine*& rpLine, void* pPara );
 
 } //namespace binfilter
 #endif  //  _TBLSEL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

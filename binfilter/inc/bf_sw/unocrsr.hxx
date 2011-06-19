@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 namespace binfilter {
 
 
@@ -54,7 +51,7 @@ public:
 
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
-    virtual FASTBOOL IsSelOvr( int eFlags =
+    virtual bool IsSelOvr( int eFlags =
                                 ( SELOVER_CHECKNODESSECTION |
                                   SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
 
@@ -95,7 +92,7 @@ public:
 
     // gibt es eine Selection vom Content in die Tabelle
     // Return Wert gibt an, ob der Crsr auf der alten Position verbleibt
-    virtual FASTBOOL IsSelOvr( int eFlags =
+    virtual bool IsSelOvr( int eFlags =
                                 ( SELOVER_CHECKNODESSECTION |
                                   SELOVER_TOGGLE | SELOVER_CHANGEPOS ));
 
@@ -108,3 +105,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

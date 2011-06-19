@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,146 +37,64 @@
 #include <bf_svx/paperinf.hxx>
 
 //Statt uiparam.hxx selbst definieren, das spart keys
-#ifndef _SVX_DIALOGS_HRC
 #include <bf_svx/dialogs.hrc>
-#endif
+#include <sal/macros.h>
 #define ITEMID_FONTLIST         SID_ATTR_CHAR_FONTLIST
 
-#ifndef _SOT_STORINFO_HXX
 #include <sot/storinfo.hxx>
-#endif
-#ifndef _CTRLTOOL_HXX //autogen
 #include <bf_svtools/ctrltool.hxx>
-#endif
-#ifndef _SVTOOLS_LINGUCFG_HXX_
 #include <bf_svtools/lingucfg.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_PRINTER_HXX //autogen
 #include <bf_sfx2/printer.hxx>
-#endif
-#ifndef _SVX_ASIANCFG_HXX
 #include <bf_svx/asiancfg.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX
 #include <bf_sfx2/request.hxx>
-#endif
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_DOCUMENT_UPDATEDOCMODE_HPP_
 #include <com/sun/star/document/UpdateDocMode.hpp>
-#endif
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef _SFX_DOCFILT_HACK_HXX //autogen
 #include <bf_sfx2/docfilt.hxx>
-#endif
-#ifndef _XTABLE_HXX //autogen
 #include <bf_svx/xtable.hxx>
-#endif
 #ifndef _SVX_DRAWITEM_HXX //autogen
 #define ITEMID_COLOR_TABLE SID_COLOR_TABLE
 #include <bf_svx/drawitem.hxx>
 #endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_FLSTITEM_HXX //autogen
 #include <bf_svx/flstitem.hxx>
-#endif
-#ifndef _SVX_TSTPITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX //autogen
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_HYZNITEM_HXX //autogen
 #include <bf_svx/hyznitem.hxx>
-#endif
 
-#ifndef _OFF_APP_HXX //autogen
 #include <bf_offmgr/app.hxx>
-#endif
 
-#ifndef _PRTOPT_HXX
 #include <prtopt.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _WDOCSH_HXX
 #include <wdocsh.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCSTYLE_HXX
 #include <docstyle.hxx>
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>        // I/O, Hausformat
-#endif
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _SWDTFLVR_HXX
-#include <swdtflvr.hxx>
-#endif
-#ifndef _USRPREF_HXX
 #include <usrpref.hxx>
-#endif
-#ifndef _FONTCFG_HXX
 #include <fontcfg.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _GLOBDOC_HXX
 #include <globdoc.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _UNOTXDOC_HXX
 #include <unotxdoc.hxx>
-#endif
-#ifndef _LINKENUM_HXX
 #include <linkenum.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _GLOBALS_HRC
 #include <globals.hrc>
-#endif
 
 // #107253#
-#ifndef _SWLINGUCONFIG_HXX
 #include <swlinguconfig.hxx>
-#endif
 namespace binfilter {
 
 
@@ -185,9 +104,8 @@ using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star;
 using namespace ::rtl;
 #define C2U(cChar) OUString::createFromAscii(cChar)
-/*-----------------21.09.96 15.29-------------------
 
---------------------------------------------------*/
+
 
 
 /*--------------------------------------------------------------------
@@ -200,7 +118,7 @@ using namespace ::rtl;
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::InitNew" );
 /*N*/
 /*N*/   sal_Bool bRet = SfxInPlaceObject::InitNew( pStor );
-/*N*/   ASSERT( GetMapUnit() == MAP_TWIP, "map unit is not twip!" );
+/*N*/   OSL_ENSURE( GetMapUnit() == MAP_TWIP, "map unit is not twip!" );
 /*N*/   sal_Bool bHTMLTemplSet = sal_False;
 /*N*/   if( bRet )
 /*N*/   {
@@ -222,10 +140,10 @@ using namespace ::rtl;
 */
 /*N*/       if ( GetCreateMode() ==  SFX_CREATE_MODE_EMBEDDED )
 /*N*/       {
-                SvEmbeddedObject* pObj = this;
+                SvEmbeddedObject* pLclObj = this;
                 const Size aSz( lA4Width - 2 * lMinBorder, 6 * MM50 );
                 SwRect aVis( Point( DOCUMENTBORDER, DOCUMENTBORDER ), aSz );
-                pObj->SetVisArea( aVis.SVRect() );
+                pLclObj->SetVisArea( aVis.SVRect() );
                 pDoc->SetBrowseMode( TRUE );
 /*N*/       }
         // set forbidden characters if necessary
@@ -233,7 +151,7 @@ using namespace ::rtl;
 /*N*/         Sequence<Locale> aLocales =  aAsian.GetStartEndCharLocales();
 /*N*/         if(aLocales.getLength())
 /*N*/         {
-/*?*/             DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const Locale* pLocales = aLocales.getConstArray();
+/*?*/             DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/         pDoc->SetKernAsianPunctuation(!aAsian.IsKerningWesternTextOnly());
 /*N*/         pDoc->SetCharCompressType((SwCharCompressType)aAsian.GetCharDistanceCompression());
@@ -391,15 +309,15 @@ using namespace ::rtl;
  --------------------------------------------------------------------*/
 
 
-/*N*/ SwDocShell::SwDocShell(SfxObjectCreateMode eMode) :
-/*N*/   pDoc(0),
-/*N*/   pIo(0),
-/*N*/   pBasePool(0),
-/*N*/   pFontList(0),
-/*N*/   SfxObjectShell ( eMode ),
-/*N*/   pView( 0 ),
-/*N*/     pWrtShell( 0 ),
-/*N*/     nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
+/*N*/ SwDocShell::SwDocShell(SfxObjectCreateMode eMode)
+/*N*/ : SfxObjectShell ( eMode )
+/*N*/ , pDoc(0)
+/*N*/ , pIo(0)
+/*N*/ , pBasePool(0)
+/*N*/ , pFontList(0)
+/*N*/ , pView( 0 )
+/*N*/ , pWrtShell( 0 )
+/*N*/ , nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SwDocShell" );
 /*N*/     Init_Impl();
@@ -410,15 +328,15 @@ using namespace ::rtl;
  --------------------------------------------------------------------*/
 
 
-/*?*/ SwDocShell::SwDocShell( SwDoc *pD, SfxObjectCreateMode eMode ):
-/*?*/   pDoc(pD),
-/*?*/   pIo(0),
-/*?*/   pBasePool(0),
-/*?*/   pFontList(0),
-/*?*/   SfxObjectShell ( eMode ),
-/*?*/   pView( 0 ),
-/*?*/     pWrtShell( 0 ),
-/*?*/     nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
+/*?*/ SwDocShell::SwDocShell( SwDoc *pD, SfxObjectCreateMode eMode )
+/*?*/ : SfxObjectShell ( eMode )
+/*?*/ , pDoc(pD)
+/*?*/ , pIo(0)
+/*?*/ , pBasePool(0)
+/*?*/ , pFontList(0)
+/*?*/ , pView( 0 )
+/*?*/ , pWrtShell( 0 )
+/*?*/ , nUpdateDocMode(document::UpdateDocMode::ACCORDING_TO_CONFIG)
 /*?*/ {
 /*?*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDocShell::SwDocShell" );
 /*?*/     Init_Impl();
@@ -448,9 +366,8 @@ using namespace ::rtl;
 /*?*/           delete pTable;
 /*N*/   }
 /*N*/ }
-/* -----------------------------10.09.2001 15:59------------------------------
 
- ---------------------------------------------------------------------------*/
+
 /*N*/ void  SwDocShell::Init_Impl()
 /*N*/ {
 /*N*/   SetShell(this);
@@ -488,7 +405,7 @@ using namespace ::rtl;
 /*N*/   if( !pIo )
 /*N*/       pIo = new Sw3Io( *pDoc );
 /*N*/   else
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 pIo->SetDoc( *pDoc );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SetPool(&pDoc->GetAttrPool());
 
@@ -503,7 +420,7 @@ using namespace ::rtl;
 
 /*N*/ void SwDocShell::UpdateFontList()
 /*N*/ {
-/*N*/   ASSERT(pDoc, "Kein Doc keine FontList");
+/*N*/   OSL_ENSURE(pDoc, "Kein Doc keine FontList");
 /*N*/   if( pDoc )
 /*N*/   {
 /*N*/       SfxPrinter* pPrt = pDoc->GetPrt();
@@ -563,13 +480,13 @@ using namespace ::rtl;
 /*N*/       // fuer MD
 /*N*/       if( bXML )
 /*N*/       {
-/*?*/           ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*?*/           OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*?*/           pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*?*/                           SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*?*/             if(GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
 /*?*/             {
-/*?*/                 SfxMedium* pMedium = GetMedium();
-/*?*/                 SFX_ITEMSET_ARG( pMedium->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
+/*?*/                 SfxMedium* pLclMedium = GetMedium();
+/*?*/                 SFX_ITEMSET_ARG( pLclMedium->GetItemSet(), pUpdateDocItem, SfxUInt16Item, SID_UPDATEDOCMODE, sal_False);
 /*?*/                 nUpdateDocMode = pUpdateDocItem ? pUpdateDocItem->GetValue() : ::com::sun::star::document::UpdateDocMode::NO_UPDATE;
 /*?*/             }
 /*?*/
@@ -578,23 +495,17 @@ using namespace ::rtl;
 /*N*/       sal_uInt32 nErr = ERR_SWG_READ_ERROR;
 /*N*/       switch( GetCreateMode() )
 /*N*/       {
-//      case SFX_CREATE_MODE_INTERNAL:
-//          nErr = 0;
-//          break;
-
 /*N*/       case SFX_CREATE_MODE_ORGANIZER:
               {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nErr = pIo->LoadStyles( pStor );
 /*?*/           break;
-
 /*N*/       case SFX_CREATE_MODE_INTERNAL:
 /*N*/       case SFX_CREATE_MODE_EMBEDDED:
 /*N*/           if ( bXML )
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
             // SfxProgress unterdruecken, wenn man Embedded ist
 /*N*/           SW_MOD()->SetEmbeddedLoadSave( sal_True );
             // kein break;
-
 /*N*/       case SFX_CREATE_MODE_STANDARD:
 /*N*/       case SFX_CREATE_MODE_PREVIEW:
 /*N*/           {
@@ -632,21 +543,21 @@ using namespace ::rtl;
 /*N*/               }
 /*N*/ #ifdef DBG_UTIL
 /*N*/               else
-/*?*/                   ASSERT( !this, "ohne Sw3Reader geht nichts" );
+/*?*/                   OSL_ENSURE( !this, "ohne Sw3Reader geht nichts" );
 /*N*/ #endif
 /*N*/           }
 /*N*/           break;
 
-/*N*/ #ifdef DBG_UTIL
 /*N*/       default:
-/*?*/           ASSERT( !this, "Load: new CreateMode?" );
+/*N*/ #ifdef DBG_UTIL
+/*?*/           OSL_ENSURE( !this, "Load: new CreateMode?" );
 /*N*/ #endif
-/*N*/
+/*N*/           break;
 /*N*/       }
 /*N*/
 /*N*/       if( !bXML )
 /*N*/       {
-/*N*/           ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*N*/           OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*N*/           pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*N*/                           SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*N*/       }
@@ -672,12 +583,16 @@ using namespace ::rtl;
 /*N*/
 /*N*/           // erstmal alle nicht "OLE-Objecte" aus der Liste entfernen
                 sal_uInt32 n;
-/*N*/           for( n = aInfoList.Count(); n; )
+/*N*/           for( n = aInfoList.size(); n; )
 /*N*/           {
-/*N*/               const String& rName = aInfoList.GetObject( --n ).GetName();
+/*N*/               const String& rName = aInfoList[ --n ].GetName();
 /*N*/               // in ndole.cxx wird dieser PreFix benutzt
 /*N*/               if( 3 != rName.Match( String::CreateFromAscii("Obj") ))
-/*N*/                   aInfoList.Remove( n );
+                    {
+                        SvStorageInfoList::iterator it = aInfoList.begin();
+                        ::std::advance( it, n );
+                        aInfoList.erase( it );
+                    }
 /*N*/           }
 /*N*/
 /*N*/           // dann alle referenzierten Object aus der Liste entfernen
@@ -689,12 +604,14 @@ using namespace ::rtl;
 /*N*/               if( pOLENd )
 /*N*/               {
 /*N*/                   const String& rOLEName = pOLENd->GetOLEObj().GetName();
-/*N*/                   for( n = aInfoList.Count(); n; )
+/*N*/                   for( n = aInfoList.size(); n; )
 /*N*/                   {
-/*N*/                       const String& rName = aInfoList.GetObject( --n ).GetName();
+/*N*/                       const String& rName = aInfoList[ --n ].GetName();
 /*N*/                       if( rOLEName == rName )
 /*N*/                       {
-/*N*/                           aInfoList.Remove( n );
+                                SvStorageInfoList::iterator it = aInfoList.begin();
+                                ::std::advance( it, n );
+                                aInfoList.erase( it );
 /*N*/                           break;
 /*N*/                       }
 /*N*/                   }
@@ -703,9 +620,9 @@ using namespace ::rtl;
             // und jetzt haben wir alle Objecte, die nicht mehr
             // referenziert werden
 /*N*/           SvPersist* p = this;
-/*N*/           for( n = aInfoList.Count(); n; )
+/*N*/           for( n = aInfoList.size(); n; )
 /*N*/           {
-/*?*/               const String& rName = aInfoList.GetObject( --n ).GetName();
+/*?*/               const String& rName = aInfoList[ --n ].GetName();
 /*?*/               SvInfoObjectRef aRef( p->Find( rName ) );
 /*?*/               if( aRef.Is() )
 /*?*/                   p->Remove( &aRef );
@@ -743,11 +660,11 @@ using namespace ::rtl;
 /*?*/           // Das Laden
 /*?*/           if( bXML )
 /*?*/           {
-                    OSL_ASSERT("ReadXML removed");
+                            OSL_ASSERT("ReadXML removed");
 
 /*?*/           }
 /*?*/           else
-/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 nErr = pIo->LoadStyles( pStor );
+/*?*/               {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -755,20 +672,20 @@ using namespace ::rtl;
 /*?*/           if( SvStorage::IsStorageFile( rNm ) )
 /*?*/               break;
 /*?*/
-/*?*/           const SfxFilter* pFltr = SwIoSystem::GetFileFilter( rNm, aEmptyStr );
+/*?*/           const SfxFilter* pFltr = SwIoSystem::GetFileFilter(rNm);
 /*?*/           if( !pFltr || !pFltr->GetUserData().EqualsAscii( FILTER_SWG ))
 /*?*/               break;
 /*?*/
 /*?*/           SfxMedium aMed( rNm, STREAM_STD_READ, FALSE );
 /*?*/           if( 0 == ( nErr = aMed.GetInStream()->GetError() ) )
 /*?*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwWait aWait( *this, sal_True );
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/           }
 /*?*/       }
 /*?*/
 /*?*/       if( !bXML )
 /*?*/       {
-/*?*/           ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*?*/           OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*?*/           pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*?*/                               SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*?*/       }
@@ -786,7 +703,7 @@ using namespace ::rtl;
 
 /*M*/ void SwDocShell::SubInitNew()
 /*M*/ {
-/*M*/   ASSERT( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
+/*M*/   OSL_ENSURE( !pBasePool, "wer hat seinen Pool nicht zerstoert?" );
 /*M*/   pBasePool = new SwDocStyleSheetPool( *pDoc,
 /*M*/                   SFX_CREATE_MODE_ORGANIZER == GetCreateMode() );
 /*M*/   UpdateFontList();
@@ -806,8 +723,8 @@ using namespace ::rtl;
 /*M*/                           0, 0, 0  };
 /*M*/   if(!bWeb)
 /*M*/   {
-/*M*/         nRange[ (sizeof(nRange)/sizeof(nRange[0])) - 3 ] = RES_PARATR_TABSTOP;
-/*M*/         nRange[ (sizeof(nRange)/sizeof(nRange[0])) - 2 ] = RES_PARATR_HYPHENZONE;
+/*M*/         nRange[ SAL_N_ELEMENTS(nRange) - 3 ] = RES_PARATR_TABSTOP;
+/*M*/         nRange[ SAL_N_ELEMENTS(nRange) - 2 ] = RES_PARATR_HYPHENZONE;
 /*M*/   }
 /*M*/   SfxItemSet aDfltSet( pDoc->GetAttrPool(), nRange );
 /*M*/
@@ -846,3 +763,5 @@ using namespace ::rtl;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

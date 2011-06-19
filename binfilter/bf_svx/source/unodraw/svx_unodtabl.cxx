@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,18 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_DRAWING_LINEDASH_HPP_
 #include <com/sun/star/drawing/LineDash.hpp>
-#endif
 
 
 
 #include <vector>
 
-#ifndef _SVX_UNONAMEITEMTABLE_HXX_
 #include "UnoNameItemTable.hxx"
-#endif
 
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
 
 
-#ifndef _XDEF_HXX
 #include "xdef.hxx"
-#endif
 
 namespace binfilter {
 
@@ -115,3 +108,5 @@ uno::Reference< uno::XInterface > SAL_CALL SvxUnoDashTable_createInstance( SdrMo
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

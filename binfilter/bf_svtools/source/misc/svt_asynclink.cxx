@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,7 +27,7 @@
  ************************************************************************/
 
 #include <asynclink.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <tools/debug.hxx>
 #include <vcl/timer.hxx>
 #include <vcl/svapp.hxx>
@@ -38,7 +39,7 @@ namespace binfilter
 
 void AsynchronLink::CreateMutex()
 {
-    if( !_pMutex ) _pMutex = new vos::OMutex;
+    if( !_pMutex ) _pMutex = new osl::Mutex;
 }
 
 void AsynchronLink::Call( void* pObj, BOOL
@@ -130,3 +131,5 @@ void AsynchronLink::Call_Impl( void* pArg )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

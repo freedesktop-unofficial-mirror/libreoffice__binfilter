@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -140,15 +141,15 @@ namespace binfilter {
 /*N*/   USHORT nInsPos=nAnz;
 /*N*/   USHORT nLastId=nAnz!=0 ? GetObject(nAnz-1)->GetId() : 0;
 /*N*/   DBG_ASSERT(nLastId>=nAnz,"SdrGluePointList::Insert(): nLastId<nAnz");
-/*N*/   FASTBOOL bHole=nLastId>nAnz;
+/*N*/   bool bHole=nLastId>nAnz;
 /*N*/   if (nId<=nLastId) {
 /*N*/       if (!bHole || nId==0) {
 /*N*/           nId=nLastId+1;
 /*N*/       } else {
-/*N*/           FASTBOOL bBrk=FALSE;
+/*N*/           bool bBrk=FALSE;
 /*N*/           for (USHORT nNum=0; nNum<nAnz && !bBrk; nNum++) {
-/*N*/               const SdrGluePoint* pGP=GetObject(nNum);
-/*N*/               USHORT nTmpId=pGP->GetId();
+/*N*/               const SdrGluePoint* pLclGP=GetObject(nNum);
+/*N*/               USHORT nTmpId=pLclGP->GetId();
 /*N*/               if (nTmpId==nId) {
 /*N*/                   nId=nLastId+1; // bereits vorhanden
 /*N*/                   bBrk=TRUE;
@@ -220,3 +221,5 @@ namespace binfilter {
 /*?*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

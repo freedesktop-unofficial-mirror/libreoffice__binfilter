@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,150 +29,58 @@
 #ifndef _SVX_UNOSHPRP_HXX
 #define _SVX_UNOSHPRP_HXX
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMECONTAINER_HPP_
 #include <com/sun/star/container/XNameContainer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCE_HPP_
 #include <com/sun/star/drawing/PointSequence.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POINTSEQUENCESEQUENCE_HPP_
 #include <com/sun/star/drawing/PointSequenceSequence.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_RECTANGLEPOINT_HPP_
 #include <com/sun/star/drawing/RectanglePoint.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
 #include <com/sun/star/awt/XBitmap.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_HATCH_HPP_
 #include <com/sun/star/drawing/Hatch.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_FILLSTYLE_HPP_
 #include <com/sun/star/drawing/FillStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_LINEDASH_HPP_
 #include <com/sun/star/drawing/LineDash.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_LINEJOINT_Hpp_
 #include <com/sun/star/drawing/LineJoint.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_LINESTYLE_HPP_
 #include <com/sun/star/drawing/LineStyle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_RECTANGLE_HPP_
 #include <com/sun/star/awt/Rectangle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONDIRECTION_HPP_
 #include <com/sun/star/drawing/TextAnimationDirection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTANIMATIONKIND_HPP_
 #include <com/sun/star/drawing/TextAnimationKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTFITTOSIZETYPE_HPP_
 #include <com/sun/star/drawing/TextFitToSizeType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTVERTICALADJUST_HPP_
 #include <com/sun/star/drawing/TextVerticalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTHORIZONTALADJUST_HPP_
 #include <com/sun/star/drawing/TextHorizontalAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CONNECTORTYPE_HPP_
 #include <com/sun/star/drawing/ConnectorType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_MEASUREKIND_HPP_
 #include <com/sun/star/drawing/MeasureKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTHORZPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextHorzPos.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_MEASURETEXTVERTPOS_HPP_
 #include <com/sun/star/drawing/MeasureTextVertPos.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX3_HPP_
 #include <com/sun/star/drawing/HomogenMatrix3.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CIRCLEKIND_HPP_
 #include <com/sun/star/drawing/CircleKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POLYGONKIND_HPP_
 #include <com/sun/star/drawing/PolygonKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONBEZIERCOORDS_HPP_
 #include <com/sun/star/drawing/PolyPolygonBezierCoords.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_COLORMODE_HPP_
 #include <com/sun/star/drawing/ColorMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_HOMOGENMATRIX_HPP_
 #include <com/sun/star/drawing/HomogenMatrix.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_DIRECTION3D_HPP_
 #include <com/sun/star/drawing/Direction3D.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_PROJECTIONMODE_HPP_
 #include <com/sun/star/drawing/ProjectionMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_SHADEMODE_HPP_
 #include <com/sun/star/drawing/ShadeMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POSITION3D_HPP_
 #include <com/sun/star/drawing/Position3D.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_NORMALSKIND_HPP_
 #include <com/sun/star/drawing/NormalsKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREKIND_HPP_
 #include <com/sun/star/drawing/TextureKind.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREMODE_HPP_
 #include <com/sun/star/drawing/TextureMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_TEXTUREPROJECTIONMODE_HPP_
 #include <com/sun/star/drawing/TextureProjectionMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_POLYPOLYGONSHAPE3D_HPP_
 #include <com/sun/star/drawing/PolyPolygonShape3D.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_GRAPHICCROP_HPP_
 #include <com/sun/star/text/GraphicCrop.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_BITMAPMODE_HPP_
 #include <com/sun/star/drawing/BitmapMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_CAMERAGEOMETRY_HPP_
 #include <com/sun/star/drawing/CameraGeometry.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_WRITINGMODE_HPP_
 #include <com/sun/star/text/WritingMode.hpp>
-#endif
 
 #define _SVX_USE_UNOGLOBALS_
-#ifndef SVX_UNOPROV_HXX
 #include <bf_svx/unoprov.hxx>
-#endif
 #include <bf_svx/unoprnms.hxx>
 #include <bf_svx/unomid.hxx>
 
-#ifndef _SVX_UNOTEXT_HXX
 #include <bf_svx/unotext.hxx>
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
 #include <bf_svx/svxids.hrc>
 namespace binfilter {
@@ -573,3 +482,4 @@ namespace binfilter {
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

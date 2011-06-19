@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _E3D_OBJ3D_HXX
 #include <bf_svx/obj3d.hxx>
-#endif
 
-#ifndef _E3D_POLY3D_HXX
 #include <bf_svx/poly3d.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -75,6 +72,8 @@ class E3dLatheObj : public E3dCompoundObject
     TYPEINFO();
     E3dLatheObj(E3dDefaultAttributes& rDefault, const PolyPolygon& rPoly);
     E3dLatheObj();
+
+    using SdrAttrObj::operator=;
 
     // HorizontalSegments:
     sal_Int32 GetHorizontalSegments() const
@@ -123,7 +122,7 @@ class E3dLatheObj : public E3dCompoundObject
 
     const   PolyPolygon3D& GetPolyPolygon() const { return aPolyPoly3D; }
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
 
 
@@ -161,3 +160,4 @@ class E3dLatheObj : public E3dCompoundObject
 }//end of namespace binfilter
 #endif          // _E3D_LATHE3D_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

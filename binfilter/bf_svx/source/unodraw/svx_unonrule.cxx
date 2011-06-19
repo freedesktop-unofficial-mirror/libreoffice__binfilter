@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,24 +29,14 @@
 #define PROPERTY_NONE 0
 #define ITEMID_BRUSH        0
 
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <brshitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_XBITMAP_HPP_
 #include <com/sun/star/awt/XBitmap.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
 
 
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_ //autogen
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
 #include <toolkit/unohlp.hxx>
 #include <rtl/uuid.h>
@@ -60,7 +51,6 @@
 
 using namespace ::com::sun::star;
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::std;
 
 /******************************************************************
@@ -119,7 +109,7 @@ SvxUnoNumberingRules::~SvxUnoNumberingRules() throw()
 void SAL_CALL SvxUnoNumberingRules::replaceByIndex( sal_Int32 Index, const uno::Any& Element )
     throw( lang::IllegalArgumentException, lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(maRule.GetNumRuleType() == SVX_RULETYPE_PRESENTATION_NUMBERING)
         Index++;
@@ -137,7 +127,7 @@ void SAL_CALL SvxUnoNumberingRules::replaceByIndex( sal_Int32 Index, const uno::
 //XIndexAccess
 sal_Int32 SAL_CALL SvxUnoNumberingRules::getCount() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = maRule.GetLevelCount();
     if(maRule.GetNumRuleType() == SVX_RULETYPE_PRESENTATION_NUMBERING)
@@ -149,7 +139,7 @@ sal_Int32 SAL_CALL SvxUnoNumberingRules::getCount() throw( uno::RuntimeException
 uno::Any SAL_CALL SvxUnoNumberingRules::getByIndex( sal_Int32 Index )
     throw( lang::IndexOutOfBoundsException, lang::WrappedTargetException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if(maRule.GetNumRuleType() == SVX_RULETYPE_PRESENTATION_NUMBERING)
         Index++;
@@ -302,7 +292,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
 
         if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_NUMBERINGTYPE)))
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet(0);
             aVal >>= nSet;
 
             switch(nSet)
@@ -339,7 +329,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_BULLETID)))
         {
-            sal_Int16 nSet;
+            sal_Int16 nSet = 0;
             if( aVal >>= nSet )
             {
                 if(nSet < 0x100)
@@ -367,7 +357,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_ADJUST)))
         {
-            sal_Int16 nAdjust;
+            sal_Int16 nAdjust = 0;
             if( aVal >>= nAdjust )
             {
                 aFmt.SetNumAdjust(ConvertUnoAdjust( (unsigned short)nAdjust ));
@@ -418,7 +408,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_START_WITH)))
         {
-            sal_Int16 nStart;
+            sal_Int16 nStart = 0;
             if( aVal >>= nStart )
             {
                 aFmt.SetStart( nStart );
@@ -427,7 +417,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_LEFT_MARGIN)))
         {
-            sal_Int32 nMargin;
+            sal_Int32 nMargin = 0;
             if( aVal >>= nMargin )
             {
                 aFmt.SetAbsLSpace((sal_uInt16)nMargin);
@@ -436,7 +426,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_FIRST_LINE_OFFSET)))
         {
-            sal_Int32 nMargin;
+            sal_Int32 nMargin = 0;
             if( aVal >>= nMargin )
             {
                 aFmt.SetFirstLineOffset((sal_uInt16)nMargin);
@@ -445,7 +435,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM("SymbolTextDistance")))
         {
-            sal_Int32 nTextDistance;
+            sal_Int32 nTextDistance = 0;
             if( aVal >>= nTextDistance )
             {
                 aFmt.SetCharTextDistance((sal_uInt16)nTextDistance);
@@ -454,7 +444,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_BULLET_COLOR)))
         {
-            sal_Int32 nColor;
+            sal_Int32 nColor = 0;
             if( aVal >>= nColor )
             {
                 aFmt.SetBulletColor( (Color) nColor );
@@ -463,7 +453,7 @@ void SvxUnoNumberingRules::setNumberingRuleByIndex( const uno::Sequence< beans::
         }
         else if(rPropName.equalsAsciiL( RTL_CONSTASCII_STRINGPARAM(UNO_NAME_NRULE_BULLET_RELSIZE)))
         {
-            sal_Int16 nSize;
+            sal_Int16 nSize = 0;
             if( aVal >>= nSize )
             {
                 aFmt.SetBulletRelSize( (short)nSize );
@@ -605,3 +595,5 @@ uno::Reference< ::com::sun::star::ucb::XAnyCompare > SvxCreateNumRuleCompare() t
     return new SvxUnoNumberingRulesCompare();
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

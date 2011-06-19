@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,9 @@
 
 // include ----------------------------------------------------------------
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <unolingu.hxx>
-#endif
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -46,17 +41,6 @@
 
 #include "svxfont.hxx"
 namespace binfilter {
-
-// Minimum: Prozentwert fuers kernen
-#define MINKERNPERCENT 5
-
-// prop. Groesse der Kleinbuchstaben bei Kapitaelchen
-#define KAPITAELCHENPROP 66
-
-#ifndef REDUCEDSVXFONT
-    const sal_Unicode CH_BLANK = sal_Unicode(' ');      // ' ' Leerzeichen
-    static sal_Char __READONLY_DATA sDoubleSpace[] = "  ";
-#endif
 
 /*************************************************************************
  *                      class SvxFont
@@ -181,9 +165,9 @@ protected:
     const xub_StrLen nLen;
 
 public:
-    SvxDoCapitals( OutputDevice *pOut, const XubString &rTxt,
-                   const xub_StrLen nIdx, const xub_StrLen nLen )
-        : pOut(pOut), rTxt(rTxt), nIdx(nIdx), nLen(nLen)
+    SvxDoCapitals( OutputDevice* _pOut, const XubString& _rTxt,
+                   const xub_StrLen _nIdx, const xub_StrLen _nLen )
+        : pOut(_pOut), rTxt(_rTxt), nIdx(_nIdx), nLen(_nLen)
         { }
 
 
@@ -321,13 +305,13 @@ public:
 /*?*/
 /*?*/   if( IsCapital() )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/         DBG_ASSERT( !pDXArray, "DrawCapital nicht fuer TextArray!" );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   else
 /*?*/   {
 /*?*/       if ( IsKern() && !pDXArray )
 /*?*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             Size aSize = GetPhysTxtSize( pOut, rTxt, nIdx, nLen );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*?*/       }
 /*?*/       else
 /*?*/       {
@@ -375,10 +359,10 @@ protected:
     Size        aTxtSize;
     short       nKern;
 public:
-      SvxDoGetCapitalSize( SvxFont *pFnt, const OutputDevice *pOut,
-                           const XubString &rTxt, const xub_StrLen nIdx,
-                           const xub_StrLen nLen, const short nKrn )
-            : SvxDoCapitals( (OutputDevice*)pOut, rTxt, nIdx, nLen ),
+      SvxDoGetCapitalSize( SvxFont *pFnt, const OutputDevice* _pOut,
+                           const XubString& _rTxt, const xub_StrLen _nIdx,
+                           const xub_StrLen _nLen, const short nKrn )
+            : SvxDoCapitals( (OutputDevice*)_pOut, _rTxt, _nIdx, _nLen ),
               pFont( pFnt ),
               nKern( nKrn )
             { }
@@ -407,10 +391,10 @@ protected:
     Point aSpacePos;
     short nKern;
 public:
-    SvxDoDrawCapital( SvxFont *pFnt, OutputDevice *pOut, const XubString &rTxt,
-                      const xub_StrLen nIdx, const xub_StrLen nLen,
+    SvxDoDrawCapital( SvxFont *pFnt, OutputDevice* _pOut, const XubString& _rTxt,
+                      const xub_StrLen _nIdx, const xub_StrLen _nLen,
                       const Point &rPos, const short nKrn )
-        : SvxDoCapitals( pOut, rTxt, nIdx, nLen ),
+        : SvxDoCapitals( _pOut, _rTxt, _nIdx, _nLen ),
           pFont( pFnt ),
           aPos( rPos ),
           aSpacePos( rPos ),
@@ -430,3 +414,5 @@ public:
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

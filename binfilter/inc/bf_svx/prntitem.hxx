@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXENUMITEM_HXX //autogen
 #include <bf_svtools/eitem.hxx>
-#endif
 namespace binfilter {
 
 // class SvxPrintItem ----------------------------------------------------
@@ -54,7 +53,7 @@ public:
     // "pure virtual Methoden" vom SfxPoolItem
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
 };
 
@@ -71,3 +70,4 @@ inline SvxPrintItem &SvxPrintItem::operator=( const SvxPrintItem &rCpy )
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_TBINSERT_HXX
 #define SC_TBINSERT_HXX
 
-#ifndef _SFXTBXCTRL_HXX //autogen
 #include <bf_sfx2/tbxctrl.hxx>
-#endif
 
-#ifndef _SFXTBXMGR_HXX //autogen
 #include <bf_sfx2/tbxmgr.hxx>
-#endif
 namespace binfilter {
 
 //----------------------------------------------------------------------------
@@ -67,3 +64,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

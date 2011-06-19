@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,94 +26,41 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
-#ifndef _WRTSWTBL_HXX
 #include <wrtswtbl.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-#ifndef _SWTABLE_HXX
+#include <osl/diagnose.h>
 #include <swtable.hxx>
-#endif
-#ifndef _FRMFMT_HXX
 #include <frmfmt.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 namespace binfilter {
 
+SwWriteTableCol::SwWriteTableCol( USHORT nPosition )
+    : nPos(nPosition)
+    , nWidthOpt( 0 )
+    , bRelWidthOpt( FALSE )
+    , bOutWidth( TRUE )
+    , bLeftBorder(TRUE)
+    , bRightBorder(TRUE)
+{
+}
 
-
-//-----------------------------------------------------------------------
-
-
-//-----------------------------------------------------------------------
-
-
-
-
-//-----------------------------------------------------------------------
-
-/*N*/ SwWriteTableCol::SwWriteTableCol( USHORT nPosition )
-/*N*/   : nPos(nPosition),
-/*N*/   bLeftBorder(TRUE), bRightBorder(TRUE),
-/*N*/   nWidthOpt( 0 ), bRelWidthOpt( FALSE ),
-/*N*/   bOutWidth( TRUE )
-/*N*/ {
-/*N*/ }
-
-//-----------------------------------------------------------------------
-
-/*N*/ long SwWriteTable::GetBoxWidth( const SwTableBox *pBox )
-/*N*/ {
-/*N*/   const SwFrmFmt *pFmt = pBox->GetFrmFmt();
-/*N*/   const SwFmtFrmSize& aFrmSize=
-/*N*/       (const SwFmtFrmSize&)pFmt->GetAttr( RES_FRM_SIZE );
-/*N*/
-/*N*/   return aFrmSize.GetSize().Width();
-/*N*/ }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+long SwWriteTable::GetBoxWidth( const SwTableBox *pBox )
+{
+    const SwFrmFmt *pFmt = pBox->GetFrmFmt();
+    const SwFmtFrmSize& aFrmSize=
+         (const SwFmtFrmSize&)pFmt->GetAttr( RES_FRM_SIZE );
+    return aFrmSize.GetSize().Width();
+}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

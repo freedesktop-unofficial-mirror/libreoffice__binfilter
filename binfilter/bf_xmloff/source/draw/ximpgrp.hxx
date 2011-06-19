@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,29 +29,17 @@
 #ifndef _XIMPGROUP_HXX
 #define _XIMPGROUP_HXX
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
-#ifndef _SDXMLIMP_IMPL_HXX
 #include "sdxmlimp_impl.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPES_HPP_
 #include <com/sun/star/drawing/XShapes.hpp>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _XIMPSHAPE_HXX
 #include "ximpshap.hxx"
-#endif
 namespace binfilter {
 
 //////////////////////////////////////////////////////////////////////////////
@@ -88,3 +77,5 @@ public:
 
 }//end of namespace binfilter
 #endif  //  _XIMPGROUP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

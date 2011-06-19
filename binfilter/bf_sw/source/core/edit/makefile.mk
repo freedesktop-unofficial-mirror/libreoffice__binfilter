@@ -25,8 +25,6 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..$/..
 BFPRJ=..$/..$/..
 
@@ -44,15 +42,12 @@ INC+= -I$(PRJ)$/inc$/bf_sw
 # --- Files --------------------------------------------------------
 
 SLOFILES =	\
-        $(SLO)$/sw_autofmt.obj \
         $(SLO)$/sw_edatmisc.obj \
         $(SLO)$/sw_edfld.obj \
         $(SLO)$/sw_ednumber.obj \
         $(SLO)$/sw_edredln.obj \
         $(SLO)$/sw_edtab.obj \
-        $(SLO)$/sw_edundo.obj \
-        $(SLO)$/sw_edws.obj \
-        $(SLO)$/sw_edsect.obj
+        $(SLO)$/sw_edws.obj
 
 # --- Targets -------------------------------------------------------
 

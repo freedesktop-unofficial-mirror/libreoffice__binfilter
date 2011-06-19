@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,49 +28,23 @@
 #ifndef _SVX_FMVWIMP_HXX
 #define _SVX_FMVWIMP_HXX
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
 
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATION_HPP_
 #include <com/sun/star/container/XEnumeration.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XFOCUSLISTENER_HPP_
 #include <com/sun/star/awt/XFocusListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_SQLERROREVENT_HPP_
 #include <com/sun/star/sdb/SQLErrorEvent.hpp>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE1_HXX_
 #include <cppuhelper/implbase1.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 
-#ifndef _SVDMARK_HXX
 #include "svdmark.hxx"
-#endif
 FORWARD_DECLARE_INTERFACE(awt,XControl)
 FORWARD_DECLARE_INTERFACE(awt,XWindow)
 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
@@ -86,10 +61,6 @@ class FmFormModel;
 class FmFormShell;
 class FmFormView;
 
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XControl)
-//STRIP008 FORWARD_DECLARE_INTERFACE(awt,XWindow)
-//STRIP008 FORWARD_DECLARE_INTERFACE(beans,XPropertySet)
-//STRIP008 FORWARD_DECLARE_INTERFACE(util,XNumberFormats)
 
 class FmXFormController;
 class FmXFormView;
@@ -256,3 +227,4 @@ private:
 }//end of namespace binfilter
 #endif // _SVX_FMVWIMP_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

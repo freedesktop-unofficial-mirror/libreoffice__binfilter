@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,21 +34,13 @@
 #include "pagefrm.hxx"
 #include "viewsh.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 #include "hffrm.hxx"
 #include "txtfrm.hxx"
 #include "sectfrm.hxx"
@@ -60,7 +53,7 @@
 #include "hfspacingitem.hxx"
 namespace binfilter {
 
-/*N*/ extern FASTBOOL bObjsDirect;  //frmtool.cxx
+/*N*/ extern bool bObjsDirect;  //frmtool.cxx
 
 /*M*/ static SwTwips lcl_GetFrmMinHeight(const SwLayoutFrm & rFrm)
 /*M*/ {
@@ -117,7 +110,7 @@ namespace binfilter {
 /*M*/ }
 
 /*M*/ static void lcl_LayoutFrmEnsureMinHeight(SwLayoutFrm & rFrm,
-/*M*/                                          const SwBorderAttrs * pAttrs)
+/*M*/                                          const SwBorderAttrs * /*pAttrs*/)
 /*M*/ {
 /*M*/     SwTwips nMinHeight = lcl_GetFrmMinHeight(rFrm);
 /*M*/
@@ -137,10 +130,10 @@ namespace binfilter {
 /*M*/
 /*M*/   const SwFmtCntnt &rCnt = pFmt->GetCntnt();
 /*M*/
-/*M*/   ASSERT( rCnt.GetCntntIdx(), "Kein Inhalt fuer Header." );
+/*M*/   OSL_ENSURE( rCnt.GetCntntIdx(), "Kein Inhalt fuer Header." );
 /*M*/
 /*M*/   //Fuer Header Footer die Objekte gleich erzeugen lassen.
-/*M*/   FASTBOOL bOld = bObjsDirect;
+/*M*/   bool bOld = bObjsDirect;
 /*M*/   bObjsDirect = TRUE;
 /*M*/   ULONG nIndex = rCnt.GetCntntIdx()->GetIndex();
 /*M*/   ::binfilter::_InsertCnt( this, pFmt->GetDoc(), ++nIndex );
@@ -207,7 +200,7 @@ namespace binfilter {
 /*M*/             nUL = pAttrs->CalcBottom() + nSpace;
 /*M*/
 /*M*/         /* set print area */
-/*N*/         // OD 23.01.2003 #106895# - add first parameter to <SwBorderAttrs::CalcRight(..)>
+/*N*/         // add first parameter to <SwBorderAttrs::CalcRight(..)>
 /*N*/         SwTwips nLR = pAttrs->CalcLeft( this ) + pAttrs->CalcRight( this );
 /*M*/
 /*M*/         aPrt.Left(pAttrs->CalcLeft(this));
@@ -237,7 +230,7 @@ namespace binfilter {
 /*M*/
 /*M*/       //Sizes einstellen; die Groesse gibt der umgebende Frm vor, die
 /*M*/       //die Raender werden einfach abgezogen.
-/*N*/         // OD 23.01.2003 #106895# - add first parameter to <SwBorderAttrs::CalcRight(..)>
+/*N*/         // add first parameter to <SwBorderAttrs::CalcRight(..)>
 /*N*/         SwTwips nLR = pAttrs->CalcLeft( this ) + pAttrs->CalcRight( this );
 /*M*/       aPrt.Width ( aFrm.Width() - nLR );
 /*M*/       aPrt.Height( aFrm.Height()- nUL );
@@ -402,7 +395,7 @@ namespace binfilter {
 
 /*M*/ void SwHeadFootFrm::Format(const SwBorderAttrs * pAttrs)
 /*M*/ {
-/*M*/   ASSERT( pAttrs, "SwFooterFrm::Format, pAttrs ist 0." );
+/*M*/   OSL_ENSURE( pAttrs, "SwFooterFrm::Format, pAttrs ist 0." );
 /*M*/
 /*M*/   if ( bValidPrtArea && bValidSize )
 /*M*/       return;
@@ -443,7 +436,7 @@ namespace binfilter {
 /*M*/
 /*M*/         SwBorderAttrAccess * pAccess =
 /*M*/             new SwBorderAttrAccess( SwFrm::GetCache(), this );
-/*M*/         ASSERT(pAccess, "no border attributes");
+/*M*/         OSL_ENSURE(pAccess, "no border attributes");
 /*M*/
 /*M*/         SwBorderAttrs * pAttrs = pAccess->Get();
 /*M*/
@@ -477,7 +470,7 @@ namespace binfilter {
 /*M*/         else if (nEat > nMaxEat)
 /*M*/             nEat = nMaxEat;
 /*M*/
-/*N*/         // OD 10.04.2003 #108719# - Notify fly frame, if header frame
+/*N*/         // Notify fly frame, if header frame
 /*N*/         // grows. Consider, that 'normal' grow of layout frame already notifys
 /*N*/         // the fly frames.
 /*N*/         sal_Bool bNotifyFlys = sal_False;
@@ -495,7 +488,7 @@ namespace binfilter {
 /*M*/             }
 /*M*/
 /*M*/             nResult += nEat;
-/*N*/             // OD 14.04.2003 #108719# - trigger fly frame notify.
+/*N*/             // trigger fly frame notify.
 /*N*/             if ( IsHeaderFrm() )
 /*N*/             {
 /*N*/                 bNotifyFlys = sal_True;
@@ -514,7 +507,7 @@ namespace binfilter {
 /*N*/             }
 /*N*/         }
 /*N*/
-/*N*/         // OD 10.04.2003 #108719# - notify fly frames, if necessary and triggered.
+/*N*/         // notify fly frames, if necessary and triggered.
 /*N*/         if ( ( nResult > 0 ) && bNotifyFlys )
 /*N*/         {
 /*N*/             NotifyFlys();
@@ -567,7 +560,7 @@ namespace binfilter {
                spacing. */
 /*M*/             nRest = nDist;
 /*M*/
-        // OD 10.04.2003 #108719# - Notify fly frame, if header/footer frame
+        // Notify fly frame, if header/footer frame
         // shrinks. Consider, that 'normal' shrink of layout frame already notifys
         // the fly frames.
 /*N*/         sal_Bool bNotifyFlys = sal_False;
@@ -576,7 +569,7 @@ namespace binfilter {
 /*M*/
 /*M*/             SwBorderAttrAccess * pAccess =
 /*M*/                 new SwBorderAttrAccess( SwFrm::GetCache(), this );
-/*M*/             ASSERT(pAccess, "no border attributes");
+/*M*/             OSL_ENSURE(pAccess, "no border attributes");
 /*M*/
 /*M*/             SwBorderAttrs * pAttrs = pAccess->Get();
 /*M*/
@@ -614,7 +607,7 @@ namespace binfilter {
 /*M*/                 InvalidateAll();
 /*M*/             }
 /*M*/             nResult += nShrink;
-/*N*/             // OD 14.04.2003 #108719# - trigger fly frame notify.
+/*N*/             // trigger fly frame notify.
 /*N*/             if ( IsHeaderFrm() )
 /*N*/             {
 /*N*/                 bNotifyFlys = sal_True;
@@ -633,7 +626,7 @@ namespace binfilter {
 /*N*/             }
 /*N*/         }
 /*N*/
-/*N*/         // OD 10.04.2003 #108719# - notify fly frames, if necessary.
+/*N*/         // notify fly frames, if necessary.
 /*N*/         if ( ( nResult > 0 ) && bNotifyFlys )
 /*N*/         {
 /*N*/             NotifyFlys();
@@ -646,7 +639,7 @@ namespace binfilter {
 /*M*/ BOOL SwHeadFootFrm::GetEatSpacing() const
 /*M*/ {
 /*M*/     const SwFrmFmt * pFmt = GetFmt();
-/*M*/     ASSERT(pFmt, "SwHeadFootFrm: no format?");
+/*M*/     OSL_ENSURE(pFmt, "SwHeadFootFrm: no format?");
 /*M*/
 /*M*/     if (pFmt->GetHeaderAndFooterEatSpacing().GetValue())
 /*M*/         return TRUE;
@@ -660,8 +653,6 @@ namespace binfilter {
 |*  SwPageFrm::PrepareHeader()
 |*
 |*  Beschreibung        Erzeugt oder Entfernt Header
-|*  Ersterstellung      MA 04. Feb. 93
-|*  Letzte Aenderung    MA 12. May. 96
 |*
 |*************************************************************************/
 
@@ -695,12 +686,12 @@ namespace binfilter {
 /*N*/
 /*N*/   const SwFmtHeader &rH = ((SwFrmFmt*)pRegisteredIn)->GetHeader();
 /*N*/
-/*N*/   const FASTBOOL bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
+/*N*/   const bool bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
 /*N*/                         ((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsHeadInBrowse();
 /*N*/
 /*N*/   if ( bOn && rH.IsActive() )
 /*N*/   {   //Header einsetzen, vorher entfernen falls vorhanden.
-/*N*/       ASSERT( rH.GetHeaderFmt(), "FrmFmt fuer Header nicht gefunden." );
+/*N*/       OSL_ENSURE( rH.GetHeaderFmt(), "FrmFmt fuer Header nicht gefunden." );
 /*N*/
 /*N*/       if ( pLay->GetFmt() == (SwFrmFmt*)rH.GetHeaderFmt() )
 /*N*/           return; //Der Footer ist bereits der richtige
@@ -712,7 +703,7 @@ namespace binfilter {
 /*N*/           pDel->Cut();
 /*N*/           delete pDel;
 /*N*/       }
-/*N*/       ASSERT( pLay, "Wohin mit dem Header?" );
+/*N*/       OSL_ENSURE( pLay, "Wohin mit dem Header?" );
 /*N*/       SwHeaderFrm *pH = new SwHeaderFrm( (SwFrmFmt*)rH.GetHeaderFmt() );
 /*N*/       pH->Paste( this, pLay );
 /*N*/       if ( GetUpper() )
@@ -730,8 +721,6 @@ namespace binfilter {
 |*  SwPageFrm::PrepareFooter()
 |*
 |*  Beschreibung        Erzeugt oder Entfernt Footer
-|*  Ersterstellung      MA 04. Feb. 93
-|*  Letzte Aenderung    MA 12. May. 96
 |*
 |*************************************************************************/
 
@@ -746,12 +735,12 @@ namespace binfilter {
 /*N*/   while ( pLay->GetNext() )
 /*N*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/
-/*N*/   const FASTBOOL bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
+/*N*/   const bool bOn = !((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsBrowseMode() ||
 /*N*/                        ((SwFrmFmt*)pRegisteredIn)->GetDoc()->IsFootInBrowse();
 /*N*/
 /*N*/   if ( bOn && rF.IsActive() )
 /*N*/   {   //Footer einsetzen, vorher entfernen falls vorhanden.
-/*N*/       ASSERT( rF.GetFooterFmt(), "FrmFmt fuer Footer nicht gefunden." );
+/*N*/       OSL_ENSURE( rF.GetFooterFmt(), "FrmFmt fuer Footer nicht gefunden." );
 /*N*/
 /*N*/       if ( pLay->GetFmt() == (SwFrmFmt*)rF.GetFooterFmt() )
 /*?*/           return; //Der Footer ist bereits der richtige.
@@ -781,3 +770,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

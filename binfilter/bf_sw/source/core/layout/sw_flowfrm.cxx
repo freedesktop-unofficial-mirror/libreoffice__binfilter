@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
 #include "pam.hxx"
 #include "swtable.hxx"
 #include "pagefrm.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "viewsh.hxx"
 #include "doc.hxx"
@@ -49,40 +46,18 @@
 #include "frmtool.hxx"
 #include "dcontact.hxx"
 
-#ifndef _SVX_BRKITEM_HXX //autogen
 #include <bf_svx/brkitem.hxx>
-#endif
-#ifndef _SVX_KEEPITEM_HXX //autogen
 #include <bf_svx/keepitem.hxx>
-#endif
 
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
 
 #include "ftnfrm.hxx"
 #include "txtfrm.hxx"
@@ -104,9 +79,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::SwFlowFrm()
-|*
-|*  Ersterstellung      MA 26. Apr. 95
-|*  Letzte Aenderung    MA 26. Apr. 95
 |*
 |*************************************************************************/
 
@@ -143,9 +115,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::IsKeepFwdMoveAllowed()
 |*
-|*  Ersterstellung      MA 20. Jul. 94
-|*  Letzte Aenderung    MA 16. May. 95
-|*
 |*************************************************************************/
 
 
@@ -170,10 +139,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*    SwFlowFrm::CheckKeep()
-|*
-|*    Beschreibung
-|*    Ersterstellung    MA 20. Jun. 95
-|*    Letzte Aenderung  MA 09. Apr. 97
 |*
 |*************************************************************************/
 
@@ -214,9 +179,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::IsKeep()
 |*
-|*  Ersterstellung      MA 09. Apr. 97
-|*  Letzte Aenderung    MA 09. Apr. 97
-|*
 |*************************************************************************/
 
 
@@ -233,6 +195,9 @@ namespace binfilter {
 /*?*/           case SVX_BREAK_PAGE_AFTER:
 /*?*/           case SVX_BREAK_PAGE_BOTH:
 /*?*/               bKeep = FALSE;
+/*?*/               break;
+/*?*/           default:
+/*?*/               break;
 /*N*/       }
 /*N*/       if ( bKeep )
 /*N*/       {
@@ -252,7 +217,7 @@ namespace binfilter {
 /*N*/                 if ( ! pSet )
 /*N*/                     pSet = pNxt->GetAttrSet();
 /*N*/
-/*N*/                 ASSERT( pSet, "No AttrSet to check keep attribute" )
+/*N*/                 OSL_ENSURE( pSet, "No AttrSet to check keep attribute" );
 /*N*/
 /*N*/                 if ( pSet->GetPageDesc().GetPageDesc() )
 /*N*/                   bKeep = FALSE;
@@ -263,6 +228,9 @@ namespace binfilter {
 /*N*/                   case SVX_BREAK_PAGE_BEFORE:
 /*N*/                   case SVX_BREAK_PAGE_BOTH:
 /*N*/                       bKeep = FALSE;
+/*N*/                       break;
+/*N*/                   default:
+/*N*/                       break;
 /*N*/               }
 /*N*/           }
 /*N*/       }
@@ -273,9 +241,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::BwdMoveNecessary()
-|*
-|*  Ersterstellung      MA 20. Jul. 94
-|*  Letzte Aenderung    MA 02. May. 96
 |*
 |*************************************************************************/
 
@@ -318,7 +283,7 @@ namespace binfilter {
 /*N*/       for ( USHORT i = 0; nRet < 3 && i < rObjs.Count(); ++i )
 /*N*/       {
 /*N*/           SdrObject *pObj = rObjs[i];
-/*N*/           SdrObjUserCall *pUserCall;
+/*N*/           SdrObjUserCall *pUserCall = NULL;
 /*N*/           const SwFrmFmt *pFmt = pObj->IsWriterFlyFrame() ?
 /*N*/               ((SwVirtFlyDrawObj*)pObj)->GetFmt() :
 /*N*/               ((SwContact*)(pUserCall = GetUserCall(pObj)))->GetFmt();
@@ -369,7 +334,7 @@ namespace binfilter {
 /*?*/                                       GetFmt())->GetSectionNode();
 /*N*/                           else
 /*N*/                           {
-/*?*/                               ASSERT( rThis.IsTabFrm(), "new FowFrm?" );
+/*?*/                               OSL_ENSURE( rThis.IsTabFrm(), "new FowFrm?" );
 /*?*/                               pNode = ((SwTabFrm&)rThis).GetTable()->
 /*?*/                                   GetTabSortBoxes()[0]->GetSttNd()->FindTableNode();
 /*N*/                           }
@@ -396,8 +361,6 @@ namespace binfilter {
 |*  Beschreibung        Eine Spezialisierte Form des Cut() und Paste(), die
 |*      eine ganze Kette umhaengt (naehmlich this und folgende). Dabei werden
 |*      nur minimale Operationen und Benachrichtigungen ausgefuehrt.
-|*  Ersterstellung      MA 18. Mar. 93
-|*  Letzte Aenderung    MA 18. May. 95
 |*
 |*************************************************************************/
 
@@ -446,7 +409,7 @@ namespace binfilter {
 /*?*/               //Kann sein, dass der CntFrm gelockt ist, wir wollen hier nicht
 /*?*/               //in eine endlose Seitenwanderung hineinlaufen und rufen das
 /*?*/               //Calc garnicht erst!
-/*?*/               ASSERT( pCnt->IsTxtFrm(), "Die Graphic ist gelandet." );
+/*?*/               OSL_ENSURE( pCnt->IsTxtFrm(), "Die Graphic ist gelandet." );
 /*?*/               if ( ((SwTxtFrm*)pCnt)->IsLocked() ||
 /*?*/                    ((SwTxtFrm*)pCnt)->GetFollow() == pStart )
 /*?*/                   break;
@@ -547,8 +510,8 @@ namespace binfilter {
 
 /*N*/ void SwFlowFrm::MoveSubTree( SwLayoutFrm* pParent, SwFrm* pSibling )
 /*N*/ {
-/*N*/   ASSERT( pParent, "Kein Parent uebergeben." );
-/*N*/   ASSERT( rThis.GetUpper(), "Wo kommen wir denn her?" );
+/*N*/   OSL_ENSURE( pParent, "Kein Parent uebergeben." );
+/*N*/   OSL_ENSURE( rThis.GetUpper(), "Wo kommen wir denn her?" );
 /*N*/
 /*N*/   //Sparsamer benachrichtigen wenn eine Action laeuft.
 /*N*/   ViewShell *pSh = rThis.GetShell();
@@ -586,12 +549,12 @@ namespace binfilter {
 /*N*/       rThis.GetUpper()->Calc();
 /*N*/   else if( rThis.GetUpper()->IsSctFrm() )
 /*N*/   {
-/*N*/       SwSectionFrm* pSct = (SwSectionFrm*)rThis.GetUpper();
-/*N*/       BOOL bOld = pSct->IsCntntLocked();
-/*N*/       pSct->SetCntntLock( TRUE );
-/*N*/       pSct->Calc();
+/*N*/       SwSectionFrm* pSct1 = (SwSectionFrm*)rThis.GetUpper();
+/*N*/       BOOL bOld = pSct1->IsCntntLocked();
+/*N*/       pSct1->SetCntntLock( TRUE );
+/*N*/       pSct1->Calc();
 /*N*/       if( !bOld )
-/*N*/           pSct->SetCntntLock( FALSE );
+/*N*/           pSct1->SetCntntLock( FALSE );
 /*N*/   }
 /*N*/   SwPageFrm *pPage = rThis.FindPageFrm();
 /*N*/
@@ -618,9 +581,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::IsAnFollow()
 |*
-|*  Ersterstellung      MA 26. Apr. 95
-|*  Letzte Aenderung    MA 26. Apr. 95
-|*
 |*************************************************************************/
 
 
@@ -639,15 +599,12 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::FindMaster()
 |*
-|*  Ersterstellung      MA 26. Apr. 95
-|*  Letzte Aenderung    MA 26. Apr. 95
-|*
 |*************************************************************************/
 
 
 /*M*/ SwFlowFrm *SwFlowFrm::FindMaster()
 /*M*/ {
-/*M*/   ASSERT( IsFollow(), "FindMaster und kein Follow." );
+/*M*/   OSL_ENSURE( IsFollow(), "FindMaster und kein Follow." );
 /*M*/
 /*M*/     SwCntntFrm *pCnt;
 /*M*/   BOOL bCntnt;
@@ -664,15 +621,15 @@ namespace binfilter {
 /*M*/
 /*M*/ #ifdef DBG_UTIL
 /*M*/         SwCntntFrm* pTmpCnt = ((SwLayoutFrm&)rThis).ContainsCntnt();
-/*M*/         ASSERT( ! pTmpCnt || pTmpCnt->GetPrevCntntFrm() == pCnt,
-/*M*/                 "Two different results for the master of a table?" )
+/*M*/         OSL_ENSURE( ! pTmpCnt || pTmpCnt->GetPrevCntntFrm() == pCnt,
+/*M*/                 "Two different results for the master of a table?" );
 /*M*/ #endif
 /*M*/
 /*M*/       bCntnt = FALSE;
 /*M*/   }
 /*M*/   else
 /*M*/   {
-/*M*/       ASSERT( rThis.IsSctFrm(), "FindMaster: Funny FrameTyp" );
+/*M*/       OSL_ENSURE( rThis.IsSctFrm(), "FindMaster: Funny FrameTyp" );
 /*M*/       return ((SwSectionFrm&)rThis).FindSectionMaster();
 /*M*/   }
 /*M*/
@@ -690,7 +647,7 @@ namespace binfilter {
 /*M*/       }
 /*M*/       pCnt = pCnt->GetPrevCntntFrm();
 /*M*/   }
-/*M*/   ASSERT( FALSE, "Follow ist lost in Space." );
+/*M*/   OSL_ENSURE( FALSE, "Follow ist lost in Space." );
 /*M*/   return 0;
 /*M*/ }
 
@@ -702,8 +659,6 @@ namespace binfilter {
 |*      das _nicht_ unterhalb von this liegt (oder gar this selbst ist).
 |*      Ausserdem muss dieses LayoutBlatt im gleichen Textfluss wie
 |*      pAnch Ausgangsfrm liegen (Body, Ftn)
-|*  Ersterstellung      MA 25. Nov. 92
-|*  Letzte Aenderung    MA 25. Apr. 95
 |*
 |*************************************************************************/
 
@@ -741,16 +696,13 @@ namespace binfilter {
 |*
 |*  Beschreibung        Ruft Get[Next|Prev]Leaf
 |*
-|*  Ersterstellung      MA 20. Mar. 93
-|*  Letzte Aenderung    MA 25. Apr. 95
-|*
 |*************************************************************************/
 
 
 /*N*/ SwLayoutFrm *SwFrm::GetLeaf( MakePageType eMakePage, BOOL bFwd )
 /*N*/ {
 /*N*/   if ( IsInFtn() )
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 return bFwd ? GetNextFtnLeaf( eMakePage ) : GetPrevFtnLeaf( eMakePage );
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/   if ( IsInSct() )
 /*N*/       return bFwd ? GetNextSctLeaf( eMakePage ) : GetPrevSctLeaf( eMakePage );
 /*N*/   return bFwd ? GetNextLeaf( eMakePage ) : GetPrevLeaf( eMakePage );
@@ -833,15 +785,12 @@ namespace binfilter {
 |*  Beschreibung        Liefert das naechste LayoutBlatt in den das
 |*      Frame gemoved werden kann.
 |*
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    MA 05. Dec. 96
-|*
 |*************************************************************************/
 
 /*N*/ SwLayoutFrm *SwFrm::GetNextLeaf( MakePageType eMakePage )
 /*N*/ {
-/*N*/   ASSERT( !IsInFtn(), "GetNextLeaf(), don't call me for Ftn." );
-/*N*/   ASSERT( !IsInSct(), "GetNextLeaf(), don't call me for Sections." );
+/*N*/   OSL_ENSURE( !IsInFtn(), "GetNextLeaf(), don't call me for Ftn." );
+/*N*/   OSL_ENSURE( !IsInSct(), "GetNextLeaf(), don't call me for Sections." );
 /*N*/
 /*N*/   const BOOL bBody = IsInDocBody();       //Wenn ich aus dem DocBody komme
 /*N*/                                           //Will ich auch im Body landen.
@@ -965,15 +914,13 @@ namespace binfilter {
 |*
 |*  Beschreibung        Liefert das vorhergehende LayoutBlatt in das der
 |*      Frame gemoved werden kann.
-|*  Ersterstellung      MA 16. Nov. 92
-|*  Letzte Aenderung    MA 25. Apr. 95
 |*
 |*************************************************************************/
 
 
-/*N*/ SwLayoutFrm *SwFrm::GetPrevLeaf( MakePageType eMakeFtn )
+/*N*/ SwLayoutFrm *SwFrm::GetPrevLeaf( MakePageType /*eMakeFtn*/ )
 /*N*/ {
-/*N*/   ASSERT( !IsInFtn(), "GetPrevLeaf(), don't call me for Ftn." );
+/*N*/   OSL_ENSURE( !IsInFtn(), "GetPrevLeaf(), don't call me for Ftn." );
 /*N*/
 /*N*/   const BOOL bBody = IsInDocBody();       //Wenn ich aus dem DocBody komme
 /*N*/                                           //will ich auch im Body landen.
@@ -1008,9 +955,6 @@ namespace binfilter {
 |*
 |*  SwFlowFrm::IsPrevObjMove()
 |*
-|*  Ersterstellung      MA 20. Feb. 96
-|*  Letzte Aenderung    MA 22. Feb. 96
-|*
 |*************************************************************************/
 
 
@@ -1027,7 +971,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pPre && pPre->GetDrawObjs() )
 /*N*/   {
-/*N*/       ASSERT( SwFlowFrm::CastFlowFrm( pPre ), "new flowfrm?" );
+/*N*/       OSL_ENSURE( SwFlowFrm::CastFlowFrm( pPre ), "new flowfrm?" );
 /*N*/       if( SwFlowFrm::CastFlowFrm( pPre )->IsAnFollow( this ) )
 /*?*/           return FALSE;
 /*N*/       SwFrm* pPreUp = pPre->GetUpper();
@@ -1044,7 +988,7 @@ namespace binfilter {
 /*N*/       }
 /*N*/       const long nBottom = pPreUp->Frm().Bottom();
 /*N*/       const long nRight  = pPreUp->Frm().Right();
-/*N*/       const FASTBOOL bCol = pPreUp->IsColBodyFrm();//ColFrms jetzt mit BodyFrm
+/*N*/       const bool bCol = pPreUp->IsColBodyFrm();//ColFrms jetzt mit BodyFrm
 /*N*/       for ( USHORT i = 0; i < pPre->GetDrawObjs()->Count(); ++i )
 /*N*/       {
 /*N*/           const SdrObject *pObj = (*pPre->GetDrawObjs())[i];
@@ -1077,6 +1021,8 @@ namespace binfilter {
 /*?*/                                   case REL_CHAR:
 /*?*/                                       if( pFly->IsFlyAtCntFrm() )
 /*?*/                                           nAdd = ((SwFlyAtCntFrm*)pFly)->GetLastCharX();
+/*?*/                                       break;
+/*?*/                                   default:
 /*?*/                                       break;
 /*N*/                               }
 /*N*/                               nAdd += aHori.GetPos();
@@ -1113,8 +1059,6 @@ namespace binfilter {
 |*      im FrmFmt ein PageDesc angegeben wird.
 |*      Die Implementierung arbeitet zuaechst nur auf CntntFrms!
 |*      -->Fuer LayoutFrms ist die Definition des Vorgaengers unklar.
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 21. Mar. 95
 |*
 |*************************************************************************/
 
@@ -1133,7 +1077,7 @@ namespace binfilter {
 /*N*/
 /*N*/       if ( pPrev )
 /*N*/       {
-/*N*/           ASSERT( pPrev->IsInDocBody(), "IsPageBreak: Not in DocBody?" );
+/*N*/           OSL_ENSURE( pPrev->IsInDocBody(), "IsPageBreak: Not in DocBody?" );
 /*N*/           if ( bAct )
 /*N*/           {   if ( rThis.FindPageFrm() == pPrev->FindPageFrm() )
 /*N*/                   return FALSE;
@@ -1175,8 +1119,6 @@ namespace binfilter {
 |*      gibt ist jede weitere Ueberlegung ueberfluessig.
 |*      Die Implementierung arbeitet zuaechst nur auf CntntFrms!
 |*      -->Fuer LayoutFrms ist die Definition des Vorgaengers unklar.
-|*  Ersterstellung      MA 11. Jun. 93
-|*  Letzte Aenderung    MA 21. Mar. 95
 |*
 |*************************************************************************/
 
@@ -1305,8 +1247,8 @@ namespace binfilter {
 /*N*/       }
 /*N*/   }
 /*N*/   else if( rThis.GetAttrSet()->GetDoc()->IsParaSpaceMaxAtPages() &&
-/*N*/            1) //STRIP001 CastFlowFrm( pOwn )->HasParaSpaceAtPages( rThis.IsSctFrm() ) )
-/*?*/   {   DBG_BF_ASSERT(0, "STRIP");} //STRIP001 nUpper = pAttrs->GetULSpace().GetUpper();
+/*N*/            1)
+/*?*/   {   DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   nUpper += pAttrs->GetTopLine( &rThis );
 /*N*/
@@ -1353,17 +1295,15 @@ namespace binfilter {
 |*
 |*  Beschreibung        Moved den Frm vorwaerts wenn es durch die aktuellen
 |*      Bedingungen und Attribute notwendig erscheint.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 09. Mar. 98
 |*
 |*************************************************************************/
 
 
-/*N*/ BOOL SwFlowFrm::CheckMoveFwd( BOOL &rbMakePage, BOOL bKeep, BOOL bMovedBwd )
+/*N*/ BOOL SwFlowFrm::CheckMoveFwd( BOOL &rbMakePage, BOOL bKeep, BOOL /*bMovedBwd*/ )
 /*N*/ {
 /*N*/   const SwFrm* pNxt = rThis.GetIndNext();
 /*N*/
-/*N*/   if ( bKeep && //!bMovedBwd &&
+/*N*/   if ( bKeep &&
 /*N*/        ( !pNxt || ( pNxt->IsTxtFrm() && ((SwTxtFrm*)pNxt)->IsEmptyMaster() ) ) &&
 /*N*/        ( 0 != (pNxt = rThis.FindNext()) ) && IsKeepFwdMoveAllowed() )
 /*N*/   {
@@ -1448,8 +1388,6 @@ namespace binfilter {
 |*  BOOL SwFlowFrm::MoveFwd()
 |*
 |*  Beschreibung        Returnwert sagt, ob der Frm die Seite gewechselt hat.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -1459,7 +1397,7 @@ namespace binfilter {
 /*N*/ //!!!!MoveFtnCntFwd muss ggf. mitgepflegt werden.
 /*N*/   SwFtnBossFrm *pOldBoss = rThis.FindFtnBossFrm();
 /*N*/   if ( rThis.IsInFtn() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     return ((SwCntntFrm&)rThis).MoveFtnCntFwd( bMakePage, pOldBoss );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   if( !IsFwdMoveAllowed() && !bMoveAlways )
 /*N*/   {
@@ -1534,7 +1472,7 @@ namespace binfilter {
 /*N*/                 (pOldBoss->Frm().*fnRect->fnGetBottom)() );
 /*N*/           SwCntntFrm* pStart = rThis.IsCntntFrm() ?
 /*N*/               (SwCntntFrm*)&rThis : ((SwLayoutFrm&)rThis).ContainsCntnt();
-/*N*/           ASSERT( pStart, "MoveFwd: Missing Content" );
+/*N*/           OSL_ENSURE( pStart, "MoveFwd: Missing Content" );
 /*N*/           SwLayoutFrm* pBody = pStart ? ( pStart->IsTxtFrm() ?
 /*N*/               (SwLayoutFrm*)((SwTxtFrm*)pStart)->FindBodyFrm() : 0 ) : 0;
 /*N*/           if( pBody )
@@ -1567,7 +1505,7 @@ namespace binfilter {
 /*N*/               }
 /*N*/           }
 /*N*/       }
-/*N*/         // OD 30.10.2002 #97265# - no <CheckPageDesc(..)> in online layout
+/*N*/         // no <CheckPageDesc(..)> in online layout
 /*N*/         if ( !pNewPage->GetFmt()->GetDoc()->IsBrowseMode() )
 /*N*/         {
 /*N*/             //Bei Sections kann es passieren, das wir gleich  in den Follow geflutscht
@@ -1590,8 +1528,6 @@ namespace binfilter {
 |*  Beschreibung        Returnwert sagt, ob der Frm die Seite wechseln soll.
 |*                      Sollte von abgeleiteten Klassen gerufen werden.
 |*                      Das moven selbst muessen die abgeleiteten uebernehmen.
-|*  Ersterstellung      MA 05. Dec. 96
-|*  Letzte Aenderung    MA 05. Dec. 96
 |*
 |*************************************************************************/
 
@@ -1606,7 +1542,7 @@ namespace binfilter {
 /*N*/   SwFtnBossFrm * pOldBoss = rThis.FindFtnBossFrm();
 /*N*/   SwPageFrm * const pOldPage = pOldBoss->FindPageFrm();
 /*N*/   SwLayoutFrm *pNewUpper = 0;
-/*N*/   FASTBOOL bCheckPageDescs = FALSE;
+/*N*/   bool bCheckPageDescs = FALSE;
 /*N*/
 /*N*/   if ( pFtn )
 /*N*/   {
@@ -1616,12 +1552,12 @@ namespace binfilter {
 /*N*/       BOOL bEndnote = pFtn->GetAttr()->GetFtn().IsEndNote();
 /*N*/       SwFrm* pRef = bEndnote && pFtn->IsInSct() ?
 /*N*/           pFtn->FindSctFrm()->FindLastCntnt( FINDMODE_LASTCNT ) : pFtn->GetRef();
-/*N*/       ASSERT( pRef, "MoveBwd: Endnote for an empty section?" );
+/*N*/       OSL_ENSURE( pRef, "MoveBwd: Endnote for an empty section?" );
 /*N*/       if( !bEndnote )
 /*N*/           pOldBoss = pOldBoss->FindFtnBossFrm( TRUE );
 /*N*/       SwFtnBossFrm *pRefBoss = pRef->FindFtnBossFrm( !bEndnote );
 /*N*/               if ( pOldBoss != pRefBoss &&
-/*N*/              // OD 08.11.2002 #104840# - use <SwLayoutFrm::IsBefore(..)>
+/*N*/              // use <SwLayoutFrm::IsBefore(..)>
 /*N*/              ( !bEndnote ||
 /*N*/                pRefBoss->IsBefore( pOldBoss ) )
 /*N*/            )
@@ -1830,12 +1766,12 @@ namespace binfilter {
 /*?*/                   pNewUpper = (SwSectionFrm*)pTmp;
 /*?*/               else
 /*?*/               {
-/*?*/                     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pSct = new SwSectionFrm( *pSct, TRUE );
+/*?*/                     DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/           }
 /*N*/       }
 /*N*/       BOOL bUnlock = FALSE;
-/*N*/       BOOL bFollow;
+/*N*/       BOOL bFollow = FALSE;
 /*N*/       //Section locken, sonst kann sie bei Fluss des einzigen Cntnt etwa
 /*N*/       //von zweiter in die erste Spalte zerstoert werden.
 /*N*/       SwSectionFrm* pSect = pNewUpper->FindSctFrm();
@@ -1865,7 +1801,7 @@ namespace binfilter {
 /*N*/               pSh->GetDoc()->SetNewFldLst();  //Wird von CalcLayout() hinterher eledigt!
 /*N*/           pNewPage->InvalidateSpelling();
 /*N*/           pNewPage->InvalidateAutoCompleteWords();
-/*N*/             // OD 30.10.2002 #97265# - no <CheckPageDesc(..)> in online layout
+/*N*/             // no <CheckPageDesc(..)> in online layout
 /*N*/             if ( !pNewPage->GetFmt()->GetDoc()->IsBrowseMode() )
 /*N*/             {
 /*N*/                 if ( bCheckPageDescs && pNewPage->GetNext() )
@@ -1884,9 +1820,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlowFrm::CastFlowFrm
-|*
-|*  Ersterstellung      MA 03. May. 95
-|*  Letzte Aenderung    AMA 02. Dec. 97
 |*
 |*************************************************************************/
 
@@ -1917,3 +1850,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

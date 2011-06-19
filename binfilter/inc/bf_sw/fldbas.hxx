@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,22 +32,12 @@
 
 #ifndef FIELDIDS_ONLY       // SWG-Testreader!!
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
 class Date;
 class Time;
 
@@ -63,7 +54,7 @@ class SwEditShell;
 /*--------------------------------------------------------------------
     Beschreibung:   die ID's fuer die Feldtypen
  --------------------------------------------------------------------*/
-namespace binfilter {//STRIP009
+namespace binfilter {
 enum RES_FIELDS
 {
 // Fuer die alten Dokumente muessen die Field-Which IDS erhalten bleiben !!!!
@@ -255,7 +246,7 @@ enum SwDateTimeSubType
 #ifndef FIELDIDS_ONLY       // SWG-Testreader!!
 
 
-extern USHORT __FAR_DATA aTypeTab[];
+extern USHORT aTypeTab[];
 
 /*--------------------------------------------------------------------
     Beschreibung: Allgemeine Tools
@@ -275,7 +266,7 @@ String  FormatNumber(USHORT nNum, sal_uInt32 nFormat);
  --------------------------------------------------------------------*/
 class SwFldNames;
 
-DBG_NAMEEX(SwFieldType)//STRIP008
+DBG_NAMEEX(SwFieldType)
 
 class SwFieldType : public SwModify
 {
@@ -298,8 +289,8 @@ public:
     // nur in abgeleiteten Klassen
     virtual const String&   GetName() const;
     virtual SwFieldType*    Copy()    const = 0;
-    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual    BOOL QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMId ) const;
-    virtual BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 virtual  BOOL PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
+    virtual BOOL QueryValue( ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMId*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    virtual BOOL PutValue( const ::com::sun::star::uno::Any& /*rVal*/, BYTE /*nMId*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
             USHORT          Which() const { return nWhich; }
 
@@ -378,7 +369,7 @@ public:
     virtual BOOL        PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMId );
     // hat das Feld eine Action auf dem ClickHandler ? (z.B. INetFelder,..)
     // ist es ein Fix-Feld?
-    FASTBOOL            IsFixed() const;
+    bool            IsFixed() const;
 
     BOOL                IsAutomaticLanguage() const { return bIsAutomaticLanguage;}
     void                SetAutomaticLanguage(BOOL bSet){bIsAutomaticLanguage = bSet;}
@@ -476,3 +467,5 @@ inline SvStringsDtor* SwFieldType::GetFldNames()
 
 } //namespace binfilter
 #endif // _FLDBAS_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

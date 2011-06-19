@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,11 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _XMLOFF_XMLTEXTTABLECONTEXT_HXX
 #include <bf_xmloff/XMLTextTableContext.hxx>
-#endif
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 #if !defined(_SVSTDARR_USHORTS_DECL) || !defined(_SVSTDARR_BOOLS_DECL) || !defined(_SVSTDARR_STRINGSDTOR_DECL)
 #define _SVSTDARR_USHORTS
@@ -89,7 +88,7 @@ class SwXMLTableContext : public XMLTextTableContext
 
     // hash map of shared format, indexed by the (XML) style name,
     // the column width, and protection flag
-    typedef std::hash_map<TableBoxIndex,SwTableBoxFmt*,
+    typedef boost::unordered_map<TableBoxIndex,SwTableBoxFmt*,
                           TableBoxIndexHasher> map_BoxFmt;
     map_BoxFmt* pSharedBoxFormats;
 
@@ -219,3 +218,5 @@ inline sal_Bool SwXMLTableContext::HasColumnDefaultCellStyleNames() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

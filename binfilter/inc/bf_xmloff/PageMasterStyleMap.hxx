@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 #ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX_
 #define _XMLOFF_PAGEMASTERSTYLEMAP_HXX_
 
-#ifndef _XMLOFF_PROPMAPPINGTYPES_HXX
 #include <bf_xmloff/maptype.hxx>
-#endif
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include <bf_xmloff/xmltypes.hxx>
-#endif
-#ifndef _XMLOFF_CONTEXTID_HXX_
 #include <bf_xmloff/contextid.hxx>
-#endif
 namespace binfilter {
 
 //______________________________________________________________________________
@@ -82,14 +77,14 @@ namespace binfilter {
 #define CTF_PM_PADDINGRIGHT             (XML_PM_CTF_START + 0x000F)
 #define CTF_PM_TEXTCOLUMNS              (XML_PM_CTF_START + 0x0010)
 #define CTF_PM_REGISTER_STYLE           (XML_PM_CTF_START + 0x0011)
-#define CTF_PM_PRINT_ANNOTATIONS        (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0012)
-#define CTF_PM_PRINT_CHARTS             (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0013)
-#define CTF_PM_PRINT_DRAWING            (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0014)
-#define CTF_PM_PRINT_FORMULAS           (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0015)
-#define CTF_PM_PRINT_GRID               (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0016)
-#define CTF_PM_PRINT_HEADERS            (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0017)
-#define CTF_PM_PRINT_OBJECTS            (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0018)
-#define CTF_PM_PRINT_ZEROVALUES         (CTF_PM_PRINTMASK|XML_PM_CTF_START + 0x0019)
+#define CTF_PM_PRINT_ANNOTATIONS        (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0012))
+#define CTF_PM_PRINT_CHARTS             (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0013))
+#define CTF_PM_PRINT_DRAWING            (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0014))
+#define CTF_PM_PRINT_FORMULAS           (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0015))
+#define CTF_PM_PRINT_GRID               (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0016))
+#define CTF_PM_PRINT_HEADERS            (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0017))
+#define CTF_PM_PRINT_OBJECTS            (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0018))
+#define CTF_PM_PRINT_ZEROVALUES         (CTF_PM_PRINTMASK|(XML_PM_CTF_START + 0x0019))
 
 #define CTF_PM_PAGEUSAGE                (XML_PM_CTF_START + 0x0031)
 #define CTF_PM_GRAPHICPOSITION          (XML_PM_CTF_START + 0x0032)
@@ -156,3 +151,5 @@ extern const XMLPropertyMapEntry aXMLPageMasterFooterImportStyleMap[];
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

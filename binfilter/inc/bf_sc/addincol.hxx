@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,32 +33,20 @@
 
 
 
-#ifndef _COM_SUN_STAR_SHEET_XVOLATILERESULT_HPP_
 #include <com/sun/star/sheet/XVolatileResult.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XADDIN_HPP_
 #include <com/sun/star/sheet/XAddIn.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XRESULTLISTENER_HPP_
 #include <com/sun/star/sheet/XResultListener.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_RESULTEVENT_HPP_
 #include <com/sun/star/sheet/ResultEvent.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMEACCESS_HPP_
 #include <com/sun/star/container/XNameAccess.hpp>
-#endif
 
 
-#ifndef _RTL_USTRING_H_
 #include <rtl/ustring.h>
-#endif
 
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 class String;
 namespace binfilter {
@@ -76,7 +65,7 @@ struct ScAddInStringHashCode
         return rtl_ustr_hashCode_WithLength( rStr.GetBuffer(), rStr.Len() );
     }
 };
-typedef ::std::hash_map< String, const ScUnoAddInFuncData*, ScAddInStringHashCode, ::std::equal_to< String > > ScAddInHashMap;
+typedef ::boost::unordered_map< String, const ScUnoAddInFuncData*, ScAddInStringHashCode, ::std::equal_to< String > > ScAddInHashMap;
 
 
 enum ScAddInArgumentType
@@ -177,3 +166,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

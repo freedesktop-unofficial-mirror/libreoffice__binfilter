@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 #include <vector>
 namespace binfilter {
 
@@ -101,8 +100,9 @@ struct ScInterpreterTableOpParams
     }
 };
 
-DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* )//STRIP008 DECLARE_LIST( ScTabOpList, ScInterpreterTableOpParams* );
+typedef ::std::vector< ScInterpreterTableOpParams* > ScTabOpList;
 
 } //namespace binfilter
 #endif // SC_TABOPPARAMS_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

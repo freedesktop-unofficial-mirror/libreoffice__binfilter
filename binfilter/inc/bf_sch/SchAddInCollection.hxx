@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,9 +36,6 @@ namespace rtl {
 
 namespace binfilter {
 
-//STRIP008 namespace rtl {
-//STRIP008  class OUString;
-//STRIP008 }
 
 class SchAddInCollection // : public
 {
@@ -58,3 +56,5 @@ public:
 
 } //namespace binfilter
 #endif  // _SCH_ADDINCOLLECTION_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

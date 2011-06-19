@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -42,8 +43,6 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-//DECLARE_LIST(DescrList, E3dLabelObj*)//STRIP008 //DECLARE_LIST(DescrList, E3dLabelObj*);
-
 class ChartScene : public E3dPolyScene
 {
   protected:
@@ -56,6 +55,9 @@ class ChartScene : public E3dPolyScene
     TYPEINFO();
     ChartScene(ChartModel* pModel);
     virtual ~ChartScene();
+
+    using SdrAttrObj::operator=;
+
     void Initialize();
 
     virtual Volume3D FitInSnapRect();
@@ -63,22 +65,11 @@ class ChartScene : public E3dPolyScene
     BOOL GetAskForLogicRect() {return bAskForLogicRect;}
     void SetAskForLogicRect(BOOL value) {bAskForLogicRect = value;}
 
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
 
     void InsertAllTitleText (DescrList         &rList,
                              E3dObject         *pGroup,
                              long              nAxisId);
-
-    // just call parent? overloading deprecated?
-    //  The following three methods call their respective equivalents of
-    //  E3dObject.  This is necessary because they are overloaded in E3dScene
-    //  with methods that do not what we want :-)
-//      virtual USHORT  GetHdlCount (void)  const
-//          {   return E3dObject::GetHdlCount();    }
-//      virtual void    AddToHdlList    (SdrHdlList& rHdlList)  const
-//          {   E3dObject::AddToHdlList (rHdlList); }
-//      virtual FASTBOOL    HasSpecialDrag  (void)  const
-//          {   return E3dObject::HasSpecialDrag ();    }
 
     void ReduceDescrList(DescrList& aList);
 };
@@ -86,3 +77,5 @@ class ChartScene : public E3dPolyScene
 
 } //namespace binfilter
 #endif          // _E3D_SCENE3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -54,7 +55,7 @@ class SfxDialogLibraryContainer : public SfxLibraryContainer_Impl
         ( const ::rtl::OUString& aFile, SotStorageStreamRef xElementStream );
     virtual void SAL_CALL importFromOldStorage( const ::rtl::OUString& aFile );
 
-    virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_BF_ASSERT(0, "STRIP");return NULL;}//STRIP001 virtual SfxLibraryContainer_Impl* createInstanceImpl( void );
+    virtual SfxLibraryContainer_Impl* createInstanceImpl( void ){DBG_BF_ASSERT(0, "STRIP");return NULL;}
 
     sal_Bool init( const ::rtl::OUString& aInitialisationParam,
                    SotStorage* pStor=NULL );
@@ -119,3 +120,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

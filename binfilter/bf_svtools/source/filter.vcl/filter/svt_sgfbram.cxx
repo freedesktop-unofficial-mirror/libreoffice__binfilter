@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 
 #include <string.h>
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 #include <tools/stream.hxx>
 #include <vcl/gdimtf.hxx>
 #include <tools/color.hxx>
@@ -49,10 +48,6 @@ namespace binfilter
 /*************************************************************************
 |*
 |*    operator>>( SvStream&, SgfHeader& )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 SvStream& operator>>(SvStream& rIStream, SgfHeader& rHead)
@@ -79,10 +74,6 @@ SvStream& operator>>(SvStream& rIStream, SgfHeader& rHead)
 |*
 |*    SgfHeader::ChkMagic()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 BOOL SgfHeader::ChkMagic()
 { return Magic=='J'*256+'J'; }
@@ -94,10 +85,6 @@ UINT32 SgfHeader::GetOffset()
 /*************************************************************************
 |*
 |*    operator>>( SvStream&, SgfEntry& )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 SvStream& operator>>(SvStream& rIStream, SgfEntry& rEntr)
@@ -122,10 +109,6 @@ UINT32 SgfEntry::GetOffset()
 |*
 |*    operator>>( SvStream&, SgfVector& )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 SvStream& operator>>(SvStream& rIStream, SgfVector& rVect)
 {
@@ -144,10 +127,6 @@ SvStream& operator>>(SvStream& rIStream, SgfVector& rVect)
 /*************************************************************************
 |*
 |*    operator<<( SvStream&, BmpFileHeader& )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 SvStream& operator<<(SvStream& rOStream, BmpFileHeader& rHead)
@@ -195,10 +174,6 @@ UINT32 BmpFileHeader::GetOfs()
 |*
 |*    operator<<( SvStream&, BmpInfoHeader& )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 SvStream& operator<<(SvStream& rOStream, BmpInfoHeader& rInfo)
 {
@@ -236,10 +211,6 @@ SvStream& operator<<(SvStream& rOStream, BmpInfoHeader& rInfo)
 /*************************************************************************
 |*
 |*    operator<<( SvStream&, RGBQuad& )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 SvStream& operator<<(SvStream& rOStream, const RGBQuad& rQuad)
@@ -285,10 +256,6 @@ BYTE PcxExpand::GetByte(SvStream& rInp)
 /*************************************************************************
 |*
 |*    SgfFilterBmp()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL SgfFilterBMap(SvStream& rInp, SvStream& rOut, SgfHeader& rHead, SgfEntry&)
@@ -423,10 +390,6 @@ BOOL SgfFilterBMap(SvStream& rInp, SvStream& rOut, SgfHeader& rHead, SgfEntry&)
 |*
 |*    SgfBMapFilter()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 BOOL SgfBMapFilter(SvStream& rInp, SvStream& rOut)
 {
@@ -501,10 +464,6 @@ Color Hpgl2SvFarbe( BYTE nFarb )
 |*
 |*    SgfFilterVect()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 BOOL SgfFilterVect(SvStream& rInp, SgfHeader& rHead, SgfEntry&, GDIMetaFile& rMtf)
 {
@@ -578,10 +537,6 @@ BOOL SgfFilterVect(SvStream& rInp, SgfHeader& rHead, SgfEntry&, GDIMetaFile& rMt
 |*
 |*    SgfVectFilter()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 BOOL SgfVectFilter(SvStream& rInp, GDIMetaFile& rMtf)
 {
@@ -617,8 +572,6 @@ BOOL SgfVectFilter(SvStream& rInp, GDIMetaFile& rMtf)
 |*    CheckSgfTyp()
 |*
 |*    Beschreibung      Feststellen, um was fuer ein SGF/SGV es sich handelt.
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BYTE CheckSgfTyp(SvStream& rInp, USHORT& nVersion)
@@ -655,3 +608,5 @@ BYTE CheckSgfTyp(SvStream& rInp, USHORT& nVersion)
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

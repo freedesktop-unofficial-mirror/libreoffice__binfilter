@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,12 +33,8 @@
 
 #include <stdlib.h>  // strtod()
 
-#ifndef _LINKMGR_HXX //autogen
 #include <bf_so3/linkmgr.hxx>
-#endif
-#ifndef _DATETIME_HXX
 #include <tools/datetime.hxx>
-#endif
 
 #include "doc.hxx"
 #include "rdswg.hxx"
@@ -224,10 +221,6 @@ static SwField* In_SwUserField( SwSwgReader& rPar, SwUserFieldType* pType,
         return 0;
 
     return new SwUserField( pType, nSub );    // MS: Hier kann auch das Format mit
-                                        // uebergeben werden
-    if( UF_STRING & pType->GetType() )
-        nNewFldFmt = 0; // Warum auch immer!
-
 }
 
 static SwField* In_SwFileNameField( SwSwgReader&, SwFileNameFieldType* pType )
@@ -506,8 +499,7 @@ static SwField* In_SwSetExpField( SwSwgReader& rPar, SwSetExpFieldType* pType, U
     // aber nur, wenn es auch als entsprechendes Format in Frage kommt.
     // (SUB_VISIBLE und SUB_CMD sind disjunkt).
     USHORT nSubType = ((SwSetExpField *)pFld)->GetSubType();
-    if( nSub >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
-        nSub <= (USHORT)SVX_NUM_BITMAP )
+    if( nSub <= (USHORT)SVX_NUM_BITMAP )
     {
         if( GSE_SEQ & nSubType )
             nNewFldFmt = nSub;
@@ -544,7 +536,7 @@ static SwField* In_SwDocInfoField( SwSwgReader& rPar, SwDocInfoFieldType* pType,
     return new SwDocInfoField( pType, (USHORT)nType | nSubType );
 }
 
-static SwField* In_SwTemplNameField( SwSwgReader& rPar, SwTemplNameFieldType* pType )
+static SwField* In_SwTemplNameField( SwSwgReader& /*rPar*/, SwTemplNameFieldType* pType )
 {
     return new SwTemplNameField( pType, nNewFldFmt );
 }
@@ -774,3 +766,5 @@ SwFieldType* SwSwgReader::InFieldType()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
 #include <bf_svtools/svarray.hxx>
 namespace binfilter {
@@ -318,7 +317,7 @@ struct EECharAttrib
     xub_StrLen          nEnd;
 };
 
-SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 )//STRIP008 ;
+SV_DECL_VARARR( EECharAttribArray, EECharAttrib, 0, 4 )
 
 struct MoveParagraphsInfo
 {
@@ -405,3 +404,5 @@ struct EENotify
 
 }//end of namespace binfilter
 #endif // _MyEDITDATA_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

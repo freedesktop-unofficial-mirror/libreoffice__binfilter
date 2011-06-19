@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _XMLOFF_CHARTPROPERTYCONTEXT_HXX_
 #define _XMLOFF_CHARTPROPERTYCONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLPROPERTYSETCONTEXT_HXX
 #include "xmlprcon.hxx"
-#endif
 namespace binfilter {
 
 class XMLChartPropertyContext : public SvXMLPropertySetContext
@@ -45,6 +44,7 @@ public:
                              const UniReference< SvXMLImportPropertyMapper >& rMapper );
     virtual ~XMLChartPropertyContext();
 
+    using SvXMLPropertySetContext::CreateChildContext;
     virtual SvXMLImportContext* CreateChildContext(
         sal_uInt16 nPrefix,
         const ::rtl::OUString& rLocalName,
@@ -58,3 +58,5 @@ private:
 
 }//end of namespace binfilter
 #endif  // _XMLOFF_CHARTPROPERTYCONTEXT_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

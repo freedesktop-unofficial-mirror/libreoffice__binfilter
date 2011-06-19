@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,19 +35,11 @@
 #endif
 #endif
 
-#ifndef _XPOLY_HXX
 #include "xpoly.hxx"
-#endif
-
-#ifndef _POLY3D_HXX
 #include "poly3d.hxx"
-#endif
 
-
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-
+#include <vector>
 
 namespace binfilter {
 
@@ -59,7 +52,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ DECLARE_LIST(Polygon3DList, Polygon3D*)//STRIP008 ;
+typedef ::std::vector< Polygon3D* > Polygon3DList;
 
 /*N*/ class ImpPolyPolygon3D
 /*N*/ {
@@ -67,8 +60,7 @@ namespace binfilter {
 /*N*/   Polygon3DList               aPoly3DList;
 /*N*/   UINT16                      nRefCount;
 /*N*/
-/*N*/   ImpPolyPolygon3D(UINT16 nInitSize = 4, UINT16 nResize = 4)
-/*N*/   :   aPoly3DList(1024, nInitSize, nResize) { nRefCount = 1; }
+/*N*/   ImpPolyPolygon3D() { nRefCount = 1; }
 /*N*/   ImpPolyPolygon3D(const ImpPolyPolygon3D& rImpPolyPoly3D);
 /*N*/   ~ImpPolyPolygon3D();
 /*N*/
@@ -1203,13 +1195,8 @@ namespace binfilter {
 /*N*/ {
 /*N*/   nRefCount = 1;
 /*N*/   // Einzelne Elemente duplizieren
-/*N*/   Polygon3D* pPoly3D = aPoly3DList.First();
-/*N*/
-/*N*/   while ( pPoly3D )
-/*N*/   {
-/*N*/       aPoly3DList.Replace(new Polygon3D(*(aPoly3DList.GetCurObject())));
-/*N*/       pPoly3D = aPoly3DList.Next();
-/*N*/   }
+        for( size_t i = 0, n = aPoly3DList.size(); i < n; ++i )
+            aPoly3DList[ i ] = new Polygon3D( *(aPoly3DList[ i ]) );
 /*N*/ }
 
 /*************************************************************************
@@ -1220,13 +1207,9 @@ namespace binfilter {
 
 /*N*/ ImpPolyPolygon3D::~ImpPolyPolygon3D()
 /*N*/ {
-/*N*/   Polygon3D* pPoly3D = aPoly3DList.First();
-/*N*/
-/*N*/   while( pPoly3D )
-/*N*/   {
-/*N*/       delete pPoly3D;
-/*N*/       pPoly3D = aPoly3DList.Next();
-/*N*/   }
+        for( size_t i = 0, n = aPoly3DList.size(); i < n; ++i )
+            delete aPoly3DList[ i ];
+        aPoly3DList.clear();
 /*N*/ }
 
 /*************************************************************************
@@ -1237,16 +1220,16 @@ namespace binfilter {
 
 /*N*/ BOOL ImpPolyPolygon3D::operator==(const ImpPolyPolygon3D& rImpPolyPoly3D) const
 /*N*/ {
-/*N*/   UINT16 nCnt = (UINT16) aPoly3DList.Count();
+/*N*/   size_t nCnt = aPoly3DList.size();
 /*N*/   const Polygon3DList& rCmpList = rImpPolyPoly3D.aPoly3DList;
 /*N*/
-/*N*/   if ( nCnt != (UINT16) rCmpList.Count() )
+/*N*/   if ( nCnt != rCmpList.size() )
 /*N*/       return FALSE;
 /*N*/
 /*N*/   BOOL bEqual = TRUE;
 /*N*/
-/*N*/   for ( UINT16 i = 0; i < nCnt && bEqual; i++ )
-/*N*/       bEqual = ( *aPoly3DList.GetObject(i) == *rCmpList.GetObject(i) );
+        for ( size_t i = 0; i < nCnt && bEqual; ++i )
+            bEqual = ( *aPoly3DList[ i ] == *rCmpList[ i ] );
 /*N*/
 /*N*/   return bEqual;
 /*N*/ }
@@ -1261,10 +1244,10 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ PolyPolygon3D::PolyPolygon3D(UINT16 nInitSize, UINT16 nResize)
+/*N*/ PolyPolygon3D::PolyPolygon3D(UINT16 /*nInitSize */, UINT16 /* nResize */)
 /*N*/ {
 /*N*/   DBG_CTOR(PolyPolygon3D, NULL);
-/*N*/   pImpPolyPolygon3D = new ImpPolyPolygon3D(nInitSize, nResize);
+/*N*/   pImpPolyPolygon3D = new ImpPolyPolygon3D();
 /*N*/ }
 
 
@@ -1278,7 +1261,7 @@ namespace binfilter {
 /*N*/ {
 /*N*/   DBG_CTOR(PolyPolygon3D, NULL);
 /*N*/   pImpPolyPolygon3D = new ImpPolyPolygon3D;
-/*N*/   pImpPolyPolygon3D->aPoly3DList.Insert(new Polygon3D(rPoly3D));
+/*N*/   pImpPolyPolygon3D->aPoly3DList.push_back( new Polygon3D(rPoly3D) );
 /*N*/ }
 
 /*************************************************************************
@@ -1307,8 +1290,7 @@ namespace binfilter {
 /*N*/   UINT16 nCnt = rPolyPoly.Count();
 /*N*/
 /*N*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*N*/       pImpPolyPolygon3D->aPoly3DList.Insert(
-/*N*/           new Polygon3D(rPolyPoly.GetObject(i), fScale), LIST_APPEND);
+/*N*/       pImpPolyPolygon3D->aPoly3DList.push_back( new Polygon3D(rPolyPoly.GetObject(i), fScale ));
 /*N*/ }
 
 /*************************************************************************
@@ -1324,8 +1306,7 @@ namespace binfilter {
 /*N*/   UINT16 nCnt = rXPolyPoly.Count();
 /*N*/
 /*N*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*N*/       pImpPolyPolygon3D->aPoly3DList.Insert(
-/*N*/           new Polygon3D(rXPolyPoly.GetObject(i), fScale), LIST_APPEND);
+/*N*/       pImpPolyPolygon3D->aPoly3DList.push_back( new Polygon3D(rXPolyPoly.GetObject(i), fScale) );
 /*N*/ }
 
 /*************************************************************************
@@ -1388,7 +1369,14 @@ namespace binfilter {
 /*N*/ void PolyPolygon3D::Insert(const Polygon3D& rPoly3D, UINT16 nPos)
 /*N*/ {
 /*N*/   CheckReference();
-/*N*/   pImpPolyPolygon3D->aPoly3DList.Insert(new Polygon3D(rPoly3D), nPos);
+        if ( nPos < pImpPolyPolygon3D->aPoly3DList.size() )
+        {
+            Polygon3DList::iterator it = pImpPolyPolygon3D->aPoly3DList.begin();
+            ::std::advance( it, nPos );
+            pImpPolyPolygon3D->aPoly3DList.insert( it, new Polygon3D(rPoly3D) );
+        }
+        else
+            pImpPolyPolygon3D->aPoly3DList.push_back( new Polygon3D(rPoly3D) );
 /*N*/ }
 
 /*************************************************************************
@@ -1404,9 +1392,15 @@ namespace binfilter {
 /*N*/
 /*N*/   for ( UINT16 i = 0; i < nCnt; i++)
 /*N*/   {
-/*N*/       Polygon3D* pPoly3D = new Polygon3D(rPolyPoly3D[i]);
-/*N*/       pImpPolyPolygon3D->aPoly3DList. Insert(pPoly3D, nPos);
-/*N*/
+            if ( nPos < pImpPolyPolygon3D->aPoly3DList.size() )
+            {
+                Polygon3DList::iterator it = pImpPolyPolygon3D->aPoly3DList.begin();
+                ::std::advance( it, nPos );
+                pImpPolyPolygon3D->aPoly3DList.insert( it, new Polygon3D(rPolyPoly3D[i]) );
+            }
+            else
+                pImpPolyPolygon3D->aPoly3DList.push_back( new Polygon3D(rPolyPoly3D[i]) );
+
 /*N*/       if ( nPos != POLYPOLY3D_APPEND )
 /*N*/           nPos++;
 /*N*/   }
@@ -1435,13 +1429,16 @@ namespace binfilter {
 
 /*N*/ const Polygon3D& PolyPolygon3D::GetObject(UINT16 nPos) const
 /*N*/ {
-/*N*/   Polygon3D* pPoly3D = pImpPolyPolygon3D->aPoly3DList.GetObject(nPos);
-/*N*/
-/*N*/   if ( pPoly3D == NULL )
-/*N*/   {   // Wenn noch kein Polygon an der Position vorhanden, neu erzeugen
-/*N*/       pPoly3D = new Polygon3D;
-/*N*/       pImpPolyPolygon3D->aPoly3DList.Insert(pPoly3D, nPos);
-/*N*/   }
+/*N*/   Polygon3D* pPoly3D;
+        if ( nPos < pImpPolyPolygon3D->aPoly3DList.size() )
+        {
+            pPoly3D = pImpPolyPolygon3D->aPoly3DList[ nPos ];
+        }
+        else
+        {
+            pPoly3D = new Polygon3D;
+            pImpPolyPolygon3D->aPoly3DList.push_back( pPoly3D );
+        }
 /*N*/   return *pPoly3D;
 /*N*/ }
 
@@ -1460,14 +1457,9 @@ namespace binfilter {
 /*N*/   }
 /*N*/   else
 /*N*/   {
-/*N*/       Polygon3D* pPoly3D = pImpPolyPolygon3D->aPoly3DList.First();
-/*N*/
-/*N*/       while( pPoly3D )
-/*N*/       {
-/*N*/           delete pPoly3D;
-/*N*/           pPoly3D = pImpPolyPolygon3D->aPoly3DList.Next();
-/*N*/       }
-/*N*/       pImpPolyPolygon3D->aPoly3DList.Clear();
+            for ( size_t i = 0, n = pImpPolyPolygon3D->aPoly3DList.size(); i < n; ++i )
+                delete pImpPolyPolygon3D->aPoly3DList[ i ];
+            pImpPolyPolygon3D->aPoly3DList.clear();
 /*N*/   }
 /*N*/ }
 
@@ -1479,7 +1471,7 @@ namespace binfilter {
 
 /*N*/ UINT16 PolyPolygon3D::Count() const
 /*N*/ {
-/*N*/   return (UINT16)(pImpPolyPolygon3D->aPoly3DList.Count());
+/*N*/   return (UINT16)(pImpPolyPolygon3D->aPoly3DList.size());
 /*N*/ }
 
 /*************************************************************************
@@ -1491,13 +1483,16 @@ namespace binfilter {
 /*N*/ Polygon3D& PolyPolygon3D::operator[](UINT16 nPos)
 /*N*/ {
 /*N*/   CheckReference();
-/*N*/   Polygon3D* pPoly3D = pImpPolyPolygon3D->aPoly3DList.GetObject(nPos);
-/*N*/
-/*N*/   if ( pPoly3D == NULL )
-/*N*/   {   // Wenn noch kein Polygon an der Position vorhanden, neu erzeugen
-/*N*/       pPoly3D = new Polygon3D;
-/*N*/       pImpPolyPolygon3D->aPoly3DList.Insert(pPoly3D, nPos);
-/*N*/   }
+/*N*/   Polygon3D* pPoly3D;
+        if ( nPos < pImpPolyPolygon3D->aPoly3DList.size() )
+        {
+            pPoly3D = pImpPolyPolygon3D->aPoly3DList[ nPos ];
+        }
+        else
+        {
+            pPoly3D = new Polygon3D;
+            pImpPolyPolygon3D->aPoly3DList.push_back( pPoly3D );
+        }
 /*N*/   return *pPoly3D;
 /*N*/ }
 
@@ -1551,7 +1546,7 @@ namespace binfilter {
 /*N*/   UINT16 nCnt = Count();
 /*N*/
 /*N*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*N*/       pImpPolyPolygon3D->aPoly3DList.GetObject(i)->Transform(rTfMatrix);
+/*N*/       pImpPolyPolygon3D->aPoly3DList[ i ]->Transform(rTfMatrix);
 /*N*/ }
 
 /*************************************************************************
@@ -1576,7 +1571,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       for ( nPoly = 0; nPoly < nCnt; nPoly++ )
 /*N*/       {
-/*N*/           Polygon3D& rPoly3D = *pImpPolyPolygon3D->aPoly3DList.GetObject(nPoly);
+/*N*/           Polygon3D& rPoly3D = *pImpPolyPolygon3D->aPoly3DList[ nPoly ];
 /*N*/           BOOL bFlip = !rPoly3D.IsClockwise(rNormal);
 /*N*/           short nDepth = 0;
 /*N*/           const Vector3D& rPos = rPoly3D[0];
@@ -1586,7 +1581,7 @@ namespace binfilter {
 /*N*/           for ( UINT16 i = 0; i < nCnt; i++ )
 /*N*/           {
 /*N*/               if ( i != nPoly &&
-/*N*/                    pImpPolyPolygon3D->aPoly3DList.GetObject(i)->IsInside(rPos) )
+/*N*/                    pImpPolyPolygon3D->aPoly3DList[ i ]->IsInside(rPos) )
 /*N*/                       nDepth++;
 /*N*/           }
 /*N*/           // ungerade nDepth-Werte bedeuten: das  Polygon ist ein "Loch"
@@ -1603,8 +1598,11 @@ namespace binfilter {
 /*N*/       // liegt das aeussere Polygon nicht am Anfang, wird es dahin verschoben
 /*N*/       if ( nFirstPoly > 0 )
 /*N*/       {
-/*N*/           Polygon3D* pOuter = pImpPolyPolygon3D->aPoly3DList.Remove(nFirstPoly);
-/*N*/           pImpPolyPolygon3D->aPoly3DList.Insert(pOuter, (ULONG) 0);
+                Polygon3DList::iterator it = pImpPolyPolygon3D->aPoly3DList.begin();
+                ::std::advance( it, nFirstPoly );
+                Polygon3D* pOuter = *it;
+                pImpPolyPolygon3D->aPoly3DList.erase( it );
+                pImpPolyPolygon3D->aPoly3DList.insert( pImpPolyPolygon3D->aPoly3DList.begin(), pOuter);
 /*N*/       }
 /*N*/   }
 /*N*/ }
@@ -1619,10 +1617,10 @@ namespace binfilter {
 /*N*/ void PolyPolygon3D::RemoveDoublePoints()
 /*N*/ {
 /*N*/   CheckReference();
-/*N*/   UINT16 nCnt = Count();
+/*N*/   size_t nCnt = Count();
 /*N*/
-/*N*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*N*/       pImpPolyPolygon3D->aPoly3DList.GetObject(i)->RemoveDoublePoints();
+/*N*/   for ( size_t i = 0; i < nCnt; i++ )
+/*N*/       pImpPolyPolygon3D->aPoly3DList[ i ]->RemoveDoublePoints();
 /*N*/ }
 
 /*************************************************************************
@@ -1681,7 +1679,7 @@ namespace binfilter {
 /*N*/                   // es gibt welche, nDoneStart ist gesetzt. Erzeuge (und
 /*N*/                   // setze) nDoneEnd
 /*N*/                   UINT16 nDoneEnd(nDoneStart);
-/*N*/                   UINT16 nStartLoop;
+/*N*/                   UINT16 nStartLoop(0);
 /*N*/                   BOOL bInLoop(FALSE);
 /*N*/
 /*N*/                   // einen step mehr in der Schleife, um Loops abzuschliessen
@@ -1786,7 +1784,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/       delete rPolyPoly3D.pImpPolyPolygon3D;
 /*N*/
-/*N*/   rPolyPoly3D.pImpPolyPolygon3D = new ImpPolyPolygon3D(nPolyCount);
+/*N*/   rPolyPoly3D.pImpPolyPolygon3D = new ImpPolyPolygon3D();
 /*N*/
 /*N*/   while ( nPolyCount > 0 )
 /*N*/   {
@@ -1797,9 +1795,9 @@ namespace binfilter {
 /*N*/       if ( !bTruncated )
 /*N*/       {
 /*N*/           if ( nAllPointCount > POLY3D_MAXPOINTS )
-/*N*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/           {DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
-/*N*/           rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList.Insert(pPoly3D, LIST_APPEND);
+/*N*/           rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList.push_back( pPoly3D );
 /*N*/       }
 /*N*/       else
 /*?*/           delete pPoly3D;
@@ -1824,20 +1822,15 @@ namespace binfilter {
 /*N*/   rOStream << rPolyPoly3D.Count();
 /*N*/
 /*N*/   // Die einzelnen Polygone ausgeben
-/*N*/   Polygon3D* pPoly3D = rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList.First();
-/*N*/
-/*N*/   while( pPoly3D )
-/*N*/   {
-/*N*/       rOStream << *pPoly3D;
-/*N*/       pPoly3D = rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList.Next();
-/*N*/   }
+        for ( size_t i = 0, n = rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList.size(); i < n; ++i )
+            rOStream << *rPolyPoly3D.pImpPolyPolygon3D->aPoly3DList[ i ];
 /*N*/
 /*N*/   return rOStream;
 /*N*/ }
 
 /*N*/ Vector3D PolyPolygon3D::GetNormal() const
 /*N*/ {
-/*N*/   if(pImpPolyPolygon3D->aPoly3DList.Count())
+/*N*/   if( pImpPolyPolygon3D->aPoly3DList.size() )
 /*N*/       return (*this)[0].GetNormal();
 /*N*/   return Vector3D(0.0, 0.0, -1.0);
 /*N*/ }
@@ -1851,15 +1844,15 @@ namespace binfilter {
 /*N*/ void PolyPolygon3D::FlipDirections()
 /*N*/ {
 /*N*/   CheckReference();
-/*N*/   UINT16 nCnt = Count();
+/*N*/   size_t nCnt = Count();
 /*N*/
-/*N*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*N*/       pImpPolyPolygon3D->aPoly3DList.GetObject(i)->FlipDirection();
+/*N*/   for ( size_t i = 0; i < nCnt; i++ )
+/*N*/       pImpPolyPolygon3D->aPoly3DList[ i ]->FlipDirection();
 /*N*/ }
 
 /*N*/ Vector3D PolyPolygon3D::GetMiddle() const
 /*N*/ {
-/*N*/   if(pImpPolyPolygon3D->aPoly3DList.Count())
+/*N*/   if( pImpPolyPolygon3D->aPoly3DList.size() )
 /*N*/       return (*this)[0].GetMiddle();
 /*N*/   return Vector3D();
 /*N*/ }
@@ -1867,10 +1860,10 @@ namespace binfilter {
 /*N*/ BOOL PolyPolygon3D::IsClosed() const
 /*N*/ {
 /*N*/   BOOL bClosed = TRUE;
-/*N*/   UINT16 nCnt = Count();
+/*N*/   size_t nCnt = Count();
 /*N*/
-/*N*/   for ( UINT16 i = 0; i < nCnt; i++ )
-/*N*/       if(!pImpPolyPolygon3D->aPoly3DList.GetObject(i)->IsClosed())
+/*N*/   for ( size_t i = 0; i < nCnt; i++ )
+/*N*/       if( !pImpPolyPolygon3D->aPoly3DList[ i ]->IsClosed() )
 /*N*/           bClosed = FALSE;
 /*N*/   return bClosed;
 /*N*/ }
@@ -1959,3 +1952,5 @@ namespace binfilter {
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

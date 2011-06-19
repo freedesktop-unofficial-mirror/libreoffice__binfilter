@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #ifndef _XIOCOMP_HXX
 #define _XIOCOMP_HXX
 
-#ifndef _SVDIO_HXX
 #include "svdio.hxx"
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -59,3 +58,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _XIOCOMP_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

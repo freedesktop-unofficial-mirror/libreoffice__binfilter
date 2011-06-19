@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SVDSURO_HXX
 #define _SVDSURO_HXX
 
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -143,3 +142,4 @@ Ein NULL-Surrogat schreibt stets nur 1 Byte in den Stream, naemlich eine 0.
 }//end of namespace binfilter
 #endif //_SVDSURO_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

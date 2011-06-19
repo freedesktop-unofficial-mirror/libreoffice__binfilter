@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,29 +26,18 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _SC_XMLSTYLESIMPORTHELPER_HXX
 #include "XMLStylesImportHelper.hxx"
-#endif
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -206,7 +196,7 @@ void ScMyStyleRanges::AddRange(const ScRange& rRange,
         break;
         default:
         {
-            DBG_ERROR("wrong type");
+            OSL_FAIL("wrong type");
         }
         break;
     }
@@ -259,7 +249,7 @@ void ScMyStyleRanges::InsertColRow(const ScRange& rRange, const sal_Int16 nDx, c
         while (aItr != pCurrencyList->end())
         {
             aItr->xRanges->UpdateReference(aRefMode, pDoc, rRange, nDx, nDy, nDz);
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -316,7 +306,7 @@ void ScMyStyleRanges::SetStylesToRanges(const ::rtl::OUString* pStyleName, ScXML
         while (aItr != pCurrencyList->end())
         {
             SetStylesToRanges(aItr->xRanges, pStyleName, util::NumberFormat::CURRENCY, &aItr->sCurrency, rImport);
-            aItr++;
+            ++aItr;
         }
     }
 }
@@ -327,13 +317,13 @@ ScMyStylesImportHelper::ScMyStylesImportHelper(ScXMLImport& rTempImport)
     :
     aCellStyles(),
     aColDefaultStyles(),
-    bPrevRangeAdded(sal_True),
     rImport(rTempImport),
-    nMaxRanges(0),
-    pPrevStyleName(NULL),
-    pPrevCurrency(NULL),
     pStyleName(NULL),
-    pCurrency(NULL)
+    pPrevStyleName(NULL),
+    pCurrency(NULL),
+    pPrevCurrency(NULL),
+    nMaxRanges(0),
+    bPrevRangeAdded(sal_True)
 {
     aRowDefaultStyle = aCellStyles.end();
 }
@@ -364,13 +354,13 @@ void ScMyStylesImportHelper::ResetAttributes()
     nCellType = 0;
 }
 
-ScMyStylesSet::iterator ScMyStylesImportHelper::GetIterator(const ::rtl::OUString* pStyleName)
+ScMyStylesSet::iterator ScMyStylesImportHelper::GetIterator(const ::rtl::OUString* pInStyleName)
 {
     ScMyStyle aStyle;
-    if (pStyleName)
-        aStyle.sStyleName = *pStyleName;
+    if (pInStyleName)
+        aStyle.sStyleName = *pInStyleName;
     else
-        DBG_ERROR("here is no stylename given");
+        OSL_FAIL("here is no stylename given");
     ScMyStylesSet::iterator aItr = aCellStyles.find(aStyle);
     if (aItr == aCellStyles.end())
     {
@@ -379,7 +369,7 @@ ScMyStylesSet::iterator ScMyStylesImportHelper::GetIterator(const ::rtl::OUStrin
             aItr = aPair.first;
         else
         {
-            DBG_ERROR("not possible to insert style");
+            OSL_FAIL("not possible to insert style");
             return aCellStyles.end();
         }
     }
@@ -465,6 +455,7 @@ void ScMyStylesImportHelper::AddRange()
 void ScMyStylesImportHelper::AddColumnStyle(const ::rtl::OUString& sStyleName, const sal_Int32 nColumn, const sal_Int32 nRepeat)
 {
     DBG_ASSERT(static_cast<sal_uInt32>(nColumn) == aColDefaultStyles.size(), "some columns are absent");
+    (void)nColumn;
     ScMyStylesSet::iterator aItr = GetIterator(&sStyleName);
     DBG_ASSERT(aItr != aCellStyles.end(), "no column default style");
     for (sal_Int32 i = 0; i < nRepeat; i++)
@@ -476,16 +467,16 @@ void ScMyStylesImportHelper::SetRowStyle(const ::rtl::OUString& sStyleName)
     aRowDefaultStyle = GetIterator(&sStyleName);
 }
 
-void ScMyStylesImportHelper::SetAttributes(::rtl::OUString* pStyleName,
-    ::rtl::OUString* pCurrency, const sal_Int16 nCellType)
+void ScMyStylesImportHelper::SetAttributes(::rtl::OUString* pInStyleName,
+    ::rtl::OUString* pInCurrency, const sal_Int16 nInCellType)
 {
-    if (this->pStyleName)
-        delete this->pStyleName;
-    if (this->pCurrency)
-        delete this->pCurrency;
-    this->pStyleName = pStyleName;
-    this->pCurrency = pCurrency;
-    this->nCellType = nCellType;
+    if (pStyleName)
+        delete pStyleName;
+    if (pCurrency)
+        delete pCurrency;
+    pStyleName = pInStyleName;
+    pCurrency = pInCurrency;
+    nCellType = nInCellType;
 }
 
 void ScMyStylesImportHelper::AddRange(const ScRange& rRange)
@@ -549,7 +540,7 @@ void ScMyStylesImportHelper::InsertRow(const sal_Int32 nRow, const sal_Int32 nTa
     while (aItr != aCellStyles.end())
     {
         aItr->xRanges->InsertRow(nRow, nTab, pDoc);
-        aItr++;
+        ++aItr;
     }
     rImport.UnlockSolarMutex();
 }
@@ -561,7 +552,7 @@ void ScMyStylesImportHelper::InsertCol(const sal_Int32 nCol, const sal_Int32 nTa
     while (aItr != aCellStyles.end())
     {
         aItr->xRanges->InsertCol(nCol, nTab, pDoc);
-        aItr++;
+        ++aItr;
     }
     rImport.UnlockSolarMutex();
 }
@@ -582,7 +573,7 @@ void ScMyStylesImportHelper::SetStylesToRanges()
     while (aItr != aCellStyles.end())
     {
         aItr->xRanges->SetStylesToRanges(&aItr->sStyleName, rImport);
-        aItr++;
+        ++aItr;
     }
     aCellStyles.clear();
     aColDefaultStyles.clear();
@@ -590,3 +581,5 @@ void ScMyStylesImportHelper::SetStylesToRanges()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

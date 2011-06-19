@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -35,9 +33,7 @@
 #include <bf_svtools/unoimap.hxx>
 #include <bf_svx/unofill.hxx>
 
-#ifndef _SVX_UNONRULE_HXX
 #include <bf_svx/unonrule.hxx>
-#endif
 
 #include "servuno.hxx"
 #include "cellsuno.hxx"
@@ -52,13 +48,9 @@
 #include "shapeuno.hxx"
 
 // #100263# Support creation of GraphicObjectResolver and EmbeddedObjectResolver
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
 
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -66,7 +58,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-static const sal_Char* __FAR_DATA aProvNames[SC_SERVICE_COUNT] =
+static const sal_Char* aProvNames[SC_SERVICE_COUNT] =
     {
         "com.sun.star.sheet.Spreadsheet",           // SC_SERVICE_SHEET
         "com.sun.star.text.TextField.URL",          // SC_SERVICE_URLFIELD
@@ -108,7 +100,7 @@ static const sal_Char* __FAR_DATA aProvNames[SC_SERVICE_COUNT] =
 //  in case some macro is still using them
 //
 
-static const sal_Char* __FAR_DATA aOldNames[SC_SERVICE_COUNT] =
+static const sal_Char* aOldNames[SC_SERVICE_COUNT] =
     {
         "",                                         // SC_SERVICE_SHEET
         "stardiv.one.text.TextField.URL",           // SC_SERVICE_URLFIELD
@@ -164,7 +156,7 @@ sal_uInt16 ScServiceProvider::GetProviderType(const String& rServiceName)
         for (i=0; i<SC_SERVICE_COUNT; i++)
             if (rServiceName.EqualsAscii( aOldNames[i] ))
             {
-                DBG_ERROR("old service name used");
+                OSL_FAIL("old service name used");
                 return i;
             }
     }
@@ -301,3 +293,5 @@ uno::Sequence< ::rtl::OUString> ScServiceProvider::GetAllServiceNames()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

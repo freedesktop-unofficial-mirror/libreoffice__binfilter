@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
 
 #include <tools/debug.hxx>
 #include <osl/file.hxx>
-#include <vos/module.hxx>
+#include <osl/module.hxx>
 #include <bf_svtools/pathoptions.hxx>
 #include <bf_sfx2/docfile.hxx>
 #include <bf_sfx2/progress.hxx>
@@ -59,10 +58,10 @@ using namespace ::com::sun::star::frame;
 // ------------
 
 SdFilter::SdFilter( SfxMedium& rMedium, SdDrawDocShell& rDocShell, sal_Bool bShowProgress ) :
+    mxModel( rDocShell.GetModel() ),
     mrMedium( rMedium ),
     mrDocShell( rDocShell ),
     mrDocument( *rDocShell.GetDoc() ),
-    mxModel( rDocShell.GetModel() ),
     mpProgress( NULL ),
     mbIsDraw( rDocShell.GetDocumentType() == DOCUMENT_TYPE_DRAW ),
     mbShowProgress( bShowProgress )
@@ -116,7 +115,7 @@ void SdFilter::CreateProgress()
 
 sal_Bool SdFilter::Import()
 {
-    DBG_ERROR( "Not implemented" );
+    OSL_FAIL( "Not implemented" );
     return sal_False;
 }
 
@@ -124,7 +123,9 @@ sal_Bool SdFilter::Import()
 
 sal_Bool SdFilter::Export()
 {
-    DBG_ERROR( "Not implemented" );
+    OSL_FAIL( "Not implemented" );
     return sal_False;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

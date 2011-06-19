@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,33 +26,17 @@
  *
  ************************************************************************/
 
-#ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #include "XMLTableShapeImportHelper.hxx"
-#endif
 
-#ifndef SC_XMLIMPRT_HXX
 #include "xmlimprt.hxx"
-#endif
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef SC_DRWLAYER_HXX
 #include "drwlayer.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
 
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
 
 namespace binfilter {
 
@@ -59,6 +44,8 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace xmloff::token;
+
+using rtl::OUString;
 
 XMLTableShapeImportHelper::XMLTableShapeImportHelper(
         ScXMLImport& rImp, SvXMLImportPropertyMapper *pImpMapper ) :
@@ -91,7 +78,6 @@ void XMLTableShapeImportHelper::finishShape(
     static_cast<ScXMLImport&>(mrImporter).LockSolarMutex();
     if (rShapes == static_cast<ScXMLImport&>(mrImporter).GetTables().GetCurrentXShapes())
     {
-        Rectangle* pRect = NULL;
         sal_Int32 nEndX(-1);
         sal_Int32 nEndY(-1);
         sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
@@ -178,3 +164,5 @@ void XMLTableShapeImportHelper::finishShape(
     static_cast<ScXMLImport&>(mrImporter).UnlockSolarMutex();
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

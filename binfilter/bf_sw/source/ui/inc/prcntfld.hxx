@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _PRCNTFLD_HXX
 #define _PRCNTFLD_HXX
 
-#ifndef _FIELD_HXX //autogen
 #include <vcl/field.hxx>
-#endif
 namespace binfilter {
 
 class PercentField : public MetricField
@@ -60,3 +59,4 @@ public:
 } //namespace binfilter
 #endif // _PRCNTFLD_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

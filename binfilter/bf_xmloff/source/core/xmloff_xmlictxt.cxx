@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 namespace binfilter {
 
@@ -51,11 +50,11 @@ SvXMLImportContext::~SvXMLImportContext()
 {
 }
 
-SvXMLImportContext *SvXMLImportContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SvXMLImportContext::CreateChildContext( USHORT nInPrefix,
                                             const OUString& rLocalName,
                                             const uno::Reference< xml::sax::XAttributeList >& xAttrList )
 {
-    return rImport.CreateContext( nPrefix, rLocalName, xAttrList );
+    return rImport.CreateContext( nInPrefix, rLocalName, xAttrList );
 }
 
 void SvXMLImportContext::StartElement( const uno::Reference< xml::sax::XAttributeList >& )
@@ -66,9 +65,11 @@ void SvXMLImportContext::EndElement()
 {
 }
 
-void SvXMLImportContext::Characters( const OUString& rChars )
+void SvXMLImportContext::Characters( const OUString& /*rChars*/ )
 {
 }
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

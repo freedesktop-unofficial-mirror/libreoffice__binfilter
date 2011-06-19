@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 #define INITIAL_NUM_ATTR 4
 #define NUM_ATTRIBUTE_STACKS 37
 
-#ifndef _TXATBASE_HXX
 #include <txatbase.hxx>
-#endif
-#ifndef _SWFNTCCH_HXX
 #include <swfntcch.hxx>
-#endif
 
 namespace binfilter {
 class SfxPoolItem;
@@ -151,16 +148,14 @@ public:
 
 inline const SfxPoolItem& SwAttrHandler::GetDefault( const USHORT nAttribID ) const
 {
-    ASSERT( 0 <= nAttribID && nAttribID < RES_TXTATR_END,
-            "this attrib does not ex."
-            );
-    ASSERT( pDefaultArray[ StackPos[ nAttribID ] ], "array not initialized" );
+    OSL_ENSURE( nAttribID < RES_TXTATR_END, "this attrib does not ex." );
+    OSL_ENSURE( pDefaultArray[ StackPos[ nAttribID ] ], "array not initialized" );
     return *pDefaultArray[ StackPos[ nAttribID ] ];
 }
 
 inline void SwAttrHandler::ResetFont( SwFont& rFnt ) const
 {
-    ASSERT( pFnt, "ResetFont without a font" );
+    OSL_ENSURE( pFnt, "ResetFont without a font" );
     if ( pFnt )
         rFnt = *pFnt;
 };
@@ -172,3 +167,5 @@ inline const SwFont* SwAttrHandler::GetFont() const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

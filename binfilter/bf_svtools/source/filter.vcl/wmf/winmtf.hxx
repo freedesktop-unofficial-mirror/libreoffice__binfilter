@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,45 +36,20 @@
 #endif
 
 #include <vector>
-// #include <math.h>
 #include <stdlib.h>
 #include <sot/object.hxx>
-#ifndef BOOST_SHARED_PTR_HPP_INCLUDED
 #include <boost/shared_ptr.hpp>
-#endif
-#ifndef _TOOL_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _STACK_HXX
 #include <tools/stack.hxx>
-#endif
-#ifndef _TOOLS_TABLE_HXX
 #include <tools/table.hxx>
-#endif
-#ifndef _DYNARY_HXX
 #include <tools/dynary.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX
 #include <vcl/graph.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _SV_FONT_HXX
 #include <vcl/font.hxx>
-#endif
-#ifndef _SV_BMPACC_HXX
 #include <vcl/bmpacc.hxx>
-#endif
-#ifndef _SV_LINEINFO_HXX
 #include <vcl/lineinfo.hxx>
-#endif
-#ifndef _FLTCALL_HXX
 #include <bf_svtools/fltcall.hxx>
-#endif
 
 namespace binfilter
 {
@@ -346,21 +322,21 @@ class WinMtfClipPath
 
         sal_Bool    bNeedsUpdate;
 
-                    WinMtfClipPath(): eType(EMPTY), bNeedsUpdate( sal_False ){};
+                    WinMtfClipPath(): eType(EMPTY), bNeedsUpdate( sal_False ){}
 
         void        SetClipPath( const PolyPolygon& rPolyPolygon, sal_Int32 nClippingMode );
         void        IntersectClipRect( const Rectangle& rRect );
         void        ExcludeClipRect( const Rectangle& rRect );
         void        MoveClipRegion( const Size& rSize );
 
-        WinMtfClipPathType GetType() const { return eType; };
-        const PolyPolygon& GetClipPath() const { return aPolyPoly; };
+        WinMtfClipPathType GetType() const { return eType; }
+        const PolyPolygon& GetClipPath() const { return aPolyPoly; }
 
         sal_Bool operator==( const WinMtfClipPath& rPath )
         {
             return  ( rPath.eType == eType ) &&
                     ( rPath.aPolyPoly == aPolyPoly );
-        };
+        }
 };
 
 class WinMtfPathObj : public PolyPolygon
@@ -370,7 +346,7 @@ class WinMtfPathObj : public PolyPolygon
     public :
 
                 WinMtfPathObj() { bClosed = sal_True; }
-        void    Init() { Clear(); bClosed = sal_True; };
+        void    Init() { Clear(); bClosed = sal_True; }
         void    ClosePath();
 
         void    AddPoint( const Point& rPoint );
@@ -397,20 +373,20 @@ struct WinMtfFillStyle
         aFillColor  ( Color( COL_BLACK ) ),
         bTransparent( FALSE )
     {
-    };
+    }
 
     WinMtfFillStyle( const Color& rColor, BOOL bTrans = FALSE ) :
         aFillColor  ( rColor ),
         bTransparent( bTrans )
     {
-    };
+    }
 
     BOOL operator==( const WinMtfFillStyle& rStyle )
-        { return ( ( aFillColor == rStyle.aFillColor ) && ( bTransparent == rStyle.bTransparent ) ); };
+        { return ( ( aFillColor == rStyle.aFillColor ) && ( bTransparent == rStyle.bTransparent ) ); }
     BOOL operator==( WinMtfFillStyle* pStyle )
-        { return ( ( aFillColor == pStyle->aFillColor ) && ( bTransparent == pStyle->bTransparent ) ); };
-    void operator=( const WinMtfFillStyle& rStyle ) { aFillColor = rStyle.aFillColor; bTransparent = rStyle.bTransparent; };
-    void operator=( WinMtfFillStyle* pStyle ) { aFillColor = pStyle->aFillColor; bTransparent = pStyle->bTransparent; };
+        { return ( ( aFillColor == pStyle->aFillColor ) && ( bTransparent == pStyle->bTransparent ) ); }
+    WinMtfFillStyle& operator=( const WinMtfFillStyle& rStyle ) { aFillColor = rStyle.aFillColor; bTransparent = rStyle.bTransparent; return *this; }
+    WinMtfFillStyle& operator=( WinMtfFillStyle* pStyle ) { aFillColor = pStyle->aFillColor; bTransparent = pStyle->bTransparent; return *this; }
 };
 
 // -----------------------------------------------------------------------------
@@ -423,32 +399,34 @@ struct WinMtfLineStyle
 
     WinMtfLineStyle() :
         aLineColor  ( COL_BLACK ),
-        bTransparent( FALSE ) {};
+        bTransparent( FALSE ) {}
 
     WinMtfLineStyle( const Color& rColor, BOOL bTrans = FALSE ) :
         aLineColor  ( rColor ),
-        bTransparent( bTrans ) {};
+        bTransparent( bTrans ) {}
 
     WinMtfLineStyle( const Color& rColor, const LineInfo rStyle, BOOL bTrans = FALSE ) :
         aLineColor  ( rColor ),
         aLineInfo   ( rStyle ),
-        bTransparent( bTrans ) {};
+        bTransparent( bTrans ) {}
 
-    BOOL operator==( const WinMtfLineStyle& rStyle ) { return ( ( aLineColor == rStyle.aLineColor ) && ( bTransparent == rStyle.bTransparent ) && ( aLineInfo == rStyle.aLineInfo ) ); };
-    BOOL operator==( WinMtfLineStyle* pStyle ) { return ( ( aLineColor == pStyle->aLineColor ) && ( bTransparent == pStyle->bTransparent ) && ( aLineInfo == pStyle->aLineInfo ) ); };
-    void operator=( const WinMtfLineStyle& rStyle )
+    BOOL operator==( const WinMtfLineStyle& rStyle ) { return ( ( aLineColor == rStyle.aLineColor ) && ( bTransparent == rStyle.bTransparent ) && ( aLineInfo == rStyle.aLineInfo ) ); }
+    BOOL operator==( WinMtfLineStyle* pStyle ) { return ( ( aLineColor == pStyle->aLineColor ) && ( bTransparent == pStyle->bTransparent ) && ( aLineInfo == pStyle->aLineInfo ) ); }
+    WinMtfLineStyle& operator=( const WinMtfLineStyle& rStyle )
     {
         aLineColor = rStyle.aLineColor;
         bTransparent = rStyle.bTransparent;
         aLineInfo = rStyle.aLineInfo;
-    };
+        return *this;
+    }
 
-    void operator=( WinMtfLineStyle* pStyle )
+    WinMtfLineStyle& operator=( WinMtfLineStyle* pStyle )
     {
         aLineColor = pStyle->aLineColor;
         bTransparent = pStyle->bTransparent;
         aLineInfo = pStyle->aLineInfo;
-    };
+        return *this;
+    }
 };
 
 // -----------------------------------------------------------------------------
@@ -465,7 +443,7 @@ struct XForm
     {
         eM11 =  eM22 = 1.0f;
         eDx = eDy = eM12 = eM21 = 0.0f;
-    };
+    }
 
     friend SvStream& operator>>( SvStream& rIn, XForm& rXForm );
 };
@@ -507,7 +485,7 @@ struct BSaveStruct
     UINT32      nWinRop;
 
                 BSaveStruct( const Bitmap& rBmp, const Rectangle& rOutRect, UINT32 nRop ) :
-                    aBmp( rBmp ), aOutRect( rOutRect ), nWinRop( nRop ){};
+                    aBmp( rBmp ), aOutRect( rOutRect ), nWinRop( nRop ){}
 };
 
 // -----------------------------------------------------------------------------
@@ -523,10 +501,10 @@ struct GDIObj
         pStyle  ( NULL ),
         eType   ( GDI_DUMMY )
     {
-    };
+    }
 
-    GDIObj( GDIObjectType eT, void* pS ) { pStyle = pS; eType = eT; };
-    void Set( GDIObjectType eT, void* pS ) { pStyle = pS; eType = eT; };
+    GDIObj( GDIObjectType eT, void* pS ) { pStyle = pS; eType = eT; }
+    void Set( GDIObjectType eT, void* pS ) { pStyle = pS; eType = eT; }
     void Delete()
     {
         if ( pStyle )
@@ -544,12 +522,12 @@ struct GDIObj
                 break;
 
                 default:
-                    DBG_ERROR( "unsupported style deleted" );
+                    OSL_FAIL( "unsupported style deleted" );
                     break;
             }
             pStyle = NULL;
         }
-    };
+    }
 
     ~GDIObj()
     {
@@ -640,7 +618,7 @@ class WinMtfOutput
         void                SetRefPix( const Size& rSize );
         void                SetRefMill( const Size& rSize );
 
-        sal_uInt32          GetMapMode() const { return mnMapMode; };
+        sal_uInt32          GetMapMode() const { return mnMapMode; }
         void                SetMapMode( sal_uInt32 mnMapMode );
         void                SetWorldTransform( const XForm& rXForm );
         void                ModifyWorldTransform( const XForm& rXForm, UINT32 nMode );
@@ -651,8 +629,8 @@ class WinMtfOutput
         UINT32              SetRasterOp( UINT32 nRasterOp );
         void                StrokeAndFillPath( sal_Bool bStroke, sal_Bool bFill );
 
-        void                SetGfxMode( sal_Int32 nGfxMode ){ mnGfxMode = nGfxMode; };
-        sal_Int32           GetGfxMode() const { return mnGfxMode; };
+        void                SetGfxMode( sal_Int32 nGfxMode ){ mnGfxMode = nGfxMode; }
+        sal_Int32           GetGfxMode() const { return mnGfxMode; }
         void                SetBkMode( UINT32 nMode );
         void                SetBkColor( const Color& rColor );
         void                SetTextColor( const Color& rColor );
@@ -661,13 +639,13 @@ class WinMtfOutput
         void                CreateObject( INT32 nIndex, GDIObjectType, void* pStyle = NULL );
         void                DeleteObject( INT32 nIndex );
         void                SelectObject( INT32 nIndex );
-        CharSet             GetCharSet(){ return maFont.GetCharSet(); };
+        CharSet             GetCharSet(){ return maFont.GetCharSet(); }
         const Font&         GetFont() const;
         void                SetTextLayoutMode( const sal_uInt32 nLayoutMode );
 
-        void                ClearPath(){ aPathObj.Init(); };
-        void                ClosePath(){ aPathObj.ClosePath(); };
-        const PolyPolygon&  GetPathObj(){ return aPathObj; };
+        void                ClearPath(){ aPathObj.Init(); }
+        void                ClosePath(){ aPathObj.ClosePath(); }
+        const PolyPolygon&  GetPathObj(){ return aPathObj; }
 
         void                MoveTo( const Point& rPoint, sal_Bool bRecordPath = sal_False );
         void                LineTo( const Point& rPoint, sal_Bool bRecordPath = sal_False );
@@ -737,7 +715,7 @@ class EnhWMFReader : public WinMtf
 
 public:
                     EnhWMFReader( SvStream& rStreamWMF, GDIMetaFile& rGDIMetaFile, FilterConfigItem* pConfigItem = NULL )
-                                    : WinMtf( new WinMtfOutput( rGDIMetaFile ), rStreamWMF, pConfigItem ), bRecordPath( sal_False ) {};
+                                    : WinMtf( new WinMtfOutput( rGDIMetaFile ), rStreamWMF, pConfigItem ), bRecordPath( sal_False ) {}
                     ~EnhWMFReader();
 
     BOOL            ReadEnhWMF();
@@ -772,7 +750,7 @@ private:
 public:
 
                     WMFReader( SvStream& rStreamWMF, GDIMetaFile& rGDIMetaFile, FilterConfigItem* pConfigItem = NULL )
-                        : WinMtf( new WinMtfOutput( rGDIMetaFile ), rStreamWMF, pConfigItem ) {};
+                        : WinMtf( new WinMtfOutput( rGDIMetaFile ), rStreamWMF, pConfigItem ) {}
 
     // Liesst aus dem Stream eine WMF-Datei und fuellt das GDIMetaFile
     void            ReadWMF();
@@ -783,3 +761,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

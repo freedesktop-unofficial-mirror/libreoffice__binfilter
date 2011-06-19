@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,15 +36,9 @@
 
 #include <osl/thread.h>
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
 namespace binfilter
 {
@@ -372,16 +367,16 @@ const String& DdeTransaction::GetName() const
 // --- DdeTransaction::Data() --------------------------------------
 
 
-void __EXPORT DdeTransaction::Data( const DdeData* p )
+void DdeTransaction::Data( const DdeData* p )
 {
-    Application::GetSolarMutex().acquire();
+    SolarMutexGuard aSolarGuard;
+
     aData.Call( (void*)p );
-    Application::GetSolarMutex().release();
 }
 
 // --- DdeTransaction::Done() --------------------------------------
 
-void __EXPORT DdeTransaction::Done( BOOL bDataValid )
+void DdeTransaction::Done( BOOL bDataValid )
 {
     aDone.Call( (void*)bDataValid );
 }
@@ -403,7 +398,7 @@ DdeLink::~DdeLink()
 
 // --- DdeLink::Notify() -----------------------------------------
 
-void __EXPORT DdeLink::Notify()
+void DdeLink::Notify()
 {
     aNotify.Call( NULL );
 }
@@ -480,3 +475,5 @@ long DdeConnection::GetError()
     return pImp->nStatus;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

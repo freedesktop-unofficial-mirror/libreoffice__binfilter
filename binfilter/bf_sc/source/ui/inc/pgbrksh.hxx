@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef SC_PGBRKSH_HXX
 #define SC_PGBRKSH_HXX
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
 #include "shellids.hxx"
 namespace binfilter {
@@ -45,7 +42,7 @@ class ScPageBreakShell : public SfxShell
 public:
     SFX_DECL_INTERFACE(SCID_PAGEBREAK_SHELL);
 
-    ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScPageBreakShell( ScTabViewShell* pView );
+    ScPageBreakShell( ScTabViewShell* pView ):SfxShell(NULL){DBG_BF_ASSERT(0, "STRIP");}
 
 };
 
@@ -55,3 +52,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

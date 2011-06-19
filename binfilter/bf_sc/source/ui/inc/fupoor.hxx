@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 #ifndef _SC_FUPOOR_HXX
 #define _SC_FUPOOR_HXX
 
-#ifndef _EVENT_HXX //autogen
 #include <vcl/event.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SFXREQUEST_HXX //autogen
 #include <bf_sfx2/request.hxx>
-#endif
 class Window;
 class Dialog;
 namespace binfilter {
@@ -88,7 +83,7 @@ private:
            SdrModel* pDoc, SfxRequest& rReq);
     virtual ~FuPoor();
 
-    USHORT GetSlotID() const { DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 USHORT GetSlotID() const { return( aSfxRequest.GetSlot() );}
+    USHORT GetSlotID() const { DBG_BF_ASSERT(0, "STRIP"); return 0;}
     void    StopDragTimer();
 };
 
@@ -97,3 +92,4 @@ private:
 } //namespace binfilter
 #endif      // _SD_FUPOOR_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

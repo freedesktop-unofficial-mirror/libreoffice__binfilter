@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,7 +38,7 @@
 #include <com/sun/star/uno/Sequence.h>
 #include <bf_svtools/poolitem.hxx> //Any2Bool
 #include <bf_svtools/smplhint.hxx>
-#include <vos/mutex.hxx>
+#include <osl/mutex.hxx>
 #include <itemholder2.hxx>
 
 #include <vcl/svapp.hxx>
@@ -46,8 +47,9 @@
 
 //-----------------------------------------------------------------------------
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star;
+
+using ::rtl::OUString;
 
 namespace binfilter
 {
@@ -64,8 +66,8 @@ namespace
 
 ColorConfig_Impl*    ColorConfig::m_pImpl = NULL;
 
-/* -----------------------------16.01.01 15:36--------------------------------
- ---------------------------------------------------------------------------*/
+
+
 class ColorConfig_Impl : public utl::ConfigItem, public SfxBroadcaster
 {
     ColorConfigValue    m_aConfigValues[ColorConfigEntryCount];
@@ -103,9 +105,8 @@ public:
     void ImplUpdateApplicationSettings();
 };
 
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 uno::Sequence< OUString> ColorConfig_Impl::GetPropertyNames(const rtl::OUString& rScheme)
 {
     uno::Sequence<OUString> aNames(2 * ColorConfigEntryCount);
@@ -182,9 +183,7 @@ uno::Sequence< OUString> ColorConfig_Impl::GetPropertyNames(const rtl::OUString&
     aNames.realloc(nIndex);
     return aNames;
 }
-/* -----------------------------22.03.2002 14:37------------------------------
 
- ---------------------------------------------------------------------------*/
 sal_Bool ColorConfig_Impl::m_bLockBroadcast = sal_False;
 sal_Bool ColorConfig_Impl::m_bBroadcastWhenUnlocked = sal_False;
 ColorConfig_Impl::ColorConfig_Impl(sal_Bool bEditMode) :
@@ -207,17 +206,13 @@ ColorConfig_Impl::ColorConfig_Impl(sal_Bool bEditMode) :
     ::Application::AddEventListener( LINK(this, ColorConfig_Impl, DataChangedEventListener) );
 
 }
-/* -----------------------------25.03.2002 12:28------------------------------
 
- ---------------------------------------------------------------------------*/
 ColorConfig_Impl::~ColorConfig_Impl()
 {
     // #100822#
     ::Application::RemoveEventListener( LINK(this, ColorConfig_Impl, DataChangedEventListener) );
 }
-/* -----------------------------22.03.2002 14:38------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::Load(const rtl::OUString& rScheme)
 {
     rtl::OUString sScheme(rScheme);
@@ -250,15 +245,13 @@ void ColorConfig_Impl::Load(const rtl::OUString& rScheme)
              m_aConfigValues[i / 2].bIsVisible = Any2Bool(pColors[nIndex++]);
     }
 }
-/* -----------------------------22.03.2002 14:38------------------------------
 
- ---------------------------------------------------------------------------*/
 void    ColorConfig_Impl::Notify( const uno::Sequence<OUString>& )
 {
     //loading via notification always uses the default setting
     Load(::rtl::OUString());
 
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
 
     if(m_bLockBroadcast)
     {
@@ -268,9 +261,7 @@ void    ColorConfig_Impl::Notify( const uno::Sequence<OUString>& )
     else
         Broadcast(SfxSimpleHint(SFX_HINT_COLORS_CHANGED));
 }
-/* -----------------------------22.03.2002 14:38------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::Commit()
 {
     uno::Sequence < ::rtl::OUString > aColorNames = GetPropertyNames(m_sLoadedScheme);
@@ -302,9 +293,7 @@ void ColorConfig_Impl::Commit()
 
     CommitCurrentSchemeName();
 }
-/* -----------------11.12.2002 10:42-----------------
- *
- * --------------------------------------------------*/
+
 void ColorConfig_Impl::CommitCurrentSchemeName()
 {
     //save current scheme name
@@ -314,20 +303,16 @@ void ColorConfig_Impl::CommitCurrentSchemeName()
     aCurrentVal.getArray()[0] <<= m_sLoadedScheme;
     PutProperties(aCurrent, aCurrentVal);
 }
-/* -----------------------------2002/06/20 13:03------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig_Impl::SettingsChanged()
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
 
     ImplUpdateApplicationSettings();
 
     Broadcast( SfxSimpleHint( SFX_HINT_COLORS_CHANGED ) );
 }
-/* -----------------------------2002/08/16 12:07 -----------------------------
-   #100822#
- --------------------------------------------------------------------------- */
+
 IMPL_LINK( ColorConfig_Impl, DataChangedEventListener, VclWindowEvent*, pEvent )
 {
     if ( pEvent->GetId() == VCLEVENT_APPLICATION_DATACHANGED )
@@ -384,9 +369,7 @@ ColorConfig::ColorConfig()
     ++nColorRefCount_Impl;
     StartListening( *m_pImpl);
 }
-/* -----------------------------16.01.01 15:36--------------------------------
 
- ---------------------------------------------------------------------------*/
 ColorConfig::~ColorConfig()
 {
     ::osl::MutexGuard aGuard( ColorMutex_Impl::get() );
@@ -397,9 +380,7 @@ ColorConfig::~ColorConfig()
         m_pImpl = 0;
     }
 }
-/* -----------------------------11.04.2002 11:49------------------------------
 
- ---------------------------------------------------------------------------*/
 Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
 {
     static const sal_Int32 aAutoColors[] =
@@ -461,15 +442,12 @@ Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
         case DRAWDRAWING :
         case SMARTTAGS :
         {
-            const StyleSettings& rStyleSettings = Application::GetSettings().GetStyleSettings();
-                aRet = rStyleSettings.GetHighContrastMode() ?
-                    rStyleSettings.GetDialogTextColor().GetColor() : aAutoColors[eEntry];
+            aRet = aAutoColors[eEntry];
         }
         break;
 
         case DRAWFILL            :
-                aRet = /*rStyleSettings.GetHighContrastMode() ?
-                    rStyleSettings.OutlineMode??? : */  aAutoColors[eEntry];
+                aRet = aAutoColors[eEntry];
         break;
 
         case FONTCOLOR :
@@ -481,9 +459,7 @@ Color ColorConfig::GetDefaultColor(ColorConfigEntry eEntry)
     }
     return aRet;
 }
-/* -----------------------------11.04.2002 11:49------------------------------
 
- ---------------------------------------------------------------------------*/
 ColorConfigValue ColorConfig::GetColorValue(ColorConfigEntry eEntry, sal_Bool bSmart)const
 {
     ColorConfigValue aRet = m_pImpl->GetColorConfigValue(eEntry);
@@ -504,14 +480,14 @@ ColorConfigValue ColorConfig::GetColorValue(ColorConfigEntry eEntry, sal_Bool bS
 
     return aRet;
 }
-/* -----------------------------12.04.2002 09:25------------------------------
 
- ---------------------------------------------------------------------------*/
 void ColorConfig::Notify( SfxBroadcaster&, const SfxHint& rHint )
 {
-    vos::OGuard aVclGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aVclGuard;
 
     Broadcast( rHint );
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

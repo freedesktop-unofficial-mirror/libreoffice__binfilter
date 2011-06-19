@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -62,7 +60,7 @@
 #include "docsh.hxx"
 #include "attrib.hxx"
 #include "stlpool.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "miscuno.hxx"
 #include "tablink.hxx"
 #include "unonames.hxx"
@@ -127,7 +125,6 @@ const SfxItemPropertyMap* lcl_GetCellStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_WRAP),     ATTR_LINEBREAK,     &::getBooleanCppuType(),            0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_LEFTBORDER),ATTR_BORDER,       &::getCppuType((const table::BorderLine*)0),        0, LEFT_BORDER | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNONAME_NUMFMT),   ATTR_VALUE_FORMAT,  &::getCppuType((const sal_Int32*)0),            0, 0 },
-//      {MAP_CHAR_LEN(SC_UNONAME_NUMRULES), SC_WID_UNO_NUMRULES,&getCppuType((const uno::Reference<container::XIndexReplace>*)0), 0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLORI),  ATTR_ORIENTATION,   &::getCppuType((const table::CellOrientation*)0),   0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_PADJUST),  ATTR_HOR_JUSTIFY,   &::getCppuType((const sal_Int16*)0),    0, MID_HORJUST_ADJUST },
         {MAP_CHAR_LEN(SC_UNONAME_PBMARGIN), ATTR_MARGIN,        &::getCppuType((const sal_Int32*)0),            0, MID_MARGIN_LO_MARGIN | CONVERT_TWIPS },
@@ -149,7 +146,7 @@ const SfxItemPropertyMap* lcl_GetCellStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_USERDEF),  ATTR_USERDEF,       &getCppuType((uno::Reference<container::XNameContainer>*)0), 0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_CELLVJUS), ATTR_VER_JUSTIFY,   &::getCppuType((const table::CellVertJustify*)0),   0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_WRITING),  ATTR_WRITINGDIR,    &getCppuType((sal_Int16*)0),            0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aCellStyleMap_Impl;
 }
@@ -266,7 +263,7 @@ const SfxItemPropertyMap* lcl_GetPageStyleMap()
         {MAP_CHAR_LEN(SC_UNONAME_USERDEF),      ATTR_USERDEF,       &getCppuType((uno::Reference<container::XNameContainer>*)0), 0, 0 },
         {MAP_CHAR_LEN(SC_UNO_PAGE_WIDTH),       ATTR_PAGE_SIZE,     &::getCppuType((const sal_Int32*)0),            0, MID_SIZE_WIDTH | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNONAME_WRITING),      ATTR_WRITINGDIR,    &getCppuType((sal_Int16*)0),            0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aPageStyleMap_Impl;
 }
@@ -304,7 +301,7 @@ const SfxItemPropertyMap* lcl_GetHeaderStyleMap()
         {MAP_CHAR_LEN(SC_UNO_PAGE_HDRTOPBOR),   ATTR_BORDER,        &::getCppuType((const table::BorderLine*)0),        0, TOP_BORDER | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_PAGE_HDRTOPBDIS),  ATTR_BORDER,        &::getCppuType((const sal_Int32*)0),    0, TOP_BORDER_DISTANCE | CONVERT_TWIPS },
         {MAP_CHAR_LEN(OLD_UNO_PAGE_HDRBACKTRAN),ATTR_BACKGROUND,    &::getBooleanCppuType(),            0, MID_GRAPHIC_TRANSPARENT },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aHeaderStyleMap_Impl;
 }
@@ -342,13 +339,12 @@ const SfxItemPropertyMap* lcl_GetFooterStyleMap()
         {MAP_CHAR_LEN(SC_UNO_PAGE_FTRTOPBOR),   ATTR_BORDER,        &::getCppuType((const table::BorderLine*)0),        0, TOP_BORDER | CONVERT_TWIPS },
         {MAP_CHAR_LEN(SC_UNO_PAGE_FTRTOPBDIS),  ATTR_BORDER,        &::getCppuType((const sal_Int32*)0),    0, TOP_BORDER_DISTANCE | CONVERT_TWIPS },
         {MAP_CHAR_LEN(OLD_UNO_PAGE_FTRBACKTRAN),ATTR_BACKGROUND,    &::getBooleanCppuType(),            0, MID_GRAPHIC_TRANSPARENT },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aFooterStyleMap_Impl;
 }
 
 
-//------------------------------------------------------------------------
 
 //  Index-Access auf die Style-Typen: 0 = Cell, 1 = Page
 
@@ -359,13 +355,11 @@ const SfxItemPropertyMap* lcl_GetFooterStyleMap()
 
 static UINT16 aStyleFamilyTypes[SC_STYLE_FAMILY_COUNT] = { SFX_STYLE_FAMILY_PARA, SFX_STYLE_FAMILY_PAGE };
 
-//------------------------------------------------------------------------
 
 //! diese Funktionen in einen allgemeinen Header verschieben
 inline long TwipsToHMM(long nTwips) { return (nTwips * 127 + 36) / 72; }
 inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 
-//------------------------------------------------------------------------
 
 #define SCSTYLE_SERVICE         "com.sun.star.style.Style"
 #define SCCELLSTYLE_SERVICE     "com.sun.star.style.CellStyle"
@@ -374,11 +368,9 @@ inline long HMMToTwips(long nHMM)   { return (nHMM * 72 + 63) / 127; }
 SC_SIMPLE_SERVICE_INFO( ScStyleFamiliesObj, "ScStyleFamiliesObj", "com.sun.star.style.StyleFamilies" )
 SC_SIMPLE_SERVICE_INFO( ScStyleFamilyObj, "ScStyleFamilyObj", "com.sun.star.style.StyleFamily" )
 
-//------------------------------------------------------------------------
 
 #define SC_PAPERBIN_DEFAULTNAME     "[From printer settings]"
 
-//------------------------------------------------------------------------
 
 //  conversion programmatic <-> display (visible) name
 //  currently, the core always has the visible names
@@ -445,7 +437,7 @@ const ScDisplayNameMap* lcl_GetStyleNameMap( UINT16 nType )
         }
         return aPageMap;
     }
-    DBG_ERROR("invalid family");
+    OSL_FAIL("invalid family");
     return NULL;
 }
 
@@ -522,7 +514,6 @@ String ScStyleNameConversion::ProgrammaticToDisplayName( const String& rProgName
     return rProgName;
 }
 
-//------------------------------------------------------------------------
 
 sal_Bool lcl_AnyTabProtected( ScDocument& rDoc )
 {
@@ -533,7 +524,6 @@ sal_Bool lcl_AnyTabProtected( ScDocument& rDoc )
     return sal_False;
 }
 
-//------------------------------------------------------------------------
 
 ScStyleFamiliesObj::ScStyleFamiliesObj(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -547,7 +537,7 @@ ScStyleFamiliesObj::~ScStyleFamiliesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScStyleFamiliesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScStyleFamiliesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -560,16 +550,16 @@ void ScStyleFamiliesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 
 // XStyleFamilies
 
-ScStyleFamilyObj*ScStyleFamiliesObj::GetObjectByType_Impl(UINT16 Type) const
+ScStyleFamilyObj*ScStyleFamiliesObj::GetObjectByType_Impl(UINT16 nType) const
 {
     if ( pDocShell )
     {
-        if ( Type == SFX_STYLE_FAMILY_PARA )
+        if ( nType == SFX_STYLE_FAMILY_PARA )
             return new ScStyleFamilyObj( pDocShell, SFX_STYLE_FAMILY_PARA );
-        else if ( Type == SFX_STYLE_FAMILY_PAGE )
+        else if ( nType == SFX_STYLE_FAMILY_PAGE )
             return new ScStyleFamilyObj( pDocShell, SFX_STYLE_FAMILY_PAGE );
     }
-    DBG_ERROR("getStyleFamilyByType: keine DocShell oder falscher Typ");
+    OSL_FAIL("getStyleFamilyByType: keine DocShell oder falscher Typ");
     return NULL;
 }
 
@@ -606,7 +596,7 @@ uno::Any SAL_CALL ScStyleFamiliesObj::getByIndex( sal_Int32 nIndex )
                             throw(lang::IndexOutOfBoundsException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference< container::XNameContainer >  xFamily = GetObjectByIndex_Impl(nIndex);
     uno::Any aAny;
     if (xFamily.is())
@@ -618,13 +608,13 @@ uno::Any SAL_CALL ScStyleFamiliesObj::getByIndex( sal_Int32 nIndex )
 
 uno::Type SAL_CALL ScStyleFamiliesObj::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ::getCppuType((const uno::Reference< container::XNameContainer >*)0);    // muss zu getByIndex passen
 }
 
 sal_Bool SAL_CALL ScStyleFamiliesObj::hasElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( getCount() != 0 );
 }
 
@@ -634,7 +624,7 @@ uno::Any SAL_CALL ScStyleFamiliesObj::getByName( const ::rtl::OUString& aName )
                     throw(container::NoSuchElementException,
                         lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference< container::XNameContainer >  xFamily = GetObjectByName_Impl(aName);
     uno::Any aAny;
     if (xFamily.is())
@@ -647,18 +637,18 @@ uno::Any SAL_CALL ScStyleFamiliesObj::getByName( const ::rtl::OUString& aName )
 uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleFamiliesObj::getElementNames()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Sequence< ::rtl::OUString> aNames(SC_STYLE_FAMILY_COUNT);
     ::rtl::OUString* pNames = aNames.getArray();
-    pNames[0] = ::rtl::OUString::createFromAscii( SC_FAMILYNAME_CELL );
-    pNames[1] = ::rtl::OUString::createFromAscii( SC_FAMILYNAME_PAGE );
+    pNames[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_FAMILYNAME_CELL ));
+    pNames[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_FAMILYNAME_PAGE ));
     return aNames;
 }
 
 sal_Bool SAL_CALL ScStyleFamiliesObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameStr( aName );
     return ( aNameStr.EqualsAscii( SC_FAMILYNAME_CELL ) || aNameStr.EqualsAscii( SC_FAMILYNAME_PAGE ) );
 }
@@ -713,13 +703,13 @@ uno::Sequence<beans::PropertyValue> SAL_CALL ScStyleFamiliesObj::getStyleLoaderO
     uno::Sequence<beans::PropertyValue> aSequence(3);
     beans::PropertyValue* pArray = aSequence.getArray();
 
-    pArray[0].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_OVERWSTL );
+    pArray[0].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_OVERWSTL ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[0].Value, TRUE );
 
-    pArray[1].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_LOADCELL );
+    pArray[1].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_LOADCELL ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[1].Value, TRUE );
 
-    pArray[2].Name = ::rtl::OUString::createFromAscii( SC_UNONAME_LOADPAGE );
+    pArray[2].Name = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_UNONAME_LOADPAGE ));
     ScUnoHelpFunctions::SetBoolInAny( pArray[2].Value, TRUE );
 
     return aSequence;
@@ -740,7 +730,7 @@ ScStyleFamilyObj::~ScStyleFamilyObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScStyleFamilyObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScStyleFamilyObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -792,7 +782,7 @@ void SAL_CALL ScStyleFamilyObj::insertByName( const ::rtl::OUString& aName, cons
                             throw(lang::IllegalArgumentException, container::ElementExistException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     sal_Bool bDone = sal_False;
     //  Reflection muss nicht uno::XInterface sein, kann auch irgendein Interface sein...
     uno::Reference< uno::XInterface > xInterface;
@@ -812,7 +802,7 @@ void SAL_CALL ScStyleFamilyObj::insertByName( const ::rtl::OUString& aName, cons
 
             if ( !pStylePool->Find( aNameStr, eFamily ) )   // noch nicht vorhanden
             {
-                SfxStyleSheetBase& rStyle = pStylePool->Make( aNameStr, eFamily, SFXSTYLEBIT_USERDEF );
+                /*SfxStyleSheetBase& rStyle =*/ pStylePool->Make( aNameStr, eFamily, SFXSTYLEBIT_USERDEF );
 
                 pStyleObj->InitDoc( pDocShell, aNameStr );  // Objekt kann benutzt werden
 
@@ -835,7 +825,7 @@ void SAL_CALL ScStyleFamilyObj::replaceByName( const ::rtl::OUString& aName, con
                             throw(lang::IllegalArgumentException, container::NoSuchElementException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     //! zusammenfassen?
     removeByName( aName );
     insertByName( aName, aElement );
@@ -845,7 +835,7 @@ void SAL_CALL ScStyleFamilyObj::removeByName( const ::rtl::OUString& aName )
                                 throw(container::NoSuchElementException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     BOOL bFound = FALSE;
     if ( pDocShell )
     {
@@ -896,7 +886,7 @@ void SAL_CALL ScStyleFamilyObj::removeByName( const ::rtl::OUString& aName )
 
 sal_Int32 SAL_CALL ScStyleFamilyObj::getCount() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if ( pDocShell )
     {
         ScDocument* pDoc = pDocShell->GetDocument();
@@ -912,7 +902,7 @@ uno::Any SAL_CALL ScStyleFamilyObj::getByIndex( sal_Int32 nIndex )
                             throw(lang::IndexOutOfBoundsException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference< style::XStyle >  xObj = GetObjectByIndex_Impl(nIndex);
     uno::Any aAny;
     if (xObj.is())
@@ -924,13 +914,13 @@ uno::Any SAL_CALL ScStyleFamilyObj::getByIndex( sal_Int32 nIndex )
 
 uno::Type SAL_CALL ScStyleFamilyObj::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ::getCppuType((const uno::Reference< style::XStyle >*)0);    // muss zu getByIndex passen
 }
 
 sal_Bool SAL_CALL ScStyleFamilyObj::hasElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( getCount() != 0 );
 }
 
@@ -940,7 +930,7 @@ uno::Any SAL_CALL ScStyleFamilyObj::getByName( const ::rtl::OUString& aName )
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference< style::XStyle > xObj =
         GetObjectByName_Impl( ScStyleNameConversion::ProgrammaticToDisplayName( aName, eFamily ) );
     uno::Any aAny;
@@ -954,7 +944,7 @@ uno::Any SAL_CALL ScStyleFamilyObj::getByName( const ::rtl::OUString& aName )
 uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleFamilyObj::getElementNames()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if ( pDocShell )
     {
         ScDocument* pDoc = pDocShell->GetDocument();
@@ -984,7 +974,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleFamilyObj::getElementNames()
 sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if ( pDocShell )
     {
         String aString = ScStyleNameConversion::ProgrammaticToDisplayName( aName, eFamily );
@@ -997,13 +987,12 @@ sal_Bool SAL_CALL ScStyleFamilyObj::hasByName( const ::rtl::OUString& aName )
     return sal_False;
 }
 
-//------------------------------------------------------------------------
 
 ScStyleObj::ScStyleObj(ScDocShell* pDocSh, SfxStyleFamily eFam, const String& rName) :
+    aPropSet( (eFam == SFX_STYLE_FAMILY_PARA) ? lcl_GetCellStyleMap() : lcl_GetPageStyleMap() ),
     pDocShell( pDocSh ),
     eFamily( eFam ),
-    aStyleName( rName ),
-    aPropSet( (eFam == SFX_STYLE_FAMILY_PARA) ? lcl_GetCellStyleMap() : lcl_GetPageStyleMap() )
+    aStyleName( rName )
 {
     //  pDocShell ist Null, wenn per ServiceProvider erzeugt
 
@@ -1069,7 +1058,7 @@ ScStyleObj* ScStyleObj::getImplementation(
     return pRet;
 }
 
-void ScStyleObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScStyleObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //  Referenz-Update interessiert hier nicht
 
@@ -1095,7 +1084,7 @@ SfxStyleSheetBase* ScStyleObj::GetStyle_Impl()
 
 sal_Bool SAL_CALL ScStyleObj::isUserDefined() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
         return pStyle->IsUserDefined();
@@ -1104,7 +1093,7 @@ sal_Bool SAL_CALL ScStyleObj::isUserDefined() throw(uno::RuntimeException)
 
 sal_Bool SAL_CALL ScStyleObj::isInUse() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
         return pStyle->IsUsed();
@@ -1113,7 +1102,7 @@ sal_Bool SAL_CALL ScStyleObj::isInUse() throw(uno::RuntimeException)
 
 ::rtl::OUString SAL_CALL ScStyleObj::getParentStyle() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
         return ScStyleNameConversion::DisplayToProgrammaticName( pStyle->GetParent(), eFamily );
@@ -1123,7 +1112,7 @@ sal_Bool SAL_CALL ScStyleObj::isInUse() throw(uno::RuntimeException)
 void SAL_CALL ScStyleObj::setParentStyle( const ::rtl::OUString& rParentStyle )
                 throw(container::NoSuchElementException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
     {
@@ -1169,7 +1158,7 @@ void SAL_CALL ScStyleObj::setParentStyle( const ::rtl::OUString& rParentStyle )
 
 ::rtl::OUString SAL_CALL ScStyleObj::getName() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
         return ScStyleNameConversion::DisplayToProgrammaticName( pStyle->GetName(), eFamily );
@@ -1179,7 +1168,7 @@ void SAL_CALL ScStyleObj::setParentStyle( const ::rtl::OUString& rParentStyle )
 void SAL_CALL ScStyleObj::setName( const ::rtl::OUString& aNewName )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if (pStyle)
     {
@@ -1195,10 +1184,6 @@ void SAL_CALL ScStyleObj::setName( const ::rtl::OUString& aNewName )
         if (bOk)
         {
             aStyleName = aString;       //! notify other objects for this style?
-
-            //  Zellvorlagen = 2, Seitenvorlagen = 4
-            UINT16 nId = ( eFamily == SFX_STYLE_FAMILY_PARA ) ?
-                            SID_STYLE_FAMILY2 : SID_STYLE_FAMILY4;
         }
     }
 }
@@ -1251,7 +1236,7 @@ const SfxItemSet* ScStyleObj::GetStyleItemSet_Impl( const String& rPropName,
 beans::PropertyState SAL_CALL ScStyleObj::getPropertyState( const ::rtl::OUString& aPropertyName )
                                 throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     beans::PropertyState eRet = beans::PropertyState_DIRECT_VALUE;
     String aString = aPropertyName;
 
@@ -1275,7 +1260,7 @@ beans::PropertyState SAL_CALL ScStyleObj::getPropertyState( const ::rtl::OUStrin
         else if ( eState == SFX_ITEM_DONTCARE )
             eRet = beans::PropertyState_AMBIGUOUS_VALUE;    // kann eigentlich nicht sein...
         else
-            DBG_ERROR("unbekannter ItemState");
+            OSL_FAIL("unbekannter ItemState");
     }
     return eRet;
 }
@@ -1287,7 +1272,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScStyleObj::getPropertyStates(
     //  duemmliche Default-Implementierung: alles einzeln per getPropertyState holen
     //! sollte optimiert werden!
 
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     const ::rtl::OUString* pNames = aPropertyNames.getConstArray();
     uno::Sequence<beans::PropertyState> aRet(aPropertyNames.getLength());
     beans::PropertyState* pStates = aRet.getArray();
@@ -1299,7 +1284,7 @@ uno::Sequence<beans::PropertyState> SAL_CALL ScStyleObj::getPropertyStates(
 void SAL_CALL ScStyleObj::setPropertyToDefault( const ::rtl::OUString& aPropertyName )
                             throw(beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = aPropSet.getPropertyMap();
     pMap = SfxItemPropertyMap::GetByName( pMap, aPropertyName );
@@ -1313,7 +1298,7 @@ uno::Any SAL_CALL ScStyleObj::getPropertyDefault( const ::rtl::OUString& aProper
                             throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                                     uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aString = aPropertyName;
     uno::Any aAny;
 
@@ -1372,7 +1357,7 @@ void SAL_CALL ScStyleObj::setPropertyValues( const uno::Sequence< ::rtl::OUStrin
                                 throw (beans::PropertyVetoException, lang::IllegalArgumentException,
                                         lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = aPropertyNames.getLength();
     if ( aValues.getLength() != nCount )
@@ -1402,7 +1387,7 @@ uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyValues(
                                     const uno::Sequence< ::rtl::OUString >& aPropertyNames )
                                 throw (uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     //! optimize
 
@@ -1417,22 +1402,22 @@ uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyValues(
     return aSequence;
 }
 
-void SAL_CALL ScStyleObj::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString>& aPropertyNames,
-                                    const uno::Reference<beans::XPropertiesChangeListener>& xListener )
+void SAL_CALL ScStyleObj::addPropertiesChangeListener( const uno::Sequence< ::rtl::OUString>& /*aPropertyNames*/,
+                                    const uno::Reference<beans::XPropertiesChangeListener>& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     // no bound properties
 }
 
 void SAL_CALL ScStyleObj::removePropertiesChangeListener(
-                                    const uno::Reference<beans::XPropertiesChangeListener>& xListener )
+                                    const uno::Reference<beans::XPropertiesChangeListener>& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     // no bound properties
 }
 
-void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString>& aPropertyNames,
-                                    const uno::Reference<beans::XPropertiesChangeListener>& xListener )
+void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence< ::rtl::OUString>& /*aPropertyNames*/,
+                                    const uno::Reference<beans::XPropertiesChangeListener>& /*xListener*/ )
                                 throw (uno::RuntimeException)
 {
     // no bound properties
@@ -1443,7 +1428,7 @@ void SAL_CALL ScStyleObj::firePropertiesChangeEvent( const uno::Sequence< ::rtl:
 
 void SAL_CALL ScStyleObj::setAllPropertiesToDefault() throw (uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     SfxStyleSheetBase* pStyle = GetStyle_Impl();
     if ( pStyle )
@@ -1482,7 +1467,7 @@ void SAL_CALL ScStyleObj::setAllPropertiesToDefault() throw (uno::RuntimeExcepti
 void SAL_CALL ScStyleObj::setPropertiesToDefault( const uno::Sequence< ::rtl::OUString>& aPropertyNames )
                                 throw (beans::UnknownPropertyException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     sal_Int32 nCount = aPropertyNames.getLength();
     if ( nCount )
@@ -1509,7 +1494,7 @@ uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyDefaults(
                         throw (beans::UnknownPropertyException, lang::WrappedTargetException,
                                 uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     //! optimize
 
@@ -1529,7 +1514,7 @@ uno::Sequence<uno::Any> SAL_CALL ScStyleObj::getPropertyDefaults(
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScStyleObj::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aPropSet.getPropertySetInfo();
 }
 
@@ -1539,7 +1524,7 @@ void SAL_CALL ScStyleObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = aPropSet.getPropertyMap();
     pMap = SfxItemPropertyMap::GetByName( pMap, aPropertyName );
@@ -1595,13 +1580,13 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
         }
         if (!bDone)
         {
-            const SfxItemPropertyMap* pMap =
+            const SfxItemPropertyMap* pLclMap =
                     SfxItemPropertyMap::GetByName( aPropSet.getPropertyMap(), aString );
-            if ( pMap && IsScItemWid( pMap->nWID ) )
+            if ( pLclMap && IsScItemWid( pLclMap->nWID ) )
             {
                 if (pValue)
                 {
-                    switch ( pMap->nWID )       // fuer Item-Spezial-Behandlungen
+                    switch ( pLclMap->nWID )        // fuer Item-Spezial-Behandlungen
                     {
                         case ATTR_VALUE_FORMAT:
                             {
@@ -1615,7 +1600,7 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                                 nOldFormat = pFormatter->
                                         GetFormatForLanguageIfBuiltIn( nOldFormat, eOldLang );
 
-                                UINT32 nNewFormat;
+                                UINT32 nNewFormat(0);
                                 *pValue >>= nNewFormat;
                                 rSet.Put( SfxUInt32Item( ATTR_VALUE_FORMAT, nNewFormat ) );
 
@@ -1630,14 +1615,14 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                             break;
                         case ATTR_INDENT:
                             {
-                                sal_Int16 nVal;
+                                sal_Int16 nVal(0);
                                 *pValue >>= nVal;
-                                rSet.Put( SfxUInt16Item( pMap->nWID, (USHORT)HMMToTwips(nVal) ) );
+                                rSet.Put( SfxUInt16Item( pLclMap->nWID, (USHORT)HMMToTwips(nVal) ) );
                             }
                             break;
                         case ATTR_ROTATE_VALUE:
                             {
-                                sal_Int32 nRotVal;
+                                sal_Int32 nRotVal = 0;
                                 if ( *pValue >>= nRotVal )
                                 {
                                     //  stored value is always between 0 and 360 deg.
@@ -1676,19 +1661,19 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                         case ATTR_PAGE_SCALETOPAGES:
                         case ATTR_PAGE_FIRSTPAGENO:
                             {
-                                sal_Int16 nVal;
+                                sal_Int16 nVal(0);
                                 *pValue >>= nVal;
-                                rSet.Put( SfxUInt16Item( pMap->nWID, nVal ) );
+                                rSet.Put( SfxUInt16Item( pLclMap->nWID, nVal ) );
                             }
                             break;
                         case ATTR_PAGE_CHARTS:
                         case ATTR_PAGE_OBJECTS:
                         case ATTR_PAGE_DRAWINGS:
                             {
-                                sal_Bool bBool;
+                                sal_Bool bBool(sal_False);
                                 *pValue >>= bBool;
                                 //! sal_Bool-MID fuer ScViewObjectModeItem definieren?
-                                rSet.Put( ScViewObjectModeItem( pMap->nWID,
+                                rSet.Put( ScViewObjectModeItem( pLclMap->nWID,
                                     bBool ? VOBJ_MODE_SHOW : VOBJ_MODE_HIDE ) );
                             }
                             break;
@@ -1729,19 +1714,19 @@ void ScStyleObj::SetOnePropertyValue( const SfxItemPropertyMap* pMap, const uno:
                             //  #65253# Default-Items mit falscher Slot-ID
                             //  funktionieren im SfxItemPropertySet3 nicht
                             //! Slot-IDs aendern...
-                            if ( rSet.GetPool()->GetSlotId(pMap->nWID) == pMap->nWID &&
-                                 rSet.GetItemState(pMap->nWID, sal_False) == SFX_ITEM_DEFAULT )
+                            if ( rSet.GetPool()->GetSlotId(pLclMap->nWID) == pLclMap->nWID &&
+                                 rSet.GetItemState(pLclMap->nWID, sal_False) == SFX_ITEM_DEFAULT )
                             {
-                                rSet.Put( rSet.Get(pMap->nWID) );
+                                rSet.Put( rSet.Get(pLclMap->nWID) );
                             }
-                            aPropSet.setPropertyValue( *pMap, *pValue, rSet );
+                            aPropSet.setPropertyValue( *pLclMap, *pValue, rSet );
                     }
                 }
                 else
                 {
-                    rSet.ClearItem( pMap->nWID );
+                    rSet.ClearItem( pLclMap->nWID );
                     // #67847# language for number formats
-                    if ( pMap->nWID == ATTR_VALUE_FORMAT )
+                    if ( pLclMap->nWID == ATTR_VALUE_FORMAT )
                         rSet.ClearItem( ATTR_LANGUAGE_FORMAT );
 
                     //! for ATTR_ROTATE_VALUE, also reset ATTR_ORIENTATION?
@@ -1780,7 +1765,7 @@ uno::Any SAL_CALL ScStyleObj::getPropertyValue( const ::rtl::OUString& aProperty
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aString = aPropertyName;
     uno::Any aAny;
 
@@ -1848,7 +1833,7 @@ uno::Any SAL_CALL ScStyleObj::getPropertyValue( const ::rtl::OUString& aProperty
                     BYTE nValue = ((const SvxPaperBinItem&)pItemSet->Get(nWhich)).GetValue();
                     ::rtl::OUString aName;
                     if ( nValue == PAPERBIN_PRINTER_SETTINGS )
-                        aName = ::rtl::OUString::createFromAscii( SC_PAPERBIN_DEFAULTNAME );
+                        aName = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SC_PAPERBIN_DEFAULTNAME ));
                     else
                     {
                         Printer* pPrinter = pDocShell->GetPrinter();
@@ -1890,7 +1875,7 @@ SC_IMPL_DUMMY_PROPERTY_LISTENER( ScStyleObj )
 
 ::rtl::OUString SAL_CALL ScStyleObj::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScStyleObj" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScStyleObj" ));
 }
 
 sal_Bool SAL_CALL ScStyleObj::supportsService( const ::rtl::OUString& rServiceName )
@@ -1909,13 +1894,13 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScStyleObj::getSupportedServiceNames()
     BOOL bPage = ( eFamily == SFX_STYLE_FAMILY_PAGE );
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCSTYLE_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( bPage ? SCPAGESTYLE_SERVICE
-                                                      : SCCELLSTYLE_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCSTYLE_SERVICE ));
+    pArray[1] = bPage ? ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCPAGESTYLE_SERVICE ))
+                              : ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCCELLSTYLE_SERVICE ));
     return aRet;
 }
 
-//------------------------------------------------------------------------
-
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _TOKEN_HXX
 #define _TOKEN_HXX
 
-#ifndef _SCANNER_HXX
 #include "scanner.hxx"
-#endif
-#ifndef _SBDEF_HXX
 #include "sbdef.hxx"
-#endif
 
 #if defined( SHARED )
 #define SbiTokenSHAREDTMPUNDEF
@@ -158,3 +155,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

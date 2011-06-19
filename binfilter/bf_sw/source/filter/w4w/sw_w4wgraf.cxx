@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,48 +32,23 @@
 #endif
 
 #include <stdlib.h>
-//#include <math.h>
 #ifdef UNX
   #include <unistd.h>
 #endif
 
-#ifndef _UNOTOOLS_TEMPFILE_HXX
 #include <unotools/tempfile.hxx>
-#endif
-#ifndef _SV_GRAPH_HXX //autogen
 #include <vcl/graph.hxx>
-#endif
-#ifndef _TL_POLY_HXX
 #include <tools/poly.hxx>
-#endif
-#ifndef _FILTER_HXX //autogen
 #include <bf_svtools/filter.hxx>
-#endif
-#ifndef _SV_VIRDEV_HXX //autogen
 #include <vcl/virdev.hxx>
-#endif
-#ifndef _CACHESTR_HXX //autogen
 #include <tools/cachestr.hxx>
-#endif
-#ifndef _SVX_IMPGRF_HXX //autogen
 #include <bf_svx/impgrf.hxx>
-#endif
 
-#ifndef _SHELLIO_HXX
 #include <shellio.hxx>
-#endif
-#ifndef _W4WSTK_HXX
 #include <w4wstk.hxx>          // fuer den Attribut Stack
-#endif
-#ifndef _W4WPAR_HXX
 #include <w4wpar.hxx>          // ERR_CHAR
-#endif
-#ifndef _W4WGRAF_HXX
 #include <w4wgraf.hxx>         // eigenes
-#endif
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 namespace binfilter {
 
 #define MAX_MEM_GRAF 300000         // ab 300K im File statt im Speicher
@@ -396,16 +372,17 @@ if( 24 > n4ColBits )
         pB = pBuf;
         while ( nLeft > 0 ){
             nRun = (BYTE)GetHexByte();
-            if ( ( nRun & 0x80 ) != 0 ){    // komprimiert
+            if ( ( nRun & 0x80 ) != 0 ) //komprimiert
+            {
                 nRun &= 0x7f;
                 c = (BYTE)GetHexByte();
-                for ( x=0; x<nRun; x++){
+                for ( x=0; x<nRun && pB < pBuf+nWdtOut; x++)
                     *pB++ = c;
-                }
-            }else{                          // unkomprimiert
-                for ( x=0; x<nRun; x++){
+            }
+            else // unkomprimiert
+            {
+                for ( x=0; x<nRun && pB < pBuf+nWdtOut; x++)
                     *pB++ = (BYTE)GetHexByte();
-                }
             }
             nLeft -= nRun;
         }
@@ -515,55 +492,6 @@ short SwW4WGraf::ReadW4WGrafBMap( long, long, long )    // Mastersoft internal F
 // W4W Vectorimport von Joe  (BEGIN) ///////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-#ifdef JOEDEBUG
-
-
-void ShowW4WGrafRec(USHORT nRecID)
-{
-    static USHORT nLnCnt=0;
-    switch (nRecID) {
-        case W4WRG_Ignore: ShowMsg("Dummy     "); break;
-        case W4WRG_RecdID: ShowMsg("OrgFileTp "); break;
-        case W4WRG_DefPal: ShowMsg("Def_Pal  Û"); break;
-        case W4WRG_DefPen: ShowMsg("Def_Pen   "); break;
-        case W4WRG_DefBrs: ShowMsg("Def_Brs   "); break;
-        case W4WRG_DefMrk: ShowMsg("Def_Mark Û"); break;
-        case W4WRG_MoveTo: ShowMsg("Move_To   "); break;
-        case W4WRG_LineTo: ShowMsg("Line_To   "); break;
-        case W4WRG_FloodF: ShowMsg("FloodfillÛ"); break;
-        case W4WRG_SetFil: ShowMsg("Set_Fill Û"); break;
-        case W4WRG_DrMark: ShowMsg("Drw_Mark Û"); break;
-        case W4WRG_DrMrkP: ShowMsg("Drw_MarkAÛ"); break;
-        case W4WRG_DrRect: ShowMsg("Drw_Rect  "); break;
-        case W4WRG_DrPLin: ShowMsg("Drw_PLine "); break;
-        case W4WRG_DrPoly: ShowMsg("Drw_Poly  "); break;
-        case W4WRG_DrwArc: ShowMsg("Drw_Arc  Û"); break;
-        case W4WRG_DrwPie: ShowMsg("Drw_Pie  Û"); break;
-        case W4WRG_DrCirc: ShowMsg("Drw_Circ Û"); break;
-        case W4WRG_DrBMap: ShowMsg("Drw_BMap Û"); break;
-        case W4WRG_Scalng: ShowMsg("Set_ScaleÛ"); break;
-        case W4WRG_Rotate: ShowMsg("Set_Rota Û"); break;
-        case W4WRG_DefFnt: ShowMsg("Def_Font Û"); break;
-        case W4WRG_DrText: ShowMsg("Drw_Text Û"); break;
-        case W4WRG_BckCol: ShowMsg("Set_BCol Û"); break;
-        case W4WRG_StGrup: ShowMsg("Start_Grp "); break;
-        case W4WRG_EoGrup: ShowMsg("End_Grp   "); break;
-        case W4WRG_DrChrd: ShowMsg("Drw_ChordÛ"); break;
-        case W4WRG_DefP16: ShowMsg("Def_Pal16Û"); break;
-        case W4WRG_DefGCv: ShowMsg("Def_PalGrÛ"); break;
-        case W4WRG_DefFHd: ShowMsg("Def_FHeadÛ"); break;
-        case W4WRG_EoFile: ShowMsg("EOFÞÜÝÞßÝ \n"); break;
-    }
-    nLnCnt++;
-    if (nLnCnt>=23*8) {
-        nLnCnt=0;
-        WaitKey();
-    }
-}
-
-#endif
-
-
 BOOL SwW4WGraf::CheckW4WVector() // enth„lt die W4W-Grafik Vektordaten ? (Joe)
 {
     long   nFPosMerk = rInp.Tell();
@@ -644,13 +572,7 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
     nRecID   = GetHexUShort();
     nVarSize = GetVarSize();
 
-#ifdef JOEDEBUG
-//    ShowW4WGrafRec(nRecID);
-#endif
-
     switch (nRecID) {
-//        case W4WRG_DefPal: nRet=ReadPalette(nVarSize); break;
-//        case W4WRG_DrBMap: nRet=ReadBitmap(nVarSize);  break;
         case W4WRG_RecdID: {
             /* INT16   nId= */ GetHexUShort();
             /* INT16   nRes= */GetHexUShort();
@@ -796,23 +718,19 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
         */
         case W4WRG_TextBox: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_StClPath: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_EoClPath: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_Bezier: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         /*
         case W4WRG_Dr24bitBMap: {
@@ -821,38 +739,31 @@ int SwW4WGraf::GetNextVectRec(OutputDevice& rOut)
         */
         case W4WRG_Comment: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_Spline: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_Transform: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_LineHead: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_LineTail: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_CanvasCol: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
         case W4WRG_BmpPos: {
             // Dummy-Implementation
-            short nDummy;
-            for( USHORT i=0; i < nVarSize; i++) nDummy = GetHexByte();
+            for( USHORT i=0; i < nVarSize; i++) GetHexByte();
         } break;
 
 // Bitmap und Vektoren gemischt geht nicht, denn im W4W-BitmapRec steht
@@ -1032,8 +943,8 @@ short SwW4WGraf::ReadGrafFile( long nTyp, long nWidth, long nHeight )   // Grafi
                 // Info ueber ihn. Ich nehme mal an, dass er immer
                 // gleich ist wie in den Beispiel-Dateien von WpWin52
 
-                for ( int i = 0; i < sizeof( WpgFileHd ); i++ )  // Schreibe Header
-                    aOut << WpgFileHd[ i ];
+                for (size_t i = 0; i < sizeof(WpgFileHd); ++i)  // Schreibe Header
+                    aOut << WpgFileHd[i];
             }
             break;
 
@@ -1043,8 +954,8 @@ short SwW4WGraf::ReadGrafFile( long nTyp, long nWidth, long nHeight )   // Grafi
                 // haben einen verstuemmelten Header
                 // sowie eine andere Dateilaenge als
                 // die Original-Dateien
-                short s = ReadChar();   // ueberlies " 0 | "
-                s = ReadChar();
+                ReadChar(); // ueberlies " 0 | "
+                ReadChar();
             }
             break;
 
@@ -1101,3 +1012,5 @@ short SwW4WGraf::Read( long nTyp, long nWidth, long nHeight )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

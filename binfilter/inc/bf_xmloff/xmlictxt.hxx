@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef _XMLOFF_XMLICTXT_HXX
 #define _XMLOFF_XMLICTXT_HXX
 
-#ifndef _COM_SUN_STAR_XML_SAX_XATTRIBUTELIST_HPP_
 #include <com/sun/star/xml/sax/XAttributeList.hpp>
-#endif
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 namespace binfilter {
 
 class SvXMLNamespaceMap;
@@ -109,3 +104,4 @@ SV_IMPL_REF( SvXMLImportContext )
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLICTXT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,7 +41,6 @@
 #include "bf_so3/ipclient.hxx"
 #include <bf_so3/svstor.hxx>
 #include "bf_so3/ipwin.hxx"
-#include <ipmenu.hxx>
 #include <svuidlg.hrc>
 #include <tools/urlobj.hxx>
 #include "bf_so3/soerr.hxx"
@@ -58,12 +58,14 @@
 #include <com/sun/star/plugin/XPlugin.hpp>
 #include <com/sun/star/plugin/XPluginManager.hpp>
 
-using namespace rtl;
 using namespace com::sun::star;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::lang;
 using namespace com::sun::star::beans;
 using namespace com::sun::star::plugin;
+
+using ::rtl::OUString;
+using ::rtl::OUStringToOString;
 
 namespace binfilter {
 
@@ -126,7 +128,6 @@ SvPlugInEnvironment::~SvPlugInEnvironment()
     // statt DeleteEditWin() auf NULL setzen und durch den Manager
     // zerst"oren
     SetEditWin( NULL );
-    DeleteObjMenu();
     DeleteWindows();
     delete pImpl;
 }
@@ -261,7 +262,7 @@ BOOL SvPlugInObject::StartPlugIn( )
     }
 
     Reference< XMultiServiceFactory > xFac( ::utl::getProcessServiceFactory() );
-    Reference< XPluginManager > xPMgr( xFac->createInstance( OUString::createFromAscii("com.sun.star.plugin.PluginManager") ), UNO_QUERY );
+    Reference< XPluginManager > xPMgr( xFac->createInstance( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.plugin.PluginManager" )) ), UNO_QUERY );
     if (! xPMgr.is() )
         ShowServiceNotAvailableError( NULL, String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( "PluginManager" ) ), TRUE );
 
@@ -746,106 +747,6 @@ BOOL SvPlugInObject::Load
 }
 
 //=========================================================================
-BOOL SvPlugInObject::Save()
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in den, in <SvPlugInObject::InitNew>
-    oder <SvPlugInObject::Load> "ubergebenen Storage, geschrieben.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::Save>
-*/
-{
-    if( SvInPlaceObject::Save() )
-    {
-        SvStorageStreamRef xStm;
-        xStm = GetStorage()->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                    STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( GetStorage()->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)PLUGIN_VERS;
-        *xStm << nPlugInMode;
-        *xStm << aCmdList;
-        if( pURL )
-        {
-            *xStm << (BYTE)TRUE;
-            String aURL = pURL->GetMainURL( INetURLObject::NO_DECODE );
-            if( aURL.Len() )
-                aURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL );
-            xStm->WriteByteString( aURL, RTL_TEXTENCODING_ASCII_US );
-        }
-        else
-            *xStm << (BYTE)FALSE;
-        xStm->WriteByteString( GetMimeType(), RTL_TEXTENCODING_ASCII_US );
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
-BOOL SvPlugInObject::SaveAs
-(
-    SvStorage *pStor    /* Storage, in den der Inhalt des Objekte
-                           geschrieben wird */
-)
-/*  [Beschreibung]
-
-    Der Inhalt des Objektes wird in pStor geschrieben.
-
-    [Anmerkung]
-
-    Der Storage wird nicht behalten.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, das Objekt wurde geschreiben.
-                    FALSE, das Objekt wurde nicht geschrieben. Es muss
-                    die in der Klasse <SvPersist> beschrieben
-                    Fehlerbehandlung erfolgen.
-
-    [Querverweise]
-
-    <SvPersist::SaveAs>
-*/
-{
-    if( SvInPlaceObject::SaveAs( pStor ) )
-    {
-        SvStorageStreamRef xStm;
-        xStm = pStor->OpenStream( String::CreateFromAscii( RTL_CONSTASCII_STRINGPARAM( DOCNAME ) ),
-                                STREAM_STD_WRITE | STREAM_TRUNC );
-        xStm->SetVersion( pStor->GetVersion() );
-        xStm->SetBufferSize( 8192 );
-
-        *xStm << (BYTE)PLUGIN_VERS;
-        *xStm << nPlugInMode;
-        *xStm << aCmdList;
-        if( pURL )
-        {
-            *xStm << (BYTE)TRUE;
-            String aURL = pURL->GetMainURL( INetURLObject::NO_DECODE );
-            if( aURL.Len() )
-                aURL = ::binfilter::StaticBaseUrl::AbsToRel( aURL );
-            xStm->WriteByteString( aURL, RTL_TEXTENCODING_ASCII_US );
-        }
-        else
-            *xStm << (BYTE)FALSE;
-        xStm->WriteByteString( GetMimeType(), RTL_TEXTENCODING_ASCII_US );
-
-        return xStm->GetError() == ERRCODE_NONE;
-    }
-    return FALSE;
-}
-
-//=========================================================================
 void SvPlugInObject::HandsOff()
 /*  [Beschreibung]
 
@@ -858,32 +759,6 @@ void SvPlugInObject::HandsOff()
 */
 {
     SvInPlaceObject::HandsOff();
-}
-
-//=========================================================================
-BOOL SvPlugInObject::SaveCompleted
-(
-    SvStorage * pStor   /* Storage auf dem das Objekt arbeitet. Der kann
-                           auch NULL sein. Dies Bedeutet, es wird auf
-                           dem alten Storage weiter gearbeitet */
-)
-/*  [Beschreibung]
-
-    Nach dem Aufruf dieser Methode ist das Verhalten des Objektes
-    wieder definiert.
-
-    [R"uckgabewert]
-
-    BOOL            TRUE, es kann auf dem neuen Storage gearbeitet werden.
-                    FALSE, es kann nicht auf dem neuen Storage gearbeitet
-                    werden
-
-    [Querverweise]
-
-    <SvPersist::SaveCompleted>
-*/
-{
-    return SvInPlaceObject::SaveCompleted( pStor );
 }
 
 //=========================================================================
@@ -1044,3 +919,5 @@ void SvPlugInObject::SetPlugInMode
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

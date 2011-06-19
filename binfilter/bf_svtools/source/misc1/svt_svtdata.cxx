@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,19 +31,10 @@
 
 #include <map>
 
-#ifndef _TOOLS_RESMGR_HXX
 #include <tools/resmgr.hxx>
-#endif
-#ifndef _SHL_HXX
 #include <tools/shl.hxx>
-#endif
-#ifndef _VOS_PROCESS_HXX_
-#include <vos/process.hxx>
-#endif
 
-#ifndef _SVTOOLS_SVTDATA_HXX
 #include <bf_svtools/svtdata.hxx>
-#endif
 
 namespace binfilter
 {
@@ -68,3 +60,5 @@ ImpSvtData & ImpSvtData::GetSvtData()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

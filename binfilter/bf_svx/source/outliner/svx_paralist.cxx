@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -49,30 +50,23 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ Paragraph::~Paragraph()
-/*N*/ {
-/*N*/   DBG_DTOR( Paragraph, 0 );
-/*N*/ }
+Paragraph::~Paragraph()
+{
+    DBG_DTOR( Paragraph, 0 );
+}
 
-/*N*/ void ParagraphList::Clear( BOOL bDestroyParagraphs )
-/*N*/ {
-/*N*/   if ( bDestroyParagraphs )
-/*N*/   {
-/*N*/       for ( ULONG n = GetParagraphCount(); n; )
-/*N*/       {
-/*N*/           Paragraph* pPara = GetParagraph( --n );
-/*N*/           delete pPara;
-/*N*/       }
-/*N*/   }
-/*N*/   List::Clear();
-/*N*/ }
-
-
-
-
-
-
-
+void ParagraphList::Clear( BOOL bDestroyParagraphs )
+{
+    if ( bDestroyParagraphs )
+    {
+        for ( ULONG n = GetParagraphCount(); n; )
+        {
+            Paragraph* pPara = GetParagraph( --n );
+            delete pPara;
+        }
+    }
+    aList.clear();
+}
 
 
 /*NBFF*/ Paragraph* ParagraphList::GetParent( Paragraph* pParagraph, USHORT& rRelPos ) const
@@ -93,3 +87,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

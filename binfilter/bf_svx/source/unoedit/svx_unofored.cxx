@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 
 #include <algorithm>
 
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HPP_
 #include <com/sun/star/i18n/WordType.hpp>
-#endif
 
 #include <unoedhlp.hxx>
 #include <outliner.hxx>
@@ -90,7 +89,7 @@ SfxItemSet SvxEditEngineForwarder::GetAttribs( const ESelection& rSel, BOOL bOnl
             nFlags = GETATTRIBS_CHARATTRIBS;
             break;
         default:
-            DBG_ERROR("unknown flags for SvxOutlinerForwarder::GetAttribs");
+            OSL_FAIL("unknown flags for SvxOutlinerForwarder::GetAttribs");
         }
 
         return rEditEngine.GetAttribs( rSel.nStartPara, rSel.nStartPos, rSel.nEndPos, nFlags );
@@ -236,45 +235,6 @@ USHORT GetSvxEditEngineItemState( EditEngine& rEditEngine, const ESelection& rSe
 
         if( !bEmpty && !bGaps && nLastEnd < ( nEndPos - 1 ) )
             bGaps = TRUE;
-/*
-        // since we have no portion with our item or if there were gaps
-        if( bEmpty || bGaps )
-        {
-            // we need to check the paragraph item
-            const SfxItemSet& rParaSet = rEditEngine.GetParaAttribs( nPara );
-            if( rParaSet.GetItemState( nWhich ) == SFX_ITEM_SET )
-            {
-                eState = SFX_ITEM_SET;
-                // get item from the paragraph
-                const SfxPoolItem* pTempItem = rParaSet.GetItem( nWhich );
-                if( pParaItem )
-                {
-                    if( *pParaItem != *pTempItem )
-                        return SFX_ITEM_DONTCARE;
-                }
-                else
-                {
-                    pParaItem = pTempItem;
-                }
-
-                // set if theres no last item or if its the same
-                eParaState = SFX_ITEM_SET;
-            }
-            else if( bEmpty )
-            {
-                eParaState = SFX_ITEM_DEFAULT;
-            }
-            else if( bGaps )
-            {
-                // gaps and item not set in paragraph, thats a dont care
-                return SFX_ITEM_DONTCARE;
-            }
-        }
-        else
-        {
-            eParaState = SFX_ITEM_SET;
-        }
-*/
         if( bEmpty )
             eParaState = SFX_ITEM_DEFAULT;
         else if( bGaps )
@@ -324,7 +284,7 @@ EFieldInfo SvxEditEngineForwarder::GetFieldInfo( USHORT nPara, USHORT nField ) c
     return rEditEngine.GetFieldInfo( nPara, nField );
 }
 
-EBulletInfo SvxEditEngineForwarder::GetBulletInfo( USHORT nPara ) const
+EBulletInfo SvxEditEngineForwarder::GetBulletInfo( USHORT ) const
 {
     return EBulletInfo();
 }
@@ -463,7 +423,7 @@ USHORT SvxEditEngineForwarder::GetLineLen( USHORT nPara, USHORT nLine ) const
     return rEditEngine.GetLineLen(nPara, nLine);
 }
 
-sal_Bool SvxEditEngineForwarder::QuickFormatDoc( BOOL bFull )
+sal_Bool SvxEditEngineForwarder::QuickFormatDoc( BOOL )
 {
     rEditEngine.QuickFormatDoc();
 
@@ -486,13 +446,13 @@ sal_Bool SvxEditEngineForwarder::InsertText( const String& rStr, const ESelectio
     return sal_True;
 }
 
-USHORT SvxEditEngineForwarder::GetDepth( USHORT nPara ) const
+USHORT SvxEditEngineForwarder::GetDepth( USHORT ) const
 {
     // EditEngine does not support outline depth
     return 0;
 }
 
-sal_Bool SvxEditEngineForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
+sal_Bool SvxEditEngineForwarder::SetDepth( USHORT, USHORT nNewDepth )
 {
     // EditEngine does not support outline depth
     return nNewDepth == 0 ? sal_True : sal_False;
@@ -500,3 +460,5 @@ sal_Bool SvxEditEngineForwarder::SetDepth( USHORT nPara, USHORT nNewDepth )
 
 //------------------------------------------------------------------------
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

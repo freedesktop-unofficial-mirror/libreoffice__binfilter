@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 #include "sbdef.hxx"
 #include "sbxobj.hxx"
 #include "sbxdef.hxx"
-#ifndef _RTL_USTRING_HXX
 #include <rtl/ustring.hxx>
-#endif
 
 namespace binfilter {
 class SbMethod;
@@ -49,7 +48,7 @@ class SbModuleImpl;
 
 class SbModule : public SbxObject
 {
-    friend class    TestToolObj;    // somit können Module nach laden zur Laufzeit initialisiert werden
+    friend class    TestToolObj;    // somit k?nen Module nach laden zur Laufzeit initialisiert werden
     friend class    SbiCodeGen;
     friend class    SbMethod;
     friend class    SbiRuntime;
@@ -72,7 +71,7 @@ protected:
     const BYTE*     FindNextStmnt( const BYTE*, USHORT&, USHORT&,
                         BOOL bFollowJumps, const SbiImage* pImg=NULL ) const;
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual BOOL LoadCompleted();
     virtual void SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                              const SfxHint& rHint, const TypeId& rHintType );
@@ -157,3 +156,5 @@ SV_DECL_IMPL_REF(SbClassModuleObject);
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

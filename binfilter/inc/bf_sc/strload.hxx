@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef SC_STRLOAD_HXX
 #define SC_STRLOAD_HXX
 
-#ifndef SC_SCRESID_HXX
 #include "scresid.hxx"
-#endif
 
-#ifndef _TOOLS_RC_HXX //autogen
 #include <tools/rc.hxx>
-#endif
 namespace binfilter {
 
 class ScRscStrLoader : public Resource
@@ -56,3 +53,4 @@ private:
 } //namespace binfilter
 #endif // SC_STRLOAD_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

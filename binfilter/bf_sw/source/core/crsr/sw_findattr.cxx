@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,28 +33,16 @@
 
 
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 
-#ifndef _TXATBASE_HXX //autogen
 #include <txatbase.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SWCRSR_HXX
 #include <swcrsr.hxx>
-#endif
-#ifndef _PAMTYP_HXX
 #include <pamtyp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -64,16 +53,18 @@ using namespace ::com::sun::star::util;
     // Sonderbehandlung fuer SvxFontItem, nur den Namen vergleichen:
 
 
-/*N*/ const SwTxtAttr* GetFrwrdTxtHint( const SwpHints& rHtsArr, USHORT& rPos,
-/*N*/                                   xub_StrLen nCntntPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ const SwTxtAttr* GetFrwrdTxtHint( const SwpHints& /*rHtsArr*/, USHORT& /*rPos*/,
+/*N*/   xub_StrLen /*nCntntPos*/ )
+/*N*/ {
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
 
 
-/*N*/ const SwTxtAttr* GetBkwrdTxtHint( const SwpHints& rHtsArr, USHORT& rPos,
-/*N*/                                 xub_StrLen nCntntPos )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ const SwTxtAttr* GetBkwrdTxtHint( const SwpHints& /*rHtsArr*/, USHORT& /*rPos*/,
+/*N*/       xub_StrLen /*nCntntPos*/ )
+/*N*/ {
+        DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return 0;                   // kein gueltiges TextAttribut
 /*N*/ }
 
@@ -136,32 +127,35 @@ struct SwFindParaAttr : public SwFindParas
     SwFindParaAttr( const SfxItemSet& rSet, BOOL bNoCollection,
                     const SearchOptions* pOpt, const SfxItemSet* pRSet,
                     SwCursor& rCrsr )
-        : pSet( &rSet ), pReplSet( pRSet ), rCursor( rCrsr ),
-            bValue( bNoCollection ), pSearchOpt( pOpt ), pSTxt( 0 )
+        : bValue( bNoCollection )
+        , pSet( &rSet )
+        , pReplSet( pRSet )
+        , pSearchOpt( pOpt )
+        , rCursor( rCrsr )
+        , pSTxt( 0 )
         {}
     ~SwFindParaAttr()   { delete pSTxt; }
 
-    virtual int Find( SwPaM* , SwMoveFn , const SwPaM*, FASTBOOL bInReadOnly );
+    virtual int Find( SwPaM* , SwMoveFn , const SwPaM*, bool bInReadOnly );
      virtual int IsReplaceMode() const;
 };
 
 
-/*N*/int SwFindParaAttr::Find( SwPaM* pCrsr, SwMoveFn fnMove, const SwPaM* pRegion,
-/*N*/                           FASTBOOL bInReadOnly )
+/*N*/int SwFindParaAttr::Find( SwPaM*, SwMoveFn, const SwPaM*, bool)
 /*N*/{
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001      // String ersetzen ?? (nur wenn Text angegeben oder nicht attributiert
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 
 /*N*/int SwFindParaAttr::IsReplaceMode() const
 /*N*/{
-DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOpt->replaceString.getLength() ) ||
+DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 // Suchen nach Attributen
 
 
-/*M*/ ULONG SwCursor::Find( const SfxItemSet& rSet, FASTBOOL bNoCollections,
+/*M*/ ULONG SwCursor::Find( const SfxItemSet& rSet, bool bNoCollections,
 /*M*/                   SwDocPositions nStart, SwDocPositions nEnde, BOOL& bCancel,
 /*M*/                   FindRanges eFndRngs,
 /*M*/                   const SearchOptions* pSearchOpt, const SfxItemSet* pReplSet )
@@ -189,3 +183,5 @@ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001  return ( pSearchOpt && pSearchOp
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

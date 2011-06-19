@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,18 +27,12 @@
  ************************************************************************/
 
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
-#ifndef _XMLOFF_DRAWASPECTHDL_HXX
 #include "DrawAspectHdl.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -49,7 +44,7 @@ using namespace ::binfilter::xmloff::token;
 // class XMLMeasurePropHdl
 //
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_DrawAspect_Enum[] =
+SvXMLEnumMapEntry const pXML_DrawAspect_Enum[] =
 {
     { XML_CONTENT,          1   },
     { XML_THUMBNAIL,        2   },
@@ -83,12 +78,12 @@ sal_Bool DrawAspectHdl::importXML( const OUString& rStrImpValue, uno::Any& rValu
     return nAspect != 0;
 }
 
-sal_Bool DrawAspectHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool DrawAspectHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     sal_Bool bRet = sal_False;
       OUStringBuffer aOut;
 
-    sal_Int32 nAspect;
+    sal_Int32 nAspect(0);
     if( rValue >>= nAspect )
     {
         if( (nAspect & 1) != 0 )
@@ -123,3 +118,5 @@ sal_Bool DrawAspectHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValu
     return bRet;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,67 +29,29 @@
 #ifndef SC_DATAUNO_HXX
 #define SC_DATAUNO_HXX
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEREFERRER_HPP_
 #include <com/sun/star/sheet/XCellRangeReferrer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCONSOLIDATIONDESCRIPTOR_HPP_
 #include <com/sun/star/sheet/XConsolidationDescriptor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATABASERANGES_HPP_
 #include <com/sun/star/sheet/XDatabaseRanges.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XDATABASERANGE_HPP_
 #include <com/sun/star/sheet/XDatabaseRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSUBTOTALFIELD_HPP_
 #include <com/sun/star/sheet/XSubTotalField.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XNAMED_HPP_
 #include <com/sun/star/container/XNamed.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE3_HXX_
 #include <cppuhelper/implbase3.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE5_HXX_
 #include <cppuhelper/implbase5.hxx>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE6_HXX_
 #include <cppuhelper/implbase6.hxx>
-#endif
 namespace binfilter {
 
 class ScDBData;
@@ -675,3 +638,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

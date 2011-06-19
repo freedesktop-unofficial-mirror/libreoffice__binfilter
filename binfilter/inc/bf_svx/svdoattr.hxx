@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SVX_XFILLIT0_HXX //autogen
 #include <bf_svx/xfillit0.hxx>
-#endif
 
-#ifndef _SVX_XFLASIT_HXX //autogen
 #include <bf_svx/xflasit.hxx>
-#endif
 
-#ifndef _SVX_XLINEIT0_HXX //autogen
 #include <bf_svx/xlineit0.hxx>
-#endif
 
-#ifndef _SVX_XLNASIT_HXX //autogen
 #include <bf_svx/xlnasit.hxx>
-#endif
 
-#ifndef _SVDOBJ_HXX
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _SVDATTR_HXX
 #include <bf_svx/svdattr.hxx>
-#endif
 namespace binfilter {
 
 //************************************************************
@@ -93,19 +82,19 @@ protected:
     // ueber nSin/nCos wird der Winkel vorgegeben
 
     // Schattenabstand ermitteln. FALSE=Kein Schatten.
-    FASTBOOL ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const;
+    bool ImpGetShadowDist(sal_Int32& nXDist, sal_Int32& nYDist) const;
 
     // ggf. Schattenversatz zum BoundRect draufaddieren
     void ImpAddShadowToBoundRect();
 
     // Line und Fill Attribute fuer Schatten setzen.
     // Return=FALSE: kein Schatten attributiert.
-    FASTBOOL ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const;
+    bool ImpSetShadowAttributes( const SfxItemSet& rSet, SfxItemSet& rShadowSet ) const;
 
     // Zuhoeren, ob sich ein StyleSheet aendert
     virtual void SFX_NOTIFY(SfxBroadcaster& rBC, const TypeId& rBCType, const SfxHint& rHint, const TypeId& rHintType);
     virtual void RemoveStyleSheet();
-    virtual void AddStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void AddStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
     // aus NULL-AttrPointern Pointer auf defaults machen
     virtual void ForceDefaultAttr();
@@ -123,13 +112,13 @@ public:
 
     virtual const Rectangle& GetSnapRect() const;
     virtual void operator=(const SdrObject& rObj);
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(const SdrObjIOHeader& rHead, SvStream& rIn);
     virtual void SetModel(SdrModel* pNewModel);
 
     // pre- and postprocessing for objects for saving
-    virtual void PreSave();
-    virtual void PostSave();
+    virtual void PreSave() {}
+    virtual void PostSave() {}
 
     // ItemSet access
     virtual const SfxItemSet& GetItemSet() const;
@@ -143,8 +132,8 @@ public:
     virtual void ItemSetChanged(const SfxItemSet& rSet);
 
     virtual SfxStyleSheet* GetStyleSheet() const;
-    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
-    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, FASTBOOL bDontRemoveHardAttr);
+    virtual void SetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
+    virtual void NbcSetStyleSheet(SfxStyleSheet* pNewStyleSheet, bool bDontRemoveHardAttr);
 
 
     // ItemPool fuer dieses Objekt wechseln
@@ -156,3 +145,4 @@ public:
 }//end of namespace binfilter
 #endif //_SVDOATTR_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

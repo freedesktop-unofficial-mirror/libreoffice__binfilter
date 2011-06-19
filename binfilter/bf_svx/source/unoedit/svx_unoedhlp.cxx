@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "unoedhlp.hxx"
 #include "editeng.hxx"
@@ -99,3 +98,5 @@ Rectangle SvxEditSourceHelper::EEToUserSpace( const Rectangle& rRect, const Size
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

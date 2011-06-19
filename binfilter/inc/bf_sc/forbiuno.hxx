@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef SC_FORBIUNO_HXX
 #define SC_FORBIUNO_HXX
 
-#ifndef _SVX_UNOFORBIDDENCHARSTABLE_HXX_
 #include <bf_svx/UnoForbiddenCharsTable.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 namespace binfilter {
 
 class ScDocShell;
@@ -59,3 +56,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

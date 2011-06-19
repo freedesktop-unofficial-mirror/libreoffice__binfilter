@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 #ifndef _SVSTDARR_HXX
 #define _SVSTDARR_USHORTS
 #define _SVSTDARR_ULONGS
@@ -40,18 +39,10 @@
 #define _SVSTDARR_USHORTSSORT
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SFXITEMSET_HXX //autogen
 #include <bf_svtools/itemset.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
-#include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _NUMRULE_HXX
+#include <com/sun/star/uno/Sequence.hxx>
 #include <numrule.hxx>
-#endif
-#ifndef _REDLENUM_HXX
 #include <redlenum.hxx>
-#endif
 class Graphic;
 namespace binfilter {
 
@@ -111,13 +102,11 @@ class SwSectionNode;
 
 namespace utl {
     class TransliterationWrapper;
-}//STRIP008 ;
+}
 
 #ifdef DBG_UTIL
-class Writer;
 class SwUndo;
-#define OUT_UNDOBJ( name )  \
-    friend Writer& OutUndo_ ## name( Writer&, const SwUndo& );
+#define OUT_UNDOBJ( name )
 #else
 #define OUT_UNDOBJ( name )
 #endif
@@ -422,10 +411,10 @@ public:
 
 // Basis-Klasse fuer Insert von Dokument, Glossaries und Kopieren
 
-class SwUndoInsDoc //STRIP001 : public SwUndoInserts
+class SwUndoInsDoc
 {
 public:
-    SwUndoInsDoc( const SwPaM& ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SwUndoInsDoc( const SwPaM& );
+    SwUndoInsDoc( const SwPaM& ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -468,8 +457,6 @@ public:
     SwUndoTblNdsChg( USHORT UndoId, const SwSelBoxes& rBoxes,
                     const SwTableNode& rTblNd );
     virtual ~SwUndoTblNdsChg();
-//STRIP001     virtual void Undo( SwUndoIter& );
-//STRIP001     virtual void Redo( SwUndoIter& );
 
     void SaveSection( SwStartNode* pSttNd );
 
@@ -548,12 +535,6 @@ public:
  --------------------------------------------------------------------*/
 
 
-
-
-
-
-//--------------------------------------------------------------------
-
 class SwUndoFlyBase : public SwUndo, private SwUndoSaveSection
 {
 protected:
@@ -608,15 +589,8 @@ public:
 
 };
 
-//--------------------------------------------------------------------
-
 class _UnReplaceData;
-SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 )//STRIP008 ;
-
-
-
-//--------------------------------------------------------------------
-
+SV_DECL_PTRARR_DEL( _UnReplaceDatas, _UnReplaceData*, 10, 25 )
 
 
 
@@ -673,8 +647,6 @@ public:
 //------------ Undo von verschieben/stufen von Gliederung ----------------
 
 
-//--------------------------------------------------------------------
-
 class SwUndoDefaultAttr : public SwUndo
 {
     SfxItemSet* pOldSet;            // die alten Attribute
@@ -686,7 +658,6 @@ public:
     OUT_UNDOBJ( DefaultAttr )
 };
 
-//--------------------------------------------------------------------
 // ---------- Undo fuer Numerierung ----------------------------------
 
 class SwUndoInsNum : public SwUndo, private SwUndRng
@@ -706,7 +677,6 @@ public:
 
     OUT_UNDOBJ( InsNum )
 };
-
 
 
 class SwUndoNumUpDown : public SwUndo, private SwUndRng
@@ -729,20 +699,6 @@ public:
     OUT_UNDOBJ( NumRuleStart )
 };
 
-//--------------------------------------------------------------------
-// ---------- Undo fuer DrawObjecte ----------------------------------
-
-
-
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
 
 class SwUndoChgFtn : public SwUndo, private SwUndRng
 {
@@ -760,30 +716,7 @@ public:
 };
 
 
-
-
-//--------------------------------------------------------------------
-
-
-//--------------------------------------------------------------------
-
-
-
-
-
-
-//--------------------------------------------------------------------
-
-
-
-//--------------------------------------------------------------------
-
-// Object der als Iterator durch die Undo-Liste laeuft, bis die
-// letze oder die angegebene Klammerung/Id erreicht ist.
-
-
-
-
-
 }
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

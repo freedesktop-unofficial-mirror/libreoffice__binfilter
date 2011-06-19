@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,110 +35,48 @@
 
 #define _SVSTDARR_STRINGS
 
-#ifndef _RSCSFX_HXX
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_INPUTSOURCE_HPP_
 #include <com/sun/star/xml/sax/InputSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATACONTROL_HPP_
 #include <com/sun/star/io/XActiveDataControl.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTRANGE_HPP_
 #include <com/sun/star/text/XTextRange.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYVALUE_HPP_
 #include <com/sun/star/beans/PropertyValue.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORFACTORY_HPP_
 #include <com/sun/star/task/XStatusIndicatorFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PACKAGES_ZIP_ZIPIOEXCEPTION_HPP_
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
-#endif
 #include <bf_svtools/svstdarr.hxx>
 
 #include <bf_sfx2/appuno.hxx>
 
-#ifndef _SFXDOCFILE_HXX //autogen wg. SfxMedium
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
-#ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
-#endif
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _ERRHDL_HXX //autogen wg. ASSERT
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _SWTYPES_HXX
 #include "swtypes.hxx"
-#endif
 
-#ifndef _FLTINI_HXX //autogen wg. XMLReader
 #include <fltini.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX //autogen wg. SwDoc
 #include <doc.hxx>
-#endif
-#ifndef _DOCSH_HXX //autogen wg. SwDoc
 #include <docsh.hxx>
-#endif
-#ifndef _UNOOBJ_HXX
 #include <unoobj.hxx>
-#endif
-#ifndef _SWMODULE_HXX
 #include <swmodule.hxx>
-#endif
-#ifndef _SW_XMLSECTIONLIST_HXX
 #include <SwXMLSectionList.hxx>
-#endif
-#ifndef _XMLIMP_HXX
 #include <xmlimp.hxx>
-#endif
 
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 #define LOGFILE_AUTHOR "mb93740"
 namespace binfilter {
 
@@ -148,7 +87,8 @@ using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::document;
 using namespace ::com::sun::star::lang;
-using namespace ::rtl;
+
+using rtl::OUString;
 
 
 void lcl_EnsureValidPam( SwPaM& rPam )
@@ -181,3 +121,5 @@ void lcl_EnsureValidPam( SwPaM& rPam )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

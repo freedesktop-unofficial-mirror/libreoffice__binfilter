@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,28 +30,14 @@
 
 #define _SWLIB_CXX
 
-#ifndef _SFX_FCONTNR_HXX //autogen
 #include <bf_sfx2/fcontnr.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
-#ifndef _SO_CLSIDS_HXX
 #include <comphelper/classids.hxx>
-#endif
 
-#ifndef _SWWDOCSH_HXX //autogen
 #include <wdocsh.hxx>
-#endif
-#ifndef _SWGLOBDOCSH_HXX //autogen
 #include <globdoc.hxx>
-#endif
-#ifndef _SHELLIO_HXX //autogen
 #include <shellio.hxx>
-#endif
 
 #include <app.hrc>
 #include <web.hrc>
@@ -59,7 +46,7 @@ namespace binfilter {
 
 #define C2S(cChar) String::CreateFromAscii(cChar)
 
-extern char __FAR_DATA sHTML[];
+extern char sHTML[];
 
 SwDLL::SwDLL()
 {
@@ -141,20 +128,9 @@ ULONG   SwDLL::DetectFilter( SfxMedium& rMedium, const SfxFilter** ppFilter,
                 nRet = ERRCODE_NONE;
                 break;
             }
-
-            // beim Browsen soll keine Filterbox kommen, wenn das Dokument nicht
-            // in den ersten paar Bytes HTML-Tags hat (MA/ST/...). Solche Dok.
-            // erzeugen z.B. SearchEngines
-//JP 20.07.00: from now on we are not a browser
-//          else if( aPrefFlt == C2S(sHTML) )
-//          {
-//              nRet = ERRCODE_NONE;
-//              break;
-//          }
         }
 
-        const SfxFilter* pTmp = SwIoSystem::GetFileFilter( rMedium.GetPhysicalName(),
-                                                            aPrefFlt, &rMedium );
+        const SfxFilter* pTmp = SwIoSystem::GetFileFilter(rMedium.GetPhysicalName(), &rMedium);
         if( !pTmp )
             nRet = ERRCODE_ABORT;
 
@@ -262,11 +238,12 @@ ULONG SwDLL::GlobDetectFilter( SfxMedium& rMedium, const SfxFilter **ppFilter,
     return nRet;
 }
 
-/*-----------------18.03.98 08.09-------------------
 
---------------------------------------------------*/
+
 SwModuleDummy::~SwModuleDummy()
 {
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

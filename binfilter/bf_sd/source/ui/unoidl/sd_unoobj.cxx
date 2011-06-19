@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,59 +26,33 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
-#ifndef _SFXSTYLE_HXX
 #include <bf_svtools/style.hxx>
-#endif
 
-#ifndef _SVTOOLS_UNOIMAP_HXX
 #include <bf_svtools/unoimap.hxx>
-#endif
-#ifndef _SVTOOLS_UNOEVENT_HXX_
 #include <bf_svtools/unoevent.hxx>
-#endif
 
 #include <vcl/svapp.hxx>
 
-#ifndef _SFXSIDS_HRC
 #include <bf_sfx2/sfxsids.hrc>
-#endif
 #include <comphelper/extract.hxx>
 #include <bf_svx/unoshape.hxx>
 #include <bf_svx/svditer.hxx>
 #include <bf_svx/unoapi.hxx>
 
-#ifndef _SVDOPATH_HXX
 #include <bf_svx/svdopath.hxx>
-#endif
 
-#ifndef _SVDOOLE2_HXX
 #include <bf_svx/svdoole2.hxx>
-#endif
-#ifndef _SVDOGRAF_HXX
 #include <bf_svx/svdograf.hxx>
-#endif
-#ifndef _OUTLOBJ_HXX
 #include <bf_svx/outlobj.hxx>
-#endif
 
-#ifndef _SD_SPOUTLINER_HXX
 #include "sdoutl.hxx"
-#endif
 
-#ifndef _SDRESID_HXX
 #include "sdresid.hxx"
-#endif
 
 #include "anminfo.hxx"
 #include "unohelp.hxx"
@@ -106,7 +81,6 @@ namespace binfilter {
  #endif
 #endif
 
-using namespace ::vos;
 using namespace ::rtl;
 using namespace ::com::sun::star;
 
@@ -173,7 +147,7 @@ const SfxItemPropertyMap* ImplGetShapePropertyMap( sal_Bool bImpress, sal_Bool b
         { MAP_CHAR_LEN(UNO_NAME_OBJ_BLUESCREEN),    WID_BLUESCREEN,      &::getCppuType((const sal_Int32*)0),                       0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_VERB),          WID_VERB,            &::getCppuType((const sal_Int32*)0),                       0, 0},
         { MAP_CHAR_LEN("IsAnimation"),              WID_ISANIMATION,     &::getBooleanCppuType(),                                   0, 0},
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
     };
 
     static const SfxItemPropertyMap aDraw_SdXShapePropertyMap_Impl[] =
@@ -182,7 +156,7 @@ const SfxItemPropertyMap* ImplGetShapePropertyMap( sal_Bool bImpress, sal_Bool b
         { MAP_CHAR_LEN(UNO_NAME_OBJ_BOOKMARK),      WID_BOOKMARK,       &::getCppuType((const OUString*)0),                 0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_CLICKACTION),   WID_CLICKACTION,    &::getCppuType((const presentation::ClickAction*)0),0, 0},
         { MAP_CHAR_LEN(UNO_NAME_OBJ_STYLE),         WID_STYLE,          &ITYPE(style::XStyle),                              ::com::sun::star::beans::PropertyAttribute::MAYBEVOID, 0},
-        { 0,0,0,0,0}
+        { 0,0,0,0,0,0 }
     };
 
     if( bImpress )
@@ -193,7 +167,7 @@ const SfxItemPropertyMap* ImplGetShapePropertyMap( sal_Bool bImpress, sal_Bool b
 
 SfxItemPropertyMap aEmpty_SdXShapePropertyMap_Impl[] =
 {
-    { 0,0,0,0,0}
+    { 0,0,0,0,0,0 }
 };
 
 const SvEventDescription* ImplGetSupportedMacroItems()
@@ -229,16 +203,16 @@ static int SortFunc( const void* p1, const void* p2 )
      return ( pCmp1->nOrder < pCmp2->nOrder ? -1 : pCmp1->nOrder > pCmp2->nOrder ? 1 : 0 );
 }
 
-SdXShape::SdXShape( SvxShape* pShape, SdXImpressDocument* pModel) throw()
-:   maPropSet( pModel?
+SdXShape::SdXShape( SvxShape* pShape, SdXImpressDocument* pModel) throw() :
+    mpShape( pShape ),
+    maPropSet( pModel?
                     ImplGetShapePropertyMap(pModel->IsImpressDocument(), pShape->getShapeKind() == OBJ_GRAF )
                 :   aEmpty_SdXShapePropertyMap_Impl ),
     mpMap( pModel?
                     ImplGetShapePropertyMap(pModel->IsImpressDocument(), pShape->getShapeKind() == OBJ_GRAF )
                 :   aEmpty_SdXShapePropertyMap_Impl ),
     mpModel(pModel),
-    mpImplementationId( NULL ),
-    mpShape( pShape )
+    mpImplementationId( NULL )
 {
     pShape->setMaster( this );
 }
@@ -258,7 +232,7 @@ uno::Any SAL_CALL SdXShape::queryAggregation( const uno::Type & rType )
     throw(uno::RuntimeException)
 {
     uno::Any aAny;
-    mpShape->queryAggregation( rType, aAny );
+    mpShape->tryQueryAggregation( rType, aAny );
     return aAny;
 }
 
@@ -325,7 +299,7 @@ uno::Sequence< uno::Type > SAL_CALL SdXShape::getTypes()
 // XPropertyState
 beans::PropertyState SAL_CALL SdXShape::getPropertyState( const OUString& PropertyName ) throw( beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( maPropSet.getPropertyMapEntry(PropertyName) )
     {
@@ -343,7 +317,7 @@ beans::PropertyState SAL_CALL SdXShape::getPropertyState( const OUString& Proper
 
 void SAL_CALL SdXShape::setPropertyToDefault( const OUString& PropertyName ) throw( beans::UnknownPropertyException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( maPropSet.getPropertyMapEntry(PropertyName) )
     {
@@ -357,7 +331,7 @@ void SAL_CALL SdXShape::setPropertyToDefault( const OUString& PropertyName ) thr
 
 uno::Any SAL_CALL SdXShape::getPropertyDefault( const OUString& aPropertyName ) throw( beans::UnknownPropertyException, lang::WrappedTargetException, uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     if( maPropSet.getPropertyMapEntry(aPropertyName) )
     {
@@ -412,7 +386,7 @@ uno::Any SAL_CALL SdXShape::getPropertyDefault( const OUString& aPropertyName ) 
 void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, const ::com::sun::star::uno::Any& aValue )
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::beans::PropertyVetoException, ::com::sun::star::lang::IllegalArgumentException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry(aPropertyName);
 
@@ -436,7 +410,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     break;
                 case WID_ISANIMATION:
                 {
-                    sal_Bool bIsAnimation;
+                    sal_Bool bIsAnimation(sal_False);
                     if(!(aValue >>= bIsAnimation))
                         throw lang::IllegalArgumentException();
 
@@ -471,7 +445,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     break;
                 case WID_BLUESCREEN:
                 {
-                    sal_Int32 nColor;
+                    sal_Int32 nColor(0);
                     if(!(aValue >>= nColor))
                         throw lang::IllegalArgumentException();
 
@@ -480,7 +454,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                 }
                 case WID_VERB:
                 {
-                    sal_Int32 nVerb;
+                    sal_Int32 nVerb(0);
                     if(!(aValue >>= nVerb))
                         throw lang::IllegalArgumentException();
 
@@ -489,7 +463,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                 }
                 case WID_DIMCOLOR:
                 {
-                    sal_Int32 nColor;
+                    sal_Int32 nColor(0);
                     if(!(aValue >>= nColor))
                         throw lang::IllegalArgumentException();
 
@@ -504,7 +478,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     break;
                 case WID_PRESORDER:
                 {
-                    sal_Int32 nPos;
+                    sal_Int32 nPos(0);
                     if(!(aValue >>= nPos))
                         throw lang::IllegalArgumentException();
 
@@ -525,23 +499,23 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     uno::Reference< drawing::XShape > xShape;
                     aValue >>= xShape;
 
-                    SdrObject* pObj = NULL;
+                    SdrObject* pLclObj = NULL;
                     if(xShape.is())
-                        pObj = GetSdrObjectFromXShape( xShape );
+                        pLclObj = GetSdrObjectFromXShape( xShape );
 
-                    if( pObj == NULL || !pObj->ISA( SdrPathObj ) )
+                    if( pLclObj == NULL || !pLclObj->ISA( SdrPathObj ) )
                         throw lang::IllegalArgumentException();
 
-                    pInfo->pPathObj = (SdrPathObj*)pObj;
+                    pInfo->pPathObj = (SdrPathObj*)pLclObj;
 
                     SdDrawDocument* pDoc = mpModel?mpModel->GetDoc():NULL;
                     if( pDoc )
                     {
-                        pInfo = pDoc->GetAnimationInfo(pObj);
+                        pInfo = pDoc->GetAnimationInfo(pLclObj);
                         if( pInfo == NULL )
                         {
                             pInfo = new SdAnimationInfo(pDoc);
-                            pObj->InsertUserData( pInfo );
+                            pLclObj->InsertUserData( pInfo );
                         }
                         pInfo->bInvisibleInPresentation = sal_True;
                     }
@@ -616,7 +590,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
 ::com::sun::star::uno::Any SAL_CALL SdXShape::getPropertyValue( const ::rtl::OUString& PropertyName )
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     uno::Any aRet;
 
@@ -756,7 +730,7 @@ void SAL_CALL SdXShape::setPropertyValue( const ::rtl::OUString& aPropertyName, 
                     }
                     else
                     {
-                        DBG_ERROR( "Masterpage without a background shape, ZOrder property will be corrupt!" );
+                        OSL_FAIL( "Masterpage without a background shape, ZOrder property will be corrupt!" );
                     }
                 }
             }
@@ -904,7 +878,7 @@ void SdXShape::SetEmptyPresObj( sal_Bool bEmpty ) throw()
 
                 OutlinerParaObject* pOutlinerParaObject = pObj->GetOutlinerParaObject();
                 pOutliner->SetText( *pOutlinerParaObject );
-                SfxStyleSheetPool* pStyle = pOutliner->GetStyleSheetPool();
+                /*SfxStyleSheetPool* pStyle =*/ pOutliner->GetStyleSheetPool();
                 const sal_Bool bVertical = pOutliner->IsVertical();
 
                 pOutliner->Clear();
@@ -1089,8 +1063,6 @@ void SdXShape::SetStyleSheet( const uno::Any& rAny ) throw( lang::IllegalArgumen
         throw lang::IllegalArgumentException();
 
     pObj->SetStyleSheet( (SfxStyleSheet*)pStyleSheet->getStyleSheet(), sal_False );
-
-    SdDrawDocument* pDoc = mpModel? mpModel->GetDoc() : NULL;
 }
 
 uno::Any SdXShape::GetStyleSheet() const throw( beans::UnknownPropertyException  )
@@ -1203,22 +1175,23 @@ uno::Reference< container::XNameReplace > SAL_CALL SdXShape::getEvents(  ) throw
     return new SdUnoEventsAccess( this );
 }
 
-SdUnoEventsAccess::SdUnoEventsAccess( SdXShape* pShape ) throw()
-: mpShape( pShape ), mxShape( pShape ),
-  maStrOnClick( RTL_CONSTASCII_USTRINGPARAM("OnClick") ),
-  maStrServiceName( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.documents.Events") ),
-  maStrEventType( RTL_CONSTASCII_USTRINGPARAM("EventType") ),
-  maStrPresentation( RTL_CONSTASCII_USTRINGPARAM("Presentation") ),
-  maStrClickAction( RTL_CONSTASCII_USTRINGPARAM("ClickAction") ),
-  maStrBookmark( RTL_CONSTASCII_USTRINGPARAM("Bookmark") ),
-  maStrEffect( RTL_CONSTASCII_USTRINGPARAM("Effect") ),
-  maStrPlayFull( RTL_CONSTASCII_USTRINGPARAM("PlayFull") ),
-  maStrVerb( RTL_CONSTASCII_USTRINGPARAM("Verb") ),
-  maStrSoundURL( RTL_CONSTASCII_USTRINGPARAM("SoundURL") ),
-  maStrSpeed( RTL_CONSTASCII_USTRINGPARAM("Speed") ),
-  maStrStarBasic( RTL_CONSTASCII_USTRINGPARAM("StarBasic") ),
+SdUnoEventsAccess::SdUnoEventsAccess( SdXShape* pShape ) throw() :
+  maStrOnClick(RTL_CONSTASCII_USTRINGPARAM("OnClick")),
+  maStrServiceName(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.documents.Events")),
+  maStrEventType(RTL_CONSTASCII_USTRINGPARAM("EventType")),
+  maStrPresentation(RTL_CONSTASCII_USTRINGPARAM("Presentation")),
   maStrLibrary(RTL_CONSTASCII_USTRINGPARAM("Library")),
-  maStrMacroName(RTL_CONSTASCII_USTRINGPARAM("MacroName"))
+  maStrMacroName(RTL_CONSTASCII_USTRINGPARAM("MacroName")),
+  maStrClickAction(RTL_CONSTASCII_USTRINGPARAM("ClickAction")),
+  maStrBookmark(RTL_CONSTASCII_USTRINGPARAM("Bookmark") ),
+  maStrEffect(RTL_CONSTASCII_USTRINGPARAM("Effect") ),
+  maStrPlayFull(RTL_CONSTASCII_USTRINGPARAM("PlayFull") ),
+  maStrVerb(RTL_CONSTASCII_USTRINGPARAM("Verb") ),
+  maStrSoundURL(RTL_CONSTASCII_USTRINGPARAM("SoundURL")),
+  maStrSpeed(RTL_CONSTASCII_USTRINGPARAM("Speed")),
+  maStrStarBasic(RTL_CONSTASCII_USTRINGPARAM("StarBasic")),
+  mpShape(pShape),
+  mxShape(pShape)
 {
 }
 
@@ -1264,8 +1237,8 @@ void SAL_CALL SdUnoEventsAccess::replaceByName( const OUString& aName, const uno
     presentation::AnimationEffect eEffect;
     presentation::AnimationSpeed eSpeed;
     OUString aStrSoundURL;
-    sal_Bool bPlayFull;
-    sal_Int32 nVerb;
+    sal_Bool bPlayFull(sal_False);
+    sal_Int32 nVerb(0);
     OUString aStrMacro;
     OUString aStrLibrary;
     OUString aStrBookmark;
@@ -1467,6 +1440,9 @@ void SAL_CALL SdUnoEventsAccess::replaceByName( const OUString& aName, const uno
                     bOk = sal_True;
                 }
                 break;
+
+            default:
+                break;
             }
         }
         else
@@ -1551,6 +1527,9 @@ uno::Any SAL_CALL SdUnoEventsAccess::getByName( const OUString& aName )
 
     case presentation::ClickAction_VANISH:
         nPropertyCount += 4;
+        break;
+
+    default:
         break;
     }
 
@@ -1700,6 +1679,8 @@ uno::Any SAL_CALL SdUnoEventsAccess::getByName( const OUString& aName )
             pProperties->Value = aAny;
             pProperties->State = beans::PropertyState_DIRECT_VALUE;
             break;
+        default:
+            break;
         }
     }
 
@@ -1752,3 +1733,5 @@ uno::Sequence< OUString > SAL_CALL SdUnoEventsAccess::getSupportedServiceNames( 
     return aStr;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

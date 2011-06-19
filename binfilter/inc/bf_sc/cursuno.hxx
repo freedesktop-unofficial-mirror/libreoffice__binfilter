@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 #ifndef SC_CURSUNO_HXX
 #define SC_CURSUNO_HXX
 
-#ifndef SC_CELLSUNO_HXX
 #include "cellsuno.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_TABLE_XCELLCURSOR_HPP_
 #include <com/sun/star/table/XCellCursor.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XUSEDAREACURSOR_HPP_
 #include <com/sun/star/sheet/XUsedAreaCursor.hpp>
-#endif
 namespace binfilter {
 
 class ScCellCursorObj : public ScCellRangeObj,
@@ -115,3 +110,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

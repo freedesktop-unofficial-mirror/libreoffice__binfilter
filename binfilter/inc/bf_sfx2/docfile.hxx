@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,52 +30,30 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_IO_XOUTPUTSTREAM_HPP_
 #include <com/sun/star/io/XOutputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XINPUTSTREAM_HPP_
 #include <com/sun/star/io/XInputStream.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCONTENT_HPP_
 #include <com/sun/star/ucb/XContent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XCOMMANDENVIRONMENT_HPP_
 #include <com/sun/star/ucb/XCommandEnvironment.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XINTERACTIONHANDLER_HPP_
 #include <com/sun/star/task/XInteractionHandler.hpp>
-#endif
-#ifndef _SVSTOR_HXX //autogen
 #include <bf_so3/svstor.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
 
 #include <bf_svtools/cancel.hxx>
 #include <cppuhelper/weak.hxx>
 
 #include <bf_sfx2/sfxuno.hxx>
 #include <bf_sfx2/docinf.hxx>
+#include <vector>
+
 class Timer;
 class DateTime;
 class SvStringsDtor;
 class INetURLObject;
+
 namespace binfilter {
 class SvKeyValueIterator;
 
@@ -97,13 +76,6 @@ class SfxLoadEnvironment;
 #define SFX_TFPRIO_INVISIBLE_LOWRES_GRAPHIC       50
 #define SFX_TFPRIO_INVISIBLE_HIGHRES_GRAPHIC      51
 #define SFX_TFPRIO_DOWNLOADS                      60
-
-#if _SOLAR__PRIVATE
-#ifndef STRING_LIST
-#define STRING_LIST
-DECLARE_LIST( StringList, String* )//STRIP008 DECLARE_LIST( StringList, String* );
-#endif
-#endif
 
 //____________________________________________________________________________________________________________________________________
 //  defines for namespaces
@@ -154,22 +126,30 @@ struct SfxVersionInfo
                                 return *this;
                             }
 };
-DECLARE_LIST( _SfxVersionTable, SfxVersionInfo* )
-class SfxVersionTableDtor : public _SfxVersionTable
+
+typedef ::std::vector< SfxVersionInfo* > _SfxVersionTable;
+class SfxVersionTableDtor
 {
+private:
+    _SfxVersionTable    maList;
+
 public:
-                            SfxVersionTableDtor( const sal_uInt16 nInitSz=0, const sal_uInt16 nReSz=1 )
-                                : _SfxVersionTable( nInitSz, nReSz )
-                            {}
+                        SfxVersionTableDtor() {}
 
-                            SfxVersionTableDtor( const SfxVersionTableDtor &rCpy )
-                            { *this = rCpy; }
+                        SfxVersionTableDtor( const SfxVersionTableDtor &rCpy )
+                        { *this = rCpy; }
 
-                            ~SfxVersionTableDtor()
-                            { DelDtor(); }
+                        ~SfxVersionTableDtor()
+                        { DelDtor(); }
 
-    void                    DelDtor();
-    SvStream&               Read( SvStream & );
+    void                DelDtor();
+    SvStream&           Read( SvStream & );
+
+    size_t              Count() const { return maList.size(); }
+    SfxVersionInfo*     GetObject( size_t i )
+                        { return ( maList.size() < i ) ? maList[ i ] : NULL; }
+    void                push_back( SfxVersionInfo* item ) { maList.push_back( item ); }
+
 };
 
 class SfxMedium : public SvRefBase
@@ -231,11 +211,7 @@ public:
     void                Close();
     void                ReOpen();
     const String&       GetName() const {return aLogicName;}
-#if defined SINIX && defined GCC && defined C272
-    const INetURLObject& GetURLObject();
-#else
     const INetURLObject& GetURLObject() const;
-#endif
     ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XContent > GetContent() const;
     const String&       GetPhysicalName() const;
     sal_Bool            IsTemporary() const;
@@ -343,11 +319,7 @@ public:
 SV_DECL_IMPL_REF( SfxMedium )
 SV_DECL_COMPAT_WEAK( SfxMedium )
 
-#ifndef SFXMEDIUM_LIST
-#define SFXMEDIUM_LIST
-DECLARE_LIST( SfxMediumList, SfxMedium* )//STRIP008 DECLARE_LIST( SfxMediumList, SfxMedium* );
-#endif
-
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

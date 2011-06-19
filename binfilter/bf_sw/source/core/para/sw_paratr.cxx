@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,18 +32,12 @@
 #endif
 
 #include "unomid.h"
-#ifndef _COM_SUN_STAR_STYLE_DROPCAPFORMAT_HPP_
 #include <com/sun/star/style/DropCapFormat.hpp>
-#endif
 
-#ifndef _CPPUHELPER_IMPLBASE4_HXX_
 #include <cppuhelper/implbase4.hxx>
-#endif
 
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#include "errhdl.hxx"
+#include <osl/diagnose.h>
 #include "paratr.hxx"
 #include "charfmt.hxx"
 #include "cmdid.h"
@@ -57,8 +52,7 @@ using namespace ::com::sun::star;
 
 /*************************************************************************
 |*    Beschreibung      Methoden von SwFmtDrop
-|*    Ersterstellung    MS  19.02.91
-|*    Letzte Aenderung  JP 08.08.94
+|*
 *************************************************************************/
 
 
@@ -66,12 +60,12 @@ using namespace ::com::sun::star;
 /*N*/ SwFmtDrop::SwFmtDrop()
 /*N*/   : SfxPoolItem( RES_PARATR_DROP ),
 /*N*/   SwClient( 0 ),
+/*N*/   pDefinedIn( 0 ),
+/*N*/   nDistance( 0 ),
+/*N*/   nReadFmt( USHRT_MAX ),
 /*N*/   nLines( 0 ),
 /*N*/   nChars( 0 ),
-/*N*/   nDistance( 0 ),
-/*N*/   pDefinedIn( 0 ),
-/*N*/   bWholeWord( sal_False ),
-/*N*/   nReadFmt( USHRT_MAX )
+/*N*/   bWholeWord( sal_False )
 /*N*/ {
 /*N*/ }
 
@@ -80,12 +74,12 @@ using namespace ::com::sun::star;
 /*N*/ SwFmtDrop::SwFmtDrop( const SwFmtDrop &rCpy )
 /*N*/   : SfxPoolItem( RES_PARATR_DROP ),
 /*N*/   SwClient( rCpy.pRegisteredIn ),
+/*N*/   pDefinedIn( 0 ),
+/*N*/   nDistance( rCpy.GetDistance() ),
+/*N*/   nReadFmt( rCpy.nReadFmt ),
 /*N*/   nLines( rCpy.GetLines() ),
 /*N*/   nChars( rCpy.GetChars() ),
-/*N*/   nDistance( rCpy.GetDistance() ),
-/*N*/   bWholeWord( rCpy.GetWholeWord() ),
-/*N*/   pDefinedIn( 0 ),
-/*N*/   nReadFmt( rCpy.nReadFmt )
+/*N*/   bWholeWord( rCpy.GetWholeWord() )
 /*N*/ {
 /*N*/ }
 
@@ -109,7 +103,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SwFmtDrop::Modify( SfxPoolItem *pA, SfxPoolItem *pB )
+/*N*/ void SwFmtDrop::Modify( SfxPoolItem * /*pA*/, SfxPoolItem * /*pB*/ )
 /*N*/ {
 /*N*/   if( pDefinedIn )
 /*N*/   {
@@ -135,7 +129,7 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ sal_Bool SwFmtDrop::GetInfo( SfxPoolItem& rInfo ) const
+/*N*/ sal_Bool SwFmtDrop::GetInfo( SfxPoolItem& /*rInfo*/ ) const
 /*N*/ {
 /*N*/   // fuers UNDO: pruefe ob das Attribut wirklich in diesem Format steht
 /*N*/ #ifdef USED_30
@@ -159,7 +153,7 @@ using namespace ::com::sun::star;
 
 /*N*/ int SwFmtDrop::operator==( const SfxPoolItem& rAttr ) const
 /*N*/ {
-/*N*/   ASSERT( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
+/*N*/   OSL_ENSURE( SfxPoolItem::operator==( rAttr ), "keine gleichen Attribute" );
 /*N*/   return ( nLines == ((SwFmtDrop&)rAttr).GetLines() &&
 /*N*/            nChars == ((SwFmtDrop&)rAttr).GetChars() &&
 /*N*/            nDistance ==  ((SwFmtDrop&)rAttr).GetDistance() &&
@@ -178,19 +172,19 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ sal_Bool SwFmtDrop::QueryValue( uno::Any& rVal, sal_uInt8 nMemberId ) const
+/*N*/ bool SwFmtDrop::QueryValue( uno::Any& rVal, sal_uInt8 nMemberId ) const
 /*N*/ {
 /*N*/   switch(nMemberId&~CONVERT_TWIPS)
 /*N*/   {
 /*N*/         case MID_DROPCAP_LINES : rVal <<= (sal_Int16)nLines; break;
 /*N*/         case MID_DROPCAP_COUNT : rVal <<= (sal_Int16)nChars; break;
-/*N*/         case MID_DROPCAP_DISTANCE : rVal <<= (sal_Int16) TWIP_TO_MM100(nDistance); break;
-/*N*/       case MID_DROPCAP_FORMAT:
+/*N*/         case MID_DROPCAP_DISTANCE : rVal <<= (sal_Int16)TWIP_TO_MM100_UNSIGNED(nDistance); break;
+/*N*/         case MID_DROPCAP_FORMAT:
 /*N*/       {
 /*N*/           style::DropCapFormat aDrop;
 /*N*/           aDrop.Lines = nLines   ;
 /*N*/           aDrop.Count = nChars   ;
-/*N*/           aDrop.Distance  = TWIP_TO_MM100(nDistance);
+/*N*/           aDrop.Distance  = TWIP_TO_MM100_UNSIGNED(nDistance);
 /*N*/           rVal.setValue(&aDrop, ::getCppuType((const style::DropCapFormat*)0));
 /*N*/       }
 /*N*/       break;
@@ -207,38 +201,38 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       break;
 /*N*/   }
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
-/*N*/ sal_Bool SwFmtDrop::PutValue( const uno::Any& rVal, sal_uInt8 nMemberId )
+/*N*/ bool SwFmtDrop::PutValue( const uno::Any& rVal, sal_uInt8 nMemberId )
 /*N*/ {
 /*N*/   switch(nMemberId&~CONVERT_TWIPS)
 /*N*/   {
-/*N*/         case MID_DROPCAP_LINES :
-/*N*/         {
-/*N*/             sal_Int8 nTemp;
-/*N*/             rVal >>= nTemp;
-/*N*/             if(nTemp >=1 && nTemp < 0x7f)
-/*N*/                 nLines = (BYTE)nTemp;
-/*N*/         }
-/*N*/         break;
-/*N*/         case MID_DROPCAP_COUNT :
-/*N*/         {
-/*N*/             sal_Int16 nTemp;
-/*N*/             rVal >>= nTemp;
-/*N*/             if(nTemp >=1 && nTemp < 0x7f)
-/*N*/                 nChars = (BYTE)nTemp;
-/*N*/         }
-/*N*/         break;
-/*N*/         case MID_DROPCAP_DISTANCE :
-/*N*/         {
-/*N*/             sal_Int16 nVal;
-/*N*/             if ( rVal >>= nVal )
-/*N*/                 nDistance = (sal_Int16) MM100_TO_TWIP((sal_Int32)nVal);
-/*N*/             else
-/*N*/                 return sal_False;
-/*N*/             break;
-/*N*/         }
+/*N*/       case MID_DROPCAP_LINES :
+/*N*/       {
+/*N*/           sal_Int8 nTemp(0);
+/*N*/           rVal >>= nTemp;
+/*N*/           if(nTemp >=1 && nTemp < 0x7f)
+/*N*/               nLines = (BYTE)nTemp;
+/*N*/       }
+/*N*/       break;
+/*N*/       case MID_DROPCAP_COUNT :
+/*N*/       {
+/*N*/           sal_Int16 nTemp(0);
+/*N*/           rVal >>= nTemp;
+/*N*/           if(nTemp >=1 && nTemp < 0x7f)
+/*N*/               nChars = (BYTE)nTemp;
+/*N*/       }
+/*N*/       break;
+/*N*/       case MID_DROPCAP_DISTANCE :
+/*N*/       {
+/*N*/           sal_Int16 nVal(0);
+/*N*/           if ( rVal >>= nVal )
+/*N*/               nDistance = (sal_Int16) MM100_TO_TWIP((sal_Int32)nVal);
+/*N*/           else
+/*N*/               return sal_False;
+/*N*/           break;
+/*N*/       }
 /*N*/       case MID_DROPCAP_FORMAT:
 /*N*/       {
 /*N*/           if(rVal.getValueType()  == ::getCppuType((const style::DropCapFormat*)0))
@@ -249,18 +243,18 @@ using namespace ::com::sun::star;
 /*N*/               nDistance   = MM100_TO_TWIP(pDrop->Distance);
 /*N*/           }
 /*N*/           else
-/*N*/               //exception( wrong_type)
-/*N*/               ;
+/*N*/           {
+/*N*/           }
 /*N*/       }
 /*N*/       break;
 /*N*/       case MID_DROPCAP_WHOLE_WORD:
 /*N*/           bWholeWord = *(sal_Bool*)rVal.getValue();
 /*N*/       break;
 /*N*/       case MID_DROPCAP_CHAR_STYLE_NAME :
-/*N*/           DBG_ERROR("char format cannot be set in PutValue()!");
+/*N*/           OSL_FAIL("char format cannot be set in PutValue()!");
 /*N*/       break;
 /*N*/   }
-/*N*/   return sal_True;
+/*N*/   return true;
 /*N*/ }
 
 // class SwRegisterItem -------------------------------------------------
@@ -272,32 +266,26 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 // class SwNumRuleItem -------------------------------------------------
-/*N*/ SfxPoolItem* SwNumRuleItem::Clone( SfxItemPool *pPool  ) const
+/*N*/ SfxPoolItem* SwNumRuleItem::Clone( SfxItemPool * /*pPool*/  ) const
 /*N*/ {
 /*N*/   return new SwNumRuleItem( *this );
 /*N*/ }
-/* -----------------------------27.06.00 11:05--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ BOOL    SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SwNumRuleItem::QueryValue( ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   ::rtl::OUString sRet = SwStyleNameMapper::GetProgName(GetValue(), GET_POOLID_NUMRULE );
 /*N*/   rVal <<= sRet;
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
-/* -----------------------------27.06.00 11:05--------------------------------
 
- ---------------------------------------------------------------------------*/
-/*N*/ BOOL  SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SwNumRuleItem::PutValue( const ::com::sun::star::uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   ::rtl::OUString uName;
 /*N*/   rVal >>= uName;
 /*N*/   SetValue(SwStyleNameMapper::GetUIName(uName, GET_POOLID_NUMRULE));
-/*N*/   return TRUE;
+/*N*/   return true;
 /*N*/ }
-/* -----------------19.05.2003 10:44-----------------
 
- --------------------------------------------------*/
  SfxPoolItem* SwParaConnectBorderItem::Clone( SfxItemPool * ) const
 {
     return new SwParaConnectBorderItem( *this );
@@ -306,3 +294,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

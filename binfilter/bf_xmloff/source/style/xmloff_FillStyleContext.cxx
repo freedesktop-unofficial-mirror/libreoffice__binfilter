@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,42 +27,22 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_FILLSTYLECONTEXTS_HXX_
 #include "FillStyleContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_GRADIENTSTYLE_HXX
 #include "GradientStyle.hxx"
-#endif
-#ifndef _XMLOFF_HATCHSTYLE_HXX
 #include "HatchStyle.hxx"
-#endif
-#ifndef _XMLOFF_IMAGESTYLE_HXX
 #include "ImageStyle.hxx"
-#endif
-#ifndef _XMLOFF_TRANSGRADIENTSTYLE_HXX
 #include "TransGradientStyle.hxx"
-#endif
-#ifndef _XMLOFF_MARKERSTYLE_HXX
 #include "MarkerStyle.hxx"
-#endif
-#ifndef _XMLOFF_DASHSTYLE_HXX
 #include "DashStyle.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLBASE64IMPORTCONTEXT_HXX
 #include "XMLBase64ImportContext.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -72,10 +53,10 @@ using namespace ::rtl;
 
 TYPEINIT1( XMLGradientStyleContext, SvXMLStyleContext );
 
-XMLGradientStyleContext::XMLGradientStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLGradientStyleContext::XMLGradientStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // set Family
 //  SetFamily( XML_STYLE_FAMILY_FILLSTYLE_GRADIENT_ID );
@@ -121,10 +102,10 @@ BOOL XMLGradientStyleContext::IsTransient() const
 
 TYPEINIT1( XMLHatchStyleContext, SvXMLStyleContext );
 
-XMLHatchStyleContext::XMLHatchStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLHatchStyleContext::XMLHatchStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLHatchStyleImport aHatchStyle( GetImport() );
@@ -167,24 +148,24 @@ BOOL XMLHatchStyleContext::IsTransient() const
 
 TYPEINIT1( XMLBitmapStyleContext, SvXMLStyleContext );
 
-XMLBitmapStyleContext::XMLBitmapStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLBitmapStyleContext::XMLBitmapStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLImageStyle aBitmapStyle;
-    aBitmapStyle.importXML( xAttrList, maAny, maStrName, rImport );
+    aBitmapStyle.importXML( xAttrList, maAny, maStrName, rInImport );
 }
 
 XMLBitmapStyleContext::~XMLBitmapStyleContext()
 {
 }
 
-SvXMLImportContext* XMLBitmapStyleContext::CreateChildContext( sal_uInt16 nPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttrList )
+SvXMLImportContext* XMLBitmapStyleContext::CreateChildContext( sal_uInt16 nInPrefix, const ::rtl::OUString& rLocalName, const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = NULL;
-    if( (XML_NAMESPACE_OFFICE == nPrefix) && xmloff::token::IsXMLToken( rLocalName, xmloff::token::XML_BINARY_DATA ) )
+    if( (XML_NAMESPACE_OFFICE == nInPrefix) && xmloff::token::IsXMLToken( rLocalName, xmloff::token::XML_BINARY_DATA ) )
     {
         OUString sURL;
         maAny >>= sURL;
@@ -192,14 +173,14 @@ SvXMLImportContext* XMLBitmapStyleContext::CreateChildContext( sal_uInt16 nPrefi
         {
             mxBase64Stream = GetImport().GetStreamForGraphicObjectURLFromBase64();
             if( mxBase64Stream.is() )
-                pContext = new XMLBase64ImportContext( GetImport(), nPrefix,
+                pContext = new XMLBase64ImportContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     mxBase64Stream );
         }
     }
     if( !pContext )
     {
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
     }
 
     return pContext;
@@ -248,10 +229,10 @@ BOOL XMLBitmapStyleContext::IsTransient() const
 
 TYPEINIT1( XMLTransGradientStyleContext, SvXMLStyleContext );
 
-XMLTransGradientStyleContext::XMLTransGradientStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLTransGradientStyleContext::XMLTransGradientStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLTransGradientStyleImport aTransGradientStyle( GetImport() );
@@ -294,10 +275,10 @@ BOOL XMLTransGradientStyleContext::IsTransient() const
 
 TYPEINIT1( XMLMarkerStyleContext, SvXMLStyleContext );
 
-XMLMarkerStyleContext::XMLMarkerStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLMarkerStyleContext::XMLMarkerStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                               const OUString& rLName,
                                               const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLMarkerStyleImport aMarkerStyle( GetImport() );
@@ -340,10 +321,10 @@ BOOL XMLMarkerStyleContext::IsTransient() const
 
 TYPEINIT1( XMLDashStyleContext, SvXMLStyleContext );
 
-XMLDashStyleContext::XMLDashStyleContext( SvXMLImport& rImport, sal_uInt16 nPrfx,
+XMLDashStyleContext::XMLDashStyleContext( SvXMLImport& rInImport, sal_uInt16 nPrfx,
                                           const OUString& rLName,
                                           const uno::Reference< xml::sax::XAttributeList >& xAttrList)
-:   SvXMLStyleContext(rImport, nPrfx, rLName, xAttrList)
+:   SvXMLStyleContext(rInImport, nPrfx, rLName, xAttrList)
 {
     // start import
     XMLDashStyleImport aDashStyle( GetImport() );
@@ -381,3 +362,5 @@ BOOL XMLDashStyleContext::IsTransient() const
     return sal_True;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

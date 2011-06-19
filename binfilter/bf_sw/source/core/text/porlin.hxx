@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -232,16 +233,11 @@ inline void SwLinePortion::Truncate()
 
 
 //$ ostream
-#ifdef DBGTXT
-#define CLASSIO( class ) \
-    inline SvStream &operator<<( SvStream &rOs, const class &rClass ) {\
-            return rClass.operator<<( rOs );\
-    }
-#else
 #define CLASSIO( class )
-#endif
 
 CLASSIO( SwLinePortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

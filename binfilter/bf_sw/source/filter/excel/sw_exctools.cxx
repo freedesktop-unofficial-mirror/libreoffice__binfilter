@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,55 +33,23 @@
 #define ITEMID_BOXINFO      SID_ATTR_BORDER_INNER
 #include "hintids.hxx"
 
-#ifndef _SVX_BOXITEM_HXX //autogen
 #include <bf_svx/boxitem.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include <bf_svx/fhgtitem.hxx>
-#endif
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include <bf_svx/colritem.hxx>
-#endif
-#ifndef _SVX_WGHTITEM_HXX //autogen
 #include <bf_svx/wghtitem.hxx>
-#endif
-#ifndef _SVX_POSTITEM_HXX //autogen
 #include <bf_svx/postitem.hxx>
-#endif
-#ifndef _SVX_UDLNITEM_HXX //autogen
 #include <bf_svx/udlnitem.hxx>
-#endif
-#ifndef _SVX_CRSDITEM_HXX //autogen
 #include <bf_svx/crsditem.hxx>
-#endif
-#ifndef _SVX_CNTRITEM_HXX //autogen
 #include <bf_svx/cntritem.hxx>
-#endif
-#ifndef _SVX_SHDDITEM_HXX //autogen
 #include <bf_svx/shdditem.hxx>
-#endif
-#ifndef _SVX_BRSHITEM_HXX //autogen
 #include <bf_svx/brshitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _ZFORLIST_HXX //autogen
 #include <bf_svtools/zforlist.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _SWTBLFMT_HXX //autogen
 #include <swtblfmt.hxx>
-#endif
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
 #include "doc.hxx"
 #include "pam.hxx"
 #include "swtypes.hxx"
@@ -727,29 +696,9 @@ void XF_Data::SetBorder( const CellBorder &rNew )
     pBord->nRightColor = rNew.nRightColor;
     }
 
-#if 0
-// ------------------------- XF_Data::SetBorder( BYTE, BYTE, BYTE,...  ) -
-void XF_Data::SetBorder( BYTE nTopLine, BYTE nLeftLine, BYTE nBottomLine,
-    BYTE nRightLine, UINT16 nTopColor, UINT16 nLeftColor,
-    UINT16 nBottomColor, UINT16 nRightColor )
-    {
-    if( pBord == NULL ) pBord = new CellBorder;
-    DBG_ASSERT( pBord != NULL,
-        "-XF_Data::SetBorder(): pBord == NULL!" );
-    pBord->nTopLine = nTopLine;
-    pBord->nLeftLine = nLeftLine;
-    pBord->nBottomLine = nBottomLine;
-    pBord->nRightLine = nRightLine;
-    pBord->nTopColor = nTopColor;
-    pBord->nLeftColor = nLeftColor;
-    pBord->nBottomColor = nBottomColor;
-    pBord->nRightColor = nRightColor;
-    }
-#endif
-
 // -- class XF_Buffer ----------------------------------------------------
 //
-// Kopiert aus: xfbuff.cxx
+// Copied from: xfbuff.cxx
 
 // ------------------------------------------------ XF_Buffer::XF_Buffer -
 XF_Buffer::XF_Buffer( UINT16 nNewMax )
@@ -972,6 +921,8 @@ void XF_Buffer::CreateItemSets( UINT16 nIndex )
             pTxtAttr->Put( aAttr );
             }
             break;
+        default:
+            break;
         }
 
 /* FOR FUTURE USE
@@ -1102,6 +1053,8 @@ void XF_Buffer::CreateItemSets( UINT16 nIndex )
 //      case EHA_CentAcrSel:
 //          eAdjust = SVX_ADJUST_LEFT;
 //          break;
+        default:
+            break;
         }
     pTxtAttr->Put( SvxAdjustItem( eAdjust ) );
     }
@@ -1136,7 +1089,7 @@ void XF_Buffer::SetItemSets( UINT16 nCol, UINT16 nStartRow, UINT16 nEndRow,
     SwTableBoxFmt* pBoxFmt = (SwTableBoxFmt*)pSttBox->ClaimFrmFmt();
     pBoxFmt->SetAttr( *pBoxAttr );
 
-    SwTableBox* pEndBox;
+    SwTableBox* pEndBox = NULL;
     if( nStartRow != nEndRow )
     {
         for( UINT16 nRow = nStartRow ; nRow <= nEndRow ; nRow++ )
@@ -1271,63 +1224,63 @@ const SvxColorItem *ColorBuffer::GetColor( UINT16 nIndex )
         {                           // ausserhalb der Definierten
             if( nIndex < DefColorSize )
             {                           // ... aber innerhalb der Defaults
-                static BYTE __READONLY_DATA pDefArray[ DefColorSize ][ 3 ] = {
-                    0x00, 0x00, 0x00,
-                    0xff, 0xff, 0xff,
-                    0xff, 0x00, 0x00,
-                    0x00, 0xff, 0x00,
-                    0x00, 0x00, 0xff,
-                    0xff, 0xff, 0x00,
-                    0xff, 0x00, 0xff,
-                    0x00, 0xff, 0xff,
-                    0x80, 0x00, 0x00,
-                    0x00, 0x80, 0x00,
-                    0x00, 0x00, 0x80,
-                    0x80, 0x80, 0x00,
-                    0x80, 0x00, 0x80,
-                    0x00, 0x80, 0x80,
-                    0xc0, 0xc0, 0xc0,
-                    0x80, 0x80, 0x80,
-                    0x80, 0x80, 0xff,
-                    0x80, 0x20, 0x60,
-                    0xff, 0xff, 0xc0,
-                    0xa0, 0xe0, 0xe0,
-                    0x60, 0x00, 0x80,
-                    0xff, 0x80, 0x80,
-                    0x00, 0x80, 0xc0,
-                    0xc0, 0xc0, 0xff,
-                    0x00, 0x00, 0x80,
-                    0xff, 0x00, 0xff,
-                    0xff, 0xff, 0x00,
-                    0x00, 0xff, 0xff,
-                    0x80, 0x00, 0x80,
-                    0x80, 0x00, 0x00,
-                    0x00, 0x80, 0x80,
-                    0x00, 0x00, 0xff,
-                    0x00, 0xcf, 0xff,
-                    0x69, 0xff, 0xff,
-                    0xe0, 0xff, 0xe0,
-                    0xff, 0xff, 0x80,
-                    0xa6, 0xca, 0xf0,
-                    0xdd, 0x9c, 0xb3,
-                    0xb3, 0x8f, 0xee,
-                    0xe3, 0xe3, 0xe3,
-                    0x2a, 0x6f, 0xf9,
-                    0x3f, 0xb8, 0xcd,
-                    0x48, 0x84, 0x36,
-                    0x95, 0x8c, 0x41,
-                    0x8e, 0x5e, 0x42,
-                    0xa0, 0x62, 0x7a,
-                    0x62, 0x4f, 0xac,
-                    0x96, 0x96, 0x96,
-                    0x1d, 0x2f, 0xbe,
-                    0x28, 0x66, 0x76,
-                    0x00, 0x45, 0x00,
-                    0x45, 0x3e, 0x01,
-                    0x6a, 0x28, 0x13,
-                    0x85, 0x39, 0x6a,
-                    0x4a, 0x32, 0x85,
-                    0x42, 0x42, 0x42
+                static BYTE const pDefArray[ DefColorSize ][ 3 ] = {
+                    { 0x00, 0x00, 0x00 },
+                    { 0xff, 0xff, 0xff },
+                    { 0xff, 0x00, 0x00 },
+                    { 0x00, 0xff, 0x00 },
+                    { 0x00, 0x00, 0xff },
+                    { 0xff, 0xff, 0x00 },
+                    { 0xff, 0x00, 0xff },
+                    { 0x00, 0xff, 0xff },
+                    { 0x80, 0x00, 0x00 },
+                    { 0x00, 0x80, 0x00 },
+                    { 0x00, 0x00, 0x80 },
+                    { 0x80, 0x80, 0x00 },
+                    { 0x80, 0x00, 0x80 },
+                    { 0x00, 0x80, 0x80 },
+                    { 0xc0, 0xc0, 0xc0 },
+                    { 0x80, 0x80, 0x80 },
+                    { 0x80, 0x80, 0xff },
+                    { 0x80, 0x20, 0x60 },
+                    { 0xff, 0xff, 0xc0 },
+                    { 0xa0, 0xe0, 0xe0 },
+                    { 0x60, 0x00, 0x80 },
+                    { 0xff, 0x80, 0x80 },
+                    { 0x00, 0x80, 0xc0 },
+                    { 0xc0, 0xc0, 0xff },
+                    { 0x00, 0x00, 0x80 },
+                    { 0xff, 0x00, 0xff },
+                    { 0xff, 0xff, 0x00 },
+                    { 0x00, 0xff, 0xff },
+                    { 0x80, 0x00, 0x80 },
+                    { 0x80, 0x00, 0x00 },
+                    { 0x00, 0x80, 0x80 },
+                    { 0x00, 0x00, 0xff },
+                    { 0x00, 0xcf, 0xff },
+                    { 0x69, 0xff, 0xff },
+                    { 0xe0, 0xff, 0xe0 },
+                    { 0xff, 0xff, 0x80 },
+                    { 0xa6, 0xca, 0xf0 },
+                    { 0xdd, 0x9c, 0xb3 },
+                    { 0xb3, 0x8f, 0xee },
+                    { 0xe3, 0xe3, 0xe3 },
+                    { 0x2a, 0x6f, 0xf9 },
+                    { 0x3f, 0xb8, 0xcd },
+                    { 0x48, 0x84, 0x36 },
+                    { 0x95, 0x8c, 0x41 },
+                    { 0x8e, 0x5e, 0x42 },
+                    { 0xa0, 0x62, 0x7a },
+                    { 0x62, 0x4f, 0xac },
+                    { 0x96, 0x96, 0x96 },
+                    { 0x1d, 0x2f, 0xbe },
+                    { 0x28, 0x66, 0x76 },
+                    { 0x00, 0x45, 0x00 },
+                    { 0x45, 0x3e, 0x01 },
+                    { 0x6a, 0x28, 0x13 },
+                    { 0x85, 0x39, 0x6a },
+                    { 0x4a, 0x32, 0x85 },
+                    { 0x42, 0x42, 0x42 }
                     };
 
                 pArray[ nIndex ] = new SvxColorItem( Color(
@@ -1930,3 +1883,5 @@ void ValueFormBuffer::Init( void )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

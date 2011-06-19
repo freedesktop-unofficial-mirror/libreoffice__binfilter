@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,25 +31,13 @@
 #include <bf_svtools/bf_solar.h>
 
 #include <stddef.h>         // fuer MemPool
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
 
-#ifndef _CSHTYP_HXX
 #include <cshtyp.hxx>       // fuer die Funktions-Definitionen
-#endif
-#ifndef _RING_HXX
 #include <ring.hxx>         // Superklasse
-#endif
-#ifndef _INDEX_HXX
 #include <index.hxx>        // fuer SwIndex
-#endif
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>      // fuer SwNodeIndex
-#endif
 namespace com { namespace sun { namespace star { namespace util {
     struct SearchOptions;
 } } } }
@@ -65,13 +54,10 @@ class SwCntntNode;
 class SwNodes;
 class SwPaM;
 
-//STRIP008 namespace com { namespace sun { namespace star { namespace util {
-//STRIP008  struct SearchOptions;
-//STRIP008 } } } }
 
 namespace utl {
     class TextSearch;
-}//STRIP008 ;
+}
 
 struct SwPosition
 {
@@ -86,12 +72,12 @@ struct SwPosition
 
     SwPosition &operator=(const SwPosition &);
 
-    FASTBOOL operator < (const SwPosition &) const;
-    FASTBOOL operator > (const SwPosition &) const;
-    FASTBOOL operator <=(const SwPosition &) const;
-    FASTBOOL operator >=(const SwPosition &) const;
-    FASTBOOL operator ==(const SwPosition &) const;
-    FASTBOOL operator !=(const SwPosition &) const;
+    bool operator < (const SwPosition &) const;
+    bool operator > (const SwPosition &) const;
+    bool operator <=(const SwPosition &) const;
+    bool operator >=(const SwPosition &) const;
+    bool operator ==(const SwPosition &) const;
+    bool operator !=(const SwPosition &) const;
 };
 
 
@@ -118,7 +104,7 @@ struct SwMoveFnCollection;
 typedef SwMoveFnCollection* SwMoveFn;
 extern SwMoveFn fnMoveForward, fnMoveBackward;
 
-typedef FASTBOOL (*SwGoInDoc)( SwPaM& rPam, SwMoveFn fnMove );
+typedef bool (*SwGoInDoc)( SwPaM& rPam, SwMoveFn fnMove );
 extern SwGoInDoc fnGoDoc, fnGoSection, fnGoNode, fnGoCntnt, fnGoCntntCells;
 
 void _InitPam();
@@ -145,7 +131,7 @@ public:
     virtual ~SwPaM();
 
     // Bewegen des Cursors
-    FASTBOOL Move( SwMoveFn fnMove = fnMoveForward,
+    bool Move( SwMoveFn fnMove = fnMoveForward,
                     SwGoInDoc fnGo = fnGoCntnt );
 
     // Suchen
@@ -171,7 +157,7 @@ public:
      * Selektion: Point und Mark zeigen auf unterschiedliche
      * Puffer.
      */
-    FASTBOOL HasMark() const { return pPoint == pMark? FALSE : TRUE; }
+    bool HasMark() const { return pPoint == pMark? FALSE : TRUE; }
 
     const SwPosition *GetPoint() const { return pPoint; }
           SwPosition *GetPoint()       { return pPoint; }
@@ -221,9 +207,11 @@ public:
 };
 
 
-FASTBOOL CheckNodesRange( const SwNodeIndex&, const SwNodeIndex&, FASTBOOL );
-FASTBOOL GoInCntnt( SwPaM & rPam, SwMoveFn fnMove );
+bool CheckNodesRange( const SwNodeIndex&, const SwNodeIndex&, bool );
+bool GoInCntnt( SwPaM & rPam, SwMoveFn fnMove );
 
 
 } //namespace binfilter
 #endif  // _PAM_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

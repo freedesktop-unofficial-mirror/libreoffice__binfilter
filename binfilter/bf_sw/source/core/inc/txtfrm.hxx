@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVMEMPOOL_HXX //autogen
 #include <tools/mempool.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 #include "cntfrm.hxx"
 /*N*/ #include <tools/debug.hxx> //for stripping
 class OutputDevice;
@@ -133,7 +130,7 @@ class SwTxtFrm: public SwCntntFrm
     sal_Bool bHasAnimation  : 1;        // enthaelt animierte SwGrfNumPortion
     sal_Bool bIsSwapped     : 1;        // during text formatting we swap the
                                         // width and height for vertical formatting
-    // OD 14.03.2003 #i11760# - flag to control, if follow is formatted in
+    // #i11760# - flag to control, if follow is formatted in
     // method <CalcFollow(..)>.
     // E.g., avoid formatting of follow, if method <SwLayoutFrm::FormatWidthCols(..)>
     // is running.
@@ -440,12 +437,6 @@ public:
 
     // Swaps width and height of the text frame
     void SwapWidthAndHeight();
-    // Calculates the coordinates of a rectangle when switching from
-    // horizontal to vertical layout.
-        void SwitchHorizontalToVertical( SwRect& rRect ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void SwitchHorizontalToVertical( SwRect& rRect ) const;
-    // Calculates the coordinates of a point when switching from
-    // horizontal to vertical layout.
-        void SwitchHorizontalToVertical( Point& rPoint ) const{DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001     void SwitchHorizontalToVertical( Point& rPoint ) const;
     // Calculates the a limit value when switching from
     // horizontal to vertical layout.
     long SwitchHorizontalToVertical( long nLimit ) const;
@@ -466,7 +457,7 @@ public:
 
 #endif
 
-    // OD 14.03.2003 #i11760# - access to new member <mbNoFollowFormat>
+    // #i11760# - access to new member <mbNoFollowFormat>
     inline bool FollowFormatAllowed() const
     {
         return mbFollowFormatAllowed;
@@ -590,10 +581,10 @@ inline const SwTxtFrm *SwTxtFrm::GetFrmAtPos( const SwPosition &rPos) const
 }
 
 inline void SwTxtFrm::AdjustFollow( SwTxtFormatter &rLine,
-    const xub_StrLen nOffset, const xub_StrLen nStrEnd, const sal_uInt8 nMode )
+    const xub_StrLen nOffset3, const xub_StrLen nStrEnd, const sal_uInt8 nMode )
 {
     if ( HasFollow() )
-        _AdjustFollow( rLine, nOffset, nStrEnd, nMode );
+        _AdjustFollow( rLine, nOffset3, nStrEnd, nMode );
 }
 
 inline void SwTxtFrm::SetOfst( const xub_StrLen nNewOfst )
@@ -708,3 +699,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

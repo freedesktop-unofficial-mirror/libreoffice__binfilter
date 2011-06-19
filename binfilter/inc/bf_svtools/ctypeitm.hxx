@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,12 +30,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _INETTYPE_HXX
 #include <bf_svtools/inettype.hxx>
-#endif
-#ifndef _SVTOOLS_CUSTRITM_HXX
 #include <bf_svtools/custritm.hxx>
-#endif
 
 namespace binfilter {
 
@@ -55,7 +52,7 @@ public:
 
     virtual SfxPoolItem* Create( SvStream& rStream,
                                  USHORT nItemVersion ) const;
-    virtual SvStream & Store(SvStream & rStream, USHORT) const;
+    virtual SvStream & Store(SvStream & rStream, USHORT) const { return rStream; }
 
     virtual int          operator==( const SfxPoolItem& rOrig ) const;
 
@@ -74,9 +71,9 @@ public:
                                                  XubString &rText,
                                                  const ::IntlWrapper* pIntlWrapper = 0 ) const;
 
-    virtual BOOL QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0 ) const;
-    virtual BOOL PutValue  ( const ::com::sun::star::uno::Any& rVal,
+    virtual bool PutValue  ( const ::com::sun::star::uno::Any& rVal,
                              BYTE nMemberId = 0);
 
     INetContentType GetEnumValue() const;
@@ -88,3 +85,4 @@ public:
 
 #endif /* !_SVTOOLS_CTYPEITM_HXX */
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

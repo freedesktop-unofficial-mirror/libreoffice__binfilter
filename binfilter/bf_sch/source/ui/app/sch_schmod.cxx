@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -58,7 +59,7 @@ namespace binfilter {
 \************************************************************************/
 
 /*N*/ SchModule::SchModule(SvFactory* pObjFact) :
-/*N*/   SchModuleDummy(SFX_APP()->CreateResManager("bf_sch"), FALSE, pObjFact), //STRIP005
+/*N*/   SchModuleDummy(SFX_APP()->CreateResManager("bf_sch"), FALSE, pObjFact),
 /*N*/   pXOutDevPool( NULL ),
 /*N*/   pDragData( NULL ),
 /*N*/   pClipboardData( NULL ),
@@ -128,7 +129,7 @@ namespace binfilter {
 |*
 \************************************************************************/
 
-/*N*/ void SchModule::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void SchModule::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if( rHint.ISA( SfxSimpleHint ) &&
 /*N*/       ( (SfxSimpleHint&) rHint ).GetId() == SFX_HINT_DEINITIALIZING )
@@ -137,3 +138,5 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

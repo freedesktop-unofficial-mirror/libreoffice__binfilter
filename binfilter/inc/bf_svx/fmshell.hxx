@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,25 +32,15 @@
 // ***************************************************************************************************
 // ***************************************************************************************************
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SV_EVENT_HXX //autogen
 #include <vcl/event.hxx>
-#endif
 
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
-#ifndef _SVX_FMVIEW_HXX
 #include <bf_svx/fmview.hxx>
-#endif
 
 #include <bf_svx/ifaceids.hxx>
 namespace binfilter {
@@ -147,3 +138,5 @@ protected:
 
 }//end of namespace binfilter
 #endif          // _SVX_FMSHELL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

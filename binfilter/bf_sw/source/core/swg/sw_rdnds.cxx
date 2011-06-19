@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,85 +31,35 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _PERSIST_HXX //autogen
 #include <bf_so3/persist.hxx>
-#endif
-#ifndef _EMBOBJ_HXX //autogen
 #include <bf_so3/embobj.hxx>
-#endif
-#ifndef SVTOOLS_URIHELPER_HXX
 #include <bf_svtools/urihelper.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_CSCOITEM_HXX //autogen
 #include <bf_svx/cscoitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
 
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FCHRFMT_HXX //autogen
 #include <fchrfmt.hxx>
-#endif
-#ifndef _CHARATR_HXX
 #include <charatr.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _RDSWG_HXX
 #include <rdswg.hxx>
-#endif
-#ifndef _SW3IO_HXX
 #include <sw3io.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _NDGRF_HXX
 #include <ndgrf.hxx>
-#endif
-#ifndef _NDOLE_HXX
 #include <ndole.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _FLYPOS_HXX
 #include <flypos.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _SWGPAR_HXX
 #include <swgpar.hxx>
-#endif
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -435,13 +386,13 @@ namespace binfilter {
 
     BYTE cFlags = 0, cNumLevel = NO_NUMBERING;
     USHORT nNumRule = IDX_NO_VALUE;
-    USHORT nColl     = 0,
+    USHORT nColl1     = 0,
            nAutoFrm  = IDX_NO_VALUE,
            nAutoChar = IDX_NO_VALUE,
            nAutoPara = IDX_NO_VALUE;
 
     r >> cFlags;
-    if( cFlags & 0x01 ) r >> nColl;
+    if( cFlags & 0x01 ) r >> nColl1;
     if( cFlags & 0x02 ) r >> nAutoFrm;
     if( cFlags & 0x04 ) r >> nAutoChar;
     if( cFlags & 0x08 ) r >> nAutoPara;
@@ -450,8 +401,8 @@ namespace binfilter {
     // Werden nur Seitenvorlagen eingelesen, muss die Collection
     // immer 0 sein, da andere Coll-Idxe immer falsch sind
     if( ( nOptions != SWGRD_NORMAL ) && !( nOptions & SWGRD_PARAFMTS ) )
-        nColl = 0;
-    SwTxtFmtColl* pColl = (SwTxtFmtColl*) FindFmt( nColl | IDX_COLLECTION, 0 );
+        nColl1 = 0;
+    SwTxtFmtColl* pColl = (SwTxtFmtColl*) FindFmt( nColl1 | IDX_COLLECTION, 0 );
     if( !pColl )
         pColl = (SwTxtFmtColl*) FindFmt( IDX_COLLECTION + 0, 0 );
 
@@ -816,3 +767,5 @@ namespace binfilter {
  }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

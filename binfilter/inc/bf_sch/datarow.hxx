@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _SCH_DATAROW_HXX
 #define _SCH_DATAROW_HXX
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -52,7 +49,7 @@ public:
 
         virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
     void SetRow(short nR) { nRow = nR; }
@@ -73,3 +70,4 @@ extern SdrObject* GetObjWithRow(short nRow, const SdrObjList& rObjList,
 #endif  // _SCH_DATAROW_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

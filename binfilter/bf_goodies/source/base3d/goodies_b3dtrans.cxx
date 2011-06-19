@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,17 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DTRANS_HXX
 #include "b3dtrans.hxx"
-#endif
 
-//#ifndef _B3D_BASE3D_HXX
-//#include "base3d.hxx"
-//#endif
-
-#ifndef _B3D_VOLUM_HXX
 #include "b3dvolum.hxx"
-#endif
 
 namespace binfilter {
 
@@ -625,3 +618,5 @@ BOOL B3dCamera::CalcFocalLength()
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

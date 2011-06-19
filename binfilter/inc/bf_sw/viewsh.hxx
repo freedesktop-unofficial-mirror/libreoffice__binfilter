@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,16 +30,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _RING_HXX
 #include <ring.hxx>
-#endif
-#ifndef _SWRECT_HXX
 #include <swrect.hxx>
-#endif
 /*N*/ #include <tools/debug.hxx> //for stripping
 #ifdef ACCESSIBLE_LAYOUT
 namespace com { namespace sun { namespace star { namespace accessibility {
@@ -273,7 +268,7 @@ public:
     void LayoutIdle();
 
     inline const SwViewOption *GetViewOptions() const { return pOpt; }
-    void  ApplyViewOptions( const SwViewOption &rOpt ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001         void  ApplyViewOptions( const SwViewOption &rOpt );
+    void  ApplyViewOptions( const SwViewOption& /*rOpt*/ ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     //static void           SetShellRes( ShellResource* pRes ) { pShellRes = pRes; }
     static ShellResource* GetShellRes();
@@ -281,7 +276,7 @@ public:
     static void           SetCareWin( Window* pNew ) { pCareWindow = pNew; }
     static Window*        GetCareWin(ViewShell& rVSh)
                         { return pCareWindow ? pCareWindow : CareChildWin(rVSh); }
-    static Window*        CareChildWin(ViewShell& rVSh){DBG_BF_ASSERT(0, "STRIP"); return NULL;} ;//STRIP001    static Window*        CareChildWin(ViewShell& rVSh);
+    static Window*        CareChildWin(ViewShell& /*rVSh*/){DBG_BF_ASSERT(0, "STRIP"); return NULL;} ;
 
     inline SfxViewShell   *GetSfxViewShell() { return pSfxViewShell; }
     inline void           SetSfxViewShell(SfxViewShell *pNew) { pSfxViewShell = pNew; }
@@ -373,3 +368,5 @@ inline void ViewShell::EndAction( const sal_Bool bIdleEnd )
 
 } //namespace binfilter
 #endif //_VIEWSH_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

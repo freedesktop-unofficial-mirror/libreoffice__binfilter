@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,15 +33,11 @@
 
 // HACK to avoid too deep includes and to have some
 // levels free in svdmark itself (MS compiler include depth limit)
-#ifndef _SVDHDL_HXX
 #include <bf_svx/svdhdl.hxx>
-#endif
 
 #include <bf_svx/svdedxv.hxx>
 
-#ifndef _GDIMTF_HXX //autogen
 #include <vcl/gdimtf.hxx>
-#endif
 namespace binfilter {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -63,7 +60,6 @@ class SdrExchangeView: public SdrObjEditView
 
 protected:
 
- //STRIP001    void                ImpGetPasteObjList(Point& rPos, SdrObjList*& rpLst);
 
     // liefert True, wenn rPt geaendert wurde
 
@@ -119,3 +115,5 @@ public:
 
 }//end of namespace binfilter
 #endif //_SVDXCGV_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

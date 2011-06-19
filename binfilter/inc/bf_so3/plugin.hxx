@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,9 +35,7 @@
 #include <bf_svtools/ownlist.hxx>
 #include <bf_so3/ipenv.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class Timer;
 
@@ -99,10 +98,8 @@ protected:
                     // Laden speichern
     SO3_DLLPRIVATE virtual BOOL    InitNew( SvStorage * );
     SO3_DLLPRIVATE virtual BOOL    Load( SvStorage * );
-    SO3_DLLPRIVATE virtual BOOL    Save();
-    SO3_DLLPRIVATE virtual BOOL    SaveAs( SvStorage * );
+    SO3_DLLPRIVATE virtual BOOL    Save() {return false;}
     SO3_DLLPRIVATE virtual void    HandsOff();
-    SO3_DLLPRIVATE virtual BOOL    SaveCompleted( SvStorage * );
 
     // Spaeter gerne mal virtuell...
     SO3_DLLPRIVATE void            SetMIMEDetectedLink( const Link& rLink );
@@ -131,3 +128,5 @@ SO2_DECL_IMPL_REF(SvPlugInObject)
 }
 
 #endif // _PLUGIN_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

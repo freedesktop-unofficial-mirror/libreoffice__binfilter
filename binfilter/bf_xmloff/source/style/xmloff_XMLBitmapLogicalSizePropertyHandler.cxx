@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 
 
 
-#ifndef _XMLOFF_XMLBITMAPLOGICALSIZEPROPERTYHANDLER_HXX
 #include "XMLBitmapLogicalSizePropertyHandler.hxx"
-#endif
 
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -52,18 +49,20 @@ XMLBitmapLogicalSizePropertyHandler::~XMLBitmapLogicalSizePropertyHandler()
 sal_Bool XMLBitmapLogicalSizePropertyHandler::importXML(
     const OUString& rStrImpValue,
     Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     rValue = ::cppu::bool2any( rStrImpValue.indexOf( sal_Unicode('%') ) == -1 );
     return sal_True;
 }
 
 sal_Bool XMLBitmapLogicalSizePropertyHandler::exportXML(
-    OUString& rStrExpValue,
-    const Any& rValue,
-    const SvXMLUnitConverter& rUnitConverter ) const
+    OUString& /*rStrExpValue*/,
+    const Any& /*rValue*/,
+    const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     return sal_False;
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

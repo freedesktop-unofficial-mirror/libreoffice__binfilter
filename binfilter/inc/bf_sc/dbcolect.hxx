@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,21 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_COLLECT_HXX
 #include "collect.hxx"
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"       // MAXQUERY
-#endif
 
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"    // MAXSORT
-#endif
 
-#ifndef SC_REFRESHTIMER_HXX
 #include "refreshtimer.hxx"
-#endif
 namespace binfilter {
 class ScDocument;
 class ScMultipleReadHeader;
@@ -142,7 +135,7 @@ public:
             ScDBData&   operator= (const ScDBData& rData);
 
 
-            BOOL        Store( SvStream& rStream, ScMultipleWriteHeader& rHdr ) const;
+            BOOL    Store( SvStream&, ScMultipleWriteHeader& ) const {return FALSE;}
 
             const String& GetName() const               { return aName; }
             void        GetName(String& rName) const    { rName = aName; }
@@ -230,7 +223,7 @@ public:
             ScDBData*   GetDBAtArea(USHORT nTab, USHORT nCol1, USHORT nRow1, USHORT nCol2, USHORT nRow2) const;
 
     BOOL    Load( SvStream& rStream );
-    BOOL    Store( SvStream& rStream ) const;
+    BOOL    Store( SvStream& ) const {return FALSE;}
 
     BOOL    SearchName( const String& rName, USHORT& rIndex ) const;
 
@@ -251,3 +244,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

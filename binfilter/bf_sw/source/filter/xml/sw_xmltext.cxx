@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,15 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <bf_xmloff/xmlnmspe.hxx>
-#endif
-#ifndef _XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::text;
+
+using rtl::OUString;
 
 // ---------------------------------------------------------------------
 
@@ -51,21 +49,21 @@ class SwXMLBodyContext_Impl : public SvXMLImportContext
 
 public:
 
-    SwXMLBodyContext_Impl( SwXMLImport& rImport, sal_uInt16 nPrfx,
+    SwXMLBodyContext_Impl( SwXMLImport& rInImport, sal_uInt16 nPrfx,
                              const OUString& rLName );
     virtual ~SwXMLBodyContext_Impl();
 
     virtual SvXMLImportContext *CreateChildContext(
-            sal_uInt16 nPrefix, const OUString& rLocalName,
+            sal_uInt16 nInPrefix, const OUString& rLocalName,
             const Reference< xml::sax::XAttributeList > & xAttrList );
 
     virtual void EndElement();
 };
 
-SwXMLBodyContext_Impl::SwXMLBodyContext_Impl( SwXMLImport& rImport,
+SwXMLBodyContext_Impl::SwXMLBodyContext_Impl( SwXMLImport& rInImport,
                                               sal_uInt16 nPrfx,
                                                    const OUString& rLName ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
 }
 
@@ -74,16 +72,16 @@ SwXMLBodyContext_Impl::~SwXMLBodyContext_Impl()
 }
 
 SvXMLImportContext *SwXMLBodyContext_Impl::CreateChildContext(
-        sal_uInt16 nPrefix, const OUString& rLocalName,
+        sal_uInt16 nInPrefix, const OUString& rLocalName,
         const Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
     pContext = GetSwImport().GetTextImport()->CreateTextChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList,
+            GetImport(), nInPrefix, rLocalName, xAttrList,
                XML_TEXT_TYPE_BODY );
     if( !pContext )
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -109,3 +107,5 @@ SvXMLImportContext *SwXMLImport::CreateBodyContext(
     return pContext;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

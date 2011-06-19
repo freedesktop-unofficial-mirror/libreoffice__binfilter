@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,15 +27,12 @@
  ************************************************************************/
 
 #ifndef _INETBND_HXX
-#define _INETBND_HXX "$Revision: 1.3 $"
+#define _INETBND_HXX
 
-#ifndef _TRANSBND_HXX
 #include <bf_so3/transbnd.hxx>
-#endif
 
-#ifndef _TRANSPRT_HXX
 #include <bf_so3/transprt.hxx>
-#endif
 
 #endif /* _INETBND_HXX */
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

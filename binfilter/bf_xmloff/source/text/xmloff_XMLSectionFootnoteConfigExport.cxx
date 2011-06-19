@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,38 +26,24 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONFOOTNOTECONFIGEXPORT_HXX
 #include "XMLSectionFootnoteConfigExport.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_STYLE_NUMBERINGTYPE_HPP_
 #include <com/sun/star/style/NumberingType.hpp>
-#endif
 
 
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #include "rtl/ustring.hxx"
 
@@ -122,6 +109,7 @@ void XMLSectionFootnoteConfigExport::exportXML(
                     DBG_ASSERT( i == nIdx,
                                 "received wrong property state index" );
                     rState.maValue >>= bEnd;
+                    (void)nIdx;
                     break;
             }
         }
@@ -209,3 +197,5 @@ void XMLSectionFootnoteConfigExport::exportXML(
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

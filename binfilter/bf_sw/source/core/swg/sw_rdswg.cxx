@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,63 +31,29 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
-#ifndef _SFXDOCINF_HXX //autogen
 #include <bf_sfx2/docinf.hxx>
-#endif
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
 
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _RDSWG_HXX
 #include <rdswg.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // Zeichen-Konversion
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _SWGPAR_HXX
 #include <swgpar.hxx>       // SWGRD_xxx-Flags
-#endif
-#ifndef _FRMIDS_HXX
 #include <frmids.hxx>
-#endif
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>       // Progress
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _PAM_HXX
 #include <pam.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
 
-#ifndef _SWSWERROR_H
 #include <swerror.h>
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>
-#endif
 namespace binfilter {
 
 
@@ -100,8 +67,11 @@ namespace binfilter {
  SwSwgReader::SwSwgReader
     ( SwDoc *pSwDoc, const SwPaM* pSwPaM, SvStream& rStream,
       const String& rFileName, BOOL bNewDoc )
-    : pDoc( pSwDoc ), r( rStream ), aFileName( rFileName ), bNew(bNewDoc),
-    pNdOrigTxt( 0 )
+    : pNdOrigTxt( 0 )
+    , aFileName( rFileName )
+    , pDoc( pSwDoc )
+    , bNew(bNewDoc)
+    , r( rStream )
  {
     nCntntCol  = 0;
     nErrno     = 0;
@@ -191,7 +161,7 @@ BOOL SwSwgReader::CheckPasswd( const String& rPass )
 
  void SwSwgReader::Error( ULONG nCode )
  {
-    ASSERT( !this, "Formatfehler in Datei entdeckt" );
+    OSL_ENSURE( !this, "Formatfehler in Datei entdeckt" );
     nErrno = nCode ? (nCode | ERROR_SW_READ_BASE ) : ERR_SWG_FILE_FORMAT_ERROR;
     r.setbad();
  }
@@ -553,7 +523,7 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
                                         {
                                             // dann am Node setzen!!
                                             pCNd->SetAttr( SwFmtPageDesc( pDesc ) );
-                                            ASSERT( !this, "LayoutPageDesc am Doc setzen" );
+                                            OSL_ENSURE( !this, "LayoutPageDesc am Doc setzen" );
                                         }
                                     }
                                 }
@@ -592,7 +562,6 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
             nErrno = WARN_SWG_FEATURES_LOST | WARN_SW_READ_BASE;
     }
 
-//STRIP001     EndProgress( pDoc->GetDocShell() );
 
     // Expr-Felder in Shared-Formaten?
  // if( nStatus & SWGSTAT_UPDATEEXPR )
@@ -635,3 +604,5 @@ ByteString SwSwgReader::GetAsciiText( BOOL bReq )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

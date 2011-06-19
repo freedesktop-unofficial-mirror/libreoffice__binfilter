@@ -25,22 +25,19 @@
 #
 #*************************************************************************
 
-EXTERNAL_WARNINGS_NOT_ERRORS := TRUE
-
 PRJ=..$/..$/..
 BFPRJ=..$/..
 
 PRJNAME=binfilter
 TARGET=forms_resource
 
-#GEN_HID=TRUE
-#GEN_HID_OTHER=TRUE
 NO_HIDS=TRUE
 
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
 INC+= -I$(PRJ)$/inc$/bf_forms
+
 # --- Files --------------------------------------------------------
 
 SRS1NAME=forms_resource

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef SVX_QUERYDESIGNCONTEXT_HXX
 #define SVX_QUERYDESIGNCONTEXT_HXX
 
-#ifndef CONNECTIVITY_IPARSECONTEXT_HXX
 #include <connectivity/IParseContext.hxx>
-#endif
 
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
 namespace binfilter {
 
 namespace svxform
@@ -86,3 +83,4 @@ namespace svxform
 }//end of namespace binfilter
 #endif // SVX_QUERYDESIGNCONTEXT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

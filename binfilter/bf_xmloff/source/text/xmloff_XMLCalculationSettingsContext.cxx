@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,53 +26,42 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLCALCULATIONSETTINGSCONTEXT_HXX
 #include <XMLCalculationSettingsContext.hxx>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTDOCUMENT_HPP_
 #include <com/sun/star/text/XTextDocument.hpp>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 
-using namespace ::rtl;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::text;
 using namespace ::binfilter::xmloff::token;
 
-XMLCalculationSettingsContext::XMLCalculationSettingsContext( SvXMLImport& rImport,
-                                    sal_uInt16 nPrefix,
+using rtl::OUString;
+
+XMLCalculationSettingsContext::XMLCalculationSettingsContext( SvXMLImport& rInImport,
+                                    sal_uInt16 nInPrefix,
                                     const ::rtl::OUString& rLocalName,
                                      const ::com::sun::star::uno::Reference<
                                          ::com::sun::star::xml::sax::XAttributeList >& xAttrList )
-: nYear( 1930 )
-, SvXMLImportContext ( rImport, nPrefix, rLocalName )
+    : SvXMLImportContext ( rInImport, nInPrefix, rLocalName )
+    , nYear( 1930 )
 {
     sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for( sal_Int16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
         ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
 
-        if (nPrefix == XML_NAMESPACE_TABLE)
+        if (nLclPrefix == XML_NAMESPACE_TABLE)
         {
-            if ( IsXMLToken( aLocalName, XML_NULL_YEAR ) )
+            if ( IsXMLToken( aLclLocalName, XML_NULL_YEAR ) )
             {
                 sal_Int32 nTemp;
                 GetImport().GetMM100UnitConverter().convertNumber(nTemp, sValue);
@@ -100,3 +90,5 @@ void XMLCalculationSettingsContext::EndElement()
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

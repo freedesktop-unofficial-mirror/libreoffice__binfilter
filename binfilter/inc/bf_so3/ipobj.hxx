@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,9 +34,7 @@
 #include <bf_so3/embobj.hxx>
 #include <bf_so3/ipobj.hxx>
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 /*************************************************************************/
 /*************************************************************************/
@@ -45,6 +44,7 @@ class  KeyEvent;
 class  Palette;
 
 namespace binfilter {
+
 class  SvContainerEnvironment;
 class  ImpInPlaceObject;
 class  ImpInPlaceSite;
@@ -52,11 +52,12 @@ class  ImpOleInPlaceActiveObject;
 struct IOleInPlaceObject;
 struct IOleInPlaceActiveObject;
 class SvInPlaceEnvironment;
-class  SvInPlaceObjectList;
 class  SvInPlaceClipWindow;
 class  SvInPlaceWindow;
+
 /*************************************************************************
 *************************************************************************/
+
 class SvInPlaceObject;
 #ifndef SO2_DECL_SVINPLACEOBJECT_DEFINED
 #define SO2_DECL_SVINPLACEOBJECT_DEFINED
@@ -109,7 +110,6 @@ public:
     SvInPlaceEnvironment* GetIPEnv() const { return pIPEnv; }
     SvInPlaceClient * GetIPClient() const
                     { return aProt.GetIPClient(); }
-    static  SvInPlaceObjectList & GetIPActiveObjectList();
 
     // Robuste Protokollsteuerung
     ErrCode         DoInPlaceActivate( BOOL bActivate );
@@ -120,7 +120,6 @@ public:
     virtual BOOL    ReactivateAndUndo();
 };
 
-DECLARE_LIST(SvInPlaceObjectList,SvInPlaceObject*)
 SO2_IMPL_REF(SvInPlaceObject)
 
 //=========================================================================
@@ -149,3 +148,5 @@ public:
 }
 
 #endif // _IPOBJ_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

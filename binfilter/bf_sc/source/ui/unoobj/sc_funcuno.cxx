@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,7 +35,7 @@
 #include "funcuno.hxx"
 #include "miscuno.hxx"
 #include "cellsuno.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "scdll.hxx"
 #include "document.hxx"
 #include "callform.hxx"
@@ -122,7 +120,6 @@ ScDocument* ScTempDocSource::GetDocument()
         return rCache.GetDocument();
 }
 
-//------------------------------------------------------------------------
 
 ScTempDocCache::ScTempDocCache() :
     pDoc( NULL ),
@@ -148,8 +145,6 @@ void ScTempDocCache::Clear()
     delete pDoc;
     pDoc = NULL;
 }
-
-//------------------------------------------------------------------------
 
 //  copy results from one document into another
 //! merge this with ScAreaLink::Refresh
@@ -192,11 +187,9 @@ BOOL lcl_CopyData( ScDocument* pSrcDoc, const ScRange& rSrcRange,
     return TRUE;
 }
 
-//------------------------------------------------------------------------
-
-ScFunctionAccess::ScFunctionAccess() :
-    bInvalid( FALSE ),
-    pOptions( NULL )
+ScFunctionAccess::ScFunctionAccess()
+    : pOptions( NULL )
+    , bInvalid( FALSE )
 {
     StartListening( *SFX_APP() );       // for SFX_HINT_DEINITIALIZING
 }
@@ -206,7 +199,7 @@ ScFunctionAccess::~ScFunctionAccess()
     delete pOptions;
 }
 
-void ScFunctionAccess::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScFunctionAccess::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     if ( rHint.ISA(SfxSimpleHint) &&
         ((SfxSimpleHint&)rHint).GetId() == SFX_HINT_DEINITIALIZING )
@@ -222,7 +215,7 @@ void ScFunctionAccess::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
 uno::Reference<uno::XInterface> SAL_CALL ScFunctionAccess_CreateInstance(
                         const uno::Reference<lang::XMultiServiceFactory>& )
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     SC_DLL()->Load();       // load module
     static uno::Reference< uno::XInterface > xInst = (::cppu::OWeakObject*) new ScFunctionAccess;
     return xInst;
@@ -230,14 +223,14 @@ uno::Reference<uno::XInterface> SAL_CALL ScFunctionAccess_CreateInstance(
 
 ::rtl::OUString ScFunctionAccess::getImplementationName_Static()
 {
-    return ::rtl::OUString::createFromAscii( "stardiv.StarCalc.ScFunctionAccess" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "stardiv.StarCalc.ScFunctionAccess" ));
 }
 
 uno::Sequence< ::rtl::OUString> ScFunctionAccess::getSupportedServiceNames_Static()
 {
     uno::Sequence< ::rtl::OUString> aRet(1);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCFUNCTIONACCESS_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFUNCTIONACCESS_SERVICE ));
     return aRet;
 }
 
@@ -245,7 +238,7 @@ uno::Sequence< ::rtl::OUString> ScFunctionAccess::getSupportedServiceNames_Stati
 
 ::rtl::OUString SAL_CALL ScFunctionAccess::getImplementationName() throw(uno::RuntimeException)
 {
-    return ::rtl::OUString::createFromAscii( "ScFunctionAccess" );
+    return ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "ScFunctionAccess" ));
 }
 
 sal_Bool SAL_CALL ScFunctionAccess::supportsService( const ::rtl::OUString& rServiceName )
@@ -261,8 +254,8 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScFunctionAccess::getSupportedServiceNa
 {
     uno::Sequence< ::rtl::OUString> aRet(2);
     ::rtl::OUString* pArray = aRet.getArray();
-    pArray[0] = ::rtl::OUString::createFromAscii( SCFUNCTIONACCESS_SERVICE );
-    pArray[1] = ::rtl::OUString::createFromAscii( SCDOCSETTINGS_SERVICE );
+    pArray[0] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCFUNCTIONACCESS_SERVICE ));
+    pArray[1] = ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM( SCDOCSETTINGS_SERVICE ));
     return aRet;
 }
 
@@ -271,7 +264,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScFunctionAccess::getSupportedServiceNa
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScFunctionAccess::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( ScDocOptionsHelper::GetPropertyMap() );
     return aRef;
@@ -283,7 +276,7 @@ void SAL_CALL ScFunctionAccess::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pOptions )
         pOptions = new ScDocOptions();
@@ -299,7 +292,7 @@ uno::Any SAL_CALL ScFunctionAccess::getPropertyValue( const ::rtl::OUString& aPr
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if ( !pOptions )
         pOptions = new ScDocOptions();
@@ -371,7 +364,7 @@ uno::Any SAL_CALL ScFunctionAccess::callFunction( const ::rtl::OUString& aName,
                 throw(container::NoSuchElementException, lang::IllegalArgumentException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     if (bInvalid)
         throw uno::RuntimeException();
@@ -435,7 +428,7 @@ uno::Any SAL_CALL ScFunctionAccess::callFunction( const ::rtl::OUString& aName,
         {
             //  #87871# accept integer types because Basic passes a floating point
             //  variable as byte, short or long if it's an integer number.
-            double fVal;
+            double fVal(0.0);
             rArg >>= fVal;
             aTokenArr.AddDouble( fVal );
         }
@@ -588,7 +581,7 @@ uno::Any SAL_CALL ScFunctionAccess::callFunction( const ::rtl::OUString& aName,
                         {
                             //  #87871# accept integer types because Basic passes a floating point
                             //  variable as byte, short or long if it's an integer number.
-                            double fVal;
+                            double fVal(0.0);
                             rElement >>= fVal;
                             pDoc->SetValue( (USHORT) nCol, (USHORT) nDocRow, 0, fVal );
                         }
@@ -716,3 +709,5 @@ uno::Any SAL_CALL ScFunctionAccess::callFunction( const ::rtl::OUString& aName,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

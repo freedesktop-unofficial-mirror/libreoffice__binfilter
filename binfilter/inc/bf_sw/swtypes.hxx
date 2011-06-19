@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,20 +29,14 @@
 #define _SWTYPES_HXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 #include <limits.h>     //fuer LONG_MAX
 
 #ifdef PM20
 #include <stdlib.h>
 #endif
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 
 // wenn das hier geaendert wird, dann auch im globals.hrc aendern!!!
 //#define SW_FILEFORMAT_40 SOFFICE_FILEFORMAT_40
@@ -196,13 +191,13 @@ Size GetGraphicSizeTwip( const Graphic&, OutputDevice* pOutDev );
 
 // Seperator fuer Sprunge im Dokument auf verschiedene Inhalttype
 const sal_Unicode cMarkSeperator = '|';
-extern const sal_Char* __FAR_DATA pMarkToTable;             // Strings stehen
-extern const sal_Char* __FAR_DATA pMarkToFrame;             // im Init.cxx
-extern const sal_Char* __FAR_DATA pMarkToRegion;
-extern const sal_Char* __FAR_DATA pMarkToOutline;
-extern const sal_Char* __FAR_DATA pMarkToText;
-extern const sal_Char* __FAR_DATA pMarkToGraphic;
-extern const sal_Char* __FAR_DATA pMarkToOLE;
+extern const sal_Char* pMarkToTable;                // Strings stehen
+extern const sal_Char* pMarkToFrame;             // im Init.cxx
+extern const sal_Char* pMarkToRegion;
+extern const sal_Char* pMarkToOutline;
+extern const sal_Char* pMarkToText;
+extern const sal_Char* pMarkToGraphic;
+extern const sal_Char* pMarkToOLE;
 
 #ifndef DB_DELIM                            // Ist in OFA definiert!!!
 #define DB_DELIM ((sal_Unicode)0xff)        // Datenbank <-> Tabellen-Trenner
@@ -227,6 +222,8 @@ enum SetAttrMode
 
 #define TWIP_TO_MM100(TWIP)     ((TWIP) >= 0 ? (((TWIP)*127L+36L)/72L) : (((TWIP)*127L-36L)/72L))
 #define MM100_TO_TWIP(MM100)    ((MM100) >= 0 ? (((MM100)*72L+63L)/127L) : (((MM100)*72L-63L)/127L))
+#define TWIP_TO_MM100_UNSIGNED(TWIP)     ((((TWIP)*127L+36L)/72L))
+#define MM100_TO_TWIP_UNSIGNED(MM100)    ((((MM100)*72L+63L)/127L))
 
 #define SW_ISPRINTABLE( c ) ( c >= ' ' && 127 != c )
 
@@ -249,16 +246,8 @@ LocaleDataWrapper& GetAppLocaleData();
 ULONG GetAppLanguage();
 
 
-#if 0
-// I18N doesn't get this right, can't specify more than one to ignore
-#define SW_COLLATOR_IGNORES ( \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_CASE | \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_KANA | \
-    ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_WIDTH )
-#else
 #define SW_COLLATOR_IGNORES ( \
     ::com::sun::star::i18n::CollatorOptions::CollatorOptions_IGNORE_CASE )
-#endif
 
 CollatorWrapper& GetAppCollator();
 CollatorWrapper& GetAppCaseCollator();
@@ -268,3 +257,5 @@ const ::utl::TransliterationWrapper& GetAppCmpStrIgnore();
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

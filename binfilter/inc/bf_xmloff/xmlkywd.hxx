@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _XMLOFF_XMLKYWD_HXX
 #define _XMLOFF_XMLKYWD_HXX
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 namespace binfilter {
 
 /*
@@ -48,9 +47,9 @@ namespace binfilter {
  */
 
 #ifndef XML_DEFINE_KEYWORDS
-#define XML_CONSTASCII_ACTION( n, s ) extern sal_Char __FAR_DATA n[sizeof(s)]
+#define XML_CONSTASCII_ACTION( n, s ) extern sal_Char n[sizeof(s)]
 #else
-#define XML_CONSTASCII_ACTION( n, s ) sal_Char __FAR_DATA n[sizeof(s)] = s
+#define XML_CONSTASCII_ACTION( n, s ) sal_Char n[sizeof(s)] = s
 #endif
 
 // common XML
@@ -1988,3 +1987,5 @@ XML_CONSTASCII_ACTION( sXML_script_data, "script-data" );
 XML_CONSTASCII_ACTION( sXML_libraries, "libraries" );
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

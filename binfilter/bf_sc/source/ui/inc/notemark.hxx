@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,26 +29,20 @@
 #ifndef SC_NOTEMARK_HXX
 #define SC_NOTEMARK_HXX
 
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 class ScNoteMarker
 {
 public:
-    ScNoteMarker( Window* pWin,                         //STRIP001              ScNoteMarker( Window* pWin,
-        Window* pRight, Window* pBottom, Window* pDiagonal,//STRIP001                               Window* pRight, Window* pBottom, Window* pDiagonal,
-        ScDocument* pD, ScAddress aPos,                     //STRIP001                              ScDocument* pD, ScAddress aPos,
-        const String& rUser, const MapMode& rMap,           //STRIP001                              const String& rUser, const MapMode& rMap,
-        BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001                                BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard );
+    ScNoteMarker( Window* pWin,
+        Window* pRight, Window* pBottom, Window* pDiagonal,
+        ScDocument* pD, ScAddress aPos,
+        const String& rUser, const MapMode& rMap,
+        BOOL bLeftEdge, BOOL bForce, BOOL bKeyboard ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
@@ -55,3 +50,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

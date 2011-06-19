@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,24 +34,12 @@
 #include "sbxfac.hxx"
 #include "sbx.hxx"
 
-#ifndef _COM_SUN_STAR_BEANS_XMATERIALHOLDER_HPP_
 #include <com/sun/star/beans/XMaterialHolder.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XEXACTNAME_HPP_
 #include <com/sun/star/beans/XExactName.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XINTROSPECTIONACCESS_HPP_
 #include <com/sun/star/beans/XIntrospectionAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XINTROSPECTION_HPP_
 #include <com/sun/star/beans/XIntrospection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XINVOCATION_HPP_
 #include <com/sun/star/script/XInvocation.hpp>
-#endif
-#ifndef _COM_SUN_STAR_REFLECTION_XIDLCLASS_HPP_
 #include <com/sun/star/reflection/XIdlClass.hpp>
-#endif
 #ifndef _RTL_USTRING_
 #include <rtl/ustring.hxx>
 #endif
@@ -257,3 +246,5 @@ public:
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

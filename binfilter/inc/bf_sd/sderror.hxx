@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -29,9 +30,7 @@
 #ifndef _SDSWERROR_H
 #define _SDSWERROR_H
 
-#ifndef _ERRCODE_HXX
 #include <tools/errcode.hxx>
-#endif
 
 #define ERROR_SD_BASE           (ERRCODE_AREA_SD)
 #define ERROR_SD_READ_BASE      (ERROR_SD_BASE | ERRCODE_CLASS_READ)
@@ -53,12 +52,12 @@
 #ifndef __RSC
 
 namespace binfilter {
-inline FASTBOOL IsWarning( ULONG nErr )
+inline bool IsWarning( ULONG nErr )
 {
     return 0 != ( nErr & ERRCODE_WARNING_MASK & nErr );
 }
 
-inline FASTBOOL IsError( ULONG nErr )
+inline bool IsError( ULONG nErr )
 {
     return nErr && 0 == ( ERRCODE_WARNING_MASK & nErr );
 }
@@ -67,3 +66,5 @@ inline FASTBOOL IsError( ULONG nErr )
 
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

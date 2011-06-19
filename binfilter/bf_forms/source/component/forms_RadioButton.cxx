@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,35 +28,14 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-
-#ifndef _FORMS_RADIOBUTTON_HXX_
 #include "RadioButton.hxx"
-#endif
-#ifndef _FRM_PROPERTY_HRC_
 #include "property.hrc"
-#endif
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 namespace binfilter {
 
@@ -65,7 +45,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -108,7 +87,7 @@ void SAL_CALL ORadioButtonControl::createPeer(const Reference<starawt::XToolkit>
     // (formerly this switch-off was done in the toolkit - but the correct place is here ...)
 //  Reference< XVclWindowPeer >  xVclWindowPeer( getPeer(), UNO_QUERY );
 //  if (xVclWindowPeer.is())
-//      xVclWindowPeer->setProperty(::rtl::OUString::createFromAscii("AutoToggle"), ::cppu::bool2any(sal_False));
+//      xVclWindowPeer->setProperty(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("AutoToggle")), ::cppu::bool2any(sal_False));
     // new order: do _not_ switch off the auto toggle because:
     // * today, it is not necessary anymore to handle the toggling ourself (everything works fine without it)
     // * without auto toggle, the AccessibleEvents as fired by the radio buttons are
@@ -230,7 +209,7 @@ void ORadioButtonModel::SetSiblingPropsTo(const ::rtl::OUString& rPropName, cons
             // nur wenn es ein Radio-Button ist
             if (!hasProperty(PROPERTY_CLASSID, xSiblingProperties))
                 continue;
-            sal_Int16 nType;
+            sal_Int16 nType(0);
             xSiblingProperties->getPropertyValue(PROPERTY_CLASSID) >>= nType;
             if (nType != FormComponentType::RADIOBUTTON)
                 continue;
@@ -298,7 +277,7 @@ void ORadioButtonModel::setFastPropertyValue_NoBroadcast(sal_Int32 nHandle, cons
                     // nur wenn ich nicht mich selber gefunden habe
                     continue;
 
-                sal_Int16 nType;
+                sal_Int16 nType(0);
                 xSiblingProperties->getPropertyValue(PROPERTY_CLASSID) >>= nType;
                 if (nType != FormComponentType::RADIOBUTTON)
                     // nur Radio-Buttons
@@ -434,7 +413,7 @@ void SAL_CALL ORadioButtonModel::read(const Reference<XObjectInputStream>& _rxIn
             readCommonProperties(_rxInStream);
             break;
         default :
-            DBG_ERROR("ORadioButtonModel::read : unknown version !");
+            OSL_FAIL("ORadioButtonModel::read : unknown version !");
             m_sReferenceValue = ::rtl::OUString();
             m_nDefaultChecked = 0;
             defaultCommonProperties();
@@ -490,3 +469,5 @@ void ORadioButtonModel::reset(void) throw (RuntimeException)
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _SFXINTITEM_HXX
 #include <bf_svtools/intitem.hxx>
-#endif
-#ifndef _SVX_FRMDIR_HXX
 #include <bf_svx/frmdir.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 namespace binfilter {
 
 // class SvxFrameDirectionItem ----------------------------------------------
@@ -60,14 +55,14 @@ public:
 
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream & rStrm, USHORT nIVer) const;
+    virtual SvStream&  Store(SvStream & rStrm, USHORT) const { return rStrm; }
     virtual USHORT          GetVersion( USHORT nFileVersion ) const;
     virtual int             operator==( const SfxPoolItem& ) const;
 
 
-    virtual sal_Bool PutValue( const ::com::sun::star::uno::Any& rVal,
+    virtual bool PutValue( const ::com::sun::star::uno::Any& rVal,
                                     BYTE nMemberId );
-    virtual sal_Bool QueryValue( ::com::sun::star::uno::Any& rVal,
+    virtual bool QueryValue( ::com::sun::star::uno::Any& rVal,
                                 BYTE nMemberId ) const;
 
     inline SvxFrameDirectionItem& operator=( const SvxFrameDirectionItem& rItem )
@@ -80,3 +75,4 @@ public:
 }//end of namespace binfilter
 #endif // #ifndef _SVX_FRMDIRITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

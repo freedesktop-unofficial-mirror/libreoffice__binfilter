@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,15 +30,9 @@
 
 // INCLUDE ---------------------------------------------------------------
 
-#ifndef _PRINT_HXX //autogen
 #include <vcl/print.hxx>
-#endif
-#ifndef _MAPMOD_HXX //autogen
 #include <vcl/mapmod.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX
 #include <bf_svx/svxenum.hxx>
-#endif
 class Printer;
 class Size;
 class String;
@@ -169,3 +164,4 @@ const long lKai32BigHeight  = 11510;            // 32 kai gross 20,3 cm
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

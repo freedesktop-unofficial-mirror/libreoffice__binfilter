@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,41 +28,20 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
 //_________________________________________________________________________________________________________________
 //  includes
 //_________________________________________________________________________________________________________________
-
 #include <bf_svtools/bf_solar.h>
 #include <bf_svtools/menuoptions.hxx>
-
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-
 #include <rtl/logfile.hxx>
 #include "itemholder1.hxx"
 
 #include <tools/link.hxx>
-#include <tools/list.hxx>
 
 //_________________________________________________________________________________________________________________
 //  namespaces
@@ -94,8 +74,6 @@ namespace binfilter
 
 #define PROPERTYCOUNT                           3
 
-DECLARE_LIST( LinkList, Link * )
-
 //_________________________________________________________________________________________________________________
 //  private declarations!
 //_________________________________________________________________________________________________________________
@@ -107,7 +85,6 @@ class SvtMenuOptions_Impl : public ConfigItem
     //-------------------------------------------------------------------------------------------------------------
 
     private:
-        LinkList    aList;
         sal_Bool    m_bDontHideDisabledEntries          ;   /// cache "DontHideDisabledEntries" of Menu section
         sal_Bool    m_bFollowMouse                      ;   /// cache "FollowMouse" of Menu section
         sal_Bool    m_bMenuIcons                        ;   /// cache "MenuIcons" of Menu section
@@ -190,8 +167,6 @@ class SvtMenuOptions_Impl : public ConfigItem
                     {
                         m_bDontHideDisabledEntries = bState;
                         SetModified();
-                        for ( USHORT n=0; n<aList.Count(); n++ )
-                            aList.GetObject(n)->Call( this );
                         Commit();
                     }
 
@@ -199,8 +174,6 @@ class SvtMenuOptions_Impl : public ConfigItem
                     {
                         m_bFollowMouse = bState;
                         SetModified();
-                        for ( USHORT n=0; n<aList.Count(); n++ )
-                            aList.GetObject(n)->Call( this );
                         Commit();
                     }
 
@@ -208,8 +181,6 @@ class SvtMenuOptions_Impl : public ConfigItem
                     {
                         m_bMenuIcons = bState;
                         SetModified();
-                        for ( USHORT n=0; n<aList.Count(); n++ )
-                            aList.GetObject(n)->Call( this );
                         Commit();
                     }
 
@@ -302,9 +273,6 @@ SvtMenuOptions_Impl::~SvtMenuOptions_Impl()
     {
         Commit();
     }
-
-    for ( USHORT n=0; n<aList.Count(); )
-        delete aList.Remove(n);
 }
 
 //*****************************************************************************************************************
@@ -341,9 +309,6 @@ void SvtMenuOptions_Impl::Notify( const Sequence< OUString >& seqPropertyNames )
         else DBG_ASSERT( sal_False, "SvtMenuOptions_Impl::Notify()\nUnkown property detected ... I can't handle these!\n" );
         #endif
     }
-
-    for ( USHORT n=0; n<aList.Count(); n++ )
-        aList.GetObject(n)->Call( this );
 }
 
 //*****************************************************************************************************************
@@ -467,3 +432,5 @@ Mutex& SvtMenuOptions::GetOwnStaticMutex()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

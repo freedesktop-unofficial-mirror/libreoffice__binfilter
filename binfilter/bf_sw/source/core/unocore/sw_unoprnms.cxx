@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #pragma hdrstop
 #endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
-#ifndef _UNOPRNMS_HXX
 #include <unoprnms.hxx>
-#endif
 namespace binfilter {
 
 
@@ -720,3 +717,5 @@ const SwPropNameLen& GetPropName( USHORT nId )
 #endif
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

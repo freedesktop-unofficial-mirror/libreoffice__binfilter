@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,22 +32,12 @@
 #endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NDINDEX_HXX
 #include <ndindex.hxx>
-#endif
-#ifndef _SWTABLE_HXX
 #include <swtable.hxx>
-#endif
-#ifndef _FTNFRM_HXX
 #include <ftnfrm.hxx>
-#endif
-#ifndef _SECTFRM_HXX
 #include <sectfrm.hxx>
-#endif
 #include "cntfrm.hxx"
 #include "tabfrm.hxx"
 #include "frmtool.hxx"
@@ -55,7 +46,7 @@
 namespace binfilter {
 
 
-/* -----------------25.02.99 10:31-------------------
+/* --------------------------------------------------
  * Die SwNode2LayImpl-Klasse erledigt die eigentliche Arbeit,
  * die SwNode2Layout-Klasse ist nur die der Oefffentlichkeit bekannte Schnittstelle
  * --------------------------------------------------*/
@@ -77,7 +68,7 @@ namespace binfilter {
 /*N*/
 /*N*/ };
 
-/* -----------------25.02.99 10:38-------------------
+/* --------------------------------------------------
  * Hauptaufgabe des Ctor: Das richtige SwModify zu ermitteln,
  * ueber das iteriert wird.
  * Uebergibt man bSearch == TRUE, so wird der naechste Cntnt- oder TableNode
@@ -96,7 +87,7 @@ namespace binfilter {
 /*N*/       // damit wir uns vor/hinter ihn haengen koennen
 /*N*/       if( !bSearch && rNode.GetIndex() < nIndex )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 SwNodeIndex aTmp( *rNode.EndOfSectionNode(), +1 );
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       else
 /*N*/       {
@@ -119,7 +110,7 @@ namespace binfilter {
 /*?*/           pMod = (SwModify*)pNd->GetCntntNode();
 /*N*/       else
 /*N*/       {
-/*?*/           ASSERT( pNd->IsTableNode(), "For Tablenodes only" );
+/*?*/           OSL_ENSURE( pNd->IsTableNode(), "For Tablenodes only" );
 /*?*/           pMod = pNd->GetTableNode()->GetTable().GetFrmFmt();
 /*N*/       }
 /*N*/       pIter = new SwClientIter( *pMod );
@@ -128,7 +119,7 @@ namespace binfilter {
 /*N*/       pIter = NULL;
 /*N*/ }
 
-/* -----------------25.02.99 10:41-------------------
+/* --------------------------------------------------
  * SwNode2LayImpl::NextFrm() liefert den naechsten "sinnvollen" Frame,
  * beim ersten Aufruf wird am eigentlichen Iterator ein First gerufen,
  * danach die Next-Methode. Das Ergebnis wird auf Brauchbarkeit untersucht,
@@ -154,7 +145,7 @@ namespace binfilter {
 /*N*/   while( pRet )
 /*N*/   {
 /*N*/       SwFlowFrm* pFlow = SwFlowFrm::CastFlowFrm( pRet );
-/*N*/       ASSERT( pFlow, "Cntnt or Table expected?!" );
+/*N*/       OSL_ENSURE( pFlow, "Cntnt or Table expected?!" );
 /*N*/       // Follows sind fluechtige Gestalten, deshalb werden sie ignoriert.
 /*N*/       // Auch wenn wir hinter dem Frame eingefuegt werden sollen, nehmen wir
 /*N*/       // zunaechst den Master, hangeln uns dann aber zum letzten Follow durch.
@@ -176,9 +167,9 @@ namespace binfilter {
 /*N*/               // und nicht ausserhalb liegt.
 /*N*/               if( !pRet->IsInFtn() || pSct->IsInFtn() )
 /*N*/               {
-/*N*/                   ASSERT( pSct && pSct->GetSection(), "Where's my section?" );
+/*N*/                   OSL_ENSURE( pSct && pSct->GetSection(), "Where's my section?" );
 /*N*/                   SwSectionNode* pNd = pSct->GetSection()->GetFmt()->GetSectionNode();
-/*N*/                   ASSERT( pNd, "Lost SectionNode" );
+/*N*/                   OSL_ENSURE( pNd, "Lost SectionNode" );
 /*N*/                   // Wenn der erhaltene Frame in einem Bereichsframe steht,
 /*N*/                   // dessen Bereich den Ausgangsnode nicht umfasst, so kehren
 /*N*/                   // wir mit dem SectionFrm zurueck, sonst mit dem Cntnt/TabFrm
@@ -258,7 +249,7 @@ namespace binfilter {
 
 /*N*/ void SwNode2LayImpl::RestoreUpperFrms( SwNodes& rNds, ULONG nStt, ULONG nEnd )
 /*N*/ {
-/*N*/   ASSERT( pUpperFrms, "RestoreUpper without SaveUpper?" )
+/*N*/   OSL_ENSURE( pUpperFrms, "RestoreUpper without SaveUpper?" );
 /*N*/   SwNode* pNd;
 /*N*/   SwDoc *pDoc = rNds.GetDoc();
 /*N*/   BOOL bFirst = TRUE;
@@ -294,7 +285,7 @@ namespace binfilter {
 /*?*/               else
 /*?*/                   pNxt = pUp->Lower();
 /*?*/               pNew = ((SwTableNode*)pNd)->MakeFrm();
-/*?*/               ASSERT( pNew->IsTabFrm(), "Table exspected" );
+/*?*/               OSL_ENSURE( pNew->IsTabFrm(), "Table exspected" );
 /*?*/               pNew->Paste( pUp, pNxt );
 /*?*/               ((SwTabFrm*)pNew)->RegistFlys();
 /*?*/               (*pUpperFrms)[x-2] = pNew;
@@ -308,7 +299,7 @@ namespace binfilter {
 /*N*/               if( bFirst && pNxt && pNxt->IsSctFrm() )
 /*N*/                   ((SwSectionFrm*)pNxt)->UnlockJoin();
 /*N*/               pUp = (SwLayoutFrm*)(*pUpperFrms)[x++];
-/*N*/               ASSERT( pUp->GetUpper() || pUp->IsFlyFrm(), "Lost Upper" );
+/*N*/               OSL_ENSURE( pUp->GetUpper() || pUp->IsFlyFrm(), "Lost Upper" );
 /*N*/               ::binfilter::_InsertCnt( pUp, pDoc, pNd->GetIndex(), FALSE, nStt+1, pNxt );
 /*N*/               pNxt = pUp->Lower();
 /*N*/               if( pNxt )
@@ -343,7 +334,7 @@ namespace binfilter {
 
 /*N*/ void SwNode2Layout::RestoreUpperFrms( SwNodes& rNds, ULONG nStt, ULONG nEnd )
 /*N*/ {
-/*N*/   ASSERT( pImpl, "RestoreUpperFrms without SaveUpperFrms" );
+/*N*/   OSL_ENSURE( pImpl, "RestoreUpperFrms without SaveUpperFrms" );
 /*N*/   pImpl->RestoreUpperFrms( rNds, nStt, nEnd );
 /*N*/ }
 
@@ -365,3 +356,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

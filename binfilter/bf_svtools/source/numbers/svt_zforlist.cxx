@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,55 +28,24 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef GCC
-#endif
-
-// #include <math.h>
-
-#ifndef _DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _SOUND_HXX //autogen
 #include <vcl/sound.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX //autogen
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SV_SETTINGS_HXX //autogen
 #include <vcl/settings.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_MSLANGID_HXX
 #include <i18npool/mslangid.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_NUMBERFORMATCODEWRAPPER_HXX
 #include <unotools/numberformatcodewrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_CALENDARWRAPPER_HXX
 #include <unotools/calendarwrapper.hxx>
-#endif
-#ifndef _COM_SUN_STAR_I18N_KNUMBERFORMATUSAGE_HPP_
 #include <com/sun/star/i18n/KNumberFormatUsage.hpp>
-#endif
-#ifndef _COM_SUN_STAR_I18N_KNUMBERFORMATTYPE_HPP_
 #include <com/sun/star/i18n/KNumberFormatType.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 
 #define _ZFORLIST_CXX
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
 #include <bf_svtools/zforlist.hxx>
 #undef _ZFORLIST_CXX
 
@@ -88,12 +58,8 @@
 #include "listener.hxx"
 #include <bf_svtools/smplhint.hxx>
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #include <unotools/misccfg.hxx>
 
@@ -126,7 +92,7 @@ namespace binfilter
 #define UNKNOWN_SUBSTITUTE      LANGUAGE_ENGLISH_US
 
 static BOOL bIndexTableInitialized = FALSE;
-static sal_uInt32 __FAR_DATA theIndexTable[NF_INDEX_TABLE_ENTRIES];
+static sal_uInt32 theIndexTable[NF_INDEX_TABLE_ENTRIES];
 
 
 // ====================================================================
@@ -480,6 +446,7 @@ void SvNumberFormatter::ReplaceSystemCL( LanguageType eOldLanguage )
                 bCheck = TRUE;
         }
         DBG_ASSERT( bCheck, "SvNumberFormatter::ReplaceSystemCL: couldn't convert" );
+        (void)bCheck;
 
         delete pOldEntry;
     }
@@ -550,7 +517,7 @@ BOOL SvNumberFormatter::PutEntry(String& rString,
             if (nPos - CLOffset >= SV_COUNTRY_LANGUAGE_OFFSET)
             {
                 Sound::Beep();
-                DBG_ERROR("SvNumberFormatter:: Zu viele Formate pro CL");
+                OSL_FAIL("SvNumberFormatter:: Zu viele Formate pro CL");
                 delete p_Entry;
             }
             else if (!aFTable.Insert(nPos+1,p_Entry))
@@ -637,7 +604,7 @@ BOOL SvNumberFormatter::Load( SvStream& rStream )
 
         sal_uInt32 nOffset = nPos % SV_COUNTRY_LANGUAGE_OFFSET;     // relativIndex
         BOOL bUserDefined = (nOffset > SV_MAX_ANZ_STANDARD_FORMATE);
-        //! HACK! ER 29.07.97 15:15
+        //! HACK!
         // SaveLang wurde bei SYSTEM nicht gespeichert sondern war auch SYSTEM,
         // erst ab 364i Unterscheidung moeglich
         BOOL bConversionHack;
@@ -815,43 +782,6 @@ BOOL SvNumberFormatter::Load( SvStream& rStream )
         return TRUE;
 }
 
-BOOL SvNumberFormatter::Save( SvStream& rStream ) const
-{
-    ImpSvNumMultipleWriteHeader aHdr( rStream );
-    // ab 364i wird gespeichert was SYSTEM wirklich war, vorher hart LANGUAGE_SYSTEM
-    rStream << (USHORT) SV_NUMBERFORMATTER_VERSION;
-    rStream << (USHORT) Application::GetSettings().GetLanguage() << (USHORT) IniLnge;
-    SvNumberFormatTable* pTable = (SvNumberFormatTable*) &aFTable;
-    SvNumberformat* pEntry = (SvNumberformat*) pTable->First();
-    while (pEntry)
-    {
-        // Gespeichert werden alle markierten, benutzerdefinierten Formate und
-        // jeweils das Standardformat zu allen angewaehlten CL-Kombinationen
-        // sowie NewStandardDefined
-        if ( pEntry->GetUsed() || (pEntry->GetType() & NUMBERFORMAT_DEFINED) ||
-                pEntry->GetNewStandardDefined() ||
-                (pTable->GetCurKey() % SV_COUNTRY_LANGUAGE_OFFSET == 0) )
-        {
-            rStream << static_cast<sal_uInt32>(pTable->GetCurKey())
-                    << (USHORT) LANGUAGE_SYSTEM
-                    << (USHORT) pEntry->GetLanguage();
-            pEntry->Save(rStream, aHdr);
-        }
-        pEntry = (SvNumberformat*) pTable->Next();
-    }
-    rStream << NUMBERFORMAT_ENTRY_NOT_FOUND;                // EndeKennung
-
-    // ab SV_NUMBERFORMATTER_VERSION_YEAR2000
-    aHdr.StartEntry();
-    rStream << (UINT16) GetYear2000();
-    aHdr.EndEntry();
-
-    if (rStream.GetError())
-        return FALSE;
-    else
-        return TRUE;
-}
-
 // static
 void SvNumberFormatter::SkipNumberFormatterInStream( SvStream& rStream )
 {
@@ -880,7 +810,7 @@ String SvNumberFormatter::GetKeyword( LanguageType eLnge, USHORT nIndex )
     if ( pTable && nIndex < NF_KEYWORD_ENTRIES_COUNT )
         return pTable[nIndex];
 
-    DBG_ERROR("GetKeyword: invalid index");
+    OSL_FAIL("GetKeyword: invalid index");
     return String();
 }
 
@@ -1080,7 +1010,7 @@ BOOL SvNumberFormatter::IsNumberFormat(const String& sString,
     const SvNumberformat* pFormat = (SvNumberformat*) aFTable.Get(F_Index);
     if (!pFormat)
     {
-//      DBG_ERROR("SvNumberFormatter:: Unbekanntes altes Zahlformat (2)");
+//      OSL_FAIL("SvNumberFormatter:: Unbekanntes altes Zahlformat (2)");
         ChangeIntl(IniLnge);
         FType = NUMBERFORMAT_NUMBER;
     }
@@ -1263,7 +1193,7 @@ sal_uInt32 SvNumberFormatter::ImpGetDefaultFormat( short nType )
                     nDefaultFormat = CLOffset + ZF_STANDARD;
             }
         }
-        aDefaultFormatKeys.Insert( nSearch, (void*) nDefaultFormat );
+        aDefaultFormatKeys.Insert( nSearch, (void*)(sal_uIntPtr) nDefaultFormat );
     }
     return nDefaultFormat;
 }
@@ -2665,7 +2595,7 @@ SvNumberFormatterIndexTable* SvNumberFormatter::MergeFormatter(SvNumberFormatter
                 if (nPos - nCLOffset >= SV_COUNTRY_LANGUAGE_OFFSET)
                 {
                     Sound::Beep();
-                    DBG_ERROR(
+                    OSL_FAIL(
                         "SvNumberFormatter:: Zu viele Formate pro CL");
                     delete pNewEntry;
                 }
@@ -2930,7 +2860,7 @@ sal_uInt32 SvNumberFormatter::ImpGetDefaultCurrencyFormat()
             }
         }
         aDefaultFormatKeys.Insert( CLOffset + ZF_STANDARD_CURRENCY,
-            (void*) nDefaultCurrencyFormat );
+            (void*)(sal_uIntPtr) nDefaultCurrencyFormat );
     }
     return nDefaultCurrencyFormat;
 }
@@ -3239,10 +3169,6 @@ void lcl_CheckCurrencySymbolPosition( const NfCurrencyEntry& rCurr )
         aStr += ", negative: ";
         aStr += ByteString::CreateFromInt32( rCurr.GetNegativeFormat() );
         aStr += ( nNeg ? " (postfix)" : " (prefix)" );
-#if 0
-// seems that there really are some currencies which differ, e.g. YugoDinar
-        DBG_ERRORFILE( aStr.GetBuffer() );
-#endif
     }
 }
 
@@ -3623,7 +3549,7 @@ void NfCurrencyEntry::CompletePositiveFormatString( String& rStr,
         }
         break;
         default:
-            DBG_ERROR("NfCurrencyEntry::CompletePositiveFormatString: unknown option");
+            OSL_FAIL("NfCurrencyEntry::CompletePositiveFormatString: unknown option");
         break;
     }
 }
@@ -3745,7 +3671,7 @@ void NfCurrencyEntry::CompleteNegativeFormatString( String& rStr,
         }
         break;
         default:
-            DBG_ERROR("NfCurrencyEntry::CompleteNegativeFormatString: unknown option");
+            OSL_FAIL("NfCurrencyEntry::CompleteNegativeFormatString: unknown option");
         break;
     }
 }
@@ -3776,7 +3702,7 @@ USHORT NfCurrencyEntry::GetEffectivePositiveFormat( USHORT
             case 3:                                         // 1 $
             break;
             default:
-                DBG_ERROR("NfCurrencyEntry::GetEffectivePositiveFormat: unknown option");
+                OSL_FAIL("NfCurrencyEntry::GetEffectivePositiveFormat: unknown option");
             break;
         }
         return nIntlFormat;
@@ -3817,7 +3743,7 @@ USHORT lcl_MergeNegativeParenthesisFormat( USHORT nIntlFormat, USHORT nCurrForma
             nSign = 2;
         break;
         default:
-            DBG_ERROR("lcl_MergeNegativeParenthesisFormat: unknown option");
+            OSL_FAIL("lcl_MergeNegativeParenthesisFormat: unknown option");
         break;
     }
 
@@ -3930,7 +3856,7 @@ USHORT NfCurrencyEntry::GetEffectiveNegativeFormat( USHORT nIntlFormat,
                 nIntlFormat = 8;                            // -1 $
             break;
             default:
-                DBG_ERROR("NfCurrencyEntry::GetEffectiveNegativeFormat: unknown option");
+                OSL_FAIL("NfCurrencyEntry::GetEffectiveNegativeFormat: unknown option");
             break;
         }
 #endif
@@ -3992,7 +3918,7 @@ USHORT NfCurrencyEntry::GetEffectiveNegativeFormat( USHORT nIntlFormat,
                     nIntlFormat, nCurrFormat );
             break;
             default:
-                DBG_ERROR("NfCurrencyEntry::GetEffectiveNegativeFormat: unknown option");
+                OSL_FAIL("NfCurrencyEntry::GetEffectiveNegativeFormat: unknown option");
             break;
         }
     }
@@ -4034,3 +3960,5 @@ sal_Char NfCurrencyEntry::GetEuroSymbol( rtl_TextEncoding eTextEncoding )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

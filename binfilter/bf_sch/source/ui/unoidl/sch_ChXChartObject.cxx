@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,29 +31,17 @@
 
 // header for class OGuard
 // header for class Application
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
 // header for SvxUnoTextRangeBase
 // for OWN_ATTR_...
-#ifndef _SVX_UNOSHPRP_HXX
 #include <bf_svx/unoshprp.hxx>
-#endif
 // for SID_ATTR_...
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
-#ifndef _SVX_UNOSHAPE_HXX
 #include <bf_svx/unoshape.hxx>
-#endif
 
-#ifndef _RTL_UUID_H_
 #include <rtl/uuid.h>
-#endif
-#ifndef _RTL_MEMORY_H_
 #include <rtl/memory.h>
-#endif
 
 #ifndef _SVX_CHRTITEM_HXX //autogen
 #define ITEMID_DOUBLE           0
@@ -61,44 +50,29 @@
 #define ITEMID_CHARTLEGENDPOS   SCHATTR_LEGEND_POS
 #define ITEMID_CHARTDATADESCR   SCHATTR_DATADESCR_DESCR
 
-#ifndef _SFXENUMITEM_HXX
 #include <bf_svtools/eitem.hxx>
-#endif
 
 #endif
-#ifndef _SVX_XFLBSTIT_HXX
 #include <bf_svx/xflbstit.hxx>
-#endif
-#ifndef _SVX_XFLBMTIT_HXX
 #include <bf_svx/xflbmtit.hxx>
-#endif
 
-#ifndef _SCH_APP_HRC
 #include "app.hrc"          // for SID_TEXTBREAK
-#endif
 
 #include "mapprov.hxx"
 #include "globfunc.hxx"         // for GlobalGenerate3DAttrDefaultItem
 
-#ifndef _COM_SUN_STAR_CHART_CHARTLEGENDPOSITION_HPP_
 #include <com/sun/star/chart/ChartLegendPosition.hpp>
-#endif
 
 // header for any2enum
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
 #include <memory>
-#ifndef _SCH_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
 namespace binfilter {
 
 
 extern SchUnoPropertyMapProvider aSchMapProvider;
 
-using namespace vos;
 using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::com::sun::star::uno;
@@ -177,7 +151,7 @@ void setLogicRectHack( SdrObject* pObj, const Rectangle& rRect )
 
 SdrObject* ChXChartObject::GetCurrentSdrObject() const
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pResult = NULL;
     if( mpModel )
@@ -201,7 +175,7 @@ SdrObject* ChXChartObject::GetCurrentSdrObject() const
 // XShape interface methods
 awt::Point SAL_CALL ChXChartObject::getPosition() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pObj = GetCurrentSdrObject();
     if( pObj )
@@ -215,7 +189,7 @@ awt::Point SAL_CALL ChXChartObject::getPosition() throw( uno::RuntimeException )
         return awt::Point( aPt.X(), aPt.Y() );
     }
     else
-        DBG_ERROR( "Couldn't get position due to invalid SdrObject" );
+        OSL_FAIL( "Couldn't get position due to invalid SdrObject" );
 
     return awt::Point();
 }
@@ -230,11 +204,11 @@ void SAL_CALL ChXChartObject::setPosition( const awt::Point& aPosition ) throw( 
         case CHOBJID_DIAGRAM_Z_AXIS:
         case CHOBJID_DIAGRAM_AREA:
         case CHOBJID_DIAGRAM_WALL:
-            DBG_ERROR( "Cannot set position of this object" );
+            OSL_FAIL( "Cannot set position of this object" );
             return;
     }
 
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pObj = GetCurrentSdrObject();
     if( pObj )
@@ -261,12 +235,12 @@ void SAL_CALL ChXChartObject::setPosition( const awt::Point& aPosition ) throw( 
         }
     }
     else
-        DBG_ERROR( "Couldn't set position due to invalid SdrObject" );
+        OSL_FAIL( "Couldn't set position due to invalid SdrObject" );
 }
 
 awt::Size SAL_CALL ChXChartObject::getSize() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     SdrObject* pObj = GetCurrentSdrObject();
     if( pObj )
@@ -276,24 +250,24 @@ awt::Size SAL_CALL ChXChartObject::getSize() throw( uno::RuntimeException )
         return awt::Size( aObjSize.getWidth(), aObjSize.getHeight() );
     }
     else
-        DBG_ERROR( "Couldn't get size due to invalid SdrObject" );
+        OSL_FAIL( "Couldn't get size due to invalid SdrObject" );
 
     return awt::Size();
 }
 
-void SAL_CALL ChXChartObject::setSize( const awt::Size& aSize )
+void SAL_CALL ChXChartObject::setSize( const awt::Size& /*aSize*/ )
     throw( beans::PropertyVetoException, uno::RuntimeException )
 {
     // set size is not supported by any chart object except
     // the diagram which is covered by ChXDiagram
 
-    DBG_ERROR( "Size of chart objects cannot be changed" );
+    OSL_FAIL( "Size of chart objects cannot be changed" );
 }
 
 // XPropertySet
 uno::Reference< beans::XPropertySetInfo > SAL_CALL ChXChartObject::getPropertySetInfo() throw( uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
     return maPropSet.getPropertySetInfo();
 }
 
@@ -304,7 +278,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     if( mpModel && mnWhichId != CHOBJID_ANY )
     {
@@ -362,7 +336,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
 
                 case SCHATTR_TEXT_ORIENT:
                     {
-                        sal_Bool bVal;
+                        sal_Bool bVal = sal_False;
                         if( aValue >>= bVal )
                         {
                             pSet->Put( SvxChartTextOrientItem(
@@ -379,7 +353,7 @@ void SAL_CALL ChXChartObject::setPropertyValue( const ::rtl::OUString& aProperty
                         drawing::BitmapMode eMode;
                         if(!(aValue >>= eMode) )
                         {
-                            sal_Int32 nMode;
+                            sal_Int32 nMode = 0;
                             if(!(aValue >>= nMode))
                                 break;
 
@@ -444,7 +418,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
            lang::WrappedTargetException,
            uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     uno::Any aResultaAny;
     sal_Bool bPropertyUnknown = sal_False;
@@ -553,10 +527,10 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
                 }
                 else
                 {
-#ifdef DBG_UTIL
+#if OSL_DEBUG_LEVEL > 1
                     String aTmpString( PropertyName );
                     ByteString aProp( aTmpString, RTL_TEXTENCODING_ASCII_US );
-                    DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
+                    OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)", aProp.GetBuffer(), nWID );
 #endif
                 }
             }
@@ -623,13 +597,13 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aResultaAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             aResultaAny >>= nValue;
                             aResultaAny <<= static_cast< sal_Int16 >( nValue );
                         }
                         else
                         {
-                            DBG_ERROR( "getPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "getPropertyValue(): wrong Type!" );
                         }
                     }
                 }
@@ -656,29 +630,29 @@ uno::Any SAL_CALL ChXChartObject::getPropertyValue( const ::rtl::OUString& Prope
     return aResultaAny;
 }
 
-void SAL_CALL ChXChartObject::addPropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                     const uno::Reference< beans::XPropertyChangeListener >& xListener )
+void SAL_CALL ChXChartObject::addPropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                     const uno::Reference< beans::XPropertyChangeListener >& /*xListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartObject::removePropertyChangeListener( const ::rtl::OUString& aPropertyName,
-                                                        const uno::Reference< beans::XPropertyChangeListener >& aListener )
+void SAL_CALL ChXChartObject::removePropertyChangeListener( const ::rtl::OUString& /*aPropertyName*/,
+                                                        const uno::Reference< beans::XPropertyChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartObject::addVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                     const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartObject::addVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                     const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
 {}
 
-void SAL_CALL ChXChartObject::removeVetoableChangeListener( const ::rtl::OUString& PropertyName,
-                                                        const uno::Reference< beans::XVetoableChangeListener >& aListener )
+void SAL_CALL ChXChartObject::removeVetoableChangeListener( const ::rtl::OUString& /*PropertyName*/,
+                                                        const uno::Reference< beans::XVetoableChangeListener >& /*aListener*/ )
     throw( beans::UnknownPropertyException,
            lang::WrappedTargetException,
            uno::RuntimeException )
@@ -704,7 +678,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
             lang::WrappedTargetException,
             uno::RuntimeException)
 {
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     //  Get pointers to first elements of lists.
     const SfxItemPropertyMap *  pProperty = maPropSet.getPropertyMap ();
@@ -769,7 +743,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
 
             case SCHATTR_TEXT_ORIENT:
                 {
-                    sal_Bool bVal;
+                    sal_Bool bVal = sal_False;
                     if( *pValue >>= bVal )
                     {
                         aModifications.Put( SvxChartTextOrientItem(
@@ -785,7 +759,7 @@ void SAL_CALL ChXChartObject::setPropertyValues (
                 drawing::BitmapMode eMode;
                 if ( ! (*pValue >>= eMode))
                 {
-                    sal_Int32 nMode;
+                    sal_Int32 nMode = 0;
                     if ( ! (*pValue >>= nMode))
                         break;
                     eMode = (drawing::BitmapMode)nMode;
@@ -858,17 +832,7 @@ uno::Sequence< uno::Any > SAL_CALL ChXChartObject::getPropertyValues    (
         const uno::Sequence< ::rtl::OUString >& aPropertyNames )
     throw ( uno::RuntimeException)
 {
-#if 0
-    uno::Sequence<uno::Any> aResult (aPropertyNames.getLength());
-
-    for (sal_Int32 i=0; i<aPropertyNames.getLength(); i++)
-    {
-        aResult[i] = getPropertyValue (aPropertyNames[i]);
-    }
-
-    return aResult;
-#endif
-    OGuard aGuard (Application::GetSolarMutex());
+    SolarMutexGuard aGuard;
 
     //  This sequence is filled with the requested values for the given property names.
     Sequence<Any> aResult (aPropertyNames.getLength());
@@ -906,8 +870,8 @@ uno::Sequence< uno::Any > SAL_CALL ChXChartObject::getPropertyValues    (
 
 
 void SAL_CALL ChXChartObject::addPropertiesChangeListener   (
-        const uno::Sequence< ::rtl::OUString >& aPropertyNames,
-        const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+        const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
+        const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
     throw ( uno::RuntimeException)
 {
     //  Not implemented.
@@ -917,7 +881,7 @@ void SAL_CALL ChXChartObject::addPropertiesChangeListener   (
 
 
 void SAL_CALL ChXChartObject::removePropertiesChangeListener    (
-        const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+        const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
     throw ( uno::RuntimeException)
 {
     //  Not implemented.
@@ -927,8 +891,8 @@ void SAL_CALL ChXChartObject::removePropertiesChangeListener    (
 
 
 void SAL_CALL ChXChartObject::firePropertiesChangeEvent (
-        const uno::Sequence< ::rtl::OUString >& aPropertyNames,
-        const uno::Reference< beans::XPropertiesChangeListener >& xListener )
+        const uno::Sequence< ::rtl::OUString >& /*aPropertyNames*/,
+        const uno::Reference< beans::XPropertiesChangeListener >& /*xListener*/ )
     throw ( uno::RuntimeException)
 {
     //  Not implemented.
@@ -940,7 +904,7 @@ void SAL_CALL ChXChartObject::firePropertiesChangeEvent (
 beans::PropertyState SAL_CALL ChXChartObject::getPropertyState( const ::rtl::OUString& PropertyName )
     throw( beans::UnknownPropertyException, uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -1008,23 +972,7 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-#if 0
-    OGuard aGuard( Application::GetSolarMutex() );
-
-    const sal_Int32 nCount = aPropertyNames.getLength();
-    const ::rtl::OUString * pName = aPropertyNames.getConstArray();
-    Sequence<PropertyState > aStates (nCount);
-    PropertyState * pState = aStates.getArray();
-
-    if (mpModel == NULL)
-        return aStates;
-
-    for (sal_Int32 nIdx = 0; nIdx < nCount; nIdx++)
-        pState[nIdx] = getPropertyState (pName[nIdx]);
-
-    return aStates;
-#else
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     //  Get pointers to first elements of lists.
     const SfxItemPropertyMap * pProperty = maPropSet.getPropertyMap ();
@@ -1117,14 +1065,13 @@ uno::Sequence< beans::PropertyState > SAL_CALL ChXChartObject::getPropertyStates
     }
 
     return aStates;
-#endif
 }
 
 void SAL_CALL ChXChartObject::setPropertyToDefault( const ::rtl::OUString& PropertyName )
         throw( beans::UnknownPropertyException,
                uno::RuntimeException )
 {
-    OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     const SfxItemPropertyMap* pMap = maPropSet.getPropertyMapEntry( PropertyName );
 
@@ -1166,13 +1113,13 @@ uno::Any SAL_CALL ChXChartObject::getPropertyDefault( const ::rtl::OUString& aPr
         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
         if( ( *pMap->pType == ::getCppuType((const sal_Int16*)0)) && aAny.getValueType() == ::getCppuType((const sal_Int32*)0) )
         {
-            sal_Int32 nValue;
+            sal_Int32 nValue(0);
             aAny >>= nValue;
             aAny <<= static_cast< sal_Int16 >( nValue );
         }
         else
         {
-            DBG_ERROR( "getPropertyDefault(): wrong Type!" );
+            OSL_FAIL( "getPropertyDefault(): wrong Type!" );
         }
     }
 
@@ -1191,7 +1138,7 @@ uno::Any SAL_CALL ChXChartObject::getPropertyDefault( const ::rtl::OUString& aPr
 void SAL_CALL ChXChartObject::setAllPropertiesToDefault (void)
     throw ( uno::RuntimeException)
 {
-    DBG_ERROR ("ChXChartObject::setAllPropertiesToDefault");
+    OSL_FAIL("ChXChartObject::setAllPropertiesToDefault");
 }
 
 
@@ -1390,7 +1337,7 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                 case SFX_ITEM_UNKNOWN:
                     {
                         OUString sMessage (RTL_CONSTASCII_USTRINGPARAM ( "ChXChartObject::getPropertyValues: unknown property "));
-                        sMessage += OUString(RTL_CONSTASCII_USTRINGPARAM (rProperty.pName));
+                        sMessage += OUString::createFromAscii(rProperty.pName);
                            throw UnknownPropertyException (sMessage, (::cppu::OWeakObject*)this);
                     }
 
@@ -1414,8 +1361,8 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                     }
                     else
                     {
-#ifdef DBG_UTIL
-                        DBG_ERROR2( "Diagram: Property %s has an invalid ID (%d)",
+#if OSL_DEBUG_LEVEL > 1
+                        OSL_TRACE( "Diagram: Property %s has an invalid ID (%d)",
                             rProperty.pName, nWID );
 #endif
                     }
@@ -1428,16 +1375,18 @@ void    ChXChartObject::GetPropertyValue    (const SfxItemPropertyMap & rPropert
                         // since the sfx uint16 item now exports a sal_Int32, we may have to fix this here
                         if( ( *rProperty.pType == ::getCppuType((const sal_Int16*)0)) && rValue.getValueType() == ::getCppuType((const sal_Int32*)0) )
                         {
-                            sal_Int32 nValue;
+                            sal_Int32 nValue(0);
                             rValue >>= nValue;
                             rValue <<= static_cast< sal_Int16 >( nValue );
                         }
                         else
                         {
-                            DBG_ERROR( "GetPropertyValue(): wrong Type!" );
+                            OSL_FAIL( "GetPropertyValue(): wrong Type!" );
                         }
                     }
             }
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

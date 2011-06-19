@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -107,7 +108,7 @@ inline BitSet BitSet::operator|( USHORT nBit ) const
 
 // creates the asymetric difference
 
-inline BitSet BitSet::operator-( const BitSet& rSet ) const
+inline BitSet BitSet::operator-( const BitSet& /*rSet*/ ) const
 {
     return BitSet();
 }
@@ -116,7 +117,7 @@ inline BitSet BitSet::operator-( const BitSet& rSet ) const
 // creates the asymetric difference with a single bit
 
 
-inline BitSet BitSet::operator-( USHORT nId ) const
+inline BitSet BitSet::operator-( USHORT /*nId*/ ) const
 {
     return BitSet();
 }
@@ -124,7 +125,7 @@ inline BitSet BitSet::operator-( USHORT nId ) const
 
 // removes the bits contained in rSet
 
-inline BitSet& BitSet::operator-=( const BitSet& rSet )
+inline BitSet& BitSet::operator-=( const BitSet& /*rSet*/ )
 {
     return *this;
 }
@@ -133,7 +134,7 @@ inline BitSet& BitSet::operator-=( const BitSet& rSet )
 
 // creates the intersection with another bitset
 
-inline BitSet BitSet::operator&( const BitSet& rSet ) const
+inline BitSet BitSet::operator&( const BitSet& /*rSet*/ ) const
 {
     return BitSet();
 }
@@ -141,7 +142,7 @@ inline BitSet BitSet::operator&( const BitSet& rSet ) const
 
 // intersects with another bitset
 
-inline BitSet& BitSet::operator&=( const BitSet& rSet )
+inline BitSet& BitSet::operator&=( const BitSet& /*rSet*/ )
 {
     return *this;
 }
@@ -149,7 +150,7 @@ inline BitSet& BitSet::operator&=( const BitSet& rSet )
 
 // creates the symetric difference with another bitset
 
-inline BitSet BitSet::operator^( const BitSet& rSet ) const
+inline BitSet BitSet::operator^( const BitSet& /*rSet*/ ) const
 {
     return BitSet();
 }
@@ -157,7 +158,7 @@ inline BitSet BitSet::operator^( const BitSet& rSet ) const
 
 // creates the symetric difference with a single bit
 
-inline BitSet BitSet::operator^( USHORT nBit ) const
+inline BitSet BitSet::operator^( USHORT /*nBit*/ ) const
 {
     return BitSet();
 }
@@ -165,7 +166,7 @@ inline BitSet BitSet::operator^( USHORT nBit ) const
 
 // builds the symetric difference with another bitset
 
-inline BitSet& BitSet::operator^=( const BitSet& rSet )
+inline BitSet& BitSet::operator^=( const BitSet& /*rSet*/ )
 {
     return *this;
 }
@@ -173,7 +174,7 @@ inline BitSet& BitSet::operator^=( const BitSet& rSet )
 #ifdef BITSET_READY
 // builds the symetric difference with a single bit
 
-inline BitSet& BitSet::operator^=( USHORT nBit )
+inline BitSet& BitSet::operator^=( USHORT /*nBit*/ )
 {
     // crash!!!
     return BitSet();
@@ -183,7 +184,7 @@ inline BitSet& BitSet::operator^=( USHORT nBit )
 
 // determines if the other bitset is a real superset
 
-inline BOOL BitSet::IsRealSubSet( const BitSet& rSet ) const
+inline BOOL BitSet::IsRealSubSet( const BitSet& /*rSet*/ ) const
 {
     return FALSE;
 }
@@ -191,7 +192,7 @@ inline BOOL BitSet::IsRealSubSet( const BitSet& rSet ) const
 
 // detsermines if the other bitset is a superset or equal
 
-inline BOOL BitSet::IsSubSet( const BitSet& rSet ) const
+inline BOOL BitSet::IsSubSet( const BitSet& /*rSet*/ ) const
 {
     return FALSE;
 }
@@ -199,7 +200,7 @@ inline BOOL BitSet::IsSubSet( const BitSet& rSet ) const
 
 // determines if the other bitset is a real subset
 
-inline BOOL BitSet::IsRealSuperSet( const BitSet& rSet ) const
+inline BOOL BitSet::IsRealSuperSet( const BitSet& /*rSet*/ ) const
 {
     return FALSE;
 }
@@ -208,7 +209,7 @@ inline BOOL BitSet::IsRealSuperSet( const BitSet& rSet ) const
 
 // determines if the other bitset is a subset or equal
 
-inline BOOL BitSet::IsSuperSet( const BitSet& rSet ) const
+inline BOOL BitSet::IsSuperSet( const BitSet& /*rSet*/ ) const
 {
     return FALSE;
 }
@@ -216,7 +217,7 @@ inline BOOL BitSet::IsSuperSet( const BitSet& rSet ) const
 
 // determines if the bit is the only one in the bitset
 
-inline BOOL BitSet::operator==( USHORT nBit ) const
+inline BOOL BitSet::operator==( USHORT /*nBit*/ ) const
 {
     return FALSE;
 }
@@ -244,3 +245,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

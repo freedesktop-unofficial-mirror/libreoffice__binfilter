@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,13 +35,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#include "errhdl.hxx"           // fuers ASSERT
+#include <osl/diagnose.h>
 #include "index.hxx"
-#include "error.h"              // fuers ASSERT
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
 namespace binfilter {
 
@@ -69,7 +67,7 @@ int SwIndex::nSerial = 0;
 
 
 /*N*/ SwIndex::SwIndex( SwIndexReg* pArr, xub_StrLen nIdx )
-/*N*/   : pArray( pArr ), nIndex( nIdx ), pNext( 0 ), pPrev( 0 )
+/*N*/   : nIndex( nIdx ), pArray( pArr ), pNext( 0 ), pPrev( 0 )
 /*N*/ {
 /*N*/   if( !pArray )
 /*N*/   {
@@ -108,7 +106,7 @@ int SwIndex::nSerial = 0;
 
 
 /*N*/ SwIndex::SwIndex( const SwIndex& rIdx )
-/*N*/   : pArray( rIdx.pArray ), nIndex( rIdx.nIndex ), pNext( 0 ), pPrev( 0 )
+/*N*/   : nIndex( rIdx.nIndex ), pArray( rIdx.pArray ), pNext( 0 ), pPrev( 0 )
 /*N*/ {
 /*N*/   ChgValue( rIdx, rIdx.nIndex );
 /*N*/ #ifdef DBG_UTIL
@@ -234,10 +232,6 @@ int SwIndex::nSerial = 0;
 |*
 |*    SwIndex & SwIndex::operator=( const SwIndex & aSwIndex )
 |*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
 *************************************************************************/
 
 
@@ -262,10 +256,6 @@ int SwIndex::nSerial = 0;
 /*************************************************************************
 |*
 |*    SwIndex &SwIndex::Assign
-|*
-|*    Beschreibung
-|*    Ersterstellung    VB 25.03.91
-|*    Letzte Aenderung  JP 07.03.94
 |*
 *************************************************************************/
 
@@ -324,7 +314,7 @@ int SwIndex::nSerial = 0;
 
 /*N*/ SwIndexReg::~SwIndexReg()
 /*N*/ {
-/*N*/   ASSERT( !pFirst || !pLast, "Es sind noch Indizies angemeldet" );
+/*N*/   OSL_ENSURE( !pFirst || !pLast, "Es sind noch Indizies angemeldet" );
 /*N*/ }
 
 #endif
@@ -373,208 +363,6 @@ int SwIndex::nSerial = 0;
 /*N*/ }
 
 
-/*************************************************************************
-|*
-|*    SwIndex::operator++()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-#ifdef DBG_UTIL
-
-#ifndef CFRONT
-
-
-xub_StrLen SwIndex::operator++(int) {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
-
-#endif
-
-
-xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 INLINE xub_StrLen operator++(int);
-
-/*************************************************************************
-|*
-|*    SwIndex::operator--()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-#ifndef CFRONT
-
-
-/*N*/ xub_StrLen SwIndex::operator--(int)
-/*N*/ {
-/*N*/   ASSERT_ID( nIndex, ERR_OUTOFSCOPE );
-/*N*/
-/*N*/   xub_StrLen nOldIndex = nIndex;
-/*N*/   ChgValue( *this, nIndex-1 );
-/*N*/   return nOldIndex;
-/*N*/ }
-
-#endif
-
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator+=( xub_StrLen )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-
-/*N*/ xub_StrLen SwIndex::operator+=( xub_StrLen nWert )
-/*N*/ {
-/*N*/   ASSERT_ID( nIndex < INVALID_INDEX - nWert, ERR_OUTOFSCOPE);
-/*N*/   return ChgValue( *this, nIndex + nWert ).nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator-=( xub_StrLen )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator+=( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-
-/*N*/ xub_StrLen SwIndex::operator+=( const SwIndex & rIndex )
-/*N*/ {
-/*N*/   ASSERT_ID( nIndex < INVALID_INDEX - rIndex.nIndex, ERR_OUTOFSCOPE );
-/*N*/   return ChgValue( *this, nIndex + rIndex.nIndex ).nIndex;
-/*N*/ }
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator-=( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-
-
-
-/*************************************************************************
-|*
-|*    SwIndex::operator<( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator<( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex < rIndex.nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator<=( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 04.06.92
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator<=( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex <= rIndex.nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator>( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 04.06.92
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator>( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex > rIndex.nIndex;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*    SwIndex::operator>=( const SwIndex & )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 07.11.90
-|*    Letzte Aenderung  JP 04.06.92
-|*
-*************************************************************************/
-
-
-/*N*/ BOOL SwIndex::operator>=( const SwIndex & rIndex ) const
-/*N*/ {
-/*N*/   ASSERT( pArray == rIndex.pArray, "Attempt to compare indices into different arrays.");
-/*N*/   return nIndex >= rIndex.nIndex;
-/*N*/ }
-
-#endif
-
-/*************************************************************************
-|*
-|*    SwIndex & SwIndex::operator=( xub_StrLen )
-|*
-|*    Beschreibung
-|*    Ersterstellung    JP 10.12.90
-|*    Letzte Aenderung  JP 07.03.94
-|*
-*************************************************************************/
-
-#ifdef DBG_UTIL
-
-
-/*N*/ SwIndex& SwIndex::operator=( xub_StrLen nWert )
-/*N*/ {
-/*N*/   // Werte kopieren und im neuen Array anmelden
-/*N*/   if( nIndex != nWert )
-/*N*/       ChgValue( *this, nWert );
-/*N*/
-/*N*/   return *this;
-/*N*/ }
-
-#endif
-
 
 
 
@@ -597,3 +385,5 @@ xub_StrLen SwIndex::operator++() {DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP0
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,20 +32,12 @@
 #define _LCKBITEM_CXX
 #include <bf_svtools/lckbitem.hxx>
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 
-#ifndef _CACHESTR_HXX //autogen
 #include <tools/cachestr.hxx>
-#endif
 
 // STATIC DATA -----------------------------------------------------------
 
@@ -127,23 +120,8 @@ SfxPoolItem* SfxLockBytesItem::Create( SvStream &rStream, USHORT ) const
     return new SfxLockBytesItem( Which(), aNewStream );
 }
 
-// -----------------------------------------------------------------------
-
-SvStream& SfxLockBytesItem::Store(SvStream &rStream, USHORT ) const
-{
-    SvStream aLockBytesStream( _xVal );
-    sal_uInt32 nSize = aLockBytesStream.Seek( STREAM_SEEK_TO_END );
-    aLockBytesStream.Seek( 0L );
-
-    rStream << nSize;
-    rStream << aLockBytesStream;
-
-    return rStream;
-}
-
-//----------------------------------------------------------------------------
 // virtual
-BOOL SfxLockBytesItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
+bool SfxLockBytesItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
 {
     com::sun::star::uno::Sequence< sal_Int8 > aSeq;
     if ( rVal >>= aSeq )
@@ -159,16 +137,16 @@ BOOL SfxLockBytesItem::PutValue( const com::sun::star::uno::Any& rVal, BYTE )
         else
             _xVal = NULL;
 
-        return TRUE;
+        return true;
     }
 
-    DBG_ERROR( "SfxLockBytesItem::PutValue - Wrong type!" );
-    return FALSE;
+    OSL_FAIL( "SfxLockBytesItem::PutValue - Wrong type!" );
+    return false;
 }
 
 //----------------------------------------------------------------------------
 // virtual
-BOOL SfxLockBytesItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
+bool SfxLockBytesItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
 {
     if ( _xVal.Is() )
     {
@@ -178,7 +156,7 @@ BOOL SfxLockBytesItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
         if ( _xVal->Stat( &aStat, SVSTATFLAG_DEFAULT ) == ERRCODE_NONE )
             nLen = aStat.nSize;
         else
-            return FALSE;
+            return false;
 
         ULONG nRead = 0;
         com::sun::star::uno::Sequence< sal_Int8 > aSeq( nLen );
@@ -192,7 +170,9 @@ BOOL SfxLockBytesItem::QueryValue( com::sun::star::uno::Any& rVal,BYTE ) const
         rVal <<= aSeq;
     }
 
-    return TRUE;
+    return true;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

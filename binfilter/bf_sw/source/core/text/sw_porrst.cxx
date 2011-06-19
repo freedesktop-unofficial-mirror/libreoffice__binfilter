@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,69 +31,29 @@
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-#ifndef _SVX_LSPCITEM_HXX //autogen
 #include <bf_svx/lspcitem.hxx>
-#endif
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_PGRDITEM_HXX
 #include <bf_svx/pgrditem.hxx>
-#endif
-#ifndef _WINDOW_HXX //autogen
 #include <vcl/window.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>   // ViewShell
-#endif
-#ifndef _VIEWOPT_HXX
 #include <viewopt.hxx>
-#endif
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>  // SwPageFrm
-#endif
-#ifndef _PARATR_HXX
 #include <paratr.hxx>
-#endif
-#ifndef _PORRST_HXX
 #include <porrst.hxx>
-#endif
-#ifndef _INFTXT_HXX
 #include <inftxt.hxx>
-#endif
-#ifndef SW_TGRDITEM_HXX
 #include <tgrditem.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx> // SwPageDesc
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
-#ifndef _ATRHNDL_HXX
 #include <atrhndl.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************
@@ -151,9 +112,9 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ void SwKernPortion::Paint( const SwTxtPaintInfo &rInf ) const
+/*N*/ void SwKernPortion::Paint( const SwTxtPaintInfo & /*rInf*/ ) const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    if( Width() )
+            DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ void SwKernPortion::FormatEOL( SwTxtFormatInfo &rInf )
@@ -170,22 +131,22 @@ namespace binfilter {
 /*N*/   rInf.GetLast()->FormatEOL( rInf );
 /*N*/ }
 
-/*N*/ SwArrowPortion::SwArrowPortion( const SwLinePortion &rPortion ) :
+/*N*/ SwArrowPortion::SwArrowPortion( const SwLinePortion & /*rPortion*/ ) :
 /*N*/   bLeft( sal_True )
 /*N*/ {
-/*N*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     Height( rPortion.Height() );
+/*N*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo &rInf ) const
+/*N*/ void SwArrowPortion::Paint( const SwTxtPaintInfo & /*rInf*/ ) const
 /*N*/ {
-/*N*/       DBG_BF_ASSERT(0, "STRIP");  //STRIP001  ((SwArrowPortion*)this)->aPos = rInf.GetPos();
+/*N*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 /*N*/ SwLinePortion *SwArrowPortion::Compress() { return this; }
 
 /*N*/ SwTwips SwTxtFrm::EmptyHeight() const
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::EmptyHeight with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::EmptyHeight with swapped frame" );
 /*N*/
 /*N*/     SwFont *pFnt;
 /*N*/   const SwTxtNode& rTxtNode = *GetTxtNode();
@@ -218,7 +179,7 @@ namespace binfilter {
 /*N*/       MSHORT nRedlPos = pDoc->GetRedlinePos( rTxtNode );
 /*N*/         if( MSHRT_MAX != nRedlPos )
 /*N*/         {
-                DBG_BF_ASSERT(0, "STRIP"); //STRIP001 /*?*/             SwAttrHandler aAttrHandler;
+                DBG_BF_ASSERT(0, "STRIP");
 /*N*/         }
 /*N*/     }
 /*N*/
@@ -243,7 +204,7 @@ namespace binfilter {
 
 /*N*/ sal_Bool SwTxtFrm::FormatEmpty()
 /*N*/ {
-/*N*/     ASSERT( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::FormatEmpty with swapped frame" );
+/*N*/     OSL_ENSURE( ! IsVertical() || ! IsSwapped(),"SwTxtFrm::FormatEmpty with swapped frame" );
 /*N*/
 /*N*/   if ( HasFollow() || GetTxtNode()->GetpSwpHints() ||
 /*N*/       0 != GetTxtNode()->GetNumRule() ||
@@ -370,7 +331,7 @@ namespace binfilter {
 /*N*/                                       rRegDiff = rSpace.GetLineHeight();
 /*N*/                                   break;
 /*N*/                               }
-/*N*/                               default: ASSERT(
+/*N*/                               default: OSL_ENSURE(
 /*N*/                               sal_False, ": unknown LineSpaceRule" );
 /*N*/                           }
 /*N*/                           switch( rSpace.GetInterLineSpaceRule() )
@@ -396,7 +357,7 @@ namespace binfilter {
 /*?*/                                   nNettoHeight = rRegDiff;
 /*?*/                                   break;
 /*?*/                               }
-/*?*/                               default: ASSERT( sal_False, ": unknown InterLineSpaceRule" );
+/*?*/                               default: OSL_FAIL( ": unknown InterLineSpaceRule" );
 /*N*/                           }
 /*N*/                           pDesc->SetRegHeight( rRegDiff );
 /*N*/                           pDesc->SetRegAscent( rRegDiff - nNettoHeight +
@@ -416,3 +377,5 @@ namespace binfilter {
 /*N*/   return ( 0 != rRegDiff );
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

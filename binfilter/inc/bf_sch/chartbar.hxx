@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -64,16 +65,16 @@ public:
     long GetGap() const;
     void SetGap(long nPercent);
 
-    ChartBarDescriptor(long nOverlap=0,long nGap=100):
+    ChartBarDescriptor(long nOverlap=0,long nInGap=100):
         mpAxis(NULL),
         nOverlapPercent(nOverlap),
-        nGapPercent(nGap)
+        nGapPercent(nInGap)
     {
     }
-    ChartBarDescriptor(const Rectangle& aRect,long nColCnt,long nRowCnt,long nOverlap=0,long nGap=100):
+    ChartBarDescriptor(const Rectangle& aRect,long nColCnt,long nRowCnt,long nOverlap=0,long nInGap=100):
         mpAxis(NULL),
         nOverlapPercent(nOverlap),
-        nGapPercent(nGap)
+        nGapPercent(nInGap)
     {
         Create(aRect,nColCnt,nRowCnt);
     }
@@ -126,3 +127,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,40 +31,27 @@
 #pragma hdrstop
 #endif
 
-#ifndef _UNODEFAULTS_HXX
 #include <unodefaults.hxx>
-#endif
 
-#ifndef _SVDMODEL_HXX
 #include <bf_svx/svdmodel.hxx>
-#endif
 #include <bf_svx/unoprov.hxx>
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include <doc.hxx>
 namespace binfilter {
 
-/* -----------------------------13.03.01 14:16--------------------------------
-
- ---------------------------------------------------------------------------*/
 SwSvxUnoDrawPool::SwSvxUnoDrawPool( SwDoc* pDoc ) throw() :
     SvxUnoDrawPool(pDoc->GetDrawModel(), SVXUNO_SERVICEID_COM_SUN_STAR_DRAWING_DEFAULTS_WRITER),
     m_pDoc(pDoc)
 {
 }
-/* -----------------------------13.03.01 14:16--------------------------------
 
- ---------------------------------------------------------------------------*/
 SwSvxUnoDrawPool::~SwSvxUnoDrawPool() throw()
 {
 }
-/* -----------------------------13.03.01 14:16--------------------------------
 
- ---------------------------------------------------------------------------*/
-SfxItemPool* SwSvxUnoDrawPool::getModelPool( sal_Bool bReadOnly ) throw()
+SfxItemPool* SwSvxUnoDrawPool::getModelPool( sal_Bool /*bReadOnly*/ ) throw()
 {
     if(m_pDoc)
     {
@@ -76,3 +64,5 @@ SfxItemPool* SwSvxUnoDrawPool::getModelPool( sal_Bool bReadOnly ) throw()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

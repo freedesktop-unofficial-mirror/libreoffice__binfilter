@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  *
@@ -35,20 +36,12 @@
 #define _SVSTDARR_XUB_STRLEN
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _GEN_HXX //autogen
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#include "errhdl.hxx"
-#ifndef _FRACT_HXX
+#include <osl/diagnose.h>
 #include <tools/fract.hxx>
-#endif
 
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 class OutputDevice;
 class Point;
 class Size;
@@ -185,49 +178,49 @@ inline void SwScriptInfo::SetInvalidity( const xub_StrLen nPos )
 inline USHORT SwScriptInfo::CountScriptChg() const { return aScriptChg.Count(); }
 inline xub_StrLen SwScriptInfo::GetScriptChg( const USHORT nCnt ) const
 {
-    ASSERT( nCnt < aScriptChg.Count(),"No ScriptChange today!");
+    OSL_ENSURE( nCnt < aScriptChg.Count(),"No ScriptChange today!");
     return aScriptChg[ nCnt ];
 }
 inline BYTE SwScriptInfo::GetScriptType( const xub_StrLen nCnt ) const
 {
-    ASSERT( nCnt < aScriptChg.Count(),"No ScriptType today!");
+    OSL_ENSURE( nCnt < aScriptChg.Count(),"No ScriptType today!");
     return aScriptType[ nCnt ];
 }
 
 inline USHORT SwScriptInfo::CountDirChg() const { return aDirChg.Count(); }
 inline xub_StrLen SwScriptInfo::GetDirChg( const USHORT nCnt ) const
 {
-    ASSERT( nCnt < aDirChg.Count(),"No DirChange today!");
+    OSL_ENSURE( nCnt < aDirChg.Count(),"No DirChange today!");
     return aDirChg[ nCnt ];
 }
 inline BYTE SwScriptInfo::GetDirType( const xub_StrLen nCnt ) const
 {
-    ASSERT( nCnt < aDirChg.Count(),"No DirType today!");
+    OSL_ENSURE( nCnt < aDirChg.Count(),"No DirType today!");
     return aDirType[ nCnt ];
 }
 
 inline USHORT SwScriptInfo::CountKashida() const { return aKashida.Count(); }
 inline xub_StrLen SwScriptInfo::GetKashida( const USHORT nCnt ) const
 {
-    ASSERT( nCnt < aKashida.Count(),"No Kashidas today!");
+    OSL_ENSURE( nCnt < aKashida.Count(),"No Kashidas today!");
     return aKashida[ nCnt ];
 }
 
 inline USHORT SwScriptInfo::CountCompChg() const { return aCompChg.Count(); };
 inline xub_StrLen SwScriptInfo::GetCompStart( const USHORT nCnt ) const
 {
-    ASSERT( nCnt < aCompChg.Count(),"No CompressionStart today!");
+    OSL_ENSURE( nCnt < aCompChg.Count(),"No CompressionStart today!");
     return aCompChg[ nCnt ];
 }
 inline xub_StrLen SwScriptInfo::GetCompLen( const USHORT nCnt ) const
 {
-    ASSERT( nCnt < aCompChg.Count(),"No CompressionLen today!");
+    OSL_ENSURE( nCnt < aCompChg.Count(),"No CompressionLen today!");
     return aCompLen[ nCnt ];
 }
 
 inline BYTE SwScriptInfo::GetCompType( const USHORT nCnt ) const
 {
-    ASSERT( nCnt < aCompChg.Count(),"No CompressionType today!");
+    OSL_ENSURE( nCnt < aCompChg.Count(),"No CompressionType today!");
     return aCompType[ nCnt ];
 }
 
@@ -355,13 +348,13 @@ public:
 
     OutputDevice& GetOut() const
     {
-        ASSERT( bOut, "DrawTextInfo: Undefined Outputdevice" );
+        OSL_ENSURE( bOut, "DrawTextInfo: Undefined Outputdevice" );
         return *pOut;
     }
 
     OutputDevice *GetpOut() const
     {
-        ASSERT( bOut, "DrawTextInfo: Undefined Outputdevice" );
+        OSL_ENSURE( bOut, "DrawTextInfo: Undefined Outputdevice" );
         return pOut;
     }
 
@@ -372,98 +365,98 @@ public:
 
     const Point &GetPos() const
     {
-        ASSERT( bPos, "DrawTextInfo: Undefined Position" );
+        OSL_ENSURE( bPos, "DrawTextInfo: Undefined Position" );
         return *pPos;
     }
 
     xub_StrLen *GetHyphPos() const
     {
-        ASSERT( bHyph, "DrawTextInfo: Undefined Hyph Position" );
+        OSL_ENSURE( bHyph, "DrawTextInfo: Undefined Hyph Position" );
         return pHyphPos;
     }
 
     const XubString &GetText() const
     {
-        ASSERT( bText, "DrawTextInfo: Undefined String" );
+        OSL_ENSURE( bText, "DrawTextInfo: Undefined String" );
         return *pText;
     }
 
     const SwWrongList* GetWrong() const
     {
-        ASSERT( bWrong, "DrawTextInfo: Undefined WrongList" );
+        OSL_ENSURE( bWrong, "DrawTextInfo: Undefined WrongList" );
         return pWrong;
     }
 
     const Size &GetSize() const
     {
-        ASSERT( bSize, "DrawTextInfo: Undefined Size" );
+        OSL_ENSURE( bSize, "DrawTextInfo: Undefined Size" );
         return *pSize;
     }
 
     SwFont* GetFont() const
     {
-        ASSERT( bFnt, "DrawTextInfo: Undefined Font" );
+        OSL_ENSURE( bFnt, "DrawTextInfo: Undefined Font" );
         return pFnt;
     }
 
     SwUnderlineFont* GetUnderFnt() const
     {
-        ASSERT( bSpec, "DrawTextInfo: Undefined Underlinefont" );
+        OSL_ENSURE( bSpec, "DrawTextInfo: Undefined Underlinefont" );
         return pUnderFnt;
     }
 
     xub_StrLen GetIdx() const
     {
-        ASSERT( bIdx, "DrawTextInfo: Undefined Index" );
+        OSL_ENSURE( bIdx, "DrawTextInfo: Undefined Index" );
         return nIdx;
     }
 
     xub_StrLen GetLen() const
     {
-        ASSERT( bLen, "DrawTextInfo: Undefined Length" );
+        OSL_ENSURE( bLen, "DrawTextInfo: Undefined Length" );
         return nLen;
     }
 
     xub_StrLen GetOfst() const
     {
-        ASSERT( bOfst, "DrawTextInfo: Undefined Offset" );
+        OSL_ENSURE( bOfst, "DrawTextInfo: Undefined Offset" );
         return nOfst;
     }
 
     xub_StrLen GetEnd() const
     {
-        ASSERT( bIdx, "DrawTextInfo: Undefined Index" );
-        ASSERT( bLen, "DrawTextInfo: Undefined Length" );
+        OSL_ENSURE( bIdx, "DrawTextInfo: Undefined Index" );
+        OSL_ENSURE( bLen, "DrawTextInfo: Undefined Length" );
         return nIdx + nLen;
     }
 
     long GetLeft() const
     {
-        ASSERT( bLeft, "DrawTextInfo: Undefined left range" );
+        OSL_ENSURE( bLeft, "DrawTextInfo: Undefined left range" );
         return nLeft;
     }
 
     long GetRight() const
     {
-        ASSERT( bRight, "DrawTextInfo: Undefined right range" );
+        OSL_ENSURE( bRight, "DrawTextInfo: Undefined right range" );
         return nRight;
     }
 
     long GetKanaDiff() const
     {
-        ASSERT( bKana, "DrawTextInfo: Undefined kana difference" );
+        OSL_ENSURE( bKana, "DrawTextInfo: Undefined kana difference" );
         return nKanaDiff;
     }
 
     USHORT GetWidth() const
     {
-        ASSERT( bWidth, "DrawTextInfo: Undefined Width" );
+        OSL_ENSURE( bWidth, "DrawTextInfo: Undefined Width" );
         return nWidth;
     }
 
     USHORT GetAscent() const
     {
-        ASSERT( bAscent, "DrawTextInfo: Undefined Ascent" );
+        OSL_ENSURE( bAscent, "DrawTextInfo: Undefined Ascent" );
         return nAscent;
     }
 
@@ -474,19 +467,19 @@ public:
 
     short GetSperren() const
     {
-        ASSERT( bSperr, "DrawTextInfo: Undefined >Sperren<" );
+        OSL_ENSURE( bSperr, "DrawTextInfo: Undefined >Sperren<" );
         return nSperren;
     }
 
     short GetKern() const
     {
-        ASSERT( bKern, "DrawTextInfo: Undefined Kerning" );
+        OSL_ENSURE( bKern, "DrawTextInfo: Undefined Kerning" );
         return nKern;
     }
 
     short GetSpace() const
     {
-        ASSERT( bSpace, "DrawTextInfo: Undefined Spacing" );
+        OSL_ENSURE( bSpace, "DrawTextInfo: Undefined Spacing" );
         return nSpace;
     }
 
@@ -497,25 +490,25 @@ public:
 
     BOOL GetBullet() const
     {
-        ASSERT( bBull, "DrawTextInfo: Undefined Bulletflag" );
+        OSL_ENSURE( bBull, "DrawTextInfo: Undefined Bulletflag" );
         return bBullet;
     }
 
     BOOL GetUpper() const
     {
-        ASSERT( bUppr, "DrawTextInfo: Undefined Upperflag" );
+        OSL_ENSURE( bUppr, "DrawTextInfo: Undefined Upperflag" );
         return bUpper;
     }
 
     BOOL GetDrawSpace() const
     {
-        ASSERT( bDrawSp, "DrawTextInfo: Undefined DrawSpaceflag" );
+        OSL_ENSURE( bDrawSp, "DrawTextInfo: Undefined DrawSpaceflag" );
         return bDrawSpace;
     }
 
     BOOL GetGreyWave() const
     {
-        ASSERT( bGreyWv, "DrawTextInfo: Undefined GreyWave" );
+        OSL_ENSURE( bGreyWv, "DrawTextInfo: Undefined GreyWave" );
         return bGreyWave;
     }
 
@@ -710,9 +703,9 @@ public:
 #endif
     }
 
-    void SetUnderFnt( SwUnderlineFont* pFnt )
+    void SetUnderFnt( SwUnderlineFont* pFntIn )
     {
-        pUnderFnt = pFnt;
+        pUnderFnt = pFntIn;
 #ifdef DBG_UTIL
         bSpec = TRUE;
 #endif
@@ -771,3 +764,5 @@ public:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

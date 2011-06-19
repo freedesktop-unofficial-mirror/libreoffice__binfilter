@@ -57,5 +57,3 @@ SLOFILES=\
 # --- Tagets -------------------------------------------------------
 
 .INCLUDE :  target.mk
-
-.INCLUDE :  $(SUBPRJ)$/util$/target.pmk

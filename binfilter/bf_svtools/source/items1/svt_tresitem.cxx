@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
 
-#ifndef SVTOOLS_TRESITEM_HXX
 #include <bf_svtools/tresitem.hxx>
-#endif
 
 using namespace com::sun::star;
 
@@ -59,7 +58,7 @@ int CntTransferResultItem::operator ==(SfxPoolItem const & rItem) const
 
 //============================================================================
 // virtual
-BOOL CntTransferResultItem::QueryValue(uno::Any & rVal, BYTE) const
+bool CntTransferResultItem::QueryValue(uno::Any & rVal, BYTE) const
 {
     rVal <<= m_aResult;
     return true;
@@ -67,7 +66,7 @@ BOOL CntTransferResultItem::QueryValue(uno::Any & rVal, BYTE) const
 
 //============================================================================
 // virtual
-BOOL CntTransferResultItem::PutValue(uno::Any const & rVal, BYTE)
+bool CntTransferResultItem::PutValue(uno::Any const & rVal, BYTE)
 {
     return rVal >>= m_aResult;
 }
@@ -80,3 +79,5 @@ SfxPoolItem * CntTransferResultItem::Clone(SfxItemPool *) const
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

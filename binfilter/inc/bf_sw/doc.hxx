@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,56 +33,24 @@
 #define _SVSTDARR_STRINGSDTOR
 #include <bf_svtools/svstdarr.hxx>
 
-#ifndef _TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _NDARR_HXX
 #include <ndarr.hxx>
-#endif
-#ifndef _SWATRSET_HXX
 #include <swatrset.hxx>
-#endif
-#ifndef _TOXE_HXX
 #include <toxe.hxx>             // enums
-#endif
-#ifndef _REDLENUM_HXX
 #include <redlenum.hxx>         // enums
-#endif
-#ifndef _BKMRKE_HXX
 #include <bkmrke.hxx>
-#endif
-#ifndef _FLYENUM_HXX
 #include <flyenum.hxx>
-#endif
-#ifndef _ITABENUM_HXX
 #include <itabenum.hxx>
-#endif
-#ifndef _SWDBDATA_HXX
 #include <swdbdata.hxx>
-#endif
-#ifndef _CHCMPRSE_HXX
 #include <chcmprse.hxx>
-#endif
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XSPELLCHECKER1_HPP_
 #include <com/sun/star/linguistic2/XSpellChecker1.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LINGUISTIC2_XHYPHENATEDWORD_HPP_
 #include <com/sun/star/linguistic2/XHyphenatedWord.hpp>
-#endif
-#ifndef _VOS_REF_HXX
-#include <vos/ref.hxx>
-#endif
+#include <rtl/ref.hxx>
 
 // OD 25.06.2003 #108784#
-#ifndef _SVDTYPES_HXX
 #include <bf_svx/svdtypes.hxx>
-#endif
 namespace com { namespace sun { namespace star {
 namespace i18n {
     struct ForbiddenCharacters;    // comes from the I18N UNO interface
@@ -226,25 +195,10 @@ struct SwTableEntry;
 // OD 26.06.2003 #108784#
 class SdrPageView;
 
-//STRIP008 namespace com { namespace sun { namespace star {
-//STRIP008 namespace i18n {
-//STRIP008  struct ForbiddenCharacters;    // comes from the I18N UNO interface
-//STRIP008 }
-//STRIP008 namespace uno {
-//STRIP008  template < class > class Sequence;
-//STRIP008 }
-//STRIP008 }}};
-//STRIP008
-//STRIP008 namespace utl {
-//STRIP008  class TransliterationWrapper;
-//STRIP008 };
-//STRIP008 namespace so3 {
-//STRIP008  class SvLinkSource;
-//STRIP008 };
 
 //PageDescriptor-Schnittstelle, Array hier wegen inlines.
 typedef SwPageDesc* SwPageDescPtr;
-SV_DECL_PTRARR_DEL( SwPageDescs, SwPageDescPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwPageDescs, SwPageDescPtr, 4, 4 )
 
 enum SwMoveFlags
 {
@@ -376,7 +330,7 @@ class SwDoc
     SwUnoCallBack   *pUnoCallBack;
 
     // table of forbidden characters of this document
-    ::vos::ORef<SvxForbiddenCharactersTable>    xForbiddenCharsTable; //STRIP008 vos::ORef<SvxForbiddenCharactersTable> xForbiddenCharsTable;
+    ::rtl::Reference<SvxForbiddenCharactersTable>   xForbiddenCharsTable;
 
     // -------------------------------------------------------------------
     // sonstige
@@ -1160,12 +1114,12 @@ public:
 
         // kopiere die Kopzeile (mit dem Inhalt!) aus dem SrcFmt
         // ins DestFmt ( auch ueber Doc grenzen hinaus!)
-    void CopyHeader( const SwFrmFmt& rSrcFmt, SwFrmFmt& rDestFmt )
-    { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _CopyPageDescHeaderFooter( sal_True, rSrcFmt, rDestFmt ); }
+    void CopyHeader( const SwFrmFmt& /*rSrcFmt*/, SwFrmFmt& /*rDestFmt*/ )
+    { DBG_BF_ASSERT(0, "STRIP"); }
         // kopiere die Fusszeile (mit dem Inhalt!) aus dem SrcFmt
         // ins DestFmt ( auch ueber Doc grenzen hinaus!)
-    void CopyFooter( const SwFrmFmt& rSrcFmt, SwFrmFmt& rDestFmt )
-    { DBG_BF_ASSERT(0, "STRIP"); }//STRIP001 _CopyPageDescHeaderFooter( sal_False, rSrcFmt, rDestFmt ); }
+    void CopyFooter( const SwFrmFmt& /*rSrcFmt*/, SwFrmFmt& /*rDestFmt*/ )
+    { DBG_BF_ASSERT(0, "STRIP"); }
 
         //fuer Reader
     SwPageDesc& _GetPageDesc( sal_uInt16 i ) const { return *aPageDescs[i]; }
@@ -1311,30 +1265,28 @@ public:
         // erzeuge aus dem makierten Bereich eine ausgeglichene Tabelle
         // erzeuge aus der Tabelle wieder normalen Text
         // einfuegen von Spalten/Zeilen in der Tabelle
-    sal_Bool InsertCol( const SwCursor& rCursor,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
-    sal_Bool InsertRow( const SwCursor& rCursor,
-                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True );
-        // loeschen von Spalten/Zeilen in der Tabelle
-    sal_Bool DeleteRowCol( const SwSelBoxes& rBoxes ){DBG_BF_ASSERT(0, "STRIP"); return NULL;} //STRIP001 sal_Bool DeleteRowCol( const SwSelBoxes& rBoxes );
-    sal_Bool DeleteRow( const SwCursor& rCursor ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool DeleteRow( const SwCursor& rCursor );
-    sal_Bool DeleteCol( const SwCursor& rCursor ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool DeleteCol( const SwCursor& rCursor );
+    sal_Bool InsertCol( const SwCursor& /*rCursor*/,
+                        sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
+    sal_Bool InsertRow( const SwCursor& /*rCursor*/,
+                    sal_uInt16 nCnt = 1, sal_Bool bBehind = sal_True ){DBG_BF_ASSERT(0, "STRIP"); (void)nCnt; (void)bBehind; return FALSE;}
+    sal_Bool DeleteRow( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
+    sal_Bool DeleteCol( const SwCursor& /*rCursor*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
         // teilen / zusammenfassen von Boxen in der Tabelle
     sal_Bool SplitTbl( const SwSelBoxes& rBoxes, sal_Bool bVert = sal_True,
                        sal_uInt16 nCnt = 1, sal_Bool bSameHeight = sal_False );
         // returnt den enum TableMergeErr
-    sal_uInt16 MergeTbl( SwPaM& rPam ){DBG_BF_ASSERT(0, "STRIP"); return 0;} //STRIP001 sal_uInt16 MergeTbl( SwPaM& rPam );
+    sal_uInt16 MergeTbl( SwPaM& /*rPam*/ ){DBG_BF_ASSERT(0, "STRIP"); return 0;}
     String GetUniqueTblName() const;
 
         // aus der FEShell wg.. Undo und bModified
 
     // Direktzugriff fuer Uno
-    void SetTabCols(SwTable& rTab, const SwTabCols &rNew, SwTabCols &rOld,
-                                    const SwTableBox *pStart, sal_Bool bCurRowOnly){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 const SwTableBox *pStart, sal_Bool bCurRowOnly);
+    void SetTabCols(SwTable& /*rTab*/, const SwTabCols& /*rNew*/, SwTabCols& /*rOld*/,
+                                    const SwTableBox* /*pStart*/, sal_Bool /*bCurRowOnly*/){DBG_BF_ASSERT(0, "STRIP");}
 
-    void SetHeadlineRepeat( SwTable &rTable, sal_Bool bSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetHeadlineRepeat( SwTable &rTable, sal_Bool bSet );
+    void SetHeadlineRepeat( SwTable& /*rTable*/, sal_Bool /*bSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
         // AutoFormat fuer die Tabelle/TabellenSelection
-    sal_Bool SetTableAutoFmt( const SwSelBoxes& rBoxes, const SwTableAutoFmt& rNew ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool SetTableAutoFmt( const SwSelBoxes& rBoxes, const SwTableAutoFmt& rNew );
+    sal_Bool SetTableAutoFmt( const SwSelBoxes& /*rBoxes*/, const SwTableAutoFmt& /*rNew*/ ){DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
         // Erfrage wie attributiert ist
         // setze das TabelleAttribut Undo auf:
         // setze das InsertDB als Tabelle Undo auf:
@@ -1343,7 +1295,7 @@ public:
     SwTableLineFmt* MakeTableLineFmt();
     // teste ob die Box ein numerischen Wert darstellt und aender dann ggfs.
     // das Format der Box
-    void SetTblBoxFormulaAttrs( SwTableBox& rBox, const SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetTblBoxFormulaAttrs( SwTableBox& rBox, const SfxItemSet& rSet );
+    void SetTblBoxFormulaAttrs( SwTableBox& /*rBox*/, const SfxItemSet& /*rSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
     void ClearBoxNumAttrs( const SwNodeIndex& rNode );
 
 
@@ -1535,10 +1487,10 @@ public:
     sal_Bool ChgAnchor( const SdrMarkList &rMrkList, int eAnchorId,
                         sal_Bool bSameOnly, sal_Bool bPosCorr );
 
-    void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetTabBorders( const SwCursor& rCursor, const SfxItemSet& rSet );
+    void SetTabBorders( const SwCursor& /*rCursor*/, const SfxItemSet& /*rSet*/ ){DBG_BF_ASSERT(0, "STRIP");}
     void GetTabBorders( const SwCursor& rCursor, SfxItemSet& rSet ) const;
-    void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void SetBoxAttr( const SwCursor& rCursor, const SfxPoolItem &rNew );
-    sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;} //STRIP001 sal_Bool GetBoxBackground( const SwCursor& rCursor, SvxBrushItem &rToFill ) const;
+    void SetBoxAttr( const SwCursor& /*rCursor*/, const SfxPoolItem& /*rNew*/ ){DBG_BF_ASSERT(0, "STRIP");}
+    sal_Bool GetBoxBackground( const SwCursor& /*rCursor*/, SvxBrushItem& /*rToFill*/ ) const{DBG_BF_ASSERT(0, "STRIP"); return FALSE;}
 
     int Chain( SwFrmFmt &rSource, const SwFrmFmt &rDest );
     void Unchain( SwFrmFmt &rFmt );
@@ -1563,9 +1515,9 @@ public:
     const ::com::sun::star::i18n::
         ForbiddenCharacters* GetForbiddenCharacters( USHORT nLang,
                                                     BOOL bLocaleData ) const;
-    const vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl() const
+    const rtl::Reference<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl() const
             { return xForbiddenCharsTable; }
-    vos::ORef<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl();
+    rtl::Reference<SvxForbiddenCharactersTable>& GetForbiddenCharacterTbl();
 
     // ------------------- Zugriff auf Dummy-Member --------------------
 
@@ -1677,3 +1629,5 @@ inline void SwDoc::SetOLEPrtNotifyPending( sal_Bool bSet )
 
 } //namespace binfilter
 #endif  //_DOC_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

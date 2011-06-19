@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,32 +28,16 @@
 #ifndef _SVX_FMDPAGE_HXX
 #define _SVX_FMDPAGE_HXX
 
-#ifndef _COM_SUN_STAR_FORM_XFORMSSUPPLIER_HPP_
 #include <com/sun/star/form/XFormsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORM_HPP_
 #include <com/sun/star/form/XForm.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XIMAGEPRODUCERSUPPLIER_HPP_
 #include <com/sun/star/form/XImageProducerSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLERLISTENER_HPP_
 #include <com/sun/star/form/XFormControllerListener.hpp>
-#endif
 
-#ifndef _SVX_UNOWPAGE_HXX
 #include <bf_svx/unopage.hxx>
-#endif
 
-#ifndef _COMPHELPER_UNO3_HXX_
 #include <comphelper/uno3.hxx>
-#endif
 
 
 namespace binfilter {
@@ -66,7 +51,7 @@ namespace form
 class SvxFmDrawPage: public SvxDrawPage,
                      public ::com::sun::star::form::XFormsSupplier
 {
-    ::binfilter::form::OImplementationIdsRef*   m_pHoldImplIdHelper;//STRIP008  ::form::OImplementationIdsRef*  m_pHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef*   m_pHoldImplIdHelper;
 protected:
 
     // Erzeugen eines SdrObjects anhand einer Description. Kann von
@@ -100,3 +85,4 @@ public:
 }//end of namespace binfilter
 #endif // _SVX_FMDPAGE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -77,7 +78,7 @@ using namespace ::com::sun::star::uno;
 
 // STATIC DATA -----------------------------------------------------------
 
-static const String __FAR_DATA aStarChartDoc = String( RTL_CONSTASCII_USTRINGPARAM( "StarChartDocument" ));
+static const String aStarChartDoc = String( RTL_CONSTASCII_USTRINGPARAM( "StarChartDocument" ));
 
 //----------------------------------------------------------------------
 
@@ -197,10 +198,10 @@ using namespace ::com::sun::star;
 
 /*N*/ SchChartDocShell::SchChartDocShell(SfxObjectCreateMode eMode) throw() :
 /*N*/   SfxObjectShell(eMode),
+/*N*/   pChDoc(NULL),
 /*N*/   pUndoManager(NULL),
 /*N*/   pPrinter(NULL),
 /*N*/   pFontList(NULL),
-/*N*/   pChDoc(NULL),
 /*N*/   bInitNewNoNewDoc(FALSE),
 /*N*/   bOwnPrinter(FALSE),
 /*N*/   mbClipboardExport( FALSE )
@@ -209,13 +210,6 @@ using namespace ::com::sun::star;
 /*N*/   SetShell(this);
 /*N*/   SetModel( new ChXChartDocument( this ));
 /*N*/ }
-
-/*************************************************************************
-|*
-|* CTOR used by dragserver
-|*
-\************************************************************************/
-
 
 /*************************************************************************
 |*
@@ -321,11 +315,11 @@ using namespace ::com::sun::star;
 /*N*/         pRefDev->GetMapMode().GetMapUnit() == MAP_100TH_MM )
 /*N*/     {
 /*N*/         // set ref device at document at its outliner as well
-/*N*/         OutputDevice * pRefDev = GetRefDevice();
-/*N*/         if( pRefDev && pRefDev->GetMapMode().GetMapUnit() == MAP_100TH_MM )
+/*N*/         OutputDevice * pLclRefDev = GetRefDevice();
+/*N*/         if( pLclRefDev && pLclRefDev->GetMapMode().GetMapUnit() == MAP_100TH_MM )
 /*N*/         {
-/*N*/             pChDoc->SetRefDevice( pRefDev );
-/*N*/             pChDoc->GetOutliner()->SetRefDevice( pRefDev );
+/*N*/             pChDoc->SetRefDevice( pLclRefDev );
+/*N*/             pChDoc->GetOutliner()->SetRefDevice( pLclRefDev );
 /*N*/
 /*N*/             // re-render chart with new ref-device
 /*N*/
@@ -341,17 +335,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/ }
 
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
+/************************************************************************/
 /*N*/ void SchChartDocShell::OnDocumentPrinterChanged(Printer* pNewPrinter) throw()
 /*N*/ {
 /*N*/     // we have no rtti, thus assert that we have an SfxPrinter
@@ -481,7 +465,7 @@ using namespace ::com::sun::star;
 /*N*/                       nError = rPoolStream->GetError();
 /*N*/                       if( nError )
 /*N*/                       {
-/*?*/                           DBG_ERROR1( "Errorcode 0x%x loading Pool", nError );
+/*?*/                           OSL_TRACE( "Errorcode 0x%x loading Pool", nError );
 /*?*/                           rPoolStream->ResetError();
 /*?*/                           SetError( ERRCODE_WARNING_MASK | nError );
 /*N*/                       }
@@ -489,7 +473,7 @@ using namespace ::com::sun::star;
 /*N*/                       nError = rPoolStream->GetError();
 /*N*/                       if( nError )
 /*N*/                       {
-/*?*/                           DBG_ERROR1( "Errorcode 0x%x loading StyleSheet-Pool", nError );
+/*?*/                           OSL_TRACE( "Errorcode 0x%x loading StyleSheet-Pool", nError );
 /*?*/                           rPoolStream->ResetError();
 /*?*/                           SetError( ERRCODE_WARNING_MASK | nError );
 /*N*/                       }
@@ -514,7 +498,7 @@ using namespace ::com::sun::star;
 /*N*/                       if( ! rDocumentStream->GetError())
 /*N*/                       {
 /*N*/                           rDocumentStream->SetBufferSize( DOCUMENT_BUFFER_SIZE );
-/*N*/                           rDocumentStream->SetKey( pStor->GetKey()); // set password
+/*N*/                           rDocumentStream->SetCryptMaskKey( pStor->GetKey()); // set password
 /*N*/
 /*N*/                             // read ChartModel
 /*N*/                           *rDocumentStream >> *pChDoc;
@@ -611,376 +595,6 @@ using namespace ::com::sun::star;
 
 /*************************************************************************
 |*
-|*
-|*
-\************************************************************************/
-
-        /**********************************************************************
-         * StarOffice XML-Filter Export
-         **********************************************************************/
-
-        /**********************************************************************
-        * StarOffice XML-Filter Import
-        **********************************************************************/
-
-// ------------------------------------------------------------
-
-
-// ------------------------------------------------------------
-
-/*N*/ BOOL SchChartDocShell::Save() throw()
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR (context, "sch", "af119097", "::SchChartDocShell::Save");
-/*N*/
-/*N*/   SvStorage* pStor = GetStorage();
-/*N*/   DBG_ASSERT( pStor, "Save() without Storage called!" );
-    if (!pStor)
-        return FALSE;
-/*N*/
-/*N*/   long nFileFormat = pStor->GetVersion();
-/*N*/   sal_Bool bIsXML = nFileFormat >= SOFFICE_FILEFORMAT_60;
-/*N*/   BOOL bRet = FALSE;
-/*N*/
-/*N*/   if( bIsXML )
-/*N*/   {
-/*N*/       RTL_LOGFILE_CONTEXT_TRACE (context, "XML format");
-/*N*/       bRet = SfxInPlaceObject::Save();
-/*N*/
-        /**********************************************************************
-         * StarOffice XML-Filter Export
-         **********************************************************************/
-/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-/*N*/           SchXMLWrapper aFilter( xModel, *pStor,
-/*N*/                                  GetCreateMode() != SFX_CREATE_MODE_EMBEDDED );
-/*N*/
-/*N*/           // update user info before writing
-/*N*/           UpdateDocInfoForSave();
-/*N*/
-/*N*/           bRet = aFilter.Export();
-
-           FinishedLoading( SFX_LOADED_ALL );
-/*N*/   }
-/*N*/   else        // binary format <= 5.0
-/*N*/   {
-/*N*/       pChDoc->PrepareAxisStorage();
-/*N*/       SvStorageStreamRef rDocumentStream = pStor->OpenStream( aStarChartDoc );
-/*N*/
-/*N*/         if( rDocumentStream.Is() && ! rDocumentStream->GetError() )
-/*N*/       {
-/*N*/           rDocumentStream->SetVersion( pStor->GetVersion() );
-/*N*/
-/*N*/             if( nFileFormat <= SOFFICE_FILEFORMAT_40 && pChDoc->IsReal3D())
-/*N*/             {
-/*?*/                 CHART_TRACE( "Fileformat 4.0" );
-/*?*/                 pChDoc->PrepareOld3DStorage();
-/*N*/             }
-/*N*/
-/*N*/             bRet = SfxInPlaceObject::Save();
-/*N*/
-/*N*/             // komprimiert/native speichern?
-/*N*/             const BOOL                                bSaveNative = FALSE;
-/*N*/             const BOOL                                bSaveCompressed = FALSE;
-/*N*/
-/*N*/             pChDoc->SetSaveCompressed( bSaveCompressed );
-/*N*/             pChDoc->SetSaveNative( bSaveNative );
-/*N*/
-/*N*/             if( bRet )
-/*N*/             {
-/*N*/                 pChDoc->PreSave();
-/*N*/
-/*N*/                 SetWaitCursor( TRUE );
-/*N*/
-/*N*/                 SvStorageStreamRef rPoolStream = pStor->OpenStream( SCH_STYLE_SHEET_NAME );
-/*N*/                 if( ! rPoolStream->GetError())
-/*N*/                 {
-/*N*/                     rPoolStream->SetSize( 0 );
-/*N*/                     rPoolStream->SetBufferSize( POOL_BUFFER_SIZE );
-/*N*/                     GetPool().Store( *rPoolStream );
-/*N*/
-/*N*/
-/*N*/                     // the style sheet pool uses next() and first() methods without resetting
-/*N*/                     // the search mask (?) so it has to be done here
-/*N*/                     GetStyleSheetPool()->SetSearchMask( SFX_STYLE_FAMILY_ALL );
-/*N*/                     // FALSE = also save unused style sheets
-/*N*/                     GetStyleSheetPool()->Store( *rPoolStream, FALSE );
-/*N*/                     rPoolStream->SetBufferSize( 0 );
-/*N*/
-/*N*/                 }
-/*N*/                 else bRet = FALSE;
-/*N*/                 if (bRet)
-/*N*/                     bRet = rPoolStream->GetError() == 0;
-/*N*/                 DBG_ASSERT(bRet, "Fehler beim Schreiben der Pools");
-/*N*/
-/*N*/                 if( ! rDocumentStream->GetError())
-/*N*/                 {
-                          // #i56310# set SomeData strings according to
-                          // ChartRange in MemChart like it is done in SaveAs
-                          SvPersist* pParent = GetParent();
-                          if( pParent )
-                          {
-                              // determine which is parent application
-                              SvGlobalName aGlobalName;
-                              ULONG nFileFormat;
-                              String aAppName, aFullName, aShortName;
-                              pParent->FillClass( &aGlobalName, &nFileFormat,
-                                                  &aAppName, &aFullName, &aShortName,
-                                                  SOFFICE_FILEFORMAT_60 );
-
-                              if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
-                                  pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
-                              else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
-                                  pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
-                          }
-/*N*/                     rDocumentStream->SetSize( 0 );
-/*N*/                     rDocumentStream->SetBufferSize( DOCUMENT_BUFFER_SIZE );
-/*N*/                     *rDocumentStream << *pChDoc;
-/*N*/                     rDocumentStream->SetBufferSize( 0 );
-/*N*/                 }
-/*N*/                 else
-/*N*/                     bRet = FALSE;
-/*N*/
-/*N*/                 if (bRet)
-/*N*/                     bRet = rDocumentStream->GetError() == 0;
-/*N*/                 DBG_ASSERT(bRet, "Fehler beim Schreiben des Models");
-/*N*/
-/*N*/                 // finished
-/*N*/
-/*N*/                 SetWaitCursor( FALSE );
-/*N*/
-/*N*/                 pChDoc->PostSave();
-/*N*/             }
-/*N*/
-/*N*/
-/*N*/             if(nFileFormat <= SOFFICE_FILEFORMAT_40 && pChDoc->IsReal3D())
-/*N*/             {
-/*?*/                 pChDoc->CleanupOld3DStorage();
-/*N*/             }
-/*N*/         }
-/*N*/   }
-/*N*/
-/*N*/   return bRet;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*N*/ BOOL SchChartDocShell::SaveAs(SvStorage * pStor) throw()
-/*N*/ {
-/*N*/   RTL_LOGFILE_CONTEXT_AUTHOR (context, "sch", "af119097", "::SchChartDocShell::SaveAs");
-/*N*/
-/*N*/   CHART_TRACE( "SchChartDocShell::SaveAs" );
-/*N*/   DBG_ASSERT( pStor, "SaveAs() without Storage called!" );
-    if (!pStor)
-        return FALSE;
-/*N*/
-/*N*/   BOOL bRet = FALSE;
-/*N*/
-/*N*/     long nOldFormat = GetStorage()->GetVersion();
-/*N*/     long nNewFormat = pStor->GetVersion();
-/*N*/
-/*N*/   BOOL bIsXML = nNewFormat >= SOFFICE_FILEFORMAT_60;
-/*N*/     BOOL bFormatChanges = (nOldFormat != nNewFormat);
-/*N*/
-/*N*/   //  If chart was loaded from binary format it has never been built.
-/*N*/   if( ! pChDoc->IsInitialized())
-/*N*/       pChDoc->Initialize();
-/*N*/
-/*N*/   if( bIsXML )
-/*N*/   {
-/*N*/       RTL_LOGFILE_CONTEXT_TRACE (context, "XML format");
-/*N*/       bRet = SfxInPlaceObject::SaveAs( pStor );
-/*N*/
-         /**********************************************************************
-          * StarOffice XML-Filter Export
-          **********************************************************************/
-/*N*/             Reference< ::com::sun::star::frame::XModel> xModel(GetModel());
-/*N*/           SchXMLWrapper aFilter( xModel, *pStor,
-/*N*/                                  GetCreateMode() != SFX_CREATE_MODE_EMBEDDED );
-/*N*/
-/*N*/           // update user info before writing
-/*N*/           UpdateDocInfoForSave();
-/*N*/
-/*N*/             // old storage was binary format
-/*N*/             if( bFormatChanges )
-/*N*/             {
-/*N*/                 // convert SomeData-strings from Calc/Writer to data structure
-/*N*/                 SvPersist* pParent = GetParent();
-/*N*/                 if( pParent )
-/*N*/                 {
-/*?*/                     // determine which is parent application
-
-
-/** removed since the actually come up and the fprintf even in pro builds
-DBG_BF_ASSERT(0, "STRIP");
-DBG_ERROR( "Conversion routine called" );
-fprintf( stderr,  "BM: Conversion routine called\n" );
-*/
-                          SvGlobalName aGlobalName;
- /*?*/                     ULONG nFileFormat;
- /*?*/                     String aAppName, aFullName, aShortName;
- /*?*/                     pParent->FillClass( &aGlobalName, &nFileFormat,
- /*?*/                                         &aAppName, &aFullName, &aShortName,
- /*?*/                                         SOFFICE_FILEFORMAT_60 );
- /*?*/
- /*?*/                     // calc does this conversion itself except when object was
- /*?*/                     // copied to clipboard. In this case SomeData3 was filled before.
- /*?*/                     if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
- /*?*/                     {
- /*?*/                         SchMemChart* pData = pChDoc->GetChartData();
- /*?*/                         if( pData &&
- /*?*/                             pData->SomeData3().Len() > 0 &&
- /*?*/                             (pData->GetChartRange().maRanges.size() == 0) )
- /*?*/                         {
- /*?*/                             pData->ConvertChartRangeForCalc( TRUE );
- /*?*/                         }
- /*?*/                     }
- /*?*/                     else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
- /*?*/                         pChDoc->GetChartData()->ConvertChartRangeForWriter( TRUE );
-
- /*N*/                }
-/*N*/
-/*N*/           bRet = aFilter.Export();
-/*N*/       }
-/*N*/   }
-/*N*/   else        // binary format <= 5.0
-/*N*/   {
-/*N*/       pChDoc->PrepareAxisStorage();
-/*N*/       long nFileFormat = pStor->GetVersion();
-/*N*/       RTL_LOGFILE_CONTEXT_TRACE1 (context, "binary format %ld", nFileFormat);
-/*N*/       if(nFileFormat <= SOFFICE_FILEFORMAT_40 && pChDoc->IsReal3D())
-/*N*/       {
-/*N*/           pChDoc->PrepareOld3DStorage();
-/*N*/           CHART_TRACE( "Fileformat 4.0" );
-/*N*/       }
-/*N*/
-/*N*/       bRet = SfxInPlaceObject::SaveAs( pStor );
-/*N*/
-/*N*/       // compressed or native format
-/*N*/       const BOOL                              bSaveNative = FALSE;
-/*N*/       const BOOL                              bSaveCompressed = FALSE;
-/*N*/
-/*N*/       pChDoc->SetSaveCompressed( bSaveCompressed );
-/*N*/       pChDoc->SetSaveNative( bSaveNative );
-/*N*/
-/*N*/       if (bRet)
-/*N*/       {
-/*N*/           pChDoc->PreSave();
-/*N*/           SvStorageStreamRef rPoolStream = pStor->OpenStream( SCH_STYLE_SHEET_NAME );
-/*N*/           rPoolStream->SetVersion( pStor->GetVersion ());
-/*N*/
-/*N*/           SetWaitCursor( TRUE );
-/*N*/
-/*N*/           if( ! rPoolStream->GetError())
-/*N*/           {
-/*N*/               rPoolStream->SetBufferSize(POOL_BUFFER_SIZE);
-/*N*/               GetPool().SetFileFormatVersion( (USHORT)pStor->GetVersion ());
-/*N*/               GetPool().Store( *rPoolStream );
-/*N*/
-/*N*/
-/*N*/               // the style sheet pool uses next() and first() methods without resetting
-/*N*/               // the search mask (?) so it has to be done here
-/*N*/               GetStyleSheetPool()->SetSearchMask( SFX_STYLE_FAMILY_ALL );
-/*N*/               // FALSE = also save unused style sheets
-/*N*/               GetStyleSheetPool()->Store( *rPoolStream, FALSE );
-/*N*/               rPoolStream->SetBufferSize( 0 );
-/*N*/
-/*N*/           }
-/*N*/           else
-/*N*/               bRet = FALSE;
-/*N*/
-/*N*/           if( bRet )
-/*N*/               bRet = rPoolStream->GetError() == 0;
-/*N*/           DBG_ASSERT( bRet, "Fehler beim Schreiben der Pools" );
-/*N*/
-/*N*/           SvStorageStreamRef rDocumentStream = pStor->OpenStream( aStarChartDoc );
-/*N*/           rDocumentStream->SetVersion( pStor->GetVersion());
-/*N*/           GetPool().SetFileFormatVersion ( (USHORT)pStor->GetVersion ());
-/*N*/
-/*N*/           if( ! rDocumentStream->GetError())
-/*N*/           {
-/*N*/                 // old storage was XML format
-/*N*/                 // always convert as internal storage is only the chart range
-/*N*/ //                 if( bFormatChanges )
-/*N*/ //                 {
-/*N*/                     // convert data structure from Calc/Writer to SomeData strings
-/*N*/                     SvPersist* pParent = GetParent();
-/*N*/                     if( pParent )
-/*N*/                     {
-/*N*/                         // determine which is parent application
-/*N*/                         SvGlobalName aGlobalName;
-/*N*/                         ULONG nFileFormat;
-/*N*/                         String aAppName, aFullName, aShortName;
-/*N*/                         pParent->FillClass( &aGlobalName, &nFileFormat,
-/*N*/                                             &aAppName, &aFullName, &aShortName,
-/*N*/                                             SOFFICE_FILEFORMAT_60 );
-/*N*/
-/*N*/                         if( nFileFormat == SOT_FORMATSTR_ID_STARCALC_60 )
-/*?*/                          pChDoc->GetChartData()->ConvertChartRangeForCalc( FALSE );
-/*N*/                         else if( nFileFormat == SOT_FORMATSTR_ID_STARWRITER_60 )
-/*N*/                             pChDoc->GetChartData()->ConvertChartRangeForWriter( FALSE );
-/*N*/                     }
-/*N*/ //                 }
-/*N*/
-/*N*/                 rDocumentStream->SetBufferSize( DOCUMENT_BUFFER_SIZE );
-/*N*/               rDocumentStream->SetKey( pStor->GetKey());  // set password
-/*N*/               *rDocumentStream << *pChDoc;
-/*N*/               rDocumentStream->SetBufferSize( 0 );
-/*N*/           }
-/*N*/           else bRet = FALSE;
-/*N*/           if( bRet )
-/*N*/               bRet = rDocumentStream->GetError() == 0;
-/*N*/           DBG_ASSERT( bRet, "Fehler beim Schreiben des Models" );
-/*N*/
-/*N*/           // finished
-/*N*/
-/*N*/           SetWaitCursor( FALSE );
-/*N*/
-/*N*/           pChDoc->PostSave();
-/*N*/       }
-/*N*/
-/*N*/
-/*N*/       if( nFileFormat <= SOFFICE_FILEFORMAT_40 && pChDoc->IsReal3D())
-/*N*/       {
-/*N*/           pChDoc->CleanupOld3DStorage();
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return bRet;
-/*N*/ }
-
-/*************************************************************************
-|*
-|*
-|*
-\************************************************************************/
-
-/*N*/ BOOL SchChartDocShell::SaveCompleted( SvStorage * pStor ) throw()
-/*N*/ {
-/*N*/   CHART_TRACE( "SchChartDocShell::SaveCompleted" );
-/*N*/
-/*N*/   BOOL bRet = SfxInPlaceObject::SaveCompleted( pStor );
-/*N*/
-/*N*/   if( bRet )
-/*N*/   {
-/*N*/       if( pStor && pChDoc )
-/*N*/         {
-/*N*/             // #99758# SetChanged was called here which called SetModified().  I
-/*N*/             // removed this, since it is not clear why this was introduced in
-/*N*/             // rev. 1.48 (loading of files with additional graphics does not set
-/*N*/             // the modified flag to true)
-/*N*/
-/*N*/             // throw away old graphics streams
-/*N*/           pChDoc->HandsOff();
-/*N*/         }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Tabellenzeiger auffrischen
 |*
 \************************************************************************/
@@ -1067,3 +681,5 @@ fprintf( stderr,  "BM: Conversion routine called\n" );
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

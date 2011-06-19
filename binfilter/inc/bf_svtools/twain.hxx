@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -40,9 +41,7 @@
 // include following only, if define is not set
 #ifndef _TWAIN_HXX_CHECK
 
-#ifndef _SV_BITMAP_HXX //autogen
 #include <vcl/bitmap.hxx>
-#endif
 
 // -----------
 // - Defines -
@@ -102,3 +101,5 @@ public:
 }
 #endif // _TWAIN_HXX_CHECK
 #endif // _TWAIN_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

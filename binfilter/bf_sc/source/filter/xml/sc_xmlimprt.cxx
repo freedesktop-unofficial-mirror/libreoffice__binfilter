@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -37,66 +35,30 @@
 #include <bf_xmloff/nmspmap.hxx>
 #include <bf_xmloff/xmlnmspe.hxx>
 #include <bf_xmloff/xmlmetai.hxx>
-#ifndef _XMLOFF_XMLNUMFI_HXX
 #include <bf_xmloff/xmlnumfi.hxx>
-#endif
-#ifndef _XMLOFF_XMLSCRIPTI_HXX
 #include <bf_xmloff/xmlscripti.hxx>
-#endif
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX_
 #include <bf_xmloff/XMLFontStylesContext.hxx>
-#endif
-#ifndef _XMLOFF_DOCUMENTSETTINGSCONTEXT_HXX
 #include <bf_xmloff/DocumentSettingsContext.hxx>
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include <bf_xmloff/xmluconv.hxx>
-#endif
-#ifndef XMLOFF_NUMEHELP_HXX
 #include <bf_xmloff/numehelp.hxx>
-#endif
-#ifndef _XMLOFF_XMLERROR_HXX
 #include <bf_xmloff/xmlerror.hxx>
-#endif
 
+#include <vcl/svapp.hxx>
 #include "docuno.hxx"
 #include "xmlbodyi.hxx"
 #include "xmlstyli.hxx"
-#ifndef SC_UNOGUARD_HXX
-#include "unoguard.hxx"
-#endif
-#ifndef _SC_VIEWSETTINGSSEQUENCEDEFINES_HXX
 #include "ViewSettingsSequenceDefines.hxx"
-#endif
 
-#ifndef _SC_XMLCONVERTER_HXX
 #include "XMLConverter.hxx"
-#endif
-#ifndef _SC_XMLTABLESHAPEIMPORTHELPER_HXX
 #include "XMLTableShapeImportHelper.hxx"
-#endif
-#ifndef _SC_XMLCHANGETRACKINGIMPORTHELPER_HXX
 #include "XMLChangeTrackingImportHelper.hxx"
-#endif
-#ifndef SC_CHGVISET_HXX
 #include "chgviset.hxx"
-#endif
-#ifndef _SC_XMLSTYLESIMPORTHELPER_HXX
 #include "XMLStylesImportHelper.hxx"
-#endif
-#ifndef SC_UNONAMES_HXX
 #include "unonames.hxx"
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_UTIL_NUMBERFORMAT_HPP_
 #include <com/sun/star/util/NumberFormat.hpp>
-#endif
-#ifndef _EMBOBJ_HXX
 #include <bf_so3/embobj.hxx>
-#endif
 namespace binfilter {
 
 #define SC_LOCALE           "Locale"
@@ -105,6 +67,8 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::binfilter::xmloff::token;
+
+using rtl::OUString;
 
 OUString SAL_CALL ScXMLImport_getImplementationName() throw()
 {
@@ -208,7 +172,7 @@ uno::Reference< uno::XInterface > SAL_CALL ScXMLImport_Settings_createInstance(
 
 //----------------------------------------------------------------------------
 
-static __FAR_DATA SvXMLTokenMapEntry aDocTokenMap[] =
+static SvXMLTokenMapEntry aDocTokenMap[] =
 {
     { XML_NAMESPACE_OFFICE, XML_FONT_DECLS,         XML_TOK_DOC_FONTDECLS           },
     { XML_NAMESPACE_OFFICE, XML_STYLES,             XML_TOK_DOC_STYLES              },
@@ -221,7 +185,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDocTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aBodyTokenMap[] =
+static SvXMLTokenMapEntry aBodyTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TRACKED_CHANGES,         XML_TOK_BODY_TRACKED_CHANGES        },
     { XML_NAMESPACE_TABLE, XML_CALCULATION_SETTINGS,    XML_TOK_BODY_CALCULATION_SETTINGS   },
@@ -237,13 +201,13 @@ static __FAR_DATA SvXMLTokenMapEntry aBodyTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationsElemTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationsElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_CONTENT_VALIDATION,  XML_TOK_CONTENT_VALIDATION  },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationElemTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_HELP_MESSAGE,    XML_TOK_CONTENT_VALIDATION_ELEM_HELP_MESSAGE    },
     { XML_NAMESPACE_TABLE, XML_ERROR_MESSAGE,   XML_TOK_CONTENT_VALIDATION_ELEM_ERROR_MESSAGE   },
@@ -251,7 +215,7 @@ static __FAR_DATA SvXMLTokenMapEntry aContentValidationElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationAttrTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                XML_TOK_CONTENT_VALIDATION_NAME                 },
     { XML_NAMESPACE_TABLE, XML_CONDITION,           XML_TOK_CONTENT_VALIDATION_CONDITION            },
@@ -260,20 +224,20 @@ static __FAR_DATA SvXMLTokenMapEntry aContentValidationAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationMessageElemTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationMessageElemTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_P,    XML_TOK_P   },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationHelpMessageAttrTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationHelpMessageAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TITLE,   XML_TOK_HELP_MESSAGE_ATTR_TITLE     },
     { XML_NAMESPACE_TABLE, XML_DISPLAY, XML_TOK_HELP_MESSAGE_ATTR_DISPLAY   },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationErrorMessageAttrTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationErrorMessageAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TITLE,           XML_TOK_ERROR_MESSAGE_ATTR_TITLE        },
     { XML_NAMESPACE_TABLE, XML_DISPLAY,         XML_TOK_ERROR_MESSAGE_ATTR_DISPLAY      },
@@ -281,20 +245,20 @@ static __FAR_DATA SvXMLTokenMapEntry aContentValidationErrorMessageAttrTokenMap[
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aContentValidationErrorMacroAttrTokenMap[] =
+static SvXMLTokenMapEntry aContentValidationErrorMacroAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,    XML_TOK_ERROR_MACRO_ATTR_NAME       },
     { XML_NAMESPACE_TABLE, XML_EXECUTE, XML_TOK_ERROR_MACRO_ATTR_EXECUTE    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aLabelRangesElemTokenMap[] =
+static SvXMLTokenMapEntry aLabelRangesElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_LABEL_RANGE, XML_TOK_LABEL_RANGE_ELEM    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aLabelRangeAttrTokenMap[] =
+static SvXMLTokenMapEntry aLabelRangeAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_LABEL_CELL_RANGE_ADDRESS,    XML_TOK_LABEL_RANGE_ATTR_LABEL_RANGE    },
     { XML_NAMESPACE_TABLE, XML_DATA_CELL_RANGE_ADDRESS,     XML_TOK_LABEL_RANGE_ATTR_DATA_RANGE     },
@@ -302,7 +266,7 @@ static __FAR_DATA SvXMLTokenMapEntry aLabelRangeAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableTokenMap[] =
+static SvXMLTokenMapEntry aTableTokenMap[] =
 {
     { XML_NAMESPACE_TABLE,  XML_TABLE_COLUMN_GROUP,         XML_TOK_TABLE_COL_GROUP     },
     { XML_NAMESPACE_TABLE,  XML_TABLE_HEADER_COLUMNS,       XML_TOK_TABLE_HEADER_COLS   },
@@ -319,7 +283,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableRowsElemTokenMap[] =
+static SvXMLTokenMapEntry aTableRowsElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TABLE_ROW_GROUP,     XML_TOK_TABLE_ROWS_ROW_GROUP    },
     { XML_NAMESPACE_TABLE, XML_TABLE_HEADER_ROWS,   XML_TOK_TABLE_ROWS_HEADER_ROWS  },
@@ -328,7 +292,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableRowsElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableColsElemTokenMap[] =
+static SvXMLTokenMapEntry aTableColsElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TABLE_COLUMN_GROUP,      XML_TOK_TABLE_COLS_COL_GROUP    },
     { XML_NAMESPACE_TABLE, XML_TABLE_HEADER_COLUMNS,    XML_TOK_TABLE_COLS_HEADER_COLS  },
@@ -337,7 +301,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableColsElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                        XML_TOK_TABLE_NAME              },
     { XML_NAMESPACE_TABLE, XML_STYLE_NAME,                  XML_TOK_TABLE_STYLE_NAME        },
@@ -347,7 +311,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableScenarioAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableScenarioAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DISPLAY_BORDER,      XML_TOK_TABLE_SCENARIO_ATTR_DISPLAY_BORDER  },
     { XML_NAMESPACE_TABLE, XML_BORDER_COLOR,        XML_TOK_TABLE_SCENARIO_ATTR_BORDER_COLOR    },
@@ -361,7 +325,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableScenarioAttrTokenMap[] =
 };
 
 
-static __FAR_DATA SvXMLTokenMapEntry aTableColAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableColAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_STYLE_NAME,                  XML_TOK_TABLE_COL_ATTR_STYLE_NAME       },
     { XML_NAMESPACE_TABLE, XML_NUMBER_COLUMNS_REPEATED,     XML_TOK_TABLE_COL_ATTR_REPEATED         },
@@ -370,14 +334,14 @@ static __FAR_DATA SvXMLTokenMapEntry aTableColAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableRowTokenMap[] =
+static SvXMLTokenMapEntry aTableRowTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TABLE_CELL,      XML_TOK_TABLE_ROW_CELL              },
     { XML_NAMESPACE_TABLE, XML_COVERED_TABLE_CELL,  XML_TOK_TABLE_ROW_COVERED_CELL      },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableRowAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableRowAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_STYLE_NAME,                  XML_TOK_TABLE_ROW_ATTR_STYLE_NAME           },
     { XML_NAMESPACE_TABLE, XML_VISIBILITY,                  XML_TOK_TABLE_ROW_ATTR_VISIBILITY           },
@@ -387,7 +351,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableRowAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableRowCellTokenMap[] =
+static SvXMLTokenMapEntry aTableRowCellTokenMap[] =
 {
     { XML_NAMESPACE_TEXT,   XML_P,                  XML_TOK_TABLE_ROW_CELL_P                    },
     { XML_NAMESPACE_TABLE,  XML_SUB_TABLE,          XML_TOK_TABLE_ROW_CELL_SUBTABLE             },
@@ -397,7 +361,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTableRowCellTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableAnnotationAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableAnnotationAttrTokenMap[] =
 {
     { XML_NAMESPACE_OFFICE, XML_AUTHOR,                 XML_TOK_TABLE_ANNOTATION_ATTR_AUTHOR                },
     { XML_NAMESPACE_OFFICE, XML_CREATE_DATE,            XML_TOK_TABLE_ANNOTATION_ATTR_CREATE_DATE           },
@@ -406,14 +370,14 @@ static __FAR_DATA SvXMLTokenMapEntry aTableAnnotationAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDetectiveElemTokenMap[]=
+static SvXMLTokenMapEntry aDetectiveElemTokenMap[]=
 {
     { XML_NAMESPACE_TABLE,  XML_HIGHLIGHTED_RANGE,  XML_TOK_DETECTIVE_ELEM_HIGHLIGHTED  },
     { XML_NAMESPACE_TABLE,  XML_OPERATION,          XML_TOK_DETECTIVE_ELEM_OPERATION    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDetectiveHighlightedAttrTokenMap[]=
+static SvXMLTokenMapEntry aDetectiveHighlightedAttrTokenMap[]=
 {
     { XML_NAMESPACE_TABLE,  XML_CELL_RANGE_ADDRESS,     XML_TOK_DETECTIVE_HIGHLIGHTED_ATTR_CELL_RANGE       },
     { XML_NAMESPACE_TABLE,  XML_DIRECTION,              XML_TOK_DETECTIVE_HIGHLIGHTED_ATTR_DIRECTION        },
@@ -422,14 +386,14 @@ static __FAR_DATA SvXMLTokenMapEntry aDetectiveHighlightedAttrTokenMap[]=
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDetectiveOperationAttrTokenMap[]=
+static SvXMLTokenMapEntry aDetectiveOperationAttrTokenMap[]=
 {
     { XML_NAMESPACE_TABLE,  XML_NAME,   XML_TOK_DETECTIVE_OPERATION_ATTR_NAME   },
     { XML_NAMESPACE_TABLE,  XML_INDEX,  XML_TOK_DETECTIVE_OPERATION_ATTR_INDEX  },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTableCellRangeSourceAttrTokenMap[] =
+static SvXMLTokenMapEntry aTableCellRangeSourceAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE,  XML_NAME,                   XML_TOK_TABLE_CELL_RANGE_SOURCE_ATTR_NAME           },
     { XML_NAMESPACE_XLINK,  XML_HREF,                   XML_TOK_TABLE_CELL_RANGE_SOURCE_ATTR_HREF           },
@@ -441,14 +405,14 @@ static __FAR_DATA SvXMLTokenMapEntry aTableCellRangeSourceAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aNamedExpressionsTokenMap[] =
+static SvXMLTokenMapEntry aNamedExpressionsTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAMED_RANGE,             XML_TOK_NAMED_EXPRESSIONS_NAMED_RANGE           },
     { XML_NAMESPACE_TABLE, XML_NAMED_EXPRESSION,        XML_TOK_NAMED_EXPRESSIONS_NAMED_EXPRESSION  },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aNamedRangeAttrTokenMap[] =
+static SvXMLTokenMapEntry aNamedRangeAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                XML_TOK_NAMED_RANGE_ATTR_NAME               },
     { XML_NAMESPACE_TABLE, XML_CELL_RANGE_ADDRESS,  XML_TOK_NAMED_RANGE_ATTR_CELL_RANGE_ADDRESS },
@@ -457,7 +421,7 @@ static __FAR_DATA SvXMLTokenMapEntry aNamedRangeAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aNamedExpressionAttrTokenMap[] =
+static SvXMLTokenMapEntry aNamedExpressionAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                XML_TOK_NAMED_EXPRESSION_ATTR_NAME              },
     { XML_NAMESPACE_TABLE, XML_BASE_CELL_ADDRESS,   XML_TOK_NAMED_EXPRESSION_ATTR_BASE_CELL_ADDRESS },
@@ -465,13 +429,13 @@ static __FAR_DATA SvXMLTokenMapEntry aNamedExpressionAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangesTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangesTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATABASE_RANGE,  XML_TOK_DATABASE_RANGE      },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATABASE_SOURCE_SQL,     XML_TOK_DATABASE_RANGE_SOURCE_SQL       },
     { XML_NAMESPACE_TABLE, XML_DATABASE_SOURCE_TABLE,   XML_TOK_DATABASE_RANGE_SOURCE_TABLE     },
@@ -482,7 +446,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeAttrTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                    XML_TOK_DATABASE_RANGE_ATTR_NAME                    },
     { XML_NAMESPACE_TABLE, XML_IS_SELECTION,            XML_TOK_DATABASE_RANGE_ATTR_IS_SELECTION            },
@@ -497,7 +461,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSourceSQLAttrTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeSourceSQLAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATABASE_NAME,           XML_TOK_SOURCE_SQL_ATTR_DATABASE_NAME       },
     { XML_NAMESPACE_TABLE, XML_SQL_STATEMENT,           XML_TOK_SOURCE_SQL_ATTR_SQL_STATEMENT       },
@@ -505,21 +469,21 @@ static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSourceSQLAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSourceTableAttrTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeSourceTableAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATABASE_NAME,   XML_TOK_SOURCE_TABLE_ATTR_DATABASE_NAME     },
     { XML_NAMESPACE_TABLE, XML_TABLE_NAME,      XML_TOK_SOURCE_TABLE_ATTR_TABLE_NAME        },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSourceQueryAttrTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeSourceQueryAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATABASE_NAME,   XML_TOK_SOURCE_QUERY_ATTR_DATABASE_NAME     },
     { XML_NAMESPACE_TABLE, XML_QUERY_NAME,      XML_TOK_SOURCE_QUERY_ATTR_QUERY_NAME        },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aFilterTokenMap[] =
+static SvXMLTokenMapEntry aFilterTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_FILTER_AND,          XML_TOK_FILTER_AND          },
     { XML_NAMESPACE_TABLE, XML_FILTER_OR,           XML_TOK_FILTER_OR           },
@@ -527,7 +491,7 @@ static __FAR_DATA SvXMLTokenMapEntry aFilterTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aFilterAttrTokenMap[] =
+static SvXMLTokenMapEntry aFilterAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_TARGET_RANGE_ADDRESS,            XML_TOK_FILTER_ATTR_TARGET_RANGE_ADDRESS            },
     { XML_NAMESPACE_TABLE, XML_CONDITION_SOURCE_RANGE_ADDRESS,  XML_TOK_FILTER_ATTR_CONDITION_SOURCE_RANGE_ADDRESS  },
@@ -536,7 +500,7 @@ static __FAR_DATA SvXMLTokenMapEntry aFilterAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aFilterConditionAttrTokenMap[] =
+static SvXMLTokenMapEntry aFilterConditionAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_FIELD_NUMBER,    XML_TOK_CONDITION_ATTR_FIELD_NUMBER     },
     { XML_NAMESPACE_TABLE, XML_CASE_SENSITIVE,  XML_TOK_CONDITION_ATTR_CASE_SENSITIVE   },
@@ -546,13 +510,13 @@ static __FAR_DATA SvXMLTokenMapEntry aFilterConditionAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSortTokenMap[] =
+static SvXMLTokenMapEntry aSortTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_SORT_BY, XML_TOK_SORT_SORT_BY    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSortAttrTokenMap[] =
+static SvXMLTokenMapEntry aSortAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_BIND_STYLES_TO_CONTENT,  XML_TOK_SORT_ATTR_BIND_STYLES_TO_CONTENT    },
     { XML_NAMESPACE_TABLE, XML_TARGET_RANGE_ADDRESS,    XML_TOK_SORT_ATTR_TARGET_RANGE_ADDRESS      },
@@ -563,7 +527,7 @@ static __FAR_DATA SvXMLTokenMapEntry aSortAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSortSortByAttrTokenMap[] =
+static SvXMLTokenMapEntry aSortSortByAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_FIELD_NUMBER,    XML_TOK_SORT_BY_ATTR_FIELD_NUMBER   },
     { XML_NAMESPACE_TABLE, XML_DATA_TYPE,       XML_TOK_SORT_BY_ATTR_DATA_TYPE      },
@@ -571,14 +535,14 @@ static __FAR_DATA SvXMLTokenMapEntry aSortSortByAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSubTotalRulesTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeSubTotalRulesTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_SORT_GROUPS,     XML_TOK_SUBTOTAL_RULES_SORT_GROUPS      },
     { XML_NAMESPACE_TABLE, XML_SUBTOTAL_RULE,   XML_TOK_SUBTOTAL_RULES_SUBTOTAL_RULE    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSubTotalRulesAttrTokenMap[] =
+static SvXMLTokenMapEntry aDatabaseRangeSubTotalRulesAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_BIND_STYLES_TO_CONTENT,          XML_TOK_SUBTOTAL_RULES_ATTR_BIND_STYLES_TO_CONTENT      },
     { XML_NAMESPACE_TABLE, XML_CASE_SENSITIVE,                  XML_TOK_SUBTOTAL_RULES_ATTR_CASE_SENSITIVE              },
@@ -586,39 +550,39 @@ static __FAR_DATA SvXMLTokenMapEntry aDatabaseRangeSubTotalRulesAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSubTotalRulesSortGroupsAttrTokenMap[] =
+static SvXMLTokenMapEntry aSubTotalRulesSortGroupsAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATA_TYPE,   XML_TOK_SORT_GROUPS_ATTR_DATA_TYPE  },
     { XML_NAMESPACE_TABLE, XML_ORDER,       XML_TOK_SORT_GROUPS_ATTR_ORDER      },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSubTotalRulesSubTotalRuleTokenMap[] =
+static SvXMLTokenMapEntry aSubTotalRulesSubTotalRuleTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_SUBTOTAL_FIELD,  XML_TOK_SUBTOTAL_RULE_SUBTOTAL_FIELD    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSubTotalRulesSubTotalRuleAttrTokenMap[] =
+static SvXMLTokenMapEntry aSubTotalRulesSubTotalRuleAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_GROUP_BY_FIELD_NUMBER,   XML_TOK_SUBTOTAL_RULE_ATTR_GROUP_BY_FIELD_NUMBER    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSubTotalRuleSubTotalFieldAttrTokenMap[] =
+static SvXMLTokenMapEntry aSubTotalRuleSubTotalFieldAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_FIELD_NUMBER,    XML_TOK_SUBTOTAL_FIELD_ATTR_FIELD_NUMBER    },
     { XML_NAMESPACE_TABLE, XML_FUNCTION,        XML_TOK_SUBTOTAL_FIELD_ATTR_FUNCTION        },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotTablesElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotTablesElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATA_PILOT_TABLE,    XML_TOK_DATA_PILOT_TABLE    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotTableAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                    XML_TOK_DATA_PILOT_TABLE_ATTR_NAME                  },
     { XML_NAMESPACE_TABLE, XML_APPLICATION_DATA,        XML_TOK_DATA_PILOT_TABLE_ATTR_APPLICATION_DATA      },
@@ -630,7 +594,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotTableElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATABASE_SOURCE_SQL, XML_TOK_DATA_PILOT_TABLE_ELEM_SOURCE_SQL        },
     { XML_NAMESPACE_TABLE, XML_DATABASE_SOURCE_TABLE,   XML_TOK_DATA_PILOT_TABLE_ELEM_SOURCE_TABLE      },
@@ -641,7 +605,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableSourceServiceAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotTableSourceServiceAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                    XML_TOK_SOURCE_SERVICE_ATTR_NAME                },
     { XML_NAMESPACE_TABLE, XML_SOURCE_NAME,             XML_TOK_SOURCE_SERVICE_ATTR_SOURCE_NAME         },
@@ -651,19 +615,19 @@ static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableSourceServiceAttrTokenMap[] 
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableSourceCellRangeAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotTableSourceCellRangeAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_CELL_RANGE_ADDRESS,      XML_TOK_SOURCE_CELL_RANGE_ATTR_CELL_RANGE_ADDRESS},
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotTableSourceCellRangeElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotTableSourceCellRangeElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_FILTER,      XML_TOK_SOURCE_CELL_RANGE_ELEM_FILTER},
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotFieldAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotFieldAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_SOURCE_FIELD_NAME,       XML_TOK_DATA_PILOT_FIELD_ATTR_SOURCE_FIELD_NAME     },
     { XML_NAMESPACE_TABLE, XML_IS_DATA_LAYOUT_FIELD,    XML_TOK_DATA_PILOT_FIELD_ATTR_IS_DATA_LAYOUT_FIELD  },
@@ -673,44 +637,44 @@ static __FAR_DATA SvXMLTokenMapEntry aDataPilotFieldAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotFieldElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotFieldElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATA_PILOT_LEVEL,        XML_TOK_DATA_PILOT_FIELD_ELEM_DATA_PILOT_LEVEL      },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotLevelAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotLevelAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DISPLAY_EMPTY,           XML_TOK_DATA_PILOT_LEVEL_ATTR_DISPLAY_EMPTY         },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotLevelElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotLevelElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATA_PILOT_SUBTOTALS,    XML_TOK_DATA_PILOT_LEVEL_ELEM_DATA_PILOT_SUBTOTALS  },
     { XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBERS,      XML_TOK_DATA_PILOT_LEVEL_ELEM_DATA_PILOT_MEMBERS    },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotSubTotalsElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotSubTotalsElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATA_PILOT_SUBTOTAL, XML_TOK_DATA_PILOT_SUBTOTALS_ELEM_DATA_PILOT_SUBTOTAL   },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotSubTotalAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotSubTotalAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_FUNCTION,                XML_TOK_DATA_PILOT_SUBTOTAL_ATTR_FUNCTION           },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotMembersElemTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotMembersElemTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_DATA_PILOT_MEMBER,       XML_TOK_DATA_PILOT_MEMBERS_ELEM_DATA_PILOT_MEMBER   },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aDataPilotMemberAttrTokenMap[] =
+static SvXMLTokenMapEntry aDataPilotMemberAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE, XML_NAME,                    XML_TOK_DATA_PILOT_MEMBER_ATTR_NAME                 },
     { XML_NAMESPACE_TABLE, XML_DISPLAY,             XML_TOK_DATA_PILOT_MEMBER_ATTR_DISPLAY              },
@@ -718,7 +682,7 @@ static __FAR_DATA SvXMLTokenMapEntry aDataPilotMemberAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aConsolidationAttrTokenMap[] =
+static SvXMLTokenMapEntry aConsolidationAttrTokenMap[] =
 {
     { XML_NAMESPACE_TABLE,  XML_FUNCTION,                       XML_TOK_CONSOLIDATION_ATTR_FUNCTION         },
     { XML_NAMESPACE_TABLE,  XML_SOURCE_CELL_RANGE_ADDRESSES,    XML_TOK_CONSOLIDATION_ATTR_SOURCE_RANGES    },
@@ -736,21 +700,21 @@ class ScXMLDocContext_Impl : public SvXMLImportContext
 
 public:
 
-    ScXMLDocContext_Impl( ScXMLImport& rImport,
+    ScXMLDocContext_Impl( ScXMLImport& rInImport,
                           USHORT nPrfx,
                              const OUString& rLName,
                              const uno::Reference<xml::sax::XAttributeList>& xAttrList );
     virtual ~ScXMLDocContext_Impl();
 
-    virtual SvXMLImportContext *CreateChildContext( USHORT nPrefix,
+    virtual SvXMLImportContext *CreateChildContext( USHORT nInPrefix,
                                      const ::rtl::OUString& rLocalName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList );
 };
 
-ScXMLDocContext_Impl::ScXMLDocContext_Impl( ScXMLImport& rImport, USHORT nPrfx,
+ScXMLDocContext_Impl::ScXMLDocContext_Impl( ScXMLImport& rInImport, USHORT nPrfx,
                                                  const OUString& rLName,
-                                             const uno::Reference<xml::sax::XAttributeList>& xAttrList ) :
-    SvXMLImportContext( rImport, nPrfx, rLName )
+                                             const uno::Reference<xml::sax::XAttributeList>& /*xAttrList*/ ) :
+    SvXMLImportContext( rInImport, nPrfx, rLName )
 {
 
 }
@@ -759,18 +723,18 @@ ScXMLDocContext_Impl::~ScXMLDocContext_Impl()
 {
 }
 
-SvXMLImportContext *ScXMLDocContext_Impl::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLDocContext_Impl::CreateChildContext( USHORT nInPrefix,
                                      const ::rtl::OUString& rLocalName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
     const SvXMLTokenMap& rTokenMap = GetScImport().GetDocElemTokenMap();
-    switch( rTokenMap.Get( nPrefix, rLocalName ) )
+    switch( rTokenMap.Get( nInPrefix, rLocalName ) )
     {
     case XML_TOK_DOC_FONTDECLS:
         if (GetScImport().getImportFlags() & IMPORT_FONTDECLS)
-            pContext = GetScImport().CreateFontDeclsContext(nPrefix, rLocalName, xAttrList);
+            pContext = GetScImport().CreateFontDeclsContext(nInPrefix, rLocalName, xAttrList);
         break;
     case XML_TOK_DOC_STYLES:
         if (GetScImport().getImportFlags() & IMPORT_STYLES)
@@ -783,7 +747,7 @@ SvXMLImportContext *ScXMLDocContext_Impl::CreateChildContext( USHORT nPrefix,
         break;
     case XML_TOK_DOC_MASTERSTYLES:
         if (GetScImport().getImportFlags() & IMPORT_MASTERSTYLES)
-            pContext = new ScXMLMasterStylesContext( GetImport(), nPrefix, rLocalName,
+            pContext = new ScXMLMasterStylesContext( GetImport(), nInPrefix, rLocalName,
                                               xAttrList );
         break;
     case XML_TOK_DOC_META:
@@ -800,12 +764,12 @@ SvXMLImportContext *ScXMLDocContext_Impl::CreateChildContext( USHORT nPrefix,
         break;
     case XML_TOK_DOC_SETTINGS:
         if (GetScImport().getImportFlags() & IMPORT_SETTINGS)
-            pContext = new XMLDocumentSettingsContext(GetScImport(), nPrefix, rLocalName, xAttrList );
+            pContext = new XMLDocumentSettingsContext(GetScImport(), nInPrefix, rLocalName, xAttrList );
         break;
     }
 
     if(!pContext)
-        pContext = new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+        pContext = new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 
     return pContext;
 }
@@ -1239,22 +1203,22 @@ const SvXMLTokenMap& ScXMLImport::GetConsolidationAttrTokenMap()
 }
 
 
-SvXMLImportContext *ScXMLImport::CreateContext( USHORT nPrefix,
+SvXMLImportContext *ScXMLImport::CreateContext( USHORT nInPrefix,
                                            const OUString& rLocalName,
                                            const uno::Reference<xml::sax::XAttributeList>& xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    if( (XML_NAMESPACE_OFFICE == nInPrefix) &&
         ( IsXMLToken(rLocalName, XML_DOCUMENT) ||
           IsXMLToken(rLocalName, XML_DOCUMENT_META) ||
           IsXMLToken(rLocalName, XML_DOCUMENT_STYLES) ||
           IsXMLToken(rLocalName, XML_DOCUMENT_CONTENT) ||
           IsXMLToken(rLocalName, XML_DOCUMENT_SETTINGS) ))
-        pContext = new ScXMLDocContext_Impl( *this, nPrefix, rLocalName,
+        pContext = new ScXMLDocContext_Impl( *this, nInPrefix, rLocalName,
                                              xAttrList );
     else
-        pContext = SvXMLImport::CreateContext( nPrefix, rLocalName, xAttrList );
+        pContext = SvXMLImport::CreateContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -1265,10 +1229,13 @@ ScXMLImport::ScXMLImport(
     const sal_uInt16 nImportFlag)
 :   SvXMLImport( xServiceFactory, nImportFlag ),
     pDoc( NULL ),
-    bLoadDoc( sal_True ),
-    nStyleFamilyMask( 0 ),
-//  rDoc( rD ),
-//  pI18NMap( new SvI18NMap ),
+    pChangeTrackingImportHelper(NULL),
+    pStylesImportHelper(NULL),
+    sNumberFormat(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_NUMFMT)),
+    sLocale(RTL_CONSTASCII_USTRINGPARAM(SC_LOCALE)),
+    sCellStyle(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_CELLSTYL)),
+    sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(SC_STANDARDFORMAT)),
+    sType(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_TYPE)),
     pDocElemTokenMap( 0 ),
     pStylesElemTokenMap( 0 ),
     pStylesAttrTokenMap( 0 ),
@@ -1286,8 +1253,8 @@ ScXMLImport::ScXMLImport(
     pTableElemTokenMap( 0 ),
     pTableRowsElemTokenMap( 0 ),
     pTableColsElemTokenMap( 0 ),
-    pTableAttrTokenMap( 0 ),
     pTableScenarioAttrTokenMap( 0 ),
+    pTableAttrTokenMap( 0 ),
     pTableColAttrTokenMap( 0 ),
     pTableRowElemTokenMap( 0 ),
     pTableRowAttrTokenMap( 0 ),
@@ -1338,25 +1305,19 @@ ScXMLImport::ScXMLImport(
     pMyNamedExpressions(NULL),
     pValidations(NULL),
     pDetectiveOpArray(NULL),
-//  pScAutoStylePool(new SvXMLAutoStylePoolP),
-    bRemoveLastChar(sal_False),
-    pChangeTrackingImportHelper(NULL),
-    pStylesImportHelper(NULL),
-    sNumberFormat(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_NUMFMT)),
-    sLocale(RTL_CONSTASCII_USTRINGPARAM(SC_LOCALE)),
-    sCellStyle(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_CELLSTYL)),
-    sStandardFormat(RTL_CONSTASCII_USTRINGPARAM(SC_STANDARDFORMAT)),
-    sType(RTL_CONSTASCII_USTRINGPARAM(SC_UNONAME_TYPE)),
-    bNullDateSetted(sal_False),
+    pSolarMutexGuard(NULL),
     pNumberFormatAttributesExportHelper(NULL),
     pStyleNumberFormats(NULL),
     sPrevStyleName(),
     sPrevCurrency(),
-    nPrevCellType(0),
     nSolarMutexLocked(0),
-    pScUnoGuard(NULL),
-    nRangeOverflowType(0),
-    bSelfImportingXMLSet(sal_False)
+    nStyleFamilyMask( 0 ),
+    nPrevCellType(0),
+    bLoadDoc( sal_True ),
+    bRemoveLastChar(sal_False),
+    bNullDateSetted(sal_False),
+    bSelfImportingXMLSet(sal_False),
+    nRangeOverflowType(0)
 
 //  pParaItemMapper( 0 ),
 {
@@ -1451,8 +1412,8 @@ ScXMLImport::~ScXMLImport() throw()
     if (pStylesImportHelper)
         delete pStylesImportHelper;
 
-    if (pScUnoGuard)
-        delete pScUnoGuard;
+    if (pSolarMutexGuard)
+        delete pSolarMutexGuard;
 
     if (pMyNamedExpressions)
         delete pMyNamedExpressions;
@@ -1464,14 +1425,14 @@ ScXMLImport::~ScXMLImport() throw()
 
 // ---------------------------------------------------------------------
 
-SvXMLImportContext *ScXMLImport::CreateFontDeclsContext(const USHORT nPrefix, const ::rtl::OUString& rLocalName,
+SvXMLImportContext *ScXMLImport::CreateFontDeclsContext(const USHORT nInPrefix, const ::rtl::OUString& rLocalName,
                                      const uno::Reference<xml::sax::XAttributeList>& xAttrList)
 {
     SvXMLImportContext *pContext = NULL;
     if (!pContext)
     {
         XMLFontStylesContext *pFSContext =
-            new XMLFontStylesContext( *this, nPrefix,
+            new XMLFontStylesContext( *this, nInPrefix,
                                         rLocalName, xAttrList,
                                         gsl_getSystemTextEncoding() );
         SetFontDecls( pFSContext );
@@ -1555,24 +1516,24 @@ void ScXMLImport::SetStatisticAttributes( const uno::Reference<xml::sax::XAttrib
     for( INT16 i=0; i < nAttrCount; i++ )
     {
         ::rtl::OUString sAttrName = xAttrList->getNameByIndex( i );
-        ::rtl::OUString aLocalName;
-        sal_uInt16 nPrefix = GetNamespaceMap().GetKeyByAttrName(
-                                            sAttrName, &aLocalName );
-        if ( nPrefix == XML_NAMESPACE_META)
+        ::rtl::OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetNamespaceMap().GetKeyByAttrName(
+                                            sAttrName, &aLclLocalName );
+        if ( nLclPrefix == XML_NAMESPACE_META)
         {
             ::rtl::OUString sValue = xAttrList->getValueByIndex( i );
             sal_Int32 nValue(0);
-            if (IsXMLToken(aLocalName, XML_TABLE_COUNT))
+            if (IsXMLToken(aLclLocalName, XML_TABLE_COUNT))
             {
                 if (GetMM100UnitConverter().convertNumber(nValue, sValue))
                     nCount += nValue;
             }
-            else if (IsXMLToken(aLocalName, XML_CELL_COUNT))
+            else if (IsXMLToken(aLclLocalName, XML_CELL_COUNT))
             {
                 if (GetMM100UnitConverter().convertNumber(nValue, sValue))
                     nCount += nValue;
             }
-            else if (IsXMLToken(aLocalName, XML_OBJECT_COUNT))
+            else if (IsXMLToken(aLclLocalName, XML_OBJECT_COUNT))
             {
                 if (GetMM100UnitConverter().convertNumber(nValue, sValue))
                     nCount += nValue;
@@ -1599,7 +1560,7 @@ sal_Bool ScXMLImport::GetValidation(const ::rtl::OUString& sName, ScMyImportVali
     if (pValidations)
     {
         sal_Bool bFound(sal_False);
-        ::rtl::OUString sEmpty;
+        ::rtl::OUString sLclEmpty;
         ScMyImportValidations::iterator aItr = pValidations->begin();
         while(aItr != pValidations->end() && !bFound)
         {
@@ -1611,13 +1572,13 @@ sal_Bool ScXMLImport::GetValidation(const ::rtl::OUString& sName, ScMyImportVali
                     LockSolarMutex();
                     if (ScXMLConverter::GetAddressFromString(
                         aItr->aBaseCellAddress, aItr->sBaseCellAddress, GetDocument(), nOffset ))
-                        aItr->sBaseCellAddress = sEmpty;
+                        aItr->sBaseCellAddress = sLclEmpty;
                     UnlockSolarMutex();
                 }
                 bFound = sal_True;
             }
             else
-                aItr++;
+                ++aItr;
         }
         if (bFound)
             aValidation = *aItr;
@@ -1646,7 +1607,6 @@ void ScXMLImport::SetChangeTrackingViewSettings(const ::com::sun::star::uno::Seq
         if (nCount)
         {
             LockSolarMutex();
-            sal_Int32 nTemp32(0);
             sal_Int16 nTemp16(0);
             ScChangeViewSettings* pViewSettings = new ScChangeViewSettings();
             for (sal_Int32 i = 0; i < nCount; i++)
@@ -1692,8 +1652,8 @@ void ScXMLImport::SetChangeTrackingViewSettings(const ::com::sun::star::uno::Seq
                     ::rtl::OUString sOUName;
                     if (rChangeProps[i].Value >>= sOUName)
                     {
-                        String sName(sOUName);
-                        pViewSettings->SetTheAuthorToShow(sName);
+                        String sLclName(sOUName);
+                        pViewSettings->SetTheAuthorToShow(sLclName);
                     }
                 }
                 else if (sName.compareToAscii("ShowChangesByComment") == 0)
@@ -1790,16 +1750,16 @@ void ScXMLImport::SetConfigurationSettings(const uno::Sequence<beans::PropertyVa
 
 sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const ::rtl::OUString& rCurrency)
 {
-    uno::Reference <util::XNumberFormatsSupplier> xNumberFormatsSupplier = GetNumberFormatsSupplier();
-    if (xNumberFormatsSupplier.is())
+    uno::Reference <util::XNumberFormatsSupplier> xLclNumberFormatsSupplier = GetNumberFormatsSupplier();
+    if (xLclNumberFormatsSupplier.is())
     {
-        uno::Reference <util::XNumberFormats> xNumberFormats = xNumberFormatsSupplier->getNumberFormats();
-        if (xNumberFormats.is())
+        uno::Reference <util::XNumberFormats> xLclNumberFormats = xLclNumberFormatsSupplier->getNumberFormats();
+        if (xLclNumberFormats.is())
         {
             ::rtl::OUString sFormatString;
             try
             {
-                uno::Reference <beans::XPropertySet> xProperties = xNumberFormats->getByKey(nKey);
+                uno::Reference <beans::XPropertySet> xProperties = xLclNumberFormats->getByKey(nKey);
                 if (xProperties.is())
                 {
                     uno::Any aAny = xProperties->getPropertyValue(sLocale);
@@ -1818,9 +1778,9 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const ::rtl::OUSt
                         aBuffer.appendAscii("]");
                         UnlockSolarMutex();
                         sFormatString = aBuffer.makeStringAndClear();
-                        sal_Int32 nNewKey = xNumberFormats->queryKey(sFormatString, aLocale, sal_True);
+                        sal_Int32 nNewKey = xLclNumberFormats->queryKey(sFormatString, aLocale, sal_True);
                         if (nNewKey == -1)
-                            nNewKey = xNumberFormats->addNew(sFormatString, aLocale);
+                            nNewKey = xLclNumberFormats->addNew(sFormatString, aLocale);
                         return nNewKey;
                     }
                 }
@@ -1833,8 +1793,8 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const ::rtl::OUSt
                 sErrorMessage += ::rtl::OUString::valueOf(rException.CheckPos);
                 uno::Sequence<rtl::OUString> aSeq(1);
                 aSeq[0] = sErrorMessage;
-                uno::Reference<xml::sax::XLocator> xLocator;
-                SetError(XMLERROR_API | XMLERROR_FLAG_ERROR, aSeq, rException.Message, xLocator);
+                uno::Reference<xml::sax::XLocator> xLclLocator;
+                SetError(XMLERROR_API | XMLERROR_FLAG_ERROR, aSeq, rException.Message, xLclLocator);
             }
         }
     }
@@ -1843,15 +1803,15 @@ sal_Int32 ScXMLImport::SetCurrencySymbol(const sal_Int32 nKey, const ::rtl::OUSt
 
 sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const ::rtl::OUString& sCurrencySymbol)
 {
-    uno::Reference <util::XNumberFormatsSupplier> xNumberFormatsSupplier = GetNumberFormatsSupplier();
-    if (xNumberFormatsSupplier.is())
+    uno::Reference <util::XNumberFormatsSupplier> xLclNumberFormatsSupplier = GetNumberFormatsSupplier();
+    if (xLclNumberFormatsSupplier.is())
     {
-        uno::Reference <util::XNumberFormats> xNumberFormats = xNumberFormatsSupplier->getNumberFormats();
-        if (xNumberFormats.is())
+        uno::Reference <util::XNumberFormats> xLclNumberFormats = xLclNumberFormatsSupplier->getNumberFormats();
+        if (xLclNumberFormats.is())
         {
             try
             {
-                uno::Reference <beans::XPropertySet> xNumberPropertySet = xNumberFormats->getByKey(nNumberFormat);
+                uno::Reference <beans::XPropertySet> xNumberPropertySet = xLclNumberFormats->getByKey(nNumberFormat);
                 if (xNumberPropertySet.is())
                 {
                     uno::Any aCurrencySymbol = xNumberPropertySet->getPropertyValue(::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(SC_CURRENCYSYMBOL)));
@@ -1862,7 +1822,7 @@ sal_Bool ScXMLImport::IsCurrencySymbol(const sal_Int32 nNumberFormat, const ::rt
             }
             catch ( uno::Exception& )
             {
-                DBG_ERROR("Numberformat not found");
+                OSL_FAIL("Numberformat not found");
             }
         }
     }
@@ -1887,17 +1847,17 @@ void ScXMLImport::SetType(uno::Reference <beans::XPropertySet>& rProperties,
         sal_Int32 nCurrentCellType(
             GetNumberFormatAttributesExportHelper()->GetCellType(
                 rNumberFormat, sCurrentBankCurrency, bIsStandard) & ~util::NumberFormat::DEFINED);
-        if ((nCellType != nCurrentCellType) && !(nCellType == util::NumberFormat::NUMBER &&
+        if ((nCellType != nCurrentCellType) && !((nCellType == util::NumberFormat::NUMBER &&
             ((nCurrentCellType == util::NumberFormat::SCIENTIFIC) ||
             (nCurrentCellType == util::NumberFormat::FRACTION) ||
-            (nCurrentCellType == 0)) || (nCurrentCellType == util::NumberFormat::TEXT)) && !((nCellType == util::NumberFormat::DATETIME) &&
+            (nCurrentCellType == 0))) || (nCurrentCellType == util::NumberFormat::TEXT)) && !((nCellType == util::NumberFormat::DATETIME) &&
             (nCurrentCellType == util::NumberFormat::DATE)))
         {
             if (!xNumberFormats.is())
             {
-                uno::Reference <util::XNumberFormatsSupplier> xNumberFormatsSupplier = GetNumberFormatsSupplier();
-                if (xNumberFormatsSupplier.is())
-                    xNumberFormats = xNumberFormatsSupplier->getNumberFormats();
+                uno::Reference <util::XNumberFormatsSupplier> xLclNumberFormatsSupplier = GetNumberFormatsSupplier();
+                if (xLclNumberFormatsSupplier.is())
+                    xNumberFormats = xLclNumberFormatsSupplier->getNumberFormats();
             }
             if (xNumberFormats.is())
             {
@@ -1937,7 +1897,7 @@ void ScXMLImport::SetType(uno::Reference <beans::XPropertySet>& rProperties,
                 }
                 catch ( uno::Exception& )
                 {
-                    DBG_ERROR("Numberformat not found");
+                    OSL_FAIL("Numberformat not found");
                 }
             }
         }
@@ -2088,8 +2048,8 @@ void SAL_CALL ScXMLImport::setTargetDocument( const ::com::sun::star::uno::Refer
     LockSolarMutex();
     SvXMLImport::setTargetDocument( xDoc );
 
-    uno::Reference<frame::XModel> xModel(xDoc, uno::UNO_QUERY);
-    pDoc = ScXMLConverter::GetScDocument( xModel );
+    uno::Reference<frame::XModel> xLclModel(xDoc, uno::UNO_QUERY);
+    pDoc = ScXMLConverter::GetScDocument( xLclModel );
     DBG_ASSERT( pDoc, "ScXMLImport::setTargetDocument - no ScDocument!" );
     if (!pDoc)
         throw lang::IllegalArgumentException();
@@ -2167,10 +2127,10 @@ void SAL_CALL ScXMLImport::endDocument(void)
                             ::rtl::OUString sName(aSeq[i].Name);
                             if (sName.compareToAscii(SC_ACTIVETABLE) == 0)
                             {
-                                ::rtl::OUString sName;
-                                if(aSeq[i].Value >>= sName)
+                                ::rtl::OUString sLclName;
+                                if(aSeq[i].Value >>= sLclName)
                                 {
-                                    String sTabName(sName);
+                                    String sTabName(sLclName);
                                     sal_uInt16 nTab(0);
                                     if (pDoc->GetTable(sTabName, nTab))
                                     {
@@ -2217,8 +2177,8 @@ void ScXMLImport::LockSolarMutex()
 {
     if (nSolarMutexLocked == 0)
     {
-        DBG_ASSERT(!pScUnoGuard, "Solar Mutex is locked");
-        pScUnoGuard = new ScUnoGuard();
+        DBG_ASSERT(!pSolarMutexGuard, "Solar Mutex is locked");
+        pSolarMutexGuard = new SolarMutexGuard();
     }
     nSolarMutexLocked++;
 }
@@ -2230,10 +2190,12 @@ void ScXMLImport::UnlockSolarMutex()
         nSolarMutexLocked--;
         if (nSolarMutexLocked == 0)
         {
-            DBG_ASSERT(pScUnoGuard, "Solar Mutex is always unlocked");
-            delete pScUnoGuard;
-            pScUnoGuard = NULL;
+            DBG_ASSERT(pSolarMutexGuard, "Solar Mutex is always unlocked");
+            delete pSolarMutexGuard;
+            pSolarMutexGuard = NULL;
         }
     }
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

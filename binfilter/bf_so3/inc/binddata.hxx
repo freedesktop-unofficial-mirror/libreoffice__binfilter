@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,21 +27,19 @@
  ************************************************************************/
 
 #ifndef _BINDDATA_HXX
-#define _BINDDATA_HXX "$Revision: 1.4 $"
+#define _BINDDATA_HXX
 
 #include <bf_svtools/bf_solar.h>
-#ifndef _LIST_HXX
-#include <tools/list.hxx>
-#endif
+#include <vector>
 
 namespace binfilter
 {
 
 class SvBindingTransportFactory;
-DECLARE_LIST (SvBindingTransportFactoryList, SvBindingTransportFactory*)
+typedef ::std::vector< SvBindingTransportFactory* > SvBindingTransportFactoryList;
 
 class SvLockBytesFactory;
-DECLARE_LIST (SvLockBytesFactoryList, SvLockBytesFactory*)
+typedef ::std::vector< SvLockBytesFactory* > SvLockBytesFactoryList;
 
 class SvBindingData_Impl;
 
@@ -85,3 +84,4 @@ struct SvBindingData
 
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

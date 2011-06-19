@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,14 +26,10 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
 // header for SvStream
 // header for SAL_STATIC_CAST
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
 #include "schopt.hxx"
 
@@ -92,11 +89,11 @@ using namespace ::com::sun::star;
 // ====================
 
 /*N*/ SchOptions::SchOptions() :
-/*N*/       ::utl::ConfigItem( ::rtl::OUString::createFromAscii( "Office.Chart" )),
+/*N*/       ::utl::ConfigItem( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Office.Chart" ))),
 /*N*/       mbIsInitialized( FALSE )
 /*N*/ {
 /*N*/   maPropertyNames.realloc( 1 );
-/*N*/   maPropertyNames[ 0 ] = ::rtl::OUString::createFromAscii( "DefaultColor/Series" );
+/*N*/   maPropertyNames[ 0 ] = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "DefaultColor/Series" ));
 /*N*/ }
 
 /*N*/ SchOptions::~SchOptions()
@@ -161,7 +158,7 @@ using namespace ::com::sun::star;
 /*N*/   return FALSE;
 /*N*/ }
 
-void SchOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& aPropertyNames ) {}
+void SchOptions::Notify( const ::com::sun::star::uno::Sequence< rtl::OUString >& /*rPropertyNames*/ ) {}
 void SchOptions::Commit() {}
 
 
@@ -176,3 +173,5 @@ void SchOptions::Commit() {}
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef _XMLOFF_FORMS_STRINGS_HXX_
 #define _XMLOFF_FORMS_STRINGS_HXX_
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -263,3 +260,5 @@ namespace xmloff
 
 }//end of namespace binfilter
 #endif // _XMLOFF_FORMS_STRINGS_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

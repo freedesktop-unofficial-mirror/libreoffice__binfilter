@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,29 +25,22 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#ifndef _SW_TEXTCURSORHELPER_HXX
-#include "TextCursorHelper.hxx"
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include "TextCursorHelper.hxx"
+
+#include <osl/diagnose.h>
 
 #include "unoobj.hxx"
 namespace binfilter {
 
 using namespace ::com::sun::star;
-/* -----------------------------03.03.03 11:07--------------------------------
 
- ---------------------------------------------------------------------------*/
 const uno::Sequence< sal_Int8 > & OTextCursorHelper::getUnoTunnelId()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();
     return aSeq;
 }
-/* -----------------------------03.03.03 11:07--------------------------------
 
- ---------------------------------------------------------------------------*/
 //XUnoTunnel
 sal_Int64 SAL_CALL OTextCursorHelper::getSomething(
     const uno::Sequence< sal_Int8 >& rId )
@@ -60,6 +54,7 @@ sal_Int64 SAL_CALL OTextCursorHelper::getSomething(
         }
     return 0;
 }
-// -----------------------------------------------------------------------------
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

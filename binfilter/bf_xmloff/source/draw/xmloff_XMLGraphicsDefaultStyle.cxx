@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,32 +28,25 @@
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
-#ifndef _XMLOFF_XMLSHAPEPROPERTYSETCONTEXT_HXX
 #include "XMLShapePropertySetContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLGRAPHICSDEFAULTSTYLE_HXX
 #include "XMLGraphicsDefaultStyle.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::xml::sax;
+
+using rtl::OUString;
 
 using ::binfilter::xmloff::token::IsXMLToken;
 using ::binfilter::xmloff::token::XML_PROPERTIES;
@@ -61,8 +55,8 @@ using ::binfilter::xmloff::token::XML_PROPERTIES;
 
 TYPEINIT1( XMLGraphicsDefaultStyle, XMLPropStyleContext );
 
-XMLGraphicsDefaultStyle::XMLGraphicsDefaultStyle( SvXMLImport& rImport, sal_uInt16 nPrfx, const OUString& rLName, const Reference< XAttributeList >& xAttrList, SvXMLStylesContext& rStyles )
-: XMLPropStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles, XML_STYLE_FAMILY_SD_GRAPHICS_ID, sal_True )
+XMLGraphicsDefaultStyle::XMLGraphicsDefaultStyle( SvXMLImport& rInImport, sal_uInt16 nPrfx, const OUString& rLName, const Reference< XAttributeList >& xAttrList, SvXMLStylesContext& rStyles )
+: XMLPropStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles, XML_STYLE_FAMILY_SD_GRAPHICS_ID, sal_True )
 {
 }
 
@@ -70,19 +64,19 @@ XMLGraphicsDefaultStyle::~XMLGraphicsDefaultStyle()
 {
 }
 
-SvXMLImportContext *XMLGraphicsDefaultStyle::CreateChildContext( sal_uInt16 nPrefix, const OUString& rLocalName, const Reference< XAttributeList > & xAttrList )
+SvXMLImportContext *XMLGraphicsDefaultStyle::CreateChildContext( sal_uInt16 nInPrefix, const OUString& rLocalName, const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix && IsXMLToken( rLocalName, XML_PROPERTIES ) )
+    if( XML_NAMESPACE_STYLE == nInPrefix && IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap = GetStyles()->GetImportPropertyMapper( GetFamily() );
         if( xImpPrMap.is() )
-            pContext = new XMLShapePropertySetContext( GetImport(), nPrefix, rLocalName, xAttrList, GetProperties(), xImpPrMap );
+            pContext = new XMLShapePropertySetContext( GetImport(), nInPrefix, rLocalName, xAttrList,   GetProperties(), xImpPrMap );
     }
 
     if( !pContext )
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName, xAttrList );
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName, xAttrList );
 
     return pContext;
 }
@@ -103,3 +97,5 @@ void XMLGraphicsDefaultStyle::SetDefaults()
 
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

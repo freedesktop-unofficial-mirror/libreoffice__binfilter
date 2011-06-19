@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,42 +26,26 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_TRANSGRADIENTSTYLE_HXX
 #include "TransGradientStyle.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_AWT_GRADIENT_HPP_
 #include <com/sun/star/awt/Gradient.hpp>
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 #include "rtl/ustring.hxx"
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 namespace binfilter {
 
 
@@ -81,7 +66,7 @@ enum SvXMLTokenMapAttrs
     XML_TOK_TABSTOP_END=XML_TOK_UNKNOWN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTrGradientAttrTokenMap[] =
+static SvXMLTokenMapEntry aTrGradientAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW, XML_NAME, XML_TOK_GRADIENT_NAME },
     { XML_NAMESPACE_DRAW, XML_STYLE, XML_TOK_GRADIENT_STYLE },
@@ -94,7 +79,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTrGradientAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_GradientStyle_Enum[] =
+SvXMLEnumMapEntry const pXML_GradientStyle_Enum[] =
 {
     { XML_GRADIENTSTYLE_LINEAR,         awt::GradientStyle_LINEAR },
     { XML_GRADIENTSTYLE_AXIAL,          awt::GradientStyle_AXIAL },
@@ -326,3 +311,5 @@ sal_Bool XMLTransGradientStyleExport::exportXML(
 
 #endif // #ifndef SVX_LIGHT
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

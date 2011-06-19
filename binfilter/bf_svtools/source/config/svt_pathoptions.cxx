@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,92 +28,52 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-#ifndef _COM_SUN_STAR_FRAME_XCONFIGMANAGER_HPP_
 #include <com/sun/star/frame/XConfigManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _CPPUHELPER_IMPLBASE2_HXX_
 #include <cppuhelper/implbase2.hxx>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
 #include <bf_svtools/pathoptions.hxx>
 
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
-#ifndef _UTL_CONFIGMGR_HXX_
 #include <unotools/configmgr.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
-#ifndef _TOOLS_RESMGR_HXX
 #include <tools/resmgr.hxx>
-#endif
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_ANY_HXX_
 #include <com/sun/star/uno/Any.hxx>
-#endif
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_HXX_
 #include <com/sun/star/uno/Sequence.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _OSL_FILE_HXX_
 #include <osl/file.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALFILEHELPER_HXX
 #include <unotools/localfilehelper.hxx>
-#endif
-#ifndef _UTL_BOOTSTRAP_HXX
 #include <unotools/bootstrap.hxx>
-#endif
 
 #include <unotools/ucbhelper.hxx>
-#include <vos/process.hxx>
 #include <comphelper/processfactory.hxx>
 
-#ifndef _COM_SUN_STAR_BEANS_XFASTPROPERTYSET_HPP_
 #include <com/sun/star/beans/XFastPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HPP_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSETINFO_HPP_
 #include <com/sun/star/beans/XPropertySetInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XSTRINGSUBSTITUTION_HPP_
 #include <com/sun/star/util/XStringSubstitution.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef INCLUDED_RTL_INSTANCE_HXX
 #include <rtl/instance.hxx>
-#endif
 
 #include <itemholder1.hxx>
 
 #include <vector>
-#include <hash_map>
+#include <boost/unordered_map.hpp>
 
 using namespace osl;
 using namespace utl;
-using namespace rtl;
 using namespace com::sun::star::uno;
 using namespace com::sun::star::beans;
 using namespace com::sun::star::util;
 using namespace com::sun::star::lang;
+
+using ::rtl::OUString;
+using ::rtl::OString;
+using ::rtl::OStringToOUString;
 
 namespace binfilter
 {
@@ -158,19 +119,19 @@ enum VarNameProperty
     VAR_NEEDS_FILEURL
 };
 
-class NameToHandleMap : public ::std::hash_map< ::rtl::OUString, sal_Int32, OUStringHashCode, ::std::equal_to< ::rtl::OUString > >
+class NameToHandleMap : public ::boost::unordered_map<  ::rtl::OUString, sal_Int32, OUStringHashCode, ::std::equal_to< ::rtl::OUString > >
 {
     public:
         inline void free() { NameToHandleMap().swap( *this ); }
 };
 
-class EnumToHandleMap : public ::std::hash_map< sal_Int32, sal_Int32, std::hash< sal_Int32 >, std::equal_to< sal_Int32 > >
+class EnumToHandleMap : public ::boost::unordered_map< sal_Int32, sal_Int32, boost::hash< sal_Int32 >, std::equal_to< sal_Int32 > >
 {
     public:
         inline void free() { EnumToHandleMap().swap( *this ); }
 };
 
-class VarNameToEnumMap : public ::std::hash_map< OUString, VarNameProperty, OUStringHashCode, ::std::equal_to< OUString > >
+class VarNameToEnumMap : public ::boost::unordered_map< OUString, VarNameProperty, OUStringHashCode, ::std::equal_to< OUString > >
 {
     public:
         inline void free() { VarNameToEnumMap().swap( *this ); }
@@ -310,20 +271,6 @@ static VarNameAttribute aVarNameAttribute[] =
     { SUBSTITUTE_USERPATH,  VAR_NEEDS_SYSTEM_PATH },    // $(userpath)
     { SUBSTITUTE_PATH,      VAR_NEEDS_SYSTEM_PATH },    // $(path)
 };
-
-#if 0
-// currently unused
-static Sequence< OUString > GetPathPropertyNames()
-{
-    const int nCount = sizeof( aPropNames ) / sizeof( PropertyStruct );
-    Sequence< OUString > aNames( nCount );
-    OUString* pNames = aNames.getArray();
-    for ( int i = 0; i < nCount; i++ )
-        pNames[i] = OUString::createFromAscii( aPropNames[i].pPropName );
-
-    return aNames;
-}
-#endif
 
 // class SvtPathOptions_Impl ---------------------------------------------
 
@@ -508,7 +455,7 @@ SvtPathOptions_Impl::SvtPathOptions_Impl() :
     if ( !m_xPathSettings.is() )
     {
         // #112719#: check for existance
-        DBG_ERROR( "SvtPathOptions_Impl::SvtPathOptions_Impl(): #112719# happened again!" );
+        OSL_FAIL( "SvtPathOptions_Impl::SvtPathOptions_Impl(): #112719# happened again!" );
         throw RuntimeException(
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Service com.sun.star.util.PathSettings cannot be created" )),
             Reference< XInterface >() );
@@ -521,7 +468,7 @@ SvtPathOptions_Impl::SvtPathOptions_Impl() :
     if ( !m_xSubstVariables.is() )
     {
         // #112719#: check for existance
-        DBG_ERROR( "SvtPathOptions_Impl::SvtPathOptions_Impl(): #112719# happened again!" );
+        OSL_FAIL( "SvtPathOptions_Impl::SvtPathOptions_Impl(): #112719# happened again!" );
         throw RuntimeException(
             ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Service com.sun.star.util.PathSubstitution cannot be created" )),
             Reference< XInterface >() );
@@ -565,7 +512,7 @@ SvtPathOptions_Impl::SvtPathOptions_Impl() :
     }
 
     // Set language type!
-    Any aLocale = ConfigManager::GetConfigManager()->GetDirectConfigProperty( ConfigManager::LOCALE );
+    Any aLocale = ConfigManager::GetConfigManager().GetDirectConfigProperty( ConfigManager::LOCALE );
     OUString aLocaleStr;
     if ( aLocale >>= aLocaleStr )
     {
@@ -943,7 +890,7 @@ void SAL_CALL PathService::flush(  ) throw(::com::sun::star::uno::RuntimeExcepti
 
 ::rtl::OUString SAL_CALL PathService::getImplementationName(  ) throw(::com::sun::star::uno::RuntimeException)
 {
-    return OUString::createFromAscii("com.sun.star.comp.svtools.PathService");
+    return OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.svtools.PathService" ));
 }
 
 sal_Bool SAL_CALL PathService::supportsService( const ::rtl::OUString& ServiceName ) throw(::com::sun::star::uno::RuntimeException)
@@ -957,8 +904,10 @@ sal_Bool SAL_CALL PathService::supportsService( const ::rtl::OUString& ServiceNa
 ::com::sun::star::uno::Sequence< ::rtl::OUString > SAL_CALL PathService::getSupportedServiceNames(  ) throw(::com::sun::star::uno::RuntimeException)
 {
     Sequence< OUString > aRet(1);
-    *aRet.getArray() = OUString::createFromAscii("com.sun.star.config.SpecialConfigManager");
+    *aRet.getArray() = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.config.SpecialConfigManager" ));
     return aRet;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

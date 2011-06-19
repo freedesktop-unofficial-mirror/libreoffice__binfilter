@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _RSCSFX_HXX //autogen wg. SfxStyleFamily
 #include <rsc/rscsfx.hxx>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
-#ifndef _UNIVERSALL_REFERENCE_HXX
 #include <bf_xmloff/uniref.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
 namespace com { namespace sun { namespace star { namespace container
 {
     class XNameContainer;
@@ -271,3 +262,4 @@ public:
 }//end of namespace binfilter
 #endif  //  _XMLOFF_XMLSTYLE_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

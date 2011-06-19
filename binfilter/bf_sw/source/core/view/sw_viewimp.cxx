@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,9 +33,7 @@
 
 #include "scrrect.hxx"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "crsrsh.hxx"
@@ -45,9 +44,7 @@
 #include "layact.hxx"
 #include "swregion.hxx"
 #include "dview.hxx"
-#ifndef _SVDPAGE_HXX //autogen
 #include <bf_svx/svdpage.hxx>
-#endif
 #ifdef ACCESSIBLE_LAYOUT
 #endif
 
@@ -58,51 +55,24 @@ namespace binfilter {
 |*
 |*  SwViewImp::Init()
 |*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 03. Nov. 95
-|*
 |*************************************************************************/
 
-/*N*/ void SwViewImp::Init( const SwViewOption *pNewOpt )
+/*N*/ void SwViewImp::Init( const SwViewOption* /*pNewOpt*/ )
 /*N*/ {
-        DBG_ERROR("Strip!");
+        OSL_FAIL("Strip!");
 /*N*/ }
 
 /******************************************************************************
 |*
 |*  SwViewImp::~SwViewImp()
 |*
-|*  Ersterstellung      MA 25. Jul. 94
-|*  Letzte Aenderung    MA 16. Dec. 94
-|*
 ******************************************************************************/
 
-/*N*/ SwViewImp::~SwViewImp()
-/*N*/ {
-#if 0
-/*N*/
-/*N*/     // OD 12.12.2002 #103492#
-/*N*/
-/*N*/   //JP 29.03.96: nach ShowPage muss auch HidePage gemacht werden!!!
-/*N*/   if( pDrawView )
-/*N*/       pDrawView->HidePage( pSdrPageView );
-/*N*/
-/*N*/   delete pDrawView;
-/*N*/
-/*N*/   DelRegions();
-/*N*/   delete pScrolledArea;
-/*N*/
-/*N*/   ASSERT( !pLayAct, "Have action for the rest of your life." );
-/*N*/   ASSERT( !pIdleAct,"Be idle for the rest of your life." );
-#endif
-/*N*/ }
+/*N*/ SwViewImp::~SwViewImp() { }
 
 /******************************************************************************
 |*
 |*  SwViewImp::DelRegions()
-|*
-|*  Ersterstellung      MA 14. Apr. 94
-|*  Letzte Aenderung    MA 14. Apr. 94
 |*
 ******************************************************************************/
 
@@ -115,9 +85,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::AddPaintRect()
-|*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 27. Jul. 94
 |*
 ******************************************************************************/
 
@@ -138,9 +105,6 @@ namespace binfilter {
 |*
 |*  ViewImp::CheckWaitCrsr()
 |*
-|*  Ersterstellung      MA 10. Aug. 94
-|*  Letzte Aenderung    MA 10. Aug. 94
-|*
 ******************************************************************************/
 
 /*N*/ void SwViewImp::CheckWaitCrsr()
@@ -152,9 +116,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  ViewImp::IsCalcLayoutProgress()
-|*
-|*  Ersterstellung      MA 12. Aug. 94
-|*  Letzte Aenderung    MA 12. Aug. 94
 |*
 ******************************************************************************/
 
@@ -168,9 +129,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  ViewImp::IsUpdateExpFlds()
-|*
-|*  Ersterstellung      MA 28. Mar. 96
-|*  Letzte Aenderung    MA 28. Mar. 96
 |*
 ******************************************************************************/
 
@@ -188,9 +146,6 @@ namespace binfilter {
 /******************************************************************************
 |*
 |*  SwViewImp::SetFirstVisPage(), ImplGetFirstVisPage();
-|*
-|*  Ersterstellung      MA 21. Sep. 93
-|*  Letzte Aenderung    MA 08. Mar. 94
 |*
 ******************************************************************************/
 
@@ -220,39 +175,13 @@ namespace binfilter {
 |*
 |*  SwViewImp::MakeDrawView();
 |*
-|*  Ersterstellung      AMA 01. Nov. 95
-|*  Letzte Aenderung    AMA 01. Nov. 95
-|*
 ******************************************************************************/
 
-/*N*/ void SwViewImp::MakeDrawView()
-/*N*/ {
-#if 0
-/*N*/   if( !GetShell()->GetDoc()->GetDrawModel() )
-/*?*/       GetShell()->GetDoc()->_MakeDrawModel();
-/*N*/   else
-/*N*/   {
-/*N*/       if ( !pDrawView )
-/*N*/       {
-/*N*/           pDrawView = new SwDrawView( *this,
-/*N*/                       GetShell()->GetDoc()->GetDrawModel(),
-/*N*/                           GetShell()->GetWin() ?
-/*N*/                           GetShell()->GetWin() :
-/*N*/                           (OutputDevice*)GetShell()->GetDoc()->GetPrt() );
-/*N*/       }
-/*N*/       GetDrawView()->SetActiveLayer( XubString::CreateFromAscii(
-/*N*/                           RTL_CONSTASCII_STRINGPARAM( "Heaven" ) ) );
-/*N*/       Init( GetShell()->GetViewOptions() );
-/*N*/   }
-#endif
-/*N*/ }
+/*N*/ void SwViewImp::MakeDrawView() { }
 
 /******************************************************************************
 |*
 |*  SwViewImp::GetRetoucheColor()
-|*
-|*  Ersterstellung      MA 24. Jun. 98
-|*  Letzte Aenderung    MA 24. Jun. 98
 |*
 ******************************************************************************/
 
@@ -265,20 +194,22 @@ namespace binfilter {
 */
 
 
-/*N*/ void SwViewImp::DisposeAccessible( const SwFrm *pFrm,
-/*N*/                                  const SdrObject *pObj,
-/*N*/                                  sal_Bool bRecursive )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwViewImp::DisposeAccessible( const SwFrm* /*pFrm*/,
+/*N*/                                  const SdrObject* /*pObj*/,
+/*N*/                                  sal_Bool /*bRecursive*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SwViewImp::MoveAccessible( const SwFrm *pFrm, const SdrObject *pObj,
-/*N*/                               const SwRect& rOldFrm )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwViewImp::MoveAccessible( const SwFrm* /*pFrm*/, const SdrObject* /*pObj*/,
+/*N*/                               const SwRect& /*rOldFrm*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm *pFrm )
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SwViewImp::InvalidateAccessibleFrmContent( const SwFrm* /*pFrm*/ )
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 // OD 15.01.2003 #103492# - method signature change due to new page preview functionality
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,68 +26,34 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HXX_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATORSUPPLIER_HPP_
 #include <com/sun/star/task/XStatusIndicatorSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XIMPORTER_HPP_
 #include <com/sun/star/document/XImporter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XFILTER_HPP_
 #include <com/sun/star/document/XFilter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XExporter_HPP_
 #include <com/sun/star/document/XExporter.hpp>
-#endif
 
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
 
 #include "SchXMLWrapper.hxx"
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <bf_svtools/saveopt.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
-#ifndef _COM_SUN_STAR_IO_XACTIVEDATASOURCE_HPP_
 #include <com/sun/star/io/XActiveDataSource.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HPP_
 #include <com/sun/star/xml/sax/SAXParseException.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PACKAGES_ZIP_ZIPIOEXCEPTION_HPP_
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
-#endif
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
-#define XML_STRING(i, x) sal_Char __READONLY_DATA i[sizeof(x)] = x
+#define XML_STRING(i, x) sal_Char const i[sizeof(x)] = x
 #define MAP_LEN(x) x, sizeof(x) - 1
 
 XML_STRING( sXML_metaStreamName,        "meta.xml");
@@ -170,12 +137,12 @@ using namespace comphelper;
 /*N*/   }
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*N*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
 /*?*/       ByteString aBStrStreamName = ByteString( String( rsStreamName ), RTL_TEXTENCODING_ASCII_US );
-/*?*/       DBG_ERROR2( "Exception caught during Export of \"%s\" stream(): %s",
+/*?*/       OSL_TRACE( "Exception caught during Export of \"%s\" stream(): %s",
 /*?*/                   aBStrStreamName.GetBuffer(),
 /*?*/                   aBStr.GetBuffer());
 /*N*/ #endif
@@ -192,7 +159,7 @@ using namespace comphelper;
 /*N*/   {
 /*N*/       if( !mxModel.is() )
 /*N*/       {
-/*N*/           DBG_ERROR("Got NO Model in XMLExport");
+/*N*/           OSL_FAIL("Got NO Model in XMLExport");
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/
@@ -201,7 +168,7 @@ using namespace comphelper;
 /*N*/       if( ! xServiceInfo.is() || !xServiceInfo->supportsService(
 /*N*/           OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.ChartDocument" ) ) ) )
 /*N*/       {
-/*N*/           DBG_ERROR( "Model is no ChartDocument in XMLExport" );
+/*N*/           OSL_FAIL( "Model is no ChartDocument in XMLExport" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/
@@ -209,7 +176,7 @@ using namespace comphelper;
 /*N*/
 /*N*/       if( !xServiceFactory.is() )
 /*N*/       {
-/*N*/           DBG_ERROR( "got no service manager" );
+/*N*/           OSL_FAIL( "got no service manager" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/
@@ -218,7 +185,7 @@ using namespace comphelper;
 /*N*/
 /*N*/       if( !xWriter.is() )
 /*N*/       {
-/*N*/           DBG_ERROR( "com.sun.star.xml.sax.Writer service missing" );
+/*N*/           OSL_FAIL( "com.sun.star.xml.sax.Writer service missing" );
 /*N*/           return sal_False;
 /*N*/       }
 /*N*/       uno::Reference<xml::sax::XDocumentHandler > xHandler( xWriter, uno::UNO_QUERY );
@@ -288,14 +255,16 @@ using namespace comphelper;
 /*N*/   }
 /*N*/   catch( uno::Exception aEx )
 /*N*/   {
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 1
 /*?*/       // convert ::rtl::OUString => tools String => ByteString
 /*?*/       String aStr( aEx.Message );
 /*?*/       ByteString aBStr( aStr, RTL_TEXTENCODING_ASCII_US );
-/*?*/       DBG_ERROR1( "Exception caught during Export of : %s", aBStr.GetBuffer());
+/*?*/       OSL_TRACE( "Exception caught during Export of : %s", aBStr.GetBuffer());
 /*N*/ #endif
 /*N*/   }
 /*N*/
 /*N*/   return bRet;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

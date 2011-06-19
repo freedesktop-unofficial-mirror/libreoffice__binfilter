@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,15 +26,11 @@
  *
  ************************************************************************/
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 
-#ifndef _XMLOFF_PROPERTYSETMAPPER_HXX
 #include "xmlprmap.hxx"
-#endif
 
 
 
@@ -106,7 +103,7 @@ void XMLPropertySetMapper::AddMapperEntry(
     for( vector < UniReference < XMLPropertyHandlerFactory > >::iterator
             aFIter = rMapper->aHdlFactories.begin();
          aFIter != rMapper->aHdlFactories.end();
-         aFIter++ )
+         ++aFIter )
     {
         aHdlFactories.push_back( *aFIter );
     }
@@ -114,7 +111,7 @@ void XMLPropertySetMapper::AddMapperEntry(
     for( vector < XMLPropertySetMapperEntry_Impl >::iterator
             aEIter = rMapper->aMapEntries.begin();
          aEIter != rMapper->aMapEntries.end();
-         aEIter++ )
+         ++aEIter )
     {
         aMapEntries.push_back( *aEIter );
     }
@@ -232,3 +229,5 @@ sal_Int32 XMLPropertySetMapper::FindEntryIndex( const sal_Int16 nContextId ) con
     return -1;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

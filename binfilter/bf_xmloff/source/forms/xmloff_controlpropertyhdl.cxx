@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,27 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_FORMS_CONTROLPROPERTYHDL_HXX_
 #include "controlpropertyhdl.hxx"
-#endif
-#ifndef _COM_SUN_STAR_AWT_FONTEMPHASISMARK_HPP_
 #include <com/sun/star/awt/FontEmphasisMark.hpp>
-#endif
-#ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
-#ifndef _OSL_DIAGNOSE_H_
 #include <osl/diagnose.h>
-#endif
-#ifndef _XMLOFF_XMLCONSTANTSPROPERTYHANDLER_HXX
 #include "XMLConstantsPropertyHandler.hxx"
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -144,7 +131,7 @@ namespace xmloff
     {
         ::rtl::OUStringBuffer aReturn;
         sal_Bool bSuccess = sal_False;
-        sal_Int16 nFontEmphasis;
+        sal_Int16 nFontEmphasis = 0;
         if (_rValue >>= nFontEmphasis)
         {
             // the type
@@ -153,7 +140,7 @@ namespace xmloff
             sal_Bool bBelow = 0 != (nFontEmphasis & FontEmphasisMark::BELOW);
 
             // convert
-            if (bSuccess = _rUnitConverter.convertEnum(aReturn, nType, OEnumMapper::getEnumMap(OEnumMapper::epFontEmphasis), XML_NONE))
+            if ((bSuccess = _rUnitConverter.convertEnum(aReturn, nType, OEnumMapper::getEnumMap(OEnumMapper::epFontEmphasis), XML_NONE)))
             {
                 aReturn.append( (sal_Unicode)' ' );
                 aReturn.append( GetXMLToken(bBelow ? XML_BELOW : XML_ABOVE) );
@@ -276,7 +263,7 @@ namespace xmloff
         sal_Bool bSuccess = sal_False;
 
         sal_Int32 nWidth = 0;
-        if (bSuccess = _rUnitConverter.convertMeasure(nWidth, _rStrImpValue, MAP_POINT))
+        if ((bSuccess = _rUnitConverter.convertMeasure(nWidth, _rStrImpValue, MAP_POINT)))
             _rValue <<= (sal_Int16)nWidth;
 
         return bSuccess;
@@ -308,7 +295,7 @@ namespace xmloff
         sal_Bool bSucces = sal_False;
 
         double fValue;
-        if (bSucces = _rUnitConverter.convertDouble(fValue, _rStrImpValue))
+        if ((bSucces = _rUnitConverter.convertDouble(fValue, _rStrImpValue)))
         {
             fValue *= 10;
             _rValue <<= (float)fValue;
@@ -320,10 +307,10 @@ namespace xmloff
     //---------------------------------------------------------------------
     sal_Bool ORotationAngleHandler::exportXML( ::rtl::OUString& _rStrExpValue, const Any& _rValue, const SvXMLUnitConverter& _rUnitConverter ) const
     {
-        float fAngle;
+        float fAngle = 0.0;
         sal_Bool bSuccess = sal_False;
 
-        if (bSuccess = (_rValue >>= fAngle))
+        if ((bSuccess = (_rValue >>= fAngle)))
         {
             ::rtl::OUStringBuffer sValue;
             _rUnitConverter.convertDouble(sValue, ((double)fAngle) / 10);
@@ -338,3 +325,5 @@ namespace xmloff
 //.........................................................................
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _XMLBACKGROUNDIMAGEEXPORT_HXX
 #define _XMLBACKGROUNDIMAGEEXPORT_HXX
 
-#ifndef _SAL_TYPES_H
 #include <sal/types.h>
-#endif
 
 namespace rtl { class OUString; }
 namespace com { namespace sun { namespace star { namespace uno {
@@ -65,3 +64,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

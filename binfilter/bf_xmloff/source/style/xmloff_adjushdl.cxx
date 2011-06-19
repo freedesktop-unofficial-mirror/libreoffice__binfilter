@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,24 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_ADJUSTTYPES_HXX
 #include <adjushdl.hxx>
-#endif
 
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HPP_
 #include <com/sun/star/style/ParagraphAdjust.hpp>
-#endif
 
 
 namespace binfilter {
@@ -51,7 +44,7 @@ using namespace ::com::sun::star;
 using namespace ::rtl;
 using namespace ::binfilter::xmloff::token;
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Para_Adjust_Enum[] =
+SvXMLEnumMapEntry const pXML_Para_Adjust_Enum[] =
 {
     { XML_START,        style::ParagraphAdjust_LEFT },
     { XML_END,          style::ParagraphAdjust_RIGHT },
@@ -61,7 +54,7 @@ SvXMLEnumMapEntry __READONLY_DATA pXML_Para_Adjust_Enum[] =
     { XML_TOKEN_INVALID, 0 }
 };
 
-SvXMLEnumMapEntry __READONLY_DATA pXML_Para_Align_Last_Enum[] =
+SvXMLEnumMapEntry const pXML_Para_Align_Last_Enum[] =
 {
     { XML_START,        style::ParagraphAdjust_LEFT },
     { XML_CENTER,       style::ParagraphAdjust_CENTER },
@@ -94,9 +87,9 @@ sal_Bool XMLParaAdjustPropHdl::importXML( const OUString& rStrImpValue, uno::Any
 sal_Bool XMLParaAdjustPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     if(!rValue.hasValue())
-        return sal_False;     //added by BerryJia for fixing Bug102407 2002-11-5
+        return sal_False;
     OUStringBuffer aOut;
-    sal_Int16 nVal;
+    sal_Int16 nVal = 0;
 
     rValue >>= nVal;
 
@@ -131,7 +124,7 @@ sal_Bool XMLLastLineAdjustPropHdl::importXML( const OUString& rStrImpValue, uno:
 sal_Bool XMLLastLineAdjustPropHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
 {
     OUStringBuffer aOut;
-    sal_Int16 nVal;
+    sal_Int16 nVal = 0;
     sal_Bool bRet = sal_False;
 
     rValue >>= nVal;
@@ -145,3 +138,5 @@ sal_Bool XMLLastLineAdjustPropHdl::exportXML( OUString& rStrExpValue, const uno:
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

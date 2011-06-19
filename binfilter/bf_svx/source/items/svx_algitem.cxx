@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,18 +42,10 @@
 
 #include <tools/stream.hxx>
 
-#ifndef _COM_SUN_STAR_TABLE_CELLVERTJUSTIFY_HPP_
 #include <com/sun/star/table/CellVertJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLHORIJUSTIFY_HPP_
 #include <com/sun/star/table/CellHoriJustify.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_PARAGRAPHADJUST_HPP_
 #include <com/sun/star/style/ParagraphAdjust.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TABLE_CELLORIENTATION_HPP_
 #include <com/sun/star/table/CellOrientation.hpp>
-#endif
 
 #include "algitem.hxx"
 namespace binfilter {
@@ -84,9 +77,9 @@ using namespace ::com::sun::star;
 
 /*N*/ //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxHorJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxHorJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+/*N*/
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
 /*N*/   {
@@ -128,9 +121,9 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxHorJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxHorJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
-/*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
+
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
 /*N*/   switch ( nMemberId )
 /*N*/   {
@@ -139,7 +132,7 @@ using namespace ::com::sun::star;
 /*N*/               table::CellHoriJustify eUno;
 /*N*/               if(!(rVal >>= eUno))
 /*N*/               {
-/*N*/                   sal_Int32 nValue;
+/*N*/                   sal_Int32 nValue = 0;
 /*?*/                   if(!(rVal >>= nValue))
 /*?*/                       return sal_False;
 /*?*/                   eUno = (table::CellHoriJustify)nValue;
@@ -153,6 +146,7 @@ using namespace ::com::sun::star;
 /*N*/                   case table::CellHoriJustify_RIGHT:    eSvx = SVX_HOR_JUSTIFY_RIGHT;    break;
 /*N*/                   case table::CellHoriJustify_BLOCK:    eSvx = SVX_HOR_JUSTIFY_BLOCK;    break;
 /*?*/                   case table::CellHoriJustify_REPEAT:   eSvx = SVX_HOR_JUSTIFY_REPEAT;   break;
+                        default: break;
 /*N*/               }
 /*N*/               SetValue( eSvx );
 /*N*/           }
@@ -160,7 +154,7 @@ using namespace ::com::sun::star;
 /*N*/       case MID_HORJUST_ADJUST:
 /*N*/           {
 /*N*/               //  property contains ParagraphAdjust values as sal_Int16
-/*N*/               sal_Int16 nVal;
+/*N*/               sal_Int16 nVal = 0;
 /*?*/               if(!(rVal >>= nVal))
 /*?*/                   return sal_False;
 /*?*/
@@ -202,7 +196,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxHorJustifyItem::GetValueCount() const
 /*?*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001 return SVX_HOR_JUSTIFY_REPEAT + 1;   // letzter Enum-Wert + 1
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxVerJustifyItem -----------------------------------------------
@@ -218,7 +212,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxVerJustifyItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxVerJustifyItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   table::CellVertJustify eUno = table::CellVertJustify_STANDARD;
 /*N*/   switch ( (SvxCellVerJustify)GetValue() )
@@ -232,12 +226,12 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxVerJustifyItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxVerJustifyItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   table::CellVertJustify eUno;
 /*N*/   if(!(rVal >>= eUno))
 /*N*/   {
-/*?*/       sal_Int32 nValue;
+/*?*/       sal_Int32 nValue = 0;
 /*?*/       if(!(rVal >>= nValue))
 /*?*/           return sal_False;
 /*?*/       eUno = (table::CellVertJustify)nValue;
@@ -250,6 +244,7 @@ using namespace ::com::sun::star;
 /*N*/       case table::CellVertJustify_TOP:       eSvx = SVX_VER_JUSTIFY_TOP;      break;
 /*N*/       case table::CellVertJustify_CENTER:   eSvx = SVX_VER_JUSTIFY_CENTER;    break;
 /*N*/       case table::CellVertJustify_BOTTOM:   eSvx = SVX_VER_JUSTIFY_BOTTOM;    break;
+            default: break;
 /*N*/   }
 /*N*/   SetValue( eSvx );
 /*N*/
@@ -279,7 +274,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxVerJustifyItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_VER_JUSTIFY_BOTTOM + 1;  // letzter Enum-Wert + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxOrientationItem ----------------------------------------------
@@ -295,7 +290,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxOrientationItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxOrientationItem::QueryValue( uno::Any& rVal, BYTE /*nMemberId*/ ) const
 /*N*/ {
 /*N*/   table::CellOrientation eUno = table::CellOrientation_STANDARD;
 /*N*/   switch ( (SvxCellOrientation)GetValue() )
@@ -309,12 +304,12 @@ using namespace ::com::sun::star;
 /*N*/   return sal_True;
 /*N*/ }
 
-/*N*/ sal_Bool SvxOrientationItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxOrientationItem::PutValue( const uno::Any& rVal, BYTE /*nMemberId*/ )
 /*N*/ {
 /*N*/   table::CellOrientation eOrient;
 /*N*/   if(!(rVal >>= eOrient))
 /*N*/   {
-/*?*/       sal_Int32 nValue;
+/*?*/       sal_Int32 nValue = 0;
 /*?*/       if(!(rVal >>= nValue))
 /*?*/           return sal_False;
 /*?*/       eOrient = (table::CellOrientation)nValue;
@@ -326,6 +321,7 @@ using namespace ::com::sun::star;
 /*?*/       case table::CellOrientation_TOPBOTTOM:  eSvx = SVX_ORIENTATION_TOPBOTTOM; break;
 /*?*/       case table::CellOrientation_BOTTOMTOP:  eSvx = SVX_ORIENTATION_BOTTOMTOP; break;
 /*N*/       case table::CellOrientation_STACKED:    eSvx = SVX_ORIENTATION_STACKED;   break;
+            default: break;
 /*N*/   }
 /*N*/   SetValue( eSvx );
 /*N*/   return sal_True;
@@ -354,7 +350,7 @@ using namespace ::com::sun::star;
 
 /*?*/ USHORT SvxOrientationItem::GetValueCount() const
 /*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001    return SVX_ORIENTATION_STACKED + 1; // letzter Enum-Wert + 1
+/*?*/ DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*?*/ }
 
 // class SvxMarginItem ---------------------------------------------------
@@ -438,19 +434,7 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ SvStream& SvxMarginItem::Store( SvStream &rStream, USHORT nItemVersion) const
-/*N*/ {
-/*N*/   rStream << nLeftMargin;
-/*N*/   rStream << nTopMargin;
-/*N*/   rStream << nRightMargin;
-/*N*/   rStream << nBottomMargin;
-/*N*/   return rStream;
-/*N*/ }
-
-
-//------------------------------------------------------------------------
-
-/*N*/ sal_Bool SvxMarginItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
+/*N*/ bool SvxMarginItem::QueryValue( uno::Any& rVal, BYTE nMemberId ) const
 /*N*/ {
 /*N*/     sal_Bool bConvert = 0!=(nMemberId&CONVERT_TWIPS);
 /*N*/     nMemberId &= ~CONVERT_TWIPS;
@@ -470,7 +454,7 @@ using namespace ::com::sun::star;
 /*N*/           rVal <<= (sal_Int32)( bConvert ? TWIP_TO_MM100(nBottomMargin) : nBottomMargin );
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -478,11 +462,11 @@ using namespace ::com::sun::star;
 
 //------------------------------------------------------------------------
 
-/*N*/ sal_Bool SvxMarginItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
+/*N*/ bool SvxMarginItem::PutValue( const uno::Any& rVal, BYTE nMemberId )
 /*N*/ {
 /*N*/   sal_Bool bConvert = ( ( nMemberId & CONVERT_TWIPS ) != 0 );
 /*N*/   long nMaxVal = bConvert ? TWIP_TO_MM100(SHRT_MAX) : SHRT_MAX;   // Members sind sal_Int16
-/*N*/   sal_Int32 nVal;
+/*N*/   sal_Int32 nVal = 0;
 /*N*/   if(!(rVal >>= nVal) || (nVal > nMaxVal))
 /*N*/       return sal_False;
 /*N*/
@@ -501,7 +485,7 @@ using namespace ::com::sun::star;
 /*N*/           nBottomMargin = (sal_Int16)( bConvert ? MM100_TO_TWIP(nVal) : nVal );
 /*N*/           break;
 /*N*/       default:
-/*N*/           DBG_ERROR("unknown MemberId");
+/*N*/           OSL_FAIL("unknown MemberId");
 /*N*/           return sal_False;
 /*N*/   }
 /*N*/   return sal_True;
@@ -521,3 +505,5 @@ using namespace ::com::sun::star;
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

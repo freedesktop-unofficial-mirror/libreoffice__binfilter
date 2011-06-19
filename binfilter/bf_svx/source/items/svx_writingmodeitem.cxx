@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,18 +29,12 @@
 // include ---------------------------------------------------------------
 
 
-#ifndef _XDEF_HXX
 #include <bf_svx/xdef.hxx>
-#endif
 
-#ifndef _SVX_WRITINGMODEITEM_HXX
 #include "writingmodeitem.hxx"
-#endif
 
 
-#ifndef _SVXITEMS_HRC
 #include "svxitems.hrc"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::uno;
@@ -72,14 +67,14 @@ using namespace ::com::sun::star::text;
 
 
 
-/*N*/ USHORT SvxWritingModeItem::GetVersion( USHORT nFVer ) const
+/*N*/ USHORT SvxWritingModeItem::GetVersion( USHORT /*nFVer*/ ) const
 /*N*/ {
 /*N*/   return USHRT_MAX;
 /*N*/ }
 
 
 
-/*N*/ sal_Bool SvxWritingModeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
+/*N*/ bool SvxWritingModeItem::QueryValue( ::com::sun::star::uno::Any& rVal,
 /*N*/                                           BYTE ) const
 /*N*/ {
 /*N*/   rVal <<= (WritingMode)GetValue();
@@ -92,3 +87,5 @@ using namespace ::com::sun::star::text;
 /*N*/   return *this;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

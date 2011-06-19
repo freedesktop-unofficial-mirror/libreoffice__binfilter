@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,13 +32,9 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
 
-#ifndef _SBXVAR_HXX
 #include "sbxvar.hxx"
-#endif
 
 ///////////////////////////////////////////////////////////////////////////
 
@@ -61,7 +58,7 @@ protected:
     String       aClassName;        // Klassenname
     String       aDfltPropName;
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual ~SbxObject();
     virtual void SFX_NOTIFY( SfxBroadcaster& rBC, const TypeId& rBCType,
                              const SfxHint& rHint, const TypeId& rHintType );
@@ -125,3 +122,5 @@ SV_IMPL_REF(SbxObject)
 }
 
 #endif /* _SBX_SBXOBJECT_HXX */
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

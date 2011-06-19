@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,70 +28,30 @@
 #ifndef _SVX_FMCTRLER_HXX
 #define _SVX_FMCTRLER_HXX
 
-#ifndef _COM_SUN_STAR_SDB_XSQLERRORBROADCASTER_HPP_
 #include <com/sun/star/sdb/XSQLErrorBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_XROWSETAPPROVEBROADCASTER_HPP_
 #include <com/sun/star/sdb/XRowSetApproveBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XRESETLISTENER_HPP_
 #include <com/sun/star/form/XResetListener.hpp>
-#endif
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#ifndef _COM_SUN_STAR_CONTAINER_XCHILD_HPP_
 #include <com/sun/star/container/XChild.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTAINERLISTENER_HPP_
 #include <com/sun/star/container/XContainerListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XCONFIRMDELETEBROADCASTER_HPP_
 #include <com/sun/star/form/XConfirmDeleteBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XLOADLISTENER_HPP_
 #include <com/sun/star/form/XLoadListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XDATABASEPARAMETERBROADCASTER_HPP_
 #include <com/sun/star/form/XDatabaseParameterBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_XFORMCONTROLLER_HPP_
 #include <com/sun/star/form/XFormController.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODESELECTOR_HPP_
 #include <com/sun/star/util/XModeSelector.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XMODIFYBROADCASTER_HPP_
 #include <com/sun/star/util/XModifyBroadcaster.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_XEVENTATTACHERMANAGER_HPP_
 #include <com/sun/star/script/XEventAttacherManager.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XITEMLISTENER_HPP_
 #include <com/sun/star/awt/XItemListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XTEXTCOMPONENT_HPP_
 #include <com/sun/star/awt/XTextComponent.hpp>
-#endif
 
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
 
-#ifndef _SVX_FMTOOLS_HXX
 #include "fmtools.hxx"
-#endif
-#ifndef SVX_SQLPARSERCLIENT_HXX
 #include "sqlparserclient.hxx"
-#endif
 
-#ifndef _CPPUHELPER_COMPBASE12_HXX_
 #include <cppuhelper/compbase12.hxx>
-#endif
-#ifndef _COMPHELPER_PROPERTY_ARRAY_HELPER_HXX_
 #include <comphelper/proparrhlp.hxx>
-#endif
-#ifndef _COMPHELPER_BROADCASTHELPER_HXX_
 #include <comphelper/broadcasthelper.hxx>
-#endif
 class Window;
 namespace binfilter {
 
@@ -150,7 +111,7 @@ class FmXFormController     : public ::comphelper::OBaseMutex
                             ,public ::cppu::OPropertySetHelper
                             ,public FmDispatchInterceptor
                             ,public ::comphelper::OAggregationArrayUsageHelper< FmXFormController>
-                            ,public ::binfilter::svxform::OSQLParserClient//STRIP008                            ,public ::svxform::OSQLParserClient
+                            ,public ::binfilter::svxform::OSQLParserClient
 {
     friend class FmXPageViewWinRec;
 
@@ -176,7 +137,7 @@ class FmXFormController     : public ::comphelper::OBaseMutex
     FmFormControllers           m_aChilds;
     FmFilterControls            m_aFilterControls;
     FmFilterRows                m_aFilters;
-    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;//STRIP008 ::form::OImplementationIdsRef    m_aHoldImplIdHelper;
+    ::binfilter::form::OImplementationIdsRef    m_aHoldImplIdHelper;
 
     Timer                       m_aInsertTimer;
 
@@ -226,7 +187,7 @@ public:
 // XTypeProvider
     virtual ::com::sun::star::uno::Sequence< sal_Int8 > SAL_CALL getImplementationId() throw(::com::sun::star::uno::RuntimeException)
     {
-        return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());//STRIP008        return ::form::OImplementationIds::getImplementationId(getTypes());
+        return ::binfilter::form::OImplementationIds::getImplementationId(getTypes());
     }
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type > SAL_CALL getTypes(  ) throw(::com::sun::star::uno::RuntimeException);
 
@@ -441,3 +402,4 @@ protected:
 }//end of namespace binfilter
 #endif  // _SVX_FMCTRLER_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

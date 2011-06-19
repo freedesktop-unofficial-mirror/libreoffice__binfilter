@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,30 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLINDEXMARKEXPORT_HXX_
 #include "XMLIndexMarkExport.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEXP_HXX
 #include "xmlexp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 
@@ -66,8 +57,6 @@ using ::com::sun::star::uno::Any;
 XMLIndexMarkExport::XMLIndexMarkExport(
     SvXMLExport& rExp,
     XMLTextParagraphExport& rParaExp) :
-        rExport(rExp),
-        rParaExport(rParaExp),
         sLevel(RTL_CONSTASCII_USTRINGPARAM("Level")),
         sUserIndexName(RTL_CONSTASCII_USTRINGPARAM("UserIndexName")),
         sPrimaryKey(RTL_CONSTASCII_USTRINGPARAM("PrimaryKey")),
@@ -80,7 +69,9 @@ XMLIndexMarkExport::XMLIndexMarkExport(
         sPrimaryKeyReading(RTL_CONSTASCII_USTRINGPARAM("PrimaryKeyReading")),
         sSecondaryKeyReading(RTL_CONSTASCII_USTRINGPARAM
                              ("SecondaryKeyReading")),
-        sMainEntry(RTL_CONSTASCII_USTRINGPARAM("IsMainEntry"))
+        sMainEntry(RTL_CONSTASCII_USTRINGPARAM("IsMainEntry")),
+        rExport(rExp),
+        rParaExport(rParaExp)
 {
 }
 
@@ -198,7 +189,7 @@ void XMLIndexMarkExport::ExportTOCMarkAttributes(
     const Reference<XPropertySet> & rPropSet)
 {
     // outline level
-    sal_Int16 nLevel;
+    sal_Int16 nLevel(0);
     Any aAny = rPropSet->getPropertyValue(sLevel);
     aAny >>= nLevel;
     OUStringBuffer sBuf;
@@ -233,7 +224,7 @@ void lcl_ExportPropertyBool( SvXMLExport& rExport,
 {
     rAny = rPropSet->getPropertyValue( sProperty );
 
-    sal_Bool bValue;
+    sal_Bool bValue(sal_False);
     if( rAny >>= bValue )
     {
         if( bValue )
@@ -280,3 +271,5 @@ void XMLIndexMarkExport::GetID(
     sBuf.append(nId);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

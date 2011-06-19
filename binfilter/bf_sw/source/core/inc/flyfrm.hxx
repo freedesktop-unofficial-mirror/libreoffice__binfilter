@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -194,7 +195,7 @@ public:
 
     SwRect AddSpacesToFrm() const;
 
-    // OD 16.04.2003 #i13147# - add parameter <_bForPaint> to avoid load of
+    // #i13147# - add parameter <_bForPaint> to avoid load of
     // the graphic during paint. Default value: sal_False
     BOOL GetContour( PolyPolygon&   rContour,
             const sal_Bool _bForPaint = sal_False ) const;
@@ -203,9 +204,8 @@ public:
 
     //Auf dieser Shell painten (PreView, Print-Flag usw. rekursiv beachten)?.
 
-    /** SwFlyFrm::IsBackgroundTransparent - for feature #99657#
+    /** SwFlyFrm::IsBackgroundTransparent
 
-        OD 12.08.2002
         determines, if background of fly frame has to be drawn transparent
         definition found in /core/layout/paintfrm.cxx
 
@@ -217,10 +217,12 @@ public:
     sal_Bool IsBackgroundTransparent() const;
 };
 
-inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *pLower ) const
+inline BOOL SwFlyFrm::IsUpperOf( const SwFlyFrm *_pLower ) const
 {
-    return pLower->IsLowerOf( this );
+    return _pLower->IsLowerOf( this );
 }
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,40 +26,26 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONSOURCEDDEIMPORTCONTEXT_HXX_
 #include "XMLSectionSourceDDEImportContext.hxx"
-#endif
 
 
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 namespace binfilter {
 
 using ::rtl::OUString;
@@ -80,11 +67,11 @@ const sal_Char sAPI_IsAutomaticUpdate[] = "IsAutomaticUpdate";
 TYPEINIT1(XMLSectionSourceDDEImportContext, SvXMLImportContext);
 
 XMLSectionSourceDDEImportContext::XMLSectionSourceDDEImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rSectPropSet) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         rSectionPropertySet(rSectPropSet),
         sDdeCommandFile(RTL_CONSTASCII_USTRINGPARAM(sAPI_DDECommandFile)),
         sDdeCommandType(RTL_CONSTASCII_USTRINGPARAM(sAPI_DDECommandType)),
@@ -105,7 +92,7 @@ enum XMLSectionSourceDDEToken
     XML_TOK_SECTION_IS_AUTOMATIC_UPDATE
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSectionSourceDDETokenMap[] =
+static SvXMLTokenMapEntry aSectionSourceDDETokenMap[] =
 {
     { XML_NAMESPACE_OFFICE, XML_DDE_APPLICATION,
           XML_TOK_SECTION_DDE_APPLICATION },
@@ -130,11 +117,11 @@ void XMLSectionSourceDDEImportContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        switch (aTokenMap.Get(nPrefix, sLocalName))
+        switch (aTokenMap.Get(nLclPrefix, sLocalName))
         {
             case XML_TOK_SECTION_DDE_APPLICATION:
                 sApplication = xAttrList->getValueByIndex(nAttr);
@@ -196,11 +183,13 @@ void XMLSectionSourceDDEImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLSectionSourceDDEImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
-    const Reference<XAttributeList> & xAttrList )
+    const Reference<XAttributeList> & /*xAttrList*/ )
 {
     // ignore -> default context
-    return new SvXMLImportContext(GetImport(), nPrefix, rLocalName);
+    return new SvXMLImportContext(GetImport(), nInPrefix, rLocalName);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,9 @@
 #ifndef _SVX_TWOLINESITEM_HXX
 #define _SVX_TWOLINESITEM_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _SVX_SVXIDS_HRC
 #include <bf_svx/svxids.hrc>
-#endif
 
 namespace rtl
 {
@@ -60,16 +55,16 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
 /*NBFF*/    virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-/*NBFF*/    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+/*NBFF*/    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 /*NBFF*/    virtual SfxItemPresentation GetPresentation( SfxItemPresentation ePres,
 /*NBFF*/                                    SfxMapUnit eCoreMetric,
 /*NBFF*/                                    SfxMapUnit ePresMetric,
 /*NBFF*/                                    String &rText,
 /*NBFF*/                                     const ::IntlWrapper* pIntl = 0 ) const;
 
-/*NBFF*/    virtual sal_Bool        QueryValue( ::com::sun::star::uno::Any& rVal,
+/*NBFF*/    virtual bool          QueryValue( ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                        BYTE nMemberId = 0 ) const;
-/*NBFF*/    virtual sal_Bool        PutValue( const ::com::sun::star::uno::Any& rVal,
+/*NBFF*/    virtual bool          PutValue( const ::com::sun::star::uno::Any& rVal,
 /*NBFF*/                                        BYTE nMemberId = 0 );
 
     virtual USHORT          GetVersion( USHORT nFFVer ) const;
@@ -95,3 +90,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

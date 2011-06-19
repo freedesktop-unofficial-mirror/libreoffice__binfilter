@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
-#endif
 namespace binfilter {
 
 class SwNode;
@@ -63,11 +62,11 @@ public:
     SwCntntNode *GetCntntNode() { return pCntntNode; }
 
     // nur fuer Grafiken
-    FASTBOOL SwapIn( BOOL bWaitForData = FALSE, BOOL bNativFormat = FALSE );
+    bool SwapIn( BOOL bWaitForData = FALSE, BOOL bNativFormat = FALSE );
 
-    FASTBOOL IsShowQuickDrawBmp() const;                // nur fuer Grafiken
+    bool IsShowQuickDrawBmp() const;                // nur fuer Grafiken
 
-    FASTBOOL Connect() { return 0 != SvBaseLink::GetRealObject(); }
+    bool Connect() { return 0 != SvBaseLink::GetRealObject(); }
 
     // nur fuer Grafik-Links ( zum Umschalten zwischen DDE / Grf-Link)
     void SetObjType( USHORT nType ) { SvBaseLink::SetObjType( nType ); }
@@ -85,3 +84,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

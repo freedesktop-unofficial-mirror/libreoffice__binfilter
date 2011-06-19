@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,25 +26,15 @@
  *
  ************************************************************************/
 
-#ifndef _B3D_B3DGEOM_HXX
 #include "b3dgeom.hxx"
-#endif
 
-#ifndef _B3D_B3DCOMPO_HXX
 #include "b3dcompo.hxx"
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include "base3d.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 #ifndef _INC_MATH
 #include <math.h>
@@ -115,7 +106,7 @@ BOOL GeometryIndexValueBucket::ImplCareForSpace() {
 }
 GeometryIndexValue& GeometryIndexValueBucket::operator[] (UINT32 nPos) {
     if(nPos >= nCount) {
-        DBG_ERROR("Access to Bucket out of range!");
+        OSL_FAIL("Access to Bucket out of range!");
         return *((GeometryIndexValue*)aMemArray[0]);
     }
     return *((GeometryIndexValue*)(aMemArray[(UINT16)(nPos >> nBlockShift)] + ((nPos & nMask) << nShift)));
@@ -424,7 +415,7 @@ void B3dGeometry::EndPolygon()
 |*
 \************************************************************************/
 
-sal_Bool B3dGeometry::CheckHit(const Vector3D& rFront, const Vector3D& rBack, sal_uInt16 nTol)
+sal_Bool B3dGeometry::CheckHit(const Vector3D& rFront, const Vector3D& rBack, sal_uInt16 /*nTol*/)
 {
     sal_uInt32 nPolyCounter(0L);
     sal_uInt32 nEntityCounter(0L);
@@ -857,3 +848,5 @@ void B3dGeometry::InvertNormals()
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

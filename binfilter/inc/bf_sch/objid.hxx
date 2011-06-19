@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,15 +29,9 @@
 #ifndef _SCH_OBJID_HXX
 #define _SCH_OBJID_HXX
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
-#ifndef _SVDITER_HXX //autogen
 #include <bf_svx/svditer.hxx>
-#endif
 namespace binfilter {
 
 
@@ -56,7 +51,7 @@ public:
 
         virtual SdrObjUserData* Clone(SdrObject *pObj) const;
 
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 
         void SetObjId(UINT16 nId) {  nObjId = nId; }
@@ -76,11 +71,12 @@ extern SdrObject* GetObjWithId(UINT16 nObjId, const SdrObjList& rObjList,
                                                            SdrIterMode eMode = IM_FLAT);
 
 //Die hier folgenden Funktionen dienen AUSSCHLIESSLICH zu DEBUG-Zwecken
-#ifdef DBG_UTIL
-extern char *GetCHOBJIDName(const long id);
+#if OSL_DEBUG_LEVEL > 0
+extern const char *GetCHOBJIDName(const long id);
 #endif
 
 } //namespace binfilter
 #endif  // _SCH_OBJID_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

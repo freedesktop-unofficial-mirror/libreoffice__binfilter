@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _FMTFLCNT_HXX
 
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 class SwFrmFmt;
@@ -51,7 +50,7 @@ public:
     virtual int             operator==( const SfxPoolItem& ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool* pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT nVer) const;
-    virtual SvStream&       Store(SvStream &, USHORT nIVer) const;
+    virtual SvStream&       Store(SvStream &rStream, USHORT) const { return rStream; }
 
     inline SwFrmFmt *GetFrmFmt() const { return pFmt; }
     // fuer Undo: loesche "logisch" das FlyFrmFormat, wird sich im
@@ -61,10 +60,10 @@ public:
     const SwTxtFlyCnt *GetTxtFlyCnt() const { return pTxtAttr; }
           SwTxtFlyCnt *GetTxtFlyCnt()       { return pTxtAttr; }
 
-    // OD 27.06.2003 #108784#
     bool Sw3ioExportAllowed() const;
 };
 
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

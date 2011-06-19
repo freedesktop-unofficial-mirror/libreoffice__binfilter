@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,32 +27,20 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYCONFIGURATIONCONTEXT_HXX_
 #include "XMLIndexBibliographyConfigurationContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLINDEXBIBLIOGRAPHYENTRYCONTEXT_HXX_
 #include "XMLIndexBibliographyEntryContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
@@ -75,11 +64,11 @@ const sal_Char sAPI_FieldMaster_Bibliography[] =
 TYPEINIT1( XMLIndexBibliographyConfigurationContext, SvXMLStyleContext );
 
 XMLIndexBibliographyConfigurationContext::XMLIndexBibliographyConfigurationContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList) :
-        SvXMLStyleContext(rImport, nPrfx, rLocalName, xAttrList, XML_STYLE_FAMILY_TEXT_BIBLIOGRAPHYCONFIG),
+        SvXMLStyleContext(rInImport, nPrfx, rLocalName, xAttrList, XML_STYLE_FAMILY_TEXT_BIBLIOGRAPHYCONFIG),
         sFieldMaster_Bibliography(
             RTL_CONSTASCII_USTRINGPARAM(sAPI_FieldMaster_Bibliography)),
         sBracketBefore(RTL_CONSTASCII_USTRINGPARAM("BracketBefore")),
@@ -111,22 +100,22 @@ void XMLIndexBibliographyConfigurationContext::StartElement(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
 
-        ProcessAttribute(nPrefix, sLocalName,
+        ProcessAttribute(nLclPrefix, sLocalName,
                          xAttrList->getValueByIndex(nAttr));
         // else: ignore
     }
 }
 
 void XMLIndexBibliographyConfigurationContext::ProcessAttribute(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     OUString sLocalName,
     OUString sValue)
 {
-    if( XML_NAMESPACE_TEXT == nPrefix )
+    if( XML_NAMESPACE_TEXT == nInPrefix )
     {
         if( IsXMLToken(sLocalName, XML_PREFIX) )
         {
@@ -157,7 +146,7 @@ void XMLIndexBibliographyConfigurationContext::ProcessAttribute(
             sAlgorithm = sValue;
         }
     }
-    else if( XML_NAMESPACE_FO == nPrefix )
+    else if( XML_NAMESPACE_FO == nInPrefix )
     {
         if( IsXMLToken(sLocalName, XML_LANGUAGE) )
         {
@@ -172,7 +161,7 @@ void XMLIndexBibliographyConfigurationContext::ProcessAttribute(
 
 
 SvXMLImportContext *XMLIndexBibliographyConfigurationContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
@@ -180,7 +169,7 @@ SvXMLImportContext *XMLIndexBibliographyConfigurationContext::CreateChildContext
     sal_Bool bSort(sal_True);
 
     // process children here and use default context!
-    if ( ( nPrefix == XML_NAMESPACE_TEXT ) &&
+    if ( ( nInPrefix == XML_NAMESPACE_TEXT ) &&
          IsXMLToken( rLocalName, XML_SORT_KEY ) )
     {
         sal_Int16 nLength = xAttrList->getLength();
@@ -234,12 +223,12 @@ SvXMLImportContext *XMLIndexBibliographyConfigurationContext::CreateChildContext
         }
     }
 
-    return SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+    return SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                   xAttrList);
 }
 
 void XMLIndexBibliographyConfigurationContext::CreateAndInsert(
-    sal_Bool bOverwrite)
+    sal_Bool /*bOverwrite*/)
 {
     // (code almost the same as export...)
 
@@ -253,11 +242,11 @@ void XMLIndexBibliographyConfigurationContext::CreateAndInsert(
         Sequence<rtl::OUString> aServices = xFactory->getAvailableServiceNames();
         sal_Bool bFound(sal_False);
         sal_Int32 i(0);
-        sal_Int32 nCount(aServices.getLength());
-        while (i < nCount && !bFound)
+        sal_Int32 nServiceCount(aServices.getLength());
+        while (i < nServiceCount && !bFound)
         {
             if (aServices[i].equals(sFieldMaster_Bibliography))
-            // here we should use a methode which compares in reverse order if available
+            // here we should use a method which compares in reverse order if available
             // #85282#
                 bFound = sal_True;
             else
@@ -299,7 +288,7 @@ void XMLIndexBibliographyConfigurationContext::CreateAndInsert(
 
                 sal_Int32 nCount = aSortKeys.size();
                 Sequence<Sequence<PropertyValue> > aKeysSeq(nCount);
-                for(sal_Int32 i = 0; i < nCount; i++)
+                for(i = 0; i < nCount; i++)
                 {
                     aKeysSeq[i] = aSortKeys[i];
                 }
@@ -312,3 +301,5 @@ void XMLIndexBibliographyConfigurationContext::CreateAndInsert(
     // else: can't even get Factory -> ignore
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,17 +27,11 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLFILLBITMAPSIZEPROPERTYHANDLER_HXX
 #include "XMLFillBitmapSizePropertyHandler.hxx"
-#endif
 
 namespace binfilter {
 
@@ -83,7 +78,7 @@ sal_Bool XMLFillBitmapSizePropertyHandler::exportXML(
 {
     OUStringBuffer aOut;
 
-    sal_Int32 nValue;
+    sal_Int32 nValue(0);
     if( rValue >>= nValue )
     {
         if( nValue < 0 )
@@ -103,3 +98,5 @@ sal_Bool XMLFillBitmapSizePropertyHandler::exportXML(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,17 +32,11 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _B3D_B3DCOLOR_HXX
 #include "b3dcolor.hxx"
-#endif
 
-#ifndef _B3D_POINT4D_HXX
 #include "point4d.hxx"
-#endif
 
-#ifndef _B3D_BUCKET_HXX
 #include "bucket.hxx"
-#endif
 
 namespace binfilter {
 
@@ -137,3 +132,5 @@ BASE3D_DECL_BUCKET(B3dEntity, Bucket)
 }//end of namespace binfilter
 
 #endif          // _B3D_B3DENTITY_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

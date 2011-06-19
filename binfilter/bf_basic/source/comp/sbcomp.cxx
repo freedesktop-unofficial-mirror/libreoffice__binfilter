@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,16 +27,11 @@
  ************************************************************************/
 
 #include "sbx.hxx"
-//#include "sbcomp.hxx"
 #include "image.hxx"
 
 
-// For debugging only
-// #define DBG_SAVE_DISASSEMBLY
 
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
 
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
 #include <com/sun/star/ucb/XSimpleFileAccess3.hpp>
@@ -44,70 +40,15 @@
 
 namespace binfilter {
 
-/*?*/ // #ifdef DBG_SAVE_DISASSEMBLY
-/*?*/ // static bool dbg_bDisassemble = true;
-/*?*/ //
-/*?*/ // using namespace comphelper;
-/*?*/ // using namespace rtl;
-/*?*/ // using namespace com::sun::star::uno;
-/*?*/ // using namespace com::sun::star::lang;
-/*?*/ // using namespace com::sun::star::ucb;
-/*?*/ // using namespace com::sun::star::io;
-/*?*/ //
-/*?*/ // void dbg_SaveDisassembly( SbModule* pModule )
-/*?*/ // {
-/*?*/ //     bool bDisassemble = dbg_bDisassemble;
-/*?*/ //     if( bDisassemble )
-/*?*/ //    {
-/*?*/ //        Reference< XSimpleFileAccess3 > xSFI;
-/*?*/ //        Reference< XTextOutputStream > xTextOut;
-/*?*/ //        Reference< XOutputStream > xOut;
-/*?*/ //        Reference< XMultiServiceFactory > xSMgr = getProcessServiceFactory();
-/*?*/ //        if( xSMgr.is() )
-/*?*/ //        {
-/*?*/ //            Reference< XSimpleFileAccess3 > xSFI = Reference< XSimpleFileAccess3 >( xSMgr->createInstance
-/*?*/ //                ( OUString::createFromAscii( "com.sun.star.ucb.SimpleFileAccess" ) ), UNO_QUERY );
-/*?*/ //            if( xSFI.is() )
-/*?*/ //            {
-/*?*/ //                String aFile( RTL_CONSTASCII_USTRINGPARAM("file:///d:/BasicAsm_") );
-/*?*/ //                StarBASIC* pBasic = (StarBASIC*)pModule->GetParent();
-/*?*/ //                if( pBasic )
-/*?*/ //                {
-/*?*/ //                    aFile += pBasic->GetName();
-/*?*/ //                    aFile.AppendAscii( "_" );
-/*?*/ //                }
-/*?*/ //                aFile += pModule->GetName();
-/*?*/ //                aFile.AppendAscii( ".txt" );
-/*?*/ //
-/*?*/ //                // String aFile( RTL_CONSTASCII_USTRINGPARAM("file:///d:/BasicAsm.txt") );
-/*?*/ //                if( xSFI->exists( aFile ) )
-/*?*/ //                    xSFI->kill( aFile );
-/*?*/ //                xOut = xSFI->openFileWrite( aFile );
-/*?*/ //                Reference< XInterface > x = xSMgr->createInstance( OUString::createFromAscii( "com.sun.star.io.TextOutputStream" ) );
-/*?*/ //                Reference< XActiveDataSource > xADS( x, UNO_QUERY );
-/*?*/ //                xADS->setOutputStream( xOut );
-/*?*/ //                xTextOut = Reference< XTextOutputStream >( x, UNO_QUERY );
-/*?*/ //            }
-/*?*/ //        }
-/*?*/ //
-/*?*/ //        if( xTextOut.is() )
-/*?*/ //        {
-/*?*/ //            String aDisassemblyStr;
-/*?*/ //            pModule->Disassemble( aDisassemblyStr );
-/*?*/ //            xTextOut->writeString( aDisassemblyStr );
-/*?*/ //        }
-/*?*/ //        xOut->closeOutput();
-/*?*/ //    }
-/*?*/ // }
-/*?*/ // #endif
-
 // Diese Routine ist hier definiert, damit der Compiler als eigenes Segment
 // geladen werden kann.
 
 BOOL SbModule::Compile()
 {
-    DBG_ERROR( "SbModule::Compile: dead code!" );
+    OSL_FAIL( "SbModule::Compile: dead code!" );
     return FALSE;
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

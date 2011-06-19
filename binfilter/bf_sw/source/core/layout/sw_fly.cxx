@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,58 +32,26 @@
 #endif
 
 #include "hintids.hxx"
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _IMAP_HXX //autogen
 #include <bf_svtools/imap.hxx>
-#endif
-#ifndef _SVX_OPAQITEM_HXX //autogen
 #include <bf_svx/opaqitem.hxx>
-#endif
-#ifndef _SVX_ULSPITEM_HXX //autogen
 #include <bf_svx/ulspitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_FRMDIRITEM_HXX
 #include <bf_svx/frmdiritem.hxx>
-#endif
 
-#ifndef _FMTANCHR_HXX //autogen
 #include <fmtanchr.hxx>
-#endif
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
-#ifndef _FMTCLDS_HXX //autogen
 #include <fmtclds.hxx>
-#endif
-#ifndef _FMTCNTNT_HXX //autogen
 #include <fmtcntnt.hxx>
-#endif
-#ifndef _FMTURL_HXX //autogen
 #include <fmturl.hxx>
-#endif
-#ifndef _FMTSRND_HXX //autogen
 #include <fmtsrnd.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FMTCNCT_HXX //autogen
 #include <fmtcnct.hxx>
-#endif
-#ifndef _LAYHELP_HXX
 #include <layhelp.hxx>
-#endif
-// OD 16.04.2003 #i13147# - for <SwFlyFrm::GetContour(..)>
+// #i13147# - for <SwFlyFrm::GetContour(..)>
 
 #include "doc.hxx"
 #include "viewsh.hxx"
@@ -112,22 +81,19 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::SwFlyFrm()
 |*
-|*  Ersterstellung      MA 28. Sep. 92
-|*  Letzte Aenderung    MA 09. Apr. 99
-|*
 |*************************************************************************/
 
-/*N*/ SwFlyFrm::SwFlyFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
-/*N*/   SwLayoutFrm( pFmt ),
-/*N*/   aRelPos(),
-/*N*/   pAnchor( 0 ),
-/*N*/   pPrevLink( 0 ),
-/*N*/   pNextLink( 0 ),
-/*N*/   bInCnt( FALSE ),
-/*N*/   bAtCnt( FALSE ),
-/*N*/   bLayout( FALSE ),
-/*N*/     bAutoPosition( FALSE ),
-/*N*/     bNoShrink( FALSE )
+/*N*/ SwFlyFrm::SwFlyFrm( SwFlyFrmFmt *pFmt, SwFrm * /*pAnch*/ )
+/*N*/   : SwLayoutFrm( pFmt )
+/*N*/   , pAnchor( 0 )
+/*N*/   , pPrevLink( 0 )
+/*N*/   , pNextLink( 0 )
+/*N*/   , aRelPos()
+/*N*/   , bInCnt( FALSE )
+/*N*/   , bAtCnt( FALSE )
+/*N*/   , bLayout( FALSE )
+/*N*/   , bAutoPosition( FALSE )
+/*N*/   , bNoShrink( FALSE )
 /*N*/ {
 /*N*/     nType = FRMC_FLY;
 /*N*/
@@ -137,15 +103,12 @@ namespace binfilter {
 /*N*/
 /*N*/   //Grosseneinstellung, Fixe groesse ist immer die Breite
 /*N*/   const SwFmtFrmSize &rFrmSize = pFmt->GetFrmSize();
-/*N*/     BOOL bVert = FALSE;
 /*N*/     UINT16 nDir =
 /*N*/         ((SvxFrameDirectionItem&)pFmt->GetAttr( RES_FRAMEDIR )).GetValue();
 /*N*/     if( FRMDIR_ENVIRONMENT == nDir )
 /*N*/     {
 /*N*/         bDerivedVert = 1;
 /*N*/         bDerivedR2L = 1;
-/*N*/         if( pAnch && pAnch->IsVertical() )
-/*?*/             bVert = TRUE;
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -157,7 +120,6 @@ namespace binfilter {
 /*?*/             bVertical = 0;
 /*?*/         else
 /*?*/             bVertical = 1;
-/*?*/         bVert = bVertical;
 /*?*/         bInvalidR2L = 0;
 /*?*/         if( FRMDIR_HORI_RIGHT_TOP == nDir )
 /*?*/             bRightToLeft = 1;
@@ -198,13 +160,13 @@ namespace binfilter {
 /*N*/   const SwFmtChain &rChain = pFmt->GetChain();
 /*N*/   if ( rChain.GetPrev() || rChain.GetNext() )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if ( rChain.GetNext() )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/
 /*N*/   if ( !GetPrevLink() ) //Inhalt gehoert sonst immer dem Master und meiner Zaehlt nicht
 /*N*/   {
 /*N*/       const SwFmtCntnt &rCntnt = pFmt->GetCntnt();
-/*N*/       ASSERT( rCntnt.GetCntntIdx(), ":-( Kein Inhalt vorbereitet." );
+/*N*/       OSL_ENSURE( rCntnt.GetCntntIdx(), ":-( Kein Inhalt vorbereitet." );
 /*N*/       ULONG nIndex = rCntnt.GetCntntIdx()->GetIndex();
 /*N*/       // Lower() bedeutet SwColumnFrm, eingefuegt werden muss der Inhalt dann in den (Column)BodyFrm
 /*N*/       ::binfilter::_InsertCnt( Lower() ? (SwLayoutFrm*)((SwLayoutFrm*)Lower())->Lower() : (SwLayoutFrm*)this,
@@ -227,9 +189,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::~SwFlyFrm()
 |*
-|*  Ersterstellung      MA 28. Sep. 92
-|*  Letzte Aenderung    MA 07. Jul. 95
-|*
 |*************************************************************************/
 
 /*N*/ SwFlyFrm::~SwFlyFrm()
@@ -243,7 +202,7 @@ namespace binfilter {
 /*N*/   {
 /*N*/       SwRootFrm *pRootFrm = FindRootFrm();
 /*N*/       if( pRootFrm && pRootFrm->IsAnyShellAccessible() )
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/   }
 /*N*/ #endif
@@ -252,9 +211,9 @@ namespace binfilter {
 /*N*/   {
 /*N*/       //Aus der Verkettung loessen.
 /*N*/       if ( GetPrevLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     UnchainFrames( GetPrevLink(), this );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/       if ( GetNextLink() )
-/*?*/       {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     UnchainFrames( this, GetNextLink() );
+/*?*/       {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/       //Unterstruktur zerstoeren, wenn dies erst im LayFrm DTor passiert ist's
 /*N*/       //zu spaet, denn dort ist die Seite nicht mehr erreichbar (muss sie aber
@@ -270,7 +229,7 @@ namespace binfilter {
 /*N*/               if ( pObj->IsWriterFlyFrame() )
 /*N*/                   delete ((SwVirtFlyDrawObj*)pObj)->GetFlyFrm();
 /*N*/                 else
-/*N*/                 // OD 23.06.2003 #108784# - consider 'virtual' drawing objects
+/*N*/                 // consider 'virtual' drawing objects
 /*N*/                 {
 /*N*/                     if ( pObj->ISA(SwDrawVirtObj) )
 /*N*/                     {
@@ -309,9 +268,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::InitDrawObj()
 |*
-|*  Ersterstellung      MA 02. Dec. 94
-|*  Letzte Aenderung    MA 30. Nov. 95
-|*
 |*************************************************************************/
 #ifdef _MSC_VER
 #pragma optimize("",off)
@@ -328,7 +284,7 @@ namespace binfilter {
 /*N*/   if ( !pContact )
 /*N*/       pContact = new SwFlyDrawContact( (SwFlyFrmFmt*)GetFmt(),
 /*N*/                           GetFmt()->GetDoc()->MakeDrawModel() );
-/*N*/   ASSERT( pContact, "InitDrawObj failed" );
+/*N*/   OSL_ENSURE( pContact, "InitDrawObj failed" );
 /*N*/   pDrawObj = pContact->CreateNewRef( this );
 /*N*/
 /*N*/   //Den richtigen Layer setzen.
@@ -346,9 +302,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::FinitDrawObj()
-|*
-|*  Ersterstellung      MA 12. Dec. 94
-|*  Letzte Aenderung    MA 15. May. 95
 |*
 |*************************************************************************/
 
@@ -405,9 +358,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::ChainFrames()
 |*
-|*  Ersterstellung      MA 29. Oct. 97
-|*  Letzte Aenderung    MA 20. Jan. 98
-|*
 |*************************************************************************/
 
 
@@ -415,9 +365,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::FindChainNeighbour()
-|*
-|*  Ersterstellung      MA 11. Nov. 97
-|*  Letzte Aenderung    MA 09. Apr. 99
 |*
 |*************************************************************************/
 
@@ -427,9 +374,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::FindLastLower()
 |*
-|*  Ersterstellung      MA 29. Oct. 97
-|*  Letzte Aenderung    MA 29. Oct. 97
-|*
 |*************************************************************************/
 
 
@@ -437,9 +381,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::FrmSizeChg()
-|*
-|*  Ersterstellung      MA 17. Dec. 92
-|*  Letzte Aenderung    MA 24. Jul. 96
 |*
 |*************************************************************************/
 
@@ -492,9 +433,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::Modify()
-|*
-|*  Ersterstellung      MA 17. Dec. 92
-|*  Letzte Aenderung    MA 17. Jan. 97
 |*
 |*************************************************************************/
 
@@ -551,7 +489,7 @@ namespace binfilter {
 /*M*/ {
 /*M*/   BOOL bClear = TRUE;
 /*M*/   const USHORT nWhich = pOld ? pOld->Which() : pNew ? pNew->Which() : 0;
-/*M*/   ViewShell *pSh = GetShell();
+/*M*/   GetShell();
 /*M*/   switch( nWhich )
 /*M*/   {
 /*M*/       case RES_VERT_ORIENT:
@@ -584,7 +522,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_PROTECT:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           break;
 /*M*/           }
 /*M*/
@@ -600,7 +538,7 @@ namespace binfilter {
 /*M*/
 /*M*/       case RES_FRM_SIZE:
 /*M*/       case RES_FMT_CHG:
-/*M*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           break;
 /*M*/       }
 /*M*/       case RES_UL_SPACE:
@@ -640,7 +578,7 @@ namespace binfilter {
 /*M*/             break;
 /*M*/
 /*M*/         case RES_OPAQUE:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/           break;
 /*M*/
@@ -668,7 +606,7 @@ namespace binfilter {
 /*M*/           break;
 /*M*/
 /*M*/       case RES_CHAIN:
-/*M*/           {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/           {DBG_BF_ASSERT(0, "STRIP");
 /*M*/           }
 /*M*/
 /*M*/       default:
@@ -693,8 +631,6 @@ namespace binfilter {
 |*                SwFlyFrm::GetInfo()
 |*
 |*    Beschreibung      erfragt Informationen
-|*    Ersterstellung    JP 31.03.94
-|*    Letzte Aenderung  JP 31.03.94
 |*
 *************************************************************************/
 
@@ -709,9 +645,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::_Invalidate()
-|*
-|*  Ersterstellung      MA 15. Oct. 92
-|*  Letzte Aenderung    MA 26. Jun. 96
 |*
 |*************************************************************************/
 
@@ -737,8 +670,6 @@ namespace binfilter {
 |*
 |*  Beschreibung        Aenderung der relativen Position, die Position wird
 |*      damit automatisch Fix, das Attribut wird entprechend angepasst.
-|*  Ersterstellung      MA 25. Aug. 92
-|*  Letzte Aenderung    MA 09. Aug. 95
 |*
 |*************************************************************************/
 
@@ -748,14 +679,12 @@ namespace binfilter {
 |*
 |*  Beschreibung:       "Formatiert" den Frame; Frm und PrtArea.
 |*                      Die Fixsize wird hier nicht eingestellt.
-|*  Ersterstellung      MA 14. Jun. 93
-|*  Letzte Aenderung    MA 13. Jun. 96
 |*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::Format( const SwBorderAttrs *pAttrs )
 /*N*/ {
-/*N*/   ASSERT( pAttrs, "FlyFrm::Format, pAttrs ist 0." );
+/*N*/   OSL_ENSURE( pAttrs, "FlyFrm::Format, pAttrs ist 0." );
 /*N*/
 /*N*/   ColLock();
 /*N*/
@@ -776,8 +705,9 @@ namespace binfilter {
 /*N*/       const Size    &rSz = pAttrs->GetSize();
 /*N*/       const SwFmtFrmSize &rFrmSz = GetFmt()->GetFrmSize();
 /*N*/
-/*N*/       ASSERT( rSz.Height() != 0 || rFrmSz.GetHeightPercent(), "Hoehe des RahmenAttr ist 0." );
-/*N*/       ASSERT( rSz.Width()  != 0 || rFrmSz.GetWidthPercent(), "Breite des RahmenAttr ist 0." );
+/*N*/       OSL_ENSURE( rSz.Height() != 0 || rFrmSz.GetHeightPercent(), "Hoehe des RahmenAttr ist 0." );
+/*N*/       OSL_ENSURE( rSz.Width()  != 0 || rFrmSz.GetWidthPercent(), "Breite des RahmenAttr ist 0." );
+/*N*/       (void)rSz;
 /*N*/
 /*N*/         SWRECTFN( this )
 /*N*/         if( !HasFixSize() )
@@ -841,7 +771,7 @@ namespace binfilter {
 /*N*/           if ( IsMinHeight() )
 /*N*/           {
 /*N*/                 const Size aSizeII = CalcRel( rFrmSz );
-/*N*/                 ASSERT( nMinHeight==(bVert? aSizeII.Width() : aSizeII.Height()),
+/*N*/                 OSL_ENSURE( nMinHeight==(bVert? aSizeII.Width() : aSizeII.Height()),
 /*N*/                         "FlyFrm::Format: Changed MinHeight" );
 /*N*/           }
 /*N*/ #endif
@@ -888,11 +818,11 @@ namespace binfilter {
 /*N*/   ColUnlock();
 /*N*/ }
 
-// OD 14.03.2003 #i11760# - change parameter <bNoColl>: type <bool>;
+// #i11760# - change parameter <bNoColl>: type <bool>;
 //                          default value = false.
-// OD 14.03.2003 #i11760# - add new parameter <bNoCalcFollow> with
+// #i11760# - add new parameter <bNoCalcFollow> with
 //                          default value = false.
-// OD 11.04.2003 #108824# - new parameter <bNoCalcFollow> was used by method
+//          - new parameter <bNoCalcFollow> was used by method
 //                          <FormatWidthCols(..)> to avoid follow formatting
 //                          for text frames. But, unformatted follows causes
 //                          problems in method <SwCntntFrm::_WouldFit(..)>,
@@ -910,7 +840,7 @@ namespace binfilter {
 /*N*/       pSect = (SwSectionFrm*)pLay;
 /*N*/       if( pSect->IsEndnAtEnd() && !bNoColl )
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 bCollect = TRUE;
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       pSect->CalcFtnCntnt();
 /*N*/   }
@@ -928,7 +858,7 @@ namespace binfilter {
 /*?*/               if( pSect->IsEndnAtEnd() )
 /*?*/               {
 /*?*/                   if( bCollect )
-/*?*/                   {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     pLay->GetFmt()->GetDoc()->GetLayouter()->
+/*?*/                   {DBG_BF_ASSERT(0, "STRIP");}
 /*?*/                   BOOL bLock = pSect->IsFtnLock();
 /*?*/                   pSect->SetFtnLock( TRUE );
 /*?*/                   pSect->CalcFtnCntnt();
@@ -967,11 +897,11 @@ namespace binfilter {
 /*?*/                   ((SwTabFrm*)pFrm)->bLockBackMove = TRUE;
 /*N*/           }
 /*N*/
-/*N*/             // OD 14.03.2003 #i11760# - forbid format of follow, if requested.
+/*N*/             // #i11760# - forbid format of follow, if requested.
 /*N*/             if ( bNoCalcFollow && pFrm->IsTxtFrm() )
 /*N*/                 static_cast<SwTxtFrm*>(pFrm)->ForbidFollowFormat();
 /*N*/             pFrm->Calc();
-/*N*/             // OD 14.03.2003 #i11760# - reset control flag for follow format.
+/*N*/             // #i11760# - reset control flag for follow format.
 /*N*/             if ( pFrm->IsTxtFrm() )
 /*N*/             {
 /*N*/                 static_cast<SwTxtFrm*>(pFrm)->AllowFollowFormat();
@@ -1078,7 +1008,7 @@ namespace binfilter {
 /*N*/       {
 /*N*/           if( bCollect )
 /*N*/           {
-/*?*/               DBG_BF_ASSERT(0, "STRIP"); //STRIP001 pLay->GetFmt()->GetDoc()->GetLayouter()->InsertEndnotes(pSect);
+/*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*N*/           }
 /*N*/           if( pSect->HasFollow() )
 /*N*/           {
@@ -1105,9 +1035,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::MakeFlyPos()
 |*
-|*  Ersterstellung      MA ??
-|*  Letzte Aenderung    MA 14. Nov. 96
-|*
 |*************************************************************************/
 
 /*M*/ void SwFlyFrm::MakeFlyPos()
@@ -1124,7 +1051,7 @@ namespace binfilter {
 /*M*/       SwFmtHoriOrient aHori( pFmt->GetHoriOrient() );
 /*M*/       const SvxLRSpaceItem &rLR = pFmt->GetLRSpace();
 /*M*/       const SvxULSpaceItem &rUL = pFmt->GetULSpace();
-/*M*/       FASTBOOL bVertChgd = FALSE,
+/*M*/       bool bVertChgd = FALSE,
 /*M*/                bHoriChgd = FALSE;
 /*M*/
 /*M*/       //Horizontale und vertikale Positionen werden getrennt berechnet.
@@ -1342,9 +1269,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::MakePrtArea()
 |*
-|*  Ersterstellung      MA 23. Jun. 93
-|*  Letzte Aenderung    MA 23. Jun. 93
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::MakePrtArea( const SwBorderAttrs &rAttrs )
@@ -1368,9 +1292,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFlyFrm::_Grow(), _Shrink()
-|*
-|*  Ersterstellung      MA 05. Oct. 92
-|*  Letzte Aenderung    MA 05. Sep. 96
 |*
 |*************************************************************************/
 
@@ -1493,9 +1414,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::ChgSize()
 |*
-|*  Ersterstellung      MA 05. Oct. 92
-|*  Letzte Aenderung    MA 04. Sep. 96
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::ChgSize( const Size& aNewSize )
@@ -1516,17 +1434,14 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::IsLowerOf()
 |*
-|*  Ersterstellung      MA 27. Dec. 93
-|*  Letzte Aenderung    MA 27. Dec. 93
-|*
 |*************************************************************************/
 
-/*N*/ BOOL SwFlyFrm::IsLowerOf( const SwLayoutFrm *pUpper ) const
+/*N*/ BOOL SwFlyFrm::IsLowerOf( const SwLayoutFrm *pUpper1 ) const
 /*N*/ {
-/*N*/   ASSERT( GetAnchor(), "8-( Fly is lost in Space." );
+/*N*/   OSL_ENSURE( GetAnchor(), "8-( Fly is lost in Space." );
 /*N*/   const SwFrm *pFrm = GetAnchor();
 /*N*/   do
-/*N*/   {   if ( pFrm == pUpper )
+/*N*/   {   if ( pFrm == pUpper1 )
 /*N*/           return TRUE;
 /*N*/       pFrm = pFrm->IsFlyFrm() ? ((const SwFlyFrm*)pFrm)->GetAnchor() :
 /*N*/                                 pFrm->GetUpper();
@@ -1538,9 +1453,6 @@ namespace binfilter {
 |*
 |*  SwFlyFrm::Cut()
 |*
-|*  Ersterstellung      MA 23. Feb. 94
-|*  Letzte Aenderung    MA 23. Feb. 94
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::Cut()
@@ -1550,9 +1462,6 @@ namespace binfilter {
 /*************************************************************************
 |*
 |*  SwFrm::AppendFly(), RemoveFly()
-|*
-|*  Ersterstellung      MA 25. Aug. 92
-|*  Letzte Aenderung    MA 09. Jun. 95
 |*
 |*************************************************************************/
 
@@ -1624,9 +1533,6 @@ namespace binfilter {
 |*
 |*  SwFrm::AppendDrawObj(), RemoveDrawObj()
 |*
-|*  Ersterstellung      MA 09. Jan. 95
-|*  Letzte Aenderung    MA 26. Jun. 95
-|*
 |*************************************************************************/
 
 void SwFrm::AppendDrawObj( SwDrawContact *pNew )
@@ -1659,7 +1565,7 @@ void SwFrm::AppendDrawObj( SwDrawContact *pNew )
         pNew->GetMaster()->SetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( pNew->GetMaster() ) ) );
     }
 
-    // OD 27.06.2003 #108784# - move 'master' drawing object to visible layer
+    // move 'master' drawing object to visible layer
     {
         SwDoc* pDoc = pNew->GetFmt()->GetDoc();
         if ( pDoc )
@@ -1685,7 +1591,7 @@ void SwFrm::AppendDrawObj( SwDrawContact *pNew )
 #endif
 }
 
-// OD 20.05.2003 #108784# - add 'virtual' drawing object to frame.
+// add 'virtual' drawing object to frame.
 void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
                                SwDrawVirtObj* _pDrawVirtObj )
 {
@@ -1703,8 +1609,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
     {
         case FLY_AUTO_CNTNT:
             {
-                ASSERT( false,
-                        "<SwFrm::AppendVirtDrawObj(..)> - at character anchored drawing objects aren't supported." );
+                OSL_FAIL( "<SwFrm::AppendVirtDrawObj(..)> - at character anchored drawing objects aren't supported." );
             }
             break;
         case FLY_PAGE:
@@ -1726,7 +1631,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
             /*nothing to do*/;
         }
         break;
-        default:    ASSERT( false, "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
+        default:    OSL_FAIL( "<SwFrm::AppendVirtDrawObj(..) - unknown anchor type." );
     }
 
     //Bei der Seite anmelden; kann sein, dass noch keine da ist - die
@@ -1753,7 +1658,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   // Notify accessible layout.
 /*N*/     ViewShell* pSh = GetShell();
 /*N*/   if( pSh && pSh->GetLayout()->IsAnyShellAccessible() )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSh->Imp()->DisposeAccessibleObj( pToRemove->GetMaster() );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*N*/ #endif
 /*N*/   SwPageFrm *pPage = pToRemove->GetPage();
 /*N*/   if ( pPage && pPage->GetSortedObjs() )
@@ -1767,7 +1672,7 @@ void SwFrm::AppendVirtDrawObj( SwDrawContact* _pDrawContact,
 /*N*/   pToRemove->ChgAnchor( 0 );
 /*N*/ }
 
-// OD 20.05.2003 #108784# - remove 'virtual' drawing object from frame.
+// remove 'virtual' drawing object from frame.
 void SwFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
                                SwDrawVirtObj* _pDrawVirtObj )
 {
@@ -1794,9 +1699,6 @@ void SwFrm::RemoveVirtDrawObj( SwDrawContact* _pDrawContact,
 /*************************************************************************
 |*
 |*  SwFrm::CalcFlys()
-|*
-|*  Ersterstellung      MA 29. Nov. 96
-|*  Letzte Aenderung    MA 29. Nov. 96
 |*
 |*************************************************************************/
 
@@ -1870,7 +1772,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
                 {
                     // change anchor position
                     pO->SetAnchorPos( GetFrmAnchorPos( ::binfilter::HasWrap( pO ) ) );
-                    // OD 19.06.2003 #108784# - correct relative position of
+                    // correct relative position of
                     // <SwDrawVirtObj>-objects to reference object.
                     if ( pO->ISA(SwDrawVirtObj) )
                     {
@@ -1891,7 +1793,7 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 
                         ((SwDrawContact*)GetUserCall(pO))->ChkPage();
 
-                        // OD 27.06.2003 #108784# - correct movement of 'virtual'
+                        // correct movement of 'virtual'
                         // drawing objects caused by the <SetAnchorPos(..)>
                         // of the 'master' drawing object.
                         SwDrawContact* pDrawContact =
@@ -1912,9 +1814,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwLayoutFrm::NotifyFlys()
 |*
-|*  Ersterstellung      MA 18. Feb. 94
-|*  Letzte Aenderung    MA 26. Jun. 96
-|*
 |*************************************************************************/
 
 /*N*/ void SwLayoutFrm::NotifyFlys()
@@ -1933,7 +1832,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*N*/   if ( pPage && pPage->GetSortedObjs() )
 /*N*/   {
 /*N*/       //Die Seite nur einmal antriggern.
-/*N*/       FASTBOOL bPageInva = TRUE;
 /*N*/
 /*N*/       SwSortDrawObjs &rObjs = *pPage->GetSortedObjs();
 /*N*/       const BOOL bHeadFoot = IsHeaderFrm() || IsFooterFrm();
@@ -1974,9 +1872,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwFlyFrm::NotifyDrawObj()
 |*
-|*  Ersterstellung      OK 22. Nov. 94
-|*  Letzte Aenderung    MA 10. Jan. 97
-|*
 |*************************************************************************/
 
 /*N*/ void SwFlyFrm::NotifyDrawObj()
@@ -1992,9 +1887,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*************************************************************************
 |*
 |*  SwLayoutFrm::CalcRel()
-|*
-|*  Ersterstellung      MA 13. Jun. 96
-|*  Letzte Aenderung    MA 10. Oct. 96
 |*
 |*************************************************************************/
 
@@ -2058,9 +1950,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwFlyFrm::AddSpacesToFrm
 |*
-|*  Ersterstellung      MA 11. Nov. 96
-|*  Letzte Aenderung    MA 10. Mar. 97
-|*
 |*************************************************************************/
 
 /*N*/ SwRect SwFlyFrm::AddSpacesToFrm() const
@@ -2079,17 +1968,13 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 |*
 |*  SwFlyFrm::GetContour()
 |*
-|*  Ersterstellung      MA 09. Jan. 97
-|*  Letzte Aenderung    MA 10. Jan. 97
-|*
 |*************************************************************************/
-/// OD 16.04.2003 #i13147# - If called for paint and the <SwNoTxtFrm> contains
+/// #i13147# - If called for paint and the <SwNoTxtFrm> contains
 /// a graphic, load of intrinsic graphic has to be avoided.
 
 BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
                                 SwTwips &rPos ) const
 {
-    ASSERT( rHori > PRTAREA, "ConvertHoriTo40: Why?" );
     if( !GetAnchor() )
         return FALSE;
     rHori = HORI_NONE;
@@ -2100,3 +1985,5 @@ BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

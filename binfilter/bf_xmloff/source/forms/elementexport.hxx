@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,27 +29,13 @@
 #ifndef _XMLOFF_ELEMENTEXPORT_HXX_
 #define _XMLOFF_ELEMENTEXPORT_HXX_
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXACCESS_HPP_
 #include <com/sun/star/container/XIndexAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SCRIPT_SCRIPTEVENTDESCRIPTOR_HPP_
 #include <com/sun/star/script/ScriptEventDescriptor.hpp>
-#endif
-#ifndef _XMLOFF_FORMS_PROPERTYEXPORT_HXX_
 #include "propertyexport.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CALLBACKS_HXX_
 #include "callbacks.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_CONTROLELEMENT_HXX_
 #include "controlelement.hxx"
-#endif
-#ifndef _XMLOFF_FORMS_VALUEPROPERTIES_HXX_
 #include "valueproperties.hxx"
-#endif
 namespace binfilter {
 
 class SvXMLElementExport;
@@ -300,3 +287,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // _XMLOFF_ELEMENTEXPORT_HXX_
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

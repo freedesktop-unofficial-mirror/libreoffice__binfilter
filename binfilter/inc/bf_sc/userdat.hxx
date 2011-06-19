@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVDOBJ_HXX //autogen
 #include <bf_svx/svdobj.hxx>
-#endif
 
-#ifndef _IMAP_HXX //autogen
 #include <bf_svtools/imap.hxx>
-#endif
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 namespace binfilter {
 
 
@@ -67,7 +62,7 @@ public:
 class ScDrawObjData : public SdrObjUserData
 {
     virtual SdrObjUserData* Clone(SdrObject* pObj) const;
-    virtual void WriteData(SvStream& rOut);
+    virtual void WriteData(SvStream& ) {}
     virtual void ReadData(SvStream& rIn);
 public:
     ScTripel aStt, aEnd;
@@ -91,7 +86,7 @@ public:
 
     virtual SdrObjUserData* Clone( SdrObject* pObj ) const;
 
-    virtual void WriteData( SvStream& rOStm );
+    virtual void WriteData( SvStream& ) {}
     virtual void ReadData( SvStream& rIStm );
 
     void    SetImageMap( const ImageMap& rIMap )    { aImageMap = rIMap; }
@@ -103,3 +98,4 @@ public:
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

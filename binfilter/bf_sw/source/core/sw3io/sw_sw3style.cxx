@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,53 +38,31 @@
 
 #include "swerror.h"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 #include "hintids.hxx"          //Damit "unsere" Attribute angezogen werden.
 
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include <bf_svx/fontitem.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-#ifndef _HTMLKYWD_HXX
 #include <bf_svtools/htmlkywd.hxx>
-#endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
-#endif
 
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
 #include "sw3imp.hxx"
 #include "poolfmt.hxx"
 #include "hints.hxx"
 #include "paratr.hxx"
 #include "frmatr.hxx"
 #include "numrule.hxx"
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 #define SWG_CONDSTYLES_BUG  1       //Versionsnummern fuer die StyleSheets
@@ -122,7 +101,7 @@ struct SwStyleCondColl
     {}
 };
 typedef SwStyleCondColl* SwStyleCondCollPtr;
-SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( SwStyleCondColls, SwStyleCondCollPtr, 0, 5 )
 //FEATURE::CONDCOLL
 
 class SwStyleSheetPool;
@@ -155,7 +134,7 @@ public:
     void ConnectParent( const String& );
     void ConnectFollow( const String& );
     virtual void Load( SvStream&, USHORT );
-    virtual void Store( SvStream& );
+    virtual void Store( SvStream& ) {}
     virtual USHORT GetVersion() const;
 
     // fuers Rename - Vorlagen muessen noch nicht im Pool umbenannt sein,
@@ -171,6 +150,7 @@ class SwStyleSheetPool : public SfxStyleSheetBasePool {
     SwDoc&       rDoc;          // Dokument
     Sw3Fmts*     pConvToSymbolFmts;
     long         nExpFFVersion; // FF-Version fuer Export
+    using SfxStyleSheetBasePool::Create;
     virtual SfxStyleSheetBase* Create( const String&, SfxStyleFamily, USHORT nMask);
     void Add( const SwFmt& rFmt, SfxStyleFamily eFam );
     void CopyFromDoc( BOOL bUsed );
@@ -181,7 +161,7 @@ public:
     SwStyleSheetPool( SwDoc&, SfxItemPool&, long nFFVersion, Sw3Fmts *pConvFmts );
     virtual ~SwStyleSheetPool();
     BOOL Load( SvStream&, BOOL, USHORT eMask );
-    BOOL Store( SvStream&, BOOL );
+    BOOL Store( SvStream&, BOOL ) {return FALSE;}
 };
 
 
@@ -210,17 +190,18 @@ public:
 
 ////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SwStyleSheet::SwStyleSheet( const String& rName, SwStyleSheetPool& rPool,
-/*N*/                           SfxStyleFamily eFam, USHORT nMask )
-/*N*/   : SfxStyleSheetBase( rName, rPool, eFam, nMask ),
-/*N*/     rDoc( rPool.rDoc ), aSet( rPool.rPool,
+/*N*/ SwStyleSheet::SwStyleSheet( const String& rName, SwStyleSheetPool& rPool1,
+/*N*/                           SfxStyleFamily eFam, USHORT nMask1 )
+/*N*/   : SfxStyleSheetBase( rName, rPool1, eFam, nMask1 )
+/*N*/   , aSet( rPool1.rPool,
 /*N*/           RES_CHRATR_BEGIN,       RES_CHRATR_END - 1,
 /*N*/           RES_PARATR_BEGIN,       RES_PARATR_END - 1,
 /*N*/           RES_FRMATR_BEGIN,       RES_FRMATR_END - 1,
-/*N*/           0 ),
-/*N*/     cFlags( 0 ),
-/*N*/     pCondColls( 0 ),
-/*N*/     pNumLRSpace( 0 )
+/*N*/           0 )
+/*N*/   , rDoc( rPool1.rDoc )
+/*N*/   , cFlags( 0 )
+/*N*/   , pCondColls( 0 )
+/*N*/   , pNumLRSpace( 0 )
 /*N*/ {
 /*N*/   nId = 0xFFFF;
 /*N*/   nHelpId = UCHAR_MAX;
@@ -230,7 +211,7 @@ public:
 /*N*/   nVersion = 0;
 /*N*/ }
 
-/*N*/ __EXPORT SwStyleSheet::~SwStyleSheet()
+/*N*/ SwStyleSheet::~SwStyleSheet()
 /*N*/ {
 /*N*/   // wird von SFX-DLL gerufen!
 /*N*/ //FEATURE::CONDCOLL
@@ -246,7 +227,7 @@ public:
 /*N*/ }
 
 
-/*N*/ void __EXPORT SwStyleSheet::Load( SvStream& r, USHORT nVer )
+/*N*/ void SwStyleSheet::Load( SvStream& r, USHORT nVer )
 /*N*/ {
 /*N*/   nVersion = nVer;    // Version wird noch gebraucht
 /*N*/
@@ -282,7 +263,7 @@ public:
 /*?*/
 /*?*/               if( USRFLD_EXPRESSION & pNew->nCondition )
 /*?*/               {
-/*?*/                   ASSERT( !this, "noch nicht implementiert" );
+/*?*/                   OSL_ENSURE( !this, "noch nicht implementiert" );
 /*?*/                   String s;
 /*?*/                   r.ReadByteString( s, r.GetStreamCharSet() );
 /*?*/               }
@@ -339,79 +320,9 @@ public:
 /*N*/       nId = Sw3StringPool::ConvertFromOldPoolId( nId, SWG_LONGIDX );
 /*N*/ }
 
-/*N*/ void __EXPORT SwStyleSheet::Store( SvStream& r )
+/*N*/ USHORT SwStyleSheet::GetVersion() const
 /*N*/ {
-/*N*/   ASSERT( nVersion == r.GetVersion(),
-/*N*/           "SwStyleSheet::Store: FF-Version != Stream-FF-Version" );
-/*N*/
-/*N*/   r << nId;
-/*N*/   if( r.GetVersion() <= SOFFICE_FILEFORMAT_40 &&
-/*N*/       nLevel != NO_NUMBERING && nLevel >= OLD_MAXLEVEL )
-/*N*/   {
-/*N*/       nLevel = NO_NUMBERING;
-/*N*/   }
-/*N*/   r << nLevel;
-/*N*/
-/*N*/   if( nVersion > SOFFICE_FILEFORMAT_31 )
-/*N*/   {
-/*N*/ //FEATURE::CONDCOLL
-/*N*/       UINT16 nType = RES_CONDTXTFMTCOLL == pFmt->Which() ? 1 : 0;
-/*N*/       r << nType;
-/*N*/       if( nType )
-/*N*/       {
-/*N*/           // Tabelle der ConditionTypes und der Vorlagen ausgeben:
-/*N*/           const SwFmtCollConditions& rCColls = ((SwConditionTxtFmtColl*)pFmt)->
-/*N*/                                                   GetCondColls();
-/*N*/           r << (UINT16)rCColls.Count();
-/*N*/           for( USHORT n = 0; n < rCColls.Count(); ++n )
-/*N*/           {
-/*?*/               const SwCollCondition& rCColl = *rCColls[ n ];
-/*?*/               r.WriteByteString( rCColl.GetTxtFmtColl()->GetName(),
-/*?*/                                  r.GetStreamCharSet() );
-/*?*/               r << (UINT32) rCColl.GetCondition();
-/*?*/
-/*?*/               if( USRFLD_EXPRESSION & rCColl.GetCondition() )
-/*?*/               {
-/*?*/                   String s( *rCColl.GetFldExpression() );
-/*?*/                   r.WriteByteString( s, r.GetStreamCharSet() );
-/*?*/               }
-/*?*/               else
-/*?*/                   r << (UINT32) rCColl.GetSubCondition();
-/*N*/           }
-/*N*/       }
-/*N*/ //FEATURE::CONDCOLL
-/*N*/
-/*N*/       // zusaetzliches Flag-Byte speichern
-/*N*/       r << cFlags;
-/*N*/
-/*N*/ #ifdef NUM_RELSPACE
-/*N*/       if( nVersion > SOFFICE_FILEFORMAT_40 && (cFlags & 0x02) != 0 )
-/*N*/       {
-/*N*/           r << (UINT32)0;
-/*N*/           if( pNumLRSpace )
-/*N*/           {
-/*?*/               USHORT nIVer = pNumLRSpace->GetVersion( (USHORT)nVersion );
-/*?*/               if( nIVer != USHRT_MAX )
-/*?*/               {
-/*?*/                   ULONG nPos = r.Tell();
-/*?*/                   r << (UINT16)nIVer;
-/*?*/                   pNumLRSpace->Store( r, nIVer );
-/*?*/
-/*?*/                   ULONG nNewPos = r.Tell();
-/*?*/                   r.Seek( nPos-4UL );
-/*?*/                   r << (UINT32)(nNewPos - nPos);
-/*?*/                   r.Seek( nNewPos );
-/*?*/               }
-/*?*/           }
-/*N*/       }
-/*N*/ #endif
-/*N*/   }
-/*N*/ }
-
-//FEATURE::CONDCOLL
-/*N*/ USHORT __EXPORT SwStyleSheet::GetVersion() const
-/*N*/ {
-/*N*/   ASSERT( nVersion,
+/*N*/   OSL_ENSURE( nVersion,
 /*N*/           "SwStyleSheet::GetVersion: Fileformat-Version nicht gesetzt" );
 /*N*/   switch( nVersion )
 /*N*/   {
@@ -428,7 +339,7 @@ public:
 /*N*/ }
 //FEATURE::CONDCOLL
 
-/*N*/ SfxItemSet& __EXPORT SwStyleSheet::GetItemSet()
+/*N*/ SfxItemSet& SwStyleSheet::GetItemSet()
 /*N*/ {
 /*N*/   return aSet;
 /*N*/ }
@@ -449,11 +360,15 @@ public:
 /*N*/           pParent = (*rDoc.GetFrmFmts())[ 0 ]; break;
 /*N*/       case SFX_STYLE_FAMILY_PARA:
 /*N*/           pParent = (*rDoc.GetTxtFmtColls())[ 0 ]; break;
+            default:
+                break;
 /*N*/   }
 /*N*/   if( pParent )
 /*N*/       pFmt->SetDerivedFrom( pParent );
 /*N*/   else
-/*N*/       ASSERT( !this, "Parent nicht gefunden" );
+        {
+/*N*/       OSL_ENSURE( !this, "Parent nicht gefunden" );
+        }
 /*N*/ }
 
 // Setzen des Follows
@@ -470,7 +385,9 @@ public:
 /*N*/       if( pFollow )
 /*N*/           GetColl()->SetNextTxtFmtColl( *pFollow );
 /*N*/       else
-/*N*/           ASSERT( !this, "Follow nicht gefunden" );
+            {
+/*N*/           OSL_ENSURE( !this, "Follow nicht gefunden" );
+            }
 /*N*/   }
 /*N*/ }
 
@@ -481,12 +398,13 @@ public:
 
 /*N*/ SwStyleSheetPool::SwStyleSheetPool( SwDoc& r, SfxItemPool& rp, long nFFVersion,
 /*N*/                                   Sw3Fmts *pConvFmts )
-/*N*/               : SfxStyleSheetBasePool( rp ), rDoc( r ),
-/*N*/                 nExpFFVersion( nFFVersion ),
-/*N*/                 pConvToSymbolFmts( pConvFmts )
+/*N*/ : SfxStyleSheetBasePool( rp )
+/*N*/ , rDoc( r )
+/*N*/ , pConvToSymbolFmts( pConvFmts )
+/*N*/ , nExpFFVersion( nFFVersion )
 /*N*/ {}
 
-/*N*/ __EXPORT SwStyleSheetPool::~SwStyleSheetPool()
+/*N*/ SwStyleSheetPool::~SwStyleSheetPool()
 /*N*/ {
 /*N*/   // wird von SFX-DLL gerufen!
 /*N*/ }
@@ -519,25 +437,6 @@ public:
 
 const int RES_POOLCOLL_HTML_LISTING_40_USER = 0x3002 | USER_FMT;
 const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
-
-/*N*/ BOOL SwStyleSheetPool::Store( SvStream& s, BOOL bUsed )
-/*N*/ {
-/*N*/   ASSERT( nExpFFVersion == s.GetVersion(),
-/*N*/           "SwStyleSheetPool::Store: FF-Version != Stream-FF-Version" );
-/*N*/
-/*N*/   CopyFromDoc( bUsed );
-/*N*/   SetSearchMask( SFX_STYLE_FAMILY_ALL );
-/*N*/
-/*N*/   rPool.SetFileFormatVersion( (USHORT)nExpFFVersion );
-/*N*/
-/*N*/   //JP 11.06.97: laut ChangesMail muss das vorm Speichern gesetzt werden.
-/*N*/   if( SOFFICE_FILEFORMAT_31 == nExpFFVersion )
-/*N*/       rPool.SetStoringRange( 1, 60 );
-/*N*/
-/*N*/   rPool.Store( s );
-/*N*/
-/*N*/   return SfxStyleSheetBasePool::Store( s, bUsed );
-/*N*/ }
 
 // Auffuellen eines Pools mit allen am Doc definierten Vorlagen
 
@@ -610,7 +509,7 @@ const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
 /*N*/   r.bMySet = FALSE;
 /*N*/
 /*N*/   // Members setzen
-/*N*/   ASSERT( nExpFFVersion, "SwStylePool::Add: FF-Version ist nicht gesetzt" );
+/*N*/   OSL_ENSURE( nExpFFVersion, "SwStylePool::Add: FF-Version ist nicht gesetzt" );
 /*N*/   if( nExpFFVersion <= SOFFICE_FILEFORMAT_40 )
 /*N*/       r.nId = Sw3StringPool::ConvertToOldPoolId( rFmt.GetPoolFmtId(),
 /*N*/                                                  nExpFFVersion );
@@ -722,9 +621,9 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/ {
 /*N*/   SwFmt* pFmt;
         SwStyleSheet* p;
-/*N*/   for( p = (SwStyleSheet*) aStyles.First(); p;
-/*N*/        p = (SwStyleSheet*) aStyles.Next() )
-/*N*/   {
+        for( size_t i = 0; i < aStyles.size(); ++i )
+        {
+            p = (SwStyleSheet*)aStyles[ i ];
 /*N*/       if( !p->pFmt && (eMask & p->nFamily) )
 /*N*/       {
 /*N*/           BOOL bNewFmt = FALSE;
@@ -746,7 +645,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*?*/               // mit dem neuen Namen existiert, damit die abgeleiteten
 /*?*/               // und Folgevorlagen umgehaengt wenrden.
 /*?*/               Rename( p->GetName(), aNewName, p->nFamily );
-/*?*/               aStyles.First();
+                    i = 0;
 /*?*/
 /*?*/               if( bPresent )
 /*?*/               {
@@ -869,7 +768,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/                   // im Doc gesetzt.
 /*N*/                   pFmt->SetPoolFmtId( p->nId );
 /*N*/                   if( p->aHelpFile.Len() )
-/*?*/                           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001 /*?*/                      pFmt->SetPoolHlpFileId
+/*?*/                           DBG_BF_ASSERT(0, "STRIP");
 /*N*/                   pFmt->SetPoolHelpId( (USHORT)p->nHelpId );
 /*N*/               }
 /*N*/               else
@@ -906,7 +805,7 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/                       Rename( p->GetName(), pFmt->GetName(), p->GetFamily() );
 /*N*/                       // Da Rename() selbst eine Schleife hat, muss von
 /*N*/                       // vorne gearbeitet werden.
-/*N*/                       aStyles.First();
+                            i = 0;
 /*N*/                   }
 /*N*/               }
 /*N*/           }
@@ -948,10 +847,10 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/                   {
 /*?*/                       BYTE nRealLevel = GetRealLevel(nLevel);
 /*?*/                       USHORT nArrLen = rDoc.GetTxtFmtColls()->Count();
-/*?*/                       for( USHORT i=0; i<nArrLen; i++ )
+/*?*/                       for( USHORT ii=0; ii<nArrLen; ii++ )
 /*?*/                       {
 /*?*/                           SwTxtFmtColl* pCur =
-/*?*/                               (*rDoc.GetTxtFmtColls())[i];
+/*?*/                               (*rDoc.GetTxtFmtColls())[ii];
 /*?*/                           BYTE nCurLevel = pCur->GetOutlineLevel();
 /*?*/                           if( nCurLevel != NO_NUMBERING &&
 /*?*/                               GetRealLevel(nCurLevel) == nRealLevel )
@@ -993,9 +892,9 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/       }
 /*N*/   }
 /*N*/   // Nun sind alle Vorlagen drin, sie koennen also verbunden werden
-/*N*/   for( p = (SwStyleSheet*) aStyles.First(); p;
-/*N*/        p = (SwStyleSheet*) aStyles.Next() )
-/*N*/   {
+        for ( size_t i = 0; i < aStyles.size(); ++i )
+        {
+            p = (SwStyleSheet*)aStyles[ i ];
 /*N*/       if( p->bNew )
 /*N*/       {
 /*N*/           p->ConnectParent( p->GetParent() );
@@ -1008,9 +907,9 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/
 /*N*/ //FEATURE::CONDCOLL
 /*N*/   // dann koennen auch alle bedingten Vorlagen verbunden werden
-/*N*/   for( p = (SwStyleSheet*) aStyles.First(); p;
-/*N*/        p = (SwStyleSheet*) aStyles.Next() )
-/*N*/   {
+        for ( size_t i = 0; i < aStyles.size(); ++i )
+        {
+            p = (SwStyleSheet*)aStyles[ i ];
 /*N*/       if( p->bNew && p->pCondColls )
 /*N*/           for( USHORT n = 0; n < p->pCondColls->Count(); ++n )
 /*N*/           {
@@ -1018,10 +917,12 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*?*/               SwTxtFmtColl* pDColl = rDoc.FindTxtFmtCollByName( pCColl->sColl );
 /*?*/               if( pDColl )
 /*?*/               {
-/*?*/                   DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ((SwConditionTxtFmtColl*)p->pFmt)->InsertCondition(
+/*?*/                   DBG_BF_ASSERT(0, "STRIP");
 /*?*/               }
 /*?*/               else
-/*?*/                   ASSERT( !this, "Collection nicht gefunden" );
+                    {
+/*?*/                   OSL_ENSURE( !this, "Collection nicht gefunden" );
+                    }
 /*N*/           }
 /*N*/   }
 /*N*/ //FEATURE::CONDCOLL
@@ -1031,10 +932,10 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 // Faktorei
 
-/*N*/ SfxStyleSheetBase* __EXPORT SwStyleSheetPool::Create( const String& rName,
-/*N*/                                            SfxStyleFamily eFam, USHORT nMask)
+/*N*/ SfxStyleSheetBase* SwStyleSheetPool::Create( const String& rName,
+/*N*/                                            SfxStyleFamily eFam, USHORT nMask2)
 /*N*/ {
-/*N*/   return new SwStyleSheet( rName, *this, eFam, nMask);
+/*N*/   return new SwStyleSheet( rName, *this, eFam, nMask2);
 /*N*/ }
 
 
@@ -1046,9 +947,9 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/   // da mit Referenzen gearbeitet wird, muss der Name zwischen-
 /*N*/   // gelagert werden!
 /*N*/   String aOld( rOld );
-/*N*/   for( SwStyleSheet* p = (SwStyleSheet*) aStyles.First(); p;
-/*N*/        p = (SwStyleSheet*) aStyles.Next() )
-/*N*/   {
+        for( size_t i = 0; i < aStyles.size(); ++i )
+        {
+            SwStyleSheet* p = (SwStyleSheet*)aStyles[ i ];
 /*N*/       if( p->GetFamily() == eFam )
 /*N*/       {
 /*N*/           if( p->GetName() == aOld )
@@ -1074,10 +975,10 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/ SwStyleSheet *SwStyleSheetPool::FindByPoolId( USHORT nPoolId )
 /*N*/ {
 /*N*/   SwStyleSheet *pS = 0;
-/*N*/   ULONG nCount = aStyles.Count();
-/*N*/   for( ULONG i=0; i<nCount; i++ )
+/*N*/   size_t nCount = aStyles.size();
+/*N*/   for( size_t i = 0; i < nCount; i++ )
 /*N*/   {
-/*N*/       SwStyleSheet *p = (SwStyleSheet *)aStyles.GetObject( i );
+/*N*/       SwStyleSheet *p = (SwStyleSheet *)aStyles[ i ];
 /*N*/       if( p->nId == nPoolId )
 /*N*/       {
 /*?*/           pS = p;
@@ -1095,18 +996,18 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 /*N*/ void Sw3IoImp::LoadStyleSheets( BOOL bNew )
 /*N*/ {
-/*N*/   ASSERT( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
+/*N*/   OSL_ENSURE( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gelesen. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       FlushRecSizes();
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );
 /*N*/   SfxItemPool* pPool = pDoc->GetAttrPool().Clone();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( pTmp );
 /*N*/
-/*N*/   ASSERT( !pConvToSymbolFmts, "ConvToSymbol array exists" );
+/*N*/   OSL_ENSURE( !pConvToSymbolFmts, "ConvToSymbol array exists" );
 /*N*/   pConvToSymbolFmts = new Sw3Fmts;
 /*N*/   SwStyleSheetPool* p = new SwStyleSheetPool( *pDoc, *pPool, 0, pConvToSymbolFmts );
 /*N*/   pStyles->SetBufferSize( SW3_BSR_STYLES );
@@ -1251,11 +1152,11 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 
 /*N*/ void Sw3IoImp::SaveStyleSheets( BOOL bUsed )
 /*N*/ {
-/*N*/   ASSERT( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
+/*N*/   OSL_ENSURE( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
 /*N*/   // Bisher wurde allenfalls der Drawing-Layer gespeichert. Deshalb
 /*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
 /*N*/   if( HasRecSizes() )
-            {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 /*?*/       FlushRecSizes();
+            {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
 /*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );
@@ -1276,3 +1177,5 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

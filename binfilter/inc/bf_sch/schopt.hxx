@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,29 +32,17 @@
 #include <bf_svtools/bf_solar.h>
 
 // header for TYPEINFO
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 // header for ConfigItem
-#ifndef _UTL_CONFIGITEM_HXX_
 #include <unotools/configitem.hxx>
-#endif
 // header for SfxPoolItem
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 // header for Color
-#ifndef _TOOLS_COLOR_HXX
 #include <tools/color.hxx>
-#endif
 // header for Table
-#ifndef _TOOLS_TABLE_HXX
 #include <tools/table.hxx>
-#endif
 // header for XColorEntry
-#ifndef _XTABLE_HXX
-#include <bf_svx/xtable.hxx>   //STRIP002
-#endif
+#include <bf_svx/xtable.hxx>
 namespace binfilter {
 
 // --------------------
@@ -115,3 +104,4 @@ void Commit();
 } //namespace binfilter
 #endif  // _SCH_SCHOPT_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

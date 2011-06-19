@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -66,11 +67,9 @@ class SvxBulletItem;
 class SvxLRSpaceItem;
 class SvxForbiddenCharactersTable;
 }//end of namespace binfilter
-#include <vos/ref.hxx>
+#include <rtl/ref.hxx>
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
 
 namespace com { namespace sun { namespace star {
   namespace linguistic2 {
@@ -82,15 +81,9 @@ namespace com { namespace sun { namespace star {
 }
 }}}
 
-#ifndef _RSCSFX_HXX //autogen
 #include <rsc/rscsfx.hxx>
-#endif
-#ifndef _EDITDATA_HXX
 #include <bf_svx/editdata.hxx>
-#endif
-#ifndef INCLUDED_I18NPOOL_LANG_H
 #include <i18npool/lang.h>
-#endif
 
 #include <tools/rtti.hxx>   // wegen typedef TypeId
 namespace binfilter {
@@ -283,7 +276,7 @@ public:
     void            SetHyphenator( ::com::sun::star::uno::Reference<
                             ::com::sun::star::linguistic2::XHyphenator >& xHyph );
 
-    void            SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars );
+    void            SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars );
 
     void            SetDefaultLanguage( LanguageType eLang );
 
@@ -332,3 +325,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _MyEDITENG_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

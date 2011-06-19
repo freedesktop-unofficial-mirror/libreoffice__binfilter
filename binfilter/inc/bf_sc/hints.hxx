@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,13 +31,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef SC_SCGLOB_HXX
 #include "global.hxx"
-#endif
 
-#ifndef _SFXHINT_HXX //autogen
 #include <bf_svtools/hint.hxx>
-#endif
 #include <tools/debug.hxx>
 namespace binfilter {
 
@@ -148,11 +145,12 @@ class ScAutoStyleHint : public SfxHint
 {
 public:
                     TYPEINFO();
-                    ScAutoStyleHint( const ScRange& rR, const String& rSt1,
-                                        ULONG nT, const String& rSt2 ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ULONG nT, const String& rSt2 );
-
+                    ScAutoStyleHint( const ScRange& /*rR*/, const String& /*rSt1*/,
+                                        ULONG /*nT*/, const String& /*rSt2*/ ){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

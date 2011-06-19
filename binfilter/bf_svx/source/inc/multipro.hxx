@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,15 +28,9 @@
 #ifndef _MULTIPRO_HXX
 #define _MULTIPRO_HXX
 
-#ifndef _COM_SUN_STAR_FORM_XFORMCOMPONENT_HPP_
 #include <com/sun/star/form/XFormComponent.hpp>
-#endif
-#ifndef _COMPHELPER_COMPOSEDPROPS_HXX_
 #include <comphelper/composedprops.hxx>
-#endif
-#ifndef _SVDMARK_HXX //autogen
 #include <svdmark.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -76,3 +71,4 @@ namespace svxform
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

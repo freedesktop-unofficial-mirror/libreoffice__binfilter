@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,7 +42,7 @@ class SwNodeIndex
 {
     friend void SwNodes::RegisterIndex( SwNodeIndex& );
     friend void SwNodes::DeRegisterIndex( SwNodeIndex& );
-    friend void SwNodes::RemoveNode( ULONG, ULONG, FASTBOOL );
+    friend void SwNodes::RemoveNode( ULONG, ULONG, bool );
 
 #ifdef DBG_UTIL
     static int nSerial;
@@ -250,3 +251,5 @@ inline SwNode* SwNodes::operator[]( const SwNodeIndex& rIdx ) const
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

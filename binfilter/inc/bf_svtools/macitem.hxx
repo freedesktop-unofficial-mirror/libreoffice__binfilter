@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,29 +32,17 @@
 
 // class SvxMacroItem ----------------------------------------------------
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _RTTI_HXX
 #include <tools/rtti.hxx>
-#endif
 
-#ifndef _DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TABLE_HXX
 #include <tools/table.hxx>
-#endif
 
 class SvStream;
 
@@ -183,7 +172,7 @@ public:
                                     const ::IntlWrapper * = 0 ) const;
     virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
     virtual SfxPoolItem*    Create(SvStream &, USHORT) const;
-    virtual SvStream&       Store(SvStream &, USHORT nItemVersion ) const;
+    virtual SvStream& Store(SvStream &rStream, USHORT) const { return rStream; }
     virtual USHORT          GetVersion( USHORT nFileFormatVersion ) const;
 
     inline const SvxMacroTableDtor& GetMacroTable() const { return aMacroTable;}
@@ -227,3 +216,5 @@ inline BOOL SvxMacroItem::DelMacro( USHORT nEvent )
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

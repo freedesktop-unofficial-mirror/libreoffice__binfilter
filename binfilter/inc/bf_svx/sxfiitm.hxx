@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,13 +28,9 @@
 #ifndef _SFXIITM_HXX
 #define _SFXIITM_HXX
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 
-#ifndef _FRACT_HXX //autogen
 #include <tools/fract.hxx>
-#endif
 namespace binfilter {
 
 /*************************************************************************/
@@ -48,7 +45,7 @@ public:
     SdrFractionItem(USHORT nId, const Fraction& rVal): SfxPoolItem(nId), nValue(rVal) {}
     SdrFractionItem(USHORT nId, SvStream& rIn);
     virtual int              operator==(const SfxPoolItem&) const;
-    virtual SvStream&        Store(SvStream&, USHORT nItemVers) const;
+    virtual SvStream&        Store(SvStream& rStream, USHORT) const { return rStream; }
     virtual SfxPoolItem*     Clone(SfxItemPool *pPool=NULL) const;
             const Fraction&  GetValue() const { return nValue; }
             void             SetValue(const Fraction& rVal) { nValue = rVal; }
@@ -59,3 +56,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

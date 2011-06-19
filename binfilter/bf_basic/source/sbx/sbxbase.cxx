@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _STREAM_HXX //autogen
 #include <tools/stream.hxx>
-#endif
 
 #include "sbx.hxx"
 #include "sbxfac.hxx"
@@ -190,7 +189,7 @@ SbxBase* SbxBase::Create( UINT16 nSbxId, UINT32 nCreator )
         case SBXID_METHOD:      return new SbxMethod( aEmptyStr, SbxEMPTY );
         case SBXID_PROPERTY:    return new SbxProperty( aEmptyStr, SbxEMPTY );
     }
-    // Unbekanter Typ: Åber die Factories gehen!
+    // Unbekanter Typ: ?ber die Factories gehen!
     SbxAppData* p = GetSbxData_Impl();
     SbxBase* pNew = NULL;
     for( USHORT i = 0; i < p->aFacs.Count(); i++ )
@@ -297,39 +296,7 @@ void SbxBase::Skip( SvStream& rStrm )
     rStrm.Seek( nStartPos + nSize );
 }
 
-BOOL SbxBase::Store( SvStream& rStrm )
-{
-    DBG_CHKTHIS( SbxBase, 0 );
-    if( !( nFlags & SBX_DONTSTORE ) )
-    {
-        rStrm << (UINT32) GetCreator()
-              << (UINT16) GetSbxId()
-              << (UINT16) GetFlags()
-              << (UINT16) GetVersion();
-        ULONG nOldPos = rStrm.Tell();
-        rStrm << (UINT32) 0L;
-        BOOL bRes = StoreData( rStrm );
-        ULONG nNewPos = rStrm.Tell();
-        rStrm.Seek( nOldPos );
-        rStrm << (UINT32) ( nNewPos - nOldPos );
-        rStrm.Seek( nNewPos );
-        if( rStrm.GetError() != SVSTREAM_OK )
-            bRes = FALSE;
-        if( bRes )
-            bRes = StoreCompleted();
-        return bRes;
-    }
-    else
-        return TRUE;
-}
-
 BOOL SbxBase::LoadData( SvStream&, USHORT )
-{
-    DBG_CHKTHIS( SbxBase, 0 );
-    return FALSE;
-}
-
-BOOL SbxBase::StoreData( SvStream& ) const
 {
     DBG_CHKTHIS( SbxBase, 0 );
     return FALSE;
@@ -406,20 +373,7 @@ BOOL SbxInfo::LoadData( SvStream& rStrm, USHORT nVer )
     return TRUE;
 }
 
-BOOL SbxInfo::StoreData( SvStream& rStrm ) const
-{
-    rStrm.WriteByteString( aComment, RTL_TEXTENCODING_ASCII_US );
-    rStrm.WriteByteString( aHelpFile, RTL_TEXTENCODING_ASCII_US );
-    rStrm << nHelpId << aParams.Count();
-    for( USHORT i = 0; i < aParams.Count(); i++ )
-    {
-        SbxParamInfo* p = aParams.GetObject( i );
-        rStrm.WriteByteString( p->aName, RTL_TEXTENCODING_ASCII_US );
-        rStrm << (UINT16) p->eType
-              << (UINT16) p->nFlags
-              << (UINT32) p->nUserData;
-    }
-    return TRUE;
-}
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

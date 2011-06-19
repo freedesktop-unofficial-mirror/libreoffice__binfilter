@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #define _SFX_APPBAS_HXX
 
 
-#ifndef _SBXDEF_HXX //autogen
 #include "bf_basic/sbxdef.hxx"
-#endif
 namespace binfilter {
 
 class StarBASIC;
@@ -46,3 +45,4 @@ SbxVariable* MakeVariable( StarBASIC *pBas, SbxObject *pObject,
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

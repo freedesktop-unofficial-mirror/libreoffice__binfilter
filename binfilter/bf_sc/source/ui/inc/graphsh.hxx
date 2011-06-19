@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef GRAPHSH_HXX
 #define GRAPHSH_HXX
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include "shellids.hxx"
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>
-#endif
 
 class ScViewData;
 
@@ -51,13 +46,15 @@ public:
 
     SFX_DECL_INTERFACE(SCID_GRAPHIC_SHELL);
 
-    ScGraphicShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 ScGraphicShell(ScViewData* pData);
-    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void    Execute(SfxRequest& rReq);
-    void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void    GetAttrState(SfxItemSet &rSet);
+    ScGraphicShell(ScViewData* pData):ScDrawShell(pData){DBG_BF_ASSERT(0, "STRIP");}
+    void    Execute(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetAttrState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
 
-    void    ExecuteFilter(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void    ExecuteFilter(SfxRequest& rReq);
-    void    GetFilterState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void    GetFilterState(SfxItemSet &rSet);
+    void    ExecuteFilter(SfxRequest& rReq){DBG_BF_ASSERT(0, "STRIP");}
+    void    GetFilterState(SfxItemSet &rSet){DBG_BF_ASSERT(0, "STRIP");}
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

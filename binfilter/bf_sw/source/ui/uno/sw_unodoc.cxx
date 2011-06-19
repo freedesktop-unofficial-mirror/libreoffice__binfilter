@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,12 @@
 #include <tools/string.hxx>
 #include <bf_sfx2/docfac.hxx>
 
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
 
 #include "swmodule.hxx"
 
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
+#include <osl/mutex.hxx>
 #include <vcl/svapp.hxx>
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -64,10 +59,10 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwTextDocument_getSupportedServiceName
     return ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.comp.Writer.TextDocument" ) );
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SwTextDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
+uno::Reference< uno::XInterface > SAL_CALL SwTextDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ )
     throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SW_MOD(), "No StarWriter module!" );
@@ -105,10 +100,10 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwWebDocument_getSupportedServiceNames
     return ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.comp.Writer.WebDocument" ) );
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SwWebDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
+uno::Reference< uno::XInterface > SAL_CALL SwWebDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ )
     throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SW_MOD(), "No StarWriter module!" );
@@ -146,10 +141,10 @@ uno::Sequence< ::rtl::OUString > SAL_CALL SwGlobalDocument_getSupportedServiceNa
     return ::rtl::OUString ( RTL_CONSTASCII_USTRINGPARAM ( "com.sun.star.comp.Writer.GlobalDocument" ) );
 }
 
-uno::Reference< uno::XInterface > SAL_CALL SwGlobalDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > &rSMgr )
+uno::Reference< uno::XInterface > SAL_CALL SwGlobalDocument_createInstance( const uno::Reference< lang::XMultiServiceFactory > & /*rSMgr*/ )
     throw( uno::Exception )
 {
-    ::vos::OGuard aGuard( Application::GetSolarMutex() );
+    SolarMutexGuard aGuard;
 
     // to create the service the SW_MOD should be already initialized
     DBG_ASSERT( SW_MOD(), "No StarWriter module!" );
@@ -170,3 +165,5 @@ uno::Reference< uno::XInterface > SAL_CALL SwGlobalDocument_createInstance( cons
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

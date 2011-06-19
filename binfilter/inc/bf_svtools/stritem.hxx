@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _SFXSTRITEM_HXX
 #define _SFXSTRITEM_HXX
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SVTOOLS_CUSTRITM_HXX
 #include <bf_svtools/custritm.hxx>
-#endif
 
 namespace binfilter
 {
@@ -54,7 +51,7 @@ public:
 
     virtual SfxPoolItem * Create(SvStream & rStream, USHORT) const;
 
-    virtual SvStream & Store(SvStream & rStream, USHORT) const;
+    virtual SvStream & Store(SvStream & rStream, USHORT) const { return rStream; }
 
     virtual SfxPoolItem * Clone(SfxItemPool * = 0) const;
 };
@@ -63,3 +60,4 @@ public:
 
 #endif // _SFXSTRITEM_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

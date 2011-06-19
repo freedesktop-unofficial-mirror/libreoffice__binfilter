@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,103 +32,42 @@
 #include <bf_svtools/svstdarr.hxx>
 #endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_STYLE_XSTYLEFAMILIESSUPPLIER_HPP_
 #include <com/sun/star/style/XStyleFamiliesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XCHAPTERNUMBERINGSUPPLIER_HPP_
 #include <com/sun/star/text/XChapterNumberingSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTFRAMESSUPPLIER_HPP_
 #include <com/sun/star/text/XTextFramesSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTGRAPHICOBJECTSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextGraphicObjectsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_XTEXTEMBEDDEDOBJECTSSUPPLIER_HPP_
 #include <com/sun/star/text/XTextEmbeddedObjectsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UCB_XANYCOMPAREFACTORY_HPP_
 #include <com/sun/star/ucb/XAnyCompareFactory.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_TXTSTYLI_HXX_
 #include "txtstyli.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 
-#ifndef _XMLOFF_TXTPARAI_HXX
 #include "txtparai.hxx"
-#endif
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
-#endif
-#ifndef _XMLOFF_TXTIMPPR_HXX
 #include "txtimppr.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_TXTVFLDI_HXX
 #include "txtvfldi.hxx"
-#endif
-#ifndef _XMLOFF_I18NMAP_HXX
 #include "i18nmap.hxx"
-#endif
-#ifndef _XMLTEXTLISTITEMCONTEXT_HXX
 #include "XMLTextListItemContext.hxx"
-#endif
-#ifndef _XMLTEXTLISTBLOCKCONTEXT_HXX
 #include "XMLTextListBlockContext.hxx"
-#endif
-#ifndef _XMLTEXTFRAMECONTEXT_HXX
 #include "XMLTextFrameContext.hxx"
-#endif
-#ifndef _XMLTEXTFRAMEHYPERLINKCONTEXT_HXX
 #include "XMLTextFrameHyperlinkContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLSECTIONIMPORTCONTEXT_HXX_
 #include "XMLSectionImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLINDEXTOCCONTEXT_HXX_
 #include "XMLIndexTOCContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLFONTSTYLESCONTEXT_HXX
 #include "XMLFontStylesContext.hxx"
-#endif
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLTRACKEDCHANGESIMPORTCONTEXT_HXX
 #include "XMLTrackedChangesImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLCHANGEIMPORTCONTEXT_HXX
 #include "XMLChangeImportContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLAUTOMARKFILECONTEXT_HXX_
 #include "XMLAutoMarkFileContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLCALCULATION_SETTINGS_CONTEXT_HXX
 #include "XMLCalculationSettingsContext.hxx"
-#endif
-#ifndef _XMLOFF_NUMBERSTYLESIMPORT_HXX
 #include "XMLNumberStylesImport.hxx"
-#endif
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::beans;
@@ -142,8 +82,10 @@ using namespace ::binfilter::xmloff::token;
 using ::com::sun::star::util::DateTime;
 using namespace ::com::sun::star::ucb;
 using ::comphelper::UStringLess;
+using ::rtl::OUString;
+using ::rtl::OUStringBuffer;
 
-static __FAR_DATA SvXMLTokenMapEntry aTextElemTokenMap[] =
+static SvXMLTokenMapEntry aTextElemTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_P,                XML_TOK_TEXT_P              },
     { XML_NAMESPACE_TEXT, XML_H,                XML_TOK_TEXT_H              },
@@ -183,7 +125,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTextElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextPElemTokenMap[] =
+static SvXMLTokenMapEntry aTextPElemTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_SPAN, XML_TOK_TEXT_SPAN },
     { XML_NAMESPACE_TEXT, XML_TAB_STOP, XML_TOK_TEXT_TAB_STOP },
@@ -360,7 +302,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTextPElemTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextPAttrTokenMap[] =
+static SvXMLTokenMapEntry aTextPAttrTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_STYLE_NAME,   XML_TOK_TEXT_P_STYLE_NAME },
     { XML_NAMESPACE_TEXT, XML_COND_STYLE_NAME,
@@ -369,7 +311,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTextPAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextListBlockAttrTokenMap[] =
+static SvXMLTokenMapEntry aTextListBlockAttrTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_STYLE_NAME,
             XML_TOK_TEXT_LIST_BLOCK_STYLE_NAME },
@@ -378,14 +320,14 @@ static __FAR_DATA SvXMLTokenMapEntry aTextListBlockAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextListBlockElemTokenMap[] =
+static SvXMLTokenMapEntry aTextListBlockElemTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_LIST_HEADER, XML_TOK_TEXT_LIST_HEADER },
     { XML_NAMESPACE_TEXT, XML_LIST_ITEM,    XML_TOK_TEXT_LIST_ITEM   },
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextFrameAttrTokenMap[] =
+static SvXMLTokenMapEntry aTextFrameAttrTokenMap[] =
 {
     { XML_NAMESPACE_DRAW, XML_STYLE_NAME, XML_TOK_TEXT_FRAME_STYLE_NAME },
     { XML_NAMESPACE_DRAW, XML_NAME, XML_TOK_TEXT_FRAME_NAME },
@@ -416,7 +358,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTextFrameAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextContourAttrTokenMap[] =
+static SvXMLTokenMapEntry aTextContourAttrTokenMap[] =
 {
     { XML_NAMESPACE_SVG, XML_WIDTH,     XML_TOK_TEXT_CONTOUR_WIDTH      },
     { XML_NAMESPACE_SVG, XML_HEIGHT,    XML_TOK_TEXT_CONTOUR_HEIGHT     },
@@ -427,7 +369,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTextContourAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextHyperlinkAttrTokenMap[] =
+static SvXMLTokenMapEntry aTextHyperlinkAttrTokenMap[] =
 {
     { XML_NAMESPACE_XLINK, XML_HREF, XML_TOK_TEXT_HYPERLINK_HREF },
     { XML_NAMESPACE_OFFICE, XML_NAME, XML_TOK_TEXT_HYPERLINK_NAME },
@@ -439,7 +381,7 @@ static __FAR_DATA SvXMLTokenMapEntry aTextHyperlinkAttrTokenMap[] =
     XML_TOKEN_MAP_END
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aTextMasterPageElemTokenMap[] =
+static SvXMLTokenMapEntry aTextMasterPageElemTokenMap[] =
 {
     { XML_NAMESPACE_STYLE, XML_HEADER, XML_TOK_TEXT_MP_HEADER },
     { XML_NAMESPACE_STYLE, XML_FOOTER, XML_TOK_TEXT_MP_FOOTER },
@@ -463,9 +405,9 @@ XMLTextImportHelper::XMLTextImportHelper(
     pTextElemTokenMap( 0 ),
     pTextPElemTokenMap( 0 ),
     pTextPAttrTokenMap( 0 ),
+    pTextFieldAttrTokenMap( 0 ),
     pTextListBlockAttrTokenMap( 0 ),
     pTextListBlockElemTokenMap( 0 ),
-    pTextFieldAttrTokenMap( 0 ),
     pTextFrameAttrTokenMap( 0 ),
     pTextContourAttrTokenMap( 0 ),
     pTextHyperlinkAttrTokenMap( 0 ),
@@ -474,32 +416,28 @@ XMLTextImportHelper::XMLTextImportHelper(
     pNextFrmNames( 0 ),
     pRenameMap( 0 ),
     pOutlineStyles( 0 ),
-    bInsertMode( bInsertM ),
-    bBlockMode( bBlockM ),
-    bStylesOnlyMode( bStylesOnlyM ),
-    bProgress( bPrg ),
-    bOrganizerMode( bOrganizerM ),
-    bBodyContentStarted( sal_True ),
-
-    // #107848#
-    // Initialize inside_deleted_section flag correctly
-    bInsideDeleteContext( sal_False ),
-
     pFootnoteBackpatcher( NULL ),
     pSequenceIdBackpatcher( NULL ),
     pSequenceNameBackpatcher( NULL ),
     xServiceFactory( rModel, UNO_QUERY ),
+    bInsertMode( bInsertM ),
+    bStylesOnlyMode( bStylesOnlyM ),
+    bBlockMode( bBlockM ),
+    bProgress( bPrg ),
+    bOrganizerMode( bOrganizerM ),
+    bBodyContentStarted( sal_True ),
+    bInsideDeleteContext( sal_False ), // Initialize inside_deleted_section flag correctly
     sParaStyleName(RTL_CONSTASCII_USTRINGPARAM("ParaStyleName")),
     sCharStyleName(RTL_CONSTASCII_USTRINGPARAM("CharStyleName")),
     sHeadingStyleName(RTL_CONSTASCII_USTRINGPARAM("HeadingStyleName")),
     sNumberingLevel(RTL_CONSTASCII_USTRINGPARAM("NumberingLevel")),
     sNumberingStartValue(RTL_CONSTASCII_USTRINGPARAM("NumberingStartValue")),
-    sParaIsNumberingRestart(RTL_CONSTASCII_USTRINGPARAM("ParaIsNumberingRestart")),
     sNumberingRules(RTL_CONSTASCII_USTRINGPARAM("NumberingRules")),
+    sParaIsNumberingRestart(RTL_CONSTASCII_USTRINGPARAM("ParaIsNumberingRestart")),
+    sNumberingIsNumber(RTL_CONSTASCII_USTRINGPARAM("NumberingIsNumber")),
+    sCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
     sSequenceNumber(RTL_CONSTASCII_USTRINGPARAM("SequenceNumber")),
     sSourceName(RTL_CONSTASCII_USTRINGPARAM("SourceName")),
-    sCurrentPresentation(RTL_CONSTASCII_USTRINGPARAM("CurrentPresentation")),
-    sNumberingIsNumber(RTL_CONSTASCII_USTRINGPARAM("NumberingIsNumber")),
     sChainNextName(RTL_CONSTASCII_USTRINGPARAM("ChainNextName")),
     sChainPrevName(RTL_CONSTASCII_USTRINGPARAM("ChainPrevName")),
     sHyperLinkURL(RTL_CONSTASCII_USTRINGPARAM("HyperLinkURL")),
@@ -791,7 +729,6 @@ void XMLTextImportHelper::DeleteParagraph()
     }
 }
 
-#ifdef CONV_STAR_FONTS
 OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
                                                 const OUString& rStyleName,
                                                 sal_uInt8& rFlags,
@@ -829,9 +766,9 @@ OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
                         {
                             UniReference<XMLPropertySetMapper> rPropMapper =
                                 xImpPrMap->getPropertySetMapper();
-                            for( sal_Int32 i=0; i < nCount; i++ )
+                            for( sal_Int32 j=0; j < nCount; j++ )
                             {
-                                const XMLPropertyState& rProp = pStyle->_GetProperties()[i];
+                                const XMLPropertyState& rProp = pStyle->_GetProperties()[j];
                                 sal_Int32 nIdx = rProp.mnIndex;
                                 sal_uInt32 nContextId = rPropMapper->GetEntryContextId(nIdx);
                                 if( CTF_FONTFAMILYNAME == nContextId )
@@ -870,7 +807,6 @@ OUString XMLTextImportHelper::ConvertStarFonts( const OUString& rChars,
 
     return bConverted ? sChars.makeStringAndClear() : rChars;
 }
-#endif
 
 OUString XMLTextImportHelper::SetStyleAndAttrs(
         const Reference < XTextCursor >& rCursor,
@@ -1504,7 +1440,7 @@ SvXMLImportContext *XMLTextImportHelper::CreateTextChildContext(
             TextContentAnchorType eAnchorType =
                 XML_TEXT_TYPE_TEXTBOX == eType ? TextContentAnchorType_AT_FRAME
                                                : TextContentAnchorType_AT_PAGE;
-            sal_uInt16 nType;
+            sal_uInt16 nType(0);
             switch( nToken )
             {
             case XML_TOK_TEXT_APPLET_PAGE:
@@ -1644,9 +1580,9 @@ SvXMLImportContext *XMLTextImportHelper::CreateTextChildContext(
 }
 
 SvXMLImportContext *XMLTextImportHelper::CreateTableChildContext(
-        SvXMLImport& rImport,
-        sal_uInt16 nPrefix, const OUString& rLocalName,
-        const Reference< XAttributeList > & xAttrList )
+        SvXMLImport& /*rImport*/,
+        sal_uInt16 /*nPrefix*/, const OUString& /*rLocalName*/,
+        const Reference< XAttributeList > & /*xAttrList*/ )
 {
     return 0;
 }
@@ -1914,11 +1850,11 @@ sal_Bool XMLTextImportHelper::IsInHeaderFooter() const
 }
 
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertOLEObject(
-                                        SvXMLImport& rImport,
-                                        const OUString& rHRef,
-                                        const OUString& rStyleName,
-                                        const OUString& rTblName,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                        SvXMLImport& /*rImport*/,
+                                        const OUString& /*rHRef*/,
+                                        const OUString& /*rStyleName*/,
+                                        const OUString& /*rTblName*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
@@ -1926,53 +1862,53 @@ Reference< XPropertySet> XMLTextImportHelper::createAndInsertOLEObject(
 
 
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertApplet(
-                                        const OUString& rCode,
-                                          const OUString& rName,
-                                          sal_Bool bMayScript,
-                                          const OUString& rHRef,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                        const OUString& /*rCode*/,
+                                          const OUString& /*rName*/,
+                                          sal_Bool /*bMayScript*/,
+                                          const OUString& /*rHRef*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
 }
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertPlugin(
-                                          const OUString& rMimeType,
-                                          const OUString& rHRef,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                          const OUString& /*rMimeType*/,
+                                          const OUString& /*rHRef*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
 }
 Reference< XPropertySet> XMLTextImportHelper::createAndInsertFloatingFrame(
-                                          const OUString& rName,
-                                          const OUString& rHRef,
-                                          const OUString& rStyleName,
-                                        sal_Int32 nWidth, sal_Int32 nHeight )
+                                          const OUString& /*rName*/,
+                                          const OUString& /*rHRef*/,
+                                          const OUString& /*rStyleName*/,
+                                        sal_Int32 /*nWidth*/, sal_Int32 /*nHeight*/ )
 {
     Reference< XPropertySet> xPropSet;
     return xPropSet;
 }
 
 void XMLTextImportHelper::endAppletOrPlugin(
-        Reference < XPropertySet> & rPropSet,
-        ::std::map < const ::rtl::OUString, ::rtl::OUString, UStringLess > &rParamMap)
+        Reference < XPropertySet> & /*rPropSet*/,
+        ::std::map < const ::rtl::OUString, ::rtl::OUString, UStringLess > & /*rParamMap*/)
 {
 }
 // redline helper: dummy implementation to be overridden in sw/filter/xml
 void XMLTextImportHelper::RedlineAdd(
-    const OUString& rType,
-    const OUString& rId,
-    const OUString& rAuthor,
-    const OUString& rComment,
-    const DateTime& rDateTime,
-    sal_Bool bMergeLastPara)
+    const OUString& /*rType*/,
+    const OUString& /*rId*/,
+    const OUString& /*rAuthor*/,
+    const OUString& /*rComment*/,
+    const DateTime& /*rDateTime*/,
+    sal_Bool /*bMergeLastPara*/)
 {
     // dummy implementation: do nothing
 }
 
 Reference<XTextCursor> XMLTextImportHelper::RedlineCreateText(
-    Reference<XTextCursor> & rOldCursor,
-    const OUString& rId)
+    Reference<XTextCursor> & /*rOldCursor*/,
+    const OUString& /*rId*/)
 {
     // dummy implementation: do nothing
     Reference<XTextCursor> xRet;
@@ -1980,30 +1916,30 @@ Reference<XTextCursor> XMLTextImportHelper::RedlineCreateText(
 }
 
 void XMLTextImportHelper::RedlineSetCursor(
-    const OUString& rId,
-    sal_Bool bStart,
-    sal_Bool bIsOutsideOfParagraph)
+    const OUString& /*rId*/,
+    sal_Bool /*bStart*/,
+    sal_Bool /*bIsOutsideOfParagraph*/)
 {
     // dummy implementation: do nothing
 }
 
 void XMLTextImportHelper::RedlineAdjustStartNodeCursor(
-    sal_Bool bStart)
+    sal_Bool /*bStart*/)
 {
     // dummy implementation: do nothing
 }
 
-void XMLTextImportHelper::SetShowChanges( sal_Bool bShowChanges )
+void XMLTextImportHelper::SetShowChanges( sal_Bool /*bShowChanges*/ )
 {
     // dummy implementation: do nothing
 }
 
-void XMLTextImportHelper::SetRecordChanges( sal_Bool bRecordChanges )
+void XMLTextImportHelper::SetRecordChanges( sal_Bool /*bRecordChanges*/ )
 {
     // dummy implementation: do nothing
 }
 void XMLTextImportHelper::SetChangesProtectionKey(
-    const Sequence<sal_Int8> & rProtectionKey )
+    const Sequence<sal_Int8> & /*rProtectionKey*/ )
 {
     // dummy implementation: do nothing
 }
@@ -2025,3 +1961,5 @@ void XMLTextImportHelper::ResetOpenRedlineId()
     SetOpenRedlineId(sEmpty);
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

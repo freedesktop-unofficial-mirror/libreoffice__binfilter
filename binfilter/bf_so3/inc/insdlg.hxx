@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,19 +28,11 @@
 #ifndef _INSDLG_HXX
 #define _INSDLG_HXX
 
-#ifndef _GLOBNAME_HXX //autogen
 #include <tools/globname.hxx>
-#endif
-#ifndef _OWNCONT_HXX
 #include <bf_svtools/ownlist.hxx>
-#endif
-#ifndef _SO2REF_HXX
 #include <bf_so3/so2ref.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 class SvAppletObject;
 
@@ -85,3 +78,4 @@ class SO3_DLLPRIVATE SvObjectServerList
 
 #endif // _INSDLG_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

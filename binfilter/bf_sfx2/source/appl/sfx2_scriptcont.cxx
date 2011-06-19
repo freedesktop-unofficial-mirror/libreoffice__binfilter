@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,39 +26,23 @@
  *
  ************************************************************************/
 
-#ifndef _COM_SUN_STAR_XML_SAX_XPARSER_HPP_
 #include <com/sun/star/xml/sax/XParser.hpp>
-#endif
 
 #include <com/sun/star/io/XActiveDataSource.hpp>
 
-#ifndef _SFX_SFXUNO_HXX
 #include <bf_sfx2/sfxuno.hxx>
-#endif
 
-#ifndef _SFX_NAMECONT_HXX
 #include "namecont.hxx"
-#endif
-
-#ifndef _BASMGR_HXX
-#include "bf_basic/basmgr.hxx"
-#endif
 
 #include "scriptcont.hxx"
 
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _RTL_DIGEST_H_
 #include <rtl/digest.h>
-#endif
 
 // For password functionality
 
-
 #include <bf_svtools/sfxecode.hxx>
 #include <bf_svtools/ehdl.hxx>
-#include "bf_basic/basmgr.hxx"
 #include <xmlscript/xmlmod_imexp.hxx>
 #include <app.hxx>
 namespace binfilter {
@@ -72,8 +57,8 @@ using namespace ::com::sun::star::script;
 using namespace ::com::sun::star::xml::sax;
 using namespace ::com::sun::star;
 using namespace cppu;
-using namespace rtl;
 using namespace osl;
+using ::rtl::OUString;
 
 
 //============================================================================
@@ -201,7 +186,7 @@ void SfxScriptLibraryContainer::setLibraryPassword(
                 OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Writer") ) ), UNO_QUERY );
         if( !xHandler.is() )
         {
-            OSL_ENSURE( 0, "### couln't create sax-writer component\n" );
+            OSL_FAIL( "### couln't create sax-writer component\n" );
             return;
         }
 
@@ -225,7 +210,7 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 /*N*/       OUString( RTL_CONSTASCII_USTRINGPARAM("com.sun.star.xml.sax.Parser") ) ), UNO_QUERY );
 /*N*/   if( !xParser.is() )
 /*N*/   {
-/*N*/       OSL_ENSURE( 0, "### couln't create sax parser component\n" );
+/*N*/       OSL_FAIL( "### couln't create sax parser component\n" );
 /*N*/       return aRetAny;
 /*N*/   }
 /*N*/
@@ -283,9 +268,9 @@ void SfxScriptLibraryContainer::setLibraryPassword(
 /*N*/ }
 
 
-/*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& aFile )
+/*?*/ void SAL_CALL SfxScriptLibraryContainer::importFromOldStorage( const ::rtl::OUString& /*aFile*/ )
 /*?*/ {
-            DBG_ERROR("Strip");
+            OSL_FAIL("Strip");
 /*?*/ }
 
 
@@ -346,25 +331,25 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
         return bSuccess;
 /*?*/ }
 
-/*?*/ void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword( const OUString& Name,
-/*?*/     const OUString& OldPassword, const OUString& NewPassword )
+/*?*/ void SAL_CALL SfxScriptLibraryContainer::changeLibraryPassword( const OUString& /*Name*/,
+/*?*/     const OUString& /*OldPassword*/, const OUString& /*NewPassword*/ )
 /*?*/         throw (IllegalArgumentException, NoSuchElementException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
 
 
 
 
 // Impl methods
-/*?*/ sal_Bool SfxScriptLibraryContainer::implStorePasswordLibrary( SfxLibrary_Impl* pLib,
-/*?*/     const ::rtl::OUString& aName, SotStorageRef xStorage )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ sal_Bool SfxScriptLibraryContainer::implStorePasswordLibrary( SfxLibrary_Impl* /*pLib*/,
+/*?*/     const ::rtl::OUString& /*aName*/, SotStorageRef /*xStorage*/ )
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 /*?*/ sal_Bool SfxScriptLibraryContainer::implLoadPasswordLibrary
-/*?*/     ( SfxLibrary_Impl* pLib, const OUString& Name, sal_Bool bVerifyPasswordOnly )
+/*?*/     ( SfxLibrary_Impl* /*pLib*/, const OUString& /*Name*/, sal_Bool /*bVerifyPasswordOnly*/ )
 /*?*/         throw(WrappedTargetException, RuntimeException)
-/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/ {DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*?*/ }
 
 
@@ -389,7 +374,7 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
             if( nArgCount > 1 )
                 pArgs[1] >>= aInitialisationParam;
             else
-                aScriptLanguage = OUString::createFromAscii( "StarBasic" );
+                aScriptLanguage = OUString( RTL_CONSTASCII_USTRINGPARAM( "StarBasic" ));
         }
 
         init( aInitialisationParam, aScriptLanguage );
@@ -410,7 +395,7 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
 /*N*/     if( bNeedsInit )
 /*N*/     {
 /*N*/         OUString* pSeq = seqServiceNames.getArray();
-/*N*/         pSeq[0] = OUString::createFromAscii( "com.sun.star.script.ScriptLibraryContainer" );
+/*N*/         pSeq[0] = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.script.ScriptLibraryContainer" ));
 /*N*/         bNeedsInit = sal_False;
 /*N*/     }
 /*N*/     return seqServiceNames;
@@ -424,14 +409,14 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
 /*N*/   MutexGuard aGuard( Mutex::getGlobalMutex() );
 /*N*/     if( bNeedsInit )
 /*N*/     {
-/*N*/         aImplName = OUString::createFromAscii( "com.sun.star.comp.sfx2.ScriptLibraryContainer" );
+/*N*/         aImplName = OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.comp.sfx2.ScriptLibraryContainer" ));
 /*N*/         bNeedsInit = sal_False;
 /*N*/     }
 /*N*/     return aImplName;
 /*N*/ }
 
 /*N*/ Reference< XInterface > SAL_CALL SfxScriptLibraryContainer::impl_createInstance
-/*N*/     ( const Reference< XMultiServiceFactory >& xServiceManager )
+/*N*/     ( const Reference< XMultiServiceFactory >& /*xServiceManager*/ )
 /*N*/         throw( Exception )
 /*N*/ {
 /*N*/     Reference< XInterface > xRet =
@@ -477,3 +462,5 @@ sal_Bool SAL_CALL SfxScriptLibraryContainer::isLibraryPasswordVerified( const OU
 
 //============================================================================
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

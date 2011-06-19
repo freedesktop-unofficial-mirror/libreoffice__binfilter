@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,16 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVARRAY_HXX //autogen
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _BPARR_HXX
 #include <bparr.hxx>
-#endif
-#ifndef _NDTYP_HXX
 #include <ndtyp.hxx>
-#endif
 
 class Graphic;
 class UniString;
@@ -119,7 +114,7 @@ class SwNodes: private BigPtrArray
     // fuer dier Verwaltung der Indizies
     void RegisterIndex( SwNodeIndex& rIdx );
     void DeRegisterIndex( SwNodeIndex& rIdx );
-    void RemoveNode( ULONG nDelPos, ULONG nLen, FASTBOOL bDel );
+    void RemoveNode( ULONG nDelPos, ULONG nLen, bool bDel );
 
     // Aktionen auf die Nodes
     void SectionUpDown( const SwNodeIndex & aStart, const SwNodeIndex & aEnd );
@@ -307,3 +302,5 @@ private:
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

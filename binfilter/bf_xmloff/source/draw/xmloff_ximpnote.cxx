@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,9 +30,7 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XIMPNOTES_HXX
 #include "ximpnote.hxx"
-#endif
 
 namespace binfilter {
 
@@ -40,22 +39,22 @@ using namespace ::com::sun::star;
 
 //////////////////////////////////////////////////////////////////////////////
 
-SdXMLNotesContext::SdXMLNotesContext( SdXMLImport& rImport,
+SdXMLNotesContext::SdXMLNotesContext( SdXMLImport& rInImport,
     USHORT nPrfx, const OUString& rLocalName,
     const ::com::sun::star::uno::Reference< ::com::sun::star::xml::sax::XAttributeList>& xAttrList,
     uno::Reference< drawing::XShapes >& rShapes)
-:   SdXMLGenericPageContext( rImport, nPrfx, rLocalName, xAttrList, rShapes )
+:   SdXMLGenericPageContext( rInImport, nPrfx, rLocalName, xAttrList, rShapes )
 {
     const sal_Int16 nAttrCount = xAttrList.is() ? xAttrList->getLength() : 0;
     for(sal_Int16 i=0; i < nAttrCount; i++)
     {
         OUString sAttrName = xAttrList->getNameByIndex( i );
-        OUString aLocalName;
-        sal_uInt16 nPrefix = GetSdImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLocalName );
+        OUString aLclLocalName;
+        sal_uInt16 nLclPrefix = GetSdImport().GetNamespaceMap().GetKeyByAttrName( sAttrName, &aLclLocalName );
         OUString sValue = xAttrList->getValueByIndex( i );
         const SvXMLTokenMap& rAttrTokenMap = GetSdImport().GetMasterPageAttrTokenMap();
 
-        switch(rAttrTokenMap.Get(nPrefix, aLocalName))
+        switch(rAttrTokenMap.Get(nLclPrefix, aLclLocalName))
         {
             case XML_TOK_MASTERPAGE_PAGE_MASTER_NAME:
             {
@@ -89,7 +88,7 @@ SdXMLNotesContext::~SdXMLNotesContext()
 
 //////////////////////////////////////////////////////////////////////////////
 
-SvXMLImportContext *SdXMLNotesContext::CreateChildContext( USHORT nPrefix,
+SvXMLImportContext *SdXMLNotesContext::CreateChildContext( USHORT nInPrefix,
     const OUString& rLocalName,
     const uno::Reference< xml::sax::XAttributeList>& xAttrList )
 {
@@ -107,7 +106,7 @@ SvXMLImportContext *SdXMLNotesContext::CreateChildContext( USHORT nPrefix,
 
     // call parent when no own context was created
     if(!pContext)
-        pContext = SdXMLGenericPageContext::CreateChildContext(nPrefix, rLocalName, xAttrList);
+        pContext = SdXMLGenericPageContext::CreateChildContext(nInPrefix, rLocalName, xAttrList);
 
     return pContext;
 }
@@ -119,3 +118,5 @@ void SdXMLNotesContext::EndElement()
     SdXMLGenericPageContext::EndElement();
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

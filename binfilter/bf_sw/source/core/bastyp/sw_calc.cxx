@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -37,103 +38,67 @@
 #include <search.h>
 #endif
 #include <limits.h>
-// #include <math.h>
 #include <float.h>
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
 #ifdef WNT
 #include <bf_svtools/bf_prewin.h>
 #include <bf_svtools/bf_postwin.h>
 #endif
 
-#ifndef INCLUDED_RTL_MATH_HXX
 #include <rtl/math.hxx>
-#endif
-#ifndef _SVX_ADRITEM_HXX //autogen
 #include <bf_svx/adritem.hxx>
-#endif
-#ifndef _SVX_LANGITEM_HXX
 #include <bf_svx/langitem.hxx>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNOTOOLS_CHARCLASS_HXX
 #include <unotools/charclass.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
-#ifndef _SVX_SCRIPTTYPEITEM_HXX
 #include <bf_svx/scripttypeitem.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _VIEWSH_HXX
 #include <viewsh.hxx>
-#endif
-#ifndef _DOCSTAT_HXX //autogen
 #include <docstat.hxx>
-#endif
-#ifndef _SHELLRES_HXX
 #include <shellres.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _USRFLD_HXX
 #include <usrfld.hxx>
-#endif
-#ifndef _DBMGR_HXX
 #include <dbmgr.hxx>
-#endif
-#ifndef _DOCFLD_HXX
 #include <docfld.hxx>
-#endif
-#ifndef _SWUNODEF_HXX
 #include <swunodef.hxx>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
+
 namespace binfilter {
 // tippt sich schneller
 #define RESOURCE ViewShell::GetShellRes()
 
-const sal_Char __FAR_DATA sCalc_Add[]   =   "add";
-const sal_Char __FAR_DATA sCalc_Sub[]   =   "sub";
-const sal_Char __FAR_DATA sCalc_Mul[]   =   "mul";
-const sal_Char __FAR_DATA sCalc_Div[]   =   "div";
-const sal_Char __FAR_DATA sCalc_Phd[]   =   "phd";
-const sal_Char __FAR_DATA sCalc_Sqrt[]  =   "sqrt";
-const sal_Char __FAR_DATA sCalc_Pow[]   =   "pow";
-const sal_Char __FAR_DATA sCalc_Or[]    =   "or";
-const sal_Char __FAR_DATA sCalc_Xor[]   =   "xor";
-const sal_Char __FAR_DATA sCalc_And[]   =   "and";
-const sal_Char __FAR_DATA sCalc_Not[]   =   "not";
-const sal_Char __FAR_DATA sCalc_Eq[]    =   "eq";
-const sal_Char __FAR_DATA sCalc_Neq[]   =   "neq";
-const sal_Char __FAR_DATA sCalc_Leq[]   =   "leq";
-const sal_Char __FAR_DATA sCalc_Geq[]   =   "geq";
-const sal_Char __FAR_DATA sCalc_L[]     =   "l";
-const sal_Char __FAR_DATA sCalc_G[]     =   "g";
-const sal_Char __FAR_DATA sCalc_Sum[]   =   "sum";
-const sal_Char __FAR_DATA sCalc_Mean[]  =   "mean";
-const sal_Char __FAR_DATA sCalc_Min[]   =   "min";
-const sal_Char __FAR_DATA sCalc_Max[]   =   "max";
-const sal_Char __FAR_DATA sCalc_Sin[]   =   "sin";
-const sal_Char __FAR_DATA sCalc_Cos[]   =   "cos";
-const sal_Char __FAR_DATA sCalc_Tan[]   =   "tan";
-const sal_Char __FAR_DATA sCalc_Asin[]  =   "asin";
-const sal_Char __FAR_DATA sCalc_Acos[]  =   "acos";
-const sal_Char __FAR_DATA sCalc_Atan[]  =   "atan";
-const sal_Char __FAR_DATA sCalc_Round[] =   "round";
+const sal_Char sCalc_Add[]  =   "add";
+const sal_Char sCalc_Sub[]  =   "sub";
+const sal_Char sCalc_Mul[]  =   "mul";
+const sal_Char sCalc_Div[]  =   "div";
+const sal_Char sCalc_Phd[]  =   "phd";
+const sal_Char sCalc_Sqrt[] =   "sqrt";
+const sal_Char sCalc_Pow[]  =   "pow";
+const sal_Char sCalc_Or[]   =   "or";
+const sal_Char sCalc_Xor[]  =   "xor";
+const sal_Char sCalc_And[]  =   "and";
+const sal_Char sCalc_Not[]  =   "not";
+const sal_Char sCalc_Eq[]   =   "eq";
+const sal_Char sCalc_Neq[]  =   "neq";
+const sal_Char sCalc_Leq[]  =   "leq";
+const sal_Char sCalc_Geq[]  =   "geq";
+const sal_Char sCalc_L[]        =   "l";
+const sal_Char sCalc_G[]        =   "g";
+const sal_Char sCalc_Sum[]  =   "sum";
+const sal_Char sCalc_Mean[] =   "mean";
+const sal_Char sCalc_Min[]  =   "min";
+const sal_Char sCalc_Max[]  =   "max";
+const sal_Char sCalc_Sin[]  =   "sin";
+const sal_Char sCalc_Cos[]  =   "cos";
+const sal_Char sCalc_Tan[]  =   "tan";
+const sal_Char sCalc_Asin[] =   "asin";
+const sal_Char sCalc_Acos[] =   "acos";
+const sal_Char sCalc_Atan[] =   "atan";
+const sal_Char sCalc_Round[]    =   "round";
 
 
 
@@ -147,44 +112,44 @@ struct _CalcOp
     SwCalcOper eOp;
 };
 
-_CalcOp __READONLY_DATA aOpTable[] = {
-/* ACOS */    {sCalc_Acos,      CALC_ACOS},  // Arcuscosinus
-/* ADD */     {sCalc_Add,        CALC_PLUS},  // Addition
-/* AND */     {sCalc_And,        CALC_AND},     // log. und
-/* ASIN */    {sCalc_Asin,       CALC_ASIN},  // Arcussinus
-/* ATAN */    {sCalc_Atan,       CALC_ATAN},  // Arcustangens
-/* COS */     {sCalc_Cos,        CALC_COS},     // Cosinus
-/* DIV */     {sCalc_Div,        CALC_DIV},   // Dividieren
-/* EQ */      {sCalc_Eq,         CALC_EQ},      // gleich
-/* G */       {sCalc_G,          CALC_GRE},     // groesser
-/* GEQ */     {sCalc_Geq,        CALC_GEQ},     // groesser gleich
-/* L */       {sCalc_L,          CALC_LES},     // kleiner
-/* LEQ */     {sCalc_Leq,        CALC_LEQ},     // kleiner gleich
-/* MAX */     {sCalc_Max,        CALC_MAX},     // Maximalwert
-/* MEAN */    {sCalc_Mean,       CALC_MEAN},  // Mittelwert
-/* MIN */     {sCalc_Min,        CALC_MIN},     // Minimalwert
-/* MUL */     {sCalc_Mul,        CALC_MUL},     // Multiplizieren
-/* NEQ */     {sCalc_Neq,        CALC_NEQ},     // nicht gleich
-/* NOT */     {sCalc_Not,        CALC_NOT},     // log. nicht
-/* OR */      {sCalc_Or,         CALC_OR},      // log. oder
-/* PHD */     {sCalc_Phd,        CALC_PHD},   // Prozent
-/* POW */     {sCalc_Pow,        CALC_POW}, // Potenzieren
-/* ROUND */   {sCalc_Round,      CALC_ROUND},   // Runden
-/* SIN */     {sCalc_Sin,        CALC_SIN},     // Sinus
-/* SQRT */    {sCalc_Sqrt,       CALC_SQRT},    // Wurzel
-/* SUB */     {sCalc_Sub,        CALC_MINUS},   // Subtraktion
-/* SUM */     {sCalc_Sum,        CALC_SUM},     // Summe
-/* TAN */     {sCalc_Tan,        CALC_TAN},     // Tangens
-/* XOR */     {sCalc_Xor,        CALC_XOR}      // log. xoder
+_CalcOp const aOpTable[] = {
+/* ACOS */    {{sCalc_Acos},        CALC_ACOS},  // Arcuscosinus
+/* ADD */     {{sCalc_Add},        CALC_PLUS},  // Addition
+/* AND */     {{sCalc_And},        CALC_AND},   // log. und
+/* ASIN */    {{sCalc_Asin},       CALC_ASIN},  // Arcussinus
+/* ATAN */    {{sCalc_Atan},       CALC_ATAN},  // Arcustangens
+/* COS */     {{sCalc_Cos},        CALC_COS},   // Cosinus
+/* DIV */     {{sCalc_Div},        CALC_DIV},   // Dividieren
+/* EQ */      {{sCalc_Eq},         CALC_EQ},    // gleich
+/* G */       {{sCalc_G},          CALC_GRE},   // groesser
+/* GEQ */     {{sCalc_Geq},        CALC_GEQ},   // groesser gleich
+/* L */       {{sCalc_L},          CALC_LES},   // kleiner
+/* LEQ */     {{sCalc_Leq},        CALC_LEQ},   // kleiner gleich
+/* MAX */     {{sCalc_Max},        CALC_MAX},   // Maximalwert
+/* MEAN */    {{sCalc_Mean},       CALC_MEAN},  // Mittelwert
+/* MIN */     {{sCalc_Min},        CALC_MIN},   // Minimalwert
+/* MUL */     {{sCalc_Mul},        CALC_MUL},   // Multiplizieren
+/* NEQ */     {{sCalc_Neq},        CALC_NEQ},   // nicht gleich
+/* NOT */     {{sCalc_Not},        CALC_NOT},   // log. nicht
+/* OR */      {{sCalc_Or},         CALC_OR},    // log. oder
+/* PHD */     {{sCalc_Phd},        CALC_PHD},   // Prozent
+/* POW */     {{sCalc_Pow},        CALC_POW},   // Potenzieren
+/* ROUND */   {{sCalc_Round},      CALC_ROUND}, // Runden
+/* SIN */     {{sCalc_Sin},        CALC_SIN},   // Sinus
+/* SQRT */    {{sCalc_Sqrt},       CALC_SQRT},  // Wurzel
+/* SUB */     {{sCalc_Sub},        CALC_MINUS}, // Subtraktion
+/* SUM */     {{sCalc_Sum},        CALC_SUM},   // Summe
+/* TAN */     {{sCalc_Tan},        CALC_TAN},   // Tangens
+/* XOR */     {{sCalc_Xor},        CALC_XOR}    // log. xoder
 };
 
-double __READONLY_DATA nRoundVal[] = {
+double const nRoundVal[] = {
     5.0e+0, 0.5e+0, 0.5e-1, 0.5e-2, 0.5e-3, 0.5e-4, 0.5e-5, 0.5e-6,
     0.5e-7, 0.5e-8, 0.5e-9, 0.5e-10,0.5e-11,0.5e-12,0.5e-13,0.5e-14,
     0.5e-15,0.5e-16
 };
 
-double __READONLY_DATA nKorrVal[] = {
+double const nKorrVal[] = {
     9, 9e-1, 9e-2, 9e-3, 9e-4, 9e-5, 9e-6, 9e-7, 9e-8,
     9e-9, 9e-10, 9e-11, 9e-12, 9e-13, 9e-14
 };
@@ -282,18 +247,15 @@ static int
 |*
 |*  SwCalc::SwCalc( SwDoc* pD ) :
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 03.11.95
-|*
 |******************************************************************************/
 /*N*/
 /*N*/ SwCalc::SwCalc( SwDoc& rD )
-/*N*/   : rDoc( rD ),
-/*N*/   eError( CALC_NOERR ),
-/*N*/   nListPor( 0 ),
-/*N*/   aErrExpr( aEmptyStr, SwSbxValue(), 0 ),
+/*N*/   : aErrExpr( aEmptyStr, SwSbxValue(), 0 ),
+/*N*/   rDoc( rD ),
 /*N*/   pLclData( &GetAppLocaleData() ),
-/*N*/   pCharClass( &GetAppCharClass() )
+/*N*/   pCharClass( &GetAppCharClass() ),
+/*N*/   nListPor( 0 ),
+/*N*/   eError( CALC_NOERR )
 /*N*/ {
 /*N*/   aErrExpr.aStr.AssignAscii( "~C_ERR~" );
 /*N*/   memset( VarTable, 0, sizeof(VarTable) );
@@ -304,7 +266,7 @@ static int
 /*N*/   {
 /*N*/       STAR_NMSPC::lang::Locale aLocale( SvxCreateLocale( eLang ));
 /*N*/       STAR_REFERENCE( lang::XMultiServiceFactory ) xMSF(
-/*N*/                             ::legacy_binfilters::getLegacyProcessServiceFactory() );  //STRIP002 ::comphelper::getProcessServiceFactory());
+/*N*/                             ::legacy_binfilters::getLegacyProcessServiceFactory() );
 /*N*/       pCharClass = new CharClass( xMSF, aLocale );
 /*N*/       pLclData = new LocaleDataWrapper( xMSF, aLocale );
 /*N*/   }
@@ -313,7 +275,7 @@ static int
 /*N*/   sCurrSym.EraseLeadingChars().EraseTrailingChars();
 /*N*/   pCharClass->toLower( sCurrSym );
 /*N*/
-/*N*/ static sal_Char __READONLY_DATA
+/*N*/ static sal_Char const
 /*N*/   sNType0[] = "false",
 /*N*/   sNType1[] = "true",
 /*N*/   sNType2[] = "pi",
@@ -344,7 +306,7 @@ static int
 /*N*/   sNType26[] = "graph"
 /*N*/   ;
 /*N*/
-/*N*/ static const sal_Char* __READONLY_DATA sNTypeTab[ 27 ] =
+/*N*/ static const sal_Char* const sNTypeTab[ 27 ] =
 /*N*/ {
 /*N*/   sNType0, sNType1, sNType2, sNType3, sNType4, sNType5,
 /*N*/   sNType6, sNType7, sNType8, sNType9, sNType10, sNType11,
@@ -355,25 +317,25 @@ static int
 /*N*/   // diese sind mit doppelten HashIds
 /*N*/   sNType25, sNType26
 /*N*/ };
-/*N*/ static USHORT __READONLY_DATA aHashValue[ 27 ] =
+/*N*/ static USHORT const aHashValue[ 27 ] =
 /*N*/ {
 /*N*/   34, 38, 43,  7, 18, 32, 22, 29, 30, 33,  3,
 /*N*/   28, 24, 40,  9, 11, 26, 45,  4, 23, 36, 44, 19,  5,  1,
 /*N*/   // diese sind mit doppelten HashIds
 /*N*/   11, 38
 /*N*/ };
-/*N*/ static USHORT __READONLY_DATA aAdrToken[ 12 ] =
+/*N*/ static USHORT const aAdrToken[ 12 ] =
 /*N*/ {
 /*N*/   POS_COMPANY, POS_STREET, POS_COUNTRY, POS_PLZ,
 /*N*/   POS_CITY, POS_TITLE, POS_POSITION, POS_TEL_COMPANY,
 /*N*/   POS_TEL_PRIVATE, POS_FAX, POS_EMAIL, POS_STATE
 /*N*/ };
 /*N*/
-/*N*/ static USHORT SwDocStat::* __READONLY_DATA aDocStat1[ 3 ] =
+/*N*/ static USHORT SwDocStat::* const aDocStat1[ 3 ] =
 /*N*/ {
 /*N*/   &SwDocStat::nTbl, &SwDocStat::nGrf, &SwDocStat::nOLE
 /*N*/ };
-/*N*/ static ULONG SwDocStat::* __READONLY_DATA aDocStat2[ 4 ] =
+/*N*/ static ULONG SwDocStat::* const aDocStat2[ 4 ] =
 /*N*/ {
 /*N*/   &SwDocStat::nPage, &SwDocStat::nPara,
 /*N*/   &SwDocStat::nWord, &SwDocStat::nChar
@@ -429,9 +391,6 @@ static int
 |*
 |*  SwCalc::~SwCalc()
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    OK 12-02-93 11:04am
-|*
 |******************************************************************************/
 
 /*N*/ SwCalc::~SwCalc()
@@ -447,9 +406,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue SwCalc::Calculate( const String& rStr )
-|*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    OK 12-02-93 11:04am
 |*
 |******************************************************************************/
 
@@ -473,10 +429,6 @@ static int
 /*N*/   if( eError )
 /*?*/       nResult.PutDouble( DBL_MAX );
 /*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   SbxDataType eResDType = nResult.GetType();
-/*N*/   const String& rResStr = nResult.GetString();
-/*N*/ #endif
 /*N*/   return nResult;
 /*N*/ }
 
@@ -487,14 +439,12 @@ static int
 |*                      nur beim errechnen von Tabellenzellen auf FALSE gesetzt
 |*                      werden, damit keine Rundungsfehler beim zusammenstellen
 |*                      der Formel entstehen.
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 19.02.98
 |*
 |******************************************************************************/
 
 
 
-/*N*/ String SwCalc::GetStrResult( double nValue, BOOL bRound )
+/*N*/ String SwCalc::GetStrResult( double nValue, BOOL /*bRound*/ )
 /*N*/ {
 /*N*/   if( nValue >= DBL_MAX )
 /*N*/       switch( eError )
@@ -502,7 +452,7 @@ static int
 /*?*/           case CALC_SYNTAX    :   return RESOURCE->aCalc_Syntax;
 /*?*/           case CALC_ZERODIV   :   return RESOURCE->aCalc_ZeroDiv;
 /*?*/           case CALC_BRACK     :   return RESOURCE->aCalc_Brack;
-/*?*/           case CALC_POW       :   return RESOURCE->aCalc_Pow;
+/*?*/           case CALC_POWERR    :   return RESOURCE->aCalc_Pow;
 /*?*/           case CALC_VARNFND   :   return RESOURCE->aCalc_VarNFnd;
 /*?*/           case CALC_OVERFLOW  :   return RESOURCE->aCalc_Overflow;
 /*?*/           case CALC_WRONGTIME :   return RESOURCE->aCalc_WrongTime;
@@ -523,9 +473,6 @@ static int
 |*
 |*  SwCalcExp* SwCalc::VarLook( const String& )
 |*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 15.11.99
-|*
 |******************************************************************************/
 
 /*N*/ SwCalcExp* SwCalc::VarInsert( const String &rStr )
@@ -538,9 +485,6 @@ static int
 /******************************************************************************
 |*
 |*  SwCalcExp* SwCalc::VarLook( const String& , USHORT ins )
-|*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    JP 15.11.99
 |*
 |******************************************************************************/
 /*N*/ SwCalcExp* SwCalc::VarLook( const String& rStr, USHORT ins )
@@ -619,7 +563,7 @@ static int
 /*N*/       String sTableName(sDBName.GetToken(0).GetToken(1, DB_DELIM));
 /*N*/       if( pMgr && sSourceName.Len() && sTableName.Len() &&
 /*N*/           pMgr->OpenDataSource(sSourceName, sTableName))
-/*N*/       {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/       {DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*N*/       // auf keinen fall eintragen!!
 /*N*/       return &aErrExpr;
@@ -631,7 +575,7 @@ static int
 /*N*/   VarTable[ ii ] = pNewExp;
 /*N*/
 /*N*/   String sColumnName( GetColumnName( sTmpName ));
-/*N*/   ASSERT( sColumnName.Len(), "DB-Spaltenname fehlt!" );
+/*N*/   OSL_ENSURE( sColumnName.Len(), "DB-Spaltenname fehlt!" );
 /*N*/   if( sColumnName.EqualsIgnoreCaseAscii(
 /*N*/                           SwFieldType::GetTypeStr( TYP_DBSETNUMBERFLD ) ))
 /*N*/   {
@@ -651,9 +595,6 @@ static int
 /******************************************************************************
 |*
 |*  BOOL SwCalc::VarChange( const String& rStr, const SwSbxValue nValue )
-|*
-|*  Erstellung          OK 12-02-93 11:04am
-|*  Letzte Aenderung    OK 12-02-93 11:04am
 |*
 |******************************************************************************/
 
@@ -685,9 +626,6 @@ static int
 |*
 |*  BOOL SwCalc::Push( const void* pPtr )
 |*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    OK 12-02-93 11:05am
-|*
 |******************************************************************************/
 
 /*N*/ BOOL SwCalc::Push( const VoidPtr pPtr )
@@ -703,16 +641,10 @@ static int
 |*
 |*  void SwCalc::Pop( const void* pPtr )
 |*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    OK 12-02-93 11:05am
-|*
 |******************************************************************************/
 
-/*N*/ void SwCalc::Pop( const VoidPtr pPtr )
+/*N*/ void SwCalc::Pop( const VoidPtr )
 /*N*/ {
-/*N*/   ASSERT( aRekurStk.Count() && aRekurStk.GetPos( pPtr ) ==
-/*N*/           (aRekurStk.Count() - 1 ), "SwCalc: Pop auf ungueltigen Ptr" );
-/*N*/
 /*N*/   aRekurStk.Remove( aRekurStk.Count() - 1 );
 /*N*/ }
 
@@ -721,15 +653,12 @@ static int
 |*
 |*  SwCalcOper SwCalc::GetToken()
 |*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    JP 03.11.95
-|*
 |******************************************************************************/
 
 /*M*/ SwCalcOper SwCalc::GetToken()
 /*M*/ {
 /*N*/ #if OSL_DEBUG_LEVEL > 1
-/*M*/ //JP 25.01.2001: static for switch back to the "old" implementation of the
+/*M*/ // static for switch back to the "old" implementation of the
 /*M*/ //                calculator, which don't use the I18N routines.
 /*M*/ static int nUseOld = 0;
 /*M*/ if( !nUseOld )
@@ -779,6 +708,7 @@ static int
 /*M*/                   case CALC_MEAN : eCurrListOper = CALC_PLUS;     break;
 /*M*/                   case CALC_MIN  : eCurrListOper = CALC_MIN_IN;   break;
 /*M*/                   case CALC_MAX  : eCurrListOper = CALC_MAX_IN;   break;
+                        default: break;
 /*M*/               }
 /*M*/               nCommandPos = (xub_StrLen)aRes.EndPos;
 /*M*/               return eCurrOper;
@@ -1001,7 +931,7 @@ static int
 /*M*/       case '0':   case '1':   case '2':   case '3':   case '4':
 /*M*/       case '5':   case '6':   case '7':   case '8':   case '9':
 /*M*/       case ',':
-/*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*M*/       case '.':   {DBG_BF_ASSERT(0, "STRIP");
 /*M*/                   }
 /*M*/                   break;
 /*M*/
@@ -1100,9 +1030,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue SwCalc::Term()
-|*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    JP 16.01.96
 |*
 |******************************************************************************/
 
@@ -1224,37 +1151,6 @@ static int
 /*?*/                           }
 /*?*/                           break;
 /*N*/
-/*
-// removed here because of #77448# (=2*3^2 != 18)
-            case CALC_POW:  {
-                                 GetToken();
- #if defined(MAC) && !defined(__powerc)
-                                 long double fraction, integer;
- #else
-                                 double fraction, integer;
- #endif
-                                 double right = Prim().GetDouble(),
-                                         dleft = left.GetDouble();
-
-                                 fraction = modf( right, &integer );
-                                 if( ( dleft < 0.0 && 0.0 != fraction ) ||
-                                     ( 0.0 == dleft && right < 0.0 ) )
-                                 {
-                                     eError = CALC_OVERFLOW;
-                                     left.Clear();
-                                     return left;
-                                 }
-                                 dleft = pow(dleft, right );
-                                 if( dleft == HUGE_VAL )
-                                 {
-                                     eError = CALC_POWERR;
-                                     left.Clear();
-                                     return left;
-                                 }
-                                 left.PutDouble( dleft );
-                             }
-                             break;
- */
 /*N*/           default:        return left;
 /*N*/       }
 /*N*/
@@ -1283,9 +1179,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue SwCalc::Prim()
-|*
-|*  Erstellung          OK 12-02-93 11:05am
-|*  Letzte Aenderung    JP 03.11.95
 |*
 |******************************************************************************/
 
@@ -1439,7 +1332,6 @@ static int
 /*?*/           else
 /*?*/           {
 /*?*/               nErg.PutDouble( dleft );
-/*?*/ //                GetToken();
 /*?*/           }
 /*?*/       }
 /*N*/   }
@@ -1450,9 +1342,6 @@ static int
 /******************************************************************************
 |*
 |*  SwSbxValue  SwCalc::Expr()
-|*
-|*  Erstellung          OK 12-02-93 11:06am
-|*  Letzte Aenderung    JP 03.11.95
 |*
 |******************************************************************************/
 
@@ -1523,12 +1412,9 @@ static int
 //------------------------------------------------------------------------------
 
 /******************************************************************************
- *  Methode     :   FASTBOOL SwCalc::Str2Double( double& )
- *  Beschreibung:
- *  Erstellt    :   OK 07.06.94 12:56
- *  Aenderung   :   JP 27.10.98
+ *  Methode     :   bool SwCalc::Str2Double( double& )
  ******************************************************************************/
-/*N*/ FASTBOOL SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
+/*N*/ bool SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
 /*N*/                           double& rVal, const LocaleDataWrapper* pLclData )
 /*N*/ {
 /*N*/   const LocaleDataWrapper* pLclD = pLclData;
@@ -1551,7 +1437,7 @@ static int
 /*N*/   return rtl_math_ConversionStatus_Ok == eStatus && nCurrCmdPos != rCommandPos;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
+/*N*/ bool SwCalc::Str2Double( const String& rCommand, xub_StrLen& rCommandPos,
 /*N*/                           double& rVal, SwDoc* pDoc )
 /*N*/ {
 /*N*/   const LocaleDataWrapper* pLclD = &GetAppLocaleData();
@@ -1561,7 +1447,7 @@ static int
 /*N*/       LanguageType eLang = GetDocAppScriptLang( *pDoc );
 /*N*/       if( eLang != SvxLocaleToLanguage( pLclD->getLocale() ) )
 /*N*/           pLclD = new LocaleDataWrapper(
-/*N*/                            ::legacy_binfilters::getLegacyProcessServiceFactory(), //STRIP002  ::comphelper::getProcessServiceFactory(),
+/*N*/                            ::legacy_binfilters::getLegacyProcessServiceFactory(),
 /*N*/                           SvxCreateLocale( eLang ) );
 /*N*/   }
 /*N*/
@@ -1589,9 +1475,6 @@ static int
 /******************************************************************************
 |*
 |*  CTOR DTOR der SwHash classes
-|*
-|*  Ersterstellung      OK 25.06.93 12:20
-|*  Letzte Aenderung    OK 25.06.93 12:20
 |*
 ******************************************************************************/
 
@@ -1707,3 +1590,5 @@ static const sal_Char* sNTypeTab[ 27 ] =
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

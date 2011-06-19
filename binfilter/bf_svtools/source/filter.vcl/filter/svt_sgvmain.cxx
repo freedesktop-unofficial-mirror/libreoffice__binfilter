@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,12 +28,7 @@
 
 // MARKER(update_precomp.py): autogen include statement, do not remove
 
-
-// #include <math.h>
-
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 #include <vcl/graph.hxx>
 #include <tools/poly.hxx>
 #include <bf_svtools/filter.hxx>
@@ -40,13 +36,7 @@
 #include "sgfbram.hxx"
 #include "sgvmain.hxx"
 #include "sgvspln.hxx"
-#ifndef _UNTOOLS_UCBSTREAMHELPER_HXX
 #include <unotools/ucbstreamhelper.hxx>
-#endif
-
-//#if OSL_DEBUG_LEVEL > 1
-//#include "Debug.c"
-//#endif
 
 namespace binfilter
 {
@@ -343,10 +333,6 @@ SvStream& operator>>(SvStream& rInp, GrupType& rGrup)
 |*
 |*    Sgv2SvFarbe()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 Color Sgv2SvFarbe(BYTE nFrb1, BYTE nFrb2, BYTE nInts)
 {
@@ -439,10 +425,6 @@ void SetArea(ObjAreaType& rArea, OutputDevice& rOut)
 |*
 |*    ObjkType::DrawObjekt()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void ObjkType::Draw(OutputDevice&)
 {
@@ -455,10 +437,6 @@ void Obj0Type::Draw(OutputDevice&) {}
 |*
 |*    StrkType::DrawObjekt()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void StrkType::Draw(OutputDevice& rOut)
 {
@@ -469,10 +447,6 @@ void StrkType::Draw(OutputDevice& rOut)
 /*************************************************************************
 |*
 |*    RectType::DrawObjekt()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void SgfAreaColorIntens(UINT16 Muster, BYTE Col1, BYTE Col2, BYTE Int, OutputDevice& rOut)
@@ -615,10 +589,6 @@ void RectType::Draw(OutputDevice& rOut)
 |*
 |*    PolyType::Draw()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void PolyType::Draw(OutputDevice& rOut)
 {
@@ -637,10 +607,6 @@ void PolyType::Draw(OutputDevice& rOut)
 /*************************************************************************
 |*
 |*    SplnType::Draw()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void SplnType::Draw(OutputDevice& rOut)
@@ -663,10 +629,6 @@ void SplnType::Draw(OutputDevice& rOut)
 /*************************************************************************
 |*
 |*    CircType::Draw()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void DrawSlideCirc(INT16 cx, INT16 cy, INT16 rx, INT16 ry, ObjAreaType& F, OutputDevice& rOut)
@@ -811,10 +773,6 @@ void CircType::Draw(OutputDevice& rOut)
 |*
 |*    BmapType::Draw()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 
 void BmapType::Draw(OutputDevice& rOut)
@@ -835,8 +793,7 @@ void BmapType::Draw(OutputDevice& rOut)
             case SGF_BITIMAGE: {
                 GraphicFilter aFlt;
                 Graphic aGrf;
-                USHORT nRet;
-                nRet=aFlt.ImportGraphic(aGrf,aFNam);
+                aFlt.ImportGraphic(aGrf,aFNam);
                 aGrf.Draw(&rOut,Point(Pos1.x,Pos1.y),Size(Pos2.x-Pos1.x,Pos2.y-Pos1.y));
             } break;
             case SGF_SIMPVECT: {
@@ -868,10 +825,6 @@ void BmapType::Draw(OutputDevice& rOut)
 |*
 |*    GrupType::...
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 UINT32 GrupType::GetSubPtr()
 {
@@ -881,10 +834,6 @@ UINT32 GrupType::GetSubPtr()
 /*************************************************************************
 |*
 |*    DrawObjkList()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 void DrawObjkList( SvStream& rInp, OutputDevice& rOut )
@@ -971,10 +920,6 @@ void DrawObjkList( SvStream& rInp, OutputDevice& rOut )
 |*
 |*    SkipObjkList()
 |*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
-|*
 *************************************************************************/
 void SkipObjkList(SvStream& rInp)
 {
@@ -996,10 +941,6 @@ void SkipObjkList(SvStream& rInp)
 /*************************************************************************
 |*
 |*    SgfFilterSDrw()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL SgfFilterSDrw( SvStream& rInp, SgfHeader&, SgfEntry&, GDIMetaFile& rMtf )
@@ -1056,10 +997,6 @@ BOOL SgfFilterSDrw( SvStream& rInp, SgfHeader&, SgfEntry&, GDIMetaFile& rMtf )
 /*************************************************************************
 |*
 |*    SgfSDrwFilter()
-|*
-|*    Beschreibung
-|*    Ersterstellung    JOE 23.06.93
-|*    Letzte Aenderung  JOE 23.06.93
 |*
 *************************************************************************/
 BOOL SgfSDrwFilter(SvStream& rInp, GDIMetaFile& rMtf, INetURLObject aIniPath )
@@ -1150,3 +1087,5 @@ end;
 #endif
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

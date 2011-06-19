@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,19 +30,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SOT_EXCHANGE_HXX //autogen
 #include <sot/exchange.hxx>
-#endif
-#ifndef _TOOLS_REF_HXX
 #include <tools/ref.hxx>
-#endif
-#ifndef _LINKSOURCE_HXX
 #include <bf_so3/linksrc.hxx>
-#endif
 
-#ifndef INCLUDED_SO3DLLAPI_H
 #include "bf_so3/so3dllapi.h"
-#endif
 
 namespace com { namespace sun { namespace star { namespace uno
 {
@@ -154,3 +147,5 @@ SV_DECL_IMPL_REF(SvBaseLink);
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,55 +26,27 @@
  *
  ************************************************************************/
 
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
-#ifndef _HINTIDS_HXX
 #include <hintids.hxx>
-#endif
 
-
-#ifndef _COM_SUN_STAR_I18N_WORDTYPE_HDL
 #include <com/sun/star/i18n/WordType.hdl>
-#endif
-#ifndef _COM_SUN_STAR_I18N_CHARTYPE_HDL
 #include <com/sun/star/i18n/CharType.hdl>
-#endif
 
+#include <osl/diagnose.h>
 
-
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
-
-#ifndef _UNOCRSR_HXX
 #include <unocrsr.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _SECTION_HXX
 #include <section.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
-#ifndef _CRSSKIP_HXX
 #include <crsskip.hxx>
-#endif
-#ifndef _MDIEXP_HXX
 #include <mdiexp.hxx>           // ...Percent()
-#endif
-#ifndef _STATSTR_HRC
 #include <statstr.hrc>          // ResId fuer Statusleiste
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star::i18n;
@@ -141,24 +114,21 @@ struct _PercentHdl
 /*N*/ {
 /*N*/ }
 
-
 /*N*/ SwCursor::~SwCursor()
 /*N*/ {
 /*N*/   while( pSavePos )
 /*N*/   {
-/*?*/       _SwCursor_SavePos* pNext = pSavePos->pNext;
+/*?*/       _SwCursor_SavePos* pNext1 = pSavePos->pNext;
 /*?*/       delete pSavePos;
-/*?*/       pSavePos = pNext;
+/*?*/       pSavePos = pNext1;
 /*N*/   }
 /*N*/ }
-
 
 /*N*/ SwCursor::operator SwTableCursor* ()      { return 0; }
 /*N*/ SwCursor::operator SwShellCrsr* ()            { return 0; }
 /*N*/ SwCursor::operator SwShellTableCrsr* ()       { return 0; }
 /*N*/ SwCursor::operator SwUnoCrsr* ()          { return 0; }
 /*N*/ SwCursor::operator SwUnoTableCrsr* ()     { return 0; }
-
 
 // Sicher die aktuelle Position, damit ggfs. auf diese zurueck
 // gefallen werden kann. Die SavePos Objekte werden als Stack verwaltet,
@@ -189,8 +159,7 @@ struct _PercentHdl
 // stelle fest, ob sich der Point ausserhalb des Content-Bereichs
 // vom Nodes-Array befindet
 
-
-/*N*/ FASTBOOL SwCursor::IsSelOvr( int eFlags )
+/*N*/ bool SwCursor::IsSelOvr( int eFlags )
 /*N*/ {
 /*N*/   SwTableCursor* pTblCrsr = *this;
 /*N*/   SwDoc* pDoc = GetDoc();
@@ -234,13 +203,13 @@ struct _PercentHdl
 /*N*/           ((bSkipOverHiddenSections && pSectNd->GetSection().IsHiddenFlag() ) ||
 /*N*/            (bSkipOverProtectSections && pSectNd->GetSection().IsProtectFlag() )))
 /*N*/       {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001       if( 0 == ( SELOVER_CHANGEPOS & eFlags ) )
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 
         // oder sollte eine geschuetzte Section innerhalb der Selektion liegen?
 /*N*/       if( HasMark() && bSkipOverProtectSections)
 /*N*/       {
-/*?*/           DBG_BF_ASSERT(0, "STRIP"); //STRIP001 ULONG nSttIdx = GetMark()->nNode.GetIndex(),
+/*?*/           DBG_BF_ASSERT(0, "STRIP");
 /*N*/       }
 /*?*/
 /*N*/   }
@@ -250,13 +219,13 @@ struct _PercentHdl
 /*N*/   const SwNode* pNd = &GetPoint()->nNode.GetNode();
 /*N*/   if( pNd->IsCntntNode() && 0 == (SwUnoCrsr*)*this )
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const SwCntntFrm* pFrm = ((SwCntntNode*)pNd)->GetFrm();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
     // darf der Cursor in geschuetzen "Nodes" stehen?
 /*N*/   if( 0 == ( SELOVER_CHANGEPOS & eFlags ) && !IsAtValidPos() )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DeleteMark();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   if( !HasMark() )
@@ -266,7 +235,7 @@ struct _PercentHdl
 /*N*/   //              GrundSections:
 /*N*/   if( !::binfilter::CheckNodesRange( GetMark()->nNode, GetPoint()->nNode, TRUE ))
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 DeleteMark();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   const SwTableNode* pPtNd = pNd->FindTableNode();
@@ -274,7 +243,7 @@ struct _PercentHdl
 /*N*/   if( (pNd = &GetMark()->nNode.GetNode())->IsCntntNode() &&
 /*N*/       !((SwCntntNode*)pNd)->GetFrm() && 0 == (SwUnoCrsr*)*this )
 /*N*/   {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DeleteMark();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 
 /*N*/   const SwTableNode* pMrkNd = pNd->FindTableNode();
@@ -286,13 +255,13 @@ struct _PercentHdl
     // in unterschiedlichen Tabellen oder nur Mark in der Tabelle
 /*?*/   if( ( pPtNd && pMrkNd ) || pMrkNd )
 /*?*/   {                       // dann lasse das nicht zu, alte Pos zurueck
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   RestoreSavePos();
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 
     // ACHTUNG: dieses kann nicht im TableMode geschehen !!
 /*?*/   if( pPtNd )     // nur Point in Tabelle, dann gehe hinter/vor diese
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( SELOVER_CHANGEPOS & eFlags )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   return FALSE;       // was bleibt noch ??
 /*N*/ }
@@ -303,11 +272,10 @@ struct _PercentHdl
 #define IDX     aCellStt
 #endif
 
-
-/*N*/ FASTBOOL SwCursor::IsInProtectTable( FASTBOOL bMove, FASTBOOL bChgCrsr )
+/*N*/ bool SwCursor::IsInProtectTable( bool bMove, bool /*bChgCrsr*/ )
 /*N*/ {
 /*N*/   // stehe ich in einer Tabelle ??
-/*N*/   SwDoc* pDoc = GetDoc();
+/*N*/   GetDoc();
 /*N*/   SwCntntNode* pCNd = GetCntntNode();
 /*N*/   if( !pCNd || pSavePos->nNode == GetPoint()->nNode.GetIndex() ||
 /*N*/       !pCNd->FindTableNode() ||
@@ -317,103 +285,90 @@ struct _PercentHdl
 
 /*?*/   if( !bMove )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if( bChgCrsr )
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/
 /*?*/   // wir stehen in einer geschuetzten TabellenZelle
 /*?*/   // von Oben nach Unten Traveln ?
 /*?*/   if( pSavePos->nNode < GetPoint()->nNode.GetIndex() )
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // suche die naechste "gueltige" Box
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*?*/   }
 /*?*/
 /*?*/   // suche die vorherige "gueltige" Box
 /*?*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 // liegt vor dem StartNode der Zelle ein weiterer EndNode, dann
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/       // gibt es auch eine vorherige Zelle
 /*?*/   }
 /*?*/
-/*?*/   ASSERT( FALSE, "sollte nie erreicht werden oder??" );
+/*?*/   OSL_ENSURE( FALSE, "sollte nie erreicht werden oder??" );
 /*?*/   return  FALSE;
 /*N*/ }
 
 // TRUE: an die Position kann der Cursor gesetzt werden
-/*N*/ FASTBOOL SwCursor::IsAtValidPos( BOOL bPoint ) const
+/*N*/ bool SwCursor::IsAtValidPos( BOOL /*bPoint*/) const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetDoc();
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
 /*N*/ void SwCursor::SaveTblBoxCntnt( const SwPosition* )   {}
 
 // setze den SRange fuer das Suchen im Dokument
 
-
-
-
-
-
-
-
 // diese Methode "sucht" fuer alle Anwendungsfaelle, denn in SwFindParas
 // steht immer die richtigen Parameter und die entsprechende Find-Methode
 
-/*M*/ ULONG SwCursor::FindAll( SwFindParas& rParas,
-/*M*/                           SwDocPositions nStart, SwDocPositions nEnde,
-/*M*/                             FindRanges eFndRngs, BOOL& bCancel )
-/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;//STRIP001
+/*M*/ ULONG SwCursor::FindAll( SwFindParas& /*rParas*/,
+/*M*/                           SwDocPositions /*nStart*/, SwDocPositions /*nEnde*/,
+/*M*/                             FindRanges /*eFndRngs*/, BOOL& /*bCancel*/ )
+/*M*/ {DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*M*/ }
 
-
-
-
-/*N*/ FASTBOOL SwCursor::IsStartWord() const
+/*N*/ bool SwCursor::IsStartWord() const
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::IsEndWord() const
+/*N*/ bool SwCursor::IsEndWord() const
 /*N*/ {
-     FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+     bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/ return bRet;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::GoStartWord()
+/*N*/ bool SwCursor::GoStartWord()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GoEndWord()
+/*N*/ bool SwCursor::GoEndWord()
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GoNextWord()
+/*N*/ bool SwCursor::GoNextWord()
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GoPrevWord()
+/*N*/ bool SwCursor::GoPrevWord()
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   bool bRet = FALSE;DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return bRet;
 /*N*/ }
-
 
 //-----------------------------------------------------------------------------
-/*N*/ FASTBOOL SwCursor::GoSentence( SentenceMoveType eMoveType )
+/*N*/ bool SwCursor::GoSentence( SentenceMoveType /*eMoveType*/ )
 /*N*/ {
-/*?*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode,
-/*N*/                               BOOL bVisualAllowed, BOOL bInsertCrsr )
+/*N*/ bool SwCursor::LeftRight( BOOL bLeft, USHORT nCnt, USHORT nMode,
+/*N*/                               BOOL /*bVisualAllowed*/, BOOL /*bInsertCrsr*/ )
 /*N*/ {
 /*N*/   SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
 /*N*/   if( pTblCrsr )
@@ -422,11 +377,11 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/
 /*N*/     // calculate cursor bidi level
 /*N*/     const SwCntntFrm* pSttFrm = NULL;
-/*N*/     SwNode& rNode = GetPoint()->nNode.GetNode();
+/*N*/     GetPoint()->nNode.GetNode();
 /*N*/     const BOOL bDoNotSetBidiLevel = 0 != (SwUnoCrsr*)*this;
 /*N*/
 /*N*/     if ( ! bDoNotSetBidiLevel )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   // kann der Cursor n-mal weiterverschoben werden ?
@@ -438,25 +393,25 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE; //STRIP001     const SwDoc* pDoc = GetD
 /*N*/
 /*N*/     // here come some special rules for visual cursor travelling
 /*N*/     if ( pSttFrm )
-/*N*/     {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/     {DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/
 /*N*/   return 0 == nCnt && !IsInProtectTable( TRUE ) &&
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::UpDown( BOOL bUp, USHORT nCnt,
-/*N*/                           Point* pPt, long nUpDownX )
+/*N*/ bool SwCursor::UpDown( BOOL /*bUp*/, USHORT /*nCnt*/,
+/*N*/       Point* /*pPt*/, long /*nUpDownX*/ )
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (SwTableCursor*)*this;
+        DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::GotoTblBox( const String& rName )
+/*N*/ bool SwCursor::GotoTblBox( const String& /*rName*/ )
 /*N*/ {
-/*N*/   FASTBOOL bRet = FALSE;DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001
+/*N*/   DBG_BF_ASSERT(0, "STRIP"); return FALSE;
 /*N*/ }
 
-/*N*/ FASTBOOL SwCursor::MovePara(SwWhichPara fnWhichPara, SwPosPara fnPosPara )
+/*N*/ bool SwCursor::MovePara(SwWhichPara fnWhichPara, SwPosPara fnPosPara )
 /*N*/ {
 /*N*/   //JP 28.8.2001: for optimization test something before
 /*N*/   const SwNode* pNd;
@@ -475,8 +430,7 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (Sw
 /*N*/           !IsSelOvr( SELOVER_TOGGLE | SELOVER_CHANGEPOS );
 /*N*/ }
 
-
-/*N*/ FASTBOOL SwCursor::MoveSection( SwWhichSection fnWhichSect,
+/*N*/ bool SwCursor::MoveSection( SwWhichSection fnWhichSect,
 /*N*/                               SwPosSection fnPosSect)
 /*N*/ {
 /*N*/   SwCrsrSaveState aSave( *this );
@@ -490,3 +444,5 @@ DBG_BF_ASSERT(0, "STRIP"); return FALSE;//STRIP001 SwTableCursor* pTblCrsr = (Sw
 /*N*/ SwTableCursor::operator SwTableCursor* () { return this; }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

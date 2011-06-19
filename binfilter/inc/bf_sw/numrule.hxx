@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,34 +31,15 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
-#ifndef _SV_GEN_HXX //autogen wg. Size
 #include <tools/gen.hxx>
-#endif
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _SVX_SVXENUM_HXX //autogen
 #include <bf_svx/svxenum.hxx>
-#endif
 
-#ifndef _SWTYPES_HXX
 #include <swtypes.hxx>
-#endif
-#ifndef _CALBCK_HXX
 #include <calbck.hxx>
-#endif
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>       // Fuer die inline-ASSERTs
-#endif
-#ifndef _SWERROR_H
-#include <error.h>          // Fuer die inline-ASSERTs
-#endif
-#ifndef _SVX_NUMITEM_HXX
+#include <osl/diagnose.h>
 #include <bf_svx/numitem.hxx>
-#endif
 class Font;
 namespace binfilter {
 
@@ -70,7 +52,7 @@ class SwFmtVertOrient;
 class SwNodeNum;
 class SwTxtNode;
 
-extern char __FAR_DATA sOutlineStr[];   // SWG-Filter
+extern char sOutlineStr[];  // SWG-Filter
 
 inline BYTE GetRealLevel( const BYTE nLvl )
 {
@@ -120,7 +102,7 @@ class SwNumRule
     static USHORT aDefNumIndents[ MAXLEVEL ];
     static USHORT nRefCount;
     static Font* pDefBulletFont;
-    static char* pDefOutlineName;
+    static const char* pDefOutlineName;
 
     SwNumFmt* aFmts[ MAXLEVEL ];
 
@@ -158,7 +140,7 @@ public:
     inline const Font* GetBulletFont( const SwNodeNum& ) const;
     static inline const Font& GetDefBulletFont();
 
-    static char* GetOutlineRuleName() { return pDefOutlineName; }
+    static const char* GetOutlineRuleName() { return pDefOutlineName; }
 
     static inline USHORT GetNumIndent( BYTE nLvl );
     static inline USHORT GetBullIndent( BYTE nLvl );
@@ -249,14 +231,14 @@ public:
 
 inline const SwNumFmt& SwNumRule::Get( USHORT i ) const
 {
-    ASSERT_ID( i < MAXLEVEL && eRuleType < RULE_END, ERR_NUMLEVEL);
+    OSL_ASSERT( i < MAXLEVEL && eRuleType < RULE_END );
     return aFmts[ i ] ? *aFmts[ i ]
                       : *aBaseFmts[ eRuleType ][ i ];
 }
 
 inline const SwNumFmt* SwNumRule::GetNumFmt( USHORT i ) const
 {
-    ASSERT_ID( i < MAXLEVEL && eRuleType < RULE_END, ERR_NUMLEVEL);
+    OSL_ASSERT( i < MAXLEVEL && eRuleType < RULE_END );
     return aFmts[ i ];
 }
 inline const Font& SwNumRule::GetDefBulletFont()
@@ -268,12 +250,12 @@ inline const Font& SwNumRule::GetDefBulletFont()
 
 inline USHORT SwNumRule::GetNumIndent( BYTE nLvl )
 {
-    ASSERT( MAXLEVEL > nLvl, "NumLevel is out of range" );
+    OSL_ENSURE( MAXLEVEL > nLvl, "NumLevel is out of range" );
     return aDefNumIndents[ nLvl ];
 }
 inline USHORT SwNumRule::GetBullIndent( BYTE nLvl )
 {
-    ASSERT( MAXLEVEL > nLvl, "NumLevel is out of range" );
+    OSL_ENSURE( MAXLEVEL > nLvl, "NumLevel is out of range" );
     return aDefNumIndents[ nLvl ];
 }
 
@@ -307,3 +289,5 @@ inline SwNodeNum& SwNodeNum::operator=( const SwNodeNum& rCpy )
 
 } //namespace binfilter
 #endif  // _NUMRULE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,43 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLLINENUMBERINGIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLLINENUMBERINGSEPARATORIMPORTCONTEXT_HXX_
 #include "XMLLineNumberingSeparatorImportContext.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_TEXT_XLINENUMBERINGPROPERTIES_HPP_
 #include "com/sun/star/text/XLineNumberingProperties.hpp"
-#endif
 
-#ifndef _COM_SUN_STAR_STYLE_LINENUMBERPOSITION_HPP_
 #include <com/sun/star/style/LineNumberPosition.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLNUMI_HXX
 #include "xmlnumi.hxx"
-#endif
 namespace binfilter {
 
 
@@ -79,11 +62,22 @@ TYPEINIT1( XMLLineNumberingImportContext, SvXMLStyleContext );
 
 
 XMLLineNumberingImportContext::XMLLineNumberingImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList) :
-        SvXMLStyleContext(rImport, nPrfx, rLocalName, xAttrList, XML_STYLE_FAMILY_TEXT_LINENUMBERINGCONFIG),
+        SvXMLStyleContext(rInImport, nPrfx, rLocalName, xAttrList, XML_STYLE_FAMILY_TEXT_LINENUMBERINGCONFIG),
+        sCharStyleName(RTL_CONSTASCII_USTRINGPARAM("CharStyleName")),
+        sCountEmptyLines(RTL_CONSTASCII_USTRINGPARAM("CountEmptyLines")),
+        sCountLinesInFrames(RTL_CONSTASCII_USTRINGPARAM("CountLinesInFrames")),
+        sDistance(RTL_CONSTASCII_USTRINGPARAM("Distance")),
+        sInterval(RTL_CONSTASCII_USTRINGPARAM("Interval")),
+        sSeparatorText(RTL_CONSTASCII_USTRINGPARAM("SeparatorText")),
+        sNumberPosition(RTL_CONSTASCII_USTRINGPARAM("NumberPosition")),
+        sNumberingType(RTL_CONSTASCII_USTRINGPARAM("NumberingType")),
+        sIsOn(RTL_CONSTASCII_USTRINGPARAM("IsOn")),
+        sRestartAtEachPage(RTL_CONSTASCII_USTRINGPARAM("RestartAtEachPage")),
+        sSeparatorInterval(RTL_CONSTASCII_USTRINGPARAM("SeparatorInterval")),
         sStyleName(),
         sNumFormat(GetXMLToken(XML_1)),
         sNumLetterSync(GetXMLToken(XML_FALSE)),
@@ -95,18 +89,7 @@ XMLLineNumberingImportContext::XMLLineNumberingImportContext(
         bNumberLines(sal_True),
         bCountEmptyLines(sal_True),
         bCountInFloatingFrames(sal_False),
-        bRestartNumbering(sal_False),
-        sCharStyleName(RTL_CONSTASCII_USTRINGPARAM("CharStyleName")),
-        sCountEmptyLines(RTL_CONSTASCII_USTRINGPARAM("CountEmptyLines")),
-        sCountLinesInFrames(RTL_CONSTASCII_USTRINGPARAM("CountLinesInFrames")),
-        sDistance(RTL_CONSTASCII_USTRINGPARAM("Distance")),
-        sInterval(RTL_CONSTASCII_USTRINGPARAM("Interval")),
-        sSeparatorText(RTL_CONSTASCII_USTRINGPARAM("SeparatorText")),
-        sNumberPosition(RTL_CONSTASCII_USTRINGPARAM("NumberPosition")),
-        sNumberingType(RTL_CONSTASCII_USTRINGPARAM("NumberingType")),
-        sIsOn(RTL_CONSTASCII_USTRINGPARAM("IsOn")),
-        sRestartAtEachPage(RTL_CONSTASCII_USTRINGPARAM("RestartAtEachPage")),
-        sSeparatorInterval(RTL_CONSTASCII_USTRINGPARAM("SeparatorInterval"))
+        bRestartNumbering(sal_False)
 {
 }
 
@@ -162,11 +145,11 @@ void XMLLineNumberingImportContext::StartElement(
     for(sal_Int16 i=0; i<nLength; i++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(i), &sLocalName );
 
         ProcessAttribute(
-            (enum LineNumberingToken)aTokenMap.Get(nPrefix, sLocalName),
+            (enum LineNumberingToken)aTokenMap.Get(nLclPrefix, sLocalName),
             xAttrList->getValueByIndex(i));
     }
 }
@@ -230,11 +213,11 @@ void XMLLineNumberingImportContext::ProcessAttribute(
 
         case XML_TOK_LINENUMBERING_NUMBER_POSITION:
         {
-            sal_uInt16 nTmp;
-            if (SvXMLUnitConverter::convertEnum(nTmp, sValue,
+            sal_uInt16 nTmp16(0);
+            if (SvXMLUnitConverter::convertEnum(nTmp16, sValue,
                                                 aLineNumberPositionMap))
             {
-                nNumberPosition = nTmp;
+                nNumberPosition = nTmp16;
             }
             break;
         }
@@ -249,7 +232,7 @@ void XMLLineNumberingImportContext::ProcessAttribute(
 }
 
 void XMLLineNumberingImportContext::CreateAndInsert(
-    sal_Bool bOverwrite)
+    sal_Bool /*bOverwrite*/)
 {
     // insert and block mode is handled in insertStyleFamily
 
@@ -317,21 +300,21 @@ void XMLLineNumberingImportContext::CreateAndInsert(
 }
 
 SvXMLImportContext* XMLLineNumberingImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( (nPrefix == XML_NAMESPACE_TEXT) &&
+    if ( (nInPrefix == XML_NAMESPACE_TEXT) &&
          IsXMLToken(rLocalName, XML_LINENUMBERING_SEPARATOR) )
     {
         return new XMLLineNumberingSeparatorImportContext(GetImport(),
-                                                          nPrefix, rLocalName,
+                                                          nInPrefix, rLocalName,
                                                           *this);
     }
     else
     {
         // unknown element: default context
-        return SvXMLImportContext::CreateChildContext(nPrefix, rLocalName,
+        return SvXMLImportContext::CreateChildContext(nInPrefix, rLocalName,
                                                       xAttrList);
     }
 }
@@ -349,3 +332,5 @@ void XMLLineNumberingImportContext::SetSeparatorIncrement(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

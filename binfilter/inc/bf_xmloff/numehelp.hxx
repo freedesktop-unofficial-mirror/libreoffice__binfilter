@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,12 +29,8 @@
 #ifndef XMLOFF_NUMEHELP_HXX
 #define XMLOFF_NUMEHELP_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XNUMBERFORMATSSUPPLIER_HPP_
 #include <com/sun/star/util/XNumberFormatsSupplier.hpp>
-#endif
 
 #ifndef __SGI_STL_SET
 #include <set>
@@ -89,7 +86,7 @@ public :
     XMLNumberFormatAttributesExportHelper(::com::sun::star::uno::Reference< ::com::sun::star::util::XNumberFormatsSupplier >& xNumberFormatsSupplier,
                                             SvXMLExport& rExport, sal_uInt16 nNamespace);
     ~XMLNumberFormatAttributesExportHelper();
-    void SetExport(SvXMLExport* pExport) { this->pExport = pExport; }
+    void SetExport(SvXMLExport* pExport_) { pExport = pExport_; }
 
     sal_Int16 GetCellType(const sal_Int32 nNumberFormat, ::rtl::OUString& sCurrency, sal_Bool& bIsStandard);
 
@@ -133,3 +130,4 @@ public :
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

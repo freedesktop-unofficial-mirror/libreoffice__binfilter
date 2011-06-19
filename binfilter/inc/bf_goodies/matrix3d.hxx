@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,9 +32,7 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _B2D_POINT3D_HXX
 #include "point3d.hxx"
-#endif
 
 /*************************************************************************
 |*
@@ -121,3 +120,5 @@ public:
 }//end of namespace binfilter
 
 #endif          // _B2D_MATRIX3D_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

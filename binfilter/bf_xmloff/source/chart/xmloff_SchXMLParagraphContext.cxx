@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,21 +28,17 @@
 
 #include "SchXMLParagraphContext.hxx"
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLTOKEN_HXX
 #include "xmltoken.hxx"
-#endif
 namespace binfilter {
 
-using namespace rtl;
 using namespace ::com::sun::star;
+using ::rtl::OUString;
 
-SchXMLParagraphContext::SchXMLParagraphContext( SvXMLImport& rImport,
+SchXMLParagraphContext::SchXMLParagraphContext( SvXMLImport& rInImport,
                                                 const OUString& rLocalName,
                                                 OUString& rText ) :
-        SvXMLImportContext( rImport, XML_NAMESPACE_TEXT, rLocalName ),
+        SvXMLImportContext( rInImport, XML_NAMESPACE_TEXT, rLocalName ),
         mrText( rText )
 {
 }
@@ -55,11 +52,11 @@ void SchXMLParagraphContext::EndElement()
 }
 
 SvXMLImportContext* SchXMLParagraphContext::CreateChildContext(
-    USHORT nPrefix,
+    USHORT nInPrefix,
     const OUString& rLocalName,
-    const uno::Reference< xml::sax::XAttributeList >& xAttrList )
+    const uno::Reference< xml::sax::XAttributeList >& /*xAttrList*/ )
 {
-    if( nPrefix == XML_NAMESPACE_TEXT )
+    if( nInPrefix == XML_NAMESPACE_TEXT )
     {
         if( rLocalName.equals( ::binfilter::xmloff::token::GetXMLToken( ::binfilter::xmloff::token::XML_TAB_STOP )))
         {
@@ -71,7 +68,7 @@ SvXMLImportContext* SchXMLParagraphContext::CreateChildContext(
         }
     }
 
-    return new SvXMLImportContext( GetImport(), nPrefix, rLocalName );
+    return new SvXMLImportContext( GetImport(), nInPrefix, rLocalName );
 }
 
 void SchXMLParagraphContext::Characters( const OUString& rChars )
@@ -79,3 +76,5 @@ void SchXMLParagraphContext::Characters( const OUString& rChars )
     maBuffer.append( rChars );
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,68 +28,33 @@
 
 #include <stdio.h>
 
-#ifndef _XMLOFF_XMLEXP_HXX
+#include <sal/macros.h>
 #include <xmlexp.hxx>
-#endif
-#ifndef _XMLOFF_ELEMENTEXPORT_HXX_
 #include "elementexport.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-#ifndef _COMPHELPER_EXTRACT_HXX_
 #include <comphelper/extract.hxx>
-#endif
-#ifndef _XMLOFF_FORMS_EVENTEXPORT_HXX_
 #include "eventexport.hxx"
-#endif
-#ifndef _COM_SUN_STAR_IO_XPERSISTOBJECT_HPP_
 #include <com/sun/star/io/XPersistObject.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMCOMPONENTTYPE_HPP_
 #include <com/sun/star/form/FormComponentType.hpp>
-#endif
-#ifndef _XMLOFF_FORMENUMS_HXX_
 #include "formenums.hxx"
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMSUBMITENCODING_HPP_
 #include <com/sun/star/form/FormSubmitEncoding.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMSUBMITMETHOD_HPP_
 #include <com/sun/star/form/FormSubmitMethod.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SDB_COMMANDTYPE_HPP_
 #include <com/sun/star/sdb/CommandType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_NAVIGATIONBARMODE_HPP_
 #include <com/sun/star/form/NavigationBarMode.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_TABULATORCYCLE_HPP_
 #include <com/sun/star/form/TabulatorCycle.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_FORMBUTTONTYPE_HPP_
 #include <com/sun/star/form/FormButtonType.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FORM_LISTSOURCETYPE_HPP_
 #include <com/sun/star/form/ListSourceType.hpp>
-#endif
 #include <tools/wintypes.hxx>       // for check states
-#ifndef _XMLOFF_XMLEVENTEXPORT_HXX
 #include "XMLEventExport.hxx"
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include <xmlnmspe.hxx>
-#endif
 #ifndef XMLOFF_FORMS_FORMCELLBINDING
 #include "formcellbinding.hxx"
 #endif
 
 #include <com/sun/star/form/binding/XValueBinding.hpp>
 
-#ifndef _DRAFTS_COM_SUN_STAR_FORM_XLISTENTRYSINK_HPP_
 //#include <drafts/com/sun/star/form/XListEntrySink.hpp>
 #include <com/sun/star/form/binding/XListEntrySink.hpp>
-#endif
 
 #include <algorithm>
 namespace binfilter {
@@ -190,7 +156,7 @@ namespace xmloff
         Reference< XPersistObject > xPersistence(m_xProps, UNO_QUERY);
         if (!xPersistence.is())
         {
-            OSL_ENSURE(sal_False, "OElementExport::exportServiceNameAttribute: no XPersistObject!");
+            OSL_FAIL("OElementExport::exportServiceNameAttribute: no XPersistObject!");
             return;
         }
 
@@ -269,12 +235,12 @@ namespace xmloff
         :OElementExport(_rContext, _rxControl, _rEvents)
         ,m_sControlId(_rControlId)
         ,m_sReferringControls(_rReferringControls)
+        ,m_nClassId(FormComponentType::CONTROL)
         ,m_nIncludeCommon(0)
         ,m_nIncludeDatabase(0)
         ,m_nIncludeSpecial(0)
         ,m_nIncludeEvents(0)
         ,m_nIncludeBindings(0)
-        ,m_nClassId(FormComponentType::CONTROL)
         ,m_pOuterElement(NULL)
     {
         OSL_ENSURE(m_xProps.is(), "OControlExport::OControlExport: invalid arguments!");
@@ -408,14 +374,14 @@ namespace xmloff
                 }
             }
             break;
+            default:
+            break;
         }
     }
 
     //---------------------------------------------------------------------
     void OControlExport::exportCommonControlAttributes()
     {
-        sal_Int32 i=0;
-
         // I decided to handle all the properties here with some static arrays describing the property-attribute
         // relations. This leads to somewhat ugly code :), but the only alternative I can think of right now
         // would require maps and O(log n) searches, which seems somewhat expensive as this code is used
@@ -437,11 +403,10 @@ namespace xmloff
             {
                 PROPERTY_LABEL, PROPERTY_TITLE
             };
-            OSL_ENSURE( sizeof(aStringPropertyNames)/sizeof(aStringPropertyNames[0]) ==
-                        sizeof(nStringPropertyAttributeIds)/sizeof(nStringPropertyAttributeIds[0]),
+            OSL_ENSURE( SAL_N_ELEMENTS(aStringPropertyNames) == SAL_N_ELEMENTS(nStringPropertyAttributeIds),
                         "OControlExport::exportCommonControlAttributes: somebody tampered with the maps (1)!");
 
-            for (i=0; i<sizeof(nStringPropertyAttributeIds)/sizeof(nStringPropertyAttributeIds[0]); ++i)
+            for (size_t i = 0; i < SAL_N_ELEMENTS(nStringPropertyAttributeIds); ++i)
                 if (nStringPropertyAttributeIds[i] & m_nIncludeCommon)
                 {
                     exportStringPropertyAttribute(
@@ -472,13 +437,13 @@ namespace xmloff
                 BOOLATTR_DEFAULT_FALSE, BOOLATTR_DEFAULT_FALSE | BOOLATTR_INVERSE_SEMANTICS, BOOLATTR_DEFAULT_FALSE, BOOLATTR_DEFAULT_TRUE, BOOLATTR_DEFAULT_FALSE, BOOLATTR_DEFAULT_FALSE, BOOLATTR_DEFAULT_VOID
             };
         #ifdef DBG_UTIL
-            sal_Int32 nIdCount = sizeof(nBooleanPropertyAttributeIds) / sizeof(nBooleanPropertyAttributeIds[0]);
-            sal_Int32 nNameCount = sizeof(pBooleanPropertyNames) / sizeof(pBooleanPropertyNames[0]);
-            sal_Int32 nFlagsCount = sizeof(nBooleanPropertyAttrFlags) / sizeof(nBooleanPropertyAttrFlags[0]);
+            sal_Int32 nIdCount = SAL_N_ELEMENTS(nBooleanPropertyAttributeIds);
+            sal_Int32 nNameCount = SAL_N_ELEMENTS(pBooleanPropertyNames);
+            sal_Int32 nFlagsCount = SAL_N_ELEMENTS(nBooleanPropertyAttrFlags);
             OSL_ENSURE((nIdCount == nNameCount) && (nNameCount == nFlagsCount),
                 "OControlExport::exportCommonControlAttributes: somebody tampered with the maps (2)!");
         #endif
-            for (i=0; i<sizeof(nBooleanPropertyAttributeIds)/sizeof(nBooleanPropertyAttributeIds[0]); ++i)
+            for (size_t i=0; i<SAL_N_ELEMENTS(nBooleanPropertyAttributeIds); ++i)
                 if (nBooleanPropertyAttributeIds[i] & m_nIncludeCommon)
                 {
                     exportBooleanPropertyAttribute(
@@ -515,13 +480,13 @@ namespace xmloff
                 exportedProperty(PROPERTY_MAXTEXTLENGTH);
 
         #ifdef DBG_UTIL
-            sal_Int32 nIdCount = sizeof(nIntegerPropertyAttributeIds) / sizeof(nIntegerPropertyAttributeIds[0]);
-            sal_Int32 nNameCount = sizeof(pIntegerPropertyNames) / sizeof(pIntegerPropertyNames[0]);
-            sal_Int32 nDefaultCount = sizeof(nIntegerPropertyAttrDefaults) / sizeof(nIntegerPropertyAttrDefaults[0]);
+            sal_Int32 nIdCount = SAL_N_ELEMENTS(nIntegerPropertyAttributeIds);
+            sal_Int32 nNameCount = SAL_N_ELEMENTS(pIntegerPropertyNames);
+            sal_Int32 nDefaultCount = SAL_N_ELEMENTS(nIntegerPropertyAttrDefaults);
             OSL_ENSURE((nIdCount == nNameCount) && (nNameCount == nDefaultCount),
                 "OControlExport::exportCommonControlAttributes: somebody tampered with the maps (3)!");
         #endif
-            for (i=0; i<sizeof(nIntegerPropertyAttributeIds)/sizeof(nIntegerPropertyAttributeIds[0]); ++i)
+            for (size_t i=0; i<SAL_N_ELEMENTS(nIntegerPropertyAttributeIds); ++i)
                 if (nIntegerPropertyAttributeIds[i] & m_nIncludeCommon)
                 {
                     exportInt16PropertyAttribute(
@@ -809,9 +774,9 @@ namespace xmloff
             {   // property names
                 &PROPERTY_STRICTFORMAT, &PROPERTY_MULTILINE, &PROPERTY_AUTOCOMPLETE, &PROPERTY_MULTISELECTION, &PROPERTY_DEFAULTBUTTON, &PROPERTY_TRISTATE
             };
-            sal_Int32 nIdCount = sizeof(nBooleanPropertyAttributeIds) / sizeof(nBooleanPropertyAttributeIds[0]);
+            sal_Int32 nIdCount = SAL_N_ELEMENTS(nBooleanPropertyAttributeIds);
         #ifdef DBG_UTIL
-            sal_Int32 nNameCount = sizeof(pBooleanPropertyNames) / sizeof(pBooleanPropertyNames[0]);
+            sal_Int32 nNameCount = SAL_N_ELEMENTS(pBooleanPropertyNames);
             OSL_ENSURE((nIdCount == nNameCount),
                 "OControlExport::exportSpecialAttributes: somebody tampered with the maps (1)!");
         #endif
@@ -1358,7 +1323,7 @@ namespace xmloff
                 break;
 
             default:
-                OSL_ENSURE(sal_False, "OControlExport::examineControl: unknown control type (class id)!");
+                OSL_FAIL("OControlExport::examineControl: unknown control type (class id)!");
                 break;
         }
 
@@ -1426,7 +1391,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OControlExport::exportCellBindingAttributes: caught an exception!" );
+            OSL_FAIL( "OControlExport::exportCellBindingAttributes: caught an exception!" );
         }
     }
 
@@ -1453,7 +1418,7 @@ namespace xmloff
         }
         catch( const Exception& )
         {
-            OSL_ENSURE( sal_False, "OControlExport::exportCellListSourceRange: caught an exception!" );
+            OSL_FAIL( "OControlExport::exportCellListSourceRange: caught an exception!" );
         }
     }
 
@@ -1561,7 +1526,7 @@ namespace xmloff
 
         // loop through all children
         Reference< XIndexAccess > xCollection(m_xProps, UNO_QUERY);
-        OSL_ENSURE(xCollection.is(), "OFormLayerXMLExport::implExportForm: a form which is not an index access? Suspicíous!");
+        OSL_ENSURE(xCollection.is(), "OFormLayerXMLExport::implExportForm: a form which is not an index access? Suspicï¿½ous!");
 
         if (xCollection.is())
             m_rContext.exportCollectionElements(xCollection);
@@ -1583,9 +1548,9 @@ namespace xmloff
             {
                 PROPERTY_NAME, /*PROPERTY_TARGETURL,*/ PROPERTY_COMMAND, PROPERTY_DATASOURCENAME, PROPERTY_FILTER, PROPERTY_ORDER
             };
-            sal_Int32 nIdCount = sizeof(eStringPropertyIds) / sizeof(eStringPropertyIds[0]);
+            sal_Int32 nIdCount = SAL_N_ELEMENTS(eStringPropertyIds);
         #ifdef DBG_UTIL
-            sal_Int32 nNameCount = sizeof(aStringPropertyNames) / sizeof(aStringPropertyNames[0]);
+            sal_Int32 nNameCount = SAL_N_ELEMENTS(aStringPropertyNames);
             OSL_ENSURE((nIdCount == nNameCount),
                 "OFormExport::exportAttributes: somebody tampered with the maps (1)!");
         #endif
@@ -1611,10 +1576,10 @@ namespace xmloff
             {
                 BOOLATTR_DEFAULT_TRUE, BOOLATTR_DEFAULT_TRUE, BOOLATTR_DEFAULT_TRUE, BOOLATTR_DEFAULT_FALSE, BOOLATTR_DEFAULT_TRUE, BOOLATTR_DEFAULT_FALSE
             };
-            sal_Int32 nIdCount = sizeof(eBooleanPropertyIds) / sizeof(eBooleanPropertyIds[0]);
+            sal_Int32 nIdCount = SAL_N_ELEMENTS(eBooleanPropertyIds);
         #ifdef DBG_UTIL
-            sal_Int32 nNameCount = sizeof(pBooleanPropertyNames) / sizeof(pBooleanPropertyNames[0]);
-            sal_Int32 nFlagsCount = sizeof(nBooleanPropertyAttrFlags) / sizeof(nBooleanPropertyAttrFlags[0]);
+            sal_Int32 nNameCount = SAL_N_ELEMENTS(pBooleanPropertyNames);
+            sal_Int32 nFlagsCount = SAL_N_ELEMENTS(nBooleanPropertyAttrFlags);
             OSL_ENSURE((nIdCount == nNameCount) && (nNameCount == nFlagsCount),
                 "OFormExport::exportAttributes: somebody tampered with the maps (2)!");
         #endif
@@ -1650,12 +1615,12 @@ namespace xmloff
             {
                 sal_False, sal_False, sal_False, sal_False, sal_True
             };
-            sal_Int32 nIdCount = sizeof(eEnumPropertyIds) / sizeof(eEnumPropertyIds[0]);
+            sal_Int32 nIdCount = SAL_N_ELEMENTS(eEnumPropertyIds);
         #ifdef DBG_UTIL
-            sal_Int32 nNameCount = sizeof(pEnumPropertyNames) / sizeof(pEnumPropertyNames[0]);
-            sal_Int32 nDefaultCount = sizeof(nEnumPropertyAttrDefaults) / sizeof(nEnumPropertyAttrDefaults[0]);
-            sal_Int32 nDefaultFlagCount = sizeof(nEnumPropertyAttrDefaultFlags) / sizeof(nEnumPropertyAttrDefaultFlags[0]);
-            sal_Int32 nMapCount = sizeof(eEnumPropertyMaps) / sizeof(eEnumPropertyMaps[0]);
+            sal_Int32 nNameCount = SAL_N_ELEMENTS(pEnumPropertyNames);
+            sal_Int32 nDefaultCount = SAL_N_ELEMENTS(nEnumPropertyAttrDefaults);
+            sal_Int32 nDefaultFlagCount = SAL_N_ELEMENTS(nEnumPropertyAttrDefaultFlags);
+            sal_Int32 nMapCount = SAL_N_ELEMENTS(eEnumPropertyMaps);
             OSL_ENSURE((nIdCount == nNameCount) && (nNameCount == nDefaultCount) && (nDefaultCount == nDefaultFlagCount) && (nDefaultFlagCount == nMapCount),
                 "OFormExport::exportAttributes: somebody tampered with the maps (3)!");
         #endif
@@ -1693,3 +1658,5 @@ namespace xmloff
 }   // namespace xmloff
 //.........................................................................
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

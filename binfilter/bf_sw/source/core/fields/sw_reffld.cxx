@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,99 +34,41 @@
 #define _SVSTDARR_USHORTSSORT
 #define _SVSTDARR_USHORTS
 
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDPART_HPP_
 #include <com/sun/star/text/ReferenceFieldPart.hpp>
-#endif
-#ifndef _COM_SUN_STAR_TEXT_REFERENCEFIELDSOURCE_HPP_
 #include <com/sun/star/text/ReferenceFieldSource.hpp>
-#endif
-#ifndef _UNOTOOLS_LOCALEDATAWRAPPER_HXX
 #include <unotools/localedatawrapper.hxx>
-#endif
-#ifndef _UNO_LINGU_HXX
 #include <bf_svx/unolingu.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _PAGEFRM_HXX
 #include <pagefrm.hxx>
-#endif
-#ifndef _DOCARY_HXX
 #include <docary.hxx>
-#endif
-#ifndef _FMTFLD_HXX //autogen
 #include <fmtfld.hxx>
-#endif
-#ifndef _TXTFLD_HXX //autogen
 #include <txtfld.hxx>
-#endif
-#ifndef _TXTFTN_HXX //autogen
 #include <txtftn.hxx>
-#endif
-#ifndef _FMTRFMRK_HXX //autogen
 #include <fmtrfmrk.hxx>
-#endif
-#ifndef _TXTRFMRK_HXX //autogen
 #include <txtrfmrk.hxx>
-#endif
-#ifndef _FMTFTN_HXX //autogen
 #include <fmtftn.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _CHPFLD_HXX
 #include <chpfld.hxx>
-#endif
-#ifndef _REFFLD_HXX
 #include <reffld.hxx>
-#endif
-#ifndef _EXPFLD_HXX
 #include <expfld.hxx>
-#endif
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>
-#endif
-#ifndef _FLYFRM_HXX
 #include <flyfrm.hxx>
-#endif
-#ifndef _PAGEDESC_HXX
 #include <pagedesc.hxx>
-#endif
-#ifndef _BOOKMRK_HXX
 #include <bookmrk.hxx>
-#endif
-#ifndef _FTNIDX_HXX
 #include <ftnidx.hxx>
-#endif
-#ifndef _UNOFLDMID_H
 #include <unofldmid.h>
-#endif
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
-#ifndef _POOLFMT_HXX
 #include <poolfmt.hxx>
-#endif
-#ifndef _POOLFMT_HRC
 #include <poolfmt.hrc>
-#endif
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
-extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr ); //STRIP008
+extern String& GetString( const ::com::sun::star::uno::Any& rAny, String& rStr );
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::text;
 using namespace ::com::sun::star::lang;
@@ -184,9 +127,9 @@ using namespace ::rtl;
 /*N*/   while( nRefCnt && nCnt && aRefArr[ nRefCnt ] == aArr[ nCnt ] )
 /*N*/     {
 /*N*/ #ifdef VERTICAL_LAYOUT
-/*N*/         const SwFrm* pFrm = (const SwFrm*)aArr[ nCnt ];
-/*N*/         bVert = pFrm->IsVertical();
-/*N*/         bR2L = pFrm->IsRightToLeft();
+/*N*/         const SwFrm* pFrm1 = (const SwFrm*)aArr[ nCnt ];
+/*N*/         bVert = pFrm1->IsVertical();
+/*N*/         bR2L = pFrm1->IsRightToLeft();
 /*N*/ #endif
 /*N*/       --nCnt, --nRefCnt;
 /*N*/     }
@@ -204,7 +147,7 @@ using namespace ::rtl;
 /*N*/   const SwFrm* pFldFrm = (const SwFrm*)aArr[ nCnt ];
 /*N*/
 /*N*/   // unterschiedliche Frames, dann ueberpruefe deren Y-/X-Position
-/*N*/   BOOL bRefIsLower;
+/*N*/   BOOL bRefIsLower = false;
 /*N*/   if( ( FRM_COLUMN | FRM_CELL ) & pFldFrm->GetType() ||
 /*N*/       ( FRM_COLUMN | FRM_CELL ) & pRefFrm->GetType() )
 /*N*/   {
@@ -528,9 +471,7 @@ String SwGetRefField::GetPar2() const
     return Expand();
 }
 
-/*-----------------06.03.98 13:34-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwGetRefField::QueryValue( uno::Any& rAny, BYTE nMId ) const
 /*N*/ {
 /*N*/     nMId &= ~CONVERT_TWIPS;
@@ -561,7 +502,7 @@ String SwGetRefField::GetPar2() const
 /*N*/           case  REF_SETREFATTR : nSource = ReferenceFieldSource::REFERENCE_MARK; break;
 /*N*/           case  REF_SEQUENCEFLD: nSource = ReferenceFieldSource::SEQUENCE_FIELD; break;
 /*?*/           case  REF_BOOKMARK   : nSource = ReferenceFieldSource::BOOKMARK; break;
-/*?*/           case  REF_OUTLINE    : DBG_ERROR("not implemented"); break;
+/*?*/           case  REF_OUTLINE    : OSL_FAIL("not implemented"); break;
 /*?*/           case  REF_FOOTNOTE   : nSource = ReferenceFieldSource::FOOTNOTE; break;
 /*?*/           case  REF_ENDNOTE    : nSource = ReferenceFieldSource::ENDNOTE; break;
 /*N*/           }
@@ -594,13 +535,11 @@ String SwGetRefField::GetPar2() const
 /*N*/       rAny <<= (sal_Int16)nSeqNo;
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/*-----------------06.03.98 13:34-------------------
 
---------------------------------------------------*/
 /*N*/ BOOL SwGetRefField::PutValue( const uno::Any& rAny, BYTE nMId )
 /*N*/ {
 /*N*/   String sTmp;
@@ -609,7 +548,7 @@ String SwGetRefField::GetPar2() const
 /*N*/   {
 /*N*/   case FIELD_PROP_USHORT1:
 /*N*/       {
-/*N*/           sal_Int16 nPart;
+/*N*/           sal_Int16 nPart(0);
 /*N*/           rAny >>= nPart;
 /*N*/           switch(nPart)
 /*N*/           {
@@ -628,7 +567,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       break;
 /*N*/   case FIELD_PROP_USHORT2:
 /*N*/       {
-/*N*/           sal_Int16 nSource;
+/*N*/           sal_Int16 nSource(0);
 /*N*/           rAny >>= nSource;
 /*N*/           switch(nSource)
 /*N*/           {
@@ -649,7 +588,7 @@ String SwGetRefField::GetPar2() const
 /*N*/       break;
 /*N*/   case FIELD_PROP_PAR1:
 /*?*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 OUString sTmp;
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*?*/     }
 /*?*/     break;
 /*?*/   case FIELD_PROP_PAR3:
@@ -657,20 +596,18 @@ String SwGetRefField::GetPar2() const
 /*?*/       break;
 /*N*/   case FIELD_PROP_SHORT1:
 /*N*/       {
-/*N*/           sal_Int16 nSetSeq;
+/*N*/           sal_Int16 nSetSeq(0);
 /*N*/           rAny >>= nSetSeq;
 /*N*/           if(nSetSeq >= 0)
 /*N*/               nSeqNo = nSetSeq;
 /*N*/       }
 /*N*/       break;
 /*N*/   default:
-/*?*/       DBG_ERROR("illegal property");
+/*?*/       OSL_FAIL("illegal property");
 /*N*/   }
 /*N*/   return TRUE;
 /*N*/ }
-/* -----------------------------11.01.2002 12:50------------------------------
 
- ---------------------------------------------------------------------------*/
 /*N*/ void SwGetRefField::ConvertProgrammaticToUIName()
 /*N*/ {
 /*N*/     if(GetTyp() && REF_SEQUENCEFLD == nSubType)
@@ -698,7 +635,7 @@ String SwGetRefField::GetPar2() const
 /*?*/                 break;
 /*N*/             }
 /*N*/             if( nResId != USHRT_MAX )
-/*?*/             {DBG_BF_ASSERT(0, "STRIP");} //STRIP001     SetPar1(SW_RESSTR( nResId ));
+/*?*/             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/         }
 /*N*/     }
 /*N*/ }
@@ -714,7 +651,7 @@ String SwGetRefField::GetPar2() const
 
 /*N*/ SwFieldType* SwGetRefFieldType::Copy() const
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGetRefFieldType( pDoc );
+DBG_BF_ASSERT(0, "STRIP");return NULL;
 /*N*/ }
 
 
@@ -748,7 +685,7 @@ DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGet
 /*N*/                                       USHORT nSubType, USHORT nSeqNo,
 /*N*/                                       USHORT* pStt, USHORT* pEnd )
 /*N*/ {
-/*N*/   ASSERT( pStt, "warum wird keine StartPos abgefragt?" );
+/*N*/   OSL_ENSURE( pStt, "warum wird keine StartPos abgefragt?" );
 /*N*/
 /*N*/   SwTxtNode* pTxtNd = 0;
 /*N*/   switch( nSubType )
@@ -863,8 +800,10 @@ DBG_BF_ASSERT(0, "STRIP");return NULL; //STRIP001 //STRIP001    return new SwGet
 /*?*/       // dann gibt es im DestDoc RefFelder, also muessen im SourceDoc
 /*?*/       // alle RefFelder auf einduetige Ids in beiden Docs umgestellt
 /*?*/       // werden.
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 _RefIdsMap aFntMap( aEmptyStr );
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

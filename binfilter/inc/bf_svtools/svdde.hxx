@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,23 +31,13 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef INCLUDED_SVTDLLAPI_H
 #include "bf_svtools/svtdllapi.h"
-#endif
 
-#ifndef _SOT_EXCHANGE_HXX
 #include <sot/exchange.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
 #include <tools/list.hxx>
-#endif
-#ifndef _LINK_HXX //autogen
 #include <tools/link.hxx>
-#endif
 
 namespace binfilter
 {
@@ -66,11 +57,6 @@ struct DdeImp;
 DECLARE_LIST( DdeConnections, DdeConnection* )
 DECLARE_LIST( DdeTransactions, DdeTransaction* )
 DECLARE_LIST( DdeFormats, long )
-
-#ifndef STRING_LIST
-#define STRING_LIST
-DECLARE_LIST( StringList, String * )
-#endif
 
 #ifdef WNT
 class DdeService;
@@ -451,3 +437,5 @@ inline long DdeTransaction::GetError()
 }
 
 #endif // _SVDDE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

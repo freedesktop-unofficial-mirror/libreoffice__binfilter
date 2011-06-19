@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,8 +25,8 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-#include <hash_map>
-#include <hash_set>
+#include <boost/unordered_map.hpp>
+#include <boost/unordered_set.hpp>
 #include <list>
 
 #include "osl/diagnose.h"
@@ -216,7 +217,7 @@ static Sequence< OUString > retrieveAsciiValueList(
                     seq.realloc( n1Len + n2Len );
                     const OUString *pSource = seq2.getConstArray();
                     OUString *pTarget = seq.getArray();
-                    for( int i = 0 ; i < n2Len ; i ++ )
+                    for( int i = 0; i < n2Len; ++i )
                     {
                         pTarget[i+n1Len] = pSource[i];
                     }
@@ -265,7 +266,7 @@ struct equaltoRef_Impl
         { return rName1 == rName2; }
 };
 
-typedef hash_set
+typedef boost::unordered_set
 <
     Reference<XInterface >,
     hashRef_Impl,
@@ -432,14 +433,14 @@ struct hashOWString_Impl
         { return rName.hashCode(); }
 };
 
-typedef hash_set
+typedef boost::unordered_set
 <
     OUString,
     hashOWString_Impl,
     equalOWString_Impl
 > HashSet_OWString;
 
-typedef hash_multimap
+typedef boost::unordered_multimap
 <
     OUString,
     Reference<XInterface >,
@@ -447,7 +448,7 @@ typedef hash_multimap
     equalOWString_Impl
 > HashMultimap_OWString_Interface;
 
-typedef hash_map
+typedef boost::unordered_map
 <
     OUString,
     Reference<XInterface >,
@@ -484,11 +485,11 @@ void OServiceManager_Listener::disposing(const EventObject & rEvt )
         }
         catch( const IllegalArgumentException & )
         {
-            OSL_ENSURE( sal_False, "IllegalArgumentException catched" );
+            OSL_FAIL( "IllegalArgumentException catched" );
         }
         catch( const NoSuchElementException & )
         {
-            OSL_ENSURE( sal_False, "NoSuchElementException catched" );
+            OSL_FAIL( "NoSuchElementException catched" );
         }
     }
 }
@@ -685,8 +686,8 @@ void OServiceManager::onUnloadingNotify()
     IT_MM it_end1= m_ServiceMap.end();
     list<IT_MM> listDeleteServiceMap;
     typedef list<IT_MM>::const_iterator CIT_DMM;
-    // find occurences in m_ServiceMap
-    for(IT_MM it_i1= m_ServiceMap.begin(); it_i1 != it_end1; it_i1++)
+    // find occurrences in m_ServiceMap
+    for(IT_MM it_i1= m_ServiceMap.begin(); it_i1 != it_end1; ++it_i1)
     {
         if( m_SetLoadedFactories.find( it_i1->second) != it_SetEnd)
         {
@@ -702,7 +703,7 @@ void OServiceManager::onUnloadingNotify()
     }
     // delete elements from m_ServiceMap
     CIT_DMM it_end2= listDeleteServiceMap.end();
-    for( CIT_DMM it_i2= listDeleteServiceMap.begin(); it_i2 != it_end2; it_i2++)
+    for( CIT_DMM it_i2= listDeleteServiceMap.begin(); it_i2 != it_end2; ++it_i2)
         m_ServiceMap.erase( *it_i2);
 
     // find elements in m_ImplementationNameMap
@@ -710,7 +711,7 @@ void OServiceManager::onUnloadingNotify()
     IT_M it_end3= m_ImplementationNameMap.end();
     list<IT_M> listDeleteImplementationNameMap;
     typedef list<IT_M>::const_iterator CIT_DM;
-    for( IT_M it_i3= m_ImplementationNameMap.begin();  it_i3 != it_end3; it_i3++)
+    for( IT_M it_i3= m_ImplementationNameMap.begin();  it_i3 != it_end3; ++it_i3)
     {
         if( m_SetLoadedFactories.find( it_i3->second) != it_SetEnd)
         {
@@ -726,7 +727,7 @@ void OServiceManager::onUnloadingNotify()
     }
     // delete elements from m_ImplementationNameMap
     CIT_DM it_end4= listDeleteImplementationNameMap.end();
-    for( CIT_DM it_i4= listDeleteImplementationNameMap.begin(); it_i4 != it_end4; it_i4++)
+    for( CIT_DM it_i4= listDeleteImplementationNameMap.begin(); it_i4 != it_end4; ++it_i4)
         m_ImplementationNameMap.erase( *it_i4);
 
     // find elements in m_ImplementationMap
@@ -734,7 +735,7 @@ void OServiceManager::onUnloadingNotify()
     IT_S it_end5= m_ImplementationMap.end();
     list<IT_S> listDeleteImplementationMap;
     typedef list<IT_S>::const_iterator CIT_DS;
-    for( IT_S it_i5= m_ImplementationMap.begin(); it_i5 != it_end5; it_i5++)
+    for( IT_S it_i5= m_ImplementationMap.begin(); it_i5 != it_end5; ++it_i5)
     {
         if( m_SetLoadedFactories.find( *it_i5) != it_SetEnd)
         {
@@ -750,14 +751,14 @@ void OServiceManager::onUnloadingNotify()
     }
     // delete elements from m_ImplementationMap
     CIT_DS it_end6= listDeleteImplementationMap.end();
-    for( CIT_DS it_i6= listDeleteImplementationMap.begin(); it_i6 != it_end6; it_i6++)
+    for( CIT_DS it_i6= listDeleteImplementationMap.begin(); it_i6 != it_end6; ++it_i6)
         m_ImplementationMap.erase( *it_i6);
 
     // remove Event listener before the factories are released.
     IT_S it_end7= m_SetLoadedFactories.end();
 
     Reference<XEventListener> xlistener= getFactoryListener();
-    for( IT_S it_i7= m_SetLoadedFactories.begin(); it_i7 != it_end7; it_i7++)
+    for( IT_S it_i7= m_SetLoadedFactories.begin(); it_i7 != it_end7; ++it_i7)
     {
         Reference<XComponent> xcomp( *it_i7, UNO_QUERY);
         if( xcomp.is())
@@ -797,7 +798,7 @@ void OServiceManager::disposing()
         {
 #ifdef DEBUG
             OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
-            OSL_TRACE( "### RuntimeException occured upon disposing factory: %s", str.getStr() );
+            OSL_TRACE( "### RuntimeException occurred upon disposing factory: %s", str.getStr() );
 #endif
         }
     }
@@ -895,8 +896,8 @@ Any OServiceManager::getPropertyValue(const OUString& PropertyName)
 }
 
 void OServiceManager::addPropertyChangeListener(
-    const OUString& PropertyName,
-    const Reference<XPropertyChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XPropertyChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -904,8 +905,8 @@ void OServiceManager::addPropertyChangeListener(
 }
 
 void OServiceManager::removePropertyChangeListener(
-    const OUString& PropertyName,
-    const Reference<XPropertyChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XPropertyChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -913,8 +914,8 @@ void OServiceManager::removePropertyChangeListener(
 }
 
 void OServiceManager::addVetoableChangeListener(
-    const OUString& PropertyName,
-    const Reference<XVetoableChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XVetoableChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -922,8 +923,8 @@ void OServiceManager::addVetoableChangeListener(
 }
 
 void OServiceManager::removeVetoableChangeListener(
-    const OUString& PropertyName,
-    const Reference<XVetoableChangeListener >& aListener)
+    const OUString& /*PropertyName*/,
+    const Reference<XVetoableChangeListener >& /*aListener*/)
     throw(::com::sun::star::beans::UnknownPropertyException, ::com::sun::star::lang::WrappedTargetException, ::com::sun::star::uno::RuntimeException)
 {
     check_undisposed();
@@ -991,14 +992,14 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
                 }
                 else
                 {
-                    Reference< XSingleServiceFactory > xFac( xFactory, UNO_QUERY );
-                    if (xFac.is())
+                    Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
+                    if (xFac2.is())
                     {
 #ifdef DEBUG
                         OString aStr( OUStringToOString( rServiceSpecifier, RTL_TEXTENCODING_ASCII_US ) );
                         OSL_TRACE( "### ignoring given context raising service %s !!!\n", aStr.getStr() );
 #endif
-                        return xFac->createInstance();
+                        return xFac2->createInstance();
                     }
                 }
             }
@@ -1007,7 +1008,7 @@ Reference< XInterface > OServiceManager::createInstanceWithContext(
         {
 #ifdef DEBUG
             OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
-            OSL_TRACE( "### DisposedException occured: %s", str.getStr() );
+            OSL_TRACE( "### DisposedException occurred: %s", str.getStr() );
 #endif
         }
     }
@@ -1040,14 +1041,14 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
                 }
                 else
                 {
-                    Reference< XSingleServiceFactory > xFac( xFactory, UNO_QUERY );
-                    if (xFac.is())
+                    Reference< XSingleServiceFactory > xFac2( xFactory, UNO_QUERY );
+                    if (xFac2.is())
                     {
 #ifdef DEBUG
                         OString aStr( OUStringToOString( rServiceSpecifier, RTL_TEXTENCODING_ASCII_US ) );
                         OSL_TRACE( "### ignoring given context raising service %s !!!\n", aStr.getStr() );
 #endif
-                        return xFac->createInstanceWithArguments( rArguments );
+                        return xFac2->createInstanceWithArguments( rArguments );
                     }
                 }
             }
@@ -1056,7 +1057,7 @@ Reference< XInterface > OServiceManager::createInstanceWithArgumentsAndContext(
         {
 #ifdef DEBUG
             OString str( OUStringToOString( exc.Message, RTL_TEXTENCODING_ASCII_US ) );
-            OSL_TRACE( "### DisposedException occured: %s", str.getStr() );
+            OSL_TRACE( "### DisposedException occurred: %s", str.getStr() );
 #endif
         }
     }
@@ -1098,7 +1099,7 @@ void OServiceManager::initialize( Sequence< Any > const & )
     throw (Exception)
 {
     check_undisposed();
-    OSL_ENSURE( 0, "not impl!" );
+    OSL_FAIL( "not impl!" );
 }
 
 // XServiceInfo
@@ -1116,7 +1117,7 @@ sal_Bool OServiceManager::supportsService(const OUString& ServiceName)
     check_undisposed();
     Sequence< OUString > aSNL = getSupportedServiceNames();
     const OUString * pArray = aSNL.getConstArray();
-    for( sal_Int32 i = 0; i < aSNL.getLength(); i++ )
+    for( sal_Int32 i = 0; i < aSNL.getLength(); ++i )
         if( pArray[i] == ServiceName )
             return sal_True;
     return sal_False;
@@ -1132,7 +1133,7 @@ Sequence< OUString > OServiceManager::getSupportedServiceNames()
 
 
 Sequence< Reference< XInterface > > OServiceManager::queryServiceFactories(
-    const OUString& aServiceName, Reference< XComponentContext > const & xContext )
+    const OUString& aServiceName, Reference< XComponentContext > const & /*xContext*/ )
 {
     Sequence< Reference< XInterface > > ret;
 
@@ -1269,7 +1270,7 @@ void OServiceManager::insert( const Any & Element )
     {
         Sequence< OUString > aServiceNames = xSF->getSupportedServiceNames();
         const OUString * pArray = aServiceNames.getConstArray();
-        for( sal_Int32 i = 0; i < aServiceNames.getLength(); i++ )
+        for( sal_Int32 i = 0; i < aServiceNames.getLength(); ++i )
         {
             m_ServiceMap.insert( HashMultimap_OWString_Interface::value_type(
                 pArray[i], *(Reference<XInterface > *)Element.getValue() ) );
@@ -1336,7 +1337,7 @@ void OServiceManager::remove( const Any & Element )
     {
         Sequence< OUString > aServiceNames = xSF->getSupportedServiceNames();
         const OUString * pArray = aServiceNames.getConstArray();
-        for( sal_Int32 i = 0; i < aServiceNames.getLength(); i++ )
+        for( sal_Int32 i = 0; i < aServiceNames.getLength(); ++i )
         {
             pair<HashMultimap_OWString_Interface::iterator, HashMultimap_OWString_Interface::iterator> p =
                 m_ServiceMap.equal_range( pArray[i] );
@@ -1535,7 +1536,7 @@ Reference<XInterface > ORegistryServiceManager::loadWithServiceName(
     const OUString& serviceName, Reference< XComponentContext > const & xContext )
 {
     Sequence<OUString> implEntries = getFromServiceName( serviceName );
-    for (sal_Int32 i = 0; i < implEntries.getLength(); i++)
+    for (sal_Int32 i = 0; i < implEntries.getLength(); ++i)
     {
         Reference< XInterface > x(
             loadWithImplementationName( implEntries.getConstArray()[i], xContext ) );
@@ -1564,7 +1565,7 @@ void ORegistryServiceManager::fillAllNamesFromRegistry( HashSet_OWString & rSet 
         {
             sal_Int32 nPrefix = xServicesKey->getKeyName().getLength() +1;
             Sequence<Reference<XRegistryKey > > aKeys = xServicesKey->openKeys();
-            for( sal_Int32 i = 0; i < aKeys.getLength(); i++ )
+            for( sal_Int32 i = 0; i < aKeys.getLength(); ++i )
                 rSet.insert( aKeys.getConstArray()[i]->getKeyName().copy( nPrefix ) );
         }
     }
@@ -1647,7 +1648,7 @@ Reference<XEnumeration > ORegistryServiceManager::createContentEnumeration(
     // load and insert all factories specified by the registry
     sal_Int32 i;
     OUString aImplName;
-    for( i = 0; i < aImpls.getLength(); i++ )
+    for( i = 0; i < aImpls.getLength(); ++i )
     {
         aImplName = aImpls.getConstArray()[i];
         if ( !haveFactoryWithThisImplementation(aImplName) )
@@ -1751,17 +1752,16 @@ public:
     // XServiceInfo
     virtual OUString SAL_CALL getImplementationName() throw (RuntimeException)
     {
-        //STRIP002 OSL_ENSURE( 0, "### unexpected call LegacyServiceManager::getImplementationName()!" );
-        return OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.office.LegacyServiceManager")); //STRIP002return m_xOfficeMgr_si->getImplementationName();
+        return OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.comp.office.LegacyServiceManager"));
     }
     virtual sal_Bool SAL_CALL supportsService(const OUString& ServiceName) throw (RuntimeException)
     {
-        OSL_ENSURE( 0, "### unexpected call LegacyServiceManager::supportsService()!" );
+        OSL_FAIL( "### unexpected call LegacyServiceManager::supportsService()!" );
         return m_xOfficeMgr_si->supportsService( ServiceName );
     }
     virtual Sequence< OUString > SAL_CALL getSupportedServiceNames() throw (RuntimeException)
     {
-        OSL_ENSURE( 0, "### unexpected call LegacyServiceManager::getSupportedServiceNames()!" );
+        OSL_FAIL( "### unexpected call LegacyServiceManager::getSupportedServiceNames()!" );
         return m_xOfficeMgr_si->getSupportedServiceNames();
     }
 
@@ -1866,8 +1866,8 @@ Any LegacyServiceManager::getPropertyValue(const OUString& PropertyName)
     }
     else
     {
-        Reference< beans::XPropertySet > m_xLegacyRdbMgr_ps(m_xLegacyRdbMgr_msf, UNO_QUERY_THROW ); //STRIP002
-        return m_xLegacyRdbMgr_ps->getPropertyValue( PropertyName ); //STRIP002 return m_xOfficeMgr_ps->getPropertyValue( PropertyName );
+        Reference< beans::XPropertySet > m_xLegacyRdbMgr_ps(m_xLegacyRdbMgr_msf, UNO_QUERY_THROW );
+        return m_xLegacyRdbMgr_ps->getPropertyValue( PropertyName );
     }
 }
 
@@ -1945,7 +1945,7 @@ public:
         throw (RuntimeException);
 };
 //__________________________________________________________________________________________________
-void DisposingForwarder::disposing( lang::EventObject const & rSource )
+void DisposingForwarder::disposing( lang::EventObject const & /*rSource*/ )
     throw (RuntimeException)
 {
     m_xTarget->dispose();
@@ -1985,12 +1985,6 @@ using namespace ::legacy_binfilters;
 
 extern "C"
 {
-sal_Bool SAL_CALL legacysmgr_component_writeInfo(
-    lang::XMultiServiceFactory * smgr, registry::XRegistryKey * key )
-{
-    // #i30331#
-    return component_writeInfoHelper( smgr, key, s_entries );
-}
 #if defined(SOLARIS) && defined(INTEL)
 #pragma optimize ( "", on )
 #endif
@@ -2075,13 +2069,13 @@ void * SAL_CALL legacysmgr_component_getFactory(
         OUStringBuffer buf( 128 );
         buf.appendAscii(
             RTL_CONSTASCII_STRINGPARAM(
-                "### unexpected exception occured in binfilters "
+                "### unexpected exception occurred in binfilters "
                 "component_getFactory(): ") );
         buf.append( exc.Message );
         OString cstr(
             OUStringToOString(
                 buf.makeStringAndClear(), RTL_TEXTENCODING_ASCII_US ) );
-        OSL_ENSURE( 0, cstr.getStr() );
+        OSL_FAIL( cstr.getStr() );
 #endif
     }
     return 0;
@@ -2092,3 +2086,5 @@ static sal_Bool  IsBinfilterInit =  sal_False;
 void legcy_setBinfilterInitState(void){IsBinfilterInit =  sal_True;}
 //added by jmeng for i31251 end
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

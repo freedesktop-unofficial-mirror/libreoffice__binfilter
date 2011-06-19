@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,24 +28,12 @@
 #ifndef SCH_XMLIMPORT_HXX_
 #define SCH_XMLIMPORT_HXX_
 
-#ifndef _XMLOFF_SCH_XMLIMPORTHELPER_HXX_
 #include <bf_xmloff/SchXMLImportHelper.hxx>
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include <bf_xmloff/xmlimp.hxx>
-#endif
-#ifndef _XMLOFF_XMLTKMAP_HXX
 #include <bf_xmloff/xmltkmap.hxx>
-#endif
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include <bf_xmloff/xmlictxt.hxx>
-#endif
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
-#endif
-#ifndef _XMLOFF_FAMILIES_HXX_
 #include <bf_xmloff/families.hxx>
-#endif
 namespace binfilter {
 
 /* ----------------------------------------
@@ -194,3 +183,5 @@ public:
 
 }//end of namespace binfilter
 #endif  // SCH_XMLIMPORT_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,7 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLEMBEDDEDOBJECTEXPORTFILTER_HXX
 #include "XMLEmbeddedObjectExportFilter.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -164,7 +163,7 @@ OUString SAL_CALL XMLEmbeddedObjectExportFilter::getImplementationName()
     return aStr;
 }
 
-sal_Bool SAL_CALL XMLEmbeddedObjectExportFilter::supportsService( const OUString& ServiceName )
+sal_Bool SAL_CALL XMLEmbeddedObjectExportFilter::supportsService( const OUString& /*ServiceName*/ )
     throw(RuntimeException)
 {
     return sal_False;
@@ -177,3 +176,5 @@ Sequence< OUString > SAL_CALL XMLEmbeddedObjectExportFilter::getSupportedService
     return aSeq;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

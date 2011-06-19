@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 #ifndef _XMLOFF_XMLBASICI_HXX
 #define _XMLOFF_XMLBASICI_HXX
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
-#ifndef _COM_SUN_STAR_XML_SAX_XDOCUMENTHANDLER_HPP_
 #include <com/sun/star/xml/sax/XDocumentHandler.hpp>
-#endif
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
 
 //.........................................................................
 namespace binfilter
@@ -101,3 +96,5 @@ namespace binfilter
 //.........................................................................
 
 #endif // _XMLOFF_XMLBASICI_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,18 +31,10 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _SVX_BRWBOX_HXX //autogen
 #include <bf_svtools/brwbox.hxx>
-#endif
-#ifndef _SV_TIMER_HXX //autogen
 #include <vcl/timer.hxx>
-#endif
-#ifndef _SV_FLOATWIN_HXX //autogen
 #include <vcl/floatwin.hxx>
-#endif
-#ifndef _SV_MENU_HXX //autogen
 #include <vcl/menu.hxx>
-#endif
 namespace binfilter {
 
 class BrowserMouseEvent;
@@ -74,7 +67,7 @@ enum SmartGroupKind {GROUP_POSSIZE,
 class _SdrSmartObjBrowserControl: public BrowseBox {
 friend class ImpSmartEdit;
 friend class SdrSmartObjBrowser;
-    FASTBOOL            bGroupExpanded[SMARTOBJBROWSER_GROUPCOUNT];
+    bool            bGroupExpanded[SMARTOBJBROWSER_GROUPCOUNT];
     UShortCont*         pExpandedGeo;
     SdrObject*          pObj;
     SdrObjSmartData*    pSmartData;
@@ -86,8 +79,8 @@ friend class SdrSmartObjBrowser;
     Timer               aBrAfterPaintTimer;
     ImpBrowseCursor*    pCursor;
     ULONG               nLastLineAnz;
-    FASTBOOL            bCursorVisible;
-    FASTBOOL            bShowValues;
+    bool            bCursorVisible;
+    bool            bShowValues;
     ULONG               nTipId;
     long                mnCurRow;
     USHORT              mnCurColId;
@@ -96,13 +89,13 @@ private:
     void     ImpCtor();
     void     ImpForceSmartData() const;
     ULONG    ImpGetGroupCount() const;
-    ULONG    ImpGetGroupLineCount(SmartGroupKind eGroup, FASTBOOL bOneIfCollapsed) const;
-    FASTBOOL ImpIsGroupExpanded(SmartGroupKind eGroup) const;
+    ULONG    ImpGetGroupLineCount(SmartGroupKind eGroup, bool bOneIfCollapsed) const;
+    bool ImpIsGroupExpanded(SmartGroupKind eGroup) const;
     ULONG    ImpGetGroupStartLine(SmartGroupKind eGroup) const;
-    void     ImpExpandGroup(SmartGroupKind eGroup, FASTBOOL bExpand);
-    FASTBOOL ImpIsGroupValid(SmartGroupKind eGroup) const;
+    void     ImpExpandGroup(SmartGroupKind eGroup, bool bExpand);
+    bool ImpIsGroupValid(SmartGroupKind eGroup) const;
     void     ImpForceExpandedGeo() const;
-    FASTBOOL ImpLineNumToDescription(ULONG nRow, ImpLineDescription& rLine) const;
+    bool ImpLineNumToDescription(ULONG nRow, ImpLineDescription& rLine) const;
     SdrSmartValueField* ImpGetValueField(const ImpLineDescription rLine, USHORT nColumnId) const;
     XubString ImpGetFixedFieldText(const ImpLineDescription rLine, USHORT nColumnId) const;
     void     ImpShowCursor(const ImpLineDescription rLine, USHORT nColumnId);
@@ -114,7 +107,7 @@ private:
     DECL_LINK( ImpAfterPaintHdl,Timer* );
     DECL_LINK( MenuSelectHdl, Menu* );
 
-    FASTBOOL ImpInsertLine(SmartGroupKind eGroup, ULONG nLn);
+    bool ImpInsertLine(SmartGroupKind eGroup, ULONG nLn);
 #endif // __PRIVATE
 protected:
     virtual long GetRowCount() const;
@@ -134,9 +127,9 @@ protected:
 public:
     _SdrSmartObjBrowserControl(Window* pParent, WinBits nBits=WB_SVLOOK|WB_BORDER|WB_TABSTOP|WB_CLIPCHILDREN);
     virtual ~_SdrSmartObjBrowserControl();
-            FASTBOOL IsChangeEntry() const          { return pEditControl!=NULL; }
-    virtual FASTBOOL BegChangeEntry(SdrSmartValueField* pField);
-    virtual FASTBOOL EndChangeEntry();
+            bool IsChangeEntry() const          { return pEditControl!=NULL; }
+    virtual bool BegChangeEntry(SdrSmartValueField* pField);
+    virtual bool EndChangeEntry();
     virtual void     BrkChangeEntry();
 
     /** GetCellText returns the text at the given position
@@ -167,24 +160,24 @@ public:
     SdrSmartDraftLine*     InsertVarsLine(ULONG nPos=CONTAINER_APPEND);
     SdrSmartGluePoint*     InsertGluePoint(ULONG nPos=CONTAINER_APPEND);
     SdrSmartDragPoint*     InsertDragPoint(ULONG nPos=CONTAINER_APPEND);
-    FASTBOOL DeleteGeometric(ULONG nPos);
-    FASTBOOL DeleteGeoLine(ULONG nGeoNum, ULONG nPos);
-    FASTBOOL DeleteDraftLine(ULONG nPos);
-    FASTBOOL DeleteVarsLine(ULONG nPos);
-    FASTBOOL DeleteGluePoint(ULONG nPos);
-    FASTBOOL DeleteDragPoint(ULONG nPos);
-    FASTBOOL InsertGeometricPossible() const;
-    FASTBOOL AppendGeometricPossible() const;
-    FASTBOOL DeleteGeometricPossible() const;
-    FASTBOOL InsertGeometric();
-    FASTBOOL AppendGeometric();
-    FASTBOOL DeleteGeometric();
-    FASTBOOL InsertLinePossible() const;
-    FASTBOOL AppendLinePossible() const;
-    FASTBOOL DeleteLinePossible() const;
-    FASTBOOL InsertLine();
-    FASTBOOL AppendLine();
-    FASTBOOL DeleteLine();
+    bool DeleteGeometric(ULONG nPos);
+    bool DeleteGeoLine(ULONG nGeoNum, ULONG nPos);
+    bool DeleteDraftLine(ULONG nPos);
+    bool DeleteVarsLine(ULONG nPos);
+    bool DeleteGluePoint(ULONG nPos);
+    bool DeleteDragPoint(ULONG nPos);
+    bool InsertGeometricPossible() const;
+    bool AppendGeometricPossible() const;
+    bool DeleteGeometricPossible() const;
+    bool InsertGeometric();
+    bool AppendGeometric();
+    bool DeleteGeometric();
+    bool InsertLinePossible() const;
+    bool AppendLinePossible() const;
+    bool DeleteLinePossible() const;
+    bool InsertLine();
+    bool AppendLine();
+    bool DeleteLine();
 };
 
 #define WB_STDSIZEABLEDOCKWIN  (WB_STDDOCKWIN|WB_SVLOOK|WB_CLOSEABLE|WB_SIZEMOVE|WB_MINMAX|WB_CLIPCHILDREN)
@@ -198,7 +191,7 @@ public:
     virtual void Resize();
     virtual void GetFocus();
     void Clear()                                            { aBrowse.Clear(); }
-    void SetFloatingMode(FASTBOOL bOn) {}
+    void SetFloatingMode(bool bOn) {}
     const _SdrSmartObjBrowserControl& GetBrowserControl() const { return aBrowse; }
     _SdrSmartObjBrowserControl& GetBrowserControl()             { return aBrowse; }
 };
@@ -208,8 +201,8 @@ class SdrView;
 class SdrSmartObjBrowser: public _SdrSmartObjBrowserWindow {
     Timer aIdleTimer;
     SdrView* pView;
-    FASTBOOL bFixedObj;
-    FASTBOOL bDirty;
+    bool bFixedObj;
+    bool bDirty;
 private:
     static Window* ImpGetViewWin(SdrView& rView);
     DECL_LINK(IdleHdl,Timer*);
@@ -228,3 +221,4 @@ public:
 #endif //_SVDOSMBR_HXX
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,55 +26,25 @@
  *
  ************************************************************************/
 
-#ifndef _FRM_IMAGE_HXX_
 #include "Image.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_FORM_XSUBMIT_HPP_
 #include <com/sun/star/form/XSubmit.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_SYSTEMPOINTER_HPP_
 #include <com/sun/star/awt/SystemPointer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_XDISPATCHPROVIDER_HPP_
 #include <com/sun/star/frame/XDispatchProvider.hpp>
-#endif
-#ifndef _COM_SUN_STAR_FRAME_FRAMESEARCHFLAG_HPP_
 #include <com/sun/star/frame/FrameSearchFlag.hpp>
-#endif
-#ifndef _COM_SUN_STAR_UTIL_XURLTRANSFORMER_HPP_
 #include <com/sun/star/util/XURLTransformer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_AWT_XACTIONLISTENER_HPP_
 #include <com/sun/star/awt/XActionListener.hpp>
-#endif
 
-#ifndef _URLOBJ_HXX
 #include <tools/urlobj.hxx>
-#endif
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _SFX_OBJSH_HXX //autogen
 #include <bf_sfx2/objsh.hxx>
-#endif
-#ifndef _VOS_MUTEX_HXX_
-#include <vos/mutex.hxx>
-#endif
+#include <osl/mutex.hxx>
 
-#ifndef _FRM_SERVICES_HXX_
 #include "services.hxx"
-#endif
-#ifndef _COMPHELPER_CONTAINER_HXX_
 #include <comphelper/container.hxx>
-#endif
 
-#ifndef _COMPHELPER_PROPERTY_HXX_
 #include <comphelper/property.hxx>
-#endif
 
 namespace binfilter {
 
@@ -87,7 +58,6 @@ namespace frm
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::sdb;
 using namespace ::com::sun::star::sdbc;
-//using namespace ::com::sun::star::sdbcx;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::container;
 using namespace ::com::sun::star::form;
@@ -190,10 +160,12 @@ void OImageControl::propertyChange( const PropertyChangeEvent& rEvt )
         Reference<XPointer> xPoint(
             m_xServiceFactory->createInstance(SRV_AWT_POINTER), UNO_QUERY);
         if (xPoint.is())
+        {
             if (getString(rEvt.NewValue).getLength())
                 xPoint->setType(SystemPointer::REFHAND);
             else
                 xPoint->setType(SystemPointer::ARROW);
+        }
 
         xPeer->setPointer(xPoint);
     }
@@ -228,7 +200,6 @@ void SAL_CALL OImageControl::createPeer(const Reference<XToolkit>& _rxToolkit, c
     // itself will register as image consumer at the image producer, so there's no need to do this ourself.
     // This holds since our model is an XImageProducer itself, and thus hiding the XImageProducer of the aggregated
     // model. Before, we had two ImageProducers working in parallel.
-    // 2003-05-15 - 109591 - fs@openoffice.org
 
 /*
     // dem ImageProducer einen neuen Consumer bekannt geben
@@ -306,9 +277,9 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
     // wird das meiste bei gelocktem Solar-Mutex erledigen.
     Reference<XPropertySet>  xSet;
     InterfaceRef  xParent;
-    FormButtonType eButtonType;
+    FormButtonType eButtonType = FormButtonType_PUSH;
     {
-        ::vos::OGuard aGuard( Application::GetSolarMutex() );
+        SolarMutexGuard aGuard;
 
         // Parent holen
         Reference<XFormComponent>  xComp(getModel(), UNO_QUERY);
@@ -351,7 +322,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
 
         case FormButtonType_URL:
         {
-            ::vos::OGuard aGuard( Application::GetSolarMutex() );
+            SolarMutexGuard aGuard;
 
             Reference< XModel >  xModel = getXModel(xParent);
             if (!xModel.is())
@@ -386,7 +357,6 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
                 // * at the UI, show only the mark
                 // * !!!! recognize every SAVEAS on the document, so the absolute URL can be adjusted. This seems
                 // rather impossible !!!
-                // 89752 - 23.07.2001 - frank.schoenheit@sun.com
                 aURL.Mark = aURL.Complete;
                 aURL.Complete = xModel->getURL();
                 aURL.Complete += aURL.Mark;
@@ -394,14 +364,14 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
 
             Reference<XURLTransformer>
                 xTransformer(m_xServiceFactory->createInstance(
-                    ::rtl::OUString::createFromAscii("com.sun.star.util.URLTransformer")), UNO_QUERY);
+                    ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.util.URLTransformer" ))), UNO_QUERY);
 
             sal_Bool bDispatchUrlInternal = sal_False;
             xSet->getPropertyValue(PROPERTY_DISPATCHURLINTERNAL) >>= bDispatchUrlInternal;
             if ( bDispatchUrlInternal )
             {
                 if ( xTransformer.is() )
-                    xTransformer->parseSmart( aURL, ::rtl::OUString::createFromAscii(INET_FILE_SCHEME) );
+                    xTransformer->parseSmart( aURL, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM(INET_FILE_SCHEME)) );
 
                 ::rtl::OUString aTargetFrame;
                 xSet->getPropertyValue(PROPERTY_TARGET_FRAME) >>= aTargetFrame;
@@ -412,7 +382,7 @@ void OImageControl::actionPerformed_Impl(sal_Bool bNotifyListener, const ::com::
 
                 Sequence<PropertyValue> aArgs(1);
                 PropertyValue& rProp = aArgs.getArray()[0];
-                rProp.Name = ::rtl::OUString::createFromAscii("Referer");
+                rProp.Name = ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "Referer" ));
                 rProp.Value <<= xModel->getURL();
 
                 if (xDisp.is())
@@ -473,11 +443,11 @@ OImageModel::OImageModel( const Reference< XMultiServiceFactory >& _rxFactory, c
         const ::rtl::OUString& rDefault, const sal_Bool _bSetDelegator )
     :OControlModel( _rxFactory, _rUnoControlModelTypeName, rDefault, _bSetDelegator )
     ,OPropertyChangeListener(m_aMutex)
-    ,m_pProducer( NULL )
     ,m_pMedium(NULL)
+    ,m_pProducer( NULL )
+    ,m_bDispatchUrlInternal(sal_False)
     ,m_bDownloading(sal_False)
     ,m_bProdStarted(sal_False)
-    ,m_bDispatchUrlInternal(sal_False)
 {
     DBG_CTOR( OImageModel, NULL );
     implConstruct();
@@ -488,11 +458,11 @@ OImageModel::OImageModel( const Reference< XMultiServiceFactory >& _rxFactory, c
 OImageModel::OImageModel( const OImageModel* _pOriginal, const Reference<XMultiServiceFactory>& _rxFactory, const sal_Bool _bSetDelegator )
     :OControlModel( _pOriginal, _rxFactory, _bSetDelegator )
     ,OPropertyChangeListener( m_aMutex )
-    ,m_pProducer( NULL )
     ,m_pMedium( NULL )
+    ,m_pProducer( NULL )
+    ,m_bDispatchUrlInternal(sal_False)
     ,m_bDownloading( sal_False )
     ,m_bProdStarted( sal_False )
-    ,m_bDispatchUrlInternal(sal_False)
 {
     DBG_CTOR( OImageModel, NULL );
     implConstruct();
@@ -510,7 +480,6 @@ void OImageModel::implInitializeImageURL( )
     osl_incrementInterlockedCount( &m_refCount );
     {
         // simulate a propertyChanged event for the ImageURL
-        // 2003-05-15 - #109591# - fs@openoffice.org
         Any aImageURL;
         getFastPropertyValue( aImageURL, PROPERTY_ID_IMAGE_URL );
         _propertyChanged( PropertyChangeEvent( *this, PROPERTY_IMAGE_URL, sal_False, PROPERTY_ID_IMAGE_URL, Any( ), aImageURL ) );
@@ -674,7 +643,6 @@ void OImageModel::StartProduction()
     if (!m_pMedium)
     {
         // caution: the medium may be NULL if somebody gave us a invalid URL to work with
-        // 11/24/2000 - 79667 - FS
         pImgProd->SetImage(String());
         m_bDownloading = sal_False;
         return;
@@ -709,7 +677,6 @@ void OImageModel::SetURL( const ::rtl::OUString& rURL )
     }
 
     // the SfxMedium is not allowed to be created with an invalid URL, so we have to check this first
-    // 23.01.2001 - 81927 - FS
     INetURLObject aUrl(rURL);
     if (INET_PROT_NOT_VALID == aUrl.GetProtocol())
         // we treat an invalid URL like we would treat no URL
@@ -758,14 +725,14 @@ void OImageModel::SetURL( const ::rtl::OUString& rURL )
             }
             if( !pObjSh )
             {
-                SfxObjectShell *pTestObjSh = SfxObjectShell::GetFirst();
-                while( !pObjSh && pTestObjSh )
+                SfxObjectShell *pLclTestObjSh = SfxObjectShell::GetFirst();
+                while( !pObjSh && pLclTestObjSh )
                 {
-                    Reference< XModel > xTestModel = pTestObjSh->GetModel();
+                    Reference< XModel > xTestModel = pLclTestObjSh->GetModel();
                     if( xTestModel == xModel )
-                        pObjSh = pTestObjSh;
+                        pObjSh = pLclTestObjSh;
                     else
-                        pTestObjSh = SfxObjectShell::GetNext( *pTestObjSh );
+                        pLclTestObjSh = SfxObjectShell::GetNext( *pLclTestObjSh );
                 }
             }
         }
@@ -940,3 +907,5 @@ void OImageControlThread_Impl::processEvent( ::cppu::OComponentHelper *pCompImpl
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

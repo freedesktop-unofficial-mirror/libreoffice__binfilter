@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,39 +32,19 @@
 
 // include ---------------------------------------------------------------
 
-#ifndef _XPOLY_HXX
 #include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _SVX_XDASH_HXX
 #include <bf_svx/xdash.hxx>
-#endif
-#ifndef _SVX_XHATCH_HXX
 #include <bf_svx/xhatch.hxx>
-#endif
-#ifndef _SVX__XGRADIENT_HXX
 #include <bf_svx/xgrad.hxx>
-#endif
-#ifndef _SVX_XBITMAP_HXX
 #include <bf_svx/xbitmap.hxx>
-#endif
-#ifndef _SVX_XFLASIT_HXX
 #include <bf_svx/xflasit.hxx>
-#endif
-#ifndef _SVX_XLNASIT_HXX
 #include <bf_svx/xlnasit.hxx>
-#endif
 
-#ifndef _COLOR_HXX
 #include <tools/color.hxx>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 
-#ifndef _TABLE_HXX //autogen
 #include <tools/table.hxx>
-#endif
 class Color;
 class Bitmap;
 class VirtualDevice;
@@ -77,7 +58,7 @@ class XOutputDevice;
 #define BITMAP_HEIGHT 12
 
 // Standard-Vergleichsstring
-extern sal_Unicode __FAR_DATA pszStandard[]; // "standard"
+extern sal_Unicode pszStandard[]; // "standard"
 
 // Funktion zum Konvertieren in echte RGB-Farben, da mit
 // enum COL_NAME nicht verglichen werden kann.
@@ -330,7 +311,7 @@ public:
     XColorEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -354,7 +335,7 @@ public:
     XLineEndEntry*  Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -388,7 +369,7 @@ public:
     XLineEndEntry*  Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -412,7 +393,7 @@ public:
     XDashEntry*     Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -446,7 +427,7 @@ public:
     XDashEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -470,7 +451,7 @@ public:
     XHatchEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -503,7 +484,7 @@ public:
     XHatchEntry*    Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -527,7 +508,7 @@ public:
     XGradientEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -560,7 +541,7 @@ public:
     XGradientEntry* Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -584,7 +565,7 @@ public:
     XBitmapEntry*   Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -613,7 +594,7 @@ public:
     XBitmapEntry*   Get(long nIndex) const;
 
     virtual BOOL    Load();
-    virtual BOOL    Save();
+    virtual BOOL    Save() {return false;}
     virtual BOOL    Create();
     virtual BOOL    CreateBitmapsForUI();
     virtual Bitmap* CreateBitmapForUI( long nIndex, BOOL bDelete = TRUE );
@@ -621,3 +602,5 @@ public:
 
 }//end of namespace binfilter
 #endif // _XTABLE_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

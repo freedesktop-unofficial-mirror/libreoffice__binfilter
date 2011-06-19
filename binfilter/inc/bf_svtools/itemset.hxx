@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,18 +28,10 @@
 #ifndef _SFXITEMSET_HXX
 #define _SFXITEMSET_HXX
 
-#if STLPORT_VERSION<321
-#include <stdarg.h>
-#else
 #include <cstdarg>  // std::va_list and friends
-#endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
-#ifndef _RTTI_HXX //autogen
 #include <tools/rtti.hxx>
-#endif
 #include <bf_svtools/bf_solar.h>
 
 class SvStream;
@@ -173,9 +166,9 @@ public:
     const USHORT*               GetRanges() const { return _pWhichRanges; }
     const SfxItemSet*           GetParent() const { return _pParent; }
 
-    virtual SvStream &          Load( SvStream &, FASTBOOL bDirect = FALSE,
+    virtual SvStream &          Load( SvStream &, bool bDirect = FALSE,
                                       const SfxItemPool *pRefPool = 0 );
-    virtual SvStream &          Store( SvStream &, FASTBOOL bDirect = FALSE ) const;
+    virtual SvStream & Store( SvStream &rStream, bool /*bDirect*/ = FALSE ) const { return rStream; }
 
     virtual int                 operator==(const SfxItemSet &) const;
 };
@@ -218,3 +211,4 @@ public:
 
 #endif // #ifndef _SFXITEMSET_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

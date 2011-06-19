@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,28 +28,14 @@
 
 #include "SchAddInCollection.hxx"
 
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XMULTISERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XMultiServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSINGLESERVICEFACTORY_HPP_
 #include <com/sun/star/lang/XSingleServiceFactory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XCONTENTENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XContentEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICENAME_HPP_
 #include <com/sun/star/lang/XServiceName.hpp>
-#endif
-#ifndef _COMPHELPER_PROCESSFACTORY_HXX_
 #include <comphelper/processfactory.hxx>
-#endif
-#include<tools/debug.hxx> //STRIP001
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include<tools/debug.hxx>
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 using namespace ::com::sun::star;
 
@@ -71,7 +58,7 @@ using namespace ::com::sun::star;
 /*N*/         if( xEnumAcc.is())
 /*N*/         {
 /*N*/             uno::Reference< container::XEnumeration > xEnum =
-/*N*/                 xEnumAcc->createContentEnumeration( ::rtl::OUString::createFromAscii( "com.sun.star.chart.Diagram" ));
+/*N*/                 xEnumAcc->createContentEnumeration( ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.chart.Diagram" )));
 /*N*/             if( xEnum.is())
 /*N*/             {
 /*N*/                 // clear possibly existing list
@@ -106,8 +93,7 @@ using namespace ::com::sun::star;
 /*N*/     }
 /*N*/     catch( const uno::Exception& aEx )
 /*N*/     {
-/*N*/         OSL_ENSURE( false,
-/*N*/                     ::rtl::OUStringToOString(
+/*N*/         OSL_FAIL( ::rtl::OUStringToOString(
 /*N*/                         ::rtl::OUString(
 /*N*/                             RTL_CONSTASCII_USTRINGPARAM(
 /*N*/                                 "Couldn't initialize add-in collection: " )) +
@@ -119,7 +105,7 @@ using namespace ::com::sun::star;
 /*N*/ uno::Reference< util::XRefreshable > SchAddInCollection::GetAddInByName( const ::rtl::OUString& rName )
 /*N*/ {
 /*N*/     if( ! mbInitialized )
-/*?*/         {DBG_BF_ASSERT(0, "STRIP");} //STRIP001 Initialize();
+/*?*/         {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
 /*N*/     const sal_Int32 nSize = maServiceNames.getLength();
 /*N*/     for( sal_Int32 i = 0; i < nSize; i++ )
@@ -142,3 +128,5 @@ using namespace ::com::sun::star;
 /*N*/     return maServiceNames;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

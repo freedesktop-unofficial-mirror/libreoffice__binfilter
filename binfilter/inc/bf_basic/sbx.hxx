@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,33 +31,17 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _REF_HXX
 #include "tools/ref.hxx"
-#endif
 
-#ifndef _SVARRAY_HXX
 #include "bf_svtools/svarray.hxx"
-#endif
-#ifndef _SFXSMPLHINT_HXX
 #include "bf_svtools/smplhint.hxx"
-#endif
-#ifndef _SFXLSTNER_HXX
 #include "bf_svtools/lstner.hxx"
-#endif
 
-#ifndef _SBXDEF_HXX
 #include "sbxdef.hxx"
-#endif
 
-#ifndef __SBX_SBXOBJECT_HXX
 #include "sbxobj.hxx"
-#endif
-#ifndef __SBX_SBXPROPERTY_HXX
 #include "sbxprop.hxx"
-#endif
-#ifndef __SBX_SBXMETHOD_HXX
 #include "sbxmeth.hxx"
-#endif
 
 class BigInt;
 class String;
@@ -125,7 +110,7 @@ class SbxInfo : public SvRefBase
 
 protected:
     BOOL LoadData( SvStream&, USHORT );
-    BOOL StoreData( SvStream& ) const;
+    BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual ~SbxInfo();
 public:
     SbxInfo();
@@ -203,7 +188,7 @@ protected:
     SbxDataType eType;              // Datentyp des Arrays
     virtual ~SbxArray();
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 
 public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_ARRAY,1);
@@ -258,7 +243,7 @@ protected:
     UINT32  Offset32( const INT32* );
     UINT32  Offset32( SbxArray* );
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual ~SbxDimArray();
 public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_DIMARRAY,1);
@@ -329,7 +314,7 @@ protected:
     BOOL   bAddRemoveOk;
     virtual ~SbxStdCollection();
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
     virtual void CollAdd( SbxArray* pPar );
     virtual void CollRemove( SbxArray* pPar );
 public:
@@ -382,3 +367,5 @@ SV_IMPL_REF(SbxDimArray)
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

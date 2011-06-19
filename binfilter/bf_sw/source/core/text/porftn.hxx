@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -63,8 +64,8 @@ public:
 class SwFtnNumPortion : public SwNumberPortion
 {
 public:
-    inline SwFtnNumPortion( const XubString &rExpand, SwFont *pFnt )
-         : SwNumberPortion( rExpand, pFnt, sal_True, sal_False, 0 )
+    inline SwFtnNumPortion( const XubString &rExpand, SwFont *pFnt1 )
+         : SwNumberPortion( rExpand, pFnt1, sal_True, sal_False, 0 )
          { SetWhichPor( POR_FTNNUM ); }
     sal_Bool DiffFont( SwFont* pFont );
     OUTPUT_OPERATOR
@@ -77,7 +78,7 @@ public:
 class SwQuoVadisPortion : public SwFldPortion
 {
 public:
-    SwQuoVadisPortion( const XubString &rExp, const XubString& rStr ): SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001             SwQuoVadisPortion( const XubString &rExp, const XubString& rStr );
+    SwQuoVadisPortion( const XubString &rExp, const XubString& ): SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;
 
     // Felder-Cloner fuer SplitGlue
 
@@ -92,7 +93,7 @@ public:
 class SwErgoSumPortion : public SwFldPortion
 {
 public:
-SwErgoSumPortion( const XubString &rExp, const XubString& rStr ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           SwErgoSumPortion( const XubString &rExp, const XubString& rStr );
+SwErgoSumPortion( const XubString &rExp, const XubString& ):SwFldPortion( rExp ){DBG_BF_ASSERT(0, "STRIP");} ;
     OUTPUT_OPERATOR
 };
 
@@ -104,3 +105,5 @@ CLASSIO( SwErgoSumPortion )
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

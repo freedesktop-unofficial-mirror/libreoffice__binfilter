@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -39,7 +37,7 @@
 #include "miscuno.hxx"
 #include "docsh.hxx"
 #include "pivot.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 #include "dpobject.hxx"
 #include "dpshttab.hxx"
 #include "dpsave.hxx"
@@ -49,7 +47,6 @@ namespace binfilter {
 
 using namespace ::com::sun::star;
 
-//------------------------------------------------------------------------
 
 const SfxItemPropertyMap* lcl_GetDataPilotFieldMap()
 {
@@ -57,12 +54,11 @@ const SfxItemPropertyMap* lcl_GetDataPilotFieldMap()
     {
         {MAP_CHAR_LEN(SC_UNONAME_FUNCTION), 0,  &getCppuType((sheet::GeneralFunction*)0),           0, 0 },
         {MAP_CHAR_LEN(SC_UNONAME_ORIENT),   0,  &getCppuType((sheet::DataPilotFieldOrientation*)0), 0, 0 },
-        {0,0,0,0}
+        {0,0,0,0,0,0}
     };
     return aDataPilotFieldMap_Impl;
 }
 
-//------------------------------------------------------------------------
 
 SC_SIMPLE_SERVICE_INFO( ScDataPilotDescriptor, "ScDataPilotDescriptor", "stardiv::one::sheet::DataPilotDescriptor" )
 SC_SIMPLE_SERVICE_INFO( ScDataPilotFieldObj, "ScDataPilotFieldObj", "com.sun.star.sheet.DataPilotField" )
@@ -70,7 +66,6 @@ SC_SIMPLE_SERVICE_INFO( ScDataPilotFieldsObj, "ScDataPilotFieldsObj", "com.sun.s
 SC_SIMPLE_SERVICE_INFO( ScDataPilotTableObj, "ScDataPilotTableObj", "com.sun.star.sheet.DataPilotTable" )
 SC_SIMPLE_SERVICE_INFO( ScDataPilotTablesObj, "ScDataPilotTablesObj", "com.sun.star.sheet.DataPilotTables" )
 
-//------------------------------------------------------------------------
 
 //! irgendwann ueberall die neuen enum-Werte benutzen
 #define DATA_PILOT_HIDDEN   sheet::DataPilotFieldOrientation_HIDDEN
@@ -79,7 +74,6 @@ SC_SIMPLE_SERVICE_INFO( ScDataPilotTablesObj, "ScDataPilotTablesObj", "com.sun.s
 #define DATA_PILOT_PAGE     sheet::DataPilotFieldOrientation_PAGE
 #define DATA_PILOT_DATA     sheet::DataPilotFieldOrientation_DATA
 
-//------------------------------------------------------------------------
 
 USHORT lcl_BitCount( USHORT nBits )
 {
@@ -198,6 +192,7 @@ USHORT ScDataPilotConversion::FunctionBit( sheet::GeneralFunction eFunc )
         case sheet::GeneralFunction_VAR:        nRet = PIVOT_FUNC_STD_VAR;   break;
         case sheet::GeneralFunction_VARP:       nRet = PIVOT_FUNC_STD_VARP;  break;
         case sheet::GeneralFunction_AUTO:       nRet = PIVOT_FUNC_AUTO;      break;
+        default: break;
     }
     return nRet;
 }
@@ -301,7 +296,6 @@ void lcl_SetLayoutNamesToParam( ScPivotParam& rParam, ScDocument* pDoc,
     }
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotTablesObj::ScDataPilotTablesObj(ScDocShell* pDocSh, USHORT nT) :
     pDocShell( pDocSh ),
@@ -316,7 +310,7 @@ ScDataPilotTablesObj::~ScDataPilotTablesObj()
         pDocShell->GetDocument()->RemoveUnoObject(*this);
 }
 
-void ScDataPilotTablesObj::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDataPilotTablesObj::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Referenz-Update
 
@@ -373,7 +367,7 @@ ScDataPilotTableObj* ScDataPilotTablesObj::GetObjectByName_Impl(const ::rtl::OUS
 uno::Reference<sheet::XDataPilotDescriptor> SAL_CALL ScDataPilotTablesObj::createDataPilotDescriptor()
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if (pDocShell)
         return new ScDataPilotDescriptor(pDocShell);
     return NULL;
@@ -384,7 +378,7 @@ void SAL_CALL ScDataPilotTablesObj::insertNewByName( const ::rtl::OUString& aNew
                                     const uno::Reference<sheet::XDataPilotDescriptor>& xDescriptor )
                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if (!xDescriptor.is()) return;
 
     // inserting with already existing name?
@@ -466,7 +460,7 @@ void SAL_CALL ScDataPilotTablesObj::insertNewByName( const ::rtl::OUString& aNew
 void SAL_CALL ScDataPilotTablesObj::removeByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameStr = aName;
     ScDPObject* pDPObj = lcl_GetDPObject( pDocShell, nTab, aNameStr );
     if (pDPObj && pDocShell)
@@ -483,7 +477,7 @@ void SAL_CALL ScDataPilotTablesObj::removeByName( const ::rtl::OUString& aName )
 uno::Reference<container::XEnumeration> SAL_CALL ScDataPilotTablesObj::createEnumeration()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.DataPilotTablesEnumeration")));
 }
 
@@ -491,7 +485,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScDataPilotTablesObj::createEnu
 
 sal_Int32 SAL_CALL ScDataPilotTablesObj::getCount() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if ( pDocShell )
     {
         ScDocument* pDoc = pDocShell->GetDocument();
@@ -521,7 +515,7 @@ uno::Any SAL_CALL ScDataPilotTablesObj::getByIndex( sal_Int32 nIndex )
                             throw(lang::IndexOutOfBoundsException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference<sheet::XDataPilotTable> xTable = GetObjectByIndex_Impl((USHORT)nIndex);
     uno::Any aAny;
     if (xTable.is())
@@ -533,13 +527,13 @@ uno::Any SAL_CALL ScDataPilotTablesObj::getByIndex( sal_Int32 nIndex )
 
 uno::Type SAL_CALL ScDataPilotTablesObj::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return getCppuType((uno::Reference<sheet::XDataPilotTable>*)0);
 }
 
 sal_Bool SAL_CALL ScDataPilotTablesObj::hasElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( getCount() != 0 );
 }
 
@@ -549,7 +543,7 @@ uno::Any SAL_CALL ScDataPilotTablesObj::getByName( const ::rtl::OUString& aName 
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference<sheet::XDataPilotTable> xTable = GetObjectByName_Impl(aName);
     uno::Any aAny;
     if (xTable.is())
@@ -562,7 +556,7 @@ uno::Any SAL_CALL ScDataPilotTablesObj::getByName( const ::rtl::OUString& aName 
 uno::Sequence< ::rtl::OUString> SAL_CALL ScDataPilotTablesObj::getElementNames()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if (pDocShell)
     {
         ScDocument* pDoc = pDocShell->GetDocument();
@@ -602,7 +596,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScDataPilotTablesObj::getElementNames()
 sal_Bool SAL_CALL ScDataPilotTablesObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if (pDocShell)
     {
         ScDocument* pDoc = pDocShell->GetDocument();
@@ -627,7 +621,6 @@ sal_Bool SAL_CALL ScDataPilotTablesObj::hasByName( const ::rtl::OUString& aName 
     return FALSE;
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotDescriptorBase::ScDataPilotDescriptorBase(ScDocShell* pDocSh) :
     pDocShell( pDocSh )
@@ -691,7 +684,7 @@ uno::Sequence<sal_Int8> SAL_CALL ScDataPilotDescriptorBase::getImplementationId(
     return aId;
 }
 
-void ScDataPilotDescriptorBase::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+void ScDataPilotDescriptorBase::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 {
     //! Referenz-Update?
 
@@ -707,7 +700,7 @@ void ScDataPilotDescriptorBase::Notify( SfxBroadcaster& rBC, const SfxHint& rHin
 table::CellRangeAddress SAL_CALL ScDataPilotDescriptorBase::getSourceRange()
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -726,7 +719,7 @@ void SAL_CALL ScDataPilotDescriptorBase::setSourceRange(
                                 const table::CellRangeAddress& aSourceRange )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -744,49 +737,49 @@ void SAL_CALL ScDataPilotDescriptorBase::setSourceRange(
 uno::Reference<sheet::XSheetFilterDescriptor> SAL_CALL ScDataPilotDescriptorBase::getFilterDescriptor()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFilterDescriptor( pDocShell, this );
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScDataPilotDescriptorBase::getDataPilotFields()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFieldsObj( this, SC_FIELDORIENT_ALL );
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScDataPilotDescriptorBase::getColumnFields()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFieldsObj( this, DATA_PILOT_COLUMN );
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScDataPilotDescriptorBase::getRowFields()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFieldsObj( this, DATA_PILOT_ROW );
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScDataPilotDescriptorBase::getPageFields()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFieldsObj( this, DATA_PILOT_PAGE );
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScDataPilotDescriptorBase::getDataFields()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFieldsObj( this, DATA_PILOT_DATA );
 }
 
 uno::Reference<container::XIndexAccess> SAL_CALL ScDataPilotDescriptorBase::getHiddenFields()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScDataPilotFieldsObj( this, DATA_PILOT_HIDDEN );
 }
 
@@ -832,7 +825,6 @@ ScDataPilotDescriptorBase* ScDataPilotDescriptorBase::getImplementation(
     return pRet;
 }
 
-//------------------------------------------------------------------------
 
 ScDataPilotTableObj::ScDataPilotTableObj(ScDocShell* pDocSh, USHORT nT, const String& rN) :
     ScDataPilotDescriptorBase( pDocSh ),
@@ -895,8 +887,6 @@ uno::Sequence<sal_Int8> SAL_CALL ScDataPilotTableObj::getImplementationId()
     return aId;
 }
 
-// ---
-
 void ScDataPilotTableObj::GetParam( ScPivotParam& rParam, ScQueryParam& rQuery, ScArea& rSrcArea ) const
 {
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
@@ -936,9 +926,9 @@ void ScDataPilotTableObj::GetParam( ScPivotParam& rParam, ScQueryParam& rQuery, 
 void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
                                 const ScQueryParam& rQuery, const ScArea& rSrcArea )
 {
-    ScDocShell* pDocShell = GetDocShell();
-    ScDPObject* pDPObj = lcl_GetDPObject(pDocShell, nTab, aName);
-    if ( pDPObj && pDocShell )
+    ScDocShell* pLclDocShell = GetDocShell();
+    ScDPObject* pDPObj = lcl_GetDPObject(pLclDocShell, nTab, aName);
+    if ( pDPObj && pLclDocShell )
     {
         //  in den Uno-Objekten sind alle Fields in den Descriptoren innerhalb des Bereichs gezaehlt
 
@@ -964,9 +954,7 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
                 rEntry.nField += nFieldStart;
         }
 
-//      ScPivot* pNew = new ScPivot(*pPivot);   //? behaelt falsche Groessenangaben bei...
-
-        ScDocument* pDoc = pDocShell->GetDocument();
+        ScDocument* pDoc = pLclDocShell->GetDocument();
         ScPivot* pNew = new ScPivot( pDoc );
         pNew->SetName( pDPObj->GetName() );
         pNew->SetTag( pDPObj->GetTag() );
@@ -976,7 +964,7 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
         pNewObj->InitFromOldPivot( *pNew, pDoc, TRUE );
         lcl_SetLayoutNamesToObject( pDoc, aNewParam, rSrcArea, *pNewObj );
 
-        ScDBDocFunc aFunc(*pDocShell);
+        ScDBDocFunc aFunc(*pLclDocShell);
         aFunc.DataPilotUpdate( pDPObj, pNewObj, TRUE, TRUE );
 
         delete pNewObj;     // DataPilotUpdate copies settings from "new" object
@@ -988,7 +976,7 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
 
 ::rtl::OUString SAL_CALL ScDataPilotTableObj::getName() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
     if (pDPObj)
         return pDPObj->GetName();
@@ -998,7 +986,7 @@ void ScDataPilotTableObj::SetParam( const ScPivotParam& rParam,
 void SAL_CALL ScDataPilotTableObj::setName( const ::rtl::OUString& aNewName )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
     if (pDPObj)
     {
@@ -1015,7 +1003,7 @@ void SAL_CALL ScDataPilotTableObj::setName( const ::rtl::OUString& aNewName )
 
 ::rtl::OUString SAL_CALL ScDataPilotTableObj::getTag() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
     if (pDPObj)
         return pDPObj->GetTag();
@@ -1025,7 +1013,7 @@ void SAL_CALL ScDataPilotTableObj::setName( const ::rtl::OUString& aNewName )
 void SAL_CALL ScDataPilotTableObj::setTag( const ::rtl::OUString& aNewTag )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
     if (pDPObj)
     {
@@ -1042,7 +1030,7 @@ void SAL_CALL ScDataPilotTableObj::setTag( const ::rtl::OUString& aNewTag )
 table::CellRangeAddress SAL_CALL ScDataPilotTableObj::getOutputRange()
                                             throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     table::CellRangeAddress aRet;
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
     if (pDPObj)
@@ -1059,7 +1047,7 @@ table::CellRangeAddress SAL_CALL ScDataPilotTableObj::getOutputRange()
 
 void SAL_CALL ScDataPilotTableObj::refresh() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScDPObject* pDPObj = lcl_GetDPObject(GetDocShell(), nTab, aName);
     if (pDPObj)
     {
@@ -1069,8 +1057,6 @@ void SAL_CALL ScDataPilotTableObj::refresh() throw(uno::RuntimeException)
         delete pNew;        // DataPilotUpdate copies settings from "new" object
     }
 }
-
-//------------------------------------------------------------------------
 
 ScDataPilotDescriptor::ScDataPilotDescriptor(ScDocShell* pDocSh) :
     ScDataPilotDescriptorBase( pDocSh )
@@ -1105,31 +1091,29 @@ void ScDataPilotDescriptor::SetParam( const ScPivotParam& rParam,
 
 ::rtl::OUString SAL_CALL ScDataPilotDescriptor::getName() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aNameStr;
 }
 
 void SAL_CALL ScDataPilotDescriptor::setName( const ::rtl::OUString& aNewName )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aNameStr = String( aNewName );
 }
 
 ::rtl::OUString SAL_CALL ScDataPilotDescriptor::getTag() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return aTagStr;
 }
 
 void SAL_CALL ScDataPilotDescriptor::setTag( const ::rtl::OUString& aNewTag )
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     aTagStr = String( aNewTag );
 }
-
-//------------------------------------------------------------------------
 
 ScDataPilotFieldsObj::ScDataPilotFieldsObj(ScDataPilotDescriptorBase* pPar, USHORT nTy) :
     pParent( pPar ),
@@ -1385,7 +1369,7 @@ ScDataPilotFieldObj* ScDataPilotFieldsObj::GetObjectByName_Impl(const ::rtl::OUS
 uno::Reference<container::XEnumeration> SAL_CALL ScDataPilotFieldsObj::createEnumeration()
                                                     throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return new ScIndexEnumeration(this, ::rtl::OUString(RTL_CONSTASCII_USTRINGPARAM("com.sun.star.sheet.DataPilotFieldsEnumeration")));
 }
 
@@ -1393,7 +1377,7 @@ uno::Reference<container::XEnumeration> SAL_CALL ScDataPilotFieldsObj::createEnu
 
 sal_Int32 SAL_CALL ScDataPilotFieldsObj::getCount() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -1406,7 +1390,7 @@ uno::Any SAL_CALL ScDataPilotFieldsObj::getByIndex( sal_Int32 nIndex )
                             throw(lang::IndexOutOfBoundsException,
                                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference<beans::XPropertySet> xField = GetObjectByIndex_Impl((USHORT)nIndex);
     uno::Any aAny;
     if (xField.is())
@@ -1418,13 +1402,13 @@ uno::Any SAL_CALL ScDataPilotFieldsObj::getByIndex( sal_Int32 nIndex )
 
 uno::Type SAL_CALL ScDataPilotFieldsObj::getElementType() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return getCppuType((uno::Reference<beans::XPropertySet>*)0);
 }
 
 sal_Bool SAL_CALL ScDataPilotFieldsObj::hasElements() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     return ( getCount() != 0 );
 }
 
@@ -1432,7 +1416,7 @@ uno::Any SAL_CALL ScDataPilotFieldsObj::getByName( const ::rtl::OUString& aName 
             throw(container::NoSuchElementException,
                     lang::WrappedTargetException, uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     uno::Reference<beans::XPropertySet> xField = GetObjectByName_Impl(aName);
     uno::Any aAny;
     if (xField.is())
@@ -1445,7 +1429,7 @@ uno::Any SAL_CALL ScDataPilotFieldsObj::getByName( const ::rtl::OUString& aName 
 uno::Sequence< ::rtl::OUString> SAL_CALL ScDataPilotFieldsObj::getElementNames()
                                                 throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -1469,7 +1453,7 @@ uno::Sequence< ::rtl::OUString> SAL_CALL ScDataPilotFieldsObj::getElementNames()
 sal_Bool SAL_CALL ScDataPilotFieldsObj::hasByName( const ::rtl::OUString& aName )
                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameStr = aName;
 
     ScPivotParam aParam;
@@ -1490,8 +1474,6 @@ sal_Bool SAL_CALL ScDataPilotFieldsObj::hasByName( const ::rtl::OUString& aName 
     }
     return FALSE;
 }
-
-//------------------------------------------------------------------------
 
 ScDataPilotFieldObj::ScDataPilotFieldObj( ScDataPilotDescriptorBase* pPar,
                                             USHORT nF, USHORT nST, USHORT nSP ) :
@@ -1514,7 +1496,7 @@ ScDataPilotFieldObj::~ScDataPilotFieldObj()
 
 ::rtl::OUString SAL_CALL ScDataPilotFieldObj::getName() throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -1546,7 +1528,7 @@ void SAL_CALL ScDataPilotFieldObj::setName( const ::rtl::OUString& aNewName )
 uno::Reference<beans::XPropertySetInfo> SAL_CALL ScDataPilotFieldObj::getPropertySetInfo()
                                                         throw(uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     static uno::Reference<beans::XPropertySetInfo> aRef =
         new SfxItemPropertySetInfo( aPropSet.getPropertyMap() );
     return aRef;
@@ -1558,7 +1540,7 @@ void SAL_CALL ScDataPilotFieldObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameString = aPropertyName;
     if ( aNameString.EqualsAscii( SC_UNONAME_FUNCTION ) )
     {
@@ -1580,7 +1562,7 @@ uno::Any SAL_CALL ScDataPilotFieldObj::getPropertyValue( const ::rtl::OUString& 
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     String aNameString = aPropertyName;
     uno::Any aRet;
 
@@ -1633,7 +1615,7 @@ void lcl_FindUsage( const ScPivotParam& rParam, USHORT nField, USHORT& rType, US
 
 sheet::DataPilotFieldOrientation ScDataPilotFieldObj::getOrientation(void) const
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -1664,7 +1646,7 @@ void lcl_RemoveField( PivotField* pFields, USHORT& rCount, USHORT nField )
 
 void ScDataPilotFieldObj::setOrientation(sheet::DataPilotFieldOrientation eNew)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     if ( eNew == nSourceType )
         return;                     // nix
 
@@ -1768,7 +1750,7 @@ void ScDataPilotFieldObj::setOrientation(sheet::DataPilotFieldOrientation eNew)
 
 sheet::GeneralFunction ScDataPilotFieldObj::getFunction(void) const
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     sheet::GeneralFunction eRet = sheet::GeneralFunction_NONE;
 
     ScPivotParam aParam;
@@ -1807,7 +1789,7 @@ sheet::GeneralFunction ScDataPilotFieldObj::getFunction(void) const
 
 void ScDataPilotFieldObj::setFunction(sheet::GeneralFunction eNewFunc)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
     ScPivotParam aParam;
     ScQueryParam aQuery;
     ScArea aSrcArea;
@@ -1847,9 +1829,6 @@ void ScDataPilotFieldObj::setFunction(sheet::GeneralFunction eNewFunc)
 }
 
 
-//------------------------------------------------------------------------
-
-
-
-
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

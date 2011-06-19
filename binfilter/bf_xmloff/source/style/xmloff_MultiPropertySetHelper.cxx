@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,26 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_MULTIPROPERTYSETHELPER_HXX
 #include "MultiPropertySetHelper.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_BEANS_XMULTIPROPERTYSET_HPP_
 #include <com/sun/star/beans/XMultiPropertySet.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
 
-#ifndef _COMPHELPER_STLTYPES_HXX_
 #include <comphelper/stl_types.hxx>
-#endif
 
 // STL includes
 #include <algorithm>
@@ -205,3 +196,5 @@ const Any& MultiPropertySetHelper::getValue( sal_Int16 nIndex,
 // inline Any& MultiPropertySetHelper::getValue( sal_Int16 nIndex )
 // inline sal_Bool MultiPropertySetHelper::hasProperty( sal_Int16 nValueNo )
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

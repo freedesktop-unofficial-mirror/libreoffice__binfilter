@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,57 +29,25 @@
 #ifndef SC_VIEWUNO_HXX
 #define SC_VIEWUNO_HXX
 
-#ifndef _SFX_SFXBASECONTROLLER_HXX_
 #include <bf_sfx2/sfxbasecontroller.hxx>
-#endif
 
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef _SFX_ITEMPROP_HXX
 #include <bf_svtools/itemprop.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_VIEW_XCONTROLACCESS_HPP_
 #include <com/sun/star/view/XControlAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONCHANGELISTENER_HPP_
 #include <com/sun/star/view/XSelectionChangeListener.hpp>
-#endif
-#ifndef _COM_SUN_STAR_VIEW_XSELECTIONSUPPLIER_HPP_
 #include <com/sun/star/view/XSelectionSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XCELLRANGEREFERRER_HPP_
 #include <com/sun/star/sheet/XCellRangeReferrer.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XVIEWSPLITABLE_HPP_
 #include <com/sun/star/sheet/XViewSplitable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XVIEWFREEZABLE_HPP_
 #include <com/sun/star/sheet/XViewFreezable.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XSPREADSHEETVIEW_HPP_
 #include <com/sun/star/sheet/XSpreadsheetView.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XVIEWPANE_HPP_
 #include <com/sun/star/sheet/XViewPane.hpp>
-#endif
-#ifndef _COM_SUN_STAR_SHEET_XRANGESELECTION_HPP_
 #include <com/sun/star/sheet/XRangeSelection.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_CONTAINER_XENUMERATIONACCESS_HPP_
 #include <com/sun/star/container/XEnumerationAccess.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XUNOTUNNEL_HPP_
 #include <com/sun/star/lang/XUnoTunnel.hpp>
-#endif
 namespace binfilter {
 
 class ScTabViewShell;
@@ -88,19 +57,19 @@ class ScTabViewShell;
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::sheet::XRangeSelectionListener >* XRangeSelectionListenerPtr;
-SV_DECL_PTRARR_DEL( XRangeSelectionListenerArr_Impl, XRangeSelectionListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XRangeSelectionListenerArr_Impl, XRangeSelectionListenerPtr, 4, 4 )
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::sheet::XRangeSelectionChangeListener >* XRangeSelectionChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XRangeSelectionChangeListenerArr_Impl, XRangeSelectionChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XRangeSelectionChangeListenerArr_Impl, XRangeSelectionChangeListenerPtr, 4, 4 )
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::view::XSelectionChangeListener >* XSelectionChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XSelectionChangeListenerArr_Impl, XSelectionChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XSelectionChangeListenerArr_Impl, XSelectionChangeListenerPtr, 4, 4 )
 
 typedef ::com::sun::star::uno::Reference<
             ::com::sun::star::beans::XPropertyChangeListener >* XViewPropertyChangeListenerPtr;
-SV_DECL_PTRARR_DEL( XViewPropertyChangeListenerArr_Impl, XViewPropertyChangeListenerPtr, 4, 4 )//STRIP008 ;
+SV_DECL_PTRARR_DEL( XViewPropertyChangeListenerArr_Impl, XViewPropertyChangeListenerPtr, 4, 4 )
 
 
 //  ScViewPaneBase not derived from OWeakObject
@@ -364,3 +333,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

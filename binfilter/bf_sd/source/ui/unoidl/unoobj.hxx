@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,37 +28,17 @@
 #ifndef _UNOOBJ_HXX
 #define _UNOOBJ_HXX
 
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSTATE_HPP_
 #include <com/sun/star/beans/XPropertyState.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_XPROPERTYSET_HPP_
 #include <com/sun/star/beans/XPropertySet.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XSERVICEINFO_HPP_
 #include <com/sun/star/lang/XServiceInfo.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DRAWING_XSHAPE_HPP_
 #include <com/sun/star/drawing/XShape.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP_
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _COM_SUN_STAR_LANG_XTYPEPROVIDER_HPP_
 #include <com/sun/star/lang/XTypeProvider.hpp>
-#endif
 
-#ifndef _SVDPOOL_HXX //autogen
 #include <bf_svx/svdpool.hxx>
-#endif
 
-#ifndef _SVX_UNOMASTER_HXX
 #include <bf_svx/unomaster.hxx>
-#endif
-
-#include <bf_svx/unoipset.hxx>
 
 #include <cppuhelper/implbase2.hxx>
 struct SvEventDescription;
@@ -137,3 +118,4 @@ const SvEventDescription* ImplGetSupportedMacroItems();
 #endif
 
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

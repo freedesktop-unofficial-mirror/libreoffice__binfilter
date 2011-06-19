@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,12 +31,8 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _GEN_HXX
 #include <tools/gen.hxx>
-#endif
-#ifndef _SV_GRAPH_H
 #include <vcl/graph.h>
-#endif
 
 class SvStream;
 class Graphic;
@@ -171,3 +168,5 @@ public:
  }
 
 #endif // _PNGREAD_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

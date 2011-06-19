@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,13 +30,9 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_PLUGIN_PLUGINDESCRIPTION_HPP_
 #include <com/sun/star/plugin/PluginDescription.hpp>
-#endif
 
-#ifndef _WLDCRD_HXX //autogen
 #include <tools/wldcrd.hxx>
-#endif
 namespace binfilter {
 
 #define SFX_FILTER_IMPORT            0x00000001L
@@ -111,19 +108,19 @@ public:
 
     const SfxFilterContainer* GetFilterContainer( ) const { return pContainer; }
 
-    FASTBOOL        IsAllowedAsTemplate() const
+    bool        IsAllowedAsTemplate() const
                     { return nFormatType & SFX_FILTER_TEMPLATE; }
-    FASTBOOL        IsOwnFormat() const
+    bool        IsOwnFormat() const
                     { return nFormatType & SFX_FILTER_OWN; }
-    FASTBOOL        IsOwnTemplateFormat() const
+    bool        IsOwnTemplateFormat() const
                     { return nFormatType & SFX_FILTER_TEMPLATEPATH; }
-    FASTBOOL        IsAlienFormat() const
+    bool        IsAlienFormat() const
                     { return nFormatType & SFX_FILTER_ALIEN; }
-    FASTBOOL        CanImport() const
+    bool        CanImport() const
                     { return nFormatType & SFX_FILTER_IMPORT; }
-    FASTBOOL        CanExport() const
+    bool        CanExport() const
                     { return nFormatType & SFX_FILTER_EXPORT; }
-    FASTBOOL        IsInternal() const
+    bool        IsInternal() const
                     { return nFormatType & SFX_FILTER_INTERNAL; }
     SfxFilterFlags  GetFilterFlags() const  { return nFormatType; }
     const String&   GetFilterName() const { return aFilterName; }
@@ -162,3 +159,4 @@ public:
 }//end of namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

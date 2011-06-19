@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -41,7 +42,6 @@
 namespace binfilter {
 
 using namespace ::rtl;
-using namespace ::vos;
 using namespace ::com::sun::star;
 
 SdUnoStyleFamilies::SdUnoStyleFamilies( SdXImpressDocument* pModel ) throw()
@@ -139,7 +139,7 @@ sal_Bool SAL_CALL SdUnoStyleFamilies::hasByName( const OUString& aName )
 {
     // is the model still valid?
     if( NULL == mpModel->GetDoc() )
-        return NULL;
+        return sal_False;
 
     // is it the graphic style?
     if( aName.compareToAscii( sUNO_Graphic_Style_Family_Name ) == 0 )
@@ -278,8 +278,6 @@ sal_uInt16 SdUnoStyleFamilies::getLayoutIndexByName( const OUString& rName ) thr
 {
     const String aName( rName );
 
-    USHORT nIndex = 0;
-
     SdDrawDocument* pDoc = mpModel->GetDoc();
     if( NULL != pDoc )
     {
@@ -301,3 +299,5 @@ sal_uInt16 SdUnoStyleFamilies::getLayoutIndexByName( const OUString& rName ) thr
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

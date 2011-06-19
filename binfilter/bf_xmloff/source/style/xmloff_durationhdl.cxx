@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,22 +26,14 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_PROPERTYHANDLER_DURATIONS_HXX
 #include "durationhdl.hxx"
-#endif
 
 
-#ifndef _COM_SUN_STAR_UTIL_DATETIME_HPP_
 #include <com/sun/star/util/DateTime.hpp>
-#endif
 
-#ifndef _RTL_USTRBUF_HXX_
 #include <rtl/ustrbuf.hxx>
-#endif
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -53,7 +46,7 @@ using namespace ::com::sun::star::util;
 sal_Bool XMLDurationMS16PropHdl_Impl::importXML(
         const OUString& rStrImpValue,
            Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     DateTime aTime;
     if( !SvXMLUnitConverter::convertTime( aTime,  rStrImpValue ) )
@@ -68,9 +61,9 @@ sal_Bool XMLDurationMS16PropHdl_Impl::importXML(
 sal_Bool XMLDurationMS16PropHdl_Impl::exportXML(
         OUString& rStrExpValue,
         const Any& rValue,
-        const SvXMLUnitConverter& rUnitConverter ) const
+        const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
-    sal_Int16 nMS;
+    sal_Int16 nMS(0);
 
     if(rValue >>= nMS)
     {
@@ -88,3 +81,5 @@ XMLDurationMS16PropHdl_Impl::~XMLDurationMS16PropHdl_Impl()
 {
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

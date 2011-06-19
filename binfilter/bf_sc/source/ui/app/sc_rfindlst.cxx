@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,23 +26,12 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
 
 #include "rfindlst.hxx"
 namespace binfilter {
-
-// STATIC DATA -----------------------------------------------------------
-
-#define SC_RANGECOLORS  8
-
-/*N*/ static ColorData aColNames[SC_RANGECOLORS] =
-/*N*/   { COL_LIGHTBLUE, COL_LIGHTRED, COL_LIGHTMAGENTA, COL_GREEN,
-/*N*/       COL_BLUE, COL_RED, COL_MAGENTA, COL_BROWN };
 
 //==================================================================
 
@@ -58,3 +48,5 @@ ScRangeFindList::~ScRangeFindList()
 //==================================================================
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

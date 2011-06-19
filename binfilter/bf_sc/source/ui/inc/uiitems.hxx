@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,16 +29,10 @@
 #ifndef SC_UIITEMS_HXX
 #define SC_UIITEMS_HXX
 
-#ifndef SC_CONDITIO_HXX
 #include "conditio.hxx"
-#endif
-#ifndef SC_SORTPARAM_HXX
 #include "sortparam.hxx"
-#endif
 
-#ifndef _SFXPOOLITEM_HXX //autogen
 #include <bf_svtools/poolitem.hxx>
-#endif
 namespace binfilter {
 
 class ScEditEngineDefaulter;
@@ -113,8 +108,8 @@ public:
                             ScSortItem( const ScSortItem& rItem );
                             ~ScSortItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;};
 
     ScViewData*         GetViewData () const { return pViewData; }
 
@@ -136,8 +131,8 @@ public:
                             ScQueryItem( const ScQueryItem& rItem );
                             ~ScQueryItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
 
      ScViewData*            GetViewData () const { return pViewData; }
 
@@ -162,8 +157,8 @@ public:
                 ScSubTotalItem( const ScSubTotalItem&   rItem );
                 ~ScSubTotalItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
 
     ScViewData*             GetViewData () const { return pViewData; }
     const ScSubTotalParam&  GetSubTotalData() const { return theSubTotalData; }
@@ -184,8 +179,8 @@ public:
                 ScUserListItem( const ScUserListItem& rItem );
                 ~ScUserListItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
 
 
 private:
@@ -204,8 +199,8 @@ public:
                 ScConsolidateItem( const ScConsolidateItem& rItem );
                 ~ScConsolidateItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP"); return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
 
 
 private:
@@ -224,8 +219,8 @@ public:
                 ScPivotItem( const ScPivotItem& rItem );
                 ~ScPivotItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP");return NULL;};
 
 
 private:
@@ -246,8 +241,8 @@ public:
                 ScSolveItem( const ScSolveItem& rItem );
                 ~ScSolveItem();
 
-    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;}; //STRIP001 virtual int             operator==( const SfxPoolItem& ) const;
-    virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;}; //STRIP001 virtual SfxPoolItem*    Clone( SfxItemPool *pPool = 0 ) const;
+    virtual int             operator==( const SfxPoolItem& ) const{DBG_BF_ASSERT(0, "STRIP");return 0;};
+    virtual SfxPoolItem*    Clone( SfxItemPool * /*pPool*/ = 0 ) const{DBG_BF_ASSERT(0, "STRIP"); return NULL;};
 
 
 private:
@@ -286,3 +281,4 @@ private:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

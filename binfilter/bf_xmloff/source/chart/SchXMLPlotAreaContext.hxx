@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,19 +28,11 @@
 #ifndef _SCH_XMLPLOTAREACONTEXT_HXX_
 #define _SCH_XMLPLOTAREACONTEXT_HXX_
 
-#ifndef _XMLOFF_XMLICTXT_HXX
 #include "xmlictxt.hxx"
-#endif
-#ifndef _XMLOFF_SHAPEIMPORT_HXX_
 #include "shapeimport.hxx"
-#endif
 
-#ifndef _COM_SUN_STAR_UNO_SEQUENCE_H_
 #include <com/sun/star/uno/Sequence.h>
-#endif
-#ifndef _COM_SUN_STAR_CHART_CHARTSERIESADDRESS_HPP_
 #include <com/sun/star/chart/ChartSeriesAddress.hpp>
-#endif
 
 #include <list>
 
@@ -338,3 +331,5 @@ private:
 
 }//end of namespace binfilter
 #endif  // _SCH_XMLPLOTAREACONTEXT_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

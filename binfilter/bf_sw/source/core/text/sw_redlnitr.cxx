@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,49 +32,27 @@
 #endif
 
 
-#ifndef _COM_SUN_STAR_I18N_SCRIPTTYPE_HDL_
 #include <com/sun/star/i18n/ScriptType.hdl>
-#endif
 
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _ITRATR_HXX
 #include <itratr.hxx>       // SwAttrIter
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>        // SwTxtNode
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _DOC_HXX
 #include <doc.hxx>          // SwDoc
-#endif
-#ifndef _FRMSH_HXX
 #include <frmsh.hxx>
-#endif
-#ifndef _BREAKIT_HXX
 #include <breakit.hxx>
-#endif
 
 //////////////////////////
 
 
 
-#ifndef _TXTFRM_HXX
 #include <txtfrm.hxx>       // SwTxtFrm
-#endif
-#ifndef _REDLNITR_HXX
 #include <redlnitr.hxx>
-#endif
-#ifndef _EXTINPUT_HXX
 #include <extinput.hxx>
-#endif
 
 namespace binfilter {
 
@@ -125,7 +104,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/   aMagicNo[SW_LATIN] = aMagicNo[SW_CJK] = aMagicNo[SW_CTL] = NULL;
 /*N*/
 /*N*/   // determine script changes if not already done for current paragraph
-/*N*/   ASSERT( pScriptInfo, "No script info available");
+/*N*/   OSL_ENSURE( pScriptInfo, "No script info available");
 /*N*/     if ( pScriptInfo->GetInvalidity() != STRING_LEN )
 /*N*/          pScriptInfo->InitScriptInfo( rTxtNode, bRTL );
 /*N*/
@@ -224,3 +203,5 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

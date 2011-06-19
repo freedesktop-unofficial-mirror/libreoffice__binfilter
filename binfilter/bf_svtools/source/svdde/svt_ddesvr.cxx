@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -33,21 +34,12 @@
 #include <bf_svtools/svdde.hxx>
 #include <bf_svtools/svarray.hxx>
 
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _OSL_THREAD_H_
 #include <osl/thread.h>
-#endif
 
 namespace binfilter
 {
-
-//static long         hCurConv  = 0;
-//static DWORD        hDdeInst  = NULL;
-//static short        nInstance = 0;
-//static DdeServices* pServices;
 
 enum DdeItemType
 {
@@ -73,8 +65,8 @@ HDDEDATA CALLBACK DdeInternal::SvrCallback(
             WORD nCode, WORD nCbType, HCONV hConv, HSZ hText1, HSZ hText2,
             HDDEDATA hData, DWORD, DWORD )
 #else
-#if defined ( MTW ) || ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
-HDDEDATA CALLBACK __EXPORT DdeInternal::SvrCallback(
+#if ( defined ( GCC ) && defined ( OS2 )) || defined( ICC )
+HDDEDATA CALLBACK DdeInternal::SvrCallback(
             WORD nCode, WORD nCbType, HCONV hConv, HSZ hText1, HSZ hText2,
             HDDEDATA hData, DWORD, DWORD )
 #else
@@ -155,18 +147,6 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
             {
                 if ( !hText2 || (*pService->pName == hText2 ) )
                 {
-#if 0
-                    for ( pTopic = pService->aTopics.First(); pTopic;
-                          pTopic = pService->aTopics.Next() )
-                    {
-                        if ( !hText1 || (*pTopic->pName == hText1) )
-                        {
-                            q->hszSvc   = *pService->pName;
-                            q->hszTopic = *pTopic->pName;
-                            q++;
-                        }
-                    }
-#else
                     String sTopics( pService->Topics() );
                     USHORT n = 0;
                     while( STRING_NOTFOUND != n )
@@ -185,8 +165,6 @@ HDDEDATA CALLBACK _export DdeInternal::SvrCallback(
                             }
                         }
                     }
-
-#endif
                 }
             }
 
@@ -576,7 +554,7 @@ void DdeService::RemoveTopic( const DdeTopic& rTopic )
         if ( !DdeCmpStringHandles (*t->pName, *rTopic.pName ) )
         {
             aTopics.Remove( t );
-            // JP 27.07.95: und alle Conversions loeschen !!!
+            // und alle Conversions loeschen !!!
             //              (sonst wird auf geloeschten Topics gearbeitet!!)
             for( ULONG n = pConv->Count(); n; )
             {
@@ -696,21 +674,21 @@ void DdeTopic::NotifyClient( const String& rItem )
 
 // --- DdeTopic::Connect() -----------------------------------------
 
-void __EXPORT DdeTopic::Connect( long nId )
+void DdeTopic::Connect( long nId )
 {
     aConnectLink.Call( (void*)nId );
 }
 
 // --- DdeTopic::Disconnect() --------------------------------------
 
-void __EXPORT DdeTopic::Disconnect( long nId )
+void DdeTopic::Disconnect( long nId )
 {
     aDisconnectLink.Call( (void*)nId );
 }
 
 // --- DdeTopic::_Disconnect() --------------------------------------
 
-void __EXPORT DdeTopic::_Disconnect( long nId )
+void DdeTopic::_Disconnect( long nId )
 {
     for( DdeItem* pItem = aItems.First(); pItem; pItem = aItems.Next() )
         pItem->DecMonitor( nId );
@@ -720,7 +698,7 @@ void __EXPORT DdeTopic::_Disconnect( long nId )
 
 // --- DdeTopic::Get() ---------------------------------------------
 
-DdeData* __EXPORT DdeTopic::Get( ULONG nFmt )
+DdeData* DdeTopic::Get( ULONG nFmt )
 {
     if ( aGetLink.IsSet() )
         return (DdeData*)aGetLink.Call( (void*)nFmt );
@@ -730,7 +708,7 @@ DdeData* __EXPORT DdeTopic::Get( ULONG nFmt )
 
 // --- DdeTopic::Put() ---------------------------------------------
 
-BOOL __EXPORT DdeTopic::Put( const DdeData* r )
+BOOL DdeTopic::Put( const DdeData* r )
 {
     if ( aPutLink.IsSet() )
         return (BOOL)aPutLink.Call( (void*) r );
@@ -740,7 +718,7 @@ BOOL __EXPORT DdeTopic::Put( const DdeData* r )
 
 // --- DdeTopic::Execute() -----------------------------------------
 
-BOOL __EXPORT DdeTopic::Execute( const String* r )
+BOOL DdeTopic::Execute( const String* r )
 {
     if ( aExecLink.IsSet() )
         return (BOOL)aExecLink.Call( (void*)r );
@@ -1049,14 +1027,14 @@ String DdeService::Status()
 
 // --- DdeService::IsBusy() ----------------------------------------
 
-BOOL __EXPORT DdeService::IsBusy()
+BOOL DdeService::IsBusy()
 {
     return FALSE;
 }
 
 // --- DdeService::GetHelp() ----------------------------------------
 
-String __EXPORT DdeService::GetHelp()
+String DdeService::GetHelp()
 {
     return String();
 }
@@ -1082,3 +1060,5 @@ BOOL DdeService::SysTopicExecute( const String* )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

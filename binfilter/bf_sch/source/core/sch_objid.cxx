@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,7 +35,7 @@
 
 #include "defines.hxx"
 
-#include <tools/debug.hxx> //STRIP001
+#include <tools/debug.hxx>
 namespace binfilter {
 /*************************************************************************
 |*
@@ -117,35 +118,14 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Kopier-Konstruktor
-|*
-\************************************************************************/
-
-
-/*************************************************************************
-|*
 |* Kopie erzeugen
 |*
 \************************************************************************/
 
-/*N*/ SdrObjUserData* SchObjectId::Clone(SdrObject *pObj) const
+/*N*/ SdrObjUserData* SchObjectId::Clone(SdrObject *) const
 /*N*/ {
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;//STRIP001 return new SchObjectId(*this);
+/*?*/   DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*N*/ }
-
-/*************************************************************************
-|*
-|* Daten in Stream schreiben
-|*
-\************************************************************************/
-
-/*N*/ void SchObjectId::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/
-/*N*/   rOut << nObjId;
-/*N*/ }
-
 
 /*************************************************************************
 |*
@@ -160,11 +140,11 @@ namespace binfilter {
 /*N*/   rIn >> nObjId;
 /*N*/ }
 
-/*N*/ #ifdef DBG_UTIL
+/*N*/ #if OSL_DEBUG_LEVEL > 0
 
 // this function is for debugging only
 // therefore it is ok to use char* instead of UniString
-/*N*/ char* GetCHOBJIDName( const long id )
+/*N*/ const char* GetCHOBJIDName( const long id )
 /*N*/ {
 /*N*/   switch( id )
 /*N*/   {
@@ -227,8 +207,10 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ #endif    // DBG_UTIL
+/*N*/ #endif    // OSL_DEBUG_LEVEL
 
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

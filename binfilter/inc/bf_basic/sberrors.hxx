@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef _SB_SBERRORS_HXX
 #define _SB_SBERRORS_HXX
 
-#ifndef _SBXDEF_HXX //autogen
 #include "sbxdef.hxx"
-#endif
 
 namespace binfilter {
 
@@ -547,3 +546,5 @@ typedef ULONG SbError;
 }
 
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

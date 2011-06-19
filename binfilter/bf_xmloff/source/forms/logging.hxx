@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,9 +29,7 @@
 #ifndef XMLOFF_FORMS_LOGGING_HXX
 #define XMLOFF_FORMS_LOGGING_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 #include <stack>
 namespace rtl { class Logfile; }
 namespace binfilter {
@@ -77,3 +76,4 @@ namespace xmloff
 }//end of namespace binfilter
 #endif // XMLOFF_FORMS_LOGGING_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

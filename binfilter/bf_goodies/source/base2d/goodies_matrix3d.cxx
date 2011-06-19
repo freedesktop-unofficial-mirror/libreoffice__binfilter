@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,21 +26,13 @@
  *
  ************************************************************************/
 
-#ifndef _B2D_MATRIX3D_HXX
 #include "matrix3d.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
-#ifndef _B3D_HMATRIX_HXX
 #include "hmatrix.hxx"
-#endif
 
-#ifndef _B3D_BASE3D_HXX
 #include "base3d.hxx"
-#endif
 
 /*************************************************************************
 |*
@@ -487,3 +480,5 @@ BOOL Matrix3D::DecomposeAndCorrect(Vector2D& rScale,
 }//end of namespace binfilter
 
 // eof
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

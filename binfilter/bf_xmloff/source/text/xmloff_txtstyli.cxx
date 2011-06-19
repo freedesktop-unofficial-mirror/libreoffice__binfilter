@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,40 +26,19 @@
  *
  ************************************************************************/
 
-
-#ifndef _COM_SUN_STAR_STYLE_PARAGRAPHSTYLECATEGORY_HPP_
 #include <com/sun/star/style/ParagraphStyleCategory.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XEVENTSSUPPLIER_HPP
 #include <com/sun/star/document/XEventsSupplier.hpp>
-#endif
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_XMLTEXTPROPERTYSETCONTEXT_HXX
 #include "XMLTextPropertySetContext.hxx"
-#endif
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
-#ifndef _XMLOFF_TXTPRMAP_HXX
 #include "txtprmap.hxx"
-#endif
-#ifndef _XMLOFF_TXTSTYLI_HXX
 #include "txtstyli.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLEVENTSIMPORTCONTEXT_HXX
 #include "XMLEventsImportContext.hxx"
-#endif
 
-#ifndef _TOOLS_DEBUG_HXX
 #include <tools/debug.hxx>
-#endif
 
 // STL includes
 #include <algorithm>
@@ -67,7 +47,6 @@
 #include <vector>
 namespace binfilter {
 
-using namespace ::rtl;
 using namespace ::std;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
@@ -77,10 +56,11 @@ using namespace ::com::sun::star::frame;
 using namespace ::com::sun::star::beans;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::container;
-//using namespace ::com::sun::star::text;
+
+using rtl::OUString;
 using namespace ::binfilter::xmloff::token;
 
-static __FAR_DATA SvXMLEnumMapEntry aCategoryMap[] =
+static SvXMLEnumMapEntry aCategoryMap[] =
 {
     { XML_TEXT,     ParagraphStyleCategory::TEXT },
     { XML_CHAPTER,  ParagraphStyleCategory::CHAPTER },
@@ -129,22 +109,22 @@ void XMLTextStyleContext::SetAttribute( sal_uInt16 nPrefixKey,
 
 TYPEINIT1( XMLTextStyleContext, XMLPropStyleContext );
 
-XMLTextStyleContext::XMLTextStyleContext( SvXMLImport& rImport,
+XMLTextStyleContext::XMLTextStyleContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const OUString& rLName,
         const Reference< XAttributeList > & xAttrList,
-        SvXMLStylesContext& rStyles, sal_uInt16 nFamily,
-        sal_Bool bDefaultStyle ) :
-    XMLPropStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles,
-                         nFamily, bDefaultStyle ),
-    bAutoUpdate( sal_False ),
-    bHasMasterPageName( sal_False ),
-    bHasCombinedCharactersLetter( sal_False ),
-    pEventContext( NULL ),
+        SvXMLStylesContext& rStyles, sal_uInt16 nInFamily,
+        sal_Bool bInDefaultStyle ) :
+    XMLPropStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles,
+                         nInFamily, bInDefaultStyle ),
     sIsAutoUpdate( RTL_CONSTASCII_USTRINGPARAM( "IsAutoUpdate" ) ),
     sCategory( RTL_CONSTASCII_USTRINGPARAM( "Category" ) ),
     sNumberingStyleName( RTL_CONSTASCII_USTRINGPARAM( "NumberingStyleName" ) ),
+    sDropCapCharStyleName( RTL_CONSTASCII_USTRINGPARAM( "DropCapCharStyleName" ) ),
     sPageDescName( RTL_CONSTASCII_USTRINGPARAM( "PageDescName" ) ),
-    sDropCapCharStyleName( RTL_CONSTASCII_USTRINGPARAM( "DropCapCharStyleName" ) )
+    bAutoUpdate( sal_False ),
+    bHasMasterPageName( sal_False ),
+    bHasCombinedCharactersLetter( sal_False ),
+    pEventContext( NULL )
 {
 }
 
@@ -153,37 +133,37 @@ XMLTextStyleContext::~XMLTextStyleContext()
 }
 
 SvXMLImportContext *XMLTextStyleContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const OUString& rLocalName,
         const Reference< XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = 0;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken( rLocalName, XML_PROPERTIES ) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
             GetStyles()->GetImportPropertyMapper( GetFamily() );
         if( xImpPrMap.is() )
-            pContext = new XMLTextPropertySetContext( GetImport(), nPrefix,
+            pContext = new XMLTextPropertySetContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     GetProperties(),
                                                     xImpPrMap,
                                                     sDropCapTextStyleName );
     }
-    else if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    else if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
               IsXMLToken( rLocalName, XML_EVENTS ) )
     {
         // create and remember events import context
         // (for delayed processing of events)
-        pEventContext = new XMLEventsImportContext( GetImport(), nPrefix,
+        pEventContext = new XMLEventsImportContext( GetImport(), nInPrefix,
                                                    rLocalName);
         pEventContext->AddRef();
         pContext = pEventContext;
     }
 
     if( !pContext )
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                           xAttrList );
 
     return pContext;
@@ -192,11 +172,11 @@ SvXMLImportContext *XMLTextStyleContext::CreateChildContext(
 void XMLTextStyleContext::CreateAndInsert( sal_Bool bOverwrite )
 {
     XMLPropStyleContext::CreateAndInsert( bOverwrite );
-    Reference < XStyle > xStyle = GetStyle();
-    if( !xStyle.is() || !(bOverwrite || IsNew()) )
+    Reference < XStyle > xLclStyle = GetStyle();
+    if( !xLclStyle.is() || !(bOverwrite || IsNew()) )
         return;
 
-    Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
+    Reference < XPropertySet > xPropSet( xLclStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
     if( xPropSetInfo->hasPropertyByName( sIsAutoUpdate ) )
@@ -209,7 +189,7 @@ void XMLTextStyleContext::CreateAndInsert( sal_Bool bOverwrite )
 
     sal_uInt16 nCategory = ParagraphStyleCategory::TEXT;
     if(  XML_STYLE_FAMILY_TEXT_PARAGRAPH == GetFamily() &&
-         sCategoryVal.getLength() && xStyle->isUserDefined() &&
+         sCategoryVal.getLength() && xLclStyle->isUserDefined() &&
          xPropSetInfo->hasPropertyByName( sCategory ) &&
           SvXMLUnitConverter::convertEnum( nCategory, sCategoryVal, aCategoryMap ) )
     {
@@ -222,7 +202,7 @@ void XMLTextStyleContext::CreateAndInsert( sal_Bool bOverwrite )
     if (NULL != pEventContext)
     {
         // set event suppplier and release reference to context
-        Reference<document::XEventsSupplier> xEventsSupplier(xStyle,UNO_QUERY);
+        Reference<document::XEventsSupplier> xEventsSupplier(xLclStyle,UNO_QUERY);
         pEventContext->SetEvents(xEventsSupplier);
         pEventContext->ReleaseRef();
     }
@@ -248,13 +228,13 @@ void XMLTextStyleContext::Finish( sal_Bool bOverwrite )
 {
     XMLPropStyleContext::Finish( bOverwrite );
 
-    Reference < XStyle > xStyle = GetStyle();
+    Reference < XStyle > xLclStyle = GetStyle();
     if( !(sListStyleName.getLength() || sDropCapTextStyleName.getLength() ||
         bHasMasterPageName) ||
-        !xStyle.is() || !(bOverwrite || IsNew()) )
+        !xLclStyle.is() || !(bOverwrite || IsNew()) )
         return;
 
-    Reference < XPropertySet > xPropSet( xStyle, UNO_QUERY );
+    Reference < XPropertySet > xPropSet( xLclStyle, UNO_QUERY );
     Reference< XPropertySetInfo > xPropSetInfo =
                 xPropSet->getPropertySetInfo();
 
@@ -334,11 +314,9 @@ void XMLTextStyleContext::FillPropertySet(
         struct _ContextID_Index_Pair aContextIDs[] =
         {
             { CTF_COMBINED_CHARACTERS_FIELD, -1 },
-#ifdef CONV_STAR_FONTS
             { CTF_FONTFAMILYNAME, -1 },
             { CTF_FONTFAMILYNAME_CJK, -1 },
             { CTF_FONTFAMILYNAME_CTL, -1 },
-#endif
             { -1, -1 }
         };
 
@@ -372,7 +350,6 @@ void XMLTextStyleContext::FillPropertySet(
             bHasCombinedCharactersLetter = bVal;
         }
 
-#ifdef CONV_STAR_FONTS
         // check for StarBats and StarMath fonts
 
         // iterate over aContextIDs entries 1..3
@@ -416,7 +393,8 @@ void XMLTextStyleContext::FillPropertySet(
                 // else: no style name found -> illegal value -> ignore
             }
         }
-#endif
     }
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

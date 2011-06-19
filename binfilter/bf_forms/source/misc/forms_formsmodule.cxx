@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,13 +26,9 @@
  *
  ************************************************************************/
 
-#ifndef FORMS_MODULE_HXX
 #include "formsmodule.hxx"
-#endif
 
-#ifndef _COMPHELPER_SEQUENCE_HXX_
 #include <comphelper/sequence.hxx>
-#endif
 namespace binfilter {
 
 //.........................................................................
@@ -99,7 +96,7 @@ namespace frm
     {
         if (!s_pImplementationNames)
         {
-            OSL_ASSERT("OFormsModule::revokeComponent : have no class infos ! Are you sure called this method at the right time ?");
+            OSL_FAIL("OFormsModule::revokeComponent : have no class infos ! Are you sure called this method at the right time ?");
             return;
         }
         OSL_ENSURE(s_pImplementationNames && s_pSupportedServices && s_pCreationFunctionPointers && s_pFactoryFunctionPointers,
@@ -142,7 +139,7 @@ namespace frm
 
         if (!s_pImplementationNames)
         {
-            OSL_ASSERT("OFormsModule::getComponentFactory : have no class infos ! Are you sure called this method at the right time ?");
+            OSL_FAIL("OFormsModule::getComponentFactory : have no class infos ! Are you sure called this method at the right time ?");
             return NULL;
         }
         OSL_ENSURE(s_pImplementationNames && s_pSupportedServices && s_pCreationFunctionPointers && s_pFactoryFunctionPointers,
@@ -187,3 +184,5 @@ namespace frm
 //.........................................................................
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

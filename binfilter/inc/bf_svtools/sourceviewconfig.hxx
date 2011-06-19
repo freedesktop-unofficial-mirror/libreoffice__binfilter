@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,25 +29,14 @@
 #define _SVTOOLS_SOURCEVIEWCONFIG_HXX
 
 // include ---------------------------------------------------------------
-#ifndef _SFXBRDCST_HXX
 #include <bf_svtools/brdcst.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _OSL_MUTEX_HXX_
 #include <osl/mutex.hxx>
-#endif
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
-#ifndef INCLUDED_SVTOOLS_OPTIONS_HXX
 #include <bf_svtools/options.hxx>
-#endif
 
-/* -----------------------------12.10.00 11:40--------------------------------
 
- ---------------------------------------------------------------------------*/
+
 namespace binfilter
 {
     class SourceViewConfig_Impl;
@@ -66,3 +56,4 @@ namespace binfilter
 }
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

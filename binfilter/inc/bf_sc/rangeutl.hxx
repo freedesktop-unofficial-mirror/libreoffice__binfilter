@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 class SvStream;
 namespace binfilter {
 
@@ -116,3 +115,4 @@ public:
 } //namespace binfilter
 #endif // SC_RANGEUTL_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

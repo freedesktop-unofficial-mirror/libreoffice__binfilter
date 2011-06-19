@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,25 +30,13 @@
 #pragma hdrstop
 #endif
 
-#ifndef _XMLOFF_PAGEMASTERIMPORTCONTEXT_HXX
 #include "PageMasterImportContext.hxx"
-#endif
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERPROPHDL_HXX_
 #include "PageMasterPropHdl.hxx"
-#endif
-#ifndef _XMLOFF_PAGEPROPERTYSETCONTEXT_HXX
 #include "PagePropertySetContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEPHEADERFOOTERCONTEXT_HXX
 #include "PageHeaderFooterContext.hxx"
-#endif
-#ifndef _XMLOFF_PAGEMASTERSTYLEMAP_HXX
 #include "PageMasterStyleMap.hxx"
-#endif
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -70,11 +59,11 @@ void PageStyleContext::SetAttribute( sal_uInt16 nPrefixKey,
 
 TYPEINIT1( PageStyleContext, XMLPropStyleContext );
 
-PageStyleContext::PageStyleContext( SvXMLImport& rImport,
+PageStyleContext::PageStyleContext( SvXMLImport& rInImport,
         sal_uInt16 nPrfx, const ::rtl::OUString& rLName,
         const uno::Reference< xml::sax::XAttributeList > & xAttrList,
         SvXMLStylesContext& rStyles) :
-    XMLPropStyleContext( rImport, nPrfx, rLName, xAttrList, rStyles, XML_STYLE_FAMILY_PAGE_MASTER ),
+    XMLPropStyleContext( rInImport, nPrfx, rLName, xAttrList, rStyles, XML_STYLE_FAMILY_PAGE_MASTER ),
     sPageUsage()
 {
 }
@@ -84,13 +73,13 @@ PageStyleContext::~PageStyleContext()
 }
 
 SvXMLImportContext *PageStyleContext::CreateChildContext(
-        sal_uInt16 nPrefix,
+        sal_uInt16 nInPrefix,
         const ::rtl::OUString& rLocalName,
         const uno::Reference< xml::sax::XAttributeList > & xAttrList )
 {
     SvXMLImportContext *pContext = NULL;
 
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         ((IsXMLToken(rLocalName, XML_HEADER_STYLE )) ||
          (IsXMLToken(rLocalName, XML_FOOTER_STYLE )) ) )
     {
@@ -129,11 +118,11 @@ SvXMLImportContext *PageStyleContext::CreateChildContext(
             }
             if (!bEnd)
                 nEndIndex = nIndex;
-            pContext = new PageHeaderFooterContext(GetImport(), nPrefix, rLocalName,
+            pContext = new PageHeaderFooterContext(GetImport(), nInPrefix, rLocalName,
                             xAttrList, GetProperties(), xImpPrMap, nStartIndex, nEndIndex, bHeader);
         }
     }
-    if( XML_NAMESPACE_STYLE == nPrefix &&
+    if( XML_NAMESPACE_STYLE == nInPrefix &&
         IsXMLToken(rLocalName, XML_PROPERTIES) )
     {
         UniReference < SvXMLImportPropertyMapper > xImpPrMap =
@@ -158,7 +147,7 @@ SvXMLImportContext *PageStyleContext::CreateChildContext(
             if (!bEnd)
                 nEndIndex = nIndex;
             PageContextType aType = Page;
-            pContext = new PagePropertySetContext( GetImport(), nPrefix,
+            pContext = new PagePropertySetContext( GetImport(), nInPrefix,
                                                     rLocalName, xAttrList,
                                                     GetProperties(),
                                                     xImpPrMap, 0, nEndIndex, aType);
@@ -166,7 +155,7 @@ SvXMLImportContext *PageStyleContext::CreateChildContext(
     }
 
     if (!pContext)
-        pContext = XMLPropStyleContext::CreateChildContext( nPrefix, rLocalName,
+        pContext = XMLPropStyleContext::CreateChildContext( nInPrefix, rLocalName,
                                                            xAttrList );
     return pContext;
 }
@@ -185,3 +174,5 @@ void PageStyleContext::FillPropertySet(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,12 +37,12 @@ class SwFldDlgWrapper : public SwChildWinWrapper
 {
 public:
     SwFldDlgWrapper( Window* pParent, USHORT nId,
-                        SfxBindings* pBindings, SfxChildWinInfo* pInfo ): SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 SfxBindings* pBindings, SfxChildWinInfo* pInfo );
+                        SfxBindings* pBindings, SfxChildWinInfo* pInfo ): SwChildWinWrapper( pParent, nId ){DBG_BF_ASSERT(0, "STRIP");}
 
     SFX_DECL_CHILDWINDOW(SwFldDlgWrapper);
 
 };
-/* -----------------04.02.2003 14:14-----------------
+/* --------------------------------------------------
  * field dialog only showing database page to support
  * mail merge
  * --------------------------------------------------*/
@@ -60,3 +61,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

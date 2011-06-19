@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,55 +37,29 @@
 #define _SVSTDARR_USHORTS
 #include <bf_svtools/svstdarr.hxx>
 #endif
-#ifndef _SFXITEMITER_HXX //autogen
 #include <bf_svtools/itemiter.hxx>
-#endif
-#ifndef _SVX_LRSPITEM_HXX //autogen
 #include <bf_svx/lrspitem.hxx>
-#endif
-#ifndef _SVX_TSPTITEM_HXX //autogen
 #include <bf_svx/tstpitem.hxx>
-#endif
 
-#ifndef _FMTFSIZE_HXX //autogen
 #include <fmtfsize.hxx>
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX //autogen
 #include <fmtornt.hxx>
-#endif
-#ifndef _FRMATR_HXX
 #include <frmatr.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _NODE_HXX //autogen
 #include <node.hxx>
-#endif
-#ifndef _FRMFMT_HXX //autogen
 #include <frmfmt.hxx>
-#endif
-#ifndef _CHARFMT_HXX //autogen
 #include <charfmt.hxx>
-#endif
-#ifndef _NUMRULE_HXX //autogen
 #include <numrule.hxx>
-#endif
 #include "doc.hxx"
 #include "docary.hxx"
 #include "rdswg.hxx"
 #include "swgpar.hxx"       // SWGRD_xxx-Flags
 #include "poolfmt.hxx"
-#ifndef _SWSTYLENAMEMAPPER_HXX
 #include <SwStyleNameMapper.hxx>
-#endif
 namespace binfilter {
 
 // Maximale Anzahl verarbeitbarer Formate
@@ -300,7 +275,7 @@ SwFmt* SwSwgReader::InFormat( SwFmt* pFmt, USHORT* pParentId )
                                                 pDoc->GetFrmFmts() )) )
                             pFmt = _GetUserPoolFmt( nPoolId,
                                                 pDoc->GetSpzFrmFmts() );
-                        ASSERT( pFmt, "Format not found." );
+                        OSL_ENSURE( pFmt, "Format not found." );
                     }
                     else
                         pFmt = pDoc->GetFrmFmtFromPool( nPoolId );
@@ -562,7 +537,7 @@ void SwSwgReader::InTxtFmtColl( short nIdx )
     if( !pColl && nPoolId != IDX_NO_VALUE && !IsPoolUserFmt( nPoolId ))
     {
         pColl = pDoc->GetTxtCollFromPool( nPoolId );
-        ASSERT( pColl, "Keine TxtColl fuer PoolId gefunden" );
+        OSL_ENSURE( pColl, "Keine TxtColl fuer PoolId gefunden" );
         if( !pColl )
             nPoolId = IDX_NO_VALUE;
     }
@@ -741,10 +716,7 @@ void SwSwgReader::InTxtFmtColls()
 
 }
 
-/////////////////////////////////////////////////////////////////////////////
-
 // Einlesen der Default- und Autoformate
-
 
 void SwSwgReader::InDfltFmts()
 {
@@ -794,7 +766,7 @@ void SwSwgReader::InDfltFmts()
 // Die Optionen lassen eine gezielte Auswahl zu.
 
 
-void SwSwgReader::InNamedFmts( USHORT nOptions )
+void SwSwgReader::InNamedFmts( USHORT nOptions1 )
 {
     SvPtrarr aFmtArr;   //JP 29.09.95: sind die Parents noch nicht eingelesen
     SvUShorts aIdArr;   // dann am Ende alle Verbinden
@@ -818,7 +790,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
         switch( cType )
         {
             case SWG_CHARFMT:
-                if( nOptions & SWGRD_CHARFMTS )
+                if( nOptions1 & SWGRD_CHARFMTS )
                 {
                     pFmt = InFormat( NULL, &nParentId );
                     TestPoolFmt( *pFmt, GET_POOLID_CHRFMT );
@@ -827,7 +799,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
                     {
                         // Format bereits dem Namen nach drin
                         // Entweder ueberbuegeln oder vergessen
-                        if( nOptions & SWGRD_FORCE )
+                        if( nOptions1 & SWGRD_FORCE )
                             *pFmt2 = *pFmt;
 
                         // Registrierung umsetzen !!
@@ -851,7 +823,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
                 else r.skipnext();
                 break;
             case SWG_FRAMEFMT:
-                if( nOptions & SWGRD_FRAMEFMTS )
+                if( nOptions1 & SWGRD_FRAMEFMTS )
                 {
                     pFmt = InFormat( NULL, &nParentId );
                     TestPoolFmt( *pFmt, GET_POOLID_FRMFMT );
@@ -860,7 +832,7 @@ void SwSwgReader::InNamedFmts( USHORT nOptions )
                     {
                         // Format bereits dem Namen nach drin,
                         // Entweder ueberbuegeln oder vergessen
-                        if( nOptions & SWGRD_FORCE )
+                        if( nOptions1 & SWGRD_FORCE )
                             *pFmt2 = *pFmt;
 
                         // Registrierung umsetzen !!
@@ -927,7 +899,7 @@ void SwSwgReader::RegisterFmt( SwFmt& rFmt, const SwTable *pTable )
         memset( pFmts, 0, MAXFMTS * sizeof( FmtInfo ) );
     }
     // Bereits registriert?
-    ASSERT( pFmts[ nIdx ].pFmt == 0, "Format bereits registriert!" );
+    OSL_ENSURE( pFmts[ nIdx ].pFmt == 0, "Format bereits registriert!" );
 
     pFmts[ nIdx ].pFmt = &rFmt;
     pFmts[ nIdx ].cFmt = FINFO_FORMAT;
@@ -952,7 +924,7 @@ void SwSwgReader::RegisterAttrSet( SfxItemSet* pSet, USHORT nIdx )
         memset( pFmts, 0, MAXFMTS * sizeof( FmtInfo ) );
     }
     // Bereits registriert?
-    ASSERT( pFmts[ nIdx ].pSet == 0, "AttrSet bereits registriert!" );
+    OSL_ENSURE( pFmts[ nIdx ].pSet == 0, "AttrSet bereits registriert!" );
     pFmts[ nIdx ].pSet = pSet;
     pFmts[ nIdx ].cFmt = 0;
     if( nStatus & SWGSTAT_LOCALFMTS )
@@ -1021,7 +993,7 @@ SwFmt* SwSwgReader::FindFmt( USHORT nIdx, BYTE cKind )
             if( pFmts && pFmts[ nIdx ].cFmt & FINFO_FORMAT )
                 pFmt = pFmts[ nIdx ].pFmt;
     }
-    ASSERT( pFmt, "Format-ID unbekannt" );
+    OSL_ENSURE( pFmt, "Format-ID unbekannt" );
     return pFmt;
 }
 
@@ -1040,7 +1012,7 @@ SfxItemSet* SwSwgReader::FindAttrSet( USHORT nIdx )
     SfxItemSet* pSet = NULL;
     if( pFmts && !( pFmts[ nIdx ].cFmt & FINFO_FORMAT ) )
         pSet = pFmts[ nIdx ].pSet;
-    ASSERT( pSet, "Format-ID (AttrSet) unbekannt" );
+    OSL_ENSURE( pSet, "Format-ID (AttrSet) unbekannt" );
     return pSet;
 }
 
@@ -1065,9 +1037,9 @@ void SwSwgReader::ReRegisterFmt( const SwFmt& rFmtOld, const SwFmt& rFmtNew,
     if( !nIdx )
         nIdx = rFmtNew.nFmtId;
     ((SwFmt&)rFmtNew).nFmtId = nIdx;
-    ASSERT( nIdx, "Format nicht registriert" );
+    OSL_ENSURE( nIdx, "Format nicht registriert" );
     nIdx &= ~IDX_TYPEMASK;
-    ASSERT( !( pFmts[ nIdx ].cFmt & FINFO_FORMAT ) ||
+    OSL_ENSURE( !( pFmts[ nIdx ].cFmt & FINFO_FORMAT ) ||
             !pFmts[ nIdx ].pSet ||
             pFmts[ nIdx ].pFmt == (SwFmt*) &rFmtNew ||
             (pTable && pTable != FindTable(nIdx)),
@@ -1117,3 +1089,5 @@ const SwTable *SwSwgReader::FindTable( USHORT nIdx )
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

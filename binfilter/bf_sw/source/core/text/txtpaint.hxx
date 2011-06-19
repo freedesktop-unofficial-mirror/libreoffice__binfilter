@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,9 +28,7 @@
 #ifndef _TXTPAINT_HXX
 #define _TXTPAINT_HXX
 
-#ifndef _SV_OUTDEV_HXX //autogen
 #include <vcl/outdev.hxx>
-#endif
 
 
 class SwRect;               // SwSaveClip
@@ -52,7 +51,7 @@ protected:
 public:
     inline SwSaveClip( OutputDevice *pOut );
     inline ~SwSaveClip();
-    void Reset(){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001           void Reset();
+    void Reset(){DBG_BF_ASSERT(0, "STRIP");} ;
     inline sal_Bool IsOn()  const { return bOn; }
     inline sal_Bool IsChg() const { return bChg; }
     inline sal_Bool IsOut() const { return 0 != pOut; }
@@ -223,3 +222,5 @@ inline DbgRect::DbgRect( OutputDevice *pOutDev, const Rectangle &rRect,
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

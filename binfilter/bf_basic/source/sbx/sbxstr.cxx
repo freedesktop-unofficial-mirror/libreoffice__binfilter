@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,20 +26,12 @@
  *
  ************************************************************************/
 
-#ifndef _ERRCODE_HXX //autogen
 #include <tools/errcode.hxx>
-#endif
 #include "sbx.hxx"
 #include "sbxconv.hxx"
 #include "sbxres.hxx"
 
 namespace binfilter {
-
-// AB 29.10.99 Unicode
-#ifndef _USE_NO_NAMESPACE
-using namespace rtl;
-#endif
-
 
 // Die Konversion eines Items auf String wird ueber die Put-Methoden
 // der einzelnen Datentypen abgewickelt, um doppelten Code zu vermeiden.
@@ -250,3 +243,4 @@ void ImpPutString( SbxValues* p, const XubString* n )
 
 }
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

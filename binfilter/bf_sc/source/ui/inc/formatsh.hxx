@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef SC_FORMATSH_HXX
 #define SC_FORMATSH_HXX
 
-#ifndef _SFX_SHELL_HXX //autogen
 #include <bf_sfx2/shell.hxx>
-#endif
 #include "shellids.hxx"
-#ifndef _SFXMODULE_HXX //autogen
 #include <bf_sfx2/module.hxx>
-#endif
 
-#ifndef _SVDMARK_HXX //autogen
 #include <bf_svx/svdmark.hxx>
-#endif
 namespace binfilter {
 
 class ScViewData;
@@ -59,27 +54,29 @@ public:
                 ScFormatShell(ScViewData* pData);
     virtual     ~ScFormatShell();
 
-    void        ExecuteNumFormat( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteNumFormat( SfxRequest& rReq );
-    void        GetNumFormatState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        GetNumFormatState( SfxItemSet& rSet );
+    void        ExecuteNumFormat( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
+    void        GetNumFormatState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        ExecuteAttr( SfxRequest& rReq );
+    void        ExecuteAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetAttrState( SfxItemSet& rSet );
 
-    void        ExecuteAlignment( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteAlignment( SfxRequest& rReq );
+    void        ExecuteAlignment( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteTextAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001   void        ExecuteTextAttr( SfxRequest& rReq );
+    void        ExecuteTextAttr( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetTextAttrState( SfxItemSet& rSet );
 
-    void        GetAlignState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        GetAlignState( SfxItemSet& rSet );
-    void        GetBorderState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001    void        GetBorderState( SfxItemSet& rSet );
+    void        GetAlignState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
+    void        GetBorderState( SfxItemSet& rSet ){DBG_BF_ASSERT(0, "STRIP");}
 
-    void        ExecuteStyle( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001  void        ExecuteStyle( SfxRequest& rReq );
+    void        ExecuteStyle( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetStyleState( SfxItemSet& rSet );
 
 
-    void        ExecuteTextDirection( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 //STRIP001     void        ExecuteTextDirection( SfxRequest& rReq );
+    void        ExecuteTextDirection( SfxRequest& rReq ){DBG_BF_ASSERT(0, "STRIP");}
     void        GetTextDirectionState( SfxItemSet& rSet );
 };
 
 } //namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

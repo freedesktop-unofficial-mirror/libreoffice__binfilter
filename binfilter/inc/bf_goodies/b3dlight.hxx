@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,17 +32,11 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _SVX_VECTOR3D_HXX
 #include "vector3d.hxx"
-#endif
 
-#ifndef _SVX_MATRIL3D_HXX
 #include "matril3d.hxx"
-#endif
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter {
 
@@ -160,7 +155,7 @@ public:
     void Init();
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
 
 protected:
@@ -220,7 +215,7 @@ public:
     B3dLight& GetLightObject(Base3DLightNumber=Base3DLight0);
 
     // Laden/Speichern in StarView
-    virtual void WriteData(SvStream& rOut) const;
+    virtual void WriteData(SvStream& ) const {}
     virtual void ReadData(SvStream& rIn);
 
 protected:
@@ -229,3 +224,5 @@ protected:
 }//end of namespace binfilter
 
 #endif          // _B3D_B3DLIGHT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

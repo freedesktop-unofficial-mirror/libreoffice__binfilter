@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,9 +26,6 @@
  *
  ************************************************************************/
 
-#ifdef PCH
-#endif
-
 #ifdef _MSC_VER
 #pragma hdrstop
 #endif
@@ -38,7 +36,7 @@
 #include "optuno.hxx"
 #include "miscuno.hxx"
 #include "unonames.hxx"
-#include "unoguard.hxx"
+#include <vcl/svapp.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
@@ -50,19 +48,19 @@ const SfxItemPropertyMap* ScDocOptionsHelper::GetPropertyMap()
 {
     static SfxItemPropertyMap aMap[] =
     {
-        {MAP_CHAR_LEN(SC_UNO_CALCASSHOWN),  0,  &getBooleanCppuType(),                                    0},
-        {MAP_CHAR_LEN(SC_UNO_DEFTABSTOP),   0,  &getCppuType((sal_Int16*)0),                              0},
-        {MAP_CHAR_LEN(SC_UNO_IGNORECASE),   0,  &getBooleanCppuType(),                                    0},
-        {MAP_CHAR_LEN(SC_UNO_ITERENABLED),  0,  &getBooleanCppuType(),                                    0},
-        {MAP_CHAR_LEN(SC_UNO_ITERCOUNT),    0,  &getCppuType((sal_Int32*)0),                              0},
-        {MAP_CHAR_LEN(SC_UNO_ITEREPSILON),  0,  &getCppuType((double*)0),                                 0},
-        {MAP_CHAR_LEN(SC_UNO_LOOKUPLABELS), 0,  &getBooleanCppuType(),                                    0},
-        {MAP_CHAR_LEN(SC_UNO_MATCHWHOLE),   0,  &getBooleanCppuType(),                                    0},
-        {MAP_CHAR_LEN(SC_UNO_NULLDATE),     0,  &getCppuType((util::Date*)0),                             0},
-        {MAP_CHAR_LEN(SC_UNO_SPELLONLINE),  0,  &getBooleanCppuType(),                                    0},
-        {MAP_CHAR_LEN(SC_UNO_STANDARDDEC),  0,  &getCppuType((sal_Int16*)0),                              0},
-        {MAP_CHAR_LEN(SC_UNO_REGEXENABLED), 0,  &getBooleanCppuType(),                  0},
-        {0,0,0,0}
+        {MAP_CHAR_LEN(SC_UNO_CALCASSHOWN),  0,  &getBooleanCppuType(),                                    0,0},
+        {MAP_CHAR_LEN(SC_UNO_DEFTABSTOP),   0,  &getCppuType((sal_Int16*)0),                              0,0},
+        {MAP_CHAR_LEN(SC_UNO_IGNORECASE),   0,  &getBooleanCppuType(),                                    0,0},
+        {MAP_CHAR_LEN(SC_UNO_ITERENABLED),  0,  &getBooleanCppuType(),                                    0,0},
+        {MAP_CHAR_LEN(SC_UNO_ITERCOUNT),    0,  &getCppuType((sal_Int32*)0),                              0,0},
+        {MAP_CHAR_LEN(SC_UNO_ITEREPSILON),  0,  &getCppuType((double*)0),                                 0,0},
+        {MAP_CHAR_LEN(SC_UNO_LOOKUPLABELS), 0,  &getBooleanCppuType(),                                    0,0},
+        {MAP_CHAR_LEN(SC_UNO_MATCHWHOLE),   0,  &getBooleanCppuType(),                                    0,0},
+        {MAP_CHAR_LEN(SC_UNO_NULLDATE),     0,  &getCppuType((util::Date*)0),                             0,0},
+        {MAP_CHAR_LEN(SC_UNO_SPELLONLINE),  0,  &getBooleanCppuType(),                                    0,0},
+        {MAP_CHAR_LEN(SC_UNO_STANDARDDEC),  0,  &getCppuType((sal_Int16*)0),                              0,0},
+        {MAP_CHAR_LEN(SC_UNO_REGEXENABLED), 0,  &getBooleanCppuType(),                  0,0},
+        {0,0,0,0,0,0}
     };
     return aMap;
 }
@@ -92,25 +90,25 @@ sal_Bool ScDocOptionsHelper::setPropertyValue( ScDocOptions& rOptions,
         rOptions.SetAutoSpell( ScUnoHelpFunctions::GetBoolFromAny( aValue ) );
     else if ( aString.EqualsAscii( SC_UNO_DEFTABSTOP ) )
     {
-        sal_Int16 nIntVal;
+        sal_Int16 nIntVal = 0;
         if ( aValue >>= nIntVal )
             rOptions.SetTabDistance( nIntVal );
     }
     else if ( aString.EqualsAscii( SC_UNO_ITERCOUNT ) )
     {
-        sal_Int32 nIntVal;
+        sal_Int32 nIntVal = 0;
         if ( aValue >>= nIntVal )
             rOptions.SetIterCount( (USHORT)nIntVal );
     }
     else if ( aString.EqualsAscii( SC_UNO_STANDARDDEC ) )
     {
-        sal_Int16 nIntVal;
+        sal_Int16 nIntVal = 0;
         if ( aValue >>= nIntVal )
             rOptions.SetStdPrecision( nIntVal );
     }
     else if ( aString.EqualsAscii( SC_UNO_ITEREPSILON ) )
     {
-        double fDoubleVal;
+        double fDoubleVal = 0.0;
         if ( aValue >>= fDoubleVal )
             rOptions.SetIterEps( fDoubleVal );
     }
@@ -186,7 +184,7 @@ void SAL_CALL ScDocOptionsObj::setPropertyValue(
                         lang::IllegalArgumentException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     BOOL bDone = ScDocOptionsHelper::setPropertyValue( aOptions, aPropertyName, aValue );
 
@@ -198,7 +196,7 @@ uno::Any SAL_CALL ScDocOptionsObj::getPropertyValue( const ::rtl::OUString& aPro
                 throw(beans::UnknownPropertyException, lang::WrappedTargetException,
                         uno::RuntimeException)
 {
-    ScUnoGuard aGuard;
+    SolarMutexGuard aGuard;
 
     uno::Any aRet = ScDocOptionsHelper::getPropertyValue( aOptions, aPropertyName );
     if ( !aRet.hasValue() )
@@ -208,3 +206,5 @@ uno::Any SAL_CALL ScDocOptionsObj::getPropertyValue( const ::rtl::OUString& aPro
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

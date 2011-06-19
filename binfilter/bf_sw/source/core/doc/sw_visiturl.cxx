@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,44 +32,20 @@
 #endif
 
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _SFXDOCFILE_HXX //autogen
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _INETHIST_HXX //autogen
 #include <bf_svtools/inethist.hxx>
-#endif
 
-#ifndef _FMTINFMT_HXX //autogen
 #include <fmtinfmt.hxx>
-#endif
-#ifndef _TXTINET_HXX //autogen
 #include <txtinet.hxx>
-#endif
-#ifndef _DOC_HXX
 #include <doc.hxx>
-#endif
-#ifndef _VISITURL_HXX
 #include <visiturl.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
-#ifndef _NDTXT_HXX
 #include <ndtxt.hxx>
-#endif
-#ifndef _VISCRS_HXX
 #include <viscrs.hxx>
-#endif
-#ifndef _EDITSH_HXX
 #include <editsh.hxx>
-#endif
-#ifndef _DOCSH_HXX
 #include <docsh.hxx>
-#endif
 namespace binfilter {
 
 
@@ -83,7 +60,7 @@ namespace binfilter {
 /*N*/   EndListening( *INetURLHistory::GetOrCreate() );
 /*N*/ }
 
-/*N*/ void SwURLStateChanged::Notify( SfxBroadcaster& rBC, const SfxHint& rHint )
+/*N*/ void SwURLStateChanged::Notify( SfxBroadcaster& /*rBC*/, const SfxHint& rHint )
 /*N*/ {
 /*N*/   if( rHint.ISA( INetURLHistoryHint ) && pDoc->GetRootFrm() )
 /*N*/   {
@@ -170,3 +147,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

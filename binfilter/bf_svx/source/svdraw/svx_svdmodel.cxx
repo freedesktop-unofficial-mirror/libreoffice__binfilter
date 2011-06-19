@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,49 +26,24 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
 #include "svdmodel.hxx"
 
-
-#ifndef _SFX_WHITER_HXX
 #include <bf_svtools/whiter.hxx>
-#endif
 
-#ifndef _SVX_XIT_HXX
 #include "xit.hxx"
-#endif
 
-#ifndef _XDEF_HXX
 #include <xdef.hxx>
-#endif
 
-#ifndef _SVX_XBTMPIT_HXX
 #include "xbtmpit.hxx"
-#endif
-#ifndef _SVX_XLNDSIT_HXX
 #include "xlndsit.hxx"
-#endif
-#ifndef _SVX_XLNEDIT_HXX //autogen
 #include "xlnedit.hxx"
-#endif
-#ifndef _SVX_XFLFTRIT_HXX
 #include "xflftrit.hxx"
-#endif
-#ifndef _SVX_XFLHTIT_HXX //autogen
 #include "xflhtit.hxx"
-#endif
-#ifndef _SVX_XLNSTIT_HXX
 #include "xlnstit.hxx"
-#endif
-
-
 #include "editeng.hxx"   // Fuer EditEngine::CreatePool()
-
 #include "xtable.hxx"
-
 #include "svditer.hxx"
 #include "svdio.hxx"
 #include "svdpage.hxx"
@@ -82,65 +58,24 @@
 #include <eeitemid.hxx>
 
 #ifndef SVX_LIGHT
-#ifndef _SVX_ASIANCFG_HXX
 #include "asiancfg.hxx"
 #endif
-#endif
 
-#ifndef _EEITEM_HXX
 #include "eeitem.hxx"
-#endif
-
-#ifndef _SVX_FONTITEM_HXX //autogen
 #include "fontitem.hxx"
-#endif
-
-#ifndef _SVX_COLRITEM_HXX //autogen
 #include "colritem.hxx"
-#endif
-
-#ifndef _SVX_FHGTITEM_HXX //autogen
 #include "fhgtitem.hxx"
-#endif
 
-#ifndef _SFXSTYLE_HXX //autogen
 #include <bf_svtools/style.hxx>
-#endif
-
-#ifndef _BIGINT_HXX //autogen
 #include <tools/bigint.hxx>
-#endif
 
-
-
-
-#ifndef _FORBIDDENCHARACTERSTABLE_HXX
 #include "forbiddencharacterstable.hxx"
-#endif
 
-#ifndef _PERSIST_HXX
 #include <bf_so3/persist.hxx>
-#endif
-
-#ifndef _ZFORLIST_HXX
 #include <bf_svtools/zforlist.hxx>
-#endif
-
-
-// #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
-
-
-// #95114#
-#ifndef _SV_SVAPP_HXX
 #include <vcl/svapp.hxx>
-#endif
-
-#ifndef _OSL_ENDIAN_H_
 #include <osl/endian.h>
-#endif
 
 namespace binfilter {
 
@@ -148,7 +83,7 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ SdrModelInfo::SdrModelInfo(FASTBOOL bInit):
+/*N*/ SdrModelInfo::SdrModelInfo(bool bInit):
 /*N*/   aCreationDate(Date(0),Time(0)),
 /*N*/   aLastWriteDate(Date(0),Time(0)),
 /*N*/   aLastReadDate(Date(0),Time(0)),
@@ -281,7 +216,7 @@ using namespace ::com::sun::star;
 /*N*/ TYPEINIT1(SdrModel,SfxBroadcaster);
 
 /*N*/ void SdrModel::ImpCtor(SfxItemPool* pPool, SvPersist* pPers,
-/*N*/   FASTBOOL bUseExtColorTable, FASTBOOL bLoadRefCounts)
+/*N*/   bool bUseExtColorTable, bool bLoadRefCounts)
 /*N*/ {
 /*N*/   mbInDestruction=false;
 /*N*/   aObjUnit=SdrEngineDefaults::GetMapFraction();
@@ -397,21 +332,21 @@ using namespace ::com::sun::star;
 
 /*N*/ SdrModel::SdrModel(SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
-/*N*/   aMaPag(1024,32,32)
+/*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
 /*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "svx", "aw93748", "SdrModel::SdrModel(...)" );
 /*N*/ #endif
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,FALSE, (FASTBOOL)bLoadRefCounts);
+/*N*/   ImpCtor(pPool,pPers,FALSE, (bool)bLoadRefCounts);
 /*N*/ }
 
 /*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
 /*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32),
 /*N*/   aTablePath(rPath)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
@@ -419,13 +354,13 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,FALSE, (FASTBOOL)bLoadRefCounts);
+/*N*/   ImpCtor(pPool,pPers,FALSE, (bool)bLoadRefCounts);
 /*N*/ }
 
-/*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, FASTBOOL bUseExtColorTable, INT32 bLoadRefCounts):
+/*N*/ SdrModel::SdrModel(const String& rPath, SfxItemPool* pPool, SvPersist* pPers, bool bUseExtColorTable, INT32 bLoadRefCounts):
 /*N*/   aInfo(TRUE),
-/*N*/   aPages(1024,32,32),
 /*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32),
 /*N*/   aTablePath(rPath)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
@@ -433,19 +368,20 @@ using namespace ::com::sun::star;
 /*N*/ #endif
 /*N*/
 /*N*/   DBG_CTOR(SdrModel,NULL);
-/*N*/   ImpCtor(pPool,pPers,bUseExtColorTable, (FASTBOOL)bLoadRefCounts);
+/*N*/   ImpCtor(pPool,pPers,bUseExtColorTable, (bool)bLoadRefCounts);
 /*N*/ }
 
-/*N*/ SdrModel::SdrModel(const SdrModel& rSrcModel):
-/*N*/   aPages(1024,32,32),
-/*N*/   aMaPag(1024,32,32)
+/*N*/ SdrModel::SdrModel(const SdrModel& /*rSrcModel*/):
+/*N*/   SfxBroadcaster(),
+/*N*/   aMaPag(1024,32,32),
+/*N*/   aPages(1024,32,32)
 /*N*/ {
 /*N*/ #ifdef TIMELOG
 /*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "svx", "aw93748", "SdrModel::SdrModel(...)" );
 /*N*/ #endif
 /*N*/
 /*N*/   // noch nicht implementiert
-/*N*/   DBG_ERROR("SdrModel::CopyCtor() ist noch nicht implementiert");
+/*N*/   OSL_FAIL("SdrModel::CopyCtor() ist noch nicht implementiert");
 /*N*/ }
 
 /*N*/ SdrModel::~SdrModel()
@@ -471,7 +407,7 @@ using namespace ::com::sun::star;
 /*?*/       aStr += ByteString(pAktUndoGroup->GetComment(), gsl_getSystemTextEncoding());
 /*?*/       aStr += '\"';
 /*?*/
-/*?*/       DBG_ERROR(aStr.GetBuffer());
+/*?*/       OSL_FAIL(aStr.GetBuffer());
 /*N*/   }
 /*N*/ #endif
 /*N*/   if (pAktUndoGroup!=NULL) delete pAktUndoGroup;
@@ -527,17 +463,17 @@ using namespace ::com::sun::star;
 // noch nicht implementiert:
 
 
-/*N*/ void SdrModel::SetSwapGraphics( FASTBOOL bSwap )
+/*N*/ void SdrModel::SetSwapGraphics( bool bSwap )
 /*N*/ {
 /*N*/   bSwapGraphics = bSwap;
 /*N*/ }
 
-/*?*/ FASTBOOL SdrModel::IsReadOnly() const
+/*?*/ bool SdrModel::IsReadOnly() const
 /*?*/ {
 /*?*/   return bReadOnly;
 /*?*/ }
 
-/*?*/ void SdrModel::SetReadOnly(FASTBOOL bYes)
+/*?*/ void SdrModel::SetReadOnly(bool bYes)
 /*?*/ {
 /*?*/   bReadOnly=bYes;
 /*?*/ }
@@ -548,13 +484,13 @@ using namespace ::com::sun::star;
 /*N*/ {
 /*N*/   if (aIOProgressLink.IsSet()) {
 /*N*/       if (nVal==0) { // Anfang
-/*N*/           USHORT nVal=0;
-/*N*/           aIOProgressLink.Call(&nVal);
+/*N*/           USHORT nLclVal=0;
+/*N*/           aIOProgressLink.Call(&nLclVal);
 /*N*/           nProgressPercent=0;
 /*N*/           nProgressAkt=0;
 /*N*/       } else if (nVal==0xFFFFFFFF) { // Ende
-/*N*/           USHORT nVal=100;
-/*N*/           aIOProgressLink.Call(&nVal);
+/*N*/           USHORT nLclVal=100;
+/*N*/           aIOProgressLink.Call(&nLclVal);
 /*N*/           nProgressPercent=100;
 /*N*/           nProgressAkt=nProgressMax;
 /*N*/       } else if (nVal!=nProgressAkt && nProgressMax!=0) { // dazwischen
@@ -608,19 +544,8 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-
-
-
-
-
-
-
-
-
-
-
-/*N*/ void SdrModel::AddUndo(SdrUndoAction* pUndo)
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ void SdrModel::AddUndo(SdrUndoAction* /*pUndo*/)
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -665,12 +590,12 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ SdrModel* SdrModel::AllocModel() const
-/*N*/ {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   SdrModel* pModel=new SdrModel;
 /*N*/   return pModel;
 /*N*/ }
 
-/*N*/ SdrPage* SdrModel::AllocPage(FASTBOOL bMasterPage)
+/*N*/ SdrPage* SdrModel::AllocPage(bool bMasterPage)
 /*N*/ {
 /*N*/   return new SdrPage(*this,bMasterPage);
 /*N*/ }
@@ -812,7 +737,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*N*/ SvStream* SdrModel::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) const
+/*N*/ SvStream* SdrModel::GetDocumentStream(SdrDocumentStreamInfo& /*rStreamInfo*/) const
 /*N*/ {
 /*N*/   return NULL;
 /*N*/ }
@@ -849,10 +774,10 @@ using namespace ::com::sun::star;
 /*N*/ void SdrModel::ImpSetUIUnit()
 /*N*/ {
 /*N*/   if (aUIScale.GetNumerator()==0 || aUIScale.GetDenominator()==0) aUIScale=Fraction(1,1);
-/*N*/   FASTBOOL bMapInch=IsInch(eObjUnit);
-/*N*/   FASTBOOL bMapMetr=IsMetric(eObjUnit);
-/*N*/   FASTBOOL bUIInch=IsInch(eUIUnit);
-/*N*/   FASTBOOL bUIMetr=IsMetric(eUIUnit);
+/*N*/   bool bMapInch=IsInch(eObjUnit);
+/*N*/   bool bMapMetr=IsMetric(eObjUnit);
+/*N*/   bool bUIInch=IsInch(eUIUnit);
+/*N*/   bool bUIMetr=IsMetric(eUIUnit);
 /*N*/   nUIUnitKomma=0;
 /*N*/   long nMul=1;
 /*N*/   long nDiv=1;
@@ -873,6 +798,7 @@ using namespace ::com::sun::star;
 /*N*/       case MAP_SYSFONT    : break;
 /*N*/       case MAP_APPFONT    : break;
 /*N*/       case MAP_RELATIVE   : break;
+/*N*/       default             : break;
 /*N*/   } // switch
 /*N*/
 /*N*/   // 1 mile    =  8 furlong = 63.360" = 1.609.344,0mm
@@ -899,6 +825,7 @@ using namespace ::com::sun::star;
 /*N*/       // sonstiges
 /*N*/       case FUNIT_CUSTOM : break;
 /*N*/       case FUNIT_PERCENT: nUIUnitKomma+=2; break;
+/*N*/       default: break;
 /*N*/   } // switch
 /*N*/
 /*N*/   if (bMapInch && bUIMetr) {
@@ -1010,20 +937,17 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       case FUNIT_100TH_MM:
 /*?*/       {
-/*?*/           sal_Char aText[] = "/100mm";
-/*?*/           rStr = UniString(aText, sizeof(aText-1));
+/*?*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("/100mm"));
 /*?*/           break;
 /*N*/       }
 /*N*/       case FUNIT_MM     :
 /*N*/       {
-/*N*/           sal_Char aText[] = "mm";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("mm"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_CM     :
 /*N*/       {
-/*N*/           sal_Char aText[] = "cm";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("cm"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_M      :
@@ -1034,26 +958,22 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       case FUNIT_KM     :
 /*N*/       {
-/*N*/           sal_Char aText[] = "km";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("km"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_TWIP   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "twip";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("twip"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_POINT  :
 /*N*/       {
-/*N*/           sal_Char aText[] = "pt";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("pt"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_PICA   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "pica";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("pica"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_INCH   :
@@ -1064,14 +984,12 @@ using namespace ::com::sun::star;
 /*N*/       }
 /*N*/       case FUNIT_FOOT   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "ft";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("ft"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_MILE   :
 /*N*/       {
-/*N*/           sal_Char aText[] = "mile(s)";
-/*N*/           rStr = UniString(aText, sizeof(aText-1));
+/*N*/           rStr = UniString(RTL_CONSTASCII_USTRINGPARAM("mile(s)"));
 /*N*/           break;
 /*N*/       }
 /*N*/       case FUNIT_PERCENT:
@@ -1083,7 +1001,7 @@ using namespace ::com::sun::star;
 /*N*/   }
 /*N*/ }
 
-/*?*/ void SdrModel::TakeMetricStr(long nVal, XubString& rStr, FASTBOOL bNoUnitChars, sal_Int32 nNumDigits) const
+/*?*/ void SdrModel::TakeMetricStr(long nVal, XubString& rStr, bool bNoUnitChars, sal_Int32 nNumDigits) const
 /*?*/ {
 /*?*/   if(!bUIOnlyKomma)
 /*?*/       nVal = (nVal * aUIUnitFact.GetNumerator()) / aUIUnitFact.GetDenominator();
@@ -1195,12 +1113,12 @@ using namespace ::com::sun::star;
 
 
 
-/*N*/ void SdrModel::SetChanged(FASTBOOL bFlg)
+/*N*/ void SdrModel::SetChanged(bool bFlg)
 /*N*/ {
 /*N*/   bChanged=bFlg;
 /*N*/ }
 
-/*N*/ void SdrModel::RecalcPageNums(FASTBOOL bMaster)
+/*N*/ void SdrModel::RecalcPageNums(bool bMaster)
 /*N*/ {
 /*N*/   Container& rPL=*(bMaster ? &aMaPag : &aPages);
 /*N*/   USHORT nAnz=USHORT(rPL.Count());
@@ -1257,7 +1175,7 @@ using namespace ::com::sun::star;
 /*N*/   pPage->SetInserted(TRUE);
 /*N*/   pPage->SetPageNum(nPos);
 /*N*/   pPage->SetModel(this);
-/*N*/   if (nPos<nAnz) {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*N*/   if (nPos<nAnz) {DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/   SetChanged();
 /*N*/   SdrHint aHint(HINT_PAGEORDERCHG);
@@ -1308,234 +1226,6 @@ using namespace ::com::sun::star;
 /*N*/   SdrHint aHint(HINT_PAGEORDERCHG);
 /*N*/   aHint.SetPage(pPg);
 /*N*/   Broadcast(aHint);
-/*N*/ }
-
-/*N*/ void SdrModel::WriteData(SvStream& rOut) const
-/*N*/ {
-/*N*/   const sal_uInt32 nOldCompressMode = nStreamCompressMode;
-/*N*/   sal_uInt32 nNewCompressMode = nStreamCompressMode;
-/*N*/
-/*N*/   if( SOFFICE_FILEFORMAT_40 <= rOut.GetVersion() )
-/*N*/   {
-/*N*/       if( IsSaveCompressed() )
-/*N*/           nNewCompressMode |= COMPRESSMODE_ZBITMAP;
-/*N*/
-/*N*/       if( IsSaveNative() )
-/*N*/           nNewCompressMode |= COMPRESSMODE_NATIVE;
-/*N*/   }
-/*N*/
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("SdrModel");
-/*N*/ #endif
-/*N*/
-/*N*/   // damit ich meine eigenen SubRecords erkenne (ab V11)
-/*N*/   rOut.Write(SdrIOJoeMagic, 4);
-/*N*/
-/*N*/   {
-/*N*/       // Focus fuer aModelMiscCompat
-/*N*/       // ab V11 eingepackt
-/*N*/       SdrDownCompat aModelMiscCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/       aModelMiscCompat.SetID("SdrModel(Miscellaneous)");
-/*N*/ #endif
-/*N*/
-/*N*/       // ModelInfo muss hier ganz am Anfang stehen!
-/*N*/       ((SdrModel*)this)->aInfo.aLastWriteDate = DateTime();
-/*N*/       rtl_TextEncoding eOutCharSet = rOut.GetStreamCharSet();
-/*N*/       if(eOutCharSet == ((rtl_TextEncoding)9) /* == RTL_TEXTENCODING_SYSTEM */ )
-/*?*/           eOutCharSet = gsl_getSystemTextEncoding();
-/*N*/
-/*N*/       // #90477# ((SdrModel*)this)->aInfo.eLastWriteCharSet = GetStoreCharSet(eOutCharSet);
-/*N*/       ((SdrModel*)this)->aInfo.eLastWriteCharSet = GetSOStoreTextEncoding(eOutCharSet, (sal_uInt16)rOut.GetVersion());
-/*N*/
-/*N*/       // UNICODE: set the target charset on the stream to access it as parameter
-/*N*/       // in all streaming operations for UniString->ByteString conversions
-/*N*/       rOut.SetStreamCharSet(aInfo.eLastWriteCharSet);
-/*N*/
-        /* old SV-stuff, there is no possibility to determine this informations in another way
-        ((SdrModel*)this)->aInfo.eLastWriteGUI=System::GetGUIType();
-        ((SdrModel*)this)->aInfo.eLastWriteCPU=System::GetCPUType();
-        ((SdrModel*)this)->aInfo.eLastWriteSys=System::GetSystemType();
-        */
-/*N*/
-/*N*/       if(aReadDate.IsValid())
-/*N*/       {
-/*N*/           ((SdrModel*)this)->aInfo.aLastReadDate = aReadDate;
-/*N*/
-/*N*/           // ((SdrModel*)this)->aInfo.eLastReadCharSet = GetStoreCharSet(gsl_getSystemTextEncoding());
-/*N*/           ((SdrModel*)this)->aInfo.eLastReadCharSet = GetSOStoreTextEncoding(gsl_getSystemTextEncoding(), (sal_uInt16)rOut.GetVersion());
-/*N*/
-            /* old SV-stuff, there is no possibility to determine this informations in another way
-            ((SdrModel*)this)->aInfo.eLastReadGUI=System::GetGUIType();
-            ((SdrModel*)this)->aInfo.eLastReadCPU=System::GetCPUType();
-            ((SdrModel*)this)->aInfo.eLastReadSys=System::GetSystemType();
-            */
-/*N*/       }
-/*N*/       rOut << aInfo; // DateiInfo rausschreiben (ab V11)
-/*N*/
-/*N*/       { // ein Bereich fuer Statistik reservieren (V11) (kommt spaeter vielleicht mal dazu)
-/*N*/           SdrDownCompat aModelStatisticCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aModelStatisticCompat.SetID("SdrModel(Statistic)");
-/*N*/ #endif
-/*N*/       }
-/*N*/
-/*N*/       {
-/*N*/           // ab V11
-/*N*/           SdrDownCompat aModelFormatCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/           aModelFormatCompat.SetID("SdrModel(Format)");
-/*N*/ #endif
-/*N*/
-/*N*/           // ab V11
-/*N*/           rOut << nNewCompressMode;
-/*N*/
-/*N*/           // ab V11
-/*N*/           rOut << UINT16(rOut.GetNumberFormatInt());
-/*N*/
-/*N*/           rOut.SetCompressMode( (sal_uInt16)nNewCompressMode);
-/*N*/           // CompressMode erst an dieser Stelle setzen, damit konform zu ReadData()
-/*N*/       }
-/*N*/
-/*N*/       rOut << INT32(aObjUnit.GetNumerator());
-/*N*/       rOut << INT32(aObjUnit.GetDenominator());
-/*N*/       rOut << UINT16(eObjUnit);
-/*N*/       // Komprimiert ?
-/*N*/       rOut << UINT16(0);
-/*N*/       // Nur eine DummyPage, jedoch mit relevanten Objekten?
-/*N*/       rOut << UINT8(bPageNotValid);
-/*N*/       // Reserve DummyByte
-/*N*/       rOut << UINT8(0);
-/*N*/
-/*N*/       // Tabellen-, Listen- und Palettennamen schreiben
-/*N*/       // rOut<<INT16(::GetSystemCharSet()); seit V11 hier kein CharSet mehr
-/*N*/       XubString aEmptyStr;
-/*N*/
-/*N*/       if(bExtColorTable)
-/*N*/       {
-/*N*/           // der Writer hat seinen eigenen ColorTable
-/*N*/           // UNICODE: rOut << aEmptyStr;
-/*N*/           rOut.WriteByteString(aEmptyStr);
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           if(pColorTable && !pColorTable->GetName().Equals(pszStandard))
-/*N*/           {
-/*N*/               // UNICODE: rOut << pColorTable->GetName();
-/*N*/               rOut.WriteByteString(pColorTable->GetName());
-/*N*/           }
-/*N*/           else
-/*N*/           {
-/*N*/               // UNICODE: rOut << aEmptyStr;
-/*N*/               rOut.WriteByteString(aEmptyStr);
-/*N*/           }
-/*N*/       }
-/*N*/
-/*N*/       if(pDashList && !pDashList->GetName().Equals(pszStandard))
-/*N*/       {
-/*N*/           // UNICODE: rOut<<pDashList->GetName();
-/*N*/           rOut.WriteByteString(pDashList->GetName());
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // UNICODE: rOut << aEmptyStr;
-/*N*/           rOut.WriteByteString(aEmptyStr);
-/*N*/       }
-/*N*/
-/*N*/       if(pLineEndList && !pLineEndList->GetName().Equals(pszStandard))
-/*N*/       {
-/*N*/           // UNICODE: rOut<<pLineEndList->GetName();
-/*N*/           rOut.WriteByteString(pLineEndList->GetName());
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // UNICODE: rOut << aEmptyStr;
-/*N*/           rOut.WriteByteString(aEmptyStr);
-/*N*/       }
-/*N*/
-/*N*/       if(pHatchList && !pHatchList->GetName().Equals(pszStandard))
-/*N*/       {
-/*N*/           // UNICODE: rOut<<pHatchList->GetName();
-/*N*/           rOut.WriteByteString(pHatchList->GetName());
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // UNICODE: rOut << aEmptyStr;
-/*N*/           rOut.WriteByteString(aEmptyStr);
-/*N*/       }
-/*N*/
-/*N*/       if(pGradientList && !pGradientList->GetName().Equals(pszStandard))
-/*N*/       {
-/*N*/           // UNICODE: rOut<<pGradientList->GetName();
-/*N*/           rOut.WriteByteString(pGradientList->GetName());
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // UNICODE: rOut << aEmptyStr;
-/*N*/           rOut.WriteByteString(aEmptyStr);
-/*N*/       }
-/*N*/
-/*N*/       if(pBitmapList && !pBitmapList->GetName().Equals(pszStandard))
-/*N*/       {
-/*N*/           // UNICODE: rOut<<pBitmapList->GetName();
-/*N*/           rOut.WriteByteString(pBitmapList->GetName());
-/*N*/       }
-/*N*/       else
-/*N*/       {
-/*N*/           // UNICODE: rOut << aEmptyStr;
-/*N*/           rOut.WriteByteString(aEmptyStr);
-/*N*/       }
-/*N*/
-/*N*/       // ab 09-02-1996
-/*N*/       rOut << INT32(aUIScale.GetNumerator());
-/*N*/       rOut << INT32(aUIScale.GetDenominator());
-/*N*/       rOut << UINT16(eUIUnit);
-/*N*/
-/*N*/       // ab 09-04-1997 fuer #37710#
-/*N*/       rOut << INT32(nDefTextHgt);
-/*N*/       rOut << INT32(nDefaultTabulator);
-/*N*/
-/*N*/       // StarDraw-Preview: Nummer der MasterPage der ersten Standard-Seite
-/*N*/       if(GetPageCount() >= 3 && GetPage(1)->GetMasterPageCount())
-/*N*/       {
-/*N*/           ((SdrModel*)this)->nStarDrawPreviewMasterPageNum =
-/*N*/               GetPage(1)->GetMasterPageNum(0);
-/*N*/       }
-/*N*/       rOut << nStarDrawPreviewMasterPageNum;
-/*N*/   }
-/*N*/
-/*N*/   UINT16 i;
-/*N*/
-/*N*/   for(i=0; i < GetLayerAdmin().GetLayerCount(); i++)
-/*N*/   {
-/*N*/       rOut << *GetLayerAdmin().GetLayer(i);
-/*N*/   }
-/*N*/
-/*N*/   for(i=0; i < GetLayerAdmin().GetLayerSetCount(); i++)
-/*N*/   {
-/*?*/       rOut << *GetLayerAdmin().GetLayerSet(i);
-/*N*/   }
-/*N*/
-/*N*/   for(i=0; i < GetMasterPageCount(); i++)
-/*N*/   {
-/*N*/       const SdrPage* pPg = GetMasterPage(i);
-/*N*/       rOut << *pPg;
-/*N*/   }
-/*N*/
-/*N*/   for(i=0; i < GetPageCount(); i++)
-/*N*/   {
-/*N*/       const SdrPage* pPg = GetPage(i);
-/*N*/       rOut << *pPg;
-/*N*/   }
-/*N*/
-/*N*/   // Endemarke
-/*N*/   SdrIOHeader(rOut, STREAM_WRITE, SdrIOEndeID);
 /*N*/ }
 
 /*N*/ void SdrModel::ReadData(const SdrIOHeader& rHead, SvStream& rIn)
@@ -1719,7 +1409,7 @@ using namespace ::com::sun::star;
 /*?*/           aMsg += ByteString::CreateFromInt32( rHead.GetVersion() );
 /*?*/           aMsg += "). Mit dieser Programmversion kann das nicht mehr gelesen werden";
 /*?*/
-/*?*/           DBG_ERROR(aMsg.GetBuffer());
+/*?*/           OSL_FAIL(aMsg.GetBuffer());
 /*?*/ #endif
 /*?*/
 /*?*/           // Version zu alt
@@ -1741,7 +1431,7 @@ using namespace ::com::sun::star;
 /*N*/           eUIUnit = FieldUnit(nTmp);
 /*N*/       }
 /*N*/
-/*N*/       // ab 09-04-1997 fuer #37710#: Text in Dafaultgroesse vom Writer ins Draw und umgekehrt
+/*N*/       // Text in Dafaultgroesse vom Writer ins Draw und umgekehrt
 /*N*/       if(rHead.GetVersion() >= 13 && pModelMiscCompat->GetBytesLeft() > 0)
 /*N*/       {
 /*N*/           rIn >> nNum;
@@ -1777,8 +1467,6 @@ using namespace ::com::sun::star;
 /*N*/   while(!rIn.GetError() && !rIn.IsEof() && !bEnde)
 /*N*/   {
 /*N*/       SdrIOHeaderLookAhead aHead(rIn);
-/*N*/       //ULONG nPos0=rIn.Tell();
-/*N*/       //rIn>>aHead;
 /*N*/
 /*N*/       if(!aHead.IsMagic())
 /*N*/       {
@@ -1790,7 +1478,6 @@ using namespace ::com::sun::star;
 /*N*/       {
 /*N*/           if(!aHead.IsEnde())
 /*N*/           {
-/*N*/               //rIn.Seek(nPos0); // Die Headers wollen alle selbst lesen
 /*N*/               if(aHead.IsID(SdrIOPageID))
 /*N*/               {
 /*N*/                   if(!bStarDrawPreviewMode || GetPageCount() < 3)
@@ -1851,7 +1538,6 @@ using namespace ::com::sun::star;
 /*N*/               {
 /*N*/                   // aha, das wil keiner. Also ueberlesen.
 /*N*/                   aHead.SkipRecord();
-/*N*/                   //rIn.Seek(nPos0+aHead.nBlkSize);
 /*N*/               }
 /*N*/           }
 /*N*/           else
@@ -1974,7 +1660,6 @@ using namespace ::com::sun::star;
 /*N*/   ((SdrModel*)&rMod)->nProgressOfs=0;
 /*N*/   ((SdrModel*)&rMod)->nProgressMax=rMod.ImpCountAllSteamComponents(); // Hier passenden Wert einsetzen
 /*N*/   ((SdrModel*)&rMod)->DoProgress(0);
-/*N*/   ULONG nPos0=rOut.Tell();
 /*N*/   SdrIOHeader aHead(rOut,STREAM_WRITE,SdrIOModlID);
 /*N*/   USHORT nCompressMerk=rOut.GetCompressMode(); // Der CompressMode wird von SdrModel::ReadData() gesetzt
 /*N*/   rMod.WriteData(rOut);
@@ -2022,66 +1707,6 @@ using namespace ::com::sun::star;
 /*N*/   return rIn;
 /*N*/ }
 
-/*N*/ void SdrModel::PreSave()
-/*N*/ {
-/*N*/   sal_uInt16 nCnt(GetMasterPageCount());
-/*N*/
-/*N*/   sal_uInt16 a; for(a=0; a < nCnt; a++)
-/*N*/   {
-/*N*/       // MasterPages
-/*N*/       const SdrPage& rPage = *GetMasterPage(a);
-/*N*/       SdrObject* pObj = rPage.GetBackgroundObj();
-/*N*/       if( pObj )
-/*?*/           pObj->PreSave();
-/*N*/
-/*N*/       for(sal_uInt32 b(0); b < rPage.GetObjCount(); b++)
-/*N*/           rPage.GetObj(b)->PreSave();
-/*N*/   }
-/*N*/
-/*N*/   nCnt = GetPageCount();
-/*N*/   for(a = 0; a < nCnt; a++)
-/*N*/   {
-/*N*/       // Pages
-/*N*/       const SdrPage& rPage = *GetPage(a);
-/*N*/       SdrObject* pObj = rPage.GetBackgroundObj();
-/*N*/       if( pObj )
-/*N*/           pObj->PreSave();
-/*N*/
-/*N*/       for(sal_uInt32 b(0); b < rPage.GetObjCount(); b++)
-/*N*/           rPage.GetObj(b)->PreSave();
-/*N*/   }
-/*N*/ }
-
-/*N*/ void SdrModel::PostSave()
-/*N*/ {
-/*N*/   sal_uInt16 nCnt(GetMasterPageCount());
-/*N*/
-/*N*/   sal_uInt16 a; for(a=0; a < nCnt; a++)
-/*N*/   {
-/*N*/       // MasterPages
-/*N*/       const SdrPage& rPage = *GetMasterPage(a);
-/*N*/       SdrObject* pObj = rPage.GetBackgroundObj();
-/*N*/       if( pObj )
-/*?*/           pObj->PostSave();
-/*N*/
-/*N*/       for(sal_uInt32 b(0); b < rPage.GetObjCount(); b++)
-/*N*/           rPage.GetObj(b)->PostSave();
-/*N*/   }
-/*N*/
-/*N*/   nCnt = GetPageCount();
-/*N*/   for(a = 0; a < nCnt; a++)
-/*N*/   {
-/*N*/       // Pages
-/*N*/       const SdrPage& rPage = *GetPage(a);
-/*N*/       SdrObject* pObj = rPage.GetBackgroundObj();
-/*N*/       if( pObj )
-/*N*/           pObj->PostSave();
-/*N*/
-/*N*/       for(sal_uInt32 b(0); b < rPage.GetObjCount(); b++)
-/*N*/           rPage.GetObj(b)->PostSave();
-/*N*/   }
-/*N*/ }
-
 /*N*/ uno::Reference< uno::XInterface > SdrModel::getUnoModel()
 /*N*/ {
 /*N*/   // try weak reference first
@@ -2101,7 +1726,7 @@ using namespace ::com::sun::star;
 
 /*?*/ uno::Reference< uno::XInterface > SdrModel::createUnoModel()
 /*?*/ {
-/*?*/   DBG_ERROR( "SdrModel::createUnoModel() - base implementation should not be called!" );
+/*?*/   OSL_FAIL( "SdrModel::createUnoModel() - base implementation should not be called!" );
 /*?*/   ::com::sun::star::uno::Reference< ::com::sun::star::uno::XInterface > xInt;
 /*?*/   return xInt;
 /*?*/ }
@@ -2182,12 +1807,12 @@ using namespace ::com::sun::star;
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/*N*/ void SdrModel::SetForbiddenCharsTable( vos::ORef<SvxForbiddenCharactersTable> xForbiddenChars )
+/*N*/ void SdrModel::SetForbiddenCharsTable( rtl::Reference<SvxForbiddenCharactersTable> xForbiddenChars )
 /*N*/ {
 /*N*/   if( mpForbiddenCharactersTable )
 /*N*/       mpForbiddenCharactersTable->release();
 /*N*/
-/*N*/   mpForbiddenCharactersTable = xForbiddenChars.getBodyPtr();
+/*N*/   mpForbiddenCharactersTable = xForbiddenChars.get();
 /*N*/
 /*N*/   if( mpForbiddenCharactersTable )
 /*N*/       mpForbiddenCharactersTable->acquire();
@@ -2196,7 +1821,7 @@ using namespace ::com::sun::star;
 /*N*/   ImpSetOutlinerDefaults( pHitTestOutliner );
 /*N*/ }
 
-/*N*/ vos::ORef<SvxForbiddenCharactersTable> SdrModel::GetForbiddenCharsTable() const
+/*N*/ rtl::Reference<SvxForbiddenCharactersTable> SdrModel::GetForbiddenCharsTable() const
 /*N*/ {
 /*N*/   return mpForbiddenCharactersTable;
 /*N*/ }
@@ -2286,3 +1911,5 @@ using namespace ::com::sun::star;
 /*N*/   eHint = HINT_OBJCHG;
 /*N*/ }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

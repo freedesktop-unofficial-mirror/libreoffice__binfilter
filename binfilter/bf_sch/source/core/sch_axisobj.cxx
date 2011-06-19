@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,8 +36,8 @@ namespace binfilter {
 
 /*N*/ TYPEINIT1( SchAxisObj, SchObjGroup );
 
-/*N*/ SchAxisObj::SchAxisObj( ChartModel *pModel ) :
-/*N*/       SchObjGroup( pModel )
+/*N*/ SchAxisObj::SchAxisObj( ChartModel *pInModel ) :
+/*N*/       SchObjGroup( pInModel )
 /*N*/ {
 /*N*/ }
 
@@ -54,3 +55,5 @@ namespace binfilter {
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

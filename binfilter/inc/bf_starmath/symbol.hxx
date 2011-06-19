@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -29,34 +30,16 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _VOS_REFERNCE_HXX_
-#include <vos/refernce.hxx>
-#endif
-#ifndef _FONT_HXX //autogen
 #include <vcl/font.hxx>
-#endif
-#ifndef _LIST_HXX //autogen
-#include <tools/list.hxx>
-#endif
-#ifndef _TOOLS_DEBUG_HXX //autogen
 #include <tools/debug.hxx>
-#endif
-#ifndef _DYNARY_HXX
 #include <tools/dynary.hxx>
-#endif
-#ifndef _SFXLSTNER_HXX //autogen
 #include <bf_svtools/lstner.hxx>
-#endif
-#ifndef _SVARRAY_HXX
 #include <bf_svtools/svarray.hxx>
-#endif
 
-#ifndef UTILITY_HXX
 #include "utility.hxx"
-#endif
-#ifndef _SMMOD_HXX
 #include <smmod.hxx>
-#endif
+#include <vector>
+
 namespace binfilter {
 
 #define SS_ATTR_ACCESS      0x80
@@ -127,15 +110,14 @@ public:
     void            SetDocSymbol( BOOL bVal )   { bDocSymbol = bVal; }
 };
 
-DECLARE_LIST(SmListSym, SmSym *)//STRIP008 DECLARE_LIST(SmListSym, SmSym *);
-SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )//STRIP008 ;
+typedef ::std::vector< SmSym* > SmListSym;
+SV_DECL_PTRARR( SymbolArray, SmSym *, 32, 32 )
 
 /**************************************************************************/
 
 class SmSymSet
 {
     friend class SmSymSetManager;
-
 
     SmListSym            SymbolList;
     String               Name;
@@ -146,13 +128,12 @@ public:
 
 
     const String&   GetName() const { return Name; }
-    USHORT          GetCount() const { return (USHORT) SymbolList.Count(); }
+    size_t          GetCount() const { return SymbolList.size(); }
 
-    const SmSym&    GetSymbol(USHORT SymbolNo) const
-    {
-        DBG_ASSERT(SymbolList.GetObject(SymbolNo), "Symbol nicht vorhanden");
-        return *SymbolList.GetObject(SymbolNo);
-    }
+   const SmSym& GetSymbol(USHORT SymbolNo) const
+   {
+       return *SymbolList[ SymbolNo ];
+   }
 
     USHORT      AddSymbol(SmSym* pSymbol);
 };
@@ -209,7 +190,6 @@ public:
         return ((SmSymSetManager *) this)->GetSymbolByName(rSymbolName);
     }
 
-        void            AddReplaceSymbol( const SmSym & rSymbol );
         USHORT          GetSymbolCount() const;
         const SmSym *   GetSymbolByPos( USHORT nPos ) const;
 
@@ -222,3 +202,4 @@ public:
 } //namespace binfilter
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

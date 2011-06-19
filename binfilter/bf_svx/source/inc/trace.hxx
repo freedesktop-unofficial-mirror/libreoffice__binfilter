@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -36,10 +37,10 @@ class Tracer
 {
     ByteString m_sBlockDescription;
 
-    DECLARE_STL_STDKEY_MAP( ::vos::OThread::TThreadIdentifier, sal_Int32, MapThreadId2Int );
+    DECLARE_STL_STDKEY_MAP( ::oslThreadIdentifier, sal_Int32, MapThreadId2Int );
     static MapThreadId2Int s_aThreadIndents;
 
-    static ::vos::OMutex    s_aMapSafety;
+    static ::osl::Mutex s_aMapSafety;
 
 public:
     Tracer(const char* _pBlockDescription);
@@ -64,3 +65,5 @@ public:
 #endif
 
 #endif // _TRACE_HXX_
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

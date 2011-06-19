@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,21 +27,15 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_XMLINDEXILLUSTRATIONSOURCECONTEXT_HXX_
 #include "XMLIndexIllustrationSourceContext.hxx"
-#endif
 
 
-#ifndef _XMLOFF_XMLINDEXTEMPLATECONTEXT_HXX_
 #include "XMLIndexTemplateContext.hxx"
-#endif
 
 
 
 
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
 
 
 
@@ -61,11 +56,11 @@ TYPEINIT1(XMLIndexIllustrationSourceContext, XMLIndexTableSourceContext);
 
 
 XMLIndexIllustrationSourceContext::XMLIndexIllustrationSourceContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName,
     Reference<XPropertySet> & rPropSet) :
-        XMLIndexTableSourceContext(rImport, nPrfx, rLocalName, rPropSet)
+        XMLIndexTableSourceContext(rInImport, nPrfx, rLocalName, rPropSet)
 {
 }
 
@@ -74,15 +69,15 @@ XMLIndexIllustrationSourceContext::~XMLIndexIllustrationSourceContext()
 }
 
 SvXMLImportContext* XMLIndexIllustrationSourceContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
-    if ( ( XML_NAMESPACE_TEXT == nPrefix ) &&
+    if ( ( XML_NAMESPACE_TEXT == nInPrefix ) &&
          ( IsXMLToken( rLocalName, XML_ILLUSTRATION_INDEX_ENTRY_TEMPLATE ) ) )
     {
         return new XMLIndexTemplateContext(GetImport(), rIndexPropertySet,
-                                           nPrefix, rLocalName,
+                                           nInPrefix, rLocalName,
                                            aLevelNameTableMap,
                                            XML_TOKEN_INVALID, // no outline-level attr
                                            aLevelStylePropNameTableMap,
@@ -90,10 +85,12 @@ SvXMLImportContext* XMLIndexIllustrationSourceContext::CreateChildContext(
     }
     else
     {
-        return XMLIndexSourceBaseContext::CreateChildContext(nPrefix,
+        return XMLIndexSourceBaseContext::CreateChildContext(nInPrefix,
                                                              rLocalName,
                                                              xAttrList);
     }
 
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

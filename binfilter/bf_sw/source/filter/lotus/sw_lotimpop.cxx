@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -35,9 +36,7 @@
 #include "hintids.hxx"
 
 
-#ifndef _SVX_ADJITEM_HXX //autogen
 #include <bf_svx/adjitem.hxx>
-#endif
 
 #include "doc.hxx"
 #include "pam.hxx"
@@ -221,3 +220,5 @@ void SwLotusParser::PutCell( USHORT nCol, USHORT nRow,
     pLotGlob->InsertAttr( SvxAdjustItem( eAdjust ) );
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

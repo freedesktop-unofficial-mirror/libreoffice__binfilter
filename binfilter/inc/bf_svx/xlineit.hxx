@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,41 +29,16 @@
 #ifndef _SVX_XLINIIT_HXX
 #define _SVX_XLINIIT_HXX
 
-#include <bf_svx/xit.hxx>
-#include <bf_svx/xcolit.hxx>
-
-#ifndef _XPOLY_HXX //autogen
-#include <bf_svx/xpoly.hxx>
-#endif
-#ifndef _XENUM_HXX //autogen
-#include <bf_svx/xenum.hxx>
-#endif
-
-#ifndef _SFXMETRICITEM_HXX //autogen
-#include <bf_svtools/metitem.hxx>
-#endif
-
-#ifndef _SFXENUMITEM_HXX //autogen
-#include <bf_svtools/eitem.hxx>
-#endif
-
-class SvStream;
-
-namespace binfilter {
-class XDash;
-class XDashTable;
-}//end of namespace binfilter
-
-#include <bf_svx/xdash.hxx>
+#include <bf_svx/xlnedit.hxx>
+#include <bf_svx/xlnedcit.hxx>
+#include <bf_svx/xlnstcit.hxx>
+#include <bf_svx/xlnstit.hxx>
+#include <bf_svx/xlnstwit.hxx>
 #include <bf_svx/xlndsit.hxx>
 #include <bf_svx/xlnwtit.hxx>
 #include <bf_svx/xlnclit.hxx>
-#include <bf_svx/xlnstit.hxx>
-#include <bf_svx/xlnedit.hxx>
-#include <bf_svx/xlnstwit.hxx>
 #include <bf_svx/xlnedwit.hxx>
-#include <bf_svx/xlnstcit.hxx>
-#include <bf_svx/xlnedcit.hxx>
 
 #endif
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

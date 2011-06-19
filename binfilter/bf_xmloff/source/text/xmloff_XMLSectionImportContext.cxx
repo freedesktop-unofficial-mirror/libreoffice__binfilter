@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,55 +26,20 @@
  *
  ************************************************************************/
 
-#ifndef _XMLOFF_XMLSECTIONIMPORTCONTEXT_HXX_
 #include "XMLSectionImportContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLSECTIONSOURCEIMPORTCONTEXT_HXX_
 #include "XMLSectionSourceImportContext.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLSECTIONSOURCEDDEIMPORTCONTEXT_HXX_
 #include "XMLSectionSourceDDEImportContext.hxx"
-#endif
 
-
-#ifndef _XMLOFF_XMLIMP_HXX
 #include "xmlimp.hxx"
-#endif
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include "nmspmap.hxx"
-#endif
-
-#ifndef _XMLOFF_XMLNMSPE_HXX
 #include "xmlnmspe.hxx"
-#endif
-
-
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
-
-#ifndef _XMLOFF_PRSTYLEI_HXX_
 #include "prstylei.hxx"
-#endif
 
-
-#ifndef _COM_SUN_STAR_UNO_REFERENCE_H_
 #include <com/sun/star/uno/Reference.h>
-#endif
-
-#ifndef _COM_SUN_STAR_TEXT_XTEXTCONTENT_HPP_
 #include <com/sun/star/text/XTextContent.hpp>
-#endif
-
-
-
-#ifndef _COM_SUN_STAR_TEXT_CONTROLCHARACTER_HPP_
 #include <com/sun/star/text/ControlCharacter.hpp>
-#endif
+
 namespace binfilter {
 
 
@@ -110,7 +76,7 @@ enum XMLSectionToken
     XML_TOK_SECTION_IS_HIDDEN
 };
 
-static __FAR_DATA SvXMLTokenMapEntry aSectionTokenMap[] =
+static SvXMLTokenMapEntry aSectionTokenMap[] =
 {
     { XML_NAMESPACE_TEXT, XML_STYLE_NAME, XML_TOK_SECTION_STYLE_NAME },
     { XML_NAMESPACE_TEXT, XML_NAME, XML_TOK_SECTION_NAME },
@@ -131,10 +97,10 @@ static __FAR_DATA SvXMLTokenMapEntry aSectionTokenMap[] =
 // between the ends of the inner and the enclosing section. To avoid
 // these problems, additional markers are first inserted and later deleted.
 XMLSectionImportContext::XMLSectionImportContext(
-    SvXMLImport& rImport,
+    SvXMLImport& rInImport,
     sal_uInt16 nPrfx,
     const OUString& rLocalName ) :
-        SvXMLImportContext(rImport, nPrfx, rLocalName),
+        SvXMLImportContext(rInImport, nPrfx, rLocalName),
         xStartRange(),
         xEndRange(),
         xSectionPropertySet(),
@@ -146,18 +112,18 @@ XMLSectionImportContext::XMLSectionImportContext(
         sProtectionKey(RTL_CONSTASCII_USTRINGPARAM(sAPI_ProtectionKey)),
         sIsProtected(RTL_CONSTASCII_USTRINGPARAM(sAPI_IsProtected)),
         sIsCurrentlyVisible(RTL_CONSTASCII_USTRINGPARAM(sAPI_IsCurrentlyVisible)),
+        sEmpty(),
         sStyleName(),
         sName(),
         sCond(),
-        sEmpty(),
-        bValid(sal_False),
+        bProtect(sal_False),
         bCondOK(sal_False),
         bIsVisible(sal_True),
+        bValid(sal_False),
         bSequenceOK(sal_False),
-        bProtect(sal_False),
-        bHasContent(sal_False),
         bIsCurrentlyVisible(sal_True),
-        bIsCurrentlyVisibleOK(sal_False)
+        bIsCurrentlyVisibleOK(sal_False),
+        bHasContent(sal_False)
 {
 }
 
@@ -301,12 +267,12 @@ void XMLSectionImportContext::ProcessAttributes(
     for(sal_Int16 nAttr = 0; nAttr < nLength; nAttr++)
     {
         OUString sLocalName;
-        sal_uInt16 nPrefix = GetImport().GetNamespaceMap().
+        sal_uInt16 nLclPrefix = GetImport().GetNamespaceMap().
             GetKeyByAttrName( xAttrList->getNameByIndex(nAttr),
                               &sLocalName );
         OUString sAttr = xAttrList->getValueByIndex(nAttr);
 
-        switch (aTokenMap.Get(nPrefix, sLocalName))
+        switch (aTokenMap.Get(nLclPrefix, sLocalName))
         {
             case XML_TOK_SECTION_STYLE_NAME:
                 sStyleName = sAttr;
@@ -384,39 +350,39 @@ void XMLSectionImportContext::EndElement()
 }
 
 SvXMLImportContext* XMLSectionImportContext::CreateChildContext(
-    sal_uInt16 nPrefix,
+    sal_uInt16 nInPrefix,
     const OUString& rLocalName,
     const Reference<XAttributeList> & xAttrList )
 {
     SvXMLImportContext* pContext = NULL;
 
     // section-source (-dde) elements
-    if ( (XML_NAMESPACE_TEXT == nPrefix) &&
+    if ( (XML_NAMESPACE_TEXT == nInPrefix) &&
          IsXMLToken(rLocalName, XML_SECTION_SOURCE) )
     {
         pContext = new XMLSectionSourceImportContext(GetImport(),
-                                                     nPrefix, rLocalName,
+                                                     nInPrefix, rLocalName,
                                                      xSectionPropertySet);
     }
-    else if ( (XML_NAMESPACE_OFFICE == nPrefix) &&
+    else if ( (XML_NAMESPACE_OFFICE == nInPrefix) &&
               IsXMLToken(rLocalName, XML_DDE_SOURCE) )
     {
         pContext = new XMLSectionSourceDDEImportContext(GetImport(),
-                                                        nPrefix, rLocalName,
+                                                        nInPrefix, rLocalName,
                                                         xSectionPropertySet);
     }
     else
     {
         // otherwise: text context
         pContext = GetImport().GetTextImport()->CreateTextChildContext(
-            GetImport(), nPrefix, rLocalName, xAttrList,
+            GetImport(), nInPrefix, rLocalName, xAttrList,
             XML_TEXT_TYPE_SECTION );
 
         // if that fails, default context
         if (NULL == pContext)
         {
             pContext = new SvXMLImportContext( GetImport(),
-                                               nPrefix, rLocalName );
+                                               nInPrefix, rLocalName );
         }
         else
             bHasContent = sal_True;
@@ -426,3 +392,5 @@ SvXMLImportContext* XMLSectionImportContext::CreateChildContext(
 }
 
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

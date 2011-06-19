@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,9 +31,7 @@
 
 #include <bf_svtools/poolitem.hxx>
 
-#ifndef _STREAM_HXX
 #include <tools/stream.hxx>
-#endif
 
 namespace binfilter
 {
@@ -88,9 +87,9 @@ IMPL_PTRHINT(SfxPoolItemHint,SfxPoolItem)
 
 // SfxPoolItem -----------------------------------------------------------
 SfxPoolItem::SfxPoolItem( USHORT nW )
-    : nRefCount( 0 ),
-      nWhich( nW )
-      , nKind( 0 )
+    : m_nRefCount( 0 ),
+      m_nWhich( nW )
+      , m_nKind( 0 )
 {
     DBG_CTOR(SfxPoolItem, 0);
     DBG_ASSERT(nW <= SHRT_MAX, "Which Bereich ueberschritten");
@@ -126,9 +125,9 @@ SfxPoolItem::SfxPoolItem( USHORT nW )
 
 // -----------------------------------------------------------------------
 SfxPoolItem::SfxPoolItem( const SfxPoolItem& rCpy )
-    : nRefCount( 0 ),               // wird ja ein neues Object!
-      nWhich( rCpy.Which() )    // Funktion rufen wg. ChkThis()
-      , nKind( 0 )
+    : m_nRefCount( 0 ),             // wird ja ein neues Object!
+      m_nWhich( rCpy.Which() )  // Funktion rufen wg. ChkThis()
+      , m_nKind( 0 )
 {
     DBG_CTOR(SfxPoolItem, 0);
 #if OSL_DEBUG_LEVEL > 1
@@ -165,7 +164,7 @@ SfxPoolItem::SfxPoolItem( const SfxPoolItem& rCpy )
 SfxPoolItem::~SfxPoolItem()
 {
     DBG_DTOR(SfxPoolItem, 0);
-    DBG_ASSERT(nRefCount == 0 || nRefCount > SFX_ITEMS_MAXREF, "destroying item in use" );
+    DBG_ASSERT(m_nRefCount == 0 || m_nRefCount > SFX_ITEMS_MAXREF, "destroying item in use" );
 #if OSL_DEBUG_LEVEL > 1
     --nItemCount;
 #endif
@@ -212,13 +211,6 @@ USHORT SfxPoolItem::GetVersion( USHORT ) const
 {
     DBG_CHKTHIS(SfxPoolItem, 0);
     return 0;
-}
-
-// -----------------------------------------------------------------------
-SvStream& SfxPoolItem::Store(SvStream &rStream, USHORT ) const
-{
-    DBG_CHKTHIS(SfxPoolItem, 0);
-    return rStream;
 }
 
 //============================================================================
@@ -376,33 +368,19 @@ int SfxPoolItem::HasMetrics() const
 }
 
 // -----------------------------------------------------------------------
-#if 0  /* @@@ NOT USED @@@ */
-void SfxPoolItem::GetVersion() const
-{
-    DBG_ERROR( "dummy called" );
-}
 
-// -----------------------------------------------------------------------
-void SfxPoolItem::Store(SvStream &rStream) const
+bool SfxPoolItem::QueryValue( com::sun::star::uno::Any&, BYTE ) const
 {
-    DBG_ERROR( "dummy called" );
-}
-#endif /* @@@ NOT USED @@@ */
-
-// -----------------------------------------------------------------------
-
-BOOL SfxPoolItem::QueryValue( com::sun::star::uno::Any&, BYTE ) const
-{
-    DBG_ERROR("There is no implementation for QueryValue for this item!");
-    return FALSE;
+    OSL_FAIL("There is no implementation for QueryValue for this item!");
+    return false;
 }
 
 // -----------------------------------------------------------------------
 
-BOOL SfxPoolItem::PutValue( const com::sun::star::uno::Any&, BYTE )
+bool SfxPoolItem::PutValue( const com::sun::star::uno::Any&, BYTE )
 {
-    DBG_ERROR("There is no implementation for PutValue for this item!");
-    return FALSE;
+    OSL_FAIL("There is no implementation for PutValue for this item!");
+    return false;
 }
 
 SfxVoidItem::~SfxVoidItem()
@@ -410,3 +388,5 @@ SfxVoidItem::~SfxVoidItem()
     DBG_DTOR(SfxVoidItem, 0);
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

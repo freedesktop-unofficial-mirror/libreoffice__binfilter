@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,10 +29,7 @@
 #include "sbintern.hxx"
 #include "sbunoobj.hxx"
 #include "token.hxx"                // Tokenizer
-/*?*/ // #include "symtbl.hxx"              // Symbolverwaltung
-/*?*/ // #include "parser.hxx"              // Parser
 #include "codegen.hxx"              // Code-Generator
-#include "basmgr.hxx"
 
 namespace binfilter {
 
@@ -76,3 +74,5 @@ SbiGlobals::~SbiGlobals()
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

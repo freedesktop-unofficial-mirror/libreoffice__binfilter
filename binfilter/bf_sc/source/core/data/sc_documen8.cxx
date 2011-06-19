@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -24,9 +25,6 @@
  * for a copy of the LGPLv3 License.
  *
  ************************************************************************/
-
-#ifdef PCH
-#endif
 
 #ifdef _MSC_VER
 #pragma hdrstop
@@ -87,7 +85,7 @@ namespace binfilter {
 /*N*/
 /*N*/   if ( pDocOptions->GetStdPrecision() > 20 ) //!!! ist 20 als Maximum konstant ???
 /*N*/   {
-/*?*/       DBG_ERROR( "Document options corrupted. Setting to defaults." );
+/*?*/       OSL_FAIL( "Document options corrupted. Setting to defaults." );
 /*?*/       pDocOptions->ResetDocOptions();
 /*N*/   }
 /*N*/
@@ -321,47 +319,6 @@ namespace binfilter {
 #define SPELL_MAXTEST_ALL   3
 #define SPELL_MAXCELLS      256
 
-//------------------------------------------------------------------------
-
-/*N*/ void ScDocument::SaveDdeLinks(SvStream& rStream) const
-/*N*/ {
-/*N*/   //  bei 4.0-Export alle mit Modus != DEFAULT weglassen
-/*N*/   BOOL bExport40 = ( rStream.GetVersion() <= SOFFICE_FILEFORMAT_40 );
-/*N*/
-/*N*/   const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-/*N*/   USHORT nCount = rLinks.Count();
-/*N*/
-/*N*/   //  erstmal zaehlen...
-/*N*/
-/*N*/   USHORT nDdeCount = 0;
-/*N*/   USHORT i;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
-/*N*/       if (pBase->ISA(ScDdeLink))
-/*?*/           if ( !bExport40 || ((ScDdeLink*)pBase)->GetMode() == SC_DDE_DEFAULT )
-/*?*/               ++nDdeCount;
-/*N*/   }
-/*N*/
-/*N*/   //  Header
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/   rStream << nDdeCount;
-/*N*/
-/*N*/   //  Links speichern
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
-/*N*/       if (pBase->ISA(ScDdeLink))
-/*N*/       {
-/*?*/           ScDdeLink* pLink = (ScDdeLink*)pBase;
-/*?*/           if ( !bExport40 || pLink->GetMode() == SC_DDE_DEFAULT )
-/*?*/               pLink->Store( rStream, aHdr );
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ void ScDocument::LoadDdeLinks(SvStream& rStream)
 /*N*/ {
 /*N*/   ScMultipleReadHeader aHdr( rStream );
@@ -385,7 +342,7 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ BOOL ScDocument::UpdateDdeLink( const String& rAppl, const String& rTopic, const String& rItem )
+/*N*/ BOOL ScDocument::UpdateDdeLink( const String&, const String&, const String& )
 /*N*/ {
 /*N*/   //  fuer refresh() per StarOne Api
 /*N*/   //  ResetValue() fuer einzelnen Link nicht noetig
@@ -394,7 +351,7 @@ namespace binfilter {
 /*N*/   BOOL bFound = FALSE;
 /*N*/     if (pLinkManager)
 /*N*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP"); //STRIP001 const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
+/*?*/         DBG_BF_ASSERT(0, "STRIP");
 /*N*/     }
 /*N*/   return bFound;
 /*N*/ }
@@ -496,33 +453,32 @@ namespace binfilter {
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix* pMatrix, USHORT nCol, USHORT nRow, String& rStrValue, double& rDoubValue, BOOL& bIsString)
+/*N*/ BOOL ScDocument::GetDdeLinkResult(const ScMatrix*, USHORT, USHORT, String&, double&, BOOL&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   if (pMatrix)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ void ScDocument::CreateDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode )
+/*N*/ void ScDocument::CreateDdeLink(const String&, const String&, const String&, const BYTE)
 /*N*/ {
-    //  DDE-Link anlegen und nicht updaten (z.B. fuer Excel-Import,
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001 //STRIP001    //  damit nicht ohne Nachfrage Verbindungen aufgebaut werden)
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*N*/ BOOL ScDocument::FindDdeLink(const String& rAppl, const String& rTopic, const String& rItem, const BYTE nMode, USHORT& nPos )
+/*N*/ BOOL ScDocument::FindDdeLink(const String&, const String&, const String&, const BYTE, USHORT&)
 /*N*/ {
-/*?*/     DBG_BF_ASSERT(0, "STRIP"); //STRIP001 if (pLinkManager)
+/*?*/     DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-/*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT nPos, USHORT nCols, USHORT nRows, ScMatrix*& pMatrix)
+/*N*/ BOOL ScDocument::CreateDdeLinkResultDimension(USHORT, USHORT, USHORT, ScMatrix*&)
 /*N*/ {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   USHORT nDdeCount = 0;
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return FALSE;
 /*N*/ }
 
-void ScDocument::SetDdeLinkResult(ScMatrix* pMatrix, const USHORT nCol, const USHORT nRow, const String& rStrValue, const double& rDoubValue, BOOL bString, BOOL bEmpty)
+void ScDocument::SetDdeLinkResult(ScMatrix*, const USHORT, const USHORT, const String&, const double&, BOOL, BOOL )
 {
-DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix");
+DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
 //------------------------------------------------------------------------
@@ -608,7 +564,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/
 /*N*/   if (!pShell)
 /*N*/   {
-/*N*/       DBG_ERROR("AreaLinks koennen nicht ohne Shell geladen werden");
+/*N*/       OSL_FAIL("AreaLinks koennen nicht ohne Shell geladen werden");
 /*N*/       return;
 /*N*/   }
 /*N*/
@@ -619,7 +575,7 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 /*N*/   rStream >> nCount;
 /*N*/   for (USHORT i=0; i<nCount; i++)
 /*N*/   {
-/*?*/       DBG_BF_ASSERT(0, "STRIP"); //STRIP001 aHdr.StartEntry();
+/*?*/       DBG_BF_ASSERT(0, "STRIP");
 /*?*/
 /*N*/   }
 /*N*/ }
@@ -646,3 +602,5 @@ DBG_BF_ASSERT(0, "STRIP"); //STRIP001   DBG_ASSERT(pMatrix, "there is no matrix"
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

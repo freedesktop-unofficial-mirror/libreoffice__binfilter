@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -27,87 +28,31 @@
 
 #include "xmlimpit.hxx"
 #include <bf_xmloff/xmluconv.hxx>
-
-
-
-
-
-#ifndef _XMLOFF_NMSPMAP_HXX
 #include <bf_xmloff/nmspmap.hxx>
-#endif
-
-
-#ifndef _SVX_XMLCNITM_HXX
 #include <bf_svx/xmlcnitm.hxx>
-#endif
 
-
-#ifndef _HINTIDS_HXX
 #include "hintids.hxx"
-#endif
-
-#ifndef SW_UNOMID_HXX
 #include "unomid.h"
-#endif
 
-
-#ifndef _SVX_LRSPITEM_HXX
 #include <bf_svx/lrspitem.hxx>
-#endif
-
-#ifndef _SVX_ULSPITEM_HXX
 #include <bf_svx/ulspitem.hxx>
-#endif
-
-#ifndef _SVX_SHADITEM_HXX
 #include <bf_svx/shaditem.hxx>
-#endif
-
-#ifndef _SVX_BOXITEM_HXX
 #include <bf_svx/boxitem.hxx>
-#endif
-
-#ifndef _SVX_BRKITEM_HXX
 #include <bf_svx/brkitem.hxx>
-#endif
-
-#ifndef _SVX_KEEPITEM_HXX
 #include <bf_svx/keepitem.hxx>
-#endif
 
-
-#ifndef _FMTPDSC_HXX
 #include "fmtpdsc.hxx"
-#endif
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
-#ifndef _FMTORNT_HXX
 #include "fmtornt.hxx"
-#endif
-
-#ifndef _FMTFSIZE_HXX
 #include "fmtfsize.hxx"
-#endif
-
-#ifndef _FMTLSPLT_HXX
 #include "fmtlsplt.hxx"
-#endif
 
-
-#ifndef _XMLOFF_PROPERTYHANDLERFACTORY_HXX
 #include <bf_xmloff/prhdlfac.hxx>
-#endif
-
-#ifndef _XMLOFF_XMLTYPES_HXX
 #include <bf_xmloff/xmltypes.hxx>
-#endif
 
-#ifndef _SW_XMLITHLP_HXX
 #include "xmlithlp.hxx"
-#endif
 
 namespace binfilter {
 
@@ -197,7 +142,7 @@ void SvXMLImportItemMapper::importXML( SfxItemSet& rSet,
                 }
                 else
                 {
-                    DBG_ERROR( "Could not get a needed item for xml import!" );
+                    OSL_FAIL( "Could not get a needed item for xml import!" );
                 }
             }
             else if( 0 != (pEntry->nMemberId & MID_FLAG_NO_ITEM_IMPORT) )
@@ -249,26 +194,26 @@ void SvXMLImportItemMapper::importXML( SfxItemSet& rSet,
 /** this method is called for every item that has the
     MID_FLAG_SPECIAL_ITEM_IMPORT flag set */
 BOOL
-SvXMLImportItemMapper::handleSpecialItem(  const SvXMLItemMapEntry& rEntry,
-                                            SfxPoolItem& rItem,
-                                            SfxItemSet& rSet,
-                                            const OUString& rValue,
-                                            const SvXMLUnitConverter& rUnitConverter,
-                                            const SvXMLNamespaceMap& rNamespaceMap ) const
+SvXMLImportItemMapper::handleSpecialItem(  const SvXMLItemMapEntry& /*rEntry*/,
+                                            SfxPoolItem& /*rItem*/,
+                                            SfxItemSet& /*rSet*/,
+                                            const OUString& /*rValue*/,
+                                            const SvXMLUnitConverter& /*rUnitConverter*/,
+                                            const SvXMLNamespaceMap& /*rNamespaceMap*/ ) const
 {
-    DBG_ERROR( "unsuported special item in xml import" );
+    OSL_FAIL( "unsuported special item in xml import" );
     return FALSE;
 }
 
 /** this method is called for every item that has the
     MID_FLAG_NO_ITEM_IMPORT flag set */
-BOOL SvXMLImportItemMapper::handleNoItem( const SvXMLItemMapEntry& rEntry,
-                                           SfxItemSet& rSet,
-                                           const OUString& rValue,
-                                           const SvXMLUnitConverter& rUnitConverter,
-                                           const SvXMLNamespaceMap& rNamespaceMap) const
+BOOL SvXMLImportItemMapper::handleNoItem( const SvXMLItemMapEntry& /*rEntry*/,
+                                           SfxItemSet& /*rSet*/,
+                                           const OUString& /*rValue*/,
+                                           const SvXMLUnitConverter& /*rUnitConverter*/,
+                                           const SvXMLNamespaceMap& /*rNamespaceMap*/) const
 {
-    DBG_ERROR( "unsuported no item in xml import" );
+    OSL_FAIL( "unsuported no item in xml import" );
     return FALSE;
 }
 
@@ -346,7 +291,7 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
                 break;
 
                 default:
-                    DBG_ERROR( "unknown member id!");
+                    OSL_FAIL( "unknown member id!");
             }
         }
         break;
@@ -373,7 +318,7 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
                     pULSpace->SetLower( (sal_uInt16)nAbs, (sal_uInt16)nProp );
                     break;
                 default:
-                    DBG_ERROR("unknown MemberId");
+                    OSL_FAIL("unknown MemberId");
             }
         }
         break;
@@ -974,7 +919,7 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
         break;
 
         default:
-            DBG_ERROR("Item not implemented!");
+            OSL_FAIL("Item not implemented!");
         break;
    }
 
@@ -983,3 +928,5 @@ sal_Bool SvXMLImportItemMapper::PutXMLValue(
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

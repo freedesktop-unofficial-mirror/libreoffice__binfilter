@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -25,87 +26,54 @@
  *
  ************************************************************************/
 
-#ifndef _RTL_LOGFILE_HXX_
 #include <rtl/logfile.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_XML_SAX_SAXPARSEEXCEPTION_HDL_
 #include <com/sun/star/xml/sax/SAXParseException.hdl>
-#endif
-#ifndef _SFXDOCFILE_HXX
 #include <bf_sfx2/docfile.hxx>
-#endif
-#ifndef _DRAWDOC_HXX
 #include "drawdoc.hxx"
-#endif
-#ifndef _UTL_STREAM_WRAPPER_HXX_
 #include <unotools/streamwrap.hxx>
-#endif
-#ifndef _XMLGRHLP_HXX
 #include <bf_svx/xmlgrhlp.hxx>
-#endif
 
 #include "bf_sd/docshell.hxx"
 #include "sdxmlwrp.hxx"
 #include "strmname.h"
 
-#ifndef _XMLEOHLP_HXX
 #include <bf_svx/xmleohlp.hxx>
-#endif
 
 #include <bf_sfx2/appuno.hxx>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XFILTER_HPP_
 #include <com/sun/star/document/XFilter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XIMPORTER_HPP_
 #include <com/sun/star/document/XImporter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_DOCUMENT_XExporter_HPP_
 #include <com/sun/star/document/XExporter.hpp>
-#endif
-#ifndef _COM_SUN_STAR_BEANS_PROPERTYATTRIBUTE_HXX_
 #include <com/sun/star/beans/PropertyAttribute.hpp>
-#endif
-#ifndef _COM_SUN_STAR_PACKAGES_ZIP_ZIPIOEXCEPTION_HPP_
 #include <com/sun/star/packages/zip/ZipIOException.hpp>
-#endif
 
 #include <com/sun/star/xml/sax/XParser.hpp>
 #include <com/sun/star/io/XActiveDataSource.hpp>
 
-#ifndef _COMPHELPER_GENERICPROPERTYSET_HXX_
 #include <comphelper/genericpropertyset.hxx>
-#endif
 
-#ifndef INCLUDED_SVTOOLS_SAVEOPT_HXX
 #include <bf_svtools/saveopt.hxx>
-#endif
 
 // #80365# include necessary for XML progress bar at load time
-#ifndef _SFXITEMSET_HXX
 #include <bf_svtools/itemset.hxx>
-#endif
 
-#ifndef _SFXECODE_HXX
 #include <bf_svtools/sfxecode.hxx>
-#endif
 
 #include "sderror.hxx"
 #include "sdresid.hxx"
 #include "glob.hrc"
 
-#ifndef _LEGACYBINFILTERMGR_HXX
-#include <legacysmgr/legacy_binfilters_smgr.hxx>    //STRIP002
-#endif
+#include <legacysmgr/legacy_binfilters_smgr.hxx>
 namespace binfilter {
 
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
 using namespace ::com::sun::star::lang;
 using namespace ::com::sun::star::document;
-using namespace rtl;
 using namespace comphelper;
+
+using rtl::OUString;
 
 #define SD_XML_READERROR 1234
 
@@ -121,7 +89,7 @@ using namespace comphelper;
 
 #define MAP_LEN(x) x, sizeof(x) - 1
 
-#define XML_STRING(i, x) sal_Char __READONLY_DATA i[sizeof(x)] = x
+#define XML_STRING(i, x) sal_Char const i[sizeof(x)] = x
 
 XML_STRING( sXML_metaStreamName, "meta.xml");
 XML_STRING( sXML_styleStreamName, "styles.xml" );
@@ -194,7 +162,7 @@ sal_Int32 ReadThroughComponent(
     // get parser
     Reference< xml::sax::XParser > xParser(
         rFactory->createInstance(
-            OUString::createFromAscii("com.sun.star.xml.sax.Parser") ),
+            OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.xml.sax.Parser" )) ),
         UNO_QUERY );
     DBG_ASSERT( xParser.is(), "Can't create parser" );
     if( !xParser.is() )
@@ -231,7 +199,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "SAX parse exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
 
         String sErr( String::CreateFromInt32( r.LineNumber ));
@@ -261,7 +229,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "SAX exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return SD_XML_READERROR;
     }
@@ -270,7 +238,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "Zip exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return ERRCODE_IO_BROKENPACKAGE;
     }
@@ -279,7 +247,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "IO exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return SD_XML_READERROR;
     }
@@ -288,7 +256,7 @@ sal_Int32 ReadThroughComponent(
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "uno exception catched while importing:\n" );
         aError += ByteString( String( r.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         return SD_XML_READERROR;
     }
@@ -375,7 +343,7 @@ sal_Bool SdXMLFilter::Export()
     {
         if( !mxModel.is() )
         {
-            DBG_ERROR("Got NO Model in XMLExport");
+            OSL_FAIL("Got NO Model in XMLExport");
             return FALSE;
         }
 
@@ -383,7 +351,7 @@ sal_Bool SdXMLFilter::Export()
 
         if( !xServiceInfo.is() || !xServiceInfo->supportsService( OUString( RTL_CONSTASCII_USTRINGPARAM( "com.sun.star.drawing.GenericDrawingDocument" ) ) ) )
         {
-            DBG_ERROR( "Model is no DrawingDocument in XMLExport" );
+            OSL_FAIL( "Model is no DrawingDocument in XMLExport" );
             return FALSE;
         }
 
@@ -391,7 +359,7 @@ sal_Bool SdXMLFilter::Export()
 
         if( !xServiceFactory.is() )
         {
-            DBG_ERROR( "got no service manager" );
+            OSL_FAIL( "got no service manager" );
             return FALSE;
         }
 
@@ -399,7 +367,7 @@ sal_Bool SdXMLFilter::Export()
 
         if( !xWriter.is() )
         {
-            DBG_ERROR( "com.sun.star.xml.sax.Writer service missing" );
+            OSL_FAIL( "com.sun.star.xml.sax.Writer service missing" );
             return FALSE;
         }
 
@@ -582,7 +550,7 @@ sal_Bool SdXMLFilter::Export()
 #if OSL_DEBUG_LEVEL > 1
         ByteString aError( "uno Exception caught while exporting:\n" );
         aError += ByteString( String( e.Message), RTL_TEXTENCODING_ASCII_US );
-        DBG_ERROR( aError.GetBuffer() );
+        OSL_FAIL( aError.GetBuffer() );
 #endif
         bDocRet = sal_False;
     }
@@ -597,3 +565,5 @@ sal_Bool SdXMLFilter::Export()
     return bDocRet;
 }
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

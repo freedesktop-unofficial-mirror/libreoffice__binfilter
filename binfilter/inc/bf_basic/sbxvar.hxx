@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -31,21 +32,13 @@
 #include <bf_svtools/bf_solar.h>
 
 
-#ifndef _RTL_USTRING_HXX_
 #include <rtl/ustring.hxx>
-#endif
 
-#ifndef _STRING_HXX //autogen
 #include <tools/string.hxx>
-#endif
 
-#ifndef _COM_SUN_STAR_BRIDGE_OLEAUTOMATION_DECIMAL_HPP_
 #include <com/sun/star/bridge/oleautomation/Decimal.hpp>
-#endif
 
-#ifndef _SBXCORE_HXX
 #include "sbxcore.hxx"
-#endif
 
 #ifndef __SBX_64
 #define __SBX_64
@@ -269,7 +262,7 @@ protected:
     virtual void Broadcast( ULONG );    // Broadcast-Call
     virtual ~SbxValue();
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_VALUE,1);
     TYPEINFO();
@@ -460,7 +453,7 @@ protected:
     SbxObject*  pParent;        // aktuell zugeordnetes Objekt
     virtual ~SbxVariable();
     virtual BOOL LoadData( SvStream&, USHORT );
-    virtual BOOL StoreData( SvStream& ) const;
+    virtual BOOL StoreData( SvStream& ) const {return FALSE;}
 public:
     SBX_DECL_PERSIST_NODATA(SBXCR_SBX,SBXID_VARIABLE,2);
     TYPEINFO();
@@ -512,3 +505,5 @@ SV_DECL_REF(SbxVariable)
 }
 
 #endif  // _SBXVAR_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

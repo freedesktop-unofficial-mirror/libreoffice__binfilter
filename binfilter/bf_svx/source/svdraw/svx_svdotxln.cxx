@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -32,22 +33,16 @@
 #include "svdio.hxx"
 
 #ifndef SVX_LIGHT
-#ifndef _LNKBASE_HXX //autogen
 #include <bf_so3/lnkbase.hxx>
 #endif
-#endif
 
-#ifndef _SVXLINKMGR_HXX //autogen
 #include <linkmgr.hxx>
-#endif
 
 
 #include <bf_svtools/urihelper.hxx>
 
 // #90477#
-#ifndef _TOOLS_TENCCVT_HXX
 #include <tools/tenccvt.hxx>
-#endif
 #include "bf_so3/staticbaseurl.hxx"
 namespace binfilter {
 
@@ -94,16 +89,15 @@ namespace binfilter {
 /*?*/ void ImpSdrObjTextLink::Closed()
 /*?*/ {
 /*?*/   if (pSdrObj )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); //STRIP001
+/*?*/   {DBG_BF_ASSERT(0, "STRIP");
 /*?*/   }
 /*?*/   SvBaseLink::Closed();
 /*?*/ }
 
 
-/*?*/ void ImpSdrObjTextLink::DataChanged( const String& rMimeType,
-/*?*/                               const ::com::sun::star::uno::Any & rValue )
+/*?*/ void ImpSdrObjTextLink::DataChanged( const String& /*rMimeType*/,
+/*?*/                               const ::com::sun::star::uno::Any & /*rValue*/ )
 /*?*/ {
-/*?*/   FASTBOOL bForceReload=FALSE;
 /*?*/   SdrModel* pModel = pSdrObj ? pSdrObj->GetModel() : 0;
 /*?*/   SvxLinkManager* pLinkManager= pModel ? pModel->GetLinkManager() : 0;
 /*?*/   if( pLinkManager )
@@ -121,12 +115,11 @@ namespace binfilter {
 /*?*/               pData->aFileName = aFile;
 /*?*/               pData->aFilterName = aFilter;
 /*?*/               pSdrObj->SetChanged();
-/*?*/               bForceReload = TRUE;
 /*?*/           }
 /*?*/       }
 /*?*/   }
 /*?*/   if (pSdrObj )
-/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }//STRIP001     pSdrObj->ReloadLinkedText( bForceReload );
+/*?*/   {DBG_BF_ASSERT(0, "STRIP"); }
 /*?*/ }
 #endif // SVX_LIGHT
 
@@ -153,7 +146,7 @@ namespace binfilter {
 /*N*/ ImpSdrObjTextLinkUserData::~ImpSdrObjTextLinkUserData()
 /*N*/ {
 /*N*/ #ifndef SVX_LIGHT
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); //STRIP001     delete pLink;
+/*?*/ DBG_BF_ASSERT(0, "STRIP");
 /*N*/ #endif
 /*N*/ }
 
@@ -166,37 +159,6 @@ namespace binfilter {
 /*N*/   pData->eCharSet   =eCharSet;
 /*N*/   pData->pLink=NULL;
 /*N*/   return pData;
-/*N*/ }
-
-/*N*/ void ImpSdrObjTextLinkUserData::WriteData(SvStream& rOut)
-/*N*/ {
-/*N*/   SdrObjUserData::WriteData(rOut);
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("ImpSdrObjTextLinkUserData");
-/*N*/ #endif
-/*N*/
-/*N*/   String aRelFileName;
-/*N*/
-/*N*/   if( aFileName.Len() )
-/*N*/   {
-/*N*/       aRelFileName = ::binfilter::StaticBaseUrl::AbsToRel( aFileName,
-/*N*/                                               INetURLObject::WAS_ENCODED,
-/*N*/                                               INetURLObject::DECODE_UNAMBIGUOUS );
-/*N*/   }
-/*N*/
-/*N*/   rOut.WriteByteString( aRelFileName );
-/*N*/
-/*N*/   // UNICODE: rOut << aFilterName;
-/*N*/   rOut.WriteByteString(aFilterName);
-/*N*/
-/*N*/   // #90477# rOut << UINT16(GetStoreCharSet(eCharSet));
-/*N*/   rOut << UINT16(GetSOStoreTextEncoding(eCharSet, (sal_uInt16)rOut.GetVersion()));
-/*N*/
-/*N*/   rOut << UINT32(aFileDate0.GetDate());
-/*N*/   rOut << UINT32(aFileDate0.GetTime());
 /*N*/ }
 
 /*N*/ void ImpSdrObjTextLinkUserData::ReadData(SvStream& rIn)
@@ -303,9 +265,11 @@ namespace binfilter {
 /*N*/   SvxLinkManager* pLinkManager=pModel!=NULL ? pModel->GetLinkManager() : NULL;
 /*N*/   if (pLinkManager!=NULL && pData!=NULL && pData->pLink!=NULL) { // Nicht 2x Abmelden
 /*N*/       // Bei Remove wird *pLink implizit deleted
-/*?*/   DBG_BF_ASSERT(0, "STRIP"); //STRIP001   pLinkManager->Remove( pData->pLink );
+/*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/   }
 /*N*/ #endif // SVX_LIGHT
 /*N*/ }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

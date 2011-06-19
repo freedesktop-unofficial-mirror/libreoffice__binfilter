@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -26,21 +27,15 @@
  ************************************************************************/
 
 
-#ifndef _XMLOFF_PROPERTYHANDLER_CHARLOCALETYPES_HXX
 #include <chrlohdl.hxx>
-#endif
 
 
-#ifndef _XMLOFF_XMLUCONV_HXX
 #include "xmluconv.hxx"
-#endif
 
 
 
 
-#ifndef _COM_SUN_STAR_LANG_LOCALE_HPP_
 #include <com/sun/star/lang/Locale.hpp>
-#endif
 namespace binfilter {
 
 using namespace ::rtl;
@@ -73,7 +68,7 @@ sal_Bool XMLCharLanguageHdl::equals( const ::com::sun::star::uno::Any& r1, const
     return bRet;
 }
 
-sal_Bool XMLCharLanguageHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharLanguageHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
 
@@ -86,7 +81,7 @@ sal_Bool XMLCharLanguageHdl::importXML( const OUString& rStrImpValue, uno::Any& 
     return sal_True;
 }
 
-sal_Bool XMLCharLanguageHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharLanguageHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
     if(!(rValue >>= aLocale))
@@ -121,7 +116,7 @@ sal_Bool XMLCharCountryHdl::equals( const ::com::sun::star::uno::Any& r1, const 
     return bRet;
 }
 
-sal_Bool XMLCharCountryHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharCountryHdl::importXML( const OUString& rStrImpValue, uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
 
@@ -134,7 +129,7 @@ sal_Bool XMLCharCountryHdl::importXML( const OUString& rStrImpValue, uno::Any& r
     return sal_True;
 }
 
-sal_Bool XMLCharCountryHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& rUnitConverter ) const
+sal_Bool XMLCharCountryHdl::exportXML( OUString& rStrExpValue, const uno::Any& rValue, const SvXMLUnitConverter& /*rUnitConverter*/ ) const
 {
     lang::Locale aLocale;
     if(!(rValue >>= aLocale))
@@ -148,3 +143,5 @@ sal_Bool XMLCharCountryHdl::exportXML( OUString& rStrExpValue, const uno::Any& r
     return sal_True;
 }
 }//end of namespace binfilter
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

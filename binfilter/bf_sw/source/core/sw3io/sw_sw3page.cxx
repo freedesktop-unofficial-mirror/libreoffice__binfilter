@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -34,33 +35,19 @@
 
 #include "swerror.h"
 
-#ifndef _HORIORNT_HXX
 #include <horiornt.hxx>
-#endif
 
 #include "doc.hxx"
 
-#ifndef _TOOLS_TENCCVT_HXX //autogen
 #include <tools/tenccvt.hxx>
-#endif
 
-#ifndef _ERRHDL_HXX
-#include <errhdl.hxx>
-#endif
+#include <osl/diagnose.h>
 
-#ifndef _FMTCOL_HXX //autogen
 #include <fmtcol.hxx>
-#endif
 
-#ifndef _FMTHDFT_HXX //autogen
 #include <fmthdft.hxx>
-#endif
-#ifndef _FMTPDSC_HXX //autogen
 #include <fmtpdsc.hxx>
-#endif
-#ifndef _HINTS_HXX
 #include <hints.hxx>
-#endif
 #include "sw3imp.hxx"
 #include "pagedesc.hxx"
 #include "poolfmt.hxx"
@@ -441,7 +428,7 @@ void Sw3IoImp::SetDBName()
 /*N*/           // Fehlerfall: unbekannte Poolvorlage -> neu anlegen
 /*N*/           if( RES_POOLPAGE_BEGIN > nPoolId ||  nPoolId >= RES_POOLPAGE_END )
 /*N*/           {
-/*?*/               ASSERT( !this, "ungueltige Id" );
+/*?*/               OSL_ENSURE( !this, "ungueltige Id" );
 /*?*/               nPoolId = IDX_NO_VALUE;
 /*N*/           }
 /*N*/       }
@@ -579,7 +566,7 @@ void Sw3IoImp::SetDBName()
 /*N*/       {
 /*N*/           SwPageDesc* pDesc = FindPageDesc( pAttr->GetDescNameIdx() );
 /*N*/           pAttr->SetDescNameIdx( IDX_NO_VALUE );
-/*N*/           ASSERT( pDesc, "Unbekannte Seitenvorlage fuer PageDesc-Attribut" );
+/*N*/           OSL_ENSURE( pDesc, "Unbekannte Seitenvorlage fuer PageDesc-Attribut" );
 /*N*/           if( pDesc )
 /*N*/           {
 /*N*/               pDesc->Add( pAttr );
@@ -611,3 +598,5 @@ void Sw3IoImp::SetDBName()
 
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

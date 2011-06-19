@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -52,11 +53,9 @@ class SwTabCols : public SvLongs
                         //trenner nicht in der aktuellen Zeile; er muss
                         //mit gepflegt werden, darf aber nicht angezeigt
                         //werden.
-
 public:
-        SwTabCols( USHORT nSize = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   SwTabCols( USHORT nSize = 0 );
-        SwTabCols( const SwTabCols& ){DBG_BF_ASSERT(0, "STRIP");} ;//STRIP001   SwTabCols( const SwTabCols& );
-
+    SwTabCols( USHORT /*nSize*/ = 0 ){DBG_BF_ASSERT(0, "STRIP");} ;
+    SwTabCols( const SwTabCols& ) : SvLongs() {DBG_BF_ASSERT(0, "STRIP");} ;
     BOOL IsHidden( USHORT nPos ) const         { return aHidden[nPos]; }
     void SetHidden( USHORT nPos, BOOL bValue ) { aHidden[nPos] = bValue; }
     inline void InsertHidden( USHORT nPos, BOOL bValue );
@@ -87,3 +86,5 @@ inline void SwTabCols::DeleteHidden( USHORT nPos, USHORT nAnz )
 
 } //namespace binfilter
 #endif  //_TABCOL_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

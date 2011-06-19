@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -86,9 +87,6 @@ public:
     void               SetAutomaticContour( BOOL bSet ) { bAutomaticContour = bSet; }
     BOOL         HasAutomaticContour() const { return bAutomaticContour; }
 
-    // set either a MM100 or pixel contour
-    void               SetContourAPI( const PolyPolygon *pPoly ){DBG_BF_ASSERT(0, "STRIP");} //STRIP001 void               SetContourAPI( const PolyPolygon *pPoly );
-
     // get either a MM100 or pixel contour, return FALSE if no contour is set.
     BOOL               GetContourAPI( PolyPolygon &rPoly ) const;
 
@@ -121,3 +119,5 @@ inline const SwNoTxtNode *SwNode::GetNoTxtNode() const
 
 } //namespace binfilter
 #endif  // _NDNOTXT_HXX
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -30,17 +31,11 @@
 
 #include <bf_svtools/bf_solar.h>
 
-#ifndef _COM_SUN_STAR_FRAME_XMODEL_HPP_
 #include <com/sun/star/frame/XModel.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_CONTAINER_XINDEXCONTAINER_HPP_
 #include <com/sun/star/container/XIndexContainer.hpp>
-#endif
 
-#ifndef _COM_SUN_STAR_TASK_XSTATUSINDICATOR_HPP_
 #include <com/sun/star/task/XStatusIndicator.hpp>
-#endif
 namespace binfilter {
 
 sal_uInt32 SdXMLExportDoc(
@@ -54,3 +49,4 @@ sal_uInt32 SdXMLExportDoc(
 }//end of namespace binfilter
 #endif  //  _SDXMLEXP_HXX
 
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,13 +29,9 @@
 #ifndef _ACCESSIBLESTRINGWRAP_HXX
 #define _ACCESSIBLESTRINGWRAP_HXX
 
-#ifndef _SAL_TYPES_H_
 #include <sal/types.h>
-#endif
 
-#ifndef _STRING_HXX
 #include <tools/string.hxx>
-#endif
 class OutputDevice;
 class Rectangle;
 class Point;
@@ -53,10 +50,10 @@ class AccessibleStringWrap
 {
 public:
 
-    AccessibleStringWrap( OutputDevice& rDev, SvxFont& rFont, const String& rText ){DBG_BF_ASSERT(0, "STRIP");}//STRIP001 AccessibleStringWrap( OutputDevice& rDev, SvxFont& rFont, const String& rText );
+    AccessibleStringWrap( OutputDevice&, SvxFont&, const String&){DBG_BF_ASSERT(0, "STRIP");}
 
-    sal_Bool GetCharacterBounds( sal_Int32 nIndex, Rectangle& rRect ){DBG_BF_ASSERT(0, "STRIP"); return false;}//STRIP001 sal_Bool GetCharacterBounds( sal_Int32 nIndex, Rectangle& rRect );
-    sal_Int32 GetIndexAtPoint( const Point& rPoint ){DBG_BF_ASSERT(0, "STRIP"); return 0;}//STRIP001 sal_Int32 GetIndexAtPoint( const Point& rPoint );
+    sal_Bool GetCharacterBounds(sal_Int32, Rectangle&){DBG_BF_ASSERT(0, "STRIP"); return false;}
+    sal_Int32 GetIndexAtPoint(const Point&){DBG_BF_ASSERT(0, "STRIP"); return 0;}
 
 private:
 
@@ -64,3 +61,5 @@ private:
 
 }//end of namespace binfilter
 #endif /* _ACCESSIBLESTRINGWRAP_HXX */
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

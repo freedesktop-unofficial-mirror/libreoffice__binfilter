@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -28,17 +29,11 @@
 #ifndef _XMLEOHLP_HXX
 #define _XMLEOHLP_HXX
 
-#ifndef _CPPUHELPER_COMPBASE2_HXX_
 #include <cppuhelper/compbase2.hxx>
-#endif
-#ifndef _SVSTOR_HXX
 #include <bf_so3/svstor.hxx>
-#endif
 #include <map>
 
-#ifndef _COM_SUN_STAR_DOCUMENT_XEMBEDDEDOBJECTRESOLVER_HPP_
 #include <com/sun/star/document/XEmbeddedObjectResolver.hpp>
-#endif
 class SvGlobalName;
 namespace binfilter {
 class SvPersist;
@@ -147,3 +142,5 @@ public:
 
 }//end of namespace binfilter
 #endif
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */

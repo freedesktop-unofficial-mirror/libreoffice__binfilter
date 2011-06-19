@@ -1,3 +1,4 @@
+/* -*- Mode: C++; tab-width: 4; indent-tabs-mode: nil; c-basic-offset: 4 -*- */
 /*************************************************************************
  *
  * DO NOT ALTER OR REMOVE COPYRIGHT NOTICES OR THIS FILE HEADER.
@@ -254,7 +255,7 @@ BOOL SvDDEObject::Connect( SvBaseLink * pSvLink )
 
 String SvDDEObject::Edit( Window* /*pParent*/, SvBaseLink * /*pLink_*/ )
 {
-    DBG_ERROR( "SvDDEObject::Edit: not implemented!" );
+    OSL_FAIL( "SvDDEObject::Edit: not implemented!" );
     // TODO: dead corpses
     return String();
 }
@@ -375,3 +376,5 @@ IMPL_LINK( SvDDEObject, ImplDoneDDEData, void*, pData )
 }
 
 }
+
+/* vim:set shiftwidth=4 softtabstop=4 expandtab: */
