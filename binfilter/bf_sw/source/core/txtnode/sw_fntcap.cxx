@@ -47,7 +47,8 @@ namespace binfilter {
 using namespace ::com::sun::star::i18n;
 
 
-#define KAPITAELCHENPROP 80
+#define KAPITAELCHENPROP 66
+
 /*************************************************************************
  *                      class SwCapitalInfo
  *
@@ -197,8 +198,10 @@ protected:
     xub_StrLen nBreak;
 public:
     SwDoGetCapitalBreak( SwDrawTextInfo &rInfo, long nWidth, xub_StrLen *pExtra)
-        :   SwDoCapitals ( rInfo ), nTxtWidth( nWidth ),
-            nBreak( STRING_LEN ), pExtraPos( pExtra )
+        : SwDoCapitals ( rInfo )
+        , pExtraPos( pExtra )
+        , nTxtWidth( nWidth )
+        , nBreak( STRING_LEN )
         { }
     xub_StrLen GetBreak() const { return nBreak; }
 };
@@ -249,8 +252,10 @@ protected:
     xub_StrLen nCrsr;
     USHORT nOfst;
 public:
-    SwDoCapitalCrsrOfst( SwDrawTextInfo &rInfo, const USHORT nOfs ) :
-        SwDoCapitals( rInfo ), nOfst( nOfs ), nCrsr( 0 )
+    SwDoCapitalCrsrOfst( SwDrawTextInfo &rInfo, const USHORT nOfs )
+        : SwDoCapitals( rInfo )
+        , nCrsr( 0 )
+        , nOfst( nOfs )
         { }
 
     void DrawSpace( const Point &rPos );
@@ -276,10 +281,10 @@ class SwDoDrawStretchCapital : public SwDoDrawCapital
 public:
 
     SwDoDrawStretchCapital( SwDrawTextInfo &rInfo, const USHORT nCapWidth2 )
-            : SwDoDrawCapital( rInfo ),
-              nCapWidth( nCapWidth2 ),
-              nOrgWidth( rInfo.GetWidth() ),
-              nStrLen( rInfo.GetLen() )
+            : SwDoDrawCapital( rInfo )
+            , nStrLen( rInfo.GetLen() )
+            , nCapWidth( nCapWidth2 )
+            , nOrgWidth( rInfo.GetWidth() )
         { }
 };
 
@@ -323,7 +328,6 @@ public:
 /*N*/   SwFntAccess *pBigFontAccess = NULL;
 /*N*/   SwFntObj *pBigFont;
 /*N*/   SwFntAccess *pSpaceFontAccess = NULL;
-/*N*/   SwFntObj *pSpaceFont = NULL;
 /*N*/
 /*N*/   const void *pMagic2 = NULL;
 /*N*/   USHORT nIndex2 = 0;
@@ -343,10 +347,7 @@ public:
 /*?*/           aFont.SetWordLineMode( FALSE );
 /*?*/           pSpaceFontAccess = new SwFntAccess( pMagic2, nIndex2, &aFont,
 /*?*/                                               rDo.GetInf().GetShell() );
-/*?*/           pSpaceFont = pSpaceFontAccess->Get();
 /*N*/       }
-/*N*/       else
-/*N*/           pSpaceFont = pLastFont;
 /*N*/
 /*N*/       // Wir basteln uns einen Font fuer die Grossbuchstaben:
 /*N*/       aFont.SetUnderline( UNDERLINE_NONE );

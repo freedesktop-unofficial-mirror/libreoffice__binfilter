@@ -513,9 +513,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/       rEnd.nNode.GetIndex() + 1 == aNodes.Count() )
 /*N*/       return sal_False;
 /*N*/
-/*N*/   // harte SeitenUmbrueche am nachfolgenden Node verschieben
-/*N*/   sal_Bool bSavePageBreak = sal_False, bSavePageDesc = sal_False;
-/*N*/
     /* #i9185# This whould lead to a segmentation fault if not catched
        above. */
 /*N*/   ULONG nNextNd = rEnd.nNode.GetIndex() + 1;
@@ -531,14 +528,12 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/               sal_False, &pItem ) )
 /*?*/           {
 /*?*/               pTableFmt->SetAttr( *pItem );
-/*?*/               bSavePageDesc = sal_True;
 /*?*/           }
 /*?*/
 /*?*/           if( pSet && SFX_ITEM_SET == pSet->GetItemState( RES_BREAK,
 /*?*/               sal_False, &pItem ) )
 /*?*/           {
 /*?*/               pTableFmt->SetAttr( *pItem );
-/*?*/               bSavePageBreak = sal_True;
 /*?*/           }
 /*?*/       }
 /*N*/   }

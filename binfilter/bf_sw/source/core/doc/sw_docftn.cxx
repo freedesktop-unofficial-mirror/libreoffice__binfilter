@@ -101,16 +101,16 @@ namespace binfilter {
 /*N*/ }
 
 
-/*N*/ SwEndNoteInfo::SwEndNoteInfo(const SwEndNoteInfo& rInfo) :
-/*N*/   SwClient( rInfo.GetFtnTxtColl() ),
-/*N*/   aPageDescDep( this, 0 ),
-/*N*/   aCharFmtDep( this, 0 ),
-/*N*/   aAnchorCharFmtDep( this, 0 ),
-/*N*/   aFmt( rInfo.aFmt ),
-/*N*/   nFtnOffset( rInfo.nFtnOffset ),
-/*N*/   sPrefix( rInfo.sPrefix ),
-/*N*/   sSuffix( rInfo.sSuffix ),
-/*N*/   bEndNote( TRUE )
+/*N*/ SwEndNoteInfo::SwEndNoteInfo(const SwEndNoteInfo& rInfo)
+/*N*/   : SwClient( rInfo.GetFtnTxtColl() )
+/*N*/   , aPageDescDep( this, 0 )
+/*N*/   , aCharFmtDep( this, 0 )
+/*N*/   , aAnchorCharFmtDep( this, 0 )
+/*N*/   , sPrefix( rInfo.sPrefix )
+/*N*/   , sSuffix( rInfo.sSuffix )
+/*N*/   , bEndNote( TRUE )
+/*N*/   , aFmt( rInfo.aFmt )
+/*N*/   , nFtnOffset( rInfo.nFtnOffset )
 /*N*/ {
 /*N*/   if( rInfo.GetPageDescDep()->GetRegisteredIn() )
 /*N*/       ((SwModify*)rInfo.GetPageDescDep()->GetRegisteredIn())->Add( &aPageDescDep );
@@ -123,13 +123,13 @@ namespace binfilter {
 /*?*/               &aAnchorCharFmtDep );
 /*N*/ }
 
-/*N*/ SwEndNoteInfo::SwEndNoteInfo(SwTxtFmtColl *pFmt) :
-/*N*/   SwClient(pFmt),
-/*N*/   aPageDescDep( this, 0 ),
-/*N*/   aCharFmtDep( this, 0 ),
-/*N*/   aAnchorCharFmtDep( this, 0 ),
-/*N*/   nFtnOffset( 0 ),
-/*N*/   bEndNote( TRUE )
+/*N*/ SwEndNoteInfo::SwEndNoteInfo(SwTxtFmtColl *pFmt)
+/*N*/   : SwClient(pFmt)
+/*N*/   , aPageDescDep( this, 0 )
+/*N*/   , aCharFmtDep( this, 0 )
+/*N*/   , aAnchorCharFmtDep( this, 0 )
+/*N*/   , bEndNote( TRUE )
+/*N*/   , nFtnOffset( 0 )
 /*N*/ {
 /*N*/   aFmt.SetNumberingType(SVX_NUM_ROMAN_LOWER);
 /*N*/ }
@@ -248,10 +248,10 @@ namespace binfilter {
 /*N*/   bEndNote = FALSE;
 /*N*/ }
 
-/*N*/ SwFtnInfo::SwFtnInfo(SwTxtFmtColl *pFmt) :
-/*N*/   SwEndNoteInfo( pFmt ),
-/*N*/   eNum( FTNNUM_DOC ),
-/*N*/   ePos( FTNPOS_PAGE )
+/*N*/ SwFtnInfo::SwFtnInfo(SwTxtFmtColl *pFmt)
+/*N*/   : SwEndNoteInfo( pFmt )
+/*N*/   , ePos( FTNPOS_PAGE )
+/*N*/   , eNum( FTNNUM_DOC )
 /*N*/ {
 /*N*/   aFmt.SetNumberingType(SVX_NUM_ARABIC);
 /*N*/   bEndNote = FALSE;
@@ -266,9 +266,6 @@ namespace binfilter {
 /*N*/   {
 /*N*/       const SwFtnInfo &rOld = GetFtnInfo();
 /*N*/
-/*N*/
-/*N*/       rInfo.eNum == FTNNUM_PAGE &&
-/*N*/           rOld.eNum != FTNNUM_PAGE;
 /*N*/       bool bFtnPos  = rInfo.ePos != rOld.ePos;
 /*N*/       rOld.ePos == FTNPOS_CHAPTER &&
 /*N*/           rInfo.GetPageDesc( *this ) != rOld.GetPageDesc( *this );
@@ -312,8 +309,8 @@ namespace binfilter {
 /*N*/   if( !(GetEndNoteInfo() == rInfo) )
 /*N*/   {
 /*N*/       bool bNumChg  = rInfo.nFtnOffset != GetEndNoteInfo().nFtnOffset;
-/*N*/       bool bExtra   = !bNumChg &&
-/*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()||
+/*N*/       bool bExtra   = (!bNumChg &&
+/*N*/                           rInfo.aFmt.GetNumberingType() != GetEndNoteInfo().aFmt.GetNumberingType()) ||
 /*N*/                           rInfo.GetPrefix() != GetEndNoteInfo().GetPrefix() ||
 /*N*/                           rInfo.GetSuffix() != GetEndNoteInfo().GetSuffix();
 /*N*/       bool bFtnDesc = rInfo.GetPageDesc( *this ) !=

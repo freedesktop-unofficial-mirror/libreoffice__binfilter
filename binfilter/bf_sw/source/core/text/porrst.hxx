@@ -61,7 +61,7 @@ public:
             SwBreakPortion( const SwLinePortion &rPortion );
     // liefert 0 zurueck, wenn keine Nutzdaten enthalten sind.
     virtual SwLinePortion *Compress();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");} ;
+    virtual void Paint( const SwTxtPaintInfo& ) const{DBG_BF_ASSERT(0, "STRIP");} ;
     virtual sal_Bool Format( SwTxtFormatInfo &rInf );
     USHORT GetRestWidth() const { return nRestWidth; }
 

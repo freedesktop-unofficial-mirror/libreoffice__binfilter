@@ -57,7 +57,7 @@ private:
 
 
 public:
-    SwLayVout() : pVirDev(NULL), pOut(0), aSize(0, VIRTUALHEIGHT), nCount(0) {}
+    SwLayVout() : pOut(0), pVirDev(NULL), aSize(0, VIRTUALHEIGHT), nCount(0) {}
     ~SwLayVout() { delete pVirDev; }
 
     /// change 2nd parameter <rRect> - no longer <const>

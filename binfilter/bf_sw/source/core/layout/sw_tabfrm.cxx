@@ -924,7 +924,7 @@ namespace binfilter {
 /*N*/                   //Follow gleich gueltig gemacht werden.
 /*N*/                   if ( GetFollow() )
 /*N*/                   {
-/*N*/                         SWRECTFN( GetFollow() )
+/*N*/                         SWRECTFNX( GetFollow() )
 /*N*/
 /*N*/                         static BYTE nStack = 0;
 /*N*/                         if ( !StackHack::IsLocked() && nStack < 4 )
@@ -938,7 +938,7 @@ namespace binfilter {
 /*N*/                             pAttrs = pAccess->Get();
 /*N*/                           ((SwTabFrm*)GetFollow())->SetLowersFormatted(FALSE);
 /*N*/                           ::binfilter::lcl_CalcLayout((SwLayoutFrm*)GetFollow()->Lower(),
-/*N*/                               (GetFollow()->GetUpper()->Frm().*fnRect->fnGetBottom)() );
+/*N*/                               (GetFollow()->GetUpper()->Frm().*fnRectX->fnGetBottom)() );
 /*N*/                           if ( !GetFollow()->GetFollow() )
 /*N*/                           {
 /*N*/                               SwFrm *pNxt = ((SwFrm*)GetFollow())->FindNext();

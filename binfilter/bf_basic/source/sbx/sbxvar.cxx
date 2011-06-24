@@ -44,9 +44,6 @@ TYPEINIT1(SbxVariable,SbxValue)
 TYPEINIT1(SbxHint,SfxSimpleHint)
 
 extern UINT32 nVarCreator;          // in SBXBASE.CXX, fuer LoadData()
-#ifdef DBG_UTIL
-static ULONG nVar = 0;
-#endif
 
 ///////////////////////////// Konstruktoren //////////////////////////////
 

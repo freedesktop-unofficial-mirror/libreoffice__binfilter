@@ -113,63 +113,66 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
  * exportierte Methoden
  */
 
-/*N*/ SwDoc::SwDoc() :
-/*N*/   aAttrPool( this ),
-/*N*/   aNodes( this ),
-/*N*/   pFrmFmtTbl( new SwFrmFmts() ),
-/*N*/   pCharFmtTbl( new SwCharFmts() ),
-/*N*/   pSpzFrmFmtTbl( new SwSpzFrmFmts() ),
-/*N*/   pTblFrmFmtTbl( new SwFrmFmts() ),
-/*N*/   pDfltFrmFmt( new SwFrmFmt( aAttrPool, sFrmFmtStr, 0 ) ),
-/*N*/   pEmptyPageFmt( new SwFrmFmt( aAttrPool, sEmptyPageStr, pDfltFrmFmt ) ),
-/*N*/   pColumnContFmt( new SwFrmFmt( aAttrPool, sColumnCntStr, pDfltFrmFmt ) ),
-/*N*/   pDfltCharFmt( new SwCharFmt( aAttrPool, sCharFmtStr, 0 ) ),
-/*N*/   pDfltTxtFmtColl( new SwTxtFmtColl( aAttrPool, sTxtCollStr ) ),
-/*N*/   pTxtFmtCollTbl( new SwTxtFmtColls() ),
-/*N*/   pDfltGrfFmtColl( new SwGrfFmtColl( aAttrPool, sGrfCollStr ) ),
-/*N*/   pGrfFmtCollTbl( new SwGrfFmtColls() ),
-/*N*/   pSectionFmtTbl( new SwSectionFmts() ),
-/*N*/   pFldTypes( new SwFldTypes() ),
-/*N*/   pBookmarkTbl( new SwBookmarks( 0, 16 ) ),
-/*N*/   pTOXTypes( new SwTOXTypes() ),
-/*N*/   pDefTOXBases( new SwDefTOXBase_Impl() ),
-/*N*/   nLinkCt( 0 ),
-/*N*/   pGlossaryDoc( 0 ),
-/*N*/   pOutlineRule( 0 ),
-/*N*/   pLayout( 0 ),                   // Rootframe des spezifischen Layouts.
-/*N*/   pPrt( 0 ),
-/*N*/     pPrtData( 0 ),
-/*N*/   pExtInputRing( 0 ),
-/*N*/   pLayouter( 0 ),
-/*N*/     pLayoutCache( 0 ),
-/*N*/   nLockExpFld( 0 ),
-/*N*/   pDocShell( 0 ),
-/*N*/   pDrawModel( 0 ),
-/*N*/   pUpdtFlds( new SwDocUpdtFld() ),
-/*N*/   pLinkMgr( new SvxLinkManager( 0 ) ),
-/*N*/   pSwgInfo( 0 ),
-/*N*/   pDocShRef( 0 ),
-/*N*/   pACEWord( 0 ),
-/*N*/   pURLStateChgd( 0 ),
-/*N*/   pNumberFormatter( 0 ),
-/*N*/   pFtnInfo( new SwFtnInfo ),
-/*N*/   pEndNoteInfo( new SwEndNoteInfo ),
-/*N*/   pLineNumberInfo( new SwLineNumberInfo ),
-/*N*/   pFtnIdxs( new SwFtnIdxs ),
-/*N*/   pDocStat( new SwDocStat ),
-/*N*/   pNumRuleTbl( new SwNumRuleTbl ),
-/*N*/   eRedlineMode( SwRedlineMode(REDLINE_SHOW_INSERT | REDLINE_SHOW_DELETE) ),
-/*N*/   pRedlineTbl( new SwRedlineTbl ),
-/*N*/   pUnoCrsrTbl( new SwUnoCrsrTbl( 0, 16 ) ),
-/*N*/   pPgPViewPrtData( 0 ),
-/*N*/   pAutoFmtRedlnComment( 0 ),
-/*N*/   pUnoCallBack(new SwUnoCallBack(0)),
-/*N*/   nAutoFmtRedlnCommentNo( 0 ),
-/*N*/   eChrCmprType( CHARCOMPRESS_NONE ),
-/*N*/     n32Dummy1( 0 ), n32Dummy2( 0 ), n8Dummy1( 0x80 ), n8Dummy2( 0 ),
-/*N*/   nLinkUpdMode( GLOBALSETTING ),
-/*N*/   nFldUpdMode( AUTOUPD_GLOBALSETTING ),
-/*N*/   bReadlineChecked(sal_False)
+/*N*/ SwDoc::SwDoc()
+/*N*/   : aNodes( this )
+/*N*/   , aAttrPool( this )
+/*N*/   , pDfltFrmFmt( new SwFrmFmt( aAttrPool, sFrmFmtStr, 0 ) )
+/*N*/   , pEmptyPageFmt( new SwFrmFmt( aAttrPool, sEmptyPageStr, pDfltFrmFmt ) )
+/*N*/   , pColumnContFmt( new SwFrmFmt( aAttrPool, sColumnCntStr, pDfltFrmFmt ) )
+/*N*/   , pDfltCharFmt( new SwCharFmt( aAttrPool, sCharFmtStr, 0 ) )
+/*N*/   , pDfltTxtFmtColl( new SwTxtFmtColl( aAttrPool, sTxtCollStr ) )
+/*N*/   , pDfltGrfFmtColl( new SwGrfFmtColl( aAttrPool, sGrfCollStr ) )
+/*N*/   , pFrmFmtTbl( new SwFrmFmts() )
+/*N*/   , pCharFmtTbl( new SwCharFmts() )
+/*N*/   , pSpzFrmFmtTbl( new SwSpzFrmFmts() )
+/*N*/   , pSectionFmtTbl( new SwSectionFmts() )
+/*N*/   , pTblFrmFmtTbl( new SwFrmFmts() )
+/*N*/   , pTxtFmtCollTbl( new SwTxtFmtColls() )
+/*N*/   , pGrfFmtCollTbl( new SwGrfFmtColls() )
+/*N*/   , pBookmarkTbl( new SwBookmarks( 0, 16 ) )
+/*N*/   , pTOXTypes( new SwTOXTypes() )
+/*N*/   , pDefTOXBases( new SwDefTOXBase_Impl() )
+/*N*/   , pLayout( 0 )                  // Rootframe des spezifischen Layouts.
+/*N*/   , pDrawModel( 0 )
+/*N*/   , pUpdtFlds( new SwDocUpdtFld() )
+/*N*/   , pFldTypes( new SwFldTypes() )
+/*N*/   , pPrt( 0 )
+/*N*/   , pPrtData( 0 )
+/*N*/   , pGlossaryDoc( 0 )
+/*N*/   , pOutlineRule( 0 )
+/*N*/   , pFtnInfo( new SwFtnInfo )
+/*N*/   , pEndNoteInfo( new SwEndNoteInfo )
+/*N*/   , pLineNumberInfo( new SwLineNumberInfo )
+/*N*/   , pFtnIdxs( new SwFtnIdxs )
+/*N*/   , pDocStat( new SwDocStat )
+/*N*/   , pSwgInfo( 0 )
+/*N*/   , pDocShell( 0 )
+/*N*/   , pDocShRef( 0 )
+/*N*/   , pLinkMgr( new SvxLinkManager( 0 ) )
+/*N*/   , pACEWord( 0 )
+/*N*/   , pURLStateChgd( 0 )
+/*N*/   , pNumberFormatter( 0 )
+/*N*/   , pNumRuleTbl( new SwNumRuleTbl )
+/*N*/   , pRedlineTbl( new SwRedlineTbl )
+/*N*/   , pAutoFmtRedlnComment( 0 )
+/*N*/   , pUnoCrsrTbl( new SwUnoCrsrTbl( 0, 16 ) )
+/*N*/   , pPgPViewPrtData( 0 )
+/*N*/   , pExtInputRing( 0 )
+/*N*/   , pLayouter( 0 )
+/*N*/   , pLayoutCache( 0 )
+/*N*/   , pUnoCallBack(new SwUnoCallBack(0))
+/*N*/   , nAutoFmtRedlnCommentNo( 0 )
+/*N*/   , nLinkUpdMode( GLOBALSETTING )
+/*N*/   , nFldUpdMode( AUTOUPD_GLOBALSETTING )
+/*N*/   , eRedlineMode( SwRedlineMode(REDLINE_SHOW_INSERT | REDLINE_SHOW_DELETE) )
+/*N*/   , eChrCmprType( CHARCOMPRESS_NONE )
+/*N*/   , nLinkCt( 0 )
+/*N*/   , nLockExpFld( 0 )
+/*N*/   , bReadlineChecked(sal_False)
+/*N*/   , n32Dummy1( 0 )
+/*N*/   , n32Dummy2( 0 )
+/*N*/   , n8Dummy1( 0x80 )
+/*N*/   , n8Dummy2( 0 )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR( aLog, "SW", "JP93722",  "SwDoc::SwDoc" );
 /*N*/

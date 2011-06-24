@@ -109,10 +109,10 @@ namespace binfilter {
 
 /*N*/ _OutlinePara::_OutlinePara( const SwNodes& rNodes, USHORT nSttPos,
 /*N*/                           BYTE nOld, BYTE nNew )
-/*N*/   : rNds( rNodes ),
-/*N*/     aNum( NO_NUM > nNew ? nNew : 0 ),
-/*N*/   nMin( Min( nOld, nNew )),
-/*N*/     nNewLevel( nNew )
+/*N*/   : aNum( NO_NUM > nNew ? nNew : 0 )
+/*N*/   , rNds( rNodes )
+/*N*/   , nMin( Min( nOld, nNew ))
+/*N*/   , nNewLevel( nNew )
 /*N*/ {
 /*N*/     // init <aStartLevel[]> with defaults, only valid
 /*N*/     // if update of outline numbering started at first outline numbering node.

@@ -204,14 +204,14 @@ sal_uInt16 SvXMLAttrContainerData::GetAttrCount() const
 
 const ::rtl::OUString& SvXMLAttrContainerData::GetAttrLName(sal_uInt16 i) const
 {
-    OSL_ENSURE( i >= 0 && i < pLNames->Count(),
+    OSL_ENSURE( i < pLNames->Count(),
                 "SvXMLAttrContainerData::GetLName: illegal index" );
     return *(*pLNames)[i];
 }
 
 const ::rtl::OUString& SvXMLAttrContainerData::GetAttrValue(sal_uInt16 i) const
 {
-    OSL_ENSURE( i >= 0 && i < pValues->Count(),
+    OSL_ENSURE( i < pValues->Count(),
                 "SvXMLAttrContainerData::GetValue: illegal index" );
     return *(*pValues)[i];
 }

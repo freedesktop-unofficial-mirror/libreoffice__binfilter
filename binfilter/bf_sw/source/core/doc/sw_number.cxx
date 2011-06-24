@@ -57,7 +57,7 @@ SwNumFmt* SwNumRule::aBaseFmts[ RULE_END ][ MAXLEVEL ] =
 };
 
 Font* SwNumRule::pDefBulletFont = 0;
-sal_Char* SwNumRule::pDefOutlineName = "Outline";
+const char* SwNumRule::pDefOutlineName = "Outline";
 
 USHORT SwNumRule::aDefNumIndents[ MAXLEVEL ] = {
 //cm:   0,5  1,0  1,5  2,0   2,5   3,0   3,5   4,0   4,5   5,0
@@ -78,17 +78,17 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/       rNd.NumRuleChgd();
 /*N*/ }
 
-/*N*/ SwNumFmt::SwNumFmt() :
-/*N*/   SwClient( 0 ),
-/*N*/   SvxNumberFormat(SVX_NUM_ARABIC),
-/*N*/     pVertOrient(new SwFmtVertOrient( 0, VERT_NONE))
+/*N*/ SwNumFmt::SwNumFmt()
+/*N*/   : SvxNumberFormat(SVX_NUM_ARABIC)
+/*N*/   , SwClient( 0 )
+/*N*/   , pVertOrient(new SwFmtVertOrient( 0, VERT_NONE))
 /*N*/ {
 /*N*/ }
 
-/*N*/ SwNumFmt::SwNumFmt( const SwNumFmt& rFmt) :
-/*N*/   SwClient( rFmt.pRegisteredIn ),
-/*N*/   SvxNumberFormat(rFmt),
-/*N*/     pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rFmt.GetVertOrient()))
+/*N*/ SwNumFmt::SwNumFmt(const SwNumFmt& rFmt)
+/*N*/   : SvxNumberFormat(rFmt)
+/*N*/   , SwClient( rFmt.pRegisteredIn )
+/*N*/   , pVertOrient(new SwFmtVertOrient( 0, (SwVertOrient)rFmt.GetVertOrient()))
 /*N*/ {
 /*N*/   SvxFrameVertOrient eVertOrient2 = rFmt.GetVertOrient();
 /*N*/   SetGraphicBrush( rFmt.GetBrush(), &rFmt.GetGraphicSize(),
@@ -291,15 +291,15 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/ }
 
 /*N*/ SwNumRule::SwNumRule( const String& rNm, SwNumRuleType eType, BOOL bAutoFlg )
-/*N*/   : eRuleType( eType ),
-/*N*/   sName( rNm ),
-/*N*/   bAutoRuleFlag( bAutoFlg ),
-/*N*/   bInvalidRuleFlag( TRUE ),
-/*N*/   bContinusNum( FALSE ),
-/*N*/   bAbsSpaces( FALSE ),
-/*N*/   nPoolFmtId( USHRT_MAX ),
-/*N*/   nPoolHelpId( USHRT_MAX ),
-/*N*/   nPoolHlpFileId( UCHAR_MAX )
+/*N*/   : sName( rNm )
+/*N*/   , eRuleType( eType )
+/*N*/   , nPoolFmtId( USHRT_MAX )
+/*N*/   , nPoolHelpId( USHRT_MAX )
+/*N*/   , nPoolHlpFileId( UCHAR_MAX )
+/*N*/   , bAutoRuleFlag( bAutoFlg )
+/*N*/   , bInvalidRuleFlag( TRUE )
+/*N*/   , bContinusNum( FALSE )
+/*N*/   , bAbsSpaces( FALSE )
 /*N*/ {
 /*N*/   if( !nRefCount++ )          // zum erstmal, also initialisiern
 /*N*/   {
@@ -336,15 +336,15 @@ extern const sal_Char sBulletFntName[] = "StarSymbol";
 /*N*/ }
 
 /*N*/ SwNumRule::SwNumRule( const SwNumRule& rNumRule )
-/*N*/   : eRuleType( rNumRule.eRuleType ),
-/*N*/   sName( rNumRule.sName ),
-/*N*/   bAutoRuleFlag( rNumRule.bAutoRuleFlag ),
-/*N*/   bInvalidRuleFlag( TRUE ),
-/*N*/   bContinusNum( rNumRule.bContinusNum ),
-/*N*/   bAbsSpaces( rNumRule.bAbsSpaces ),
-/*N*/   nPoolFmtId( rNumRule.GetPoolFmtId() ),
-/*N*/   nPoolHelpId( rNumRule.GetPoolHelpId() ),
-/*N*/   nPoolHlpFileId( rNumRule.GetPoolHlpFileId() )
+/*N*/   : sName( rNumRule.sName )
+/*N*/   , eRuleType( rNumRule.eRuleType )
+/*N*/   , nPoolFmtId( rNumRule.GetPoolFmtId() )
+/*N*/   , nPoolHelpId( rNumRule.GetPoolHelpId() )
+/*N*/   , nPoolHlpFileId( rNumRule.GetPoolHlpFileId() )
+/*N*/   , bAutoRuleFlag( rNumRule.bAutoRuleFlag )
+/*N*/   , bInvalidRuleFlag( TRUE )
+/*N*/   , bContinusNum( rNumRule.bContinusNum )
+/*N*/   , bAbsSpaces( rNumRule.bAbsSpaces )
 /*N*/ {
 /*N*/   ++nRefCount;
 /*N*/   memset( aFmts, 0, sizeof( aFmts ));

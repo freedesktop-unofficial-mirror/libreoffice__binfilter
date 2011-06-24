@@ -51,11 +51,11 @@ namespace binfilter {
 /*N*/ {
 /*N*/ }
 
-/*N*/ SwSortKey::SwSortKey(const SwSortKey& rOld) :
-/*N*/   eSortOrder( rOld.eSortOrder ),
-/*N*/   sSortType( rOld.sSortType ),
-/*N*/   nColumnId( rOld.nColumnId ),
-/*N*/   bIsNumeric( rOld.bIsNumeric )
+/*N*/ SwSortKey::SwSortKey(const SwSortKey& rOld)
+/*N*/   : sSortType( rOld.sSortType )
+/*N*/   , eSortOrder( rOld.eSortOrder )
+/*N*/   , nColumnId( rOld.nColumnId )
+/*N*/   , bIsNumeric( rOld.bIsNumeric )
 /*N*/ {
 /*N*/ }
 
@@ -65,11 +65,10 @@ namespace binfilter {
 
 
 /*N*/ SwSortOptions::SwSortOptions()
-/*?*/   :
-/*N*/   nLanguage( LANGUAGE_SYSTEM ),
-/*N*/   cDeli( 9 ),
-/*N*/   bTable( FALSE ),
-/*N*/   bIgnoreCase( FALSE )
+/*N*/   : cDeli( 9 )
+/*?*/   , nLanguage( LANGUAGE_SYSTEM )
+/*N*/   , bTable( FALSE )
+/*N*/   , bIgnoreCase( FALSE )
 /*N*/ {
 /*N*/ }
 

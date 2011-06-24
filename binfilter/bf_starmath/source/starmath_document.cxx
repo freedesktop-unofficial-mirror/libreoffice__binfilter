@@ -566,7 +566,7 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/   aTempStream->SetVersion (pStor->GetVersion ());
 /*N*/   GetPool().SetFileFormatVersion (USHORT(pStor->GetVersion()));
 /*N*/   aTempStream->SetBufferSize(DOCUMENT_BUFFER_SIZE);
-/*N*/   aTempStream->SetKey( pStor->GetKey() ); // Passwort setzen
+/*N*/   aTempStream->SetCryptMaskKey( pStor->GetKey() ); // Passwort setzen
 /*N*/
 /*N*/   if (aTempStream->GetError() == 0)
 /*N*/   {

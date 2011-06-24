@@ -75,10 +75,6 @@ public:
     virtual ~SvInputStream();
 
     virtual USHORT IsA() const;
-
-    virtual void AddMark(ULONG nPos);
-
-    virtual void RemoveMark(ULONG nPos);
 };
 
 }

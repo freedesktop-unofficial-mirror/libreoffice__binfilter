@@ -89,8 +89,6 @@ SV_IMPL_OP_PTRARR_SORT( SvStringsSort, StringPtr )
 SV_IMPL_OP_PTRARR_SORT( SvStringsSortDtor, StringPtr )
 
 SV_IMPL_PTRARR( SvByteStrings, ByteStringPtr )
-SV_IMPL_PTRARR( SvByteStringsDtor, ByteStringPtr )
-SV_IMPL_OP_PTRARR_SORT( SvByteStringsSort, ByteStringPtr )
 SV_IMPL_OP_PTRARR_SORT( SvByteStringsSortDtor, ByteStringPtr )
 
 
@@ -272,99 +270,6 @@ void SvUShortsSort::Remove( const USHORT aE, USHORT nL )
     USHORT nP;
     if( nL && Seek_Entry( aE, &nP ) )
         SvUShorts::Remove( nP, nL);
-}
-
-// ---------------- bytestrings -------------------------------------
-
-// Array mit anderer Seek-Methode!
-_SV_IMPL_SORTAR_ALG( SvByteStringsISort, ByteStringPtr )
-void SvByteStringsISort::DeleteAndDestroy( USHORT nP, USHORT nL )
-{
-    if( nL )
-    {
-        DBG_ASSERT( nP < nA && nP + nL <= nA, "ERR_VAR_DEL" );
-        for( USHORT n=nP; n < nP + nL; n++ )
-            delete *((ByteStringPtr*)pData+n);
-        SvPtrarr::Remove( nP, nL );
-    }
-}
-BOOL SvByteStringsISort::Seek_Entry( const ByteStringPtr aE, USHORT* pP ) const
-{
-    register USHORT nO  = SvByteStringsISort_SAR::Count(),
-            nM,
-            nU = 0;
-    if( nO > 0 )
-    {
-        nO--;
-        while( nU <= nO )
-        {
-            nM = nU + ( nO - nU ) / 2;
-            StringCompare eCmp = (*((ByteStringPtr*)pData + nM))->
-                        CompareIgnoreCaseToAscii( *(aE) );
-            if( COMPARE_EQUAL == eCmp )
-            {
-                if( pP ) *pP = nM;
-                return TRUE;
-            }
-            else if( COMPARE_LESS == eCmp )
-                nU = nM + 1;
-            else if( nM == 0 )
-            {
-                if( pP ) *pP = nU;
-                return FALSE;
-            }
-            else
-                nO = nM - 1;
-        }
-    }
-    if( pP ) *pP = nU;
-    return FALSE;
-}
-
-
-// Array mit anderer Seek-Methode!
-_SV_IMPL_SORTAR_ALG( SvByteStringsISortDtor, ByteStringPtr )
-void SvByteStringsISortDtor::DeleteAndDestroy( USHORT nP, USHORT nL )
-{
-    if( nL )
-    {
-        DBG_ASSERT( nP < nA && nP + nL <= nA, "ERR_VAR_DEL" );
-        for( USHORT n=nP; n < nP + nL; n++ )
-            delete *((ByteStringPtr*)pData+n);
-        SvPtrarr::Remove( nP, nL );
-    }
-}
-BOOL SvByteStringsISortDtor::Seek_Entry( const ByteStringPtr aE, USHORT* pP ) const
-{
-    register USHORT nO  = SvByteStringsISortDtor_SAR::Count(),
-            nM,
-            nU = 0;
-    if( nO > 0 )
-    {
-        nO--;
-        while( nU <= nO )
-        {
-            nM = nU + ( nO - nU ) / 2;
-            StringCompare eCmp = (*((ByteStringPtr*)pData + nM))->
-                                    CompareIgnoreCaseToAscii( *(aE) );
-            if( COMPARE_EQUAL == eCmp )
-            {
-                if( pP ) *pP = nM;
-                return TRUE;
-            }
-            else if( COMPARE_LESS == eCmp )
-                nU = nM + 1;
-            else if( nM == 0 )
-            {
-                if( pP ) *pP = nU;
-                return FALSE;
-            }
-            else
-                nO = nM - 1;
-        }
-    }
-    if( pP ) *pP = nU;
-    return FALSE;
 }
 
 }

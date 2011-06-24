@@ -84,10 +84,10 @@ const sal_Char *GetPortionName( const MSHORT nType );
  *               SwLinePortion::SwLinePortion( )
  *************************************************************************/
 
-/*N*/ SwLinePortion::SwLinePortion( ) :
-/*N*/   nLineLength( 0 ),
-/*N*/   nAscent( 0 ),
-/*N*/   pPortion( NULL )
+/*N*/ SwLinePortion::SwLinePortion( )
+/*N*/   : pPortion( NULL )
+/*N*/   , nLineLength( 0 )
+/*N*/   , nAscent( 0 )
 /*N*/ {
 /*N*/ }
 

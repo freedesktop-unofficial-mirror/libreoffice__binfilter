@@ -253,7 +253,7 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
 /*N*/           const BOOL   bKeySet = (aStrKey.Len() > 0);
 /*N*/
 /*N*/           if ( bKeySet )
-/*?*/               aDocStm->SetKey( aStrKey );         // Passwort setzen
+/*?*/               aDocStm->SetCryptMaskKey(aStrKey);          // Passwort setzen
 /*N*/
 /*N*/           bRet = aDocument.Load( *aDocStm, pProgress );
 /*N*/

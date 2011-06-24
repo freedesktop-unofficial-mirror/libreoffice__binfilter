@@ -760,7 +760,7 @@ DBG_BF_ASSERT(0, "STRIP");
 |*
 |*************************************************************************/
 
-/*N*/ IMPL_LINK( SwDoc, DoIdleJobs, Timer *, pTimer )
+/*N*/ IMPL_LINK( SwDoc, DoIdleJobs, Timer *, EMPTYARG )
 /*N*/ {
 /*N*/ #ifdef TIMELOG
 /*N*/   static ::rtl::Logfile* pModLogFile = 0;

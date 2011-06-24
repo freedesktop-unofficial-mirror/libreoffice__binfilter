@@ -33,7 +33,7 @@ TARGET=jpeg
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk
-INC+= -I$(PRJ)$/inc$/bf_svtools
+INC+= -I$(OUTDIR)/inc/external/jpeg -I$(PRJ)$/inc$/bf_svtools
 
 # --- Files --------------------------------------------------------
 

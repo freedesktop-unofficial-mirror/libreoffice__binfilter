@@ -108,15 +108,23 @@ struct ParaRstFmt
 
     ParaRstFmt( const SwPosition* pStt, const SwPosition* pEnd,
             USHORT nWhch = 0, const SfxItemSet* pSet = 0 )
-        : pSttNd( pStt ), pEndNd( pEnd ), nWhich( nWhch ),
-            pDelSet( pSet ), bResetAll( TRUE ), pFmtColl( 0 ),
-            bInclRefToxMark( FALSE )
+        : pFmtColl( 0 )
+        , pSttNd( pStt )
+        , pEndNd( pEnd )
+        , pDelSet( pSet )
+        , nWhich( nWhch )
+        , bResetAll( TRUE )
+        , bInclRefToxMark( FALSE )
     {}
 
     ParaRstFmt(  )
-        : pSttNd( 0 ), pEndNd( 0 ), nWhich( 0 ),
-        pDelSet( 0 ), bResetAll( TRUE ), pFmtColl( 0 ),
-        bInclRefToxMark( FALSE )
+        : pFmtColl( 0 )
+        , pSttNd( 0 )
+        , pEndNd( 0 )
+        , pDelSet( 0 )
+        , nWhich( 0 )
+        , bResetAll( TRUE )
+        , bInclRefToxMark( FALSE )
     {}
 };
 

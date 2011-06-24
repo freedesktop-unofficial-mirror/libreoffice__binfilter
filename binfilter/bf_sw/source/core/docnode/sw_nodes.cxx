@@ -71,7 +71,8 @@ namespace binfilter {
 |*      Inserts, Icons, Inhalt) an
 *******************************************************************/
 /*N*/ SwNodes::SwNodes( SwDoc* pDocument )
-/*N*/   : pMyDoc( pDocument ), pRoot( 0 )
+/*N*/   : pRoot( 0 )
+/*N*/   , pMyDoc( pDocument )
 /*N*/ {
 /*N*/   bInNodesDel = bInDelUpdOutl = bInDelUpdNum = FALSE;
 /*N*/

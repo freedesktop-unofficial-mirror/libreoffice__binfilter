@@ -400,10 +400,13 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*  */
 
 /*?*/SwRedlineData::SwRedlineData( const SwRedlineData& rCpy, BOOL bCpyNext )
-/*?*/   : nAuthor( rCpy.nAuthor ), eType( rCpy.eType ), aStamp( rCpy.aStamp ),
-/*?*/   sComment( rCpy.sComment ), nSeqNo( rCpy.nSeqNo ),
-/*?*/   pExtraData( rCpy.pExtraData ? rCpy.pExtraData->CreateNew() : 0 ),
-/*?*/   pNext( (bCpyNext && rCpy.pNext) ? new SwRedlineData( *rCpy.pNext ) : 0 )
+/*?*/   : pNext( (bCpyNext && rCpy.pNext) ? new SwRedlineData( *rCpy.pNext ) : 0 )
+/*?*/   , pExtraData( rCpy.pExtraData ? rCpy.pExtraData->CreateNew() : 0 )
+/*?*/   , sComment( rCpy.sComment )
+/*?*/   , aStamp( rCpy.aStamp )
+/*?*/   , eType( rCpy.eType )
+/*?*/   , nAuthor( rCpy.nAuthor )
+/*?*/   , nSeqNo( rCpy.nSeqNo )
 /*?*/{
 /*?*/}
 
@@ -411,8 +414,13 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/SwRedlineData::SwRedlineData( SwRedlineType eT, USHORT nAut, const DateTime& rDT,
 /*?*/                  const String& rCmnt, SwRedlineData *pNxt,
 /*?*/                  SwRedlineExtraData* pData )
-/*?*/   : eType( eT ), pNext( pNxt ), nAuthor( nAut ), aStamp( rDT ),
-/*?*/     sComment( rCmnt ), pExtraData( pData ), nSeqNo( 0 )
+/*?*/   : pNext( pNxt )
+/*?*/   , pExtraData( pData )
+/*?*/   , sComment( rCmnt )
+/*?*/   , aStamp( rDT )
+/*?*/   , eType( eT )
+/*?*/   , nAuthor( nAut )
+/*?*/   , nSeqNo( 0 )
 /*?*/{
 /*?*/}
 
@@ -425,18 +433,18 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*  */
 
 /*?*/SwRedline::SwRedline( const SwRedlineData& rData, const SwPosition& rPos )
-/*?*/   : SwPaM( rPos ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( rData ))
+/*?*/   : SwPaM( rPos )
+/*?*/   , pRedlineData( new SwRedlineData( rData ))
+/*?*/   , pCntntSect( 0 )
 /*?*/{
 /*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
 /*?*/   bIsVisible = TRUE;
 /*?*/}
 
 /*?*/SwRedline::SwRedline( const SwRedline& rCpy )
-/*?*/   : SwPaM( *rCpy.GetMark(), *rCpy.GetPoint() ),
-/*?*/   pCntntSect( 0 ),
-/*?*/   pRedlineData( new SwRedlineData( *rCpy.pRedlineData ))
+/*?*/   : SwPaM( *rCpy.GetMark(), *rCpy.GetPoint() )
+/*?*/   , pRedlineData( new SwRedlineData( *rCpy.pRedlineData ))
+/*?*/   , pCntntSect( 0 )
 /*?*/{
 /*?*/   bDelLastPara = bIsLastParaDelete = FALSE;
 /*?*/   bIsVisible = TRUE;

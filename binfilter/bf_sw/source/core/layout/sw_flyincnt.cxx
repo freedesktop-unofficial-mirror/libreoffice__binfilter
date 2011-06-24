@@ -209,7 +209,8 @@ namespace binfilter {
 /*N*/       //Und ggf. noch die aktuellen Werte im Format updaten, dabei darf
 /*N*/       //zu diesem Zeitpunkt natuerlich kein Modify verschickt werden.
 /*N*/ #ifdef VERTICAL_LAYOUT
-/*N*/         SWRECTFN( GetAnchor() )
+/*N*/         sal_Bool bVert = GetAnchor()->IsVertical();
+/*N*/         sal_Bool bRev = GetAnchor()->IsReverse();
 /*N*/         SwTwips nOld = rVert.GetPos();
 /*N*/         SwTwips nAct = bVert ? -aRelPos.X() : aRelPos.Y();
 /*N*/         if( bRev )

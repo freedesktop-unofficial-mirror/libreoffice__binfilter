@@ -1286,7 +1286,7 @@ namespace binfilter {
 /*N*/   const USHORT* pRanges = rSet.GetRanges();
 /*N*/   for( long n = 0; pRanges[ n ] && n<32; n+=2 )
 /*N*/   {
-/*N*/       snprintf( pSmallBuf, sizeof(pSmallBuf), "[%"SAL_PRIdINT32"; %"SAL_PRIdINT32"] ", pRanges[ n ], pRanges[ n+1 ] );
+/*N*/       snprintf( pSmallBuf, sizeof(pSmallBuf), "[%"SAL_PRIdINT32"; %"SAL_PRIdINT32"] ", (sal_uInt32)pRanges[ n ], (sal_uInt32)pRanges[ n+1 ] );
 /*N*/       strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/   }
 /*N*/
@@ -1312,7 +1312,7 @@ namespace binfilter {
 /*N*/               nCns++;
 /*N*/           if( nCnt < 100 )
 /*N*/           {
-/*N*/               snprintf( pSmallBuf, sizeof(pSmallBuf), "%"SAL_PRIdINT32", ", nWhich );
+/*N*/               snprintf( pSmallBuf, sizeof(pSmallBuf), "%"SAL_PRIdINT32", ", (sal_uInt32) nWhich );
 /*N*/               strncat( pBuf, pSmallBuf, sizeof(pBuf) - strlen(pBuf) - 1 );
 /*N*/           }
 /*N*/

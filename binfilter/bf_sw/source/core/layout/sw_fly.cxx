@@ -83,17 +83,17 @@ namespace binfilter {
 |*
 |*************************************************************************/
 
-/*N*/ SwFlyFrm::SwFlyFrm( SwFlyFrmFmt *pFmt, SwFrm *pAnch ) :
-/*N*/   SwLayoutFrm( pFmt ),
-/*N*/   aRelPos(),
-/*N*/   pAnchor( 0 ),
-/*N*/   pPrevLink( 0 ),
-/*N*/   pNextLink( 0 ),
-/*N*/   bInCnt( FALSE ),
-/*N*/   bAtCnt( FALSE ),
-/*N*/   bLayout( FALSE ),
-/*N*/     bAutoPosition( FALSE ),
-/*N*/     bNoShrink( FALSE )
+/*N*/ SwFlyFrm::SwFlyFrm( SwFlyFrmFmt *pFmt, SwFrm * /*pAnch*/ )
+/*N*/   : SwLayoutFrm( pFmt )
+/*N*/   , pAnchor( 0 )
+/*N*/   , pPrevLink( 0 )
+/*N*/   , pNextLink( 0 )
+/*N*/   , aRelPos()
+/*N*/   , bInCnt( FALSE )
+/*N*/   , bAtCnt( FALSE )
+/*N*/   , bLayout( FALSE )
+/*N*/   , bAutoPosition( FALSE )
+/*N*/   , bNoShrink( FALSE )
 /*N*/ {
 /*N*/     nType = FRMC_FLY;
 /*N*/
@@ -103,15 +103,12 @@ namespace binfilter {
 /*N*/
 /*N*/   //Grosseneinstellung, Fixe groesse ist immer die Breite
 /*N*/   const SwFmtFrmSize &rFrmSize = pFmt->GetFrmSize();
-/*N*/     BOOL bVert = FALSE;
 /*N*/     UINT16 nDir =
 /*N*/         ((SvxFrameDirectionItem&)pFmt->GetAttr( RES_FRAMEDIR )).GetValue();
 /*N*/     if( FRMDIR_ENVIRONMENT == nDir )
 /*N*/     {
 /*N*/         bDerivedVert = 1;
 /*N*/         bDerivedR2L = 1;
-/*N*/         if( pAnch && pAnch->IsVertical() )
-/*?*/             bVert = TRUE;
 /*N*/     }
 /*N*/     else
 /*N*/     {
@@ -123,7 +120,6 @@ namespace binfilter {
 /*?*/             bVertical = 0;
 /*?*/         else
 /*?*/             bVertical = 1;
-/*?*/         bVert = bVertical;
 /*?*/         bInvalidR2L = 0;
 /*?*/         if( FRMDIR_HORI_RIGHT_TOP == nDir )
 /*?*/             bRightToLeft = 1;
@@ -711,6 +707,7 @@ namespace binfilter {
 /*N*/
 /*N*/       OSL_ENSURE( rSz.Height() != 0 || rFrmSz.GetHeightPercent(), "Hoehe des RahmenAttr ist 0." );
 /*N*/       OSL_ENSURE( rSz.Width()  != 0 || rFrmSz.GetWidthPercent(), "Breite des RahmenAttr ist 0." );
+/*N*/       (void)rSz;
 /*N*/
 /*N*/         SWRECTFN( this )
 /*N*/         if( !HasFixSize() )
@@ -1978,7 +1975,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
                                 SwTwips &rPos ) const
 {
-    OSL_ENSURE( rHori > PRTAREA, "ConvertHoriTo40: Why?" );
     if( !GetAnchor() )
         return FALSE;
     rHori = HORI_NONE;

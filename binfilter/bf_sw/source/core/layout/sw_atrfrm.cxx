@@ -2166,12 +2166,12 @@ bool SwTextGridItem::QueryValue( ::com::sun::star::uno::Any& rVal,
     case MID_GRID_BASEHEIGHT:
         DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
                     "This value needs TWIPS-MM100 conversion" );
-        rVal <<= (sal_Int32) TWIP_TO_MM100(nBaseHeight);
+        rVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(nBaseHeight);
         break;
     case MID_GRID_RUBYHEIGHT:
         DBG_ASSERT( (nMemberId & CONVERT_TWIPS) != 0,
                     "This value needs TWIPS-MM100 conversion" );
-        rVal <<= (sal_Int32)TWIP_TO_MM100(nRubyHeight);
+        rVal <<= (sal_Int32)TWIP_TO_MM100_UNSIGNED(nRubyHeight);
         break;
     case MID_GRID_TYPE:
         switch( GetGridType() )

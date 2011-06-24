@@ -212,7 +212,7 @@ SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) 
                     if( pRet )
                     {
                         pRet->SetVersion( xPictureStorage->GetVersion() );
-                        pRet->SetKey( xPictureStorage->GetKey() );
+                        pRet->SetCryptMaskKey( xPictureStorage->GetKey() );
                     }
                 }
             }
@@ -233,7 +233,7 @@ SvStream* SdDrawDocument::GetDocumentStream(SdrDocumentStreamInfo& rStreamInfo) 
 
                 SotStorageStreamRef docStream = pStor->OpenSotStream( pStarDrawDoc3, STREAM_READ );
                 docStream->SetVersion( pStor->GetVersion() );
-                docStream->SetKey( pStor->GetKey() );
+                docStream->SetCryptMaskKey( pStor->GetKey() );
 
                 // cast away const (should be regarded logical constness)
                 ((SdDrawDocument*)this)->xDocStream = docStream;

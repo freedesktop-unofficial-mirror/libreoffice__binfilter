@@ -1644,19 +1644,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,5  1,0  1,5  2,0   2,5   3,0   3,5   4,0   4,5   5,0
 /*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1675,21 +1663,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/                  1588, 1758                   // 2.80, 3.10
 /*N*/               };
 /*N*/
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   385,  385,  770,  963,
-/*N*/                  1155, 1386, 1771, 2002,
-/*N*/                  2156, 2387
-/*N*/               };
-/*N*/
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
 /*N*/           SwNumFmt aFmt;
 /*N*/           aFmt.SetNumberingType(SVX_NUM_ARABIC);
 /*N*/           aFmt.SetCharFmt( pNumCFmt );
@@ -1734,19 +1708,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,5  1,0  1,5  2,0   2,5   3,0   3,5   4,0   4,5   5,0
 /*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   283, 567, 850, 1134, 1417, 1701, 1984, 2268, 2551, 2835
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1765,21 +1727,8 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/                   369,  624,      // 0.65, 1.10,
 /*N*/                   255,  879       // 0.45, 1.55
 /*N*/               };
-/*N*/           static const USHORT aAbsSpaceInch0to2[] =
-/*N*/               {
-/*N*/                   308,  308,
-/*N*/                   501,  847,
-/*N*/                   347, 1194
-/*N*/               };
 /*N*/
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           const USHORT* pArr0to2 = MEASURE_METRIC ==
-/*N*/                           GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                               ? aAbsSpace0to2
-/*N*/                               : aAbsSpaceInch0to2;
-/*N*/ #else
 /*N*/           const USHORT* pArr0to2 = aAbsSpace0to2;
-/*N*/ #endif
 /*N*/           SwNumFmt aFmt;
 /*N*/           aFmt.SetNumberingType(SVX_NUM_ARABIC);
 /*N*/           aFmt.SetStart( 1 );
@@ -1839,19 +1788,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,4  0,8  1,2  1,6  2,0   2,4   2,8   3,2   3,6   4,0
 /*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1875,19 +1812,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,3  0,6  0,9  1,2  1,5  1,8   2,1   2,4   2,7   3,0
 /*N*/                   170, 340, 510, 680, 850, 1020, 1191, 1361, 1531, 1701
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   170, 340, 510, 680, 850, 1020, 1191, 1361, 1531, 1701
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1929,19 +1854,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,4  0,8  1,2  1,6  2,0   2,4   2,8   3,2   3,6   4,0
 /*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {
@@ -1971,19 +1884,7 @@ static const USHORT aHeadlineSizes[ 2 * MAXLEVEL ] = {
 /*N*/ //                cm: 0,4  0,8  1,2  1,6  2,0   2,4   2,8   3,2   3,6   4,0
 /*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
 /*N*/               };
-/*N*/ #ifdef USE_MEASUREMENT
-/*N*/           static const USHORT aAbsSpaceInch[ MAXLEVEL ] =
-/*N*/               {
-/*N*/                   227, 454, 680, 907, 1134, 1361, 1587, 1814, 2041, 2268
-/*N*/               };
-/*N*/           const USHORT* pArr = MEASURE_METRIC ==
-/*N*/                               GetAppLocaleData().getMeasurementSystemEnum()
-/*N*/                                   ? aAbsSpace
-/*N*/                                   : aAbsSpaceInch;
-/*N*/ #else
 /*N*/           const USHORT* pArr = aAbsSpace;
-/*N*/ #endif
-/*N*/
 /*N*/           aFmt.SetFirstLineOffset( - (*pArr) );
 /*N*/           for( n = 0; n < MAXLEVEL; ++n, ++pArr )
 /*N*/           {

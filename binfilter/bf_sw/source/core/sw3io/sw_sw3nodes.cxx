@@ -2453,7 +2453,7 @@ SV_DECL_PTRARR( SwTxtAttrs, SwTxtAttrPtr, 5, 5 )
 /*N*/           {
 /*N*/               Graphic aGraphic;
 /*N*/               xSimStm->SetBufferSize( 32768 );
-/*N*/               xSimStm->SetKey( xSimStg->GetKey() );
+/*N*/               xSimStm->SetCryptMaskKey( xSimStg->GetKey() );
 /*N*/               *xSimStm >> aGraphic;
 /*N*/               xSimStm->SetBufferSize( 0 );
 /*N*/

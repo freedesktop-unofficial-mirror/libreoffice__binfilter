@@ -841,10 +841,10 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 /*N*/                     if( bVert )
                             {DBG_BF_ASSERT(0, "STRIP");}
 /*N*/
-/*N*/                     SWRECTFN( pFtnCont )
+/*N*/                     SWRECTFNX( pFtnCont )
 /*N*/
-/*N*/                     long nDiff = (*fnRect->fnYDiff)(
-/*N*/                                      (pFtnCont->Frm().*fnRect->fnGetTop)(),
+/*N*/                     long nDiff = (*fnRectX->fnYDiff)(
+/*N*/                                      (pFtnCont->Frm().*fnRectX->fnGetTop)(),
 /*N*/                                       nTmpBot );
 /*N*/
 /*N*/                     if( pScrFrm && nDiff < 0 )
@@ -1314,7 +1314,7 @@ extern BYTE WhichFont( xub_StrLen nIdx, const String* pTxt,
 
 /*N*/ SwPosSize SwFtnPortion::GetTxtSize( const SwTxtSizeInfo &/*rInfo*/ ) const
 /*N*/ {
-            DBG_BF_ASSERT(0, "STRIP"); return NULL;
+            DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }
 
 /*************************************************************************

@@ -244,7 +244,7 @@ SwDrawDocument::SwDrawDocument( SfxItemPool *pPool, SwDocShell *pDocSh )
 /*?*/                   if( pRet )
 /*?*/                   {
 /*?*/                       pRet->SetVersion( xPictureStorage->GetVersion() );
-/*?*/                       pRet->SetKey( xPictureStorage->GetKey() );
+/*?*/                       pRet->SetCryptMaskKey( xPictureStorage->GetKey() );
 /*?*/
 /*?*/                         rInfo.mbDeleteAfterUse = TRUE;
 /*?*/                         rInfo.mpStorageRef = new SvStorageRef( xPictureStorage );

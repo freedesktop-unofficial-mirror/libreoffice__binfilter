@@ -89,7 +89,8 @@ using namespace ::com::sun::star::i18n;
 
 
 /*N*/ SwNode::SwNode( const SwNodeIndex &rWhere, const BYTE nNdType )
-/*N*/   : pStartOfSection( 0 ), nNodeType( nNdType )
+/*N*/   : nNodeType( nNdType )
+/*N*/   , pStartOfSection( 0 )
 /*N*/ {
 /*N*/   bWrongDirty = bACmplWrdDirty = TRUE;
 /*N*/   bSetNumLSpace = bIgnoreDontExpand = FALSE;
@@ -119,7 +120,8 @@ using namespace ::com::sun::star::i18n;
 /*N*/ }
 
 /*N*/ SwNode::SwNode( SwNodes& rNodes, ULONG nPos, const BYTE nNdType )
-/*N*/   : pStartOfSection( 0 ), nNodeType( nNdType )
+/*N*/   : nNodeType( nNdType )
+/*N*/   , pStartOfSection( 0 )
 /*N*/ {
 /*N*/   bWrongDirty = bACmplWrdDirty = TRUE;
 /*N*/   bSetNumLSpace = bIgnoreDontExpand = FALSE;
@@ -435,10 +437,10 @@ using namespace ::com::sun::star::i18n;
 
 /*N*/ SwCntntNode::SwCntntNode( const SwNodeIndex &rWhere, const BYTE nNdType,
 /*N*/                           SwFmtColl *pColl )
-/*N*/   : SwNode( rWhere, nNdType ),
-/*N*/   pAttrSet( 0 ),
-/*N*/   pCondColl( 0 ),
-/*N*/   SwModify( pColl )    // CrsrsShell, FrameFmt
+/*N*/   : SwModify( pColl )  // CrsrsShell, FrameFmt
+/*N*/   , SwNode( rWhere, nNdType )
+/*N*/   , pCondColl( 0 )
+/*N*/   , pAttrSet( 0 )
 /*N*/ {
 /*N*/ }
 

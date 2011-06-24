@@ -303,8 +303,8 @@ SV_DECL_PTRARR(SwpHts,SwTxtAttr*,1,1)
 /*N*/ #ifdef DBG_UTIL
 /*N*/                   while( 0 != (pCntnt = (SwCntntFrm*)aIter.Next()) )
 /*N*/                   {
-/*N*/                       SwFtnFrm *pFtn = pCntnt->FindFtnFrm();
-/*N*/                       OSL_ENSURE( !pFtn || pFtn->GetRef() == pFrm,
+/*N*/                       SwFtnFrm *pLclFtn = pCntnt->FindFtnFrm();
+/*N*/                       OSL_ENSURE( !pLclFtn || pLclFtn->GetRef() == pFrm,
 /*N*/                               "lcl_ChangeFtnRef: Who's that guy?" );
 /*N*/                   }
 /*N*/ #endif

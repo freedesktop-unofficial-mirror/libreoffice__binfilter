@@ -137,14 +137,20 @@ namespace binfilter {
 /*N*/ }
 
 /*N*/ SwDataChanged::SwDataChanged( const SwPaM& rPam, USHORT nTyp )
-/*N*/   : pPam( &rPam ), nType( nTyp ), pDoc( rPam.GetDoc() ), pPos( 0 )
+/*N*/   : pPam( &rPam )
+/*N*/   , pPos( 0 )
+/*N*/   , pDoc( rPam.GetDoc() )
+/*N*/   , nType( nTyp )
 /*N*/ {
 /*N*/   nNode = rPam.GetPoint()->nNode.GetIndex();
 /*N*/   nCntnt = rPam.GetPoint()->nContent.GetIndex();
 /*N*/ }
 
 /*N*/ SwDataChanged::SwDataChanged( SwDoc* pDoc2, const SwPosition& rPos, USHORT nTyp )
-/*N*/   : pPam( 0 ), nType( nTyp ), pDoc( pDoc2 ), pPos( &rPos )
+/*N*/   : pPam( 0 )
+/*N*/   , pPos( &rPos )
+/*N*/   , pDoc( pDoc2 )
+/*N*/   , nType( nTyp )
 /*N*/ {
 /*N*/   nNode = rPos.nNode.GetIndex();
 /*N*/   nCntnt = rPos.nContent.GetIndex();

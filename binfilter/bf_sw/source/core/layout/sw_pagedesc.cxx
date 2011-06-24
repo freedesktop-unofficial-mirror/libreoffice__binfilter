@@ -61,36 +61,36 @@ namespace binfilter {
 
 
 
-/*N*/ SwPageDesc::SwPageDesc( const String& rName, SwFrmFmt *pFmt, SwDoc *pDc ) :
-/*N*/   SwModify( 0 ),
-/*N*/   aDescName( rName ),
-/*N*/   aDepend( this, 0 ),
-/*N*/   nRegHeight( 0 ),
-/*N*/   nRegAscent( 0 ),
-/*N*/   bLandscape( FALSE ),
-/*N*/   eUse( (UseOnPage)(PD_ALL | PD_HEADERSHARE | PD_FOOTERSHARE) ),
-/*N*/   aMaster( pDc->GetAttrPool(), rName, pFmt ),
-/*N*/   aLeft( pDc->GetAttrPool(), rName, pFmt ),
-/*N*/   pFollow( this ),
-/*N*/   aFtnInfo()
+/*N*/ SwPageDesc::SwPageDesc( const String& rName, SwFrmFmt *pFmt, SwDoc *pDc )
+/*N*/   : SwModify( 0 )
+/*N*/   , aDescName( rName )
+/*N*/   , aMaster( pDc->GetAttrPool(), rName, pFmt )
+/*N*/   , aLeft( pDc->GetAttrPool(), rName, pFmt )
+/*N*/   , aDepend( this, 0 )
+/*N*/   , pFollow( this )
+/*N*/   , nRegHeight( 0 )
+/*N*/   , nRegAscent( 0 )
+/*N*/   , eUse( (UseOnPage)(PD_ALL | PD_HEADERSHARE | PD_FOOTERSHARE) )
+/*N*/   , bLandscape( FALSE )
+/*N*/   , aFtnInfo()
 /*N*/ {
 /*N*/ }
 
 
 
-/*N*/ SwPageDesc::SwPageDesc( const SwPageDesc &rCpy ) :
-/*N*/   SwModify( 0 ),
-/*N*/   aDepend( this, (SwModify*)rCpy.aDepend.GetRegisteredIn() ),
-/*N*/   nRegHeight( rCpy.GetRegHeight() ),
-/*N*/   nRegAscent( rCpy.GetRegAscent() ),
-/*N*/   aDescName( rCpy.GetName() ),
-/*N*/   bLandscape( rCpy.GetLandscape() ),
-/*N*/   aNumType( rCpy.GetNumType() ),
-/*N*/   eUse( rCpy.ReadUseOn() ),
-/*N*/   aMaster( rCpy.GetMaster() ),
-/*N*/   aLeft( rCpy.GetLeft() ),
-/*N*/   pFollow( rCpy.pFollow ),
-/*N*/   aFtnInfo( rCpy.GetFtnInfo() )
+/*N*/ SwPageDesc::SwPageDesc( const SwPageDesc &rCpy )
+/*N*/   : SwModify( 0 )
+/*N*/   , aDescName( rCpy.GetName() )
+/*N*/   , aNumType( rCpy.GetNumType() )
+/*N*/   , aMaster( rCpy.GetMaster() )
+/*N*/   , aLeft( rCpy.GetLeft() )
+/*N*/   , aDepend( this, (SwModify*)rCpy.aDepend.GetRegisteredIn() )
+/*N*/   , pFollow( rCpy.pFollow )
+/*N*/   , nRegHeight( rCpy.GetRegHeight() )
+/*N*/   , nRegAscent( rCpy.GetRegAscent() )
+/*N*/   , eUse( rCpy.ReadUseOn() )
+/*N*/   , bLandscape( rCpy.GetLandscape() )
+/*N*/   , aFtnInfo( rCpy.GetFtnInfo() )
 /*N*/ {
 /*N*/ }
 

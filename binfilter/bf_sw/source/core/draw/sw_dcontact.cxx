@@ -594,6 +594,8 @@ namespace binfilter {
 /*N*/           if( bNotify )
 /*N*/               lcl_Notify( this, pOldBoundRect );
 /*N*/           break;
+/*N*/       default:
+/*N*/           break;
 /*N*/   }
 /*N*/ }
 

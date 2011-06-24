@@ -221,10 +221,6 @@ static SwField* In_SwUserField( SwSwgReader& rPar, SwUserFieldType* pType,
         return 0;
 
     return new SwUserField( pType, nSub );    // MS: Hier kann auch das Format mit
-                                        // uebergeben werden
-    if( UF_STRING & pType->GetType() )
-        nNewFldFmt = 0; // Warum auch immer!
-
 }
 
 static SwField* In_SwFileNameField( SwSwgReader&, SwFileNameFieldType* pType )
@@ -503,8 +499,7 @@ static SwField* In_SwSetExpField( SwSwgReader& rPar, SwSetExpFieldType* pType, U
     // aber nur, wenn es auch als entsprechendes Format in Frage kommt.
     // (SUB_VISIBLE und SUB_CMD sind disjunkt).
     USHORT nSubType = ((SwSetExpField *)pFld)->GetSubType();
-    if( nSub >= (USHORT)SVX_NUM_CHARS_UPPER_LETTER &&
-        nSub <= (USHORT)SVX_NUM_BITMAP )
+    if( nSub <= (USHORT)SVX_NUM_BITMAP )
     {
         if( GSE_SEQ & nSubType )
             nNewFldFmt = nSub;

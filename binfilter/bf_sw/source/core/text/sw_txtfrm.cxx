@@ -615,7 +615,7 @@ namespace binfilter {
 /*M*/           SET_SCRIPT_INVAL( nPos )
 /*M*/           bSetFldsDirty = bRecalcFtnFlag = sal_True;
 /*M*/           if( HasFollow() )
-/*M*/               lcl_ModifyOfst( this, nPos, -1 );
+/*M*/               lcl_ModifyOfst( this, nPos, STRING_LEN );
 /*M*/       }
 /*M*/       break;
 /*M*/       case RES_DEL_TXT:

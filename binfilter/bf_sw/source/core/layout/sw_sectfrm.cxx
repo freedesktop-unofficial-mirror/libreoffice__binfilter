@@ -462,10 +462,8 @@ namespace binfilter {
 /*N*/   }
 /*N*/   // Jetzt wird der Inhalt beseite gestellt und der Frame zerstoert
 /*N*/   SwFrm *pSave = bSave ? ::binfilter::SaveCntnt( pDel ) : NULL;
-/*N*/   BOOL bOldFtn = TRUE;
 /*N*/   if( pSave && pUp->IsFtnFrm() )
 /*N*/   {
-/*N*/       bOldFtn = ((SwFtnFrm*)pUp)->IsColLocked();
 /*N*/       ((SwFtnFrm*)pUp)->ColLock();
 /*N*/   }
 /*N*/   pDel->DelEmpty( TRUE );
@@ -1570,7 +1568,6 @@ namespace binfilter {
 /*N*/                 long nPrtHeight = (Prt().*fnRect->fnGetHeight)() - nDist;
 /*N*/                 (Prt().*fnRect->fnSetHeight)( nPrtHeight );
 
-/*N*/                 SwTwips nReal = 0;
 /*N*/                 // We do not allow a section frame to shrink the its upper
 /*N*/                 // footer frame. This is because in the calculation of a
 /*N*/                 // footer frame, the content of the section frame is _not_
@@ -1586,7 +1583,7 @@ namespace binfilter {
 /*N*/                 // would cause the top of the section frame to overlap with the
 /*N*/                 // fly frame again, this would result in a perfect loop.
 /*N*/                 if( !GetUpper()->IsFooterFrm() )
-/*N*/                     nReal = GetUpper()->Shrink( nDist, bTst );
+/*N*/                     GetUpper()->Shrink( nDist, bTst );
 /*N*/
 /*N*/               if( Lower() && Lower()->IsColumnFrm() && Lower()->GetNext() )
 /*N*/               {
@@ -1948,7 +1945,7 @@ namespace binfilter {
 /*N*/   const SwLayoutFrm* pLay;
 /*N*/   if( pCont )
 /*N*/   {
-/*?*/       pLay = pCont->FindFtnBossFrm( NULL );
+/*?*/       pLay = pCont->FindFtnBossFrm(0);
 /*?*/       OSL_ENSURE( IsAnLower( pLay ), "ConatainsFtnCont: Wrong FtnContainer" );
 /*?*/       pLay = (SwLayoutFrm*)pLay->GetNext();
 /*N*/   }

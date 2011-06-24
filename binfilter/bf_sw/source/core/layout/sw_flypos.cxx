@@ -55,7 +55,8 @@ namespace binfilter {
 
 /*N*/ SwPosFlyFrm::SwPosFlyFrm( const SwNodeIndex& rIdx, const SwFrmFmt* pFmt,
 /*N*/                           USHORT nArrPos )
-/*N*/   : pNdIdx( (SwNodeIndex*) &rIdx ), pFrmFmt( pFmt )
+/*N*/   : pFrmFmt( pFmt )
+/*N*/   , pNdIdx( (SwNodeIndex*) &rIdx )
 /*N*/ {
 /*N*/   BOOL bFnd = FALSE;
 /*N*/   const SwFmtAnchor& rAnchor = pFmt->GetAnchor();
@@ -94,7 +95,7 @@ namespace binfilter {
 /*?*/       delete pNdIdx;
 /*N*/ }
 
-/*N*/ BOOL SwPosFlyFrm::operator==( const SwPosFlyFrm& rPosFly )
+/*N*/ BOOL SwPosFlyFrm::operator==( const SwPosFlyFrm& )
 /*N*/ {
 /*N*/   return FALSE;   // FlyFrames koennen auf der gleichen Position stehen
 /*N*/ }

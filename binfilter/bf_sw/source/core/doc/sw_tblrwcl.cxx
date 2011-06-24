@@ -557,8 +557,12 @@ struct _InsULPara
     _InsULPara( SwTableNode* pTNd, BOOL bUpperLower, BOOL bUpper,
                 SwTableBox* pLeft, SwTableBox* pMerge, SwTableBox* pRight,
                 SwTableLine* pLine=0, SwTableBox* pBox=0 )
-        : pTblNd( pTNd ), pInsLine( pLine ), pInsBox( pBox ),
-        pLeftBox( pLeft ), pMergeBox( pMerge ), pRightBox( pRight )
+        : pTblNd( pTNd )
+        , pInsLine( pLine )
+        , pInsBox( pBox )
+        , pLeftBox( pLeft )
+        , pRightBox( pRight )
+        , pMergeBox( pMerge )
         {   bUL_LR = bUpperLower; bUL = bUpper; }
 
     void SetLeft( SwTableBox* pBox=0 )

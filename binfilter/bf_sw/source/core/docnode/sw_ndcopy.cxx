@@ -353,13 +353,6 @@ struct _CopyTable
 /*N*/
 /*N*/   SwDoc* pDoc = rPos.nNode.GetNode().GetDoc();
 /*N*/
-/*N*/   // verhinder das Kopieren in Fly's, die im Bereich verankert sind.
-/*N*/
-/*N*/   SwPaM* pRedlineRange = 0;
-/*N*/   if( pDoc->IsRedlineOn() ||
-/*N*/       (!pDoc->IsIgnoreRedline() && pDoc->GetRedlineTbl().Count() ) )
-/*N*/       pRedlineRange = new SwPaM( rPos );
-/*N*/
 /*N*/   SwRedlineMode eOld = pDoc->GetRedlineMode();
 /*N*/
 /*N*/   BOOL bRet = FALSE;

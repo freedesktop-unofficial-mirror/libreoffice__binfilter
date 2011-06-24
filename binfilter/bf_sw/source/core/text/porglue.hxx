@@ -56,7 +56,7 @@ public:
     inline void MoveAllGlue( SwGluePortion *pTarget );
     inline void MoveHalfGlue( SwGluePortion *pTarget );
     inline void AdjFixWidth();
-    virtual void Paint( const SwTxtPaintInfo &rInf ) const{DBG_BF_ASSERT(0, "STRIP");};
+    virtual void Paint( const SwTxtPaintInfo& ) const{DBG_BF_ASSERT(0, "STRIP");};
 
     OUTPUT_OPERATOR
 };

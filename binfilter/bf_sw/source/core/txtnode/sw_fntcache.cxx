@@ -231,6 +231,8 @@ extern USHORT UnMapDirection( USHORT nDir, const BOOL bVertFormat );
 
 /*N*/ void SwFntObj::GuessLeading( const ViewShell *pSh, const FontMetric& rMet )
 /*N*/ {
+/*N*/   (void)pSh;
+/*N*/   (void)rMet;
 /*N*/ //  Wie waere es mit 50% des Descents (StarMath??):
 /*N*/ //    nLeading = USHORT( aMet.GetDescent() / 2 );
 /*N*/

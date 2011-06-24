@@ -1244,14 +1244,14 @@ BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
             // Aber das hier will ich jetzt speichern:
             pLib->ResetFlag( SBX_DONTSTORE );
             if ( pLibInfo->HasPassword() )
-                xBasicStream->SetKey( szCryptingKey );
+                xBasicStream->SetCryptMaskKey(szCryptingKey);
             BOOL bDone = pLib->Store( *xBasicStream );
             xBasicStream->SetBufferSize( 0 );
             if ( bDone )
             {
                 // Diese Informationen immer verschluesseln...
                 xBasicStream->SetBufferSize( 1024 );
-                xBasicStream->SetKey( szCryptingKey );
+                xBasicStream->SetCryptMaskKey(szCryptingKey);
                 *xBasicStream << static_cast<sal_uInt32>(PASSWORD_MARKER);
                 String aTmpPassword = pLibInfo->GetPassword();
                 xBasicStream->WriteByteString( aTmpPassword, RTL_TEXTENCODING_MS_1252 );
@@ -1262,7 +1262,7 @@ BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
             pLib->SetModified( FALSE );
             if( !xBasicStorage->Commit() )
                 bDone = FALSE;
-            xBasicStream->SetKey( ByteString() );
+            xBasicStream->SetCryptMaskKey(rtl::OString());
             DBG_ASSERT( bDone, "Warum geht Basic::Store() nicht ?" );
             return bDone;
         }
@@ -1352,7 +1352,7 @@ BOOL BasicManager::ImpLoadLibary( BasicLibInfo* pLibInfo, SotStorage* pCurStorag
             else
             {
                 // Ggf. stehen weitere Informationen im Stream...
-                xBasicStream->SetKey( szCryptingKey );
+                xBasicStream->SetCryptMaskKey(szCryptingKey);
                 xBasicStream->RefreshBuffer();
                 sal_uInt32 nPasswordMarker = 0;
                 *xBasicStream >> nPasswordMarker;
@@ -1362,7 +1362,7 @@ BOOL BasicManager::ImpLoadLibary( BasicLibInfo* pLibInfo, SotStorage* pCurStorag
                     xBasicStream->ReadByteString(aPassword);
                     pLibInfo->SetPassword( aPassword );
                 }
-                xBasicStream->SetKey( ByteString() );
+                xBasicStream->SetCryptMaskKey(rtl::OString());
                 CheckModules( pLibInfo->GetLib(), pLibInfo->IsReference() );
             }
             return bLoaded;
@@ -1382,7 +1382,7 @@ BOOL BasicManager::ImplEncryptStream( SvStream& rStrm ) const
     {
         // sollte nur bei verschluesselten Streams nicht stimmen.
         bProtected = TRUE;
-        rStrm.SetKey( szCryptingKey );
+        rStrm.SetCryptMaskKey(szCryptingKey);
         rStrm.RefreshBuffer();
     }
     return bProtected;
@@ -1418,7 +1418,7 @@ BOOL BasicManager::ImplLoadBasic( SvStream& rStrm, StarBASICRef& rOldBasic ) con
         }
     }
     if ( bProtected )
-        rStrm.SetKey( ByteString() );
+        rStrm.SetCryptMaskKey(rtl::OString());
     return bLoaded;
 }
 

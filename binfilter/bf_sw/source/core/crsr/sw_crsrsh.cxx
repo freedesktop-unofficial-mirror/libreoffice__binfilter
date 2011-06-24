@@ -520,18 +520,19 @@ using namespace ::com::sun::star::util;
 /*M*/ #ifndef REMOTE_APPSERVER
 /*M*/
 /*M*/     // switch from blinking cursor to read-only-text-selection cursor
+/*M*/     static const long nNoBlinkTime = STYLE_CURSOR_NOBLINKTIME;
 /*M*/     long nBlinkTime = GetOut()->GetSettings().GetStyleSettings().
 /*M*/                       GetCursorBlinkTime();
 /*M*/
 /*M*/     if ( (IsCrsrReadonly() && GetViewOptions()->IsSelectionInReadonly()) ==
-/*M*/         ( nBlinkTime != STYLE_CURSOR_NOBLINKTIME ) )
+/*M*/         ( nBlinkTime != nNoBlinkTime ) )
 /*M*/     {
 /*M*/         // non blinking cursor in read only - text selection mode
 /*M*/         AllSettings aSettings = GetOut()->GetSettings();
 /*M*/         StyleSettings aStyleSettings = aSettings.GetStyleSettings();
-/*M*/         long nNewBlinkTime = nBlinkTime == STYLE_CURSOR_NOBLINKTIME ?
+/*M*/         long nNewBlinkTime = nBlinkTime == nNoBlinkTime ?
 /*M*/                              500 :
-/*M*/                              STYLE_CURSOR_NOBLINKTIME;
+/*M*/                              nNoBlinkTime;
 /*M*/         aStyleSettings.SetCursorBlinkTime( nNewBlinkTime );
 /*M*/         aSettings.SetStyleSettings( aStyleSettings );
 /*M*/         GetOut()->SetSettings( aSettings );
@@ -832,8 +833,7 @@ using namespace ::com::sun::star::util;
 /*?*/          pCurCrsr->GetMark()->nNode;
 /*?*/ }
 
-/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(
-/*?*/                           USHORT nStt, USHORT nEnd, SwPaM* pPam ) const
+/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(USHORT, USHORT, SwPaM*) const
 /*?*/ {
 /*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
 /*?*/ }

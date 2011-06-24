@@ -67,8 +67,11 @@ namespace binfilter {
  SwSwgReader::SwSwgReader
     ( SwDoc *pSwDoc, const SwPaM* pSwPaM, SvStream& rStream,
       const String& rFileName, BOOL bNewDoc )
-    : pDoc( pSwDoc ), r( rStream ), aFileName( rFileName ), bNew(bNewDoc),
-    pNdOrigTxt( 0 )
+    : pNdOrigTxt( 0 )
+    , aFileName( rFileName )
+    , pDoc( pSwDoc )
+    , bNew(bNewDoc)
+    , r( rStream )
  {
     nCntntCol  = 0;
     nErrno     = 0;

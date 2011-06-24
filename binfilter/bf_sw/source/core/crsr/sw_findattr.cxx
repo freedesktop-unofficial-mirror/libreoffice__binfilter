@@ -127,8 +127,12 @@ struct SwFindParaAttr : public SwFindParas
     SwFindParaAttr( const SfxItemSet& rSet, BOOL bNoCollection,
                     const SearchOptions* pOpt, const SfxItemSet* pRSet,
                     SwCursor& rCrsr )
-        : pSet( &rSet ), pReplSet( pRSet ), rCursor( rCrsr ),
-            bValue( bNoCollection ), pSearchOpt( pOpt ), pSTxt( 0 )
+        : bValue( bNoCollection )
+        , pSet( &rSet )
+        , pReplSet( pRSet )
+        , pSearchOpt( pOpt )
+        , rCursor( rCrsr )
+        , pSTxt( 0 )
         {}
     ~SwFindParaAttr()   { delete pSTxt; }
 
@@ -137,8 +141,7 @@ struct SwFindParaAttr : public SwFindParas
 };
 
 
-/*N*/int SwFindParaAttr::Find( SwPaM* pCrsr, SwMoveFn fnMove, const SwPaM* pRegion,
-/*N*/                           bool bInReadOnly )
+/*N*/int SwFindParaAttr::Find( SwPaM*, SwMoveFn, const SwPaM*, bool)
 /*N*/{
 DBG_BF_ASSERT(0, "STRIP"); return 0;
 /*N*/ }

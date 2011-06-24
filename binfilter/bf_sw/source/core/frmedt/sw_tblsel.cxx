@@ -755,8 +755,8 @@ USHORT CheckMergeSel( const SwSelBoxes& rBoxes )
 /*M*/           (!pTmp->IsCellFrm() ||
 /*M*/              ( ( ! bRTL && (pTmp->Frm().*fnRect->fnGetLeft)() < nSX &&
 /*M*/                            (pTmp->Frm().*fnRect->fnGetRight)()< nSX2 ) ||
-/*M*/                    bRTL && (pTmp->Frm().*fnRect->fnGetLeft)() > nSX &&
-/*M*/                            (pTmp->Frm().*fnRect->fnGetRight)()> nSX2 ) ) )
+/*M*/                (   bRTL && (pTmp->Frm().*fnRect->fnGetLeft)() > nSX &&
+/*M*/                            (pTmp->Frm().*fnRect->fnGetRight)()> nSX2 ) ) ) )
 /*M*/ #else
 /*M*/     while ( pTmp &&
 /*M*/             (!pTmp->IsCellFrm() ||
@@ -1472,11 +1472,11 @@ void _FndBox::SaveChartData( const SwTable &rTable )
                             rTable.GetTabLines()[rTable.GetTabLines().Count()-1];
                         pEndBox = pLine->GetTabBoxes()[pLine->GetTabBoxes().Count()-1];
                     }
-                    pData->SomeData3() = String::CreateFromInt32(
+                    pData->SomeData3() = String::CreateFromInt64(
                                         pSttBox != ::binfilter::lcl_FindFirstBox(rTable)
                                             ? long(pSttBox)
                                             : LONG_MAX );
-                    pData->SomeData4() = String::CreateFromInt32(
+                    pData->SomeData4() = String::CreateFromInt64(
                                         pEndBox != ::binfilter::lcl_FindLastBox(rTable)
                                             ? long(pEndBox)
                                             : LONG_MAX );
@@ -1502,11 +1502,11 @@ void _FndBox::SaveChartData( const SwTable &rTable )
                 if ( pData )
                 {
                     const SwTableBox *pSttBox = (SwTableBox*)
-                                                pData->SomeData3().ToInt32();
+                                                pData->SomeData3().ToInt64();
                     if ( long(pSttBox) == LONG_MAX )
                         pSttBox = ::binfilter::lcl_FindFirstBox( rTable );
                     const SwTableBox *pEndBox = (SwTableBox*)
-                                                pData->SomeData4().ToInt32();
+                                                pData->SomeData4().ToInt64();
                     if ( long(pEndBox) == LONG_MAX )
                         pEndBox = ::binfilter::lcl_FindLastBox( rTable );
                     bool bSttFound = FALSE, bEndFound = FALSE;

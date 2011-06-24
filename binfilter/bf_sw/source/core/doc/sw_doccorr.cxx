@@ -146,7 +146,6 @@ namespace binfilter {
 /*N*/                    const xub_StrLen nOffset,
 /*N*/                    BOOL bMoveCrsr )
 /*N*/ {
-/*N*/   &rOldNode.GetNode();
 /*N*/   SwPosition aNewPos( rNewPos );
 /*N*/
 /*N*/   { // erstmal die Bookmark korrigieren

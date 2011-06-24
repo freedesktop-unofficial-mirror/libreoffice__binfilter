@@ -70,20 +70,24 @@ using namespace ::com::sun::star;
 /*N*/ }
 
 /*N*/ SwFldPortion::SwFldPortion( const XubString &rExpand, SwFont *pFnt1 )
-/*N*/   : aExpand(rExpand), pFnt(pFnt1), nViewWidth(0), nNextOffset(0),
-/*N*/     bFollow( sal_False ), bHasFollow( sal_False )
+/*N*/   : aExpand(rExpand)
+/*N*/   , pFnt(pFnt1)
+/*N*/   , nNextOffset(0)
+/*N*/   , nViewWidth(0)
+/*N*/   , bFollow( sal_False )
+/*N*/   , bHasFollow( sal_False )
 /*N*/ {
 /*N*/   SetWhichPor( POR_FLD );
 /*N*/ }
 
 /*N*/ SwFldPortion::SwFldPortion( const SwFldPortion& rFld )
-/*N*/     : aExpand( rFld.GetExp() ),
-/*N*/       bCenter( rFld.IsCenter() ),
-/*N*/       bFollow( rFld.IsFollow() ),
-/*N*/       bHasFollow( rFld.HasFollow() ),
-/*N*/       bHide( rFld.IsHide() ),
-/*N*/       bLeft( rFld.IsLeft() ),
-/*N*/       nNextOffset( rFld.GetNextOffset() )
+/*N*/     : aExpand( rFld.GetExp() )
+/*N*/     , nNextOffset( rFld.GetNextOffset() )
+/*N*/     , bFollow( rFld.IsFollow() )
+/*N*/     , bLeft( rFld.IsLeft() )
+/*N*/     , bHide( rFld.IsHide() )
+/*N*/     , bCenter( rFld.IsCenter() )
+/*N*/     , bHasFollow( rFld.HasFollow() )
 /*N*/ {
 /*N*/     if ( rFld.HasFont() )
 /*N*/         pFnt = new SwFont( *rFld.GetFont() );

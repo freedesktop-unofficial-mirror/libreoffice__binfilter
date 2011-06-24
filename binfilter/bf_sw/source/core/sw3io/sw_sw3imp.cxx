@@ -126,7 +126,7 @@ public:
 
     sal_Bool Insert( ULONG nKey, sal_uInt32 p )
     {
-        return Table::Insert( nKey, (void*)p );
+        return Table::Insert( nKey, (void*)(sal_uIntPtr)p );
     }
 
     sal_uInt32 GetObject( ULONG nPos ) const
@@ -144,18 +144,19 @@ public:
 /*N*/ }
 
 /*N*/ Sw3IoImp::Sw3IoImp( Sw3Io& r )
-/*N*/       : rIo( r ), pDoc( NULL ),
-/*N*/       aDefWordDelim( SW_MOD()->GetDocStatWordDelim() ),
-/*N*/       N_DOC( String::CreateFromAscii( "StarWriterDocument" ) ),
-/*N*/       N_PAGESTYLES( String::CreateFromAscii( "SwPageStyleSheets" ) ),
-/*N*/       N_NUMRULES( String::CreateFromAscii( "SwNumRules" ) ),
-/*N*/       N_DRAWING( String::CreateFromAscii( DRAWING_STREAM_NAME ) ),
-/*N*/       N_PICTURES( String::CreateFromAscii( "EmbeddedPictures" ) ),
-/*N*/       N_BLOCKDIR( String::CreateFromAscii( "DocumentList" ) ),
-/*N*/       sStarSymbol( "StarSymbol", sizeof("StarSymbol")-1, RTL_TEXTENCODING_ASCII_US ),
-/*N*/       sOpenSymbol( "OpenSymbol", sizeof("OpenSymbol")-1, RTL_TEXTENCODING_ASCII_US ),
-/*N*/       sStarBats( "StarBats", sizeof("StarBats")-1, RTL_TEXTENCODING_ASCII_US ),
-/*N*/       sStarMath( "StarMath", sizeof("StarMath")-1, RTL_TEXTENCODING_ASCII_US )
+/*N*/       : aDefWordDelim( SW_MOD()->GetDocStatWordDelim() )
+/*N*/       , N_DOC( String::CreateFromAscii( "StarWriterDocument" ) )
+/*N*/       , N_PAGESTYLES( String::CreateFromAscii( "SwPageStyleSheets" ) )
+/*N*/       , N_NUMRULES( String::CreateFromAscii( "SwNumRules" ) )
+/*N*/       , N_DRAWING( String::CreateFromAscii( DRAWING_STREAM_NAME ) )
+/*N*/       , N_PICTURES( String::CreateFromAscii( "EmbeddedPictures" ) )
+/*N*/       , N_BLOCKDIR( String::CreateFromAscii( "DocumentList" ) )
+/*N*/       , sStarSymbol( "StarSymbol", sizeof("StarSymbol")-1, RTL_TEXTENCODING_ASCII_US )
+/*N*/       , sOpenSymbol( "OpenSymbol", sizeof("OpenSymbol")-1, RTL_TEXTENCODING_ASCII_US )
+/*N*/       , sStarBats( "StarBats", sizeof("StarBats")-1, RTL_TEXTENCODING_ASCII_US )
+/*N*/       , sStarMath( "StarMath", sizeof("StarMath")-1, RTL_TEXTENCODING_ASCII_US )
+/*N*/       , rIo( r )
+/*N*/       , pDoc( NULL )
 /*N*/ {
 /*N*/   bNormal     = sal_True;
 /*N*/   bTxtColls   =
@@ -2383,7 +2384,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   if( pCrypter )
 /*N*/   {
 /*?*/       sal_Char buf[ 17 ];
-/*?*/       snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
+/*?*/       snprintf( buf, sizeof(buf), "%08"SAL_PRIxUINT32"%08"SAL_PRIxUINT32, nDate, nTime );
 /*?*/       ByteString aTest( buf );
 /*?*/       pCrypter->Encrypt( aTest );
 /*?*/       return sal_Bool( !memcmp( cPasswd, aTest.GetBuffer(), PASSWDLEN ) );
@@ -2401,7 +2402,7 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   {
 /*?*/       pCrypter = new Crypter( pRoot->GetKey() );
 /*?*/       sal_Char buf[ 17 ];
-/*?*/       snprintf( buf, sizeof(buf), "%08lx%08lx", nDate, nTime );
+/*?*/       snprintf( buf, sizeof(buf), "%08"SAL_PRIxUINT32"%08"SAL_PRIxUINT32, nDate, nTime );
 /*?*/       ByteString aTest( buf );
 /*?*/       pCrypter->Encrypt( aTest );
 /*?*/       memcpy( cPasswd, aTest.GetBuffer(), aTest.Len() );

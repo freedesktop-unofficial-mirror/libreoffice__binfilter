@@ -553,12 +553,12 @@ namespace binfilter {
 /*N*/   rSrtArr.Insert( p );        // eintragen
 /*N*/ }
 
-/*N*/ SwTableBox::SwTableBox( SwTableBoxFmt* pFmt, const SwStartNode& rSttNd, SwTableLine *pUp ) :
-/*N*/   SwClient( 0 ),
-/*N*/   aLines( 0, 0 ),
-/*N*/   pUpper( pUp ),
-/*N*/   pImpl( 0 ),
-/*N*/   pSttNd( &rSttNd )
+/*N*/ SwTableBox::SwTableBox( SwTableBoxFmt* pFmt, const SwStartNode& rSttNd, SwTableLine *pUp )
+/*N*/   : SwClient( 0 )
+/*N*/   , aLines( 0, 0 )
+/*N*/   , pSttNd( &rSttNd )
+/*N*/   , pUpper( pUp )
+/*N*/   , pImpl( 0 )
 /*N*/ {
 /*N*/   pFmt->GetDoc();
 /*N*/   CheckBoxFmt( pFmt )->Add( this );
@@ -932,7 +932,7 @@ namespace binfilter {
 /*?*/                   BOOL bNewIsTxtFmt = pNumFmtr->IsTextFormat( nNewFmt ) ||
 /*?*/                                       NUMBERFORMAT_TEXT == nNewFmt;
 /*?*/
-/*?*/                   if( !bNewIsTxtFmt && nOldFmt != nNewFmt || pNewFml )
+/*?*/                   if( (!bNewIsTxtFmt && nOldFmt != nNewFmt) || pNewFml )
 /*?*/                   {
 /*?*/               DBG_BF_ASSERT(0, "STRIP");
 /*?*/                   }

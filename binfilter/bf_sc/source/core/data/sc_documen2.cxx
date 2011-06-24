@@ -704,7 +704,7 @@ namespace binfilter {
 /*N*/   else
 /*N*/   {
 /*N*/       //  Assertion nur, wenn kein Passwort gesetzt ist
-/*N*/       DBG_ASSERT( rStream.GetKey().Len(), "Load: SCID_DOCUMENT nicht gefunden" );
+/*N*/       DBG_ASSERT( rStream.GetCryptMaskKey().getLength(), "Load: SCID_DOCUMENT nicht gefunden" );
 /*N*/       bError = TRUE;
 /*N*/   }
 /*N*/

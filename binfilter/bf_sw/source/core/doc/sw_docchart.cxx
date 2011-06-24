@@ -277,7 +277,7 @@ namespace binfilter {
 
 
 
-/*N*/ IMPL_LINK( SwDoc, DoUpdateAllCharts, Timer *, pTimer )
+/*N*/ IMPL_LINK( SwDoc, DoUpdateAllCharts, Timer *, EMPTYARG )
 /*N*/ {
 /*N*/   ViewShell* pVSh;
 /*N*/   GetEditShell( &pVSh );

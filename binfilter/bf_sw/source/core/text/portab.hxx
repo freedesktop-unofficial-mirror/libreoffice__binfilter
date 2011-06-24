@@ -102,9 +102,9 @@ class SwTabDecimalPortion : public SwTabPortion
 {
     const xub_Unicode cTab;
 public:
-    inline SwTabDecimalPortion( const KSHORT nTabPos4, const xub_Unicode cTab,
+    inline SwTabDecimalPortion( const KSHORT nTabPos4, const xub_Unicode cInTab,
                                 const xub_Unicode cFill4 = '\0' )
-         : SwTabPortion( nTabPos4, cFill4 ), cTab(cTab)
+         : SwTabPortion( nTabPos4, cFill4 ), cTab(cInTab)
     { SetWhichPor( POR_TABDECIMAL ); }
     inline xub_Unicode GetTabDecimal() const { return cTab; }
     OUTPUT_OPERATOR
