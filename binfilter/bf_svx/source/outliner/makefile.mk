@@ -41,6 +41,7 @@ PROJECTPCHSOURCE=svx_outl_pch
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_svx
 
 # --- Allgemein ----------------------------------------------------------

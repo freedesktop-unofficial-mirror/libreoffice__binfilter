@@ -38,6 +38,7 @@ LIBTARGET=NO
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_starmath
 
 # --- Files --------------------------------------------------------

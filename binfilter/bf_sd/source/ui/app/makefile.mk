@@ -39,6 +39,7 @@ NO_HIDS=TRUE
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 .INCLUDE :  $(BFPRJ)$/util$/makefile.pmk
 INC+= -I$(PRJ)$/inc$/bf_sd
 

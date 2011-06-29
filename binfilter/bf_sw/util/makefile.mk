@@ -41,6 +41,7 @@ USE_LDUMP2=TRUE
 # --- Settings ------------------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_sw
 
 DESK=T
