@@ -129,14 +129,6 @@ inline int HI_BYTE( USHORT n )  { return (int)( ( n >> 8 ) & 0xff );  }
 inline int LO_BYTE( USHORT n )  { return (int)( n & 0xff ); }
 
 
-// PageDescs
-//
-
-void OutW4W_SwFmtPageDesc1(  const SwPageDesc* )
-{
-    return;
-}
-
 /* Ausgabe der Nodes */
 
 /*
