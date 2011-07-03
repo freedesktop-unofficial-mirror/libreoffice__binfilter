@@ -96,26 +96,6 @@ namespace binfilter {
 /*N*/   return bRet;
 /*N*/ }
 
-/*N*/ void SdrObjConnection::Write(SvStream& rOut, const SdrObject* pEdgeObj) const
-/*N*/ {
-/*N*/   SdrIOHeader aHead(rOut,STREAM_WRITE,SdrIOConnID); // ab V11 eingepackt
-/*N*/   SdrObjSurrogate aSuro(pObj,pEdgeObj);
-/*N*/   rOut<<aSuro;
-/*N*/   rOut<<nConId;
-/*N*/   rOut<<nXDist;
-/*N*/   rOut<<nYDist;
-/*N*/   BOOL bTmp;
-/*N*/   bTmp=bBestConn;   rOut<<bTmp;
-/*N*/   bTmp=bBestVertex; rOut<<bTmp;
-/*N*/   bTmp=bXDistOvr;   rOut<<bTmp;
-/*N*/   bTmp=bYDistOvr;   rOut<<bTmp;
-/*N*/   bTmp=bAutoVertex; rOut<<bTmp;
-/*N*/   bTmp=bAutoCorner; rOut<<bTmp;
-/*N*/   UINT32 nReserve=0;
-/*N*/   rOut<<nReserve;
-/*N*/   rOut<<nReserve;
-/*N*/ }
-
 /*N*/ void SdrObjConnection::Read(SvStream& rIn, const SdrObject* pEdgeObj)
 /*N*/ {
 /*N*/   if (rIn.GetError()!=0) return;

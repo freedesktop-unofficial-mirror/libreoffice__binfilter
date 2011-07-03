@@ -1550,7 +1550,6 @@ public:
     }
 
     void ReadLayoutCache( SvStream& rStream );
-    void WriteLayoutCache( SvStream& rStream );
     SwLayoutCache* GetLayoutCache() const { return pLayoutCache; }
 
     void SetULongDummy1( sal_uInt32 n ) { n32Dummy1 = n; }

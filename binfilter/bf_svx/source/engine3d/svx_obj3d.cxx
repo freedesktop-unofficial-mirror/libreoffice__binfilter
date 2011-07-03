@@ -791,36 +791,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Nur die Member des E3dObjekts in den Stream speichern
-|* Dies wird direkt auch von E3dSphere gerufen um zu verhindern dass die
-|* Subliste weggeschrieben wird. (FG)
-|*
-\************************************************************************/
-
-/*N*/ #ifndef SVX_LIGHT
-/*N*/ void E3dObject::WriteOnlyOwnMembers(SvStream& rOut) const
-/*N*/ {
-/*N*/   // Fuer Abwaertskompatibilitaet (Lesen neuer Daten mit altem Code)
-/*N*/   SdrDownCompat aCompat(rOut, STREAM_WRITE);
-/*N*/ #ifdef DBG_UTIL
-/*N*/   aCompat.SetID("E3dObjectOwnMembers");
-/*N*/ #endif
-/*N*/
-/*N*/   rOut << aLocalBoundVol;
-/*N*/
-/*N*/   Old_Matrix3D aMat3D;
-/*N*/   aMat3D = aTfMatrix;
-/*N*/   rOut << aMat3D;
-/*N*/
-/*N*/   rOut << nLogicalGroup;
-/*N*/   rOut << nObjTreeLevel;
-/*N*/   rOut << nPartOfParent;
-/*N*/   rOut << UINT16(eDragDetail);
-/*N*/ }
-/*N*/ #endif
-
-/*************************************************************************
-|*
 |* Objektdaten aus Stream laden
 |*
 \************************************************************************/

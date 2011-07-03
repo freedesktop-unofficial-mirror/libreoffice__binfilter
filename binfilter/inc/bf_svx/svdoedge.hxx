@@ -75,7 +75,6 @@ public:
 
     void ResetVars();
     bool TakeGluePoint(SdrGluePoint& rGP, bool bSetAbsolutePos) const;
-    void Write(SvStream& rOut, const SdrObject* pObj) const;
     void Read(SvStream& rIn, const SdrObject* pObj);
     void ReadTilV10(SvStream& rIn, const SdrObject* pObj);
     void AfterRead(const SdrObject* pObj);
