@@ -52,7 +52,6 @@ SHL1STDLIBS=    \
                 $(BFSVTOOLLIB) 		\
                 $(BFOFALIB)			\
                 $(VCLLIB) 			\
-                $(SOTLIB) 			\
                 $(SALLIB)			\
                 $(TOOLSLIB)			\
                 $(CPPULIB)			\
@@ -64,6 +63,7 @@ SHL1STDLIBS=    \
                 $(BFSCLIB)          \
                 $(BFSVXLIB)         \
                 $(BFSO3LIB) 			\
+                $(SOTLIB) 			\
                 $(UNOTOOLSLIB)		\
                 $(COMPHELPERLIB)	\
                 $(LEGACYSMGRLIB)
