@@ -297,19 +297,6 @@ static const USHORT nFuncMaskArr[PIVOT_MAXFUNC+1] =
 /*N*/   }
 /*N*/ }
 
-/*N*/ void lcl_SaveFieldArr( SvStream& rStream, const PivotField* pField, USHORT nCount )
-/*N*/ {
-/*N*/   USHORT i;
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       rStream << (BYTE) 0x00
-/*N*/               << pField[i].nCol
-/*N*/               << pField[i].nFuncMask
-/*N*/               << pField[i].nFuncCount;
-/*N*/   }
-/*N*/ }
-
 //  nach Load muessen Daten neu berechnet werden !
 
 /*N*/ BOOL ScPivot::Load( SvStream& rStream, ScMultipleReadHeader& rHdr )

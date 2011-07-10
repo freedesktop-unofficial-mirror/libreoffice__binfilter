@@ -800,18 +800,6 @@ static const sal_Char msgDbgInfinity[] =
 /*N*/       pDoc->SetHasMacroFunc( TRUE );
 /*N*/ }
 
-/*N*/ BOOL lcl_IsBeyond( ScTokenArray* pCode, USHORT nMaxRow )
-/*N*/ {
-/*N*/   ScToken* t;
-/*N*/   pCode->Reset();
-/*N*/   while ( (t = pCode->GetNextReferenceRPN()) )    // RPN -> auch in Namen
-/*N*/       if ( t->GetSingleRef().nRow > nMaxRow ||
-/*N*/               (t->GetType() == svDoubleRef &&
-/*N*/               t->GetDoubleRef().Ref2.nRow > nMaxRow) )
-/*N*/           return TRUE;
-/*N*/   return FALSE;
-/*N*/ }
-
 /*N*/  ScBaseCell* ScFormulaCell::Clone( ScDocument* pDoc, const ScAddress& rPos,
 /*N*/       BOOL bNoListening ) const
 /*N*/  {

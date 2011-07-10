@@ -58,9 +58,6 @@ namespace binfilter {
 // STATIC DATA -----------------------------------------------------------
 
 void lcl_LoadRange( SvStream& rStream, ScRange** ppRange );
-void lcl_SaveRange( SvStream& rStream, ScRange* pRange );
-
-
 
 /*N*/ BOOL ScTable::SetOutlineTable( const ScOutlineTable* pNewOutline )
 /*N*/ {
@@ -1703,41 +1700,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return TRUE;
 /*N*/ }
 
-//  Speichern
-
-
-/*N*/ void lcl_SaveValue( SvStream& rStream, USHORT* pValue, USHORT nEnd )
-/*N*/ {
-/*N*/   USHORT nPos = 0;
-/*N*/   while (nPos<=nEnd)
-/*N*/   {
-/*N*/       USHORT nVal = pValue[nPos];
-/*N*/       USHORT nNextPos = nPos+1;
-/*N*/       while (nNextPos<=nEnd && pValue[nNextPos]==nVal)
-/*N*/           ++nNextPos;
-/*N*/       rStream << (USHORT)( nNextPos - nPos );
-/*N*/       rStream << nVal;
-/*N*/       nPos = nNextPos;
-/*N*/   }
-/*N*/ }
-
-
-/*N*/ void lcl_SaveFlags( SvStream& rStream, BYTE* pValue, USHORT nEnd )
-/*N*/ {
-/*N*/   USHORT nPos = 0;
-/*N*/   while (nPos<=nEnd)
-/*N*/   {
-/*N*/       BYTE nVal = pValue[nPos] & CR_SAVEMASK;
-/*N*/       USHORT nNextPos = nPos+1;
-/*N*/       while (nNextPos<=nEnd && (pValue[nNextPos] & CR_SAVEMASK)==nVal)
-/*N*/           ++nNextPos;
-/*N*/       rStream << (USHORT)( nNextPos - nPos );
-/*N*/       rStream << nVal;
-/*N*/       nPos = nNextPos;
-/*N*/   }
-/*N*/ }
-
-
 /*N*/ void lcl_LoadRange( SvStream& rStream, ScRange** ppRange )
 /*N*/ {
 /*N*/   BOOL bIsSet = FALSE;
@@ -1752,19 +1714,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   else
 /*N*/       *ppRange = NULL;
 /*N*/ }
-
-
-/*N*/ void lcl_SaveRange( SvStream& rStream, ScRange* pRange )
-/*N*/ {
-/*N*/   if ( pRange )
-/*N*/   {
-/*N*/       rStream << (BOOL)TRUE;
-/*N*/       rStream << *pRange;
-/*N*/   }
-/*N*/   else
-/*N*/       rStream << (BOOL)FALSE;
-/*N*/ }
-
 
 // Berechnen der Groesse der Tabelle und setzen der Groesse an der DrawPage
 

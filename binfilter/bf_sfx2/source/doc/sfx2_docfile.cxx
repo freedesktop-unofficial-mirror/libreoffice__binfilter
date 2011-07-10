@@ -1431,22 +1431,6 @@ namespace binfilter {
 /*N*/ }
 
 //------------------------------------------------------------------
-/*N*/ void SfxMedium::ReOpen()
-/*N*/ {
-/*N*/     BOOL bUseInteractionHandler = pImp->bUseInteractionHandler;
-/*N*/     pImp->bUseInteractionHandler = FALSE;
-/*N*/     DBG_ASSERT( pFilter, "Kein Filter, aber ReOpen!" );
-/*N*/     if( pFilter )
-/*N*/     {
-/*N*/         if( pFilter->UsesStorage() )
-/*N*/             GetStorage();
-/*N*/         else
-/*N*/             GetInStream();
-/*N*/     }
-/*N*/
-/*N*/     pImp->bUseInteractionHandler = bUseInteractionHandler;
-/*N*/ }
-//------------------------------------------------------------------
 /*N*/ SfxMedium::SfxMedium
 /*N*/ (
 /*N*/     const String &rName, StreamMode nOpenMode,  sal_Bool bDirectP,
@@ -1664,12 +1648,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/
 /*N*/     return pImp->xAttributes;
-/*N*/ }
-
-//----------------------------------------------------------------
-/*N*/ SvCompatWeakHdl* SfxMedium::GetHdl()
-/*N*/ {
-/*N*/     return pImp->GetHdl();
 /*N*/ }
 
 /*N*/ sal_Bool SfxMedium::IsDownloadDone_Impl()

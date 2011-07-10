@@ -181,9 +181,6 @@ class SfxMedium : public SvRefBase
 #endif
 
 public:
-
-    SvCompatWeakHdl*    GetHdl();
-
                         SfxMedium();
                         SfxMedium( const String &rName,
                                    StreamMode nOpenMode,
@@ -209,7 +206,6 @@ public:
     const String&       GetOrigURL() const;
     SfxItemSet  *       GetItemSet() const;
     void                Close();
-    void                ReOpen();
     const String&       GetName() const {return aLogicName;}
     const INetURLObject& GetURLObject() const;
     ::com::sun::star::uno::Reference< ::com::sun::star::ucb::XContent > GetContent() const;
