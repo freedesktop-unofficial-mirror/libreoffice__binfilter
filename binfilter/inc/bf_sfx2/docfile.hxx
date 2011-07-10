@@ -313,7 +313,6 @@ public:
 };
 
 SV_DECL_IMPL_REF( SfxMedium )
-SV_DECL_COMPAT_WEAK( SfxMedium )
 
 }//end of namespace binfilter
 #endif
