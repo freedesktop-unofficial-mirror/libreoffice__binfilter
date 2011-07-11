@@ -528,7 +528,6 @@ public:
 
     bool CheckTblBoxCntnt( const SwPosition* pPos = 0 );
     void ClearTblBoxCntnt();
-    bool EndAllTblBoxEdit();
 
     // wird gerufen, wenn eine Tabellenselektion im UpdateCrsr erzeugt wird,
     // ohne das die UI davon etaws weiss

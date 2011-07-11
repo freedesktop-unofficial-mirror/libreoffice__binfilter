@@ -140,43 +140,6 @@ namespace binfilter {
 /*N*/       Flags.bTabRel = TRUE;   // ist bei einigen aelteren Dokumenten nicht gesetzt
 /*N*/ }
 
-
-/*
- bis Release 3.1 sah Store so aus
-
-    BYTE n = ( ( r.bOldFlag3D & 0x03 ) << 6 )   // RelName, 3D
-            | ( ( r.bRelTab & 0x03 ) << 4 )     // Relative, RelAbs
-            | ( ( r.bRelRow & 0x03 ) << 2 )
-            |   ( r.bRelCol & 0x03 );
-
- bis Release 3.1 sah Load so aus
-
-    r.bRelCol = ( n & 0x03 );
-    r.bRelRow = ( ( n >> 2 ) & 0x03 );
-    r.bRelTab = ( ( n >> 4 ) & 0x03 );
-    r.bOldFlag3D = ( ( n >> 6 ) & 0x03 );
-
- bRelCol == SR_DELETED war identisch mit bRelCol == (SR_RELATIVE | SR_RELABS)
- leider..
- 3.1 liest Zukunft: Deleted wird nicht unbedingt erkannt, nur wenn auch Relativ.
- Aber immer noch nCol > MAXCOL und gut sollte sein..
- */
-
-/*N*/ BYTE SingleRefData::CreateStoreByteFromFlags() const
-/*N*/ {
-/*N*/   return (BYTE)(
-/*N*/         ( (Flags.bRelName     & 0x01) << 7 )
-/*N*/       | ( (Flags.bFlag3D      & 0x01) << 6 )
-/*N*/       | ( (Flags.bTabDeleted  & 0x01) << 5 )
-/*N*/       | ( (Flags.bTabRel      & 0x01) << 4 )
-/*N*/       | ( (Flags.bRowDeleted  & 0x01) << 3 )
-/*N*/       | ( (Flags.bRowRel      & 0x01) << 2 )
-/*N*/       | ( (Flags.bColDeleted  & 0x01) << 1 )
-/*N*/       |   (Flags.bColRel      & 0x01)
-/*N*/       );
-/*N*/ }
-
-
 /*N*/ void SingleRefData::CreateFlagsFromLoadByte( BYTE n )
 /*N*/ {
 /*N*/   Flags.bColRel       = (n & 0x01 );

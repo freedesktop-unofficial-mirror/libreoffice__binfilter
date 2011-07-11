@@ -53,7 +53,6 @@ public:
     SmXMLWrapper(::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> &rRef)
         : xModel(rRef), bFlat(sal_True) {}
     ULONG Import(SfxMedium &rMedium);
-    sal_Bool Export(SfxMedium &rMedium);
     void SetFlat(sal_Bool bIn) {bFlat = bIn;}
 private:
     ::com::sun::star::uno::Reference< ::com::sun::star::frame::XModel> xModel;

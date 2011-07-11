@@ -112,7 +112,6 @@ struct SingleRefData        // Single reference (one address) into the sheet
             void CalcRelFromAbs( const ScAddress& rPos );
             void CalcAbsIfRel( const ScAddress& rPos );
             void OldBoolsToNewFlags( const OldSingleRefBools& );
-            BYTE CreateStoreByteFromFlags() const;
             void CreateFlagsFromLoadByte( BYTE );
              BOOL operator==( const SingleRefData& ) const;
 };

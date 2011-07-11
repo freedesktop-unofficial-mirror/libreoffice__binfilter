@@ -156,20 +156,6 @@ namespace binfilter {
 /*N*/   delete pBoxIdx, pBoxIdx = 0;
 /*N*/   pBoxPtr = 0;
 /*N*/ }
-
-/*N*/ bool SwCrsrShell::EndAllTblBoxEdit()
-/*N*/ {
-/*N*/   bool bRet = FALSE;
-/*N*/   ViewShell *pSh = this;
-/*N*/   do {
-/*N*/       if( pSh->IsA( TYPE( SwCrsrShell ) ) )
-/*N*/           bRet |= ((SwCrsrShell*)pSh)->CheckTblBoxCntnt(
-/*N*/                       ((SwCrsrShell*)pSh)->pCurCrsr->GetPoint() );
-/*N*/
-/*N*/   } while( this != (pSh = (ViewShell *)pSh->GetNext()) );
-/*N*/   return bRet;
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
