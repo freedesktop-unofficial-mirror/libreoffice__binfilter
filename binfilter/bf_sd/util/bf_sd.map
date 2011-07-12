@@ -6,7 +6,6 @@ UDK_3_0_0 {
         CreateObjSdGraphicDocShellDll;
         InitSdDll;
         DeInitSdDll;
-        component_getImplementationEnvironment;
         component_getFactory;
     local:
         *;

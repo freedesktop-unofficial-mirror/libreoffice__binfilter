@@ -4,7 +4,6 @@ UDK_3_0_0 {
         CreateObjScDocShellDll;
         InitScDll;
         DeInitScDll;
-        component_getImplementationEnvironment;
         component_getFactory;
     local:
         *;
