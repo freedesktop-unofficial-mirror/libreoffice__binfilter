@@ -1281,9 +1281,8 @@ struct ImplRenderPaintProc
         rLayerAdmin     ( rLA ),
         pSdrPageView    ( pView )
     {}
-
-    DECL_LINK(_ImplRenderPaintProc, SdrPaintProcRec*);
 };
+
 sal_Bool ImplRenderPaintProc::IsVisible( const SdrObject* pObj ) const
 {
     sal_Bool bVisible = sal_True;
@@ -1299,6 +1298,7 @@ sal_Bool ImplRenderPaintProc::IsVisible( const SdrObject* pObj ) const
     }
     return bVisible;
 }
+
 sal_Bool ImplRenderPaintProc::IsPrintable( const SdrObject* pObj ) const
 {
     sal_Bool bPrintable = sal_True;
@@ -1314,20 +1314,6 @@ sal_Bool ImplRenderPaintProc::IsPrintable( const SdrObject* pObj ) const
     }
     return bPrintable;
 
-}
-IMPL_LINK( ImplRenderPaintProc, _ImplRenderPaintProc, SdrPaintProcRec*, pRecord )
-{
-    SdrObject* pObj = pRecord->pObj;
-    if( !pObj->IsEmptyPresObj() && IsVisible( pObj ) && IsPrintable( pObj ) )
-    {
-        pObj->Paint( pRecord->rOut, pRecord->rInfoRec );
-    }
-    else
-    {
-        if( pObj->GetPage()->IsMasterPage() && (pObj->GetPage() == pObj->GetObjList()) && (pObj->GetOrdNum() == 0) && pObj->ISA( SdrRectObj ) )
-            pObj->Paint( pRecord->rOut, pRecord->rInfoRec );
-    }
-    return 0;
 }
 
 void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& /*rSelection*/,
