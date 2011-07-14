@@ -128,10 +128,6 @@ public:
     void         setTextInsertMode(
                      const ::com::sun::star::uno::Reference<
                         ::com::sun::star::text::XTextRange > & rInsertPos );
-    void         setStyleInsertMode( sal_uInt16 nFamilies,
-                                     sal_Bool bOverwrite );
-    void         setBlockMode();
-    void         setOrganizerMode();
 
     // ::com::sun::star::xml::sax::XDocumentHandler
     virtual void SAL_CALL startDocument(void)

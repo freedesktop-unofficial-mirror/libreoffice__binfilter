@@ -154,11 +154,6 @@ static const char pStorageName[] = "Configurations";
 
 // ------------------------------------------------------------------------
 
-/*?*/ SotStorage* SfxConfigManager::GetConfigurationStorage( SotStorage* pDocStor )
-/*?*/ {
-/*?*/   return pDocStor->OpenSotStorage( String::CreateFromAscii(pStorageName), STREAM_STD_READWRITE );
-/*?*/ }
-
 /*?*/ void SfxConfigManager::SetModified(BOOL /*bMod*/)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }

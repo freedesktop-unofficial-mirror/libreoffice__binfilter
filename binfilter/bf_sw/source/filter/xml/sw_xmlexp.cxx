@@ -200,12 +200,6 @@ SwXMLExport::SwXMLExport(
 }
 #endif
 
-void SwXMLExport::setBlockMode()
-{
-    bBlock = sal_True;
-
-}
-
 sal_uInt32 SwXMLExport::exportDoc( enum XMLTokenEnum eClass )
 {
     if( !GetModel().is() )

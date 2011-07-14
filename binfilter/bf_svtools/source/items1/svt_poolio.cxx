@@ -990,31 +990,6 @@ bool SfxItemPool::IsInStoringRange( USHORT nWhich ) const
            nWhich <= pImp->nStoringEnd;
 }
 
-//------------------------------------------------------------------------
-
-void SfxItemPool::SetStoringRange( USHORT nFrom, USHORT nTo )
-
-/*  [Beschreibung]
-
-    Mit dieser Methode kann der Which-Bereich eingeengt werden, der
-    von ItemSets dieses Pool (und dem Pool selbst) gespeichert wird.
-    Die Methode muss dazu vor <SfxItemPool::Store()> gerufen werden
-    und die Werte muessen auch noch gesetzt sein, wenn das eigentliche
-    Dokument (also die ItemSets gespeicher werden).
-
-    Ein Zuruecksetzen ist dann nicht noetig, wenn dieser Range vor
-    JEDEM Speichern richtig gesetzt wird, da er nur beim Speichern
-    beruecksichtigt wird.
-
-    Dieses muss fuer das 3.1-Format gemacht werden, da dort eine
-    Bug in der Pool-Lade-Methode vorliegt.
-*/
-
-{
-    pImp->nStoringStart = nFrom;
-    pImp->nStoringEnd = nTo;
-}
-
 // -----------------------------------------------------------------------
 
 void SfxItemPool::SetVersionMap
@@ -1269,73 +1244,6 @@ bool SfxItemPool::IsVer2_Impl() const
 }
 
 //-------------------------------------------------------------------------
-
-
-bool SfxItemPool::StoreItem( SvStream &rStream, const SfxPoolItem &rItem,
-                                 bool bDirect ) const
-
-/*  [Beschreibung]
-
-    Speichert das <SfxPoolItem> 'rItem' in den <SvStream> 'rStream'
-    entweder als Surrogat ('bDirect == FALSE') oder direkt mit 'rItem.Store()'.
-    Nicht poolable Items werden immer direkt gespeichert. Items ohne Which-Id,
-    also SID-Items, werden nicht gespeichert, ebenso wenn Items, die in der
-    File-Format-Version noch nicht vorhanden waren (return FALSE).
-
-    Das Item wird im Stream wie folgt abgelegt:
-
-    USHORT  rItem.Which()
-    USHORT  GetSlotId( rItem.Which() ) bzw. 0 falls nicht verf"urbar
-    USHORT  GetSurrogate( &rItem ) bzw. SFX_ITEM_DIRECT bei '!SFX_ITEM_POOLBLE'
-
-    optional (falls 'bDirect == TRUE' oder '!rItem.IsPoolable()':
-
-    USHORT  rItem.GetVersion()
-    ULONG   Size
-    Size    rItem.Store()
-
-
-    [Querverweise]
-
-    <SfxItemPool::LoadItem(SvStream&,bool)const>
-*/
-
-{
-    DBG_ASSERT( !IsInvalidItem(&rItem), "cannot store invalid items" );
-
-    if ( IsSlot( rItem.Which() ) )
-        return FALSE;
-    const SfxItemPool *pPool = this;
-    while ( !pPool->IsInStoringRange(rItem.Which()) )
-        if ( 0 == ( pPool = pPool->pSecondary ) )
-            return FALSE;
-
-    DBG_ASSERT( !pImp->bInSetItem || !rItem.ISA(SfxSetItem),
-                "SetItem contains ItemSet with SetItem" );
-
-    USHORT nSlotId = pPool->GetSlotId( rItem.Which(), TRUE );
-    USHORT nItemVersion = rItem.GetVersion(_nFileFormatVersion);
-    if ( USHRT_MAX == nItemVersion )
-        return FALSE;
-
-    rStream << rItem.Which() << nSlotId;
-    if ( bDirect || !pPool->StoreSurrogate( rStream, &rItem ) )
-    {
-        rStream << nItemVersion;
-        rStream << (UINT32) 0L;           // Platz fuer Laenge in Bytes
-        ULONG nIStart = rStream.Tell();
-        rItem.Store(rStream, nItemVersion);
-        ULONG nIEnd = rStream.Tell();
-        rStream.Seek( nIStart-4 );
-        rStream << (INT32) ( nIEnd-nIStart );
-        rStream.Seek( nIEnd );
-    }
-
-    return TRUE;
-}
-
-//-------------------------------------------------------------------------
-
 
 const SfxPoolItem* SfxItemPool::LoadItem( SvStream &rStream, bool bDirect,
                                           const SfxItemPool *pRefPool )

@@ -195,10 +195,8 @@ public:
     virtual void    RequestObjAreaPixel( const Rectangle & rObjRect );
 
     // Groessen und Positionsverhandlungen fuer Tools
-    void            SetTopToolFramePixel( const SvBorder & rBorder );
     Rectangle       GetTopOuterRectPixel() const;
 
-    void            SetDocToolFramePixel( const SvBorder & rBorder );
     Rectangle       GetDocOuterRectPixel() const;
 
     // Das rInnerRect bezieht sich auf rOuterRect

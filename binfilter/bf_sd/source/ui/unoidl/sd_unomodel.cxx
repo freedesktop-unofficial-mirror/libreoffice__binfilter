@@ -1274,47 +1274,11 @@ struct ImplRenderPaintProc
     const SdrLayerAdmin& rLayerAdmin;
     SdrPageView* pSdrPageView;
 
-    sal_Bool IsVisible  ( const SdrObject* pObj ) const;
-    sal_Bool IsPrintable( const SdrObject* pObj ) const;
-
     ImplRenderPaintProc( const SdrLayerAdmin& rLA, SdrPageView* pView ) :
         rLayerAdmin     ( rLA ),
         pSdrPageView    ( pView )
     {}
 };
-
-sal_Bool ImplRenderPaintProc::IsVisible( const SdrObject* pObj ) const
-{
-    sal_Bool bVisible = sal_True;
-    SdrLayerID nLayerId = pObj->GetLayer();
-    if( pSdrPageView )
-    {
-        const SdrLayer* pSdrLayer = rLayerAdmin.GetLayer( nLayerId );
-        if ( pSdrLayer )
-        {
-            String aLayerName = pSdrLayer->GetName();
-            bVisible = pSdrPageView->IsLayerVisible( aLayerName );
-        }
-    }
-    return bVisible;
-}
-
-sal_Bool ImplRenderPaintProc::IsPrintable( const SdrObject* pObj ) const
-{
-    sal_Bool bPrintable = sal_True;
-    SdrLayerID nLayerId = pObj->GetLayer();
-    if( pSdrPageView )
-    {
-        const SdrLayer* pSdrLayer = rLayerAdmin.GetLayer( nLayerId );
-        if ( pSdrLayer )
-        {
-            String aLayerName = pSdrLayer->GetName();
-            bPrintable = pSdrPageView->IsLayerPrintable( aLayerName );
-        }
-    }
-    return bPrintable;
-
-}
 
 void SAL_CALL SdXImpressDocument::render( sal_Int32 nRenderer, const uno::Any& /*rSelection*/,
                                           const uno::Sequence< beans::PropertyValue >& rxOptions )

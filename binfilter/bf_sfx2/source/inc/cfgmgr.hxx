@@ -76,8 +76,6 @@ public:
                     SfxConfigManager( SfxObjectShell& rDoc );
                     ~SfxConfigManager();
 
-    SotStorage*     GetConfigurationStorage( SotStorage* );
-
     void            AddConfigItem( SfxConfigItem& rCItem );
     void            RemoveConfigItem( SfxConfigItem& rCItem );
     SfxConfigItem*  GetNextItem( SfxConfigItem& rCItem );
