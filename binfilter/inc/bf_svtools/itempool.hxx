@@ -195,8 +195,6 @@ public:
     const SfxPoolItem*              LoadSurrogate(SvStream& rStream,
                                             USHORT &rWhich, USHORT nSlotId,
                                             const SfxItemPool* pRefPool = 0 );
-    bool                        StoreSurrogate(SvStream& rStream,
-                                            const SfxPoolItem *pItem ) const;
 
     virtual SvStream &              Load(SvStream &);
     virtual SvStream & Store(SvStream &rStream) const { return rStream; }
@@ -210,7 +208,6 @@ public:
                                         return nWhich >= nStart &&
                                                nWhich <= nEnd; }
     bool                        IsInVersionsRange( USHORT nWhich ) const;
-    bool                        IsInStoringRange( USHORT nWhich ) const;
     void                            SetSecondaryPool( SfxItemPool *pPool );
     SfxItemPool*                    GetSecondaryPool() const {
                                         return pSecondary; }

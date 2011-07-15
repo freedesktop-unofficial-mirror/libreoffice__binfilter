@@ -821,10 +821,6 @@ const SfxPoolItem* SfxItemPool::LoadSurrogate
                       in diesem SfxItemPool
                     - 'rWhichId' enth"alt die ggf. gemappte Which-Id
     Laufzeit:       Tiefe des Ziel Sekund"arpools * 10 + 10
-
-    [Querverweise]
-
-    <SfxItemPool::StoreSurrogate(SvStream&,const SfxPoolItem &)const>
 */
 
 {
@@ -907,48 +903,6 @@ const SfxPoolItem* SfxItemPool::LoadSurrogate
     return 0;
 }
 
-//-------------------------------------------------------------------------
-
-
-bool SfxItemPool::StoreSurrogate
-(
-    SvStream&           rStream,
-    const SfxPoolItem*  pItem
-)   const
-
-/*  [Beschreibung]
-
-    Speichert ein Surrogat f"ur '*pItem' in 'rStream'.
-
-
-    [R"uckgabewert]
-
-    bool                TRUE
-                            es wurde ein echtes Surrogat gespeichert, auch
-                            SFX_ITEMS_NULL bei 'pItem==0',
-                            SFX_ITEMS_STATICDEFAULT und SFX_ITEMS_POOLDEFAULT
-                            gelten als 'echte' Surrogate
-
-                            FALSE
-                            es wurde ein Dummy-Surrogat (SFX_ITEMS_DIRECT)
-                            gespeichert, das eigentliche Item mu\s direkt
-                            hinterher selbst gespeichert werden
-*/
-
-{
-    if ( pItem )
-    {
-        bool bRealSurrogate = IsItemFlag(*pItem, SFX_ITEM_POOLABLE);
-        rStream << ( bRealSurrogate
-                        ? GetSurrogate( pItem )
-                        : (UINT16) SFX_ITEMS_DIRECT );
-        return bRealSurrogate;
-    }
-
-    rStream << (UINT16) SFX_ITEMS_NULL;
-    return TRUE;
-}
-
 // -----------------------------------------------------------------------
 
 USHORT SfxItemPool::GetSurrogate(const SfxPoolItem *pItem) const
@@ -980,14 +934,6 @@ USHORT SfxItemPool::GetSurrogate(const SfxPoolItem *pItem) const
     }
     SFX_ASSERT( 0, pItem->Which(), "Item nicht im Pool");
     return SFX_ITEMS_NULL;
-}
-
-// -----------------------------------------------------------------------
-
-bool SfxItemPool::IsInStoringRange( USHORT nWhich ) const
-{
-    return nWhich >= pImp->nStoringStart &&
-           nWhich <= pImp->nStoringEnd;
 }
 
 // -----------------------------------------------------------------------
