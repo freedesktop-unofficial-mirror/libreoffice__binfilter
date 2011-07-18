@@ -82,10 +82,6 @@ public:
     USHORT          GetErrorCode()
                     { return nErrno; }
 
-                    // store the whole configuration into a storage
-                    // pStore == NULL means store into own storage
-    BOOL            StoreConfiguration( SotStorage* pStorage=NULL );
-
     BOOL            LoadConfigItem( SfxConfigItem& );
     BOOL            StoreConfigItem( SfxConfigItem& );
     BOOL            StoreAlwaysConfigItem( SfxConfigItem& );

@@ -251,27 +251,6 @@ SvtAddXMLToStorageOptions::~SvtAddXMLToStorageOptions()
         delete m_pDataContainer, m_pDataContainer = 0;
 }
 
-sal_Bool SvtAddXMLToStorageOptions::IsWriter_Add_XML_to_Storage() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsWriter_Add_XML_to_Storage();
-}
-sal_Bool SvtAddXMLToStorageOptions::IsCalc_Add_XML_to_Storage() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsCalc_Add_XML_to_Storage();
-}
-sal_Bool SvtAddXMLToStorageOptions::IsImpress_Add_XML_to_Storage() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsImpress_Add_XML_to_Storage();
-}
-sal_Bool SvtAddXMLToStorageOptions::IsDraw_Add_XML_to_Storage() const
-{
-    MutexGuard aGuard( GetOwnStaticMutex() );
-    return m_pDataContainer->IsDraw_Add_XML_to_Storage();
-}
-
 //*****************************************************************************************************************
 //  private method
 //*****************************************************************************************************************

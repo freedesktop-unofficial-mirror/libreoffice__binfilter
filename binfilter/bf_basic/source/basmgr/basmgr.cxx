@@ -1178,35 +1178,6 @@ BasicLibInfo* BasicManager::CreateLibInfo()
     return pInf;
 }
 
-BOOL BasicManager::CopyBasicData( SotStorage* pStorFrom, const String& rSourceURL, const String& rBaseURL, SotStorage* pStorTo )
-{
-    /*-----------------------------------------------------------------
-     Diese Methode wird vom SXF gerufen bei 'Datei speichern unter',
-     damit die Basic-Storages kopiert werden.
-     Neu: ggf. muessen relative Pfade angepasst werden!
-    ------------------------------------------------------------------*/
-    BOOL bOk = TRUE;
-
-    // bei remote Dokumenten identische Storage
-    if ( pStorFrom != pStorTo )
-    {
-        if( pStorFrom->IsStorage( BasicStreamName ) )
-            bOk = pStorFrom->CopyTo( BasicStreamName, pStorTo, BasicStreamName );
-        if( bOk && pStorFrom->IsStream( ManagerStreamName ) )
-        {
-            BasicManager aBasMgr;
-            // Die aktuelle Base-URL ist die vom speichern...
-            String aStorName( pStorFrom->GetName() );
-            DBG_ASSERT( aStorName.Len(), "No Storage Name!" );
-
-            aBasMgr.LoadBasicManager( *pStorFrom, rSourceURL, FALSE );
-            aBasMgr.Store( *pStorTo, rBaseURL, FALSE );
-        }
-    }
-
-    return bOk;
-}
-
 BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
 {
     DBG_CHKTHIS( BasicManager, 0 );

@@ -189,7 +189,6 @@ public:
 
 
     static BOOL     HasBasicWithModules( const SotStorage& rStorage, const String& rBaseURL );
-    static BOOL     CopyBasicData( SotStorage* pFrom, const String& rSourceURL, const String& rBaseURL, SotStorage* pTo);
 
     USHORT          GetLibCount() const;
     StarBASIC*      GetLib( USHORT nLib ) const;

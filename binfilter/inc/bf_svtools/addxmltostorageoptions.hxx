@@ -96,27 +96,6 @@ class  SvtAddXMLToStorageOptions: public Options
          SvtAddXMLToStorageOptions();
         virtual ~SvtAddXMLToStorageOptions();
 
-        //---------------------------------------------------------------------------------------------------------
-        //  interface
-        //---------------------------------------------------------------------------------------------------------
-
-        /*-****************************************************************************************************//**
-            @short      interface methods to get value of config key
-            @descr
-
-            @seealso    -
-
-            @param
-            @return     The values which represent current state of internal variable.
-
-            @onerror    No error should occurre!
-        *//*-*****************************************************************************************************/
-
-        sal_Bool IsWriter_Add_XML_to_Storage() const;
-        sal_Bool IsCalc_Add_XML_to_Storage() const;
-        sal_Bool IsImpress_Add_XML_to_Storage() const;
-        sal_Bool IsDraw_Add_XML_to_Storage() const;
-
     //-------------------------------------------------------------------------------------------------------------
     //  private methods
     //-------------------------------------------------------------------------------------------------------------

@@ -376,7 +376,6 @@ public:
     void                        SetProgress_Impl( SfxProgress *pProgress );
     sal_uInt16&                 GetAktViewNo() { return nViewNo; }
     void                        SetActivateEvent_Impl(sal_uInt16 );
-    bool                    SaveWindows_Impl( SvStorage &rStor ) const;
 #endif
 };
 

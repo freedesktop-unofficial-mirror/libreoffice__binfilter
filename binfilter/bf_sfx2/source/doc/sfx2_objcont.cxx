@@ -95,14 +95,6 @@ using namespace ::com::sun::star::uno;
 /*?*/ { return NULL;
 /*?*/ }
 
-/*N*/ bool SfxObjectShell::SaveWindows_Impl( SvStorage & /*rStor*/ ) const
-/*N*/ {
-/*N*/       return FALSE;
-/*N*/ }
-
-//====================================================================
-
-
 //====================================================================
 
 /*N*/ void SfxObjectShell::UpdateDocInfoForSave()
