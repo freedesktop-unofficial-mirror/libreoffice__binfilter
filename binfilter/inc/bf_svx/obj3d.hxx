@@ -257,7 +257,6 @@ class E3dObject : public SdrAttrObj
     // diese Funktionen schreiben nur die Member von E3dObject wird auch von E3dSphere
     // gerufen.
     void ReadOnlyOwnMembers(const SdrObjIOHeader& rHead, SvStream& rIn);
-    void WriteOnlyOwnMembers(SvStream& rOut) const;
 
     // Selektion Setzen/Lesen
     BOOL GetSelected() { return bIsSelected; }

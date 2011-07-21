@@ -51,7 +51,6 @@ private:
                     const SfxConfigManager& operator=( const SfxConfigManager& );
 
     BOOL            LoadConfiguration( SotStorage& rStorage );
-    BOOL            StoreConfiguration_Impl( SotStorage* pStorage=NULL );
 
 public:
                     enum Error {
@@ -76,17 +75,11 @@ public:
                     SfxConfigManager( SfxObjectShell& rDoc );
                     ~SfxConfigManager();
 
-    SotStorage*     GetConfigurationStorage( SotStorage* );
-
     void            AddConfigItem( SfxConfigItem& rCItem );
     void            RemoveConfigItem( SfxConfigItem& rCItem );
     SfxConfigItem*  GetNextItem( SfxConfigItem& rCItem );
     USHORT          GetErrorCode()
                     { return nErrno; }
-
-                    // store the whole configuration into a storage
-                    // pStore == NULL means store into own storage
-    BOOL            StoreConfiguration( SotStorage* pStorage=NULL );
 
     BOOL            LoadConfigItem( SfxConfigItem& );
     BOOL            StoreConfigItem( SfxConfigItem& );

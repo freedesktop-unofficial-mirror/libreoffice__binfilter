@@ -364,24 +364,6 @@ void SwXMLImport::setTextInsertMode(
     GetTextImport()->SetCursor( xTextCursor );
 }
 
-void SwXMLImport::setStyleInsertMode( sal_uInt16 nFamilies,
-                                      sal_Bool bOverwrite )
-{
-    bInsert = !bOverwrite;
-    nStyleFamilyMask = nFamilies;
-    bLoadDoc = sal_False;
-}
-
-void SwXMLImport::setBlockMode( )
-{
-    bBlock = sal_True;
-}
-
-void SwXMLImport::setOrganizerMode( )
-{
-    bOrganizerMode = sal_True;
-}
-
 const Sequence< sal_Int8 > & SwXMLImport::getUnoTunnelId() throw()
 {
     static uno::Sequence< sal_Int8 > aSeq = ::binfilter::CreateUnoTunnelId();

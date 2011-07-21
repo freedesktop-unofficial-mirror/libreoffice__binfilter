@@ -165,8 +165,7 @@ protected:
     BasicLibInfo*   FindLibInfo( StarBASIC* pBasic ) const;
     void            CheckModules( StarBASIC* pBasic, BOOL bReference ) const;
     void            SetFlagToAllLibs( short nFlag, BOOL bSet ) const;
-                    BasicManager(); // Nur zum anpassen von Pfaden bei 'Speichern unter'.
-                    ~BasicManager();
+    ~BasicManager();
 
 public:
                     TYPEINFO();
@@ -189,7 +188,6 @@ public:
 
 
     static BOOL     HasBasicWithModules( const SotStorage& rStorage, const String& rBaseURL );
-    static BOOL     CopyBasicData( SotStorage* pFrom, const String& rSourceURL, const String& rBaseURL, SotStorage* pTo);
 
     USHORT          GetLibCount() const;
     StarBASIC*      GetLib( USHORT nLib ) const;

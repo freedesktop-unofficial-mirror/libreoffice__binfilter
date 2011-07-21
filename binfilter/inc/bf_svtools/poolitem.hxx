@@ -264,17 +264,6 @@ public:
      */
     static bool readUnicodeString(SvStream & rStream, UniString & rString,
                                   bool bUnicode);
-
-    /** Write a Unicode string representation of a Unicode string into a
-        stream.
-
-        @param rStream  Some (output) stream.
-
-        @param rString  Some Unicode string.
-     */
-    static void writeUnicodeString(SvStream & rStream,
-                                   UniString const & rString);
-
 private:
     SfxPoolItem&             operator=( const SfxPoolItem& );    // n.i.!!
 };

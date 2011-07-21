@@ -487,39 +487,6 @@ static const char pStarMathDoc[] = "StarMathDocument";
 /*N*/   return bRet;
 /*N*/ }
 
-
-
-
-//------------------------------------------------------------------
-
-/*N*/ void SmDocShell::ImplSave( SvStorageStreamRef xStrm )
-/*N*/ {
-/*N*/     String aTmp( aText );
-/*N*/     if (SOFFICE_FILEFORMAT_50 >= xStrm->GetVersion())
-/*N*/         ConvertText( aTmp, CONVERT_60_TO_50 );
-/*N*/     ByteString exString( ExportString( aTmp ) );
-/*N*/
-/*N*/   *xStrm  << SM304AIDENT << SM50VERSION
-/*N*/           << 'T';
-/*N*/   xStrm->WriteByteString(exString);
-/*N*/   *xStrm  << 'F' << aFormat
-/*N*/             << 'S';
-/*N*/     xStrm->WriteByteString( ExportString(C2S("unknown")) );
-/*N*/     *xStrm  << (USHORT) 0
-/*N*/           << '\0';
-/*N*/ }
-
-/*N*/ void SmDocShell::UpdateText()
-/*N*/ {
-/*N*/     if (pEditEngine && pEditEngine->IsModified())
-/*N*/     {
-/*N*/         String aEngTxt( pEditEngine->GetText( LINEEND_LF ) );
-/*N*/         if (GetText() != aEngTxt)
-/*N*/             SetText( aEngTxt );
-/*N*/     }
-/*N*/ }
-
-
 /*N*/ void SmDocShell::HandsOff()
 /*N*/ {
 /*N*/   SfxInPlaceObject::HandsOff();

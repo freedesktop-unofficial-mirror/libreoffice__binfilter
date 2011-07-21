@@ -8,7 +8,6 @@ UDK_3_0_0 {
         CreateObjSwGlobalDocShellDll;
         InitSwDll;
         DeInitSwDll;
-        component_getImplementationEnvironment;
         component_getFactory;
     local:
         *;

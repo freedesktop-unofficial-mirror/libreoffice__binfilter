@@ -522,24 +522,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*N*/   return nOutCount;
 /*N*/ }
 
-/*N*/ void lcl_SaveOldFieldArr( SvStream& rStream,
-/*N*/                           const uno::Reference<sheet::XDimensionsSupplier>& xSource,
-/*N*/                           USHORT nOrient, USHORT nColAdd, BOOL bAddData )
-/*N*/ {
-/*N*/   // PIVOT_MAXFIELD = max. number in old files
-/*N*/   PivotField aFields[PIVOT_MAXFIELD];
-/*N*/   USHORT nOutCount = lcl_FillOldFields( aFields, xSource, nOrient, nColAdd, bAddData );
-/*N*/
-/*N*/   rStream << nOutCount;
-/*N*/   for (USHORT i=0; i<nOutCount; i++)
-/*N*/   {
-/*N*/       rStream << (BYTE) 0x00
-/*N*/               << aFields[i].nCol
-/*N*/               << aFields[i].nFuncMask
-/*N*/               << aFields[i].nFuncCount;
-/*N*/   }
-/*N*/ }
-
 /*N*/ BOOL ScDPObject::LoadNew(SvStream& rStream, ScMultipleReadHeader& rHdr )
 /*N*/ {
 /*N*/   rHdr.StartEntry();

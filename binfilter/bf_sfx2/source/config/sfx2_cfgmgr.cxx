@@ -154,11 +154,6 @@ static const char pStorageName[] = "Configurations";
 
 // ------------------------------------------------------------------------
 
-/*?*/ SotStorage* SfxConfigManager::GetConfigurationStorage( SotStorage* pDocStor )
-/*?*/ {
-/*?*/   return pDocStor->OpenSotStorage( String::CreateFromAscii(pStorageName), STREAM_STD_READWRITE );
-/*?*/ }
-
 /*?*/ void SfxConfigManager::SetModified(BOOL /*bMod*/)
 /*?*/ {DBG_BF_ASSERT(0, "STRIP");
 /*?*/ }
@@ -223,94 +218,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/
 /*N*/     return TRUE;
 /*N*/ }
-
-/*N*/ BOOL SfxConfigManager::StoreConfiguration( SotStorage* pStorage )
-/*N*/ {
-/*N*/     // What about the Modified flag ?! ( see also appmisc, config dialog, objcont! )
-/*N*/     BOOL bOwnSaveDone = FALSE;
-/*N*/     BOOL bRet = TRUE;
-/*N*/     if ( m_xStorage.Is() )
-/*N*/     {
-/*N*/         // first update own storage
-/*N*/         bRet = !bModified || (StoreConfiguration_Impl( m_xStorage ) && m_xStorage->Commit());
-/*N*/         bOwnSaveDone = TRUE;
-/*N*/         if ( !pStorage && pObjShell )
-/*N*/         {
-/*?*/             // pStorage == NULL means : storage of document should be updated also
-/*?*/             SotStorage* pDocumentStorage = pObjShell->GetStorage();
-/*?*/             if ( !pDocumentStorage->IsOLEStorage() )
-/*?*/             {
-/*?*/                 // use the configuration substorage of the document
-/*?*/                 SotStorageRef xCfgStorage = pDocumentStorage->OpenSotStorage(
-/*?*/                         String::CreateFromAscii(pStorageName), STREAM_STD_READWRITE, STORAGE_TRANSACTED );
-/*?*/                 bRet = m_xStorage->CopyTo( xCfgStorage ) && xCfgStorage->Commit();
-/*?*/             }
-/*?*/             else
-/*?*/             {
-/*?*/                 // 5.0 format : store compact configuration stream
-/*?*/                 SfxConfigManagerImExport_Impl aExporter( pObjShell, pItemArr );
-/*?*/                 nErrno = aExporter.Export( m_xStorage, pDocumentStorage );
-/*?*/                 bRet = ( nErrno == ERR_NO );
-/*?*/             }
-/*?*/
-/*?*/             if ( bRet )
-/*?*/             {
-/*?*/                 // can't commit changes if the documents' storage is under control of the document
-/*?*/                 if( pObjShell->GetCreateMode() == SFX_CREATE_MODE_ORGANIZER )
-/*?*/                     bRet = pDocumentStorage->Commit();
-/*?*/                 else
-/*?*/                 {
-/*?*/                   // The configuration will be stored together the document, so the modified flag
-/*?*/                   // must remain set!
-/*?*/                     return TRUE;
-/*?*/                 }
-/*?*/             }
-/*N*/         }
-/*N*/
-/*N*/         if ( (bRet && !pStorage) || pStorage == (SotStorage*) m_xStorage )
-/*N*/         {
-/*N*/             // only storing into own storage was requested
-/*N*/             bModified = FALSE;
-/*N*/             return TRUE;
-/*N*/         }
-/*N*/     }
-/*N*/   else
-/*?*/       DBG_ASSERT( pStorage, "Can't save configuration!" );
-/*?*/
-/*?*/     if ( !bRet || !pStorage )
-/*?*/       return FALSE;
-/*?*/
-/*?*/     // store also into storage passed as parameter, but don't commit the changes,  because this will be done by the caller
-/*?*/     if ( !pStorage->IsOLEStorage() )
-/*?*/   {
-/*?*/         // 6.0 format
-/*?*/         if ( bOwnSaveDone )
-/*?*/         {
-/*?*/             // if own storage is updated, just copy it to the destination storage
-/*?*/             bRet = m_xStorage->CopyTo( pStorage );
-/*?*/         }
-/*?*/         else
-/*?*/         {
-/*?*/             bRet = StoreConfiguration_Impl( pStorage );
-/*?*/         }
-/*?*/   }
-/*?*/   else
-/*?*/   {
-/*?*/         // 5.0 format : store compact configuration stream
-/*?*/       SfxConfigManagerImExport_Impl aExporter( pObjShell, pItemArr );
-/*?*/         nErrno = aExporter.Export( m_xStorage, pStorage );
-/*?*/         bRet = ( nErrno == ERR_NO );
-/*?*/   }
-/*?*/
-/*?*/   bModified = !bRet;
-/*?*/     return bRet;
-/*N*/ }
-
-/*?*/ BOOL SfxConfigManager::StoreConfiguration_Impl( SotStorage* /*pStorage*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/     BOOL bRet = TRUE;
-/*?*/     return bRet;
-/*?*/ }
 
 // ----------------------------------------------------------------------------
 

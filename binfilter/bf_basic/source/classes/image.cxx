@@ -305,14 +305,6 @@ SbiImage::ReleaseLegacyBuffer()
     nLegacyCodeSize = 0;
 }
 
-BOOL
-SbiImage::ExceedsLegacyLimits()
-{
-    if ( ( nStringSize > 0xFF00L ) || ( CalcLegacyOffset( nCodeSize ) > 0xFF00L ) )
-        return TRUE;
-    return FALSE;
-}
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

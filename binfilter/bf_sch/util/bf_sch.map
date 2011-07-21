@@ -23,7 +23,6 @@ UDK_3_0_0 {
         SchConvertChartRangeForCalc;
         SchMemChartResetTranslation;
         SchMemChartUpdateTranslation;
-        component_getImplementationEnvironment;
         component_getFactory;
     local:
         *;

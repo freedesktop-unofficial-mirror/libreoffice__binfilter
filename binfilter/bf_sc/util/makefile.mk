@@ -36,6 +36,7 @@ NO_HIDS=TRUE
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_sc
 IENV!:=$(IENV);..$/res
 
@@ -154,7 +155,6 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     @echo   CreateObjScDocShellDll @21                         >>$@
     @echo   InitScDll @22                                          >>$@
     @echo   DeInitScDll @23                                        >>$@
-    @echo   component_getImplementationEnvironment @24             >>$@
     @echo   component_getFactory @26                               >>$@
 .ENDIF
 .IF "$(OPTLINKS)" == "YES"
@@ -174,7 +174,6 @@ $(MISC)$/$(SHL1TARGET).def:  makefile.mk
     @echo   _CreateObjScDocShellDll                             >>$@
     @echo   _InitScDll                                              >>$@
     @echo   _DeInitScDll                                            >>$@
-    @echo   _component_getImplementationEnvironment                 >>$@
     @echo   _component_getFactory                                   >>$@
 .ENDIF
 

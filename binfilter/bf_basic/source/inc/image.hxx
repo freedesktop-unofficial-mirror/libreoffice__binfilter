@@ -92,8 +92,6 @@ public:
     UINT16      CalcLegacyOffset( INT32 nOffset );
     UINT32      CalcNewOffset( INT16 nOffset );
     void        ReleaseLegacyBuffer();
-    BOOL        ExceedsLegacyLimits();
-
 };
 
 #define SBIMG_EXPLICIT      0x0001  // OPTION EXPLICIT ist aktiv

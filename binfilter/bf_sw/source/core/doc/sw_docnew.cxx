@@ -737,11 +737,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/     }
 /*N*/ }
 
-/*N*/ void SwDoc::WriteLayoutCache( SvStream& rStream )
-/*N*/ {
-/*N*/     pLayoutCache->Write( rStream, *this );
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

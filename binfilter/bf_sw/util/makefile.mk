@@ -41,6 +41,7 @@ USE_LDUMP2=TRUE
 # --- Settings ------------------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_sw
 
 DESK=T
@@ -161,7 +162,6 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo   CreateObjSwGlobalDocShellDll @23                         >>$@
     @echo   InitSwDll @24                                          >>$@
     @echo   DeInitSwDll @25                                        >>$@
-    @echo   component_getImplementationEnvironment @50				>>$@
     @echo   component_getFactory @52								>>$@
 
 .ENDIF
@@ -188,7 +188,6 @@ $(MISC)$/$(SHL2TARGET).def:  makefile.mk
     @echo   _CreateObjSwGlobalDocShellDll                           >>$@
     @echo   _InitSwDll                                              >>$@
     @echo   _DeInitSwDll                                            >>$@
-    @echo   _component_getImplementationEnvironment                 >>$@
     @echo   _component_getFactory    			            >>$@
 
 .ENDIF

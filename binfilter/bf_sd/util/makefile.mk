@@ -36,6 +36,7 @@ NO_HIDS=TRUE
 # --- Settings -----------------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_sd
 
 .IF "$(GUI)"=="WIN"
@@ -133,7 +134,6 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo   CreateObjSdGraphicDocShellDll @23                      >>$@
     @echo   InitSdDll @24                                          >>$@
     @echo   DeInitSdDll @25                                        >>$@
-    @echo component_getImplementationEnvironment 				   >>$@
     @echo component_getFactory									   >>$@
 .ENDIF
 
@@ -152,7 +152,6 @@ $(MISC)$/$(SHL1TARGET).def:
     @echo   _CreateObjSdGraphicDocShellDll                          >>$@
     @echo   _InitSdDll                                              >>$@
     @echo   _DeInitSdDll                                            >>$@
-    @echo _component_getImplementationEnvironment 		    >>$@
     @echo _component_getFactory					    >>$@
 .ENDIF
 

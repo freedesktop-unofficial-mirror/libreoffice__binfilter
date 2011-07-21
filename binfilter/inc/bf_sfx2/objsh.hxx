@@ -177,7 +177,6 @@ private:
     sal_Bool                    SaveTo_Impl(SfxMedium &rMedium, const SfxItemSet* pSet, BOOL bPrepareForDirectAccess );
     sal_Bool                    ConnectTmpStorage_Impl( SvStorage* pStg);
     sal_Bool                    IsOwnStorageFormat_Impl(const SfxMedium &) const;
-    sal_Bool                    SaveInfoAndConfig_Impl( SvStorageRef pNewStg );
 #endif
 
 protected:
@@ -186,9 +185,6 @@ protected:
 
     virtual void                ModifyChanged();
     virtual sal_Bool            Close();
-
-    // add optional to the storage the XML format as a zip stream
-    void                        AddXMLAsZipToTheStorage( SvStorage& rRoot );
 
 public:
                                 TYPEINFO();
@@ -380,7 +376,6 @@ public:
     void                        SetProgress_Impl( SfxProgress *pProgress );
     sal_uInt16&                 GetAktViewNo() { return nViewNo; }
     void                        SetActivateEvent_Impl(sal_uInt16 );
-    bool                    SaveWindows_Impl( SvStorage &rStor ) const;
 #endif
 };
 

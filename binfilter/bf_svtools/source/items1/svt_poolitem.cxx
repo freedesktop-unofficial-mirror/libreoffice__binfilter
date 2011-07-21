@@ -240,14 +240,6 @@ bool SfxPoolItem::readUnicodeString(SvStream & rStream, UniString & rString,
     return rStream.GetError() == ERRCODE_NONE;
 }
 
-//============================================================================
-// static
-void SfxPoolItem::writeUnicodeString(SvStream & rStream,
-                                     UniString const & rString)
-{
-    rStream.WriteByteString(rString, RTL_TEXTENCODING_UCS2);
-}
-
 // ------------------------------------------------------------------------
 SfxItemPresentation SfxPoolItem::GetPresentation
 (

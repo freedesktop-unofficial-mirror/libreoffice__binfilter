@@ -115,7 +115,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/
 /*N*/   ScAfVersions();
 /*N*/   void Load( SvStream& rStream, USHORT nVer );
-/*N*/   static void Write(SvStream& rStream);
 /*N*/ };
 
 /*N*/ ScAfVersions::ScAfVersions() :
@@ -168,35 +167,6 @@ const USHORT AUTOFORMAT_OLD_ID_NEW  = 4203;
 /*N*/   }
 /*N*/   rStream >> nNumFmtVersion;
 /*N*/ }
-
-/*N*/ void ScAfVersions::Write(SvStream& rStream)
-/*N*/ {
-/*N*/   rStream << SvxFontItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxFontHeightItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxWeightItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxPostureItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxUnderlineItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxCrossedOutItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxContourItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxShadowedItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxColorItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxBoxItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxBrushItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/
-/*N*/   rStream << SvxAdjustItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/
-/*N*/   rStream << SvxHorJustifyItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxVerJustifyItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxOrientationItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxMarginItem().GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SfxBoolItem(ATTR_LINEBREAK).GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SfxInt32Item(ATTR_ROTATE_VALUE).GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/   rStream << SvxRotateModeItem(SVX_ROTATE_MODE_STANDARD,0).GetVersion(SOFFICE_FILEFORMAT_40);
-/*N*/
-/*N*/   rStream << (USHORT)0;       // Num-Format
-/*N*/ }
-
-//  ---------------------------------------------------------------------------
 
 /*N*/  ScAutoFormatDataField::ScAutoFormatDataField() :
 /*N*/      aCJKFont( ATTR_CJK_FONT ),

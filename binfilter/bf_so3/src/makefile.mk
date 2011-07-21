@@ -32,6 +32,7 @@ TARGET=so3_src
 # --- Settings -----------------------------------------------------
 
 .INCLUDE :  settings.mk
+alllangiso=en-US
 
 RSCFLAGS+=-I$(PRJ)$/inc
 

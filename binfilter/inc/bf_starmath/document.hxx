@@ -147,7 +147,6 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
     virtual void        OnDocumentPrinterChanged( Printer * );
     virtual BOOL        InitNew(SvStorage *);
     virtual BOOL        Load(SvStorage *);
-            void        ImplSave(  SvStorageStreamRef xStrm  );
     virtual BOOL        Save() {return false;}
     virtual void        HandsOff();
 
@@ -160,10 +159,6 @@ class SmDocShell : public SfxObjectShell, public SfxInPlaceObject,
     BOOL                IsFormulaArranged() const { return bIsFormulaArranged; }
     void                SetFormulaArranged(BOOL bVal) { bIsFormulaArranged = bVal; }
     void                ArrangeFormula();
-
-
-
-    void                UpdateText();
 
 public:
     TYPEINFO();

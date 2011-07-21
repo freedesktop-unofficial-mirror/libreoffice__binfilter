@@ -582,40 +582,6 @@ static const char* aRootName = "Office.Math";
 /*N*/     return aRes;
 /*N*/ }
 
-
-/*N*/ void SmMathConfig::SaveFontFormatList()
-/*N*/ {
-/*N*/     SmFontFormatList &rFntFmtList = GetFontFormatList();
-/*N*/
-/*N*/     if (!rFntFmtList.IsModified())
-/*N*/         return;
-/*N*/
-/*?*/     SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ) );
-/*?*/
-/*?*/     Sequence< OUString > aNames = lcl_GetFontPropertyNames();
-/*?*/     INT32 nSymbolProps = aNames.getLength();
-/*?*/
-/*?*/     USHORT nCount = rFntFmtList.GetCount();
-/*?*/
-/*?*/     Sequence< PropertyValue > aValues( nCount * nSymbolProps );
-/*?*/     PropertyValue *pValues = aValues.getArray();
-/*?*/
-/*?*/     PropertyValue *pVal = pValues;
-/*?*/     OUString aDelim( OUString::valueOf( (sal_Unicode) '/' ) );
-/*?*/     for (USHORT i = 0;  i < nCount;  ++i)
-/*?*/     {
-/*?*/         DBG_BF_ASSERT(0, "STRIP");
-/*?*/     }
-/*?*/     DBG_ASSERT( pVal - pValues == nCount * nSymbolProps, "properties missing" );
-/*?*/     (void)pVal;
-/*?*/     aCfg.ReplaceSetProperties( A2OU( FONT_FORMAT_LIST ) , aValues );
-/*?*/
-/*?*/     rFntFmtList.SetModified( FALSE );
-/*N*/ }
-
-
-
-
 /*N*/ void SmMathConfig::LoadOther()
 /*N*/ {
 /*N*/     if (!pOther)
@@ -675,46 +641,6 @@ static const char* aRootName = "Office.Math";
 /*N*/         DBG_ASSERT( pVal - pValues == nProps, "property mismatch" );
 /*N*/         SetOtherModified( FALSE );
 /*N*/     }
-/*N*/ }
-
-
-/*N*/ void SmMathConfig::SaveOther()
-/*N*/ {
-/*N*/     if (!pOther || !IsOtherModified())
-/*N*/         return;
-/*N*/
-/*?*/   SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ));
-/*?*/
-/*?*/     const Sequence< OUString > aNames( aCfg.GetOtherPropertyNames() );
-/*?*/     INT32 nProps = aNames.getLength();
-/*?*/
-/*?*/     Sequence< Any > aValues( nProps );
-/*?*/     Any *pValues = aValues.getArray();
-/*?*/     Any *pValue  = pValues;
-/*?*/
-/*?*/     // Print/Title
-/*?*/     *pValue++ <<= (BOOL) pOther->bPrintTitle;
-/*?*/     // Print/FormulaText
-/*?*/     *pValue++ <<= (BOOL) pOther->bPrintFormulaText;
-/*?*/     // Print/Frame
-/*?*/     *pValue++ <<= (BOOL) pOther->bPrintFrame;
-/*?*/     // Print/Size
-/*?*/     *pValue++ <<= (INT16) pOther->ePrintSize;
-/*?*/     // Print/ZoomFactor
-/*?*/     *pValue++ <<= (INT16) pOther->nPrintZoomFactor;
-/*?*/     // Misc/IgnoreSpacesRight
-/*?*/     *pValue++ <<= (BOOL) pOther->bIgnoreSpacesRight;
-/*?*/     // View/ToolboxVisible
-/*?*/     *pValue++ <<= (BOOL) pOther->bToolboxVisible;
-/*?*/     // View/AutoRedraw
-/*?*/     *pValue++ <<= (BOOL) pOther->bAutoRedraw;
-/*?*/     // View/FormulaCursor
-/*?*/     *pValue++ <<= (BOOL) pOther->bFormulaCursor;
-/*?*/
-/*?*/     DBG_ASSERT( pValue - pValues == nProps, "property mismatch" );
-/*?*/     aCfg.PutProperties( aNames , aValues );
-/*?*/
-/*?*/     SetOtherModified( FALSE );
 /*N*/ }
 
 /*N*/ void SmMathConfig::LoadFormat()
@@ -800,57 +726,6 @@ static const char* aRootName = "Office.Math";
 /*N*/         SetFormatModified( FALSE );
 /*N*/     }
 /*N*/ }
-
-
-/*N*/ void SmMathConfig::SaveFormat()
-/*N*/ {
-/*N*/     if (!pFormat || !IsFormatModified())
-/*N*/         return;
-/*N*/
-/*?*/   SmMathConfigItem aCfg( String::CreateFromAscii( aRootName ));
-/*?*/
-/*?*/     const Sequence< OUString > aNames( aCfg.GetFormatPropertyNames() );
-/*?*/     INT32 nProps = aNames.getLength();
-/*?*/
-/*?*/     Sequence< Any > aValues( nProps );
-/*?*/     Any *pValues = aValues.getArray();
-/*?*/     Any *pValue  = pValues;
-/*?*/
-/*?*/     // StandardFormat/Textmode
-/*?*/     *pValue++ <<= (BOOL) pFormat->IsTextmode();
-/*?*/     // StandardFormat/ScaleNormalBracket
-/*?*/     *pValue++ <<= (BOOL) pFormat->IsScaleNormalBrackets();
-/*?*/     // StandardFormat/HorizontalAlignment
-/*?*/     *pValue++ <<= (INT16) pFormat->GetHorAlign();
-/*?*/     // StandardFormat/BaseSize
-/*?*/     *pValue++ <<= (INT16) SmRoundFraction( Sm100th_mmToPts(
-/*?*/                                     pFormat->GetBaseSize().Height() ) );
-/*?*/
-/*?*/     USHORT i;
-/*?*/     for (i = SIZ_BEGIN;  i <= SIZ_END;  ++i)
-/*?*/         *pValue++ <<= (INT16) pFormat->GetRelSize( i );
-/*?*/
-/*?*/     for (i = DIS_BEGIN;  i <= DIS_END;  ++i)
-/*?*/         *pValue++ <<= (INT16) pFormat->GetDistance( i );
-/*?*/
-/*?*/     for (i = FNT_BEGIN;  i < FNT_END;  ++i)
-/*?*/     {
-/*?*/         OUString aFntFmtId;
-/*?*/
-/*?*/         if (!pFormat->IsDefaultFont( i ))
-/*?*/         {
-/*?*/             DBG_BF_ASSERT(0, "STRIP");
-/*?*/         }
-/*?*/
-/*?*/         *pValue++ <<= aFntFmtId;
-/*?*/     }
-/*?*/
-/*?*/     DBG_ASSERT( pValue - pValues == nProps, "property mismatch" );
-/*?*/     aCfg.PutProperties( aNames , aValues );
-/*?*/
-/*?*/     SetFormatModified( FALSE );
-/*N*/ }
-
 
 /*N*/ const SmFormat & SmMathConfig::GetStandardFormat() const
 /*N*/ {

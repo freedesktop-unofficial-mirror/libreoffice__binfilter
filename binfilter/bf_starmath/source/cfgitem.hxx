@@ -191,11 +191,8 @@ class SmMathConfig
     void    LoadSymbols();
 
     void    LoadOther();
-    void    SaveOther();
     void    LoadFormat();
-    void    SaveFormat();
     void    LoadFontFormatList();
-    void    SaveFontFormatList();
 
 
 

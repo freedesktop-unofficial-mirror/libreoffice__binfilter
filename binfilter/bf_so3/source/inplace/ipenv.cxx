@@ -508,38 +508,6 @@ void SvContainerEnvironment::Scroll( const Size & rSize )
 }
 
 /************************************************************************
-|*    SvContainerEnvironment::SetTopToolFramePixel()
-
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::SetTopToolFramePixel( const SvBorder & rBorder )
-{
-    if( rBorder != aTopBorder )
-    {
-        aTopBorder = rBorder;
-        if( pIPEnv )
-            // InPlace-Objekt fragt nach rOuter, deshalb vorher setzen
-            pIPEnv->DoTopWinResize();
-    }
-}
-
-/************************************************************************
-|*    SvContainerEnvironment::SetDocToolFramePixel()
-
-|*    Beschreibung
-*************************************************************************/
-void SvContainerEnvironment::SetDocToolFramePixel( const SvBorder & rBorder )
-{
-    if( rBorder != aDocBorder )
-    {
-        aDocBorder = rBorder;
-        if( pIPEnv )
-            // InPlace-Objekt fragt nach rOuter, deshalb vorher setzen
-            pIPEnv->DoDocWinResize();
-    }
-}
-
-/************************************************************************
 |*    SvContainerEnvironment::RequestTopToolSpacePixel()
 |*
 |*    Beschreibung

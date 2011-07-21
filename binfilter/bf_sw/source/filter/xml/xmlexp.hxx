@@ -163,8 +163,6 @@ public:
 #endif
     virtual ~SwXMLExport();
 
-    void setBlockMode();
-
     virtual sal_uInt32 exportDoc( enum ::binfilter::xmloff::token::XMLTokenEnum eClass = ::binfilter::xmloff::token::XML_TOKEN_INVALID );
 
     inline const SvXMLUnitConverter& GetTwipUnitConverter() const;

@@ -41,6 +41,7 @@ BMP_IN =$(BFPRJ)$/res
 
 # --- Settings -----------------------------------------------------
 .INCLUDE :  settings.mk
+alllangiso=en-US
 INC+= -I$(PRJ)$/inc$/bf_sch
 # --- Files --------------------------------------------------------
 
