@@ -891,15 +891,6 @@ BasicManager::BasicManager( StarBASIC* pSLib, String* pLibPath )
     bBasMgrModified = FALSE;
 }
 
-BasicManager::BasicManager()
-{
-    DBG_CTOR( BasicManager, 0 );
-    // Diese CTOR darf nur verwendet werden um bei 'Speichern unter'
-    // die relativen Pfade anzupassen, das gibt kein AppBasic und somit
-    // duerfen auch keine Libs geladen werden...
-    Init();
-}
-
 BOOL BasicManager::HasBasicWithModules( const SotStorage& rStorage, const String& rBaseURL )
 {
     if( !rStorage.IsStream( ManagerStreamName ) )

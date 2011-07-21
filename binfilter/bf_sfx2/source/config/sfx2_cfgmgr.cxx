@@ -219,12 +219,6 @@ static const char pStorageName[] = "Configurations";
 /*N*/     return TRUE;
 /*N*/ }
 
-/*?*/ BOOL SfxConfigManager::StoreConfiguration_Impl( SotStorage* /*pStorage*/ )
-/*?*/ {DBG_BF_ASSERT(0, "STRIP");
-/*?*/     BOOL bRet = TRUE;
-/*?*/     return bRet;
-/*?*/ }
-
 // ----------------------------------------------------------------------------
 
 /*N*/ void SfxConfigManager::AddConfigItem( SfxConfigItem& rCItem )

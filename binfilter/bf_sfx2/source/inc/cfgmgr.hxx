@@ -51,7 +51,6 @@ private:
                     const SfxConfigManager& operator=( const SfxConfigManager& );
 
     BOOL            LoadConfiguration( SotStorage& rStorage );
-    BOOL            StoreConfiguration_Impl( SotStorage* pStorage=NULL );
 
 public:
                     enum Error {

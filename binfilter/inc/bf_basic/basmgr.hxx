@@ -165,8 +165,7 @@ protected:
     BasicLibInfo*   FindLibInfo( StarBASIC* pBasic ) const;
     void            CheckModules( StarBASIC* pBasic, BOOL bReference ) const;
     void            SetFlagToAllLibs( short nFlag, BOOL bSet ) const;
-                    BasicManager(); // Nur zum anpassen von Pfaden bei 'Speichern unter'.
-                    ~BasicManager();
+    ~BasicManager();
 
 public:
                     TYPEINFO();
