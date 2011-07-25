@@ -38,8 +38,6 @@ class SwLayCacheImpl;
  *
  * This class allows to save layout information in the file and it contains
  * this information after loading of a file.
- * Call Write(..) with a stream and the document to save and the page break
- * information of the document will be written.
  * Call Read(..) with a stream and the member pLayCacheImpl will
  * read the information from the stream and store it in an internal structur.
  * There's a simple locking mechanism at these classes,
@@ -57,7 +55,6 @@ public:
     ~SwLayoutCache();
 
     void Read( SvStream &rStream );
-    void Write( SvStream &rStream, const SwDoc& rDoc );
 
     void ClearImpl();
     sal_Bool IsLocked() const { return nLockCount > 0; }
