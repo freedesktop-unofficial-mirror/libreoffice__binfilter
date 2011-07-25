@@ -634,99 +634,6 @@ enum ChartStyleV0
 /*N*/   return pGroup;
 /*N*/ }
 
-/*N*/ void ChartModel::PrepareOld3DStorage()
-/*N*/ {
-/*N*/   SfxItemSet aTmpSet(*pItemPool,nRowWhichPairs);
-/*N*/   aTmpSet.Put(XLineStyleItem(XLINE_SOLID));
-/*N*/   aTmpSet.Put(XLineWidthItem(0));
-/*N*/   aTmpSet.Put(XLineColorItem(String(), RGBColor(COL_BLACK)));
-/*N*/
-/*N*/
-/*N*/   long i,nCount=aDataRowAttrList.size();
-/*N*/   for (i=0;i<nCount;i++)
-/*N*/   {
-/*N*/       SfxItemSet *pDataRowAttr = new SfxItemSet (*pItemPool, nRowWhichPairs);
-/*N*/       pDataRowAttr->Put( *( aDataRowAttrList[ i ] ) );
-/*N*/       pDataRowAttr->Put(aTmpSet);
-/*N*/       aTmpDataRowAttrList.push_back( pDataRowAttr );
-/*N*/   }
-/*N*/
-/*N*/   SfxItemSet  *   pItemSet;
-/*N*/   nCount=aDataPointAttrList.size();
-/*N*/   for (i=0;i<nCount;i++)
-/*N*/    {
-/*N*/       SfxItemSet* pSet=new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/       pItemSet = aDataPointAttrList[ i ];
-/*N*/       if (pItemSet != NULL)
-/*N*/           pSet->Put(*pItemSet);
-/*N*/       pSet->Put(aTmpSet);
-/*N*/       aTmpDataPointAttrList.push_back( pSet );
-/*N*/    }
-/*N*/
-/*N*/   nCount=aSwitchDataPointAttrList.size();
-/*N*/   for (i=0;i<nCount;i++)
-/*N*/    {
-/*N*/       SfxItemSet* pSet=new SfxItemSet(*pItemPool, nRowWhichPairs);
-/*N*/       pItemSet = aSwitchDataPointAttrList[ i ];
-/*N*/       if (pItemSet != NULL)
-/*N*/           pSet->Put(*pItemSet);
-/*N*/       pSet->Put(aTmpSet);
-/*N*/       aTmpSwitchDataPointAttrList.push_back( pSet );
-/*N*/    }
-/*N*/ }
-/*N*/ void ChartModel::CleanupOld3DStorage()
-/*N*/ {
-/*N*/   long i,nCount = aTmpDataRowAttrList.size();
-/*N*/   for (i = 0 ; i < nCount; i++)
-/*N*/       delete aTmpDataRowAttrList[ i ];
-/*N*/   aTmpDataRowAttrList.clear();
-/*N*/
-/*N*/   nCount = aTmpDataPointAttrList.size();
-/*N*/   for (i = 0 ; i < nCount; i++)
-/*N*/       delete aTmpDataPointAttrList[ i ];
-/*N*/   aTmpDataPointAttrList.clear();
-/*N*/
-/*N*/   nCount = aTmpSwitchDataPointAttrList.size();
-/*N*/   for (i = 0 ; i < nCount; i++)
-/*N*/       delete aTmpSwitchDataPointAttrList[ i ];
-/*N*/   aTmpSwitchDataPointAttrList.clear();
-/*N*/ }
-/*************************************************************************
-|*
-|* Chart-Attribute speichern
-
-\************************************************************************/
-/*N*/ void ChartModel::PrepareAxisStorage()
-/*N*/ {
-/*N*/   if(pTmpXItems)
-/*?*/       delete pTmpXItems;
-/*N*/   if(pTmpYItems)
-/*?*/       delete pTmpYItems;
-/*N*/   if(pTmpZItems)
-/*?*/       delete pTmpZItems;
-/*N*/   //Leider muss das ummappen vorm speichern des pools stattfinden
-/*N*/   pTmpXItems = new SfxItemSet(*pItemPool,nCompatAxisWhichPairs);
-/*N*/   pTmpYItems = new SfxItemSet(*pItemPool,nCompatAxisWhichPairs);
-/*N*/   pTmpZItems = new SfxItemSet(*pItemPool,nCompatAxisWhichPairs);
-/*N*/
-/*N*/   pTmpXItems->Put(GetAttr(CHOBJID_DIAGRAM_X_AXIS));
-/*N*/   AxisAttrNew2Old(*pTmpXItems,CHOBJID_DIAGRAM_X_AXIS,TRUE);
-/*N*/
-/*N*/   pTmpYItems->Put(GetAttr(CHOBJID_DIAGRAM_Y_AXIS));
-/*N*/   AxisAttrNew2Old(*pTmpYItems,CHOBJID_DIAGRAM_Y_AXIS,TRUE);
-/*N*/
-/*N*/   pTmpZItems->Put(GetAttr(CHOBJID_DIAGRAM_Z_AXIS));
-/*N*/   AxisAttrNew2Old(*pTmpZItems,CHOBJID_DIAGRAM_Z_AXIS,TRUE);
-/*N*/
-/*N*/
-/*N*/   //Achse wird auf Attr-Basis gestreamt!
-/*N*/   pChartXAxis->FillItemSet();
-/*N*/   pChartYAxis->FillItemSet();
-/*N*/   pChartZAxis->FillItemSet();
-/*N*/   pChartBAxis->FillItemSet();
-/*N*/   pChartAAxis->FillItemSet();
-/*N*/ }
-
 /*N*/ void ChartModel::StoreAttributes(SvStream& rOut) const
 /*N*/ {
 /*N*/ #ifdef DBG_UTIL
@@ -887,7 +794,7 @@ enum ChartStyleV0
 /*N*/
 /*N*/
 /*N*/
-/*N*/   //Abwaertskompatibel speichern (this->PrepareAxisStorage())
+/*N*/   //Abwaertskompatibel speichern
 /*N*/   pTmpXItems->Store(rOut);
 /*N*/   pTmpYItems->Store(rOut);
 /*N*/   pTmpZItems->Store(rOut);

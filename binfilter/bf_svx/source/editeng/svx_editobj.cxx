@@ -383,16 +383,6 @@ void EditTextObject::AdjustImportedLRSpaceItems( BOOL /*bTurnOfBullets*/ )
     OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
 }
 
-void EditTextObject::PrepareStore( SfxStyleSheetPool* /*pStyleSheetPool*/ )
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
-void EditTextObject::FinishStore()
-{
-    OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
-}
-
 void EditTextObject::FinishLoad( SfxStyleSheetPool* /*pStyleSheetPool*/ )
 {
     OSL_FAIL( "V-Methode direkt vom EditTextObject!" );
@@ -979,96 +969,6 @@ void BinTextObject::CreateData( SvStream& rIStream )
 USHORT BinTextObject::GetVersion() const
 {
     return nVersion;
-}
-
-
-void BinTextObject::PrepareStore( SfxStyleSheetPool* pStyleSheetPool )
-{
-    // Some Items must be generated for the 5.0 file format,
-    // because we don't have a special format for 5.x or 6.x
-    USHORT nParas = GetContents().Count();
-    const SvxNumBulletItem** ppNumBulletItems = new const SvxNumBulletItem*[nParas];
-    for ( USHORT nPara = nParas; nPara; )
-    {
-        ContentInfo* pC = GetContents().GetObject( --nPara );
-        const SvxNumBulletItem* pSvxNumBulletItem = NULL;
-        const SfxPoolItem* pTmpItem = NULL;
-        if ( pC->GetParaAttribs().GetItemState(EE_PARA_NUMBULLET, FALSE, &pTmpItem ) == SFX_ITEM_ON )
-        {
-            pSvxNumBulletItem = (const SvxNumBulletItem*)pTmpItem;
-        }
-        else if ( pStyleSheetPool && pC->GetStyle().Len() )
-        {
-            SfxStyleSheet* pStyle = (SfxStyleSheet*)pStyleSheetPool->Find( pC->GetStyle(), pC->GetFamily() );
-            if ( pStyle )
-                pSvxNumBulletItem = &(const SvxNumBulletItem&)pStyle->GetItemSet().Get(EE_PARA_NUMBULLET);
-        }
-
-        ppNumBulletItems[nPara] = pSvxNumBulletItem;
-
-        if ( pSvxNumBulletItem )
-        {
-            // Check if Item allready used, don't create a new one in this case.
-            BOOL bInserted = FALSE;
-            for ( USHORT nP = nPara+1; nP < nParas; nP++ )
-            {
-                if ( ppNumBulletItems[nP] == pSvxNumBulletItem )
-                {
-                    ContentInfo* pTmpC = GetContents().GetObject( nP );
-                    pC->GetParaAttribs().Put( pTmpC->GetParaAttribs().Get( EE_PARA_BULLET ) );
-                    bInserted = TRUE;
-                    break;
-                }
-            }
-            if ( !bInserted )
-            {
-                SvxBulletItem aNewBullet( EE_PARA_BULLET );
-                const SfxUInt16Item& rLevel = (const SfxUInt16Item&) pC->GetParaAttribs().Get( EE_PARA_OUTLLEVEL );
-                lcl_CreateBulletItem( *pSvxNumBulletItem, rLevel.GetValue(), aNewBullet );
-                pC->GetParaAttribs().Put( aNewBullet );
-            }
-        }
-
-        // SymbolConvertion because of StyleSheet?
-        pC->DestroyLoadStoreTempInfos();    // Maybe old infos, if somebody is not calling FinishLoad after CreateData, but PrepareStore...
-
-        if ( ( pC->GetParaAttribs().GetItemState( EE_CHAR_FONTINFO ) != SFX_ITEM_ON ) && pC->aStyle.Len() && pStyleSheetPool )
-        {
-            SfxStyleSheet* pStyle = (SfxStyleSheet*)pStyleSheetPool->Find( pC->GetStyle(), pC->GetFamily() );
-            if ( pStyle )
-            {
-                const SvxFontItem& rFontItem = (const SvxFontItem&)pStyle->GetItemSet().Get( EE_CHAR_FONTINFO );
-                if ( rFontItem.GetCharSet() == RTL_TEXTENCODING_SYMBOL )
-                {
-                    if ( !pC->GetLoadStoreTempInfos() )
-                        pC->CreateLoadStoreTempInfos();
-                    pC->GetLoadStoreTempInfos()->bSymbolParagraph_Store = TRUE;
-                }
-
-                FontToSubsFontConverter hConv = CreateFontToSubsFontConverter( rFontItem.GetFamilyName(), FONTTOSUBSFONT_EXPORT | FONTTOSUBSFONT_ONLYOLDSOSYMBOLFONTS );
-                if ( hConv )
-                {
-                    // #88414# Convert StarSymbol back to StarBats
-                    if ( !pC->GetLoadStoreTempInfos() )
-                        pC->CreateLoadStoreTempInfos();
-                    pC->GetLoadStoreTempInfos()->hOldSymbolConv_Store = hConv;
-                }
-            }
-        }
-     }
-
-    delete[] ppNumBulletItems;
-}
-
-void BinTextObject::FinishStore()
-{
-    for ( USHORT nPara = GetContents().Count(); nPara; )
-    {
-        ContentInfo* pC = GetContents().GetObject( --nPara );
-        pC->GetParaAttribs().ClearItem( EE_PARA_BULLET );
-
-        pC->DestroyLoadStoreTempInfos();
-    }
 }
 
 void BinTextObject::FinishLoad( SfxStyleSheetPool* pStyleSheetPool )

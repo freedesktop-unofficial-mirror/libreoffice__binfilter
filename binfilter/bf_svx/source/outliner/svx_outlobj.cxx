@@ -216,16 +216,6 @@ namespace binfilter {
 /*N*/   pText->MergeParaAttribs( rAttribs, nStart, nEnd );
 /*N*/ }
 
-/*N*/ void OutlinerParaObject::PrepareStore( SfxStyleSheetPool* pStyleSheetPool )
-/*N*/ {
-/*N*/   pText->PrepareStore( pStyleSheetPool );
-/*N*/ }
-
-/*N*/ void OutlinerParaObject::FinishStore()
-/*N*/ {
-/*N*/   pText->FinishStore();
-/*N*/ }
-
 /*N*/ void OutlinerParaObject::FinishLoad( SfxStyleSheetPool* pStyleSheetPool )
 /*N*/ {
 /*N*/   pText->FinishLoad( pStyleSheetPool );

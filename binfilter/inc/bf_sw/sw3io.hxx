@@ -62,10 +62,8 @@ public:
     Sw3IoImp* GetImp() { return pImp; }
     void  SetReadOptions( const SwgReaderOption& rOpt, BOOL bOverwrite=TRUE );
 
-     SvStorage* GetStorage();
     void  HandsOff();
 
-     ULONG SaveStyles();
     // Erzeugen eines eindeutigen Streamnamens im gegebenen Storage
     static UniString UniqueName( SvStorage*, const sal_Char* pPrefix );
 

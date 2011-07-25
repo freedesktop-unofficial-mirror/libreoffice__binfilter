@@ -82,8 +82,6 @@ public:
 
     void                        MergeParaAttribs( const SfxItemSet& rAttribs, USHORT nStart = EE_CHAR_START, USHORT nEnd = EE_CHAR_END );
 
-    void                        PrepareStore( SfxStyleSheetPool* pStyleSheetPool );
-    void                        FinishStore();
     void                        FinishLoad( SfxStyleSheetPool* pStyleSheetPool );
 };
 

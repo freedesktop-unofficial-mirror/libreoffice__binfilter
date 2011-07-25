@@ -395,14 +395,6 @@ static const char pDocInfoHeader[] = "SfxDocumentInfo";
 /*N*/   aSection.aId = aIdP;
 /*N*/ }
 
-
-/*N*/ SvStream& PaddWithBlanks_Impl(SvStream &rStream, USHORT nCount)
-/*N*/ {
-/*N*/   for ( USHORT n = nCount; n; --n )
-/*N*/       rStream << ' ';
-/*N*/   return rStream;
-/*N*/ }
-
 //-------------------------------------------------------------------------
 
 /*N*/ inline SvStream& Skip(SvStream &rStream, USHORT nCount)

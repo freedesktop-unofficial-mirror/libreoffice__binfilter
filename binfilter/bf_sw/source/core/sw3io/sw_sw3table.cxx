@@ -108,24 +108,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   return TRUE;
 /*N*/ }
 
-/*N*/ void Sw3IoImp::CollectTblLineBoxFmts40()
-/*N*/ {
-/*N*/   OSL_ENSURE( pExportInfo, "Wo ist die Export-Info?" );
-/*N*/   for( USHORT i=0; i<pDoc->GetTblFrmFmts()->Count(); i++ )
-/*N*/   {
-/*N*/       SwClientIter aIter( *(*pDoc->GetTblFrmFmts())[i] );
-/*N*/       SwTable *pTable = (SwTable *)aIter.First( TYPE(SwTable) );
-/*N*/       OSL_ENSURE( pTable, "Tabellen-Format ohne Tabelle" );
-/*N*/       if( !pTable )
-/*N*/           continue;
-/*N*/
-/*N*/       if( !pExportInfo->pTblLineBoxFmts40 )
-/*N*/           pExportInfo->pTblLineBoxFmts40 = new Sw3FrmFmts;
-/*N*/       pTable->GetTabLines().ForEach( &lcl_sw3io_CollectLineFmts,
-/*N*/                                        pExportInfo->pTblLineBoxFmts40 );
-/*N*/   }
-/*N*/ }
-
 /*  */
 
 /*N*/ void Sw3IoImp::AddTblLineBoxFmt( SwFrmFmt *pFmt )

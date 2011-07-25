@@ -302,10 +302,6 @@ public:
     // Licht-Objekte rauswerfen
     void RemoveLightObjects();
 
-    // Licht-Objekte erzeugen, um kompatibel zur 4.0
-    // speichern zu koennen
-    void CreateLightObjectsFromLightGroup();
-
     // Lichter zaehlen
     UINT16 CountNumberOfLights();
 

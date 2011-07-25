@@ -154,29 +154,12 @@ namespace binfilter {
 // Falls der Storage gewechselt hat, muessen die Streams
 // neu geoeffnet werden.
 
-
-/*N*/  SvStorage* Sw3Io::GetStorage()
-/*N*/  {
-/*N*/   if( !pImp->pRoot.Is() )
-/*N*/       pImp->pRoot = pImp->pDoc->GetPersist()->GetStorage();
-/*N*/   return &pImp->pRoot;
-/*N*/  }
-
-
 /*N*/ void Sw3Io::SetReadOptions( const SwgReaderOption& rOpt, BOOL bOverwrite )
 /*N*/ {
 /*N*/   pImp->SetReadOptions( rOpt, bOverwrite );
 /*N*/ }
 
-
-  ULONG Sw3Io::SaveStyles()
-  {
-    OSL_ASSERT("method removed");
-    return 0;
-  }
-
 // Erzeugen eines eindeutigen Stream-Namens in einem Storage
-
 
 /*N*/ String Sw3Io::UniqueName( SvStorage* pStg, const sal_Char* p )
 /*N*/ {

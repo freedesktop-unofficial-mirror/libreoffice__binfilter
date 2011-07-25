@@ -783,46 +783,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* Licht-Objekte erzeugen, um kompatibel zur 4.0
-|* speichern zu koennen
-|*
-\************************************************************************/
-
-/*N*/ void E3dScene::CreateLightObjectsFromLightGroup()
-/*N*/ {
-/*N*/   if(aLightGroup.IsLightingEnabled())
-/*N*/   {
-/*N*/       // Global Ambient Light
-/*N*/       const Color& rAmbient = aLightGroup.GetGlobalAmbientLight();
-/*N*/       if(rAmbient != Color(COL_BLACK))
-/*N*/           Insert3DObj(new E3dLight(Vector3D(), rAmbient, 1.0));
-/*N*/
-/*N*/       // Andere Lichter
-/*N*/       for(UINT16 a=0;a<BASE3D_MAX_NUMBER_LIGHTS;a++)
-/*N*/       {
-/*N*/           B3dLight& rLight = aLightGroup.GetLightObject((Base3DLightNumber)(Base3DLight0 + a));
-/*N*/           if(rLight.IsEnabled())
-/*N*/           {
-/*N*/               if(rLight.IsDirectionalSource())
-/*N*/               {
-/*N*/                   // erzeuge E3dDistantLight
-/*N*/                   Insert3DObj(new E3dDistantLight(Vector3D(),
-/*N*/                       rLight.GetPosition(),
-/*N*/                       rLight.GetIntensity(Base3DMaterialDiffuse), 1.0));
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*N*/                   // erzeuge E3dPointLight
-/*N*/                   Insert3DObj(new E3dPointLight(rLight.GetPosition(),
-/*N*/                       rLight.GetIntensity(Base3DMaterialDiffuse), 1.0));
-/*N*/               }
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-/*************************************************************************
-|*
 |* Beleuchtung aus dem alten Beleuchtungsmodell uebernehmen
 |*
 \************************************************************************/

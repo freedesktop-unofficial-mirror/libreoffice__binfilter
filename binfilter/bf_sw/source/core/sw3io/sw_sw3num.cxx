@@ -983,36 +983,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   }
 /*N*/ }
 
-// Numerierungs-Regelwerk ausgeben
-
-/*N*/ void Sw3IoImp::OutNumRules( BOOL bUsed )
-/*N*/ {
-/*N*/   OutHeader();
-/*N*/
-/*N*/   // Stringpool (nur mit den wirklioch benoetigten) Namen fuellen.
-/*N*/   aStringPool.SetupForNumRules( *pDoc, pStrm->GetVersion() );
-/*N*/   OutStringPool( SWG_STRINGPOOL, aStringPool );
-/*N*/
-/*N*/   // Die Outline-Numerierung schreiben
-/*N*/   if( pDoc->GetOutlineNumRule() )
-/*N*/       OutNumRule( SWG_OUTLINE, *pDoc->GetOutlineNumRule() );
-/*N*/
-/*N*/   // Und alle Numerierungen schreiben
-/*N*/   USHORT nArrLen = pDoc->GetNumRuleTbl().Count();
-/*N*/   for( USHORT n=0; n<nArrLen; n++ )
-/*N*/   {
-/*N*/       const SwNumRule *pNumRule = pDoc->GetNumRuleTbl()[n];
-/*N*/       if( !bUsed || pDoc->IsUsed( *pNumRule ) )
-/*N*/           OutNumRule( SWG_NUMRULE, *pNumRule );
-/*N*/   }
-/*N*/
-/*N*/ #ifdef TEST_HUGE_DOCS
-/*N*/   BOOL b = FALSE;
-/*N*/   if( b )
-/*N*/       OutHugeRecord( 1024, 32*1024 );
-/*N*/ #endif
-/*N*/ }
-
 // Absatz-Numerierung einlesen (seit 5.0)
 
 /*N*/ void Sw3IoImp::InNodeNum( SwNodeNum& rNodeNum )

@@ -535,7 +535,6 @@ public:
                                         sal_Unicode cDelim,
                                         rtl_TextEncoding eSource );
     static sal_uInt32 InULong( SvStream& );            // ULONG komprimiert lesen
-    static void OutULong( SvStream&, sal_uInt32 );  // ULONG komprimiert schreiben
     inline SvStream& InString( SvStream& rStrm, String& rStr );
     inline SvStream& OutString( SvStream& rStrm, const String& rStr );
 
@@ -543,10 +542,6 @@ public:
     USHORT GetTblLineBoxFmtId( SwFrmFmt *pFmt );
     USHORT GetTblLineBoxFmtStrPoolId40( SwFrmFmt *pFmt );
     SwFrmFmt *GetTblLineBoxFmt( USHORT nIdx );
-
-
-    void InsertHiddenDrawObjs();
-    void RemoveHiddenDrawObjs();
 
     // Ist eingelene Datei neuer oder gleich nMinVers und aelter
     // (und ungleeich) nMaxVers?
@@ -588,7 +583,6 @@ public:
 
                                             // SW3STYLE.CXX
     void LoadStyleSheets( BOOL bNew );      // I: StyleSheets
-    void SaveStyleSheets( BOOL bUsed );     // O: StyleSheets
 
                                             // SW3BLOCK.CXX
     void DetectAndSetFFVersion( SvStorage *pRoot );
@@ -605,16 +599,13 @@ public:
 
                                             // SW3DOC.CXX
     void   LoadDocContents( SwPaM* );       // I: Dokumentinhalt
-    void   SaveDocContents( SwPaM&, const String* = NULL );
     USHORT GetStreamFlags();                // I: Stream-Flags laden
     void   InHeader( BOOL bReadRecSizes=FALSE); // I: Dateikopf
     void   OutHeader( ULONG nRecSzPos=0UL );    // O: Dateikopf
-    void   OutRecordSizesPos( ULONG nRecSzPos );
     BOOL   InHeaderForScan( BOOL bReadRecSizes=FALSE );
 
                                             // SW3FIELD.CXX
     SwField* InField();                     // I: Feld
-    void   OutField( const SwFmtFld& );     // O: Feld
     void   OutFieldTypes();                 // O: alle Feldtypen
     SwFieldType* InFieldType();             // I: ein Feldtyp
     BOOL   OutFieldType(const SwFieldType&);// O: ein Feldtyp
@@ -651,7 +642,6 @@ public:
     void   InPasswd();                      // I: Passwort
     void   SetPasswd( const String& rPass );// IO: Passwort setzen
                                             // O: TOX- und Bookmark-Bereiche suchen
-    void   CollectMarks( SwPaM*, BOOL bPageStylesOnly );
     void   InNodeMark( const SwNodeIndex&, xub_StrLen nOffset );    // I: Markierung
     void   OutNodeMarks( ULONG );           // O: Markierung
     void   InBookmarks();                   // I: Bookmarks
@@ -705,7 +695,6 @@ public:
     SwNumRule* InNumRule( BYTE );           // I: Numerierungs-Regelwerk
     void   OutNumRule( BYTE, const SwNumRule& );
     void   InNumRules();                    // I: NumRules
-    void   OutNumRules( BOOL bUsed=FALSE ); // O: alle (benutzten) NumRules
     void   InOutlineExt();
     void   InNodeNum( SwNodeNum& );         // I: Absatz-Numerierung
     void   OutNodeNum( const SwNodeNum& );  // O: Absatz-Numerierung
@@ -725,7 +714,6 @@ public:
     void   InPageFtnInfo( SwPageFtnInfo& ); // I: Fussnoten-Info
     void   OutPageFtnInfo( const SwPageFtnInfo& rFtn );
     void   InPageDescs();                   // I: alle Seitenvorlagen
-    void   OutPageDescs( BOOL=FALSE );      // O: alle Seitenvorlagen
     SwPageDesc* InPageDesc( USHORT& );      // I: Seitenvorlage
     void   OutPageDesc( const SwPageDesc& );// O: Seitenvorlage
     void   ConnectPageDescAttrs();          // I: PageDesc-Referenzen aufloesen
@@ -744,7 +732,6 @@ public:
     ULONG  OutTOXSection(const SwSectionNode&);// O: TOX SwSection
 
                                             // SW3TABLE.CXX
-    void   CollectTblLineBoxFmts40();
     void   InTable( SwNodeIndex& rPos );        // I: Tabelle
     void   OutTable( const SwTableNode& );  // O: Tabelle
     void   InTableLine( SwTableLines&, SwTableBox*, USHORT, SwNodeIndex& );
@@ -757,7 +744,6 @@ public:
         void OutRedline( const SwRedline& rRedline );
 /*N*/   void InRedlines(); //SW50.SDW
     void OutRedlines( BOOL bPageStyles );
-    void CollectRedlines( SwPaM* pPaM, BOOL bPageOnly );
 /*N*/   void InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nOffset, BYTE=0 ); //SW50.SDW
     void OutNodeRedlines( ULONG );
     void CleanupRedlines();

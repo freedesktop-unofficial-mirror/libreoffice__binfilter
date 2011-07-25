@@ -1149,33 +1149,6 @@ sal_Char const SW_CONSTASCII_DEF( sHTML_listing, "LISTING" );
 /*N*/       pConvToSymbolFmts = 0;
 /*N*/   }
 /*N*/ }
-
-/*N*/ void Sw3IoImp::SaveStyleSheets( BOOL bUsed )
-/*N*/ {
-/*N*/   OSL_ENSURE( !HasRecSizes(), "Hier darf es noch keine RecSizes geben" );
-/*N*/   // Bisher wurde allenfalls der Drawing-Layer gespeichert. Deshalb
-/*N*/   // kann es hier noch gar keine RecSizes geben. Besser ist aber besser ...
-/*N*/   if( HasRecSizes() )
-            {DBG_BF_ASSERT(0, "STRIP");}
-/*N*/
-/*N*/   SfxItemPool *pTmp = pDoc->GetAttrPool().GetSecondaryPool();
-/*N*/   pDoc->GetAttrPool().SetSecondaryPool( 0 );
-/*N*/   SfxItemPool* pPool = pDoc->GetAttrPool().Clone();
-/*N*/   pDoc->GetAttrPool().SetSecondaryPool( pTmp );
-/*N*/
-/*N*/   pStyles->Seek( 0L );
-/*N*/   pStyles->SetSize( 0L );
-/*N*/   pStyles->SetBufferSize( SW3_BSW_STYLES );
-/*N*/   pStrm = pStyles;
-/*N*/   SwStyleSheetPool* p = new SwStyleSheetPool( *pDoc, *pPool,
-/*N*/                                               pStrm->GetVersion(), 0 );
-/*N*/   nRes = p->Store( *pStyles, bUsed ) ? 0 : ERR_SWG_WRITE_ERROR;
-/*N*/   pStyles->SetBufferSize( 0 );
-/*N*/   pStyles->Commit();
-/*N*/   delete p;
-/*N*/   delete pPool;
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

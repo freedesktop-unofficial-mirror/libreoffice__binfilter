@@ -84,8 +84,6 @@ public:
 
     // Zur 5.1 hat sich die Bedeutung des LRSpaceItems fuer den Outliner geaendert...
     virtual void            AdjustImportedLRSpaceItems( BOOL bTurnOfBullets );
-    virtual void            PrepareStore( SfxStyleSheetPool* pStyleSheetPool );
-    virtual void            FinishStore();
     virtual void            FinishLoad( SfxStyleSheetPool* pStyleSheetPool );
 
     virtual USHORT      GetParagraphCount() const;

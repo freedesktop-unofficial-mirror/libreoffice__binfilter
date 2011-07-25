@@ -201,10 +201,6 @@ public:
     inline BOOL         IsDataSwitched() const;
 
     void                SetTextFromObject( SdrTextObj* pObj, OutlinerParaObject* pTextObject );
-    void                PrepareOld3DStorage();
-    void                CleanupOld3DStorage();
-
-
 
     BOOL                IsReal3D()const
                             { return (Is3DChart() /*&& !IsPieChart()*/); }
@@ -229,7 +225,6 @@ public:
                                             const long   nRow,
                                             const long   nMode = SYMBOLMODE_LEGEND );
     ChartAxis*          GetAxisByUID( long nUId );
-    void                PrepareAxisStorage();
     ChartAxis*          GetAxis( long nId );
     BOOL                HasSecondYAxis() const;
     /// is the x-axis vertical, ie we have bars not columns

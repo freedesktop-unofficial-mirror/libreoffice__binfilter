@@ -257,8 +257,6 @@ public:
     BOOL                    IsOwnerOfPool() const       { return bOwnerOfPool; }
     void                    StoreUnicodeStrings( BOOL b ) { bStoreUnicodeStrings = b; }
 
-    void                    PrepareStore( SfxStyleSheetPool* pStyleSheetPool );
-    void                    FinishStore();
     void                    FinishLoad( SfxStyleSheetPool* pStyleSheetPool );
 };
 
