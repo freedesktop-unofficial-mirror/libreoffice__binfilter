@@ -153,7 +153,6 @@ class SwStyleSheetPool : public SfxStyleSheetBasePool {
     using SfxStyleSheetBasePool::Create;
     virtual SfxStyleSheetBase* Create( const String&, SfxStyleFamily, USHORT nMask);
     void Add( const SwFmt& rFmt, SfxStyleFamily eFam );
-    void CopyFromDoc( BOOL bUsed );
     void CopyToDoc( BOOL bOverwrite, USHORT eMask );
     void Rename( const String&, const String&, SfxStyleFamily );
     SwStyleSheet *FindByPoolId( USHORT nPoolId );
@@ -437,55 +436,6 @@ public:
 
 const int RES_POOLCOLL_HTML_LISTING_40_USER = 0x3002 | USER_FMT;
 const int RES_POOLCOLL_HTML_XMP_40_USER = 0x3003 | USER_FMT;
-
-// Auffuellen eines Pools mit allen am Doc definierten Vorlagen
-
-/*N*/ void SwStyleSheetPool::CopyFromDoc( BOOL bUsed )
-/*N*/ {
-/*N*/   Clear();
-/*N*/   // Uebernahme der benannten Formate
-/*N*/   // Die Defaultvorlagen werden nicht uebernommen
-/*N*/   // Zeichenvorlagen: alle uebernehmen
-/*N*/   // Rahmenvorlagen: nur die Nicht-Auto-Vorlagen uebernehmen
-/*N*/   const SwFmt* pFmt;
-/*N*/   USHORT nArrLen = rDoc.GetCharFmts()->Count();
-        USHORT i=0;
-/*N*/   for( i = 0; i < nArrLen; i++ )
-/*N*/   {
-/*N*/       pFmt = (*rDoc.GetCharFmts())[ i ];
-/*N*/       if( ( !bUsed || rDoc.IsUsed( *pFmt ) ) && !pFmt->IsDefault() )
-/*N*/           Add( *pFmt, SFX_STYLE_FAMILY_CHAR );
-/*N*/   }
-/*N*/   nArrLen = rDoc.GetFrmFmts()->Count();
-/*N*/   for( i = 0; i < nArrLen; i++ )
-/*N*/   {
-/*N*/       pFmt = (*rDoc.GetFrmFmts())[ i ];
-/*N*/       if( ( !bUsed || rDoc.IsUsed( *pFmt ) )
-/*N*/         && !pFmt->IsDefault() && !pFmt->IsAuto() )
-/*N*/           Add( *pFmt, SFX_STYLE_FAMILY_FRAME );
-/*N*/   }
-/*N*/   // Uebernahme der Absatzvorlagen
-/*N*/   nArrLen = rDoc.GetTxtFmtColls()->Count();
-/*N*/   for( i = 0; i < nArrLen; i++ )
-/*N*/   {
-/*N*/       const SwTxtFmtColl* pColl = (*rDoc.GetTxtFmtColls())[ i ];
-/*N*/       if( ( !bUsed || rDoc.IsUsed( *pColl ) ) && !pColl->IsDefault() )
-/*N*/           Add( *pColl, SFX_STYLE_FAMILY_PARA );
-/*N*/   }
-/*N*/   if( bUsed )
-/*N*/   {
-/*N*/       //JP 30.03.99: falls die Follows nicht angewendet werden, so muessen
-/*N*/       //              sie doch kopiert werden!
-/*?*/       for( i = 0; i < nArrLen; i++ )
-/*?*/       {
-/*?*/           const SwTxtFmtColl* pColl = (*rDoc.GetTxtFmtColls())[ i ];
-/*?*/           if( pColl != &pColl->GetNextTxtFmtColl() &&
-/*?*/               !Find( pColl->GetNextTxtFmtColl().GetName(),
-/*?*/                      SFX_STYLE_FAMILY_PARA ))
-/*?*/               Add( pColl->GetNextTxtFmtColl(), SFX_STYLE_FAMILY_PARA );
-/*?*/       }
-/*N*/   }
-/*N*/ }
 
 // Hinzufuegen eines neuen StyleSheets.
 // Es muss mind. ein Bit in der Maske gesetzt werden, da die Suchroutinen

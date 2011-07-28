@@ -132,19 +132,6 @@ namespace binfilter {
 /*N*/       AddPaintRect( rRect );
 /*N*/ }
 
-/******************************************************************************
-|*
-|*  SwViewImp::RefreshScrolledHdl(..)
-|*
-|*  Every timerstop one of the critical lines will be painted.
-|*
-******************************************************************************/
-
-/*N*/ IMPL_LINK( SwViewImp, RefreshScrolledHdl, Timer *, EMPTYARG )
-/*N*/ {
-        {DBG_BF_ASSERT(0, "STRIP");} return 0;
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

@@ -1321,68 +1321,6 @@ sal_Bool SAL_CALL OBoundControlModel::commit() throw(RuntimeException)
 }
 
 //------------------------------------------------------------------------------
-sal_Bool OBoundControlModel::connectToField(const Reference<XRowSet>& rForm)
-{
-    // wenn eine Verbindung zur Datenbank existiert
-    if (rForm.is() && getConnection(rForm).is())
-    {
-        // Feld bestimmen und PropertyChangeListener
-        m_xCursor = rForm;
-        Reference<XPropertySet> xFieldCandidate;
-
-        if (m_xCursor.is())
-        {
-            Reference<XColumnsSupplier> xColumnsSupplier(m_xCursor, UNO_QUERY);
-            DBG_ASSERT(xColumnsSupplier.is(), "OBoundControlModel::connectToField : the row set should support the com::sun::star::sdb::ResultSet service !");
-            if (xColumnsSupplier.is())
-            {
-                Reference<XNameAccess> xColumns(xColumnsSupplier->getColumns(), UNO_QUERY);
-                if (xColumns.is() && xColumns->hasByName(m_aControlSource))
-                {
-                    Any aElement(xColumns->getByName(m_aControlSource));
-                    DBG_ASSERT(xColumns->getElementType().equals(::getCppuType(reinterpret_cast<Reference<XPropertySet>*>(NULL))),
-                        "OBoundControlModel::connectToField : the columns container should contain XPropertySets !");
-                    // if this assertion fails we probably should do a queryInterface ....
-                    aElement >>= xFieldCandidate;
-                }
-            }
-        }
-
-        // darf ich mich ueberhaupt an dieses Feld binden (Typ-Check)
-        if (xFieldCandidate.is())
-        {
-            sal_Int32 nFieldType(0);
-            xFieldCandidate->getPropertyValue(PROPERTY_FIELDTYPE) >>= nFieldType;
-            if (_approve(nFieldType))
-                setField(xFieldCandidate,sal_False);
-        }
-        else
-            setField(NULL,sal_False);
-
-        if (m_xField.is())
-        {
-            if(m_xField->getPropertySetInfo()->hasPropertyByName(PROPERTY_VALUE))
-            {
-                // an wertaenderungen horchen
-                m_xField->addPropertyChangeListener(PROPERTY_VALUE, this);
-                                m_xColumnUpdate = Reference<XColumnUpdate>(m_xField, UNO_QUERY);
-                                m_xColumn = Reference<XColumn>(m_xField, UNO_QUERY);
-                INT32 nNullableFlag(0);
-                m_xField->getPropertyValue(PROPERTY_ISNULLABLE) >>= nNullableFlag;
-                m_bRequired = (ColumnValue::NO_NULLS == nNullableFlag);
-                    // we're optimistic : in case of ColumnValue_NULLABLE_UNKNOWN we assume nullability ....
-            }
-            else
-            {
-                OSL_FAIL("OBoundControlModel::connectToField: property NAME not supported!");
-                setField(NULL,sal_False);
-            }
-        }
-    }
-    return m_xField.is();
-}
-
-//------------------------------------------------------------------------------
 sal_Bool OBoundControlModel::_approve(sal_Int32 _nColumnType)
 {
     if ((_nColumnType == DataType::BINARY) || (_nColumnType == DataType::VARBINARY)

@@ -173,51 +173,6 @@ BOOL W4WSttEndPos::operator<( const W4WSttEndPos & rSEPos )
     return FALSE;
 }
 
-SV_DECL_VARARR( _W4WEndPosLst, W4WSttEndPos, 5, 5 )
-SV_IMPL_VARARR( _W4WEndPosLst, W4WSttEndPos )
-
-class W4WEndPosLst : private _W4WEndPosLst
-{
-public:
-    W4WEndPosLst() : _W4WEndPosLst( 5 ) {}
-
-    BOOL Insert( W4WSttEndPos & aNew );
-    void Delete( USHORT n = 1 )
-        { _W4WEndPosLst::Remove( 0, n ); }
-    W4WSttEndPos operator[]( USHORT nPos )
-        { return _W4WEndPosLst::operator[]( nPos ); }
-    USHORT Count()
-        { return _W4WEndPosLst::Count(); }
-//    void OutAttr( SwW4WWriter & rWrt, USHORT nStrPos, USHORT nEnde );
-};
-
-BOOL W4WEndPosLst::Insert( W4WSttEndPos & aNew )
-{
-    USHORT nPos;
-    for( nPos = 0; nPos < Count(); nPos++ )
-    {
-        W4WSttEndPos aTmp = _W4WEndPosLst::operator[]( nPos );
-        if( aNew < aTmp )
-        {
-            _W4WEndPosLst::Insert( aNew, nPos );
-            return TRUE;
-        }
-    }
-    _W4WEndPosLst::Insert( aNew, nPos );
-    return TRUE;
-}
-
-
-#define MAX_TAB_OVER 1000       // soviel twips ueberhaengen ist ok
-
-// Wenn beim SWG Tabe bis zu 2 cm ueberhaengen, gelten sie trotzdem noch.
-// Wenn bei WW2-Export die Tabs nur 1 Twip ueberhaengen, werden sie
-// ignoriert. Das passiert innerhalb von Frames leicht. Deshalb wird hier
-// gemogelt. Dass bei Flys die Page-Grenzen statt der Fly-Grenzen genommen
-// werden, ist ok, da WW2 dann die Tabs immer noch anerkennt
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

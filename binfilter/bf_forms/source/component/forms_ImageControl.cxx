@@ -431,15 +431,6 @@ void OImageControlModel::disposing()
     m_xImageProducer->startProduction();
 }
 
-// Helper functions
-//------------------------------------------------------------------------------
-void OImageControlModel::UpdateFromField()
-{
-    Reference<XInputStream>  xInStream = m_xColumn->getBinaryStream();
-    GetImageProducer()->setImage(xInStream);
-    GetImageProducer()->startProduction();
-}
-
 //--------------------------------------------------------------------
 Reference< XImageProducer > SAL_CALL OImageControlModel::getImageProducer() throw ( RuntimeException)
 {

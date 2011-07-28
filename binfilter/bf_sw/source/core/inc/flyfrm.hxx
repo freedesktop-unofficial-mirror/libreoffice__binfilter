@@ -200,8 +200,6 @@ public:
     BOOL GetContour( PolyPolygon&   rContour,
             const sal_Bool _bForPaint = sal_False ) const;
 
-    BOOL ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel, SwTwips &rPos ) const;
-
     //Auf dieser Shell painten (PreView, Print-Flag usw. rekursiv beachten)?.
 
     /** SwFlyFrm::IsBackgroundTransparent

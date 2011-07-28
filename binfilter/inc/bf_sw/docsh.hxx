@@ -107,9 +107,6 @@ class SwDocShell: public SfxObjectShell, public SfxInPlaceObject,
     inline void             SetWrtShell(SwWrtShell* pShell)
                                 { pWrtShell = pShell; }
 
-    void                    RemoveOLEObjects();
-    void                    CalcLayoutForOLEObjects();
-
     void                    Init_Impl();
     DECL_STATIC_LINK( SwDocShell, IsLoadFinished, void* );
 

@@ -229,7 +229,6 @@ public:
 
     // add data source information to the data source array - was PreInitDBData
     void            AddDSData(const SwDBData& rData, long nSelStart, long nSelEnd);
-    void            GetDSSelection(const SwDBData& rData, long& rSelStart, long& rSelEnd);
 
     // open the source while fields are updated - for the calculator only!
     BOOL            OpenDataSource(const String& rDataSource, const String& rTableOrQuery, sal_Int32 nCommandType = -1);

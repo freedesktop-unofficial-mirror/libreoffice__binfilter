@@ -523,63 +523,6 @@ void OListBoxModel::loadData()
     OSL_ENSURE( false, "OListBoxModel::loadData: dead code!?" );
 }
 
-//------------------------------------------------------------------------------
-StringSequence OListBoxModel::GetCurValueSeq() const
-{
-    StringSequence aCurValues;
-
-    // Aus den selektierten Indizes Werte-Sequence aufbauen
-    DBG_ASSERT(m_xAggregateFastSet.is(), "OListBoxModel::GetCurValueSeq : invalid aggregate !");
-    if (!m_xAggregateFastSet.is())
-        return aCurValues;
-    Any aTmp = m_xAggregateFastSet->getFastPropertyValue(OListBoxModel::nSelectHandle);
-
-    Sequence<sal_Int16> aSelectSeq; aTmp >>= aSelectSeq;
-    const sal_Int16 *pSels = aSelectSeq.getConstArray();
-    sal_uInt32 nSelCount = aSelectSeq.getLength();
-
-    if (nSelCount)
-    {
-        const ::rtl::OUString *pVals    = NULL;
-        sal_Int32 nValCnt           = 0;
-        if (m_aValueSeq.getLength())
-        {
-            pVals = m_aValueSeq.getConstArray();
-            nValCnt = m_aValueSeq.getLength();
-        }
-        else
-        {
-            aTmp    = const_cast<OListBoxModel*>(this)->OPropertySetAggregationHelper::getFastPropertyValue(PROPERTY_ID_STRINGITEMLIST);
-            pVals   = (*(StringSequence*)aTmp.getValue()).getConstArray();
-            nValCnt = (*(StringSequence*)aTmp.getValue()).getLength();
-        }
-
-        if (nSelCount > 1)
-        {
-            // Einfach- oder Mehrfach-Selektion
-            sal_Bool bMultiSel(sal_False);
-            const_cast<OListBoxModel*>(this)->OPropertySetAggregationHelper::getFastPropertyValue(PROPERTY_ID_MULTISELECTION) >>= bMultiSel;
-            if (bMultiSel)
-                nSelCount = 1;
-        }
-
-        // ist der Eintrag fuer NULL selektiert ?
-        // dann leere Selektion liefern
-        if (m_nNULLPos != -1 && nSelCount == 1 && pSels[0] == m_nNULLPos)
-            nSelCount = 0;
-
-        aCurValues.realloc(nSelCount);
-        ::rtl::OUString *pCurVals = aCurValues.getArray();
-
-        for (sal_uInt16 i = 0; i < nSelCount; i++)
-        {
-            if (pSels[i] < nValCnt)
-                pCurVals[i] = pVals[pSels[i]];
-        }
-    }
-    return aCurValues;
-}
-
 //==================================================================
 // OListBoxControl
 //==================================================================

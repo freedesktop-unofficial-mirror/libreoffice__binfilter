@@ -81,11 +81,6 @@ namespace frm
         sal_Bool                        m_bMultiLine : 1;
         sal_Bool                        m_bFilterListFilled : 1;
 
-    private:
-//      OFilterControl(const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB);
-
-        void implInitFilterList();
-
     public:
         OFilterControl( const ::com::sun::star::uno::Reference< ::com::sun::star::lang::XMultiServiceFactory >& _rxORB );
 

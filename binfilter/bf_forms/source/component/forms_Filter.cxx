@@ -326,12 +326,6 @@ namespace frm
         }
     }
 
-    //---------------------------------------------------------------------
-    void OFilterControl::implInitFilterList()
-    {
-        OSL_ENSURE( false, "OFilterControl::implInitFilterList: dead code!?" );
-    }
-
     // XFocusListener
     //---------------------------------------------------------------------
     void SAL_CALL OFilterControl::focusGained(const FocusEvent& )  throw( RuntimeException  )

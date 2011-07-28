@@ -1428,65 +1428,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-
-/*N*/ void lcl_sw3io_OutSetExpField40( Sw3IoImp& rIo, SwField *pFld)
-/*N*/ {
-/*N*/   USHORT nPoolId = USHRT_MAX;
-/*N*/   const String& rName = ((SwSetExpField *)pFld)->GetTyp()->GetName();
-/*N*/   if( GSE_SEQ & ((SwSetExpFieldType *)pFld->GetTyp())->GetType() )
-/*N*/       nPoolId = lcl_sw3io_GetSetExpFieldPoolId( rName );
-/*N*/
-/*N*/   *rIo.pStrm << (UINT16)rIo.aStringPool.Find( rName, nPoolId );
-/*N*/
-/*N*/   BYTE cFlags = ((SwSetExpField *)pFld)->GetInputFlag() ? 0x10 : 0;
-/*N*/   String sStr( ((SwSetExpField *)pFld)->GetExpStr() );
-/*N*/
-/*N*/   if( GSE_SEQ & ((SwSetExpFieldType *)pFld->GetTyp())->GetType() )
-/*N*/   {
-/*N*/       USHORT n = (USHORT)((SwSetExpField*)pFld)->GetValue();
-/*N*/       sStr = ::binfilter::FormatNumber( n, SVX_NUM_ARABIC );
-/*N*/       if( !rIo.IsSw31Export() )
-/*N*/           cFlags |= 0x20;
-/*N*/   }
-/*N*/
-/*N*/   *rIo.pStrm << cFlags;
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwSetExpField*)pFld)->GetFormula() );
-/*N*/   rIo.OutString( *rIo.pStrm, sStr );
-/*N*/
-/*N*/   if( cFlags & 0x10 )
-/*?*/       rIo.OutString( *rIo.pStrm, ((SwSetExpField *)pFld)->GetPromptText() );
-/*N*/   if( cFlags & 0x20 )
-/*N*/       *rIo.pStrm << (UINT16)((SwSetExpField *)pFld)->GetSeqNumber();
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutSetExpField( Sw3IoImp& rIo, SwField *pFld )
-/*N*/ {
-/*N*/   USHORT nPoolId = USHRT_MAX;
-/*N*/   BYTE cFlags = ((SwSetExpField *)pFld)->GetInputFlag() ? 0x10 : 0;
-/*N*/
-/*N*/   const String& rName = ((SwSetExpField *)pFld)->GetTyp()->GetName();
-/*N*/   if( ((SwSetExpField *)pFld)->IsSequenceFld() )
-/*N*/   {
-/*N*/       nPoolId = lcl_sw3io_GetSetExpFieldPoolId( rName );
-/*N*/       cFlags |= 0x20;
-/*N*/       if( MAXLEVEL > ((SwSetExpFieldType *)pFld->GetTyp())->GetOutlineLvl() )
-/*N*/           cFlags |= 0x40;
-/*N*/   }
-/*N*/
-/*N*/   *rIo.pStrm << cFlags
-/*N*/              << (UINT16)rIo.aStringPool.Find( rName, nPoolId );
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwSetExpField*)pFld)->GetFormula() );
-/*N*/
-/*N*/   if( cFlags & 0x10 )
-/*N*/       rIo.OutString( *rIo.pStrm, ((SwSetExpField *)pFld)->GetPromptText() );
-/*N*/   if( cFlags & 0x20 )
-/*N*/       *rIo.pStrm << (UINT16)((SwSetExpField*)pFld)->GetValue()
-/*N*/                  << (UINT16)((SwSetExpField *)pFld)->GetSeqNumber();
-/*N*/
-/*N*/   if( cFlags & 0x40 || !(cFlags & 0x20) )
-/*N*/       rIo.OutString( *rIo.pStrm, ((SwSetExpField *)pFld)->GetExpStr() );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InHiddenParaField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
 /*N*/ {
@@ -1986,45 +1927,6 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*N*/   }
 /*N*/
 /*N*/   return pFld;
-/*N*/ }
-
-// Ausgabe aller Feldtypen, die keine Systemtypen sind
-
-/*N*/ BOOL lcl_sw3io_HasFixedFields40( Sw3IoImp& rIo, USHORT nWhich )
-/*N*/ {
-/*N*/   SwFieldType* pFldType = rIo.pDoc->GetSysFldType( nWhich );
-/*N*/
-/*N*/   SwClientIter aIter( *pFldType );
-/*N*/   for( SwFmtFld* pFmtFld = (SwFmtFld*)aIter.First( TYPE( SwFmtFld ));
-/*N*/        pFmtFld;
-/*N*/        pFmtFld = (SwFmtFld*)aIter.Next() )
-/*N*/   {
-/*N*/       const SwField *pFld = pFmtFld->GetFld();
-/*N*/       BOOL bFixed = FALSE;
-/*N*/       switch( nWhich )
-/*N*/       {
-/*?*/       case RES_DOCINFOFLD:
-/*?*/           bFixed = ((SwDocInfoField*)pFld)->IsFixed();
-/*?*/           break;
-/*?*/       case RES_AUTHORFLD:
-/*?*/           bFixed = ((SwAuthorField*)pFld)->IsFixed();
-/*?*/           break;
-/*N*/       case RES_EXTUSERFLD:
-/*N*/           bFixed = ((SwExtUserField*)pFld)->IsFixed();
-/*N*/           break;
-/*?*/       case RES_FILENAMEFLD:
-/*?*/           bFixed = ((SwFileNameField*)pFld)->IsFixed();
-/*N*/           break;
-/*N*/       }
-/*N*/       const SwTxtFld *pTxtFld = pFmtFld->GetTxtFld();
-/*N*/       if( bFixed && pTxtFld && pTxtFld->GetpTxtNode() &&
-/*N*/           pTxtFld->GetpTxtNode()->GetNodes().IsDocNodes() )
-/*N*/       {
-/*N*/           return TRUE;
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
 /*N*/ }
 
 /*N*/ SwFieldType* Sw3IoImp::InFieldType()

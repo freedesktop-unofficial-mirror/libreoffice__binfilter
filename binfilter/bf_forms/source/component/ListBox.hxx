@@ -80,9 +80,6 @@ class OListBoxModel :public OBoundControlModel
     sal_Int16               m_nNULLPos; // Position an der der NULLwert abgelegt wird
     sal_Bool                m_bBoundComponent : 1;
 
-    // Helper functions
-    StringSequence GetCurValueSeq() const;
-
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type>   _getTypes();
 
 public:

@@ -588,25 +588,10 @@ const sal_Char cActiveConnection[] = "ActiveConnection";
 /*M*/         pFound->aSelection.realloc(0);
 /*M*/ }
 
-
-/*M*/ void    SwNewDBMgr::GetDSSelection(const SwDBData& rData, long& rSelStart, long& rSelEnd)
-/*M*/ {
-/*M*/     SwDSParam* pFound = FindDSData(rData, FALSE);
-/*M*/     if(!pFound || !pFound->aSelection.getLength())
-/*M*/       rSelStart = -1L;
-/*M*/   else
-/*M*/   {
-/*M*/         pFound->aSelection.getConstArray()[0] >>= rSelStart;
-/*M*/         pFound->aSelection.getConstArray()[pFound->aSelection.getLength() - 1] >>= rSelEnd;
-/*M*/     }
-/*M*/ }
-
-
 /*N*/ const SwDBData&   SwNewDBMgr::GetAddressDBName()
 /*N*/ {
 /*N*/   return SW_MOD()->GetDBConfig()->GetAddressSource();
 /*N*/ }
-
 
 /*N*/ SwConnectionDisposedListener_Impl::SwConnectionDisposedListener_Impl(SwNewDBMgr& rMgr) :
 /*N*/     rDBMgr(rMgr)

@@ -175,13 +175,7 @@ public:
     SwRegionRects *GetRegion()      { return pRegion; }
     void DelRegions();                      //Loescht Scroll- und PaintRects
 
-    //Handler fuer das Refresh von gescrollten Bereichen (Korrektur des
-    //Alignments). Ruft das Refresh mit der ScrolledArea.
-    //RefreshScrolledArea kann z.B. beim Setzen des Crsr genutzt werden, es
-    //wird nur der Anteil des Rect refreshed, der mit der ScrolledArea
-    //ueberlappt. Das 'reingereichte Rechteck wird veraendert!
     void RestartScrollTimer()            { aScrollTimer.Start(); }
-    DECL_LINK( RefreshScrolledHdl, Timer * );
 
     //Wird vom Layout ggf. waehrend einer Action gerufen, wenn der
     //Verdacht besteht, dass es etwas drunter und drueber geht.

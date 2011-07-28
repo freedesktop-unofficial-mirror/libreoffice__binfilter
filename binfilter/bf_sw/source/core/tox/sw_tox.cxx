@@ -616,53 +616,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/   return 2 <= lcl_GetPatternCount(aPattern[ 1 ], SwForm::aFormTab);
 /*N*/ }
 
-/*N*/ String    SwForm::ConvertPatternTo51(const String& rSource)
-/*N*/ {
-/*N*/   SwFormTokenEnumerator aEnum(rSource);
-/*N*/   String sRet;
-/*N*/   while(aEnum.HasNextToken())
-/*N*/   {
-/*N*/       SwFormToken  aToken(aEnum.GetNextToken());
-/*N*/       switch(aToken.eTokenType)
-/*N*/       {
-/*N*/           case TOKEN_ENTRY_NO     :
-/*N*/               sRet.AppendAscii( SwForm::aFormEntryNum );
-/*N*/           break;
-/*N*/           case TOKEN_ENTRY_TEXT   :
-/*N*/               sRet.AppendAscii( SwForm::aFormEntryTxt );
-/*N*/           break;
-/*N*/           case TOKEN_ENTRY        :
-/*N*/               sRet.AppendAscii( SwForm::aFormEntry );
-/*N*/           break;
-/*N*/           case TOKEN_TAB_STOP     :
-/*N*/               sRet.AppendAscii( SwForm::aFormTab );
-/*N*/           break;
-/*N*/           case TOKEN_TEXT         :
-/*?*/               sRet += aToken.sText;
-/*?*/           break;
-/*N*/           case TOKEN_PAGE_NUMS    :
-/*N*/               sRet.AppendAscii( SwForm::aFormPageNums );
-/*N*/           break;
-/*N*/           case TOKEN_CHAPTER_INFO :
-/*N*/               // not available in 5.1
-/*N*/           break;
-/*N*/           case TOKEN_LINK_START   :
-/*N*/               sRet.AppendAscii( SwForm::aFormLinkStt );
-/*N*/           break;
-/*N*/           case TOKEN_LINK_END     :
-/*N*/               sRet.AppendAscii( SwForm::aFormLinkEnd );
-/*N*/           break;
-/*N*/           case TOKEN_AUTHORITY :
-/*N*/               // no conversion available
-/*?*/               sRet.AppendAscii( SwForm::aFormEntry );
-/*?*/           break;
-/*?*/           default:
-/*?*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/   return sRet;
-/*N*/ }
-
 /*N*/ String    SwForm::ConvertPatternFrom51(const String& rSource, TOXTypes eType)
 /*N*/ {
 /*N*/   String sRet( rSource );

@@ -48,7 +48,6 @@ SRC1FILES =  \
 
 SLOFILES =  \
         $(SLO)$/sw_move.obj \
-        $(SLO)$/sw_select.obj \
         $(SLO)$/sw_wrtsh1.obj \
         $(SLO)$/sw_wrtsh3.obj
 

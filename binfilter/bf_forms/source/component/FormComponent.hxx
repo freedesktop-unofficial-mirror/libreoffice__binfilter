@@ -474,7 +474,6 @@ public:
     virtual void SAL_CALL reloaded( const ::com::sun::star::lang::EventObject& aEvent ) throw(::com::sun::star::uno::RuntimeException);
 
 private:
-    sal_Bool connectToField(const ::com::sun::star::uno::Reference< ::com::sun::star::sdbc::XRowSet>& _rxForm);
     void resetField() { m_xColumnUpdate = NULL; m_xColumn = NULL; m_xField = NULL; }
 };
 

@@ -251,8 +251,6 @@ public:
     inline void             SetPattern(USHORT nLevel, const String& rName);
     inline const String&    GetPattern(USHORT nLevel) const;
 
-    //convert pattern string from old to new format or vice versa
-    static String           ConvertPatternTo51(const String& rSource);
     static String           ConvertPatternFrom51(const String& rSource, TOXTypes eType);
 
     // fill tab stop positions from template to pattern

@@ -526,63 +526,6 @@ SFX_IMPL_OBJECTFACTORY_DLL(SwDocShell, SFXOBJECTSHELL_STD_NORMAL|SFXOBJECTSHELL_
 /*N*/   SfxObjectShell::CancelTransfers();
 /*N*/ }
 
-
-    // embedded alle lokalen Links (Bereiche/Grafiken)
-
-
-/*N*/ void SwDocShell::RemoveOLEObjects()
-/*N*/ {
-/*N*/   SvPersist* pPersist = this;
-/*N*/   SwClientIter aIter( *(SwModify*)pDoc->GetDfltGrfFmtColl() );
-/*N*/   for( SwCntntNode* pNd = (SwCntntNode*)aIter.First( TYPE( SwCntntNode ) );
-/*N*/           pNd; pNd = (SwCntntNode*)aIter.Next() )
-/*N*/   {
-/*N*/       SwOLENode* pOLENd = pNd->GetOLENode();
-/*N*/       if( pOLENd && ( pOLENd->IsOLEObjectDeleted() ||
-/*N*/                       pOLENd->IsInGlobalDocSection() ) )
-/*N*/       {
-/*N*/           SvInfoObjectRef aRef( pPersist->Find(
-/*N*/                                   pOLENd->GetOLEObj().GetName() ) );
-/*N*/           if( aRef.Is() )
-/*N*/           {
-/*N*/               if( !xOLEChildList.Is() )
-/*N*/               {
-/*N*/                   xOLEChildList = new SwTmpPersist( *this );
-/*N*/                   xOLEChildList->DoInitNew( 0 );
-/*N*/               }
-/*N*/
-/*N*/                 xOLEChildList->Move( &aRef, aRef->GetStorageName(), TRUE );
-/*N*/               pPersist->Remove( &aRef );
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
-// When a document is loaded, SwDoc::PrtOLENotify is called to update
-// the sizes of math objects. However, for objects that do not have a
-// SwFrm at this time, only a flag is set (bIsOLESizeInvalid) and the
-// size change takes place later, while calculating the layout in the
-// idle handler. If this document is saved now, it is saved with invalid
-// sizes. For this reason, the layout has to be calculated before a document is
-// saved, but of course only id there are OLE objects with bOLESizeInvalid set.
-/*N*/ void SwDocShell::CalcLayoutForOLEObjects()
-/*N*/ {
-/*N*/   if( !pWrtShell )
-/*N*/       return;
-/*N*/
-/*N*/   SwClientIter aIter( *(SwModify*)pDoc->GetDfltGrfFmtColl() );
-/*N*/   for( SwCntntNode* pNd = (SwCntntNode*)aIter.First( TYPE( SwCntntNode ) );
-/*N*/           pNd; pNd = (SwCntntNode*)aIter.Next() )
-/*N*/   {
-/*N*/       SwOLENode* pOLENd = pNd->GetOLENode();
-/*N*/       if( pOLENd && pOLENd->IsOLESizeInvalid() )
-/*N*/       {
-/*N*/           pWrtShell->CalcLayout();
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ Sequence< OUString >  SwDocShell::GetEventNames()
 /*N*/ {
 /*N*/   Sequence< OUString > aRet = SfxObjectShell::GetEventNames();

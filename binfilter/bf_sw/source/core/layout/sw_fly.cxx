@@ -1964,26 +1964,6 @@ void SwFrm::CalcFlys( BOOL bPosOnly )
 /*N*/   return aRect;
 /*N*/ }
 
-/*************************************************************************
-|*
-|*  SwFlyFrm::GetContour()
-|*
-|*************************************************************************/
-/// #i13147# - If called for paint and the <SwNoTxtFrm> contains
-/// a graphic, load of intrinsic graphic has to be avoided.
-
-BOOL SwFlyFrm::ConvertHoriTo40( SwHoriOrient &rHori, SwRelationOrient &rRel,
-                                SwTwips &rPos ) const
-{
-    if( !GetAnchor() )
-        return FALSE;
-    rHori = HORI_NONE;
-    rRel = FRAME;
-    rPos = Frm().Left() - GetAnchor()->Frm().Left();
-    return TRUE;
-}
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

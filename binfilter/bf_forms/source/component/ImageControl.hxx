@@ -66,9 +66,6 @@ class OImageControlModel
 
     OPropertyChangeMultiplexer* m_pAggregatePropertyMultiplexer;
 
-    // Helper functions
-    void UpdateFromField();
-
 protected:
     // UNO Anbindung
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type> _getTypes();
