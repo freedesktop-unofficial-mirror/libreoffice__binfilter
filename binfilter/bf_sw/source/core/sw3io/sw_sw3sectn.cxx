@@ -363,44 +363,6 @@ namespace binfilter {
 /*N*/   return *pSttNd;
 /*N*/ }
 
-// Einen Basis-Contents-Bereich des Dokuments ausgeben
-
-// Der PaM zeigt (was er ja muss) immer auf einen Cntnt-Node. Somit
-// muss noch getestet werden, ob dieser am Tabellenanfang liegt. In
-// diesem Fall wird die Tabelle ausgegeben. Auch, wenn am Anfang eine
-// Section liegt, muss dies gesondert behandelt werden!
-
-/*N*/ void Sw3IoImp::OutContents( SwPaM* pPaM )
-/*N*/ {
-/*N*/   // Gespeichert wird immer von Point bis Mark
-/*N*/   if( *pPaM->GetPoint() > *pPaM->GetMark() )
-/*N*/       pPaM->Exchange();
-/*N*/   // gebe alle Bereiche des Pams in das File aus.
-/*N*/   ULONG nCurNode = pPaM->GetPoint()->nNode.GetIndex();
-/*N*/   ULONG nEndNode = pPaM->GetMark()->nNode.GetIndex();
-/*N*/   xub_StrLen nCurPos  = pPaM->GetPoint()->nContent.GetIndex();
-/*N*/   xub_StrLen nEndPos  = STRING_LEN;
-/*N*/   SwNode* pNd1 = pDoc->GetNodes()[ nCurNode ];
-/*N*/
-/*N*/   // Is the node contained in a table?
-/*N*/   const SwTableNode* pTbl = pNd1->FindTableNode();
-/*N*/   if( pTbl )
-/*N*/       nCurNode = pTbl->GetIndex();
-/*N*/
-/*N*/   // Step out of sections, in fact to the start node of the first
-/*N*/   // section.
-/*N*/   // #67503#: This must be done if the first text node is contained in
-/*N*/   // a table, too.
-/*N*/   do
-/*N*/   {
-/*N*/       pNd1 = pDoc->GetNodes()[ --nCurNode ]->GetSectionNode();
-/*N*/   } while( pNd1 );
-/*N*/   nCurNode++;
-/*N*/
-/*N*/   // Dieses OutContents schreibt den Top-Level
-/*N*/   OutContents( nCurNode, nEndNode, nCurPos, nEndPos, TRUE );
-/*N*/ }
-
 // Ausgabe einer kompletten Contents-Section
 // Der uebergebene Index zeigt auf den StartNode
 

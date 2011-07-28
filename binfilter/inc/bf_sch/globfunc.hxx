@@ -60,7 +60,6 @@ namespace binfilter {
 #define CDEG2RAD(fAngle) (  (double)(fAngle)*F_PI/18000.0 )
 
 void AxisAttrOld2New(SfxItemSet &rDestSet,BOOL bClear,long nId);
-void AxisAttrNew2Old(SfxItemSet &rDestSet,long nId,BOOL bClear);
 
 Size GetRotatedTextSize(const Size& rSize,const long nDegrees);
 long GetTextRotation(SfxItemSet &rAttr);

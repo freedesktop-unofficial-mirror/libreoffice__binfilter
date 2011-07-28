@@ -53,9 +53,6 @@
 #include "sw3imp.hxx"
 namespace binfilter {
 
-
-extern String GetSWGVersion();
-
 // Wird von der GUI-Seite gesetzt, wenn Layouts ignoriert werden sollen
 
 //////////////////////////////////////////////////////////////////////////////
@@ -491,88 +488,6 @@ void lcl_sw3doc_ChgChartName( SwDoc* pDoc )
 /*N*/
 /*N*/   if( nRecSzPos!= 0 && bReadRecSizes && !nRes && IsVersion(SWG_RECSIZES) )
                     InRecSizes( nRecSzPos );
-/*N*/ }
-
-
-/*N*/ void Sw3IoImp::OutHeader( ULONG nRecSzPos )
-/*N*/ {
-/*N*/   Reset2();
-/*N*/   nFileFlags |= SWGF_NO_FRAMES;
-/*N*/   if( aBlkName.Len() )
-/*N*/       nFileFlags |= SWGF_BLOCKNAME;
-/*N*/
-/*N*/   INT32 nDocFlags = 0;
-/*N*/   if ( pDoc->IsBrowseMode() )
-/*N*/       nDocFlags |= 0x0002;
-/*N*/   if ( pDoc->IsHTMLMode() )
-/*N*/       nDocFlags |= 0x0004;
-/*N*/   if ( pDoc->IsHeadInBrowse() )
-/*N*/       nDocFlags |= 0x0008;
-/*N*/   if ( pDoc->IsFootInBrowse() )
-/*N*/       nDocFlags |= 0x0010;
-/*N*/   if( pDoc->IsGlobalDoc() )
-/*N*/       nDocFlags |= 0x0020;
-/*N*/   if( pDoc->IsGlblDocSaveLinks() )
-/*N*/       nDocFlags |= 0x0040;
-/*N*/   if( !bBlock && !IsSw31Or40Export() && pDoc->IsLabelDoc() )
-/*N*/       nDocFlags |= 0x0080;
-/*N*/
-/*N*/   BYTE cRedlineMode = 0;
-/*N*/   if( !bBlock && !IsSw31Or40Export() )
-/*N*/       cRedlineMode = (BYTE)pDoc->GetRedlineMode();
-/*N*/
-/*N*/   UINT16 nVers = SWG_VERSION;
-/*N*/   const sal_Char *sHeader = SW5HEADER;
-/*N*/
-/*N*/   switch( pStrm->GetVersion() )
-/*N*/   {
-/*N*/   case SOFFICE_FILEFORMAT_40:
-/*N*/       nVers = SWG_EXPORT40;
-/*N*/       sHeader = SW4HEADER;
-/*N*/       break;
-/*N*/   case SOFFICE_FILEFORMAT_31:
-/*N*/       nVers = SWG_EXPORT31;
-/*N*/       sHeader = SW3HEADER;
-/*N*/       break;
-/*N*/   }
-/*N*/
-/*N*/   OSL_ENSURE( !nRecSzPos || !IsSw31Or40Export(),
-/*N*/           "Lange Records gibt's erst ab der 5.0" );
-/*N*/   OSL_ENSURE( GetSOStoreTextEncoding( gsl_getSystemTextEncoding(),
-/*N*/                                   pStrm->GetVersion() ) == eSrcSet,
-/*N*/           "wrong encoding while writing" );
-/*N*/   OSL_ENSURE( pStrm->GetStreamCharSet() == eSrcSet,
-/*N*/           "wrong encoding at stream while writing" );
-/*N*/
-/*N*/   OutputMode( TRUE );
-/*N*/   pStrm->Seek( 0L );
-/*N*/   *pStrm << sHeader
-/*N*/          << (BYTE)   0
-/*N*/          << (BYTE)   ( aBlkName.Len() ? 46+64 : 46 )  // Laenge der Daten
-/*N*/          << (UINT16) nVers
-/*N*/          << (UINT16) nFileFlags
-/*N*/          << (INT32)  nDocFlags
-/*N*/          << (UINT32) nRecSzPos
-/*N*/          << (INT32)  0
-/*N*/          << (INT8)   0
-/*N*/          << (INT8)   0
-/*N*/          << (BYTE)   cRedlineMode
-/*N*/          << (INT8)   SWG_CVERSION;
-/*N*/   pStrm->Write( cPasswd, 16 );
-/*N*/   *pStrm << (BYTE)   eSrcSet
-/*N*/          << (BYTE)   0                // OLD: eSysType
-/*N*/          << (UINT32) nDate            // fuer Passwortcheck wichtig
-/*N*/          << (UINT32) nTime;
-/*N*/   if( aBlkName.Len() )
-/*N*/   {
-/*N*/       // den langen Blocknamen rausschreiben
-/*?*/       ByteString sTmp( aBlkName, eSrcSet );
-/*?*/       sal_Char cBuf[ 64 ];
-/*?*/       sTmp.Erase( 63 );
-/*?*/       memset( cBuf, 0, 64 );
-/*?*/       memcpy( cBuf, sTmp.GetBuffer(), sTmp.Len() );
-/*?*/       pStrm->Write( cBuf, 64 );
-/*N*/   }
 /*N*/ }
 
 }

@@ -267,9 +267,7 @@ public:
     Sw3StringPool();
     USHORT Count() { return aPool.Count(); }
     void   Clear();
-    void   Setup( SwDoc&, long nFFVersion, Sw3ExportInfo* pEI );
     void   SetupRedlines( SwDoc& );
-    void   SetupForNumRules( SwDoc&, long nFFVersion );
     void   RemoveExtensions( SwDoc& );
     static void RemoveExtension( String& );
     USHORT Add( const String&, USHORT nPoolId /*= 0*/, BOOL bDontSearch=FALSE );
@@ -513,7 +511,6 @@ public:
     BOOL HasRecSizes() const { return pRecSizes != 0; }
     void FlushRecSizes();
     void InRecSizes( ULONG nRecPos );
-    ULONG OutRecSizes();
     BYTE OpenFlagRec();             // Endeposition eines Flag-Records merken
     void CloseFlagRec();            // Flag-Record schliessen
     void OpenValuePos16( UINT16 );  // Position fuer UINT16-Wert merken
@@ -601,12 +598,10 @@ public:
     void   LoadDocContents( SwPaM* );       // I: Dokumentinhalt
     USHORT GetStreamFlags();                // I: Stream-Flags laden
     void   InHeader( BOOL bReadRecSizes=FALSE); // I: Dateikopf
-    void   OutHeader( ULONG nRecSzPos=0UL );    // O: Dateikopf
     BOOL   InHeaderForScan( BOOL bReadRecSizes=FALSE );
 
                                             // SW3FIELD.CXX
     SwField* InField();                     // I: Feld
-    void   OutFieldTypes();                 // O: alle Feldtypen
     SwFieldType* InFieldType();             // I: ein Feldtyp
     BOOL   OutFieldType(const SwFieldType&);// O: ein Feldtyp
 
@@ -619,37 +614,27 @@ public:
     SwFmt* InFormat( BYTE cKind, SwFmt* );  // I: Format
     void   OutFormat( BYTE, const SwFmt& ); // O: Format
     void   InFlyFrames();                   // I: globale FlyFrames
-    void   OutFlyFrames( SwPaM& );          // O: globale FlyFrames
 
                                             // SW3MISC.CXX
     SwFmt* FindFmt( USHORT nIdx, BYTE c );  // Suchen eines Formats per StringId
     SwFmt* FindNamedFmt( USHORT nIdx, BYTE);// Suchen einer Formatvorlage
     SwTxtFmtColl* FindTxtColl( USHORT n );  // Suchen einer Absatzvorlage
     SwPageDesc* FindPageDesc( USHORT nIdx );// Suchen einer Seitenvorlage
-    void   CollectFlyFrms( const SwPaM* );  // vor Ausgabe: alle FlyFrms finden
     void   FreeFlyFrms();                   // nach Ausgabe. Infos freigeben
     SwFmt* FindFlyFrm( ULONG nNodeId );     // O: absatzgebundenen Fly suchen
     void   InMacroTbl();                    // I: globale Makros
-    void   OutMacroTbl();                   // O: globale Makros
     void   InDictionary();                  // I: Woerterbuecher (Online-Spl.)
-    void   OutDictionary();                 // O: Woerterbuecher (Online-Spl.)
     void   InJobSetup();                    // I: Job Setup
-    void   OutJobSetup();                   // O: Job Setup
     void   InDBName();                      // I: Datenbankname
-    void   OutDBName();                     // O: Datenbankname
     void   InStringPool( BYTE, Sw3StringPool& );
-    void   OutStringPool( BYTE, Sw3StringPool& );
     void   InPasswd();                      // I: Passwort
     void   SetPasswd( const String& rPass );// IO: Passwort setzen
                                             // O: TOX- und Bookmark-Bereiche suchen
     void   InNodeMark( const SwNodeIndex&, xub_StrLen nOffset );    // I: Markierung
     void   OutNodeMarks( ULONG );           // O: Markierung
     void   InBookmarks();                   // I: Bookmarks
-    void   OutBookmarks( BOOL bPageStyles );// O: Bookmarks
     void   InTOXs51();                      // I: TOX-Bereiche
-    void   OutTOXs51();                     // O: TOX-Bereiche
     void   InTOXs();                        // I: TOX-Bereiche
-    void   OutTOXs();                       // O: TOX-Bereiche
     void   CleanupMarks();                  // I: nicht ben. Marks loeschen
     void   ConnectTOXs();                   // I: insert TOXs
 
@@ -702,11 +687,8 @@ public:
     void   InEndNoteInfo( SwEndNoteInfo &rENInf ); // I: globale Endnoten-Info
     void   OutEndNoteInfo( const SwEndNoteInfo &rENInf ); // O: globale Endnoten-Info
     void   InEndNoteInfo();                 // I: globale Endnoten-Info
-    void   OutEndNoteInfo();                // O: globale Endnoten-Info
     void   InFtnInfo();                     // I: globale Fussnoten-Info
-    void   OutFtnInfo();                    // O: globale Fussnoten-Info
     void   InFtnInfo40();                   // I: globale Fussn.-Info 3.1/4.0
-    void   OutFtnInfo40();                  // O: globale Fussn.-Info 3.1/4.0
     void   OpenNumRange40( const SwNodeIndex& ); // I: Numerierungsregel-Beginn
     void   CloseNumRange40( const SwNodeIndex& ); // I: Numerierungsregel-Ende
 
@@ -715,13 +697,11 @@ public:
     void   OutPageFtnInfo( const SwPageFtnInfo& rFtn );
     void   InPageDescs();                   // I: alle Seitenvorlagen
     SwPageDesc* InPageDesc( USHORT& );      // I: Seitenvorlage
-    void   OutPageDesc( const SwPageDesc& );// O: Seitenvorlage
     void   ConnectPageDescAttrs();          // I: PageDesc-Referenzen aufloesen
 
                                             // SW3SECTN.CXX
     void   InContents( SwNodeIndex&, xub_StrLen=0, BOOL=TRUE, BYTE=0, BOOL=FALSE );
     SwStartNode& InContents();              // I: neue Section anlegen
-    void   OutContents( SwPaM* );           // O: per PaM definierter Bereich
     void   OutContents( const SwNodeIndex& );   // O: abgeschlossener Bereich
                                             // O: contents
     void   OutContents( ULONG,ULONG,xub_StrLen,xub_StrLen, BOOL bTopLevel=FALSE );
@@ -743,25 +723,19 @@ public:
 /*N*/   void InRedline(); //SW50.SDW                        // I: Redline
         void OutRedline( const SwRedline& rRedline );
 /*N*/   void InRedlines(); //SW50.SDW
-    void OutRedlines( BOOL bPageStyles );
 /*N*/   void InNodeRedline( const SwNodeIndex& rNodeIdx, INT32& nOffset, BYTE=0 ); //SW50.SDW
     void OutNodeRedlines( ULONG );
     void CleanupRedlines();
 
-    void OutDocStat( BOOL bFirst );
     void InDocStat();
 
     void InNumberFormatter();
-    void OutNumberFormatter();
 
     void InLineNumberInfo();
-    void OutLineNumberInfo();
 
     void InDocDummies();
-    void OutDocDummies();
 
     void InPagePreViewPrintData();
-    void OutPagePreViewPrintData();
 
     // die folgenden Methoden sind zum Suchen von Sections
     void GetSectionList( SvStrings& rSectionList, SvStringsDtor& rBookmarks );

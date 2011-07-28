@@ -148,48 +148,6 @@ namespace binfilter {
 /*N*/   return ( nContent != rPos.nContent );
 /*N*/ }
 
-SwComparePosition ComparePosition(
-            const SwPosition& rStt1, const SwPosition& rEnd1,
-            const SwPosition& rStt2, const SwPosition& rEnd2 )
-{
-    SwComparePosition nRet;
-    if( rStt1 < rStt2 )
-    {
-        if( rEnd1 > rStt2 )
-        {
-            if( rEnd1 >= rEnd2 )
-                nRet = POS_OUTSIDE;
-            else
-                nRet = POS_OVERLAP_BEFORE;
-
-        }
-        else if( rEnd1 == rStt2 )
-            nRet = POS_COLLIDE_END;
-        else
-            nRet = POS_BEFORE;
-    }
-    else if( rEnd2 > rStt1 )
-    {
-        if( rEnd2 >= rEnd1 )
-        {
-            if( rEnd2 == rEnd1 && rStt2 == rStt1 )
-                nRet = POS_EQUAL;
-            else
-                nRet = POS_INSIDE;
-        }
-        else
-            nRet = POS_OVERLAP_BEHIND;
-    }
-    else if( rEnd2 == rStt1 )
-        nRet = POS_COLLIDE_START;
-    else
-        nRet = POS_BEHIND;
-    return nRet;
-}
-
-
-/*  */
-
 enum CHKSECTION { Chk_Both, Chk_One, Chk_None };
 
 

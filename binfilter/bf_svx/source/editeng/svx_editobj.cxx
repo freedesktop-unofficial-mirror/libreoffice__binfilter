@@ -57,86 +57,6 @@ namespace binfilter {
 DBG_NAME( EE_EditTextObject )
 DBG_NAME( XEditAttribute )
 
-//--------------------------------------------------------------
-
-BOOL lcl_CreateBulletItem( const SvxNumBulletItem& rNumBullet, USHORT nLevel, SvxBulletItem& rBullet )
-{
-    const SvxNumberFormat* pFmt = rNumBullet.GetNumRule()->Get( nLevel );
-    if ( pFmt )
-    {
-        rBullet.SetWidth( (-pFmt->GetFirstLineOffset()) + pFmt->GetCharTextDistance() );
-        rBullet.SetSymbol( pFmt->GetBulletChar() );
-        rBullet.SetPrevText( pFmt->GetPrefix() );
-        rBullet.SetFollowText( pFmt->GetSuffix() );
-        rBullet.SetStart( pFmt->GetStart() );
-        rBullet.SetScale( pFmt->GetBulletRelSize() );
-
-        Font aBulletFont( rBullet.GetFont() );
-        if ( pFmt->GetBulletFont() )
-            aBulletFont = *pFmt->GetBulletFont();
-        aBulletFont.SetColor( pFmt->GetBulletColor() );
-        rBullet.SetFont( aBulletFont );
-
-        if ( pFmt->GetBrush() && pFmt->GetBrush()->GetGraphic() )
-        {
-            DBG_BF_ASSERT(0, "STRIP");
-        }
-
-        switch ( pFmt->GetNumberingType() )
-        {
-            case SVX_NUM_CHARS_UPPER_LETTER:
-            case SVX_NUM_CHARS_UPPER_LETTER_N:
-                rBullet.SetStyle( BS_ABC_BIG );
-                break;
-            case SVX_NUM_CHARS_LOWER_LETTER:
-            case SVX_NUM_CHARS_LOWER_LETTER_N:
-                rBullet.SetStyle( BS_ABC_SMALL );
-                break;
-            case SVX_NUM_ROMAN_UPPER:
-                rBullet.SetStyle( BS_ROMAN_BIG );
-                break;
-            case SVX_NUM_ROMAN_LOWER:
-                rBullet.SetStyle( BS_ROMAN_SMALL );
-                break;
-            case SVX_NUM_ARABIC:
-                rBullet.SetStyle( BS_123 );
-                break;
-            case SVX_NUM_NUMBER_NONE:
-                rBullet.SetStyle( BS_NONE );
-                break;
-            case SVX_NUM_CHAR_SPECIAL:
-                rBullet.SetStyle( BS_BULLET );
-                break;
-            case SVX_NUM_PAGEDESC:
-                OSL_FAIL( "Unknown: SVX_NUM_PAGEDESC" );
-                rBullet.SetStyle( BS_BULLET );
-                break;
-            case SVX_NUM_BITMAP:
-                rBullet.SetStyle( BS_BMP );
-                break;
-            default:
-                OSL_FAIL( "Unknown NumType" );
-        }
-
-        switch ( pFmt->GetNumAdjust() )
-        {
-            case SVX_ADJUST_LEFT:
-                rBullet.SetJustification( BJ_VCENTER|BJ_HLEFT );
-                break;
-            case SVX_ADJUST_RIGHT:
-                rBullet.SetJustification( BJ_VCENTER|BJ_HRIGHT );
-                break;
-            case SVX_ADJUST_CENTER:
-                rBullet.SetJustification( BJ_VCENTER|BJ_HCENTER );
-                break;
-            default:
-                OSL_FAIL( "Unknown or invalid NumAdjust" );
-        }
-    }
-    return pFmt ? TRUE : FALSE;
-}
-
-
 XEditAttribute* MakeXEditAttribute( SfxItemPool& rPool, const SfxPoolItem& rItem, USHORT nStart, USHORT nEnd )
 {
     // das neue Attribut im Pool anlegen
@@ -145,8 +65,6 @@ XEditAttribute* MakeXEditAttribute( SfxItemPool& rPool, const SfxPoolItem& rItem
     XEditAttribute* pNew = new XEditAttribute( rNew, nStart, nEnd );
     return pNew;
 }
-
-
 
 XEditAttribute::XEditAttribute( const SfxPoolItem& rAttr, USHORT nS, USHORT nE )
 {

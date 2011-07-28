@@ -426,49 +426,6 @@ void Sw3IoImp::SetDBName()
 /*N*/   return pDesc;
 /*N*/ }
 
-/*N*/ void Sw3IoImp::OutPageDesc( const SwPageDesc& rPg )
-/*N*/ {
-/*N*/   const SwPageDesc* p;
-/*N*/   // 0x10 - Landscape mode
-/*N*/   BYTE cFlags = IsSw31Export() ? 0x09: 0x0b;  // diverse Daten
-/*N*/   if( rPg.GetLandscape() )
-/*N*/       cFlags |= 0x10;
-/*N*/   USHORT nIdx, nFollow = IDX_NO_VALUE, nPoolId = rPg.GetPoolFmtId();
-/*N*/   USHORT nRegCollIdx = IDX_NO_VALUE;
-/*N*/   nIdx = aStringPool.Add( rPg.GetName(), nPoolId );
-/*N*/   p = rPg.GetFollow();
-/*N*/   if( p )
-/*N*/       nFollow = aStringPool.Add( p->GetName(), p->GetPoolFmtId() );
-/*N*/
-/*N*/   const SwTxtFmtColl *pRegFmtColl = rPg.GetRegisterFmtColl();
-/*N*/   if( pRegFmtColl )
-/*N*/       nRegCollIdx = aStringPool.Add( pRegFmtColl->GetName(),
-/*N*/                                      pRegFmtColl->GetPoolFmtId() );
-/*N*/
-/*N*/
-/*N*/   OpenRec( SWG_PAGEDESC );
-/*N*/   *pStrm << (BYTE)   cFlags
-/*N*/          << (UINT16) nIdx
-/*N*/          << (UINT16) nFollow
-/*N*/          << (UINT16) nPoolId
-/*N*/          << (BYTE)   rPg.GetNumType().GetNumberingType()
-/*N*/          << (UINT16) rPg.ReadUseOn();
-/*N*/   if( !IsSw31Export() )
-/*N*/       *pStrm << (UINT16) nRegCollIdx;
-/*N*/
-/*N*/   OutPageFtnInfo( rPg.GetFtnInfo() );
-/*N*/   // Formate (evtl. mit Unterdrueckung von Hdr/Ftr-Formaten)
-/*N*/   // Diese Unterdrueckung wird auch in den Attr-Schreiberoutinen
-/*N*/   // verwendet!
-/*N*/   OutAttrSet( rPg.GetMaster().GetAttrSet() );
-/*N*/   USHORT nOldFlags = nGblFlags;
-/*N*/   if( rPg.IsHeaderShared() ) nGblFlags |= SW3F_NOHDRFMT;
-/*N*/   if( rPg.IsFooterShared() ) nGblFlags |= SW3F_NOFTRFMT;
-/*N*/   OutAttrSet( rPg.GetLeft().GetAttrSet() );
-/*N*/   nGblFlags = nOldFlags;
-/*N*/   CloseRec( SWG_PAGEDESC );
-/*N*/ }
-
 // PageDesc-Attribute koennen in einer Absatzvorlage vorkommen; diese
 // werden vor den Seitenvorlagen eingelesen, so dass eine Vorwaerts-
 // Referenz entsteht. Die Einleseroutine legt den Stringpool-Index

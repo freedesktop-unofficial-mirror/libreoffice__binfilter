@@ -213,9 +213,6 @@ public:
     // be nested.
     BYTE OpenFlagRec();
 
-    // Open flag record for writing;
-    void OpenFlagRec( BYTE nFlags, BYTE nLen );
-
     // Close a flag record. Any bytes left are skipped.
     void CloseFlagRec();
 

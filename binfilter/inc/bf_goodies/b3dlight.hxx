@@ -194,7 +194,6 @@ public:
 
     // Hauptschalter fuer die Beleuchtung
     virtual void EnableLighting(BOOL bNew=TRUE);
-    BOOL IsLightingEnabled();
 
     // Lichtquellen Interface
     void SetIntensity(const Color rNew,

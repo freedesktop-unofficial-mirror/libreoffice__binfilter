@@ -59,7 +59,6 @@ SLOFILES = \
         $(SLO)$/sw_docshini.obj \
         $(SLO)$/sw_docstyle.obj \
         $(SLO)$/sw_mainwn.obj   \
-        $(SLO)$/sw_version.obj  \
         $(SLO)$/sw_swmodule.obj \
         $(SLO)$/sw_swmodul1.obj \
         $(SLO)$/sw_swdll.obj

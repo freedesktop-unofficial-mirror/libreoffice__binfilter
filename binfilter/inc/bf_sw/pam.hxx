@@ -93,11 +93,6 @@ enum SwComparePosition {
     POS_COLLIDE_START,      // Pos1 Start stoesst an Pos2 Ende
     POS_COLLIDE_END         // Pos1 End stoesst an Pos2 Start
 };
-SwComparePosition ComparePosition(
-            const SwPosition& rStt1, const SwPosition& rEnd1,
-            const SwPosition& rStt2, const SwPosition& rEnd2 );
-
-
 
 // SwPointAndMark / SwPaM
 struct SwMoveFnCollection;

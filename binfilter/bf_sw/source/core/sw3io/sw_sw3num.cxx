@@ -1177,14 +1177,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   pDoc->SetEndNoteInfo( aENInf );
 /*N*/   CloseRec( SWG_ENDNOTEINFO );
 /*N*/ }
-/*N*/
-/*N*/
-/*N*/ void Sw3IoImp::OutEndNoteInfo()
-/*N*/ {
-/*N*/   OpenRec( SWG_ENDNOTEINFO );
-/*N*/   OutEndNoteInfo( pDoc->GetEndNoteInfo() );
-/*N*/   CloseRec( SWG_ENDNOTEINFO );
-/*N*/ }
 
 /*N*/ void Sw3IoImp::InFtnInfo()
 /*N*/ {
@@ -1214,26 +1206,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   if(FTNPOS_CHAPTER == aFtn.ePos && FTNNUM_CHAPTER == aFtn.eNum)
 /*N*/         aFtn.eNum = FTNNUM_DOC;
 /*N*/   pDoc->SetFtnInfo( aFtn );
-/*N*/   CloseRec( SWG_FOOTINFO );
-/*N*/ }
-
-/*N*/ void Sw3IoImp::OutFtnInfo()
-/*N*/ {
-/*N*/   if( IsSw31Or40Export() )
-/*N*/   {
-/*N*/       OutFtnInfo40();
-/*N*/       return;
-/*N*/   }
-/*N*/
-/*N*/   const SwFtnInfo& rFtn = pDoc->GetFtnInfo();
-/*N*/
-/*N*/   OpenRec( SWG_FOOTINFO );
-/*N*/   OutEndNoteInfo( rFtn );
-/*N*/   *pStrm << (BYTE)0x02
-/*N*/          << (BYTE) rFtn.ePos
-/*N*/          << (BYTE) rFtn.eNum;
-/*N*/   OutString( *pStrm, rFtn.aQuoVadis );
-/*N*/   OutString( *pStrm, rFtn.aErgoSum );
 /*N*/   CloseRec( SWG_FOOTINFO );
 /*N*/ }
 
@@ -1271,33 +1243,7 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   CloseRec( SWG_FOOTINFO );
 /*N*/ }
 
-/*N*/ void Sw3IoImp::OutFtnInfo40()
-/*N*/ {
-/*N*/   const SwFtnInfo& rFtn = pDoc->GetFtnInfo();
-/*N*/   SwTxtFmtColl* pColl = rFtn.GetFtnTxtColl();
-/*N*/   USHORT nCollIdx = pColl ? aStringPool.Add( pColl->GetName(),
-/*N*/                                              pColl->GetPoolFmtId() )
-/*N*/                           : IDX_NO_VALUE;
-/*N*/   const SwPageDesc *pDesc = (const SwPageDesc *)rFtn.GetPageDescDep()
-/*N*/                                   ->GetRegisteredIn();
-/*N*/   USHORT nPageIdx = pDesc ? aStringPool.Find( pDesc->GetName(),
-/*N*/                                               pDesc->GetPoolFmtId() )
-/*N*/                           : IDX_NO_VALUE;
-/*N*/   OpenRec( SWG_FOOTINFO );
-/*N*/   OutString( *pStrm, rFtn.aQuoVadis );
-/*N*/   OutString( *pStrm, rFtn.aErgoSum );
-/*N*/     *pStrm << (BYTE) 0x09     // 9 bytes of data
-/*N*/          << (BYTE) rFtn.ePos
-/*N*/          << (BYTE) rFtn.eNum
-/*N*/          << (BYTE) rFtn.aFmt.GetNumberingType()
-/*N*/          << (UINT16) nPageIdx
-/*N*/          << (UINT16) nCollIdx
-/*N*/          << (UINT16) rFtn.nFtnOffset;
-/*N*/   CloseRec( SWG_FOOTINFO );
-/*N*/ }
-
 // Oeffnen eines Numerierungsregel-Bereichs
-
 
 /*N*/ void Sw3IoImp::OpenNumRange40( const SwNodeIndex& rPos )
 /*N*/ {

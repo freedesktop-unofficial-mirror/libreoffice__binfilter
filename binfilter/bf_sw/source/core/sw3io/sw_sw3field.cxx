@@ -307,118 +307,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/   }
 /*N*/ }
 
-/*N*/ void sw3io_ConvertToOldField( const SwField* pFld, USHORT& rWhich,
-/*N*/                             UINT32& rFmt, ULONG nFFVersion )
-/*N*/ {
-/*N*/   const OldFormats *pOldFmt = 0L;
-/*N*/   UINT32 nOldFmt = rFmt;
-/*N*/
-/*N*/   switch( rWhich )
-/*N*/   {
-/*N*/       case RES_DOCINFOFLD:
-/*N*/           if( SOFFICE_FILEFORMAT_40 >= nFFVersion )
-/*N*/           {
-/*N*/               switch (pFld->GetSubType() & 0xff00)
-/*N*/               {
-/*N*/               case DI_SUB_AUTHOR: rFmt = RF_AUTHOR;   break;
-/*N*/               case DI_SUB_TIME:   rFmt = RF_TIME;     break;
-/*N*/               case DI_SUB_DATE:   rFmt = RF_DATE;     break;
-/*N*/               }
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case RES_DATETIMEFLD:
-/*N*/           if( SOFFICE_FILEFORMAT_40 >= nFFVersion )
-/*N*/           {
-/*N*/               USHORT nSubType = ((SwDateTimeField*) pFld)->GetSubType();
-/*N*/               switch( nSubType )
-/*N*/               {
-/*N*/               case DATEFLD:           rWhich = RES_DATEFLD;       break;
-/*N*/               case TIMEFLD:           rWhich = RES_TIMEFLD;       break;
-/*N*/               case DATEFLD|FIXEDFLD:  rWhich = RES_FIXDATEFLD;    break;
-/*N*/               case TIMEFLD|FIXEDFLD:  rWhich = RES_FIXTIMEFLD;    break;
-/*N*/               }
-/*N*/
-/*N*/               if( nSubType & DATEFLD )
-/*N*/               {
-/*N*/                   rFmt = DFF_DMY;
-/*N*/                   pOldFmt = aOldDateFmt40;
-/*N*/               }
-/*N*/               else
-/*N*/               {
-/*N*/                   rFmt = TF_SYSTEM;
-/*N*/                   pOldFmt = aOldTimeFmt;
-/*N*/               }
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case RES_DBFLD:
-/*N*/       case RES_TABLEFLD:
-/*N*/       case RES_GETEXPFLD:
-/*N*/       case RES_SETEXPFLD:
-/*N*/       case RES_USERFLD:
-/*N*/           if( SOFFICE_FILEFORMAT_40 >= nFFVersion )
-/*N*/           {
-/*N*/               USHORT nSubType = pFld->GetSubType();
-/*N*/
-/*N*/               if (nSubType & SUB_INVISIBLE)
-/*N*/                   rFmt = VVF_INVISIBLE;
-/*N*/               else if (nSubType & SUB_CMD)
-/*N*/                   rFmt = VVF_CMD;
-/*N*/               else if( !(GSE_SEQ & nSubType) )
-/*N*/               {
-/*N*/                   pOldFmt = aOldGetSetExpFmt40;
-/*N*/                   rFmt = VVF_SYS;
-/*N*/               }
-/*N*/           }
-/*N*/           break;
-/*N*/
-/*N*/       case RES_GETREFFLD:
-/*N*/           if( SOFFICE_FILEFORMAT_31 == nFFVersion )
-/*N*/           {
-/*N*/               switch( rFmt )
-/*N*/               {
-/*N*/               case REF_PAGE:
-/*N*/               case REF_CHAPTER:
-/*N*/               case REF_CONTENT:
-/*N*/                   break;
-/*N*/
-/*N*/               default:
-/*N*/               // case REF_UPDOWN:
-/*N*/               // case REF_PAGE_PGDESC:
-/*N*/                   rFmt = REF_PAGE;
-/*N*/                   break;
-/*N*/               }
-/*N*/           }
-/*N*/           break;
-/*N*/   }
-/*N*/
-/*N*/   if( pOldFmt && nOldFmt )
-/*N*/   {
-/*N*/       USHORT i = 0;
-/*N*/
-/*N*/       SvNumberFormatter *pFormatter = ((SwValueField*)pFld)->GetDoc()->GetNumberFormatter();
-/*N*/       const SvNumberformat* pEntry = pFormatter->GetEntry( nOldFmt );
-/*N*/
-/*N*/       if( pEntry )
-/*N*/       {
-/*N*/           while( pOldFmt[i].eFormatIdx != NF_NUMERIC_START ||
-/*N*/                  pOldFmt[i].nOldFormat )
-/*N*/           {
-/*N*/               sal_uInt32 nKey = pFormatter->GetFormatIndex(
-/*N*/                           pOldFmt[i].eFormatIdx, pEntry->GetLanguage() );
-/*N*/
-/*N*/               if( nOldFmt == nKey )
-/*N*/               {
-/*N*/                   rFmt = pOldFmt[i].nOldFormat;
-/*N*/                   break;
-/*N*/               }
-/*N*/               i++;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 /*N*/ void lcl_sw3io_FillSetExpFieldName( Sw3IoImp& rIo, USHORT nStrId,
 /*N*/                                   String& rName )
 /*N*/ {
@@ -930,64 +818,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutDBField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   BYTE cFlag = 0;
-/*N*/   String sTxt( ((SwDBField *)pFld)->GetOldContent() );
-/*N*/   if( ((SwDBField *)pFld)->IsValidValue() )
-/*N*/   {
-/*?*/       cFlag = 0x01;
-/*?*/       rtl::OString sValue(rtl::OString::valueOf(((SwDBField *)pFld)->GetValue()));
-/*?*/       sTxt.AssignAscii(sValue.getStr());
-/*N*/   }
-/*N*/   *rIo.pStrm << (UINT16)rIo.aStringPool.Find( ((SwDBFieldType *)pFld->GetTyp())->GetColumnName(), USHRT_MAX );
-/*N*/   rIo.OutString( *rIo.pStrm, sTxt );
-/*N*/   *rIo.pStrm  << cFlag;
-/*N*/
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       SwDBData aData = ((SwDBFieldType *)pFld->GetTyp())->GetDBData();
-/*N*/       String sDBName;
-/*N*/       if(aData.sDataSource.getLength() || aData.sCommand.getLength())
-/*N*/       {
-/*?*/           sDBName = aData.sDataSource;
-/*?*/           sDBName += DB_DELIM;
-/*?*/           sDBName += (String)aData.sCommand;
-/*N*/       }
-/*N*/       *rIo.pStrm << (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
-/*N*/   }
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDBField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   BYTE cFlag = ((SwDBField *)pFld)->IsValidValue() ? 0x01 : 0x00;
-/*N*/   SwDBData aData = ((SwDBFieldType *)pFld->GetTyp())->GetDBData();
-/*N*/   String sDBName;
-/*N*/   if(aData.sDataSource.getLength() || aData.sCommand.getLength())
-/*N*/   {
-/*N*/       sDBName = aData.sDataSource;
-/*N*/       sDBName += DB_DELIM;
-/*N*/       sDBName += (String)aData.sCommand;
-/*N*/   }
-/*N*/
-/*N*/   *rIo.pStrm << cFlag
-/*N*/              << (UINT16)rIo.aStringPool.Find(
-/*N*/                       ((SwDBFieldType *)pFld->GetTyp())->GetColumnName(),
-/*N*/                       USHRT_MAX )
-/*N*/              << (UINT16)rIo.aStringPool.Find(
-/*N*/                       sDBName,
-/*N*/                       IDX_NOCONV_FF );
-/*N*/
-/*N*/   if( ((SwDBField *)pFld)->IsValidValue() )
-/*N*/   {
-/*?*/       *rIo.pStrm << (double)((SwDBField *)pFld)->GetValue();
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rIo.OutString( *rIo.pStrm, ((SwDBField *)pFld)->GetOldContent() );
-/*N*/   }
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InFileNameField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& rFmt )
 /*N*/ {
@@ -1009,15 +839,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-// Wird for 4.0-Export gar nicht erst aufgerufen!
-/*N*/ void lcl_sw3io_OutFileNameField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   if( ((SwFileNameField *)pFld)->IsFixed() )
-/*?*/       rIo.OutString( *rIo.pStrm, ((SwFileNameField *)pFld)->GetContent() );
-/*N*/ }
-
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InDBNameField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT, UINT32& )
 /*N*/ {
@@ -1033,18 +854,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   aData.sDataSource = aDBName.GetToken(0, DB_DELIM);
 /*N*/   aData.sCommand = aDBName.GetToken(1, DB_DELIM);
 /*N*/   return new SwDBNameField( (SwDBNameFieldType *)pType, aData );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDBNameField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       SwDBData aData(((SwDBNameField*)pFld)->GetRealDBData());
-/*N*/       String sDBName(aData.sDataSource);
-/*N*/       sDBName += DB_DELIM;
-/*N*/       sDBName += (String)aData.sCommand;
-/*N*/       *rIo.pStrm << (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
-/*N*/   }
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InDateField40( Sw3IoImp& /*rIo*/, SwFieldType* pType,
@@ -1105,32 +914,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutPageNumberField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   INT16 nOff = (INT16)pFld->GetPar2().ToInt32();
-/*N*/   UINT16 nSub = pFld->GetSubType();
-/*N*/
-/*N*/   if( rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       if( PG_NEXT == nSub )
-/*N*/           nOff = 1;
-/*N*/       else if( PG_PREV == nSub )
-/*N*/           nOff = -1;
-/*N*/   }
-/*N*/
-/*N*/   *rIo.pStrm << nOff
-/*N*/              << nSub;
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwPageNumberField*)pFld)->GetUserString() );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutPageNumberField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   // nur Offset, deshalb kein long noetig!
-/*N*/   INT16 nOff = (INT16)pFld->GetPar2().ToInt32();
-/*N*/   *rIo.pStrm << nOff;
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwPageNumberField*)pFld)->GetUserString() );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InUserField40( Sw3IoImp& rIo, SwFieldType *pType,
 /*N*/                                 USHORT nSubType, UINT32& rFmt )
 /*N*/ {
@@ -1182,12 +965,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutUserField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   *rIo.pStrm << (UINT16)rIo.aStringPool.Find(
-/*N*/                   ((SwUserField*)pFld)->GetTyp()->GetName(), USHRT_MAX );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InGetRefField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& rFmt )
 /*N*/ {
@@ -1230,25 +1007,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/                                               nSeqNo, nFmt );
 /*N*/   pFld->SetExpand( aExpand );
 /*N*/   return pFld;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutGetRefField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwGetRefField*)pFld)->GetSetRefName() );
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->Expand() );
-/*N*/
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       *rIo.pStrm << (UINT16)pFld->GetSubType()
-/*N*/                  << (UINT16)((SwGetRefField*)pFld)->GetSeqNo();
-/*N*/   }
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutGetRefField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwGetRefField*)pFld)->GetSetRefName() );
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->Expand() );
-/*N*/   *rIo.pStrm << (UINT16)((SwGetRefField*)pFld)->GetSeqNo();
 /*N*/ }
 
 /*N*/ void lcl_sw3io_ChkHiddenExp( String& rCond ) //SW40.SDW
@@ -1322,79 +1080,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutHiddenTxtField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-    String aText(pFld->GetPar2());
-    BYTE cFlags = ((SwHiddenTxtField*)pFld)->GetValue() ? 0x10 : 0;
-
-    if( ((SwHiddenTxtField*)pFld)->IsValid() )
-    {
-        if( !rIo.IsSw31Export() )
-        {
-            aText = pFld->GetPar2();
-            aText += '|';
-            aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
-        }
-        else
-        {
-            if (((SwHiddenTxtField*)pFld)->GetValue())
-            {
-                aText = ((SwHiddenTxtField*)pFld)->GetPar2().GetToken(0, '|');
-                aText += '|';
-                aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
-            }
-            else
-            {
-                aText = ((SwHiddenTxtField*)pFld)->GetCntnt();
-                aText += '|';
-                aText += pFld->GetPar2().GetToken(1, '|');
-            }
-        }
-    }
-    else
-        aText = pFld->GetPar2();
-
-    if( ((SwHiddenTxtField*)pFld)->IsConditional() )
-        cFlags |= 0x20;
-
-    String sCond( pFld->GetPar1() );
-    USHORT nSubType = pFld->GetSubType();
-    if( 0x20 & cFlags && TYP_CONDTXTFLD != nSubType )
-    {
-        lcl_sw3io_ChkHiddenExp( sCond );
-        if( 0x10 & cFlags )
-            cFlags &= ~0x10;
-        else
-            cFlags |= 0x10;
-    }
-
-    *rIo.pStrm << cFlags;
-    rIo.OutString( *rIo.pStrm, aText ); // text
-    rIo.OutString( *rIo.pStrm, sCond ); // condition
-    *rIo.pStrm << nSubType;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutHiddenTxtField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   String aText(pFld->GetPar2());
-/*N*/   BYTE cFlags = ((SwHiddenTxtField*)pFld)->GetValue() ? 0x10 : 0;
-/*N*/
-/*N*/   if( ((SwHiddenTxtField*)pFld)->IsValid() )
-/*N*/   {
-/*N*/       aText = pFld->GetPar2();
-/*N*/       aText += '|';
-/*N*/       aText += ((SwHiddenTxtField*)pFld)->GetCntnt();
-/*N*/   }
-/*N*/   else
-/*N*/       aText = pFld->GetPar2();
-/*N*/
-/*N*/   if( ((SwHiddenTxtField*)pFld)->IsConditional() )
-/*N*/       cFlags |= 0x20;
-/*N*/   *rIo.pStrm << cFlags;
-/*N*/   rIo.OutString( *rIo.pStrm, aText ); // text
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );   // condition
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InPostItField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                 USHORT, UINT32& )
 /*N*/ {
@@ -1404,14 +1089,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         rIo.InString( *rIo.pStrm, aAuthor );
         rIo.InString( *rIo.pStrm, aText );
         return new SwPostItField( (SwPostItFieldType*)pType, aAuthor, aText, Date( nDate ) );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutPostItField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        Date aDate = ((SwPostItField*)pFld)->GetDate();
-        *rIo.pStrm << (INT32) aDate.GetDate();
-        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );    // Author
-        rIo.OutString( *rIo.pStrm, pFld->GetPar2() );     // Text
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InDateTimeField( Sw3IoImp& rIo, SwFieldType* pType,
@@ -1435,12 +1112,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutDateTimeField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   *rIo.pStrm  << ((SwDateTimeField*)pFld)->GetValue()
-/*N*/               << (INT32)((SwDateTimeField*)pFld)->GetOffset();
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InFixDateField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& )
 /*N*/ {
@@ -1454,11 +1125,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutFixDateField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/     *rIo.pStrm << (INT32) ((SwDateTimeField*)pFld)->GetDate(TRUE).GetDate();
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InFixTimeField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& )
 /*N*/ {
@@ -1469,11 +1135,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         DateTime aDT(aTmpDate, Time(nVal));
            pFld->SetDateTime( aDT );
         return pFld;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutFixTimeField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-            *rIo.pStrm << (INT32)((SwDateTimeField*)pFld)->GetTime(TRUE).GetTime();
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InAuthorField( Sw3IoImp& rIo, SwFieldType* pType,
@@ -1492,12 +1153,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-// Wird for 4.0-Export gar nicht erst aufgerufen!
-/*N*/ void lcl_sw3io_OutAuthorField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwAuthorField *)pFld)->GetContent() );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InChapterField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                  USHORT, UINT32& )
 /*N*/ {
@@ -1513,15 +1168,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutChapterField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   BYTE cLvl = ((SwChapterField*)pFld)->GetLevel();
-/*N*/   if( rIo.IsSw31Or40Export() && cLvl >= OLD_MAXLEVEL)
-/*N*/       cLvl = OLD_MAXLEVEL - 1;
-/*N*/
-/*N*/   *rIo.pStrm << cLvl;
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InDocStatField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& rFmt )
 /*N*/ {
@@ -1534,11 +1180,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/                                  USHORT nSubType, UINT32& rFmt )
 /*N*/ {
 /*N*/   return new SwDocStatField( (SwDocStatFieldType*)pType, nSubType, rFmt );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDocStatField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   *rIo.pStrm << (UINT16) pFld->GetSubType();
 /*N*/ }
 
 // Im 5.0-Format bleibt nix, was geschrieben werden muesste.
@@ -1564,14 +1205,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return new SwDDEField( (SwDDEFieldType*)pType );
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutDDEField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   *rIo.pStrm << (UINT16)rIo.aStringPool.Find( ((SwDDEField*)pFld)->GetTyp()->GetName(), USHRT_MAX );
-/*N*/   rIo.nFileFlags |= SWGF_HAS_DDELNK;
-/*N*/ }
-
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InInputField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                USHORT, UINT32& )
 /*N*/ { //SW40.SDW
@@ -1592,19 +1225,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return new SwInputField( (SwInputFieldType*)pType, aContent, aPrompt, nSubType );
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutInputField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );// Content oder SwUserFieldName
-        rIo.OutString( *rIo.pStrm, pFld->GetPar2() );// PromptText
-        *rIo.pStrm << (UINT16) pFld->GetSubType();
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutInputField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );// Content oder SwUserFieldName
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );// PromptText
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InMacroField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                USHORT, UINT32& )
 /*N*/ {
@@ -1613,12 +1233,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   rIo.InString( *rIo.pStrm, aName );
 /*N*/   rIo.InString( *rIo.pStrm, aText );
 /*N*/   return new SwMacroField( (SwMacroFieldType*)pType, aName, aText );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutMacroField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InTblField( Sw3IoImp& rIo, SwFieldType* pType,
@@ -1640,19 +1254,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/
 /*N*/   pFld->ChgExpStr( aText );
 /*N*/   return pFld;
-/*N*/ }
-
-// Die Variable rIo.pCurTbl wird in Sw3IoImp::OutTable()
-// besetzt und enthaelt die zur Zeit ausgegebene Tabelle
-
-/*N*/ void lcl_sw3io_OutTblField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   if( rIo.pCurTbl )
-/*N*/       ((SwTblField*)pFld)->PtrToBoxNm( rIo.pCurTbl );
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwTblField*)pFld)->GetExpStr() );
-/*N*/   if( rIo.IsSw31Or40Export() )
-/*N*/       *rIo.pStrm << (UINT16) ((SwTblField*)pFld)->GetSubType();
 /*N*/ }
 
 /*N*/ SwField *lcl_sw3io_InGetExpField40( Sw3IoImp& rIo, SwFieldType *pType,
@@ -1689,21 +1290,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/
 /*N*/   return pFld;
 /*N*/ }
-
-/*N*/ void lcl_sw3io_OutGetExpField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetFormula() );
-        rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetExpStr() );
-        *rIo.pStrm << (UINT16) pFld->GetSubType();
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutGetExpField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetFormula() );
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwGetExpField*)pFld)->GetExpStr() );
-/*N*/ }
-
-/*  */
 
 /*N*/ SwField* lcl_sw3io_InSetExpField40( Sw3IoImp& rIo, SwFieldType *pType,
 /*N*/                                   USHORT nSubType, UINT32& rFmt )
@@ -1915,12 +1501,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutHiddenParaField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   *rIo.pStrm << (BYTE)((SwHiddenParaField*)pFld)->IsHidden();
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InDocInfoField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                    USHORT nSubType, UINT32& rFmt )
 /*N*/ {
@@ -1954,44 +1534,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutDocInfoField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-            UINT16 nSubType = pFld->GetSubType();
-            nSubType &= 0x00ff;
-
-            *rIo.pStrm << nSubType;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDocInfoField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   BYTE cFlags = 0x00;
-/*N*/   if( ((SwDocInfoField*)pFld)->IsFixed() )
-/*N*/   {
-/*?*/       USHORT nSub = pFld->GetSubType();
-/*?*/       switch( nSub & 0x00ff )
-/*?*/       {
-/*?*/       case DI_EDIT:
-/*?*/           cFlags = 0x01;
-/*?*/           break;
-/*?*/       case DI_CREATE:
-/*?*/       case DI_CHANGE:
-/*?*/       case DI_PRINT:
-/*?*/           switch( nSub & ~(DI_SUB_FIXED|0x00ff) )
-/*?*/           {
-/*?*/           case DI_SUB_TIME:
-/*?*/           case DI_SUB_DATE:
-/*?*/               cFlags = 0x01;
-/*?*/               break;
-/*?*/           }
-/*?*/           break;
-/*?*/       }
-/*N*/   }
-/*N*/   *rIo.pStrm << cFlags;
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->Expand() );
-/*N*/   if( cFlags & 0x01 )
-/*N*/       *rIo.pStrm << ((SwDocInfoField*)pFld)->GetValue();
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InTemplNameField( Sw3IoImp& /*rIo*/, SwFieldType* pType,
 /*N*/                                    USHORT, UINT32& rFmt )
 /*N*/ {
@@ -2014,21 +1556,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   aData.sDataSource = aDBName.GetToken(0, DB_DELIM);
 /*N*/   aData.sCommand = aDBName.GetToken(1, DB_DELIM);
 /*N*/   return new SwDBNextSetField( (SwDBNextSetFieldType*)pType, aCond, aName, aData );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDBNextSetField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
-/*N*/
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       SwDBData aData(((SwDBNextSetField*)pFld)->GetRealDBData());
-/*N*/       String sDBName(aData.sDataSource);
-/*N*/       sDBName += DB_DELIM;
-/*N*/       sDBName += (String)aData.sCommand;
-/*N*/       *rIo.pStrm << (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
-/*N*/   }
 /*N*/ }
 
 // der 3.1-Writer hat beim Einlesen Condition und Number vertauscht.
@@ -2063,29 +1590,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return new SwDBNumSetField( (SwDBNumSetFieldType*)pType, aCond, aNumber, aData );
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutDBNumSetField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   if( rIo.IsSw31Export() )
-/*N*/   {
-/*?*/       rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
-/*?*/       rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-/*N*/   }
-/*N*/   else
-/*N*/   {
-/*N*/       rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-/*N*/       rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
-/*N*/   }
-/*N*/
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       SwDBData aData(((SwDBNumSetField*)pFld)->GetRealDBData());
-/*N*/       String sDBName(aData.sDataSource);
-/*N*/       sDBName += DB_DELIM;
-/*N*/       sDBName += (String)aData.sCommand;
-/*N*/       *rIo.pStrm << (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
-/*N*/   }
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InDBSetNumberField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                      USHORT, UINT32& )
 /*N*/ {
@@ -2104,20 +1608,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   SwDBSetNumberField* pFld = new SwDBSetNumberField( (SwDBSetNumberFieldType*)pType, aData );
 /*N*/   pFld->SetSetNumber( n );
 /*N*/   return pFld;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutDBSetNumberField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   *rIo.pStrm << (INT32) ((SwDBSetNumberField*)pFld)->GetSetNumber();
-/*N*/
-/*N*/   if( !rIo.IsSw31Export() )
-/*N*/   {
-/*N*/       SwDBData aData(((SwDBSetNumberField*)pFld)->GetRealDBData());
-/*N*/       String sDBName(aData.sDataSource);
-/*N*/       sDBName += DB_DELIM;
-/*N*/       sDBName += (String)aData.sCommand;
-/*N*/       *rIo.pStrm<< (UINT16)rIo.aStringPool.Find( sDBName, IDX_NOCONV_FF );
-/*N*/   }
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InExtUserField40( Sw3IoImp& rIo, SwFieldType* pType,
@@ -2151,20 +1641,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutExtUserField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   SwExtUserFieldType* pType = (SwExtUserFieldType*) pFld->GetTyp();
-/*N*/   rIo.OutString( *rIo.pStrm, pType->GetData() );
-/*N*/   *rIo.pStrm << (UINT16) pFld->GetSubType();
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutExtUserField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   SwExtUserFieldType* pType = (SwExtUserFieldType*) pFld->GetTyp();
-/*N*/   rIo.OutString( *rIo.pStrm, pType->GetData() );
-/*N*/   rIo.OutString( *rIo.pStrm, ((SwExtUserField *)pFld)->GetContent() );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InRefPageSetField( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                     USHORT, UINT32& )
 /*N*/ {
@@ -2172,12 +1648,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
             BYTE cIsOn;
             *rIo.pStrm >> nOffset >> cIsOn;
             return new SwRefPageSetField( (SwRefPageSetFieldType*)pType, nOffset, cIsOn!=0 );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutRefPageSetField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        *rIo.pStrm << (INT16)((SwRefPageSetField*)pFld)->GetOffset()
-                   << (BYTE)((SwRefPageSetField*)pFld)->IsOn();
 /*N*/ }
 
 /*N*/ SwField* lcl_sw3io_InRefPageGetField( Sw3IoImp& rIo, SwFieldType* pType,
@@ -2188,11 +1658,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
             rIo.InString( *rIo.pStrm, aString );
             pFld->SetText( aString );
             return pFld;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutRefPageGetField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        rIo.OutString( *rIo.pStrm, ((SwRefPageGetField*)pFld)->GetText() );
 /*N*/ }
 
 /*N*/ SwField *lcl_sw3io_InINetField31( Sw3IoImp& rIo, SwFieldType *, USHORT, UINT32& )
@@ -2244,12 +1709,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutJumpEditField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-/*N*/   rIo.OutString( *rIo.pStrm, pFld->GetPar2() );
-/*N*/ }
-
 /*N*/ SwField* lcl_sw3io_InScriptField40( Sw3IoImp& rIo, SwFieldType* pType,
 /*N*/                                   USHORT, UINT32& )
 /*N*/ {
@@ -2296,44 +1755,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutScriptField40( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        OSL_ENSURE( !rIo.IsSw31Export(),
-                "Wer will denn da ein Script-Feld exportieren" );
-
-        String aCode;
-        if( ((SwScriptField*)pFld)->IsCodeURL() )
-        {
-            aCode.AssignAscii( "// @url: " );
-            aCode += ::binfilter::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
-        }
-        else
-            aCode = ((SwScriptField*)pFld)->GetCode();
-
-        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-        rIo.OutString( *rIo.pStrm, aCode );
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutScriptField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-        OSL_ENSURE( !rIo.IsSw31Export(),
-                "Wer will denn da ein Script-Feld exportieren" );
-
-        BYTE cFlags = ((SwScriptField*)pFld)->IsCodeURL() ? 0x01 : 0x00;
-
-        String aCode;
-        if( ((SwScriptField*)pFld)->IsCodeURL() )
-            aCode = ::binfilter::StaticBaseUrl::AbsToRel( ((SwScriptField*)pFld)->GetCode() );
-        else
-            aCode = ((SwScriptField*)pFld)->GetCode();
-
-        rIo.OutString( *rIo.pStrm, pFld->GetPar1() );
-        rIo.OutString( *rIo.pStrm, aCode );
-        *rIo.pStrm << cFlags;
-/*N*/ }
-
-/*  */
-
 /*N*/ SwField* lcl_sw3io_InAuthorityField( Sw3IoImp& rIo, SwFieldType*,
 /*N*/                                 USHORT, UINT32& )
 /*N*/ {
@@ -2357,13 +1778,6 @@ SwAuthorityFieldType* lcl_sw3io_InAuthorityFieldType( Sw3IoImp& rIo )
         }
 
         return pFld;
-/*N*/ }
-
-/*N*/ void lcl_sw3io_OutAuthorityField( Sw3IoImp& rIo, SwField* pFld )
-/*N*/ {
-            BYTE cFlags = 0x02;
-            *rIo.pStrm  << cFlags
-                        << (UINT16)((SwAuthorityField *)pFld)->GetHandlePosition();
 /*N*/ }
 
 //////////////////////////////////////////////////////////////////////////////
@@ -2576,34 +1990,7 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*N*/   return pFld;
 /*N*/ }
 
-/*N*/ void lcl_sw3io_OutAnySetExpField40( Sw3IoImp& rIo, const sal_Char *pName,
-/*N*/                                   const String& rExpand )
-/*N*/ {
-/*N*/   SwSetExpFieldType aType( rIo.pDoc, String::CreateFromAscii(pName),
-/*N*/                            GSE_STRING );
-/*N*/   SwSetExpField aFld( &aType, rExpand );
-/*N*/   aFld.ChgExpStr( rExpand );
-/*N*/   *rIo.pStrm << (UINT16) ( RES_SETEXPFLD - RES_FIELDS_BEGIN ); // Which
-/*N*/   *rIo.pStrm << (UINT16) 1; // Format: GSE_STRING
-/*N*/   lcl_sw3io_OutSetExpField40( rIo, &aFld );
-/*N*/ }
-
-/* #108791# */
-/*N*/ void lcl_sw3io_OutAnySetExpField( Sw3IoImp& rIo, const sal_Char *pName,
-/*N*/                                   const String& rExpand )
-/*N*/ {
-/*N*/   SwSetExpFieldType aType( rIo.pDoc, String::CreateFromAscii(pName),
-/*N*/                            GSE_STRING );
-/*N*/   SwSetExpField aFld( &aType, rExpand );
-/*N*/   aFld.ChgExpStr( rExpand );
-/*N*/   *rIo.pStrm << (UINT16) ( RES_SETEXPFLD - RES_FIELDS_BEGIN ) // Which
-/*N*/                << (UINT32) 1 // Format: GSE_STRING
-/*N*/              << (UINT16)aFld.GetSubType();
-/*N*/   lcl_sw3io_OutSetExpField( rIo, &aFld );
-/*N*/ }
-
 // Ausgabe aller Feldtypen, die keine Systemtypen sind
-
 
 /*N*/ BOOL lcl_sw3io_HasFixedFields40( Sw3IoImp& rIo, USHORT nWhich )
 /*N*/ {
@@ -2641,34 +2028,6 @@ static Sw3InFieldFn aInFieldFnTbl[] =
 /*N*/
 /*N*/   return FALSE;
 /*N*/ }
-
-/*N*/ void Sw3IoImp::OutFieldTypes()
-/*N*/ {
-/*N*/   const SwFldTypes* p = pDoc->GetFldTypes();
-/*N*/   for( USHORT i=INIT_FLDTYPES-INIT_SEQ_FLDTYPES; i<p->Count(); ++i )
-/*N*/       if( !OutFieldType( *(*p)[ i ] ) )
-/*N*/           break;
-/*N*/
-/*N*/   // Fixe DocInfo Author und ExtUser-Felder in SetExpFields wandeln
-/*N*/   String sFixedField( String::CreateFromAscii(sSW3IO_FixedField) );
-/*N*/   if( pStrm->GetVersion() <= SOFFICE_FILEFORMAT_40 &&
-/*N*/       !pDoc->GetFldType( RES_SETEXPFLD, sFixedField ) &&
-/*N*/       ( lcl_sw3io_HasFixedFields40( *this, RES_DOCINFOFLD ) ||
-/*N*/         lcl_sw3io_HasFixedFields40( *this, RES_AUTHORFLD ) ||
-/*N*/         lcl_sw3io_HasFixedFields40( *this, RES_EXTUSERFLD ) ||
-/*N*/         lcl_sw3io_HasFixedFields40( *this, RES_FILENAMEFLD ) ) )
-/*N*/   {
-/*?*/       SwSetExpFieldType aType( pDoc, sFixedField, GSE_STRING );
-/*?*/       OutFieldType( aType );
-/*N*/   }
-/*N*/   {
-/*N*/         /* #108791# */
-/*N*/         String sDropDown( String::CreateFromAscii(sSW3IO_DropDownField) );
-/*N*/       SwSetExpFieldType aType( pDoc, sDropDown, GSE_STRING );
-/*N*/       OutFieldType( aType );
-/*N*/   }
-/*N*/ }
-
 
 /*N*/ SwFieldType* Sw3IoImp::InFieldType()
 /*N*/ {

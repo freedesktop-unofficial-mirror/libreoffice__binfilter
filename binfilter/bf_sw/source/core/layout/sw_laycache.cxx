@@ -910,16 +910,6 @@ namespace binfilter {
 /*N*/   return (cFlags >> 4);
 /*N*/ }
 
-/*N*/ void SwLayCacheIoImpl::OpenFlagRec( BYTE nFlags, BYTE nLen )
-/*N*/ {
-/*N*/   OSL_ENSURE( bWriteMode, "OpenFlagRec illegal in read  mode" );
-/*N*/   OSL_ENSURE( (nFlags & 0xF0) == 0, "illegal flags set" );
-/*N*/   OSL_ENSURE( nLen < 16, "wrong flag record length" );
-/*N*/   BYTE cFlags = (nFlags << 4) + nLen;
-/*N*/   *pStream << cFlags;
-/*N*/   nFlagRecEnd = pStream->Tell() + nLen;
-/*N*/ }
-
 /*N*/ void SwLayCacheIoImpl::CloseFlagRec()
 /*N*/ {
 /*N*/   if( bWriteMode )

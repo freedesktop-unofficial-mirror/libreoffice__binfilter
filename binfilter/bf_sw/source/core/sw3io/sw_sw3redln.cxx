@@ -209,61 +209,6 @@ void Sw3IoImp::OutRedline( const SwRedline& rRedline )
 /*N*/   CloseRec( SWG_REDLINES );
 /*N*/ }
 
-/*N*/ void Sw3IoImp::OutRedlines( BOOL bPageStyles )
-/*N*/ {
-/*N*/   OSL_ENSURE( !IsSw31Or40Export(), "Redlines werden nicht exportiert!" );
-/*N*/
-/*N*/   if( !pRedlines )
-/*N*/       return;
-/*N*/
-/*?*/   OSL_ENSURE( !bBlock, "In Textbausteinen darf es keine Redlines geben!" );
-/*?*/
-/*?*/   USHORT nArrLen = pRedlines->Count();
-/*?*/   if( nArrLen && bPageStyles )
-/*?*/   {
-/*?*/       OSL_ENSURE( nCntntRedlineStart <= nArrLen,
-/*?*/               "Mehr Redlines in Page-Styles als ueberhaupt vorhanden?" );
-/*?*/       nArrLen = nCntntRedlineStart;
-/*?*/   }
-/*?*/   OSL_ENSURE( bPageStyles || nCntntRedlineStart==0,
-/*?*/           "Wieso sind da noch Bookmarks aus Seitenvorlagen?" );
-/*?*/   if( !nArrLen )
-/*?*/       return;
-/*?*/
-/*?*/   OpenRec( SWG_REDLINES );
-/*?*/
-/*?*/   for( USHORT i = 0; i < nArrLen; i++ )
-            OutRedline( *(*pRedlines)[i] );
-/*?*/
-/*?*/   CloseRec( SWG_REDLINES );
-/*N*/
-/*N*/   // Die Redlines eines Page-Styles muessen noch geloescht werden. Das
-/*N*/   // darf aber noch nicht hier passieren, weil wir die Redlines noch
-/*N*/   // beim rausschreiben der Markierungen brauchen.
-/*N*/ }
-
-/*  */
-
-xub_StrLen lcl_sw3io_getNodeOff( const SwNodeIndex& rNdIdx, xub_StrLen nCntntIdx )
-{
-    // Hier tricksen wir ein wenig: Da Redlines auch auf Start- oder
-    // Endnodes anfangen koennen, muessen wir die Positionen auch dann
-    // Speichern, wenn Sections gespeichert werden. Um zu Unterscheiden,
-    // ob der Start- oder der Endnode gemeint ist, nutzen wir die dann
-    // unbenutzte Content-Position.
-    const SwNode& rNode = rNdIdx.GetNode();
-    if( rNode.IsCntntNode() )
-        return nCntntIdx;
-
-    if( rNode.IsStartNode() )
-        return 0;
-
-    OSL_ENSURE( rNode.IsEndNode(), "Was ist denn das fuer ein Node?" );
-    return USHRT_MAX;
-}
-
-/*  */
-
 // NODEREDLINE:
 // BYTE     Flags
 //          0x01 - End-Position einer Redline, sonst Start-Positiom

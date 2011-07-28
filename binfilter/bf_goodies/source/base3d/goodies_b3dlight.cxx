@@ -282,17 +282,6 @@ void B3dLightGroup::EnableLighting(BOOL bNew)
 
 /*************************************************************************
 |*
-|* Abfrage, ob das Beleuchtungsmodell aktiviert/deaktiviert ist
-|*
-\************************************************************************/
-
-BOOL B3dLightGroup::IsLightingEnabled()
-{
-    return bLightingEnabled;
-}
-
-/*************************************************************************
-|*
 |* Die Intensitaet eines bestimmten Aspekts einer Lichtquelle setzen
 |*
 \************************************************************************/

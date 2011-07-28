@@ -46,7 +46,6 @@ class SpellCheck;
  * Extern Definitions
  */
 extern  SwThesaurus*    pThes;
-extern  String          GetSWGVersion();
 
 extern  String*         pOldGrfCat;
 extern  String*         pOldTabCat;
