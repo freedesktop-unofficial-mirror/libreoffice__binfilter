@@ -346,7 +346,6 @@ namespace binfilter {
 /*N*/   DeleteAndDestroy( 0, Count() );
 /*N*/ }
 
-/*  */
 
 /*--------------------------------------------------------------------
     Beschreibung:  UI-seitige implementierung von StyleSheets
@@ -1347,7 +1346,6 @@ namespace binfilter {
 /*N*/   return bFnd ? &aStyleSheet : 0;
 /*N*/ }
 
-/*  */
 
 /*N*/ SwStyleSheetIterator::SwStyleSheetIterator( SwDocStyleSheetPool* pBase,
 /*N*/                               SfxStyleFamily eFam, USHORT n )

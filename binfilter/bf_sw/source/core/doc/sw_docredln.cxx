@@ -258,7 +258,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*N*/   SetModified();
 /*N*/ }
 
-/*  */
 
 /*N*/ BOOL SwRedlineTbl::Insert( SwRedlinePtr& p, BOOL bIns ) //SW50.SDW
 /*N*/ {
@@ -384,7 +383,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 // Mit dem Lookahead kann die Suche eingeschraenkt werden. 0 oder
 // USHRT_MAX suchen im gesamten Array.
 
-/*  */
 
 /*?*/SwRedlineExtraData::~SwRedlineExtraData()
 /*?*/{
@@ -397,7 +395,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/   return FALSE;
 /*?*/}
 
-/*  */
 
 /*?*/SwRedlineData::SwRedlineData( const SwRedlineData& rCpy, BOOL bCpyNext )
 /*?*/   : pNext( (bCpyNext && rCpy.pNext) ? new SwRedlineData( *rCpy.pNext ) : 0 )
@@ -430,7 +427,6 @@ typedef BOOL (*Fn_AcceptReject)( SwRedlineTbl& rArr, USHORT& rPos,
 /*?*/   delete pNext;
 /*?*/}
 
-/*  */
 
 /*?*/SwRedline::SwRedline( const SwRedlineData& rData, const SwPosition& rPos )
 /*?*/   : SwPaM( rPos )

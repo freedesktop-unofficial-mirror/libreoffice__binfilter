@@ -48,13 +48,10 @@ class SwFrmFmt;
 #define HTMLTABLE_RESIZE_NOW (ULONG_MAX)
 
 
-/*  */
 
 
-/*  */
 
 
-/*  */
 
 class SwHTMLTableLayout
 {
@@ -63,16 +60,13 @@ public:
     ~SwHTMLTableLayout();
 };
 
-/*  */
-
-
-/*  */
 
 
 
 
 
-/*  */
+
+
 
 
 

@@ -167,7 +167,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*  */
 
 /*N*/ SwUnoTableCrsr::~SwUnoTableCrsr()
 /*N*/ {
@@ -188,7 +187,6 @@ namespace binfilter {
 /*N*/ {DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*  */
 
 /*N*/ SwUnoCrsr* SwDoc::CreateUnoCrsr( const SwPosition& rPos, BOOL bTblCrsr )
 /*N*/ {

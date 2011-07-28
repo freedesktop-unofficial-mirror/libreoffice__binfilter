@@ -181,7 +181,6 @@ namespace binfilter {
 /*?*/   DBG_BF_ASSERT(0, "STRIP");
 /*N*/ }
 
-/*  */
 
 /*N*/ SaveBookmark::SaveBookmark( int eType, const SwBookmark& rBkmk,
 /*N*/                           const SwNodeIndex& /*rMvPos*/,
@@ -377,7 +376,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*  */
 
 
 // Aufbau vom Array: 2 longs,

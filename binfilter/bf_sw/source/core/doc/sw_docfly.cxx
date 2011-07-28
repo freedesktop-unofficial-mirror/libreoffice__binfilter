@@ -144,7 +144,6 @@ extern USHORT GetHtmlMode( const SwDocShell* );
 /*N*/   return pRetFmt;
 /*N*/ }
 
-/*  */
 
 /***********************************************************************
 #*  Class       :  SwDoc

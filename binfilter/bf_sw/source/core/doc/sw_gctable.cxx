@@ -354,7 +354,6 @@ void SwTable::GCBorderLines()
     GetTabLines().ForEach( &::binfilter::lcl_GC_Line_Border, &aPara );
 }
 
-/*  */
 
 struct _GCLinePara
 {

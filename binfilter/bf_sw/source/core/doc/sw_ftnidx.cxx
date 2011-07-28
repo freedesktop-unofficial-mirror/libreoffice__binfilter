@@ -333,7 +333,6 @@ namespace binfilter {
 /*?*/   return 0;
 /*N*/ }
 
-/*  */
 
 /*N*/ const SwSectionNode* SwUpdFtnEndNtAtEnd::FindSectNdWithEndAttr(
 /*N*/               const SwTxtFtn& rTxtFtn )

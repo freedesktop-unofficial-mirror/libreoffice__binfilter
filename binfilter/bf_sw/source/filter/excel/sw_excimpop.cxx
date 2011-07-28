@@ -1319,7 +1319,6 @@ BOOL SwExcelParser::GetRange( UINT16 nLenExpr, UINT16 &rTab, UINT16 &rCS,
     return bRet;
     }
 
-/*  */
 
 // -----------------------------------------------------------------------
 void SwExcelParser::NI()

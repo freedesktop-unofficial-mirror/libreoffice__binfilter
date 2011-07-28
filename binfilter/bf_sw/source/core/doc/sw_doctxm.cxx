@@ -93,7 +93,6 @@ DBG_BF_ASSERT(0, "STRIP");
 
 
 
-/*  */
 
 /*N*/ const SwTOXBaseSection* SwDoc::InsertTableOf( const SwPosition& rPos,
 /*N*/                                               const SwTOXBase& rTOX,
@@ -348,7 +347,6 @@ DBG_BF_ASSERT(0, "STRIP");
 
 
 
-/*  */
 
 
 

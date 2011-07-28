@@ -231,7 +231,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/   return nRet;
 /*N*/ }
 
-/*  */
 
 // Struktur, die zum TabelleRechnen benoetigt wird
 
@@ -251,7 +250,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/ }
 
 
-/*  */
 
 /*N*/ SwTableFormula::SwTableFormula( const String& rFormel )
 /*N*/   : sFormel( rFormel )
@@ -500,7 +498,6 @@ const USHORT cMAXSTACKSIZE = 50;
 /*N*/ }
 
 
-/*  */
 
 /*N*/ const SwFrm* lcl_GetBoxFrm( const SwTableBox& rBox )
 /*N*/ {

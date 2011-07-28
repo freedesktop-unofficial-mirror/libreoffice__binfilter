@@ -347,7 +347,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/       return USHRT_MAX;
 /*N*/ }
 
-/*  */
 
 //////////////////////////////////////////////////////////////////////////////
 
@@ -485,7 +484,6 @@ static OldFormats aOldGetSetExpFmt30[] =
 /*N*/              << (UINT16) pType->GetType();
 /*N*/ }
 
-/*  */
 
 /*N*/ SwDDEFieldType* lcl_sw3io_InDDEFieldType( Sw3IoImp& rIo )
 /*N*/ {

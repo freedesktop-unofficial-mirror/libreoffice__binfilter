@@ -65,7 +65,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*  */
 
 // REDLINE:
 // BYTE     Flags
@@ -188,7 +187,6 @@ void Sw3IoImp::OutRedline( const SwRedline& rRedline )
     CloseRec( SWG_REDLINE_LCL );
 }
 
-/*  */
 
 // REDLINES:
 // REDLINE*
@@ -491,7 +489,6 @@ void Sw3IoImp::OutRedline( const SwRedline& rRedline )
 /*N*/   }
 /*N*/ }
 
- /*  */
 /*N*/ namespace
 /*N*/ {
 /*N*/   void CorrRedline( SwRedline& rRedline,

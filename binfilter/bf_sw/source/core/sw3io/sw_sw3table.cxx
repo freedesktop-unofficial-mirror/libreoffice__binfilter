@@ -77,7 +77,6 @@ static ULONG nCntntBox = 0;
 /*N*/   }
 /*N*/ }
 
-/*  */
 
 // Line- und Box-Formate fuer den 3.1-/4.0-Export sammeln
 
@@ -108,7 +107,6 @@ BOOL lcl_sw3io_CollectLineFmts( const SwTableLine*& rpLine, void* pPara );
 /*N*/   return TRUE;
 /*N*/ }
 
-/*  */
 
 /*N*/ void Sw3IoImp::AddTblLineBoxFmt( SwFrmFmt *pFmt )
 /*N*/ {

@@ -249,7 +249,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/ }
 
 
-/*  */
 // ------ Ab hier Klassen / Methoden fuer die Selectionen -------
 
 /*N*/ SwSelPaintRects::~SwSelPaintRects()
@@ -284,7 +283,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 /*N*/   }
 /*N*/ }
 
-/*  */
 
 /*N*/ SwShellCrsr::~SwShellCrsr() {}
 
@@ -317,7 +315,6 @@ MapMode* SwSelPaintRects::pMapMode = 0;
 
 // TRUE: an die Position kann der Cursor gesetzt werden
 
-/*  */
 
 /*N*/ SwShellTableCrsr::~SwShellTableCrsr() {}
 

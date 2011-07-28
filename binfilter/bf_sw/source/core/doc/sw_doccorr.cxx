@@ -49,7 +49,6 @@
 #include <hints.hxx>
 namespace binfilter {
 
-/*  */
 
 /*
  * MACROS um ueber alle CrsrShells zu iterieren
@@ -77,7 +76,6 @@ namespace binfilter {
         } while( (_pCurrCrsr=(SwPaM *)_pCurrCrsr->GetNext()) != _pStartCrsr ); \
     }
 
-/*  */
 
 #define _PaMCorrAbs1( pPam ) \
     for( int nb = 0; nb < 2; ++nb ) \
@@ -168,7 +166,6 @@ namespace binfilter {
 /*N*/       ::binfilter::PaMCorrAbs( rOldNode, rNewPos, nOffset );
 /*N*/ }
 
-/*  */
 
 /*N*/ bool _PaMCorrAbs2( SwPaM* pPam,
 /*N*/                    const SwPosition& rNewPos,
@@ -292,7 +289,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*  */
 
 #define _PaMCorrAbs3( pPam ) \
     for( int nb = 0; nb < 2; ++nb ) \
@@ -350,7 +346,6 @@ namespace binfilter {
 
 
 
-/*  */
 
 #define _PaMCorrRel1( pPam ) \
     for( int nb = 0; nb < 2; ++nb ) \
@@ -470,7 +465,6 @@ namespace binfilter {
 /*N*/ }
 
 
-/*  */
 
 /*N*/ SwEditShell* SwDoc::GetEditShell( ViewShell** ppSh ) const
 /*N*/ {
