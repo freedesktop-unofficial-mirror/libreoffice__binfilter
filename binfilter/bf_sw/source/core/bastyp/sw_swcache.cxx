@@ -132,46 +132,9 @@ namespace binfilter {
 /*N*/ }
 
 #ifdef DBG_UTIL
-
-
 /*N*/ SwCache::~SwCache()
 /*N*/ {
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/ #ifndef MAC
-/*N*/   {
-/*N*/       ByteString sOut( aName ); sOut += '\n';
-/*N*/       (( sOut += "Anzahl neuer Eintraege:             " )
-/*N*/                   += ByteString::CreateFromInt32( nAppend ))+= '\n';
-/*N*/       (( sOut += "Anzahl Insert auf freie Plaetze:    " )
-/*N*/                   += ByteString::CreateFromInt32( nInsertFree ))+= '\n';
-/*N*/       (( sOut += "Anzahl Ersetzungen:                 " )
-/*N*/                   += ByteString::CreateFromInt32( nReplace ))+= '\n';
-/*N*/       (( sOut += "Anzahl Erfolgreicher Get's:         " )
-/*N*/                   += ByteString::CreateFromInt32( nGetSuccess ))+= '\n';
-/*N*/       (( sOut += "Anzahl Fehlgeschlagener Get's:      " )
-/*N*/                   += ByteString::CreateFromInt32( nGetFail ))+= '\n';
-/*N*/       (( sOut += "Anzahl Umsortierungen (LRU):        " )
-/*N*/                   += ByteString::CreateFromInt32( nToTop ))+= '\n';
-/*N*/       (( sOut += "Anzahl Loeschungen:                 " )
-/*N*/                   += ByteString::CreateFromInt32( nDelete ))+= '\n';
-/*N*/       (( sOut += "Anzahl Get's ohne Index:            " )
-/*N*/                   += ByteString::CreateFromInt32( nGetSeek ))+= '\n';
-/*N*/       (( sOut += "Anzahl Seek fuer Get ohne Index:    " )
-/*N*/                   += ByteString::CreateFromInt32( nAverageSeekCnt ))+= '\n';
-/*N*/       (( sOut += "Anzahl Flush-Aufrufe:               " )
-/*N*/                   += ByteString::CreateFromInt32( nFlushCnt ))+= '\n';
-/*N*/       (( sOut += "Anzahl geflush'ter Objekte:         " )
-/*N*/                   += ByteString::CreateFromInt32( nFlushedObjects ))+= '\n';
-/*N*/       (( sOut += "Anzahl Cache-Erweiterungen:         " )
-/*N*/                   += ByteString::CreateFromInt32( nIncreaseMax ))+= '\n';
-/*N*/       (( sOut += "Anzahl Cache-Verkleinerungen:       " )
-/*N*/                   += ByteString::CreateFromInt32( nDecreaseMax ))+= '\n';
-/*N*/
-/*N*/       OSL_FAIL( sOut.GetBuffer() );
-/*N*/   }
 /*N*/   Check();
-/*N*/ #endif
-/*N*/ #endif
 /*N*/ }
 #endif
 

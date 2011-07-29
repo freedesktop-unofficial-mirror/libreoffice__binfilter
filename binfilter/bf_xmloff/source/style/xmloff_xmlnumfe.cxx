@@ -1543,18 +1543,6 @@ void SvXMLNumFmtExport::ExportPart_Impl( const SvNumberformat& rFormat, sal_uInt
                     bAnyContent = sal_True;
                     break;
                 default:
-#ifdef DBG_UTIL
-                    // NF_SYMBOLTYPE_PERCENT is the last known value newly
-                    // introduced, alert on newer values, decreasing <0, which
-                    // most certainly means having to synchronize with module
-                    // 'xmloff'.
-                    if (nElemType < NF_SYMBOLTYPE_PERCENT)
-                    {
-                        ByteString aMsg( "SvXMLNumFmtExport::ExportPart_Impl: unhandled symbol type: ");
-                        aMsg += ByteString::CreateFromInt32( nElemType);
-                        DBG_ERRORFILE( aMsg.GetBuffer());
-                    }
-#endif
                     break;
             }
             nPrevType = nElemType;
