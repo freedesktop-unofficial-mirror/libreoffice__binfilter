@@ -117,10 +117,6 @@ public:
 
     virtual Size GetTwipSize() const;
 
-
-    BOOL IsInGlobalDocSection() const;
-    BOOL IsOLEObjectDeleted() const;
-
     BOOL IsOLESizeInvalid() const   { return bOLESizeInvalid; }
     void SetOLESizeInvalid( BOOL b ){ bOLESizeInvalid = b; }
 

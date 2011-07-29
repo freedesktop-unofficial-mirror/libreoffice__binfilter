@@ -1391,25 +1391,7 @@ void OBoundControlModel::reset() throw (RuntimeException)
 {
     OSL_ENSURE( false, "OBoundControlModel::reset: dead code!?" );
 }
-// -----------------------------------------------------------------------------
-void OBoundControlModel::setField( const Reference< XPropertySet>& _rxField,sal_Bool _bFire)
-{
-    // fire a property change event
-    if ( m_xField != _rxField )
-    {
-        Any aOldValue; aOldValue <<= m_xField;
-        m_xField = _rxField;
-        if ( _bFire )
-        {
-            Any aNewValue; aNewValue <<= _rxField;
-            sal_Int32 nHandle = PROPERTY_ID_BOUNDFIELD;
-            OPropertySetHelper::fire(&nHandle, &aNewValue, &aOldValue, 1, sal_False);
-        }
-    }
-}
-// -----------------------------------------------------------------------------
 
-//.........................................................................
 }
 //... namespace frm .......................................................
 

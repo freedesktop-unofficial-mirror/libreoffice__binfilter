@@ -199,59 +199,6 @@ SwOLELRUCache* SwOLEObj::pOLELRU_Cache = 0;
 /*N*/   return pOLENd;
 /*N*/ }
 
-
-/*N*/ BOOL SwOLENode::IsInGlobalDocSection() const
-/*N*/ {
-/*N*/   // suche den "Body Anchor"
-/*N*/   ULONG nEndExtraIdx = GetNodes().GetEndOfExtras().GetIndex();
-/*N*/   const SwNode* pAnchorNd = this;
-/*N*/   do {
-/*N*/       SwFrmFmt* pFlyFmt = pAnchorNd->GetFlyFmt();
-/*N*/       if( !pFlyFmt )
-/*N*/           return FALSE;
-/*N*/
-/*N*/       const SwFmtAnchor& rAnchor = pFlyFmt->GetAnchor();
-/*N*/       if( !rAnchor.GetCntntAnchor() )
-/*N*/           return FALSE;
-/*N*/
-/*N*/       pAnchorNd = &rAnchor.GetCntntAnchor()->nNode.GetNode();
-/*N*/   } while( pAnchorNd->GetIndex() < nEndExtraIdx );
-/*N*/
-/*N*/   const SwSectionNode* pSectNd = pAnchorNd->FindSectionNode();
-/*N*/   if( !pSectNd )
-/*N*/       return FALSE;
-/*N*/
-/*N*/   while( pSectNd )
-/*N*/   {
-/*N*/       pAnchorNd = pSectNd;
-/*N*/       pSectNd = pAnchorNd->FindStartNode()->FindSectionNode();
-/*N*/   }
-/*N*/
-/*N*/   // in pAnchorNd steht der zuletzt gefundene Section Node. Der muss
-/*N*/   // jetzt die Bedingung fuers GlobalDoc erfuellen.
-/*N*/   pSectNd = (SwSectionNode*)pAnchorNd;
-/*N*/   return FILE_LINK_SECTION == pSectNd->GetSection().GetType() &&
-/*N*/           pSectNd->GetIndex() > nEndExtraIdx;
-/*N*/ }
-
-
-/*N*/ BOOL SwOLENode::IsOLEObjectDeleted() const
-/*N*/ {
-/*N*/   BOOL bRet = FALSE;
-/*N*/   if( aOLEObj.pOLERef && aOLEObj.pOLERef->Is() )
-/*N*/   {
-/*N*/       SvPersist* p = GetDoc()->GetPersist();
-/*N*/       if( p )     // muss da sein
-/*N*/       {
-/*N*/           SvInfoObjectRef aRef( p->Find( aOLEObj.aName ) );
-/*N*/           if( aRef.Is() )
-/*N*/               bRet = aRef->IsDeleted();
-/*N*/       }
-/*N*/   }
-/*N*/   return bRet;
-/*N*/ }
-
-
 /*N*/ SwOLEObj::SwOLEObj( SvInPlaceObject *pObj )
 /*N*/   : pOLENd( 0 )
 /*N*/   , pOLERef( new SvInPlaceObjectRef( pObj ) )

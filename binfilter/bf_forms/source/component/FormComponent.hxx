@@ -416,7 +416,6 @@ protected:
 
     virtual ::com::sun::star::uno::Sequence< ::com::sun::star::uno::Type>   _getTypes();
 
-    void setField( const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& _rxField,sal_Bool _bFire=sal_True);
     inline const ::com::sun::star::uno::Reference< ::com::sun::star::beans::XPropertySet>& getField() const
     {
         return m_xField;
