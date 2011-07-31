@@ -813,12 +813,6 @@ using namespace ::com::sun::star::util;
 /*?*/ }
 
 
-/*?*/ Point& SwCrsrShell::GetCrsrDocPos( BOOL bPoint ) const
-/*?*/ {
-/*?*/   return bPoint ? pCurCrsr->GetPtPos() : pCurCrsr->GetMkPos();
-/*?*/ }
-
-
 /*?*/ void SwCrsrShell::UnSetVisCrsr()
 /*?*/ {
 /*?*/   pVisCrsr->Hide();

@@ -26,52 +26,16 @@
  *
  ************************************************************************/
 
-#ifndef _SCH_OBJID_HXX
-#define _SCH_OBJID_HXX
+#ifndef _BF_STRING_HXX
+#define _BF_STRING_HXX
 
-#include <bf_svx/svdobj.hxx>
-#include <tools/stream.hxx>
-#include <bf_svx/svditer.hxx>
-namespace binfilter {
+#include <tools/string.hxx>
 
-
-/*************************************************************************
-|*
-|* Id-Objekt fuer Chart-Grafik-Objekte
-|*
-\************************************************************************/
-
-class SchObjectId : public SdrObjUserData
+namespace binfilter
 {
-    UINT16 nObjId;  // Id-Wert
+    ByteString ByteString_CreateFromInt32(sal_Int32 n, sal_Int16 nRadix = 10);
+}
 
-public:
-    SchObjectId();
-    SchObjectId(UINT16 nId);
-
-        virtual SdrObjUserData* Clone(SdrObject *pObj) const;
-
-    virtual void WriteData(SvStream& ) {}
-    virtual void ReadData(SvStream& rIn);
-
-        void SetObjId(UINT16 nId) {  nObjId = nId; }
-    UINT16 GetObjId() { return nObjId; }
-};
-
-/*************************************************************************
-|*
-|* Tool-Funktionen fuer Objekt-Ids
-|*
-\************************************************************************/
-
-extern SchObjectId* GetObjectId(const SdrObject& rObj);
-
-extern SdrObject* GetObjWithId(UINT16 nObjId, const SdrObjList& rObjList,
-                                                           ULONG* pIndex = NULL,
-                                                           SdrIterMode eMode = IM_FLAT);
-
-} //namespace binfilter
-#endif  // _SCH_OBJID_HXX
-
+#endif // _BF_STRING_HXX
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

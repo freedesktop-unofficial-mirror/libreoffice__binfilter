@@ -413,19 +413,6 @@ static const sal_Char pFilterRtf[]      = "Rich Text Format (StarCalc)";
                 OSL_FAIL("The Modificator should exist");
 /*N*/ }
 
-/*N*/ BOOL ScDocShell::SaveXML( SfxMedium* pInMedium, SvStorage* pStor )
-/*N*/ {
-/*N*/     RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "sb99857", "ScDocShell::SaveXML" );
-/*N*/
-/*N*/   ScXMLImportWrapper aImport( aDocument, pInMedium, pStor );
-/*N*/   sal_Bool bRet(sal_False);
-/*N*/   if (GetCreateMode() != SFX_CREATE_MODE_ORGANIZER)
-/*N*/       bRet = aImport.Export(sal_False);
-/*N*/   else
-/*N*/       bRet = aImport.Export(sal_True);
-/*N*/   return bRet;
-/*N*/ }
-
 /*N*/ BOOL ScDocShell::Load( SvStorage* pStor )
 /*N*/ {
 /*N*/   RTL_LOGFILE_CONTEXT_AUTHOR ( aLog, "sc", "nn93723", "ScDocShell::Load" );

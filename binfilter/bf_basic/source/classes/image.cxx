@@ -89,34 +89,6 @@ BOOL SbiGood( SvStream& r )
     return BOOL( !r.IsEof() && r.GetError() == SVSTREAM_OK );
 }
 
-// Oeffnen eines Records
-
-ULONG SbiOpenRecord( SvStream& r, UINT16 nSignature, UINT16 nElem )
-{
-    ULONG nPos = r.Tell();
-    r << nSignature << (INT32) 0 << nElem;
-    return nPos;
-}
-
-// Schliessen eines Records
-
-void SbiCloseRecord( SvStream& r, ULONG nOff )
-{
-    ULONG nPos = r.Tell();
-    r.Seek( nOff + 2 );
-    r << (INT32) ( nPos - nOff - 8 );
-    r.Seek( nPos );
-}
-
-/**************************************************************************
-*
-*   Laden und Speichern
-*
-**************************************************************************/
-
-// Falls die Versionsnummer nicht passt, werden die binaeren Teile
-// nicht geladen, wohl aber Source, Kommentar und Name.
-
 BOOL SbiImage::Load( SvStream& r, UINT32& nVersion )
 {
 

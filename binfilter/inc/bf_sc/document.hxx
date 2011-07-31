@@ -1284,8 +1284,6 @@ public:
 private: // CLOOK-Impl-Methoden
     void    ImplLoadDocOptions( SvStream& rStream );
     void    ImplLoadViewOptions( SvStream& rStream );
-    void    ImplSaveDocOptions( SvStream& rStream ) const;
-    void    ImplSaveViewOptions( SvStream& rStream ) const;
     void    ImplCreateOptions(); // bei Gelegenheit auf on-demand umstellen?
     void    ImplDeleteOptions();
 
@@ -1299,7 +1297,6 @@ private: // CLOOK-Impl-Methoden
 
     void    LoadDdeLinks(SvStream& rStream);
     void    LoadAreaLinks(SvStream& rStream);
-    void    SaveAreaLinks(SvStream& rStream) const;
 
     void    UpdateRefAreaLinks( UpdateRefMode eUpdateRefMode,
                              const ScRange& r, short nDx, short nDy, short nDz );

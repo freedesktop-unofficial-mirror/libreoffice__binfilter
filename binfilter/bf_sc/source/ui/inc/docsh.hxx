@@ -121,7 +121,6 @@ class ScDocShell: public SfxObjectShell, public SfxInPlaceObject, public SfxList
     void            ResetDrawObjectShell();
 
     BOOL            LoadCalc( SvStorage* pStor );
-    BOOL            SaveXML( SfxMedium* pMedium, SvStorage* pStor );
     void            UpdateAllRowHeights();
 
     void            RemoveUnknownObjects();

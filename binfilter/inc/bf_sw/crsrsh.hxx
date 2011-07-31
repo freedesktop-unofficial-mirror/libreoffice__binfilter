@@ -434,8 +434,6 @@ public:
 
     // pruefe ob vom aktuellen Crsr der SPoint/Mark in einer Tabelle stehen
     CRSR_INLINE const SwTableNode* IsCrsrInTbl( BOOL bIsPtInTbl = TRUE ) const;
-    // erfrage die Document - Layout - Position vom akt. Crsr
-    CRSR_INLINE Point& GetCrsrDocPos( BOOL bPoint = TRUE ) const;
     CRSR_INLINE bool IsCrsrPtAtEnd() const;
 
     CRSR_INLINE const   SwPaM* GetTblCrs() const;
@@ -610,11 +608,6 @@ inline const SwTableNode* SwCrsrShell::IsCrsrInTbl( BOOL bIsPtInTbl ) const
 inline bool SwCrsrShell::IsCrsrPtAtEnd() const
 {
     return pCurCrsr->End() == pCurCrsr->GetPoint();
-}
-
-inline Point& SwCrsrShell::GetCrsrDocPos( BOOL bPoint ) const
-{
-    return bPoint ? pCurCrsr->GetPtPos() : pCurCrsr->GetMkPos();
 }
 
 inline const SwPaM* SwCrsrShell::GetTblCrs() const

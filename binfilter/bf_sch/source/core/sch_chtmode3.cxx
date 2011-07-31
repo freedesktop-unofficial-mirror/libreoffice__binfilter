@@ -1004,10 +1004,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/   long nId=pObjId->GetObjId();
 /*N*/
-        #if OSL_DEBUG_LEVEL > 0
-/*N*/   CHART_TRACE2( "ChartModel::StoreObjectsAttributes Id=%s %s", GetCHOBJIDName( nId ), bReplaceAll? "ReplaceAll" : "Merge" );
-        #endif
-/*N*/
 /*N*/   switch(nId)
 /*N*/   {
 /*N*/
@@ -1120,9 +1116,6 @@ namespace binfilter {
 /*N*/           ZAxisTitle()=rTitle;
 /*N*/           break;
 /*N*/       default:
-                        #if OSL_DEBUG_LEVEL > 0
-/*?*/           CHART_TRACE2( "SetTitle: Title not found by id %ld (%s) ", nId, GetCHOBJIDName( nId ));
-                        #endif
 /*N*/           break;
 /*N*/   }
 /*N*/ }
@@ -1142,9 +1135,6 @@ namespace binfilter {
 /*N*/     case CHOBJID_DIAGRAM_TITLE_Z_AXIS:
 /*N*/         return ZAxisTitle();
 /*N*/     default:
-                  #if OSL_DEBUG_LEVEL > 0
-/*?*/         CHART_TRACE2( "GetTitle: Title not found by id %ld (%s) ", nId, GetCHOBJIDName( nId ));
-                  #endif
 /*?*/         return String();
 /*N*/   }
 /*N*/ }
@@ -1173,9 +1163,6 @@ namespace binfilter {
 /*N*/           SetLegendHasBeenMoved(bMoved);
 /*N*/           break;
 /*N*/       default:
-                        #if OSL_DEBUG_LEVEL > 0
-/*?*/           CHART_TRACE2( "SetHasBeenMoved: Object not found by id %ld (%s) ", nId, GetCHOBJIDName( nId ));
-                        #endif
 /*N*/           break;
 /*N*/   }
 /*N*/ }
@@ -1184,11 +1171,6 @@ namespace binfilter {
 /*N*/ {
 /*N*/   //ToDo: Das hier könnte man auch schöner machen (kein DEEP!)
 /*N*/   SdrObject* pObj=(GetObjWithId ((USHORT)nId,*GetPage(0),0,IM_DEEPWITHGROUPS));
-/*N*/ #if OSL_DEBUG_LEVEL > 1
-/*N*/   // there is no DBG_ASSERT2
-/*N*/   if( !pObj )
-/*N*/       OSL_TRACE( "GetObjWithId: Object not found (id=%ld => %s)", nId, GetCHOBJIDName( nId ) );
-/*N*/ #endif
 /*N*/   return pObj;
 /*N*/ }
 

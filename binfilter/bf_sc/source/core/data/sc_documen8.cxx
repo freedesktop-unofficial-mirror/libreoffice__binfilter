@@ -106,22 +106,6 @@ namespace binfilter {
 
 //------------------------------------------------------------------------
 
-/*N*/ void ScDocument::ImplSaveDocOptions( SvStream& rStream ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( pDocOptions, "No DocOptions to save! :-(" );
-/*N*/   pDocOptions->Save( rStream );
-/*N*/ }
-
-//------------------------------------------------------------------------
-
-/*N*/ void ScDocument::ImplSaveViewOptions( SvStream& rStream ) const
-/*N*/ {
-/*N*/   DBG_ASSERT( pViewOptions, "No ViewOptions to save! :-(" );
-/*N*/   rStream << *pViewOptions;
-/*N*/ }
-
-//------------------------------------------------------------------------
-
 /*N*/ void ScDocument::ImplCreateOptions()
 /*N*/ {
 /*N*/   pDocOptions  = new ScDocOptions();
@@ -515,47 +499,6 @@ DBG_BF_ASSERT(0, "STRIP");
 /*?*/             }
 /*N*/         }
 /*N*/     }
-/*N*/ }
-
-/*N*/ void ScDocument::SaveAreaLinks(SvStream& rStream) const
-/*N*/ {
-/*N*/   const ::binfilter::SvBaseLinks& rLinks = pLinkManager->GetLinks();
-/*N*/   USHORT nCount = rLinks.Count();
-/*N*/
-/*N*/   //  erstmal zaehlen...
-/*N*/
-/*N*/   USHORT nAreaCount = 0;
-/*N*/   USHORT i;
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ((*rLinks[i])->ISA(ScAreaLink))      // rLinks[i] = Pointer auf Ref
-/*N*/           ++nAreaCount;
-/*N*/
-/*N*/   //  Header
-/*N*/
-/*N*/   ScMultipleWriteHeader aHdr( rStream );
-/*N*/   rStream << nAreaCount;
-/*N*/
-/*N*/   //  Links speichern
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/   {
-/*N*/       ::binfilter::SvBaseLink* pBase = *rLinks[i];
-/*N*/       if (pBase->ISA(ScAreaLink))
-/*N*/       {
-/*?*/           ScAreaLink* pLink = (ScAreaLink*)pBase;
-/*?*/
-/*?*/           aHdr.StartEntry();
-/*?*/
-/*?*/           rStream.WriteByteString( pLink->GetFile(), rStream.GetStreamCharSet() );
-/*?*/           rStream.WriteByteString( pLink->GetFilter(), rStream.GetStreamCharSet() );
-/*?*/           rStream.WriteByteString( pLink->GetSource(), rStream.GetStreamCharSet() );
-/*?*/           rStream << pLink->GetDestArea();                // ScRange
-/*?*/           rStream.WriteByteString( pLink->GetOptions(), rStream.GetStreamCharSet() );
-/*?*/           //  filter options starting from 336
-/*?*/
-/*?*/           aHdr.EndEntry();
-/*N*/       }
-/*N*/   }
 /*N*/ }
 
 /*N*/ void ScDocument::LoadAreaLinks(SvStream& rStream)

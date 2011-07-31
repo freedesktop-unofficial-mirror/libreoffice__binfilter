@@ -719,24 +719,6 @@ const sal_Char sGrfCollStr[] = "Graphikformatvorlage";
 /*N*/       }
 /*N*/   }
 /*N*/ }
-
-/*
- * SwDoc:
- *  Reading and writing of the layout cache.
- */
-
-/*N*/ void SwDoc::ReadLayoutCache( SvStream& rStream )
-/*N*/ {
-/*N*/     if( !pLayoutCache )
-/*N*/         pLayoutCache = new SwLayoutCache();
-/*N*/     if( !pLayoutCache->IsLocked() )
-/*N*/     {
-/*N*/         pLayoutCache->GetLockCount() |= 0x8000;
-/*N*/         pLayoutCache->Read( rStream );
-/*N*/         pLayoutCache->GetLockCount() &= 0x7fff;
-/*N*/     }
-/*N*/ }
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

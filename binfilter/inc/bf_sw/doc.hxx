@@ -1549,7 +1549,6 @@ public:
         else n8Dummy2 &= ~DUMMY_ADD_FLY_OFFSETS;
     }
 
-    void ReadLayoutCache( SvStream& rStream );
     SwLayoutCache* GetLayoutCache() const { return pLayoutCache; }
 
     void SetULongDummy1( sal_uInt32 n ) { n32Dummy1 = n; }
