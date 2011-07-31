@@ -200,11 +200,6 @@ public:
 
     void CreateSpaceAdd( const short nInit = 0 );
 
-#ifdef DBG_UTIL
-    void DebugPortions( SvStream &rOs, const XubString &rTxt,
-                        const xub_StrLen nStart ); //$ ostream
-#endif
-
     OUTPUT_OPERATOR
     DECL_FIXEDMEMPOOL_NEWDEL(SwLineLayout)
 };

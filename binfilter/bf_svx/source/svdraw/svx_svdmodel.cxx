@@ -73,6 +73,7 @@
 
 #include <bf_so3/persist.hxx>
 #include <bf_svtools/zforlist.hxx>
+#include <bf_tools/string.hxx>
 #include <tools/tenccvt.hxx>
 #include <vcl/svapp.hxx>
 #include <osl/endian.h>
@@ -1406,7 +1407,7 @@ using namespace ::com::sun::star;
 /*N*/
 /*N*/ #ifdef DBG_UTIL
 /*?*/           ByteString aMsg("Das Format dieser Datei ist noch von April '95 (Version ");
-/*?*/           aMsg += ByteString::CreateFromInt32( rHead.GetVersion() );
+/*?*/           aMsg += ByteString_CreateFromInt32( rHead.GetVersion() );
 /*?*/           aMsg += "). Mit dieser Programmversion kann das nicht mehr gelesen werden";
 /*?*/
 /*?*/           OSL_FAIL(aMsg.GetBuffer());

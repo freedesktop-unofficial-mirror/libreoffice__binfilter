@@ -99,14 +99,6 @@ SvInPlaceClient::~SvInPlaceClient()
 void SvInPlaceClient::TestMemberObjRef( BOOL bFree )
 {
     (void)bFree;
-#ifdef DBG_UTIL
-    if( GetIPObj() )
-    {
-        ByteString aTest = "\t\tGetIPObj() == ";
-        aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetIPObj() ) );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-#endif
 }
 
 //=========================================================================

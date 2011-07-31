@@ -79,20 +79,6 @@ void SvObject::TestMemberObjRef( BOOL /*bFree*/ )
 #ifdef TEST_INVARIANT
 void SvObject::TestMemberInvariant( BOOL /*bPrint*/ )
 {
-#ifdef DBG_UTIL
-    if( !Owner() && pClient )
-    {
-        ByteString aTest( "\t\tpClient == " );
-        aTest += ByteString::CreateFromInt32( (ULONG)pClient );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-    if( Owner() && pService )
-    {
-        ByteString aTest( "\t\tpService == " );
-        aTest += ByteString::CreateFromInt32( (ULONG)pService );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-#endif
 }
 #endif
 
@@ -123,16 +109,6 @@ SvObject::~SvObject()
 *************************************************************************/
 UINT32 SvObject::ReleaseRef()
 {
-#ifdef DBG_UTIL
-    if( GetRefCount() == nExtCount )
-    {
-        ByteString aStr( "Internal RefCount underflow: Count == " );
-        aStr += ByteString::CreateFromInt32( GetRefCount() );
-        aStr += ", ExtCount == ";
-        aStr += ByteString::CreateFromInt32( nExtCount );
-        OSL_FAIL( aStr.GetBuffer() );
-    }
-#endif
     return SotObject::ReleaseRef();
 }
 

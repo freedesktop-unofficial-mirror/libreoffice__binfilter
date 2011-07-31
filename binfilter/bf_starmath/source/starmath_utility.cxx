@@ -36,20 +36,6 @@
 
 namespace binfilter {
 
-
-////////////////////////////////////////
-
-/*N*/ SvStream& operator << (SvStream& rStream, const SmFace& rFont)
-/*N*/ {
-/*N*/   rStream.WriteByteString(ExportString(rFont.GetName()));
-/*N*/   rStream << (sal_uInt32)rFont.GetFamily();
-/*N*/     rStream << (sal_uInt32)GetSOStoreTextEncoding( rFont.GetCharSet() );
-/*N*/   rStream << (sal_uInt32)rFont.GetWeight();
-/*N*/   rStream << (sal_uInt32)rFont.GetItalic();
-/*N*/
-/*N*/   return rStream;
-/*N*/ }
-
 /*N*/ SvStream& operator >> (SvStream& rStream, SmFace& rFont)
 /*N*/ {
 /*N*/   sal_uInt32 nData;
@@ -149,41 +135,6 @@ namespace binfilter {
 #define TE_UCS2     "UCS2"
 #define PRE_TE      "<?"
 #define POST_TE     ")>"
-
-
-ByteString ConvertUnknownCharacter(sal_Unicode ch)
-{
-    ByteString aString( RTL_CONSTASCII_STRINGPARAM( PRE_TE TE_UCS2 ) );
-    aString.Append( "(" );
-    aString += ByteString::CreateFromInt32(ch);
-    aString += POST_TE;
-    return aString;
-}
-
-
-/*N*/ const ByteString ExportString( const String& rString )
-/*N*/ {
-/*N*/   ByteString  aString;
-/*N*/
-/*N*/     rtl_TextEncoding nEnc = RTL_TEXTENCODING_MS_1252;
-/*N*/   for (xub_StrLen i = 0; i < rString.Len(); i++)
-/*N*/   {
-/*N*/         sal_Unicode ch = rString.GetChar(i);
-/*N*/       if ((ch != '\r') && (ch != '\n') && (ch != '\t'))
-/*N*/       {
-/*N*/             sal_Char cChar = ByteString::ConvertFromUnicode( ch, nEnc, FALSE );
-/*N*/           if (cChar == 0)
-/*?*/               aString += ConvertUnknownCharacter(ch);
-/*N*/           else
-/*N*/               aString += cChar;
-/*N*/       }
-/*N*/       else
-/*N*/             aString += (sal_Char) ch;
-/*N*/   }
-/*N*/
-/*N*/   aString.ConvertLineEnd(LINEEND_CRLF);
-/*N*/     return aString;
-/*N*/ }
 
 #define TEXTENCODINGTAB_LEN     12
 

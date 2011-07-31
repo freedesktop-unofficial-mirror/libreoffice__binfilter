@@ -29,7 +29,7 @@
 #define _SFX_WHASSERT_HXX
 
 #include <tools/debug.hxx>
-#include <tools/string.hxx>
+#include <rtl/strbuf.hxx>
 
 namespace binfilter
 {
@@ -43,10 +43,10 @@ namespace binfilter
     {                                                                       \
         if ( !(bCondition) )                                                \
         {                                                                   \
-            ByteString aMsg( sMessage );                                    \
-            aMsg.Append(RTL_CONSTASCII_STRINGPARAM("\nwith Id/Pos: "));     \
-            aMsg += ByteString::CreateFromInt32( nId );                     \
-            DbgOut( aMsg.GetBuffer(), DBG_OUT_ERROR, __FILE__, __LINE__);   \
+            rtl::OStringBuffer aMsg( sMessage );                                    \
+            aMsg.append(RTL_CONSTASCII_STRINGPARAM("\nwith Id/Pos: "));     \
+            aMsg.append(static_cast<sal_Int32>(nId));                       \
+            DbgOut(aMsg.getStr(), DBG_OUT_ERROR, __FILE__, __LINE__);   \
         }                                                                   \
     }                                                                       \
 }

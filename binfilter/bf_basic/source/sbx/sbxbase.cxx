@@ -199,14 +199,6 @@ SbxBase* SbxBase::Create( UINT16 nSbxId, UINT32 nCreator )
         if( pNew )
             break;
     }
-#ifdef DBG_UTIL
-    if( !pNew )
-    {
-        ByteString aMsg( "SBX: Keine Factory fuer SBX-ID " );
-        aMsg += ByteString::CreateFromInt32(nSbxId);
-        DbgError( aMsg.GetBuffer() );
-    }
-#endif
     return pNew;
 }
 

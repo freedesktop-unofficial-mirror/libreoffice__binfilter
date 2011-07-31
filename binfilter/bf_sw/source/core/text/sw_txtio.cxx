@@ -352,10 +352,6 @@ namespace binfilter {
 /*N*/   return 0;
 /*N*/ }
 
-/*N*/ void SwLineLayout::DebugPortions( SvStream &, const XubString &, const xub_StrLen )
-/*N*/ {
-/*N*/ }
-
 /*N*/ const char *GetLangName( const MSHORT )
 /*N*/ {
 /*N*/   return 0;
@@ -469,48 +465,6 @@ namespace binfilter {
 /*N*/   };
 /*N*/   OSL_ENSURE( ePrep < PREP_END, "GetPrepName: unknown PrepareHint" );
 /*N*/   return( ppNameArr[ePrep] );
-/*N*/ }
-
-/*************************************************************************
- *                    SwLineLayout::DebugPortions()
- *
- * DebugPortion() iteriert ueber alle Portions einer Zeile und deckt die
- * internen Strukturen auf.
- * Im Gegensatz zum Ausgabe-Operator werden auch die Textteile ausgegeben.
- *************************************************************************/
-
-/*N*/ void SwLineLayout::DebugPortions( SvStream &rOs, const XubString &rTxt, //$ ostream
-/*N*/                                               const xub_StrLen nStart )
-/*N*/ {
-/*N*/   SwLinePortion *pPortion = GetPortion();
-/*N*/
-/*N*/   xub_StrLen nPos = 0;
-/*N*/   MSHORT nNr = 0;
-/*N*/   KSHORT nPrtWidth, nLastPrt;
-/*N*/   nPrtWidth = nLastPrt = 0;
-/*N*/
-/*N*/   SwLinePortion::operator<<( rOs );
-/*N*/   rOs << '\"' << endl;
-/*N*/
-/*N*/   while( pPortion )
-/*N*/   {
-///*N*/         DBG_LOOP;
-/*N*/       SwTxtPortion *pTxtPor = pPortion->InTxtGrp() ?
-/*N*/                               (SwTxtPortion *)pPortion : NULL ;
-/*N*/       ++nNr;
-/*N*/       nLastPrt = nPrtWidth;
-/*N*/       nPrtWidth += pPortion->PrtWidth();
-/*N*/       rOs << "\tNr:"  << nNr
-/*N*/           << " Pos:" << nPos
-/*N*/           << " Org:" << nLastPrt
-/*N*/           << endl;
-/*N*/
-/*N*/       rOs << "\t";
-/*N*/       pPortion->operator<<( rOs );
-/*N*/       rOs << endl;
-/*N*/       nPos += pPortion->GetLen();
-/*N*/       pPortion = pPortion->GetPortion();
-/*N*/   }
 /*N*/ }
 
 /*N*/ #ifdef USED

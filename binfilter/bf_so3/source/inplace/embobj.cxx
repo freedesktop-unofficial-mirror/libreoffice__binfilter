@@ -200,14 +200,6 @@ SO2_IMPL_CLASS2_DLL(SvEmbeddedObject,SvFactory,SvPersist,SvPseudoObject,
 
 void SvEmbeddedObject::TestMemberObjRef( BOOL /*bFree*/ )
 {
-#ifdef DBG_UTIL
-    if( GetClient() )
-    {
-        ByteString aTest = "\t\tGetClient() == ";
-        aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetClient() ) );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-#endif
 }
 
 #ifdef TEST_INVARIANT

@@ -27,7 +27,7 @@
  ************************************************************************/
 
 #include <tools/debug.hxx>
-
+#include <bf_tools/string.hxx>
 #include "svdio.hxx"
 #include "svdobj.hxx"
 #include <osl/endian.h>
@@ -226,14 +226,14 @@ namespace binfilter {
 /*N*/
 /*N*/       if(nSubRecReadCount != -1)
 /*N*/       {
-/*N*/           rStr += ByteString::CreateFromInt32( nSubRecReadCount );
+/*N*/           rStr += ByteString_CreateFromInt32( nSubRecReadCount );
 /*N*/           rStr += " von ";
-/*N*/           rStr += ByteString::CreateFromInt32( nSubRecCount );
+/*N*/           rStr += ByteString_CreateFromInt32( nSubRecCount );
 /*N*/           rStr += " Records gelesen)";
 /*N*/       }
 /*N*/       else
 /*N*/       {
-/*N*/           rStr += ByteString::CreateFromInt32( nSubRecCount );
+/*N*/           rStr += ByteString_CreateFromInt32( nSubRecCount );
 /*N*/           rStr += " Records)";
 /*N*/       }
 /*N*/   }
@@ -301,7 +301,7 @@ namespace binfilter {
 /*?*/               aStr += "1 Byte";
 /*?*/           else
 /*?*/           {
-/*?*/               aStr += ByteString::CreateFromInt32( nToMuch );
+/*?*/               aStr += ByteString_CreateFromInt32( nToMuch );
 /*?*/               aStr += " Bytes";
 /*?*/           }
 /*?*/
@@ -337,7 +337,7 @@ namespace binfilter {
 /*?*/           else
 /*?*/           {
 /*?*/               aStr += "n ";
-/*?*/               aStr += ByteString::CreateFromInt32( nToMuch );
+/*?*/               aStr += ByteString_CreateFromInt32( nToMuch );
 /*?*/               aStr += " Bytes";
 /*?*/           }
 /*?*/
@@ -539,7 +539,7 @@ namespace binfilter {
 /*?*/           else
 /*?*/           {
 /*?*/               aErrMsg += "n ";
-/*?*/               aErrMsg += ByteString::CreateFromInt32( nToMuch );
+/*?*/               aErrMsg += ByteString_CreateFromInt32( nToMuch );
 /*?*/               aErrMsg += " Bytes";
 /*?*/           }
 /*?*/

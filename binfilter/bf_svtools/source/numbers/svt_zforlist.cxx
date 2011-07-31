@@ -57,6 +57,7 @@
 #include <bf_svtools/syslocaleoptions.hxx>
 #include "listener.hxx"
 #include <bf_svtools/smplhint.hxx>
+#include <bf_tools/string.hxx>
 
 #include <rtl/logfile.hxx>
 #include <rtl/instance.hxx>
@@ -1803,7 +1804,7 @@ sal_Int32 SvNumberFormatter::ImpAdjustFormatCodeDefault(
             {
                 aMsg.Insert( "SvNumberFormatter::ImpAdjustFormatCodeDefault: ", 0 );
                 aMsg += "\nXML locale data FormatElement formatindex: ";
-                aMsg += ByteString::CreateFromInt32( pFormatArr[nElem].Index );
+                aMsg += ByteString_CreateFromInt32( pFormatArr[nElem].Index );
                 String aUMsg( aMsg, RTL_TEXTENCODING_ASCII_US);
                 LocaleDataWrapper::outputCheckMessage(
                         xLocaleData->appendLocaleInfo( aUMsg));
@@ -3160,14 +3161,14 @@ void lcl_CheckCurrencySymbolPosition( const NfCurrencyEntry& rCurr )
     if ( nPos >= 0 && nNeg >= 0 && nPos != nNeg )
     {
         ByteString aStr( "positions of currency symbols differ\nLanguage: " );
-        aStr += ByteString::CreateFromInt32( rCurr.GetLanguage() );
+        aStr += ByteString_CreateFromInt32( rCurr.GetLanguage() );
         aStr += " <";
         aStr += ByteString( rCurr.GetSymbol(), RTL_TEXTENCODING_UTF8 );
         aStr += "> positive: ";
-        aStr += ByteString::CreateFromInt32( rCurr.GetPositiveFormat() );
+        aStr += ByteString_CreateFromInt32( rCurr.GetPositiveFormat() );
         aStr += ( nPos ? " (postfix)" : " (prefix)" );
         aStr += ", negative: ";
-        aStr += ByteString::CreateFromInt32( rCurr.GetNegativeFormat() );
+        aStr += ByteString_CreateFromInt32( rCurr.GetNegativeFormat() );
         aStr += ( nNeg ? " (postfix)" : " (prefix)" );
     }
 }

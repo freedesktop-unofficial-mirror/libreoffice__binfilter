@@ -39,6 +39,7 @@
 #include <sot/formats.hxx>
 
 #include <tools/debug.hxx>
+#include <bf_tools/string.hxx>
 
 #include <unotools/ucbhelper.hxx>
 #include <unotools/tempfile.hxx>
@@ -297,9 +298,9 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
             if( pEle->GetObj() )
             {
                 ByteString aTest( "\t\tpChildList[ " );
-                aTest += ByteString::CreateFromInt32( i );
+                aTest += ByteString_CreateFromInt32( i );
                 aTest += " ] == ";
-                aTest += ByteString::CreateFromInt32( (ULONG)pEle->GetObj() );
+                aTest += ByteString_CreateFromInt32( (ULONG)pEle->GetObj() );
                 OSL_TRACE( "%s", aTest.GetBuffer() );
             }
         }
@@ -307,7 +308,7 @@ void SvPersist::TestMemberObjRef( BOOL /*bFree*/ )
     if( aStorage.Is() )
     {
         ByteString aTest( "\t\taStorage == " );
-        aTest += ByteString::CreateFromInt32( (ULONG)&aStorage );
+        aTest += ByteString_CreateFromInt32( (ULONG)&aStorage );
         OSL_TRACE( "%s", aTest.GetBuffer() );
     }
 }

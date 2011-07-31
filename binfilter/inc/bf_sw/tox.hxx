@@ -262,10 +262,7 @@ public:
     inline USHORT   GetTOXType() const;
     inline USHORT   GetFormMax() const;
 
-    USHORT GetFirstTabPos() const  ;    //{ return nFirstTabPos; }
     void SetFirstTabPos( USHORT n );    //{ nFirstTabPos = n; }
-
-    BOOL IsFirstTabPosFlag() const  ;   //{ return bHasFirstTabPos; }
 
     BOOL IsGenerateTabPos() const       { return bGenerateTabPos; }
     void SetGenerateTabPos( BOOL b )    { bGenerateTabPos = b; }

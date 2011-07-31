@@ -59,33 +59,12 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvInPlaceObject,SvInPlaceObjectFactory,SvEmbeddedOb
 void SvInPlaceObject::TestMemberObjRef( BOOL bFree )
 {
     (void)bFree;
-
-#ifdef DBG_UTIL
-    if( GetIPClient() )
-    {
-        ByteString aTest = "\t\tGetIPClient() == ";
-        aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetIPClient() ) );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-#endif
 }
 
 #ifdef TEST_INVARIANT
 void SvInPlaceObject::TestMemberInvariant( BOOL bPrint )
 {
-#ifdef DBG_UTIL
-    if( bPrint )
-    {
-        if( pIPEnv )
-        {
-            ByteString aTest( "\t\tSvInPlaceEnvironment == " );
-            aTest.Append( ByteString::CreateFromInt32( (ULONG)pIPEnv ) );
-            OSL_TRACE( "%s", aTest.GetBuffer() );
-        }
-    }
-#else
     (void)bPrint;
-#endif
 }
 #endif
 

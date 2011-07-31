@@ -477,27 +477,6 @@ const USHORT nMemPoolEditCell = (0x1000 - 64) / sizeof(ScNoteCell);
 /*N*/               if ( !nEdges )
 /*N*/                   nEdges = 1;             // mittendrin
 /*N*/           }
-/*N*/ #ifdef DBG_UTIL
-/*N*/           else
-/*N*/           {
-/*?*/               String aTmp;
-/*?*/               ByteString aMsg( "broken Matrix, Pos: " );
-/*?*/               aPos.Format( aTmp, SCA_VALID_COL | SCA_VALID_ROW, pDocument );
-/*?*/               aMsg += ByteString( aTmp, RTL_TEXTENCODING_ASCII_US );
-/*?*/               aMsg += ", MatOrg: ";
-/*?*/               aOrg.Format( aTmp, SCA_VALID_COL | SCA_VALID_ROW, pDocument );
-/*?*/               aMsg += ByteString( aTmp, RTL_TEXTENCODING_ASCII_US );
-/*?*/               aMsg += ", MatCols: ";
-/*?*/               aMsg += ByteString::CreateFromInt32( nC );
-/*?*/               aMsg += ", MatRows: ";
-/*?*/               aMsg += ByteString::CreateFromInt32( nR );
-/*?*/               aMsg += ", DiffCols: ";
-/*?*/               aMsg += ByteString::CreateFromInt32( dC );
-/*?*/               aMsg += ", DiffRows: ";
-/*?*/               aMsg += ByteString::CreateFromInt32( dR );
-/*?*/               DBG_ERRORFILE( aMsg.GetBuffer() );
-/*N*/           }
-/*N*/ #endif
 /*N*/           return nEdges;
 /*N*/           break;
 /*N*/       }

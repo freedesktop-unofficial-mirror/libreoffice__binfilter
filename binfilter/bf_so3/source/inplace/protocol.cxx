@@ -39,17 +39,6 @@
 
 namespace binfilter {
 
-#define DBG_PROTLOG(FuncName,bVal)              \
-{                                               \
-    ByteString aTS( ByteString::CreateFromInt32( (ULONG)this ) );                   \
-    aTS += "-Obj Edit Prot --- ";               \
-    aTS += FuncName;                            \
-    aTS += "( ";                                \
-    aTS += bVal ? "TRUE" : "FALSE";             \
-    aTS += " )";                                \
-    OSL_TRACE( "%s", aTS.GetBuffer() );               \
-}
-
 #define DBG_PROTREC(FuncName)                   \
     OSL_TRACE( FuncName )
 
@@ -742,7 +731,6 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
                     "connect assert failed" );
         DBG_ASSERT( aClient.Is(), "connect assert failed" );
         bCliConnect = TRUE;
-        DBG_PROTLOG( "Cli - Connected", bConnectP )
         aClient->Connected( TRUE );
     }
 
@@ -756,7 +744,6 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
                     || (!bConnect && !bConnectP && !bLastActionConnect && bSvrConnect),
                     "connect assert failed" );
         bSvrConnect = bConnect;
-        DBG_PROTLOG( "Obj - Connected", bConnectP )
         aObj->Connect( bConnect );
     }
 
@@ -769,7 +756,6 @@ void ImplSvEditObjectProtocol::Connected( BOOL bConnectP )
                     "connect assert failed" );
         DBG_ASSERT( aClient.Is(), "connect assert failed" );
         bCliConnect = FALSE;
-        DBG_PROTLOG( "Cli - Connected", bConnectP )
         aClient->Connected( FALSE );
     }
 
@@ -820,7 +806,6 @@ void ImplSvEditObjectProtocol::Opened( BOOL bOpenP )
         DBG_ASSERT( bOpen && bOpenP && bLastActionOpen && !bCliOpen,
                     "open assert failed" );
         bCliOpen = TRUE;
-        DBG_PROTLOG( "Cli - Opened", bOpenP )
         aClient->Opened( TRUE );
     }
 
@@ -834,7 +819,6 @@ void ImplSvEditObjectProtocol::Opened( BOOL bOpenP )
                     || (!bOpen && !bOpenP && !bLastActionOpen && bSvrOpen),
                     "open assert failed" );
         bSvrOpen = bOpen;
-        DBG_PROTLOG( "Svr - Opened", bOpenP )
         aObj->Open( bOpen );
     }
 
@@ -847,7 +831,6 @@ void ImplSvEditObjectProtocol::Opened( BOOL bOpenP )
                     "open assert failed" );
         DBG_ASSERT( aClient.Is(), "open assert failed" );
         bCliOpen = FALSE;
-        DBG_PROTLOG( "Cli - Opened", bOpenP )
         aClient->Opened( FALSE );
     }
     CLASS_INVARIANT
@@ -889,7 +872,6 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
         DBG_ASSERT( bEmbed && bEmbedP && bLastActionEmbed && !bCliEmbed,
                     "embed assert failed" );
         bCliEmbed = TRUE;
-        DBG_PROTLOG( "Cli - Embedded", bEmbedP )
         aClient->Embedded( TRUE );
     }
 
@@ -903,7 +885,6 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
                     || (!bEmbed && !bEmbedP && !bLastActionEmbed && bSvrEmbed),
                     "embed assert failed" );
         bSvrEmbed = bEmbed;
-        DBG_PROTLOG( "Svr - Embedded", bEmbedP )
         aObj->Embed( bEmbed );
         if( bEmbed && aObj->GetDocumentName().Len() )
             aObj->DocumentNameChanged( aObj->GetDocumentName() );
@@ -917,7 +898,6 @@ void ImplSvEditObjectProtocol::Embedded( BOOL bEmbedP )
         DBG_ASSERT( !bEmbed && !bEmbedP && !bLastActionEmbed && bCliEmbed,
                     "embed assert failed" );
         bCliEmbed = FALSE;
-        DBG_PROTLOG( "Cli - Embedded", bEmbedP )
         aClient->Embedded( FALSE );
     }
     CLASS_INVARIANT
@@ -964,7 +944,6 @@ void ImplSvEditObjectProtocol::PlugIn
         DBG_ASSERT( bPlugIn && bPlugInP && bLastActionPlugIn && !bCliPlugIn,
                     "PlugIn assert failed" );
         bCliPlugIn = TRUE;
-        DBG_PROTLOG( "Cli - PlugIn", bPlugInP )
         aClient->PlugIn( TRUE );
     }
 
@@ -978,7 +957,6 @@ void ImplSvEditObjectProtocol::PlugIn
                     || (!bPlugIn && !bPlugInP && !bLastActionPlugIn && bSvrPlugIn),
                     "PlugIn assert failed" );
         bSvrPlugIn = bPlugIn;
-        DBG_PROTLOG( "Svr - PlugIn", bPlugInP )
         aObj->PlugIn( bPlugIn );
         if( bPlugIn && aObj->GetDocumentName().Len() )
             aObj->DocumentNameChanged( aObj->GetDocumentName() );
@@ -992,7 +970,6 @@ void ImplSvEditObjectProtocol::PlugIn
         DBG_ASSERT( !bPlugIn && !bPlugInP && !bLastActionPlugIn && bCliPlugIn,
                     "PlugIn assert failed" );
         bCliPlugIn = FALSE;
-        DBG_PROTLOG( "Cli - PlugIn", bPlugInP )
         aClient->PlugIn( FALSE );
     }
     CLASS_INVARIANT
@@ -1037,7 +1014,6 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
                     "inplace assert failed" );
         DBG_ASSERT( aIPClient.Is(), "inplace assert failed" );
         bCliIPActive = TRUE;
-        DBG_PROTLOG( "Cli - InPlaceActivate", bIPActiveP )
         if( aIPClient->Owner() )
             SvInPlaceClient::GetIPActiveClientList().Insert( aIPClient, LIST_APPEND );
         aIPClient->InPlaceActivate( TRUE );
@@ -1054,7 +1030,6 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
                     "inplace assert failed" );
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrIPActive = bIPActive;
-        DBG_PROTLOG( "Svr - InPlaceActivate", bIPActiveP )
         if( bIPActive )
         {
             aIPObj->InPlaceActivate( bIPActive );
@@ -1080,7 +1055,6 @@ void ImplSvEditObjectProtocol::InPlaceActivate( BOOL bIPActiveP )
                     "open assert failed" );
         bCliIPActive = FALSE;
         DBG_ASSERT( aIPClient.Is(), "inplace assert failed" );
-        DBG_PROTLOG( "Cli - InPlaceActivate", bIPActiveP )
         if( aIPClient->Owner() )
             SvInPlaceClient::GetIPActiveClientList().Remove( aIPClient );
         aIPClient->InPlaceActivate( FALSE );
@@ -1112,7 +1086,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
     bLastActionUIActive = bUIActiveP;
     if( bUIActiveP )
         InPlaceActivate( bUIActiveP );
-    DBG_PROTLOG( "UIActivate", bUIActiveP )
     DBG_ASSERT( !bEmbed && !bPlugIn, "ui assert failed" );
     bUIActive = bUIActiveP; // vor der Aktion den Status setzen
     if( bLastActionUIActive && !bCliUIActive )
@@ -1154,7 +1127,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
         if( bLastActionUIActive && !bCliUIActive )
         { // wer weis was DoInPlaceActivate getan hat
             bCliUIActive = TRUE;
-            DBG_PROTLOG( "Cli - UIActivate", bUIActiveP )
             aIPClient->UIActivate( TRUE );
             if( aIPObj.Is() && aIPObj->Owner() )
             { // Tools anordnen anstossen, aber nur wenn selbst
@@ -1174,7 +1146,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
                     "ui assert failed" );
         DBG_ASSERT( aIPObj.Is(), "inplace assert failed" );
         bSvrUIActive = bUIActive;
-        DBG_PROTLOG( "Obj - UIActivate", bUIActiveP )
         if( aIPClient->Owner() )
         {
             if( aIPClient->GetEnv()->GetDocWin() )
@@ -1194,7 +1165,6 @@ void ImplSvEditObjectProtocol::UIActivate( BOOL bUIActiveP )
                     "open assert failed" );
         bCliUIActive = FALSE;
         DBG_ASSERT( aIPClient.Is(), "inplace assert failed" );
-        DBG_PROTLOG( "Cli - UIActivate", bUIActiveP )
         aIPClient->UIActivate( FALSE );
     }
 

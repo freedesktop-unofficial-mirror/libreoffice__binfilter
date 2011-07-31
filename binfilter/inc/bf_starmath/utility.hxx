@@ -47,7 +47,6 @@ class SmRect;
 
 /////////////////////////////////////////////////////////////////
 
-const ByteString    ExportString( const String& rString );
 const String        ImportString( const ByteString& rByteString );
 
 /////////////////////////////////////////////////////////////////
@@ -99,7 +98,6 @@ SmViewShell * SmGetActiveView();
 
 class SmFace;
 
-SvStream& operator << (SvStream& rStream, const SmFace& rFont);
 SvStream& operator >> (SvStream& rStream, SmFace& rFont);
 
 void ReadSM20Font(SvStream& rStream, Font& rFont);

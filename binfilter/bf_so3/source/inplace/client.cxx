@@ -243,36 +243,13 @@ SO2_IMPL_STANDARD_CLASS1_DLL(SvEmbeddedClient,SvEmbeddedClientFactory,SvObject,
     return NULL;
 }
 
-void SvEmbeddedClient::TestMemberObjRef( BOOL bFree )
+void SvEmbeddedClient::TestMemberObjRef( BOOL )
 {
-    (void)bFree;
-
-#ifdef DBG_UTIL
-    if( GetEmbedObj() )
-    {
-        ByteString aTest = "\t\tGetEmbedObj() == ";
-        aTest.Append( ByteString::CreateFromInt32( (ULONG)(SvObject *)GetEmbedObj() ) );
-        OSL_TRACE( "%s", aTest.GetBuffer() );
-    }
-#endif
 }
 
 #ifdef TEST_INVARIANT
-void SvEmbeddedClient::TestMemberInvariant( BOOL bPrint )
+void SvEmbeddedClient::TestMemberInvariant( BOOL )
 {
-#ifdef DBG_UTIL
-    if( bPrint )
-    {
-        if( HasViewData() )
-        {
-            ByteString aTest( "\t\tSvClientData == " );
-            aTest.Append( ByteString::CreateFromInt32(  (ULONG)GetClientData() ) );
-            OSL_TRACE( "%s", aTest.GetBuffer() );
-        }
-    }
-#else
-    (void)bPrint;
-#endif
 }
 #endif
 

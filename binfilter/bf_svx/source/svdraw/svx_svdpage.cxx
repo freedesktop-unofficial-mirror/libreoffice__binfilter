@@ -46,14 +46,9 @@
 #include "svditer.hxx"
 #include "svdpagv.hxx"
 #include "polysc3d.hxx"
-
-#ifndef SVX_LIGHT
 #include "fmdpage.hxx"
-#else
-#endif
-
-
 #include "xoutx.hxx"
+#include <bf_tools/string.hxx>
 
 namespace binfilter {
 
@@ -174,7 +169,7 @@ using namespace ::com::sun::star;
 /*?*/       else
 /*?*/       {
 /*?*/           aStr += "von ";
-/*?*/           aStr += ByteString::CreateFromInt32( nCloneErrCnt );
+/*?*/           aStr += ByteString_CreateFromInt32( nCloneErrCnt );
 /*?*/           aStr += " Zeichenobjekten.";
 /*?*/       }
 /*?*/
@@ -914,18 +909,18 @@ using namespace ::com::sun::star;
 /*?*/               UINT32 nPos(GetObjCount());
 /*?*/
 /*?*/               aStr += "Listenposition: ";
-/*?*/               aStr += ByteString::CreateFromInt32( nPos );
+/*?*/               aStr += ByteString_CreateFromInt32( nPos );
 /*?*/               aStr += "\n";
 /*?*/               aStr += "Inventor: ";
 /*?*/                 sal_Int32 nInv = SWAPLONG( aHead.nInventor );
-/*?*/                 aStr += ByteString::CreateFromInt32( nInv );
+/*?*/                 aStr += ByteString_CreateFromInt32( nInv );
 /*?*/               aStr += ", Identifier: ";
-/*?*/               aStr += ByteString::CreateFromInt32( aHead.nIdentifier );
+/*?*/               aStr += ByteString_CreateFromInt32( aHead.nIdentifier );
 /*?*/               aStr += "\n";
 /*?*/               aStr += "FilePos: ";
-/*?*/               aStr += ByteString::CreateFromInt32( aHead.GetFilePos() );
+/*?*/               aStr += ByteString_CreateFromInt32( aHead.GetFilePos() );
 /*?*/               aStr += ", BlockSize: ";
-/*?*/               aStr += ByteString::CreateFromInt32( aHead.GetBlockSize() );
+/*?*/               aStr += ByteString_CreateFromInt32( aHead.GetBlockSize() );
 /*?*/
 /*?*/               OSL_FAIL(aStr.GetBuffer());
 /*?*/ #endif

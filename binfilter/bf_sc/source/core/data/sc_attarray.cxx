@@ -95,28 +95,6 @@ namespace binfilter {
 #ifdef DBG_UTIL
 /*N*/ void ScAttrArray::TestData() const
 /*N*/ {
-/*N*/   USHORT nErr = 0;
-/*N*/   if (pData)
-/*N*/   {
-/*N*/       USHORT nPos=0;
-/*N*/       for (nPos=0; nPos<nCount; nPos++)
-/*N*/       {
-/*N*/           if (nPos)
-/*N*/               if (pData[nPos].pPattern == pData[nPos-1].pPattern || pData[nPos].nRow <= pData[nPos-1].nRow)
-/*N*/                   ++nErr;
-/*N*/           if (pData[nPos].pPattern->Which() != ATTR_PATTERN)
-/*N*/               ++nErr;
-/*N*/       }
-/*N*/         if ( nPos && pData[nPos-1].nRow != MAXROW )
-/*N*/             ++nErr;
-/*N*/   }
-/*N*/   if (nErr)
-/*N*/   {
-/*?*/       ByteString aMsg = ByteString::CreateFromInt32(nErr);
-/*?*/       aMsg += " errors in attribute array, column ";
-/*?*/       aMsg += ByteString::CreateFromInt32(nCol);
-/*?*/       OSL_FAIL( aMsg.GetBuffer() );
-/*N*/   }
 /*N*/ }
 #endif
 

@@ -44,6 +44,8 @@
 #include <paratr.hxx>
 #include <bf_svx/tstpitem.hxx>
 #include <SwStyleNameMapper.hxx>
+#include <bf_tools/string.hxx>
+
 namespace binfilter {
 
 /*N*/ const sal_Char* SwForm::aFormEntry        = "<E>";
@@ -301,14 +303,14 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/           if(TOX_CONTENT == nType)
 /*N*/           {
 /*N*/               //the most right tab stop is "most_right_aligned"
-/*N*/               sTmp += ByteString::CreateFromInt32( SVX_TAB_ADJUST_END );
+/*N*/               sTmp += ByteString_CreateFromInt32( SVX_TAB_ADJUST_END );
 /*N*/               //and has a dot as FillChar
 /*N*/               sTmp.Append( RTL_CONSTASCII_STRINGPARAM( ",." ));
 /*N*/               sBStr.Insert(sTmp, sBStr.Len() - 1);
 /*N*/           }
 /*N*/           else
 /*N*/           {
-/*N*/               sTmp += ByteString::CreateFromInt32( SVX_TAB_ADJUST_LEFT );
+/*N*/               sTmp += ByteString_CreateFromInt32( SVX_TAB_ADJUST_LEFT );
 /*N*/               //and has a space as FillChar
 /*N*/               sTmp.Append( RTL_CONSTASCII_STRINGPARAM( ", " ));
 /*N*/           }
@@ -426,24 +428,6 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/   return sRet;
 /*N*/ }
 
-/*N*/ USHORT SwForm::GetFirstTabPos() const     //{ return nFirstTabPos; }
-/*N*/ {
-/*N*/   DBG_WARNING("compatibility");
-/*N*/   String sFirstLevelPattern = aPattern[ 1 ];
-/*N*/   USHORT nRet = 0;
-/*N*/   if( 2 <= ::binfilter::lcl_GetPatternCount( sFirstLevelPattern, SwForm::aFormTab ))
-/*N*/   {
-/*N*/       //sTab is in the Form "<T ,,value>" where value is the tab position an may be empty
-/*N*/       String sTab = lcl_GetPattern( sFirstLevelPattern, SwForm::aFormTab );
-/*N*/       if( 3 <= sTab.GetTokenCount(',') )
-/*N*/       {
-/*N*/           sTab = sTab.GetToken( 2, ',');
-/*N*/           sTab.Erase( sTab.Len() - 1, 1 );
-/*N*/           nRet = sTab.ToInt32();
-/*N*/       }
-/*N*/   }
-/*N*/   return nRet;
-/*N*/ }
 void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 {
     // the tab stop token looks like: <T ,,1234,0,.> <T> <T ,,1234>
@@ -607,13 +591,6 @@ void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 /*N*/               SetPattern(nLevel, sCurrentPattern);
 /*N*/       }
 /*N*/   }
-/*N*/ }
-//-----------------------------------------------------------------------------
-
-/*N*/ BOOL SwForm::IsFirstTabPosFlag() const        //{ return bHasFirstTabPos; }
-/*N*/ {
-/*N*/   //rturn true if the first level contains two ore more tabstops
-/*N*/   return 2 <= lcl_GetPatternCount(aPattern[ 1 ], SwForm::aFormTab);
 /*N*/ }
 
 /*N*/ String    SwForm::ConvertPatternFrom51(const String& rSource, TOXTypes eType)
