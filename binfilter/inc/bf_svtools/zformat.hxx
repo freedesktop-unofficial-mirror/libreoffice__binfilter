@@ -312,12 +312,6 @@ public:
     // Whether the negative format is without a sign or not
     BOOL IsNegativeWithoutSign() const;
 
-    // Whether a new SYMBOLTYPE_CURRENCY is contained in the format
-    BOOL HasNewCurrency() const;
-
-    // Build string from NewCurrency for saving it SO50 compatible
-    void Build50Formatstring( String& rStr ) const;
-
     // strip [$-yyy] from all [$xxx-yyy] leaving only xxx's,
     // if bQuoteSymbol==TRUE the xxx will become "xxx"
     static String StripNewCurrencyDelimiters( const String& rStr,

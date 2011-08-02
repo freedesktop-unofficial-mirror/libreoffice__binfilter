@@ -1478,18 +1478,6 @@ void SvNumberformat::LoadString( SvStream& rStream, String& rStr )
     }
 }
 
-
-BOOL SvNumberformat::HasNewCurrency() const
-{
-    for ( USHORT j=0; j<4; j++ )
-    {
-        if ( NumFor[j].HasNewCurrency() )
-            return TRUE;
-    }
-    return FALSE;
-}
-
-
 BOOL SvNumberformat::GetNewCurrencySymbol( String& rSymbol,
             String& rExtension ) const
 {
@@ -1552,13 +1540,6 @@ String SvNumberformat::StripNewCurrencyDelimiters( const String& rStr,
         aTmp += rStr.Copy( nStartPos, nLen - nStartPos );
     return aTmp;
 }
-
-
-void SvNumberformat::Build50Formatstring( String& rStr ) const
-{
-    rStr = StripNewCurrencyDelimiters( sFormatstring, TRUE );
-}
-
 
 void SvNumberformat::ImpGetOutputStandard(double& fNumber, String& OutString)
 {
