@@ -54,19 +54,7 @@ namespace binfilter {
 //siehe auch swtable.cxx
 #define COLFUZZY 20L
 
-
 /*N*/ SwTabCols *pLastCols   = 0;
-
-
-
-/*N*/ inline const SwCursor& GetShellCursor( const SwCrsrShell& rShell )
-/*N*/ {
-/*N*/   const SwShellCrsr *pCrsr = rShell.GetTableCrsr();
-/*N*/   if( !pCrsr )
-/*N*/       pCrsr = (SwShellCrsr*)*rShell.GetSwCrsr( FALSE );
-/*N*/   return *pCrsr;
-/*N*/ }
-
 
 /*N*/ void ClearFEShellTabCols()
 /*N*/ {

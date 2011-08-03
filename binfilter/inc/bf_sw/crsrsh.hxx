@@ -240,11 +240,7 @@ private:
 
 typedef bool (SwCursor:: *FNCrsr)();
 
-
 protected:
-
-    CRSR_INLINE SwMoveFnCollection* MakeFindRange( USHORT, USHORT, SwPaM* ) const;
-
     /*
      * Compare-Methode for the StackCursor and the current Cursor.
      * The Methods return -1, 0, 1 for lower, equal, greater. The enum
@@ -277,7 +273,6 @@ public:
     // TableCursor in normale Cursor verwandeln, Tablemode aufheben
 
     SwPaM* GetCrsr( bool bMakeTblCrsr = TRUE ) const;
-    CRSR_INLINE SwCursor* GetSwCrsr( bool bMakeTblCrsr = TRUE ) const;
     // nur den akt. Cursor returnen
           SwShellCrsr* _GetCrsr()                       { return pCurCrsr; }
     const SwShellCrsr* _GetCrsr() const                 { return pCurCrsr; }
@@ -399,12 +394,6 @@ public:
     // Abfrage, ob ueberhaupt eine Selektion existiert, sprich der akt. Cursor
     // aufgespannt oder nicht der einzigste ist.
     CRSR_INLINE bool IsSelection() const;
-        // returns if multiple cursors are available
-    CRSR_INLINE bool IsMultiSelection() const;
-
-    // Abfrage, ob ein kompletter Absatz selektiert wurde
-    // Abfrage, ob die Selektion in einem Absatz ist
-    CRSR_INLINE bool IsSelOnePara() const;
 
     //Sollte fuer das Clipboard der WaitPtr geschaltet werden.
 
@@ -424,20 +413,8 @@ public:
     // ergibt sich aus seiner aktuellen Position im Layout !!
     void UpdateCrsrPos();
 
-    // returne den am akt. Cursor selektierten Text. Dieser wird mit
-    // Felder etc. aufgefuellt!!
-    // gebe nur den Text ab der akt. Cursor Position zurueck (bis zum NodeEnde)
-    // retrurne die Anzahl der selektierten Zeichen.
-    // Falls keine Selektion vorliegt entscheided nType was selektiert wird
-    // bIntrnlChar besagt ob interne Zeichen erhalten bleiben (TRUE) oder
-    // ob sie expandiert werden (z.B Felder/...)
-
-    // pruefe ob vom aktuellen Crsr der SPoint/Mark in einer Tabelle stehen
-    CRSR_INLINE const SwTableNode* IsCrsrInTbl( BOOL bIsPtInTbl = TRUE ) const;
-    CRSR_INLINE bool IsCrsrPtAtEnd() const;
-
     CRSR_INLINE const   SwPaM* GetTblCrs() const;
-     CRSR_INLINE        SwPaM* GetTblCrs();
+    CRSR_INLINE         SwPaM* GetTblCrs();
 
     // select a table row, column or box (based on the current cursor)
 
@@ -458,32 +435,6 @@ public:
         // erfrage den Tabellen Crsr; ausserhalb von Tabellen immer 0
     const SwShellTableCrsr* GetTableCrsr() const { return pTblCrsr; }
     SwShellTableCrsr* GetTableCrsr() { return pTblCrsr; }
-
-
-    // springe in den Header/Footer des angegebenen oder akt. PageDesc
-    // is point of cursor in header/footer. pbInHeader return TRUE if it is
-    // in a headerframe otherwise in a footerframe
-
-    // springe zum naechsten Verzeichnis [mit dem Namen]
-    // springe zum vorherigen Verzeichnis [mit dem Namen]
-    // springe zum naechsten (vorherigen) Verzeichniseintrag
-    // Zur naechsten/ vorherigen Verzeichnismarke dieses Typs traveln
-
-    // springe zum naechsten (vorherigen) Tabellenformel
-    // optional auch nur zu kaputten Formeln springen
-    // jump to the next / previous hyperlink - inside text and also
-    // on graphics
-
-    // springe zu dieser Refmark
-
-    // hole vom Start/Ende der akt. Selection das nte Zeichen
-    // erweiter die akt. Selection am Anfang/Ende um n Zeichen
-    // setze nur den sichtbaren Cursor an die angegebene Dokument-Pos.
-    // returnt FALSE: wenn der ob der SPoint vom Layout korrigiert wurde.
-    // (wird zum Anzeigen von Drag&Drop/Copy-Cursor benoetigt)
-    CRSR_INLINE void UnSetVisCrsr();
-
-    // Char Travelling - Methoden (in crstrvl1.cxx)
 
     // Abfrage vom CrsrTravelling Status
     CrsrMoveState GetMoveState() const { return eMvState; }
@@ -569,46 +520,13 @@ public:
 
 #if !defined(DBG_UTIL) && !defined(WIN)
 
-inline SwMoveFnCollection* SwCrsrShell::MakeFindRange(
-            USHORT /*nStt*/, USHORT /*nEnd*/, SwPaM* /*pPam*/ ) const
-{
-    DBG_BF_ASSERT(0, "STRIP"); return NULL;
-}
-
-inline SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const
-{
-    return (SwCursor*)GetCrsr( bMakeTblCrsr );
-}
-
 inline SwPaM* SwCrsrShell::GetStkCrsr() const { return pCrsrStk; }
-
-
 
 /*N*/ inline bool SwCrsrShell::IsSelection() const
 /*N*/ {
 /*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
 /*N*/           pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
-inline bool SwCrsrShell::IsMultiSelection() const
-{
-    return pCurCrsr->GetNext() != pCurCrsr;
-}
-
-inline bool SwCrsrShell::IsSelOnePara() const
-{
-    return pCurCrsr == pCurCrsr->GetNext() &&
-           pCurCrsr->GetPoint()->nNode == pCurCrsr->GetMark()->nNode;
-}
-
-inline const SwTableNode* SwCrsrShell::IsCrsrInTbl( BOOL bIsPtInTbl ) const
-{
-    return pCurCrsr->GetNode( bIsPtInTbl )->FindTableNode();
-}
-
-inline bool SwCrsrShell::IsCrsrPtAtEnd() const
-{
-    return pCurCrsr->End() == pCurCrsr->GetPoint();
-}
 
 inline const SwPaM* SwCrsrShell::GetTblCrs() const
 {
@@ -618,12 +536,6 @@ inline const SwPaM* SwCrsrShell::GetTblCrs() const
 inline SwPaM* SwCrsrShell::GetTblCrs()
 {
     return pTblCrsr;
-}
-
-inline void SwCrsrShell::UnSetVisCrsr()
-{
-    pVisCrsr->Hide();
-    pVisCrsr->SetDragCrsr( FALSE );
 }
 
 #endif

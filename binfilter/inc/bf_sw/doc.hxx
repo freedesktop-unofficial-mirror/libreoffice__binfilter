@@ -776,9 +776,6 @@ public:
     void SetNewDBMgr( SwNewDBMgr* pNewMgr )     { pNewDBMgr = pNewMgr; }
     SwNewDBMgr* GetNewDBMgr() const             { return pNewDBMgr; }
     void SetInitDBFields(sal_Bool b);
-    // Von Feldern verwendete Datenbanken herausfinden
-    void GetAllUsedDB( SvStringsDtor& rDBNameList,
-                       const SvStringsDtor* pAllDBNames = 0 );
 
     void ChgDBData( const SwDBData& rNewData );
     SwDBData GetDBData();

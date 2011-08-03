@@ -440,23 +440,6 @@ void ensureClassInfos()
     REGISTER_CLASS1(ImageProducer, SRV_AWT_IMAGEPRODUCER);
 }
 
-//---------------------------------------------------------------------------------------
-void registerServiceProvider(const ::rtl::OUString& _rServiceImplName, const Sequence< ::rtl::OUString >& _rServices, starregistry::XRegistryKey* _pKey)
-{
-    ::rtl::OUString sMainKeyName( RTL_CONSTASCII_USTRINGPARAM( "/" ));
-    sMainKeyName += _rServiceImplName;
-    sMainKeyName += ::rtl::OUString( RTL_CONSTASCII_USTRINGPARAM( "/UNO/SERVICES" ));
-    Reference<starregistry::XRegistryKey> xNewKey = _pKey->createKey(sMainKeyName);
-    OSL_ENSURE(xNewKey.is(), "forms::registerProvider : could not create a registry key !");
-    if (!xNewKey.is())
-        return;
-
-    const ::rtl::OUString* pSupportedServices = _rServices.getConstArray();
-    for (sal_Int32 i=0; i<_rServices.getLength(); ++i, ++pSupportedServices)
-        xNewKey->createKey(*pSupportedServices);
-}
-
-//=======================================================================================
 extern "C"
 {
 

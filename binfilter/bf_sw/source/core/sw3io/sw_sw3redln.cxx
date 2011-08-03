@@ -54,18 +54,6 @@ namespace binfilter {
 // lokaler Record in SWG_REDLINE
 #define SWG_REDLINEDATA_LCL 'D'
 
-/*N*/ void Sw3StringPool::SetupRedlines( SwDoc& rDoc )
-/*N*/ {
-/*N*/   const SwRedlineTbl& rRedlines = rDoc.GetRedlineTbl();
-/*N*/   for( USHORT i=0; i<rRedlines.Count(); i++ )
-/*N*/   {
-/*?*/       const SwRedline *pRedline = rRedlines[i];
-            for( USHORT j=0; j<pRedline->GetStackCount(); j++ )
-                Add( pRedline->GetAuthorString(j), USHRT_MAX );
-/*N*/   }
-/*N*/ }
-
-
 // REDLINE:
 // BYTE     Flags
 //          0x10 - visisble Flags

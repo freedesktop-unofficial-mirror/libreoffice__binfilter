@@ -1427,17 +1427,6 @@ const int RES_POOLCOLL_HTML_DT_40 = 0x3007;
 /*N*/   }
 /*N*/ }
 
-/*N*/ void Sw3StringPool::SetupTxtCollByName( SwDoc& rDoc, const String& rName )
-/*N*/ {
-/*N*/   if( !rName.Len() )
-/*N*/       return;
-/*N*/
-/*N*/   const SwTxtFmtColl *pColl = rDoc.FindTxtFmtCollByName( rName );
-/*N*/   sal_uInt16 nPoolId = pColl ? pColl->GetPoolFmtId()
-/*N*/                          : SwStyleNameMapper::GetPoolIdFromUIName( rName, GET_POOLID_TXTCOLL );
-/*N*/   Add( rName, nPoolId );
-/*N*/ }
-
 /*N*/ sal_uInt16 Sw3StringPool::Add( const String& r, sal_uInt16 n, sal_Bool bDontSearch )
 /*N*/ {
 /*N*/   sal_uInt16 i = bDontSearch ? aPool.Count() : 0;

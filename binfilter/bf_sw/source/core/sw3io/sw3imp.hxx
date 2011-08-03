@@ -260,14 +260,12 @@ class Sw3StringPool
 
     BOOL bFixed;
     void Setup( SwDoc& rDoc, const SwFmt& rFmt, USHORT=0 );
-    void SetupTxtCollByName( SwDoc& rDoc, const String& rCollName );
     void RemoveExtension( SwFmt& );
 
 public:
     Sw3StringPool();
     USHORT Count() { return aPool.Count(); }
     void   Clear();
-    void   SetupRedlines( SwDoc& );
     void   RemoveExtensions( SwDoc& );
     static void RemoveExtension( String& );
     USHORT Add( const String&, USHORT nPoolId /*= 0*/, BOOL bDontSearch=FALSE );

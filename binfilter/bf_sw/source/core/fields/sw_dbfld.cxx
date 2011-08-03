@@ -244,31 +244,6 @@ SwDBFieldType::SwDBFieldType(SwDoc* pDocPtr, const String& rNam, const SwDBData&
 /*N*/   SetExpansion( rExpansion );
 /*N*/ }
 
-//------------------------------------------------------------------------------
-
-/*N*/ String SwDBField::GetOldContent()
-/*N*/ {
-/*N*/   String sOldExpand = Expand();
-/*N*/   String sNewExpand = sOldExpand;
-/*N*/   BOOL bOldInit = bInitialized;
-/*N*/
-/*N*/   bInitialized = FALSE;
-/*N*/   InitContent();
-/*N*/   bInitialized = bOldInit;
-/*N*/
-/*N*/   if( ::binfilter::GetAppCmpStrIgnore().isEqual( sNewExpand, Expand() ) )
-/*N*/   {
-/*N*/       sNewExpand = '<';
-/*N*/       sNewExpand += ((SwDBFieldType *)GetTyp())->GetColumnName();
-/*N*/       sNewExpand += '>';
-/*N*/   }
-/*N*/   SetExpansion( sOldExpand );
-/*N*/
-/*N*/   return sNewExpand;
-/*N*/ }
-
-//------------------------------------------------------------------------------
-
 /*N*/ String SwDBField::Expand() const
 /*N*/ {
 /*N*/     String sRet;

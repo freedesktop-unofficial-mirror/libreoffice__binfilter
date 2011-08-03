@@ -774,11 +774,6 @@ using namespace ::com::sun::star::util;
 
 #if defined(DBG_UTIL) || defined(WIN)
 
-/*N*/ SwCursor* SwCrsrShell::GetSwCrsr( bool bMakeTblCrsr ) const
-/*N*/ {
-/*N*/   return (SwCursor*)GetCrsr( bMakeTblCrsr );
-/*N*/ }
-
 // gebe den Stack Cursor zurueck
 /*N*/ SwPaM * SwCrsrShell::GetStkCrsr() const           { return pCrsrStk; }
 
@@ -794,43 +789,7 @@ using namespace ::com::sun::star::util;
 /*N*/   return IsTableMode() || pCurCrsr->HasMark() ||
 /*N*/           pCurCrsr->GetNext() != pCurCrsr;
 /*N*/ }
-// returns if multiple cursors are available
-/*N*/ bool SwCrsrShell::IsMultiSelection() const
-/*N*/ {
-/*N*/     return pCurCrsr->GetNext() != pCurCrsr;
-/*N*/ }
 
-// pruefe ob vom aktuellen Crsr der SPoint/Mark in einer Tabelle stehen
-/*N*/ const SwTableNode* SwCrsrShell::IsCrsrInTbl( BOOL bIsPtInTbl ) const
-/*N*/ {
-/*N*/   return pCurCrsr->GetNode( bIsPtInTbl )->FindTableNode();
-/*N*/ }
-
-
-/*?*/ bool SwCrsrShell::IsCrsrPtAtEnd() const
-/*?*/ {
-/*?*/   return pCurCrsr->End() == pCurCrsr->GetPoint();
-/*?*/ }
-
-
-/*?*/ void SwCrsrShell::UnSetVisCrsr()
-/*?*/ {
-/*?*/   pVisCrsr->Hide();
-/*?*/   pVisCrsr->SetDragCrsr( FALSE );
-/*?*/ }
-
-
-/*?*/ bool SwCrsrShell::IsSelOnePara() const
-/*?*/ {
-/*?*/   return pCurCrsr == pCurCrsr->GetNext() &&
-/*?*/          pCurCrsr->GetPoint()->nNode ==
-/*?*/          pCurCrsr->GetMark()->nNode;
-/*?*/ }
-
-/*?*/ SwMoveFnCollection* SwCrsrShell::MakeFindRange(USHORT, USHORT, SwPaM*) const
-/*?*/ {
-/*?*/ DBG_BF_ASSERT(0, "STRIP"); return NULL;
-/*?*/ }
 #endif
 
 /**

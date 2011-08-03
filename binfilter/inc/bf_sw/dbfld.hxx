@@ -104,7 +104,6 @@ public:
     void                ChangeExpansion( const SwFrm*, const SwTxtFld* );
     void                InitContent();
     void                InitContent(const String& rExpansion);
-    String              GetOldContent();
 
     inline void         ChgBodyTxtFlag( BOOL bIsInBody );
     inline BOOL         IsInBodyTxt() const;
