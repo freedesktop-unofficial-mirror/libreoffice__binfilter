@@ -152,7 +152,6 @@ private:
     void                Init();
 
 protected:
-    BOOL            ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const;
     BOOL            ImpLoadLibary( BasicLibInfo* pLibInfo ) const;
     BOOL            ImpLoadLibary( BasicLibInfo* pLibInfo, SotStorage* pCurStorage, BOOL bInfosOnly = FALSE ) const;
     void            ImpCreateStdLib( StarBASIC* pParentFromStdLib );

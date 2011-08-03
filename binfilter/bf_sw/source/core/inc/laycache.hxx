@@ -54,8 +54,6 @@ public:
     SwLayoutCache() : pImpl( NULL ), nLockCount( 0 ) {}
     ~SwLayoutCache();
 
-    void Read( SvStream &rStream );
-
     void ClearImpl();
     sal_Bool IsLocked() const { return nLockCount > 0; }
     USHORT& GetLockCount() { return nLockCount; }

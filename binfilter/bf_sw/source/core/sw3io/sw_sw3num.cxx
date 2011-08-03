@@ -1123,52 +1123,6 @@ void lcl_sw3io__copyNumRule( const SwNumRule& rSrc, SwNumRule& rDst )
 /*N*/   rENInf.SetSuffix( sSuffix );
 /*N*/ }
 
-
-// globale Fussnoten-Info ausgeben
-
-/*N*/ void Sw3IoImp::OutEndNoteInfo( const SwEndNoteInfo &rENInf )
-/*N*/ {
-/*N*/   SwTxtFmtColl* pColl = rENInf.GetFtnTxtColl();
-/*N*/   USHORT nCollIdx = pColl ? aStringPool.Add( pColl->GetName(),
-/*N*/                                              pColl->GetPoolFmtId() )
-/*N*/                           : IDX_NO_VALUE;
-/*N*/
-/*N*/   const SwPageDesc *pDesc = (const SwPageDesc *)rENInf.GetPageDescDep()
-/*N*/                                   ->GetRegisteredIn();
-/*N*/   USHORT nPageIdx = pDesc ? aStringPool.Find( pDesc->GetName(),
-/*N*/                                               pDesc->GetPoolFmtId() )
-/*N*/                           : IDX_NO_VALUE;
-/*N*/
-/*N*/   const SwCharFmt *pCharFmt = (const SwCharFmt *)rENInf.GetCharFmtDep()
-/*N*/                                   ->GetRegisteredIn();
-/*N*/   USHORT nChrIdx = pCharFmt ? aStringPool.Find( pCharFmt->GetName(),
-/*N*/                                                 pCharFmt->GetPoolFmtId() )
-/*N*/                             : IDX_NO_VALUE;
-/*N*/
-/*N*/   BYTE nFlags = 0x09;     // 9 bytes of data
-/*N*/   pCharFmt = (const SwCharFmt *)rENInf.GetAnchorCharFmtDep()->GetRegisteredIn();
-/*N*/   USHORT nAnchorChrIdx = pCharFmt ? aStringPool.Find( pCharFmt->GetName(),
-/*N*/                                                   pCharFmt->GetPoolFmtId() )
-/*N*/                                   : IDX_NO_VALUE;
-/*N*/   if( IDX_NO_VALUE != nAnchorChrIdx && nAnchorChrIdx !=
-/*N*/       ( rENInf.IsEndNoteInfo() ? RES_POOLCHR_FOOTNOTE_ANCHOR
-/*N*/                                : RES_POOLCHR_ENDNOTE_ANCHOR ))
-/*N*/       nFlags += 0x12;
-/*N*/
-/*N*/   *pStrm << nFlags
-/*N*/          << (BYTE) rENInf.aFmt.GetNumberingType()
-/*N*/          << (UINT16) nPageIdx
-/*N*/          << (UINT16) nCollIdx
-/*N*/          << (UINT16) rENInf.nFtnOffset
-/*N*/          << (UINT16) nChrIdx;
-/*N*/
-/*N*/   if( 0x10 & nFlags )
-/*N*/          *pStrm << (UINT16) nAnchorChrIdx;
-/*N*/
-/*N*/   OutString( *pStrm, rENInf.GetPrefix() );
-/*N*/   OutString( *pStrm, rENInf.GetSuffix() );
-/*N*/ }
-
 /*N*/ void Sw3IoImp::InEndNoteInfo()
 /*N*/ {
 /*N*/   OpenRec( SWG_ENDNOTEINFO );

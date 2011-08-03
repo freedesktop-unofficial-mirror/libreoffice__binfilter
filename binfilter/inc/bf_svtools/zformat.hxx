@@ -153,8 +153,6 @@ public:
      { pColor = pCol; sColorName = rName; }
     const String& GetColorName() const { return sColorName; }
 
-    // new SYMBOLTYPE_CURRENCY in subformat?
-    BOOL HasNewCurrency() const;
     BOOL GetNewCurrencySymbol( String& rSymbol, String& rExtension ) const;
     void SaveNewCurrencyMap( SvStream& rStream ) const;
     void LoadNewCurrencyMap( SvStream& rStream );

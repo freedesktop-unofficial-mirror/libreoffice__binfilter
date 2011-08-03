@@ -88,22 +88,6 @@ namespace binfilter {
 /*N*/       Error();
 /*N*/ }
 
-// Fussnoten-Info ausgeben
-
-/*N*/ void Sw3IoImp::OutPageFtnInfo( const SwPageFtnInfo& rFtn )
-/*N*/ {
-/*N*/   OpenRec( SWG_PAGEFOOTINFO );
-/*N*/   *pStrm << (INT32) rFtn.GetHeight()
-/*N*/          << (INT32) rFtn.GetTopDist()
-/*N*/          << (INT32) rFtn.GetBottomDist()
-/*N*/          << (INT16) rFtn.GetAdj()
-/*N*/          << (INT32) rFtn.GetWidth().GetNumerator()
-/*N*/          << (INT32) rFtn.GetWidth().GetDenominator()
-/*N*/          << (INT16) rFtn.GetLineWidth()
-/*N*/          << rFtn.GetLineColor();
-/*N*/   CloseRec( SWG_PAGEFOOTINFO );
-/*N*/ }
-
 /*N*/ void Sw3IoImp::InPageDescs()
 /*N*/ {
 /*N*/   if( Peek() != SWG_STRINGPOOL )

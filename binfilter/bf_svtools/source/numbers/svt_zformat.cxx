@@ -281,18 +281,6 @@ void ImpSvNumFor::Load(SvStream& rStream, ImpSvNumberformatScan& rSc,
     pColor = rSc.GetColor(sColorName);
 }
 
-
-BOOL ImpSvNumFor::HasNewCurrency() const
-{
-    for ( USHORT j=0; j<nAnzStrings; j++ )
-    {
-        if ( aI.nTypeArray[j] == NF_SYMBOLTYPE_CURRENCY )
-            return TRUE;
-    }
-    return FALSE;
-}
-
-
 BOOL ImpSvNumFor::GetNewCurrencySymbol( String& rSymbol,
             String& rExtension ) const
 {

@@ -519,8 +519,6 @@ public:
     void CloseValuePos32( UINT32 ); // UINT32-Wert an Position eintragen
     ULONG BytesLeft();              // wie viele Bytes hat der Record noch?
     void CheckIoError( SvStream*);  // korrekten E/A-Fehlercode setzen
-    static ByteString ConvertStringNoDbDelim( const String& rStr,
-                                              rtl_TextEncoding eSource );
     static String ConvertStringNoDbDelim( const ByteString& rStr,
                                           rtl_TextEncoding eSource );
     static ByteString ConvertStringNoDelim( const String& rStr,
@@ -685,7 +683,6 @@ public:
     void   OutNodeNum( const SwNodeNum& );  // O: Absatz-Numerierung
 
     void   InEndNoteInfo( SwEndNoteInfo &rENInf ); // I: globale Endnoten-Info
-    void   OutEndNoteInfo( const SwEndNoteInfo &rENInf ); // O: globale Endnoten-Info
     void   InEndNoteInfo();                 // I: globale Endnoten-Info
     void   InFtnInfo();                     // I: globale Fussnoten-Info
     void   InFtnInfo40();                   // I: globale Fussn.-Info 3.1/4.0
@@ -694,7 +691,6 @@ public:
 
                                             // SW3PAGE.CXX
     void   InPageFtnInfo( SwPageFtnInfo& ); // I: Fussnoten-Info
-    void   OutPageFtnInfo( const SwPageFtnInfo& rFtn );
     void   InPageDescs();                   // I: alle Seitenvorlagen
     SwPageDesc* InPageDesc( USHORT& );      // I: Seitenvorlage
     void   ConnectPageDescAttrs();          // I: PageDesc-Referenzen aufloesen

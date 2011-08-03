@@ -1644,12 +1644,6 @@ void Sw3StringPool::LoadOld( SvStream& r )
 /*N*/   nExpFFVersion = 0;  // um ungesetzte Version zu erkennen!
 /*N*/ }
 
-/*N*/ ByteString Sw3IoImp::ConvertStringNoDbDelim( const String& rStr,
-/*N*/                                            rtl_TextEncoding eSource )
-/*N*/ {
-/*N*/   return ConvertStringNoDelim( rStr, DB_DELIM, '\xff', eSource );
-/*N*/ }
-/*N*/
 /*N*/ String Sw3IoImp::ConvertStringNoDbDelim( const ByteString& rStr,
 /*N*/                                        rtl_TextEncoding eSource )
 /*N*/ {

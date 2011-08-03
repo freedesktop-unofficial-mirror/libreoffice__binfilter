@@ -462,7 +462,6 @@ public:
 
     void            SetRelStorageName( const String& rN )   { aRelStorageName = rN; }
     const String&   GetRelStorageName() const               { return aRelStorageName; }
-    void            CalcRelStorageName( const String& rMgrStorageName );
 
     StarBASICRef    GetLib() const
     {
@@ -654,20 +653,6 @@ BasicLibInfo* BasicLibInfo::Create( SotStorageStream& rSStream )
         rSStream.Seek( nEndPos );
     }
     return pInfo;
-}
-
-void BasicLibInfo::CalcRelStorageName( const String& rMgrStorageName )
-{
-    if ( rMgrStorageName.Len() )
-    {
-        INetURLObject aAbsURLObj( rMgrStorageName );
-        aAbsURLObj.removeSegment();
-        String aPath = aAbsURLObj.GetMainURL( INetURLObject::NO_DECODE );
-        UniString aRelURL = INetURLObject::GetRelURL( aPath, GetStorageName() );
-        SetRelStorageName( aRelURL );
-    }
-    else
-        SetRelStorageName( String() );
 }
 
 BasicManager::BasicManager( SotStorage& rStorage, const String& rBaseURL, StarBASIC* pParentFromStdLib, String* pLibPath )
@@ -1167,69 +1152,6 @@ BasicLibInfo* BasicManager::CreateLibInfo()
     BasicLibInfo* pInf = new BasicLibInfo;
     pLibs->Insert( pInf, LIST_APPEND );
     return pInf;
-}
-
-BOOL BasicManager::ImpStoreLibary( StarBASIC* pLib, SotStorage& rStorage ) const
-{
-    DBG_CHKTHIS( BasicManager, 0 );
-    DBG_ASSERT( pLib, "pLib = 0 (ImpStorageLibary)" );
-
-    SotStorageRef xBasicStorage = rStorage.OpenSotStorage
-                            ( BasicStreamName, STREAM_STD_READWRITE, FALSE );
-
-    String aStorName( rStorage.GetName() );
-    DBG_ASSERT( aStorName.Len(), "No Storage Name!" );
-    if ( !xBasicStorage.Is() || xBasicStorage->GetError() )
-    {
-        StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_MGRSAVE, aStorName, ERRCODE_BUTTON_OK );
-        ((BasicManager*)this)->pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENLIBSTORAGE, pLib->GetName() ) );
-    }
-    else
-    {
-        // In dem Basic-Storage liegt jede Lib in einem Stream...
-        SotStorageStreamRef xBasicStream = xBasicStorage->OpenSotStream( pLib->GetName(), STREAM_STD_READWRITE );
-        if ( !xBasicStream.Is() || xBasicStream->GetError() )
-        {
-            StringErrorInfo* pErrInf = new StringErrorInfo( ERRCODE_BASMGR_LIBSAVE, pLib->GetName(), ERRCODE_BUTTON_OK );
-            ((BasicManager*)this)->pErrorMgr->InsertError( BasicError( *pErrInf, BASERR_REASON_OPENLIBSTREAM, pLib->GetName() ) );
-        }
-        else
-        {
-            BasicLibInfo* pLibInfo = FindLibInfo( pLib );
-            DBG_ASSERT( pLibInfo, "ImpStoreLibary: LibInfo?!" );
-
-            xBasicStream->SetSize( 0 );
-            xBasicStream->SetBufferSize( 1024 );
-
-            // SBX_DONTSTORE, damit Child-Basics nicht gespeichert werden
-            SetFlagToAllLibs( SBX_DONTSTORE, TRUE );
-            // Aber das hier will ich jetzt speichern:
-            pLib->ResetFlag( SBX_DONTSTORE );
-            if ( pLibInfo->HasPassword() )
-                xBasicStream->SetCryptMaskKey(szCryptingKey);
-            BOOL bDone = pLib->Store( *xBasicStream );
-            xBasicStream->SetBufferSize( 0 );
-            if ( bDone )
-            {
-                // Diese Informationen immer verschluesseln...
-                xBasicStream->SetBufferSize( 1024 );
-                xBasicStream->SetCryptMaskKey(szCryptingKey);
-                *xBasicStream << static_cast<sal_uInt32>(PASSWORD_MARKER);
-                String aTmpPassword = pLibInfo->GetPassword();
-                xBasicStream->WriteByteString( aTmpPassword, RTL_TEXTENCODING_MS_1252 );
-                xBasicStream->SetBufferSize( 0 );
-            }
-            // Vorsichtshalber alle Dont't Store lassen...
-            pLib->SetFlag( SBX_DONTSTORE );
-            pLib->SetModified( FALSE );
-            if( !xBasicStorage->Commit() )
-                bDone = FALSE;
-            xBasicStream->SetCryptMaskKey(rtl::OString());
-            DBG_ASSERT( bDone, "Warum geht Basic::Store() nicht ?" );
-            return bDone;
-        }
-    }
-    return FALSE;
 }
 
 BOOL BasicManager::ImpLoadLibary( BasicLibInfo* pLibInfo, SotStorage* pCurStorage, BOOL bInfosOnly ) const

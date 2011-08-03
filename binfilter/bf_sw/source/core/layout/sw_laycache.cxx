@@ -63,30 +63,6 @@ namespace binfilter {
 
 /*N*/ SV_IMPL_PTRARR( SwPageFlyCache, SwFlyCachePtr )
 
-/*
- *  Reading and writing of the layout cache.
- *  The layout cache is not necessary, but it improves
- *  the performance and reduces the text flow during
- *  the formatting.
- *  The layout cache contains the index of the paragraphs/tables
- *  at the top of every page, so it's possible to create
- *  the right count of pages and to distribute the document content
- *  to this pages before the formatting starts.
- */
-
-/*N*/ void SwLayoutCache::Read( SvStream &rStream )
-/*N*/ {
-/*N*/     if( !pImpl )
-/*N*/   {
-/*N*/         pImpl = new SwLayCacheImpl;
-/*N*/       if( !pImpl->Read( rStream ) )
-/*N*/       {
-/*?*/           delete pImpl;
-/*?*/           pImpl = 0;
-/*N*/       }
-/*N*/   }
-/*N*/ }
-
 //-----------------------------------------------------------------------------
 
 /*N*/ void SwLayCacheImpl::Insert( USHORT nType, ULONG nIndex, xub_StrLen nOffset )

@@ -415,19 +415,6 @@ String lcl_GetAuthPattern(USHORT nTypeId)
 /*N*/   return nRet;
 /*N*/ }
 
-/*N*/ String lcl_GetPattern( const String& rPattern, const sal_Char* pToken )
-/*N*/ {
-/*N*/   String sRet;
-/*N*/   String aSearch; aSearch.AssignAscii( pToken );
-/*N*/   aSearch.Erase( aSearch.Len() - 1, 1 );
-/*N*/
-/*N*/   xub_StrLen nEnd, nFound = rPattern.Search( aSearch );
-/*N*/   if( STRING_NOTFOUND != nFound &&
-/*N*/       STRING_NOTFOUND != ( nEnd = rPattern.Search( '>', nFound )) )
-/*N*/       sRet = rPattern.Copy( nFound, nEnd - nFound + 1 );
-/*N*/   return sRet;
-/*N*/ }
-
 void SwForm::SetFirstTabPos( USHORT n )     //{ nFirstTabPos = n; }
 {
     // the tab stop token looks like: <T ,,1234,0,.> <T> <T ,,1234>
