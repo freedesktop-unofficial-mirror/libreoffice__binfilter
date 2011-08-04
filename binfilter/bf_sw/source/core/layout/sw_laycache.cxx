@@ -72,73 +72,6 @@ namespace binfilter {
 /*N*/   aOffset.Insert( nOffset, aOffset.Count() );
 /*N*/ }
 
-/*N*/ BOOL SwLayCacheImpl::Read( SvStream& rStream )
-/*N*/ {
-/*N*/   SwLayCacheIoImpl aIo( rStream, FALSE );
-/*N*/   if( aIo.GetMajorVersion() > SW_LAYCACHE_IO_VERSION_MAJOR )
-/*?*/       return FALSE;
-/*N*/
-/*N*/     // Due to an evil bug in the layout cache (#102759#), we cannot trust the
-/*N*/     // sizes of fly frames which have been written using the "old" layout cache.
-/*N*/     // This flag should indicate that we do not want to trust the width and
-/*N*/     // height of fly frames
-/*N*/     bUseFlyCache = aIo.GetMinorVersion() >= 1;
-/*N*/
-/*N*/   BYTE cFlags;
-/*N*/   UINT32 nIndex, nOffset;
-/*N*/
-/*N*/   aIo.OpenRec( SW_LAYCACHE_IO_REC_PAGES );
-/*N*/   aIo.OpenFlagRec();
-/*N*/   aIo.CloseFlagRec();
-/*N*/   while( aIo.BytesLeft() && !aIo.HasError() )
-/*N*/   {
-/*N*/       switch( aIo.Peek() )
-/*N*/       {
-/*N*/       case SW_LAYCACHE_IO_REC_PARA:
-/*N*/           aIo.OpenRec( SW_LAYCACHE_IO_REC_PARA );
-/*N*/           cFlags = aIo.OpenFlagRec();
-/*N*/           aIo.GetStream() >> nIndex;
-/*N*/           if( (cFlags & 0x01) != 0 )
-/*N*/               aIo.GetStream() >> nOffset;
-/*N*/           else
-/*N*/               nOffset = STRING_LEN;
-/*N*/           aIo.CloseFlagRec();
-/*N*/           Insert( SW_LAYCACHE_IO_REC_PARA, nIndex, (xub_StrLen)nOffset );
-/*N*/           aIo.CloseRec( SW_LAYCACHE_IO_REC_PARA );
-/*N*/           break;
-/*N*/       case SW_LAYCACHE_IO_REC_TABLE:
-/*?*/           aIo.OpenRec( SW_LAYCACHE_IO_REC_TABLE );
-/*?*/           aIo.OpenFlagRec();
-/*?*/             aIo.GetStream() >> nIndex
-/*?*/                             >> nOffset;
-/*?*/           Insert( SW_LAYCACHE_IO_REC_TABLE, nIndex, (xub_StrLen)nOffset );
-/*?*/           aIo.CloseFlagRec();
-/*?*/           aIo.CloseRec( SW_LAYCACHE_IO_REC_TABLE );
-/*?*/           break;
-/*N*/         case SW_LAYCACHE_IO_REC_FLY:
-/*N*/         {
-/*N*/             aIo.OpenRec( SW_LAYCACHE_IO_REC_FLY );
-/*N*/           aIo.OpenFlagRec();
-/*N*/           aIo.CloseFlagRec();
-/*N*/             long nX, nY, nW, nH;
-/*N*/             USHORT nPgNum;
-/*N*/             aIo.GetStream() >> nPgNum >> nIndex
-/*N*/                     >> nX >> nY >> nW >> nH;
-/*N*/             SwFlyCache* pFly = new SwFlyCache( nPgNum, nIndex, nX, nY, nW, nH );
-/*N*/             aFlyCache.Insert( pFly, aFlyCache.Count() );
-/*N*/             aIo.CloseRec( SW_LAYCACHE_IO_REC_FLY );
-/*N*/           break;
-/*N*/         }
-/*N*/       default:
-/*?*/           DBG_BF_ASSERT(0, "STRIP");
-/*N*/           break;
-/*N*/       }
-/*N*/   }
-/*N*/   aIo.CloseRec( SW_LAYCACHE_IO_REC_PAGES );
-/*N*/
-/*N*/   return !aIo.HasError();
-/*N*/ }
-
 /*N*/ void SwLayoutCache::ClearImpl()
 /*N*/ {
 /*N*/     if( !IsLocked() )
@@ -147,7 +80,6 @@ namespace binfilter {
 /*N*/         pImpl = 0;
 /*N*/     }
 /*N*/ }
-
 
 /*N*/ SwLayoutCache::~SwLayoutCache()
 /*N*/ {

@@ -163,7 +163,6 @@ protected:
     BOOL            ImplEncryptStream( SvStream& rStream ) const;
     BasicLibInfo*   FindLibInfo( StarBASIC* pBasic ) const;
     void            CheckModules( StarBASIC* pBasic, BOOL bReference ) const;
-    void            SetFlagToAllLibs( short nFlag, BOOL bSet ) const;
     ~BasicManager();
 
 public:

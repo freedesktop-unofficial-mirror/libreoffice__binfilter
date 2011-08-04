@@ -287,8 +287,6 @@ public:
 
 
 
-    USHORT      NoteCount( USHORT nMaxRow = MAXROW ) const;
-
     void        LoadData( SvStream& rStream );
 
     void        LoadNotes( SvStream& rStream );

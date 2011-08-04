@@ -177,30 +177,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ BOOL lcl_RemoveAny( ScDocument* pDocument, USHORT nCol, USHORT nTab )
-/*N*/ {
-/*N*/   ScDBCollection* pDBColl = pDocument->GetDBCollection();
-/*N*/   if ( pDBColl )
-/*N*/   {
-/*N*/       USHORT nCount = pDBColl->GetCount();
-/*N*/       for (USHORT i=0; i<nCount; i++)
-/*N*/       {
-/*N*/           ScDBData* pData = (*pDBColl)[i];
-/*N*/           if ( pData->IsStripData() &&
-/*N*/                   pData->HasImportParam() && !pData->HasImportSelection() )
-/*N*/           {
-/*?*/               ScRange aDBRange;
-/*?*/               pData->GetArea(aDBRange);
-/*?*/               if ( nTab == aDBRange.aStart.Tab() &&
-/*?*/                    nCol >= aDBRange.aStart.Col() && nCol <= aDBRange.aEnd.Col() )
-/*?*/                   return TRUE;
-/*N*/           }
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   return FALSE;
-/*N*/ }
-
 /*N*/ void ScColumn::LoadNotes( SvStream& rStream )
 /*N*/ {
 /*N*/   ScReadHeader aHdr(rStream);
@@ -219,18 +195,6 @@ namespace binfilter {
 /*N*/           rStream.SetError( SVSTREAM_FILEFORMAT_ERROR );
 /*N*/       }
 /*N*/   }
-/*N*/ }
-
-/*N*/ USHORT ScColumn::NoteCount( USHORT nMaxRow ) const
-/*N*/ {
-/*N*/   USHORT nNoteCount = 0;
-/*N*/   USHORT i;
-/*N*/
-/*N*/   for (i=0; i<nCount; i++)
-/*N*/       if ( pItems[i].pCell->GetNotePtr() && pItems[i].nRow<=nMaxRow )
-/*N*/           ++nNoteCount;
-/*N*/
-/*N*/   return nNoteCount;
 /*N*/ }
 
 /*N*/ void ScColumn::CorrectSymbolCells( CharSet eStreamCharSet )

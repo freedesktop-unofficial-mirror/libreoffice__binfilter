@@ -191,9 +191,6 @@ private:
 public:
     ScMultipleWriteHeader(SvStream& rNewStream, sal_uInt32 nDefault = 0);
     ~ScMultipleWriteHeader();
-
-    void    StartEntry();
-    void    EndEntry();
 };
 
 } //namespace binfilter

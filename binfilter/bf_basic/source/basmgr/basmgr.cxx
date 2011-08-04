@@ -1649,24 +1649,6 @@ BasicLibInfo* BasicManager::FindLibInfo( StarBASIC* pBasic ) const
     return 0;
 }
 
-void BasicManager::SetFlagToAllLibs( short nFlag, BOOL bSet ) const
-{
-    USHORT nLibs = GetLibCount();
-    for ( USHORT nL = 0; nL < nLibs; nL++ )
-    {
-        BasicLibInfo* pInfo = pLibs->GetObject( nL );
-        DBG_ASSERT( pInfo, "Info?!" );
-        StarBASIC* pLib = pInfo->GetLib();
-        if ( pLib )
-        {
-            if ( bSet )
-                pLib->SetFlag( nFlag );
-            else
-                pLib->ResetFlag( nFlag );
-        }
-    }
-}
-
 BOOL BasicManager::HasErrors()
 {
     DBG_CHKTHIS( BasicManager, 0 );

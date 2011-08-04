@@ -79,7 +79,6 @@ class SwLayCacheImpl : public SvULongs
 
 public:
     SwLayCacheImpl() : SvULongs( 20, 10 ), aOffset( 20, 10 ), aType( 20, 10 ) {}
-    BOOL Read( SvStream& rStream );
 
     ULONG GetBreakIndex( USHORT nIdx ) const { return GetObject( nIdx ); }
     xub_StrLen GetBreakOfst( USHORT nIdx ) const { return aOffset[ nIdx ]; }

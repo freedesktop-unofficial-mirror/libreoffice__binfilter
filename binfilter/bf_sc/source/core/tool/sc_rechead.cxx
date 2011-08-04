@@ -212,22 +212,6 @@ namespace binfilter {
 /*N*/   }
 /*N*/ }
 
-/*N*/ void ScMultipleWriteHeader::EndEntry()
-/*N*/ {
-/*N*/   ULONG nPos = rStream.Tell();
-/*N*/   aMemStream << static_cast<sal_uInt32>(nPos - nEntryStart);
-/*N*/ }
-
-/*N*/ void ScMultipleWriteHeader::StartEntry()
-/*N*/ {
-/*N*/   ULONG nPos = rStream.Tell();
-/*N*/   nEntryStart = nPos;
-/*N*/ }
-
-
-
-
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */
