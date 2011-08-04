@@ -233,54 +233,6 @@ namespace binfilter {
 /*N*/   return nNoteCount;
 /*N*/ }
 
-/*N*/ void ScColumn::SaveNotes( SvStream& rStream ) const
-/*N*/ {
-/*N*/   USHORT nSaveMaxRow = pDocument->GetSrcMaxRow();
-/*N*/   USHORT i;
-/*N*/
-/*N*/   BOOL bRemoveAny = lcl_RemoveAny( pDocument, nCol, nTab );
-/*N*/   USHORT nNoteCount;
-/*N*/   if ( bRemoveAny )
-/*N*/   {
-/*?*/       //  vorher zaehlen, wieviele Notizen es werden
-/*?*/
-/*?*/       nNoteCount = 0;
-/*?*/       for (i=0; i<nCount; i++)
-/*?*/           if ( pItems[i].pCell->GetNotePtr() && pItems[i].nRow<=nSaveMaxRow &&
-/*?*/                   true )
-/*?*/               ++nNoteCount;
-/*N*/   }
-/*N*/   else
-/*N*/       nNoteCount = NoteCount(nSaveMaxRow);
-/*N*/
-/*N*/   //  Speichern
-/*N*/   //  Als Positionen muessen die Indizes gespeichert werden, die beim Laden entstehen,
-/*N*/   //  also ohne die weggelassenen Zellen mitzuzaehlen.
-/*N*/
-/*N*/   ScWriteHeader aHdr(rStream);
-/*N*/   rStream << nNoteCount;
-/*N*/
-/*N*/   USHORT nDestPos = 0;
-/*N*/   for (i=0; i<nCount && rStream.GetError() == SVSTREAM_OK; i++)
-/*N*/   {
-/*N*/       USHORT nRow = pItems[i].nRow;
-/*N*/       if ( !bRemoveAny || true )
-/*N*/       {
-/*N*/           const ScPostIt* pNote = pItems[i].pCell->GetNotePtr();
-/*N*/           if ( pNote && nRow <= nSaveMaxRow )
-/*N*/           {
-/*N*/               rStream << nDestPos;
-/*N*/               rStream << *pNote;
-/*N*/           }
-/*N*/           ++nDestPos;         // nDestPos zaehlt die in SaveData gespeicherten Zellen
-/*N*/       }
-/*N*/   }
-/*N*/
-/*N*/   //  SetLostData ist schon in SaveData passiert, wenn noetig
-/*N*/ }
-
-// -----------------------------------------------------------------------------------------
-
 /*N*/ void ScColumn::CorrectSymbolCells( CharSet eStreamCharSet )
 /*N*/ {
 /*N*/     //  #99139# find and correct string cells that are formatted with a symbol font,

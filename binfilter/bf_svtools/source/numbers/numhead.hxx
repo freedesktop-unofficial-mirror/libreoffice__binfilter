@@ -90,23 +90,6 @@ public:
     static void Skip( SvStream& );      // komplett ueberspringen
 };
 
-class ImpSvNumMultipleWriteHeader
-{
-private:
-    SvStream&       rStream;
-    SvMemoryStream  aMemStream;
-    ULONG           nDataPos;
-    sal_uInt32      nDataSize;
-    ULONG           nEntryStart;
-
-public:
-    ImpSvNumMultipleWriteHeader(SvStream& rNewStream, ULONG nDefault = 0);
-    ~ImpSvNumMultipleWriteHeader();
-
-    void    StartEntry();
-    void    EndEntry();
-};
-
 }
 
 #endif

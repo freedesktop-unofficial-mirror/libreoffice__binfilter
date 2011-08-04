@@ -278,8 +278,6 @@ protected:
                                     ScMultipleReadHeader&, ScChangeTrack* );
     virtual                     ~ScChangeAction();
 /*N*/
-/*N*/   static  void            StoreCell( ScBaseCell*, SvStream&,
-/*N*/                                   ScMultipleWriteHeader& );
 /*N*/   static ScBaseCell*          LoadCell( SvStream&, ScMultipleReadHeader&,
 /*N*/                                   ScDocument*, USHORT nVer );
 /*N*/

@@ -441,43 +441,6 @@ const USHORT nMemPoolChangeActionLinkEntry = (0x8000 - 64) / sizeof(ScChangeActi
 /*N*/   DeleteCellEntries();        // weg mit den generierten
 /*N*/ }
 
-
-// static
-/*N*/ void ScChangeAction::StoreCell( ScBaseCell* pCell, SvStream& rStrm,
-/*N*/       ScMultipleWriteHeader& rHdr )
-/*N*/ {
-/*N*/   if ( pCell )
-/*N*/   {
-/*N*/       CellType eCellType = pCell->GetCellType();
-/*N*/       switch( eCellType )
-/*N*/       {
-/*N*/           case CELLTYPE_VALUE:
-/*N*/               rStrm << (BYTE) eCellType;
-/*N*/               ((ScValueCell*)pCell)->Save( rStrm );
-/*N*/           break;
-/*N*/           case CELLTYPE_STRING:
-/*N*/               rStrm << (BYTE) eCellType;
-/*N*/               ((ScStringCell*)pCell)->Save( rStrm );
-/*N*/           break;
-/*N*/           case CELLTYPE_EDIT:
-/*N*/               rStrm << (BYTE) eCellType;
-/*N*/               ((ScEditCell*)pCell)->Save( rStrm );
-/*N*/           break;
-/*N*/           case CELLTYPE_FORMULA:
-/*N*/               rStrm << (BYTE) eCellType;
-/*N*/               rStrm << ((ScFormulaCell*)pCell)->aPos;
-/*N*/               ((ScFormulaCell*)pCell)->Save( rStrm, rHdr );
-/*N*/           break;
-/*N*/           default:
-/*N*/               OSL_FAIL( "ScChangeAction::StoreCell: unknown CellType" );
-/*N*/               rStrm << (BYTE) CELLTYPE_NONE;
-/*N*/       }
-/*N*/   }
-/*N*/   else
-/*N*/       rStrm << (BYTE) CELLTYPE_NONE;
-/*N*/ }
-
-
 // static
 /*N*/ ScBaseCell* ScChangeAction::LoadCell( SvStream& rStrm,
 /*N*/       ScMultipleReadHeader& rHdr, ScDocument* pDoc, USHORT nVer )

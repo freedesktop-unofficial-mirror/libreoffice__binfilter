@@ -57,7 +57,6 @@ namespace binfilter {
 
 class ImpSvNumberformatScan;            // format code string scanner
 class ImpSvNumberInputScan;             // input string scanner
-class ImpSvNumMultipleWriteHeader;      // compatible file format
 class ImpSvNumMultipleReadHeader;       // compatible file format
 class SvNumberFormatter;
 
@@ -225,7 +224,6 @@ public:
 
     NfHackConversion Load( SvStream& rStream, ImpSvNumMultipleReadHeader& rHdr,
         SvNumberFormatter* pConverter, ImpSvNumberInputScan& rISc );
-    void Save( SvStream&, ImpSvNumMultipleWriteHeader& ) const {};
 
     // Load a string which might contain an Euro symbol,
     // in fact that could be any string used in number formats.

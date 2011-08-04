@@ -46,36 +46,6 @@ namespace binfilter {
 
 /*N*/ TYPEINIT1(SvxBulletItem,SfxPoolItem);
 
-// -----------------------------------------------------------------------
-
-/*N*/ void SvxBulletItem::StoreFont( SvStream& rStream, const Font& rFont )
-/*N*/ {
-/*N*/   USHORT nTemp;
-/*N*/
-/*N*/   rStream << rFont.GetColor();
-/*N*/   nTemp = (USHORT)rFont.GetFamily(); rStream << nTemp;
-/*N*/
-/*N*/   // #90477# nTemp = (USHORT)GetStoreCharSet( rFont.GetCharSet(), rStream.GetVersion() );
-/*N*/   nTemp = (USHORT)GetSOStoreTextEncoding((rtl_TextEncoding)rFont.GetCharSet(), (sal_uInt16)rStream.GetVersion());
-/*N*/   rStream << nTemp;
-/*N*/
-/*N*/   nTemp = (USHORT)rFont.GetPitch(); rStream << nTemp;
-/*N*/   nTemp = (USHORT)rFont.GetAlign(); rStream << nTemp;
-/*N*/   nTemp = (USHORT)rFont.GetWeight(); rStream << nTemp;
-/*N*/   nTemp = (USHORT)rFont.GetUnderline(); rStream << nTemp;
-/*N*/   nTemp = (USHORT)rFont.GetStrikeout(); rStream << nTemp;
-/*N*/   nTemp = (USHORT)rFont.GetItalic(); rStream << nTemp;
-/*N*/
-/*N*/   // UNICODE: rStream << rFont.GetName();
-/*N*/   rStream.WriteByteString(rFont.GetName());
-/*N*/
-/*N*/   rStream << rFont.IsOutline();
-/*N*/   rStream << rFont.IsShadow();
-/*N*/   rStream << rFont.IsTransparent();
-/*N*/ }
-
-// -----------------------------------------------------------------------
-
 /*N*/ Font SvxBulletItem::CreateFont( SvStream& rStream, USHORT nVer )
 /*N*/ {
 /*N*/   Font aFont;

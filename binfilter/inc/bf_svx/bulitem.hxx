@@ -130,7 +130,6 @@ public:
     virtual USHORT      GetVersion(USHORT nFileVersion) const;
     virtual int         operator==( const SfxPoolItem& ) const;
 
-    static void         StoreFont( SvStream&, const Font& );
     static Font         CreateFont( SvStream&, USHORT nVer );
 
     USHORT&             GetValidMask()                  { return nValidMask;    }

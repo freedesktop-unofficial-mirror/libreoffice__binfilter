@@ -197,58 +197,6 @@ ULONG ImpSvNumMultipleReadHeader::BytesLeft() const
     return 0;
 }
 
-// -----------------------------------------------------------------------
-
-//#pragma SEG_FUNCDEF(numhead_0a)
-
-ImpSvNumMultipleWriteHeader::ImpSvNumMultipleWriteHeader(SvStream& rNewStream,
-                                                   ULONG nDefault) :
-    rStream( rNewStream ),
-    aMemStream( 4096, 4096 )
-{
-    nDataSize = nDefault;
-    rStream << nDataSize;
-
-    nDataPos = rStream.Tell();
-    nEntryStart = nDataPos;
-}
-
-//#pragma SEG_FUNCDEF(numhead_0b)
-
-ImpSvNumMultipleWriteHeader::~ImpSvNumMultipleWriteHeader()
-{
-    ULONG nDataEnd = rStream.Tell();
-
-    rStream << (USHORT) SV_NUMID_SIZES;
-    rStream << static_cast<sal_uInt32>(aMemStream.Tell());
-    rStream.Write( aMemStream.GetData(), aMemStream.Tell() );
-
-    if ( nDataEnd - nDataPos != nDataSize )                 // Default getroffen?
-    {
-        nDataSize = nDataEnd - nDataPos;
-        ULONG nPos = rStream.Tell();
-        rStream.Seek(nDataPos-sizeof(sal_uInt32));
-        rStream << nDataSize;                               // Groesse am Anfang eintragen
-        rStream.Seek(nPos);
-    }
-}
-
-//#pragma SEG_FUNCDEF(numhead_0c)
-
-void ImpSvNumMultipleWriteHeader::EndEntry()
-{
-    ULONG nPos = rStream.Tell();
-    aMemStream << static_cast<sal_uInt32>(nPos - nEntryStart);
-}
-
-//#pragma SEG_FUNCDEF(numhead_0e)
-
-void ImpSvNumMultipleWriteHeader::StartEntry()
-{
-    ULONG nPos = rStream.Tell();
-    nEntryStart = nPos;
-}
-
 }
 
 /* vim:set shiftwidth=4 softtabstop=4 expandtab: */

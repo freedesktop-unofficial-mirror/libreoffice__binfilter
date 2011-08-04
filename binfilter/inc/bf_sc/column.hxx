@@ -292,7 +292,6 @@ public:
     void        LoadData( SvStream& rStream );
 
     void        LoadNotes( SvStream& rStream );
-    void        SaveNotes( SvStream& rStream ) const;
 
     BOOL        Load( SvStream& rStream, ScMultipleReadHeader& rHdr );
     BOOL        Save( SvStream&, ScMultipleWriteHeader& ) const {return false; }
