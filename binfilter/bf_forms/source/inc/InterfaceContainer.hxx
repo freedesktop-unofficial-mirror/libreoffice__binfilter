@@ -75,7 +75,7 @@ namespace frm
     };
 
 typedef ::std::vector<InterfaceRef> OInterfaceArray;
-typedef ::boost::unordered_multimap< ::rtl::OUString, InterfaceRef, ::comphelper::UStringHash, ::comphelper::UStringEqual> OInterfaceMap;
+typedef ::boost::unordered_multimap< ::rtl::OUString, InterfaceRef, ::rtl::OUStringHash, ::comphelper::UStringEqual> OInterfaceMap;
 
 //==================================================================
 // OInterfaceContainer
