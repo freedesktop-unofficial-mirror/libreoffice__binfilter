@@ -693,10 +693,8 @@ UCHAR Upcase(UCHAR c)
 
 USHORT GetCharWidth(OutputDevice& rOut, UCHAR c)
 {
-    UCHAR  c1;
     USHORT ChrWidth;
 
-    c1 = ByteString::Convert((char)c,RTL_TEXTENCODING_IBM_437, gsl_getSystemTextEncoding() );
     if (c==' ')
     {
         ChrWidth=(USHORT)rOut.GetTextWidth( String('A') );
@@ -709,11 +707,11 @@ USHORT GetCharWidth(OutputDevice& rOut, UCHAR c)
         OSL_ENSURE( MaxChar == 255, "MaxChar not 255" );
         if (c>=MinChar /*&& c<=MaxChar*/)
         {
-            ChrWidth=(USHORT)rOut.GetTextWidth(String((char)c1));
+            ChrWidth=(USHORT)rOut.GetTextWidth(rtl::OUString(reinterpret_cast<sal_Char*>(&c), 1, RTL_TEXTENCODING_IBM_437));
         }
         else
         {
-            ChrWidth=(USHORT)rOut.GetTextWidth(String('A'));
+            ChrWidth=(USHORT)rOut.GetTextWidth(rtl::OUString(static_cast<sal_Unicode>('A')));
         }
     }
     return ChrWidth;
