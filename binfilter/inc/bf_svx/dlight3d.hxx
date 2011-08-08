@@ -52,10 +52,6 @@ class E3dDistantLight : public E3dLight
 
  public:
     TYPEINFO();
-    E3dDistantLight(const Vector3D& rPos,
-                    const Vector3D& rDirection,
-                    const Color&    rColor,
-                    double          fLightIntensity = 1.0);
 
     E3dDistantLight() :
         aDirection(Vector3D(0, 1, 0))

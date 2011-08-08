@@ -37,19 +37,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* E3dPointLight-Konstruktor
-|*
-\************************************************************************/
-
-/*N*/ E3dPointLight::E3dPointLight(const Vector3D& rPos, const Color& rColor,
-/*N*/                            double fLightIntensity) :
-/*N*/   E3dLight(rPos, rColor, fLightIntensity)
-/*N*/ {
-/*N*/   CreateLightObj();
-/*N*/ }
-
-/*************************************************************************
-|*
 |* E3dPointLight-Destruktor
 |*
 \************************************************************************/

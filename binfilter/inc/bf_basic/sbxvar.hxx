@@ -315,7 +315,6 @@ public:
     double GetDate() const;
     BOOL   GetBool() const;
     const  String& GetString() const;
-    const  String& GetCoreString() const;
 #ifdef WNT
     SbxDecimal* GetDecimal() const;
 #endif

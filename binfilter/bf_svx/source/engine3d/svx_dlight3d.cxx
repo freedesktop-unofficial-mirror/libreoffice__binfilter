@@ -40,20 +40,6 @@ namespace binfilter {
 
 /*************************************************************************
 |*
-|* E3dDistantLight-Konstruktor
-|*
-\************************************************************************/
-
-/*N*/ E3dDistantLight::E3dDistantLight(const Vector3D& rPos, const Vector3D& rDir,
-/*N*/                                const Color& rColor, double fLightIntensity) :
-/*N*/   E3dLight(rPos, rColor, fLightIntensity)
-/*N*/ {
-/*N*/   SetDirection(rDir);
-/*N*/   CreateLightObj();
-/*N*/ }
-
-/*************************************************************************
-|*
 |* E3dDistantLight-Destruktor
 |*
 \************************************************************************/

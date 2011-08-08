@@ -48,9 +48,6 @@ class E3dPointLight : public E3dLight
 
  public:
     TYPEINFO();
-    E3dPointLight(const Vector3D& rPos,
-                  const Color&    rColor,
-                  double          fLightIntensity = 1.0);
 
     E3dPointLight()
     {

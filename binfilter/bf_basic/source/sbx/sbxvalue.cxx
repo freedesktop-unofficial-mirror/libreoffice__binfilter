@@ -650,20 +650,6 @@ const XubString& SbxValue::GetString() const
     }
 }
 
-const XubString& SbxValue::GetCoreString() const
-{
-    SbxValues aRes;
-    aRes.eType = SbxCoreSTRING;
-    if( Get( aRes ) )
-        // Geht in Ordnung, da Ptr eine Kopie ist
-        return *aRes.pString;
-    else
-    {
-        ((SbxValue*) this)->aPic.Erase();
-        return aPic;
-    }
-}
-
 BOOL SbxValue::GetBool() const
 {
     SbxValues aRes;

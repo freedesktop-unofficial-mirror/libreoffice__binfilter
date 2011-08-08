@@ -39,10 +39,6 @@
 #include <guess.hxx>    //
 namespace binfilter {
 
-#ifdef DBG_UTIL
-extern const sal_Char *GetLangName( const MSHORT nLang );
-#endif
-
 using namespace ::rtl;
 using namespace ::com::sun::star;
 using namespace ::com::sun::star::uno;
