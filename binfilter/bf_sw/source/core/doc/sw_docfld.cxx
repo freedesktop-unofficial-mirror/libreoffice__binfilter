@@ -1138,31 +1138,6 @@ extern BOOL IsFrameBehind( const SwTxtNode& rMyNd, USHORT nMySttPos,
 /*N*/   GetNewDBMgr()->SetInitDBFields( b );
 /*N*/ }
 
-/*N*/ void SwDoc::AddUsedDBToList( SvStringsDtor& rDBNameList, const String& rDBName)
-/*N*/ {
-/*N*/   if( !rDBName.Len() )
-/*N*/       return;
-/*N*/
-/*N*/ #ifdef UNX
-/*N*/   for( USHORT i = 0; i < rDBNameList.Count(); ++i )
-/*N*/       if( rDBName == rDBNameList.GetObject(i)->GetToken(0) )
-/*N*/           return;
-/*N*/ #else
-/*N*/   const ::utl::TransliterationWrapper& rSCmp = GetAppCmpStrIgnore();
-/*N*/   for( USHORT i = 0; i < rDBNameList.Count(); ++i )
-/*N*/       if( rSCmp.isEqual( rDBName, rDBNameList.GetObject(i)->GetToken(0) ) )
-/*N*/           return;
-/*N*/ #endif
-/*N*/
-/*N*/     SwDBData aData;
-/*N*/     aData.sDataSource = rDBName.GetToken(0, DB_DELIM);
-/*N*/     aData.sCommand = rDBName.GetToken(1, DB_DELIM);
-/*N*/     aData.nCommandType = -1;
-/*N*/     GetNewDBMgr()->CreateDSData(aData);
-/*N*/   String* pNew = new String( rDBName );
-/*N*/   rDBNameList.Insert( pNew, rDBNameList.Count() );
-/*N*/ }
-
 /*N*/ BOOL SwDoc::SetFieldsDirty( BOOL b, const SwNode* pChk, ULONG nLen )
 /*N*/ {
 /*N*/   // teste ggfs. mal, ob die angegbenen Nodes ueberhaupt Felder beinhalten.

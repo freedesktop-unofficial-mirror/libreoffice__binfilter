@@ -454,7 +454,6 @@ class SwDoc
     void _MakeFldList( int eMode );
     // Datenbankfelder:
      void UpdateDBNumFlds( SwDBNameInfField& rDBFld, SwCalc& rCalc );
-    void AddUsedDBToList( SvStringsDtor& rDBNameList, const String& rDBName );
 
     void InitDrawModel();
     void ReleaseDrawModel();

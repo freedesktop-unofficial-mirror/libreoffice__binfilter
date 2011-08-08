@@ -75,7 +75,6 @@ class SwLayCacheImpl : public SvULongs
     SvUShorts aType;
     SwPageFlyCache aFlyCache;
     sal_Bool bUseFlyCache;
-    void Insert( USHORT nType, ULONG nIndex, xub_StrLen nOffset );
 
 public:
     SwLayCacheImpl() : SvULongs( 20, 10 ), aOffset( 20, 10 ), aType( 20, 10 ) {}
@@ -156,12 +155,6 @@ public:
     static BOOL CheckPageFlyCache( SwPageFrm* &rpPage, SwFlyFrm* pFly );
 };
 
-/*************************************************************************
- *                      class SwLayCacheIoImpl
- * contains the data structures that are required to read and write a
- * layout cache.
- *************************************************************************/
-
 #define SW_LAYCACHE_IO_REC_PAGES    'p'
 #define SW_LAYCACHE_IO_REC_PARA     'P'
 #define SW_LAYCACHE_IO_REC_TABLE    'T'
@@ -169,57 +162,6 @@ public:
 
 #define SW_LAYCACHE_IO_VERSION_MAJOR    1
 #define SW_LAYCACHE_IO_VERSION_MINOR    1
-
-class SwLayCacheIoImpl
-{
-    SvBytes         aRecTypes;
-    SvULongs        aRecSizes;
-
-    SvStream        *pStream;
-
-    ULONG           nFlagRecEnd;
-
-    USHORT          nMajorVersion;
-    USHORT          nMinorVersion;
-
-    BOOL            bWriteMode : 1;
-    BOOL            bError : 1;
-
-public:
-    SwLayCacheIoImpl( SvStream& rStrm, BOOL bWrtMd );
-
-    // Get input or output stream
-    SvStream& GetStream() const { return *pStream; }
-
-    // Open a record of type "nType"
-    BOOL OpenRec( BYTE nType );
-
-    // Close a record of type "nType". This skips any unread data that
-    // remains in the record.
-    BOOL CloseRec( BYTE nType );
-
-    // Return the number of bytes contained in the current record that
-    // haven't been read by now.
-    UINT32 BytesLeft();
-
-    // Return the current record's type
-    BYTE Peek();
-
-    // Skip the current record
-
-    // Open a flag record for reading. The uppermost four bits are flags,
-    // while the lowermost are the flag record's size. Flag records cannot
-    // be nested.
-    BYTE OpenFlagRec();
-
-    // Close a flag record. Any bytes left are skipped.
-    void CloseFlagRec();
-
-    BOOL HasError() const { return bError; }
-
-    USHORT GetMajorVersion() const { return nMajorVersion; }
-    USHORT GetMinorVersion() const { return nMinorVersion; }
-};
 
 // Stored information about text frames:
 class SwFlyCache : public SwRect // position and size
